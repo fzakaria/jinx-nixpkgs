@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "bitlbee"));
   const bitlbeeUid = nix.thunk(() => nix.sel(config, "ids", "uids", "bitlbee"));
   const bitlbeePkg = nix.thunk(() => nix.app(nix.sel(pkgs, "bitlbee", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enableLibPurple: nix.thunk(() => !nix.eq(nix.sel(cfg, "libpurple_plugins"), [])),
       enablePam: nix.thunk(() => nix.eq(nix.sel(cfg, "authBackend"), "pam")),
     }))));
@@ -61,83 +61,83 @@ ${nix.sel(cfg, "extraDefaults")}
 `)));
   const purple_plugin_path = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ":", (plugin) => nix.str`${plugin}/lib/pidgin/:${plugin}/lib/purple-2/`, nix.thunk(() => nix.sel(cfg, "libpurple_plugins"))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         bitlbee: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run the BitlBee IRC to other chat network gateway.\nRunning it allows you to access the MSN, Jabber, Yahoo! and ICQ chat\nnetworks via an IRC client.\n",
             })))),
           interface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "The interface the BitlBee daemon will be listening to.  If `127.0.0.1`,\nonly clients on the local host can connect to it; if `0.0.0.0`, clients\ncan access it from any network interface.\n",
             })))),
           portNumber: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: 6667n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Number of the port BitlBee will be listening to.\n",
             })))),
           authBackend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "storage",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["storage", "pam"]))),
               description: "How users are authenticated\n  storage -- save passwords internally\n  pam -- Linux PAM authentication\n",
             })))),
           authMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "Open",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Open", "Closed", "Registered"]))),
               description: "The following authentication modes are available:\n  Open -- Accept connections from anyone, use NickServ for user authentication.\n  Closed -- Require authorization (using the PASS command during login) before allowing the user to connect at all.\n  Registered -- Only allow registered users to use this server; this disables the register- and the account command until the user identifies himself.\n",
             })))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Normally, BitlBee gets a hostname using getsockname(). If you have a nicer\nalias for your BitlBee daemon, you can set it here and BitlBee will identify\nitself with that name instead.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.bitlbee-facebook ]")),
               description: "The list of bitlbee plugins to install.\n",
             })))),
           libpurple_plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.purple-discord ]")),
               description: "The list of libpurple plugins to install.\n",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: "/var/lib/bitlbee",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Specify an alternative directory to store all the per-user configuration\nfiles.\n",
             })))),
           protocols: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "This option allows to remove the support of protocol, even if compiled\nin. If nothing is given, there are no restrictions.\n",
             })))),
           extraSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Will be inserted in the Settings section of the config file.\n",
             })))),
           extraDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Will be inserted in the Default section of the config file.\n",
@@ -147,19 +147,19 @@ ${nix.sel(cfg, "extraDefaults")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "bitlbee", "enable")), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             systemd: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               services: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 bitlbee: nix.thunk(() => ({
-                  __proto__: pos$19,
-                  environment: nix.thunk(() => ({ __proto__: pos$17, PURPLE_PLUGIN_PATH: purple_plugin_path })),
+                  [nix.POS]: pos$19,
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$17, PURPLE_PLUGIN_PATH: purple_plugin_path })),
                   description: "BitlBee IRC to other chat networks gateway",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     DynamicUser: true,
                     StateDirectory: "bitlbee",
                     ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configDir"))]),
@@ -168,15 +168,15 @@ ${nix.sel(cfg, "extraDefaults")}
                 })),
               })),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$22, systemPackages: nix.thunk(() => [bitlbeePkg]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$22, systemPackages: nix.thunk(() => [bitlbeePkg]) })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(config, "services", "bitlbee", "authBackend"), "pam")), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             security: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               pam: nix.thunk(() => ({
-                __proto__: pos$25,
-                services: nix.thunk(() => ({ __proto__: pos$24, bitlbee: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$25,
+                services: nix.thunk(() => ({ [nix.POS]: pos$24, bitlbee: nix.thunk(() => ({})) })),
               })),
             })),
           })))),

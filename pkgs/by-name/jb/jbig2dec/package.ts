@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jbig2dec",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ArtifexSoftware/jbig2dec/archive/${nix.sel(finalAttrs, "version")}/jbig2dec-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qXBTaaZjOrpTJpNFDsgCxWI5fhuCRmLegJ7ekvZ6/yE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-38076.patch",
             url: "https://github.com/ArtifexSoftware/jbig2dec/commit/cc37d0931aa71582f7128736a068c92cd8712d9b.patch",
             hash: "sha256-NdmE3xT5M6Ini6FJcKqCJmJkBTFnnq66/YV3Ky5PVNM=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.jbig2dec.com/",
         description: "Decoder implementation of the JBIG2 image compression format",
         mainProgram: "jbig2dec",

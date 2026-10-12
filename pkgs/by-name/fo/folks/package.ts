@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const telepathy_glib = nix.arg($, "telepathy-glib");
   const telepathySupport = nix.argOr($, "telepathySupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "folks",
       version: "0.15.12",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/folks/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/folks-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IfROK9q7Huf45Bu5ltEKx9rzXHjEmBd9sMAPWAogqRQ=",
         })))),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), telepathySupport, "patchShebangs tests/tools/manager-file.py\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "folks", versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "folks", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library that aggregates people from multiple sources to create metacontacts",
         homepage: "https://gitlab.gnome.org/GNOME/folks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

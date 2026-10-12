@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const extraPath = nix.argOr($, "extraPath", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const sources = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "aarch64-darwin": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`Aptakube_${nix.sel(finalAttrs, "version")}_universal.dmg`),
           hash: "sha256-qIaTUvZ1RLCucB1FG92rh8rApltstxaq8XEXblnFKrI=",
         })),
         "x86_64-linux": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`aptakube_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-YDPEy3wiPohl0Ql5ITNA2UxdpuG4tjGnA0WN6Qt9pd8=",
         })),
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
       const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`aptakube: unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       const runtimePath = nix.thunk(() => nix.concat(extraPath, [kubectl, kubernetes_helm]));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "aptakube",
         version: "1.20.5",
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://github.com/aptakube/aptakube/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(source, "name")}`),
             hash: nix.thunk(() => nix.attr(source, "hash")),
           })))),
@@ -71,12 +71,12 @@ runHook postInstall
         preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`gappsWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimePath)})
 `))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           sources: sources,
           updateScript: nix.path(here, "./update.sh"),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Multi-cluster Kubernetes UI",
           longDescription: "Aptakube is proprietary software with a 15-day free trial.\n\nSome operations use `kubectl` or Helm from `PATH`. If they are not in\n`PATH`, packaged binaries will be used.\n\nAny kubeconfig exec-auth helpers are loaded from `PATH`. Use `extraPath`\nto modify `PATH` specifically for this package.\n",
           homepage: "https://aptakube.com/",

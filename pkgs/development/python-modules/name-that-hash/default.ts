@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bee-san",
           repo: "name-that-hash",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [click, rich]);
       const pythonImportsCheck = nix.thunk(() => ["name_that_hash"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         longDescription: "Don't know what type of hash it is? Name That Hash will name that hash type! Identify MD5, SHA256 and 300+ other hashes.",
         description: "Module and CLI for the identification of hashes",
         homepage: "https://github.com/bee-san/Name-That-Hash",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

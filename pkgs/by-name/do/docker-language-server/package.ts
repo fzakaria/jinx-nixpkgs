@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docker-language-server",
       version: "0.20.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docker",
           repo: "docker-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   --fish <("$out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}" completion fish)
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server for providing language features for file types in the Docker ecosystem (Dockerfiles, Compose files, and Bake files)",
         homepage: "https://github.com/docker/docker-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/docker/docker-language-server/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

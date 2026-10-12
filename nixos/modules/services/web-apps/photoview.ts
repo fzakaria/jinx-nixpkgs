@@ -50,131 +50,131 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "photoview"));
   const dbUrl = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     sqlite: nix.thunk(() => nix.str`PHOTOVIEW_SQLITE_PATH=${nix.sel(cfg, "dataDir")}/photoview.db`),
     mysql: nix.thunk(() => nix.str`PHOTOVIEW_MYSQL_URL=${nix.sel(cfg, "database", "user")}:$(cat $CREDENTIALS_DIRECTORY/db_password)@tcp(${nix.sel(cfg, "database", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))})/${nix.sel(cfg, "database", "name")}`),
     postgres: nix.thunk(() => nix.str`PHOTOVIEW_POSTGRES_URL=postgres://${nix.sel(cfg, "database", "user")}:$(cat $CREDENTIALS_DIRECTORY/db_password)@${nix.sel(cfg, "database", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}/${nix.sel(cfg, "database", "name")}`),
   }));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         photoview: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Photoview, a photo gallery for self-hosted personal servers")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "photoview", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "photoview",
               description: "User account under which photoview runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "photoview",
               description: "Group under which photoview runs.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/photoview",
               description: "Directory for photoview state, cache, and database.",
             })))),
           mediaPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to the directory containing photos to be served.\nThis directory must be readable by the photoview user.\n",
               example: "/mnt/photos",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Address to listen on.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4001n,
               description: "Port to listen on.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "mysql", "postgres"]))),
                 default: "sqlite",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 5432n,
                 description: "Database port.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "photoview",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "photoview",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Path to a file containing the database password.\nRequired when using MySQL or PostgreSQL.\n",
               })))),
           })),
           settings: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             disableFaceRecognition: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Disable face recognition feature.",
               })))),
             disableVideoEncoding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Disable video encoding with FFmpeg.",
               })))),
             disableRawProcessing: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Disable RAW photo processing.",
               })))),
             mapboxToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Mapbox API token for map features.",
               })))),
             videoEncoder: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["h264_qsv", "h264_vaapi", "h264_nvenc"]))))),
                 default: null,
                 description: "Hardware video encoder to use.",
               })))),
           })),
           secretsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to an environment file containing secrets.\nCan be used for MAPBOX_TOKEN or other sensitive settings.\n",
@@ -183,40 +183,40 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "services.photoview.database.passwordFile must be set when using MySQL or PostgreSQL.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "photoview")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               photoview: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "photoview")), nix.thunk(() => ({ __proto__: pos$28, photoview: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "photoview")), nix.thunk(() => ({ [nix.POS]: pos$28, photoview: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             photoview: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Photoview - Photo gallery for self-hosted personal servers",
               documentation: nix.thunk(() => ["https://photoview.github.io/docs/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgres")), "postgresql.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql")), "mysql.service")))),
               requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgres")), "postgresql.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql")), "mysql.service"))),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 PHOTOVIEW_DATABASE_DRIVER: nix.thunk(() => nix.sel(cfg, "database", "type")),
                 PHOTOVIEW_LISTEN_IP: nix.thunk(() => nix.sel(cfg, "host")),
                 PHOTOVIEW_LISTEN_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
@@ -225,17 +225,17 @@ export default nix.lambda((args) => (() => {
                 PHOTOVIEW_DISABLE_VIDEO_ENCODING: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "disableVideoEncoding")))),
                 PHOTOVIEW_DISABLE_RAW_PROCESSING: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "disableRawProcessing")))),
               }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "mapboxToken"), null)), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   MAPBOX_TOKEN: nix.thunk(() => nix.sel(cfg, "settings", "mapboxToken")),
                 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "videoEncoder"), null)), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   PHOTOVIEW_VIDEO_ENCODER: nix.thunk(() => nix.sel(cfg, "settings", "videoEncoder")),
                 })))))),
               script: nix.thunk(() => nix.str`export ${nix.sel(dbUrl, nix.key(nix.sel(cfg, "database", "type")))}
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 StateDirectory: "photoview",
@@ -273,7 +273,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nettika"))];

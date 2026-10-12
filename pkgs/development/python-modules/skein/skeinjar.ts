@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname_1,
           version: version_1,
           format: "wheel",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 install -D ./skein/java/skein.jar $out
 `);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname_1,
         version: version_1,
         src,

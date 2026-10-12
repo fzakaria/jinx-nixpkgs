@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raul",
       version: "2.0.0-unstable-2024-07-04",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drobilla",
           repo: "raul",
           rev: "9097952a918f8330a5db9039ad390fc2457f841d",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ utility library primarily aimed at audio/musical applications",
         homepage: "http://drobilla.net/software/raul",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

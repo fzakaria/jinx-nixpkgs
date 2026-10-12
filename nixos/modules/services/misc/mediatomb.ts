@@ -56,22 +56,22 @@ export default nix.lambda((args) => (() => {
   const name = nix.thunk(() => nix.sel(cfg, "package", "pname"));
   const pkg = nix.thunk(() => nix.sel(cfg, "package"));
   const mediaDirectory = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Absolute directory path to the media directory to index.\n",
         })))),
       recursive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Whether the indexation must take place recursively or not.",
         })))),
       "hidden-files": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: true,
           description: "Whether to index the hidden files or not.",
@@ -214,106 +214,106 @@ export default nix.lambda((args) => (() => {
   </config>
 `)));
   const defaultFirewallRules = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     allowedUDPPorts: nix.thunk(() => [1900n, nix.thunk(() => nix.sel(cfg, "port"))]),
     allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
   }));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         mediatomb: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Gerbera/Mediatomb DLNA server.\n",
             })))),
           serverName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "Gerbera (Mediatomb)",
               description: "How to identify the server on the network.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gerbera", nix.thunk(() => ({})))),
           ps3Support: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable ps3 specific tweaks.\nWARNING: incompatible with DSM 320 support.\n",
             })))),
           dsmSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable D-Link DSM 320 specific tweaks.\nWARNING: incompatible with ps3 support.\n",
             })))),
           tg100Support: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Telegent TG100 specific tweaks.\n",
             })))),
           transcoding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable transcoding.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`/var/lib/${name}`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"/var/lib/\${config.${nix.sel(opt, "package")}.pname}"`))),
               description: "The directory where Gerbera/Mediatomb stores its state, data, etc.\n",
             })))),
           pcDirectoryHide: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to list the top-level directory or not (from upnp client standpoint).\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mediatomb",
               description: "User account under which the service runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mediatomb",
               description: "Group account under which the service runs.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 49152n,
               description: "The network port to listen on.\n",
             })))),
           interface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "A specific interface to bind to.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If false (the default), this is up to the user to declare the firewall rules.\nIf true, this opens port 1900 (tcp and udp) and the port specified by\n{option}`sercvices.mediatomb.port`.\n\nIf the option {option}`services.mediatomb.interface` is set,\nthe firewall rules opened are dedicated to that interface. Otherwise,\nthose rules are opened globally.\n",
             })))),
           uuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "fdfc8a4e-a3ad-4c1d-b43d-a2eedb03a687",
               description: "A unique (on your network) to identify the server by.\n",
             })))),
           mediaDirectories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), mediaDirectory)));
@@ -322,13 +322,13 @@ export default nix.lambda((args) => (() => {
               description: "Declare media directories to index.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   path: "/data/pictures",
                   recursive: false,
                   "hidden-files": false,
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   path: "/data/audio",
                   recursive: true,
                   "hidden-files": false,
@@ -336,7 +336,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })))),
           customCfg: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allow the service to create and use its own config file inside the `dataDir` as\nconfigured by {option}`services.mediatomb.dataDir`.\nDeactivated by default, the service then runs with the configuration generated from this module.\nOtherwise, when enabled, no service configuration is generated. Gerbera/Mediatomb then starts using\nconfig.xml within the configured `dataDir`. It's up to the user to make a correct\nconfiguration file.\n",
@@ -349,19 +349,19 @@ export default nix.lambda((args) => (() => {
       const interfaceFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "interface"), "")), nix.thunk(() => nix.str`--interface ${nix.sel(cfg, "interface")}`)));
       const configFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "customCfg"))), nix.thunk(() => nix.str`--config ${nix.app(nix.sel(pkgs, "writeText"), "config.xml", configText)}`)));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           systemd: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             services: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               mediatomb: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 description: nix.thunk(() => nix.str`${nix.sel(cfg, "serverName")} media Server`),
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network.target", "network-online.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   ExecStart: nix.thunk(() => nix.str`${binaryCommand} --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} ${interfaceFlag} ${configFlag} --home ${nix.sel(cfg, "dataDir")}`),
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -370,15 +370,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "mediatomb")), nix.thunk(() => ({
-                __proto__: pos$33,
-                mediatomb: nix.thunk(() => ({ __proto__: pos$32, gid: gid })),
+                [nix.POS]: pos$33,
+                mediatomb: nix.thunk(() => ({ [nix.POS]: pos$32, gid: gid })),
               })))),
             users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "mediatomb")), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 mediatomb: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   isSystemUser: true,
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -388,10 +388,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(!nix.eq(nix.sel(cfg, "interface"), "")))), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     interfaces: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "interface")}`, defaultFirewallRules]])),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.eq(nix.sel(cfg, "interface"), "")))), defaultFirewallRules)),

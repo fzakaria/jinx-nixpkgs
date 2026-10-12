@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const rust_cbindgen = nix.arg($, "rust-cbindgen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tun2proxy",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "tun2proxy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NlmVgE4gQm/CZa92/UBD+kOrKCnYNalsGpGIMx0hcQM=",
         })))),
       cargoHash: "sha256-tbp67p3sqdg+qDmVTWIsPsd+igvLJnNb8WCyupFEikg=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GIT_HASH: "000000000000000000000000000000000000000000000000000",
       })),
       nativeBuildInputs: nix.thunk(() => [rust_cbindgen]),
@@ -46,7 +46,7 @@ install -D target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/rele
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tun2proxy/tun2proxy",
         description: "Tunnel (TUN) interface for SOCKS and HTTP proxies",
         changelog: nix.thunk(() => nix.str`https://github.com/tun2proxy/tun2proxy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

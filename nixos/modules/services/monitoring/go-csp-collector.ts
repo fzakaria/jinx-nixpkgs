@@ -42,26 +42,26 @@ export default nix.lambda((args) => (() => {
         return (nix.asBool(nix.app(isBool, value)) ? nix.str`${flag}=${nix.app(boolToString, value)}` : nix.str`${flag} ${nix.builtins.toString(value)}`);
       })(), settings)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "stepbrobd"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "go-csp-collector": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "go-csp-collector, a content security policy violation collector")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "go-csp-collector", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -71,16 +71,16 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         description: "The port to listen on.",
                         default: 8080n,
                         example: 8080n,
                       })))),
                     "output-format": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["text", "json"]))),
                         description: "Define how the violation reports are formatted for output.",
                         default: "text",
@@ -96,19 +96,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "go-csp-collector": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "CSP violation collector",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ReadOnlyPaths: nix.thunk(() => nix.selOr(cfg, () => "", "settings", "filter-file")),
                 ExecStart: nix.thunk(() => [
                   "",

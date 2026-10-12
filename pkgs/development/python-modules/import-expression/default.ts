@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1.post1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "import_expression",
           version: version,
           hash: "sha256-HIMb8mvvft82qXs0xoe5Yuer4GEWxm8A4U+aMhhiPU8=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests.py"]);
       const pythonImportsCheck = nix.thunk(() => ["import_expression"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transpiles a superset of python to allow easy inline imports",
         homepage: "https://github.com/ioistired/import-expression-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/ioistired/import-expression/releases/tag/v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "import-expression",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

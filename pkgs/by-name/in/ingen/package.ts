@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ingen",
       version: "0-unstable-2024-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drobilla",
           repo: "ingen",
           rev: "bbdab98ed282291b6e29a944359c360c9cca127e",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3, "pkgs", "rdflib"))]),
       postInstall: "wrapPythonProgramsIn \"$out/bin\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modular audio processing system using JACK and LV2 or LADSPA plugins",
         homepage: "http://drobilla.net/software/ingen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

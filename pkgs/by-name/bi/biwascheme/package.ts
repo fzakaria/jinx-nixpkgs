@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "biwascheme",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "biwascheme",
           repo: "biwascheme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace rollup.config.js \\
   --replace-fail "git rev-parse HEAD" "echo ${nix.sel(finalAttrs, "version")}"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Scheme interpreter written in JavaScript",
         homepage: "https://github.com/biwascheme/biwascheme",
         changelog: nix.thunk(() => nix.str`https://github.com/biwascheme/biwascheme/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

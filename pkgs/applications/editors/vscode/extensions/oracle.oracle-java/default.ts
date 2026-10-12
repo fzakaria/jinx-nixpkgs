@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => (() => {
       const mktplcRef = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "oracle-java",
         publisher: "oracle",
         version: "27.0.0",
         hash: "sha256-yXe07ZspiIN336DTqgzu8TbY5TC8vZ4XFIW4kr/WU0E=",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/oracle/javavscode/releases/tag/v${nix.sel(mktplcRef, "version")}`),
         description: "Java Platform Extension for Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=oracle.oracle-java",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kiyotoko"))]),
       }));
-      return { __proto__: pos$3, mktplcRef, meta };
+      return { [nix.POS]: pos$3, mktplcRef, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.argOr($, "unixodbc", () => null);
   nix.assert_((!nix.asBool(odbcSupport) || nix.asBool(!nix.eq(unixodbc, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fr/freetds/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freetds",
       version: "1.5.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freetds.org/files/stable/freetds-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ayyLk7nufIOFXa90XeWHh5ADLxTbruVT2DqdIRuE3Us=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optional"), odbcSupport, unixodbc))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libraries to natively talk to Microsoft SQL Server and Sybase databases",
         homepage: "https://www.freetds.org",
         changelog: nix.thunk(() => nix.str`https://github.com/FreeTDS/freetds/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jaraco_logging",
           version: version,
           hash: "sha256-59bcg2hHfOaesdbthR2AWJahypQs4/0Xc1gDEbC3dfs=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["jaraco.logging"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Support for Python logging facility",
         homepage: "https://github.com/jaraco/jaraco.logging",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/jaraco.logging/blob/v${version}/NEWS.rst`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

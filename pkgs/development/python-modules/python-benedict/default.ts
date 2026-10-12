@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const xlrd = nix.arg($, "xlrd");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-benedict",
       version: "0.39.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiocaccamo",
           repo: "python-benedict",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [python_fsutil, python_slugify, requests, useful_types, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           beautifulsoup4,
           boto3,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["benedict"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module with keylist/keypath support",
         homepage: "https://github.com/fabiocaccamo/python-benedict",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiocaccamo/python-benedict/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

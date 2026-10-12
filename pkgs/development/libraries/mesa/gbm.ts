@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3Packages = nix.arg($, "python3Packages");
   const libdrm = nix.arg($, "libdrm");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "mesa-libgbm";
       const version = "26.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "mesa",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const meta = nix.thunk(() => nix.attr(common, "meta"));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

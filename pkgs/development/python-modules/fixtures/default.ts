@@ -23,23 +23,23 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-t9tkAUcyUT8j0SsMSa5Se6DAwfJmfsl9kTbWcVfrzl0=",
         }))));
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, streams: nix.thunk(() => [testtools]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, streams: nix.thunk(() => [testtools]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "streams")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reusable state for writing clean tests and more",
         homepage: "https://github.com/testing-cabal/fixtures",
         changelog: nix.thunk(() => nix.str`https://github.com/testing-cabal/fixtures/blob/${version}/NEWS`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "android-backup-extractor",
       version: "0-unstable-2025-10-27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/nelenkov/android-backup-extractor/releases/download/latest/abe-540a57d.jar",
           hash: "sha256-7RAJLOZJ8/TXN7boS0w1t4r/wHu/RwN3/N6HGmTMfhM=",
         })))),
@@ -34,7 +34,7 @@ makeWrapper ${jre}/bin/java $out/bin/abe --add-flags "-cp $out/lib/android-backu
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to extract and repack Android backups created with adb backup",
         mainProgram: "abe",
         homepage: "https://github.com/nelenkov/android-backup-extractor",

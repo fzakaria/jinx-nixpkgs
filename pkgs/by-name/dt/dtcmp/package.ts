@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const lwgrp = nix.arg($, "lwgrp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dtcmp",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LLNL",
           repo: "dtcmp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [mpi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MPI datatype comparison library",
         homepage: "https://github.com/LLNL/dtcmp",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

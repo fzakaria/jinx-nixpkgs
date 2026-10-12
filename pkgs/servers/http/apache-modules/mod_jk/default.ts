@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_jk";
       const version = "1.2.50";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "tomcat-connectors",
           tag: nix.thunk(() => nix.str`JK_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/modules\ncp apache-2.0/mod_jk.so $out/modules\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides web server plugins to connect web servers with Tomcat",
         homepage: "https://tomcat.apache.org/download-connectors.cgi",
         changelog: "https://tomcat.apache.org/connectors-doc/miscellaneous/changelog.html",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

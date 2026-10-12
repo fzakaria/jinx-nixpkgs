@@ -35,46 +35,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const user = "alice";
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "ayatana-indicators",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           imports: nix.thunk(() => [
             nix.path(here, "./common/auto.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$3,
-              auto: nix.thunk(() => ({ __proto__: pos$2, enable: true, user: user })),
+              [nix.POS]: pos$3,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, user: user })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             xserver: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$6,
-                mate: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+                [nix.POS]: pos$6,
+                mate: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "mate")),
             })),
             "ayatana-indicators": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -96,40 +96,40 @@ export default nix.lambda((args) => (() => {
                 })());
               })()),
             })),
-            "accounts-daemon": nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
             dbus: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lomiri")), null);
                 return [nix.thunk(() => nix.lookup(w, "libusermetrics"))];
               })()),
             })),
-            telepathy: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            telepathy: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            networkmanager: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+            [nix.POS]: pos$15,
+            networkmanager: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lomiri")), null);
               return [nix.thunk(() => nix.lookup(w, "lomiri-schemas"))];
             })()),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             users: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               usermetrics: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 group: "usermetrics",
                 home: "/var/lib/usermetrics",
                 createHome: true,
                 isSystemUser: true,
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$19, usermetrics: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$19, usermetrics: nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$2),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maximtrp",
           repo: "scikit-posthocs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export SEABORN_DATA=${nix.sel(seaborn_data, "exercise")}
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["scikit_posthocs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiple Pairwise Comparisons (Post Hoc) Tests in Python",
         homepage: "https://github.com/maximtrp/scikit-posthocs",
         changelog: nix.thunk(() => nix.str`https://github.com/maximtrp/scikit-posthocs/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export SEABORN_DATA=${nix.sel(seaborn_data, "exercise")}
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

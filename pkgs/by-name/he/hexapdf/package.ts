@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const ruby = nix.arg($, "ruby");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hexapdf",
       exes: nix.thunk(() => ["hexapdf"]),
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "hexapdf")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Versatile PDF creation and manipulation library",
         homepage: "https://hexapdf.gettalong.org/",
         changelog: "https://github.com/gettalong/hexapdf/blob/master/CHANGELOG.md",

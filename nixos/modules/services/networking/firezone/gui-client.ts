@@ -39,30 +39,30 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "firezone", "gui-client"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         firezone: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "gui-client": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the firezone gui client")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "firezone-gui-client", nix.thunk(() => ({})))),
             allowedUsers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 description: "All listed users will become part of the `firezone-client` group so\nthey can control the tunnel service. This is a convenience option.\n",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The name of this client as shown in firezone",
               })))),
             logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "info",
                 description: "The log level for the firezone application. See\n[RUST_LOG](https://docs.rs/env_logger/latest/env_logger/#enabling-logging)\nfor the format.\n",
@@ -72,31 +72,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           groups: nix.thunk(() => ({
-            __proto__: pos$9,
-            "firezone-client": nix.thunk(() => ({ __proto__: pos$8, members: nix.thunk(() => nix.sel(cfg, "allowedUsers")) })),
+            [nix.POS]: pos$9,
+            "firezone-client": nix.thunk(() => ({ [nix.POS]: pos$8, members: nix.thunk(() => nix.sel(cfg, "allowedUsers")) })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           gnome: nix.thunk(() => ({
-            __proto__: pos$13,
-            "gnome-keyring": nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            [nix.POS]: pos$13,
+            "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "firezone-tunnel-service": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "GUI tunnel service for the Firezone zero-trust access platform",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -112,13 +112,13 @@ fi
 exec ${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "firezone-client-tunnel")} run
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 FIREZONE_NAME: nix.thunk(() => nix.sel(cfg, "name")),
                 LOG_DIR: "%L/dev.firezone.client",
                 RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "notify",
                 DeviceAllow: "/dev/net/tun",
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN"]),
@@ -159,7 +159,7 @@ exec ${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "firezone-clie
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

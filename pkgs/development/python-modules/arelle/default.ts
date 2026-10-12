@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const boto3 = nix.arg($, "boto3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`arelle${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(gui)), "-headless")}`),
       version: "2.39.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arelle",
           repo: "Arelle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ], nix.app(nix.sel(lib, "optionals"), gui, nix.thunk(() => [tkinter])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         crypto: nix.thunk(() => [pycryptodome]),
         db: nix.thunk(() => [pg8000, pymysql, pyodbc, rdflib]),
         efm: nix.thunk(() => [aniso8601, holidays, matplotlib, pytz]),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
           "tests/unit_tests/arelle/test_import.py",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source XBRL platform",
         longDescription: nix.thunk(() => nix.str`An open source facility for XBRL, the eXtensible Business Reporting
 Language supporting various standards, exposed through a Python or

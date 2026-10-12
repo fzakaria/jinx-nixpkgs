@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const withZlibCompat = nix.argOr($, "withZlibCompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zlib-ng",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zlib-ng",
           repo: "zlib-ng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D_XOPEN_SOURCE=700" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_XOPEN_SOURCE=700" })))),
       buildInputs: nix.thunk(() => [gtest]),
       cmakeFlags: nix.thunk(() => nix.concat(["-DCMAKE_INSTALL_PREFIX=/", "-DBUILD_SHARED_LIBS=ON", "-DINSTALL_UTILS=OFF"], nix.app(nix.sel(lib, "optionals"), withZlibCompat, nix.thunk(() => ["-DZLIB_COMPAT=ON"])))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zlib data compression library for the next generation systems",
         homepage: "https://github.com/zlib-ng/zlib-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

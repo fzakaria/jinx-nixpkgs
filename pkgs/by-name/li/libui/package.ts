@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libui",
       version: "4.1a-unstable-2021-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andlabs",
           repo: "libui",
           rev: "fea45b2d5b75839be0af9acc842a147c5cba9295",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --subst-var-by version "${nix.sel(finalAttrs, "version")}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace darwin/text.m unix/text.c \\\n  --replace-fail \"strcasecmp\" \"g_strcasecmp\"\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/andlabs/libui",
         description: "Simple and portable (but not inflexible) GUI library in C that uses the native GUI technologies of each platform it supports",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

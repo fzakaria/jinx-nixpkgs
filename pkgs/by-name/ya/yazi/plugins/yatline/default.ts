@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yatline.yazi",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "imsi32",
           repo: "yatline.yazi",
           tag: "v0.5.0",
           hash: "sha256-HjTRAfUHs6vlEWKruQWeA2wT/Mcd+WEHM90egFTYcWQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin for customizing both header-line and status-line",
         homepage: "https://github.com/imsi32/yatline.yazi",
         changelog: nix.thunk(() => nix.str`https://github.com/imsi32/yatline.yazi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const buildArgs = nix.argOr($, "buildArgs", () => "");
   const open = nix.argOr($, "open", () => "/index.html");
   const error_page = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "error-page",
       text: "rm -rf \"${serve:?}\"\nmkdir -p \"$(dirname \"${error_page_absolute:?}\")\"\n\ncat > \"${error_page_absolute:?}\" << EOF\n<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    @media (prefers-color-scheme: dark) {\n      :root { filter: invert(100%); }\n    }\n  </style>\n</head>\n<body/><pre/>building...\nEOF\n",
     }))));
   const build_and_link = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "build-and-link",
       runtimeInputs: nix.thunk(() => [error_page]),
       text: nix.thunk(() => nix.str`error-page
@@ -41,13 +41,13 @@ fi
 `),
     }))));
   const watcher = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "watcher",
       runtimeInputs: nix.thunk(() => [watchexec, build_and_link]),
       text: "watchexec \\\n  --shell=none \\\n  --restart \\\n  build-and-link\n",
     }))));
   const server = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "server",
       runtimeInputs: nix.thunk(() => [live_server]),
       text: nix.thunk(() => nix.str`live-server \\
@@ -57,7 +57,7 @@ fi
 `),
     }))));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "devmode",
       runtimeInputs: nix.thunk(() => [parallel, watcher, server, error_page]),
       text: nix.thunk(() => nix.str`function handle_exit {

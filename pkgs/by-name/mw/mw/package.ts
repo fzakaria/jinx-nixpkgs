@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mw";
       const version = "0-unstable-2023-08-04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mark-when",
           repo: "mw",
           rev: "a8676da1c7812a051456fabcb980c52a72f6e75e",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-D1hTaoM4j81qrrLMoKJ7OxJTfRoht3/yqgJs95EFxY4=";
       const postPatch = "substituteInPlace src/index.ts  --replace \\\n'.usage(\"$0' '.usage(\"mw'\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mark-when/mw/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Markwhen CLI",
         homepage: "https://github.com/mark-when/mw",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mw",
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, postPatch, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.18.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-two-factor-auth",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["django-phonenumber-field", "qrcode"]);
       const dependencies = nix.thunk(() => [django, django_formtools, django_otp, django_phonenumber_field, qrcode]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         call: nix.thunk(() => [twilio]),
         sms: nix.thunk(() => [twilio]),
         webauthn: nix.thunk(() => [pydantic, webauthn]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["two_factor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Complete Two-Factor Authentication for Django",
         homepage: "https://github.com/jazzband/django-two-factor-auth",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-two-factor-auth/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libmirage",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdemu/libmirage-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tICwgjCyJVr0DDrIY0TAx3/JloZgFOBaadVVTpA11ls=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/gir-1.0`),
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/girepository-1.0`),
       })),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, intltool, gobject_introspection, vala]),
       propagatedBuildInputs: nix.thunk(() => [util_linux, libselinux, libsepol]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-libmirage", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Fetch the latest version from the SourceForge RSS feed for libmirage\nnewVersion=\"$(curl -s \"https://sourceforge.net/projects/cdemu/rss?path=/libmirage\" | pcre2grep -o1 'libmirage-([0-9.]+)\\.tar\\.xz' | head -n 1)\"\n\nupdate-source-version libmirage \"$newVersion\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "bendlas"))];

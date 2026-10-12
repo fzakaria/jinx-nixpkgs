@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsrs2",
       version: "1.0.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.libsrs2.org/srs/libsrs2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "9d1191b705d7587a5886736899001d04168392bbb6ed6345a057ade50943a492",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next generation SRS library from the original designer of SRS",
         mainProgram: "srs",
         license: nix.thunk(() => (() => {

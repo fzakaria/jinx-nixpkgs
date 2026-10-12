@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roadlib",
       version: "1.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-al1FnLcKAFWRY43weXtsS8DN5pXCO1qFUw1vwLfZvGM=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cbor2, cryptography, pyjwt, requests, sqlalchemy]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiohttp]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["roadtools.roadlib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ROADtools common components library",
         homepage: "https://pypi.org/project/roadlib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

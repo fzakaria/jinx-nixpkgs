@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const buildBluetoothLowEnergy = nix.argOr($, "buildBluetoothLowEnergy", () => true);
   const buildONNX = nix.argOr($, "buildONNX", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brainflow",
       version: "5.22.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brainflow-dev",
           repo: "brainflow",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       postPatch: "find . -type f -name 'build.cmake' -exec \\\nsed -i 's/DESTINATION inc/DESTINATION include/g' {} \\;\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to obtain, parse and analyze data (EEG, EMG, ECG) from biosensors",
         homepage: "https://brainflow.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

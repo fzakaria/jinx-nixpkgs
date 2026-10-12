@@ -37,23 +37,23 @@ export default nix.lambda((args) => (() => {
   const adios2Support = nix.argOr($, "adios2Support", () => false);
   const hdf5Support = nix.argOr($, "hdf5Support", () => false);
   const casacorePackages = nix.thunk(() => ({
-    __proto__: pos$5,
-    adios2: nix.thunk(() => nix.app(nix.sel(adios2, "override"), nix.thunk(() => ({ __proto__: pos$1, mpi: mpi, mpiSupport: mpiSupport })))),
-    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ __proto__: pos$2, mpi: mpi, enableMpi: mpiSupport })))),
-    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ __proto__: pos$3, mpi: mpi, enableMpi: mpiSupport })))),
+    [nix.POS]: pos$5,
+    adios2: nix.thunk(() => nix.app(nix.sel(adios2, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpi: mpi, mpiSupport: mpiSupport })))),
+    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi, enableMpi: mpiSupport })))),
+    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpi, enableMpi: mpiSupport })))),
     hdf5: nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mpi: mpi,
         mpiSupport: mpiSupport,
         cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "casacore",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "casacore",
           repo: "casacore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_Fortran_FLAGS", "-fallow-argument-mismatch")),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://casacore.github.io/casacore/",
         changelog: "https://github.com/casacore/casacore/blob/master/CHANGES.md",
         description: "Suite of C++ libraries for radio astronomy data processing",

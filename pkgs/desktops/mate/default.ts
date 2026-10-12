@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         basePackages: nix.thunk(() => nix.builtins.throw("‘mate.basePackages’ was removed. Please list the packages you need explicitly")),
         cajaExtensions: nix.thunk(() => nix.builtins.throw("‘mate.cajaExtensions’ was removed. Please list the extensions you need explicitly")),
         extraPackages: nix.thunk(() => nix.builtins.throw("‘mate.extraPackages’ was removed. Please list the packages you need explicitly")),

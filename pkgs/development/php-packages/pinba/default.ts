@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
       const pname = "pinba";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tony2001",
           repo: "pinba_extension",
           rev: nix.thunk(() => nix.str`RELEASE_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
           sha256: "0wqcqq6sb51wiawa37hbd1h9dbvmyyndzdvz87xqji7lpr9vn8jy",
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PHP extension for Pinba",
         longDescription: "Pinba is a MySQL storage engine that acts as a realtime monitoring and\nstatistics server for PHP using MySQL as a read-only interface.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         homepage: "http://pinba.org/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
-      return { __proto__: pos$4, pname, version, src, env, meta };
+      return { [nix.POS]: pos$4, pname, version, src, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

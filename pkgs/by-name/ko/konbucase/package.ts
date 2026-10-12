@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const chcase = nix.arg($, "chcase");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "konbucase",
       version: "4.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryonakano",
           repo: "konbucase",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/com.github.ryonakano.konbucase $out/bin/konbucase\nsubstituteInPlace $out/share/applications/com.github.ryonakano.konbucase.desktop \\\n  --replace-fail \"Exec=com.github.ryonakano.konbucase\" \"Exec=konbucase\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ryonakano/konbucase",
         description: "Case converting app suitable for coding or typing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

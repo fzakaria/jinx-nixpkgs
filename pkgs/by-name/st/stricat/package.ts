@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stricat",
       version: "20140609100300",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.stribob.com/dist/stricat-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1axg8r4g5n5kdqj5013pgck80nni3z172xkg506vz4zx1zcmrm4r",
         })))),
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "mkdir -p $out/bin\nmv stricat $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-use cryptographic tool based on the STRIBOB algorithm",
         homepage: "https://www.stribob.com/stricat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

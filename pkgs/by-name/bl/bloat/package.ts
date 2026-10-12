@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bloat",
       version: "0-unstable-2024-12-27",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.freesoftwareextremist.com/bloat",
           rev: "d171b6c2d50500cdfd2f3308bf82a5f79e22cd8b",
           hash: "sha256-a9nL6NvZLQZLOuoqdDbZTH9dVtQ6guKopkAHughINcg=",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       postInstall: "mkdir -p $out/share/bloat\ncp -r templates $out/share/bloat/templates\ncp -r static $out/share/bloat/static\nsed \\\n  -e \"s%=templates%=$out/share/bloat/templates%g\" \\\n  -e \"s%=static%=$out/share/bloat/static%g\"       \\\n  < bloat.conf > $out/share/bloat/bloat.conf.example\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web client for Pleroma and Mastodon",
         longDescription: "A lightweight web client for Pleroma and Mastodon.\nDoes not require JavaScript to display text, images, audio and videos.\n",
         homepage: "https://bloat.freesoftwareextremist.com",

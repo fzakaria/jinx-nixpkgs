@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wlr_protocols = nix.arg($, "wlr-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lambdock",
       version: "0.6.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jjba23",
           repo: "lambdock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Wayland desktop dock customizable with GNU Guile Scheme",
           homepage: "https://codeberg.org/jjba23/lambdock",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl3Plus")),

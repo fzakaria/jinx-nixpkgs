@@ -65,24 +65,24 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const idmapdConfFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "idmapd.conf", nix.thunk(() => nix.sel(cfg, "idmapd", "settings"))));
   const nfsConfSettings = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "nproc"), null)), nix.thunk(() => ({
-      __proto__: pos$2,
-      nfsd: nix.thunk(() => ({ __proto__: pos$1, threads: nix.thunk(() => nix.sel(cfg, "server", "nproc")) })),
+      [nix.POS]: pos$2,
+      nfsd: nix.thunk(() => ({ [nix.POS]: pos$1, threads: nix.thunk(() => nix.sel(cfg, "server", "nproc")) })),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "hostName"), null)), nix.thunk(() => ({
-      __proto__: pos$4,
-      nfsd: nix.thunk(() => ({ __proto__: pos$3, host: nix.thunk(() => nix.sel(cfg, "server", "hostName")) })),
+      [nix.POS]: pos$4,
+      nfsd: nix.thunk(() => ({ [nix.POS]: pos$3, host: nix.thunk(() => nix.sel(cfg, "server", "hostName")) })),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "mountdPort"), null)), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       mountd: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         port: nix.thunk(() => nix.sel(cfg, "server", "mountdPort")),
       })),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "statdPort"), null)), nix.thunk(() => ({
-      __proto__: pos$8,
-      statd: nix.thunk(() => ({ __proto__: pos$7, port: nix.thunk(() => nix.sel(cfg, "server", "statdPort")) })),
+      [nix.POS]: pos$8,
+      statd: nix.thunk(() => ({ [nix.POS]: pos$7, port: nix.thunk(() => nix.sel(cfg, "server", "statdPort")) })),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "lockdPort"), null)), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       lockd: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         port: nix.thunk(() => nix.sel(cfg, "server", "lockdPort")),
         "udp-port": nix.thunk(() => nix.sel(cfg, "server", "lockdPort")),
       })),
@@ -106,17 +106,17 @@ udp-port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "lockdPo
   const nfsConfFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) ? nix.app(nix.sel(format, "generate"), "nfs.conf", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nfsConfSettings, nix.thunk(() => nix.sel(cfg, "settings"))))) : nix.app(nix.sel(pkgs, "writeText"), "nfs.conf", nfsConfDeprecated)));
   const cfg = nix.thunk(() => nix.sel(config, "services", "nfs"));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         nfs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           idmapd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 default: nix.thunk(() => ({})),
                 description: "libnfsidmap configuration. Refer to\n<https://linux.die.net/man/5/idmapd.conf>\nfor details.\n",
@@ -124,14 +124,14 @@ udp-port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "lockdPo
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "General configuration for NFS daemons and tools.\nSee {manpage}`nfs.conf(5)` and related man pages for details.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  mountd.manage-gids = true;\n}\n")),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra nfs-utils configuration.\n",
@@ -140,103 +140,103 @@ udp-port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "lockdPo
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(config, () => nix.selOr(config, () => false, "boot", "supportedFilesystems", "nfs4"), "boot", "supportedFilesystems", "nfs")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         warnings: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), "")), "`services.nfs.extraConfig` is deprecated. Use `services.nfs.settings` instead.\n"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "extraNfsdConfig"), "")), "`services.nfs.server.extraNfsdConfig` is deprecated. Use `services.nfs.settings` instead.\n"))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "extraConfig"), "")) && nix.asBool(nix.eq(nix.sel(cfg, "server", "extraNfsdConfig"), "")))))),
             message: "`services.nfs.settings` cannot be used together with `services.nfs.extraConfig` and `services.nfs.server.extraNfsdConfig`.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$27,
-          rpcbind: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+          [nix.POS]: pos$27,
+          rpcbind: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
           nfs: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             idmapd: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               settings: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 General: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$20, "Pipefs-Directory": rpcMountpoint })),
+                    nix.thunk(() => ({ [nix.POS]: pos$20, "Pipefs-Directory": rpcMountpoint })),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "networking", "domain"), null)), nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         Domain: nix.thunk(() => nix.sel(config, "networking", "domain")),
                       })))),
                   ]))),
-                Mapping: nix.thunk(() => ({ __proto__: pos$22, "Nobody-User": "nobody", "Nobody-Group": "nogroup" })),
-                Translation: nix.thunk(() => ({ __proto__: pos$23, Method: "nsswitch" })),
+                Mapping: nix.thunk(() => ({ [nix.POS]: pos$22, "Nobody-User": "nobody", "Nobody-Group": "nogroup" })),
+                Translation: nix.thunk(() => ({ [nix.POS]: pos$23, Method: "nsswitch" })),
               })),
             })),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nfs-utils"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           initrd: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), inInitrd, nix.thunk(() => ["nfs"]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nfs-utils"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$40,
-            "nfs-blkmap": nix.thunk(() => ({ __proto__: pos$31, restartTriggers: nix.thunk(() => [nfsConfFile]) })),
-            "nfs-idmapd": nix.thunk(() => ({ __proto__: pos$32, restartTriggers: nix.thunk(() => [idmapdConfFile]) })),
+            [nix.POS]: pos$40,
+            "nfs-blkmap": nix.thunk(() => ({ [nix.POS]: pos$31, restartTriggers: nix.thunk(() => [nfsConfFile]) })),
+            "nfs-idmapd": nix.thunk(() => ({ [nix.POS]: pos$32, restartTriggers: nix.thunk(() => [idmapdConfFile]) })),
             "nfs-mountd": nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               restartTriggers: nix.thunk(() => [nfsConfFile]),
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
             })),
             "nfs-server": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               restartTriggers: nix.thunk(() => [nfsConfFile]),
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
             })),
             "auth-rpcgss-module": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 ConditionPathExists: nix.thunk(() => ["", "/etc/krb5.keytab"]),
               })),
             })),
             "rpc-gssd": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               restartTriggers: nix.thunk(() => [nfsConfFile]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 ConditionPathExists: nix.thunk(() => ["", "/etc/krb5.keytab"]),
               })),
             })),
             "rpc-statd": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               restartTriggers: nix.thunk(() => [nfsConfFile]),
               preStart: "mkdir -p /var/lib/nfs/{sm,sm.bak}\n",
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "nfs-client": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               wantedBy: nix.thunk(() => ["multi-user.target", "remote-fs.target"]),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "keyutils"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$47,
-            "idmapd.conf": nix.thunk(() => ({ __proto__: pos$44, source: idmapdConfFile })),
-            "nfs.conf": nix.thunk(() => ({ __proto__: pos$45, source: nfsConfFile })),
+            [nix.POS]: pos$47,
+            "idmapd.conf": nix.thunk(() => ({ [nix.POS]: pos$44, source: idmapdConfFile })),
+            "nfs.conf": nix.thunk(() => ({ [nix.POS]: pos$45, source: nfsConfFile })),
             "request-key.conf": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               text: nix.thunk(() => nix.str`create id_resolver * * ${nix.sel(pkgs, "nfs-utils")}/bin/nfsidmap -t 600 %k %d
 create dns_resolver * * ${nix.sel(pkgs, "keyutils")}/bin/key.dns_resolver %k
 `),

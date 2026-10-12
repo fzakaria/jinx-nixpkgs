@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbt-common",
       version: "1.37.3-unstable-2026-03-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbt-labs",
           repo: "dbt-common",
           rev: "db4a7b70486b5337bf0e387260211a418ac36936",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["dbt_common"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-dbt-common", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p git common-updater-scripts perl
 
@@ -90,7 +90,7 @@ perl -pe 's/^(.*version = ")([\\d\\.]+)(.*)$/\${1}'"\${newVersion}"'";/' \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Shared common utilities for dbt-core and adapter implementations use",
         homepage: "https://github.com/dbt-labs/dbt-common",
         changelog: "https://github.com/dbt-labs/dbt-common/blob/main/CHANGELOG.md",

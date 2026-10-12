@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         k3b: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable k3b, the KDE disk burning application.\n\nAdditionally to installing `k3b` enabling this will\nadd `setuid` wrappers in `/run/wrappers/bin`\nfor both `cdrdao` and `cdrecord`.\n",
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "k3b", "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             cdrdao: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               setuid: true,
               owner: "root",
               group: "cdrom",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "cdrdao")}/bin/cdrdao`),
             })),
             cdrecord: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               setuid: true,
               owner: "root",
               group: "cdrom",

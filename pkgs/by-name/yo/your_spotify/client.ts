@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pnpm_11 = nix.arg($, "pnpm_11");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "your_spotify_client",
       version: version,
       src: src,

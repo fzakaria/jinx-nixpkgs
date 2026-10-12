@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "droopy",
       version: "20160830",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stackp",
           repo: "Droopy",
           rev: "7a9c7bc46c4ff8b743755be86a9b29bd1a8ba1d9",
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://patch-diff.githubusercontent.com/raw/stackp/Droopy/pull/30.patch",
             sha256: "Y6jBraKvVQAiScbvLwezSKeWY3vaAbhaNXEGNaItigQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://patch-diff.githubusercontent.com/raw/stackp/Droopy/pull/31.patch",
             sha256: "1ig054rxn5r0ph4w4fhmrxlh158c97iqqc7dbnc819adn9nw96l5",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "wrapPython"))]),
       installPhase: "install -vD droopy $out/bin/droopy\ninstall -vD -m 644 man/droopy.1 $out/share/man/man1/droopy.1\nwrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mini Web server that let others upload files to your computer",
         homepage: "http://stackp.online.fr/droopy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const just = nix.arg($, "just");
   const version = "3.2.2";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "turnon",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swsnr",
           repo: "turnon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ substituteInPlace de.swsnr.turnon.desktop --replace-fail "DBusActivatable=true" 
 `),
       postBuild: "cargo build --release\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn on devices in your local network",
         homepage: "https://codeberg.org/swsnr/turnon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

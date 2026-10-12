@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.bluetooth.man";
       const version = "1.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wastis",
           repo: "BluetoothManager",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hWNi2hm5FmkRPamxMSHF3WfQ+2V+qQzkkTJWuqazbAc=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Addon that allows to manage bluetooth devices from within a Linux based Kodi",
         homepage: "https://github.com/wastis/BluetoothManager",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "kodi", "members")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
-      return { __proto__: pos$3, pname, namespace, version, src, meta };
+      return { [nix.POS]: pos$3, pname, namespace, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

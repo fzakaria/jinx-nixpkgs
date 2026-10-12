@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssh-ident",
       version: "2016-04-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ccontavalli",
           repo: "ssh-ident",
           rev: "ebf8282728211dc4448d50f7e16e546ed03c22d2",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "mkdir -p $out/bin\ninstall -m 755 ssh-ident $out/bin/ssh-ident\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ccontavalli/ssh-ident",
         description: "Start and use ssh-agent and load identities as necessary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

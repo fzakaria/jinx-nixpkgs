@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const withSpeech = nix.argOr($, "withSpeech", () => true);
   const withPdf = nix.argOr($, "withPdf", () => true);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyqt6",
       version: "6.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyqt6",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Rd1gqmmXbeGRi1zta057aiWr0qkZ7O9f1YJuzHZxiIk=",
@@ -88,7 +88,7 @@ substituteInPlace pyproject.toml \\
       })()),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withPrintSupport) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => [cups]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sip: sip,
         "pyqt6-sip": pyqt6_sip,
         multimediaEnabled: withMultimedia,
@@ -105,13 +105,13 @@ substituteInPlace pyproject.toml \\
         "PyQt6.QtQuick",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withWebSockets, "PyQt6.QtWebSockets"), nix.concat(nix.app(nix.sel(lib, "optional"), withMultimedia, "PyQt6.QtMultimedia"), nix.concat(nix.app(nix.sel(lib, "optional"), withLocation, "PyQt6.QtPositioning"), nix.concat(nix.app(nix.sel(lib, "optional"), withSerialPort, "PyQt6.QtSerialPort"), nix.concat(nix.app(nix.sel(lib, "optional"), withSpeech, "PyQt6.QtTextToSpeech"), nix.app(nix.sel(lib, "optional"), withPdf, "PyQt6.QtPdf")))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-address-of-temporary")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python bindings for Qt6",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

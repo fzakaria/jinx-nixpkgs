@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const firmwareSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "geoffreybennett",
       repo: "scarlett2-firmware",
       rev: "f628dfb4d2e874b2078dbb43e8c1d59dd6553dd1",
       hash: "sha256-s61eyS47SuIbK9KR59XxHpybvl9tHFWPLkpHmdqwO24=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scarlett2",
       version: "0-unstable-2024-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "geoffreybennett",
           repo: "scarlett2",
           rev: "1c262bcac11bceb6da8334b8f5b56d3c9331bfc8",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       preBuild: "makeFlagsArray+=( PREFIX=$out )\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share
@@ -49,7 +49,7 @@ ln -s $out/share/scarlett2 $out/bin/scarlett2
 ln -s ${firmwareSrc}/firmware $out/share/firmware
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Firmware Management Utility for Scarlett 2nd, 3rd, and 4th Gen, Clarett USB, and Clarett+ interfaces",
         homepage: "https://github.com/geoffreybennett/scarlett2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

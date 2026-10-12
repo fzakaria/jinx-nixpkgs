@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const java = jdk17;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "irpf",
       version: "2026-1.5",
       src: nix.thunk(() => (() => {
         const year = nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version"))))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://downloadirpf.receita.fazenda.gov.br/irpf/${year}/irpf/arquivos/IRPF${nix.sel(finalAttrs, "version")}.zip`),
             hash: "sha256-/y0XE+i+Sug/2TfqQuPQesYaDVn41v3hkikU/hmxxNE=",
           })));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip, makeWrapper, copyDesktopItems, imagemagick]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "irpf",
             exec: "irpf",
             icon: "rfb",
@@ -73,11 +73,11 @@ unzip -j lib/ppgd-icones-4.0.jar icones/rfb.png -d $out/share/icons/hicolor/32x3
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-irpf", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pup common-updater-scripts\n\nset -eu -o pipefail\n#parses the html with the install links for the containers that contain the instalation files of type 'file archive, gets the version number of each version, and sorts to get the latest one on the website\nversion=\"$(curl -s https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/pgd/dirpf | pup '.rfb_container .rfb_ositem:parent-of(.fa-file-archive) attr{href}' | grep -oP \"IRPF\\K(\\d+)-[\\d.]+\\d\" | sort -r |  head -1)\"\nupdate-source-version irpf \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Brazilian government application for reporting income tax",
         longDescription: "Brazilian government application for reporting income tax.\n\nIRFP - Imposto de Renda Pessoa Física - Receita Federal do Brasil.\n",
         homepage: "https://www.gov.br/receitafederal/pt-br",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "molly-guard",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/molly-guard_${nix.sel(finalAttrs, "version")}_all.deb`),
           sha256: "1k6b1hn8lc4rj9n036imsl7s9lqj6ny3acdhnbnamsdkkndmxrw7",
         })))),
@@ -32,7 +32,7 @@ cp -r ./ $out/
 `),
       postFixup: "for modus in init halt poweroff reboot runlevel shutdown telinit; do\n   ln -sf $out/lib/molly-guard/molly-guard $out/bin/$modus;\ndone;\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Attempts to prevent you from accidentally shutting down or rebooting machines",
         homepage: "https://salsa.debian.org/debian/molly-guard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

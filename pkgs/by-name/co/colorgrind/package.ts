@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colorgrind",
       version: "0-unstable-2016-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "renatocf",
           repo: "colorgrind",
           rev: "6b68367c9713075a40c6719cb24217e9437ffa74",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl]),
       installPhase: "runHook preInstall\ninstall -Dm755 -t $out/bin colorgrind\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perl wrapper for Valgrind with ANSI escape code colored output",
         homepage: "http://renatocf.github.io/colorgrind/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

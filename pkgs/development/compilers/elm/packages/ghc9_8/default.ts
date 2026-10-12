@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const fetchElmDeps = nix.arg($, "fetchElmDeps");
   return (self) => nix.app(nix.sel(pkgs, "haskell", "packages", "ghc98", "override"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       overrides: (self_1) => (super$) => (() => {
         const from = nix.thunk(() => nix.sel(pkgs, "haskell", "lib", "compose"));
         const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
         const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
         const elmPkgs = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           elm: nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enableParallelBuilding: false,
               preConfigure: nix.thunk(() => nix.app(fetchElmDeps, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "../elm-srcs.nix"))),
                   elmVersion: nix.thunk(() => nix.sel(drv, "version")),
                   registryDat: nix.path(here, "../../registry.dat"),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
                 return [nix.thunk(() => nix.lookup(w, "turbomack"))];
               })()),
             }), nix.thunk(() => nix.app(nix.sel(self_1, "callPackage"), nix.path(here, "./elm"), nix.thunk(() => ({
-                __proto__: pos$4,
-                "ansi-wl-pprint": nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$3, jailbreak: true }), nix.thunk(() => nix.app(nix.sel(self_1, "callPackage"), nix.path(here, "./ansi-wl-pprint"), nix.thunk(() => ({})))))),
+                [nix.POS]: pos$4,
+                "ansi-wl-pprint": nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$3, jailbreak: true }), nix.thunk(() => nix.app(nix.sel(self_1, "callPackage"), nix.path(here, "./ansi-wl-pprint"), nix.thunk(() => ({})))))),
               })))))),
           "elm-format": nix.thunk(() => nix.app(justStaticExecutables, nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 postPatch: nix.thunk(() => nix.str`mkdir -p ./generated
 cat <<EOHS > ./generated/Build_elm_format.hs
 module Build_elm_format where
@@ -73,7 +73,7 @@ EOHS
           elmVersion: nix.thunk(() => nix.sel(elmPkgs, "elm", "version")),
         }));
         return nix.update(elmPkgs, {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           elmPkgs: elmPkgs,
           "avh4-lib": nix.thunk(() => nix.app(nix.sel(self_1, "callPackage"), nix.path(here, "./elm-format/avh4-lib.nix"), nix.thunk(() => ({})))),
           "elm-format-lib": nix.thunk(() => nix.app(nix.sel(self_1, "callPackage"), nix.path(here, "./elm-format/elm-format-lib.nix"), nix.thunk(() => ({})))),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "codex-relay",
       version: "0.5.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MetaFARS",
           repo: "codex-relay",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Responses API ↔  Chat Completions translation bridge for Codex CLI",
           longDescription: "A lightweight Rust proxy that translates the OpenAI Responses API\n(used by Codex CLI) into the Chat Completions API, letting Codex work\nwith any OpenAI-compatible provider —  DeepSeek, Kimi, Qwen, Mistral,\nGroq, xAI, OpenRouter, and more.\n",
           homepage: "https://github.com/MetaFARS/codex-relay",

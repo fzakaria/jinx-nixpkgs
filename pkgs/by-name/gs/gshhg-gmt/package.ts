@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gshhg-gmt",
       version: "2.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.soest.hawaii.edu/gmt/gshhg-gmt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "9bb1a956fca0718c083bef842e625797535a00ce81f175df08b042c2a92cfe7f",
         })))),
       installPhase: "mkdir -p $out/share/gshhg-gmt\ncp -rv ./* $out/share/gshhg-gmt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.soest.hawaii.edu/pwessel/gshhg/",
         description: "High-resolution shoreline data set, for use with GMT",
         longDescription: "GSHHG is a high-resolution shoreline data set amalgamated from two\ndatabases: Global Self-consistent Hierarchical High-resolution Shorelines\n(GSHHS) and CIA World Data Bank II (WDBII). GSHHG contains vector\ndescriptions at five different resolutions of land outlines, lakes,\nrivers, and political boundaries. This data is for use by GMT, the Generic\nMapping Tools.\n",

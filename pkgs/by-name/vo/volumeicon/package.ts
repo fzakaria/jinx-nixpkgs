@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "volumeicon",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Maato",
           repo: "volumeicon",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, intltool, pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, alsa_lib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ACLOCAL: nix.thunk(() => nix.str`aclocal -I ${gettext}/share/gettext/m4`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight volume control that sits in your systray",
         homepage: "https://nullwise.com/pages/volumeicon/volumeicon.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

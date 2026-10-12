@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "uptimed"));
   const stateDir = "/var/lib/uptimed";
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         uptimed: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable `uptimed`, allowing you to track\nyour highest uptimes.\n",
@@ -45,36 +45,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "uptimed"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             uptimed: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Uptimed daemon user",
               home: stateDir,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "uptimed")),
               group: "uptimed",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$8, uptimed: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$8, uptimed: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             uptimed: nix.thunk(() => ({
-              __proto__: pos$12,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$10, Documentation: "man:uptimed(8) man:uprecords(1)" })),
+              [nix.POS]: pos$12,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$10, Documentation: "man:uptimed(8) man:uprecords(1)" })),
               description: "uptimed service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Restart: "on-failure",
                 User: "uptimed",
                 Nice: 19n,

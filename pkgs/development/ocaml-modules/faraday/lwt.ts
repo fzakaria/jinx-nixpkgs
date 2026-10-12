@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const faraday = nix.arg($, "faraday");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "faraday-lwt",
       version: nix.thunk(() => nix.attr(faraday, "version")),
       src: nix.thunk(() => nix.attr(faraday, "src")),
       propagatedBuildInputs: nix.thunk(() => [faraday, lwt]),
       duneVersion: "3",
-      meta: nix.thunk(() => nix.update(nix.sel(faraday, "meta"), { __proto__: pos$1, description: "Lwt support for Faraday" })),
+      meta: nix.thunk(() => nix.update(nix.sel(faraday, "meta"), { [nix.POS]: pos$1, description: "Lwt support for Faraday" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

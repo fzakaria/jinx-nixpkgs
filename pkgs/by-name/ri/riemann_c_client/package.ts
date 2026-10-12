@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withJSON = nix.argOr($, "withJSON", () => true);
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "riemann-c-client",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.madhouse-project.org",
           owner: "algernon",
           repo: "riemann-c-client",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.madhouse-project.org/algernon/riemann-c-client",
         description: "C client library for the Riemann monitoring system",
         mainProgram: "riemann-client",

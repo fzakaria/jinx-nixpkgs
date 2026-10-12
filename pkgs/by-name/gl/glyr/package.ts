@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.0.10",
       pname: "glyr",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sahib",
           repo: "glyr",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-libs/glyr/files/glyr-1.0.10-curl.patch?id=51addb56510c82d88ebac65d9ca4c8ca8e005693",
             hash: "sha256-mRB0R04CWD+DFkjo5wfvFveUb98+gDAgxWTnrV0K1vk=",
           })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [sqlite, glib, curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Music related metadata searchengine",
         homepage: "https://github.com/sahib/glyr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

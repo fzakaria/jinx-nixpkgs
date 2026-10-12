@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   const unpackVsixSetupHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "unpack-vsix-setup-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unzip: nix.thunk(() => nix.str`${nix.sel(buildPackages, "unzip")}/bin/unzip`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./unpack-vsix-setup-hook.sh")));
   const buildVscodeExtension = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["vscodeExtUniqueId"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.str`vscode-extension-${pname}`),
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
           }, nix.update(passthru, {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             vscodeExtPublisher: vscodeExtPublisher,
             vscodeExtName: vscodeExtName,
             vscodeExtUniqueId: vscodeExtUniqueId,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const fetchVsixFromVscodeMarketplace = (mktplcExtRef) => nix.app(fetchurl, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mktplcExtRefToFetchArgs.nix")), mktplcExtRef)));
   const buildVscodeMarketplaceExtension = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       constructDrv: buildVscodeExtension,
       excludeDrvArgNames: nix.thunk(() => ["mktplcRef", "vsix"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq("", name), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/vscode/extensions/vscode-utils.nix:111:7");
         nix.assert_(nix.eq(null, src), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/vscode/extensions/vscode-utils.nix:112:7");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: nix.thunk(() => nix.attr(mktplcRef, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(mktplcRef, "publisher")}-${nix.sel(mktplcRef, "name")}`),
           src: nix.thunk(() => (nix.asBool(!nix.eq(vsix, null)) ? nix.force(vsix) : nix.app(fetchVsixFromVscodeMarketplace, mktplcRef))),
@@ -115,26 +115,26 @@ export default nix.lambda((args) => (() => {
     }))));
   const mktplcRefAttrList = nix.thunk(() => ["name", "publisher", "version", "sha256", "hash", "arch"]);
   const mktplcExtRefToExtDrv = (ext) => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => nix.update(nix.builtins.removeAttrs(ext, mktplcRefAttrList), {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       mktplcRef: nix.thunk(() => nix.builtins.intersectAttrs(nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), mktplcRefAttrList, (_) => null)), ext)),
     })));
   const extensionFromVscodeMarketplace = mktplcExtRefToExtDrv;
   const extensionsFromVscodeMarketplace = (mktplcExtRefList) => nix.builtins.map(extensionFromVscodeMarketplace, mktplcExtRefList);
   const vscodeWithConfiguration = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeWithConfiguration.nix")), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       lib: lib,
       extensionsFromVscodeMarketplace: extensionsFromVscodeMarketplace,
       writeShellScriptBin: writeShellScriptBin,
       vscodeDefault: vscode,
     }))));
   const vscodeExts2nix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeExts2nix.nix")), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       lib: lib,
       writeShellScriptBin: writeShellScriptBin,
       vscodeDefault: vscode,
     }))));
   const vscodeEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeEnv.nix")), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       lib: lib,
       buildEnv: buildEnv,
       writeShellScriptBin: writeShellScriptBin,
@@ -144,21 +144,21 @@ export default nix.lambda((args) => (() => {
     }))));
   const toExtensionJsonEntry = (ext) => (() => {
     const identifier = nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       id: nix.thunk(() => nix.sel(ext, "vscodeExtUniqueId")),
       uuid: "",
     }));
     const version = nix.thunk(() => nix.sel(ext, "version"));
     const relativeLocation = nix.thunk(() => nix.sel(ext, "vscodeExtUniqueId"));
     const location = nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       $mid: 1n,
       fsPath: nix.thunk(() => nix.add(nix.sel(ext, "outPath"), nix.str`/share/vscode/extensions/${nix.sel(ext, "vscodeExtUniqueId")}`)),
       path: nix.thunk(() => nix.sel(location, "fsPath")),
       scheme: "file",
     }));
     const metadata = nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       id: "",
       publisherId: "",
       publisherDisplayName: nix.thunk(() => nix.sel(ext, "vscodeExtPublisher")),
@@ -169,11 +169,11 @@ export default nix.lambda((args) => (() => {
       installedTimestamp: 0n,
       preRelease: false,
     }));
-    return { __proto__: pos$17, identifier, version, relativeLocation, location, metadata };
+    return { [nix.POS]: pos$17, identifier, version, relativeLocation, location, metadata };
   })();
   const toExtensionJson = (extensions) => nix.builtins.toJSON(nix.thunk(() => nix.builtins.map(toExtensionJsonEntry, extensions)));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     fetchVsixFromVscodeMarketplace: fetchVsixFromVscodeMarketplace,
     buildVscodeExtension: buildVscodeExtension,
     buildVscodeMarketplaceExtension: buildVscodeMarketplaceExtension,

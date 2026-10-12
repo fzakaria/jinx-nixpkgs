@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "network", "openvpn"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         initrd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           network: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             openvpn: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Starts an OpenVPN client during initrd boot. It can be used to e.g.\nremotely accessing the SSH service controlled by\n{option}`boot.initrd.network.ssh` or other network services\nincluded. Service is killed when stage-1 boot is finished.\n",
                 })))),
               configuration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                   description: "The configuration file for OpenVPN.\n\n::: {.warning}\nUnless your bootloader supports initrd secrets, this configuration\nis stored insecurely in the global Nix store.\n:::\n",
                   example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "./configuration.ovpn")),
@@ -59,18 +59,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "network", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "configuration"), null)),
             message: "You should specify a configuration for initrd OpenVPN",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           initrd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             kernelModules: nix.thunk(() => ["tun", "tap"]),
             extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "openvpn")}/bin/openvpn
 copy_bin_and_libs ${nix.sel(pkgs, "iproute2")}/bin/ip
@@ -79,7 +79,7 @@ cp -pv ${nix.sel(pkgs, "glibc")}/lib/libresolv.so.2 $out/lib
 cp -pv ${nix.sel(pkgs, "glibc")}/lib/libnss_dns.so.2 $out/lib
 `))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(pkgs, "openvpn")}/bin/openvpn`),
                 nix.thunk(() => nix.str`${nix.sel(pkgs, "iproute2")}/bin/ip`),
@@ -87,14 +87,14 @@ cp -pv ${nix.sel(pkgs, "glibc")}/lib/libnss_dns.so.2 $out/lib
                 nix.thunk(() => nix.str`${nix.sel(pkgs, "glibc")}/lib/libnss_dns.so.2`),
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 openvpn: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   wantedBy: nix.thunk(() => ["initrd.target"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
                   after: nix.thunk(() => ["network.target", "initrd-nixos-copy-secrets.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "openvpn")}/bin/openvpn /etc/initrd.ovpn`),
                     Type: "notify",
                   })),
@@ -102,12 +102,12 @@ cp -pv ${nix.sel(pkgs, "glibc")}/lib/libnss_dns.so.2 $out/lib
               })),
             })),
             secrets: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "/etc/initrd.ovpn": nix.thunk(() => nix.sel(cfg, "configuration")),
             })),
             extraUtilsCommandsTest: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "$out/bin/openvpn --show-gateway\n")),
             network: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               postCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "openvpn /etc/initrd.ovpn &\n")),
             })),
           })),

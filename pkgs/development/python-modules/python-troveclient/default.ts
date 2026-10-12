@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const version = "8.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-troveclient",
           tag: version,
           hash: "sha256-ayNRhT337eG6NJM2ugAqiH6st+2s4gySIeNQ4jJb8nU=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook, sphinxcontrib_apidoc]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
       const build_system = nix.thunk(() => [pbr, setuptools]);
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run -e <(echo \"\ntroveclient.tests.test_shell.ShellTest.test_help\ntroveclient.tests.test_shell.ShellTestKeystoneV3.test_help\n\")\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["troveclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/openstack/python-troveclient",
         description: "Client library for OpenStack Trove API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

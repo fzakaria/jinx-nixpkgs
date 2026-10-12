@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const bwd = nix.arg($, "bwd");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   const params = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "5.2.0",
     hash: "sha256-DJzXjV5Tjf69FKUiRioeHghks72pOOHYd73vqhmecS8=",
     propagatedBuildInputs: nix.thunk(() => [algaeff, bwd]),
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "2.0.0",
     hash: "sha256:1nhz44cyipy922anzml856532m73nn0g7iwkg79yzhq6yb87109w",
   }));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(params, "version"));
       const minimalOCamlVersion = "4.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "RedPRL",
           repo: pname,
           rev: version,
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [qcheck_alcotest]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Name pattern combinators",
         homepage: "https://github.com/RedPRL/yuujinchou",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         minimalOCamlVersion,

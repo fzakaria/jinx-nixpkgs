@@ -20,9 +20,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, lib: lib }))));
   const mkTestName = nix.thunk(() => nix.attr(from, "mkTestName"));
   const mariadbPackages = nix.thunk(() => nix.attr(from, "mariadbPackages"));
   const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./../make-test-python.nix")));
@@ -31,27 +31,27 @@ export default nix.lambda((args) => (() => {
     const package$ = nix.arg($_1, "package");
     const name = nix.argOr($_1, "name", () => nix.app(mkTestName, package$));
     return nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.str`${name}-backup`),
         nodes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           master: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               services: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   package: package$,
                   enable: true,
                   initialDatabases: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$3, name: "testdb", schema: nix.path(here, "./testdb.sql") })),
+                    nix.thunk(() => ({ [nix.POS]: pos$3, name: "testdb", schema: nix.path(here, "./testdb.sql") })),
                   ]),
                 })),
                 mysqlBackup: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   enable: true,
                   databases: nix.thunk(() => ["doesnotexist", "testdb"]),
                 })),
@@ -92,6 +92,6 @@ master.succeed(
 `),
       })));
   })(), formals$2);
-  return nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeBackupTest, nix.thunk(() => ({ __proto__: pos$10, package: package$ }))), mariadbPackages);
+  return nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeBackupTest, nix.thunk(() => ({ [nix.POS]: pos$10, package: package$ }))), mariadbPackages);
 })(), formals$1);
 //# sourceMappingURL=mysql-backup.ts.map

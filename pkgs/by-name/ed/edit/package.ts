@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edit",
       version: "0-unstable-2021-04-05",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://c9x.me/ed.git",
           rev: "bc24e3d4f716b0afacef559f952c40f0be5a1c58",
           hash: "sha256-DzQ+3B96+UzQqL3lhn0DfYmZy2LOANtibj1e1iVR+Jo=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "ctangle vicmd.w\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 obj/edit -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Relaxing mix of Vi and ACME",
         homepage: "https://c9x.me/edit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

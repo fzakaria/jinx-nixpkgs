@@ -46,59 +46,59 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "cri-o"));
   const crioPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "cri-o", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraPackages: nix.thunk(() => nix.concat(nix.sel(cfg, "extraPackages"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "zfs")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))))),
     }))));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const cfgFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "00-default.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "teams"), "podman"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "cri-o": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Container Runtime Interface for OCI (CRI-O)")),
           storageDriver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["aufs", "btrfs", "devmapper", "overlay", "vfs", "zfs"]))),
               default: "overlay",
               description: "Storage driver to be used",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["trace", "debug", "info", "warn", "error", "fatal"]))),
               default: "info",
               description: "Log level to be used",
             })))),
           pauseImage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Override the default pause image for pod sandboxes",
               example: "k8s.gcr.io/pause:3.2",
             })))),
           pauseCommand: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Override the default pause command",
               example: "/pause",
             })))),
           runtime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Override the default runtime",
               example: "crun",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -108,21 +108,21 @@ export default nix.lambda((args) => (() => {
               description: "Extra packages to be installed in the CRI-O wrapper.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               default: crioPackage,
               internal: true,
               description: "The final CRI-O package (including extra packages).\n",
             })))),
           networkDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "Override the network_dir option.",
               internal: true,
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for cri-o, see\n<https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md>.\n",
@@ -131,51 +131,51 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.sel(pkgs, "cri-tools")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "crictl.yaml": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/crictl.yaml`),
             })),
             "cni/net.d/10-crio-bridge.conflist": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/cni/net.d/10-crio-bridge.conflist`),
             })),
             "cni/net.d/99-loopback.conflist": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/cni/net.d/99-loopback.conflist`),
             })),
-            "crio/crio.conf.d/00-default.conf": nix.thunk(() => ({ __proto__: pos$18, source: cfgFile })),
+            "crio/crio.conf.d/00-default.conf": nix.thunk(() => ({ [nix.POS]: pos$18, source: cfgFile })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           "cri-o": nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             settings: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               crio: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 storage_driver: nix.thunk(() => nix.sel(cfg, "storageDriver")),
                 image: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   pause_image: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pauseImage"), null)), nix.thunk(() => nix.sel(cfg, "pauseImage")))),
                   pause_command: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pauseCommand"), null)), nix.thunk(() => nix.sel(cfg, "pauseCommand")))),
                 })),
                 network: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   plugin_dirs: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "cni-plugins")}/bin`)]),
                   network_dir: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "networkDir"), null)), nix.thunk(() => nix.sel(cfg, "networkDir")))),
                 })),
                 runtime: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   cgroup_manager: "systemd",
                   log_level: nix.thunk(() => nix.sel(cfg, "logLevel")),
                   manage_ns_lifecycle: true,
@@ -187,21 +187,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
           })),
-          containers: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+          containers: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             crio: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Container Runtime Interface for OCI (CRI-O)",
               documentation: nix.thunk(() => ["https://github.com/cri-o/cri-o"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/crio`),
                 ExecReload: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "kill")} -s HUP $MAINPID`),

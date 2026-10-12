@@ -28,29 +28,29 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "karma",
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               alertmanager: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: true,
                 logLevel: "debug",
                 port: 9093n,
                 openFirewall: true,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  global: nix.thunk(() => ({ __proto__: pos$1, resolve_timeout: "1m" })),
+                  [nix.POS]: pos$5,
+                  global: nix.thunk(() => ({ [nix.POS]: pos$1, resolve_timeout: "1m" })),
                   route: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     receiver: "test",
                     group_by: nix.thunk(() => ["..."]),
                     continue: false,
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
                   })),
                   receivers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       name: "test",
                       webhook_configs: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           url: "http://localhost:1234",
                           send_resolved: true,
                           max_alerts: 0n,
@@ -76,20 +76,20 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             karma: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$13,
-                listen: nix.thunk(() => ({ __proto__: pos$8, address: "0.0.0.0", port: 8081n })),
+                [nix.POS]: pos$13,
+                listen: nix.thunk(() => ({ [nix.POS]: pos$8, address: "0.0.0.0", port: 8081n })),
                 alertmanager: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   servers: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$9, name: "alertmanager", uri: "https://127.0.0.1:9093" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$9, name: "alertmanager", uri: "https://127.0.0.1:9093" })),
                   ]),
                 })),
-                karma: nix.thunk(() => ({ __proto__: pos$11, name: "test-dashboard" })),
-                log: nix.thunk(() => ({ __proto__: pos$12, config: true, requests: true, timestamp: true })),
+                karma: nix.thunk(() => ({ [nix.POS]: pos$11, name: "test-dashboard" })),
+                log: nix.thunk(() => ({ [nix.POS]: pos$12, config: true, requests: true, timestamp: true })),
               })),
             })),
           })),

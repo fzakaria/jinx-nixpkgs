@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rofi = nix.arg($, "rofi");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pinentry-rofi",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plattfot",
           repo: "pinentry-rofi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/pinentry-rofi --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rofi, coreutils]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rofi frontend to pinentry",
         homepage: "https://github.com/plattfot/pinentry-rofi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

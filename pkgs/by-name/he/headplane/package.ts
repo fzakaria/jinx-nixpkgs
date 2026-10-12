@@ -30,26 +30,26 @@ export default nix.lambda((args) => (() => {
   const goVendorHash = "sha256-Q5lRDbx7bg3WsrF+ukVPl7rTSJcqKFhYM9lWtqfiIw4=";
   const pnpmDepsHash = "sha256-2W/BTqarSlTMKIByB106xsyitRtK2bIeWeVKe2P96j8=";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tale",
       repo: "headplane",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-hRM+TTAKUxonJF3YHHvz9fpZeRo1kUpe7gHVyZy6sDc=",
     }))));
   const headplaneSshWasm = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "headplane-ssh-wasm",
       version: version,
       src: src,
       subPackages: nix.thunk(() => ["cmd/hp_ssh"]),
       vendorHash: goVendorHash,
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       doCheck: false,
       buildPhase: "export GOOS=js\nexport GOARCH=wasm\ngo build -o hp_ssh.wasm ./cmd/hp_ssh\n",
       installPhase: "runHook preInstall\ninstall -Dm444 hp_ssh.wasm \"$out/hp_ssh.wasm\"\n\n# Go's WebAssembly shim (wasm_exec.js) has no stable `go env` key, and\n# different Go packages may place it in different locations under GOROOT.\n#   1. Ask `go env GOROOT` for the active GOROOT.\n#   2. First try the path misc/wasm/wasm_exec.js.\n#   3. If that fails, fall back to searching under GOROOT to handle\n#      distro / OS / packaging layout variations.\ngoRoot=\"$(go env GOROOT)\"\n\nwasm_exec=\"$goRoot/misc/wasm/wasm_exec.js\"\nif [ ! -e \"$wasm_exec\" ]; then\n  wasm_exec=\"$(find \"$goRoot\" -path '*wasm_exec.js' -print -quit || true)\"\nfi\n\nif [[ -z \"$wasm_exec\" || ! -e \"$wasm_exec\" ]]; then\n  echo \"ERROR: wasm_exec.js not found under GOROOT=$goRoot\" >&2\n  exit 1\nfi\n\ninstall -Dm444 \"$wasm_exec\" \"$out/wasm_exec.js\"\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [git, makeWrapper, nodejs_24, pnpm_10, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,15 +81,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_24)} $out/bin/headplane \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         goVendorHash: goVendorHash,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           headplane: nix.thunk(() => nix.attr(nixosTests, "headplane")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Feature-complete Web UI for Headscale",
         homepage: "https://github.com/tale/headplane",
         changelog: nix.thunk(() => nix.str`https://github.com/tale/headplane/releases/tag/${nix.sel(src, "tag")}`),

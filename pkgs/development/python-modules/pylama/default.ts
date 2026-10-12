@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "klen",
           repo: "pylama",
           rev: version,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             git: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), git)}/bin/git`),
           })))),
         nix.path(here, "./pytest-9.1-compat.patch"),
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_quotes", "test_radon"]);
       const pythonImportsCheck = nix.thunk(() => ["pylama.main"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          check: nix.thunk(() => nix.app(nix.sel(pylama, "overridePythonAttrs"), (_) => ({ __proto__: pos$3, doCheck: true }))),
+          [nix.POS]: pos$4,
+          check: nix.thunk(() => nix.app(nix.sel(pylama, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Code audit tool for python",
         mainProgram: "pylama",
         homepage: "https://github.com/klen/pylama",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

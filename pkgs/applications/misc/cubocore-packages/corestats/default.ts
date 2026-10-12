@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libcprime = nix.arg($, "libcprime");
   const libcsys = nix.arg($, "libcsys");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "corestats",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cubocore/coreapps",
           repo: "corestats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase")), lm_sensors, libcprime, libcsys]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System resource viewer from the C Suite",
         mainProgram: "corestats",
         homepage: "https://gitlab.com/cubocore/coreapps/corestats",

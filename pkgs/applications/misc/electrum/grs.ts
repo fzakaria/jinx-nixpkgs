@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const libsecp256k1_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libsecp256k1.so.{v}" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libsecp256k1.{v}.dylib" : nix.str`libsecp256k1${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   const libzbar_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libzbar.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libzbar.0.dylib" : nix.str`libzbar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "electrum-grs",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Groestlcoin",
           repo: "electrum-grs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,7 +87,7 @@ substituteInPlace ./electrum_grs/ecc_fast.py \\
       doCheck: false,
       postCheck: "$out/bin/electrum-grs help >/dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Groestlcoin wallet",
         longDescription: "An easy-to-use Groestlcoin client featuring wallets generated from\nmnemonic seeds (in addition to other, more advanced, wallet options)\nand the ability to perform transactions without downloading a copy\nof the blockchain.\n",
         homepage: "https://groestlcoin.org/",

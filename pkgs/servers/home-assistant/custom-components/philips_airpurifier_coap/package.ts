@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const domain = "philips_airpurifier_coap";
       const version = "0.37";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "philips-airpurifier-coap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [aioairctrl, getmac]);
       const ignoreVersionRequirement = nix.thunk(() => ["getmac"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Philips AirPurifier custom component for Home Assistant",
         homepage: "https://github.com/kongo09/philips-airpurifier-coap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

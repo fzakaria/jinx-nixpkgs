@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withLibWrap = nix.argOr($, "withLibWrap", () => true);
   const tcp_wrappers = nix.arg($, "tcp_wrappers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tacacsplus",
       version: "4.0.4.32",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.shrubbery.net/pub/tac_plus/tacacs-F${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7j5AOgecdcrRPOnkUcGvARWwZHFCdlu9heYNep8/P9I=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([perl, libnsl], nix.app(nix.sel(lib, "optionals"), withLibWrap, nix.thunk(() => [tcp_wrappers])))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibWrap)), nix.thunk(() => ["--with-libwrap=no"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protocol for authentication, authorization and accounting (AAA) services for routers and network devices",
         homepage: "http://www.shrubbery.net/tac_plus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

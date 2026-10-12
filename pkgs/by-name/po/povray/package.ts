@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "povray",
       version: "3.8.0-beta.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "POV-Ray",
           repo: "povray",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, libx11, libice, libsm, libpng, libjpeg, libtiff, SDL2, zlib]),
       postPatch: "cd unix\n./prebuild.sh\ncd ..\nexport HOME=$TMPDIR\nsed -i -e 's/^povconfuser.*/povconfuser=$(TMPDIR)\\/povray/' Makefile.{am,in}\nsed -i -e 's/^povuser.*/povuser=$(TMPDIR)\\/.povray/' Makefile.{am,in}\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-finite-math-only", "-DBOOST_BIND_GLOBAL_PLACEHOLDERS"]))),
       })),
       configureFlags: nix.thunk(() => ["COMPILED_BY=NixOS", "--with-boost-thread=boost_thread", "--with-x"]),
@@ -53,7 +53,7 @@ for i in chown chgrp; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.povray.org/",
         description: "Persistence of Vision Raytracer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

@@ -30,23 +30,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "bitbox-bridge"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "bitbox-bridge": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Bitbox bridge daemon, for use with Bitbox hardware wallets.")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bitbox-bridge", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8178n,
               description: "Listening port for the bitbox-bridge.\n",
             })))),
           runOnMount: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: true,
             description: "Run bitbox-bridge.service only when hardware wallet is plugged, also registers the systemd device unit.\nThis option is enabled by default to save power, when false, bitbox-bridge service runs all the time instead.\n",
           })),
@@ -54,18 +54,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "runOnMount")), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     name: "bitbox-bridge-run-on-mount-udev-rules",
                     destination: "/etc/udev/rules.d/99-bitbox-bridge-run-on-mount.rules",
                     text: "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"03eb\", ATTRS{idProduct}==\"2403\", MODE=\"0660\", GROUP=\"bitbox\", TAG+=\"systemd\", SYMLINK+=\"bitbox02\", ENV{SYSTEMD_WANTS}=\"bitbox-bridge.service\"\n",
@@ -74,17 +74,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "bitbox-bridge": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "BitBox Bridge",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               bindsTo: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "runOnMount")), nix.thunk(() => ["dev-bitbox02.device"]))),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/bitbox-bridge -p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 User: "bitbox",
@@ -93,12 +93,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
-          groups: nix.thunk(() => ({ __proto__: pos$14, bitbox: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$17,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$14, bitbox: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             bitbox: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               group: "bitbox",
               description: "bitbox-bridge daemon user",
               isSystemUser: true,

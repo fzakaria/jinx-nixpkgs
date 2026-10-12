@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linearicons-free",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.linearicons.com/free/${nix.sel(finalAttrs, "version")}/Linearicons-Free-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-0Gb0CRdgzSnpeN+x8TrH5TCrAA57+jsBWZ4FgJ8cm08=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       preInstall: "cd \"$src/Desktop Font/\"",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Crisp Line Icons by Perxis",
         longDescription: "See cheat sheet here: https://linearicons.com/free#cheat-sheet\n",
         homepage: "https://linearicons.com/free",

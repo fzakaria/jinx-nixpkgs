@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const sniffio = nix.arg($, "sniffio");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "groq",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "groq",
           repo: "groq-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"hatchling==1.26.3\" \"hatchling>=1.26.3\"\n",
       "build-system": nix.thunk(() => [hatch_fancy_pypi_readme, hatchling]),
       dependencies: nix.thunk(() => [anyio, distro, httpx, pydantic, sniffio, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         dirty_equals,
         nest_asyncio,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_copy_build_request",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for the Groq API",
         homepage: "https://github.com/groq/groq-python",
         changelog: nix.thunk(() => nix.str`https://github.com/groq/groq-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

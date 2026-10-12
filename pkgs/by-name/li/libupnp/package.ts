@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libupnp",
       version: "1.14.25",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pupnp",
           repo: "pupnp",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`sed -e 's|/COMPONENT||g' -e 's|/UPNP_Development||g' -i ${nix.builtins.placeholder("dev")}/lib/cmake/*/*.cmake
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source UPnP development kit for Linux",
         longDescription: "The Linux SDK for UPnP Devices (libupnp) provides developers\nwith an API and open source code for building control points,\ndevices, and bridges that are compliant with Version 1.0 of the\nUPnP Device Architecture Specification.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

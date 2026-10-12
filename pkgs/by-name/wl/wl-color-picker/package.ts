@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const libnotify = nix.arg($, "libnotify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wl-color-picker",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgmdev",
           repo: "wl-color-picker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ mkdir -p $out/bin
 ln -s $out/usr/bin/wl-color-picker $out/bin/wl-color-picker
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wayland color picker that also works on wlroots",
         homepage: "https://github.com/jgmdev/wl-color-picker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

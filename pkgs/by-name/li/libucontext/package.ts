@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libucontext",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaniini",
           repo: "libucontext",
           rev: nix.thunk(() => nix.str`libucontext-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-asT0pV3s4L4zB2qtDJ+2XYxEP6agIEo1LtCuFeOjpRA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wa,--noexecstack" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wa,--noexecstack" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/kaniini/libucontext",
         description: "ucontext implementation featuring glibc-compatible ABI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

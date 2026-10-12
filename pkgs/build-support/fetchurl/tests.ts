@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const emptyFile = nix.arg($, "emptyFile");
   const hello = nix.arg($, "hello");
   const testFlagAppending = (args_1) => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), nix.thunk(() => nix.app(nix.sel(fetchurl, "override"), (previousArgs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         curl: nix.thunk(() => nix.app(writeShellScriptBin, "curl", nix.thunk(() => nix.str`set -eu -o pipefail
 hasFoo=
 hasBar=
@@ -75,45 +75,45 @@ else
 fi
 `))),
       }))), nix.thunk(() => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://www.example.com/source",
       hash: nix.thunk(() => nix.sel(emptyFile, "outputHash")),
       recursiveHash: true,
     }, args_1)));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     "flag-appending-curlOpts": nix.thunk(() => nix.app(testFlagAppending, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "test-fetchurl-flag-appending-curlOpts",
         curlOpts: "--foo --bar",
       })))),
     "flag-appending-curlOptsList": nix.thunk(() => nix.app(testFlagAppending, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "test-fetchurl-flag-appending-curlOptsList",
         curlOptsList: nix.thunk(() => ["--foo", "--bar"]),
       })))),
     "flag-appending-curlOptsEnv": nix.thunk(() => nix.app(testFlagAppending, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "test-fetchurl-flag-appending-env",
         derivationArgs: nix.thunk(() => ({
-          __proto__: pos$6,
-          env: nix.thunk(() => ({ __proto__: pos$5, NIX_CURL_FLAGS: "--foo --bar" })),
+          [nix.POS]: pos$6,
+          env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CURL_FLAGS: "--foo --bar" })),
         })),
       })))),
     "flag-appending-netrcPhase-curlOpts": nix.thunk(() => nix.app(testFlagAppending, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "test-fetchurl-flag-appending-netrcPhase-curlOpts",
         netrcPhase: "touch netrc\ncurlOpts=\"$curlOpts --foo --bar\"\n",
       })))),
     "flag-appending-netrcPhase-curlOptsList": nix.thunk(() => nix.app(testFlagAppending, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "test-fetchurl-flag-appending-netrcPhase-curlOptsList",
         netrcPhase: "touch netrc\ncurlOptsList+=(\"--foo\" \"--bar\")\n",
       })))),
     header: nix.thunk(() => (() => {
       const headerValue = "Test '\" <- These are some quotes";
       return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           url: "https://httpbin.org/headers",
           sha256: nix.thunk(() => nix.builtins.hashString("sha256", nix.thunk(() => nix.add(headerValue, "\n")))),
           curlOptsList: nix.thunk(() => ["-H", nix.thunk(() => nix.str`Hello: ${headerValue}`)]),
@@ -122,33 +122,33 @@ fi
         })));
     })()),
     hashedMirrors: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         url: "http://broken",
         sha256: "1j1y3cq6ys30m734axc0brdm2q9n2as4h32jws15r7w5fwr991km",
         curlOptsList: nix.thunk(() => ["--retry", "0"]),
       })))),
     multipleHashedMirrors: nix.thunk(() => (() => {
       const fetchurlWithBrokenMirror = nix.thunk(() => nix.app(nix.sel(fetchurl, "override"), (prevArgs) => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hashedMirrors: nix.thunk(() => nix.concat(["http://brokenMirror"], nix.sel(prevArgs, "hashedMirrors"))),
         })));
       return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurlWithBrokenMirror, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           url: "http://broken",
           sha256: "1j1y3cq6ys30m734axc0brdm2q9n2as4h32jws15r7w5fwr991km",
           curlOptsList: nix.thunk(() => ["--retry", "0"]),
         })));
     })()),
     hashedMirrorsFromEnv: nix.thunk(() => (() => {
-      const fetchurlWithOnlyEnvMirrors = nix.thunk(() => nix.app(nix.sel(fetchurl, "override"), nix.thunk(() => ({ __proto__: pos$14, hashedMirrors: [] }))));
+      const fetchurlWithOnlyEnvMirrors = nix.thunk(() => nix.app(nix.sel(fetchurl, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, hashedMirrors: [] }))));
       return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurlWithOnlyEnvMirrors, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           url: "http://broken",
           sha256: "1j1y3cq6ys30m734axc0brdm2q9n2as4h32jws15r7w5fwr991km",
           derivationArgs: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             env: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               NIX_HASHED_MIRRORS: "http://brokenMirror https://tarballs.nixos.org",
             })),
           })),
@@ -156,14 +156,14 @@ fi
         })));
     })()),
     "no-skipPostFetch": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         url: "http://broken",
         sha256: "1j1y3cq6ys30m734axc0brdm2q9n2as4h32jws15r7w5fwr991km",
         curlOptsList: nix.thunk(() => ["--retry", "0"]),
         downloadToTemp: true,
       })))),
     "showURLs-urls-mirrors": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, (finalAttrs) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "test-fetchurl-showURLs-urls-mirrors",
         showURLs: true,
         urls: nix.thunk(() => nix.concat(["http://broken"], nix.sel(hello, "src", "urls"))),
@@ -173,13 +173,13 @@ fi
         })()),
       }))),
     "urls-simple": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: "test-fetchurl-urls-simple",
         urls: nix.thunk(() => ["http://broken", nix.thunk(() => nix.sel(hello, "src", "resolvedUrl"))]),
         hash: nix.thunk(() => nix.sel(hello, "src", "outputHash")),
       })))),
     "urls-mirrors": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, (finalAttrs) => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: "test-fetchurl-urls-mirrors",
         urls: nix.thunk(() => nix.concat(["http://broken"], nix.sel(hello, "src", "urls"))),
         hash: nix.thunk(() => nix.sel(hello, "src", "outputHash")),
@@ -192,14 +192,14 @@ fi
     "urls-env-mirrors": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, (finalAttrs) => (() => {
         const from = nix.thunk(() => nix.sel(hello, "src"));
         return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: "test-fetchurl-urls-env-mirrors",
         urls: nix.thunk(() => nix.attr(from, "urls")),
         hash: nix.thunk(() => nix.sel(hello, "src", "outputHash")),
         derivationArgs: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           env: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             NIX_MIRRORS_gnu: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["https://ftp.nluug.nl/pub/gnu/", "https://mirrors.kernel.org/gnu/"]))),
           })),
         })),

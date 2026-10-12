@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "foma",
       version: "0.10.0alpha-unstable-2025-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhulden",
           repo: "foma",
           rev: "91f91866af843aec487313d028dbd1f76b5fb1a5",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline, zlib]),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_INCLUDEDIR=include", "-DCMAKE_INSTALL_LIBDIR=lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-purpose finite-state toolkit designed for applications ranging from natural language processing to research in automata theory",
         homepage: "https://github.com/mhulden/foma",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

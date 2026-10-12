@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const fstrm = nix.arg($, "fstrm");
   const protobufc = nix.arg($, "protobufc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "bind",
       version: "9.20.29",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.isc.org/isc/bind9/${nix.sel(finalAttrs, "version")}/bind-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-WHApUIs7G0Min65BbJflVDq6RYCc76ypilAEoCpXNsE=",
         })))),
@@ -111,26 +111,26 @@ EOF
       preCheck: nix.thunk(() => nix.add("# skip timezone-related tests, they are flaky inside the nix sandbox\nsed -i '/^ISC_TEST_ENTRY(isc_time_formatISO8601L/d' tests/isc/time_test.c\nsed -i '/^ISC_TEST_ENTRY(isc_time_formattimestamp_test/d' tests/isc/time_test.c\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), "# lock benchmarks exceed the 300s test watchdog on slower hardware\nsed -i '/^ISC_TEST_ENTRY(isc_mutex_benchmark/d' tests/isc/mutex_test.c\nsed -i '/^ISC_TEST_ENTRY_CUSTOM(isc_rwlock_benchmark/d' tests/isc/rwlock_test.c\nsed -i '/^ISC_TEST_ENTRY(isc_spinlock_benchmark/d' tests/isc/spinlock_test.c\n"))),
       postFixup: "remove-references-to -t \"$out\" \"$dnsutils/bin/delv\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$3,
-          withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
           bind: nix.thunk(() => nix.attr(nixosTests, "bind")),
           "prometheus-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "bind")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "kubernetes-dns-single-node": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-single-node")),
             "kubernetes-dns-multi-node": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-multi-node")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitlab.isc.org/isc-projects/bind9.git",
             "rev-prefix": "v",
             "odd-unstable": true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.isc.org/bind/",
         description: "Domain name server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

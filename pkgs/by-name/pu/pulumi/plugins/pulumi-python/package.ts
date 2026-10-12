@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pulumi-python",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, python3]),
       postInstall: "cp -t \"$out/bin\" \\\n  ../pulumi-language-python-exec \\\n  ../../dist/pulumi-resource-pulumi-python\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           smokeTest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./smoke-test/default.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/python/",
         description: "Language host for Pulumi programs written in Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

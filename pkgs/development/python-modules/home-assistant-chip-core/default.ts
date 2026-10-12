@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python-base APIs and tools for CHIP",
         homepage: "https://github.com/home-assistant-libs/chip-wheels",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/chip-wheels/releases/tag/${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         format,

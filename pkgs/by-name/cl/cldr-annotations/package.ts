@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "cldr-annotations";
       const version = "48.2";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://unicode.org/Public/cldr/${version}/cldr-common-${version}.zip`),
           stripRoot: false,
           hash: "sha256-fFSLvhND8lg9gQFsrP3XScpSsGwCWWjuLhN22gQSVNs=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/unicode/cldr/common\nmv common/annotations{,Derived} -t $out/share/unicode/cldr/common\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Names and keywords for Unicode characters from the Common Locale Data Repository",
         homepage: "https://cldr.unicode.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unicode-30")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "DeeUnderscore"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

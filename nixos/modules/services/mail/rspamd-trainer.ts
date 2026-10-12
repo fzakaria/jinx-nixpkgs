@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rspamd-trainer"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "rspamd-trainer": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Spam/ham trainer for rspamd")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               description: "IMAP authentication configuration for rspamd-trainer. For supplying\nthe IMAP password, use the `secrets` option.\n",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  HOST = \"localhost\";\n  USERNAME = \"spam@example.com\";\n  INBOXPREFIX = \"INBOX/\";\n}\n")),
             })))),
           secrets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -56,16 +56,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "rspamd-trainer": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Spam/ham trainer for rspamd",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "rspamd-trainer")}/bin/rspamd-trainer`),
                 WorkingDirectory: "/var/lib/rspamd-trainer",
                 StateDirectory: nix.thunk(() => ["rspamd-trainer/log"]),
@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "rspamd-trainer": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 OnBootSec: "10m",
                 OnUnitActiveSec: "10m",
                 Unit: "rspamd-trainer.service",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

@@ -60,26 +60,26 @@ fi
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/debian/pool/any/main/b/blackfire/blackfire_${version}_amd64.deb`),
               hash: "sha256-rcWSzQgQKeZAv7o16geuvVAmvVVsTq1vTjXWIEfiX4E=",
             })))),
           "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/debian/pool/any/main/b/blackfire/blackfire_${version}_i386.deb`),
               hash: "sha256-ZhNtOZ6SCv7ibtebXJUuMYD8VzdfX09x7UAKLkOnwaM=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/debian/pool/any/main/b/blackfire/blackfire_${version}_arm64.deb`),
               hash: "sha256-VXHnmjN3W9M8wShHU4YkBv7DlWgOA/FXeOL4c3aEU1E=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/blackfire/${version}/blackfire-darwin_arm64.pkg.tar.gz`),
               hash: "sha256-6/685RAzvEZNckIUG/iRoAZCRRODSoh9r/PzFB9WH2U=",
             })))),
@@ -99,7 +99,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Profiler agent and client",
         homepage: "https://blackfire.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -114,7 +114,7 @@ done
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "i686-linux", "aarch64-darwin"]),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

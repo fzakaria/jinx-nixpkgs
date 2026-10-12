@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pyvista = nix.arg($, "pyvista");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "emsutil",
       version: "0.8.3-unstable-2026-08-03",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FennisRobert",
           repo: "emsutil",
           rev: "18449659ca374ba84f02709a0d245b6bebb8ddb6",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["numpy"]),
       pythonImportsCheck: nix.thunk(() => ["emsutil"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utilities for the EMerge software suite",
         homepage: "https://github.com/FennisRobert/emsutil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

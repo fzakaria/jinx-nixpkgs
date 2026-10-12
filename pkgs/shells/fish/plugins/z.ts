@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "z",
       version: "0-unstable-2022-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jethrokuan",
           repo: "z",
           rev: "85f863f20f24faf675827fb00f3a4e15c7838d76",
           sha256: "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-fish z directory jumping",
         homepage: "https://github.com/jethrokuan/z",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "gitweb"));
-  const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "gitweb", "override"), nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "gitwebTheme")), nix.thunk(() => ({ __proto__: pos$1, gitwebTheme: true }))))));
+  const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "gitweb", "override"), nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "gitwebTheme")), nix.thunk(() => ({ [nix.POS]: pos$1, gitwebTheme: true }))))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lighttpd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           gitweb: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "If true, enable gitweb in lighttpd. Access it at http://yourserver/gitweb\n",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "lighttpd", "gitweb", "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           lighttpd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enableModules: nix.thunk(() => ["mod_cgi", "mod_redirect", "mod_alias", "mod_setenv"]),
             extraConfig: nix.thunk(() => nix.str`$HTTP["url"] =~ "^/gitweb" {
     cgi.assign = (

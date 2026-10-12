@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
     const name = nix.argOr($_1, "name", () => nix.app(nix.sel(lib, "removePrefix"), "pulumi-", nix.thunk(() => nix.app(nix.sel(lib, "getName"), package$))));
     const version = nix.argOr($_1, "version", () => nix.app(nix.sel(lib, "getVersion"), package$));
     return nix.app(runCommand, nix.thunk(() => nix.str`pulumi-resource-${name}-schema-version-check`), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         resourceName: name,
         expectedVersion: nix.thunk(() => (nix.asBool(!nix.eq(version, null)) ? nix.force(version) : "null")),
         nativeBuildInputs: nix.thunk(() => [jq, pulumi, package$]),
         env: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           PULUMI_SKIP_UPDATE_CHECK: "1",
           PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION: "1",
         })),
         __darwinAllowLocalNetworking: true,
-        meta: nix.thunk(() => ({ __proto__: pos$2, timeout: 120n })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 120n })),
       })), "actualVersion=$(pulumi package get-schema -- \"$resourceName\" | jq -j .version)\nif [[ $expectedVersion != \"$actualVersion\" ]]; then\n  echo \"Expected schema version $expectedVersion, but got $actualVersion\" >&2\n  false\nfi\nmkdir -p \"$out\"\n");
   })(), formals$2);
 })(), formals$1);

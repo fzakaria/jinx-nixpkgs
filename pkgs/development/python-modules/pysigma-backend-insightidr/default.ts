@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SigmaHQ",
           repo: "pySigma-backend-insightidr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "test_insight_idr_value_in_list_query",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to support the Rapid7 InsightIDR backend for pySigma",
         homepage: "https://github.com/SigmaHQ/pySigma-backend-insightidr",
         changelog: nix.thunk(() => nix.str`https://github.com/SigmaHQ/pySigma-backend-insightidr/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

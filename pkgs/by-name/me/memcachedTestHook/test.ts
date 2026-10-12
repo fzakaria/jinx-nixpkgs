@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const netcat = nix.arg($, "netcat");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "memcached-test-hook-test",
       nativeCheckInputs: nix.thunk(() => [memcachedTestHook, netcat]),
       dontUnpack: true,

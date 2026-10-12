@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coccinelle",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "coccinelle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "coccinelle",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       postPatch: "# Ensure dependencies from Nixpkgs are picked up.\nrm -rf bundles/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to apply semantic patches to C code",
         longDescription: "Coccinelle is a program matching and transformation engine which\nprovides the language SmPL (Semantic Patch Language) for\nspecifying desired matches and transformations in C code.\nCoccinelle was initially targeted towards performing collateral\nevolutions in Linux.  Such evolutions comprise the changes that\nare needed in client code in response to evolutions in library\nAPIs, and may include modifications such as renaming a function,\nadding a function argument whose value is somehow\ncontext-dependent, and reorganizing a data structure.  Beyond\ncollateral evolutions, Coccinelle is successfully used (by us\nand others) for finding and fixing bugs in systems code.\n",
         homepage: "https://coccinelle.gitlabpages.inria.fr/website/",

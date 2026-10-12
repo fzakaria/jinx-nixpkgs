@@ -35,41 +35,41 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`--role ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "role")))}`),
   ], nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "privateKeyFile"), null)), "--private-key-path=%d/snowflake-private-key"), nix.sel(cfg, "extraFlags"))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     port: 9975n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       account: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           example: "xy12345.us-east-1",
           description: "Snowflake account to collect metrics for (`--account`).",
         })))),
       username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           description: "Username used when querying metrics (`--username`).",
         })))),
       warehouse: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           description: "Warehouse used when querying metrics (`--warehouse`).",
         })))),
       role: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "ACCOUNTADMIN",
           description: "Role used when querying metrics (`--role`).",
         })))),
       privateKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/run/secrets/snowflake-exporter.p8",
           description: "Path to the user's RSA private key for key-pair authentication. The file\nis passed to the service via {manpage}`systemd.exec(5)` credentials, so\nit is read only by the exporter and never copied into the world-readable\nNix store. If the key is encrypted, supply its password via\n{option}`environmentFile` (`SNOWFLAKE_EXPORTER_PRIVATE_KEY_PASSWORD`).\n\nMutually exclusive with password authentication; when set, do not also\nprovide `SNOWFLAKE_EXPORTER_PASSWORD`.\n",
         })))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/run/secrets/snowflake-exporter.env",
@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
         LoadCredential: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "privateKeyFile"), null)), nix.thunk(() => [
             nix.thunk(() => nix.str`snowflake-private-key:${nix.sel(cfg, "privateKeyFile")}`),

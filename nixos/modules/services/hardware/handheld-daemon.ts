@@ -34,34 +34,34 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "handheld-daemon"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "handheld-daemon", "adjustor", "package"]), "Adjustor is now part of handheld-daemon package, so it can't be overriden")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "handheld-daemon": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Handheld Daemon")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "handheld-daemon", nix.thunk(() => ({})))),
           ui: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Handheld Daemon UI")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "handheld-daemon-ui", nix.thunk(() => ({})))),
           })),
           adjustor: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Handheld Daemon TDP control plugin")),
             loadAcpiCallModule: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to load the acpi_call kernel module.\nRequired for TDP control by adjustor on most devices.\n",
               })))),
           })),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The user to run Handheld Daemon with.\n",
             })))),
@@ -69,41 +69,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "handheld-daemon": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ui: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             })),
             adjustor: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               loadAcpiCallModule: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "adjustor", "enable")))),
             })),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => nix.sel(cfg, "ui", "package"))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "handheld-daemon": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Handheld Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartIfChanged: true,
               environment: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 HHD_ADJ_DISABLE: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "adjustor", "enable"))), "1")),
               })),
               path: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => [
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(pkgs, "lsof")),
                 ]))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --user ${nix.sel(cfg, "user")}`),
                 Nice: "-12",
                 Restart: "on-failure",
@@ -121,13 +121,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "adjustor", "loadAcpiCallModule")), nix.thunk(() => ["acpi_call"]))),
           extraModulePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "adjustor", "loadAcpiCallModule")), nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "acpi_call"))]))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "maintainers"), "toast"))]),
     })),
   };

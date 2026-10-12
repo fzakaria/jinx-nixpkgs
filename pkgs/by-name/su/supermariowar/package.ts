@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "supermariowar",
       version: "2024-unstable-2025-06-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmatyas",
           repo: "supermariowar",
           rev: "71383b07b99a52b57be79cf371ab718337365019",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_STATIC_LIBS=OFF"]),
       postInstall: "mkdir -p $out/bin\n\nfor app in smw smw-leveledit smw-worldedit; do\n  makeWrapper $out/games/$app $out/bin/$app \\\n    --add-flags \"--datadir $out/share/games/smw\"\ndone\n\nln -s $out/games/smw-server $out/bin/smw-server\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fan-made multiplayer Super Mario Bros. style deathmatch game",
         homepage: "https://github.com/mmatyas/supermariowar",
         changelog: nix.thunk(() => nix.str`https://github.com/mmatyas/supermariowar/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

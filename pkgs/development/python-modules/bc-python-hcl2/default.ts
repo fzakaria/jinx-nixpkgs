@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bridgecrewio",
           repo: "python-hcl2",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["hcl2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for HCL2 written in Python using Lark",
         longDescription: "This parser only supports HCL2 and isn't backwards compatible with HCL v1.\nIt can be used to parse any HCL2 config file such as Terraform.\n",
         homepage: "https://github.com/bridgecrewio/python-hcl2",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hcl2tojson",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

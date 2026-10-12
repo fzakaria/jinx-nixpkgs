@@ -40,76 +40,76 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "wiki-js.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "wiki-js": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "wiki-js")),
           environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/root/wiki-js.env",
               description: "Environment file to inject e.g. secrets into the configuration.\n",
             })))),
           stateDirectoryName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "wiki-js",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Name of the directory in {file}`/var/lib`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                         default: 3000n,
                         description: "TCP port the process should listen to.\n",
                       })))),
                     bindIP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         default: "0.0.0.0",
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         description: "IPs the service should listen to.\n",
                       })))),
                     db: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           default: "postgres",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["postgres", "mysql", "mariadb", "mssql"]))),
                           description: "Database driver to use for persistence. Please note that `sqlite`\nis currently not supported as the build process for it is currently not implemented\nin `pkgs.wiki-js` and it's not recommended by upstream for\nproduction use.\n",
                         })))),
                       host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           example: "/run/postgresql",
                           description: "Hostname or socket-path to connect to.\n",
                         })))),
                       db: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           default: "wiki",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Name of the database to use.\n",
                         })))),
                     })),
                     logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         default: "info",
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["error", "warn", "info", "verbose", "debug", "silly"]))),
                         description: "Define how much detail is supposed to be logged at runtime.\n",
                       })))),
                     offline: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "offline mode"), {
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       description: "Disable latest file updates and enable\n[sideloading](https://docs.requarks.io/install/sideload).\n",
                     })),
                   })),
@@ -120,23 +120,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           "wiki-js": nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               dataPath: nix.thunk(() => nix.str`/var/lib/${nix.sel(cfg, "stateDirectoryName")}`),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "wiki-js": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "A modern and powerful wiki app built on Node.js",
               documentation: nix.thunk(() => ["https://docs.requarks.io/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                 StateDirectory: nix.thunk(() => nix.sel(cfg, "stateDirectoryName")),
                 WorkingDirectory: nix.thunk(() => nix.str`/var/lib/${nix.sel(cfg, "stateDirectoryName")}`),
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "ma27"))];

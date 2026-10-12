@@ -22,31 +22,31 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nncp",
       version: "8.13.0",
       outputs: nix.thunk(() => ["out", "doc", "info"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.nncpgo.org/download/nncp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-jONoDpgAUZjYl14DF2CzqbM75tLWGETHmfd4yiM9BfQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [go]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFGPATH: cfgPath, SENDMAIL: "sendmail" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFGPATH: cfgPath, SENDMAIL: "sendmail" })),
       preConfigure: "export GOCACHE=$NIX_BUILD_TOP/gocache",
       buildPhase: "runHook preBuild\n./build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nPREFIX=$out ./install\nrunHook postInstall\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             versionLister: nix.thunk(() => nix.app(writeShellScript, "nncp-versionLister", nix.thunk(() => nix.str`${curl}/bin/curl -s ${nix.sel(finalAttrs, "meta", "downloadPage")} | ${perl}/bin/perl -lne 'print $1 if /Release.*>([0-9.]+)</'
 `))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         changelog: "http://www.nncpgo.org/News.html",
         description: "Secure UUCP-like store-and-forward exchanging",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ela_widget_tools = nix.arg($, "ela-widget-tools");
   const qtwebapp = nix.arg($, "qtwebapp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kikoplay",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KikoPlayProject",
           repo: "KikoPlay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: nix.thunk(() => nix.str`mkdir -p $out/share/kikoplay/extension/script
 cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "KikoPlayProject",
           repo: "KikoPlayScript",
           rev: "31dc29fd2fd538eab529f1165697e94bac131737",
@@ -80,16 +80,16 @@ cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
         })))}/{bgm_calendar,danmu,library,resource} $out/share/kikoplay/extension/script/
 mkdir -p $out/share/kikoplay/extension/app
 cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "KikoPlayProject",
           repo: "KikoPlayApp",
           rev: "62082956bbb0719c4a3a544be6d26e84162370de",
           hash: "sha256-/BuEyOwZvm1LRU0UQ/xqxOqouGB06p72WYFcSSdjqiw=",
         })))}/app/* $out/share/kikoplay/extension/app/
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, "ela-widget-tools": ela_widget_tools, qtwebapp: qtwebapp })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "ela-widget-tools": ela_widget_tools, qtwebapp: qtwebapp })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/KikoPlayProject/KikoPlay/releases/tag/${nix.sel(finalAttrs, "version")}`),
         mainProgram: "KikoPlay",
         maintainers: nix.thunk(() => (() => {

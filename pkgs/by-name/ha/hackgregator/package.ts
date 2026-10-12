@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const glib_networking = nix.arg($, "glib-networking");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hackgregator",
       version: "0.5.0-unstable-2023-12-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gunibert",
           repo: "hackgregator",
           rev: "594bdcdc3919c7216d611ddbbc77ab4d0c1f4f2b",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "rm $out/bin/xtask\nmkdir -p $out/share\npushd hackgregator/data\n  cp -r icons $out/share/icons\n  install -Dm644 de.gunibert.Hackgregator.desktop -t $out/share/applications\n  install -Dm644 de.gunibert.Hackgregator.appdata.xml -t $out/share/appdata\npopd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comfortable GTK reader application for news.ycombinator.com",
         homepage: "https://gitlab.com/gunibert/hackgregator",
         license: nix.thunk(() => (() => {

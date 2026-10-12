@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-oss20190517",
       version: "1.0.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_oss20190517",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fND7Fq9hPOs40uDlKaofWAOMfPWetnyMh3WuROpxeFI=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_oss20190517"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alibaba Cloud Object Storage Service (20190517) SDK Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-oss20190517/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

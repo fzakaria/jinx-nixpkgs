@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtklock = nix.arg($, "gtklock");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gtklock-virtkb-module",
       version: "0-unstable-2025-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "progandy",
           repo: "gtklock-virtkb-module",
           rev: "a11c2d8f14a79f271b02711b38220f927bc7fdf8",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           testModule: nix.thunk(() => nix.app(nix.sel(gtklock, "passthru", "testModule"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Gtklock module adding a keyboard to the lockscreen",
         homepage: "https://github.com/progandy/gtklock-virtkb-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

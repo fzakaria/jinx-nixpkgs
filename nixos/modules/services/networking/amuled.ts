@@ -81,37 +81,37 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   const settingsOptions = nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     eMule: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       Port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 4662n,
           description: "TCP port for eD2k connections.\nRequired for connecting to servers and achieving a High ID.\n",
         })))),
       UDPPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 4672n,
           description: "UDP port for eD2k traffic (searches, source exchange) and all Kad network communication.\nEssential for a High ID on both networks and proper Kad functioning.\n",
         })))),
       TempDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/Temp`),
           defaultText: nix.thunk(() => nix.app(literalExpression, "${config.services.amule.dataDir}/Temp")),
           description: "Directory where aMule stores incomplete downloads (.part/.part.met files).\n",
         })))),
       IncomingDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/Incoming`),
           defaultText: nix.thunk(() => nix.app(literalExpression, "${config.services.amule.dataDir}/Incoming")),
           description: "Directory where aMule moves completed downloads.\nFiles in this directory are automatically shared.\nEnsure the aMule service has write permissions\n",
         })))),
       OSDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: nix.thunk(() => nix.sel(cfg, "dataDir")),
           defaultText: nix.thunk(() => nix.app(literalExpression, "${config.services.amule.dataDir}")),
@@ -120,64 +120,64 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     ExternalConnect: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       AcceptExternalConnections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [0n, 1n]))),
           default: 1n,
           description: "Whether to accept external connections, if disabled amuled refuses to start",
           internal: true,
         })))),
       ECPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 4712n,
           description: "TCP port for external connections, like remote control via amule-gui",
         })))),
       ECPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           description: "MD5 hash of the password, obtainaible with `echo \"<password>\" | md5sum | cut -d ' ' -f 1`\n",
         })))),
     })),
     WebServer: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       Enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [0n, 1n]))),
           default: 0n,
           description: "Set to 1 to enable the web server",
         })))),
       Password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           description: "MD5 hash of the password, obtainaible with `echo \"<password>\" | md5sum | cut -d ' ' -f 1`\n",
         })))),
       Port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 4711n,
           description: "Web server port",
         })))),
     })),
     AmuleApi: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       Enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [0n, 1n]))),
           default: 0n,
           description: "Set to 1 to let amuled spawn amuleapi, the REST API and Web UI\nreplacing the deprecated web server.\n",
         })))),
       BindAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "127.0.0.1",
           description: "Address amuleapi listens on.\namuleapi refuses to bind anything other than `127.0.0.1` unless an admin password is set,\nsee {option}`services.amule.AmuleApiAdminPasswordFile`.\n",
         })))),
       HttpPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 4713n,
           description: "amuleapi HTTP port, serving both the REST API and the Web UI",
@@ -187,37 +187,37 @@ export default nix.lambda((args) => (() => {
   const webServerEnabled = nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "WebServer", "Enabled"), 1n));
   const amuleApiEnabled = nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "AmuleApi", "Enabled"), 1n));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         amule: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(mkEnableOption, "aMule daemon")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "amule-daemon", nix.thunk(() => ({})))),
           amuleWebPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "amule-web", nix.thunk(() => ({})))),
           amuleApiPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "amule-api", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Additional passed arguments",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/amuled",
               description: "Directory holding configuration and by default also incoming and temporary files",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "amule",
               description: "The user the aMule daemon should run as",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "amule",
               description: "Group under which amule runs",
@@ -227,27 +227,27 @@ export default nix.lambda((args) => (() => {
           openWebServerPort: nix.thunk(() => nix.app(mkEnableOption, "open the web server port")),
           openAmuleApiPort: nix.thunk(() => nix.app(mkEnableOption, "open the amuleapi (REST API and Web UI) port")),
           ExternalConnectPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "File containing the password for connecting with amule-gui,\nset this only if you didn't set `settings.ExternalConnect.ECPassword`\n",
             })))),
           WebServerPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "File containing the password for connecting to the web server,\nset this only if you didn't set `settings.ExternalConnect.ECPassword`\n",
             })))),
           AmuleApiAdminPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "File containing the admin password for amuleapi (REST API and Web UI).\nIt is set with `amuleapi --set-admin-pass` before amuled starts,\nso it is briefly visible in the process list.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: settingsOptions,
                 })))),
@@ -259,16 +259,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(cfg, "ExternalConnectPasswordFile")))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "ExternalConnect", "ECPassword"), "")))),
             message: "Set only one between `ExternalConnectPasswordFile` and `settings.ExternalConnect.ECPassword`",
           })),
         ], nix.app(optionals, webServerEnabled, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               assertion: nix.thunk(() => (!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(cfg, "WebServerPasswordFile")))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "WebServer", "Password"), "")))),
               message: "Set only one between `ExternalWebServerFile` `settings.WebServer.Password`",
             })),
@@ -277,11 +277,11 @@ export default nix.lambda((args) => (() => {
             "services.amule: amuleweb (`settings.WebServer.Enabled`) is deprecated upstream, consider switching to amuleapi with `settings.AmuleApi.Enabled = 1`",
           ]))),
         users: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "amule")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               amule: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "aMule user",
                 isSystemUser: true,
@@ -289,24 +289,24 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "amule")), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               amule: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "amule")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             settings: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               "10-amuled": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   d: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0755",
@@ -316,9 +316,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             amuled: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "AMule daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -352,7 +352,7 @@ ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "amuleApiPackage")))} \\
   --set-admin-pass="$AMULE_API_PASSWORD"
 `))))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
@@ -387,39 +387,39 @@ ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "amuleApiPackage")))} \\
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           amule: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             settings: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               eMule: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 AppVersion: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(cfg, "package")))),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           firewall: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openPeerPorts")), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "eMule", "Port"))]),
                   allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "eMule", "UDPPort"))]),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openWebServerPort")), nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "WebServer", "Port"))]),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openAmuleApiPort")), nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "AmuleApi", "HttpPort"))]),
                 })))),
             ]))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aciceri"))];

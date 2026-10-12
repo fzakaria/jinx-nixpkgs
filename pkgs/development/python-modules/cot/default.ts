@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const verboselogs = nix.arg($, "verboselogs");
   const versioneer = nix.arg($, "versioneer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cot",
       version: "2.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "cot",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9LNVNBX5DarGVvidPoLnmz11F5Mjm7FzpoO0zAzrJjU=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_serial_fixup_invalid_host"])))),
       pythonImportsCheck: nix.thunk(() => ["COT"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/glennmatthews/cot",
         description: "Common OVF Tool",
         mainProgram: "cot",

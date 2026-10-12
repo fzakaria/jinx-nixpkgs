@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "google-app-engine-go-sdk",
       version: "1.9.61",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1i2j9ympl1218akwsmm7yb31v0gibgpzlb657bcravi1irfv1hhs",
         }))) : nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0s8sqyc72lnc7dxd4cl559gyfx83x71jjpsld3i3nbp3mwwamczp",
         }))))),
@@ -42,7 +42,7 @@ for i in goapp go-app-stager *.py; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google App Engine SDK for Go",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),
         homepage: "https://cloud.google.com/appengine/docs/go/",

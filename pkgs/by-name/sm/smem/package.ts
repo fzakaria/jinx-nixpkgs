@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smem",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://selenic.com/repo/smem/archive/${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "19ibv1byxf2b68186ysrgrhy5shkc5mc69abark1h18yigp3j34m",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["smemcap"]),
       installPhase: "install -Dm555 -t $out/bin/ smem smemcap\ninstall -Dm444 -t $out/share/man/man8/ smem.8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.selenic.com/smem/",
         description: "Memory usage reporting tool that takes shared memory into account",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

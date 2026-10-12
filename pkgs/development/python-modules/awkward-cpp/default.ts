@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "awkward-cpp",
       version: "57",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "awkward_cpp",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-3y//WE1yuZQttutwD6JP6Ji8ZeNp7svNNbz4EmmqQdI=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["awkward_cpp"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CPU kernels and compiled extensions for Awkward Array",
         homepage: "https://github.com/scikit-hep/awkward",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "mrk-its",
       domain: "blitzortung",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrk-its",
           repo: "homeassistant-blitzortung",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [paho_mqtt]),
       nativeCheckInputs: nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Custom Component for fetching lightning data from blitzortung.org",
         homepage: "https://github.com/mrk-its/homeassistant-blitzortung",
         changelog: nix.thunk(() => nix.str`https://github.com/mrk-its/homeassistant-blitzortung/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

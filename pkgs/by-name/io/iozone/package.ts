@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
       const pname = "iozone";
       const version = "3.507";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.iozone.org/src/current/iozone${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar`),
           hash: "sha256-HoCHraBW9dgBjuC8dmhtQW/CJR7QMDgFXb0K940eXOM=",
         }))));
       const license = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://www.iozone.org/docs/Iozone_License.txt",
           hash: "sha256-O/8yztxKBI/UKs6vwv9mq16Rn3cf/UHpSxdVnAPVCYw=",
         }))));
@@ -48,7 +48,7 @@ substituteInPlace $out/libexec/Generate_Graphs \\
   --replace gnu3d.dem $out/libexec/gnu3d.dem
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Filesystem benchmark tool",
         homepage: "http://www.iozone.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -62,7 +62,7 @@ substituteInPlace $out/libexec/Generate_Graphs \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

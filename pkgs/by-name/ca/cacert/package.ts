@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const extraCertificatesBundle = nix.thunk(() => nix.app(writeText, "cacert-extra-certificates-bundle.crt", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n\n", extraCertificateStrings))));
   const version = "3.126";
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     homepage: "https://firefox-source-docs.mozilla.org/security/nss/runbooks/rootstore.html#root-store-consumers",
     description: "Bundle of X.509 certificates of public Certificate Authorities (CA)",
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -48,16 +48,16 @@ export default nix.lambda((args) => (() => {
     teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
     license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
     identifiers: nix.thunk(() => ({
-      __proto__: pos$2,
-      cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "mozilla", version), { __proto__: pos$1, product: "nss" })),
+      [nix.POS]: pos$2,
+      cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "mozilla", version), { [nix.POS]: pos$1, product: "nss" })),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "nss-cacert",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           urls: nix.thunk(() => (() => {
             const file = "lib/ckfw/builtins/certdata.txt";
             const tag = nix.thunk(() => nix.str`NSS_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}_RTM`);
@@ -86,24 +86,24 @@ buildcatrust \\
       installPhase: "install -D -t \"$out/etc/ssl/certs\" ca-bundle.crt\n\n# install standard PEM compatible bundle\ninstall -D -t \"$out/etc/ssl/certs\" ca-no-trust-rules-bundle.crt\n\n# install p11-kit specific output to p11kit output\ninstall -D -t \"$p11kit/etc/ssl/trust-source\" ca-bundle.trust.p11-kit\n\n# install individual certs in unbundled output\ninstall -D -t \"$unbundled/etc/ssl/certs\" unbundled/*.crt\n\n# install hashed certs in hashed output\n# use cp as install doesn't copy symlinks\nmkdir -p $hashed/etc/ssl/certs/\ncp -P hashed/* $hashed/etc/ssl/certs/\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => (() => {
           const isTrusted = "isTrusted() {\n  # isTrusted <unbundled-dir> <ca name> <ca sha256 fingerprint>\n  for f in $1/etc/ssl/certs/*.crt; do\n    if ! [[ -s \"$f\" ]]; then continue; fi\n    fingerprint=\"$(openssl x509 -in \"$f\" -noout -fingerprint -sha256 | cut -f2 -d=)\"\n    if [[ \"x$fingerprint\" == \"x$3\" ]]; then\n      # If the certificate is treated as rejected for TLS Web Server, then we consider it untrusted.\n      if openssl x509 -in \"$f\" -noout -text | grep -q '^Rejected Uses:'; then\n        if openssl x509 -in \"$f\" -noout -text | grep -A1 '^Rejected Uses:' | grep -q 'TLS Web Server'; then\n          return 1\n        fi\n      fi\n      return 0\n    fi\n  done\n  return 1\n}\n";
           return {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "blacklist-utf8": nix.thunk(() => (() => {
               const blacklistCAToFingerprint = nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "CFCA EV ROOT": "5C:C3:D7:8E:4E:1D:5E:45:54:7A:04:E6:87:3E:64:F9:0C:F9:53:6D:1C:CC:2E:F8:00:F3:55:C4:C5:FD:70:FD",
                 "NetLock Arany (Class Gold) Főtanúsítvány": "6C:61:DA:C3:A2:DE:F0:31:50:6B:E0:36:D2:A6:FE:40:19:94:FB:D1:3D:F9:C8:D4:66:59:92:74:C4:46:EC:98",
               }));
               const mapBlacklist = (f) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), f, blacklistCAToFingerprint)));
               return nix.app(runCommand, "verify-the-cacert-filter-output", nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   cacert: nix.thunk(() => nix.sel(cacert, "unbundled")),
                   cacertWithExcludes: nix.thunk(() => nix.sel(nix.app(nix.sel(cacert, "override"), nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       blacklist: nix.thunk(() => nix.builtins.attrNames(blacklistCAToFingerprint)),
                     }))), "unbundled")),
                   nativeBuildInputs: nix.thunk(() => [openssl]),
@@ -130,16 +130,16 @@ touch "$out"
               const extraCertificateStr = "-----BEGIN CERTIFICATE-----\nMIIB5DCCAWqgAwIBAgIUItvsAYEIdYDkOIo5sdDYMcUaNuIwCgYIKoZIzj0EAwIw\nKTEnMCUGA1UEAwweTml4T1MgY2FjZXJ0IGV4dHJhIGNlcnRpZmljYXRlMB4XDTIx\nMDYxMjE5MDQzMFoXDTIyMDYxMjE5MDQzMFowKTEnMCUGA1UEAwweTml4T1MgY2Fj\nZXJ0IGV4dHJhIGNlcnRpZmljYXRlMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEuP8y\nlAm6ZyQt9v/P6gTlV/a9R+D61WjucW04kaegOhg8csiluimYodiSv0Pbgymu+Zxm\nA3Bz9QGmytaYTiJ16083rJkwwIhqoYl7kWsLzreSTaLz87KH+rdeol59+H0Oo1Mw\nUTAdBgNVHQ4EFgQUCxuHfvqI4YVU5M+A0+aKvd1LrdswHwYDVR0jBBgwFoAUCxuH\nfvqI4YVU5M+A0+aKvd1LrdswDwYDVR0TAQH/BAUwAwEB/zAKBggqhkjOPQQDAgNo\nADBlAjEArgxgjdNmRlSEuai0dzlktmBEDZKy2Iiul+ttSoce9ohfEVYESwO602HW\nkeVvI56vAjBCro3dc3m2TuktiKO6lQV56PUEyxko4H/sR5pnHlduCGRDlFzQKXf/\npMMmtj7cVb8=\n-----END CERTIFICATE-----\n";
               const extraCertificateFile = nix.path(here, "./test-cert-file.crt");
               const extraCertificatesToFingerprint = nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "NixOS cacert extra certificate string": "A3:20:D0:84:96:97:25:FF:98:B8:A9:6D:A3:7C:89:95:6E:7A:77:21:92:F3:33:E9:31:AF:5E:03:CE:A9:E5:EE",
                 "NixOS cacert extra certificate file": "88:B8:BE:A7:57:AC:F1:FE:D6:98:8B:50:E0:BD:0A:AE:88:C7:DF:70:26:E1:67:5E:F5:F6:91:27:FF:02:D4:A5",
               }));
               const mapExtra = (f) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), f, extraCertificatesToFingerprint)));
               return nix.app(runCommand, "verify-the-cacert-extra-output", nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   cacert: nix.thunk(() => nix.sel(cacert, "unbundled")),
                   cacertWithExtras: nix.thunk(() => nix.sel(nix.app(nix.sel(cacert, "override"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       extraCertificateStrings: nix.thunk(() => [extraCertificateStr]),
                       extraCertificateFiles: nix.thunk(() => [extraCertificateFile]),
                     }))), "unbundled")),

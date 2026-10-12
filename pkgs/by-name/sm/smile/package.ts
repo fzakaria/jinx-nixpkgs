@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const wl_clipboard = nix.arg($, "wl-clipboard");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smile",
       version: "2.12.3",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mijorus",
           repo: "smile",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://smile.mijorus.it/changelog",
         description: "Emoji picker for linux, with custom tags support and localization",
         downloadPage: "https://github.com/mijorus/smile",

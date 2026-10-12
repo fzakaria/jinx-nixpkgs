@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const twisted = nix.arg($, "twisted");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tubes",
       version: "0.2.1-unstable-2023-11-06",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twisted",
           repo: "tubes",
           rev: "b74680b8e7bcfe64362865356bb9461b77bbd5c0",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["tubes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data-processing and flow-control engine for event-driven programs",
         homepage: "https://github.com/twisted/tubes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

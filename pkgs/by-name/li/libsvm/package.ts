@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const withOpenMP = nix.argOr($, "withOpenMP", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsvm",
       version: "333",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cjlin1",
           repo: "libsvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for support vector machines",
         homepage: "https://www.csie.ntu.edu.tw/~cjlin/libsvm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dcmstack",
       version: "0.9-unstable-2024-12-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moloney",
           repo: "dcmstack",
           rev: "68575996c8956152865e3598b15f621d7c803a96",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["dcmstack"]),
       disabledTestPaths: nix.thunk(() => ["test/test_cli.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DICOM to Nifti conversion preserving metadata",
         homepage: "https://github.com/moloney/dcmstack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

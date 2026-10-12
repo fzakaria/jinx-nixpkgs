@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libevent = nix.arg($, "libevent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redsocks",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darkk",
           repo: "redsocks",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/{bin,share}\nmv redsocks $out/bin\nmv doc $out/share\n",
       buildInputs: nix.thunk(() => [libevent]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transparent redirector of any TCP connection to proxy",
         homepage: "https://darkk.net.ru/redsocks/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   const matio = nix.arg($, "matio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "proxsuite",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simple-robotics",
           repo: "proxsuite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       ctestFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ["--exclude-regex", "sparse maros meszaros using the API"]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=missing-template-arg-list-after-template-kw"]))))),
       })),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       pythonImportsCheck: nix.thunk(() => ["proxsuite"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced Proximal Optimization Toolbox",
         homepage: "https://github.com/Simple-Robotics/proxsuite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const lockfile = nix.thunk(() => (nix.asBool(withMongo) ? nix.add(gemdir, "/Gemfile.mongo.lock") : (nix.asBool(withRchardet) ? nix.add(gemdir, "/Gemfile.rchardet.lock") : nix.add(gemdir, "/Gemfile.lock"))));
   const gemset = nix.thunk(() => (nix.asBool(withMongo) ? nix.add(gemdir, "/gemset.mongo.nix") : (nix.asBool(withRchardet) ? nix.add(gemdir, "/gemset.rchardet.nix") : nix.add(gemdir, "/gemset.nix"))));
   const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "whatweb-env",
       ruby_3_4: ruby_3_4,
       gemdir: gemdir,
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       gemset: gemset,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "whatweb",
       version: "0.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "urbanadventurer",
           repo: "whatweb",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,10 +60,10 @@ chmod +x $out/bin/whatweb
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, withMongo: withMongo, withRchardet: withRchardet })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, withMongo: withMongo, withRchardet: withRchardet })),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Next generation web scanner",
         longDescription: nix.thunk(() => nix.add(nix.add("WhatWeb is a website fingerprinting tool that identifies web technologies such as CMSs, blogging platforms,\nanalytics packages, JavaScript libraries, web servers, and embedded devices. With over 1800 plugins, it detects software\nversions, email addresses, account IDs, web framework modules, SQL errors, and more. WhatWeb offers adjustable scan\nmodes, balancing speed and thoroughness, making it suitable for both quick reconnaissance and detailed penetration\ntesting. Its plugins use multiple detection methods to reliably identify technologies, even when sites attempt to\nobscure their software.\n", nix.app(nix.sel(lib, "optionalString"), withMongo, "\nThis build includes MongoDB support and character set detection capabilities, which may impact performance.\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withRchardet) && nix.asBool(!nix.asBool(withMongo)))), "\nThis build includes character set detection capabilities, which may impact performance.\n"))),
         mainProgram: "whatweb",

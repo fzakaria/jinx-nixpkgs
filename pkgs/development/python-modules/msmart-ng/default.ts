@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mill1000",
           repo: "midea-msmart",
           tag: version,
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [httpx, pycryptodome]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CI: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CI: true }));
       const pythonImportsCheck = nix.thunk(() => ["msmart"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mill1000/midea-msmart/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for local control of Midea (and associated brands) smart air conditioners",
         homepage: "https://github.com/mill1000/midea-msmart",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

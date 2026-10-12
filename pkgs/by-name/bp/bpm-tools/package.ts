@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnuplot, sox, flac, id3v2, vorbis_tools])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bpm-tools",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.pogo.org.uk/~mark/bpm-tools/releases/bpm-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "151vfbs8h3cibs7kbdps5pqrsxhpjv16y2iyfqbxzsclylgfivrp",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/bpm-graph --prefix PATH : "${path}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.pogo.org.uk/~mark/bpm-tools/",
         description: "Automatically calculate BPM (tempo) of music files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

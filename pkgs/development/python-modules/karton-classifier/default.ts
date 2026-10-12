@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const python_magic = nix.arg($, "python-magic");
   const yara_python = nix.arg($, "yara-python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "karton-classifier",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CERT-Polska",
           repo: "karton-classifier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "test_process_misc_webp",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File type classifier for the Karton framework",
         homepage: "https://github.com/CERT-Polska/karton-classifier",
         changelog: nix.thunk(() => nix.str`https://github.com/CERT-Polska/karton-classifier/releases/tag/v${nix.sel(finalAttrs, "version")}`),

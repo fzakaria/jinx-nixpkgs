@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const abpoa = nix.arg($, "abpoa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), enablePython, "py")}abpoa`),
       version: "1.5.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yangao07",
           repo: "abPOA",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,22 +54,22 @@ substituteInPlace Makefile \\
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [
           nix.thunk(() => (nix.asBool(enableAvx) ? "avx2=1" : (nix.asBool(enableSse4_1) ? "sse41=1" : "sse2=1"))),
         ]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enablePython, nix.thunk(() => (nix.asBool(enableAvx) ? { __proto__: pos$2, AVX2: 1n } : (nix.asBool(enableSse4_1) ? { __proto__: pos$3, SSE41: 1n } : { __proto__: pos$4, SSE2: 1n }))))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enablePython, nix.thunk(() => (nix.asBool(enableAvx) ? { [nix.POS]: pos$2, AVX2: 1n } : (nix.asBool(enableSse4_1) ? { [nix.POS]: pos$3, SSE41: 1n } : { [nix.POS]: pos$4, SSE2: 1n }))))),
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enablePython)), "runHook preInstall\n\ninstall -Dm755 ./bin/abpoa* $out/bin/abpoa\n\nrunHook postInstall\n")),
       pythonImportsCheck: nix.thunk(() => ["pyabpoa"]),
       doInstallCheck: enablePython,
       installCheckPhase: "runHook preInstallCheck\n\npython python/example.py\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), abpoa)} ${nix.sel(abpoa, "src")}/test_data/seq.fa > $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "SIMD-based C library for fast partial order alignment using adaptive band",
         homepage: "https://github.com/yangao07/abPOA",
         changelog: nix.thunk(() => nix.str`https://github.com/yangao07/abPOA/releases/tag/v${nix.sel(finalAttrs, "version")}`),

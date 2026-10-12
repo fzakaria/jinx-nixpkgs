@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "push-stream",
       version: "0.5.4-unstable-2020-05-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wandenberg",
           repo: "nginx-push-stream-module",
           rev: "1cdc01521ed44dc614ebb5c0d19141cf047e1f90",
           hash: "sha256-WUoAr0d4M4JglDd/puQgPYqhymqIUCnmAbSdscRQU0Y=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure stream http push technology",
         homepage: "https://github.com/wandenberg/nginx-push-stream-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

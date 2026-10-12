@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "radvd",
       version: "2.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radvd-project",
           repo: "radvd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           connman: nix.thunk(() => nix.attr(nixosTests, "connman")),
           ipv6: nix.thunk(() => nix.attr(nixosTests, "ipv6")),
           "systemd-networkd-ipv6-prefix-delegation": nix.thunk(() => nix.attr(nixosTests, "systemd-networkd-ipv6-prefix-delegation")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.litech.org/radvd/",
         changelog: nix.thunk(() => nix.str`https://github.com/radvd-project/radvd/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),
         description: "IPv6 Router Advertisement Daemon",

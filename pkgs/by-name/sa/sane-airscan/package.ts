@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const gnutls = nix.arg($, "gnutls");
   const sane_backends = nix.arg($, "sane-backends");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sane-airscan",
       version: "0.99.38",
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [avahi, gnutls, libjpeg, libpng, libxml2, libtiff, sane_backends]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexpevzner",
           repo: "sane-airscan",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-LgheG67QVH9gcXLCgrmpXvE39n3H6ub1k4PYTpcGDxM=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alexpevzner/sane-airscan",
         description: "Scanner Access Now Easy - Apple AirScan (eSCL) driver",
         mainProgram: "airscan-discover",

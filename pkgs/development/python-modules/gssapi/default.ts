@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const k5test = nix.arg($, "k5test");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gssapi",
       version: "1.11.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pythongssapi",
           repo: "python-gssapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace setup.py \\
   --replace-fail 'get_output(f"{kc} gssapi --prefix")' '"${nix.app(nix.sel(lib, "getDev"), krb5_c)}"'
 `),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({ __proto__: pos$2, GSSAPI_SUPPORT_DETECT: "false" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({ [nix.POS]: pos$2, GSSAPI_SUPPORT_DETECT: "false" })))),
       "build-system": nix.thunk(() => [cython, krb5_c, setuptools]),
       dependencies: nix.thunk(() => [decorator]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
@@ -47,7 +47,7 @@ substituteInPlace setup.py \\
       postCheck: "popd\n",
       pythonImportsCheck: nix.thunk(() => ["gssapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pythongssapi/python-gssapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/pythongssapi/python-gssapi",
         description: "Python GSSAPI Wrapper",

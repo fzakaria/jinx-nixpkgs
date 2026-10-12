@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const withAngrylionRdpPlus = nix.argOr($, "withAngrylionRdpPlus", () => false);
   const withDiscordRpc = nix.argOr($, "withDiscordRpc", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rmg",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rosalie241",
           repo: "RMG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader]))}`),
         ])), nix.app(nix.sel(lib, "optional"), withWayland, "--set RMG_ALLOW_WAYLAND 1"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Rosalie241/RMG",
         changelog: nix.thunk(() => nix.str`https://github.com/Rosalie241/RMG/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Rosalie's Mupen GUI",

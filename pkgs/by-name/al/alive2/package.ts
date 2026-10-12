@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "alive2",
       version: "21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AliveToolkit",
           repo: "alive2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "BUILD_TV", "1"))]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail '-Werror' \"\" \\\n  --replace-fail 'find_package(Git REQUIRED)' \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ALIVE2_HOME: "$PWD",
         LLVM2_HOME: nix.thunk(() => nix.str`${llvm}`),
         LLVM2_BUILD: "$LLVM2_HOME/build",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "mkdir -p build\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp alive $out/bin/\ncp alive-jobserver $out/bin/\ncp alive-tv $out/bin/\nrm -rf $out/bin/CMakeFiles $out/bin/*.o\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Automatic verification of LLVM optimizations",
         homepage: "https://github.com/AliveToolkit/alive2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

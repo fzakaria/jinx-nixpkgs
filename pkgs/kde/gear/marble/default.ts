@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const shapelib = nix.arg($, "shapelib");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "marble",
       outputs: nix.thunk(() => ["out"]),
       extraNativeBuildInputs: nix.thunk(() => [perl, pkg_config, shared_mime_info]),

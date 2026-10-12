@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sonos-card";
       const version = "10.8.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "punxaphil",
           repo: "custom-sonos-card",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace package.json \\\n  --replace-fail \"npm run lint -- --fix &&\" \"\" \\\n  --replace-fail \"&& bash create-dist-maxi-media-player.sh\" \"\"\n";
       const npmDepsHash = "sha256-yrDqJdQ9LjDlcnDpQC5JmvZcloVtoOaNP0dzdiCU+7Y=";
       const installPhase = "runHook preInstall\n\ninstall -D dist/custom-sonos-card.js $out/custom-sonos-card.js\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "custom-sonos-card.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "custom-sonos-card.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/punxaphil/custom-sonos-card/releases/tag/${nix.sel(src, "tag")}`),
         description: "Lovelace card for controlling Sonos speakers in Home Assistant",
         homepage: "https://github.com/punxaphil/custom-sonos-card",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

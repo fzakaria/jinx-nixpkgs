@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dask",
           repo: "fastparquet",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cython, setuptools, setuptools_scm]);
       const nativeBuildInputs = nix.thunk(() => [gitMinimal]);
       const dependencies = nix.thunk(() => [cramjam, fsspec, numpy, packaging, pandas]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, lzo: nix.thunk(() => [python_lzo]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, lzo: nix.thunk(() => [python_lzo]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_import_without_warning"]);
       const preCheck = nix.thunk(() => nix.str`mv fastparquet/test .
@@ -50,7 +50,7 @@ ln -s \`pwd\`/test "$fastparquet_test"
       const postCheck = "rm \"$fastparquet_test\"\n";
       const pythonImportsCheck = nix.thunk(() => ["fastparquet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of the parquet format",
         homepage: "https://github.com/dask/fastparquet",
         changelog: nix.thunk(() => nix.str`https://github.com/dask/fastparquet/blob/${version}/docs/source/releasenotes.rst`),
@@ -61,7 +61,7 @@ ln -s \`pwd\`/test "$fastparquet_test"
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qvge",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArsMasiuk",
           repo: "qvge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-011gJobDqNnXFTr/XSXcONxvPlzU7UEwS7CHkz1YMtY=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
-      patches: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-graphviz-path.patch"), nix.thunk(() => ({ __proto__: pos$2, graphviz: graphviz })))),
+      patches: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphviz })))),
       postPatch: "substituteInPlace qvge/linux/qvge.desktop \\\n  --replace-warn \"Exec=qvgeapp\" \"Exec=qvge\"\n",
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [nix.thunk(() => nix.sel(libsForQt5, "qtsvg"))] : [nix.thunk(() => nix.sel(libsForQt5, "qtx11extras"))])),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/qvge.app $out/Applications\nln -s $out/Applications/qvge.app/Contents/MacOS/qvge $out/bin/qvge\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt Visual Graph Editor",
         homepage: "https://github.com/ArsMasiuk/qvge",
         changelog: nix.thunk(() => nix.str`https://github.com/ArsMasiuk/qvge/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

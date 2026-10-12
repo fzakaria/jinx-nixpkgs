@@ -16,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fcitx5-pinyin-zhwiki",
       version: "0.3.0",
       date: "20251223",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/web-slang-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-J3sDjcty3IWrnQWIn4dEPL56/Qipl/hJMu02baP2094=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/zhwiki-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-1/KKfeRhor1LGYBrOHqLvxfK9Byv3AplzqVX3lRO50Y=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/zhwikisource-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-UXJ2uMAI6DK/hCHNuZEydPYMt0u/PfIv6RnCC+G2UPI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/zhwiktionary-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-bG4LPuJDdNgB1N6SNQy0cINRBWaQEMdNONSaptjkFHk=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nfor dict in $srcs; do\n  install -D $dict $out/share/fcitx5/pinyin/dictionaries/$(basename $(stripHash $dict) | sed 's/-[0-9]\\{8\\}//')\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fcitx 5 pinyin dictionary from zh.wikipedia.org",
         homepage: "https://github.com/felixonmars/fcitx5-pinyin-zhwiki",
         license: nix.thunk(() => (() => {

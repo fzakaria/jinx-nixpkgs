@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const libftdi1 = nix.arg($, "libftdi1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libexsid",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsidplayfp",
           repo: "exsid-driver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/libsidplayfp/exsid-driver/commit/99bfaf25f73f96d588a38a4309fa5f18c364f4d4.patch",
             hash: "sha256-wg/oJieejyXiP5Ff9FRfACNELUt5021kXS1/zT7dMgA=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), docSupport, "doc"))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, "mkdir -p $doc/share/libexsid/doc\ncp -r docs/html $doc/share/libexsid/doc/\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Driver for exSID USB",
         homepage: "http://hacks.slashdirt.org/hw/exsid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

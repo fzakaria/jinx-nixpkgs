@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const sigrok_firmware_fx2lafw = nix.arg($, "sigrok-firmware-fx2lafw");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsigrok",
       version: "0.6.0-unstable-2025-11-20",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sigrok.org/libsigrok",
           rev: "0bc2487778e660f4d3116729b6f4aee2b1996bb0",
           hash: "sha256-j79Wx5FFFKptcwtIjQ0Cvtzl46lnow6bExpMNzI8KlM=",
@@ -50,7 +50,7 @@ cp ${sigrok_firmware_fx2lafw}/share/sigrok-firmware/* "$out/share/sigrok-firmwar
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n# assert that c++ bindings are included\n# note that this is only true for modern (>0.5) versions; the 0.3 series does not have these\n[[ -f $out/include/libsigrokcxx/libsigrokcxx.hpp ]] \\\n  || { echo 'C++ bindings were not generated; check configure output'; false; }\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Core library of the sigrok signal analysis software suite",
         longDescription: "\n      Core library of the sigrok signal analysis software suite\n\n      Please note that if you are using slogic devices you must overlay libsigrok-sipeed as this library for your device to work\n    ",
         homepage: "https://sigrok.org/",

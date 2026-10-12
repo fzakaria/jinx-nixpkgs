@@ -43,19 +43,19 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const xmodem = nix.arg($, "xmodem");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labgrid",
       version: "26.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "labgrid-project",
           repo: "labgrid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SX7FIaSl2sy1hMPEmgGCQQAzXUeFZRw/CrXf/ZHRBDU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Embedded control & testing library",
         homepage: "https://github.com/labgrid-project/labgrid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

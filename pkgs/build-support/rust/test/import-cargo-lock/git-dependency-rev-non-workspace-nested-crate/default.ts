@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-dependency-rev-non-workspace-nested-crate",
       version: "0.1.0",
       src: nix.path(here, "./package"),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lockFile: nix.path(here, "./package/Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "cargo-test-macro-0.1.0": "1yy1y1d523xdzwg1gc77pigbcwsbawmy4b7vw8v21m7q957sk0c4",
         })),
       })),

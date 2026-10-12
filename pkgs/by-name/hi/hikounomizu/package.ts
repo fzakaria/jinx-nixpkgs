@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const bc = nix.arg($, "bc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hikounomizu",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://download.tuxfamily.org/hnm/${nix.sel(finalAttrs, "version")}/hikounomizu-${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           hash: "sha256-rWy6m9Wc6w0PSSS8WUMeCNvXok2hRioKRGR6a1tyPks=",
         })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postBuild: "make data HNM_PARALLEL=$NIX_BUILD_CORES\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free platform-based fighting game",
         longDescription: "Hikou no mizu (ハイクの水) is a free platform-based fighting game,\nlicensed under the GNU GPL v3 (program) and the LAL (graphics).\nIt works on many operating systems including GNU/Linux, *BSD, Haiku,\nOS X and Windows.\n\nThe characters use natural powers such as water or lightning,\nbut they can also (mostly for now) fight the traditional way!\n",
         homepage: "https://hikounomizu.org/",

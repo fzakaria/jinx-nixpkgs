@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unixcw",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/unixcw/unixcw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Cvg4VSFL+QtMDRSSIYhKtEWPOFfDiXLUKNrr87rdbjI=",
         })))),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [libpulseaudio, alsa_lib, nix.thunk(() => nix.sel(qt5, "qtbase")), ncurses]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lasound", "-lpulse-simple"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sound characters as Morse code on the soundcard or console speaker",
         longDescription: "unixcw is a project providing libcw library and a set of programs\nusing the library: cw, cwgen, cwcp and xcwcp.\nThe programs are intended for people who want to learn receiving\nand sending Morse code.\nunixcw is developed and tested primarily on GNU/Linux system.\n\ncw  reads  characters  from  an input file, or from standard input,\nand sounds each valid character as Morse code on either the system sound card,\nor the system console speaker.\nAfter it sounds a  character, cw  echoes it to standard output.\nThe input stream can contain embedded command strings.\nThese change the parameters used when sounding the Morse code.\ncw reports any errors in  embedded  commands\n",
         homepage: "https://unixcw.sourceforge.net",

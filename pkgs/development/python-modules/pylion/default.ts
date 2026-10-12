@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylion",
       version: "0.5.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dtrypogeorgos",
           repo: "pylion",
           rev: "3e6b96b542b97107c622d66b0be0551c3bd9f948",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "mkdir -p $out/share/doc/$name\ncp -r examples $out/share/doc/$name/examples\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LAMMPS wrapper for molecular dynamics simulations of trapped ions",
         homepage: "https://github.com/dtrypogeorgos/pylion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

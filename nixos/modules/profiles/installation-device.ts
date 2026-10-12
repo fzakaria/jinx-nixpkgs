@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.path(here, "../installer/scan/detected.nix"),
       nix.path(here, "../installer/scan/not-detected.nix"),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../installer/cd-dvd/channel.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       system: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nixos: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           variant_id: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "installer")),
         })),
         extraDependencies: nix.thunk(() => (() => {
@@ -69,89 +69,89 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       documentation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), true)),
         nixos: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), true)),
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         users: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nixos: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             isNormalUser: true,
             extraGroups: nix.thunk(() => ["wheel", "networkmanager", "video"]),
             initialHashedPassword: "",
           })),
-          root: nix.thunk(() => ({ __proto__: pos$6, initialHashedPassword: "" })),
+          root: nix.thunk(() => ({ [nix.POS]: pos$6, initialHashedPassword: "" })),
         })),
       })),
       security: nix.thunk(() => ({
-        __proto__: pos$11,
-        polkit: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+        [nix.POS]: pos$11,
+        polkit: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
         sudo: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           wheelNeedsPassword: nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), false)),
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         getty: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           autologinUser: "nixos",
           helpLine: nix.thunk(() => nix.add("The \"nixos\" and \"root\" accounts have empty passwords.\n\nTo log in over ssh you must set a password for either \"nixos\" or \"root\"\nwith `passwd` (prefix with `sudo` for \"root\"), or add your public key to\n/home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.\n\nTo set up a wireless connection, run `nmtui`.\n", nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "services", "xserver", "enable")), "\nType `sudo systemctl start display-manager' to\nstart the graphical user interface.\n"))),
         })),
         openssh: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           settings: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             PermitRootLogin: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "yes")),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$18,
-        networkmanager: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+        [nix.POS]: pos$18,
+        networkmanager: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
         firewall: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           logRefusedConnections: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$22,
-        variables: nix.thunk(() => ({ __proto__: pos$19, GC_INITIAL_HEAP_SIZE: "1M" })),
+        [nix.POS]: pos$22,
+        variables: nix.thunk(() => ({ [nix.POS]: pos$19, GC_INITIAL_HEAP_SIZE: "1M" })),
         etc: nix.thunk(() => ({
-          __proto__: pos$21,
-          "systemd/pstore.conf": nix.thunk(() => ({ __proto__: pos$20, text: "[PStore]\nUnlink=no\n" })),
+          [nix.POS]: pos$21,
+          "systemd/pstore.conf": nix.thunk(() => ({ [nix.POS]: pos$20, text: "[PStore]\nUnlink=no\n" })),
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         kernel: nix.thunk(() => ({
-          __proto__: pos$24,
-          sysctl: nix.thunk(() => ({ __proto__: pos$23, "vm.overcommit_memory": "1" })),
+          [nix.POS]: pos$24,
+          sysctl: nix.thunk(() => ({ [nix.POS]: pos$23, "vm.overcommit_memory": "1" })),
         })),
         swraid: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: true,
           mdadmConf: nix.thunk(() => nix.str`PROGRAM ${nix.sel(pkgs, "coreutils")}/bin/true`),
         })),
       })),
       nix: nix.thunk(() => ({
-        __proto__: pos$28,
-        settings: nix.thunk(() => ({ __proto__: pos$27, "trusted-users": nix.thunk(() => ["nixos"]) })),
+        [nix.POS]: pos$28,
+        settings: nix.thunk(() => ({ [nix.POS]: pos$27, "trusted-users": nix.thunk(() => ["nixos"]) })),
       })),
       nixpkgs: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         overlays: nix.thunk(() => [
           (_) => (prev) => ({
-            __proto__: pos$30,
-            "mbrola-voices": nix.thunk(() => nix.app(nix.sel(prev, "mbrola-voices", "override"), nix.thunk(() => ({ __proto__: pos$29, languages: nix.thunk(() => ["*1"]) })))),
+            [nix.POS]: pos$30,
+            "mbrola-voices": nix.thunk(() => nix.app(nix.sel(prev, "mbrola-voices", "override"), nix.thunk(() => ({ [nix.POS]: pos$29, languages: nix.thunk(() => ["*1"]) })))),
           }),
         ]),
       })),

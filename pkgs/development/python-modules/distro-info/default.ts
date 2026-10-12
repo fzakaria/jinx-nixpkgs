@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/distro-info/-/archive/debian/${version}/distro-info-debian-${version}.tar.gz`),
           hash: "sha256-nRLTlDPnll1jvwfg9FSxs9TmImvQkn9DVqSRSOKTAGI=",
         }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const preCheck = "cd python\nrm distro_info_test/test_flake8.py distro_info_test/test_pylint.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Information about Debian and Ubuntu releases",
         homepage: "https://salsa.debian.org/debian/distro-info",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/debian/distro-info/-/blob/debian/${version}/debian/changelog`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

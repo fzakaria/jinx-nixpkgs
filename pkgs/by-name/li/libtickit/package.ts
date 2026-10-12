@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unibilium = nix.arg($, "unibilium");
   const version = "0.4.6";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libtickit",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leonerd",
           repo: "libtickit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal interface construction kit",
         longDescription: "This library provides an abstracted mechanism for building interactive full-screen terminal\nprograms. It provides a full set of output drawing functions, and handles keyboard and mouse\ninput events.\n",
         homepage: "https://www.leonerd.org.uk/code/libtickit/",

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "treesheets",
       version: "0-unstable-2025-07-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aardappel",
           repo: "treesheets",
           rev: "e6b973c0131380e8b1171bcb4078657cf27f7e70",
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, wrapGAppsHook3, makeWrapper]),
       buildInputs: nix.thunk(() => [wxwidgets_3_2]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DPACKAGE_VERSION="${nix.builtins.replaceStrings(nix.thunk(() => ["unstable-"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}"`),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/TreeSheets.app $out/Applications\nmakeWrapper $out/Applications/TreeSheets.app/Contents/MacOS/TreeSheets $out/bin/TreeSheets\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free Form Data Organizer",
         mainProgram: "TreeSheets",
         longDescription: "The ultimate replacement for spreadsheets, mind mappers, outliners,\nPIMs, text editors and small databases.\n\nSuitable for any kind of data organization, such as Todo lists,\ncalendars, project management, brainstorming, organizing ideas,\nplanning, requirements gathering, presentation of information, etc.\n",

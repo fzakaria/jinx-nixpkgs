@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const clutter_gtk = nix.arg($, "clutter-gtk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pinpoint",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnome.org/pub/GNOME/sources/pinpoint/0.1/pinpoint-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1jp8chr9vjlpb5lybwp5cg6g90ak5jdzz9baiqkbg0anlg8ps82s",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoconf, automake]),
       buildInputs: nix.thunk(() => [clutter, clutter_gst, gdk_pixbuf, cairo, clutter_gtk]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/Archive/pinpoint",
         description: "Tool for making hackers do excellent presentations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

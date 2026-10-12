@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   nix.assert_((!nix.asBool(usePam) || nix.asBool(!nix.eq(pam, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libcap/package.nix:29:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libcap",
       version: "2.78",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/libs/security/linux-privs/libcap2/libcap-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DWIeVi/ZMsz2e5Zg+wGORopoPXuCdUHfJ4EyKMmWuxE=",
         })))),
@@ -84,9 +84,9 @@ cp License "$doc/share/doc/libcap-${nix.sel(finalAttrs, "version")}/"
       strictDeps: true,
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGo, nix.thunk(() => [nix.thunk(() => nix.sel(pkgsBuildHost, "go"))]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bind: bind,
           chrony: chrony,
           htop: htop,
@@ -97,11 +97,11 @@ cp License "$doc/share/doc/libcap-${nix.sel(finalAttrs, "version")}/"
           squid: squid,
           tor: tor,
           uwsgi: uwsgi,
-          "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$2, package: libcap })))),
+          "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$2, package: libcap })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for working with POSIX capabilities",
         homepage: "https://sites.google.com/site/fullycapable",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -111,7 +111,7 @@ cp License "$doc/share/doc/libcap-${nix.sel(finalAttrs, "version")}/"
           ]))),
         pkgConfigModules: nix.thunk(() => ["libcap", "libpsx"]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libcap_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

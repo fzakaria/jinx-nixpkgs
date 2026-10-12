@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const msgpack = nix.arg($, "msgpack");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wslink",
       version: "2.5.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kitware",
           repo: "wslink",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, msgpack]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, ssl: nix.thunk(() => [cryptography]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, ssl: nix.thunk(() => [cryptography]) })),
       pythonImportsCheck: nix.thunk(() => ["wslink"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python/JavaScript library for communicating over WebSocket",
         homepage: "https://github.com/Kitware/wslink",
         changelog: nix.thunk(() => nix.str`https://github.com/Kitware/wslink/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

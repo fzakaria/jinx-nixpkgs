@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "phoronix-test-suite",
       version: "10.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://phoronix-test-suite.com/releases/phoronix-test-suite-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-HyCS1TbAoxk+/FPkpQ887mXA7xp40x5UBPHGY//3t/Q=",
         })))),
@@ -41,14 +41,14 @@ wrapProgram $out/bin/phoronix-test-suite \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "simple-execution": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-Source, Automated Benchmarking",
         homepage: "https://www.phoronix-test-suite.com/",
         maintainers: nix.thunk(() => (() => {

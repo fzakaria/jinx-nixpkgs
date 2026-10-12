@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const onlyoffice_documentserver = nix.arg($, "onlyoffice-documentserver");
   const grunt_cli = nix.arg($, "grunt-cli");
-  const openssl$ = nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ __proto__: pos$1, enableMD2: true, static: true }))));
+  const openssl$ = nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableMD2: true, static: true }))));
   const qmake = nix.thunk(() => nix.sel(qt5, "qmake"));
   const fixIcu = nix.thunk(() => nix.app(writeScript, "fix-icu.sh", nix.thunk(() => nix.str`substituteInPlace \\
   $BUILDRT/Common/3dParty/icu/icu.pri \\
@@ -130,70 +130,70 @@ done
     nix.thunk(() => nix.str`QMAKE_LFLAGS+=-L${icu}/lib`),
   ]);
   const gumbo_parser_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "google",
       repo: "gumbo-parser",
       rev: "aa91b27b02c0c80c482e24348a457ed7c3c088e0",
       hash: "sha256-+607iXJxeWKoCwb490pp3mqRZ1fWzxec0tJOEFeHoCs=",
     }))));
   const katana_parser_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "jasenhuang",
       repo: "katana-parser",
       rev: "be6df458d4540eee375c513958dcb862a391cdd1",
       hash: "sha256-SYJFLtrg8raGyr3zQIEzZDjHDmMmt+K0po3viipZW5c=",
     }))));
   const googletest_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "google",
       repo: "googletest",
       tag: "v1.13.0",
       hash: "sha256-LVLEn+e7c8013pwiLzJiiIObyrlbBHYaioO/SWbItPQ=",
     }))));
   const hyphen_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "hunspell",
       repo: "hyphen",
       rev: "73dd2967c8e1e4f6d7334ee9e539a323d6e66cbd",
       hash: "sha256-WIHpSkOwHkhMvEKxOlgf6gsPs9T3xkzguD8ONXARf1U=",
     }))));
   const md4c_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "mity",
       repo: "md4c",
       rev: "481fbfbdf72daab2912380d62bb5f2187d438408",
       hash: "sha256-zhInM3R0CJUqnzh6wRxMwlUdErovplbZQ5IwXe9XzZ4=",
     }))));
   const glm_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "g-truc",
       repo: "glm",
       rev: "33b4a621a697a305bc3a7610d290677b96beb181",
       hash: "sha256-wwGI17vlQzL/x1O0ANr5+KgU1ETnATpLw3njpKfjnKQ=",
     }))));
   const mdds_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       owner: "kohei-us",
       repo: "mdds",
       rev: "0783158939c6ce4b0b1b89e345ab983ccb0f0ad0",
       hash: "sha256-HMGMxMRO6SadisUjZ0ZNBGQqksNDFkEh3yaQGet9rc0=",
     }))));
   const librevenge_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       owner: "DistroTech",
       repo: "librevenge",
       rev: "becd044b519ab83893ad6398e3cbb499a7f0aaf4",
       hash: "sha256-2YRxuMYzKvvQHiwXH08VX6GRkdXnY7q05SL05Vbn0Vs=",
     }))));
   const libodfgen_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       owner: "DistroTech",
       repo: "libodfgen",
       rev: "8ef8c171ebe3c5daebdce80ee422cf7bb96aa3bc",
       hash: "sha256-Bv/smZFmZn4PEAcOlXD2Z4k96CK7A7YGDHFDsqZpuiE=",
     }))));
   const libetonyek_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       owner: "LibreOffice",
       repo: "libetonyek",
       rev: "cb396b4a9453a457469b62a740d8fb933c9442c3",
@@ -204,7 +204,7 @@ done
   const version = "9.3.1";
   const core_rev = "7043b3609328e917a4791aec8f3e8fca3225120f";
   const core = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       owner: "ONLYOFFICE",
       repo: "core",
       rev: core_rev,
@@ -214,10 +214,10 @@ done
   const web_apps_rev = "1c8ca9987876bada73c0bde21367da09c0e1ed83";
   const web_apps_hash = "sha256-1OniYHaf5kMVYJbEThkeuWfJPxaJoaYqiHaBTi/euAc=";
   const web_apps_mobile = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "web-apps-mobile",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           owner: "ONLYOFFICE",
           repo: "web-apps",
           rev: web_apps_rev,
@@ -234,10 +234,10 @@ export BUILD_NUMBER=$(echo "${web_apps_rev}" | tr d _)
       installPhase: "runHook preInstall\n\nchmod u+wx ../../apps/*/mobile\n\nnpm run deploy-word\nmkdir -p $out/documenteditor/mobile\nmv ../../apps/documenteditor/mobile/css $out/documenteditor/mobile\nmv ../../apps/documenteditor/mobile/dist $out/documenteditor/mobile\nmv ../../apps/documenteditor/mobile/index.html $out/documenteditor/mobile\n\nnpm run deploy-cell\nmkdir -p $out/spreadsheeteditor/mobile\nmv ../../apps/spreadsheeteditor/mobile/css $out/spreadsheeteditor/mobile\nmv ../../apps/spreadsheeteditor/mobile/dist $out/spreadsheeteditor/mobile\nmv ../../apps/spreadsheeteditor/mobile/index.html $out/spreadsheeteditor/mobile\n\nnpm run deploy-slide\nmkdir -p $out/presentationeditor/mobile\nmv ../../apps/presentationeditor/mobile/css $out/presentationeditor/mobile\nmv ../../apps/presentationeditor/mobile/dist $out/presentationeditor/mobile\nmv ../../apps/presentationeditor/mobile/index.html $out/presentationeditor/mobile\n\nnpm run deploy-visio\nmkdir -p $out/visioeditor/mobile\nmv ../../apps/visioeditor/mobile/css $out/visioeditor/mobile\nmv ../../apps/visioeditor/mobile/dist $out/visioeditor/mobile\nmv ../../apps/visioeditor/mobile/index.html $out/visioeditor/mobile\n\nrunHook postInstall\n",
     })));
   const web_apps = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "onlyoffice-core-web-apps",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           owner: "ONLYOFFICE",
           repo: "web-apps",
           rev: web_apps_rev,
@@ -290,10 +290,10 @@ runHook postInstall
 `),
     })));
   const sdkjs = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       name: "onlyoffice-core-sdkjs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           owner: "ONLYOFFICE",
           repo: "sdkjs",
           rev: "aa78926242b3da023255d9c7e9180e5a3294167b",
@@ -314,14 +314,14 @@ grunt
       installPhase: "runHook preInstall\n\nmv ../deploy/sdkjs $out\ncp ../common/device_scale.js $out/common\n\nrunHook postInstall\n",
     })));
   const dictionaries = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       owner: "ONLYOFFICE",
       repo: "dictionaries",
       rev: "d3223bbb777883db66ac3cd249f71c6ebdc992c7",
       hash: "sha256-7hvztNYnYjyOl3ynGP0vqtx9jLPp09XVDNIow1RYuWM=",
     }))));
   const buildCoreComponent = (rootdir) => (attrs) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       pname: nix.thunk(() => nix.str`onlyoffice-core-${rootdir}`),
       version: core_rev,
       src: core,
@@ -340,14 +340,14 @@ chmod -R u+w .
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\n# debug builds are a level deeper than release builds\nfind $BUILDRT/build -type f -exec cp {} $out/lib \\;\n\nrunHook postInstall\n",
     }, attrs));
   const buildCoreTests = (rootdir) => (attrs) => nix.app(buildCoreComponent, rootdir, nix.thunk(() => nix.update({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       doCheck: true,
       qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
       checkPhase: "runHook preCheck\nTEST=$(find . -type f -name test)\nif [ -f \"$TEST\" ]; then\n    $TEST\nelse\n    echo \"Test executable not found\"\n    find .\n    exit 1\nfi\nrunHook postCheck\n",
       installPhase: "touch $out\n",
     }, attrs)));
   const unicodeConverter = nix.thunk(() => nix.app(buildCoreComponent, "UnicodeConverter", nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       patches: nix.thunk(() => [nix.path(here, "./common-cpp20.patch")]),
       qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
       preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
@@ -359,9 +359,9 @@ substituteInPlace \\
   --replace-fail "TRUE" "true"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         tests: nix.thunk(() => nix.app(buildCoreTests, "UnicodeConverter/test", nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             buildInputs: nix.thunk(() => [unicodeConverter, kernel]),
             qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
             preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
@@ -373,13 +373,13 @@ echo -e "\\ninclude(../../Common/3dParty/icu/icu.pri)" >> test.pro
       })),
     }))));
   const kernel = nix.thunk(() => nix.app(buildCoreComponent, "Common", nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       patches: nix.thunk(() => [nix.path(here, "./zlib-cstd.patch")]),
       buildInputs: nix.thunk(() => [unicodeConverter]),
       qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
     }))));
   const graphics = nix.thunk(() => nix.app(buildCoreComponent, "DesktopEditor/graphics/pro", nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       patches: nix.thunk(() => [
         nix.path(here, "./cximage-types.patch"),
         nix.path(here, "./core-fontengine-custom-fonts-paths.patch"),
@@ -412,33 +412,33 @@ EOL
 ln -s ${hyphen_src} $BUILDRT/Common/3dParty/hyphen/hyphen
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "genAttrs"), nix.thunk(() => ["alphaMask", "graphicsLayers", "TestPICT"]), (test) => nix.app(buildCoreTests, nix.thunk(() => nix.str`DesktopEditor/graphics/tests/${test}`), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
 `),
               buildInputs: nix.thunk(() => [graphics, kernel, unicodeConverter]),
             }))))),
       })),
     }))));
-  const network = nix.thunk(() => nix.app(buildCoreComponent, "Common/Network", nix.thunk(() => ({ __proto__: pos$29, buildInputs: nix.thunk(() => [kernel]) }))));
+  const network = nix.thunk(() => nix.app(buildCoreComponent, "Common/Network", nix.thunk(() => ({ [nix.POS]: pos$29, buildInputs: nix.thunk(() => [kernel]) }))));
   const docxformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/DocxFormatLib", nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       patches: nix.thunk(() => [nix.path(here, "./xlsx-missing-import.patch")]),
       buildInputs: nix.thunk(() => [boost]),
     }))));
-  const cryptopp = nix.thunk(() => nix.app(buildCoreComponent, "Common/3dParty/cryptopp/project", nix.thunk(() => ({ __proto__: pos$31, buildInputs: nix.thunk(() => [boost]) }))));
-  const xlsbformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/XlsbFormatLib", nix.thunk(() => ({ __proto__: pos$32, buildInputs: nix.thunk(() => [boost]) }))));
-  const xlsformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/XlsFormatLib/Linux", nix.thunk(() => ({ __proto__: pos$33, buildInputs: nix.thunk(() => [boost]) }))));
-  const docformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/DocFormatLib/Linux", nix.thunk(() => ({ __proto__: pos$34, buildInputs: nix.thunk(() => [boost]) }))));
-  const pptformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/PPTFormatLib/Linux", nix.thunk(() => ({ __proto__: pos$35, buildInputs: nix.thunk(() => [boost]) }))));
-  const rtfformatlib = nix.thunk(() => nix.app(buildCoreComponent, "RtfFile/Projects/Linux", nix.thunk(() => ({ __proto__: pos$36, buildInputs: nix.thunk(() => [boost]) }))));
-  const txtxmlformatlib = nix.thunk(() => nix.app(buildCoreComponent, "TxtFile/Projects/Linux", nix.thunk(() => ({ __proto__: pos$37, buildInputs: nix.thunk(() => [boost]) }))));
-  const bindocument = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/BinDocument", nix.thunk(() => ({ __proto__: pos$38, buildInputs: nix.thunk(() => [boost]) }))));
-  const pptxformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/PPTXFormatLib", nix.thunk(() => ({ __proto__: pos$39, buildInputs: nix.thunk(() => [boost]) }))));
+  const cryptopp = nix.thunk(() => nix.app(buildCoreComponent, "Common/3dParty/cryptopp/project", nix.thunk(() => ({ [nix.POS]: pos$31, buildInputs: nix.thunk(() => [boost]) }))));
+  const xlsbformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/XlsbFormatLib", nix.thunk(() => ({ [nix.POS]: pos$32, buildInputs: nix.thunk(() => [boost]) }))));
+  const xlsformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/XlsFormatLib/Linux", nix.thunk(() => ({ [nix.POS]: pos$33, buildInputs: nix.thunk(() => [boost]) }))));
+  const docformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/DocFormatLib/Linux", nix.thunk(() => ({ [nix.POS]: pos$34, buildInputs: nix.thunk(() => [boost]) }))));
+  const pptformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/PPTFormatLib/Linux", nix.thunk(() => ({ [nix.POS]: pos$35, buildInputs: nix.thunk(() => [boost]) }))));
+  const rtfformatlib = nix.thunk(() => nix.app(buildCoreComponent, "RtfFile/Projects/Linux", nix.thunk(() => ({ [nix.POS]: pos$36, buildInputs: nix.thunk(() => [boost]) }))));
+  const txtxmlformatlib = nix.thunk(() => nix.app(buildCoreComponent, "TxtFile/Projects/Linux", nix.thunk(() => ({ [nix.POS]: pos$37, buildInputs: nix.thunk(() => [boost]) }))));
+  const bindocument = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/BinDocument", nix.thunk(() => ({ [nix.POS]: pos$38, buildInputs: nix.thunk(() => [boost]) }))));
+  const pptxformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OOXML/Projects/Linux/PPTXFormatLib", nix.thunk(() => ({ [nix.POS]: pos$39, buildInputs: nix.thunk(() => [boost]) }))));
   const compoundfilelib = nix.thunk(() => nix.app(buildCoreComponent, "Common/cfcpp", nix.thunk(() => ({}))));
   const iworkfile = nix.thunk(() => nix.app(buildCoreComponent, "Apple", nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       patches: nix.thunk(() => [nix.path(here, "./zlib-cstd.patch")]),
       qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, ["CONFIG+=c++1z"])),
       buildInputs: nix.thunk(() => [kernel, unicodeConverter, boost]),
@@ -455,9 +455,9 @@ cp $BUILDRT/Common/3dParty/apple/headers/* $BUILDRT/Common/3dParty/apple/libeton
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         tests: nix.thunk(() => nix.app(buildCoreTests, "Apple/test", nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             buildInputs: nix.thunk(() => [unicodeConverter, kernel, iworkfile]),
             qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
             preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
@@ -465,17 +465,17 @@ cp $BUILDRT/Common/3dParty/apple/headers/* $BUILDRT/Common/3dParty/apple/libeton
           })))),
       })),
     }))));
-  const vbaformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/VbaFormatLib/Linux", nix.thunk(() => ({ __proto__: pos$43, buildInputs: nix.thunk(() => [boost]) }))));
-  const odfformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OdfFile/Projects/Linux", nix.thunk(() => ({ __proto__: pos$44, buildInputs: nix.thunk(() => [boost]) }))));
+  const vbaformatlib = nix.thunk(() => nix.app(buildCoreComponent, "MsBinaryFile/Projects/VbaFormatLib/Linux", nix.thunk(() => ({ [nix.POS]: pos$43, buildInputs: nix.thunk(() => [boost]) }))));
+  const odfformatlib = nix.thunk(() => nix.app(buildCoreComponent, "OdfFile/Projects/Linux", nix.thunk(() => ({ [nix.POS]: pos$44, buildInputs: nix.thunk(() => [boost]) }))));
   const starmath = nix.thunk(() => nix.app(buildCoreComponent, "OdfFile/Reader/Converter/StarMath2OOXML", nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       buildInputs: nix.thunk(() => [kernel, boost]),
       preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         tests: nix.thunk(() => nix.app(buildCoreTests, "OdfFile/Reader/Converter/StarMath2OOXML/TestSMConverter", nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             buildInputs: nix.thunk(() => [starmath]),
             preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
 ln -s ${googletest_src} $BUILDRT/Common/3dParty/googletest/googletest
@@ -484,16 +484,16 @@ ln -s ${googletest_src} $BUILDRT/Common/3dParty/googletest/googletest
       })),
     }))));
   const hwpfile = nix.thunk(() => nix.app(buildCoreComponent, "HwpFile", nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       buildInputs: nix.thunk(() => [starmath, cryptopp, kernel, unicodeConverter, graphics]),
     }))));
   const ofdfile = nix.thunk(() => nix.app(buildCoreComponent, "OFDFile", nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       buildInputs: nix.thunk(() => [boost, unicodeConverter, graphics, kernel, pdffile]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         tests: nix.thunk(() => nix.app(buildCoreTests, "OFDFile/test", nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             buildInputs: nix.thunk(() => [unicodeConverter, ofdfile, graphics, kernel]),
             patches: nix.thunk(() => [nix.path(here, "./ofdfile-test.patch")]),
             qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
@@ -503,25 +503,25 @@ ln -s ${googletest_src} $BUILDRT/Common/3dParty/googletest/googletest
       })),
     }))));
   const pdffile = nix.thunk(() => nix.app(buildCoreComponent, "PdfFile", nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       buildInputs: nix.thunk(() => [graphics, kernel, unicodeConverter, cryptopp, network]),
       patches: nix.thunk(() => [nix.path(here, "./pdffile-limits-include.patch")]),
     }))));
   const djvufile = nix.thunk(() => nix.app(buildCoreComponent, "DjVuFile", nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       buildInputs: nix.thunk(() => [unicodeConverter, kernel, graphics, pdffile]),
     }))));
   const textcommandrenderer = nix.thunk(() => nix.app(buildCoreComponent, "DocxRenderer/test/TextCommandRenderer", nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       buildInputs: nix.thunk(() => [unicodeConverter, kernel, graphics]),
     }))));
   const docxrenderer = nix.thunk(() => nix.app(buildCoreComponent, "DocxRenderer", nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       buildInputs: nix.thunk(() => [unicodeConverter, kernel, graphics]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         tests: nix.thunk(() => nix.app(buildCoreTests, "DocxRenderer/test", nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             buildInputs: nix.thunk(() => [
               unicodeConverter,
               kernel,
@@ -542,11 +542,11 @@ source ${fixIcu}
       })),
     }))));
   const xpsfile = nix.thunk(() => nix.app(buildCoreComponent, "XpsFile", nix.thunk(() => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       buildInputs: nix.thunk(() => [unicodeConverter, graphics, kernel, pdffile]),
     }))));
   const doctrenderer = nix.thunk(() => nix.app(buildCoreComponent, "DesktopEditor/doctrenderer", nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       buildInputs: nix.thunk(() => [
         graphics,
         boost,
@@ -617,9 +617,9 @@ cd $BUILDRT/DesktopEditor/doctrenderer
 `),
       installPhase: "mkdir -p $out/lib\ncp ../../build/lib/*/*.a $out/lib\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "genAttrs"), nix.thunk(() => ["embed/external", "embed/internal", "js_internal", "json"]), (test) => nix.app(buildCoreTests, nix.thunk(() => nix.str`DesktopEditor/doctrenderer/test/${test}`), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               patches: nix.thunk(() => [nix.path(here, "./doctrenderer-v8-test.patch")]),
               buildInputs: nix.thunk(() => [doctrenderer]),
               preConfigure: nix.thunk(() => nix.str`ln -s ${googletest_src} $BUILDRT/Common/3dParty/googletest/googletest
@@ -628,7 +628,7 @@ cd $BUILDRT/DesktopEditor/doctrenderer
       })),
     }))));
   const htmlfile2 = nix.thunk(() => nix.app(buildCoreComponent, "HtmlFile2", nix.thunk(() => ({
-      __proto__: pos$62,
+      [nix.POS]: pos$62,
       buildInputs: nix.thunk(() => [boost, kernel, network, graphics, unicodeConverter]),
       preConfigure: nix.thunk(() => nix.str`ln -s ${katana_parser_src} $BUILDRT/Common/3dParty/html/katana-parser
 ln -s ${gumbo_parser_src} $BUILDRT/Common/3dParty/html/gumbo-parser
@@ -636,21 +636,21 @@ ln -s ${md4c_src} $BUILDRT/Common/3dParty/md/md4c
 `),
     }))));
   const epubfile = nix.thunk(() => nix.app(buildCoreComponent, "EpubFile", nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       buildInputs: nix.thunk(() => [kernel, graphics, htmlfile2]),
     }))));
   const fb2file = nix.thunk(() => nix.app(buildCoreComponent, "Fb2File", nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       buildInputs: nix.thunk(() => [unicodeConverter, kernel, graphics, boost]),
       qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, ["QMAKE_LFLAGS+=-Wl,--no-undefined"])),
       preConfigure: nix.thunk(() => nix.str`ln -s ${gumbo_parser_src} $BUILDRT/Common/3dParty/html/gumbo-parser
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         tests: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           run: nix.thunk(() => nix.app(buildCoreTests, "Fb2File/test", nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               buildInputs: nix.thunk(() => [fb2file, kernel]),
               preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
 `),
@@ -660,7 +660,7 @@ ln -s ${md4c_src} $BUILDRT/Common/3dParty/md/md4c
       })),
     }))));
   const ooxmlsignature = nix.thunk(() => nix.app(buildCoreComponent, "DesktopEditor/xmlsec/src", nix.thunk(() => ({
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       buildInputs: nix.thunk(() => [kernel]),
       preConfigure: nix.thunk(() => nix.str`mkdir -p $BUILDRT/Common/3dParty/openssl/build/linux_64/lib
 for i in ${nix.sel(openssl$, "out")}/lib/*; do
@@ -668,9 +668,9 @@ for i in ${nix.sel(openssl$, "out")}/lib/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         tests: nix.thunk(() => nix.app(buildCoreTests, "DesktopEditor/xmlsec/src/test", nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             buildInputs: nix.thunk(() => [kernel, ooxmlsignature]),
             preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
 `),
@@ -678,7 +678,7 @@ done
       })),
     }))));
   const allfontsgen = nix.thunk(() => nix.app(buildCoreComponent, "DesktopEditor/AllFontsGen", nix.thunk(() => ({
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       buildInputs: nix.thunk(() => [unicodeConverter, kernel, graphics, nix.thunk(() => nix.sel(libheif, "lib"))]),
       qmakeFlags: nix.thunk(() => nix.concat(qmakeFlags, icuQmakeFlags)),
       preConfigure: nix.thunk(() => nix.str`source ${fixIcu}
@@ -687,7 +687,7 @@ done
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nfind $BUILDRT/build -type f -exec cp {} $out/bin \\;\n\nrunHook postInstall\n",
     }))));
   const allthemesgen = nix.thunk(() => nix.app(buildCoreComponent, "DesktopEditor/allthemesgen", nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       buildInputs: nix.thunk(() => [
         unicodeConverter,
         kernel,
@@ -716,7 +716,7 @@ echo "LIBS += -L${nix.sel(nodejs_slim, "libv8")}/lib -lv8 -pthread" >> $BUILDRT/
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nfind $BUILDRT/build -type f -exec cp {} $out/bin \\;\n\nrunHook postInstall\n",
     }))));
   const core_fonts = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       owner: "ONLYOFFICE",
       repo: "core-fonts",
       rev: "7030c6681fb5bbed560675cb42422f91df15d5c9",
@@ -735,7 +735,7 @@ ${allfontsgen}/bin/allfontsgen \\
   --output-web=$out/fonts
 `)));
   return nix.app(buildCoreComponent, "X2tConverter/build/Qt", nix.thunk(() => ({
-      __proto__: pos$78,
+      [nix.POS]: pos$78,
       pname: "x2t",
       version: version,
       buildInputs: nix.thunk(() => [
@@ -810,9 +810,9 @@ EOF
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         tests: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           unicodeConverter: nix.thunk(() => nix.sel(unicodeConverter, "tests")),
           fb2file: nix.thunk(() => nix.sel(fb2file, "tests")),
           graphics: nix.thunk(() => nix.sel(graphics, "tests")),
@@ -827,7 +827,7 @@ runHook postInstall
           "nixos-module": nix.thunk(() => nix.sel(nixosTests, "onlyoffice")),
         })),
         components: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           allfontsgen: allfontsgen,
           allthemesgen: allthemesgen,
           allfonts: allfonts,
@@ -853,7 +853,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         description: "Convert files from one format to another",
         homepage: "https://github.com/ONLYOFFICE/core/tree/master/X2tConverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

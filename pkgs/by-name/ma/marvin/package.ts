@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const libxrender = nix.arg($, "libxrender");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marvin",
       version: "26.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`marvin-${nix.sel(finalAttrs, "version")}.deb`),
           url: nix.thunk(() => nix.str`https://dl.chemaxon.com/marvin/${nix.sel(finalAttrs, "version")}/marvin_linux_${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-s52e/J6ohtUv5mSfEXaOGeC1FKkjwgFUH7wLSGqZRFM=",
@@ -61,7 +61,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.builtins.map((name)
 `, nix.thunk(() => ["LicenseManager", "MarvinSketch", "MarvinView"]))))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chemical modelling, analysis and structure drawing program",
         homepage: "https://chemaxon.com/products/marvin",
         maintainers: nix.thunk(() => (() => {

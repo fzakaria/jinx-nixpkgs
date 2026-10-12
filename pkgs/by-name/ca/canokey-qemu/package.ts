@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2026-03-24";
       const rev = "41044ec17ddb835b3e5acb385a2e429aa74af627";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canokeys",
           repo: "canokey-qemu",
           rev: rev,
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "jinja2")),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/canokeys/canokey-qemu",
         description: "CanoKey QEMU Virtual Card",
         longDescription: "A virtual OPENPGP and FIDO2 card. Only for testing purpose. There is no warranty on security.",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         rev,

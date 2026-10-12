@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
-      processedToplevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
-      unprocessedNesting: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
-      multiple: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$3, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
-      priorities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      [nix.POS]: pos$6,
+      processedToplevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      unprocessedNesting: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      multiple: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      priorities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
       unprocessedNestingEvaluates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           default: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.sel(config, "unprocessedNesting")))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       processedToplevel: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, 10n)),
-      unprocessedNesting: nix.thunk(() => ({ __proto__: pos$7, foo: nix.thunk(() => nix.builtins.throw("foo")) })),
+      unprocessedNesting: nix.thunk(() => ({ [nix.POS]: pos$7, foo: nix.thunk(() => nix.builtins.throw("foo")) })),
       multiple: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => ["foo", "foo"]))),
       priorities: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => ["foo", nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "bar"))]))),
     })),

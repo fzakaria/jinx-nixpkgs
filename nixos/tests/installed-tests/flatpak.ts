@@ -19,29 +19,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       tested: nix.thunk(() => nix.sel(pkgs, "flatpak")),
       withX11: true,
       testConfig: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         xdg: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           portal: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             extraPortals: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-gtk"))]),
             config: nix.thunk(() => ({
-              __proto__: pos$2,
-              common: nix.thunk(() => ({ __proto__: pos$1, default: "gtk" })),
+              [nix.POS]: pos$2,
+              common: nix.thunk(() => ({ [nix.POS]: pos$1, default: "gtk" })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          flatpak: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          [nix.POS]: pos$6,
+          flatpak: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$8, memorySize: 2047n, diskSize: 3072n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, memorySize: 2047n, diskSize: 3072n })),
       })),
       testRunnerFlags: nix.thunk(() => ["--timeout", "3600"]),
     })));

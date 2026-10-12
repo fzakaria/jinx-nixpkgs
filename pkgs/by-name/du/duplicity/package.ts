@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duplicity",
           repo: "duplicity",
           rev: nix.thunk(() => nix.str`rel.${version}`),
@@ -92,19 +92,19 @@ makeWrapperArgs+=(
       const preCheck = "# tests need writable $HOME\nHOME=$PWD/.home\n\nwrapPythonProgramsIn \"$PWD/testing/overrides/bin\" \"${pythonPath[*]}\"\n";
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "rel\\.(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: self })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: self })))),
           nixos: nix.thunk(() => nix.sel(nixosTests, "duplicity")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/duplicity/duplicity/-/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Encrypted bandwidth-efficient backup using the rsync algorithm",
         homepage: "https://duplicity.gitlab.io/duplicity-web/",
@@ -116,7 +116,7 @@ makeWrapperArgs+=(
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         format,

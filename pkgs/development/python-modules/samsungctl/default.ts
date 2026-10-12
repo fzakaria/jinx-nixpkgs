@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0ipz3fd65rqkxlb02sql0awc3vnslrwb2pfrsnpfnf8bfgxpbh9g",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, websocket: nix.thunk(() => [websocket_client]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, websocket: nix.thunk(() => [websocket_client]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["samsungctl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Remote control Samsung televisions via a TCP/IP connection",
         mainProgram: "samsungctl",
         homepage: "https://github.com/Ape/samsungctl",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

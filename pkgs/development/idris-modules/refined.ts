@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "refined",
       version: "2017-12-28",
       ipkgName: "idris-refined",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "janschultecom",
           repo: "idris-refined",
           rev: "e21cdef16106a77b42d193806c1749ba6448a128",
           sha256: "1am7kfc51p2zlml954v8cl9xvx0g0f1caq7ni3z36xvsd7fh47yh",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Scala/Haskell Refined library to Idris",
         homepage: "https://github.com/janschultecom/idris-refined",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

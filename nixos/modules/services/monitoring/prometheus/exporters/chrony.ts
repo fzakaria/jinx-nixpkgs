@@ -24,38 +24,38 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const concatMapStringsSep = nix.thunk(() => nix.attr(lib, "concatMapStringsSep"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9123n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       chronyServerAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "unix:///run/chrony/chronyd.sock",
           example: nix.thunk(() => ["192.82.0.1:323"]),
           description: "ChronyServerAddress of the chrony server side command port. (Not enabled by default.)\nDefaults to the local unix socket.\n",
         })))),
       user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "chrony",
           description: "User name under which the chrony exporter shall be run.\nThis allows the exporter to talk to chrony using a unix socket, which is owned by chrony.\nThe exporter startup with the default user chrony will fail without local chrony instance.\n",
         })))),
       group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "chrony",
           description: "Group under which the chrony exporter shall be run.\nThis allows the exporter to talk to chrony using a unix socket, which is owned by chrony group.\nThe service startup with the default group chrony will fail without local chrony instance.\n",
         })))),
       enabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: nix.thunk(() => ["tracking", "sources", "sources.with-ntpdata", "serverstats", "dns-lookups"]),
           example: nix.thunk(() => ["dns-lookups"]),
           description: "Collectors to enable.\nCurrently all collectors are enabled by default.\n",
         })))),
       disabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["sources.with-ntpdata"]),
@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         MemoryDenyWriteExecute: true,

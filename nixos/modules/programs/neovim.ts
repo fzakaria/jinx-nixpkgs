@@ -41,58 +41,58 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "neovim"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       programs: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         neovim: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to enable Neovim.\n\nWhen enabled through this option, Neovim is wrapped to use a\nconfiguration managed by this module. The configuration file in the\nuser's home directory at {file}`~/.config/nvim/init.vim` is no longer\nloaded by default.\n",
             })))),
           defaultEditor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "When enabled, installs neovim and configures neovim to be the default editor\nusing the EDITOR environment variable.\n",
             })))),
           viAlias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Symlink {command}`vi` to {command}`nvim` binary.\n",
             })))),
           vimAlias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Symlink {command}`vim` to {command}`nvim` binary.\n",
             })))),
           withRuby: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Ruby provider.",
             })))),
           withPython3: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Python 3 provider.",
             })))),
           withNodeJs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Node provider.",
             })))),
           configure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  customRC = ''\n    \" here your custom VimScript configuration goes!\n  '';\n  customLuaRC = ''\n    -- here your custom Lua configuration goes!\n  '';\n  packages.myVimPackage = with pkgs.vimPlugins; {\n    # loaded on launch\n    start = [ fugitive ];\n    # manually loadable by calling `:packadd $plugin-name`\n    opt = [ ];\n  };\n}\n")),
@@ -100,14 +100,14 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "neovim-unwrapped", nix.thunk(() => ({})))),
           finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               visible: false,
               readOnly: true,
               description: "Resulting customized neovim package.",
             })))),
           runtime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ \"ftplugin/c.vim\".text = \"setlocal omnifunc=v:lua.vim.lsp.omnifunc\"; }\n")),
               description: "Set of files that have to be linked in {file}`runtime`.\n",
@@ -118,35 +118,35 @@ export default nix.lambda((args) => (() => {
                       const name = nix.arg($_1, "name");
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         options: nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               default: true,
                               description: "Whether this runtime directory should be generated.  This\noption allows specific runtime files to be disabled.\n",
                             })))),
                           target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Name of symlink.  Defaults to the attribute\nname.\n",
                             })))),
                           text: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                               description: "Text of the file.",
                             })))),
                           source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                               description: "Path of the source file.",
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           target: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
                         })),
                       };
@@ -157,30 +157,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             EDITOR: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "defaultEditor")), nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 900n, "nvim")))),
           })),
           pathsToLink: nix.thunk(() => ["/share/nvim"]),
           etc: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.builtins.mapAttrs((name) => (value) => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   name: nix.thunk(() => nix.str`xdg/nvim/${name}`),
                   value: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.update(value, {
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       target: nix.thunk(() => nix.str`xdg/nvim/${nix.sel(value, "target")}`),
                     })), nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.builtins.isNull(nix.thunk(() => nix.sel(value, "source")))), nix.thunk(() => ["source"]))))),
                 }), nix.thunk(() => nix.sel(cfg, "runtime")))))))),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           neovim: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             finalPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "wrapNeovim"), nix.thunk(() => nix.sel(cfg, "package")), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 viAlias: nix.thunk(() => nix.attr(cfg, "viAlias")),
                 vimAlias: nix.thunk(() => nix.attr(cfg, "vimAlias")),
                 withPython3: nix.thunk(() => nix.attr(cfg, "withPython3")),

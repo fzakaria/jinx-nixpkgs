@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-${pname}/releases/download/v${version}/${pname}-${version}.tbz`),
           sha256: "cdabaf6ef5cd2161e59cc7b74c6e4a68ecb80a9f4e96002e338e1b6bf17adec4",
         }))));
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [angstrom, stringext]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/ocaml-uri",
         description: "RFC3986 URI parsing library for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         minimalOCamlVersion,
         pname,
         version,

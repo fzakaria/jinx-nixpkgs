@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "depotdownloader";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SteamRE",
           repo: "DepotDownloader",
           rev: nix.thunk(() => nix.str`DepotDownloader_${version}`),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       const nugetDeps = nix.path(here, "./deps.json");
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0"));
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0"));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Steam depot downloader utilizing the SteamKit2 library",
         homepage: "https://github.com/SteamRE/DepotDownloader",
         changelog: nix.thunk(() => nix.str`https://github.com/SteamRE/DepotDownloader/releases/tag/DepotDownloader_${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "DepotDownloader",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

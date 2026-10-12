@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recastai",
       version: "unstable-2025-08-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "recastnavigation",
           repo: "recastnavigation",
           rev: "40ec6fcd6c0263a3d7798452aee531066072d15d",
@@ -38,7 +38,7 @@ substituteInPlace RecastDemo/CMakeLists.txt \\
       checkInputs: nix.thunk(() => [catch2_3]),
       buildInputs: nix.thunk(() => [libGL, SDL2, libGLU]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/recastnavigation/recastnavigation",
         description: "Navigation-mesh Toolset for Games",
         mainProgram: "RecastDemo",

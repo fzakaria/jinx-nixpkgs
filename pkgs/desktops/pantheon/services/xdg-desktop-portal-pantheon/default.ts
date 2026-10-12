@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xdg-desktop-portal-pantheon",
       version: "8.2.0-unstable-2026-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "portals",
           rev: "c5f6fa1179bfa51429ddf4b2d268c7f2295dfff8",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dsystemduserunitdir=${nix.builtins.placeholder("out")}/lib/systemd/user`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backend implementation for xdg-desktop-portal for the Pantheon desktop environment",
         homepage: "https://github.com/elementary/portals",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

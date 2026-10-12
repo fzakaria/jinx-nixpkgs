@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "agg",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.antigrain.com/agg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07wii4i824vy9qsvjsgqxppgqmfdxq0xa87i5yk53fijriadq7mb",
         })))),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--x-libraries=${nix.app(nix.sel(lib, "getLib"), libx11)}/lib`),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       })),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High quality rendering engine for C++",
         longDescription: "Anti-Grain Geometry (AGG) is an Open Source, free of charge\ngraphic library, written in industrially standard C++.  The\nterms and conditions of use AGG are described on The License\npage.  AGG doesn't depend on any graphic API or technology.\nBasically, you can think of AGG as of a rendering engine that\nproduces pixel images in memory from some vectorial data.  But\nof course, AGG can do much more than that.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

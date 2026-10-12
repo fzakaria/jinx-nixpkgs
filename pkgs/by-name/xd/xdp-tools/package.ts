@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wireshark_cli = nix.arg($, "wireshark-cli");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xdp-tools",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xdp-project",
           repo: "xdp-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl.patch",
             url: "https://github.com/xdp-project/xdp-tools/commit/2ff228be7926ba01e13c8d328828a270af2e7e0d.patch",
             hash: "sha256-jYdcC36nL4P4IadwGfva8nqMerd/2HHw2RYhc+wR9nk=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [wireshark_cli]),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         BPF_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-stack-protector", "-Wno-error=unused-command-line-argument"]))),
         CLANG: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "llvmPackages", "clang")))),
         PRODUCTION: 1n,
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Note that even the static libxdp would refer to BPF_OBJECT_DIR ?=$(LIBDIR)/bpf\nrm \"$lib\"/lib/*.a\n# Drop unfortunate references to glibc.dev/include at least from $lib\nnuke-refs \"$lib\"/lib/bpf/*.o\n",
       stripDebugList: nix.thunk(() => ["bin", "lib", "share/xdp-tools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/xdp-project/xdp-tools",
         description: "Library and utilities for use with XDP",
         license: nix.thunk(() => (() => {

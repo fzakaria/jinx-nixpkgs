@@ -41,60 +41,60 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "aurral"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         aurral: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Aurral is the Lidarr companion for self-hosted music discovery")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "aurral", nix.thunk(() => ({})))),
           directories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))),
               default: [],
               description: "Directories that Aurral needs access to. Other directories won't be visible by the app.\nEnvironment variable `DOWNLOAD_FOLDER` is added automatically.\nSee BindPaths in {manpage}`systemd.exec(5)`.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "externalPath")),
               default: "/var/lib/aurral",
               description: "The directory where Aurral stores its stateful data.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3001n,
               description: "Port number",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for Aurral.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "aurral",
               description: "User account under which Aurral runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "aurral",
               description: "Group under which Aurral runs.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$7, DOWNLOAD_FOLDER: "/media/downloads", TRUST_PROXY: "true" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$7, DOWNLOAD_FOLDER: "/media/downloads", TRUST_PROXY: "true" })),
               description: "Environment variables passed to the service.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Environment file as defined in {manpage}`systemd.exec(5)` passed to the service.\n",
@@ -103,24 +103,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             aurral: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Aurral",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment"), {
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 AURRAL_DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 Restart: "on-failure",
@@ -162,18 +162,18 @@ export default nix.lambda((args) => (() => {
                 RestrictNamespaces: true,
                 MemoryDenyWriteExecute: false,
               })),
-              confinement: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+              confinement: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             settings: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "10-aurral": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.has(nix.sel(cfg, "environment"), "DOWNLOAD_FOLDER")), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "environment", "DOWNLOAD_FOLDER"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     d: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                       mode: "0770",
@@ -184,22 +184,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "aurral")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               aurral: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 isSystemUser: true,
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "aurral")), nix.thunk(() => ({ __proto__: pos$25, aurral: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "aurral")), nix.thunk(() => ({ [nix.POS]: pos$25, aurral: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const glib_testing = nix.arg($, "glib-testing");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "malcontent-ui",
       version: nix.thunk(() => nix.attr(malcontent, "version")),
       src: nix.thunk(() => nix.attr(malcontent, "src")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "-Dui=enabled",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "UI components for parental controls library",
         mainProgram: "malcontent-control",
         homepage: "https://gitlab.freedesktop.org/pwithnall/malcontent",

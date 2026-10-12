@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const turingplus = nix.arg($, "turingplus");
   const bootstrap = nix.argOr($, "bootstrap", () => nix.app(callPackage, nix.path(here, "./bootstrap.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "turingplus",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CordyJ",
           repo: "Open-TuringPlus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jiMbSuNg2o9fNCPNoLpyAdMCxgMVBiDjRhC0HgKwmqk=",
         })))),
       nativeBuildInputs: nix.thunk(() => [bootstrap]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89 -Wno-int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89 -Wno-int-conversion" })),
       patches: nix.thunk(() => [nix.path(here, "./use-gnu89.patch")]),
       postPatch: nix.thunk(() => nix.str`# Replace hardcoded paths in source
 find src -type f -exec sed -i \\
@@ -55,17 +55,17 @@ substituteInPlace src/cmd/lib/* \\
       checkTarget: "all",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib,include}\ncp bin/* $out/bin/\ncp lib/* $out/lib/\ncp -r include/* $out/include/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bootstrap: nix.thunk(() => nix.app(nix.sel(turingplus, "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               bootstrap: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Extended version of the Turing programming language with concurrency and systems programming features",
         mainProgram: "tpc",
         platforms: nix.thunk(() => ["x86_64-linux"]),

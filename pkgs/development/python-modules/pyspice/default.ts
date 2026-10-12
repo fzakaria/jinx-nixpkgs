@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PySpice",
           version: version,
           sha256: "d28448accad98959e0f5932af8736e90a1f3f9ff965121c6881d24cdfca23d22",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
     "ffi.dlopen('${libngspice}/lib/libngspice${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}')"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simulate electronic circuit using Python and the Ngspice / Xyce simulators",
         homepage: "https://github.com/FabriceSalvaire/PySpice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

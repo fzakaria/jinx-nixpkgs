@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const sentencepiece = nix.arg($, "sentencepiece");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlx-lm",
       version: "0.31.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ml-explore",
           repo: "mlx-lm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_models.py::TestModels::test_gated_delta_masked",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run LLMs with MLX",
         homepage: "https://github.com/ml-explore/mlx-lm",
         changelog: nix.thunk(() => nix.str`https://github.com/ml-explore/mlx-lm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

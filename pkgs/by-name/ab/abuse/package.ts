@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const freepats = nix.arg($, "freepats");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "abuse",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Xenoveritas",
           repo: "abuse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-eneu0HxEoM//Ju2XMHnDMZ/igeVMPSLg7IaxR2cnJrk=",
         })))),
       data: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://abuse.zoy.org/raw-attachment/wiki/download/abuse-0.8.tar.gz",
           hash: "sha256-SOrtBNLWskN7Tqa0B3+KjlZlqPjC64Jp02Pk7to2hFg=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "abuse",
             exec: "abuse",
             icon: "abuse",
@@ -61,7 +61,7 @@ chmod +x $out/bin/abuse
 install -Dm644 ${nix.sel(finalAttrs, "data")}/doc/abuse.png -t $out/share/icons/hicolor/32x32/apps
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2)}/include/SDL2`),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -70,7 +70,7 @@ install -Dm644 ${nix.sel(finalAttrs, "data")}/doc/abuse.png -t $out/share/icons/
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, cmake]),
       buildInputs: nix.thunk(() => [SDL2, SDL2_mixer, freepats]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Side-scroller action game that pits you against ruthless alien killers",
         homepage: "http://abuse.zoy.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

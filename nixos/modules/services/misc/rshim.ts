@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`--log-level ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "log-level")))}`),
   ])))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         rshim: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "user-space rshim driver for the BlueField SoC")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rshim-user-space", nix.thunk(() => ({})))),
           backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["usb", "pcie", "pcie_lf"]))));
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
               example: "pcie",
             })))),
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
               example: "pcie-04:00.2",
             })))),
           index: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -76,49 +76,49 @@ export default nix.lambda((args) => (() => {
               example: 1n,
             })))),
           "log-level": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 4n)),
               description: "Specify the log level (0:none, 1:error, 2:warning, 3:notice, 4:debug).\n",
               default: 2n,
               example: 4n,
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str"))]))));
               })()),
               description: "Structural setting for the rshim configuration file\n(`/etc/rshim.conf`). It can be used to specify the static mapping\nbetween rshim devices and rshim names. It can also be used to ignore\nsome rshim devices.\n",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$5, DISPLAY_LEVEL: 0n, rshim0: "usb-2-1.7", none: "usb-1-1.4" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, DISPLAY_LEVEL: 0n, rshim0: "usb-2-1.7", none: "usb-1-1.4" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), {})), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "rshim.conf": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " ")),
                   })), nix.thunk(() => nix.sel(cfg, "config")))),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rshim: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Restart: "always",
                 Type: "forking",
                 ExecStart: nix.thunk(() => [
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];

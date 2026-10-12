@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const ar = nix.thunk(() => (nix.asBool(!nix.asBool(isCross)) ? "ar" : nix.str`${cross}-ar`));
   const ranlib = nix.thunk(() => (nix.asBool(!nix.asBool(isCross)) ? "ranlib" : nix.str`${cross}-ranlib`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       postPatch: "sed -i 's,set --, set -x; set --,' Makefile\n",
       pname: "tinycdb",
       version: "0.81",
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(static$)), "shared"))),
       postInstall: nix.thunk(() => nix.add("mkdir -p $dev/lib $out/bin\nmv $out/lib/libcdb.a $dev/lib\nrm --recursive $out/lib\n", (nix.asBool(static$) ? "cp cdb $out/bin/cdb\n" : "mkdir -p $lib/lib\ncp libcdb.so* $lib/lib\ncp cdb-shared $out/bin/cdb\n"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.corpit.ru/mjt/tinycdb/tinycdb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Rp3i1EW/VIgPZS9LbclcfN9vVQLDVSSkWyEi1w1H68I=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to manipulate constant databases (cdb)",
         mainProgram: "cdb",
         longDescription: "tinycdb is a small, fast and reliable utility and subroutine\nlibrary for creating and reading constant databases. The database\nstructure is tuned for fast reading.\n",

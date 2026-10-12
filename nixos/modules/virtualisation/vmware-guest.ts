@@ -50,32 +50,32 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "vmware", "guest"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "vmwareGuest"]), nix.thunk(() => ["virtualisation", "vmware", "guest"]))),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "kjeremy"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         vmware: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           guest: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkEnableOption, "VMWare Guest Support")),
             headless: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "xserver", "enable"))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "!config.services.xserver.enable")),
                 description: "Whether to disable X11-related features.",
               })))),
             package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "package")),
                 default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "headless")) ? nix.sel(pkgs, "open-vm-tools-headless") : nix.sel(pkgs, "open-vm-tools"))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "if config.virtualisation.vmware.headless then pkgs.open-vm-tools-headless else pkgs.open-vm-tools;")),
@@ -87,57 +87,57 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")))),
             message: nix.thunk(() => nix.str`VMWare guest is not currently supported on ${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           initrd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             availableKernelModules: nix.thunk(() => ["mptspi"]),
             kernelModules: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")), nix.thunk(() => ["vmw_pvscsi"]))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "vmware-tools": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/vmware-tools/*`),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             vmware: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "VMWare Guest Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["display-manager.service"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$14, ConditionVirtualization: "vmware" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$14, ConditionVirtualization: "vmware" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "vmtoolsd")),
               })),
             })),
           })),
           mounts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "headless"))), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "VMware vmblock fuse mount",
                 documentation: nix.thunk(() => [
                   "https://github.com/vmware/open-vm-tools/blob/master/open-vm-tools/vmblock-fuse/design.txt",
                 ]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$18, ConditionVirtualization: "vmware" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$18, ConditionVirtualization: "vmware" })),
                 what: nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "vmware-vmblock-fuse")),
                 where: "/run/vmblock-fuse",
                 type: "fuse",
@@ -147,11 +147,11 @@ export default nix.lambda((args) => (() => {
             ]))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "vmware-user-suid-wrapper": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "headless"))), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 setuid: true,
                 owner: "root",
                 group: "root",
@@ -160,19 +160,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           xserver: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "headless"))), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               modules: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xf86-input-vmmouse"))]))),
               config: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")), "Section \"InputClass\"\n  Identifier \"VMMouse\"\n  MatchDevicePath \"/dev/input/event*\"\n  MatchProduct \"ImPS/2 Generic Wheel Mouse\"\n  Driver \"vmmouse\"\nEndSection\n")),
               displayManager: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 sessionCommands: nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "vmware-user-suid-wrapper")}
 `),
               })),
             })))),
           udev: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),

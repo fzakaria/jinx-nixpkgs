@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const deid_data = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deid-data",
       version: "unstable-2022-12-06",
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [pydicom]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydicom",
           repo: "deid-data",
           rev: "5750d25a5048fba429b857c16bf48b0139759644",
           hash: "sha256-c8NBAN53NyF9dPB7txqYtM0ac0Y+Ch06fMA1LrIUkbc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Supplementary data for deid package",
         homepage: "https://github.com/pydicom/deid-data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "pydicom",
           repo: "deid",
           rev: "f2e125e5a13ae1c3ccfeb55d9431d3a627a4d0db",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [deid_data, pytestCheckHook, versionCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["deid"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Best-effort anonymization for medical images",
         mainProgram: "deid",
         changelog: nix.thunk(() => nix.str`https://github.com/pydicom/deid/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

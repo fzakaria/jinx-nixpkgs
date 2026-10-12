@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const libmad = nix.arg($, "libmad");
   const xdelta = nix.arg($, "xdelta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uhexen2",
       version: "1.5.9",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/uhexen2/uhexen2",
           sha256: "0crdihbnb92awkikn15mzdpkj1x9s34xixf1r7fxxf762m60niks",
           rev: "4ef664bc41e3998b0d2a55ff1166dadf34c936be",
         })))),
       buildInputs: nix.thunk(() => [SDL, alsa_lib, libGL, libogg, libvorbis, libmad, xdelta]),
       preBuild: "makeFiles=(\n    \"engine/hexen2 glh2\"\n    \"engine/hexen2 clean\"\n    \"engine/hexen2 h2\"\n    \"engine/hexen2/server\"\n    \"engine/hexenworld/client glhw\"\n    \"engine/hexenworld/client clean\"\n    \"engine/hexenworld/client hw\"\n    \"engine/hexenworld/server\"\n    \"h2patch\"\n)\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildPhase: "runHook preBuild\nfor makefile in \"${makeFiles[@]}\"; do\n      local flagsArray=(\n        -j$NIX_BUILD_CORES\n        SHELL=$SHELL\n        $makeFlags \"${makeFlagsArray[@]}\"\n        $buildFlags \"${buildFlagsArray[@]}\"\n      )\n      echoCmd 'build flags' \"\"${flagsArray[@]}\"\"\n      make  -C $makefile \"\"${flagsArray[@]}\"\"\n      unset flagsArray\ndone\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 engine/hexen2/{glhexen2,hexen2,server/h2ded} -t $out/bin\ninstall -Dm755 engine/hexenworld/{client/glhwcl,client/hwcl,server/hwsv} -t $out/bin\ninstall -Dm755 h2patch/h2patch -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cross-platform port of Hexen II game",
         longDescription: "Hammer of Thyrion (uHexen2) is a cross-platform port of Raven Software's Hexen II source.\nIt is based on an older linux port, Anvil of Thyrion.\nHoT includes countless bug fixes, improved music, sound and video modes, opengl improvements,\nsupport for many operating systems and architectures, and documentation among many others.\n",

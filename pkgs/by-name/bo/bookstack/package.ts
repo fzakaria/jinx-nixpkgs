@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/bookstack");
   return nix.app(nix.sel(php83, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bookstack",
       version: "26.09.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bookstackapp",
           repo: "bookstack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-mossk/PV7Qf0JTv3C+Vj4J6rcGcc+AB1fUQgFxvHHdU=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         phpPackage: php83,
         tests: nix.thunk(() => nix.sel(nixosTests, "bookstack")),
       })),
@@ -41,7 +41,7 @@ ln -s ${dataDir}/public/uploads $out/public/uploads
 ln -s ${dataDir}/themes $out/themes
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform to create documentation/wiki content built with PHP & Laravel",
         longDescription: "A platform for storing and organising information and documentation.\nDetails for BookStack can be found on the official website at https://www.bookstackapp.com/.\n",
         homepage: "https://www.bookstackapp.com/",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vitess",
       version: "24.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vitessio",
           repo: "vitess",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["go/cmd/..."]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://vitess.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/vitessio/vitess/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Database clustering system for horizontal scaling of MySQL",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qxlsx";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QtExcel",
           repo: "QXlsx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/QtExcel/QXlsx/commit/90d762625750c6b2c73f6cd96b633e9158aed72e.patch",
             hash: "sha256-/0xLrkjuJGZRocK1EyBhuaUmg0usueQz2F340DkQhb0=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "cd QXlsx\n";
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Excel file(*.xlsx) reader/writer library using Qt 5 or 6",
         homepage: "https://qtexcel.github.io/QXlsx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

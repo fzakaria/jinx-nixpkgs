@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const platformKey = nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "node", "platform")}-${nix.sel(stdenv, "hostPlatform", "node", "arch")}`);
   const platformManifestEntry = nix.thunk(() => nix.sel(manifest, "platforms", nix.key(nix.force(platformKey))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "claude-code",
       version: nix.thunk(() => nix.attr(manifest, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${baseUrl}/${nix.sel(finalAttrs, "version")}/${platformKey}/${nix.sel(platformManifestEntry, "binary")}`),
           sha256: nix.thunk(() => nix.sel(platformManifestEntry, "checksum")),
         })))),
@@ -63,9 +63,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       versionCheckProgramArg: "--version",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster",
         homepage: "https://github.com/anthropics/claude-code",
         downloadPage: "https://claude.com/product/claude-code",

@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const version = nix.argOr($, "version", () => "0.5.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logs-syslog",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/logs-syslog/releases/download/v${version}/logs-syslog-${version}.tbz`),
           hash: "sha256-rx7mksA8y1BCEisNTQwSsJaet42eR7tZ3gYzvCqrYNQ=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [logs, syslog_message, ptime]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Logs reporter to syslog (UDP/TCP/TLS)",
         homepage: "https://github.com/hannesm/logs-syslog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

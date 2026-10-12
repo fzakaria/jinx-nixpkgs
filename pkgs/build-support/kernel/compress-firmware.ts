@@ -19,29 +19,29 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   return (firmware) => (() => {
     const compressor = nix.thunk(() => nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       xz: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ext: "xz",
         nativeBuildInputs: [],
         cmd: (file) => (target) => nix.str`xz -9c -T1 -C crc32 --lzma2=dict=2MiB "${file}" > "${target}"`,
       })),
       zstd: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ext: "zst",
         nativeBuildInputs: nix.thunk(() => [zstd]),
         cmd: (file) => (target) => nix.str`zstd -T1 -19 --long --check -f "${file}" -o "${target}"`,
       })),
     }, () => nix.builtins.throw("Unsupported compressor type for firmware."), nix.key(nix.force(type))));
     const args_1 = nix.thunk(() => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$5,
-        out: nix.thunk(() => ({ __proto__: pos$4, allowedRequisites: nix.thunk(() => ["out"]) })),
+        [nix.POS]: pos$5,
+        out: nix.thunk(() => ({ [nix.POS]: pos$4, allowedRequisites: nix.thunk(() => ["out"]) })),
       })),
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => nix.attr(compressor, "nativeBuildInputs")),
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(firmware, "meta")), nix.thunk(() => ({ __proto__: pos$7, meta: nix.thunk(() => nix.attr(firmware, "meta")) })))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(firmware, "meta")), nix.thunk(() => ({ [nix.POS]: pos$7, meta: nix.thunk(() => nix.attr(firmware, "meta")) })))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(firmware, "name")}-${type}`), args_1, nix.thunk(() => nix.str`mkdir -p $out/lib
 (cd ${firmware} && find lib/firmware -type d -print0) |
     (cd $out && xargs -0 mkdir -v --)

@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "firejail"));
   const wrappedBins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "firejail-wrapped-binaries", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       preferLocalBuild: true,
       allowSubstitutes: false,
-      meta: nix.thunk(() => ({ __proto__: pos$1, priority: nix.thunk(() => nix.neg(1n)) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, priority: nix.thunk(() => nix.neg(1n)) })),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 mkdir -p $out/share/applications
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (command) => (value) => (() => {
           const opts = nix.thunk(() => (nix.asBool(nix.builtins.isAttrs(value)) ? nix.force(value) : {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             executable: value,
             desktop: null,
             profile: null,
@@ -59,42 +59,42 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(opts, 
         })(), nix.thunk(() => nix.sel(cfg, "wrappedBinaries")))))}
 `)));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       programs: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         firejail: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "firejail, a sandboxing tool for Linux")),
           wrappedBinaries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "path")), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       options: nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         executable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Executable to run sandboxed",
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${lib.getBin pkgs.firefox}/bin/firefox\"")),
                           })))),
                         desktop: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
                             description: ".desktop file to modify. Only necessary if it uses the absolute path to the executable.",
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.firefox}/share/applications/firefox.desktop\"")),
                           })))),
                         profile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
                             description: "Profile to use",
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.firejail}/etc/firejail/firefox.profile\"")),
                           })))),
                         extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "Extra arguments to pass to firejail",
@@ -110,13 +110,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(opts, 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         security: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             firejail: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               setuid: true,
               owner: "root",
               group: "root",
@@ -125,12 +125,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(opts, 
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "firejail"))], [wrappedBins])),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "peterhoeg"))];

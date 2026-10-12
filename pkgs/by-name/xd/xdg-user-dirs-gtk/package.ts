@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xdg-user-dirs-gtk",
       version: "0.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/xdg-user-dirs-gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xdg-user-dirs-gtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-voJd5/iRddterQzTdE0nYRCccJQyUahwkiWRYwJVIKk=",
         })))),
@@ -42,11 +42,11 @@ patchShebangs meson_custom_install_desktop_file.sh
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_user_dirs]))}")
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "xdg-user-dirs-gtk" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "xdg-user-dirs-gtk" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/xdg-user-dirs-gtk",
         description: "Companion to xdg-user-dirs that integrates it into the GNOME desktop and GTK applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

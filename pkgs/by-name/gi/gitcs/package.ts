@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gitcs",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hrtsegv",
           repo: "gitcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mRQfW0sY6la8SyO+zDr/HcakDugRShW/Aea9uj6G/gA=",
         })))),
       vendorHash: "sha256-bG0BaH8yYp8TUiK/7xvghB4T48LcBEvmF1uvY5eYkww=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s"]),
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
       preCheck: "git config --global init.defaultBranch main\nbash ./setup-test.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/hrtsegv/gitcs/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Scan local git repositories and generate a visual contributions graph",
         homepage: "https://github.com/hrtsegv/gitcs",

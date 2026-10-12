@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x2x",
       version: "1.30-unstable-2025-02-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dottedmag",
           repo: "x2x",
           rev: "08842516fa443a2cf799c6372f83466062f612c9",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libx11, libxtst, libxext, libxi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows the keyboard, mouse on one X display to be used to control another X display",
         homepage: "https://github.com/dottedmag/x2x",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

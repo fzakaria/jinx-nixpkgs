@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fet-sh";
       const version = "1.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eepykate",
           repo: "fet.sh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs fet.sh\n";
       const installPhase = "install -m755 -D fet.sh $out/bin/fet.sh\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fetch written in posix shell without any external commands",
         homepage: "https://github.com/eepykate/fet.sh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "fet.sh",
       }));
-      return { __proto__: pos$3, pname, version, src, postPatch, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, postPatch, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

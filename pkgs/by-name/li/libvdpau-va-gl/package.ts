@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libvdpau-va-gl",
       version: "0.4.2-unstable-2025-05-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "i-rinat",
           repo: "libvdpau-va-gl",
           rev: "a845e8720d900e4bcc89e7ee16106ce63b44af0d",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/i-rinat/libvdpau-va-gl",
         description: "VDPAU driver with OpenGL/VAAPI backend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

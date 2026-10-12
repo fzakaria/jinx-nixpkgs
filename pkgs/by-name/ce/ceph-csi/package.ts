@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ceph-csi",
       version: "3.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ceph",
           repo: "ceph-csi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ceph]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp ./_output/* $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Container Storage Interface (CSI) driver for Ceph RBD and CephFS",
         downloadPage: "https://github.com/ceph/ceph-csi",
         changelog: nix.thunk(() => nix.str`https://github.com/ceph/ceph-csi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

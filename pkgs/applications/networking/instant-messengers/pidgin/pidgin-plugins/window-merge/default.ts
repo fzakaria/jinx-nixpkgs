@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin-window-merge";
       const version = "0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/downloads/dm0-/window_merge/window_merge-${version}.tar.gz`),
           sha256: "0cb5rvi7jqvm345g9mlm4wpq0240kcybv81jpw5wlx7hz0lwi478",
         }))));
       const buildInputs = nix.thunk(() => [pidgin]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dm0-/window_merge",
         description: "Pidgin plugin that merges the Buddy List window with a conversation window",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

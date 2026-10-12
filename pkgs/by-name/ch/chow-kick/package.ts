@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chow-kick",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Chowdhury-DSP",
           repo: "ChowKick",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fix width/height naming in chowdsp_GraphicsHelpers.h\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'position.y += r.h;' \\\n  'position.y += r.height;'\n\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'height -= r.h;' \\\n  'height -= r.height;'\n\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'position.x += r.w;' \\\n  'position.x += r.width;'\n\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'width -= r.w;' \\\n  'width -= r.width;'\n\nsubstituteInPlace modules/chowdsp_wdf/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 3.1)' \\\n  'cmake_minimum_required(VERSION 4.0)'\n",
       installPhase: "mkdir -p $out/lib/lv2 $out/lib/vst3 $out/bin\ncp -r ChowKick_artefacts/Release/LV2/ChowKick.lv2 $out/lib/lv2\ncp -r ChowKick_artefacts/Release/VST3/ChowKick.vst3 $out/lib/vst3\ncp ChowKick_artefacts/Release/Standalone/ChowKick  $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Chowdhury-DSP/ChowKick",
         description: "Kick synthesizer based on old-school drum machine circuits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

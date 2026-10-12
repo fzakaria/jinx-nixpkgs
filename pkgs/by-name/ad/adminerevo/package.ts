@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const theme = nix.argOr($, "theme", () => null);
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.8.4",
       pname: "adminerevo",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adminerevo",
           repo: "adminerevo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ cp ${nix.app(nix.sel(pkgs, "writeText"), "$out/plugins.json", nix.thunk(() => ni
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database management in a single PHP file",
         homepage: "https://github.com/adminerevo/adminerevo",
         license: nix.thunk(() => (() => {

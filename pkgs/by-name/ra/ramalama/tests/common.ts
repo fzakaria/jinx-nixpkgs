@@ -85,7 +85,7 @@ fi
 `));
   })(), formals$2);
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mkServeTestRunner: mkServeTestRunner,
     mkServeTest: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
@@ -96,13 +96,13 @@ fi
       const setup = nix.argOr($_1, "setup", () => "");
       const nocontainer = nix.argOr($_1, "nocontainer", () => false);
       return nix.app(runCommand, name, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
           __darwinAllowLocalNetworking: true,
         })), nix.thunk(() => nix.str`${setup}
 
 ${nix.app(mkServeTestRunner, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             model: model,
             runtime: runtime,
             port: port,

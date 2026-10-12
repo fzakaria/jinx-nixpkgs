@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pykoplenti",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stegm",
           repo: "pykoplenti",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["pydantic"]),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, pycryptodome, pydantic]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, CLI: nix.thunk(() => [click, prompt_toolkit]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, CLI: nix.thunk(() => [click, prompt_toolkit]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pykoplenti"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python REST client API for Kostal Plenticore Inverters",
         homepage: "https://github.com/stegm/pykoplenti/",
         changelog: nix.thunk(() => nix.str`https://github.com/stegm/pykoplenti/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

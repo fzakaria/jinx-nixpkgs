@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const outputHashAlgo = "sha256";
     const outputHash = "sha256-UNoyb2teqH26VM7YoOcazyqZ0AlDae045aWc31ZHFdw=";
     const minimal_bootstrap_sources = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         system: nix.thunk(() => nix.sel(hostPlatform, "system")),
         outputHashMode: "recursive",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `),
       }))));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name,
       version,
       rev,

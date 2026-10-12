@@ -29,75 +29,75 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "restart-by-activation-script",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "das_j"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           system: nix.thunk(() => ({
-            __proto__: pos$5,
-            switch: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$5,
+            switch: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             activationScripts: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               test: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 supportsDryActivation: true,
                 text: "if [ -e /test-the-activation-script ]; then\n  if [ \"$NIXOS_ACTION\" != dry-activate ]; then\n    touch /activation-was-run\n    echo restart-me.service > /run/nixos/activation-restart-list\n    echo reload-me.service > /run/nixos/activation-reload-list\n  else\n    echo restart-me.service > /run/nixos/dry-activation-restart-list\n    echo reload-me.service > /run/nixos/dry-activation-reload-list\n  fi\nfi\n",
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "restart-me": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                 })),
               })),
               "reload-me": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => (() => {
                   const Type = "oneshot";
                   const RemainAfterExit = true;
                   const ExecStart = nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`);
                   const ExecReload = ExecStart;
-                  return { __proto__: pos$8, Type, RemainAfterExit, ExecStart, ExecReload };
+                  return { [nix.POS]: pos$8, Type, RemainAfterExit, ExecStart, ExecReload };
                 })()),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             longscript: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               configuration: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 system: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   activationScripts: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     long: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       supportsDryActivation: true,
                       text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "genList"), (i) => nix.str`# line number ${nix.builtins.toString(i)}`, 1000000n)))),
                     })),

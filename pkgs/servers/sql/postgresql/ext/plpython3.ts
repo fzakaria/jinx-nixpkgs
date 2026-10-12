@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const withPackages = (f) => (() => {
     const python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), f));
     const finalPackage = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`${nix.sel(postgresql, "pname")}-plpython3`),
         version: nix.thunk(() => nix.attr(postgresql, "version")),
         paths: nix.thunk(() => [nix.thunk(() => nix.sel(postgresql, "plpython3"))]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           withPackages: withPackages,
           wrapperArgs: nix.thunk(() => [
             nix.thunk(() => nix.str`--set PYTHONPATH "${python}/${nix.sel(python, "sitePackages")}"`),
           ]),
           tests: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 finalPackage: nix.thunk(() => nix.app(nix.sel(finalPackage, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "base58"))])),
                 sql: "CREATE EXTENSION plpython3u;\nDO LANGUAGE plpython3u $$\n  import base58\n$$;\n",
               })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(postgresql, "meta"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           license: nix.thunk(() => nix.attr(from, "license")),
           changelog: nix.thunk(() => nix.attr(from, "changelog")),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
   const fprint_supported_devices = nix.thunk(() => nix.app(nix.sel(pkgs, "libfprint", "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "jq")), nix.thunk(() => nix.sel(pkgs, "gawk"))])),
       buildPhase: "ninja libfprint/fprint-list-supported-devices\n",
       outputs: nix.thunk(() => ["out"]),
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "",
     })));
   return nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "update-fprint-devices",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);

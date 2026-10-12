@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unrtf",
       version: "0.21.10",
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/unrtf/unrtf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1bil6z4niydz9gqm2j861dkxmqnpc8m7hvidsjbzz7x63whj17xl",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converter from Rich Text Format to other formats",
         mainProgram: "unrtf",
         longDescription: "UnRTF converts documents in Rich Text Format to other\nformats, including HTML, LaTeX, and RTF itself.\n",

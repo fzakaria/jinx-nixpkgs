@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const mainProgram = "agda-trivial-backend";
   const hello_world = nix.path(here, "./files/HelloWorld.agda");
   const agda_trivial_backend = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "trivial-backend",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: mainProgram })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: mainProgram })),
       version: nix.thunk(() => nix.str`${nix.sel(pkgs, "haskellPackages", "Agda", "version")}`),
       src: nix.path(here, "./files/TrivialBackend.hs"),
       buildInputs: nix.thunk(() => [
@@ -37,33 +37,33 @@ cp ${mainProgram} $out/bin
 `),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "agda-trivial-backend",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "carlostome"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
-        const agdaPackages = nix.thunk(() => nix.app(nix.sel(pkgs_1, "agdaPackages", "override"), (oldAttrs) => ({ __proto__: pos$4, Agda: agda_trivial_backend })));
+        const agdaPackages = nix.thunk(() => nix.app(nix.sel(pkgs_1, "agdaPackages", "override"), (oldAttrs) => ({ [nix.POS]: pos$4, Agda: agda_trivial_backend })));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(agdaPackages, "agda", "withPackages"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   pkgs: (p) => [nix.thunk(() => nix.sel(p, "standard-library"))],
                 })))),
             ]),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$7, memorySize: 2000n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2000n })),
         };
       })(), formals$2),
     })),

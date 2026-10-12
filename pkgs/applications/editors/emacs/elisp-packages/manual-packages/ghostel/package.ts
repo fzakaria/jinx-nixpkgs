@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const zig = nix.arg($_1, "zig");
     const zigDeps = nix.arg($_1, "zigDeps");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version,
         src: src,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         zigDeps: zigDeps,
         nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(finalAttrs, "zig"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild])))),
         env: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           EMACS_INCLUDE_DIR: nix.thunk(() => nix.str`${emacs}/include`),
         })),
         dontSetZigDefaultFlags: true,
@@ -55,11 +55,11 @@ chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
   })(), formals$2);
   const libExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ghostel",
       version: "0.56.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "dakra",
           repo: "ghostel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
         })))),
       zig: zig_0_16,
       zigDeps: nix.thunk(() => nix.app(nix.sel(finalAttrs, "zig", "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -80,10 +80,10 @@ chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
 install --mode=444 ${nix.sel(finalAttrs, "finalPackage", "module")}/ghostel-module.version ghostel-module.version
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         module: nix.thunk(() => nix.app(mkModule, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-module`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,7 +92,7 @@ install --mode=444 ${nix.sel(finalAttrs, "finalPackage", "module")}/ghostel-modu
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/dakra/ghostel",
         description: "Terminal emulator powered by libghostty",
         maintainers: nix.thunk(() => (() => {

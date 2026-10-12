@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "casttube",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "10pw2sjy648pvp42lbbdmkkx79bqlkq1xcbzp1frraj9g66azljl",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [requests]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interact with the Youtube Chromecast api",
         homepage: "https://github.com/ur1katz/casttube",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

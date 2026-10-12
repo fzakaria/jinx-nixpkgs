@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   nix.assert_((!nix.asBool(withConplay) || nix.asBool(!nix.asBool(libOnly))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mp/mpg123/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), libOnly, "lib")}mpg123`),
       version: "1.33.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mpg123/mpg123-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-MdDjWkylZ+ybXr2mwwYrtENdbT6s1u8NlcrdeFTcA+4=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withConplay, "patchShebangs $conplay/bin/conplay\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withConplay, "wrapProgram $conplay/bin/conplay \\\n  --prefix PATH : $out/bin\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mpg123", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -60,7 +60,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$new_version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast console MPEG Audio Player and decoder library",
         homepage: "https://mpg123.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bartender",
       version: "6.6.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.macbartender.com/B2/updates/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/Bartender%20${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-anIvq/M0/LcnRfVcOq0F7LWx5NSNVyqjfpWfmC/XmkY=",
         })))),
@@ -41,9 +41,9 @@ cp -R . "$out/Applications/${nix.sel(finalAttrs, "appName")}"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "bartender-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, xmlstarlet, common_updater_scripts]),
               text: nix.thunk(() => nix.str`version_major="${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}"
@@ -54,7 +54,7 @@ update-source-version bartender "$version"
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Take control of your menu bar",
         longDescription: "Bartender is an award-winning app for macOS that superpowers your menu bar, giving you total control over your menu bar items, what's displayed, and when, with menu bar items only showing when you need them.\nBartender improves your workflow with quick reveal, search, custom hotkeys and triggers, and lots more.\n",
         homepage: "https://www.macbartender.com",

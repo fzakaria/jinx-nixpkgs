@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "boron",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/urlan/files/Boron/boron-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-50HKcK2hQpe9k9RIoVa/N5krTRKlW9AsGYTmHITx7Nc=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "patchShebangs .\nmake -C test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://urlan.sourceforge.net/boron/",
         description: "Scripting language and C library useful for building DSLs",
         mainProgram: "boron",

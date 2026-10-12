@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["provider", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const riseup_vpn = nix.arg($, "riseup-vpn");
-  return nix.app(nix.sel(riseup_vpn, "override"), nix.thunk(() => ({ __proto__: pos$1, provider: "calyx" })));
+  return nix.app(nix.sel(riseup_vpn, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, provider: "calyx" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

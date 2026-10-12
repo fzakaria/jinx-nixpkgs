@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beancount_share";
       const version = "0.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akuukis",
           repo: "beancount_share",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [beancount, beancount_plugin_utils]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/akuukis/beancount_share",
         description: "Beancount plugin to share expenses with external partners within one ledger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

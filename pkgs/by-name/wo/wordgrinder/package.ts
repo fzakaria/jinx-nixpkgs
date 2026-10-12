@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wordgrinder",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "wordgrinder",
           owner: "davidgiven",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper, ninja]),
       buildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lua52Packages, "lua")), ncurses, readline, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxft])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-I${nix.sel(libxft, "dev")}/include/X11`))),
       })),
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/wordgrinder --set LUA_CPATH "${nix.sel(lua52Packages, "luafilesystem")}/lib/lua/5.2/lfs.so";
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/xwordgrinder --set LUA_CPATH "${nix.sel(lua52Packages, "luafilesystem")}/lib/lua/5.2/lfs.so";
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Text-based word processor",
         homepage: "https://cowlark.com/wordgrinder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

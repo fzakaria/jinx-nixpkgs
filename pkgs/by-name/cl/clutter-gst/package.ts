@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.27";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/clutter-gst/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/clutter-gst-${version}.tar.xz`),
           sha256: "17czmpl92dzi4h3rn5rishk015yi3jwiw29zv8qan94xcmnbssgy",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/archlinux/svntogit-packages/raw/c4dd0bbda35aa603ee790676f6e15541f71b6d36/trunk/0001-video-sink-Remove-RGBx-BGRx-support.patch",
             sha256: "sha256-k1fCiM/u7q81UrDYgbqhN/C+q9DVQ+qOyq6vmA3hbSQ=",
           })))),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postBuild = "rm -rf $out/share/gtk-doc";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GStreamer bindings for clutter",
         homepage: "http://www.clutter-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

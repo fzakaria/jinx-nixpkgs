@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const testProgram = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qt-wrapper-test-program",
       version: "0.0.1",
       __structuredAttrs: true,
@@ -59,20 +59,20 @@ int main(void) {
 `),
       buildPhase: "\"$CC\" -x c - -o test <<<\"$src\"\n",
       installPhase: "mkdir -p $out/bin\ninstall -m755 test $out/bin/test\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "test" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "test" })),
     }))));
   const checkWrapperArgsArray = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     const qtWrapperArgs = nix.arg($_1, "qtWrapperArgs");
     return nix.app(runCommandLocal, nix.thunk(() => nix.str`${name}-check-qtWrapperArgs`), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         qtWrapperArgs: qtWrapperArgs,
         buildInputs: nix.thunk(() => [qtbase]),
         nativeBuildInputs: nix.thunk(() => [wrapQtAppsHook]),
         __structuredAttrs: true,
       })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toShellVars"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           userDefinedArgs: qtWrapperArgs,
           internalArgs: nix.thunk(() => [
             "QT_PLUGIN_PATH",
@@ -125,19 +125,19 @@ touch "$out"
 `));
   })(), formals$2);
   return nix.app(nix.sel(lib, "fix"), (self) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       simple: nix.thunk(() => nix.app(checkWrapperArgsArray, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "simple",
           qtWrapperArgs: nix.thunk(() => ["--chdir", "/foo"]),
         })))),
       "simple-no-structuredAttrs": nix.thunk(() => nix.app(nix.sel(self, "simple", "overrideAttrs"), (prevAttrs) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.add(nix.sel(prevAttrs, "name"), "-no-structuredAttrs")),
           __structuredAttrs: false,
         }))),
       runtime: nix.thunk(() => nix.app(runCommandLocal, "simple-wrapper-runtime", nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           qtWrapperArgs: nix.thunk(() => ["--set", "WRAPPER_TEST", "expected"]),
           buildInputs: nix.thunk(() => [qtbase]),
           nativeBuildInputs: nix.thunk(() => [wrapQtAppsHook]),
@@ -151,7 +151,7 @@ wrapQtAppsHook
 "$out/bin/test"
 `))),
       "runtime-no-structuredAttrs": nix.thunk(() => nix.app(nix.sel(self, "runtime", "overrideAttrs"), (prevAttrs) => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: nix.thunk(() => nix.add(nix.sel(prevAttrs, "name"), "-no-structuredAttrs")),
           __structuredAttrs: false,
         }))),

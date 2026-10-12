@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "eweb";
       const version = "9.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/eweb/${pname}-${version}.tar.bz2`),
           sha256: "1xy7vm2sj5q6s620fm25klmnwnz9xkrxmx4q2f8h6c85ydisayd5",
         }))));
@@ -28,7 +28,7 @@ cp etangle.py $out/bin
 cp etangle.w etangle.html $out/share/doc/${pname}-${version}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://eweb.sourceforge.net/",
         description: "Asciidoc-based literate programming tool, written in Python",
         mainProgram: "etangle.py",
@@ -36,7 +36,7 @@ cp etangle.w etangle.html $out/share/doc/${pname}-${version}
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

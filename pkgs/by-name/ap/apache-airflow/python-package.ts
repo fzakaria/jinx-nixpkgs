@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(finalAttrs, "src"));
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       const airflowUi = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (uiAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "airflow-ui-assets",
           src: src,
           version: version,
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
           __darwinAllowLocalNetworking: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpm_10, pnpmConfigHook]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: "airflow-ui",
               src: src,
               version: version,
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "mkdir -p $out/share/airflow/ui\ncp -r dist $out/share/airflow/ui/\n",
         })));
       const airflowSimpleAuthUi = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (simpleUiAttrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "airflow-simple-ui-assets",
           src: src,
           version: version,
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
           __darwinAllowLocalNetworking: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpm_10, pnpmConfigHook]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: "simple-auth-manager-ui",
               src: src,
               version: version,
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
       const requiredProviders = nix.thunk(() => ["common_compat", "common_io", "common_sql", "smtp", "standard"]);
       const providers = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")));
       const buildProvider = (provider) => nix.app(buildPythonPackage, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.str`apache-airflow-providers-${provider}`),
           version: nix.thunk(() => nix.sel(providers, nix.key(nix.force(provider)), "version")),
           pyproject: true,
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
           pythonRemoveDeps: nix.thunk(() => ["apache-airflow"]),
         })));
       const taskSdk = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: "apache-airflow-task-sdk",
           src: src,
           version: version,
@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
           ]),
         }))));
       const airflowCore = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: "apache-airflow-core",
           src: src,
           version: version,
@@ -314,12 +314,12 @@ cp -r ${airflowSimpleAuthUi}/share/airflow/simple-ui/dist src/airflow/api_fastap
           pythonRelaxDeps: nix.thunk(() => ["starlette", "fastapi"]),
         }))));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "apache-airflow",
         version: "3.3.2",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "apache",
             repo: "airflow",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -348,13 +348,13 @@ ln -s ${airflowCore}/bin/airflow $out/bin/airflow
         installCheckPhase: "runHook preInstallCheck\n\n$out/bin/airflow version\n$out/bin/airflow db reset -y\n\nrunHook postInstallCheck\n",
         pythonImportsCheck: nix.thunk(() => nix.concat(["airflow"], nix.app(nix.sel(lib, "concatMap"), (provider) => nix.sel(providers, nix.key(nix.force(provider)), "imports"), nix.thunk(() => nix.concat(requiredProviders, enabledProviders))))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           updateScript: nix.path(here, "./update.sh"),
           airflowUi: airflowUi,
           airflowSimpleAuthUi: airflowSimpleAuthUi,
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Platform to programmatically author, schedule and monitor workflows",
           homepage: "https://airflow.apache.org/",
           changelog: nix.thunk(() => nix.str`https://airflow.apache.org/docs/apache-airflow/${nix.sel(finalAttrs, "version")}/release_notes.html`),

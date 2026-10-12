@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nschloe",
           repo: "perfplot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const propagatedBuildInputs = nix.thunk(() => [matplotlib, matplotx, numpy, rich]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["perfplot"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Performance plots for Python code snippets",
         homepage: "https://github.com/nschloe/perfplot",
         changelog: nix.thunk(() => nix.str`https://github.com/nschloe/perfplot/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

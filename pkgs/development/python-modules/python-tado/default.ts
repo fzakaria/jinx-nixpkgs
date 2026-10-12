@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-tado",
       version: "0.18.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wmalgadey",
           repo: "PyTado",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_my_tado.py", "tests/test_my_zone.py"]),
       pythonImportsCheck: nix.thunk(() => ["PyTado"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python binding for Tado web API",
         homepage: "https://github.com/wmalgadey/PyTado",
         changelog: nix.thunk(() => nix.str`https://github.com/wmalgadey/PyTado/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

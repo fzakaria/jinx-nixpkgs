@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "spiped",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.tarsnap.com/spiped/spiped-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-Qk+003adkSsE3kPSHMMnSM39MSHE8dJtVJmSpUZ44Go=",
         })))),
@@ -37,11 +37,11 @@ substituteInPlace libcperciva/POSIX/posix-l.sh       \\
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/share/man/man1\nmake install BINDIR=$out/bin MAN1DIR=$out/share/man/man1\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, spiped: nix.thunk(() => nix.sel(nixosTests, "spiped")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, spiped: nix.thunk(() => nix.sel(nixosTests, "spiped")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility for secure encrypted channels between sockets",
         homepage: "https://www.tarsnap.com/spiped.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

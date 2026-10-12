@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twisted",
           repo: "cython-test-exception-raiser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cython, setuptools, wheel]);
       const pythonImportsCheck = nix.thunk(() => ["cython_test_exception_raiser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing only. A cython simple extension which is used as helper for twisted/twisted Failure tests",
         homepage: "https://github.com/twisted/cython-test-exception-raiser",
         changelog: nix.thunk(() => nix.str`https://github.com/twisted/cython-test-exception-raiser/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

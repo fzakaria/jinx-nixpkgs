@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmpp-dns",
       version: "0.6.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "mdosch",
           repo: "xmpp-dns",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage man/xmpp-dns.1",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to check XMPP SRV records",
         homepage: "https://salsa.debian.org/mdosch/xmpp-dns",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/mdosch/xmpp-dns/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

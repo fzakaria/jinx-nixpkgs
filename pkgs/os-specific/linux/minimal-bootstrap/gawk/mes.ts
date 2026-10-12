@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const gnupatch = nix.arg($, "gnupatch");
   const gnused = nix.arg($, "gnused");
   const gnugrep = nix.arg($, "gnugrep");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "gawk-mes";
   const version = "3.0.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/gawk/gawk-${version}.tar.gz`),
       sha256: "1z4bibjm7ldvjwq3hmyifyb429rs2d9bdwkvs0r171vv1khpdwmb",
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./no-stamp.patch")]);
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
         gnugrep,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/awk --version
 mkdir $out
 `)),

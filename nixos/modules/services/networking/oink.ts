@@ -30,57 +30,57 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "oink"));
   const makeOinkConfig = (attrs) => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "oink.json", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "toLower"), k)), v), attrs)));
   const oinkConfig = nix.thunk(() => nix.app(makeOinkConfig, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       global: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["apiKey", "secretApiKey"]))),
       domains: nix.thunk(() => nix.sel(cfg, "domains")),
     }))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         oink: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Oink, a dynamic DNS client for Porkbun")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "oink", nix.thunk(() => ({})))),
           apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/run/keys/oink-api-key",
               description: "Path to a file containing the API key to use when modifying DNS records.",
             })))),
           secretApiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/run/keys/oink-secret-api-key",
               description: "Path to a file containing the secret API key to use when modifying DNS records.",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 60n, 172800n)),
                 default: 900n,
                 description: "Seconds to wait before sending another request.",
               })))),
             ttl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 600n, 172800n)),
                 default: 600n,
                 description: "The TTL (\"Time to Live\") value to set for your DNS records.\n\nThe TTL controls how long in seconds your records will be cached\nfor. A smaller value will allow the record to update quicker.\n",
               })))),
           })),
           domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")))));
               })()),
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$7, domain: "nixos.org", subdomain: "", ttl: 1200n })),
-                nix.thunk(() => ({ __proto__: pos$8, domain: "nixos.org", subdomain: "hydra" })),
+                nix.thunk(() => ({ [nix.POS]: pos$7, domain: "nixos.org", subdomain: "", ttl: 1200n })),
+                nix.thunk(() => ({ [nix.POS]: pos$8, domain: "nixos.org", subdomain: "hydra" })),
               ]),
               description: "List of attribute sets containing configuration for each domain.\n\nEach attribute set must have two attributes, one named *domain*\nand another named *subdomain*. The domain attribute must specify\nthe root domain that you want to configure, and the subdomain\nattribute must specify its subdomain if any. If you want to\nconfigure the root domain rather than a subdomain, leave the\nsubdomain attribute as an empty string.\n\nAdditionally, you can use attributes from *services.oink.settings*\nto override settings per-domain.\n\nEvery domain listed here *must* have API access enabled in\nPorkbun's control panel.\n",
             })))),
@@ -92,18 +92,18 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "oink", "settings", "secretApiKey"]), "This option has been removed because it would make the API key world-readable.\nUse {option}`secretApiKeyFile` instead.\nIf you insist on keeping the API key world-readable, you can use `oink.secretApiKeyFile = pkgs.writeText \"secret-api-key\" \"secret\";`.\n")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             oink: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Dynamic DNS client for Porkbun",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKeyFile"), null)), nix.thunk(() => nix.str`OINK_OVERRIDE_APIKEY="$(cat ${nix.sel(cfg, "apiKeyFile")})" `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretApiKeyFile"), null)), nix.thunk(() => nix.str`OINK_OVERRIDE_SECRETAPIKEY="$(cat ${nix.sel(cfg, "secretApiKeyFile")})" `))), nix.str`${nix.sel(cfg, "package")}/bin/oink -c ${oinkConfig}`)),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$13, Restart: "on-failure", RestartSec: "10" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$13, Restart: "on-failure", RestartSec: "10" })),
             })),
           })),
         })),

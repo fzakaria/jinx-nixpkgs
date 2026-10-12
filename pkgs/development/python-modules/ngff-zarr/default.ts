@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ngff-zarr",
       version: "0.43.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fideus-labs",
           repo: "ngff-zarr",
           tag: nix.thunk(() => nix.str`py-v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         zarr,
       ], nix.sel(dask, "optional-dependencies", "array"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "dask-image": nix.thunk(() => [dask_image]),
         cli: nix.thunk(() => nix.concat([
           dask,
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
         "test_cli_itk_input_writes_orientation_automatically",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open Microscopy Environment (OME) Next Generation File Format (NGFF) Zarr implementation",
         homepage: "https://github.com/fideus-labs/ngff-zarr",
         changelog: nix.thunk(() => nix.str`https://github.com/fideus-labs/ngff-zarr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

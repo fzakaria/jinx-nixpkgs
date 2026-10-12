@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libspf2",
       version: "2.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helsinki-systems",
           repo: "libspf2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       strictDeps: true,
       postPatch: "# disable static bins compilation\nsed -i \\\n  -e '/bin_PROGRAMS/s/spfquery_static//' src/spfquery/Makefile.am \\\n  -e '/bin_PROGRAMS/s/spftest_static//' src/spftest/Makefile.am \\\n  -e '/bin_PROGRAMS/s/spfd_static//' src/spfd/Makefile.am \\\n  -e '/bin_PROGRAMS/s/spf_example_static//' src/spf_example/Makefile.am\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-Wno-error=implicit-function-declaration" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-Wno-error=implicit-function-declaration" })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add("Implementation of the Sender Policy Framework for SMTP ", "authorization (Helsinki Systems fork)")),
         homepage: "https://github.com/helsinki-systems/libspf2",
         license: nix.thunk(() => (() => {

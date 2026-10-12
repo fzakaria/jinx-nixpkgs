@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "tt-tools-common",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         pydantic,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper library for common utilities shared across Tentorrent tools",
         homepage: "https://github.com/tenstorrent/tt-tools-common",
         maintainers: nix.thunk(() => (() => {
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

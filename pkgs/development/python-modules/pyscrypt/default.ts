@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1sd5pd5fpcdnpp4h58kdnvkf0s3afh4ssfqky2ap6z0gy6ax3zds",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} tests/run-tests-hash.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ricmoo/pyscrypt/",
         description: "Pure-Python implementation of Scrypt PBKDF and scrypt file format library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "valodim"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, checkPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, checkPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

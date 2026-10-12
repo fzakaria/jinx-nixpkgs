@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const installer = nix.arg($, "installer");
   const packaging = nix.arg($, "packaging");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(python, "libPrefix")}-bootstrap-${nix.sel(packaging, "pname")}`),
       version: nix.thunk(() => nix.attr(packaging, "version")),
       src: nix.thunk(() => nix.attr(packaging, "src")),

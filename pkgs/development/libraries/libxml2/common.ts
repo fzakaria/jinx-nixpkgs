@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const freezeUpdateScript = nix.argOr($, "freezeUpdateScript", () => false);
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(darwin, "bootstrapStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: version,
       src: src,
       pname: "libxml2",
@@ -75,22 +75,22 @@ export default nix.lambda((args) => (() => {
 `))),
       postFixup: nix.thunk(() => nix.add(nix.add("moveToOutput bin/xml2-config \"$dev\"\nmoveToOutput lib/xml2Conf.sh \"$dev\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enableStatic) && nix.asBool(enableShared))), "moveToOutput lib/libxml2.a \"$static\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")) && nix.asBool(pythonSupport))), "for packages in \"$py\"/lib/python*/site-packages; do\n  ln -s cygxml2mod.dll \"$packages\"/libxml2mod.dll\ndone\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pythonSupport: pythonSupport,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             packageName: "libxml2",
             versionPolicy: "none",
             freeze: freezeUpdateScript,
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               moduleNames: nix.thunk(() => ["LibXml2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -98,14 +98,14 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://gitlab.gnome.org/GNOME/libxml2",
         description: "XML parsing library for C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         pkgConfigModules: nix.thunk(() => ["libxml-2.0"]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "xmlsoft", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         broken: nix.thunk(() => (nix.asBool(pythonSupport) && nix.asBool(!nix.asBool((nix.asBool(enableShared) && nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isWasi"))))))))),

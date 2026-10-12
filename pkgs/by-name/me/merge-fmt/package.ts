@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "merge-fmt";
       const version = "0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hhugo/merge-fmt/releases/download/${version}/merge-fmt-${version}.tbz`),
           hash: "sha256-F+ds0ToWcKD4NJU3yYSVW4B3m2LBnhR+4QVTDO79q14=",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [nix.path(here, "./merge-fmt.patch")]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git mergetool leveraging code formatters",
         homepage: "https://github.com/hhugo/merge-fmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "merge-fmt",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

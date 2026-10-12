@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const partitionedModuleFiles = nix.thunk(() => (() => {
     const p = nix.thunk(() => nix.app(nix.lookup(w, "partition"), isNixOSFile, moduleFiles));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nixos: nix.thunk(() => nix.sel(p, "right")),
       others: nix.thunk(() => nix.sel(p, "wrong")),
     };
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const relocatedModuleFiles = nix.thunk(() => (() => {
     const relocateNixOS = (path) => nix.add(nix.add("<nixpkgs/nixos", nix.app(nix.lookup(w, "removePrefix"), nixosPath, nix.thunk(() => nix.app(nix.builtins.toString, path)))), ">");
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nixos: nix.thunk(() => nix.app(nix.builtins.map, relocateNixOS, nix.thunk(() => nix.sel(partitionedModuleFiles, "nixos")))),
       others: [],
     };
@@ -53,37 +53,37 @@ export default nix.lambda((args) => (() => {
 }
 `)));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       installer: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         cloneConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: true,
             description: "Try to clone the installation-device configuration by re-using it's\nprofile from the list of imported modules.\n",
           })))),
         cloneConfigIncludes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: [],
             example: nix.thunk(() => ["./nixos/modules/hardware/network/rt73.nix"]),
             description: "List of modules used to re-build this installation device profile.\n",
           })))),
         cloneConfigExtra: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: "",
             description: "Extra text to include in the cloned configuration.nix included in this\ninstaller.\n",
           })))),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       installer: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         cloneConfigIncludes: nix.thunk(() => nix.concat(nix.sel(relocatedModuleFiles, "nixos"), nix.sel(relocatedModuleFiles, "others"))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         postBootCommands: nix.thunk(() => nix.str`# Provide a mount point for nixos-install.
 mkdir -p /mnt
 

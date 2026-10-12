@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oldsindhi",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MihailJP/oldsindhi/releases/download/v${nix.sel(finalAttrs, "version")}/OldSindhi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-jOcl+mo6CJ9Lnn3nAUiXXHCJssovVgLoPrbGxj4uzQs=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -m444 -Dt $out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")} README *.txt
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/MihailJP/oldsindhi",
         description: "Free Sindhi Khudabadi font",
         maintainers: nix.thunk(() => (() => {

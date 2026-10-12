@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const pulseSupport = nix.thunk(() => nix.eq(audioBackend, "pulse"));
   const binName = nix.thunk(() => nix.str`squeezelite${nix.app(optionalString, pulseSupport, "-pulse")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: binName,
       version: "2.0.0.1609",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ralph-irving",
           repo: "squeezelite",
           rev: "ab20df3dff76122b9e4f426cffd0346e752b93da",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postPatch: "substituteInPlace opus.c \\\n  --replace \"<opusfile.h>\" \"<opus/opusfile.h>\"\n",
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         EXECUTABLE: binName,
         OPTS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-DLINKALL", "-DGPIO"], nix.concat(nix.app(optional, dsdSupport, "-DDSD"), nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(faad2Support)), "-DNO_FAAD"), nix.concat(nix.app(optional, ffmpegSupport, "-DFFMPEG"), nix.concat(nix.app(optional, opusSupport, "-DOPUS"), nix.concat(nix.app(optional, portaudioSupport, "-DPORTAUDIO"), nix.concat(nix.app(optional, pulseSupport, "-DPULSEAUDIO"), nix.concat(nix.app(optional, resampleSupport, "-DRESAMPLE"), nix.concat(nix.app(optional, sslSupport, "-DUSE_SSL"), nix.app(optional, nix.thunk(() => nix.selOr(stdenv, () => nix.sel(stdenv, "hostPlatform", "isAarch64"), "hostPlatform", "isAarch32")), "-DRPI"))))))))))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           LDADD: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lportaudio", "-lpthread"]))),
         }))))),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -72,12 +72,12 @@ install -Dm444 -t $out/share/man/man1 doc/squeezelite.1
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.attr(slimserver, "tests")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lightweight headless squeezebox client emulator",
         homepage: "https://github.com/ralph-irving/squeezelite",
         license: nix.thunk(() => (() => {

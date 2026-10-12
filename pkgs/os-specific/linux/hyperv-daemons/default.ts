@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libexec = "libexec/hypervkvpd";
   const fcopy_name = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), "6.10")) ? "fcopy" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? null : "fcopy_uio")));
   const daemons = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "hyperv-daemons-bin",
       src: nix.thunk(() => nix.attr(kernel, "src")),
       version: nix.thunk(() => nix.attr(kernel, "version")),
@@ -56,12 +56,12 @@ Slice=hyperv.slice
 WantedBy=hyperv-daemons.target
 `));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyperv-daemons",
       version: nix.thunk(() => nix.attr(kernel, "version")),
       outputs: nix.thunk(() => ["bin", "lib", "out"]),
       buildInputs: nix.thunk(() => [daemons]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, daemons: daemons })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, daemons: daemons })),
       buildCommand: nix.thunk(() => nix.str`system=$lib/lib/systemd/system
 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(fcopy_name, null)), nix.thunk(() => nix.str`install -Dm444 ${nix.app(service, fcopy_name, "file copy (FCOPY)", "/sys/bus/vmbus/devices/eb765408-105f-49b6-b4aa-c123b64d17d4/uio")} $system/hv-fcopy.service
@@ -88,7 +88,7 @@ for d in $out/bin $bin/bin ; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integration Services for running NixOS under HyperV",
         mainProgram: "lsvmbus",
         longDescription: "This packages contains the daemons that are used by the Hyper-V hypervisor\non the host.\n\nMicrosoft calls their guest agents \"Integration Services\" which is why\nwe use that name here.\n",

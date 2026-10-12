@@ -23,7 +23,7 @@ const pos$17 = nix.positions(here + "/common.nix", [["virtualisation", 41, 7], [
 const pos$18 = nix.positions(here + "/common.nix", [["baseConfig", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$18,
+  [nix.POS]: pos$18,
   baseConfig: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const config = nix.arg($, "config");
@@ -47,7 +47,7 @@ export default nix.thunk(() => ({
 }
 `)));
     const createTrivialProject = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "create-trivial-project",
         dontUnpack: true,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
@@ -56,44 +56,44 @@ export default nix.thunk(() => ({
 `),
       }))));
     return {
-      __proto__: pos$17,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2048n })),
-      time: nix.thunk(() => ({ __proto__: pos$3, timeZone: "UTC" })),
+      [nix.POS]: pos$17,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+      time: nix.thunk(() => ({ [nix.POS]: pos$3, timeZone: "UTC" })),
       environment: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         etc: nix.thunk(() => ({
-          __proto__: pos$5,
-          "hydra-test/ad-hoc.nix": nix.thunk(() => ({ __proto__: pos$4, source: adHocJob })),
+          [nix.POS]: pos$5,
+          "hydra-test/ad-hoc.nix": nix.thunk(() => ({ [nix.POS]: pos$4, source: adHocJob })),
         })),
         systemPackages: nix.thunk(() => [createTrivialProject, nix.thunk(() => nix.sel(pkgs, "jq"))]),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         hydra: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: true,
           hydraURL: "example.com",
           notificationSender: "example@example.com",
-          adHoc: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          adHoc: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           extraConfig: "<email_notifications>\n  build = 1\n</email_notifications>\n",
         })),
         "hydra-builder": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: true,
           queueRunnerAddr: nix.thunk(() => nix.str`http://[::1]:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "hydra", "queueRunner", "grpc", "port")))}`),
         })),
-        postfix: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+        postfix: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
-          "hydra-builder": nix.thunk(() => ({ __proto__: pos$12, after: nix.thunk(() => ["hydra-queue-runner.service"]) })),
+          [nix.POS]: pos$13,
+          "hydra-builder": nix.thunk(() => ({ [nix.POS]: pos$12, after: nix.thunk(() => ["hydra-queue-runner.service"]) })),
         })),
       })),
       nix: nix.thunk(() => ({
-        __proto__: pos$16,
-        settings: nix.thunk(() => ({ __proto__: pos$15, substituters: [] })),
+        [nix.POS]: pos$16,
+        settings: nix.thunk(() => ({ [nix.POS]: pos$15, substituters: [] })),
         enable: true,
       })),
     };

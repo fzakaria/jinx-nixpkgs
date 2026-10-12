@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const vimPlugins = nix.arg($, "vimPlugins");
   const vimUtils = nix.arg($, "vimUtils");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "vim2nix",
       version: "1.0",
       src: nix.path(here, "./src"),

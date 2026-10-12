@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const matchesDoc = (v) => nix.eq(!nix.eq(nix.builtins.match(".*[0-9]_LIN(UX)?.sh", nix.thunk(() => nix.sel(v, "installer"))), null), webdoc);
   const selected = nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), found_version, versionInfo));
   const defaultSource = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.sel(selected, "installer")),
       message: nix.thunk(() => nix.str`This nix expression requires that ${nix.sel(selected, "installer")} is
 already part of the store. Find the file on your Mathematica CD
@@ -42,7 +42,7 @@ and add it to the nix store with nix-store --add-fixed sha256 <FILE>.
       hash: nix.thunk(() => nix.attr(selected, "hash")),
     }))));
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       cudaSupport: cudaSupport,
       cudaPackages: cudaPackages,
       pname: "mathematica",
@@ -50,7 +50,7 @@ and add it to the nix store with nix-store --add-fixed sha256 <FILE>.
       lang: nix.thunk(() => nix.attr(selected, "lang")),
       src: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), defaultSource, source)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wolfram Mathematica computational software system",
         homepage: "https://www.wolfram.com/mathematica/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

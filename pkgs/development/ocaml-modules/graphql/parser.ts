@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const menhir = nix.arg($, "menhir");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graphql_parser",
       version: "0.14.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/andreas/ocaml-graphql-server/releases/download/${nix.sel(finalAttrs, "version")}/graphql-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-v4v1ueF+NV7LvYIVinaf4rE450Z1P9OiMAito6/NHAY=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/andreas/ocaml-graphql-server",
         description: "Library for parsing GraphQL queries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

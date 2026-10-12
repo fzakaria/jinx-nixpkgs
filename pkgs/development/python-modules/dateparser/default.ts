@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dateparser",
       version: "1.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scrapinghub",
           repo: "dateparser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [python_dateutil, pytz, regex, tzlocal]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         calendars: nix.thunk(() => [hijridate, convertdate]),
         fasttext: nix.thunk(() => [fasttext, numpy]),
         langdetect: nix.thunk(() => [langdetect]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["dateparser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/scrapinghub/dateparser/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.rst`),
         description: "Date parsing library designed to parse dates from HTML pages",
         homepage: "https://github.com/scrapinghub/dateparser",

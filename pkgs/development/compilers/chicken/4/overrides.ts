@@ -6,9 +6,9 @@ const pos$1 = nix.positions(here + "/overrides.nix", [["preBuild", 3, 5]]);
 const pos$2 = nix.positions(here + "/overrides.nix", [["setup-helper", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   "setup-helper": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     preBuild: "substituteInPlace setup-helper.setup \\\n  --replace \"(chicken-home)\" \\\"$out/share/\\\"\n\n  cat setup-helper.setup\n",
   })),
 }));

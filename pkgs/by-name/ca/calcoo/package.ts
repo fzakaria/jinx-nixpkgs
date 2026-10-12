@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "calcoo",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/calcoo/calcoo-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Bdavj7RaI5CkWiOJY+TPRIRfNelfW5qdl/74J1KZPI0=",
         })))),
       nativeBuildInputs: nix.thunk(() => [ant, stripJavaArchivesHook, jdk, makeWrapper]),
       dontConfigure: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, JAVA_TOOL_OPTIONS: "-Dfile.encoding=iso-8859-1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JAVA_TOOL_OPTIONS: "-Dfile.encoding=iso-8859-1" })),
       buildPhase: "runHook preBuild\nant\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -42,7 +42,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://calcoo.sourceforge.net/changelog.html",
         description: "RPN and algebraic scientific calculator",
         homepage: "https://calcoo.sourceforge.net/",

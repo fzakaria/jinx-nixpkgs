@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const skim = nix.arg($, "skim");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "skim",
       version: nix.thunk(() => nix.attr(skim, "version")),
       src: nix.thunk(() => nix.sel(skim, "vim")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(skim, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

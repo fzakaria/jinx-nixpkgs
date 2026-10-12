@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pyscard = nix.arg($, "pyscard");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fido2",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hXh0KKlMP46vcvD/MK+6mDtVmhsbeVyTMYyBtK1AYsQ=",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       pythonRelaxDeps: nix.thunk(() => ["cryptography"]),
       dependencies: nix.thunk(() => [cryptography]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pcsc: nix.thunk(() => [pyscard]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pcsc: nix.thunk(() => [pyscard]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pytestFlags: nix.thunk(() => ["-v", "--no-device"]),
       pythonImportsCheck: nix.thunk(() => ["fido2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides library functionality for FIDO 2.0, including communication with a device over USB",
         homepage: "https://github.com/Yubico/python-fido2",
         changelog: nix.thunk(() => nix.str`https://github.com/Yubico/python-fido2/releases/tag/${nix.sel(finalAttrs, "version")}`),

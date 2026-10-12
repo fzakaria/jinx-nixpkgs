@@ -28,57 +28,57 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "nix-store-veritysetup"));
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         initrd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "nix-store-veritysetup": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nix-store-veritysetup")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "dmVerity", "enable")),
             message: "nix-store-veritysetup requires dm-verity in the systemd initrd.",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           initrd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               contents: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "/etc/systemd/system-generators/nix-store-veritysetup-generator": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   source: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nix-store-veritysetup-generator")))}`),
                 })),
                 "/etc/systemd/generator-environment.json": nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   source: nix.thunk(() => nix.app(nix.sel(json, "generate"), "systemd-generator-environment.json", nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       SYSTEMD_VERITYSETUP_PATH: nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/lib/systemd/systemd-veritysetup`),
                     })))),
                 })),
                 "/etc/systemd/system-environment-generators/env-generator": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   source: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos-init", "package")}/bin/env-generator`),
                 })),
               })),

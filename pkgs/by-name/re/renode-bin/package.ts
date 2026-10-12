@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "robotframework"), "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "6.1";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "robotframework",
                 repo: "robotframework",
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,23 +58,23 @@ export default nix.lambda((args) => (() => {
               }))));
             const patches = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   name: "python3.13-support.patch",
                   url: "https://github.com/robotframework/robotframework/commit/921e352556dc8538b72de1e693e2a244d420a26d.patch",
                   hash: "sha256-aSaror26x4kVkLVetPEbrJG4H1zstHsNWqmwqOys3zo=",
                 })))),
               nix.path(here, "./robotframework-python3.14-type-name.patch"),
             ]));
-            return { __proto__: pos$3, version, src, patches };
+            return { [nix.POS]: pos$3, version, src, patches };
           })())),
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "renode",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/renode/renode/releases/download/v${nix.sel(finalAttrs, "version")}/renode-${nix.sel(finalAttrs, "version")}.linux.tar.gz`),
           hash: "sha256-1kz/3kjnIGS6nof/NOGGy3qo2PKW3sm7vNaot2rn/XY=",
         })))),
@@ -120,11 +120,11 @@ substituteInPlace "$out/libexec/renode/renode-test" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Virtual development framework for complex embedded systems",
         homepage: "https://renode.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

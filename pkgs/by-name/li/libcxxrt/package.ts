@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libcxxrt",
       version: "4.0.10-unstable-2025-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libcxxrt",
           repo: "libcxxrt",
           rev: "a6f71cbc3a1e1b8b9df241e081fa0ffdcde96249",
@@ -37,12 +37,12 @@ cp ../src/cxxabi.h $dev/include
 cp lib/libcxxrt${nix.sel(stdenv$, "hostPlatform", "extensions", "library")} $out/lib
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libName: "cxxrt",
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/libcxxrt/libcxxrt",
         description: "Implementation of the Code Sourcery C++ ABI",
         maintainers: nix.thunk(() => (() => {

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const flit_core = nix.arg($, "flit-core");
   const cmake = nix.arg($, "cmake");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cmake",
       version: nix.thunk(() => nix.attr(cmake, "version")),
       pyproject: true,
@@ -29,7 +29,7 @@ substituteInPlace "$sourceRoot/cmake/__init__.py" \\
       nativeBuildInputs: nix.thunk(() => [flit_core]),
       pythonImportsCheck: nix.thunk(() => ["cmake"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CMake is an open-source, cross-platform family of tools designed to build, test and package software",
         longDescription: "This is a stub of the cmake package on PyPI that uses the cmake program\nprovided by nixpkgs instead of downloading cmake from the web.\n",
         homepage: "https://github.com/scikit-build/cmake-python-distributions",

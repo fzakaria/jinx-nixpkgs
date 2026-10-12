@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "nix-prefetch-docker",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       dontUnpack: true,
@@ -27,7 +27,7 @@ wrapProgram $out/bin/$name \\
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Script used to obtain source hashes for dockerTools.pullImage",
         mainProgram: "nix-prefetch-docker",
         maintainers: [],

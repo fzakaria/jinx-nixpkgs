@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   const version = "0.33.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pomerium",
       repo: "pomerium",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-CZGgCEUfUj2+7G9OpRrhJvZ3exFxAqWYsBmUd59pYPo=";
   const overrideModAttrs = (_) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     buildPhase: "runHook preBuild\n\ngo work vendor -e -v\n\nrunHook postBuild\n",
   });
   const getEnvoy = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pomerium-get-envoy",
       src: src,
       version: version,
@@ -57,26 +57,26 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["pkg/envoy/get-envoy"]),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "pomerium",
       src: src,
       version: version,
       vendorHash: vendorHash,
       overrideModAttrs: overrideModAttrs,
       envoyBinariesRaw: nix.thunk(() => nix.app(runCommand, "pomerium-envoy-binaries-raw", nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           nativeBuildInputs: nix.thunk(() => [getEnvoy]),
           outputHashAlgo: "sha256",
           outputHashMode: "recursive",
           outputHash: "sha256-SX+LpYGwMb33eVRo6TO7rPUfSlMMfD0N4zvZZRnkG2w=",
           meta: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             homepage: "https://github.com/pomerium/envoy-custom",
             sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
           })),
         })), "mkdir $out\ncd $out\nget-envoy\nchmod +x envoy-darwin-arm64 envoy-linux-amd64 envoy-linux-arm64\n")),
       envoyBinaries: nix.thunk(() => nix.app(runCommandCC, "pomerium-envoy-binaries", nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nativeBuildInputs: nix.thunk(() => [patchelf, moreutils, jq]),
         })), nix.thunk(() => nix.str`mkdir $out
 cp ${nix.sel(finalAttrs, "envoyBinariesRaw")}/* $out
@@ -88,7 +88,7 @@ jq ".digest = \\"sha256:$(sha256sum $out/envoy-linux-amd64 | cut -f1 -d' ')\\"" 
 jq ".digest = \\"sha256:$(sha256sum $out/envoy-linux-arm64 | cut -f1 -d' ')\\"" $out/envoy-linux-arm64.lock | sponge $out/envoy-linux-arm64.lock
 `))),
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: "pomerium-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
@@ -98,9 +98,9 @@ jq ".digest = \\"sha256:$(sha256sum $out/envoy-linux-arm64 | cut -f1 -d' ')\\"" 
       subPackages: nix.thunk(() => ["cmd/pomerium"]),
       ldflags: nix.thunk(() => (() => {
         const setVars = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "github.com/pomerium/pomerium/internal/version": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             Version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             BuildMeta: "nixpkgs",
             ProjectName: "pomerium",
@@ -120,16 +120,16 @@ cp -r ${nix.sel(finalAttrs, "ui")}/* ui/dist
 `),
       installPhase: "install -Dm0755 $GOPATH/bin/pomerium $out/bin/pomerium\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pomerium: nix.thunk(() => nix.attr(nixosTests, "pomerium")),
           "pomerium-cli": pomerium_cli,
         })),
         updateScript: nix.path(here, "./updater.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://pomerium.io",
         description: "Authenticating reverse proxy",
         mainProgram: "pomerium",

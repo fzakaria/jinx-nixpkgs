@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const kaem = nix.arg($, "kaem");
   const tinycc = nix.arg($, "tinycc");
   const gnupatch = nix.arg($, "gnupatch");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "gnumake";
   const version = "4.4.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/make/make-${version}.tar.gz`),
       sha256: "1cwgcmwdn7gqn5da2ia91gkyiqs9birr10sy5ykpkaxzcwfzn5nx",
     }))));
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.concat(make_SOURCES, nix.concat(glob_SOURCES, nix.concat(remote_SOURCES, ["src/posixos.c"]))));
   const objects = nix.thunk(() => nix.builtins.map((x) => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [".c"]), nix.thunk(() => [".o"]), nix.thunk(() => nix.builtins.baseNameOf(x))), sources));
   return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,

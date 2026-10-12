@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "azure-sdk-for-cpp-storage-common",
       version: "12.12.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azure",
           repo: "azure-sdk-for-cpp",
           tag: nix.thunk(() => nix.str`azure-storage-common_${nix.sel(finalAttrs, "version")}`),
@@ -39,19 +39,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       buildInputs: nix.thunk(() => [openssl, libxml2]),
       propagatedBuildInputs: nix.thunk(() => [core]),
-      env: nix.thunk(() => ({ __proto__: pos$2, AZURE_SDK_DISABLE_AUTO_VCPKG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AZURE_SDK_DISABLE_AUTO_VCPKG: 1n })),
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=ON", "-DWARNINGS_AS_ERRORS=OFF"]),
       postInstall: "moveToOutput \"share\" \"$dev\"\nmoveToOutput \"share/$(basename \"$sourceRoot\")-cpp/copyright\" \"$out\"\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "azure-storage-common_(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Azure Storage Common Client Library for C++",
         changelog: "https://github.com/Azure/azure-sdk-for-cpp/blob/main/sdk/storage/azure-storage-common/CHANGELOG.md",
       })),

@@ -20,28 +20,28 @@ export default nix.lambda((args) => (() => {
   const ruff = nix.arg($, "ruff");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "linux-x64",
             hash: "sha256-rcF2hINVWsnGkOoGz/pCbUngaK9p/Wan03qSTnxB/Xs=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "linux-arm64",
             hash: "sha256-j7pv4MICFzqfFCI+dmgB7xtnMRIXkgRYyEBzIZaJwNI=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             arch: "darwin-arm64",
             hash: "sha256-ef52k2aBnFnTdrUWyw5n4tIaMHXaOpWTW+3DWIai1+o=",
           })),
         }));
         return nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "ruff",
           publisher: "charliermarsh",
           version: "2026.84.0",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
 ln -sf ${nix.app(nix.sel(lib, "getExe"), ruff)} "$out/$installPrefix/bundled/libs/bin/ruff"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         changelog: "https://marketplace.visualstudio.com/items/charliermarsh.ruff/changelog",
         description: "Visual Studio Code extension with support for the Ruff linter",

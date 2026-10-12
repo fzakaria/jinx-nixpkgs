@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nextflow",
       version: "26.04.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nextflow-io",
           repo: "nextflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ substituteInPlace modules/nextflow/src/main/groovy/nextflow/executor/BashWrapper
     "binding.trace_cmd = containerBuilder != null ? getTraceCommand(interpreter).replaceFirst(\\"/nix/store/.*/bin/bash\\", \\"/bin/bash\\") : getTraceCommand(interpreter)"
 `),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -85,19 +85,19 @@ runHook postInstall
   --run 'export NXF_OPTS="-Duser.name=$USER\${NXF_OPTS:+ $NXF_OPTS}"'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           default: nix.thunk(() => nix.sel(nixosTests, "nextflow")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "env HOME=$TMPDIR nextflow -version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "DSL for data-driven computational pipelines",
         longDescription: "Nextflow is a bioinformatics workflow manager that enables the development of portable and reproducible workflows.\n\nIt supports deploying workflows on a variety of execution platforms including local, HPC schedulers, AWS Batch, Google Cloud Life Sciences, and Kubernetes.\n\nAdditionally, it provides support for manage your workflow dependencies through built-in support for Conda, Docker, Singularity, and Modules.\n",
         homepage: "https://www.nextflow.io/",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const bruno_cli = nix.arg($, "bruno-cli");
   const pname = "bruno-cli";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: nix.thunk(() => nix.attr(bruno, "version")),
       src: nix.thunk(() => nix.attr(bruno, "src")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), clang_20))),
       buildInputs: nix.thunk(() => [pango]),
       postConfigure: "# sh: line 1: /build/source/packages/bruno-converters/node_modules/.bin/rimraf: cannot execute: required file not found\npatchShebangs packages/*/node_modules\n",
-      env: nix.thunk(() => ({ __proto__: pos$1, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       preBuild: "# upstream keeps removing and adding back canvas, only patch it when it is present\nif [[ -e node_modules/canvas/binding.gyp ]]; then\n  substituteInPlace node_modules/canvas/binding.gyp \\\n    --replace-fail \"'with_gif%': '<!(node ./util/has_lib.js gif)'\" \"'with_gif%': 'false'\"\n  npm rebuild\nfi\n",
       buildPhase: "runHook preBuild\n\nnpm run build --workspace=packages/bruno-common\nnpm run build --workspace=packages/bruno-graphql-docs\nnpm run build --workspace=packages/bruno-schema-types\nnpm run build --workspace=packages/bruno-converters\nnpm run build --workspace=packages/bruno-query\nnpm run build --workspace=packages/bruno-filestore\nnpm run build --workspace=packages/bruno-requests\n\nnpm run sandbox:bundle-libraries --workspace=packages/bruno-js\n\nrunHook postBuild\n",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp -r packages $out/lib/node_modules/usebruno\n\necho \"Removing unnecessary files\"\npushd $out/lib/node_modules/usebruno\n\n# packages used by the GUI app, unused by CLI\nrm -r packages/bruno-{app,electron,tests,toml,docs}\nrm node_modules/bruno\nrm node_modules/@usebruno/{app,tests,toml}\n\n# heavy dependencies that seem to be unused\nrm -rf node_modules/{@tabler,pdfjs-dist,*redux*,prettier,@types*,*react*,*graphiql*,@swagger-api}\nrm -r node_modules/.bin\n\n# unused file types\nfor pattern in '*.map' '*.map.js' '*.ts'; do\n  find . -type f -name \"$pattern\" -exec rm {} +\ndone\n\npopd\necho \"Removed unnecessary files\"\n",
       postFixup: "wrapProgram $out/bin/bru \\\n  --prefix NODE_PATH : $out/lib/node_modules/usebruno/packages/bruno-cli/node_modules \\\n  --prefix NODE_PATH : $out/lib/node_modules\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           help: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${pname}-help-test`),
               nativeBuildInputs: nix.thunk(() => [bruno_cli]),
               script: "bru --help && touch $out\n",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI of the open-source IDE For exploring and testing APIs",
         homepage: "https://www.usebruno.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

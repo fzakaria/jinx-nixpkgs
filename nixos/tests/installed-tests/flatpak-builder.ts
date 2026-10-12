@@ -20,38 +20,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       tested: nix.thunk(() => nix.sel(pkgs, "flatpak-builder")),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          flatpak: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          flatpak: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           portal: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             extraPortals: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xdg-desktop-portal-gtk"))];
             })()),
             config: nix.thunk(() => ({
-              __proto__: pos$4,
-              common: nix.thunk(() => ({ __proto__: pos$3, default: "gtk" })),
+              [nix.POS]: pos$4,
+              common: nix.thunk(() => ({ [nix.POS]: pos$3, default: "gtk" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return nix.concat([nix.thunk(() => nix.lookup(w, "flatpak-builder"))], nix.sel(nix.lookup(w, "flatpak-builder"), "installedTestsDependencies"));
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$8, diskSize: 2048n })),
-        nix: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: 2048n })),
+        nix: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
       })),
       testRunnerFlags: nix.thunk(() => ["--timeout", "3600"]),
     })));

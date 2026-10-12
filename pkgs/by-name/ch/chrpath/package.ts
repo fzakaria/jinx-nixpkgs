@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chrpath",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codeberg.org/pere/chrpath/archive/release-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8JxJ8GGGYMoR/G2VgN3ekExyJNTG0Pby0fm83JECyao=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool to adjust the RPATH or RUNPATH of ELF binaries",
         mainProgram: "chrpath",
         longDescription: "chrpath changes, lists or removes the rpath or runpath setting in a\nbinary. The rpath, or runpath if it is present, is where the runtime\nlinker should look for the libraries needed for a program.\n",

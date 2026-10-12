@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const version = "1.2-0";
   const libstdcpp5 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://ubuntu/pool/universe/g/gcc-3.3/libstdc++5_3.3.6-17ubuntu1_i386.deb",
       sha256: "10f8zcmqaa7skvg2bz94mnlgqpan4iscvi8913r6iawjh7hiisjy",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "epson-alc1100",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://download3.ebz.epson.net/dsc/f/03/00/11/33/07/4027e99517b5c388d444b8444d719b4b77f7e9db/Epson-ALC1100-filter-1.2.tar.gz",
           sha256: "1dfw75a3kj2aa4iicvlk9kz3jarrsikpnpd4cdpw79scfc5mwm2p",
         })))),
@@ -62,7 +62,7 @@ wrapProgram $out/bin/pstoalc1100.sh \\
   --suffix PATH : "\\$PATH:${psutils}/bin:${ghostscript}/bin:${bash}/bin:/var/lib/cups/path/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://download.ebz.epson.net/dsc/search/01/search/",
         description: "Epson AcuLaser C1100 Driver",
         longDescription: "This package provides a print filter for printing to EPSON AL-C1100\nprinters on Linux systems.\n\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson-alc1100 ];\n  };\n",

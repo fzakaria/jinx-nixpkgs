@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "usbrelayd",
       src: nix.thunk(() => nix.attr(usbrelay, "src")),
       version: nix.thunk(() => nix.attr(usbrelay, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(usbrelay, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "USB Relay MQTT service",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pname = "betaflight-configurator";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: pname,
       exec: pname,
       icon: pname,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "10.10.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/betaflight/${pname_1}/releases/download/${version}/${pname_1}_${version}_linux64-portable.zip`),
           sha256: "sha256-UB5Vr5wyCUZbOaQNckJQ1tAXwh8VSLNI1IgTiJzxV08=",
         }))));
@@ -52,7 +52,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname_1} --add-flags $out/opt/${pname_1}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Betaflight flight control system configuration tool",
         mainProgram: "betaflight-configurator",
         longDescription: "A crossplatform configuration tool for the Betaflight flight control system.\nVarious types of aircraft are supported by the tool and by Betaflight, e.g.\nquadcopters, hexacopters, octocopters and fixed-wing aircraft.\n",
@@ -69,7 +69,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version,
         src,

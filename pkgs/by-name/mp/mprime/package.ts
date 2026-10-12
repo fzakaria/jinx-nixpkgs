@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const hwloc = nix.arg($, "hwloc");
   const gmp = nix.arg($, "gmp");
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
-  const srcDir = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "linux64", "i686-linux": "linux" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
-  const gwnum = nix.thunk(() => nix.selOr({ __proto__: pos$2, "x86_64-linux": "make64", "i686-linux": "makefile" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const srcDir = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "linux64", "i686-linux": "linux" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const gwnum = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "make64", "i686-linux": "makefile" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const docDir = "share/mprime/doc";
   const ccArch = nix.thunk(() => nix.selOr(stdenv, () => "x86-64", "hostPlatform", "gcc", "arch"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mprime",
       version: "31.04b02",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://www.mersenne.org/download/software/v31/31.04/p95v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.source.zip`),
           hash: "sha256-W8ic709bgm9KbVxe1fvIEC8J8LrwwMfAajX1bKhv6EM=",
           stripRoot: false,
@@ -49,7 +49,7 @@ substituteInPlace commonb.c \\
 `)),
       buildInputs: nix.thunk(() => [boost, curl, hwloc, gmp]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) && nix.asBool(!nix.eq(ccArch, "x86-64")))), "-march=x86-64")))),
       })),
       enableParallelBuilding: true,
@@ -65,7 +65,7 @@ install -Dm444 -t $out/${docDir} license.txt readme.txt stress.txt undoc.txt
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Mersenne prime search / System stability tester",
         longDescription: "MPrime is the Linux command-line interface version of Prime95, to be run\nin a text terminal or in a terminal emulator window as a remote shell\nclient. It is identical to Prime95 in functionality, except it lacks a\ngraphical user interface.\n",
         homepage: "https://www.mersenne.org/",

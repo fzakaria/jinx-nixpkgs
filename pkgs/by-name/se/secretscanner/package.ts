@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const protoc_gen_go_grpc = nix.arg($, "protoc-gen-go-grpc");
   const vectorscan = nix.arg($, "vectorscan");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "secretscanner",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepfence",
           repo: "SecretScanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Compile proto files\nmake -C agent-plugins-grpc go\n",
       postInstall: "mv $out/bin/SecretScanner $out/bin/$pname\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to find secrets and passwords in container images and file systems",
         mainProgram: "secretscanner",
         homepage: "https://github.com/deepfence/SecretScanner",

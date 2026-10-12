@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const passthru = nix.arg($, "passthru");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       passthru: passthru,

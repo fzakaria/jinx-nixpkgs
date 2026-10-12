@@ -26,27 +26,27 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "phylactery"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         phylactery: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Phylactery server")),
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Listen host for Phylactery",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "Listen port for Phylactery",
             })))),
           library: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "Path to CBZ library",
             })))),
@@ -55,21 +55,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             phylactery: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               environment: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 PHYLACTERY_ADDRESS: nix.thunk(() => nix.str`${nix.sel(cfg, "host")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}`),
                 PHYLACTERY_LIBRARY: nix.thunk(() => nix.str`${nix.sel(cfg, "library")}`),
               })),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ConditionPathExists: nix.thunk(() => nix.sel(cfg, "library")),
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/phylactery`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "McSinyx"))];

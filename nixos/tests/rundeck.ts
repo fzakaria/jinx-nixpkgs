@@ -16,28 +16,28 @@ const pos$10 = nix.positions(here + "/rundeck.nix", [["rundeck", 5, 5]]);
 const pos$11 = nix.positions(here + "/rundeck.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 40, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$11,
+  [nix.POS]: pos$11,
   name: "rundeck",
   nodes: nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     rundeck: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           etc: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rundeck-admin-password": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               text: "testpassword",
               mode: "0400",
               user: "rundeck",
               group: "rundeck",
             })),
             "rundeck-tokens.properties": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               text: "testadmin: nixostesttoken,admin",
               mode: "0400",
               user: "rundeck",
@@ -50,17 +50,17 @@ export default nix.thunk(() => ({
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           rundeck: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             serverHostname: "rundeck",
             adminUser: "testadmin",
             adminPasswordFile: "/etc/rundeck-admin-password",
             serverPort: 4441n,
-            database: nix.thunk(() => ({ __proto__: pos$5, type: "h2" })),
+            database: nix.thunk(() => ({ [nix.POS]: pos$5, type: "h2" })),
             openFirewall: true,
-            frameworkSettings: nix.thunk(() => ({ __proto__: pos$6, "rundeck.tokens.file": "/etc/rundeck-tokens.properties" })),
+            frameworkSettings: nix.thunk(() => ({ [nix.POS]: pos$6, "rundeck.tokens.file": "/etc/rundeck-tokens.properties" })),
           })),
         })),
       };

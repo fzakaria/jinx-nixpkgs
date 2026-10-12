@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "3.19",
       pname: "xnee",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/xnee/xnee-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UqQeXPYvgbej5bWBJOs1ZeHhICir2mP1R/u+DZiiwhI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://savannah.gnu.org/bugs/download.php?file_id=49534",
             hash: "sha256-Ar5SyVIEp8/knDHm+4f0KWAH+A5gGhXGezEqL7xkQhI=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "9.2",
@@ -61,12 +61,12 @@ done
       configureFlags: nix.thunk(() => ["--disable-gnome-applet", "--enable-static"]),
       makeFlags: nix.thunk(() => ["LDFLAGS=-lXi"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "X11 event recording and replay tool",
         longDescription: "Xnee is a suite of programs that can record, replay and distribute\nuser actions under the X11 environment.  Think of it as a robot that\ncan imitate the job you just did.  Xnee can be used to automate\ntests, demonstrate programs, distribute actions, record & replay\n\"macros\", retype a file.\n",
         homepage: "https://www.gnu.org/software/xnee/",

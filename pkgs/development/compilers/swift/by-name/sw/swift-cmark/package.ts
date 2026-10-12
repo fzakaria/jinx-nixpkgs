@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-cmark",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swiftlang",
           repo: "swift-cmark",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CommonMark parsing and rendering library",
         homepage: "https://github.com/swiftlang/swift-cmark",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.concat(nix.sel(lib, "platforms", "windows"), nix.sel(lib, "platforms", "wasi")))),

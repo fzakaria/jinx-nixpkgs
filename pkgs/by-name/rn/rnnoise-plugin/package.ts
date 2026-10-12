@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rnnoise-plugin",
       version: "1.10",
       outputs: nix.thunk(() => ["out", "ladspa", "lv2", "lxvst", "vst3"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "werman",
           repo: "noise-suppression-for-voice",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([freetype, gtk3_x11, pcre2, libx11, libxrandr], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])))),
       postInstall: "for plugin in ladspa lv2 lxvst vst3; do\n  mkdir -p ${!plugin}/lib\n  mv $out/lib/$plugin ${!plugin}/lib/$plugin\n  ln -s ${!plugin}/lib/$plugin $out/lib/$plugin\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Real-time noise suppression plugin for voice based on Xiph's RNNoise",
         homepage: "https://github.com/werman/noise-suppression-for-voice",

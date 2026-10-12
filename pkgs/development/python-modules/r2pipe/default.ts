@@ -33,7 +33,7 @@ substituteInPlace r2pipe/open_base.py --replace 'which("radare2")' "'${radare2}/
 `;
       })());
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-OAS3Yr1CmMMuhEP/tRO9YAdYZ3emib0huXl3/rjLLJk=",
@@ -45,7 +45,7 @@ r2.cmd('a')
 EOF
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interact with radare2",
         homepage: "https://github.com/radare/radare2-r2pipe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ EOF
           return [nix.thunk(() => nix.lookup(w, "timokau"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, postPatch, src, postCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, postPatch, src, postCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

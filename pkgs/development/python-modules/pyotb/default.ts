@@ -24,22 +24,22 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const spotImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb/-/raw/develop/Data/Input/SP67_FR_subset_1.tif",
       sha256: "sha256-MuWY/g7KI+F23lFY/+AX5MLWJlIgHCr5BvFjDHzpWgY=",
     }))));
   const pleiadesImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb/-/raw/develop/Data/Baseline/OTB/Images/prTvOrthoRectification_pleiades-1_noDEM.tif",
       sha256: "sha256-1EsGAJdHgBIb/gfbh4Y7yEEmYHb54bSx4fEMKssZ/oA=",
     }))));
-  const otbWithPy = nix.thunk(() => nix.app(nix.sel(otb, "override"), nix.thunk(() => ({ __proto__: pos$3, enablePython: true, python3: python }))));
+  const otbWithPy = nix.thunk(() => nix.app(nix.sel(otb, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enablePython: true, python3: python }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "pyotb";
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "orfeotoolbox",
           repo: "pyotb",
           tag: version,
@@ -75,7 +75,7 @@ substituteInPlace tests/tests_data.py \\
         "test_summarize_strip_output",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python extension of Orfeo Toolbox",
         homepage: "https://github.com/orfeotoolbox/pyotb",
         changelog: nix.thunk(() => nix.str`https://github.com/orfeotoolbox/pyotb/releases/tag/${version}`),
@@ -87,7 +87,7 @@ substituteInPlace tests/tests_data.py \\
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

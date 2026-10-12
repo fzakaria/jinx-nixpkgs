@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libretro-shaders-slang",
       version: "0-unstable-2026-08-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "slang-shaders",
           rev: "4812a82f6c9a11cc8b5a7447040a98c9fc80c00e",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installFlags: nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Slang shaders for use with RetroArch's shader system",
         homepage: "https://github.com/libretro/slang-shaders",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

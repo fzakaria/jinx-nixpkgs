@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const binaryen = nix.arg($, "binaryen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tpsecore",
       version: "0.1.1-unstable-2026-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UniQMG",
           repo: "tpsecore",
           rev: "549767cac60df6f887f6012fa5d26ca12d55a2eb",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\n\ncp target/wasm32-unknown-unknown/release/tpsecore.wasm $out/\ncp tpsecore.js $out/\n\nrunHook postInstall\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Self contained toolkit for creating, editing, and previewing TPSE files",
         homepage: "https://gitlab.com/UniQMG/tpsecore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

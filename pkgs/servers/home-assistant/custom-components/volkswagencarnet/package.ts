@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const domain = "volkswagencarnet";
       const version = "5.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robinostlund",
           repo: "homeassistant-volkswagencarnet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [volkswagencarnet]);
       const nativeCheckInputs = nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/robinostlund/homeassistant-volkswagencarnet/releases/tag/${nix.sel(src, "tag")}`),
         description: "Volkswagen Connect component for Home Assistant",
         homepage: "https://github.com/robinostlund/homeassistant-volkswagencarnet",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

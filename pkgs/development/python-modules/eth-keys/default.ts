@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "eth-keys",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([asn1tools, factory_boy, hypothesis, pyasn1, pytestCheckHook, pydantic], nix.concat(nix.sel(optional_dependencies, "coincurve"), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => nix.sel(eth_hash, "optional-dependencies", "pysha3"))), nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => nix.sel(eth_hash, "optional-dependencies", "pycryptodome")))))));
       const pythonImportsCheck = nix.thunk(() => ["eth_keys"]);
       const disabledTests = nix.thunk(() => ["test_install_local_wheel"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, coincurve: nix.thunk(() => [coincurve]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, coincurve: nix.thunk(() => [coincurve]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Common API for Ethereum key operations",
         homepage: "https://github.com/ethereum/eth-keys",
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/eth-keys/blob/v${version}/CHANGELOG.rst`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

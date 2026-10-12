@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
   const goose_cli = nix.arg($, "goose-cli");
   const runCommand = nix.arg($, "runCommand");
   const nodejs = nodejs_24;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs }))));
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "goose-desktop",
       version: nix.thunk(() => nix.attr(goose_cli, "version")),
       __structuredAttrs: true,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pnpmInstallFlags: nix.thunk(() => ["--cpu=x64", "--libc=glibc", "--os=linux"]),
       prePnpmInstall: "pnpm config set --json supportedArchitectures '{\"os\":[\"linux\"],\"cpu\":[\"x64\"],\"libc\":[\"glibc\"]}'\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           prePnpmInstall: nix.thunk(() => nix.attr(finalAttrs, "prePnpmInstall")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-FpnWCJsytxJ5w9yqWayU2ZNDCm7RgubU34ouIeNWqfA=",
         })))),
       strictDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => [
         copyDesktopItems,
         gitMinimal,
@@ -165,7 +165,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "goose-desktop",
             desktopName: "Goose",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -177,16 +177,16 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           smoke: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-smoke`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/opt/goose-desktop/resources/bin/goose --version >/dev/null
 touch "$out"
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Desktop client for Goose",
         homepage: "https://github.com/aaif-goose/goose",
         changelog: nix.thunk(() => nix.str`https://github.com/aaif-goose/goose/releases/tag/${nix.sel(goose_cli, "src", "tag")}`),

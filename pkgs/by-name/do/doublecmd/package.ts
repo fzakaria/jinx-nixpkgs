@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const lua = lua5_5;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "doublecmd",
       version: "1.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doublecmd",
           repo: "doublecmd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [dbus, glib, libx11, nix.thunk(() => nix.sel(libsForQt5, "libqtpas"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.str`--as-needed -rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}`),
       })),
       postPatch: nix.thunk(() => nix.str`# Double Commander saves this default into the user's configuration, so use
@@ -71,7 +71,7 @@ ln -vs ./liblua.so.${nix.sel(lua, "version")} ./liblua.so.${nix.app(nix.sel(lib,
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://doublecmd.sourceforge.io/",
         description: "Two-panel graphical file manager written in Pascal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

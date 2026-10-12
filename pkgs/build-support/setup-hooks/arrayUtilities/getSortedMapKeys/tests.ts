@@ -33,50 +33,50 @@ export default nix.lambda((args) => (() => {
     const valuesMap = nix.arg($_1, "valuesMap");
     const expectedArray = nix.arg($_1, "expectedArray");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         valuesMap: valuesMap,
         expectedArray: expectedArray,
         script: "set -eu\nnixLog \"running getSortedMapKeys with valuesMap to populate actualArray\"\ngetSortedMapKeys valuesMap actualArray\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [getSortedMapKeys])),
       }));
   })(), formals$2);
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "getSortedMapKeys",
           src: nix.path(here, "./getSortedMapKeys.bash"),
         })))),
       shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "getSortedMapKeys",
           src: nix.path(here, "./getSortedMapKeys.bash"),
         })))),
       empty: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "empty",
           valuesMap: nix.thunk(() => ({})),
           expectedArray: [],
         })))),
       singleton: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: "singleton",
-          valuesMap: nix.thunk(() => ({ __proto__: pos$6, apple: "fruit" })),
+          valuesMap: nix.thunk(() => ({ [nix.POS]: pos$6, apple: "fruit" })),
           expectedArray: nix.thunk(() => ["apple"]),
         })))),
       keysAreSorted: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "keysAreSorted",
-          valuesMap: nix.thunk(() => ({ __proto__: pos$8, apple: "fruit", bee: "insect", carrot: "vegetable" })),
+          valuesMap: nix.thunk(() => ({ [nix.POS]: pos$8, apple: "fruit", bee: "insect", carrot: "vegetable" })),
           expectedArray: nix.thunk(() => ["apple", "bee", "carrot"]),
         })))),
       keysCanBeWhitespace: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: "keysCanBeWhitespace",
-          valuesMap: nix.thunk(() => ({ __proto__: pos$10, " ": 1n, "  ": 2n })),
+          valuesMap: nix.thunk(() => ({ [nix.POS]: pos$10, " ": 1n, "  ": 2n })),
           expectedArray: nix.thunk(() => [" ", "  "]),
         })))),
     })));

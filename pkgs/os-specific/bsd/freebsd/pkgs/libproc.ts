@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const librtld_db = nix.arg($, "librtld-db");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libproc",
       extraPaths: nix.thunk(() => [
         "sys/contrib/openzfs/include",

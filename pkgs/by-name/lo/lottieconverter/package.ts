@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rlottie = nix.arg($, "rlottie");
   const giflib = nix.arg($, "giflib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lottieconverter",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sot-tech",
           repo: "lottieconverter",
           rev: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DSYSTEM_RL=1", "-DSYSTEM_GL=1"]),
       installPhase: "runHook preInstall\ninstall -Dm755 lottieconverter \"$out/bin/lottieconverter\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sot-tech/LottieConverter/",
         description: "Lottie converter utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

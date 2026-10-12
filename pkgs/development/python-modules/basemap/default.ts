@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matplotlib",
           repo: "basemap",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export HOME=$TEMPDIR
 ${nix.sel(python, "interpreter")} run_all.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://matplotlib.org/basemap/",
         description: "Plot data on map projections with matplotlib",
         longDescription: "An add-on toolkit for matplotlib that lets you plot data on map projections with\ncoastlines, lakes, rivers and political boundaries. See\nhttps://matplotlib.org/basemap/stable/users/examples.html for examples of what it can do.\n",
@@ -58,7 +58,7 @@ ${nix.sel(python, "interpreter")} run_all.py
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

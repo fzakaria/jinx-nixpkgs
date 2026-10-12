@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const testers = nix.arg($, "testers");
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ICU-deps-private-headers",
       buildCommand: "mkdir -p \"$out/include/os\"\ncat <<EOF > \"$out/include/os/feature_private.h\"\n#pragma once\nextern \"C\" bool _os_feature_enabled_impl(const char*, const char*);\n#define os_feature_enabled(a, b) _os_feature_enabled_impl(#a, #b)\nEOF\n",
     }))));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const withStatic = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const nativeBuildRoot = nix.thunk(() => nix.sel(buildPackages, "darwin", "ICU", "buildRootOnly"));
   const baseAttrs = (finalAttrs) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     releaseName: "ICU",
     sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/icu/icu4c/source`),
     patches: nix.thunk(() => [nix.path(here, "./patches/0001-suppress-icu-check-crash.patch")]),
@@ -58,7 +58,7 @@ sed -i -e 's|^\\(CPPFLAGS = .*\\) -I\\$(prefix)/include|\\1 -I$(includedir)|' co
     nativeBuildInputs: nix.thunk(() => [python3]),
     enableParallelBuilding: true,
     env: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
           "-DU_SHOW_CPLUSPLUS_API=1",
           "-DU_SHOW_INTERNAL_API=1",
@@ -66,15 +66,15 @@ sed -i -e 's|^\\(CPPFLAGS = .*\\) -I\\$(prefix)/include|\\1 -I$(includedir)|' co
         ]))),
     })),
     passthru: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       tests: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
       })),
       buildRootOnly: nix.thunk(() => nix.app(mkWithAttrs, buildRootOnlyAttrs)),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       description: "Unicode and globalization support library with Apple customizations",
       license: nix.thunk(() => nix.sel(lib, "licenses", "icu")),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),
@@ -83,7 +83,7 @@ sed -i -e 's|^\\(CPPFLAGS = .*\\) -I\\$(prefix)/include|\\1 -I$(includedir)|' co
     })),
   });
   const realAttrs = (self) => (super$) => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withStatic, "static"))),
     outputBin: "dev",
     postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(self, "finalPackage", "doCheck")), nix.thunk(() => nix.str`# Skip test for missing encodingSamples data.
@@ -120,17 +120,17 @@ substituteInPlace common/unicode/uversion.h \\
     postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), withStatic, "mkdir -p $static/lib\nmv -v lib/*.a $static/lib\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i 's/INSTALL_CMD=.*install/INSTALL_CMD=install/' $out/lib/icu/*/pkgdata.inc\n")), (() => {
       const replacements = nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           from: "${prefix}/include",
           to: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
         })),
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           from: "${pkglibdir}/Makefile.inc",
           to: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/lib/icu/Makefile.inc`),
         })),
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           from: "${pkglibdir}/pkgdata.inc",
           to: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/lib/icu/pkgdata.inc`),
         })),
@@ -174,7 +174,7 @@ ln -s libicucore.so.A "$out/lib/libicucore.so"
     checkTarget: "check",
   });
   const buildRootOnlyAttrs = (self) => (super$) => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     pname: "ICU-build-root",
     preConfigure: nix.thunk(() => nix.add(nix.sel(super$, "preConfigure"), "mkdir build\ncd build\nconfigureScript=../configure\n\n# Apple’s customizations require building and linking additional files, which are handled via `Makefile.local`.\n# These need copied into the build environment to avoid link errors from not building them.\nmkdir common i18n\ncp ../common/Makefile.local common/Makefile.local\ncp ../i18n/Makefile.local i18n/Makefile.local\n")),
     postBuild: "cd ..\nmv build $out\necho \"Doing build-root only, exiting now\" >&2\nexit 0\n",

@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const gluten = nix.arg($, "gluten");
   const eio = nix.arg($, "eio");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gluten-eio",
       src: nix.thunk(() => nix.attr(gluten, "src")),
       version: nix.thunk(() => nix.attr(gluten, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten, eio]),
-      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { __proto__: pos$1, description: "EIO runtime for gluten" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: pos$1, description: "EIO runtime for gluten" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

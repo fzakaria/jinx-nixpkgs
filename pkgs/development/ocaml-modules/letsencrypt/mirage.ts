@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const http_mirage_client = nix.arg($, "http-mirage-client");
   const paf = nix.arg($, "paf");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "letsencrypt-mirage",
       version: nix.thunk(() => nix.attr(letsencrypt, "version")),
       src: nix.thunk(() => nix.attr(letsencrypt, "src")),
       propagatedBuildInputs: nix.thunk(() => [emile, http_mirage_client, letsencrypt, paf]),
-      meta: nix.thunk(() => nix.update(nix.sel(letsencrypt, "meta"), { __proto__: pos$1, description: "ACME implementation in OCaml for MirageOS" })),
+      meta: nix.thunk(() => nix.update(nix.sel(letsencrypt, "meta"), { [nix.POS]: pos$1, description: "ACME implementation in OCaml for MirageOS" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mirage.ts.map

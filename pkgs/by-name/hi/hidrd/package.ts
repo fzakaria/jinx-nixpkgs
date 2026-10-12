@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hidrd",
       version: "0.2.0-unstable-2019-06-03",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DIGImend",
           repo: "hidrd",
           rev: "6c0ed39708a5777ac620f902f39c8a0e03eefe4e",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./allocate-hex-map-with-the-trailing-null.patch")]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HID report descriptor I/O library and conversion tool",
         homepage: "https://github.com/DIGImend/hidrd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dupeguru",
       version: "4.3.1-unstable-2026-01-06",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arsenetar",
           repo: "dupeguru",
           rev: "16aa6c21ffc2c33d44ff4a47bfa1a623c16ed626",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs=\"${qtWrapperArgs[@]}\"\n",
       postFixup: "wrapPythonProgramsIn \"$out/share/dupeguru\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "GUI tool to find duplicate files in a system",
         homepage: "https://github.com/arsenetar/dupeguru",

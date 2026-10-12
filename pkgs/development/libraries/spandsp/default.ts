@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => (() => {
       const version = "0.0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://src.fedoraproject.org/lookaside/pkgs/spandsp/spandsp-${version}.tar.gz/897d839516a6d4edb20397d4757a7ca3/spandsp-${version}.tar.gz`),
           sha256: "0rclrkyspzk575v8fslzjpgp4y2s4x7xk3r55ycvpi4agv33l1fc",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/freeswitch/spandsp/commit/f7b96b08db148763039cf3459d0e00da9636eb92.patch",
             includes: nix.thunk(() => ["spandsp-sim/g1050.c", "spandsp-sim/test_utils.c"]),
             hash: "sha256-2MmVgyMUK0Zn+mL7IX57Y7brYpgmt4GVlis5/NstuNM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/freeswitch/spandsp/commit/f47bcdc301fbddad44e918939eed1b361882f740.patch",
             hash: "sha256-O+lIC3V92GVFoiHsUQOXkoTN2hJ7v5+LQP7RrAhvwlY=",
           })))),
       ]);
-      return { __proto__: pos$4, version, src, patches };
+      return { [nix.POS]: pos$4, version, src, patches };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
   const rocmPackages = nix.arg($, "rocmPackages");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
-      __proto__: pos$16,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$16,
       pname: "triton",
       version: "3.7.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "triton-lang",
           repo: "triton",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,21 +66,21 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-_build-allow-extra-cc-flags.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ccCmdExtraFlags: nix.thunk(() => nix.str`-Wl,-rpath,${nix.sel(addDriverRunpath, "driverLink")}/lib`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-nvidia-driver-short-circuit-before-ldconfig.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             libcudaStubsDir: nix.thunk(() => (nix.asBool(cudaSupport) ? nix.str`${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs` : null)),
           })))),
         nix.path(here, "./inject-nix-cmakeFlags.patch"),
       ], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-nvidia-cudart-a-systempath.patch"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               cudaToolkitIncludeDirs: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/include`),
             })))),
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0004-nvidia-allow-static-ptxas-path.patch"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               nixpkgsExtraBinaryPaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")), "ptxas")),
                 ]))),
@@ -106,8 +106,8 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export MAX_JOBS=\"$NIX_BUILD_CORES\"\n",
       postInstall: nix.thunk(() => nix.str`rm -rf "$out/${nix.sel(python, "sitePackages")}/triton/plugins"
 `),
-      env: nix.thunk(() => nix.update({ __proto__: pos$7, TRITON_BUILD_PROTON: "OFF", TRITON_OFFLINE_BUILD: true }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$8,
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$7, TRITON_BUILD_PROTON: "OFF", TRITON_OFFLINE_BUILD: true }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: pos$8,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-stringop-overread"]))),
           TRITON_PTXAS_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")), "ptxas")),
           TRITON_CUOBJDUMP_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cuobjdump")), "cuobjdump")),
@@ -122,10 +122,10 @@ export default nix.lambda((args) => (() => {
       preCheck: "# build/temp* refers to build_ext.build_temp (looked up in the build logs)\n(cd ./build/temp* ; ctest)\n",
       pythonImportsCheck: nix.thunk(() => ["triton", "triton.language"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         cudaPackages: cudaPackages,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(effectiveStdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pname: "triton-pytest",
             version: nix.thunk(() => nix.attr(triton, "version")),
             src: nix.thunk(() => nix.attr(triton, "src")),
@@ -179,20 +179,20 @@ export default nix.lambda((args) => (() => {
             installPhase: "touch $out",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           torchWithRocm: torchWithRocm,
           "rocm-libamdhip64-path": nix.thunk(() => nix.app(runCommand, "triton-rocm-libamdhip64-path-test", nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               buildInputs: nix.thunk(() => [triton, python, nix.thunk(() => nix.sel(rocmPackages, "clr"))]),
             })), "python -c \"\nimport os\nimport triton\npath = triton.backends.amd.driver._get_path_to_hip_runtime_dylib()\nprint(f'libamdhip64 path: {path}')\nassert os.path.exists(path)\n\" && touch $out\n")),
           "axpy-cuda": nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               libraries: (ps) => [
                 nix.thunk(() => nix.sel(ps, "triton")),
                 nix.thunk(() => nix.sel(ps, "torch-no-triton")),
               ],
               gpuCheckArgs: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
               })),
             })), nix.thunk(() => nix.str`# Adopted from Philippe Tillet https://triton-lang.org/main/getting-started/tutorials/01-vector-add.html
@@ -241,7 +241,7 @@ if __name__ == "__main__":
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Language and compiler for writing highly efficient custom Deep-Learning primitives",
         homepage: "https://github.com/triton-lang/triton",
         changelog: nix.thunk(() => nix.str`https://github.com/triton-lang/triton/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

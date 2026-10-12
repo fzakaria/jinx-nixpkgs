@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "daff63ca2719fbd698aa10f64493c4b31fb67877a8e8dbb8090e9c03a1b1a9e4",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pysqlitecipher"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight and easy to use sqlite wrapper with built-in encryption system",
         homepage: "https://github.com/harshnative/pysqlitecipher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

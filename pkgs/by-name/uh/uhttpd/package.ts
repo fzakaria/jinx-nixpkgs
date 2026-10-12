@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "uhttpd",
       version: "0-unstable-2025-12-24",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/uhttpd.git",
           rev: "506e24987b97fbc866005bfb71316bd63601a1ef",
           hash: "sha256-x5hbbEcyxWhCjjqiHvAxvI1eHewqRlXuAGqXNw+c4sA=",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => [lua5_1, json_c, libubox, ubus, libxcrypt]),
       cmakeFlags: nix.thunk(() => ["-DUCODE_SUPPORT=off", "-DTLS_SUPPORT=on", "-DLUA_SUPPORT=on"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lcrypt" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lcrypt" })),
       postInstall: "wrapProgram $out/bin/uhttpd \\\n  --prefix LD_LIBRARY_PATH : $out/lib/uhttpd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, branch: "master", hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, branch: "master", hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tiny HTTP server from OpenWrt project",
         homepage: "https://openwrt.org/docs/guide-user/services/webserver/uhttpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

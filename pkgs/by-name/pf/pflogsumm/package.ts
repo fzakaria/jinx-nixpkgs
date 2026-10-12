@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pflogsumm";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://jimsun.linxnet.com/downloads/pflogsumm-${version}.tar.gz`),
           sha256: "0hkim9s5f1yg5sfs5048jydhy3sbxafls496wcjk0cggxb113py4",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const installPhase = "mkdir -p \"$out/bin\"\nmv \"pflogsumm.pl\" \"$out/bin/pflogsumm\"\n\nmkdir -p \"$out/share/man/man1\"\nmv \"pflogsumm.1\" \"$out/share/man/man1\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://jimsun.linxnet.com/postfix_contrib.html",
         maintainers: [],
         description: "Postfix activity overview",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

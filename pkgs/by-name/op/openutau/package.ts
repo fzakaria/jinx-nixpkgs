@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "OpenUtau";
       const version = "0.1.565";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openutau",
           repo: "OpenUtau",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "openutau",
             desktopName: "OpenUtau",
             startupWMClass: "openutau",
@@ -65,9 +65,9 @@ export default nix.lambda((args) => (() => {
 ${shouldInstallDesktopItem}
 `;
       })());
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source singing synthesis platform and UTAU successor",
         homepage: "http://www.openutau.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -84,7 +84,7 @@ ${shouldInstallDesktopItem}
         mainProgram: "OpenUtau",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

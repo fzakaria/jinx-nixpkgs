@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const dtc = nix.arg($, "dtc");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dtschema",
       version: "2026.09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devicetree-org",
           repo: "dt-schema",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, dtc]),
       enabledTestPaths: nix.thunk(() => ["test/test-dt-validate.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tooling for devicetree validation using YAML and jsonschema",
         homepage: "https://github.com/devicetree-org/dt-schema/",
         changelog: nix.thunk(() => nix.str`https://github.com/devicetree-org/dt-schema/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
   const bleach = nix.thunk(() => nix.attr(python3Packages, "bleach"));
   const ip2location = nix.thunk(() => nix.attr(python3Packages, "ip2location"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mobsf",
       version: "4.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MobSF",
           repo: "Mobile-Security-Framework-MobSF",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -135,7 +135,7 @@ ${nix.sel(python3, "pythonOnBuildForHost", "interpreter")} -m django makemigrati
         nix.thunk(() => nix.str`${jadx}/bin/jadx`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mobile Security Framework (MobSF) is an automated, all-in-one mobile application (Android/iOS/Windows) pen-testing, malware analysis and security assessment framework capable of performing static and dynamic analysis",
         homepage: "https://github.com/MobSF/Mobile-Security-Framework-MobSF",
         changelog: nix.thunk(() => nix.str`https://github.com/MobSF/Mobile-Security-Framework-MobSF/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

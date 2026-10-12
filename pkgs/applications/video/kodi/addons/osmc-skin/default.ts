@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const namespace = "skin.osmc";
       const version = "21.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmc",
           repo: namespace,
           tag: nix.thunk(() => nix.str`v${version}-August-update`),
           hash: "sha256-3BR6HfKefuyybDv9c/ZkkZMRDyWNZWpftulXyUAD9nY=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/osmc/skin.osmc",
         description: "Default skin for OSMC",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-30")),
       }));
-      return { __proto__: pos$3, pname, namespace, version, src, meta };
+      return { [nix.POS]: pos$3, pname, namespace, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

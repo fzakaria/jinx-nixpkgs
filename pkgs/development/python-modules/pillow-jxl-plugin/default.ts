@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const openexr = nix.arg($, "openexr");
   const pyexiv2 = nix.arg($, "pyexiv2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pillow-jxl-plugin",
       version: "1.3.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pillow_jxl_plugin",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RDD9d1eJl0IHnFSKfSU31tY88PHTIxgAlbwPbwPZ1Po=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })()),
       dontUseCmakeConfigure: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-IiVTlKtKkfZnRXme7QFA5MS8PPiL8+riOYOEoNaHHXc=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r pillow_jxl\n",
       pythonImportsCheck: nix.thunk(() => ["pillow_jxl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Isotr0py/pillow-jpegxl-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Pillow plugin that adds support for JPEG XL files",
         homepage: "https://github.com/Isotr0py/pillow-jpegxl-plugin",

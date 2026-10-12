@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnstap",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnstap",
           repo: "golang-dnstap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage dnstap/dnstap.8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Structured DNS server events decoding utility",
         longDescription: "dnstap implements an encoding format for DNS server events. It uses a\nlightweight framing on top of event payloads encoded using Protocol\nBuffers and is transport neutral.\n\ndnstap can represent internal state inside a DNS server that is difficult\nto obtain using techniques based on traditional packet capture or\nunstructured textual format logging.\n",
         homepage: "https://dnstap.info",

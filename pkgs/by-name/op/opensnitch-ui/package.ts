@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const opensnitch = nix.arg($, "opensnitch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pyproject: true,
       pname: "opensnitch-ui",
       src: nix.thunk(() => nix.attr(opensnitch, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["opensnitch"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Application firewall",
         mainProgram: "opensnitch-ui",
         homepage: "https://github.com/evilsocket/opensnitch/wiki",

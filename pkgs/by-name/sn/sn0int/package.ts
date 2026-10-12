@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sn0int";
       const version = "0.26.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kpcyrd",
           repo: "sn0int",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sn0int \\\n  --bash <($out/bin/sn0int completions bash) \\\n  --fish <($out/bin/sn0int completions fish) \\\n  --zsh  <($out/bin/sn0int completions zsh)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Semi-automatic OSINT framework and package manager",
         homepage: "https://github.com/kpcyrd/sn0int",
         changelog: nix.thunk(() => nix.str`https://github.com/kpcyrd/sn0int/releases/tag/v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sn0int",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

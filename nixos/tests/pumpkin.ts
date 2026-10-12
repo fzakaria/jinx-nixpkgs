@@ -25,38 +25,38 @@ export default nix.lambda((args) => (() => {
   const rcon_pass = "foobar";
   const rcon_port = 25575n;
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "pumpkin",
     containers: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mcrcon"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`f /root/rcon-password 0400 root root - ${rcon_pass}`),
             ]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pumpkin: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               seed: seed,
-              bedrock: nix.thunk(() => ({ __proto__: pos$4, enabled: false })),
+              bedrock: nix.thunk(() => ({ [nix.POS]: pos$4, enabled: false })),
               networking: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 rcon: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   enabled: true,
                   address: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(rcon_port)}`),
                   passwordFile: "/root/rcon-password",
@@ -77,7 +77,7 @@ machine.systemctl("stop pumpkin")
 machine.wait_until_fails("systemctl is-active --quiet pumpkin")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

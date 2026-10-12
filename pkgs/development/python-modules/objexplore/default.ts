@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pandas = nix.arg($, "pandas");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "objexplore",
       version: "1.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kylepollina",
           repo: "objexplore",
           rev: "3c2196d26e5a873eed0a694cddca66352ea7c81e",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "objexplore.utils",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal UI to interactively inspect and explore Python objects",
         homepage: "https://github.com/kylepollina/objexplore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

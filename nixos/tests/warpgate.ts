@@ -36,54 +36,54 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "warpgate",
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       machine: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          warpgate: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          warpgate: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
       machine2: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           etc: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "warpgate-db-url": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               text: "database_url: postgresql://warpgate:warpgate@localhost:5432/warpgate",
             })),
             "warpgate-db-enc": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               text: "WARPGATE_ENCRYPTION_KEY=QVJBTkRPTTMyQ0hBUkFDVEVSU0VOQ1JZUFRJT05LRVk=",
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           warpgate: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             databaseUrlFile: "/etc/warpgate-db-url",
             databaseEncryptionKeysFile: "/etc/warpgate-db-enc",
-            settings: nix.thunk(() => ({ __proto__: pos$8, database_url: null })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$8, database_url: null })),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "psql-init", "CREATE ROLE warpgate WITH LOGIN PASSWORD 'warpgate';\nCREATE DATABASE warpgate WITH OWNER warpgate;\n")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             warpgate: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               after: nix.thunk(() => ["postgresql.target"]),
               requires: nix.thunk(() => ["postgresql.target"]),
             })),
@@ -91,21 +91,21 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       machine3: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           warpgate: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$23,
-              http: nix.thunk(() => ({ __proto__: pos$16, listen: "[::]:443" })),
-              ssh: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
-              rdp: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
-              vnc: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
-              mysql: nix.thunk(() => ({ __proto__: pos$20, enable: true })),
-              postgres: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
-              kubernetes: nix.thunk(() => ({ __proto__: pos$22, enable: true })),
+              [nix.POS]: pos$23,
+              http: nix.thunk(() => ({ [nix.POS]: pos$16, listen: "[::]:443" })),
+              ssh: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+              rdp: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+              vnc: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+              mysql: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+              postgres: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+              kubernetes: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
             })),
           })),
         })),

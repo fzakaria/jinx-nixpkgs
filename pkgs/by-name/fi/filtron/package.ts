@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "filtron",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asciimoo",
           repo: "filtron",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-1DRR16WiBGvhOpq12L5njJJRRCIA7ajs1Py9j/3cWPE=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/asciimoo/filtron/commit/365a0131074b3b12aaa65194bfb542182a63413c.patch",
             hash: "sha256-QGR6YetEzA/b6tC4uD94LBkWv0+9PG7RD72Tpkn2gQU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/asciimoo/filtron/commit/077769282b4e392e96a194c8ae71ff9f693560ea.patch",
             hash: "sha256-BhHbXDKiRjSzC6NKhKUiH6rjt/EgJcEprHMMJ1x/wiQ=",
           })))),
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Reverse HTTP proxy to filter requests by different rules",
         homepage: "https://github.com/asciimoo/filtron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mslex = nix.arg($, "mslex");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oslex",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "petamas",
           repo: "oslex",
           tag: nix.thunk(() => nix.str`release/v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["oslex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OS-independent wrapper for shlex and mslex",
         homepage: "https://github.com/petamas/oslex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

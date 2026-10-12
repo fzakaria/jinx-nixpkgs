@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ibus-table-chinese",
       version: "1.8.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mike-fabian",
           repo: "ibus-table-chinese",
           rev: "44301450e681c23d60301747856c74b5b9d1312e",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, writableTmpDirAsHomeHook]),
       buildInputs: nix.thunk(() => [ibus, ibus_table, python3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         description: "Chinese tables for IBus-Table",
         homepage: "https://github.com/mike-fabian/ibus-table-chinese",

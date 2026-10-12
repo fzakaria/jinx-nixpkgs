@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "unifont_upper";
       const version = "16.0.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/unifont/unifont-${version}/unifont_upper-${version}.otf`),
           hash: "sha256-ACW+6xiQAd9QMidqJ2MQGTkYbW9fvateIR2FyoM7rIs=",
         }))));
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 $src $out/share/fonts/opentype/unifont_upper.otf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode font for glyphs above the Unicode Basic Multilingual Plane",
         homepage: "https://unifoundry.com/unifont/",
         license: nix.thunk(() => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mathnerd314"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

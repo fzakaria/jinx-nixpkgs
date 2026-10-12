@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdbook-bib",
       version: "0.5.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "francisco-perez-sorrosal",
           repo: "mdbook-bib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "mdBook plugin for creating a bibliography & citations in your books",
         homepage: "https://github.com/francisco-perez-sorrosal/mdbook-bib",
         changelog: nix.thunk(() => nix.str`https://github.com/francisco-perez-sorrosal/mdbook-bib/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

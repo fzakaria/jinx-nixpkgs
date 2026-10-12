@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
       const pname = "apngasm";
       const version = "2.91";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}-src.zip`),
           stripRoot: false,
           sha256: "0qhljqql159xkn1l83vz0q8wvzr7rjz4jnhiy0zn36pgvacg0zn1",
         }))));
       const buildInputs = nix.thunk(() => [libpng, zlib, zopfli]);
       const postPatch = "rm -rf libpng zlib zopfli\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_LINK: "-lzopfli" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-lzopfli" }));
       const installPhase = "runHook preInstall\ninstall -Dt $out/bin apngasm\nrunHook postInstall\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create highly optimized Animated PNG files from PNG/TGA images",
         mainProgram: "apngasm",
         homepage: "https://apngasm.sourceforge.net/",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

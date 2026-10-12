@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbgcode",
       version: "0-unstable-2025-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prusa3d",
           repo: "libbgcode",
           rev: "5041c093b33e2748e76d6b326f2251310823f3df",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LibBGCode_BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/prusa3d/libbgcode",
         description: "Prusa Block & Binary G-code reader / writer / converter",
         mainProgram: "bgcode",

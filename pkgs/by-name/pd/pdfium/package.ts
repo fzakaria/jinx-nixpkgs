@@ -71,14 +71,14 @@ export default nix.lambda((args) => (() => {
   const canRunTests = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const canCrossTest = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))));
   const gclientDeps = nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.thunk(() => nix.update({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       src: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "pdfium"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pdfium.googlesource.com/pdfium",
           rev: nix.thunk(() => nix.str`refs/heads/chromium/${version}`),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -86,12 +86,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       "src/build": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "build"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://chromium.googlesource.com/chromium/src/build.git",
           rev: nix.thunk(() => nix.attr(from, "rev")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -99,12 +99,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       "src/third_party/abseil-cpp": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "abseil"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp",
           rev: nix.thunk(() => nix.attr(from, "rev")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -112,12 +112,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       "src/third_party/dragonbox/src": nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "dragonbox"));
           return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: "https://chromium.googlesource.com/external/github.com/jk-jeon/dragonbox",
           rev: nix.thunk(() => nix.attr(from, "rev")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -125,12 +125,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       "src/third_party/fast_float/src": nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "fastFloat"));
           return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           url: "https://chromium.googlesource.com/external/github.com/fastfloat/fast_float",
           rev: nix.thunk(() => nix.attr(from, "rev")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -138,12 +138,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       "src/third_party/simdutf": nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "simdutf"));
           return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           url: "https://chromium.googlesource.com/chromium/src/third_party/simdutf",
           rev: nix.thunk(() => nix.attr(from, "rev")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -151,12 +151,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       "src/third_party/test_fonts": nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         fetcher: "fetchFromGitiles",
         args: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(sources, "testFonts"));
           return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           url: "https://chromium.googlesource.com/chromium/src/third_party/test_fonts",
           rev: nix.thunk(() => nix.attr(from, "rev")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -164,14 +164,14 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), canRunTests, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         "src/third_party/googletest/src": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           fetcher: "fetchFromGitiles",
           args: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(sources, "gtest"));
             return {
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             url: "https://chromium.googlesource.com/external/github.com/google/googletest",
             rev: nix.thunk(() => nix.attr(from, "rev")),
             hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
   const generateShimHeaders = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "generateShimHeaders"));
       return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       url: nix.thunk(() => nix.str`https://chromium.googlesource.com/chromium/src/+archive/${chromiumSrcRef}/tools/generate_shim_headers.tar.gz`),
       hash: nix.thunk(() => nix.attr(from, "hash")),
       stripRoot: false,
@@ -191,7 +191,7 @@ export default nix.lambda((args) => (() => {
   const chromiumBuildtools = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "chromiumBuildtools"));
       return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       url: nix.thunk(() => nix.str`https://chromium.googlesource.com/chromium/src/+archive/${chromiumSrcRef}/buildtools.tar.gz`),
       hash: nix.thunk(() => nix.attr(from, "hash")),
       stripRoot: false,
@@ -200,7 +200,7 @@ export default nix.lambda((args) => (() => {
   const testFontsBundle = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "testFonts", "bundle"));
       return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       url: nix.thunk(() => nix.str`https://storage.googleapis.com/chromium-fonts/${nix.sel(sources, "testFonts", "bundle", "object")}`),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
   const buildToolStdenv = nix.thunk(() => nix.sel(buildPackages, "stdenv"));
   const clangMajor = nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc"))))))));
   const chromiumClang = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       name: nix.thunk(() => nix.str`chromium-clang-${nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}`),
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(stdenv, "cc", "cc", "libllvm")),
@@ -236,7 +236,7 @@ export default nix.lambda((args) => (() => {
   const unitTestFilter = nix.thunk(() => nix.app(mkDisabledGtestFilter, disabledUnitTests));
   const embedderTestFilter = nix.thunk(() => nix.app(mkDisabledGtestFilter, disabledEmbedderTests));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       pname: "pdfium",
       version: version,
       gclientDeps: gclientDeps,
@@ -277,7 +277,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(canRunTests))), nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         })))),
       postPatch: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`substituteInPlace .gn \\
@@ -377,7 +377,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         versionInfo: versionInfo,
         fullVersion: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => [
               nix.thunk(() => nix.sel(versionInfo, "major")),
@@ -386,25 +386,25 @@ runHook postInstall
               nix.thunk(() => nix.sel(versionInfo, "patch")),
             ]))))),
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$25,
-            clang: nix.thunk(() => nix.app(nix.sel(pdfium, "override"), nix.thunk(() => ({ __proto__: pos$24, stdenv: nix.thunk(() => nix.sel(llvmPackages, "stdenv")) })))),
+            [nix.POS]: pos$25,
+            clang: nix.thunk(() => nix.app(nix.sel(pdfium, "override"), nix.thunk(() => ({ [nix.POS]: pos$24, stdenv: nix.thunk(() => nix.sel(llvmPackages, "stdenv")) })))),
           }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), canCrossTest, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             cross: nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "pdfium")),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), canRunTests, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             integration: nix.thunk(() => nix.app(nix.sel(pkgsBuildHost, "callPackage"), nix.path(here, "./tests"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 pdfium: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
             pypdfium2: nix.thunk(() => nix.app(nix.sel(pkgsBuildHost, "python3Packages", "pypdfium2", "override"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 pdfium: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         description: "Open-source PDF rendering library",
         homepage: "https://pdfium.googlesource.com/pdfium/",
         license: nix.thunk(() => (() => {

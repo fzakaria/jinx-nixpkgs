@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const pname = "backports-asyncio-runner";
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "samypr100",
       repo: "backports.asyncio.runner",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-F8x7MZgu0VItH7kBke7C7+ZBoM6Iyj8xOeQ2t56ff3k=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_tasks_py310.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/samypr100/backports.asyncio.runner/releases/tag/${nix.sel(src, "tag")}`),
         description: "Backport of Python 3.11 asyncio.Runner",
         homepage: "https://github.com/samypr100/backports.asyncio.runner",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fig2dev",
       version: "3.2.9a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcj/fig2dev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YeGFOTF2hS8DuQGzsFsZ+8Wtglj/FC89pucLG4NRMyY=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./CVE-2025-31162.patch"),
         nix.path(here, "./CVE-2025-31163.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fig2dev-prototypes.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/fig2dev/files/fig2dev-3.2.9a-prototypes.patch?id=93644497325b6df7a17f8bd05ad0495607aa5c34",
             hash: "sha256-F6z0m3Ez9JpgZg+TjVjuIZhAyTMHodB7O/l8lDTOL54=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [libpng]),
-      env: nix.thunk(() => ({ __proto__: pos$3, GSEXE: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, GSEXE: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })),
       configureFlags: nix.thunk(() => ["--enable-transfig"]),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/fig2ps2tex \\
     --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, bc, gnugrep, gawk]))}
@@ -52,7 +52,7 @@ wrapProgram $out/bin/pic2tpic \\
     --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to convert Xfig files to other formats",
         homepage: "https://mcj.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "xfig")),

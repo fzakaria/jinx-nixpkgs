@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const theora = nix.arg($, "theora");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mm",
       version: "0.8.6",
       duneVersion: "3",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-mm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [alsa, ao, mad, pulseaudio, theora]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-mm",
         description: "High-level library to create and manipulate multimedia streams",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

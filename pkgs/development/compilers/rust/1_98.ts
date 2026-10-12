@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const wrapCCWith = nix.arg($, "wrapCCWith");
   const overrideCC = nix.arg($, "overrideCC");
   const fetchpatch = nix.arg($, "fetchpatch");
-  const llvmSharedFor = (pkgSet) => nix.app(nix.sel(pkgSet, "llvmPackages", "libllvm", "override"), nix.thunk(() => nix.update({ __proto__: pos$1, enableSharedLibraries: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({
-        __proto__: pos$3,
+  const llvmSharedFor = (pkgSet) => nix.app(nix.sel(pkgSet, "llvmPackages", "libllvm", "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, enableSharedLibraries: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({
+        [nix.POS]: pos$3,
         stdenv: nix.thunk(() => nix.app(nix.sel(pkgSet, "stdenv", "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             allowedRequisites: null,
             cc: nix.thunk(() => nix.sel(pkgSet, "pkgsBuildHost", "llvmPackages", "clangUseLLVM")),
           })))),
       }))))));
   return nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       rustcVersion: "1.98.1",
       rustcSha256: "sha256-3J+LkXsyRE1sesQ8wbQJAT06mmMzOLtgwUza4dFe5lo=",
       llvmSharedForBuild: nix.thunk(() => nix.app(llvmSharedFor, pkgsBuildBuild)),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       llvmShared: nix.thunk(() => nix.app(llvmSharedFor, pkgsHostTarget)),
       bootstrapVersion: "1.98.1",
       bootstrapHashes: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "i686-unknown-linux-gnu": "22b82030ccbcb5c77f8740b06cb03a880ca9779e1b1ed9674eabb7b99eae55fc",
         "x86_64-unknown-linux-gnu": "24ba1338a2d35c5a3247936546429e163fa674d726102af18bdf624582c57aea",
         "x86_64-unknown-linux-musl": "4178195a7f39f2eeec01cc90d579707787a73c0f42d2bf943f78b8dbbac69c04",

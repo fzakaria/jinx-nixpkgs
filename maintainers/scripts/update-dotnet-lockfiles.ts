@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   return nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       predicate: (_) => (__1) => true,
       "get-script": (pkg) => nix.selOr(pkg, () => null, "fetch-deps"),
     }, args_1)));

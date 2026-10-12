@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ColPack",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CSCsw",
           repo: "ColPack",
           rev: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Remove libtool archive\nrm $out/lib/*.la\n\n# Remove compiled examples (Basic examples get compiled anyway)\nrm -r $out/examples\n\n# Copy the example sources (Basic tree contains scripts and object files)\nmkdir -p $out/share/ColPack/examples/Basic\ncp SampleDrivers/Basic/*.cpp $out/share/ColPack/examples/Basic\ncp -r SampleDrivers/Matrix* $out/share/ColPack/examples\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package comprising of implementations of algorithms for\n    vertex coloring and derivative computation",
         homepage: "https://cscapes.cs.purdue.edu/coloringpage/software.htm#functionalities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

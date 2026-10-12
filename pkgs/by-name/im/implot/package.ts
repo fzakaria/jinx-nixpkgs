@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "implot";
       const version = "0.17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epezent",
           repo: "implot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [imgui]);
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "implot-demos": nix.thunk(() => nix.app(callPackage, nix.path(here, "./demos"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Immediate Mode Plotting",
         homepage: "https://github.com/epezent/implot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

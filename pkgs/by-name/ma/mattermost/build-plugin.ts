@@ -52,7 +52,7 @@ exit $result
         const src_1 = src;
         const vendorHash_1 = vendorHash;
         const npmDeps = nix.thunk(() => (nix.asBool(buildWebapp) ? nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             src: nix.thunk(() => nix.str`${src_1}/webapp`),
             hash: npmDepsHash,
             forceGitDeps: true,
@@ -62,7 +62,7 @@ exit $result
         const makeCacheWritable = true;
         const forceGitDeps = true;
         const overrideModAttrs = (final) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           preBuild: "go mod tidy\n",
           nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "lists", "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(final, "nativeBuildInputs")))),
         });
@@ -85,7 +85,7 @@ runHook postBuild
 `);
         const installPhase = "plugin=\"$(ls dist/*.tar.gz | tail -n1)\"\nif [ -z \"$plugin\" ] || [ ! -f \"$plugin\" ]; then\n  echo \"No plugin tarball in dist folder!\" >&2\n  exit 1\nfi\ncp -av \"$plugin\" $out\n";
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name,
           version: version_1,
           src: src_1,

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zalando-stups",
           repo: "python-tokens",
           rev: version,
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [requests]);
       const nativeCheckInputs = nix.thunk(() => [mock, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library that keeps OAuth 2.0 service access tokens in memory for your usage",
         homepage: "https://github.com/zalando-stups/python-tokens",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mschuwalow"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

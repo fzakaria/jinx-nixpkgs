@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qzdl",
       version: "3.3.0.0-unstable-2025-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qbasicer",
           repo: "qzdl",
           rev: "a03191777152b932b9bf15f45d439bf38e8c7679",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 $src/res/zdl3.svg $out/share/icons/hicolor/scalable/apps/zdl3.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "zdl3",
             exec: "zdl %U",
             icon: "zdl3",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsForQt5, "qtbase", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ZDoom WAD Launcher",
         homepage: "https://zdl.vectec.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

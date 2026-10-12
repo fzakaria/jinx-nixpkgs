@@ -23,29 +23,29 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "coc-spell-checker",
       version: "0-unstable-2022-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iamcco",
           repo: "coc-spell-checker",
           rev: "51c484169de17b5317e54f5cf06bcd3fb04477e7",
           hash: "sha256-WimL7rE+hYW8JoWDnsL3r1zAoEDZBDy6NY2i6Wblm8c=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-nMDcc8dP0L7vpIj6Q1HOJyFCkDZ+19/IdbONxBj1jq8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Basic spell checker that works well with camelCase code for (Neo)vim",
         homepage: "https://github.com/iamcco/coc-spell-checker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

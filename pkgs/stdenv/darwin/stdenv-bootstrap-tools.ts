@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "stdenv-bootstrap-tools",
       nativeBuildInputs: nix.thunk(() => [dumpnar, nukeReferences]),
       buildCommand: nix.thunk(() => (() => {
         const getBin = nix.thunk(() => nix.attr(lib, "getBin"));
         const getDev = nix.thunk(() => nix.attr(lib, "getDev"));
         const getLib = nix.thunk(() => nix.attr(lib, "getLib"));
-        const coreutils_ = nix.thunk(() => nix.app(nix.sel(coreutils, "override"), (prevArgs) => ({ __proto__: pos$1, aclSupport: false, singleBinary: false })));
-        const curl_ = nix.thunk(() => nix.app(nix.sel(curlMinimal, "override"), (prevArgs) => ({ __proto__: pos$2, gssSupport: false, http2Support: false, scpSupport: false })));
+        const coreutils_ = nix.thunk(() => nix.app(nix.sel(coreutils, "override"), (prevArgs) => ({ [nix.POS]: pos$1, aclSupport: false, singleBinary: false })));
+        const curl_ = nix.thunk(() => nix.app(nix.sel(curlMinimal, "override"), (prevArgs) => ({ [nix.POS]: pos$2, gssSupport: false, http2Support: false, scpSupport: false })));
         const unpackScript = nix.thunk(() => nix.app(writeText, "bootstrap-tools-unpack.sh", "set -euo pipefail\n\necho Unpacking the bootstrap tools... >&2\nmkdir $out\ntar xf \"$1\" -C $out\n\nupdateInstallName() {\n  local path=\"$1\"\n\n  cp \"$path\" \"$path.new\"\n  install_name_tool -id \"$path\" \"$path.new\"\n  codesign -f -i \"$(basename \"$path\")\" -s - \"$path.new\"\n  mv -f \"$path.new\" \"$path\"\n}\n\nfind $out/lib -type f -name '*.dylib' -print0 | while IFS= read -r -d $'\\0' lib; do\n  updateInstallName \"$lib\"\ndone\n\n# as is a wrapper around clang. need to replace the nuked store paths\nsed -i 's|/.*/bin/|'\"$out\"'/bin/|' $out/bin/as\n\n# Provide a gunzip script.\ncat > $out/bin/gunzip <<EOF\n#!$out/bin/sh\nexec $out/bin/gzip -d \"\\$@\"\nEOF\nchmod +x $out/bin/gunzip\n\n# Provide fgrep/egrep.\necho \"#! $out/bin/sh\" > $out/bin/egrep\necho \"exec $out/bin/grep -E \\\"\\$@\\\"\" >> $out/bin/egrep\necho \"#! $out/bin/sh\" > $out/bin/fgrep\necho \"exec $out/bin/grep -F \\\"\\$@\\\"\" >> $out/bin/fgrep\n\ncat >$out/bin/dsymutil << EOF\n#!$out/bin/sh\nEOF\n\nchmod +x $out/bin/egrep $out/bin/fgrep $out/bin/dsymutil\n"));
         return nix.str`mkdir -p $out/bin $out/include $out/lib $out/lib/darwin
 
@@ -228,16 +228,16 @@ dumpnar $out/unpack | xz -9 -T $NIX_BUILD_CORES > $out/on-server/unpack.nar.xz
       })()),
       allowedReferences: [],
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         bootstrapFiles: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bootstrapTools: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/on-server/bootstrap-tools.tar.xz`),
-          unpack: nix.thunk(() => nix.app(runCommand, "unpack", nix.thunk(() => ({ __proto__: pos$3, allowedReferences: [] })), nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "finalPackage")}/unpack $out
+          unpack: nix.thunk(() => nix.app(runCommand, "unpack", nix.thunk(() => ({ [nix.POS]: pos$3, allowedReferences: [] })), nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "finalPackage")}/unpack $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),
       })),
     }));

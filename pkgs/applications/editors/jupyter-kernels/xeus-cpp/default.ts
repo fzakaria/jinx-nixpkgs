@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const xeus_cpp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./xeus-cpp.nix"), nix.thunk(() => ({}))));
   const mkKernelSpec = (std) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     displayName: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["c++"]), nix.thunk(() => ["C++ "]), std)),
     argv: nix.thunk(() => [
       nix.thunk(() => nix.str`${xeus_cpp}/bin/xcpp`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     logo64: nix.thunk(() => nix.str`${xeus_cpp}/share/jupyter/kernels/xcpp17/logo-64x64.png`),
   });
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "cpp11-kernel": nix.thunk(() => nix.app(mkKernelSpec, "c++11")),
     "cpp14-kernel": nix.thunk(() => nix.app(mkKernelSpec, "c++14")),
     "cpp17-kernel": nix.thunk(() => nix.app(mkKernelSpec, "c++17")),

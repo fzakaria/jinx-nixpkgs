@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nixel = nix.arg($, "nixel");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nixel",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kamadorueda",
           repo: "nixel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-X/O1Lg1llyRz+d5MC1xO4qKU1+mDIlZhgj6qQ9kLH4k=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: nixel })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: nixel })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lexer, Parser, Abstract Syntax Tree and Concrete Syntax Tree for the Nix Expressions Language",
         mainProgram: "nixel",
         homepage: "https://github.com/kamadorueda/nixel",

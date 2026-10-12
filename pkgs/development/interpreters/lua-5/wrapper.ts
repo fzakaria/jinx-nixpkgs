@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const env = nix.thunk(() => (() => {
     const paths = nix.thunk(() => nix.concat([lua], nix.app(requiredLuaModules, extraLibs)));
     return nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`${nix.sel(lua, "name")}-env`),
         paths: paths,
         ignoreCollisions: ignoreCollisions,
@@ -61,13 +61,13 @@ done
 `, postBuild)),
         meta: nix.thunk(() => nix.attr(lua, "meta")),
         passthru: nix.thunk(() => nix.update(nix.sel(lua, "passthru"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           interpreter: nix.thunk(() => nix.str`${env}/bin/lua`),
           lua: lua,
           luaPath: nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "luaLib", "genLuaPathAbsStr"), env)),
           luaCpath: nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "luaLib", "genLuaCPathAbsStr"), env)),
           env: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: nix.thunk(() => nix.str`interactive-${nix.sel(lua, "name")}-environment`),
               nativeBuildInputs: nix.thunk(() => [env]),
               buildCommand: "echo >&2 \"\"\necho >&2 \"*** lua 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n",

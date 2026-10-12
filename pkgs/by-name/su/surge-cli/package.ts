@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "surge-cli";
       const version = "0.23.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sintaxi",
           repo: "surge",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-F1C/sfOT/Tf+h28g1umP6czLFIsxDkbvT14ZfWLTiCE=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "surge",
         description: "CLI for the surge.sh CDN",
         homepage: "https://surge.sh",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "MoritzBoehme"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

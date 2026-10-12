@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apng2gif",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/apng2gif/apng2gif-${nix.sel(finalAttrs, "version")}-src.zip`),
           stripRoot: false,
           hash: "sha256-qX8gmE0Lu2p15kL0y6cmX/bI0uk5Ehfi8ygt07BbgmU=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
       installPhase: "runHook preInstall\ninstall -Dm755 apng2gif $out/bin/apng2gif\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://apng2gif.sourceforge.net/",
         description: "Simple program that converts APNG files to animated GIF format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "termtekst",
       version: "1.0",
       pyproject: true,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zevv",
           repo: "termtekst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })()),
       patchPhase: "substituteInPlace setup.py \\\n  --replace-fail \"assert\" \"assert 1==1 #\"\nsubstituteInPlace src/tt \\\n  --replace-fail \"locale.setlocale\" \"#locale.setlocale\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console NOS Teletekst viewer in Python",
         mainProgram: "tt",
         longDescription: "Small Python app using curses to display Dutch NOS Teletekst on\nthe Linux console. The original Teletekst font includes 2x6\nraster graphics glyphs which have no representation in unicode;\nas a workaround the braille set is abused to approximate the\ngraphics.\n",

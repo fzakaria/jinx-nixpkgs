@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const hunspell = nix.arg($, "hunspell");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "katvan",
       version: "0.12.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IgKh",
           repo: "katvan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-WyPiRj/5So/1vjAytnXoldwYMG++tuLl0B0v31BeJxY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "bare-bones editor for Typst files, with a bias for Right-to-Left editing",
         homepage: "https://github.com/IgKh/katvan",
         changelog: nix.thunk(() => nix.str`https://github.com/IgKh/katvan/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

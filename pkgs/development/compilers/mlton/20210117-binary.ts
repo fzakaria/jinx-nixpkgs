@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version = "20210117";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.amd64-linux-glibc2.31.tgz`),
           hash: "sha256-dJy1nWuszWRBQ3Cb6GYQUijSttzUDFB6kLicm14PRdI=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://projects.laas.fr/tina/software/mlton-${version}-1.arm64-darwin-21.6-gmp-static.tgz`),
           hash: "sha256-XYzEBG9QLKfZhnDVORXjoZc+wIJuTEwj4l1IP6ZXweg=",
         }))) : nix.builtins.throw("Architecture not supported"))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "remove-duplicate-if.patch",
             url: "https://github.com/MLton/mlton/commit/22002cd0a53a1ab84491d74cb8dc6a4e50c1f7b7.patch",
             decode: "sed -e 's|Makefile\\.binary|Makefile|g'",
@@ -69,12 +69,12 @@ for e in mllex mlnlffigen mlprof mlyacc; do
     $out/bin/$e
 done
 `))));
-      const meta = nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib }))), {
-        __proto__: pos$5,
+      const meta = nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))), {
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

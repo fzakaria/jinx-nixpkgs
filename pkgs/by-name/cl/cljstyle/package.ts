@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cljstyle",
       version: "0.17.642",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/greglook/cljstyle/releases/download/${nix.sel(finalAttrs, "version")}/cljstyle-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-AkCuTZeDXbNBuwPZEMhYGF/oOGIKq5zVDwL8xwnj+mE=",
         })))),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "graal-build-time": nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             repos: nix.thunk(() => ["https://repo.clojars.org/"]),
             groupId: "com.github.clj-easy",
             artifactId: "graal-build-time",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for formatting Clojure code",
         homepage: "https://github.com/greglook/cljstyle",
         sourceProvenance: nix.thunk(() => (() => {

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage",
       version: nix.thunk(() => nix.attr(mirage_runtime, "version")),
       src: nix.thunk(() => nix.attr(mirage_runtime, "src")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 dune install --prefix=$out --libdir=$dev/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/ mirage
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(mirage_runtime, "meta"), { __proto__: pos$1, description: "MirageOS library operating system" })),
+      meta: nix.thunk(() => nix.update(nix.sel(mirage_runtime, "meta"), { [nix.POS]: pos$1, description: "MirageOS library operating system" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

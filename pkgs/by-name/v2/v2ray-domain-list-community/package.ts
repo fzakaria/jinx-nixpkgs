@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "v2ray-domain-list-community";
       const version = "20260925234224";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "v2fly",
           repo: "domain-list-community",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-GwZTwdgAMGgsrpCzrqbaRjZEeDUPSHRwXHDaKDCu3Fw=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Community managed domain list",
         homepage: "https://github.com/v2fly/domain-list-community",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "nickcao"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(generator, "pname")),
       version: nix.thunk(() => nix.attr(generator, "version")),
       src: nix.thunk(() => nix.attr(generator, "src")),
@@ -52,7 +52,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm644 dlc.dat           $out/share/v2ray/geosite.dat\ninstall -Dm644 dlc.dat_plain.yml $out/share/v2ray/geosite.dat_plain.yml\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         generator: generator,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),

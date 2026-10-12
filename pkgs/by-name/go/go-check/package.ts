@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "check",
       version: "0-unstable-2018-12-24",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opennota",
           repo: "check",
           rev: "ccaba434e62accd51209476ad093810bd27ec150",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-XgYRw077ry+ZJSuelXH2imYjfTxW+i7nVZ3DurL5UPU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of utilities for checking Go sources",
         homepage: "https://gitlab.com/opennota/check",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
     "pathd",
   ]);
   const daemonDefaultOptions = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     zebra: "-A 127.0.0.1 -s 90000000",
     mgmtd: "-A 127.0.0.1",
     bgpd: "-A 127.0.0.1",
@@ -121,52 +121,52 @@ ${nix.sel(cfg, "config")}
 end
 `))));
   const serviceOptions = (service) => nix.update({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: nix.thunk(() => [nix.thunk(() => nix.sel(daemonDefaultOptions, nix.key(nix.force(service))))]),
         description: nix.thunk(() => nix.str`Options for the FRR ${service} daemon.
 `),
       })))),
     extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: [],
         description: nix.thunk(() => nix.str`Extra options to be appended to the FRR ${service} daemon options.
 `),
       })))),
   }, (nix.asBool(nix.builtins.elem(service, daemons)) ? {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`FRR ${service}`))),
   } : {}));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     imports: nix.thunk(() => nix.concat([
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         options: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             frr: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: null,
                   example: "/etc/frr/frr.conf",
                   description: "Configuration file to use for FRR.\nBy default the NixOS generated files are used.\n",
                 })))),
               config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                   default: "",
                   example: "router rip\n  network 10.0.0.0/8\nrouter ospf\n  network 10.0.0.0/8 area 0\nrouter bgp 65001\n  neighbor 10.0.0.1 remote-as 65001\n",
                   description: "FRR configuration statements.\n",
                 })))),
               openFilesLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                   default: 1024n,
                   description: "This is the maximum number of FD's that will be available.  Use a\nreasonable value for your setup if you are expecting a large number\nof peers in say BGP.\n",
@@ -176,11 +176,11 @@ end
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         options: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             frr: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), allDaemons, serviceOptions)),
           })),
         })),
@@ -192,16 +192,16 @@ end
       const daemonOptionLine = (d) => nix.str`${d}_options="${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.sel(cfg, nix.key(nix.force(d)), "options"), nix.sel(cfg, nix.key(nix.force(d)), "extraOptions"))))}"`;
       const daemonOptions = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(daemonOptionLine, allDaemons))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "any"), isEnabled, daemons)) || nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "config"), "")))), nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           environment: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "frr"))]),
             etc: nix.thunk(() => ({
-              __proto__: pos$19,
-              "frr/frr.conf": nix.thunk(() => ({ __proto__: pos$16, source: configFile })),
-              "frr/vtysh.conf": nix.thunk(() => ({ __proto__: pos$17, text: "service integrated-vtysh-config\n" })),
+              [nix.POS]: pos$19,
+              "frr/frr.conf": nix.thunk(() => ({ [nix.POS]: pos$16, source: configFile })),
+              "frr/vtysh.conf": nix.thunk(() => ({ [nix.POS]: pos$17, text: "service integrated-vtysh-config\n" })),
               "frr/daemons": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 text: nix.thunk(() => nix.str`# This file tells the frr package which daemons to start.
 #
 # The watchfrr, zebra and staticd daemons are always started.
@@ -222,29 +222,29 @@ ${daemonOptions}
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             users: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               frr: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "FRR daemon user",
                 isSystemUser: true,
                 group: "frr",
               })),
             })),
             groups: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               frr: nix.thunk(() => ({})),
-              frrvty: nix.thunk(() => ({ __proto__: pos$23, members: nix.thunk(() => ["frr"]) })),
+              frrvty: nix.thunk(() => ({ [nix.POS]: pos$23, members: nix.thunk(() => ["frr"]) })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$31,
-            tmpfiles: nix.thunk(() => ({ __proto__: pos$26, rules: nix.thunk(() => ["d /run/frr 0755 frr frr -"]) })),
+            [nix.POS]: pos$31,
+            tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$26, rules: nix.thunk(() => ["d /run/frr 0755 frr frr -"]) })),
             services: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               frr: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 description: "FRRouting",
                 documentation: nix.thunk(() => ["https://frrouting.readthedocs.io/en/latest/setup.html"]),
                 wants: nix.thunk(() => ["network.target"]),
@@ -255,7 +255,7 @@ ${daemonOptions}
                 reloadIfChanged: true,
                 restartTriggers: nix.thunk(() => [configFile, daemonList]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   Nice: nix.thunk(() => nix.neg(5n)),
                   Type: "forking",
                   NotifyAccess: "all",
@@ -269,14 +269,14 @@ ${daemonOptions}
                   ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "frr")}/libexec/frr/frrinit.sh stop`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "frr")}/libexec/frr/frrinit.sh reload`),
                 })),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$28, StartLimitBurst: "3" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$28, StartLimitBurst: "3" })),
               })),
             })),
           })),
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "woffs"))];

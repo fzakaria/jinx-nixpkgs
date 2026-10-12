@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const wl = nix.arg($, "wl");
   const wl_vapi_gen = nix.arg($, "wl-vapi-gen");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "river",
       nativeBuildInputs: nix.thunk(() => [wl_vapi_gen]),
       buildInputs: nix.thunk(() => [json_glib, wl]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for River using IPC" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for River using IPC" })),
       postUnpack: "rm -rf $sourceRoot/subprojects\nmkdir -p $sourceRoot/subprojects\ncp -r --remove-destination $src/lib/wayland-glib $sourceRoot/subprojects/wayland-glib\n",
     })));
 })(), formals$1);

@@ -29,26 +29,26 @@ export default nix.lambda((args) => (() => {
   const version = "2.15.6";
   const musicVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version));
   const music = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "7kaa-music",
       version: musicVersion,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.7kfans.com/downloads/7kaa-music-${musicVersion}.tar.bz2`),
           hash: "sha256-sNdntuJXGaFPXzSpN0SoAi17wkr2YnW+5U38eIaVwcM=",
         })))),
       installPhase: "mkdir -p $out\ncp -r * $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "7kaa",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "the3dfxdude",
           repo: "7kaa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ cp ${music}/COPYING-Music.txt $out/share/7kaa/MUSIC
 cp ${music}/COPYING-Music.txt $out/share/doc/7kaa
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.7kfans.com",
         description: "GPL release of the Seven Kingdoms with multiplayer (available only on x86 platforms)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

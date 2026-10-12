@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libvdpau = nix.arg($, "libvdpau");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vdpauinfo",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/vdpau/vdpauinfo/-/archive/${nix.sel(finalAttrs, "version")}/vdpauinfo-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-uOs/r8Ow7KvSpY1NhD2A+D4Qs6iWJe4fZGfVj6nIiCw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libvdpau]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://people.freedesktop.org/~aplattner/vdpau/",
         description: "Tool to query the Video Decode and Presentation API for Unix (VDPAU) abilities of the system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -29,20 +29,20 @@ export default nix.lambda((args) => (() => {
   const getLuaPath = (lib_1) => (dir) => nix.str`${lib_1}/${dir}/lua/${nix.sel(awesome, "lua", "luaversion")}`;
   const makeSearchPath = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (path) => nix.add(nix.add(nix.add(" --search ", nix.app(getLuaPath, path, "share")), " --search "), nix.app(getLuaPath, path, "lib"))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             awesome: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Awesome window manager")),
               luaModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: [],
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                   description: "List of lua packages available for being used in the Awesome configuration.",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "awesome", nix.thunk(() => ({})))),
               noArgb: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   default: false,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Disable client transparency support, which can be greatly detrimental to performance in some setups",
@@ -61,15 +61,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           xserver: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "awesome",
                   start: nix.thunk(() => nix.str`${awesome}/bin/awesome ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "noArgb")), "--no-argb")} ${nix.app(makeSearchPath, nix.thunk(() => nix.sel(cfg, "luaModules")))} &
 waitPID=$!
@@ -78,7 +78,7 @@ waitPID=$!
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$12, systemPackages: nix.thunk(() => [awesome]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$12, systemPackages: nix.thunk(() => [awesome]) })),
       })))),
   };
 })(), formals$1);

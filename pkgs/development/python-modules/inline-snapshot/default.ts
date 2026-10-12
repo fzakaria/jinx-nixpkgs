@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.34.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "15r10nk",
           repo: "inline-snapshot",
           tag: version,
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         black: nix.thunk(() => [black]),
         "dirty-equals": nix.thunk(() => [dirty_equals]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["inline_snapshot"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_typing.py", "tests/test_docs.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create and update inline snapshots in Python tests",
         homepage: "https://github.com/15r10nk/inline-snapshot/",
         changelog: nix.thunk(() => nix.str`https://github.com/15r10nk/inline-snapshot/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

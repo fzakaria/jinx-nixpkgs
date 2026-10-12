@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-bamboo";
       const version = "0.8.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BambooEngine",
           repo: pname,
           rev: nix.thunk(() => nix.add("v", nix.app(nix.sel(lib, "toUpper"), version))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "export GOCACHE=\"$TMPDIR/go-cache\"\nsed -i \"s,/usr,$out,\" data/bamboo.xml\n";
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         description: "Vietnamese IME for IBus",
         homepage: "https://github.com/BambooEngine/ibus-bamboo",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

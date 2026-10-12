@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "daemon",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libslack.org/daemon/download/daemon-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-+iiFmtNBywoLASwRwnGBT4cEggE7SfcQYAMh03mIfNE=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turns other processes into daemons",
         longDescription: "Daemon turns other process into daemons. There are many tasks that need\nto be performed to correctly set up a daemon process. This can be tedious.\nDaemon performs these tasks for other processes. This is useful for\nwriting daemons in languages other than C, C++ or Perl (e.g. /bin/sh,\nJava).\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

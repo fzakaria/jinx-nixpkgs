@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crumbs",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fasseg",
           repo: "crumbs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "sed -i 's|gfind|find|' crumbs-completion.fish\n",
       postInstall: "mkdir -p $out/share/bash-completion/completions\nmkdir -p $out/share/fish/vendor_completions.d\n\ncp crumbs-completion.bash $out/share/bash-completion/completions/crumbs\ncp crumbs-completion.fish $out/share/fish/vendor_completions.d/crumbs.fish\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bookmarks for the command line",
         homepage: "https://github.com/fasseg/crumbs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

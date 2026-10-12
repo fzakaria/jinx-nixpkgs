@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bmputil";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blackmagic-debug",
           repo: "bmputil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook, udevCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Black Magic Probe companion utility",
         homepage: "https://codeberg.org/blackmagic-debug/bmputil",
         license: nix.thunk(() => (() => {
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

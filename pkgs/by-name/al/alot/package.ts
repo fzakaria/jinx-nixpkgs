@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const notmuch = nix.arg($, "notmuch");
   const withManpage = nix.argOr($, "withManpage", () => false);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alot",
       version: "0.12",
       pyproject: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withManpage, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pazz",
           repo: "alot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +83,7 @@ sed "s,/usr/bin,$out/bin,g" extra/alot.desktop > $out/share/applications/alot.de
 `);
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pazz/alot",
         description: "Terminal MUA using notmuch mail",
         changelog: nix.thunk(() => nix.str`https://github.com/pazz/alot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

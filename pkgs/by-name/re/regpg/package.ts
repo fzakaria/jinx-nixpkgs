@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "TextMarkdown"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "regpg",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fanf2",
           repo: "regpg",
           rev: nix.thunk(() => nix.str`regpg-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ wrapProgram $out/bin/regpg --prefix PATH ":" \\
   "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPG wrapper utility for storing secrets in VCS",
         mainProgram: "regpg",
         homepage: "https://dotat.at/prog/regpg",

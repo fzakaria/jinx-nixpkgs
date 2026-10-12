@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "please",
       version: "0.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edneville",
           repo: "please",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "installManPage man/*\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, please: nix.thunk(() => nix.attr(nixosTests, "please")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, please: nix.thunk(() => nix.attr(nixosTests, "please")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Polite regex-first sudo alternative",
         longDescription: "Delegate accurate least privilege access with ease. Express easily with a\nregex and expose only what is needed and nothing more. Or validate file\nedits with pleaseedit.\n\nPlease is written with memory safe rust. Traditional C memory unsafety is\navoided, logic problems may exist but this codebase is relatively small.\n",
         homepage: "https://www.usenix.org.uk/content/please.html",

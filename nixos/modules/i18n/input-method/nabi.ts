@@ -20,28 +20,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const imcfg = nix.thunk(() => nix.sel(config, "i18n", "inputMethod"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(imcfg, "enable")) && nix.asBool(nix.eq(nix.sel(imcfg, "type"), "nabi")))), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         i18n: nix.thunk(() => ({
-          __proto__: pos$2,
-          inputMethod: nix.thunk(() => ({ __proto__: pos$1, package: nix.thunk(() => nix.sel(pkgs, "nabi")) })),
+          [nix.POS]: pos$2,
+          inputMethod: nix.thunk(() => ({ [nix.POS]: pos$1, package: nix.thunk(() => nix.sel(pkgs, "nabi")) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           variables: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             GTK_IM_MODULE: "nabi",
             QT_IM_MODULE: "nabi",
             XMODIFIERS: "@im=nabi",
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           xserver: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               sessionCommands: nix.thunk(() => nix.str`${nix.sel(pkgs, "nabi")}/bin/nabi &`),
             })),
           })),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libconfig = nix.arg($, "libconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xob",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "florentc",
           repo: "xob",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Lightweight overlay bar for the X Window System",
         longDescription: "A lightweight configurable overlay volume/backlight/progress/anything bar\nfor the X Window System (and Wayland compositors with XWayland). Each\ntime a new value is read on the standard input, it is displayed as a\ntv-like bar over other windows. It then vanishes after a configurable\namount of time. A value followed by a bang '!' is displayed using an\nalternate color to account for special states (e.g. muted audio). There\nis also support for overflows (when the value exceeds the maximum).\n",

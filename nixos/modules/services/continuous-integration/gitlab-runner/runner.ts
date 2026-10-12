@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
   const hashedServices = nix.thunk(() => nix.app(mapAttrs$, (name) => (service) => nix.app(nameValuePair, nix.thunk(() => nix.app(genRunnerName, name, service)), service), nix.thunk(() => nix.sel(cfg, "services"))));
   const configPath = "\"$HOME\"/.gitlab-runner/config.toml";
   const configureScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "gitlab-runner-configure",
       runtimeInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], (() => {
         const w = nix.withScope(pkgs, null);
@@ -213,60 +213,60 @@ chown -R --reference="$HOME" "$(dirname ${configPath})"
 exec gitlab-runner run --working-directory $HOME
 `)));
   return {
-    __proto__: pos$65,
+    [nix.POS]: pos$65,
     options: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       services: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         "gitlab-runner": nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Gitlab Runner")),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Configuration file for gitlab-runner.\n\n{option}`configFile` takes precedence over {option}`services`.\n{option}`checkInterval` and {option}`concurrent` will be ignored too.\n\nThis option is deprecated, please use {option}`services` instead.\nYou can use {option}`registrationConfigFile` and\n{option}`registrationFlags`\nfor settings not covered by this module.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
                 })))),
               default: nix.thunk(() => ({})),
               description: "Global gitlab-runner configuration. See\n<https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section>\nfor supported values.\n",
             })))),
           gracefulTermination: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Finish all remaining jobs before stopping.\nIf not set gitlab-runner will stop immediately without waiting\nfor jobs to finish, which will lead to failed builds.\n",
             })))),
           gracefulTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "infinity",
               example: "5min 20s",
               description: "Time to wait until a graceful shutdown is turned into a forceful one.\n",
             })))),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gitlab-runner", nix.thunk(() => ({ __proto__: pos$7, example: "gitlab-runner_1_11" })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gitlab-runner", nix.thunk(() => ({ [nix.POS]: pos$7, example: "gitlab-runner_1_11" })))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               description: "Extra packages to add to `PATH` for the `gitlab-runner` process.\nThese packages won't be added to the system, use `environment.systemPackages` for that.\n",
             })))),
           services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               description: "GitLab Runner services.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  # runner for building in docker via host's nix-daemon\n  # nix store will be readable in runner, might be insecure\n  nix = {\n    # File should contain at least these two variables:\n    # - `CI_SERVER_URL`\n    # - `REGISTRATION_TOKEN`\n    #\n    # NOTE: Support for runner registration tokens will be removed in GitLab 18.0.\n    # Please migrate to runner authentication tokens soon. For reference, the example\n    # runners below this one are configured with authentication tokens instead.\n    registrationConfigFile = \"/run/secrets/gitlab-runner-registration\";\n\n    dockerImage = \"alpine\";\n    dockerVolumes = [\n      \"/nix/store:/nix/store:ro\"\n      \"/nix/var/nix/db:/nix/var/nix/db:ro\"\n      \"/nix/var/nix/daemon-socket:/nix/var/nix/daemon-socket:ro\"\n    ];\n    dockerDisableCache = true;\n    preBuildScript = pkgs.writeScript \"setup-container\" ''\n      mkdir -p -m 0755 /nix/var/log/nix/drvs\n      mkdir -p -m 0755 /nix/var/nix/gcroots\n      mkdir -p -m 0755 /nix/var/nix/profiles\n      mkdir -p -m 0755 /nix/var/nix/temproots\n      mkdir -p -m 0755 /nix/var/nix/userpool\n      mkdir -p -m 1777 /nix/var/nix/gcroots/per-user\n      mkdir -p -m 1777 /nix/var/nix/profiles/per-user\n      mkdir -p -m 0755 /nix/var/nix/profiles/per-user/root\n      mkdir -p -m 0700 \"$HOME/.nix-defexpr\"\n\n      . ${pkgs.nix}/etc/profile.d/nix.sh\n\n      ${pkgs.nix}/bin/nix-env -i ${concatStringsSep \" \" (with pkgs; [ nix cacert git openssh ])}\n\n      ${pkgs.nix}/bin/nix-channel --add https://channels.nixos.org/nixpkgs-unstable\n      ${pkgs.nix}/bin/nix-channel --update nixpkgs\n    '';\n    environmentVariables = {\n      ENV = \"/etc/profile\";\n      USER = \"root\";\n      NIX_REMOTE = \"daemon\";\n      PATH = \"/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/bin:/sbin:/usr/bin:/usr/sbin\";\n      NIX_SSL_CERT_FILE = \"/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt\";\n    };\n    tagList = [ \"nix\" ];\n  };\n  # runner for building docker images\n  docker-images = {\n    # File should contain at least these two variables:\n    # `CI_SERVER_URL`\n    # `CI_SERVER_TOKEN`\n    authenticationTokenConfigFile = \"/run/secrets/gitlab-runner-docker-images-token-env\";\n\n    dockerImage = \"docker:stable\";\n    dockerVolumes = [\n      \"/var/run/docker.sock:/var/run/docker.sock\"\n    ];\n    tagList = [ \"docker-images\" ];\n  };\n  # runner for executing stuff on host system (very insecure!)\n  # make sure to add required packages (including git!)\n  # to `environment.systemPackages`\n  shell = {\n    # File should contain at least these two variables:\n    # `CI_SERVER_URL`\n    # `CI_SERVER_TOKEN`\n    authenticationTokenConfigFile = \"/run/secrets/gitlab-runner-shell-token-env\";\n\n    executor = \"shell\";\n    tagList = [ \"shell\" ];\n  };\n  # runner for everything else\n  default = {\n    # File should contain at least these two variables:\n    # `CI_SERVER_URL`\n    # `CI_SERVER_TOKEN`\n    authenticationTokenConfigFile = \"/run/secrets/gitlab-runner-default-token-env\";\n    dockerImage = \"debian:stable\";\n  };\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     options: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       authenticationTokenConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -275,7 +275,7 @@ exec gitlab-runner run --working-directory $HOME
                           description: "Absolute path to a file containing environment variables used for\ngitlab-runner registrations with *runner authentication tokens*.\nThey replace the deprecated *runner registration tokens*, as\noutlined in the [GitLab documentation].\n\nA list of all supported environment variables can be found with\n`gitlab-runner register --help`.\n\nThe ones you probably want to set are:\n- `CI_SERVER_URL=<CI server URL>`\n- `CI_SERVER_TOKEN=<runner authentication token secret>`\n\n::: {.warning}\nMake sure to use a quoted absolute path,\nor it is going to be copied to Nix Store.\n:::\n\n[GitLab documentation]: https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html#estimated-time-frame-for-planned-changes\n",
                         })))),
                       registrationConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -284,105 +284,105 @@ exec gitlab-runner run --working-directory $HOME
                           description: "Absolute path to a file with environment variables\nused for gitlab-runner registration with *runner registration\ntokens*.\n\nA list of all supported environment variables can be found in\n`gitlab-runner register --help`.\n\nThe ones you probably want to set are:\n- `CI_SERVER_URL=<CI server URL>`\n- `REGISTRATION_TOKEN=<registration secret>`\n\nSupport for *runner registration tokens* is deprecated since\nGitLab 16.0, has been disabled by default in GitLab 17.0 and\nwill be removed in GitLab 18.0, as outlined in the\n[GitLab documentation]. Please consider migrating to\n[runner authentication tokens] and check the documentation on\n{option}`services.gitlab-runner.services.<name>.authenticationTokenConfigFile`.\n\n::: {.warning}\nMake sure to use a quoted absolute path,\nor it is going to be copied to Nix Store.\n:::\n\n[GitLab documentation]: https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html#estimated-time-frame-for-planned-changes\n[runner authentication tokens]: https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html#the-new-runner-registration-workflow\n",
                         })))),
                       registrationFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => ["--docker-helper-image my/gitlab-runner-helper"]),
                           description: "Extra command-line flags passed to\n`gitlab-runner register`.\nExecute `gitlab-runner register --help`\nfor a list of supported flags.\n",
                         })))),
                       environmentVariables: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: nix.thunk(() => ({})),
-                          example: nix.thunk(() => ({ __proto__: pos$12, NAME: "value" })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$12, NAME: "value" })),
                           description: "Custom environment variables injected to build environment.\nFor secrets you can use {option}`registrationConfigFile`\nwith `RUNNER_ENV` variable set.\n",
                         })))),
                       description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                           description: "Name/description of the runner.\n",
                         })))),
                       executor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "docker",
                           description: "Select executor, eg. shell, docker, etc.\nSee [runner executor documentation](https://docs.gitlab.com/runner/executors/) for more information.\n",
                         })))),
                       buildsDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           example: "/var/lib/gitlab-runner/builds",
                           description: "Absolute path to a directory where builds will be stored\nin context of selected executor (Locally, Docker, SSH).\n",
                         })))),
                       cloneUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                           example: "http://gitlab.example.local",
                           description: "Overwrite the URL for the GitLab instance. Used if the Runner can’t connect to GitLab on the URL GitLab exposes itself.\n",
                         })))),
                       dockerImage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                           description: "Docker image to be used.\n",
                         })))),
                       dockerPullPolicy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["always", "never", "if-not-present"]))))),
                           default: null,
                           description: "Default pull-policy for Docker images\n",
                         })))),
                       dockerVolumes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => ["/var/run/docker.sock:/var/run/docker.sock"]),
                           description: "Bind-mount a volume and create it\nif it doesn't exist prior to mounting.\n",
                         })))),
                       dockerDisableCache: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Disable all container caching.\n",
                         })))),
                       dockerPrivileged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Give extended privileges to container.\n",
                         })))),
                       dockerServicesPrivileged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Give extended privileges to services.\n",
                         })))),
                       dockerExtraHosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => ["other-host:127.0.0.1"]),
                           description: "Add a custom host-to-IP mapping.\n",
                         })))),
                       dockerAllowedImages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => ["ruby:*", "python:*", "php:*", "my.registry.tld:5000/*:*"]),
                           description: "Whitelist allowed images.\n",
                         })))),
                       dockerAllowedServices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => ["postgres:9", "redis:*", "mysql:*"]),
                           description: "Whitelist allowed services.\n",
                         })))),
                       dockerAllowedPrivilegedServices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => [
@@ -394,67 +394,67 @@ exec gitlab-runner run --working-directory $HOME
                           description: "Whitelist allowed privileged services.\n",
                         })))),
                       preGetSourcesScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))))),
                           default: null,
                           description: "Runner-specific command script executed before code is pulled.\n",
                         })))),
                       postGetSourcesScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))))),
                           default: null,
                           description: "Runner-specific command script executed after code is pulled.\n",
                         })))),
                       preBuildScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))))),
                           default: null,
                           description: "Runner-specific command script executed after code is pulled,\njust before build executes.\n",
                         })))),
                       postBuildScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))))),
                           default: null,
                           description: "Runner-specific command script executed after code is pulled\nand just after build executes.\n",
                         })))),
                       tagList: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           description: "Tag list.\n\nThis option has no effect for runners registered with an runner\nauthentication tokens and will be ignored.\n",
                         })))),
                       runUntagged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Register to run untagged builds; defaults to\n`true` when {option}`tagList` is empty.\n\nThis option has no effect for runners registered with an runner\nauthentication tokens and will be ignored.\n",
                         })))),
                       limit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 0n,
                           description: "Limit how many jobs can be handled concurrently by this service.\n0 (default) simply means don't limit.\n",
                         })))),
                       requestConcurrency: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 0n,
                           description: "Limit number of concurrent requests for new jobs from GitLab.\n",
                         })))),
                       maximumTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 0n,
                           description: "What is the maximum timeout (in seconds) that will be set for\njob when using this Runner. 0 (default) simply means don't limit.\n\nThis option has no effect for runners registered with an runner\nauthentication tokens and will be ignored.\n",
                         })))),
                       protected: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "When set to true Runner will only run on pipelines\ntriggered on protected branches.\n\nThis option has no effect for runners registered with an runner\nauthentication tokens and will be ignored.\n",
                         })))),
                       debugTraceDisabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "When set to true Runner will disable the possibility of\nusing the `CI_DEBUG_TRACE` feature.\n",
@@ -463,28 +463,28 @@ exec gitlab-runner run --working-directory $HOME
                   })))))),
             })))),
           "clear-docker-cache": nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to periodically prune gitlab runner's Docker resources. If\nenabled, a systemd timer will run {command}`clear-docker-cache` as\nspecified by the `dates` option.\n",
               })))),
             flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 example: nix.thunk(() => ["prune"]),
                 description: "Any additional flags passed to {command}`clear-docker-cache`.\n",
               })))),
             dates: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 default: "weekly",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "Specification (in the format described by\n{manpage}`systemd.time(7)`) of the time at\nwhich the prune will occur.\n",
               })))),
             package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 default: nix.thunk(() => nix.sel(config, "virtualisation", "docker", "package")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.virtualisation.docker.package")),
                 example: nix.thunk(() => nix.app(literalExpression, "pkgs.docker")),
@@ -495,9 +495,9 @@ exec gitlab-runner run --working-directory $HOME
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         assertions: nix.thunk(() => nix.app(mapAttrsToList, (name) => (serviceConfig) => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(serviceConfig, "registrationConfigFile"), null)) || nix.asBool(nix.eq(nix.sel(serviceConfig, "authenticationTokenConfigFile"), null)))),
             message: nix.thunk(() => nix.str`\`services.gitlab-runner.${name}.registrationConfigFile\` and \`services.gitlab-runner.services.${name}.authenticationTokenConfigFile\` are mutually exclusive.`),
           }), nix.thunk(() => nix.sel(cfg, "services")))),
@@ -505,21 +505,21 @@ exec gitlab-runner run --working-directory $HOME
 Consider migrating to runner authentication tokens by setting \`services.gitlab-runner.services.${name}.authenticationTokenConfigFile\`.
 https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html`, nix.thunk(() => nix.app(filterAttrs, (name) => (serviceConfig) => nix.eq(nix.sel(serviceConfig, "authenticationTokenConfigFile"), null), nix.thunk(() => nix.sel(cfg, "services"))))), nix.concat(nix.app(mapAttrsToList, (name) => (serviceConfig) => nix.str`\`services.gitlab-runner.services.${name}.protected\` with runner authentication tokens has no effect and will be ignored. Please remove it from your configuration.`, nix.thunk(() => nix.app(filterAttrs, (name) => (serviceConfig) => (nix.asBool(!nix.eq(nix.sel(serviceConfig, "authenticationTokenConfigFile"), null)) && nix.asBool(nix.eq(nix.sel(serviceConfig, "protected"), true))), nix.thunk(() => nix.sel(cfg, "services"))))), nix.concat(nix.app(mapAttrsToList, (name) => (serviceConfig) => nix.str`\`services.gitlab-runner.services.${name}.runUntagged\` with runner authentication tokens has no effect and will be ignored. Please remove it from your configuration.`, nix.thunk(() => nix.app(filterAttrs, (name) => (serviceConfig) => (nix.asBool(!nix.eq(nix.sel(serviceConfig, "authenticationTokenConfigFile"), null)) && nix.asBool(nix.eq(nix.sel(serviceConfig, "runUntagged"), true))), nix.thunk(() => nix.sel(cfg, "services"))))), nix.concat(nix.app(mapAttrsToList, (name) => (v) => nix.str`\`services.gitlab-runner.services.${name}.maximumTimeout\` with runner authentication tokens has no effect and will be ignored. Please remove it from your configuration.`, nix.thunk(() => nix.app(filterAttrs, (name) => (serviceConfig) => (nix.asBool(!nix.eq(nix.sel(serviceConfig, "authenticationTokenConfigFile"), null)) && nix.asBool(!nix.eq(nix.sel(serviceConfig, "maximumTimeout"), 0n))), nix.thunk(() => nix.sel(cfg, "services"))))), nix.app(mapAttrsToList, (name) => (v) => nix.str`\`services.gitlab-runner.services.${name}.tagList\` with runner authentication tokens has no effect and will be ignored. Please remove it from your configuration.`, nix.thunk(() => nix.app(filterAttrs, (serviceName) => (serviceConfig) => (nix.asBool(!nix.eq(nix.sel(serviceConfig, "authenticationTokenConfigFile"), null)) && nix.asBool(!nix.eq(nix.sel(serviceConfig, "tagList"), []))), nix.thunk(() => nix.sel(cfg, "services")))))))))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           services: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             "gitlab-runner": nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               description: "Gitlab Runner",
               documentation: nix.thunk(() => ["https://docs.gitlab.com/runner/"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(optional, hasDocker, "docker.service"), nix.app(optional, hasPodman, "podman.service")))),
               requires: nix.thunk(() => nix.concat(nix.app(optional, hasDocker, "docker.service"), nix.app(optional, hasPodman, "podman.service"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => nix.update(nix.sel(config, "networking", "proxy", "envVars"), { __proto__: pos$52, HOME: "/var/lib/gitlab-runner" })),
+              environment: nix.thunk(() => nix.update(nix.sel(config, "networking", "proxy", "envVars"), { [nix.POS]: pos$52, HOME: "/var/lib/gitlab-runner" })),
               path: nix.thunk(() => nix.concat((() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -533,7 +533,7 @@ https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html`, nix.thun
               })(), nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages")))),
               reloadIfChanged: true,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 DynamicUser: true,
                 StateDirectory: "gitlab-runner",
                 SupplementaryGroups: nix.thunk(() => nix.concat(nix.app(optional, hasDocker, "docker"), nix.app(optional, hasPodman, "podman"))),
@@ -541,18 +541,18 @@ https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html`, nix.thun
                 ExecStart: nix.thunk(() => nix.str`${startScript}/bin/gitlab-runner-start`),
                 ExecReload: nix.thunk(() => nix.str`!${configureScript}/bin/gitlab-runner-configure`),
               }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "gracefulTermination")), nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   TimeoutStopSec: nix.thunk(() => nix.str`${nix.sel(cfg, "gracefulTimeout")}`),
                   KillSignal: "SIGQUIT",
                   KillMode: "process",
                 }))))),
             })),
             "gitlab-runner-clear-docker-cache": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "clear-docker-cache", "enable")) && nix.asBool(nix.app(any, (s) => nix.eq(nix.sel(s, "executor"), "docker"), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "services")))))))), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 description: "Prune gitlab-runner docker resources",
                 restartIfChanged: false,
-                unitConfig: nix.thunk(() => ({ __proto__: pos$56, "X-StopOnRemoval": false })),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$57, Type: "oneshot" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$56, "X-StopOnRemoval": false })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$57, Type: "oneshot" })),
                 path: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "clear-docker-cache", "package")),
                   nix.thunk(() => nix.sel(pkgs, "gawk")),
@@ -564,9 +564,9 @@ https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html`, nix.thun
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           docker: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             enable: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(any, (s) => nix.eq(nix.sel(s, "executor"), "docker"), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "services")))))), nix.thunk(() => nix.app(mkDefault, true)))),
           })),
         })),
@@ -590,7 +590,7 @@ https://docs.gitlab.com/17.0/ee/ci/runners/new_creation_workflow.html`, nix.thun
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "gitlab-runner", "sessionServer", "sessionTimeout"]), nix.thunk(() => ["services", "gitlab-runner", "settings", "session_server", "session_timeout"]))),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$64,
+      [nix.POS]: pos$64,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(teams, "gitlab"))]),
     })),
   };

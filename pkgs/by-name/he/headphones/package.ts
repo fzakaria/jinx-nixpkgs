@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "headphones",
       version: "0.6.4",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rembo10",
           repo: "headphones",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ makeWrapper $out/opt/headphones/Headphones.py $out/bin/headphones
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic music downloader for SABnzbd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://github.com/rembo10/headphones",

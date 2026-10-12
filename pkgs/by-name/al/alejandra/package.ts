@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const alejandra = nix.arg($, "alejandra");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alejandra",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kamadorueda",
           repo: "alejandra",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-IX4xp8llB7USpS/SSQ9L8+17hQk5nkXFP8NgFKVLqKU=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: alejandra })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: alejandra })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Uncompromising Nix Code Formatter",
         homepage: "https://github.com/kamadorueda/alejandra",
         changelog: nix.thunk(() => nix.str`https://github.com/kamadorueda/alejandra/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

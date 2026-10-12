@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pygame_gui = nix.arg($, "pygame-gui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pygame-ce",
       version: "2.5.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pygame-community",
           repo: "pygame-ce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-dependency-finding.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             buildinputs_include: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.builtins.concatMap((dep) => [
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/`),
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/include`),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         libpng,
         portmidi,
         SDL2,
-        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ __proto__: pos$3, enableSTB: false })))),
+        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableSTB: false })))),
         SDL2_mixer,
         SDL2_ttf,
       ]),
@@ -106,10 +106,10 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m buildconfig.config
 `),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL2)), "sdl2-config")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         }))))),
       preCheck: "# No audio or video device in test environment\nexport SDL_VIDEODRIVER=dummy\nexport SDL_AUDIODRIVER=disk\n# traceback for segfaults\nexport PYTHONFAULTHANDLER=1\n",
@@ -134,12 +134,12 @@ runHook postCheck
         "pygame.version",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$6, "pygame-gui": pygame_gui })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "pygame-gui": pygame_gui })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Pygame Community Edition (CE) - library for multimedia application built on SDL",
         homepage: "https://pyga.me/",
         changelog: nix.thunk(() => nix.str`https://github.com/pygame-community/pygame-ce/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

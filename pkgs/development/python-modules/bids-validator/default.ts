@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.7.post0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "bids_validator",
           version: version,
           hash: "sha256-5gBaUAt1+KlhWT+2fUYIUQfa2xFvWaXDtSSqBpeUW2Y=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [bidsschematools]);
       const pythonImportsCheck = nix.thunk(() => ["bids_validator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Validator for the Brain Imaging Data Structure",
         homepage: "https://github.com/bids-standard/bids-validator",
         changelog: nix.thunk(() => nix.str`https://github.com/bids-standard/bids-validator/releases/tag/v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quadprogpp",
       version: "1.2.2-unstable-2025-12-03",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liuq",
           repo: "QuadProgpp",
           rev: "0c25447365c980876fdc395f55d60300a5e5793c",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library for Quadratic Programming",
         longDescription: "QuadProg++ is a C++ library for Quadratic Programming which implements\nthe Goldfarb-Idnani active-set dual method.\n",
         homepage: "https://github.com/liuq/QuadProgpp",

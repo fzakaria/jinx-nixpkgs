@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "driftctl",
       version: "0.40.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snyk",
           repo: "driftctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ $out/bin/driftctl --help | grep -vz "telemetry"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://driftctl.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/snyk/driftctl/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Detect, track and alert on infrastructure drift",

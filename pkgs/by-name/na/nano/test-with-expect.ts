@@ -36,9 +36,9 @@ sleep 1
 exit
 `)));
   return nix.app(runCommand, "nano-test-expect", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [nano, expect]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, "expect-script": expect_script })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "expect-script": expect_script })),
     })), nix.thunk(() => nix.str`expect -f ${expect_script}/bin/expect-script
 grep "Hello world!" file.txt
 touch $out

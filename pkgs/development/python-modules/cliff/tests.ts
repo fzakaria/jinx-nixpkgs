@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const stestrCheckHook = nix.arg($, "stestrCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "cliff",
       version: nix.thunk(() => nix.attr(cliff, "version")),
       src: nix.thunk(() => nix.attr(cliff, "src")),

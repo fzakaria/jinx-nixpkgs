@@ -32,40 +32,40 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const rsReticulum = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ratspeak",
       repo: "rsReticulum",
       rev: "17e6107aa8fb9a5b0c2cac2f4fe4b68655593bd8",
       hash: "sha256-0HjeGZ57eiz9z9akc+ESdZLAN+/uR9LyNaMLgYiTPO8=",
     }))));
   const rsLXMF = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "ratspeak",
       repo: "rsLXMF",
       rev: "393478019b3a076abc7af5f0d2c7b980b3329550",
       hash: "sha256-uCoU4HtdRy6sB8vi5BtifKFAy0a7FPuHuuRb1EJTJ2c=",
     }))));
   const rsLXST = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "ratspeak",
       repo: "rsLXST",
       rev: "e3f80815bcf1c1d6af1c07135dfe05b6163d596a",
       hash: "sha256-921xMNdneOTurUoUR5ImPEB8ztfEQLl9jCZY+s9Cjuo=",
     }))));
   const lrgp_rs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "ratspeak",
       repo: "lrgp-rs",
       rev: "0b55361ebf91c1caa09d5ed8ab88ac0a6d955de6",
       hash: "sha256-MZGWGCWLc+suHCD9NFV6m8A4EP4pLfogaqm93pMk/ss=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ratspeak",
       version: "1.0.25",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ratspeak",
           repo: "Ratspeak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,9 +97,9 @@ chmod -R u+w rsReticulum rsLXMF rsLXST lrgp-rs
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libayatana_appindicator]))}
 )
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Reticulum and LXMF client with messaging, file sharing, voice calls and LoRa support",
         homepage: "https://github.com/ratspeak/Ratspeak",
         changelog: nix.thunk(() => nix.str`https://github.com/ratspeak/Ratspeak/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

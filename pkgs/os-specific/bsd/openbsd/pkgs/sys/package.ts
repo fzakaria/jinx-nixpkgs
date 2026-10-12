@@ -17,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildTarget = nix.arg($, "pkgsBuildTarget");
   const baseConfig = nix.argOr($, "baseConfig", () => "GENERIC");
   return nix.app(nix.sel(mkDerivation, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenvNoLibc: nix.thunk(() => nix.app(overrideCC, stdenvNoLibc, nix.thunk(() => nix.sel(buildPackages, "llvmPackages_20", "clangNoLibc")))),
     })), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "sys/arch/amd64",
       pname: "sys",
       extraPaths: nix.thunk(() => ["sys"]),
@@ -44,7 +44,7 @@ ln -s ${nix.sel(pkgsBuildTarget, "binutils")}/bin/${nix.sel(pkgsBuildTarget, "bi
 echo 'includes:' >>Makefile
 `)),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SKIPDIR: "stand",
         NIX_CFLAGS_COMPILE: "-Wno-unused-command-line-argument -Wno-visibility",
       })),

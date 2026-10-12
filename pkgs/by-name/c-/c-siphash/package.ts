@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "c-siphash";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c-util",
           repo: "c-siphash",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [c_stdaux]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/c-util/c-siphash",
         description: "Streaming-capable SipHash Implementation",
         changelog: nix.thunk(() => nix.str`https://github.com/c-util/c-siphash/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

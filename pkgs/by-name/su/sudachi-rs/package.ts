@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sudachi_rs = nix.arg($, "sudachi-rs");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sudachi-rs",
       version: "0.6.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WorksApplications",
           repo: "sudachi.rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
 install -Dm644 resources/* -t $out/share/resources
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\nnix-update sudachi-rs\nnix-update --version=skip python3Packages.sudachipy\n")),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cli: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cli-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 echo "高輪ゲートウェイ駅" | ${nix.app(nix.sel(lib, "getExe"), sudachi_rs)} > $out/result
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Japanese morphological analyzer",
         homepage: "https://github.com/WorksApplications/sudachi.rs",
         changelog: nix.thunk(() => nix.str`https://github.com/WorksApplications/sudachi.rs/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

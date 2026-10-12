@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mdbook-pdf",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aADHRlIVWVc43DEfZx8ha/E4FaiAoKtjHccx+LAghtU=",
@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-aHpycw9WmaNsI0VAYxI89KnB7fC31FxH+8ONnMEGtTM=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, DOCS_RS: true, DO_NOT_FORMAT: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DOCS_RS: true, DO_NOT_FORMAT: true })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backend for mdBook written in Rust for generating PDF",
         mainProgram: "mdbook-pdf",
         homepage: "https://github.com/HollowMan6/mdbook-pdf",

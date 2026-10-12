@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "octodns",
           repo: "octodns-bind",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "octodns-bind-pull-108.patch",
             url: "https://github.com/octodns/octodns-bind/commit/9393bc013d6bfaa1258f34e484f09f5c6306d477.patch",
             hash: "sha256-BHKS5kci265xvoaMZ0fN7bir2I9mpS15muq4fWg7ruk=",
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [octodns, dnspython]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, OCTODNS_RELEASE: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OCTODNS_RELEASE: 1n }));
       const pythonImportsCheck = nix.thunk(() => ["octodns_bind"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["-W", "ignore::DeprecationWarning"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "RFC compliant (Bind9) provider for octoDNS",
         homepage: "https://github.com/octodns/octodns-bind",
         changelog: nix.thunk(() => nix.str`https://github.com/octodns/octodns-bind/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "octodns"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

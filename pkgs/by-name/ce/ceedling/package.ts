@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const bundlerApp = nix.arg($, "bundlerApp");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ceedling",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["ceedling"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Build system for C projects that is something of an extension around Ruby's Rake",
         homepage: "https://www.throwtheswitch.org/ceedling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

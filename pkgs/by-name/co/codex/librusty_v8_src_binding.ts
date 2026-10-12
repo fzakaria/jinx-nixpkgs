@@ -10,10 +10,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchLibrustyV8SrcBinding = nix.arg($, "fetchLibrustyV8SrcBinding");
   return nix.app(fetchLibrustyV8SrcBinding, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "150.4.0",
       shas: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "01l53l6nk4p5brpz2v3svqijx3hz5nqry8q7x12vdgbrwim849vp",
         "aarch64-linux": "01l53l6nk4p5brpz2v3svqijx3hz5nqry8q7x12vdgbrwim849vp",
         "riscv64-linux": "01l53l6nk4p5brpz2v3svqijx3hz5nqry8q7x12vdgbrwim849vp",

@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const version = "3.0.1-1";
   const cupsdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101532/dcp1610wcupswrapper-${version}.i386.deb`),
       hash: "sha256-ZgE2o/xU11+MzSnBYakXZE5m+Qa85/KIo31wKWAmsGY=",
     }))));
   const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101533/dcp1610wlpr-${version}.i386.deb`),
       hash: "sha256-hi0b23DgSXVT/fNA+Y2aJOdopt7SwjUyYyev81boGlg=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-brother-dcp1610wlpr",
       version: version,
       srcs: nix.thunk(() => [cupsdeb, lprdeb]),
@@ -71,7 +71,7 @@ wrapProgram $out/opt/brother/Printers/DCP1610W/cupswrapper/brother_lpdwrapper_DC
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused, coreutils, gawk]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.brother.com/",
         description: "Brother DCP-1610W printer driver",
         sourceProvenance: nix.thunk(() => (() => {

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "austind",
           repo: "retryhttp",
           tag: nix.thunk(() => nix.str`release/v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [httpx, pydantic, requests, tenacity, types_requests]);
       const pythonImportsCheck = nix.thunk(() => ["retryhttp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Retry potentially transient HTTP errors in Python",
         homepage: "https://github.com/austind/retryhttp",
         changelog: nix.thunk(() => nix.str`https://github.com/austind/retryhttp/releases/tag/release%2Fv${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

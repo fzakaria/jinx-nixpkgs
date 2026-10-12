@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plymouth",
       version: "26.134.222",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "plymouth",
           repo: "plymouth",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dont-create-broken-symlink.patch"),
         nix.path(here, "./add-runtime-plugin-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fcmatch: nix.thunk(() => nix.str`${fontconfig}/bin/fc-match`),
           })))),
       ]),
@@ -103,11 +103,11 @@ done
 rmdir "$DESTDIR/${nix.builtins.storeDir}" "$DESTDIR/${nix.builtins.dirOf(nix.thunk(() => nix.builtins.storeDir))}" "$DESTDIR"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DESTDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/dest`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.freedesktop.org/wiki/Software/Plymouth/",
         description: "Boot splash and boot logger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

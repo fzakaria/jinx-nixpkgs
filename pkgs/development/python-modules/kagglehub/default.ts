@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kagglehub",
       version: "1.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kaggle",
           repo: "kagglehub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [kagglesdk, packaging, pyyaml, requests, tqdm]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "hf-datasets": nix.thunk(() => [datasets, kagglehub]),
         "pandas-datasets": nix.thunk(() => [pandas]),
         "polars-datasets": nix.thunk(() => [polars]),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_model_signing"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library to access Kaggle resources",
         homepage: "https://github.com/Kaggle/kagglehub",
         changelog: nix.thunk(() => nix.str`https://github.com/Kaggle/kagglehub/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

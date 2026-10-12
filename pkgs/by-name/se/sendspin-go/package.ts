@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const opusfile = nix.arg($, "opusfile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sendspin-go",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sendspin",
           repo: "sendspin-go",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-QAmC6bgOSlV8we9j3rDQ9V3sLdSvELu8zzn5UAw/uIY=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, libogg, opus, opusfile, ffmpeg]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_LDFLAGS: "-lm" })),
       ldflags: nix.thunk(() => ["-s"]),
       preCheck: "# Tests require network features that are not available in the sandbox\nsubstituteInPlace pkg/discovery/mdns_test.go \\\n  --replace-fail \"TestGetLocalIPs\" \"Skip_TestGetLocalIPs\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sendspin server and client",
         homepage: "https://github.com/Sendspin/sendspin-go",
         changelog: nix.thunk(() => nix.str`https://github.com/Sendspin/sendspin-go/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-yRzcg8BDuwF74J2EYa/3GMkTaRGsx0WyDIQEWHwj12M=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [functiontrace_server]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://functiontrace.com",
         description: "Python module for Functiontrace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "prosperity30")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

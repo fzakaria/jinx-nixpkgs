@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const environment = nix.thunk(() => nix.app(pipe, nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => [
       nix.thunk(() => nix.app(mapAttrsRecursive, (path) => (value) => nix.app(optionalAttrs, nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.app(toUpper, nix.thunk(() => nix.str`MTCE_${nix.app(concatStringsSep, "_", path)}`))),
             value: nix.thunk(() => (nix.asBool(nix.app(isList, value)) ? nix.app(concatStringsSep, ",", value) : (nix.asBool(nix.app(isBool, value)) ? nix.app(boolToString, value) : nix.builtins.toString(value)))),
           }))))),
@@ -63,32 +63,32 @@ export default nix.lambda((args) => (() => {
       listToAttrs,
     ])));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     port: 19309n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mail-tlsa-check-exporter", nix.thunk(() => ({})))),
       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           description: "Settings for the mail-tlsa-check-exporter",
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               freeformType: nix.thunk(() => nix.sel(types, "attrs")),
               options: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 tlsa: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   record: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       description: "The TLSA record to monitor",
                       type: nix.thunk(() => nix.sel(types, "str")),
                       example: "_25._tcp.smtp.example.org",
                     })))),
                 })),
                 check: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       description: "Timeout for validation checks to complete before giving up, in milliseconds (e.g. 15000 for 15 seconds)",
                       type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                       default: 15000n,
@@ -96,9 +96,9 @@ export default nix.lambda((args) => (() => {
                     })))),
                 })),
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       description: "Whether to enable monitoring over IPv4",
                       type: nix.thunk(() => nix.sel(types, "bool")),
                       default: true,
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
                     })))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       description: "Whether to enable monitoring over IPv6",
                       type: nix.thunk(() => nix.sel(types, "bool")),
                       default: true,
@@ -116,9 +116,9 @@ export default nix.lambda((args) => (() => {
                     })))),
                 })),
                 server: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       description: "The port that the exporter listens on.\n\n::: {.note}\nThis is a read-only option that is read from {option}`services.prometheus.exporters.mail-tlsa-check.port`.\n:::\n",
                       type: nix.thunk(() => nix.sel(types, "port")),
                       default: nix.thunk(() => nix.sel(cfg, "port")),
@@ -127,23 +127,23 @@ export default nix.lambda((args) => (() => {
                     })))),
                 })),
                 smtp: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       description: "The SMTP hostname to monitor",
                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                       default: null,
                       example: "smtp.example.org",
                     })))),
                   port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       description: "The SMTP port to monitor\n\n::: {.note}\nThe exporter currently only supports explicit TLS (StartTLS), see <https://github.com/ietf-tools/mail-tlsa-check-exporter/issues/6>\n:::\n",
                       type: nix.thunk(() => nix.sel(types, "port")),
                       default: 587n,
                       example: 465n,
                     })))),
                   client: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       description: "The host to send in the SMTP EHLO command (name/domain/IP address)",
                       type: nix.thunk(() => nix.sel(types, "str")),
                       default: "tlsa-smtp-synthetics-probe",
@@ -151,16 +151,16 @@ export default nix.lambda((args) => (() => {
                     })))),
                 })),
                 imap: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       description: "The IMAP hostname to monitor",
                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                       default: null,
                       example: "imap.example.org",
                     })))),
                   port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       description: "The IMAP port to monitor\n\n::: {.note}\nThe exporter currently only supports explicit TLS (StartTLS), see <https://github.com/ietf-tools/mail-tlsa-check-exporter/issues/6>\n:::\n",
                       type: nix.thunk(() => nix.sel(types, "port")),
                       default: 143n,
@@ -172,21 +172,21 @@ export default nix.lambda((args) => (() => {
     })),
     assertions: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "ipv4", "enabled")) || nix.asBool(nix.sel(cfg, "ipv6", "enabled")))),
         message: "Both IPv4 and IPv6 are disabled, this is not possible as it won't monitor anything",
       })),
       nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "smtp", "hostname"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "imap", "hostname"), null)))),
         message: "Both SMTP and IMAP are disabled, this is not possible as it won't monitor anything",
       })),
     ]),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       environment: environment,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
         MemoryDenyWriteExecute: nix.thunk(() => nix.app(mkForce, false)),
         Restart: "always",

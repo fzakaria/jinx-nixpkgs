@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => nix.sel(tubekit_unwrapped, "version"));
   const kubectl = nix.arg($, "kubectl");
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.attr(tubekit_unwrapped, "src")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "files-to-prompt",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, versionCheckHook]);
       const disabledTests = nix.thunk(() => ["test_binary_file_warning"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "files-to-prompt",
         description: "Concatenate a directory full of files into a single prompt for use with LLMs",
         homepage: "https://github.com/simonw/files-to-prompt",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

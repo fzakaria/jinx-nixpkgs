@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const meld = nix.arg($, "meld");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "turtle",
       version: "0.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "philippun1",
           repo: "turtle",
@@ -64,7 +64,7 @@ substituteInPlace $out/share/nautilus-python/extensions/turtle_nautilus_compare.
   --replace-fail 'Popen(["meld"' 'Popen(["${nix.app(nix.sel(lib, "getExe"), meld)}"'
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical interface for version control intended to run on gnome and nautilus",
         homepage: "https://gitlab.gnome.org/philippun1/turtle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

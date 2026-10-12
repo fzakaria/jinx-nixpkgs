@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pescea",
       version: "1.0.12",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lazdavila",
           repo: "pescea",
           rev: "a3dd7deedc64205e24adbc4ff406a2f6aed3b240",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_updates_while_busy", "test_flow_control"]),
       pythonImportsCheck: nix.thunk(() => ["pescea"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface to Escea fireplaces",
         homepage: "https://github.com/lazdavila/pescea",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

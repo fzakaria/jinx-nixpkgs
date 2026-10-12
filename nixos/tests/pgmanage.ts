@@ -19,33 +19,33 @@ export default nix.lambda((args) => (() => {
   const password = "secret";
   const conn = "local";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "pgmanage",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "basvandijk"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "pg-init-script", nix.thunk(() => nix.str`CREATE ROLE ${role} SUPERUSER LOGIN PASSWORD '${password}';
 `))),
             })),
             pgmanage: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               connections: nix.thunk(() => nix.attrsDyn({}, [
                 [conn, nix.thunk(() => nix.str`hostaddr=127.0.0.1 port=${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")))} dbname=postgres`)],

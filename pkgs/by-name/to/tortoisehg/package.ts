@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const version = "7.2.2";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tortoisehg",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.mercurial-scm.org/release/tortoisehg/targz/tortoisehg-${version}.tar.gz`),
           hash: "sha256-KBLXbiQ2p+mvMM0/U22EQwSj2NIO2i2vI0ZhmF8gc4M=",
         })))),
@@ -55,9 +55,9 @@ grep -q "list of commands" help.txt
 
 runHook postCheck
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, mercurial: mercurial })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, mercurial: mercurial })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt based graphical tool for working with Mercurial",
         homepage: "https://tortoisehg.bitbucket.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

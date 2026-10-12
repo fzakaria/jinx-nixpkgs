@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NCAR",
           repo: "wrf-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["wrf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: true,
         description: "WRF postprocessing library for Python",
         homepage: "http://wrf-python.rtfd.org",
@@ -52,7 +52,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

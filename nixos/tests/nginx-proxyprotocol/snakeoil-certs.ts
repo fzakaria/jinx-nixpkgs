@@ -10,16 +10,16 @@ export default nix.thunk(() => (() => {
   const domain = "*.test.nix";
   const domainSanitized = "_.test.nix";
   return nix.attrsDyn({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     domain: domain,
     ca: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cert: nix.path(here, "./ca.cert.pem"),
       key: nix.path(here, "./ca.key.pem"),
     })),
   }, [
     [nix.str`${domain}`, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cert: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${domainSanitized}.cert.pem`)),
       key: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${domainSanitized}.key.pem`)),
     }))],

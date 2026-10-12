@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const cunit = nix.arg($, "cunit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libinsane",
       version: "1.0.10",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           repo: "libinsane",
           group: "World",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cunit, valgrind]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Crossplatform access to image scanners (paper eaters only)",
         homepage: "https://openpaper.work/en/projects/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

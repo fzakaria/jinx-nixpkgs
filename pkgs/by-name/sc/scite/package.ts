@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scite",
       version: "5.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.scintilla.org/scite${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tgz`),
           hash: "sha256-HXkBz7v+oRfBNTqBhLgXFCMwblk6Mltp6OoR8X5kBL0=",
         })))),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdint", "-include system_error"]))),
       })),
       preBuild: "pushd ../../scintilla/gtk\nmake ${makeFlags[@]}\npopd\n\npushd ../../lexilla/src\nmake ${makeFlags[@]}\npopd\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.scintilla.org/SciTE.html",
         description: "SCIntilla based Text Editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

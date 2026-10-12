@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const go_mockery_2 = nix.arg($, "go-mockery_2");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-team",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hekmekk",
           repo: "git-team",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "mockery --dir=src/ --all --keeptree\n",
       postInstall: "go run main.go --generate-man-page > git-team.1\ninstallManPage git-team.1\n\ninstallShellCompletion --cmd git-team \\\n  --bash <($out/bin/git-team completion bash) \\\n  --zsh <($out/bin/git-team completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line interface for managing and enhancing git commit messages with co-authors",
         homepage: "https://github.com/hekmekk/git-team",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

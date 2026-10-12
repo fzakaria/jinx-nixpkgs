@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const enable_all_static = nix.argOr($, "enable_all_static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const enable_cxx = nix.argOr($, "enable_cxx", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdo",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.mpimet.mpg.de/attachments/download/29864/cdo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QYv5HoZMv+VHw8jhUNMUGc+nFefTRVCMVZGxq9pUV9E=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-eccodes=${eccodes}`),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), enable_cdi_lib, "--enable-cdi-lib"), nix.concat(nix.app(nix.sel(lib, "optional"), enable_all_static, "--enable-all-static"), nix.app(nix.sel(lib, "optional"), enable_cxx, "--enable-cxx"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of command line Operators to manipulate and analyse Climate and NWP model Data",
         mainProgram: "cdo",
         longDescription: "Supported data formats are GRIB 1/2, netCDF 3/4, SERVICE, EXTRA and IEG.\nThere are more than 600 operators available.\n",

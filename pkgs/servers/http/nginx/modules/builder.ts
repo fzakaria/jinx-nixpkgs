@@ -18,27 +18,27 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nginx = nix.arg($, "nginx");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => (args_1) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.str`nginx-mod-${nix.sel(args_1, "pname")}-${nix.sel(args_1, "version")}`),
         dontConfigure: true,
         dontBuild: true,
         dontFixup: true,
         installPhase: "runHook preInstall\ncp \\\n  --recursive \\\n  --no-preserve=ownership \\\n  . \\\n  \"$out\"\nrunHook postInstall\n",
         passthru: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "passthru"), {
-          __proto__: pos$4,
-          updateScript: nix.thunk(() => nix.selOr(args_1, () => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$1, extraArgs: nix.thunk(() => ["--version=stable"]) }))), "passthru", "updateScript")),
+          [nix.POS]: pos$4,
+          updateScript: nix.thunk(() => nix.selOr(args_1, () => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=stable"]) }))), "passthru", "updateScript")),
           tests: nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nginx: nix.thunk(() => nix.app(nix.sel(nginx, "override"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 modules: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })))),
           }, nix.selOr(args_1, () => ({}), "passthru", "tests"))),
         })),
-        meta: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "meta"), { __proto__: pos$5, hydraPlatforms: [] })),
+        meta: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "meta"), { [nix.POS]: pos$5, hydraPlatforms: [] })),
       }),
     })));
 })(), formals$1);

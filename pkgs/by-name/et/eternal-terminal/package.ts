@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eternal-terminal",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MisterTea",
           repo: "EternalTerminal",
           tag: nix.thunk(() => nix.str`et-v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ cp ${catch2}/include/catch2/catch.hpp ../external_imported/Catch2/single_include
 `),
       cmakeFlags: nix.thunk(() => ["-DDISABLE_VCPKG=TRUE", "-DDISABLE_SENTRY=TRUE", "-DDISABLE_CRASH_LOG=TRUE"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++17"]))),
         })))),
       doCheck: true,
@@ -49,11 +49,11 @@ cp ${catch2}/include/catch2/catch.hpp ../external_imported/Catch2/single_include
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       checkPhase: "ctest --output-on-failure -E 'et-test\\.LargeInputNoDeadlock'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Remote shell that automatically reconnects without interrupting the session",
         homepage: "https://eternalterminal.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/MisterTea/EternalTerminal/releases/tag/et-v${nix.sel(finalAttrs, "version")}`),

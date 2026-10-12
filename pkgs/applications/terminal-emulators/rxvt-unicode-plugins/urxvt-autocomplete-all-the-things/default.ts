@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "urxvt-autocomplete-all-the-things";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vifon",
           repo: "autocomplete-ALL-the-things",
           rev: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p $out/lib/urxvt/perl\ncp autocomplete-ALL-the-things $out/lib/urxvt/perl\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "urxvt plugin allowing user to easily complete arbitrary text",
         homepage: "https://github.com/Vifon/autocomplete-ALL-the-things",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return nix.force(nix.lookup(w_1, "unix"));
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

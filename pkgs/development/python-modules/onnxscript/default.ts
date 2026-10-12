@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "onnxscript",
       version: "0.7.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "onnxscript",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Fd7nQ4KZECgUUfLrCo54NiUVcx1IdhGfUdYWXEo7D8o=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ONNX_SCRIPT_RELEASE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ONNX_SCRIPT_RELEASE: "1" })),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([ml_dtypes, numpy, onnx, onnx_ir, packaging, typing_extensions], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nvidia_ml_py])))),
       pythonImportsCheck: nix.thunk(() => ["onnxscript"]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Naturally author ONNX functions and models using a subset of Python",
         homepage: "https://github.com/microsoft/onnxscript",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/onnxscript/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

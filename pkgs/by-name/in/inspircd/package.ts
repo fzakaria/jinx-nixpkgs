@@ -57,11 +57,11 @@ export default nix.thunk(() => (() => {
     const yyjson = nix.arg($, "yyjson");
     const extraModules = nix.argOr($, "extraModules", () => nix.app(compatibleModules, lib, stdenv));
     const extras = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       argon2: nix.thunk(() => [
         nix.thunk(() => nix.update(libargon2, {
-          __proto__: pos$2,
-          meta: nix.thunk(() => nix.update(nix.sel(libargon2, "meta"), { __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")) })),
+          [nix.POS]: pos$2,
+          meta: nix.thunk(() => nix.update(nix.sel(libargon2, "meta"), { [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")) })),
         })),
       ]),
       ldap: nix.thunk(() => [openldap]),
@@ -91,11 +91,11 @@ export default nix.thunk(() => (() => {
     })();
     const anyMembers = (list1) => (list2) => nix.app(nix.sel(lib, "any"), (m1) => nix.app(nix.sel(lib, "elem"), m1, list2), list1);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: "inspircd",
         version: "4.12.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "inspircd",
             repo: "inspircd",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +103,7 @@ export default nix.thunk(() => (() => {
           })))),
         outputs: nix.thunk(() => ["bin", "lib", "man", "doc", "out"]),
         nativeBuildInputs: nix.thunk(() => nix.concat([perl, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "pgsql", extraModules)), nix.thunk(() => [nix.thunk(() => nix.sel(libpq, "pg_config"))])))),
-        env: nix.thunk(() => ({ __proto__: pos$5, SYSTEM_HTTP_PARSER: "1", SYSTEM_UTFCPP: "1" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$5, SYSTEM_HTTP_PARSER: "1", SYSTEM_UTFCPP: "1" })),
         buildInputs: nix.thunk(() => nix.concat([http_parser, utf8cpp], extraInputs)),
         configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
@@ -135,21 +135,21 @@ runHook postConfigure
         postInstall: "# for some reasons the executables are not executable\nchmod +x $bin/bin/*\n",
         enableParallelBuilding: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           tests: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "nixos-test": nix.thunk(() => nix.sel(nixosTests, "inspircd")),
           })),
         })),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           description: "Modular C++ IRC server",
           license: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only"))], nix.concat(nix.app(nix.sel(lib, "concatMap"), getLicenses, extraInputs), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(anyMembers, extraModules, libcModules)), nix.thunk(() => nix.app(getLicenses, nix.thunk(() => nix.sel(stdenv, "cc", "libc"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(anyMembers, extraModules, libcxxModules)), "Unknown"), nix.app(nix.sel(lib, "optional"), gpl2Conflict, nix.thunk(() => nix.sel(lib, "licenses", "unfree")))))))),
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
           homepage: "https://www.inspircd.org/",
-        }, nix.app(nix.sel(lib, "optionalAttrs"), gpl2Conflict, nix.thunk(() => ({ __proto__: pos$9, hydraPlatforms: [] }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), gpl2Conflict, nix.thunk(() => ({ [nix.POS]: pos$9, hydraPlatforms: [] }))))),
       }));
   })(), formals$1);
 })());

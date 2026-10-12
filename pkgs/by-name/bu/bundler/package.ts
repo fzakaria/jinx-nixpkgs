@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "bundler";
       const version = "2.7.2";
       const source = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "sha256-Heyvni4ay5G2WGopJcjz9tojNKgnMaYv8t7RuDwoOHE=",
       }));
       const dontPatchShebangs = true;
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bundler`);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manage your Ruby application's gem dependencies",
         homepage: "https://bundler.io",
         changelog: nix.thunk(() => nix.str`https://github.com/ruby/rubygems/blob/bundler-v${version}/bundler/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bundler",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ruby: ruby_1,
         name,
         gemName,

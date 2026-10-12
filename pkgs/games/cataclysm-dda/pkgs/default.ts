@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const build = nix.argOr($, "build", () => null);
   const pkgs = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     mod: nix.thunk(() => ({})),
     soundpack: nix.thunk(() => ({})),
     tileset: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       UndeadPeople: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tilesets/UndeadPeople"), nix.thunk(() => ({})))),
     })),
   }));

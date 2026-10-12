@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "koito",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gabehf",
           repo: "koito",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-z0HeuPYQwkyKkt8K7PKUYseECz2p1C/6UO5sUSxopBQ=",
           postFetch: nix.thunk(() => nix.str`cd $out/client
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -63,18 +63,18 @@ makeWrapper $out/bin/.koito-wrapped $out/bin/koito \\
   --run "cd $out/share"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "yarn-berry_4": yarn_berry_4,
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, koito: nix.thunk(() => nix.attr(nixosTests, "koito")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, koito: nix.thunk(() => nix.attr(nixosTests, "koito")) })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modern, themeable scrobbler that you can use with any program that scrobbles to a custom ListenBrainz URL",
         homepage: "https://koito.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

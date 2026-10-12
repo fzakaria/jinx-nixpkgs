@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libnv = nix.arg($, "libnv");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/config",
       nativeBuildInputs: nix.thunk(() => [
         bsdSetupHook,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libnv, libsbuf])),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

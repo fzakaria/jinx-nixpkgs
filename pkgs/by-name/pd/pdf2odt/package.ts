@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdf2odt",
       version: "20220827",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gutschke",
           repo: "pdf2odt",
           rev: "a05fbdebcc39277d905d1ae66f585a19f467b406",
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm0555 pdf2odt           -t $out/bin\ninstall -Dm0444 README.md LICENSE -t $out/share/doc/pdf2odt\n\nln -rs $out/bin/pdf2odt $out/bin/pdf2ods\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         default: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           scripts: nix.thunk(() => ["bin/pdf2odt"]),
           interpreter: runtimeShell,
           inputs: nix.thunk(() => [bc, coreutils, file, findutils, gawk, ghostscript, gnused, imagemagick, zip]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PDF to ODT/ODS format converter",
         homepage: "https://github.com/gutschke/pdf2odt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

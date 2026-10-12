@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const jansson = nix.arg($, "jansson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jshon",
       version: "20170302",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keenerd",
           repo: "jshon",
           rev: "d919aeaece37962251dbe6c1ee50f0028a5c90e4",
           sha256: "1x4zfmsjq0l2y994bxkhx3mn5vzjxxr39iib213zjchi9h6yxvnc",
         })))),
       buildInputs: nix.thunk(() => [jansson]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=strict-prototypes" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=strict-prototypes" })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/keenerd/jshon/commit/96b4e9dbf578be7b31f29740b608aa7b34df3318.patch",
             sha256: "0kwbn3xb37iqb5y1n8vhzjiwlbg5jmki3f38pzakc24kzc5ksmaa",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile --replace \"/usr/\" \"/\"\n",
       preInstall: "export DESTDIR=$out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://kmkeen.com/jshon",
         description: "JSON parser designed for maximum convenience within the shell",
         mainProgram: "jshon",

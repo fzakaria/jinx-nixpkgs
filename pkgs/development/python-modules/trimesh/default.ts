@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const mapbox_earcut = nix.arg($, "mapbox-earcut");
   const embreex = nix.arg($, "embreex");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trimesh",
       version: "5.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikedh",
           repo: "trimesh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numpy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         easy: nix.thunk(() => nix.concat([
           colorlog,
           manifold3d,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         "trimesh.interfaces",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for loading and using triangular meshes",
         homepage: "https://trimesh.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/mikedh/trimesh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

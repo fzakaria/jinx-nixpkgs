@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ipaddr = nix.arg($, "ipaddr");
   const macaddr = nix.arg($, "macaddr");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuntap",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-tuntap/releases/download/v${nix.sel(finalAttrs, "version")}/tuntap-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-DfztWPkNhdSIX/TaldCoNhAA/AZwQDqCdRmDOyOORu0=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ipaddr, macaddr]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to the UNIX tuntap facility",
         homepage: "https://github.com/mirage/ocaml-tuntap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

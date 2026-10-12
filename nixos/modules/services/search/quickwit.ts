@@ -43,33 +43,33 @@ export default nix.lambda((args) => (() => {
   const usingDefaultDataDir = nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/quickwit"));
   const usingDefaultUserAndGroup = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "user"), "quickwit")) && nix.asBool(nix.eq(nix.sel(cfg, "group"), "quickwit"))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         quickwit: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Quickwit")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Quickwit", nix.thunk(() => ({ __proto__: pos$1, default: nix.thunk(() => ["quickwit"]) })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Quickwit", nix.thunk(() => ({ [nix.POS]: pos$1, default: nix.thunk(() => ["quickwit"]) })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     rest: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         default: nix.thunk(() => ({})),
                         description: "Rest server configuration for Quickwit\n",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               listen_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$2,
+                                  [nix.POS]: pos$2,
                                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                                   default: 7280n,
                                   description: "The port to listen on for HTTP REST traffic.\n",
@@ -78,19 +78,19 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })))),
                     grpc_listen_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 7281n,
                         description: "The port to listen on for gRPC traffic.\n",
                       })))),
                     listen_address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "Listen address of Quickwit.\n",
                       })))),
                     version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "float")),
                         default: 0.7,
                         description: "Configuration file version.\n",
@@ -101,32 +101,32 @@ export default nix.lambda((args) => (() => {
               description: "Quickwit configuration.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/quickwit",
               apply: nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "/")))),
               description: "Data directory for Quickwit. If you change this, you need to\nmanually create the directory. You also need to create the\n`quickwit` user and group, or change\n[](#opt-services.quickwit.user) and\n[](#opt-services.quickwit.group) to existing ones with\naccess to the directory.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "quickwit",
               description: "The user Quickwit runs as. Should be left at default unless\nyou have very specific needs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "quickwit",
               description: "The group quickwit runs as. Should be left at default unless\nyou have very specific needs.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Extra command line options to pass to Quickwit.",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on a server or cluster.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
               default: true,
@@ -135,20 +135,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             quickwit: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Quickwit",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               restartIfChanged: nix.thunk(() => nix.attr(cfg, "restartIfChanged")),
-              environment: nix.thunk(() => ({ __proto__: pos$20, QW_DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$20, QW_DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/quickwit run --config ${quickwitYml} \\
 ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFlags")))}
 `),
@@ -179,12 +179,12 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFl
                 RestrictSUIDSGID: true,
                 SystemCallArchitectures: "native",
                 SystemCallFilter: nix.thunk(() => ["@system-service @resources", "~@privileged", "@chown"]),
-              }, nix.app(nix.sel(lib, "optionalAttrs"), usingDefaultDataDir, nix.thunk(() => ({ __proto__: pos$22, StateDirectory: "quickwit", StateDirectoryMode: "0700" }))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), usingDefaultDataDir, nix.thunk(() => ({ [nix.POS]: pos$22, StateDirectory: "quickwit", StateDirectoryMode: "0700" }))))),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

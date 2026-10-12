@@ -97,24 +97,24 @@ end
 end # fenv
 `;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fish",
       version: "4.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fish-shell",
           repo: "fish-shell",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-/q+w18Akm1VUAI1bM1lHud8QPNkpz2xCUh/7+ot44Gk=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FISH_BUILD_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         CI: 1n,
         FISH_CI_SAN: 1n,
       })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-vINXoQKol3rY2WDlU01eLzuzxnTx2w3tAfKSg7tRSGI=",
@@ -218,7 +218,7 @@ runHook postInstallCheck
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), useOperatingSystemEtc, nix.thunk(() => nix.str`tee -a $out/etc/fish/config.fish < ${etcConfigAppendix}
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Smart and user-friendly command line shell",
         homepage: "https://fishshell.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/fish-shell/fish-shell/releases/tag/${nix.sel(finalAttrs, "version")}`),
@@ -238,10 +238,10 @@ runHook postInstallCheck
         mainProgram: "fish",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         shellPath: "/bin/fish",
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           nixos: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(nixosTests, "fish")))),
           fishConfig: nix.thunk(() => (() => {
             const fishScript = nix.thunk(() => nix.app(writeText, "test.fish", nix.thunk(() => nix.str`# webconfig.py locates fish via $fish_bin_dir, which fish_config

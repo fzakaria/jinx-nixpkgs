@@ -21,40 +21,40 @@ export default (pkgs) => nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Whether this configuration file should be generated.\nThis option allows specific configuration files to be disabled.\n",
         })))),
       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           description: "Name of the configuration file (relative to the service's configuration directory). Defaults to the attribute name.\n",
         })))),
       path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           readOnly: true,
           description: "The actual path where this configuration file will be available.\nThis is determined by the service manager implementation.\n\nOn NixOS it is an absolute path.\nOther service managers may provide a relative path, in order to be unprivileged and/or relocatable.\n",
         })))),
       text: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           default: null,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "lines")))),
           description: "Text content of the configuration file.",
         })))),
       source: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "Path of the source file.",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
       source: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "text"), null)), nix.thunk(() => (() => {
           const name$ = nix.thunk(() => nix.add("service-configdata-", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["/"]), nix.thunk(() => ["-"]), name)));

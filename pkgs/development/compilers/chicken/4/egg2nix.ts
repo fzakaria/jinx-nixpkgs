@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "egg2nix";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "the-kenny",
           repo: "egg2nix",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/the-kenny/egg2nix/commit/7d20ed520b8fe4debeefc78271c8c836015f95dc.patch",
             hash: "sha256-emMnxu6HnpcDWcO7rAe0VOy2ZPfPhqj5bQv9foOkjY0=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generate nix-expression from CHICKEN scheme eggs",
         mainProgram: "egg2nix",
         homepage: "https://github.com/the-kenny/egg2nix",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "corngood"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, src, patches, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=egg2nix.ts.map

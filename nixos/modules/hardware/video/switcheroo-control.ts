@@ -22,37 +22,37 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "switcherooControl"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         switcherooControl: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "switcheroo-control, a D-Bus service to check the availability of dual-GPU")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "switcheroo-control", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           dbus: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           targets: nix.thunk(() => ({
-            __proto__: pos$8,
-            "multi-user": nix.thunk(() => ({ __proto__: pos$7, wants: nix.thunk(() => ["switcheroo-control.service"]) })),
+            [nix.POS]: pos$8,
+            "multi-user": nix.thunk(() => ({ [nix.POS]: pos$7, wants: nix.thunk(() => ["switcheroo-control.service"]) })),
           })),
         })),
       })))),

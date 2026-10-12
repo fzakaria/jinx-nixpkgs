@@ -30,38 +30,38 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "apache-tomcat",
         version: version,
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://apache/tomcat/tomcat-${nix.app(nix.sel(lib, "versions", "major"), version)}/v${version}/bin/apache-tomcat-${version}.tar.gz`),
             hash: hash,
           })))),
         outputs: nix.thunk(() => ["out", "webapps"]),
         installPhase: "runHook preInstall\n\nmkdir $out\nmv * $out\nmkdir -p $webapps/webapps\nmv $out/webapps $webapps/\n\nrunHook postInstall\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/apache/tomcat.git",
               allowedVersions: nix.thunk(() => nix.str`^${nix.app(nix.sel(lib, "versions", "major"), version)}\\.`),
               ignoredVersions: "-M.*",
             })))),
           tests: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             tomcat: nix.thunk(() => nix.attr(nixosTests, "tomcat")),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 command: nix.thunk(() => nix.str`JAVA_HOME=${jre} ${nix.sel(finalAttrs, "finalPackage")}/bin/version.sh`),
               })))),
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: "https://tomcat.apache.org/",
           description: "Implementation of the Java Servlet and JavaServer Pages technologies",
           platforms: nix.thunk(() => nix.sel(jre, "meta", "platforms")),
@@ -78,19 +78,19 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     tomcat9: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "9.0.120",
         hash: "sha256-HevX6bz17tjIpyccn6r2mfSUGoOZLaxa2BSg52fOXiY=",
       })))),
     tomcat10: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         version: "10.1.57",
         hash: "sha256-vdVK5WniV0FxSlwn7vhfscG4a/K2CDxyq9U/nHhpUIg=",
       })))),
     tomcat11: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         version: "11.0.24",
         hash: "sha256-EO/tkL8zARSvZieeQ9zyEez897iOYYdXlUrIgylgDLo=",
       })))),

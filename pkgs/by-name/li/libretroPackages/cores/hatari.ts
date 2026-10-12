@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const which = nix.arg($, "which");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "hatari",
       version: "0-unstable-2026-07-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "hatari",
           rev: "92e2874e664be40e1b51b97e0ff925a1aa917f22",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       makeFlags: nix.thunk(() => ["EXTERNAL_ZLIB=1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Hatari to libretro",
         homepage: "https://github.com/libretro/hatari",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

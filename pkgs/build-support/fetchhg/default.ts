@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const mercurial = nix.arg($, "mercurial");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const fetchSubrepos = nix.argOr($_1, "fetchSubrepos", () => false);
         const preferLocalBuild = nix.argOr($_1, "preferLocalBuild", () => true);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add("hg-archive", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => nix.str`-${name}`)))),
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [mercurial]),

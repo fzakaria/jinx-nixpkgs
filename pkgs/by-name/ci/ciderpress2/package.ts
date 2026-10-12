@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ciderpress2";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fadden",
           repo: "CiderPress2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./retarget-net8.patch")]);
       const preBuild = "# Disable MS telemetry\nexport DOTNET_CLI_TELEMETRY_OPTOUT=1\nexport DOTNET_NOLOGO=1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File archive utility for Apple II disk images and file archives",
         longDescription: "CiderPress 2 is a file archive utility for Apple II disk images and file\narchives. It can extract files from disk images and file archives, and\ncreate new archives.\n",
         homepage: "https://github.com/fadden/CiderPress2",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cp2",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

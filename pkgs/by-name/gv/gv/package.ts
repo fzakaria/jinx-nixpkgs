@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gv",
       version: "3.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gv/gv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0q8s43z14vxm41pfa8s5h9kyyzk1fkwjhkiwbf2x70alm6rv6qi1",
         })))),
@@ -35,7 +35,7 @@ sed 's|"gs"|"${ghostscriptX}/bin/gs"|g' -i "src/"*.c
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/gv/",
         description: "PostScript/PDF document viewer",
         longDescription: "GNU gv allows users to view and navigate through PostScript and\nPDF documents on an X display by providing a graphical user\ninterface for the Ghostscript interpreter.\n",

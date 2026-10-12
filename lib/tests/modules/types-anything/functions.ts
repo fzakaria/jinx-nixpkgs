@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       valueIsFunction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           default: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "isFunction"), nix.thunk(() => nix.sel(config, "value")))),
         })))),
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
       applied: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           default: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (fun) => nix.app(fun, null), nix.thunk(() => nix.sel(config, "value")))),
         })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           value: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "single-lambda": (x) => nix.force(x),
-            "multiple-lambdas": (x) => ({ __proto__: pos$5, x: x }),
-            "merging-lambdas": (x) => ({ __proto__: pos$6, x: x }),
+            "multiple-lambdas": (x) => ({ [nix.POS]: pos$5, x: x }),
+            "merging-lambdas": (x) => ({ [nix.POS]: pos$6, x: x }),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           value: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "multiple-lambdas": (x) => [x],
-            "merging-lambdas": (y) => ({ __proto__: pos$9, y: y }),
+            "merging-lambdas": (y) => ({ [nix.POS]: pos$9, y: y }),
           })),
         })),
       ]))),

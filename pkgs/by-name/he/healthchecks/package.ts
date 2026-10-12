@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: py,
-      packageOverrides: (final) => (prev) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
     }))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "healthchecks";
       const version = "4.4";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "healthchecks",
           repo: "healthchecks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -88,22 +88,22 @@ chmod +x $out/opt/healthchecks/manage.py
 cp ${localSettings} $out/opt/healthchecks/hc/local_settings.py
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pythonPath: nix.thunk(() => nix.app(nix.sel(py, "pkgs", "makePythonPath"), propagatedBuildInputs)),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           healthchecks: nix.thunk(() => nix.attr(nixosTests, "healthchecks")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/healthchecks/healthchecks",
         description: "Cron monitoring tool written in Python & Django",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

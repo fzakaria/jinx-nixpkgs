@@ -23,37 +23,37 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`objectbox_flutter_libs: ${nix.sel(stdenv, "hostPlatform", "system")} is not supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-    const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "x64", "aarch64-linux": "aarch64" }))));
+    const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "aarch64" }))));
     const objectbox_c = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "objectbox-linux-5.3.1",
         url: nix.thunk(() => nix.str`https://github.com/objectbox/objectbox-c/releases/download/v5.3.1/objectbox-linux-${arch}.tar.gz`),
         hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-Avd5y6Y6NCCQokzxwfBpkipt+JxF/M46MCLcDpqv8Kk=",
             "aarch64-linux": "sha256-S6/QbqRhIm3f51e3AcEfuq56cde3aQb0ITN6qPuWCps=",
           })))),
         stripRoot: false,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         })),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "objectbox_flutter_libs",
         version: version,
         src: src,
         passthru: nix.thunk(() => nix.attr(src, "passthru")),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./CMakeLists.patch"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               OBJECTBOX_SHARED_LIBRARY: nix.thunk(() => nix.str`${objectbox_c}/lib/libobjectbox.so`),
             })))),
         ]),
         installPhase: "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
             return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

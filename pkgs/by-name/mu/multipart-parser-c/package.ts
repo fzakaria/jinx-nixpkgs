@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multipart-parser-c",
       version: "0-unstable-2015-12-14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iafonov",
           repo: "multipart-parser-c",
           rev: "772639cf10db6d9f5a655ee9b7eb20b815fab396",
@@ -37,7 +37,7 @@ mv *.h $out/include/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP multipart parser implemented in C",
         homepage: "https://github.com/iafonov/multipart-parser-c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

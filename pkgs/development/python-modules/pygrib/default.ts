@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pygrib",
       version: "2.1.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jswhit",
           repo: "pygrib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}rel`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.add("cd test\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export MPLBACKEND=\"Agg\"\n"))),
       disabledTestPaths: nix.thunk(() => ["test_spectral.py", "baseline_images/test_reduced_gg.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface for reading and writing GRIB data",
         homepage: "https://github.com/jswhit/pygrib",
         changelog: nix.thunk(() => nix.str`https://github.com/jswhit/pygrib/blob/${nix.sel(finalAttrs, "src", "tag")}/Changelog`),

@@ -25,23 +25,23 @@ export default nix.thunk(() => (() => {
   const initialPassword = "foobarfoo";
   const newPassword = "barfoobar";
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "systemd-homed",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            homed: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
-            openssh: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            homed: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           nix: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "experimental-features": nix.thunk(() => ["auto-allocate-uids"]),
               "auto-allocate-uids": true,
             })),
@@ -52,18 +52,18 @@ export default nix.thunk(() => (() => {
         const $ = nix.formals(args, formals$2);
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            homed: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-            userdbd: nix.thunk(() => ({ __proto__: pos$8, silenceHighSystemUsers: true })),
+            [nix.POS]: pos$9,
+            homed: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            userdbd: nix.thunk(() => ({ [nix.POS]: pos$8, silenceHighSystemUsers: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             users: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "test-normal-user": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 extraGroups: nix.thunk(() => ["wheel"]),
                 isNormalUser: true,
                 initialPassword: initialPassword,

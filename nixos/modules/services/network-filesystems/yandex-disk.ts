@@ -30,45 +30,45 @@ export default nix.lambda((args) => (() => {
   const dir = "/var/lib/yandex-disk";
   const u = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) ? nix.sel(cfg, "user") : "yandexdisk"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "yandex-disk": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Yandex-disk client. See <https://disk.yandex.ru/>\n",
             })))),
           username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Your yandex.com login name.\n",
             })))),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Your yandex.com password. Warning: it will be world-readable in /nix/store.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "The user the yandex-disk daemon should run as.\n",
             })))),
           directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/home/Yandex.Disk",
               description: "The directory to use for Yandex.Disk storage",
             })))),
           excludes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "commas")),
               example: "data,backup",
@@ -78,12 +78,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: u,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "yandexdisk")),
                 group: "nogroup",
@@ -92,15 +92,15 @@ export default nix.lambda((args) => (() => {
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "yandex-disk": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Yandex-disk server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$12, RequiresMountsFor: dir })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, RequiresMountsFor: dir })),
               script: nix.thunk(() => nix.str`mkdir -p -m 700 ${dir}
 chown ${u} ${dir}
 

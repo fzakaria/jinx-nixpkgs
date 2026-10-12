@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libclthreads",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/clthreads-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0cbs1w89q8wfjrrhvxf6xk0y02nkjl5hd0yb692c8ma01i6b2nf6",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "# The Makefile does not create the include and lib directories\nmkdir -p $out/include\nmkdir -p $out/lib\n",
       postInstall: "ln $out/lib/libclthreads.so $out/lib/libclthreads.so.2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zita thread library",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

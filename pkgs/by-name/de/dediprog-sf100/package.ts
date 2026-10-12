@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const dediprogVersion = "1.14.21,x";
   const dediprogHash = "sha256-tz5qLN74IbUcvj2nXzR6Q7Nh9l/LAUy/6h43J+o8dvc=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dediprog-sf100-linux",
       version: nix.thunk(() => nix.sel(finalAttrs, "dediprogVersion")),
       dediprogVersion: dediprogVersion,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DediProgSW",
           repo: "SF100Linux",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "dediprogVersion")}`),
@@ -45,7 +45,7 @@ install -Dm0644 ${nix.sel(finalAttrs, "udevRules")} -D $out/lib/udev/rules.d/60-
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/DediProgSW/SF100Linux",
         description: "Linux software for DediProg SF100/SF600 programmers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

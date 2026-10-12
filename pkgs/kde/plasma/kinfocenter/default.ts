@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const wayland_utils = nix.arg($, "wayland-utils");
   const xdpyinfo = nix.arg($, "xdpyinfo");
   const tools = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     aha: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), aha)),
     clinfo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), clinfo)),
     di_edid_decode: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), libdisplay_info)),
@@ -50,10 +50,10 @@ export default nix.lambda((args) => (() => {
     xdpyinfo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xdpyinfo)),
   }));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kinfocenter",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-tool-paths.patch"), nix.thunk(() => nix.update({ __proto__: pos$2, QtBinariesDir: null }, tools)))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-tool-paths.patch"), nix.thunk(() => nix.update({ [nix.POS]: pos$2, QtBinariesDir: null }, tools)))),
       ]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace kcms/{firmware_security/fwupdmgr.sh,network/ip.sh} \\
   --replace-fail " aha " " ${nix.app(nix.sel(lib, "getExe"), aha)} "
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`mkdir -p $out/nix-support
 echo "${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), tools)))}" > $out/nix-support/depends
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "kinfocenter" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "kinfocenter" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

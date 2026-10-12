@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const zfs = nix.arg($, "zfs");
   const freebsd = nix.arg($, "freebsd");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ __proto__: pos$1, name: "zfstools-gems", gemdir: nix.path(here, "./.") }))));
+  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "zfstools-gems", gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zfstools",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "bdrewery",
           repo: "zfstools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ for f in $out/bin/*; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenSolaris-compatible auto-snapshotting script for ZFS",
         homepage: "https://github.com/bdrewery/zfstools",
         longDescription: "zfstools is an OpenSolaris-like and compatible auto snapshotting script\nfor ZFS, which also supports auto snapshotting mysql databases.\n",

@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const suitesparse = nix.arg($, "suitesparse");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "photonvision",
       version: "2025.2.1",
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/PhotonVision/photonvision/releases/download/v${nix.sel(finalAttrs, "version")}/photonvision-v${nix.sel(finalAttrs, "version")}-linuxx64.jar`),
             hash: "sha256-yEb6GCt29DjZNDsIqDvF/AiCw3QVMxUFKQM22OlMl7Q=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/PhotonVision/photonvision/releases/download/v${nix.sel(finalAttrs, "version")}/photonvision-v${nix.sel(finalAttrs, "version")}-linuxarm64.jar`),
             hash: "sha256-YG9wyh+MCsv/RBdiFvgrF6Fw/6AnN7OEi4ofkMptfT0=",
           })))),
@@ -52,14 +52,14 @@ makeWrapper ${temurin_jre_bin_17}/bin/java $out/bin/photonvision \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "starts-web-server": nix.thunk(() => nix.sel(nixosTests, "photonvision")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free, fast, and easy-to-use computer vision solution for the FIRST Robotics Competition",
         homepage: "https://photonvision.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

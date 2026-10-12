@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "3dpong",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://tuxpaint.org/ftp/unix/x/3dpong/src/3dpong-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sVV4GDGfSCweB5UZLwE+z5mMnxATAztUJnbRv3Q6a8U=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.newbreedsoftware.com/3dpong/",
         description: "One or two player 3d sports game based on Pong from Atari",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

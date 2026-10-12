@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nim = nix.arg($, "nim");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nim_builder",
       version: nix.thunk(() => nix.attr(nim, "version")),
       dontUnpack: true,
@@ -22,7 +22,7 @@ nim c --nimcache:$TMPDIR nim_builder
 `),
       installPhase: "install -Dt $out/bin nim_builder\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Internal Nixpkgs utility for buildNimPackage",
         mainProgram: "nim_builder",
         license: nix.thunk(() => (() => {

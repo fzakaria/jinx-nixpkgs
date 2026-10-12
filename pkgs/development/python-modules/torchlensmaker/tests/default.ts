@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const torchlensmaker = nix.arg($, "torchlensmaker");
   return nix.app(runCommand, "test-torchlensmaker", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(torchlensmaker, "pyEnv"))]),
     })), nix.thunk(() => nix.str`python ${nix.path(here, "./landscape.py")}
 mv landscape.json $out

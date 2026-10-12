@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wireshark_cli = nix.arg($, "wireshark-cli");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "airgorah",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martin-olivier",
           repo: "airgorah",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "airgorah",
             comment: "A WiFi auditing software that can perform deauth attacks and passwords cracking",
             desktopName: "airgorah",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WiFi security auditing software mainly based on aircrack-ng tools suite",
         homepage: "https://github.com/martin-olivier/airgorah",
         changelog: nix.thunk(() => nix.str`https://github.com/martin-olivier/airgorah/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -115,10 +115,10 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
 ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (plugin) => nix.str`cp -r ${plugin} $out/share/wordpress/wp-content/plugins/${name}`, nix.thunk(() => nix.sel(cfg_1, "plugins")))))}
 ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (language) => nix.str`cp -r ${language} $out/share/wordpress/wp-content/languages/`, nix.thunk(() => nix.sel(cfg_1, "languages")))}
 `);
-      return { __proto__: pos$1, pname, version, src, installPhase };
+      return { [nix.POS]: pos$1, pname, version, src, installPhase };
     })()));
   const mergeConfig = (cfg_1) => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     DISALLOW_FILE_EDIT: true,
     AUTOMATIC_UPDATER_DISABLED: true,
     DB_NAME: nix.thunk(() => nix.sel(cfg_1, "database", "name")),
@@ -126,14 +126,14 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (language) => nix.str`cp -
     DB_USER: nix.thunk(() => nix.sel(cfg_1, "database", "user")),
     DB_CHARSET: "utf8",
     DB_PASSWORD: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg_1, "database", "passwordFile"), null)) ? {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       _file: nix.thunk(() => nix.sel(cfg_1, "database", "passwordFile")),
     } : "")),
   }, nix.sel(cfg_1, "settings"));
   const wpConfig = (hostName) => (cfg_1) => (() => {
     const conf_gen = (c) => nix.app(nix.lookup(w, "mapAttrsToList"), (k) => (v) => nix.str`define('${k}', ${nix.app(mkPhpValue, v)});`, nix.thunk(() => nix.sel(cfg_1, "mergedConfig")));
     return nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.str`wp-config-${hostName}.php`),
         text: nix.thunk(() => nix.str`<?php
   $table_prefix  = '${nix.sel(cfg_1, "database", "tablePrefix")}';
@@ -184,12 +184,12 @@ fi
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       options: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "wordpress", nix.thunk(() => ({})))),
         finalPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
             readOnly: true,
             default: nix.thunk(() => nix.app(pkg, name, config_1)),
@@ -197,19 +197,19 @@ fi
             description: "WordPress package with bundled configuration, plugins and themes.\n",
           })))),
         uploadsDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`/var/lib/wordpress/${name}/uploads`),
             description: "This directory is used for uploads of pictures. The directory passed here is automatically\ncreated and permissions adjusted as required.\n",
           })))),
         fontsDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`/var/lib/wordpress/${name}/fonts`),
             description: "This directory is used to download fonts from a remote location, e.g.\nto host google fonts locally.\n",
           })))),
         plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")))), (l) => nix.app(nix.lookup(w_1, "warn"), "setting this option with a list is deprecated", nix.thunk(() => nix.lookup(w_1, "listToAttrs")), nix.thunk(() => nix.app(nix.builtins.map, (p) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.selOr(p, () => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`${p} does not have a name`)), "name")), p), l))), nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "path")))));
@@ -219,7 +219,7 @@ fi
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  inherit (pkgs.wordpressPackages.plugins) embed-pdf-viewer-plugin;\n}\n")),
           })))),
         themes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")))), (l) => nix.app(nix.lookup(w_1, "warn"), "setting this option with a list is deprecated", nix.thunk(() => nix.lookup(w_1, "listToAttrs")), nix.thunk(() => nix.app(nix.builtins.map, (p) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.selOr(p, () => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`${p} does not have a name`)), "name")), p), l))), nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "path")))));
@@ -227,7 +227,7 @@ fi
             default: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "wordpressPackages", "themes"));
               return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               twentytwentyfive: nix.thunk(() => nix.attr(from, "twentytwentyfive")),
             };
             })()),
@@ -236,73 +236,73 @@ fi
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  inherit (pkgs.wordpressPackages.themes) responsive-theme;\n}\n")),
           })))),
         languages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: [],
             description: "List of path(s) to respective language(s) which are copied from the 'languages' directory.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  # Let's package the German language.\n  # For other languages try to replace language and country code in the download URL with your desired one.\n  # Reference https://translate.wordpress.org for available translations and\n  # codes.\n  (pkgs.stdenv.mkDerivation {\n    name = \"language-de\";\n    src = pkgs.fetchurl {\n      url = \"https://de.wordpress.org/wordpress-${pkgs.wordpress.version}-de_DE.tar.gz\";\n      # Name is required to invalidate the hash when wordpress is updated\n      name = \"wordpress-${pkgs.wordpress.version}-language-de\";\n      sha256 = \"sha256-dlas0rXTSV4JAl8f/UyMbig57yURRYRhTMtJwF9g8h0=\";\n    };\n    installPhase = \"mkdir -p $out; cp -r ./wp-content/languages/* $out/\";\n  })\n];\n")),
           })))),
         database: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Database host address.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 3306n,
               description: "Database host port.",
             })))),
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "wordpress",
               description: "Database name.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "wordpress",
               description: "Database user.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/keys/wordpress-dbpassword",
               description: "A file containing the password corresponding to\n{option}`database.user`.\n",
             })))),
           tablePrefix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "wp_",
               description: "The $table_prefix is the value placed in the front of your database tables.\nChange the value if you want to use something other than wp_ for your database\nprefix. Typically this is changed if you are installing multiple WordPress blogs\nin the same database.\n\nSee <https://codex.wordpress.org/Editing_wp-config.php#table_prefix>.\n",
             })))),
           socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/run/mysqld/mysqld.sock")),
               description: "Path to the unix socket file to use for authentication.",
             })))),
           createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Create the database and database user locally.",
             })))),
         })),
         virtualHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
             description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\n",
           })))),
         poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -312,7 +312,7 @@ fi
                   ]))));
             })()),
             default: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               pm: "dynamic",
               "pm.max_children": 32n,
               "pm.start_servers": 2n,
@@ -323,21 +323,21 @@ fi
             description: "Options for the WordPress PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))),
             default: nix.thunk(() => ({})),
             description: "Structural Wordpress configuration.\nRefer to <https://developer.wordpress.org/apis/wp-config-php>\nfor details and supported values.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  WP_DEFAULT_THEME = \"twentytwentytwo\";\n  WP_SITEURL = \"https://example.org\";\n  WP_HOME = \"https://example.org\";\n  WP_DEBUG = true;\n  WP_DEBUG_DISPLAY = true;\n  WPLANG = \"de_DE\";\n  FORCE_SSL_ADMIN = true;\n  AUTOMATIC_UPDATER_DISABLED = true;\n}\n")),
           })))),
         mergedConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             readOnly: true,
             default: nix.thunk(() => nix.app(mergeConfig, config_1)),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  DISALLOW_FILE_EDIT = true;\n  AUTOMATIC_UPDATER_DISABLED = true;\n}\n")),
             description: "Read only representation of the final configuration.\n",
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             default: "",
             description: nix.thunk(() => nix.str`Any additional text to be appended to the wp-config.php
@@ -351,30 +351,30 @@ settings, see <https://codex.wordpress.org/Editing_wp-config.php>.
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         virtualHost: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), name)),
         })),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         wordpress: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           sites: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), siteOpts)))),
               default: nix.thunk(() => ({})),
               description: "Specification of one or more WordPress sites to serve",
             })))),
           webserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["httpd", "nginx", "caddy"]))),
               default: "httpd",
               description: "Whether to use apache2 or nginx for virtual host management.\n\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n\nFurther apache2 configuration can be done by adapting `services.httpd.virtualHosts.<name>`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
@@ -384,37 +384,37 @@ settings, see <https://codex.wordpress.org/Editing_wp-config.php>.
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(eachSite, {})), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertions: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "user"), user)))),
                 message: nix.thunk(() => nix.str`services.wordpress.sites."${hostName}".database.user must be ${user} if the database is to be automatically provisioned`),
               }), eachSite), nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "passwordFile"), null)))),
                 message: nix.thunk(() => nix.str`services.wordpress.sites."${hostName}".database.passwordFile cannot be specified if services.wordpress.sites."${hostName}".database.createLocally is set to true.`),
               }), eachSite))),
             services: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(nix.lookup(w, "any"), (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), eachSite)))), nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   enable: true,
                   package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                   ensureDatabases: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => nix.sel(cfg_1, "database", "name"), eachSite)),
                   ensureUsers: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       name: nix.thunk(() => nix.sel(cfg_1, "database", "user")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg_1, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                     }), eachSite)),
                 })))),
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 pools: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`wordpress-${hostName}`), nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       user: user,
                       group: nix.thunk(() => nix.sel(webserver, "group")),
                       settings: nix.thunk(() => nix.update({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         "listen.owner": nix.thunk(() => nix.sel(webserver, "user")),
                         "listen.group": nix.thunk(() => nix.sel(webserver, "group")),
                       }, nix.sel(cfg_1, "poolConfig"))),
@@ -423,17 +423,17 @@ settings, see <https://codex.wordpress.org/Editing_wp-config.php>.
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "httpd")), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               services: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 httpd: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   enable: true,
                   extraModules: nix.thunk(() => ["proxy_fcgi"]),
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(cfg_1, "virtualHost")),
                         nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           documentRoot: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg_1, "finalPackage")}/share/wordpress`))),
                           extraConfig: nix.thunk(() => nix.str`<Directory "${nix.sel(cfg_1, "finalPackage")}/share/wordpress">
   <FilesMatch "\\.php$">
@@ -469,11 +469,11 @@ settings, see <https://codex.wordpress.org/Editing_wp-config.php>.
               })),
             })))),
           nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             systemd: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 rules: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => [
                       nix.thunk(() => nix.str`d '${nix.app(stateDir, hostName)}' 0750 ${user} ${nix.sel(webserver, "group")} - -`),
                       nix.thunk(() => nix.str`d '${nix.sel(cfg_1, "uploadsDir")}' 0750 ${user} ${nix.sel(webserver, "group")} - -`),
@@ -484,20 +484,20 @@ settings, see <https://codex.wordpress.org/Editing_wp-config.php>.
               })),
               services: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`wordpress-init-${hostName}`), nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         before: nix.thunk(() => [nix.thunk(() => nix.str`phpfpm-wordpress-${hostName}.service`)]),
                         after: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg_1, "database", "createLocally")), "mysql.service")),
                         script: nix.thunk(() => nix.app(secretsScript, nix.thunk(() => nix.app(stateDir, hostName)))),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$50,
+                          [nix.POS]: pos$50,
                           Type: "oneshot",
                           User: user,
                           Group: nix.thunk(() => nix.sel(webserver, "group")),
                         })),
                       }))), eachSite)),
                   nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`wordpress-migrate-database-${hostName}`), nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         after: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`phpfpm-wordpress-${hostName}.service`)], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg_1, "database", "createLocally")), "mysql.service"))),
                         script: nix.thunk(() => nix.str`# Auto migrate database after version update
@@ -511,23 +511,23 @@ fi
 echo ${nix.sel(cfg_1, "package", "version")} > "$versionFile"
 `),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           Type: "oneshot",
                           User: user,
                           Group: nix.thunk(() => nix.sel(webserver, "group")),
                         })),
                       }))), eachSite)),
                   nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "any"), (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), eachSite)))), nix.thunk(() => ({
-                      __proto__: pos$55,
-                      httpd: nix.thunk(() => ({ __proto__: pos$54, after: nix.thunk(() => ["mysql.service"]) })),
+                      [nix.POS]: pos$55,
+                      httpd: nix.thunk(() => ({ [nix.POS]: pos$54, after: nix.thunk(() => ["mysql.service"]) })),
                     })))),
                 ]))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [user, nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   group: nix.thunk(() => nix.sel(webserver, "group")),
                   isSystemUser: true,
                 }))],
@@ -535,26 +535,26 @@ echo ${nix.sel(cfg_1, "package", "version")} > "$versionFile"
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               services: nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (hostName) => (cfg_1) => ({
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       serverName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), hostName)),
                       root: nix.thunk(() => nix.str`${nix.sel(cfg_1, "finalPackage")}/share/wordpress`),
                       extraConfig: "index index.php;\n",
                       locations: nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           priority: 200n,
                           extraConfig: "try_files $uri $uri/ /index.php$is_args$args;\n",
                         })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           priority: 500n,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.str`wordpress-${hostName}`), "socket")};
@@ -572,10 +572,10 @@ fastcgi_send_timeout 300;
 fastcgi_read_timeout 300;
 `),
                         })),
-                        "~ /\\.": nix.thunk(() => ({ __proto__: pos$62, priority: 800n, extraConfig: "deny all;" })),
-                        "~* /(?:uploads|files)/.*\\.php$": nix.thunk(() => ({ __proto__: pos$63, priority: 900n, extraConfig: "deny all;" })),
+                        "~ /\\.": nix.thunk(() => ({ [nix.POS]: pos$62, priority: 800n, extraConfig: "deny all;" })),
+                        "~* /(?:uploads|files)/.*\\.php$": nix.thunk(() => ({ [nix.POS]: pos$63, priority: 900n, extraConfig: "deny all;" })),
                         "~* \\.(js|css|png|jpg|jpeg|gif|ico)$": nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           priority: 1000n,
                           extraConfig: "expires max;\nlog_not_found off;\n",
                         })),
@@ -585,14 +585,14 @@ fastcgi_read_timeout 300;
               })),
             })))),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "caddy")), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               services: nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 caddy: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), hostName, nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         extraConfig: nix.thunk(() => nix.str`root    * /${nix.sel(cfg_1, "finalPackage")}/share/wordpress
 file_server
 

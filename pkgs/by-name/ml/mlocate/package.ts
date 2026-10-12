@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlocate",
       version: "0.26",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/mlocate/mlocate-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-MGPfef4Zj7lhjhgMVLrzEFsz2I/mAv8thXCq+UTxJj4=",
         })))),
       makeFlags: nix.thunk(() => ["dbfile=/var/cache/locatedb"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to index and quickly search for files",
         homepage: "https://pagure.io/mlocate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

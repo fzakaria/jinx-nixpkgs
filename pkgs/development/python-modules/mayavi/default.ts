@@ -28,20 +28,20 @@ export default nix.lambda((args) => (() => {
       const version = "4.8.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-72nMvfWPIPGzlJMNXjoW3aSxo5rcvHb3mr0mSD0prPU=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]);
       const propagatedBuildInputs = nix.thunk(() => [apptools, envisage, numpy, packaging, pyface, pygments, pyqt5, traitsui, vtk]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["mayavi"]);
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const stripExclude = nix.thunk(() => ["*.ico"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3D visualization of scientific data in Python",
         homepage: "https://github.com/enthought/mayavi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mayavi2",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

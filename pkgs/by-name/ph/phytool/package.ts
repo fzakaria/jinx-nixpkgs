@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "phytool",
       version: "2-unstable-2024-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wkz",
           repo: "phytool",
           rev: "bcf23b0261aa9f352ee4b944e30e3482158640a4",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       preInstall: "mkdir -p \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux MDIO register access",
         homepage: "https://github.com/wkz/phytool",
         changelog: "https://github.com/wkz/phytool/releases",

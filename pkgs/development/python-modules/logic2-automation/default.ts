@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const grpcio_tools = nix.arg($, "grpcio-tools");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logic2-automation",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saleae",
           repo: "logic2-automation",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["saleae.automation"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automation interface for Saleae Logic 2 software",
         homepage: "https://github.com/saleae/logic2-automation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-RyBKgeyQXz1az71h2uq8raj51AMWFtm8sGGEYXKWmfU=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pytest]);
       const checkPhase = "# based on tox.ini\npytest -k 'example and not options' --doctest-modules test/test_pytest/\npytest -k 'example and not options' test/test_pytest/\npytest -p no:flaky test/test_pytest/test_flaky_pytest_plugin.py\npytest --force-flaky --max-runs 2  test/test_pytest/test_pytest_options_example.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/box/flaky/blob/v${version}/HISTORY.rst`),
         homepage: "https://github.com/box/flaky",
         description: "Plugin for nose or py.test that automatically reruns flaky tests",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

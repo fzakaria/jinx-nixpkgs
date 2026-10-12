@@ -33,20 +33,20 @@ if [ "$_rc" -ne 0 ]; then
 fi
 `, nix.thunk(() => nix.sel(config, "system", "preSwitchChecks"))))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         preSwitchChecksScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "pathInStore")),
             internal: true,
             readOnly: true,
-            default: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ __proto__: pos$1, name: "pre-switch-checks", text: preSwitchCheckScript })))))),
+            default: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "pre-switch-checks", text: preSwitchCheckScript })))))),
           })))),
         preSwitchChecks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ failsEveryTime =\n  ''\n    false\n  '';\n}\n")),
             description: "A set of shell script fragments that are executed before the switch to a\nnew NixOS system configuration. A failure in any of these fragments will\ncause the switch to fail and exit early.\nThe scripts receive the new configuration path and the action verb passed\nto switch-to-configuration, as the first and second positional arguments\n(meaning that you can access them using `$1` and `$2`, respectively).\n",

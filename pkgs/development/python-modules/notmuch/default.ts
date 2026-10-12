@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const notmuch = nix.arg($, "notmuch");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(notmuch, "pname")),
       version: nix.thunk(() => nix.attr(notmuch, "version")),
       src: nix.thunk(() => nix.attr(notmuch, "src")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["notmuch"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python wrapper around notmuch",
         homepage: "https://notmuchmail.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

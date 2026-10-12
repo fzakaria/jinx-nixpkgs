@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const useJack = nix.argOr($, "useJack", () => true);
   const useQt = nix.argOr($, "useQt", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jalv",
       version: "1.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drobilla",
           repo: "jalv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "qt5", useQt)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple but fully featured LV2 host for Jack",
         homepage: "http://drobilla.net/software/jalv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

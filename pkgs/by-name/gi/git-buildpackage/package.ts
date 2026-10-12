@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const gitSetupHook = nix.arg($, "gitSetupHook");
   const man = nix.arg($, "man");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "git-buildpackage",
       version: "0.9.39",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agx",
           repo: "git-buildpackage",
           tag: nix.thunk(() => nix.str`debian/${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       pythonImportsCheck: nix.thunk(() => ["gbp"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, WITHOUT_PYTESTS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, WITHOUT_PYTESTS: true })),
       nativeCheckInputs: nix.thunk(() => nix.concat([debian_devscripts, dpkg, gitMinimal, gitSetupHook, man], (() => {
         const w_1 = nix.withScope(python3Packages, null);
         return [
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
         "tests.doctests.test_GitRepository.test_repo",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests.doctests.test_GitRepository.test_create_noperm"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "debian/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Suite to help with maintaining Debian packages in Git repositories",
         homepage: "https://honk.sigxcpu.org/piki/projects/git-buildpackage/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

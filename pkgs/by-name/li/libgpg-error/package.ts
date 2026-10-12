@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const genPosixLockObjOnly = nix.argOr($, "genPosixLockObjOnly", () => false);
   const genPosixLockObjOnlyAttrs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), genPosixLockObjOnly, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildPhase: "cd src\nmake gen-posix-lock-obj\n",
       installPhase: "mkdir -p $out/bin\ninstall -m755 gen-posix-lock-obj $out/bin\n",
       outputs: nix.thunk(() => ["out"]),
       outputBin: "out",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libgpg-error",
       version: "1.61",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnupg/libgpg-error/libgpg-error-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-eoVBPyvDVPT4qoMrcYrxIuSJZeng65AS7mWcE8Y4XJM=",
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnupg.org/software/libgpg-error/index.html",
         changelog: nix.thunk(() => nix.str`https://git.gnupg.org/cgi-bin/gitweb.cgi?p=libgpg-error.git;a=blob;f=NEWS;hb=refs/tags/libgpg-error-${nix.sel(finalAttrs, "version")}`),
         description: "Small library that defines common error values for all GnuPG components",

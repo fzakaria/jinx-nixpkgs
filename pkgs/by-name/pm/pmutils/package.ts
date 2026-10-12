@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnugrep, util_linux, kmod, procps, kbd, dbus])));
   const sbinPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "bin", "sbin", nix.thunk(() => [procps])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pm-utils",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pm-utils.freedesktop.org/releases/pm-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "02qc6zaf7ams6qcc470fwb6jvr4abv3lrlx16clqpn36501rkn4f",
         })))),
@@ -45,7 +45,7 @@ substituteInPlace pm/sleep.d/90clock --replace /sbin/hwclock hwclock
 `),
       postInstall: "# Remove some hooks that have doubtful usefulness.  See\n# http://zinc.canonical.com/~cking/power-benchmarking/pm-utils-results/results.txt.\n# In particular, journal-commit breaks things if you have\n# read-only bind mounts, since it ends up remounting the\n# underlying filesystem read-only.\nrm $out/lib/pm-utils/power.d/{journal-commit,readahead}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pm-utils.freedesktop.org/wiki/",
         description: "Small collection of scripts that handle suspend and resume on behalf of HAL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

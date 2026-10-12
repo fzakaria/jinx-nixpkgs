@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-cinnabar",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glandium",
           repo: "git-cinnabar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cargo, pkg_config, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       buildInputs: nix.thunk(() => [bzip2, curl, zlib, zstd]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-IVizzc2dKZ83dz3KBMDDiaFNdnS40cS++k8AywyvakQ=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
       enableParallelBuilding: true,
       buildNoDefaultFeatures: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -v target/release/git-cinnabar $out/bin\nln -sv git-cinnabar $out/bin/git-remote-hg\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Git remote helper to interact with mercurial repositories",
         homepage: "https://github.com/glandium/git-cinnabar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

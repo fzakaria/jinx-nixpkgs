@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libiodata",
       version: "0.19.14",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sailfishos",
           repo: "libiodata",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-libiodata-Fix-dependencies-between-sub-projects.patch",
             url: "https://github.com/sailfishos/libiodata/commit/85517a9f2103e461cbb69dc195335df73b7a8b7e.patch",
             hash: "sha256-qrRZ1Af5uBJvEoRHifgUSeVHFC5RATDsL3374CmoUDc=",
@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postConfigure: "make qmake_all\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         IODATA_VERSION: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for reading and writing simple structured data",
         homepage: "https://github.com/sailfishos/libiodata",
         changelog: nix.thunk(() => nix.str`https://github.com/sailfishos/libiodata/releases/tag/${nix.sel(finalAttrs, "version")}`),

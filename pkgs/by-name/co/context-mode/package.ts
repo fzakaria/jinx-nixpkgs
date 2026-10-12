@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const installAgentSkills = nix.arg($, "installAgentSkills");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "context-mode",
       version: "1.0.143",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/context-mode/-/context-mode-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-Qh91ZkeLN11ACg4y1lUpeDbSkTWF8QkY/oWKiHR/+og=",
         })))),
@@ -61,11 +61,11 @@ makeWrapper ${bun}/bin/bun $out/bin/context-mode \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Context window optimization MCP server for AI coding agents",
         homepage: "https://github.com/mksglu/context-mode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),

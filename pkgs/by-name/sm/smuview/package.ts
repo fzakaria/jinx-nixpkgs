@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smuview",
       version: "0.0.5-unstable-2023-04-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knarfS",
           repo: "smuview",
           rev: "a5ffb66287b725ebcdecc1eab04a4574c8585f66",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [bluez])))),
       postPatch: "substituteInPlace external/pybind11_2.11_dev1/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace external/QtFindReplaceDialog/dialogs/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace manual/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt based source measure unit GUI for sigrok",
         mainProgram: "smuview",
         longDescription: "SmuView is a GUI for sigrok that supports power supplies, electronic loads and all sorts of measurement devices like multimeters, LCR meters and so on",

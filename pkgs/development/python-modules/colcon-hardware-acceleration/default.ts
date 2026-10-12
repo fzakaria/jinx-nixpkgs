@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const scspell = nix.arg($, "scspell");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colcon-hardware-acceleration",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-hardware-acceleration",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook, scspell, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["colcon_hardware_acceleration"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for colcon-core to include embedded and Hardware Acceleration capabilities",
         homepage: "https://github.com/colcon/colcon-hardware-acceleration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

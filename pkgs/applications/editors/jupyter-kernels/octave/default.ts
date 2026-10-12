@@ -18,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const octave = nix.arg($, "octave");
   const imagemagick = nix.arg($, "imagemagick");
   const python3 = nix.arg($, "python3");
-  const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({ __proto__: pos$1, python3Packages: nix.thunk(() => nix.sel(python3, "pkgs")) }))));
+  const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, python3Packages: nix.thunk(() => nix.sel(python3, "pkgs")) }))));
   return (() => {
     const launcher = nix.thunk(() => nix.app(runCommand, "octave-kernel-launcher", nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         octave: octave,
         python: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [
             nix.thunk(() => nix.sel(ps, "traitlets")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       })), "mkdir -p $out/bin\n\nmakeWrapper $python/bin/python $out/bin/octave-kernel \\\n  --add-flags \"-m octave_kernel\" \\\n  --suffix PATH : $octave/bin\n"));
     const sizedLogo = (size) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`octave-logo-${size}x${size}.png`),
         version: nix.thunk(() => nix.attr(octave, "version")),
         src: nix.thunk(() => nix.sel(octave, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `),
       })));
     const definition = nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       displayName: "Octave",
       argv: nix.thunk(() => [
         nix.thunk(() => nix.str`${launcher}/bin/octave-kernel`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       logo32: nix.thunk(() => nix.app(sizedLogo, "32")),
       logo64: nix.thunk(() => nix.app(sizedLogo, "64")),
     }));
-    return { __proto__: pos$5, launcher, sizedLogo, definition };
+    return { [nix.POS]: pos$5, launcher, sizedLogo, definition };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -44,42 +44,42 @@ export default nix.lambda((args) => (() => {
     ])));
   const boolToString$ = (b) => (nix.asBool(b) ? "on" : "off");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "libreddit"]), nix.thunk(() => ["services", "redlib"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         redlib: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Private front-end for Reddit")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "redlib", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "0.0.0.0",
               example: "127.0.0.1",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The address to listen on",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 8080n,
               example: 8000n,
               type: nix.thunk(() => nix.sel(types, "port")),
               description: "The port to listen on",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the redlib web interface",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             redlib: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["default.target"]),
               environment: nix.thunk(() => nix.app(mapAttrs, (_) => (v) => (nix.asBool(nix.app(isBool, v)) ? nix.app(boolToString$, v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "settings")))),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 LockPersonality: true,
                 MemoryDenyWriteExecute: true,
                 NoNewPrivileges: true,
@@ -150,23 +150,23 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${args_1}`),
                 ]),
               }, (nix.asBool(nix.lt(nix.sel(cfg, "port"), 1024n)) ? {
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
-              } : { __proto__: pos$11, PrivateUsers: true, CapabilityBoundingSet: false }))),
+              } : { [nix.POS]: pos$11, PrivateUsers: true, CapabilityBoundingSet: false }))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Guanran928"))];

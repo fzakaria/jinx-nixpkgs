@@ -50,97 +50,97 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "kasmweb"));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         kasmweb: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "kasmweb")),
           networkSubnet: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "172.20.0.0/16",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The network subnet to use for the containers.\n",
             })))),
           postgres: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "kasmweb",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Username to use for the postgres database.\n",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: "kasmweb",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "password to use for the postgres database.\n",
               })))),
           })),
           redisPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "kasmweb",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "password to use for the redis cache.\n",
             })))),
           defaultAdminPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "kasmweb",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "default admin password to use.\n",
             })))),
           defaultUserPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "kasmweb",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "default user password to use.\n",
             })))),
           defaultManagerToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "kasmweb",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "default manager token to use.\n",
             })))),
           defaultGuacToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "kasmweb",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "default guac token to use.\n",
             })))),
           defaultRegistrationToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: "kasmweb",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "default registration token to use.\n",
             })))),
           datastorePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/kasmweb",
               description: "The directory used to store all data for kasmweb.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "The address on which kasmweb should listen.\n",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 443n,
               description: "The port on which kasmweb should listen.\n",
             })))),
           sslCertificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The SSL certificate to be used for kasmweb.\n",
             })))),
           sslCertificateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The SSL certificate's key to be used for kasmweb. Make sure to specify\nthis as a string and not a literal path, so that it is not accidentally\nincluded in your nixstore.\n",
@@ -149,26 +149,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "init-kasmweb": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               wantedBy: nix.thunk(() => ["docker-kasm_db.service", "podman-kasm_db.service"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 Type: "oneshot",
                 TimeoutStartSec: 300n,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     src: nix.path(here, "./initialize_kasmweb.sh"),
                     isExecutable: true,
                     replacements: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(pkgs, "docker")),
                           nix.thunk(() => nix.sel(pkgs, "openssl")),
@@ -196,18 +196,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           "oci-containers": nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             backend: "docker",
             containers: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               kasm_db: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 image: "postgres:16-alpine",
                 autoStart: true,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   POSTGRES_PASSWORD: "postgres",
                   POSTGRES_USER: "postgres",
                   POSTGRES_DB: "kasm",
@@ -220,7 +220,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network"]),
               })),
               kasm_db_init: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 image: nix.thunk(() => nix.str`kasmweb/api:${nix.sel(pkgs, "kasmweb", "version")}`),
                 user: "root:root",
                 autoStart: true,
@@ -234,7 +234,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host"]),
               })),
               kasm_redis: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 image: "redis:5-alpine",
                 entrypoint: "/bin/sh",
                 autoStart: true,
@@ -245,7 +245,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host"]),
               })),
               kasm_api: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 image: nix.thunk(() => nix.str`kasmweb/api:${nix.sel(pkgs, "kasmweb", "version")}`),
                 autoStart: false,
                 user: "root:root",
@@ -257,7 +257,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host"]),
               })),
               kasm_manager: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 image: nix.thunk(() => nix.str`kasmweb/manager:${nix.sel(pkgs, "kasmweb", "version")}`),
                 autoStart: false,
                 user: "root:root",
@@ -268,7 +268,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host", "--read-only"]),
               })),
               kasm_agent: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 image: nix.thunk(() => nix.str`kasmweb/agent:${nix.sel(pkgs, "kasmweb", "version")}`),
                 autoStart: false,
                 user: "root:root",
@@ -282,7 +282,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host", "--read-only"]),
               })),
               kasm_share: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 image: nix.thunk(() => nix.str`kasmweb/share:${nix.sel(pkgs, "kasmweb", "version")}`),
                 autoStart: false,
                 user: "root:root",
@@ -293,7 +293,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host", "--read-only"]),
               })),
               kasm_guac: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 image: nix.thunk(() => nix.str`kasmweb/kasm-guac:${nix.sel(pkgs, "kasmweb", "version")}`),
                 autoStart: false,
                 user: "root:root",
@@ -304,7 +304,7 @@ export default nix.lambda((args) => (() => {
                 extraOptions: nix.thunk(() => ["--network=kasm_default_network", "--userns=host", "--read-only"]),
               })),
               kasm_proxy: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 image: "kasmweb/nginx:latest",
                 autoStart: false,
                 ports: nix.thunk(() => [

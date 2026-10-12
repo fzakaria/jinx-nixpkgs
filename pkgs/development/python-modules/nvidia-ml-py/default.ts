@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const nvidia_ml_py = nix.arg($, "nvidia-ml-py");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nvidia-ml-py",
       version: "13.610.43",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "nvidia_ml_py",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZUN+tz1o0MYskxyk1FA4Ry+v8DvQuHKau6S4mfcNYPI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-locate-libnvidia-ml.so.1-on-NixOS.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
       ]),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pynvml"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          "tester-nvmlInit": nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({ __proto__: pos$3, libraries: nix.thunk(() => [nvidia_ml_py]) })), "from pynvml import (\n  nvmlInit,\n  nvmlSystemGetDriverVersion,\n  nvmlDeviceGetCount,\n  nvmlDeviceGetHandleByIndex,\n  nvmlDeviceGetName,\n)\n\nnvmlInit()\nprint(f\"Driver Version: {nvmlSystemGetDriverVersion()}\")\n\nfor i in range(nvmlDeviceGetCount()):\n    handle = nvmlDeviceGetHandleByIndex(i)\n    print(f\"Device {i} : {nvmlDeviceGetName(handle)}\")\n")),
+          [nix.POS]: pos$4,
+          "tester-nvmlInit": nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({ [nix.POS]: pos$3, libraries: nix.thunk(() => [nvidia_ml_py]) })), "from pynvml import (\n  nvmlInit,\n  nvmlSystemGetDriverVersion,\n  nvmlDeviceGetCount,\n  nvmlDeviceGetHandleByIndex,\n  nvmlDeviceGetName,\n)\n\nnvmlInit()\nprint(f\"Driver Version: {nvmlSystemGetDriverVersion()}\")\n\nfor i in range(nvmlDeviceGetCount()):\n    handle = nvmlDeviceGetHandleByIndex(i)\n    print(f\"Device {i} : {nvmlDeviceGetName(handle)}\")\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python Bindings for the NVIDIA Management Library",
         homepage: "https://pypi.org/project/nvidia-ml-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

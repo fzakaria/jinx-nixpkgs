@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const path = nix.argOr($, "path", () => nix.path(here, "./../.."));
   const extraNixpkgsConfigJson = nix.argOr($, "extraNixpkgsConfigJson", () => "{}");
   const listAttrs = (path_1) => (value) => (() => {
-    const result = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(path_1, ["AAAAAASomeThingsFailToEvaluate"])) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value))))) ? [] : (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)) ? [nix.thunk(() => ({ __proto__: pos$1, path: path_1, value: value }))] : nix.app(nix.sel(lib, "pipe"), value, nix.thunk(() => [
+    const result = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(path_1, ["AAAAAASomeThingsFailToEvaluate"])) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value))))) ? [] : (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)) ? [nix.thunk(() => ({ [nix.POS]: pos$1, path: path_1, value: value }))] : nix.app(nix.sel(lib, "pipe"), value, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value_1) => nix.app(nix.sel(lib, "addErrorContext"), nix.thunk(() => nix.str`while evaluating package set attribute path '${nix.app(nix.sel(lib, "showAttrPath"), nix.thunk(() => nix.concat(path_1, [name])))}'`), nix.thunk(() => nix.app(listAttrs, nix.thunk(() => nix.concat(path_1, [name])), value_1))))),
         nix.thunk(() => nix.sel(lib, "concatLists")),
       ])))));
     return nix.app(nix.sel(lib, "traceIf"), trace, nix.thunk(() => nix.str`** ${nix.app(nix.sel(lib, "showAttrPath"), path_1)}`), result);
   })();
   const outpaths = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: path,
       extraNixpkgsConfig: nix.thunk(() => nix.builtins.fromJSON(extraNixpkgsConfigJson)),
       attrNamesOnly: true,
     }))));
-  const list = nix.thunk(() => nix.concat(nix.builtins.map((path_1) => ({ __proto__: pos$3, path: path_1, value: nix.thunk(() => ({})) }), nix.thunk(() => [
+  const list = nix.thunk(() => nix.concat(nix.builtins.map((path_1) => ({ [nix.POS]: pos$3, path: path_1, value: nix.thunk(() => ({})) }), nix.thunk(() => [
       nix.thunk(() => ["pkgsLLVM", "stdenv"]),
       nix.thunk(() => ["pkgsArocc", "stdenv"]),
       nix.thunk(() => ["pkgsZig", "stdenv"]),
@@ -40,26 +40,26 @@ export default nix.lambda((args) => (() => {
     ])), nix.app(listAttrs, [], outpaths)));
   const paths = nix.thunk(() => nix.builtins.map((attrs) => nix.sel(attrs, "path"), list));
   const names = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "showAttrPath")), paths));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/stdenv/generic/problems.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))));
   const disallowNixpkgsInternalUseKinds = nix.thunk(() => nix.attr(from, "disallowNixpkgsInternalUseKinds"));
   const attrPathsDisallowedForInternalUse = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), list, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "map"), (attrs) => nix.update(attrs, {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           problematicProblems: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (problem) => nix.has(disallowNixpkgsInternalUseKinds, nix.key(nix.sel(problem, "kind"))), nix.thunk(() => nix.selOr(attrs, () => ({}), "value", "meta", "problems")))))),
         }))),
       nix.thunk(() => nix.app(nix.sel(lib, "filter"), (attrs) => (nix.asBool(nix.sel(attrs, "problematicProblems", "success")) && nix.asBool(!nix.eq(nix.sel(attrs, "problematicProblems", "value"), {}))))),
       nix.thunk(() => nix.app(nix.sel(lib, "map"), (attrs) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           attrPath: nix.thunk(() => nix.sel(attrs, "path")),
           reason: nix.thunk(() => nix.str`it has certain meta.problems whose kinds are disallowed: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(attrs, "problematicProblems", "value")))}`),
         }))),
     ])));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     paths: paths,
     names: names,
     result: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       paths: paths,
       attrPathsDisallowedForInternalUse: attrPathsDisallowedForInternalUse,
     })),

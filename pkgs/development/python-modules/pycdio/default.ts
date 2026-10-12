@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pycdio",
       version: "2.1.1-unstable-2024-02-26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rocky",
           repo: "pycdio",
           rev: "806c6a2eeeeb546055ce2ac9a0ae6a14ea53ae35",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test/test-*.py"]),
       disabledTests: nix.thunk(() => ["test_bincue", "test_cdda"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.gnu.org/software/libcdio/",
         changelog: nix.thunk(() => nix.str`https://github.com/rocky/pycdio/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "Wrapper around libcdio (CD Input and Control library)",

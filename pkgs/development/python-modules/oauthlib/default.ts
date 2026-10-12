@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oauthlib",
           repo: "oauthlib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         rsa: nix.thunk(() => [cryptography]),
         signedtoken: nix.thunk(() => [cryptography, pyjwt]),
         signals: nix.thunk(() => [blinker]),
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_fetch_access_token"]);
       const pythonImportsCheck = nix.thunk(() => ["oauthlib"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "django-allauth": django_allauth,
           "django-oauth-toolkit": django_oauth_toolkit,
           "google-auth-oauthlib": google_auth_oauthlib,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/oauthlib/oauthlib/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Generic, spec-compliant, thorough implementation of the OAuth request-signing logic",
         homepage: "https://github.com/oauthlib/oauthlib",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

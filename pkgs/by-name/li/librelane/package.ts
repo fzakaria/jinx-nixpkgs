@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const verilator = nix.arg($, "verilator");
   const yosys = nix.arg($, "yosys");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librelane",
       version: "3.0.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "librelane",
           repo: "librelane",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -85,14 +85,14 @@ cp -r librelane/examples "$dest/"
         ]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ASIC implementation flow infrastructure",
         homepage: "https://github.com/librelane/librelane",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

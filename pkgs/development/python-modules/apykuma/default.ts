@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const aiohttp = nix.arg($, "aiohttp");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apykuma",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PerchunPak",
           repo: "apykuma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["apykuma"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small library to notify Uptime Kuma that the service is up",
         homepage: "https://github.com/PerchunPak/apykuma",
         changelog: nix.thunk(() => nix.str`https://github.com/PerchunPak/apykuma/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

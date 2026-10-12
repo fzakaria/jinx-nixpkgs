@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xarray-einstats",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arviz-devs",
           repo: "xarray-einstats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [numpy, scipy, xarray]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         einops: nix.thunk(() => [einops]),
         numba: nix.thunk(() => [numba]),
       })),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["xarray_einstats"]),
       disabledTests: nix.thunk(() => ["test_pinv"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stats, linear algebra and einops for xarray",
         homepage: "https://github.com/arviz-devs/xarray-einstats",
         changelog: nix.thunk(() => nix.str`https://github.com/arviz-devs/xarray-einstats/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

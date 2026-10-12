@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "goodwe";
       const version = "0.9.9.31";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mletenay",
           repo: "home-assistant-goodwe-inverter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [goodwe]);
       const ignoreVersionRequirement = nix.thunk(() => ["goodwe"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mletenay/home-assistant-goodwe-inverter/releases/tag/${nix.sel(src, "tag")}`),
         description: "Experimental version of Home Assistant integration for Goodwe solar inverters",
         homepage: "https://github.com/mletenay/home-assistant-goodwe-inverter",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "canokey-usbip",
       version: "0-unstable-2024-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canokeys",
           repo: "canokey-usbip",
           rev: "cc7087277096f185401b05143f9a028711d43557",
@@ -40,7 +40,7 @@ substituteInPlace canokey-core/canokey-crypto/mbedtls/CMakeLists.txt --replace-f
 `),
       nativeBuildInputs: nix.thunk(() => [cmake, python3]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=documentation")),
@@ -48,11 +48,11 @@ substituteInPlace canokey-core/canokey-crypto/mbedtls/CMakeLists.txt --replace-f
       })),
       postInstall: "install -D --target-directory=$out/bin canokey-usbip\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CanoKey USB/IP Virt Card",
         homepage: "https://github.com/canokeys/canokey-usbip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

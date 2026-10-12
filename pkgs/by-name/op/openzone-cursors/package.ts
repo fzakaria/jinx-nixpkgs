@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const icon_slicer = nix.arg($, "icon-slicer");
   const xcursorgen = nix.arg($, "xcursorgen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openzone-cursors",
       version: "1.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ducakar",
           repo: "openzone-cursors",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [icon_slicer, xcursorgen]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clean and sharp X11/Wayland cursor theme",
         homepage: "https://www.gnome-look.org/p/999999/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const types_requests = nix.arg($, "types-requests");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openai-agents",
       version: "0.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "openai_agents",
           hash: "sha256-aJrYjI9kQ1QT3ecHykX7QtVSF/9u9jqrPWOMM/eOBL8=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["agents"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/openai/openai-agents-python/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/openai/openai-agents-python",
         description: "Lightweight, powerful framework for multi-agent workflows",

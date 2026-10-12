@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "devpi-server"));
   const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraPackages: nix.thunk(() => nix.attr(cfg, "extraPackages")),
     }))));
   const secretsFileName = "devpi-secret-file";
@@ -38,46 +38,46 @@ export default nix.lambda((args) => (() => {
   const runtimeDir = nix.thunk(() => nix.str`/run/${stateDirName}`);
   const serverDir = nix.thunk(() => nix.str`/var/lib/${stateDirName}`);
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "devpi-server": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Devpi Server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "devpi-server", nix.thunk(() => ({})))),
           primaryUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Url for the primary node. Required option for replica nodes.",
             })))),
           replica: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Run node as a replica.\nRequires the secretFile option and the primaryUrl to be enabled.\n",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a shared secret file used for synchronization,\nRequired for all nodes in a replica/primary setup.\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "domain/ip address to listen on\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3141n,
               description: "The port on which Devpi Server will listen.",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: (ps) => [],
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "ps: [ ]")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "ps: with ps; [ devpi-web devpi-ldap ]\n")),
@@ -92,13 +92,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "devpi-server": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               description: "devpi PyPI-compatible server",
               documentation: nix.thunk(() => ["https://devpi.net/docs/devpi/devpi/stable/+d/index.html"]),
@@ -113,7 +113,7 @@ if [ -f ${serverDir}/.nodeinfo ]; then
 fi
 ${package$}/bin/devpi-init --serverdir ${serverDir} `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "replica")), nix.thunk(() => nix.str`--role=replica --master-url=${nix.sel(cfg, "primaryUrl")}`)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(cfg, "secretFile"))))), nix.thunk(() => [nix.thunk(() => nix.str`devpi-secret:${nix.sel(cfg, "secretFile")}`)]))),
                 Restart: "always",
                 ExecStart: nix.thunk(() => (() => {
@@ -140,15 +140,15 @@ ${package$}/bin/devpi-init --serverdir ${serverDir} `, nix.app(nix.sel(lib, "opt
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

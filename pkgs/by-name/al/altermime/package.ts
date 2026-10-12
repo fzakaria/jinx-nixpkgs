@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const gccStdenv = nix.arg($, "gccStdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "altermime",
       version: "0.3.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pldaniels.com/altermime/altermime-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-R17ScQWH0k8R0A2vpcP234rHnhO4xdVNLqNVdrV5/Zc=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=format",
             "-Wno-error=format-truncation",
@@ -38,7 +38,7 @@ substituteInPlace Makefile \\
   --replace-fail "strip " "${nix.sel(gccStdenv, "cc", "targetPrefix")}strip "
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MIME alteration tool",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

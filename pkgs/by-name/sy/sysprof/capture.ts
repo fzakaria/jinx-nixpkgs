@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const sysprof = nix.arg($, "sysprof");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libsysprof-capture",
       src: nix.thunk(() => nix.attr(sysprof, "src")),
       version: nix.thunk(() => nix.attr(sysprof, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(sysprof, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Static library for Sysprof capture data generation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2Patent")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

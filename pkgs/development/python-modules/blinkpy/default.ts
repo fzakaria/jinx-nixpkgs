@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sortedcontainers = nix.arg($, "sortedcontainers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blinkpy",
       version: "0.25.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fronzbot",
           repo: "blinkpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "blinkpy.sync_module",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the Blink Camera system",
         homepage: "https://github.com/fronzbot/blinkpy",
         changelog: nix.thunk(() => nix.str`https://github.com/fronzbot/blinkpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

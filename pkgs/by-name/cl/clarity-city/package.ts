@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clarity-city",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmware-archive",
           repo: "clarity-city",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 TrueType/*.ttf -t $out/share/fonts/truetype\ninstall -Dm644 OpenType/*.otf -t $out/share/fonts/opentype\ninstall -Dm644 Webfonts/EOT/*.eot -t $out/share/fonts/eot\ninstall -Dm644 Webfonts/WOFF/*.woff -t $out/share/fonts/woff\ninstall -Dm644 Webfonts/WOFF2/*.woff2 -t $out/share/fonts/woff2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source sans-serif typeface",
         homepage: "https://github.com/vmware-archive/clarity-city",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

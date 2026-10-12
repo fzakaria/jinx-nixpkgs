@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "magic-mime",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-magic-mime/releases/download/v${nix.sel(finalAttrs, "version")}/magic-mime-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-4CNNA2Jduh76xY5X44dnLXWl6aYh/0ms/g9gnADxOwg=",
         })))),
       minimalOCamlVersion: "4.03",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert file extensions to MIME types",
         homepage: "https://github.com/mirage/ocaml-magic-mime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.4";
       const pname = "cl";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tonyrog",
           repo: "cl",
           rev: nix.thunk(() => nix.str`cl-${version}`),
@@ -39,14 +39,14 @@ mkdir -p $DIR
 cp -ruv c_src doc ebin include priv src $DIR
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tonyrog/cl",
         description: "OpenCL binding for Erlang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

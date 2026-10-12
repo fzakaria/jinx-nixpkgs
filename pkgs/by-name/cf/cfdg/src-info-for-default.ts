@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/src-info-for-default.nix", [["downloadPage", 2, 3], ["baseName", 3, 3], ["sourceRegexp", 4, 3], ["versionExtractorSedScript", 5, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   downloadPage: "https://contextfreeart.org/mediawiki/index.php/Download_page",
   baseName: "cfdg",
   sourceRegexp: ".*[.]tgz",

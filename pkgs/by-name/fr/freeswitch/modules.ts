@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const spandsp3 = nix.arg($, "spandsp3");
   const sofia_sip = nix.arg($, "sofia_sip");
   const libks = nix.arg($, "libks");
-  const mk = (path) => (inputs) => ({ __proto__: pos$1, path: path, inputs: inputs });
+  const mk = (path) => (inputs) => ({ [nix.POS]: pos$1, path: path, inputs: inputs });
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     applications: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       abstraction: nix.thunk(() => nix.app(mk, "applications/mod_abstraction", [])),
       av: nix.thunk(() => nix.app(mk, "applications/mod_av", nix.thunk(() => [ffmpeg]))),
       avmd: nix.thunk(() => nix.app(mk, "applications/mod_avmd", [])),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
       voicemail_ivr: nix.thunk(() => nix.app(mk, "applications/mod_voicemail_ivr", [])),
     })),
     ast_tts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       cepstral: nix.thunk(() => nix.app(mk, "ast_tts/mod_cepstral", [])),
       flite: nix.thunk(() => nix.app(mk, "ast_tts/mod_flite", [])),
       pocketsphinx: nix.thunk(() => nix.app(mk, "ast_tts/mod_pocketsphinx", [])),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       unimrcp: nix.thunk(() => nix.app(mk, "ast_tts/mod_unimrcp", [])),
     })),
     codecs: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       amr: nix.thunk(() => nix.app(mk, "codecs/mod_amr", [])),
       amrwb: nix.thunk(() => nix.app(mk, "codecs/mod_amrwb", [])),
       b64: nix.thunk(() => nix.app(mk, "codecs/mod_b64", [])),
@@ -130,22 +130,22 @@ export default nix.lambda((args) => (() => {
       theora: nix.thunk(() => nix.app(mk, "codecs/mod_theora", [])),
     })),
     databases: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mariadb: nix.thunk(() => nix.app(mk, "databases/mod_mariadb", nix.thunk(() => [libmysqlclient]))),
       pgsql: nix.thunk(() => nix.app(mk, "databases/mod_pgsql", nix.thunk(() => [libpq]))),
     })),
     dialplans: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       asterisk: nix.thunk(() => nix.app(mk, "dialplans/mod_dialplan_asterisk", [])),
       directory: nix.thunk(() => nix.app(mk, "dialplans/mod_dialplan_directory", [])),
       xml: nix.thunk(() => nix.app(mk, "dialplans/mod_dialplan_xml", [])),
     })),
     directories: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       ldap: nix.thunk(() => nix.app(mk, "directories/mod_ldap", [])),
     })),
     endpoints: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       alsa: nix.thunk(() => nix.app(mk, "endpoints/mod_alsa", [])),
       dingaling: nix.thunk(() => nix.app(mk, "endpoints/mod_dingaling", [])),
       gsmopen: nix.thunk(() => nix.app(mk, "endpoints/mod_gsmopen", nix.thunk(() => [gsmlib, libctb]))),
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
       verto: nix.thunk(() => nix.app(mk, "endpoints/mod_verto", nix.thunk(() => [libks]))),
     })),
     event_handlers: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       amqp: nix.thunk(() => nix.app(mk, "event_handlers/mod_amqp", [])),
       cdr_csv: nix.thunk(() => nix.app(mk, "event_handlers/mod_cdr_csv", [])),
       cdr_mongodb: nix.thunk(() => nix.app(mk, "event_handlers/mod_cdr_mongodb", [])),
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
       event_zmq: nix.thunk(() => nix.app(mk, "event_handlers/mod_event_zmq", [])),
     })),
     formats: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       imagick: nix.thunk(() => nix.app(mk, "formats/mod_imagick", [])),
       local_stream: nix.thunk(() => nix.app(mk, "formats/mod_local_stream", [])),
       native_file: nix.thunk(() => nix.app(mk, "formats/mod_native_file", [])),
@@ -198,7 +198,7 @@ export default nix.lambda((args) => (() => {
       webm: nix.thunk(() => nix.app(mk, "formats/mod_webm", [])),
     })),
     languages: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       basic: nix.thunk(() => nix.app(mk, "languages/mod_basic", [])),
       java: nix.thunk(() => nix.app(mk, "languages/mod_java", [])),
       lua: nix.thunk(() => nix.app(mk, "languages/mod_lua", nix.thunk(() => [lua]))),
@@ -209,7 +209,7 @@ export default nix.lambda((args) => (() => {
       yaml: nix.thunk(() => nix.app(mk, "languages/mod_yaml", [])),
     })),
     loggers: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       console: nix.thunk(() => nix.app(mk, "loggers/mod_console", [])),
       graylog2: nix.thunk(() => nix.app(mk, "loggers/mod_graylog2", [])),
       logfile: nix.thunk(() => nix.app(mk, "loggers/mod_logfile", [])),
@@ -217,7 +217,7 @@ export default nix.lambda((args) => (() => {
       raven: nix.thunk(() => nix.app(mk, "loggers/mod_raven", [])),
     })),
     say: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       de: nix.thunk(() => nix.app(mk, "say/mod_say_de", [])),
       en: nix.thunk(() => nix.app(mk, "say/mod_say_en", [])),
       es: nix.thunk(() => nix.app(mk, "say/mod_say_es", [])),
@@ -238,12 +238,12 @@ export default nix.lambda((args) => (() => {
       zh: nix.thunk(() => nix.app(mk, "say/mod_say_zh", [])),
     })),
     timers: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       posix_timer: nix.thunk(() => nix.app(mk, "timers/mod_posix_timer", [])),
       timerfd: nix.thunk(() => nix.app(mk, "timers/mod_timerfd", [])),
     })),
     xml_int: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       cdr: nix.thunk(() => nix.app(mk, "xml_int/mod_xml_cdr", [])),
       curl: nix.thunk(() => nix.app(mk, "xml_int/mod_xml_curl", nix.thunk(() => [curl]))),
       ldap: nix.thunk(() => nix.app(mk, "xml_int/mod_xml_ldap", [])),

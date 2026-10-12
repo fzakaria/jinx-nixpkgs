@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xcape",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://deb.debian.org/debian/pool/main/x/xcape/xcape_1.2.orig.tar.gz",
           hash: "sha256-on7YhP2U8DBYr2Wjnt/jrz8vj7t2upkgACp2vgf7KCE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/x/xcape/1.2-3/debian/patches/0001-Fix-cross-building-by-removing-hard-coded-pkg-config.patch",
             hash: "sha256-uQNy7EIQdAO5iHYNA2pBoDltNrn1xrfAAjN/ZdGGa4s=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=/share/man/man1"]),
       postInstall: "install -Dm444 --target-directory $out/share/doc README.md",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility to configure modifier keys to act as other keys",
         longDescription: "xcape allows you to use a modifier key as another key when\npressed and released on its own.  Note that it is slightly\nslower than pressing the original key, because the pressed event\ndoes not occur until the key is released.  The default behaviour\nis to generate the Escape key when Left Control is pressed and\nreleased on its own.\n",
         homepage: "https://github.com/alols/xcape",

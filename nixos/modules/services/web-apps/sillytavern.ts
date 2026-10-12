@@ -43,68 +43,68 @@ export default nix.lambda((args) => (() => {
   const defaultUser = "sillytavern";
   const defaultGroup = "sillytavern";
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "A1ca7raz"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         sillytavern: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "sillytavern")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User account under which the web-application run.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               description: "Group account under which the web-application run.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sillytavern", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/node_modules/sillytavern/config.yaml`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${cfg.package}/lib/node_modules/sillytavern/config.yaml")),
               description: "Path to the SillyTavern configuration file.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: null,
               example: 8045n,
               description: "Port on which SillyTavern will listen.\n",
             })))),
           listenAddressIPv4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "127.0.0.1",
               description: "Specific IPv4 address to listen to.\n",
             })))),
           listenAddressIPv6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "::1",
               description: "Specific IPv6 address to listen to.\n",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               default: null,
               example: true,
               description: "Whether to listen on all network interfaces.\n",
             })))),
           whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               default: null,
               example: true,
@@ -114,20 +114,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             sillytavern: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Silly Tavern",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gitMinimal"))]),
-              environment: nix.thunk(() => ({ __proto__: pos$13, XDG_DATA_HOME: "%S" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$13, XDG_DATA_HOME: "%S" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "simple",
                 ExecStart: nix.thunk(() => (() => {
                   const f = (x) => (name) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(x, null)), nix.thunk(() => nix.str`--${name}=${nix.builtins.toString(x)}`));
@@ -160,33 +160,33 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               sillytavern: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "/var/lib/SillyTavern/data": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   d: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     mode: "0700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 })),
                 "/var/lib/SillyTavern/extensions": nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   d: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     mode: "0700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 })),
                 "/var/lib/SillyTavern/config.yaml": nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "L+": nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     mode: "0600",
                     argument: nix.thunk(() => nix.sel(cfg, "configFile")),
                     user: nix.thunk(() => nix.attr(cfg, "user")),
@@ -198,10 +198,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "sillytavern service user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.attr(cfg, "group")),

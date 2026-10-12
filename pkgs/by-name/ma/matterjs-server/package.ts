@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "matterjs-server",
       version: "1.4.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matter-js",
           repo: "matterjs-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-haKiheg/+f1rgC/narKRTk3nWZgl0GMlSOz0QqzVbUo=",
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, versionCheckHook]),
       buildInputs: nix.thunk(() => [udev]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++20" })),
       preBuild: "npm run version -- --apply",
       postBuild: "shopt -s globstar\nrm node_modules/**/build/{config.gypi,Makefile,*.target.mk}\nshopt -u globstar\n",
       dontNpmInstall: true,
@@ -58,15 +58,15 @@ runHook postInstall
       doInstallCheck: true,
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "matterjs-server": nix.thunk(() => nix.attr(nixosTests, "matterjs-server")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Matter server based on Matter.js",
         homepage: "https://github.com/matter-js/matterjs-server",
         changelog: nix.thunk(() => nix.str`https://github.com/matter-js/matterjs-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

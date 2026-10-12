@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "digestpp",
       version: "0-unstable-2023-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kerukuro",
           repo: "digestpp",
           rev: "ebb699402c244e22c3aff61d2239bcb2e87b8ef8",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/include/digestpp\ncp -r *.hpp algorithm/ detail/ $out/include/digestpp\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++11 header-only message digest library",
         homepage: "https://github.com/kerukuro/digestpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool((nix.asBool(synapseUsesPostgresql) && nix.asBool(postgresEnabled))) && nix.asBool((nix.asBool(!nix.asBool(nix.has(args_1, "host"))) || nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(args_1, "host")), nix.thunk(() => ["localhost", "127.0.0.1", "::1"]))))));
   })());
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "synapse-auto-compressor": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "synapse-auto-compressor")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rust-synapse-compress-state", nix.thunk(() => ({})))),
           postgresUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => (() => {
                 const args_1 = nix.thunk(() => nix.sel(synapseConfig, "settings", "database", "args"));
                 return (nix.asBool(nix.sel(synapseConfig, "enable")) ? nix.str`postgresql://${nix.sel(args_1, "user")}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(args_1, "password")), nix.thunk(() => nix.add(":", nix.sel(args_1, "password"))))}@${nix.app(nix.sel(lib, "escapeURL"), nix.thunk(() => (nix.asBool(nix.has(args_1, "host")) ? nix.sel(args_1, "host") : "/run/postgresql")))}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(args_1, "port")), nix.thunk(() => nix.add(":", nix.sel(args_1, "port"))))}/${nix.sel(args_1, "database")}` : null);
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
               description: "Connection string to postgresql in the\n[rust `postgres` crate config format](https://docs.rs/postgres/latest/postgres/config/struct.Config.html).\nThe module will attempt to build a URL-style connection string out of the `services.matrix-synapse.settings.database.args`\nif a local synapse is enabled.\n",
             })))),
           startAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "weekly",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -66,21 +66,21 @@ export default nix.lambda((args) => (() => {
               example: "daily",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             chunk_size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 500n,
                 description: "The number of state groups to work on at once. All of the entries from `state_groups_state` are requested\nfrom the database for state groups that are worked on. Therefore small chunk sizes may be needed on\nmachines with low memory.\n\nNote: if the compressor fails to find space savings on the chunk as a whole\n(which may well happen in rooms with lots of backfill in) then the entire chunk is skipped.\n",
               })))),
             chunks_to_compress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 100n,
                 description: "`chunks_to_compress` chunks of size `chunk_size` will be compressed. The higher this number is set to,\nthe longer the compressor will run for.\n",
               })))),
             levels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "int")));
@@ -93,25 +93,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(synapseConfig, "enable")) && nix.asBool(synapseUsesPostgresql))),
             message: "`services.synapse-auto-compressor` requires local synapse to use postgresql as a database backend",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "synapse-auto-compressor": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "synapse-auto-compressor",
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), synapseUsesLocalPostgresql, nix.thunk(() => ["postgresql.target"]))),
               startAt: nix.thunk(() => nix.attr(cfg, "startAt")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "oneshot",
                 DynamicUser: true,
                 User: "matrix-synapse",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "desktop-file-utils",
       version: "0.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RAHU4jHYQsLegkI5WnSjlcpGjNlvX2ENgi3zNZSJinA=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/install.c \\\n  --replace \\\"update-desktop-database\\\" \\\"$out/bin/update-desktop-database\\\"\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.freedesktop.org/wiki/Software/desktop-file-utils",
         description: "Command line utilities for working with .desktop files",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "freebsd")))),

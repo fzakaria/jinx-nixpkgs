@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "realm",
       version: "2.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zhboner",
           repo: "realm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-kuoYEGn419LtJRGoWzlvgclkjW0zh94XX6OvCsa5Hfc=",
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, realm: nix.thunk(() => nix.attr(nixosTests, "realm")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, realm: nix.thunk(() => nix.attr(nixosTests, "realm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple, high performance relay server written in rust",
         homepage: "https://github.com/zhboner/realm",
         mainProgram: "realm",

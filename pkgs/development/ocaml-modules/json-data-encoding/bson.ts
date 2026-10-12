@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "json-data-encoding-bson",
       version: nix.thunk(() => nix.attr(json_data_encoding, "version")),
       src: nix.thunk(() => nix.attr(json_data_encoding, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [json_data_encoding, ocplib_endian]),
       checkInputs: nix.thunk(() => [crowbar, alcotest]),
       meta: nix.thunk(() => nix.update(nix.sel(json_data_encoding, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Type-safe encoding to and decoding from JSON (bson support)",
       })),
     })));

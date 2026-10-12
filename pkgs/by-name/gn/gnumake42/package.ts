@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.argOr($, "guile", () => null);
   nix.assert_((!nix.asBool(guileSupport) || nix.asBool((nix.asBool(!nix.eq(pkg_config, null)) && nix.asBool(!nix.eq(guile, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gn/gnumake42/package.nix:10:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnumake",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/make/make-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "12f5zzyq2w56g95nni65hc0g5p7154033y2f3qmjvd016szn5qnn",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), guileSupport, "--with-guile")),
       outputs: nix.thunk(() => ["out", "man", "info"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to control the generation of non-source files from sources",
         longDescription: "Make is a tool which controls the generation of executables and\nother non-source files of a program from the program's source files.\n\nMake gets its knowledge of how to build your program from a file\ncalled the makefile, which lists each of the non-source files and\nhow to compute it from other files. When you write a program, you\nshould write a makefile for it, so that it is possible to use Make\nto build and install the program.\n",
         homepage: "https://www.gnu.org/software/make/",

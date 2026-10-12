@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => [nix.thunk(() => nix.str`gruut_lang_${lang}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Language files for gruut tokenizer/phonemizer",
         homepage: "https://github.com/rhasspy/gruut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         version: version_1,

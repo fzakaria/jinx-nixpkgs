@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "Tkmm",
       version: "2.0.0-beta3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TKMM-Team",
           repo: "Tkmm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D distribution/appimage/tkmm.svg $out/share/icons/hicolor/scalable/apps/tkmm.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Tears of the Kingdom Mod Manager",
             exec: "Tkmm",
             icon: "tkmm",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tears of the Kingdom Mod Manager, a mod merger and manager for TotK",
         homepage: "https://tkmm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

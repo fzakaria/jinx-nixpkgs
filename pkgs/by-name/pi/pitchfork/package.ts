@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const webui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-webui`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/. $out/\n\nrunHook postInstall\n",
         }))));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "pitchfork",
         version: "2.24.0",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "jdx",
             repo: "pitchfork",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
           })))),
         cargoHash: "sha256-01rGoLun4cfyBn5rPwTPd2iGDUlyBJV2e1/5Xbsfobc=",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             hash: nix.thunk(() => nix.sel(finalAttrs, "cargoHash")),
           })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +68,7 @@ cp -r ${webui}/. ui/dist/
 `),
         doCheck: false,
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://pitchfork.jdx.dev",
           description: "Daemons with DX",
           changelog: nix.thunk(() => nix.str`https://github.com/jdx/pitchfork/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

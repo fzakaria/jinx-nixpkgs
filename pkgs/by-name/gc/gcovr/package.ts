@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gcovr",
       version: "8.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gcovr",
           repo: "gcovr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export CC_REFERENCE="gcc-${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(
         "test_multiple_output_formats_to_stdout_1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python script for summarizing gcov data",
         homepage: "https://www.gcovr.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/gcovr/gcovr/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

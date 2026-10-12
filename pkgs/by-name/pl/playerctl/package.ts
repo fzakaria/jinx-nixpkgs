@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "playerctl",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "altdesktop",
           repo: "playerctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gtk-doc", withDocs)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line utility and library for controlling media players that implement MPRIS",
         homepage: "https://github.com/altdesktop/playerctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const noto_fonts_color_emoji = nix.arg($, "noto-fonts-color-emoji");
   const version = "17.0.2";
   const twemojiSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "twemoji-src",
       owner: "jdecked",
       repo: "twemoji",
@@ -64,7 +64,7 @@ popd
       const enableParallelBuilding = true;
       const installPhase = "install -Dm644 TwitterColorEmoji.ttf $out/share/fonts/truetype/TwitterColorEmoji.ttf\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Color emoji font with a flat visual style, designed and used by Twitter",
         longDescription: "A bitmap color emoji font built from Twitter's Twemoji emoji set\nwith support for ZWJ, skin tone diversity and country flags.\n\nThis font uses Google’s CBDT format making it work on Android and Linux graphical stack.\n",
         homepage: "https://github.com/jdecked/twemoji",
@@ -83,7 +83,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         srcs,

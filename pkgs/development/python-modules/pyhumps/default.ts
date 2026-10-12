@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "revert_decamelize_ignore_numeric_characters.patch",
             revert: true,
             url: "https://github.com/nficano/humps/commit/661828b8b3e6fac15236b14ffbdf038aef516d4c.patch",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nficano",
           repo: "humps",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["humps"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to convert strings (and dictionary keys) between snake case, camel case and pascal case",
         homepage: "https://github.com/nficano/humps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

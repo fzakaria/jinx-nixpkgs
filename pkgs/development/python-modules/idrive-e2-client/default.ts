@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "idrive-e2-client",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patrickvorgers",
           repo: "idrive-e2-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["idrive_e2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous client for IDrive e2",
         homepage: "https://github.com/patrickvorgers/idrive-e2-client",
         changelog: nix.thunk(() => nix.str`https://github.com/patrickvorgers/idrive-e2-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

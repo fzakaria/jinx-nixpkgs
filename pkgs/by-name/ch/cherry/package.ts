@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cherry",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "turquoise-hexagon",
           repo: "cherry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "patchShebangs make.sh\n./make.sh\n",
       installPhase: "mkdir -p $out/share/fonts/misc\ncp *.otb $out/share/fonts/misc\n\n# create fonts.dir so NixOS xorg module adds to fp\nmkfontdir $out/share/fonts/misc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "cherry font",
         homepage: "https://github.com/turquoise-hexagon/cherry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

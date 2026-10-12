@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv_32bit, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libstrangle",
       version: "unstable-202202022",
       buildInputs: nix.thunk(() => [libGL, libx11]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "torkel104",
           repo: "libstrangle",
           rev: "0273e318e3b0cc759155db8729ad74266b74cb9b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./nixos.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://gitlab.com/torkel104/libstrangle/-/commit/4e17025071de1d99630febe7270b4f63056d0dfa.patch",
             hash: "sha256-AKMHAZhCPcn62pi4fBGhw2r8SNSkCDMUCpR3IlmJ7wQ=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteAllInPlace src/strangle.sh\nsubstituteAllInPlace src/stranglevk.sh\n",
       postInstall: "substitute $out/share/vulkan/implicit_layer.d/libstrangle_vk.json $out/share/vulkan/implicit_layer.d/libstrangle_vk.x86.json \\\n  --replace \"libstrangle_vk.so\" \"$out/lib/libstrangle/lib32/libstrangle_vk.so\"\nsubstituteInPlace $out/share/vulkan/implicit_layer.d/libstrangle_vk.json \\\n  --replace \"libstrangle_vk.so\" \"$out/lib/libstrangle/lib64/libstrangle_vk.so\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/torkel104/libstrangle",
         description: "Frame rate limiter for Linux/OpenGL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

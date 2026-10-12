@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   const hostPlatform = nix.thunk(() => nix.attr(effectiveStdenv, "hostPlatform"));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "opensubdiv",
       version: "3.7.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PixarAnimationStudios",
           repo: "OpenSubdiv",
           tag: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")),
         ]))))),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NO_TUTORIALS: true,
           NO_REGRESSION: true,
           NO_EXAMPLES: true,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           NO_OPENCL: nix.thunk(() => !nix.asBool(openclSupport)),
           NO_CUDA: nix.thunk(() => !nix.asBool(cudaSupport)),
         }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isUnix")) && nix.asBool(!nix.asBool(nix.sel(hostPlatform, "isDarwin"))))), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             GLEW_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), glew)}/include`),
             GLEW_LIBRARY: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), glew)}/lib`),
           }))))), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isWindows")) ? "ln -s $out $static\n" : "moveToOutput \"lib/libosd*.a\" $static\n")),
       postFixup: "sed -i -E \"s|\\\\\\$\\{_IMPORT_PREFIX\\}/lib/(libosd.*\\.a)|$static/lib/\\1|\" \\\n  $dev/lib/cmake/OpenSubdiv/OpenSubdivTargets-release.cmake\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-Source subdivision surface library",
         homepage: "http://graphics.pixar.com/opensubdiv",
         broken: nix.thunk(() => (nix.asBool(openclSupport) && nix.asBool(cudaSupport))),

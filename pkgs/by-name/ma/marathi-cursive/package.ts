@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "marathi-cursive";
       const version = "2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MihailJP/MarathiCursive/releases/download/v${version}/MarathiCursive-${version}.tar.xz`),
           hash: "sha256-C/z8ALV9bht0SaYqACO5ulSVCk1d6wBwvpVC4ZLgtek=",
         }))));
@@ -28,7 +28,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version} README *.txt
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/MihailJP/MarathiCursive",
         description: "Modi script font with Graphite and OpenType support",
         maintainers: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "mplus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

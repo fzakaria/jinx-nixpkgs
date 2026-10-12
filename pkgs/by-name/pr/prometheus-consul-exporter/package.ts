@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "consul_exporter";
       const version = "0.13.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus",
           repo: "consul_exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-z9+WrJDgjQYf4G90sdqY+SOGJa/r5Ie9GFVrihbaGGU=";
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for Consul metrics",
         mainProgram: "consul_exporter",
         homepage: "https://github.com/prometheus/consul_exporter",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "hectorj"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

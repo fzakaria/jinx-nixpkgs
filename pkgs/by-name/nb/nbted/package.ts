@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nbted",
       version: "1.5.2-unstable-2026-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "C4K3",
           repo: "nbted",
           rev: "ce89021a2d84e80331ef7fdc84fa9c53fa80a671",
@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-IMF5vc9p/+M/gMrUxOE3eojdATfera5dD62kcJEpzd8=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line NBT editor",
         homepage: "https://github.com/C4K3/nbted",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

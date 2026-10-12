@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
       const pname = "playball";
       const version = "3.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paaatrick",
           repo: "playball",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-okcER6Z0q7wBvdspB+VCVK9adIgEoCpLcKRQTXOAVGA=",
         }))));
       const npmDepsHash = "sha256-O2gK40vRb/5S7QlYs+niTJVIj9w9zuiMjBZxC8ZM67I=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/paaatrick/playball/releases/tag/v${version}`),
         description: "Watch MLB games from the comfort of your own terminal",
         mainProgram: "playball",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "nickthegroot"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, env, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const useDune = nix.argOr($, "useDune", () => false);
   return nix.update(nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "multinomials",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -69,82 +69,82 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "2.5.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-e1C1NfulQV1Ep2XxNjjcxIoY5FGzndiCuwIy3upwO78=",
         })),
         "2.4.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-7zfIddRH+Sl4nhEPtS/lMZwRUZI45AVFpcC/UC8Z0Yo=",
         })),
         "2.3.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-usIcxHOAuN+f/j3WjVbPrjz8Hl9ac8R6kYeAKi3CEts=",
         })),
         "2.2.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-Cie6paweITwPZy6ej9+qIvHFWknVR382uJPW927t/fo=",
         })),
         "2.1.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-QT91SBJ6DXhyg4j/okTvPP6yj2DnnPbnSlJ/p8pvZbY=",
         })),
         "2.0.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-2zWHzMBsO2j8EjN7CgCmKQcku9Be8aVlme0LD5p4ab8=",
         })),
         "1.6.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-lEM+sjqajIOm1c3lspHqcSIARgMR9RHbTQH4veHLJfU=",
         })),
         "1.5.6": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-cMixgc34T9Ic6v+tYmL49QUNpZpPV5ofaNuHqblX6oY=",
         })),
         "1.5.5": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-VdXA51vr7DZl/wT/15YYMywdD7Gh91dMP9t7ij47qNQ=",
         })),
         "1.5.4": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:0s4sbh4y88l125hdxahr56325hdhxxdmqmrz7vv8524llyv3fciq",
         })),
         "1.5.3": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:1462x40y2qydjd2wcg8r6qr8cx3xv4ixzh2h8vp9h7arylkja1qd",
         })),
         "1.5.2": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256:15aspf3jfykp1xgsxf8knqkxv8aav2p39c2fyirw7pwsfbsv2c4s",
         })),
         "1.5.1": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256:13nlfm2wqripaq671gakz5mn4r0xwm0646araxv0nh455p9ndjs3",
         })),
         "1.5.0": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256:064rvc0x5g7y1a0nip6ic91vzmq52alf6in2bc2dmss6dmzv90hw",
           rev: "1.5",
         })),
         "1.4": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hash: "sha256:0vnkirs8iqsv8s59yx1fvg1nkwnzydl42z3scya1xp1b48qkgn0p",
         })),
         "1.3": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           hash: "sha256:0l3vi5n094nx3qmy66hsv867fnqm196r8v605kpk24gl0aa57wh4",
         })),
         "1.2": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           hash: "sha256:1mh1w339dslgv4f810xr1b8v2w7rpx6fgk9pz96q0fyq49fw2xcq",
         })),
         "1.1": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           hash: "sha256:1q8alsm89wkc0lhcvxlyn0pd8rbl2nnxg81zyrabpz610qqjqc3s",
         })),
         "1.0": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           hash: "sha256:1qmbxp1h81cy3imh627pznmng0kvv37k4hrwi2faa101s6bcx55m",
         })),
       })),
@@ -159,10 +159,10 @@ export default nix.lambda((args) => (() => {
         mathcomp_bigenough,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         description: "Coq/SSReflect Library for Monoidal Rings and Multinomials",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),
-    }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "useDune")), nix.thunk(() => ({ __proto__: pos$24, useDune: useDune }))));
+    }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "useDune")), nix.thunk(() => ({ [nix.POS]: pos$24, useDune: useDune }))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "torsocks",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "core",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.torproject.org/tpo/core/torsocks/uploads/eeec9833512850306a42a0890d283d77/0001-Fix-macros-for-accept4-2.patch",
             hash: "sha256-XWi8+UFB8XgBFSl5QDJ+hLu/dH4CvAwYbeZz7KB10Bs=",
           })))),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       installCheckTarget: "check-recursive",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://gitlab.torproject.org/tpo/core/torsocks/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Wrapper to safely torify applications",
         homepage: "https://gitlab.torproject.org/tpo/core/torsocks",

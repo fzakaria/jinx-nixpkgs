@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const flashrom = nix.arg($, "flashrom");
   const withFlashrom = nix.argOr($, "withFlashrom", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vboot-utils",
       version: "143.16463",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chromium.googlesource.com/chromiumos/platform/vboot_reference",
           rev: nix.thunk(() => nix.str`refs/heads/release-R${nix.sel(finalAttrs, "passthru", "versionFormatted")}.B`),
           hash: "sha256-8a49xD+EYXDouFuBmLyAtPxThYET6DtKImBPzXVhpxE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => nix.concat([libuuid, libyaml, openssl, xz], nix.app(nix.sel(lib, "optional"), withFlashrom, nix.thunk(() => nix.sel(finalAttrs, "passthru", "flashromChromeos"))))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       enableParallelBuilding: true,
       postPatch: nix.thunk(() => nix.str`substituteInPlace Makefile \\
   --replace-fail "ar qc" '${nix.sel(stdenv, "cc", "bintools", "targetPrefix")}ar qc'
@@ -59,12 +59,12 @@ patchShebangs scripts
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "passthru", "flashromChromeos"))]))}
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         versionFormatted: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "-", nix.thunk(() => nix.app(nix.sel(lib, "versions", "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))),
         flashromChromeos: nix.thunk(() => nix.app(nix.sel(flashrom, "overrideAttrs"), (_prev) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://chromium.googlesource.com/chromiumos/third_party/flashrom",
                 rev: nix.thunk(() => nix.str`refs/heads/release-R${nix.sel(finalAttrs, "passthru", "versionFormatted")}.B-master`),
                 hash: "sha256-zOoWpuS/vDLvnRPdA9FNGhNbcwh3PMQwbdfqsyqj858=",
@@ -76,7 +76,7 @@ patchShebangs scripts
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Chrome OS partitioning and kernel signing tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

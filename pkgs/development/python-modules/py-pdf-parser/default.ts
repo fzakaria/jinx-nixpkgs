@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const wand = nix.arg($, "wand");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-pdf-parser",
       version: "0.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-dssxWgbMrWFTK4b7oBezF77k9NmUTbdbQED9eyVQGlU=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["py_pdf_parser", "py_pdf_parser.loaders"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to help extracting information from structured PDFs",
         homepage: "https://github.com/jstockwin/py-pdf-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/jstockwin/py-pdf-parser/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

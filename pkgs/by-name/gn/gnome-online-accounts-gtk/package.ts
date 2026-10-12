@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-online-accounts-gtk",
       version: "3.50.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xapp-project",
           repo: "gnome-online-accounts-gtk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "gnome-online-accounts-gtk",
         description: "Online accounts configuration utility",
         homepage: "https://github.com/xapp-project/gnome-online-accounts-gtk",

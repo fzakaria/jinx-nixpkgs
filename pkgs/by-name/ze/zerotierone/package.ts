@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const pname = "zerotierone";
   const version = "1.16.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "zerotier",
       repo: "ZeroTierOne",
       tag: version,
       hash: "sha256-bFfRz695sbdZJd5DIfF7j8lbEqWHSaIqHq/AfXZgZ4s=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rustybits`),
           hash: "sha256-u3gqETbn4I+mtUeSkSym4s+qhA3eDb4Qaq7bl58M+AY=",
@@ -69,7 +69,7 @@ substituteInPlace ./make-linux.mk \\
       buildInputs: nix.thunk(() => nix.concat([lzo, openssl, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
       })),
       preBuild: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`# building multiple architectures at the same time from nixpkgs is not supported
@@ -92,9 +92,9 @@ ln -rs \\
       installFlags: nix.thunk(() => ["-f", "make-linux.mk", "DESTDIR=$$out/upstream"]),
       postInstall: "mv $out/upstream/usr/sbin $out/bin\n\nmkdir -p $man/share\nmv $out/upstream/usr/share/man $man/share/man\n\nrm -rf $out/upstream\n",
       outputs: nix.thunk(() => ["out", "man"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Create flat virtual Ethernet networks of almost unlimited size",
         homepage: "https://www.zerotier.com",
         license: nix.thunk(() => (nix.asBool(enableUnfree) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "mpl20"))),

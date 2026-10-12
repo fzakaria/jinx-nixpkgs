@@ -24,32 +24,32 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`vscode-icons-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "vscode-icons-vsix",
       version: "12.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vscode-icons",
           repo: "vscode-icons",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-HYMXcmK2cW01PsjwMr+SGq94oFWEXvdny6IFnXMBdKA=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-3Jt9JKbu5QxZynbkgQX/So3PWeJDdxIU5TVM4nfvgcQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), vsce]),
-      env: nix.thunk(() => ({ __proto__: pos$3, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "true" })),
       buildPhase: "runHook preBuild\nvsce package\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ncp ./vscode-icons-$version.vsix $out\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vscode-icons",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "vscode-icons-team",
@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, attrPath: "vscode-extensions.kilocode.kilo-kode.vsix" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vscode-extensions.kilocode.kilo-kode.vsix" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Bring real icons to your Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons",
         homepage: "https://github.com/vscode-icons/vscode-icons",

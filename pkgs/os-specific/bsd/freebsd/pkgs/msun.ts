@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/msun",
       extraPaths: nix.thunk(() => nix.concat(["lib/libc"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["contrib/arm-optimized-routines"])))),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libcMinimal, libgcc]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=msun.ts.map

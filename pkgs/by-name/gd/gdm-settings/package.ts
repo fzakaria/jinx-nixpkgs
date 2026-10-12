@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const dataDirs = nix.argOr($, "dataDirs", () => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => ["/run/current-system/sw/share", "/usr/local/share", "/usr/share"])));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gdm-settings",
       version: "5.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gdm-settings",
           repo: "gdm-settings",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gdm, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Settings app for GNOME's Login Manager",
         homepage: "https://gdm-settings.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/gdm-settings/gdm-settings/releases/tag/v${nix.sel(finalAttrs, "version")}`),

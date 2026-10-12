@@ -33,25 +33,25 @@ export default nix.lambda((args) => (() => {
   const buildRubyGem = nix.arg($, "buildRubyGem");
   const version = "7.0.2";
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: nix.thunk(() => nix.str`redmine-env-${version}`),
       ruby: ruby_4_0,
       gemdir: nix.path(here, "./."),
       groups: nix.thunk(() => ["development", "ldap", "markdown", "common_mark", "minimagick", "test"]),
       gemConfig: nix.thunk(() => nix.update(defaultGemConfig, {
-        __proto__: pos$5,
-        trilogy: (attrs) => ({ __proto__: pos$1, buildInputs: nix.thunk(() => [openssl]) }),
+        [nix.POS]: pos$5,
+        trilogy: (attrs) => ({ [nix.POS]: pos$1, buildInputs: nix.thunk(() => [openssl]) }),
         commonmarker: (attrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                   version: nix.thunk(() => nix.attr(attrs, "version")),
                   source: nix.thunk(() => nix.attr(attrs, "source")),
                 }))));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: nix.thunk(() => nix.attr(from, "name")),
               src: nix.thunk(() => nix.attr(from, "src")),
               unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "redmine",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://www.redmine.org/releases/redmine-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1F5tTDc8w8jTPx9NSi/64eGtsYcDFgcHRnST3ntL5ZE=",
         })))),
@@ -101,11 +101,11 @@ done
 makeWrapper ${nix.sel(rubyEnv, "wrappedRuby")}/bin/ruby $out/bin/rdm-mailhandler.rb --add-flags $out/share/redmine/extra/mail_handler/rdm-mailhandler.rb
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        tests: nix.thunk(() => ({ __proto__: pos$8, redmine: nix.thunk(() => nix.sel(nixosTests, "redmine")) })),
+        [nix.POS]: pos$9,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$8, redmine: nix.thunk(() => nix.sel(nixosTests, "redmine")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         homepage: "https://www.redmine.org/",
         changelog: "https://www.redmine.org/projects/redmine/wiki/changelog",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

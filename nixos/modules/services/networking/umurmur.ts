@@ -50,32 +50,32 @@ export default nix.lambda((args) => (() => {
   const dumpCfg = (x) => nix.app(toConfigValue, x, true);
   const configAttrs = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (name) => (value) => !nix.eq(value, null), nix.thunk(() => nix.sel(cfg, "settings"))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "umurmur.conf",
       checkPhase: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -t -c "$target"
 `),
       text: nix.thunk(() => nix.add(nix.add("\n", nix.app(dumpCfg, configAttrs)), "\n")),
     }))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         umurmur: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "uMurmur Mumble server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "umurmur", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the uMurmur Mumble server.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   freeformType: nix.thunk(() => (() => {
                     const valueType = nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -86,78 +86,78 @@ export default nix.lambda((args) => (() => {
                             nix.thunk(() => nix.lookup(w, "str")),
                             nix.thunk(() => nix.lookup(w, "path")),
                             nix.thunk(() => nix.app(nix.lookup(w, "listOf"), valueType)),
-                          ])))), { __proto__: pos$3, description: "uMurmur config value" });
+                          ])))), { [nix.POS]: pos$3, description: "uMurmur config value" });
                     })());
                     return nix.force(valueType);
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     welcometext: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: "Welcome to uMurmur!",
                         description: "Welcome message for connected clients.",
                       })))),
                     bindaddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "0.0.0.0",
                         description: "IPv4 address to bind to. Defaults binding on all addresses.",
                       })))),
                     bindaddr6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "::",
                         description: "IPv6 address to bind to. Defaults binding on all addresses.",
                       })))),
                     bindport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 64739n,
                         description: "Port to bind to (UDP and TCP).",
                       })))),
                     password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Required password to join server, if specified.",
                       })))),
                     max_bandwidth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 48000n,
                         description: "Maximum bandwidth (in bits per second) that clients may send\nspeech at.\n",
                       })))),
                     max_users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 10n,
                         description: "Maximum number of concurrent clients allowed.",
                       })))),
                     certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "/var/lib/private/umurmur/cert.crt",
                         description: "Path to your SSL certificate. Generates self-signed automatically if not exists.",
                       })))),
                     private_key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "/var/lib/private/umurmur/key.key",
                         description: "Path to your SSL key. Generates self-signed automatically if not exists.",
                       })))),
                     ca_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Path to your SSL CA certificate.",
                       })))),
                     channels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                         default: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             name: "root",
                             parent: "",
                             description: "Root channel.",
@@ -167,16 +167,16 @@ export default nix.lambda((args) => (() => {
                         description: "Channel tree definitions.",
                       })))),
                     channel_links: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                         default: [],
                         example: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$16, source: "Lobby", destination: "Red team" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$16, source: "Lobby", destination: "Red team" })),
                         ]),
                         description: "Channel tree definitions.",
                       })))),
                     default_channel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "root",
                         description: "The channel in which users will appear in when connecting.",
@@ -191,33 +191,33 @@ export default nix.lambda((args) => (() => {
               const default$ = configFile;
               const description = "Configuration file, default is generated from config.service.umurmur.settings";
               const defaultText = description;
-              return { __proto__: pos$22, type, default: default$, description, defaultText };
+              return { [nix.POS]: pos$22, type, default: default$, description, defaultText };
             })()))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "bindport"))]),
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "bindport"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             umurmur: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "uMurmur Mumble Server",
               wants: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 Type: "exec",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -d -c ${nix.sel(cfg, "configFile")}`),
                 Restart: "on-failure",
@@ -265,7 +265,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_3JlOy-PYCCKUi"))];

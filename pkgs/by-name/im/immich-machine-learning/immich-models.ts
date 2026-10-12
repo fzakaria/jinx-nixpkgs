@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const onnxscript = nix.arg($, "onnxscript");
   const safetensors = nix.arg($, "safetensors");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "immich-models",
       version: "0-unstable-2026-10-06",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "immich-app",
           repo: "ml-models",
           rev: "8bf3fd1b44b0c8608f52fb6e50ddff52826576d8",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(immich, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`${nix.sel(immich, "meta", "description")} (machine learning models)`),
         homepage: "https://github.com/immich-app/ml-models",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

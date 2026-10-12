@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nutechsoftware",
           repo: "alarmdecoder",
           rev: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_ssl", "test_ssl_exception"]);
       const pythonImportsCheck = nix.thunk(() => ["alarmdecoder"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface for the Alarm Decoder (AD2USB, AD2SERIAL and AD2PI) devices",
         homepage: "https://github.com/nutechsoftware/alarmdecoder",
         changelog: nix.thunk(() => nix.str`https://github.com/nutechsoftware/alarmdecoder/releases/tag/${nix.sel(src, "rev")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

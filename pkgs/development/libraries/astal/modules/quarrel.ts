@@ -10,10 +10,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildAstalModule = nix.arg($, "buildAstalModule");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "quarrel",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Astal module for command line argument parsing",
       })),
     })));

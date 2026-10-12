@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "google-cloud-datastore",
       version: "2.27.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_datastore",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-4sNS78FW9ruUI2U7JOFQTO9LTYjg/s5aSN6cSKDQ7Uw=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         proto_plus,
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc"))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, libcst: nix.thunk(() => [libcst]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) })),
       nativeCheckInputs: nix.thunk(() => [google_cloud_testutils, mock, pytestCheckHook, pytest_asyncio]),
       preCheck: "# directory shadows imports\nrm -r google\n",
       disabledTestPaths: nix.thunk(() => [
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.datastore_v1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Cloud Datastore API client library",
         homepage: "https://cloud.google.com/datastore",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-datastore-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-datastore/CHANGELOG.md`),

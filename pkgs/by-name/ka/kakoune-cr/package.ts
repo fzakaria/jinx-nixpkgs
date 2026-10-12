@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const bash = nix.arg($, "bash");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/mawww/kakoune/raw/master/doc/kakoune_logo.svg",
       hash: "sha256-JxhIEmjiGrisaarA1sX1AfzNjHNIm9xjyPs/nG1uL/U=",
     }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kakoune.cr";
       const version = "0-unstable-2021-11-12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "alexherbo2",
           repo: "kakoune.cr",
           rev: "43d4276e1d173839f335ff60f205b89705892e00",
@@ -48,7 +48,7 @@ cp -r share/kcr $out/share/
       const installCheckPhase = "$out/bin/kcr --help\n";
       const dontCheckForBrokenSymlinks = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/alexherbo2/kakoune.cr",
         description: "Command-line tool for Kakoune",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -62,7 +62,7 @@ cp -r share/kcr $out/share/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

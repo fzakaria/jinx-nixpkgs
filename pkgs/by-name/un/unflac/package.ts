@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unflac",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ft",
           repo: "unflac",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/unflac --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool for fast frame accurate audio image + cue sheet splitting",
         homepage: "https://sr.ht/~ft/unflac/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

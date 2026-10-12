@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rustup-toolchain-install-master",
       version: "1.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kennytm",
           repo: "rustup-toolchain-install-master",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-GLNBAhwi/veUS4W6nwcCOcefVbADv962U4OqyujrT5Y=",
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-dynamically-patchelf-binaries.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             patchelf: patchelf,
             dynamicLinker: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux-x86-64.so.2`),
             libPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [zlib, nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/lib"))]))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, xz]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Install a rustc master toolchain usable from rustup",
         mainProgram: "rustup-toolchain-install-master",
         homepage: "https://github.com/kennytm/rustup-toolchain-install-master",

@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const xz = nix.arg($, "xz");
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$1, arch: "amd64", binaryname: "tinyMediaManager" })),
-    "aarch64-linux": nix.thunk(() => ({ __proto__: pos$2, arch: "arm64", binaryname: "tinyMediaManager-arm" })),
+    [nix.POS]: pos$3,
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$1, arch: "amd64", binaryname: "tinyMediaManager" })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$2, arch: "arm64", binaryname: "tinyMediaManager-arm" })),
   }));
   const sysSrc = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.4";
       const mvnHash = "sha256-pLySrUiZz55ZpTn2JABtnFjoVa1iUlLN7oDeaIg9O8s=";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "tinyMediaManager",
           repo: "tinyMediaManager",
           tag: nix.thunk(() => nix.str`tinyMediaManager-${version}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "tinyMediaManager",
             exec: "tinyMediaManager",
             icon: "tinyMediaManager",
@@ -109,11 +109,11 @@ substituteInPlace $out/opt/tinyMediaManager/launcher.yml \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Media management tool",
         homepage: "https://www.tinymediamanager.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tinyMediaManager/tinyMediaManager/-/releases/tinyMediaManager-${version}#changelog`),
@@ -132,7 +132,7 @@ runHook postInstall
         mainProgram: "tinyMediaManager",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         mvnHash,

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ply",
       version: "2.4.0",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, flex, bison, p7zip, rsync]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iovisor",
           repo: "ply",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/iovisor/ply/commit/5e78db85a625cff64e5714afcf3163c882a0435a.patch?full_index=1",
             hash: "sha256-mKPHPIZy0KztyVgHuM/kzyLytKghv8c8XvKt3pYUYDU=",
           })))),
@@ -57,11 +57,11 @@ configureFlagsArray+=(--with-kerneldir=$(echo $(pwd)/linux-*))
 ./autogen.sh --prefix=$out
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dynamic tracing in Linux",
         mainProgram: "ply",
         homepage: "https://wkz.github.io/ply/",

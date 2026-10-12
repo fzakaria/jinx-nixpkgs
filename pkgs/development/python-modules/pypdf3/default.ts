@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pypdf3",
       version: "1.0.6",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyPDF3",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yUbzJzQZ43JY415yJz9JkEqxVyPYenYcERXvmXmfjF8=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       buildInputs: nix.thunk(() => [glibcLocales]),
       checkPhase: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -m unittest tests/*.py
 `),
       propagatedBuildInputs: nix.thunk(() => [tqdm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure-Python library built as a PDF toolkit",
         homepage: "https://github.com/sfneal/PyPDF3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

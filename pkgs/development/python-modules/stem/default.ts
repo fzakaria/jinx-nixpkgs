@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "torproject",
           repo: "stem",
           tag: version,
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/python-stem/-/raw/729ce635a4dbf519bab0cd4195d507b0b9bf6c9a/fix-build-cryptography.patch",
             hash: "sha256-RTh3RVpDaNRFrSoAEfMVAO1VPWmnhdd5W+M0N9AEr24=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "cryptography-42-compat.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/python-stem/-/raw/main/9f1fa4ac.patch",
             hash: "sha256-2pj5eeurGN9HC02U2gZibt8gNWHYU92tlETZlbaT35A=",
@@ -53,7 +53,7 @@ ${nix.sel(python, "interpreter")} run_tests.py --unit
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/torproject/stem/blob/${nix.sel(src, "tag")}/docs/change_log.rst`),
         description: "Controller library that allows applications to interact with Tor",
         mainProgram: "tor-prompt",
@@ -66,7 +66,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

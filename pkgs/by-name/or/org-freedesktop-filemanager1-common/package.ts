@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "org-freedesktop-filemanager1-common",
       version: "0-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boydaihungst",
           repo: "org.freedesktop.FileManager1.common",
           rev: "7f516129ac71be409dc415421859de68c1a2ed0e",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus, systemdLibs]),
       postInstall: "for file in $out/share/org.freedesktop.FileManager1.common/*-wrapper.sh; do\n  name=${file##*/}\n  name=${name%-wrapper.sh}\n  sed -i \"s|^cmd=.*|cmd=\\\"$name\\\"|\" \"$file\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Using File Manager DBus Interface to open file manager and hover over file(s)/folder(s)",
         homepage: "https://github.com/boydaihungst/org.freedesktop.FileManager1.common",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

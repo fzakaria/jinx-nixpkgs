@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const docs_version = "71d71d4be238628bf9cb9b27be79b8bb824ed1a9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "git_filter_repo",
           version: version,
           hash: "sha256-QRsn5ooIDAemnCM8tSbbwthIsJpy8QR39ERN0IIs8pA=",
         }))));
       const docs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "newren",
           repo: "git-filter-repo",
           rev: docs_version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["git_filter_repo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quickly rewrite git repository history",
         homepage: "https://github.com/newren/git-filter-repo",
         changelog: nix.thunk(() => nix.str`https://github.com/newren/git-filter-repo/releases/tag/v${version}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "git-filter-repo",
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${pname}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts curl jq nix-update
 
@@ -79,7 +79,7 @@ docs_latest=$(curl -s https://api.github.com/repos/newren/git-filter-repo/commit
 `))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         docs_version,

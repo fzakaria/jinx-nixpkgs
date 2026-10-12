@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hcloud-upload-image";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apricote",
           repo: "hcloud-upload-image",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["."]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  $out/bin/hcloud-upload-image completion $shell > hcloud.$shell\n  installShellCompletion hcloud.$shell\ndone\n"));
-      const env = nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/apricote/hcloud-upload-image/releases/tag/v${version}`),
         description: "Quickly upload any raw disk images into your Hetzner Cloud projects",
         mainProgram: "hcloud-upload-image",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

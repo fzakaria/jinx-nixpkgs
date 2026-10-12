@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const helpers = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./helpers.nix"))), nix.thunk(() => ({}))));
   return nix.app(mkShell, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       inputsFrom: nix.thunk(() => [
         nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./package.nix"))), nix.thunk(() => ({})))),
       ]),

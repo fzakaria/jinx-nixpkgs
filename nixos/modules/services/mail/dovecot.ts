@@ -198,28 +198,28 @@ export default nix.lambda((args) => (() => {
   const sievec = nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", "passthru", "dovecot_pigeonhole")), "sievec"));
   const sieveScriptSettings = nix.thunk(() => nix.app(mapAttrs$, (to) => (_) => nix.app(nameValuePair, nix.thunk(() => nix.str`sieve_${to}`), nix.thunk(() => nix.str`${stateDir}/sieve/${to}`)), nix.thunk(() => nix.sel(cfg, "sieve", "scripts"))));
   const imapSieveMailboxSettings = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(imap1, (idx) => (el) => nix.concat(nix.app(singleton, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`imapsieve_mailbox${nix.builtins.toString(idx)}_name`),
             value: nix.thunk(() => nix.sel(el, "name")),
           }))), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(el, "from"), null)), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`imapsieve_mailbox${nix.builtins.toString(idx)}_from`),
             value: nix.thunk(() => nix.sel(el, "from")),
           }))), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(el, "causes"), [])), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`imapsieve_mailbox${nix.builtins.toString(idx)}_causes`),
             value: nix.thunk(() => nix.app(concatStringsSep, ",", nix.thunk(() => nix.sel(el, "causes")))),
           }))), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(el, "before"), null)), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`imapsieve_mailbox${nix.builtins.toString(idx)}_before`),
             value: nix.thunk(() => nix.str`file:${stateDir}/imapsieve/before/${nix.builtins.baseNameOf(nix.thunk(() => nix.sel(el, "before")))}`),
           }))), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(el, "after"), null)), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: nix.thunk(() => nix.str`imapsieve_mailbox${nix.builtins.toString(idx)}_after`),
             value: nix.thunk(() => nix.str`file:${stateDir}/imapsieve/after/${nix.builtins.baseNameOf(nix.thunk(() => nix.sel(el, "after")))}`),
           }))))))), nix.thunk(() => nix.sel(cfg, "imapsieve", "mailbox"))))))));
   const sievePipeBinScriptDirectory = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "sieve-pipe-bins", nix.thunk(() => nix.builtins.map((el) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(el)))),
         path: el,
       }), nix.thunk(() => nix.sel(cfg, "sieve", "pipeBins"))))));
@@ -252,7 +252,7 @@ export default nix.lambda((args) => (() => {
   const isPre24 = nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(cfg, "package", "version")), "2.4"));
   const hasPigeonhole = nix.thunk(() => nix.builtins.any((pkg) => nix.eq(nix.selOr(pkg, () => null, "pname"), "dovecot-pigeonhole"), nix.thunk(() => nix.sel(config, "environment", "systemPackages"))));
   return {
-    __proto__: pos$145,
+    [nix.POS]: pos$145,
     imports: nix.thunk(() => nix.concat([
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "dovecot2", "modules"]), "Now need to use `environment.systemPackages` to load additional Dovecot modules")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "dovecot2", "enablePop3"]), "Set 'services.dovecot2.settings.protocols.pop3 = true/false;' instead.")),
@@ -281,19 +281,19 @@ export default nix.lambda((args) => (() => {
         ]));
     })())),
     options: nix.thunk(() => ({
-      __proto__: pos$98,
+      [nix.POS]: pos$98,
       services: nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         dovecot2: nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the dovecot 2.x POP3/IMAP server")),
           package: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "dovecot", nix.thunk(() => ({}))), {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             default: nix.thunk(() => (nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.05")) ? nix.sel(pkgs, "dovecot") : nix.sel(pkgs, "dovecot_2_3"))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if versionAtLeast config.system.stateVersion \"26.05\" then pkgs.dovecot else pkgs.dovecot_2_3")),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(lib, "types"));
@@ -320,13 +320,13 @@ export default nix.lambda((args) => (() => {
                   const typeDefault = nix.thunk(() => (nix.asBool(nix.eq(splits, null)) ? nix.force(name$) : nix.builtins.elemAt(splits, 0n)));
                   const nameDefault = nix.thunk(() => (nix.asBool(nix.eq(splits, null)) ? null : nix.builtins.elemAt(splits, 1n)));
                   return {
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     options: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       _section: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             description: "Section type, mandatory for every section.",
                             type: nonEmptyStr,
                             default: typeDefault,
@@ -334,7 +334,7 @@ export default nix.lambda((args) => (() => {
                             internal: fixed,
                           })))),
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             description: "Section name, comes after section type & is optional in some cases.",
                             type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                             default: nameDefault,
@@ -349,88 +349,88 @@ export default nix.lambda((args) => (() => {
                 const section = nix.thunk(() => nix.app(submodule, nix.thunk(() => nix.app(sectionBase, false))));
                 const fixedSectionWith = (extraModule) => nix.app(submodule, nix.thunk(() => [nix.thunk(() => nix.app(sectionBase, true)), extraModule]));
                 const primitiveType = nix.thunk(() => nix.app(oneOf, nix.thunk(() => [int, str, bool, path, section])));
-                const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [primitiveType, nix.thunk(() => nix.app(nonEmptyListOf, primitiveType))])))), { __proto__: pos$13, description: "Dovecot config value" }));
+                const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [primitiveType, nix.thunk(() => nix.app(nonEmptyListOf, primitiveType))])))), { [nix.POS]: pos$13, description: "Dovecot config value" }));
                 const booleanList = nix.thunk(() => nix.app(oneOf, nix.thunk(() => [
                     nix.thunk(() => nix.app(attrsOf, bool)),
                     nix.thunk(() => nix.app(listOf, str)),
                   ])));
                 const toplevel = nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     options: nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       base_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           default: baseDir,
                           description: "The base directory in which Dovecot should store runtime data.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#base_dir>.\n",
                           type: path,
                         })))),
                       sendmail_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           default: "/run/wrappers/bin/sendmail",
                           description: "The binary to use for sending email.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#sendmail_path>.\n",
                           type: path,
                         })))),
                       mail_plugin_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           default: "/run/current-system/sw/lib/dovecot/modules",
                           description: "The directory in which to search for Dovecot mail plugins.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#mail_plugin_dir>.\n",
                           type: path,
                         })))),
                       default_internal_user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           default: "dovecot2",
                           description: "Define the default internal user.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#default_internal_user>.\n",
                           type: str,
                         })))),
                       default_internal_group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           default: "dovecot2",
                           description: "Define the default internal group.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#default_internal_group>.\n",
                           type: str,
                         })))),
                       maildir_copy_with_hardlinks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           default: true,
                           description: "If enabled, copying of a message is done with hard links whenever possible.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#maildir_copy_with_hardlinks>.\n",
                           type: bool,
                         })))),
                       auth_mechanisms: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           default: nix.thunk(() => ["plain", "login"]),
                           description: "Here you can supply a space-separated list of the authentication mechanisms you wish to use.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#auth_mechanisms>.\n",
                           type: booleanList,
                         })))),
                       "passdb pam": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           default: null,
                           description: "Configuration for the PAM password database.\n\nSee <https://doc.dovecot.org/latest/core/config/auth/databases/pam.html>.\n",
                           type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(fixedSectionWith, nix.thunk(() => ({
-                                __proto__: pos$26,
+                                [nix.POS]: pos$26,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$25,
+                                  [nix.POS]: pos$25,
                                   driver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$21,
+                                      [nix.POS]: pos$21,
                                       default: nix.thunk(() => (nix.asBool(isPre24) ? "pam" : null)),
                                       defaultText: nix.thunk(() => nix.app(literalExpression, "if isPre24 then \"pam\" else null")),
                                       description: "The driver used for this password database.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#passdb_driver>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, str)),
                                     })))),
                                   args: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$22,
+                                      [nix.POS]: pos$22,
                                       default: null,
                                       defaultText: "if isPre24 then [ \"dovecot2\" ] else null",
                                       description: "Arguments for the passdb backend.\n\nThis option is exclusive to Dovecot 2.3.\n\nSee <https://doc.dovecot.org/2.3/configuration_manual/authentication/password_databases_passdb/#passdb-setting>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, str)))),
                                     })))),
                                   service_name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$23,
+                                      [nix.POS]: pos$23,
                                       default: nix.thunk(() => (nix.asBool(isPre24) ? null : "dovecot2")),
                                       defaultText: nix.thunk(() => nix.app(literalExpression, "if isPre24 then null else \"dovecot2\"")),
                                       description: "The PAM service name to be used with the pam passdb.\n\nThis option is exclusive to Dovecot 2.4.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#passdb_pam_service_name>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, str)),
                                     })))),
                                   failure_show_msg: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$24,
+                                      [nix.POS]: pos$24,
                                       default: nix.thunk(() => (nix.asBool(isPre24) ? null : nix.sel(cfg, "showPAMFailure"))),
                                       defaultText: nix.thunk(() => nix.app(literalExpression, "if isPre24 then null else config.services.dovecot2.showPAMFailure")),
                                       description: "Replace the default \"Authentication failed\" reply with PAM's failure.\n\nThis option is exclusive to Dovecot 2.4.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#passdb_pam_failure_show_msg>.\n",
@@ -440,15 +440,15 @@ export default nix.lambda((args) => (() => {
                               })))))),
                         })))),
                       "userdb passwd": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           default: null,
                           description: "Configuration for the Passwd user database.\n\nSee <https://doc.dovecot.org/latest/core/config/auth/databases/passwd.html>.\n",
                           type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(fixedSectionWith, nix.thunk(() => ({
-                                __proto__: pos$30,
+                                [nix.POS]: pos$30,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$29,
+                                  [nix.POS]: pos$29,
                                   driver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$28,
+                                      [nix.POS]: pos$28,
                                       default: nix.thunk(() => (nix.asBool(isPre24) ? "passwd" : null)),
                                       defaultText: nix.thunk(() => nix.app(literalExpression, "if isPre24 then \"passwd\" else null")),
                                       description: "The driver used for this user database.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#userdb_driver>.\n",
@@ -458,33 +458,33 @@ export default nix.lambda((args) => (() => {
                               })))))),
                         })))),
                       plugin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           default: null,
                           description: "Plugin settings. This option is exclusive to Dovecot 2.3.",
                           type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(fixedSectionWith, nix.thunk(() => ({
-                                __proto__: pos$37,
+                                [nix.POS]: pos$37,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$36,
+                                  [nix.POS]: pos$36,
                                   sieve_pipe_bin_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$32,
+                                      [nix.POS]: pos$32,
                                       default: null,
                                       description: "Points to a directory where the plugin looks for programs (shell scripts) to execute directly and pipe messages to for the *vnd.dovecot.pipe* extension.\n\nThis option is exclusive to Dovecot 2.3.\n\nSee <https://doc.dovecot.org/2.3/configuration_manual/sieve/plugins/extprograms/#configuration>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, path)),
                                     })))),
                                   sieve_plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$33,
+                                      [nix.POS]: pos$33,
                                       default: null,
                                       description: "List of Sieve plugins to load.\n\nThis option is exclusive to Dovecot 2.3.\n\nSee <https://doc.dovecot.org/2.3/settings/pigeonhole/#pigeonhole_setting-sieve_plugins>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, str)))),
                                     })))),
                                   sieve_extensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$34,
+                                      [nix.POS]: pos$34,
                                       default: null,
                                       description: "The Sieve language extensions available to users.\n\nThis option is exclusive to Dovecot 2.3.\n\nSee <https://doc.dovecot.org/2.3/settings/pigeonhole/#pigeonhole_setting-sieve_extensions>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, str)))),
                                     })))),
                                   sieve_global_extensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$35,
+                                      [nix.POS]: pos$35,
                                       default: null,
                                       description: "Which Sieve language extensions are **only** available in global scripts.\n\nThis option is exclusive to Dovecot 2.3.\n\nSee <https://doc.dovecot.org/2.3/settings/pigeonhole/#pigeonhole_setting-sieve_global_extensions>.\n",
                                       type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, str)))),
@@ -493,38 +493,38 @@ export default nix.lambda((args) => (() => {
                               })))))),
                         })))),
                       dovecot_config_version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           default: null,
                           description: "Dovecot configuration version. It uses the same versioning as Dovecot in general, e.g. 3.0.5. It specifies the configuration syntax, the used setting names and the expected default values.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#dovecot_config_version>.\n",
                           type: nix.thunk(() => nix.app(nullOr, str)),
                         })))),
                       dovecot_storage_version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           default: null,
                           description: "Dovecot storage file format version. It uses the same versioning as Dovecot in general, e.g. 3.0.5. It specifies the oldest Dovecot version that must be able to read files written by this Dovecot instance.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#dovecot_storage_version>.\n",
                           type: nix.thunk(() => nix.app(nullOr, str)),
                         })))),
                       sieve_script_bin_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           default: nix.thunk(() => (nix.asBool((nix.asBool(isPre24) || nix.asBool(!nix.asBool(hasPigeonhole)))) ? null : "/tmp/dovecot-%{user|username|lower}")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "if isPre24 || !hasPigeonhole\nthen null\nelse \"/tmp/dovecot-%{user|username|lower}\"\n")),
                           description: "Points to the directory where the compiled binaries for this script location are stored. This directory is created automatically if possible.\n\nThis option is exclusive to Dovecot 2.4.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#sieve_script_bin_path>.\n",
                           type: nix.thunk(() => nix.app(nullOr, str)),
                         })))),
                       sieve_pipe_bin_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           default: null,
                           description: "Points to a directory where the plugin looks for programs (shell scripts) to execute directly and pipe messages to for the *vnd.dovecot.pipe* extension.\n\nThis option is exclusive to Dovecot 2.4.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#sieve_plugins>.\n",
                           type: nix.thunk(() => nix.app(nullOr, path)),
                         })))),
                       sieve_plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           default: null,
                           description: "List of Sieve plugins to load.\n\nThis option is exclusive to Dovecot 2.4.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#sieve_plugins>.\n",
                           type: nix.thunk(() => nix.app(nullOr, booleanList)),
                         })))),
                       sieve_global_extensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           default: null,
                           description: "Which Sieve language extensions are **only** available in global scripts.\n\nThis option is exclusive to Dovecot 2.4.\n\nSee <https://doc.dovecot.org/latest/core/summaries/settings.html#sieve_global_extensions>.\n",
                           type: nix.thunk(() => nix.app(nullOr, booleanList)),
@@ -536,45 +536,45 @@ export default nix.lambda((args) => (() => {
               })()),
               description: "Dovecot configuration, see <https://doc.dovecot.org/latest/core/summaries/settings.html#all-dovecot-settings>\nfor all available options.\n\nFor information on the configuration structure, see <https://doc.dovecot.org/latest/core/settings/syntax.html>.\n\n::: {.warning}\nExplicit settings in [{option}`services.dovecot2.settings`](#opt-services.dovecot2.settings) can silently override values set by other `services.dovecot2.*` options.\n:::\n",
               example: nix.thunk(() => ({
-                __proto__: pos$60,
-                protocols: nix.thunk(() => ({ __proto__: pos$47, imap: true, submission: true, lmtp: true })),
+                [nix.POS]: pos$60,
+                protocols: nix.thunk(() => ({ [nix.POS]: pos$47, imap: true, submission: true, lmtp: true })),
                 mail_driver: "maildir",
                 mail_home: "/var/vmail/%{user | domain}/%{user | username}",
                 mail_path: "~/mail",
-                "namespace inbox": nix.thunk(() => ({ __proto__: pos$48, inbox: true, separator: "/" })),
+                "namespace inbox": nix.thunk(() => ({ [nix.POS]: pos$48, inbox: true, separator: "/" })),
                 service: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$52,
-                    _section: nix.thunk(() => ({ __proto__: pos$49, name: "imap" })),
+                    [nix.POS]: pos$52,
+                    _section: nix.thunk(() => ({ [nix.POS]: pos$49, name: "imap" })),
                     process_min_avail: 1n,
                     client_limit: 100n,
-                    "inet_listener imap": nix.thunk(() => ({ __proto__: pos$50, port: 31143n })),
-                    "inet_listener imaps": nix.thunk(() => ({ __proto__: pos$51, port: 31993n })),
+                    "inet_listener imap": nix.thunk(() => ({ [nix.POS]: pos$50, port: 31143n })),
+                    "inet_listener imaps": nix.thunk(() => ({ [nix.POS]: pos$51, port: 31993n })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$55,
-                    _section: nix.thunk(() => ({ __proto__: pos$53, name: "lmtp" })),
+                    [nix.POS]: pos$55,
+                    _section: nix.thunk(() => ({ [nix.POS]: pos$53, name: "lmtp" })),
                     user: "dovemail",
-                    "unix_listener lmtp": nix.thunk(() => ({ __proto__: pos$54, mode: "0660", user: "postfix" })),
+                    "unix_listener lmtp": nix.thunk(() => ({ [nix.POS]: pos$54, mode: "0660", user: "postfix" })),
                   })),
                 ]),
                 "protocol imap": nix.thunk(() => ({
-                  __proto__: pos$57,
-                  mail_plugins: nix.thunk(() => ({ __proto__: pos$56, imap_sieve: true, imap_filter_sieve: true })),
+                  [nix.POS]: pos$57,
+                  mail_plugins: nix.thunk(() => ({ [nix.POS]: pos$56, imap_sieve: true, imap_filter_sieve: true })),
                 })),
                 mail_attribute: nix.thunk(() => ({
-                  __proto__: pos$59,
-                  "dict file": nix.thunk(() => ({ __proto__: pos$58, path: "%{home}/dovecot-attributes" })),
+                  [nix.POS]: pos$59,
+                  "dict file": nix.thunk(() => ({ [nix.POS]: pos$58, path: "%{home}/dovecot-attributes" })),
                 })),
               })),
             })))),
           mailPlugins: nix.thunk(() => (() => {
             const plugins = (hint) => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 options: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       default: [],
                       description: nix.thunk(() => nix.str`mail plugins to enable as a list of strings to append to the ${hint} \`$mail_plugins\` configuration variable`),
@@ -582,105 +582,105 @@ export default nix.lambda((args) => (() => {
                 })),
               })));
             return nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$71,
+                      [nix.POS]: pos$71,
                       options: nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         globally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$67,
+                            [nix.POS]: pos$67,
                             description: "Additional entries to add to the mail_plugins variable for all protocols",
                             type: nix.thunk(() => nix.app(plugins, "top-level")),
-                            example: nix.thunk(() => ({ __proto__: pos$65, enable: nix.thunk(() => ["virtual"]) })),
-                            default: nix.thunk(() => ({ __proto__: pos$66, enable: [] })),
+                            example: nix.thunk(() => ({ [nix.POS]: pos$65, enable: nix.thunk(() => ["virtual"]) })),
+                            default: nix.thunk(() => ({ [nix.POS]: pos$66, enable: [] })),
                           })))),
                         perProtocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$69,
+                            [nix.POS]: pos$69,
                             description: "Additional entries to add to the mail_plugins variable, per protocol",
                             type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(plugins, "corresponding per-protocol")))),
                             default: nix.thunk(() => ({})),
-                            example: nix.thunk(() => ({ __proto__: pos$68, imap: nix.thunk(() => ["imap_acl"]) })),
+                            example: nix.thunk(() => ({ [nix.POS]: pos$68, imap: nix.thunk(() => ["imap_acl"]) })),
                           })))),
                       })),
                     })));
                 })()),
                 description: "Additional entries to add to the mail_plugins variable, globally and per protocol",
                 example: nix.thunk(() => ({
-                  __proto__: pos$75,
-                  globally: nix.thunk(() => ({ __proto__: pos$72, enable: nix.thunk(() => ["acl"]) })),
+                  [nix.POS]: pos$75,
+                  globally: nix.thunk(() => ({ [nix.POS]: pos$72, enable: nix.thunk(() => ["acl"]) })),
                   perProtocol: nix.thunk(() => ({
-                    __proto__: pos$74,
-                    imap: nix.thunk(() => ({ __proto__: pos$73, enable: nix.thunk(() => ["imap_acl"]) })),
+                    [nix.POS]: pos$74,
+                    imap: nix.thunk(() => ({ [nix.POS]: pos$73, enable: nix.thunk(() => ["imap_acl"]) })),
                   })),
                 })),
                 default: nix.thunk(() => ({
-                  __proto__: pos$77,
-                  globally: nix.thunk(() => ({ __proto__: pos$76, enable: [] })),
+                  [nix.POS]: pos$77,
+                  globally: nix.thunk(() => ({ [nix.POS]: pos$76, enable: [] })),
                   perProtocol: nix.thunk(() => ({})),
                 })),
               })));
           })()),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Config file used for the whole dovecot configuration.",
               apply: (v) => (nix.asBool(!nix.eq(v, null)) ? nix.force(v) : nix.app(nix.sel(pkgs, "writeText"), "dovecot.conf", doveConf)),
             })))),
           includeFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "Files to include in the Dovecot config file using !include directives.",
               example: nix.thunk(() => ["/foo/bar/extraDovecotConfig.conf"]),
             })))),
-          createMailUser: nix.thunk(() => nix.update(nix.app(mkEnableOption, "automatically creating the user\ngiven in {option}`services.dovecot2.settings.mail_uid` and the group\ngiven in {option}`services.dovecot2.settings.mail_gid`"), { __proto__: pos$81, default: true })),
+          createMailUser: nix.thunk(() => nix.update(nix.app(mkEnableOption, "automatically creating the user\ngiven in {option}`services.dovecot2.settings.mail_uid` and the group\ngiven in {option}`services.dovecot2.settings.mail_gid`"), { [nix.POS]: pos$81, default: true })),
           enablePAM: nix.thunk(() => nix.app(mkEnableOption, "creating a own Dovecot PAM service and configure PAM user logins")),
           showPAMFailure: nix.thunk(() => nix.app(mkEnableOption, "showing the PAM failure message on authentication error (useful for OTPW)")),
           imapsieve: nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             mailbox: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 default: [],
                 description: "Configure Sieve filtering rules on IMAP actions\n\n::: {.note}\nThis option is no longer used starting from Dovecot version 2.4.\n:::\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$3);
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$88,
+                        [nix.POS]: pos$88,
                         options: nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$82,
+                              [nix.POS]: pos$82,
                               description: "This setting configures the name of a mailbox for which administrator scripts are configured.\n\nThe settings defined hereafter with matching sequence numbers apply to the mailbox named by this setting.\n\nThis setting supports wildcards with a syntax compatible with the IMAP LIST command, meaning that this setting can apply to multiple or even all (\"*\") mailboxes.\n",
                               example: "Junk",
                               type: nix.thunk(() => nix.sel(types, "str")),
                             })))),
                           from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$83,
+                              [nix.POS]: pos$83,
                               default: null,
                               description: "Only execute the administrator Sieve scripts for the mailbox configured with services.dovecot2.imapsieve.mailbox.<name>.name when the message originates from the indicated mailbox.\n\nThis setting supports wildcards with a syntax compatible with the IMAP LIST command, meaning that this setting can apply to multiple or even all (\"*\") mailboxes.\n",
                               example: "*",
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             })))),
                           causes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$84,
+                              [nix.POS]: pos$84,
                               default: [],
                               description: "Only execute the administrator Sieve scripts for the mailbox configured with services.dovecot2.imapsieve.mailbox.<name>.name when one of the listed IMAPSIEVE causes apply.\n\nThis has no effect on the user script, which is always executed no matter the cause.\n",
                               example: nix.thunk(() => ["COPY", "APPEND"]),
                               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["APPEND", "COPY", "FLAG"]))))),
                             })))),
                           before: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$85,
+                              [nix.POS]: pos$85,
                               default: null,
                               description: "When an IMAP event of interest occurs, this sieve script is executed before any user script respectively.\n\nThis setting each specify the location of a single sieve script. The semantics of this setting is similar to sieve_before: the specified scripts form a sequence together with the user script in which the next script is only executed when an (implicit) keep action is executed.\n",
                               example: nix.thunk(() => nix.app(literalExpression, "./report-spam.sieve")),
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             })))),
                           after: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$86,
+                              [nix.POS]: pos$86,
                               default: null,
                               description: "When an IMAP event of interest occurs, this sieve script is executed after any user script respectively.\n\nThis setting each specify the location of a single sieve script. The semantics of this setting is similar to sieve_after: the specified scripts form a sequence together with the user script in which the next script is only executed when an (implicit) keep action is executed.\n",
                               example: nix.thunk(() => nix.app(literalExpression, "./report-spam.sieve")),
@@ -692,29 +692,29 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           sieve: nix.thunk(() => ({
-            __proto__: pos$95,
+            [nix.POS]: pos$95,
             extensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 default: [],
                 description: "Sieve extensions for use in user scripts",
                 example: nix.thunk(() => ["notify", "imapflags", "vnd.dovecot.filter"]),
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               })))),
             globalExtensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 default: [],
                 example: nix.thunk(() => ["vnd.dovecot.environment"]),
                 description: "Sieve extensions for use in global scripts",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               })))),
             scripts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => ({})),
                 description: "Sieve scripts to be executed. Key is a sequence, e.g. 'before2', 'after' etc.",
               })))),
             pipeBins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "map lib.getExe [\n  (pkgs.writeShellScriptBin \"learn-ham.sh\" \"exec ${pkgs.rspamd}/bin/rspamc learn_ham\")\n  (pkgs.writeShellScriptBin \"learn-spam.sh\" \"exec ${pkgs.rspamd}/bin/rspamc learn_spam\")\n]\n")),
                 description: "Programs available for use by the vnd.dovecot.pipe extension",
@@ -725,30 +725,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$143,
+        [nix.POS]: pos$143,
         security: nix.thunk(() => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           pam: nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             services: nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               dovecot2: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enablePAM")), nix.thunk(() => ({})))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$112,
+          [nix.POS]: pos$112,
           dovecot2: nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             sieve: nix.thunk(() => ({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               globalExtensions: nix.thunk(() => nix.app(mkIf, isPre24, nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), "vnd.dovecot.pipe")))),
             })),
             settings: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => nix.app(mkIf, isPre24, nix.thunk(() => ({
-                    __proto__: pos$105,
+                    [nix.POS]: pos$105,
                     "passdb pam": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enablePAM")), nix.thunk(() => ({
-                        __proto__: pos$103,
+                        [nix.POS]: pos$103,
                         args: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "showPAMFailure")), "failure_show_msg=yes"), nix.app(singleton, nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["dovecot2"])))))))),
                       })))),
                     "userdb passwd": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enablePAM")), nix.thunk(() => ({})))),
@@ -757,7 +757,7 @@ export default nix.lambda((args) => (() => {
                         sieveScriptSettings,
                         imapSieveMailboxSettings,
                         nix.thunk(() => ({
-                          __proto__: pos$104,
+                          [nix.POS]: pos$104,
                           sieve_plugins: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                               nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "imapsieve", "mailbox"), [])), nix.thunk(() => ["sieve_imapsieve"]))),
                               nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), nix.thunk(() => ["sieve_extprograms"]))),
@@ -769,76 +769,76 @@ export default nix.lambda((args) => (() => {
                       ]))),
                   })))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(isPre24) && nix.asBool(!nix.eq(nix.sel(cfg, "mailPlugins", "perProtocol"), {})))) || nix.asBool(!nix.eq(nix.sel(cfg, "mailPlugins", "globally", "enable"), [])))), nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((m) => ({
-                        __proto__: pos$107,
+                        [nix.POS]: pos$107,
                         name: nix.thunk(() => nix.str`protocol ${nix.app(elemAt, nix.thunk(() => nix.app(splitString, ".", nix.thunk(() => nix.sel(m, "name")))), 0n)}`),
                         value: nix.thunk(() => ({
-                          __proto__: pos$106,
+                          [nix.POS]: pos$106,
                           mail_plugins: nix.thunk(() => nix.str`$mail_plugins ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat(nix.sel(m, "value", "enable"), nix.sel(cfg, "mailPlugins", "globally", "enable"))))}`),
                         })),
                       }), nix.thunk(() => nix.app(attrsToList, nix.thunk(() => nix.sel(cfg, "mailPlugins", "perProtocol")))))))))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(isPre24)), nix.thunk(() => ({
-                    __proto__: pos$110,
+                    [nix.POS]: pos$110,
                     "passdb pam": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enablePAM")), nix.thunk(() => ({})))),
                     "userdb passwd": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enablePAM")), nix.thunk(() => ({})))),
-                    sieve_plugins: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), nix.thunk(() => ({ __proto__: pos$108, sieve_extprograms: true })))),
-                    sieve_global_extensions: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), nix.thunk(() => ({ __proto__: pos$109, "vnd.dovecot.pipe": true })))),
+                    sieve_plugins: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), nix.thunk(() => ({ [nix.POS]: pos$108, sieve_extprograms: true })))),
+                    sieve_global_extensions: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), nix.thunk(() => ({ [nix.POS]: pos$109, "vnd.dovecot.pipe": true })))),
                     sieve_pipe_bin_dir: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "sieve", "pipeBins"), [])), sievePipeBinScriptDirectory)),
                   })))),
               ]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$123,
+          [nix.POS]: pos$123,
           users: nix.thunk(() => nix.update({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             dovenull: nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "dovenull2")),
               description: "Dovecot user for untrusted logins",
               group: "dovenull",
             })),
           }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "default_internal_user"), "dovecot2")), nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               dovecot2: nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "dovecot2")),
                 description: "Dovecot user",
                 group: nix.thunk(() => nix.sel(cfg, "settings", "default_internal_group")),
               })),
             }))), nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "mail_uid"), null)) && nix.asBool(nix.sel(cfg, "createMailUser")))), nix.thunk(() => nix.attrsDyn({}, [
-              [nix.sel(cfg, "settings", "mail_uid"), nix.thunk(() => nix.update({ __proto__: pos$117, description: "Virtual Mail User", isSystemUser: true }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.selOr(cfg, () => null, "settings", "mail_gid"), null)), nix.thunk(() => ({
-                  __proto__: pos$118,
+              [nix.sel(cfg, "settings", "mail_uid"), nix.thunk(() => nix.update({ [nix.POS]: pos$117, description: "Virtual Mail User", isSystemUser: true }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.selOr(cfg, () => null, "settings", "mail_gid"), null)), nix.thunk(() => ({
+                  [nix.POS]: pos$118,
                   group: nix.thunk(() => nix.sel(cfg, "settings", "mail_gid")),
                 })))))],
             ])))))),
           groups: nix.thunk(() => nix.update({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             dovenull: nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "dovenull2")),
             })),
           }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "default_internal_group"), "dovecot2")), nix.thunk(() => ({
-              __proto__: pos$122,
+              [nix.POS]: pos$122,
               dovecot2: nix.thunk(() => ({
-                __proto__: pos$121,
+                [nix.POS]: pos$121,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "dovecot2")),
               })),
             }))), nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "mail_gid"), null)) && nix.asBool(nix.sel(cfg, "createMailUser")))), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "settings", "mail_gid"), nix.thunk(() => ({}))]])))))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           etc: nix.thunk(() => ({
-            __proto__: pos$125,
-            "dovecot/dovecot.conf": nix.thunk(() => ({ __proto__: pos$124, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
+            [nix.POS]: pos$125,
+            "dovecot/dovecot.conf": nix.thunk(() => ({ [nix.POS]: pos$124, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$130,
+          [nix.POS]: pos$130,
           services: nix.thunk(() => ({
-            __proto__: pos$129,
+            [nix.POS]: pos$129,
             dovecot: nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               description: "Dovecot IMAP/POP3 server",
               documentation: nix.thunk(() => ["man:dovecot(1)", "https://doc.dovecot.org"]),
               after: nix.thunk(() => ["network.target"]),
@@ -846,7 +846,7 @@ export default nix.lambda((args) => (() => {
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configFile"))]),
               startLimitIntervalSec: 60n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$127,
+                [nix.POS]: pos$127,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -F`),
                 ExecReload: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "doveadm")} reload`),
@@ -914,7 +914,7 @@ ${nix.app(optionalString, nix.thunk(() => (nix.asBool((nix.asBool(nix.has(nix.se
         warnings: nix.thunk(() => nix.app(optional, isPre24, "While Dovecot 2.3 is not yet deprecated or EOL,\nthere is a newer version available in Nixpkgs (Dovecot 2.4).\nCheck https://doc.dovecot.org/latest/installation/upgrade/2.3-to-2.4.html\nbefore upgrading.\n")),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$131,
+            [nix.POS]: pos$131,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "dovecot_config_version"), null)))),
             message: nix.thunk(() => nix.str`services.dovecot2: Since Dovecot 2.4, the option 'services.dovecot2.settings.dovecot_config_version' must be explicitly set.
  To retain compatibility with future updates, set the following and manually update as needed.
@@ -929,7 +929,7 @@ ${nix.app(optionalString, nix.thunk(() => (nix.asBool((nix.asBool(nix.has(nix.se
 `),
           })),
           nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "dovecot_storage_version"), null)))),
             message: nix.thunk(() => nix.str`services.dovecot2: Since Dovecot 2.4, the option 'services.dovecot2.settings.dovecot_storage_version' must be explicitly set.
  Set it to the oldest version the storage should stay compatible with, for example the following for the currently selected version.
@@ -940,53 +940,53 @@ ${nix.app(optionalString, nix.thunk(() => (nix.asBool((nix.asBool(nix.has(nix.se
 `),
           })),
           nix.thunk(() => ({
-            __proto__: pos$133,
+            [nix.POS]: pos$133,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(nix.eq(nix.sel(cfg, "imapsieve", "mailbox"), [])))),
             message: "since Dovecot 2.4, the `imapsieve.mailbox` option is no longer used in the NixOS module, please use the `settings` option instead.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(nix.eq(nix.sel(cfg, "sieve", "scripts"), {})))),
             message: "services.dovecot2: Since Dovecot 2.4, the option 'services.dovecot2.sieve.scripts' is no longer valid, but it is set.\n See <https://doc.dovecot.org/latest/core/plugins/sieve.html>.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$135,
+            [nix.POS]: pos$135,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(nix.eq(nix.sel(cfg, "sieve", "extensions"), [])))),
             message: "services.dovecot2: Since Dovecot 2.4, the option 'services.dovecot2.sieve.extensions' is no longer valid, but it is set.\n Set 'services.dovecot2.settings.sieve_extensions' instead.\n See <https://doc.dovecot.org/latest/core/summaries/settings.html#sieve_extensions>.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(nix.eq(nix.sel(cfg, "sieve", "globalExtensions"), [])))),
             message: "services.dovecot2: Since Dovecot 2.4, the option 'services.dovecot2.sieve.globalExtensions' is no longer valid, but it is set.\n Set 'services.dovecot2.settings.sieve_global_extensions' instead.\n See <https://doc.dovecot.org/latest/core/summaries/settings.html#sieve_global_extensions>.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$139,
+            [nix.POS]: pos$139,
             assertion: nix.thunk(() => (nix.asBool(isPre24) || nix.asBool(nix.eq(nix.sel(cfg, "mailPlugins"), {
-              __proto__: pos$138,
-              globally: nix.thunk(() => ({ __proto__: pos$137, enable: [] })),
+              [nix.POS]: pos$138,
+              globally: nix.thunk(() => ({ [nix.POS]: pos$137, enable: [] })),
               perProtocol: nix.thunk(() => ({})),
             })))),
             message: "since Dovecot 2.4, the `mailPlugins` option is no longer used in the NixOS module, please use the `settings` option instead.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "showPAMFailure")) || nix.asBool(nix.sel(cfg, "enablePAM")))),
             message: "dovecot is configured with showPAMFailure while enablePAM is disabled",
           })),
           nix.thunk(() => ({
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "sieve", "scripts"), {})) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings", "mail_uid"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "mail_gid"), null)))))),
             message: "dovecot requires settings.mail_uid and settings.mail_gid to be set when `sieve.scripts` is set",
           })),
           nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             assertion: nix.thunk(() => nix.eq(nix.has(nix.sel(config, "systemd", "services"), "dovecot2"), false)),
             message: "Your configuration sets options on the `dovecot2` systemd service. These have no effect until they're migrated to the `dovecot` service.\n",
           })),
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$144,
+      [nix.POS]: pos$144,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

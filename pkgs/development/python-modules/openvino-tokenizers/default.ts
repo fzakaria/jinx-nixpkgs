@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const openvino_tokenizers_native = nix.arg($, "openvino-tokenizers-native");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "openvino-tokenizers",
       version: nix.thunk(() => nix.attr(openvino_tokenizers_native, "version")),
       pyproject: false,
@@ -39,7 +39,7 @@ runHook postInstall
 `),
       pythonImportsCheck: nix.thunk(() => ["openvino_tokenizers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OpenVINO Tokenizers Python API",
         homepage: "https://github.com/openvinotoolkit/openvino_tokenizers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

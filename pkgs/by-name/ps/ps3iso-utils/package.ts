@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ps3iso-utils",
       version: "277db7de",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bucanero",
           repo: "ps3iso-utils",
           rev: "878090980a9042c61901920fed1b034af215e8c7",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdir -p bin/\nfind . -type f -name \"*.c\" -exec \\\nsh -c 'OFILE=`basename \"{}\" \".c\"` && $CC \"{}\" -o bin/\"$OFILE\"' \\;\n",
       installPhase: "mkdir -p $out/bin\ncp bin/* $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Estwald's PS3ISO utilities",
         homepage: "https://github.com/bucanero/ps3iso-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

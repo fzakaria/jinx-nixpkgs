@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const boot_install = nix.arg($, "boot-install");
   const install = nix.arg($, "install");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libnetbsd",
       nativeBuildInputs: nix.thunk(() => [
         bsdSetupHook,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["STRIP=-s", "MK_WERROR=no"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "INSTALL=boot-install"))),
       alwaysKeepStatic: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

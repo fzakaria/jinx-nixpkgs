@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const archiveVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./archive-version.nix")), lib));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: nix.thunk(() => nix.str`sqlite${nix.app(nix.sel(lib, "optionalString"), interactive, "-interactive")}`),
       version: "3.53.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sqlite.org/2026/sqlite-src-${nix.app(archiveVersion, nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-u4C/ijv/wZJBzoq6WkvHTpw5gAE8sLXw8JdqmVFpQq8=",
         })))),
       docsrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://sqlite.org/2026/sqlite-doc-${nix.app(archiveVersion, nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-Fo+Zhph2vPTbjZPvoqSDqcgVNlN9AZAMWM110KZ8yic=",
         })))),
@@ -58,32 +58,32 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip, tcl]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0001-sqlite-testrunner-communicate-test-failure-to-make.patch",
             url: "https://github.com/sqlite/sqlite/commit/4e4962f6b303688412746b54200ff5402c047aee.patch",
             includes: nix.thunk(() => ["test/testrunner.tcl"]),
             hash: "sha256-DLV2ML2zzjd1nEVScDF1sFDdZm1CrOWt5M10rRwXYCY=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://src.fedoraproject.org/rpms/sqlite/raw/faea37529752d0134154f3678443e2822a105834/f/sqlite-3.53.3-fix-fts3corrupt4-test.patch",
             hash: "sha256-cfwBOomIjm8szInOqKZfg2lmRM9K663ujKR3wVmAtrE=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: "https://github.com/sqlite/sqlite/commit/67c202ab67398f6a27eaa6316e31254c065928cd.patch",
               includes: nix.thunk(() => ["main.mk"]),
               hash: "sha256-JJnIF/2SmGgPzQe7E4DmC61komZpbmjnIemggpBPLdM=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://github.com/sqlite/sqlite/commit/d501b949a39d276494c8e36cdc2b94bfe28e671c.patch",
               includes: nix.thunk(() => ["autosetup/sqlite-config.tcl"]),
               hash: "sha256-eTeb1o1aCjXG5jv3jK6KtSA7Lcr7lrUY+sI0iq/U8zU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: "https://github.com/sqlite/sqlite/commit/e4e1b4a464e632fb06870114081d06ce7c53a1de.patch",
               includes: nix.thunk(() => ["autosetup/sqlite-config.tcl"]),
               hash: "sha256-uMhQDSP1jTj/Mz/24oOi84tE4bAINmplDoKJGxUGD1A=",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs configure\n",
       setOutputFlags: false,
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         TCLLIBDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-DSQLITE_ENABLE_COLUMN_METADATA",
@@ -135,9 +135,9 @@ mv sqlite-doc-${nix.app(archiveVersion, nix.thunk(() => nix.sel(finalAttrs, "ver
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       checkTarget: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "fuzztest sourcetest")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           sqlalchemy: nix.thunk(() => nix.attr(python3Packages, "sqlalchemy")),
           sqldiff: sqldiff,
           "sqlite-analyzer": sqlite_analyzer,
@@ -145,14 +145,14 @@ mv sqlite-doc-${nix.app(archiveVersion, nix.thunk(() => nix.sel(finalAttrs, "ver
           tinysparql: tinysparql,
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: "https://github.com/sqlite/sqlite.git",
             "rev-prefix": "version-",
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         changelog: nix.thunk(() => nix.str`https://www.sqlite.org/releaselog/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html`),
         description: "Self-contained, serverless, zero-configuration, transactional SQL database engine",
         downloadPage: "https://sqlite.org/download.html",
@@ -167,7 +167,7 @@ mv sqlite-doc-${nix.app(archiveVersion, nix.thunk(() => nix.sel(finalAttrs, "ver
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
         pkgConfigModules: nix.thunk(() => ["sqlite3"]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "sqlite", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

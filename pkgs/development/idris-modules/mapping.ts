@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mapping",
       version: "2018-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zaoqi",
           repo: "Mapping.idr",
           rev: "4f226933d4491b8fd09f9d9a7b862c0cc646b936",
           sha256: "1skkb7jz2lv0xg4n5m0vd9xddg3x01459dwx1jxnpc7ifask4cda",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris mapping library",
         homepage: "https://github.com/zaoqi/Mapping.idr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

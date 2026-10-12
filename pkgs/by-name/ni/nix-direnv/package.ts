@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nix-direnv",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nix-direnv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -m400 -D direnvrc $out/share/nix-direnv/direnvrc\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         default: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           scripts: nix.thunk(() => ["share/nix-direnv/direnvrc"]),
           interpreter: "none",
           inputs: nix.thunk(() => [coreutils]),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             builtin: nix.thunk(() => [
               "PATH_add",
               "direnv_layout_dir",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
             external: nix.thunk(() => ["nix"]),
           })),
           keep: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             $cmd: true,
             $direnv: true,
             $_nix_direnv_nix: true,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast, persistent use_nix implementation for direnv",
         homepage: "https://github.com/nix-community/nix-direnv",
         changelog: nix.thunk(() => nix.str`https://github.com/nix-community/nix-direnv/releases/${nix.sel(finalAttrs, "version")}`),

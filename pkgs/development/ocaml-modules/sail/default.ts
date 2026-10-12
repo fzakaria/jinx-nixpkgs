@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const version = nix.argOr($, "version", () => "0.20.1");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sail",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rems-project/sail/releases/download/${version}/sail-${version}.tbz`),
           hash: "sha256-uoG416pXBeBAZAE6sgwAa4DG20T5UiWsT79gQil+UOs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rems-project/sail/commit/446fb477c508853595ccc937ed60765aa685ae31.patch",
             hash: "sha256-+j0USd0Ish11aYEzYLRiqkydhUPQoD9RPNjRhQcyX9c=",
           })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ndune install --prefix $out --libdir $OCAMLFIND_DESTDIR\nrunHook postInstall\n",
       postInstall: "wrapProgram $out/bin/sail --set SAIL_DIR $out/share/sail\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/rems-project/sail",
         description: "Language for describing the instruction-set architecture (ISA) semantics of processors",
         maintainers: [],

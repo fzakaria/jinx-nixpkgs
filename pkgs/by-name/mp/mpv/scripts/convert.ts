@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const mkvtoolnix_cli = nix.arg($, "mkvtoolnix-cli");
   const yad = nix.arg($, "yad");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-convert-script",
       version: "0-unstable-2015-07-02",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gist.github.com/Zehkul/25ea7ae77b30af959be0",
           rev: "f95cee43e390e843a47e8ec9d1711a12a8cd343d",
           sha256: "13m7l4sy2r8jv2sfrb3vvqvnim4a9ilnv28q5drlg09v298z3mck",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       patches: nix.thunk(() => [nix.path(here, "./convert.patch")]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `),
       scriptPath: "convert_script.lua",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convert parts of a video while you are watching it in mpv",
         homepage: "https://gist.github.com/Zehkul/25ea7ae77b30af959be0",
         maintainers: [],

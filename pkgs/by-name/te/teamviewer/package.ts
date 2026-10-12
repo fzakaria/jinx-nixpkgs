@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
   const minizip = nix.arg($, "minizip");
   const pipewire = nix.arg($, "pipewire");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "teamviewer",
       outputs: nix.thunk(() => ["out", "dev"]),
       version: "15.81.5",
       src: nix.thunk(() => (() => {
         const base_url = nix.thunk(() => nix.str`https://dl.teamviewer.com/download/linux/version_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}x`);
         return nix.selOr({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`${base_url}/teamviewer_${nix.sel(finalAttrs, "version")}_amd64.deb`),
               hash: "sha256-Wf0MmfOi5ryXWGOpqenZUu3kmQgJCaqt/fE6Z/brMeI=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`${base_url}/teamviewer_${nix.sel(finalAttrs, "version")}_arm64.deb`),
               hash: "sha256-eut46sFd/c/3RxsTJ1MHMGKIqJNSO0BD4uTYkayOoOE=",
             })))),
@@ -129,9 +129,9 @@ substituteInPlace $out/share/teamviewer/tv_bin/script/tvw_config \\
       dontStrip: true,
       dontWrapQtApps: true,
       preferLocalBuild: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update-teamviewer.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update-teamviewer.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.teamviewer.com",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

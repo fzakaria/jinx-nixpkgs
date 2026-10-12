@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "armips",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kingcom",
           repo: "armips",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-L+Uxww/WtvDJn1xZqoqA6Pkzq/98sy1qTxZbv6eEjbA=",
         })))),
       postPatch: nix.thunk(() => nix.add("substituteInPlace CMakeLists.txt \\\n  --replace-fail c++11 c++17\n", "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    \"cmake_minimum_required(VERSION 2.8)\" \\\n    \"cmake_minimum_required(VERSION 3.13)\"\n")),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-include cstdint" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-include cstdint" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp armips $out/bin\n\nrunHook postInstall\n",
       doCheck: true,
       checkPhase: "runHook preCheck\n./armipstests ..\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Kingcom/armips",
         description: "Assembler for various ARM and MIPS platforms",
         mainProgram: "armips",

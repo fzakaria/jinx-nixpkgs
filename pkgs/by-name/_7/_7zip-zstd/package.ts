@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableUnfree = nix.argOr($, "enableUnfree", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "7zip-zstd",
       version: "26.02-v1.5.7-R2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mcmilk",
           repo: "7-Zip-zstd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,22 +82,22 @@ runHook postInstall
       })()),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 attrPath: "_7zip-zstd",
                 extraArgs: nix.thunk(() => ["--use-github-releases"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 attrPath: "_7zip-zstd-rar",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/mcmilk/7-Zip-zstd",
         description: "7-Zip with support for Brotli, Fast-LZMA2, Lizard, LZ4, LZ5 and Zstandard",
         changelog: nix.thunk(() => nix.str`https://github.com/mcmilk/7-Zip-zstd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

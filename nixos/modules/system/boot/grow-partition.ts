@@ -21,39 +21,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "growPartition"]), nix.thunk(() => ["boot", "growPartition"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       boot: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         growPartition: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "growing the root partition on boot")),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "growPartition")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "repart", "enable"))) && nix.asBool(!nix.asBool(nix.sel(config, "systemd", "repart", "enable"))))),
             message: "systemd-repart already grows the root partition and thus you should not use boot.growPartition",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             growpart: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               wantedBy: nix.thunk(() => ["-.mount"]),
               after: nix.thunk(() => ["-.mount"]),
               before: nix.thunk(() => ["systemd-growfs-root.service", "shutdown.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$4, DefaultDependencies: false })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$4, DefaultDependencies: false })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 TimeoutSec: "infinity",

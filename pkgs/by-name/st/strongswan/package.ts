@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
     const xauth_noauth = true;
     const gmp_1 = eap_aka_3gpp2;
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nm,
       cmd,
       stroke,
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
       gmp: gmp_1,
     };
   })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableTNC, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "eap-tnc": true,
       "eap-ttls": true,
       "eap-dynamic": true,
@@ -163,13 +163,13 @@ export default nix.lambda((args) => (() => {
       aikgen: true,
       "tss-trousers": true,
       sqlite: true,
-    }))), nix.app(nix.sel(lib, "optionalAttrs"), enableTPM2, nix.thunk(() => ({ __proto__: pos$3, tpm: true, "tss-tss2": true }))))));
+    }))), nix.app(nix.sel(lib, "optionalAttrs"), enableTPM2, nix.thunk(() => ({ [nix.POS]: pos$3, tpm: true, "tss-tss2": true }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "strongswan",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "strongswan",
           repo: "strongswan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -191,9 +191,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "strongswan-swanctl": nix.thunk(() => nix.attr(nixosTests, "strongswan-swanctl")),
         })),
       })),
@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "/sbin/resolvconf" "${openresolv}/sbin/resolvconf"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OpenSource IPsec-based VPN solution",
         homepage: "https://www.strongswan.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/strongswan/strongswan/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

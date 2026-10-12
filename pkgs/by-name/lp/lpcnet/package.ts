@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const codec2 = nix.arg($, "codec2");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "LPCNet",
       version: "0.5-unstable-2025-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drowe67",
           repo: "LPCNet",
           rev: "c8e51ac5e2fe674849cb53e7da44689b572cc246",
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./darwin.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nnmodel: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "http://rowetel.com/downloads/deep/lpcnet_191005_v1.0.tgz",
             hash: "sha256-UJRAkkdR/dh/+qVoPuPd3ZN69cgzuRBMzOZdUWFJJsg=",
           })))),
@@ -51,7 +51,7 @@ cp \\
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [sox]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Experimental Neural Net speech coding for FreeDV",
         homepage: "https://github.com/drowe67/LPCNet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

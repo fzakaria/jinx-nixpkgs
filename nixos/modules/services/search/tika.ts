@@ -36,44 +36,44 @@ export default nix.lambda((args) => (() => {
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$18,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$18,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tika: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Apache Tika server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tika", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The Apache Tika bind address.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 9998n,
               description: "The Apache Tike port to listen on\n",
             })))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "The Apache Tika configuration (XML) file to use.\n",
               example: nix.thunk(() => nix.app(literalExpression, "./tika/tika-config.xml")),
             })))),
           enableOcr: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to enable OCR support by adding the `tesseract` package as a dependency.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for Apache Tika.\nThis adds `services.tika.port` to `networking.firewall.allowedTCPPorts`.\n",
@@ -82,24 +82,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             tika: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Apache Tika Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => (() => {
                 const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     enableOcr: nix.thunk(() => nix.attr(cfg, "enableOcr")),
                     enableGui: false,
                   }))));
                 return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, package$)} --host ${nix.sel(cfg, "listenAddress")} --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => nix.str`--config ${nix.sel(cfg, "configFile")}`))}`),
                   DynamicUser: true,
@@ -111,9 +111,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-4VJJHmYC9qk7PVM9OHvUWQ8kdgk7aEIXD/C5PeZL7zA=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             findutils: findutils,
             krb5: krb5_c,
             krb5Dev: nix.thunk(() => nix.sel(krb5_c, "dev")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["k5test"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for setting up self-contained Kerberos 5 environment",
         homepage: "https://github.com/pythongssapi/k5test",
         changelog: nix.thunk(() => nix.str`https://github.com/pythongssapi/k5test/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

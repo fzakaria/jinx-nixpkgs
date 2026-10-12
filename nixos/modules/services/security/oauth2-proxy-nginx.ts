@@ -39,48 +39,48 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "oauth2-proxy", "nginx"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "oauth2-proxy": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           nginx: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             proxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(config, "services", "oauth2-proxy", "httpAddress")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.oauth2-proxy.httpAddress")),
                 description: "The address of the reverse proxy endpoint for oauth2-proxy\n",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The domain under which the oauth2-proxy will be accesible and the path of cookies are set to.\nThis setting must be set to ensure back-redirects are working properly\nif oauth2-proxy is configured with {option}`services.oauth2-proxy.cookie.domain`\nor multiple {option}`services.oauth2-proxy.nginx.virtualHosts` that are not on the same domain.\n",
               })))),
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const vhostSubmodule = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       options: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         allowed_groups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                             description: "List of groups to allow access to this vhost, or null to allow all.",
                             default: null,
                           })))),
                         allowed_emails: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                             description: "List of emails to allow access to this vhost, or null to allow all.",
                             default: null,
                           })))),
                         allowed_email_domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                             description: "List of email domains to allow access to this vhost, or null to allow all.",
                             default: null,
@@ -94,9 +94,9 @@ export default nix.lambda((args) => (() => {
                 })()),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   "protected.foo.com": nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     allowed_groups: nix.thunk(() => ["admins"]),
                     allowed_emails: nix.thunk(() => ["boss@foo.com"]),
                   })),
@@ -108,20 +108,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       services: nix.thunk(() => ({
-        __proto__: pos$27,
-        "oauth2-proxy": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "virtualHosts"), {})) && nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "127.0.0.1:", nix.thunk(() => nix.sel(cfg, "proxy")))))), nix.thunk(() => ({ __proto__: pos$15, enable: true })))),
+        [nix.POS]: pos$27,
+        "oauth2-proxy": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "virtualHosts"), {})) && nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "127.0.0.1:", nix.thunk(() => nix.sel(cfg, "proxy")))))), nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })))),
         nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "virtualHosts"), {})) && nix.asBool(nix.sel(config, "services", "oauth2-proxy", "enable")))), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       "/oauth2/": nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         proxyPass: nix.thunk(() => nix.sel(cfg, "proxy")),
                         extraConfig: "auth_request off;\nproxy_set_header X-Scheme                $scheme;\nproxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;\n",
                       })),
@@ -129,15 +129,15 @@ export default nix.lambda((args) => (() => {
                   }))],
                 ])),
               })),
-            ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHosts"), {})), nix.thunk(() => ({ __proto__: pos$20, recommendedProxySettings: true }))), nix.app(nix.sel(lib, "mapAttrsToList"), (vhost) => (conf) => ({
-                __proto__: pos$26,
+            ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHosts"), {})), nix.thunk(() => ({ [nix.POS]: pos$20, recommendedProxySettings: true }))), nix.app(nix.sel(lib, "mapAttrsToList"), (vhost) => (conf) => ({
+                [nix.POS]: pos$26,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(vhost), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         extraConfig: "auth_request_set $user   $upstream_http_x_auth_request_user;\nauth_request_set $email  $upstream_http_x_auth_request_email;\nauth_request_set $auth_cookie $upstream_http_set_cookie;\n\n# pass information via X-User and X-Email headers to backend, requires running with --set-xauthrequest flag\nproxy_set_header X-User  $user;\nproxy_set_header X-Email $email;\n\n# if you enabled --cookie-refresh, this is needed for it to work with auth_request\nadd_header Set-Cookie $auth_cookie;\n",
                       })),
                       "= /oauth2/auth": nix.thunk(() => (() => {
@@ -146,13 +146,13 @@ export default nix.lambda((args) => (() => {
                         const cleanArgs = nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), allArgs));
                         const cleanArgsStr = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "&", cleanArgs));
                         return {
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           proxyPass: nix.thunk(() => nix.str`${nix.sel(cfg, "proxy")}/oauth2/auth?${cleanArgsStr}`),
                           extraConfig: "auth_request off;\nproxy_set_header X-Scheme         $scheme;\n# nginx auth_request includes headers but not body\nproxy_set_header Content-Length   \"\";\nproxy_pass_request_body           off;\n",
                         };
                       })()),
                       "@redirectToAuth2ProxyLogin": nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         return: nix.thunk(() => nix.str`307 https://${nix.sel(cfg, "domain")}/oauth2/start?rd=$scheme://$host$request_uri`),
                         extraConfig: "auth_request off;\n",
                       })),

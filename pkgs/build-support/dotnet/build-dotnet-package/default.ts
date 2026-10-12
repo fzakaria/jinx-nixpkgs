@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const makeWrapperArgs = nix.argOr($_1, "makeWrapperArgs", () => []);
     const arrayToShell = (a) => nix.builtins.toString(nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "escape"), nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), "\\ ';$`()|<>\t")))), a)));
     const attrs = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, makeWrapper, dotnetbuildhelpers, mono], nativeBuildInputs)),

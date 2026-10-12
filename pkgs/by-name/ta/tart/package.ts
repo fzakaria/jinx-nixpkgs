@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tart",
       version: "2.37.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/openai/tart/releases/download/${nix.sel(finalAttrs, "version")}/tart.tar.gz`),
           hash: "sha256-1TF1LE2tXUIUrH/1QM78JkffH8ojONQT08AXVPVLNWs=",
         })))),
@@ -45,19 +45,19 @@ install -Dm444 LICENSE $out/share/tart/LICENSE
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "macOS and Linux VMs on Apple Silicon to use in CI and other automations",
         homepage: "https://tart.run",
         license: nix.thunk(() => nix.sel(lib, "licenses", "fsl11Asl20")),

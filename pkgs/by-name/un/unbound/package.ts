@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(!nix.asBool(withDoQ)) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(openssl, "version")), "3.5.0")))), "unbound: withDoQ requires OpenSSL with QUIC support (OpenSSL >= 3.5)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/un/unbound/package.nix:62:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "unbound",
       version: "1.26.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NLnetLabs",
           repo: "unbound",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLto)), nix.thunk(() => ["--disable-flto"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["--enable-systemd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withPythonModule, nix.thunk(() => ["--with-pythonmodule"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDynlibModule, nix.thunk(() => ["--with-dynlibmodule"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDoH, nix.thunk(() => [nix.thunk(() => nix.str`--with-libnghttp2=${nix.sel(libnghttp2, "dev")}`)])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDoQ, nix.thunk(() => [nix.thunk(() => nix.str`--with-libngtcp2=${nix.sel(ngtcp2, "dev")}`)])), nix.concat(nix.app(nix.sel(lib, "optionals"), withECS, nix.thunk(() => ["--enable-subnet"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDNSCrypt, nix.thunk(() => [
           "--enable-dnscrypt",
           nix.thunk(() => nix.str`--with-libsodium=${nix.app(symlinkJoin, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "libsodium-full",
               paths: nix.thunk(() => [
                 nix.thunk(() => nix.sel(libsodium, "dev")),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
             })))}`),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDNSTAP, nix.thunk(() => ["--enable-dnstap"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withTFO, nix.thunk(() => ["--enable-tfo-client", "--enable-tfo-server"])), nix.app(nix.sel(lib, "optionals"), withRedis, nix.thunk(() => ["--enable-cachedb", nix.thunk(() => nix.str`--with-libhiredis=${hiredis}`)])))))))))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PROTOC_C: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDNSTAP, nix.thunk(() => nix.str`${protobufc}/bin/protoc-c`))),
       })),
       postConfigure: nix.thunk(() => (() => {
@@ -125,13 +125,13 @@ installPhase
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=release-(.+)"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           gnutls: gnutls,
           "nixos-test": nix.thunk(() => nix.sel(nixosTests, "unbound")),
           "nixos-test-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "unbound")),
@@ -139,7 +139,7 @@ installPhase
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Validating, recursive, and caching DNS resolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://www.unbound.net",
@@ -154,7 +154,7 @@ installPhase
           return nix.concat(nix.lookup(w_1, "unix"), nix.lookup(w_1, "windows"));
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "nlnetlabs", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

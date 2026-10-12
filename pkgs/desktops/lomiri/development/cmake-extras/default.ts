@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmake-extras",
       version: "1.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/cmake-extras",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ substituteInPlace src/QmlPlugins/QmlPluginsConfig.cmake \\
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [qtbase]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of add-ons for the CMake build tool",
         homepage: "https://gitlab.com/ubports/development/core/cmake-extras",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/cmake-extras/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

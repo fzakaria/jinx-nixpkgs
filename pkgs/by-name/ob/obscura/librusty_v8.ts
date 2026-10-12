@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "137.3.0";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "0rv5nl4gcbvdpk3mdwbqvw180nfx2wk173q1cqrvv2h1agg1ys52",
     "aarch64-linux": "14kci8zl7i5cjrbf2jyky5i9gpa4bsjw8khfk4xc8yf1875x0s73",
     "aarch64-darwin": "0w70ykqip4a84z3cb5vibdqw91lywwahl9pc05mw8lp54ikksl30",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`librusty_v8-${version}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${version}/librusty_v8_release_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}.a.gz`),
           sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`librusty_v8: unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\ngzip -cd \"$src\" > \"$out\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rename = nix.arg($, "rename");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "noto-fonts-monochrome-emoji",
       version: "3.000",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "fonts",
           rev: "a73b9ab0a5df191bcfed817159a903911ea7958a",
@@ -33,9 +33,9 @@ ${rename}/bin/rename 's/\\[.*\\]//' $out/share/fonts/noto/*
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Monochrome emoji font",
         homepage: "https://fonts.google.com/noto/specimen/Noto+Emoji",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -19,28 +19,28 @@ export default nix.lambda((args) => (() => {
       const pname = "jitsiexporter";
       const version = "0.2.18";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.xsfx.dev/prometheus/jitsiexporter",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1cf46wp96d9dwlwlffcgbcr0v3xxxfdv6il0zqkm2i7cfsfw0skf",
         }))));
       const vendorHash = null;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, jitsi: nix.thunk(() => nix.attr(from, "jitsi")) };
+          return { [nix.POS]: pos$2, jitsi: nix.thunk(() => nix.attr(from, "jitsi")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Export Jitsi Videobridge metrics to Prometheus",
         mainProgram: "jitsiexporter",
         homepage: "https://git.xsfx.dev/prometheus/jitsiexporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

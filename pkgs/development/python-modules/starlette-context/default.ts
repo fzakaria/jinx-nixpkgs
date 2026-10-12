@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const starlette = nix.arg($, "starlette");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "starlette-context",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomwojcik",
           repo: "starlette-context",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpx, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["starlette_context"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Middleware for Starlette that allows you to store and access the context data of a request",
         homepage: "https://github.com/tomwojcik/starlette-context",
         changelog: nix.thunk(() => nix.str`https://github.com/tomwojcik/starlette-context/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "mkdocs_include_markdown_plugin",
           version: version,
           hash: "sha256-KAASZ0ZFLjHC4yG71DyBkLNW4N41PiDLwWo0o8PWeWw=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [mkdocs, wcmatch]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cache: nix.thunk(() => [platformdirs]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cache: nix.thunk(() => [platformdirs]) }));
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_include_markdown_plugin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mkdocs Markdown includer plugin",
         homepage: "https://pypi.org/project/mkdocs-include-markdown-plugin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

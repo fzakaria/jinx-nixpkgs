@@ -56,67 +56,67 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const secretA = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretA", "AAAAA"));
   const secretJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretA", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$1, a: "topsecretpassword1234" })),
-        nix.thunk(() => ({ __proto__: pos$2, b: "topsecretpassword5678" })),
+        nix.thunk(() => ({ [nix.POS]: pos$1, a: "topsecretpassword1234" })),
+        nix.thunk(() => ({ [nix.POS]: pos$2, b: "topsecretpassword5678" })),
       ])))));
   const tests = nix.thunk(() => ({
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     simple: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       set: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$3, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: pos$3, irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              __proto__: pos$5,
-              secret: nix.thunk(() => ({ __proto__: pos$4, _secret: secretA })),
+              [nix.POS]: pos$5,
+              secret: nix.thunk(() => ({ [nix.POS]: pos$4, _secret: secretA })),
             })),
           })),
         ]),
       })),
       expect: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$8, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: pos$8, irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ignored: "ignored attr",
-            relevant: nix.thunk(() => ({ __proto__: pos$9, secret: "AAAAA" })),
+            relevant: nix.thunk(() => ({ [nix.POS]: pos$9, secret: "AAAAA" })),
           })),
         ]),
       })),
     })),
     structured: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       set: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$13, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: pos$13, irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              __proto__: pos$15,
-              secret: nix.thunk(() => ({ __proto__: pos$14, _secret: secretJSON, quote: false })),
+              [nix.POS]: pos$15,
+              secret: nix.thunk(() => ({ [nix.POS]: pos$14, _secret: secretJSON, quote: false })),
             })),
           })),
         ]),
       })),
       expect: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$18, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: pos$18, irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               secret: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$19, a: "topsecretpassword1234" })),
-                nix.thunk(() => ({ __proto__: pos$20, b: "topsecretpassword5678" })),
+                nix.thunk(() => ({ [nix.POS]: pos$19, a: "topsecretpassword1234" })),
+                nix.thunk(() => ({ [nix.POS]: pos$20, b: "topsecretpassword5678" })),
               ]),
             })),
           })),
@@ -124,34 +124,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     loadCredentials: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       set: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$25, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: pos$25, irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              __proto__: pos$27,
-              secret: nix.thunk(() => ({ __proto__: pos$26, _secret: secretJSON, quote: false })),
+              [nix.POS]: pos$27,
+              secret: nix.thunk(() => ({ [nix.POS]: pos$26, _secret: secretJSON, quote: false })),
             })),
           })),
         ]),
       })),
-      opts: nix.thunk(() => ({ __proto__: pos$30, loadCredential: true })),
+      opts: nix.thunk(() => ({ [nix.POS]: pos$30, loadCredential: true })),
       expect: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$31, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: pos$31, irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               secret: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$32, a: "topsecretpassword1234" })),
-                nix.thunk(() => ({ __proto__: pos$33, b: "topsecretpassword5678" })),
+                nix.thunk(() => ({ [nix.POS]: pos$32, a: "topsecretpassword1234" })),
+                nix.thunk(() => ({ [nix.POS]: pos$33, b: "topsecretpassword5678" })),
               ]),
             })),
           })),
@@ -160,28 +160,28 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     name: "utils-genJqSecretsReplacement",
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "ibizaman"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const utils = nix.arg($_1, "utils");
         const secretsReplacements = nix.thunk(() => nix.app(nix.sel(lib_1, "mapAttrs"), (name) => (test) => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => nix.selOr(test, () => ({}), "opts")), nix.thunk(() => nix.sel(test, "set")), nix.thunk(() => nix.str`/var/lib/genJqTest-${name}/file`)), tests));
         return {
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           systemd: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             services: nix.thunk(() => nix.app(nix.sel(lib_1, "mapAttrs'"), (name) => (secretsReplacement) => nix.app(nix.sel(lib_1, "nameValuePair"), nix.thunk(() => nix.str`genJqTest-${name}`), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     LoadCredential: nix.thunk(() => nix.sel(secretsReplacement, "credentials")),

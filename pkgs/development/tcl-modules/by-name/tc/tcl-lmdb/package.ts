@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lmdb = nix.arg($, "lmdb");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcl-lmdb",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ray2501",
           repo: "tcl-lmdb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-system-lmdb=yes"]),
       buildInputs: nix.thunk(() => [lmdb]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The Tcl interface to the Lightning Memory-Mapped Database",
         homepage: "https://github.com/ray2501/tcl-lmdb",
         changelog: "https://github.com/ray2501/tcl-lmdb/blob/master/ChangeLog",

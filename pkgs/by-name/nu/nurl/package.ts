@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nurl",
       version: "0.4.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nurl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
 installManPage artifacts/nurl.1
 installShellCompletion artifacts/nurl.{bash,fish} --zsh artifacts/_nurl
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, GEN_ARTIFACTS: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts" })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool to generate Nix fetcher calls from repository URLs",
         homepage: "https://github.com/nix-community/nurl",
         changelog: nix.thunk(() => nix.str`https://github.com/nix-community/nurl/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

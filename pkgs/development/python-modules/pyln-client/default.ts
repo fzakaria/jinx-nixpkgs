@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pyln_proto = nix.arg($, "pyln-proto");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pyln-client",
       pyproject: true,
       src: nix.thunk(() => nix.attr(pyln_proto, "src")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["pyln"]),
       pythonImportsCheck: nix.thunk(() => ["pyln.client"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Client and plugin library for Core Lightning",
         homepage: "https://github.com/ElementsProject/lightning/tree/master/contrib/pyln-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

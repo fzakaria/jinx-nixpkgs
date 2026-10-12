@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "checkpwn",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-QofPCfdOurEBGY1mwj5pQXtWA0+EJaEsjnHCXFjW1L8=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-U5EXX8EzZC3uJ0cWzB5dT9sGDqIc9GsAbstts9PtjQ0=",
       checkFlags: nix.thunk(() => ["--skip=test_cli_"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Check Have I Been Pwned and see if it's time for you to change passwords",
         homepage: "https://github.com/brycx/checkpwn",
         changelog: nix.thunk(() => nix.str`https://github.com/brycx/checkpwn/releases/tag/${nix.sel(finalAttrs, "version")}`),

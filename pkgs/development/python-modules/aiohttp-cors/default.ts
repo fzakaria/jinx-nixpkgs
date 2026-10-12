@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "aiohttp-cors",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-deprecated-asyncio.iscoroutinefunction-with-its-counterpart-from-inspect.patch",
             url: "https://github.com/aio-libs/aiohttp-cors/commit/efafc0f780a494377910f2328057f83e95f8bf74.patch",
             hash: "sha256-BvE5qqAx83+084khkHt4zjXgR7Bu/ceqMOOh/6fe5TA=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/integration"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiohttp-cors/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "CORS support for aiohttp",
         homepage: "https://github.com/aio-libs/aiohttp-cors",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

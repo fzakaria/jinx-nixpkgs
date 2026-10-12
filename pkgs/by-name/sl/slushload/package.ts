@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "slushload",
       version: "3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://csdb.dk/getinternalfile.php/222989/slushload_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-xXcLaEsM+4IrAi96JyPRCdIhQ8jhf44/4E3Ba18mddE=",
           stripRoot: false,
@@ -40,7 +40,7 @@ cp $src/readme.txt $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make turbo tape images from .prg files",
         homepage: "https://csdb.dk/release/?id=212586",
         sourceProvenance: nix.thunk(() => (() => {

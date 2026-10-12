@@ -46,21 +46,21 @@ export default nix.lambda((args) => (() => {
   const extraCgroups = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "extraCgroups", nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (l) => nix.builtins.toJSON(l), nix.thunk(() => nix.sel(cfg, "extraCgroups"))))));
   const servicename = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(cfg, "package"))), nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(pkgs, "ananicy-cpp"))))) ? "ananicy-cpp" : "ananicy"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         ananicy: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ananicy, an auto nice daemon")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ananicy", nix.thunk(() => ({ __proto__: pos$1, example: "ananicy-cpp" })))),
-          rulesProvider: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ananicy", nix.thunk(() => ({ __proto__: pos$2, example: "ananicy-cpp" }))), {
-            __proto__: pos$3,
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ananicy", nix.thunk(() => ({ [nix.POS]: pos$1, example: "ananicy-cpp" })))),
+          rulesProvider: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ananicy", nix.thunk(() => ({ [nix.POS]: pos$2, example: "ananicy-cpp" }))), {
+            [nix.POS]: pos$3,
             description: "Which package to copy default rules,types,cgroups from.\n",
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
                     ]))));
               })()),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$4, apply_nice: false })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, apply_nice: false })),
               description: "See <https://github.com/Nefelim4ag/Ananicy/blob/master/ananicy.d/ananicy.conf>\n",
             })))),
           extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "attrs")));
@@ -82,12 +82,12 @@ export default nix.lambda((args) => (() => {
               default: [],
               description: "Rules to write in 'nixRules.rules'. See:\n<https://github.com/Nefelim4ag/Ananicy#configuration>\n<https://gitlab.com/ananicy-cpp/ananicy-cpp/#global-configuration>\n",
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$6, name: "eog", type: "Image-Viewer" })),
-                nix.thunk(() => ({ __proto__: pos$7, name: "fdupes", type: "BG_CPUIO" })),
+                nix.thunk(() => ({ [nix.POS]: pos$6, name: "eog", type: "Image-Viewer" })),
+                nix.thunk(() => ({ [nix.POS]: pos$7, name: "fdupes", type: "BG_CPUIO" })),
               ]),
             })))),
           extraTypes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "attrs")));
@@ -95,9 +95,9 @@ export default nix.lambda((args) => (() => {
               default: [],
               description: "Types to write in 'nixTypes.types'. See:\n<https://gitlab.com/ananicy-cpp/ananicy-cpp/#types>\n",
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$9, type: "my_type", nice: 19n, other_parameter: "value" })),
+                nix.thunk(() => ({ [nix.POS]: pos$9, type: "my_type", nice: 19n, other_parameter: "value" })),
                 nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: "compiler",
                   nice: 19n,
                   sched: "batch",
@@ -106,28 +106,28 @@ export default nix.lambda((args) => (() => {
               ]),
             })))),
           extraCgroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "attrs")));
               })()),
               default: [],
               description: "Cgroups to write in 'nixCgroups.cgroups'. See:\n<https://gitlab.com/ananicy-cpp/ananicy-cpp/#cgroups>\n",
-              example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, cgroup: "cpu80", CPUQuota: 80n }))]),
+              example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, cgroup: "cpu80", CPUQuota: 80n }))]),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "ananicy.d": nix.thunk(() => ({
-              __proto__: pos$18,
-              source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ananicyfiles", nix.thunk(() => ({ __proto__: pos$17, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+              [nix.POS]: pos$18,
+              source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ananicyfiles", nix.thunk(() => ({ [nix.POS]: pos$17, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 # ananicy-cpp does not include rules or settings on purpose
 if [[ -d "${nix.sel(cfg, "rulesProvider")}/etc/ananicy.d/00-default" ]]; then
   cp -r ${nix.sel(cfg, "rulesProvider")}/etc/ananicy.d/* $out
@@ -146,13 +146,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           ananicy: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => (() => {
               const mkOD = nix.thunk(() => nix.sel(lib, "mkOptionDefault"));
               return nix.update({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 cgroup_load: nix.thunk(() => nix.app(mkOD, true)),
                 type_load: nix.thunk(() => nix.app(mkOD, true)),
                 rule_load: nix.thunk(() => nix.app(mkOD, true)),
@@ -163,12 +163,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 apply_oom_score_adj: nix.thunk(() => nix.app(mkOD, true)),
                 apply_cgroup: nix.thunk(() => nix.app(mkOD, true)),
               }, (nix.asBool(nix.eq(servicename, "ananicy-cpp")) ? {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 loglevel: nix.thunk(() => nix.app(mkOD, "warn")),
                 cgroup_realtime_workaround: true,
                 log_applied_rule: nix.thunk(() => nix.app(mkOD, false)),
               } : {
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 check_disks_schedulers: nix.thunk(() => nix.app(mkOD, true)),
                 check_freq: nix.thunk(() => nix.app(mkOD, 5n)),
               }));
@@ -176,15 +176,15 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.str`${servicename}`, nix.thunk(() => ({ __proto__: pos$26, wantedBy: nix.thunk(() => ["default.target"]) }))],
+            [nix.str`${servicename}`, nix.thunk(() => ({ [nix.POS]: pos$26, wantedBy: nix.thunk(() => ["default.target"]) }))],
           ])),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "artturin"))];

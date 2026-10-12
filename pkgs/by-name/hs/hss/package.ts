@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "hss";
       const version = "1.1.0";
       const source = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "0zfgsiqy2c99c6hlg69bzj83kn6clkw1jmz6n6xh9ap4hz17blgm",
       }));
       const postInstall = nix.thunk(() => nix.str`substituteInPlace $GEM_HOME/gems/${gemName}-${version}/bin/hss \\
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     "'${openssh}/bin/ssh'"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A SSH helper that uses regex and fancy expansion to dynamically manage SSH shortcuts.\n",
         homepage: "https://github.com/akerl/hss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hss",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         ruby: ruby_1,
         gemName,

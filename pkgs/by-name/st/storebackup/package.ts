@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const dummyMount = nix.thunk(() => nix.app(writeScriptBin, "mount", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}`)));
   const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "DBFile"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.5.2",
       pname: "storebackup",
       __structuredAttrs: true,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [diffutils, perl$]),
       buildInputs: nix.thunk(() => [perl$, which, bzip2, runtimeShellPackage]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/storebackup/storeBackup-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Ki1DT2zypFFiiMVd9Y8eSX7T+yr8moWMoALmAexjqWU=",
         })))),
@@ -109,7 +109,7 @@ export HOME=$(mktemp -d)
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backup suite that stores files on other disks",
         homepage: "https://savannah.nongnu.org/projects/storebackup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

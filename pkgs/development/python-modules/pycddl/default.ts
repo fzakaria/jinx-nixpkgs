@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-aUa6Q3e1RwvWN0NPqbJtWW3o/yzJxUc0g7gUGKUlOXo=",
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
       })());
       const postPatch = "# We don't place pytest-benchmark in the closure because we have no\n# intention of running the benchmarks.  Make sure pip doesn't fail as a\n# result of it being missing by removing it from the requirements list.\nsed -i -e /pytest-benchmark/d requirements-dev.txt\n\n# Now that we've gotten rid of pytest-benchmark we need to get rid of the\n# benchmarks too, otherwise they fail at import time due to the missing\n# dependency.\nrm tests/test_benchmarks.py\n";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
           hash: "sha256-cEpvkSqe/wRCxEajmM148jbo6a346x2t81pMRpKEJyE=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n }));
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook, psutil, cbor2]);
       const disabledTests = nix.thunk(() => ["test_memory_usage"]);
       const pythonImportsCheck = nix.thunk(() => ["pycddl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python bindings for the Rust cddl crate",
         homepage: "https://gitlab.com/tahoe-lafs/pycddl",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tahoe-lafs/pycddl/-/tree/v${version}#release-notes`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "exarkun"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

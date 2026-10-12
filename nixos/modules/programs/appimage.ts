@@ -27,31 +27,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "appimage"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         appimage: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "appimage-run wrapper script for executing appimages on NixOS")),
           binfmt: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "binfmt registration to run appimages via appimage-run seamlessly")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "appimage-run", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "pkgs.appimage-run.override {\n  extraPkgs = pkgs: [ pkgs.ffmpeg pkgs.imagemagick ];\n}\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           binfmt: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             registrations: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "binfmt")), nix.thunk(() => (() => {
                 const appimage_common = nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   wrapInterpreterInShell: false,
                   interpreter: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                   recognitionType: "magic",
@@ -59,24 +59,24 @@ export default nix.lambda((args) => (() => {
                   mask: "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff",
                 }));
                 return {
-                  __proto__: pos$8,
-                  appimage_type_1: nix.thunk(() => nix.update(appimage_common, { __proto__: pos$6, magicOrExtension: "\\x7fELF....AI\\x01" })),
-                  appimage_type_2: nix.thunk(() => nix.update(appimage_common, { __proto__: pos$7, magicOrExtension: "\\x7fELF....AI\\x02" })),
+                  [nix.POS]: pos$8,
+                  appimage_type_1: nix.thunk(() => nix.update(appimage_common, { [nix.POS]: pos$6, magicOrExtension: "\\x7fELF....AI\\x01" })),
+                  appimage_type_2: nix.thunk(() => nix.update(appimage_common, { [nix.POS]: pos$7, magicOrExtension: "\\x7fELF....AI\\x02" })),
                 };
               })()))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$13,
-          fuse: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+          [nix.POS]: pos$13,
+          fuse: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

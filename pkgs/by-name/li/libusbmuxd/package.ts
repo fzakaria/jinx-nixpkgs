@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libplist = nix.arg($, "libplist");
   const libimobiledevice_glue = nix.arg($, "libimobiledevice-glue");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libusbmuxd",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "libusbmuxd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: nix.thunk(() => nix.str`export RELEASE_VERSION=${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library to multiplex connections from and to iOS devices",
         homepage: "https://github.com/libimobiledevice/libusbmuxd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

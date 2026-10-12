@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const resolvePath = nix.arg($, "resolvePath");
   return nix.app(mkMesonExecutable, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nix-fetchers-tests",
       version: version,
       workDir: nix.path(here, "./."),
       buildInputs: nix.thunk(() => nix.concat([nix_fetchers, nix_store_test_support, rapidcheck, gtest], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.29pre")), nix.thunk(() => [nix_fetchers_c])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.27")), nix.thunk(() => [libgit2]))))),
       mesonFlags: [],
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           run: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-run`), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               meta: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))),
               })),
               buildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
@@ -51,7 +51,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
         mainProgram: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), nix.sel(stdenv, "hostPlatform", "extensions", "executable"))),
       })),

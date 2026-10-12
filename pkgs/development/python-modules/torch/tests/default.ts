@@ -23,40 +23,40 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.arg($, "rocmSupport");
   const cudaSupport = nix.arg($, "cudaSupport");
   const cudaOnly = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "tester-cudaAvailable": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-runtime-check.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         feature: "cuda",
         versionAttr: "cuda",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithCuda"))],
       })))),
     "tester-compileCuda": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-torch-compile-check.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         feature: "cuda",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithCuda"))],
       })))),
   }));
   const rocmOnly = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "tester-rocmAvailable": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-runtime-check.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         feature: "rocm",
         versionAttr: "hip",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithRocm"))],
       })))),
     "tester-compileRocm": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-torch-compile-check.nix"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         feature: "rocm",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithRocm"))],
       })))),
   }));
   const tester_compileCpu = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-torch-compile-check.nix"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       feature: null,
       libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torch"))],
     }))));
   return nix.update({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "tester-compileCpu": tester_compileCpu,
     compileCpu: nix.thunk(() => nix.sel(tester_compileCpu, "gpuCheck")),
     "mnist-example": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mnist-example"), nix.thunk(() => ({})))),

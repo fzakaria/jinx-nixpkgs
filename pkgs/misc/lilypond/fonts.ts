@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
     const sha256 = nix.arg($_1, "sha256");
     const version = nix.argOr($_1, "version", () => nix.force(rev));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version,
         pname: nix.thunk(() => nix.str`openlilypond-font-${fontName}`),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             rev: rev,
             sha256: sha256,
             owner: "OpenLilyPondFonts",
@@ -66,7 +66,7 @@ done
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(lilypond, "meta"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           description: nix.thunk(() => nix.str`${fontName} font for LilyPond`),
@@ -81,91 +81,91 @@ done
   })(), formals$2);
   return (() => {
     const beethoven = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fontName: "beethoven",
         rev: "669f400",
         sha256: "17wdklg5shmqwnb7b81qavfg52v32wx5yf15c6al0hbvv1nqqj2i",
       }))));
     const bravura = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fontName: "bravura",
         rev: "53c7744",
         sha256: "1p27w1c3bzxlnm6rzq8n7dbfjwbxqjy4r0fhkmk9jbm8awmzw214",
       }))));
     const cadence = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         fontName: "cadence",
         rev: "1cc0fb7",
         sha256: "1zxb3m8glh8iwj8mzcgyaxhlq0bji0rwniw702m70h9kpifiim1j",
       }))));
     const gonville = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         fontName: "gonville",
         rev: "a638bc9",
         sha256: "15khy9677crgd6bpajn7l1drysgxy49wiym3b248khgpavidwyy9",
       }))));
     const gutenberg1939 = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         fontName: "gutenberg1939",
         rev: "2316a35",
         sha256: "1lkhivmrx92z37zfrb5mkhzhwggyaga9cm0wl89r0n2f2kayyc7q",
       }))));
     const haydn = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         fontName: "haydn",
         rev: "9e7de8b",
         sha256: "1jmbhb2jm887sdc498l2jilpivq1d8lmmgdb8lp59lv8d9fx105z",
       }))));
     const improviso = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         fontName: "improviso",
         rev: "0753f5a",
         sha256: "1clin9c74gjhhira12mwxynxn4b1ixij5bg04mvk828lbr740mfm",
       }))));
     const lilyboulez = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         fontName: "lilyboulez",
         rev: "e8455fc",
         sha256: "0mq92x0rbgfb6s7ipgg2zcxika2si30w3ay89rp7m6vwca01649y",
       }))));
     const lilyjazz = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         fontName: "lilyjazz",
         rev: "8fa7d554",
         sha256: "1z7px7k2sn7snnj7yfjv0p9axwbn452vn9ww9icmb1249b0d1qry",
       }))));
     const lv_goldenage = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         fontName: "lv-goldenage",
         rev: "8a92fd3",
         sha256: "03nbd1vmlaj7wkhsnl2lq09nafv7zj1k518zs966vclzah94qghp",
       }))));
     const paganini = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         fontName: "paganini",
         rev: "8e4e55a",
         sha256: "0gw9wr4hfn205j40rpgnfddhzhn9x4pwfinamj5b7607880nvx29",
       }))));
     const profondo = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         fontName: "profondo",
         rev: "8cfb668",
         sha256: "0armwbg9y0l935949b7klngws6fq42fi944lws61qvjl61780br8",
       }))));
     const ross = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         fontName: "ross",
         rev: "aa8127f",
         sha256: "1w2x3pd1d1z4x0107dpq95v7m547cj4nkkzxgqpmzfqa0074idqd",
       }))));
     const scorlatti = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         fontName: "scorlatti",
         rev: "1db87da",
         sha256: "07jam5hwdy6bydrm98cdla6p6rl8lmy8zzsfq46i55l64l3w956h",
       }))));
     const sebastiano = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         fontName: "sebastiano",
         rev: "44bf262",
         sha256: "09i8p3p4z6vz69j187cpxvikkgc4pk6gxippahy0k7i7bh0d4qaj",
@@ -188,7 +188,7 @@ done
       sebastiano,
     ]);
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       beethoven,
       bravura,
       cadence,

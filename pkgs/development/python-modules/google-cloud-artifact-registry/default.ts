@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_artifact_registry",
           version: version,
           hash: "sha256-DoFzqXrmld/PAsgyd6D9V04aOb5AnaY0W5Rb6+V3rZQ=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.artifactregistry_v1beta2",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud Artifact Registry API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-artifact-registry",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-artifact-registry-v${version}/packages/google-cloud-artifact-registry/CHANGELOG.md`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

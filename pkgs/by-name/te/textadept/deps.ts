@@ -16,59 +16,59 @@ const pos$11 = nix.positions(here + "/deps.nix", [["url", 54, 5], ["sha256", 55,
 const pos$12 = nix.positions(here + "/deps.nix", [["scintilla557.tgz", 3, 3], ["scinterm_5.5.zip", 8, 3], ["scintillua_6.6.zip", 13, 3], ["lua-5.4.8.tar.gz", 18, 3], ["lpeg-1.1.0.tar.gz", 23, 3], ["v1_8_0.zip", 28, 3], ["1.0.zip", 33, 3], ["t20240619.tar.gz", 38, 3], ["libtermkey-0.22.tar.gz", 43, 3], ["v14.2.5.zip", 48, 3], ["v3.5.3.zip", 53, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$12,
+  [nix.POS]: pos$12,
   "scintilla557.tgz": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://www.scintilla.org/scintilla557.tgz",
     sha256: "sha256-s34aI5/4x3zr1y22ziUmSzXL7Lv/rWD5zn6Dj1GVoh4=",
   })),
   "scinterm_5.5.zip": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://github.com/orbitalquark/scinterm/archive/scinterm_5.5.zip",
     sha256: "sha256-G/CEzNVkwJl8CIFmSjtVEOX1bDqnnnO9hJR3VjLQf3k=",
   })),
   "scintillua_6.6.zip": nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://github.com/orbitalquark/scintillua/archive/scintillua_6.6.zip",
     sha256: "sha256-rFza9/ISeet3GsEi9mCM6mUl9mptBfOKWbxMyYKQvGA=",
   })),
   "lua-5.4.8.tar.gz": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "http://www.lua.org/ftp/lua-5.4.8.tar.gz",
     sha256: "sha256-TxjdrhVOeT5G7qtyfFnvHAwMK3ROe5QhlxDXb1MGKa4=",
   })),
   "lpeg-1.1.0.tar.gz": nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     url: "http://www.inf.puc-rio.br/~roberto/lpeg/lpeg-1.1.0.tar.gz",
     sha256: "sha256-SxVdZ9IkbB/6ete8RmweqJm7xA/vAlfMnAPOy67UNSo=",
   })),
   "v1_8_0.zip": nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     url: "https://github.com/keplerproject/luafilesystem/archive/v1_8_0.zip",
     sha256: "sha256-46a+ynqKkFIu7THbbM3F7WWkM4JlAMaGJ4TidnG54Yo=",
   })),
   "1.0.zip": nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     url: "https://github.com/orbitalquark/lua-std-regex/archive/1.0.zip",
     sha256: "sha256-W2hKHOfqYyo3qk+YvPJlzZfZ1wxZmMVphSlcaql+dOE=",
   })),
   "t20240619.tar.gz": nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     url: "https://github.com/ThomasDickey/cdk-snapshots/archive/refs/tags/t20240619.tar.gz",
     sha256: "sha256-aaLJbOI7MTeSnswBHGewMFVMxTKrAKARy7zPAdrKphE=",
   })),
   "libtermkey-0.22.tar.gz": nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     url: "http://www.leonerd.org.uk/code/libtermkey/libtermkey-0.22.tar.gz",
     sha256: "sha256-aUW9PEqqg9qD2AoEXFVj2k7dfQN0xiwNNa7AnrMBRgA=",
   })),
   "v14.2.5.zip": nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     url: "https://github.com/DaanDeMeyer/reproc/archive/refs/tags/v14.2.5.zip",
     sha256: "sha256-IbFow4rbIvS0g5HYGT28OSfx8uZ4wgWNaUSim2Ssxsk=",
   })),
   "v3.5.3.zip": nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     url: "https://github.com/itay-grudev/SingleApplication/archive/refs/tags/v3.5.3.zip",
     sha256: "sha256-7Ipook2pdDl2aDcKWp0f4oG/y9c5DtGxRkKSFjTxiB8=",
   })),

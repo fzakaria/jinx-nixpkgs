@@ -33,27 +33,27 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "scion", "scion-dispatcher"));
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$4,
-    dispatcher: nix.thunk(() => ({ __proto__: pos$1, id: "dispatcher", local_udp_forwarding: true })),
+    [nix.POS]: pos$4,
+    dispatcher: nix.thunk(() => ({ [nix.POS]: pos$1, id: "dispatcher", local_udp_forwarding: true })),
     log: nix.thunk(() => ({
-      __proto__: pos$3,
-      console: nix.thunk(() => ({ __proto__: pos$2, level: "info" })),
+      [nix.POS]: pos$3,
+      console: nix.thunk(() => ({ [nix.POS]: pos$2, level: "info" })),
     })),
   }));
   const configFile = nix.thunk(() => nix.app(nix.sel(toml, "generate"), "scion-dispatcher.toml", nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), defaultConfig, nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         scion: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "scion-dispatcher": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the scion-dispatcher service")),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  dispatcher = {\n    id = \"dispatcher\";\n    socket_file_mode = \"0770\";\n    application_socket = \"/dev/shm/dispatcher/default.sock\";\n  };\n  log.console = {\n    level = \"info\";\n  };\n}\n")),
@@ -64,18 +64,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
-          groups: nix.thunk(() => ({ __proto__: pos$10, scion: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$11,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$10, scion: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "scion-dispatcher-prepare": nix.thunk(() => ({
-              __proto__: pos$13,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Type: "oneshot" })),
+              [nix.POS]: pos$13,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot" })),
               script: "ln -sf /dev/shm /run/shm\n",
               wantedBy: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "systemd", "services", "scion-dispatcher", "name")),
@@ -85,13 +85,13 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "scion-dispatcher": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "SCION Dispatcher",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.attrsDyn({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "simple",
                 Group: "scion",
                 DynamicUser: true,

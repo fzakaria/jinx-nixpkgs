@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unrar",
       version: "7.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.rarlab.com/rar/unrarsrc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           stripRoot: false,
           hash: "sha256-w95Jcz/mT6acO1nfXKG82Z/sYuwGg26QK05KeOSBjM4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 unrar/unrar -t $out/bin/\ninstall -Dm644 unrar/{acknow.txt,license.txt} -t $out/share/doc/unrar/\n\ninstall -Dm755 libunrar/libunrar.so -t $out/lib/\ninstall -Dm644 libunrar/dll.hpp -t $dev/include/unrar/\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for RAR archives",
         homepage: "https://www.rarlab.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

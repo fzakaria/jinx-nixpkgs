@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vsftpd",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://security.appspot.com/downloads/vsftpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JrYCrkVLC6bZnvRKCba54N+n9nIoEGc23x8njHC8kdM=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./CVE-2015-1419.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vsftpd-correct-the-definition-of-setup_bio_callbacks-in-ssl.patch",
             url: "https://src.fedoraproject.org/rpms/vsftpd/raw/c31087744900967ff4d572706a296bf6c8c4a68e/f/0076-Correct-the-definition-of-setup_bio_callbacks-in-ssl.patch",
             hash: "sha256-eYiY2eKQ+qS3CiRZYGuRHcnAe32zLDdb/GwF6NyHch4=",
@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i \"/VSF_BUILD_SSL/s/^#undef/#define/\" builddefs.h\n\nsubstituteInPlace Makefile \\\n  --replace -dirafter \"\" \\\n  --replace /usr $out \\\n  --replace /etc $out/etc \\\n  --replace \"-Werror\" \"\"\n\n\nmkdir -p $out/sbin $out/man/man{5,8}\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypt", "-lssl", "-lcrypto", "-lpam", "-lcap", "-lseccomp"]))),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, vsftpd: nix.thunk(() => nix.attr(nixosTests, "vsftpd")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, vsftpd: nix.thunk(() => nix.attr(nixosTests, "vsftpd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Very secure FTP daemon",
         mainProgram: "vsftpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

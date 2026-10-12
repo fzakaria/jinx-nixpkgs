@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
   const libmd = nix.arg($, "libmd");
   const libnetbsd = nix.arg($, "libnetbsd");
   const binstall = nix.thunk(() => nix.app(writeShellScript, "binstall", nix.thunk(() => nix.add(nix.sel(freebsd_lib, "install-wrapper"), "\n@out@/bin/xinstall \"${args[@]}\"\n"))));
-  const libmd$ = nix.thunk(() => nix.app(nix.sel(libmd, "override"), nix.thunk(() => ({ __proto__: pos$1, bootstrapInstallation: true }))));
+  const libmd$ = nix.thunk(() => nix.app(nix.sel(libmd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bootstrapInstallation: true }))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "usr.bin/xinstall",
       extraPaths: nix.thunk(() => ["contrib/mtree"]),
       nativeBuildInputs: nix.thunk(() => [
@@ -52,7 +52,7 @@ ln -s ./binstall $out/bin/install
 `),
       outputs: nix.thunk(() => ["out", "man", "test"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

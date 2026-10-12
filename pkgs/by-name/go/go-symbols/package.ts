@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "go-symbols",
       version: "0.1.1",
       vendorHash: "sha256-8unWnxTQzPY8tKBtss9qQG+ksWyheKxKRlg65F0vWWU=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acroca",
           repo: "go-symbols",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/acroca/go-symbols/commit/414c2283696b50fc5009055e5bc2590ce45f4400.patch",
             hash: "sha256-9lndJhyN8eaovjQlfSRGP8lC4F+pAXUoR2AvYvhSx2U=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for extracting a JSON representation of the package symbols from a go source tree",
         mainProgram: "go-symbols",
         homepage: "https://github.com/acroca/go-symbols",

@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gitcomet",
       version: "0.2.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Auto-Explore",
           repo: "GitComet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       checkFeatures: nix.thunk(() => ["gix"]),
       cargoTestFlags: nix.thunk(() => ["--workspace", "--exclude=gitcomet-ui-gpui"]),
       nativeCheckInputs: nix.thunk(() => [git, writableTmpDirAsHomeHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GIT_PAGER: "cat" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GIT_PAGER: "cat" })),
       dontUseCargoParallelTests: true,
       postInstall: "install -Dm644 assets/linux/gitcomet.desktop \\\n  $out/share/applications/gitcomet.desktop\ndesktop-file-validate $out/share/applications/gitcomet.desktop\n\nfor size in 32 48 128 256 512; do\n  install -Dm644 \"assets/linux/hicolor/${size}x${size}/apps/gitcomet.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/gitcomet.png\"\ndone\n",
       postFixup: nix.thunk(() => nix.str`patchelf $out/bin/gitcomet --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, vulkan_loader, wayland]))}
@@ -70,21 +70,21 @@ wrapProgram $out/bin/gitcomet \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9]+[.][0-9]+[.][0-9]+)$", "--use-github-releases"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast, resource-efficient Git GUI written in Rust",
         longDescription: "GitComet is a Git graphical client built with Rust and the gpui\ntoolkit, using gix as its Git implementation.\n",
         homepage: "https://gitcomet.dev",

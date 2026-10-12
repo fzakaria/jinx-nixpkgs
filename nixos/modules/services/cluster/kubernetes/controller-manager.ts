@@ -46,35 +46,35 @@ export default nix.lambda((args) => (() => {
   const otop = nix.thunk(() => nix.sel(options, "services", "kubernetes"));
   const cfg = nix.thunk(() => nix.sel(top, "controllerManager"));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kubernetes", "controllerManager", "address"]), nix.thunk(() => ["services", "kubernetes", "controllerManager", "bindAddress"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kubernetes", "controllerManager", "insecurePort"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           controllerManager: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               allocateNodeCIDRs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   description: "Whether to automatically allocate CIDR ranges for cluster nodes.",
                   default: true,
                   type: nix.thunk(() => nix.lookup(w, "bool")),
                 })))),
               bindAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "Kubernetes controller manager listening address.",
                   default: "127.0.0.1",
                   type: nix.thunk(() => nix.lookup(w, "str")),
                 })))),
               clusterCidr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "Kubernetes CIDR Range for Pods in cluster.",
                   default: nix.thunk(() => nix.sel(top, "clusterCidr")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "clusterCidr")}`))),
@@ -82,13 +82,13 @@ export default nix.lambda((args) => (() => {
                 })))),
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kubernetes controller manager")),
               extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   description: "Kubernetes controller manager extra command line options.",
                   default: "",
                   type: nix.thunk(() => nix.app(nix.lookup(w, "separatedString"), " ")),
                 })))),
               featureGates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   description: "Attribute set of feature gates.",
                   default: nix.thunk(() => nix.sel(top, "featureGates")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "featureGates")}`))),
@@ -96,44 +96,44 @@ export default nix.lambda((args) => (() => {
                 })))),
               kubeconfig: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkKubeConfigOptions"), "Kubernetes controller manager")),
               leaderElect: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: "Whether to start leader election before executing main loop.",
                   type: nix.thunk(() => nix.lookup(w, "bool")),
                   default: true,
                 })))),
               rootCaFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   description: "Kubernetes controller manager certificate authority file included in\nservice account's token secret.\n",
                   default: nix.thunk(() => nix.sel(top, "caFile")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "caFile")}`))),
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                 })))),
               securePort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   description: "Kubernetes controller manager secure listening port.",
                   default: 10252n,
                   type: nix.thunk(() => nix.lookup(w, "int")),
                 })))),
               serviceAccountKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   description: "Kubernetes controller manager PEM-encoded private RSA key file used to\nsign service account tokens\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                 })))),
               tlsCertFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   description: "Kubernetes controller-manager certificate file.",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                 })))),
               tlsKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   description: "Kubernetes controller-manager private key file.",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                 })))),
               verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   description: "Optional glog verbosity level for logging statements. See\n<https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")))),
@@ -144,18 +144,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "kube-controller-manager": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Kubernetes Controller Manager Service",
               wantedBy: nix.thunk(() => ["kubernetes.target"]),
               after: nix.thunk(() => ["kube-apiserver.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 RestartSec: "30s",
                 Restart: "on-failure",
                 Slice: "kubernetes.slice",
@@ -179,29 +179,29 @@ export default nix.lambda((args) => (() => {
                 User: "kubernetes",
                 Group: "kubernetes",
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$18, StartLimitIntervalSec: 0n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$18, StartLimitIntervalSec: 0n })),
               path: nix.thunk(() => nix.sel(top, "path")),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           kubernetes: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             pki: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               certs: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(top, "lib")), null);
                 return {
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   controllerManager: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       name: "kube-controller-manager",
                       CN: "kube-controller-manager",
                       action: "systemctl restart kube-controller-manager.service",
                     })))),
                   controllerManagerClient: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       name: "kube-controller-manager-client",
                       CN: "system:kube-controller-manager",
                       action: "systemctl restart kube-controller-manager.service",
@@ -210,16 +210,16 @@ export default nix.lambda((args) => (() => {
               })()),
             })),
             controllerManager: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               kubeconfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 server: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(top, "apiserverAddress")))),
               })),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$31, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$31, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=controller-manager.ts.map

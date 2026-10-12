@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vulners",
       version: "4.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vulnersCom",
           repo: "api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         zstandard,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mcp: nix.thunk(() => [fastmcp]),
         otel: nix.thunk(() => [opentelemetry_api]),
       })),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["vulners"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_smoke.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python SDK for the Vulners vulnerability-intelligence API",
         homepage: "https://github.com/vulnersCom/api",
         changelog: nix.thunk(() => nix.str`https://github.com/vulnersCom/api/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const swift_sources = nix.arg($, "swift_sources");
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
   const swift = nix.thunk(() => nix.app(nix.sel(swift_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "swift-corelibs-libdispatch": swift_corelibs_libdispatch,
       "swift-foundation": swift_foundation,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "swift-driver",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-driver"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "swiftlang",
           repo: "swift-driver",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -62,7 +62,7 @@ appendToVar cmakeFlags -DCMAKE_Swift_FLAGS=-module-cache-path\\ "$NIX_BUILD_TOP/
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, ninja, swift], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [llvm_libtool])))),
       buildInputs: nix.thunk(() => [swift_argument_parser, swift_llbuild, swift_tools_support_core]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       postInstall: nix.thunk(() => nix.add(nix.str`mkdir -p "\${!outputDev}/lib/swift/${swiftPlatform}" "\${!outputLib}/lib"
@@ -89,15 +89,15 @@ done
 `)))),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "swift-driver",
         homepage: "https://github.com/swiftlang/swift-driver",
         description: "Swift compiler driver written in Swift",

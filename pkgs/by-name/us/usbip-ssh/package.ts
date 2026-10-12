@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbip-ssh",
       version: "0-unstable-2024-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "turistu",
           repo: "usbip-ssh",
           rev: "1b38f2d7854048bf6129ffe992f3c9caa630e377",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/usbip-ssh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [perl, openssh, kmod]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/turistu/usbip-ssh",
         description: "Import usb devices from another linux machine with ssh's connection forwarding mechanism",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

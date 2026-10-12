@@ -33,33 +33,33 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "readeck.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "julienmalka"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         readeck: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Readeck")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "readeck", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               description: "File containing environment variables to be passed to Readeck.\nMay be used to provide the Readeck secret key by setting the READECK_SECRET_KEY variable.\n",
               default: null,
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
-                main: nix.thunk(() => ({ __proto__: pos$3, log_level: "debug" })),
-                server: nix.thunk(() => ({ __proto__: pos$4, port: 9000n })),
+                [nix.POS]: pos$5,
+                main: nix.thunk(() => ({ [nix.POS]: pos$3, log_level: "debug" })),
+                server: nix.thunk(() => ({ [nix.POS]: pos$4, port: 9000n })),
               })),
               description: "Additional configuration for Readeck, see\n<https://readeck.org/en/docs/configuration>\nfor supported values.\n",
             })))),
@@ -67,19 +67,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             readeck: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Readeck",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 StateDirectory: "readeck",
                 WorkingDirectory: "/var/lib/readeck",

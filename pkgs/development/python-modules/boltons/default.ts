@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mahmoud",
           repo: "boltons",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pytest9-compat.patch",
             url: "https://github.com/mahmoud/boltons/commit/a2af58548936c51a3d859f780e54ba170a6829bb.patch",
             hash: "sha256-NRjfEKb0doJEtS5GyrF0dJYYr2u+ukogfUmmVnsHAwM=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["boltons"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Constructs, recipes, and snippets extending the Python standard library",
         longDescription: "Boltons is a set of over 200 BSD-licensed, pure-Python utilities\nin the same spirit as - and yet conspicuously missing from - the\nstandard library, including:\n\n- Atomic file saving, bolted on with fileutils\n- A highly-optimized OrderedMultiDict, in dictutils\n- Two types of PriorityQueue, in queueutils\n- Chunked and windowed iteration, in iterutils\n- Recursive data structure iteration and merging, with iterutils.remap\n- Exponential backoff functionality, including jitter, through\niterutils.backoff\n- A full-featured TracebackInfo type, for representing stack\ntraces, in tbutils\n",
         homepage: "https://github.com/mahmoud/boltons",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

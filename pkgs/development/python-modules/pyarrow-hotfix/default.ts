@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pitrou",
           repo: "pyarrow-hotfix",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatchling]);
       const pythonImportsCheck = nix.thunk(() => ["pyarrow_hotfix"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hotfix for the PyArrow security vulnerability CVE-2023-47248",
         homepage: "https://github.com/pitrou/pyarrow-hotfix",
         changelog: nix.thunk(() => nix.str`https://github.com/pitrou/pyarrow-hotfix/releases/tag/v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

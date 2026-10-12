@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "open-english-wordnet",
       version: "2022",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "globalwordnet",
           repo: "english-wordnet",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-edition`),
           hash: "sha256-a1fWIp39uuJZL1aFX/r+ttLB1+kwh/XPHwphgENTQ5M=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (rev) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/globalwordnet/english-wordnet/commit/${rev}.patch`),
             hash: hash,
           }))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bc07902f8995b62c70f01a282b23f40f30630540: "sha256-1e4MG/k86g3OFUhiShCCbNXnvDKrYFr1KlGVsGl++KI=",
           "6da46a48dd76a48ad9ff563e6c807b8271fc83cd": "sha256-QkkJH7NVGy/IbeSWkotU80IGF4esz0b8mIL9soHdQtQ=",
         })))),
@@ -60,7 +60,7 @@ install -Dt $out/share/wordnet 'oewn:${nix.sel(finalAttrs, "version")}.xml.gz'
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lexical network of the English language",
         longDescription: "Open English WordNet is a lexical network of the English language grouping\nwords into synsets and linking them according to relationships such as\nhypernymy, antonymy and meronymy. It is intended to be used in natural\nlanguage processing applications and provides deep lexical information\nabout the English language as a graph.\n\nOpen English WordNet is a fork of the Princeton Wordnet developed under an\nopen source methodology.\n",
         homepage: "https://en-word.net/",

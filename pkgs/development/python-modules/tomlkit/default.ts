@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-fRqey6MIZjghGxOBTqeckN1U3RGZNWQ3bzqpInH1x6M=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pyyaml, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["tomlkit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sdispater/tomlkit",
         changelog: nix.thunk(() => nix.str`https://github.com/sdispater/tomlkit/blob/${version}/CHANGELOG.md`),
         description: "Style-preserving TOML library for Python",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

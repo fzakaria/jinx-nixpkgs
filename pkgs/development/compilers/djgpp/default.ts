@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const unzip = nix.arg($, "unzip");
   const which = nix.arg($, "which");
-  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   nix.assert_(nix.app(nix.sel(lib, "elem"), targetArchitecture, nix.thunk(() => ["i586", "i686"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/djgpp/default.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "djgpp";
@@ -38,7 +38,7 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(targetArchitecture, "i686")), nix.thunk(() => nix.str`sed -i 's/i586/i686/g' setenv/setenv script/${version}
 sed -i '/Building DXE tools./a sed -i "s/i586/i686/g" src/makefile.def src/dxe/makefile.dxe' script/${version}
 `))), "runHook postPatch\n"));
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [bison, curl, file, flex, perl, texinfo, unzip, which]);
       const hardeningDisable = nix.thunk(() => ["format"]);
@@ -69,7 +69,7 @@ for f in dxegen dxe3gen; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Complete 32-bit GNU-based development system for Intel x86 PCs running DOS",
         homepage: "https://www.delorie.com/djgpp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -80,7 +80,7 @@ done
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libscfg = nix.arg($, "libscfg");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kanshi",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "emersion",
           repo: "kanshi",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, scdoc, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland, libscfg, vali]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic display configuration tool",
         longDescription: "kanshi allows you to define output profiles that are automatically enabled\nand disabled on hotplug. For instance, this can be used to turn a laptop's\ninternal screen off when docked.\n\nkanshi can be used on Wayland compositors supporting the\nwlr-output-management protocol.\n",
         homepage: "https://gitlab.freedesktop.org/emersion/kanshi",

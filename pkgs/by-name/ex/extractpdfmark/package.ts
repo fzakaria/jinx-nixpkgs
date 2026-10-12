@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texliveMinimal = nix.arg($, "texliveMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "extractpdfmark",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trueroad",
           repo: "extractpdfmark",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pNc/SWAtQWMbB2+lIQkJdBYSZ97iJXK71mS59qQa7Hs=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./gettext-0.25.patch")]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-liconv" })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [poppler]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ghostscript, texliveMinimal]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/trueroad/extractpdfmark",
         description: "Extract page mode and named destinations as PDFmark from PDF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

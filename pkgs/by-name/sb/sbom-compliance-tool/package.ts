@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const cyclonedx_python = nix.arg($, "cyclonedx-python");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sbom-compliance-tool",
       version: "0.0.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "software-compliance-org",
           repo: "sbom-compliance-tool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sbom_compliance_tool", "sbom_compliance_tool.reader"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to assist your compliance work with SBoM",
         homepage: "https://codeberg.org/software-compliance-org/sbom-compliance-tool",
         mainProgram: "sbom_compliance_tool",

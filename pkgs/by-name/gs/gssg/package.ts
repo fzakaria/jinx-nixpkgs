@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gssg",
       version: "0-unstable-2023-05-29",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~gsthnz",
           repo: "gssg",
           rev: "fc755f281d750d0b022689d58d0f32e6799dfef8",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-NxfZbwKo8SY0XfWivQ42cNqIbJQ1EBsxPFr70ZU9G6E=",
       ldFlags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gemini static site generator",
         homepage: "https://git.sr.ht/~gsthnz/gssg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

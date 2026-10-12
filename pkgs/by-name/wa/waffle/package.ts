@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "waffle",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "Mesa",
           repo: "waffle",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, makeWrapper, meson, ninja, pkg_config, python3], nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland_scanner])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/wflinfo \\
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libgbm, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform C library that allows one to defer selection of an OpenGL API and window system until runtime",
         mainProgram: "wflinfo",
         homepage: "https://gitlab.freedesktop.org/mesa/waffle",

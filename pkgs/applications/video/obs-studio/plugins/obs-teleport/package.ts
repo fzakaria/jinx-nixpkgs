@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-teleport";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fzwoch",
           repo: "obs-teleport",
           rev: version,
@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libjpeg, obs_studio]);
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_CFLAGS: nix.thunk(() => nix.str`-I${obs_studio}/include/obs`),
         CGO_LDFLAGS: nix.thunk(() => nix.str`-L${obs_studio}/lib -lobs -lobs-frontend-api`),
       }));
       const buildPhase = "runHook preBuild\n\ngo build -buildmode=c-shared -o obs-teleport.so .\n\nrunHook postBuild\n";
       const postInstall = "mkdir -p $out/lib/obs-plugins\nmv obs-teleport.so $out/lib/obs-plugins\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OBS Studio plugin for an open NDI-like replacement",
         homepage: "https://github.com/fzwoch/obs-teleport",
         maintainers: [],
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(obs_studio, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

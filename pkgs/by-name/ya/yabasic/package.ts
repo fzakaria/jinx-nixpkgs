@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yabasic",
       version: "2.92.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.yabasic.de/download/yabasic-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VeQcDGGxQ3Xpfz6pYbwLcnUfRZjkDgsCCsVtqXm2Rqk=",
         })))),
       buildInputs: nix.thunk(() => [libsm, libx11, libxt, libffi, ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://2484.de/yabasic/",
         description: "Yet another BASIC",
         mainProgram: "yabasic",

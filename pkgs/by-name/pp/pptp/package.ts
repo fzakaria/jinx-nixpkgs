@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ppp = nix.arg($, "ppp");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pptp",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pptpclient/pptp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1x2szfp96w7cag2rcvkdqbsl836ja5148zzfhaqp7kl7wjw2sjc2",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl]),
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PPTP client for Linux",
         homepage: "https://pptpclient.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

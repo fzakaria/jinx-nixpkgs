@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const pyarrow = nix.arg($, "pyarrow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ydata-profiling",
       version: "4.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ydataai",
           repo: "ydata-profiling",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_decorator", "test_example", "test_load", "test_urls"]),
       pythonImportsCheck: nix.thunk(() => ["ydata_profiling"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create HTML profiling reports from Pandas DataFrames",
         homepage: "https://ydata-profiling.ydata.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/ydataai/ydata-profiling/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

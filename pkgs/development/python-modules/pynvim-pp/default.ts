@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pynvim = nix.arg($, "pynvim");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pynvim-pp",
       version: "0-unstable-2025-05-29",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ms-jpq",
           repo: "pynvim_pp",
           rev: "6beffc4f479360489481705dc23a9ebd54f0c17d",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pynvim]),
       pythonImportsCheck: nix.thunk(() => ["pynvim_pp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ms-jpq/pynvim_pp",
         description: "Dependency to chadtree and coq_nvim plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

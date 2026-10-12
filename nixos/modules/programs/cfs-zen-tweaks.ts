@@ -20,33 +20,33 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "cfs-zen-tweaks"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mkg20001"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "cfs-zen-tweaks": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CFS Zen Tweaks")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cfs-zen-tweaks"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "set-cfs-tweaks": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               wantedBy: nix.thunk(() => [
                 "multi-user.target",
                 "suspend.target",

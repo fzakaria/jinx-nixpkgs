@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "new-lg4ff"));
   const kernelPackages = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "new-lg4ff": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enables improved Linux module drivers for Logitech driving wheels.\nThis will replace the existing in-kernel hid-logitech modules.\nWorks most notably on the Logitech G25, G27, G29 and Driving Force (GT).\n",
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(kernelPackages, "new-lg4ff"))]),
           kernelModules: nix.thunk(() => ["hid-logitech-new"]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "matthiasbenaets"))];

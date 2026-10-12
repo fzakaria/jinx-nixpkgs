@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const mkHyprlandPlugin = nix.arg($, "mkHyprlandPlugin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkHyprlandPlugin, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pluginName: "hy3",
       version: "0.56.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outfoxxed",
           repo: "hy3",
           tag: nix.thunk(() => nix.str`hl${nix.sel(finalAttrs, "version")}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex", "hl(.*)"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex", "hl(.*)"]) })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hyprland, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/outfoxxed/hy3",
         description: "Hyprland plugin for an i3 / sway like manual tiling layout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

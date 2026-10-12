@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pngquant = nix.arg($, "pngquant");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "appstream-glib",
       version: "0.8.3",
       strictDeps: true,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "man", "installedTests"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hughsie",
           repo: "appstream-glib",
           tag: nix.thunk(() => nix.str`appstream_glib_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glib, gdk_pixbuf]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pngquant: nix.thunk(() => nix.str`${pngquant}/bin/pngquant`),
           })))),
       ]),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "moveToOutput \"share/installed-tests\" \"$installedTests\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/hughsie/appstream-glib/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Objects and helper methods to read and write AppStream metadata",
         homepage: "https://people.freedesktop.org/~hughsient/appstream-glib/",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dtc = nix.arg($, "dtc");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "argononed",
       version: "0.4.1-unstable-2025-12-26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DarkElvenAngel",
           repo: "argononed",
           rev: "34d70b3bb1b2a8ba4b146ba7d9962dd0d925e67e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dtc]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 build/argononed $out/bin/argononed\ninstall -Dm755 build/argonone-cli $out/bin/argonone-cli\ninstall -Dm755 build/argonone-shutdown $out/lib/systemd/system-shutdown/argonone-shutdown\ninstall -Dm644 build/argonone.dtbo $out/boot/overlays/argonone.dtbo\n\ninstall -Dm644 OS/_common/argononed.service $out/lib/systemd/system/argononed.service\ninstall -Dm644 OS/_common/argononed.logrotate $out/etc/logrotate.d/argononed\ninstall -Dm644 LICENSE $out/share/argononed/LICENSE\n\ninstallShellCompletion --bash --name argonone-cli OS/_common/argonone-cli-complete.bash\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/DarkElvenAngel/argononed",
         description: "Replacement daemon for the Argon One Raspberry Pi case",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

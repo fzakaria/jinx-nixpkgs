@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nitrokey-app";
       const version = "1.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "nitrokey-app",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libnitrokey, cppcodec]);
       const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0 FATAL_ERROR)\" \\\n  \"cmake_minimum_required(VERSION 3.10  FATAL_ERROR)\" \\\n--replace-fail \\\n  \"cmake_policy(SET CMP0043 OLD)\" \\\n  \"cmake_policy(SET CMP0043 NEW)\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides extra functionality for the Nitrokey Pro and Storage",
         mainProgram: "nitrokey-app",
         longDescription: "The nitrokey-app provides a QT system tray widget with which you can\naccess the extra functionality of a Nitrokey Storage or Nitrokey Pro.\nSee https://www.nitrokey.com/ for more information.\n",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

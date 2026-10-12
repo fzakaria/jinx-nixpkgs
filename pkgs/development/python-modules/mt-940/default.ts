@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.30.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wolph",
           repo: "mt940",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pyyaml, pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["mt940"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to parse MT940 files and returns smart Python collections for statistics and manipulation",
         homepage: "https://github.com/WoLpH/mt940",
         changelog: nix.thunk(() => nix.str`https://github.com/wolph/mt940/releases/tag/v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

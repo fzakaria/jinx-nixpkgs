@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mos",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Caldis/Mos/releases/download/${nix.sel(finalAttrs, "version")}/Mos.Versions.${nix.sel(finalAttrs, "version")}-20260531.1.zip`),
           hash: "sha256-LqaelvCS5E2tqTpVvaHN2rMynFJ7vV8G4A37eOlTlgo=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smooths scrolling and set mouse scroll directions independently on macOS",
         homepage: "https://mos.caldis.me/",
         changelog: nix.thunk(() => nix.str`https://github.com/Caldis/Mos/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const distro = nix.arg($, "distro");
   const sniffio = nix.arg($, "sniffio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gradient",
       version: "3.12.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digitalocean",
           repo: "gradient-python",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [httpx, pydantic, typing_extensions, anyio, distro, sniffio]),
       pythonImportsCheck: nix.thunk(() => ["gradient"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API library for Gradient",
         mainProgram: "gradient",
         homepage: "https://github.com/digitalocean/gradient-python",

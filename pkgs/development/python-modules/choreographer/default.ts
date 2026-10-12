@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const logistro = nix.arg($, "logistro");
   const simplejson = nix.arg($, "simplejson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "choreographer",
       version: "1.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plotly",
           repo: "choreographer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["choreographer"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Devtools Protocol implementation for chrome",
         homepage: "https://github.com/plotly/choreographer",
         changelog: nix.thunk(() => nix.str`https://github.com/plotly/choreographer/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.txt`),

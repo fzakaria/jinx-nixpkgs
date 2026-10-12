@@ -44,24 +44,24 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     name: "nebula",
     nodes: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       lighthouse: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "nebula"))]),
             etc: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "nebula-key": nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 user: "nebula-smoke",
                 group: "nebula-smoke",
                 source: snakeOilPrivateKey,
@@ -70,23 +70,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             nebula: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               networks: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 smoke: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   ca: "/etc/nebula/ca.crt",
                   cert: "/etc/nebula/lighthouse.crt",
                   key: "/etc/nebula/lighthouse.key",
                   isLighthouse: true,
-                  listen: nix.thunk(() => ({ __proto__: pos$4, host: "0.0.0.0", port: 4242n })),
+                  listen: nix.thunk(() => ({ [nix.POS]: pos$4, host: "0.0.0.0", port: 4242n })),
                   enableReload: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     sshd: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       enabled: true,
                       listen: "127.0.0.1:2222",
                       host_key: "/etc/nebula-key",
@@ -97,23 +97,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "sshd-off": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               configuration: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 services: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   nebula: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     networks: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       smoke: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         settings: nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           sshd: nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             enabled: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), false)),
                           })),
                         })),
@@ -124,21 +124,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "sshd-on": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               configuration: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 services: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   nebula: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     networks: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       smoke: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         settings: nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           sshd: nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             enabled: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), true)),
                           })),
                         })),

@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const sqlalchemy = nix.arg($, "sqlalchemy");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orbax-checkpoint",
       version: "0.12.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "orbax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["orbax", "orbax.checkpoint"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Orbax provides common utility libraries for JAX users",
         homepage: "https://github.com/google/orbax/tree/main/checkpoint",
         changelog: nix.thunk(() => nix.str`https://github.com/google/orbax/blob/${nix.sel(finalAttrs, "src", "tag")}/checkpoint/CHANGELOG.md`),

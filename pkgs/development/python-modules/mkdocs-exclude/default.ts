@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkdocs = nix.arg($, "mkdocs");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-exclude",
       version: "1.0.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apenwarr",
           repo: "mkdocs-exclude",
           rev: "fdd67d2685ff706de126e99daeaaaf3f6f7cf3ae",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mkdocs]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mkdocs plugin to exclude files from input using globs or regexes",
         homepage: "https://github.com/apenwarr/mkdocs-exclude",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

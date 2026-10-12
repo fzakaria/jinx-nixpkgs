@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xonsh",
           repo: "xontrib-jedi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [writableTmpDirAsHomeHook, pytestCheckHook, xonsh]);
       const disabledTests = nix.thunk(() => ["test_jedi_error_logged_when_debug_set"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Xonsh Python mode completions using jedi",
         homepage: "https://github.com/xonsh/xontrib-jedi",
         changelog: nix.thunk(() => nix.str`https://github.com/xonsh/xontrib-jedi/releases/tag/${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

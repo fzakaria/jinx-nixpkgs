@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cronutils",
       version: "1.10",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "cronutils",
           tag: nix.thunk(() => nix.str`version/${nix.sel(finalAttrs, "version")}`),
@@ -34,35 +34,35 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/google/cronutils/commit/5d742fc154fc1adcfebc646dca0c45b0f0060844.patch",
             hash: "sha256-o1ylZ+fKL1fQYSKSOkujDsh4CUQya0wJ47uGNNC6mVQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/google/cronutils/commit/c39df37c6c280e3f73ea57cfa598b8447e5a58fe.patch",
             hash: "sha256-og/xEWn0M7+mkbLGY14nkYpV3ckr7eYrb0X22Zxmq8w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/google/cronutils/commit/de72c648d12d102b79d4e3bb57830f2d79f5702a.patch",
             hash: "sha256-njftI3RbrjRtXpXKFHNE9HroIZr5tqVnEK77lu4+/sI=",
           })))),
       ]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D_DARWIN_C_SOURCE", "-Wno-format-nonliteral"]))))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "version/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/google/cronutils/releases/tag/version%2F${nix.sel(finalAttrs, "version")}`),
         description: "Utilities to assist running periodic batch processing jobs",
         homepage: "https://github.com/google/cronutils",

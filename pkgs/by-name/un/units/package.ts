@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const enableCurrenciesUpdater = nix.argOr($, "enableCurrenciesUpdater", () => true);
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "requests"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "units",
       version: "2.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/units/units-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4bvbCWcufAju6YZ0nnoWKeuEpr30H1oqedaARESrvhA=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       outputs: nix.thunk(() => ["out", "info", "man"]),
       buildInputs: nix.thunk(() => nix.concat([readline], nix.app(nix.sel(lib, "optionals"), enableCurrenciesUpdater, nix.thunk(() => [pythonEnv])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableCurrenciesUpdater, nix.thunk(() => nix.str`cp units_cur ${nix.builtins.placeholder("out")}/bin/
 `))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/units/",
         description: "Unit conversion tool",
         longDescription: "GNU Units converts quantities expressed in various systems of measurement\nto their equivalents in other systems of measurement. Like many similar\nprograms, it can handle multiplicative scale changes. It can also handle\nnonlinear conversions such as Fahrenheit to Celsius or wire gauge, and it\ncan convert from and to sums of units, such as converting between meters\nand feet plus inches.\n\nBeyond simple unit conversions, GNU Units can be used as a general-purpose\nscientific calculator that keeps track of units in its calculations. You\ncan form arbitrary complex mathematical expressions of dimensions\nincluding sums, products, quotients, powers, and even roots of\ndimensions. Thus you can ensure accuracy and dimensional consistency when\nworking with long expressions that involve many different units that may\ncombine in complex ways.\n\nThe units are defined in an external data file. You can use the extensive\ndata file that comes with this program, or you can provide your own data\nfile to suit your needs. You can also use your own data file to supplement\nthe standard data file.\n",

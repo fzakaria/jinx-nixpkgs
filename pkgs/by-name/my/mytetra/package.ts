@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mytetra";
       const version = "1.44.232";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xintrea",
           repo: "mytetra_dev",
           rev: nix.thunk(() => nix.str`v.${version}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtsvg"))]);
       const hardeningDisable = nix.thunk(() => ["format"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const preBuild = "substituteInPlace app/app.pro \\\n  --replace /usr/local/bin $out/bin \\\n  --replace /usr/share $out/share\n\nsubstituteInPlace app/src/views/mainWindow/MainWindow.cpp \\\n  --replace \":/resource/pic/logo.svg\" \"$out/share/icons/hicolor/48x48/apps/mytetra.png\"\n\n# https://github.com/xintrea/mytetra_dev/issues/164\nsubstituteInPlace thirdParty/mimetex/mimetex.c \\\n  --replace \"const char *strcasestr\" \"char *strcasestr\"\n";
       const postFixup = nix.thunk(() => nix.str`# make xdg-open overrideable at runtime
 wrapProgram $out/bin/mytetra \\
   --suffix PATH : ${xdg_utils}/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Smart manager for information collecting",
         mainProgram: "mytetra",
         homepage: "https://webhamster.ru/site/page/index/articles/projectcode/138",
@@ -49,7 +49,7 @@ wrapProgram $out/bin/mytetra \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

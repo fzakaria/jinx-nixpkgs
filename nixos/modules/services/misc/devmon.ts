@@ -23,27 +23,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "devmon"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         devmon: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "devmon, an automatic device mounting daemon")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           user: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               devmon: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "devmon automatic device mounting daemon",
                 wantedBy: nix.thunk(() => ["default.target"]),
                 path: nix.thunk(() => [
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(pkgs, "which")),
                 ]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "udevil")}/bin/devmon`),
                 })),
               })),
@@ -61,8 +61,8 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
-          udisks2: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+          [nix.POS]: pos$10,
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
         })),
       })))),
   };

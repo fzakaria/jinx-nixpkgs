@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const overcommit = nix.arg($, "overcommit");
   const testers = nix.arg($, "testers");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "overcommit",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["overcommit"]),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/overcommit --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: overcommit,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "overcommit", "version")),
             })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "overcommit")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to manage and configure Git hooks",
         homepage: "https://github.com/sds/overcommit",
         changelog: "https://github.com/sds/overcommit/blob/main/CHANGELOG.md",

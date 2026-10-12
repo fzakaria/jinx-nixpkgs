@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const mkPdfSet = (name) => (sha256) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: name,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lhapdfsets.web.cern.ch/lhapdfsets/current/${name}.tar.gz`),
           sha256: sha256,
         })))),
@@ -27,7 +27,7 @@ cp * $out/${name}/
       setupHook: nix.path(here, "./pdfset-hook.sh"),
     })));
   return nix.app(nix.sel(lib, "mapAttrs"), mkPdfSet, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       ABMP15_3_nnlo: "028q5xixxjxhb8sr7l5v5mwh9mkszm5m59fgnpb69yxvv40a70v0",
       ABMP15_4_nnlo: "11zjp4dxmgp69kdkmdwqkpsajvwjrbwylmwgs56mgjb0vgb8wk0i",
       ABMP15_5_nnlo: "0z47g5fwh53gg5ws5bbip5q2m5mm7vl09q2w58g6ah9dk25r10ll",

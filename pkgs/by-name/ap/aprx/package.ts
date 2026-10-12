@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aprx",
       version: "2.9.1-unstable-2021-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PhirePhly",
           repo: "aprx",
           rev: "2c84448fe6d897980234961a87ee4c1d4fad69ec",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [perl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-O2", "-Wno-implicit-int", "-std=gnu17"]))),
       })),
       configureFlags: nix.thunk(() => [
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["INSTALL=install"]),
       preInstall: "mkdir -p $out/bin $out/share/man/man8 $out/etc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multitalented APRS i-gate / digipeater",
         homepage: "http://thelifeofkenneth.com/aprx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

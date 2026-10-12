@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "debos",
       version: "1.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "go-debos",
           repo: "debos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [dpkg, pkg_config, unzip]),
       buildInputs: nix.thunk(() => [glib, ostree, qemu]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to create Debian OS images",
         homepage: "https://github.com/go-debos/debos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tgalal",
           repo: "yowsup",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonRelaxDeps = true;
       const pythonRemoveDeps = nix.thunk(() => ["argparse"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const dependencies = nix.thunk(() => nix.concat([appdirs, consonance, protobuf, python_axolotl, six], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(pythonOlder, "3.12"))), nix.thunk(() => [pyasyncore]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tgalal/yowsup",
         description: "Python WhatsApp library",
         mainProgram: "yowsup-cli",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

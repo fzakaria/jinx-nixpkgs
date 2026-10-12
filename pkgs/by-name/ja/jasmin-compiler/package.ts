@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mpfr = nix.arg($, "mpfr");
   const ppl = nix.arg($, "ppl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jasmin-compiler",
       version: "2026.09.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jasmin-lang/jasmin/releases/download/v${nix.sel(finalAttrs, "version")}/jasmin-compiler-v${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Ef7Fce+597Okf+oyS04qaCieC3OyJI0jfszxObUhgZA=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 export DUNE_OPTS="--prefix=$bin --libdir=$out/lib/ocaml/${nix.sel(ocamlPackages, "ocaml", "version")}/site-lib"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Workbench for high-assurance and high-speed cryptography",
         homepage: "https://github.com/jasmin-lang/jasmin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-yxH/ZmV777qU2CjjtiLV+3byL72hN281Xz5uUel9lFA=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["watchgod"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, modern file watching and code reload in python",
         mainProgram: "watchgod",
         homepage: "https://github.com/samuelcolvin/watchgod",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

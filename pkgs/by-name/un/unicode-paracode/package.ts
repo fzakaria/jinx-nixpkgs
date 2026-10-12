@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const unicode_character_database = nix.arg($, "unicode-character-database");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unicode-paracode",
       version: "3.2-unstable-2025-01-31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garabik",
           repo: "unicode",
           rev: "7df103ee988bbfe999f457e23cbc0e954dd0e813",
@@ -43,11 +43,11 @@ substituteInPlace "$out/bin/.unicode-wrapped" \\
       postInstall: "installManPage paracode.1 unicode.1\n",
       checkPhase: "runHook preCheck\n\necho Testing: $out/bin/unicode --brief z\ndiff -u <(echo z U+007A LATIN SMALL LETTER Z) <($out/bin/unicode --brief z 2>&1) && echo Success\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Display unicode character properties",
         homepage: "https://github.com/garabik/unicode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

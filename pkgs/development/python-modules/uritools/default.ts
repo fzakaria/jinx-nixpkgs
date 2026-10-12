@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-TWccO4yiMKXUfvpfimk/PQFTHzj09SMXApm+c0zJhRs=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["uritools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RFC 3986 compliant, Unicode-aware, scheme-agnostic replacement for urlparse",
         homepage: "https://github.com/tkem/uritools/",
         changelog: nix.thunk(() => nix.str`https://github.com/tkem/uritools/blob/v${version}/CHANGELOG.rst`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

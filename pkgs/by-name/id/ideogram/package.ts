@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ideogram",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cassidyjames",
           repo: "ideogram",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Insert emoji anywhere, even in non-native apps - designed for elementary OS",
         homepage: "https://github.com/cassidyjames/ideogram",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

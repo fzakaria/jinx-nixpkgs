@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Hetzner Cloud Pulumi resource package, providing multi-language access to Hetzner Cloud",
         mainProgram: "pulumi-resource-hcloud",
         homepage: "https://github.com/pulumi/pulumi-hcloud",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner,
         repo,
         version,

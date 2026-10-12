@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytest8_3CheckHook = nix.arg($, "pytest8_3CheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hydra-core",
       version: "1.3.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "hydra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./antlr4.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             antlr_jar: nix.thunk(() => nix.str`${nix.sel(antlr4, "out")}/share/java/antlr-${nix.sel(antlr4, "version")}-complete.jar`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "setuptools-67.5.0-test-compatibility.patch",
             url: "https://github.com/facebookresearch/hydra/commit/25873841ed8159ab25a0c652781c75cc4a9d6e08.patch",
             hash: "sha256-oUfHlJP653o3RDtknfb8HaaF4fpebdR/OcbKHzJFK/Q=",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["hydra", "hydra.version"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Framework for configuring complex applications",
         homepage: "https://hydra.cc",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/hydra/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openpa",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://trac.mpich.org/projects/openpa/raw-attachment/wiki/Downloads/openpa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0flyi596hm6fv7xyw2iykx3s65p748s62bf15624xcnwpfrh8ncy",
         })))),
       prePatch: nix.thunk(() => nix.str`substituteInPlace configure --replace /usr/bin/file ${file}/bin/file`),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Atomic primitives for high performance, concurrent software",
         homepage: "https://trac.mpich.org/projects/openpa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

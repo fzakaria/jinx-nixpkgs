@@ -24,49 +24,49 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "nginx-sso",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ambroisie"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           nginx: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             sso: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$10,
-                listen: nix.thunk(() => ({ __proto__: pos$2, addr: "127.0.0.1", port: 8080n })),
+                [nix.POS]: pos$10,
+                listen: nix.thunk(() => ({ [nix.POS]: pos$2, addr: "127.0.0.1", port: 8080n })),
                 providers: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   token: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     tokens: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       myuser: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-token", "MyToken")),
                       })),
                     })),
                   })),
                 })),
                 acl: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   rule_sets: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       rules: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$7, field: "x-application", equals: "MyApp" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$7, field: "x-application", equals: "MyApp" })),
                       ]),
                       allow: nix.thunk(() => ["myuser"]),
                     })),

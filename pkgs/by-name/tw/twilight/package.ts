@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twilight";
       const version = "unstable-2018-04-19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tweakoz",
           repo: "twilight",
           rev: "43f21d15c2a8923c9d707bdf3789f480bfd4b36d",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGL, libGLU, libglut, libx11]);
       const installPhase = "install -Dm755 twilight $out/bin/twilight\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Redo of IRIX twilight backdrop in old school OpenGL",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "twilight",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

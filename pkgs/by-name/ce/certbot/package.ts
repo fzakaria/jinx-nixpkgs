@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
-  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ __proto__: pos$1, self: python, packageOverrides: (self) => (super$) => ({}) }))));
+  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, self: python, packageOverrides: (self) => (super$) => ({}) }))));
   const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
   return nix.app(nix.lookup(w, "toPythonApplication"), nix.thunk(() => nix.lookup(w, "certbot")));
 })(), formals$1);

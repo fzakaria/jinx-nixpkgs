@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "aiohttp-session",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [aiohttp]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aioredis: nix.thunk(() => [redis]),
         aiomcache: nix.thunk(() => [aiomcache]),
         pycrypto: nix.thunk(() => [cryptography]),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_session"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web sessions for aiohttp.web",
         homepage: "https://github.com/aio-libs/aiohttp-session",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiohttp-session/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

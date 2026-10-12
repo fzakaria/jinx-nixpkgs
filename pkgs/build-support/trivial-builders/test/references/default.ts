@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const directReferences = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(writeDirectReferencesToFile, v), samples));
   const collectiveClosure = nix.thunk(() => nix.app(writeClosure, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), samples))));
   const testScriptBin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "references-test",
       src: nix.path(here, "./references-test.sh"),
       dontUnpack: true,
@@ -57,13 +57,13 @@ shellcheck "$out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         collectiveClosure: collectiveClosure,
         directReferences: directReferences,
         closures: closures,
         samples: samples,
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "references-test" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "references-test" })),
     })));
   return nix.app(nix.sel(testers, "runNixOSTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -71,26 +71,26 @@ runHook postInstallCheck
       const lib_1 = nix.arg($_1, "lib");
       const guestTestScriptBin = nix.thunk(() => nix.sel(config, "node", "pkgs", "tests", "trivial-builders", "references", "testScriptBin"));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "nixpkgs-trivial-builders-references",
         nodes: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const lib_2 = nix.arg($_2, "lib");
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$8,
-              virtualisation: nix.thunk(() => ({ __proto__: pos$4, writableStore: true })),
+              [nix.POS]: pos$8,
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, writableStore: true })),
               nix: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   substituters: nix.thunk(() => nix.app(nix.sel(lib_2, "mkForce"), [])),
                 })),
               })),
-              system: nix.thunk(() => ({ __proto__: pos$7, extraDependencies: nix.thunk(() => [guestTestScriptBin]) })),
+              system: nix.thunk(() => ({ [nix.POS]: pos$7, extraDependencies: nix.thunk(() => [guestTestScriptBin]) })),
             };
           })(), formals$3),
         })),
@@ -99,7 +99,7 @@ runHook postInstallCheck
 """)
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           collectiveClosure: collectiveClosure,
           directReferences: directReferences,
           closures: closures,
@@ -108,7 +108,7 @@ runHook postInstallCheck
           guestTestScriptBin: guestTestScriptBin,
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
             return [

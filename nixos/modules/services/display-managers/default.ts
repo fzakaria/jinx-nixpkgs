@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "displayManager"));
   const opts = nix.thunk(() => nix.sel(options, "services", "displayManager"));
   const toPretty = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({}))));
-  const installedSessions = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "desktops", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`mkdir -p "$out/share/"{xsessions,wayland-sessions}
+  const installedSessions = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "desktops", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`mkdir -p "$out/share/"{xsessions,wayland-sessions}
 
 ${nix.app(nix.sel(lib, "concatMapStrings"), (pkg) => nix.str`for n in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(pkg, "providedSessions")))}; do
   if ! test -f ${pkg}/share/wayland-sessions/$n.desktop -o \\
@@ -60,16 +60,16 @@ fi
 `, nix.thunk(() => nix.sel(cfg, "sessionPackages")))}
 `)));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "shared display manager integration")),
           hiddenUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -78,29 +78,29 @@ fi
               description: "A list of users which will not be shown in the display manager.\n",
             })))),
           logToFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether the display manager redirects the output of the\nsession script to {file}`~/.xsession-errors`.\n",
             })))),
           logToJournal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether the display manager redirects the output of the\nsession script to the systemd journal.\n",
             })))),
           autoLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const config_1 = nix.arg($_1, "config");
                   const options_1 = nix.arg($_1, "options");
                   return {
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: nix.thunk(() => !nix.eq(nix.sel(config_1, "user"), null)),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(options_1, "user")} != null`))),
@@ -108,7 +108,7 @@ fi
 `),
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -123,22 +123,22 @@ fi
               description: "Auto login configuration attrset.\n",
             })))),
           defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.update(nix.sel(lib, "types", "str"), { __proto__: pos$10, description: "session name" })))),
+              [nix.POS]: pos$11,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.update(nix.sel(lib, "types", "str"), { [nix.POS]: pos$10, description: "session name" })))),
               default: null,
               example: "gnome",
               description: "Graphical session to pre-select in the session chooser (only effective for GDM, LightDM and SDDM).\n\nOn GDM, LightDM and SDDM, it will also be used as a session for auto-login.\n\nSet this option to empty string to get an error with a list of currently available sessions.\n",
             })))),
           sessionData: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Data exported for display managers’ convenience",
               internal: true,
               default: nix.thunk(() => ({})),
             })))),
           sessionPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "package")), (p) => (nix.asBool((nix.asBool(nix.has(p, "providedSessions")) && nix.asBool(!nix.eq(nix.sel(p, "providedSessions"), [])))) && nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(lib, "isString")), nix.thunk(() => nix.sel(p, "providedSessions")))))), {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: "package with provided sessions",
                   descriptionClass: "composite",
                 })))),
@@ -161,16 +161,16 @@ fi
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "displayManager", "sessionPackages"]), nix.thunk(() => ["services", "displayManager", "sessionPackages"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "autoLogin", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "autoLogin", "user"), null)))),
             message: nix.thunk(() => nix.str`\`${nix.sel(opts, "autoLogin")}.enable\` requires \`${nix.sel(opts, "autoLogin")}.user\` to be set
 `),
           })),
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "defaultSession"), null)) || nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "defaultSession")), nix.thunk(() => nix.sel(cfg, "sessionData", "sessionNames")))))),
             message: nix.thunk(() => nix.str`Default graphical session, ${nix.app(toPretty, nix.thunk(() => nix.sel(cfg, "defaultSession")))}, not found. Definitions:${nix.app(nix.sel(lib, "options", "showDefs"), nix.thunk(() => nix.sel(opts, "defaultSession", "definitionsWithLocations")))}.
 Valid names for \`${nix.sel(opts, "defaultSession")}\` are:
@@ -179,18 +179,18 @@ Valid names for \`${nix.sel(opts, "defaultSession")}\` are:
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             XDG_DATA_DIRS: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "sessionPackages"), [])), nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "sessionData", "desktops")}/share`)]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             sessionData: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               desktops: installedSessions,
               sessionNames: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (p) => nix.sel(p, "providedSessions"), nix.thunk(() => nix.sel(cfg, "sessionPackages")))),
               autologinSession: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "defaultSession"), null)) ? nix.sel(cfg, "defaultSession") : (nix.asBool(!nix.eq(nix.sel(cfg, "sessionData", "sessionNames"), [])) ? nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(cfg, "sessionData", "sessionNames"))) : null))),

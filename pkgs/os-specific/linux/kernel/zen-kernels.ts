@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const modDirVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, nix.thunk(() => nix.str`${version}-${suffix}`)));
       const isZen = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zen-kernel",
           repo: "zen-kernel",
           rev: nix.thunk(() => nix.str`v${version}-${suffix}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const structuredExtraConfig = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "kernel")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ZEN_INTERACTIVE: nix.thunk(() => nix.lookup(w, "yes")),
           NET_SCH_DEFAULT: nix.thunk(() => nix.lookup(w, "yes")),
           DEFAULT_FQ_CODEL: nix.thunk(() => nix.lookup(w, "yes")),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const extraPassthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => [nix.path(here, "./update-zen.py")]),
       }));
       const extraMeta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         branch: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "/master")),
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         modDirVersion,

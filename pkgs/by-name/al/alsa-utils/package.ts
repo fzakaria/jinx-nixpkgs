@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const plugin_packages = nix.thunk(() => nix.concat([alsa_plugins], nix.app(nix.sel(lib, "optional"), withPipewireLib, pipewire)));
   const plugin_dir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "all-plugins",
       paths: nix.thunk(() => nix.builtins.map((path) => nix.str`${path}/lib/alsa-lib`, plugin_packages)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alsa-utils",
       version: "1.2.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://alsa/utils/alsa-utils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-CSOZ1eh0mh1eGI45MVdSHOxLdWk7YOu3m7znKM/yIyw=",
         })))),
@@ -59,11 +59,11 @@ done
 `),
       postInstall: "# udev rules are super broken, violating `udevadm verify` in various creative ways.\n# NixOS has its own set of alsa udev rules, we can just delete the udev rules for this package\nrm -rf $out/lib/udev\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://www.alsa-project.org/files/pub/utils/" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://www.alsa-project.org/files/pub/utils/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://www.alsa-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/alsa-project/alsa-utils/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "ALSA, the Advanced Linux Sound Architecture utils",

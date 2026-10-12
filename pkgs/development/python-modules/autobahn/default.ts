@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio_0 = nix.arg($, "pytest-asyncio_0");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "autobahn",
       version: "25.12.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crossbario",
           repo: "autobahn-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cffi, hatchling, setuptools]),
       dependencies: nix.thunk(() => [cryptography, hyperlink, pynacl, txaio]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           all: nix.thunk(() => nix.concat(nix.sel(self, "accelerate"), nix.concat(nix.sel(self, "compress"), nix.concat(nix.sel(self, "encryption"), nix.concat(nix.sel(self, "nvx"), nix.concat(nix.sel(self, "serialization"), nix.concat(nix.sel(self, "scram"), nix.concat(nix.sel(self, "twisted"), nix.sel(self, "ui"))))))))),
           accelerate: [],
           compress: nix.thunk(() => [python_snappy]),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["src/autobahn"]),
       disabledTestPaths: nix.thunk(() => ["src/autobahn/twisted", "src/autobahn/wamp/test/test_wamp_cryptosign.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WebSocket and WAMP in Python for Twisted and asyncio",
         homepage: "https://crossbar.io/autobahn",
         downloadPage: "https://github.com/crossbario/autobahn-python",

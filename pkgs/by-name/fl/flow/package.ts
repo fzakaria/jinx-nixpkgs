@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const dune = nix.arg($, "dune");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const ocamlPackages = nix.thunk(() => nix.app(nix.sel(ocaml_ng, "ocamlPackages_5_3", "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$2,
-      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ __proto__: pos$1, version: "0.34.0" })))),
+      [nix.POS]: pos$2,
+      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "0.34.0" })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flow",
       version: "0.318.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "facebook",
           repo: "flow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Static type checker for JavaScript",
         mainProgram: "flow",
         homepage: "https://flow.org/",

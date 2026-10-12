@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const pname = "meslo-lg";
   const version = "1.2.1";
   const meslo_lg = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/andreberg/Meslo-Font/09a431d546d211130352c28eb0466e5d7d5aeaf0/dist/v${version}/Meslo%20LG%20v${version}.zip`),
       sha256: "1l08mxlzaz3i5bamnfr49s2k4k23vdm64b8nz2ha33ysimkbgg6h",
     }))));
   const meslo_lg_dz = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/andreberg/Meslo-Font/09a431d546d211130352c28eb0466e5d7d5aeaf0/dist/v${version}/Meslo%20LG%20DZ%20v${version}.zip`),
       sha256: "0lnbkrvcpgz9chnvix79j6fiz36wj6n46brb7b1746182rl1l875",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [unzip]),
@@ -40,7 +40,7 @@ unzip -j ${meslo_lg_dz}
       outputHashMode: "recursive",
       outputHash: "1cppf8sk6r5wjnnas9n6iyag6pj9jvaic66lvwpqg3742s5akx6x",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Customized version of Apple’s Menlo-Regular font",
         homepage: "https://github.com/andreberg/Meslo-Font/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

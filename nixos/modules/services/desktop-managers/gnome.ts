@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "desktopManager", "gnome"));
   const serviceCfg = nix.thunk(() => nix.sel(config, "services", "gnome"));
   const mimeAppsList = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "gnome-mimeapps",
       destination: "/share/applications/mimeapps.list",
       text: "[Default Applications]\ninode/directory=nautilus.desktop;org.gnome.Nautilus.desktop\n",
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
   const nixos_background_light = nix.thunk(() => nix.sel(pkgs, "nixos-artwork", "wallpapers", "simple-blue"));
   const nixos_background_dark = nix.thunk(() => nix.sel(pkgs, "nixos-artwork", "wallpapers", "simple-dark-gray"));
   const nixos_gsettings_desktop_schemas = nix.thunk(() => nix.app(nix.sel(pkgs, "gnome", "nixos-gsettings-overrides", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraGSettingsOverrides: nix.thunk(() => nix.attr(cfg, "extraGSettingsOverrides")),
       extraGSettingsOverridePackages: nix.thunk(() => nix.attr(cfg, "extraGSettingsOverridePackages")),
       favoriteAppsOverride: nix.thunk(() => nix.attr(cfg, "favoriteAppsOverride")),
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
       "nixos-background-light": nixos_background_light,
     }))));
   const nixos_background_info = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nixos-background-info",
       text: nix.thunk(() => nix.str`<?xml version="1.0"?>
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
@@ -196,7 +196,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const flashbackEnabled = nix.thunk(() => (nix.asBool(nix.sel(cfg, "flashback", "enableMetacity")) || nix.asBool(nix.gt(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(cfg, "flashback", "customSessions"))), 0n))));
   const flashbackWms = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "flashback", "enableMetacity")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       wmName: "metacity",
       wmLabel: "Metacity",
       wmCommand: nix.thunk(() => nix.str`${nix.sel(pkgs, "metacity")}/bin/metacity`),
@@ -205,9 +205,9 @@ export default nix.lambda((args) => (() => {
   const notExcluded = (pkg) => nix.app(mkDefault, nix.thunk(() => nix.app(nix.sel(utils, "disablePackageByName"), pkg, nix.thunk(() => nix.sel(config, "environment", "gnome", "excludePackages")))));
   const removeExcluded = (pkgList) => nix.app(nix.sel(utils, "removePackagesByName"), pkgList, nix.thunk(() => nix.sel(config, "environment", "gnome", "excludePackages")));
   return {
-    __proto__: pos$140,
+    [nix.POS]: pos$140,
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       doc: nix.path(here, "./gnome.md"),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
@@ -250,51 +250,51 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gnome", "core-utilities", "enable"]), nix.thunk(() => ["services", "gnome", "core-apps", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         gnome: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "core-os-services": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(mkEnableOption, "essential services for GNOME3")),
           })),
           "core-shell": nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(mkEnableOption, "GNOME Shell services")),
           })),
           "core-apps": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(mkEnableOption, "GNOME core apps")),
           })),
           "core-developer-tools": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(mkEnableOption, "GNOME core developer tools")),
           })),
           games: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(mkEnableOption, "GNOME games")),
           })),
         })),
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           gnome: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable GNOME desktop manager.",
               })))),
             sessionPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                 example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.gpaste ]")),
                 description: "Additional list of packages to be added to the session search path.\nUseful for GNOME Shell extensions or GSettings-conditional autostart.\n\nNote that this should be a last resort; patching the package is preferred (see GPaste).\n",
               })))),
             favoriteAppsOverride: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 internal: true,
                 default: defaultFavoriteAppsOverride,
                 type: nix.thunk(() => nix.sel(types, "lines")),
@@ -302,47 +302,47 @@ export default nix.lambda((args) => (() => {
                 description: "List of desktop files to put as favorite apps into pkgs.gnome-shell. These need to be installed somehow globally.",
               })))),
             extraGSettingsOverrides: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: "",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "Additional gsettings overrides.",
               })))),
             extraGSettingsOverridePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 description: "List of packages for which gsettings are overridden.",
               })))),
             debug: nix.thunk(() => nix.app(mkEnableOption, "pkgs.gnome-session debug messages")),
             flashback: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enableMetacity: nix.thunk(() => nix.app(mkEnableOption, "the standard GNOME Flashback session with Metacity")),
               customSessions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         options: nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           wmName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "[a-zA-Z0-9_-]+")),
                               description: "A unique identifier for the window manager.",
                               example: "xmonad",
                             })))),
                           wmLabel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: nix.thunk(() => nix.sel(types, "str")),
                               description: "The name of the window manager to show in the session chooser.",
                               example: "XMonad",
                             })))),
                           wmCommand: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               type: nix.thunk(() => nix.sel(types, "str")),
                               description: "The executable of the window manager to use.",
                               example: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.haskellPackages.xmonad}/bin/xmonad\"")),
                             })))),
                           enableGnomePanel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: true,
                               example: false,
@@ -354,7 +354,7 @@ export default nix.lambda((args) => (() => {
                   description: "Other GNOME Flashback sessions to enable.",
                 })))),
               panelModulePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   default: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-applets"))]),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "[ pkgs.gnome-applets ]")),
                   type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
@@ -365,11 +365,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         gnome: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           excludePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.showtime ]")),
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
@@ -380,31 +380,31 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(flashbackEnabled))), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             system: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               "nixos-generate-config": nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 desktopConfiguration: nix.thunk(() => [
                   "# Enable the GNOME Desktop Environment.\nservices.displayManager.gdm.enable = true;\nservices.desktopManager.gnome.enable = true;\n",
                 ]),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               gnome: nix.thunk(() => ({
-                __proto__: pos$38,
-                "core-os-services": nix.thunk(() => ({ __proto__: pos$35, enable: true })),
-                "core-shell": nix.thunk(() => ({ __proto__: pos$36, enable: true })),
-                "core-apps": nix.thunk(() => ({ __proto__: pos$37, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                [nix.POS]: pos$38,
+                "core-os-services": nix.thunk(() => ({ [nix.POS]: pos$35, enable: true })),
+                "core-shell": nix.thunk(() => ({ [nix.POS]: pos$36, enable: true })),
+                "core-apps": nix.thunk(() => ({ [nix.POS]: pos$37, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               })),
               displayManager: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-session", "sessions"))]),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               extraInit: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.str`if [ -d "${p}/share/gsettings-schemas/${nix.sel(p, "name")}" ]; then
   export XDG_DATA_DIRS=$XDG_DATA_DIRS\${XDG_DATA_DIRS:+:}${p}/share/gsettings-schemas/${nix.sel(p, "name")}
 fi
@@ -417,24 +417,24 @@ fi
 `),
               systemPackages: nix.thunk(() => nix.sel(cfg, "sessionPath")),
               sessionVariables: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 GNOME_SESSION_DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "debug")), "1")),
                 NIX_GSETTINGS_OVERRIDES_DIR: nix.thunk(() => nix.str`${nixos_gsettings_desktop_schemas}/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas`),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), flashbackEnabled, nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 sessionPackages: nix.thunk(() => (() => {
                   const wmNames = nix.thunk(() => nix.builtins.map((wm) => nix.sel(wm, "wmName"), flashbackWms));
                   const namesAreUnique = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "unique"), wmNames), wmNames));
                   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), namesAreUnique, "Flashback WM names must be unique."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/services/desktop-managers/gnome.nix:288:9");
                   return nix.builtins.map((wm) => nix.app(nix.sel(pkgs, "gnome-flashback", "mkSessionForWm"), nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         wmName: nix.thunk(() => nix.attr(wm, "wmName")),
                         wmLabel: nix.thunk(() => nix.attr(wm, "wmLabel")),
                         wmCommand: nix.thunk(() => nix.attr(wm, "wmCommand")),
@@ -443,106 +443,106 @@ fi
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               pam: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 services: nix.thunk(() => ({
-                  __proto__: pos$48,
-                  "gnome-flashback": nix.thunk(() => ({ __proto__: pos$47, enableGnomeKeyring: true })),
+                  [nix.POS]: pos$48,
+                  "gnome-flashback": nix.thunk(() => ({ [nix.POS]: pos$47, enableGnomeKeyring: true })),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               packages: nix.thunk(() => nix.concat([
                 nix.thunk(() => nix.sel(pkgs, "gnome-flashback")),
                 nix.thunk(() => nix.sel(pkgs, "metacity")),
                 nix.thunk(() => nix.app(nix.sel(pkgs, "gnome-panel-with-modules", "override"), nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     panelModulePackages: nix.thunk(() => nix.sel(cfg, "flashback", "panelModulePackages")),
                   })))),
               ], nix.builtins.map(nix.thunk(() => nix.sel(pkgs, "gnome-flashback", "mkSystemdTargetForWm")), nix.thunk(() => nix.sel(cfg, "flashback", "customSessions"))))),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               systemPackages: nix.thunk(() => nix.concat([
                 nix.thunk(() => nix.sel(pkgs, "gnome-flashback")),
                 nix.thunk(() => nix.app(nix.sel(pkgs, "gnome-panel-with-modules", "override"), nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     panelModulePackages: nix.thunk(() => nix.sel(cfg, "flashback", "panelModulePackages")),
                   })))),
               ], nix.concat(nix.builtins.map((wm) => nix.app(nix.sel(pkgs, "gnome-flashback", "mkWmApplication"), nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     wmName: nix.thunk(() => nix.attr(wm, "wmName")),
                     wmLabel: nix.thunk(() => nix.attr(wm, "wmLabel")),
                     wmCommand: nix.thunk(() => nix.attr(wm, "wmCommand")),
                   }))), flashbackWms), nix.builtins.map((wm) => nix.app(nix.sel(pkgs, "gnome-flashback", "mkGnomeSession"), nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     wmName: nix.thunk(() => nix.attr(wm, "wmName")),
                     wmLabel: nix.thunk(() => nix.attr(wm, "wmLabel")),
                   }))), flashbackWms)))),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(serviceCfg, "core-os-services", "enable")), nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             hardware: nix.thunk(() => ({
-              __proto__: pos$59,
-              bluetooth: nix.thunk(() => ({ __proto__: pos$58, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              [nix.POS]: pos$59,
+              bluetooth: nix.thunk(() => ({ [nix.POS]: pos$58, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
             })),
             i18n: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               inputMethod: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 enable: nix.thunk(() => nix.app(mkDefault, true)),
                 type: nix.thunk(() => nix.app(mkDefault, "ibus")),
               })),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$63,
-              dconf: nix.thunk(() => ({ __proto__: pos$62, enable: true })),
+              [nix.POS]: pos$63,
+              dconf: nix.thunk(() => ({ [nix.POS]: pos$62, enable: true })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               polkit: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 enable: true,
                 enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
-              rtkit: nix.thunk(() => ({ __proto__: pos$65, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              rtkit: nix.thunk(() => ({ [nix.POS]: pos$65, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$84,
-              "accounts-daemon": nix.thunk(() => ({ __proto__: pos$67, enable: true })),
-              dleyna: nix.thunk(() => ({ __proto__: pos$68, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-              "power-profiles-daemon": nix.thunk(() => ({ __proto__: pos$69, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              [nix.POS]: pos$84,
+              "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$67, enable: true })),
+              dleyna: nix.thunk(() => ({ [nix.POS]: pos$68, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              "power-profiles-daemon": nix.thunk(() => ({ [nix.POS]: pos$69, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               gnome: nix.thunk(() => ({
-                __proto__: pos$77,
-                "at-spi2-core": nix.thunk(() => ({ __proto__: pos$70, enable: true })),
-                "evolution-data-server": nix.thunk(() => ({ __proto__: pos$71, enable: true })),
-                "gnome-keyring": nix.thunk(() => ({ __proto__: pos$72, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                "gcr-ssh-agent": nix.thunk(() => ({ __proto__: pos$73, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                "gnome-online-accounts": nix.thunk(() => ({ __proto__: pos$74, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                localsearch: nix.thunk(() => ({ __proto__: pos$75, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                tinysparql: nix.thunk(() => ({ __proto__: pos$76, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                [nix.POS]: pos$77,
+                "at-spi2-core": nix.thunk(() => ({ [nix.POS]: pos$70, enable: true })),
+                "evolution-data-server": nix.thunk(() => ({ [nix.POS]: pos$71, enable: true })),
+                "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$72, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                "gcr-ssh-agent": nix.thunk(() => ({ [nix.POS]: pos$73, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                "gnome-online-accounts": nix.thunk(() => ({ [nix.POS]: pos$74, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                localsearch: nix.thunk(() => ({ [nix.POS]: pos$75, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                tinysparql: nix.thunk(() => ({ [nix.POS]: pos$76, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               })),
               hardware: nix.thunk(() => ({
-                __proto__: pos$79,
-                bolt: nix.thunk(() => ({ __proto__: pos$78, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                [nix.POS]: pos$79,
+                bolt: nix.thunk(() => ({ [nix.POS]: pos$78, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               })),
-              udisks2: nix.thunk(() => ({ __proto__: pos$80, enable: true })),
+              udisks2: nix.thunk(() => ({ [nix.POS]: pos$80, enable: true })),
               upower: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 enable: nix.thunk(() => nix.sel(config, "powerManagement", "enable")),
               })),
-              libinput: nix.thunk(() => ({ __proto__: pos$82, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-              xserver: nix.thunk(() => ({ __proto__: pos$83, updateDbusEnvironment: true })),
+              libinput: nix.thunk(() => ({ [nix.POS]: pos$82, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              xserver: nix.thunk(() => ({ [nix.POS]: pos$83, updateDbusEnvironment: true })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$88,
-              mime: nix.thunk(() => ({ __proto__: pos$85, enable: true })),
-              icons: nix.thunk(() => ({ __proto__: pos$86, enable: true })),
+              [nix.POS]: pos$88,
+              mime: nix.thunk(() => ({ [nix.POS]: pos$85, enable: true })),
+              icons: nix.thunk(() => ({ [nix.POS]: pos$86, enable: true })),
               portal: nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 enable: true,
                 extraPortals: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-gnome")),
@@ -552,11 +552,11 @@ fi
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$90,
-              networkmanager: nix.thunk(() => ({ __proto__: pos$89, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              [nix.POS]: pos$90,
+              networkmanager: nix.thunk(() => ({ [nix.POS]: pos$89, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "sound-theme-freedesktop"))];
@@ -565,55 +565,55 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(serviceCfg, "core-shell", "enable")), nix.thunk(() => ({
-            __proto__: pos$121,
+            [nix.POS]: pos$121,
             services: nix.thunk(() => ({
-              __proto__: pos$114,
+              [nix.POS]: pos$114,
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 gnome: nix.thunk(() => ({
-                  __proto__: pos$93,
+                  [nix.POS]: pos$93,
                   sessionPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-shell"))]),
                 })),
               })),
-              colord: nix.thunk(() => ({ __proto__: pos$95, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              colord: nix.thunk(() => ({ [nix.POS]: pos$95, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               gnome: nix.thunk(() => ({
-                __proto__: pos$103,
-                "glib-networking": nix.thunk(() => ({ __proto__: pos$96, enable: true })),
-                "gnome-browser-connector": nix.thunk(() => ({ __proto__: pos$97, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                "gnome-initial-setup": nix.thunk(() => ({ __proto__: pos$98, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                "gnome-remote-desktop": nix.thunk(() => ({ __proto__: pos$99, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                "gnome-settings-daemon": nix.thunk(() => ({ __proto__: pos$100, enable: true })),
-                "gnome-user-share": nix.thunk(() => ({ __proto__: pos$101, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-                rygel: nix.thunk(() => ({ __proto__: pos$102, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                [nix.POS]: pos$103,
+                "glib-networking": nix.thunk(() => ({ [nix.POS]: pos$96, enable: true })),
+                "gnome-browser-connector": nix.thunk(() => ({ [nix.POS]: pos$97, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                "gnome-initial-setup": nix.thunk(() => ({ [nix.POS]: pos$98, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                "gnome-remote-desktop": nix.thunk(() => ({ [nix.POS]: pos$99, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                "gnome-settings-daemon": nix.thunk(() => ({ [nix.POS]: pos$100, enable: true })),
+                "gnome-user-share": nix.thunk(() => ({ [nix.POS]: pos$101, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                rygel: nix.thunk(() => ({ [nix.POS]: pos$102, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               })),
-              gvfs: nix.thunk(() => ({ __proto__: pos$104, enable: true })),
+              gvfs: nix.thunk(() => ({ [nix.POS]: pos$104, enable: true })),
               "system-config-printer": nix.thunk(() => ({
-                __proto__: pos$105,
+                [nix.POS]: pos$105,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => nix.app(mkDefault, true)))),
               })),
               udev: nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mutter"))]),
               })),
-              avahi: nix.thunk(() => ({ __proto__: pos$107, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              avahi: nix.thunk(() => ({ [nix.POS]: pos$107, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
               geoclue2: nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 enable: nix.thunk(() => nix.app(mkDefault, true)),
                 enableDemoAgent: false,
                 appConfig: nix.thunk(() => ({
-                  __proto__: pos$111,
-                  "gnome-datetime-panel": nix.thunk(() => ({ __proto__: pos$108, isAllowed: true, isSystem: true })),
-                  "gnome-color-panel": nix.thunk(() => ({ __proto__: pos$109, isAllowed: true, isSystem: true })),
-                  "org.gnome.Shell": nix.thunk(() => ({ __proto__: pos$110, isAllowed: true, isSystem: true })),
+                  [nix.POS]: pos$111,
+                  "gnome-datetime-panel": nix.thunk(() => ({ [nix.POS]: pos$108, isAllowed: true, isSystem: true })),
+                  "gnome-color-panel": nix.thunk(() => ({ [nix.POS]: pos$109, isAllowed: true, isSystem: true })),
+                  "org.gnome.Shell": nix.thunk(() => ({ [nix.POS]: pos$110, isAllowed: true, isSystem: true })),
                 })),
               })),
               orca: nix.thunk(() => ({
-                __proto__: pos$113,
+                [nix.POS]: pos$113,
                 enable: nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "orca")))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$118,
+              [nix.POS]: pos$118,
               packages: nix.thunk(() => nix.concat([
                 nix.thunk(() => nix.sel(pkgs, "gnome-session")),
                 nix.thunk(() => nix.sel(pkgs, "gnome-shell")),
@@ -622,11 +622,11 @@ fi
                   nix.thunk(() => nix.sel(pkgs, "xdg-user-dirs-gtk")),
                 ])))),
               user: nix.thunk(() => ({
-                __proto__: pos$117,
+                [nix.POS]: pos$117,
                 services: nix.thunk(() => ({
-                  __proto__: pos$116,
+                  [nix.POS]: pos$116,
                   "gnome-session-monitor": nix.thunk(() => ({
-                    __proto__: pos$115,
+                    [nix.POS]: pos$115,
                     restartIfChanged: false,
                     overrideStrategy: "asDropin",
                     enableDefaultPath: false,
@@ -635,11 +635,11 @@ fi
               })),
             })),
             fonts: nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               packages: nix.thunk(() => nix.app(removeExcluded, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "adwaita-fonts"))]))),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$120,
+              [nix.POS]: pos$120,
               systemPackages: nix.thunk(() => (() => {
                 const mandatoryPackages = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-shell"))]);
                 const optionalPackages = nix.thunk(() => [
@@ -664,9 +664,9 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(serviceCfg, "core-apps", "enable")), nix.thunk(() => ({
-            __proto__: pos$133,
+            [nix.POS]: pos$133,
             environment: nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               systemPackages: nix.thunk(() => nix.app(removeExcluded, nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "baobab")),
                   nix.thunk(() => nix.sel(pkgs, "decibels")),
@@ -695,50 +695,50 @@ fi
                   nix.thunk(() => nix.sel(pkgs, "yelp")),
                 ]))),
               sessionVariables: nix.thunk(() => ({
-                __proto__: pos$122,
+                [nix.POS]: pos$122,
                 NAUTILUS_4_EXTENSION_DIR: nix.thunk(() => nix.str`${nix.sel(config, "system", "path")}/lib/nautilus/extensions-4`),
                 XDG_DATA_DIRS: nix.thunk(() => [nix.thunk(() => nix.str`${mimeAppsList}/share`)]),
               })),
               pathsToLink: nix.thunk(() => ["/share/nautilus-python/extensions"]),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               "gnome-disks": nix.thunk(() => ({
-                __proto__: pos$124,
+                [nix.POS]: pos$124,
                 enable: nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "gnome-disk-utility")))),
               })),
               seahorse: nix.thunk(() => ({
-                __proto__: pos$125,
+                [nix.POS]: pos$125,
                 enable: nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "seahorse")))),
               })),
               bash: nix.thunk(() => ({
-                __proto__: pos$126,
+                [nix.POS]: pos$126,
                 vteIntegration: nix.thunk(() => nix.app(mkDefault, true)),
               })),
               zsh: nix.thunk(() => ({
-                __proto__: pos$127,
+                [nix.POS]: pos$127,
                 vteIntegration: nix.thunk(() => nix.app(mkDefault, true)),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$132,
+              [nix.POS]: pos$132,
               gnome: nix.thunk(() => ({
-                __proto__: pos$131,
+                [nix.POS]: pos$131,
                 sushi: nix.thunk(() => ({
-                  __proto__: pos$129,
+                  [nix.POS]: pos$129,
                   enable: nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "sushi")))),
                 })),
                 "gnome-software": nix.thunk(() => ({
-                  __proto__: pos$130,
+                  [nix.POS]: pos$130,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "flatpak", "enable")), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "gnome-software")))))),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(serviceCfg, "games", "enable")), nix.thunk(() => ({
-            __proto__: pos$135,
+            [nix.POS]: pos$135,
             environment: nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               systemPackages: nix.thunk(() => nix.app(removeExcluded, nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "aisleriot")),
                   nix.thunk(() => nix.sel(pkgs, "atomix")),
@@ -764,9 +764,9 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(serviceCfg, "core-developer-tools", "enable")), nix.thunk(() => ({
-            __proto__: pos$139,
+            [nix.POS]: pos$139,
             environment: nix.thunk(() => ({
-              __proto__: pos$136,
+              [nix.POS]: pos$136,
               systemPackages: nix.thunk(() => nix.app(removeExcluded, nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "dconf-editor")),
                   nix.thunk(() => nix.sel(pkgs, "devhelp")),
@@ -776,9 +776,9 @@ fi
                 ]))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               sysprof: nix.thunk(() => ({
-                __proto__: pos$137,
+                [nix.POS]: pos$137,
                 enable: nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "sysprof")))),
               })),
             })),

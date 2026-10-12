@@ -94,10 +94,10 @@ export default nix.lambda((args) => (() => {
     })());
     const valueToString = (val) => (nix.asBool(nix.app(nix.sel(lib, "isList"), val)) ? nix.app(nix.sel(lib, "concatStringsSep"), listSep, nix.thunk(() => nix.builtins.map((x) => nix.app(valueToString, x), val))) : (nix.asBool(nix.app(nix.sel(lib, "isBool"), val)) ? (nix.asBool(val) ? "1" : "0") : nix.builtins.toString(val)));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
-        const valueType = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), valueType))], allowedTypes))), { __proto__: pos$1, description: "Flat key-value file" }));
+        const valueType = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), valueType))], allowedTypes))), { [nix.POS]: pos$1, description: "Flat key-value file" }));
         return nix.app(nix.lookup(w_1, "attrsOf"), valueType);
       })()),
       generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (val) => nix.str`${key} = ${nix.app(valueToString, val)}`, value))))),
@@ -116,12 +116,12 @@ fi
   const chunkserverCfg = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mfschunkserver.cfg", nix.thunk(() => nix.sel(cfg, "chunkserver", "settings"))));
   const guiCfg = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mfsgui.cfg", nix.thunk(() => nix.sel(cfg, "cgiserver", "settings"))));
   const systemdService = (name) => (extraConfig) => (configFile) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     wantedBy: nix.thunk(() => ["multi-user.target"]),
     wants: nix.thunk(() => ["network-online.target"]),
     after: nix.thunk(() => ["network.target", "network-online.target"]),
     serviceConfig: nix.thunk(() => nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       Type: "forking",
       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "moosefs")}/bin/mfs${name} -c ${configFile} start`),
       ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "moosefs")}/bin/mfs${name} -c ${configFile} stop`),
@@ -130,46 +130,46 @@ fi
     }, extraConfig)),
   });
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     options: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       services: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         moosefs: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           masterHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: null,
               description: "IP or DNS name of the MooseFS master server.",
             })))),
           runAsUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               example: true,
               description: "Run daemons as moosefs user instead of root for better security.",
             })))),
           client: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MooseFS client")),
           })),
           master: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable MooseFS master daemon.\nThe master server coordinates all MooseFS operations and stores metadata.\n",
                 default: false,
               })))),
             autoInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to automatically initialize the master's metadata directory on first run. Use with caution.",
               })))),
             exports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -179,20 +179,20 @@ fi
                 example: nix.thunk(() => ["* / rw,alldirs,admin,maproot=0:0", "* . rw"]),
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to automatically open required firewall ports for master service.",
                 default: false,
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/mfs",
                           description: "Directory for storing master metadata.",
@@ -203,17 +203,17 @@ fi
               })))),
           })),
           metalogger: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MooseFS metalogger daemon that maintains a backup copy of the master's metadata")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/mfs",
                           description: "Directory for storing metalogger data.",
@@ -224,16 +224,16 @@ fi
               })))),
           })),
           chunkserver: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MooseFS chunkserver daemon that stores file data")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to automatically open required firewall ports for chunkserver service.",
                 default: false,
               })))),
             hdds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -243,14 +243,14 @@ fi
                 example: nix.thunk(() => ["/mnt/hdd1", "/mnt/hdd2"]),
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/mfs",
                           description: "Directory for lock files and other runtime data.",
@@ -261,35 +261,35 @@ fi
               })))),
           })),
           cgiserver: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MooseFS GUI server (mfsgui) for web interface.\nWarning: The GUI server interface should be properly secured from unauthorized access,\nas it provides full control over your MooseFS installation.\n")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to automatically open the web interface port.",
                 default: false,
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/mfs",
                           description: "Directory for lock files.",
                         })))),
                       GUISERV_LISTEN_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "*",
                           description: "IP address to bind GUI server to (* means any).",
                         })))),
                       GUISERV_LISTEN_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 9425n,
                           description: "Port for GUI server to listen on.",
@@ -304,66 +304,66 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "client", "enable")) || nix.asBool(nix.sel(cfg, "master", "enable")))) || nix.asBool(nix.sel(cfg, "metalogger", "enable")))) || nix.asBool(nix.sel(cfg, "chunkserver", "enable")))) || nix.asBool(nix.sel(cfg, "cgiserver", "enable")))), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         warnings: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "runAsUser"))), "Running MooseFS services as root is not recommended.")),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           moosefs: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             master: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   WORKING_USER: mfsUser,
                   EXPORTS_FILENAME: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mfsexports.cfg", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "master", "exports")))))))),
                 })))),
             })),
             metalogger: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   WORKING_USER: mfsUser,
                   MASTER_HOST: nix.thunk(() => nix.sel(cfg, "masterHost")),
                 })))),
             })),
             chunkserver: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "chunkserver", "enable")), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   WORKING_USER: mfsUser,
                   MASTER_HOST: nix.thunk(() => nix.sel(cfg, "masterHost")),
                   HDD_CONF_FILENAME: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mfshdd.cfg", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "chunkserver", "hdds")))))))),
                 })))),
             })),
             cgiserver: nix.thunk(() => ({
-              __proto__: pos$47,
-              settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "cgiserver", "enable")), nix.thunk(() => ({ __proto__: pos$46, WORKING_USER: mfsUser })))),
+              [nix.POS]: pos$47,
+              settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "cgiserver", "enable")), nix.thunk(() => ({ [nix.POS]: pos$46, WORKING_USER: mfsUser })))),
             })),
           })),
         })),
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "runAsUser")) && nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "master", "enable")) || nix.asBool(nix.sel(cfg, "metalogger", "enable")))) || nix.asBool(nix.sel(cfg, "chunkserver", "enable")))) || nix.asBool(nix.sel(cfg, "cgiserver", "enable")))))), nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             users: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               moosefs: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 isSystemUser: true,
                 description: "MooseFS daemon user",
                 group: "moosefs",
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$52, moosefs: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$52, moosefs: nix.thunk(() => ({})) })),
           })))),
         environment: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => nix.sel(pkgs, "moosefs"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "master", "enable")), initTool))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           firewall: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "master", "openFirewall")), nix.thunk(() => [9419n, 9420n, 9421n]))),
                 nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "chunkserver", "openFirewall")), 9422n)),
@@ -372,9 +372,9 @@ fi
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "master", "settings", "DATA_PATH")} 0700 ${mfsUser} ${mfsUser} -`))),
               nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "metalogger", "settings", "DATA_PATH")} 0700 ${mfsUser} ${mfsUser} -`))),
@@ -384,33 +384,33 @@ fi
           })),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   "mfs-master": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(systemdService, "master", nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           TimeoutStartSec: 1800n,
                           TimeoutStopSec: 1800n,
                           Restart: "on-failure",
                           User: mfsUser,
                         })), masterCfg)),
                       nix.thunk(() => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         preStart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "master", "autoInit")), nix.thunk(() => nix.str`${initTool}/bin/mfsmaster-init`))),
                       })),
                     ]))),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => ({
-                  __proto__: pos$62,
-                  "mfs-metalogger": nix.thunk(() => nix.app(systemdService, "metalogger", nix.thunk(() => ({ __proto__: pos$61, Restart: "on-abnormal", User: mfsUser })), metaloggerCfg)),
+                  [nix.POS]: pos$62,
+                  "mfs-metalogger": nix.thunk(() => nix.app(systemdService, "metalogger", nix.thunk(() => ({ [nix.POS]: pos$61, Restart: "on-abnormal", User: mfsUser })), metaloggerCfg)),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "chunkserver", "enable")), nix.thunk(() => ({
-                  __proto__: pos$64,
-                  "mfs-chunkserver": nix.thunk(() => nix.app(systemdService, "chunkserver", nix.thunk(() => ({ __proto__: pos$63, Restart: "on-abnormal", User: mfsUser })), chunkserverCfg)),
+                  [nix.POS]: pos$64,
+                  "mfs-chunkserver": nix.thunk(() => nix.app(systemdService, "chunkserver", nix.thunk(() => ({ [nix.POS]: pos$63, Restart: "on-abnormal", User: mfsUser })), chunkserverCfg)),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "cgiserver", "enable")), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   "mfs-cgiserv": nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     description: "MooseFS GUI Server",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["mfs-master.service"]),
@@ -420,7 +420,7 @@ fi
                       nix.thunk(() => nix.sel(pkgs, "python3")),
                     ]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$65,
+                      [nix.POS]: pos$65,
                       Type: "simple",
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "moosefs")}/bin/mfsgui -f -c ${guiCfg} start`),
                       ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "moosefs")}/bin/mfsgui -c ${guiCfg} stop`),

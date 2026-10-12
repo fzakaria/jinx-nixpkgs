@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "approvals",
           repo: "EmptyFiles.Python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["empty_files"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Null Object pattern for files",
         homepage: "https://github.com/approvals/EmptyFiles.Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

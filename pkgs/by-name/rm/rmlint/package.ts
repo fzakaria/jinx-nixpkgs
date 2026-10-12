@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => false);
   nix.assert_((!nix.asBool(withGui) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rm/rmlint/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rmlint",
       version: "2.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sahib",
           repo: "rmlint",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./scons-nix-env.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sahib/rmlint/commit/f0ca57ec907f7199e3670038d60b4702d1e1d8e2.patch",
             hash: "sha256-715X+R2BcQIaUV76hoO+EXPfNheOfw4OIHsqSoruIUI=",
           })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix PYTHONPATH : "$(toPythonPath $out):$(toPythonPath ${nix.sel(python3, "pkgs", "pygobject3")}):$(toPythonPath ${nix.sel(python3, "pkgs", "pycairo")})")
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extremely fast tool to remove duplicates and other lint from your filesystem",
         homepage: "https://rmlint.readthedocs.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

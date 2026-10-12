@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pybind11, setuptools]);
       const dependencies = nix.thunk(() => [numpy, pyyaml]);
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CTRANSLATE2_ROOT: nix.thunk(() => nix.str`${ctranslate2_cpp}`),
       }));
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ["test_torch_variables"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_invalid_model_path"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/test_opennmt_tf.py", "tests/test_transformers.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast inference engine for Transformer models",
         homepage: "https://github.com/OpenNMT/CTranslate2",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenNMT/CTranslate2/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
     const pname = "icu4c";
     const release = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version));
     const baseAttrs = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "78.1")) ? nix.str`https://github.com/unicode-org/icu/releases/download/release-${version}/icu4c-${version}-sources.tgz` : nix.str`https://github.com/unicode-org/icu/releases/download/release-${release}/icu4c-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}-src.tgz`)),
           hash: hash,
         })))),
@@ -57,7 +57,7 @@ sed -i -e 's|^\\(CPPFLAGS = .*\\) -I\\$(prefix)/include|\\1 -I$(includedir)|' co
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode and globalization support library",
         homepage: "https://icu.unicode.org/",
         maintainers: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ sed -i -e 's|^\\(CPPFLAGS = .*\\) -I\\$(prefix)/include|\\1 -I$(includedir)|' co
       })),
     }));
     const realAttrs = nix.thunk(() => nix.update(baseAttrs, {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withStatic, "static"))),
@@ -80,17 +80,17 @@ sed -i -e 's|^\\(CPPFLAGS = .*\\) -I\\$(prefix)/include|\\1 -I$(includedir)|' co
 `))), (() => {
         const replacements = nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             from: "${prefix}/include",
             to: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             from: "${pkglibdir}/Makefile.inc",
             to: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/lib/icu/Makefile.inc`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             from: "${pkglibdir}/pkgdata.inc",
             to: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/lib/icu/pkgdata.inc`),
           })),
@@ -105,18 +105,18 @@ substituteInPlace "$out/lib/pkgconfig/icu-uc.pc" --replace-fail "$out/lib" "$dev
       postFixup: "moveToOutput lib/icu \"$dev\" ",
     }));
     const buildRootOnlyAttrs = nix.thunk(() => nix.update(baseAttrs, {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.add(pname, "-build-root")),
       version: version,
       preConfigure: nix.thunk(() => nix.add(nix.sel(baseAttrs, "preConfigure"), "mkdir build\ncd build\nconfigureScript=../configure\n")),
       postBuild: "cd ..\nmv build $out\necho \"Doing build-root only, exiting now\" >&2\nexit 0\n",
     }));
     const mkWithAttrs = (attrs) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(attrs, {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         passthru: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           tests: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })),
           buildRootOnly: nix.thunk(() => nix.app(mkWithAttrs, buildRootOnlyAttrs)),

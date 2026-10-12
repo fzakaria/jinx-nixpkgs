@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tewisay",
       version: "0-unstable-2022-11-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raymond-w-ko",
           repo: "tewisay",
           rev: "caa5b0131dda868f656716d2107f02d04d1048d4",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace main.go \\\n  --replace \"/usr\" \"$out\"\n",
       postInstall: "mkdir -p $out/share\nmv {cows,zsh} $out/share\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/raymond-w-ko/tewisay",
         description: "Cowsay replacement with unicode and partial ansi escape support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

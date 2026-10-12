@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const xlsSupport = nix.argOr($, "xlsSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sc-im",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andmarti1424",
           repo: "sc-im",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=implicit-function-declaration")),
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/sc-im" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnuplot]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/andmarti1424/sc-im/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),
         homepage: "https://github.com/andmarti1424/sc-im",
         description: "Ncurses spreadsheet program for terminal",

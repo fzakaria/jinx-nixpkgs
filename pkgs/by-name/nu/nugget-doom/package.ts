@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const yyjson = nix.arg($, "yyjson");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nugget-doom",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MrAlaux",
           repo: "Nugget-Doom",
           tag: nix.thunk(() => nix.str`nugget-doom-${nix.sel(finalAttrs, "version")}`),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
         yyjson,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "nugget-doom-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Doom source port forked from Woof! with additional features",
         homepage: "https://github.com/MrAlaux/Nugget-Doom",
         changelog: nix.thunk(() => nix.str`https://github.com/MrAlaux/Nugget-Doom/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

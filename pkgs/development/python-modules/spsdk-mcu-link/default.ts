@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const spsdk_mcu_link = nix.arg($, "spsdk-mcu-link");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spsdk-mcu-link",
       version: "0.6.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "spsdk_mcu_link",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9zcBx/apHX1RG0HbVvl/KzfCi4FRC56U2iSt6l1Urh8=",
@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [click, pytestCheckHook, spsdk, writableTmpDirAsHomeHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(nix.sel(spsdk_mcu_link, "overridePythonAttrs"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pythonImportsCheck: nix.thunk(() => ["spsdk_mcu_link"]),
               doCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Debugger probe plugin for SPSDK supporting LPC-Link/MCU-Link from NXP",
         homepage: "https://pypi.org/project/spsdk-mcu-link",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

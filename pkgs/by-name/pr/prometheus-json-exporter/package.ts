@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prometheus-json-exporter";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus-community",
           repo: "json_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-xyRr78fkiKI9udQHqr/CBwhBts9zNTA3mhRDjGVsyZA=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, json: nix.thunk(() => nix.attr(from, "json")) };
+          return { [nix.POS]: pos$2, json: nix.thunk(() => nix.attr(from, "json")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter which scrapes remote JSON by JSONPath",
         homepage: "https://github.com/prometheus-community/json_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
         mainProgram: "json_exporter",
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

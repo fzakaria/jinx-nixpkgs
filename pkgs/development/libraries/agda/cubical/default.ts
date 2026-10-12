@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "cubical";
       const version = "0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "cubical",
           owner: "agda",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Lmzofq2rKFmfsAoH3zIFB2QLeUhFmIO44JsF+dDrubw=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cubical type theory library for use with the Agda compiler",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

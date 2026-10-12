@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.argOr($, "xdotool", () => null);
   const extraUtilsPath = nix.argOr($, "extraUtilsPath", () => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(xdotool, null)), xdotool));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libinput-gestures",
       version: "2.79",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bulletmark",
           repo: "libinput-gestures",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ chmod +x "$out/share/applications/libinput-gestures.desktop"
 wrapProgram "$out/bin/libinput-gestures" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils], extraUtilsPath)))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bulletmark/libinput-gestures",
         description: "Gesture mapper for libinput",
         mainProgram: "libinput-gestures",

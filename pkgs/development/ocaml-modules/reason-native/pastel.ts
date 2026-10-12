@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "pastel",
       version: "0.3.0-unstable-2024-05-07",
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [re]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Text formatting library that harnesses Reason JSX to provide intuitive terminal output. Like React but for CLI",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/pastel",
         homepage: "https://reason-native.com/docs/pastel/",

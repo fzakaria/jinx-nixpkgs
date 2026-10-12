@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const avxOptions = nix.argOr($, "avxOptions", () => ({}));
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.asBool(rocmSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openmpi/package.nix:44:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "openmpi",
       version: "5.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.open-mpi.org/software/ompi/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/downloads/openmpi-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-5mijxKzVDEHcIEyKbdmKYR4PJq+Jz2d1d/qb6KJpgAM=",
         })))),
@@ -72,7 +72,7 @@ ${nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.update(nix.sel(finalAttrs, "
           nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n")),
         ]))}
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, USER: "nixbld", HOSTNAME: "localhost" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, USER: "nixbld", HOSTNAME: "localhost" })),
       outputs: nix.thunk(() => ["out", "man", "dev"]),
       buildInputs: nix.thunk(() => nix.concat([zlib, libevent, hwloc, prrte], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnl, numactl, pmix])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ucx)), nix.thunk(() => [ucx, ucc])), nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => (() => {
           const w = nix.withScope(rocmPackages, null);
@@ -107,12 +107,12 @@ ${nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.update(nix.sel(finalAttrs, "
       enableParallelBuilding: true,
       postInstall: nix.thunk(() => (() => {
         const fileNamesToIterate = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           p: nix.thunk(() => nix.concat(["mpi"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ucx)), nix.thunk(() => ["shmem", "osh"])))),
           s: nix.thunk(() => nix.concat(["c++", "cxx", "cc"], nix.concat(nix.app(nix.sel(lib, "optionals"), fortranSupport, nix.thunk(() => ["f77", "f90", "fort"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["CC"]))))),
         }));
         const wrapperDataSubstitutions = nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cc: nix.thunk(() => [
             "$CC",
             nix.thunk(() => nix.str`${nix.sel(targetPackages, "stdenv", "cc")}/bin/${nix.sel(targetPackages, "stdenv", "cc", "targetPrefix")}$CC`),
@@ -122,14 +122,14 @@ ${nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.update(nix.sel(finalAttrs, "
             nix.thunk(() => nix.str`${nix.sel(targetPackages, "stdenv", "cc")}/bin/${nix.sel(targetPackages, "stdenv", "cc", "targetPrefix")}$CXX`),
           ]),
         }, nix.app(nix.sel(lib, "optionalAttrs"), fortranSupport, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             fort: nix.thunk(() => [
               "gfortran",
               nix.thunk(() => nix.str`${nix.selOr(targetPackages, () => nix.force(gfortran), "gfortran")}/bin/${nix.selOr(targetPackages, () => nix.sel(gfortran, "targetPrefix"), "gfortran", "targetPrefix")}gfortran`),
             ]),
           })))));
         const wrapperDataFileNames = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           part1: nix.thunk(() => nix.concat(["mpi"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ucx)), nix.thunk(() => ["shmem"])))),
           part2: nix.thunk(() => nix.builtins.attrNames(wrapperDataSubstitutions)),
         }));
@@ -190,9 +190,9 @@ wrapProgram "\${!outputDev}/bin/opal_wrapper" \\
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         defaultAvxOptions: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           sse3: true,
           sse41: true,
           avx: true,
@@ -204,7 +204,7 @@ wrapProgram "\${!outputDev}/bin/opal_wrapper" \\
         cudatoolkit: nix.thunk(() => nix.sel(cudaPackages, "cudatoolkit")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://www.open-mpi.org/",
         description: "Open source MPI-3 implementation",
         longDescription: "The Open MPI Project is an open source MPI-3 implementation that is developed and maintained by a consortium of academic, research, and industry partners. Open MPI is therefore able to combine the expertise, technologies, and resources from all across the High Performance Computing community in order to build the best MPI library available. Open MPI offers advantages for system and software vendors, application developers and computer science researchers.",

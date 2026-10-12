@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "int")),
             nix.thunk(() => nix.lookup(w, "bool")),
             nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
-          ])))))), { __proto__: pos$1, description: "dataset/template options" });
+          ])))))), { [nix.POS]: pos$1, description: "dataset/template options" });
   })());
   const commonOptions = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     hourly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Number of hourly snapshots.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     daily: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Number of daily snapshots.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     monthly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Number of monthly snapshots.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     yearly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Number of yearly snapshots.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     autoprune: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Whether to automatically prune old snapshots.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     autosnap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Whether to automatically take snapshots.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     pre_snapshot_script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Script to run before taking snapshot.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     post_snapshot_script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Script to run after taking snapshot.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     pruning_script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Script to run after pruning snapshot.",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     no_inconsistent_snapshot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Whether to take a snapshot if the pre script fails",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     force_post_snapshot_script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Whether to run the post script if the pre script fails",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
         default: null,
       })))),
     script_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Time limit for pre/post/pruning script execution time (<=0 for infinite).",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -178,10 +178,10 @@ export default nix.lambda((args) => (() => {
   }));
   const datasetOptions = nix.thunk(() => (() => {
     const use_template = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: "Names of the templates to use for this dataset.",
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.update(nix.sel(lib, "types", "str"), {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             check: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "templates"))))), "check")),
             description: "configured template name",
           })))),
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const useTemplate = use_template;
     const recursive = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: "Whether to recursively snapshot dataset children.\nYou can also set this to `\"zfs\"` to handle datasets\nrecursively in an atomic way without the possibility to\noverride settings for child datasets.\n",
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -201,14 +201,14 @@ export default nix.lambda((args) => (() => {
         default: false,
       }))));
     const process_children_only = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         description: "Whether to only snapshot child datasets if recursing.",
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       }))));
     const processChildrenOnly = process_children_only;
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       use_template,
       useTemplate,
       recursive,
@@ -226,38 +226,38 @@ export default nix.lambda((args) => (() => {
     ]));
   const configFile = nix.thunk(() => (() => {
     const mkValueString = (v) => (nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", v) : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v));
-    const mkKeyValue = (k) => (v) => (nix.asBool(nix.eq(v, null)) ? "" : (nix.asBool(nix.eq(k, "processChildrenOnly")) ? "" : (nix.asBool(nix.eq(k, "useTemplate")) ? "" : nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$20, mkValueString: mkValueString })), "=", k, v))));
-    return nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({ __proto__: pos$21, mkKeyValue: mkKeyValue })), nix.thunk(() => nix.sel(cfg, "settings")));
+    const mkKeyValue = (k) => (v) => (nix.asBool(nix.eq(v, null)) ? "" : (nix.asBool(nix.eq(k, "processChildrenOnly")) ? "" : (nix.asBool(nix.eq(k, "useTemplate")) ? "" : nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$20, mkValueString: mkValueString })), "=", k, v))));
+    return nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({ [nix.POS]: pos$21, mkKeyValue: mkKeyValue })), nix.thunk(() => nix.sel(cfg, "settings")));
   })());
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         sanoid: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sanoid ZFS snapshotting service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sanoid", nix.thunk(() => ({})))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hourly",
               example: "daily",
               description: "Run sanoid at this interval. The default is to run hourly.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
             })))),
           datasets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const config_1 = nix.arg($_1, "config");
                     const options = nix.arg($_1, "options");
                     return {
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       freeformType: datasetSettingsType,
                       options: nix.thunk(() => nix.update(commonOptions, datasetOptions)),
                       config: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         use_template: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mkAliasAndWrapDefsWithPriority"), nix.thunk(() => nix.sel(lib, "id")), nix.thunk(() => nix.selOr(options, () => ({}), "useTemplate")))),
                         process_children_only: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mkAliasAndWrapDefsWithPriority"), nix.thunk(() => nix.sel(lib, "id")), nix.thunk(() => nix.selOr(options, () => ({}), "processChildrenOnly")))),
                       })),
@@ -267,18 +267,18 @@ export default nix.lambda((args) => (() => {
               description: "Datasets to snapshot.",
             })))),
           templates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$26, freeformType: datasetSettingsType, options: commonOptions })))))),
+              [nix.POS]: pos$27,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$26, freeformType: datasetSettingsType, options: commonOptions })))))),
               default: nix.thunk(() => ({})),
               description: "Templates for datasets.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), datasetSettingsType)),
               description: "Free-form settings written directly to the config file. See\n<https://github.com/jimsalterjrs/sanoid/blob/master/sanoid.defaults.conf>\nfor allowed values.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--verbose", "--readonly", "--debug"]),
@@ -288,11 +288,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           sanoid: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (d) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.add("template_", d)), v), nix.thunk(() => nix.sel(cfg, "templates")))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (d) => (v) => nix.force(v), nix.thunk(() => nix.sel(cfg, "datasets")))),
@@ -300,14 +300,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             sanoid: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Sanoid snapshot service",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 ExecStartPre: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(buildAllowCommand, "allow", nix.thunk(() => ["snapshot", "mount", "destroy"]))), datasets)),
                 ExecStopPost: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(buildAllowCommand, "unallow", nix.thunk(() => ["snapshot", "mount", "destroy"]))), datasets)),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
@@ -322,22 +322,22 @@ export default nix.lambda((args) => (() => {
                 RuntimeDirectory: "sanoid",
                 CacheDirectory: "sanoid",
               })),
-              environment: nix.thunk(() => ({ __proto__: pos$36, TZ: "UTC" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$36, TZ: "UTC" })),
               after: nix.thunk(() => ["zfs.target"]),
               startAt: nix.thunk(() => nix.sel(cfg, "interval")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           etc: nix.thunk(() => ({
-            __proto__: pos$41,
-            "sanoid/sanoid.conf": nix.thunk(() => ({ __proto__: pos$40, text: configFile })),
+            [nix.POS]: pos$41,
+            "sanoid/sanoid.conf": nix.thunk(() => ({ [nix.POS]: pos$40, text: configFile })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "lopsided98"))];

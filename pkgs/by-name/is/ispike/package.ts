@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boost186 = nix.arg($, "boost186");
   const boost = boost186;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ispike",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ispike/ispike-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0khrxp43bi5kisr8j4lp9fl4r5marzf7b4inys62ac108sfb28lp",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spiking neural interface between iCub and a spiking neural simulator",
         homepage: "https://sourceforge.net/projects/ispike/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

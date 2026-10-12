@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
 cp "${file}" "$out"
 `));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         envoy: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Envoy reverse proxy")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "envoy", nix.thunk(() => ({})))),
           requireValidConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether a failure during config validation at build time is fatal.\nWhen the config can't be checked during build time, for example when it includes\nother files, disable this option.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  admin = {\n    access_log_path = \"/dev/null\";\n    address = {\n      socket_address = {\n        protocol = \"TCP\";\n        address = \"127.0.0.1\";\n        port_value = 9901;\n      };\n    };\n  };\n  static_resources = {\n    listeners = [];\n    clusters = [];\n  };\n}\n")),
@@ -54,23 +54,23 @@ cp "${file}" "$out"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             envoy: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Envoy reverse proxy",
               after: nix.thunk(() => ["network-online.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/envoy -c ${nix.app(validateConfig, nix.thunk(() => nix.sel(cfg, "requireValidConfig")), conf)}`),
                 CacheDirectory: nix.thunk(() => ["envoy"]),
                 LogsDirectory: nix.thunk(() => ["envoy"]),

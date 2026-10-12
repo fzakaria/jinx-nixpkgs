@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cbftp";
       const version = "1173";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cbftp.eu/cbftp-r${version}.tar.gz`),
           hash: "sha256-DE6fnLzWsx6Skz2LRJAaijjIqrYFB8/HPp45P5CcEc8=",
         }))));
@@ -33,7 +33,7 @@ install -D API README -t $out/share/doc/${pname}/
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cbftp.eu/",
         description: "Advanced multi-purpose FTP/FXP client",
         longDescription: "Cbftp is an advanced multi-purpose FTP/FXP client that focuses on\nefficient large-scale data spreading, while also supporting most regular\nFTP/FXP use cases in a modern way. It runs in a terminal and provides a\nsemi-graphical user interface through ncurses.\n",
@@ -45,7 +45,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

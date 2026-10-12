@@ -58,46 +58,46 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "nix"));
   const nixPackage = nix.thunk(() => nix.sel(cfg, "package", "out"));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2205n,
           from: nix.thunk(() => ["nix", "daemonIONiceLevel"]),
           to: nix.thunk(() => ["nix", "daemonIOSchedPriority"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2211n,
           from: nix.thunk(() => ["nix", "readOnlyStore"]),
           to: nix.thunk(() => ["boot", "readOnlyNixStore"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["nix", "daemonNiceLevel"]), "Consider nix.daemonCPUSchedPolicy instead.")),
       nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "daemonUser"), "root")), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 message: "The Nix daemon cannot run as the root group when not running as the root user.\n",
                 assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "daemonGroup"), "root")),
               })),
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 message: "Nix must have the `local-overlay-store` experimental feature when not running as the root user.\n",
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "elem"), "local-overlay-store", nix.thunk(() => nix.sel(cfg, "settings", "experimental-features")))),
               })),
               nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 message: "Nix must have the `auto-allocate-uids` experimental feature when not running as the root user.\n",
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "elem"), "auto-allocate-uids", nix.thunk(() => nix.sel(cfg, "settings", "experimental-features")))),
               })),
             ]),
             nix: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 sandbox: true,
                 "auto-allocate-uids": true,
                 "build-users-group": "",
@@ -106,18 +106,18 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "nix-daemon": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   environment: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     NIX_REMOTE: "local?use-roots-daemon=true",
                     HOME: "%S/nix-daemon",
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     User: nix.thunk(() => nix.sel(cfg, "daemonUser")),
                     Group: nix.thunk(() => nix.sel(cfg, "daemonGroup")),
                     StateDirectory: "nix-daemon",
@@ -128,15 +128,15 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "nix-roots-daemon": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(config, "nix", "package", "out")}/bin/nix --extra-experimental-features nix-command store roots-daemon`),
                   })),
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d /nix/store                   0755 ${nix.sel(config, "nix", "daemonUser")} ${nix.sel(config, "nix", "daemonGroup")} - -`),
                   nix.thunk(() => nix.str`Z /nix/var                     0755 ${nix.sel(config, "nix", "daemonUser")} ${nix.sel(config, "nix", "daemonGroup")} - -`),
@@ -146,35 +146,35 @@ export default nix.lambda((args) => (() => {
                 ]),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "nix-roots-daemon": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   wantedBy: nix.thunk(() => ["nix-daemon.service"]),
                   listenStreams: nix.thunk(() => ["/nix/var/nix/gc-roots-socket/socket"]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ConditionPathIsReadWrite: "/nix/var/nix/gc-roots-socket",
                     RequiresMountsFor: "/nix/store",
                   })),
                 })),
               })),
             })),
-            boot: nix.thunk(() => ({ __proto__: pos$19, nixStoreMountOpts: nix.thunk(() => ["nodev", "nosuid"]) })),
+            boot: nix.thunk(() => ({ [nix.POS]: pos$19, nixStoreMountOpts: nix.thunk(() => ["nodev", "nosuid"]) })),
             users: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "daemonUser")}`, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   subUidRanges: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       startUid: nix.thunk(() => nix.sel(cfg, "settings", "start-id")),
                       count: nix.thunk(() => nix.sel(cfg, "settings", "id-count")),
                     })),
                   ]),
                   subGidRanges: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       startGid: nix.thunk(() => nix.sel(cfg, "settings", "start-id")),
                       count: nix.thunk(() => nix.sel(cfg, "settings", "id-count")),
                     })),
@@ -186,13 +186,13 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       nix: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         daemon: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "nix", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.nix.enable")),
@@ -200,40 +200,40 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         daemonUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "root",
             description: "User to use to run the Nix daemon.\nIf this is not \"root\" then the Nix daemon will set several settings to preserve functionality.\nWhen setting this option, you must also set `nix.daemonGroup`.\n",
           })))),
         daemonGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "root",
             description: "Group to use to run the Nix daemon.\n",
           })))),
         daemonCPUSchedPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["other", "batch", "idle"]))),
             default: "other",
             example: "batch",
             description: "Nix daemon process CPU scheduling policy. This policy propagates to\nbuild processes. `other` is the default scheduling\npolicy for regular tasks. The `batch` policy is\nsimilar to `other`, but optimised for\nnon-interactive tasks. `idle` is for extremely\nlow-priority tasks that should only be run when no other task\nrequires CPU time.\n\nPlease note that while using the `idle` policy may\ngreatly improve responsiveness of a system performing expensive\nbuilds, it may also slow down and potentially starve crucial\nconfiguration updates during load.\n\n`idle` may therefore be a sensible policy for\nsystems that experience only intermittent phases of high CPU load,\nsuch as desktop or portable computers used interactively. Other\nsystems should use the `other` or\n`batch` policy instead.\n\nFor more fine-grained resource control, please refer to\n{manpage}`systemd.resource-control(5)` and adjust\n{option}`systemd.services.nix-daemon` directly.\n",
           })))),
         daemonIOSchedClass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["best-effort", "idle"]))),
             default: "best-effort",
             example: "idle",
             description: "Nix daemon process I/O scheduling class. This class propagates to\nbuild processes. `best-effort` is the default\nclass for regular tasks. The `idle` class is for\nextremely low-priority tasks that should only perform I/O when no\nother task does.\n\nPlease note that while using the `idle` scheduling\nclass can improve responsiveness of a system performing expensive\nbuilds, it might also slow down or starve crucial configuration\nupdates during load.\n\n`idle` may therefore be a sensible class for\nsystems that experience only intermittent phases of high I/O load,\nsuch as desktop or portable computers used interactively. Other\nsystems should use the `best-effort` class.\n",
           })))),
         daemonIOSchedPriority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: 4n,
             example: 1n,
             description: "Nix daemon process I/O scheduling priority. This priority propagates\nto build processes. The supported priorities depend on the\nscheduling policy: With idle, priorities are not used in scheduling\ndecisions. best-effort supports values in the range 0 (high) to 7\n(low).\n",
           })))),
         envVars: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             internal: true,
             default: nix.thunk(() => ({})),
@@ -242,36 +242,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "daemon", "enable")) && nix.asBool(!nix.eq(nix.sel(nixPackage, "pname"), "lix")))), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => nix.sel(cfg, "enable")),
             message: "Enabling the Nix Daemon requires also enabling Nix (config.nix.enable = true).\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           packages: nix.thunk(() => [nixPackage]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "daemonUser"), "root")), nix.thunk(() => [nixPackage]))),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$39,
-            "nix-daemon": nix.thunk(() => ({ __proto__: pos$38, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$39,
+            "nix-daemon": nix.thunk(() => ({ [nix.POS]: pos$38, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             "nix-daemon": nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               path: nix.thunk(() => nix.concat([nixPackage, nix.thunk(() => nix.sel(config, "programs", "ssh", "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "daemonUser"), "root")), "/run/wrappers"))),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "envVars"), nix.update({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 CURL_CA_BUNDLE: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
               }, nix.sel(config, "networking", "proxy", "envVars")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 CPUSchedulingPolicy: nix.thunk(() => nix.sel(cfg, "daemonCPUSchedPolicy")),
                 IOSchedulingClass: nix.thunk(() => nix.sel(cfg, "daemonIOSchedClass")),
                 IOSchedulingPriority: nix.thunk(() => nix.sel(cfg, "daemonIOSchedPriority")),
@@ -284,7 +284,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           sessionVariables: nix.thunk(() => nix.sel(cfg, "envVars")),
         })),
       })))),

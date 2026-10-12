@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const uhk_agent = nix.arg($, "uhk-agent");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "uhk-udev-rules",
       version: nix.thunk(() => nix.attr(uhk_agent, "version")),
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
@@ -27,7 +27,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(uhk_agent, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "udev rules for UHK keyboards from https://ultimatehackingkeyboard.com",
         license: nix.thunk(() => nix.attr(from, "license")),
       };

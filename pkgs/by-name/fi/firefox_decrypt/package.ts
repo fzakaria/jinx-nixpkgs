@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "firefox_decrypt",
       version: "1.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unode",
           repo: "firefox_decrypt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,15 +52,15 @@ patchShebangs tests
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           firefox_decrypt: nix.thunk(() => nix.attr(nixosTests, "firefox_decrypt")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/unode/firefox_decrypt",
         description: "Tool to extract passwords from profiles of Mozilla Firefox and derivatives",
         mainProgram: "firefox-decrypt",

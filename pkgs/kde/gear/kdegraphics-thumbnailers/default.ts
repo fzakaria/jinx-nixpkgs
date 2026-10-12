@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kdegraphics-thumbnailers",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gs-paths.patch"), nix.thunk(() => ({ __proto__: pos$1, gs: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gs-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, gs: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })))),
       ]),
     })));
 })(), formals$1);

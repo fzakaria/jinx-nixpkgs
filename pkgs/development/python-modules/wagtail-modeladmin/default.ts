@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wagtail-nest",
           repo: "wagtail-modeladmin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} testmanage.py test
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add any model in your project to the Wagtail admin. Formerly wagtail.contrib.modeladmin",
         homepage: "https://github.com/wagtail-nest/wagtail-modeladmin",
         changelog: nix.thunk(() => nix.str`https://github.com/wagtail/wagtail-modeladmin/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "msbuild-structured-log-viewer",
       version: "2.3.150",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KirillOsenkov",
           repo: "MSBuildStructuredLog",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ mkdir -p $out/Applications/StructuredLogViewer.app/Contents/MacOS
 ln -s $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} $out/Applications/StructuredLogViewer.app/Contents/MacOS/StructuredLogViewer.Avalonia
 `)))),
       desktopItems: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "msbuild-structured-log-viewer",
           desktopName: "MSBuild Structured Log Viewer",
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -62,11 +62,11 @@ ln -s $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} $out/Applications/S
           mimeTypes: nix.thunk(() => ["application/x-binlog"]),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rich interactive log viewer for MSBuild logs",
         homepage: "https://github.com/KirillOsenkov/MSBuildStructuredLog",
         changelog: nix.thunk(() => nix.str`https://github.com/KirillOsenkov/MSBuildStructuredLog/releases/tag/v${nix.sel(finalAttrs, "version")}`),

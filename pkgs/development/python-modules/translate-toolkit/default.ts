@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "translate-toolkit",
       version: "3.19.19",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "translate",
           repo: "translate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [lxml, unicode_segmentation_rs]),
       pythonRelaxDeps: nix.thunk(() => ["lxml"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         chardet: nix.thunk(() => [charset_normalizer]),
         fluent: nix.thunk(() => [fluent_syntax]),
         ical: nix.thunk(() => [vobject]),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["translate"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Useful localization tools for building localization & translation systems",
         homepage: "https://toolkit.translatehouse.org/",
         changelog: nix.thunk(() => nix.str`https://docs.translatehouse.org/projects/translate-toolkit/en/latest/releases/${nix.sel(finalAttrs, "src", "tag")}.html`),

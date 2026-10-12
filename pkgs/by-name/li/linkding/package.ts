@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const uwsgi = nix.arg($, "uwsgi");
   const version = "1.47.0";
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python,
-      packageOverrides: (final) => (prev) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
     }))));
-  const uwsgiWithPython = nix.thunk(() => nix.app(nix.sel(uwsgi, "override"), nix.thunk(() => ({ __proto__: pos$3, plugins: nix.thunk(() => ["python3"]), python3: python }))));
+  const uwsgiWithPython = nix.thunk(() => nix.app(nix.sel(uwsgi, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, plugins: nix.thunk(() => ["python3"]), python3: python }))));
   const icuExtension = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "linkding-sqlite-icu",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://www.sqlite.org/src/raw/ext/icu/icu.c?name=91c021c7e3e8bbba286960810fa303295c622e323567b2e6def4ce58e4466e60",
           name: "icu.c",
           hash: "sha256-DkELE5p82yZVz0GVFdWWAEU8eo10ob0fqx66Q7rxv+U=",
@@ -65,12 +65,12 @@ runHook postBuild
       installPhase: "runHook preInstall\ninstall -Dm755 libicu.so $out/lib/libicu.so\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "linkding",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "sissbruecker",
           repo: "linkding",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +97,7 @@ runHook postBuild
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         postgres: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
           return [nix.thunk(() => nix.lookup(w_2, "psycopg"))];
@@ -107,7 +107,7 @@ runHook postBuild
       dontWrapPythonPrograms: true,
       pyprojectAppendix: "[tool.setuptools.packages.find]\ninclude = [\"bookmarks*\"]\n[tool.setuptools.package-data]\nbookmarks = [\"static/**/*\", \"styles/**/*\", \"templates/**/*\", \"version.txt\"]\n",
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -246,19 +246,19 @@ chmod +x $out/bin/linkding-bootstrap
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         python: python,
         icuExtension: icuExtension,
         uwsgiWithPython: uwsgiWithPython,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           linkding: nix.thunk(() => nix.attr(nixosTests, "linkding")),
           "linkding-postgres": nix.thunk(() => nix.attr(nixosTests, "linkding-postgres")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$10, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$10, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Self-hosted bookmark manager designed to be minimal, fast, and easy to set up",
         homepage: "https://linkding.link/",
         changelog: nix.thunk(() => nix.str`https://github.com/sissbruecker/linkding/releases/tag/v${nix.sel(finalAttrs, "version")}`),

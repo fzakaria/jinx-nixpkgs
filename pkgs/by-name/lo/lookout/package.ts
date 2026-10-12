@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lookout",
       version: "0.3.11",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hackclub",
           repo: "lookout",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-eNVTOu1KyM0aJX3X5/YNq4W6EKa2dfSBn6NZRtEJWbA=",
       cargoTestFlags: nix.thunk(() => ["--lib", "--bins", "--tests"]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           fetcherVersion: 2n,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         pkg_config,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(libclang, "lib")}/lib`),
         BINDGEN_EXTRA_CLANG_ARGS: nix.thunk(() => nix.str`-isystem ${nix.sel(stdenv, "cc", "libc", "dev")}/include -isystem ${nix.sel(libclang, "lib")}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(libclang, "version")))}/include`),
       })),
@@ -113,7 +113,7 @@ EOF
 `))),
       preBuild: "# npm workspaces: build deps in dependency order before `vite build`\nnpm run build -w @lookout/shared\nnpm run build -w @lookout/react\nnpm run build -w @lookout/desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hack Club time-tracking desktop app that captures periodic screenshots",
         homepage: "https://github.com/hackclub/lookout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

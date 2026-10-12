@@ -24,65 +24,65 @@ export default nix.lambda((args) => (() => {
   const tinycc = nix.arg($, "tinycc");
   const gnumake = nix.arg($, "gnumake");
   const gnupatch = nix.arg($, "gnupatch");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "bootstrap-coreutils";
   const version = "5.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/coreutils/coreutils-${version}.tar.gz`),
       sha256: "10wq6k66i8adr4k08p0xmg87ff4ypiazvwzlmi7myib27xgffz62",
     }))));
   const liveBootstrap = "https://github.com/fosslinux/live-bootstrap/raw/a8752029f60217a5c41c548b16f5cdd2a1a0e0db/sysa/coreutils-5.0";
   const makefile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`${liveBootstrap}/mk/main.mk`),
       sha256: "0njg4xccxfqrslrmlb8ls7h6hlnfmdx42nvxwmca8flvczwrplfd",
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/modechange.patch`),
         sha256: "04xa4a5w2syjs3xs6qhh8kdzqavxnrxpxwyhc3qqykpk699p3ms5",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/mbstate.patch`),
         sha256: "0rz3c0sflgxjv445xs87b83i7gmjpl2l78jzp6nm3khdbpcc53vy",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/ls-strcmp.patch`),
         sha256: "0lx8rz4sxq3bvncbbr6jf0kyn5bqwlfv9gxyafp0541dld6l55p6",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/touch-getdate.patch`),
         sha256: "1xd3z57lvkj7r8vs5n0hb9cxzlyp58pji7d335snajbxzwy144ma",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/touch-dereference.patch`),
         sha256: "0wky5r3k028xwyf6g6ycwqxzc7cscgmbymncjg948vv4qxsxlfda",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/expr-strcmp.patch`),
         sha256: "19f31lfsm1iwqzvp2fyv97lmqg4730prfygz9zip58651jf739a9",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/sort-locale.patch`),
         sha256: "0bdch18mpyyxyl6gyqfs0wb4pap9flr11izqdyxccx1hhz0a2i6c",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/uniq-fopen.patch`),
         sha256: "0qs6shyxl9j4h34v5j5sgpxrr4gjfljd2hxzw416ghwc3xzv63fp",
       })))),
   ]);
   return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: pname,
       version: version,
       meta: meta,

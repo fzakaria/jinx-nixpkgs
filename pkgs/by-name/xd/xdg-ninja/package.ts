@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const glow = nix.arg($, "glow");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xdg-ninja",
       version: "0.2.0.2-unstable-2026-05-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "b3nj5m1n",
           repo: "xdg-ninja",
           rev: "f2ab12bbf1cf60dc3cc9459d122811c55ba88150",
@@ -45,11 +45,11 @@ installManPage man/xdg-ninja.1
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shell script which checks your $HOME for unwanted files and directories",
         homepage: "https://github.com/b3nj5m1n/xdg-ninja",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

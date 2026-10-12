@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtvirtualkeyboard = nix.arg($, "qtvirtualkeyboard");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plasma-keyboard",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtvirtualkeyboard, wayland_protocols]),

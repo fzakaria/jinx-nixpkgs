@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-xdDLP1tugejjXaV1Q4jdzG0NFLbGoTLLk9ae1YCnJ4w=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_decode_random", "test_encode_random"]);
       const pythonImportsCheck = nix.thunk(() => ["base58"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base58 and Base58Check implementation",
         homepage: "https://github.com/keis/base58",
         changelog: nix.thunk(() => nix.str`https://github.com/keis/base58/blob/v${version}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "base58",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

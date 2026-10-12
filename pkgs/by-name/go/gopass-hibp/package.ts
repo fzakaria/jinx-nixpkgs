@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gopass-hibp",
       version: "1.17.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gopasspw",
           repo: "gopass-hibp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preVersionCheck: "gopass setup --name \"user\" --email \"user@localhost\"\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gopass haveibeenpwnd.com integration",
         homepage: "https://github.com/gopasspw/gopass-hibp",
         changelog: nix.thunk(() => nix.str`https://github.com/gopasspw/gopass-hibp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

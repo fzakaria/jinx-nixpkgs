@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsigrok = nix.arg($, "libsigrok");
   const libsigrokdecode = nix.arg($, "libsigrokdecode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sigrok-cli",
       version: "0.8.0-unstable-2024-08-26",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sigrok.org/sigrok-cli",
           rev: "f44dd91347e7ac797cefc23162b9fcf0b7329f1f",
           hash: "sha256-LJ+32XiQYfjMLYze/zICVKvqmhtyc85zvxAXXi2HIi0=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [glib, libsigrok, libsigrokdecode]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line frontend for the sigrok signal analysis software suite",
         mainProgram: "sigrok-cli",
         homepage: "https://sigrok.org/",

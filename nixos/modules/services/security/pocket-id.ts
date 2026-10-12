@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
   const exportAllCredentials = (vars) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), exportCredentials, vars)));
   const getLoadCredentialList = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}_FILE:${v}`, nix.thunk(() => nix.sel(cfg, "credentials"))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [
@@ -72,48 +72,48 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "pocket-id": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Pocket ID server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "pocket-id", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: path,
               description: "Path to an environment file to be loaded.\nThis can be used to securely store tokens and secrets outside of the world-readable Nix store.\n\nSee [PocketID environment variables](https://pocket-id.org/docs/configuration/environment-variables).\n\nExample contents of the file:\nMAXMIND_LICENSE_KEY=your-license-key\n\nAlternatively you can use `services.pocket-id.credentials` to define each variable in separate files.\n",
               default: "/dev/null",
               example: "/var/lib/secrets/pocket-id",
             })))),
           credentials: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(attrsOf, path)),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$3, ENCRYPTION_KEY: "/run/secrets/pocket-id/encryption-key" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$3, ENCRYPTION_KEY: "/run/secrets/pocket-id/encryption-key" })),
               description: "Credentials which are loaded from the contents of the specified file paths.\n\nThis can be used to securely store tokens and secrets outside of the world-readable Nix store.\n\nSee [PocketID environment variables](https://pocket-id.org/docs/configuration/environment-variables) (all with the `_FILE` suffix).\n\nAccepts an attrset mapping from the variable name *without its `_FILE` suffix* to the path on disk.\n\nAlternatively you can use `services.pocket-id.environmentFile` to define all the variables in a single file.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     APP_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: str,
                         description: "The URL where you will access the app.\n",
                         default: "http://localhost",
                       })))),
                     TRUST_PROXY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: bool,
                         description: "Whether the app is behind a reverse proxy.\n",
                         default: false,
                       })))),
                     ANALYTICS_DISABLED: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: bool,
                         description: "Whether to disable analytics.\n\nSee the [analytics documentation](https://pocket-id.org/docs/configuration/analytics/).\n",
                         default: false,
@@ -124,19 +124,19 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables to be passed.\n\nSee [PocketID environment variables](https://pocket-id.org/docs/configuration/environment-variables).\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: path,
               default: "/var/lib/pocket-id",
               description: "The directory where Pocket ID will store its data, such as the database when using SQLite.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: str,
               default: "pocket-id",
               description: "User account under which Pocket ID runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: str,
               default: "pocket-id",
               description: "Group account under which Pocket ID runs.",
@@ -145,9 +145,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => nix.builtins.map((setting) => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), nix.key(nix.str`${setting}`)))),
             message: nix.thunk(() => nix.str`\`services.pocket-id.settings.${setting}\` is deprecated.
 See [v1 migration guide](https://pocket-id.org/docs/setup/major-releases/migrate-v1).
@@ -172,17 +172,17 @@ See [v1 migration guide](https://pocket-id.org/docs/setup/major-releases/migrate
 See [v2 migration guide](https://pocket-id.org/docs/setup/major-releases/migrate-v2).
 `)), nix.thunk(() => ["DB_PROVIDER", "KEYS_PATH", "KEYS_STORAGE", "LDAP_ATTRIBUTE_ADMIN_GROUP"])))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0755 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "pocket-id": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Pocket ID",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -195,7 +195,7 @@ See [v2 migration guide](https://pocket-id.org/docs/setup/major-releases/migrate
 exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -252,18 +252,18 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "pocket-id")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               "pocket-id": nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Pocket ID backend user",
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "pocket-id")), nix.thunk(() => ({ __proto__: pos$25, "pocket-id": nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "pocket-id")), nix.thunk(() => ({ [nix.POS]: pos$25, "pocket-id": nix.thunk(() => ({})) })))),
         })),
       })))),
   };

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const pdfjs = nix.thunk(() => (() => {
     const version_1 = "5.6.205";
     return nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${version_1}/pdfjs-${version_1}-dist.zip`),
         hash: "sha256-JMmxoT68PNJ/MmlMwVNYcHerorklLv5YY6C55xjn73w=",
         stripRoot: false,
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   })());
   const version = "3.7.0";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qutebrowser",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/qutebrowser/qutebrowser/releases/download/v${version}/qutebrowser-${version}.tar.gz`),
           hash: "sha256-x/lYhOpeZnXlhAJb6lXP+VDEfXSa/39BX2jaA/zOD5I=",
         })))),
@@ -124,7 +124,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/qutebrowser/qutebrowser",
         changelog: nix.thunk(() => nix.str`https://github.com/qutebrowser/qutebrowser/blob/v${version}/doc/changelog.asciidoc`),
         description: "Keyboard-focused browser with a minimal GUI",

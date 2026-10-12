@@ -21,10 +21,10 @@ export default nix.lambda((args) => (() => {
   const escapeVersion = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["-"])));
   const getJavaVersion = (v) => nix.sel(nix.builtins.getAttr(nix.thunk(() => nix.str`openjdk${nix.builtins.toString(v)}`), nix.thunk(() => nix.sel(javaPackages, "compiler"))), "headless");
   const mkVersion = (version) => (value) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     name: nix.thunk(() => nix.str`vanilla-${nix.app(escapeVersion, version)}`),
     value: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./derivation.nix")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         lib: lib,
         stdenv: stdenv,
         fetchurl: fetchurl,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   });
   const packages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), mkVersion, versions));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.update(packages, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       vanilla: nix.thunk(() => nix.sel(nix.app(mkVersion, latestVersion, nix.thunk(() => nix.sel(versions, nix.key(nix.force(latestVersion))))), "value")),
     })));
 })(), formals$1);

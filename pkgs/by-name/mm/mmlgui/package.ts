@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const cppunit = nix.arg($, "cppunit");
   const libvgm$ = nix.thunk(() => nix.app(nix.sel(libvgm, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withAllEmulators: false,
       emulators: nix.thunk(() => ["_PRESET_SMD"]),
       enableLibplayer: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mmlgui",
       version: "210420-preview-unstable-2026-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "superctr",
           repo: "mmlgui",
           rev: "9803a154c5fdbe6e88956e391ea0d5c4eae18cdc",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       installPhase: "runHook preInstall\n\ninstall -Dm755 {,$out/}bin/mmlgui\nmkdir -p $out/share/ctrmml\nmv ctrmml/sample $out/share/ctrmml/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://github.com/superctr/mmlgui.git" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://github.com/superctr/mmlgui.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/superctr/mmlgui",
         description: "MML (Music Macro Language) editor and compiler GUI, powered by the ctrmml framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

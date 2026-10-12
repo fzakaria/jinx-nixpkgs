@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "build",
           tag: version,
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [packaging, pyproject_hooks]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.str`${pname}-pytest`),
               src: src,
               version: version,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["build"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "pyproject-build",
         description: "Simple, correct PEP517 package builder",
         longDescription: "build will invoke the PEP 517 hooks to build a distribution package. It\nis a simple build tool and does not perform any dependency management.\n",
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "python"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

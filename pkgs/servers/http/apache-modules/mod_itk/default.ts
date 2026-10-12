@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_itk";
       const version = "2.4.7-04";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://mpm-itk.sesse.net/mpm-itk-${version}.tar.gz`),
           sha256: "sha256:1kzgd1332pgpxf489kr0vdwsaik0y8wp3q282d4wa5jlk7l877v0",
         }))));
@@ -35,7 +35,7 @@ ${nix.sel(apacheHttpd, "dev")}/bin/apxs -S LIBEXECDIR=$out/modules -i mpm_itk.la
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MPM (Multi-Processing Module) for the Apache web server",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zupo"))]),
         homepage: "http://mpm-itk.sesse.net/",
@@ -43,7 +43,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

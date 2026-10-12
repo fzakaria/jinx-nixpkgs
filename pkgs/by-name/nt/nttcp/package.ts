@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "nttcp";
       const version = "1.47";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://deb.debian.org/debian/pool/non-free/n/nttcp/nttcp_${version}.orig.tar.gz`),
           sha256: "1bl17dsd53lbpjdqfmpgpd7dms6d2w3scpg7ki7qgfjhs8sarq50",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./format-security.patch")]);
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "New test TCP program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => (() => {
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, patches, makeFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patches, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const racket = nix.arg($, "racket");
   const script = nix.thunk(() => nix.app(nix.sel(racket, "writeScript"), "racket-test-nix-write-script-the-script", nix.thunk(() => ({})), "#lang racket/base\n(display \"success\")\n(newline)\n"));
-  return nix.app(runCommandLocal, "racket-test-nix-write-script", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), nix.thunk(() => nix.str`expectation="success"
+  return nix.app(runCommandLocal, "racket-test-nix-write-script", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), nix.thunk(() => nix.str`expectation="success"
 
 output="$(${script})"
 

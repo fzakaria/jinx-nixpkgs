@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pytest-shutil",
       version: nix.thunk(() => nix.attr(pytest_fixture_config, "version")),
       src: nix.thunk(() => nix.attr(pytest_fixture_config, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => ["test_run", "test_run_integration"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Goodie-bag of unix shell and environment tools for py.test",
         homepage: "https://github.com/manahl/pytest-plugins",
         maintainers: nix.thunk(() => (() => {

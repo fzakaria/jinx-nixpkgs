@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zoekt",
       version: "0-unstable-2026-03-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sourcegraph",
           repo: "zoekt",
           rev: "a0f5789d25cb80a36bfb0b85cde2f004880bcbeb",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       preCheck: "export HOME=`mktemp -d`\ngit config --global --replace-all protocol.file.allow always\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast trigram based code search",
         homepage: "https://github.com/sourcegraph/zoekt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

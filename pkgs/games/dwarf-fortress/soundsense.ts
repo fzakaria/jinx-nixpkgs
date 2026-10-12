@@ -17,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const dos2unix = nix.arg($, "dos2unix");
   const soundPack = nix.argOr($, "soundPack", () => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "soundsense-soundpack",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://df.zweistein.cz/soundsense/soundpack.zip",
           hash: "sha256-yjlhBLYYv/FXsk5IpiZNDG2ugDldaD5mf+Dyc6es4GM=",
         })))),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       const soundPack_1 = soundPack;
       const pname = "soundsense";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://df.zweistein.cz/soundsense/soundSense_${version}.zip`),
           hash: "sha256-c+LOUxmJaZ3VqVOBYSQypiZxWyNAXOlRQVD3QZPReb4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dos2unix]);
       const buildPhase = "dos2unix soundSense.sh\nchmod +x soundSense.sh\n";
       const installPhase = "mkdir $out\ncp -R . $out/soundsense\nln -s $out/soundsense/dfhack $out/hack\nln -s $soundPack $out/soundsense/packs\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, version: version, dfVersion: dfVersion }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, version: version, dfVersion: dfVersion }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Plays sound based on Dwarf Fortress game logs",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://df.zweistein.cz/soundsense",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         dfVersion,
         soundPack: soundPack_1,

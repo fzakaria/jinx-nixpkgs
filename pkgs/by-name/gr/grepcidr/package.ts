@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grepcidr",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.pc-tools.net/files/unix/grepcidr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1yzpa1nigmmp4hir6377hrkpp0z6jnxgccaw2jbqgydbglvnm231",
         })))),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Filter IPv4 and IPv6 addresses matching CIDR patterns",
         homepage: "https://www.pc-tools.net/unix/grepcidr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

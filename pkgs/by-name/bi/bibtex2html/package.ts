@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bibtex2html",
       version: "1.99",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.lri.fr/~filliatr/ftp/bibtex2html/bibtex2html-1.99.tar.gz",
           sha256: "07gzrs4lfrkvbn48cgn2gn6c7cx3jsanakkrb2irj0gmjzfxl96j",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [ocaml, perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools for translating from BibTeX to HTML",
         homepage: "https://www.lri.fr/~filliatr/bibtex2html/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

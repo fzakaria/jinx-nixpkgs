@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const imake = nix.arg($, "imake");
   const gccmakedep = nix.arg($, "gccmakedep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xskat",
       version: "4.0",
       nativeBuildInputs: nix.thunk(() => [gccmakedep]),
       buildInputs: nix.thunk(() => [libx11, imake]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20220331112433if_/https://www.xskat.de/xskat-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8ba52797ccbd131dce69b96288f525b0d55dee5de4008733f7a5a51deb831c10",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17 -Wno-implicit-int" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17 -Wno-implicit-int" })),
       preInstall: "sed -i Makefile \\\n  -e \"s|.* BINDIR .*|   BINDIR = $out/bin|\" \\\n  -e \"s|.* MANPATH .*|  MANPATH = $out/man|\"\n",
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Famous german card game",
         mainProgram: "xskat",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

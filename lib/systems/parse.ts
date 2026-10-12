@@ -135,7 +135,7 @@ const pos$124 = nix.positions(here + "/parse.nix", [["types", 80, 3], ["signific
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../meta-types.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../meta-types.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const enum$ = nix.thunk(() => nix.attr(from, "enum"));
   const all = nix.thunk(() => nix.attr(lib, "all"));
   const any = nix.thunk(() => nix.attr(lib, "any"));
@@ -164,21 +164,21 @@ export default nix.lambda((args) => (() => {
     const verify = nix.thunk(() => nix.attr(type, "verify"));
     return nix.app(mapAttrs, (name) => (value) => (() => {
         nix.assert_(nix.app(verify, value), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/systems/parse.nix:59:9");
-        return nix.update({ __proto__: pos$2, name: name }, value);
+        return nix.update({ [nix.POS]: pos$2, name: name }, value);
       })());
-  })() : nix.app(mapAttrs, (name) => (value) => nix.update({ __proto__: pos$3, name: name }, value)));
+  })() : nix.app(mapAttrs, (name) => (value) => nix.update({ [nix.POS]: pos$3, name: name }, value)));
   const removeAbiSuffix = (x) => (() => {
     const found = nix.thunk(() => nix.app(match, "(.*)e?abi.*", x));
     return (nix.asBool(nix.eq(found, null)) ? nix.force(x) : nix.app(head, found));
   })();
   return (() => {
     const types = nix.thunk(() => ({
-      __proto__: pos$12,
-      openSignificantByte: nix.thunk(() => ({ __proto__: pos$4, name: "significant-byte", description: "Endianness" })),
+      [nix.POS]: pos$12,
+      openSignificantByte: nix.thunk(() => ({ [nix.POS]: pos$4, name: "significant-byte", description: "Endianness" })),
       significantByte: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, significantBytes)))),
       bitWidth: nix.thunk(() => nix.app(enum$, nix.thunk(() => [8n, 16n, 32n, 64n, 128n]))),
       openCpuType: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "cpu-type",
         description: "instruction set architecture name and information",
         verify: nix.thunk(() => (() => {
@@ -188,22 +188,22 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       cpuType: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, cpuTypes)))),
-      openVendor: nix.thunk(() => ({ __proto__: pos$6, name: "vendor", description: "vendor for the platform" })),
+      openVendor: nix.thunk(() => ({ [nix.POS]: pos$6, name: "vendor", description: "vendor for the platform" })),
       vendor: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, vendors)))),
       openExecFormat: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "exec-format",
         description: "executable container used by the kernel",
       })),
       execFormat: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, execFormats)))),
       openKernelFamily: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "exec-format",
         description: "executable container used by the kernel",
       })),
       kernelFamily: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, kernelFamilies)))),
       openKernel: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "open-kernel",
         description: "kernel name and information",
         verify: nix.thunk(() => (() => {
@@ -214,13 +214,13 @@ export default nix.lambda((args) => (() => {
       })),
       kernel: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, kernels)))),
       openAbi: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "abi",
         description: "binary interface for compiled code and syscalls",
       })),
       abi: nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrValues, abis)))),
       parsedPlatform: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "system",
         description: "fully parsed representation of llvm- or nix-style platform tuple",
         verify: nix.thunk(() => (() => {
@@ -240,7 +240,7 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     const significantBytes = nix.thunk(() => nix.app(setTypes, nix.thunk(() => nix.sel(types, "openSignificantByte")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         bigEndian: nix.thunk(() => ({})),
         littleEndian: nix.thunk(() => ({})),
       }))));
@@ -248,10 +248,10 @@ export default nix.lambda((args) => (() => {
       const littleEndian = nix.thunk(() => nix.attr(significantBytes, "littleEndian"));
       const bigEndian = nix.thunk(() => nix.attr(significantBytes, "bigEndian"));
       return nix.update(nix.app(setTypes, nix.thunk(() => nix.sel(types, "openCpuType")), nix.thunk(() => ({
-          __proto__: pos$62,
-          arm: nix.thunk(() => ({ __proto__: pos$14, bits: 32n, significantByte: littleEndian, family: "arm" })),
+          [nix.POS]: pos$62,
+          arm: nix.thunk(() => ({ [nix.POS]: pos$14, bits: 32n, significantByte: littleEndian, family: "arm" })),
           armv5tel: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -259,7 +259,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv5t",
           })),
           armv6m: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -267,7 +267,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv6-m",
           })),
           armv6l: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -275,7 +275,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv6",
           })),
           armv7a: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -283,7 +283,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv7-a",
           })),
           armv7r: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -291,7 +291,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv7-r",
           })),
           armv7m: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -299,7 +299,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv7-m",
           })),
           armv7l: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -307,7 +307,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv7",
           })),
           armv8a: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -315,7 +315,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv8-a",
           })),
           armv8r: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -323,7 +323,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv8-a",
           })),
           armv8m: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             bits: 32n,
             significantByte: littleEndian,
             family: "arm",
@@ -331,7 +331,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv8-m",
           })),
           aarch64: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             bits: 64n,
             significantByte: littleEndian,
             family: "arm",
@@ -339,7 +339,7 @@ export default nix.lambda((args) => (() => {
             arch: "armv8-a",
           })),
           aarch64_be: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             bits: 64n,
             significantByte: bigEndian,
             family: "arm",
@@ -347,96 +347,96 @@ export default nix.lambda((args) => (() => {
             arch: "armv8-a",
           })),
           i386: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             bits: 32n,
             significantByte: littleEndian,
             family: "x86",
             arch: "i386",
           })),
           i486: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             bits: 32n,
             significantByte: littleEndian,
             family: "x86",
             arch: "i486",
           })),
           i586: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             bits: 32n,
             significantByte: littleEndian,
             family: "x86",
             arch: "i586",
           })),
           i686: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             bits: 32n,
             significantByte: littleEndian,
             family: "x86",
             arch: "i686",
           })),
           x86_64: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             bits: 64n,
             significantByte: littleEndian,
             family: "x86",
             arch: "x86-64",
           })),
           microblaze: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             bits: 32n,
             significantByte: bigEndian,
             family: "microblaze",
           })),
           microblazeel: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             bits: 32n,
             significantByte: littleEndian,
             family: "microblaze",
           })),
-          mips: nix.thunk(() => ({ __proto__: pos$34, bits: 32n, significantByte: bigEndian, family: "mips" })),
-          mipsel: nix.thunk(() => ({ __proto__: pos$35, bits: 32n, significantByte: littleEndian, family: "mips" })),
-          mips64: nix.thunk(() => ({ __proto__: pos$36, bits: 64n, significantByte: bigEndian, family: "mips" })),
-          mips64el: nix.thunk(() => ({ __proto__: pos$37, bits: 64n, significantByte: littleEndian, family: "mips" })),
-          mmix: nix.thunk(() => ({ __proto__: pos$38, bits: 64n, significantByte: bigEndian, family: "mmix" })),
-          m68k: nix.thunk(() => ({ __proto__: pos$39, bits: 32n, significantByte: bigEndian, family: "m68k" })),
-          sh4: nix.thunk(() => ({ __proto__: pos$40, bits: 32n, significantByte: littleEndian, family: "sh" })),
-          powerpc: nix.thunk(() => ({ __proto__: pos$41, bits: 32n, significantByte: bigEndian, family: "power" })),
-          powerpc64: nix.thunk(() => ({ __proto__: pos$42, bits: 64n, significantByte: bigEndian, family: "power" })),
-          powerpc64le: nix.thunk(() => ({ __proto__: pos$43, bits: 64n, significantByte: littleEndian, family: "power" })),
-          powerpcle: nix.thunk(() => ({ __proto__: pos$44, bits: 32n, significantByte: littleEndian, family: "power" })),
-          riscv32: nix.thunk(() => ({ __proto__: pos$45, bits: 32n, significantByte: littleEndian, family: "riscv" })),
-          riscv64: nix.thunk(() => ({ __proto__: pos$46, bits: 64n, significantByte: littleEndian, family: "riscv" })),
-          s390: nix.thunk(() => ({ __proto__: pos$47, bits: 32n, significantByte: bigEndian, family: "s390" })),
-          s390x: nix.thunk(() => ({ __proto__: pos$48, bits: 64n, significantByte: bigEndian, family: "s390" })),
-          sparc: nix.thunk(() => ({ __proto__: pos$49, bits: 32n, significantByte: bigEndian, family: "sparc" })),
-          sparc64: nix.thunk(() => ({ __proto__: pos$50, bits: 64n, significantByte: bigEndian, family: "sparc" })),
-          wasm32: nix.thunk(() => ({ __proto__: pos$51, bits: 32n, significantByte: littleEndian, family: "wasm" })),
-          wasm64: nix.thunk(() => ({ __proto__: pos$52, bits: 64n, significantByte: littleEndian, family: "wasm" })),
-          alpha: nix.thunk(() => ({ __proto__: pos$53, bits: 64n, significantByte: littleEndian, family: "alpha" })),
-          rx: nix.thunk(() => ({ __proto__: pos$54, bits: 32n, significantByte: littleEndian, family: "rx" })),
+          mips: nix.thunk(() => ({ [nix.POS]: pos$34, bits: 32n, significantByte: bigEndian, family: "mips" })),
+          mipsel: nix.thunk(() => ({ [nix.POS]: pos$35, bits: 32n, significantByte: littleEndian, family: "mips" })),
+          mips64: nix.thunk(() => ({ [nix.POS]: pos$36, bits: 64n, significantByte: bigEndian, family: "mips" })),
+          mips64el: nix.thunk(() => ({ [nix.POS]: pos$37, bits: 64n, significantByte: littleEndian, family: "mips" })),
+          mmix: nix.thunk(() => ({ [nix.POS]: pos$38, bits: 64n, significantByte: bigEndian, family: "mmix" })),
+          m68k: nix.thunk(() => ({ [nix.POS]: pos$39, bits: 32n, significantByte: bigEndian, family: "m68k" })),
+          sh4: nix.thunk(() => ({ [nix.POS]: pos$40, bits: 32n, significantByte: littleEndian, family: "sh" })),
+          powerpc: nix.thunk(() => ({ [nix.POS]: pos$41, bits: 32n, significantByte: bigEndian, family: "power" })),
+          powerpc64: nix.thunk(() => ({ [nix.POS]: pos$42, bits: 64n, significantByte: bigEndian, family: "power" })),
+          powerpc64le: nix.thunk(() => ({ [nix.POS]: pos$43, bits: 64n, significantByte: littleEndian, family: "power" })),
+          powerpcle: nix.thunk(() => ({ [nix.POS]: pos$44, bits: 32n, significantByte: littleEndian, family: "power" })),
+          riscv32: nix.thunk(() => ({ [nix.POS]: pos$45, bits: 32n, significantByte: littleEndian, family: "riscv" })),
+          riscv64: nix.thunk(() => ({ [nix.POS]: pos$46, bits: 64n, significantByte: littleEndian, family: "riscv" })),
+          s390: nix.thunk(() => ({ [nix.POS]: pos$47, bits: 32n, significantByte: bigEndian, family: "s390" })),
+          s390x: nix.thunk(() => ({ [nix.POS]: pos$48, bits: 64n, significantByte: bigEndian, family: "s390" })),
+          sparc: nix.thunk(() => ({ [nix.POS]: pos$49, bits: 32n, significantByte: bigEndian, family: "sparc" })),
+          sparc64: nix.thunk(() => ({ [nix.POS]: pos$50, bits: 64n, significantByte: bigEndian, family: "sparc" })),
+          wasm32: nix.thunk(() => ({ [nix.POS]: pos$51, bits: 32n, significantByte: littleEndian, family: "wasm" })),
+          wasm64: nix.thunk(() => ({ [nix.POS]: pos$52, bits: 64n, significantByte: littleEndian, family: "wasm" })),
+          alpha: nix.thunk(() => ({ [nix.POS]: pos$53, bits: 64n, significantByte: littleEndian, family: "alpha" })),
+          rx: nix.thunk(() => ({ [nix.POS]: pos$54, bits: 32n, significantByte: littleEndian, family: "rx" })),
           msp430: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             bits: 16n,
             significantByte: littleEndian,
             family: "msp430",
           })),
-          avr: nix.thunk(() => ({ __proto__: pos$56, bits: 8n, family: "avr" })),
-          vc4: nix.thunk(() => ({ __proto__: pos$57, bits: 32n, significantByte: littleEndian, family: "vc4" })),
-          or1k: nix.thunk(() => ({ __proto__: pos$58, bits: 32n, significantByte: bigEndian, family: "or1k" })),
-          arc: nix.thunk(() => ({ __proto__: pos$59, bits: 32n, significantByte: littleEndian, family: "arc" })),
+          avr: nix.thunk(() => ({ [nix.POS]: pos$56, bits: 8n, family: "avr" })),
+          vc4: nix.thunk(() => ({ [nix.POS]: pos$57, bits: 32n, significantByte: littleEndian, family: "vc4" })),
+          or1k: nix.thunk(() => ({ [nix.POS]: pos$58, bits: 32n, significantByte: bigEndian, family: "or1k" })),
+          arc: nix.thunk(() => ({ [nix.POS]: pos$59, bits: 32n, significantByte: littleEndian, family: "arc" })),
           loongarch64: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             bits: 64n,
             significantByte: littleEndian,
             family: "loongarch",
           })),
           javascript: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             bits: 32n,
             significantByte: littleEndian,
             family: "javascript",
           })),
-        }))), { __proto__: pos$63, arm64: nix.thunk(() => nix.sel(cpuTypes, "aarch64")) });
+        }))), { [nix.POS]: pos$63, arm64: nix.thunk(() => nix.sel(cpuTypes, "aarch64")) });
     })());
     const gnuNetBSDDefaultExecFormat = (cpu) => (nix.asBool((nix.asBool(nix.eq(nix.sel(cpu, "bits"), 32n)) && nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(cpu, "family"), "arm")) || nix.asBool(nix.eq(nix.sel(cpu, "family"), "sparc")))) || nix.asBool(nix.eq(nix.sel(cpu, "family"), "m68k")))) || nix.asBool(nix.eq(nix.sel(cpu, "family"), "x86")))))) ? nix.sel(execFormats, "aout") : nix.sel(execFormats, "elf"));
     const isCompatible = nix.thunk(() => (() => {
@@ -463,7 +463,7 @@ export default nix.lambda((args) => (() => {
         ]))));
     })());
     const vendors = nix.thunk(() => nix.app(setTypes, nix.thunk(() => nix.sel(types, "openVendor")), nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         apple: nix.thunk(() => ({})),
         pc: nix.thunk(() => ({})),
         knuth: nix.thunk(() => ({})),
@@ -472,7 +472,7 @@ export default nix.lambda((args) => (() => {
         unknown: nix.thunk(() => ({})),
       }))));
     const execFormats = nix.thunk(() => nix.app(setTypes, nix.thunk(() => nix.sel(types, "openExecFormat")), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         aout: nix.thunk(() => ({})),
         elf: nix.thunk(() => ({})),
         macho: nix.thunk(() => ({})),
@@ -480,7 +480,7 @@ export default nix.lambda((args) => (() => {
         wasm: nix.thunk(() => ({})),
         unknown: nix.thunk(() => ({})),
       }))));
-    const kernelFamilies = nix.thunk(() => nix.app(setTypes, nix.thunk(() => nix.sel(types, "openKernelFamily")), nix.thunk(() => ({ __proto__: pos$66, bsd: nix.thunk(() => ({})), darwin: nix.thunk(() => ({})) }))));
+    const kernelFamilies = nix.thunk(() => nix.app(setTypes, nix.thunk(() => nix.sel(types, "openKernelFamily")), nix.thunk(() => ({ [nix.POS]: pos$66, bsd: nix.thunk(() => ({})), darwin: nix.thunk(() => ({})) }))));
     const kernels = nix.thunk(() => (() => {
       const elf = nix.thunk(() => nix.attr(execFormats, "elf"));
       const pe = nix.thunk(() => nix.attr(execFormats, "pe"));
@@ -490,47 +490,47 @@ export default nix.lambda((args) => (() => {
       const bsd = nix.thunk(() => nix.attr(kernelFamilies, "bsd"));
       const darwin = nix.thunk(() => nix.attr(kernelFamilies, "darwin"));
       return nix.update(nix.app(setTypes, nix.thunk(() => nix.sel(types, "openKernel")), nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           macos: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             execFormat: macho,
-            families: nix.thunk(() => ({ __proto__: pos$67, darwin: darwin })),
+            families: nix.thunk(() => ({ [nix.POS]: pos$67, darwin: darwin })),
             name: "darwin",
           })),
           ios: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             execFormat: macho,
-            families: nix.thunk(() => ({ __proto__: pos$69, darwin: darwin })),
+            families: nix.thunk(() => ({ [nix.POS]: pos$69, darwin: darwin })),
           })),
           freebsd: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             execFormat: elf,
-            families: nix.thunk(() => ({ __proto__: pos$71, bsd: bsd })),
+            families: nix.thunk(() => ({ [nix.POS]: pos$71, bsd: bsd })),
             name: "freebsd",
           })),
-          linux: nix.thunk(() => ({ __proto__: pos$73, execFormat: elf, families: nix.thunk(() => ({})) })),
+          linux: nix.thunk(() => ({ [nix.POS]: pos$73, execFormat: elf, families: nix.thunk(() => ({})) })),
           netbsd: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             execFormat: elf,
-            families: nix.thunk(() => ({ __proto__: pos$74, bsd: bsd })),
+            families: nix.thunk(() => ({ [nix.POS]: pos$74, bsd: bsd })),
           })),
-          none: nix.thunk(() => ({ __proto__: pos$76, execFormat: unknown, families: nix.thunk(() => ({})) })),
+          none: nix.thunk(() => ({ [nix.POS]: pos$76, execFormat: unknown, families: nix.thunk(() => ({})) })),
           openbsd: nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             execFormat: elf,
-            families: nix.thunk(() => ({ __proto__: pos$77, bsd: bsd })),
+            families: nix.thunk(() => ({ [nix.POS]: pos$77, bsd: bsd })),
           })),
-          solaris: nix.thunk(() => ({ __proto__: pos$79, execFormat: elf, families: nix.thunk(() => ({})) })),
-          wasip1: nix.thunk(() => ({ __proto__: pos$80, execFormat: wasm, families: nix.thunk(() => ({})) })),
-          redox: nix.thunk(() => ({ __proto__: pos$81, execFormat: elf, families: nix.thunk(() => ({})) })),
-          windows: nix.thunk(() => ({ __proto__: pos$82, execFormat: pe, families: nix.thunk(() => ({})) })),
-          cygwin: nix.thunk(() => ({ __proto__: pos$83, execFormat: pe, families: nix.thunk(() => ({})) })),
-          ghcjs: nix.thunk(() => ({ __proto__: pos$84, execFormat: unknown, families: nix.thunk(() => ({})) })),
-          genode: nix.thunk(() => ({ __proto__: pos$85, execFormat: elf, families: nix.thunk(() => ({})) })),
-          mmixware: nix.thunk(() => ({ __proto__: pos$86, execFormat: unknown, families: nix.thunk(() => ({})) })),
-          uefi: nix.thunk(() => ({ __proto__: pos$87, execFormat: pe, families: nix.thunk(() => ({})) })),
+          solaris: nix.thunk(() => ({ [nix.POS]: pos$79, execFormat: elf, families: nix.thunk(() => ({})) })),
+          wasip1: nix.thunk(() => ({ [nix.POS]: pos$80, execFormat: wasm, families: nix.thunk(() => ({})) })),
+          redox: nix.thunk(() => ({ [nix.POS]: pos$81, execFormat: elf, families: nix.thunk(() => ({})) })),
+          windows: nix.thunk(() => ({ [nix.POS]: pos$82, execFormat: pe, families: nix.thunk(() => ({})) })),
+          cygwin: nix.thunk(() => ({ [nix.POS]: pos$83, execFormat: pe, families: nix.thunk(() => ({})) })),
+          ghcjs: nix.thunk(() => ({ [nix.POS]: pos$84, execFormat: unknown, families: nix.thunk(() => ({})) })),
+          genode: nix.thunk(() => ({ [nix.POS]: pos$85, execFormat: elf, families: nix.thunk(() => ({})) })),
+          mmixware: nix.thunk(() => ({ [nix.POS]: pos$86, execFormat: unknown, families: nix.thunk(() => ({})) })),
+          uefi: nix.thunk(() => ({ [nix.POS]: pos$87, execFormat: pe, families: nix.thunk(() => ({})) })),
         }))), {
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         darwin: nix.thunk(() => nix.sel(kernels, "macos")),
         watchos: nix.thunk(() => nix.sel(kernels, "ios")),
         tvos: nix.thunk(() => nix.sel(kernels, "ios")),
@@ -539,51 +539,51 @@ export default nix.lambda((args) => (() => {
       });
     })());
     const abis = nix.thunk(() => nix.app(setTypes, nix.thunk(() => nix.sel(types, "openAbi")), nix.thunk(() => ({
-        __proto__: pos$110,
+        [nix.POS]: pos$110,
         msvc: nix.thunk(() => ({})),
-        eabi: nix.thunk(() => ({ __proto__: pos$90, float: "soft", eabi: true })),
-        eabihf: nix.thunk(() => ({ __proto__: pos$91, float: "hard", eabi: true })),
+        eabi: nix.thunk(() => ({ [nix.POS]: pos$90, float: "soft", eabi: true })),
+        eabihf: nix.thunk(() => ({ [nix.POS]: pos$91, float: "hard", eabi: true })),
         elf: nix.thunk(() => ({})),
-        androideabi: nix.thunk(() => ({ __proto__: pos$92, eabi: true })),
+        androideabi: nix.thunk(() => ({ [nix.POS]: pos$92, eabi: true })),
         android: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               assertion: (platform) => !nix.asBool(nix.sel(platform, "isAarch32")),
               message: "The \"android\" ABI is not for 32-bit ARM. Use \"androideabi\" instead.\n",
             })),
           ]),
         })),
-        gnueabi: nix.thunk(() => ({ __proto__: pos$95, float: "soft", eabi: true })),
-        gnueabihf: nix.thunk(() => ({ __proto__: pos$96, float: "hard", eabi: true })),
+        gnueabi: nix.thunk(() => ({ [nix.POS]: pos$95, float: "soft", eabi: true })),
+        gnueabihf: nix.thunk(() => ({ [nix.POS]: pos$96, float: "hard", eabi: true })),
         gnu: nix.thunk(() => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               assertion: (platform) => !nix.asBool(nix.sel(platform, "isAarch32")),
               message: "The \"gnu\" ABI is ambiguous on 32-bit ARM. Use \"gnueabi\" or \"gnueabihf\" instead.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               assertion: (platform) => !nix.asBool((nix.asBool(nix.sel(platform, "isPower64")) && nix.asBool(nix.sel(platform, "isBigEndian")))),
               message: "The \"gnu\" ABI is ambiguous on big-endian 64-bit PowerPC. Use \"gnuabielfv2\" or \"gnuabielfv1\" instead.\n",
             })),
           ]),
         })),
-        gnuabi64: nix.thunk(() => ({ __proto__: pos$100, abi: "64" })),
-        muslabi64: nix.thunk(() => ({ __proto__: pos$101, abi: "64" })),
-        gnuabin32: nix.thunk(() => ({ __proto__: pos$102, abi: "n32" })),
-        muslabin32: nix.thunk(() => ({ __proto__: pos$103, abi: "n32" })),
-        gnuabielfv2: nix.thunk(() => ({ __proto__: pos$104, abi: "elfv2" })),
-        gnuabielfv1: nix.thunk(() => ({ __proto__: pos$105, abi: "elfv1" })),
-        musleabi: nix.thunk(() => ({ __proto__: pos$106, float: "soft", eabi: true })),
-        musleabihf: nix.thunk(() => ({ __proto__: pos$107, float: "hard", eabi: true })),
+        gnuabi64: nix.thunk(() => ({ [nix.POS]: pos$100, abi: "64" })),
+        muslabi64: nix.thunk(() => ({ [nix.POS]: pos$101, abi: "64" })),
+        gnuabin32: nix.thunk(() => ({ [nix.POS]: pos$102, abi: "n32" })),
+        muslabin32: nix.thunk(() => ({ [nix.POS]: pos$103, abi: "n32" })),
+        gnuabielfv2: nix.thunk(() => ({ [nix.POS]: pos$104, abi: "elfv2" })),
+        gnuabielfv1: nix.thunk(() => ({ [nix.POS]: pos$105, abi: "elfv1" })),
+        musleabi: nix.thunk(() => ({ [nix.POS]: pos$106, float: "soft", eabi: true })),
+        musleabihf: nix.thunk(() => ({ [nix.POS]: pos$107, float: "hard", eabi: true })),
         musl: nix.thunk(() => ({})),
         picolibc: nix.thunk(() => ({})),
-        uclibceabi: nix.thunk(() => ({ __proto__: pos$108, float: "soft", eabi: true })),
-        uclibceabihf: nix.thunk(() => ({ __proto__: pos$109, float: "hard", eabi: true })),
+        uclibceabi: nix.thunk(() => ({ [nix.POS]: pos$108, float: "soft", eabi: true })),
+        uclibceabihf: nix.thunk(() => ({ [nix.POS]: pos$109, float: "hard", eabi: true })),
         uclibc: nix.thunk(() => ({})),
         unknown: nix.thunk(() => ({})),
       }))));
@@ -593,33 +593,33 @@ export default nix.lambda((args) => (() => {
       const verify = nix.thunk(() => nix.attr(from_3, "verify"));
       return (components) => (() => {
         nix.assert_(nix.app(verify, components), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/systems/parse.nix:789:5");
-        return nix.update(components, { __proto__: pos$111, _type: "system" });
+        return nix.update(components, { [nix.POS]: pos$111, _type: "system" });
       })();
     })());
     const mkSkeletonFromList = nix.thunk(() => (() => {
       const linuxComponents = nix.thunk(() => ["eabi", "eabihf", "elf", "gnu"]);
       const appleComponents = nix.thunk(() => ["redox", "mmixware", "ghcjs", "mingw32", "uefi"]);
       return (l) => nix.selOr({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         "1": nix.thunk(() => (() => {
           const firstComponent = nix.thunk(() => nix.app(head, l));
-          return (nix.asBool(nix.eq(firstComponent, "avr")) ? { __proto__: pos$112, cpu: firstComponent, kernel: "none", abi: "unknown" } : nix.builtins.throw(nix.thunk(() => nix.str`system string '${nix.app(nix.sel(lib, "concatStringsSep"), "-", l)}' with 1 component is ambiguous`)));
+          return (nix.asBool(nix.eq(firstComponent, "avr")) ? { [nix.POS]: pos$112, cpu: firstComponent, kernel: "none", abi: "unknown" } : nix.builtins.throw(nix.thunk(() => nix.str`system string '${nix.app(nix.sel(lib, "concatStringsSep"), "-", l)}' with 1 component is ambiguous`)));
         })()),
         "2": nix.thunk(() => (() => {
           const secondComponent = nix.thunk(() => nix.app(elemAt, l, 1n));
           return (nix.asBool(nix.eq(secondComponent, "cygwin")) ? nix.app(mkSkeletonFromList, nix.thunk(() => [nix.thunk(() => nix.app(head, l)), "pc", secondComponent])) : (nix.asBool(nix.eq(secondComponent, "windows")) ? {
-            __proto__: pos$113,
+            [nix.POS]: pos$113,
             cpu: nix.thunk(() => nix.app(head, l)),
             kernel: secondComponent,
             abi: "msvc",
           } : (nix.asBool(nix.eq(secondComponent, "elf")) ? {
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             cpu: nix.thunk(() => nix.app(head, l)),
             vendor: "unknown",
             kernel: "none",
             abi: secondComponent,
           } : {
-            __proto__: pos$115,
+            [nix.POS]: pos$115,
             cpu: nix.thunk(() => nix.app(head, l)),
             kernel: secondComponent,
           })));
@@ -628,25 +628,25 @@ export default nix.lambda((args) => (() => {
           const secondComponent = nix.thunk(() => nix.app(elemAt, l, 1n));
           const thirdComponent = nix.thunk(() => nix.app(elemAt, l, 2n));
           return (nix.asBool((nix.asBool(nix.eq(secondComponent, "linux")) || nix.asBool(nix.app(elem, thirdComponent, linuxComponents)))) ? {
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             cpu: nix.thunk(() => nix.app(head, l)),
             kernel: secondComponent,
             abi: thirdComponent,
             vendor: "unknown",
           } : (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(secondComponent, "apple")) || nix.asBool(nix.app(elem, thirdComponent, appleComponents)))) || nix.asBool(nix.app(hasPrefix, "freebsd", thirdComponent)))) || nix.asBool(nix.app(hasPrefix, "netbsd", thirdComponent)))) || nix.asBool(nix.app(hasPrefix, "openbsd", thirdComponent)))) || nix.asBool(nix.app(hasPrefix, "genode", thirdComponent)))) || nix.asBool(nix.app(hasPrefix, "wasm32", nix.thunk(() => nix.app(head, l)))))) ? {
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             cpu: nix.thunk(() => nix.app(head, l)),
             vendor: secondComponent,
             kernel: nix.thunk(() => (nix.asBool(nix.eq(thirdComponent, "mingw32")) ? "windows" : nix.force(thirdComponent))),
           } : (nix.asBool(nix.eq(thirdComponent, "cygwin")) ? {
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             cpu: nix.thunk(() => nix.app(head, l)),
             vendor: secondComponent,
             kernel: thirdComponent,
           } : nix.builtins.throw(nix.thunk(() => nix.str`system string '${nix.app(nix.sel(lib, "concatStringsSep"), "-", l)}' with 3 components is ambiguous`)))));
         })()),
         "4": nix.thunk(() => ({
-          __proto__: pos$119,
+          [nix.POS]: pos$119,
           cpu: nix.thunk(() => nix.app(head, l)),
           vendor: nix.thunk(() => nix.app(elemAt, l, 1n)),
           kernel: nix.thunk(() => nix.app(elemAt, l, 2n)),
@@ -675,7 +675,7 @@ export default nix.lambda((args) => (() => {
           return null;
         })());
         const parsed = nix.thunk(() => ({
-          __proto__: pos$121,
+          [nix.POS]: pos$121,
           cpu: nix.thunk(() => nix.app(getCpu, nix.thunk(() => nix.sel(args_2, "cpu")))),
           vendor: nix.thunk(() => (nix.asBool(nix.has(args_2, "vendor")) ? nix.app(getVendor, nix.thunk(() => nix.sel(args_2, "vendor"))) : (nix.asBool(nix.app(isDarwin, parsed)) ? nix.sel(vendors, "apple") : (nix.asBool((nix.asBool(nix.app(isWindows, parsed)) || nix.asBool(nix.app(isCygwin, parsed)))) ? nix.sel(vendors, "pc") : nix.sel(vendors, "unknown"))))),
           kernel: nix.thunk(() => (nix.asBool(nix.app(hasDarwinPrefix, nix.thunk(() => nix.sel(args_2, "kernel")))) ? nix.sel(kernels, "darwin") : (nix.asBool(nix.app(hasBsdPrefix, nix.thunk(() => nix.sel(args_2, "kernel")))) ? nix.sel(kernels, "netbsd") : nix.app(getKernel, nix.thunk(() => nix.app(removeAbiSuffix, nix.thunk(() => nix.sel(args_2, "kernel")))))))),
@@ -708,9 +708,9 @@ export default nix.lambda((args) => (() => {
       return nix.str`${cpuName}-${nix.sel(vendor, "name")}-${nix.app(kernelName, kernel)}${optExecFormat}${optAbi}`;
     })(), formals$5);
     const mkMuslSystem = (parsed) => nix.app((x) => nix.app(nix.sel(lib, "trivial", "pipe"), x, nix.thunk(() => [(x_1) => nix.builtins.removeAttrs(x_1, nix.thunk(() => ["_type"])), mkSystem])), nix.thunk(() => nix.update(parsed, {
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         abi: nix.thunk(() => nix.selOr({
-          __proto__: pos$122,
+          [nix.POS]: pos$122,
           gnu: nix.thunk(() => nix.sel(abis, "musl")),
           gnueabi: nix.thunk(() => nix.sel(abis, "musleabi")),
           gnueabihf: nix.thunk(() => nix.sel(abis, "musleabihf")),
@@ -725,7 +725,7 @@ export default nix.lambda((args) => (() => {
         }, () => nix.sel(abis, "musl"), nix.key(nix.sel(parsed, "abi", "name")))),
       })));
     return {
-      __proto__: pos$124,
+      [nix.POS]: pos$124,
       types,
       significantBytes,
       cpuTypes,

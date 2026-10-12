@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "pd777",
       version: "0-unstable-2026-09-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mittonk",
           repo: "PD777",
           rev: "331af5f53cc0ffbab90f915681c8dfe3a4cda0a2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       extraNativeBuildInputs: nix.thunk(() => [gitMinimal]),
       postPatch: "# The libretro Makefile writes object files outside sourceRoot.\nchmod -R u+w ../core\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Epoch Cassette Vision emulator core for libretro",
         homepage: "https://github.com/mittonk/PD777",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

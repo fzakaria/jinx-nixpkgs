@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       variant: "3.2",
       version: "2019-07-27",
       branch: "master",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bashup",
           repo: "events",
           rev: "83744c21bf720afb8325343674c62ab46a8f3d94",
           hash: "sha256-0VDjd+1T1JBmSDGovWOOecUZmNztlwG32UcstfdigbI=",
         })))),
-      fake: nix.thunk(() => ({ __proto__: pos$2, function: nix.thunk(() => ["__ev.encode"]) })),
+      fake: nix.thunk(() => ({ [nix.POS]: pos$2, function: nix.thunk(() => ["__ev.encode"]) })),
       keep: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         eval: nix.thunk(() => ["e", "f", "q", "r"]),
         $f: true,
         $n: true,

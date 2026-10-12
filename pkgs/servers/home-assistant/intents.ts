@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "home-assistant-intents",
       version: "2026.8.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OHF-Voice",
           repo: "intents-package",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ ${nix.sel(python, "pythonOnBuildForHost", "interpreter")} script/write_languages
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["intents/tests"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/intents-package/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Intents to be used with Home Assistant",
         homepage: "https://github.com/OHF-Voice/intents-package",

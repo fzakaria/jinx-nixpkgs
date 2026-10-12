@@ -53,35 +53,35 @@ ${nix.app(render, nix.thunk(() => nix.sel(cfg, "proxies")), (proxyInterfaceName)
 }`)}
 `)))));
   const proxy = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         interface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "Listen for any Neighbor Solicitation messages on this interface,\nand respond to them according to a set of rules.\nDefaults to the name of the attrset.\n",
             default: null,
           })))),
         router: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             description: "Turns on or off the router flag for Neighbor Advertisement Messages.\n",
             default: true,
           })))),
         timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             description: "Controls how long to wait for a Neighbor Advertisement Message before\ninvalidating the entry, in milliseconds.\n",
             default: 500n,
           })))),
         ttl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             description: "Controls how long a valid or invalid entry remains in the cache, in\nmilliseconds.\n",
             default: 30000n,
           })))),
         rules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), rule)),
             description: "This is a rule that the target address is to match against. If no netmask\nis provided, /128 is assumed. You may have several rule sections, and the\naddresses may or may not overlap.\n",
             default: nix.thunk(() => ({})),
@@ -89,23 +89,23 @@ ${nix.app(render, nix.thunk(() => nix.sel(cfg, "proxies")), (proxyInterfaceName)
       })),
     }))));
   const rule = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       options: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         network: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "This is the target address is to match against. If no netmask\nis provided, /128 is assumed. The addresses of several rules\nmay or may not overlap.\nDefaults to the name of the attrset.\n",
             default: null,
           })))),
         method: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["static", "iface", "auto"]))),
             description: "static: Immediately answer any Neighbor Solicitation Messages\n  (if they match the IP rule).\niface: Forward the Neighbor Solicitation Message through the specified\n  interface and only respond if a matching Neighbor Advertisement\n  Message is received.\nauto: Same as iface, but instead of manually specifying the outgoing\n  interface, check for a matching route in /proc/net/ipv6_route.\n",
             default: "auto",
           })))),
         interface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "Interface to use when method is iface.",
             default: null,
@@ -113,42 +113,42 @@ ${nix.app(render, nix.thunk(() => nix.sel(cfg, "proxies")), (proxyInterfaceName)
       })),
     }))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         ndppd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "daemon that proxies NDP (Neighbor Discovery Protocol) messages between interfaces")),
           interface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Interface which is on link-level with router.\n(Legacy option, use services.ndppd.proxies.\\<interface\\>.rules.\\<network\\> instead)\n",
               default: null,
               example: "eth0",
             })))),
           network: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Network that we proxy.\n(Legacy option, use services.ndppd.proxies.\\<interface\\>.rules.\\<network\\> instead)\n",
               default: null,
               example: "1111::/64",
             })))),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "Path to configuration file.",
               default: null,
             })))),
           routeTTL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               description: "This tells 'ndppd' how often to reload the route file /proc/net/ipv6_route,\nin milliseconds.\n",
               default: 30000n,
             })))),
           proxies: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), proxy)),
               description: "This sets up a listener, that will listen for any Neighbor Solicitation\nmessages, and respond to them according to a set of rules.\n",
               default: nix.thunk(() => ({})),
@@ -158,34 +158,34 @@ ${nix.app(render, nix.thunk(() => nix.sel(cfg, "proxies")), (proxyInterfaceName)
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         warnings: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "interface"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "network"), null)))), nix.thunk(() => [
             "The options services.ndppd.interface and services.ndppd.network will probably be removed soon,\nplease use services.ndppd.proxies.<interface>.rules.<network> instead.\n",
           ]))),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           ndppd: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             proxies: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "interface"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "network"), null)))), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "interface"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   rules: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "network"), nix.thunk(() => ({}))]])),
                 }))],
               ])))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             ndppd: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "NDP Proxy Daemon",
               documentation: nix.thunk(() => ["man:ndppd(1)", "man:ndppd.conf(5)"]),
               after: nix.thunk(() => ["network-pre.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ndppd")}/bin/ndppd -c ${ndppdConf}`),
                 CapabilityBoundingSet: "CAP_NET_RAW CAP_NET_ADMIN",
                 ProtectSystem: "strict",

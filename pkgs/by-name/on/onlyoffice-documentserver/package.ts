@@ -37,28 +37,28 @@ export default nix.lambda((args) => (() => {
   const version = "9.3.1";
   const x2t = nix.thunk(() => nix.app(callPackage, nix.path(here, "./x2t.nix"), nix.thunk(() => ({}))));
   const server_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ONLYOFFICE",
       repo: "server",
       tag: "v9.3.1.1",
       hash: "sha256-uN1L/4I7wrg0BqAAu3zdn8LqtdfJDAHnAMbCvzQnOvI=",
     }))));
   const document_templates_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "ONLYOFFICE",
       repo: "document-templates",
       tag: "v9.3.1.1",
       hash: "sha256-+52+MK/8DARJrQRbIpN5nk3j3J9cy6Wd1FDMnCVZKRE=",
     }))));
   const document_formats_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "ONLYOFFICE",
       repo: "document-formats",
       tag: "v9.3.1.1",
       hash: "sha256-HpGhV+PGbQ5hHH6mPQTAdFpBT3nUni4VtDxTExJypAc=",
     }))));
   const common = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "onlyoffice-server-Common",
       src: server_src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/Common`),
@@ -70,7 +70,7 @@ sed -e "s/^const buildVersion = '[0-9.]*'/const buildVersion = '${version}'/" -i
       postInstall: "ln -s $out/lib/node_modules/common $out/lib/node_modules/Common\n",
     })));
   const docservice = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "onlyoffice-server-DocService",
       src: server_src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/DocService`),
@@ -87,7 +87,7 @@ ln -s $out/lib/node_modules/coauthoring $out/lib/node_modules/DocService
 `),
     })));
   const fileconverter = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "onlyoffice-server-FileConverter",
       src: server_src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/FileConverter`),
@@ -148,11 +148,11 @@ ${nix.sel(x2t, "components", "allthemesgen")}/bin/allthemesgen \\
   --params="280,224"
 `)));
   const onlyoffice_documentserver = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "onlyoffice-documentserver",
       version: "9.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "ONLYOFFICE",
           repo: "document-server-package",
           tag: "v9.3.1.11",
@@ -200,18 +200,18 @@ mkdir -p $out/var/lib/onlyoffice
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         x2t: x2t,
         "x2t-with-fonts-and-themes": x2t_with_fonts_and_themes,
         common: common,
         docservice: docservice,
         fileconverter: fileconverter,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "onlyoffice")),
         }, nix.sel(x2t, "tests"))),
         fhs: nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "onlyoffice-wrapper",
             targetPkgs: (pkgs) => [
               nix.thunk(() => nix.sel(gcc_unwrapped, "lib")),
@@ -225,7 +225,7 @@ cp -ar ${onlyoffice_documentserver}/var/www/* $out/var/www/
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "ONLYOFFICE Document Server is an online office suite comprising viewers and editors",
         longDescription: "ONLYOFFICE Document Server is an online office suite comprising viewers and editors for texts, spreadsheets and presentations,\nfully compatible with Office Open XML formats: .docx, .xlsx, .pptx and enabling collaborative editing in real time.\n",
         homepage: "https://github.com/ONLYOFFICE/DocumentServer",

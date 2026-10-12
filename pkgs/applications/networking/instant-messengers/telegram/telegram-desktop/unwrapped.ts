@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const qtshadertools = nix.arg($, "qtshadertools");
   const tdlib = nix.arg($, "tdlib");
-  const tg_owt = nix.argOr($, "tg_owt", () => nix.app(callPackage, nix.path(here, "./tg_owt.nix"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv }))));
+  const tg_owt = nix.argOr($, "tg_owt", () => nix.app(callPackage, nix.path(here, "./tg_owt.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
   const qtbase = nix.arg($, "qtbase");
   const qtsvg = nix.arg($, "qtsvg");
   const qtwayland = nix.arg($, "qtwayland");
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
     "telegram-desktop-unwrapped",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "telegram-desktop-unwrapped",
       version: "7.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "telegramdesktop",
           repo: "tdesktop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         ada,
         cmark_gfm,
         libfido2,
-        nix.thunk(() => nix.app(nix.sel(tdlib, "override"), nix.thunk(() => ({ __proto__: pos$3, tde2eOnly: true })))),
+        nix.thunk(() => nix.app(nix.sel(tdlib, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, tde2eOnly: true })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [protobuf, qtwayland, kcoreaddons, hunspell])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(finalAttrs, "pname")), needsPangoTlottie)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [pango])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(finalAttrs, "pname")), needsPangoTlottie)), nix.thunk(() => [tlottie])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15, libicns, libavif, libheif, libjxl]))))))),
       dontWrapQtApps: true,
       cmakeFlags: nix.thunk(() => [
@@ -104,12 +104,12 @@ ln -sr $out/{Applications/${nix.sel(finalAttrs, "meta", "mainProgram")}.app/Cont
 runHook postInstall
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tg_owt: tg_owt,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Telegram Desktop messaging app",
         longDescription: "Desktop client for the Telegram messenger, based on the Telegram API and\nthe MTProto secure protocol.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

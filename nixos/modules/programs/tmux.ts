@@ -95,15 +95,15 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (x) => nix.str`run-shell ${
 ${nix.sel(cfg, "extraConfig")}
 `);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       programs: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         tmux: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whenever to configure {command}`tmux` system-wide.",
@@ -111,111 +111,111 @@ ${nix.sel(cfg, "extraConfig")}
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tmux", nix.thunk(() => ({})))),
           aggressiveResize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Resize the window to the size of the smallest session for which it is the current window.\n",
             })))),
           baseIndex: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: 0n,
               example: 1n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "Base index for windows and panes.",
             })))),
           clock24: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Use 24 hour clock.",
             })))),
           customPaneNavigationAndResize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Override the hjkl and HJKL bindings for pane navigation and resizing in VI mode.",
             })))),
           escapeTime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: 500n,
               example: 0n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "Time in milliseconds for which tmux waits after an escape is input.",
             })))),
           extraConfigBeforePlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "",
               description: "Additional contents of /etc/tmux.conf, to be run before sourcing plugins.\n",
               type: nix.thunk(() => nix.sel(types, "lines")),
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "",
               description: "Additional contents of /etc/tmux.conf, to be run after sourcing plugins.\n",
               type: nix.thunk(() => nix.sel(types, "lines")),
             })))),
           historyLimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: 2000n,
               example: 5000n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "Maximum number of lines held in window history.",
             })))),
           keyMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: defaultKeyMode,
               example: "vi",
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["emacs", "vi"]))),
               description: "VI or Emacs style shortcuts.",
             })))),
           newSession: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Automatically spawn a session if trying to attach and none are running.",
             })))),
           reverseSplit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Reverse the window split shortcuts.",
             })))),
           resizeAmount: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: defaultResize,
               example: 10n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "Number of lines/columns when resizing.",
             })))),
           shortcut: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: defaultShortcut,
               example: "a",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Ctrl following by this key is used as the main shortcut.",
             })))),
           terminal: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: defaultTerminal,
               example: "screen-256color",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Set the $TERM variable. Use tmux-direct if italics or 24bit true color\nsupport is needed.\n",
             })))),
           secureSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Store tmux socket under /run, which is more secure than /tmp, but as a\ndownside it doesn't survive user logout.\n",
             })))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               description: "List of plugins to install.",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.tmuxPlugins.nord ]")),
             })))),
           withUtempter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Whether to enable libutempter for tmux.\nThis is required so that tmux can write to /var/run/utmp (which can be queried with `who` to display currently connected user sessions).\nNote, this will add a guid wrapper for the group utmp!\n",
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
@@ -224,25 +224,25 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
-            "tmux.conf": nix.thunk(() => ({ __proto__: pos$22, text: tmuxConf })),
+            [nix.POS]: pos$23,
+            "tmux.conf": nix.thunk(() => ({ [nix.POS]: pos$22, text: tmuxConf })),
           })),
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "plugins"))),
           variables: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             TMUX_TMPDIR: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "secureSocket")), "${XDG_RUNTIME_DIR:-\"/run/user/$(id -u)\"}")),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           wrappers: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "withUtempter")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               utempter: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs, "libutempter")}/lib/utempter/utempter`),
                 owner: "root",
                 group: "utmp",
@@ -256,7 +256,7 @@ ${nix.sel(cfg, "extraConfig")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "tmux", "extraTmuxConf"]), nix.thunk(() => ["programs", "tmux", "extraConfig"]))),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hxtmdev"))];

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "licomp-toolkit",
       version: "0.5.20",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "software-compliance-org",
           repo: "licomp-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["licomp_toolkit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module and program to check compatibility between two licenses with context",
         homepage: "https://codeberg.org/software-compliance-org/licomp-toolkit",
         mainProgram: "licomp-toolkit",

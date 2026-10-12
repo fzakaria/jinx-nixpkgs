@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const openssl = nix.arg($, "openssl");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg_background",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vibhorkum",
           repo: "pg_background",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => nix.sel(postgresql, "buildInputs")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run PostgreSQL Commands in Background Workers",
         homepage: "https://github.com/vibhorkum/pg_background",
         changelog: nix.thunk(() => nix.str`https://github.com/vibhorkum/pg_background/releases/tag/v${nix.sel(finalAttrs, "version")}`),

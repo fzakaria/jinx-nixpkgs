@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ __proto__: pos$1, name: "firefox", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, name: "firefox", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const firefox_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(firefox_bin, "unwrapped"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "playwright-firefox",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-FyUUBrffHSh28C3BfYgHRJzTbAixRXN0QoZ3tbtdbYU=",
             "aarch64-linux": "sha256-vkK7bYqf5FiYoHcNmSjXYy7i5rsSLNpx9w+KL7MY0uo=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
     };
     })())));
   const firefox_darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "aarch64-darwin": "sha256-mFCMrL5PMX5C0Ob/tKKfbZfZJwF5QDM0rhS7v/P3IUw=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "x86_64-linux": firefox_linux,
     "aarch64-linux": firefox_linux,
     "aarch64-darwin": firefox_darwin,

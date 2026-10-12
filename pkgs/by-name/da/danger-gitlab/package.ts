@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "danger-gitlab",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["danger"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "danger-gitlab")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gem that exists to ensure all dependencies are set up for Danger with GitLab",
         homepage: "https://github.com/danger/danger-gitlab-gem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

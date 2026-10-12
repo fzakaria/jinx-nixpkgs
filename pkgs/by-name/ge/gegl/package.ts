@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
   const withLuaJIT = nix.argOr($, "withLuaJIT", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), luajit));
   const gimp = nix.arg($, "gimp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gegl",
       version: "0.4.70",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.gimp.org/pub/gegl/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gegl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-R/UNnDrs03XetIwR6/6tUtFi5PwWKks9RGGCd/H67AI=",
         })))),
@@ -91,9 +91,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "chmod +x tests/opencl/opencl_test.sh\npatchShebangs tests/ff-load-save/tests_ff_load_save.sh tests/opencl/opencl_test.sh tools/xml_insert.sh\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, gimp: gimp })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, gimp: gimp })) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Graph-based image processing framework",
         homepage: "https://www.gegl.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

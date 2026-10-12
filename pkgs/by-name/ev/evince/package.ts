@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const supportMultimedia = nix.argOr($, "supportMultimedia", () => true);
   const withLibsecret = nix.argOr($, "withLibsecret", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "evince",
       version: "48.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evince/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evince-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8pbFxmKIZjXUzVl+isCvzeeYK+RIZTPCt/CVsmi+hmg=",
         })))),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         })()))))),
       mesonFlags: nix.thunk(() => nix.concat(["-Dnautilus=false", "-Dps=enabled"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibsecret)), nix.thunk(() => ["-Dkeyring=disabled"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(supportMultimedia)), nix.thunk(() => ["-Dmultimedia=disabled"]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_STRING_H", "-DHAVE_STDLIB_H"]))),
       })),
       postInstall: "substituteInPlace $out/share/thumbnailers/evince.thumbnailer \\\n  --replace-fail \"TryExec=evince-thumbnailer\" \"TryExec=$out/bin/evince-thumbnailer\" \\\n  --replace-fail \"Exec=evince-thumbnailer\" \"Exec=$out/bin/evince-thumbnailer\"\n",
@@ -116,11 +116,11 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "evince", freeze: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "evince", freeze: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://apps.gnome.org/Evince/",
         description: "GNOME's document viewer",
         longDescription: "Evince is a document viewer for multiple document formats.  It\ncurrently supports PDF, PostScript, DjVu, TIFF and DVI.  The goal\nof Evince is to replace the multiple document viewers that exist\non the GNOME Desktop with a single simple application.\n",

@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const nginx = nix.arg($, "nginx");
   const nginxModules = nix.arg($, "nginxModules");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "set-misc",
       version: "0.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openresty",
           repo: "set-misc-nginx-module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2QHidYeKCELkWAdXwmMq9DsirK7I06gbsUVz6uJy+CI=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nginx: nix.thunk(() => nix.app(nix.sel(nginx, "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               modules: nix.thunk(() => [
                 nix.thunk(() => nix.sel(nginxModules, "develkit")),
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Various set_xxx directives added to the rewrite module (md5/sha1, sql/json quoting and many more)",
         homepage: "https://github.com/openresty/set-misc-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

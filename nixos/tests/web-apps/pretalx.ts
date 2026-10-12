@@ -19,33 +19,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "pretalx",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "pretalx", "meta", "maintainers")),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pretalx: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$8,
-          networking: nix.thunk(() => ({ __proto__: pos$2, extraHosts: "127.0.0.1 talks.local\n" })),
+          [nix.POS]: pos$8,
+          networking: nix.thunk(() => ({ [nix.POS]: pos$2, extraHosts: "127.0.0.1 talks.local\n" })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pretalx: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "pretalx", "package", "plugins")), null);
                 return [nix.thunk(() => nix.lookup(w, "pages"))];
               })()),
-              nginx: nix.thunk(() => ({ __proto__: pos$3, domain: "talks.local" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: pos$3, domain: "talks.local" })),
               settings: nix.thunk(() => ({
-                __proto__: pos$5,
-                site: nix.thunk(() => ({ __proto__: pos$4, url: "http://talks.local" })),
+                [nix.POS]: pos$5,
+                site: nix.thunk(() => ({ [nix.POS]: pos$4, url: "http://talks.local" })),
               })),
             })),
           })),

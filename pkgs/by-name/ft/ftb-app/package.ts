@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const version = "1.30.0";
   const src = nix.thunk(() => (() => {
     const src$ = nix.thunk(() => nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "aarch64-linux": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://piston.feed-the-beast.com/app/ftb-app-linux-${version}-arm64.AppImage`),
         hash: "sha256-ldH3LhdXwS3vhiUYA/DdO2l7tRpRMs0EC70eeNNHcSc=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://piston.feed-the-beast.com/app/ftb-app-linux-${version}-x86_64.AppImage`),
         hash: "sha256-NsZXfQj6exU2JWHCT+/NQJ/ivjVrIWVU7lajeS4bDrY=",
       })),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(fetchurl, src$);
   })());
   const passthru = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     description: "Feed the Beast desktop app",
     homepage: "https://www.feed-the-beast.com/ftb-app",
     changelog: nix.thunk(() => nix.str`https://www.feed-the-beast.com/ftb-app/changes#${version}`),
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
       return nix.force(nix.lookup(w_1, "linux"));
     })()),
   }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$6, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       src: src,
       version: version,

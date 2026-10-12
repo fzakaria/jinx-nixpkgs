@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "safe_pysha3",
           version: version,
           hash: "sha256-iM6q1q9La97NL1SzGtDl5eIQ1PXsq7G9H9NTmtYbe/E=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["sha3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/5afe/pysha3/releases/tag/v${version}`),
         description: "SHA-3 (Keccak) for Python 3.9 - 3.13",
         homepage: "https://github.com/5afe/pysha3",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

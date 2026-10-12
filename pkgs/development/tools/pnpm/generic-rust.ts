@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const knownVulnerabilities = nix.argOr($, "knownVulnerabilities", () => []);
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pnpm",
       version: version,
       cargoHash: cargoHash,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pnpm",
           repo: "pnpm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin=pnpm"]),
       postInstall: nix.thunk(() => nix.add("makeWrapper \"$out\"/bin/pnpm \"$out\"/bin/pnpx \\\n  --add-flag \"dlx\"\n\nln -s \"$out\"/bin/pnpm \"$out\"/bin/pn\nln -s \"$out\"/bin/pnpx \"$out\"/bin/pnx\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "\"$out\"/bin/pnpm completion bash > pnpm.bash\n\"$out\"/bin/pnpm completion fish > pnpm.fish\n\"$out\"/bin/pnpm completion zsh > pnpm.zsh\ninstallShellCompletion pnpm.{bash,fish,zsh}\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         majorVersion: majorVersion,
         "nodejs-slim": nodejs_slim,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pnpm: nix.thunk(() => nix.attr(tests, "pnpm")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -83,7 +83,7 @@ nix-update pnpm_${majorVersion} --version="$latestVersion" --override-filename=.
       __structuredAttrs: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast, disk space efficient package manager for JavaScript",
         homepage: "https://pnpm.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pnpm/pnpm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

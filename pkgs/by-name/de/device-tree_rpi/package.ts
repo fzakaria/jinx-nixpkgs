@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const raspberrypifw = nix.arg($, "raspberrypifw");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raspberrypi-dtbs",
       version: nix.thunk(() => nix.sel(raspberrypifw, "version")),
       nativeBuildInputs: nix.thunk(() => [raspberrypifw]),
@@ -37,13 +37,13 @@ cp bcm2710-rpi-cm3.dtb bcm2837-rpi-cm3.dtb
 cp bcm2711-rpi-4-b.dtb bcm2838-rpi-4-b.dtb
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         overlays: nix.thunk(() => nix.str`${raspberrypifw}/share/raspberrypi/boot/overlays`),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(raspberrypifw, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "DTBs for the Raspberry Pi",

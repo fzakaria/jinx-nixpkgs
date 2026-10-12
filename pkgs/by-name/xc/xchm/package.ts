@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const chmlib = nix.arg($, "chmlib");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xchm",
       version: "1.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rzvncj",
           repo: "xCHM",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`export LDFLAGS="$LDFLAGS $(${wxwidgets_3_2}/bin/wx-config --libs std,aui | sed -e s@-pthread@@)"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Viewer for Microsoft HTML Help files",
         homepage: "https://github.com/rzvncj/xCHM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

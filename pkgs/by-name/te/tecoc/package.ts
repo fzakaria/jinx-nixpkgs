@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tecoc",
       version: "0-unstable-2026-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blakemcbride",
           repo: "TECOC",
           rev: "c18a5ea95591994d36535d603e098836c6b86b7a",
@@ -38,19 +38,19 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -d $out/bin $out/share/doc/tecoc $out/lib/teco/macros\ninstall -m755 src/tecoc $out/bin\ninstall -m644 src/aaout.txt doc/* $out/share/doc/tecoc\ninstall -m644 lib/* lib2/* $out/lib/teco/macros\n\nrunHook postInstall\n",
       postFixup: "pushd $out/bin\nln -s tecoc Make\nln -s tecoc mung\nln -s tecoc teco\nln -s tecoc Inspect\npopd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.sel(finalAttrs, "meta", "homepage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/blakemcbride/TECOC",
         description: "Clone of the good old TECO editor",
         longDescription: "For those who don't know: TECO is the acronym of Tape Editor and COrrector\n(because it was a paper tape edition tool in its debut days). Now the\nacronym follows after Text Editor and Corrector, or Text Editor\nCharacter-Oriented.\n\nTECO is a character-oriented text editor, originally developed by Dan\nMurphy at MIT circa 1962. It is also a Turing-complete imperative\ninterpreted programming language for text manipulation, done via\nuser-loaded sets of macros. In fact, the venerable Emacs was born as a set\nof Editor MACroS for TECO.\n\nTECOC is a portable C implementation of TECO-11.\n",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             shortName: "tecoc",
             url: nix.thunk(() => nix.str`https://github.com/blakemcbride/TECOC/blob/${nix.sel(finalAttrs, "src", "rev")}/doc/readme-1st.txt`),
           })))),

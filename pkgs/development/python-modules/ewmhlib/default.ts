@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python_xlib = nix.arg($, "python-xlib");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.2",
       pname: "ewmhlib",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kalmat",
           repo: "EWMHlib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: [],
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Kalmat/EWMHlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Extended Window Manager Hints implementation in Python 3",

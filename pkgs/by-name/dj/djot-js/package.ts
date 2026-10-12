@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "djot-js";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgm",
           repo: "djot.js",
           rev: nix.thunk(() => nix.str`@djot/djot@${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nnpm run test\n\nrunHook postCheck\n";
       const postInstall = "installManPage doc/djot.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JavaScript implementation of djot",
         homepage: "https://github.com/jgm/djot.js",
         changelog: nix.thunk(() => nix.str`https://github.com/jgm/djot.js/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "djot",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

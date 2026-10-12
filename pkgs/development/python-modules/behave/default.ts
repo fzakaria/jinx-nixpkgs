@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "behave",
           repo: "behave",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +69,7 @@ ${nix.sel(python, "interpreter")} bin/behave -f progress3 --stop --tags='~@xfail
 ${nix.sel(python, "interpreter")} bin/behave -f progress3 --stop --tags='~@xfail' issue.features/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/behave/behave/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         homepage: "https://github.com/behave/behave",
         description: "Behaviour-driven development, Python style",
@@ -84,7 +84,7 @@ ${nix.sel(python, "interpreter")} bin/behave -f progress3 --stop --tags='~@xfail
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

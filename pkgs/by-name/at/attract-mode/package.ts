@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "attract-mode",
       version: "2.7.0-unstable-2024-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mickelson",
           repo: "attract",
           rev: "6ed3a1e32a519608c0b495295cc4c18ceea6b461",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["USE_FONTCONFIG=0"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Frontend for arcade cabinets and media PCs",
         homepage: "http://attractmode.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

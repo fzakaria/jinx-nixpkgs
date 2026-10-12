@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/cryptosense/terminal_size/releases/download/v${version}/terminal_size-${version}.tbz`),
           hash: "sha256-1rYs0oxAcayFypUoCIdFwSTJCU7+rpFyJRRzb5lzsPs=",
         }))));
       const checkInputs = nix.thunk(() => [alcotest]);
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get the dimensions of the terminal",
         homepage: "https://github.com/cryptosense/terminal_size",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         duneVersion,

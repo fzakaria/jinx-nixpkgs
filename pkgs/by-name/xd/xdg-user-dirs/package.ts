@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xdg-user-dirs",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://user-dirs.freedesktop.org/releases/xdg-user-dirs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uONChiePT+8+G/6WhcOVzMDrUMFNOi+0lT3QD7/Trzk=",
         })))),
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
         gettext,
       ]),
       buildInputs: nix.thunk(() => [libiconv, libintl]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-liconv" })))),
       preFixup: "# fallback values need to be last\nwrapProgram \"$out/bin/xdg-user-dirs-update\" \\\n  --suffix XDG_CONFIG_DIRS : \"$out/etc/xdg\"\n\n# Autostart, because the installed service is never explicitly enabled in NixOS\nsubstituteInPlace \"$out/etc/xdg/autostart/xdg-user-dirs.desktop\" \\\n  --replace-fail \"X-systemd-skip=true\" \"X-systemd-skip=false\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://freedesktop.org/wiki/Software/xdg-user-dirs",
         description: "Tool to help manage well known user directories like the desktop folder and the music folder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

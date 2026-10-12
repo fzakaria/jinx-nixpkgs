@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
         })), cmd);
       const caKey = nix.thunk(() => nix.app(runWithOpenSSL, "ca.key", "openssl ecparam -name prime256v1 -genkey -noout -out $out"));
@@ -68,29 +68,29 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
 `)));
       const clientKeyPath = "/root";
       return {
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         name: nix.thunk(() => nix.str`postgresql-tls-client-cert-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "erictapen"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           server: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               systemd: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "create-keys": nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     wantedBy: nix.thunk(() => ["postgresql.target"]),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`mkdir -p '${serverKeyPath}'
 cp '${serverKey}' '${serverKeyPath}/server.key'
 chown postgres:postgres '${serverKeyPath}/server.key'
@@ -100,18 +100,18 @@ chmod 600 '${serverKeyPath}/server.key'
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   package: package$,
                   enable: true,
                   enableTCPIP: true,
                   ensureUsers: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$7, name: "test", ensureDBOwnership: true })),
+                    nix.thunk(() => ({ [nix.POS]: pos$7, name: "test", ensureDBOwnership: true })),
                   ]),
                   ensureDatabases: nix.thunk(() => ["test"]),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     ssl: "on",
                     ssl_ca_file: nix.thunk(() => nix.builtins.toString(caCert)),
                     ssl_cert_file: nix.thunk(() => nix.builtins.toString(serverCert)),
@@ -121,35 +121,35 @@ chmod 600 '${serverKeyPath}/server.key'
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$11, address: "fc00::1", prefixLength: 120n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$11, address: "fc00::1", prefixLength: 120n })),
                       ]),
                     })),
                   })),
                 })),
-                firewall: nix.thunk(() => ({ __proto__: pos$15, allowedTCPPorts: nix.thunk(() => [5432n]) })),
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [5432n]) })),
               })),
             };
           })(), formals$3),
           client: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             return {
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               systemd: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 services: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "create-keys": nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$18, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`mkdir -p '${clientKeyPath}'
 cp '${clientKey}' '${clientKeyPath}/client.key'
 chown root:root '${clientKeyPath}/client.key'
@@ -159,9 +159,9 @@ chmod 600 '${clientKeyPath}/client.key'
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 variables: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   PGHOST: "db.test.example",
                   PGPORT: "5432",
                   PGDATABASE: "test",
@@ -174,20 +174,20 @@ chmod 600 '${clientKeyPath}/client.key'
                 systemPackages: nix.thunk(() => [package$]),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$24, address: "fc00::2", prefixLength: 120n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$24, address: "fc00::2", prefixLength: 120n })),
                       ]),
                     })),
                   })),
                 })),
-                hosts: nix.thunk(() => ({ __proto__: pos$28, "fc00::1": nix.thunk(() => ["db.test.example"]) })),
+                hosts: nix.thunk(() => ({ [nix.POS]: pos$28, "fc00::1": nix.thunk(() => ["db.test.example"]) })),
               })),
             };
           })(), formals$4),
@@ -195,6 +195,6 @@ chmod 600 '${clientKeyPath}/client.key'
         testScript: "server.wait_for_unit(\"multi-user.target\")\nclient.wait_for_unit(\"multi-user.target\")\nclient.succeed(\"psql -c \\\"SELECT 1;\\\"\")\n",
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ __proto__: pos$33, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$33, makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-tls-client-cert.ts.map

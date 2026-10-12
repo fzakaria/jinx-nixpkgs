@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2jack",
       scripts: nix.thunk(() => ["faust2jack", "faust2jackconsole"]),
       buildInputs: nix.thunk(() => [bash]),

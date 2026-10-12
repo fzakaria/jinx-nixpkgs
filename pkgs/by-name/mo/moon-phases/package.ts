@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "moon-phases";
       const version = "0.3.3";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8ZdtM246aqc49Q3ygMGk51LIzRA8RIdlaistbKUj3yY=",
         }))));
       const cargoHash = "sha256-8Ada1KBGO1q61dg+4NMJ1Sbipr3ATSP5PO14oQ/QWGs=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line/WM bar tool to display the moon phase at a certain date",
         homepage: "https://github.com/mirrorwitch/moon-phases",
         license: nix.thunk(() => nix.sel(lib, "licenses", "acsl14")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "moon-phases",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

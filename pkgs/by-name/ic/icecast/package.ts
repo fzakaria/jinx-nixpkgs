@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const speex = nix.arg($, "speex");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "icecast",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/icecast/icecast-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2aoHx0Ka7BnZUP9v1CXDcfdxWM00/yIPwZGywYbGfHo=",
         })))),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
         speex,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, icecast: nix.thunk(() => nix.attr(nixosTests, "icecast")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, icecast: nix.thunk(() => nix.attr(nixosTests, "icecast")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Server software for streaming multimedia",
         mainProgram: "icecast",
         longDescription: "Icecast is a streaming media server which currently supports\nOgg (Vorbis and Theora), Opus, WebM and MP3 audio streams.\nIt can be used to create an Internet radio station or a privately\nrunning jukebox and many things in between. It is very versatile\nin that new formats can be added relatively easily and supports\nopen standards for communication and interaction.\n",

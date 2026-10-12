@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "setoids",
       version: "2018-06-18",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danilkolikov",
           repo: "setoids",
           rev: "41b4af3b1a537d9471107a639ad77c7abee2de18",
           sha256: "0fl1g59s16vnrdnplps5ncv27j7a93nxp9cmqp2iavjxlzlzin1v",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris proofs for extensional equalities",
         homepage: "https://github.com/danilkolikov/setoids",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

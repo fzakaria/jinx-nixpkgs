@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "keyrings.google-artifactregistry-auth",
           version: version,
           hash: "sha256-vWq7cnQNLf60pcA8OxBcb326FpyqKd7jlZaU8fAsd94=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["keyrings.gauth"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/GoogleCloudPlatform/artifact-registry-python-tools/blob/main/HISTORY.md",
         description: "Python package which allows you to configure keyring to interact with Python repositories stored in Artifact Registry",
         homepage: "https://github.com/GoogleCloudPlatform/artifact-registry-python-tools",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

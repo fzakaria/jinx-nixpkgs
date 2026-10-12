@@ -25,32 +25,32 @@ export default nix.lambda((args) => (() => {
   const equations = nix.arg($, "equations");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "category-theory",
       owner: "jwiegley",
       release: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-qPgho4/VcL3vyMPJAMXXdqhYPEbNeXSZsoWbA/lGek4=",
         })),
         "20211213": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rev: "449e30e929d56f6f90c22af2c91ffcc4d79837be",
           hash: "sha256:0vgfmph5l1zn6j4b851rcm43s8y9r83swsz07rpzhmfg34pk0nl0",
         })),
         "20210730": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: "d87937faaf7460bcd6985931ac36f551d67e11af",
           hash: "sha256:04x7433yvibxknk6gy4971yzb4saa3z4dnfy9n6irhyafzlxyf0f",
         })),
         "20190414": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           rev: "706fdb4065cc2302d92ac2bce62cb59713253119",
           hash: "sha256:16lg4xs2wzbdbsn148xiacgl4wq4xwfqjnjkdhfr3w0qh1s81hay",
         })),
         "20180709": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           rev: "3b9ba7b26a64d49a55e8b6ccea570a7f32c11ead",
           hash: "sha256:0f2nr8dgn1ab7hr7jrdmr1zla9g9h8216q4yf4wnff9qkln8sbbs",
         })),
@@ -60,22 +60,22 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "8.17")),
               out: "1.0.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.15")),
               out: "20211213",
             })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.9")),
               out: "20190414",
             })),
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.6", "8.7")),
               out: "20180709",
             })),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [ssreflect, equations]),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Formalization of category theory in Coq for personal study and practical work",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

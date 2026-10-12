@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(jrl_cmakemodules, "version")),
       src: nix.thunk(() => nix.attr(jrl_cmakemodules, "src")),
       pname: "jrl-cmakemodules-scripts",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(jrl_cmakemodules, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Release scripting tools for JRL CMake modules",
         mainProgram: "jrl-release",
       })),

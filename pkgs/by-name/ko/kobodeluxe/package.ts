@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kobodeluxe",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://olofson.net/kobodl/download/KoboDeluxe-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0f7b910a399d985437564af8c5d81d6dcf22b96b26b01488d72baa6a6fdb5c2c",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "sed -e 's/char \\*tok/const char \\*tok/' -i graphics/window.cpp\n",
       patches: nix.thunk(() => [nix.path(here, "./glibc29.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://olofson.net/kobodl/",
         description: "Enhanced version of Akira Higuchi's game XKobo  for Un*x systems with X11",
         mainProgram: "kobodl",

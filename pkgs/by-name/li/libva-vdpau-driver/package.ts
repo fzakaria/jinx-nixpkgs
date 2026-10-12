@@ -25,42 +25,42 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libva-vdpau-driver",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/vaapi/releases/libva-vdpau-driver/libva-vdpau-driver-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1fcvgshzyc50yb8qqm6v6wn23ghimay23ci0p8sm8gxcy211jp0m",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/libva-vdpau-driver-0.7.4-glext-85.patch",
             sha256: "0f0v7cl7kna3jcfnxw48b9mfl0hpacw72df9vym96sa2206vqlb0",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/libva-vdpau-driver-0.7.4-drop-h264-api.patch",
             sha256: "0q5w83jbf4qqmhwf54h906pzxgvhqv7g2vrkw7jzgnrxhhj9sj60",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/libva-vdpau-driver-0.7.4-fix_type.patch",
             sha256: "0s5dk6aa4sm0iyicnf2fwfsrqbvr58nbp77mhjg5bvwlar7znqv7",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/sigfpe-crash.patch",
             sha256: "15snqf60ib0xb3cnav5b2r55qv8lv2fa4p6jwxajh8wbvqpw0ibz",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/implement-vaquerysurfaceattributes.patch",
             sha256: "1dapx3bqqblw6l2iqqw1yff6qifam8q4m2rq343kwb3dqhy2ymy5",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/gentoo/gentoo/raw/34d5cc6fcf1d76c1c2833cb534717246c221214c/x11-libs/libva-vdpau-driver/files/libva-vdpau-driver-0.7.4-include-linux-videodev2.h.patch",
             sha256: "1m4is6lk580mppsx2mvdv1xifj6gvx724si4qynsm9qrdfdc9fby",
           })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libvdpau, libGLU, libGL, libva]),
       postPatch: "sed -i -e \"s,LIBVA_DRIVERS_PATH=.*,LIBVA_DRIVERS_PATH=$out/lib/dri,\" configure\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://cgit.freedesktop.org/vaapi/vdpau-driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "VDPAU driver for the VAAPI library",

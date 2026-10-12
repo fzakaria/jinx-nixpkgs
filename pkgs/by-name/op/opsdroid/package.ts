@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.30.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opsdroid",
           repo: "opsdroid",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "emoji")),
           nix.thunk(() => nix.lookup(w_1, "get-video-properties")),
           nix.thunk(() => nix.lookup(w_1, "ibm-watson")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matrix-nio"), "override"), nix.thunk(() => ({ __proto__: pos$2, withVodozemac: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withVodozemac: true })))),
           nix.thunk(() => nix.lookup(w_1, "mattermostdriver")),
           nix.thunk(() => nix.lookup(w_1, "motor")),
           nix.thunk(() => nix.lookup(w_1, "multidict")),
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         python: nix.thunk(() => nix.sel(python3Packages, "python")),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source chat-ops bot framework",
         homepage: "https://opsdroid.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/opsdroid/opsdroid/releases/tag/v${version}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "opsdroid",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

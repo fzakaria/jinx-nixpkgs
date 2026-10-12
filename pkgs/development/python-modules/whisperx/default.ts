@@ -36,21 +36,21 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const rocmSupport = nix.argOr($, "rocmSupport", () => nix.sel(config, "rocmSupport"));
   const ctranslate = nix.thunk(() => nix.app(nix.sel(ctranslate2, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "ctranslate2-cpp": nix.thunk(() => nix.app(nix.sel(ctranslate2_cpp, "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           withCUDA: cudaSupport,
           withCuDNN: cudaSupport,
           rocmSupport: rocmSupport,
         })))),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "whisperx",
       version: "3.8.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "m-bain",
           repo: "whisperX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["whisperx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "whisperx",
         description: "Automatic Speech Recognition with Word-level Timestamps (& Diarization)",
         homepage: "https://github.com/m-bain/whisperX",

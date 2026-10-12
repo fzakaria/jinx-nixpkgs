@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const sqlite_utils = nix.arg($, "sqlite-utils");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sqlite-utils",
       version: "4.2.1",
       pyproject: true,
       __structuredAttrs: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "sqlite-utils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis]),
       pythonImportsCheck: nix.thunk(() => ["sqlite_utils"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: sqlite_utils })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sqlite_utils })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python CLI utility and library for manipulating SQLite databases",
         mainProgram: "sqlite-utils",
         homepage: "https://github.com/simonw/sqlite-utils",

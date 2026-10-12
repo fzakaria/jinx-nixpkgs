@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const dnspython = nix.arg($, "dnspython");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-plugin-dns",
       version: "1.7.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peteeckel",
           repo: "netbox-plugin-dns",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [dnspython]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_dns" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_dns" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin for managing DNS data",
         homepage: "https://github.com/peteeckel/netbox-plugin-dns",
         changelog: nix.thunk(() => nix.str`https://github.com/peteeckel/netbox-plugin-dns/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

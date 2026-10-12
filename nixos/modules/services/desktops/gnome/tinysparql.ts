@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "gnome", "tinysparql"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     imports: nix.thunk(() => [
@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gnome", "tracker", "enable"]), nix.thunk(() => ["services", "gnome", "tinysparql", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gnome: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tinysparql: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable TinySPARQL services, a search engine,\nsearch tool and metadata storage system.\n",
@@ -51,20 +51,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tinysparql"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           dbus: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tinysparql"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tinysparql"))]),
         })),
       })))),

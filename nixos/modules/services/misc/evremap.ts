@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "evremap.toml", settings));
-  const key = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "(BTN|KEY)_[[:upper:][:digit:]_]+"), { __proto__: pos$1, description: "key ID prefixed with BTN_ or KEY_" }));
+  const key = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "(BTN|KEY)_[[:upper:][:digit:]_]+"), { [nix.POS]: pos$1, description: "key ID prefixed with BTN_ or KEY_" }));
   const mkKeyOption = (description) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: key,
       description: nix.thunk(() => nix.str`${description}
 
@@ -51,62 +51,62 @@ You can get a list of keys by running \`evremap list-keys\`.
 `),
     })));
   const mkKeySeqOption = (description) => nix.update(nix.app(mkKeyOption, description), {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), key)),
   });
   const dualRoleModule = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       options: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         input: nix.thunk(() => nix.app(mkKeyOption, "The key that should be remapped.")),
         hold: nix.thunk(() => nix.app(mkKeySeqOption, "The key sequence that should be output when the input key is held.")),
         tap: nix.thunk(() => nix.app(mkKeySeqOption, "The key sequence that should be output when the input key is tapped.")),
       })),
     }))));
   const remapModule = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         input: nix.thunk(() => nix.app(mkKeySeqOption, "The key sequence that should be remapped.")),
         output: nix.thunk(() => nix.app(mkKeySeqOption, "The key sequence that should be output when the input sequence is entered.")),
       })),
     }))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         evremap: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "evremap, a keyboard input remapper for Linux/Wayland systems")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     device_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: "AT Translated Set 2 keyboard",
                         description: "The name of the device that should be remapped.\n\nYou can get a list of devices by running `evremap list-devices` with elevated permissions.\n",
                       })))),
                     phys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "usb-0000:07:00.3-2.1.1/input0",
                         description: "The physical device name to listen on.\n\nThis attribute may be specified to disambiguate multiple devices with the same device name.\nThe physical device names of each device can be obtained by running `evremap list-devices` with elevated permissions.\n",
                       })))),
                     dual_role: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), dualRoleModule)),
                         default: [],
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             input: "KEY_CAPSLOCK",
                             hold: nix.thunk(() => ["KEY_LEFTCTRL"]),
                             tap: nix.thunk(() => ["KEY_ESC"]),
@@ -115,12 +115,12 @@ You can get a list of keys by running \`evremap list-keys\`.
                         description: "List of dual-role remappings that output different key sequences based on whether the\ninput key is held or tapped.\n",
                       })))),
                     remap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), remapModule)),
                         default: [],
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             input: nix.thunk(() => ["KEY_LEFTALT", "KEY_UP"]),
                             output: nix.thunk(() => ["KEY_PAGEUP"]),
                           })),
@@ -136,25 +136,25 @@ You can get a list of keys by running \`evremap list-keys\`.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "evremap"))]),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$22,
-          uinput: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
+          [nix.POS]: pos$22,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             evremap: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "evremap - keyboard input remapper",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "evremap")))} remap ${configFile}`),
                 DynamicUser: true,
                 User: "evremap",

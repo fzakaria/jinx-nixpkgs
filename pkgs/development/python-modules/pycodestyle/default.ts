@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "pycodestyle",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => ["test_check_nullbytes"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/pycodestyle/blob/${nix.sel(src, "tag")}/CHANGES.txt`),
         description: "Python style guide checker",
         mainProgram: "pycodestyle",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const superlu = nix.arg($, "superlu");
   const hdf5 = nix.arg($, "hdf5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "armadillo",
       version: "15.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/arma/armadillo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-EngbrzPHG2IsLwQP0nFDR50SDsidQPiJYh8LG7YjLic=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [nix.path(here, "./use-unix-config-on-OS-X.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ linear algebra library",
         homepage: "https://arma.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const version = "0.38.0";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csvtk",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shenwei356",
           repo: "csvtk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ done
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform, efficient and practical CSV/TSV toolkit in Golang",
         changelog: nix.thunk(() => nix.str`https://github.com/shenwei356/csvtk/releases/tag/v${version}`),
         homepage: "https://github.com/shenwei356/csvtk",

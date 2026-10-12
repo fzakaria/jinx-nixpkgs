@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const tomli = nix.arg($, "tomli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nianet",
       version: "1.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SasoPavlic",
           repo: "nianet",
           tag: nix.thunk(() => nix.str`version_${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyyaml, tomli]),
       pythonImportsCheck: nix.thunk(() => ["nianet"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Designing and constructing neural network topologies using nature-inspired algorithms",
         homepage: "https://github.com/SasoPavlic/NiaNet",
         changelog: nix.thunk(() => nix.str`https://github.com/SasoPavlic/NiaNet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

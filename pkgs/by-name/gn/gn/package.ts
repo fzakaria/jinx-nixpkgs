@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const rev = nix.argOr($, "rev", () => "e8a8e0932a5e42a99e5896aa58e3b8290f4e5b8c");
   const hash = nix.argOr($, "hash", () => "sha256-qvQ13Ws2tb4i2Hdu34kBHivYPAn8w06zjLdQgK4BIJg=");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gn",
       version: version,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gn.googlesource.com/gn",
           rev: rev,
           hash: hash,
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [ninja, python3]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       hardeningDisable: nix.thunk(() => ["format"]),
       configurePhase: "runHook preConfigure\n\npython build/gen.py --no-last-commit-position\ncat > out/last_commit_position.h << EOF\n#ifndef OUT_LAST_COMMIT_POSITION_H_\n#define OUT_LAST_COMMIT_POSITION_H_\n\n#define LAST_COMMIT_POSITION_NUM $(<.nix-files/REV_NUM)\n#define LAST_COMMIT_POSITION \"$(<.nix-files/REV_NUM) ($(<.nix-files/REV_SHORT))\"\n\n#endif  // OUT_LAST_COMMIT_POSITION_H_\nEOF\n\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\n\nninja -v -j $NIX_BUILD_CORES -C out gn\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -vD out/gn \"$out/bin/gn\"\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Meta-build system that generates build files for Ninja",
         mainProgram: "gn",
         homepage: "https://gn.googlesource.com/gn",

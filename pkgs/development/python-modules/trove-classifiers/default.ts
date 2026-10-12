@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "trove-classifiers",
       version: "2026.6.1.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "trove_classifiers",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xRMrS2GoKdEc+9LXLpfyCkXtbtuV5Fxe/eteAINrJ0U=",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["trove_classifiers"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "trove-classifiers": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doInstallCheck: true })))),
+          [nix.POS]: pos$3,
+          "trove-classifiers": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doInstallCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Canonical source for classifiers on PyPI",
         homepage: "https://github.com/pypa/trove-classifiers",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/trove-classifiers/releases/tag/${nix.sel(finalAttrs, "version")}`),

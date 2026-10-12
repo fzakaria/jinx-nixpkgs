@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const domain = "github.com";
   const version_1 = version;
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (coq_1) => (mr) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
+    const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
         nix.thunk(() => nix.sel(coq, "coq-version")),
         nix.thunk(() => nix.sel(metarocq_erasure, "version")),
@@ -38,19 +38,19 @@ export default nix.lambda((args) => (() => {
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "0.2.1": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hash: "sha256-GWdu/l7CipeBubgS5OGHsZfpP2Fkr1cfiZMRH5d1n0g=",
     })),
     "0.2.0": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hash: "sha256-rgg39X45IXjcnejBhh8N7wMiH+gHQrfO8pBbFEWOGVI=",
     })),
   }));
   const releaseRev = (v) => nix.str`v${v}`;
   const packages = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     common: [],
     elm: nix.thunk(() => ["common"]),
     rust: nix.thunk(() => ["common"]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
     const pname_1 = nix.thunk(() => (nix.asBool(nix.eq(package$, "all")) ? "TypedExtraction" : nix.str`TypedExtraction-${package$}`));
     const pkgallMake = "mkdir all\necho \"all:\" > all/Makefile\necho \"install:\" >> all/Makefile\n";
     const derivation = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: version_1,
         pname: pname_1,
         defaultVersion: defaultVersion,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         preBuild: nix.thunk(() => nix.str`cd ${pkgpath}
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: "https://peregrine-project.github.io/",
           description: "A framework for extracting Rocq programs to Rust and Elm",
           maintainers: nix.thunk(() => (() => {
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(package$, "single")), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           passthru: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (package$_1) => (deps) => nix.app(typedextraction_, package$_1), packages)),
         })))))));
     return nix.force(derivation);

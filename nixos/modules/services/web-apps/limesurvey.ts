@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "int")),
         nix.thunk(() => nix.lookup(w, "bool")),
       ])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "limesurvey config type (str, int, bool or attribute set thereof)",
     });
   })());
@@ -138,100 +138,100 @@ export default nix.lambda((args) => (() => {
   const mysqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql"))));
   const pgsqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "pgsql"))));
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "limesurvey", "virtualHost"]), nix.thunk(() => ["services", "limesurvey", "httpd", "virtualHost"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         limesurvey: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Limesurvey web application")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "limesurvey", nix.thunk(() => ({})))),
           encryptionKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               visible: false,
               description: "This is a 32-byte key used to encrypt variables in the database.\nYou _must_ change this from the default value.\n",
             })))),
           encryptionNonce: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               visible: false,
               description: "This is a 24-byte nonce used to encrypt variables in the database.\nYou _must_ change this from the default value.\n",
             })))),
           encryptionKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "32-byte key used to encrypt variables in the database.\n\nNote: It should be string not a store path in order to prevent the password from being world readable\n",
             })))),
           encryptionNonceFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "24-byte used to encrypt variables in the database.\n\nNote: It should be string not a store path in order to prevent the password from being world readable\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mysql", "pgsql", "odbc", "mssql"]))),
                 example: "pgsql",
                 default: "mysql",
                 description: "Database engine to use.",
               })))),
             dbEngine: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["MyISAM", "InnoDB"]))),
                 default: "InnoDB",
                 description: "Database storage engine to use.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "pgsql")) ? 5442n : 3306n)),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "3306")),
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "limesurvey",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "limesurvey",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/keys/limesurvey-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => (nix.asBool(mysqlLocal) ? "/run/mysqld/mysqld.sock" : (nix.asBool(pgsqlLocal) ? "/run/postgresql" : null))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "/run/mysqld/mysqld.sock")),
                 description: "Path to the unix socket file to use for authentication.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "true")),
@@ -239,32 +239,32 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           webserver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["httpd", "nginx"]))),
               default: "httpd",
               example: "nginx",
               description: "Webserver to configure for reverse-proxying limesurvey.\n",
             })))),
           httpd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  hostName = \"survey.example.org\";\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 description: "Apache configuration can be done by adapting `services.httpd.virtualHosts.<name>`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$19, config: config, lib: lib })))), nix.thunk(() => ({})))))),
+                [nix.POS]: pos$20,
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$19, config: config, lib: lib })))), nix.thunk(() => ({})))))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  serverName = \"survey.example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 description: "Nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n",
               })))),
           })),
           poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -274,7 +274,7 @@ export default nix.lambda((args) => (() => {
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -285,7 +285,7 @@ export default nix.lambda((args) => (() => {
               description: "Options for the LimeSurvey PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: configType,
               default: nix.thunk(() => ({})),
               description: "LimeSurvey configuration. Refer to\n<https://manual.limesurvey.org/Optional_settings>\nfor details on supported values.\n",
@@ -295,56 +295,56 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")))),
                 message: "services.limesurvey.createLocally is currently only supported for database type 'mysql'",
               })),
               nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), user)))),
                 message: nix.thunk(() => nix.str`services.limesurvey.database.user must be set to ${user} if services.limesurvey.database.createLocally is set true`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))),
                 message: "services.limesurvey.database.socket must be set if services.limesurvey.database.createLocally is set to true",
               })),
               nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
                 message: "a password cannot be specified if services.limesurvey.database.createLocally is set to true",
               })),
               nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "encryptionKey"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "encryptionKeyFile"), null)))),
                 message: "You must set `services.limesurvey.encryptionKeyFile` to a file containing a 32-character uppercase hex string.\n\nIf this message appears when updating your system, please turn off encryption\nin the LimeSurvey interface and create backups before filling the key.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "encryptionNonce"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "encryptionNonceFile"), null)))),
                 message: "You must set `services.limesurvey.encryptionNonceFile` to a file containing a 24-character uppercase hex string.\n\nIf this message appears when updating your system, please turn off encryption\nin the LimeSurvey interface and create backups before filling the nonce.\n",
               })),
             ]),
             users: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               users: nix.thunk(() => nix.attrsDyn({}, [
-                [user, nix.thunk(() => ({ __proto__: pos$34, group: group, isSystemUser: true }))],
+                [user, nix.thunk(() => ({ [nix.POS]: pos$34, group: group, isSystemUser: true }))],
               ])),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               services: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 "limesurvey-init": nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   before: nix.thunk(() => ["phpfpm-limesurvey.service"]),
                   after: nix.thunk(() => nix.concat(nix.app(optional, mysqlLocal, "mysql.service"), nix.app(optional, pgsqlLocal, "postgresql.target"))),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     DBENGINE: nix.thunk(() => nix.str`${nix.sel(cfg, "database", "dbEngine")}`),
                     LIMESURVEY_CONFIG: limesurveyConfig,
                   })),
@@ -353,7 +353,7 @@ ${nix.app(nix.sel(lib, "getExe"), php)} ${nix.sel(cfg, "package")}/share/limesur
 ${nix.app(nix.sel(lib, "getExe"), php)} ${nix.sel(cfg, "package")}/share/limesurvey/application/commands/console.php install admin password admin admin@example.com verbose
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     User: user,
                     Group: group,
                     Type: "oneshot",
@@ -364,9 +364,9 @@ ${nix.app(nix.sel(lib, "getExe"), php)} ${nix.sel(cfg, "package")}/share/limesur
                   })),
                 })),
                 "phpfpm-limesurvey": nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "limesurvey-phpfpm-exec-pre", nix.thunk(() => nix.str`cp -f "\${CREDENTIALS_DIRECTORY}"/encryption_key "${stateDir}/credentials/encryption_key"
 chown ${user}:${group} "${stateDir}/credentials/encryption_key"
 cp -f "\${CREDENTIALS_DIRECTORY}"/encryption_nonce "${stateDir}/credentials/encryption_nonce"
@@ -380,7 +380,7 @@ chown ${user}:${group} "${stateDir}/credentials/encryption_nonce"
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d ${stateDir} 0750 ${user} ${group} - -`),
                   nix.thunk(() => nix.str`d ${stateDir}/tmp 0750 ${user} ${group} - -`),
@@ -393,54 +393,54 @@ chown ${user}:${group} "${stateDir}/credentials/encryption_nonce"
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               limesurvey: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 config: nix.thunk(() => nix.app(mapAttrs, (name) => nix.force(mkDefault), nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     runtimePath: nix.thunk(() => nix.str`${stateDir}/tmp/runtime`),
                     components: nix.thunk(() => ({
-                      __proto__: pos$47,
+                      [nix.POS]: pos$47,
                       db: nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         connectionString: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "database", "type")}:dbname=${nix.sel(cfg, "database", "name")};host=${(nix.asBool(pgsqlLocal) ? nix.sel(cfg, "database", "socket") : nix.sel(cfg, "database", "host"))};port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}`, nix.app(optionalString, mysqlLocal, nix.thunk(() => nix.str`;socket=${nix.sel(cfg, "database", "socket")}`)))),
                         username: nix.thunk(() => nix.sel(cfg, "database", "user")),
                         password: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => nix.str`file_get_contents("${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "passwordFile")))}");`))),
                         tablePrefix: "limesurvey_",
                       })),
                       assetManager: nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         basePath: nix.thunk(() => nix.str`${stateDir}/tmp/assets`),
                       })),
-                      urlManager: nix.thunk(() => ({ __proto__: pos$46, urlFormat: "path", showScriptName: false })),
+                      urlManager: nix.thunk(() => ({ [nix.POS]: pos$46, urlFormat: "path", showScriptName: false })),
                     })),
                     config: nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       tempdir: nix.thunk(() => nix.str`${stateDir}/tmp`),
                       uploaddir: nix.thunk(() => nix.str`${stateDir}/upload`),
                       userquestionthemerootdir: nix.thunk(() => nix.str`${stateDir}/upload/themes/question`),
                       force_ssl: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, nix.key(nix.sel(cfg, "webserver")), "virtualHost", "addSSL")) || nix.asBool(nix.sel(cfg, nix.key(nix.sel(cfg, "webserver")), "virtualHost", "forceSSL")))) || nix.asBool(nix.sel(cfg, nix.key(nix.sel(cfg, "webserver")), "virtualHost", "onlySSL")))), "on")),
-                      config: nix.thunk(() => ({ __proto__: pos$48, defaultlang: "en" })),
+                      config: nix.thunk(() => ({ [nix.POS]: pos$48, defaultlang: "en" })),
                     })),
                   })))),
               })),
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 pools: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   limesurvey: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     user: user,
                     group: group,
                     phpPackage: php,
                     phpEnv: nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       DBENGINE: nix.thunk(() => nix.str`${nix.sel(cfg, "database", "dbEngine")}`),
                       LIMESURVEY_CONFIG: nix.thunk(() => nix.str`${limesurveyConfig}`),
                       CREDENTIALS_DIRECTORY: nix.thunk(() => nix.str`${stateDir}/credentials`),
                     })),
                     settings: nix.thunk(() => nix.update({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       "listen.owner": nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "webserver")), "user")),
                       "listen.group": nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "webserver")), "group")),
                     }, nix.sel(cfg, "poolConfig"))),
@@ -450,17 +450,17 @@ chown ${user}:${group} "${stateDir}/credentials/encryption_nonce"
             })),
           })),
           nix.thunk(() => nix.app(mkIf, mysqlLocal, nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               services: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   enable: true,
                   package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$59,
+                      [nix.POS]: pos$59,
                       name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`${nix.sel(cfg, "database", "name")}.*`, "SELECT, CREATE, INSERT, UPDATE, DELETE, ALTER, DROP, INDEX"],
@@ -471,11 +471,11 @@ chown ${user}:${group} "${stateDir}/credentials/encryption_nonce"
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "httpd")), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               services: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 httpd: nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   enable: true,
                   adminAddr: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "httpd", "virtualHost", "adminAddr")))),
                   extraModules: nix.thunk(() => ["proxy_fcgi"]),
@@ -483,7 +483,7 @@ chown ${user}:${group} "${stateDir}/credentials/encryption_nonce"
                     [nix.sel(cfg, "httpd", "virtualHost", "hostName"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                         nix.thunk(() => nix.sel(cfg, "httpd", "virtualHost")),
                         nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           documentRoot: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/limesurvey`))),
                           extraConfig: nix.thunk(() => nix.str`Alias "/tmp" "${stateDir}/tmp"
 <Directory "${stateDir}">
@@ -517,39 +517,39 @@ Alias "/upload" "${stateDir}/upload"
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 services: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   httpd: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     after: nix.thunk(() => nix.concat(nix.app(optional, mysqlLocal, "mysql.service"), nix.app(optional, pgsqlLocal, "postgresql.target"))),
                   })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               services: nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.sel(cfg, "nginx", "virtualHost", "serverName"), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(cfg, "nginx", "virtualHost")),
                         nix.thunk(() => ({
-                          __proto__: pos$75,
+                          [nix.POS]: pos$75,
                           root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/limesurvey`))),
                           locations: nix.thunk(() => ({
-                            __proto__: pos$74,
-                            "/": nix.thunk(() => ({ __proto__: pos$70, index: "index.php", tryFiles: "$uri /index.php?$args" })),
+                            [nix.POS]: pos$74,
+                            "/": nix.thunk(() => ({ [nix.POS]: pos$70, index: "index.php", tryFiles: "$uri /index.php?$args" })),
                             "~ \\.php$": nix.thunk(() => ({
-                              __proto__: pos$71,
+                              [nix.POS]: pos$71,
                               extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "limesurvey", "socket")};
 `),
                             })),
-                            "/tmp": nix.thunk(() => ({ __proto__: pos$72, root: "/var/lib/limesurvey" })),
-                            "/upload/": nix.thunk(() => ({ __proto__: pos$73, root: "/var/lib/limesurvey" })),
+                            "/tmp": nix.thunk(() => ({ [nix.POS]: pos$72, root: "/var/lib/limesurvey" })),
+                            "/upload/": nix.thunk(() => ({ [nix.POS]: pos$73, root: "/var/lib/limesurvey" })),
                           })),
                         })),
                       ])))],
@@ -557,11 +557,11 @@ Alias "/upload" "${stateDir}/upload"
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 services: nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     after: nix.thunk(() => nix.concat(nix.app(optional, mysqlLocal, "mysql.service"), nix.app(optional, pgsqlLocal, "postgresql.service"))),
                   })),
                 })),

@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const mirage_clock = nix.arg($, "mirage-clock");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-clock-unix",
       version: nix.thunk(() => nix.attr(mirage_clock, "version")),
       src: nix.thunk(() => nix.attr(mirage_clock, "src")),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [mirage_clock]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_clock, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Unix-based implementation for the MirageOS Clock interface",
       })),
     })));

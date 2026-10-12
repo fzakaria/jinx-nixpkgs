@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "harper-desktop",
       version: "2.11.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Automattic/harper/releases/download/v${nix.sel(finalAttrs, "version")}/Harper_${nix.sel(finalAttrs, "version")}_universal.dmg`),
           hash: "sha256-eNrAsEW98pCMx+UoHQA+InSKp/b54FVE0KXf8VHNfok=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R Harper.app \"$out/Applications/\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Privacy-first offline grammar checker for macOS",
         longDescription: "Harper Desktop provides system-wide grammar checking for macOS.\nIt requires macOS 14 or later.\nIts built-in automatic updater should be disabled when installed through\nNix; update Harper Desktop through Nixpkgs instead.\n",
         homepage: "https://writewithharper.com/desktop",

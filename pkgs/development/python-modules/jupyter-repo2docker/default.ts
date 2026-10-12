@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyterhub",
           repo: "repo2docker",
           tag: version,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "repo2docker.contentproviders.base",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn code repositories into Jupyter enabled Docker Images",
         homepage: "https://repo2docker.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/repo2docker/blob/${nix.sel(src, "tag")}/docs/source/changelog.md`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

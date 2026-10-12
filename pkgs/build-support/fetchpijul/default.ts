@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const channel = nix.argOr($_1, "channel", () => "main");
       const name = nix.argOr($_1, "name", () => "fetchpijul");
       return (nix.asBool((nix.asBool(!nix.eq(change, null)) && nix.asBool(!nix.eq(state, null)))) ? nix.builtins.throw("Only one of 'change' or 'state' can be set") : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           nativeBuildInputs: nix.thunk(() => [pijul, cacert]),
           strictDeps: true,

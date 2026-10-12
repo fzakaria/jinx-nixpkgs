@@ -27,11 +27,11 @@ tests=$(find modules/ -mindepth 1 -maxdepth 1 -type d | grep -v t)
 cp -r $tests $out/${nix.sel(perl, "libPrefix")}/${nix.sel(perl, "version")}/
 `);
   const ensemblGit = (name) => (sha256) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: name,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: sha256,
           version: version,
           owner: "Ensembl",
@@ -45,7 +45,7 @@ ${customInstallPhase}
 runHook postInstall`),
     })));
   const vepPlugins = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "Ensembl",
       repo: "VEP_plugins",
       rev: "8f271c4848338dc7d504881ff71fdf2892c3d096",
@@ -55,7 +55,7 @@ runHook postInstall`),
       const pname = "ensembl-xs";
       const version_1 = "2.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: version_1,
           owner: "Ensembl",
           repo: "ensembl-xs",
@@ -64,7 +64,7 @@ runHook postInstall`),
         }))));
       const configurePhase = "runHook preConfigure\n\nperl Makefile.PL PREFIX=$out INSTALLDIRS=site\n\nrunHook postConfigure\n";
       const doCheck = false;
-      return { __proto__: pos$5, pname, version: version_1, src, configurePhase, doCheck };
+      return { [nix.POS]: pos$5, pname, version: version_1, src, configurePhase, doCheck };
     })())));
   const ensembl = nix.thunk(() => nix.app(ensemblGit, "ensembl", "sha256-ZhI4VNxIY+53RX2uYRNlFeo/ydAmlwGx00WDXaxv6h4="));
   const ensembl_io = nix.thunk(() => nix.app(ensemblGit, "ensembl-io", "sha256-r3RvN5U2kcyghoKM0XuiBRe54t1U4FaZ0QEeYIFiG0w="));
@@ -89,7 +89,7 @@ runHook postInstall`),
       })(), [ensembl_xs, ensembl, ensembl_funcgen, ensembl_io, ensembl_variation]));
       const propagatedBuildInputs = nix.thunk(() => [htslib]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "Ensembl",
           repo: nix.thunk(() => nix.str`ensembl-${pname}`),
           rev: nix.thunk(() => nix.str`release/${version_1}`),
@@ -115,7 +115,7 @@ ${customInstallPhase}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.ensembl.org/info/docs/tools/vep/index.html",
         description: "Annotate genetics variants based on genes, transcripts, and protein sequence, as well as regulatory regions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -127,7 +127,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: version_1,
         pname,
         buildInputs,

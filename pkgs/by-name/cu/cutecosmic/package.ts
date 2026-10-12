@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cutecosmic",
       version: "0.2.0-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IgKh",
           repo: "cutecosmic",
           rev: "5fa7c228ce04c5310c61dd975e940397711e3cef",
           hash: "sha256-OjoJ7z8HZmyrd7UTZJ3n1jqGRTSuN0PviOwHl5WwJZw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
   "${nix.sel(qt6, "qtbase", "qtPluginPrefix")}/platformthemes"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           corrosion: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "corrosion-rs",
               repo: "corrosion",
               rev: "v0.5.2",
@@ -95,7 +95,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/IgKh/cutecosmic",
         description: "Qt platform theme for COSMIC Desktop environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

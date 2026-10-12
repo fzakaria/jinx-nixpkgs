@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const requests_cache = nix.arg($, "requests-cache");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "requests-ratelimiter",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JWCook",
           repo: "requests-ratelimiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, requests_cache, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["requests_ratelimiter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for rate-limiting for requests",
         homepage: "https://github.com/JWCook/requests-ratelimiter",
         changelog: nix.thunk(() => nix.str`https://github.com/JWCook/requests-ratelimiter/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),

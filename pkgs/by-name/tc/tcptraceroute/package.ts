@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tcptraceroute";
       const version = "1.5beta7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mct",
           repo: "tcptraceroute",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const preBuild = "makeFlagsArray=(CFLAGS=\" -g -O2 -Wall\")\n";
       const buildInputs = nix.thunk(() => [libpcap, libnet]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Traceroute implementation using TCP packets",
         homepage: "https://github.com/mct/tcptraceroute",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: [],
         mainProgram: "tcptraceroute",
       }));
-      return { __proto__: pos$3, pname, version, src, preBuild, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, preBuild, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

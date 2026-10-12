@@ -21,30 +21,30 @@ export default nix.lambda((args) => (() => {
   const pname = "heirloom-devtools";
   const version = "070527";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/heirloom/heirloom-devtools/heirloom-devtools-${version}.tar.bz2`),
       sha256: "9f233d8b78e4351fe9dd2d50d83958a0e5af36f54e9818521458a08e058691ba",
     }))));
   const liveBootstrap = "https://github.com/fosslinux/live-bootstrap/raw/d918b984ad6fe4fc7680f3be060fd82f8c9fddd9/sysa/heirloom-devtools-070527";
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/yacc_remove_wchar.patch`),
         sha256: "0wgiz02bb7xzjy2gnbjp8y31qy6rc4b29v01zi32zh9lw54j68hc",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/lex_remove_wchar.patch`),
         sha256: "168dfngi51ljjqgd55wbvmffaq61gk48gak50ymnl1br92qkp4zh",
       })))),
   ]);
   return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tinycc, "compiler")), gnumake, gnupatch, coreutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Portable yacc and lex derived from OpenSolaris",
         homepage: "https://heirloom.sourceforge.net/devtools.html",
         license: nix.thunk(() => (() => {

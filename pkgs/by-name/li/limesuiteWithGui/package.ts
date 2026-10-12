@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withGui", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const limesuite = nix.arg($, "limesuite");
-  return nix.app(nix.sel(limesuite, "override"), nix.thunk(() => ({ __proto__: pos$1, withGui: true })));
+  return nix.app(nix.sel(limesuite, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGui: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

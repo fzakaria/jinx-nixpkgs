@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "x509-compressed";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "namecoin",
           repo: "x509-compressed",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/namecoin/x509-compressed/commit/b4fb598b.patch",
             hash: "sha256-S4Y4B4FH15IyaTJtSb03C8QffnsMXSYc6q1Gka/PVV4=",
           })))),
@@ -54,7 +54,7 @@ sed -e '/import "internal/d' \\
 `);
       const installPhase = "cp -r . \"$out\"\n";
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,
@@ -65,11 +65,11 @@ sed -e '/import "internal/d' \\
       };
     })())));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ncdns",
       version: "unstable-2024-05-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "namecoin",
           repo: "ncdns",
           rev: "8a9f7c3037384f12fae400268d0a7f79d26b5532",
@@ -87,11 +87,11 @@ cp ${nix.path(here, "./ncdns-go.sum")} go.sum
       preCheck: "# needed to run the ncdns test suite\nln -s $PWD/vendor ../go/src\n",
       postInstall: "mkdir -p \"$out/share\"\ncp -r _doc \"$out/share/doc\"\ncp -r _tpl \"$out/share/tpl\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, ncdns: nix.thunk(() => nix.sel(nixosTests, "ncdns")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, ncdns: nix.thunk(() => nix.sel(nixosTests, "ncdns")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Namecoin to DNS bridge daemon",
         homepage: "https://github.com/namecoin/ncdns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

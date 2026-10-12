@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quantumlib",
           repo: "Stim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "test_tableau_simulator_sampling_noisy_gates_agrees_with_cirq_data",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for high performance simulation and analysis of quantum stabilizer circuits, especially quantum error correction (QEC) circuits",
         mainProgram: "stim",
         homepage: "https://github.com/quantumlib/stim",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

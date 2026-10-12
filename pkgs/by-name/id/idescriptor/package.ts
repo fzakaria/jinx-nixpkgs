@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const qt6 = nix.arg($, "qt6");
   const util_linux = nix.arg($, "util-linux");
-  const gstPluginsGoodQt6 = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$1, qt6Support: true }))));
+  const gstPluginsGoodQt6 = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, qt6Support: true }))));
   const gstPlugins = nix.thunk(() => (() => {
     const w = nix.withScope(gst_all_1, null);
     return [
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const runtimePrograms = nix.thunk(() => [coreutils, fuse3, ifuse, polkit, util_linux]);
   const qtEnv = nix.thunk(() => nix.app(nix.sel(qt6, "env"), "qt6-idescriptor", nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtdeclarative"))])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "idescriptor",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "iDescriptor",
           repo: "iDescriptor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-PzXiX6gnTB3fh5LxEJDo3n4PbczjE3pDD3TygrMGG/8=",
         })))),
       buildFeatures: nix.thunk(() => ["package_manager"]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         IDESCRIPTOR_PACKAGE_MANAGER_MESSAGE: "Please update iDescriptor with the Nix profile or system configuration that installed it.",
         QT_INCLUDE_PATH: nix.thunk(() => nix.str`${qtEnv}/include`),
         QT_LIBRARY_PATH: nix.thunk(() => nix.str`${qtEnv}/lib`),
@@ -113,11 +113,11 @@ done
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/iDescriptor/iDescriptor",
         changelog: nix.thunk(() => nix.str`https://github.com/iDescriptor/iDescriptor/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "A cross-platform iDevice management tool",

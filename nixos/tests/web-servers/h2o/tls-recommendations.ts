@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const domain = "acme.test";
   const hello_txt = (name) => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`/hello_${name}.txt`),
       text: nix.thunk(() => nix.str`Hello, ${name}!`),
     })));
@@ -42,59 +42,59 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         h2o: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: true,
-          package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(recommendations, nix.thunk(() => ["intermediate"]))), nix.thunk(() => ({ __proto__: pos$2, openssl: nix.thunk(() => nix.sel(pkgs, "openssl_legacy")) })))))),
+          package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(recommendations, nix.thunk(() => ["intermediate"]))), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: nix.thunk(() => nix.sel(pkgs, "openssl_legacy")) })))))),
           defaultTLSRecommendations: "modern",
           hosts: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${domain}`, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               tls: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 recommendations: recommendations,
                 port: 8443n,
                 policy: "force",
                 identity: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     "key-file": nix.path(here, "../../common/acme/server/acme.test.key.pem"),
                     "certificate-file": nix.path(here, "../../common/acme/server/acme.test.cert.pem"),
                   })),
                 ]),
-                extraSettings: nix.thunk(() => ({ __proto__: pos$4, "ocsp-update-interval": 0n })),
+                extraSettings: nix.thunk(() => ({ [nix.POS]: pos$4, "ocsp-update-interval": 0n })),
               })),
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 paths: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     "file.file": nix.thunk(() => nix.str`${nix.app(hello_txt, recommendations)}`),
                   })),
                 })),
               })),
             }))],
           ])),
-          settings: nix.thunk(() => ({ __proto__: pos$10, "ssl-offload": "kernel" })),
+          settings: nix.thunk(() => ({ [nix.POS]: pos$10, "ssl-offload": "kernel" })),
         })),
       })),
       security: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pki: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           certificates: nix.thunk(() => [
             nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../common/acme/server/ca.cert.pem"))),
           ]),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         firewall: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           allowedTCPPorts: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "services", "h2o", "hosts", nix.key(domain), "tls", "port")),
           ]),
@@ -104,17 +104,17 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "h2o-tls-recommendations",
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       server_modern: nix.thunk(() => nix.app(mkH2OServer, "modern")),
       server_intermediate: nix.thunk(() => nix.app(mkH2OServer, "intermediate")),
     })),

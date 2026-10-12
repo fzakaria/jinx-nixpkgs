@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const cargoFlags = nix.thunk(() => ["--package", "frame-app"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frame-media-converter",
       version: "0.33.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "66HEX",
           repo: "frame",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ wrapProgram $out/bin/frame \\
     'This Nixpkgs build is managed by Nix. Install updates through your Nix profile, flake, or NixOS configuration.'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native desktop interface for FFmpeg media conversion",
         homepage: "https://github.com/66HEX/frame",
         changelog: nix.thunk(() => nix.str`https://github.com/66HEX/frame/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

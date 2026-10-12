@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const w_1 = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
       return (nix.asBool(nix.lookup(w_1, "isAarch")) || nix.asBool(nix.lookup(w_1, "isPower")));
     })()) ? "ttyAMA0" : nix.builtins.throw(nix.thunk(() => nix.str`Unknown QEMU serial device for system '${nix.sel(stdenv, "hostPlatform", "system")}'`)))));
-    const qemuBinary = (qemuPkg) => nix.app(qemuBinaryWith, nix.thunk(() => ({ __proto__: pos$1, qemuPkg: qemuPkg })));
+    const qemuBinary = (qemuPkg) => nix.app(qemuBinaryWith, nix.thunk(() => ({ [nix.POS]: pos$1, qemuPkg: qemuPkg })));
     const qemuBinaryWith = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const qemuPkg = nix.arg($_1, "qemuPkg");
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const guestSystem = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
       const accel = (accelName) => (nix.asBool(forceAccel) ? nix.force(accelName) : nix.str`${accelName}:tcg`);
       const linuxHostGuestMatrix = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "x86_64-linux": nix.thunk(() => nix.str`${qemuPkg}/bin/qemu-system-x86_64 -machine accel=${nix.app(accel, "kvm")} -cpu max`),
         "armv7l-linux": nix.thunk(() => nix.str`${qemuPkg}/bin/qemu-system-arm -machine virt,accel=${nix.app(accel, "kvm")} -cpu max`),
         "aarch64-linux": nix.thunk(() => nix.str`${qemuPkg}/bin/qemu-system-aarch64 -machine virt,gic-version=max,accel=${nix.app(accel, "kvm")} -cpu max`),
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
         "riscv64-linux": nix.thunk(() => nix.str`${qemuPkg}/bin/qemu-system-riscv64 -machine virt`),
       }));
       const otherHostGuestMatrix = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "aarch64-darwin": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "aarch64-linux": nix.thunk(() => nix.str`${qemuPkg}/bin/qemu-system-aarch64 -machine virt-11.0,accel=${nix.app(accel, "hvf")} -cpu max`),
           "x86_64-linux": nix.thunk(() => nix.str`${qemuPkg}/bin/qemu-system-x86_64 -machine type=q35,accel=${nix.app(accel, "hvf")} -cpu max`),
         })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       })());
     })(), formals$2);
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       qemuNicMac,
       qemuNICFlags,
       qemuSerialDevice,

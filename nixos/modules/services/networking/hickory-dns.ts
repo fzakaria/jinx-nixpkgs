@@ -45,25 +45,25 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         freeformType: nix.thunk(() => nix.sel(toml, "type")),
         options: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             zone: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Zone name, like \"example.com\", \"localhost\", or \"0.0.127.in-addr.arpa\".\n",
               })))),
             zone_type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["Primary", "Secondary", "External"]))),
                 default: "Primary",
                 description: "One of:\n- \"Primary\" (the master, authority for the zone).\n- \"Secondary\" (the slave, replicated from the primary).\n- \"External\" (a cached zone that queries other nameservers).\n\nFor more details about these zone types, consult the documentation for BIND,\nthough note that hickory-dns supports only a subset of BIND's zone types:\n<https://bind9.readthedocs.io/en/v9_18_4/reference.html#type>\n",
               })))),
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                 default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "zone_type"), "External")) ? nix.str`${nix.sel(config_1, "zone")}.zone` : null)),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if config.zone_type != \"External\" then \"${config.zone}.zone\" else null")),
@@ -74,9 +74,9 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$2)));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "colinsane"))];
@@ -93,75 +93,75 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "hickory-dns": nix.thunk(() => (() => {
           const w_1 = nix.withScope(lib, null);
           return {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "hickory-dns")),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "hickory-dns", nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 extraDescription: "::: {.note}\nThe package must provide `meta.mainProgram` which names the server binary; any other utilities (client, resolver) are not needed.\n:::\n",
               })))),
             quiet: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                 default: false,
                 description: "Log ERROR level messages only.\nThis option is mutually exclusive with the `debug` option.\nIf neither `quiet` nor `debug` are enabled, logging defaults to the INFO level.\n",
               })))),
             debug: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                 default: false,
                 description: "Log DEBUG, INFO, WARN and ERROR messages.\nThis option is mutually exclusive with the `debug` option.\nIf neither `quiet` nor `debug` are enabled, logging defaults to the INFO level.\n",
               })))),
             configFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")),
                 default: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "hickory-dns.toml", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => (nix.asBool(nix.app(nix.sel(nix.builtins, "isList"), v)) ? nix.app(nix.builtins.map, (v_1) => (nix.asBool(nix.app(nix.sel(nix.builtins, "isAttrs"), v_1)) ? nix.app(nix.sel(lib, "filterAttrs"), (__1) => (v_2) => !nix.eq(v_2, null), v_1) : nix.force(v_1)), v) : nix.force(v)), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))))))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "let toml = pkgs.formats.toml { }; in toml.generate \"hickory-dns.toml\" cfg.settings\n")),
                 description: "Path to an existing toml file to configure hickory-dns with.\n\nThis can usually be left unspecified, in which case it will be\ngenerated from the values in `settings`.\nIf manually specified, then the options in `settings` are ignored.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Settings for hickory-dns. The options enumerated here are not exhaustive.\nRefer to upstream documentation for all available options:\n- [Example settings](https://github.com/hickory-dns/hickory-dns/blob/main/tests/test-data/test_configs/example.toml)\n",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     freeformType: nix.thunk(() => nix.sel(toml, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       listen_addrs_ipv4: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                           default: nix.thunk(() => ["0.0.0.0"]),
                           description: "List of ipv4 addresses on which to listen for DNS queries.\n",
                         })))),
                       listen_addrs_ipv6: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                           default: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "::0")),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "lib.optional config.networking.enableIPv6 \"::0\"")),
                           description: "List of ipv6 addresses on which to listen for DNS queries.\n",
                         })))),
                       listen_port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                           default: 53n,
                           description: "Port to listen on (applies to all listen addresses).\n",
                         })))),
                       directory: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                           default: "/var/lib/hickory-dns",
                           description: "The directory in which hickory-dns should look for .zone files,\nwhenever zones aren't specified by absolute path.\n",
                         })))),
                       zones: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           description: "List of zones to serve.",
                           default: [],
-                          type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "coercedTo"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")), (zone) => ({ __proto__: pos$15, zone: zone }), zoneType)))),
+                          type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "coercedTo"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")), (zone) => ({ [nix.POS]: pos$15, zone: zone }), zoneType)))),
                         })))),
                     })),
                   })))),
@@ -171,17 +171,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "hickory-dns": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "hickory-dns Domain Name Server",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$23, Documentation: "https://hickory-dns.org/" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Documentation: "https://hickory-dns.org/" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => (() => {
                   const flags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "debug")), "--debug"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "quiet")), "--quiet")));
                   const flagsStr = nix.thunk(() => nix.builtins.concatStringsSep(" ", flags));

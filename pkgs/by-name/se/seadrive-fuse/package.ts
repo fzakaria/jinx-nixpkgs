@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libwebsockets = nix.arg($, "libwebsockets");
   const fuse = nix.arg($, "fuse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "seadrive-fuse",
       version: "3.0.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haiwen",
           repo: "seadrive-fuse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libwebsockets, autoreconfHook, vala, fuse, pkg_config, python3]),
       buildInputs: nix.thunk(() => [libargon2, libuuid, sqlite, libsearpc, libevent, curl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/haiwen/seadrive-fuse",
         description: "SeaDrive daemon with FUSE interface",
         changelog: nix.thunk(() => nix.str`https://github.com/haiwen/seadrive-fuse/releases/tag/v${nix.sel(finalAttrs, "version")}`),

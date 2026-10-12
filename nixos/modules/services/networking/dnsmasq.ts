@@ -42,48 +42,48 @@ export default nix.lambda((args) => (() => {
   const dnsmasq = nix.thunk(() => nix.sel(cfg, "package"));
   const stateDir = "/var/lib/dnsmasq";
   const formatKeyValue = (name) => (value) => (nix.asBool(nix.eq(value, true)) ? nix.force(name) : (nix.asBool(nix.eq(value, false)) ? nix.str`# setting \`${name}\` explicitly set to false` : nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), "=", name, value)));
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({ __proto__: pos$1, mkKeyValue: formatKeyValue, listsAsDuplicateKeys: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({ [nix.POS]: pos$1, mkKeyValue: formatKeyValue, listsAsDuplicateKeys: true }))));
   const dnsmasqConf = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "dnsmasq.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "dnsmasq", "servers"]), nix.thunk(() => ["services", "dnsmasq", "settings", "server"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "dnsmasq", "extraConfig"]), "This option has been replaced by `services.dnsmasq.settings`")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         dnsmasq: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run dnsmasq.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dnsmasq", nix.thunk(() => ({})))),
           resolveLocalQueries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether dnsmasq should resolve local queries (i.e. add 127.0.0.1 to\n/etc/resolv.conf).\n",
             })))),
           alwaysKeepRunning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, systemd will always respawn dnsmasq even if shut down manually. The default, disabled, will only restart it on error.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         example: nix.thunk(() => ["8.8.8.8", "8.8.4.4"]),
@@ -105,7 +105,7 @@ turned to comments). Gets merged with
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  domain-needed = true;\n  dhcp-range = [ \"192.168.0.2,192.168.0.254\" ];\n}\n")),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               readOnly: true,
               default: dnsmasqConf,
@@ -116,49 +116,49 @@ turned to comments). Gets merged with
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           dnsmasq: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "dhcp-leasefile": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${stateDir}/dnsmasq.leases`))),
               "conf-file": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "resolveLocalQueries")), "/etc/dnsmasq-conf.conf")))),
               "resolv-file": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "resolveLocalQueries")), "/etc/dnsmasq-resolv.conf")))),
             })),
           })),
-          dbus: nix.thunk(() => ({ __proto__: pos$15, packages: nix.thunk(() => [dnsmasq]) })),
+          dbus: nix.thunk(() => ({ [nix.POS]: pos$15, packages: nix.thunk(() => [dnsmasq]) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           nameservers: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "resolveLocalQueries")), "127.0.0.1")),
           resolvconf: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "resolveLocalQueries")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               useLocalResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               extraConfig: "dnsmasq_conf=/etc/dnsmasq-conf.conf\ndnsmasq_resolv=/etc/dnsmasq-resolv.conf\n",
               subscriberFiles: nix.thunk(() => ["/etc/dnsmasq-conf.conf", "/etc/dnsmasq-resolv.conf"]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             dnsmasq: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               isSystemUser: true,
               group: "dnsmasq",
               description: "Dnsmasq daemon user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$21, dnsmasq: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$21, dnsmasq: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             dnsmasq: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "Dnsmasq Daemon",
               after: nix.thunk(() => ["network.target", "systemd-resolved.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -169,7 +169,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "resolveL
 dnsmasq --test -C ${nix.sel(cfg, "configFile")}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Type: "dbus",
                 BusName: "uk.org.thekelleys.dnsmasq",
                 ExecStart: nix.thunk(() => nix.str`${dnsmasq}/bin/dnsmasq -k --enable-dbus --user=dnsmasq -C ${nix.sel(cfg, "configFile")}`),
@@ -186,7 +186,7 @@ dnsmasq --test -C ${nix.sel(cfg, "configFile")}
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$28, doc: nix.path(here, "./dnsmasq.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$28, doc: nix.path(here, "./dnsmasq.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=dnsmasq.ts.map

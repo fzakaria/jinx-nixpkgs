@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "2.14.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "JonathonReinhart",
       repo: "scuba",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/scubainit`);
       const cargoHash = "sha256-YUYo2B5hzzmDeNiWUC+198Qbz+JPgUJfpAqyPWAXTRA=";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         src: src_1,
         version: version_1,
@@ -67,7 +67,7 @@ substituteInPlace setup.py \\
 ln -s ${scubainit}/bin/scubainit scuba/scubainit
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple Container-Utilizing Build Apparatus",
         homepage: "https://github.com/JonathonReinhart/scuba",
         changelog: nix.thunk(() => nix.str`https://github.com/JonathonReinhart/scuba/releases/tag/${nix.sel(src_1, "tag")}`),
@@ -80,7 +80,7 @@ ln -s ${scubainit}/bin/scubainit scuba/scubainit
         mainProgram: "scuba",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         src: src_1,
         version: version_1,

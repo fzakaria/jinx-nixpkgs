@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "workcraft",
       version: "3.5.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/workcraft/workcraft/releases/download/v${nix.sel(finalAttrs, "version")}/workcraft-v${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           hash: "sha256-zpuwNwVu9iH7JSHsSyGt3gl6swOHa2b9uDC8Ck2Mtno=",
         })))),
@@ -33,7 +33,7 @@ makeWrapper $out/share/workcraft $out/bin/workcraft \\
   --prefix _JAVA_OPTIONS " " "-Dawt.useSystemAAFontSettings=gasp";
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://workcraft.org/",
         description: "Framework for interpreted graph modeling, verification and synthesis",
         mainProgram: "workcraft",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const yt_dlp = nix.arg($, "yt-dlp");
   const deno = nix.arg($, "deno");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vrcvideocacher",
       version: "2026.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EllyVR",
           repo: "VRCVideoCacher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "icotool --icon -x $src/VRCVideoCacher/Assets/icon.ico\n\nfor i in 16 32 48 64 128 256; do\n  size=${i}x${i}\n  install -Dm444 *_${size}x*.png $out/share/icons/hicolor/$size/apps/vrcvideocacher.png\ndone\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vrcvideocacher",
             desktopName: "VRCVideoCacher",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cache VRChat videos locally and fix YouTube videos that fail to load",
         homepage: "https://github.com/EllyVR/VRCVideoCacher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

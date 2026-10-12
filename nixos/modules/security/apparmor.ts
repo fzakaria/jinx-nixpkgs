@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const enabledPolicies = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (p) => !nix.eq(nix.sel(p, "state"), "disable"), nix.thunk(() => nix.sel(cfg, "policies"))));
   const buildPolicyPath = (n) => (p) => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), n, nix.thunk(() => nix.sel(p, "profile")))), nix.thunk(() => nix.sel(p, "path")));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["security", "apparmor", "confineSUIDApplications"]), "Please use the new options: `security.apparmor.policies.<policy>.state'.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["security", "apparmor", "profiles"]), "Please use the new option: `security.apparmor.policies'.")),
@@ -58,32 +58,32 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "./apparmor/profiles.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       security: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         apparmor: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the AppArmor Mandatory Access Control system.\n\nIf you're enabling this module on a running system,\nnote that a reboot will be required to activate AppArmor in the kernel.\n\nAlso, beware that enabling this module privileges stability over security\nby not trying to kill unconfined but newly confinable running processes by default,\nthough it would be needed because AppArmor can only confine new\nor already confined processes of an executable.\nThis killing would for instance be necessary when upgrading to a NixOS revision\nintroducing for the first time an AppArmor profile for the executable\nof a running process.\n\nEnable [](#opt-security.apparmor.killUnconfinedConfinables)\nif you want this service to do such killing\nby sending a `SIGTERM` to those running processes")),
           policies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "AppArmor policies.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     options: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       state: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           description: "How strictly this policy should be enforced",
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["disable", "complain", "enforce"]))),
                           default: "enforce",
                         })))),
                       profile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           description: "The profile file contents. Incompatible with path.",
                           type: nix.thunk(() => nix.sel(types, "lines")),
                         })))),
                       path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           description: "A path of a profile file to include. Incompatible with profile.",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
@@ -93,14 +93,14 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
             })))),
           includes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "lines")))),
               default: nix.thunk(() => ({})),
               description: "List of paths to be added to AppArmor's searched paths\nwhen resolving `include` directives.\n",
               apply: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.sel(pkgs, "writeText")))),
             })))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               description: "List of packages to be added to AppArmor's include path",
@@ -111,52 +111,52 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (policyName) => (policyCfg) => [
               nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 assertion: nix.thunk(() => nix.eq(nix.builtins.match(".*/.*", policyName), null)),
                 message: nix.thunk(() => nix.str`\`security.apparmor.policies."${policyName}"' must not contain a slash.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => !nix.eq(nix.sel(policyCfg, "path"), null)), nix.thunk(() => nix.sel(options, "security", "apparmor", "policies", "valueMeta", "attrs", nix.key(nix.force(policyName)), "configuration", "options", "profile", "isDefined")))),
                 message: nix.thunk(() => nix.str`\`security.apparmor.policies."${policyName}"\` must define exactly one of either path or profile.`),
               })),
             ], nix.thunk(() => nix.sel(cfg, "policies")))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "apparmor-utils")),
             nix.thunk(() => nix.sel(pkgs, "apparmor-bin-utils")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "apparmor.d": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "apparmor.d", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (p) => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     name: name,
                     path: nix.thunk(() => nix.app(buildPolicyPath, name, p)),
-                  }), enabledPolicies), nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => ({ __proto__: pos$15, name: name, path: path }), nix.thunk(() => nix.sel(cfg, "includes"))))))),
+                  }), enabledPolicies), nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => ({ [nix.POS]: pos$15, name: name, path: path }), nix.thunk(() => nix.sel(cfg, "includes"))))))),
             })),
             "apparmor/parser.conf": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               text: nix.thunk(() => nix.add(nix.str`${(nix.asBool(nix.sel(cfg, "enableCache")) ? "write-cache" : "skip-cache")}
 cache-loc /var/cache/apparmor
 Include /etc/apparmor.d
 `, nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.str`Include ${p}/etc/apparmor.d
 `, nix.thunk(() => nix.sel(cfg, "packages"))))),
             })),
-            "apparmor/apparmor.conf": nix.thunk(() => ({ __proto__: pos$18, text: "" })),
+            "apparmor/apparmor.conf": nix.thunk(() => ({ [nix.POS]: pos$18, text: "" })),
             "apparmor/severity.db": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               source: nix.thunk(() => nix.add(nix.sel(pkgs, "apparmor-utils"), "/etc/apparmor/severity.db")),
             })),
             "apparmor/logprof.conf": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "logprof.conf", nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   header: nix.thunk(() => nix.str`[settings]
   # /etc/apparmor.d/ is read-only on NixOS
   profiledir = /var/cache/apparmor/logprof
@@ -190,20 +190,20 @@ Include /etc/apparmor.d
             })),
           })),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$24, kernelParams: nix.thunk(() => ["apparmor=1"]) })),
-        security: nix.thunk(() => ({ __proto__: pos$25, lsm: nix.thunk(() => ["apparmor"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$24, kernelParams: nix.thunk(() => ["apparmor=1"]) })),
+        security: nix.thunk(() => ({ [nix.POS]: pos$25, lsm: nix.thunk(() => ["apparmor"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             apparmor: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               after: nix.thunk(() => ["local-fs.target", "systemd-journald-audit.socket"]),
               before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Description: "Load AppArmor policies",
                 DefaultDependencies: "no",
                 ConditionSecurity: "apparmor",
@@ -222,7 +222,7 @@ kill
 `)));
                 const commonOpts = (n) => (p) => nix.str`--verbose --show-cache ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(p, "state"), "complain")), "--complain ")}${nix.app(buildPolicyPath, n, p)}`;
                 return {
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   Type: "oneshot",
                   RemainAfterExit: "yes",
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "apparmor-init")), "aa-teardown")),
@@ -241,7 +241,7 @@ kill
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "apparmor"))]),
     })),
   };

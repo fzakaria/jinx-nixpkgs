@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const cuda_nvrtc = nix.arg($, "cuda_nvrtc");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libcublas",
       appendRunpaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "12.8")), nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), cuda_nvrtc)}/lib`)]))),
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CUDA Basic Linear Algebra Subroutine library",
         longDescription: "The cuBLAS library is an implementation of BLAS (Basic Linear Algebra Subprograms) on top of the NVIDIA CUDA runtime.\n",
         homepage: "https://developer.nvidia.com/cublas",

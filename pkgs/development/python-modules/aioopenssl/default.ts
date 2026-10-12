@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "horazont",
           repo: "aioopenssl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-asyncio-event-loop.patch",
             url: "https://github.com/theobori/aioopenssl/commit/47b1a1e5593fd8c3f4dedcdbc68c17e83d5c88ec.patch",
             hash: "sha256-XdoeWS5wqmGDWRObVpjcRLyN7SF2IdVmSAUBD7U4dfI=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           "test_starttls",
         ])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TLS-capable transport using OpenSSL for asyncio",
         homepage: "https://github.com/horazont/aioopenssl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

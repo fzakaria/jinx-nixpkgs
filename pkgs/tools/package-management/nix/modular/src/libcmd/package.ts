@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const enableMarkdown = nix.argOr($, "enableMarkdown", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")));
   const readlineFlavor = nix.argOr($, "readlineFlavor", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "readline" : "editline"));
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-cmd",
       version: version,
       workDir: nix.path(here, "./."),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.sel({ __proto__: pos$1, editline: editline, readline: readline }, nix.key(nix.force(readlineFlavor)))),
+        nix.thunk(() => nix.sel({ [nix.POS]: pos$1, editline: editline, readline: readline }, nix.key(nix.force(readlineFlavor)))),
       ], nix.app(nix.sel(lib, "optional"), enableMarkdown, lowdown))),
       propagatedBuildInputs: nix.thunk(() => [
         nix_util,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "readline-flavor", readlineFlavor)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

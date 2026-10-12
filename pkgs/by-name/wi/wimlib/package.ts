@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const ntfs3g = nix.argOr($, "ntfs3g", () => null);
   const syslinux = nix.argOr($, "syslinux", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.14.5",
       pname: "wimlib",
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([ntfs3g], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [fuse3])))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://wimlib.net/downloads/wimlib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hCIaOr1bkSKPFfjmBlwzWjNiN7VzgZe3W/QZ7qVhoZQ=",
         })))),
@@ -45,7 +45,7 @@ done
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "patchShebangs tests\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wimlib.net",
         description: "Library and program to extract, create, and modify WIM files",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

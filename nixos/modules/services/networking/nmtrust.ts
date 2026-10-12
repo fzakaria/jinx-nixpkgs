@@ -66,8 +66,8 @@ export default nix.lambda((args) => (() => {
   const mkUnitOverrides = (unitName) => (unitCfg) => (() => {
     const targets = nix.thunk(() => nix.concat(["nmtrust-trusted.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(unitCfg, "allowOffline")), "nmtrust-offline.target")));
     return {
-      __proto__: pos$2,
-      unitConfig: nix.thunk(() => ({ __proto__: pos$1, StopWhenUnneeded: true })),
+      [nix.POS]: pos$2,
+      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$1, StopWhenUnneeded: true })),
       wantedBy: targets,
     };
   })();
@@ -83,52 +83,52 @@ export default nix.lambda((args) => (() => {
 esac
 `)));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         nmtrust: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "network trust management")),
           trustedConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of NetworkManager profile names from\n{option}`networking.networkmanager.ensureProfiles`.\nUUIDs are resolved at evaluation time.\n",
             })))),
           trustedUUIDsExtra: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")))),
               default: [],
               description: "Additional trusted connection UUIDs not managed via\n{option}`networking.networkmanager.ensureProfiles`.\nMust be valid UUID format.\n",
             })))),
           excludedConnectionPatterns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Glob patterns matched against connection names at runtime using\nfnmatch(3) with FNM_NOESCAPE. Connection names are treated as\nliteral strings (no backslash interpretation).\nMatching connections are ignored when computing trust state.\n",
             })))),
           mixedPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["trusted", "untrusted"]))),
               default: "untrusted",
               description: "How to treat mixed trust state (some connections trusted,\nsome untrusted).\n",
             })))),
           evalFailurePolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["untrusted", "offline"]))),
               default: "untrusted",
               description: "How to handle trust evaluation failures (D-Bus errors, NM\nunavailable). `\"untrusted\"` (default) is fail-closed: trusted-only\nunits stop. `\"offline\"` allows units with\n{option}`allowOffline` to run.\n",
             })))),
           systemUnits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       allowOffline: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether this unit should also run when offline.",
@@ -139,13 +139,13 @@ esac
               description: "System units to bind to the trusted network target.\nKeys are systemd unit names.\n",
             })))),
           userUnits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       options: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         allowOffline: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether this unit should also run when offline.",
@@ -160,23 +160,23 @@ esac
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")),
             message: "services.nmtrust requires networking.networkmanager.enable = true.",
           })),
         ], nix.concat(nix.builtins.map((name) => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (nix.asBool(nix.has(nix.sel(config, "networking", "networkmanager", "ensureProfiles", "profiles"), nix.key(nix.force(name)))) && nix.asBool(nix.has(nix.sel(config, "networking", "networkmanager", "ensureProfiles", "profiles", nix.key(nix.force(name)), "connection"), "uuid")))),
             message: nix.thunk(() => nix.add(nix.str`services.nmtrust.trustedConnections references '${name}' `, "but no matching networking.networkmanager.ensureProfiles entry with a UUID exists.")),
           }), nix.thunk(() => nix.sel(cfg, "trustedConnections"))), nix.concat(nix.builtins.map((username) => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => nix.has(nix.sel(config, "users", "users"), nix.key(nix.force(username)))),
             message: nix.thunk(() => nix.add(nix.str`services.nmtrust.userUnits references user '${username}' `, "but no matching users.users entry exists.")),
           }), userNames), nix.builtins.map((username) => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (() => {
               const l = nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.force(username)), "linger"));
               return (nix.asBool(!nix.eq(l, null)) && nix.asBool(l));
@@ -184,12 +184,12 @@ esac
             message: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`services.nmtrust.userUnits references user '${username}' but `, nix.str`linger is not enabled. Set users.users.${username}.linger = true to `), "ensure the user's systemd instance is running for trust-based unit management. "), "Note: enabling linger causes ALL of this user's enabled user services to run "), "persistently, not just trust-managed units.")),
           }), nix.thunk(() => nix.builtins.filter((u) => nix.has(nix.sel(config, "users", "users"), nix.key(nix.force(u))), userNames))))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [trustHelper]),
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "nmtrust/config": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               text: nix.thunk(() => (() => {
                 const toBashArray = (xs) => nix.add(nix.add("(", nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (x) => nix.app(nix.sel(lib, "escapeShellArg"), x), xs)), ")");
                 return nix.str`# Generated by NixOS module — do not edit
@@ -204,29 +204,29 @@ MANAGED_USERS=${nix.app(toBashArray, userNames)}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             rules: nix.thunk(() => ["d /run/nmtrust 0700 root root -"]),
           })),
           targets: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((target) => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 name: target,
                 value: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   description: nix.thunk(() => nix.str`Network Trust State: ${(nix.asBool(nix.eq(target, "nmtrust-trusted")) ? "Trusted" : (nix.asBool(nix.eq(target, "nmtrust-untrusted")) ? "Untrusted" : "Offline"))}`),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$27, Conflicts: nix.thunk(() => nix.app(conflictsFor, target)) })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$27, Conflicts: nix.thunk(() => nix.app(conflictsFor, target)) })),
                 })),
               }), trustTargets)))),
           user: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             targets: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((target) => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   name: target,
                   value: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     description: nix.thunk(() => nix.str`Network Trust State: ${(nix.asBool(nix.eq(target, "nmtrust-trusted")) ? "Trusted (User)" : (nix.asBool(nix.eq(target, "nmtrust-untrusted")) ? "Untrusted (User)" : "Offline (User)"))}`),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$30, Conflicts: nix.thunk(() => nix.app(conflictsFor, target)) })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$30, Conflicts: nix.thunk(() => nix.app(conflictsFor, target)) })),
                   })),
                 }), trustTargets)))),
             services: nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), (acc) => (username) => nix.app(nix.sel(lib, "foldl'"), (acc$) => (unitName) => (() => {
@@ -235,24 +235,24 @@ MANAGED_USERS=${nix.app(toBashArray, userNames)}
                   const existing = nix.thunk(() => nix.selOr(acc$, () => null, nix.key(nix.force(strippedName))));
                   return nix.update(acc$, nix.attrsDyn({}, [
                     [nix.force(strippedName), nix.thunk(() => (nix.asBool(nix.eq(existing, null)) ? nix.force(incoming) : nix.update(existing, {
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(existing, "wantedBy"), nix.sel(incoming, "wantedBy"))))),
                     })))],
                   ]));
                 })(), acc, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "userUnits", nix.key(nix.force(username))))))), nix.thunk(() => ({})), userNames)),
           })),
           services: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               name: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), ".service", nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), ".timer", nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), ".socket", name)))))),
               value: nix.thunk(() => nix.app(mkUnitOverrides, name, value)),
             }), nix.thunk(() => nix.sel(cfg, "systemUnits"))), {
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             "nmtrust-apply": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Evaluate and apply network trust state",
               after: nix.thunk(() => ["NetworkManager.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${trustHelper}/bin/nmtrust apply`),
                 Restart: "on-failure",
@@ -265,7 +265,7 @@ MANAGED_USERS=${nix.app(toBashArray, userNames)}
               })),
             })),
             "nmtrust-eval": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               description: "Evaluate network trust state on boot",
               wantedBy: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -274,7 +274,7 @@ MANAGED_USERS=${nix.app(toBashArray, userNames)}
                 nix.thunk(() => nix.sel(config, "environment", "etc", "nmtrust/config", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${trustHelper}/bin/nmtrust apply`),
@@ -290,17 +290,17 @@ MANAGED_USERS=${nix.app(toBashArray, userNames)}
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           networkmanager: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             dispatcherScripts: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$42, source: dispatcherScript, type: "basic" })),
+              nix.thunk(() => ({ [nix.POS]: pos$42, source: dispatcherScript, type: "basic" })),
             ]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brett"))]),
     })),
   };

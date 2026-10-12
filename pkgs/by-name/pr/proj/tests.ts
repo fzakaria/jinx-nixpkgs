@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const proj = nix.arg($, "proj");
   const pname = nix.thunk(() => nix.attr(proj, "pname"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`${proj}/bin/projinfo EPSG:4326 \\
   | grep '+proj=longlat +datum=WGS84 +no_defs +type=crs'
 touch $out

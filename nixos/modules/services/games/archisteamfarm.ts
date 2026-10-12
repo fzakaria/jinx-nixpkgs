@@ -61,70 +61,70 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "archisteamfarm"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
-  const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "ASF.json", nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.update({ __proto__: pos$1, UpdateChannel: 0n, Headless: true }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ipcPasswordFile"), null)), nix.thunk(() => ({ __proto__: pos$2, IPCPassword: "#ipcPassword#" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "licenseFile"), null)), nix.thunk(() => ({ __proto__: pos$3, LicenseID: "#licenseID#" })))))))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "ASF.json", nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.update({ [nix.POS]: pos$1, UpdateChannel: 0n, Headless: true }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ipcPasswordFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, IPCPassword: "#ipcPassword#" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "licenseFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$3, LicenseID: "#licenseID#" })))))))));
   const ipc_config = nix.thunk(() => nix.app(nix.sel(format, "generate"), "IPC.config", nix.thunk(() => nix.sel(cfg, "ipcSettings"))));
   const mkBot = (n) => (c) => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${n}.json`), nix.thunk(() => nix.update(nix.sel(c, "settings"), nix.update({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       SteamLogin: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(c, "username"), "")) ? nix.force(n) : nix.sel(c, "username"))),
       Enabled: nix.thunk(() => nix.sel(c, "enabled")),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(c, "passwordFile"), null)), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         SteamPassword: nix.thunk(() => nix.sel(c, "passwordFile")),
         PasswordFormat: 4n,
       })))))));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         archisteamfarm: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If enabled, starts the ArchisSteamFarm service.\nFor configuring the SteamGuard token you will need to use the web-ui, which is enabled by default over on 127.0.0.1:1242.\nYou cannot configure ASF in any way outside of nix, since all the config files get wiped on restart and replaced with the programnatically set ones by nix.\n",
               default: false,
             })))),
           "web-ui": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       description: "Whether to start the web-ui. This is the preferred way of configuring things such as the steam guard token.",
                     })),
                     package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["archisteamfarm", "ui"]), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         extraDescription: "::: {.note}\nContents must be in lib/dist\n:::\n",
                       })))),
                   })),
                 })))),
-              default: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
-              example: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
               description: "The Web-UI hosted on 127.0.0.1:1242.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "archisteamfarm", nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               extraDescription: "::: {.warning}\nShould always be the latest version, for security reasons,\nsince this module uses very new features and to not get out of sync with the Steam API.\n:::\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/archisteamfarm",
               description: "The ASF home directory used to store all data.\nIf left as the default value this directory will automatically be created before the ASF server starts, otherwise the sysadmin is responsible for ensuring the directory exists with appropriate ownership and permissions.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "The ASF.json file, all the options are documented [here](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration#global-config).\nDo note that `AutoRestart`  and `UpdateChannel` is always to `false` respectively `0` because NixOS takes care of updating everything.\n`Headless` is also always set to `true` because there is no way to provide inputs via a systemd service.\nYou should try to keep ASF up to date since upstream does not provide support for anything but the latest version and you're exposing yourself to all kinds of issues - as is outlined [here](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration#updateperiod).\n",
-              example: nix.thunk(() => ({ __proto__: pos$16, Statistics: false })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$16, Statistics: false })),
               default: nix.thunk(() => ({})),
             })))),
           licenseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
               description: "Path to a file containing the license. The file must be readable by the `archisteamfarm` user/group.",
             })))),
           ipcPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -142,35 +142,35 @@ export default nix.lambda((args) => (() => {
               description: "Path to a file containing the password. The file must be readable by the `archisteamfarm` user/group.",
             })))),
           ipcSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "Settings to write to IPC.config.\nAll options can be found [here](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/IPC#custom-configuration).\n",
               example: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Kestrel: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   Endpoints: nix.thunk(() => ({
-                    __proto__: pos$21,
-                    HTTP: nix.thunk(() => ({ __proto__: pos$20, Url: "http://*:1242" })),
+                    [nix.POS]: pos$21,
+                    HTTP: nix.thunk(() => ({ [nix.POS]: pos$20, Url: "http://*:1242" })),
                   })),
                 })),
               })),
               default: nix.thunk(() => ({})),
             })))),
           bots: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     options: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Name of the user to log in. Default is attribute name.",
                           default: "",
                         })))),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -179,13 +179,13 @@ export default nix.lambda((args) => (() => {
                           description: "Path to a file containing the password. The file must be readable by the `archisteamfarm` user/group.\nOmit or set to null to provide the password a different way, such as through the web-ui.\n",
                         })))),
                       enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to enable the bot on startup.",
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                           description: "Additional settings that are documented [here](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration#bot-config).\n",
                           default: nix.thunk(() => ({})),
@@ -194,12 +194,12 @@ export default nix.lambda((args) => (() => {
                   })))))),
               description: "Bots name and configuration.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 exampleBot: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   username: "alice",
                   passwordFile: "/var/lib/archisteamfarm/secrets/password",
-                  settings: nix.thunk(() => ({ __proto__: pos$31, SteamParentalCode: "1234" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$31, SteamParentalCode: "1234" })),
                 })),
               })),
               default: nix.thunk(() => ({})),
@@ -208,38 +208,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         users: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           users: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             archisteamfarm: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               isSystemUser: true,
               group: "archisteamfarm",
               description: "Archis-Steam-Farm service user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$40, archisteamfarm: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$40, archisteamfarm: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             archisteamfarm: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               description: "Archis-Steam-Farm Service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/var/lib/", nix.thunk(() => nix.sel(cfg, "dataDir")))), nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       StateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", nix.thunk(() => nix.sel(cfg, "dataDir")))))),
                       StateDirectoryMode: "700",
                     })))),
                   nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     User: "archisteamfarm",
                     Group: "archisteamfarm",
                     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -277,7 +277,7 @@ export default nix.lambda((args) => (() => {
                   })),
                 ]))),
               preStart: nix.thunk(() => (() => {
-                const createBotsScript = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ASF-bots", nix.thunk(() => ({ __proto__: pos$44, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+                const createBotsScript = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ASF-bots", nix.thunk(() => ({ [nix.POS]: pos$44, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 # clean potential removed bots
 rm -rf $out/*.json
 for i in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getName"), x)},${x}`, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mkBot, nix.thunk(() => nix.sel(cfg, "bots")))))))}; do IFS=",";
@@ -312,7 +312,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "web-ui",
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

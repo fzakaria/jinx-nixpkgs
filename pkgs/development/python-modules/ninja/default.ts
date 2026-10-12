@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const flit_core = nix.arg($, "flit-core");
   const ninja = nix.arg($, "ninja");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ninja",
       version: nix.thunk(() => nix.attr(ninja, "version")),
       pyproject: true,
@@ -31,7 +31,7 @@ substituteInPlace "$sourceRoot/ninja/__init__.py" \\
 `),
       pythonImportsCheck: nix.thunk(() => ["ninja", "ninja.ninja_syntax"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Small build system with a focus on speed",
         mainProgram: "ninja",
         longDescription: "This is a stub of the ninja package on PyPI that uses the ninja program\nprovided by nixpkgs instead of downloading ninja from the web.\n",

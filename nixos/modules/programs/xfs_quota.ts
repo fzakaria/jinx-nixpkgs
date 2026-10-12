@@ -37,45 +37,45 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(opts, "sizeHardLimit"), null)), nix.thunk(() => nix.str`bhard=${nix.sel(opts, "sizeHardLimit")}`))),
     ]));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       programs: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         xfs_quota: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           projects: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     options: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           description: "Project ID.",
                         })))),
                       fileSystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "XFS filesystem hosting the xfs_quota project.",
                           default: "/",
                         })))),
                       path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Project directory.",
                         })))),
                       sizeSoftLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           example: "30g",
                           description: "Soft limit of the project size",
                         })))),
                       sizeHardLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           example: "50g",
@@ -85,9 +85,9 @@ export default nix.lambda((args) => (() => {
                   })))))),
               description: "Setup of xfs_quota projects. Make sure the filesystem is mounted with the pquota option.",
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 projname: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   id: 50n,
                   path: "/xfsprojects/projname",
                   sizeHardLimit: "50g",
@@ -98,25 +98,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "projects"), {})), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             projects: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "etc-project", nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (opts) => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(opts, "id")))}:${nix.sel(opts, "path")}`, nix.thunk(() => nix.sel(cfg, "projects")))))))),
             })),
             projid: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "etc-projid", nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (opts) => nix.str`${name}:${nix.builtins.toString(nix.thunk(() => nix.sel(opts, "id")))}`, nix.thunk(() => nix.sel(cfg, "projects")))))))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`xfs_quota-${name}`), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: nix.thunk(() => nix.str`Setup xfs_quota for project ${name}`),
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs, "xfsprogs", "bin")}/bin/xfs_quota -x -c 'project -s ${name}' ${nix.sel(opts, "fileSystem")}
 ${nix.sel(pkgs, "xfsprogs", "bin")}/bin/xfs_quota -x -c 'limit -p ${nix.app(limitOptions, opts)} ${name}' ${nix.sel(opts, "fileSystem")}
@@ -126,7 +126,7 @@ ${nix.sel(pkgs, "xfsprogs", "bin")}/bin/xfs_quota -x -c 'limit -p ${nix.app(limi
                   nix.thunk(() => nix.add(nix.builtins.replaceStrings(nix.thunk(() => ["/"]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(opts, "fileSystem"))), ".mount")),
                 ]),
                 restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(config, "environment", "etc", "projects", "source"))]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$18, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Type: "oneshot", RemainAfterExit: true })),
               }))), nix.thunk(() => nix.sel(cfg, "projects")))),
         })),
       })))),

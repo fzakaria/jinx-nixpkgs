@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ucode = nix.arg($, "ucode");
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uclient",
       version: "unstable-2025-10-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/uclient.git",
           rev: "dc909ca71bc884c0e5362e1d7cc7808696cb2add",
           hash: "sha256-jrhLBB3Mb7FvxMtKxG7e7D/hcyygTjx868POGtF+Dcc=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
     -i CMakeLists.txt
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny OpenWrt fork of libnl",
         homepage: "https://git.openwrt.org/?p=project/uclient.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

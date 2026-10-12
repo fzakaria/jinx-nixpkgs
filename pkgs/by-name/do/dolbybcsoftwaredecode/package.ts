@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const fpc = nix.arg($, "fpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dolbybcsoftwaredecode",
       version: "april-2018",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/dolbybcsoftwaredecode/April-2018/SourceCode.zip",
           sha256: "sha256-uLcsRIpwmJlstlGV8I4+/30+D9GDpUt7DOIP/GkXWp4=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "fpc DolbyBi64.PP\n",
       installPhase: "mkdir -p $out/bin\ncp DolbyBi64 $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dolby B & C software decoder",
         homepage: "https://sourceforge.net/projects/dolbybcsoftwaredecode/",
         maintainers: nix.thunk(() => (() => {

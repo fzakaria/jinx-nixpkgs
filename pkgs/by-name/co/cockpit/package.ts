@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const withBranding = nix.argOr($, "withBranding", () => true);
   const nixos_icons = nix.arg($, "nixos-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cockpit",
       version: "368",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cockpit-project",
           repo: "cockpit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -266,9 +266,9 @@ npm run eslint
 npm run stylelint
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         python3Packages: python3Packages,
-        tests: nix.thunk(() => ({ __proto__: pos$2, cockpit: nix.thunk(() => nix.attr(nixosTests, "cockpit")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, cockpit: nix.thunk(() => nix.attr(nixosTests, "cockpit")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         cockpitPath: nix.thunk(() => [
           glib,
@@ -278,7 +278,7 @@ npm run stylelint
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web-based graphical interface for servers",
         mainProgram: "cockpit-bridge",
         homepage: "https://cockpit-project.org/",

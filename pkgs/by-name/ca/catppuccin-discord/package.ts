@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
     "lavender",
   ]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`Invalid accent, valid accents are ${nix.builtins.toString(validAccents)}`), validAccents, accents, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`Invalid flavour, valid flavours are ${nix.builtins.toString(validFlavours)}`), validFlavours, flavour, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "catppuccin-discord",
       version: "0-unstable-2024-12-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "discord",
           rev: "16b1e5156583ee376ded4fa602842fa540826bbc",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nodejs_slim,
       ]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-2N4UI6Ap+zk7jtDCAsjGtwfDSiyOtB9YDOXUxYRCw60=",
         })))),
@@ -72,7 +72,7 @@ done;
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soothing pastel theme for Discord",
         homepage: "https://github.com/catppuccin/discord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

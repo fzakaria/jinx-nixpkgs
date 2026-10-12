@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_45 = nix.arg($, "docbook_xml_dtd_45");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3status",
       version: "2.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://i3wm.org/i3status/i3status-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-bGf1LK5PE533ZK0cxzZWK+D5d1B5G8IStT80wG6vIgU=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libconfuse, yajl, alsa_lib, libpulseaudio, libnl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generates a status line for i3bar, dzen2, xmobar or lemonbar",
         homepage: "https://i3wm.org",
         maintainers: nix.thunk(() => (() => {

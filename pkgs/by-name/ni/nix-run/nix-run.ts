@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-run";
       const version = "0.1.0.0-alpha.2";
       const src = nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           did: "did:plc:jhj73bgwgby7m5sudz5jk6gb",
           tag: version,
           hash: "sha256-vnYD3N32H6eEPLis8eNlglXVY+guP5DDKCf2z7CLzwA=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const license = nix.thunk(() => nix.sel(lib, "licenses", "bsd3"));
       const mainProgram = "nix-run";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

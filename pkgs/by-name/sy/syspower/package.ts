@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtkmm4 = nix.arg($, "gtkmm4");
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "syspower",
       version: "0-unstable-2025-12-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "System64fumo",
           repo: "syspower",
           rev: "1a74a7895a02363dfcc23bb43cd3f7d7d8ad3320",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       postFixup: "wrapProgram $out/bin/syspower --prefix LD_LIBRARY_PATH : $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple power menu/shutdown screen for Hyprland",
         homepage: "https://github.com/System64fumo/syspower",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

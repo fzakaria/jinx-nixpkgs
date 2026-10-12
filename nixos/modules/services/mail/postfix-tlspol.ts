@@ -63,37 +63,37 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml_1_2"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "postfix-tlspol.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "postfix-tlspol", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "postfix-tlspol": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(mkEnableOption, "postfix-tlspol")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "postfix-tlspol", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     server: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "unix:/run/postfix-tlspol/tlspol.sock",
                           example: "127.0.0.1:8642",
                           description: "Path or address/port where postfix-tlspol binds its socket to.\n",
                         })))),
                       "socket-permissions": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0660",
                           readOnly: true,
@@ -101,21 +101,21 @@ export default nix.lambda((args) => (() => {
                           apply: (value) => nix.sel(nix.builtins.fromTOML(nix.thunk(() => nix.str`v=0o${value}`)), "v"),
                         })))),
                       "log-level": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warn", "error"]))),
                           default: "info",
                           example: "warn",
                           description: "Log level\n",
                         })))),
                       prefetch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           example: false,
                           description: "Whether to prefetch DNS records when the TTL of a cached record is about to expire.\n",
                         })))),
                       "cache-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: "/var/cache/postfix-tlspol/cache.db",
                           readOnly: true,
@@ -123,9 +123,9 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     dns: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
               description: "The postfix-tlspol configuration file as a Nix attribute set.\n\nSee the reference documentation for possible options.\n<https://github.com/Zuplu/postfix-tlspol/blob/main/configs/config.default.yaml>\n",
             })))),
           configurePostfix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to configure the required settings to use postfix-tlspol in the local Postfix instance.\n",
@@ -151,15 +151,15 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(config, "services", "postfix", "enable")))) && nix.asBool(nix.sel(cfg, "configurePostfix")))), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               postfix: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   main: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     smtp_dns_support_level: "dnssec",
                     smtp_tls_security_level: "dane",
                     smtp_tls_policy_maps: nix.thunk(() => (() => {
@@ -171,51 +171,51 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   wants: nix.thunk(() => ["postfix-tlspol.service"]),
                   after: nix.thunk(() => ["postfix-tlspol.service"]),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               users: nix.thunk(() => ({
-                __proto__: pos$25,
-                postfix: nix.thunk(() => ({ __proto__: pos$24, extraGroups: nix.thunk(() => ["postfix-tlspol"]) })),
+                [nix.POS]: pos$25,
+                postfix: nix.thunk(() => ({ [nix.POS]: pos$24, extraGroups: nix.thunk(() => ["postfix-tlspol"]) })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             environment: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               etc: nix.thunk(() => ({
-                __proto__: pos$29,
-                "postfix-tlspol/config.yaml": nix.thunk(() => ({ __proto__: pos$28, source: configFile })),
+                [nix.POS]: pos$29,
+                "postfix-tlspol/config.yaml": nix.thunk(() => ({ [nix.POS]: pos$28, source: configFile })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               users: nix.thunk(() => ({
-                __proto__: pos$32,
-                "postfix-tlspol": nix.thunk(() => ({ __proto__: pos$31, isSystemUser: true, group: "postfix-tlspol" })),
+                [nix.POS]: pos$32,
+                "postfix-tlspol": nix.thunk(() => ({ [nix.POS]: pos$31, isSystemUser: true, group: "postfix-tlspol" })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$33, "postfix-tlspol": nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$33, "postfix-tlspol": nix.thunk(() => ({})) })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               sockets: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 "postfix-tlspol": nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     Accept: false,
                     ListenStream: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "unix:", nix.thunk(() => nix.sel(cfg, "settings", "server", "address")))),
@@ -228,16 +228,16 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "postfix-tlspol": nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   after: nix.thunk(() => ["nss-lookup.target", "network-online.target"]),
                   wants: nix.thunk(() => ["nss-lookup.target", "network-online.target"]),
                   description: "Postfix DANE/MTA-STS TLS policy socketmap service",
                   documentation: nix.thunk(() => ["https://github.com/Zuplu/postfix-tlspol"]),
                   restartTriggers: nix.thunk(() => [configFile]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                         "-config",

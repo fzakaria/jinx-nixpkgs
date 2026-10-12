@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libz = nix.arg($, "libz");
   const plasticscm_client_core_unwrapped = nix.arg($, "plasticscm-client-core-unwrapped");
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plasticscm-client-core",
       version: nix.thunk(() => nix.attr(plasticscm_client_core_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(plasticscm_client_core_unwrapped, "meta")),

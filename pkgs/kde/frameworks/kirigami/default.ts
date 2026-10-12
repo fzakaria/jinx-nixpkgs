@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.arg($, "qt5compat");
   const qqc2_desktop_style = nix.arg($, "qqc2-desktop-style");
   const unwrapped = nix.thunk(() => nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kirigami",
       extraNativeBuildInputs: nix.thunk(() => [qtsvg, qttools]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),
       extraPropagatedBuildInputs: nix.thunk(() => [qt5compat]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kirigami-wrapped",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       propagatedBuildInputs: nix.thunk(() => [unwrapped, qqc2_desktop_style]),
       dontUnpack: true,
       dontWrapQtApps: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: unwrapped })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

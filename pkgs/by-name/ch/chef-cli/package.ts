@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chef-cli",
       gemdir: nix.path(here, "./."),
       ruby: ruby,
       exes: nix.thunk(() => ["chef-cli"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "chef-cli")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chef Infra Client is a powerful agent that applies your configurations on remote Linux, macOS, Windows and cloud-based systems",
         homepage: "https://chef.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "scx_loader.toml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "config"))))));
   const schedulers = nix.thunk(() => nix.builtins.concatMap((x) => nix.selOr(x, () => nix.builtins.throw(nix.thunk(() => nix.str`Scheduler not found in package ${nix.sel(x, "name")}`)), "passthru", "schedulers"), nix.thunk(() => nix.sel(cfg, "schedsPackages"))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "scx-loader": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SCX Loader service, a daemon to run schedulers from userspace using dbus. This requires kernel version 6.12 and later.")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "scx-loader", nix.thunk(() => ({})))),
           schedsPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "scx", "rustscheds"))]),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.scx.rustscheds ]")),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
               description: "`scx` package to use. Defaults to `scx.rustscheds`, which includes all currently by `scx_loader` supported schedulers.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     default_sched: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "scx_bpfland",
@@ -78,59 +78,59 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.12")),
             message: "SCX is only supported on kernel version 6.12 and above.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "scx", "enable"))),
             message: "services.scx and services.scx_loader cannot be enabled simultaneously. Please enable only one of them.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config", "default_sched"), null)) || nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "config", "default_sched")), nix.thunk(() => nix.concat([""], schedulers)))))),
             message: nix.thunk(() => nix.str`Invalid default scheduler: ${nix.sel(cfg, "config", "default_sched")}. It must be one of: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", schedulers)}.
 `),
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "schedsPackages"))),
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
-            "scx_loader.toml": nix.thunk(() => ({ __proto__: pos$12, source: configFile })),
+            [nix.POS]: pos$13,
+            "scx_loader.toml": nix.thunk(() => ({ [nix.POS]: pos$12, source: configFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             scx_loader: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               path: nix.thunk(() => nix.sel(cfg, "schedsPackages")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           dbus: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$21,
-          polkit: nix.thunk(() => ({ __proto__: pos$20, enable: true })),
+          [nix.POS]: pos$21,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ccicnce113424"))];

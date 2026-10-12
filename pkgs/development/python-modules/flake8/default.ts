@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "flake8",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           "test_tokenization_error_but_not_syntax_error",
         ])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/flake8/blob/${nix.sel(src, "tag")}/docs/source/release-notes/${version}.rst`),
         description: "Modular source code checker: pep8, pyflakes and co",
         homepage: "https://github.com/PyCQA/flake8",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flake8",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

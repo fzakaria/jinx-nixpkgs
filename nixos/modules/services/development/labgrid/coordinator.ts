@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "labgrid", "coordinator"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -40,21 +40,21 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         labgrid: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           coordinator: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             bindAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "0.0.0.0",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Bind address for the labgrid coordinator.",
               })))),
             debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: false,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
               })))),
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Labgrid Coordinator")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: false,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["python3Packages", "labgrid"]), nix.thunk(() => ({})))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: 20408n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "Coordinator port to bind to.",
@@ -84,24 +84,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           firewall: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "labgrid-coordinator": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               after: nix.thunk(() => ["network-online.target"]),
               description: "Labgrid Coordinator",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Environment: "\"PYTHONUNBUFFERED=1\"",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/labgrid-coordinator ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "debug")), "--debug")} --listen ${nix.sel(cfg, "bindAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 Restart: "on-failure",

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-AZS7JwaxLQN9sSxRko/p67NrctnnGVZdq6WmxZUyL68=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
         requests,
         webob,
-        nix.thunk(() => nix.app(nix.sel(webtest, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: false }))),
+        nix.thunk(() => nix.app(nix.sel(webtest, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: false }))),
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_pyquery.py::TestWebScrappingEncoding::test_get"]);
       const disabledTests = nix.thunk(() => [
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
         "test_session",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Jquery-like library for Python",
         homepage: "https://github.com/gawel/pyquery",
         changelog: nix.thunk(() => nix.str`https://github.com/gawel/pyquery/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["maid"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rule-based file mover and cleaner in Ruby",
         homepage: "https://github.com/maid/maid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$4, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: pos$4, pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

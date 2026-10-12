@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installManPages = nix.argOr($, "installManPages", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const withTcp = nix.argOr($, "withTcp", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comodoro",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimalaya",
           repo: "comodoro",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.concat(["hook-command", "hook-notify"], nix.app(nix.sel(lib, "optional"), withTcp, "tcp"))),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), installManPages, "mkdir -p $out/man\n$out/bin/comodoro man $out/man\ninstallManPage $out/man/*\n"), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd comodoro \\\n  --bash <($out/bin/comodoro completion bash) \\\n  --fish <($out/bin/comodoro completion fish) \\\n  --zsh <($out/bin/comodoro completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI to manage your time",
         homepage: "https://github.com/pimalaya/comodoro",
         changelog: nix.thunk(() => nix.str`https://github.com/pimalaya/comodoro/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

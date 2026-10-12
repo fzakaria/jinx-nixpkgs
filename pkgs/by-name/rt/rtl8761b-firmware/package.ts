@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8761b-firmware",
       version: "rtk1395",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Realtek-OpenSource",
           repo: "android_hardware_realtek",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -D -pm644 \\\n  bt/rtkbt/Firmware/BT/rtl8761b_fw \\\n  $out/lib/firmware/rtl_bt/rtl8761b_fw.bin\n\ninstall -D -pm644 \\\n  bt/rtkbt/Firmware/BT/rtl8761b_config \\\n  $out/lib/firmware/rtl_bt/rtl8761b_config.bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for Realtek RTL8761b",
         homepage: "https://github.com/Realtek-OpenSource/android_hardware_realtek",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

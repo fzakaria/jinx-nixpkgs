@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lout",
       version: "3.43.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "william8000",
           repo: "lout",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Document layout system similar in style to LaTeX",
         longDescription: "The Lout document formatting system is now reads a high-level\ndescription of a document similar in style to LaTeX and produces\na PostScript or plain text output file.\n\nLout offers an unprecedented range of advanced features,\nincluding optimal paragraph and page breaking, automatic\nhyphenation, PostScript EPS file inclusion and generation,\nequation formatting, tables, diagrams, rotation and scaling,\nsorted indexes, bibliographic databases, running headers and\nodd-even pages, automatic cross referencing, multilingual\ndocuments including hyphenation (most European languages are\nsupported), formatting of computer programs, and much more, all\nready to use.  Furthermore, Lout is easily extended with\ndefinitions which are very much easier to write than troff of\nTeX macros because Lout is a high-level, purely functional\nlanguage, the outcome of an eight-year research project that\nwent back to the beginning.\n",
         homepage: "https://github.com/william8000/lout",

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oinker",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "major",
           repo: "oinker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [httpx]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [rich, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [rich, typer]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_cov_stub, pytestCheckHook], nix.sel(finalAttrs, "finalPackage", "optional-dependencies", "cli"))),
       pythonImportsCheck: nix.thunk(() => ["oinker"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pythonic client library for Porkbun DNS",
         mainProgram: "oinker",
         homepage: "https://major.github.io/oinker",

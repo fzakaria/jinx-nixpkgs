@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withPam = nix.argOr($, "withPam", () => false);
   const withSqlite = nix.argOr($, "withSqlite", () => true);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "soju",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emersion",
           repo: "soju",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip TestPostgresMigrations"]),
       postInstall: "installManPage doc/soju.1 doc/sojuctl.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, soju: nix.thunk(() => nix.sel(nixosTests, "soju")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, soju: nix.thunk(() => nix.sel(nixosTests, "soju")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User-friendly IRC bouncer",
         longDescription: "soju is a user-friendly IRC bouncer. soju connects to upstream IRC servers\non behalf of the user to provide extra functionality. soju supports many\nfeatures such as multiple users, numerous IRCv3 extensions, chat history\nplayback and detached channels. It is well-suited for both small and large\ndeployments.\n",
         homepage: "https://soju.im",

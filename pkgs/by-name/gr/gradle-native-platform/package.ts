@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const zip = nix.arg($, "zip");
   const archId = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     x86_64: "amd64",
     i686: "i386",
     aarch64: "aarch64",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const platformId = nix.thunk(() => nix.str`linux-${archId}`);
   const nativeVersionHash = "1def1411415f61bf3af743bc5b6707747c0891f09f0c88961ee8f79bc544acac";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gradle-native-platform",
       version: "0.22-milestone-28",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gradle",
           repo: "native-platform",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -105,7 +105,7 @@ stage "${platformId}-ncurses6" jni/libnative-platform-curses.so native-platform-
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JNI native libraries for Gradle",
         homepage: "https://github.com/gradle/native-platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

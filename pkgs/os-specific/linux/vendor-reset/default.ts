@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vendor-reset",
       version: nix.thunk(() => nix.str`unstable-2024-04-16-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnif",
           repo: "vendor-reset",
           rev: "084881c6e9e11bdadaf05798e669568848e698a3",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux kernel vendor specific hardware reset module",
         homepage: "https://github.com/gnif/vendor-reset",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

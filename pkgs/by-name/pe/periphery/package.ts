@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "periphery",
       version: "3.8.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/peripheryapp/periphery/releases/download/${nix.sel(finalAttrs, "version")}/periphery-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-WyuSYzFFUesHSmvZUa8Iw6f5BECKFJ0PVBylcq2uxz8=",
           stripRoot: false,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unused code detector for Swift projects",
         homepage: "https://github.com/peripheryapp/periphery",
         changelog: nix.thunk(() => nix.str`https://github.com/peripheryapp/periphery/releases/tag/${nix.sel(finalAttrs, "version")}`),

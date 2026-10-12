@@ -56,68 +56,68 @@ export default nix.lambda((args) => (() => {
   const settingsFileUnsubstituted = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mautrix-telegram-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   const settingsFile = nix.thunk(() => nix.str`${dataDir}/config.json`);
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         "mautrix-telegram": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mautrix-Telegram, a Matrix-Telegram hybrid puppeting/relaybot bridge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mautrix-telegram", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
               const apply = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), default$));
               const type = nix.thunk(() => nix.attr(settingsFormat, "type"));
               const default$ = nix.thunk(() => ({
-                __proto__: pos$16,
-                homeserver: nix.thunk(() => ({ __proto__: pos$1, software: "standard" })),
+                [nix.POS]: pos$16,
+                homeserver: nix.thunk(() => ({ [nix.POS]: pos$1, software: "standard" })),
                 appservice: nix.thunk(() => (() => {
                   const database = nix.thunk(() => nix.str`sqlite:///${dataDir}/mautrix-telegram.db`);
                   const database_opts = nix.thunk(() => ({}));
                   const hostname = "0.0.0.0";
                   const port = 8080n;
                   const address = nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(port)}`);
-                  return { __proto__: pos$2, database, database_opts, hostname, port, address };
+                  return { [nix.POS]: pos$2, database, database_opts, hostname, port, address };
                 })()),
                 bridge: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  permissions: nix.thunk(() => ({ __proto__: pos$3, "*": "relaybot" })),
-                  relaybot: nix.thunk(() => ({ __proto__: pos$4, whitelist: [] })),
+                  [nix.POS]: pos$5,
+                  permissions: nix.thunk(() => ({ [nix.POS]: pos$3, "*": "relaybot" })),
+                  relaybot: nix.thunk(() => ({ [nix.POS]: pos$4, whitelist: [] })),
                   double_puppet_server_map: nix.thunk(() => ({})),
                   login_shared_secret_map: nix.thunk(() => ({})),
                 })),
                 logging: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   version: 1n,
                   formatters: nix.thunk(() => ({
-                    __proto__: pos$7,
-                    precise: nix.thunk(() => ({ __proto__: pos$6, format: "[%(levelname)s@%(name)s] %(message)s" })),
+                    [nix.POS]: pos$7,
+                    precise: nix.thunk(() => ({ [nix.POS]: pos$6, format: "[%(levelname)s@%(name)s] %(message)s" })),
                   })),
                   handlers: nix.thunk(() => ({
-                    __proto__: pos$9,
-                    console: nix.thunk(() => ({ __proto__: pos$8, class: "logging.StreamHandler", formatter: "precise" })),
+                    [nix.POS]: pos$9,
+                    console: nix.thunk(() => ({ [nix.POS]: pos$8, class: "logging.StreamHandler", formatter: "precise" })),
                   })),
                   loggers: nix.thunk(() => ({
-                    __proto__: pos$13,
-                    mau: nix.thunk(() => ({ __proto__: pos$10, level: "INFO" })),
-                    telethon: nix.thunk(() => ({ __proto__: pos$11, level: "INFO" })),
-                    aiohttp: nix.thunk(() => ({ __proto__: pos$12, level: "WARNING" })),
+                    [nix.POS]: pos$13,
+                    mau: nix.thunk(() => ({ [nix.POS]: pos$10, level: "INFO" })),
+                    telethon: nix.thunk(() => ({ [nix.POS]: pos$11, level: "INFO" })),
+                    aiohttp: nix.thunk(() => ({ [nix.POS]: pos$12, level: "WARNING" })),
                   })),
-                  root: nix.thunk(() => ({ __proto__: pos$14, level: "INFO", handlers: nix.thunk(() => ["console"]) })),
+                  root: nix.thunk(() => ({ [nix.POS]: pos$14, level: "INFO", handlers: nix.thunk(() => ["console"]) })),
                 })),
               }));
               const example = nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  homeserver = {\n    address = \"http://localhost:8008\";\n    domain = \"public-domain.tld\";\n  };\n\n  appservice.public = {\n    prefix = \"/public\";\n    external = \"https://public-appservice-address/public\";\n  };\n\n  bridge.permissions = {\n    \"example.com\" = \"full\";\n    \"@admin:example.com\" = \"admin\";\n  };\n  telegram = {\n    connection.use_ipv6 = true;\n  };\n}\n"));
               const description = "{file}`config.yaml` configuration as a Nix attribute set.\nConfiguration options should match those described in\n[example-config.yaml](https://github.com/mautrix/telegram/blob/master/mautrix_telegram/example-config.yaml).\n\nSecret tokens should be specified using {option}`environmentFile`\ninstead of this world-readable attribute set.\n";
-              return { __proto__: pos$17, apply, type, default: default$, example, description };
+              return { [nix.POS]: pos$17, apply, type, default: default$, example, description };
             })()))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File containing environment variables to be passed to the mautrix-telegram service,\nin which secret tokens can be specified securely by defining values for e.g.\n`MAUTRIX_TELEGRAM_APPSERVICE_AS_TOKEN`,\n`MAUTRIX_TELEGRAM_APPSERVICE_HS_TOKEN`,\n`MAUTRIX_TELEGRAM_TELEGRAM_API_ID`,\n`MAUTRIX_TELEGRAM_TELEGRAM_API_HASH` and optionally\n`MAUTRIX_TELEGRAM_TELEGRAM_BOT_TOKEN`.\n\nThese environment variables can also be used to set other options by\nreplacing hierarchy levels by `.`, converting the name to uppercase\nand prepending `MAUTRIX_TELEGRAM_`.\nFor example, the first value above maps to\n{option}`settings.appservice.as_token`.\n\nThe environment variable values can be prefixed with `json::` to have\nthem be parsed as JSON. For example, `login_shared_secret_map` can be\nset as follows:\n`MAUTRIX_TELEGRAM_BRIDGE_LOGIN_SHARED_SECRET_MAP=json::{\"example.com\":\"secret\"}`.\n",
             })))),
           serviceDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
               description: "List of Systemd services to require and wait for when starting the application service.\n",
             })))),
           registerToSynapse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.matrix-synapse.enable")),
@@ -137,44 +137,44 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           users: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "mautrix-telegram": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               isSystemUser: true,
               group: "mautrix-telegram",
               home: dataDir,
               description: "Mautrix-Telegram bridge user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$26, "mautrix-telegram": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$26, "mautrix-telegram": nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               settings: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 app_service_config_files: nix.thunk(() => [registrationFile]),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   SupplementaryGroups: nix.thunk(() => ["mautrix-telegram"]),
                 })),
               })))),
             "mautrix-telegram": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "Mautrix-Telegram, a Matrix-Telegram hybrid puppeting/relaybot bridge.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.sel(cfg, "serviceDependencies"))),
@@ -183,7 +183,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "lottieconverter")),
                 nix.thunk(() => nix.sel(pkgs, "ffmpeg-headless")),
               ]),
-              environment: nix.thunk(() => ({ __proto__: pos$33, HOME: dataDir })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$33, HOME: dataDir })),
               preStart: nix.thunk(() => nix.add(nix.str`# substitute the settings file by environment variables
 # in this case read from EnvironmentFile
 test -f '${settingsFile}' && rm -f '${settingsFile}'
@@ -218,7 +218,7 @@ umask $old_umask
 ${nix.sel(cfg, "package", "alembic")}/bin/alembic -x config='${settingsFile}' upgrade head
 `)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 User: "mautrix-telegram",
                 Group: "mautrix-telegram",
                 Type: "simple",
@@ -242,7 +242,7 @@ ${nix.sel(cfg, "package", "alembic")}/bin/alembic -x config='${settingsFile}' up
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

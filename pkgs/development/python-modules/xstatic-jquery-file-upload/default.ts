@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools_80 = nix.arg($, "setuptools_80");
   const xstatic_jquery = nix.arg($, "xstatic-jquery");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xstatic-jquery-file-upload",
       version: "10.31.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "XStatic-jQuery-File-Upload",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fXFvJqyhRzLDXFTwum04GHYAq0cvyYqR2XLRLFpw2yc=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [xstatic_jquery]),
       pythonImportsCheck: nix.thunk(() => ["xstatic.pkg.jquery_file_upload"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/blueimp/jQuery-File-Upload",
         description: "jquery-file-upload packaged static files for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

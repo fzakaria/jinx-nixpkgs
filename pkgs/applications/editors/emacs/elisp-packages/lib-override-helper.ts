@@ -18,45 +18,45 @@ export default (pkgs) => (lib) => (() => {
   const addPackageRequires = (pkg) => (packageRequires) => nix.app(addPackageRequiresWhen, pkg, packageRequires, (finalAttrs) => (previousAttrs) => true);
   const addPackageRequiresIfOlder = (pkg) => (packageRequires) => (version) => nix.app(addPackageRequiresWhen, pkg, packageRequires, (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), version));
   const addPackageRequiresWhen = (pkg) => (packageRequires) => (predicate) => nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packageRequires: nix.thunk(() => (nix.asBool(nix.app(predicate, finalAttrs, previousAttrs)) ? nix.concat(nix.selOr(previousAttrs, () => [], "packageRequires"), packageRequires) : nix.selOr(previousAttrs, () => [], "packageRequires"))),
     }));
   const buildWithGit = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "git"))])),
     }));
-  const dontConfigure = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, dontConfigure: true })));
+  const dontConfigure = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, dontConfigure: true })));
   const externalSrc = (pkg) => (epkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.attr(epkg, "src")),
       version: nix.thunk(() => nix.attr(epkg, "version")),
     })));
   const fix_rtags = (pkg) => nix.app(dontConfigure, nix.thunk(() => nix.app(nix.sel(nix.app(externalSrc, pkg, nix.thunk(() => nix.sel(pkgs, "rtags"))), "overrideAttrs"), (previousAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "rtags"))])),
       }))));
   const fixRequireHelmCore = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(previousAttrs, () => "", "postPatch"), "\n"), "substituteInPlace $ename.el \\\n  --replace-fail \"(require 'helm)\" \"(require 'helm-core)\"\n")),
     }));
   const ignoreCompilationError = (pkg) => nix.app(ignoreCompilationErrorWhen, pkg, (finalAttrs) => (previousAttrs) => true);
   const ignoreCompilationErrorIfOlder = (pkg) => (version) => nix.app(ignoreCompilationErrorWhen, pkg, (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), version));
   const ignoreCompilationErrorWhen = (pkg) => (predicate) => nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       ignoreCompilationError: nix.thunk(() => nix.app(predicate, finalAttrs, previousAttrs)),
     }));
   const markBroken = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$9,
-      meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), { __proto__: pos$8, broken: true })),
+      [nix.POS]: pos$9,
+      meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), { [nix.POS]: pos$8, broken: true })),
     }));
   const mkHome = (pkg) => nix.app(mkHomeWhen, pkg, (finalAttrs) => (previousAttrs) => true);
   const mkHomeIfOlder = (pkg) => (version) => nix.app(mkHomeWhen, pkg, (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), version));
   const mkHomeWhen = (pkg) => (predicate) => nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       nativeBuildInputs: nix.thunk(() => (nix.asBool(nix.app(predicate, finalAttrs, previousAttrs)) ? nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "writableTmpDirAsHomeHook"))]) : nix.selOr(previousAttrs, () => [], "nativeBuildInputs"))),
     }));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     addPackageRequires,
     addPackageRequiresIfOlder,
     addPackageRequiresWhen,

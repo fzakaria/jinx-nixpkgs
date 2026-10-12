@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mailcatcher",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["mailcatcher", "catchmail"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "mailcatcher")),
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mailcatcher: nix.thunk(() => nix.attr(nixosTests, "mailcatcher")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SMTP server and web interface to locally test outbound emails",
         homepage: "https://mailcatcher.me/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

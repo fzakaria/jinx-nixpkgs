@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pulumi-esc",
       version: "0.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pulumi",
           repo: "esc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/pulumi/esc/cmd/esc/cli/version.Version=${nix.sel(finalAttrs, "src", "rev")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pulumi ESC (Environments, Secrets, and Configuration) for cloud applications and infrastructure",
         homepage: "https://github.com/pulumi/esc/tree/main",
         changelog: nix.thunk(() => nix.str`https://github.com/pulumi/esc/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

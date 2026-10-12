@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "brother-udev-rule-type1";
       const version = "1.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://download.brother.com/welcome/dlf006654/brother-udev-rule-type1-${version}.all.deb`),
           sha256: "0i0x5jw135pli4jl9mgnr5n2rrdvml57nw84yq2999r4frza53xi",
         }))));
@@ -32,7 +32,7 @@ chmod 644 $out/etc/udev/rules.d/${libsaneUDevRuleNumber}-brother-libsane-type1.r
       const dontStrip = true;
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother type1 scanners udev rules",
         homepage: "http://www.brother.com",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -43,7 +43,7 @@ chmod 644 $out/etc/udev/rules.d/${libsaneUDevRuleNumber}-brother-libsane-type1.r
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

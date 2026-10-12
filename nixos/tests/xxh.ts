@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const xxh_shell_zsh = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xxh-shell-zsh",
       version: "",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xxh",
           repo: "xxh-shell-zsh",
           rev: "91e1f84f8d6e0852c3235d4813f341230cac439f",
@@ -52,33 +52,33 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\nmv * $out/\n",
     }))));
   const zsh_portable_binary = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://github.com/romkatv/zsh-bin/releases/download/v3.0.1/zsh-5.8-linux-x86_64.tar.gz",
       sha256: "sha256-i8flMd2Isc0uLoeYQNDnOGb/kK3oTFVqQgIx7aOAIIo=",
     }))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "xxh",
-    meta: nix.thunk(() => ({ __proto__: pos$4, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$4, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            openssh: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$6,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             users: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               root: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$7, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$8,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$7, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -88,20 +88,20 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           programs: nix.thunk(() => ({
-            __proto__: pos$14,
-            zsh: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            zsh: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             users: nix.thunk(() => ({
-              __proto__: pos$16,
-              root: nix.thunk(() => ({ __proto__: pos$15, shell: nix.thunk(() => nix.sel(pkgs, "zsh")) })),
+              [nix.POS]: pos$16,
+              root: nix.thunk(() => ({ [nix.POS]: pos$15, shell: nix.thunk(() => nix.sel(pkgs, "zsh")) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xxh")), nix.thunk(() => nix.lookup(w, "git"))];

@@ -37,23 +37,23 @@ export default nix.lambda((args) => (() => {
   SALT = file.read()
 `))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "powerdns-admin": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the PowerDNS web interface")),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"-b\" \"127.0.0.1:8000\" ]\n")),
               description: "Extra arguments passed to powerdns-admin.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "import cachelib\n\nBIND_ADDRESS = '127.0.0.1'\nPORT = 8000\nSQLALCHEMY_DATABASE_URI = 'postgresql://powerdnsadmin@/powerdnsadmin?host=/run/postgresql'\nSESSION_TYPE = 'cachelib'\nSESSION_CACHELIB = cachelib.simple.SimpleCache()\n",
@@ -66,13 +66,13 @@ and it requires explicit configuration.
 `),
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               example: "/etc/powerdns-admin/secret",
               description: "The secret used to create cookies.\nThis needs to be set, otherwise the default is used and everyone can forge valid login cookies.\nSet this to null to ignore this setting and configure it through another way.\n",
             })))),
           saltFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               example: "/etc/powerdns-admin/salt",
               description: "The salt used for serialization.\nThis should be set, otherwise the default is used.\nSet this to null to ignore this setting and configure it through another way.\n",
@@ -81,23 +81,23 @@ and it requires explicit configuration.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "powerdns-admin": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "PowerDNS web interface",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 FLASK_CONF: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toFile"), "powerdns-admin-config.py", configText)),
                 PYTHONPATH: nix.thunk(() => nix.sel(pkgs, "powerdns-admin", "pythonPath")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "powerdns-admin")}/bin/powerdns-admin --pid /run/powerdns-admin/pid ${nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
                 ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/env FLASK_APP=${nix.sel(pkgs, "powerdns-admin")}/share/powerdnsadmin/__init__.py ${nix.sel(pkgs, "python3Packages", "flask")}/bin/flask db upgrade -d ${nix.sel(pkgs, "powerdns-admin")}/share/migrations`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
@@ -142,12 +142,12 @@ and it requires explicit configuration.
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
-          groups: nix.thunk(() => ({ __proto__: pos$13, powerdnsadmin: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$16,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, powerdnsadmin: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             powerdnsadmin: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "PowerDNS web interface user",
               isSystemUser: true,
               group: "powerdnsadmin",
@@ -155,7 +155,7 @@ and it requires explicit configuration.
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$18, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$18, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=powerdns-admin.ts.map

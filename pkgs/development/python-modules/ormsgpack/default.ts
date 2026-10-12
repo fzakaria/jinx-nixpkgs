@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aviramha",
           repo: "ormsgpack",
           tag: version,
           hash: "sha256-a2PgCCIPPJt6YNW7UFl9urYZkAoVj5Np0lbv4QfzMAs=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-PLLSVoQLsbTOIMqOsaaei/dm8SybfyqP0WLJW8hTOoo=",
         }))));
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
         rustc,
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, RUSTC_BOOTSTRAP: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: true }));
       const dependencies = nix.thunk(() => [msgpack]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pydantic, python_dateutil, pytz]);
       const pythonImportsCheck = nix.thunk(() => ["ormsgpack"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast msgpack serialization library for Python derived from orjson",
         homepage: "https://github.com/aviramha/ormsgpack",
         changelog: nix.thunk(() => nix.str`https://github.com/aviramha/ormsgpack/releases/tag/${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smc",
       version: "6.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/smc/smc/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/smc_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tgz`),
           sha256: "1gv0hrgdl4wp562virpf9sib6pdhapwv4zvwbl0d5f5xyx04il11",
         })))),
@@ -41,7 +41,7 @@ EOF
 chmod a+x "$out/bin/smc"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate state machine code from text input (state diagram)",
         longDescription: "SMC (State Machine Compiler) takes a text input file describing states,\nevents and actions of a state machine and generates source code that\nimplements the state machine.\n\nSMC supports many target languages:\nC, C++, DotNet, Groovy, java, Java, JavaScript, Lua, ObjC, Perl, Php,\nPython, Ruby, Scala, Tcl.\n\nSMC can also generate GraphViz state diagrams from the input file.\n",
         homepage: "https://smc.sourceforge.net/",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maaslalani",
           repo: "fast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-YSjJ8NOL97hXZLnfGYIjoKmARv+gWOsv+5qkl9konnA=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/maaslalani/fast",
         description: "Internet speed test in your terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, __structuredAttrs, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, __structuredAttrs, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

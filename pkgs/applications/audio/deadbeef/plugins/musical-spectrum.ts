@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deadbeef-musical-spectrum-plugin",
       version: "0-unstable-2020-07-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cboxdoerfer",
           repo: "ddb_musical_spectrum",
           rev: "a97fd4e1168509911ab43ba32d815b5489000a06",
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [deadbeef, fftw, glib, gtk3]),
       makeFlags: nix.thunk(() => ["gtk3"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/deadbeef\ninstall -v -c -m 644 gtk3/ddb_vis_musical_spectrum_GTK3.so $out/lib/deadbeef/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Musical spectrum plugin for the DeaDBeeF music player",
         homepage: "https://github.com/cboxdoerfer/ddb_musical_spectrum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

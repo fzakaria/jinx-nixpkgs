@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const autoFixElfFiles = nix.arg($, "autoFixElfFiles");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "removeStubsFromRunpathHook",
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(arrayUtilities, "getRunpathEntries")),
         autoFixElfFiles,
       ]),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         driverLinkLib: nix.thunk(() => nix.add(nix.sel(addDriverRunpath, "driverLink"), "/lib")),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./removeStubsFromRunpathHook.bash"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

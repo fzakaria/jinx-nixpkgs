@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "box2d",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erincatto",
           repo: "box2d",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cmake_dont_fetch_enkits.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enkits_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "dougbinks",
                 repo: "enkiTS",
                 rev: "686d0ec31829e0d9e5edf9ceb68c40f9b9b20ea9",
@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./cmake_use_system_glfw_and_imgui.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=maybe-uninitialized"]))))),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [
         glfw3,
-        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ __proto__: pos$5, IMGUI_BUILD_GLFW_BINDING: true })))),
+        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, IMGUI_BUILD_GLFW_BINDING: true })))),
         libGLU,
         libx11,
         libxcursor,
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(cmakeBool, "BOX2D_BUILD_UNIT_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "2D physics engine",
         homepage: "https://box2d.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/erincatto/box2d/releases/tag/v${nix.sel(finalAttrs, "version")}`),

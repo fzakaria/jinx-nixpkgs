@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "opentrack",
       version: "2026.1.0-unstable-2026-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentrack",
           repo: "opentrack",
           rev: "043bfc1be415962151217709a101422404ea36a6",
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
         })))),
       aruco: nix.thunk(() => nix.app(callPackage, nix.path(here, "./aruco.nix"), nix.thunk(() => ({})))),
       xplaneSdk: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sdk_zip_files/XPSDK411.zip",
           hash: "sha256-zay5QrHJctllVFl+JhlyTDzH68h5UoxncEt+TpW3UgI=",
-          meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "free")) })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "free")) })),
         })))),
       fusion: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "xioTechnologies",
           repo: "Fusion",
           tag: "v1.2.11",
@@ -129,7 +129,7 @@ rm -rf "$tmp"
       preFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), isLinux, "wrapQtApp $out/bin/opentrack\n"), nix.app(nix.sel(lib, "optionalString"), isDarwin, "wrapQtApp $out/Applications/opentrack.app/Contents/MacOS/opentrack\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "opentrack",
               exec: "opentrack",
               icon: "opentrack",
@@ -139,14 +139,14 @@ rm -rf "$tmp"
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex", "^opentrack-(.+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/opentrack/opentrack",
         description: "Head tracking software for MS Windows, Linux, and Apple OSX",
         mainProgram: "opentrack",

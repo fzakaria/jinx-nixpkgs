@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const clang = nix.arg($, "clang");
   const tinygo = nix.arg($, "tinygo");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "go-away",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.gammaspectra.live",
           owner: "git",
           repo: "go-away",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/go-away"]),
       postInstall: "mkdir -p $out/lib/go-away\ncp -rv examples/snippets $out/lib/go-away/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--url", "https://codeberg.org/gone/go-away"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://git.gammaspectra.live/git/go-away/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Self-hosted abuse detection and rule enforcement against low-effort mass AI scraping and bots",
         longDescription: "go-away sits in between your site and the Internet / upstream proxy.\n\nIncoming requests can be selected by rules to be actioned or challenged to filter suspicious requests.\n\nThe tool is designed highly flexible so the operator can minimize impact to legit users, while surgically targeting heavy endpoints or scrapers.\n\nChallenges can be transparent (not shown to user, depends on backend or other logic), non-JavaScript (challenges common browser properties), or custom JavaScript (from Proof of Work to fingerprinting or Captcha is supported)\n",

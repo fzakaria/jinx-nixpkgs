@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const tenacity = nix.arg($, "tenacity");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyenphase",
       version: "4.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyenphase",
           repo: "pyenphase",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_retries.py"]),
       pythonImportsCheck: nix.thunk(() => ["pyenphase"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to control enphase envoy",
         homepage: "https://github.com/pyenphase/pyenphase",
         changelog: nix.thunk(() => nix.str`https://github.com/pyenphase/pyenphase/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

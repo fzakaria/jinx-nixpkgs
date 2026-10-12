@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const wtype = nix.arg($, "wtype");
   const wl_clipboard = nix.arg($, "wl-clipboard");
   const emojiJSON = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/muan/emojilib/v4.0.0/dist/emoji-en-US.json",
       hash: "sha256-IoU9ZPCqvSPX4DmfC+r5MiglhFc41XMRrbJRL9ZNrvs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wofi-emoji",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Zeioth",
           repo: "wofi-emoji",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ substituteInPlace wofi-emoji \\
       buildPhase: "runHook preBuild\n\nbash build.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp wofi-emoji $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple emoji selector for Wayland using wofi and wl-clipboard",
         homepage: "https://github.com/Zeioth/wofi-emoji",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

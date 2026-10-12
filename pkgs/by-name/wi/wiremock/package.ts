@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wiremock",
       version: "3.13.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/org/wiremock/wiremock-standalone/${nix.sel(finalAttrs, "version")}/wiremock-standalone-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-0Jexm9SDxQOEebE6XHHp+vjy9RBlhPDBIKd3CrC9s2c=",
         })))),
@@ -38,23 +38,23 @@ makeWrapper ${jre}/bin/java $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram"
   --add-flags "-jar $out/share/wiremock/wiremock.jar"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/wiremock/wiremock.git",
             ignoredVersions: "(alpha|beta|rc).*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Flexible tool for building mock APIs",
         homepage: "https://wiremock.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/wiremock/wiremock/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const pname = "dataconf";
   const version = "3.7.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       dependencies: nix.thunk(() => [isodate, pyhocon, pyparsing, python_dateutil, pyyaml]),
       "build-system": nix.thunk(() => [poetry_core]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-YUt1iLQ7zSnYGbJMWCvl2MZ82k2XR8gccwrnynnuDqo=",
         })))),
       pythonImportsCheck: nix.thunk(() => ["dataconf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple dataclasses configuration management for Python with hocon/json/yaml/properties/env-vars/dict/cli support",
         changelog: "https://github.com/zifeo/dataconf/blob/main/CHANGELOG.md",
         homepage: "https://github.com/zifeo/dataconf",

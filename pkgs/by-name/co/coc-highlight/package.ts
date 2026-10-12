@@ -21,29 +21,29 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "coc-highlight",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neoclide",
           repo: "coc-highlight",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-VksCqyB8b3Bk2BsnYFr6cJINqUzVY+px3TCiWzqFTzE=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-z9pJXGdUXNU8Bfhp7PUPZk7rCCAhnQpcmXUoHUaFAIU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
       yarnBuildScript: "prepare",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Highlight extension for coc.nvim",
         homepage: "https://github.com/neoclide/coc-highlight",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

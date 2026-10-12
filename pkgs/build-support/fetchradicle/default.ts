@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
       const namespacePrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(node, null)), nix.thunk(() => nix.str`refs/namespaces/${node}/`)));
       const rev$ = nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.str`refs/tags/${tag}` : nix.force(rev)));
       return nix.update(nix.app(fetchgit, nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://${seed}/${repo}.git`),
           rev: nix.thunk(() => nix.str`${namespacePrefix}${rev$}`),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["seed", "repo", "node", "rev", "tag"]))))), { __proto__: pos$2, seed: seed, repo: repo, node: node, rev: rev, tag: tag });
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["seed", "repo", "node", "rev", "tag"]))))), { [nix.POS]: pos$2, seed: seed, repo: repo, node: node, rev: rev, tag: tag });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-4vnjtSbw2y/o+fSWDl/CqTEZkl0jULGOLURdZ0BpKvY=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const pythonImportsCheck = nix.thunk(() => ["survey"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple library for creating beautiful interactive prompts",
         homepage: "https://github.com/Exahilosys/survey",
         changelog: nix.thunk(() => nix.str`https://github.com/Exahilosys/survey/releases/tag/v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

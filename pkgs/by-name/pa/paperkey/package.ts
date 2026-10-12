@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paperkey",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jabberwocky.com/software/paperkey/paperkey-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xq5gni6gksjkd5avg0zpd73vsr97appksfx0gx2m38s4w9zsid2",
         })))),
       postPatch: "for a in checks/*.sh ; do\n  substituteInPlace $a \\\n    --replace /bin/echo echo\ndone\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Store OpenPGP or GnuPG on paper",
         mainProgram: "paperkey",
         longDescription: "A reasonable way to achieve a long term backup of OpenPGP (GnuPG, PGP, etc)\nkeys is to print them out on paper. Paper and ink have amazingly long\nretention qualities - far longer than the magnetic or optical means that\nare generally used to back up computer data.\n",

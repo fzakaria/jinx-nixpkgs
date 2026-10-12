@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zchunk = nix.arg($, "zchunk");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "microdnf",
       version: "3.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpm-software-management",
           repo: "microdnf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pcre2, "dev")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight implementation of dnf in C",
         homepage: "https://github.com/rpm-software-management/microdnf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

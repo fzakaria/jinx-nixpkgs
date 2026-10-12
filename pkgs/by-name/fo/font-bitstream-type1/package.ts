@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fontforge = nix.arg($, "fontforge");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "font-bitstream-type1",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/font/font-bitstream-type1-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3i8ji0zXLbQiigumeCnXait8A54imT1mpyLuOFJIxig=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "# convert Postscript (Type 1) font to otf\nfor i in $(find -type f -name '*.pfa' -o -name '*.pfb'); do\n    name=$(basename $i | cut -d. -f1)\n    fontforge -lang=ff -c \"Open(\\\"$i\\\"); Generate(\\\"$name.otf\\\")\"\ndone\n",
       postInstall: "# install the otf fonts\nfontDir=\"$out/share/fonts/X11/otf\"\ninstall -Dm444 -t \"$fontDir\" *.otf\nmkfontscale \"$fontDir\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -40,7 +40,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bitstream Charter PostScript Type 1 and OpenType fonts",
         homepage: "https://gitlab.freedesktop.org/xorg/font/bitstream-type1",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bitstreamCharter")),

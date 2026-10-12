@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rednotebook",
       version: "2.43",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jendrikseipp",
           repo: "rednotebook",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["rednotebook"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rednotebook.sourceforge.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/jendrikseipp/rednotebook/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Modern journal that includes a calendar navigation, customizable templates, export functionality and word clouds",

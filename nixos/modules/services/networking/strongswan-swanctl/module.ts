@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
 include ${i}`, nix.thunk(() => nix.sel(cfg, "includes")))))));
   const swanctlParams = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./swanctl-params.nix"), lib));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "strongswan-swanctl": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "strongswan-swanctl service")),
           package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "strongswan", nix.thunk(() => ({})))),
           strongswan: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                 default: "",
                 description: "Contents of the {file}`strongswan.conf` file.\n",
@@ -54,7 +54,7 @@ include ${i}`, nix.thunk(() => nix.sel(cfg, "includes")))))));
           })),
           swanctl: nix.thunk(() => nix.app(nix.lookup(w_1, "paramsToOptions"), swanctlParams)),
           includes: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")))),
               default: [],
               description: "Extra configuration files to include in the swanctl configuration. This can be used to provide secret values from outside the nix store.\n",
@@ -63,29 +63,29 @@ include ${i}`, nix.thunk(() => nix.sel(cfg, "includes")))))));
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "strongswan", "enable"))),
             message: "cannot enable both services.strongswan and services.strongswan-swanctl. Choose either one.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
-            "swanctl/swanctl.conf": nix.thunk(() => ({ __proto__: pos$8, source: configFile })),
+            [nix.POS]: pos$10,
+            "swanctl/swanctl.conf": nix.thunk(() => ({ [nix.POS]: pos$8, source: configFile })),
             "strongswan.conf": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               text: nix.thunk(() => nix.sel(cfg, "strongswan", "extraConfig")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             rules: nix.thunk(() => [
               "d /etc/swanctl/x509 -",
               "d /etc/swanctl/x509ca -",
@@ -103,9 +103,9 @@ include ${i}`, nix.thunk(() => nix.sel(cfg, "includes")))))));
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "strongswan-swanctl": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "strongSwan IPsec IKEv1/IKEv2 daemon using swanctl",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -124,7 +124,7 @@ include ${i}`, nix.thunk(() => nix.sel(cfg, "includes")))))));
                 nix.thunk(() => nix.sel(config, "environment", "etc", "strongswan.conf", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/charon-systemd`),
                 Type: "notify",
                 ExecStartPost: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/swanctl --load-all --noprompt`),

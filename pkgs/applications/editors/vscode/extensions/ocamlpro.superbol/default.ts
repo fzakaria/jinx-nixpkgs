@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const vsix = nix.thunk(() => nix.app(nix.sel(vsixStdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(ocamlPackages, "superbol-studio-oss"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`superbol-studio-oss-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "superbol-studio-oss-vsix",
       strictDeps: true,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "rm -rf import/gnucobol*\n",
       postPatch: "substituteInPlace Makefile.vsix-rules \\\n  --replace-fail '--target=es6' '--target=es2020'\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-7wu+iPsVUz9qVFZonF7pGrrwSPyGdFWOonUttWe53lM=",
@@ -72,16 +72,16 @@ runHook postBuild
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "superbol-studio-oss",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "OCamlPro",
       vscodeExtName: "SuperBOL",
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, vsix: nix.thunk(() => nix.sel(finalAttrs, "src")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, vsix: nix.thunk(() => nix.sel(finalAttrs, "src")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Visual Studio Code extension for COBOL",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=OCamlPro.SuperBOL",
         homepage: "https://superbol.eu/en",

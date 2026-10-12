@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "go-graft",
       version: "0.2.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daeuniverse",
           repo: "gg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DXW0NtFYvcCX4CgMs5/5HPaO9f9eFtw401wmJdCbHPU=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/mzz2017/gg/cmd.Version=${nix.sel(finalAttrs, "version")}`),
         "-s",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installShellCompletion --cmd gg \\\n--bash completion/bash/gg \\\n--fish completion/fish/gg.fish \\\n--zsh completion/zsh/_gg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool for one-click proxy in your research and development without installing v2ray or anything else",
         changelog: nix.thunk(() => nix.str`https://github.com/daeuniverse/gg/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         homepage: "https://github.com/daeuniverse/gg",

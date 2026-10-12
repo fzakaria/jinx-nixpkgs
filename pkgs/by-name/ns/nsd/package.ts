@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.selOr(config, () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdMinimal), "nsd", "withSystemd"));
   const configFile = nix.argOr($, "configFile", () => nix.selOr(config, () => "/etc/nsd/nsd.conf", "nsd", "configFile"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nsd",
       version: "4.15.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nlnetlabs.nl/downloads/nsd/nsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-u01XdTwswqZByS2rECEBbSX7S5cpIL9PC7uMQMGpzOI=",
         })))),
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`find "$out" -type f -exec remove-references-to -t ${nix.sel(openssl, "dev")} -t ${nix.sel(libevent, "dev")} '{}' +
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nsd: nix.thunk(() => nix.attr(nixosTests, "nsd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nsd: nix.thunk(() => nix.attr(nixosTests, "nsd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.nlnetlabs.nl",
         description: "Authoritative only, high performance, simple and open source name server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

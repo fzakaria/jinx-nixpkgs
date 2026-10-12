@@ -123,9 +123,9 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const finalSettings = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.sel(options, "services", "pangolin", "settings", "default")), nix.thunk(() => nix.sel(cfg, "settings"))));
   const cfgFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yml", finalSettings));
-  const nullOrOpt = (t) => nix.update(nix.app(nix.sel(lib, "types", "nullOr"), t), { __proto__: pos$1, _optional: true });
+  const nullOrOpt = (t) => nix.update(nix.app(nix.sel(lib, "types", "nullOr"), t), { [nix.POS]: pos$1, _optional: true });
   const gerbil_wg0_fix_script = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "gerbil-wg0-fix-script",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -137,34 +137,34 @@ export default nix.lambda((args) => (() => {
       text: "if [ ! -f /var/lib/pangolin/config/wg0 ]; then\n    until ip l d wg0\n    do\n      sleep 2\n    done\n    touch /var/lib/pangolin/config/wg0\n    systemctl restart gerbil --no-block\nfi\n",
     }))));
   return {
-    __proto__: pos$108,
+    [nix.POS]: pos$108,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         pangolin: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Pangolin reverse proxy server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fosrl-pangolin", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.attr(format, "type")),
               default: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 app: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   dashboard_url: nix.thunk(() => nix.str`https://${nix.sel(cfg, "dashboardDomain")}`),
                 })),
                 domains: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   domain1: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     base_domain: nix.thunk(() => nix.sel(cfg, "baseDomain")),
                     prefer_wildcard_cert: false,
                   })),
                 })),
                 server: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   external_port: 3000n,
                   internal_port: 3001n,
                   next_port: 3002n,
@@ -172,11 +172,11 @@ export default nix.lambda((args) => (() => {
                   internal_hostname: "localhost",
                 })),
                 gerbil: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   base_endpoint: nix.thunk(() => nix.sel(cfg, "dashboardDomain")),
                 })),
                 flags: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   disable_signup_without_invite: true,
                   enable_integration_api: false,
                 })),
@@ -184,18 +184,18 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  app.dashboard_url = \"https://${config.services.pangolin.dashboardDomain}\";\n  domains.domain1 = {\n    base_domain = cfg.baseDomain;\n    prefer_wildcard_cert = false;\n  };\n  server = {\n    external_port = 3000;\n    internal_port = 3001;\n    next_port = 3002;\n    integration_port = 3003;\n    # needs to be set, otherwise this fails silently\n    # see https://github.com/fosrl/newt/issues/37\n    internal_hostname = \"localhost\";\n  };\n  gerbil.base_endpoint = config.services.pangolin.dashboardDomain;\n  flags = {\n    disable_signup_without_invite = true;\n    enable_integration_api = false;\n  };\n}\n")),
               description: "Additional attributes to be merged with the configuration options and written to Pangolin's {file}`config.yml` file.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$14,
-                app: nix.thunk(() => ({ __proto__: pos$10, save_logs: true })),
-                server: nix.thunk(() => ({ __proto__: pos$11, external_port: 3007n, internal_port: 3008n })),
+                [nix.POS]: pos$14,
+                app: nix.thunk(() => ({ [nix.POS]: pos$10, save_logs: true })),
+                server: nix.thunk(() => ({ [nix.POS]: pos$11, external_port: 3007n, internal_port: 3008n })),
                 domains: nix.thunk(() => ({
-                  __proto__: pos$13,
-                  domain1: nix.thunk(() => ({ __proto__: pos$12, prefer_wildcard_cert: true })),
+                  [nix.POS]: pos$13,
+                  domain1: nix.thunk(() => ({ [nix.POS]: pos$12, prefer_wildcard_cert: true })),
                 })),
               })),
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening TCP ports 80 and 443, and UDP port 51820 in the firewall for the Pangolin service(s)")),
           baseDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -205,7 +205,7 @@ export default nix.lambda((args) => (() => {
               example: "example.com",
             })))),
           dashboardDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(cfg, "baseDomain")))) ? "" : nix.str`pangolin.${nix.sel(cfg, "baseDomain")}`)),
               defaultText: "pangolin.${config.services.pangolin.baseDomain}",
@@ -213,7 +213,7 @@ export default nix.lambda((args) => (() => {
               example: "auth.example.com",
             })))),
           letsEncryptEmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -223,13 +223,13 @@ export default nix.lambda((args) => (() => {
               description: "An email address for SSL certificate registration with Let's Encrypt. This should be an email you have access to.\n",
             })))),
           dnsProvider: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nullOrOpt, nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The DNS provider Traefik will request wildcard certificates from. See the [Traefik Documentation](https://doc.traefik.io/traefik/https/acme/#providers) for more information.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -239,7 +239,7 @@ export default nix.lambda((args) => (() => {
               example: "/etc/nixos/secrets/pangolin.env",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/pangolin",
               example: "/srv/pangolin",
@@ -247,15 +247,15 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         gerbil: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3004n,
               description: "Specifies the port to listen on for Gerbil.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nullOrOpt, nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a file containing sensitive environment variables for Gerbil. See the [Gerbil Documentation](https://docs.fossorial.io/Pangolin/Configuration/config) for more information.\nThese will overwrite anything defined in the config.\n",
@@ -265,78 +265,78 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$106,
+        [nix.POS]: pos$106,
         assertions: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(value, null)) || nix.asBool(nix.selOr(options, () => false, "services", "pangolin", nix.key(nix.str`${name}`), "type", "_optional")))),
             message: nix.thunk(() => nix.str`services.pangolin.${name} must be provided when Pangolin is enabled.`),
           }), cfg), [
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => (!nix.asBool(nix.selOr(finalSettings, () => nix.sel(finalSettings, "domains", "domain1", "prefer_wildcard_cert"), "traefik", "prefer_wildcard_cert")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "dnsProvider"), "")) && nix.asBool(!nix.eq(nix.sel(config, "services", "traefik", "environmentFiles"), [])))))),
             message: "services.pangolin.dnsProvider and services.traefik.environmentFile must be provided when prefer_wildcard_cert is true.",
           })),
         ])),
         networking: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               allowedTCPPorts: nix.thunk(() => [80n, 443n]),
               allowedUDPPorts: nix.thunk(() => [51820n]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             pangolin: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "Pangolin service user",
               group: "fossorial",
               isSystemUser: true,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             gerbil: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               description: "Gerbil service user",
               group: "fossorial",
               isSystemUser: true,
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             fossorial: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               members: nix.thunk(() => ["pangolin", "gerbil", "traefik"]),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             settings: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               "10-fossorial-paths": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$39,
-                  d: nix.thunk(() => ({ __proto__: pos$38, user: "pangolin", group: "fossorial", mode: "0770" })),
+                  [nix.POS]: pos$39,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$38, user: "pangolin", group: "fossorial", mode: "0770" })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/config`, nix.thunk(() => ({
-                  __proto__: pos$41,
-                  d: nix.thunk(() => ({ __proto__: pos$40, user: "pangolin", group: "fossorial", mode: "0770" })),
+                  [nix.POS]: pos$41,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$40, user: "pangolin", group: "fossorial", mode: "0770" })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/config/letsencrypt`, nix.thunk(() => ({
-                  __proto__: pos$43,
-                  d: nix.thunk(() => ({ __proto__: pos$42, user: "traefik", group: "fossorial", mode: "0700" })),
+                  [nix.POS]: pos$43,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$42, user: "traefik", group: "fossorial", mode: "0700" })),
                 }))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             pangolin: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               description: "Pangolin reverse proxy tunneling service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network.target"]),
@@ -345,7 +345,7 @@ export default nix.lambda((args) => (() => {
 cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 User: "pangolin",
                 Group: "fossorial",
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -410,7 +410,7 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
               })),
             })),
             gerbil: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               description: "Gerbil Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["pangolin.service"]),
@@ -419,11 +419,11 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
               requiredBy: nix.thunk(() => ["traefik.service"]),
               upholds: nix.thunk(() => ["traefik.service"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 LISTEN: nix.thunk(() => nix.add("localhost:", nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "gerbil", "port"))))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 User: "gerbil",
                 Group: "fossorial",
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -498,7 +498,7 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
               })),
             })),
             traefik: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["gerbil.service"]),
               requires: nix.thunk(() => ["gerbil.service"]),
@@ -507,41 +507,41 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$105,
+          [nix.POS]: pos$105,
           traefik: nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             enable: true,
             group: "fossorial",
             dataDir: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/config/traefik`),
             staticConfigOptions: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               providers: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 http: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   endpoint: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(finalSettings, "server", "internal_port")))}/api/v1/traefik-config`),
                   pollInterval: "5s",
                 })),
               })),
               experimental: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 plugins: nix.thunk(() => ({
-                  __proto__: pos$57,
-                  badger: nix.thunk(() => ({ __proto__: pos$56, moduleName: "github.com/fosrl/badger", version: "v1.2.0" })),
+                  [nix.POS]: pos$57,
+                  badger: nix.thunk(() => ({ [nix.POS]: pos$56, moduleName: "github.com/fosrl/badger", version: "v1.2.0" })),
                 })),
               })),
               certificatesResolvers: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 letsencrypt: nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   acme: nix.thunk(() => nix.update((nix.asBool(nix.sel(finalSettings, "domains", "domain1", "prefer_wildcard_cert")) ? {
-                    __proto__: pos$60,
-                    dnsChallenge: nix.thunk(() => ({ __proto__: pos$59, provider: nix.thunk(() => nix.sel(cfg, "dnsProvider")) })),
+                    [nix.POS]: pos$60,
+                    dnsChallenge: nix.thunk(() => ({ [nix.POS]: pos$59, provider: nix.thunk(() => nix.sel(cfg, "dnsProvider")) })),
                   } : {
-                    __proto__: pos$62,
-                    httpChallenge: nix.thunk(() => ({ __proto__: pos$61, entryPoint: "web" })),
+                    [nix.POS]: pos$62,
+                    httpChallenge: nix.thunk(() => ({ [nix.POS]: pos$61, entryPoint: "web" })),
                   }), {
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     email: nix.thunk(() => nix.sel(cfg, "letsEncryptEmail")),
                     storage: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/config/letsencrypt/acme.json`),
                     caServer: "https://acme-v02.api.letsencrypt.org/directory",
@@ -549,109 +549,109 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
                 })),
               })),
               entryPoints: nix.thunk(() => ({
-                __proto__: pos$72,
-                web: nix.thunk(() => ({ __proto__: pos$66, address: ":80" })),
+                [nix.POS]: pos$72,
+                web: nix.thunk(() => ({ [nix.POS]: pos$66, address: ":80" })),
                 websecure: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   address: ":443",
                   transport: nix.thunk(() => ({
-                    __proto__: pos$68,
-                    respondingTimeouts: nix.thunk(() => ({ __proto__: pos$67, readTimeout: "30m" })),
+                    [nix.POS]: pos$68,
+                    respondingTimeouts: nix.thunk(() => ({ [nix.POS]: pos$67, readTimeout: "30m" })),
                   })),
                   http: nix.thunk(() => ({
-                    __proto__: pos$70,
-                    tls: nix.thunk(() => ({ __proto__: pos$69, certResolver: "letsencrypt" })),
+                    [nix.POS]: pos$70,
+                    tls: nix.thunk(() => ({ [nix.POS]: pos$69, certResolver: "letsencrypt" })),
                   })),
                 })),
               })),
             })),
             dynamicConfigOptions: nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               http: nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 middlewares: nix.thunk(() => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   "redirect-to-https": nix.thunk(() => ({
-                    __proto__: pos$75,
-                    redirectScheme: nix.thunk(() => ({ __proto__: pos$74, scheme: "https" })),
+                    [nix.POS]: pos$75,
+                    redirectScheme: nix.thunk(() => ({ [nix.POS]: pos$74, scheme: "https" })),
                   })),
                 })),
                 routers: nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   "main-app-router-redirect": nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     rule: nix.thunk(() => nix.str`Host(\`${nix.sel(cfg, "dashboardDomain")}\`)`),
                     service: "next-service",
                     entryPoints: nix.thunk(() => ["web"]),
                     middlewares: nix.thunk(() => ["redirect-to-https"]),
                   })),
                   "next-router": nix.thunk(() => ({
-                    __proto__: pos$82,
+                    [nix.POS]: pos$82,
                     rule: nix.thunk(() => nix.str`Host(\`${nix.sel(cfg, "dashboardDomain")}\`) && !PathPrefix(\`/api/v1\`)`),
                     service: "next-service",
                     entryPoints: nix.thunk(() => ["websecure"]),
                     tls: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalSettings, "domains", "domain1", "prefer_wildcard_cert")), nix.thunk(() => ({
-                        __proto__: pos$80,
+                        [nix.POS]: pos$80,
                         domains: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$78, main: nix.thunk(() => nix.sel(cfg, "baseDomain")) })),
+                          nix.thunk(() => ({ [nix.POS]: pos$78, main: nix.thunk(() => nix.sel(cfg, "baseDomain")) })),
                           nix.thunk(() => ({
-                            __proto__: pos$79,
+                            [nix.POS]: pos$79,
                             sans: nix.thunk(() => nix.str`*.${nix.sel(cfg, "baseDomain")}`),
                           })),
                         ]),
-                      }))), { __proto__: pos$81, certResolver: "letsencrypt" })),
+                      }))), { [nix.POS]: pos$81, certResolver: "letsencrypt" })),
                   })),
                   "api-router": nix.thunk(() => ({
-                    __proto__: pos$84,
+                    [nix.POS]: pos$84,
                     rule: nix.thunk(() => nix.str`Host(\`${nix.sel(cfg, "dashboardDomain")}\`) && PathPrefix(\`/api/v1\`)`),
                     service: "api-service",
                     entryPoints: nix.thunk(() => ["websecure"]),
-                    tls: nix.thunk(() => ({ __proto__: pos$83, certResolver: "letsencrypt" })),
+                    tls: nix.thunk(() => ({ [nix.POS]: pos$83, certResolver: "letsencrypt" })),
                   })),
                   "ws-router": nix.thunk(() => ({
-                    __proto__: pos$86,
+                    [nix.POS]: pos$86,
                     rule: nix.thunk(() => nix.str`Host(\`${nix.sel(cfg, "dashboardDomain")}\`)`),
                     service: "api-service",
                     entryPoints: nix.thunk(() => ["websecure"]),
-                    tls: nix.thunk(() => ({ __proto__: pos$85, certResolver: "letsencrypt" })),
+                    tls: nix.thunk(() => ({ [nix.POS]: pos$85, certResolver: "letsencrypt" })),
                   })),
                   "int-api-router-redirect": nix.thunk(() => ({
-                    __proto__: pos$87,
+                    [nix.POS]: pos$87,
                     rule: nix.thunk(() => nix.str`Host(\`api.${nix.sel(cfg, "baseDomain")}\`)`),
                     service: "int-api-service",
                     entryPoints: nix.thunk(() => ["web"]),
                     middlewares: nix.thunk(() => ["redirect-to-https"]),
                   })),
                   "int-api-router": nix.thunk(() => ({
-                    __proto__: pos$89,
+                    [nix.POS]: pos$89,
                     rule: nix.thunk(() => nix.str`Host(\`api.${nix.sel(cfg, "baseDomain")}\`)`),
                     service: "int-api-service",
                     entryPoints: nix.thunk(() => ["websecure"]),
-                    tls: nix.thunk(() => ({ __proto__: pos$88, certResolver: "letsencrypt" })),
+                    tls: nix.thunk(() => ({ [nix.POS]: pos$88, certResolver: "letsencrypt" })),
                   })),
                 })),
                 services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$97,
+                      [nix.POS]: pos$97,
                       "next-service": nix.thunk(() => ({
-                        __proto__: pos$93,
+                        [nix.POS]: pos$93,
                         loadBalancer: nix.thunk(() => ({
-                          __proto__: pos$92,
+                          [nix.POS]: pos$92,
                           servers: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$91,
+                              [nix.POS]: pos$91,
                               url: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(finalSettings, "server", "next_port")))}`),
                             })),
                           ]),
                         })),
                       })),
                       "api-service": nix.thunk(() => ({
-                        __proto__: pos$96,
+                        [nix.POS]: pos$96,
                         loadBalancer: nix.thunk(() => ({
-                          __proto__: pos$95,
+                          [nix.POS]: pos$95,
                           servers: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$94,
+                              [nix.POS]: pos$94,
                               url: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(finalSettings, "server", "external_port")))}`),
                             })),
                           ]),
@@ -659,14 +659,14 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
                       })),
                     })),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(finalSettings, "flags", "enable_integration_api")), nix.thunk(() => ({
-                        __proto__: pos$101,
+                        [nix.POS]: pos$101,
                         "int-api-service": nix.thunk(() => ({
-                          __proto__: pos$100,
+                          [nix.POS]: pos$100,
                           loadBalancer: nix.thunk(() => ({
-                            __proto__: pos$99,
+                            [nix.POS]: pos$99,
                             servers: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$98,
+                                [nix.POS]: pos$98,
                                 url: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(finalSettings, "server", "integration_port")))}`),
                               })),
                             ]),
@@ -680,7 +680,7 @@ cp -f ${cfgFile} ${nix.sel(cfg, "dataDir")}/config/config.yml
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$107,
+      [nix.POS]: pos$107,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

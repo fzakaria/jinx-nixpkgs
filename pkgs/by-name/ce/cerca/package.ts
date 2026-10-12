@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cerca";
       const version = "0.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cblgh",
           repo: "cerca",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-iIZMYIwIgnFvraowh2k8MUTl7L4zhgcm+UojlimpCTk=";
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lean forum software",
         homepage: "https://github.com/cblgh/cerca",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "cerca",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tt-rss-plugin-data-migration",
       version: "0-unstable-2023-11-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.tt-rss.org/fox/ttrss-data-migration.git",
           rev: "e13d5f97b4887ce7b57b3d76228d838dec15963d",
           hash: "sha256-xnbR5IQ0h7ilxchNj55ROZdq1L7MIAwv3/00k09WTTs=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D init.php $out/data_migration/init.php\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for TT-RSS to exports and imports *all* articles of a specific user via neutral format (JSON files in a ZIP archive)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://git.tt-rss.org/fox/ttrss-data-migration.git/",

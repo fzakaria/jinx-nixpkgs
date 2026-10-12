@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "sdkman-for-fish";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reitzig",
           repo: "sdkman-for-fish",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-7cgyR3hQ30Jv+9lJS5qaBvSaI/0YVT8xPXlUhDBTdFc=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds support for SDKMAN! to fish",
         homepage: "https://github.com/reitzig/sdkman-for-fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "giorgiga"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=sdkman-for-fish.ts.map

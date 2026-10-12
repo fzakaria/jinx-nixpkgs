@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-rest-knox",
       version: "5.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-rest-knox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export DJANGO_SETTINGS_MODULE=knox_project.settings\n",
       pythonImportsCheck: nix.thunk(() => ["knox"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Authentication module for Django REST Framework",
         homepage: "https://github.com/jazzband/django-rest-knox",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-rest-knox/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

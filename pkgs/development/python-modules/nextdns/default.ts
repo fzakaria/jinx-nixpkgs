@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const tenacity = nix.arg($, "tenacity");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nextdns",
       version: "5.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bieniu",
           repo: "nextdns",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["nextdns"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for the NextDNS API",
         homepage: "https://github.com/bieniu/nextdns",
         changelog: nix.thunk(() => nix.str`https://github.com/bieniu/nextdns/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

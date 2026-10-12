@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const cupy = nix.arg($, "cupy");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "array-api-compat",
       version: "1.15",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "data-apis",
           repo: "array-api-compat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "test_array_namespace[jax.numpy-2024.12-None]",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compatibility layer for NumPy to support the Python array API",
         homepage: "https://data-apis.org/array-api-compat",
         changelog: nix.thunk(() => nix.str`https://github.com/data-apis/array-api-compat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

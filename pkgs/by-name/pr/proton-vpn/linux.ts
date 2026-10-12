@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withIndicator = nix.argOr($, "withIndicator", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "proton-vpn",
       version: "4.16.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProtonVPN",
           repo: "proton-vpn-gtk-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,11 +72,11 @@ install -Dm444 ${nix.sel(finalAttrs, "src")}/rpmbuild/SOURCES/proton-vpn-logo.sv
       })())),
       disabledTestPaths: nix.thunk(() => ["tests/unit/widgets", "tests/unit/utils/test_safe_signal_connect.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "protonvpn-app",
       })),

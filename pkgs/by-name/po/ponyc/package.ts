@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ponyc",
       version: "0.68.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ponylang",
           repo: "ponyc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       benchmarkRev: "1.9.5",
       benchmark: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "google",
           repo: "benchmark",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "benchmarkRev")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       googletestRev: "1.17.0",
       googletest: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "google",
           repo: "googletest",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "googletestRev")}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./gencshim-pony-cc.patch"),
           nix.path(here, "./genexe-pony-linker.patch"),
         ]);
-        return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.builtins.map((p) => nix.app(replaceVars, p, nix.thunk(() => ({ __proto__: pos$4, "apple-sdk": apple_sdk }))), sdkPatches) : nix.force(sdkPatches));
+        return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.builtins.map((p) => nix.app(replaceVars, p, nix.thunk(() => ({ [nix.POS]: pos$4, "apple-sdk": apple_sdk }))), sdkPatches) : nix.force(sdkPatches));
       })())),
       postUnpack: "mkdir -p $NIX_BUILD_TOP/deps\ntar -C \"$benchmark\" -cf $NIX_BUILD_TOP/deps/benchmark-$benchmarkRev.tar .\ntar -C \"$googletest\" -cf $NIX_BUILD_TOP/deps/googletest-$googletestRev.tar .\n",
       postPatch: nix.thunk(() => nix.str`substituteInPlace packages/process/_test.pony \\
@@ -89,7 +89,7 @@ substituteInPlace lib/CMakeLists.txt \\
     --replace-fail "https://github.com/google/googletest/releases/download/v$googletestRev/googletest-$googletestRev.tar.gz" "$NIX_BUILD_TOP/deps/googletest-$googletestRev.tar"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         arch: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86-64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "armv8-a" : nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`architecture '${nix.sel(stdenv, "hostPlatform", "system")}' compiles with native optimizations,
 this may result in crashes on incompatible CPUs!
 `), "native")))),
@@ -117,12 +117,12 @@ export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -DPONY_NIX_LINK_LIBDIRS=\\"${nix.
       installPhase: "runHook preInstall\ncmake --install build/build_release --prefix=$out\nrunHook postInstall\n",
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, "pony-corral": pony_corral })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "pony-corral": pony_corral })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Object-oriented, actor-model, capabilities-secure, high performance programming language",
         homepage: "https://www.ponylang.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

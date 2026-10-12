@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spam-filter",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stalwartlabs",
           repo: "spam-filter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\npython3 generate_rules_json.py\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp spam-filter-rules.json.gz $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stalwart_0_16, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Spam filter module for the Stalwart server",
         homepage: "https://github.com/stalwartlabs/spam-filter",
         changelog: nix.thunk(() => nix.str`https://github.com/stalwartlabs/spam-filter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

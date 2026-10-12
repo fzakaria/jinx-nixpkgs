@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sunrise-commander",
       ename: "sunrise",
       version: "0-unstable-2021-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunrise-commander",
           repo: "sunrise-commander",
           rev: "16e6df7e86c7a383fb4400fae94af32baf9cb24e",
           hash: "sha256-D36qiRi5OTZrBtJ/bD/javAWizZ8NLlC/YP4rdLCSsw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sunrise-commander/sunrise-commander/",
         description: "Orthodox (two-pane) file manager for Emacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

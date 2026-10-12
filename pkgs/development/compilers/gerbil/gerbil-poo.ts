@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-poo",
     version: "unstable-2023-11-29",
     "git-version": "0.2-5-gacf654e",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "gerbil-utils"))];
     })()),
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-poo",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       sha256: "1pxv1j6hwcgjj67bb7vvlnyl3123r43ifldm6alm76v2mfp2vs81",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Gerbil POO: Prototype Object Orientation for Gerbil Scheme",
       homepage: "https://github.com/fare/gerbil-poo",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

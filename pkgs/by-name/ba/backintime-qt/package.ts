@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     })()));
   const diffProgram = nix.thunk(() => (nix.asBool(meldSupport) ? nix.str`${nix.app(nix.sel(lib, "getBin"), meld)}/bin` : (nix.asBool(kompareSupport) ? nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(kdePackages, "kompare")))}/bin` : "")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(backintime_common, "version")),
       src: nix.thunk(() => nix.attr(backintime_common, "src")),
       installFlags: nix.thunk(() => nix.attr(backintime_common, "installFlags")),
@@ -97,7 +97,7 @@ wrapProgram "$out/bin/backintime-qt_polkit" \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(backintime_common, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),

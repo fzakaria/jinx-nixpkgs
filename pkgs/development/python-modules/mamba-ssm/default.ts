@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "state-spaces",
           repo: "mamba",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,20 +50,20 @@ export default nix.lambda((args) => (() => {
           ];
         })())));
       const dependencies = nix.thunk(() => [causal_conv1d, einops, torch, transformers, triton]);
-      const env = nix.thunk(() => nix.update({ __proto__: pos$2, MAMBA_FORCE_BUILD: "TRUE" }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$3,
+      const env = nix.thunk(() => nix.update({ [nix.POS]: pos$2, MAMBA_FORCE_BUILD: "TRUE" }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: pos$3,
           CUDA_HOME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))}`),
         })))));
       const pythonImportsCheck = nix.thunk(() => ["mamba_ssm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linear-Time Sequence Modeling with Selective State Spaces",
         homepage: "https://github.com/state-spaces/mamba",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         broken: nix.thunk(() => !nix.asBool(cudaSupport)),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

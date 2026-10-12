@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       const pname = "plasticity";
       const version = "26.1.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/nkallen/plasticity/releases/download/v${version}/Plasticity-${version}-1.x86_64.rpm`),
           hash: "sha256-paBF0lk8rvuY4lnl5v7nOXaFsZQuNkTtXCoW53xBiMU=",
         }))));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const nativeBuildInputs = nix.thunk(() => [wrapGAppsHook3, autoPatchelfHook, rpmextract, libgbm]);
       const buildInputs = nix.thunk(() => [
         alsa_lib,
@@ -116,7 +116,7 @@ rm "$out/lib/Plasticity/libvulkan.so.1"
 ln -s -t "$out/lib/Plasticity" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/lib/libvulkan.so.1"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CAD for artists",
         homepage: "https://www.plasticity.xyz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -135,7 +135,7 @@ ln -s -t "$out/lib/Plasticity" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

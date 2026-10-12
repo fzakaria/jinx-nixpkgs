@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "keyoxide-cli",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keyoxide",
           repo: "keyoxide-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-lQEvtqFq3OBlXdYdrhMsAns4kimR2RfRx3VFNy4nEu8=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-UxP5NkmA3MsrXhoa+JviDdW19HKE6Xpj1dkN7h0ggck=",
         })))),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       yarnBuildFlags: "src/commands.js",
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/keyoxide/keyoxide-cli/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Command-line interface to locally verify decentralized identities",
         homepage: "https://codeberg.org/keyoxide/keyoxide-cli",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "drupal",
       version: "11.4.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.drupalcode.org",
           owner: "project",
           repo: "drupal",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       composerNoPlugins: false,
       vendorHash: "sha256-YIEMBCe2WuQV1fxqLVsUUZ+5Go4EylNp/c2nBZUN1WI=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, drupal: nix.thunk(() => nix.attr(nixosTests, "drupal")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, drupal: nix.thunk(() => nix.attr(nixosTests, "drupal")) })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update xmlstarlet\n\nset -eu -o pipefail\n\nversion=$(curl -k --silent --globoff \"https://updates.drupal.org/release-history/drupal/current\" | xmlstarlet sel -t -v \"/project/releases/release/tag[not(contains(., 'alpha'))][not(contains(., 'beta'))][not(contains(., '-rc'))]\" | grep -m 1 '.')\n\nnix-update drupal --version $version\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Drupal CMS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://drupal.org/",

@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
       const pname = "sauce-connect";
       const version = "5.5.3";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://saucelabs.com/downloads/sauce-connect/${version}/sauce-connect-${version}_linux.x86_64.tar.gz`),
               hash: "sha256-s71/6EA5H9Tp5FFDQZRnoWa1DVALhUnLnhMOEQOvqIs=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://saucelabs.com/downloads/sauce-connect/${version}/sauce-connect-${version}_linux.aarch64.tar.gz`),
               hash: "sha256-VZ+hBomcFzXs+iJ0mdnvAH1LBI3V497L9qE8Yn+jKpI=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://saucelabs.com/downloads/sauce-connect/${version}/sauce-connect-${version}_darwin.all.zip`),
               hash: "sha256-O0ixRKJiwlTPuGSDVX2AR01pZBFWPWmyqQxMEr7X4zk=",
             })))),
@@ -58,7 +58,7 @@ runHook postUnpack
       const installPhase = "runHook preInstall\n\ninstall -Dm755 sc $out/bin/sc\ninstallShellCompletion --bash --name sc.bash completions/sc.bash\ninstallShellCompletion --fish --name sc.fish completions/sc.fish\ninstallShellCompletion --zsh --name _sc completions/sc.zsh\ninstall -Dm644 LICENSE $out/share/licenses/sauce-connect/LICENSE\ninstall -Dm644 LICENSE.3RD_PARTY $out/share/licenses/sauce-connect/LICENSE.3RD_PARTY\ninstall -Dm644 sauce-connect.yaml $out/etc/sauce-connect.yaml\n\nrunHook postInstall\n";
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Secure tunneling app for executing tests securely when testing behind firewalls",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -70,7 +70,7 @@ runHook postUnpack
         platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(passthru, "sources")))),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         passthru,

@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const libsecret = nix.arg($, "libsecret");
   const libssh2 = nix.arg($, "libssh2");
-  const sqlGda = nix.thunk(() => nix.app(nix.sel(libgda5, "override"), nix.thunk(() => ({ __proto__: pos$1, mysqlSupport: true, postgresSupport: true }))));
+  const sqlGda = nix.thunk(() => nix.app(nix.sel(libgda5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mysqlSupport: true, postgresSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sequeler",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ellie-commons",
           repo: "sequeler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
         libssh2,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, ignoredVersions: "-", "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: "-", "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Friendly SQL Client",
         longDescription: "Sequeler is a native Linux SQL client built in Vala and Gtk. It allows you\nto connect to your local and remote databases, write SQL in a handy text\neditor with language recognition, and visualize SELECT results in a\nGtk.Grid Widget.\n",
         homepage: "https://github.com/ellie-commons/sequeler",

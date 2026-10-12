@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_14 = nix.arg($, "zig_0_14");
   const zig = zig_0_14;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bork",
       version: "0.4.0-unstable-2025-04-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kristoff-it",
           repo: "bork",
           rev: "ae7c7a82fc717d31dd9240300e5ca84f069dc453",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`ln -s ${nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({})))} $ZIG_GLOBAL_CACHE_DIR/p
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TUI chat client tailored for livecoding on Twitch",
         homepage: "https://github.com/kristoff-it/bork",
         changelog: "https://github.com/kristoff-it/bork/releases",

@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-w2UrGRVOFFUVqL+pU/xhNjOO2SM3vcy7U/4NiAE7Gqo=",
         }))));
       const buildInputs = nix.thunk(() => [poppler]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple PDF text extraction",
         homepage: "https://github.com/jalan/pdftotext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "erikarvstedt"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tt-rss-plugin-freshapi",
       version: "0-unstable-2024-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eric-pierce",
           repo: "freshapi",
           rev: "44c98f12e8a4423501fc6d8cb7903cca11094dc6",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -D init.php $out/freshapi/init.php\ninstall -D api/greader.php $out/freshapi/api/greader.php\ninstall -D api/freshapi.php $out/freshapi/api/freshapi.php\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FreshRSS / Google Reader API Plugin for Tiny-Tiny RSS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://github.com/eric-pierce/freshapi",

@@ -28,52 +28,52 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const normaloHashedPassword = "$y$j9T$IEWqhKtWg.r.8fVkSEF56.$iKNxdMC6hOAQRp6eBtYvBk4c7BGpONXeZMqc8I/LM46";
   const common = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     services: nix.thunk(() => ({
-      __proto__: pos$2,
-      userborn: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+      [nix.POS]: pos$2,
+      userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
     })),
-    users: nix.thunk(() => ({ __proto__: pos$3, mutableUsers: false })),
+    users: nix.thunk(() => ({ [nix.POS]: pos$3, mutableUsers: false })),
   }));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "userborn-immutable-users",
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           imports: nix.thunk(() => [common]),
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             users: nix.thunk(() => ({
-              __proto__: pos$7,
-              normalo: nix.thunk(() => ({ __proto__: pos$6, isNormalUser: true, hashedPassword: normaloHashedPassword })),
+              [nix.POS]: pos$7,
+              normalo: nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, hashedPassword: normaloHashedPassword })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "new-generation": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               inheritParentConfig: false,
               configuration: nix.thunk(() => ({
-                __proto__: pos$13,
-                nixpkgs: nix.thunk(() => ({ __proto__: pos$9, pkgs: pkgs })),
+                [nix.POS]: pos$13,
+                nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$9, pkgs: pkgs })),
                 imports: nix.thunk(() => [common]),
                 users: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   users: nix.thunk(() => ({
-                    __proto__: pos$11,
-                    "new-normalo": nix.thunk(() => ({ __proto__: pos$10, isNormalUser: true })),
+                    [nix.POS]: pos$11,
+                    "new-normalo": nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true })),
                   })),
                 })),
               })),

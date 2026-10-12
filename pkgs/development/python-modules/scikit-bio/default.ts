@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scikit-bio",
       version: "0.7.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-bio",
           repo: "scikit-bio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       pythonImportsCheck: nix.thunk(() => ["skbio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data structures, algorithms and educational resources for bioinformatics",
         homepage: "http://scikit-bio.org/",
         downloadPage: "https://github.com/scikit-bio/scikit-bio",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tflint-ruleset-google";
       const version = "0.40.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terraform-linters",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ mv $out/bin/${pname} $out/github.com/terraform-linters/${pname}/${version}/
 ln -s $out/github.com/terraform-linters/${pname}/${version}/${pname} $out/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/terraform-linters/tflint-ruleset-google",
         description: "TFLint ruleset plugin for Terraform Google Provider",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -46,7 +46,7 @@ ln -s $out/github.com/terraform-linters/${pname}/${version}/${pname} $out/
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

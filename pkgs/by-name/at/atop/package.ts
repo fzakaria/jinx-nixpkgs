@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withAtopgpu = nix.argOr($, "withAtopgpu", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "atop",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.atoptool.nl/download/atop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6hgvhMn1LKki5a9PF9/5f/QkQApPL5I5Mxemr2bmqHQ=",
         })))),
@@ -58,11 +58,11 @@ substituteInPlace Makefile --replace 'chmod 04711' 'chmod 0711'
 rm -r $out/{var,etc} $out/bin/atop{sar,}-${nix.sel(finalAttrs, "version")}
 `, (nix.asBool(withAtopgpu) ? "wrapPythonPrograms\n" : "rm $out/lib/systemd/system/atopgpu.service $out/bin/atopgpud $out/share/man/man8/atopgpud.8\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, atop: nix.thunk(() => nix.attr(nixosTests, "atop")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, atop: nix.thunk(() => nix.attr(nixosTests, "atop")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

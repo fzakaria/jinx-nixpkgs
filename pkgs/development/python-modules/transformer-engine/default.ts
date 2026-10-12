@@ -69,15 +69,15 @@ export default nix.lambda((args) => (() => {
   const backendStdenv = nix.thunk(() => nix.attr(cudaPackages, "backendStdenv"));
   const flags = nix.thunk(() => nix.attr(cudaPackages, "flags"));
   const frameworks = nix.thunk(() => (nix.asBool((nix.asBool(withJax) || nix.asBool(withPytorch))) ? nix.app(concatStringsSep, ",", nix.thunk(() => nix.concat(nix.app(optional, withJax, "jax"), nix.app(optional, withPytorch, "pytorch")))) : "none"));
-  const cudaCapabilities$ = nix.thunk(() => nix.app(unique, nix.thunk(() => nix.builtins.map((cudaCapability) => nix.selOr({ __proto__: pos$1, "10.3": "10.0", "10.7": "10.0", "12.1": "12.0" }, () => nix.force(cudaCapability), nix.key(nix.force(cudaCapability))), cudaCapabilities))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$2, stdenv: backendStdenv })), (finalAttrs) => ({
-      __proto__: pos$15,
+  const cudaCapabilities$ = nix.thunk(() => nix.app(unique, nix.thunk(() => nix.builtins.map((cudaCapability) => nix.selOr({ [nix.POS]: pos$1, "10.3": "10.0", "10.7": "10.0", "12.1": "12.0" }, () => nix.force(cudaCapability), nix.key(nix.force(cudaCapability))), cudaCapabilities))));
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: backendStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$15,
       pname: "transformer-engine",
       version: "2.20.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "NVIDIA",
           repo: "TransformerEngine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(optionals, cudaSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cuda-libs-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               libcudnn_so: nix.thunk(() => nix.str`${nix.app(getLib, nix.thunk(() => nix.sel(cudaPackages, "cudnn")))}/lib/libcudnn.so`),
               libnvrtc_so: nix.thunk(() => nix.str`${nix.app(getLib, nix.thunk(() => nix.sel(cudaPackages, "cuda_nvrtc")))}/lib/libnvrtc.so`),
               libcurand_so: nix.thunk(() => nix.str`${nix.app(getLib, nix.thunk(() => nix.sel(cudaPackages, "libcurand")))}/lib/libcurand.so`),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
     'te_path = Path("${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}")'
 `), "substituteInPlace 3rdparty/nccl-extensions/third_party/nccl/makefiles/common.mk \\\n  --replace-fail \\\n    'which $(NVCC) >/dev/null' \\\n    'command -v $(NVCC) >/dev/null'\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NVTE_RELEASE_BUILD: 0n,
         NVTE_NO_LOCAL_VERSION: 1n,
         NVTE_USE_PYTORCH_TRITON: 0n,
@@ -153,19 +153,19 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.concat(["transformer_engine"], nix.concat(nix.app(optionals, withJax, nix.thunk(() => ["transformer_engine_jax"])), nix.app(optionals, withPytorch, nix.thunk(() => ["transformer_engine_torch"]))))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
-          withOutNcclEp: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ __proto__: pos$6, withNcclEp: false })))),
-          withMpi: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ __proto__: pos$7, withMpi: true })))),
-          withPytorch: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ __proto__: pos$8, withPytorch: true })))),
-          withJax: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ __proto__: pos$9, withJax: true })))),
-          withNvshmem: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ __proto__: pos$10, withNvshmem: true })))),
-          withCusolvermp: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ __proto__: pos$11, withCusolvermp: true })))),
+          [nix.POS]: pos$12,
+          withOutNcclEp: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, withNcclEp: false })))),
+          withMpi: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, withMpi: true })))),
+          withPytorch: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withPytorch: true })))),
+          withJax: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, withJax: true })))),
+          withNvshmem: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ [nix.POS]: pos$10, withNvshmem: true })))),
+          withCusolvermp: nix.thunk(() => nix.app(nix.sel(transformer_engine, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, withCusolvermp: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Library for accelerating Transformer models on NVIDIA GPUs",
         homepage: "https://github.com/NVIDIA/TransformerEngine",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/TransformerEngine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

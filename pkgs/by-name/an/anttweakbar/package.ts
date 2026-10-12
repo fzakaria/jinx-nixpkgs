@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "AntTweakBar",
       version: "1.16",
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => [libx11, libGLU, libGL]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/anttweakbar/AntTweakBar_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "0z3frxpzf54cjs07m6kg09p7nljhr7140f4pznwi7srwq4cvgkpv",
         })))),
       postPatch: "cd src",
       installPhase: "mkdir -p $out/lib/\ncp ../lib/{libAntTweakBar.so,libAntTweakBar.so.1,libAntTweakBar.a} $out/lib/\ncp -r ../include $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add a light/intuitive GUI to OpenGL applications",
         longDescription: "A small and easy-to-use C/C++ library that allows to quickly add a light\nand intuitive graphical user interface into graphic applications based on OpenGL\n(compatibility and core profiles), DirectX 9, DirectX 10 or DirectX 11\nto interactively tweak parameters on-screen\n",
         homepage: "https://anttweakbar.sourceforge.net/",

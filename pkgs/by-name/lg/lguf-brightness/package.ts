@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const ncurses5 = nix.arg($, "ncurses5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lguf-brightness",
       version: "0-unstable-2019-02-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "periklis",
           repo: "lguf-brightness",
           rev: "fcb2bc1738d55c83b6395c24edc27267a520a725",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1, ncurses5]),
       installPhase: "install -D lguf_brightness $out/bin/lguf_brightness\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adjust brightness for LG UltraFine 4K display (cross platform)",
         homepage: "https://github.com/periklis/lguf-brightness",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

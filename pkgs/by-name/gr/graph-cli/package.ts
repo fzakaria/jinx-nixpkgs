@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "graph-cli",
       version: "0.1.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "graph_cli",
           hash: "sha256-AOfUgeVgcTtuf5IuLYy1zFTBCjWZxu0OiZzUVXDIaSc=",
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
         return [
           nix.thunk(() => nix.lookup(w_1, "numpy")),
           nix.thunk(() => nix.lookup(w_1, "pandas")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matplotlib"), "override"), nix.thunk(() => ({ __proto__: pos$2, enableQt: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matplotlib"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableQt: true })))),
         ];
       })()),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["graph_cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI to create graphs from CSV files",
         homepage: "https://github.com/mcastorina/graph-cli/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -27,57 +27,57 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pacemaker"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pacemaker: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "pacemaker")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pacemaker", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             assertion: nix.thunk(() => nix.sel(config, "services", "corosync", "enable")),
             message: "Enabling services.pacemaker requires a services.corosync configuration.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             hacluster: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               isSystemUser: true,
               group: "pacemaker",
               home: "/var/lib/pacemaker",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$8, pacemaker: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$8, pacemaker: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => ["d /var/log/pacemaker 0700 hacluster pacemaker -"]),
           })),
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pacemaker: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$11, StateDirectory: "pacemaker", StateDirectoryMode: "0700" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$11, StateDirectory: "pacemaker", StateDirectoryMode: "0700" })),
             })),
           })),
         })),

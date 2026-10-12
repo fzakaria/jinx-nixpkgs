@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dialogbox",
       version: "1.0-unstable-2020-11-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martynets",
           repo: "dialogbox",
           rev: "6989740746f376becc989ab2698e77d14186a0f9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       installPhase: "runHook preInstall\n\ninstall -d $out/{bin,share/doc/dialogbox}\ninstall dist/dialogbox $out/bin\ninstall README.md $out/share/doc/dialogbox/\ncp -r demos $out/share/doc/dialogbox/demos\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/martynets/dialogbox/",
         description: "Qt-based scriptable engine providing GUI dialog boxes",

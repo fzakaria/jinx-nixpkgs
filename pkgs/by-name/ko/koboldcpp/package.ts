@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
 `)));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cublasSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "koboldcpp",
       version: "1.119",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LostRuins",
           repo: "koboldcpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nix.thunk(() => nix.sel(python3Packages, "wrapPython"))], nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => [shaderc])))),
       postPatch: "nixLog \"patching $PWD/Makefile to remove explicit linking against CUDA driver\"\nsubstituteInPlace \"$PWD/Makefile\" \\\n  --replace-fail \\\n    'CUBLASLD_FLAGS = -lcuda ' \\\n    'CUBLASLD_FLAGS = '\n",
       pythonInputs: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           tkinter: nix.thunk(() => nix.attr(python3Packages, "tkinter")),
           customtkinter: nix.thunk(() => nix.attr(python3Packages, "customtkinter")),
           packaging: nix.thunk(() => nix.attr(python3Packages, "packaging")),
@@ -87,11 +87,11 @@ makeWrapper "$out/bin/koboldcpp.unwrapped" "$out/bin/koboldcpp" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tk]))} ${libraryPathWrapperArgs}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/LostRuins/koboldcpp/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Way to run various GGML and GGUF models",
         homepage: "https://github.com/LostRuins/koboldcpp",

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amoeba-data",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/non-free/a/amoeba-data/amoeba-data_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-b0kwUVC5U1/aygGvpCgD1SLy+i/1c5vkIsEOs0Om7K0=",
         })))),
       installPhase: "mkdir -p $out/share/amoeba\ncp demo.dat $out/share/amoeba/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast-paced, polished OpenGL demonstration by Excess (data files)",
         homepage: "https://packages.qa.debian.org/a/amoeba-data.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

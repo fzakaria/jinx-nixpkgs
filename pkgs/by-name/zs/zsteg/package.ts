@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["zsteg"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Detect stegano-hidden data in PNG & BMP",
         homepage: "http://zed.0xff.me/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "zsteg",
       }));
-      return { __proto__: pos$3, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: pos$3, pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

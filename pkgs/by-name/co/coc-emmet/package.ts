@@ -22,29 +22,29 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "coc-emmet",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neoclide",
           repo: "coc-emmet",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-0f9wSn7W+8Pxce7hbdfNpL33oykuVGNifNnSPPdhKb8=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-8oo/XG9WxgKIbhfBWiGry+SZJdQIFe/T5i9S0hgjmp0=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Emmet extension for coc.nvim",
         homepage: "https://github.com/neoclide/coc-emmet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

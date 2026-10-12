@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const electron_44 = nix.arg($, "electron_44");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "drawio",
       version: "31.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgraph",
           repo: "drawio-desktop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace ./build/fuses.mjs \\\n  --replace-fail \"resetAdHocDarwinSignature:\" \"// resetAdHocDarwinSignature:\"\n",
       offlineCache: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           hash: "sha256-toGjhKYJt9X6xgncEGx6wco5WJh5tUwATNVLsXI3MVs=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([npm_lockfile_fix, makeWrapper, nodejs], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
       configurePhase: "runHook preConfigure\n\nexport HOME=\"$TMPDIR\"\nnpm config set cache \"$offlineCache\"\nnpm-lockfile-fix package-lock.json\nnpm ci --offline --ignore-scripts --no-audit --no-fund\npatchShebangs node_modules/\n\nrunHook postConfigure\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -75,7 +75,7 @@ makeWrapper '${electron_44}/bin/electron' "$out/bin/drawio" \\
 `))), "\nrunHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "drawio",
             exec: "drawio %U",
             icon: "drawio",
@@ -87,11 +87,11 @@ makeWrapper '${electron_44}/bin/electron' "$out/bin/drawio" \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Desktop version of draw.io for creating diagrams",
         homepage: "https://about.draw.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

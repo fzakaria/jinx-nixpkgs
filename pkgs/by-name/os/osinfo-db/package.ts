@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osinfo-db",
       version: "20260812",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/libosinfo%2Fosinfo-db/packages/generic/release-assets/v${nix.sel(finalAttrs, "version")}/osinfo-db-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8T7W4eSAtSZtOcrX8AEP698CZd/EVXneL7NFQ7xrNd4=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`osinfo-db-import --dir "$out/share/osinfo" "${nix.sel(finalAttrs, "src")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osinfo database of information about operating systems for virtualization provisioning tools",
         homepage: "https://gitlab.com/libosinfo/osinfo-db/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libosinfo/osinfo-db/-/commits/v${nix.sel(finalAttrs, "version")}`),

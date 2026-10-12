@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const nix_update_script = nix.arg($, "nix-update-script");
   const basis_universal = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "zeux",
       repo: "basis_universal",
       rev: "88e813c46b3ff42e56ef947b3fa11eeee7a504b0",
       hash: "sha256-8SQhORPPLBeynlRWjpkXxleo5pgkNmEIjcXbptuo8es=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "meshoptimizer",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "zeux",
           repo: "meshoptimizer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DMESHOPT_GLTFPACK_LIBWEBP_PATH=${nix.sel(libwebp, "src")}`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "-DMESHOPT_BUILD_SHARED_LIBS:BOOL=ON"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mesh optimization library that makes meshes smaller and faster to render",
         homepage: "https://github.com/zeux/meshoptimizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

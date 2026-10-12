@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "types-webencodings",
       version: "0.6.0.20260907",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_webencodings",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-76hbxRFEGe1FrsInylBRzKY/o+K9E/z3kBfuQQdgPvw=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["webencodings-stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for webencodings",
         homepage: "https://pypi.org/project/types-webencodings/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

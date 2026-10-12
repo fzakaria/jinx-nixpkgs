@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gap";
       const version = "4.15.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gap-system/gap/releases/download/v${version}/gap-${version}.tar.gz`),
           hash: "sha256-YEnVPpmxLiXC2EjbIaxKBjgKRv5MQVckPVVv4GkwBCw=",
         }))));
@@ -66,7 +66,7 @@ popd
       const postInstall = "# make install creates an empty pkg dir. since we run \"make check\" on\n# installCheckPhase to make sure the installed GAP finds its libraries, we\n# also install the tst dir. this is probably excessively cautious, see\n# https://github.com/NixOS/nixpkgs/pull/192548#discussion_r992824942\nrm -r \"$out/share/gap/pkg\"\ncp -ar pkg tst \"$out/share/gap\"\ncp -a etc/Makefile.gappkg \"$out/share/gap/etc\"\n";
       const preFixup = "# patchelf won't strip references to the build dir if it still exists\nrm -rf pkg\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Computational discrete algebra system",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -75,7 +75,7 @@ popd
         homepage: "https://www.gap-system.org",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

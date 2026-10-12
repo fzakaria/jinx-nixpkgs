@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const version = "0.4.10-unstable-2024-10-25";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "zincsearch",
       repo: "zincsearch",
       rev: "0652db6d39badc753f28ee1122dcbc0e5da1c35e",
       hash: "sha256-Py4fiZJ2fMwPe2afd19brR+62PGVoU67nMDMPlUFhKQ=",
     }))));
   const webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       version: version,
       pname: "zinc-ui",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       npmDepsHash: "sha256-2AjUaEOn2Tj+X4f42SvNq1kX07WxkB1sl5KtGdCjbdw=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CYPRESS_INSTALL_BINARY: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CYPRESS_INSTALL_BINARY: 0n })),
       installPhase: "mkdir -p $out/share\nmv dist $out/share/zinc-ui\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => (() => {
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/zinclabs/zincsearch/pkg/meta.Version=${version_1}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight alternative to elasticsearch that requires minimal resources, written in Go",
         mainProgram: "zincsearch",
         homepage: "https://zincsearch-docs.zinc.dev/",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         src: src_1,
         version: version_1,

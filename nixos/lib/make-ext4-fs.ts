@@ -20,9 +20,9 @@ export default nix.lambda((args) => (() => {
   const libfaketime = nix.arg($, "libfaketime");
   const perl = nix.arg($, "perl");
   const fakeroot = nix.arg($, "fakeroot");
-  const sdClosureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "closureInfo"), nix.thunk(() => ({ __proto__: pos$1, rootPaths: storePaths }))));
+  const sdClosureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$1, rootPaths: storePaths }))));
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`ext4-fs.img${nix.app(nix.sel(lib, "optionalString"), compressImage, ".zst")}`),
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(e2fsprogs, "bin")), libfaketime, perl, fakeroot], nix.app(nix.sel(lib, "optional"), compressImage, zstd))),
       buildCommand: nix.thunk(() => nix.str`${(nix.asBool(compressImage) ? "img=temp.img" : "img=$out")}

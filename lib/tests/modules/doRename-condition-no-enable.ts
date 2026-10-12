@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     config: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       result: nix.thunk(() => (() => {
         nix.assert_(nix.eq(nix.sel(config, "services", "foos"), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-no-enable.nix:5:7");
         nix.assert_(!nix.asBool(nix.sel(options, "services", "foo", "bar", "isDefined")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-no-enable.nix:6:7");

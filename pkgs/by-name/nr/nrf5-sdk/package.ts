@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "17.1.0";
       const urlHash = "ddde560";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/sdks/nrf5/binaries/nrf5_sdk_${version}_${urlHash}.zip`),
           sha256: "sha256-q4WQ7X7/z/42/qcii+mOLnobqcbUy0tInkOfRH/Gwus=",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/nRF5_SDK\nmv * $out/share/nRF5_SDK\nrm $out/share/nRF5_SDK/*.msi\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nordic Semiconductor nRF5 Software Development Kit",
         homepage: "https://www.nordicsemi.com/Products/Development-software/nRF5-SDK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         urlHash,

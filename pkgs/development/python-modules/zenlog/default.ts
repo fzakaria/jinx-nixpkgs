@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "zenlog";
   const version = "1.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-g0YKhfpySbgAfANoGmoLV1zm/gRDSTidPT1D9Y1Gh94=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [colorlog]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python script logging for the lazy",
         homepage: "https://github.com/ManufacturaInd/python-zenlog",
         changelog: nix.thunk(() => nix.str`https://github.com/ManufacturaInd/python-zenlog/releases/tag/v${version}`),

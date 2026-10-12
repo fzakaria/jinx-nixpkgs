@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ft2-clone",
       version: "2.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "8bitbubsy",
           repo: "ft2-clone",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([SDL2], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))))),
       postInstall: "install -Dm444 \"$src/release/other/Freedesktop.org Resources/Fasttracker II clone.desktop\" \\\n  $out/share/applications/ft2-clone.desktop\ninstall -Dm444 \"$src/release/other/Freedesktop.org Resources/Fasttracker II clone.png\" \\\n  $out/share/icons/hicolor/512x512/apps/ft2-clone.png\n# gtk-update-icon-cache does not like whitespace. Note that removing this\n# will not make the build fail, but it will make the NixOS test fail.\nsubstituteInPlace $out/share/applications/ft2-clone.desktop \\\n  --replace-fail \"Icon=Fasttracker II clone\" Icon=ft2-clone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "ft2-clone-starts": nix.thunk(() => nix.sel(nixosTests, "ft2-clone")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Highly accurate clone of the classic Fasttracker II software for MS-DOS",
         homepage: "https://16-bits.org/ft2.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

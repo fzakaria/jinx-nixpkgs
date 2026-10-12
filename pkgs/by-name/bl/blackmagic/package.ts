@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const libopencm3Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "libopencm3",
       repo: "libopencm3",
       rev: "8a96a9d95a8e5c187a53652540b25a8f4d73a432",
       hash: "sha256-PylP95hpPeg3rqfelHW9qz+pi/qOP60RfvkurxbkWDs=",
     }))));
   const ctxlinkWinc1500Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "sidprice",
       repo: "ctxlink_winc1500",
       rev: "debeab9516e33622439f727a68bddabcdf52c528",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const firmwareVersion = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "blackmagic-debug",
           repo: "blackmagic",
           rev: firmwareVersion,
@@ -64,7 +64,7 @@ cp -r ${ctxlinkWinc1500Src}/* $sourceRoot/deps/winc1500/
       const versionCheckProgramArg = "--help";
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "In-application debugger for ARM Cortex microcontrollers",
         mainProgram: "blackmagic",
         longDescription: "The Black Magic Probe is a modern, in-application debugging tool\nfor embedded microprocessors. It allows you to see what is going\non \"inside\" an application running on an embedded microprocessor\nwhile it executes.\n\nThis package builds the firmware for all supported platforms,\nplacing them in separate directories under the firmware\ndirectory.  It also places the FTDI version of the blackmagic\nexecutable in the bin directory.\n",
@@ -81,7 +81,7 @@ cp -r ${ctxlinkWinc1500Src}/* $sourceRoot/deps/winc1500/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         firmwareVersion,

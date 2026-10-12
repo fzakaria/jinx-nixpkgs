@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.app(assertMsg, maxAssert, nix.thunk(() => nix.str`LFE ${version} is supported on OTP <=${maximumOTPVersion}, not ${mainVersion}.
 `)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/lfe/default.nix:33:3");
     return nix.app(buildRebar3, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "lfe",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "lfe",
             repo: "lfe",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ for f in $out/bin/*; do
 done
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Best of Erlang and of Lisp; at the same time",
           longDescription: "LFE, Lisp Flavoured Erlang, is a lisp syntax front-end to the Erlang\ncompiler. Code produced with it is compatible with \"normal\" Erlang\ncode. An LFE evaluator and shell is also included.\n",
           homepage: "https://lfe.io",

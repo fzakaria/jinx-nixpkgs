@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const torch_c_dlpack_ext = nix.arg($, "torch-c-dlpack-ext");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flash-attn-4",
       version: "4.0.0.beta34",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dao-AILab",
           repo: "flash-attention",
           tag: nix.thunk(() => nix.str`fa4-v${nix.sel(finalAttrs, "version")}`),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flash_attn.cute"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=fa4-v(.*)", "--version=unstable"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CuTeDSL-based implementation of FlashAttention for Hopper and Blackwell GPUs",
         homepage: "https://github.com/Dao-AILab/flash-attention/tree/main/flash_attn/cute",
         changelog: nix.thunk(() => nix.str`https://github.com/Dao-AILab/flash-attention/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const python3Minimal = nix.arg($, "python3Minimal");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jpegli",
       version: "0-unstable-2026-04-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "jpegli",
           rev: "7a57896e68a8ab861ded9857b2d3a402868d3d9e",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput \"bin/benchmark_xl\" \"$benchmark\"\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Improved JPEG encoder and decoder implementation",
         homepage: "https://github.com/google/jpegli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

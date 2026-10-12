@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const xdp_tools = nix.arg($, "xdp-tools");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dnsdist",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.powerdns.com/releases/dnsdist-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YKCU155Ci4bl7KGITWi0lb1NA3rw9u/BRI4WvMDTIrw=",
         })))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "dev")}`),
       ]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-O9FKlT8bqDz+rQBocZ5ZWMimYyRTfPrKBxp+hDs10c4=",
@@ -94,9 +94,9 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "dnsdist-rust-lib/rust",
       doCheck: true,
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "dnsdist")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "dnsdist")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://www.dnsdist.org/changelog.html",
         description: "DNS Loadbalancer",
         mainProgram: "dnsdist",

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "buffybox",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "buffybox",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "systemd", true))]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-32-bit-build",
             url: "https://gitlab.postmarketos.org/postmarketOS/buffybox/-/merge_requests/87.patch",
             hash: "sha256-GUk+YrG07hL+0w70qvymPzHGTmUXdfzG4Cy35gg/Asw=",
@@ -51,16 +51,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, scdoc]),
       buildInputs: nix.thunk(() => [inih, libdrm, libinput, libxkbcommon]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_SYSTEMD_SYSTEMD_SYSTEM_UNIT_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
       })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Suite of graphical applications for the terminal",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/buffybox",
         changelog: "https://gitlab.postmarketos.org/postmarketOS/buffybox/-/blob/main/CHANGELOG.md",

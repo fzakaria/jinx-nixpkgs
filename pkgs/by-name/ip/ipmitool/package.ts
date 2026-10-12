@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const fetchurl = nix.arg($, "fetchurl");
   const iana_enterprise_numbers = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20250113140800id_/https://www.iana.org/assignments/enterprise-numbers.txt",
       hash: "sha256-aRgBEfZYwoL6YnU3aD0WYeMnJD5ZCj34S/9aQyzBIO4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ipmitool",
       version: "1.8.19-unstable-2025-02-18",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "IPMITool",
           repo: "ipmitool",
           rev: "3c91e6d91ec6090fe548c55ef301c33ff20c8ed8",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 install -Dm444 ${iana_enterprise_numbers} $out/share/misc/enterprise-numbers
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line interface to IPMI-enabled devices",
         mainProgram: "ipmitool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

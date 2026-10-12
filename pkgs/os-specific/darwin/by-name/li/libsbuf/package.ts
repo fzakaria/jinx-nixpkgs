@@ -19,31 +19,31 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(bootstrapStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libsbuf",
       version: "14.1.0",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "subr_sbuf.c",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/sys/kern/subr_sbuf.c?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-+wIcXz2wuYzOXmbxjDYBh7lIpoVtw+SW/l7oMXFJUcc=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "subr_prf.c",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/sys/kern/subr_prf.c?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-Sd+kJ7/RwwndK1N6YvqQqPTQRA0ajPAT0yk0rOPRpW8=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "usbuf.h",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/sys/sys/sbuf.h?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-CCwh9kI/X1u16hHWiiBipvBzDKvo2S2OFtI4Jo6HF0E=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "sbuf.9",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/share/man/man9/sbuf.9?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-43uUIGvYX0NvikcGTTJHrokHvubQ89ztLv/BK3MP0YY=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Safely compose and manipulate strings in C",
         homepage: "https://www.freebsd.org",
         license: nix.thunk(() => [

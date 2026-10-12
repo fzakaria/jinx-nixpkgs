@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => nix.selOr(config, () => [], "dmenu", "patches"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dmenu",
       version: "5.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/dmenu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6bFq3Pj3cuZqLR0pkoJyfx3CDWmmSqkDoEVptMfej7g=",
         })))),
@@ -47,11 +47,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), 
       })()),
       preConfigure: "makeFlagsArray+=(\n  PREFIX=\"$out\"\n  CC=\"$CC\"\n)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "git://git.suckless.org/dmenu" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.suckless.org/dmenu" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generic, highly customizable, and efficient menu for the X Window System",
         homepage: "https://tools.suckless.org/dmenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

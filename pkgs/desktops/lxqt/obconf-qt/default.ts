@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obconf-qt";
       const version = "0.16.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "obconf-qt",
           rev: version,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, lxqt_build_tools, qttools, wrapQtAppsHook]);
       const buildInputs = nix.thunk(() => [libsm, libxdmcp, libpthread_stubs, openbox, qtbase, qtwayland]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lxqt/obconf-qt",
         description: "Qt port of obconf, the Openbox configuration tool",
         mainProgram: "obconf-qt",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

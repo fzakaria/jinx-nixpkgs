@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "metrics-influx",
       version: nix.thunk(() => nix.attr(metrics, "version")),
       src: nix.thunk(() => nix.attr(metrics, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [duration, fmt, lwt, metrics]),
-      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { __proto__: pos$1, description: "Influx reporter for the Metrics library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { [nix.POS]: pos$1, description: "Influx reporter for the Metrics library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=influx.ts.map

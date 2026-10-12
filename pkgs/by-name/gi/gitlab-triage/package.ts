@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitlab-triage",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["gitlab-triage"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "gitlab-triage")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GitLab's issues and merge requests triage, automated",
         homepage: "https://gitlab.com/gitlab-org/ruby/gems/gitlab-triage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

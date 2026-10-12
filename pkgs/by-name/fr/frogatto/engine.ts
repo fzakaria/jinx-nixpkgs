@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libvpx = nix.arg($, "libvpx");
   const glm = nix.arg($, "glm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "anura-engine",
       version: "0-unstable-2023-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anura-engine",
           repo: "anura",
           rev: "65d85b6646099db1d5cd25d31321bb434a3f94f1",
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
         glm,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: "-DGLM_ENABLE_EXPERIMENTAL -Wno-error=deprecated-declarations",
       })),
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out/bin $out/share/frogatto\ncp -ar data images modules $out/share/frogatto/\ncp -a anura $out/bin/frogatto\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/anura-engine/anura",
         description: "Game engine used by Frogatto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

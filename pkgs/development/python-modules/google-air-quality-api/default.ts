@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-air-quality-api",
       version: "3.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Thomas55555",
           repo: "python-google-air-quality-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["google_air_quality_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Thomas55555/python-google-air-quality-api/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Python client library for the Google Air Quality API",
         homepage: "https://github.com/Thomas55555/python-google-air-quality-api",

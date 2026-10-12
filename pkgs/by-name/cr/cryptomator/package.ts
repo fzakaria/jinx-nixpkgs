@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const nix_update_script = nix.arg($, "nix-update-script");
   const freetype = nix.arg($, "freetype");
-  const jdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "cryptomator";
       const version = "1.19.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cryptomator",
           repo: "cryptomator",
           tag: version,
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       const mvnParameters = "-Dmaven.test.skip=true -Plinux";
       const mvnHash = "sha256-IVOcDFW5YKgUHJKX3ZXYVnOevwmOwN5yEU8jfPtCY1I=";
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           SOURCE_DATE_EPOCH: nix.thunk(() => nix.attr(env, "SOURCE_DATE_EPOCH")),
         })),
       }));
-      const env = nix.thunk(() => ({ __proto__: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
       const preBuild = nix.thunk(() => nix.str`VERSION=${version}
 SEMVER_STR=${version}
 `);
@@ -104,11 +104,11 @@ runHook postInstall
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, jdk, makeShellWrapper, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [fuse3, glib, jdk, libayatana_appindicator, freetype]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Free client-side encryption for your cloud files",
         homepage: "https://cryptomator.org",
         changelog: nix.thunk(() => nix.str`https://github.com/cryptomator/cryptomator/releases/tag/${version}`),
@@ -131,7 +131,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

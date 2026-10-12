@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-bin", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "mkdir -p bin\necho \"echo hello za warudo\" > bin/hello\necho \"echo amigo me gusta mucho\" > bin/amigo\n\ninstallBin bin/*\n\ncmp bin/amigo $out/bin/amigo\ncmp bin/hello $out/bin/hello\n");

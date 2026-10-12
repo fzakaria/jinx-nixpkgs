@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const srtp = nix.arg($, "srtp");
   const usrsctp = nix.arg($, "usrsctp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdatachannel",
       version: "0.24.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paullouisageneau",
           repo: "libdatachannel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DUSE_NICE=ON", "-DPREFER_SYSTEM_LIB=ON", "-DNO_EXAMPLES=ON"]),
       postFixup: "# Fix include path that will be incorrect due to the \"dev\" output\nsubstituteInPlace \"$dev/lib/cmake/LibDataChannel/LibDataChannelTargets.cmake\" \\\n  --replace-fail \"\\${_IMPORT_PREFIX}/include\" \"$dev/include\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C/C++ WebRTC network library featuring Data Channels, Media Transport, and WebSockets",
         homepage: "https://libdatachannel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

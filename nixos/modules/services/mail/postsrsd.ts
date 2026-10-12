@@ -75,30 +75,30 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postsrsd.conf", nix.thunk(() => nix.app(renderAttr, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))))))));
   const postfixIntegration = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configurePostfix"), true)) ? "socketmap" : (nix.asBool(nix.eq(nix.sel(cfg, "configurePostfix"), false)) ? "none" : nix.sel(cfg, "configurePostfix"))));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     imports: nix.thunk(() => nix.concat([
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "postsrsd", "socketPath"]), "Configure/reference `services.postsrsd.settings.socketmap` instead. Note that its now required to start with the `inet:` or `unix:` prefix.\n")),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "postsrsd", "domains"]), nix.thunk(() => ["services", "postsrsd", "settings", "domains"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "postsrsd", "separator"]), nix.thunk(() => ["services", "postsrsd", "settings", "separator"]))),
     ], nix.builtins.map((name) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "postsrsd", name]), "`postsrsd` was upgraded to `>= 2.0.0`, with some different behaviors and configuration settings:\n  - NixOS Release Notes: https://nixos.org/manual/nixos/unstable/release-notes#sec-nixpkgs-release-25.05-incompatibilities\n  - NixOS Options Reference: https://nixos.org/manual/nixos/unstable/options#opt-services.postsrsd.enable\n  - Migration instructions: https://github.com/roehling/postsrsd/blob/2.0.10/README.rst#migrating-from-version-1x\n  - Postfix Setup: https://github.com/roehling/postsrsd/blob/2.0.10/README.rst#postfix-setup\n"), nix.thunk(() => ["domain", "forwardPort", "reversePort", "timeout", "excludeDomains"])))),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         postsrsd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the postsrsd SRS server for Postfix.")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "postsrsd", nix.thunk(() => ({})))),
           secretsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/postsrsd/postsrsd.secret",
               description: "Secret keys used for signing and verification.\n\n::: {.note}\nThe secret will be generated, if it does not exist at the given path.\n:::\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -111,9 +111,9 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
                         description: "List of local domains, that do not require rewriting.\n",
                       })))),
                     milter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "strMatching"), "^(unix|inet):.+")));
@@ -133,20 +133,20 @@ export default nix.lambda((args) => (() => {
                         description: "Milter listener configuration in `unix:/path/to/socket` or `inet:host:port` format.\n",
                       })))),
                     "secrets-file": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "${CREDENTIALS_DIRECTORY}/secrets-file",
                         readOnly: true,
                         description: "Path to the file containing the secret keys.\n\n::: {.note}\nSecrets are passed using `LoadCredential=` on the systemd unit,\nso this options is read-only.\n\nConfigure {option}`services.postsrsd.secretsFile` instead.\n",
                       })))),
                     separator: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["-", "=", "+"]))),
                         default: "=",
                         description: "SRS tag separator used in generated sender addresses.\n\nUnless you have a very good reason, you should leave this\nsetting at its default.\n",
                       })))),
                     "srs-domain": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
                         description: "Dedicated mail domain used for ephemeral SRS envelope addresses.\n\nRecommended to configure, when hosting multiple unrelated mail\ndomains (e.g. for different customers), to prevent privacy\nissues.\n\nSet to `null` to not configure any `srs-domain`.\n",
                       })))),
                     socketmap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "strMatching"), "^(unix|inet):.+")));
@@ -166,14 +166,14 @@ export default nix.lambda((args) => (() => {
                         description: "Socketmap listener configuration in `unix:/path/to/socket` or `inet:host:port` format.\n",
                       })))),
                     "chroot-dir": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "",
                         readOnly: true,
                         description: "Path to chroot into at runtime as an additional layer of protection.\n\n::: {.note}\nWe confine the runtime environment through systemd hardening instead, so this option is read-only.\n:::\n",
                       })))),
                     "unprivileged-user": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "",
                         readOnly: true,
@@ -188,20 +188,20 @@ See the [example configuration](https://github.com/roehling/postsrsd/blob/${nix.
 `),
             })))),
           configurePostfix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [true, false, "none", "socketmap", "milter"]))),
               default: "socketmap",
               example: "milter",
               description: "Whether and how to integrate postsrsd into the local Postfix instance.\n\n::: {.caution}\nBoolean values are deprecated and retained for backwards\ncompatibility. `true` is equivalent to `socketmap`, and `false` is\nequivalent to `none`.\n:::\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "postsrsd",
               description: "User for the daemon",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "postsrsd",
               description: "Group for the daemon",
@@ -211,81 +211,81 @@ See the [example configuration](https://github.com/roehling/postsrsd/blob/${nix.
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           warnings: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.app(isBool, nix.thunk(() => nix.sel(cfg, "configurePostfix")))))), nix.thunk(() => [
               "Boolean values are deprecated for `services.postsrsd.configurePostfix` and will be rejected in NixOS 27.05.\nUse `none`, `socketmap`, or `milter` instead. `true` is equivalent to `socketmap` and `false` is equivalent to `none`.\n",
             ]))),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(!nix.eq(postfixIntegration, "none")))) && nix.asBool(nix.sel(config, "services", "postfix", "enable")))), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 assertion: nix.thunk(() => (!nix.asBool(nix.eq(postfixIntegration, "milter")) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "milter"), null)))),
                 message: "Configuring Postfix `smtpd_milters` requires `services.postsrsd.settings.milter` to be set.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 assertion: nix.thunk(() => (!nix.asBool(nix.eq(postfixIntegration, "socketmap")) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "socketmap"), null)))),
                 message: "Configuring Postfix canonical maps requires `services.postsrsd.settings.socketmap` to be set.",
               })),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               postfix: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   main: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(postfixIntegration, "socketmap")), nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       sender_canonical_maps: nix.thunk(() => nix.str`socketmap:${nix.sel(cfg, "settings", "socketmap")}:forward`),
                       sender_canonical_classes: "envelope_sender",
                       recipient_canonical_maps: nix.thunk(() => nix.str`socketmap:${nix.sel(cfg, "settings", "socketmap")}:reverse`),
                       recipient_canonical_classes: nix.thunk(() => ["envelope_recipient", "header_recipient"]),
                     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(postfixIntegration, "milter")), nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       smtpd_milters: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "milter"))]),
                     }))))),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               users: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             users: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "postsrsd")), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   postsrsd: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     uid: nix.thunk(() => nix.sel(config, "ids", "uids", "postsrsd")),
                   })),
                 })))),
               groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "postsrsd")), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   postsrsd: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "postsrsd")),
                   })),
                 })))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               services: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "postsrsd-generate-secrets": nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
                   script: nix.thunk(() => nix.str`if [ -e "${nix.sel(cfg, "secretsFile")}" ]; then
   echo "Secrets file exists. Nothing to do!"
@@ -296,10 +296,10 @@ else
   install -m 600 -o ${nix.sel(cfg, "user")} -g ${nix.sel(cfg, "group")} <(dd if=/dev/random bs=18 count=1 | base64) "${nix.sel(cfg, "secretsFile")}"
 fi
 `),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$36, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$36, Type: "oneshot" })),
                 })),
                 postsrsd: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   description: "Sender Rewriting Scheme daemon for Postfix",
                   after: nix.thunk(() => ["network.target", "postsrsd-generate-secrets.service"]),
                   before: nix.thunk(() => ["postfix.service"]),
@@ -307,7 +307,7 @@ fi
                   requires: nix.thunk(() => ["postsrsd-generate-secrets.service"]),
                   reloadTriggers: nix.thunk(() => [configFile]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     Type: "notify-reload",
                     ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -355,15 +355,15 @@ fi
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               etc: nix.thunk(() => ({
-                __proto__: pos$43,
-                "postsrsd.conf": nix.thunk(() => ({ __proto__: pos$42, source: configFile })),
+                [nix.POS]: pos$43,
+                "postsrsd.conf": nix.thunk(() => ({ [nix.POS]: pos$42, source: configFile })),
               })),
             })),
           })))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$46, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$46, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=postsrsd.ts.map

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gprojector";
       const version = "3.4.8";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.giss.nasa.gov/tools/gprojector/download/G.ProjectorJ-${version}.tgz`),
           hash: "sha256-56CWuPp9Nu63yGn13AAZrvwE1xvKDZ7Idjbn2hbk0sI=",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gprojector",
             exec: "gprojector",
             desktopName: "G.Projector",
@@ -54,7 +54,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "G.Projector transforms an input map image into any of about 200 global and regional map projections",
         homepage: "https://www.giss.nasa.gov/tools/gprojector/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rmfuse",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rschroll",
           repo: "rmfuse",
           rev: "3796b8610c8a965a60a417fc0bf8ea5200b71fd2",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FUSE access to the reMarkable Cloud",
         homepage: "https://github.com/rschroll/rmfuse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

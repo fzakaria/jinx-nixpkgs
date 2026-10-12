@@ -13,8 +13,8 @@ export default nix.thunk(() => (() => {
   const isVersioned = (attr) => !nix.eq(nix.builtins.match("[A-Za-z0-9-]+(_[0-9]+)+", attr), null);
   const getEvaluating = (x) => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.sel(v, "pname"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.app(isVersioned, n))) && nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.selOr(v, () => null, "outPath"))), "success")))) && nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v)))) && nix.asBool(!nix.asBool(nix.sel(v, "meta", "broken")))), x)));
   const brokenDeps = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.app(getEvaluating, nix.thunk(() => nix.sel(pkgs, "haskellPackages")))), nix.thunk(() => nix.app(getEvaluating, nix.thunk(() => nix.sel(nix.app(nixpkgs, nix.thunk(() => ({
-          __proto__: pos$2,
-          config: nix.thunk(() => ({ __proto__: pos$1, allowBroken: true })),
+          [nix.POS]: pos$2,
+          config: nix.thunk(() => ({ [nix.POS]: pos$1, allowBroken: true })),
         }))), "haskellPackages"))))));
   return nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (x) => nix.str` - ${x}`, brokenDeps)}
 `;

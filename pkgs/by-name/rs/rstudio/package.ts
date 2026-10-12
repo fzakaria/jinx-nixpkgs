@@ -63,23 +63,23 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const boost = boost191;
   const mathJax27Src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://s3.amazonaws.com/rstudio-buildtools/mathjax-2.7.9.zip",
       hash: "sha256-eQY8Q7ty7OcCs9E2hLsZjX5GncodGdEIbdUYDdKy9Ds=",
     }))));
   const mathJax4Src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://s3.amazonaws.com/rstudio-buildtools/mathjax-4.1.3.zip",
       hash: "sha256-DCfc3H09FXuihKca62oZM6z1nsW8+6kMvad1HBBJI3A=",
     }))));
   const gwt = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://rstudio-buildtools.s3.us-east-1.amazonaws.com/gwt/gwt-2.12.2-autumn-hawkbit.tar.gz",
       stripRoot: false,
       hash: "sha256-eRmdDiAjMz/nvQCXmRwGAt6HC3Nr5KACsxahS1cLpHA=",
     }))));
   const quartoSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "quarto-dev",
       repo: "quarto",
       rev: "828ae28e53b796fb95a33bd7f3c7c109e0709649",
@@ -95,18 +95,18 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), quarto)} $out/bin/quarto
 ln -s ${quarto}/share $out/share
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "rstudio",
       version: "2026.09.0+174",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "rstudio",
           repo: "rstudio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-67HT2JT0kPXqzCfcgtfRZZ/zM35ZWULb0ooCjagzr3w=",
         })))),
       extSrcs: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.str`rstudio-${nix.sel(finalAttrs, "version")}-ext-srcs`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [cacert, cmake, git]),
@@ -137,7 +137,7 @@ ln -s ${quarto}/share $out/share
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "RSTUDIO_INSTALL_FREEDESKTOP", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")))),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         CI: "1",
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${R}/lib/R/lib`),
@@ -147,9 +147,9 @@ ln -s ${quarto}/share $out/share
         RSTUDIO_VERSION_SUFFIX: nix.thunk(() => nix.add("+", nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "tail"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "+", nix.thunk(() => nix.sel(finalAttrs, "version"))))))))),
       })),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./r-location.patch"), nix.thunk(() => ({ __proto__: pos$8, R: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), R)) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./r-location.patch"), nix.thunk(() => ({ [nix.POS]: pos$8, R: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), R)) })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./clang-location.patch"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
         nix.path(here, "./ignore-etc-os-release.patch"),
@@ -174,7 +174,7 @@ substituteInPlace src/node/desktop/CMakeLists.txt \\
   --replace-fail "/usr/share" "$out/share"
 `),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           src: quartoSrc,
           hash: "sha256-4mPc2gNlXTvAWLdWViceTPk5lizKST7iBMZ42ZcrEZA=",
         })))),
@@ -183,7 +183,7 @@ substituteInPlace src/node/desktop/CMakeLists.txt \\
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       makeCacheWritable: true,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: nix.thunk(() => nix.str`rstudio-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -272,15 +272,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} "$out/bin/rstudio" \\
 ln -s $out/lib/rstudio/resources/app/bin/{diagnostics,rpostback} $out/bin
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(server) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "ln -s $out/Applications/RStudio.app/Contents/MacOS/{postback,r-ldpath,rpostback,rserver,rserver-pam,rsession,rstudio-server} $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(server)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "# electron can't find its files if we use a symlink here\nmakeWrapper $out/Applications/RStudio.app/Contents/MacOS/RStudio $out/bin/rstudio\n\nln -s $out/Applications/RStudio.app/Contents/Resources/app/bin/{diagnostics,rpostback} $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         server: server,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "rstudio-server": nix.thunk(() => nix.attr(nixosTests, "rstudio-server")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         changelog: nix.thunk(() => nix.str`https://github.com/rstudio/rstudio/tree/${nix.sel(finalAttrs, "src", "rev")}/version/news`),
         description: "Set of integrated tools for the R language",
         homepage: "https://www.rstudio.com/",

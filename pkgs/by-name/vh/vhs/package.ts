@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vhs",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "charmbracelet",
           repo: "vhs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/vhs --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([ffmpeg, ttyd], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [chromium])))))}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/vhs man > vhs.1\ninstallManPage vhs.1\ninstallShellCompletion --cmd vhs \\\n  --bash <($out/bin/vhs completion bash) \\\n  --fish <($out/bin/vhs completion fish) \\\n  --zsh <($out/bin/vhs completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for generating terminal GIFs with code",
         mainProgram: "vhs",
         homepage: "https://github.com/charmbracelet/vhs",

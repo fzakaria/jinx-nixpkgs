@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chardet",
       version: "6.0.0.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chardet",
           repo: "chardet",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_detect_all_and_detect_one_should_agree"]),
       pythonImportsCheck: nix.thunk(() => ["chardet"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/chardet/chardet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Universal encoding detector",
         mainProgram: "chardetect",

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "OpenBUGS",
       version: "3.2.3",
       outputs: nix.thunk(() => ["out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsta",
           repo: "openbugs",
           rev: "cd921342ba13ee89ee60f9aebd2e96c42bd59ae3",
           sha256: "sha256-11LrScN1kvtq0Fo7RWGjbQO0U5b5brCbipl5pdZnrFs=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software package for performing Bayesian analysis and simulation using Markov Chain Monte Carlo",
         homepage: "https://github.com/jsta/openbugs/",
         changelog: "https://github.com/jsta/openbugs/blob/master/ChangeLog",

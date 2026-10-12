@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const distutils = nix.arg($, "distutils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cassandra-driver",
       version: "3.30.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "cassandra-python-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libev]),
       dependencies: nix.thunk(() => [deprecated, geomet]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cle: nix.thunk(() => [cryptography]),
         eventlet: nix.thunk(() => [eventlet]),
         gevent: nix.thunk(() => [gevent]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytz, pyyaml, sure], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CASS_DRIVER_ALLOWED_CYTHON_VERSION: nix.thunk(() => nix.sel(cython, "version")),
       })),
       preBuild: "export CASS_DRIVER_BUILD_CONCURRENCY=$NIX_BUILD_CORES\n",
@@ -81,7 +81,7 @@ export LD_PRELOAD=${libredirect}/lib/libredirect.so
         "test_empty_connections",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_timer_cancellation"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python client driver for Apache Cassandra",
         homepage: "https://github.com/apache/cassandra-python-driver",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/cassandra-python-driver/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

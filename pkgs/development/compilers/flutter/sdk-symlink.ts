@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   return (flutter) => (() => {
     const self = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.attr(flutter, "pname")),
         name: nix.thunk(() => nix.str`${nix.sel(flutter, "name")}-sdk-links`),
         paths: nix.thunk(() => [
@@ -54,9 +54,9 @@ for file in "$artifactsDir"/**/*.xcframework/Info.plist; do
 done
 shopt -u globstar
 `),
-        passthru: nix.thunk(() => nix.update(nix.sel(flutter, "passthru"), { __proto__: pos$1, sdk: self })),
+        passthru: nix.thunk(() => nix.update(nix.sel(flutter, "passthru"), { [nix.POS]: pos$1, sdk: self })),
         meta: nix.thunk(() => nix.update(nix.sel(flutter, "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           longDescription: nix.thunk(() => nix.str`${nix.sel(flutter, "meta", "longDescription")}
 Modified binaries are linked into the original SDK directory for use with tools that use the whole SDK.
 `),

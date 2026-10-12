@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bashdb",
       version: "5.2-1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Trepan-Debuggers",
           repo: "bashdb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-dbg-main=${nix.builtins.placeholder("out")}/share/bashdb/bashdb-main.inc`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://bashdb.sourceforge.net/",
         description: "A gdb-like debugger for bash",
         longDescription: "The Bash Debugger Project is a source-code debugger for bash that follows\nthe gdb command syntax.\n",

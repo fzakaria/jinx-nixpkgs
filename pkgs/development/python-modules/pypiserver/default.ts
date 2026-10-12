@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypiserver",
           repo: "pypiserver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([distutils, pip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [importlib_resources]))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         passlib: nix.thunk(() => [passlib]),
         cache: nix.thunk(() => [watchdog]),
       }));
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["docker/test_docker.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pypiserver"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal PyPI server for use with pip/easy_install",
         homepage: "https://github.com/pypiserver/pypiserver",
         changelog: nix.thunk(() => nix.str`https://github.com/pypiserver/pypiserver/releases/tag/v${version}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pypi-server",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

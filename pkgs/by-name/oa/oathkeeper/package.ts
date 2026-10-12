@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oathkeeper",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ory",
           repo: "oathkeeper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd oathkeeper \\\n  --bash <($out/bin/oathkeeper completion bash) \\\n  --fish <($out/bin/oathkeeper completion fish) \\\n  --zsh <($out/bin/oathkeeper completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Identity and access proxy that authorizes HTTP requests based on sets of rules",
         longDescription: "It follows\n[cloud architecture best practices](https://www.ory.com/docs/ecosystem/software-architecture-philosophy) and focuses on:\n\n- Authenticating and authorizing HTTP requests\n- Acting as a reverse proxy or decision API\n- Mutating requests with identity information\n- Integrating with existing API gateways and proxies\n- Supporting multiple authentication and authorization strategies\n- Working in Zero-Trust network architectures\n",
         homepage: "https://github.com/ory/oathkeeper",

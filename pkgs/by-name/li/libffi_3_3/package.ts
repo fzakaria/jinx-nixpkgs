@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => true);
   const dejagnu = nix.arg($, "dejagnu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libffi",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libffi/libffi/releases/download/v${nix.sel(finalAttrs, "version")}/libffi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cvunkicD3fp6Ao1ROsFahcjVTI1n9V+lpIAohdxlIFY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15.patch",
             url: "https://github.com/libffi/libffi/commit/0859f8431242d5adff21420b9cab538d2af527b5.patch",
             hash: "sha256-Py4ZAhVyXsfLxr4pnYAH7/lcsQOmpToFgvjQvLg9XVc=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: doCheck,
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Foreign function call interface library",
         longDescription: "The libffi library provides a portable, high level programming\ninterface to various calling conventions.  This allows a\nprogrammer to call any function specified by a call interface\ndescription at run-time.\n\nFFI stands for Foreign Function Interface.  A foreign function\ninterface is the popular name for the interface that allows code\nwritten in one language to call code written in another\nlanguage.  The libffi library really only provides the lowest,\nmachine dependent layer of a fully featured foreign function\ninterface.  A layer must exist above libffi that handles type\nconversions for values passed between the two languages.\n",
         homepage: "http://sourceware.org/libffi/",

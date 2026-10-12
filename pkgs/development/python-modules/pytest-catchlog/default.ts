@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1w7wxh27sbqwm4jgwrjr9c2gy384aca5jzw9c0wzhl0pmk2mvqab",
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "make test";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://pypi.org/project/pytest-catchlog/",
         description: "py.test plugin to catch log messages. This is a fork of pytest-capturelog",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

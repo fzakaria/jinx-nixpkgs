@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_utils = nix.arg($, "typing-utils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ossapi",
       version: "5.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Liam-DeVoe",
           repo: "ossapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonRelaxDeps: nix.thunk(() => ["osrparse"]),
       dependencies: nix.thunk(() => [osrparse, requests, requests_oauthlib, typing_utils]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiohttp]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ossapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for the osu! API",
         homepage: "https://github.com/Liam-DeVoe/ossapi",
         changelog: nix.thunk(() => nix.str`https://github.com/Liam-DeVoe/ossapi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

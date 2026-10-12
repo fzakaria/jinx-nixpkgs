@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libcec_platform = nix.arg($, "libcec_platform");
   const sdl3 = nix.arg($, "sdl3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-bigscreen",
       postPatch: nix.thunk(() => nix.str`substituteInPlace bin/plasma-bigscreen-wayland.in \\
   --replace-fail @KDE_INSTALL_FULL_LIBEXECDIR@ "${plasma_workspace}/libexec"
@@ -32,7 +32,7 @@ substituteInPlace bin/plasma-bigscreen-wayland.desktop.cmake \\
       extraBuildInputs: nix.thunk(() => [qtwebengine, libcec, libcec_platform, sdl3]),
       dontQmlLint: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         providedSessions: nix.thunk(() => ["plasma-bigscreen-wayland"]),
       })),
     })));

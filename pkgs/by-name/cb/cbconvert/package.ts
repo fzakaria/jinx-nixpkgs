@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cbconvert",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gen2brain",
           repo: "cbconvert",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fLAVX3AlHUp2jmb8AiFeqB4IhVcWxYk0tkjvwWiKwPc=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       vendorHash: "sha256-lR1ZbEDNjJ9+bl8ijdI5/ifC5uIB1rdbnXQh5D2T7NM=",
       modRoot: "cmd/cbconvert",
       tags: nix.thunk(() => ["extlib"]),
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gui.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Comic Book converter",
         homepage: "https://github.com/gen2brain/cbconvert",
         changelog: nix.thunk(() => nix.str`https://github.com/gen2brain/cbconvert/releases/tag/v${nix.sel(finalAttrs, "version")}`),

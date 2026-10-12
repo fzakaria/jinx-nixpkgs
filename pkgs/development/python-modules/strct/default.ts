@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.35";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shaypal5",
           repo: "strct",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "support-setuptools-82.patch",
             url: "https://github.com/shaypal5/strct/commit/5005a939b590cd992d985128a2c1dba230a7fe41.patch",
             includes: nix.thunk(() => ["setup.py"]),
             hash: "sha256-0vRRst79G6JZZ+IzBR7rr85nOo0qY0ikVBz4Lvauwbc=",
           })))),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, RELEASING_PROCESS: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RELEASING_PROCESS: "1" }));
       const nativeBuildInputs = nix.thunk(() => [setuptools_80]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, sortedcontainers]);
       const pythonImportsCheck = nix.thunk(() => [
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "strct.sortedlists",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small pure-python package for data structure related utility functions",
         homepage: "https://github.com/shaypal5/strct",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

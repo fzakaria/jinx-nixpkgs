@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smbcrawler",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SySS-Research",
           repo: "smbcrawler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "binary-conversion": nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "markitdown"))], nix.sel(nix.lookup(w_2, "markitdown"), "optional-dependencies", "all"))),
         };
       })()),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["smbcrawler"]),
       disabledTests: nix.thunk(() => ["test_base_guest_access", "test_full"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool that takes credentials and a list of hosts and crawls through shares",
         homepage: "https://github.com/SySS-Research/smbcrawler",
         changelog: nix.thunk(() => nix.str`https://github.com/SySS-Research/smbcrawler/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pciutils = nix.arg($, "pciutils");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powerstation",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ShadowBlip",
           repo: "PowerStation",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [udev, pciutils]),
       postInstall: "cp -r rootfs/usr/* $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source TDP control and performance daemon with DBus interface",
         homepage: "https://github.com/ShadowBlip/PowerStation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hex-inc",
           repo: "vegafusion",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./fix-test_transformer.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           name: nix.thunk(() => nix.str`${pname}-${version}`),
           hash: "sha256-T/4k4ZWiO/AQvCxsbjyLMvV/zKq8ywy2rAQYMsJ73t4=",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         pyarrow,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         test: nix.thunk(() => [
           duckdb,
           vega_datasets,
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w_1 = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Core tools for using VegaFusion from Python",
           homepage: "https://github.com/hex-inc/vegafusion",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

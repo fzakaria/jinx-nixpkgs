@@ -34,73 +34,73 @@ export default nix.lambda((args) => (() => {
   const yaml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "fritz-exporter.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     port: 9787n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "Configuration settings for fritz-exporter.",
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               freeformType: nix.thunk(() => nix.sel(yaml, "type")),
               options: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => nix.sel(types, "port")),
                     default: nix.thunk(() => nix.sel(cfg, "port")),
                     internal: true,
                     visible: false,
                   })))),
                 listen_address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: nix.thunk(() => nix.sel(types, "str")),
                     default: nix.thunk(() => nix.sel(cfg, "listenAddress")),
                     internal: true,
                     visible: false,
                   })))),
                 log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]))),
                     default: "INFO",
                     description: "Log level to use for the exporter.\n",
                   })))),
                 devices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     default: [],
                     description: "Fritz!-devices to monitor using the exporter.",
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(types, null);
                       return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   type: nix.thunk(() => nix.sel(types, "str")),
                                   default: "",
                                   description: "Name to use for the device.\n",
                                 })))),
                               hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$5,
+                                  [nix.POS]: pos$5,
                                   type: nix.thunk(() => nix.sel(types, "str")),
                                   default: "fritz.box",
                                   description: "Hostname under which the target device is reachable.\n",
                                 })))),
                               username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   type: nix.thunk(() => nix.sel(types, "str")),
                                   description: "Username to authenticate with the target device.\n",
                                 })))),
                               password_file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.sel(types, "path")),
                                   description: "Path to a file which contains the password to authenticate with the target device.\nNeeds to be readable by the user the exporter runs under.\n",
                                 })))),
                               host_info: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   type: nix.thunk(() => nix.sel(types, "bool")),
                                   description: "Enable extended host info for this device. *Warning*: This will heavily increase scrape time.\n",
                                   default: false,
@@ -114,9 +114,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "fritz-exporter")))),
             "--config",

@@ -11,7 +11,7 @@ const pos$4 = nix.positions(here + "/default.nix", [["ipv6", 14, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const _ipv6 = nix.thunk(() => nix.attr(from, "_ipv6"));
   const from_1 = nix.thunk(() => nix.sel(lib, "strings"));
   const match = nix.thunk(() => nix.attr(from_1, "match"));
@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const from_3 = nix.thunk(() => nix.sel(lib, "lists"));
   const elemAt = nix.thunk(() => nix.attr(from_3, "elemAt"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     ipv6: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       fromString: (addr) => (() => {
         const splittedAddr = nix.thunk(() => nix.app(nix.sel(_ipv6, "split"), addr));
         const addrInternal = nix.thunk(() => nix.sel(splittedAddr, "address"));
         const prefixLength = nix.thunk(() => nix.sel(splittedAddr, "prefixLength"));
         const address = nix.thunk(() => nix.app(nix.sel(_ipv6, "toStringFromExpandedIp"), addrInternal));
-        return { __proto__: pos$2, address: address, prefixLength: prefixLength };
+        return { [nix.POS]: pos$2, address: address, prefixLength: prefixLength };
       })(),
       mkEUI64Suffix: (mac) => nix.app(pipe, mac, nix.thunk(() => [
           nix.thunk(() => nix.app(match, "^([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})$")),

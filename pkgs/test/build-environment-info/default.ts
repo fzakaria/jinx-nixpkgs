@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const getent = nix.arg($, "getent");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(runCommand, "build-environment-info", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat([getent], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [xcbuild])))),
     })), nix.thunk(() => nix.str`# It’s useful to get more info even if a command fails.
 set +e

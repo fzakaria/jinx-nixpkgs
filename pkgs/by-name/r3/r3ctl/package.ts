@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "r3ctl",
       version: "a82cb5b3123224e706835407f21acea9dc7ab0f0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0xfeedc0de64",
           repo: "r3ctl",
           rev: "a82cb5b3123224e706835407f21acea9dc7ab0f0",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt5, "qtwebsockets")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cmdline tool to control the r3 hackerspace lights",
         mainProgram: "r3ctl",
         homepage: "https://github.com/0xfeedc0de64/r3ctl",

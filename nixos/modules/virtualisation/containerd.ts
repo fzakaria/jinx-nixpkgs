@@ -35,37 +35,37 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "containerd"));
   const configFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.app(nix.sel(settingsFormat, "generate"), "containerd.toml", nix.thunk(() => nix.sel(cfg, "settings"))) : nix.sel(cfg, "configFile")));
   const containerdConfigChecked = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "containerd-config-checked.toml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "containerd"))]),
     })), nix.thunk(() => nix.str`containerd -c ${configFile} config dump >/dev/null
 ln -s ${configFile} $out
 `)));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         containerd: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "containerd container runtime")),
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: null,
                 description: "Path to containerd config file.\nSetting this option will override any configuration applied by the settings option.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 description: "Verbatim lines to add to containerd.toml\n",
               })))),
             args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => ({})),
                 description: "extra args to append to the containerd cmdline",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
@@ -75,29 +75,29 @@ ln -s ${configFile} $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), "`virtualisation.containerd.configFile` is deprecated. use `virtualisation.containerd.settings` instead.\n")),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           containerd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             args: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               config: nix.thunk(() => nix.builtins.toString(containerdConfigChecked)),
             })),
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               version: 2n,
               plugins: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "io.containerd.grpc.v1.cri": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   containerd: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     snapshotter: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), "zfs")))),
                   })),
                   cni: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     bin_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "cni-plugins")}/bin`))),
                   })),
                 })),
@@ -106,15 +106,15 @@ ln -s ${configFile} $out
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "containerd"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             containerd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "containerd - container runtime",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "local-fs.target", "dbus.service"]),
@@ -127,7 +127,7 @@ ln -s ${configFile} $out
                 ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "containerd")}/bin/containerd ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "args")))))}`),
                 Delegate: "yes",
                 KillMode: "process",
@@ -142,7 +142,7 @@ ln -s ${configFile} $out
                 RuntimeDirectory: "containerd",
                 RuntimeDirectoryPreserve: "yes",
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$18, StartLimitBurst: "16", StartLimitIntervalSec: "120s" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$18, StartLimitBurst: "16", StartLimitIntervalSec: "120s" })),
             })),
           })),
         })),

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   const MenhirLib = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "MenhirLib",
       owner: "fpottier",
       repo: "menhir",
       domain: "gitlab.inria.fr",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "9.2")), "20260203")),
@@ -41,48 +41,48 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "20260203": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-S1kJav+VKSVTg3EAyIvqIl+T8X5fBrh6ENrOiRmKMe0=",
         })),
         "20250903": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-ap1OvcvCAuqmFDwhPwMBosHs3cm5NxPW/w1J8AzWduk=",
         })),
         "20240715": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-9CSxAIm0aEXkwF+aj8u/bqLG30y5eDNz65EnohJPjzI=",
         })),
         "20231231": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-veB0ORHp6jdRwCyDDAfc7a7ov8sOeHUmiELdOFf/QYk=",
         })),
         "20230608": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-dUPoIUVr3gqvE5bniyQh/b37tNfRsZN8X3e99GFkyLY=",
         })),
         "20230415": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-WjE3iOKlUb15MDG3+GOi+nertAw9L2Ryazi/0JEvjqc=",
         })),
         "20220210": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-Nljrgq8iW17qbn2PLIbjPd03WCcZm08d1DF6NrKOYTg=",
         })),
         "20211230": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-+ntl4ykkqJWEeJJzt6fO5r0X1J+4in2LJIj1N8R175w=",
         })),
         "20200624": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-8lMqwmOsqxU/45Xr+GeyU2aIjrClVdv3VamCCkF76jY=",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       preBuild: "cd coq-menhirlib/src",
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://gitlab.inria.fr/fpottier/menhir/-/tree/master/coq-menhirlib",
         description: "Support library for verified Coq parsers produced by Menhir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(MenhirLib, "overrideAttrs"), (oldAttrs) => (nix.asBool(nix.le(nix.sel(oldAttrs, "version"), "20211230")) ? {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       installPhase: nix.thunk(() => nix.str`make TARGET=$out/lib/coq/${nix.sel(coq, "coq-version")}/user-contrib/MenhirLib install`),
     } : {}));
 })(), formals$1);

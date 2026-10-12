@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsspec",
           repo: "filesystem_spec",
           tag: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         abfs: nix.thunk(() => [adlfs]),
         adl: nix.thunk(() => [adlfs]),
         arrow: nix.thunk(() => [pyarrow]),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["fsspec/implementations/tests/test_github.py"]);
       const pythonImportsCheck = nix.thunk(() => ["fsspec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Specification that Python filesystems should adhere to",
         homepage: "https://github.com/fsspec/filesystem_spec",
         changelog: nix.thunk(() => nix.str`https://github.com/fsspec/filesystem_spec/raw/${nix.sel(src, "tag")}/docs/source/changelog.rst`),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

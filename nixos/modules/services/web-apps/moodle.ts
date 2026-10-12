@@ -86,7 +86,7 @@ unset($CFG);
 global $CFG;
 $CFG = new stdClass();
 
-$CFG->dbtype    = '${nix.sel({ __proto__: pos$1, mysql: "mariadb", pgsql: "pgsql" }, nix.key(nix.sel(cfg, "database", "type")))}';
+$CFG->dbtype    = '${nix.sel({ [nix.POS]: pos$1, mysql: "mariadb", pgsql: "pgsql" }, nix.key(nix.sel(cfg, "database", "type")))}';
 $CFG->dblibrary = 'native';
 $CFG->dbhost    = '${nix.sel(cfg, "database", "host")}';
 $CFG->dbname    = '${nix.sel(cfg, "database", "name")}';
@@ -123,7 +123,7 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
   const mysqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql"))));
   const pgsqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "pgsql"))));
   const phpExt = nix.thunk(() => nix.app(nix.sel(pkgs, "php83", "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extensions: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const all = nix.arg($_1, "all");
@@ -162,83 +162,83 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
       extraConfig: "max_input_vars = 5000",
     }))));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         moodle: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Moodle web application")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "moodle", nix.thunk(() => ({})))),
           initialPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "correcthorsebatterystaple",
               description: "Specifies the initial password for the admin, i.e. the password assigned if the user does not already exist.\nThe password specified here is world-readable in the Nix store, so it should be changed promptly.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mysql", "pgsql"]))),
                 default: "mysql",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 description: "Database host port.",
-                default: nix.thunk(() => nix.sel({ __proto__: pos$6, mysql: 3306n, pgsql: 5432n }, nix.key(nix.sel(cfg, "database", "type")))),
+                default: nix.thunk(() => nix.sel({ [nix.POS]: pos$6, mysql: 3306n, pgsql: 5432n }, nix.key(nix.sel(cfg, "database", "type")))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "3306")),
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "moodle",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "moodle",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/keys/moodle-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => (nix.asBool(mysqlLocal) ? "/run/mysqld/mysqld.sock" : (nix.asBool(pgsqlLocal) ? "/run/postgresql" : null))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "/run/mysqld/mysqld.sock")),
                 description: "Path to the unix socket file to use for authentication.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
           })),
           virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  hostName = \"moodle.example.org\";\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
               description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -248,7 +248,7 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -259,7 +259,7 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
               description: "Options for the Moodle PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Any additional text to be appended to the config.php\nconfiguration file. This is a PHP script. For configuration\ndetails, see <https://docs.moodle.org/37/en/Configuration_file>.\n",
@@ -269,29 +269,29 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), user)) && nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))))),
             message: nix.thunk(() => nix.str`services.moodle.database.user must be set to ${user} if services.moodle.database.createLocally is set true`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "a password cannot be specified if services.moodle.database.createLocally is set to true",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           mysql: nix.thunk(() => nix.app(mkIf, mysqlLocal, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "database", "name")}.*`, "SELECT, INSERT, UPDATE, DELETE, CREATE, CREATE TEMPORARY TABLES, DROP, INDEX, ALTER"],
@@ -300,30 +300,30 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(mkIf, pgsqlLocal, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             pools: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               moodle: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 user: user,
                 group: group,
                 phpPackage: phpExt,
-                phpEnv: nix.thunk(() => ({ __proto__: pos$27, MOODLE_CONFIG: nix.thunk(() => nix.str`${moodleConfig}`) })),
+                phpEnv: nix.thunk(() => ({ [nix.POS]: pos$27, MOODLE_CONFIG: nix.thunk(() => nix.str`${moodleConfig}`) })),
                 phpOptions: "zend_extension = opcache.so\nopcache.enable = 1\nmax_input_vars = 5000\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "httpd", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "httpd", "group")),
                 }, nix.sel(cfg, "poolConfig"))),
@@ -331,7 +331,7 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
             })),
           })),
           httpd: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             enable: true,
             adminAddr: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "virtualHost", "adminAddr")))),
             extraModules: nix.thunk(() => ["proxy_fcgi"]),
@@ -339,7 +339,7 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
               [nix.sel(cfg, "virtualHost", "hostName"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "virtualHost")),
                   nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     documentRoot: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/moodle`))),
                     extraConfig: nix.thunk(() => nix.str`<Directory "${nix.sel(cfg, "package")}/share/moodle">
   <FilesMatch "\\.php$">
@@ -357,27 +357,27 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             settings: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               "10-moodle": nix.thunk(() => nix.attrsDyn({}, [
                 [stateDir, nix.thunk(() => ({
-                  __proto__: pos$36,
-                  d: nix.thunk(() => ({ __proto__: pos$35, user: user, group: group, mode: "0750" })),
+                  [nix.POS]: pos$36,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$35, user: user, group: group, mode: "0750" })),
                 }))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             "moodle-init": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["phpfpm-moodle.service"]),
               after: nix.thunk(() => nix.concat(nix.app(optional, mysqlLocal, "mysql.service"), nix.app(optional, pgsqlLocal, "postgresql.target"))),
-              environment: nix.thunk(() => ({ __proto__: pos$39, MOODLE_CONFIG: moodleConfig })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$39, MOODLE_CONFIG: moodleConfig })),
               script: nix.thunk(() => nix.str`${phpExt}/bin/php ${nix.sel(cfg, "package")}/share/moodle/admin/cli/check_database_schema.php && rc=$? || rc=$?
 
 [ "$rc" == 1 ] && ${phpExt}/bin/php ${nix.sel(cfg, "package")}/share/moodle/admin/cli/upgrade.php \\
@@ -390,39 +390,39 @@ require_once('${nix.sel(cfg, "package")}/share/moodle/lib/setup.php');
 
 true
 `),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$40, User: user, Group: group, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$40, User: user, Group: group, Type: "oneshot" })),
             })),
             "moodle-cron": nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "Moodle cron service",
               after: nix.thunk(() => ["moodle-init.service"]),
-              environment: nix.thunk(() => ({ __proto__: pos$42, MOODLE_CONFIG: moodleConfig })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$42, MOODLE_CONFIG: moodleConfig })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 User: user,
                 Group: group,
                 ExecStart: nix.thunk(() => nix.str`${phpExt}/bin/php ${nix.sel(cfg, "package")}/share/moodle/admin/cli/cron.php`),
               })),
             })),
             httpd: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               after: nix.thunk(() => nix.concat(nix.app(optional, mysqlLocal, "mysql.service"), nix.app(optional, pgsqlLocal, "postgresql.target"))),
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             "moodle-cron": nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "Moodle cron timer",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$47, OnCalendar: "minutely" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$47, OnCalendar: "minutely" })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [user, nix.thunk(() => ({ __proto__: pos$51, group: group, isSystemUser: true }))],
+            [user, nix.thunk(() => ({ [nix.POS]: pos$51, group: group, isSystemUser: true }))],
           ])),
         })),
       })))),

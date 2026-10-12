@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eigenmath",
       version: "351",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "georgeweigt",
           repo: "eigenmath",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,15 +35,15 @@ ${emulator} ./eigenmath "test/selftest"
 runHook postCheck
 `;
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       installPhase: "runHook preInstall\ninstall -Dm555 eigenmath \"$out/bin/eigenmath\"\nrunHook postInstall\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Computer algebra system written in C",
         mainProgram: "eigenmath",
         homepage: "https://georgeweigt.github.io",

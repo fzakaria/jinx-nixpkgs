@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const wirelesstools = nix.arg($, "wirelesstools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mdk3-master",
       version: "6-unstable-2015-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "charlesxsh",
           repo: "mdk3-master",
           rev: "1bf2bd31b79560aa99fc42123f70f36a03154b9e",
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       runtimeDependencies: nix.thunk(() => [wirelesstools]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       installPhase: "runHook preInstall\nmake -C osdep install\nmkdir -p $out/bin\ninstall -D -m 0755 mdk3 $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MDK3 fork able to force reboot Access Points",
         homepage: "https://github.com/charlesxsh/mdk3-master",
         changelog: nix.thunk(() => nix.str`https://github.com/charlesxsh/mdk3-master/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

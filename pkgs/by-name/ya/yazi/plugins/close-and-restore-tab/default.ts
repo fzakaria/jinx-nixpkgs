@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "close-and-restore-tab.yazi",
       version: "0-unstable-2026-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MasouShizuka",
           repo: "close-and-restore-tab.yazi",
           rev: "b2153bc68696edc8e17fc90e73310e274035c674",
           hash: "sha256-3bcnXXYfmvJGxxVKEHAy3so1KRFr1oIdj01A8WIU5VM=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A Yazi plugin that adds the functionality to close and restore tab",
         homepage: "https://github.com/MasouShizuka/close-and-restore-tab.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

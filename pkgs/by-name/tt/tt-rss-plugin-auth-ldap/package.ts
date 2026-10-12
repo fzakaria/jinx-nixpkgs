@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tt-rss-plugin-auth-ldap",
       version: "unstable-2022-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hydrian",
           repo: "TTRSS-Auth-LDAP",
           rev: "582ade49fd433a30b403caa1d0689fca5f3c99e1",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -D plugins/auth_ldap/init.php $out/auth_ldap/init.php\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Plugin for TT-RSS to authenticate users via ldap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/hydrian/TTRSS-Auth-LDAP",

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const onnxruntime = nix.arg($, "onnxruntime");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minisbd",
       version: "0.9.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibreTranslate",
           repo: "MiniSBD",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [filelock, numpy, onnxruntime]),
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => ["minisbd"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free and open source library for fast sentence boundary detection",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         changelog: nix.thunk(() => nix.str`https://github.com/LibreTranslate/MiniSBD/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const yaml_cpp = nix.arg($, "yaml-cpp");
   const antlr4 = antlr4_9;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "luaformatter",
       version: "1.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Koihik",
           repo: "LuaFormatter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-lib-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             antlr4RuntimeCpp: nix.thunk(() => nix.sel(antlr4, "runtime", "cpp", "dev")),
             yamlCpp: yaml_cpp,
             libargs: libargs,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(antlr4, "runtime", "cpp")), yaml_cpp]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Code formatter for Lua",
         homepage: "https://github.com/Koihik/LuaFormatter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "payload_dumper",
       version: "0-unstable-2022-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vm03",
           repo: "payload_dumper",
           rev: "c1eb5dbbc7bd88ac94635ae90ec22ccf92f89881",
@@ -46,7 +46,7 @@ wrapProgram $out/bin/payload_dumper \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         description: "Android OTA payload dumper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -15,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dc3dd",
       version: "7.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dc3dd/dc3dd-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-SYDoqGlsROHX1a0jJX11F+yp6CeFK+tZbYOOnScC6Ig=",
         })))),
       outputs: nix.thunk(() => ["out", "man"]),
       preConfigure: "chmod +x configure\n",
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "LocaleGettext"))]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       makeFlags: nix.thunk(() => [
         "PREFIX=$out",
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Patched version of dd that includes a number of features useful for computer forensics",
         mainProgram: "dc3dd",
         homepage: "https://sourceforge.net/projects/dc3dd/",

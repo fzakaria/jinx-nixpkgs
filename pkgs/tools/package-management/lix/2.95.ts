@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "2.95.3";
     const src = nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         domain: "git.lix.systems",
         owner: "lix-project",
         repo: "lix",
@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-rEhhsqccghnnJHjsqCCBzdD7PyF/ibDe8zadnajBmjI=",
       }))));
     const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`lix-${version}`),
         src: src,
         hash: "sha256-a5XtutX+NS4wOqxeqbscWZMs99teKick5+cQfbCRGxQ=",
       }))));
     const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         attrPath: "lixPackageSets.lix_2_95.lix",
         extraArgs: nix.thunk(() => [
           "--override-filename=pkgs/tools/package-management/lix/2.95.nix",
           "--version-regex=^(2[.]95[.][0-9]+)$",
         ]),
       }))));
-    return { __proto__: pos$4, version, src, cargoDeps, updateScript };
+    return { [nix.POS]: pos$4, version, src, cargoDeps, updateScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=2.95.ts.map

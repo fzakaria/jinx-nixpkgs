@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openplantbook-sdk",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slaxor505",
           repo: "openplantbook-sdk-py",
           rev: "097ccfbd5cee6a271c79c923f1761249eca4bda1",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [numpy, pandas, pyyaml, pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests/offline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDK to integrate with Open Plantbook API",
         homepage: "https://github.com/slaxor505/openplantbook-sdk-py",
         maintainers: nix.thunk(() => (() => {

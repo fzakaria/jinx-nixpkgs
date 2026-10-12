@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const withCritcl = nix.argOr($, "withCritcl", () => true);
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcllib",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcllib/tcllib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LoY6y7p9n1dXk4eSa/HuyA4bIXa0rN7F2OGESk2tROI=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => nix.concat(["all"], nix.app(nix.sel(lib, "optional"), withCritcl, "critcl"))),
       tclRequiresCheck: nix.thunk(() => ["struct::graph", "doctools", "json"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://core.tcl-lang.org/tcllib/",
         description: "Tcl-only library of standard routines for Tcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         nix.assert_((!nix.asBool(!nix.asBool(acceptLicense)) || nix.asBool(throwLicense)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/in/input-fonts/package.nix:42:5");
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`input-fonts-${version}`),
             url: "https://input.djr.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do&email=&.zip",
             sha256: "BESZ4Bjgm2hvQ7oPpMvYSlE8EqvQjqHZtXWIovqyIzA=",
             stripRoot: false,
             postFetch: nix.thunk(() => (() => {
               const ttf_fixup = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   name: "ttf-fixup",
                   runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "fonttools"))]),
                   text: nix.thunk(() => nix.str`if [ $# != 1 ]; then
@@ -59,7 +59,7 @@ rm "$ttx_file"
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nfind Input_Fonts -name \"*.ttf\" -exec cp -a {} \"$out\"/share/fonts/truetype/ \\;\nmkdir -p \"$out\"/share/doc\ncp -a *.txt \"$out\"/share/doc/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fonts for Code, from Font Bureau",
         longDescription: "Input is a font family designed for computer programming, data,\nand text composition. It was designed by David Jonathan Ross\nbetween 2012 and 2014 and published by The Font Bureau. It\ncontains a wide array of styles so you can fine-tune the\ntypography that works best in your editing environment.\n\nInput Mono is a monospaced typeface, where all characters occupy\na fixed width. Input Sans and Serif are proportional typefaces\nthat are designed with all of the features of a good monospace —\ngenerous spacing, large punctuation, and easily distinguishable\ncharacters — but without the limitations of a fixed width.\n",
         homepage: "https://input.djr.com/",
@@ -74,7 +74,7 @@ rm "$ttx_file"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

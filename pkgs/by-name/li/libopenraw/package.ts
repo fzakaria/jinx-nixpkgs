@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cargo = nix.arg($, "cargo");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopenraw",
       version: "0.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libopenraw.freedesktop.org/download/libopenraw-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-VRWyYQNh7zRYC2uXZjURn23ttPCnnVRmL6X+YYakXtU=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-boost=${nix.app(nix.sel(lib, "getDev"), boost)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RAW camerafile decoding library",
         homepage: "https://libopenraw.freedesktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "agenda",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dahenson",
           repo: "agenda",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk3, libgee, nix.thunk(() => nix.sel(pantheon, "granite"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, fast, no-nonsense to-do (task) list designed for elementary OS",
         homepage: "https://github.com/dahenson/agenda",
         maintainers: nix.thunk(() => (() => {

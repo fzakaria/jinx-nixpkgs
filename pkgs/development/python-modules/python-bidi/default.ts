@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MeirKriheli",
           repo: "python-bidi",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-sDr/i7MC3aNAzl/+cDbstS5QBdQqVtaLlG09qsl7krU=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf bidi\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/MeirKriheli/python-bidi",
         description: "Pure python implementation of the BiDi layout algorithm",
         mainProgram: "pybidi",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ddnet";
       const version = "20.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ddnet",
           repo: "ddnet",
           tag: version,
           hash: "sha256-C9N0l8wdPduHGHDWtHiTFc634r/6Qz3fT+G963V6iso=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildClient)), "# DDNet's CMakeLists.txt automatically installs .desktop\n# shortcuts and icons for the client, even if the client\n# is not supposed to be built\nrm -rf $out/share/applications\nrm -rf $out/share/icons\nrm -rf $out/share/metainfo\n"));
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(buildClient))), "# Upstream links against <prefix>/lib while it installs this library in <prefix>/lib/ddnet\ninstall_name_tool -change \"$out/lib/libsteam_api.dylib\" \"$out/lib/ddnet/libsteam_api.dylib\" \"$out/bin/DDNet\"\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Teeworlds modification with a unique cooperative gameplay",
         longDescription: "DDraceNetwork (DDNet) is an actively maintained version of DDRace,\na Teeworlds modification with a unique cooperative gameplay.\nHelp each other play through custom maps with up to 64 players,\ncompete against the best in international tournaments,\ndesign your own maps, or run your own server.\n",
         homepage: "https://ddnet.org",
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: nix.thunk(() => nix.str`DDNet${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildClient)), "-Server")}`),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

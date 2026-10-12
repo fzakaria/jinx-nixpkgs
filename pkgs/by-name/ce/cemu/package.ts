@@ -54,20 +54,20 @@ export default nix.lambda((args) => (() => {
   const imgui$ = nix.thunk(() => nix.app(nix.sel(imgui, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "1.91.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocornut",
           repo: "imgui",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-J4gz4rnydu8JlzqNC/OIoVoRcgeFd6B1Qboxu5drOKY=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cemu",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "cemu-project",
           repo: "Cemu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0000-spirv-tools-opt-cmakelists.patch"),
         nix.path(here, "./0002-cemu-imgui.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/cemu-project/Cemu/commit/c1c2962b6633017cd956c6925288e2529c532ee4.diff?full_index=1",
             sha256: "sha256-Dz7WnCf5+Vbr/ETX71wIo/x/zPWdrsOtPH7bsL5Bd+A=",
           })))),
@@ -145,18 +145,18 @@ substituteInPlace dependencies/gamemode/lib/gamemode_client.h --replace-fail "li
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Software to emulate Wii U games and applications on PC",
         homepage: "https://cemu.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

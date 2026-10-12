@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
   })());
   const version = "1.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "calibrain",
       repo: "shelfmark",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Q1fsrcF1TbBUvC8z4ofYuDvzcMTSiRVwzqqxz0LL9/g=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "shelfmark-frontend",
       version: version,
       src: src,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "shelfmark",
       version: version,
       src: src,
@@ -94,22 +94,22 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/shelfm
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         frontend: frontend,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           shelfmark: nix.thunk(() => nix.attr(nixosTests, "shelfmark")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 extraArgs: nix.thunk(() => ["--subpackage=frontend", "--version=skip"]),
               })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Self-hosted web interface for searching and downloading books and audiobooks",
         homepage: "https://github.com/calibrain/shelfmark",
         changelog: nix.thunk(() => nix.str`https://github.com/calibrain/shelfmark/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

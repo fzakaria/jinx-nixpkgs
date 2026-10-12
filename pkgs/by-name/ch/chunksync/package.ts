@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.4",
       pname: "chunksync",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://chunksync.florz.de/chunksync_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1gwqp1kjwhcmwhynilakhzpzgc0c6kk8c9vkpi30gwwrwpz3cf00",
         })))),
       buildInputs: nix.thunk(() => [openssl, perl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lgcc_s" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lgcc_s" })),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Space-efficient incremental backups of large files or block devices",
         mainProgram: "chunksync",
         homepage: "http://chunksync.florz.de/",

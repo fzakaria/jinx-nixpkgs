@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "pyre-extensions";
   const version = "0.0.32";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "pyre_extensions",
           hash: "sha256-U5ZxXxTqVsTV/QqIxXyn5E+qRo+QWQnt195K2Q7YXlU=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [typing_extensions, typing_inspect]),
       pythonImportsCheck: nix.thunk(() => ["pyre_extensions"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This module defines extensions to the standard “typing” module that are supported by the Pyre typechecker",
         homepage: "https://pypi.org/project/pyre-extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

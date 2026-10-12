@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lvm2 = nix.arg($, "lvm2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fetchit",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containers",
           repo: "fetchit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for i in bash fish zsh; do\n  installShellCompletion --cmd fetchit \\\n    --$i <($out/bin/fetchit completion $i)\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to manage the life cycle and configuration of Podman containers",
         mainProgram: "fetchit",
         longDescription: "FetchIt allows for a GitOps based approach to manage containers running on\na single host or multiple hosts based on a git repository. This allows for\nus to deploy a new host and provide the host a configuration value for\nFetchIt and automatically any containers defined in the git repository and\nbranch will be deployed onto the host. This can be beneficial for\nenvironments that do not require the complexity of Kubernetes to manage\nthe containers running on the host.\n",

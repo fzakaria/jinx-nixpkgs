@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const srcjson = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./src.json")))));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "standardnotes",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(srcjson, () => nix.force(throwSystem), "deb", nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
       version: nix.thunk(() => nix.attr(srcjson, "version")),
@@ -64,11 +64,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and private notes app",
         longDescription: "Standard Notes is a private notes app that features unmatched simplicity,\nend-to-end encryption, powerful extensions, and open-source applications.\n",
         homepage: "https://standardnotes.com",

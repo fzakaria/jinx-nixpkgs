@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zgrviewer",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/zvtm/zgrviewer/${nix.sel(finalAttrs, "version")}/zgrviewer-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-0CrioPNtpUa8uCZOXpe2q/QOo90kYO7mC2s9x3ymP7I=",
         })))),
@@ -38,7 +38,7 @@ chmod a+x "$out/bin/zgrviewer"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hydraPlatforms: [],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

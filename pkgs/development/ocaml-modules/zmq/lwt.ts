@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const zmq = nix.arg($, "zmq");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "zmq-lwt",
       version: nix.thunk(() => nix.attr(zmq, "version")),
       src: nix.thunk(() => nix.attr(zmq, "src")),

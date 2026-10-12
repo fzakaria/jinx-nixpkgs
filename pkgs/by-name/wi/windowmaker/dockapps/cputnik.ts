@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cputnik",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin/ cputnik\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Calendar clock with antialiased text",
         homepage: "https://www.dockapps.net/wmcalclock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

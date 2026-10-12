@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "librechat",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
@@ -43,24 +43,24 @@ export default nix.lambda((args) => (() => {
         const jwtRefreshSecret = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "librechat-jwt-refresh-secret", "f2c1685561f2f570b3e7955df267b5c602ee099f14dc5caa0dacc320580ea180"));
         const meilisearchMasterKeyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "meilisearch-master-key", "xHkP3Bzcf98fw7FiSCR82g5ULLGrXc4frK1qkEfN8St/3kJZ"));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             librechat: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
-              env: nix.thunk(() => ({ __proto__: pos$2, ALLOW_REGISTRATION: true })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$2, ALLOW_REGISTRATION: true })),
               credentials: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 CREDS_KEY: credsKeyFile,
                 CREDS_IV: credsIvFile,
                 JWT_SECRET: jwtSecret,
                 JWT_REFRESH_SECRET: jwtRefreshSecret,
               })),
               enableLocalDB: true,
-              meilisearch: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+              meilisearch: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
             })),
-            meilisearch: nix.thunk(() => ({ __proto__: pos$6, masterKeyFile: meilisearchMasterKeyFile })),
+            meilisearch: nix.thunk(() => ({ [nix.POS]: pos$6, masterKeyFile: meilisearchMasterKeyFile })),
           })),
         };
       })(), formals$2),

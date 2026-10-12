@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const toml_test = nix.arg($, "toml-test");
   const withLsp = nix.argOr($, "withLsp", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "taplo",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tamasfe",
           repo: "taplo",
           tag: nix.thunk(() => nix.str`release-taplo-cli-${nix.sel(finalAttrs, "version")}`),
@@ -46,10 +46,10 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "toml-test": nix.thunk(() => (() => {
             const skips = nix.thunk(() => [
               "invalid/table/append-with-dotted-keys-04",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
               "valid/string/quoted-unicode",
             ]);
             return nix.app(runCommand, "taplo-toml-test", nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, toml_test]),
               })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} ./taplo-toml-test --add-flag toml-test
 toml-test test -decoder=./taplo-toml-test -toml=1.0 ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (a) => nix.str`-skip ${a}`, skips)}
@@ -90,7 +90,7 @@ touch "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "TOML toolkit written in Rust",
         homepage: "https://taplo.tamasfe.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

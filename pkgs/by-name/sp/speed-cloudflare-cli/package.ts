@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "speed-cloudflare-cli",
       version: "2.0.3-unstable-2025-07-31",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "KNawm",
               repo: "speed-cloudflare-cli",
               rev: "8eb34f4bd4f63493fbd93b1659389b9a1e5e4a36",
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
             })))),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://github.com/KNawm/speed-cloudflare-cli/commit/2682f167a1776de2f0c8085b591b06319a2aac7d.patch",
                 hash: "sha256-pkGNg7NwSP9QrBI2e0q44ZyJ8ckp0Pw/brpDkZkevdk=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://github.com/KNawm/speed-cloudflare-cli/commit/2cb89f9b9af0f43c75ed2ea8f6c0a8519766b7c8.patch",
                 hash: "sha256-tLkyfXYd1s4FaMOwffyyObXZyIFlkvWvy7YkqBxU1SU=",
               })))),
@@ -56,7 +56,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/speed-cloudflar
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Measure the speed and consistency of your internet connection using speed.cloudflare.com",
         homepage: "https://github.com/KNawm/speed-cloudflare-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

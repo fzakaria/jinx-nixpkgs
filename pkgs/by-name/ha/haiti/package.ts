@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "haiti",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noraj",
           repo: "haiti",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, ruby]),
       paintSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "janlelis",
           repo: "paint",
           rev: "7076784c5d57f178690d19e4f8644441ff73f518",
           hash: "sha256-uITUfcZjOACeCGsozpUxAYd98Y9oFTgyXems2Q3aYRU=",
         })))),
       docoptSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "docopt",
           repo: "docopt.rb",
           rev: "794c47d7cb62ca71d65086623a55881449bc2f9e",
@@ -86,7 +86,7 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/noraj/haiti/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool to identify hash types",
         homepage: "https://github.com/noraj/haiti",

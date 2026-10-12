@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "premake";
       const version = "4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/premake/premake-${version}-src.zip`),
           sha256: "1017rd0wsjfyq2jvpjjhpszaa7kmig6q1nimw76qx3cjz2868lrn",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const premake_cmd = "premake4";
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple build configuration and project generation tool using lua",
         homepage: "https://premake.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

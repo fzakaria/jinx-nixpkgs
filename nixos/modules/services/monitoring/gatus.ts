@@ -46,39 +46,39 @@ export default nix.lambda((args) => (() => {
   const path = nix.thunk(() => nix.attr(from, "path"));
   const submodule = nix.thunk(() => nix.attr(from, "submodule"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         gatus: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Gatus")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gatus", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: path,
               default: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "gatus.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
               defaultText: nix.thunk(() => nix.app(literalExpression, "(pkgs.formats.yaml { }).generate \"gatus.yaml\" config.services.gatus.settings")),
               description: "Path to the Gatus configuration file.\nOverrides any configuration made using the `settings` option.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nullOr, path)),
               default: null,
               description: "File to load as environment file.\nEnvironmental variables from this file can be interpolated in the configuration file using `${VARIABLE}`.\nThis is useful to avoid putting secrets into the nix store.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     web: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: int,
                           default: 8080n,
                           description: "The TCP port to serve the Gatus service at.\n",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for Gatus.\nSupported options can be found at the [docs](https://gatus.io/docs).\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: bool,
               default: false,
               description: "Whether to open the firewall for the Gatus web interface.\n",
@@ -100,19 +100,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             gatus: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Automated developer-oriented status page",
               after: nix.thunk(() => ["network-online.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DynamicUser: true,
                 User: "gatus",
                 Group: "gatus",
@@ -127,22 +127,22 @@ export default nix.lambda((args) => (() => {
                 NoNewPrivileges: true,
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 GATUS_CONFIG_PATH: nix.thunk(() => nix.sel(cfg, "configFile")),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "web", "port"))]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "pizzapim"))];

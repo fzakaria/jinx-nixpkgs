@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const base64 = nix.arg($, "base64");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "otr",
       version: "1.0.0",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/ocaml-otr/releases/download/v${nix.sel(finalAttrs, "version")}/otr-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-/CcVqLbdylB+LqpKNETkpvQ8SEAIcEFCO1MZqvdmJWU=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [digestif, sexplib0, mirage_crypto, mirage_crypto_pk, astring, base64]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/ocaml-otr",
         description: "Off-the-record messaging protocol, purely in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

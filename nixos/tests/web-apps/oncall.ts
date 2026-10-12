@@ -36,26 +36,26 @@ export default nix.lambda((args) => (() => {
   const testPassword = "foobar23";
   const teamName = "myteam";
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "oncall",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.thunk(() => ({
-        __proto__: pos$17,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2048n })),
+        [nix.POS]: pos$17,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           etc: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "oncall-secrets.yml": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               text: nix.thunk(() => nix.str`auth:
   ldap_bind_password: "${ldapRootPassword}"
 `),
@@ -64,14 +64,14 @@ export default nix.lambda((args) => (() => {
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           oncall: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               auth: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 module: "oncall.auth.modules.ldap_import",
                 ldap_url: "ldap://localhost",
                 ldap_user_suffix: "",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
                 ldap_search_filter: "(uid=%s)",
                 import_user: true,
                 attrs: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   username: "uid",
                   full_name: "cn",
                   email: "mail",
@@ -92,14 +92,14 @@ export default nix.lambda((args) => (() => {
             secretFile: "/etc/oncall-secrets.yml",
           })),
           openldap: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               children: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "cn=schema": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   includes: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "openldap")}/etc/schema/core.ldif`),
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "openldap")}/etc/schema/cosine.ldif`),
@@ -108,9 +108,9 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 "olcDatabase={1}mdb": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   attrs: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     objectClass: nix.thunk(() => ["olcDatabaseConfig", "olcMdbConfig"]),
                     olcDatabase: "{1}mdb",
                     olcDbDirectory: "/var/lib/openldap/db",

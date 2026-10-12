@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nbfc-linux",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nbfc-linux",
           repo: "nbfc-linux",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lua5_4, curl, libxml2, openssl]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--bindir=${nix.builtins.placeholder("out")}/bin`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C port of Stefan Hirschmann's NoteBook FanControl",
         longDescription: "nbfc-linux provides fan control service for notebooks\n",
         homepage: "https://github.com/nbfc-linux/nbfc-linux",

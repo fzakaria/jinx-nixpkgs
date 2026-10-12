@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "block"));
   const escape = nix.thunk(() => nix.app(nix.sel(lib, "strings", "escape"), nix.thunk(() => ["\""])));
   const udevValue = nix.thunk(() => nix.update(nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "nonEmptyStr")), (x) => !nix.eq(nix.builtins.match("[^\n\r]*", x), null)), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     name: "udevValue",
     description: "udev rule value",
     descriptionClass: "noun",
@@ -60,65 +60,65 @@ export default nix.lambda((args) => (() => {
       ]))))));
   })(), formals$2);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         block: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           defaultScheduler: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), udevValue)),
               default: null,
               description: "Default block I/O scheduler.\n\nUnless `null`, the value is assigned through a udev rule matching all\nblock devices.\n",
               example: "kyber",
             })))),
           defaultSchedulerRotational: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), udevValue)),
               default: null,
               description: "Default block I/O scheduler for rotational drives (e.g. hard disks).\n\nUnless `null`, the value is assigned through a udev rule matching all\nrotational block devices.\n\nThis option takes precedence over\n{option}`config.hardware.block.defaultScheduler`.\n",
               example: "bfq",
             })))),
           defaultSchedulerExclude: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), udevValue)),
               default: "loop[0-9]*",
               description: "Device name pattern to exclude from default scheduler assignment\nthrough {option}`config.hardware.block.defaultScheduler` and\n{option}`config.hardware.block.defaultSchedulerRotational`.\n\nBy default this excludes loop devices which generally do not benefit\nfrom extra I/O scheduling in addition to the scheduling already\nperformed for their backing devices.\n\nThis setting does not affect {option}`config.hardware.block.scheduler`.\n",
             })))),
           scheduler: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), udevValue)),
               default: nix.thunk(() => ({})),
               description: "Assign block I/O scheduler by device name pattern.\n\nNames are matched using the {manpage}`udev(7)` pattern syntax:\n\n`*`\n:  Matches zero or more characters.\n\n`?`\n:  Matches any single character.\n\n`[]`\n:  Matches any single character specified in the brackets. Ranges are\n   supported via the `-` character.\n\n`|`\n:  Separates alternative patterns.\n\n\nPlease note that overlapping patterns may produce unexpected results.\nMore complex configurations requiring these should instead be specified\ndirectly through custom udev rules, for example via\n[{option}`config.services.udev.extraRules`](#opt-services.udev.extraRules),\nto ensure correct ordering.\n\nAvailable schedulers depend on the kernel configuration but modern\nLinux systems typically support:\n\n`none`\n:  No‐operation scheduler with no re‐ordering of requests. Suitable\n   for devices with fast random I/O such as NVMe SSDs.\n\n[`mq-deadline`](https://www.kernel.org/doc/html/latest/block/deadline-iosched.html)\n:  Simple latency‐oriented general‐purpose scheduler.\n\n[`kyber`](https://www.kernel.org/doc/html/latest/block/kyber-iosched.html)\n:  Simple latency‐oriented scheduler for fast multi‐queue devices\n   like NVMe SSDs.\n\n[`bfq`](https://www.kernel.org/doc/html/latest/block/bfq-iosched.html)\n:  Complex fairness‐oriented scheduler. Higher processing overhead,\n   but good interactive response, especially with slower devices.\n\n\nSchedulers assigned through this option take precedence over\n{option}`config.hardware.block.defaultScheduler` and\n{option}`config.hardware.block.defaultSchedulerRotational` but may be\noverridden by other udev rules.\n",
-              example: nix.thunk(() => ({ __proto__: pos$5, "mmcblk[0-9]*": "bfq", "nvme[0-9]*": "kyber" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, "mmcblk[0-9]*": "bfq", "nvme[0-9]*": "kyber" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "defaultScheduler"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "defaultSchedulerRotational"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "scheduler"), {})))), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           udev: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             packages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "etc/udev/rules.d/98-block-io-scheduler.rules", nix.thunk(() => nix.app(concatLines, nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "defaultScheduler"), null)), nix.thunk(() => nix.app(udevRule, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         exclude: nix.thunk(() => nix.sel(cfg, "defaultSchedulerExclude")),
                         scheduler: nix.thunk(() => nix.sel(cfg, "defaultScheduler")),
                       }))))), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "defaultSchedulerRotational"), null)), nix.thunk(() => nix.app(udevRule, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         rotational: true,
                         exclude: nix.thunk(() => nix.sel(cfg, "defaultSchedulerExclude")),
                         scheduler: nix.thunk(() => nix.sel(cfg, "defaultSchedulerRotational")),
-                      }))))), nix.app(mapAttrsToList, (include) => (scheduler) => nix.app(udevRule, nix.thunk(() => ({ __proto__: pos$12, include: include, scheduler: scheduler }))), nix.thunk(() => nix.sel(cfg, "scheduler")))))))))),
+                      }))))), nix.app(mapAttrsToList, (include) => (scheduler) => nix.app(udevRule, nix.thunk(() => ({ [nix.POS]: pos$12, include: include, scheduler: scheduler }))), nix.thunk(() => nix.sel(cfg, "scheduler")))))))))),
             ]),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$16, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$16, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=iosched.ts.map

@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const ExtLib = nix.arg($, "ExtLib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(nix.sel(mkRocqDerivation, "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(coq, "coq-version"), "8.20")), nix.thunk(() => ({
-        __proto__: pos$2,
-        dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ __proto__: pos$1, version: "3.21.1" })))),
+        [nix.POS]: pos$2,
+        dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "3.21.1" })))),
       })))), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       useCoq: true,
       namePrefix: nix.thunk(() => ["coq"]),
       pname: "simple-io",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       repo: "coq-simple-io",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$3, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$3, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.20", "9.1")), "1.11.0")),
@@ -48,25 +48,25 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "1.11.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-sgbH7eI4TPHOQ5qBvM6x7G3j8B40HSEMEzFaN1G9VEw=",
         })),
         "1.10.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-67cBhLvRMWLWBL7NXK1zZTQC4PtSKu9qtesU4SqKkOw=",
         })),
         "1.8.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-3ADNeXrBIpYRlfUW+LkLHUWV1w1HFrVc/TZISMuwvRY=",
         })),
         "1.7.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:1a1q9x2abx71hqvjdai3n12jxzd49mhf3nqqh3ya2ssl2lj609ci",
         })),
         "1.3.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256:1yp7ca36jyl9kz35ghxig45x6cd0bny2bpmy058359p94wc617ax",
         })),
       })),
@@ -84,18 +84,18 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       useDuneifVersion: (v) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), v, "1.10.0")) || nix.asBool(nix.eq(v, "dev"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           HelloWorld: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Purely functional IO for Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       })),
-    }))), "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "1.8.0")) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))), nix.thunk(() => ({ __proto__: pos$14, doCheck: false }))));
+    }))), "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "1.8.0")) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))), nix.thunk(() => ({ [nix.POS]: pos$14, doCheck: false }))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

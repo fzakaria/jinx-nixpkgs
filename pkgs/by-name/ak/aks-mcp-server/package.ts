@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kubectl = nix.arg($, "kubectl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aks-mcp-server",
       version: "0.0.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azure",
           repo: "aks-mcp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-EdDiLibw3OXtTmAaD6PIi6xiW7+x8TUeAezdjpu8IjY=",
       subPackages: nix.thunk(() => ["cmd/aks-mcp"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeBinaryWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["withoutebpf"]))),
       ldflags: nix.thunk(() => [
         "-s",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [azure_cli, kubectl]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Model Context Protocol server for Azure Kubernetes Service",
         longDescription: "The AKS-MCP server enables AI assistants to interact with Azure Kubernetes\nService clusters through the Model Context Protocol. It translates natural\nlanguage requests into AKS operations and provides cluster information,\nnetwork details, and resource management capabilities.\n",
         homepage: "https://github.com/Azure/aks-mcp",

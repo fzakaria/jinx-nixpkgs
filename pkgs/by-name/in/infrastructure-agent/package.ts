@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "infrastructure-agent",
       version: "1.80.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "newrelic",
           repo: "infrastructure-agent",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X main.gitCommit=${nix.sel(finalAttrs, "src", "rev")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "1" : "0")),
       })),
       subPackages: nix.thunk(() => ["cmd/newrelic-infra", "cmd/newrelic-infra-ctl", "cmd/newrelic-infra-service"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "New Relic Infrastructure Agent",
         homepage: "https://github.com/newrelic/infrastructure-agent.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

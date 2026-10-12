@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const phpEmbedWithZts = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       embedSupport: true,
       ztsSupport: true,
       staticSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const phpConfig = nix.thunk(() => nix.str`${nix.sel(phpUnwrapped, "dev")}/bin/php-config`);
   const pieBuild = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "frankenphp",
       version: "1.12.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "php",
           repo: "frankenphp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,19 +82,19 @@ wrapProgram $out/bin/frankenphp --set-default PHP_INI_SCAN_DIR $out/lib
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         php: phpEmbedWithZts,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           phpinfo: nix.thunk(() => nix.app(runCommand, "php-cli-phpinfo", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               phpScript: nix.thunk(() => nix.app(writeText, "phpinfo.php", "<?php phpinfo();\n")),
             })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} php-cli $phpScript > $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/php/frankenphp/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Modern PHP app server",
         homepage: "https://github.com/php/frankenphp",

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const subdir = "vrc-get-gui";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alcom",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vrc-get",
           repo: "vrc-get",
           tag: nix.thunk(() => nix.str`gui-v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ for size in 32x32 64x64 128x128 128x128@2x; do
 done
 `),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${subdir}`),
@@ -64,7 +64,7 @@ done
         })))),
       npmRoot: subdir,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Experimental GUI application to manage VRChat Unity Projects",
         homepage: "https://github.com/vrc-get/vrc-get",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

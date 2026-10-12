@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "there",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dena-sohrabi/There/releases/download/v${nix.sel(finalAttrs, "version")}/There.zip`),
           hash: "sha256-p7AK9FfeycUgDfVk8HlKkjLBdOoTWAK/oGxlWSFykOc=",
           stripRoot: false,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Track timezones",
         homepage: "https://there.pm",
         changelog: nix.thunk(() => nix.str`https://github.com/dena-sohrabi/There/releases/tag/v${nix.sel(finalAttrs, "version")}`),

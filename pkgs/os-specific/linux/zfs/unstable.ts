@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), args_1, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       kernelModuleAttribute: "zfs_unstable",
       kernelMinSupportedMajorMinor: "4.18",
       kernelMaxSupportedMajorMinor: "7.2",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       extraPatches: [],
       tests: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nixosTests, "zfs"));
-        return { __proto__: pos$1, unstable: nix.thunk(() => nix.attr(from, "unstable")) };
+        return { [nix.POS]: pos$1, unstable: nix.thunk(() => nix.attr(from, "unstable")) };
       })()),
       hash: "sha256-ZgfHTPsNoeDq6GKP4Xiti7Keis3vIZLDaTGQjgCItIc=",
       extraLongDescription: "This is \"unstable\" ZFS, and will usually be a pre-release version of ZFS.\nIt may be less well-tested and have critical bugs.\n",

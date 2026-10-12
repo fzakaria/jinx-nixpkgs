@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const extraCMakeFlags = nix.argOr($_1, "extraCMakeFlags", () => []);
     const extraInstallPhase = nix.argOr($_1, "extraInstallPhase", () => "");
     return nix.app(toKodiAddon, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add("kodi-", name)),
           dontStrip: true,
           nativeBuildInputs: nix.thunk(() => nix.concat([cmake], extraNativeBuildInputs)),

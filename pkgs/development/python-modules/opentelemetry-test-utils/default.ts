@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_sdk = nix.arg($, "opentelemetry-sdk");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-test-utils",
       version: nix.thunk(() => nix.sel(opentelemetry_instrumentation, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [asgiref, opentelemetry_api, opentelemetry_sdk, requests]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.test"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/tests/opentelemetry-test-utils",
         description: "Test utilities for OpenTelemetry unit tests",
       })),

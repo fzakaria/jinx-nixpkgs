@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sympa",
       version: "6.2.76",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sympa-community",
           repo: "sympa",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -108,11 +108,11 @@ PATH="$TMP/bin:$PATH"
 `),
       postInstall: "rm -rf \"$TMP/bin\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, sympa: nix.thunk(() => nix.attr(nixosTests, "sympa")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, sympa: nix.thunk(() => nix.attr(nixosTests, "sympa")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source mailing list manager",
         homepage: "https://www.sympa.community/sympa/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

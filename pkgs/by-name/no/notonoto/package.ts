@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const fontforgeArgs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), width35, "--35"), nix.concat(nix.app(nix.sel(lib, "optional"), console, "--console"), nix.app(nix.sel(lib, "optional"), hideZenkakuSpace, "--hidden-zenkaku-space"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.add(nix.add(nix.add("notonoto", nix.app(nix.sel(lib, "optionalString"), hideZenkakuSpace, "-hs")), nix.app(nix.sel(lib, "optionalString"), width35, "-35")), nix.app(nix.sel(lib, "optionalString"), console, "-console"))),
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yuru7",
           repo: "NOTONOTO",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ install -Dm444 build/*.ttf -t $out/share/fonts/truetype/${nix.sel(finalAttrs, "p
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming font that combines Noto Sans Mono and Noto Sans JP",
         homepage: "https://github.com/yuru7/NOTONOTO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

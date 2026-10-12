@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-tenants",
           repo: "django-tenants",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django, psycopg]);
       const pythonImportsCheck = nix.thunk(() => ["django_tenants"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django tenants using PostgreSQL Schemas",
         homepage: "https://github.com/django-tenants/django-tenants",
         changelog: nix.thunk(() => nix.str`https://github.com/django-tenants/django-tenants/releases/tag/${nix.sel(src, "tag")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

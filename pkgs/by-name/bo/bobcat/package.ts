@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bobcat",
       version: "5.11.01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fbb-git",
           repo: "bobcat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build libraries all\n./build man\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n./build install x\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brokken's Own Base Classes And Templates",
         homepage: "https://fbb-git.gitlab.io/bobcat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

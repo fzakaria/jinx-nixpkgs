@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raphaelm",
           repo: "django-hierarkey",
           tag: version,
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [python_dateutil]);
       const pythonImportsCheck = nix.thunk(() => ["hierarkey"]);
       const nativeCheckInputs = nix.thunk(() => [django_extensions, pytest_django, pytestCheckHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flexible and powerful hierarchical key-value store for your Django models",
         homepage: "https://github.com/raphaelm/django-hierarkey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

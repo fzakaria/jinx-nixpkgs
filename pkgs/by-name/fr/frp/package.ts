@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const web = nix.thunk(() => nix.app(callPackage, nix.path(here, "./dashboard.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "frp",
       version: "0.71.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fatedier",
           repo: "frp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
 cp -r ${nix.sel(web, "frps")} web/frps/dist
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, frp: nix.thunk(() => nix.sel(nixosTests, "frp")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, frp: nix.thunk(() => nix.sel(nixosTests, "frp")) })),
         web: web,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast reverse proxy",
         longDescription: "frp is a fast reverse proxy to help you expose a local server behind a\nNAT or firewall to the Internet. As of now, it supports TCP and UDP, as\nwell as HTTP and HTTPS protocols, where requests can be forwarded to\ninternal services by domain name. frp also has a P2P connect mode.\n",
         homepage: "https://github.com/fatedier/frp",

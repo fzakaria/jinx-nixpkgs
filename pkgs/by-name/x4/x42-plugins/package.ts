@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "x42-plugins";
       const version = "20260908";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gareus.org/misc/x42-plugins/${pname}-${version}.tar.xz`),
           hash: "sha256-1dRqzDnrH+Zocx+XfVciIsmQy+5FQdMkncNFdfj7tcA=",
         }))));
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "patchShebangs ./stepseq.lv2/gridgen.sh\npatchShebangs ./matrixmixer.lv2/genttl.sh\npatchShebangs ./matrixmixer.lv2/genhead.sh\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of LV2 plugins by Robin Gareus",
         homepage: "https://github.com/x42/x42-plugins",
         maintainers: nix.thunk(() => (() => {
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

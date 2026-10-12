@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ente-cli",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ente",
           repo: "ente",
           tag: nix.thunk(() => nix.str`cli-v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       modRoot: "./cli",
       vendorHash: "sha256-Gg1mifMVt6Ma8yQ/t0R5nf6NXbzLZBpuZrYsW48p0mw=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -44,23 +44,23 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.add("mv $out/bin/{cli,ente}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux")) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))), "export ENTE_CLI_CONFIG_PATH=$TMP\nexport ENTE_CLI_SECRETS_PATH=$TMP/secrets\n\ninstallShellCompletion --cmd ente \\\n  --bash <($out/bin/ente completion bash) \\\n  --fish <($out/bin/ente completion fish) \\\n  --zsh <($out/bin/ente completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 command: "env ENTE_CLI_CONFIG_PATH=$TMP \\\n    ENTE_CLI_SECRETS_PATH=$TMP/secrets \\\n    ente version\n",
                 version: nix.thunk(() => nix.str`Version cli-v${nix.sel(finalAttrs, "version")}`),
               })))))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex", "cli-(.+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "CLI client for downloading your data from Ente",
         longDescription: "The Ente CLI is a Command Line Utility for exporting data from Ente. It also does a few more things, for example, you can use it to decrypting the export from Ente Auth.\n",
         homepage: "https://github.com/ente/ente/tree/main/cli#readme",

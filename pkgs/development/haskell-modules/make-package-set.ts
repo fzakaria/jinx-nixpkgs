@@ -76,38 +76,38 @@ export default nix.lambda((args) => (() => {
     const mkDerivationImpl = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), builder, nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(self, "buildHaskellPackages"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         stdenv: stdenv,
         buildHaskellPackages: nix.thunk(() => nix.attr(self, "buildHaskellPackages")),
         ghc: nix.thunk(() => nix.attr(self, "ghc")),
         "jailbreak-cabal": nix.thunk(() => nix.attr(from, "jailbreak-cabal")),
       };
       })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.selOr(ghc, () => false, "isMhs"))), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           haskellLib: haskellLib,
           ghcWithHoogle: nix.thunk(() => nix.attr(self, "ghcWithHoogle")),
           ghcWithPackages: nix.thunk(() => nix.attr(self, "ghcWithPackages")),
           nodejs: nix.thunk(() => nix.sel(buildPackages, "nodejs-slim")),
           "iserv-proxy": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             build: nix.thunk(() => nix.sel(buildHaskellPackages, "iserv-proxy")),
             host: nix.thunk(() => nix.sel(self, "iserv-proxy")),
           })),
           hscolour: nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               isLibrary: false,
               doHaddock: false,
               hyperlinkSource: false,
               postFixup: "rm -rf $out/lib $out/share $out/nix-support",
             }), nix.thunk(() => nix.sel(self, "buildHaskellPackages", "hscolour")))),
           cpphs: nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               isLibrary: false,
               postFixup: "rm -rf $out/lib $out/share $out/nix-support",
             }), nix.thunk(() => nix.app(nix.sel(self, "cpphs", "overrideScope"), (self_1) => (super$) => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 mkDerivation: (drv) => nix.app(nix.sel(super$, "mkDerivation"), nix.thunk(() => nix.update(drv, {
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     enableSharedExecutables: false,
                     enableSharedLibraries: false,
                     doHaddock: false,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
                   }))),
               }))))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(ghc, () => false, "isMhs")), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           wrapMhs: nix.thunk(() => nix.attr(self, "wrapMhs")),
           "ghc-compat": nix.thunk(() => nix.attr(self, "ghc-compat")),
           MicroCabal: nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1")),
@@ -126,11 +126,11 @@ export default nix.lambda((args) => (() => {
       const drv = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), fn)) ? nix.force(fn) : nix.builtins.import(fn)));
       const drvFunctionArgs = nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), drv));
       const auto = nix.thunk(() => nix.builtins.intersectAttrs(drvFunctionArgs, scope));
-      const ensureAttrs = (v) => (nix.asBool(nix.builtins.isFunction(v)) ? { __proto__: pos$9, __functor: (_) => nix.force(v) } : nix.force(v));
+      const ensureAttrs = (v) => (nix.asBool(nix.builtins.isFunction(v)) ? { [nix.POS]: pos$9, __functor: (_) => nix.force(v) } : nix.force(v));
       const drvScope = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         __functor: (_) => (allArgs) => nix.update(nix.app(ensureAttrs, nix.thunk(() => nix.app(drv, allArgs))), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           scope: scope,
           overrideScope: (f) => (() => {
             const newScope = nix.thunk(() => nix.app(mkScope, nix.thunk(() => nix.app(fix$, nix.thunk(() => nix.app(extends$, f, nix.thunk(() => nix.sel(scope, "__unfix__"))))))));
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
     const mkScope = (scope) => (() => {
       const ps = nix.thunk(() => nix.sel(pkgs, "__splicedPackages"));
       const scopeSpliced = nix.thunk(() => nix.update(nix.app(nix.sel(pkgs, "splicePackages"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pkgsBuildBuild: nix.thunk(() => nix.sel(scope, "buildHaskellPackages", "buildHaskellPackages")),
           pkgsBuildHost: nix.thunk(() => nix.sel(scope, "buildHaskellPackages")),
           pkgsBuildTarget: nix.thunk(() => ({})),
@@ -152,11 +152,11 @@ export default nix.lambda((args) => (() => {
           pkgsHostTarget: scope,
           pkgsTargetTarget: nix.thunk(() => ({})),
         }))), {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         ghc: nix.thunk(() => nix.attr(scope, "ghc")),
         buildHaskellPackages: nix.thunk(() => nix.attr(scope, "buildHaskellPackages")),
       }));
-      return nix.update(ps, nix.update({ __proto__: pos$14, stdenv: stdenv }, scopeSpliced));
+      return nix.update(ps, nix.update({ [nix.POS]: pos$14, stdenv: stdenv }, scopeSpliced));
     })();
     const defaultScope = nix.thunk(() => nix.app(mkScope, self));
     const callPackage = (drv) => (args_1) => nix.app(callPackageWithScope, defaultScope, drv, args_1);
@@ -168,14 +168,14 @@ export default nix.lambda((args) => (() => {
       const extraCabal2nixOptions = nix.argOr($_1, "extraCabal2nixOptions", () => "");
       const sha256Arg = nix.thunk(() => (nix.asBool(nix.eq(sha256, null)) ? "--sha256=" : nix.str`--sha256="${sha256}"`));
       return nix.app(nix.sel(buildPackages, "runCommand"), nix.thunk(() => nix.str`cabal2nix-${name}`), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           nativeBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(buildPackages, "haskellPackages", "cabal2nix-unstable")),
           ]),
           preferLocalBuild: true,
           allowSubstitutes: false,
-          env: nix.thunk(() => nix.update({ __proto__: pos$15, LANG: "en_US.UTF-8" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(buildPlatform, "libc"), "glibc")), nix.thunk(() => ({
-              __proto__: pos$16,
+          env: nix.thunk(() => nix.update({ [nix.POS]: pos$15, LANG: "en_US.UTF-8" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(buildPlatform, "libc"), "glibc")), nix.thunk(() => ({
+              [nix.POS]: pos$16,
               LOCALE_ARCHIVE: nix.thunk(() => nix.str`${nix.sel(buildPackages, "glibcLocales")}/lib/locale/locale-archive`),
             }))))),
         })), nix.thunk(() => nix.str`export HOME="$TMP"
@@ -196,18 +196,18 @@ fi
     const hackage2nix = (name) => (version) => (() => {
       const component = nix.thunk(() => nix.app(all_cabal_hashes_component, name, version));
       return nix.app(nix.sel(self, "haskellSrc2nix"), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: nix.thunk(() => nix.str`${name}-${version}`),
           sha256: nix.thunk(() => nix.str`$(sed -e 's/.*"SHA256":"//' -e 's/".*$//' "${component}/${name}.json")`),
           src: nix.thunk(() => nix.str`${component}/${name}.cabal`),
         })));
     })();
     const callPackageKeepDeriver = (src) => (args_1) => nix.app(overrideCabal, (orig) => ({
-        __proto__: pos$20,
-        passthru: nix.thunk(() => nix.update(nix.selOr(orig, () => ({}), "passthru"), { __proto__: pos$19, cabal2nixDeriver: src })),
+        [nix.POS]: pos$20,
+        passthru: nix.thunk(() => nix.update(nix.selOr(orig, () => ({}), "passthru"), { [nix.POS]: pos$19, cabal2nixDeriver: src })),
       }), nix.thunk(() => nix.app(nix.sel(self, "callPackage"), src, args_1)));
-    return nix.update(nix.app(package_set, nix.thunk(() => ({ __proto__: pos$21, pkgs: pkgs, lib: lib, callPackage: callPackage })), self), {
-      __proto__: pos$42,
+    return nix.update(nix.app(package_set, nix.thunk(() => ({ [nix.POS]: pos$21, pkgs: pkgs, lib: lib, callPackage: callPackage })), self), {
+      [nix.POS]: pos$42,
       mkDerivation: mkDerivation,
       callPackage: callPackage,
       haskellSrc2nix: haskellSrc2nix,
@@ -221,16 +221,16 @@ fi
         const ver = nix.arg($_1, "ver");
         const sha256 = nix.arg($_1, "sha256");
         const candidate = nix.argOr($_1, "candidate", () => false);
-        const rev = nix.argOr($_1, "rev", () => ({ __proto__: pos$22, revision: null, sha256: null }));
+        const rev = nix.argOr($_1, "rev", () => ({ [nix.POS]: pos$22, revision: null, sha256: null }));
         return (args_2) => (() => {
           const pkgver = nix.thunk(() => nix.str`${pkg}-${ver}`);
           const firstRevision = nix.thunk(() => nix.app(nix.sel(self, "callCabal2nix"), pkg, nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 url: nix.thunk(() => (nix.asBool(candidate) ? nix.str`mirror://hackage/${pkgver}/candidate/${pkgver}.tar.gz` : nix.str`mirror://hackage/${pkgver}/${pkgver}.tar.gz`)),
                 sha256: sha256,
               })))), args_2));
           return nix.app(overrideCabal, (orig) => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               revision: nix.thunk(() => nix.sel(rev, "revision")),
               editedCabalFile: nix.thunk(() => nix.sel(rev, "sha256")),
             }), firstRevision);
@@ -241,12 +241,12 @@ fi
         const srcModifier = nix.thunk(() => nix.selOr(opts, () => null, "srcModifier"));
         const defaultFilter = (path) => (type) => (nix.asBool(nix.app(nix.sel(pkgs, "lib", "hasSuffix"), ".cabal", path)) || nix.asBool(nix.eq(nix.builtins.baseNameOf(path), "package.yaml")));
         const expr = nix.thunk(() => nix.app(nix.sel(self, "haskellSrc2nix"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             name: name,
             extraCabal2nixOptions: extraCabal2nixOptions,
-            src: nix.thunk(() => (nix.asBool(!nix.eq(srcModifier, null)) ? nix.app(srcModifier, src) : (nix.asBool(nix.app(nix.sel(pkgs, "lib", "canCleanSource"), src)) ? nix.app(nix.sel(pkgs, "lib", "cleanSourceWith"), nix.thunk(() => ({ __proto__: pos$25, src: src, filter: defaultFilter }))) : nix.force(src)))),
+            src: nix.thunk(() => (nix.asBool(!nix.eq(srcModifier, null)) ? nix.app(srcModifier, src) : (nix.asBool(nix.app(nix.sel(pkgs, "lib", "canCleanSource"), src)) ? nix.app(nix.sel(pkgs, "lib", "cleanSourceWith"), nix.thunk(() => ({ [nix.POS]: pos$25, src: src, filter: defaultFilter }))) : nix.force(src)))),
           }))));
-        return nix.app(overrideCabal, (orig) => ({ __proto__: pos$27, src: src }), nix.thunk(() => nix.app(callPackageKeepDeriver, expr, args_1)));
+        return nix.app(overrideCabal, (orig) => ({ [nix.POS]: pos$27, src: src }), nix.thunk(() => nix.app(callPackageKeepDeriver, expr, args_1)));
       })(),
       callCabal2nix: (name) => (src) => (args_1) => nix.app(nix.sel(self, "callCabal2nixWithOptions"), name, src, "", args_1),
       developPackage: nix.lambda((args_1) => (() => {
@@ -260,20 +260,20 @@ fi
         const withHoogle = nix.argOr($_1, "withHoogle", () => nix.force(returnShellEnv));
         const cabal2nixOptions = nix.argOr($_1, "cabal2nixOptions", () => "");
         const drv = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(extensible_self, "extend"), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "composeExtensions"), nix.thunk(() => nix.app(nix.sel(self, "packageSourceOverrides"), source_overrides)), overrides))), "callCabal2nixWithOptions"), name, root, cabal2nixOptions, nix.thunk(() => ({}))));
-        return (nix.asBool(returnShellEnv) ? nix.app(nix.sel(nix.app(modifier, drv), "envFunc"), nix.thunk(() => ({ __proto__: pos$28, withHoogle: withHoogle }))) : nix.app(modifier, drv));
+        return (nix.asBool(returnShellEnv) ? nix.app(nix.sel(nix.app(modifier, drv), "envFunc"), nix.thunk(() => ({ [nix.POS]: pos$28, withHoogle: withHoogle }))) : nix.app(modifier, drv));
       })(), formals$4),
       ghcWithPackages: nix.thunk(() => nix.app(nix.sel(buildHaskellPackages, "callPackage"), nix.path(here, "./with-packages-wrapper.nix"), nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           haskellPackages: self,
           hoogleWithPackages: nix.thunk(() => nix.attr(self, "hoogleWithPackages")),
         })))),
-      hoogleWithPackages: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hoogle.nix"), nix.thunk(() => ({ __proto__: pos$30, haskellPackages: self })))),
+      hoogleWithPackages: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hoogle.nix"), nix.thunk(() => ({ [nix.POS]: pos$30, haskellPackages: self })))),
       hoogleLocal: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const packages = nix.argOr($_1, "packages", () => []);
         return nix.app(nix.sel(lib, "warn"), "hoogleLocal is deprecated, use hoogleWithPackages instead", nix.thunk(() => nix.app(nix.sel(self, "hoogleWithPackages"), (_) => nix.force(packages))));
       })(), formals$5),
-      ghcWithHoogle: nix.thunk(() => nix.app(nix.sel(self, "ghcWithPackages", "override"), nix.thunk(() => ({ __proto__: pos$31, withHoogle: true })))),
+      ghcWithHoogle: nix.thunk(() => nix.app(nix.sel(self, "ghcWithPackages", "override"), nix.thunk(() => ({ [nix.POS]: pos$31, withHoogle: true })))),
       shellFor: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         const args_2 = args_1;
@@ -288,13 +288,13 @@ fi
         const zipperCombinedPkgs = (vals) => nix.app(nix.sel(pkgs, "lib", "concatMap"), (drvList) => nix.app(nix.sel(pkgs, "lib", "filter"), isNotSelected, drvList), vals);
         const packageInputs = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "zipAttrsWith"), (_name) => zipperCombinedPkgs, nix.thunk(() => nix.concat(cabalDepsForSelected, [nix.thunk(() => nix.app(extraDependencies, self))]))));
         const genericBuilderArgs = nix.thunk(() => nix.update({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           pname: nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(pkgs, "lib", "length"), selected), 1n)) ? nix.sel(nix.app(nix.sel(pkgs, "lib", "head"), selected), "name") : "packages")),
           version: "0",
           license: null,
-        }, nix.update(packageInputs, nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), doBenchmark, nix.thunk(() => ({ __proto__: pos$33, doBenchmark: true }))))));
+        }, nix.update(packageInputs, nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), doBenchmark, nix.thunk(() => ({ [nix.POS]: pos$33, doBenchmark: true }))))));
         const pkgWithCombinedDeps = nix.thunk(() => nix.app(nix.sel(self, "mkDerivation"), nix.thunk(() => nix.app(genericBuilderArgsModifier, genericBuilderArgs))));
-        const pkgWithCombinedDepsDevDrv = nix.thunk(() => nix.app(nix.sel(pkgWithCombinedDeps, "envFunc"), nix.thunk(() => ({ __proto__: pos$34, withHoogle: withHoogle }))));
+        const pkgWithCombinedDepsDevDrv = nix.thunk(() => nix.app(nix.sel(pkgWithCombinedDeps, "envFunc"), nix.thunk(() => ({ [nix.POS]: pos$34, withHoogle: withHoogle }))));
         const mkDerivationArgs = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => [
             "genericBuilderArgsModifier",
             "packages",
@@ -303,13 +303,13 @@ fi
             "extraDependencies",
           ])));
         return nix.app(nix.sel(pkgWithCombinedDepsDevDrv, "overrideAttrs"), (old) => nix.update(mkDerivationArgs, {
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), nix.selOr(mkDerivationArgs, () => [], "nativeBuildInputs"))),
             buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), nix.selOr(mkDerivationArgs, () => [], "buildInputs"))),
           }));
       })(), formals$6),
       ghc: nix.thunk(() => nix.update(ghc, {
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         withPackages: nix.thunk(() => nix.sel(self, "ghcWithPackages")),
         withHoogle: nix.thunk(() => nix.sel(self, "ghcWithHoogle")),
       })),
@@ -319,16 +319,16 @@ fi
         const src = nix.arg($_1, "src");
         const name = nix.argOr($_1, "name", () => (nix.asBool(nix.has(src, "name")) ? nix.str`${nix.sel(src, "name")}-sdist.tar.gz` : "source.tar.gz"));
         return nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             src: src,
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(buildHaskellPackages, "cabal-install"))]),
             dontUnpack: false,
           })), "unpackPhase\ncd \"${sourceRoot:-.}\"\npatchPhase\nmkdir out\nHOME=$PWD cabal sdist --output-directory out\nmv out/*.tar.gz $out\n");
       })(), formals$7),
-      buildFromCabalSdist: (pkg) => nix.app(nix.sel(haskellLib, "overrideCabal"), (_) => ({ __proto__: pos$38, patches: [] }), nix.thunk(() => nix.app(nix.sel(haskellLib, "overrideSrc"), nix.thunk(() => ({
-            __proto__: pos$40,
+      buildFromCabalSdist: (pkg) => nix.app(nix.sel(haskellLib, "overrideCabal"), (_) => ({ [nix.POS]: pos$38, patches: [] }), nix.thunk(() => nix.app(nix.sel(haskellLib, "overrideSrc"), nix.thunk(() => ({
+            [nix.POS]: pos$40,
             src: nix.thunk(() => nix.app(nix.sel(self, "cabalSdist"), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 src: nix.thunk(() => nix.app(nix.sel(pkgs, "srcOnly"), pkg)),
               })))),
             version: nix.thunk(() => nix.sel(pkg, "version")),
@@ -339,7 +339,7 @@ fi
           return (commands) => (pkg) => (nix.asBool(nix.app(nix.sel(stdenv_1, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv_1, "hostPlatform")))) ? nix.app(nix.sel(lib, "foldr"), nix.thunk(() => nix.sel(haskellLib, "__generateOptparseApplicativeCompletion")), pkg, commands) : nix.force(pkg));
         })(), formals$8), nix.thunk(() => ({})))),
       forceLlvmCodegenBackend: nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           configureFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "configureFlags"), ["--ghc-option=-fllvm"])),
           buildTools: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildTools"), nix.concat([nix.thunk(() => nix.sel(self, "ghc", "llvmPackages", "llvm"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(self, "ghc", "version")), "9.10")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => [nix.thunk(() => nix.sel(self, "ghc", "llvmPackages", "clang"))]))))),
         }))),

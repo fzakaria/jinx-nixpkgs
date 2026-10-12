@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const standard_telnetlib = nix.arg($, "standard-telnetlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "napalm-procurve",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "napalm-automation-community",
           repo: "napalm-hp-procurve",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["napalm_procurve"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HP ProCurve Driver for NAPALM automation frontend",
         homepage: "https://github.com/napalm-automation-community/napalm-hp-procurve",
         changelog: nix.thunk(() => nix.str`https://github.com/napalm-automation-community/napalm-hp-procurve/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "otsaloma",
           repo: "gaupol",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_spell"]);
       const pythonImportsCheck = nix.thunk(() => ["aeidon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/otsaloma/gaupol/releases/tag/${version}`),
         description: "Reading, writing and manipulating text-based subtitle files",
         homepage: "https://github.com/otsaloma/gaupol",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

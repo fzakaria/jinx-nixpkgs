@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polm",
           repo: "unidic-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cython, mecab, setuptools_scm]);
       const pythonImportsCheck = nix.thunk(() => ["unidic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Contemporary Written Japanese dictionary",
         homepage: "https://github.com/polm/unidic-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

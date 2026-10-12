@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hmm",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hmmcli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-WPePzqZ2iGeJ7kzTj8eg7q1JEjw91WY7gViJJ46SLRY=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [perl, writableTmpDirAsHomeHook]),
       cargoPatches: nix.thunk(() => [nix.path(here, "./rustc-serialize-fix.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small command-line note-taking app",
         homepage: "https://github.com/samwho/hmm",
         changelog: nix.thunk(() => nix.str`https://github.com/samwho/hmm/releases/tag/v${nix.sel(finalAttrs, "version")}`),

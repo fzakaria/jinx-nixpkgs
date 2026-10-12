@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kmscon"));
   const gettyCfg = nix.thunk(() => nix.sel(config, "services", "getty"));
   const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "kmscon-config",
       destination: "/kmscon.conf",
       text: nix.thunk(() => (() => {
         const mkKeyValue = (k) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(v)), "no-"), k) : nix.str`${k}=${nix.builtins.toString(v)}`);
-        return nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({ __proto__: pos$1, mkKeyValue: mkKeyValue })), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "config")))));
+        return nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({ [nix.POS]: pos$1, mkKeyValue: mkKeyValue })), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "config")))));
       })()),
     }))));
   const baseLoginOptions = "-p";
@@ -79,7 +79,7 @@ if [ "$kms_tty" = tty1 ] && [ ! -f "$autologged" ]; then
 fi
 `)), nix.str`exec ${nix.app(loginCmd, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(gettyCfg, "autologinUser"), null)) && nix.asBool(!nix.asBool(nix.sel(gettyCfg, "autologinOnce"))))))}`))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kmscon", "autologinUser"]), "Autologin is now handled by the agetty module.\n\nCheck `services.getty.autologinUser` instead.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kmscon", "fonts"]), "`services.kmscon.fonts` is removed.\n\nAdd your font to `fonts.packages` and configure it with\n`services.kmscon.config.font-name` instead.\n")),
@@ -88,20 +88,20 @@ fi
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kmscon", "hwRender"]), nix.thunk(() => ["services", "kmscon", "config", "hwaccel"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         kmscon: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "use kmscon instead of autovt.\n\nKmscon is a simple terminal emulator based on linux kernel mode setting (KMS).\nIt is an attempt to replace the in-kernel VT implementation with a userspace console\n")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "kmscon", nix.thunk(() => ({})))),
           useXkbConfig: nix.thunk(() => nix.app(mkEnableOption, "configure keymap from xserver keyboard settings.\n\nIf enabled, configurations under `services.xserver.xkb` will be injected into kmscon's configuration\n")),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Configuration for kmscon. See {manpage}`kmscon.conf(5)`\nfor available options.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -111,14 +111,14 @@ fi
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     hwaccel: nix.thunk(() => nix.app(mkEnableOption, "use hardware acceleration for rendering")),
                     libseat: nix.thunk(() => nix.app(mkEnableOption, "use libseat for seat management")),
                   })),
                 })))),
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Extra flags to pass to kmscon.",
               type: nix.thunk(() => nix.app(nix.sel(types, "separatedString"), " ")),
               default: "",
@@ -128,30 +128,30 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => nix.eq(nix.sel(gettyCfg, "loginOptions"), null)),
             message: "services.getty.loginOptions is not supported when services.kmscon is enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (!nix.asBool(nix.has(nix.sel(cfg, "config"), "font-name")) || nix.asBool(nix.sel(config, "fonts", "fontconfig", "enable")))),
             message: "Font configuration for kmscon requires fontconfig to be enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "config", "hwaccel")) || nix.asBool(nix.sel(config, "hardware", "graphics", "enable")))),
             message: "Hardware acceleration for kmscon requires `hardware.graphics.enable` to be true.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           kmscon: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useXkbConfig")), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, ""), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     "xkb-layout": nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "layout")),
                     "xkb-model": nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "model")),
                     "xkb-options": nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "options")),
@@ -160,22 +160,22 @@ fi
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hack-font"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "kmsconvt@": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 User: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "config", "libseat"))), "")),
                 PAMName: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "config", "libseat"))), "")),
                 Environment: nix.thunk(() => [
@@ -198,28 +198,28 @@ fi
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             getty: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               wants: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "services", "displayManager", "enable"))), nix.thunk(() => ["kmsconvt@tty1.service"]))),
             })),
           })),
           suppressedSystemUnits: nix.thunk(() => ["getty@.service"]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           pam: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             services: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               kmscon: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "config", "libseat")), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   useDefaultRules: false,
                   rules: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           name: "permit",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -227,7 +227,7 @@ fi
                       ]))),
                     account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           name: "unix",
                           control: "required",
                           modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
@@ -235,24 +235,24 @@ fi
                       ]))),
                     session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           name: "env",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_env.so`),
-                          settings: nix.thunk(() => ({ __proto__: pos$26, conffile: "/etc/pam/environment", readenv: 0n })),
+                          settings: nix.thunk(() => ({ [nix.POS]: pos$26, conffile: "/etc/pam/environment", readenv: 0n })),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           name: "unix",
                           control: "required",
                           modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           name: "systemd",
                           control: "optional",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/security/pam_systemd.so`),
-                          settings: nix.thunk(() => ({ __proto__: pos$29, type: "tty", class: "greeter" })),
+                          settings: nix.thunk(() => ({ [nix.POS]: pos$29, type: "tty", class: "greeter" })),
                         })),
                       ]))),
                   })),
@@ -262,7 +262,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

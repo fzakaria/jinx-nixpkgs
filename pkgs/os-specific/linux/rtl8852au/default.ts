@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rtl8852au",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2024-05-06`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lwfinger",
           repo: "rtl8852au",
           rev: "865ab0fa91471d595c283d2f3db323f7f15455f5",
@@ -48,10 +48,10 @@ substituteInPlace ./platform/i386_pc.mk \\
 mkdir -p "$out/usr/lib/systemd/system-sleep"
 `),
       postInstall: "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-designated-init" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-designated-init" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Driver for Realtek 802.11ac, rtl8852au, provides the 8852au mod",
         homepage: "https://github.com/lwfinger/rtl8852au",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

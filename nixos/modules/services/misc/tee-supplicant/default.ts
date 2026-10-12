@@ -34,35 +34,35 @@ export default nix.lambda((args) => (() => {
   const trustedApplications = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "runtime-trusted-applications", nix.thunk(() => nix.builtins.map((ta) => (() => {
         const taFile = nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.unsafeDiscardStringContext(ta))));
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`lib/${taDir}/${taFile}`),
           path: ta,
         };
       })(), nix.thunk(() => nix.sel(cfg, "trustedApplications"))))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "tee-supplicant": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "OP-TEE userspace supplicant")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "optee-client", nix.thunk(() => ({})))),
           trustedApplications: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "A list of full paths to trusted applications that will be loaded at\nruntime by tee-supplicant.\n",
             })))),
           pluginPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/run/current-system/sw/lib/tee-supplicant/plugins",
               description: "The directory where plugins will be loaded from on startup.\n",
             })))),
           reeFsParentPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/tee",
               description: "The directory where the secure filesystem will be stored in the rich\nexecution environment (REE FS).\n",
@@ -71,21 +71,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "trustedApplications"), [])), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [trustedApplications]),
             pathsToLink: nix.thunk(() => [nix.thunk(() => nix.str`/lib/${taDir}`)]),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "tee-supplicant": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Userspace supplicant for OPTEE-OS",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                     nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "tee-supplicant")),
                     nix.thunk(() => nix.str`--ta-dir ${taDir}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dpms-off",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lilydjwg",
           repo: "dpms-off",
           rev: "17c5600fdfcf3f5aeb7c85b649dc53e18565b21f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-wpX14e+J+n1it+1D6OD/AyDn+bOuSoJCEEWlmuZ7c0Y=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn off monitors to save power (for Wayland)",
         homepage: "https://github.com/lilydjwg/dpms-off",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

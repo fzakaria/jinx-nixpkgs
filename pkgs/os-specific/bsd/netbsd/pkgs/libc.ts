@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libcrypt = nix.arg($, "libcrypt");
   const version = nix.arg($, "version");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libc-netbsd",
       version: version,
       outputs: nix.thunk(() => ["out", "dev", "man"]),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
           libcrypt,
         ]))),
       postBuild: "rm -r \"$out/nix-support\"\nfixupPhase\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, threadModel: "posix" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, threadModel: "posix" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

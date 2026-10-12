@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "toxvpn",
       version: "0-unstable-2024-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cleverca22",
           repo: "toxvpn",
           rev: "c727451eb871b43855b825ff93dc48fa0d3320b6",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "$out/bin/toxvpn -h",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful tool that allows one to make tunneled point to point connections over Tox",
         homepage: "https://github.com/cleverca22/toxvpn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

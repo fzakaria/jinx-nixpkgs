@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "fluent-icons",
         publisher: "miguelsolorio",
         version: "0.0.19",
         hash: "sha256-OfPSh0SapT+YOfi0cz3ep8hEhgCTHpjs1FfmgAyjN58=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/miguelsolorio/vscode-fluent-icons/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fluent product icons for Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons",

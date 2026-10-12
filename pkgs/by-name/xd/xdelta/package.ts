@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(lzmaSupport) || nix.asBool(!nix.eq(xz, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xd/xdelta/package.nix:10:1");
   const mkWith = (flag) => (name) => (nix.asBool(flag) ? nix.str`--with-${name}` : nix.str`--without-${name}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xdelta",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "09mmsalc7dwlvgrda56s2k927rpl3a5dzfa88aslkqcjnr790wjy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "xdelta-gpl",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "mkdir $PWD/tmp\nfor i in testing/file.h xdelta3-test.h; do\n  substituteInPlace $i --replace /tmp $PWD/tmp\ndone\n./xdelta3regtest\n",
       installPhase: "install -D -m755 xdelta3 $out/bin/xdelta3\ninstall -D -m644 xdelta3.1 $out/share/man/man1/xdelta3.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binary differential compression in VCDIFF (RFC 3284) format",
         longDescription: "xdelta is a command line program for delta encoding, which generates two\nfile differences. This is similar to diff and patch, but it is targeted\nfor binary files and does not generate human readable output.\n",
         homepage: "https://github.com/jmacd/xdelta",

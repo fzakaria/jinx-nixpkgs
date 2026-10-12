@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const lua = nix.arg($, "lua");
   return (self) => (() => {
     const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
-    const buildLuaApplication = (args_1) => nix.app(buildLuarocksPackage, nix.thunk(() => nix.update({ __proto__: pos$1, namePrefix: "" }, args_1)));
+    const buildLuaApplication = (args_1) => nix.app(buildLuarocksPackage, nix.thunk(() => nix.update({ [nix.POS]: pos$1, namePrefix: "" }, args_1)));
     const buildLuarocksPackage = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/interpreters/lua-5/build-luarocks-package.nix"), nix.thunk(() => ({}))))));
     const luaLib = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/lib.nix"), nix.thunk(() => ({}))));
     const buildLuaPackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/generic"), nix.thunk(() => ({}))));
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
           const lua_2 = nix.arg($_1, "lua");
           const lib_1 = nix.arg($_1, "lib");
           return nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pname: "awesome-wm-widgets",
               version: "0-unstable-2024-02-15",
               src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   owner: "streetturtle",
                   repo: "awesome-wm-widgets",
                   rev: "2a27e625056c50b40b1519eed623da253d36cc27",
@@ -93,7 +93,7 @@ cp -r $src/* $target
 runHook postInstall
 `),
               meta: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Widgets for Awesome window manager",
                 homepage: "https://github.com/streetturtle/awesome-wm-widgets",
                 license: nix.thunk(() => nix.sel(lib_1, "licenses", "mit")),
@@ -113,18 +113,18 @@ runHook postInstall
           const linux_pam = nix.arg($_1, "linux-pam");
           const openpam = nix.arg($_1, "openpam");
           return nix.app(buildLuaPackage_1, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pname: "lua-pam",
               version: "unstable-2015-07-03",
               src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   owner: "devurandom",
                   repo: "lua-pam",
                   rev: "3818ee6346a976669d74a5cbc2a83ad2585c5953",
                   hash: "sha256-YlMZ5mM9Ij/9yRmgA0X1ahYVZMUx8Igj5OBvAMskqTg=",
                   fetchSubmodules: true,
                 })))),
-              env: nix.thunk(() => ({ __proto__: pos$6, LUA_LIBS: "-llua" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$6, LUA_LIBS: "-llua" })),
               buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [linux_pam])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [openpam])))),
               installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -133,7 +133,7 @@ install -Dm755 pam.so $out/lib/lua/${nix.sel(lua_1, "luaversion")}/pam.so
 runHook postInstall
 `),
               meta: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 broken: nix.thunk(() => (nix.asBool(nix.app(luaAtLeast, "5.4")) || nix.asBool(isLuaJIT))),
                 description: "Lua module for PAM authentication",
                 homepage: "https://github.com/devurandom/lua-pam",
@@ -152,7 +152,7 @@ runHook postInstall
               const pname = "lua-resty-core";
               const version = "0.1.34rc3";
               const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   owner: "openresty",
                   repo: "lua-resty-core",
                   rev: nix.thunk(() => nix.str`v${version}`),
@@ -160,13 +160,13 @@ runHook postInstall
                 }))));
               const propagatedBuildInputs = nix.thunk(() => [lua_resty_lrucache]);
               const meta = nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "New FFI-based API for lua-nginx-module",
                 homepage: "https://github.com/openresty/lua-resty-core",
                 license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
                 maintainers: [],
               }));
-              return { __proto__: pos$11, pname, version, src, propagatedBuildInputs, meta };
+              return { [nix.POS]: pos$11, pname, version, src, propagatedBuildInputs, meta };
             })()));
         })(), formals$4), nix.thunk(() => ({}))));
       const lua_resty_lrucache = nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
@@ -176,20 +176,20 @@ runHook postInstall
               const pname = "lua-resty-lrucache";
               const version = "0.15";
               const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   owner: "openresty",
                   repo: "lua-resty-lrucache",
                   rev: nix.thunk(() => nix.str`v${version}`),
                   sha256: "sha256-G2l4Zo9Xm/m4zRfxrgzEvRE5LMO+UuX3kd7FwlCnxDA=",
                 }))));
               const meta = nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "Lua-land LRU Cache based on LuaJIT FFI",
                 homepage: "https://github.com/openresty/lua-resty-lrucache",
                 license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
                 maintainers: [],
               }));
-              return { __proto__: pos$14, pname, version, src, meta };
+              return { [nix.POS]: pos$14, pname, version, src, meta };
             })()));
         })(), formals$5), nix.thunk(() => ({}))));
       const luv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/luv"), nix.thunk(() => ({}))));
@@ -203,7 +203,7 @@ runHook postInstall
               const pname = "luxio";
               const version = "13";
               const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   url: nix.thunk(() => nix.str`https://git.gitano.org.uk/luxio.git/snapshot/luxio-luxio-${version}.tar.bz2`),
                   sha256: "1hvwslc25q7k82rxk461zr1a2041nxg7sn3sw3w0y5jxf0giz2pz",
                 }))));
@@ -217,7 +217,7 @@ runHook postInstall
 );
 `);
               const meta = nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
                 description: "Lightweight UNIX I/O and POSIX binding for Lua",
                 homepage: "https://www.gitano.org.uk/luxio/",
@@ -229,7 +229,7 @@ runHook postInstall
                 platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
               }));
               return {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 pname,
                 version,
                 src,
@@ -240,10 +240,10 @@ runHook postInstall
               };
             })()));
         })(), formals$6), nix.thunk(() => ({}))));
-      const nfd = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/nfd"), nix.thunk(() => ({ __proto__: pos$18, zenity: nix.thunk(() => nix.attr(pkgs, "zenity")) }))));
-      const readline = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/readline"), nix.thunk(() => ({ __proto__: pos$19, readline: nix.thunk(() => nix.attr(pkgs, "readline")) }))));
+      const nfd = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/nfd"), nix.thunk(() => ({ [nix.POS]: pos$18, zenity: nix.thunk(() => nix.attr(pkgs, "zenity")) }))));
+      const readline = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/lua-modules/readline"), nix.thunk(() => ({ [nix.POS]: pos$19, readline: nix.thunk(() => nix.attr(pkgs, "readline")) }))));
       return {
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         luaPackages,
         luaLib: luaLib_1,
         getLuaPath,

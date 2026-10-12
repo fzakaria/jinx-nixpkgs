@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["aarch64-linux", "x86_64-linux"]);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    __proto__: pos$2,
-    config: nix.thunk(() => ({ __proto__: pos$1, allowAliases: false, allowUnfree: false, inHydra: true })),
+    [nix.POS]: pos$2,
+    config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false, allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
   const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,
     }))));
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       return nix.app(optionals, nix.thunk(() => nix.sel(res, "success")), nix.thunk(() => nix.sel(res, "value")));
     })()));
   const jobs = nix.thunk(() => nix.update({
-    __proto__: pos$7,
-    "pkgs-lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs-lib/tests")), nix.thunk(() => ({ __proto__: pos$4, pkgs: pkgs })))),
+    [nix.POS]: pos$7,
+    "pkgs-lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs-lib/tests")), nix.thunk(() => ({ [nix.POS]: pos$4, pkgs: pkgs })))),
     tested: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "python-tested",
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Release-critical packages from the python package sets",
         })),
         constituents: nix.thunk(() => [

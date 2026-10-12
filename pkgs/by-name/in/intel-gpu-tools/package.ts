@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const xmlrpc_c = nix.arg($, "xmlrpc_c");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "intel-gpu-tools",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "drm",
           repo: "igt-gpu-tools",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs lib man scripts tests\n",
       hardeningDisable: nix.thunk(() => ["bindnow"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         homepage: "https://drm.pages.freedesktop.org/igt-gpu-tools/",
         description: "Tools for development and testing of the Intel DRM driver",

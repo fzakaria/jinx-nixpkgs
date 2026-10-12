@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const mozcdic_ut_sudachidict = nix.arg($, "mozcdic-ut-sudachidict");
   const withIbus = nix.argOr($, "withIbus", () => false);
   return nix.app(nix.sel(mozc, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withIbus: withIbus,
       dictionaries: nix.thunk(() => [
         mozcdic_ut_alt_cannadic,

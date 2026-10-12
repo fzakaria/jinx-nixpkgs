@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const markup = nix.arg($, "markup");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lambdasoup",
       version: "1.1.1",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aantron",
           repo: "lambdasoup",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Functional HTML scraping and rewriting with CSS in OCaml",
         homepage: "https://aantron.github.io/lambdasoup/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

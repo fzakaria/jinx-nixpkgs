@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keybase",
       version: "6.6.3",
       modRoot: "go",
       subPackages: nix.thunk(() => ["kbnm", "keybase"]),
       dontRenameImports: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keybase",
           repo: "client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths-keybase.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gpg: nix.thunk(() => nix.str`${gnupg}/bin/gpg`),
             gpg2: nix.thunk(() => nix.str`${gnupg}/bin/gpg2`),
           })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["production"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.keybase.io/",
         description: "Keybase official command-line utility and service",
         mainProgram: "keybase",

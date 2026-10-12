@@ -32,68 +32,68 @@ export default nix.lambda((args) => (() => {
   const domain = "whatever.example.com";
   const password = "false;foo;exit;withspecialcharacters";
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "iodine",
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           networking: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             firewall: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               allowedUDPPorts: nix.thunk(() => [53n]),
               trustedInterfaces: nix.thunk(() => ["dns0"]),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             kernel: nix.thunk(() => ({
-              __proto__: pos$4,
-              sysctl: nix.thunk(() => ({ __proto__: pos$3, "net.ipv4.ip_forward": 1n, "net.ipv6.ip_forward": 1n })),
+              [nix.POS]: pos$4,
+              sysctl: nix.thunk(() => ({ [nix.POS]: pos$3, "net.ipv4.ip_forward": 1n, "net.ipv6.ip_forward": 1n })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             iodine: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               server: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: true,
                 ip: "10.53.53.1/24",
                 passwordFile: nix.thunk(() => nix.str`${nix.builtins.toFile("password", password)}`),
                 domain: domain,
               })),
             })),
-            openssh: nix.thunk(() => ({ __proto__: pos$8, enable: true, openFirewall: false })),
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, openFirewall: false })),
           })),
         };
       })(), formals$2),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             iodine: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               clients: nix.thunk(() => ({
-                __proto__: pos$12,
-                testClient: nix.thunk(() => ({ __proto__: pos$11, passwordFile: "/root/pw", relay: "server", server: domain })),
+                [nix.POS]: pos$12,
+                testClient: nix.thunk(() => ({ [nix.POS]: pos$11, passwordFile: "/root/pw", relay: "server", server: domain })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               rules: nix.thunk(() => [nix.thunk(() => nix.str`f /root/pw 0666 root root - ${password}`)]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nagiosPluginsOfficial"))]),
           })),
         };

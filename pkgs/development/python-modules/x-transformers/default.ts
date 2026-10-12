@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x-transformers",
       version: "2.16.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lucidrains",
           repo: "x-transformers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_up"]))),
       pythonImportsCheck: nix.thunk(() => ["x_transformers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Concise but fully-featured transformer",
         longDescription: "A simple but complete full-attention transformer with a set of promising experimental features from various papers.\n",
         homepage: "https://github.com/lucidrains/x-transformers",

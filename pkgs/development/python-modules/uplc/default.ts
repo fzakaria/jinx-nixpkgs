@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpShin",
           repo: "uplc",
           tag: version,
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cbor2, "withCExtensions"))), "substituteInPlace uplc/ast.py --replace-fail 'from _cbor2' 'from cbor2'\n"));
       const pythonImportsCheck = nix.thunk(() => ["uplc"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          withoutCExtensions: nix.thunk(() => nix.app(nix.sel(uplc, "override"), nix.thunk(() => ({ __proto__: pos$2, cbor2: cbor2WithoutCExtensions })))),
+          [nix.POS]: pos$3,
+          withoutCExtensions: nix.thunk(() => nix.app(nix.sel(uplc, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cbor2: cbor2WithoutCExtensions })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python implementation of untyped plutus language core",
         homepage: "https://github.com/OpShin/uplc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "opshin",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

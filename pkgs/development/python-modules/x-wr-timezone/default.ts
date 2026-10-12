@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niccokunzmann",
           repo: "x-wr-timezone",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PATH=$out/bin:$PATH\n";
       const pythonImportsCheck = nix.thunk(() => ["x_wr_timezone"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/niccokunzmann/x-wr-timezone/blob/${nix.sel(src, "tag")}/README.rst#changelog`),
         description: "Convert calendars using X-WR-TIMEZONE to standard ones",
         homepage: "https://github.com/niccokunzmann/x-wr-timezone",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

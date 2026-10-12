@@ -68,40 +68,40 @@ export default nix.lambda((args) => (() => {
     const webuiPort = nix.argOr($_1, "webuiPort", () => 0n);
     const nodeSettings = nix.argOr($_1, "nodeSettings", () => ({}));
     return nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           openssh: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$1, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$1, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pam: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
-              sshd: nix.thunk(() => ({ __proto__: pos$4, allowNullPassword: true })),
+              [nix.POS]: pos$5,
+              sshd: nix.thunk(() => ({ [nix.POS]: pos$4, allowNullPassword: true })),
             })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           forwardPorts: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(sshPort, 0n)), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$8, port: sshPort })),
-                guest: nix.thunk(() => ({ __proto__: pos$9, port: 22n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$8, port: sshPort })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$9, port: 22n })),
               })),
             ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(webuiPort, 0n)), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$11, port: webuiPort })),
-                guest: nix.thunk(() => ({ __proto__: pos$12, port: webuiPort })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$11, port: webuiPort })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$12, port: webuiPort })),
               })),
             ])))),
         })),
@@ -111,45 +111,45 @@ export default nix.lambda((args) => (() => {
     const CURRENCY = "KUDOS";
     const FIAT_CURRENCY = "CHF";
     const nodes = nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       exchange: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return nix.app(mkNode, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             sshPort: 1111n,
             webuiPort: 8081n,
             nodeSettings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               services: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 taler: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    taler: nix.thunk(() => ({ __proto__: pos$16, CURRENCY: CURRENCY })),
+                    [nix.POS]: pos$17,
+                    taler: nix.thunk(() => ({ [nix.POS]: pos$16, CURRENCY: CURRENCY })),
                   })),
                   includes: nix.thunk(() => [
                     nix.path(here, "../conf/taler-accounts.conf"),
                     "/etc/taler/secrets/exchange-account.secret.conf",
                   ]),
                   exchange: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     enable: true,
                     debug: true,
                     openFirewall: true,
                     denominationConfig: nix.thunk(() => nix.app(nix.sel(lib_1, "readFile"), nix.path(here, "../conf/taler-denominations.conf"))),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       exchange: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         CURRENCY: CURRENCY,
                         MASTER_PUBLIC_KEY: "2TQSTPFZBC2MC4E52NHPA050YXYG02VC3AB50QESM6JX1QJEYVQ0",
                         BASE_URL: "http://exchange:8081/",
                       })),
                       "exchange-offline": nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         MASTER_PRIV_FILE: nix.thunk(() => nix.str`${nix.path(here, "../conf/private.key")}`),
                       })),
                     })),
@@ -163,33 +163,33 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const config = nix.arg($_1, "config");
         return nix.app(mkNode, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             sshPort: 2222n,
             webuiPort: 8082n,
             nodeSettings: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               services: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 libeufin: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   bank: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     enable: true,
                     debug: true,
                     openFirewall: true,
                     createLocalDatabase: true,
                     initialAccounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         username: "exchange",
                         password: "exchange",
                         name: "Exchange",
                       })),
                     ]),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       "libeufin-bank": nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         WIRE_TYPE: "x-taler-bank",
                         X_TALER_BANK_PAYTO_HOSTNAME: "bank:8082",
                         BASE_URL: "http://bank:8082/",
@@ -206,15 +206,15 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   nexus: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     enable: true,
                     debug: true,
                     openFirewall: true,
                     createLocalDatabase: true,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       "nexus-ebics": nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         CURRENCY: FIAT_CURRENCY,
                         HOST_BASE_URL: "https://isotest.postfinance.ch/ebicsweb/ebicsweb",
                         BANK_DIALECT: "postfinance",
@@ -238,28 +238,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const config = nix.arg($_1, "config");
         return nix.app(mkNode, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             sshPort: 3333n,
             webuiPort: 8083n,
             nodeSettings: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 taler: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$38,
-                    taler: nix.thunk(() => ({ __proto__: pos$37, CURRENCY: CURRENCY })),
+                    [nix.POS]: pos$38,
+                    taler: nix.thunk(() => ({ [nix.POS]: pos$37, CURRENCY: CURRENCY })),
                   })),
                   merchant: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     enable: true,
                     debug: true,
                     openFirewall: true,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       "merchant-exchange-test": nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         EXCHANGE_BASE_URL: "http://exchange:8081/",
                         MASTER_KEY: "2TQSTPFZBC2MC4E52NHPA050YXYG02VC3AB50QESM6JX1QJEYVQ0",
                         CURRENCY: CURRENCY,
@@ -275,19 +275,19 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         const pkgs = nix.arg($_1, "pkgs");
         return nix.app(mkNode, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             sshPort: 4444n,
             nodeSettings: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               environment: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "taler-wallet-core"))]),
               })),
             })),
           })));
       })(), formals$6),
     }));
-    return { __proto__: pos$50, CURRENCY, FIAT_CURRENCY, nodes };
+    return { [nix.POS]: pos$50, CURRENCY, FIAT_CURRENCY, nodes };
   })();
 })(), formals$1);
 //# sourceMappingURL=nodes.ts.map

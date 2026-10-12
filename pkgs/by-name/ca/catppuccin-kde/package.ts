@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kde";
       const version = "0.2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "kde",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/GiggleSquid/catppuccin-kde/commit/f0291c17d2e4711b0d0aac00e3dbb94ee89b4a82.patch",
             hash: "sha256-iD+mEX2LRFmrCwLr3VAs6kzcTuZ231TKDn+U188iOss=",
           })))),
@@ -68,7 +68,7 @@ done;
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soothing pastel theme for KDE",
         homepage: "https://github.com/catppuccin/kde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -80,7 +80,7 @@ runHook postInstall
           ];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, patches, installPhase, meta };
+      return { [nix.POS]: pos$4, pname, version, src, patches, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

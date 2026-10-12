@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const fetchurl = nix.arg($, "fetchurl");
   const cuddTarball = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/ivmai/cudd/archive/refs/tags/cudd-3.0.0.tar.gz",
       hash: "sha256-X+FFBBxZRonm589M1iPV8rfDYmFwi+jJpyrtcs9nrM4=",
     }))));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cudd",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "git.frama-c.com",
           owner: "pub/codex",
           repo: "cudd.ml",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: nix.thunk(() => nix.str`cp ${cuddTarball} $sourceRoot/cudd/cudd.tar.gz
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal cudd bindings",
         homepage: "https://git.frama-c.com/pub/codex/cudd.ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

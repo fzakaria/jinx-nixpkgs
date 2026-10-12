@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const twofish = nix.arg($, "twofish");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyjks",
       version: "20.0.0",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-A3jOwV+xGy7Se6VNrZ/Zh9SOb2L0n8/xOPX3qLMSsEQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pyasn1_modules, pycryptodomex, twofish]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-Python Java Keystore (JKS) library",
         changelog: nix.thunk(() => nix.str`https://github.com/kurtbrose/pyjks/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         homepage: "https://github.com/kurtbrose/pyjks",

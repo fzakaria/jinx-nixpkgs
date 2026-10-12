@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scaleft";
       const version = "1.80.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dist.scaleft.com/repos/rpm/stable/centos/9/x86_64/1.80.1/scaleft-client-tools-${version}-1.x86_64.rpm`),
           sha256: "sha256-QrkqAgkplFF6Tp6FWKb2TJaqeOw8ec4zd9pymDP2IyY=",
         }))));
@@ -46,11 +46,11 @@ chmod +x $out/bin/sft
 patchShebangs $out
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: scaleft,
               command: "sft -v",
               version: nix.thunk(() => nix.str`sft version ${version}`),
@@ -58,7 +58,7 @@ patchShebangs $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Zero Trust software which you can use to secure your internal servers and services",
         homepage: "https://www.scaleft.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -74,7 +74,7 @@ patchShebangs $out
         mainProgram: "sft",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

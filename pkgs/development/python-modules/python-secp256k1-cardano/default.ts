@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const secp256k1 = nix.arg($, "secp256k1");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-secp256k1-cardano",
       version: "0.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpShin",
           repo: "python-secp256k1",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export INCLUDE_DIR=${secp256k1}/include
 export LIB_DIR=${secp256k1}/lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OpShin/python-secp256k1",
         description: "Fork of python-secp256k1, fixing the commit hash of libsecp256k1 to a Cardano compatible version",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

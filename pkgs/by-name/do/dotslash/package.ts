@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dotslash = nix.arg($, "dotslash");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dotslash",
       version: "0.5.7",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VFesGum2xjknUuCwIojntdst5dmhvZb78ejJ2OG1FVI=",
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+FWDeR4AcFSFz0gGQ8VMvX68/F0yEm25cNfHeedqsWE=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: dotslash })))),
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dotslash })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://dotslash-cli.com",
         description: "Simplified multi-platform executable deployment",
         longDescription: "DotSlash is a command-line tool that is designed to facilitate fetching an\nexecutable, verifying it, and then running it. It maintains a local cache\nof fetched executables so that subsequent invocations are fast.\n\nDotSlash helps keeps heavyweight binaries out of your repo while ensuring\nyour developers seamlessly get the tools they need, ensuring consistent\nbuilds across platforms.\n",

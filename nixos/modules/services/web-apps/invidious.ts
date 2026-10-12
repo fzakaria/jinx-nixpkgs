@@ -92,14 +92,14 @@ export default nix.lambda((args) => (() => {
   const generatedHmacKeyFile = "/var/lib/invidious/hmac_key";
   const generateHmac = nix.thunk(() => nix.eq(nix.sel(cfg, "hmacKeyFile"), null));
   const commonInvidiousServiceConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Invidious (An alternative YouTube front-end)",
     wants: nix.thunk(() => ["network-online.target"]),
     after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
     requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
     wantedBy: nix.thunk(() => ["multi-user.target"]),
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       RestartSec: "2s",
       DynamicUser: true,
       User: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.gt(nix.sel(cfg, "serviceScale"), 1n)))), "invidious")),
@@ -133,7 +133,7 @@ exec ${nix.sel(cfg, "package")}/bin/invidious
 `);
   const mkInvidiousService = (scaleIndex) => nix.app(nix.sel(lib, "foldl'"), nix.thunk(() => nix.sel(lib, "recursiveUpdate")), commonInvidiousServiceConfig, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(scaleIndex, 0n)), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           preStart: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), generateHmac, nix.thunk(() => nix.str`if [[ ! -e "${generatedHmacKeyFile}" ]]; then
   ${nix.sel(pkgs, "pwgen")}/bin/pwgen 20 1 > "${generatedHmacKeyFile}"
   chmod 0600 "${generatedHmacKeyFile}"
@@ -141,31 +141,31 @@ fi
 `))),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.gt(scaleIndex, 0n)), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           after: nix.thunk(() => nix.concat(nix.sel(commonInvidiousServiceConfig, "after"), ["invidious.service"])),
           wants: nix.thunk(() => nix.concat(nix.sel(commonInvidiousServiceConfig, "wants"), ["invidious.service"])),
         })))),
-      nix.thunk(() => ({ __proto__: pos$5, script: nix.thunk(() => nix.app(configScript, scaleIndex)) })),
+      nix.thunk(() => ({ [nix.POS]: pos$5, script: nix.thunk(() => nix.app(configScript, scaleIndex)) })),
     ]));
   const serviceConfig = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     systemd: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.genList((scaleIndex) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: nix.thunk(() => nix.add("invidious", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.gt(scaleIndex, 0n)), nix.thunk(() => nix.str`-${nix.builtins.toString(scaleIndex)}`)))),
             value: nix.thunk(() => nix.app(mkInvidiousService, scaleIndex)),
           }), nix.thunk(() => nix.sel(cfg, "serviceScale")))))),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       invidious: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         settings: nix.thunk(() => nix.update({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           check_tables: true,
           db: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "24.05")) ? "invidious" : "kemal")))),
             dbname: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "invidious")),
             port: nix.thunk(() => nix.sel(cfg, "database", "port")),
@@ -173,45 +173,45 @@ fi
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "host"), null)), "")),
           })),
           host_binding: nix.thunk(() => nix.sel(cfg, "address")),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)), nix.thunk(() => ({ __proto__: pos$10, domain: nix.thunk(() => nix.attr(cfg, "domain")) }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)), nix.thunk(() => ({ [nix.POS]: pos$10, domain: nix.thunk(() => nix.attr(cfg, "domain")) }))))),
       })),
     })),
     assertions: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
         message: "If database host isn't null, database password needs to be set",
       })),
       nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertion: nix.thunk(() => nix.ge(nix.sel(cfg, "serviceScale"), 1n)),
         message: "Service can't be scaled below one instance",
       })),
     ]),
   }));
   const localDatabaseConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "db", "user"), nix.sel(cfg, "settings", "db", "dbname"))),
           message: "For local automatic database provisioning (services.invidious.database.createLocally == true)\nto  work, the username used to connect to PostgreSQL must match the database name, that is\nservices.invidious.settings.db.user must match services.invidious.settings.db.dbname.\nThis is the default since NixOS 24.05. For older systems, it is normally safe to manually set\nthe user to \"invidious\" as the new user will be created with permissions\nfor the existing database. `REASSIGN OWNED BY kemal TO invidious;` may also be needed, it can be\nrun as `sudo -u postgres env psql --user=postgres --dbname=invidious -c 'reassign OWNED BY kemal to invidious;'`.\n",
         })),
       ]),
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         invidious: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           database: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), null)),
           })),
         })),
         postgresql: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: true,
           ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: nix.thunk(() => nix.sel(cfg, "settings", "db", "user")),
               ensureDBOwnership: true,
             })))),
@@ -220,13 +220,13 @@ fi
       })),
     }))));
   const ytproxyConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "http3-ytproxy", "enable")), nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       systemd: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           "http3-ytproxy": nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             description: "HTTP3 ytproxy for Invidious",
             wants: nix.thunk(() => ["network-online.target"]),
             after: nix.thunk(() => ["network-online.target"]),
@@ -235,7 +235,7 @@ fi
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytproxy", "package")))};
 `),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               RestartSec: "2s",
               DynamicUser: true,
               User: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => nix.sel(config, "services", "nginx", "user")))),
@@ -246,16 +246,16 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         nginx: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "domain"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   "~ (^/videoplayback|^/vi/|^/ggpht/|^/sb/)": nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     proxyPass: "http://unix:/run/http3-ytproxy/socket/http-proxy.sock",
                   })),
                 })),
@@ -265,23 +265,23 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
       })),
     }))));
   const sigHelperConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "sig-helper", "enable")), nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         invidious: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           settings: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             signature_server: nix.thunk(() => nix.str`tcp://${nix.sel(cfg, "sig-helper", "listenAddress")}`),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           "invidious-sig-helper": nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             script: nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "sig-helper", "package")))} --tcp "${nix.sel(cfg, "sig-helper", "listenAddress")}"
 `),
             wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -289,7 +289,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
             wants: nix.thunk(() => ["network-online.target"]),
             after: nix.thunk(() => ["network-online.target"]),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               User: "invidious-sig-helper",
               DynamicUser: true,
               Restart: "always",
@@ -315,13 +315,13 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
       })),
     }))));
   const nginxConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       services: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         invidious: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           settings: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             https_only: nix.thunk(() => nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "domain")), "forceSSL")),
             external_port: 80n,
           })),
@@ -329,15 +329,15 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
         nginx: nix.thunk(() => (() => {
           const ip = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "address"), "0.0.0.0")) ? "127.0.0.1" : nix.sel(cfg, "address")));
           return {
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     proxyPass: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "serviceScale"), 1n)) ? nix.str`http://${ip}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}` : "http://upstream-invidious")),
                   })),
                 })),
@@ -346,11 +346,11 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
               }))],
             ])),
             upstreams: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.gt(nix.sel(cfg, "serviceScale"), 1n)), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 "upstream-invidious": nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   servers: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.genList((scaleIndex) => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         name: nix.thunk(() => nix.str`${ip}:${nix.builtins.toString(nix.thunk(() => nix.add(nix.sel(cfg, "port"), scaleIndex)))}`),
                         value: nix.thunk(() => ({})),
                       }), nix.thunk(() => nix.sel(cfg, "serviceScale")))))),
@@ -361,88 +361,88 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
       })),
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)),
           message: "To use services.invidious.nginx, you need to set services.invidious.domain",
         })),
       ]),
     }))));
   return {
-    __proto__: pos$75,
+    [nix.POS]: pos$75,
     options: nix.thunk(() => ({
-      __proto__: pos$74,
+      [nix.POS]: pos$74,
       services: nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         invidious: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Invidious")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "invidious", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "The settings Invidious should use.\n\nSee [config.example.yml](https://github.com/iv-org/invidious/blob/master/config/config.example.yml) for a list of all possible options.\n",
             })))),
           hmacKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "A path to a file containing the `hmac_key`. If `null`, a key will be generated automatically on first\nstart.\n\nIf non-`null`, this option overrides any `hmac_key` specified in {option}`services.invidious.settings` or\nvia {option}`services.invidious.extraSettingsFile`.\n",
             })))),
           extraSettingsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "A file including Invidious settings.\n\nIt gets merged with the settings specified in {option}`services.invidious.settings`\nand can be used to store secrets like `hmac_key` outside of the nix store.\n",
             })))),
           serviceScale: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 1n,
               description: "How many invidious instances to run.\n\nSee <https://docs.invidious.io/improve-public-instance/#2-multiple-invidious-processes> for more details\non how this is intended to work. All instances beyond the first one have the options `channel_threads`\nand `feed_threads` set to 0 to avoid conflicts with multiple instances refreshing subscriptions. Instances\nwill be configured to bind to consecutive ports starting with {option}`services.invidious.port` for the\nfirst instance.\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "The FQDN Invidious is reachable on.\n\nThis is used to configure nginx and for building absolute URLs.\n",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "nginx", "enable")) ? "127.0.0.1" : "0.0.0.0")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.invidious.nginx.enable then \"127.0.0.1\" else \"0.0.0.0\"")),
               description: "The IP address Invidious should bind to.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3000n,
               description: "The port Invidious should listen on.\n\nTo allow access from outside,\nyou can use either {option}`services.invidious.nginx`\nor add `config.services.invidious.port` to {option}`networking.firewall.allowedTCPPorts`.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to create a local database with PostgreSQL.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "The database host Invidious should use.\n\nIf `null`, the local unix socket is used. Otherwise\nTCP is used.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.postgresql.settings.port")),
                 description: "The port of the database Invidious should use.\n\nDefaults to the the default postgresql port.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 apply: nix.thunk(() => nix.app(nix.sel(lib, "mapNullable"), nix.builtins.toString)),
                 default: null,
@@ -450,18 +450,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to configure nginx as a reverse proxy for Invidious.\n\nIt serves it under the domain specified in {option}`services.invidious.settings.domain` with enabled TLS and ACME.\nFurther configuration can be done through {option}`services.nginx.virtualHosts.${config.services.invidious.settings.domain}.*`,\nwhich can also be used to disable AMCE and TLS.\n",
               })))),
           })),
           "http3-ytproxy": nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable http3-ytproxy for faster loading of images and video playback.\n\nIf {option}`services.invidious.nginx.enable` is used, nginx will be configured automatically. If not, you\nneed to configure a reverse proxy yourself according to\n<https://docs.invidious.io/improve-public-instance/#3-speed-up-video-playback-with-http3-ytproxy>.\n",
@@ -469,16 +469,16 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "http3-ytpro
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "http3-ytproxy", nix.thunk(() => ({})))),
           })),
           "sig-helper": nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable and configure inv-sig-helper to emulate the youtube client's javascript. This is required\nto make certain videos playable.\n\nThis will download and run completely untrusted javascript from youtube! While this service is sandboxed,\nthis may still be an issue!\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "inv-sig-helper", nix.thunk(() => ({})))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1:2999",
                 description: "The IP address/port where inv-sig-helper should listen.\n",

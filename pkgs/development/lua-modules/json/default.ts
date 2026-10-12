@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "json";
       const version = "0.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rxi",
           repo: "json.lua",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +32,12 @@ cp -r json.lua $out/share/lua/${nix.sel(lua, "luaversion")}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rxi/json.lua",
         description: "A lightweight JSON library for Lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontBuild, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontBuild, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

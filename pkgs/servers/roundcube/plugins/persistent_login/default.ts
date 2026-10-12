@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const pname = "persistent_login";
       const version = "5.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfreiholz",
           repo: pname,
           rev: nix.thunk(() => nix.str`version-${version}`),
           sha256: "1qf7q1sypwa800pgxa3bg6ngcpkf4dqgg6jqx8cnd6cb7ikbfldb",
         }))));
-      return { __proto__: pos$2, pname, version, src };
+      return { [nix.POS]: pos$2, pname, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

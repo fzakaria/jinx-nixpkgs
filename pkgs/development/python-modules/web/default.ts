@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "web.py";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "5ce684caa240654cae5950da8b4b7bc178812031e08f990518d072bd44ab525e",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         psycopg2,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Makes web apps",
         longDescription: "Think about the ideal way to write a web app.\nWrite the code to make it happen.\n",
         homepage: "https://webpy.org/",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

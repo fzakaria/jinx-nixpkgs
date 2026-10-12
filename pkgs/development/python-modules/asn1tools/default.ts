@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.167.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eerimoq",
           repo: "asn1tools",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [bitstruct, pyparsing]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         shell: nix.thunk(() => [prompt_toolkit]),
         cache: nix.thunk(() => [diskcache]),
       }));
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "test_command_line_generate_rust_source_uper",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ASN.1 parsing, encoding and decoding",
         homepage: "https://github.com/eerimoq/asn1tools",
         changelog: nix.thunk(() => nix.str`https://github.com/eerimoq/asn1tools/releases/tag/${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "asn1tools",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

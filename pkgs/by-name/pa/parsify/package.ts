@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const pname = "parsify";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/parsify-dev/desktop/releases/download/v${version}/Parsify-${version}-linux-x86_64.AppImage`),
           hash: "sha256-ltWqRW+cBvuUJzhya62WsBY5zqIua9xhilxfd9gr24A=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`install -m 444 -D ${contents}/@parsifydesktop.desktop -t $out/share/applications
 
 substituteInPlace $out/share/applications/@parsifydesktop.desktop \\
@@ -32,7 +32,7 @@ cp -r ${contents}/usr/share/* $out/share
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Next generation notepad-based calculator, built with extendibility and privacy in mind",
         homepage: "https://parsify.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -43,7 +43,7 @@ cp -r ${contents}/usr/share/* $out/share
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "parsify",
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

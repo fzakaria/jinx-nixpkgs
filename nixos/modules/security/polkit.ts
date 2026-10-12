@@ -59,31 +59,31 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "security", "polkit"));
   const iniFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["security", "polkit", "debug"]), "Use security.polkit.extraArgs instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       security: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         polkit: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(mkEnableOption, "polkit")),
           enablePkexecWrapper: nix.thunk(() => nix.app(mkEnableOption, "the setuid pkexec wrapper")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "polkit", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Options for polkitd.\nSee {manpage}`polkitd.conf(5)` for available options.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.sel(iniFmt, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     Polkitd: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       ExpirationSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           description: "Expiration timeout of authenticated sesssions.",
                           type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                           default: 300n,
@@ -93,20 +93,20 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ["--no-debug", "--log-level=notice"]),
               description: "List of arguments to pass to the polkitd executable.\n\n::: {.note}\nTo see debug logs you need to negate the default `--no-debug` setting.\n:::\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               example: "/* Log authorization checks. */\npolkit.addRule(function(action, subject) {\n  // Make sure to negate --no-debug in services.polkit.extraArgs: { security.polkit.extraArgs = [ \"--log-level=notice\" ]; }\n  polkit.log(\"user \" +  subject.user + \" is attempting action \" + action.id + \" from PID \" + subject.pid);\n});\n\n/* Allow any local user to do anything (dangerous!). */\npolkit.addRule(function(action, subject) {\n  if (subject.local) return \"yes\";\n});\n",
               description: "Any polkit rules to be added to config (in JavaScript ;-). See:\n<https://www.freedesktop.org/software/polkit/docs/latest/polkit.8.html#polkit-rules>\n",
             })))),
           adminIdentities: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -119,18 +119,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package", "bin")),
             nix.thunk(() => nix.sel(cfg, "package", "out")),
           ]),
           pathsToLink: nix.thunk(() => ["/share/polkit-1"]),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "polkit-1/rules.d/10-nixos.rules": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               text: nix.thunk(() => nix.str`polkit.addAdminRule(function(action, subject) {
   return [${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map((i) => nix.str`"${i}"`, nix.thunk(() => nix.sel(cfg, "adminIdentities")))))}];
 });
@@ -139,31 +139,31 @@ ${nix.sel(cfg, "extraConfig")}
 `),
             })),
             "polkit-1/polkitd.conf": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               source: nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "polkitd.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           dbus: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "out"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "out"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             polkit: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "path"))]),
               reloadTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "polkit-1/rules.d/10-nixos.rules", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
@@ -173,28 +173,28 @@ ${nix.sel(cfg, "extraConfig")}
               })),
             })),
             "polkit-agent-helper@": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$20, StandardError: "journal" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$20, StandardError: "journal" })),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "security", "pam", "u2f", "enable")), nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       PrivateDevices: false,
                       DeviceAllow: nix.thunk(() => ["/dev/urandom r", "char-hidraw rw"]),
                       ProtectHome: "read-only",
                     })))),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "security", "pam", "yubico", "enable")), nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       PrivateDevices: false,
                       DeviceAllow: nix.thunk(() => ["char-hidraw rw"]),
                     })))),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "fprintd", "enable")), nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       PrivateDevices: false,
                       DeviceAllow: nix.thunk(() => ["char-usb_device rw"]),
                       RestrictAddressFamilies: nix.thunk(() => ["AF_NETLINK"]),
                     })))),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "security", "pam", "zfs", "enable")), nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       PrivateDevices: false,
                       DeviceAllow: nix.thunk(() => ["/dev/zfs rw"]),
                     })))),
@@ -202,20 +202,20 @@ ${nix.sel(cfg, "extraConfig")}
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$28,
-            "polkit-agent-helper": nix.thunk(() => ({ __proto__: pos$27, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$28,
+            "polkit-agent-helper": nix.thunk(() => ({ [nix.POS]: pos$27, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           pam: nix.thunk(() => ({
-            __proto__: pos$31,
-            services: nix.thunk(() => ({ __proto__: pos$30, "polkit-1": nix.thunk(() => ({})) })),
+            [nix.POS]: pos$31,
+            services: nix.thunk(() => ({ [nix.POS]: pos$30, "polkit-1": nix.thunk(() => ({})) })),
           })),
           wrappers: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             pkexec: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: nix.thunk(() => nix.sel(cfg, "enablePkexecWrapper")),
               setuid: true,
               owner: "root",
@@ -225,21 +225,21 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           users: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             polkituser: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "PolKit daemon",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "polkituser")),
               group: "polkituser",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$37, polkituser: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$37, polkituser: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zimward"))];

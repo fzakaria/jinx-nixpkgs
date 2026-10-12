@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bink-player",
       version: "2025.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250602103030if_/https://www.radgametools.com/down/Bink/BinkLinuxPlayer.7z",
           hash: "sha256-A3IDQtdYlIcU2U8uieQI6xe1SvW4BqH+5ZwPYJxr83M=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib")), libGL, libx11]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 BinkPlayer64 -t $out/bin/\ninstall -Dm755 BinkPlayer -t $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Play videos in the Bink format",
         homepage: "https://www.radgametools.com/bnkmain.htm",
         sourceProvenance: nix.thunk(() => (() => {

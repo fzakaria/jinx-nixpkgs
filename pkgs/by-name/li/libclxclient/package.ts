@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libclxclient",
       version: "3.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/clxclient-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "10bq6fy8d3pr1x2x3xx9qhf2hdxrwdgvg843a2y6lx70y1jfj0c5",
         })))),
       buildInputs: nix.thunk(() => [libclthreads, libx11, libxft, xorgproto]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${xorgproto}/include -I${nix.sel(libxft, "dev")}/include`),
       })),
       patchPhase: "cd source\n# use pkg-config instead of pkgcon:\nsed -e 's/pkgconf/pkg-config/g' -i ./Makefile\n# don't run ldconfig:\nsed -e \"/ldconfig/d\" -i ./Makefile\n# make sure it can find clxclient.h:\nsed -e 's/<clxclient.h>/\"clxclient.h\"/' -i ./enumip.cc\n",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "# The Makefile does not create the include directory\nmkdir -p $out/include\n",
       postInstall: "ln $out/lib/libclxclient.so $out/lib/libclxclient.so.3\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zita X11 library",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

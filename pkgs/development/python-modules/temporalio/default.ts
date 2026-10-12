@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.34.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "temporalio",
           repo: "sdk-python",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-gt5X/9R1213hkdc/+J+zwYo3ItCpzNmQQj8t1Uca3WQ=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const cargoRoot = "temporalio/bridge";
       const build_system = nix.thunk(() => [maturin]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PROTOC: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "protobuf")))}`),
       }));
       const dependencies = nix.thunk(() => [nexusrpc, protobuf, types_protobuf, typing_extensions]);
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
         "temporalio.worker",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           temporal: nix.thunk(() => nix.attr(nixosTests, "temporal")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Temporal Python SDK",
         homepage: "https://temporal.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/temporalio/sdk-python/releases/tag/${version}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

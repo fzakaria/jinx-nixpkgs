@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const spacy = nix.arg($, "spacy");
   const spacy_loggers = nix.arg($, "spacy-loggers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spacy-loggers",
       version: "1.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "spacy-loggers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [spacy, pytestCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(spacy_loggers, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(spacy_loggers, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Logging utilities for spaCy",
         homepage: "https://github.com/explosion/spacy-loggers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spacy-loggers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

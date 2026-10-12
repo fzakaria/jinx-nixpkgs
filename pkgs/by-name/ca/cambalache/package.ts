@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const casilda = nix.arg($, "casilda");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cambalache",
       version: "1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "jpu",
           repo: "cambalache",
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
 wrapPythonProgramsIn "$out/${nix.sel(python3, "sitePackages")}/cambalache/priv/merengue" "$out \${pythonPath[*]}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.gnome.org/jpu/cambalache",
         description: "RAD tool for GTK 4 and 3 with data model first philosophy",
         mainProgram: "cambalache",

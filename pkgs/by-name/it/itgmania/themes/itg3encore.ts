@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "itg3encore",
       version: "0-unstable-2026-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DarkBahamut162",
           repo: "itg3encore",
           rev: "b7df288fd9928064772121bffc65babed4b46dd7",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mkdir -p \"$out/itgmania/Themes/ITG3Encore\"\nmv * \"$out/itgmania/Themes/ITG3Encore\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "An upgraded port of ITG3's Encore theme",
         homepage: "https://github.com/DarkBahamut162/itg3encore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

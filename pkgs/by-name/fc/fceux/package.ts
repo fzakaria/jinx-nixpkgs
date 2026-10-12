@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const x264 = nix.arg($, "x264");
   const ___qtVersion = nix.argOr($, "___qtVersion", () => "5");
-  const qtVersionDictionary = nix.thunk(() => ({ __proto__: pos$1, "5": qt5, "6": qt6 }));
+  const qtVersionDictionary = nix.thunk(() => ({ [nix.POS]: pos$1, "5": qt5, "6": qt6 }));
   const from = nix.thunk(() => nix.sel(qtVersionDictionary, nix.key(nix.force(___qtVersion))));
   const qttools = nix.thunk(() => nix.attr(from, "qttools"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(from, "wrapQtAppsHook"));
   nix.assert_(nix.app(nix.sel(lib, "elem"), ___qtVersion, nix.thunk(() => ["5", "6"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fc/fceux/package.nix:28:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fceux",
       version: "2.6.6-unstable-2026-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "TASEmulators",
           repo: "fceux",
           rev: "a62b868e9247c4aafd66f597cdfa8d2609704087",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: "substituteInPlace $out/share/applications/fceux.desktop \\\n  --replace-fail \"/usr/bin/\" \"\" \\\n  --replace-fail \"/usr/share/pixmaps/\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.fceux.com",
         description: "Nintendo Entertainment System (NES) Emulator",
         changelog: nix.thunk(() => nix.str`https://github.com/TASEmulators/fceux/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.txt`),

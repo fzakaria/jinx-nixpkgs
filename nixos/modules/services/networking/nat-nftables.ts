@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const matchIP = nix.thunk(() => (nix.asBool(nix.app(isIPv6, IPPorts)) ? "[[]([0-9a-fA-F:]+)[]]" : "([0-9.]+)"));
     const m = nix.thunk(() => nix.app(nix.sel(nix.builtins, "match"), nix.thunk(() => nix.str`${matchIP}:([0-9-]+)`), IPPorts));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       IP: nix.thunk(() => (nix.asBool(nix.eq(m, null)) ? nix.app(nix.builtins.throw, nix.thunk(() => nix.str`bad ip:ports \`${IPPorts}'`)) : nix.app(nix.lookup(w, "elemAt"), m, 0n))),
       ports: nix.thunk(() => (nix.asBool(nix.eq(m, null)) ? nix.app(nix.builtins.throw, nix.thunk(() => nix.str`bad ip:ports \`${IPPorts}'`)) : nix.app(nix.lookup(w, "elemAt"), m, 1n))),
     };
@@ -98,37 +98,37 @@ chain out {
 `;
   })(), formals$2);
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "extraCommands"), "")),
             message: nix.thunk(() => nix.str`extraCommands is incompatible with the nftables based nat module: ${nix.sel(cfg, "extraCommands")}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "extraStopCommands"), "")),
             message: nix.thunk(() => nix.str`extraStopCommands is incompatible with the nftables based nat module: ${nix.sel(cfg, "extraStopCommands")}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             assertion: nix.thunk(() => nix.eq(nix.sel(config, "networking", "nftables", "rulesetFile"), null)),
             message: "networking.nftables.rulesetFile conflicts with the nat module",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           nftables: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             tables: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "nixos-nat": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 family: "ip",
                 content: nix.thunk(() => nix.app(mkTable, nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     ipVer: "ip",
                     dest: dest,
                     ipSet: ipSet,
@@ -138,11 +138,11 @@ chain out {
                   })))),
               })),
               "nixos-nat6": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableIPv6")), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   family: "ip6",
                   name: "nixos-nat",
                   content: nix.thunk(() => nix.app(mkTable, nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       ipVer: "ip6",
                       dest: destIPv6,
                       ipSet: ipv6Set,
@@ -154,7 +154,7 @@ chain out {
             })),
           })),
           firewall: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             extraForwardRules: nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "networking", "firewall", "filterForward")), nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(ifaceSet, "")), nix.thunk(() => nix.str`iifname { ${ifaceSet} } ${oifExpr} accept comment "from internal interfaces"
 `))}
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(ipSet, "")), nix.thunk(() => nix.str`ip saddr { ${ipSet} } ${oifExpr} accept comment "from internal IPs"

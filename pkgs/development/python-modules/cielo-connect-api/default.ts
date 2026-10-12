@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const aiohttp = nix.arg($, "aiohttp");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cielo-connect-api",
       version: "1.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cielo-connect",
           repo: "cielo-connect-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [aiohttp]),
       pythonImportsCheck: nix.thunk(() => ["cieloconnectapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python API client for Cielo Home devices",
         homepage: "https://github.com/cielo-connect/cielo-connect-api",
         changelog: nix.thunk(() => nix.str`https://github.com/cielo-connect/cielo-connect-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

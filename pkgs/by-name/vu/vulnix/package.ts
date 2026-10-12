@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const ronn = nix.arg($, "ronn");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vulnix",
       version: "1.12.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "vulnix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D -t $doc/share/doc/vulnix README.rst CHANGES.rst\ngzip $doc/share/doc/vulnix/*.rst\ninstall -D -t $man/share/man/man1 doc/vulnix.1\ninstall -D -t $man/share/man/man5 doc/vulnix-whitelist.5\n",
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NixOS vulnerability scanner",
         mainProgram: "vulnix",
         homepage: "https://github.com/nix-community/vulnix",

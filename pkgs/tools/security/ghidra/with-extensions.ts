@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const ghidra = nix.arg($, "ghidra");
-  const ghidra_extensions = nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions.nix"), nix.thunk(() => ({ __proto__: pos$1, ghidra: ghidra }))));
+  const ghidra_extensions = nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ghidra: ghidra }))));
   const allExtensions = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (pkg) => nix.app(nix.sel(lib, "isDerivation"), pkg), ghidra_extensions));
   const withExtensions = (f) => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(ghidra, "pname")}-with-extensions-${nix.app(nix.sel(lib, "getVersion"), ghidra)}`),
       paths: nix.thunk(() => nix.app(f, allExtensions)),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle))),

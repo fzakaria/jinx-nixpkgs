@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "calaos_installer",
       version: "3.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "calaos",
           repo: "calaos_installer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`REVISION=${nix.sel(finalAttrs, "version")}`)]),
       installPhase: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\ncp -a calaos_installer.app $out/Applications\n" : "mkdir -p $out/bin\ncp -a calaos_installer $out/bin\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Calaos Installer, a tool to create calaos configuration",
         mainProgram: "calaos_installer",
         homepage: "https://www.calaos.fr/",

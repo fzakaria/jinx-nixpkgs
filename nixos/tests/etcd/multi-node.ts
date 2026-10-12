@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const etcd = nix.arg($, "etcd");
   const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), cmd);
   const ca_key = nix.thunk(() => nix.app(runWithOpenSSL, "ca-key.pem", "openssl genrsa -out $out 2048"));
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
   const openssl_cnf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "openssl.cnf", "ions = v3_req\ndistinguished_name = req_distinguished_name\n[req_distinguished_name]\n[ v3_req ]\nbasicConstraints = CA:FALSE\nkeyUsage = digitalSignature, keyEncipherment\nextendedKeyUsage = serverAuth, clientAuth\nsubjectAltName = @alt_names\n[alt_names]\nDNS.1 = node1\nDNS.2 = node2\nDNS.3 = node3\nIP.1 = 127.0.0.1\n"));
   const client_openssl_cnf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "client-openssl.cnf", "ions = v3_req\ndistinguished_name = req_distinguished_name\n[req_distinguished_name]\n[ v3_req ]\nbasicConstraints = CA:FALSE\nkeyUsage = digitalSignature, keyEncipherment\nextendedKeyUsage = clientAuth\n"));
   const nodeConfig = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     services: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       etcd: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enable: true,
         package: etcd,
         keyFile: etcd_key,
@@ -83,9 +83,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       variables: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ETCD_CERT_FILE: nix.thunk(() => nix.str`${etcd_client_cert}`),
         ETCD_KEY_FILE: nix.thunk(() => nix.str`${etcd_client_key}`),
         ETCD_CA_FILE: nix.thunk(() => nix.str`${ca_pem}`),
@@ -96,24 +96,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$7,
-      firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [2380n]) })),
+      [nix.POS]: pos$7,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [2380n]) })),
     })),
   }));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "etcd-multi-node",
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       node1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           require: nix.thunk(() => [nodeConfig]),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             etcd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               initialCluster: nix.thunk(() => ["node1=https://node1:2380", "node2=https://node2:2380"]),
               initialAdvertisePeerUrls: nix.thunk(() => ["https://node1:2380"]),
             })),
@@ -123,12 +123,12 @@ export default nix.lambda((args) => (() => {
       node2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           require: nix.thunk(() => [nodeConfig]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             etcd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               initialCluster: nix.thunk(() => ["node1=https://node1:2380", "node2=https://node2:2380"]),
               initialAdvertisePeerUrls: nix.thunk(() => ["https://node2:2380"]),
             })),
@@ -138,12 +138,12 @@ export default nix.lambda((args) => (() => {
       node3: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           require: nix.thunk(() => [nodeConfig]),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             etcd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               initialCluster: nix.thunk(() => [
                 "node1=https://node1:2380",
                 "node2=https://node2:2380",

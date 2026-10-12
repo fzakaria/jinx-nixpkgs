@@ -16,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "3.3.2",
       pname: "enhanced-ctorrent-dhn",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.rahul.net/dholmes/ctorrent/ctorrent-dnh3.3.2.tar.gz",
           sha256: "0qs8waqwllk56i3yy3zhncy7nsnhmf09a494p5siz4vm2k4ncwy8",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/c/ctorrent/1.3.4.dnh3.3.2-5/debian/patches/cve-security-fix.diff",
             sha256: "1qkzzm8sfspbcs10azmmif4qcr7pr8r38dsa2py84lsjm1yi3kls",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/c/ctorrent/1.3.4.dnh3.3.2-5/debian/patches/FTBFS-fix.diff",
             sha256: "1m3zh96xwqjjzsbg62f7kx0miams58nys1f484qhdn870b5x9p06",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "BitTorrent client written in C++",
         mainProgram: "ctorrent",

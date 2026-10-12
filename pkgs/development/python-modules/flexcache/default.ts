@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hgrecco",
           repo: "flexcache",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["flexcache"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Robust and extensible package to cache on disk the result of expensive calculations",
         homepage: "https://github.com/hgrecco/flexcache",
         changelog: nix.thunk(() => nix.str`https://github.com/hgrecco/flexcache/blob/${nix.sel(src, "rev")}/CHANGES`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

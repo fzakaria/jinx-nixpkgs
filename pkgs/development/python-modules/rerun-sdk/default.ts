@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rerun-sdk",
       pyproject: true,
       __structuredAttrs: true,
@@ -114,7 +114,7 @@ ln -s rerun_sdk/rerun $out/${nix.sel(python, "sitePackages")}/rerun
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rerun, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for `rerun` (an interactive visualization tool for stream data)",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

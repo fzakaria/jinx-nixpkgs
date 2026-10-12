@@ -12,19 +12,19 @@ const pos$7 = nix.positions(here + "/amazon-image-zfs.nix", [["zfs", 3, 7]]);
 const pos$8 = nix.positions(here + "/amazon-image-zfs.nix", [["imports", 2, 3], ["ec2", 3, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   imports: nix.thunk(() => [nix.path(here, "./amazon-image.nix")]),
   ec2: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     zfs: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       enable: true,
       datasets: nix.thunk(() => ({
-        __proto__: pos$5,
-        "tank/system/root": nix.thunk(() => ({ __proto__: pos$1, mount: "/" })),
-        "tank/system/var": nix.thunk(() => ({ __proto__: pos$2, mount: "/var" })),
-        "tank/local/nix": nix.thunk(() => ({ __proto__: pos$3, mount: "/nix" })),
-        "tank/user/home": nix.thunk(() => ({ __proto__: pos$4, mount: "/home" })),
+        [nix.POS]: pos$5,
+        "tank/system/root": nix.thunk(() => ({ [nix.POS]: pos$1, mount: "/" })),
+        "tank/system/var": nix.thunk(() => ({ [nix.POS]: pos$2, mount: "/var" })),
+        "tank/local/nix": nix.thunk(() => ({ [nix.POS]: pos$3, mount: "/nix" })),
+        "tank/user/home": nix.thunk(() => ({ [nix.POS]: pos$4, mount: "/home" })),
       })),
     })),
   })),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "html5validator",
       version: "0.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svenkreiss",
           repo: "html5validator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preCheck: "export PATH=\"$PATH:$out/bin\";\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool that tests files for HTML5 validity",
         mainProgram: "html5validator",
         homepage: "https://github.com/svenkreiss/html5validator",

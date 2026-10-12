@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.162.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "element-hq",
           repo: "synapse",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hDsbD0FU3fXR5mLRyoIP4qCC4pJKUu/js1Xe7je7DDo=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           postgres: nix.thunk(() => (nix.asBool(nix.lookup(w_2, "isPyPy")) ? [nix.thunk(() => nix.lookup(w_2, "psycopg2cffi"))] : [nix.thunk(() => nix.lookup(w_2, "psycopg2"))])),
           saml2: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "pysaml2"))]),
           oidc: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "authlib"))]),
@@ -131,9 +131,9 @@ PYTHONPATH=".:$PYTHONPATH" ${nix.sel(python3Packages, "python", "interpreter")} 
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "matrix-synapse": nix.thunk(() => nix.attr(nixosTests, "matrix-synapse")),
         })),
         plugins: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./plugins"), nix.thunk(() => ({})))),
@@ -141,7 +141,7 @@ runHook postCheck
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://matrix.org",
         changelog: nix.thunk(() => nix.str`https://github.com/element-hq/synapse/blob/v${version}/CHANGES.md`),
         description: "Matrix reference homeserver",
@@ -154,7 +154,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const p7zip = nix.arg($, "p7zip");
   const dsq = nix.arg($, "dsq");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dsq",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "multiprocessio",
           repo: "dsq",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,15 +44,15 @@ export default nix.lambda((args) => (() => {
 `),
       checkPhase: "runHook preCheck\n\n7z e testdata/taxi.csv.7z\ncp \"$GOPATH/bin/dsq\" .\npython3 scripts/test.py\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: dsq })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dsq })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "dsq",
         description: "Commandline tool for running SQL queries against JSON, CSV, Excel, Parquet, and more",
         homepage: "https://github.com/multiprocessio/dsq",

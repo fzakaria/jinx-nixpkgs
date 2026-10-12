@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iterm2";
       const version = "3.6.10";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://iterm2.com/downloads/stable/iTerm2-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
           hash: "sha256-igdExoh3d8EZBuKkqyNqF087jUISax07rSWG3eenUbw=",
         }))));
@@ -34,9 +34,9 @@ EOF
 chmod +x "$out/bin/iterm2"
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Replacement for Terminal and the successor to iTerm",
         homepage: "https://www.iterm2.com/",
         hydraPlatforms: [],
@@ -52,7 +52,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

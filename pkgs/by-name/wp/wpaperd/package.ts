@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wpaperd",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danyspin97",
           repo: "wpaperd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ installManPage ${targetDir}/man/*.1 man/*.5
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal wallpaper daemon for Wayland",
         longDescription: "It allows the user to choose a different image for each output (aka for each monitor)\njust as swaybg. Moreover, a directory can be chosen and wpaperd will randomly choose\nan image from it. Optionally, the user can set a duration, after which the image\ndisplayed will be changed with another random one.\n",
         homepage: "https://github.com/danyspin97/wpaperd",

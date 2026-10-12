@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const libnotify = nix.arg($, "libnotify");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-notify-send",
       version: "0-unstable-2024-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Parranoh",
           repo: "mpv-notify-send",
           rev: "d98d9fe566b222c5b909e3905e9e201eaec34959",
           hash: "sha256-H8WIKfQnle27eiwnz2sxC8D1EwQplY4N7Qg5+c1e/uU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraWrapperArgs: nix.thunk(() => [
           "--prefix",
           "PATH",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lua script for mpv to send notifications with notify-send",
         homepage: "https://github.com/Parranoh/mpv-notify-send",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

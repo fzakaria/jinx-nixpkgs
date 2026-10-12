@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sideload";
       const version = "6.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "sideload",
           tag: version,
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [desktop_file_utils, gettext, meson, ninja, pkg_config, vala, wrapGAppsHook4]);
       const buildInputs = nix.thunk(() => [flatpak, glib, granite7, gtk4, libxml2]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/elementary/sideload",
         description: "Flatpak installer, designed for elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.sideload",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

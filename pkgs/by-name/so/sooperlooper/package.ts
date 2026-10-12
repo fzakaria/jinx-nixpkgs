@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const fftw = nix.arg($, "fftw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sooperlooper",
       version: "1.7.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "essej",
           repo: "sooperlooper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,10 +56,10 @@ export default nix.lambda((args) => (() => {
         alsa_lib,
         fftw,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CPPFLAGS: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CPPFLAGS: "-fpermissive" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Live looping sampler capable of immediate loop recording, overdubbing, multiplying, reversing and more",
         longDescription: "It allows for multiple simultaneous multi-channel loops limited only by your computer's available memory.\nThe application is a standalone JACK client with an engine controllable via OSC and MIDI.\nIt also includes a GUI which communicates with the engine via OSC (even over a network) for user-friendly control on a desktop.\nHowever, this kind of live performance looping tool is most effectively used via hardware (midi footpedals, etc)\nand the engine can be run standalone on a computer without a monitor.\n",
         homepage: "https://sonosaurus.com/sooperlooper/",

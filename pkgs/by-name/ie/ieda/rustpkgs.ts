@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const rootSrc = nix.arg($, "rootSrc");
   const mkRustpkgs = (_) => (p) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), p);
   return nix.builtins.mapAttrs(mkRustpkgs, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "iir-rust": nix.thunk(() => (() => {
         const pname = "iir-rust";
         const version = "0.1.3";
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname,
           version,
           src,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname,
           version,
           src,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         const cargoHash = "sha256-PORA/9DDIax4lOn/pzmi7Y8mCCBUphMTzbBsb64sDl0=";
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           src,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         const cargoHash = "sha256-Qr/oXTqn2gaxyAyLsRjaXNniNzIYVzPGefXTdkULmYk=";
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version,
           src,
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname,
           version,
           src,
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname,
           version,
           src,

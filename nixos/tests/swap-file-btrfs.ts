@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "swap-file-btrfs",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             useDefaultFilesystems: false,
             rootDevice: "/dev/vda",
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "/": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 device: nix.thunk(() => nix.sel(config, "virtualisation", "rootDevice")),
                 fsType: "btrfs",
                 autoFormat: true,
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             initrd: nix.thunk(() => ({
-              __proto__: pos$6,
-              systemd: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
           })),
-          swapDevices: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$8, device: "/var/swapfile", size: 1n }))]),
+          swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, device: "/var/swapfile", size: 1n }))]),
         };
       })(), formals$2),
     })),

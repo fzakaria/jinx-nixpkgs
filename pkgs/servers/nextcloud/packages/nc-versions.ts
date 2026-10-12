@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const n = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.sel(v, "version"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => (nix.asBool(!nix.eq(nix.builtins.match("nextcloud[0-9]+", k), null)) && nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(v, "version"))), "success"))), pkgs))));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     n: n,
     e: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", n)),
   };

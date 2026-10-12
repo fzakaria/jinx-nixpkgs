@@ -20,22 +20,22 @@ export default nix.lambda((args) => (() => {
       const pname = "vr-reversal";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dfaker",
           repo: "vr-reversal",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1wn2ngcvn7wcsl3kmj782x5q9130qw951lj6ilrkafp6q6zscpqr",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         scriptName: "360plugin.lua",
       }));
       const dontBuild = true;
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ffmpeg, "version")), "5.0")), "substituteInPlace 360plugin.lua --replace-fail \":reset_rot=1:\" \":\"\n"));
       const installPhase = "mkdir -p $out/share/mpv/scripts\ncp -r 360plugin.lua $out/share/mpv/scripts/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Script for mpv to play VR video with optional saving of head tracking data",
         homepage: "https://github.com/dfaker/VR-reversal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

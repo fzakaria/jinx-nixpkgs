@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const gradio_client = nix.arg($, "gradio-client");
   const typer = nix.arg($, "typer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hf-gradio",
       version: "0.4.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hf_gradio",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-oBfZQmGPDUlaWO5FYwR/oEvvYUwA4Mt4mpptBjPP+ns=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["hf_gradio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension of the Hugging Face CLI for interacting with Gradio Spaces and Apps",
         homepage: "https://pypi.org/project/hf-gradio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mactop";
       const version = "2.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metaspartan",
           repo: "mactop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const versionCheckProgramArg = "--version";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal-based monitoring tool 'top' designed to display real-time metrics for Apple Silicon chips",
         homepage: "https://github.com/metaspartan/mactop",
         changelog: nix.thunk(() => nix.str`https://github.com/metaspartan/mactop/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

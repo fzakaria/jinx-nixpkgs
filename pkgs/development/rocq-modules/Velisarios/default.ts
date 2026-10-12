@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "Velisarios",
       owner: "vrahli",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.6", "8.8", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "20180221" : null)),
       release: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "20180221": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "e1eee1f10d5d46331a560bd8565ac101229d0d6b",
           hash: "sha256:0l9885nxy0n955fj1gnijlxl55lyxiv9yjfmz8hmfrn9hl8vv1m2",
         })),

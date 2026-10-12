@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "latex-workshop",
         publisher: "James-Yu",
         version: "10.19.0",
         hash: "sha256-V1IA5FVYwWKRl8lRo0F1/6Y1l3aTRruLNuPA1XbD/Xc=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/James-Yu.latex-workshop/changelog",
         description: "LaTeX Workshop Extension",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const php = nix.arg($, "php");
   const php$ = nix.thunk(() => nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extensions: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const enabled = nix.arg($_1, "enabled");
@@ -34,26 +34,26 @@ export default nix.lambda((args) => (() => {
       })(), formals$2),
     }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     fpm: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         imports: nix.thunk(() => [nix.path(here, "./fpm.nix")]),
-        _module: nix.thunk(() => ({ __proto__: pos$3, args: nix.thunk(() => ({ __proto__: pos$2, php: php$ })) })),
+        _module: nix.thunk(() => ({ [nix.POS]: pos$3, args: nix.thunk(() => ({ [nix.POS]: pos$2, php: php$ })) })),
       })))),
     "fpm-modular": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         imports: nix.thunk(() => [nix.path(here, "./fpm-modular.nix")]),
-        _module: nix.thunk(() => ({ __proto__: pos$6, args: nix.thunk(() => ({ __proto__: pos$5, php: php$ })) })),
+        _module: nix.thunk(() => ({ [nix.POS]: pos$6, args: nix.thunk(() => ({ [nix.POS]: pos$5, php: php$ })) })),
       })))),
     httpd: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         imports: nix.thunk(() => [nix.path(here, "./httpd.nix")]),
-        _module: nix.thunk(() => ({ __proto__: pos$9, args: nix.thunk(() => ({ __proto__: pos$8, php: php$ })) })),
+        _module: nix.thunk(() => ({ [nix.POS]: pos$9, args: nix.thunk(() => ({ [nix.POS]: pos$8, php: php$ })) })),
       })))),
     pcre: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         imports: nix.thunk(() => [nix.path(here, "./pcre.nix")]),
-        _module: nix.thunk(() => ({ __proto__: pos$12, args: nix.thunk(() => ({ __proto__: pos$11, php: php$ })) })),
+        _module: nix.thunk(() => ({ [nix.POS]: pos$12, args: nix.thunk(() => ({ [nix.POS]: pos$11, php: php$ })) })),
       })))),
   };
 })(), formals$1);

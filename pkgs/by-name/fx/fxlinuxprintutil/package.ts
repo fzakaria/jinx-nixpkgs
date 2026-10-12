@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const pname = "fxlinuxprintutil";
       const version = "1.1.1-1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/NixOS/nixpkgs/files/12232817/fxlinuxpdf112119031.zip",
           sha256: "1mv07ch6ysk9bknfmjqsgxb803sj6vfin29s9knaqv17jvgyh0n3",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./fxlputil.patch"),
         nix.path(here, "./fxlputil.tcl.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fxlocalechk.tcl.patch"), nix.thunk(() => ({ __proto__: pos$2, libX11: libx11 })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fxlocalechk.tcl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, libX11: libx11 })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [dpkg, autoPatchelfHook, makeWrapper]);
       const buildInputs = nix.thunk(() => [cups, tcl, tk]);
@@ -48,7 +48,7 @@ mv usr/lib $out
 wrapProgram $out/bin/fxlputil --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tcl, tk]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Optional configuration tool for fxlinuxprint",
         homepage: "https://onlinesupport.fujixerox.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -60,7 +60,7 @@ wrapProgram $out/bin/fxlputil --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPat
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

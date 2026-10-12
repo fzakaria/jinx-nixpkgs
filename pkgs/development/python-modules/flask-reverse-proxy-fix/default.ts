@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antarctica",
           repo: "flask-reverse-proxy-fix",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ZRZI1psr1dnY2FbuLZXOQvLMJd4TF7BfBNZnW9kxeck=",
         }))));
       const postPatch = "sed -i 's@werkzeug.contrib.fixers@werkzeug.middleware.proxy_fix@g' flask_reverse_proxy_fix/middleware/__init__.py\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CI_COMMIT_TAG: nix.thunk(() => nix.str`v${version}`) }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CI_COMMIT_TAG: nix.thunk(() => nix.str`v${version}`) }));
       const propagatedBuildInputs = nix.thunk(() => [flask, werkzeug]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Flask middleware for applications running under a reverse proxy",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "ogluk30")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

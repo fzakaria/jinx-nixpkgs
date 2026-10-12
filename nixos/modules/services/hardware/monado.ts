@@ -48,41 +48,41 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "monado"));
   const runtimeManifest = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/openxr/1/openxr_monado.json`);
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         monado: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Monado user service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "monado", nix.thunk(() => ({})))),
           defaultRuntime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to enable Monado as the default OpenXR runtime on the system.\n\nNote that applications can bypass this option by setting an active\nruntime in a writable XDG_CONFIG_DIRS location like `~/.config`.\n",
               default: false,
               example: true,
             })))),
           forceDefaultRuntime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to ensure that Monado is the active runtime set for the current\nuser.\n\nThis replaces the file `XDG_CONFIG_HOME/openxr/1/active_runtime.json`\nwhen starting the service.\n",
               default: false,
               example: true,
             })))),
-          highPriority: nix.thunk(() => nix.update(nix.app(mkEnableOption, "high priority capability for monado-service"), nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$3, default: true }))))),
+          highPriority: nix.thunk(() => nix.update(nix.app(mkEnableOption, "high priority capability for monado-service"), nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$3, default: true }))))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         security: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "monado-service": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "highPriority")), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 setuid: false,
                 owner: "root",
                 group: "root",
@@ -92,9 +92,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xr-hardware"))];
@@ -102,19 +102,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           user: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               monado: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Monado XR runtime service module",
                 requires: nix.thunk(() => ["monado.socket"]),
                 conflicts: nix.thunk(() => ["monado-dev.service"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$12, ConditionUser: "!root" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, ConditionUser: "!root" })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   XRT_COMPOSITOR_LOG: nix.thunk(() => nix.app(mkDefault, "debug")),
                   XRT_PRINT_OPTIONS: nix.thunk(() => nix.app(mkDefault, "on")),
                   IPC_EXIT_ON_DISCONNECT: nix.thunk(() => nix.app(mkDefault, "off")),
@@ -130,7 +130,7 @@ mkdir --parents "$targetDir"
 ln --symbolic --force ${runtimeManifest} "$activeRuntimePath"
 `))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   ExecStart: nix.thunk(() => (nix.asBool(nix.sel(cfg, "highPriority")) ? nix.str`${nix.sel(config, "security", "wrapperDir")}/monado-service` : nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "monado-service"))),
                   Restart: "no",
                 })),
@@ -138,14 +138,14 @@ ln --symbolic --force ${runtimeManifest} "$activeRuntimePath"
               })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               monado: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Monado XR service module connection socket",
                 conflicts: nix.thunk(() => ["monado-dev.service"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$17, ConditionUser: "!root" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$17, ConditionUser: "!root" })),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ListenStream: "%t/monado_comp_ipc",
                   RemoveOnStop: true,
                   FlushPending: true,
@@ -157,24 +157,24 @@ ln --symbolic --force ${runtimeManifest} "$activeRuntimePath"
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           pathsToLink: nix.thunk(() => ["/share/openxr"]),
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
-            "xdg/openxr/1/active_runtime.json": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "defaultRuntime")), nix.thunk(() => ({ __proto__: pos$23, source: runtimeManifest })))),
+            [nix.POS]: pos$24,
+            "xdg/openxr/1/active_runtime.json": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "defaultRuntime")), nix.thunk(() => ({ [nix.POS]: pos$23, source: runtimeManifest })))),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           graphics: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "monado-vulkan-layers"))]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Scrumplex"))];

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "munge",
       version: "0.5.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dun",
           repo: "munge",
           rev: nix.thunk(() => nix.str`munge-${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# rmdir will notify us if anything new is installed to the directories.\nrmdir \"$out\"/{var{/{lib,log}{/munge,},},etc/munge}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "munge")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "munge")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "An authentication service for creating and validating credentials\n",
         homepage: "https://github.com/dun/munge",
         license: nix.thunk(() => [

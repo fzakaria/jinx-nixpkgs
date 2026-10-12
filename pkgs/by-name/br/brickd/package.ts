@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const version = "2.1.1";
   const daemonlib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Tinkerforge",
       repo: "daemonlib",
       rev: nix.thunk(() => nix.str`brickd-${version}`),
       sha256: "sha256-0HhuC4r1S4NJa2FSJa7+fNCfcoRTBckikYbGSE+2FbE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brickd",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Tinkerforge",
           repo: "brickd",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ done
 `),
       installPhase: "cd ../brickd\nmkdir -p $out/bin\ncp brickd $out/bin/brickd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.tinkerforge.com/",
         description: "Daemon (or service on Windows) that acts as a bridge between the Bricks/Bricklets and the API bindings for the different programming languages",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "qknight"))]),

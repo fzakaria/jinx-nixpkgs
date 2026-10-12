@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "naja",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "najaeda",
           repo: "naja",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       postPatch: nix.thunk(() => nix.add(nix.add("# This is a find module, not a config module, so this doesn't make it get automatically picked up by CMake hooks,\n# but it's better than dumping it at $out/cmake, and this makes it get moved to dev output\nsubstituteInPlace cmake/CMakeLists.txt \\\n  --replace-fail 'DESTINATION cmake' 'DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake'\n\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.21)\" \\\n  \"cmake_minimum_required(VERSION 4.0)\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'enable_testing()' \"\" \\\n  --replace-fail 'add_subdirectory(test)' \"\"\nsubstituteInPlace thirdparty/yosys-liberty/CMakeLists.txt \\\n  --replace-fail 'add_subdirectory(test)' \"\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "patchShebangs --build test/test_utils/diff_files.py\n"))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-character-conversion"]))))),
         GTEST_FILTER: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => [
               "BNETests.blockedNormalizeNodeDeletionOrphanNodeRemoval",
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Structural Netlist API (and more) for EDA post synthesis flow development",
         homepage: "https://github.com/najaeda/naja",
         changelog: nix.thunk(() => nix.str`https://github.com/najaeda/naja/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

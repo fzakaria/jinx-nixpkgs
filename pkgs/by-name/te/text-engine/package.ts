@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "text-engine",
       version: "0.1.1-unstable-2024-09-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjakeman",
           repo: "text-engine",
           rev: "4c26887556fd8e28211324c4058d49508eb5f557",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libadwaita, libxml2]),
       postPatch: "# See https://github.com/mjakeman/text-engine/pull/42\nsubstituteInPlace src/meson.build \\\n  --replace-fail \"dependency('json-glib-1.0'),\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rich text framework for GTK",
         mainProgram: "text-engine-demo",
         homepage: "https://github.com/mjakeman/text-engine",

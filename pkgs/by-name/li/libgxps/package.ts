@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgxps/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgxps-${version}.tar.xz`),
           sha256: "bSeGclajXM+baSU+sqiKMrrKO5fV9O9/guNmf6Q1JRw=",
         }))));
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [libarchive]);
       const mesonFlags = nix.thunk(() => nix.concat(["-Denable-test=false"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["-Ddisable-introspection=true"]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GObject based library for handling and rendering XPS documents",
         homepage: "https://gitlab.gnome.org/GNOME/libgxps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

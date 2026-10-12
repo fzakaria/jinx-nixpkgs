@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pnpm = nix.arg($, "pnpm");
   const tests = nix.arg($, "tests");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pnpm-fixup-state-db",
       version: "1.0.0",
       src: nix.path(here, "./src"),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   --add-flags "$out/lib/node_modules/pnpm-fixup-state-db"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, pnpm: nix.thunk(() => nix.attr(tests, "pnpm")) })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, pnpm: nix.thunk(() => nix.attr(tests, "pnpm")) })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pnpm, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "pnpm-fixup-state-db",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

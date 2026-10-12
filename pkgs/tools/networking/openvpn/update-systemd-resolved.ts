@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "update-systemd-resolved",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonathanio",
           repo: "update-systemd-resolved",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./update-systemd-resolved.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PREFIX: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/libexec/openvpn`),
       })),
       postInstall: nix.thunk(() => nix.str`substituteInPlace ${nix.sel(finalAttrs, "env", "PREFIX")}/update-systemd-resolved \\
   --subst-var-by PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, iproute2, runtimeShell, systemd, util_linux]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Helper script for OpenVPN to directly update the DNS settings of a link through systemd-resolved via DBus",
         homepage: "https://github.com/jonathanio/update-systemd-resolved",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

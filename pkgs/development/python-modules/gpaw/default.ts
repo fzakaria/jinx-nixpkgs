@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => !nix.asBool(nix.sel(blas, "isILP64"))), "A 32 bit integer implementation of BLAS is required."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/gpaw/default.nix:22:1");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => !nix.asBool(nix.sel(lapack, "isILP64"))), "A 32 bit integer implementation of LAPACK is required."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/gpaw/default.nix:24:1");
   const gpawConfig = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "siteconfig.py",
       text: nix.thunk(() => nix.str`# Compiler
 compiler = 'gcc'
@@ -73,7 +73,7 @@ if libvdwxc:
     }))));
   const setupVersion = "24.11.0";
   const pawDataSets = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://wiki.fysik.dtu.dk/gpaw-files/gpaw-setups-${setupVersion}.tar.gz`),
       hash: "sha256-lkyBzCj3+RpGhtPTGCxOvaMO+wnT+Wt/lerjFGSZwRA=",
     }))));
@@ -82,7 +82,7 @@ if libvdwxc:
       const version = "25.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "gpaw",
           repo: "gpaw",
           rev: version,
@@ -113,9 +113,9 @@ cd $currDir
 `);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["gpaw"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, mpi: mpi }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, mpi: mpi }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Density functional theory and beyond within the projector-augmented wave method",
         homepage: "https://wiki.fysik.dtu.dk/gpaw/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -123,7 +123,7 @@ cd $currDir
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         format,

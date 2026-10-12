@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const glslang = nix.arg($, "glslang");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kompute",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KomputeProject",
           repo: "kompute",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vulkan-14-support.patch",
             url: "https://github.com/KomputeProject/kompute/commit/299b11fb4b8a7607c5d2c27e2735f26b06ae8e29.patch",
             sha256: "sha256-JuoTQ+VjIdyF+I1IcT1ofbBjRS0Ibm2w6F2jrRJlx40=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/KomputeProject/kompute/commit/e7985da9950bf75f00799f73b0e1d4ea7c24f0b2.patch",
             hash: "sha256-sZf1lazaGaiRzry0Y+KE6z3FKm79gVKoSFyW0GN3TMM=",
           })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fmt, spdlog]),
       propagatedBuildInputs: nix.thunk(() => [glslang, vulkan_headers, vulkan_loader]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General purpose GPU compute framework built on Vulkan",
         longDescription: "General purpose GPU compute framework built on Vulkan to\nsupport 1000s of cross vendor graphics cards (AMD,\nQualcomm, NVIDIA & friends). Blazing fast, mobile-enabled,\nasynchronous and optimized for advanced GPU data\nprocessing usecases. Backed by the Linux Foundation\"\n",
         homepage: "https://kompute.cc/",

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "phinger-cursors";
       const version = "2.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/phisch/phinger-cursors/releases/download/v${version}/phinger-cursors-variants.tar.bz2`),
           sha256: "sha256-RtTPwwo4wZytozOQJ7Wnj3sL908yIOunABxP3Z1ablY=",
         }))));
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\nmkdir -p $out/share/icons\ncp -r ./phinger-cursors* $out/share/icons\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Most over-engineered cursor theme",
         homepage: "https://github.com/phisch/phinger-cursors",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "moni"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, sourceRoot, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, sourceRoot, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

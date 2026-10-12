@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dawn";
       const version = "3.91a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://geant4.kek.jp/~tanaka/src/dawn_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tgz`),
           hash: "sha256-gdhV6tERdoGxiCQt0L46JOAF2b1AY/0r2pp6eU689fQ=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tk]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vectorized 3D PostScript processor with analytical hidden line/surface removal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://geant4.kek.jp/~tanaka/DAWN/About_DAWN.html",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

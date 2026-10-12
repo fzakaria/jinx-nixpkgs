@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const str = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     stanzas: nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$1, type: "webapp", exec: keterExecutable, host: keterDomain })),
+      nix.thunk(() => ({ [nix.POS]: pos$1, type: "webapp", exec: keterExecutable, host: keterDomain })),
     ]),
   }));
   const configFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "keter.yml",
       text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), str)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "keter-bundle",
       buildCommand: nix.thunk(() => nix.str`mkdir -p config
 cp ${configFile} config/keter.yaml

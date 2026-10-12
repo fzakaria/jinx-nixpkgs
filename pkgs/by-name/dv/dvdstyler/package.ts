@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const makeBinPath = nix.thunk(() => nix.attr(lib, "makeBinPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvdstyler",
       version: "3.3b4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/dvdstyler/dvdstyler-devel/${nix.sel(finalAttrs, "version")}/DVDStyler-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-JCaKcE7jkTxT57KKePs8gmgQedoOcP5NEQ2FwIDS2Ho=",
         })))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.dvdstyler.org/",
         description: "DVD authoring software",
         longDescription: "DVDStyler is a cross-platform free DVD authoring application for the\ncreation of professional-looking DVDs. It allows not only burning of video\nfiles on DVD that can be played practically on any standalone DVD player,\nbut also creation of individually designed DVD menus. It is Open Source\nSoftware and is completely free.\n\nSome of its features include:\n\n- create and burn DVD video with interactive menus\n- design your own DVD menu or select one from the list of ready to use menu\n  templates\n- create photo slideshow\n- add multiple subtitle and audio tracks\n- support of AVI, MOV, MP4, MPEG, OGG, WMV and other file formats\n- support of MPEG-2, MPEG-4, DivX, Xvid, MP2, MP3, AC-3 and other audio and\n  video formats\n- support of multi-core processor\n- use MPEG and VOB files without reencoding\n- put files with different audio/video format on one DVD (support of\n  titleset)\n- user-friendly interface with support of drag & drop\n- flexible menu creation on the basis of scalable vector graphic\n- import of image file for background\n- place buttons, text, images and other graphic objects anywhere on the menu\n  screen\n- change the font/color and other parameters of buttons and graphic objects\n- scale any button or graphic object\n- copy any menu object or whole menu\n- customize navigation using DVD scripting\n",

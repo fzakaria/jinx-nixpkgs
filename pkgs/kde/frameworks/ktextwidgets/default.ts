@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtspeech = nix.arg($, "qtspeech");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ktextwidgets",
       extraBuildInputs: nix.thunk(() => [qtspeech, qttools]),
     })));

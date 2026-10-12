@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swingsane",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "15pgqgyw46yd2i367ax9940pfyvinyw2m8apmwhrn0ix5nywa7ni",
           url: nix.thunk(() => nix.str`mirror://sourceforge/swingsane/swingsane-${nix.sel(finalAttrs, "version")}-bin.zip`),
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 exec ${jre}/bin/java -jar $out/share/java/swingsane/swingsane-${nix.sel(finalAttrs, "version")}.jar "$@"
 `);
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "swingsane",
             exec: "swingsane",
             icon: "swingsane",
@@ -55,7 +55,7 @@ cp -v -r ${desktopItem}/share/applications $out/share
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java GUI for SANE scanner servers (saned)",
         longDescription: "SwingSane is a powerful, cross platform, open source Java front-end for\nusing both local and remote Scanner Access Now Easy (SANE) servers.\nThe most powerful feature is its ability to query back-ends for scanner\nspecific options which can be set by the user as a scanner profile.\nIt also has support for authentication, multicast DNS discovery,\nsimultaneous scan jobs, image transformation jobs (deskew, binarize,\ncrop, etc), PDF and PNG output.\n",
         homepage: "http://swingsane.com/",

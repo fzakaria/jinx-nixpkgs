@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "0xpropo",
       version: "1.100",
       src: nix.thunk(() => (() => {
         const underscoreVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/0xType/0xPropo/releases/download/${nix.sel(finalAttrs, "version")}/0xPropo_${underscoreVersion}.zip`),
             hash: "sha256-ZlZNvn9xiOxS+dfGI1rGbh6XlXo3/puAm2vhKh63sK4=",
           })));
       })()),
       installPhase: "runHook preInstall\ninstall -Dm644 -t $out/share/fonts/opentype/ *.otf\ninstall -Dm644 -t $out/share/fonts/truetype/ *.ttf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Proportional version of the 0xProto font",
         homepage: "https://github.com/0xType/0xPropo",
         changelog: nix.thunk(() => nix.str`https://github.com/0xType/0xPropo/releases/tag/${nix.sel(finalAttrs, "version")}`),

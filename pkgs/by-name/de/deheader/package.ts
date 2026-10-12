@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deheader",
       version: "1.11",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "deheader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./deheader -t $out/bin\ninstallManPage ./deheader.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to find and optionally remove unneeded includes in C or C++ source files",
         mainProgram: "deheader",
         longDescription: "This tool takes a list of C or C++ sourcefiles and generates a report\non which #includes can be omitted from them -- the test, for each foo.c\nor foo.cc or foo.cpp, is simply whether 'rm foo.o; make foo.o' returns a\nzero status. Optionally, with the -r option, the unneeded headers are removed.\nThe tool also reports on headers required for strict portability.\n",

@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
   const pname = "freelens-bin";
   const version = "1.10.3";
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-linux-amd64.AppImage`),
       hash: "sha256-W+RokOsT4WdVm4Yrmm8kbu7ApydhwLPpGmRjKTI1gek=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-linux-arm64.AppImage`),
       hash: "sha256-2aAw90YfTPDkiehj1ziurBeILEuEOmbJeUV2d7Bbmo4=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-macos-arm64.dmg`),
       hash: "sha256-rjPhHV24WNofZK4sT3yjg1eGeAvLKvAuVf51bwiQBBk=",
     })),
@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
     })())));
   const passthru = nix.thunk(() => nix.update({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     updateScript: nix.thunk(() => nix.app(writeShellScript, "update-freelens-bin", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} freelens-bin --override-filename pkgs/by-name/fr/freelens-bin/package.nix
 latestVersion=$(nix eval --log-format raw --raw --file default.nix freelens-bin.version)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then
@@ -69,9 +69,9 @@ for system in $systems; do
   ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} freelens-bin $latestVersion $hash --system=$system --ignore-same-version --ignore-same-hash
 done
 `))),
-  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$7, src: src })))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$7, src: src })))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     description: "Free IDE for Kubernetes",
     longDescription: "Freelens is a free and open-source user interface designed for managing Kubernetes clusters. It provides a standalone application compatible with macOS, Windows, and Linux operating systems, making it accessible to a wide range of users. The application aims to simplify the complexities of Kubernetes management by offering an intuitive and user-friendly interface.\n",
     homepage: "https://github.com/freelensapp/freelens/",
@@ -88,7 +88,7 @@ done
     mainProgram: "freelens",
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       stdenvNoCC: stdenvNoCC,
       pname: pname,
       version: version,
@@ -98,7 +98,7 @@ done
       _7zz: _7zz,
       autoSignDarwinBinariesHook: nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")),
     }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       src: src,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-wait",
       version: "0.4.0-unstable-2024-12-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darshanparajuli",
           repo: "git-wait",
           rev: "1d610f694dd1cd4a0970e97b886053ffc7c76244",
@@ -41,7 +41,7 @@ fi
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple git wrapper that waits until index.lock file is removed when present before running the command",
         homepage: "https://github.com/darshanparajuli/git-wait",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

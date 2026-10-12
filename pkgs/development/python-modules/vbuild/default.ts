@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vbuild",
       version: "0.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "manatlan",
           repo: "vbuild",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ substituteInPlace vbuild/__init__.py \\
           "test_py_comp.py",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to compile your VueJS components to standalone HTML/JS/CSS",
         homepage: "https://github.com/manatlan/vbuild",
         changelog: nix.thunk(() => nix.str`https://github.com/manatlan/vbuild/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),

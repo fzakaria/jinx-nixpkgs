@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.4.41",
       pname: "libzen",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mediaarea.net/download/source/libzen/${nix.sel(finalAttrs, "version")}/libzen_${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-6yN9fT3Kbca6BocZQgon3gk0p4PMrrKGdWKzWvOQHi0=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sh autogen.sh",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared library for libmediainfo and mediainfo",
         homepage: "https://mediaarea.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

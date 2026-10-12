@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const stateDir = nix.argOr($, "stateDir", () => "/etc/pihole");
   return nix.app(nix.sel(nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pihole",
       version: "6.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pi-hole",
           repo: "pi-hole",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, installShellFiles]),
       installPhase: "runHook preInstall\n\nreadonly scriptsDir=$out/share/pihole\n\ninstall -Dm 555 -t $out/bin pihole\ninstall -Dm 555 -t $scriptsDir/advanced/Scripts gravity.sh\n\n# The installation script is sourced by advanced/Scripts/piholeDebug.sh etc\ncp --parents -r -t $scriptsDir/ 'automated install/' advanced/{Scripts,Templates}/\n\ninstallShellCompletion --bash --name pihole.bash \\\n  advanced/bash-completion/pihole.bash\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         default: nix.thunk(() => (() => {
           const out = nix.thunk(() => nix.builtins.placeholder("out"));
           const scriptsDir = nix.thunk(() => nix.str`${out}/share/pihole/advanced/Scripts`);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             scripts: nix.thunk(() => (() => {
               const relativeScripts = "share/pihole/advanced/Scripts";
               return [
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
               util_linux,
             ]),
             fake: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               source: nix.thunk(() => [
                 "/etc/os-release",
                 "/etc/pihole/versions",
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             fix: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               $PI_HOLE_BIN_DIR: nix.thunk(() => [nix.thunk(() => nix.str`${out}/bin`)]),
               $PI_HOLE_FILES_DIR: nix.thunk(() => [nix.thunk(() => nix.str`${out}/share/pihole`)]),
               $PI_HOLE_INSTALL_DIR: nix.thunk(() => [scriptsDir]),
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
               $PIHOLE_COMMAND: nix.thunk(() => ["pihole"]),
             })),
             keep: nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               source: nix.thunk(() => [
                 "$pihole_FTL",
                 "$setupVars",
@@ -212,12 +212,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         stateDir: stateDir,
         tests: nix.thunk(() => nix.sel(nixosTests, "pihole-ftl")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Black hole for Internet advertisements",
         homepage: "https://pi-hole.net",
         changelog: nix.thunk(() => nix.str`https://github.com/pi-hole/pi-hole/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -230,7 +230,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pihole",
       })),
     })), "overrideAttrs"), (old) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: nix.thunk(() => nix.attr(old, "version")),
       src: nix.thunk(() => nix.attr(old, "src")),
       preFixup: nix.thunk(() => nix.add("scriptsDir=$out/share/pihole\n\nsubstituteInPlace $out/bin/pihole $scriptsDir/advanced/Scripts/*.sh \\\n  --replace-quiet /etc/.pihole $scriptsDir \\\n  --replace-quiet /opt/pihole $scriptsDir/advanced/Scripts\n", nix.sel(old, "preFixup"))),

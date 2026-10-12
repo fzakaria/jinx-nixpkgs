@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-smc-karumbi",
       version: "20241013",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://smc.org.in/downloads/fonts/karumbi/karumbi.zip",
           hash: "sha256-aeKH7CWbJNtkgv1PsaWWxyBZor+UO9q9Cctpc/qnEQU=",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfind . -name \"*.otf\" -exec install -Dm644 {} -t \"$out/share/fonts/opentype\" \\;\nfind . -name \"*.ttf\" -exec install -Dm644 {} -t \"$out/share/fonts/truetype\" \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The Karumbi opentype font is a Malayalam traditional script font designed by Kevin Siji. The characters are literally written directly into a computer by Kevin Siji using a tablet pen. Maintained by SMC",
         homepage: "https://smc.org.in/fonts/karumbi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

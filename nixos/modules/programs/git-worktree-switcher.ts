@@ -24,39 +24,39 @@ export default nix.lambda((args) => (() => {
 ` : nix.str`eval "$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} init ${shell})"
 `);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "git-worktree-switcher": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "git-worktree-switcher, switch between git worktrees with speed.")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "git-worktree-switcher", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "git-worktree-switcher"))];
           })()),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           bash: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             interactiveShellInit: nix.thunk(() => nix.app(initScript, "bash")),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "programs", "zsh", "enable")), nix.thunk(() => nix.app(initScript, "zsh")))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "programs", "fish", "enable")), nix.thunk(() => nix.app(initScript, "fish")))),
           })),
         })),

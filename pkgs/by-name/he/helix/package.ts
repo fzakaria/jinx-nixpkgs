@@ -38,42 +38,42 @@ export default nix.lambda((args) => (() => {
   const tree_sitter_grammars = nix.arg($, "tree-sitter-grammars");
   const lockedGrammars = nix.argOr($, "lockedGrammars", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./grammars.json")));
   const grammarsOverlay = nix.argOr($, "grammarsOverlay", () => (final) => (prev) => ({
-    __proto__: pos$13,
-    "tree-sitter-agda": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-agda", "override"), nix.thunk(() => ({ __proto__: pos$1, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-beancount": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-beancount", "override"), nix.thunk(() => ({ __proto__: pos$2, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-git-rebase": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-git-rebase", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, dontPatch: true })))),
-    "tree-sitter-glimmer": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-glimmer", "override"), nix.thunk(() => ({ __proto__: pos$4, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-janet-simple": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-janet-simple", "override"), nix.thunk(() => ({ __proto__: pos$5, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-qmljs": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-qmljs", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$6, dontCheckForBrokenSymlinks: true })))),
-    "tree-sitter-sql": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-sql", "override"), nix.thunk(() => ({ __proto__: pos$7, generate: false })))),
-    "tree-sitter-strace": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-strace", "override"), nix.thunk(() => ({ __proto__: pos$8, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-tact": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tact", "override"), nix.thunk(() => ({ __proto__: pos$9, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-vue": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-vue", "override"), nix.thunk(() => ({ __proto__: pos$10, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-wit": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-wit", "override"), nix.thunk(() => ({ __proto__: pos$11, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-yuck": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-yuck", "override"), nix.thunk(() => ({ __proto__: pos$12, excludeBrokenTreeSitterJson: false })))),
+    [nix.POS]: pos$13,
+    "tree-sitter-agda": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-agda", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-beancount": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-beancount", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-git-rebase": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-git-rebase", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, dontPatch: true })))),
+    "tree-sitter-glimmer": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-glimmer", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-janet-simple": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-janet-simple", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-qmljs": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-qmljs", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$6, dontCheckForBrokenSymlinks: true })))),
+    "tree-sitter-sql": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-sql", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, generate: false })))),
+    "tree-sitter-strace": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-strace", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-tact": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tact", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-vue": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-vue", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-wit": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-wit", "override"), nix.thunk(() => ({ [nix.POS]: pos$11, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-yuck": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-yuck", "override"), nix.thunk(() => ({ [nix.POS]: pos$12, excludeBrokenTreeSitterJson: false })))),
   }));
   const lockedVersionsOverlay = (final) => (prev) => nix.app(nix.sel(lib, "mapAttrs"), (drvName) => (grammar) => (() => {
       const lockedGrammar = nix.thunk(() => nix.sel(lockedGrammars, nix.key(nix.app(nix.sel(lib, "removePrefix"), "tree-sitter-", drvName))));
       return nix.app(nix.sel(nix.app(nix.sel(prev, nix.key(nix.force(drvName)), "override"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           location: nix.thunk(() => nix.sel(lockedGrammar, "subpath")),
         }))), "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           version: nix.thunk(() => nix.app(nix.sel(lib, "sources", "shortRev"), nix.thunk(() => nix.sel(lockedGrammar, "nurl", "args", "rev")))),
           src: nix.thunk(() => nix.app(nix.sel(pkgs, nix.key(nix.sel(lockedGrammar, "nurl", "fetcher"))), nix.thunk(() => nix.sel(lockedGrammar, "nurl", "args")))),
         })));
     })(), prev);
   const grammarFixesOverlay = (final) => (prev) => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     "tree-sitter-haskell": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-haskell", "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         env: nix.thunk(() => nix.update(nix.sel(oldAttrs, "env"), {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fno-strict-aliasing")),
         })),
       }))),
     "tree-sitter-perl": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-perl", "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         postPatch: "rm src/bsearch.c\nsubstituteInPlace src/tsp_unicode.h \\\n  --replace-fail '#include \"bsearch.c\"' \"\"\n",
       })))),
   });
@@ -92,7 +92,7 @@ if [ "$count" -ne ${nix.builtins.toString(lockedGrammarsCount)} ]; then
 fi
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       pname: "helix",
       version: nix.thunk(() => nix.attr(helix_unwrapped, "version")),
       paths: nix.thunk(() => [helix_unwrapped]),
@@ -100,7 +100,7 @@ fi
       postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/hx --set HELIX_RUNTIME "${runtimeDir}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         updateSh: nix.path(here, "./update.sh"),
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "helix"]),
         runtime: runtimeDir,
@@ -109,7 +109,7 @@ fi
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(helix_unwrapped, "meta"));
         return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

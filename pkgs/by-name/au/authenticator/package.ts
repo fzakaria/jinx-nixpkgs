@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zbar = nix.arg($, "zbar");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "authenticator",
       version: "4.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Authenticator",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-UvHIVUed4rxmjliaZ7jnwCjiHyvUDihoJyG3G+fYtow=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         glib,
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ __proto__: pos$3, enableZbar: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableZbar: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-good")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-rs")),
         gtk4,
@@ -89,11 +89,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Two-factor authentication code generator for GNOME",
         mainProgram: "authenticator",
         homepage: "https://gitlab.gnome.org/World/Authenticator",

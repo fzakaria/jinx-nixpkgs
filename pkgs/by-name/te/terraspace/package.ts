@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const ruby = nix.arg($, "ruby");
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ruby: ruby,
       name: "terraspace",
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "terraspace",
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "terraspace", "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -34,11 +34,11 @@ wrapProgram $out/bin/terraspace \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "ruby"))]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "terraspace")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terraform framework that provides an organized structure, and keeps your code DRY",
         mainProgram: "terraspace",
         homepage: "https://github.com/boltops-tools/terraspace",

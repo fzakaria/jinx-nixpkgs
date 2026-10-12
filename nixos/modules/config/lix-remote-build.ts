@@ -51,28 +51,28 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "machines.toml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "buildMachines"))))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rootile"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       lix: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         buildMachines: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: nix.thunk(() => ({})),
             description: "Lix TOML configuration for remote builders\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 options: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.sel(types, "int")),
                       default: 1n,
                       example: 2n,
@@ -80,66 +80,66 @@ export default nix.lambda((args) => (() => {
                       internal: true,
                     })))),
                   machines: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$3,
+                                  [nix.POS]: pos$3,
                                   type: nix.thunk(() => nix.sel(types, "str")),
                                   example: "ssh-ng://andesite@andesite.lix.systems",
                                   description: "The URI of the remote store in the format\n`ssh[-ng]://[username@]hostname[?port=<port>]`, e.g. `ssh://nix@mac` or `ssh://mac`.\nIf the ssh server is not listening on port 22 (e.g. port 1337 in this case)\nthe URI would be `ssh[-ng]://nix@mac?port=1337`. The hostname\nmay be an alias defined in your `~/.ssh/config`.\n",
                                 })))),
                               "system-types": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                                   default: null,
                                   example: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
                                   description: "A list of Nix platform type identifiers, such as\n`x86_64-darwin`. It is possible for a machine to support multiple\nplatform types, e.g., `i686-linux` and `x86_64-linux`.\n\n",
                                 })))),
                               "ssh-key": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$5,
+                                  [nix.POS]: pos$5,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                   default: null,
                                   example: "/root/.ssh/id_buildhost_builduser",
                                   description: "The path to the SSH private key with which to authenticate on\nthe build machine. The private key must not have a passphrase.\nIf null, the building user (root on NixOS machines) must have an\nappropriate ssh configuration to log in non-interactively.\n",
                                 })))),
                               jobs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   type: nix.thunk(() => nix.sel(types, "ints", "u32")),
                                   default: 1n,
                                   description: "The maximum number of builds that Lix will execute in parallel on\nthe machine. Typically, this should be equal to the number of CPU\ncores divided by the cores within the target machines configuration, i.e. `jobs * cores ~= cpu cores`\n",
                                 })))),
                               "speed-factor": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.sel(types, "numbers", "positive")),
                                   default: 1n,
                                   description: "The “speed factor”, indicating the relative speed of the machine. If\nthere are multiple machines of the right type, Lix will prefer the\nfastest, taking load into account.\n",
                                 })))),
                               "mandatory-features": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                                   default: null,
                                   example: nix.thunk(() => ["big-parallel"]),
                                   description: "A list of *mandatory features*. A machine will only\nbe used to build a derivation if all the machine’s mandatory\nfeatures appear in the derivation’s `requiredSystemFeatures`\nattribute.\n",
                                 })))),
                               "supported-features": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                                   default: null,
                                   example: nix.thunk(() => ["kvm", "big-parallel"]),
                                   description: "A list of *supported features*. If a derivation has\nthe `requiredSystemFeatures` attribute, then Lix will only schedule\nthe derivation on a machine that has the specified features. For\nexample, the attribute\n\n```nix\nrequiredSystemFeatures = [ \"kvm\" ];\n```\n\nwill cause the build to be performed on a machine that has the `kvm`\nfeature.\n",
                                 })))),
                               "ssh-public-host-key": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                   default: null,
                                   description: "The public host key of this builder.\nIf null, SSH will use its regular known-hosts file when connecting.\n",
                                 })))),
                               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$11,
+                                  [nix.POS]: pos$11,
                                   type: nix.thunk(() => nix.sel(types, "bool")),
                                   default: true,
                                   description: "Whether to enable this machine statically.\n",
@@ -156,36 +156,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(config, "nix", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "buildMachines", "machines"), {})))), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => (() => {
           const badMachine = (m) => (nix.asBool(nix.eq(nix.sel(m, "system-types"), null)) || nix.asBool(nix.eq(nix.sel(m, "system-types"), [])));
           return [
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               assertion: nix.thunk(() => !nix.asBool(nix.app(any, badMachine, nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(cfg, "buildMachines", "machines"))))))),
               message: nix.thunk(() => nix.add(nix.add("At least one system type (via `system-types`) must be set for every build machine.\n  Invalid machine specifications:\n", "      "), nix.app(concatStringsSep, "\n      ", nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => badMachine, nix.thunk(() => nix.sel(cfg, "buildMachines", "machines"))))))))),
             })),
             nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               assertion: nix.thunk(() => nix.eq(nix.sel(config, "nix", "package", "pname"), "lix")),
               message: "TOML configuration of remote builders is only supported in lix.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "nix", "package", "version")), "2.95")),
               message: nix.thunk(() => nix.str`TOML configuration was introduced in lix 2.95.0. Current version is ${nix.sel(config, "nix", "package", "version")}
 `),
             })),
             nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               assertion: nix.thunk(() => nix.eq(nix.sel(config, "nix", "buildMachines"), [])),
               message: "mix-matching between lix and nix build machines is not supported.\n",
             })),
           ];
         })()),
         nix: nix.thunk(() => ({
-          __proto__: pos$25,
-          settings: nix.thunk(() => ({ __proto__: pos$24, builders: nix.thunk(() => nix.str`@${configFile}`) })),
+          [nix.POS]: pos$25,
+          settings: nix.thunk(() => ({ [nix.POS]: pos$24, builders: nix.thunk(() => nix.str`@${configFile}`) })),
         })),
       })))),
   };

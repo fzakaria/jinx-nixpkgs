@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lorri";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "lorri",
           rev: version_1,
@@ -36,22 +36,22 @@ export default nix.lambda((args) => (() => {
       const cargoHash_1 = cargoHash;
       const doCheck = false;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUILD_REV_COUNT: nix.thunk(() => nix.selOr(src, () => 1n, "revCount")),
         RUN_TIME_CLOSURE: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./runtime.nix"), nix.thunk(() => ({})))),
       }));
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPackages, "rustfmt"))]);
       const postInstall = "install -Dm644 lorri.1 $man/share/man/man1/lorri.1\ninstall -Dm644 -t $doc/share/doc/lorri/ \\\n  README.md \\\n  CONTRIBUTING.md \\\n  LICENSE \\\n  MAINTAINERS.md\ncp -r contrib/ $doc/share/doc/lorri/contrib\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updater: nix.thunk(() => nix.app(nix.sel(writers, "writeBash"), "copy-runtime-nix.sh", nix.thunk(() => nix.str`set -euo pipefail
 cp ${src}/nix/runtime.nix ${nix.builtins.toString(nix.path(here, "./runtime.nix"))}
 cp ${src}/nix/runtime-closure.nix.template ${nix.builtins.toString(nix.path(here, "./runtime-closure.nix.template"))}
 `))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "lorri")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "lorri")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Your project's nix-env",
         homepage: "https://github.com/nix-community/lorri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -65,7 +65,7 @@ cp ${src}/nix/runtime-closure.nix.template ${nix.builtins.toString(nix.path(here
         mainProgram: "lorri",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src,

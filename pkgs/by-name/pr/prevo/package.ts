@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const prevo_data = nix.arg($, "prevo-data");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "prevo",
       version: nix.thunk(() => nix.attr(prevo_tools, "version")),
       paths: nix.thunk(() => [prevo_tools]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Offline version of the Esperanto dictionary Reta Vortaro",
         longDescription: "PReVo is the \"portable\" ReVo, i.e., the offline version\nof the Esperanto dictionary Reta Vortaro.\n",
         homepage: "https://github.com/bpeel/prevodb",

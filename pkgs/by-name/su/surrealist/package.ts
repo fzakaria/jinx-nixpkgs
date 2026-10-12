@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const esbuild_21_5 = nix.thunk(() => (() => {
     const version = "0.21.5";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,24 +60,24 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "surrealist",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "surrealdb",
           repo: "surrealist",
           rev: nix.thunk(() => nix.str`surrealist-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-L2O3iMoNptNgzEy7gXptAaHXhv4J5ED/72GLrH43/kQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-NhgSfiBb4FGEnirpDFWI3MIMElen8frKDFKmCBJlSBY=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "surrealist-node_modules",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\n\nbun install --no-progress --frozen-lockfile --no-cache\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "x86_64-linux": "sha256-tZYIiWHaeryV/f9AFNknRZp8om0y8QH8RCxoqgmbR5g=",
             "aarch64-linux": "sha256-6nB8wcXIYR1WcYqZrNFl0Jfdz/Z3PttULQHsQcfAsOk=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}: Platform ${nix.sel(stdenv, "hostPlatform", "system")} is not packaged yet. Supported platforms: x86_64-linux, aarch64-linux.`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cairo, gdk_pixbuf, libsoup_3, openssl, pango, webkitgtk_4_1]),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild_21_5)),
         OPENSSL_NO_VENDOR: 1n,
       })),
@@ -135,7 +135,7 @@ export PATH="$PWD/node_modules/.bin:$PATH"
 runHook postConfigure
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Visual management of your SurrealDB database",
         homepage: "https://surrealdb.com/surrealist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

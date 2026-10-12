@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const time = nix.arg($, "time");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "foo2zjs",
       version: "20210116",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.loegria.net/mirrors/foo2zjs/foo2zjs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14x3wizvncdy0xgvmcx541qanwb7bg76abygqy17bxycn1zh5r1x",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       preInstall: "mkdir -pv $out/{etc/udev/rules.d,lib/udev/rules.d,etc/hotplug/usb}\nmkdir -pv $out/share/foomatic/db/source/{opt,printer,driver}\nmkdir -pv $out/share/cups/model\nmkdir -pv $out/share/{applications,pixmaps}\n\nmkdir -pv \"$out/bin\"\ncp -v getweb arm2hpdl \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZjStream printer drivers",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

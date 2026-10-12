@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const jdk8 = nix.arg($, "jdk8");
   const libmatthew_java = nix.arg($, "libmatthew_java");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbus-java",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dbus.freedesktop.org/releases/dbus-java/dbus-java-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0cyaxd8x6sxmi6pklkkx45j311a6w51fxl4jc5j3inc4cailwh5y",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         JAVA_HOME: jdk8,
         JAVA: nix.thunk(() => nix.str`${jdk8}/bin/java`),
         PREFIX: "${out}",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gettext, jdk8]),
       preBuild: "sed -i -e \"s|all: bin doc man|all: bin|\" \\\n       -e \"s|install: install-bin install-man install-doc|install: install-bin|\" Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "afl21")),
       })),

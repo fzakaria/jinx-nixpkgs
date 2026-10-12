@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const caCert = nix.thunk(() => nix.sel(nodes, "acme", "test-support", "acme", "caCert"));
   const caDomain = nix.thunk(() => nix.sel(nodes, "acme", "test-support", "acme", "caDomain"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     security: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       acme: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         acceptTerms: true,
         defaults: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           server: nix.thunk(() => nix.str`https://${caDomain}/dir`),
           email: "hostmaster@example.test",
         })),
       })),
-      pki: nix.thunk(() => ({ __proto__: pos$3, certificateFiles: nix.thunk(() => [caCert]) })),
+      pki: nix.thunk(() => ({ [nix.POS]: pos$3, certificateFiles: nix.thunk(() => [caCert]) })),
     })),
   };
 })(), formals$1);

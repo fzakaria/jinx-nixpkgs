@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "go-package"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "arrow-adbc",
       version: "24",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "arrow-adbc",
           tag: nix.thunk(() => nix.str`apache-arrow-adbc-${nix.sel(finalAttrs, "version")}`),
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.builtins.map((driver) => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => nix.str`ADBC_DRIVER_${driver}`), true), nix.thunk(() => ["FLIGHTSQL", "MANAGER", "POSTGRESQL", "SQLITE"]))),
       buildInputs: nix.thunk(() => [fmt, gtest, libpq, nanoarrow, sqlite]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "go-package": nix.thunk(() => nix.app(buildGoModule, (finalGoAttrs) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
             dontInstall: true,
           }))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "apache-arrow-adbc-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Database connectivity API standard and libraries for Apache Arrow",
         homepage: "https://arrow.apache.org/adbc/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/arrow-adbc/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

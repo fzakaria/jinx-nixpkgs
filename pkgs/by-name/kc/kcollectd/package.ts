@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rrdtool = nix.arg($, "rrdtool");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kcollectd",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aerusso",
           repo: "kcollectd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical frontend to collectd",
         homepage: "https://www.antonioerusso.com/projects/kcollectd/",
         maintainers: nix.thunk(() => (() => {

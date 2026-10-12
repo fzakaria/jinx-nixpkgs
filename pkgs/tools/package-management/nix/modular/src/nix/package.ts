@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const withMimalloc = nix.argOr($, "withMimalloc", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")));
   const withPluginCApi = nix.argOr($, "withPluginCApi", () => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))));
   return nix.app(mkMesonExecutable, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix",
       version: version,
       workDir: nix.path(here, "./."),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.35pre")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "mimalloc", withMimalloc)),
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)), "2.35")), nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "plugin-c-api", withPluginCApi))))),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, exportsPluginCApi: withPluginCApi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, exportsPluginCApi: withPluginCApi })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "nix",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),

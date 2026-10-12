@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "woomer",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coffeeispower",
           repo: "woomer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glfw3, wayland, libgbm]),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_BUILD_RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((arg) => nix.add("-C link-arg=", arg), nix.thunk(() => ["-Wl,--push-state,--as-needed", "-lwayland-client", "-Wl,--pop-state"]))))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Zoomer application for Wayland inspired by tsoding's boomer",
         homepage: "https://github.com/coffeeispower/woomer",
         changelog: nix.thunk(() => nix.str`https://github.com/coffeeispower/woomer/releases/tag/${nix.sel(finalAttrs, "version")}`),

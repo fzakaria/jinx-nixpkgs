@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freetype-demos",
       version: "2.14.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/freetype/ft2demos-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GslqBmw5EI8rDMiqgFEG7Sw4FGyJE9wjltwkLpHjVoY=",
         })))),
@@ -39,7 +39,7 @@ tar -xf ${nix.sel(freetype, "src")} -C subprojects/freetype2 --strip-components=
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Demo and diagnostic programs for FreeType (ftview, ftgrid, ftdump, ...)",
         homepage: "https://www.freetype.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/freetype/freetype-demos/-/raw/VER-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ChangeLog`),

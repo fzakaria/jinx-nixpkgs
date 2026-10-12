@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const hishel_0_1 = nix.thunk(() => nix.app(nix.sel(python, "pkgs", "hishel", "overrideAttrs"), (old) => (() => {
       const version = "0.1.5";
       const src = nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: version,
           hash: "sha256-OyQR/ruowNk5z4ITRHcIJn1kc0xLZiofmxajf6hNR9k=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), nix.thunk(() => (() => {
       const pname = "spoolman";
@@ -79,9 +79,9 @@ makeWrapper ${start_script} $out/bin/spoolman \\
 --prefix PATH : "${nix.sel(python, "pkgs", "alembic")}/bin"
 `;
       })());
-      const meta = nix.thunk(() => nix.update(nix.sel(common, "meta"), { __proto__: pos$3, description: "Spoolman server", mainProgram: "spoolman" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: pos$3, description: "Spoolman server", mainProgram: "spoolman" }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

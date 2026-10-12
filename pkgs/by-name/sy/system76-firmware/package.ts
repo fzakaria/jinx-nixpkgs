@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const efibootmgr = nix.arg($, "efibootmgr");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "system76-firmware",
       version: "1.0.78",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "system76-firmware",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for managing firmware updates for system76 devices",
         homepage: "https://github.com/pop-os/system76-firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niivue",
           repo: "ipyniivue",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Jk8Os8g2W5IRqLQSLQeH59ffGgWK/gjuUZgUl+HflVA=",
         }))));
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${pname}-${version}-npm-deps`),
           src: src,
           hash: "sha256-6TbwAC175mkyR8EThMalWn7qEyaIFDxtKmC/RIuy1dk=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./package-lock.json")} ./package-lock.json
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$3, HATCH_BUILD_NO_HOOKS: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_NO_HOOKS: true }));
       const nativeBuildInputs = nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]);
       const preBuild = "npm run build\n";
       const build_system = nix.thunk(() => [hatchling, hatch_vcs, hatch_jupyter_builder]);
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["ipyniivue"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Show a nifti image in a webgl 2.0 canvas within a jupyter notebook cell",
         homepage: "https://github.com/niivue/ipyniivue",
         changelog: nix.thunk(() => nix.str`https://github.com/niivue/ipyniivue/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "lemurs-xorg",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "nullcube")),
           nix.thunk(() => nix.lookup(w, "stunkymonkey")),
@@ -32,24 +32,24 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$3,
-              lemurs: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              [nix.POS]: pos$3,
+              lemurs: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             })),
             xserver: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               windowManager: nix.thunk(() => ({
-                __proto__: pos$5,
-                icewm: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                [nix.POS]: pos$5,
+                icewm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
               })),
             })),
           })),

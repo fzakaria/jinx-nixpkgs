@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const ftgl = nix.arg($, "ftgl");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zaz",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/zaz/zaz-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1r3bmwny05zzmdalxm5ah2rray0nnsg1w00r30p47q6x2lpwj8ml",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         freetype,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL)}/include/SDL -I${SDL_image}/include/SDL`),
       })),
       makeFlags: nix.thunk(() => [
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "ZAZ_LIBS+=-lvorbisfile",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Puzzle game about arranging balls in triplets, like Luxor, Zuma, or Puzzle Bobble",
         homepage: "https://zaz.sourceforge.net/",

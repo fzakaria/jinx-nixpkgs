@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const protozero = nix.arg($, "protozero");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osmium-tool",
       version: "1.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmcode",
           repo: "osmium-tool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export OSMIUM_PAGER=cat\n",
       postInstall: "installShellCompletion --zsh ../zsh_completion/_osmium\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multipurpose command line tool for working with OpenStreetMap data based on the Osmium library",
         homepage: "https://osmcode.org/osmium-tool/",
         changelog: nix.thunk(() => nix.str`https://github.com/osmcode/osmium-tool/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

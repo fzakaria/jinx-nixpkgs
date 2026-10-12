@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       const pname = "argyllcms";
       const version = "3.4.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.argyllcms.com/Argyll_V${version}_src.zip`),
           hash: "sha256-QVugWtAk8xBn+/fRFqCoi072Q2q8OlB0LRhavrHC5MI=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [jam, udevCheckHook, unzip]);
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./jam-cross.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             emulator: nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)),
           }))))));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "substituteInPlace Jambase \\\n  --replace \"-m64\" \"\"\n"));
@@ -139,7 +139,7 @@ export AR="$AR rusc"
       const postInstall = "rm -v $out/bin/License.txt\nmkdir -p $out/etc/udev/rules.d\nsed -i '/udev-acl/d' usb/55-Argyll.rules\ncp -v usb/55-Argyll.rules $out/etc/udev/rules.d/\n\nsed -i -e 's/^CREATED .*/CREATED \"'\"$(date -d @$SOURCE_DATE_EPOCH)\"'\"/g' $out/share/argyllcms/RefMediumGamut.gam\n\n";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-argyllcms", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -152,7 +152,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.argyllcms.com/",
         description: "Color management system (compatible with ICC)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -160,7 +160,7 @@ update-source-version ${pname} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

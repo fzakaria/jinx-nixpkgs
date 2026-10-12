@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withPython = nix.argOr($, "withPython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastnlo-toolkit",
       version: "2.5.0-2826",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fastnlo.hepforge.org/code/v25/fastnlo_toolkit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7aIMYCOkHC/17CHYiEfrxvtSJxTDivrS7BQ32cGiEy0=",
         })))),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [perl, nix.thunk(() => nix.sel(lhapdf, "pdf_sets", "CT10nlo"))]),
       preCheck: "patchShebangs --build check\n",
       enableParallelChecking: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-D_LIBCPP_ENABLE_CXX17_REMOVED_FEATURES" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-D_LIBCPP_ENABLE_CXX17_REMOVED_FEATURES" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://fastnlo.hepforge.org",
         description: "Fast pQCD calculations for hadron-induced processes",
         longDescription: "The fastNLO project provides computer code to create and evaluate fast\ninterpolation tables of pre-computed coefficients in perturbation theory\nfor observables in hadron-induced processes.\n\nThis allows fast theory predictions of these observables for arbitrary\nparton distribution functions (of regular shape), renormalization or\nfactorization scale choices, and/or values of alpha_s(Mz) as e.g. needed\nin PDF fits or in systematic studies. Very time consuming complete\nrecalculations are thus avoided.\n",

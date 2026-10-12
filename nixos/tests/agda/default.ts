@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     base: nix.thunk(() => nix.app(runTest, nix.path(here, "./base.nix"))),
     "override-with-backend": nix.thunk(() => nix.app(runTest, nix.path(here, "./override-with-backend.nix"))),
   };

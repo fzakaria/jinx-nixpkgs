@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kanagawa.yazi",
       version: "0-unstable-2026-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dangooddd",
           repo: "kanagawa.yazi",
           rev: "04985d12842b06bdb3ad5f1b3d7abc631059b7f5",
           hash: "sha256-Yz0zRVzmgbrk0m7OkItxIK6W0WkPze/t09pWFgziNrw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kanagawa theme for Yazi",
         homepage: "https://github.com/dangooddd/kanagawa.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

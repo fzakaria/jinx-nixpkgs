@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const copts = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-DHAVE_LIBIDN2", "-DHAVE_DNSSEC"], nix.concat(nix.app(nix.sel(lib, "optionals"), dbusSupport, nix.thunk(() => ["-DHAVE_DBUS"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DHAVE_CONNTRACK", "-DHAVE_NFTSET"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dnsmasq",
       version: "2.93",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.thekelleys.org.uk/dnsmasq/dnsmasq-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DADU5cl8gwbl+5MrNIs0JpycKaDn3w6OgpWLQHCSvBk=",
         })))),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([nettle, libidn2], nix.concat(nix.app(nix.sel(lib, "optionals"), dbusSupport, nix.thunk(() => [dbus])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnetfilter_conntrack, nftables]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "prometheus-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "dnsmasq")),
           "dnscrypt-proxy": nix.thunk(() => nix.attr(nixosTests, "dnscrypt-proxy")),
           "kubernetes-dns-single": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-single-node")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Integrated DNS, DHCP and TFTP server for small networks",
         homepage: "https://www.thekelleys.org.uk/dnsmasq/doc.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

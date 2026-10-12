@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AMDmi3",
           repo: "jsonslicer",
           tag: version,
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, unittestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["jsonslicer"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stream JSON parser for Python",
         homepage: "https://github.com/AMDmi3/jsonslicer",
         changelog: nix.thunk(() => nix.str`https://github.com/AMDmi3/jsonslicer/blob/${version}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

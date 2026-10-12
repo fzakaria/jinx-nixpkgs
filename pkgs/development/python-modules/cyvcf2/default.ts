@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const coloredlogs = nix.arg($, "coloredlogs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cyvcf2",
       version: "0.34.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brentp",
           repo: "cyvcf2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [htslib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CYVCF2_HTSLIB_MODE: "EXTERNAL" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CYVCF2_HTSLIB_MODE: "EXTERNAL" })),
       dependencies: nix.thunk(() => [click, coloredlogs, numpy]),
       pythonImportsCheck: nix.thunk(() => ["cyvcf2"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: nix.thunk(() => nix.str`cp $out/${nix.sel(python, "sitePackages")}/cyvcf2/cyvcf2*.so cyvcf2/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cython wrapper around htslib built for fast parsing of Variant Call Format (VCF) files",
         homepage: "https://github.com/brentp/cyvcf2",
         changelog: nix.thunk(() => nix.str`https://github.com/brentp/cyvcf2/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.md`),

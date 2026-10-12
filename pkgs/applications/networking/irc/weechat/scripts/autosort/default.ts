@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-autosort",
       version: "3.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/weechat/scripts/raw/13aef991ca879fc0ff116874a45b09bc2db10607/python/autosort.py",
           hash: "sha256-xuZUssjGd0l7lCx96d0V8LL+0O3zIxYlWMoDsdzwMf4=",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/share\ncp $src $out/share/autosort.py\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["autosort.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["autosort.py"]) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "autosort automatically keeps your buffers sorted and grouped by server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hugs98",
       version: "2006-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "augustss",
           repo: "hugs98-plus-Sep2006",
           rev: "1f7b60e05b12df00d715d535bb01c189bc1b9b3c",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [bison]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=implicit-function-declaration"]))),
       })),
       postUnpack: "find -type f -exec sed -i 's@/bin/cp@cp@' {} +",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "--enable-pthreads",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "hugs",
         homepage: "https://www.haskell.org/hugs",
         description: "Haskell interpreter",

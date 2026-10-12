@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const redisTestHook = nix.arg($, "redisTestHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rq",
       version: "2.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rq",
           repo: "rq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_deleted_jobs_arent_executed", "test_suspend_worker_execution"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["test_reap_workers"]))))),
       pythonImportsCheck: nix.thunk(() => ["rq"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for creating background jobs and processing them",
         homepage: "https://github.com/nvie/rq/",
         changelog: nix.thunk(() => nix.str`https://github.com/rq/rq/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

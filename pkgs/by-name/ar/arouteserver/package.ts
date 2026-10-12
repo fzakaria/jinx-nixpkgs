@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.23.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pierky",
           repo: "arouteserver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ substituteInPlace pierky/arouteserver/builder.py pierky/arouteserver/config/prog
       const enabledTestPaths = nix.thunk(() => ["tests/static"]);
       const disabledTests = nix.thunk(() => ["current_year"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically build (and test) feature-rich configurations for BGP route servers",
         mainProgram: "arouteserver",
         homepage: "https://github.com/pierky/arouteserver",
@@ -72,7 +72,7 @@ substituteInPlace pierky/arouteserver/builder.py pierky/arouteserver/config/prog
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

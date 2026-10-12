@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sharutils = nix.arg($, "sharutils");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freetts",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/freetts/freetts-${nix.sel(finalAttrs, "version")}-src.zip`),
           hash: "sha256-+bhM0ErEZVnmcz5CBqn/AeGaOhKnCjZzGeqgO/89wms=",
           stripRoot: false,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npushd lib\nsed -i -e \"s/more/cat/\" jsapi.sh\necho y | sh jsapi.sh\npopd\n\nln -s . src\nant\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm644 lib/*.jar -t $out/lib\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text to speech system based on Festival written in Java",
         longDescription: "Text to speech system based on Festival written in Java.\nCan be used in combination with KDE accessibility.\n",
         homepage: "http://freetts.sourceforge.net",

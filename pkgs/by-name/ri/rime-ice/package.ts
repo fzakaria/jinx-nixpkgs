@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rime-ice",
       version: "2026.06.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iDvel",
           repo: "rime-ice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nrm -rf others README.md .git*\n\nmv default.yaml rime_ice_suggestion.yaml\n\nmkdir -p $out/share\ncp -r . $out/share/rime-data\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Actively maintained simplified Chinese dictionary with full and double pinyin support",
         longDescription: "Rime-Ice (雾凇拼音) provides a comprehensive, ready-to-use configuration.\nIt includes full Pinyin and popular Double Pinyin layouts,\na well-maintained open-source dictionary,\nand a wide range of extended features.\n\nTo enable the upstream `default.yaml`\n(provided as `rime_ice_suggestion.yaml`),\nadd the following to your `default.custom.yaml`:\n\n```yaml\npatch:\n  __include: rime_ice_suggestion:/\n```\n",
         homepage: "https://github.com/iDvel/rime-ice",

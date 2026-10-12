@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const linux = nix.arg($, "linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gpio-utils",
       version: nix.thunk(() => nix.sel(linux, "version")),
       src: nix.thunk(() => nix.attr(linux, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       installFlags: nix.thunk(() => ["install", "DESTDIR=$(out)", "bindir=/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Linux tools to inspect the gpiochip interface",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

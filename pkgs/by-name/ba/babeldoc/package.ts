@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python3Packages = python313Packages;
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "babeldoc",
       version: "0.6.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "funstory-ai",
           repo: "BabelDOC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["babeldoc"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF scientific paper translation and bilingual comparison library",
         homepage: "https://github.com/funstory-ai/BabelDOC",
         changelog: nix.thunk(() => nix.str`https://github.com/funstory-ai/BabelDOC/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

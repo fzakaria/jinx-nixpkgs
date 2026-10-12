@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "20090618",
       pname: "pari-seadata-small",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pari.math.u-bordeaux.fr/pub/pari/packages/seadata-small.tgz",
           sha256: "13qafribxwkz8h3haa0cng7arz0kh7398br4y7vqs9ib8w9yjnxz",
         })))),
       installPhase: "mkdir -p \"$out/share/pari\"\ncp -R * \"$out/share/pari/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PARI database needed by ellap for large primes",
         homepage: "http://pari.math.u-bordeaux.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

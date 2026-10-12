@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "luabind",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Oberon00",
           repo: "luabind",
           rev: "49814f6b47ed99e273edc5198a6ebd7fa19e813a",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost]),
       propagatedBuildInputs: nix.thunk(() => [lua]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, lua: lua })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, lua: lua })),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 2.8.3)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n",
       patches: nix.thunk(() => [nix.path(here, "./0.9.1-discover-luajit.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Oberon00/luabind",
         description: "Library that helps you create bindings between C++ and Lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

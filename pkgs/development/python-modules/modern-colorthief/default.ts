@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baseplate-admin",
           repo: "modern_colorthief",
           tag: version,
           hash: "sha256-oQ0ZAL8GyzKfFoSBJS2LIck2Z1IzZCYrkOc9nXfqyyg=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, test: nix.thunk(() => [colorthief, pillow]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, test: nix.thunk(() => [colorthief, pillow]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTestPaths = nix.thunk(() => ["examples/test_time.py"]);
       const pythonImportsCheck = nix.thunk(() => ["modern_colorthief"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://modern-colorthief.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/baseplate-admin/modern_colorthief/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "odsgenerator",
       version: "1.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jdum",
           repo: "odsgenerator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"uv_build>=0.9.0,<0.10.0\" \"uv_build\"\nsubstituteInPlace tests/test_cli.py \\\n  --replace-fail '\"odsgenerator\"' \"\\\"$out/bin/odsgenerator\\\"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "odsgenerator generates an ODF .ods file from json or yaml file",
         homepage: "https://github.com/jdum/odsgenerator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

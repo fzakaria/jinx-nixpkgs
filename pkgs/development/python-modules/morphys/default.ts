@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "morphys",
       version: "1.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkalinski",
           repo: "morphys",
           rev: "0642a71126c32cd26b3a443a5cac27e4e1f7240f",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pythonImportsCheck: nix.thunk(() => ["morphys"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smart conversions between unicode and bytes types",
         homepage: "https://github.com/mkalinski/morphys",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "commit-mono",
       version: "1.143",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/eigilnikolajsen/commit-mono/releases/download/v${nix.sel(finalAttrs, "version")}/CommitMono-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-JTyPgWfbWq+lXQU/rgnyvPG6+V3f+FB5QUkd+I1oFKE=",
           stripRoot: false,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Anonymous and neutral programming typeface focused on creating a better reading experience",
         homepage: "https://commitmono.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

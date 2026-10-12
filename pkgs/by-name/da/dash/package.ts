@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const tests = nix.arg($, "tests");
   const patchRcPathPosix = nix.arg($, "patchRcPathPosix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dash",
       version: "0.5.13.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://gondor.apana.org.au/~herbert/dash/files/dash-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QAkBAaKkkfE+kB09SOkEFPJmNGKLm//zX/VANjwien0=",
         })))),
@@ -41,19 +41,19 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "export LIBS=\"$(${PKG_CONFIG:-pkg-config} --libs --static libedit)\"\n")),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shellPath: "/bin/dash",
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "execute-simple-command": nix.thunk(() => nix.app(runCommand, "dash-execute-simple-command", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "getExe"), dash)} -c 'echo "Hello World!" > $out/success'
 [ -s $out/success ]
 grep -q "Hello World" $out/success
 `))),
           reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               writers: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   simple: nix.thunk(() => nix.sel(tests, "writers", "simple", "dash")),
                   bin: nix.thunk(() => nix.sel(tests, "writers", "bin", "dash")),
                 })))),
@@ -63,7 +63,7 @@ grep -q "Hello World" $out/success
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "http://gondor.apana.org.au/~herbert/dash/",
         description: "POSIX-compliant implementation of /bin/sh that aims to be as small as possible",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

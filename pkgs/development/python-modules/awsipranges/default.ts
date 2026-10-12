@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws-samples",
           repo: "awsipranges",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/test_data_loading.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to work with the AWS IP address ranges",
         homepage: "https://github.com/aws-samples/awsipranges",
         changelog: nix.thunk(() => nix.str`https://github.com/aws-samples/awsipranges/releases/tag/${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

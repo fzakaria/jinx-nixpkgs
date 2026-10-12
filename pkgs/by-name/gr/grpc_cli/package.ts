@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const numactl = nix.arg($, "numactl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "grpc_cli",
       version: "1.80.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc",
           repo: "grpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DgRPC_BUILD_TESTS=ON"]),
       makeFlags: nix.thunk(() => ["grpc_cli"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "-Wno-error=format-security")),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm555 grpc_cli \"$out/bin/grpc_cli\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool for interacting with grpc services",
         homepage: "https://github.com/grpc/grpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

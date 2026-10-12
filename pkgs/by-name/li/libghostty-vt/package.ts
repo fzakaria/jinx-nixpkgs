@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const optimize = nix.argOr($, "optimize", () => "ReleaseFast");
   const simd = nix.argOr($, "simd", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libghostty-vt",
       version: "0.1.0-unstable-2026-08-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghostty-org",
           repo: "ghostty",
           rev: "22d13172cde98a0a4dda05d3d6a3fcb0dd8ed018",
           hash: "sha256-tRtgTg/i3w1nFdRHU2IGekfJN8EyP+HARW4MtoUZyqk=",
         })))),
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-${nix.sel(finalAttrs, "version")}`),
           linkFarm: (name) => (entries) => nix.app(runCommand, name, nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`cp -rL ${nix.sel(e, "path")} $out/${nix.sel(e, "name")}
@@ -64,7 +64,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`cp -rL ${nix
       postInstall: "mkdir -p \"$dev/lib\"\nmv \"$out/lib/libghostty-vt.a\" \"$dev/lib/\"\n",
       postFixup: "substituteInPlace \"$dev/share/pkgconfig/libghostty-vt-static.pc\" \\\n  --replace-fail \"$out\" \"$dev\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ghostty's VT (terminal sequence) parsing library",
         homepage: "https://ghostty.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

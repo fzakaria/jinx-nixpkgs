@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "abc-verifier",
       version: "0.62",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yosyshq",
           repo: "abc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ABC_SKIP_TESTS", true))]),
       installPhase: "runHook preInstall\ninstall -Dm755 'abc' \"$out/bin/abc\"\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for sequential logic synthesis and formal verification",
         homepage: "https://people.eecs.berkeley.edu/~alanmi/abc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit-modern")),

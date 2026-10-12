@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const llama_index_core = nix.arg($, "llama-index-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-graph-stores-neptune",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_graph_stores_neptune",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-qYr9WcQvGrq4juuZk2Ww8IK9uxnS9Th00fB4Dmh7Irc=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [boto3, llama_index_core]),
       pythonImportsCheck: nix.thunk(() => ["llama_index.graph_stores.neptune"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Graph Store Integration for Neptune",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/graph_stores/llama-index-graph-stores-neptune",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

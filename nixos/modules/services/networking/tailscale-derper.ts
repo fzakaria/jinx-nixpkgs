@@ -36,55 +36,55 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tailscale", "derper"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "SuperSandro2000"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tailscale: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           derper: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tailscale Derper. See upstream doc <https://tailscale.com/kb/1118/custom-derp-servers> how to configure it on clients")),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Domain name under which the derper server is reachable.",
               })))),
             configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable nginx reverse proxy for derper.\nWhen enabled, nginx will proxy requests to the derper service.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to open the firewall for the specified port.\nDerper requires the used ports to be opened, otherwise it doesn't work as expected.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["tailscale", "derper"]), nix.thunk(() => ({})))),
             stunPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 3478n,
                 description: "STUN port to listen on.\nSee online docs <https://tailscale.com/kb/1118/custom-derp-servers#prerequisites> on how to configure a different external port.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8010n,
                 description: "The port the derper process will listen on. This is not the port tailscale will connect to.",
               })))),
             verifyClients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to verify clients against a locally running tailscale daemon if they are allowed to connect to this node or not.\n",
@@ -94,27 +94,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "stunPort"))]),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   addSSL: true,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                       proxyWebsockets: true,
                       extraConfig: "proxy_buffering off;\nproxy_read_timeout 3600s;\n",
@@ -124,18 +124,18 @@ export default nix.lambda((args) => (() => {
               ])),
             })))),
           tailscale: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "verifyClients")), true)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "tailscale-derper": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "derper")} -a :${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} -c /var/lib/derper/derper.key -hostname=${nix.sel(cfg, "domain")} -stun-port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "stunPort")))}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "verifyClients")), " -verify-clients"))),
                 DynamicUser: true,
                 Restart: "always",

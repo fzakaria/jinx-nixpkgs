@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "json_merge_patch",
           version: version,
           sha256: "sha256-SgItePwvCctJ2Wxkbvw4DTterStcfaviLDkowsLpxOA=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON Merge Patch library",
         mainProgram: "json-merge-patch",
         homepage: "https://github.com/open-contracting/json-merge-patch",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

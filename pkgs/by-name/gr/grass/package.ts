@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "grass",
       version: "8.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OSGeo",
           repo: "grass",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         zstd,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withOpenGL, nix.thunk(() => [libGLU])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))))),
       strictDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
       configureFlags: nix.thunk(() => nix.concat([
         "--with-blas",
         "--with-cairo-ldflags=-lfontconfig",
@@ -127,17 +127,17 @@ ln -s $out/grass*/include $out/include
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           grass: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               grass: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GIS software suite used for geospatial data management and analysis, image processing, graphics and maps production, spatial modeling, and visualization",
         homepage: "https://grass.osgeo.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

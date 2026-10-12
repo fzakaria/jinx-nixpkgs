@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "lib/libsbuf",
       extraPaths: nix.thunk(() => ["sys/kern"]),
-      env: nix.thunk(() => ({ __proto__: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

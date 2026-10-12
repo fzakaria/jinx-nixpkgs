@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/usr/sbin/sendmail");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cron",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.isc.org/isc/cron/cron_${nix.sel(finalAttrs, "version")}.shar`),
           hash: "sha256-xEWDd1b7mI8slduNxV15N9FLygzfopLegTIsolVuw5o=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0000-nixpkgs-specific.diff"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             sendmailPath: sendmailPath,
             viPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), vim, "vim")),
             defPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => [
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/vixie/cron/commit/3ce0c3acdf086a82638818635961c70cba2b6ba7.patch",
             hash: "sha256-d1vN3TGAAOMlWpMZKnHU/RlZ5pBOl3+IXjZ4UALVqLI=",
           })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace ' -o root' ' ' \\\n  --replace 111 755 \\\n  --replace 4755 0755 \\\n  --replace ' -s cron' ' cron'\n",
       preInstall: "mkdir -p $out/{{,s}bin,share/man/man{1,5,8}}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://ftp.isc.org/isc/cron/",
         description: "Daemon for running commands at specific times",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

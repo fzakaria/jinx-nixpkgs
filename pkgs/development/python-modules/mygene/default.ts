@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "biothings",
           repo: "mygene.py",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/KxlzOTbZTN5BA0PrJyivVFh4cLtW90/EFwczda61Tg=",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, complete: nix.thunk(() => [pandas]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, complete: nix.thunk(() => [pandas]) }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [biothings_client, requests]);
       const pythonImportsCheck = nix.thunk(() => ["mygene"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/biothings/mygene.py/blob/v${version}/CHANGES.txt`),
         description: "REST web services to query/retrieve gene annotation data",
         homepage: "https://github.com/biothings/mygene.py",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const cddlib = nix.arg($, "cddlib");
   const onetbb = nix.arg($, "onetbb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gfan",
       version: "0.8beta",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://home.math.au.dk/jensen/software/gfan/gfan${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+niE5fMXxQ+PtPN7z11Bnw/V97kNYDc0nRlX6nPOu+4=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./gfan-0.6.2-cddlib-prefix.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.path(here, "./gfan-0.8beta-libcxx-threading.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "clang-fix-miscompilation.patch",
               url: "https://raw.githubusercontent.com/sagemath/sage/eea1f59394a5066e9acd8ae39a90302820914ee3/build/pkgs/gfan/patches/nodel.patch",
               hash: "sha256-RrncSgFyrBIk/Bwe3accxiJ2rpOSJKQ84cV/uBvQsDc=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\nmake check | tee \"$TMPDIR/test.log\"\n! grep -q \"Failed tests:\" \"$TMPDIR/test.log\"\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software package for computing Gröbner fans and tropical varieties",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

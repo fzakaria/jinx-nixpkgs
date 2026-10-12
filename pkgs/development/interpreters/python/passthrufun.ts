@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
             const stdenv_1 = nix.arg($_2, "stdenv");
             const python = nix.arg($_2, "python");
             const overrides = nix.arg($_2, "overrides");
-            const pythonPackagesFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./python-packages-base.nix")), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv_1, pkgs: pkgs, lib: lib, python: self }))));
+            const pythonPackagesFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./python-packages-base.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv_1, pkgs: pkgs, lib: lib, python: self }))));
             const otherSplices = nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               selfBuildBuild: nix.thunk(() => nix.sel(pythonOnBuildForBuild, "pkgs")),
               selfBuildHost: nix.thunk(() => nix.sel(pythonOnBuildForHost, "pkgs")),
               selfBuildTarget: nix.thunk(() => nix.sel(pythonOnBuildForTarget, "pkgs")),
@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
             const extensions = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat([hooks, pythonExtension], nix.concat(nix.app(optionalExtensions, nix.thunk(() => !nix.asBool(nix.sel(self, "isPy3k"))), nix.thunk(() => [python2Extension])), nix.concat(pythonPackagesExtensions, [overrides]))))));
             const aliases = (self_1) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/python-aliases.nix")), lib, self_1, super$)));
             return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 otherSplices: otherSplices,
                 keep: keep,
                 f: nix.thunk(() => nix.app(nix.sel(lib, "extends"), nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), aliases, extensions)), pythonPackagesFun)),
               })));
-          })(), formals$3), nix.thunk(() => ({ __proto__: pos$4, overrides: packageOverrides, python: self })))));
+          })(), formals$3), nix.thunk(() => ({ [nix.POS]: pos$4, overrides: packageOverrides, python: self })))));
     })());
     return (() => {
       const isPy311 = nix.thunk(() => nix.eq(pythonVersion_1, "3.11"));
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
       const isPy3k = isPy3;
       const isPyPy = nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "pypy", interpreter));
       const buildEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           python: self,
           requiredPythonModules: nix.thunk(() => nix.attr(pythonPackages, "requiredPythonModules")),
         }))));
-      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ __proto__: pos$6, buildEnv: buildEnv, pythonPackages: pythonPackages }))));
+      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, buildEnv: buildEnv, pythonPackages: pythonPackages }))));
       const pkgs = pythonPackages;
       const interpreter = nix.thunk(() => nix.str`${self}/bin/${executable_1}`);
       const executable_1 = executable;
@@ -109,10 +109,10 @@ export default nix.lambda((args) => (() => {
       const pythonOnHostForHost_1 = pythonOnHostForHost;
       const pythonOnTargetForTarget_1 = pythonOnTargetForTarget;
       const pythonABITags_1 = pythonABITags;
-      const tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$7, python: self }))));
+      const tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, python: self }))));
       const pythonAttr_1 = pythonAttr;
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         isPy311,
         isPy312,
         isPy313,

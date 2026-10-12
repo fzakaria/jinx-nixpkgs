@@ -18,53 +18,53 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       proto: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["h2", "http/1.1"]))),
           default: "http/1.1",
           description: "This option configures the protocol the backend server expects\nto use.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "This option determines whether nghttpx will negotiate its\nconnection with a backend server using TLS or not. The burden\nis on the backend server to provide the TLS certificate!\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       sni: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: null,
           description: "Override the TLS SNI field value. This value (in nghttpx)\ndefaults to the host value of the backend configuration.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       fall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 0n,
           description: "If nghttpx cannot connect to the backend N times in a row, the\nbackend is assumed to be offline and is excluded from load\nbalancing. If N is 0 the backend is never excluded from load\nbalancing.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       rise: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 0n,
           description: "If the backend is excluded from load balancing, nghttpx will\nperiodically attempt to make a connection to the backend. If\nthe connection is successful N times in a row the backend is\nre-included in load balancing. If N is 0 a backend is never\nreconsidered for load balancing once it falls.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       affinity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ip", "none"]))),
           default: "none",
           description: "If \"ip\" is given, client IP based session affinity is\nenabled. If \"none\" is given, session affinity is disabled.\n\nSession affinity is enabled (by nghttpx) per-backend\npattern. If at least one backend has a non-\"none\" affinity,\nthen session affinity is enabled for all backend servers\nsharing the same pattern.\n\nIt is advised to set affinity on all backends explicitly if\nsession affinity is desired. The session affinity may break if\none of the backend gets unreachable, or backend settings are\nreloaded or replaced by API.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       dns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Name resolution of a backends host name is done at start up,\nor configuration reload. If \"dns\" is true, name resolution\ntakes place dynamically.\n\nThis is useful if a backends address changes frequently. If\n\"dns\" is true, name resolution of a backend's host name at\nstart up, or configuration reload is skipped.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",
         })))),
       "redirect-if-not-tls": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "If true, a backend match requires the frontend connection be\nTLS encrypted. If it is not, nghttpx responds to the request\nwith a 308 status code and https URI the client should use\ninstead in the Location header.\n\nThe port number in the redirect URI is 443 by default and can\nbe changed using 'services.nghttpx.redirect-https-port'\noption.\n\nIf at least one backend has \"redirect-if-not-tls\" set to true,\nthis feature is enabled for all backend servers with the same\npattern. It is advised to set \"redirect-if-no-tls\" parameter\nto all backends explicitly if this feature is desired.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-b>\nfor more detail.\n",

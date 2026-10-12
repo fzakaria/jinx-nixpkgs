@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const jre = jre8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "scalafix",
       version: "0.12.0",
       deps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-deps-${nix.sel(finalAttrs, "version")}`),
           buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch ch.epfl.scala:scalafix-cli_2.13.13:${nix.sel(finalAttrs, "version")} > deps
@@ -47,18 +47,18 @@ installShellCompletion --cmd ${nix.sel(finalAttrs, "pname")} \\
   --zsh  <($out/bin/${nix.sel(finalAttrs, "pname")} --zsh)
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Refactoring and linting tool for Scala",
         mainProgram: "scalafix",
         homepage: "https://scalacenter.github.io/scalafix/",

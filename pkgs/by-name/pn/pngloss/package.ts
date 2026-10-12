@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pngloss",
       version: "unstable-2020-11-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foobaz",
           repo: "pngloss",
           rev: "559f09437e1c797a1eaf08dfdcddd9b082f0e09c",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpng, zlib]),
       installPhase: "runHook preInstall\n\ninstall -D ./src/pngloss $out/bin/pngloss\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lossy compression of PNG images",
         homepage: "https://github.com/foobaz/pngloss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

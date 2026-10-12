@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "reg",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "genuinetools",
           repo: "reg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-x-sys-for-go-1.18-on-aarch64-darwin.patch",
             url: "https://github.com/genuinetools/reg/commit/f37b04ad8be47f1e68ef9b2c5906324d7096231e.patch",
             hash: "sha256-wmBjPdrpNpxx//I+d+k8DNR11TmyXxb84vXR/MrYHKA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "update-vendored-dependencies.patch",
             url: "https://github.com/genuinetools/reg/commit/8bb04bc3fd41c089716e65ee905c6feac8bda5a0.patch",
             hash: "sha256-5nZaayy0xu7sOJHVCp6AotINiF7vXk2Jic8SR8ZrH/g=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Docker registry v2 command line client and repo listing generator with security checks",
         homepage: "https://github.com/genuinetools/reg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

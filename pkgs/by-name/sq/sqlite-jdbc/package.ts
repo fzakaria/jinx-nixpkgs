@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sqlite-jdbc";
       const version = "3.49.1.0";
       const src = nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           groupId: "org.xerial",
           artifactId: "sqlite-jdbc",
           version: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -m444 -D ${src}/share/java/*${pname}-${version}.jar "$out/share/java/${pname}-${version}.jar"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xerial/sqlite-jdbc",
         description: "Library for accessing and creating SQLite database files in Java",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "jraygauthier"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgnome-keyring",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgnome-keyring/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgnome-keyring-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xMF4+7BfcqzEhNIt2wVo91MsQJsKE+BlE/9UuR6Ud4M=",
         })))),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# uses pkg-config in some places and uses the correct $PKG_CONFIG in some\n# it's an ancient library so it has very old configure scripts and m4\nsubstituteInPlace ./configure \\\n  --replace \"pkg-config\" \"$PKG_CONFIG\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Framework for managing passwords and other secrets",
         homepage: "https://gitlab.gnome.org/Archive/libgnome-keyring",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/Archive/libgnome-keyring/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

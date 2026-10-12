@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const gnumake = nix.arg($, "gnumake");
   const teensy_loader_cli = nix.arg($, "teensy-loader-cli");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qmk",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-FkvRbExAGyt2XuTwF7z6gUGULd82KWHEy6GXXYyyikg=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/qmk/qmk_cli",
         description: "Program to help users work with QMK Firmware",
         longDescription: "qmk_cli is a companion tool to QMK firmware. With it, you can:\n\n- Interact with your qmk_firmware tree from any location\n- Use qmk clone to pull down anyone's qmk_firmware fork\n- Setup and work with your build environment:\n  - qmk setup\n  - qmk doctor\n  - qmk compile\n  - qmk console\n  - qmk flash\n  - qmk lint\n- ... and many more!\n",

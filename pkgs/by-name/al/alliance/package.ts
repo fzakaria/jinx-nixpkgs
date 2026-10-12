@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alliance",
       version: "5.1.1-unstable-2025-02-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lip6",
           repo: "alliance",
           rev: "a8502d32df0a4ad1bd29ab784c4332319669ecd2",
@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xorgproto, motif, libx11, libxt, libxpm, bison]),
       configureFlags: nix.thunk(() => ["--enable-alc-shared"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-std=gnu99 -Wno-incompatible-pointer-types",
       })),
       postPatch: "# texlive for docs seems extreme\nsubstituteInPlace autostuff \\\n  --replace \"$newdirs documentation\" \"$newdirs\"\n\nsubstituteInPlace sea/src/DEF_grammar_lex.l --replace \"ifndef FLEX_BETA\" \\\n  \"if (YY_FLEX_MAJOR_VERSION <= 2) && (YY_FLEX_MINOR_VERSION < 6)\"\n\n./autostuff\n",
       postInstall: "sed -i \"s|ALLIANCE_TOP|$out|\" distrib/*.desktop\nmkdir -p $out/share/applications\ncp -p distrib/*.desktop $out/share/applications/\nmkdir -p $out/icons/hicolor/48x48/apps/\ncp -p distrib/*.png $out/icons/hicolor/48x48/apps/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "(deprecated) Complete set of free CAD tools and portable libraries for VLSI design",
         homepage: "http://coriolis.lip6.fr/",
         license: nix.thunk(() => (() => {

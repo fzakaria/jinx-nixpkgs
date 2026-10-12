@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const sollya = nix.arg($, "sollya");
   const wcpg = nix.arg($, "wcpg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flopoco",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flopoco",
           repo: "flopoco",
           rev: "67598298207c9f3261c35679c8a5966480c4343c",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-clang-error-sin-cos.patch",
             url: "https://gitlab.com/flopoco/flopoco/-/commit/de3aa60ad19333952c176c2a2e51f12653ca736b.patch",
             postFetch: "substituteInPlace $out \\\n  --replace 'FixSinCosCORDIC.hpp' 'CordicSinCos.hpp'\n",
             sha256: "sha256-BlamA/MZuuqqvGYto+jPeQPop6gwva0y394Odw8pdwg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-clang-error-atan2.patch",
             url: "https://gitlab.com/flopoco/flopoco/-/commit/a3ffe2436c1b59ee0809b3772b74f2d43c6edb99.patch",
             sha256: "sha256-dSYcufLHDL0p1V1ghmy6X6xse5f6mjUqckaVqLZnTaA=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 flopoco $out/bin/flopoco\ncp bin* fp* ieee* longacc* $out/bin/\ninstallShellCompletion --bash flopoco_autocomplete\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FloPoCo arithmetic core generator",
         homepage: "https://flopoco.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const cstruct = nix.arg($, "cstruct");
   const lwt = nix.arg($, "lwt");
   return (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.selOr(cstruct, () => "1", "version")), "3")) ? nix.force(cstruct) : nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "cstruct-lwt",
       version: nix.thunk(() => nix.attr(cstruct, "version")),
       src: nix.thunk(() => nix.attr(cstruct, "src")),

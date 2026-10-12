@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "curaengine",
       version: "15.04.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ultimaker",
           repo: "CuraEngine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile --replace \"--static\" \"\"\n",
       installPhase: "mkdir -p $out/bin\ncp build/CuraEngine $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Engine for processing 3D models into 3D printing instructions",
         mainProgram: "CuraEngine",
         homepage: "https://github.com/Ultimaker/CuraEngine",

@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "envision-unwrapped",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gabmus",
           repo: "envision",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./support-headless-cli.patch")]),
       strictDeps: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
             })))),
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: true,
         description: "UI for building, configuring and running Monado, the open source OpenXR runtime",
         homepage: "https://gitlab.com/gabmus/envision",

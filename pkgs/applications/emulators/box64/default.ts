@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const hello_x86_64 = nix.arg($, "hello-x86_64");
   nix.assert_((!nix.asBool(withDynarec) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian"))))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/emulators/box64/default.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "box64",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ptitSeb",
           repo: "box64",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,19 +65,19 @@ $out/bin/box64 -v 2>&1 | grep ${nix.app(nix.sel(lib, "optionalString"), nix.thun
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", allowedVersions: "\\.[02468]$" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "\\.[02468]$" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hello: nix.thunk(() => nix.app(runCommand, "box64-test-hello", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`BOX64_LOG=1 box64 ${nix.app(nix.sel(lib, "getExe"), hello_x86_64)} --version 2>&1 | tee $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://box86.org/",
         description: "Lets you run x86_64 Linux programs on non-x86_64 Linux systems",
         changelog: nix.thunk(() => nix.str`https://github.com/ptitSeb/box64/releases/tag/v${nix.sel(finalAttrs, "version")}`),

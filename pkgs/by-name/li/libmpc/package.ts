@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mpfr = nix.arg($, "mpfr");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmpc",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/mpc/mpc-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-kSBM0y8WS9O3yZLUpqjOZRlRGq2rMPeLaYLQv41z6TE=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for multiprecision complex arithmetic with exact rounding",
         longDescription: "GNU MPC is a C library for the arithmetic of complex numbers with\narbitrarily high precision and correct rounding of the result.  It is\nbuilt upon and follows the same principles as GNU MPFR.\n",
         homepage: "https://www.multiprecision.org/mpc/",

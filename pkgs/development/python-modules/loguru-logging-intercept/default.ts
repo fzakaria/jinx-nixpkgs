@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const loguru = nix.arg($, "loguru");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "loguru-logging-intercept",
       version: "0.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "loguru_logging_intercept",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5QnIqK1qf0Es6tmw9qsqP1jgtO8PE330IUiJtl3TTu4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [loguru]),
       pythonImportsCheck: nix.thunk(() => ["loguru_logging_intercept"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code to integrate Loguru with Python's standard logging module",
         homepage: "https://github.com/MatthewScholefield/loguru-logging-intercept",
         maintainers: nix.thunk(() => (() => {

@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "podman", "networkSocket"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         podman: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           networkSocket: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["ghostunnel"]))),
               })))),
           })),
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "server"), "ghostunnel")))), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           ghostunnel: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             servers: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "podman-socket": nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(cfg, "tls"));
                 return {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 cert: nix.thunk(() => nix.attr(from, "cert")),
                 key: nix.thunk(() => nix.attr(from, "key")),
                 cacert: nix.thunk(() => nix.attr(from, "cacert")),
@@ -71,18 +71,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "ghostunnel-server-podman-socket": nix.thunk(() => ({
-              __proto__: pos$11,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$10, SupplementaryGroups: nix.thunk(() => ["podman"]) })),
+              [nix.POS]: pos$11,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$10, SupplementaryGroups: nix.thunk(() => ["podman"]) })),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "podman"))]),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))]),
     })),

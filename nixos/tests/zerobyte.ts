@@ -16,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "zerobyte",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pbek"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             zerobyte: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$2, BASE_URL: "http://localhost:4096" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$2, BASE_URL: "http://localhost:4096" })),
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zerobyte.env", "APP_SECRET=94bad469e4b4e7c7f5a2b6a8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c66e25\n")),
             })),
           })),

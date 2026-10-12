@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const exiv2 = nix.arg($, "exiv2");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xpano",
       version: "0.19.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krupkat",
           repo: "xpano",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=ON", "-DXPANO_INSTALL_DESKTOP_FILES=ON"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Panorama stitching tool",
         mainProgram: "Xpano",
         homepage: "https://krupkat.github.io/xpano/",

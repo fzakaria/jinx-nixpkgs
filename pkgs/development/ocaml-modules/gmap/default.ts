@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gmap",
       version: "0.3.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/gmap/releases/download/${nix.sel(finalAttrs, "version")}/gmap-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "073wa0lrb0jj706j87cwzf1a8d1ff14100mnrjs8z3xc4ri9xp84",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, fmt]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Heterogenous maps over a GADT",
         homepage: "https://github.com/hannesm/gmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

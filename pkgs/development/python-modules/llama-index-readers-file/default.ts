@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pypdf = nix.arg($, "pypdf");
   const striprtf = nix.arg($, "striprtf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-readers-file",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_readers_file",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Mo4/5dptphcuPXG2C1x2wWdnB7IgyPxH7fqnlfmu/RY=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.readers.file"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Readers Integration for files",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-file",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

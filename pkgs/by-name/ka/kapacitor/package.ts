@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libflux";
       const version = nix.thunk(() => nix.str`${libflux_version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "influxdata",
           repo: "flux",
           tag: nix.thunk(() => nix.str`v${libflux_version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-linting-error-on-unneeded-clone.patch"),
         nix.path(here, "./0001-fix-build.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/influxdata/flux/commit/20ca62138a0669f2760dd469ca41fc333e04b8f2.patch",
             stripLen: 2n,
             extraPrefix: "",
@@ -56,7 +56,7 @@ Libs: -L/out/lib -lflux -lpthread
       const postInstall = nix.thunk(() => nix.add("mkdir -p $out/include $out/pkgconfig\ncp -r $NIX_BUILD_TOP/source/libflux/include/influxdata $out/include\nprintf \"%s\" \"$pkgcfg\" > $out/pkgconfig/flux.pc\nsubstituteInPlace $out/pkgconfig/flux.pc \\\n  --replace-fail /out $out\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id $out/lib/libflux.dylib $out/lib/libflux.dylib\n")));
       const __structuredAttrs = true;
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,
@@ -74,7 +74,7 @@ Libs: -L/out/lib -lflux -lpthread
       const pname = "kapacitor";
       const version = "1.7.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "influxdata",
           repo: "kapacitor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -83,7 +83,7 @@ Libs: -L/out/lib -lflux -lpthread
       const vendorHash = "sha256-myToEgta8R5R4v2/nZqtQQvNdy1kWgwklbQeFxzIdgs=";
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${flux}/pkgconfig`),
       }));
       const preBuild = nix.thunk(() => nix.str`flux_ver=$(grep github.com/influxdata/flux go.mod | awk '{print $2}')
@@ -101,7 +101,7 @@ fi
       })());
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open source framework for processing, monitoring, and alerting on time series data",
         homepage: "https://influxdata.com/time-series-platform/kapacitor/",
         downloadPage: "https://github.com/influxdata/kapacitor/releases",
@@ -113,7 +113,7 @@ fi
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

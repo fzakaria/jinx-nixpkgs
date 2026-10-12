@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rime-moegirl",
       version: "20260911",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/outloudvi/mw2fcitx/releases/download/${nix.sel(finalAttrs, "version")}/moegirl.dict.yaml`),
           hash: "sha256-FhFH9wfUab5/X2DyRzWqwr+geCE84ijmfVloEOM1Lg0=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/rime-data\ncp $src $out/share/rime-data/moegirl.dict.yaml\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/outloudvi/mw2fcitx/releases/tag/${nix.sel(finalAttrs, "version")}`),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

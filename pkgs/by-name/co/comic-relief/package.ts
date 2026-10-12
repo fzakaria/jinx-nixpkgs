@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "comic-relief";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://fontlibrary.org/assets/downloads/comic-relief/45c456b6db2aaf2f7f69ac66b5ac7239/comic-relief.zip",
           stripRoot: false,
           hash: "sha256-lvkMfaQvLMZ8F0Q5JnpmMsIAkR+XfihoHIoS4z5QEvA=",
@@ -33,7 +33,7 @@ cp FONTLOG.txt -d $out/share/doc/${pname}-${version}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fontlibrary.org/en/font/comic-relief",
         description: "Font metric-compatible with Microsoft Comic Sans",
         longDescription: "Comic Relief is a typeface designed to be metrically equivalent\nto the popular Comic Sans MS. Comic Relief can be used in place\nof Comic Sans MS without having to move, resize, or reset any\npart of the copy. It contains all glyphs and characters\navailable in Comic Sans MS.\n",
@@ -42,7 +42,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
         priority: 10n,
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

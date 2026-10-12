@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const enableUnfree = nix.argOr($, "enableUnfree", () => true);
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`timescaledb${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnfree)), "-apache")}`),
       version: "2.30.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timescale",
           repo: "timescaledb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "for x in CMakeLists.txt sql/CMakeLists.txt; do\n  substituteInPlace \"$x\" \\\n    --replace-fail 'DESTINATION \"${PG_SHAREDIR}/extension\"' \"DESTINATION \\\"$out/share/postgresql/extension\\\"\"\ndone\n\nfor x in src/CMakeLists.txt src/loader/CMakeLists.txt tsl/src/CMakeLists.txt; do\n  substituteInPlace \"$x\" \\\n    --replace-fail 'DESTINATION ${PG_PKGLIBDIR}' \"DESTINATION \\\"$out/lib\\\"\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["timescaledb_toolkit"]),
               postgresqlExtraSettings: "shared_preload_libraries='timescaledb'\n",
               sql: "CREATE EXTENSION timescaledb;\nCREATE EXTENSION timescaledb_toolkit;\n\nCREATE TABLE sth (\n  time TIMESTAMPTZ NOT NULL,\n  value DOUBLE PRECISION\n);\n\nSELECT create_hypertable('sth', 'time');\n\nINSERT INTO sth (time, value) VALUES\n('2003-04-12 04:05:06 America/New_York', 1.0),\n('2003-04-12 04:05:07 America/New_York', 2.0),\n('2003-04-12 04:05:08 America/New_York', 3.0),\n('2003-04-12 04:05:09 America/New_York', 4.0),\n('2003-04-12 04:05:10 America/New_York', 5.0)\n;\n\nWITH t AS (\n  SELECT\n    time_bucket('1 day'::interval, time) AS dt,\n    stats_agg(value) AS stats\n  FROM sth\n  GROUP BY time_bucket('1 day'::interval, time)\n)\nSELECT\n  average(stats)\nFROM t;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   query: "SELECT count(*) FROM sth",
                   expected: "5",
                   description: "hypertable can be queried successfully.",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Scales PostgreSQL for time-series data via automatic partitioning across time and space",
         homepage: "https://www.timescale.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/timescale/timescaledb/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

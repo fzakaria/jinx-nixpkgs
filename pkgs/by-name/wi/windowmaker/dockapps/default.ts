@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "dockapps-sources": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "dockapps-sources",
         version: "2023-10-11",
         src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromRepoOrCz"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             repo: "dockapps",
             rev: "1bbb32008ecb58acaec9ea70e00b4ea1735408fc",
             hash: "sha256-BLUDe/cIIuh9mCtafbcBSDatUXSRD83FeyYhcbem5FU=",

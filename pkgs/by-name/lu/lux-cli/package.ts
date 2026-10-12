@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lux-cli",
       version: "0.47.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lumen-oss",
           repo: "lux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper, perl, pkg_config]),
       buildInputs: nix.thunk(() => [gnupg, gpgme, libgpg_error, openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBSSH2_SYS_USE_PKG_CONFIG: 1n, LUX_SKIP_IMPURE_TESTS: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBSSH2_SYS_USE_PKG_CONFIG: 1n, LUX_SKIP_IMPURE_TESTS: 1n })),
       cargoTestFlags: nix.thunk(() => ["--lib"]),
       checkInputs: nix.thunk(() => [lua5_5]),
       nativeCheckInputs: nix.thunk(() => [lua5_5, nix$]),
@@ -58,7 +58,7 @@ ${lx} util completion --target-dir="target/dist"
   installShellCompletion target/dist/lx.{bash,fish} --zsh target/dist/_lx
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Luxurious package manager for Lua",
         longDescription: "A modern package manager for Lua.\ncompatible with luarocks.org and the Rockspec specification,\nwith first-class support for Nix and Neovim.\n",
         homepage: "https://lux.lumen-labs.org/",

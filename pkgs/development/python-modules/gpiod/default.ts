@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libgpiod = nix.arg($, "libgpiod");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gpiod",
       version: nix.thunk(() => nix.attr(libgpiod, "version")),
       src: nix.thunk(() => nix.attr(libgpiod, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gpiod"]),
       dontCheckPythonMetadata: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for libgpiod",
         homepage: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

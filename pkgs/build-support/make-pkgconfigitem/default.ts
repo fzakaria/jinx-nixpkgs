@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     const keywordsSection = nix.thunk(() => (() => {
       const mustBeAList = (attr) => (attrName) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isList"), attr))) ? nix.builtins.throw(nix.thunk(() => nix.str`'${attrName}' must be a list`)) : nix.force(attr));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         Name: name,
         Description: description,
         URL: url,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
     const keywordsSectionRendered = nix.thunk(() => nix.app(renderSomething, renderKeyword, keywordsSection));
     const content = nix.thunk(() => [variablesSectionRendered, keywordsSectionRendered]);
     return nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${name}.pc`),
         destination: nix.thunk(() => nix.str`/lib/pkgconfig/${name}.pc`),
         text: nix.thunk(() => nix.builtins.concatStringsSep("\n", content)),

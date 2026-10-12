@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const zha = nix.arg($, "zha");
   const zha_quirks = nix.arg($, "zha-quirks");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zha",
       version: "2.2.2",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zigpy",
           repo: "zha",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,14 +99,14 @@ export default nix.lambda((args) => (() => {
         "test_gateway_startup_failure",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(zha, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(zha, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Zigbee Home Automation",
         homepage: "https://github.com/zigpy/zha",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zha/releases/tag/${nix.sel(finalAttrs, "version")}`),

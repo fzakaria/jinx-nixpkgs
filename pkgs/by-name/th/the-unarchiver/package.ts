@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const info = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./info.json")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "the-unarchiver",
       version: nix.thunk(() => nix.attr(info, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(info, "url")),
           hash: nix.thunk(() => nix.attr(info, "hash")),
         })))),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nmv \"The Unarchiver.app\" $out/Applications\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update/update.mjs") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update/update.mjs") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unpacks archive files",
         homepage: "https://theunarchiver.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

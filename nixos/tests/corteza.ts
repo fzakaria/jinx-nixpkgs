@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = 8080n;
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "corteza",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          corteza: nix.thunk(() => ({ __proto__: pos$2, enable: true, port: port })),
+          [nix.POS]: pos$3,
+          corteza: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: port })),
         })),
       })),
     })),

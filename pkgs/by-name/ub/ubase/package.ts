@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ubase",
       version: "0-unstable-2025-12-30",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.suckless.org/ubase",
           rev: "e8249b49ca3e02032dece5e0cdac3d236667a6d9",
           hash: "sha256-/XwDmhIBjISUyS1hBMcfBe5i4ISKj6sJTGb4lYfJqO0=",
@@ -39,30 +39,30 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["ubase-box"]),
       installTargets: nix.thunk(() => ["ubase-box-install"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           ddCopiesBytes: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "ubase-dd-copies-bytes",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "dd if=/dev/zero of=test.bin bs=1 count=4\nset -- $(stat -t test.bin)\n[ \"$1\" = \"test.bin\" ] && [ \"$2\" = \"4\" ]\ntouch $out\n",
             })))),
           idMatchesUid: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "ubase-id-matches-uid",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "[ \"$(id -u)\" = \"$UID\" ]\ntouch $out\n",
             })))),
           pagesizePositive: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "ubase-pagesize-positive",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "[ \"$(pagesize)\" -gt 0 ]\ntouch $out\n",
             })))),
           whichIdIsBox: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "ubase-which-id-is-box",
               buildInputs: nix.thunk(() => [which, nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "[ $(which id) -ef $(which ubase-box) ]\ntouch $out\n",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Linux base utilities from suckless.org",
         homepage: "https://core.suckless.org/ubase/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lua = nix.arg($, "lua");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pinsel",
       version: "0-unstable-2022-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nooo37",
           repo: "pinsel",
           rev: "4955b93365a1816bffbddc3d2ddfe3f4b3d60107",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`INSTALLDIR=${nix.builtins.placeholder("out")}/bin`)]),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal screenshot annotation tool with lua config",
         homepage: "https://github.com/Nooo37/pinsel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

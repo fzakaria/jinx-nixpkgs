@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const substitute = nix.arg($, "substitute");
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uppy-companion",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "transloadit",
           repo: "uppy",
           tag: nix.thunk(() => nix.str`@uppy/companion@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4Xbw4d0SaLPk4mmvG9QWkUuVX/SM1SmGtuaK85rLihU=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -47,7 +47,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       buildInputs: nix.thunk(() => [nodejs]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-MQTaNbeJuvWDtRajJQYRtuxiMrLGKtlasyB6sKeOIgs=",
@@ -56,7 +56,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       installPhase: "runHook preInstall\n\nexport yarnTmpDir=$(mktemp -d)\nexport yarnPack=$yarnTmpDir/yarn-pack.tgz\n\nmkdir -p $out/lib/node_modules/@uppy/companion $out/bin\n\npushd packages/@uppy/companion\n\nyarn pack -o $yarnPack\ntar xvf $yarnPack -C $out/lib/node_modules/@uppy/companion --strip-components 1 package/\n\nrm -rf node_modules\nyarn workspaces focus --production\nfind node_modules -maxdepth 1 -type d -empty -delete\ncp -r node_modules $out/lib/node_modules/@uppy/companion/node_modules\npopd\n\nln -s $out/lib/node_modules/@uppy/companion/bin/companion $out/bin/companion\nrunHook postInstall\n",
       updateScript: nix.path(here, "./update.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/transloadit/uppy/releases/tag/%40uppy%2Fcompanion%40${nix.sel(finalAttrs, "version")}`),
         description: "Server integration for Uppy file uploader",

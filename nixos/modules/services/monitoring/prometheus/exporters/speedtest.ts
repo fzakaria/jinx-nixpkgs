@@ -21,27 +21,27 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9798n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       serverID: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: nix.thunk(() => nix.neg(1n)),
           description: "Speedtest.net server ID to run tests against.\n-1 picks the closest server to your location.\n",
         })))),
       serverFallback: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "If the configured serverID is unavailable, fall back to the closest available server.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-speedtest-exporter")}/bin/speedtest_exporter \\
   -listen-address ${nix.sel(cfg, "listenAddress")} \\
   -port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

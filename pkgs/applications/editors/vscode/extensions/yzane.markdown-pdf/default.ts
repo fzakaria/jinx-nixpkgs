@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const ungoogled_chromium = nix.arg($, "ungoogled-chromium");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "markdown-pdf",
         publisher: "yzane",
         version: "2.2.0",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`jq '.contributes.configuration.properties."markdown-pdf.executablePath".default = "${nix.app(nix.sel(lib, "getExe"), ungoogled_chromium)}"' $out/$installPrefix/package.json | sponge $out/$installPrefix/package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts Markdown files to pdf, html, png or jpeg files",
         homepage: "https://github.com/yzane/vscode-markdown-pdf#readme",
         changelog: "https://github.com/yzane/vscode-markdown-pdf/blob/master/CHANGELOG.md",

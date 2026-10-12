@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "quicktun"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "quicktun"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         quicktun: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             default: nix.thunk(() => ({})),
             description: "QuickTun tunnels.\n\nSee <http://wiki.ucis.nl/QuickTun> for more information about available options.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
                   const name = nix.arg($_1, "name");
                   const qtcfg = nix.thunk(() => nix.sel(cfg, nix.key(nix.force(name))));
                   return {
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       tunMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "bool")), (b) => (nix.asBool(b) ? 1n : 0n), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ints"), "between"), 0n, 1n)));
@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
                           description: "Whether to operate in tun (IP) or tap (Ethernet) mode.",
                         })))),
                       remoteAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0.0.0.0",
                           example: "tunnel.example.com",
                           description: "IP address or hostname of the remote end (use `0.0.0.0` for a floating/dynamic remote endpoint).\n",
                         })))),
                       localAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -85,20 +85,20 @@ export default nix.lambda((args) => (() => {
                           description: "IP address or hostname of the local end.",
                         })))),
                       localPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 2998n,
                           description: "Local UDP port.",
                         })))),
                       remotePort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: nix.thunk(() => nix.sel(qtcfg, "localPort")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.quicktun.<name>.localPort")),
                           description: "Remote UDP port",
                         })))),
                       remoteFloat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "bool")), (b) => (nix.asBool(b) ? 1n : 0n), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ints"), "between"), 0n, 1n)));
@@ -108,13 +108,13 @@ export default nix.lambda((args) => (() => {
                           description: "Whether to allow the remote address and port to change when properly encrypted packets are received.\n",
                         })))),
                       protocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["raw", "nacl0", "nacltai", "salty"]))),
                           default: "nacltai",
                           description: "Which protocol to use.",
                         })))),
                       privateKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
                           description: "Local secret key in hexadecimal form.\n\n::: {.warning}\nThis option is deprecated. Please use {var}`services.quicktun.<name>.privateKeyFile` instead.\n:::\n\n::: {.note}\nNot needed when {var}`services.quicktun.<name>.protocol` is set to `raw`.\n:::\n",
                         })))),
                       privateKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
                           description: "Path to file containing local secret key in binary or hexadecimal form.\n\n::: {.note}\nNot needed when {var}`services.quicktun.<name>.protocol` is set to `raw`.\n:::\n",
                         })))),
                       publicKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -142,13 +142,13 @@ export default nix.lambda((args) => (() => {
                           description: "Remote public key in hexadecimal form.\n\n::: {.note}\nNot needed when {var}`services.quicktun.<name>.protocol` is set to `raw`.\n:::\n",
                         })))),
                       timeWindow: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 5n,
                           description: "Allowed time window for first received packet in seconds (positive number allows packets from history)\n",
                         })))),
                       upScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")));
@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       warnings: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), cfg, nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => (nix.asBool(!nix.eq(nix.sel(value, "privateKey"), null)) ? nix.force(name) : null))),
           nix.thunk(() => nix.app(nix.builtins.filter, (n) => !nix.eq(n, null))),
@@ -176,14 +176,14 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", services)}
 `)),
         ]))),
       systemd: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (qtcfg) => nix.attrsDyn({}, [
               [nix.str`quicktun-${name}`, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   INTERFACE: name,
                   TUN_MODE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(qtcfg, "tunMode")))),
                   REMOTE_ADDRESS: nix.thunk(() => nix.sel(qtcfg, "remoteAddress")),
@@ -198,7 +198,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", services)}
                   SUID: "nobody",
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "quicktun")}/bin/quicktun.${nix.sel(qtcfg, "protocol")}`),
                 })),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const idris2_version = nix.arg($, "idris2-version");
   const idris2_unwrapped = nix.arg($, "idris2-unwrapped");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["dependencies"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const name = nix.arg($_1, "name");
         const dependencies = nix.argOr($_1, "dependencies", () => []);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: name,
           version: idris2_version,
           src: idris2_src,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           preBuild: nix.thunk(() => nix.str`cd libs/${name}
 `),
           env: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             IDRIS2_PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
             IDRIS2_PACKAGE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`idris2-${idris2_version}`), dependencies)),
           })),

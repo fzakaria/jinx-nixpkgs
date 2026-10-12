@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const enableMemcached = nix.argOr($, "enableMemcached", () => true);
   const enablePam = nix.argOr($, "enablePam", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pgpool",
       version: "4.7.2",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgpool",
           repo: "pgpool2",
           tag: nix.thunk(() => nix.str`V${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex]),
       buildInputs: nix.thunk(() => nix.concat([libpq, libxcrypt, openssl], nix.concat(nix.app(nix.sel(lib, "optional"), enableLdap, openldap), nix.concat(nix.app(nix.sel(lib, "optional"), enableMemcached, libmemcached), nix.app(nix.sel(lib, "optional"), enablePam, pam))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       configureFlags: nix.thunk(() => [
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Middleware that works between PostgreSQL servers and PostgreSQL clients",
         homepage: "https://pgpool.net/",
         changelog: nix.thunk(() => nix.str`https://www.pgpool.net/docs/latest/en/html/release-${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}.html`),

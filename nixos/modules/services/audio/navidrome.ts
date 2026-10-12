@@ -72,19 +72,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "navidrome"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         navidrome: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Navidrome music server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "navidrome", nix.thunk(() => ({})))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.update(nix.app(addCheck, package$, (p) => nix.selOr(p, () => false, "isNavidromePlugin")), {
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   name: "navidrome plugin",
                   description: "package that is a navidrome plugin",
                 })))),
@@ -93,47 +93,47 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(literalExpression, "with pkgs.pkgsCross.wasi32.navidromePlugins; [\n  listenbrainz-daily-playlist\n];\n")),
             })))),
           finalPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: package$,
               readOnly: true,
-              default: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$3, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) })))),
+              default: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) })))),
               defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.navidrome.package.override {\n  inherit (config.services.navidrome) plugins;\n}\n")),
               description: "The final navidrome package including all selected plugins.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     Address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         default: "127.0.0.1",
                         description: "Address to run Navidrome on.",
                         type: str,
                       })))),
                     Port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         default: 4533n,
                         description: "Port to run Navidrome on.",
                         type: port,
                       })))),
                     EnableInsightsCollector: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         default: false,
                         description: "Enable anonymous usage data collection, see <https://www.navidrome.org/docs/getting-started/insights/> for details.",
                         type: bool,
                       })))),
                     Plugins: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       Enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           default: true,
                           description: "Enable plugin support in navidrome.\n",
                         })))),
                       Folder: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "finalPackage")}/share/plugins`),
                           description: "The folder containing navidrome plugins.\n\nThis directory is automatically created from plugins defined in {option}`services.navidrome.plugins`.\n",
                           readOnly: true,
@@ -144,29 +144,29 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$13, MusicFolder: "/mnt/music" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$13, MusicFolder: "/mnt/music" })),
               description: "Configuration for Navidrome, see <https://www.navidrome.org/docs/usage/configuration-options/> for supported values.",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: str,
               default: "navidrome",
               description: "User under which Navidrome runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: str,
               default: "navidrome",
               description: "Group under which Navidrome runs.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: bool,
               default: false,
               description: "Whether to open the TCP port in the firewall",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Environment file, used to set any secret ND_* environment variables.",
@@ -195,36 +195,36 @@ export default nix.lambda((args) => (() => {
   ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --configfile ${settingsFile} "$@"
 `)));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           systemd: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               settings: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 navidromeDirs: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.selOr(cfg, () => WorkingDirectory, "settings", "DataFolder")}`, nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     d: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       mode: "700",
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                     })),
                   }))],
                   [nix.str`${nix.selOr(cfg, () => nix.add(WorkingDirectory, "/cache"), "settings", "CacheFolder")}`, nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     d: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       mode: "700",
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                     })),
                   }))],
                   [nix.str`${nix.selOr(cfg, () => nix.add(WorkingDirectory, "/music"), "settings", "MusicFolder")}`, nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     d: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       mode: ":700",
                       user: nix.thunk(() => nix.str`:${nix.sel(cfg, "user")}`),
                       group: nix.thunk(() => nix.str`:${nix.sel(cfg, "group")}`),
@@ -234,14 +234,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               navidrome: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: "Navidrome Media Server",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "finalPackage")))} --configfile ${settingsFile}`),
                   EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
                   User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -280,29 +280,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "navidrome")), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 navidrome: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                   isSystemUser: true,
                 })),
               })))),
-            groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "navidrome")), nix.thunk(() => ({ __proto__: pos$36, navidrome: nix.thunk(() => ({})) })))),
+            groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "navidrome")), nix.thunk(() => ({ [nix.POS]: pos$36, navidrome: nix.thunk(() => ({})) })))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             firewall: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "Port"))]))),
             })),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$40, systemPackages: nix.thunk(() => [wrappedNavi]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$40, systemPackages: nix.thunk(() => [wrappedNavi]) })),
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       doc: nix.path(here, "./navidrome.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);

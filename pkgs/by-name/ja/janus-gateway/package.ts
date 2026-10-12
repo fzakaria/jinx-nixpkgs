@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
   const usrsctp = nix.arg($, "usrsctp");
   const ffmpeg = nix.arg($, "ffmpeg");
   const libwebsockets_janus = nix.thunk(() => nix.app(nix.sel(libwebsockets, "overrideAttrs"), (_) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       configureFlags: nix.thunk(() => ["-DLWS_MAX_SMP=1", "-DLWS_WITHOUT_EXTENSIONS=0"]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "janus-gateway",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "meetecho",
           repo: "janus-gateway",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       postInstall: "moveToOutput share/janus \"$doc\"\nmoveToOutput etc \"$doc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "General purpose WebRTC server",
         homepage: "https://janus.conf.meetecho.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/meetecho/janus-gateway/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

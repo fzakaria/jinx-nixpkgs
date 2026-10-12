@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.2.3",
       pname: "antigen",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/zsh-users/antigen/releases/download/v${nix.sel(finalAttrs, "version")}/antigen.zsh`),
           sha256: "1bmp3qf14509swpxin4j9f98n05pdilzapjm0jdzbv0dy3hn20ix",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "outdir=$out/share/antigen\nmkdir -p $outdir\ncp $src $outdir/antigen.zsh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin manager for zsh",
         homepage: "https://antigen.sharats.me/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

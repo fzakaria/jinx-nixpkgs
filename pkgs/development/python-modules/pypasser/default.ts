@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xHossein",
           repo: "PyPasser",
           tag: version,
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pypasser", "pypasser.reCaptchaV2", "pypasser.reCaptchaV3"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bypassing reCaptcha V3 by sending HTTP requests & solving reCaptcha V2 using speech to text",
         homepage: "https://github.com/xHossein/PyPasser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

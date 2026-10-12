@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "path_glob",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gasche.gitlab.io/path_glob/releases/path_glob-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-My2uI7cA+gUNH9bk89LiS43R2yyOpPdsVOLlSFHJ0iY=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/gasche/path_glob",
         description: "Checking glob patterns on paths",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

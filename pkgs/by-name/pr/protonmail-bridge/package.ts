@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const libfido2 = nix.arg($, "libfido2");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protonmail-bridge",
       version: "3.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProtonMail",
           repo: "proton-bridge",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/Desktop-Bridge"]),
       postInstall: "mv $out/bin/Desktop-Bridge $out/bin/protonmail-bridge # The cli is named like that in other distro packages\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ProtonMail/proton-bridge/blob/${nix.sel(finalAttrs, "src", "rev")}/Changelog.md`),
         description: "Use your ProtonMail account with your local e-mail client",
         downloadPage: "https://github.com/ProtonMail/proton-bridge/releases",

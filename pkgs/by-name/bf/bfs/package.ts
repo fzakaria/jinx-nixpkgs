@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const liburing = nix.arg($, "liburing");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bfs",
       version: "4.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "bfs",
           owner: "tavianator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n./configure --prefix=$out --enable-release\nrunHook postConfigure\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Breadth-first version of the UNIX find command",
         longDescription: "bfs is a variant of the UNIX find command that operates breadth-first rather than\ndepth-first. It is otherwise intended to be compatible with many versions of find.\n",
         homepage: "https://github.com/tavianator/bfs",

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "open-adventure",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "open-adventure",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,11 +46,11 @@ substituteInPlace tests/tapview --replace-fail "/bin/echo" ${nix.app(nix.sel(lib
       buildFlags: nix.thunk(() => ["advent.6"]),
       installPhase: "runHook preInstall\n\nmkdir -vp \"$out/bin\" \"$out/share/man/man6\" \"$out/share/applications/\" \"$out/share/icons/hicolor/scalable/apps\"\ninstall -m 555 ./advent $out/bin\ninstall -m 444 ./advent.6 $out/share/man/man6\ninstall -m 444 ./advent.desktop $out/share/applications\ninstall -m 444 ./advent.svg $out/share/icons/hicolor/scalable/apps\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Forward-port of the Crowther/Woods Adventure 2.5 game from 1995",
         longDescription: "This code is a forward-port of the Crowther/Woods Adventure 2.5 game\nfrom 1995, last version in the main line of Colossal Cave Adventure\ndevelopment written by Crowther and Woods. The authors have given\npermission and encouragement to this release.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

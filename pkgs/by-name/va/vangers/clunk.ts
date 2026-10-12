@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clunk",
       version: "1.0-unstable-2020-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stalkerg",
           repo: "clunk",
           rev: "6d4cbbe1b6f1e202b9945d20073952b254e8d530",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clunk - real-time binaural sound generation library. Versions for Vangers game. Porting to SDL2 and fix some errors",
         homepage: "https://github.com/stalkerg/clunk",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

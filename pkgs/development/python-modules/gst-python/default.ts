@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-python/gst-python-${version}.tar.xz`),
           hash: "sha256-NNWEQMU7VJWhI9Ckt7ervG6XkqWyGVTbhqB5Gxb24BI=",
         }))));
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export DYLD_LIBRARY_PATH="${nix.sel(gst_all_1, "gst-plugins-base")}/lib"
 `)));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, "odd-unstable": true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gstreamer.freedesktop.org",
         description: "Python bindings for GStreamer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

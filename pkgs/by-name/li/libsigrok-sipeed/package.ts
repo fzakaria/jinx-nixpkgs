@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const sigrok_firmware_fx2lafw = nix.arg($, "sigrok-firmware-fx2lafw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsigrok-sipeed",
       version: "0.6.0-unstable-2025-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sipeed",
           repo: "libsigrok",
           rev: "0ce0720421b6bcc8e65a0c94c5b2883cbfe22d7e",
@@ -51,7 +51,7 @@ cp ${sigrok_firmware_fx2lafw}/share/sigrok-firmware/* "$out/share/sigrok-firmwar
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n# assert that c++ bindings are included\n# note that this is only true for modern (>0.5) versions; the 0.3 series does not have these\n[[ -f $out/include/libsigrokcxx/libsigrokcxx.hpp ]] \\\n  || { echo 'C++ bindings were not generated; check configure output'; false; }\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A fork of libsigrok with slogic devices support ",
         homepage: "https://github.com/sipeed/libsigrok/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

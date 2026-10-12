@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const icu = nix.arg($, "icu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsearch",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cboxdoerfer",
           repo: "fsearch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, pcre2, icu]),
       preFixup: "substituteInPlace $out/share/applications/io.github.cboxdoerfer.FSearch.desktop \\\n  --replace \"Exec=fsearch\" \"Exec=$out/bin/fsearch\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast file search utility for Unix-like systems based on GTK+3",
         homepage: "https://github.com/cboxdoerfer/fsearch.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "finetune",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "FineTune.dmg",
           url: nix.thunk(() => nix.str`https://github.com/ronitsingh10/FineTune/releases/download/v${nix.sel(finalAttrs, "version")}/FineTune.dmg`),
           hash: "sha256-K4r5PA8b4YcNSQ/+Pope8uF7yDv0jPxbS4N5GGHN8i4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "FineTune.app",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R . \"$out/Applications/FineTune.app\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Per-app volume control, multi-device output, audio routing, and 10-band EQ",
         homepage: "https://github.com/ronitsingh10/FineTune",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "fuse"));
   return {
-    __proto__: pos$14,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$14,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fuse: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "fuse")),
           mountMax: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 32767n)),
               default: 1000n,
               description: "Set the maximum number of FUSE mounts allowed to non-root users.\n",
             })))),
           userAllowOther: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allow non-root users to specify the allow_other or allow_root mount\noptions, see mount.fuse3(8).\n",
@@ -50,17 +50,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "fuse")),
             nix.thunk(() => nix.sel(pkgs, "fuse3")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "fuse.conf": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "userAllowOther"))), "#")}user_allow_other
 mount_max = ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "mountMax")))}
 `),
@@ -68,17 +68,17 @@ mount_max = ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "mountMax")))}
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           wrappers: nix.thunk(() => (() => {
             const mkSetuidRoot = (source) => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               setuid: true,
               owner: "root",
               group: "root",
               source: source,
             });
             return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               fusermount: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "fuse")))}/bin/fusermount`))),
               fusermount3: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "fuse3")))}/bin/fusermount3`))),
             };

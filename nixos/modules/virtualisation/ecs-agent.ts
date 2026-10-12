@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "ecs-agent"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "ecs-agent": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Amazon ECS agent")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "ecs-agent", nix.thunk(() => ({})))),
           "extra-environment": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The environment the ECS agent should run with. See the ECS agent documentation for keys that work here.",
               default: nix.thunk(() => ({})),
@@ -42,19 +42,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$6,
-          docker: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          [nix.POS]: pos$6,
+          docker: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "ecs-agent": nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(cfg, "package", "meta"));
               return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: nix.thunk(() => nix.attr(from, "description")),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),

@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-lX5SYk4dzuNfCSCGjj0Vof6rQPzQ/NRoIjGjPaPUQto=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-z7Qv/YGH2o5rQVeDs1m8fqJd6hgvGvf+TldUvAR7CGY=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n }));
       const dependencies = nix.thunk(() => [arro3_core, deprecated]);
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const nativeBuildInputs = nix.thunk(() => nix.concat([pkg_config, writableTmpDirAsHomeHook], (() => {
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pandas: nix.thunk(() => [pandas]),
         pyarrow: nix.thunk(() => [pyarrow]),
       }));
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const preCheck = "# For paths in test to work, we have to be in python dir\ncd python\n\n# In tests we want to use deltalake that we have built\nrm -rf deltalake\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Native Rust library for Delta Lake, with bindings into Python",
         homepage: "https://github.com/delta-io/delta-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/delta-io/delta-rs/blob/python-v${version}/CHANGELOG.md`),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

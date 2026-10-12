@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const gauge_unwrapped = nix.arg($, "gauge-unwrapped");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dotnet",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/gauge-dotnet",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gauge_unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Gauge plugin that lets you write tests in C#",
         homepage: "https://github.com/getgauge/gauge-dotnet/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

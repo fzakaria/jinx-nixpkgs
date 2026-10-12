@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const withCplex = nix.argOr($, "withCplex", () => false);
   const cplex = nix.arg($, "cplex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "osi",
       version: "0.108.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coin-or",
           repo: "Osi",
           rev: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-cplex-incdir=${cplex}/cplex/include/ilcplex`),
           nix.thunk(() => nix.str`--with-cplex-lib=-lcplex${nix.sel(cplex, "libSuffix")}`),
         ])))),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-cast-qual" }, nix.app(nix.sel(lib, "optionalAttrs"), withCplex, nix.thunk(() => ({
-          __proto__: pos$3,
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-cast-qual" }, nix.app(nix.sel(lib, "optionalAttrs"), withCplex, nix.thunk(() => ({
+          [nix.POS]: pos$3,
           NIX_LDFLAGS: nix.thunk(() => nix.str`-L${cplex}/cplex/bin/${nix.sel(cplex, "libArch")}`),
         }))))),
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, withGurobi: withGurobi, withCplex: withCplex })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, withGurobi: withGurobi, withCplex: withCplex })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Abstract base class to a generic linear programming (LP) solver",
         homepage: "https://github.com/coin-or/Osi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),

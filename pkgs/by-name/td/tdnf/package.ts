@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rpm = nix.arg($, "rpm");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tdnf",
       version: "3.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmware",
           repo: "tdnf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://patch-diff.githubusercontent.com/raw/vmware/tdnf/pull/410.patch",
             hash: "sha256-p/ix5O1J/lj2fw7qJokT+wPN4ROoulnVqByfxgFvuEo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/vmware/tdnf/commit/24211f2077d2423e511c43f21cd5ee5b53fa4021.patch?full_index=1",
             hash: "sha256-twzyVV+VgtRljj1E70Tq5U0sNEiSWU/rG9buoAYDF0o=",
           })))),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'SYSCONFDIR /etc' 'SYSCONFDIR $out/etc' \\\n  --replace-fail '/etc/motdgen.d' '$out/etc/motdgen.d'\nsubstituteInPlace client/tdnf.pc.in \\\n  --replace-fail 'libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@' 'libdir=@CMAKE_INSTALL_FULL_LIBDIR@'\nsubstituteInPlace tools/cli/lib/tdnf-cli-libs.pc.in \\\n  --replace-fail 'libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@' 'libdir=@CMAKE_INSTALL_FULL_LIBDIR@'\n",
       postInstall: "rm $out/bin/*test",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tiny Dandified Yum",
         homepage: "https://github.com/vmware/tdnf",
         changelog: nix.thunk(() => nix.str`https://github.com/vmware/tdnf/releases/tag/v${nix.sel(finalAttrs, "version")}`),

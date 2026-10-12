@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_rerunfailures = nix.arg($, "pytest-rerunfailures");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "caio",
       version: "0.12.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mosquito",
           repo: "caio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
 `),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       pythonImportsCheck: nix.thunk(() => ["caio"]),
       nativeCheckInputs: nix.thunk(() => [aiomisc_pytest, pytest_rerunfailures, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File operations with asyncio support",
         homepage: "https://github.com/mosquito/caio",
         changelog: nix.thunk(() => nix.str`https://github.com/mosquito/caio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

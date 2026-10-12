@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const domain = "circadian_lighting";
       const version = "2.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "claytonjn",
           repo: "hass-circadian_lighting",
           tag: version,
           hash: "sha256-6S1wIO6UgPdUPt9oDCzIb4duUOql4KgnTd6MjRhrSb0=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/claytonjn/hass-circadian_lighting/releases/tag/${nix.sel(src, "tag")}`),
         description: "Circadian Lighting custom component for Home Assistant",
         homepage: "https://github.com/claytonjn/hass-circadian_lighting",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$4, owner, domain, version, src, passthru, meta };
+      return { [nix.POS]: pos$4, owner, domain, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

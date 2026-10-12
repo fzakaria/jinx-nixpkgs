@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const python3 = nix.arg($, "python3");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "cython-debug-speedups-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         shell: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
         python: nix.thunk(() => nix.sel(python3, "interpreter")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setup hook that applies Cython-based debugger speedups from JetBrains",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jetbrains"))]),
       })),

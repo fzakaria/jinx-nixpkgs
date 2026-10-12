@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdcs",
       version: "0.2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usnistgov",
           repo: "pycdcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cdcs"]),
       disabledTests: nix.thunk(() => ["test_get_workspaces_v2", "test_get_workspaces_v3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for performing REST calls to configurable data curation system (CDCS) databases",
         homepage: "https://github.com/usnistgov/pycdcs",
         changelog: nix.thunk(() => nix.str`https://github.com/usnistgov/pycdcs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

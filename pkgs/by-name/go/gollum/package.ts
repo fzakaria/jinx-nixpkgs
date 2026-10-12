@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gollum",
       exes: nix.thunk(() => ["gollum"]),
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "gollum")),
-        tests: nix.thunk(() => ({ __proto__: pos$1, gollum: nix.thunk(() => nix.sel(nixosTests, "gollum")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, gollum: nix.thunk(() => nix.sel(nixosTests, "gollum")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, Git-powered wiki with a sweet API and local frontend",
         homepage: "https://github.com/gollum/gollum",
         changelog: "https://github.com/gollum/gollum/blob/HEAD/HISTORY.md",

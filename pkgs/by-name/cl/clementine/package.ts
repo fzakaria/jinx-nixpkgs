@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clementine",
       version: "1.4.1-60-g1a3e8b56f",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clementine-player",
           repo: "Clementine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postInstall: "wrapQtApp $out/bin/clementine \\\n  --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.clementine-player.org",
         description: "Multiplatform music player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -35,19 +35,19 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const tensorboard = nix.arg($, "tensorboard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ax-platform",
       version: "1.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "ax",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8Q/p74rzMAciNUjaTJtf6duslc3TXT7MIjcHt2sffqI=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ALLOW_BOTORCH_LATEST: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ALLOW_BOTORCH_LATEST: "1" })),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => nix.concat([
         botorch,
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_gen_with_expanded_parameter_space"])))),
       pythonImportsCheck: nix.thunk(() => ["ax"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform for understanding, managing, deploying, and automating adaptive experiments",
         homepage: "https://ax.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/Ax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

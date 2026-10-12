@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gridlock",
       version: "0-unstable-2023-08-29",
       outputs: nix.thunk(() => ["out", "nyarr"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lf-",
           repo: "gridlock",
           rev: "a98abfa554e5f8e2b7242662c0c714b7f1d7ec29",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       postInstall: "moveToOutput bin/nyarr $nyarr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nix compatible lockfile manager, without Nix",
         homepage: "https://github.com/lf-/gridlock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

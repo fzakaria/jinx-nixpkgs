@@ -21,36 +21,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "gvisor",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       gvisor: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             docker: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               extraOptions: nix.thunk(() => nix.str`--add-runtime runsc=${nix.sel(pkgs_1, "gvisor")}/bin/runsc`),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+            [nix.POS]: pos$9,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
             defaultGateway: "192.168.1.1",
             interfaces: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               eth1: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$5, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),

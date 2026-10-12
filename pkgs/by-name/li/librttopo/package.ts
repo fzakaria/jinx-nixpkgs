@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const geos = nix.arg($, "geos");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "librttopo",
       version: "1.1.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.osgeo.org",
           owner: "rttopo",
           repo: "librttopo",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RT Topology Library",
         homepage: "https://git.osgeo.org/rttopo/librttopo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

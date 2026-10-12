@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
   const xarray = nix.arg($, "xarray");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "napari",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "napari",
           repo: "napari",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
         "test_view",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, interactive, multi-dimensional image viewer",
         homepage: "https://github.com/napari/napari",
         changelog: nix.thunk(() => nix.str`https://github.com/napari/napari/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

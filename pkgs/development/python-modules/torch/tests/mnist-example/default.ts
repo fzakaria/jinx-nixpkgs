@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const runCommand = nix.arg($, "runCommand");
   const fashionMnistDataset = nix.thunk(() => nix.app(linkFarm, "fashion-mnist-dataset", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (hash) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         path: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/${name}`),
             hash: hash,
           })))),
       }), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "train-images-idx3-ubyte.gz": "sha256-Ou3jjWGGOQiteGE/ajLtJxYm3RKAC6JjZWlRI2kmioQ=",
         "train-labels-idx1-ubyte.gz": "sha256-oE8XE0rANWCkfjdk4RuS/JfeTRv6+LoaOqKa9UzJCEU=",
         "t10k-images-idx3-ubyte.gz": "sha256-NG5VuUjZc6l+WNI1Hd4WpIS9QV1FlSl2M7sI8D22oHM=",
         "t10k-labels-idx1-ubyte.gz": "sha256-Z9oXx26v/KVEbDNhqqtcPNbRwmCHZNNd+xhQsIa/jdU=",
       }))))));
   const mnist_script = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "test_mnist", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       libraries: nix.thunk(() => [torch, torchvision]),
       flakeIgnore: nix.thunk(() => ["E501"]),
     })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./script.py")))));

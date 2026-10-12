@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-go",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/weechat/scripts/raw/414cff3ee605ba204b607742430a21443c035b08/python/go.py",
           sha256: "0bnbfpj1qg4yzwbikh1aw5ajc8l44lkb0y0m6mz8grpf5bxk5cwm",
         })))),
       dontUnpack: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["go.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["go.py"]) })),
       installPhase: "install -D $src $out/share/go.py\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "WeeChat script to quickly jump to different buffers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

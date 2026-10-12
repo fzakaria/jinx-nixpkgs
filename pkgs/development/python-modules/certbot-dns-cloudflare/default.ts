@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["-pno:cacheprovider", "-Wignore::DeprecationWarning"]);
       const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Cloudflare DNS Authenticator plugin for Certbot",
         broken: true,
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         src,

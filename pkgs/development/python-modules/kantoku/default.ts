@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pyzmq = nix.arg($, "pyzmq");
   const tornado = nix.arg($, "tornado");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kantoku",
       version: "0.18.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bentoml",
           repo: "kantoku",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A Process & Socket Manager built with zmq",
         homepage: "https://github.com/bentoml/kantoku",
         changelog: nix.thunk(() => nix.str`https://github.com/bentoml/kantoku/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

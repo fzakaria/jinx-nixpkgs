@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-HJQOO8WTNsan3hMoFu7C2DMYrg98GF5hmK2SR6iy5ew=",
@@ -49,7 +49,7 @@ clang -g -O2 -target bpf -D__TARGET_ARCH_$bpfTargetArch \\
 llvm-strip -g src/picosnitch/bpf/picosnitch.bpf.o || true
 `);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PICOSNITCH_BPF_TARGET_ARCH: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : nix.builtins.throw(nix.thunk(() => nix.str`picosnitch: unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`))))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["picosnitch"]);
@@ -58,7 +58,7 @@ llvm-strip -g src/picosnitch/bpf/picosnitch.bpf.o || true
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libnotify]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Monitor network traffic per executable using BPF",
         mainProgram: "picosnitch",
         homepage: "https://github.com/elesiuta/picosnitch",
@@ -68,7 +68,7 @@ llvm-strip -g src/picosnitch/bpf/picosnitch.bpf.o || true
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

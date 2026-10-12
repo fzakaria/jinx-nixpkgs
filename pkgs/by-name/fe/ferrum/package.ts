@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "0";
   const minorVersion = "200";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ferrum",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/ferrum_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-NDJwgFWZgyhMkGRWlY55l2omEw6ju3e3dHCEsWNzQIc=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dotcolon.net/font/ferrum/",
         description: "Decorative font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

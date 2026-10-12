@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const periodictable = nix.arg($, "periodictable");
   const fields = nix.arg($, "fields");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polarizationsolver",
       version: "unstable-2021-11-02",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reinholdt",
           repo: "polarizationsolver",
           rev: "00424ac4d1862257a55e4b16543f63ace3fe8c22",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [fields]),
       pythonImportsCheck: nix.thunk(() => ["polarizationsolver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multipole moment solver for quantum chemistry and polarisable embedding",
         homepage: "https://gitlab.com/reinholdt/polarizationsolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libctb";
       const version = "0.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://iftools.com/download/files/legacy/${pname}-${version}.tar.gz`),
           sha256: "027wh89d0qyly3d9m6rg4x7x1gqz3y3cnxlgk0k8xgygcrm05c0w",
         }))));
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${pname}-${version}/build`);
       const makeFlags = nix.thunk(() => ["prefix=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Communications toolbox",
         homepage: "https://iftools.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "misuzu"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, patches, sourceRoot, makeFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patches, sourceRoot, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

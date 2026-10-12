@@ -72,26 +72,26 @@ export default nix.lambda((args) => (() => {
   const tcpPorts = nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(settings, "TCP_MUX_ADDRESS"), null)), tcpMuxPort));
   const webPorts = nix.thunk(() => nix.concat([httpPort], nix.app(optional, httpRedirect, nix.thunk(() => nix.sel(settings, "HTTPS_REDIRECT_PORT")))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "broadcast-box": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Broadcast Box")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "broadcast-box", nix.thunk(() => ({})))),
           web: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "",
                 example: "127.0.0.1",
                 description: "Host address the HTTP server listens on. By default the server\nlistens on all interfaces.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8080n,
                 description: "Port the HTTP server listens on.\n",
@@ -100,10 +100,10 @@ export default nix.lambda((args) => (() => {
           })),
           openFirewall: nix.thunk(() => nix.app(mkEnableOption, "opening WebRTC traffic ports in the firewall. Randomly selected ports\nwill not be opened.\n")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               visible: "shallow",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -113,9 +113,9 @@ export default nix.lambda((args) => (() => {
                           ]))))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     TCP_MUX_ADDRESS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "strMatching"), ".*:[0-9]+")));
@@ -123,12 +123,12 @@ export default nix.lambda((args) => (() => {
                         default: null,
                       })))),
                     DISABLE_STATUS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                       })))),
                     UDP_MUX_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
                         default: null,
                       })))),
                     UDP_WHEP_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
                         default: null,
                       })))),
                     UDP_WHIP_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -152,12 +152,12 @@ export default nix.lambda((args) => (() => {
                         default: null,
                       })))),
                     ENABLE_HTTP_REDIRECT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                       })))),
                     HTTPS_REDIRECT_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -166,9 +166,9 @@ export default nix.lambda((args) => (() => {
                       })))),
                   })),
                 })))),
-              default: nix.thunk(() => ({ __proto__: pos$13, DISABLE_STATUS: true })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$13, DISABLE_STATUS: true })),
               example: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 DISABLE_STATUS: true,
                 INCLUDE_PUBLIC_IP_IN_NAT_1_TO_1_IP: true,
                 UDP_MUX_PORT: 3000n,
@@ -179,30 +179,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => !nix.asBool(nix.has(settings, "HTTP_ADDRESS"))),
             message: "The Broadcast Box `HTTP_ADDRESS` variable should not be used. Instead\nuse the `host` and `port` options.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (!nix.asBool(httpRedirect) || nix.asBool((nix.asBool(nix.has(settings, "SSL_CERT")) && nix.asBool(nix.has(settings, "SSL_KEY")))))),
             message: "The Broadcast Box `ENABLE_HTTP_REDIRECT` variable requires `SSL_CERT`\nand `SSL_KEY` to be configured.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(httpRedirect) || nix.asBool(nix.eq(httpPort, 443n)))),
             message: "Broadcast Box HTTP redirect only works if the HTTP server listen port\nis 443.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => nix.app(allUnique, nix.thunk(() => nix.concat(tcpPorts, webPorts)))),
             message: "Broadcast Box configuration contains duplicate TCP ports.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => nix.app(all, (name) => !nix.eq(nix.app(match, "[A-Z0-9_]+", name), null), nix.thunk(() => nix.app(attrNames, settings)))),
             message: nix.thunk(() => (() => {
               const offenders = nix.thunk(() => nix.app(filter, (name) => nix.eq(nix.app(match, "[A-Z0-9_]+", name), null), nix.thunk(() => nix.app(attrNames, settings))));
@@ -213,11 +213,11 @@ case. Invalid attribute name(s): \`${nix.app(concatStringsSep, ", ", offenders)}
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "broadcast-box": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Broadcast Box",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -225,14 +225,14 @@ case. Invalid attribute name(s): \`${nix.app(concatStringsSep, ", ", offenders)}
               startLimitBurst: 3n,
               startLimitIntervalSec: 180n,
               environment: nix.thunk(() => nix.update(nix.app(mapAttrs, (_) => (value) => (nix.asBool(nix.eq(nix.builtins.typeOf(value), "bool")) ? (nix.asBool(!nix.asBool(value)) ? null : "true") : (nix.asBool(nix.eq(nix.builtins.typeOf(value), "int")) ? nix.builtins.toString(value) : nix.force(value))), nix.thunk(() => nix.sel(cfg, "settings"))), {
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 APP_ENV: "nixos",
                 HTTP_ADDRESS: nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "web", "host"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "web", "port"))))),
               })),
               serviceConfig: nix.thunk(() => (() => {
                 const priviledgedPort = nix.thunk(() => nix.app(any, (p) => (nix.asBool(nix.gt(p, 0n)) && nix.asBool(nix.lt(p, 1024n))), nix.thunk(() => nix.concat(udpPorts, nix.concat(tcpPorts, webPorts)))));
                 return {
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}`),
                   Restart: "always",
                   RestartSec: "10s",
@@ -271,16 +271,16 @@ case. Invalid attribute name(s): \`${nix.app(concatStringsSep, ", ", offenders)}
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             allowedTCPPorts: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(cfg, "openFirewall")), tcpPorts), nix.app(optionals, nix.thunk(() => nix.sel(cfg, "web", "openFirewall")), webPorts))),
             allowedUDPPorts: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(cfg, "openFirewall")), udpPorts)),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "JManch"))];

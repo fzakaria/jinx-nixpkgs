@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "parsync",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlpinDale",
           repo: "parsync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-SHieyv7Kc9Qtx3C11wxjJTI28h2RDh+YY1Ks++Z1rQ8=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, sqlite, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to parallel rsync-like pull sync over SSH",
         homepage: "https://github.com/AlpinDale/parsync",
         changelog: nix.thunk(() => nix.str`https://github.com/AlpinDale/parsync/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

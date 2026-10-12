@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rasqal",
       version: "0.9.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.librdf.org/source/rasqal-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0z6rrwn4jsagvarg8d5zf0j352kjgi33py39jqd29gbhcnncj939",
         })))),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library that handles Resource Description Framework (RDF)",
         homepage: "https://librdf.org/rasqal",
         license: nix.thunk(() => (() => {

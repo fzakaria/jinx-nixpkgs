@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "squashfs"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     boot: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       initrd: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), inInitrd, nix.thunk(() => ["squashfs"]))),
       })),
     })),

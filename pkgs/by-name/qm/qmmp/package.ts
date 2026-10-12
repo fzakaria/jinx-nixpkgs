@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qmmp",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://qmmp.ylsoftware.com/files/qmmp/2.3/qmmp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Uclk6eaFz2cmay6OMTXuRQS2v2sig/Rrv9Sr42rjaQ0=",
         })))),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         libsamplerate,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based audio player that looks like Winamp",
         mainProgram: "qmmp",
         homepage: "https://qmmp.ylsoftware.com/",

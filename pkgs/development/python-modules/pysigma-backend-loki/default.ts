@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pysigma = nix.arg($, "pysigma");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysigma-backend-loki",
       version: "0.14.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grafana",
           repo: "pySigma-backend-loki",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sigma.backends.loki"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_backend_loki_field_modifiers.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to support the loki backend for pySigma",
         homepage: "https://github.com/grafana/pySigma-backend-loki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

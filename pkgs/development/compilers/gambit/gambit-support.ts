@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   return (() => {
     const stable_params = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stable: true,
       defaultRuntimeOptions: "iL,fL,-L,tL",
       buildRuntimeOptions: "i8,f8,-8,t8",
@@ -31,11 +31,11 @@ grep -i ' version=\\|echo..#define ___STAMP_VERSION' include/makefile.in # XXX D
       modules: true,
       extraOptions: nix.thunk(() => ["CFLAGS=-foptimize-sibling-calls"]),
     }));
-    const unstable_params = nix.thunk(() => nix.update(stable_params, { __proto__: pos$2, stable: false, extraOptions: [] }));
+    const unstable_params = nix.thunk(() => nix.update(stable_params, { [nix.POS]: pos$2, stable: false, extraOptions: [] }));
     const export_gambopt = (params) => nix.str`export GAMBOPT=${nix.sel(params, "buildRuntimeOptions")} ;`;
     const gambit_bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap.nix")), pkgs));
     const meta = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       description: "Optimizing Scheme to C compiler",
       homepage: "http://gambitscheme.org",
       license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -50,7 +50,7 @@ grep -i ' version=\\|echo..#define ___STAMP_VERSION' include/makefile.in # XXX D
       })()),
     }));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "stable-params": stable_params,
       "unstable-params": unstable_params,
       "export-gambopt": export_gambopt,

@@ -35,46 +35,46 @@ ${nix.sel(cfg, "extraConfig")}
 `)));
   const defaultConf = "# Send emergency messages to all users.\n*.emerg                       *\n\n# \"local1\" is used for dhcpd messages.\nlocal1.*                     -/var/log/dhcpd\n\nmail.*                       -/var/log/mail\n\n*.=warning;*.=err            -/var/log/warn\n*.crit                        /var/log/warn\n\n*.*;mail.none;local1.none    -/var/log/messages\n";
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         syslogd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable syslogd.  Note that systemd also logs\nsyslog messages, so you normally don't need to run syslogd.\n",
             })))),
           tty: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "tty10",
               description: "The tty device on which syslogd will print important log\nmessages. Leave this option blank to disable tty logging.\n",
             })))),
           defaultConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: defaultConf,
               description: "The default {file}`syslog.conf` file configures a\nfairly standard setup of log files, which can be extended by\nmeans of {var}`extraConfig`.\n",
             })))),
           enableNetworkInput: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Accept logging through UDP. Option -r of {manpage}`syslogd(8)`.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "news.* -/var/log/news",
               description: "Additional text appended to {file}`syslog.conf`,\ni.e. the contents of {var}`defaultConfig`.\n",
             })))),
           extraParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-m 0"]),
@@ -84,36 +84,36 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "rsyslogd", "enable"))),
             message: "rsyslogd conflicts with syslogd",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sysklogd"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           syslogd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             extraParams: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enableNetworkInput")), "-r")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             syslog: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Syslog Daemon",
               requires: nix.thunk(() => ["syslog.socket"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sysklogd")}/sbin/syslogd ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraParams")))} -f ${syslogConf} -n`),
                 StandardOutput: "null",
               })),

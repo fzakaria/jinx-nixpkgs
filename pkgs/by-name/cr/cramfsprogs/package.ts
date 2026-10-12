@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cramfsprogs",
       version: "2.1-unstable-2025-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "npitre",
           repo: "cramfs-tools",
           rev: "13ad7ee1df5ce42cf9758053186554d7cb15e2cc",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install --target $out/bin -D cramfsck mkcramfs\n",
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to create, check, and extract content of CramFs images",
         homepage: "https://github.com/npitre/cramfs-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

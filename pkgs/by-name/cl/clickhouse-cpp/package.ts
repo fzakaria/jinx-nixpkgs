@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const abseil_cpp = nix.arg($, "abseil-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clickhouse-cpp",
       version: "2.6.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clickhouse",
           repo: "clickhouse-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 substituteAll ${nix.path(here, "./clickhouse-cpp.pc.in")} $out/lib/pkgconfig/clickhouse-cpp.pc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ client library for ClickHouse",
         homepage: "https://github.com/clickhouse/clickhouse-cpp",
         changelog: nix.thunk(() => nix.str`https://github.com/clickhouse/clickhouse-cpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

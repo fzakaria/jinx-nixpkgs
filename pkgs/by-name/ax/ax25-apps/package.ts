@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const libax25 = nix.arg($, "libax25");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ax25-apps",
       version: "0.0.8-rc5-unstable-2021-05-13",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libax25, ncurses]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radiocatalog",
           repo: "ax25-apps",
           rev: "afc4a5faa01a24c4da1d152b901066405f36adb6",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         "--program-transform-name=s@^call$@ax&@;s@^listen$@ax&@",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AX.25 ham radio applications",
         homepage: "https://linux-ax25.in-berlin.de/wiki/Main_Page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

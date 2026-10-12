@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gitleaks";
       const version = "8.30.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitleaks",
           repo: "gitleaks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
 `))));
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scan git repos (or files) for secrets",
         longDescription: "Gitleaks is a SAST tool for detecting hardcoded secrets like passwords,\nAPI keys and tokens in git repos.\n",
         homepage: "https://github.com/gitleaks/gitleaks",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gitleaks",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

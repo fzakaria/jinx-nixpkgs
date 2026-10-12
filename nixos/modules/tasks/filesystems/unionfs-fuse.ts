@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "unionfs-fuse")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             boot: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               initrd: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 kernelModules: nix.thunk(() => ["fuse"]),
                 extraUtilsCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "fuse")}/sbin/mount.fuse
 copy_bin_and_libs ${nix.sel(pkgs, "unionfs-fuse")}/bin/unionfs
@@ -41,9 +41,9 @@ ln -s $(which mount) /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${nix.sel(pkgs,
 ln -s $(which umount) /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${nix.sel(pkgs, "util-linux", "name")}-bin/bin
 `))),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   extraBin: nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     "mount.fuse": nix.thunk(() => nix.str`${nix.sel(pkgs, "fuse")}/bin/mount.fuse`),
                     unionfs: nix.thunk(() => nix.str`${nix.sel(pkgs, "unionfs-fuse")}/bin/unionfs`),
                     "mount.unionfs-fuse": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "mount.unionfs-fuse", nix.thunk(() => ({})), nix.thunk(() => nix.str`substitute ${nix.sel(pkgs, "unionfs-fuse")}/sbin/mount.unionfs-fuse $out \\
@@ -57,9 +57,9 @@ ln -s $(which umount) /nix/store/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-${nix.sel(pkgs
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "unionfs-fuse")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             system: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "unionfs-fuse"))]),
             })),
           })))),

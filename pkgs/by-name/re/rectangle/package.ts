@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const stdenv = nix.arg($, "stdenv");
   const masShortcutSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rxhanson",
       repo: "MASShortcut",
       rev: "2f9fbb3f959b7a683c6faaf9638d22afad37a235",
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
     "User Defaults Storage/MASShortcutBinder.m",
   ]);
   const objName = (src) => nix.app(nix.sel(lib, "removeSuffix"), ".m", nix.thunk(() => nix.builtins.baseNameOf(src)));
-  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$2, escape: true }))));
+  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$2, escape: true }))));
   const mkAppPlist = (attrs) => nix.app(toPlist, nix.thunk(() => nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       CFBundleInfoDictionaryVersion: "6.0",
       CFBundlePackageType: "APPL",
       LSMinimumSystemVersion: "14.0",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       NSPrincipalClass: "NSApplication",
     }, attrs)));
   const mkFrameworkPlist = (name) => nix.app(toPlist, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       CFBundleExecutable: name,
       CFBundleIdentifier: nix.thunk(() => nix.str`com.knollsoft.Rectangle.${name}`),
       CFBundleInfoDictionaryVersion: "6.0",
@@ -100,7 +100,7 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), plist)} > "${app}/Contents
 `;
   })(), formals$2);
   const mainInfoPlist = (version) => nix.app(mkAppPlist, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       CFBundleDevelopmentRegion: "en",
       CFBundleExecutable: "Rectangle",
       CFBundleIdentifier: "com.knollsoft.Rectangle",
@@ -108,7 +108,7 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), plist)} > "${app}/Contents
       CFBundleShortVersionString: version,
       CFBundleVersion: "100",
       CFBundleURLTypes: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$5, CFBundleURLSchemes: nix.thunk(() => ["rectangle"]) })),
+        nix.thunk(() => ({ [nix.POS]: pos$5, CFBundleURLSchemes: nix.thunk(() => ["rectangle"]) })),
       ]),
       CFBundleIconFile: "AppIcon",
       CFBundleIconName: "AppIcon",
@@ -120,11 +120,11 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), plist)} > "${app}/Contents
       SUScheduledCheckInterval: 172800n,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "rectangle",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "rxhanson",
           repo: "Rectangle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -232,16 +232,16 @@ installLocalizations() {
 # Rectangle.app
 app="$out/Applications/Rectangle.app"
 ${nix.app(mkAppBundle, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "Rectangle",
           binary: "$buildDir/Rectangle",
           sourceDir: "Rectangle",
           plist: nix.thunk(() => nix.app(mainInfoPlist, nix.thunk(() => nix.sel(finalAttrs, "version")))),
           destDir: "$out/Applications",
           frameworks: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$8, name: "Sparkle", dylib: "$buildDir/libSparkle.dylib" })),
+            nix.thunk(() => ({ [nix.POS]: pos$8, name: "Sparkle", dylib: "$buildDir/libSparkle.dylib" })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "MASShortcut",
               dylib: "$buildDir/libMASShortcut.dylib",
               localizations: nix.thunk(() => nix.str`${masShortcutSrc}/Framework/Resources`),
@@ -261,11 +261,11 @@ makeWrapper "$app/Contents/MacOS/Rectangle" "$out/bin/rectangle"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Move and resize windows in macOS using keyboard shortcuts or snap areas",
         homepage: "https://rectangleapp.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

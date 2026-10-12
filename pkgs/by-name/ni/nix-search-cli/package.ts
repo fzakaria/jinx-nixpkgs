@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-search-cli",
       version: "0.3-unstable-2025-12-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peterldowns",
           repo: "nix-search-cli",
           rev: "ab0d5156c1e3b383c250ff273639cd3dea6de2d9",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-VlJ2OuHOTqIJeGUm2NbBiz33i8QTxaZnnm0JkVGkw1U=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for searching packages on search.nixos.org",
         homepage: "https://github.com/peterldowns/nix-search-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

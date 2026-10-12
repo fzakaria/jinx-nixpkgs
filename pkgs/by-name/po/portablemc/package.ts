@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
   ], nix.concat(nix.app(nix.sel(lib, "optional"), textToSpeechSupport, flite), additionalLibs)));
   const runtimePrograms = nix.thunk(() => nix.concat([pciutils, xrandr], additionalPrograms));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "portablemc",
       version: "5.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theorzr",
           repo: "portablemc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
         })))),
       dontUnpack: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Ub9XVc6gcu6fEiOheew9Uh3LqdaSzVKITboDTK+MQUI=",
         })))),
       unwrapped: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`portablemc-${nix.sel(finalAttrs, "version")}-unwrapped`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoDeps: nix.thunk(() => nix.attr(finalAttrs, "cargoDeps")),
@@ -102,7 +102,7 @@ makeWrapper "$unwrapped/bin/portablemc" "$out/bin/portablemc" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/theorzr/portablemc",
         description: "Cross platform command line utility for launching Minecraft quickly and reliably with included support for Mojang versions and popular mod loaders",
         changelog: nix.thunk(() => nix.str`https://github.com/theorzr/portablemc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

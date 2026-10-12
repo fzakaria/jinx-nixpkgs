@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const webconsoleVersion = "1.0.18";
   const webconsoleDist = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/codenotary/immudb-webconsole/releases/download/v${webconsoleVersion}/immudb-webconsole.tar.gz`),
       sha256: "sha256-4BhTK+gKO8HW1CelGa30THpfkqfqFthK+b7p9QWl4Pw=",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "immudb",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "codenotary",
           repo: "immudb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ go generate -mod=mod -tags webconsole ./webconsole
       subPackages: nix.thunk(() => ["cmd/immudb", "cmd/immuclient", "cmd/immuadmin"]),
       postInstall: "mkdir -p share/completions\nfor executable in immudb immuclient immuadmin; do\n  for shell in bash fish zsh; do\n    $out/bin/$executable completion $shell > share/completions/$executable.$shell\n    installShellCompletion share/completions/$executable.$shell\n  done\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/codenotary/immudb/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Immutable database based on zero trust, SQL and Key-Value, tamperproof, data change history",
         homepage: "https://github.com/codenotary/immudb",

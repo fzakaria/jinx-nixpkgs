@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "4ti2",
       version: "1.6.15",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "4ti2",
           repo: "4ti2",
           tag: nix.thunk(() => nix.str`Release_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       enableParallelInstalling: false,
       installFlags: nix.thunk(() => ["install-exec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://4ti2.github.io/",
         description: "Software package for algebraic, geometric and combinatorial problems on linear spaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

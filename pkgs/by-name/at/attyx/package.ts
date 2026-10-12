@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "attyx",
       version: "0.4.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "semos-labs",
           repo: "attyx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fontconfig, freetype, glfw, libGL, libx11, libxcursor, libxi, libxrandr]),
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast GPU-accelerated terminal emulator built with Zig",
         homepage: "https://github.com/semos-labs/attyx",
         changelog: nix.thunk(() => nix.str`https://github.com/semos-labs/attyx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

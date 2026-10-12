@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-bug-migration",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-bug",
           repo: "git-bug-migration",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "export HOME=$(mktemp -d)\ngit config --global user.name 'Nixpkgs Test User'\ngit config --global user.email 'nobody@localhost'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for upgrading repositories using git-bug to new versions",
         homepage: "https://github.com/git-bug/git-bug-migration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

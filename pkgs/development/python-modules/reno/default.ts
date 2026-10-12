@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const testtools = nix.arg($, "testtools");
   const testscenarios = nix.arg($, "testscenarios");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reno",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "reno",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-le9JtE0XODlYhTFsrjxFXG/Weshr+FyN4M4S3BMBLUE=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [setuptools]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["reno"]),
       postInstallCheck: "$out/bin/reno -h\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Release Notes Manager",
         mainProgram: "reno",
         homepage: "https://docs.openstack.org/reno/latest",

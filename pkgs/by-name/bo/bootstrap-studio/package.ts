@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "bootstrap-studio";
   const version = "8.0.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://releases.bootstrapstudio.io/${version}/Bootstrap%20Studio.AppImage`),
       sha256: "sha256-uVeD6g3A9ITKkBp3AxTPUM3nyhCbW79gPVTU7bIDmhs=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +35,7 @@ install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/0x0/apps/bstudio.p
   $out/share/icons/hicolor/512x512/apps/bstudio.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drag-and-drop designer for bootstrap",
         homepage: "https://bootstrapstudio.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lrs",
       version: "7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://cgm.cs.mcgill.ca/~avis/C/lrslib/archive/lrslib-073.tar.gz",
           sha256: "sha256-xJpOvYVhg0c9HVpieF/N/hBX1dZx1LlvOhJQ6xr+ToM=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "CC:=$(CC)",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the reverse search algorithm for vertex enumeration/convex hull problems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

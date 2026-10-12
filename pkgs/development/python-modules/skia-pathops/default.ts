@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "skia_pathops",
           version: version,
           hash: "sha256-S22EWfb0ppKCyyb8oMK7CzIcxYqb+cxleaUqOR7cAxk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/fonts-team/libskia/-/raw/6574ca599eab076a9cd5b8667f81aef0f67b3eeb/debian/patches/loong-build",
             stripLen: 1n,
             extraPrefix: "src/cpp/skia-builder/skia/",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pathops"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python access to operations on paths using the Skia library",
         homepage: "https://github.com/fonttools/skia-pathops",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         broken: isPyPy,
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

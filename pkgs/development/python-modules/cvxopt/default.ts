@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const withFftw = nix.argOr($, "withFftw", () => true);
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/cvxopt/default.nix:20:1");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cvxopt",
       version: "1.3.3",
       pyproject: true,
       __structuredAttrs: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gFnO9B8fEVyHvJt1/sn4bblefwr88DpS1hm6Qz5EO8s=",
@@ -46,24 +46,24 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [blas, lapack]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CVXOPT_BLAS_LIB: "blas",
         CVXOPT_LAPACK_LIB: "lapack",
         CVXOPT_BUILD_DSDP: "0",
         CVXOPT_SUITESPARSE_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), suitesparse)}/lib`),
         CVXOPT_SUITESPARSE_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), suitesparse)}/include`),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), withGsl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CVXOPT_BUILD_GSL: "1",
           CVXOPT_GSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gsl)}/lib`),
           CVXOPT_GSL_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gsl)}/include`),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), withGlpk, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CVXOPT_BUILD_GLPK: "1",
           CVXOPT_GLPK_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), glpk)}/lib`),
           CVXOPT_GLPK_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), glpk)}/include`),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), withFftw, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           CVXOPT_BUILD_FFTW: "1",
           CVXOPT_FFTW_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), fftw)}/lib`),
           CVXOPT_FFTW_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), fftw)}/include`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       unittestFlagsArray: nix.thunk(() => ["-s", "tests"]),
       pythonImportsCheck: nix.thunk(() => ["cvxopt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://cvxopt.org/",
         description: "Python Software for Convex Optimization",
         longDescription: "CVXOPT is a free software package for convex optimization based on the\nPython programming language. It can be used with the interactive\nPython interpreter, on the command line by executing Python scripts,\nor integrated in other software via Python extension modules. Its main\npurpose is to make the development of software for convex optimization\napplications straightforward by building on Python's extensive\nstandard library and on the strengths of Python as a high-level\nprogramming language.\n",

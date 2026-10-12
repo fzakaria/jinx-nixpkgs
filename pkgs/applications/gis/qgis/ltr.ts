@@ -19,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const withGrass = nix.argOr($, "withGrass", () => false);
   const withServer = nix.argOr($, "withServer", () => false);
-  const qgis_ltr_unwrapped = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./unwrapped-ltr.nix"), nix.thunk(() => ({ __proto__: pos$1, withGrass: withGrass, withServer: withServer }))));
+  const qgis_ltr_unwrapped = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./unwrapped-ltr.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, withGrass: withGrass, withServer: withServer }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(qgis_ltr_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(qgis_ltr_unwrapped, "outputs")),
       pname: "qgis-ltr",
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.add("buildPythonPath \"$pythonInputs\"\n\nfor program in $out/bin/*; do\n  wrapProgram $program \\\n    --prefix PATH : $program_PATH \\\n    --set PYTHONPATH $program_PYTHONPATH\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`ln -s ${nix.sel(qgis_ltr_unwrapped, "man")} $man
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         unwrapped: qgis_ltr_unwrapped,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "qgis-ltr": nix.thunk(() => nix.sel(nixosTests, "qgis-ltr")),
         })),
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "qgis-ltr"]),

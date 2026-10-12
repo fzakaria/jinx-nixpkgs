@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iaca";
       const version = "3.0";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`iaca-version-v${version}-lin64.zip`),
           sha256: "0qd81bxg269cwwvfmdp266kvhcl3sdvhrkfqdrbmanawk0w7lvp1",
           url: "https://software.intel.com/en-us/articles/intel-architecture-code-analyzer-download",
@@ -28,7 +28,7 @@ cp iaca $out/bin
 patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux-x86-64.so.2 $out/bin/iaca
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intel Architecture Code Analyzer",
         homepage: "https://software.intel.com/en-us/articles/intel-architecture-code-analyzer/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux-x86-64.
           return [nix.thunk(() => nix.lookup(w_1, "kazcw"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, unpackCmd, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, unpackCmd, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=3.0.ts.map

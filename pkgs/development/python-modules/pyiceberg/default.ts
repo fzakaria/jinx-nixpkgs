@@ -61,20 +61,20 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const requests_mock = nix.arg($, "requests-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyiceberg",
       version: "0.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "iceberg-python",
           tag: nix.thunk(() => nix.str`pyiceberg-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-rH+lURcsMqU+Dz4AdofngxLVhJzZIp4LMru1yyvyItI=",
         })))),
       "build-system": nix.thunk(() => [cython, setuptools]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CIBUILDWHEEL: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CIBUILDWHEEL: "1" })),
       dependencies: nix.thunk(() => [
         cachetools,
         click,
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         zstandard,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         adlfs: nix.thunk(() => [adlfs]),
         bigquery: nix.thunk(() => [google_cloud_bigquery]),
         bodo: [],
@@ -190,7 +190,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python library for programmatic access to Apache Iceberg",
         homepage: "https://github.com/apache/iceberg-python",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/iceberg-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

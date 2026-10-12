@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
     const fileBased = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_value) => nix.app(nix.sel(lib, "hasSuffix"), "_FILE", name), env));
     const fileBasedTransformed = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (varName) => (_secretPath) => nix.app(nix.sel(lib, "nameValuePair"), varName, nix.thunk(() => nix.str`%d/${nix.app(envVarToCredName, varName)}`)), fileBased));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       regular: regular,
       fileBased: fileBased,
       fileBasedTransformed: fileBasedTransformed,
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
   })();
   const n8nEnv = nix.thunk(() => nix.app(partitionEnv, nix.thunk(() => nix.sel(cfg, "environment"))));
   const customNodesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "n8n-custom-nodes", nix.thunk(() => nix.builtins.map((pkg) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.sel(pkg, "pname")),
         path: nix.thunk(() => nix.str`${pkg}/lib/node_modules/${nix.sel(pkg, "pname")}`),
       }), nix.thunk(() => nix.sel(cfg, "customNodes"))))));
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
   const runnerTypes = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), enabledRunners));
   const runnersStateDir = "n8n-task-runners";
   const taskRunnerConfigs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (runnerType) => (runnerCfg) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "runner-type": runnerType,
       workdir: nix.thunk(() => nix.str`/var/lib/${runnersStateDir}`),
       command: nix.thunk(() => nix.sel(runnerCfg, "command")),
@@ -103,11 +103,11 @@ export default nix.lambda((args) => (() => {
       "env-overrides": nix.thunk(() => nix.sel(runnerCfg, "environment")),
       "health-check-server-port": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(runnerCfg, "healthCheckPort")))),
     }), enabledRunners));
-  const launcherConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "n8n-task-runners.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$4, "task-runners": taskRunnerConfigs }))))));
+  const launcherConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "n8n-task-runners.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$4, "task-runners": taskRunnerConfigs }))))));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -121,32 +121,32 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "n8n", "webhookUrl"]), "Use services.n8n.environment.WEBHOOK_URL instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         n8n: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "n8n server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "n8n", nix.thunk(() => ({})))),
           customNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.n8n-nodes-carbonejs ]")),
               description: "List of custom n8n community node packages to load.\nEach package is expected to be an npm package with an `n8n.nodes` entry in its `package.json`.\nThe packages are made available to n8n via the `N8N_CUSTOM_EXTENSIONS` environment variable.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the n8n web interface.",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Environment variables to pass to the n8n service.\nSee <https://docs.n8n.io/hosting/configuration/environment-variables/> for available options.\n\nEnvironment variables ending with `_FILE` are automatically handled as secrets:\nthey are loaded via systemd credentials for secure access with `DynamicUser=true`.\n\nThis can be useful to pass secrets via tools like `agenix` or `sops-nix`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  N8N_ENCRYPTION_KEY_FILE = \"/run/n8n/encryption_key\";\n  DB_POSTGRESDB_PASSWORD_FILE = \"/run/n8n/db_postgresdb_password\";\n  WEBHOOK_URL = \"https://n8n.example.com\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -156,9 +156,9 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     GENERIC_TIMEZONE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
                         description: "The n8n instance timezone. Important for schedule nodes (such as Cron).\n",
                       })))),
                     N8N_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "port")), nix.builtins.toString, nix.thunk(() => nix.lookup(w_1, "str")));
@@ -177,14 +177,14 @@ export default nix.lambda((args) => (() => {
                         description: "The HTTP port n8n runs on.",
                       })))),
                     N8N_USER_FOLDER: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/n8n",
                         description: "Provide the path where n8n will create the .n8n folder.\nThis directory stores user-specific data, such as database file and encryption key.\n",
                         readOnly: true,
                       })))),
                     N8N_DIAGNOSTICS_ENABLED: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "bool")), nix.thunk(() => nix.sel(nix.builtins, "toJSON")), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -193,7 +193,7 @@ export default nix.lambda((args) => (() => {
                         description: "Whether to share selected, anonymous telemetry with n8n.\nNote that if you set this to false, you can't enable Ask AI in the Code node.\n",
                       })))),
                     N8N_VERSION_NOTIFICATIONS_ENABLED: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "bool")), nix.thunk(() => nix.sel(nix.builtins, "toJSON")), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
                         description: "When enabled, n8n sends notifications of new versions and security updates.\n",
                       })))),
                     N8N_CUSTOM_EXTENSIONS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         internal: true,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
                         description: "Specify the path to directories containing your custom nodes.\n",
                       })))),
                     N8N_RUNNERS_MODE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         internal: true,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -222,7 +222,7 @@ export default nix.lambda((args) => (() => {
                         description: "How to launch and run the task runner.\n`internal` means n8n will launch a task runner as child process.\n`external` means an external orchestrator will launch the task runner.\n",
                       })))),
                     N8N_RUNNERS_BROKER_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "port")), nix.builtins.toString, nix.thunk(() => nix.lookup(w_1, "str")));
@@ -231,13 +231,13 @@ export default nix.lambda((args) => (() => {
                         description: "Port the task broker listens on for task runner connections.\n",
                       })))),
                     N8N_RUNNERS_BROKER_LISTEN_ADDRESS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "Address the task broker listens on.\n",
                       })))),
                     N8N_RUNNERS_AUTH_TOKEN_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -250,15 +250,15 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
             })))),
           taskRunners: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "n8n task runners for sandboxed Code node execution")),
             launcherPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "n8n-task-runner-launcher", nix.thunk(() => ({})))),
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 description: "Environment variables for the task runner launcher and runners.\nThese are common to all runners and passed via `allowed-env` in the launcher config.\nSee <https://docs.n8n.io/hosting/configuration/environment-variables/task-runners/> for available options.\n\nEnvironment variables ending with `_FILE` are automatically handled as secrets:\nthey are loaded via systemd credentials for secure access with `DynamicUser=true`.\n\nNote: The authentication token should be set via {option}`services.n8n.environment.N8N_RUNNERS_AUTH_TOKEN_FILE`.\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT = 15;\n  N8N_RUNNERS_MAX_CONCURRENCY = 10;\n}\n")),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -268,9 +268,9 @@ export default nix.lambda((args) => (() => {
                           ]))));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       N8N_RUNNERS_AUTH_TOKEN_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -280,7 +280,7 @@ export default nix.lambda((args) => (() => {
                           description: "Path to the authentication token file for the task runner.\n",
                         })))),
                       N8N_RUNNERS_TASK_BROKER_URI: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`http://${nix.sel(cfg, "environment", "N8N_RUNNERS_BROKER_LISTEN_ADDRESS")}:${nix.sel(cfg, "environment", "N8N_RUNNERS_BROKER_PORT")}`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"http://${config.services.n8n.environment.N8N_RUNNERS_BROKER_LISTEN_ADDRESS}:${config.services.n8n.environment.N8N_RUNNERS_BROKER_PORT}\"")),
@@ -291,16 +291,16 @@ export default nix.lambda((args) => (() => {
                 default: nix.thunk(() => ({})),
               })))),
             runners: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         options: nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               default: true,
                               description: nix.thunk(() => nix.str`Whether to enable the ${name} task runner.
@@ -308,17 +308,17 @@ Only takes effect when {option}\`services.n8n.taskRunners.enable\` is true.
 `),
                             })))),
                           command: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Command to execute for this runner.",
                             })))),
                           healthCheckPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               type: nix.thunk(() => nix.sel(lib, "types", "port")),
                               description: "Port for the runner's health check server.",
                             })))),
                           args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -327,7 +327,7 @@ Only takes effect when {option}\`services.n8n.taskRunners.enable\` is true.
                               description: "Additional command-line arguments to pass to the task runner.",
                             })))),
                           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -347,29 +347,29 @@ Only takes effect when {option}\`services.n8n.taskRunners.enable\` is true.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => (!nix.asBool(anyRunnerEnabled) || nix.asBool(!nix.eq(nix.sel(cfg, "environment", "N8N_RUNNERS_AUTH_TOKEN_FILE"), null)))),
             message: "services.n8n.environment.N8N_RUNNERS_AUTH_TOKEN_FILE must be set when task runners are enabled.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             n8n: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               description: "n8n service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(n8nEnv, "regular"), nix.update({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 HOME: nix.thunk(() => nix.sel(cfg, "environment", "N8N_USER_FOLDER")),
               }, nix.sel(n8nEnv, "fileBasedTransformed")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 Restart: "on-failure",
@@ -394,14 +394,14 @@ Only takes effect when {option}\`services.n8n.taskRunners.enable\` is true.
               })),
             })),
             "n8n-task-runner": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), anyRunnerEnabled, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 description: "n8n task runner",
                 after: nix.thunk(() => ["n8n.service"]),
                 requires: nix.thunk(() => ["n8n.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                environment: nix.thunk(() => nix.update({ __proto__: pos$42, N8N_RUNNERS_CONFIG_PATH: launcherConfigFile }, nix.update(nix.sel(runnersEnv, "regular"), nix.sel(runnersEnv, "fileBasedTransformed")))),
+                environment: nix.thunk(() => nix.update({ [nix.POS]: pos$42, N8N_RUNNERS_CONFIG_PATH: launcherConfigFile }, nix.update(nix.sel(runnersEnv, "regular"), nix.sel(runnersEnv, "fileBasedTransformed")))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(runnersCfg, "launcherPackage")))} ${nix.app(nix.sel(lib, "concatStringsSep"), " ", runnerTypes)}`),
                   Restart: "on-failure",
@@ -429,21 +429,21 @@ Only takes effect when {option}\`services.n8n.taskRunners.enable\` is true.
         })),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(runnersCfg, "enable")) && nix.asBool(!nix.asBool(anyRunnerEnabled)))), "services.n8n.taskRunners.enable is true, but both JavaScript and Python runners are disabled.\nEnable at least one runner or disable taskRunners.\n")),
         services: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           n8n: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             taskRunners: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               runners: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 javascript: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     enable: true,
                     command: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "n8n-task-runner")),
                     healthCheckPort: 5681n,
                   })))),
                 python: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     enable: true,
                     command: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "n8n-task-runner-python")),
                     healthCheckPort: 5682n,
@@ -453,9 +453,9 @@ Only takes effect when {option}\`services.n8n.taskRunners.enable\` is true.
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.sel(cfg, "environment", "N8N_PORT")))),
               ]),

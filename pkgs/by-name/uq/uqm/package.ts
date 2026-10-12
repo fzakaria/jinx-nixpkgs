@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const useRemixPacks = nix.argOr($, "useRemixPacks", () => false);
   nix.assert_((!nix.asBool(use3DOVideos) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(requireFile, null)) && nix.asBool(!nix.eq(writeText, null)))) && nix.asBool(!nix.eq(haskellPackages, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/uq/uqm/package.nix:23:1");
   const videos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3dovideo.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       lib: lib,
       requireFile: requireFile,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         const name = nix.thunk(() => nix.str`uqm-remix-disc${nix.builtins.toString(num)}.uqm`);
         const url = nix.thunk(() => nix.str`mirror://sourceforge/sc2/${name}`);
         const sha256_1 = sha256;
-        return { __proto__: pos$2, name, url, sha256: sha256_1 };
+        return { [nix.POS]: pos$2, name, url, sha256: sha256_1 };
       })())), nix.thunk(() => [
       "1s470i6hm53l214f2rkrbp111q4jyvnxbzdziqg32ffr8m3nk5xn",
       "1pmsq65k8gk4jcbyk3qjgi9yqlm0dlaimc2r8hz2fc9f2124gfvz",
@@ -53,26 +53,26 @@ export default nix.lambda((args) => (() => {
       "1l46k9aqlcp7d3fjkjb3n05cjfkxx8rjlypgqy0jmdx529vikj54",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "uqm",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-src.tgz`),
           sha256: "JPL325z3+vU7lfniWA5vWWIFqY7QwzXP6DTGR4WtT1o=",
         })))),
       content: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-content.uqm`),
           sha256: "d9dawl5vt1WjPEujs4p7e8Qfy8AolokbDMmskhS3Lu8=",
         })))),
       voice: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-voice.uqm`),
           sha256: "ntv1HXfYtTM5nF86+1STFKghDXqrccosUbTySDIzekU=",
         })))),
       music: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-3domusic.uqm`),
           sha256: "RM087H6VabQRettNd/FSKJCXJWYmc5GuCWMUhdIx2Lk=",
         })))),
@@ -91,7 +91,7 @@ ln -s "$voice" "uqm-${nix.sel(finalAttrs, "version")}/content/addons/uqm-${nix.s
       buildPhase: "./build.sh uqm\n",
       installPhase: "./build.sh uqm install\nsed -i $out/bin/uqm -e \"s%/usr/local/games/%$out%g\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Remake of Star Control II",
         mainProgram: "uqm",
         longDescription: "The goals for the The Ur-Quan Masters project are:\n  - to bring Star Control II to modern platforms, thereby making a lot of\n    people happy\n  - to make game translations easy, thereby making even more people happy\n  - to adapt the code so that people can more easily make their own\n    spin-offs, thereby making zillions more people happy!\n",

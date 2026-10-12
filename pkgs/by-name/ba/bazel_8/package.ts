@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
   const bazelSystem = nix.thunk(() => (nix.asBool(isDarwin) ? "darwin" : "linux"));
   const bazelArch = nix.thunk(() => (nix.asBool((nix.asBool(isDarwin) && nix.asBool(isAarch64))) ? "arm64" : nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")));
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip`),
       hash: "sha256-bm+gkkrAVepJWZddDEV1+jX4jRdD+tZ1TH2YG9adIyk=",
       stripRoot: false,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
     which,
     zip,
   ]);
-  const defaultShell = nix.thunk(() => nix.app(callPackage, nix.path(here, "./defaultShell.nix"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$2, defaultShellUtils: defaultShellUtils }))));
+  const defaultShell = nix.thunk(() => nix.app(callPackage, nix.path(here, "./defaultShell.nix"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$2, defaultShellUtils: defaultShellUtils }))));
   const commandArgs = nix.thunk(() => nix.concat([
     "--nobuild_python_zip",
     "--features=-module_maps",
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       const darwinPatches = nix.thunk(() => [
         nix.path(here, "./patches/darwin_sleep.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/xcode.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             clangDarwin: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/clang`),
           })))),
         nix.path(here, "./patches/apple_cc_toolchain.patch"),
@@ -118,15 +118,15 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, darwinPatches), [
         nix.path(here, "./patches/deps_patches.patch"),
         nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             path: "b/third_party/rules_python.patch",
-            file: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/rules_python.patch"), nix.thunk(() => ({ __proto__: pos$4, usrBinEnv: nix.thunk(() => nix.str`${coreutils}/bin/env`) })))),
+            file: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/rules_python.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, usrBinEnv: nix.thunk(() => nix.str`${coreutils}/bin/env`) })))),
           })))),
         nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             path: "b/third_party/rules_java.patch",
             file: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/rules_java.patch"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 defaultBash: nix.thunk(() => nix.str`${nix.sel(defaultShell, "bashWithDefaultShellUtils")}/bin/bash`),
               })))),
           })))),
@@ -134,23 +134,23 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/env_bash.patch"),
         nix.path(here, "./patches/gen_completion.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/strict_action_env.patch"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             strictActionEnvPatch: nix.thunk(() => nix.sel(defaultShell, "defaultShellPath")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/default_bash.patch"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             defaultBash: nix.thunk(() => nix.str`${nix.sel(defaultShell, "bashWithDefaultShellUtils")}/bin/bash`),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/md5sum.patch"), nix.thunk(() => ({ __proto__: pos$10, md5sum: nix.thunk(() => nix.str`${coreutils}/bin/md5sum`) })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/usr_bin_env.patch"), nix.thunk(() => ({ __proto__: pos$11, usrBinEnv: nix.thunk(() => nix.str`${coreutils}/bin/env`) })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/linux_sandbox.patch"), nix.thunk(() => ({ __proto__: pos$12, binTrue: nix.thunk(() => nix.str`${coreutils}/bin/true`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/md5sum.patch"), nix.thunk(() => ({ [nix.POS]: pos$10, md5sum: nix.thunk(() => nix.str`${coreutils}/bin/md5sum`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/usr_bin_env.patch"), nix.thunk(() => ({ [nix.POS]: pos$11, usrBinEnv: nix.thunk(() => nix.str`${coreutils}/bin/env`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/linux_sandbox.patch"), nix.thunk(() => ({ [nix.POS]: pos$12, binTrue: nix.thunk(() => nix.str`${coreutils}/bin/true`) })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/bazel_rc.patch"), nix.thunk(() => ({
-            __proto__: pos$14,
-            bazelSystemBazelRCPath: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./system.bazelrc"), nix.thunk(() => ({ __proto__: pos$13, serverJavabase: jdk_headless })))),
+            [nix.POS]: pos$14,
+            bazelSystemBazelRCPath: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./system.bazelrc"), nix.thunk(() => ({ [nix.POS]: pos$13, serverJavabase: jdk_headless })))),
           })))),
       ]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "https://github.com/bazelbuild/bazel/",
         description: "Build tool that builds code quickly and reliably",
         sourceProvenance: nix.thunk(() => (() => {
@@ -257,11 +257,11 @@ installShellCompletion --fish \\
 `);
       const stripExclude = nix.thunk(() => [nix.thunk(() => nix.str`bin/.bazel-${version_1}-*-wrapped`)]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         tests: nix.thunk(() => (() => {
           const from_2 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples.nix"), nix.thunk(() => ({}))));
           return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           cpp: nix.thunk(() => nix.attr(from_2, "cpp")),
           java: nix.thunk(() => nix.attr(from_2, "java")),
           rust: nix.thunk(() => nix.attr(from_2, "rust")),
@@ -269,7 +269,7 @@ installShellCompletion --fish \\
         })()),
       }));
       return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pname,
         version: version_1,
         src: src_1,

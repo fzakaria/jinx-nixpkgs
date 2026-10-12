@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-ld",
       version: "2.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nix-ld",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-8mkMq16CfEc/RHH3msXEnoiDHGGRjr2Omp2TVd07ObE=",
       hardeningDisable: nix.thunk(() => ["stackprotector"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_SYSTEM: nix.thunk(() => nix.sel(stdenv, "system")),
         RUSTC_BOOTSTRAP: "1",
       })),
@@ -48,9 +48,9 @@ cat > $out/lib/tmpfiles.d/nix-ld.conf <<EOF
   L+ $ldpath - - - - $out/libexec/nix-ld
 EOF
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "nix-ld")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "nix-ld")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Run unpatched dynamic binaries on NixOS",
         homepage: "https://github.com/nix-community/nix-ld",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

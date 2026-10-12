@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libical = nix.arg($, "libical");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vzic",
       version: "0-unstable-2024-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libical",
           repo: "vzic",
           rev: "354296149e65ca31932c514fddb7435cb47671e9",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, libical]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OLSON_DIR: "tzdata2024a",
         PRODUCT_ID: "-//NixOS//NONSGML Citadel calendar//EN",
         TZID_PREFIX: "/NixOS/Olson_%D_1/",
@@ -46,7 +46,7 @@ install -Dm744 vzic $out/bin/vzic
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/libical/vzic",
         description: "Program to convert the IANA timezone database files into VTIMEZONE files compatible with the iCalendar specification",
         changelog: nix.thunk(() => nix.str`https://github.com/libical/vzic/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

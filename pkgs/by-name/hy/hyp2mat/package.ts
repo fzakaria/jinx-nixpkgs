@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyp2mat",
       version: "0.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "koendv",
           repo: "hyp2mat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-library"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Import Hyperlynx Boardsim files to openEMS, an open source 3D full-wave electromagnetic field solver",
         mainProgram: "hyp2mat",
         homepage: "https://github.com/koendv/hyp2mat",

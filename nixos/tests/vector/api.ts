@@ -23,41 +23,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "vector-api",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machineapi: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             vector: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               journaldAccess: false,
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
-                api: nix.thunk(() => ({ __proto__: pos$2, enabled: true })),
+                [nix.POS]: pos$8,
+                api: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true })),
                 sources: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  demo_logs: nix.thunk(() => ({ __proto__: pos$3, type: "demo_logs", format: "json" })),
+                  [nix.POS]: pos$4,
+                  demo_logs: nix.thunk(() => ({ [nix.POS]: pos$3, type: "demo_logs", format: "json" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   file: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: "file",
                     inputs: nix.thunk(() => ["demo_logs"]),
                     path: "/var/lib/vector/logs.log",
-                    encoding: nix.thunk(() => ({ __proto__: pos$5, codec: "json" })),
+                    encoding: nix.thunk(() => ({ [nix.POS]: pos$5, codec: "json" })),
                   })),
                 })),
               })),

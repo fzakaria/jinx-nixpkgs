@@ -39,15 +39,15 @@ cp ${nix.app(nix.sel(lib, "concatStringsSep"), " ", list)} "$out/"
             "common/inc/sgx_attributes.h",
           ]);
           const postFetch = nix.thunk(() => nix.app(filterSparse, sparseCheckout));
-          return { __proto__: pos$1, name, owner, repo, rev, hash, sparseCheckout, postFetch };
+          return { [nix.POS]: pos$1, name, owner, repo, rev, hash, sparseCheckout, postFetch };
         })()))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "azure-dcap-client",
       version: "1.13.0-pre0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "microsoft",
           repo: "azure-dcap-client",
           rev: "839ac4a2acc11b90cb91a483fcfc0cf7ae6a75c7",
@@ -63,17 +63,17 @@ substitute src/Linux/Makefile{.in,} \\
   --replace-fail '##CURLINC##' '${nix.sel(curl, "dev")}/include/curl/' \\
   --replace-fail '$(TEST_SUITE): $(PROVIDER_LIB) $(TEST_SUITE_OBJ)' '$(TEST_SUITE): $(TEST_SUITE_OBJ)'
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" })),
       makeFlags: nix.thunk(() => ["-C src/Linux", "prefix=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           suite: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-suite.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Interfaces between SGX SDKs and the Azure Attestation SGX Certification Cache",
         homepage: "https://github.com/microsoft/azure-dcap-client",
         maintainers: nix.thunk(() => (() => {

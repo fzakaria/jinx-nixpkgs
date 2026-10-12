@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libnice",
       version: "0.1.24",
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev"], nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libnice",
           repo: "libnice",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [glib]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           gtk_doc: enableDocumentation,
           introspection: withIntrospection,
           examples: false,
@@ -67,15 +67,15 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/libnice/libnice/-/blob/${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "GLib ICE implementation",
         longDescription: "Libnice is an implementation of the IETF's Interactive Connectivity\nEstablishment (ICE) standard (RFC 5245) and the Session Traversal\nUtilities for NAT (STUN) standard (RFC 5389).\n\nIt provides a GLib-based library, libnice and a Glib-free library,\nlibstun as well as GStreamer elements.",

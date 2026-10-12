@@ -28,51 +28,51 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "password-option-override-ordering",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fidgetingbits"))]),
         };
       })()),
       nodes: nix.thunk(() => (() => {
         const users = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           fran: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             isNormalUser: true,
             initialHashedPassword: hashed_yeshash,
             hashedPassword: hashed_sha512crypt,
           })),
           greg: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             isNormalUser: true,
             hashedPassword: hashed_sha512crypt,
             initialPassword: password1,
           })),
           egon: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             isNormalUser: true,
             initialPassword: password2,
             password: password1,
           })),
           alice: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             isNormalUser: true,
             hashedPassword: hashed_sha512crypt,
             password: password1,
           })),
           bob: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             isNormalUser: true,
             hashedPassword: hashed_sha512crypt,
             password: password1,
             hashedPasswordFile: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "writeText"), "hashed_bcrypt", hashed_bcrypt), "outPath")),
           })),
           cat: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             isNormalUser: true,
             hashedPassword: hashed_sha512crypt,
             password: password1,
@@ -80,7 +80,7 @@ export default nix.thunk(() => (() => {
             initialPassword: password2,
           })),
           dan: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             isNormalUser: true,
             hashedPassword: hashed_sha512crypt,
             initialPassword: password2,
@@ -90,15 +90,15 @@ export default nix.thunk(() => (() => {
           })),
         }));
         const mkTestMachine = (mutable) => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "shadow"))]),
           })),
-          users: nix.thunk(() => ({ __proto__: pos$11, mutableUsers: mutable, users: users })),
+          users: nix.thunk(() => ({ [nix.POS]: pos$11, mutableUsers: mutable, users: users })),
         });
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           immutable: nix.thunk(() => nix.app(mkTestMachine, false)),
           mutable: nix.thunk(() => nix.app(mkTestMachine, true)),
         };

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nextvi",
       version: "7.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyx0r",
           repo: "nextvi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nsh ./cbuild.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nPREFIX=$out sh ./cbuild.sh install\n\nmv $out/bin/{vi,nextvi}\ninstallManPage --name nextvi.1 vi.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next version of neatvi (a small vi/ex editor)",
         homepage: "https://github.com/kyx0r/nextvi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "osmo-hnbgw";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-hnbgw",
           rev: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osmocom Home NodeB Gateway, for attaching femtocells to the 3G CN (OsmoMSC, OsmoSGSN)",
         mainProgram: "osmo-hnbgw",
         homepage: "https://osmocom.org/projects/osmohnbgw",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

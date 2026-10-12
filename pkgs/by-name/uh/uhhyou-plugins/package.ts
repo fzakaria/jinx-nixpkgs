@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uhhyou-plugins",
       version: "0.71.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryukau",
           repo: "VSTPlugins",
           rev: nix.thunk(() => nix.str`UhhyouPlugins${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/vst3\ncp -r VST3/Release/*.vst3 $out/lib/vst3/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of VST3 audio synthesis and processing plugins.",
         homepage: "https://ryukau.github.io/VSTPlugins/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

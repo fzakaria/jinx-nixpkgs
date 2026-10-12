@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const zfs = nix.arg($, "zfs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zpool-auto-expand-partitions",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DeterminateSystems",
           repo: "zpool-auto-expand-partitions",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ substituteInPlace src/lsblk.rs \\
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [util_linux, zfs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that aims to expand all partitions in a specified zpool to fill the available space",
         homepage: "https://github.com/DeterminateSystems/zpool-auto-expand-partitions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

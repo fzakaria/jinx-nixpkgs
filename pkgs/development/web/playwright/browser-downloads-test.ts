@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const browserDownloads = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), browserNames, (name) => nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(browsersJSON, nix.key(nix.force(name))));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         revision: nix.thunk(() => nix.attr(from, "revision")),
         browserVersion: nix.thunk(() => nix.selOr(browsersJSON, () => "", nix.key(nix.force(name)), "browserVersion")),
       };
       })()))));
   const browserDownloadsExpectedJSON = nix.thunk(() => nix.builtins.toFile("playwright-browser-downloads.json", nix.thunk(() => nix.builtins.toJSON(browserDownloads))));
-  return nix.app(runCommand, "playwright-browser-downloads-test", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [nodejs]) })), nix.thunk(() => nix.str`node ${nix.path(here, "./browser-downloads-test.js")} ${playwright_core} ${browserDownloadsExpectedJSON}
+  return nix.app(runCommand, "playwright-browser-downloads-test", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [nodejs]) })), nix.thunk(() => nix.str`node ${nix.path(here, "./browser-downloads-test.js")} ${playwright_core} ${browserDownloadsExpectedJSON}
 touch $out
 `));
 })(), formals$1);

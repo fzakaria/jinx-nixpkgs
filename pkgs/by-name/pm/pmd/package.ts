@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk8 = nix.arg($, "jdk8");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pmd",
       version: "6.55.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pmd/pmd/releases/download/pmd_releases/${nix.sel(finalAttrs, "version")}/pmd-bin-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Iaz5bUPLQNWRyszMHCCmb8eW6t32nqYYEllER7rHoR0=",
         })))),
@@ -43,7 +43,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible cross-language static code analyzer",
         homepage: "https://pmd.github.io/",
         changelog: nix.thunk(() => nix.str`https://pmd.github.io/pmd-${nix.sel(finalAttrs, "version")}/pmd_release_notes.html`),

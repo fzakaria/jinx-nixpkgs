@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "pulumi",
       version: "3.268.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pulumi",
           repo: "pulumi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -151,36 +151,36 @@ export default nix.lambda((args) => (() => {
       pulumiExe: nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) ? nix.str`${nix.builtins.placeholder("out")}/bin/pulumi` : nix.str`${nix.sel(buildPackages, "pulumi")}/bin/pulumi`)),
       postInstall: "for shell in bash fish zsh; do\n  \"$pulumiExe\" gen-completion $shell >pulumi.$shell\n  installShellCompletion pulumi.$shell\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pkgs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({})))),
         withPackages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-packages.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 attrPath: "pulumiPackages.pulumi-bun",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 attrPath: "pulumiPackages.pulumi-go",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 attrPath: "pulumiPackages.pulumi-nodejs",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 attrPath: "pulumiPackages.pulumi-python",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
           ]))),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: pulumi,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               command: "PULUMI_SKIP_UPDATE_CHECK=1 pulumi version",
@@ -190,16 +190,16 @@ export default nix.lambda((args) => (() => {
           "pulumi-nodejs": nix.thunk(() => nix.attr(pulumiPackages, "pulumi-nodejs")),
           "pulumi-python": nix.thunk(() => nix.attr(pulumiPackages, "pulumi-python")),
           pythonPackage: nix.thunk(() => nix.sel(python3Packages, "pulumi")),
-          pythonPackageProtobuf5: nix.thunk(() => nix.sel(nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (_) => ({ __proto__: pos$7, protobuf: nix.thunk(() => nix.sel(final, "protobuf5")) })), "pulumi")),
+          pythonPackageProtobuf5: nix.thunk(() => nix.sel(nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (_) => ({ [nix.POS]: pos$7, protobuf: nix.thunk(() => nix.sel(final, "protobuf5")) })), "pulumi")),
           pulumiTestHookShellcheck: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "pulumi-test-hook-shellcheck",
               src: nix.path(here, "./extra/pulumi-test-hook.sh"),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://www.pulumi.com",
         description: "Cloud development platform that makes creating cloud programs easy and productive",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

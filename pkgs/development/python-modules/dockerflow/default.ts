@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.03.04";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla-services",
           repo: "python-dockerflow",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         django: nix.thunk(() => [django]),
         flask: nix.thunk(() => [blinker, flask]),
         sanic: nix.thunk(() => [sanic]),
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.django.settings\n";
       const pythonImportsCheck = nix.thunk(() => ["dockerflow"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla-services/python-dockerflow/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python package to implement tools and helpers for Mozilla Dockerflow",
         homepage: "https://github.com/mozilla-services/python-dockerflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

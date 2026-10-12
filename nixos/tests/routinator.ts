@@ -16,26 +16,26 @@ const pos$8 = nix.positions(here + "/routinator.nix", [["name", 13, 3], ["nodes"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: nix.thunk(() => ({})) }))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: nix.thunk(() => ({})) }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   return nix.app(makeTest, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "routinator",
       nodes: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               routinator: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: true,
                 extraArgs: nix.thunk(() => ["--no-rir-tals"]),
-                settings: nix.thunk(() => ({ __proto__: pos$3, "http-listen": nix.thunk(() => ["[::]:8382"]) })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$3, "http-listen": nix.thunk(() => ["[::]:8382"]) })),
               })),
             })),
           };

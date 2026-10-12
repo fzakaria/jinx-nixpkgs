@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const ARCH = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(hostPlatform, "isDarwin")) && nix.asBool(nix.sel(hostPlatform, "isAarch64")))) ? "arm64" : nix.sel(hostPlatform, "parsed", "cpu", "name")));
   const version = "1.42.0";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "linux-x86_64": "sha256-p7yclWE49VjK35yWI1L1nUHIDfbrOuP4A58lvhSmkwM=",
     "linux-aarch64": "sha256-aHcHw+IP+RBSjrLZLyepjLCWAoTeOwJua/IChKwchRE=",
     "osx-arm64": "sha256-emjiHFMFdmp09HNsyJGnlC23hCqSJmIyCVBLyFxwE4I=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ldc-bootstrap",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const name = nix.thunk(() => nix.str`ldc2-${version}-${OS}-${ARCH}.tar.xz`);
           const url = nix.thunk(() => nix.str`https://github.com/ldc-developers/ldc/releases/download/v${version}/${name}`);
           const hash = nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`missing bootstrap hash for ${OS}-${ARCH}`)), nix.key(nix.str`${OS}-${ARCH}`)));
-          return { __proto__: pos$2, name, url, hash };
+          return { [nix.POS]: pos$2, name, url, hash };
         })()))),
       dontConfigure: true,
       dontBuild: true,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [curl, tzdata]),
       installPhase: "mkdir -p $out\n\nmv bin etc import lib LICENSE README $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLVM-based D Compiler",
         homepage: "https://github.com/ldc-developers/ldc",
         license: nix.thunk(() => (() => {

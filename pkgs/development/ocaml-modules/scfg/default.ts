@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sedlex = nix.arg($, "sedlex");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scfg",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.zapashcanon.fr/zapashcanon/scfg/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-XyNVmI0W0B1JqR+uuojpHe9L5KKLhyoH8vN8+9i7Xcg=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to work with the scfg configuration file",
         homepage: "https://ocaml.org/p/scfg/",
         downloadPage: "https://git.zapashcanon.fr/zapashcanon/scfg",

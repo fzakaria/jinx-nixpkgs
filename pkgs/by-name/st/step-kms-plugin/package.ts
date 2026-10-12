@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "step-kms-plugin";
       const version = "0.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smallstep",
           repo: "step-kms-plugin",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/smallstep/step-kms-plugin/cmd.Version=${version}`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_CFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), pcsclite)}/include/PCSC/`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Step plugin to manage keys and certificates on cloud KMSs and HSMs",
         homepage: "https://smallstep.com/cli/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "step-kms-plugin",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

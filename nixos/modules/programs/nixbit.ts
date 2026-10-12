@@ -26,36 +26,36 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nixbit"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nixbit: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Nixbit configuration")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "nixbit", nix.thunk(() => ({})))),
           repository: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Git repository URL for Nixbit",
             })))),
           forceAutostart: nix.thunk(() => nix.update(nix.app(mkEnableOption, ""), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Force creation of autostart desktop entry when application starts",
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "nixbit.conf": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "repository"), "")), nix.thunk(() => nix.str`[Repository]
 Url = ${nix.sel(cfg, "repository")}
 `)), nix.str`[Autostart]

@@ -28,52 +28,52 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "corectrl"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "corectrl", "gpuOverclock", "enable"]), nix.thunk(() => ["hardware", "amdgpu", "overdrive", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "corectrl", "gpuOverclock", "ppfeaturemask"]), nix.thunk(() => ["hardware", "amdgpu", "overdrive", "ppfeaturemask"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         corectrl: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(mkEnableOption, "CoreCtrl, a tool to overclock amd graphics cards and processors.\nAdd your user to the corectrl group to run corectrl without needing to enter your password\n")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "corectrl", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               extraDescription: "Useful for overriding the configuration options used for the package.",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           dbus: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$9,
-          groups: nix.thunk(() => ({ __proto__: pos$8, corectrl: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$9,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$8, corectrl: nix.thunk(() => ({})) })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           polkit: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraConfig: "polkit.addRule(function(action, subject) {\n    if ((action.id == \"org.corectrl.helper.init\" ||\n         action.id == \"org.corectrl.helperkiller.init\") &&\n        subject.local == true &&\n        subject.active == true &&\n        subject.isInGroup(\"corectrl\")) {\n            return polkit.Result.YES;\n    }\n});\n",
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

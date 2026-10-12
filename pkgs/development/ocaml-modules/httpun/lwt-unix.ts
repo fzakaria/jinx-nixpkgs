@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const httpun_lwt = nix.arg($, "httpun-lwt");
   const gluten_lwt_unix = nix.arg($, "gluten-lwt-unix");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "httpun-lwt-unix",
       version: nix.thunk(() => nix.attr(httpun_lwt, "version")),
       src: nix.thunk(() => nix.attr(httpun_lwt, "src")),
       propagatedBuildInputs: nix.thunk(() => [httpun_lwt, gluten_lwt_unix]),
-      meta: nix.thunk(() => nix.update(nix.sel(httpun_lwt, "meta"), { __proto__: pos$1, description: "Lwt + Unix support for httpun" })),
+      meta: nix.thunk(() => nix.update(nix.sel(httpun_lwt, "meta"), { [nix.POS]: pos$1, description: "Lwt + Unix support for httpun" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt-unix.ts.map

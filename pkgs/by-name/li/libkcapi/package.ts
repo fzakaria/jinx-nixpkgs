@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const kcapi_encapp = nix.argOr($, "kcapi-encapp", () => true);
   const kcapi_dgstapp = nix.argOr($, "kcapi-dgstapp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libkcapi",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smuellerDD",
           repo: "libkcapi",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_test, "--enable-kcapi-test"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_speed, "--enable-kcapi-speed"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_hasher, "--enable-kcapi-hasher"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_rngapp, "--enable-kcapi-rngapp"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_encapp, "--enable-kcapi-encapp"), nix.app(nix.sel(lib, "optional"), kcapi_dgstapp, "--enable-kcapi-dgstapp"))))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), kcapi_test, "mkdir -p $selftests/bin\nfind $out -iname '*.sh' -exec mv {} $selftests/bin/ \\;\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.chronox.de/libkcapi.html",
         description: "Linux Kernel Crypto API User Space Interface Library",
         license: nix.thunk(() => (() => {

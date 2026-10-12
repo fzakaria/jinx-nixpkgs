@@ -109,13 +109,13 @@ export default nix.lambda((args) => (() => {
     "x86_64-uefi",
   ]);
   const uncheckedSystemFromString = nix.thunk(() => (() => {
-    const systemType = nix.thunk(() => ({ __proto__: pos$1, _type: "system" }));
+    const systemType = nix.thunk(() => ({ [nix.POS]: pos$1, _type: "system" }));
     return (s) => nix.update(nix.app(mkSystemFromSkeleton, nix.thunk(() => nix.app(mkSkeletonFromList, nix.thunk(() => nix.app(splitString, "-", s))))), systemType);
   })());
   const allParsed = nix.thunk(() => nix.builtins.map(uncheckedSystemFromString, all));
   const filterDoubles = (f) => nix.builtins.map(doubleFromSystem, nix.thunk(() => nix.app(nix.sel(lists, "filter"), f, allParsed)));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     all: all,
     none: [],
     arm: nix.thunk(() => nix.app(filterDoubles, nix.thunk(() => nix.sel(predicates, "isAarch32")))),
@@ -148,31 +148,31 @@ export default nix.lambda((args) => (() => {
     darwin: nix.thunk(() => nix.app(filterDoubles, nix.thunk(() => nix.sel(predicates, "isDarwin")))),
     freebsd: nix.thunk(() => nix.app(filterDoubles, nix.thunk(() => nix.sel(predicates, "isFreeBSD")))),
     gnu: nix.thunk(() => nix.concat(nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnu")),
         }))))), nix.concat(nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnueabi")),
         }))))), nix.concat(nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnueabihf")),
         }))))), nix.concat(nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnuabin32")),
         }))))), nix.concat(nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnuabi64")),
         }))))), nix.concat(nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnuabielfv1")),
         }))))), nix.app(filterDoubles, nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           kernel: nix.thunk(() => nix.sel(parse, "kernels", "linux")),
           abi: nix.thunk(() => nix.sel(parse, "abis", "gnuabielfv2")),
         })))))))))))),

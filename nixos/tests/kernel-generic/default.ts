@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
   const patchedPkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (final) => (prev) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       kernelPackagesExtensions: nix.thunk(() => nix.concat(nix.sel(prev, "kernelPackagesExtensions"), [
         (finalKernelPackages) => (_) => (() => {
           const finalKernel = nix.thunk(() => nix.sel(finalKernelPackages, "kernel"));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "hello-world": nix.thunk(() => nix.app(nix.sel(final, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: "hello-module",
                 nativeBuildInputs: nix.thunk(() => nix.sel(finalKernel, "moduleBuildDependencies")),
                 makeFlags: nix.thunk(() => nix.concat(nix.sel(finalKernel, "commonMakeFlags"), [
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_2, formals$2);
       const pkgs_1 = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.str`kernel-${nix.sel(linuxPackages, "kernel", "version")}`),
         meta: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib", "maintainers")), w);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             maintainers: nix.thunk(() => [
               nix.thunk(() => nix.lookup(w_1, "atemu")),
               nix.thunk(() => nix.lookup(w_1, "ma27")),
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           machine: nix.lambda((args_3) => (() => {
             const $_2 = nix.formals(args_3, formals$3);
             const config_1 = nix.arg($_2, "config");
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               boot: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 kernelPackages: linuxPackages,
                 extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config_1, "boot", "kernelPackages", "hello-world"))]),
                 kernelModules: nix.thunk(() => ["hello"]),
@@ -90,14 +90,14 @@ assert "Hello world!" in machine.succeed("dmesg")
   const kernels = nix.thunk(() => nix.update(nix.sel(patchedPkgs, "linuxKernel", "vanillaPackages"), (() => {
     const from = nix.thunk(() => nix.sel(patchedPkgs, "linuxKernel", "packages"));
     return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     linux_testing: nix.thunk(() => nix.attr(from, "linux_testing")),
   };
   })()));
   return nix.update(nix.app(nix.lookup(w, "mapAttrs"), (_) => (lP) => nix.app(testsForLinuxPackages, lP), kernels), {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     passthru: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       testsForLinuxPackages: testsForLinuxPackages,
       configfiles: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (_) => (lP) => nix.sel(lP, "kernel", "configfile"), kernels)),
       testsForKernel: (kernel) => nix.app(testsForLinuxPackages, nix.thunk(() => nix.app(nix.sel(patchedPkgs, "linuxPackagesFor"), kernel))),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cowsql",
       version: "1.15.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cowsql",
           repo: "cowsql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cowsql/cowsql/commit/7c4d73151969ead4f81077ae243d81396ce67988.patch",
             hash: "sha256-aJkf3egKbF23KNC0feDkxh8gIEupsyDBY3PTKuT6lcQ=",
           })))),
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       outputs: nix.thunk(() => ["dev", "out"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.attr(incus, "tests")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/cowsql/cowsql/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Embeddable, replicated and fault tolerant SQL engine",
         homepage: "https://github.com/cowsql/cowsql",

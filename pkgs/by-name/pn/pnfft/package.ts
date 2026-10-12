@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const precision = nix.argOr($, "precision", () => "double");
   const stdenv = nix.arg($, "stdenv");
   nix.assert_(nix.app(nix.sel(lib, "elem"), precision, nix.thunk(() => ["single", "double", "long-double"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pn/pnfft/package.nix:13:1");
-  const fftw$ = nix.thunk(() => nix.app(nix.sel(fftwMpi, "override"), nix.thunk(() => ({ __proto__: pos$1, precision: precision }))));
-  const pfft$ = nix.thunk(() => nix.app(nix.sel(pfft, "override"), nix.thunk(() => ({ __proto__: pos$2, precision: precision }))));
+  const fftw$ = nix.thunk(() => nix.app(nix.sel(fftwMpi, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, precision: precision }))));
+  const pfft$ = nix.thunk(() => nix.app(nix.sel(pfft, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, precision: precision }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`pnfft-${precision}`),
       version: "1.0.7-alpha-unstable-2018-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mpip",
           repo: "pnfft",
           rev: "a0bb24b8fa8af59c9e599b1cc3914586636d9125",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Parallel nonequispaced fast Fourier transforms",
         homepage: "https://www-user.tu-chemnitz.de/~potts/workgroup/pippig/software.php.en#pnfft",
         changelog: "https://github.com/mpip/pnfft/blob/master/ChangeLog",

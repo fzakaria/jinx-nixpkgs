@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
     const mvnSkipTests = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(doCheck)), "-DskipTests"));
     const writeProxySettings = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "write-proxy-settings", nix.thunk(() => ({})), nix.path(here, "./maven-proxy.py")));
     const fetchedMavenDeps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.str`maven-deps-${pname}`),
         src: src,
         sourceRoot: sourceRoot,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         postPatch: postPatch,
         version: version,
         nativeBuildInputs: nix.thunk(() => nix.concat([maven], nix.selOr(args_2, () => [], "nativeBuildInputs"))),
-        env: nix.thunk(() => nix.update(nix.selOr(mvnFetchExtraArgs, () => ({}), "env"), { __proto__: pos$1, JAVA_HOME: mvnJdk })),
+        env: nix.thunk(() => nix.update(nix.selOr(mvnFetchExtraArgs, () => ({}), "env"), { [nix.POS]: pos$1, JAVA_HOME: mvnJdk })),
         impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
         buildPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`runHook preBuild
 
@@ -96,10 +96,10 @@ done
         outputHash: mvnHash,
       }, nix.builtins.removeAttrs(mvnFetchExtraArgs, nix.thunk(() => ["env"]))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["mvnFetchExtraArgs"])), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fetchedMavenDeps: fetchedMavenDeps,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [maven])),
-        env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { __proto__: pos$3, JAVA_HOME: mvnJdk })),
+        env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: pos$3, JAVA_HOME: mvnJdk })),
         buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 mvnDeps=$(cp -dpR ${fetchedMavenDeps}/.m2 ./ && chmod +w -R .m2 && pwd)
@@ -109,14 +109,14 @@ mvn ${mvnGoal} ${(nix.asBool(mvnOffline) ? "-o" : "")} -nsu "-Dmaven.repo.local=
 runHook postBuild
 `),
         meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(maven, "meta", "platforms"), "meta", "platforms")),
         })),
       })));
   })(), formals$2);
   return (fnOrAttrs) => (() => {
     const finalPackage = nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isFunction"), fnOrAttrs))) ? nix.app(buildMavenPackage, fnOrAttrs) : (() => {
-      const finalAttrs = nix.thunk(() => nix.app(fnOrAttrs, nix.thunk(() => nix.update(finalAttrs, { __proto__: pos$6, finalPackage: finalPackage }))));
+      const finalAttrs = nix.thunk(() => nix.app(fnOrAttrs, nix.thunk(() => nix.update(finalAttrs, { [nix.POS]: pos$6, finalPackage: finalPackage }))));
       return nix.app(buildMavenPackage, finalAttrs);
     })()));
     return nix.force(finalPackage);

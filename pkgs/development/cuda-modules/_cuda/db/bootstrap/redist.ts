@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/redist.nix", [["redistNames", 11, 3], ["redistSystems", 38, 3], ["redistUrlPrefix", 55, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   redistNames: nix.thunk(() => [
     "cublasmp",
     "cuda",

@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.jetbrains.com/python/pycharm-2026.2.3.tar.gz",
       hash: "sha256-6OT75Nq0Q5DQn2geBZoxbmksq9JLLhHOmP92yBIPoxM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.jetbrains.com/python/pycharm-2026.2.3-aarch64.tar.gz",
       hash: "sha256-waxrdED02JRiQdYCIg6dua+sdfQYMcoh3FFozfNonQ4=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.jetbrains.com/python/pycharm-2026.2.3-aarch64.dmg",
       hash: "sha256-o4hXS1XSwywItdc7oDAsZpCBBgrCCYjbt2d+hD4s77A=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "pycharm",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [musl]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jetbrains.com/pycharm/",
         description: "Python IDE from JetBrains",
         longDescription: "Python IDE with complete set of tools for productive development with Python programming language.\nIn addition, the IDE provides high-class capabilities for professional Web development with Django framework and Google App Engine.\nIt has powerful coding assistance, navigation, a lot of refactoring features, tight integration with various Version Control Systems, Unit testing and powerful Debugger.\n",

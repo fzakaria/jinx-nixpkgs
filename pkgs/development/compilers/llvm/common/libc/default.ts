@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const isFullBuild = nix.argOr($, "isFullBuild", () => true);
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const pname = "libc";
-  const src$ = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ __proto__: pos$1, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.add(nix.str`mkdir -p "$out"
+  const src$ = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.add(nix.str`mkdir -p "$out"
 cp -r ${monorepoSrc}/cmake "$out"
 cp -r ${monorepoSrc}/runtimes "$out"
 cp -r ${monorepoSrc}/llvm "$out"
@@ -36,7 +36,7 @@ cp -r ${monorepoSrc}/${pname} "$out"
 `))))));
   const needHdrGen = nix.thunk(() => (nix.asBool(isFullBuild) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "22"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       patches: patches,
@@ -63,10 +63,10 @@ chmod -R u+w ../
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_C_COMPILER_WORKS", true)),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_CXX_COMPILER_WORKS", true)),
         ])))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, monorepoSrc: monorepoSrc, isFullBuild: isFullBuild })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, monorepoSrc: monorepoSrc, isFullBuild: isFullBuild })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://libc.llvm.org/",
         description: "Standard C library for LLVM",

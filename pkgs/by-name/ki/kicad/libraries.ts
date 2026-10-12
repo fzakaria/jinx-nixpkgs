@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zip = nix.arg($, "zip");
   const mkLib = (name) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`kicad-${name}`),
       version: nix.thunk(() => nix.builtins.substring(0n, 10n, nix.thunk(() => nix.sel(nix.app(libSrc, name), "rev")))),
       src: nix.thunk(() => nix.app(libSrc, name)),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(name, "packages3d")), nix.thunk(() => nix.str`find $out -type f -name '*.step' | parallel 'stepreduce {} {} ${nix.app(nix.sel(lib, "optionalString"), compressStep, "&& zip -j -9 {.}.stpZ {} && rm {}")}'
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(name, "footprints")) && nix.asBool(compressStep))), "grep -rl '\\.step' $out | xargs sed -i 's/\\.step/.stpZ/g'\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     symbols: nix.thunk(() => nix.app(mkLib, "symbols")),
     templates: nix.thunk(() => nix.app(mkLib, "templates")),
     footprints: nix.thunk(() => nix.app(mkLib, "footprints")),

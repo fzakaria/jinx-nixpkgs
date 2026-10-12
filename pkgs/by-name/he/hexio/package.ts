@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pth = nix.arg($, "pth");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hexio",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vanrein",
           repo: "hexio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin $out/lib $out/sbin $out/man\nmake DESTDIR=$out PREFIX=/ all\nmake DESTDIR=$out PREFIX=/ install\n",
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level I/O helpers for hexadecimal, tty/serial devices and so on",
         homepage: "https://github.com/vanrein/hexio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const perlenv = nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "GD"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unifont",
       version: "18.0.01",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/unifont/unifont-${nix.sel(finalAttrs, "version")}/unifont-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6rYIR6rDTIdodlzsx4Ifr1DeJjYYe0Urm1+lChKwC8M=",
         })))),
@@ -44,9 +44,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(ni
       postFixup: "patchShebangs --host --update \"$bin\"\n",
       outputs: nix.thunk(() => ["out", "bin", "doc", "man", "info", "sample"]),
       propagatedBuildOutputs: [],
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unicode font for Base Multilingual Plane",
         homepage: "https://unifoundry.com/unifont/",
         license: nix.thunk(() => (() => {

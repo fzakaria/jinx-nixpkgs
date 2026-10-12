@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kexec-tools";
       const version = "2.0.32";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://kernel/linux/utils/kernel/kexec/${pname}-${version}.tar.xz`),
             nix.thunk(() => nix.str`http://horms.net/projects/kexec/kexec-tools/${pname}-${version}.tar.xz`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAbiElfv2")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://raw.githubusercontent.com/void-linux/void-packages/6c1192cbf166698932030c2e3de71db1885a572d/srcpkgs/kexec-tools/patches/ppc64-elfv2.patch",
               sha256: "19wzfwb0azm932v0vhywv4221818qmlmvdfwpvvpfyw4hjsc2s1l",
             })))),
@@ -49,17 +49,17 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [zlib, zstd]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$3, kexec: nix.thunk(() => nix.sel(nixosTests, "kexec")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, kexec: nix.thunk(() => nix.sel(nixosTests, "kexec")) })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git",
             "rev-prefix": "v",
             allowedVersions: "^([0-9]+\\.){2}[0-9]+$",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "http://horms.net/projects/kexec/kexec-tools",
         description: "Tools related to the kexec Linux feature",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zowoq"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

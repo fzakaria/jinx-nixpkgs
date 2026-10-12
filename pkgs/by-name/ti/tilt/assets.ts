@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tilt-assets",
       src: nix.thunk(() => nix.str`${src}/web`),
       version: version,
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn_berry]),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "tilt-assets-deps",
           src: nix.thunk(() => nix.str`${src}/web`),
           nativeBuildInputs: nix.thunk(() => [yarn_berry]),
           supportedArchitectures: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               os: nix.thunk(() => ["darwin", "linux"]),
               cpu: nix.thunk(() => ["arm", "arm64", "ia32", "x64"]),
               libc: nix.thunk(() => ["glibc", "musl"]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn install --immutable --immutable-cache\nyarn build\n\nrunHook postBuild\n",
       installPhase: "mkdir -p $out\ncp -r build/. $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Assets needed for Tilt",
         homepage: "https://tilt.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

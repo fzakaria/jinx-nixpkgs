@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reticulum-group-chat",
       version: "1.15.0",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thatSFguy",
           repo: "reticulum-group-chat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure-Go LXMF group-chat hub for the Reticulum network — a single static binary that relays many-to-many encrypted text chat over LoRa, TCP/IP, and mixed meshes. No Python, no third-party RNS library",
         homepage: "https://github.com/thatSFguy/reticulum-group-chat",
         changelog: nix.thunk(() => nix.str`https://github.com/thatSFguy/reticulum-group-chat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

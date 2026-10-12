@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Linode Pulumi resource package, providing multi-language access to Linode",
         mainProgram: "pulumi-resource-linode",
         homepage: "https://github.com/pulumi/pulumi-linode",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner,
         repo,
         version,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const useMusl = nix.argOr($, "useMusl", () => false);
   const version = nix.argOr($, "version", () => "25");
   return nix.app(nix.sel(graalvmPackages, "buildGraalvm"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       useMusl: useMusl,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), nix.key(nix.force(version)), nix.key(nix.sel(stdenv, "system")))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), nix.key(nix.force(version)))))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),

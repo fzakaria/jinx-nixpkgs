@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const outputs = nix.thunk(() => ["out", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "the-cavalry",
           repo: "light-locker",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`${nix.sel(glib, "dev")}/bin/glib-compile-schemas $out/share/glib-2.0/schemas
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/the-cavalry/light-locker",
         description: "Simple session-locker for LightDM",
         longDescription: "A simple locker (forked from gnome-screensaver) that aims to\nhave simple, sane, secure defaults and be well integrated with\nthe desktop while not carrying any desktop-specific\ndependencies.\n\nIt relies on LightDM for locking and unlocking your session via\nConsoleKit/UPower or logind/systemd.\n",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

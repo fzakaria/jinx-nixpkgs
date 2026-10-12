@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const profile = nix.argOr($, "profile", () => "/etc/g810-led/profile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "g810-led",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatMoul",
           repo: "g810-led",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   --replace "/usr" $out \\
   --replace "/etc/g810-led/profile" "${profile}"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-include cstdint" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-include cstdint" })),
       buildInputs: nix.thunk(() => [hidapi]),
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
       installPhase: "runHook preInstall\n\ninstall -D bin/g810-led $out/bin/g810-led\n\n# See https://github.com/MatMoul/g810-led#compatible-keyboards-\nfor keyboard in {g213,g410,g413,g512,g513,g610,g815,g910,gpro}; do\n  ln -s \\./g810-led $out/bin/$keyboard-led\ndone\n\ninstall -D udev/g810-led.rules $out/etc/udev/rules.d/90-g810-led.rules\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux LED controller for some Logitech G Keyboards",
         homepage: "https://github.com/MatMoul/g810-led",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

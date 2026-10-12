@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const usbrelay = nix.arg($, "usbrelay");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "usbrelay_py",
       pyproject: true,
       version: nix.thunk(() => nix.attr(usbrelay, "version")),

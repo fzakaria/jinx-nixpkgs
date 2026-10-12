@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "outlines-core",
       version: "0.2.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dottxt-ai",
           repo: "outlines-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-XmXD2tWG2277bC318Bn9RqeEE7j9VdauvWnBmFS8Lsk=",
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace Cargo.toml \\
   --replace-fail \\
     'version = "0.0.0"' \\
@@ -61,7 +61,7 @@ cp --no-preserve=mode ${nix.path(here, "./Cargo.lock")} Cargo.lock
       "build-system": nix.thunk(() => [setuptools_rust, setuptools_scm]),
       dependencies: nix.thunk(() => [interegular, jsonschema]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => [datasets, numpy, pydantic, scipy, torch, transformers]),
       })),
       pythonImportsCheck: nix.thunk(() => ["outlines_core"]),
@@ -76,7 +76,7 @@ cp --no-preserve=mode ${nix.path(here, "./Cargo.lock")} Cargo.lock
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_kernels.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Structured text generation (core)",
         homepage: "https://github.com/outlines-dev/outlines-core",
         changelog: nix.thunk(() => nix.str`https://github.com/dottxt-ai/outlines-core/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

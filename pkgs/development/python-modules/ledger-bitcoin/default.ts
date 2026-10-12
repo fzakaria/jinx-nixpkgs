@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const hidapi = nix.arg($, "hidapi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ledger-bitcoin",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ledger_bitcoin",
           hash: "sha256-PLQpftflV++YNJzcvWZ+9zaMBH1oGMfNy8p6+YuABrY=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ledgercomm, packaging, bip32, coincurve, typing_extensions, hidapi]),
       pythonImportsCheck: nix.thunk(() => ["ledger_bitcoin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for Ledger Bitcoin application",
         homepage: "https://github.com/LedgerHQ/app-bitcoin-new/tree/develop/bitcoin_client/ledger_bitcoin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

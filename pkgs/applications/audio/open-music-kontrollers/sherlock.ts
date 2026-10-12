@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const sratom = nix.arg($, "sratom");
   const flex = nix.arg($, "flex");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "sherlock",
       version: "0.28.0",
       sha256: "07zj88s1593fpw2s0r3ix7cj2icfd9zyirsyhr2i8l6d30b6n6fb",

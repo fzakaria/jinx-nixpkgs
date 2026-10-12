@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torchcrepe",
       version: "0.0.24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxrmorrison",
           repo: "torchcrepe",
           rev: "19e2ec3d494c0797a5ff2a11408ec5838fba6681",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["torchcrepe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytorch implementation of the CREPE pitch tracker",
         homepage: "https://github.com/maxrmorrison/torchcrepe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

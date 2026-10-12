@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "otpauth";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dim13",
           repo: "otpauth",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-FZ5nWw9BYzQKWTDX1jRreaOaMkhWf/VeQx9vHdGYuKc=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Authenticator migration decoder",
         mainProgram: "otpauth",
         homepage: "https://github.com/dim13/otpauth",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ereslibre"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

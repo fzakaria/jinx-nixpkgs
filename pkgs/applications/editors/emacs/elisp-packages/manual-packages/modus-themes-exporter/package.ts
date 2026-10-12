@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const modus_themes = nix.arg($, "modus-themes");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "modus-themes-exporter",
       version: "0-unstable-2026-04-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "protesilaos",
           repo: "modus-themes-exporter",
           rev: "a19c4b0f22d353afcd441fbbc6c0565858a86c9b",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [modus_themes]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Export a Modus themes to another application",
         homepage: "https://github.com/protesilaos/modus-themes-exporter",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "HeitorAugustoLN"))]),

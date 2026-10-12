@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "codebook",
       version: "0.3.43",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blopker",
           repo: "codebook",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "crates/codebook-lsp",
       cargoHash: "sha256-RG2slCQ2RUBt5+6DdLxAwBm0J9kzgtIthNP8jPfRqME=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_PROFILE_RELEASE_LTO: "fat",
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
       })),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unholy spellchecker for code",
         homepage: "https://github.com/blopker/codebook",
         changelog: nix.thunk(() => nix.str`https://github.com/blopker/codebook/releases/tag/v${nix.sel(finalAttrs, "version")}`),

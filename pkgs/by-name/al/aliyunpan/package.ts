@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aliyunpan",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tickstep",
           repo: "aliyunpan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mkdir -p \"$out/share/doc/aliyunpan\"\ncp README.md \"$out/share/doc/aliyunpan/\"\ncp docs/manual.md \"$out/share/doc/aliyunpan/\"\ncp docs/plugin_manual.md \"$out/share/doc/aliyunpan/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client for Aliyun Drive",
         homepage: "https://github.com/tickstep/aliyunpan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

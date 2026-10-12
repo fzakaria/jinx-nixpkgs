@@ -49,53 +49,53 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     name: "userborn-migration",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rvdp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       machine: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          userborn: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+          [nix.POS]: pos$3,
+          userborn: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$5,
-          sysusers: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+          [nix.POS]: pos$5,
+          sysusers: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           mutableUsers: true,
           users: nix.thunk(() => ({
-            __proto__: pos$9,
-            survivor: nix.thunk(() => ({ __proto__: pos$6, isNormalUser: true, autoSubUidGidRange: true })),
-            ghost: nix.thunk(() => ({ __proto__: pos$7, isNormalUser: true })),
+            [nix.POS]: pos$9,
+            survivor: nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, autoSubUidGidRange: true })),
+            ghost: nix.thunk(() => ({ [nix.POS]: pos$7, isNormalUser: true })),
             intruder: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               isNormalUser: true,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           "base-ghost-removed": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             configuration: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               users: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 users: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   ghost: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   })),
                 })),
@@ -103,66 +103,66 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           userborn: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             configuration: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 userborn: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
                 })),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 users: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   ghost: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   })),
-                  intruder: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+                  intruder: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
                 })),
               })),
             })),
           })),
           "userborn-revived": nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             configuration: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               services: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 userborn: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
                 })),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 users: nix.thunk(() => ({
-                  __proto__: pos$27,
-                  intruder: nix.thunk(() => ({ __proto__: pos$26, enable: true })),
+                  [nix.POS]: pos$27,
+                  intruder: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
                 })),
               })),
             })),
           })),
           "userborn-without-import": nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             configuration: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               services: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 userborn: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
                   importLegacyState: false,
                 })),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 users: nix.thunk(() => ({
-                  __proto__: pos$34,
-                  intruder: nix.thunk(() => ({ __proto__: pos$33, enable: true })),
+                  [nix.POS]: pos$34,
+                  intruder: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
                 })),
               })),
             })),

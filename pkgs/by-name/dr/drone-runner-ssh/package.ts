@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drone-runner-ssh",
       version: "1.0.1-unstable-2022-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drone-runners",
           repo: "drone-runner-ssh",
           rev: "ee70745c60e070a7fac57d9cecc41252e7a3ff55",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-Vj6ZmNwegKBVJPh6MsjtLMmX9WR76msuR2DPM8Qyhe0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental Drone runner that executes a pipeline on a remote machine",
         homepage: "https://github.com/drone-runners/drone-runner-ssh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

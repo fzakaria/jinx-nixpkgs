@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "doc_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -m644 -t "$out/include/System/sys" \\
   '${xnu}/bsd/sys/codesign.h'
@@ -29,20 +29,20 @@ install -D -m644 -t "$out/include/kern" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "doc_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-Nt6yHx3K8OkrdSWuX9s+JJIkeA5S6HDBAtTtrEjbk4w=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [zlib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       postInstall: nix.thunk(() => nix.str`HOST_PATH='${nix.app(nix.sel(lib, "getBin"), shell_cmds)}/bin' patchShebangs --host "$out/libexec"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "makewhatis commands for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
     const extraPatches = nix.argOr($_1, "extraPatches", () => []);
     return (() => {
       const source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antlr",
           repo: "antlr4",
           tag: version,
           sha256: sourceSha256,
         }))));
       const antlr = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: "antlr",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://www.antlr.org/download/antlr-${version}-complete.jar`),
               sha256: jarSha256,
             })))),
@@ -76,12 +76,12 @@ ln -s "$out/bin/antlr"{,4}-parse
 `),
           jre: jre,
           passthru: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             runtime: runtime,
             jarLocation: nix.thunk(() => nix.sel(antlr, "src")),
           })),
           meta: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Powerful parser generator",
             longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
             homepage: "https://www.antlr.org/",
@@ -98,9 +98,9 @@ ln -s "$out/bin/antlr"{,4}-parse
           })),
         }))));
       const runtime = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         cpp: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pname: "antlr-runtime-cpp",
             version: version,
             src: source,
@@ -111,7 +111,7 @@ ln -s "$out/bin/antlr"{,4}-parse
             cmakeDir: "../runtime/Cpp",
             cmakeFlags: extraCppCmakeFlags,
             meta: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "C++ target for ANTLR 4",
               homepage: "https://www.antlr.org/",
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -123,13 +123,13 @@ ln -s "$out/bin/antlr"{,4}-parse
             })),
           })))),
       }));
-      return { __proto__: pos$9, source, antlr, runtime };
+      return { [nix.POS]: pos$9, source, antlr, runtime };
     })();
   })(), formals$2);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     antlr4_13: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         version: "4.13.2",
         sourceSha256: "sha256-DxxRL+FQFA+x0RudIXtLhewseU50aScHKSCDX7DE9bY=",
         jarSha256: "sha256-6uLfoRmmQydERnKv9j6ew1ogGA3FuAkLemq4USXfTXY=",
@@ -140,7 +140,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         extraPatches: nix.thunk(() => [nix.path(here, "./include-dir-issue-379757.patch")]),
       }))), "antlr")),
     antlr4_12: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         version: "4.12.0",
         sourceSha256: "sha256-0JMG8UYFT+IAWvARY2KnuXSr5X6LlVZN4LJHy5d4x08=",
         jarSha256: "sha256-iPGKK/rA3eEAntpcfc41ilKHf673ho9WIjpbzBUynkM=",
@@ -150,7 +150,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         ]),
       }))), "antlr")),
     antlr4_11: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         version: "4.11.1",
         sourceSha256: "sha256-SUeDgfqLjYQorC8r/CKlwbYooTThMOILkizwQV8pocc=",
         jarSha256: "sha256-YpdeGStK8mIrcrXwExVT7jy86X923CpBYy3MVeJUc+E=",
@@ -161,7 +161,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         extraPatches: nix.thunk(() => [nix.path(here, "./4.11.runtime.cpp.cmake.patch")]),
       }))), "antlr")),
     antlr4_10: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         version: "4.10.1",
         sourceSha256: "sha256-Z1P81L0aPbimitzrHH/9rxsMCA6Qn3i42jFbUmVqu1E=",
         jarSha256: "sha256-QZSdQfINMdW4J3GHc13XVRCN9Ss422yGUQjTOCBA+Rg=",
@@ -173,7 +173,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         extraPatches: nix.thunk(() => [nix.path(here, "./4.10.runtime.cpp.cmake.patch")]),
       }))), "antlr")),
     antlr4_9: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         version: "4.9.3",
         sourceSha256: "1af3cfqwk7lq1b5qsh1am0922fyhy7wmlpnrqdnvch3zzza9n1qm",
         jarSha256: "0dnz2x54kigc58bxnynjhmr5iq49f938vj6p50gdir1xdna41kdg",

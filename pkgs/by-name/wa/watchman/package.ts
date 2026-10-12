@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const cpptoml = nix.arg($, "cpptoml");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "watchman",
       version: "2026.07.27.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "watchman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "WATCHMAN_VERSION_OVERRIDE", nix.thunk(() => nix.sel(finalAttrs, "version")))),
       ]),
       cargoRoot: "watchman/cli",
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
       doCheck: true,
       patches: nix.thunk(() => [nix.path(here, "./fmt-12.2.0-format-header.patch")]),
       postPatch: nix.thunk(() => nix.str`patchShebangs .
@@ -89,9 +89,9 @@ substituteInPlace CMakeLists.txt \\
   --replace-fail /usr/bin /var/empty
 
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Watches files and takes action when they change",
         homepage: "https://facebook.github.io/watchman",
         maintainers: nix.thunk(() => (() => {

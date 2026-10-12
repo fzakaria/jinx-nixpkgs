@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "intune",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rhysmdnz"))];
@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         const user = nix.thunk(() => nix.sel(nodes, "machine", "users", "users", "alice"));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            intune: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$5,
+            intune: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             gnome: nix.thunk(() => ({
-              __proto__: pos$4,
-              "gnome-keyring": nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+              [nix.POS]: pos$4,
+              "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             })),
           })),
           imports: nix.thunk(() => [
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
             nix.path(here, "./common/x11.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$7,
-              auto: nix.thunk(() => ({ __proto__: pos$6, user: nix.thunk(() => nix.sel(user, "name")) })),
+              [nix.POS]: pos$7,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$6, user: nix.thunk(() => nix.sel(user, "name")) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             variables: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               DBUS_SESSION_BUS_ADDRESS: nix.thunk(() => nix.str`unix:path=/run/user/${nix.builtins.toString(nix.thunk(() => nix.sel(user, "uid")))}/bus`),
             })),
           })),
@@ -77,10 +77,10 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const user = nix.thunk(() => nix.sel(nodes, "machine", "users", "users", "alice"));
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
-            intune: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            [nix.POS]: pos$13,
+            intune: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
         };

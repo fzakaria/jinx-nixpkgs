@@ -43,66 +43,66 @@ export default nix.lambda((args) => (() => {
   const seed_nid = "z6MkhwX7wBkHQvcLazu2KDFK6UifGkLcoxNm2iA38fPH9LwU";
   const seed_ssh_keys = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
   const radicleConfig = (alias) => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         preferredSeeds: nix.thunk(() => [nix.thunk(() => nix.str`${seed_nid}@seed:8776`)]),
-        node: nix.thunk(() => ({ __proto__: pos$1, alias: alias })),
+        node: nix.thunk(() => ({ [nix.POS]: pos$1, alias: alias })),
       })))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "radicle-ci-broker",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "radicle", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       seed: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           credentials: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "dev.radicle.node.secret": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               source: nix.thunk(() => nix.str`${nix.sel(seed_ssh_keys, "snakeOilEd25519PrivateKey")}`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           radicle: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
             publicKey: nix.thunk(() => nix.sel(seed_ssh_keys, "snakeOilEd25519PublicKey")),
-            node: nix.thunk(() => ({ __proto__: pos$7, openFirewall: true })),
+            node: nix.thunk(() => ({ [nix.POS]: pos$7, openFirewall: true })),
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               preferredSeeds: [],
-              node: nix.thunk(() => ({ __proto__: pos$8, alias: "seed" })),
+              node: nix.thunk(() => ({ [nix.POS]: pos$8, alias: "seed" })),
             })),
             ci: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               adapters: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 native: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  instances: nix.thunk(() => ({ __proto__: pos$10, native: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$11,
+                  instances: nix.thunk(() => ({ [nix.POS]: pos$10, native: nix.thunk(() => ({})) })),
                 })),
               })),
               broker: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   triggers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       adapter: "native",
                       filters: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           And: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$13, HasFile: ".radicle/native.yaml" })),
+                            nix.thunk(() => ({ [nix.POS]: pos$13, HasFile: ".radicle/native.yaml" })),
                             "DefaultBranch",
                           ]),
                         })),
@@ -119,13 +119,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           environment: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             etc: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               gitconfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 text: "[init]\n  defaultBranch = main\n[user]\n  email = root@alice\n  name = alice\n",
               })),
             })),
@@ -142,11 +142,11 @@ export default nix.lambda((args) => (() => {
       })(), formals$2),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$30,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+      [nix.POS]: pos$30,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
       defaults: nix.thunk(() => ({
-        __proto__: pos$29,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$28, graphics: false })),
+        [nix.POS]: pos$29,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, graphics: false })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`import json

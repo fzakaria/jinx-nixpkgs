@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const scx = nix.arg($, "scx");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scx_cscheds",
       version: "0-unstable-2026-01-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sched-ext",
           repo: "scx-c-examples",
           rev: "82c692afe32ed4e79fd047a93d3ff316bf399287",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         EXPECTED_SCHEDULERS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(finalAttrs, "passthru", "schedulers")))),
       })),
       doInstallCheck: true,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(scx, "rustscheds", "passthru"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.attr(from, "tests")),
         schedulers: nix.thunk(() => [
           "scx_central",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       };
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(scx, "rustscheds", "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sched-ext C example schedulers",
         longDescription: "This includes C based example schedulers such as scx_central, scx_flatcg,\nscx_nest, scx_pair, scx_qmap, scx_simple, scx_userland. These are examples,\nand generally not recommended for end users.\n\n::: {.note}\nSched-ext schedulers are only available on kernels version 6.12 or later.\nIt is recommended to use the latest kernel for the best compatibility.\n:::\n",
         homepage: "https://github.com/sched-ext/scx/tree/main/scheds/c",

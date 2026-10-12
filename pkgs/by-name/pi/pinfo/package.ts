@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pinfo",
       version: "0.6.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baszoetekouw",
           repo: "pinfo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/baszoetekouw/pinfo/commit/16dba5978146b6d3a540ac7c8f415eda49280847.patch",
             sha256: "148fm32chvq8x9ayq9cnhgszh10g5v0cv0xph67fa7sp341p09wy",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ncurses-6.3.patch",
             url: "https://github.com/baszoetekouw/pinfo/commit/fc67ceacd81f0c74fcab85447c23a532ae482827.patch",
             sha256: "08phmng8vgfqjjazys05acpd5gh110malhw3sx29dg86nsrg2khs",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "gcc-11.patch",
             url: "https://github.com/baszoetekouw/pinfo/commit/ab604fdb67296dad27f3a25f3c9aabdd2fb8c3fa.patch",
             sha256: "09g8msgan2x48hxcbm7l6j3av6n8i0bsd4g0vf5xd8bxwzynb13m",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-readline=${nix.sel(readline, "dev")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Viewer for info files",
         homepage: "https://github.com/baszoetekouw/pinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

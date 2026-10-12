@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pname = "pulseaudio-qt";
       const version = "1.9.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/pulseaudio-qt/pulseaudio-qt-${version}.tar.xz`),
           hash: "sha256-wqrOOsGpyMm5xXug/8maPTEHN8wATbBJGALgNTbifGk=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [pulseaudio]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

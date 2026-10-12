@@ -10,11 +10,11 @@ const pos$3 = nix.positions(here + "/qemu-guest.nix", [["boot", 7, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     boot: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       initrd: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         availableKernelModules: nix.thunk(() => [
           "virtio_net",
           "virtio_pci",

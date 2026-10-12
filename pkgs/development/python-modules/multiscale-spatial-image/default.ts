@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const xarray = nix.arg($, "xarray");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "multiscale-spatial-image",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spatial-image",
           repo: "multiscale-spatial-image",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
         xarray_dataclass,
         zarr,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, "dask-image": nix.thunk(() => [dask_image]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "dask-image": nix.thunk(() => [dask_image]) })),
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["multiscale_spatial_image"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generate a multiscale, chunked, multi-dimensional spatial image data structure that can serialized to OME-NGFF",
         homepage: "https://github.com/spatial-image/multiscale-spatial-image",
         changelog: nix.thunk(() => nix.str`https://github.com/spatial-image/multiscale-spatial-image/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

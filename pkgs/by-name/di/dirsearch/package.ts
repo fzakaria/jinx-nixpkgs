@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const withRustBackend = nix.argOr($, "withRustBackend", () => true);
   const withDbDeps = nix.argOr($, "withDbDeps", () => true);
   return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "dirsearch", "overridePythonAttrs"), (prevAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dependencies: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "dependencies"), nix.concat(nix.app(nix.sel(lib, "optionals"), withRustBackend, nix.thunk(() => nix.sel(prevAttrs, "optional-dependencies", "rustbackend"))), nix.app(nix.sel(lib, "optionals"), withDbDeps, nix.thunk(() => nix.sel(prevAttrs, "optional-dependencies", "db")))))),
       }))));
 })(), formals$1);

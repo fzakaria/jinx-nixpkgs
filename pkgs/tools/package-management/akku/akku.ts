@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update_script = nix.arg($, "nix-update-script");
   const guile_3_0_10 = nix.thunk(() => nix.app(nix.sel(guile_3_0, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://gnu/guile/guile-3.0.10.tar.xz",
           sha256: "sha256-vXFoUX/VJjM0RtT3q4FlJ5JWNAlPvTcyLhfiuNjnY4g=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "akku";
       const version = "1.1.0-unstable-2026-09-13";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "akkuscm",
           repo: "akku",
           rev: "c37e3e9e320cf9ab363eaf557771c95a4dbb55b6",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       const preBuild = "touch bootstrap.db\n";
       const makeFlags = nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://akkuscm.org/",
         description: "Language package manager for Scheme",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/akkuscm/akku/-/raw/v${version}/NEWS.md`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "akku",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

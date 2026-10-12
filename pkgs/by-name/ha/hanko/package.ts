@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hanko",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SRv6d",
           repo: "hanko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-EuYJX1Ds4Kq2Vka5gDnFHRHl3F20xMDm2XgYy4+FZXE=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage assets/manpages/*.1\n\ninstallShellCompletion assets/completions/hanko.bash\ninstallShellCompletion assets/completions/_hanko\ninstallShellCompletion assets/completions/hanko.fish\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Keeps your Git allowed signers file up to date",
         homepage: "https://github.com/SRv6d/hanko",
         changelog: "https://github.com/SRv6d/hanko/blob/main/CHANGELOG.md",

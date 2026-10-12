@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weather-card";
       const version = "2.0.0b0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bramkragten",
           repo: "weather-card",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/weather-card.js $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Weather Card with animated icons for Home Assistant Lovelace",
         homepage: "https://github.com/bramkragten/weather-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontBuild, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontBuild, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

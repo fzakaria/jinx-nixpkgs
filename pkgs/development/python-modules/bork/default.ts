@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duckinator",
           repo: "bork",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["network"]);
       const disabledTests = nix.thunk(() => ["test_repo", "test_builder_cwd", "test_builder_order"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python build and release management tool",
         mainProgram: "bork",
         homepage: "https://github.com/duckinator/bork",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

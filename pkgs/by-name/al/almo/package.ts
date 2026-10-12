@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const python312Packages = nix.arg($, "python312Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "almo",
       version: "0.9.6-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abap34",
           repo: "almo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "substituteInPlace scripts/pybind.sh \\\n  --replace-fail \" -undefined dynamic_lookup\" \"\"\n")),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/lib\ncp build/almo $out/bin\ncp almo.so $out/lib\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Markdown parser and static site generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

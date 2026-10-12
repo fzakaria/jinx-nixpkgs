@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ai",
       version: "0-unstable-2025-02-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derekstavis",
           repo: "fish-ai",
           rev: "b22952232fbf71287c56c8a09c8be2f938d33b51",
           sha256: "sha256-ogkbNX+e5qaEbW+iO3na8JC2Xfk/9BndXRm2AcHyOmc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Don't remember the command, use AI to figure out",
         homepage: "https://github.com/derekstavis/fish-ai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

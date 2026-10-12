@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "coral"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         coral: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           usb: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Coral USB support")),
           })),
           pcie: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Coral PCIe support")),
           })),
         })),
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "usb", "enable")) || nix.asBool(nix.sel(cfg, "pcie", "enable")))), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             users: nix.thunk(() => ({
-              __proto__: pos$7,
-              groups: nix.thunk(() => ({ __proto__: pos$6, coral: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$7,
+              groups: nix.thunk(() => ({ [nix.POS]: pos$6, coral: nix.thunk(() => ({})) })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "usb", "enable")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               udev: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 packages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs, null);
                   return [nix.thunk(() => nix.lookup(w, "libedgetpu"))];
@@ -70,18 +70,18 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "pcie", "enable")), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             boot: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               extraModulePackages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
                 return [nix.thunk(() => nix.lookup(w, "gasket"))];
               })()),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               udev: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 extraRules: "SUBSYSTEM==\"apex\",MODE=\"0660\",GROUP=\"coral\"\n",
               })),
             })),

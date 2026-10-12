@@ -34,29 +34,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kerberos_server"));
   const from_1 = nix.thunk(() => nix.sel(config, "security", "krb5"));
   const package$ = nix.thunk(() => nix.attr(from_1, "package"));
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs, lib: lib })), nix.thunk(() => ({ __proto__: pos$2, enableKdcACLEntries: true }))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: pos$2, enableKdcACLEntries: true }))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kerberos_server", "realms"]), nix.thunk(() => ["services", "kerberos_server", "settings", "realms"]))),
       nix.path(here, "./mit.nix"),
       nix.path(here, "./heimdal.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         kerberos_server: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the kerberos authentication server")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "Settings for the kerberos server of choice.\n\nSee the following documentation:\n- Heimdal: {manpage}`kdc.conf(5)`\n- MIT Kerberos: <https://web.mit.edu/kerberos/krb5-1.21/doc/admin/conf_files/kdc_conf.html>\n",
               default: nix.thunk(() => ({})),
             })))),
           extraKDCArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(listOf, str)),
               description: "Extra arguments to pass to the KDC process. See {manpage}`kdc(8)`.\n",
               default: [],
@@ -65,21 +65,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
-        environment: nix.thunk(() => ({ __proto__: pos$8, systemPackages: nix.thunk(() => [package$]) })),
+        [nix.POS]: pos$16,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$8, systemPackages: nix.thunk(() => [package$]) })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "realms"), {})),
             message: "The server needs at least one realm",
           })),
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => nix.le(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "settings", "realms"))))), 1n)),
             message: "Only one realm per server is currently supported.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (() => {
               const attrValues = nix.thunk(() => nix.attr(nix.builtins, "attrValues"));
               const elem = nix.thunk(() => nix.attr(nix.builtins, "elem"));
@@ -93,15 +93,15 @@ export default nix.lambda((args) => (() => {
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
-          slices: nix.thunk(() => ({ __proto__: pos$12, "system-kerberos-server": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$15,
+          slices: nix.thunk(() => ({ [nix.POS]: pos$12, "system-kerberos-server": nix.thunk(() => ({})) })),
           targets: nix.thunk(() => ({
-            __proto__: pos$14,
-            "kerberos-server": nix.thunk(() => ({ __proto__: pos$13, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: pos$14,
+            "kerberos-server": nix.thunk(() => ({ [nix.POS]: pos$13, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$17, doc: nix.path(here, "./kerberos-server.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$17, doc: nix.path(here, "./kerberos-server.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

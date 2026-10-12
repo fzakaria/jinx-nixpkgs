@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withCLI", 6, 3], ["withKDE
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const kid3 = nix.arg($, "kid3");
-  return nix.app(nix.sel(kid3, "override"), nix.thunk(() => ({ __proto__: pos$1, withCLI: true, withKDE: false, withQt: true })));
+  return nix.app(nix.sel(kid3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCLI: true, withKDE: false, withQt: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

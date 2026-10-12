@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gmic = nix.arg($, "gmic");
   const gmic_qt = nix.arg($, "gmic-qt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cimg",
       version: "3.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GreycLab",
           repo: "CImg",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       installPhase: "runHook preInstall\n\ninstall -dm 755 $out/include/CImg/plugins $doc/share/doc/cimg/examples\ninstall -m 644 CImg.h $out/include/\ncp -dr --no-preserve=ownership plugins/* $out/include/CImg/plugins/\ncp -dr --no-preserve=ownership examples/* $doc/share/doc/cimg/examples/\ncp README.txt $doc/share/doc/cimg/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, gmic: gmic, "gmic-qt": gmic_qt })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gmic: gmic, "gmic-qt": gmic_qt })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://cimg.eu/",
         description: "Small, open source, C++ toolkit for image processing",
         longDescription: "CImg stands for Cool Image. It is easy to use, efficient and is intended\nto be a very pleasant toolbox to design image processing algorithms in\nC++. Due to its generic conception, it can cover a wide range of image\nprocessing applications.\n",

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sphinxcontrib_httpdomain = nix.arg($, "sphinxcontrib-httpdomain");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sphinx-markdown-builder",
       version: "0.6.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liran-funaro",
           repo: "sphinx-markdown-builder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sphinx_markdown_builder"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, sphinxcontrib_httpdomain]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sphinx extension to add markdown generation support",
         homepage: "https://github.com/liran-funaro/sphinx-markdown-builder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

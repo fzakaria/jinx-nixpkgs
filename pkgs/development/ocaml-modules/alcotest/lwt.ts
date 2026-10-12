@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "alcotest-lwt",
       version: nix.thunk(() => nix.attr(alcotest, "version")),
       src: nix.thunk(() => nix.attr(alcotest, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [alcotest, logs, lwt, fmt]),
       doCheck: true,
       checkInputs: nix.thunk(() => [re, cmdliner]),
-      meta: nix.thunk(() => nix.update(nix.sel(alcotest, "meta"), { __proto__: pos$1, description: "Lwt-based helpers for Alcotest" })),
+      meta: nix.thunk(() => nix.update(nix.sel(alcotest, "meta"), { [nix.POS]: pos$1, description: "Lwt-based helpers for Alcotest" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

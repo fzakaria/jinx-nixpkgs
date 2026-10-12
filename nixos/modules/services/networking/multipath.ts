@@ -82,77 +82,77 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "multipath"));
   const indentLines = (n) => (str) => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.builtins.map, (line) => nix.str`${nix.app(nix.lookup(w, "fixedWidthString"), n, " ", " ")}${line}`, nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => !nix.eq(x, ""), nix.thunk(() => nix.app(nix.lookup(w, "splitString"), "\n", str)))))));
   const addCheckDesc = (desc) => (elemType) => (check) => nix.update(nix.app(nix.sel(nix.lookup(w, "types"), "addCheck"), elemType, check), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: nix.thunk(() => nix.str`${nix.sel(elemType, "description")} (with check: ${desc})`),
   });
   const hexChars = nix.thunk(() => nix.app(nix.lookup(w, "stringToCharacters"), "0123456789abcdef"));
   const isHexString = (s) => nix.app(nix.lookup(w, "all"), (c) => nix.app(nix.lookup(w, "elem"), c, hexChars), nix.thunk(() => nix.app(nix.lookup(w, "stringToCharacters"), nix.thunk(() => nix.app(nix.lookup(w, "toLower"), s)))));
   const hexStr = nix.thunk(() => nix.app(addCheckDesc, "hexadecimal string", nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), isHexString));
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     options: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       services: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         multipath: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the device mapper multipath (DM-MP) daemon")),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "multipath-tools", nix.thunk(() => ({})))),
             devices: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 default: [],
                 example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "[\n  {\n    vendor = \"\\\"COMPELNT\\\"\";\n    product = \"\\\"Compellent Vol\\\"\";\n    path_checker = \"tur\";\n    no_path_retry = \"queue\";\n    max_sectors_kb = 256;\n  }, ...\n]\n")),
                 description: "This option allows you to define arrays for use in multipath\ngroups.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       options: nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         vendor: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             example: "COMPELNT",
                             description: "Regular expression to match the vendor name",
                           })))),
                         product: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             example: "Compellent Vol",
                             description: "Regular expression to match the product name",
                           })))),
                         revision: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Regular expression to match the product revision",
                           })))),
                         product_blacklist: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Products with the given vendor matching this string are blacklisted",
                           })))),
                         alias_prefix: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "The user_friendly_names prefix to use for this device type, instead of the default mpath",
                           })))),
                         vpd_vendor: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "The vendor specific vpd page information, using the vpd page abbreviation",
                           })))),
                         hardware_handler: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["emc", "rdac", "hp_sw", "alua", "ana"]))))),
                             default: null,
                             description: "The hardware handler to use for this device type",
                           })))),
                         path_grouping_policy: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
                                   "failover",
                                   "multibus",
@@ -164,19 +164,19 @@ export default nix.lambda((args) => (() => {
                             description: "The default path grouping policy to apply to unspecified multipaths",
                           })))),
                         uid_attribute: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "The udev attribute providing a unique path identifier (WWID)",
                           })))),
                         getuid_callout: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "(Superseded by uid_attribute) The default program and args to callout\nto obtain a unique path identifier. Should be specified with an absolute path.\n",
                           })))),
                         path_selector: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
                                   "\"round-robin 0\"",
                                   "\"queue-length 0\"",
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
                             description: "The default path selector algorithm to use; they are offered by the kernel multipath target",
                           })))),
                         path_checker: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
                                 "readsector0",
                                 "tur",
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
                             description: "The default method used to determine the paths state",
                           })))),
                         prio: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
                                   "none",
                                   "const",
@@ -224,163 +224,163 @@ export default nix.lambda((args) => (() => {
                             description: "The name of the path priority routine",
                           })))),
                         prio_args: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Arguments to pass to to the prio function",
                           })))),
                         features: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Specify any device-mapper features to be used",
                           })))),
                         failback: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Tell multipathd how to manage path group failback. Quote integers as strings",
                           })))),
                         rr_weight: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["priorities", "uniform"]))))),
                             default: null,
                             description: "If set to priorities the multipath configurator will assign path weights\nas \"path prio * rr_min_io\".\n",
                           })))),
                         no_path_retry: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Specify what to do when all paths are down. Quote integers as strings",
                           })))),
                         rr_min_io: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                             default: null,
                             description: "Number of I/O requests to route to a path before switching to the next in the\nsame path group. This is only for Block I/O (BIO) based multipath and\nonly apply to round-robin path_selector.\n",
                           })))),
                         rr_min_io_rq: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                             default: null,
                             description: "Number of I/O requests to route to a path before switching to the next in the\nsame path group. This is only for Request based multipath and\nonly apply to round-robin path_selector.\n",
                           })))),
                         fast_io_fail_tmo: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Specify the number of seconds the SCSI layer will wait after a problem has been\ndetected on a FC remote port before failing I/O to devices on that remote port.\nThis should be smaller than dev_loss_tmo. Setting this to \"off\" will disable\nthe timeout. Quote integers as strings.\n",
                           })))),
                         dev_loss_tmo: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Specify the number of seconds the SCSI layer will wait after a problem has\nbeen detected on a FC remote port before removing it from the system. This\ncan be set to \"infinity\" which sets it to the max value of 2147483647\nseconds, or 68 years. It will be automatically adjusted to the overall\nretry interval no_path_retry * polling_interval\nif a number of retries is given with no_path_retry and the\noverall retry interval is longer than the specified dev_loss_tmo value.\nThe Linux kernel will cap this value to 600 if fast_io_fail_tmo\nis not set.\n",
                           })))),
                         flush_on_last_del: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["yes", "no"]))))),
                             default: null,
                             description: "If set to \"yes\" multipathd will disable queueing when the last path to a\ndevice has been deleted.\n",
                           })))),
                         user_friendly_names: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["yes", "no"]))))),
                             default: null,
                             description: "If set to \"yes\", using the bindings file /etc/multipath/bindings\nto assign a persistent and unique alias to the multipath, in the\nform of mpath. If set to \"no\" use the WWID as the alias. In either\ncase this be will be overridden by any specific aliases in the\nmultipaths section.\n",
                           })))),
                         detect_prio: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["yes", "no"]))))),
                             default: null,
                             description: "If set to \"yes\", multipath will try to detect if the device supports\nSCSI-3 ALUA. If so, the device will automatically use the sysfs\nprioritizer if the required sysf attributes access_state and\npreferred_path are supported, or the alua prioritizer if not. If set\nto \"no\", the prioritizer will be selected as usual.\n",
                           })))),
                         detect_checker: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["yes", "no"]))))),
                             default: null,
                             description: "If set to \"yes\", multipath will try to detect if the device supports\nSCSI-3 ALUA. If so, the device will automatically use the tur checker.\nIf set to \"no\", the checker will be selected as usual.\n",
                           })))),
                         deferred_remove: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["yes", "no"]))))),
                             default: null,
                             description: "If set to \"yes\", multipathd will do a deferred remove instead of a\nregular remove when the last path device has been deleted. This means\nthat if the multipath device is still in use, it will be freed when\nthe last user closes it. If path is added to the multipath device\nbefore the last user closes it, the deferred remove will be canceled.\n",
                           })))),
                         san_path_err_threshold: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "If set to a value greater than 0, multipathd will watch paths and check\nhow many times a path has been failed due to errors.If the number of\nfailures on a particular path is greater then the san_path_err_threshold,\nthen the path will not reinstate till san_path_err_recovery_time. These\npath failures should occur within a san_path_err_forget_rate checks, if\nnot we will consider the path is good enough to reinstantate.\n",
                           })))),
                         san_path_err_forget_rate: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "If set to a value greater than 0, multipathd will check whether the path\nfailures has exceeded the san_path_err_threshold within this many checks\ni.e san_path_err_forget_rate. If so we will not reinstante the path till\nsan_path_err_recovery_time.\n",
                           })))),
                         san_path_err_recovery_time: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "If set to a value greater than 0, multipathd will make sure that when\npath failures has exceeded the san_path_err_threshold within\nsan_path_err_forget_rate then the path will be placed in failed state\nfor san_path_err_recovery_time duration. Once san_path_err_recovery_time\nhas timeout we will reinstante the failed path. san_path_err_recovery_time\nvalue should be in secs.\n",
                           })))),
                         marginal_path_err_sample_time: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                             default: null,
                             description: "One of the four parameters of supporting path check based on accounting IO error such as intermittent error",
                           })))),
                         marginal_path_err_rate_threshold: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                             default: null,
                             description: "The error rate threshold as a permillage (1/1000)",
                           })))),
                         marginal_path_err_recheck_gap_time: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "One of the four parameters of supporting path check based on accounting IO error such as intermittent error",
                           })))),
                         marginal_path_double_failed_time: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "One of the four parameters of supporting path check based on accounting IO error such as intermittent error",
                           })))),
                         delay_watch_checks: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "This option is deprecated, and mapped to san_path_err_forget_rate",
                           })))),
                         delay_wait_checks: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "This option is deprecated, and mapped to san_path_err_recovery_time",
                           })))),
                         skip_kpartx: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["yes", "no"]))))),
                             default: null,
                             description: "If set to yes, kpartx will not automatically create partitions on the device",
                           })))),
                         max_sectors_kb: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                             default: null,
                             description: "Sets the max_sectors_kb device parameter on all path devices and the multipath device to the specified value",
                           })))),
                         ghost_delay: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$40,
+                            [nix.POS]: pos$40,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                             default: null,
                             description: "Sets the number of seconds that multipath will wait after creating a device with only ghost paths before marking it ready for use in systemd",
                           })))),
                         all_tg_pt: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             description: "Set the 'all targets ports' flag when registering keys with mpathpersist",
@@ -389,77 +389,77 @@ export default nix.lambda((args) => (() => {
                     })))))),
               })))),
             defaults: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "This section defines default values for attributes which are used\nwhenever no values are given in the appropriate device or multipath\nsections.\n",
               })))),
             blacklist: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "This section defines which devices should be excluded from the\nmultipath topology discovery.\n",
               })))),
             blacklist_exceptions: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "This section defines which devices should be included in the\nmultipath topology discovery, despite being listed in the\nblacklist section.\n",
               })))),
             overrides: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "This section defines values for attributes that should override the\ndevice-specific settings for all devices.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "Lines to append to default multipath.conf",
               })))),
             extraConfigFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "Append an additional file's contents to /etc/multipath.conf",
               })))),
             pathGroups: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "[\n  {\n    wwid = \"360080e500043b35c0123456789abcdef\";\n    alias = 10001234;\n    array = \"bigarray.example.com\";\n    fsType = \"zfs\"; # optional\n    options = \"ro\"; # optional\n  }, ...\n]\n")),
                 description: "This option allows you to define multipath groups as described\nin http://christophe.varoqui.free.fr/usage.html.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       options: nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         alias: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$51,
+                            [nix.POS]: pos$51,
                             type: nix.thunk(() => nix.lookup(w_1, "int")),
                             example: 1001234n,
                             description: "The name of the multipath device",
                           })))),
                         wwid: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$52,
+                            [nix.POS]: pos$52,
                             type: hexStr,
                             example: "360080e500043b35c0123456789abcdef",
                             description: "The identifier for the multipath device",
                           })))),
                         array: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$53,
+                            [nix.POS]: pos$53,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             default: null,
                             example: "bigarray.example.com",
                             description: "The DNS name of the storage array",
                           })))),
                         fsType: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$54,
+                            [nix.POS]: pos$54,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             example: "zfs",
                             description: "Type of the filesystem",
                           })))),
                         options: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$55,
+                            [nix.POS]: pos$55,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             example: "ro",
@@ -473,13 +473,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         environment: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           etc: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             "multipath.conf": nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               text: nix.thunk(() => (() => {
                 const defaults = nix.thunk(() => nix.attr(cfg, "defaults"));
                 const blacklist = nix.thunk(() => nix.attr(cfg, "blacklist"));
@@ -530,14 +530,14 @@ ${nix.app(indentLines, 2n, multipaths)}
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           kernelModules: nix.thunk(() => ["dm-multipath", "dm-service-time"]),
           initrd: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             kernelModules: nix.thunk(() => ["dm-multipath", "dm-service-time"]),
             postDeviceCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "modprobe -a dm-multipath dm-service-time\nmultipathd -s\n(set -x && sleep 1 && multipath -ll)\n")),
           })),

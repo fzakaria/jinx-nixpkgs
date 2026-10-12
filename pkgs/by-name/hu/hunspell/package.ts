@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "hunspell",
       version: "1.7.3",
       outputs: nix.thunk(() => ["bin", "dev", "out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hunspell",
           repo: "hunspell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-ui", "--with-readline"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         withDicts: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             hunspell: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           wrapper: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withDicts"), (d) => [nix.thunk(() => nix.sel(d, "en_US"))])),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Spell checker",
         longDescription: "Hunspell is the spell checker of LibreOffice, OpenOffice.org, Mozilla\nFirefox 3 & Thunderbird, Google Chrome, and it is also used by\nproprietary software packages, like macOS, InDesign, memoQ, Opera and\nSDL Trados.\n\nMain features:\n\n* Extended support for language peculiarities; Unicode character encoding, compounding and complex morphology.\n* Improved suggestion using n-gram similarity, rule and dictionary based pronunciation data.\n* Morphological analysis, stemming and generation.\n* Hunspell is based on MySpell and works also with MySpell dictionaries.\n* C++ library under GPL/LGPL/MPL tri-license.\n* Interfaces and ports:\n  * Enchant (Generic spelling library from the Abiword project),\n  * XSpell (macOS port, but Hunspell is part of the macOS from version 10.6 (Snow Leopard), and\n      now it is enough to place Hunspell dictionary files into\n      ~/Library/Spelling or /Library/Spelling for spell checking),\n  * Delphi, Java (JNA, JNI), Perl, .NET, Python, Ruby ([1], [2]), UNO.\n",
         homepage: "http://hunspell.github.io/",

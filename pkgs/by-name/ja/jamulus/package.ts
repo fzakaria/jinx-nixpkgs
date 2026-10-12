@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jamulus",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jamulussoftware",
           repo: "jamulus",
           tag: nix.thunk(() => nix.str`r${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       qmakeFlags: nix.thunk(() => ["CONFIG+=noupcasename"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enables musicians to perform real-time jam sessions over the internet",
         longDescription: "You also need to enable JACK and should enable several real-time optimizations. See project website for details",
         homepage: "https://github.com/corrados/jamulus",

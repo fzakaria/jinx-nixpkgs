@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const opam_core = nix.arg($, "opam-core");
   const opam_file_format = nix.arg($, "opam-file-format");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-format",
       src: nix.thunk(() => nix.attr(opam_core, "src")),
       version: nix.thunk(() => nix.attr(opam_core, "version")),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       propagatedBuildInputs: nix.thunk(() => [opam_core, opam_file_format]),
       meta: nix.thunk(() => nix.update(nix.sel(opam_core, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Definition of opam datastructures and its file interface",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

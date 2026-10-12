@@ -30,31 +30,31 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "obs-studio"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "obs-studio": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Free and open source software for video recording and live streaming")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "obs-studio", nix.thunk(() => ({ __proto__: pos$1, nullable: true, example: "obs-studio" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "obs-studio", nix.thunk(() => ({ [nix.POS]: pos$1, nullable: true, example: "obs-studio" })))),
           finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               visible: false,
               readOnly: true,
               description: "Resulting customized OBS Studio package.",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.obs-studio-plugins.wlrobs ]")),
               description: "Optional OBS plugins.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             })))),
           enableVirtualCamera: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Installs and sets up the v4l2loopback kernel module, necessary for OBS\nto start a virtual camera.\n",
@@ -63,39 +63,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "package"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "plugins"), [])))),
             message: "Plugins cannot be set if package is null",
           })))),
         programs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "obs-studio": nix.thunk(() => ({
-            __proto__: pos$11,
-            finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mapNullable"), (obs_studio) => nix.app(nix.sel(pkgs, "wrapOBS", "override"), nix.thunk(() => ({ __proto__: pos$9, "obs-studio": obs_studio })), nix.thunk(() => ({ __proto__: pos$10, plugins: nix.thunk(() => nix.sel(cfg, "plugins")) }))), nix.thunk(() => nix.sel(cfg, "package")))),
+            [nix.POS]: pos$11,
+            finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mapNullable"), (obs_studio) => nix.app(nix.sel(pkgs, "wrapOBS", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, "obs-studio": obs_studio })), nix.thunk(() => ({ [nix.POS]: pos$10, plugins: nix.thunk(() => nix.sel(cfg, "plugins")) }))), nix.thunk(() => nix.sel(cfg, "package")))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "finalPackage"), null)), nix.thunk(() => nix.sel(cfg, "finalPackage")))),
         })),
         boot: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableVirtualCamera")), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             kernelModules: nix.thunk(() => ["v4l2loopback"]),
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "v4l2loopback"))]),
             extraModprobeConfig: "options v4l2loopback devices=1 video_nr=1 card_label=\"OBS Cam\" exclusive_caps=1\n",
           })))),
         security: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           polkit: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableVirtualCamera")), true)),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

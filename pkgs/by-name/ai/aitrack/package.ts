@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aitrack",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdk97",
           repo: "aitrack-linux",
           rev: "00bcca9b685abf3a19e4eab653198ca2b1895ae4",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Client/src/Main.cpp \\\n  --replace \"/usr/share/\" \"$out/share/\"\n",
       postInstall: "install -Dt $out/bin aitrack\ninstall -Dt $out/share/aitrack/models models/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "6DoF Head tracking software",
         homepage: "https://github.com/mdk97/aitrack-linux",
         mainProgram: "aitrack",

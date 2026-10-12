@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const asciidoc = nix.arg($, "asciidoc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "metadata",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zmwangx",
           repo: "metadata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-E9UL10RYHibbaLIHbgMxuOAz7RLKGcZgyfvS1HDFZjE=",
         })))),
       cargoHash: "sha256-oVP9DXnVU1uZrGkJuELRtExpQnYqrzhjxGpIDWDbbbA=",
-      env: nix.thunk(() => ({ __proto__: pos$2, FFMPEG_DIR: nix.thunk(() => nix.sel(ffmpeg, "dev")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, FFMPEG_DIR: nix.thunk(() => nix.sel(ffmpeg, "dev")) })),
       nativeBuildInputs: nix.thunk(() => [
         pkg_config,
         asciidoc,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Media metadata parser and formatter designed for human consumption, powered by FFmpeg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/zmwangx/metadata",

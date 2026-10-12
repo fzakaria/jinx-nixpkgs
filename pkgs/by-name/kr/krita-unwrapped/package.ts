@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const xsimd = nix.arg($, "xsimd");
   const zug = nix.arg($, "zug");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "krita-unwrapped",
       version: "6.0.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/krita/${nix.sel(finalAttrs, "version")}/krita-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6v8AUhlYUDqh0+8SBtdeALV+1lmT6VNonwoEhQQn4tg=",
         })))),
@@ -134,7 +134,7 @@ substituteInPlace plugins/impex/jp2/jp2_converter.cc \\
         "-DBUILD_KRITA_QT_DESIGNER_PLUGINS=ON",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free and open source painting application",
         homepage: "https://krita.org/",
         maintainers: nix.thunk(() => (() => {

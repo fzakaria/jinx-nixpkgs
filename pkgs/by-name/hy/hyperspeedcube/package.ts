@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyperspeedcube",
       version: "1.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HactarCE",
           repo: "Hyperspeedcube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +106,7 @@ wrapProgram $out/bin/hyperspeedcube --set WAYLAND_DISPLAY "" --set XDG_SESSION_T
 touch $out/bin/nonportable
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3D and 4D Rubik's cube simulator",
         longDescription: "Hyperspeedcube is a modern, beginner-friendly 3D and 4D Rubik's cube\nsimulator with customizable mouse and keyboard controls and advanced\nfeatures for speedsolving. It's been used to break numerous speedsolving\nrecords and runs on all major operating systems plus the web.\n",
         homepage: "https://ajfarkas.dev/hyperspeedcube/",

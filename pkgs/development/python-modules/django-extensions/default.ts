@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-extensions",
           repo: "django-extensions",
           tag: version,
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_dumpscript.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/django-extensions/django-extensions/releases/tag/${nix.sel(src, "tag")}`),
         description: "Collection of custom extensions for the Django Framework",
         homepage: "https://github.com/django-extensions/django-extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

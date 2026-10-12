@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(testCudaRuntime) || nix.asBool(cudaSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/gpuctypes/default.nix:20:1");
   nix.assert_((!nix.asBool(testRocmRuntime) || nix.asBool(rocmSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/gpuctypes/default.nix:21:1");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gpuctypes",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "gpuctypes",
           owner: "tinygrad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-dlopen-cuda.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
             libnvrtc: nix.thunk(() => (nix.asBool(cudaSupport) ? nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvrtc")))}/lib/libnvrtc.so` : "Please import nixpkgs with `config.cudaSupport = true`")),
           })))),
@@ -79,19 +79,19 @@ substituteInPlace gpuctypes/comgr.py \\
       pytestFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(testCudaRuntime) || nix.asBool(testOpenclRuntime))) || nix.asBool(testRocmRuntime))), nix.thunk(() => ["-v"]))),
       requiredSystemFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), testCudaRuntime, nix.thunk(() => ["cuda"])), nix.concat(nix.app(nix.sel(lib, "optionals"), testOpenclRuntime, nix.thunk(() => ["opencl"])), nix.app(nix.sel(lib, "optionals"), testRocmRuntime, nix.thunk(() => ["rocm"]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gpuChecks: nix.thunk(() => ({
-          __proto__: pos$6,
-          cuda: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ __proto__: pos$3, cudaSupport: true, testCudaRuntime: true })))),
-          opencl: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ __proto__: pos$4, testOpenclRuntime: true })))),
-          rocm: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ __proto__: pos$5, rocmSupport: true, testRocmRuntime: true })))),
+          [nix.POS]: pos$6,
+          cuda: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cudaSupport: true, testCudaRuntime: true })))),
+          opencl: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, testOpenclRuntime: true })))),
+          rocm: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, rocmSupport: true, testRocmRuntime: true })))),
         })),
       })),
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(!nix.asBool(testCudaRuntime)))), nix.thunk(() => nix.str`addToSearchPath LD_LIBRARY_PATH ${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs
 `))),
       dontUsePytestCheck: nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(rocmSupport) || nix.asBool(cudaSupport)))) && nix.asBool(!nix.asBool(testOpenclRuntime)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Ctypes wrappers for HIP, CUDA, and OpenCL",
         homepage: "https://github.com/tinygrad/gpuctypes",
         changelog: nix.thunk(() => nix.str`https://github.com/tinygrad/gpuctypes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

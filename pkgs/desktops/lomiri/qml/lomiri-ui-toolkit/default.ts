@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const qtPluginPaths = nix.thunk(() => nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qtPluginPrefix")), nix.thunk(() => nix.concat([qtbase, qtsvg], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => [qtpim]))))));
   const qtQmlPaths = nix.thunk(() => nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qtQmlPrefix")), nix.thunk(() => nix.concat([qtdeclarative], nix.concat(nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => [qt5compat, ktactilefeedback])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => [qtgraphicaleffects, qtfeedback])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lomiri-ui-toolkit",
       version: "1.3.5908",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-ui-toolkit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./2001-Mark-problematic-tests.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./2002-Nixpkgs-versioned-QML-path.patch.in"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             qtVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version")))),
           })))),
       ]),
@@ -154,15 +154,15 @@ done
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "QML components to ease the creation of beautiful applications in QML",
         longDescription: "This project consists of a set of QML components to ease the creation of beautiful applications in QML for Lomiri.\n\nQML alone lacks built-in components for basic widgets like Button, Slider, Scrollbar, etc, meaning a developer has\nto build them from scratch.\nThis toolkit aims to stop this duplication of work, supplying beautiful components ready-made and with a clear and\nconsistent API.\n\nThese components are fully themeable so the look and feel can be easily customized. Resolution independence\ntechnology is built in so UIs are scaled to best suit the display.\n\nOther features:\n  - localisation through gettext\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-ui-toolkit",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const alsa_plugins = nix.arg($, "alsa-plugins");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nano-tts",
       version: "unstable-2021-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "nanotts",
           owner: "gmn",
           rev: "d8b91f3d9d524c30f6fe8098ea7a0a638c889cf9",
@@ -41,7 +41,7 @@ wrapProgram $out/bin/nanotts \\
 `),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.3)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Speech synthesizer commandline utility that improves pico2wave, included with SVOX PicoTTS",
         homepage: "https://github.com/gmn/nanotts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

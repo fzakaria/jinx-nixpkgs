@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const basiliskii = nix.arg($, "basiliskii");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "sheep_net",
       version: nix.thunk(() => nix.sel(basiliskii, "version")),
@@ -30,7 +30,7 @@ install -Dm444 sheep_net.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/kanjitalk755/macemu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => (() => {

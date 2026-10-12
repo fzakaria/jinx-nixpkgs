@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const scion = nix.arg($, "scion");
   const openssl = nix.arg($, "openssl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scion-bootstrapper",
       version: "0.0.8-unstable-2024-11-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netsec-ethz",
           repo: "bootstrapper",
           rev: "3fc6dad144843b3e7724e1b7e0af63235936168e",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mv $out/bin/bootstrapper $out/bin/scion-bootstrapper\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bootstrapper for SCION network configuration",
         homepage: "https://github.com/netsec-ethz/bootstrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

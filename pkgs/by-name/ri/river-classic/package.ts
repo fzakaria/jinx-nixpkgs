@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const wlroots = wlroots_0_20;
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "river-classic",
       version: "0.3.17",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withManpages, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "river",
           repo: "river-classic",
           hash: "sha256-+Geq3AetoiHB8xkMGf9nsYq8Mse2fZ5Edg1iOZ30f1A=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://codeberg.org/river/river-classic/commit/b1af960e1bea8506c25179775c18f902a5cb8c87.diff",
             hash: "sha256-7X7/ZNLLGlkxr6y3bw/INIRSCXrn3ach7V319nHLIQ8=",
           })))),
@@ -74,12 +74,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["river"]),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dynamic tiling wayland compositor",
         longDescription: "river-classic is a dynamic tiling Wayland compositor with\nflexible runtime configuration.\n\nIt is a fork of [river](https://codeberg.org/river/river) 0.3\nintended for users that are happy with how river 0.3 works and\ndo not wish to deal with the majorly breaking changes from the\nriver 0.4.0 release.\n",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/river/river-classic/releases/tag/v${nix.sel(finalAttrs, "version")}`),

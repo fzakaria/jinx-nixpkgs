@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "npth",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/npth/npth-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-i9JLTyOjBl1uWybpirqc54PqT9eBBpwbNdFJaU6Qyj4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "npth")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "New GNU Portable Threads Library",
         longDescription: "This is a library to provide the GNU Pth API and thus a non-preemptive\nthreads implementation.\n\nIn contrast to GNU Pth is is based on the system's standard threads\nimplementation.  This allows the use of libraries which are not\ncompatible to GNU Pth.  Experience with a Windows Pth emulation showed\nthat this is a solid way to provide a co-routine based framework.\n",
         homepage: "http://www.gnupg.org",

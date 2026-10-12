@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdfjs",
       version: "6.4.299",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${nix.sel(finalAttrs, "version")}/pdfjs-${nix.sel(finalAttrs, "version")}-dist.zip`),
           hash: "sha256-UHMYW6fHRL7by4sP7NXE5NuTKtmUPfInK6KunbnP88w=",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/pdf.js\ncp -r build web LICENSE $out/share/pdf.js/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JavaScript PDF reader and viewer",
         homepage: "https://mozilla.github.io/pdf.js/",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

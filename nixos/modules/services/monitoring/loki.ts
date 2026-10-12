@@ -38,47 +38,47 @@ export default nix.lambda((args) => (() => {
   const prettyJSON = (conf) => nix.app(nix.sel(pkgs, "runCommand"), "loki-config.json", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo '${nix.builtins.toJSON(conf)}' | ${nix.sel(pkgs, "jq")}/bin/jq 'del(._module)' > $out
 `));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         loki: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Grafana Loki")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "loki",
               description: "User under which the Loki service runs.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "grafana-loki", nix.thunk(() => ({})))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "loki",
               description: "Group under which the Loki service runs.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/loki",
               description: "Specify the data directory for Loki.\n",
             })))),
           configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
               default: nix.thunk(() => ({})),
               description: "Specify the configuration for Loki in Nix.\n\nSee [documentation of Grafana Loki](https://grafana.com/docs/loki/latest/configure/) for all available options.\n\nCannot be specified together with {option}`services.loki.configFile`.\n",
             })))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Specify a configuration file that Loki should use.\n\nCannot be specified together with {option}`services.loki.configuration`.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--server.http-listen-port=3101"]),
@@ -88,24 +88,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(nix.eq(nix.sel(cfg, "configuration"), {})) || nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)))) && nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "configuration"), {})))))),
             message: "Please specify either\n'services.loki.configuration' or\n'services.loki.configFile'.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Loki Service User",
               group: nix.thunk(() => nix.sel(cfg, "group")),
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             loki: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Loki Service Daemon",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -127,13 +127,13 @@ export default nix.lambda((args) => (() => {
               serviceConfig: nix.thunk(() => (() => {
                 const conf = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? (nix.asBool(nix.eq(nix.sel(cfg, "extraFlags"), [])) ? nix.app(validateConfig, nix.thunk(() => nix.app(prettyJSON, nix.thunk(() => nix.sel(cfg, "configuration"))))) : nix.app(prettyJSON, nix.thunk(() => nix.sel(cfg, "configuration")))) : nix.sel(cfg, "configFile")));
                 const validateConfig = (file) => nix.app(nix.sel(pkgs, "runCommand"), "validate-loki-conf", nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   })), nix.thunk(() => nix.str`loki -verify-config -config.file "${file}"
 ln -s "${file}" "$out"
 `));
                 return {
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/loki --config.file=${conf} ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "extraFlags")))}`),
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Restart: "always",

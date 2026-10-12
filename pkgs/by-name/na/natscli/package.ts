@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "natscli",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nats-io",
           repo: "natscli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Remove tests that depend on CLI output\nsubstituteInPlace internal/asciigraph/asciigraph_test.go \\\n  --replace-fail \"TestPlot\" \"SkipPlot\"\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NATS Command Line Interface",
         homepage: "https://github.com/nats-io/natscli",
         changelog: nix.thunk(() => nix.str`https://github.com/nats-io/natscli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

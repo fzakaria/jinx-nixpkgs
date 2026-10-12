@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const jdk = openjdk17;
   const fakeHostname = nix.thunk(() => nix.app(writeShellScriptBin, "hostname", "echo nix-builder.localdomain\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "abcl",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://common-lisp.net/project/armedbear/releases/${nix.sel(finalAttrs, "version")}/abcl-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uwShIj06mGCS4BD/2tE69QQp1VwagYdL8wIvlDa/sv8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [ant, jdk, fakeHostname, makeWrapper, stripJavaArchivesHook]),
       buildPhase: "runHook preBuild\n\nant \\\n  -Dabcl.runtime.jar.path=\"$out/lib/abcl/abcl.jar\" \\\n  -Dadditional.jars=\"$out/lib/abcl/abcl-contrib.jar\"\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"/{share/doc/abcl,lib/abcl}\ncp -r README COPYING CHANGES examples/  \"$out/share/doc/abcl/\"\ncp -r dist/*.jar contrib/ \"$out/lib/abcl/\"\ninstall -Dm555 abcl -t $out/bin\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JVM-based Common Lisp implementation",
         homepage: "https://common-lisp.net/project/armedbear/",
         license: nix.thunk(() => (() => {

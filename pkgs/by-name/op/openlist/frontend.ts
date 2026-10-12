@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const pnpm_11 = nix.arg($, "pnpm_11");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "openlist-frontend",
       version: "4.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenListTeam",
           repo: "OpenList-Frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-m/5DoGnmOAVv8PGWwUWEUntiQNAzUbJ5pIhP4JsRt+s=",
         })))),
       i18n: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/OpenListTeam/OpenList-Frontend/releases/download/v${nix.sel(finalAttrs, "version")}/i18n.tar.gz`),
           hash: "sha256-0+y4/stjTMek65Poq8Qfxadta0UrLefdFHxk6S9MGbM=",
           stripRoot: false,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, openlistPnpm]),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,13 +69,13 @@ echo -n "v${nix.sel(finalAttrs, "version")}" > $out/VERSION
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "mpegts-js": nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: "mpegts-js-openlist",
             version: "1.8.1-unstable-2026-05-16",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 owner: "OpenListTeam",
                 repo: "mpegts.js",
                 rev: "1e51e0f6f918cf08e05dfae9c7bfcf658d6b4ac2",
@@ -83,7 +83,7 @@ runHook postInstall
               })))),
             npmDepsHash: "sha256-UDI0iPK/ouVgpzscGrQXNnVUseLWYmR0W9THpBm4WqA=",
             meta: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
@@ -91,7 +91,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Frontend of OpenList",
         homepage: "https://github.com/OpenListTeam/OpenList-Frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

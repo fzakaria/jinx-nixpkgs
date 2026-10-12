@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
       const plugins = nix.argOr($_1, "plugins", () => []);
       const extraMakeWrapperArgs = nix.argOr($_1, "extraMakeWrapperArgs", () => "");
       const initialMakeWrapperArgs = [];
-      const pluginsDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$1, name: "helm-plugins", paths: plugins }))));
+      const pluginsDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "helm-plugins", paths: plugins }))));
       return nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`helm-${nix.app(nix.sel(lib, "getVersion"), helm)}`),
           postBuild: nix.thunk(() => nix.str`wrapProgram "$out/bin/helm" \\
   "--suffix" "HELM_PLUGINS" ":" "${pluginsDir}" ${extraMakeWrapperArgs}
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
           paths: nix.thunk(() => [helm, pluginsDir]),
           preferLocalBuild: true,
           nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-          passthru: nix.thunk(() => ({ __proto__: pos$2, pluginsDir: pluginsDir, unwrapped: helm })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginsDir: pluginsDir, unwrapped: helm })),
           meta: nix.thunk(() => nix.update(nix.sel(helm, "meta"), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             hydraPlatforms: [],
             priority: nix.thunk(() => nix.sub(nix.selOr(helm, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
           })),

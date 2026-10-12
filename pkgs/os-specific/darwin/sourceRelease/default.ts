@@ -14,12 +14,12 @@ export default nix.thunk(() => (() => {
     return (name) => (() => {
       const lockinfo = nix.thunk(() => nix.sel(lockfile, nix.key(nix.force(name))));
       return nix.update(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apple-oss-distributions",
           repo: name,
           rev: nix.thunk(() => nix.selOr(lockinfo, () => nix.str`${name}-${nix.sel(lockinfo, "version")}`, "rev")),
           hash: nix.thunk(() => nix.attr(lockinfo, "hash")),
-        }))), { __proto__: pos$2, version: nix.thunk(() => nix.attr(lockinfo, "version")) });
+        }))), { [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(lockinfo, "version")) });
     })();
   })(), formals$1);
 })());

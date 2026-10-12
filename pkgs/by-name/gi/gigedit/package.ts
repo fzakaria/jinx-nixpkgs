@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const linuxsampler = nix.arg($, "linuxsampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gigedit",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.linuxsampler.org/packages/gigedit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-pz+2gbVbPytuioXxNHQWE3Pml4r9JfwBIQcsbevWHkQ=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.linuxsampler.org",
         description: "Gigasampler file access library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

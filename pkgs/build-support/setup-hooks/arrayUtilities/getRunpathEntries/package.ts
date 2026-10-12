@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "getRunpathEntries",
       propagatedBuildInputs: nix.thunk(() => [isDeclaredArray, patchelf]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Appends runpath entries of a file to an array",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rpcsvc_proto = nix.arg($, "rpcsvc-proto");
   const enablePAM = nix.argOr($, "enablePAM", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webdav-server-rs",
       version: "unstable-2021-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miquels",
           repo: "webdav-server-rs",
           rev: "547602e78783935b4ddd038fb795366c9c476bcc",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
    --replace '/usr/include/tirpc' '${nix.sel(libtirpc, "dev")}/include/tirpc'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of WebDAV server in Rust",
         longDescription: "webdav-server-rs is an implementation of WebDAV with full support for\nRFC4918.  It also supports local unix accounts, PAM authentication, and\nquota.\n",
         homepage: "https://github.com/miquels/webdav-server-rs",

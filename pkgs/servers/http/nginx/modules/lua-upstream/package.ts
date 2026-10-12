@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const luajit_openresty = nix.arg($, "luajit_openresty");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lua-upstream",
       version: "0.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "lua-upstream",
           owner: "openresty",
           repo: "lua-upstream-nginx-module",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [luajit_openresty]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Expose Lua API to ngx_lua for Nginx upstreams",
         homepage: "https://github.com/openresty/lua-upstream-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

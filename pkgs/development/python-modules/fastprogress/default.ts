@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ipython = nix.arg($, "ipython");
   const python_fasthtml = nix.arg($, "python-fasthtml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastprogress",
       version: "1.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastai",
           repo: "fastprogress",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fastprogress"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/fastai/fastprogress",
         changelog: nix.thunk(() => nix.str`https://github.com/AnswerDotAI/fastprogress/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Simple and flexible progress bar for Jupyter Notebook and console",

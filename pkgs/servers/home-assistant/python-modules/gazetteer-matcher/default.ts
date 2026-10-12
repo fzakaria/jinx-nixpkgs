@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unicode_rbnf = nix.arg($, "unicode-rbnf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gazetteer-matcher",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OHF-Voice",
           repo: "gazetteer-matcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["gazetteer_matcher"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/gazetteer-matcher/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Constraint-driven intent recognizer for Home Assistant voice commands",
         homepage: "https://github.com/OHF-Voice/gazetteer-matcher",

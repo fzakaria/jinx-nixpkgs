@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "2025-08-16";
   return nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cellservdb",
       version: version,
       url: nix.thunk(() => nix.str`https://grand.central.org/dl/cellservdb/CellServDB.${version}`),
       hash: "sha256-Rb6DBb9to7x5ya2ywx+wTls2c9GQmV0v5z9rmZ78dDs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "GRAND.CENTRAL.ORG Public CellServDB",
         homepage: "https://grand.central.org/csdb.html",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quentin"))]),

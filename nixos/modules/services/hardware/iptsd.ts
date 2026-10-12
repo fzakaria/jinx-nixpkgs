@@ -35,42 +35,42 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "iptsd.conf", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         iptsd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the userspace daemon for Intel Precise Touch & Stylus")),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               description: "Configuration for IPTSD. See the\n[reference configuration](https://github.com/linux-surface/iptsd/blob/master/etc/iptsd.conf)\nfor available options and defaults.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     Touchscreen: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       DisableOnPalm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           default: false,
                           description: "Ignore all touchscreen inputs if a palm was registered on the display.",
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         })))),
                       DisableOnStylus: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           default: false,
                           description: "Ignore all touchscreen inputs if a stylus is in proximity.",
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         })))),
                     })),
                     Stylus: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       Disable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           default: false,
                           description: "Disables the stylus. No stylus data will be processed.",
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -83,33 +83,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "Touch", nix.thunk(() => nix.sel(cfg, "config")))), "The option `services.iptsd.config.Touch` has been renamed to `services.iptsd.config.Touchscreen`.\n")),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iptsd"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
-            "iptsd@": nix.thunk(() => ({ __proto__: pos$12, restartTriggers: nix.thunk(() => [configFile]) })),
+            [nix.POS]: pos$13,
+            "iptsd@": nix.thunk(() => ({ [nix.POS]: pos$12, restartTriggers: nix.thunk(() => [configFile]) })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
-            "iptsd.conf": nix.thunk(() => ({ __proto__: pos$15, source: configFile })),
+            [nix.POS]: pos$16,
+            "iptsd.conf": nix.thunk(() => ({ [nix.POS]: pos$15, source: configFile })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           udev: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iptsd"))]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dotlambda"))];

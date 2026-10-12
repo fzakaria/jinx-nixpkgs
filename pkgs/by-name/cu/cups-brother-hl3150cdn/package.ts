@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       const cupsFileNo = "006741";
       const lprFileNo = "100432";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf${cupsFileNo}/${model}_cupswrapper_GPL_source_${version}.tar.gz`),
           hash: "sha256-/I4Wx/L7p1qYJqxyevHq/YbKt+y8Q18k+tYrm+49iuU=",
         }))));
       const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf${lprFileNo}/${model}lpr-${lprVersion}.i386.deb`),
           hash: "sha256-SpKW0+UDouNMrN8iRIz7JC68rMrWiwhdn/en3b/4uw0=",
         }))));
@@ -110,7 +110,7 @@ wrapProgram $out/lib/cups/filter/brother_lpdwrapper_${model} \\
       const __structuredAttrs = true;
       const strictDeps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.brother.com/",
         description: nix.thunk(() => nix.str`Brother ${model} printer driver`),
         sourceProvenance: nix.thunk(() => (() => {
@@ -135,7 +135,7 @@ wrapProgram $out/lib/cups/filter/brother_lpdwrapper_${model} \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         lprVersion,

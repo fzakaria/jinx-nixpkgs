@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const version = "0.7.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "litex-hub",
       repo: "wishbone-utils",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Gl0bxHJ8Y0ytYJxToYAR2tVkD4YNMihk+zRpieSvMGE=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wishbone-tool",
       version: version,
       src: src,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-YJEsTGnBUkQ35VOwZQeBbO3RZqglLYm2xecmIS4jiZM=",
       buildInputs: nix.thunk(() => [libusb_compat_0_1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manipulate a Wishbone device over some sort of bridge",
         mainProgram: "wishbone-tool",
         homepage: "https://github.com/litex-hub/wishbone-utils",

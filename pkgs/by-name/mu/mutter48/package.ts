@@ -81,12 +81,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mutter",
       version: "48.7",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/mutter/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mutter-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-7BAqo8uw45ABIGYnrKMFUxRVX3BgneXmwrfvzR+pDyA=",
         })))),
@@ -183,18 +183,18 @@ substituteInPlace src/frames/main.c \\
 moveToOutput "share/mutter-${nix.sel(finalAttrs, "passthru", "libmutter_api_version")}/doc" "$devdoc"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       separateDebugInfo: true,
       strictDeps: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         libmutter_api_version: "16",
         libdir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/lib/mutter-${nix.sel(finalAttrs, "passthru", "libmutter_api_version")}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           libdirExists: nix.thunk(() => nix.app(runCommand, "mutter-libdir-exists", nix.thunk(() => ({})), nix.thunk(() => nix.str`if [[ ! -d ${nix.sel(finalAttrs, "finalPackage", "libdir")} ]]; then
   echo "passthru.libdir should contain a directory, “${nix.sel(finalAttrs, "finalPackage", "libdir")}” is not one."
   exit 1
@@ -204,7 +204,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Window manager for GNOME",
         mainProgram: "mutter",
         homepage: "https://gitlab.gnome.org/GNOME/mutter",

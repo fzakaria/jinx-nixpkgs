@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eduli",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/MoeLI-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-bDQtLugYPWwJJNusBLEJrgIVufocRK4NIR0CCGaTkyw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MOE Li Font, a clerical Chinese font by the Ministry of Education, ROC (Taiwan)",
         longDescription: "The MOE Li Font is a li (clerical script) font provided by\nthe Ministry of Education, Republic of China (Taiwan).\nIt currently includes 4,808 Chinese characters.\nThe clerical script (lishu) is an archaic style of Chinese calligraphy.\n",
         homepage: "https://language.moe.gov.tw/material/info?m=9fe3fb11-c3d5-41f2-b029-6d18a2c2fd0d",

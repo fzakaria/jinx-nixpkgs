@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : "x86_64"));
   const platform = nix.thunk(() => nix.str`${os}-${arch}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "urbit",
       version: "4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/urbit/vere/releases/download/vere-v${nix.sel(finalAttrs, "version")}/${platform}.tgz`),
           sha256: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "1bm32airwqi6pkxlkd0hwrwd0gwm9x5y05dzgy27yxnbcrnyjcpk",
             "aarch64-linux": "126hw995xipbx9kb4ml8kn6xwkwd96q90cbr3q143ya2wl1sabya",
             "aarch64-darwin": "0dsapvlyfr2cb9c16b46bcnvq75by87ybys96zhf16k92z4rzrfv",
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "mkdir src\ntar -C src -xf $src\n",
       postInstall: nix.thunk(() => nix.str`install -m755 -D src/vere-v${nix.sel(finalAttrs, "version")}-${platform} $out/bin/urbit
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update-bin.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update-bin.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://urbit.org",
         description: "Operating function",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),

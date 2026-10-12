@@ -10,6 +10,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const victorialogs = nix.arg($, "victorialogs");
-  return nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ __proto__: pos$1, mainProgram: "vlagent" })), nix.thunk(() => nix.app(nix.sel(victorialogs, "override"), nix.thunk(() => ({ __proto__: pos$2, withServer: false, withVlAgent: true })))));
+  return nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "vlagent" })), nix.thunk(() => nix.app(nix.sel(victorialogs, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withServer: false, withVlAgent: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$12,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       security: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lockKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Disable kernel module loading once the system is fully initialised.\nModule loading is disabled until the next reboot. Problems caused\nby delayed module loading can be fixed by adding the module(s) in\nquestion to {option}`boot.kernelModules`.\n",
@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "lockKernelModules")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (x) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(x, "device"), null)), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(x, "fsType"), "vfat")) ? ["vfat", "nls-cp437", "nls-iso8859-1"] : [nix.thunk(() => nix.sel(x, "fsType"))]))), nix.thunk(() => nix.sel(config, "system", "build", "fileSystems")))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "disable-kernel-module-loading": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Disable kernel module loading",
               wants: nix.thunk(() => ["systemd-udevd.service"]),
               wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(config, "systemd", "defaultUnit"))]),
@@ -55,8 +55,8 @@ export default nix.lambda((args) => (() => {
                 "systemd-modules-load.service",
                 nix.thunk(() => nix.sel(config, "systemd", "defaultUnit")),
               ]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$6, ConditionPathIsReadWrite: "/proc/sys/kernel" })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$7, Type: "oneshot", RemainAfterExit: true, TimeoutSec: 180n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, ConditionPathIsReadWrite: "/proc/sys/kernel" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, Type: "oneshot", RemainAfterExit: true, TimeoutSec: 180n })),
               script: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/udevadm settle
 echo -n 1 >/proc/sys/kernel/modules_disabled
 `),

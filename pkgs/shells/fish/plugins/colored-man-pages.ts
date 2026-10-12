@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colored-man-pages",
       version: "0-unstable-2022-04-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patrickf1",
           repo: "colored_man_pages.fish",
           rev: "f885c2507128b70d6c41b043070a8f399988bc7a",
           sha256: "0ifqdbaw09hd1ai0ykhxl8735fcsm0x2fwfzsk7my2z52ds60bwa",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish shell plugin to colorize man pages",
         homepage: "https://github.com/PatrickF1/colored_man_pages.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

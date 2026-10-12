@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zet",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yarrow",
           repo: "zet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-EIj2BUVS1tbY+kxUnpu1C+0+n68gTFZbp45f5UNidtY=",
       checkType: "debug",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-Amismatched_lifetime_syntaxes" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-Amismatched_lifetime_syntaxes" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI utility to find the union, intersection, set difference, etc of files considered as sets of lines",
         mainProgram: "zet",
         homepage: "https://github.com/yarrow/zet",

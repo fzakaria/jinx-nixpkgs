@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fireworks-ai",
       version: "1.2.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fw-ai-external",
           repo: "python-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "training-sdk": nix.thunk(() => [requests]),
         training: nix.thunk(() => nix.concat([datasets, numpy, tiktoken, torch, transformers, wandb], nix.sel(finalAttrs, "passthru", "optional-dependencies", "training-sdk"))),
       })),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_retrying_timeout_errors_doesnt_leak"]),
       pythonImportsCheck: nix.thunk(() => ["fireworks"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client library for Fireworks.ai",
         homepage: "https://github.com/fw-ai-external/python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/fw-ai-external/python-sdk/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

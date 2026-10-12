@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const makeFontsConf = nix.arg($, "makeFontsConf");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gtkmm",
       version: "4.22.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtkmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtkmm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LoohtLByX2IOM6ruDNND7RIbUzJ1tjKJZhmxyJ6W3mc=",
         })))),
@@ -44,8 +44,8 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glibmm_2_68, gtk4, cairomm_1_16, pangomm_2_48]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [xvfb_run]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
       })),
       doCheck: true,
       checkPhase: nix.thunk(() => nix.str`runHook preCheck
@@ -56,16 +56,16 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(st
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             packageName: "gtkmm",
             attrPath: "gtkmm4",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C++ interface to the GTK graphical user interface library",
         longDescription: "gtkmm is the official C++ interface for the popular GUI library\nGTK.  Highlights include typesafe callbacks, and a\ncomprehensive set of widgets that are easily extensible via\ninheritance.  You can create user interfaces either in code or\nwith the Glade User Interface designer, using libglademm.\nThere's extensive documentation, including API reference and a\ntutorial.\n",
         homepage: "https://gitlab.gnome.org/GNOME/gtkmm",

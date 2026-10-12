@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "technitium-dns-server-library",
       version: "15.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TechnitiumSoftware",
           repo: "TechnitiumLibrary",
           tag: nix.thunk(() => nix.str`dns-server-v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "TechnitiumLibrary.Security.OTP/TechnitiumLibrary.Security.OTP.csproj",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/TechnitiumSoftware/DnsServer/blob/master/CHANGELOG.md",
         description: "Library for Authoritative and Recursive DNS server for Privacy and Security",
         homepage: "https://github.com/TechnitiumSoftware/DnsServer",

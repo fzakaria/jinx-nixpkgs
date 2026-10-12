@@ -26,30 +26,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "ipp-usb": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ipp-usb, a daemon to turn an USB printer/scanner supporting IPP everywhere (aka AirPrint, WSD, AirScan) into a locally accessible network printer/scanner")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "ipp-usb", "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "ipp-usb": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Daemon for IPP over USB printer support",
               after: nix.thunk(() => ["cups.service", "avahi-daemon.service"]),
               wants: nix.thunk(() => ["avahi-daemon.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ExecStart: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "ipp-usb")}/bin/ipp-usb`)]),
                 Type: "simple",
                 Restart: "on-failure",
@@ -82,25 +82,25 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ipp-usb"))]),
           })),
           avahi: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
-            publish: nix.thunk(() => ({ __proto__: pos$9, enable: true, userServices: true })),
+            publish: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, userServices: true })),
           })),
           printing: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           sane: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             extraBackends: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sane-airscan"))]),
           })),

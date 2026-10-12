@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "vsftpd"));
   const vsftpd = nix.thunk(() => nix.attr(pkgs, "vsftpd"));
   const yesNoOption = (nixosName) => (vsftpdName) => (default$) => (description) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     cfgText: nix.thunk(() => nix.str`${vsftpdName}=${(nix.asBool(nix.app(nix.lookup(w, "getAttr"), nixosName, cfg)) ? "YES" : "NO")}`),
     nixosOption: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
       name: nixosName,
       value: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: description,
           default: default$,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
@@ -114,22 +114,22 @@ pam_service_name=vsftpd
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         vsftpd: nix.thunk(() => nix.update({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "vsftpd")),
           userlist: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "See {option}`userlistFile`.",
             })))),
           userlistFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "userlist", nix.thunk(() => nix.app(nix.lookup(w, "concatMapStrings"), (x) => nix.str`${x}
 `, nix.thunk(() => nix.sel(cfg, "userlist")))))),
@@ -137,52 +137,52 @@ ${nix.sel(cfg, "extraConfig")}
               description: "Newline-separated list of names to be allowed/denied if {option}`userlistEnable`\nis `true`. Meaning see {option}`userlistDeny`.\n\nThe default is a file containing the users from {option}`userlist`.\n\nIf explicitly set to null userlist_file will not be set in vsftpd's config file.\n",
             })))),
           enableVirtualUsers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the `pam_userdb`-based\nvirtual user system\n",
             })))),
           userDbPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: "/etc/vsftpd/userDb",
               default: null,
               description: "Only applies if {option}`enableVirtualUsers` is true.\nPath pointing to the `pam_userdb` user\ndatabase used by vsftpd to authenticate the virtual users.\n\nThis user list should be stored in the Berkeley DB database\nformat.\n\nTo generate a new user database, create a text file, add\nyour users using the following format:\n```\nuser1\npassword1\nuser2\npassword2\n```\n\nYou can then install `pkgs.db` to generate\nthe Berkeley DB using\n```\ndb_load -T -t hash -f logins.txt userDb.db\n```\n\nCaution: `pam_userdb` will automatically\nappend a `.db` suffix to the filename you\nprovide though this option. This option shouldn't include\nthis filetype suffix.\n",
             })))),
           localRoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/www/$USER",
               description: "This option represents a directory which vsftpd will try to\nchange into after a local (i.e. non- anonymous) login.\n\nFailure is silently ignored.\n",
             })))),
           anonymousUserHome: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/home/ftp/",
               description: "Directory to consider the HOME of the anonymous user.\n",
             })))),
           rsaCertFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "RSA certificate file.",
             })))),
           rsaKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "RSA private key file.",
             })))),
           anonymousUmask: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "077",
               example: "002",
               description: "Anonymous write umask.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "ftpd_banner=Hello",
@@ -192,34 +192,34 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(nix.sel(cfg, "forceLocalLoginsSSL")) || nix.asBool(!nix.eq(nix.sel(cfg, "rsaCertFile"), null)))) && nix.asBool((!nix.asBool(nix.sel(cfg, "forceLocalDataSSL")) || nix.asBool(!nix.eq(nix.sel(cfg, "rsaCertFile"), null)))))),
             message: "vsftpd: If forceLocalLoginsSSL or forceLocalDataSSL is true then a rsaCertFile must be provided!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(nix.sel(cfg, "enableVirtualUsers")) || nix.asBool(!nix.eq(nix.sel(cfg, "userDbPath"), null)))) && nix.asBool((!nix.asBool(nix.sel(cfg, "enableVirtualUsers")) || nix.asBool(nix.sel(cfg, "localUsers")))))),
             message: "vsftpd: If enableVirtualUsers is true, you need to setup both the userDbPath and localUsers options.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.update({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             vsftpd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               group: "vsftpd",
               isSystemUser: true,
               description: "VSFTPD user",
               home: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "localRoot"), null)) ? nix.sel(cfg, "localRoot") : "/homeless-shelter")),
             })),
           }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "anonymousUser")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               ftp: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: "ftp",
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "ftp")),
                 group: "ftp",
@@ -228,35 +228,35 @@ ${nix.sel(cfg, "extraConfig")}
               })),
             }))))),
           groups: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             vsftpd: nix.thunk(() => ({})),
             ftp: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "ftp")),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           vsftpd: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             userlist: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "userlistDeny")), "root")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             rules: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "anonymousUser")), nix.thunk(() => nix.str`d    '${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "anonymousUserHome")))}' 0555 'ftp'  'ftp' -   -`))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             vsftpd: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Vsftpd Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 ExecStart: nix.thunk(() => nix.str`@${vsftpd}/sbin/vsftpd vsftpd ${configFile}`),
                 Restart: "always",
                 Type: "forking",
@@ -265,25 +265,25 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           pam: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             services: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               vsftpd: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableVirtualUsers")) && nix.asBool(!nix.eq(nix.sel(cfg, "userDbPath"), null)))), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   useDefaultRules: false,
                   rules: nix.thunk(() => (() => {
                     const rules = nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           name: "userdb",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_userdb.so`),
-                          settings: nix.thunk(() => ({ __proto__: pos$33, db: nix.thunk(() => nix.sel(cfg, "userDbPath")) })),
+                          settings: nix.thunk(() => ({ [nix.POS]: pos$33, db: nix.thunk(() => nix.sel(cfg, "userDbPath")) })),
                         })),
                       ])));
-                    return { __proto__: pos$35, auth: rules, account: rules };
+                    return { [nix.POS]: pos$35, auth: rules, account: rules };
                   })()),
                 })))),
             })),

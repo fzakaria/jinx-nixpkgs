@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const hydra_core = nix.arg($, "hydra-core");
   const pyvirtualdisplay = nix.arg($, "pyvirtualdisplay");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nocturne",
       version: "0-unstable-2024-06-19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "nocturne",
           rev: "6d1e0f329f7acbed01c934842b269333540af6d2",
@@ -39,7 +39,7 @@ ln -s ${nix.sel(nlohmann_json, "src")} $sourceRoot/third_party/json
 ln -s ${nix.sel(pybind11, "src")} $sourceRoot/third_party/pybind11
 `),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependencies.patch"), nix.thunk(() => ({ __proto__: pos$2, gtest_src: nix.thunk(() => nix.sel(gtest, "src")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependencies.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gtest_src: nix.thunk(() => nix.sel(gtest, "src")) })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
@@ -49,7 +49,7 @@ ln -s ${nix.sel(pybind11, "src")} $sourceRoot/third_party/pybind11
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nocturne"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data-driven, fast driving simulator for multi-agent coordination under partial observability",
         homepage: "https://github.com/facebookresearch/nocturne",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

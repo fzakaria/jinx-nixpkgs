@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const frame = nix.arg($, "frame");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grail",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/grail/trunk/${nix.sel(finalAttrs, "version")}/+download/grail-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1wwx5ibjdz5pyd0f5cd1n91y67r68dymxpm2lgd829041xjizvay",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([python3, frame], nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [libx11, libxtst, libxext, libxi, libxfixes])))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableX11, "--with-x11")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/canonical-multitouch/grail",
         description: "Gesture Recognition And Instantiation Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/default.nix", [["pname", 5, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
-  return nix.app(mkKdeDerivation, nix.thunk(() => ({ __proto__: pos$1, pname: "union" })));
+  return nix.app(mkKdeDerivation, nix.thunk(() => ({ [nix.POS]: pos$1, pname: "union" })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

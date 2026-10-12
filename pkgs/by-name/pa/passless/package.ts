@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "passless",
       version: "0.20.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pando85",
           repo: "passless",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ installShellCompletion --cmd passless \\
   --zsh $COMPLETIONS/_passless
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pando85/passless",
         description: "Virtual FIDO2 device and client FIDO 2 utility",
         changelog: nix.thunk(() => nix.str`https://github.com/pando85/passless/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mac-robber",
       version: "1.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mac-robber/mac-robber/${nix.sel(finalAttrs, "version")}/mac-robber-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-WJXTMuyNh+FfIUQcYVRbf2iDCi7iyWfTgXc70IUEgG0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "10_add-GCC-hardening.patch",
             url: "https://salsa.debian.org/pkg-security-team/mac-robber/-/raw/b6a59d78e2f58fbfab7f1b3ed9b72531d28693ca/debian/patches/10_add-GCC-hardening.patch",
             hash: "sha256-1ma6Vh1MTE6WlCcm2KzRLK/ZV3hAw7xP25yi7TrIqLI=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -D mac-robber $out/bin/mac-robber\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Digital investigation tool that collects data from allocated files in a mounted file system",
         mainProgram: "mac-robber",
         homepage: "https://www.sleuthkit.org/mac-robber/",

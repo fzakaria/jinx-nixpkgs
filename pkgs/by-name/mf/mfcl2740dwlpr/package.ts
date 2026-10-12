@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mfcl2740dwlpr",
       version: "3.2.0-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101727/mfcl2740dwlpr-${nix.sel(finalAttrs, "version")}.i386.deb`),
           hash: "sha256-EKK8ZyvVTnGLR486/H5H1FFVf31VExZ9OtNJo9AL/68=",
         })))),
@@ -49,7 +49,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/brprintconflsr3
 patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L2740DW lpr driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {

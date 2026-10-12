@@ -22,7 +22,7 @@ const pos$15 = nix.positions(here + "/release-small.nix", [["nixos", 43, 3], ["n
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../lib")), "cleanSource"), nix.path(here, "./.."))),
     revCount: 56789n,
     shortRev: "gfedcba",
@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const stableBranch = nix.argOr($, "stableBranch", () => false);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["aarch64-linux", "x86_64-linux"]);
   const nixpkgsSrc = nixpkgs;
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")), nix.thunk(() => ({ __proto__: pos$2, system: "x86_64-linux" }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")), nix.thunk(() => ({ [nix.POS]: pos$2, system: "x86_64-linux" }))));
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const nixos$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       stableBranch: stableBranch,
       supportedSystems: supportedSystems,
       nixpkgs: nixpkgsSrc,
     }))));
-  const nixpkgs$ = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ __proto__: pos$4, supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc })))), nix.thunk(() => ["unstable"])));
+  const nixpkgs$ = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc })))), nix.thunk(() => ["unstable"])));
   return (() => {
     const nixos = nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       channel: nix.thunk(() => nix.attr(nixos$, "channel")),
       manual: nix.thunk(() => nix.attr(nixos$, "manual")),
       options: nix.thunk(() => nix.attr(nixos$, "options")),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       tests: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nixos$, "tests"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         acme: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixos$, "tests", "acme"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "http01-builtin": nix.thunk(() => nix.attr(from, "http01-builtin")),
           dns01: nix.thunk(() => nix.attr(from, "dns01")),
         };
@@ -74,12 +74,12 @@ export default nix.lambda((args) => (() => {
         "simple-vm": nix.thunk(() => nix.attr(from, "simple-vm")),
         latestKernel: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(nixos$, "tests", "latestKernel"));
-          return { __proto__: pos$6, login: nix.thunk(() => nix.attr(from_1, "login")) };
+          return { [nix.POS]: pos$6, login: nix.thunk(() => nix.attr(from_1, "login")) };
         })()),
         installer: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(nixos$, "tests", "installer"));
           return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           lvm: nix.thunk(() => nix.attr(from_1, "lvm")),
           separateBoot: nix.thunk(() => nix.attr(from_1, "separateBoot")),
           simple: nix.thunk(() => nix.attr(from_1, "simple")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }));
     const nixpkgs_1 = nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       apacheHttpd: nix.thunk(() => nix.attr(nixpkgs$, "apacheHttpd")),
       cmake: nix.thunk(() => nix.attr(nixpkgs$, "cmake")),
       cryptsetup: nix.thunk(() => nix.attr(nixpkgs$, "cryptsetup")),
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
       tarball: nix.thunk(() => nix.attr(nixpkgs$, "tarball")),
       vim: nix.thunk(() => nix.attr(nixpkgs$, "vim")),
       tests: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         stdenv: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixpkgs$, "tests", "stdenv"));
           return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "tests-stdenv-gcc-stageCompare": nix.thunk(() => nix.attr(from, "tests-stdenv-gcc-stageCompare")),
         };
         })()),
@@ -129,10 +129,10 @@ export default nix.lambda((args) => (() => {
       const onSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, supportedSystems);
       const onSystems = (systems) => (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "intersectLists"), systems, supportedSystems)));
       return nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: nix.thunk(() => nix.str`nixos-${nix.sel(nixos, "channel", "version")}`),
           meta: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             description: "Release-critical builds for the NixOS channel",
             maintainers: [],
           })),
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
             ]))),
         })));
     })());
-    return { __proto__: pos$15, nixos, nixpkgs: nixpkgs_1, tested };
+    return { [nix.POS]: pos$15, nixos, nixpkgs: nixpkgs_1, tested };
   })();
 })(), formals$1);
 //# sourceMappingURL=release-small.ts.map

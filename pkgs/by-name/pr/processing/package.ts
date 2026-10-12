@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libGL = nix.arg($, "libGL");
   const libxxf86vm = nix.arg($, "libxxf86vm");
-  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ __proto__: pos$1, java: jdk17 }))));
+  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk17 }))));
   const jdk = jdk17;
   const buildNumber = "1310";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "processing";
       const version = "4.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "processing",
           repo: "processing4",
           rev: nix.thunk(() => nix.str`processing-${buildNumber}-${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [gradle, makeWrapper, stripJavaArchivesHook, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [jdk, jogl, rsync, libGL, libxxf86vm]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
       const gradleFlags = nix.thunk(() => ["-Dfile.encoding=utf-8"]);
       const gradleBuildTask = "createDistributable";
       const gradleUpdateTask = "createDistributable";
@@ -81,7 +81,7 @@ runHook postInstall
 `);
       const postFixup = "ln -s $out/bin/Processing $out/bin/processing\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Language and IDE for electronic arts",
         homepage: "https://processing.org",
         license: nix.thunk(() => (() => {
@@ -106,7 +106,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

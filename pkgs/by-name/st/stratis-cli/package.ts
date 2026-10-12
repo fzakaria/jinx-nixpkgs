@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stratis-cli",
       version: "3.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stratis-storage",
           repo: "stratis-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTestPaths: nix.thunk(() => ["tests/integration"]),
       pythonImportsCheck: nix.thunk(() => ["stratis_cli"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "stratis")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "stratis")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for the Stratis project",
         homepage: "https://stratis-storage.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

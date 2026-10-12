@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ATf7BZkNNfEnWlh+mu5tVtqCH8g0kaD7g4GDvkP2bW0=",
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Do not test with trio, it increases jinja2's dependency closure by a lot\n# and everyone consuming these dependencies cannot rely on sphinxHook,\n# because sphinx itself depends on jinja2.\nsubstituteInPlace tests/test_async{,_filters}.py \\\n  --replace-fail \"import trio\" \"\" \\\n  --replace-fail \", trio.run\" \"\" \\\n  --replace-fail \", \\\"trio\\\"\" \"\"\n";
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [markupsafe]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, i18n: nix.thunk(() => [babel]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, i18n: nix.thunk(() => [babel]) }));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "i18n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         doc: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.str`${pname}-doc`),
             src: src,
             version: version,
@@ -56,10 +56,10 @@ export default nix.lambda((args) => (() => {
             pythonVersion: nix.thunk(() => nix.attr(python, "pythonVersion")),
             meta: meta,
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, sage: sage })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, sage: sage })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/pallets/jinja/blob/${version}/CHANGES.rst`),
         description: "Very fast and expressive template engine",
         downloadPage: "https://github.com/pallets/jinja",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

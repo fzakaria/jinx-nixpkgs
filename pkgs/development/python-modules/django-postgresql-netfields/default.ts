@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jimfunk",
           repo: "django-postgresql-netfields",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         pytest_django,
       ]);
       const postgresqlTestUserOptions = "LOGIN SUPERUSER";
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "testsettings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "testsettings" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django PostgreSQL netfields implementation",
         homepage: "https://github.com/jimfunk/django-postgresql-netfields",
         changelog: nix.thunk(() => nix.str`https://github.com/jimfunk/django-postgresql-netfields/blob/v${version}/CHANGELOG`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

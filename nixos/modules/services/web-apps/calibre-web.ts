@@ -57,92 +57,92 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "calibre-web": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Calibre-Web")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "calibre-web", nix.thunk(() => ({})))),
           calibrePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "calibre", nix.thunk(() => ({})))),
           listen: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "::1",
                 description: "IP address that Calibre-Web should listen on.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8083n,
                 description: "Listen port for Calibre-Web.\n",
               })))),
           })),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "calibre-web",
               description: "Where Calibre-Web stores its data.\nEither an absolute path, or the directory name below {file}`/var/lib`.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "calibre-web",
               description: "User account under which Calibre-Web runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "calibre-web",
               description: "Group account under which Calibre-Web runs.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the server.\n",
             })))),
           options: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             calibreLibrary: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "Path to Calibre library.\n",
               })))),
             calibreSplitBookDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "Path to directory to store ebook files.\n",
               })))),
             enableBookConversion: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Configure path to the Calibre's ebook-convert in the DB.\n",
               })))),
             enableKepubify: nix.thunk(() => nix.app(mkEnableOption, "kepub conversion support")),
             enableBookUploading: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Allow books to be uploaded via Calibre-Web UI.\n",
               })))),
             reverseProxyAuth: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: false,
                   description: "Enable authorization using auth proxy.\n",
                 })))),
               header: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "",
                   description: "Auth proxy header name.\n",
@@ -153,18 +153,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "dataDir")))), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 "10-calibre-web": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(dataDir), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     d: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                       mode: "0700",
@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "calibre-web": nix.thunk(() => (() => {
               const appDb = nix.thunk(() => nix.str`${dataDir}/app.db`);
               const gdriveDb = nix.thunk(() => nix.str`${dataDir}/gdrive.db`);
@@ -192,13 +192,13 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.str`config_binariesdir = '${nix.sel(cfg, "calibrePackage")}/bin/'`),
                   ])), nix.app(optional, nix.thunk(() => nix.sel(cfg, "options", "enableKepubify")), nix.thunk(() => nix.str`config_kepubifypath = '${nix.sel(pkgs, "kepubify")}/bin/kepubify'`)))))))));
               return {
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: "Web app for browsing, reading and downloading eBooks stored in a Calibre database",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                environment: nix.thunk(() => ({ __proto__: pos$23, CACHE_DIR: "/var/cache/calibre-web" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$23, CACHE_DIR: "/var/cache/calibre-web" })),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   Type: "simple",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -246,32 +246,32 @@ ${nix.sel(pkgs, "sqlite")}/bin/sqlite3 ${appDb} "update settings set ${settings}
                     "~@debug",
                     "~@cpu-emulation",
                   ]),
-                }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "dataDir"))))), nix.thunk(() => ({ __proto__: pos$25, StateDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")) }))))),
+                }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "dataDir"))))), nix.thunk(() => ({ [nix.POS]: pos$25, StateDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")) }))))),
               };
             })()),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listen", "port"))]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "calibre-web")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "calibre-web": nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "calibre-web")), nix.thunk(() => ({ __proto__: pos$33, "calibre-web": nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "calibre-web")), nix.thunk(() => ({ [nix.POS]: pos$33, "calibre-web": nix.thunk(() => ({})) })))),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$36, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$36, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=calibre-web.ts.map

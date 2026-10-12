@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "es",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wryun",
           repo: "es-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline]),
       configureFlags: nix.thunk(() => ["--with-readline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible shell with higher order functions",
         mainProgram: "es",
         longDescription: "Es is an extensible shell. The language was derived\nfrom the Plan 9 shell, rc, and was influenced by\nfunctional programming languages, such as Scheme,\nand the Tcl embeddable programming language.\n",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/es" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/es" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

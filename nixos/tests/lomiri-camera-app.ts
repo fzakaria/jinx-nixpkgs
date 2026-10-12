@@ -52,11 +52,11 @@ export default nix.thunk(() => (() => {
   const feedQrContent = "Test";
   const feedImageFile = "feed.png";
   const makeFeedImage = (pkgs) => nix.app(nix.sel(pkgs, "runCommand"), feedImageFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ __proto__: pos$1, ghostscriptSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ghostscriptSupport: true })))),
           nix.thunk(() => nix.lookup(w, "qrtool")),
         ];
       })()),
@@ -70,32 +70,32 @@ magick qr.png \\
   $out
 `));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     basic: nix.thunk(() => nix.app(makeTest, nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const lib = nix.arg($, "lib");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "lomiri-camera-app-basic",
           meta: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const config = nix.arg($_1, "config");
               const pkgs = nix.arg($_1, "pkgs");
               return {
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  xserver: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                  [nix.POS]: pos$5,
+                  xserver: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   systemPackages: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lomiri")), null);
                     return [
@@ -103,11 +103,11 @@ magick qr.png \\
                       nix.thunk(() => nix.lookup(w, "lomiri-camera-app")),
                     ];
                   })()),
-                  variables: nix.thunk(() => ({ __proto__: pos$6, UITK_ICON_THEME: "suru" })),
+                  variables: nix.thunk(() => ({ [nix.POS]: pos$6, UITK_ICON_THEME: "suru" })),
                 })),
-                i18n: nix.thunk(() => ({ __proto__: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
+                i18n: nix.thunk(() => ({ [nix.POS]: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
                 fonts: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   packages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
@@ -128,29 +128,29 @@ magick qr.png \\
         const $ = nix.formals(args, formals$3);
         const lib = nix.arg($, "lib");
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           name: "lomiri-camera-app-v4l2-photo",
           meta: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$4);
               const config = nix.arg($_1, "config");
               const pkgs = nix.arg($_1, "pkgs");
               return {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  xserver: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+                  [nix.POS]: pos$15,
+                  xserver: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   etc: nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.str`${feedImageFile}`, nix.thunk(() => ({ __proto__: pos$16, source: nix.thunk(() => nix.app(makeFeedImage, pkgs)) }))],
+                    [nix.str`${feedImageFile}`, nix.thunk(() => ({ [nix.POS]: pos$16, source: nix.thunk(() => nix.app(makeFeedImage, pkgs)) }))],
                   ])),
                   systemPackages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
@@ -167,18 +167,18 @@ magick qr.png \\
                       ];
                     })());
                   })()),
-                  variables: nix.thunk(() => ({ __proto__: pos$17, UITK_ICON_THEME: "suru" })),
+                  variables: nix.thunk(() => ({ [nix.POS]: pos$17, UITK_ICON_THEME: "suru" })),
                 })),
-                i18n: nix.thunk(() => ({ __proto__: pos$19, supportedLocales: nix.thunk(() => ["all"]) })),
+                i18n: nix.thunk(() => ({ [nix.POS]: pos$19, supportedLocales: nix.thunk(() => ["all"]) })),
                 fonts: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   packages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
                   })()),
                 })),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   extraModulePackages: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
                     return [nix.thunk(() => nix.lookup(w, "v4l2loopback"))];
@@ -224,29 +224,29 @@ with subtest("lomiri camera uses camera"):
         const $ = nix.formals(args, formals$5);
         const lib = nix.arg($, "lib");
         return {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           name: "lomiri-camera-app-v4l2-qr",
           meta: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$6);
               const config = nix.arg($_1, "config");
               const pkgs = nix.arg($_1, "pkgs");
               return {
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$27,
-                  xserver: nix.thunk(() => ({ __proto__: pos$26, enable: true })),
+                  [nix.POS]: pos$27,
+                  xserver: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   etc: nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.str`${feedImageFile}`, nix.thunk(() => ({ __proto__: pos$28, source: nix.thunk(() => nix.app(makeFeedImage, pkgs)) }))],
+                    [nix.str`${feedImageFile}`, nix.thunk(() => ({ [nix.POS]: pos$28, source: nix.thunk(() => nix.app(makeFeedImage, pkgs)) }))],
                   ])),
                   systemPackages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
@@ -262,18 +262,18 @@ with subtest("lomiri camera uses camera"):
                       ];
                     })());
                   })()),
-                  variables: nix.thunk(() => ({ __proto__: pos$29, UITK_ICON_THEME: "suru" })),
+                  variables: nix.thunk(() => ({ [nix.POS]: pos$29, UITK_ICON_THEME: "suru" })),
                 })),
-                i18n: nix.thunk(() => ({ __proto__: pos$31, supportedLocales: nix.thunk(() => ["all"]) })),
+                i18n: nix.thunk(() => ({ [nix.POS]: pos$31, supportedLocales: nix.thunk(() => ["all"]) })),
                 fonts: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   packages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
                   })()),
                 })),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   extraModulePackages: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
                     return [nix.thunk(() => nix.lookup(w, "v4l2loopback"))];

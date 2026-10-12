@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdi2iso",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdi2iso.berlios/cdi2iso-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "0fj2fxhpr26z649m0ph71378c41ljflpyk89g87x8r1mc4rbq3kh",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ncp cdi2iso $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very simple utility for converting DiscJuggler images to the standard ISO-9660 format",
         homepage: "https://sourceforge.net/projects/cdi2iso.berlios",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

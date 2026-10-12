@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "warner",
           repo: "python-ed25519",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, versioneer]);
       const pythonImportsCheck = nix.thunk(() => ["ed25519"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ed25519 public-key signatures",
         mainProgram: "edsig",
         homepage: "https://github.com/warner/python-ed25519",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

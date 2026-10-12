@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "cbqn"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.add("cbqn", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(generateBytecode)), "-standalone"))),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -64,7 +64,7 @@ $out/bin/BQN test/run.bqn lint
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/dzaima/CBQN/",
         description: "BQN implementation in C",
         license: nix.thunk(() => (() => {

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gopass-summon-provider",
       version: "1.17.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gopasspw",
           repo: "gopass-summon-provider",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       preVersionCheck: "gopass setup --name \"user\" --email \"user@localhost\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gopass Summon Provider",
         homepage: "https://github.com/gopasspw/gopass-summon-provider",
         changelog: nix.thunk(() => nix.str`https://github.com/gopasspw/gopass-summon-provider/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -35,15 +35,15 @@ ${nix.app(concatStrings, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix
 `, config_1)))))}`, accounts)))))}
 `));
   const mkOpt = (type) => (description) => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), type)),
       default: null,
       description: description,
     })));
   const accountOptions = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mailaddress: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(types, "str")), "Your email address (at the moment used as login name)")),
       username: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(types, "str")), "If empty string mailaddress value is used")),
       password: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(types, "str")), "")),
@@ -53,33 +53,33 @@ ${nix.app(concatStrings, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix
     })),
   }));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     port: 8081n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       oldestUnseenDate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Enable metric with timestamp of oldest unseen mail\n",
         })))),
       accounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), accountOptions)))),
           default: nix.thunk(() => ({})),
           description: "Accounts to monitor\n",
         })))),
       configurationFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "path")),
           example: "/path/to/config-file",
           description: "File containing the configuration\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-imap-mailstat-exporter")}/bin/imap-mailstat-exporter \\
   --config.file="${nix.app(createConfigFile, nix.thunk(() => nix.sel(cfg, "accounts")))}" \\
   ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "oldestUnseenDate")), "--oldestunseen.feature")} \\

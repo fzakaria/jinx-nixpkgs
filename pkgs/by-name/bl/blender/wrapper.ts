@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const extraModules = nix.argOr($, "extraModules", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.sel(blender, "pname")),
       src: blender,
       version: nix.thunk(() => nix.attr(blender, "version")),

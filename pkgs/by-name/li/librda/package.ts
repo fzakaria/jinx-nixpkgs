@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const intltool = nix.arg($, "intltool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librda",
       version: "0.0.5-unstable-2023-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArcticaProject",
           repo: "librda",
           rev: "d7ed1368145e39b0c761947a32fa50493e70f554",
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Remote Desktop Awareness Shared Library",
         homepage: "https://github.com/ArcticaProject/librda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

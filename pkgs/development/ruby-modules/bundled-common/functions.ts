@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const gemset = nix.argOr($_1, "gemset", () => null);
       const gemdir = nix.argOr($_1, "gemdir", () => null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         gemdir: gemdir,
         gemfile: nix.thunk(() => (nix.asBool(nix.eq(gemfile, null)) ? (() => {
           nix.assert_(!nix.eq(gemdir, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ruby-modules/bundled-common/functions.nix:28:11");
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       const groups = nix.arg($_1, "groups");
       const binPaths = nix.arg($_1, "binPaths");
       const genStubsScript_1 = nix.thunk(() => nix.app(runCommand, "gen-bin-stubs", nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           strictDeps: true,
           nativeBuildInputs: nix.thunk(() => [ruby]),
         })), nix.thunk(() => nix.str`cp ${nix.path(here, "./gen-bin-stubs.rb")} $out
@@ -103,7 +103,7 @@ patchShebangs --build $out
       const version = nix.arg($_1, "version");
       const path = nix.arg($_1, "path");
       const res = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: "derivation",
         bundledByPath: true,
         name: gemName,
@@ -120,7 +120,7 @@ patchShebangs --build $out
     const composeGemAttrs = (ruby) => (gems) => (name) => (attrs) => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["platforms"])), (() => {
       const from = nix.thunk(() => nix.sel(attrs, "source"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       ruby: ruby,
       type: nix.thunk(() => nix.attr(from, "type")),
       source: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(attrs, "source")), nix.thunk(() => ["type"]))),
@@ -129,7 +129,7 @@ patchShebangs --build $out
     };
     })());
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       bundlerFiles,
       filterGemset,
       platformMatches,

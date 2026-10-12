@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.46";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dput-ng",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "dput-ng",
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTestPaths: nix.thunk(() => ["tests/test_upload.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=(?:debian/)?(\\d+(?:\\.\\d+)*)(?:[_+].*)?"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Next-generation Debian package upload tool",
         homepage: "https://dput.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_trace",
           version: version,
           hash: "sha256-9ab5uNpTC3bEUhY7g+UIHBaW8bT2cpDIeLDnNw8ekQo=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_batch_write_spans", "test_list_traces"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.trace", "google.cloud.trace_v1", "google.cloud.trace_v2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud Trace API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-trace",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-trace-v${version}/packages/google-cloud-trace/CHANGELOG.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

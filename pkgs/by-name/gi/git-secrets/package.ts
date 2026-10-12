@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-secrets",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awslabs",
           repo: "git-secrets",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ wrapProgram $out/bin/git-secrets \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, coreutils]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prevents you from committing secrets and credentials into git repositories",
         homepage: "https://github.com/awslabs/git-secrets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lavalauncher",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "lavalauncher-source",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           owner: "~leon_plickat",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~leon_plickat/lavalauncher",
         description: "Simple launcher panel for Wayland desktops",
         longDescription: "LavaLauncher is a simple launcher panel for Wayland desktops.\n\nIt displays a dynamically sized bar with user defined buttons. Buttons\nconsist of an image, which is displayed as the button icon on the bar, and\nat least one shell command, which is executed when the user activates the\nbutton.\n\nButtons can be activated with pointer and touch events.\n\nA single LavaLauncher instance can provide multiple such bars, across\nmultiple outputs.\n\nThe Wayland compositor must implement the Layer-Shell and XDG-Output for\nLavaLauncher to work.\n",

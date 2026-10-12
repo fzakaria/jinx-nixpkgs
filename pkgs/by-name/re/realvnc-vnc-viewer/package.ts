@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pname = "realvnc-vnc-viewer";
   const version = "7.15.1";
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "VNC remote desktop client software by RealVNC",
     homepage: "https://www.realvnc.com/en/connect/download/viewer/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
     })()),
     license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         shortName: "vncConnect",
         fullName: "VNC Connect End User License Agreement",
         url: "https://static.realvnc.com/media/documents/LICENSE-4.0a_en.pdf",
@@ -40,6 +40,6 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
     mainProgram: "vncviewer",
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ __proto__: pos$4, pname: pname, version: version, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

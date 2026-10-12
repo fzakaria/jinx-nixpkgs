@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const music_assistant = nix.arg($, "music-assistant");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aiosendspin",
       version: "9.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sendspin",
           repo: "aiosendspin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       dependencies: nix.thunk(() => [aiohttp, cpace, cryptography, mashumaro, noiseprotocol, orjson, zeroconf]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         asrc: nix.thunk(() => [av, numpy, soxr]),
         server: nix.thunk(() => [av, numpy, pillow]),
         source: nix.thunk(() => [av, numpy]),
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_aiohttp, pytest_cov_stub, pytest_xdist, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "server"))),
       pythonImportsCheck: nix.thunk(() => ["aiosendspin"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
         tests: nix.thunk(() => nix.sel(nixosTests, "music-assistant")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(music_assistant, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/Sendspin/aiosendspin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Async Python library implementing the Sendspin Protocol",
         homepage: "https://github.com/Sendspin/aiosendspin",

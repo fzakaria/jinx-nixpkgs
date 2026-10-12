@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const domain = "oref_alert";
       const version = "7.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amitfin",
           repo: "oref_alert",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         home_assistant_frontend,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/amitfin/oref_alert/releases/tag/v${version}`),
         description: "Israeli Oref Alerts",
         homepage: "https://github.com/amitfin/oref_alert",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

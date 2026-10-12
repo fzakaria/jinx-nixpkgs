@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const cudaAtLeast = nix.arg($, "cudaAtLeast");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nvrtc",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "include", "lib"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "11.5")), nix.thunk(() => ["static"])), ["stubs"]))),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Runtime compilation library for CUDA C++",
         longDescription: "NVRTC is a runtime compilation library for CUDA C++. It accepts CUDA C++ source code in character string form\nand creates handles that can be used to obtain the PTX.\n",
         homepage: "https://docs.nvidia.com/cuda/nvrtc",

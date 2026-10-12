@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pacproxy",
       version: "2.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "williambailey",
           repo: "pacproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-I3wI7Z/Gcp7fdOYXkl98EBMwQEEdlHyrq2I1E3KMVME=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "No-frills local HTTP proxy server powered by a proxy auto-config (PAC) file",
         homepage: "https://github.com/williambailey/pacproxy",
         changelog: nix.thunk(() => nix.str`https://github.com/williambailey/pacproxy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

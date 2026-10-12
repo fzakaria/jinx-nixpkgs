@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const gradle = nix.arg($, "gradle");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "smithy-language-server",
       version: "0.9.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smithy-lang",
           repo: "smithy-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       gradleBuildTask: "installDist",
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -52,9 +52,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/smithy-language-ser
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           help: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-help-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --help &> $out
 grep "Run the Smithy Language Server" $out
 `))),
@@ -63,7 +63,7 @@ grep "Run the Smithy Language Server" $out
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "smithy-language-server",
         description: "Language server implementation for the Smithy IDL",
         homepage: "https://github.com/smithy-lang/smithy-language-server",

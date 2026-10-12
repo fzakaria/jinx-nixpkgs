@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nanobench",
       version: "4.3.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martinus",
           repo: "nanobench",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/martinus/nanobench/commit/e4327893194f06928012eb81cabc606c4e4791ac.patch",
             hash: "sha256-vmpohg9TbIxT+p4JerWh/QBcZ3/+1gPSNf15sqW6leM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/martinus/nanobench/pull/98/commits/92c6995ccaebbda87fed13de8eaf3d135d1af0c0.patch",
             hash: "sha256-JwCpwSRzV1qnwwcJIGEJWxthT4Vj12TXhAGG0bc8KGM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/martinus/nanobench/pull/98/commits/17a1f0b598a09d399dd492c72bca5b48ad76c794.patch",
             hash: "sha256-2lOD63qN7gywUQxrdSRVyddpzcQjjeWOrA3hqu7x+CY=",
           })))),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple, fast, accurate single-header microbenchmarking functionality for C++11/14/17/20",
         homepage: "https://nanobench.ankerl.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/martinus/nanobench/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const perlEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "perl", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "NetZooKeeper"))]));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "zookeeper",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ztzg"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            zookeeper: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            zookeeper: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
-            firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+            [nix.POS]: pos$5,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [2181n]) })),
           })),
         };
       })(), formals$2),

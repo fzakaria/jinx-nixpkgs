@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const indicator_application_gtk3 = nix.arg($, "indicator-application-gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wingpanel-indicator-namarupa",
       version: "0.0.0-unstable-2024-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lenemter",
           repo: "wingpanel-indicator-namarupa",
           rev: "d9fc4e47d58c72e0cf08aa11246910ce84fcef50",
           sha256: "sha256-8jzhrCMkP5ui964JRZUs+tl2ShxeB8q60fBUI4okrpg=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-meson-build.patch"), nix.thunk(() => ({ __proto__: pos$2, indicator_application: indicator_application_gtk3 })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-meson-build.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, indicator_application: indicator_application_gtk3 })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, vala]),
       buildInputs: nix.thunk(() => [
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pantheon, "wingpanel")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/lenemter/wingpanel-indicator-namarupa.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wingpanel Namarupa Indicator (Ayatana support)",
         homepage: "https://github.com/lenemter/wingpanel-indicator-namarupa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

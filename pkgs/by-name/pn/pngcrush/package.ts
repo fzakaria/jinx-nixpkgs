@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pngcrush",
       version: "1.8.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pmt/pngcrush-${nix.sel(finalAttrs, "version")}-nolib.tar.xz`),
           sha256: "0l43c59d6v9l0g07z3q3ywhb8xb3vz74llv3mna0izk9bj6aqkiv",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/pngcrush/-/raw/b4856b56fbc28252103cc14d156baddd564ca880/debian/patches/ignore_PNG_IGNORE_ADLER32.patch",
             hash: "sha256-pFON/NUJiXMe9GETptgNltWa0izlby6P/fLsG1abz3g=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nsed -i s,/usr,$out, Makefile\n\nrunHook postConfigure\n",
       buildInputs: nix.thunk(() => [libpng]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://pmt.sourceforge.net/pngcrush",
         description: "PNG optimizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

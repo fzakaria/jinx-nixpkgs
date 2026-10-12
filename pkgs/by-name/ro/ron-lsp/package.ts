@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ron-lsp",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jasonjmcghee",
           repo: "ron-lsp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-oysc13+FNF+IHVGYFV5MP5smaK9TtXXgDOhn7QmMPqs=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RON, Rusty Object Notation, Language Server",
         longDescription: "An LSP and CLI for RON files that provides autocomplete,\ndiagnostics, go to definition, code actions, and hover support\nbased on Rust type annotations\n",
         homepage: "https://github.com/jasonjmcghee/ron-lsp",

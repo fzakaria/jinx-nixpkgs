@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const pythonShebang = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "python-shebang", "#!/usr/bin/python\nprint(\"OK\")\n"));
   const bashShebang = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "bash-shebang", "#!/usr/bin/bash\necho \"OK\"\n"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "envfs",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          envfs: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          envfs: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           initrd: nix.thunk(() => ({
-            __proto__: pos$4,
-            systemd: nix.thunk(() => ({ __proto__: pos$3, enable: systemdStage1 })),
+            [nix.POS]: pos$4,
+            systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: systemdStage1 })),
           })),
         })),
       })),

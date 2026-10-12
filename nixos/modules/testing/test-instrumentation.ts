@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "testing"));
   const qemu_common = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/qemu-common.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: nix.thunk(() => nix.attr(pkgs, "lib")),
       stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
     }))));
   const backdoorService = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     requires: nix.thunk(() => [
       "dev-hvc0.device",
       nix.thunk(() => nix.str`dev-${nix.sel(qemu_common, "qemuSerialDevice")}.device`),
@@ -120,66 +120,66 @@ echo "Spawning backdoor root shell..."
 # tightly coupled to NixOS.
 PS1="" exec ${nix.sel(pkgs, "bashNonInteractive")}/bin/bash --norc /dev/hvc0
 `),
-    serviceConfig: nix.thunk(() => ({ __proto__: pos$2, KillSignal: "SIGHUP" })),
+    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$2, KillSignal: "SIGHUP" })),
   }));
   const managerSettings = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     ShowStatus: false,
     DefaultTimeoutStartSec: 300n,
     DefaultDeviceTimeoutSec: 300n,
     MinimumUptimeSec: 0n,
   }));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       testing: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         backdoor: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "backdoor service in stage 2"), {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           default: nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))),
         })),
         initrdBackdoor: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "backdoor.service in initrd. Requires\nboot.initrd.systemd.enable to be enabled. Boot will pause in\nstage 1 at initrd.target, and will listen for commands from the\nMachine python interface, just like stage 2 normally does. This\nenables commands to be sent to test and debug stage 1. Use\nmachine.switch_root() to leave stage 1 and proceed to stage 2\n")),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "initrdBackdoor")) || nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))),
           message: "`testing.initrdBackdoor` requires `boot.initrd.systemd.enable` to be enabled.\n",
         })),
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "isContainer")) || nix.asBool(!nix.asBool(nix.sel(cfg, "backdoor"))))),
           message: "`testing.backdoor` uses virtio console, which does not work with\ncontainers (we use `nsenter` instead).\n",
         })),
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "isContainer")) || nix.asBool(!nix.asBool(nix.sel(cfg, "initrdBackdoor"))))),
           message: "`testing.initrdBackdoor` does not work with containers as there is no initrd.\n",
         })),
       ]),
       systemd: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => nix.attrsDyn({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           backdoor: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "backdoor")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 backdoorService,
-                nix.thunk(() => ({ __proto__: pos$11, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                nix.thunk(() => ({ [nix.POS]: pos$11, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
               ]))))),
-          "serial-getty@hvc0": nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+          "serial-getty@hvc0": nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
         }, [
-          [nix.str`serial-getty@${nix.sel(qemu_common, "qemuSerialDevice")}`, nix.thunk(() => ({ __proto__: pos$13, enable: false }))],
+          [nix.str`serial-getty@${nix.sel(qemu_common, "qemuSerialDevice")}`, nix.thunk(() => ({ [nix.POS]: pos$13, enable: false }))],
         ])),
-        settings: nix.thunk(() => ({ __proto__: pos$15, Manager: managerSettings })),
+        settings: nix.thunk(() => ({ [nix.POS]: pos$15, Manager: managerSettings })),
         user: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           settings: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             Manager: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               DefaultTimeoutStartSec: 300n,
               DefaultDeviceTimeoutSec: 300n,
             })),
@@ -187,16 +187,16 @@ PS1="" exec ${nix.sel(pkgs, "bashNonInteractive")}/bin/bash --norc /dev/hvc0
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         initrd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 contents: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   "/etc/systemd/journald.conf": nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     text: nix.thunk(() => nix.str`[Journal]
 ForwardToConsole=yes
 TTYPath=/dev/${nix.sel(qemu_common, "qemuSerialDevice")}
@@ -204,22 +204,22 @@ MaxLevelConsole=debug
 `),
                   })),
                 })),
-                settings: nix.thunk(() => ({ __proto__: pos$22, Manager: managerSettings })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$22, Manager: managerSettings })),
               })),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "initrdBackdoor")), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   services: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     "initrd-cleanup": nix.thunk(() => ({
-                      __proto__: pos$25,
-                      serviceConfig: nix.thunk(() => ({ __proto__: pos$24, ExecStart: nix.thunk(() => ["", "/bin/true"]) })),
+                      [nix.POS]: pos$25,
+                      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$24, ExecStart: nix.thunk(() => ["", "/bin/true"]) })),
                     })),
                     backdoor: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                         backdoorService,
                         nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           wantedBy: nix.thunk(() => ["sysinit.target"]),
-                          unitConfig: nix.thunk(() => ({ __proto__: pos$26, DefaultDependencies: false })),
+                          unitConfig: nix.thunk(() => ({ [nix.POS]: pos$26, DefaultDependencies: false })),
                           conflicts: nix.thunk(() => ["shutdown.target", "initrd-switch-root.target"]),
                           before: nix.thunk(() => ["shutdown.target", "initrd-switch-root.target"]),
                         })),
@@ -230,9 +230,9 @@ MaxLevelConsole=debug
             ]))),
         })),
         kernel: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           sysctl: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "kernel.hung_task_timeout_secs": 600n,
             "vm.panic_on_oom": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 2n)),
           })),
@@ -247,48 +247,48 @@ MaxLevelConsole=debug
         consoleLogLevel: 7n,
       })),
       virtualisation: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "virtualisation", "qemu", "package")), nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           qemu: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "qemu_test")))),
           })),
         })))),
       environment: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xwininfo"))]),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         journald: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           settings: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             Journal: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               ForwardToConsole: true,
               TTYPath: nix.thunk(() => nix.str`/dev/${nix.sel(qemu_common, "qemuSerialDevice")}`),
               MaxLevelConsole: "debug",
             })),
           })),
         })),
-        displayManager: nix.thunk(() => ({ __proto__: pos$40, logToJournal: true })),
+        displayManager: nix.thunk(() => ({ [nix.POS]: pos$40, logToJournal: true })),
         logrotate: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 150n, false)),
         })),
         qemuGuest: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           package: nix.thunk(() => nix.sel(pkgs, "qemu_test", "ga")),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         defaultGateway: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 150n, null)),
         nameservers: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 150n, [])),
         usePredictableInterfaceNames: false,
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         requiredKernelConfig: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), w);
           return [
@@ -300,11 +300,11 @@ MaxLevelConsole=debug
         stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1200n, nix.thunk(() => nix.sel(lib, "trivial", "release")))),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         users: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           root: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             hashedPasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 150n, nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "hashed-password.root", "")}`))),
           })),
         })),

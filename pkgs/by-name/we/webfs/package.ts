@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mailcap = nix.arg($, "mailcap");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webfs",
       version: "1.21-unstable-2021-02-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ourway",
           repo: "webfsd",
           rev: "228affae0774251c6925372d465eb4e648327879",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm444 -t $out/etc ${mailcap}/etc/mime.types
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP server for purely static content",
         homepage: "http://linux.bytesex.org/misc/webfs.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

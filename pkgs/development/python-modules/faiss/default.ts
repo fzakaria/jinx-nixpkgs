@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pip = nix.arg($, "pip");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(faiss_build, "pname")),
       version: nix.thunk(() => nix.attr(faiss_build, "version")),
       pyproject: true,
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       pythonImportsCheck: nix.thunk(() => ["faiss"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cudaSupport: nix.thunk(() => nix.attr(faiss_build, "cudaSupport")),
         cudaPackages: nix.thunk(() => nix.attr(faiss_build, "cudaPackages")),
         pythonSupport: nix.thunk(() => nix.attr(faiss_build, "pythonSupport")),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
-          pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./pytest.nix"), nix.thunk(() => ({ __proto__: pos$1, "faiss-build": faiss_build })))),
+          [nix.POS]: pos$2,
+          pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./pytest.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, "faiss-build": faiss_build })))),
         })),
       })),
       meta: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.selOr(faiss_build, () => ({}), "meta")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.removeAttrs, nix.thunk(() => ["mainProgram"]))),
           (m) => nix.update(m, {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Bindings for faiss, the similarity search library",
           }),
         ]))),

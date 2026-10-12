@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "timelimit",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timelimit",
           repo: "timelimit",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         INSTALL_PROGRAM: "install -m755",
         INSTALL_DATA: "install -m644",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Execute a command and terminates the spawned process after a given time with a given signal",
         homepage: "https://devel.ringlet.net/sysutils/timelimit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unigine-valley";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Valley-${version_1}.run`),
           hash: "sha256-L7R6nEXQbLTEi76VUoUyhS2LFeTdgdaTaIQVWGn/1+8=",
         }))));
@@ -94,7 +94,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Valley",
             exec: "valley",
             genericName: "A GPU Stress test tool from the UNIGINE",
@@ -104,7 +104,7 @@ runHook postInstall
       ]);
       const stripDebugList = nix.thunk(() => [nix.thunk(() => nix.str`${instPath}/bin`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unigine Valley GPU benchmarking tool",
         homepage: "https://unigine.com/products/benchmarks/valley/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -117,7 +117,7 @@ runHook postInstall
         mainProgram: "valley",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src,

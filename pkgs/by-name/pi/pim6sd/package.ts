@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pim6sd",
       version: "0-unstable-2024-12-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "troglobit",
           repo: "pim6sd",
           rev: "9fd332d92af4fe8c92a70c1b6c2048ffddb0e48a",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PIM for IPv6 sparse mode daemon",
         homepage: "https://github.com/troglobit/pim6sd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

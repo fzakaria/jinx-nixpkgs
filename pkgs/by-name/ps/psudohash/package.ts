@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "t3l3machus",
           repo: "psudohash",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ substituteInPlace $out/bin/psudohash \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Password list generator for orchestrating brute force attacks and cracking hashes",
         homepage: "https://github.com/t3l3machus/psudohash",
         changelog: nix.thunk(() => nix.str`https://github.com/t3l3machus/psudohash/releases/tag/v${version}`),
@@ -51,7 +51,7 @@ runHook postInstall
         mainProgram: "psudohash",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

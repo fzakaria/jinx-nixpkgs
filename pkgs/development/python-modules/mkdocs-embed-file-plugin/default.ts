@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-embed-file-plugin",
       version: "2.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ObsidianPublisher",
           repo: "mkdocs-embed_file-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mkdocs_embed_file_plugins"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A way to embed a file present in your docs",
         homepage: "https://github.com/ObsidianPublisher/mkdocs-embed_file-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/ObsidianPublisher/mkdocs-embed_file-plugin/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

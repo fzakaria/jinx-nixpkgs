@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mawk",
       version: "1.3.4-20240819",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/mawk/mawk-${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`https://invisible-island.net/archives/mawk/mawk-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       hardeningDisable: nix.thunk(() => ["strictflexarrays1"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "mawk -W version",
               version: nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "-", " ", nix.thunk(() => nix.sel(finalAttrs, "version")))),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             url: "https://invisible-island.net/archives/mawk/",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://invisible-island.net/mawk/mawk.html",
         changelog: "https://invisible-island.net/mawk/CHANGES",
         description: "Interpreter for the AWK Programming Language",

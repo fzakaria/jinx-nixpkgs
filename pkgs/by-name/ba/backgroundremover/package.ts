@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [nix.thunk(() => nix.sel(p, "setuptools"))]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nadermx",
           repo: "backgroundremover",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,27 +69,27 @@ cp ${src}/models/u2netp.pth $out
       ]);
       const pythonImportsCheck = nix.thunk(() => ["backgroundremover"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         models: models,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           image: nix.thunk(() => (() => {
             const demoImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://pics.craiyon.com/2023-07-16/38653769ac3b4e068181cb5ab1e542a1.webp",
                 hash: "sha256-Kvd06eZdibgDbabVVe0+cNTeS1rDnMXIZZpPlHIlfBo=",
               }))));
-            return nix.app(runCommand, "backgroundremover-image-test.png", nix.thunk(() => ({ __proto__: pos$3, buildInputs: nix.thunk(() => [self, imagemagick]) })), nix.thunk(() => nix.str`convert ${demoImage} input.png
+            return nix.app(runCommand, "backgroundremover-image-test.png", nix.thunk(() => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [self, imagemagick]) })), nix.thunk(() => nix.str`convert ${demoImage} input.png
 export NUMBA_CACHE_DIR=$(mktemp -d)
 backgroundremover -i input.png -o $out
 `));
           })()),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mainProgram: "backgroundremover",
         description: "Command line tool to remove background from image and video, made by nadermx to power",
         homepage: "https://BackgroundRemoverAI.com",
@@ -101,7 +101,7 @@ backgroundremover -i input.png -o $out
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "strictdoc",
       version: "0.27.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strictdoc-project",
           repo: "strictdoc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           development: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "invoke")),
             nix.thunk(() => nix.lookup(w_1, "tox")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["python-datauri", "xlsxwriter"]),
       pythonImportsCheck: nix.thunk(() => ["strictdoc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software for technical documentation and requirements management",
         homepage: "https://github.com/strictdoc-project/strictdoc",
         changelog: nix.thunk(() => nix.str`https://github.com/strictdoc-project/strictdoc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

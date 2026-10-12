@@ -39,39 +39,39 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`--addr ${nix.sel(cfg, "address")}`),
     ], nix.concat(nix.sel(cfg, "extraArgs"), nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "hideServerId")), "--no-server-id"), nix.app(optional, nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "--ipv6")))))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         darkhttpd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DarkHTTPd web server")),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 80n,
               type: port,
               description: "Port to listen on.\nPass 0 to let the system choose any free port for you.\n",
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "127.0.0.1",
               type: str,
               description: "Address to listen on.\nPass `all` to listen on all interfaces.\n",
             })))),
           rootDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: path,
               description: "Path from which to serve files.\n",
             })))),
           hideServerId: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: bool,
               default: true,
               description: "Don't identify the server type in headers or directory listings.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(listOf, str)),
               default: [],
               description: "Additional configuration passed to the executable.\n",
@@ -80,19 +80,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             darkhttpd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Dark HTTPd",
               wants: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "darkhttpd")}/bin/darkhttpd ${args_1}`),
                 AmbientCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.lt(nix.sel(cfg, "port"), 1024n)), nix.thunk(() => ["CAP_NET_BIND_SERVICE"]))),

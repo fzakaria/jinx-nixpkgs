@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dissent",
       version: "0.0.37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "diamondburned",
           repo: "dissent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "substituteInPlace nix/so.libdb.dissent.service \\\n  --replace-warn \"/usr/bin/dissent\" \"$out/bin/dissent\"\ninstall -D -m 444 -t $out/share/applications nix/so.libdb.dissent.desktop\ninstall -D -m 444 -t $out/share/icons/hicolor/scalable/apps internal/icons/hicolor/scalable/apps/so.libdb.dissent.svg\ninstall -D -m 444 -t $out/share/icons/hicolor/symbolic/apps internal/icons/symbolic/apps/so.libdb.dissent-symbolic.svg\ninstall -D -m 444 -t $out/share/metainfo so.libdb.dissent.metainfo.xml\ninstall -D -m 444 -t $out/share/dbus-1/services nix/so.libdb.dissent.service\n",
       vendorHash: "sha256-tl9H0qtp96XOanniMFqjZcsSU8LqJ4aluPoKULDzVdw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Third-party Discord client designed for a smooth, native experience (formerly gtkcord4)",
         homepage: "https://github.com/diamondburned/dissent",
         license: nix.thunk(() => (() => {

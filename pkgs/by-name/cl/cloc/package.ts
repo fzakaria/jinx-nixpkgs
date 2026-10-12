@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const version = "2.10";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cloc",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlDanial",
           repo: "cloc",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ echo ' ok'
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program that counts lines of source code",
         homepage: "https://github.com/AlDanial/cloc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const tree_sitter = nix.arg($, "tree-sitter");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tree-sitter-bash",
       version: "0.25.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter",
           repo: "tree-sitter-bash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ONQ1Ljk3aRWjElSWD2crCFZraZoRj3b3/VELz1789GE=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, core: nix.thunk(() => [tree_sitter]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, core: nix.thunk(() => [tree_sitter]) })),
       pythonImportsCheck: nix.thunk(() => ["tree_sitter_bash"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, tree_sitter]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bash grammar for tree-sitter",
         homepage: "https://github.com/tree-sitter/tree-sitter-bash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

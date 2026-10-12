@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "todoman",
       version: "4.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimutils",
           repo: "todoman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           repl: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "click-repl"))]),
         };
       })()),
@@ -90,7 +90,7 @@ installShellCompletion --bash contrib/completion/bash/_todo \\
       ]),
       pythonImportsCheck: nix.thunk(() => ["todoman"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pimutils/todoman",
         description: "Standards-based task manager based on iCalendar",
         longDescription: "Todoman is a simple, standards-based, cli todo (aka task) manager. Todos\nare stored into iCalendar files, which means you can sync them via CalDAV\nusing, for example, vdirsyncer.\n\nTodos are read from individual ics files from the configured directory.\nThis matches the vdir specification. There is support for the most common TODO\nfeatures for now (summary, description, location, due date and priority) for\nnow.\nUnsupported fields may not be shown but are never deleted or altered.\n",

@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const rtorrentPluginDependencies = nix.thunk(() => (() => {
     const w_1 = nix.withScope(pkgs, w);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       _task: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "procps"))]),
       unpack: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w_1, "unzip")),
@@ -77,52 +77,52 @@ export default nix.lambda((args) => (() => {
   const phpPluginDependencies = nix.thunk(() => (() => {
     const w_2 = nix.withScope(pkgs, w);
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       _cloudflare: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python3"))]),
     };
   })());
   const getPluginDependencies = (dependencies) => nix.app(nix.lookup(w, "concatMap"), (p) => nix.app(nix.lookup(w, "attrByPath"), nix.thunk(() => [p]), [], dependencies));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         rutorrent: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ruTorrent")),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "FQDN for the ruTorrent instance.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/lib/rutorrent",
               description: "Storage path of ruTorrent.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "rutorrent",
               description: "User which runs the ruTorrent service.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "rutorrent",
               description: "Group which runs the ruTorrent service.\n",
             })))),
           rpcSocket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.sel(config, "services", "rtorrent", "rpcSocket")),
               defaultText: "config.services.rtorrent.rpcSocket",
               description: "Path to rtorrent rpc socket.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_3, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_3, "either"), nix.thunk(() => nix.lookup(w_3, "str")), nix.thunk(() => nix.lookup(w_3, "package")))));
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
               description: "List of plugins to enable. See the list of [available plugins](https://github.com/Novik/ruTorrent/wiki/Plugins#currently-there-are-the-following-plugins). Note: the `unpack` plugin needs the nonfree `unrar` package.\nYou need to either enable one of the `rpc` or `httprpc` plugin or enable the {option}`services.rutorrent.nginx.exposeInsecureRPC2mount` option.\n",
             })))),
           poolSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_3, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_3, "oneOf"), nix.thunk(() => [
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -153,15 +153,15 @@ export default nix.lambda((args) => (() => {
               description: "Options for ruTorrent's PHP pool. See the documentation on `php-fpm.conf` for details on configuration directives.\n",
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to enable nginx virtual host management.\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee {option}`services.nginx.virtualHosts` for further information.\n",
               })))),
             exposeInsecureRPC2mount: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "If you do not enable one of the `rpc` or `httprpc` plugins you need to expose an RPC mount through scgi using this option.\nWarning: This allow to run arbitrary commands, as the rtorrent user, so make sure to use authentication. The simplest way would be to use the {option}`services.nginx.virtualHosts.<name>.basicAuth` option.\n",
@@ -172,17 +172,17 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertions: nix.thunk(() => (() => {
               const usedRpcPlugins = nix.thunk(() => nix.app(nix.lookup(w, "intersectLists"), nix.thunk(() => nix.sel(cfg, "plugins")), nix.thunk(() => ["httprpc", "rpc"])));
               return [
                 nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   assertion: nix.thunk(() => nix.lt(nix.app(nix.lookup(w, "length"), usedRpcPlugins), 2n)),
                   message: "Please specify only one of httprpc or rpc plugins",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.gt(nix.app(nix.lookup(w, "length"), usedRpcPlugins), 0n)) && nix.asBool(nix.sel(cfg, "nginx", "exposeInsecureRPC2mount"))))),
                   message: "Please do not use exposeInsecureRPC2mount if you use one of httprpc or rpc plugins",
                 })),
@@ -193,11 +193,11 @@ export default nix.lambda((args) => (() => {
               return nix.concat([], nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "nginx", "exposeInsecureRPC2mount")) && nix.asBool((nix.asBool(nix.eq(nix.sel(nginxVhostCfg, "basicAuth"), {})) || nix.asBool(nix.eq(nix.sel(nginxVhostCfg, "basicAuthFile"), null)))))), "You are using exposeInsecureRPC2mount without using basic auth on the virtual host. The exposed rpc mount allow for remote command execution.\n\nPlease make sure it is not accessible from the outside.\n"));
             })()),
             systemd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 rtorrent: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   path: nix.thunk(() => nix.app(getPluginDependencies, rtorrentPluginDependencies, nix.thunk(() => nix.sel(cfg, "plugins")))),
                 })),
                 "rutorrent-setup": nix.thunk(() => (() => {
@@ -270,7 +270,7 @@ export default nix.lambda((args) => (() => {
   $locale = "UTF8";
 `)));
                   return {
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     before: nix.thunk(() => ["phpfpm-rutorrent.service"]),
                     script: nix.thunk(() => nix.str`ln -sf ${nix.sel(pkgs, "rutorrent")}/{css,images,js,lang,index.html} ${nix.sel(cfg, "dataDir")}/
@@ -285,23 +285,23 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
 chown -R ${nix.sel(cfg, "user")}:${nix.sel(cfg, "group")} ${nix.sel(cfg, "dataDir")}/{conf,share,logs,plugins}
 chmod -R 755 ${nix.sel(cfg, "dataDir")}/{conf,share,logs,plugins}
 `),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$20, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$20, Type: "oneshot" })),
                   };
                 })()),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0775 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
                 ]),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])),
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "rtorrent", "group"))]),
@@ -309,7 +309,7 @@ chmod -R 755 ${nix.sel(cfg, "dataDir")}/{conf,share,logs,plugins}
                   isSystemUser: true,
                 }))],
                 [nix.str`${nix.sel(config, "services", "rtorrent", "user")}`, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
                 }))],
               ])),
@@ -317,43 +317,43 @@ chmod -R 755 ${nix.sel(cfg, "dataDir")}/{conf,share,logs,plugins}
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   services: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     phpfpm: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       pools: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         rutorrent: nix.thunk(() => (() => {
                           const envPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.app(getPluginDependencies, phpPluginDependencies, nix.thunk(() => nix.sel(cfg, "plugins"))))));
                           const pool = nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             user: nix.thunk(() => nix.sel(cfg, "user")),
                             group: nix.thunk(() => nix.sel(config, "services", "rtorrent", "group")),
                             settings: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mapAttrs"), (name) => nix.force(nix.lookup(w, "mkDefault")), nix.thunk(() => ({
-                                __proto__: pos$29,
+                                [nix.POS]: pos$29,
                                 "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                                 "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                               }))), nix.sel(cfg, "poolSettings"))),
                           }));
                           return (nix.asBool(nix.eq(envPath, "")) ? nix.force(pool) : nix.update(pool, {
-                            __proto__: pos$32,
-                            phpEnv: nix.thunk(() => ({ __proto__: pos$31, PATH: envPath })),
+                            [nix.POS]: pos$32,
+                            phpEnv: nix.thunk(() => ({ [nix.POS]: pos$31, PATH: envPath })),
                           }));
                         })()),
                       })),
                     })),
                     nginx: nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       enable: true,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.sel(cfg, "hostName"), nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           root: nix.thunk(() => nix.sel(cfg, "dataDir")),
                           locations: nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             "~ [^/]\\.php(/|$)": nix.thunk(() => ({
-                              __proto__: pos$35,
+                              [nix.POS]: pos$35,
                               extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+?\\.php)(/.*)$;
 if (!-f $document_root$fastcgi_script_name) {
   return 404;
@@ -375,18 +375,18 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
                   })),
                 })),
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "exposeInsecureRPC2mount")), nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     services: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       nginx: nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             locations: nix.thunk(() => ({
-                              __proto__: pos$42,
+                              [nix.POS]: pos$42,
                               "/RPC2": nix.thunk(() => ({
-                                __proto__: pos$41,
+                                [nix.POS]: pos$41,
                                 extraConfig: nix.thunk(() => nix.str`include ${nix.sel(pkgs, "nginx")}/conf/scgi_params;
 scgi_pass unix:${nix.sel(cfg, "rpcSocket")};
 `),
@@ -395,7 +395,7 @@ scgi_pass unix:${nix.sel(cfg, "rpcSocket")};
                           }))],
                         ])),
                       })),
-                      rtorrent: nix.thunk(() => ({ __proto__: pos$45, group: "nginx" })),
+                      rtorrent: nix.thunk(() => ({ [nix.POS]: pos$45, group: "nginx" })),
                     })),
                   })))),
               ]))))),

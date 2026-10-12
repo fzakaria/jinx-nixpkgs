@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmenu-wayland",
       version: "0-unstable-2023-05-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nyyManni",
           repo: "dmenu-wayland",
           rev: "a380201dff5bfac2dace553d7eaedb6cea6855f9",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, pango, wayland_protocols, glib, wayland, libxkbcommon]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "support-cross-compilation.patch",
             url: "https://github.com/nyyManni/dmenu-wayland/commit/3434410de5dcb007539495395f7dc5421923dd3a.patch",
             sha256: "sha256-im16kU8RWrCY0btYOYjDp8XtfGEivemIPlhwPX0C77o=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram $out/bin/dmenu-wl_run \\\n  --prefix PATH : $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         description: "Efficient dynamic menu for wayland (wlroots)",

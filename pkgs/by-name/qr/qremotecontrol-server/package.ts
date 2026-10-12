@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qremotecontrol-server",
       version: "unstable-2014-11-05",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/qrc/gitcode",
           rev: "8f1c55eac10ac8af974c3c20157d90ef57f7308a",
           sha256: "sha256-AfFScec5/emG/f+yc5Zn37USIEWzGP/sBifE6Kx8d0E=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qtbase")), libxtst]),
       postPatch: "substituteInPlace QRemoteControl-Server.pro \\\n  --replace /usr $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => (() => {

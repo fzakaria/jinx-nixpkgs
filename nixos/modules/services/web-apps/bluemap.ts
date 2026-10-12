@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const mapsFolder = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "maps", nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${name}.conf`), nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${name}.conf`), value))), nix.thunk(() => nix.sel(cfg, "maps"))))));
   const storageFolder = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "storage", nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${name}.conf`), nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${name}.conf`), value))), nix.thunk(() => nix.sel(cfg, "storage"))))));
   const configFolder = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "bluemap-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maps: mapsFolder,
       storages: storageFolder,
       "core.conf": coreConfig,
@@ -83,68 +83,68 @@ export default nix.lambda((args) => (() => {
     }))));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "bluemap", "resourcepacks"]), nix.thunk(() => ["services", "bluemap", "packs"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "bluemap", "addons"]), nix.thunk(() => ["services", "bluemap", "packs"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         bluemap: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "bluemap")),
           eula: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "By changing this option to true you confirm that you own a copy of minecraft Java Edition,\nand that you agree to minecrafts EULA.\n",
               default: false,
             })))),
           defaultWorld: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The world used by the default map ruleset.\nIf you configure your own maps you do not need to set this.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${config.services.minecraft.dataDir}/world")),
             })))),
           enableRender: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable rendering",
               default: true,
             })))),
           webRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/bluemap/web",
               description: "The directory for saving and serving the webapp and the maps",
             })))),
           enableNginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable configuring a virtualHost for serving the bluemap webapp",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Domain on which nginx will serve the bluemap webapp",
             })))),
           onCalendar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "How often to trigger rendering the map,\nin the format of a systemd timer onCalendar configuration.\nSee {manpage}`systemd.timer(5)`.\n",
               default: "*-*-* 03:10:00",
             })))),
           coreSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     data: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "Folder for where bluemap stores its data",
                         default: "/var/lib/bluemap",
@@ -155,10 +155,10 @@ export default nix.lambda((args) => (() => {
               description: "Settings for the core.conf file, [see upstream docs](https://github.com/BlueMap-Minecraft/BlueMap/blob/master/BlueMapCommon/src/main/resources/de/bluecolored/bluemap/config/core.conf).",
             })))),
           webappSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$13, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              [nix.POS]: pos$15,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$13, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               default: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enabled: true,
                 webroot: nix.thunk(() => nix.sel(cfg, "webRoot")),
               })),
@@ -166,14 +166,14 @@ export default nix.lambda((args) => (() => {
               description: "Settings for the webapp.conf file, see [upstream docs](https://github.com/BlueMap-Minecraft/BlueMap/blob/master/BlueMapCommon/src/main/resources/de/bluecolored/bluemap/config/webapp.conf).",
             })))),
           webserverSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Enable bluemap's built-in webserver.\nDisabled by default in nixos for use of nginx directly.\n",
                         default: false,
@@ -184,29 +184,29 @@ export default nix.lambda((args) => (() => {
               description: "Settings for the webserver.conf file, usually not required.\n[See upstream docs](https://github.com/BlueMap-Minecraft/BlueMap/blob/master/BlueMapCommon/src/main/resources/de/bluecolored/bluemap/config/webserver.conf).\n",
             })))),
           maps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       world: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           description: "Path to world folder containing the dimension to render",
                         })))),
                     })),
                   })))))),
               default: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 overworld: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   world: nix.thunk(() => nix.str`${nix.sel(cfg, "defaultWorld")}`),
                   "ambient-light": 0.1,
                   "cave-detection-ocean-floor": nix.thunk(() => nix.neg(5n)),
                 })),
                 nether: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   world: nix.thunk(() => nix.str`${nix.sel(cfg, "defaultWorld")}/DIM-1`),
                   sorting: 100n,
                   "sky-color": "#290000",
@@ -219,7 +219,7 @@ export default nix.lambda((args) => (() => {
                   "max-y": 90n,
                 })),
                 end: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   world: nix.thunk(() => nix.str`${nix.sel(cfg, "defaultWorld")}/DIM1`),
                   sorting: 200n,
                   "sky-color": "#080010",
@@ -234,14 +234,14 @@ export default nix.lambda((args) => (() => {
               description: "Settings for files in `maps/`.\nIf you define anything here you must define everything yourself.\nSee the default for an example with good options for the different world types.\nFor valid values [consult upstream docs](https://github.com/BlueMap-Minecraft/BlueMap/blob/master/BlueMapCommon/src/main/resources/de/bluecolored/bluemap/config/maps/map.conf).\n",
             })))),
           storage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       "storage-type": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["FILE", "SQL"]))),
                           description: "Type of storage config",
                           default: "FILE",
@@ -250,16 +250,16 @@ export default nix.lambda((args) => (() => {
                   })))))),
               description: "Where the rendered map will be stored.\nUnless you are doing something advanced you should probably leave this alone and configure webRoot instead.\n[See upstream docs](https://github.com/BlueMap-Minecraft/BlueMap/tree/master/BlueMapCommon/src/main/resources/de/bluecolored/bluemap/config/storages)\n",
               default: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 file: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "webRoot")}/maps`),
                 })),
               })),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"file\" = {\n    root = \"${config.services.bluemap.webRoot}/maps\";\n  };\n}\n")),
             })))),
           packs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "pathInStore")))),
               default: nix.thunk(() => ({})),
               description: "A set of resourcepacks, datapacks, and mods to extract resources from,\nloaded in alphabetical order.\n",
@@ -268,31 +268,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => nix.sel(config, "services", "bluemap", "eula")),
             message: "You have enabled bluemap but have not accepted minecraft's EULA.\nYou can achieve this through setting `services.bluemap.eula = true`\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           bluemap: nix.thunk(() => ({
-            __proto__: pos$40,
-            coreSettings: nix.thunk(() => ({ __proto__: pos$39, "accept-download": nix.thunk(() => nix.sel(cfg, "eula")) })),
+            [nix.POS]: pos$40,
+            coreSettings: nix.thunk(() => ({ [nix.POS]: pos$39, "accept-download": nix.thunk(() => nix.sel(cfg, "eula")) })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "host")}`, nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   root: nix.thunk(() => nix.sel(config, "services", "bluemap", "webRoot")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$43,
-                    "@empty": nix.thunk(() => ({ __proto__: pos$41, return: "204" })),
+                    [nix.POS]: pos$43,
+                    "@empty": nix.thunk(() => ({ [nix.POS]: pos$41, return: "204" })),
                     "~* ^/maps/[^/]*/tiles/": nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       extraConfig: "error_page 404 = @empty;\ngzip_static always;\n",
                     })),
                   })),
@@ -301,13 +301,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           services: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             "render-bluemap-maps": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRender")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   Type: "oneshot",
                   Group: "nginx",
                   UMask: "026",
@@ -316,12 +316,12 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             "render-bluemap-maps": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRender")), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "onCalendar")),
                   Persistent: true,
                   Unit: "render-bluemap-maps.service",
@@ -331,7 +331,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

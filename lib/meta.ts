@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const typeOf = nix.thunk(() => nix.attr(nix.builtins, "typeOf"));
   return (() => {
     const addMetaAttrs = (newAttrs) => (drv) => (nix.asBool(nix.has(drv, "overrideAttrs")) ? nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), newAttrs)),
       })) : nix.update(drv, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => nix.update(nix.selOr(drv, () => ({}), "meta"), newAttrs)),
     }));
-    const dontDistribute = (drv) => nix.app(addMetaAttrs, nix.thunk(() => ({ __proto__: pos$3, hydraPlatforms: [] })), drv);
-    const setName = (name) => (drv) => nix.update(drv, { __proto__: pos$4, name: name });
+    const dontDistribute = (drv) => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: pos$3, hydraPlatforms: [] })), drv);
+    const setName = (name) => (drv) => nix.update(drv, { [nix.POS]: pos$4, name: name });
     const updateName = (updater) => (drv) => nix.update(drv, {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.app(updater, nix.thunk(() => nix.sel(drv, "name")))),
     });
     const appendToName = (suffix) => nix.app(updateName, (name) => (() => {
@@ -50,22 +50,22 @@ export default nix.lambda((args) => (() => {
       })());
     const mapDerivationAttrset = (f) => (set) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (pkg) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) ? nix.app(f, pkg) : nix.force(pkg)), set);
     const defaultPriority = 5n;
-    const setPrio = (priority) => nix.app(addMetaAttrs, nix.thunk(() => ({ __proto__: pos$6, priority: priority })));
+    const setPrio = (priority) => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: pos$6, priority: priority })));
     const lowPrio = nix.thunk(() => nix.app(setPrio, 10n));
     const lowPrioSet = (set) => nix.app(mapDerivationAttrset, lowPrio, set);
     const hiPrio = nix.thunk(() => nix.app(setPrio, nix.thunk(() => nix.neg(10n))));
     const hiPrioSet = (set) => nix.app(mapDerivationAttrset, hiPrio, set);
-    const platformMatch = (platform) => (elem) => (nix.asBool(nix.app(isString, elem)) ? (nix.asBool(nix.has(platform, "system")) && nix.asBool(nix.eq(elem, nix.sel(platform, "system")))) : nix.app(matchAttrs, nix.thunk(() => (nix.asBool(nix.has(elem, "parsed")) ? nix.force(elem) : { __proto__: pos$7, parsed: elem })), platform));
+    const platformMatch = (platform) => (elem) => (nix.asBool(nix.app(isString, elem)) ? (nix.asBool(nix.has(platform, "system")) && nix.asBool(nix.eq(elem, nix.sel(platform, "system")))) : nix.app(matchAttrs, nix.thunk(() => (nix.asBool(nix.has(elem, "parsed")) ? nix.force(elem) : { [nix.POS]: pos$7, parsed: elem })), platform));
     const availableOn = (platform) => (pkg) => (nix.asBool((nix.asBool(!nix.asBool(nix.has(pkg, "meta", "platforms"))) || nix.asBool(nix.app(any, nix.thunk(() => nix.app(platformMatch, platform)), nix.thunk(() => nix.sel(pkg, "meta", "platforms")))))) && nix.asBool((nix.asBool(!nix.asBool(nix.has(pkg, "meta", "badPlatforms"))) || nix.asBool(!nix.asBool(nix.app(any, nix.thunk(() => nix.app(platformMatch, platform)), nix.thunk(() => nix.sel(pkg, "meta", "badPlatforms"))))))));
     const licensesSpdx = nix.thunk(() => nix.app(mapAttrs$, (_key) => (license) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: nix.thunk(() => nix.sel(license, "spdxId")),
         value: license,
       }), nix.thunk(() => nix.app(filterAttrs, (_key) => (license) => nix.has(license, "spdxId"), nix.thunk(() => nix.sel(lib, "licenses"))))));
-    const getLicenseFromSpdxId = (licstr) => nix.app(getLicenseFromSpdxIdOr, licstr, nix.thunk(() => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`getLicenseFromSpdxId: No license with the given SPDX ID found: ${licstr}`), nix.thunk(() => ({ __proto__: pos$9, shortName: licstr, spdxId: licstr })))));
+    const getLicenseFromSpdxId = (licstr) => nix.app(getLicenseFromSpdxIdOr, licstr, nix.thunk(() => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`getLicenseFromSpdxId: No license with the given SPDX ID found: ${licstr}`), nix.thunk(() => ({ [nix.POS]: pos$9, shortName: licstr, spdxId: licstr })))));
     const getLicenseFromSpdxIdOr = nix.thunk(() => (() => {
       const lowercaseLicenses = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), name)),
           value: value,
         }), licensesSpdx));
@@ -86,9 +86,9 @@ export default nix.lambda((args) => (() => {
       nix.assert_((nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".app", y)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`lib.meta.getDarwinApp': The second argument "${y}" must end in \`.app\``)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta.nix:663:5");
       return nix.str`${nix.app(nix.sel(lib, "getOutput"), "out", x)}/Applications/${y}`;
     })();
-    const cpeFullVersionWithVendor = (vendor) => (version) => ({ __proto__: pos$11, vendor: vendor, version: version, update: "*" });
+    const cpeFullVersionWithVendor = (vendor) => (version) => ({ [nix.POS]: pos$11, vendor: vendor, version: version, update: "*" });
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       addMetaAttrs,
       dontDistribute,
       setName,

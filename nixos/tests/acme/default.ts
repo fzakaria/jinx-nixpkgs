@@ -46,17 +46,17 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const domain = "example.test";
   const nginxBaseModule = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     services: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nginx: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         enable: true,
         logError: "stderr info",
         virtualHosts: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             addSSL: true,
             useACMEHost: "proxied.example.test",
@@ -66,17 +66,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     specialisation: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       nullroot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         configuration: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             nginx: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`nullroot.${domain}`, nix.thunk(() => ({ __proto__: pos$5, acmeFallbackHost: "localhost:8081" }))],
+                [nix.str`nullroot.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$5, acmeFallbackHost: "localhost:8081" }))],
               ])),
             })),
           })),
@@ -85,58 +85,58 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     "http01-builtin": nix.thunk(() => nix.app(runTest, nix.path(here, "./http01-builtin.nix"))),
     dns01: nix.thunk(() => nix.app(runTest, nix.path(here, "./dns01.nix"))),
     caddy: nix.thunk(() => nix.app(runTest, nix.path(here, "./caddy.nix"))),
     nginx: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           domain: domain,
           serverName: "nginx",
           group: "nginx",
           baseModule: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nginxBaseModule, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               services: nix.thunk(() => ({
-                __proto__: pos$13,
-                nginx: nix.thunk(() => ({ __proto__: pos$12, enableReload: true })),
+                [nix.POS]: pos$13,
+                nginx: nix.thunk(() => ({ [nix.POS]: pos$12, enableReload: true })),
               })),
             })))),
         })))))),
     "nginx-without-reload": nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           domain: domain,
           serverName: "nginx",
           group: "nginx",
           baseModule: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nginxBaseModule, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               services: nix.thunk(() => ({
-                __proto__: pos$17,
-                nginx: nix.thunk(() => ({ __proto__: pos$16, enableReload: false })),
+                [nix.POS]: pos$17,
+                nginx: nix.thunk(() => ({ [nix.POS]: pos$16, enableReload: false })),
               })),
             })))),
         })))))),
     httpd: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           domain: domain,
           serverName: "httpd",
           group: "wwwrun",
           baseModule: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               httpd: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   default: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     addSSL: true,
                     useACMEHost: "proxied.example.test",
                     locations: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       "/.well-known/acme-challenge": nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         proxyPass: "http://localhost:8080/.well-known/acme-challenge",
                         extraConfig: "ProxyPreserveHost On\n",
                       })),
@@ -146,22 +146,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             specialisation: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               nullroot: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   services: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     httpd: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`nullroot.${domain}`, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           locations: nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             "/.well-known/acme-challenge": nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               proxyPass: "http://localhost:8081/.well-known/acme-challenge",
                               extraConfig: "ProxyPreserveHost On\n",
                             })),

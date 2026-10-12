@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const isPy3k = nix.arg($, "isPy3k");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "filterpy",
       version: "1.4.5-unstable-2022-08-23",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rlabbe",
           repo: "filterpy",
           rev: "3b51149ebcff0401ff1e10bf08ffca7b6bbc4a33",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_multivariate_gaussian"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rlabbe/filterpy",
         description: "Kalman filtering and optimal estimation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

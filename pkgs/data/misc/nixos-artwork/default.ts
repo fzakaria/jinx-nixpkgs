@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     wallpapers: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./wallpapers.nix"), nix.thunk(() => ({})))))),
   };
 })(), formals$1);

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nano-syntax-highlighting";
       const version = "2026.10.01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "galenguyer",
           repo: "nano-syntax-highlighting",
           tag: version,
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "mkdir -p $out/share\n\ninstall *.nanorc $out/share/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           noSyntaxError: nix.thunk(() => (() => {
             const expectScript = nix.thunk(() => nix.app(writeScriptBin, nix.thunk(() => nix.str`${pname}-test-syntax.exp`), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./test-syntax.exp")))));
-            return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-noSyntaxError`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [expect, nano]) })), nix.thunk(() => nix.str`set -euo pipefail
+            return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-noSyntaxError`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [expect, nano]) })), nix.thunk(() => nix.str`set -euo pipefail
 # For each nanorc file and each syntax, execute text-syntax.exp
 for nanorcPath in ${nix.sel(finalAttrs, "finalPackage")}/share/*.nanorc; do
   nano --rcfile "$nanorcPath" --listsyntaxes \\
@@ -52,7 +52,7 @@ touch $out
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Improved Nano Syntax Highlighting Files, fork of nanorc",
         homepage: "https://github.com/galenguyer/nano-syntax-highlighting",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -63,7 +63,7 @@ touch $out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

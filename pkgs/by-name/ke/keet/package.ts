@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const pname = "keet";
   const version = "2.5.2";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://static.keet.io/downloads/${version}/Keet-x64.tar.gz`),
       hash: "sha256-wM5Z8zjha5uHmjBtjWRLQf8R/Xcz0O6myLrOMkeXBDM=",
     }))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.str`${src}/Keet.AppImage`),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.str`${src}/Keet.AppImage`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${appimageContents}/*.png $out/share
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Peer-to-Peer Chat",
         homepage: "https://keet.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

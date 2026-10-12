@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const buildGraalvmNativeImage = nix.arg($, "buildGraalvmNativeImage");
   const graalvmPackages = nix.arg($, "graalvmPackages");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cq",
       version: "2026.01.09-17.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/markus-wa/cq/releases/download/${nix.sel(finalAttrs, "version")}/cq.jar`),
           hash: "sha256-CUErNKworfgKIrOQ7V5vcnudTdZzdVdyA/gsOZUOQBI=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "build-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "markus-wa",
             repo: "cq",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-H:ReflectionConfigurationFiles=${nix.sel(finalAttrs, "finalPackage", "build-src")}/package/reflection-config.json`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Clojure Query: A Command-line Data Processor for JSON, YAML, EDN, XML and more",
         homepage: "https://github.com/markus-wa/cq",
         changelog: nix.thunk(() => nix.str`https://github.com/markus-wa/cq/releases/tag/${nix.sel(finalAttrs, "version")}`),

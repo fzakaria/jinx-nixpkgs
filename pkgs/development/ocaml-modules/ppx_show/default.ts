@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdcompat = nix.arg($, "stdcompat");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_show",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thierry-martinez",
           repo: "ppx_show",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [stdcompat, ppxlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/thierry-martinez/ppx_show",
         description: "OCaml PPX deriver for deriving show based on ppxlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

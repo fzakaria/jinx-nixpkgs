@@ -33,33 +33,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "environment", "memoryAllocator"));
   const providers = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "graphene-hardened": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       libPath: nix.thunk(() => nix.str`${nix.sel(pkgs, "graphene-hardened-malloc")}/lib/libhardened_malloc.so`),
       description: "Hardened memory allocator coming from GrapheneOS project.\nThe default configuration template has all normal optional security\nfeatures enabled and is quite aggressive in terms of sacrificing\nperformance and memory usage for security.\n",
     })),
     "graphene-hardened-light": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       libPath: nix.thunk(() => nix.str`${nix.sel(pkgs, "graphene-hardened-malloc")}/lib/libhardened_malloc-light.so`),
       description: "Hardened memory allocator coming from GrapheneOS project.\nThe light configuration template disables the slab quarantines,\nwrite after free check, slot randomization and raises the guard\nslab interval from 1 to 8 but leaves zero-on-free and slab canaries enabled.\nThe light configuration has solid performance and memory usage while still\nbeing far more secure than mainstream allocators with much better security\nproperties.\n",
     })),
     jemalloc: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       libPath: nix.thunk(() => nix.str`${nix.sel(pkgs, "jemalloc")}/lib/libjemalloc.so`),
       description: "A general purpose allocator that emphasizes fragmentation avoidance\nand scalable concurrency support.\n",
     })),
     scudo: nix.thunk(() => (() => {
-      const platformMap = nix.thunk(() => ({ __proto__: pos$4, "aarch64-linux": "aarch64", "x86_64-linux": "x86_64" }));
+      const platformMap = nix.thunk(() => ({ [nix.POS]: pos$4, "aarch64-linux": "aarch64", "x86_64-linux": "x86_64" }));
       const systemPlatform = nix.thunk(() => nix.selOr(platformMap, () => nix.builtins.throw(nix.thunk(() => nix.str`scudo not supported on ${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`)), nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         libPath: nix.thunk(() => nix.str`${nix.sel(pkgs, "llvmPackages", "compiler-rt")}/lib/linux/libclang_rt.scudo_standalone-${systemPlatform}.so`),
         description: "A user-mode allocator based on LLVM Sanitizer’s CombinedAllocator,\nwhich aims at providing additional mitigations against heap based\nvulnerabilities, while maintaining good performance.\n",
       };
     })()),
     mimalloc: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       libPath: nix.thunk(() => nix.str`${nix.sel(pkgs, "mimalloc")}/lib/libmimalloc.so`),
       description: "A compact and fast general purpose allocator, which may\noptionally be built with mitigations against various heap\nvulnerabilities.\n",
     })),
@@ -70,20 +70,20 @@ export default nix.lambda((args) => (() => {
       const allowSubstitutes = false;
       const origLibPath = nix.thunk(() => nix.sel(providerConf, "libPath"));
       const libName = nix.thunk(() => nix.builtins.baseNameOf(origLibPath));
-      return { __proto__: pos$8, preferLocalBuild, allowSubstitutes, origLibPath, libName };
+      return { [nix.POS]: pos$8, preferLocalBuild, allowSubstitutes, origLibPath, libName };
     })()), "mkdir -p $out/lib\ncp -L $origLibPath $out/lib/$libName\n"));
   const providerLibPath = nix.thunk(() => nix.str`${mallocLib}/lib/${nix.sel(mallocLib, "libName")}`);
   return {
-    __proto__: pos$22,
-    meta: nix.thunk(() => ({ __proto__: pos$9, maintainers: [] })),
+    [nix.POS]: pos$22,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$9, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       environment: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         memoryAllocator: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           provider: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.concat(["libc"], nix.app(nix.sel(lib, "attrNames"), providers))))),
               default: "libc",
               description: nix.thunk(() => nix.str`The system-wide memory allocator.
@@ -104,7 +104,7 @@ and/or service failure.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "provider"), "libc")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         warnings: nix.thunk(() => (() => {
           const scudoOpts = nix.thunk(() => nix.sel(config, "environment", "variables", "SCUDO_OPTIONS"));
           const legacyOptionNames = nix.thunk(() => [
@@ -121,26 +121,26 @@ Use snake_case instead of CamelCase: https://llvm.org/docs/ScudoHardenedAllocato
 `));
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           etc: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "ld-nix.so.preload": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               text: nix.thunk(() => nix.str`${providerLibPath}
 `),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           apparmor: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             includes: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "abstractions/base": nix.thunk(() => nix.str`r /etc/ld-nix.so.preload,
 r ${nix.sel(config, "environment", "etc", "ld-nix.so.preload", "source")},
 include "${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   name: "mallocLib",
                   baseRules: nix.thunk(() => ["mr $path/lib/**.so*"]),
                 })), nix.thunk(() => [mallocLib]))}"

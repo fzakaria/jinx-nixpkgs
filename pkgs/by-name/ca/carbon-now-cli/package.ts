@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "carbon-now-cli";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mixn",
           repo: "carbon-now-cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-/YWsk+GNfudSG0Rof1eCXeoK6dfyzzQqvWBLkpfahE0=";
       const postPatch = "substituteInPlace package.json \\\n  --replace \"bundle/cli.js\" \"dist/cli.js\" \\\n  --replace \"trash \" \"rm -rf \" \\\n  --replace \"npx playwright install --with-deps\" \"true\"\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Beautiful images of your code — from right inside your terminal",
         homepage: "https://github.com/mixn/carbon-now-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "rmcgibbo"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, postPatch, env, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, postPatch, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

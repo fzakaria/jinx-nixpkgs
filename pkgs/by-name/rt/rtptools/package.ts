@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtptools",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.cs.columbia.edu/irt/software/rtptools/download/rtptools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0a4c0vmhxibfc58rrxpbav2bsk546chkg50ir4h3i57v4fjb4xic",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Number of small applications that can be used for processing RTP data",
         homepage: "https://www.cs.columbia.edu/irt/software/rtptools/",
         maintainers: [],

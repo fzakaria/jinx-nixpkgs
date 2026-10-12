@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-SLjED08uI+RjX+E0WHTQceReTEaY9WLPhXR3n0fP080=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ignorant"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to check if a phone number is used on different sites",
         homepage: "https://pypi.org/project/ignorant/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

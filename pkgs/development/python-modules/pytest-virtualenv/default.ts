@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pytest-virtualenv",
       version: nix.thunk(() => nix.attr(pytest_fixture_config, "version")),
       src: nix.thunk(() => nix.attr(pytest_fixture_config, "src")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cmdline, mock, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/integration/*"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Create a Python virtual environment in your test that cleans up on teardown. The fixture has utility methods to install packages and list what’s installed",
         homepage: "https://github.com/manahl/pytest-plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

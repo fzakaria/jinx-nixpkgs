@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const ca_certs_nss = nix.arg($, "ca-certs-nss");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-resolver",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { __proto__: pos$1, description: "DNS resolver business logic" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNS resolver business logic" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=resolver.ts.map

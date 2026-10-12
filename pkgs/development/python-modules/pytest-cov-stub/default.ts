@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pytest-cov-stub",
       version: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./src/pyproject.toml")), "project", "version")),
       pyproject: true,
       src: nix.path(here, "./src"),
       "build-system": nix.thunk(() => [hatchling]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Nixpkgs checkPhase stub for pytest-cov",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pbsds"))]),

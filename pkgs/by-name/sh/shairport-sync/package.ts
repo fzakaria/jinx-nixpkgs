@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shairport-sync",
       version: "5.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "shairport-sync",
           owner: "mikebrady",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -85,14 +85,14 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--without-configfiles", "--sysconfdir=/etc", "--with-ssl=openssl"], nix.concat(nix.app(optional, enableAvahi, "--with-avahi"), nix.concat(nix.app(optional, enablePulse, "--with-pulseaudio"), nix.concat(nix.app(optional, enablePipewire, "--with-pipewire"), nix.concat(nix.app(optional, enableAlsa, "--with-alsa"), nix.concat(nix.app(optional, enableSndio, "--with-sndio"), nix.concat(nix.app(optional, enableAo, "--with-ao"), nix.concat(nix.app(optional, enableJack, "--with-jack"), nix.concat(nix.app(optional, enableSoundio, "--with-soundio"), nix.concat(nix.app(optional, enableStdout, "--with-stdout"), nix.concat(nix.app(optional, enablePipe, "--with-pipe"), nix.concat(nix.app(optional, enableSoxr, "--with-soxr"), nix.concat(nix.app(optional, enableConvolution, "--with-convolution"), nix.concat(nix.app(optional, enableDbus, "--with-dbus-interface"), nix.concat(nix.app(optional, enableMetadata, "--with-metadata"), nix.concat(nix.app(optional, enableMpris, "--with-mpris-interface"), nix.concat(nix.app(optional, enableMqttClient, "--with-mqtt-client"), nix.concat(nix.app(optional, enableTinySVCmDNS, "--with-tinysvcmdns"), nix.concat(nix.app(optional, enableLibdaemon, "--with-libdaemon"), nix.app(optional, enableAirplay2, "--with-airplay-2"))))))))))))))))))))),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9\\.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/mikebrady/shairport-sync",
         description: "Airtunes server and emulator with multi-room capabilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpuid",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pqwy/cpuid/releases/download/v${nix.sel(finalAttrs, "version")}/cpuid-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-I1VyNDEox7cenlwvxjFhs9njK8ir53ljWXRho3YlzyI=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pqwy/cpuid",
         description: "Detect CPU features from OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

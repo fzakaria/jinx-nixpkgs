@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const z3 = nix.arg($, "z3");
   const z3_with_ocaml = nix.thunk(() => nix.app(nix.sel(z3, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ocamlBindings: true,
       ocaml: ocaml,
       findlib: findlib,
       zarith: zarith,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-z3`),
       version: nix.thunk(() => nix.attr(z3_with_ocaml, "version")),
       dontUnpack: true,
@@ -37,7 +37,7 @@ runHook postInstall
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(z3_with_ocaml, "lib")), zarith]),
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(z3, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Z3 Theorem Prover (OCaml API)",
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       })),

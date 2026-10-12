@@ -32,71 +32,71 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "zipline",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           qemu: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             options: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")), nix.thunk(() => ["-cpu core2duo"]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           zipline: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$4, CORE_HOSTNAME: "127.0.0.1", CORE_PORT: 8000n })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$4, CORE_HOSTNAME: "127.0.0.1", CORE_PORT: 8000n })),
             environmentFiles: nix.thunk(() => [
               nix.thunk(() => nix.builtins.toFile("zipline.env", "CORE_SECRET=DMlouex3W0QLRbVwkUafNnNws5jpgRDX\n")),
             ]),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
-          hosts: nix.thunk(() => ({ __proto__: pos$7, "127.0.0.1": nix.thunk(() => ["zipline.local"]) })),
+          [nix.POS]: pos$8,
+          hosts: nix.thunk(() => ({ [nix.POS]: pos$7, "127.0.0.1": nix.thunk(() => ["zipline.local"]) })),
         })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       nodes: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         machine: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             zipline: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               settings: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 CORE_HOSTNAME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0.0.0.0")),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$16, port: 8000n })),
-                guest: nix.thunk(() => ({ __proto__: pos$17, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$16, port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$17, port: 8000n })),
               })),
             ]),
           })),

@@ -99,12 +99,12 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hey-mail",
       version: "1.3.7",
       rev: "34",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/lfWUNpR7PrPGsDfuxIhVxbj0wZHoH7bK_${nix.sel(finalAttrs, "rev")}.snap`),
           hash: "sha512-c9Zu8lg3mAazvwqAs2VGWTmgZllK2Cgxym8RzalxrxOOvt6X0FDSgu8t6tgv5VCO0qjj9REkiebR3MS4TMamAA==",
         })))),
@@ -135,11 +135,11 @@ runHook postInstall
 `),
       postInstall: "for i in 16 24 32 48 64 96 128 256 512; do\n  mkdir -p $out/share/icons/hicolor/${i}x${i}/apps\n  magick $out/meta/gui/icon.png -background none -resize ${i}x${i} $out/share/icons/hicolor/${i}x${i}/apps/hey-mail.png\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-hey-mail", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\n\nset -eu -o pipefail\n\ndata=$(curl -H 'X-Ubuntu-Series: 16' \\\n'https://api.snapcraft.io/api/v1/snaps/details/hey-mail?fields=download_sha512,revision,version')\n\nversion=$(jq -r .version <<<\"$data\")\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$version\" ]]; then\n\n    revision=$(jq -r .revision <<<\"$data\")\n    hash=$(nix --extra-experimental-features nix-command hash to-sri \"sha512:$(jq -r .download_sha512 <<<\"$data\")\")\n\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" \"$hash\"\n    update-source-version --ignore-same-hash --version-key=rev \"$UPDATE_NIX_ATTR_PATH\" \"$revision\" \"$hash\"\n\nfi\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://hey.com",
         description: "Desktop client for HEY email",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

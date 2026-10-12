@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orgformat",
       version: "0-unstable-2024-10-23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "novoid",
           repo: "orgformat",
           rev: "5346cc1a5fd670981e9b1d0bbd215eb5c79040d4",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["orgformat"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility library for providing functions to generate and modify Org mode syntax elements like links, time-stamps, or date-stamps",
         homepage: "https://github.com/novoid/orgformat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

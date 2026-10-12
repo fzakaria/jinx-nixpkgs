@@ -36,48 +36,48 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     security: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pki: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       stalwart: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         enable: true,
         stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         settings: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           server: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             hostname: domain,
-            tls: nix.thunk(() => ({ __proto__: pos$3, certificate: "snakeoil", enable: true, implicit: false })),
+            tls: nix.thunk(() => ({ [nix.POS]: pos$3, certificate: "snakeoil", enable: true, implicit: false })),
             listener: nix.thunk(() => ({
-              __proto__: pos$7,
-              "smtp-submission": nix.thunk(() => ({ __proto__: pos$4, bind: nix.thunk(() => ["[::]:587"]), protocol: "smtp" })),
-              imap: nix.thunk(() => ({ __proto__: pos$5, bind: nix.thunk(() => ["[::]:143"]), protocol: "imap" })),
-              http: nix.thunk(() => ({ __proto__: pos$6, bind: nix.thunk(() => ["[::]:80"]), protocol: "http" })),
+              [nix.POS]: pos$7,
+              "smtp-submission": nix.thunk(() => ({ [nix.POS]: pos$4, bind: nix.thunk(() => ["[::]:587"]), protocol: "smtp" })),
+              imap: nix.thunk(() => ({ [nix.POS]: pos$5, bind: nix.thunk(() => ["[::]:143"]), protocol: "imap" })),
+              http: nix.thunk(() => ({ [nix.POS]: pos$6, bind: nix.thunk(() => ["[::]:80"]), protocol: "http" })),
             })),
           })),
           certificate: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             snakeoil: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               cert: nix.thunk(() => nix.str`%{file:${nix.sel(certs, nix.key(nix.force(domain)), "cert")}}%`),
               "private-key": nix.thunk(() => nix.str`%{file:${nix.sel(certs, nix.key(nix.force(domain)), "key")}}%`),
             })),
           })),
           session: nix.thunk(() => ({
-            __proto__: pos$13,
-            auth: nix.thunk(() => ({ __proto__: pos$11, mechanisms: "[plain]", directory: "'in-memory'" })),
-            rcpt: nix.thunk(() => ({ __proto__: pos$12, directory: "'in-memory'" })),
+            [nix.POS]: pos$13,
+            auth: nix.thunk(() => ({ [nix.POS]: pos$11, mechanisms: "[plain]", directory: "'in-memory'" })),
+            rcpt: nix.thunk(() => ({ [nix.POS]: pos$12, directory: "'in-memory'" })),
           })),
           storage: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             directory: "in-memory",
             data: "rocksdb",
             fts: "rocksdb",
@@ -85,33 +85,33 @@ export default nix.lambda((args) => (() => {
             lookup: "rocksdb",
           })),
           queue: nix.thunk(() => ({
-            __proto__: pos$16,
-            strategy: nix.thunk(() => ({ __proto__: pos$15, route: "'local'" })),
+            [nix.POS]: pos$16,
+            strategy: nix.thunk(() => ({ [nix.POS]: pos$15, route: "'local'" })),
           })),
           store: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             rocksdb: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: "rocksdb",
               path: "/var/lib/stalwart/data",
               compression: "lz4",
             })),
           })),
           directory: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "in-memory": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: "memory",
               principals: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   class: "individual",
                   name: "alice",
                   secret: "foobar",
                   email: nix.thunk(() => [nix.thunk(() => nix.str`alice@${domain}`)]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   class: "individual",
                   name: "bob",
                   secret: "foobar",

@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const bingoBinsMakefile = nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n} := ${v}
 \\$(${n}):`, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         GO_XGETTEXT: "xgettext",
         MOCKERY: "true",
         PIGEON: "pigeon",
         PROTOC_GO_INJECT_TAG: "protoc-go-inject-tag",
       }))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "opencloud",
       version: "7.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "opencloud-eu",
           repo: "opencloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,18 +77,18 @@ sed -i -e '/\\$(BINGO) get/d' -e '/\\$(BUF) generate/d' .make/protobuf.mk
       preCheck: "rm services/search/pkg/opensearch/*_test.go\n",
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         STRING: nix.thunk(() => nix.sel(finalAttrs, "version")),
         VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         AUTOMEMLIMIT: "off",
       })),
       excludedPackages: nix.thunk(() => ["tests/*"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         web: nix.thunk(() => nix.app(callPackage, nix.path(here, "./web.nix"), nix.thunk(() => ({})))),
         "idp-web": nix.thunk(() => nix.app(callPackage, nix.path(here, "./idp-web.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           opencloud: nix.thunk(() => nix.attr(nixosTests, "opencloud")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -97,7 +97,7 @@ sed -i -e '/\\$(BINGO) get/d' -e '/\\$(BUF) generate/d' .make/protobuf.mk
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "OpenCloud gives you a secure and private way to store, access, and share your files",
         homepage: "https://github.com/opencloud-eu/opencloud",
         changelog: nix.thunk(() => nix.str`https://github.com/opencloud-eu/opencloud/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

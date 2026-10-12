@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
   const group = "bepasty";
   const default_home = "/var/lib/bepasty";
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         bepasty: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "bepasty, a binary pastebin server")),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               description: "configure a number of bepasty servers which will be started with\ngunicorn.\n",
               type: nix.thunk(() => (() => {
@@ -63,59 +63,59 @@ export default nix.lambda((args) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         options: nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$1,
+                              [nix.POS]: pos$1,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Bind address to be used for this server.\n",
                               example: "0.0.0.0:8000",
                               default: "127.0.0.1:8000",
                             })))),
                           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Path to the directory where the pastes will be saved to\n",
                               default: nix.thunk(() => nix.add(default_home, "/data")),
                             })))),
                           defaultPermissions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "default permissions for all unauthenticated accesses.\n",
                               example: "read,create,delete",
                               default: "read",
                             })))),
                           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$4,
+                              [nix.POS]: pos$4,
                               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                               description: "Extra configuration for bepasty server to be appended on the\nconfiguration.\nsee <https://bepasty-server.readthedocs.org/en/latest/quickstart.html#configuring-bepasty>\nfor all options.\n",
                               default: "",
                               example: "PERMISSIONS = {\n  'myadminsecret': 'admin,list,create,read,delete',\n}\nMAX_ALLOWED_FILE_SIZE = 5 * 1000 * 1000\n",
                             })))),
                           secretKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "server secret for safe session cookies, must be set.\n\nWarning: this secret is stored in the WORLD-READABLE Nix store!\n\nIt's recommended to use {option}`secretKeyFile`\nwhich takes precedence over {option}`secretKey`.\n",
                               default: "",
                             })))),
                           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                               description: "A file that contains the server secret for safe session cookies, must be set.\n\n{option}`secretKeyFile` takes precedence over {option}`secretKey`.\n\nWarning: when {option}`secretKey` is non-empty {option}`secretKeyFile`\ndefaults to a file in the WORLD-READABLE Nix store containing that secret.\n",
                             })))),
                           workDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Path to the working directory (used for config and pidfile).\nDefaults to the users home directory.\n",
                               default: default_home,
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "secretKey"), "")) ? nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   name: "bepasty-secret-key",
                                   text: nix.thunk(() => nix.sel(config_1, "secretKey")),
                                 }))))) : null)))),
@@ -128,26 +128,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
-        environment: nix.thunk(() => ({ __proto__: pos$16, systemPackages: nix.thunk(() => [bepasty]) })),
+        [nix.POS]: pos$25,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$16, systemPackages: nix.thunk(() => [bepasty]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (server) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`bepasty-server-${name}-gunicorn`), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: nix.thunk(() => nix.str`Bepasty Server ${name}`),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 restartIfChanged: true,
                 environment: nix.thunk(() => (() => {
-                  const penv = nix.thunk(() => nix.app(nix.sel(python, "buildEnv", "override"), nix.thunk(() => ({ __proto__: pos$17, extraLibs: nix.thunk(() => [bepasty, gevent]) }))));
+                  const penv = nix.thunk(() => nix.app(nix.sel(python, "buildEnv", "override"), nix.thunk(() => ({ [nix.POS]: pos$17, extraLibs: nix.thunk(() => [bepasty, gevent]) }))));
                   return {
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     BEPASTY_CONFIG: nix.thunk(() => nix.str`${nix.sel(server, "workDir")}/bepasty-${name}.conf`),
                     PYTHONPATH: nix.thunk(() => nix.str`${penv}/${nix.sel(python, "sitePackages")}/`),
                   };
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   Type: "simple",
                   PrivateTmp: true,
                   ExecStartPre: nix.thunk(() => (() => {
@@ -177,10 +177,10 @@ EOF
               }))), nix.thunk(() => nix.sel(cfg, "servers")))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "bepasty")),
               group: group,
               home: default_home,
@@ -188,7 +188,7 @@ EOF
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [group, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "bepasty")),
             }))],
           ])),

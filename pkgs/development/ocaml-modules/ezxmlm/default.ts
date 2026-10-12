@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const xmlm = nix.arg($, "xmlm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ezxmlm",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ezxmlm/releases/download/v${nix.sel(finalAttrs, "version")}/ezxmlm-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-zcgCfpiySES043PNzpo9SpbDq2GWuP/Ss7SOlCCxbYg=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [xmlm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Combinators to use with xmlm for parsing and selection",
         longDescription: "An \"easy\" interface on top of the xmlm library. This version provides\nmore convenient (but far less flexible) input and output functions\nthat go to and from [string] values. This avoids the need to write signal\ncode, which is useful for quick scripts that manipulate XML.\n\nMore advanced users should go straight to the Xmlm library and use it\ndirectly, rather than be saddled with the Ezxmlm interface. Since the\ntypes in this library are more specific than Xmlm, it should interoperate\njust fine with it if you decide to switch over.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "carlosdagos"))]),

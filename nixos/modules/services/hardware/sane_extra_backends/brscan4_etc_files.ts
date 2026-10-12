@@ -18,7 +18,7 @@ model="${nix.sel(nd, "model")}" \\
 ${(nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "nodename", nd)) && nix.asBool(!nix.eq(nix.sel(nd, "nodename"), null)))) ? nix.str`nodename="${nix.sel(nd, "nodename")}"` : nix.str`ip="${nix.sel(nd, "ip")}"`)}`;
   const addAllNetDev = (xs) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(addNetDev, xs)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "brscan4-etc-files",
       version: "0.4.3-3",
       src: nix.thunk(() => nix.str`${brscan4}/opt/brother/scanner/brscan4`),
@@ -40,7 +40,7 @@ ${nix.app(addAllNetDev, netDevices)}
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Brother brscan4 sane backend driver etc files",
         homepage: "http://www.brother.com",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

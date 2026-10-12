@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const voluptuous = nix.arg($, "voluptuous");
   const zigpy = nix.arg($, "zigpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zigpy-znp",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zigpy",
           repo: "zigpy-znp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_concurrency_auto_config", "test_request_concurrency"]),
       pythonImportsCheck: nix.thunk(() => ["zigpy_znp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for zigpy which communicates with TI ZNP radios",
         homepage: "https://github.com/zigpy/zigpy-znp",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zigpy-znp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

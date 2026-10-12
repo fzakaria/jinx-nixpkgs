@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "readstat",
       version: "1.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WizardMac",
           repo: "ReadStat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/WizardMac/ReadStat/pull/342/commits/b5512b32d3b3c39e2f0c322df1339a3c61f73712.patch",
             hash: "sha256-k1yeplrx3pFPl5qzLfsAaj+qunv1BqOZypA05xSolaQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/WizardMac/ReadStat/commit/211c342a1cfe46fb7fb984730dd7a29ff4752f35.patch",
             hash: "sha256-nkaEgusylVu7NtzSzBklBuOnqO9qJPovf0qn9tTE6ls=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/WizardMac/ReadStat/commit/718d49155e327471ed9bf4a8c157f849f285b46c.patch",
             hash: "sha256-9hmuFa05b4JlxSzquIxXArOGhbi27A+3y5gH1IDg+R0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/WizardMac/ReadStat/commit/43d4cdec6783b29d0f1d0ae9564507739cd27567.patch",
             hash: "sha256-LZtdFdru2y89NvmLqa1sryhfzZX09jEeC2qWJpDS/kI=",
           })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, libtool]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/WizardMac/ReadStat",
         description: "Command-line tool (+ C library) for converting SAS, Stata, and SPSS files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

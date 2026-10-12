@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const version = nix.argOr($, "version", () => "6.2.2");
   const versionHashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "6.2.2": "sha256-JYhuyW95I7Q0edLIe7H//+ej5vh6MdAGxXjmNxDMuhQ=",
     "7.0.0": "sha256-mGyGtKDurOrSS0AYrtwhF62pJGPBLbPPNBgFV7fyyug=",
   }));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libxc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "libxc",
           repo: "libxc",
           rev: version_1,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.com/libxc/libxc/-/commit/450202adb8a3d698841dca853f2999b1befd932e.patch",
             sha256: "sha256-XDt7+TzszSu+X6/PS+T8Q9BP76+bAXC9FzkA6ueo/OA=",
           })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library of exchange-correlation functionals for density-functional theory",
         mainProgram: "xc-info",
         homepage: "https://www.tddft.org/programs/Libxc/",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

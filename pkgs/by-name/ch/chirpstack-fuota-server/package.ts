@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chirpstack-fuota-server",
       version: "3.0.0-test.4-unstable-2025-08-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chirpstack",
           repo: "chirpstack-fuota-server",
           rev: "0d3ce7d8d50ab8d8747d2099a2a607b0ec4e86cb",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       checkFlags: nix.thunk(() => ["-skip=TestStorage"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FUOTA server which can be used together with ChirpStack Application Server",
         homepage: "https://www.chirpstack.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

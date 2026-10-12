@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seren",
       version: "0.0.21",
       buildInputs: nix.thunk(() => [alsa_lib, libopus, libogg, gmp, ncurses]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://holdenc.altervista.org/seren/downloads/seren-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-adI365McrJkvTexvnWjMzpHcJkLY3S/uWfE8u4yuqho=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple ncurses VoIP program based on the Opus codec",
         mainProgram: "seren",
         longDescription: "Seren is a simple VoIP program based on the Opus codec\nthat allows you to create a voice conference from the terminal, with up to 10\nparticipants, without having to register accounts, exchange emails, or add\npeople to contact lists. All you need to join an existing conference is the\nhost name or IP address of one of the participants.\n",

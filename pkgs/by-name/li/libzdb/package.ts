@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const re2c = nix.arg($, "re2c");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "3.6.0",
       pname: "libzdb",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tildeslash",
           repo: "libzdb",
           tag: nix.thunk(() => nix.str`release-${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preConfigure: "sh ./bootstrap",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(\\d+)-(\\d+)-(\\d+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small, easy to use Open Source Database Connection Pool Library",
         homepage: "http://www.tildeslash.com/libzdb/",
         downloadPage: "https://bitbucket.org/tildeslash/libzdb/",

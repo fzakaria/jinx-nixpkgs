@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "herbstluftwm"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         xserver: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             herbstluftwm: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "herbstluftwm")),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "herbstluftwm", nix.thunk(() => ({})))),
               configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: null,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           xserver: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "herbstluftwm",
                   start: nix.thunk(() => (() => {
                     const configFileClause = nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => nix.str`-c "${nix.sel(cfg, "configFile")}"`)));
@@ -74,7 +74,7 @@ waitPID=$!
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

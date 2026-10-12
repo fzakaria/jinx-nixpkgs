@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anyconfig",
       version: "0.14.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ssato",
           repo: "python-anyconfig",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/schema/test_jsonschema.py"]),
       pythonImportsCheck: nix.thunk(() => ["anyconfig"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library provides common APIs to load and dump configuration files in various formats",
         mainProgram: "anyconfig_cli",
         homepage: "https://github.com/ssato/python-anyconfig",

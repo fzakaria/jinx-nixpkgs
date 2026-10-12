@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ace-of-penguins",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.delorie.com/store/ace/ace-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-H+47BTOSGkKHPAYj8z2HOgZ7HuxY8scMAUSRRueaTM4=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxpm, libpng, zlib]),
       desktopItems: nix.thunk(() => (() => {
         const generateItem = (gameName) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`ace-of-penguins-${gameName}`),
           exec: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${gameName}`),
           comment: nix.thunk(() => nix.str`Ace of Penguins ${gameName} Card Game`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           ]));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.delorie.com/store/ace/",
         description: "Solitaire games in X11",
         longDescription: "The Ace of Penguins is a set of Unix/X solitaire games based on the ones\navailable for Windows(tm) but with a number of enhancements that my wife\nsays make my versions better :-)\n\nThe latest version includes clones of freecell, golf, mastermind, merlin,\nminesweeper, pegged, solitaire, taipei (with editor!), and thornq (by\nMartin Thornquist).\n",

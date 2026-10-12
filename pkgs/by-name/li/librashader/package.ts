@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librashader",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SnowflakePowered",
           repo: "librashader",
           tag: nix.thunk(() => nix.str`librashader-v${nix.sel(finalAttrs, "version")}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\ncd target/optimized\nmkdir -p $out/lib $out/include/librashader\n", (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "install_name_tool -id $out/lib/librashader.dylib librashader.dylib\ninstall -m755 librashader.dylib $out/lib/librashader.dylib\n" : "patchelf --set-soname librashader.so.2 librashader.so\ninstall -m755 librashader.so $out/lib/librashader.so.2\nln -s $out/lib/librashader.so.2 $out/lib/librashader.so\n")), "install -m644 ../../include/librashader.h -t $out/include/librashader\ninstall -m644 ../../include/librashader_ld.h -t $out/include/librashader\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "librashader-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "RetroArch Shaders for All",
         homepage: "https://github.com/SnowflakePowered/librashader",
         license: nix.thunk(() => (() => {

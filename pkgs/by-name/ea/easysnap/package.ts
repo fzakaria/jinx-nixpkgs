@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zfs = nix.arg($, "zfs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "easysnap",
       version: "0-unstable-2022-06-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sjau",
           repo: "easysnap",
           rev: "5f961442315a6f7eb8ca5b705bd52fe1e6d7dc42",
@@ -37,7 +37,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sjau/easysnap",
         description: "Customizable ZFS Snapshotting tool with zfs send/recv pulling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

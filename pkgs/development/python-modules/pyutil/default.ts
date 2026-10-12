@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8RHsCEieQ3/uHPkNai+sUBR2hDJAVrYy5DMlp6YRw6c=",
         }))));
       const prePatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isPyPy, "grep -rl 'utf-8-with-signature-unix' ./ | xargs sed -i -e \"s|utf-8-with-signature-unix|utf-8|g\"\n"));
       const nativeBuildInputs = nix.thunk(() => [setuptools, versioneer]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, jsonutil: nix.thunk(() => [simplejson]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, jsonutil: nix.thunk(() => [simplejson]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, twisted, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["pyutil"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_decimal", "test_float"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of mature utilities for Python programmers",
         longDescription: "These are a few data structures, classes and functions which\nwe've needed over many years of Python programming and which\nseem to be of general use to other Python programmers. Many of\nthe modules that have existed in pyutil over the years have\nsubsequently been obsoleted by new features added to the\nPython language or its standard library, thus showing that\nwe're not alone in wanting tools like these.\n",
         homepage: "https://github.com/tpltnt/pyutil",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

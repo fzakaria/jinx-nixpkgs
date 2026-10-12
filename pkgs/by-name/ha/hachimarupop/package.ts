@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hachimarupop",
       version: "0-unstable-2022-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noriokanisawa",
           repo: "HachiMaruPop",
           rev: "67d96c274032f5a2e1d33c1ec53498fde9110079",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -Dm444 fonts/ttf/*.ttf -t $out/share/fonts/truetype/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/noriokanisawa/HachiMaruPop",
         description: "Cute, Japanese font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

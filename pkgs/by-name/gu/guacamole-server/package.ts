@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "guacamole-server",
       version: "1.6.0-unstable-2026-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "guacamole-server",
           rev: "d3b7828977c63a5b197158d6cbbdaf1846b579fb",
           hash: "sha256-sxZLzF6m35EtfLRHb1+aqR3RF+piOuvPT9w9Hs3cor0=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=format-truncation",
             "-Wno-error=format-overflow",
@@ -82,14 +82,14 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/sbin/guacd --prefix LD_LIBRARY_PATH ":" $out/lib
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "guacamole-server": nix.thunk(() => nix.attr(nixosTests, "guacamole-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Clientless remote desktop gateway",
         homepage: "https://guacamole.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

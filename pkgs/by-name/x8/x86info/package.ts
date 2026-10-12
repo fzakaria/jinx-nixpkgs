@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x86info",
       version: "0-unstable-2021-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kernelslacker",
           repo: "x86info",
           rev: "061ea35ecb0697761b6260998fa2045b8bb0be68",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "patchShebangs lsmsr/createheader.py\nmake -C lsmsr\n",
       installPhase: "mkdir -p $out/bin\ncp x86info $out/bin\ncp lsmsr/lsmsr $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Identification utility for the x86 series of processors",
         longDescription: "x86info will identify all Intel/AMD/Centaur/Cyrix/VIA CPUs. It leverages\nthe cpuid kernel module where possible.  it supports parsing model specific\nregisters (MSRs) via the msr kernel module.  it will approximate processor\nfrequency, and identify the cache sizes and layout.\n",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),

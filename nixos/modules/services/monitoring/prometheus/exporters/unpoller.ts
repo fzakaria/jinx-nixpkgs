@@ -25,37 +25,37 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const generators = nix.thunk(() => nix.attr(lib, "generators"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "prometheus-unpoller-exporter.json", nix.thunk(() => nix.app(nix.sel(generators, "toJSON"), nix.thunk(() => ({})), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         poller: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(cfg, "log"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           debug: nix.thunk(() => nix.attr(from, "debug")),
           quiet: nix.thunk(() => nix.attr(from, "quiet")),
         };
         })()),
-        unifi: nix.thunk(() => ({ __proto__: pos$2, controllers: nix.thunk(() => nix.attr(cfg, "controllers")) })),
-        influxdb: nix.thunk(() => ({ __proto__: pos$3, disable: true })),
-        datadog: nix.thunk(() => ({ __proto__: pos$4, disable: true })),
+        unifi: nix.thunk(() => ({ [nix.POS]: pos$2, controllers: nix.thunk(() => nix.attr(cfg, "controllers")) })),
+        influxdb: nix.thunk(() => ({ [nix.POS]: pos$3, disable: true })),
+        datadog: nix.thunk(() => ({ [nix.POS]: pos$4, disable: true })),
         prometheus: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           http_listen: nix.thunk(() => nix.str`${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
           report_errors: nix.thunk(() => nix.sel(cfg, "log", "prometheusErrors")),
         })),
         loki: nix.thunk(() => nix.attr(cfg, "loki")),
       }))))));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     port: 9130n,
     extraOpts: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(options, "services", "unpoller", "unifi"));
       const from_1 = nix.thunk(() => nix.sel(options, "services", "unpoller"));
       return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       controllers: nix.thunk(() => nix.attr(from, "controllers")),
       loki: nix.thunk(() => nix.attr(from_1, "loki")),
       log: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         debug: nix.thunk(() => nix.app(mkEnableOption, "debug logging including line numbers, high resolution timestamps, per-device logs")),
         quiet: nix.thunk(() => nix.app(mkEnableOption, "startup and error logs only")),
         prometheusErrors: nix.thunk(() => nix.app(mkEnableOption, "emitting errors to prometheus")),
@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
     };
     })()),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "unpoller")}/bin/unpoller --config ${configFile}`),
         DynamicUser: false,
       })),

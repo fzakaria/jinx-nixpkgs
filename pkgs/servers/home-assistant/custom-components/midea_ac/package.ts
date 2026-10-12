@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const domain = "midea_ac";
       const version = "2026.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mill1000",
           repo: "midea-ac-py",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [msmart_ng]);
       const nativeCheckInputs = nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mill1000/midea-ac-py/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant custom integration to control Midea (and associated brands) air conditioners via LAN",
         homepage: "https://github.com/mill1000/midea-ac-py",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

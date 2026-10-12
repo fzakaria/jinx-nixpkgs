@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const withJlink = nix.argOr($, "withJlink", () => true);
   const withGpio = nix.argOr($, "withGpio", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flashprog",
       version: "1.6",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://review.sourcearcade.org/flashprog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Ih6cRUbmKIKRt8dIGNBbaLDomNvVdcl5P/lRBAzwwTI=",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 ../util/50-flashprog.rules \"$out/lib/udev/rules.d/50-flashprog.rules\"\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://flashprog.org",
         description: "Utility for reading, writing, erasing and verifying flash ROM chips",
         changelog: nix.thunk(() => nix.str`https://flashprog.org/wiki/Flashprog/v${nix.sel(finalAttrs, "version")}`),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "notify_push";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nextcloud",
           repo: "notify_push",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-skKOCJBtpvtdc594eOxbvSIl+SucaH0jl1gFv9kfvNA=";
       const passthru = nix.thunk(() => (() => {
         const app = nix.thunk(() => nix.app(fetchNextcloudApp, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             appName: "notify_push",
             appVersion: version,
             hash: "sha256-C/2jXLpuIbxjWO3kMb3nkLA5762uVLuzk1YPz/YSfjY=",
@@ -42,19 +42,19 @@ export default nix.lambda((args) => (() => {
             description: "Push update support for desktop app",
           }))));
         const test_client = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.str`${pname}-test_client`),
             src: src,
             version: version,
             buildAndTestSubdir: "test_client",
             cargoHash: "sha256-skKOCJBtpvtdc594eOxbvSIl+SucaH0jl1gFv9kfvNA=",
-            meta: nix.thunk(() => nix.update(meta, { __proto__: pos$3, mainProgram: "test_client" })),
+            meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$3, mainProgram: "test_client" })),
           }))));
-        const tests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "filterAttrs"), (key) => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "with-postgresql-and-redis", key))), nix.thunk(() => nix.sel(nixosTests, "nextcloud"))), { __proto__: pos$5, test_client: test_client }));
-        return { __proto__: pos$6, app, test_client, tests };
+        const tests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "filterAttrs"), (key) => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "with-postgresql-and-redis", key))), nix.thunk(() => nix.sel(nixosTests, "nextcloud"))), { [nix.POS]: pos$5, test_client: test_client }));
+        return { [nix.POS]: pos$6, app, test_client, tests };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/nextcloud/notify_push/releases/tag/v${version}`),
         description: "Update notifications for nextcloud clients",
         mainProgram: "notify_push",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "helsinki-Jo"))];
         })()),
       }));
-      return { __proto__: pos$8, pname, version, src, cargoHash, passthru, meta };
+      return { [nix.POS]: pos$8, pname, version, src, cargoHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=notify_push.ts.map

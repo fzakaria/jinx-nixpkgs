@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kas = nix.arg($, "kas");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kas",
       version: "5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siemens",
           repo: "kas",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: kas, command: "kas --version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: kas, command: "kas --version" })))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["kas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/siemens/kas",
         description: "Setup tool for bitbake based projects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

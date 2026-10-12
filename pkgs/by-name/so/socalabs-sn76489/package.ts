@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   const version = "1.1.7";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "socalabs-sn76489",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FigBug",
           repo: "SN76489",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: "Application",
             name: "socalabs-sn76489",
             desktopName: "Socalabs SN76489",
@@ -109,7 +109,7 @@ install -Dm444 $src/plugin/Resources/logo.png $out/share/pixmaps/SN76489.png
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -122,11 +122,11 @@ runHook postInstall
           ]))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Socalabs Texas Instruments SN76489 Emulation Plugin",
         homepage: "https://socalabs.com/synths/sn76489/",
         mainProgram: "SN76489",

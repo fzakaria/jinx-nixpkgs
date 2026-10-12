@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const mypy_extensions = nix.arg($, "mypy-extensions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "typing-inspect",
       version: "0.9.0-unstable-2025-10-20",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ilevkivskyi",
           repo: "typing_inspect",
           rev: "58c98c084ebeb45ee51935506ed1cc3449105fa9",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["typing_inspect"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Runtime inspection utilities for Python typing module",
         homepage: "https://github.com/ilevkivskyi/typing_inspect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

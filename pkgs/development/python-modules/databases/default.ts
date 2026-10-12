@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "encode",
           repo: "databases",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [sqlalchemy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postgresql: nix.thunk(() => [asyncpg]),
         asyncpg: nix.thunk(() => [asyncpg]),
         aiopg: nix.thunk(() => [aiopg]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["databases"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Async database support for Python",
         homepage: "https://github.com/encode/databases",
         changelog: nix.thunk(() => nix.str`https://github.com/encode/databases/releases/tag/${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

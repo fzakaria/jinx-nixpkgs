@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pnpm-test",
       version: nix.thunk(() => nix.attr(pnpm, "version")),
       src: nix.path(here, "./src"),
       pnpmDeps: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +47,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pnpm, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "pnpm-11-test",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

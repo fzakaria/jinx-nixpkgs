@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const unrar_wrapper = nix.arg($, "unrar-wrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "facetimehd-calibration",
       version: "5.1.5769",
       outputHash: "sha256-KQBIlpa68wjQNgBiEnLtl6iEYseNrTlSdq9wiNni16k=",
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       builder: nix.path(here, "./builder.sh"),
       nativeBuildInputs: nix.thunk(() => [curl, unrar_wrapper]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "facetimehd calibration",
         homepage: "https://support.apple.com/kb/DL1837",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

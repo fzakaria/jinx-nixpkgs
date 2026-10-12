@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const libptrscan = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libptrscan",
       version: "0.7.4-unstable-2024-09-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kekeimiku",
           repo: "PointerSearcher-X",
           rev: "ba2b5eab4856aa4ffb3ece0bd2c7d0917fa4e6ce",
           hash: "sha256-skOM2dx+u7dYbWywaC8dtUuJuXzc4Mm6skBbMfaTwfY=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./libptrscan/Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./libptrscan/Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./libptrscan/Cargo.lock")} Cargo.lock
 chmod +w Cargo.lock
 `),
@@ -59,7 +59,7 @@ chmod +w Cargo.lock
         nix.thunk(() => nix.lookup(w, "pyqt6")),
       ];
     })()));
-  const gdb$ = nix.thunk(() => nix.app(nix.sel(gdb, "override"), nix.thunk(() => ({ __proto__: pos$4, python3: pythonEnv }))));
+  const gdb$ = nix.thunk(() => nix.app(nix.sel(gdb, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, python3: pythonEnv }))));
   const LDPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
       gtk3,
@@ -67,12 +67,12 @@ chmod +w Cargo.lock
     ])));
   const GIPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => [gtk3, gobject_introspection])));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pince",
       version: "0.4.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "korcankaraokcu",
           repo: "PINCE",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ chmod +w Cargo.lock
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-gdb-path.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             gdb_exe_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gdb$)),
           })))),
       ]),
@@ -140,12 +140,12 @@ runHook postBuild
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/pince/\ncp -r GUI i18n libpince media tr AUTHORS COPYING COPYING.CC-BY PINCE.py THANKS $out/lib/pince/\n\nmkdir -p $out/bin\nln -s $out/lib/pince/PINCE.py $out/bin/pince\n\nrunHook postInstall\n",
       postFixup: "wrapPythonProgramsIn \"$out/lib/pince\" \"$out ${pythonPath[*]}\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         libptrscan: libptrscan,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Reverse engineering tool for games (Linux alternative to Cheat Engine)",
         homepage: "https://github.com/korcankaraokcu/PINCE",
         mainProgram: "pince",

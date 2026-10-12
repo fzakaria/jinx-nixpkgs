@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dependency-injector",
       version: "4.49.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ets-labs",
           repo: "python-dependency-injector",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [cython, distutils, setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp]),
         pydantic: nix.thunk(() => [pydantic]),
         flask: nix.thunk(() => [flask]),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/wiring/test_fastdepends.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dependency injection microframework for Python",
         homepage: "https://github.com/ets-labs/python-dependency-injector",
         changelog: nix.thunk(() => nix.str`https://github.com/ets-labs/python-dependency-injector/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/main/changelog.rst`),

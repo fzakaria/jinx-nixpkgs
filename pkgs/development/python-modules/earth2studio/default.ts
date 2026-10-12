@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
   const rq = nix.arg($, "rq");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "earth2studio",
       version: "0.19.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "earth2studio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,16 +114,16 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_fss"])))),
       disabledTestPaths: nix.thunk(() => ["test/data", "test/models/test_auto_models.py", "test/utils/test_cupy.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (prev) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             disabledTestMarks: [],
             disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "cuda", nix.thunk(() => nix.sel(prev, "disabledTests")))),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source deep-learning framework for exploring, building and deploying AI weather/climate workflows",
         homepage: "https://github.com/NVIDIA/earth2studio",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/earth2studio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

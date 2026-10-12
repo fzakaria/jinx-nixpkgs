@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const zeep = nix.arg($, "zeep");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simple-salesforce",
       version: "1.12.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simple-salesforce",
           repo: "simple-salesforce",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["simple_salesforce"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very simple Salesforce.com REST API client for Python",
         homepage: "https://github.com/simple-salesforce/simple-salesforce",
         changelog: nix.thunk(() => nix.str`https://github.com/simple-salesforce/simple-salesforce/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

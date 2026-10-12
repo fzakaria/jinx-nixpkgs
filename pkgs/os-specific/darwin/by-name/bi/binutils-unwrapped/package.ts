@@ -45,7 +45,7 @@ if [ -f "$sourcePath" ]; then
 fi
 `));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${targetPrefix}cctools-binutils-darwin`),
       version: nix.thunk(() => nix.attr(cctools, "version")),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), enableManpages, "man"))),
@@ -95,14 +95,14 @@ ${nix.app(linkManPages, nix.thunk(() => nix.app(nix.sel(lib, "getMan"), ld64)), 
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cctools_cmds: cctools_cmds,
         llvm_cmds: llvm_cmds,
         targetPrefix: targetPrefix,
         isCCTools: true,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "reckenrode"))];

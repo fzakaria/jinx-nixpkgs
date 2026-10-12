@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pbr = nix.arg($, "pbr");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adbutils",
       version: "2.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openatx",
           repo: "adbutils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pbr, deprecation, pillow, requests, retry2]),
       pythonImportsCheck: nix.thunk(() => ["adbutils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure python adb library for google adb service",
         homepage: "https://github.com/openatx/adbutils",
         changelog: nix.thunk(() => nix.str`https://github.com/openatx/adbutils/releases/tag/${nix.sel(finalAttrs, "version")}`),

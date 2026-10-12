@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
   const conduwuitWrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "conduwuit", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${configFile} "$@"
 `)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -68,111 +68,111 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         "matrix-continuwuity": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "continuwuity")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               description: "The user {command}`continuwuity` is run as.\n",
               default: defaultUser,
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               description: "The group {command}`continuwuity` is run as.\n",
               default: defaultGroup,
             })))),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra Environment variables to pass to the continuwuity server.",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$4, RUST_BACKTRACE: "yes" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, RUST_BACKTRACE: "yes" })),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matrix-continuwuity", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     global: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       server_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                           example: "example.com",
                           description: "The server_name is the name of this server. It is used as a suffix for user and room ids.",
                         })))),
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))),
                           default: null,
                           example: nix.thunk(() => ["127.0.0.1", "::1"]),
                           description: "Addresses (IPv4 or IPv6) to listen on for connections by the reverse proxy/tls terminator.\nIf set to `null`, continuwuity will listen on IPv4 and IPv6 localhost.\nMust be `null` if `unix_socket_path` is set.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                           default: nix.thunk(() => [6167n]),
                           description: "The port(s) continuwuity will be running on.\nYou need to set up a reverse proxy in your web server (e.g. apache or nginx),\nso all requests to /_matrix on port 443 and 8448 will be forwarded to the continuwuity\ninstance running on this port.\n",
                         })))),
                       unix_socket_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "Listen on a UNIX socket at the specified path. If listening on a UNIX socket,\nlistening on an address will be disabled. The `address` option must be set to\n`null` (the default value). The option {option}`services.continuwuity.group` must\nbe set to a group your reverse proxy is part of.\n\nThis will automatically add a system user \"continuwuity\" to your system if\n{option}`services.continuwuity.user` is left at the default, and a \"continuwuity\"\ngroup if {option}`services.continuwuity.group` is left at the default.\n",
                         })))),
                       unix_socket_perms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 660n,
                           description: "The default permissions (in octal) to create the UNIX socket with.",
                         })))),
                       max_request_size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 20000000n,
                           description: "Max request size in bytes. Don't forget to also change it in the proxy.",
                         })))),
                       allow_registration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether new users can register on this server.\n\nRegistration with token requires `registration_token` or `registration_token_file` to be set.\n\nIf set to true without a token configured, and\n`yes_i_am_very_very_sure_i_want_an_open_registration_server_prone_to_abuse`\nis set to true, users can freely register.\n",
                         })))),
                       allow_encryption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether new encrypted rooms can be created. Note: existing rooms will continue to work.",
                         })))),
                       allow_federation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether this server federates with other servers.\n",
                         })))),
                       trusted_servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))),
                           default: nix.thunk(() => ["matrix.org"]),
                           description: "Servers listed here will be used to gather public keys of other servers\n(notary trusted key servers).\n\nCurrently, continuwuity doesn't support inbound batched key requests, so\nthis list should only contain other Synapse servers.\n\nExample: `[ \"matrix.org\" \"constellatory.net\" \"tchncs.de\" ]`\n",
                         })))),
                       database_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           readOnly: true,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/var/lib/continuwuity/",
                           description: "Path to the continuwuity database, the directory where continuwuity will save its data.\nNote that database_path cannot be edited because of the service's reliance on systemd StateDir.\n",
                         })))),
                       allow_announcements_check: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "If enabled, continuwuity will send a simple GET request periodically to\n<https://continuwuity.org/.well-known/continuwuity/announcements> for any new announcements made.\n",
@@ -185,9 +185,9 @@ export default nix.lambda((args) => (() => {
               description: "Generates the continuwuity.toml configuration file. Refer to\n<https://continuwuity.org/configuration.html>\nfor details on supported values.\n",
             })))),
           admin: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => nix.sel(cfg, "enable")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.matrix-continuwuity.enable")),
@@ -198,30 +198,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
-        environment: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "admin", "enable")), nix.thunk(() => ({ __proto__: pos$27, systemPackages: nix.thunk(() => [conduwuitWrapper]) })))),
+        [nix.POS]: pos$38,
+        environment: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "admin", "enable")), nix.thunk(() => ({ [nix.POS]: pos$27, systemPackages: nix.thunk(() => [conduwuitWrapper]) })))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "global", "unix_socket_path"))) || nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "global", "address"))))),
             message: "In `services.continuwuity.settings.global`, `unix_socket_path` and `address` cannot be set at the\nsame time.\nLeave one of the two options unset or explicitly set them to `null`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "user"), defaultUser)) || nix.asBool(nix.has(config, "users", "users", nix.key(nix.sel(cfg, "user")))))),
             message: "If `services.continuwuity.user` is changed, the configured user must already exist.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "group"), defaultGroup)) || nix.asBool(nix.has(config, "users", "groups", nix.key(nix.sel(cfg, "group")))))),
             message: "If `services.continuwuity.group` is changed, the configured group must already exist.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "settings", "global", "database_path")),
                 isSystemUser: true,
@@ -230,24 +230,24 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.attrsDyn({}, [[defaultGroup, nix.thunk(() => ({}))]])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             continuwuity: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "Continuwuity Matrix Server",
               documentation: nix.thunk(() => ["https://continuwuity.org/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$33, CONTINUWUITY_CONFIG: configFile })),
+                  nix.thunk(() => ({ [nix.POS]: pos$33, CONTINUWUITY_CONFIG: configFile })),
                   nix.thunk(() => nix.sel(cfg, "extraEnvironment")),
                 ]))),
               startLimitBurst: 5n,
               startLimitIntervalSec: 60n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 Type: "notify",
                 DynamicUser: true,
                 User: nix.thunk(() => nix.sel(cfg, "user")),

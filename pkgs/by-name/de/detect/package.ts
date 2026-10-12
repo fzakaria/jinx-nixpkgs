@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "detect",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inanna-malick",
           repo: "detect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-hAjFnpOgb31yQWVFFNGP0E8kT6G6OhB90kfkJsQtaWg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Expression-based file search combining name, content, metadata, and structured data predicates",
         homepage: "https://github.com/inanna-malick/detect/",
         changelog: nix.thunk(() => nix.str`https://github.com/inanna-malick/detect/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

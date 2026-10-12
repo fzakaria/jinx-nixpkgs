@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jx";
       const version = "3.17.80";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jenkins-x",
           repo: "jx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-Rupnzj1kw0den6O0RZ5Fg5pZWRsfLuor3ntAiQjfIn8=";
       const subPackages = nix.thunk(() => ["cmd"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/jenkins-x/jx/pkg/cmd/version.Version=${version}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mv $out/bin/cmd $out/bin/jx\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Command line tool for installing and using Jenkins X",
         mainProgram: "jx",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

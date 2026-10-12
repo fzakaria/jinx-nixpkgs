@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const isNotAarch64Linux = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rembg",
       version: "2.0.85",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielgatis",
           repo: "rembg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mUJ18XFEK01jwkYUdEctQrIkz3dx3kw/vcs5VnZ9kY0=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         POETRY_DYNAMIC_VERSIONING_BYPASS: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [poetry_core, poetry_dynamic_versioning]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ], nix.app(nix.sel(lib, "optionals"), withCli, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cli: nix.thunk(() => [
           aiohttp,
           asyncer,
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isNotAarch64Linux, nix.thunk(() => ["rembg"]))),
       doCheck: isNotAarch64Linux,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to remove background from images",
         homepage: "https://github.com/danielgatis/rembg",
         changelog: nix.thunk(() => nix.str`https://github.com/danielgatis/rembg/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

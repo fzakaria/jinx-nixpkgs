@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deschler",
           repo: "django-modeltranslation",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [django_stubs, pytestCheckHook, pytest_cov_stub, pytest_django, parameterized]);
       const pythonImportsCheck = nix.thunk(() => ["modeltranslation"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Translates Django models using a registration approach",
         homepage: "https://github.com/deschler/django-modeltranslation",
         changelog: nix.thunk(() => nix.str`https://github.com/deschler/django-modeltranslation/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

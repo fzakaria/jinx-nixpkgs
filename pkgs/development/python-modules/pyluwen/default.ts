@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const maturin = nix.arg($, "maturin");
   const protobuf_30 = nix.arg($, "protobuf_30");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyluwen",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "luwen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-J0SvCBsDi3GMvnwqgqGMUDvrSO+baznDhsfuvF44Ens=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,7 +52,7 @@ sed -i '0,/version = /{s/version = "*.*.*"/version = "${nix.sel(finalAttrs, "ver
       })()),
       "build-system": nix.thunk(() => [maturin]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tenstorrent system interface library",
         homepage: "https://github.com/tenstorrent/luwen",
         changelog: nix.thunk(() => nix.str`https://github.com/tenstorrent/luwen/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

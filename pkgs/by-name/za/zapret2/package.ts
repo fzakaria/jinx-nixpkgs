@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zapret2",
       version: "1.0.5.2",
       outputs: nix.thunk(() => ["out", "doc"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bol-van",
           repo: "zapret2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`TGT=${nix.builtins.placeholder("out")}/bin`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ZAPRET_BASE: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/zapret2`),
         ZAPRET_RW: "/etc/zapret2",
       })),
@@ -96,11 +96,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, zapret2: nix.thunk(() => nix.attr(nixosTests, "zapret2")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, zapret2: nix.thunk(() => nix.attr(nixosTests, "zapret2")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Anti-DPI software for bypassing DPI systems",
         homepage: "https://github.com/bol-van/zapret2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

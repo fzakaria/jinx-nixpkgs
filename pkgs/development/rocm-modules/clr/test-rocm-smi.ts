@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rocm_smi = nix.arg($, "rocm-smi");
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "rocm-smi",
       testedPackage: "rocmPackages.clr",
       nativeBuildInputs: nix.thunk(() => [clinfo, rocm_smi]),
       OCL_ICD_VENDORS: nix.thunk(() => nix.str`${nix.sel(clr, "icd")}/etc/OpenCL/vendors`),
       testScript: "# Test fails if the number of platforms is 0\nclinfo | grep -E 'Number of platforms * [1-9]'\nrocm-smi | grep -A1 GPU\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

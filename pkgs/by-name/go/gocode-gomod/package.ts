@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gocode-gomod",
       version: "1.0.0",
       allowGoReference: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stamblerre",
           repo: "gocode",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin/gocode $out/bin/gocode-gomod\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Autocompletion daemon for the Go programming language",
         mainProgram: "gocode-gomod",
         longDescription: "Gocode is a helper tool which is intended to be integrated with your\nsource code editor, like vim, neovim and emacs. It provides several\nadvanced capabilities, which currently includes:\n\n  - Context-sensitive autocompletion\n\nIt is called daemon, because it uses client/server architecture for\ncaching purposes. In particular, it makes autocompletions very fast.\nTypical autocompletion time with warm cache is 30ms, which is barely\nnoticeable.\n",

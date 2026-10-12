@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const inferNativeTarget = (t) => (nix.asBool(nix.eq(t, "NATIVE")) ? nix.force(llvmNativeTarget) : nix.force(t));
   const llvmTargetsToBuild$ = nix.thunk(() => nix.concat(["AMDGPU", "NVPTX"], nix.builtins.map(inferNativeTarget, llvmTargetsToBuild)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tokenspeed-triton-llvm",
       version: "24.0.0-unstable-2026-08-03",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "llvm",
           repo: "llvm-project",
           rev: "b010a18d2b648cab83c83967ff26b8fde11acdc6",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of modular and reusable compiler and toolchain technologies",
         homepage: "https://github.com/llvm/llvm-project",
         license: nix.thunk(() => (() => {

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mkcal",
       version: "0.7.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sailfishos",
           repo: "mkcal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,18 +76,18 @@ export QT_QPA_PLATFORM=minimal
 export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(libsForQt5, "qtbase")))}/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Mobile version of the original KCAL from KDE",
         homepage: "https://github.com/sailfishos/mkcal",
         changelog: nix.thunk(() => nix.str`https://github.com/sailfishos/mkcal/releases/tag/${nix.sel(finalAttrs, "version")}`),

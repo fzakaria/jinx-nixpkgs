@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return (mkDerivation) => (args_1) => (() => {
     const args_ = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), [wrapQtAppsHook])),
     }));
     return nix.app(mkDerivation, nix.thunk(() => nix.update(args_1, args_)));

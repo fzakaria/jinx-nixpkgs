@@ -17,44 +17,44 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const callPackage = nix.arg($, "callPackage");
   const hello_program = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.dangermouse.net/esoteric/piet/hw6.png",
       hash: "sha256-E8OMu0b/oU8lDF3X4o5WMnnD1IKNT2YF+qe4MXLuczI=",
     }))));
   const prime_tester_program = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://www.bertnase.de/npiet/nprime.gif",
       hash: "sha256-4eaJweV/n73byoWZWCXiMLkfSEhMPf5itVwz48AK/FA=",
     }))));
   const brainfuck_interpreter_program = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://www.dangermouse.net/esoteric/piet/piet_bfi.gif",
       hash: "sha256-LIfOG0KFpr4nxAtLLeIsPQl+8Ujyvfz/YnEm/HRoVjY=",
     }))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     hello: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         testName: "hello",
         programPath: hello_program,
         expectedOutput: "Hello, world!",
       })))),
     prime: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         testName: "prime",
         programPath: prime_tester_program,
         programInput: "2069",
         expectedOutput: "Y",
       })))),
     "no-prime": nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         testName: "no-prime",
         programPath: prime_tester_program,
         programInput: "2070",
         expectedOutput: "N",
       })))),
     brainfuck: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         testName: "brainfuck",
         programPath: brainfuck_interpreter_program,
         programInput: ",+>,+>,+>,+.<.<.<.|sdhO",

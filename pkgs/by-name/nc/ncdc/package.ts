@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.arg($, "libmaxminddb");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ncdc",
       version: "1.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev.yorhel.nl/download/ncdc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "b9be58e7dbe677f2ac1c472f6e76fad618a65e2f8bf1c7b9d3d97bc169feb740",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-geoip"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://dev.yorhel.nl/ncdc/changes",
         description: "Modern and lightweight direct connect client with a friendly ncurses interface",
         homepage: "https://dev.yorhel.nl/ncdc",

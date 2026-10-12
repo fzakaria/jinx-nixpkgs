@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makePythonHook = nix.arg($, "makePythonHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(makePythonHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "wrap-python-hook",
       propagatedBuildInputs: nix.thunk(() => [makeWrapper]),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sitePackages: nix.thunk(() => nix.sel(python, "sitePackages")),
         executable: nix.thunk(() => nix.sel(python, "interpreter")),
         python: nix.thunk(() => nix.sel(python, "pythonOnBuildForHost")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const speexdsp = nix.arg($, "speexdsp");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2.6",
       pname: "libebur128",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jiixyj",
           repo: "libebur128",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [speexdsp]),
       postPatch: nix.thunk(() => nix.add("substituteInPlace ebur128/libebur128.pc.cmake \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n", "for file in CMakeLists.txt test/CMakeLists.txt; do\n  substituteInPlace \"$file\" \\\n    --replace-fail \\\n      'cmake_minimum_required(VERSION 2.8.12' \\\n      'cmake_minimum_required(VERSION 3.10'\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the EBU R128 loudness standard",
         homepage: "https://github.com/jiixyj/libebur128",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

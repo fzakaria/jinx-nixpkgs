@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mocnik-science",
           repo: "osm-python-tools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "OSMPythonTools.overpass",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to access OpenStreetMap-related services",
         longDescription: "The python package OSMPythonTools provides easy access to\nOpenStreetMap-related services, among them an Overpass endpoint,\nNominatim, and the OpenStreetMap editing API.\n",
         homepage: "https://github.com/mocnik-science/osm-python-tools",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xr-chaperone",
       version: "0-unstable-2026-05-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FrostyCoolSlug",
           repo: "xr-chaperone",
           rev: "a0351bd00f208e9f7c7917d413de2accbf9208eb",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -m 444 -D resources/xr-chaperone.desktop $out/share/applications/xr-chaperone.desktop\ninstall -m 444 -D resources/xr-chaperone.png $out/share/icons/hicolor/256x256/apps/xr-chaperone.png\ninstall -m 444 -D resources/xr-chaperone.svg $out/share/icons/hicolor/scalable/apps/xr-chaperone.svg\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VR Chaperone System for OpenXR ",
         homepage: "https://github.com/FrostyCoolSlug/xr-chaperone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "python-flirt",
       version: "0.9.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "williballenthin",
           repo: "lancelot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           lockFile: nix.path(here, "./Cargo.lock"),
           outputHashes: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "ar-0.9.0": "sha256-eyi1MlhJVvsiBOsetDHXFpdk+ABeZo/fVXNyvc5mw9s=",
           })),
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "pyflirt",
       pythonImportsCheck: nix.thunk(() => ["flirt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python library for parsing, compiling, and matching Fast Library Identification and Recognition Technology (FLIRT) signatures",
         homepage: "https://github.com/williballenthin/lancelot/tree/master/pyflirt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

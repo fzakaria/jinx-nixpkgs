@@ -51,33 +51,33 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       options: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkEnableOption"), "Go Ethereum Node")),
         port: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib_1, "types", "port")),
             default: 30303n,
             description: "Port number Go Ethereum will be listening on, both TCP and UDP.",
           })))),
         http: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkEnableOption"), "Go Ethereum HTTP API")),
           address: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "127.0.0.1",
               description: "Listen address of Go Ethereum HTTP API.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib_1, "types", "port")),
               default: 8545n,
               description: "Port number of Go Ethereum HTTP API.",
             })))),
           apis: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib_1, "types", "listOf"), nix.thunk(() => nix.sel(lib_1, "types", "str")))))),
               default: null,
               description: "APIs to enable over WebSocket",
@@ -85,22 +85,22 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         websocket: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkEnableOption"), "Go Ethereum WebSocket API")),
           address: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "127.0.0.1",
               description: "Listen address of Go Ethereum WebSocket API.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib_1, "types", "port")),
               default: 8546n,
               description: "Port number of Go Ethereum WebSocket API.",
             })))),
           apis: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib_1, "types", "listOf"), nix.thunk(() => nix.sel(lib_1, "types", "str")))))),
               default: null,
               description: "APIs to enable over WebSocket",
@@ -108,29 +108,29 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         authrpc: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkEnableOption"), "Go Ethereum Auth RPC API")),
           address: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "127.0.0.1",
               description: "Listen address of Go Ethereum Auth RPC API.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib_1, "types", "port")),
               default: 8551n,
               description: "Port number of Go Ethereum Auth RPC API.",
             })))),
           vhosts: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib_1, "types", "listOf"), nix.thunk(() => nix.sel(lib_1, "types", "str")))))),
               default: nix.thunk(() => ["localhost"]),
               description: "List of virtual hostnames from which to accept requests.",
               example: nix.thunk(() => ["localhost", "geth.example.org"]),
             })))),
           jwtsecret: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "",
               description: "Path to a JWT secret for authenticated RPC endpoint.",
@@ -138,47 +138,47 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         metrics: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkEnableOption"), "Go Ethereum prometheus metrics")),
           address: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib_1, "types", "str")),
               default: "127.0.0.1",
               description: "Listen address of Go Ethereum metrics service.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib_1, "types", "port")),
               default: 6060n,
               description: "Port number of Go Ethereum metrics service.",
             })))),
         })),
         network: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib_1, "types", "enum"), nix.thunk(() => ["holesky", "sepolia"]))))),
             default: null,
             description: "The network to connect to. Mainnet (null) is the default ethereum network.",
           })))),
         syncmode: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "enum"), nix.thunk(() => ["snap", "fast", "full", "light"]))),
             default: "snap",
             description: "Blockchain sync mode.",
           })))),
         gcmode: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "enum"), nix.thunk(() => ["full", "archive"]))),
             default: "full",
             description: "Blockchain garbage collection mode.",
           })))),
         maxpeers: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.sel(lib_1, "types", "int")),
             default: 50n,
             description: "Maximum peers to connect to.",
           })))),
         extraArgs: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "listOf"), nix.thunk(() => nix.sel(lib_1, "types", "str")))),
             description: "Additional arguments passed to Go Ethereum.",
             default: [],
@@ -188,13 +188,13 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         geth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), gethOpts)))),
             default: nix.thunk(() => ({})),
             description: "Specification of one or more geth instances.",
@@ -202,26 +202,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(eachGeth, {})), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         environment: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (gethName) => (cfg) => [nix.thunk(() => nix.sel(cfg, "package"))], eachGeth)))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (gethName) => (cfg) => (() => {
               const stateDir = nix.thunk(() => nix.str`goethereum/${gethName}/${(nix.asBool(nix.eq(nix.sel(cfg, "network"), null)) ? "mainnet" : nix.sel(cfg, "network"))}`);
               const dataDir = nix.thunk(() => nix.str`/var/lib/${stateDir}`);
               return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`geth-${gethName}`), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     description: nix.thunk(() => nix.str`Go Ethereum node (${gethName})`),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["network.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       ExecStart: nix.thunk(() => (() => {
                         const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.attrsDyn({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             syncmode: nix.thunk(() => nix.attr(cfg, "syncmode")),
                             gcmode: nix.thunk(() => nix.attr(cfg, "gcmode")),
                             port: nix.thunk(() => nix.attr(cfg, "port")),

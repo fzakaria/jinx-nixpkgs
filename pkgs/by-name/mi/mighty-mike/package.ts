@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mighty-mike",
       version: "3.0.2-unstable-2024-04-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorio",
           repo: "MightyMike",
           rev: "0a1d6c4c80a90ed6e333651cd0a438ec003cfbe5",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/MightyMike\"\nmv Data ReadMe.txt \"$out/share/MightyMike/\"\n\ninstall -Dm755 {.,$out/bin}/MightyMike\nwrapProgram $out/bin/MightyMike --chdir \"$out/share/MightyMike\"\n\ninstall -Dm644 $src/packaging/io.jor.mightymike.desktop $out/share/applications/mightymike.desktop\ninstall -Dm644 $src/packaging/io.jor.mightymike.png -t $out/share/icons/hicolor/512x512/apps\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of Mighty Mike, a 1995 Macintosh game by Pangea Software, for modern operating systems",
         longDescription: "This is Pangea Software's Mighty Mike updated to run on modern systems.\nSet in a toy store, this top-down action game is a staple of 90's Macintosh games.\nIt was initially published in 1995 under the name Power Pete.\n",
         homepage: "https://jorio.itch.io/mightymike",

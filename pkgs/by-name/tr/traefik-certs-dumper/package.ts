@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "traefik-certs-dumper",
       version: "2.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ldez",
           repo: "traefik-certs-dumper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-DR1Bo4MwoJy7AZyuLsjkqbUHj12fN01mnyDVXcvmjMI=",
       excludedPackages: "integrationtest",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dump ACME data from traefik to certificates",
         homepage: "https://github.com/ldez/traefik-certs-dumper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

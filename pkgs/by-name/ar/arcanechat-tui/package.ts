@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const arcanechat_tui = nix.arg($, "arcanechat-tui");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "arcanechat-tui",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArcaneChat",
           repo: "arcanechat-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,19 +48,19 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
               const package$ = arcanechat_tui;
               const command = nix.thunk(() => nix.str`HOME="$TEMP" ${nix.app(nix.sel(lib, "getExe"), package$)} --version
 `);
-              return { __proto__: pos$2, package: package$, command };
+              return { [nix.POS]: pos$2, package: package$, command };
             })()))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lightweight Delta Chat client",
         homepage: "https://github.com/ArcaneChat/arcanechat-tui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonrpc-websocket",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emlove",
           repo: "jsonrpc-websocket",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests.py"]),
       pythonImportsCheck: nix.thunk(() => ["jsonrpc_websocket"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON-RPC websocket client library for asyncio",
         homepage: "https://github.com/emlove/jsonrpc-websocket",
         changelog: nix.thunk(() => nix.str`https://github.com/emlove/jsonrpc-websocket/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

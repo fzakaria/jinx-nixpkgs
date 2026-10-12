@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const rev = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "spwhitton",
           repo: "git-remote-gcrypt",
@@ -39,7 +39,7 @@ wrapProgram "$out/bin/git-remote-gcrypt" \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg, curl, rsync, coreutils, gawk, gnused, gnugrep]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://spwhitton.name/tech/code/git-remote-gcrypt",
         description: "Git remote helper for GPG-encrypted remotes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -54,7 +54,7 @@ wrapProgram "$out/bin/git-remote-gcrypt" \\
         mainProgram: "git-remote-gcrypt",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

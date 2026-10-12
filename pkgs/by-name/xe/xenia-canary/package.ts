@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const vulkan_sdk = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "vulkan-sdk",
       paths: nix.thunk(() => [glslang, spirv_tools]),
     }))));
   return nix.app(nix.sel(llvmPackages_20, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "xenia-canary",
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "xenia-canary",
           repo: "xenia-canary",
           fetchSubmodules: true,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         libuuid,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=unused-result"]))),
       })),
       buildInputs: nix.thunk(() => [gtk3, lz4, SDL2]),
@@ -81,7 +81,7 @@ runHook postBuild
       runtimeDependencies: nix.thunk(() => [vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "xenia_canary",
             desktopName: "Xenia Canary",
             genericName: "Xbox 360 Emulator",
@@ -95,11 +95,11 @@ runHook postBuild
       ]),
       installPhase: "runHook preInstall\nfind ./build/bin -mindepth 3 -maxdepth 3 -type f -executable -exec install -Dm755 {} -t $out/bin \\;\nfor width in 16 32 48 64 128 256; do\n  install -Dm644 assets/icon/$width.png $out/share/icons/hicolor/${width}x${width}/apps/xenia-canary.png\ndone\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$5, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Xbox 360 Emulator Research Project",
         homepage: "https://github.com/xenia-canary/xenia-canary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

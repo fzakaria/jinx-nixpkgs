@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-otp",
           repo: "django-otp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, qrcode]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODUOLE: "test.test_project.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODUOLE: "test.test_project.settings" }));
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 
@@ -45,7 +45,7 @@ runHook postCheck
       const enabledTestPaths = nix.thunk(() => ["src/django_otp/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["django_otp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/django-otp/django-otp",
         changelog: nix.thunk(() => nix.str`https://github.com/django-otp/django-otp/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "Pluggable framework for adding two-factor authentication to Django using one-time passwords",
@@ -53,7 +53,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

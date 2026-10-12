@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const derivationWithMeta = nix.arg($, "derivationWithMeta");
   const bash = nix.arg($, "bash");
   const coreutils = nix.arg($, "coreutils");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "bash";
   const version = "5.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/bash/bash-${version}.tar.gz`),
       hash: "sha256-DVzYaWX4aaJs9k9Lcb57lvkKO6iz104n6OnZ1VUPMbo=",
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./mksignames-flush.patch")]);
   return nix.app(nix.sel(bootBash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       meta: meta,
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
         diffutils,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         runCommand: nix.thunk(() => (() => {
           const defaultBuildInputs = nix.thunk(() => [bash, coreutils]);
           const defaultBinPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultBuildInputs));
           const removedAttributeNames = nix.thunk(() => ["nativeBuildInputs", "passthru"]);
           return (name) => (env) => (buildCommand) => nix.app(derivationWithMeta, nix.thunk(() => nix.update({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: name,
               buildCommand: buildCommand,
               builder: nix.thunk(() => nix.str`${bash}/bin/bash`),
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
               passAsFile: nix.thunk(() => ["buildCommand"]),
               SHELL: nix.thunk(() => nix.str`${bash}/bin/bash`),
               PATH: nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(env, "nativeBuildInputs"))) ? nix.force(defaultBinPath) : nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.sel(env, "nativeBuildInputs"), defaultBuildInputs))))),
-              passthru: nix.thunk(() => nix.update(nix.selOr(env, () => ({}), "passthru"), { __proto__: pos$3, isFromMinBootstrap: true })),
+              passthru: nix.thunk(() => nix.update(nix.selOr(env, () => ({}), "passthru"), { [nix.POS]: pos$3, isFromMinBootstrap: true })),
             }, nix.builtins.removeAttrs(env, removedAttributeNames))));
         })()),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "get-version": (result) => nix.app(nix.sel(bootBash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/bash --version
 mkdir $out
 `)),

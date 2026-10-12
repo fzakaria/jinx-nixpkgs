@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const withVtk = nix.argOr($, "withVtk", () => false);
   const opencascade_occt = nix.arg($, "opencascade-occt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "opencascade-occt",
       version: "7.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Open-Cascade-SAS",
           repo: "OCCT",
           tag: nix.thunk(() => nix.str`V${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "7.9")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/Open-Cascade-SAS/OCCT/commit/7236e83dcc1e7284e66dc61e612154617ef715d6.diff",
               hash: "sha256-NoC2mE3DG78Y0c9UWonx1vmXoU4g5XxFUT3eVXqLU60=",
             })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withVtk) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "substituteInPlace adm/MODULES \\\n  --replace-fail \"TKIVtkDraw\" \"\"\n")),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       buildInputs: nix.thunk(() => nix.concat([tcl, tk, libGL, libGLU, libxext, libxmu, libxi, rapidjson], nix.app(nix.sel(lib, "optional"), withVtk, vtk))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_RAPIDJSON", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_RELEASE_DISABLE_EXCEPTIONS", false)),
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "3RDPARTY_VTK_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), vtk)}/include/vtk`))),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          withVtk: nix.thunk(() => nix.app(nix.sel(opencascade_occt, "override"), nix.thunk(() => ({ __proto__: pos$4, withVtk: true })))),
+          [nix.POS]: pos$5,
+          withVtk: nix.thunk(() => nix.app(nix.sel(opencascade_occt, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withVtk: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open CASCADE Technology, libraries for 3D modeling and numerical simulation",
         homepage: "https://www.opencascade.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.23.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.fmrib.ox.ac.uk",
           owner: "fsl",
           repo: "fslpy",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [dill, h5py, nibabel, numpy, scipy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extra: nix.thunk(() => [indexed_gzip, pillow, rtree, trimesh, wxpython]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub, tomli], nix.sel(optional_dependencies, "extra")));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "fsl.wrappers",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FSL Python library",
         homepage: "https://git.fmrib.ox.ac.uk/fsl/fslpy",
         changelog: "https://git.fmrib.ox.ac.uk/fsl/fslpy/-/blob/main/CHANGELOG.rst",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

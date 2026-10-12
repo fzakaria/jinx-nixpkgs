@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emcconville",
           repo: "wand",
           tag: version,
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_sparse_color"])));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, imagemagick: imagemagickBig }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, imagemagick: imagemagickBig }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://docs.wand-py.org/en/${version}/changes.html`),
         description: "Ctypes-based simple MagickWand API binding for Python",
         homepage: "http://wand-py.org/",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

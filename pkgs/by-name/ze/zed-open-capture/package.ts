@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const withExamples = nix.argOr($, "withExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zed-open-capture",
       version: "0.5.0-unstable-2023-24-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stereolabs",
           repo: "zed-open-capture",
           rev: "5cf66ff777175776451b9b59ecc6231d730fa202",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withExamples)), nix.thunk(() => ["-DBUILD_EXAMPLES=OFF"]))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform-agnostic camera and sensor capture API for the ZED 2, ZED 2i, and ZED Mini stereo cameras",
         homepage: "https://github.com/stereolabs/zed-open-capture",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

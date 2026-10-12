@@ -92,17 +92,17 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
         ]))))}
 `))}`;
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         syncoid: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Syncoid ZFS synchronization service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sanoid", nix.thunk(() => ({})))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -112,21 +112,21 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
               description: "Run syncoid at this interval. The default is to run hourly.\n\nMust be in the format described in {manpage}`systemd.time(7)`.  This is\nequivalent to adding a corresponding timer unit with\n{option}`OnCalendar` set to the value given here.\n\nSet to an empty list to avoid starting syncoid automatically.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "syncoid",
               example: "backup",
               description: "The user for the service. ZFS privilege delegation will be\nautomatically configured for any local pools used by syncoid if this\noption is set to a user other than root. The user will be given the\n\"hold\" and \"send\" privileges on any pool that has datasets being sent\nand the \"create\", \"mount\", \"receive\", and \"rollback\" privileges on\nany pool that has datasets being received.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "syncoid",
               example: "backup",
               description: "The group for the service.",
             })))),
           sshKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "path")), nix.builtins.toString, nix.thunk(() => nix.lookup(w, "str")))));
@@ -135,13 +135,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
               description: "SSH private key file to use to login to the remote system. Can be\noverridden in individual commands.\n",
             })))),
           localSourceAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["bookmark", "hold", "send", "snapshot", "destroy", "mount"]),
               description: "Permissions granted for the {option}`services.syncoid.user` user\nfor local source datasets. See\n<https://openzfs.github.io/openzfs-docs/man/8/zfs-allow.8.html>\nfor available permissions.\n",
             })))),
           localTargetAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => [
                 "change-key",
@@ -156,42 +156,42 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
               description: "Permissions granted for the {option}`services.syncoid.user` user\nfor local target datasets. See\n<https://openzfs.github.io/openzfs-docs/man/8/zfs-allow.8.html>\nfor available permissions.\nMake sure to include the `change-key` permission if you send raw encrypted datasets,\nthe `compression` permission if you send raw compressed datasets, and so on.\nFor remote target datasets you'll have to set your remote user permissions by yourself.\n",
             })))),
           commonArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--no-sync-snap"]),
               description: "Arguments to add to every syncoid command, unless disabled for that\ncommand. See\n<https://github.com/jimsalterjrs/sanoid/#syncoid-command-line-options>\nfor available options.\n",
             })))),
           service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Systemd configuration common to all syncoid services.\n",
             })))),
           commands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       options: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             example: "pool/dataset",
                             description: "Source ZFS dataset. Can be either local or remote. Defaults to\nthe attribute name.\n",
                           })))),
                         target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             example: "user@server:pool/dataset",
                             description: "Target ZFS dataset. Can be either local\n(«pool/dataset») or remote\n(«user@server:pool/dataset»).\n",
                           })))),
                         recursive: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the transfer of child datasets")),
                         sshKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "path")), nix.builtins.toString, nix.thunk(() => nix.lookup(w, "str")))));
@@ -199,43 +199,43 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
                             description: "SSH private key file to use to login to the remote system.\nDefaults to {option}`services.syncoid.sshKey` option.\n",
                           })))),
                         localSourceAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             description: "Permissions granted for the {option}`services.syncoid.user` user\nfor local source datasets. See\n<https://openzfs.github.io/openzfs-docs/man/8/zfs-allow.8.html>\nfor available permissions.\nDefaults to {option}`services.syncoid.localSourceAllow` option.\n",
                           })))),
                         localTargetAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             description: "Permissions granted for the {option}`services.syncoid.user` user\nfor local target datasets. See\n<https://openzfs.github.io/openzfs-docs/man/8/zfs-allow.8.html>\nfor available permissions.\nMake sure to include the `change-key` permission if you send raw encrypted datasets,\nthe `compression` permission if you send raw compressed datasets, and so on.\nFor remote target datasets you'll have to set your remote user permissions by yourself.\n",
                           })))),
                         sendOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
                             default: "",
                             example: "Lc e",
                             description: "Advanced options to pass to zfs send. Options are specified\nwithout their leading dashes and separated by spaces.\n",
                           })))),
                         recvOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
                             default: "",
                             example: "ux recordsize o compression=lz4",
                             description: "Advanced options to pass to zfs recv. Options are specified\nwithout their leading dashes and separated by spaces.\n",
                           })))),
                         useCommonArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Whether to add the configured common arguments to this command.\n",
                           })))),
                         service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                             default: nix.thunk(() => ({})),
                             description: "Systemd configuration specific to this syncoid service.\n",
                           })))),
                         extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             example: nix.thunk(() => ["--sshport 2222"]),
@@ -243,7 +243,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         source: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
                         sshKey: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "sshKey")))),
                         localSourceAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "localSourceAllow")))),
@@ -259,31 +259,31 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "syncoid")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               syncoid: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
                 home: "/var/lib/syncoid",
                 createHome: false,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "syncoid")), nix.thunk(() => ({ __proto__: pos$28, syncoid: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "syncoid")), nix.thunk(() => ({ [nix.POS]: pos$28, syncoid: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (c) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`syncoid-${nix.app(escapeUnitName, name)}`), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     description: nix.thunk(() => nix.str`Syncoid ZFS synchronization from ${nix.sel(c, "source")} to ${nix.sel(c, "target")}`),
                     after: nix.thunk(() => ["zfs.target"]),
                     path: nix.thunk(() => ["/run/booted-system/sw/bin/"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       ExecStartPre: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(buildAllowCommand, nix.thunk(() => nix.sel(c, "localSourceAllow")))), nix.thunk(() => nix.app(localDatasetName, nix.thunk(() => nix.sel(c, "source"))))), nix.builtins.map(nix.thunk(() => nix.app(buildAllowCommand, nix.thunk(() => nix.sel(c, "localTargetAllow")))), nix.thunk(() => nix.app(localDatasetName, nix.thunk(() => nix.sel(c, "target"))))))),
                       ExecStopPost: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(buildUnallowCommand, nix.thunk(() => nix.sel(c, "localSourceAllow")))), nix.thunk(() => nix.app(localDatasetName, nix.thunk(() => nix.sel(c, "source"))))), nix.builtins.map(nix.thunk(() => nix.app(buildUnallowCommand, nix.thunk(() => nix.sel(c, "localTargetAllow")))), nix.thunk(() => nix.app(localDatasetName, nix.thunk(() => nix.sel(c, "target"))))))),
                       ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/syncoid`)], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(c, "useCommonArgs")), nix.thunk(() => nix.sel(cfg, "commonArgs"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(c, "recursive")), "-r"), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(c, "sshKey"), null)), nix.thunk(() => ["--sshkey", nix.thunk(() => nix.sel(c, "sshKey"))])), nix.concat(nix.sel(c, "extraArgs"), [
@@ -355,10 +355,10 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
                 ])))), nix.thunk(() => nix.sel(cfg, "commands")))),
           timers: nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (c) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "systemd", "services", nix.key(nix.str`syncoid-${nix.app(escapeUnitName, name)}`), "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "interval"), [])))), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`syncoid-${nix.app(escapeUnitName, name)}`, nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   wantedBy: nix.thunk(() => ["timers.target"]),
                   timerConfig: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     OnCalendar: nix.thunk(() => nix.sel(cfg, "interval")),
                     Persistent: true,
                   })),
@@ -367,7 +367,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.builtins.d
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
       const pname = "fido2-manage";
       const version = "0-unstable-2025-06-06";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "token2",
           repo: "fido2-manage",
           rev: "4fc6a4e0d905dcc2a7bfee70232a0398e9e4b45d",
           hash: "sha256-olkEUHJ350FIMUlWG37wqSfO2wyYni4CYspwa4lAO5w=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://token2.net/img/icon/logo-white.png",
           hash: "sha256-UpxRzn24v1vigMFlofVU+YOzKrkxCu2Pk5iktqFgNO8=",
         }))));
@@ -64,7 +64,7 @@ install $src/gui.py $out/bin/fido2-manage-gui
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install $src/fido2-manage-mac.sh $out/bin/fido2-manage\n")));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               desktopName: "Fido2 Manager",
               name: "fido2-manage",
               exec: "fido2-manage-gui",
@@ -91,7 +91,7 @@ sed -i '1i #!${nix.sel(pythonEnv, "interpreter")}' $out/bin/fido2-manage-gui
   --replace-fail "ggrep" "${gnugrep}/bin/grep"
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Manage FIDO2.1 devices over USB or NFC, including Passkeys",
         homepage: "https://github.com/token2/fido2-manage",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -103,7 +103,7 @@ sed -i '1i #!${nix.sel(pythonEnv, "interpreter")}' $out/bin/fido2-manage-gui
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

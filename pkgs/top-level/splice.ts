@@ -23,7 +23,7 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
     const merge = (name) => (defaultValue) => (() => {
       const value$ = nix.thunk(() => nix.app(mapCrossIndex, (x) => nix.selOr(x, () => ({}), nix.key(nix.force(name))), inputs));
       const augmentedValue = nix.thunk(() => nix.update(defaultValue, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         __spliced: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => nix.has(nix.sel(inputs, nix.key(nix.force(k))), nix.key(nix.force(name))), value$)),
       }));
       const tryGetOutputs = (value0) => (() => {
@@ -35,7 +35,7 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
       const getOutputs = (value) => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.selOr(value, () => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(value, "out")), "out"), "outputs")), (output) => nix.sel(value, nix.key(nix.force(output))));
       const outputNames = nix.thunk(() => nix.selOr(defaultValue, () => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(defaultValue, "out")), "out"), "outputs"));
       const outputSplice = nix.thunk(() => nix.app(spliceReal, nix.thunk(() => nix.update(nix.app(mapCrossIndex, tryGetOutputs, value$), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hostTarget: nix.thunk(() => nix.app(getOutputs, nix.thunk(() => nix.sel(value$, "hostTarget")))),
         }))));
       return (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), defaultValue)) ? nix.update(augmentedValue, nix.app(nix.sel(lib, "genAttrs"), outputNames, (out) => nix.sel(outputSplice, nix.key(nix.force(out))))) : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), defaultValue)) ? nix.app(spliceReal, value$) : nix.force(defaultValue)));
@@ -54,7 +54,7 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
     return (nix.asBool(actuallySplice) ? nix.app(spliceReal, nix.thunk(() => nix.app(renameCrossIndexFrom, "pkgs", args_1))) : nix.force(pkgsHostTarget));
   })(), formals$1);
   const splicedPackages = nix.thunk(() => nix.update(nix.app(splicePackages, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pkgsBuildBuild: nix.thunk(() => nix.attr(pkgs, "pkgsBuildBuild")),
       pkgsBuildHost: nix.thunk(() => nix.attr(pkgs, "pkgsBuildHost")),
       pkgsBuildTarget: nix.thunk(() => nix.attr(pkgs, "pkgsBuildTarget")),
@@ -62,7 +62,7 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
       pkgsHostTarget: nix.thunk(() => nix.attr(pkgs, "pkgsHostTarget")),
       pkgsTargetTarget: nix.thunk(() => nix.attr(pkgs, "pkgsTargetTarget")),
     }))), {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     pkgsBuildBuild: nix.thunk(() => nix.attr(pkgs, "pkgsBuildBuild")),
     pkgsBuildHost: nix.thunk(() => nix.attr(pkgs, "pkgsBuildHost")),
     pkgsBuildTarget: nix.thunk(() => nix.attr(pkgs, "pkgsBuildTarget")),
@@ -75,15 +75,15 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
   }));
   const pkgsForCall = nix.thunk(() => (nix.asBool(actuallySplice) ? nix.force(splicedPackages) : nix.force(pkgs)));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     splicePackages: splicePackages,
     callPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "newScope"), nix.thunk(() => ({})))),
     callPackages: nix.thunk(() => nix.app(nix.sel(lib, "callPackagesWith"), pkgsForCall)),
     newScope: (extra) => nix.app(nix.sel(lib, "callPackageWith"), nix.thunk(() => nix.update(pkgsForCall, extra))),
-    pkgs: nix.thunk(() => (nix.asBool(actuallySplice) ? nix.update(splicedPackages, { __proto__: pos$5, recurseForDerivations: false }) : nix.force(pkgs))),
+    pkgs: nix.thunk(() => (nix.asBool(actuallySplice) ? nix.update(splicedPackages, { [nix.POS]: pos$5, recurseForDerivations: false }) : nix.force(pkgs))),
     makeScopeWithSplicing: nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing"), splicePackages, nix.thunk(() => nix.sel(pkgs, "newScope")))),
     "makeScopeWithSplicing'": nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         splicePackages: splicePackages,
         newScope: nix.thunk(() => nix.attr(pkgs, "newScope")),
       })))),
@@ -91,7 +91,7 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
       const split = (X) => nix.concat([X], (nix.asBool(nix.builtins.isList(attrs)) ? nix.force(attrs) : (nix.asBool(nix.builtins.isString(attrs)) ? nix.app(nix.sel(lib, "splitString"), ".", attrs) : nix.builtins.throw("generateSplicesForMkScope must be passed a list of string or string"))));
       const bad = nix.thunk(() => nix.builtins.throw("attribute should be found"));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         selfBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(split, "pkgsBuildBuild")), bad, pkgs)),
         selfBuildHost: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(split, "pkgsBuildHost")), bad, pkgs)),
         selfBuildTarget: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(split, "pkgsBuildTarget")), bad, pkgs)),
@@ -100,7 +100,7 @@ export default (lib) => (pkgs) => (actuallySplice) => (() => {
         selfTargetTarget: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(split, "pkgsTargetTarget")), nix.thunk(() => ({})), pkgs)),
       };
     })(),
-    __splicedPackages: nix.thunk(() => (nix.asBool(actuallySplice) ? nix.update(splicedPackages, { __proto__: pos$8, recurseForDerivations: false }) : nix.force(pkgs))),
+    __splicedPackages: nix.thunk(() => (nix.asBool(actuallySplice) ? nix.update(splicedPackages, { [nix.POS]: pos$8, recurseForDerivations: false }) : nix.force(pkgs))),
   };
 })();
 //# sourceMappingURL=splice.ts.map

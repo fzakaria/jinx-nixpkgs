@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "contourpy",
           repo: "contourpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [meson_python]);
       const dependencies = nix.thunk(() => [numpy]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        "optional-depdendencies": nix.thunk(() => ({ __proto__: pos$2, bokeh: nix.thunk(() => [bokeh, chromedriver, selenium]) })),
+        [nix.POS]: pos$5,
+        "optional-depdendencies": nix.thunk(() => ({ [nix.POS]: pos$2, bokeh: nix.thunk(() => [bokeh, chromedriver, selenium]) })),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          check: nix.thunk(() => nix.app(nix.sel(contourpy, "overridePythonAttrs"), (_) => ({ __proto__: pos$3, doCheck: true }))),
+          [nix.POS]: pos$4,
+          check: nix.thunk(() => nix.app(nix.sel(contourpy, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
         })),
       }));
       const doCheck = false;
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const preFixup = nix.thunk(() => nix.str`nuke-refs $out/${nix.sel(python, "sitePackages")}/contourpy/util/{_build_config.py,__pycache__/_build_config.*}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/contourpy/contourpy/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for calculating contours in 2D quadrilateral grids",
         homepage: "https://github.com/contourpy/contourpy",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

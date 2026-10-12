@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicfit",
           repo: "eyeD3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [deprecation, filetype]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module and command line program for processing ID3 tags",
         mainProgram: "eyeD3",
         downloadPage: "https://github.com/nicfit/eyeD3",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "eyeD3 is a Python module and command line program for processing ID3\ntags. Information about mp3 files (i.e bit rate, sample frequency, play\ntime, etc.) is also provided. The formats supported are ID3 v1.0/v1.1\nand v2.3/v2.4.\n",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const zbar = nix.arg($, "zbar");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "visp",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lagadic",
           repo: "visp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,17 +52,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lagadic/visp/pull/1416/commits/fdda5620389badee998fe1926ddd3b46f7a6bcd8.patch",
             hash: "sha256-W3vvBdQdp59WAMjuucNoWI0eCyPHjWerl7VCNcPVvzI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/lagadic/visp/pull/1310/commits/9ed0300507e13dddd83fd62a799f5039025ea44e.patch",
             hash: "sha256-xrJ7B/8mEfi9dM/ToMr6vCAwX/FMw+GA/W0zFYgT32s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/lagadic/visp/commit/8c1461661f99a5db31c89ede9946d2b0244f8123.patch",
             hash: "sha256-MER5KDrFxKs+Y5G9UcEIAh95Zilmv1Vp4xq+isRMM/U=",
           })))),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [coin3d, libv4l])))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open Source Visual Servoing Platform",
         homepage: "https://visp.inria.fr",
         changelog: nix.thunk(() => nix.str`https://github.com/lagadic/visp/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog.txt`),

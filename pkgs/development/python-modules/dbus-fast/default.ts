@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbus-fast",
       version: "5.0.22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "dbus-fast",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tYgsaXOo1zYjWebcWZyGIIbYHCJApwhRnuYcHOP+ZUs=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"Cython>=3,<3.3.0\" Cython\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, REQUIRE_CYTHON: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, REQUIRE_CYTHON: 1n })),
       "build-system": nix.thunk(() => [cython, poetry_core, setuptools]),
       nativeCheckInputs: nix.thunk(() => [dbus, pytest, pytest_asyncio, pytest_codspeed, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["dbus_fast", "dbus_fast.aio", "dbus_fast.service", "dbus_fast.message"]),
@@ -49,7 +49,7 @@ dbus-run-session \\
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Faster version of dbus-next",
         homepage: "https://github.com/bluetooth-devices/dbus-fast",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/dbus-fast/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

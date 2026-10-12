@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "airspy",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "airspy",
           repo: "airspyone_host",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/airspy/airspyone_host/commit/7290309a663ced66e1e51dc65c1604e563752310.patch",
             hash: "sha256-DZ7hYFBu9O2e6Fdx3yJdoCHoE1uVhzih0+OpiPTvkaI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/airspy/airspyone_host/commit/3cf6f97976611c2ff6363f7927fe76c465995801.patch",
             hash: "sha256-7LU3UvpvwQdDF8GPZw/W4Z2CSzUCNk47McNHti3YHP8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/airspy/airspyone_host/commit/f467acd587617640741ecbfade819d10ecd032c2.patch",
             hash: "sha256-qfJrxM1hq7NScxN++d9IH+fwFfXf/YwZZUDDOVbwIJk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/9abb6b5fd1a02a7310226d03337f288be71f1d43/community/airspyone-host/gcc-15.patch",
             hash: "sha256-TFtDLT94kXZswnm8K9+U1YV+T+0fbj6oB6rbRdEpSOQ=",
           })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DINSTALL_UDEV_RULES=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/airspy/airspyone_host",
         description: "Host tools and driver library for the AirSpy SDR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

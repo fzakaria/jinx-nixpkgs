@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const sd = nix.arg($, "sd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "discourse-mail-receiver",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "discourse",
           repo: "mail-receiver",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p $out/bin\n\nfind . -type f -exec sd '/etc/postfix' '/run/discourse-mail-receiver' {} +\n\ncp -r receive-mail discourse-smtp-fast-rejection $out/bin/\ncp -r lib $out/\n\nwrapProgram $out/bin/receive-mail --set RUBYLIB $out/lib\nwrapProgram $out/bin/discourse-smtp-fast-rejection --set RUBYLIB $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.discourse.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {

@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const remarshal = nix.arg($_1, "remarshal");
       const stdenv = nix.arg($_1, "stdenv");
       return nix.app(runCommandLocal, "knot-resolver.yaml", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [remarshal]),
           strictDeps: true,
           value: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "settings")))),
@@ -59,9 +59,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 `));
     })(), formals$2), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "vcunat")),
         nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
@@ -69,47 +69,47 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
       ]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "knot-resolver": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable knot-resolver (version 6) domain name server.\nDNSSEC validation is turned on by default.\nIf you want to use knot-resolver 5, please use services.kresd.\n",
             })))),
           managerPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "knot-resolver-manager_6", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               example: "pkgs.knot-resolver-manager_6.override { extraFeatures = true; }",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     network: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type")),
                               })))))),
                           description: "List of interfaces to listen to and its configuration.",
                           default: nix.thunk(() => nix.concat([
                             nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               interface: nix.thunk(() => ["127.0.0.1"]),
                               kind: "dns",
                               freebind: false,
                             })),
                           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 interface: nix.thunk(() => ["::1"]),
                                 kind: "dns",
                                 freebind: false,
@@ -119,7 +119,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
                         })))),
                     })),
                     workers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                             nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto"]))),
                             nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
@@ -136,32 +136,32 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "knot-resolver": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               isSystemUser: true,
               group: "knot-resolver",
               description: "Knot-resolver daemon user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, "knot-resolver": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, "knot-resolver": nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           resolvconf: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             useLocalResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
-            "knot-resolver/config.yaml": nix.thunk(() => ({ __proto__: pos$23, source: configFile })),
+            [nix.POS]: pos$24,
+            "knot-resolver/config.yaml": nix.thunk(() => ({ [nix.POS]: pos$23, source: configFile })),
           })),
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "knot-resolver-cmds", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p "$out/bin"
@@ -170,17 +170,17 @@ ln -s '${nix.sel(cfg, "managerPackage")}/bin/kresctl' "$out/bin/"
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "managerPackage", "kresd"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "knot-resolver": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               stopIfChanged: false,
               reloadTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "managerPackage")}/bin/knot-resolver`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(cfg, "managerPackage")}/bin/kresctl reload`),
                 StateDirectory: "knot-resolver",

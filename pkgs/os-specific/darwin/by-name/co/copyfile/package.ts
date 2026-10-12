@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "copyfile-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/Kernel/sys" \\
   '${xnu}/bsd/sys/decmpfs.h'
@@ -65,15 +65,15 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "copyfile",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       xcodeHash: "sha256-SYW6pBlCQkcbkBqCq+W/mDYZZ7/co2HlPZwXzgh/LnI=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "Darwin file copying library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Darwin file copying library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

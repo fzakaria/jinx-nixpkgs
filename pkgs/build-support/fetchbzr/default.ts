@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const outputHash = nix.arg($_1, "outputHash");
       const outputHashAlgo = nix.arg($_1, "outputHashAlgo");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "bzr-export",
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [breezy]),

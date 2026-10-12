@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lightdm-mini-greeter",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prikhi",
           repo: "lightdm-mini-greeter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`configdir=${nix.builtins.placeholder("out")}/etc`)]),
       postInstall: "substituteInPlace \"$out/share/xgreeters/lightdm-mini-greeter.desktop\" \\\n  --replace \"Exec=lightdm-mini-greeter\" \"Exec=$out/bin/lightdm-mini-greeter\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-mini-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: nix.thunk(() => nix.str`${lightdm_mini_greeter}/share/xgreeters/lightdm-mini-greeter.desktop`),
               name: "lightdm-mini-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Minimal, configurable, single-user GTK3 LightDM greeter",
         mainProgram: "lightdm-mini-greeter",
         homepage: "https://github.com/prikhi/lightdm-mini-greeter",

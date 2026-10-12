@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tornado = nix.arg($, "tornado");
   const typeguard = nix.arg($, "typeguard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tenacity",
       version: "9.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jd",
           repo: "tenacity",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook, tornado, typeguard]),
       pythonImportsCheck: nix.thunk(() => ["tenacity"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jd/tenacity",
         changelog: nix.thunk(() => nix.str`https://github.com/jd/tenacity/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Retrying library for Python",

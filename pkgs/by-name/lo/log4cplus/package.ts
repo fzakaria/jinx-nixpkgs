@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "log4cplus",
       version: "2.2.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/log4cplus/log4cplus-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-RzOWtHoFimTlsv9tUuGNnOewDEcGOfyTe5AkZRWLWzY=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://log4cplus.sourceforge.net/",
         description: "Port the log4j library from Java to C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

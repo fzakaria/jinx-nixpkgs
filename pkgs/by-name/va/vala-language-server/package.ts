@@ -25,24 +25,24 @@ export default nix.lambda((args) => (() => {
   const jsonrpc_glib = nix.arg($, "jsonrpc-glib");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vala-language-server",
       version: "0.48.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vala-lang",
           repo: "vala-language-server",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-Vl5DjKBdpk03aPD+0xGoTwD9Slg1rREorqZGX5o10cY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja, pkg_config, scdoc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [gnome_builder])))),
       buildInputs: nix.thunk(() => [glib, libgee, json_glib, jsonrpc_glib, vala]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Code Intelligence for Vala & Genie",
         mainProgram: "vala-language-server",
         homepage: "https://github.com/vala-lang/vala-language-server",

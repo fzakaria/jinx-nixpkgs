@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const tarballName = nix.thunk(() => nix.str`ocamlformat-${version_1}.tbz`);
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ocamlformat/releases/download/${version_1}/${tarballName}`),
         sha256: nix.thunk(() => nix.sel({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "0.19.0": "0ihgwl7d489g938m1jvgx8azdgq9f5np5mzqwwya797hx2m4dz32",
           "0.20.0": "sha256-JtmNCgwjbCyUE4bWqdH5Nc2YSit+rekwS43DcviIfgk=",
           "0.20.1": "sha256-fTpRZFQW+ngoc0T6A69reEUAZ6GmHkeQvxspd5zRAjU=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const version_1 = version;
     const odoc_parser_v = nix.thunk(() => nix.app(nix.sel(odoc_parser, "override"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.24.0")) ? "2.0.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.20.1")) ? "1.0.1" : "0.9.0"))),
       }))));
     const cmdliner_v = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.28.1")) ? nix.force(cmdliner) : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.21.0")) ? nix.force(cmdliner_1) : nix.force(cmdliner_1_0))));
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       uutf,
     ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.20.0")), nix.thunk(() => [either, ocaml_version])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.22.4")), nix.thunk(() => [csexp])), (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "0.25.1")) ? [odoc_parser_v] : [camlp_streams, result, astring])))));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       tarballName,
       src,
       version: version_1,

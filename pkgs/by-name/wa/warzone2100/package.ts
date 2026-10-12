@@ -50,16 +50,16 @@ export default nix.lambda((args) => (() => {
   const withVideos = nix.argOr($, "withVideos", () => true);
   const pname = "warzone2100";
   const sequences = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://sourceforge/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz",
       hash: "sha256-kP9VLKSnDiU34CfiLFCY6k7RvBG7f8lBOMbJQac9Kfo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/warzone2100/releases/${nix.sel(finalAttrs, "version")}/warzone2100_src.tar.xz`),
           hash: "sha256-le5NW4hoDqGxzyMLZ+qEAo4IokWLhGBayff7nrl8Tjc=",
         })))),
@@ -96,20 +96,20 @@ substituteInPlace CMakeLists.txt \\
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withVideos, nix.thunk(() => nix.str`ln -sn ${sequences} $out/share/warzone2100/sequences.wz
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: warzone2100,
               command: "(warzone2100 --version || [ $? -eq 1 ])",
             })))),
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "warzone2100")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, url: "https://github.com/Warzone2100/warzone2100" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, url: "https://github.com/Warzone2100/warzone2100" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Free RTS game, originally developed by Pumpkin Studios",
         mainProgram: "warzone2100",
         longDescription: "  Warzone 2100 is an open source real-time strategy and real-time tactics\nhybrid computer game, originally developed by Pumpkin Studios and\npublished by Eidos Interactive.\n  In Warzone 2100, you command the forces of The Project in a battle to\nrebuild the world after mankind has almost been destroyed by nuclear\nmissiles. The game offers campaign, multi-player, and single-player\nskirmish modes. An extensive tech tree with over 400 different\ntechnologies, combined with the unit design system, allows for a wide\nvariety of possible units and tactics.\n",

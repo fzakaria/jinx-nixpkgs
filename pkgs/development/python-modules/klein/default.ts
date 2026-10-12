@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "24.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twisted",
           repo: "klein",
           tag: version,
@@ -43,7 +43,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["klein"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/twisted/klein/releases/tag/${version}`),
         description: "Klein Web Micro-Framework",
         homepage: "https://github.com/twisted/klein",
@@ -54,7 +54,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

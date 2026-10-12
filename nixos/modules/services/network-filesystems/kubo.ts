@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kubo"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const defaultConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "kubo-default-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(cfg, "package")),
         nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -119,75 +119,75 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
     return (nix.asBool((nix.asBool(nix.eq(nix.app(s, 0n), "ip4")) && nix.asBool(nix.eq(nix.app(s, 2n), "udp")))) ? nix.str`${nix.app(s, 1n)}:${nix.app(s, 3n)}` : (nix.asBool((nix.asBool(nix.eq(nix.app(s, 0n), "ip6")) && nix.asBool(nix.eq(nix.app(s, 2n), "udp")))) ? nix.str`[${nix.app(s, 1n)}]:${nix.app(s, 3n)}` : null));
   })();
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         kubo: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Interplanetary File System (WARNING: may cause severe network degradation).\nNOTE: after enabling this option and rebuilding your system, you need to log out\nand back in for the `IPFS_PATH` environment variable to be present in your shell.\nUntil you do that, the CLI tools won't be able to talk to the daemon by default\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kubo", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ipfs",
               description: "User under which the Kubo daemon runs",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ipfs",
               description: "Group under which the Kubo daemon runs",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "17.09")) ? "/var/lib/ipfs" : "/var/lib/ipfs/.ipfs")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if lib.versionAtLeast config.system.stateVersion \"17.09\"\nthen \"/var/lib/ipfs\"\nelse \"/var/lib/ipfs/.ipfs\"\n")),
               description: "The data dir for Kubo",
             })))),
           defaultMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["online", "offline", "norouting"]))),
               default: "online",
               description: "systemd service that is enabled by default",
             })))),
           autoMount: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether Kubo should try to mount /ipfs, /ipns and /mfs at startup.",
             })))),
           autoMigrate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether Kubo should try to migrate its filesystem repository automatically.",
             })))),
           enableGC: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable automatic garbage collection",
             })))),
           emptyRepo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "If set to false, the repo will be initialized with help files",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     Addresses: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       API: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                               nix.thunk(() => nix.sel(lib, "types", "str")),
                               nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -196,7 +196,7 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
                           description: "Multiaddr or array of multiaddrs describing the address to serve the local HTTP API on.\nIn addition to the multiaddrs listed here, the daemon will also listen on a Unix domain socket.\nTo allow the ipfs CLI tools to communicate with the daemon over that socket,\nadd your user to the correct group, e.g. `users.users.alice.extraGroups = [ config.services.kubo.group ];`\n",
                         })))),
                       Gateway: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                               nix.thunk(() => nix.sel(lib, "types", "str")),
                               nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -205,7 +205,7 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
                           description: "Where the IPFS Gateway can be reached",
                         })))),
                       Swarm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => [
                             "/ip4/0.0.0.0/tcp/4001",
@@ -221,27 +221,27 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
                         })))),
                     })),
                     Mounts: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       IPFS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/ipfs",
                           description: "Where to mount the IPFS namespace to",
                         })))),
                       IPNS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/ipns",
                           description: "Where to mount the IPNS namespace to",
                         })))),
                       MFS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/mfs",
                           description: "Where to mount the MFS namespace to",
                         })))),
                       FuseAllowOther: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Allow all users to access the FUSE mount points",
@@ -252,40 +252,40 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
               description: "Attrset of daemon configuration.\nSee [https://github.com/ipfs/kubo/blob/master/docs/config.md](https://github.com/ipfs/kubo/blob/master/docs/config.md) for reference.\nYou can't set `Identity` or `Pinning`.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$25,
-                Datastore: nix.thunk(() => ({ __proto__: pos$21, StorageMax: "100GB" })),
+                [nix.POS]: pos$25,
+                Datastore: nix.thunk(() => ({ [nix.POS]: pos$21, StorageMax: "100GB" })),
                 Discovery: nix.thunk(() => ({
-                  __proto__: pos$23,
-                  MDNS: nix.thunk(() => ({ __proto__: pos$22, Enabled: false })),
+                  [nix.POS]: pos$23,
+                  MDNS: nix.thunk(() => ({ [nix.POS]: pos$22, Enabled: false })),
                 })),
                 Bootstrap: nix.thunk(() => [
                   "/ip4/128.199.219.111/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu",
                   "/ip4/162.243.248.213/tcp/4001/ipfs/QmSoLueR4xBeUbY9WZ9xGUUxunbKWcrNFTDAadQJmocnWm",
                 ]),
-                Swarm: nix.thunk(() => ({ __proto__: pos$24, AddrFilters: null })),
+                Swarm: nix.thunk(() => ({ [nix.POS]: pos$24, AddrFilters: null })),
               })),
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra flags passed to the Kubo daemon",
               default: [],
             })))),
           localDiscovery: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable local discovery for the Kubo daemon.\n          This will allow Kubo to scan ports on your local network. Some hosting services will ban you if you do this.\n",
               default: false,
             })))),
           serviceFdlimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The fdlimit for the Kubo systemd unit or `null` to have the daemon attempt to manage it",
               example: nix.thunk(() => nix.mul(64n, 1024n)),
             })))),
           startWhenNeeded: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use socket activation to start Kubo when needed.",
@@ -294,54 +294,54 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => !nix.asBool(nix.builtins.hasAttr("Identity", nix.thunk(() => nix.sel(cfg, "settings"))))),
             message: "You can't set services.kubo.settings.Identity because the ``config replace`` subcommand used at startup does not support modifying any of the Identity settings.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.builtins.hasAttr("Pinning", nix.thunk(() => nix.sel(cfg, "settings")))) && nix.asBool(nix.builtins.hasAttr("RemoteServices", nix.thunk(() => nix.sel(cfg, "settings", "Pinning"))))))),
             message: "You can't set services.kubo.settings.Pinning.RemoteServices because the ``config replace`` subcommand used at startup does not work with it.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "0.21")) && nix.asBool(nix.builtins.hasAttr("Experimental", nix.thunk(() => nix.sel(cfg, "settings")))))) && nix.asBool(nix.builtins.hasAttr("AcceleratedDHTClient", nix.thunk(() => nix.sel(cfg, "settings", "Experimental"))))))),
             message: "The `services.kubo.settings.Experimental.AcceleratedDHTClient` option was renamed to `services.kubo.settings.Routing.AcceleratedDHTClient` in Kubo 0.21.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-          variables: nix.thunk(() => ({ __proto__: pos$37, IPFS_PATH: fakeKuboRepo })),
+          variables: nix.thunk(() => ({ [nix.POS]: pos$37, IPFS_PATH: fakeKuboRepo })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           kernel: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               "net.core.rmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 7500000n)),
               "net.core.wmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 7500000n)),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           fuse: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoMount")), true)),
             userAllowOther: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "settings", "Mounts", "FuseAllowOther")), true)),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "ipfs")), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               ipfs: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 createHome: false,
@@ -350,37 +350,37 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ipfs")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               ipfs: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "ipfs")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             settings: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               "10-kubo": nix.thunk(() => (() => {
                 const defaultConfig_1 = nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   user: nix.thunk(() => nix.attr(cfg, "user")),
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                 }));
                 return nix.attrsDyn({}, [
-                  [nix.sel(cfg, "dataDir"), nix.thunk(() => ({ __proto__: pos$50, d: defaultConfig_1 }))],
+                  [nix.sel(cfg, "dataDir"), nix.thunk(() => ({ [nix.POS]: pos$50, d: defaultConfig_1 }))],
                   [nix.sel(cfg, "settings", "Mounts", "IPFS"), nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoMount")), defaultConfig_1)),
                   }))],
                   [nix.sel(cfg, "settings", "Mounts", "IPNS"), nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoMount")), defaultConfig_1)),
                   }))],
                   [nix.sel(cfg, "settings", "Mounts", "MFS"), nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoMount")), defaultConfig_1)),
                   }))],
                 ]);
@@ -389,15 +389,15 @@ ipfs --offline config show | jq 'del(.Identity)' > $out
           })),
           packages: nix.thunk(() => (nix.asBool(nix.sel(cfg, "autoMount")) ? [nix.thunk(() => nix.sel(cfg, "package", "systemd_unit"))] : [nix.thunk(() => nix.sel(cfg, "package", "systemd_unit_hardened"))])),
           services: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             ipfs: nix.thunk(() => nix.update({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               path: nix.thunk(() => [
                 "/run/wrappers",
                 nix.thunk(() => nix.sel(cfg, "package")),
                 nix.thunk(() => nix.sel(pkgs, "kubo-fs-repo-migrations")),
               ]),
-              environment: nix.thunk(() => ({ __proto__: pos$56, IPFS_PATH: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$56, IPFS_PATH: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
               preStart: nix.thunk(() => nix.add(nix.add(nix.str`if [[ ! -f "$IPFS_PATH/config" ]]; then
   ipfs init --empty-repo=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "emptyRepo")))}
 else
@@ -434,7 +434,7 @@ ipfs --offline config show |
 umount --quiet '${nix.sel(cfg, "settings", "Mounts", "IPFS")}' '${nix.sel(cfg, "settings", "Mounts", "IPNS")}' '${nix.sel(cfg, "settings", "Mounts", "MFS")}' || true
 `))),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} daemon ${kuboFlags}`),
@@ -445,27 +445,27 @@ umount --quiet '${nix.sel(cfg, "settings", "Mounts", "IPFS")}' '${nix.sel(cfg, "
                 ReadWritePaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "autoMount"))), nix.thunk(() => ["", nix.thunk(() => nix.sel(cfg, "dataDir"))]))),
                 Sockets: nix.thunk(() => ["ipfs-gateway.socket", "ipfs-api.socket"]),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "serviceFdlimit"), null)), nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   LimitNOFILE: nix.thunk(() => nix.sel(cfg, "serviceFdlimit")),
                 }))))),
-            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startWhenNeeded"))), nix.thunk(() => ({ __proto__: pos$60, wantedBy: nix.thunk(() => ["default.target"]) }))))),
+            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startWhenNeeded"))), nix.thunk(() => ({ [nix.POS]: pos$60, wantedBy: nix.thunk(() => ["default.target"]) }))))),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             "ipfs-gateway": nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 ListenStream: nix.thunk(() => nix.concat([""], nix.app(multiaddrsToListenStreams, nix.thunk(() => nix.sel(cfg, "settings", "Addresses", "Gateway"))))),
                 ListenDatagram: nix.thunk(() => nix.concat([""], nix.app(multiaddrsToListenDatagrams, nix.thunk(() => nix.sel(cfg, "settings", "Addresses", "Gateway"))))),
               })),
             })),
             "ipfs-api": nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 ListenStream: nix.thunk(() => nix.concat(["", "%t/ipfs.sock"], nix.app(multiaddrsToListenStreams, nix.thunk(() => nix.sel(cfg, "settings", "Addresses", "API"))))),
                 SocketMode: "0660",
                 SocketUser: nix.thunk(() => nix.sel(cfg, "user")),
@@ -476,7 +476,7 @@ umount --quiet '${nix.sel(cfg, "settings", "Mounts", "IPFS")}' '${nix.sel(cfg, "
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Luflosi"))];

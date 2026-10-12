@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sarabun",
       version: "0-unstable-2018-08-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cadsondemak",
           repo: "sarabun",
           rev: "854cdbc6afa002ff8c2ce6aa7b86f99c7f71c9eb",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontInstallWebfonts: true,
       installPhase: "runHook preInstall\n\nmkdir -p $doc/sarabun\ncp -r $src/OFL.txt $src/docs/* $doc/sarabun\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cadsondemak.github.io/Sarabun/",
         description: "Slightly-condensed looped Thai and sans serif Latin typeface for communications",
         longDescription: "The most popular typeface from the 13 fonts from SIPA Thailand’s National\nfonts project. Sarabun was designed by Suppakit Chalermlarp to be a\nserious text face. Great choice for a long reading formal text. This font\nwas selected by the royal Thai government to be the official typeface for\ndocumentation purpose. It was also adopted by many private organizations\nto be used as a communication font. Sarabun has a slightly condensed\nproportion which fits perfectly with Thai legibility. It also carries a\nneutral Thai traditional loop design which can easily fit in with any\noccasion. Probably one of the most today’s familiar Thai loop typefaces.\n",

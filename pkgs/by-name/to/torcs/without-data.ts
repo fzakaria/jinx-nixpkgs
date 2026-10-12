@@ -33,17 +33,17 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torcs-without-data",
       version: "1.3.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/torcs/all-in-one/${nix.sel(finalAttrs, "version")}/torcs-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-odQQNf5ip+jbAZHxNhXnymiUVEn4v2ohYdF6/y/+iis=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/games-team/torcs/raw/fb0711c171b38c4648dc7c048249ec20f79eb8e2/debian/patches/format-argument.patch",
             sha256: "sha256-9tVBdVxk6YU4CXK633jYakq8BkDFx40bEjOBOhN/46g=",
             postFetch: "sed -i 's/\\r$//' \"$out\"\n",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         libvorbis,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Car racing game (does not come with the game data required to run)",
         homepage: "https://torcs.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

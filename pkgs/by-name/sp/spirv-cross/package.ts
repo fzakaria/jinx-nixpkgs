@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spirv-cross",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "SPIRV-Cross",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       postFixup: "substituteInPlace $out/lib/pkgconfig/*.pc \\\n  --replace '=${prefix}//' '=/'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool designed for parsing and converting SPIR-V to other shader languages",
         homepage: "https://github.com/KhronosGroup/SPIRV-Cross",
         changelog: nix.thunk(() => nix.str`https://github.com/KhronosGroup/SPIRV-Cross/releases/tag/vulkan-sdk-${nix.sel(finalAttrs, "version")}`),

@@ -36,7 +36,7 @@ exit 1 # fail if emitting event didn't exit clean
 EOF
 `;
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`bashup-events${variant}-unstable`),
       version: version,
       src: src,
@@ -49,14 +49,14 @@ ${bash}/bin/bash ./bashup.events
 runHook postCheck
 `),
       solutions: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         events: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           inputs: [],
           interpreter: "none",
           scripts: nix.thunk(() => ["bin/bashup.events"]),
           keep: keep,
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), fake)), nix.thunk(() => ({ __proto__: pos$2, fake: fake }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), fake)), nix.thunk(() => ({ [nix.POS]: pos$2, fake: fake }))))),
       })),
       doInstallCheck: doInstallCheck,
       nativeInstallCheckInputs: nix.thunk(() => [bash]),
@@ -65,7 +65,7 @@ ${nix.app(installCheck, nix.thunk(() => nix.str`${bash}/bin/bash`))}
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         branch: branch,
         description: "Event listener/callback API for creating extensible bash programs",
         mainProgram: "bashup.events",

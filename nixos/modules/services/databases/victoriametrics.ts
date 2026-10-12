@@ -42,61 +42,61 @@ export default nix.lambda((args) => (() => {
     ])), nix.sel(cfg, "extraOptions"))));
   const prometheusConfigYml = nix.thunk(() => nix.app(checkedConfig, nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "prometheusConfig.yaml", nix.thunk(() => nix.sel(cfg, "prometheusConfig"))))));
   const checkedConfig = (file) => (nix.asBool(nix.sel(cfg, "checkConfig")) ? nix.app(nix.sel(pkgs, "runCommand"), "checked-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
     })), nix.thunk(() => nix.str`ln -s ${file} $out
 ${nix.app(nix.sel(lib, "escapeShellArgs"), startCLIList)} -promscrape.config=${file} -dryRun
 `)) : nix.force(file));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         victoriametrics: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable VictoriaMetrics in single-node mode.\n\nVictoriaMetrics is a fast, cost-effective and scalable monitoring solution and time series database.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "victoriametrics", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: ":8428",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "TCP address to listen for incoming http requests.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "victoriametrics",
               description: "Directory below `/var/lib` to store VictoriaMetrics metrics data.\nThis directory will be created automatically using systemd's StateDirectory mechanism.\n",
             })))),
           retentionPeriod: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "15d",
               description: "How long to retain samples in storage.\nThe minimum retentionPeriod is 24h or 1d. See also -retentionFilter\nThe following optional suffixes are supported: s (second), h (hour), d (day), w (week), y (year).\nIf suffix isn't set, then the duration is counted in months (default 1)\n",
             })))),
           basicAuthUsername: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Basic Auth username used to protect VictoriaMetrics instance by authorization\n",
             })))),
           basicAuthPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "File that contains the Basic Auth password used to protect VictoriaMetrics instance by authorization\n",
             })))),
           prometheusConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
@@ -104,14 +104,14 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), startCLIList)} -promscrape.config=${f
               description: "Config for prometheus style metrics.\nSee the docs: <https://docs.victoriametrics.com/vmagent/#how-to-collect-metrics-in-prometheus-format>\nfor more information.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  \"-loggerLevel=WARN\"\n]\n")),
               description: "Extra options to pass to VictoriaMetrics. See the docs:\n<https://docs.victoriametrics.com/single-server-victoriametrics/#list-of-command-line-flags>\nor {command}`victoriametrics -help` for more information.\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Check configuration.\n\nIf you use credentials stored in external files (`environmentFile`, etc),\nthey will not be visible  and it will report errors, despite a correct configuration.\n",
@@ -120,26 +120,26 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), startCLIList)} -promscrape.config=${f
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "basicAuthUsername"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "basicAuthUsername"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)))))),
             message: "Both basicAuthUsername and basicAuthPasswordFile must be set together to enable basicAuth functionality, or neither should be set.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             victoriametrics: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "VictoriaMetrics time series database",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               startLimitBurst: 5n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(startCLIList, nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "prometheusConfig"), {})), nix.thunk(() => [nix.thunk(() => nix.str`-promscrape.config=${prometheusConfigYml}`)])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "basicAuthUsername"), null)), nix.thunk(() => nix.str`-httpAuth.username=${nix.sel(cfg, "basicAuthUsername")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)), "-httpAuth.password=file://%d/basic_auth_password"))))))),
                 DynamicUser: true,
                 LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)), nix.thunk(() => [

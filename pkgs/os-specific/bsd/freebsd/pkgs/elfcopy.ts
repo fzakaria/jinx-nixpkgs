@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const libpe = nix.arg($, "libpe");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/elfcopy",
       extraPaths: nix.thunk(() => ["contrib/elftoolchain", "sys/sys/elf_common.h", "sys/sys/elf32.h"]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libelf, libelftc, libarchive, libpe])),
       MK_PIE: "no",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

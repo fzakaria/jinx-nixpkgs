@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "expliot",
       version: "0.11.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "expliot_framework",
           repo: "expliot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["expliot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IoT security testing and exploitation framework",
         longDescription: "EXPLIoT is a Framework for security testing and exploiting IoT\nproducts and IoT infrastructure. It provides a set of plugins\n(test cases) which are used to perform the assessment and can\nbe extended easily with new ones. The name EXPLIoT (pronounced\nexpl-aa-yo-tee) is a pun on the word exploit and explains the\npurpose of the framework i.e. IoT exploitation.\n",
         homepage: "https://expliot.readthedocs.io/",

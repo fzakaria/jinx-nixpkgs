@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.05";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PixarAnimationStudios",
           repo: "OpenUSD",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), withDocs, "doc")));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "propagate-dependencies-opengl.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/usd/-/raw/41469f20113d3550c5b42e67d1139dedc1062b8c/usd-find-dependency-OpenGL.patch?full_index=1",
             hash: "sha256-aUWGKn365qov0ttGOq5GgNxYGIGZ4DfmeMJfakbOugQ=",
           })))),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         OSL_LOCATION: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withOsl, nix.thunk(() => nix.str`${openshadinglanguage}`))),
       }));
       const cmakeFlags = nix.thunk(() => [
@@ -124,7 +124,7 @@ mkdir -p $(dirname $target_dir)
 mv $out/lib/python $target_dir
 `, nix.app(nix.sel(lib, "optionalString"), withDocs, "mv $out/docs $doc\n")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Universal Scene Description",
         longDescription: "Universal Scene Description (USD) is an efficient, scalable system\nfor authoring, reading, and streaming time-sampled scene description\nfor interchange between graphics applications.\n",
         homepage: "https://openusd.org/",
@@ -139,7 +139,7 @@ mv $out/lib/python $target_dir
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

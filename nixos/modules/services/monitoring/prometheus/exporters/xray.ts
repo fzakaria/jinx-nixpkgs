@@ -26,51 +26,51 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     port: 9550n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       xrayEndpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "127.0.0.1:8080",
           description: "Xray gRPC API endpoint.\n",
         })))),
       metricsPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/scrape",
           description: "Path under which to expose metrics.\n",
         })))),
       scrapeTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 5n,
           description: "Timeout in seconds for every individual scrape.\n",
         })))),
       logPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/var/log/xray/access.log",
           description: "Path to Xray access log file. Set to empty string to disable user metrics.\n",
         })))),
       logTimeWindow: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 5n,
           description: "Time window in minutes for user metrics.\n",
         })))),
       withUserMetrics: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Collect user metrics from the Xray access log.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-xray-exporter")}/bin/xray-exporter \\
   --listen ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   --metrics-path ${nix.sel(cfg, "metricsPath")} \\

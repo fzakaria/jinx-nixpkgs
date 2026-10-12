@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.attr(autoprefixer, "pname"));
   const version = nix.thunk(() => nix.attr(autoprefixer, "version"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`# get version of installed program and compare with package version
 claimed_version="$(${autoprefixer}/bin/autoprefixer --version | awk '{print $2}')"
 if [[ "$claimed_version" != "${version}" ]]; then

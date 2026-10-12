@@ -78,15 +78,15 @@ export default nix.lambda((args) => (() => {
   const dmcfg = nix.thunk(() => nix.sel(config, "services", "displayManager"));
   const iniFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const defaultConfig = nix.thunk(() => nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(xcfg, "enable")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       X11: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ServerPath: nix.thunk(() => nix.sel(xcfg, "displayManager", "xserverBin")),
       })),
     }))), nix.app(optionalAttrs, nix.thunk(() => nix.sel(dmcfg, "autoLogin", "enable")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       Autologin: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         User: nix.thunk(() => nix.sel(dmcfg, "autoLogin", "user")),
         Session: nix.thunk(() => nix.str`${nix.sel(dmcfg, "sessionData", "autologinSession")}.desktop`),
       })),
@@ -94,24 +94,24 @@ export default nix.lambda((args) => (() => {
   const defaultConfigFile = nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "00-nixos-defaults.conf", defaultConfig));
   const userConfigFile = nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "99-user.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "plasma-login-manager": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Plasma Login Manager")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["kdePackages", "plasma-login-manager"]), nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(iniFmt, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  Users: nix.thunk(() => ({ __proto__: pos$5, ReuseSession: false })),
+                  [nix.POS]: pos$6,
+                  Users: nix.thunk(() => ({ [nix.POS]: pos$5, ReuseSession: false })),
                 })),
                 description: "Additional settings for Plasma Login Manager (see `man plasmalogin.conf`)",
               })))),
@@ -120,54 +120,54 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
-          displayManager: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+          [nix.POS]: pos$14,
+          displayManager: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
-            "plasmalogin.conf.d/00-nixos-defaults.conf": nix.thunk(() => ({ __proto__: pos$15, source: defaultConfigFile })),
-            "plasmalogin.conf.d/99-user.conf": nix.thunk(() => ({ __proto__: pos$16, source: userConfigFile })),
+            [nix.POS]: pos$17,
+            "plasmalogin.conf.d/00-nixos-defaults.conf": nix.thunk(() => ({ [nix.POS]: pos$15, source: defaultConfigFile })),
+            "plasmalogin.conf.d/99-user.conf": nix.thunk(() => ({ [nix.POS]: pos$16, source: userConfigFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             plasmalogin: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               aliases: nix.thunk(() => ["display-manager.service"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               wantedBy: nix.thunk(() => ["graphical.target"]),
               restartIfChanged: false,
               environment: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 XDG_DATA_DIRS: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(dmcfg, "sessionPackages"), [])), nix.thunk(() => nix.str`${nix.sel(dmcfg, "sessionData", "desktops")}/share`))),
               })),
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "plasma-login": nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 overrideStrategy: "asDropin",
                 environment: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   XDG_DATA_DIRS: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(dmcfg, "sessionPackages"), [])), nix.thunk(() => nix.str`${nix.sel(dmcfg, "sessionData", "desktops")}/share`))),
                 })),
               })),
@@ -176,44 +176,44 @@ export default nix.lambda((args) => (() => {
           defaultUnit: "graphical.target",
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           pam: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             services: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               plasmalogin: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$28, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$28, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$29, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$29, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$30, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$30, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$31, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$31, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                 })),
               })),
               "plasmalogin-autologin": nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         name: "nologin",
                         control: "requisite",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_nologin.so`),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         name: "permit",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -221,7 +221,7 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         name: "plasmalogin",
                         control: "include",
                         modulePath: "plasmalogin",
@@ -229,7 +229,7 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         name: "plasmalogin",
                         control: "include",
                         modulePath: "plasmalogin",
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         name: "plasmalogin",
                         control: "include",
                         modulePath: "plasmalogin",
@@ -246,20 +246,20 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "plasmalogin-greeter": nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         name: "env",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_env.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$41, conffile: "/etc/pam/environment", readenv: 0n })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$41, conffile: "/etc/pam/environment", readenv: 0n })),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         name: "permit",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -267,7 +267,7 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         name: "permit",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -275,7 +275,7 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         name: "deny",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_deny.so`),
@@ -283,13 +283,13 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         name: "unix",
                         control: "required",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         name: "systemd",
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/security/pam_systemd.so`),
@@ -301,11 +301,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           users: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             plasmalogin: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               name: "plasmalogin",
               isSystemUser: true,
               group: "plasmalogin",
@@ -313,7 +313,7 @@ export default nix.lambda((args) => (() => {
               home: "/var/lib/plasmalogin",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$55, plasmalogin: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$55, plasmalogin: nix.thunk(() => ({})) })),
         })),
       })))),
   };

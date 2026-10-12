@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const backoff = nix.arg($, "backoff");
   const multicore_magic = nix.arg($, "multicore-magic");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "saturn_lockfree",
       version: "0.5.0",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/saturn/releases/download/${nix.sel(finalAttrs, "version")}/saturn-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ZmmxwIe5PiPYTTdvOHbOjRbv2b/bb9y0IekByfREPjk=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [backoff, multicore_magic]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lock-free data structures for multicore OCaml",
         homepage: "https://github.com/ocaml-multicore/lockfree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

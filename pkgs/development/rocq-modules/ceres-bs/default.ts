@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ceres-bs",
       repo: "rocq-ceres-bytestring",
       "opam-name": "rocq-ceres-bytestring",
       owner: "peregrine-project",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.1")), "1.0.0")),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-aB/YWw4E1myIYDRlNs/dEXoI9HDKl1/lsPGMYzjyJsU=",
         })),
       })),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         metarocq_utils,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for serialization via S-expressions using bytestrings. Alternative to coq-ceres which uses String from standard library.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

@@ -92,12 +92,12 @@ export default nix.lambda((args) => (() => {
   const wrapper1 = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "plugins"), [])) ? nix.sel(cfg, "package") : nix.app(nix.sel(cfg, "package", "withPlugins"), (_) => nix.sel(cfg, "plugins"))));
   const wrapper2 = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "pythonPackages"), [])) ? nix.force(wrapper1) : nix.app(nix.sel(wrapper1, "withPythonPackages"), (_) => nix.sel(cfg, "pythonPackages"))));
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       plugin_directories: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         trash: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "plugin_directories", "trash"), null)) ? "delete" : nix.sel(cfg, "settings", "plugin_directories", "trash"))),
       })),
-      server: nix.thunk(() => ({ __proto__: pos$2, unshared_secret: "generate" })),
+      server: nix.thunk(() => ({ [nix.POS]: pos$2, unshared_secret: "generate" })),
     }))));
   const finalPackage = nix.thunk(() => nix.app(nix.sel(wrapper2, "withBaseConfig"), settings));
   const isPostgresql = (db) => (nix.asBool(nix.builtins.isString(db)) && nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "postgresql://", db)));
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
   const parsePostgresDB = (db) => (() => {
     const noSchema = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "postgresql://", db));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       username: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "@", noSchema)))),
       database: nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", noSchema)))),
     };
@@ -120,104 +120,104 @@ export default nix.lambda((args) => (() => {
   const parsedPostgresDBs = nix.thunk(() => nix.builtins.map(parsePostgresDB, postgresDBs));
   const hasLocalPostgresDB = nix.thunk(() => !nix.eq(localPostgresDBs, []));
   return {
-    __proto__: pos$79,
+    [nix.POS]: pos$79,
     options: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       services: nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         maubot: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "maubot")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "maubot", nix.thunk(() => ({})))),
             plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with config.services.maubot.package.plugins; [\n  xyz.maubot.reactbot\n  xyz.maubot.rss\n];\n")),
                 description: "List of additional maubot plugins to make available.\n",
               })))),
             pythonPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with pkgs.python3Packages; [\n  aiohttp\n];\n")),
                 description: "List of additional Python packages to make available for maubot.\n",
               })))),
             dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "/var/lib/maubot",
                 description: "The directory where maubot stores its stateful data.\n",
               })))),
             extraConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "./config.yaml",
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${config.services.maubot.dataDir}/config.yaml\"")),
                 description: "A file for storing secrets. You can pass homeserver registration keys here.\nIf it already exists, **it must contain `server.unshared_secret`** which is used for signing API keys.\nIf `configMutable` is not set to true, **maubot user must have write access to this file**.\n",
               })))),
             configMutable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether maubot should write updated config into `extraConfigFile`. **This will make your Nix module settings have no effect besides the initial config, as extraConfigFile takes precedence over NixOS settings!**\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 default: nix.thunk(() => ({})),
                 description: "YAML settings for maubot. See the\n[example configuration](https://github.com/maubot/maubot/blob/master/maubot/example-config.yaml)\nfor more info.\n\nSecrets should be passed in by using `extraConfigFile`.\n",
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$59,
+                      [nix.POS]: pos$59,
                       options: nix.thunk(() => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         database: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             default: "sqlite:maubot.db",
                             example: "postgresql://username:password@hostname/dbname",
                             description: "The full URI to the database. SQLite and Postgres are fully supported.\nOther DBMSes supported by SQLAlchemy may or may not work.\n",
                           })))),
                         crypto_database: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             default: "default",
                             example: "postgresql://username:password@hostname/dbname",
                             description: "Separate database URL for the crypto database. By default, the regular database is also used for crypto.\n",
                           })))),
                         database_opts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "attrs")),
                             default: nix.thunk(() => ({})),
                             description: "Additional arguments for asyncpg.create_pool() or sqlite3.connect()\n",
                           })))),
                         plugin_directories: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             default: nix.thunk(() => ({})),
                             description: "Plugin directory paths",
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$17,
+                                [nix.POS]: pos$17,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$16,
+                                  [nix.POS]: pos$16,
                                   upload: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$13,
+                                      [nix.POS]: pos$13,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                       default: "./plugins",
                                       defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"${config.services.maubot.dataDir}/plugins\"")),
                                       description: "The directory where uploaded new plugins should be stored.\n",
                                     })))),
                                   load: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$14,
+                                      [nix.POS]: pos$14,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                                       default: nix.thunk(() => ["./plugins"]),
                                       defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "[ \"${config.services.maubot.dataDir}/plugins\" ]")),
                                       description: "The directories from which plugins should be loaded. Duplicate plugin IDs will be moved to the trash.\n",
                                     })))),
                                   trash: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$15,
+                                      [nix.POS]: pos$15,
                                       type: nix.thunk(() => (() => {
                                         const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
                                         return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -230,35 +230,35 @@ export default nix.lambda((args) => (() => {
                               })))),
                           })))),
                         plugin_databases: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             description: "Plugin database settings",
                             default: nix.thunk(() => ({})),
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$24,
+                                [nix.POS]: pos$24,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$23,
+                                  [nix.POS]: pos$23,
                                   sqlite: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$19,
+                                      [nix.POS]: pos$19,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                       default: "./plugins",
                                       defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"${config.services.maubot.dataDir}/plugins\"")),
                                       description: "The directory where SQLite plugin databases should be stored.\n",
                                     })))),
                                   postgres: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$20,
+                                      [nix.POS]: pos$20,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                                       default: nix.thunk(() => (nix.asBool(nix.app(isPostgresql, nix.thunk(() => nix.sel(cfg, "settings", "database")))) ? "default" : null)),
                                       defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "if isPostgresql config.services.maubot.settings.database then \"default\" else null")),
                                       description: "The connection URL for plugin database. See [example config](https://github.com/maubot/maubot/blob/master/maubot/example-config.yaml) for exact format.\n",
                                     })))),
                                   postgres_max_conns_per_plugin: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$21,
+                                      [nix.POS]: pos$21,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
                                       default: 3n,
                                       description: "Maximum number of connections per plugin instance.\n",
                                     })))),
                                   postgres_opts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$22,
+                                      [nix.POS]: pos$22,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "attrs")),
                                       default: nix.thunk(() => ({})),
                                       description: "Overrides for the default database_opts when using a non-default postgres connection URL.\n",
@@ -267,47 +267,47 @@ export default nix.lambda((args) => (() => {
                               })))),
                           })))),
                         server: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             default: nix.thunk(() => ({})),
                             description: "Listener config",
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$33,
+                                [nix.POS]: pos$33,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$32,
+                                  [nix.POS]: pos$32,
                                   hostname: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$26,
+                                      [nix.POS]: pos$26,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                       default: "127.0.0.1",
                                       description: "The IP to listen on\n",
                                     })))),
                                   port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$27,
+                                      [nix.POS]: pos$27,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                                       default: 29316n,
                                       description: "The port to listen on\n",
                                     })))),
                                   public_url: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$28,
+                                      [nix.POS]: pos$28,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                       default: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "server", "hostname")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "settings", "server", "port")))}`),
                                       defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"http://${config.services.maubot.settings.server.hostname}:${toString config.services.maubot.settings.server.port}\"")),
                                       description: "Public base URL where the server is visible.\n",
                                     })))),
                                   ui_base_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$29,
+                                      [nix.POS]: pos$29,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                       default: "/_matrix/maubot",
                                       description: "The base path for the UI.\n",
                                     })))),
                                   plugin_base_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$30,
+                                      [nix.POS]: pos$30,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                       default: nix.thunk(() => nix.str`${nix.sel(config, "services", "maubot", "settings", "server", "ui_base_path")}/plugin/`),
                                       defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"${config.services.maubot.settings.server.ui_base_path}/plugin/\"\n")),
                                       description: "The base path for plugin endpoints. The instance ID will be appended directly.\n",
                                     })))),
                                   override_resource_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$31,
+                                      [nix.POS]: pos$31,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                                       default: null,
                                       description: "Override path from where to load UI resources.\n",
@@ -316,35 +316,35 @@ export default nix.lambda((args) => (() => {
                               })))),
                           })))),
                         homeservers: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$40,
+                            [nix.POS]: pos$40,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$37,
+                                  [nix.POS]: pos$37,
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$36,
+                                    [nix.POS]: pos$36,
                                     url: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$35,
+                                        [nix.POS]: pos$35,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                         description: "Client-server API URL\n",
                                       })))),
                                   })),
                                 })))))),
                             default: nix.thunk(() => ({
-                              __proto__: pos$39,
-                              "matrix.org": nix.thunk(() => ({ __proto__: pos$38, url: "https://matrix-client.matrix.org" })),
+                              [nix.POS]: pos$39,
+                              "matrix.org": nix.thunk(() => ({ [nix.POS]: pos$38, url: "https://matrix-client.matrix.org" })),
                             })),
                             description: "Known homeservers. This is required for the `mbc auth` command and also allows more convenient access from the management UI.\nIf you want to specify registration secrets, pass this via extraConfigFile instead.\n",
                           })))),
                         admins: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$42,
+                            [nix.POS]: pos$42,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
-                            default: nix.thunk(() => ({ __proto__: pos$41, root: "" })),
+                            default: nix.thunk(() => ({ [nix.POS]: pos$41, root: "" })),
                             description: "List of administrator users. Plaintext passwords will be bcrypted on startup. Set empty password\nto prevent normal login. Root is a special user that can't have a password and will always exist.\n",
                           })))),
                         api_features: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_1, "bool")))),
                             default: nix.thunk(() => ({
-                              __proto__: pos$43,
+                              [nix.POS]: pos$43,
                               login: true,
                               plugin: true,
                               plugin_upload: true,
@@ -359,44 +359,44 @@ export default nix.lambda((args) => (() => {
                             description: "API feature switches.\n",
                           })))),
                         logging: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "attrs")),
                             description: "Python logging configuration. See [section 16.7.2 of the Python\ndocumentation](https://docs.python.org/3.6/library/logging.config.html#configuration-dictionary-schema)\nfor more info.\n",
                             default: nix.thunk(() => ({
-                              __proto__: pos$56,
+                              [nix.POS]: pos$56,
                               version: 1n,
                               formatters: nix.thunk(() => ({
-                                __proto__: pos$47,
+                                [nix.POS]: pos$47,
                                 colored: nix.thunk(() => ({
-                                  __proto__: pos$45,
+                                  [nix.POS]: pos$45,
                                   "()": "maubot.lib.color_log.ColorFormatter",
                                   format: "[%(asctime)s] [%(levelname)s@%(name)s] %(message)s",
                                 })),
                                 normal: nix.thunk(() => ({
-                                  __proto__: pos$46,
+                                  [nix.POS]: pos$46,
                                   format: "[%(asctime)s] [%(levelname)s@%(name)s] %(message)s",
                                 })),
                               })),
                               handlers: nix.thunk(() => ({
-                                __proto__: pos$50,
+                                [nix.POS]: pos$50,
                                 file: nix.thunk(() => ({
-                                  __proto__: pos$48,
+                                  [nix.POS]: pos$48,
                                   class: "logging.handlers.RotatingFileHandler",
                                   formatter: "normal",
                                   filename: "./maubot.log",
                                   maxBytes: 10485760n,
                                   backupCount: 10n,
                                 })),
-                                console: nix.thunk(() => ({ __proto__: pos$49, class: "logging.StreamHandler", formatter: "colored" })),
+                                console: nix.thunk(() => ({ [nix.POS]: pos$49, class: "logging.StreamHandler", formatter: "colored" })),
                               })),
                               loggers: nix.thunk(() => ({
-                                __proto__: pos$54,
-                                maubot: nix.thunk(() => ({ __proto__: pos$51, level: "DEBUG" })),
-                                mau: nix.thunk(() => ({ __proto__: pos$52, level: "DEBUG" })),
-                                aiohttp: nix.thunk(() => ({ __proto__: pos$53, level: "INFO" })),
+                                [nix.POS]: pos$54,
+                                maubot: nix.thunk(() => ({ [nix.POS]: pos$51, level: "DEBUG" })),
+                                mau: nix.thunk(() => ({ [nix.POS]: pos$52, level: "DEBUG" })),
+                                aiohttp: nix.thunk(() => ({ [nix.POS]: pos$53, level: "INFO" })),
                               })),
                               root: nix.thunk(() => ({
-                                __proto__: pos$55,
+                                [nix.POS]: pos$55,
                                 level: "DEBUG",
                                 handlers: nix.thunk(() => ["file", "console"]),
                               })),
@@ -411,51 +411,51 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.any((x) => !nix.eq(nix.sel(x, "username"), nix.sel(x, "database")), parsedLocalPostgresDBs)), "The Maubot database username doesn't match the database name! This means the user won't be automatically\ngranted ownership of the database. Consider changing either the username or the database name.\n")),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             assertion: nix.thunk(() => nix.builtins.all((x) => !nix.asBool(nix.app(nix.sel(lib, "hasInfix"), ":", nix.thunk(() => nix.sel(x, "username")))), parsedPostgresDBs)),
             message: "Putting database passwords in your Nix config makes them world-readable. To securely put passwords\nin your Maubot config, change /var/lib/maubot/config.yaml after running Maubot at least once as\ndescribed in the NixOS manual.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             assertion: nix.thunk(() => (!nix.asBool(hasLocalPostgresDB) || nix.asBool(nix.sel(config, "services", "postgresql", "enable")))),
             message: "Cannot deploy maubot with a configuration for a local postgresql database and a missing postgresql service.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasLocalPostgresDB, nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               enable: true,
               ensureDatabases: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "database"), parsedLocalPostgresDBs)),
               ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.map, parsedLocalPostgresDBs, (x) => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   name: nix.thunk(() => nix.sel(x, "username")),
                   ensureDBOwnership: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(x, "username"), nix.sel(x, "database"))), true)),
                 }))),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           users: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             maubot: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               group: "maubot",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/maubot")), true)),
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$71, maubot: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$71, maubot: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           services: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             maubot: nix.thunk(() => (() => {
               const description = "maubot - a plugin-based Matrix bot system written in Python";
               const after = nix.thunk(() => nix.concat(["network.target"], nix.concat(wants, nix.app(nix.sel(lib, "optional"), hasLocalPostgresDB, "postgresql.target"))));
@@ -468,7 +468,7 @@ export default nix.lambda((args) => (() => {
 fi
 `);
               const serviceConfig = nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${finalPackage}/bin/maubot --config ${nix.sel(cfg, "extraConfigFile")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "configMutable"))), " --no-update"))),
                 User: "maubot",
                 Group: "maubot",
@@ -478,7 +478,7 @@ fi
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
               }));
               return {
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 description,
                 after,
                 wants,
@@ -491,7 +491,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$78,
+      [nix.POS]: pos$78,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "chayleaf"))];

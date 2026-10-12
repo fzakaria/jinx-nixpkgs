@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bluemap";
       const version = "5.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v${version}/BlueMap-${version}-cli.jar`),
           hash: "sha256-eUDVYYkDc4l/j2vpGlLnZUYfQOW+ThxEAQBAc+4NJYA=",
         }))));
@@ -29,7 +29,7 @@ makeWrapper ${jre}/bin/java $out/bin/bluemap --add-flags "-jar $src"
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3D minecraft map renderer",
         homepage: "https://bluemap.bluecolored.de/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -47,7 +47,7 @@ runHook postInstall
         mainProgram: "bluemap",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

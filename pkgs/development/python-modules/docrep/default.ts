@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "ed8a17e201abd829ef8da78a0b6f4d51fb99a4cbd0554adbed3309297f964314",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "py.test\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for docstring repetition",
         homepage: "https://github.com/Chilipp/docrep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

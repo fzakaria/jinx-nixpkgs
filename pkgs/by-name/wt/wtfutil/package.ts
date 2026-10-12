@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wtfutil",
       version: "0.51.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wtfutil",
           repo: "wtf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +45,11 @@ wrapProgram "$out/bin/wtfutil" --prefix PATH : "${nix.sel(ncurses, "dev")}/bin"
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), versionCheckHook)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Personal information dashboard for your terminal",
         homepage: "https://wtfutil.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/wtfutil/wtf/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const cmdstan = nix.arg($, "cmdstan");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cmdstan",
       version: "2.40.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stan-dev",
           repo: "cmdstan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ ln -s ${nix.sel(buildPackages, "stanc")}/bin/stanc bin/stanc
           nix.thunk(() => nix.str`arch=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Xclang -fno-pch-timestamp")),
       })),
       enableParallelBuilding: true,
@@ -63,9 +63,9 @@ chmod a+x $out/bin/stan
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.app(runCommandCC, "cmdstan-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp -R ${cmdstan}/opt/cmdstan cmdstan
 chmod -R +w cmdstan
 cd cmdstan
@@ -75,7 +75,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line interface to Stan",
         longDescription: "Stan is a probabilistic programming language implementing full Bayesian\nstatistical inference with MCMC sampling (NUTS, HMC), approximate Bayesian\ninference with Variational inference (ADVI) and penalized maximum\nlikelihood estimation with Optimization (L-BFGS).\n",
         homepage: "https://mc-stan.org/interfaces/cmdstan.html",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mirumee",
           repo: "google-i18n-address",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["i18naddress"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google's i18n address data packaged for Python",
         homepage: "https://github.com/mirumee/google-i18n-address",
         changelog: nix.thunk(() => nix.str`https://github.com/mirumee/google-i18n-address/releases/tag/${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "update-validation-files",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

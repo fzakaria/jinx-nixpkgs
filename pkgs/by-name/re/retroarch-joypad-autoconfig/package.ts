@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "retroarch-joypad-autoconfig";
       const version = "1.22.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "retroarch-joypad-autoconfig",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Joypad autoconfig files",
         homepage: "https://www.libretro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "libretro"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$5, pname, version, src, makeFlags, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, makeFlags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

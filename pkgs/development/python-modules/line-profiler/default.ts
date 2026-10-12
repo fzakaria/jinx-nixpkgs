@@ -26,20 +26,20 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "line_profiler",
           version: version,
           hash: "sha256-qA8K+wW6DSddnd3F/5fqtjdHEWf/Pmbcx9E1dVBZOYw=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [cython, cmake, scikit_build]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ipython: nix.thunk(() => [ipython]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ipython: nix.thunk(() => [ipython]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, ubelt], nix.sel(optional_dependencies, "ipython")));
       const dontUseCmakeConfigure = true;
       const preBuild = "rm -f _line_profiler.c\n";
       const preCheck = "rm -r line_profiler\nexport PATH=$out/bin:$PATH\n";
       const pythonImportsCheck = nix.thunk(() => ["line_profiler"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Line-by-line profiler",
         mainProgram: "kernprof",
         homepage: "https://github.com/pyutils/line_profiler",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

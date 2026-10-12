@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.29.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ase",
           repo: "ase",
           tag: version,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_info_calculators"]))));
       const pythonImportsCheck = nix.thunk(() => ["ase"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Atomic Simulation Environment",
         homepage: "https://ase-lib.org/",
         changelog: "https://ase-lib.org/releasenotes.html",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

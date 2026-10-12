@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const usbutils = nix.arg($, "usbutils");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openlinkhub",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jurkovic-nikola",
           repo: "OpenLinkHub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-d0tA2XVDF/PzmBKqBSjfKJ3C3Lt0gMi3i2bx5LKRgj8=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [pipewire, udev, usbutils]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_CFLAGS_ALLOW: "-fno-strict-overflow" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_CFLAGS_ALLOW: "-fno-strict-overflow" })),
       installPhase: "runHook preInstall\n\ninstall -Dm 644 -t $out/etc/udev/rules.d 99-openlinkhub.rules\ninstall -Dm 755 -t $out/opt/OpenLinkHub $GOPATH/bin/OpenLinkHub\n\ncp -rt $out/opt/OpenLinkHub database static web\n\nmkdir -p $out/bin\nln -st $out/bin $out/opt/OpenLinkHub/OpenLinkHub\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/jurkovic-nikola/OpenLinkHub",
         description: "Open source interface for iCUE LINK Hub and other Corsair AIOs, Hubs for Linux",
         changelog: nix.thunk(() => nix.str`https://github.com/jurkovic-nikola/OpenLinkHub/releases/tag/${nix.sel(finalAttrs, "version")}`),

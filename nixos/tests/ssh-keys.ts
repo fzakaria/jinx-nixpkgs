@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/ssh-keys.nix", [["snakeOilPrivateKey", 6, 3], ["snakeOilPublicKey", 14, 3], ["snakeOilEd25519PrivateKey", 24, 3], ["snakeOilEd25519PublicKey", 34, 3]]);
 
 export default (pkgs) => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   snakeOilPrivateKey: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "privkey.snakeoil", "-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEIObLW92AqkWunJXowVR2Z5/+yVPBaFHnEedDk5WJxk/BoAoGCCqGSM49\nAwEHoUQDQgAEQiVI+I+3gv+17KN0RFLHKh5Vj71vc75eSOkyMsxFxbFsTNEMTLjV\nuKFxOelIgsiZJXKZNCX0FBmrfpCkKklCcg==\n-----END EC PRIVATE KEY-----\n")),
   snakeOilPublicKey: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "concatStrings"), nix.thunk(() => [
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHA",

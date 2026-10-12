@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "zld";
       const version = "1.3.4";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/michaeleisel/zld/releases/download/${version}/zld.zip`),
           sha256: "sha256-w1Pe96sdCbrfYdfBpD0BBXu7cFdW3cpo0PCn1+UyZI8=",
         }))));
       const installPhase = "mkdir -p $out/bin\ncp zld $out/bin/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Faster version of Apple's linker",
         homepage: "https://github.com/michaeleisel/zld",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         hydraPlatforms: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

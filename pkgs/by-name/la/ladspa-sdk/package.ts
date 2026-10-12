@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ladspa-sdk",
       version: "1.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ladspa.org/download/ladspa_sdk_${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-J9JPJ55Lgb0X7L3MOOTEKZG7OIgmwLIABnzg61nT2ls=",
         })))),
@@ -36,7 +36,7 @@ substituteInPlace Makefile \\
       buildFlags: nix.thunk(() => ["targets"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDK for the LADSPA audio plugin standard",
         longDescription: "The LADSPA SDK, including the ladspa.h API header file,\nten example LADSPA plugins and\nthree example programs (applyplugin, analyseplugin and listplugins).\nFor just ladspa.h, use the ladspa-header package.\n",
         homepage: "http://www.ladspa.org/ladspa_sdk/overview.html",

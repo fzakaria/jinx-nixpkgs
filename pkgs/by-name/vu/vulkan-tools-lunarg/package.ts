@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vulkan-tools-lunarg",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LunarG",
           repo: "VulkanTools",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "for f in \"$out\"/share/vulkan/explicit_layer.d/*.json \"$out\"/share/vulkan/implicit_layer.d/*.json; do\n  jq <\"$f\" >tmp.json \".layer.library_path = \\\"$out/lib/\\\" + .layer.library_path\"\n  mv tmp.json \"$f\"\ndone\n",
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "export XDG_CONFIG_DIRS=@out@/etc${XDG_CONFIG_DIRS:+:${XDG_CONFIG_DIRS}}\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LunarG Vulkan Tools and Utilities",
         longDescription: "Tools to aid in Vulkan development including useful layers, trace and\nreplay, and tests.\n",
         homepage: "https://github.com/LunarG/VulkanTools",

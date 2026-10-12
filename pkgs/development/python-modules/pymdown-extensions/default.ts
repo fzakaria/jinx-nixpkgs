@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facelessuser",
           repo: "pymdown-extensions",
           tag: version,
@@ -65,9 +65,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => nix.builtins.map((ext) => nix.str`pymdownx.${ext}`, extensions));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mkdocstrings: mkdocstrings,
           "mkdocs-material": mkdocs_material,
           "mkdocs-mermaid2-plugin": mkdocs_mermaid2_plugin,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/facelessuser/pymdown-extensions/blob/${nix.sel(src, "tag")}/docs/src/markdown/about/changelog.md`),
         description: "Extensions for Python Markdown",
         homepage: "https://facelessuser.github.io/pymdown-extensions/",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

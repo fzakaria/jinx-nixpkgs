@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rigsofrods-bin",
       version: "2022.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://update.rigsofrods.org/rigs-of-rods-linux-2022-12.zip",
           hash: "sha256-jj152fd4YHlU6YCVCnN6DKRfmi5+ORpMQVDacy/TPeE=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       noDumpEnvVars: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/rigsofrods\ncp -a . $out/share/rigsofrods\nfor f in RoR RunRoR; do\n  makeWrapper $out/share/rigsofrods/$f $out/bin/$f \\\n    --chdir $out/share/rigsofrods\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free/libre soft-body physics simulator mainly targeted at simulating vehicle physics",
         homepage: "https://www.rigsofrods.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

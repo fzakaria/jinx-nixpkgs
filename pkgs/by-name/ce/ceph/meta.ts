@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return (description) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     homepage: "https://ceph.io/en/",
     description: description,
     license: nix.thunk(() => (() => {

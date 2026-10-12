@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
     "routerrpc",
   ]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lnd",
       version: "0.21.4-beta",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightningnetwork",
           repo: "lnd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-wLIyIwfvM7pP4p6wMEXsNPzHBtnlCnLSqMUFW5L7FyQ=",
       subPackages: nix.thunk(() => ["cmd/lncli", "cmd/lnd"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       tags: tags,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightning Network Daemon",
         homepage: "https://github.com/lightningnetwork/lnd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

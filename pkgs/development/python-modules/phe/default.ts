@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phe",
       version: "1.5.1",
       pyproject: true,
       disabled: nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(!nix.asBool(isPy3k)))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "data61",
           repo: "python-paillier",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [click, gmpy2]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, numpy]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for Partially Homomorphic Encryption in Python",
         mainProgram: "pheutil",
         homepage: "https://github.com/data61/python-paillier",

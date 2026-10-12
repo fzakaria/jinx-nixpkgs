@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openonload",
       version: "9.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Xilinx-CNS",
           repo: "onload",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,11 +113,11 @@ runHook postInstall
 `),
       preFixup: "# The test apps have a build directory in RPATH, which patchelf can't\n# remove by default because the required library libefcp.so is there.\n# By removing the library, patchelf is unblocked from removing the build\n# directory from RPATH. This doesn't break the binary because the library\n# is also available from other RPATH entries.\nrm -v build/gnu_x86_64/lib/cplane/*.so*\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenOnLoad high performance network stack from Solarflare",
         homepage: "https://www.openonload.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

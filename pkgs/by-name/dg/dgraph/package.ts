@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jemalloc = nix.arg($, "jemalloc");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dgraph",
       version: "25.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dgraph-io",
           repo: "dgraph",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["dgraph"]),
       postInstall: "for shell in bash zsh; do\n  $out/bin/dgraph completion $shell > dgraph.$shell\n  installShellCompletion dgraph.$shell\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dgraph.io/",
         description: "Fast, Distributed Graph DB",
         maintainers: nix.thunk(() => (() => {

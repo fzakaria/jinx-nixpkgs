@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "scikit_build",
           version: version,
           hash: "sha256-uajQf8otXRDZMiC8V6aFFh1yrx/HYoXVXFZN2qhi5YQ=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "test-cmake4-install-path-normalization.patch",
             url: "https://github.com/scikit-build/scikit-build/commit/c73be45c664349554fcbc5ab3919b74b33c3bc1e.patch",
             hash: "sha256-ekuOVj6dfPYkNRCFnvLJqW1WL7KnbCVBBmq0+zlH7YY=",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "test_sdist_with_symlinks",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-build/scikit-build/blob/${version}/CHANGES.rst`),
         description: "Improved build system generator for CPython C/C++/Fortran/Cython extensions",
         homepage: "https://github.com/scikit-build/scikit-build",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

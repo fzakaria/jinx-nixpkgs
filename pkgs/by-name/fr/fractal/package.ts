@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const glycin_loaders = nix.arg($, "glycin-loaders");
   const libwebp = nix.arg($, "libwebp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fractal",
       version: "14.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "fractal",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-GQdEa5JHXkpQdKcnzT4udZ0Cr4eJv4zoB7sknWnuGCI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -110,15 +110,15 @@ patchShebangs ./build-aux/compile-blueprints.sh
         ];
       })())),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Matrix group messaging app",
         homepage: "https://gitlab.gnome.org/World/fractal",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/fractal/-/releases/${nix.sel(finalAttrs, "version")}`),

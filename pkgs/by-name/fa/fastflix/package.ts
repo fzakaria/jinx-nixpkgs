@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdgriffith",
           repo: "FastFlix",
           tag: version,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export CI=true\nexport QT_QPA_PLATFORM=offscreen\n";
       const pythonImportsCheck = nix.thunk(() => ["fastflix"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and friendly GUI for encoding videos",
         homepage: "https://github.com/cdgriffith/FastFlix",
         changelog: nix.thunk(() => nix.str`https://github.com/cdgriffith/FastFlix/releases/tag/${version}`),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fastflix",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

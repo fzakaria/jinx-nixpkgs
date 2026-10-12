@@ -25,24 +25,24 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const pnpm = pnpm_10;
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "git-bug",
       version: "0.11.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-bug",
           repo: "git-bug",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lyQy6P929SQcmXZ1GI+5MtXoYD0b0xr69X9/y+1xCUs=",
         })))),
       webui: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-webui`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\ncp -r webui/ $out\n\nrunHook postInstall\n",
         })))),
       vendorHash: "sha256-TwAgpdlitF3O68wA+jyagifrLSRG7WCCZvJ1XJjP/pI=",
-      overrideModAttrs: (_) => ({ __proto__: pos$4, preBuild: "" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: pos$4, preBuild: "" }),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       excludedPackages: nix.thunk(() => ["./webui/node_modules", "cmd", "doc", "completion"]),
@@ -82,7 +82,7 @@ CC="$CC_FOR_BUILD" LD="$CC_FOR_BUILD" GOOS= GOARCH= go generate
       __darwinAllowLocalNetworking: true,
       postInstall: "installShellCompletion \\\n  --cmd git-bug \\\n  --bash misc/completion/bash/git-bug \\\n  --zsh misc/completion/zsh/git-bug \\\n  --fish misc/completion/fish/git-bug\n\ninstallManPage doc/man/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Distributed bug tracker embedded in Git",
         homepage: "https://github.com/git-bug/git-bug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

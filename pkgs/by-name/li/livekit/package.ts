@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "livekit",
       version: "1.13.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "livekit",
           repo: "livekit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-HdetQI/c3h+Y/bXDM98yoryzqAZQZuDA0bNFEHcPW3U=",
       subPackages: nix.thunk(() => ["cmd/server"]),
       postInstall: "mv $out/bin/server $out/bin/livekit-server\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "livekit")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "livekit")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "End-to-end stack for WebRTC. SFU media server and SDKs",
         homepage: "https://livekit.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

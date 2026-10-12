@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.argOr($, "cudaPackages", () => ({}));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "llama-cpp-python",
       version: "0.3.36",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abetlen",
           repo: "llama-cpp-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,15 +80,15 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => ["llama_cpp"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", allowedVersions: "^[.0-9]+$" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^[.0-9]+$" })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$4,
-            withCuda: nix.thunk(() => nix.app(nix.sel(llama_cpp_python, "override"), nix.thunk(() => ({ __proto__: pos$3, cudaSupport: true })))),
+            [nix.POS]: pos$4,
+            withCuda: nix.thunk(() => nix.app(nix.sel(llama_cpp_python, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cudaSupport: true })))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python bindings for llama.cpp",
         homepage: "https://github.com/abetlen/llama-cpp-python",
         changelog: nix.thunk(() => nix.str`https://github.com/abetlen/llama-cpp-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

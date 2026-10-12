@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const langcodes = nix.arg($, "langcodes");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unidata-blocks",
       version: "0.0.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TakWolf",
           repo: "unidata-blocks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["unidata_blocks"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library that helps query unicode blocks by Blocks.txt",
         homepage: "https://github.com/TakWolf/unidata-blocks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

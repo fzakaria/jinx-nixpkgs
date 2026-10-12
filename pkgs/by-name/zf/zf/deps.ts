@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name_1 = nix.arg($_1, "name");
     const artifact = nix.arg($_1, "artifact");
-    return nix.app(runCommandLocal, name_1, nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [zig_0_15]) })), nix.thunk(() => nix.str`hash="$(zig fetch --global-cache-dir "$TMPDIR" ${artifact})"
+    return nix.app(runCommandLocal, name_1, nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [zig_0_15]) })), nix.thunk(() => nix.str`hash="$(zig fetch --global-cache-dir "$TMPDIR" ${artifact})"
 mv "$TMPDIR/p/$hash" "$out"
 chmod 755 "$out"
 `));
@@ -46,8 +46,8 @@ chmod 755 "$out"
     const name_1 = nix.arg($_1, "name");
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
-    const artifact = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$2, url: url, hash: hash }))));
-    return nix.app(unpackZigArtifact, nix.thunk(() => ({ __proto__: pos$3, name: name_1, artifact: artifact })));
+    const artifact = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, url: url, hash: hash }))));
+    return nix.app(unpackZigArtifact, nix.thunk(() => ({ [nix.POS]: pos$3, name: name_1, artifact: artifact })));
   })(), formals$3);
   const fetchGitZig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
@@ -60,7 +60,7 @@ chmod 755 "$out"
     const rev_base = nix.thunk(() => nix.builtins.elemAt(parts, 1n));
     const rev = nix.thunk(() => (nix.asBool(!nix.eq(nix.builtins.match("^[a-fA-F0-9]{40}$", rev_base), null)) ? nix.force(rev_base) : nix.str`refs/heads/${rev_base}`));
     return nix.app(fetchgit, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: name_1,
         rev: rev,
         hash: hash,
@@ -78,27 +78,27 @@ chmod 755 "$out"
     const proto = nix.thunk(() => nix.builtins.elemAt(parts, 0n));
     const path = nix.thunk(() => nix.builtins.elemAt(parts, 1n));
     const fetcher = nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       "git+http": nix.thunk(() => nix.app(fetchGitZig, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`http://${path}`),
         })))),
       "git+https": nix.thunk(() => nix.app(fetchGitZig, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`https://${path}`),
         })))),
       http: nix.thunk(() => nix.app(fetchZig, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`http://${path}`),
         })))),
       https: nix.thunk(() => nix.app(fetchZig, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`https://${path}`),
@@ -108,30 +108,30 @@ chmod 755 "$out"
   })(), formals$5);
   return nix.app(linkFarm, name, nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "uucode-0.1.0-ZZjBPj96QADXyt5sqwBJUnhaDYs_qBeeKijZvlRa0eqM",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "uucode",
             url: "git+https://github.com/jacobsandlund/uucode#5f05f8f83a75caea201f12cc8ea32a2d82ea9732",
             hash: "sha256-sHPh+TQSdUGus/QTbj7KSJJkTuNTrK4VNmQDjS30Lf8=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "vaxis-0.5.1-BWNV_LosCQAGmCCNOLljCIw6j6-yt53tji6n6rwJ2BhS",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: "vaxis",
             url: "https://github.com/rockorager/libvaxis/archive/7dbb9fd3122e4ffad262dd7c151d80d863b68558.tar.gz",
             hash: "sha256-LnIzK8icW1Qexua9SHaeHz+3V8QAbz0a+UC1T5sIjvY=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: "zigimg-0.1.0-8_eo2vHnEwCIVW34Q14Ec-xUlzIoVg86-7FU2ypPtxms",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: "zigimg",
             url: "https://github.com/ivanstepanovftw/zigimg/archive/d7b7ab0ba0899643831ef042bd73289510b39906.tar.gz",
             hash: "sha256-LB7Xa6KzVRRUSwwnyWM+y6fDG+kIDjfnoBDJO1obxVM=",

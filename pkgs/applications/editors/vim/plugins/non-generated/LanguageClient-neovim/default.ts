@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "0.1.161";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "autozimu",
       repo: "LanguageClient-neovim",
       tag: version,
       hash: "sha256-Z9S2ie9RxJCIbmjSV/Tto4lK04cZfWmK3IAy8YaySVI=",
     }))));
   const LanguageClient_neovim_bin = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "LanguageClient-neovim-bin",
       version: version,
       src: src,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-43alR84MktYTmsKeUMm4gK8AjUIkGqcsuFeQPusBKD0=",
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "LanguageClient-neovim",
       version: version,
       src: src,
@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
   "let l:path = '${LanguageClient_neovim_bin}' . '/bin/'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=(\\d+\\.\\d+\\.\\d+)"]),
             attrPath: "vimPlugins.LanguageClient-neovim.LanguageClient-neovim-bin",
           })))),
         "LanguageClient-neovim-bin": LanguageClient_neovim_bin,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/autozimu/LanguageClient-neovim/",
         changelog: nix.thunk(() => nix.str`https://github.com/autozimu/LanguageClient-neovim/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

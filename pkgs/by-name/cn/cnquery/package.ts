@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cnquery";
       const version = "12.23.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mondoohq",
           repo: "mql",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-yL34BgWzDrd4SxJvij56cmnfY51uJ/ax+ENtdUxS0aw=";
       const ldflags = nix.thunk(() => ["-w", "-s"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud-native, graph-based asset inventory",
         longDescription: "cnquery is a cloud-native tool for querying your entire fleet. It answers thousands of\nquestions about your infrastructure and integrates with over 300 resources across cloud\naccounts, Kubernetes, containers, services, VMs, APIs, and more.\n",
         homepage: "https://mondoo.com/cnquery",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

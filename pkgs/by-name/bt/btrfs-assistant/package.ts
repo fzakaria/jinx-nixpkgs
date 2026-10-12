@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "btrfs-assistant",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "btrfs-assistant",
           repo: "btrfs-assistant",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/btrfs-assistant/btrfs-assistant/-/commit/5fb306c7871e5be63a8adf6fbce31c50fce7512b.diff",
             hash: "sha256-JU9l611OoSOqKMI1cGRoFY9rnf1MC58DeMnI5vmAhKo=",
           })))),
@@ -65,11 +65,11 @@ substituteInPlace src/btrfs-assistant.conf \\
   --replace-fail '/usr/bin/snapper' "${nix.app(nix.sel(lib, "getExe"), snapper)}"
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI management tool to make managing a Btrfs filesystem easier",
         homepage: "https://gitlab.com/btrfs-assistant/btrfs-assistant",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/btrfs-assistant/btrfs-assistant/-/blob/${nix.sel(finalAttrs, "version")}/changelog`),

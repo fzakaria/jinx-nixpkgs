@@ -57,60 +57,60 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "hocon"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "suwayomi-server": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Suwayomi, a free and open source manga reader server that runs extensions built for Tachiyomi")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "suwayomi-server", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/suwayomi-server",
               example: "/var/data/mangas",
               description: "The path to the data directory in which Suwayomi-Server will download scans.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "suwayomi",
               example: "root",
               description: "User account under which Suwayomi-Server runs.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "suwayomi",
               example: "medias",
               description: "Group under which Suwayomi-Server runs.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for the port in {option}`services.suwayomi-server.settings.server.port`.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     server: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0.0.0.0",
                           example: "127.0.0.1",
                           description: "The ip that Suwayomi will bind to.\n",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 8080n,
                           example: 4567n,
@@ -118,33 +118,33 @@ export default nix.lambda((args) => (() => {
                         })))),
                       basicAuthEnabled: nix.thunk(() => nix.app(mkEnableOption, "basic access authentication for Suwayomi-Server.\nEnabling this option is useful when hosting on a public network/the Internet\n")),
                       basicAuthUsername: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                           description: "The username value that you have to provide when authenticating.\n",
                         })))),
                       basicAuthPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           example: "/var/secrets/suwayomi-server-password",
                           description: "The password file containing the value that you have to provide when authenticating.\n",
                         })))),
                       downloadAsCbz: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Download chapters as `.cbz` files.\n",
                         })))),
                       extensionRepos: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           example: nix.thunk(() => ["https://raw.githubusercontent.com/MY_ACCOUNT/MY_REPO/repo/index.min.json"]),
                           description: "URL of repositories from which the extensions can be installed.\n",
                         })))),
                       localSourcePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.sel(cfg, "dataDir")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "suwayomi-server.dataDir")),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
                           description: "Path to the local source folder.\n",
                         })))),
                       systemTrayEnabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Whether to enable a system tray icon, if possible.\n",
@@ -163,9 +163,9 @@ export default nix.lambda((args) => (() => {
               description: "Configuration to write to {file}`server.conf`.\nSee <https://github.com/Suwayomi/Suwayomi-Server/wiki/Configuring-Suwayomi-Server> for more information.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 server: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   socksProxyEnabled: true,
                   socksProxyHost: "yourproxyhost.com",
                   socksProxyPort: "8080",
@@ -176,10 +176,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "settings", "server")), null);
               return (!nix.asBool(nix.lookup(w, "basicAuthEnabled")) || nix.asBool((nix.asBool(!nix.eq(nix.lookup(w, "basicAuthUsername"), null)) && nix.asBool(!nix.eq(nix.lookup(w, "basicAuthPasswordFile"), null)))));
@@ -188,19 +188,19 @@ export default nix.lambda((args) => (() => {
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "suwayomi")), nix.thunk(() => ({ __proto__: pos$25, suwayomi: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$28,
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "suwayomi")), nix.thunk(() => ({ [nix.POS]: pos$25, suwayomi: nix.thunk(() => ({})) })))),
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "suwayomi")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               suwayomi: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 description: "Suwayomi Daemon user",
@@ -209,16 +209,16 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             settings: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               "10-suwayomi-server": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}/.local/share/Tachidesk`, nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   d: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     mode: "0700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -228,13 +228,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "suwayomi-server": nix.thunk(() => (() => {
               const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "server.conf", nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => [
                     (settings) => nix.app(nix.sel(lib, "recursiveUpdate"), settings, nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         server: nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           basicAuthPasswordFile: null,
                           basicAuthPassword: nix.thunk(() => (nix.asBool(nix.sel(settings, "server", "basicAuthEnabled")) ? "$TACHIDESK_SERVER_BASIC_AUTH_PASSWORD" : null)),
                         })),
@@ -242,7 +242,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (x) => !nix.eq(x, null))),
                   ])))));
               return {
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "A free and open source manga reader server that runs extensions built for Tachiyomi.",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
@@ -253,7 +253,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "envsubst")))} -
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -Dsuwayomi.tachidesk.config.server.rootDir=${nix.sel(cfg, "dataDir")}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   Type: "simple",
@@ -266,7 +266,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -Ds
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ratcornu"))];

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "beetcamp",
       version: "0.24.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snejus",
           repo: "beetcamp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,16 +53,16 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_get_html"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "beets-with-beetcamp": nix.thunk(() => nix.app(nix.sel(beets, "override"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pluginOverrides: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 beetcamp: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   enable: true,
                   propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 })),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Bandcamp autotagger source for beets (http://beets.io)",
         homepage: "https://github.com/snejus/beetcamp",
         changelog: nix.thunk(() => nix.str`https://github.com/snejus/beetcamp/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

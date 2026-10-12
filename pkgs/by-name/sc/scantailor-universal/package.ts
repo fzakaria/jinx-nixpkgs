@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const libcanberra = nix.arg($, "libcanberra");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scantailor-universal",
       version: "0.2.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trufanov-nok",
           repo: "scantailor-universal",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/trufanov-nok/scantailor-universal/commit/f90b1c6bb2954ca5c4d0c5b310f359c522fe538c.patch?full_index=1",
             hash: "sha256-c/mynpM4XNbQ6TcxzZvwwujnfwwA1TPogNU9393gcY4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/trufanov-nok/scantailor-universal/commit/248fdf0fc2dc014d76d4ec9e27a7ad340ff7aaf5.patch?full_index=1",
             hash: "sha256-xK0hNr6YHgMK4fghc07CTRwcsizTsnGSdDwqcUf9wsY=",
           })))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qttools")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interactive post-processing tool for scanned pages",
         homepage: "https://github.com/trufanov-nok/scantailor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

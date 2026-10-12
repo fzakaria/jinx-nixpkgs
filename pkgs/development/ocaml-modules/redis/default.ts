@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const uuidm = nix.arg($, "uuidm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redis",
       version: "0.8",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/0xffea/ocaml-redis/releases/download/v${nix.sel(finalAttrs, "version")}/redis-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Cli30Elur3tL/0bWK6PBBy229TK4jsQnN/0oVQux01I=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [re, stdlib_shims, uuidm]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Redis client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/0xffea/ocaml-redis",

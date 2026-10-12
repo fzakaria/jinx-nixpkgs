@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-idprt-tspl",
       version: "1.4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "idprt_tspl_printer_linux_driver.zip",
           url: "https://www.idprt.com/prt_v2/files/down_file/id/283/fid/668.html",
           hash: "sha256-P3AKSqCh5onOv0itJayEJ6P5pmlkOwOh1OtUjg40BRw=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups, e2fsprogs, krb5, libxcrypt_legacy]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, unzip]),
       installPhase: nix.thunk(() => (() => {
-        const arch = nix.thunk(() => nix.selOr({ __proto__: pos$2, "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-tspl: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+        const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-tspl: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
         return nix.str`runHook preInstall
 mkdir -p $out/share/cups/model $out/lib/cups/filter
 cp -r filter/${arch}/. $out/lib/cups/filter
@@ -43,7 +43,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS drivers for TSPL-based iDPRT thermal label printers (SP210, SP310, SP320, SP320E, SP410, SP410BT, SP420, SP450, SP460BT)",
         platforms: nix.thunk(() => ["x86_64-linux", "x86-linux"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

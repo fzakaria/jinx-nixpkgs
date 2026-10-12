@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const uilib = nix.argOr($, "uilib", () => "gtk3");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "uilib", uilib, nix.thunk(() => ["framebuffer", "gtk2", "gtk3"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/netsurf-browser/package.nix:48:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "netsurf",
       version: "3.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/netsurf/releases/source/netsurf-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-wopiau/uQo0FOxP4i1xECSIkWXZSLRLq8TfP0y0gHLI=",
         })))),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         libdom,
         libhubbub,
         libnsbmp,
-        nix.thunk(() => nix.app(nix.sel(libnsfb, "override"), nix.thunk(() => ({ __proto__: pos$2, SDL: SDL, uilib: uilib })))),
+        nix.thunk(() => nix.app(nix.sel(libnsfb, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, SDL: SDL, uilib: uilib })))),
         libnsgif,
         libnslog,
         libnspsl,
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         nsgenbind,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(uilib, "framebuffer")), nix.thunk(() => [expat, SDL])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(uilib, "gtk2")), gtk2), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(uilib, "gtk3")), gtk3))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-fcommon",
         CFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_DARWIN_C_SOURCE")),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.netsurf-browser.org/",
         description: "Free, open source, small web browser",
         mainProgram: "netsurf-gtk3",

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_rtmidi",
           version: version,
           hash: "sha256-f5reaLBorgkADstWKulSHaOiNDYa1USeg/xzRUTQBPo=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [tox, flake8, alabaster]);
       const pythonImportsCheck = nix.thunk(() => ["rtmidi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python binding for the RtMidi C++ library implemented using Cython",
         homepage: "https://github.com/SpotlightKid/python-rtmidi",
         changelog: nix.thunk(() => nix.str`https://github.com/SpotlightKid/python-rtmidi/blob/${version}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const withGraphics = nix.argOr($, "withGraphics", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "icon-lang",
       version: "9.5.25a",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gtownsend",
           repo: "icon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "make Install dest=$out\nrm $out/README\nmkdir -p $out/share/doc\nmv $out/doc $out/share/doc/icon\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very high level general-purpose programming language",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

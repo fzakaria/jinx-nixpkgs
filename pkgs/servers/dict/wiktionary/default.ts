@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dict-db-wiktionary";
       const version = "20240901";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dumps.wikimedia.org/enwiktionary/${version}/enwiktionary-${version}-pages-articles.xml.bz2`),
           sha256: "f37e899a9091a1b01137c7b0f3d58813edf3039e9e94ae656694c88859bbe756",
         }))));
@@ -35,9 +35,9 @@ faketime -f "$source_date" ${nix.sel(python3, "interpreter")} -O ${nix.path(here
 faketime -f "$source_date" dictzip wiktionary-en.dict
 echo en_US.UTF-8 > locale
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DICT version of English Wiktionary",
         homepage: "https://en.wiktionary.org/",
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ echo en_US.UTF-8 > locale
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

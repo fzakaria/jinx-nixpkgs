@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-lW6gKOww27+2gN2Oe0p/uPgKI5WV6Ius4Bi/LA1xgkg=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_skips_pytest_fixtures"]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_relaxed"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pytest-relaxed.readthedocs.io/",
         description: "Relaxed test discovery/organization for pytest",
         changelog: nix.thunk(() => nix.str`https://github.com/bitprophet/pytest-relaxed/blob/${version}/docs/changelog.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

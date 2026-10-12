@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const discount = nix.arg($, "discount");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bookup",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "ilhooq",
           repo: "bookup",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, gettext, wrapGAppsHook4, desktop_file_utils]),
       buildInputs: nix.thunk(() => [libadwaita, gtksourceview5, webkitgtk_6_0, discount, sqlite]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Markdown note-taking application for Gnome",
         homepage: "https://gitlab.gnome.org/ilhooq/bookup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

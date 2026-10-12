@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bogdanp",
           repo: "dramatiq",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_80]);
       const dependencies = nix.thunk(() => [prometheus_client]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [gevent, pika, pylibmc, redis, watchdog, watchdog_gevent]),
         gevent: nix.thunk(() => [gevent]),
         memcached: nix.thunk(() => [pylibmc]),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_retry_exceptions_can_specify_a_delay"]))));
       const pythonImportsCheck = nix.thunk(() => ["dramatiq"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Background Processing for Python 3",
         homepage: "https://github.com/Bogdanp/dramatiq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

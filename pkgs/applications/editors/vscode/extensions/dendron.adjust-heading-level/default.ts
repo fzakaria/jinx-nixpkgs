@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "adjust-heading-level",
         publisher: "dendron",
         version: "0.1.0",
         hash: "sha256-u50RJ7ETVFUC43mp94VJsR931b9REBaTyRhZE7muoLw=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VSCode extension to adjust the heading level of the selected text",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=dendron.adjust-heading-level",
         homepage: "https://github.com/kevinslin/adjust-heading-level",

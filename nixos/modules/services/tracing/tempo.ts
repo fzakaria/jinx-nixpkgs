@@ -30,28 +30,28 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "tempo"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tempo: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Grafana Tempo")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Specify the configuration for Tempo in Nix.\n\nSee <https://grafana.com/docs/tempo/latest/configuration/> for available options.\n",
             })))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Specify a path to a configuration file that Tempo should use.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"-config.expand-env=true\" ]\n")),
@@ -61,30 +61,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tempo"))]),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "settings"), {}), nix.eq(nix.sel(cfg, "configFile"), null))),
             message: "Please specify a configuration for Tempo with either\n'services.tempo.settings' or\n'services.tempo.configFile'.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             tempo: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Grafana Tempo Service Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => (() => {
                 const conf = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))) : nix.sel(cfg, "configFile")));
                 return {
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "tempo")}/bin/tempo --config.file=${conf} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFlags")))}`),
                   DynamicUser: true,
                   Restart: "always",

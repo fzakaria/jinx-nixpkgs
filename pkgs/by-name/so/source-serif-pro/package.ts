@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "source-serif-pro";
       const version = "3.001";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/adobe-fonts/source-serif/releases/download/${version}R/source-serif-pro-${version}R.zip`),
           hash: "sha256-chXoaPOACtQ7wz/etElXuIJH/yvUsP03WlxeCfqWF/w=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm444 OTF/*.otf -t $out/share/fonts/opentype\ninstall -Dm444 TTF/*.ttf -t $out/share/fonts/truetype\ninstall -Dm444 VAR/*.otf -t $out/share/fonts/variable\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://adobe-fonts.github.io/source-serif/",
         description: "Typeface for setting text in many sizes, weights, and languages. Designed to complement Source Sans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

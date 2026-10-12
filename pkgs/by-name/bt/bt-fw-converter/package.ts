@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2017-02-19";
       const rev = "2d8b34402df01c6f7f4b8622de9e8b82fadf4153";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/winterheart/broadcom-bt-firmware/${rev}/tools/bt-fw-converter.pl`),
           sha256: "c259b414a4a273c89a0fa7159b3ef73d1ea62b6de91c3a7c2fcc832868e39f4b",
         }))));
@@ -35,7 +35,7 @@ substituteInPlace $out/bin/bt-fw-converter --replace /usr/bin/hex2hcd ${bluez}/b
 wrapProgram $out/bin/bt-fw-converter --set PERL5LIB $PERL5LIB
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/winterheart/broadcom-bt-firmware/",
         description: "Tool that converts hex to hcd based on inf file",
         mainProgram: "bt-fw-converter",
@@ -47,7 +47,7 @@ wrapProgram $out/bin/bt-fw-converter --set PERL5LIB $PERL5LIB
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

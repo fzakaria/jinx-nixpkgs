@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clhep",
       version: "2.4.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-HIMEp3cqxrmRlfEwA3jG4930rQfIXWSgRQVlKruKVfk=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace \"clhep_ensure_out_of_source_build()\" \"\"\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of HEP-specific foundation and utility classes such as random generators, physics vectors, geometry and linear algebra",
         homepage: "https://cern.ch/clhep",
         license: nix.thunk(() => (() => {

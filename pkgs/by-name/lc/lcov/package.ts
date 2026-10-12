@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(perlPackages, "PathTools")),
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "MemoryProcess"))]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lcov",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-test-project",
           repo: "lcov",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ done
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code coverage tool that enhances GNU gcov",
         longDescription: "LCOV is an extension of GCOV, a GNU tool which provides information\nabout what parts of a program are actually executed (i.e.,\n\"covered\") while running a particular test case.  The extension\nconsists of a set of PERL scripts which build on the textual GCOV\noutput to implement the following enhanced functionality such as\nHTML output.\n",
         homepage: "https://github.com/linux-test-project/lcov",

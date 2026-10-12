@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hof",
       version: "0.6.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hofstadter-io",
           repo: "hof",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["./cmd/hof"]),
       postInstall: "local INSTALL=\"$out/bin/hof\"\ninstallShellCompletion --cmd hof \\\n  --bash <($out/bin/hof completion bash) \\\n  --fish <($out/bin/hof completion fish) \\\n  --zsh <($out/bin/hof completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hofstadter-io/hof",
         description: "Framework that joins data models, schemas, code generation, and a task engine. Language and technology agnostic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

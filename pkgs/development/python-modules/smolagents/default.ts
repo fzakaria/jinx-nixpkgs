@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const wikipedia_api = nix.arg($, "wikipedia-api");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smolagents",
       version: "1.26.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "smolagents",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["huggingface-hub"]),
       dependencies: nix.thunk(() => [huggingface_hub, jinja2, pillow, python_dotenv, requests, rich]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           audio: nix.thunk(() => nix.concat([soundfile], nix.sel(self, "torch"))),
           bedrock: nix.thunk(() => [boto3]),
           docker: nix.thunk(() => [docker, websocket_client]),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Barebones library for agents",
         homepage: "https://github.com/huggingface/smolagents",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/smolagents/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

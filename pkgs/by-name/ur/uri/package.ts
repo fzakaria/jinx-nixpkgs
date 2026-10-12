@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uri",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpp-netlib",
           repo: "uri",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "148361pixrm94q6v04k13s1msa04bx9yc3djb0lxpa7dlw19vhcd",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=parentheses",
             "-Wno-error=deprecated-declarations",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make doc",
       postInstall: "install -vd $out/share/doc\ncp -vR html $out/share/doc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ URI library",
         homepage: "https://cpp-netlib.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

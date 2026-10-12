@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const trlib = nix.arg($, "trlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sleqp",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrhansk",
           repo: "sleqp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "-DSLEQP_LPS=HiGHS",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Active set-based NLP solver",
         homepage: "https://github.com/chrhansk/sleqp",
         changelog: nix.thunk(() => nix.str`https://github.com/chrhansk/sleqp/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

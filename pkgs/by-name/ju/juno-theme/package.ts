@@ -16,27 +16,27 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "juno",
       version: "0.0.3",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/gvolpe/Juno/releases/download/${nix.sel(finalAttrs, "version")}/Juno.tar.xz`),
             sha256: "sha256-G/H5FZ6VSLHwtMtttRafvPFE2sd30FHbep/0i4dGfl8=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/gvolpe/Juno/releases/download/${nix.sel(finalAttrs, "version")}/Juno-mirage.tar.xz`),
             sha256: "sha256-VU8uNH6T9FyOWgIfsGCCihnX3uHfOy6dXsANWKRPQ1c=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/gvolpe/Juno/releases/download/${nix.sel(finalAttrs, "version")}/Juno-ocean.tar.xz`),
             sha256: "sha256-OeMXR0nE9aUmwAGfOAfbNP2Rgvv1u/2vj3LKb88mD1s=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://github.com/gvolpe/Juno/releases/download/${nix.sel(finalAttrs, "version")}/Juno-palenight.tar.xz`),
             sha256: "sha256-DP3fKXYxUHpsw0msfPAZB3UtEa6CCOfqsabAmsmWq44=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p $out/share/themes\ncp -a Juno* $out/share/themes\nrm $out/share/themes/*/{LICENSE,README.md}\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GTK themes inspired by epic vscode themes",
         homepage: "https://github.com/EliverLara/Juno",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

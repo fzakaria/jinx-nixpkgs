@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xdg-dbus-proxy",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flatpak/xdg-dbus-proxy/releases/download/${nix.sel(finalAttrs, "version")}/xdg-dbus-proxy-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tmML0k+BYbDiVG0qy7AUo7Mkn1wNdfKoY63omLkDTT0=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dbus]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DBus proxy for Flatpak and others",
         homepage: "https://github.com/flatpak/xdg-dbus-proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libgpg_error = nix.arg($, "libgpg-error");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.6.20",
       pname: "freeipmi",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/freeipmi/freeipmi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-nMZEUw7mKf+5TW/SCefLSouK5md/idLcRh7+2bLnCfI=",
         })))),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libgcrypt, readline, libgpg_error], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [argp_standalone])))),
       configureFlags: nix.thunk(() => nix.concat(["--with-dont-check-for-root"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["ac_cv_file__dev_urandom=true", "ac_cv_file__dev_random=true"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of the Intelligent Platform Management Interface",
         longDescription: "GNU FreeIPMI provides in-band and out-of-band IPMI software based on\nthe IPMI v1.5/2.0 specification.  The IPMI specification defines a\nset of interfaces for platform management and is implemented by a\nnumber vendors for system management.  The features of IPMI that\nmost users will be interested in are sensor monitoring, system event\nmonitoring, power control, and serial-over-LAN (SOL).  The FreeIPMI\ntools and libraries listed below should provide users with the\nability to access and utilize these and many other features.  A\nnumber of useful features for large HPC or cluster environments have\nalso been implemented into FreeIPMI. See the README or FAQ for more\ninfo.\n",
         homepage: "https://www.gnu.org/software/freeipmi/",

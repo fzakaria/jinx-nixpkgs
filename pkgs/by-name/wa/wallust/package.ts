@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wallust",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion-mental",
           repo: "wallust",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ZgkeM9gMw9TB5NR+xyxBepKHO16bLVVFJN4IY39gllg=",
         })))),
       cargoHash: "sha256-XrIi+8p2OZ7O6MTgqKbgN/9gLUbvB7uN9Yr2X1BYHIU=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [libgit2]),
       postInstall: "installManPage man/wallust*\ninstallShellCompletion --cmd wallust \\\n  --bash completions/wallust.bash \\\n  --zsh completions/_wallust \\\n  --fish completions/wallust.fish\n",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Better pywal",
         homepage: "https://codeberg.org/explosion-mental/wallust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const elmUi = nix.thunk(() => nix.app(callPackage, nix.path(here, "./elm-ui.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alertmanager",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus",
           repo: "alertmanager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,17 +56,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "$out/bin/amtool --completion-script-bash > amtool.bash\ninstallShellCompletion amtool.bash\n$out/bin/amtool --completion-script-zsh > amtool.zsh\ninstallShellCompletion amtool.zsh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         elmUi: elmUi,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           alertmanager: nix.thunk(() => nix.attr(from, "alertmanager")),
         };
         })()),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "alertmanager-update",
               runtimeInputs: nix.thunk(() => [curlMinimal, common_updater_scripts, elm2nix, nix_update, nixfmt]),
               text: nix.thunk(() => nix.str`TAG=$(list-git-tags --url="https://github.com/${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}" | sort -V | tail -n1)
@@ -87,7 +87,7 @@ nix-update prometheus-alertmanager.elmUi
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Alert dispatcher for the Prometheus monitoring system",
         homepage: "https://github.com/prometheus/alertmanager",
         changelog: nix.thunk(() => nix.str`https://github.com/prometheus/alertmanager/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

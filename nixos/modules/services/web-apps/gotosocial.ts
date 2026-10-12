@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const defaultSettings = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "application-name": "gotosocial",
     protocol: "https",
     "bind-address": "127.0.0.1",
@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
   ${nix.sel(cfg, "package")}/bin/gotosocial --config-path ${configFile} admin "$@"
 `)));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       doc: nix.path(here, "./gotosocial.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -70,38 +70,38 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         gotosocial: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ActivityPub social network server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gotosocial", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open the configured port in the firewall.\nUsing a reverse proxy instead is highly recommended.\n",
             })))),
           setupPostgresqlDB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to setup a local postgres database and populate the\n`db-type` fields in `services.gotosocial.settings`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: defaultSettings,
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "application-name": "My GoToSocial",
                 host: "gotosocial.example.com",
               })),
               description: "Contents of the GoToSocial YAML config.\n\nPlease refer to the\n[documentation](https://docs.gotosocial.org/en/latest/configuration/)\nand\n[example config](https://github.com/superseriousbusiness/gotosocial/blob/main/example/config.yaml).\n\nPlease note that the `host` option cannot be changed later so it is important to configure this correctly before you start GoToSocial.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "File path containing environment variables for configuring the GoToSocial service\nin the format of an EnvironmentFile as described by {manpage}`systemd.exec(5)`.\n\nThis option could be used to pass sensitive configuration to the GoToSocial daemon.\n\nPlease refer to the Environment Variables section in the\n[documentation](https://docs.gotosocial.org/en/latest/configuration/).\n",
               default: null,
@@ -111,24 +111,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.eq(nix.selOr(cfg, () => null, "settings", "host"), null)),
             message: "You have to define a hostname for GoToSocial (`services.gotosocial.settings.host`), it cannot be changed later without starting over!\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           gotosocial: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.update(defaultSettings, {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "web-asset-base-dir": nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/gotosocial/web/assets/`),
                 "web-template-base-dir": nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/gotosocial/web/template/`),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "setupPostgresqlDB")), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "db-type": "postgres",
                 "db-address": "/run/postgresql",
                 "db-database": "gotosocial",
@@ -136,43 +136,43 @@ export default nix.lambda((args) => (() => {
               }))))),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setupPostgresqlDB")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               ensureDatabases: nix.thunk(() => ["gotosocial"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$15, name: "gotosocial", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$15, name: "gotosocial", ensureDBOwnership: true })),
               ]),
             })))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$18, systemPackages: nix.thunk(() => [gotosocial_admin]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$18, systemPackages: nix.thunk(() => [gotosocial_admin]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
-          groups: nix.thunk(() => ({ __proto__: pos$19, gotosocial: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$22,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, gotosocial: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$21,
-            gotosocial: nix.thunk(() => ({ __proto__: pos$20, group: "gotosocial", isSystemUser: true })),
+            [nix.POS]: pos$21,
+            gotosocial: nix.thunk(() => ({ [nix.POS]: pos$20, group: "gotosocial", isSystemUser: true })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             gotosocial: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "ActivityPub social network server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "setupPostgresqlDB")), "postgresql.target"))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "setupPostgresqlDB")), "postgresql.target")),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/gotosocial --config-path ${configFile} server start`),
                 Restart: "on-failure",

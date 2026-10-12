@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jupytext",
       version: "1.19.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mwouts",
           repo: "jupytext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(yarn_berry_3, "yarnBerryConfigHook"))]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/jupyterlab`),
           hash: "sha256-jyo7hbCYntZtpecK8cCoDOSgWT4xA+MaJu+e3N+aHUU=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, HATCH_BUILD_HOOKS_ENABLE: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_HOOKS_ENABLE: true })),
       preConfigure: "pushd jupyterlab\n",
       preBuild: "popd\n",
       "build-system": nix.thunk(() => [hatch_jupyter_builder, hatchling, jupyter_builder]),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_async_and_sync_files_are_in_sync"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_load_save_rename"])))),
       pythonImportsCheck: nix.thunk(() => ["jupytext", "jupytext.cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Jupyter notebooks as Markdown documents, Julia, Python or R scripts",
         homepage: "https://github.com/mwouts/jupytext",
         changelog: nix.thunk(() => nix.str`https://github.com/mwouts/jupytext/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

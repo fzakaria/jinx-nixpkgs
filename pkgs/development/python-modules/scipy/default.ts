@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "scipy",
       version: "1.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipy",
           repo: "scipy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/scipy/scipy/commit/33696c545b74d6fda6f6f39e818d26c2b7631498.patch",
             hash: "sha256-R5rgSz/9+T2+fpDFTfZQLTvdISTGUAuHEBAWT39x9LQ=",
             excludes: nix.thunk(() => ["doc/source/building/cross_compilation.rst"]),
@@ -118,24 +118,24 @@ rm $out/${nix.sel(python, "sitePackages")}/scipy/__pycache__/__config__.*.opt-1.
       preCheck: "cd $out\n",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         blas: blas,
-        tests: nix.thunk(() => ({ __proto__: pos$3, sage: sage })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })),
         datasetsHashes: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           ascent: "sha256-A84STBr8iA+HtV9rBhEQ4uHpOWeRhPVhTjjazGwZV+I=",
           ecg: "sha256-8grTNl+5t/hF0OXEi2/mcIE3fuRmw6Igt/afNciVi68=",
           face: "sha256-nYsLTQgTE+K0hXSMdwRy5ale0XOBRog9hMcDBJPoKIY=",
         })),
         datasets: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (d) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/scipy/dataset-${d}/main/${d}.dat`),
               hash: hash,
             }))), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "datasetsHashes")))),
         buildConfig: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           properties: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "numpy-include-dir": nix.thunk(() => nix.sel(numpy, "coreIncludeDir")),
             "pythran-include-dir": nix.thunk(() => nix.str`${pythran}/${nix.sel(python, "sitePackages")}/pythran`),
             "host-python-path": nix.thunk(() => nix.sel(python, "interpreter")),
@@ -143,17 +143,17 @@ rm $out/${nix.sel(python, "sitePackages")}/scipy/__pycache__/__config__.*.opt-1.
           })),
         })),
         crossFile: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "cross-file-scipy.conf",
             text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({
-                __proto__: pos$9,
-                mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$8, mkValueString: (v) => nix.str`'${v}'` })), " = ")),
+                [nix.POS]: pos$9,
+                mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$8, mkValueString: (v) => nix.str`'${v}'` })), " = ")),
               })), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "buildConfig")))),
           })))),
       })),
-      env: nix.thunk(() => ({ __proto__: pos$12, SCIPY_USE_G77_ABI_WRAPPER: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$12, SCIPY_USE_G77_ABI_WRAPPER: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         changelog: nix.thunk(() => nix.str`https://github.com/scipy/scipy/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "SciPy (pronounced 'Sigh Pie') is open-source software for mathematics, science, and engineering",
         downloadPage: "https://github.com/scipy/scipy",

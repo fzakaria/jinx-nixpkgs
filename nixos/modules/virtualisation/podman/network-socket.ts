@@ -31,60 +31,60 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "podman", "networkSocket"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [nix.path(here, "./network-socket-ghostunnel.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         podman: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           networkSocket: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Make the Podman and Docker compatibility API available over the network\nwith TLS client certificate authentication.\n\nThis allows Docker clients to connect with the equivalents of the Docker\nCLI `-H` and `--tls*` family of options.\n\nFor certificate setup, see <https://docs.docker.com/engine/security/protect-access/>\n\nThis option is independent of [](#opt-virtualisation.podman.dockerSocket.enable).\n",
               })))),
             server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), [])),
                 description: "Choice of TLS proxy server.\n",
                 example: "ghostunnel",
               })))),
             openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to open the port in the firewall.\n",
               })))),
             tls: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               cacert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   description: "Path to CA certificate to use for client authentication.\n",
                 })))),
               cert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   description: "Path to certificate describing the server.\n",
                 })))),
               key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   description: "Path to the private key corresponding to the server certificate.\n\nUse a string for this setting. Otherwise it will be copied to the Nix\nstore first, where it is readable by any system process.\n",
                 })))),
             })),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 2376n,
                 description: "TCP port number for receiving TLS connections.\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "0.0.0.0",
                 description: "Interface address for receiving TLS connections.\n",
@@ -94,17 +94,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       networking: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         firewall: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "openFirewall")))), nix.thunk(() => nix.sel(cfg, "port")))),
         })),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "podman"))]),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))]),
     })),

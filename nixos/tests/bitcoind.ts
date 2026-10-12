@@ -25,50 +25,50 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "bitcoind",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_1000101"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             bitcoind: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               mainnet: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: true,
                 rpc: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   port: 8332n,
                   users: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     rpc: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       passwordHMAC: "acc2374e5f9ba9e62a5204d3686616cf$53abdba5e67a9005be6a27ca03a93ce09e58854bc2b871523a0d239a72968033",
                     })),
                     rpc2: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       passwordHMAC: "1495e4a3ad108187576c68f7f9b5ddc5$accce0881c74aa01bb8960ff3bdbd39f607fd33178147679e055a4ac35f53225",
                     })),
                   })),
                 })),
               })),
               testnet: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 configFile: "/etc/test.blank",
                 testnet: true,
-                rpc: nix.thunk(() => ({ __proto__: pos$7, port: 18332n })),
+                rpc: nix.thunk(() => ({ [nix.POS]: pos$7, port: 18332n })),
                 extraCmdlineOptions: nix.thunk(() => [
                   "-rpcuser=rpc",
                   "-rpcpassword=rpc",
@@ -78,10 +78,10 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             etc: nix.thunk(() => ({
-              __proto__: pos$12,
-              "test.blank": nix.thunk(() => ({ __proto__: pos$11, text: "" })),
+              [nix.POS]: pos$12,
+              "test.blank": nix.thunk(() => ({ [nix.POS]: pos$11, text: "" })),
             })),
           })),
         };

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const cxxStandard = nix.argOr($, "cxxStandard", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "abseil-cpp",
       version: "20240722.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abseil",
           repo: "abseil-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/abseil/abseil-cpp/commit/9cb5e5d15c142e5cc43a2c1db87c8e4e5b6d38a5.patch",
             hash: "sha256-PTNmNJMk42Omwek0ackl4PjxifDP/+GaUitS60l+VB0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/abseil/abseil-cpp/commit/bd0c9c58cac4463d96b574de3097422bb78215a8.patch",
             hash: "sha256-fB9pvkyNBXoDKLrVaNwliqrWEPTa2Y6OJMe2xgl5IBc=",
           })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [gtest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source collection of C++ code designed to augment the C++ standard library",
         homepage: "https://abseil.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/abseil/abseil-cpp/releases/tag/${nix.sel(finalAttrs, "version")}`),

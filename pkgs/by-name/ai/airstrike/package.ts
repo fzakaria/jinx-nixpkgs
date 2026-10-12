@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const SDL = nix.arg($, "SDL");
   const SDL_image = nix.arg($, "SDL_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "airstrike",
       version: "pre6a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://icculus.org/airstrike/airstrike-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "1h6rv2zcp84ycmd0kv1pbpqjgwx57dw42x7878d2c2vnpi5jn8qi",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [SDL, SDL_image]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lm" })),
       installPhase: "mkdir -p $out/bin\ncp airstrike $out/bin\n\nmkdir -p $out/share\ncp -r data airstrikerc $out/share\n\nwrapProgram $out/bin/airstrike \\\n  --chdir \"$out/share\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "2d dogfighting game",
         mainProgram: "airstrike",
         homepage: "https://icculus.org/airstrike/",

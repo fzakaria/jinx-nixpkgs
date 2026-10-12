@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       __structuredAttrs: true,
       pname: "sonarqube-cli",
       version: "1.9.0.15656",
       src: nix.thunk(() => (() => {
         const baseUrl = nix.thunk(() => nix.str`https://binaries.sonarsource.com/Distribution/sonarqube-cli/${nix.sel(finalAttrs, "version")}`);
         return nix.selOr({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`${baseUrl}/linux/sonarqube-cli-${nix.sel(finalAttrs, "version")}-linux-x86-64.bin`),
               hash: "sha256-QuyBXvgBWSGna3bIZZMhMNdWxcWpd9gryp+oHQm/zNg=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`${baseUrl}/linux/sonarqube-cli-${nix.sel(finalAttrs, "version")}-linux-arm64.bin`),
               hash: "sha256-ZGcnxAMcY/ExyilDt/xrt/e9+hqQsZu88tck0DwpWww=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`${baseUrl}/macos/sonarqube-cli-${nix.sel(finalAttrs, "version")}-macos-arm64.bin`),
               hash: "sha256-jejsYsNhSpq7cFMRT9qFuUYLbr28p7thLG5Y3IirIBU=",
             })))),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 $src $out/bin/sonar\nrunHook postInstall\n",
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\nexport HOME=$(mktemp -d)\n$out/bin/sonar --help 2>&1 | grep -qF \"SonarQube CLI\"\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command-line companion for SonarQube Cloud and SonarQube Server",
         longDescription: "The SonarQube CLI (sonar) is a command-line companion for SonarQube Cloud\nand SonarQube Server. It lets you scan for secrets, analyze local changes,\nquery projects and issues, and wire SonarQube into AI coding assistants,\nall from your terminal.\n",
         homepage: "https://www.sonarsource.com/sonarqube/cli",

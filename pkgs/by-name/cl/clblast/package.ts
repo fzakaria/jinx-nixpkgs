@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const opencl_headers = nix.arg($, "opencl-headers");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clblast",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CNugteren",
           repo: "CLBlast",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clblast-fix-cmake4.patch",
             url: "https://github.com/CNugteren/CLBlast/commit/dd714f1b72aa8c341e5a27aa9e968b4ecdaf1abb.patch",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [opencl_headers, ocl_icd]),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_INCLUDEDIR=include", "-DCMAKE_INSTALL_LIBDIR=lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tuned OpenCL BLAS library",
         homepage: "https://github.com/CNugteren/CLBlast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

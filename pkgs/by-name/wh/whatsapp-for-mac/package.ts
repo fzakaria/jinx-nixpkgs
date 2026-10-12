@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "whatsapp-for-mac",
       version: "2.26.31.27",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           extension: "zip",
           name: "WhatsApp.app",
           url: nix.thunk(() => nix.str`https://web.whatsapp.com/desktop/mac_native/release/?version=${nix.sel(finalAttrs, "version")}&extension=zip&configuration=Release&branch=master`),
@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "whatsapp-update-script",
               runtimeInputs: nix.thunk(() => [curl, xmlstarlet, common_updater_scripts]),
               text: "url=$(curl --silent \"https://web.whatsapp.com/desktop/mac_native/updates/?branch=master&configuration=Release\")\nversion=$(echo \"$url\" | xmlstarlet sel -t -v \"substring-before(substring-after(//enclosure/@url, 'version='), '&')\")\nupdate-source-version whatsapp-for-mac \"$version\" --file=./pkgs/by-name/wh/whatsapp-for-mac/package.nix\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Native desktop client for WhatsApp",
         homepage: "https://www.whatsapp.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

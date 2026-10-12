@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sydbox",
       version: "3.51.2",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.exherbo.org",
           owner: "Sydbox",
           repo: "sydbox",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/man/man{1,2,5,7}\n\nmake $makeFlags install-{man,vim}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "syd -V",
             })))),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Seccomp-based application sandbox",
         homepage: "https://gitlab.exherbo.org/sydbox/sydbox",
         changelog: nix.thunk(() => nix.str`https://gitlab.exherbo.org/sydbox/sydbox/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.md`),

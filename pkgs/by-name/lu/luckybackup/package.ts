@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "luckybackup",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/luckybackup/${nix.sel(finalAttrs, "version")}/source/luckybackup-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6AGvJIPL3WK8mvji3tJSxRrbrYFILikQQvWOIcPUkls=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       prePatch: "for File in \\\n  luckybackup.pro \\\n  menu/luckybackup-pkexec \\\n  menu/luckybackup-su.desktop \\\n  menu/luckybackup.desktop \\\n  menu/net.luckybackup.su.policy \\\n  src/functions.cpp \\\n  src/global.cpp \\\n  src/scheduleDialog.cpp; do\n    substituteInPlace $File --replace \"/usr\" \"$out\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://luckybackup.sourceforge.net/",
         description: "Powerful, fast and reliable backup & sync tool",
         longDescription: "luckyBackup is an application for data back-up and synchronization\npowered by the rsync tool.\n\nIt is simple to use, fast (transfers over only changes made and not\nall data), safe (keeps your data safe by checking all declared directories\nbefore proceeding in any data manipulation), reliable and fully\ncustomizable.\n",

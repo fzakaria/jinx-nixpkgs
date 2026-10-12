@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const buildDhallGitHubPackage = nix.arg($, "buildDhallGitHubPackage");
   const Prelude = nix.arg($, "Prelude");
   return nix.app(buildDhallGitHubPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "grafana",
       owner: "weeezes",
       repo: "dhall-grafana",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "honeyfetch",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ahoneybun",
           repo: "honeyfetch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-u+OF4ali7GoHktY8jihgqUQ+4kFuKQNbiaRUdOJrQfA=",
       buildInputs: nix.thunk(() => [libdrm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Classy neofetch but in Rust",
         homepage: "https://gitlab.com/ahoneybun/honeyfetch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

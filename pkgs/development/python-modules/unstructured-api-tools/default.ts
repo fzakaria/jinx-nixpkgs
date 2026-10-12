@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const version = "0.10.11";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unstructured-api-tools",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unstructured-IO",
           repo: "unstructured-api-tools",
           tag: version,
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         pytest_mock,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "",
         mainProgram: "unstructured_api_tools",
         homepage: "https://github.com/Unstructured-IO/unstructured-api-tools",

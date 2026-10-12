@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hypothesis_auto",
           version: version,
           hash: "sha256-U0vcOB9jXmUV5v2IwybVu2arY1FpPnKkP7m2kbD1kRw=",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["hypothesis", "pydantic"]);
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [hypothesis, pydantic]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, pytest: nix.thunk(() => [pytest]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pytest: nix.thunk(() => [pytest]) }));
       const pythonImportsCheck = nix.thunk(() => ["hypothesis_auto"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Enables fully automatic tests for type annotated functions",
         homepage: "https://github.com/timothycrosley/hypothesis-auto/",
         changelog: "https://github.com/timothycrosley/hypothesis-auto/blob/master/CHANGELOG.md",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

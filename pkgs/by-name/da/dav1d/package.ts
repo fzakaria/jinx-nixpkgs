@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libheif = nix.arg($, "libheif");
   nix.assert_((!nix.asBool(useVulkan) || nix.asBool(withExamples)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/da/dav1d/package.nix:26:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dav1d",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "videolan",
           repo: "dav1d",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ffmpeg: ffmpeg,
           gdal: gdal,
           handbrake: handbrake,
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform AV1 decoder focused on speed and correctness",
         longDescription: "The goal of this project is to provide a decoder for most platforms, and\nachieve the highest speed possible to overcome the temporary lack of AV1\nhardware decoder. It supports all features from AV1, including all\nsubsampling and bit-depth parameters.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

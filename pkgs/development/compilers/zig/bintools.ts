@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   return nix.app(runCommand, nix.thunk(() => nix.str`zig-bintools-${nix.sel(zig, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "zig-bintools",
       version: nix.thunk(() => nix.attr(zig, "version")),
       meta: nix.thunk(() => nix.attr(zig, "meta")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isZig: true, targetPrefix: targetPrefix })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isZig: true, targetPrefix: targetPrefix })),
       zig: zig,
     })), "mkdir -p $out/bin\nfor tool in ar objcopy ranlib ld.lld; do\n  makeWrapper \"$zig/bin/zig\" \"$out/bin/$tool\" \\\n    --add-flags \"$tool\" \\\n    --run \"export ZIG_GLOBAL_CACHE_DIR=\\$TMPDIR/zig-cache\"\ndone\n\nln -s $out/bin/ld.lld $out/bin/ld\n");
 })(), formals$1);

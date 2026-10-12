@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yq-go",
       version: "4.54.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikefarah",
           repo: "yq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,9 +44,9 @@ export MAN_HEADER="yq (https://github.com/mikefarah/yq/) version ${nix.sel(final
 installManPage yq.1
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(runCommand, "yq-go-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "test: 1" | ${nix.sel(finalAttrs, "finalPackage")}/bin/yq eval -o=json > $out
 [ "$(cat $out | tr -d $'\\n ')" = '{"test":1}' ]
 `))),
@@ -54,7 +54,7 @@ installManPage yq.1
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Portable command-line YAML processor",
         homepage: "https://mikefarah.gitbook.io/yq/",
         changelog: nix.thunk(() => nix.str`https://github.com/mikefarah/yq/raw/${nix.sel(finalAttrs, "src", "tag")}/release_notes.txt`),

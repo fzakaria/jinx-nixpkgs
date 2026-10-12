@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.6.02",
       pname: "hdate",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/libhdate/files/libhdate/libhdate-${nix.sel(finalAttrs, "version")}/libhdate-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "3c930a8deb57c01896dc37f0d7804e5a330ee8e88c4ff610b71f9d2b02c17762",
         })))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--disable-hcal"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hebrew calendar and solar astronomical times library and utilities",
         homepage: "https://sourceforge.net/projects/libhdate/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

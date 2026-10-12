@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-ldap",
           repo: "python-slapd",
           tag: version,
@@ -36,7 +36,7 @@ export SCHEMA="${openldap}/etc/schema"
 `);
       const pythonImportsCheck = nix.thunk(() => ["slapd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Controls a slapd process in a pythonic way",
         homepage: "https://github.com/python-ldap/python-slapd",
         changelog: nix.thunk(() => nix.str`https://github.com/python-ldap/python-slapd/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -47,7 +47,7 @@ export SCHEMA="${openldap}/etc/schema"
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const domain = "tuya_local";
       const version = "2026.9.2-rel";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "tuya-local",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [tinytuya, tuya_device_sharing_sdk]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local support for Tuya devices in Home Assistant",
         homepage: "https://github.com/make-all/tuya-local",
         changelog: nix.thunk(() => nix.str`https://github.com/make-all/tuya-local/releases/tag/${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pathob"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

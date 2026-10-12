@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tr4nt0r",
           repo: "aiontfy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["aiontfy"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/tr4nt0r/aiontfy/releases/tag/${nix.sel(src, "tag")}`),
         description: "Async ntfy client library",
         homepage: "https://github.com/tr4nt0r/aiontfy",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

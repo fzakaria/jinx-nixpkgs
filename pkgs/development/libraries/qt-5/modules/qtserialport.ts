@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const udevSupport = nix.argOr($, "udevSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtserialport",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), udevSupport, nix.thunk(() => nix.str`-DNIXPKGS_LIBUDEV="${udev}/lib/libudev"`))),
       })),
     })));

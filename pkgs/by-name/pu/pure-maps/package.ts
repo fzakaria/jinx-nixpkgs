@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pure-maps";
       const version = "3.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rinigus",
           repo: "pure-maps",
           rev: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       })());
       const preInstall = "buildPythonPath \"${pythonPath[*]}\"\nqtWrapperArgs+=(--prefix PYTHONPATH : \"$program_PYTHONPATH\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display vector and raster maps, places, routes, and provide navigation instructions with a flexible selection of data and service providers",
         mainProgram: "pure-maps",
         homepage: "https://github.com/rinigus/pure-maps",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

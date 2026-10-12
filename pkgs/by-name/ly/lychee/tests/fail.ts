@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const sitePkg = nix.thunk(() => nix.app(runCommand, "site", nix.thunk(() => ({})), "dist=$out/dist\nmkdir -p $dist\necho \"<html><body><a href=\\\"https://example.com/foo.html#foos-missing-anchor\\\">foo</a></body></html>\" > $dist/index.html\necho \"<html><body><a href=\\\".\\\">index</a></body></html>\" > $dist/foo.html\n"));
   const linkCheck = nix.thunk(() => nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => (() => {
       const site = nix.thunk(() => nix.add(sitePkg, "/dist"));
-      const remap = nix.thunk(() => ({ __proto__: pos$1, "https://exampl[e]\\.com": site }));
-      return { __proto__: pos$2, site, remap };
+      const remap = nix.thunk(() => ({ [nix.POS]: pos$1, "https://exampl[e]\\.com": site }));
+      return { [nix.POS]: pos$2, site, remap };
     })())));
   const failure = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), linkCheck));
-  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ __proto__: pos$3, failure: failure })), "grep -F foos-missing-anchor $failure/testBuildFailure.log >/dev/null\ntouch $out\n");
+  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ [nix.POS]: pos$3, failure: failure })), "grep -F foos-missing-anchor $failure/testBuildFailure.log >/dev/null\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=fail.ts.map

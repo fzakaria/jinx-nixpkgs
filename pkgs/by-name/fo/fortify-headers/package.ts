@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fortify-headers",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jvoisin/fortify-headers/archive/refs/tags/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-V2rB3C25pQPYRYwen0ps6LBDfPw8UHhZ12AaO42KwOY=",
         })))),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r include $out/include\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "git://git.2f30.org/fortify-headers" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.2f30.org/fortify-headers" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Standalone header-based fortify-source implementation",
         homepage: "https://git.2f30.org/fortify-headers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const modSourceName = nix.thunk(() => nix.selOr(mod, () => "mod", "src", "name"));
   const pname = nix.thunk(() => nix.str`openra_2019-${nix.sel(mod, "name")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: nix.thunk(() => nix.attr(mod, "version")),
       srcs: nix.thunk(() => [

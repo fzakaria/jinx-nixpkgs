@@ -23,27 +23,27 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RIPE-NCC",
           repo: "ripe-atlas-sagan",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-xIBIKsQvDmVBa/C8/7Wr3WKeepHaGhoXlgatXSUtWLA=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [cryptography, python_dateutil, pytz]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, fast: nix.thunk(() => [ujson]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, fast: nix.thunk(() => [ujson]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["tests/*.py"]);
       const disabledTests = nix.thunk(() => ["test_invalid_country_code"]);
       const pythonImportsCheck = nix.thunk(() => ["ripe.atlas.sagan"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parsing library for RIPE Atlas measurements results",
         homepage: "https://github.com/RIPE-NCC/ripe-atlas-sagan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

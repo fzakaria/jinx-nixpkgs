@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const liquibase_redshift_extension = nix.arg($, "liquibase_redshift_extension");
   const extraJars = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mysqlSupport, mysql_jdbc), nix.concat(nix.app(nix.sel(lib, "optional"), postgresqlSupport, postgresql_jdbc), nix.app(nix.sel(lib, "optionals"), redshiftSupport, nix.thunk(() => [redshift_jdbc, liquibase_redshift_extension])))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "liquibase",
       version: "5.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/liquibase/liquibase/releases/download/v${nix.sel(finalAttrs, "version")}/liquibase-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uwhjjXDd3Wr4zKbgMxSFdvghS1mWgxsfiGTrNSj0z84=",
         })))),
@@ -76,18 +76,18 @@ chmod +x $out/bin/liquibase
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Version Control for your database",
         mainProgram: "liquibase",
         homepage: "https://www.liquibase.org/",

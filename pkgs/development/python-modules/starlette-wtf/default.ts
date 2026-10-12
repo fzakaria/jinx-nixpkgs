@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muicss",
           repo: "starlette-wtf",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [itsdangerous, python_multipart, starlette, wtforms]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, httpx, jinja2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool for integrating Starlette and WTForms",
         changelog: nix.thunk(() => nix.str`https://github.com/amorey/starlette-wtf/releases/tag/${version}`),
         homepage: "https://github.com/muicss/starlette-wtf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

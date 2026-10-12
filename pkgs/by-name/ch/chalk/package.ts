@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const chalkVersion = "1.34.9";
   const chalkPathPiecesByNixSystem = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "Darwin/aarch64",
     "aarch64-linux": "Linux/aarch64",
     "x86_64-linux": "Linux/x86_64",
   }));
   const chalkHashByNixSystem = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "aarch64-darwin": "sha256-owDGsT/2tU1Y3JKWAQkYNG18dOxXIST/3bfjXJf1gXU=",
     "aarch64-linux": "sha256-uvhjhLbVBGB5SNFbfgtpaeLULFnEm3x8fN9ffyJzSSM=",
     "x86_64-linux": "sha256-lC5SwvZzYJqomRrK42roSQr4/GZScM2VdgiQ9DOSkHQ=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const chalkPathPieces = nix.thunk(() => nix.sel(chalkPathPiecesByNixSystem, nix.key(nix.str`${nix.sel(stdenv, "system")}`)));
   const chalkUrl = nix.thunk(() => nix.str`https://api.chalk.ai/v1/install/${chalkPathPieces}/v${chalkVersion}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chalk",
       version: chalkVersion,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$3, url: chalkUrl, hash: chalkHash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: chalkUrl, hash: chalkHash })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\ninstall -Dm 555 $src $out/bin/chalk\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool for interacting with the Chalk platform",
         homepage: "https://docs.chalk.ai/cli",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),

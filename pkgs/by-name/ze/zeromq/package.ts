@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "zeromq",
       version: "4.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeromq",
           repo: "libzmq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/zeromq/libzmq/pull/4711/commits/55bd6b3df06734730d3012c17bc26681e25b549d.patch",
             hash: "sha256-/FVah+s7f1hWXv3MXkYfIiV1XAiMVDa0tmt4BQmSgmY=",
             name: "cacheline_undefined.patch",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "zeromq-fix-cmake-4-1.patch",
             url: "https://github.com/zeromq/libzmq/commit/34f7fa22022bed9e0e390ed3580a1c83ac4a2834.patch",
             hash: "sha256-oauAZV6pThplcn2v9mQxhxlUhYgpbly0JBLYik+zoJE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "zeromq-fix-cmake-4-2.patch",
             url: "https://github.com/zeromq/libzmq/commit/b91a6201307b72beb522300366aad763d19b1456.patch",
             hash: "sha256-FKvZi7pTUx+wLUR8Suf+pRFg8I5OHpJ93gEmTxUrmO4=",
@@ -92,20 +92,20 @@ popd
 `),
       postInstall: "# Install manually created man pages\ninstall -vDm644 -t \"$out/share/man/man3\" ../doc/*.3\ninstall -vDm644 -t \"$out/share/man/man7\" ../doc/*.7\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           azmq: azmq,
           cppzmq: cppzmq,
           czmq: czmq,
           zmqpp: zmqpp,
           pyzmq: nix.thunk(() => nix.sel(python3, "pkgs", "pyzmq")),
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$5, withZmq: true })))),
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, withZmq: true })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         branch: "4",
         homepage: "http://www.zeromq.org",
         description: "Intelligent Transport Layer",

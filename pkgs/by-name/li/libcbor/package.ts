@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libcbor",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PJK",
           repo: "libcbor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))),
       nativeCheckInputs: nix.thunk(() => [cmocka]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           libfido2: libfido2,
           mysql84: mysql84,
-          openssh: nix.thunk(() => nix.app(nix.sel(openssh, "override"), nix.thunk(() => ({ __proto__: pos$2, withFIDO: true })))),
-          systemd: nix.thunk(() => nix.app(nix.sel(systemd, "override"), nix.thunk(() => ({ __proto__: pos$3, withFido2: true, withCryptsetup: true })))),
+          openssh: nix.thunk(() => nix.app(nix.sel(openssh, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withFIDO: true })))),
+          systemd: nix.thunk(() => nix.app(nix.sel(systemd, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withFido2: true, withCryptsetup: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/PJK/libcbor/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "CBOR protocol implementation for C and others",
         homepage: "https://github.com/PJK/libcbor",

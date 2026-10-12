@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "solid",
       patches: nix.thunk(() => [nix.path(here, "./fix-search-path.patch")]),
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, cmake, extra_cmake_modules, flex], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [media_player_info])))),

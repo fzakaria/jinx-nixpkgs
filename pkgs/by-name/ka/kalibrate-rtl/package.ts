@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rtl_sdr = nix.arg($, "rtl-sdr");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kalibrate-rtl",
       version: "0-unstable-2022-02-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steve-m",
           repo: "kalibrate-rtl",
           rev: "340003eb0846b069c3edef19ed3363b8ac7b5215",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [fftw, rtl_sdr, libusb1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Calculate local oscillator frequency offset in RTL-SDR devices",
         longDescription: "Kalibrate, or kal, can scan for GSM base stations in a given frequency\nband and can use those GSM base stations to calculate the local\noscillator frequency offset.\n\nThis package is for RTL-SDR devices.\n",
         homepage: "https://github.com/steve-m/kalibrate-rtl",

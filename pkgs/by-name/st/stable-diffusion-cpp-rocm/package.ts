@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["rocmSupport", 3, 33]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stable_diffusion_cpp = nix.arg($, "stable-diffusion-cpp");
-  return nix.app(nix.sel(stable_diffusion_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, rocmSupport: true })));
+  return nix.app(nix.sel(stable_diffusion_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, rocmSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

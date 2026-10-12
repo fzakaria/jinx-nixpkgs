@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const makeFontsConf = nix.arg($, "makeFontsConf");
   const dejavu_fonts = nix.arg($, "dejavu_fonts");
   const python = nix.arg($, "python");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "python-fontconfig";
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "lilydjwg",
           repo: "python-fontconfig",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["fontconfig"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Vayn/python-fontconfig",
         description: "Python binding for Fontconfig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -53,7 +53,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

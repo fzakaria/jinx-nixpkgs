@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/relaxedsandbox.nix", [["__noChroot", 6, 5]]
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
-  return nix.app(nix.sel(pkgs, "runCommand"), "diagnostics-sandbox", nix.thunk(() => ({ __proto__: pos$1, __noChroot: true })), nix.thunk(() => nix.str`set -x
+  return nix.app(nix.sel(pkgs, "runCommand"), "diagnostics-sandbox", nix.thunk(() => ({ [nix.POS]: pos$1, __noChroot: true })), nix.thunk(() => nix.str`set -x
 # no cache: ${nix.builtins.toString(nix.thunk(() => nix.builtins.currentTime))}
 test -d "$(dirname "$out")/../var/nix"
 touch $out

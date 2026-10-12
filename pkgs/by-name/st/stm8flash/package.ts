@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stm8flash",
       version: "2022-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vdudouyt",
           repo: "stm8flash",
           rev: "23305ce5adbb509c5cb668df31b0fd6c8759639c",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-O" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O" })),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       postPatch: "substituteInPlace Makefile \\\n  --replace 'pkg-config' '$(PKG_CONFIG)'\n",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/vdudouyt/stm8flash",
         description: "Tool for flashing STM8 MCUs via ST-LINK (V1 and V2)",
         mainProgram: "stm8flash",

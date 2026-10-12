@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const args_2 = args_1;
       const domain = nix.arg($_1, "domain");
       const functionName = nix.argOr($_1, "functionName", () => "fetchFromGitea");
-      return nix.app(fetchFromGitHub, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["domain", "functionName"])), { __proto__: pos$1, functionName: functionName, githubBase: domain })));
+      return nix.app(fetchFromGitHub, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["domain", "functionName"])), { [nix.POS]: pos$1, functionName: functionName, githubBase: domain })));
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

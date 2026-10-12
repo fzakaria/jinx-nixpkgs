@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(picom, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "picom-pijulius",
       version: "8.2-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pijulius",
           repo: "picom",
           rev: "a719ef3a40a2d70f3fc23e8dd055ef312b37f5db",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
         })))),
       dontVersionCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             tagFormat: "v([A-Z]+)([a-z]+)|v([1-9]).([1-9])|v([1-9])-rc([1-9])",
             tagConverter: nix.thunk(() => nix.app(writeShellScript, "picom-pijulius-tag-converter.sh", "sed -e 's/v//g' -e 's/([A-Z])([a-z])+/8.2/g' -e 's/-rc([1-9])|-rc//g' -e 's/0/8.2/g'\n")),
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(previousAttrs, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.attr(from, "license")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),

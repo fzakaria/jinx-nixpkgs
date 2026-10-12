@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dogpile_cache",
           version: version,
           hash: "sha256-hJxVc8mjjxVc1BcxA8cCtjft4DYcEuhkh2h30M0SXuw=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mako, pytest_xdist, pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/cache/test_dbm_backend.py", "tests/test_lock.py::ConcurrencyTest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Caching front-end based on the Dogpile lock",
         homepage: "https://github.com/sqlalchemy/dogpile.cache",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

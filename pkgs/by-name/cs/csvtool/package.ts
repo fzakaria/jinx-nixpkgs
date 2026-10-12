@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const csv = nix.thunk(() => nix.attr(ocamlPackages, "csv"));
   const uutf = nix.thunk(() => nix.attr(ocamlPackages, "uutf"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "csvtool",
       src: nix.thunk(() => nix.attr(csv, "src")),
       version: nix.thunk(() => nix.attr(csv, "version")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [csv, uutf]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(csv, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Command line tool for handling CSV files",
         mainProgram: "csvtool",
       })),

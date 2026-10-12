@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "m-cli";
       const version = "2.0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgcr",
           repo: "m-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,13 +44,13 @@ install -Dt "$out/share/fish/vendor_completions.d/" -m444 completions/fish/m.fis
 install -Dt "$out/share/zsh/site-functions/" -m444 completions/zsh/_m
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Swiss Army Knife for macOS",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +63,7 @@ install -Dt "$out/share/zsh/site-functions/" -m444 completions/zsh/_m
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

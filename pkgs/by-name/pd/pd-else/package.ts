@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pd-else";
       const version = "1.0-rc13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "porres",
           repo: "pd-else",
           tag: nix.thunk(() => nix.str`v.${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 find $out -type f -executable -exec patchelf --set-interpreter "$interpreter" --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)} {} \\;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "EL Locus Solus' Externals for Pure Data",
         longDescription: "ELSE is a library of externals and abstractions for Pure Data.\nIt provides a comprehensive set of tools for signal processing,\nMIDI, GUI, and more in Pure Data.\n",
         homepage: "https://github.com/porres/pd-else",
@@ -56,7 +56,7 @@ find $out -type f -executable -exec patchelf --set-interpreter "$interpreter" --
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kugland"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const vendorHash = "sha256-riIU2ZsUgoNKtDQrzns+T9STZbq89GuOvBh0GG7o1KU=";
   const manifestsHash = "sha256-S67U39zCqSokMgsG2yUsQUCrqp9Pmd3kdVeEmRcp0E0=";
   const manifests = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/fluxcd/flux2/releases/download/v${version}/manifests.tar.gz`),
       hash: manifestsHash,
       stripRoot: false,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash_1 = vendorHash;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fluxcd",
           repo: "flux2",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 # disable tests that require network access
 rm source/cmd/flux/create_secret_git_test.go
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.VERSION=${version_1}`)]);
       const subPackages = nix.thunk(() => ["cmd/flux"]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
@@ -54,9 +54,9 @@ rm source/cmd/flux/create_secret_git_test.go
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/flux --version | grep ${version_1} > /dev/null
 `);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd flux \\\n    --$shell <($out/bin/flux completion $shell)\ndone\n"));
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/fluxcd/flux2/releases/tag/v${version_1}`),
         description: "Open and extensible continuous delivery solution for Kubernetes",
         downloadPage: "https://github.com/fluxcd/flux2/",
@@ -75,7 +75,7 @@ rm source/cmd/flux/create_secret_git_test.go
         mainProgram: "flux",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         vendorHash: vendorHash_1,
         version: version_1,

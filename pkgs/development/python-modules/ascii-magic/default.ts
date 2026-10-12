@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ascii-magic",
       version: "2.7.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LeandroBarone",
           repo: "python-ascii_magic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "ln -s ascii_magic/tests/*.{jpg,png} ./\n",
       disabledTests: nix.thunk(() => ["test_from_url", "test_quick_test", "test_wrong_url", "test_from_clipboard"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to converts pictures into ASCII art",
         homepage: "https://github.com/LeandroBarone/python-ascii_magic",
         changelog: "https://github.com/LeandroBarone/python-ascii_magic#changelog",

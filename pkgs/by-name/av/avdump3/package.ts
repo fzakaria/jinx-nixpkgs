@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libzen = nix.arg($, "libzen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "avdump3",
       version: "8293_stable",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://cdn.anidb.net/client/avdump3/avdump3_8293_stable.zip",
           hash: "sha256-H9Sn3I4S9CmymKIMHVagDy+7svHs285S3EJgYQo+ks0=",
           stripRoot: false,
@@ -47,7 +47,7 @@ makeBinaryWrapper ${dotnet_runtime}/bin/dotnet $out/bin/avdump3 \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "avdump3",
         description: "Tool for extracting audio/video metadata from media files and uploading it to AniDB",
         longDescription: "AVDump is a tool to extract meta information from media files while at the\nsame time calculating multiple hashes. Based on that information reports\ncan be generated in multiple forms. Of particular interest is the ability\nto send those reports back to AniDB and thereby quickly filling in missing\nmetadata for new files.\n",

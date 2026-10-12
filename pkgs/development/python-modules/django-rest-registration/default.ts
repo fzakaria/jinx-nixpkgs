@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apragacz",
           repo: "django-rest-registration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["rest_registration"]);
       const disabledTests = nix.thunk(() => ["test_convert_html_to_text_fails"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-related REST API based on the awesome Django REST Framework",
         homepage: "https://github.com/apragacz/django-rest-registration/",
         changelog: nix.thunk(() => nix.str`https://github.com/apragacz/django-rest-registration/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

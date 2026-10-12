@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bdftopcf = nix.arg($, "bdftopcf");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gohufont",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hchargois",
           repo: "gohufont",
           rev: "cc36b8c9fed7141763e55dcee0a97abffcf08224",
@@ -57,7 +57,7 @@ done
 `),
       installPhase: "# install the psf fonts (for the virtual console)\nfontDir=\"$out/share/consolefonts\"\ninstall -D -m 644 -t \"$fontDir\" psf/*.psf\n\n# install the pcf and otb fonts (for X11,GTK applications)\nfontDir=\"$out/share/fonts/misc\"\ninstall -D -m 644 -t \"$fontDir\" *.pcf *.otb\nmkfontdir \"$fontDir\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A monospace bitmap font well suited for programming and terminal use\n",
         homepage: "https://font.gohu.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

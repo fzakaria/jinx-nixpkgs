@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SamR1",
           repo: "staticmap",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cachecontrol, requests, pillow]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         filecache: nix.thunk(() => [filelock]),
         dev: nix.thunk(() => [mypy, ruff, types_requests]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["staticmap3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small, python-based library for creating map images with lines and markers",
         homepage: "https://github.com/SamR1/staticmap",
         changelog: nix.thunk(() => nix.str`https://github.com/SamR1/staticmap/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

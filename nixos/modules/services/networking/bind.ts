@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "bind"));
   const bindPkg = nix.thunk(() => nix.sel(config, "services", "bind", "package"));
   const bindUser = "named";
-  const bindZoneCoerce = (list) => nix.builtins.listToAttrs(nix.thunk(() => nix.app(nix.sel(lib, "forEach"), list, (zone) => ({ __proto__: pos$1, name: nix.thunk(() => nix.sel(zone, "name")), value: zone }))));
+  const bindZoneCoerce = (list) => nix.builtins.listToAttrs(nix.thunk(() => nix.app(nix.sel(lib, "forEach"), list, (zone) => ({ [nix.POS]: pos$1, name: nix.thunk(() => nix.sel(zone, "name")), value: zone }))));
   const bindRndcMacType = "hmac-sha256";
   const bindRndcKeyFile = "/etc/bind/rndc.key";
   const bindNamedExe = nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), bindPkg, "named"));
@@ -73,44 +73,44 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       options: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             description: "Name of the zone.",
           })))),
         master: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Master=false means slave server",
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           })))),
         file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "path")))),
             description: "Zone file resource records contain columns of data, separated by whitespace, that define the record.",
           })))),
         masters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "List of servers for inclusion in stub and secondary zones.",
           })))),
         slaves: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Addresses who may request zone transfers.",
             default: [],
           })))),
         allowQuery: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "List of address ranges allowed to query this zone. Instead of the address(es), this may instead\ncontain the single string \"any\".\n",
             default: nix.thunk(() => ["any"]),
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             description: "Extra zone config to be appended at the end of the zone section.",
             default: "",
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   const testRndcKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "testrndc.key",
       text: nix.thunk(() => nix.str`key "rndc-key" {
   algorithm ${bindRndcMacType};
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const testFakeDir = "/tmp/test-fake-directory-for-named-checkconf";
   const confFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "named.conf",
       checkPhase: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "checkConfig")), nix.thunk(() => nix.str`cp $target $TMPDIR/target_unpatched
 
@@ -207,78 +207,78 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
 `),
     }))));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         bind: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "BIND domain name server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bind", nix.thunk(() => ({})))),
           cacheNetworks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: nix.thunk(() => ["127.0.0.0/24", "::1/128"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "What networks are allowed to use us as a resolver.  Note\nthat this is for recursive queries -- all networks are\nallowed to query zones configured with the `zones` option\nby default (although this may be overridden within each\nzone's configuration, via the `allowQuery` option).\nIt is recommended that you limit cacheNetworks to avoid your\nserver being used for DNS amplification attacks.\n",
             })))),
           blockedNetworks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "What networks are just blocked.\n",
             })))),
           ipv4Only: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Only use ipv4, even if the host supports ipv6.\n",
             })))),
           forwarders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: nix.thunk(() => nix.sel(config, "networking", "nameservers")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.nameservers")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of servers we should forward requests to.\n",
             })))),
           forward: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: "first",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["first", "only"]))),
               description: "Whether to forward 'first' (try forwarding but lookup directly if forwarding fails) or 'only'.\n",
             })))),
           listenOn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: nix.thunk(() => ["any"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Interfaces to listen on.\n",
             })))),
           listenOnPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: 53n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Port to listen on.\n",
             })))),
           listenOnIpv6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ["any"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Ipv6 interfaces to listen on.\n",
             })))),
           listenOnIpv6Port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: 53n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Ipv6 port to listen on.\n",
             })))),
           directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/run/named",
               description: "Working directory of BIND.",
             })))),
           zones: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -286,9 +286,9 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
               })()),
               description: "List of zones we claim authority over.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "example.com": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   master: false,
                   file: "/var/dns/example.com",
                   masters: nix.thunk(() => ["192.168.0.1"]),
@@ -298,39 +298,39 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
               })),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to be added verbatim to the generated named configuration file.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to be added verbatim to the options section of the\ngenerated named configuration file.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional command-line arguments to pass to named.\n",
               example: nix.thunk(() => ["-n", "4"]),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: confFile,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "confFile")),
               description: "Overridable config file to use for named. By default, that\ngenerated by nixos. If overriden, it will not be checked by\nnamed-checkconf.\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Check configuration.\n\nThe configuration will not be checked if you override the config file\nwith `configFile`.\n",
             })))),
           preCheckConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Run a script during the configuration check phase.\n\nThis can be used to patch the configuration file if, for example, it\ncontains elements not available in the sandbox.\nThe configuration file is located in the variable `$target`.\n",
@@ -340,19 +340,19 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         networking: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           resolvconf: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             useLocalResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [bindUser, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               group: bindUser,
               description: "BIND daemon user",
               isSystemUser: true,
@@ -361,23 +361,23 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[bindUser, nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             settings: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               bind: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "directory"), "/run/named")), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "directory"), nix.thunk(() => ({
-                    __proto__: pos$40,
-                    d: nix.thunk(() => ({ __proto__: pos$39, user: bindUser, group: bindUser, age: "-" })),
+                    [nix.POS]: pos$40,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$39, user: bindUser, group: bindUser, age: "-" })),
                   }))],
                 ])))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             bind: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               description: "BIND Domain Name Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -386,7 +386,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${bindNamedExe} ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "ipv4Only")), "-4")} -c ${nix.sel(cfg, "configFile")} ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
                 ExecReload: nix.thunk(() => nix.str`${bindRndcExe} -k '${bindRndcKeyFile}' reload`),
@@ -426,7 +426,7 @@ fi
                 SystemCallArchitectures: "native",
                 SystemCallFilter: "~@mount @debug @clock @reboot @resources @privileged @obsolete acct modify_ldt add_key adjtimex clock_adjtime delete_module fanotify_init finit_module get_mempolicy init_module io_destroy io_getevents iopl ioperm io_setup io_submit io_cancel kcmp kexec_load keyctl lookup_dcookie migrate_pages move_pages open_by_handle_at perf_event_open process_vm_readv process_vm_writev ptrace remap_file_pages request_key set_mempolicy swapoff swapon uselib vmsplice",
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$44, Documentation: "man:named(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$44, Documentation: "man:named(8)" })),
             })),
           })),
         })),

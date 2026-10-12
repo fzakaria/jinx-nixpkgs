@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const version = "1.0.0-alpha1";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brisk-reconciler",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "briskml",
           repo: "brisk-reconciler",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [ppxlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "React.js-like reconciler implemented in OCaml/Reason",
         longDescription: "Easily model any `tree-shaped state` with simple `stateful functions`.\n\nDefinitions:\n* tree-shaped state: Any tree shaped-state like the DOM tree, app navigation state, or even rich text document!\n* stateful functions: Functions that maintain state over time. Imagine that you can take any variable in your function and manage its value over the function's invocation. Now, imagine that any function invocation really creates its own \"instance\" of the function which will track this state separately from other invocations of this function.\n",
         homepage: "https://github.com/briskml/brisk-reconciler",

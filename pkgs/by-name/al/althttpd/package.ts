@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "althttpd",
       version: "0-unstable-2026-06-03",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://sqlite.org/althttpd/",
           rev: "641e31f18cff7215",
           hash: "sha256-AMOb1GHI99Plxdry89ynoLNpvFVpUzkdwffKLhJBKYw=",
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installPhase: "install -Dm755 -t $out/bin althttpd\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Althttpd webserver",
         homepage: "https://sqlite.org/althttpd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

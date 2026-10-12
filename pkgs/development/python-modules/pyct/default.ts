@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyct",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1OUTss81thZWBa5fzl8qSZhbxnRzxXnehRNLjHHTdKg=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["pyct/tests/test_cmd.py"]))),
       pythonImportsCheck: nix.thunk(() => ["pyct"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ClI for Python common tasks for users",
         mainProgram: "pyct",
         homepage: "https://github.com/pyviz/pyct",

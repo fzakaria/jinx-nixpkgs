@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ixgbevf";
       const version = "4.6.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/e1000/ixgbevf-${version}.tar.gz`),
           sha256: "0h8a2g4hm38wmr13gvi2188r7nlv2c5rx6cal9gkf1nh6sla181c",
         }))));
@@ -33,7 +33,7 @@ substituteInPlace common.mk --replace /boot/System.map /not-exists
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intel 82599 Virtual Function Driver",
         homepage: "https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -41,7 +41,7 @@ substituteInPlace common.mk --replace /boot/System.map /not-exists
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "5.2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

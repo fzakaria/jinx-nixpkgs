@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const rootDevice = nix.thunk(() => nix.sel(config, "virtualisation", "rootDevice"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     boot: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       initrd: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         extraUtilsCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`# We need mke2fs in the initrd.
 copy_bin_and_libs ${nix.sel(pkgs, "e2fsprogs")}/bin/mke2fs
 `))),

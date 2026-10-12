@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mkcl";
       const version = "1.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcbeaudoin",
           repo: "mkcl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "sys_siglist.patch",
             url: "https://github.com/jcbeaudoin/MKCL/commit/0777dd08254c88676f4f101117b10786b22111d6.patch",
             sha256: "1dnr1jzha77nrxs22mclrcqyqvxxn6q1sfn35qjs77fi3jcinjsc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fno-common.patch",
             url: "https://gitlab.common-lisp.net/mkcl/mkcl/-/commit/ef1981dbf4ceb1793cd6434e66e97b3db48b4ea0.patch",
             sha256: "00y6qanwvgb1r4haaqmvz7lbqa51l4wcnns1rwlfgvcvkpjc3dif",
@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
     --libpaths=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/lib
 )
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/mkcl --prefix PATH : "${gcc}/bin" --set-default LANG "C.UTF-8"
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "ANSI Common Lisp Implementation",
         homepage: "https://common-lisp.net/project/mkcl/",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "faiss",
       version: "1.15.1",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => ["dist"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "faiss",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,13 +77,13 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, "(cd faiss/python &&\n python -m pip wheel --verbose --no-index --no-deps --no-clean --no-build-isolation --wheel-dir dist .)\n")),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), pythonSupport, "mkdir \"$dist\"\ncp faiss/python/dist/*.whl \"$dist/\"\n"), nix.app(nix.sel(lib, "optionalString"), cudaSupport, "substituteInPlace \"$out/share/faiss/faiss-config.cmake\" \\\n  --replace-fail \\\n    'include(\"${CMAKE_CURRENT_LIST_DIR}/faiss-targets.cmake\")' \\\n    'include(CMakeFindDependencyMacro)\nfind_dependency(CUDAToolkit)\ninclude(\"${CMAKE_CURRENT_LIST_DIR}/faiss-targets.cmake\")'\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cudaSupport: cudaSupport,
         cudaPackages: cudaPackages,
         pythonSupport: pythonSupport,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for efficient similarity search and clustering of dense vectors by Facebook Research",
         mainProgram: "demo_ivfpq_indexing",
         homepage: "https://github.com/facebookresearch/faiss",

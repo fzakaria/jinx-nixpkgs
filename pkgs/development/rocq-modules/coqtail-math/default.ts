@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "coqtail-math",
       owner: "coq-community",
       version: version,
@@ -26,32 +26,32 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.15")),
               out: "8.14",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.13")),
               out: "20201124",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "8.14": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:1k8f8idjnx0mf4z479vcx55iz42rjxrbplbznv80m2famxakq03c",
         })),
         "20201124": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           rev: "5c22c3d7dcd8cf4c47cf84a281780f5915488e9e",
           hash: "sha256-wd+Lh7dpAD4zfpyKuztDmSFEZo5ZiFrR8ti2jUCVvoQ=",
         })),
       })),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "siraben"))]),
       })),

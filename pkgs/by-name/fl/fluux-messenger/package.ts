@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fluux-messenger",
       version: "0.17.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-source`),
           owner: "processone",
           repo: "fluux-messenger",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-HHXdWdKXf0qLKNJQEA1oPPpv4kxpfNuPH2uXEMo3DHg=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Gy1zXHsclHo0FNfZh8v0GLfSKel4boSAKBKIYxGfSW0=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")),
         pkg_config,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(wrapGAppsHook3, "override"), nix.thunk(() => ({ __proto__: pos$3, isGraphical: true })))),
+          nix.thunk(() => nix.app(nix.sel(wrapGAppsHook3, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, isGraphical: true })))),
           autoPatchelfHook,
         ])))),
       buildInputs: nix.thunk(() => nix.concat([cacert], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1, libayatana_appindicator, libxscrnsaver])))),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "pushd $buildAndTestSubdir",
       postInstall: "popd",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "XMPP client for communities and organizations",
         longDescription: "A modern, Web and Desktop cross-platform XMPP client for communities and organizations, built with a reusable Typescript SDK and Tauri for desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/processone/fluux-messenger/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

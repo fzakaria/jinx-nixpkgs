@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const targetCC = nix.thunk(() => nix.sel(pkgsBuildTarget, "targetPackages", "stdenv", "cc"));
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "targetPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "go",
       version: "1.26.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://go.dev/dl/go${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-Tjm5jkL5RvoFrIvFtxh335fb23y7Gnd7VBZnrXEX/S4=",
         })))),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       depsTargetTarget: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isMinGW")), nix.thunk(() => nix.sel(targetPackages, "threads", "package")))),
       postPatch: "patchShebangs .\n",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./iana-etc-1.25.patch"), nix.thunk(() => ({ __proto__: pos$2, iana: iana_etc })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mailcap-1.17.patch"), nix.thunk(() => ({ __proto__: pos$3, mailcap: mailcap })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata-1.19.patch"), nix.thunk(() => ({ __proto__: pos$4, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./iana-etc-1.25.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, iana: iana_etc })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mailcap-1.17.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, mailcap: mailcap })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata-1.19.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, tzdata: tzdata })))),
         nix.path(here, "./remove-tools-1.11.patch"),
         nix.path(here, "./go_no_vendor_checks-1.26.patch"),
         nix.path(here, "./go-env-go_ldso.patch"),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "go"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         GOOS: nix.thunk(() => nix.attr(from, "GOOS")),
         GOARCH: nix.thunk(() => nix.attr(from, "GOARCH")),
         GOARM: nix.thunk(() => nix.attr(from, "GOARM")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         GOROOT_BOOTSTRAP: nix.thunk(() => nix.str`${goBootstrap}/share/go`),
       };
       })(), nix.app(nix.sel(lib, "optionalAttrs"), isCross, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           CC_FOR_TARGET: nix.thunk(() => nix.str`${targetCC}/bin/${nix.sel(targetCC, "targetPrefix")}cc`),
           CXX_FOR_TARGET: nix.thunk(() => nix.str`${targetCC}/bin/${nix.sel(targetCC, "targetPrefix")}c++`),
         }))))),
@@ -107,17 +107,17 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool((nix.asBoo
       installPhase: "runHook preInstall\nmkdir -p $out/share/go\ncp -a bin pkg src lib misc api doc go.env VERSION $out/share/go\nmkdir -p $out/bin\nln -s $out/share/go/bin/* $out/bin\nrunHook postInstall\n",
       disallowedReferences: nix.thunk(() => [goBootstrap]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         goBootstrap: goBootstrap,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             go: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             buildGoModule: buildGo126Module,
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         changelog: nix.thunk(() => nix.str`https://go.dev/doc/devel/release#go${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Go Programming language",
         homepage: "https://go.dev/",

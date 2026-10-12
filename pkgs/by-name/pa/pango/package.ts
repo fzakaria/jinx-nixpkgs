@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pango",
       version: "1.57.1",
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pango/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pango-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5l1tEXCA3Drut9i0s7UY9zg6oubPziMRfGI81iR2TC8=",
         })))),
@@ -60,25 +60,25 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "xft", x11Support)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
       })),
       postPatch: "substituteInPlace docs/meson.build \\\n  --replace \"'gi-docgen', req\" \"'gi-docgen', native:true, req\"\n",
       doCheck: false,
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "pango", freeze: "1.90.0" })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "pango", freeze: "1.90.0" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Library for laying out and rendering of text, with an emphasis on internationalization",
         longDescription: "Pango is a library for laying out and rendering of text, with an\nemphasis on internationalization.  Pango can be used anywhere\nthat text layout is needed, though most of the work on Pango so\nfar has been done in the context of the GTK widget toolkit.\nPango forms the core of text and font handling for GTK.\n",
         homepage: "https://www.pango.org/",

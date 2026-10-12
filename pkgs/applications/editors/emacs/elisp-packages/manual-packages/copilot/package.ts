@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const copilot_language_server = nix.arg($, "copilot-language-server");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "copilot",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "copilot-emacs",
           repo: "copilot.el",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       packageRequires: nix.thunk(() => [dash, editorconfig, f, jsonrpc, s]),
       propagatedUserEnvPkgs: nix.thunk(() => [nodejs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial copilot plugin for Emacs",
         homepage: "https://github.com/copilot-emacs/copilot.el",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

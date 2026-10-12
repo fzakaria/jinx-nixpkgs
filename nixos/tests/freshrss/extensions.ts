@@ -10,19 +10,19 @@ const pos$4 = nix.positions(here + "/extensions.nix", [["machine", 4, 9]]);
 const pos$5 = nix.positions(here + "/extensions.nix", [["name", 2, 3], ["nodes", 4, 3], ["extraPythonPackages", 17, 3], ["testScript", 22, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   name: "freshrss-extensions",
   nodes: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           freshrss: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: true,
             baseUrl: "http://localhost",
             authType: "none",

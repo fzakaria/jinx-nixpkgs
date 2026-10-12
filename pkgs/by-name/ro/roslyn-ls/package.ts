@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "sdk_8_0")),
         ])));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => nix.attr(from, "packages")),
       targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
     };
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const rid = nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), nix.thunk(() => nix.sel(stdenvNoCC, "targetPlatform", "system"))));
   const project = "Microsoft.CodeAnalysis.LanguageServer";
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       "dotnet-sdk": dotnet_sdk,
       "dotnet-runtime": dotnet_runtime,
       vsVersion: "2.148.23-prerelease",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dotnet",
           repo: "roslyn",
           rev: nix.thunk(() => nix.str`VSCode-CSharp-${nix.sel(finalAttrs, "vsVersion")}`),
@@ -99,12 +99,12 @@ substituteInPlace $out/bin/${project} \\
   --replace-fail "$out/lib/$pname/${project}" "${nix.app(nix.sel(lib, "getExe"), dotnet_runtime)}\\" \\"$out/lib/$pname/${project}.dll"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => (() => {
           const with_sdk = (sdk) => nix.app(runCommand, nix.thunk(() => nix.str`with-${(nix.asBool(nix.has(sdk, "version")) ? nix.sel(sdk, "version") : "no")}-sdk`), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), sdk, expect]),
-              meta: nix.thunk(() => ({ __proto__: pos$3, timeout: 60n })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 60n })),
             })), nix.thunk(() => nix.str`HOME=$TMPDIR
 expect <<"EOF"
   set timeout 60
@@ -125,13 +125,13 @@ EOF
 touch $out
 `));
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "with-net8-sdk": nix.thunk(() => nix.app(with_sdk, nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")))),
             "with-net9-sdk": nix.thunk(() => nix.app(with_sdk, nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0")))),
             "with-net10-sdk": nix.thunk(() => nix.app(with_sdk, nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")))),
             "no-sdk": nix.thunk(() => nix.app(with_sdk, null)),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           };
@@ -139,7 +139,7 @@ touch $out
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/dotnet/vscode-csharp",
         description: "Language server behind C# Dev Kit for Visual Studio Code",
         changelog: nix.thunk(() => nix.str`https://github.com/dotnet/vscode-csharp/releases/tag/v${nix.sel(finalAttrs, "vsVersion")}`),

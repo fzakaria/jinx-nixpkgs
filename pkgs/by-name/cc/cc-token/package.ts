@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cc-token",
       version: "1.1.2-unstable-2025-12-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iota-uz",
           repo: "cc-token",
           rev: "c833f5739c4f14c7091337d3291176bf566aed73",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "export ANTHROPIC_API_KEY=placeholder\ninstallShellCompletion --cmd cc-token \\\n  --bash <($out/bin/cc-token completion bash) \\\n  --zsh  <($out/bin/cc-token completion zsh) \\\n  --fish <($out/bin/cc-token completion fish)\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for counting tokens in files using Anthropic's Claude API",
         homepage: "https://github.com/iota-uz/cc-token",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

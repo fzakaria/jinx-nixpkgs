@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LoSk-p",
           repo: "altruistclient",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["altruistclient"]);
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/LoSk-p/altruistclient/releases/tag/${nix.sel(src, "tag")}`),
         description: "Async library for discovering and fetching data from Altruist sensors",
         homepage: "https://github.com/LoSk-p/altruistclient",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

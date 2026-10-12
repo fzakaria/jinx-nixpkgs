@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const libplatform = nix.thunk(() => nix.app(sourceRelease, "libplatform"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "text_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include" \\
   '${libplatform}/private/_simple.h' \\
@@ -42,13 +42,13 @@ install -D -t "$out/include/CommonCrypto" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "text_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-8Z6Goz94xP3HqAaSnFUurhZE8l3G1mK5KviXtxSPQhI=",
       postPatch: "# Improve compatiblity with libmd in nixpkgs.\nsubstituteInPlace md5/md5.c \\\n  --replace-fail '<sha224.h>' '<sha2.h>' \\\n  --replace-fail SHA224_Init SHA224Init \\\n  --replace-fail SHA224_Update SHA224Update \\\n  --replace-fail SHA224_End SHA224End \\\n  --replace-fail SHA224_Data SHA224Data \\\n  --replace-fail SHA224_CTX SHA2_CTX \\\n  --replace-fail '<sha384.h>' '<sha512.h>' \\\n  --replace-fail 'const void *, unsigned int, char *' 'const uint8_t *, size_t, char *'\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -56,7 +56,7 @@ install -D -t "$out/include/CommonCrypto" \\
       postInstall: nix.thunk(() => nix.str`# Patch the shebangs to use \`sh\` from shell_cmds.
 HOST_PATH='${nix.app(nix.sel(lib, "getBin"), shell_cmds)}/bin' patchShebangs --host "$out/bin"
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "Text commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Text commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

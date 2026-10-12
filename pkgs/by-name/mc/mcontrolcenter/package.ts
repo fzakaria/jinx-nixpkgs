@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const kmod = nix.arg($, "kmod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mcontrolcenter",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmitry-s93",
           repo: "MControlCenter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ substituteInPlace src/helper/mcontrolcenter.helper.service \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "MControlCenter",
             exec: "mcontrolcenter",
             icon: "mcontrolcenter",
@@ -54,7 +54,7 @@ substituteInPlace src/helper/mcontrolcenter.helper.service \\
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase")), kmod]),
       installPhase: "runHook preInstall\ninstall -Dm755 mcontrolcenter $out/bin/mcontrolcenter\ninstall -Dm755 helper/mcontrolcenter-helper $out/libexec/mcontrolcenter-helper\ninstall -Dm644 ../resources/mcontrolcenter.svg $out/share/icons/hicolor/scalable/apps/mcontrolcenter.svg\ninstall -Dm644 ../src/helper/mcontrolcenter-helper.conf $out/share/dbus-1/system.d/mcontrolcenter-helper.conf\ninstall -Dm644 ../src/helper/mcontrolcenter.helper.service $out/share/dbus-1/system-services/mcontrolcenter.helper.service\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dmitry-s93/MControlCenter",
         description: "Tool to change the settings of MSI laptops running Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

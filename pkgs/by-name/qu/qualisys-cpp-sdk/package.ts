@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qualisys-cpp-sdk",
       version: "2024.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qualisys",
           repo: "qualisys_cpp_sdk",
           tag: "rt_protocol_1.25",
@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/qualisys/qualisys_cpp_sdk/pull/32/commits/db5e22662b7f417b317571a7488b6dcbb82b7538.patch",
             hash: "sha256-q7sNT/kQ9xlRPYKfmhiKg+UaYUsZJ4J2xMyQQNSTgxQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/nim65s/qualisys_cpp_sdk/commit/1ba8cdb9a8e3583b68d93a553a6f59ea7ee24876.patch",
             hash: "sha256-5CWBvvnlXlh3UkU3S+LVG2rWC8VZ7+EVo+YFKHk6KuY=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ sdk for talking to Qualisys Track Manager software",
         homepage: "https://github.com/qualisys/qualisys_cpp_sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

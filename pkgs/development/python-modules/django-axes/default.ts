@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-axes",
           tag: version,
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [django]);
       const nativeCheckInputs = nix.thunk(() => [django_ipware, pytestCheckHook, pytest_cov_stub, pytest_django]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const pythonImportsCheck = nix.thunk(() => ["axes"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Keep track of failed login attempts in Django-powered sites",
         homepage: "https://github.com/jazzband/django-axes",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

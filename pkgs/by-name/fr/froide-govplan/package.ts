@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2025-07-14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "okfde",
           repo: "froide-govplan",
           rev: "7d304ae0e34e44f3bc34dce2b7e5f3c62bd64299",
@@ -40,19 +40,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/okfde/froide-govplan/commit/bc388b693ebc7656fc7917511048a47b68e119fe.patch",
             hash: "sha256-StIyN3gFKd/fld14s03fsV6fmWinSRWINUyRRBzqVco=",
             name: "add_oauth2_provider_app.patch",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/okfde/froide-govplan/commit/d5db02f3bbc501929a901e964147a0ed2f974f41.patch",
             hash: "sha256-jf6e84fd2kQIPER2HGmZNkbtl067311xdNJRU+iFVXM=",
             name: "filer_enable_automatic_cropping.patch",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/okfde/froide-govplan/commit/39dc381ed6c4afcbbaea616f0e8f44d5eeb96ec2.patch",
             hash: "sha256-PxBtB6VupK4QJiWKKlTmub+7tfi6nAHWe29lxpNgoVk=",
             name: "add_secret_key_file_support.patch",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "django-treebeard")),
           nix.thunk(() => nix.lookup(w, "djangocms-alias")),
           nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(froide, "overridePythonAttrs"), (prev) => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 patches: nix.thunk(() => nix.concat(nix.sel(prev, "patches"), [nix.path(here, "./froide_avoid_loading_account_module.patch")])),
                 doCheck: false,
               }))))),
@@ -94,16 +94,16 @@ makeWrapper $out/${nix.sel(python, "sitePackages")}/froide_govplan/manage.py $ou
   --set GEOS_LIBRARY_PATH "${geos}/lib/libgeos_c.so"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "froide-govplan": nix.thunk(() => nix.attr(nixosTests, "froide-govplan")),
         })),
         python: python,
         pythonPath: nix.thunk(() => nix.str`${nix.app(nix.sel(python, "pkgs", "makePythonPath"), dependencies)}`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Government planner and basis of FragDenStaat.de Koalitionstracker",
         homepage: "https://github.com/okfde/froide-govplan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -111,7 +111,7 @@ makeWrapper $out/${nix.sel(python, "sitePackages")}/froide_govplan/manage.py $ou
         mainProgram: "froide-govplan",
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "abootimg",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ggrandou",
           repo: "abootimg",
           rev: "7e127fee6a3981f6b0a50ce9910267cd501e09d4",
@@ -47,7 +47,7 @@ install -D -m 755 abootimg-unpack-initrd $out/bin
 wrapProgram $out/bin/abootimg-unpack-initrd --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cpio, gzip]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ggrandou/abootimg",
         description: "Manipulate Android Boot Images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

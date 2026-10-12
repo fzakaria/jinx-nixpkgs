@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ddccontrol"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ddccontrol: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ddccontrol for controlling displays.\n\nThis [enables `hardware.i2c`](#opt-hardware.i2c.enable), so note to add\nyourself to [`hardware.i2c.group`](#opt-hardware.i2c.group).\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "package with which to control brightness; added also to [services.dbus.packages](#opt-services.dbus.packages).", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ["ddccontrol"]),
               example: nix.thunk(() => ["ddcutil-service"]),
             })))),
@@ -49,26 +49,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         boot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           kernelModules: nix.thunk(() => ["ddcci_backlight"]),
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "ddcci-driver"))]),
         })),
-        hardware: nix.thunk(() => ({ __proto__: pos$8, i2c: nix.thunk(() => ({ __proto__: pos$7, enable: true })) })),
+        hardware: nix.thunk(() => ({ [nix.POS]: pos$8, i2c: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dbus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

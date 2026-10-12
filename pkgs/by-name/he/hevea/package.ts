@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hevea",
       version: "2.38",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hevea.inria.fr/distri/hevea-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ciA4BlAHIm8Po95GKRJylNLim/u8QQQsg6Vw+gxFWkc=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })()),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quite complete and fast LATEX to HTML translator",
         homepage: "https://hevea.inria.fr/",
         changelog: nix.thunk(() => nix.str`https://github.com/maranget/hevea/raw/v${nix.sel(finalAttrs, "version")}/CHANGES`),

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pdftk = nix.arg($, "pdftk");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pdftowrite",
       version: "2021.05.03",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apebl",
           repo: "pdftowrite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,11 +58,11 @@ wrapProgram $out/bin/writetopdf --prefix PATH : ${writetopdfPath}
       })()),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/apebl/pdftowrite",
         description: "Utility that converts PDF to Stylus Labs Write documents, and vice versa",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

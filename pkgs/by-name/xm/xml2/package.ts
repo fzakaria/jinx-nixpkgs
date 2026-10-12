@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xml2",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20160427221603/http://download.ofb.net/gale/xml2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "01cps980m99y99cnmvydihga9zh3pvdsqag2fi1n6k2x7rfkl873",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\necho -n 'checking csv2 and 2csv...'\n$out/bin/csv2 -f <<< $'a,b\\n1,2' \\\n  | $out/bin/2csv record a b \\\n  | grep -qF '1,2'\necho ' ok'\n\necho -n 'checking xml2 and 2xml...'\n$out/bin/xml2 <<< $'<a>abc</a>' \\\n  | $out/bin/2xml \\\n  | grep -qF '<a>abc</a>'\necho ' ok'\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://web.archive.org/web/20160515005047/http://dan.egnor.name:80/xml2",
         description: "Tools for command line processing of XML, HTML, and CSV",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

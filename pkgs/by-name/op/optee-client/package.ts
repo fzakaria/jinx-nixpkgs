@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "optee-client",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OP-TEE",
           repo: "optee_client",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       preFixup: "mkdir -p \"$lib\" \"$dev\"\nmv \"$out/lib\" \"$lib\"\nmv \"$out/include\" \"$dev\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Normal world client for OPTEE OS",
         homepage: "https://github.com/OP-TEE/optee_client",
         changelog: nix.thunk(() => nix.str`https://github.com/OP-TEE/optee_client/releases/tag/${nix.sel(finalAttrs, "version")}`),

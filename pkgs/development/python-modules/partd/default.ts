@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dask",
           repo: "partd",
           tag: version,
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, versioneer]);
       const propagatedBuildInputs = nix.thunk(() => [locket, toolz]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, complete: nix.thunk(() => [blosc2, numpy, pandas, pyzmq]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, complete: nix.thunk(() => [blosc2, numpy, pandas, pyzmq]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Appendable key-value storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/dask/partd/",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

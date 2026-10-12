@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const guile_irregex = nix.arg($, "guile-irregex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-srfi-145",
       version: "0-unstable-2025-08-11",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgherdt",
           repo: "srfi",
           rev: "1f78a684e73c8d82fdd116716e341bc177e8d229",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export GUILE_AUTO_COMPILE=0\n",
       buildPhase: "runHook preBuild\n\nsite_dir=\"$out/share/guile/site/3.0\"\nlib_dir=\"$out/lib/guile/3.0/site-ccache\"\n\nexport GUILE_LOAD_PATH=.:$site_dir:...:$GUILE_LOAD_PATH\nexport GUILE_LOAD_COMPILED_PATH=.:$lib_dir:...:$GUILE_LOAD_COMPILED_PATH\n\nmkdir -p $site_dir/srfi\ncp $src/srfi/srfi-145.scm $site_dir/srfi/\nguild compile --r7rs $site_dir/srfi/srfi-145.scm -o $lib_dir/srfi/srfi-145.go\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scheme SRFI-145 implementations in portable R7RS scheme",
         homepage: "https://codeberg.org/rgherdt/srfi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

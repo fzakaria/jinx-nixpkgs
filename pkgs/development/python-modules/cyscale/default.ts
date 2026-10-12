@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const base58 = nix.arg($, "base58");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyscale",
       version: "0.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latent-to",
           repo: "cyscale",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf scalecodec\n",
       pythonImportsCheck: nix.thunk(() => ["scalecodec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cython-accelerated SCALE codec library for Substrate-based blockchains (Polkadot, Kusama, Bittensor, etc.)",
         longDescription: "A drop-in replacement for py-scale-codec — same scalecodec module name, same public API, compiled with Cython for improved throughput.",
         homepage: "https://github.com/latent-to/cyscale",

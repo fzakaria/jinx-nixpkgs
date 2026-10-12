@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "public-sans",
       version: "2.001",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/uswds/public-sans/releases/download/v${nix.sel(finalAttrs, "version")}/public-sans-v${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-XFs/UMXI/kdrW+53t8Mj26+Rn5p+LQ6KW2K2/ShoIag=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Strong, neutral, principles-driven, open source typeface for text or display",
         homepage: "https://public-sans.digital.gov/",
         changelog: nix.thunk(() => nix.str`https://github.com/uswds/public-sans/raw/v${nix.sel(finalAttrs, "version")}/FONTLOG.txt`),

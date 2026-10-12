@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
   const isRBACEnabled = nix.thunk(() => nix.app(nix.sel(lib, "elem"), "RBAC", nix.thunk(() => nix.sel(cfg, "authorizationMode"))));
   const apiserverServiceIP = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 3n, nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", nix.thunk(() => nix.sel(cfg, "serviceClusterIpRange"))))))), ".1"));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kubernetes", "apiserver", "admissionControl"]), nix.thunk(() => ["services", "kubernetes", "apiserver", "enableAdmissionPlugins"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kubernetes", "apiserver", "address"]), nix.thunk(() => ["services", "kubernetes", "apiserver", "bindAddress"]))),
@@ -95,11 +95,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kubernetes", "etcd", "caFile"]), nix.thunk(() => ["services", "kubernetes", "apiserver", "etcd", "caFile"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           apiserver: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(lib, "types"));
             const nullOr = nix.thunk(() => nix.attr(from, "nullOr"));
@@ -113,59 +113,59 @@ export default nix.lambda((args) => (() => {
             const attrsOf = nix.thunk(() => nix.attr(from, "attrsOf"));
             const int = nix.thunk(() => nix.attr(from, "int"));
             return {
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               advertiseAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   description: "Kubernetes apiserver IP address on which to advertise the apiserver\nto members of the cluster. This address must be reachable by the rest\nof the cluster.\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, str)),
                 })))),
               allowPrivileged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "Whether to allow privileged containers on Kubernetes.",
                   default: false,
                   type: bool,
                 })))),
               authorizationMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "Kubernetes apiserver authorization mode (AlwaysAllow/AlwaysDeny/ABAC/Webhook/RBAC/Node). See\n<https://kubernetes.io/docs/reference/access-authn-authz/authorization/>\n",
                   default: nix.thunk(() => ["RBAC", "Node"]),
                   type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(enum$, nix.thunk(() => ["AlwaysAllow", "AlwaysDeny", "ABAC", "Webhook", "RBAC", "Node"]))))),
                 })))),
               authorizationPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   description: "Kubernetes apiserver authorization policy file. See\n<https://kubernetes.io/docs/reference/access-authn-authz/authorization/>\n",
                   default: [],
                   type: nix.thunk(() => nix.app(listOf, attrs)),
                 })))),
               basicAuthFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   description: "Kubernetes apiserver basic authentication file. See\n<https://kubernetes.io/docs/reference/access-authn-authz/authentication>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               bindAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: "The IP address on which to listen for the --secure-port port.\nThe associated interface(s) must be reachable by the rest\nof the cluster, and by CLI/web clients.\n",
                   default: "0.0.0.0",
                   type: str,
                 })))),
               clientCaFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   description: "Kubernetes apiserver CA file for client auth.",
                   default: nix.thunk(() => nix.sel(top, "caFile")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "caFile")}`))),
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               disableAdmissionPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   description: "Kubernetes admission control plugins to disable. See\n<https://kubernetes.io/docs/admin/admission-controllers/>\n",
                   default: [],
                   type: nix.thunk(() => nix.app(listOf, str)),
                 })))),
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kubernetes apiserver")),
               enableAdmissionPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   description: "Kubernetes admission control plugins to enable. See\n<https://kubernetes.io/docs/admin/admission-controllers/>\n",
                   default: nix.thunk(() => [
                     "NamespaceLifecycle",
@@ -190,27 +190,27 @@ export default nix.lambda((args) => (() => {
                   type: nix.thunk(() => nix.app(listOf, str)),
                 })))),
               etcd: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     description: "List of etcd servers.",
                     default: nix.thunk(() => ["http://127.0.0.1:2379"]),
                     type: nix.thunk(() => nix.app(listOf, str)),
                   })))),
                 keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     description: "Etcd key file.",
                     default: null,
                     type: nix.thunk(() => nix.app(nullOr, path)),
                   })))),
                 certFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     description: "Etcd cert file.",
                     default: null,
                     type: nix.thunk(() => nix.app(nullOr, path)),
                   })))),
                 caFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     description: "Etcd ca file.",
                     default: nix.thunk(() => nix.sel(top, "caFile")),
                     defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "caFile")}`))),
@@ -218,134 +218,134 @@ export default nix.lambda((args) => (() => {
                   })))),
               })),
               extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "Kubernetes apiserver extra command line options.",
                   default: "",
                   type: nix.thunk(() => nix.app(separatedString, " ")),
                 })))),
               extraSANs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   description: "Extra x509 Subject Alternative Names to be added to the kubernetes apiserver tls cert.",
                   default: [],
                   type: nix.thunk(() => nix.app(listOf, str)),
                 })))),
               featureGates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   description: "Attribute set of feature gates.",
                   default: nix.thunk(() => nix.sel(top, "featureGates")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "featureGates")}`))),
                   type: nix.thunk(() => nix.app(attrsOf, bool)),
                 })))),
               kubeletClientCaFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   description: "Path to a cert file for connecting to kubelet.",
                   default: nix.thunk(() => nix.sel(top, "caFile")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "caFile")}`))),
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               kubeletClientCertFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   description: "Client certificate to use for connections to kubelet.",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               kubeletClientKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   description: "Key to use for connections to kubelet.",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               preferredAddressTypes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "List of the preferred NodeAddressTypes to use for kubelet connections.",
                   type: nix.thunk(() => nix.app(nullOr, str)),
                   default: null,
                 })))),
               proxyClientCertFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   description: "Client certificate to use for connections to proxy.",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               proxyClientKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   description: "Key to use for connections to proxy.",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               runtimeConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   description: "Api runtime configuration. See\n<https://kubernetes.io/docs/tasks/administer-cluster/cluster-management/>\n",
                   default: "authentication.k8s.io/v1beta1=true",
                   example: "api/all=false,api/v1=true",
                   type: str,
                 })))),
               storageBackend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   description: "Kubernetes apiserver storage backend.\n",
                   default: "etcd3",
                   type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["etcd2", "etcd3"]))),
                 })))),
               securePort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   description: "Kubernetes apiserver secure port.",
                   default: 6443n,
                   type: int,
                 })))),
               apiAudiences: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   description: "Kubernetes apiserver ServiceAccount issuer.\n",
                   default: "api,https://kubernetes.default.svc",
                   type: str,
                 })))),
               serviceAccountIssuer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   description: "Kubernetes apiserver ServiceAccount issuer.\n",
                   default: "https://kubernetes.default.svc",
                   type: str,
                 })))),
               serviceAccountSigningKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   description: "Path to the file that contains the current private key of the service\naccount token issuer. The issuer will sign issued ID tokens with this\nprivate key.\n",
                   type: path,
                 })))),
               serviceAccountKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   description: "File containing PEM-encoded x509 RSA or ECDSA private or public keys,\nused to verify ServiceAccount tokens. The specified file can contain\nmultiple keys, and the flag can be specified multiple times with\ndifferent files. If unspecified, --tls-private-key-file is used.\nMust be specified when --service-account-signing-key is provided\n",
                   type: path,
                 })))),
               serviceClusterIpRange: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   description: "A CIDR notation IP range from which to assign service cluster IPs.\nThis must not overlap with any IP ranges assigned to nodes for pods.\n",
                   default: "10.0.0.0/24",
                   type: str,
                 })))),
               tlsCertFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   description: "Kubernetes apiserver certificate file.",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               tlsKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   description: "Kubernetes apiserver private key file.",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               tokenAuthFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   description: "Kubernetes apiserver token authentication file. See\n<https://kubernetes.io/docs/reference/access-authn-authz/authentication>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                 })))),
               verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   description: "Optional glog verbosity level for logging statements. See\n<https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, int)),
                 })))),
               webhookConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   description: "Kubernetes apiserver Webhook config file. It uses the kubeconfig file format.\nSee <https://kubernetes.io/docs/reference/access-authn-authz/webhook/>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, path)),
@@ -357,18 +357,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             systemd: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               services: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 "kube-apiserver": nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "Kubernetes APIServer Service",
                   wantedBy: nix.thunk(() => ["kubernetes.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     Slice: "kubernetes.slice",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(top, "package")}/bin/kube-apiserver \\
 --allow-privileged=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "allowPrivileged")))} \\
@@ -413,14 +413,14 @@ ${nix.sel(cfg, "extraOpts")}
                     Restart: "on-failure",
                     RestartSec: 5n,
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$42, StartLimitIntervalSec: 0n })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$42, StartLimitIntervalSec: 0n })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               etcd: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 clientCertAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 peerClientCertAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 listenClientUrls: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["https://0.0.0.0:2379"]))),
@@ -433,36 +433,36 @@ ${nix.sel(cfg, "extraOpts")}
                 initialAdvertisePeerUrls: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [nix.thunk(() => nix.str`https://${nix.sel(top, "masterAddress")}:2380`)]))),
               })),
               kubernetes: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 addonManager: nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   bootstrapAddons: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isRBACEnabled, nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       "apiserver-kubelet-api-admin-crb": nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         apiVersion: "rbac.authorization.k8s.io/v1",
                         kind: "ClusterRoleBinding",
-                        metadata: nix.thunk(() => ({ __proto__: pos$47, name: "system:kube-apiserver:kubelet-api-admin" })),
+                        metadata: nix.thunk(() => ({ [nix.POS]: pos$47, name: "system:kube-apiserver:kubelet-api-admin" })),
                         roleRef: nix.thunk(() => ({
-                          __proto__: pos$48,
+                          [nix.POS]: pos$48,
                           apiGroup: "rbac.authorization.k8s.io",
                           kind: "ClusterRole",
                           name: "system:kubelet-api-admin",
                         })),
                         subjects: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$49, kind: "User", name: "system:kube-apiserver" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$49, kind: "User", name: "system:kube-apiserver" })),
                         ]),
                       })),
                     })))),
                 })),
                 pki: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   certs: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(top, "lib")), null);
                     return {
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       apiServer: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           name: "kube-apiserver",
                           CN: "kubernetes",
                           hosts: nix.thunk(() => nix.concat([
@@ -476,32 +476,32 @@ ${nix.sel(cfg, "extraOpts")}
                           action: "systemctl restart kube-apiserver.service",
                         })))),
                       apiserverProxyClient: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           name: "kube-apiserver-proxy-client",
                           CN: "front-proxy-client",
                           action: "systemctl restart kube-apiserver.service",
                         })))),
                       apiserverKubeletClient: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           name: "kube-apiserver-kubelet-client",
                           CN: "system:kube-apiserver",
                           action: "systemctl restart kube-apiserver.service",
                         })))),
                       apiserverEtcdClient: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           name: "kube-apiserver-etcd-client",
                           CN: "etcd-client",
                           action: "systemctl restart kube-apiserver.service",
                         })))),
                       clusterAdmin: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           name: "cluster-admin",
                           CN: "cluster-admin",
-                          fields: nix.thunk(() => ({ __proto__: pos$57, O: "system:masters" })),
+                          fields: nix.thunk(() => ({ [nix.POS]: pos$57, O: "system:masters" })),
                           privateKeyOwner: "root",
                         })))),
                       etcd: nix.thunk(() => nix.app(nix.lookup(w, "mkCert"), nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           name: "etcd",
                           CN: nix.thunk(() => nix.sel(top, "masterAddress")),
                           hosts: nix.thunk(() => [
@@ -520,7 +520,7 @@ ${nix.sel(cfg, "extraOpts")}
             })),
           })))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$65, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$65, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=apiserver.ts.map

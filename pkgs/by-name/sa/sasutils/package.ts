@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const sg3_utils = nix.arg($, "sg3_utils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sasutils",
       version: "0.6.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stanford-rc",
           repo: "sasutils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [sg3_utils]),
       postInstall: "installManPage doc/man/man1/*.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/stanford-rc/sasutils",
         description: "Set of command-line tools to ease the administration of Serial Attached SCSI (SAS) fabrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const datree = nix.arg($, "datree");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "datree",
       version: "1.9.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "datreeio",
           repo: "datree",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["main"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion \\\n  --cmd datree \\\n  --bash <($out/bin/datree completion bash) \\\n  --fish <($out/bin/datree completion fish) \\\n  --zsh <($out/bin/datree completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: datree, command: "datree version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: datree, command: "datree version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI tool to ensure K8s manifests and Helm charts follow best practices",
         mainProgram: "datree",
         longDescription: "Datree provides an E2E policy enforcement solution to run automatic checks\nfor rule violations. Datree can be used on the command line, admission\nwebhook, or even as a kubectl plugin to run policies against Kubernetes\nobjects.\n",

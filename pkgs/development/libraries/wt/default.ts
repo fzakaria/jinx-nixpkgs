@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "wt",
         version: version,
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$1, owner: "emweb", repo: "wt", tag: version, hash: hash })))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$1, owner: "emweb", repo: "wt", tag: version, hash: hash })))),
         nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
         buildInputs: nix.thunk(() => [
           boost,
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`-DGM_PREFIX=${graphicsmagick}`),
           ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(libmysqlclient, null)), nix.thunk(() => nix.str`-DMYSQL_PREFIX=${libmysqlclient}`))))),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://www.webtoolkit.eu/wt",
           description: "C++ library for developing web applications",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -84,9 +84,9 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     wt4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "4.14.4",
         hash: "sha256-Hx3Sc6m+diFjyc+j+lJAOKsT9q3PzbyUE36k7G95Iy8=",
       })))),

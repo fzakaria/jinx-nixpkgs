@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libxmlb",
       version: "0.3.27",
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "installedTests"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hughsie",
           repo: "libxmlb",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,15 +62,15 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "libxmlb")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to help create and query binary XML blobs",
         mainProgram: "xb-tool",
         homepage: "https://github.com/hughsie/libxmlb",

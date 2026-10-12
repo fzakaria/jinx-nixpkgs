@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyglet";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyglet",
           repo: "pyglet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -136,7 +136,7 @@ EOF
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pyglet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.pyglet.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pyglet/pyglet/blob/${nix.sel(src, "tag")}/RELEASE_NOTES`),
         description: "Cross-platform windowing and multimedia library",
@@ -147,7 +147,7 @@ EOF
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const asciidoc = nix.arg($, "asciidoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkrom",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KnightOS",
           repo: "mkrom",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       installTargets: nix.thunk(() => ["install", "install_man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://knightos.org/",
         description: "Packages KnightOS distribution files into a ROM",
         mainProgram: "mkrom",

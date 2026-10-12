@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const type = nix.argOr($, "type", () => "ADL");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "type", type, nix.thunk(() => ["ADL", "OPN"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ad/adlplug/package.nix:25:1");
-  const chip = nix.thunk(() => nix.sel({ __proto__: pos$1, ADL: "OPL3", OPN: "OPN2" }, nix.key(nix.force(type))));
+  const chip = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, ADL: "OPL3", OPN: "OPN2" }, nix.key(nix.force(type))));
   const mainProgram = nix.thunk(() => nix.str`${type}plug`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "strings", "toLower"), type)}plug`),
       version: "1.0.2-unstable-2021-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jpcima",
           repo: "ADLplug",
           rev: "a488abedf1783c61cb4f0caa689f1b01bf9aa17d",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace thirdparty/{libADLMIDI,libOPNMIDI}/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required (VERSION 3.2)' \\\n  'cmake_minimum_required (VERSION 3.10)'\n",
       patches: nix.thunk(() => [nix.path(here, "./cmake-v4.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
               "-framework CoreAudioKit",
               "-framework QuartzCore",
@@ -72,11 +72,11 @@ mv vst2/${mainProgram}.vst $out/Library/Audio/Plug-Ins/VST/
 mv au/${mainProgram}.component $out/Library/Audio/Plug-Ins/Components/
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, tagPrefix: "v", tagFormat: "v*" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, tagPrefix: "v", tagFormat: "v*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: mainProgram,
         description: nix.thunk(() => nix.str`${chip} FM Chip Synthesizer`),
         homepage: "https://github.com/jpcima/ADLplug",

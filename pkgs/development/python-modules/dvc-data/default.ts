@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const sqltrie = nix.arg($, "sqltrie");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvc-data",
       version: "3.18.3",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iterative",
           repo: "dvc-data",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dvc_data"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DVC's data management subsystem",
         homepage: "https://github.com/iterative/dvc-data",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-data/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

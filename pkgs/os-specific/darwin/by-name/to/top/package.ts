@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const sourceRelease = nix.arg($, "sourceRelease");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "top",
       xcodeHash: "sha256-YeBhEstvPh8IX8ArVc7U8IRU6vqPoOE6kBTqcqZonGc=",
       patches: nix.thunk(() => [
@@ -31,7 +31,7 @@ cp ${xnu}/bsd/sys/{kern_memorystatus.h,reason.h} sys/
 `),
       buildInputs: nix.thunk(() => [libutil, ncurses]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Display information about processes" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Display information about processes" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

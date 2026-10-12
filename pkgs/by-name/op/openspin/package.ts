@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openspin",
       version: "unstable-2018-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "parallaxinc",
           repo: "OpenSpin",
           rev: "f3a587ed3e4f6a50b3c8d2022bbec5676afecedb",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\nmv build/openspin $out/bin/openspin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler for SPIN/PASM languages for Parallax Propeller MCU",
         mainProgram: "openspin",
         homepage: "https://github.com/parallaxinc/OpenSpin",

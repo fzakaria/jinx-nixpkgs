@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const epubcheck = nix.arg($, "epubcheck");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const app = nix.thunk(() => nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kramdown-asciidoc",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["kramdoc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Kramdown extension for converting Markdown documents to AsciiDoc",
         homepage: "https://asciidoctor.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

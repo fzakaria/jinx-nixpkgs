@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hidapi = nix.arg($, "hidapi");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leddy",
       version: "0.1.0-unstable-2024-10-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XanClic",
           repo: "leddy",
           rev: "fd259425980df17bd761006a1ccef93e23bfdad6",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [hidapi, udev]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LED controller for the Fnatic miniStreak and Fnatic Streak keyboards",
         homepage: "https://github.com/XanClic/leddy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

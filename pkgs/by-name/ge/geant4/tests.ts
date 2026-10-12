@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const geant4 = nix.arg($, "geant4");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     example_B1: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${nix.sel(geant4, "name")}-test-example_B1`),
         src: nix.thunk(() => nix.attr(geant4, "src")),
         nativeBuildInputs: nix.thunk(() => [cmake]),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scimark",
       version: "4c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://math.nist.gov/scimark2/scimark${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-kcg5vKYp0B7+bC/CmFMO/tMwxf9q6nvuFv0vRSy3MbE=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 scimark4 -t $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://math.nist.gov/scimark2/index.html",
         description: "Scientific and numerical computing benchmark (ANSI C version)",
         downloadPage: "https://math.nist.gov/scimark2/download_c.html",

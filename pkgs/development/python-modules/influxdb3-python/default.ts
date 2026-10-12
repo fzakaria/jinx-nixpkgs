@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const polars = nix.arg($, "polars");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "influxdb3-python",
       version: "0.21.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "InfluxCommunity",
           repo: "influxdb3-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +42,13 @@ substituteInPlace setup.py \\
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [certifi, pyarrow, python_dateutil, reactivex, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pandas: nix.thunk(() => [pandas]),
         polars: nix.thunk(() => [polars]),
         dataframe: nix.thunk(() => [pandas, polars]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module that provides a simple and convenient way to interact with InfluxDB 3.0",
         homepage: "https://github.com/InfluxCommunity/influxdb3-python",
         changelog: nix.thunk(() => nix.str`https://github.com/InfluxCommunity/influxdb3-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytest_localserver = nix.arg($, "pytest-localserver");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "firebase-admin",
       version: "7.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firebase",
           repo: "firebase-admin-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "test_expired_token_with_tolerance",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firebase Admin Python SDK",
         homepage: "https://github.com/firebase/firebase-admin-python",
         changelog: nix.thunk(() => nix.str`https://github.com/firebase/firebase-admin-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

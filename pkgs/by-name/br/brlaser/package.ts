@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brlaser",
       version: "6.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Owl-Maintain",
           repo: "brlaser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, cups]),
       cmakeFlags: nix.thunk(() => ["-DCUPS_SERVER_BIN=lib/cups", "-DCUPS_DATA_DIR=share/cups"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS driver for Brother laser printers",
         longDescription: "Although most Brother printers support a standard printer language such as PCL or PostScript, not all do. If you have a monochrome Brother laser printer (or multi-function device) and the other open source drivers don't work, this one might help.\n\nThis driver is known to work with many printers in the DCP, HL and MFC series, along with a few others.\nSee the homepage for a full list.\n",
         homepage: "https://github.com/Owl-Maintain/brlaser",

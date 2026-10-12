@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pdfminer = nix.arg($, "pdfminer");
   const withOpenai = nix.argOr($, "withOpenai", () => false);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdftitle",
       version: "0.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metebalci",
           repo: "pdftitle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["pdftitle"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to extract the title from a PDF file",
         homepage: "https://github.com/metebalci/pdftitle",
         changelog: nix.thunk(() => nix.str`https://github.com/metebalci/pdftitle/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`gitlens-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "gitlens-vsix",
       version: "17.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitkraken",
           repo: "vscode-gitlens",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BN6qgPYhZ+FuYnwmV0S3y2vOR4ZLC+VGWuEEPqfOqi4=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +51,7 @@ substituteInPlace package.json --replace-fail '"vscode:prepublish": "pnpm run bu
 `),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       strictDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, npm_config_manage_package_manager_versions: "false" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, npm_config_manage_package_manager_versions: "false" })),
       preBuild: "rm -r node_modules/.pnpm/sass-embedded*\n",
       buildPhase: "runHook preBuild\n\nnode --run package\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp ./gitlens-$version.vsix $out\n\nrunHook postInstall\n",
@@ -59,7 +59,7 @@ substituteInPlace package.json --replace-fail '"vscode:prepublish": "pnpm run bu
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gitlens",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "eamodio",
@@ -67,12 +67,12 @@ substituteInPlace package.json --replace-fail '"vscode:prepublish": "pnpm run bu
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, attrPath: "vscode-extensions.eamodio.gitlens.vsix" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vscode-extensions.eamodio.gitlens.vsix" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog",
         description: "Visual Studio Code extension that improves its built-in Git capabilities",
         longDescription: "Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git\nblame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via\npowerful comparison commands, and so much more\n",

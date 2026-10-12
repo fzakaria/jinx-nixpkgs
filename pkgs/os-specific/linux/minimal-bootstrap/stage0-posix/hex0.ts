@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.arg($, "platforms");
   const stage0Arch = nix.arg($, "stage0Arch");
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     AArch64: "sha256-XTPsoKeI6wTZAF0UwEJPzuHelWOJe//wXg4HYO0dEJo=",
     AMD64: "sha256-DCzZduYrix9yOeJoem/Jhz/WDzAss7UWwjZbkXJq6Ms=",
     x86: "sha256-DFmSpy4EYoKBSuPQRqtTsUfIUjlg794PnMrEg5stOFY=",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(hostPlatform, "system")}`)), nix.key(nix.force(stage0Arch))));
   const hex0_seed = nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "hex0-seed",
       url: nix.thunk(() => nix.str`https://github.com/oriansj/bootstrap-seeds/raw/cedec6b8066d1db229b6c77d42d120a23c6980ed/POSIX/${stage0Arch}/hex0-seed`),
       executable: true,
       hash: hash,
     }))));
   return nix.app(derivationWithMeta, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       pname: "hex0",
       builder: hex0_seed,
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.builtins.placeholder("out")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal assembler for bootstrapping",
         homepage: "https://github.com/oriansj/stage0-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "minimal-bootstrap"))]),
         platforms: platforms,
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, "hex0-seed": hex0_seed })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "hex0-seed": hex0_seed })),
       outputHashMode: "recursive",
       outputHashAlgo: "sha256",
       outputHash: hash,

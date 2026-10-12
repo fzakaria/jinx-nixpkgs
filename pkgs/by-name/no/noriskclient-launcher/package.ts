@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "noriskclient-launcher",
       version: nix.thunk(() => nix.attr(noriskclient_launcher_unwrapped, "version")),
       paths: nix.thunk(() => [noriskclient_launcher_unwrapped]),
@@ -69,7 +69,7 @@ wrapGApp "$out/bin/noriskclient-launcher-v3"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(noriskclient_launcher_unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wiiuse",
       version: "0.15.7",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wiiuse",
           repo: "wiiuse",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $lib/lib\nmv $out/lib/libwiiuse* $lib/lib/\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Feature complete cross-platform Wii Remote access library",
         homepage: "https://github.com/wiiuse/wiiuse",
         changelog: nix.thunk(() => nix.str`https://github.com/wiiuse/wiiuse/releases/tag/${nix.sel(finalAttrs, "version")}`),

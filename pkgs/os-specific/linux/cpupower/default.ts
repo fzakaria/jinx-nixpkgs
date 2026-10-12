@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpupower",
       version: nix.thunk(() => nix.attr(kernel, "version")),
       src: nix.thunk(() => nix.attr(kernel, "src")),
@@ -35,7 +35,7 @@ sed -i 's,/usr/bin/install,${nix.sel(buildPackages, "coreutils")}/bin/install,' 
         nix.thunk(() => nix.str`LD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       installFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}dir=${nix.builtins.placeholder("out")}/${v}`, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           bin: "bin",
           sbin: "sbin",
           man: "share/man",
@@ -50,7 +50,7 @@ sed -i 's,/usr/bin/install,${nix.sel(buildPackages, "coreutils")}/bin/install,' 
         })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to examine and tune power saving features",
         homepage: "https://www.kernel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

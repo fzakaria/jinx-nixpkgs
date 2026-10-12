@@ -26,37 +26,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "castopod",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "alexoundos"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       castopod: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             diskSize: nix.thunk(() => nix.add(512n, nix.mul(3n, 512n))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
             extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (_) => nix.str`127.0.0.1 ${name}`, nix.thunk(() => nix.sel(nodes, "castopod", "services", "nginx", "virtualHosts")))))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             castopod: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
-              database: nix.thunk(() => ({ __proto__: pos$5, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$5, createLocally: true })),
               localDomain: "castopod.example.com",
               maxUploadSize: "512M",
             })),
@@ -95,13 +95,13 @@ export default nix.lambda((args) => (() => {
 \`-resize ${coverWidth} -quality 1 $out
 `)));
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraHosts: nix.thunk(() => nix.app(nix.sel(lib_1, "strings", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib_1, "attrsets", "mapAttrsToList"), (name) => (_) => nix.str`${nix.app(getIP, nix.thunk(() => nix.sel(nodes, "castopod")))} ${name}`, nix.thunk(() => nix.sel(nodes, "castopod", "services", "nginx", "virtualHosts")))))),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const username = "admin";
               const email = nix.thunk(() => nix.str`admin@${domain}`);
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
               const podcastTitle = "Some Title";
               const episodeTitle = "Episode Title";
               const browser_test = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "browser-test", nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "selenium"))]),
                   flakeIgnore: nix.thunk(() => ["E124", "E501"]),
                 })), nix.thunk(() => nix.str`from selenium.webdriver.common.by import By
@@ -235,7 +235,7 @@ driver.quit()
                 nix.thunk(() => nix.sel(pkgs_1, "geckodriver")),
                 browser_test,
                 nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellApplication"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     name: "build-mp3",
                     runtimeInputs: nix.thunk(() => (() => {
                       const w_1 = nix.withScope(pkgs_1, null);

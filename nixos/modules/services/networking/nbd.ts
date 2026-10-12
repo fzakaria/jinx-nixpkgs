@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
         ]))));
   })());
   const genericSection = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     generic: nix.thunk(() => nix.update(nix.sel(cfg, "server", "extraOptions"), nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       port: nix.thunk(() => nix.sel(cfg, "server", "listenPort")),
     }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "listenAddress"), null)), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         listenaddr: nix.thunk(() => nix.sel(cfg, "server", "listenAddress")),
       })))))),
   }));
@@ -74,8 +74,8 @@ export default nix.lambda((args) => (() => {
       const path = nix.arg($_1, "path");
       const allowAddresses = nix.arg($_1, "allowAddresses");
       const extraOptions = nix.arg($_1, "extraOptions");
-      return nix.update(extraOptions, nix.update({ __proto__: pos$4, exportname: path }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(allowAddresses, null)), nix.thunk(() => ({
-          __proto__: pos$5,
+      return nix.update(extraOptions, nix.update({ [nix.POS]: pos$4, exportname: path }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(allowAddresses, null)), nix.thunk(() => ({
+          [nix.POS]: pos$5,
           authfile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "authfile", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", allowAddresses)))),
         })))));
     })(), formals$2), nix.thunk(() => nix.sel(cfg, "server", "exports"))));
@@ -90,60 +90,60 @@ ${nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), exportSect
   const allowedDevices = nix.thunk(() => nix.sel(splitLists, "right"));
   const boundPaths = nix.thunk(() => nix.sel(splitLists, "wrong"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         nbd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           server: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Network Block Device (nbd) server")),
             listenPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 10809n,
                 description: "Port to listen on. The port is NOT automatically opened in the firewall.",
               })))),
             extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: iniFields,
-                default: nix.thunk(() => ({ __proto__: pos$7, allowlist: false })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$7, allowlist: false })),
                 description: "Extra options for the server. See\n{manpage}`nbd-server(5)`.\n",
               })))),
             exports: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Files or block devices to make available over the network.",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       options: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: str,
                             description: "File or block device to export.",
                             example: "/dev/sdb1",
                           })))),
                         allowAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, str)))),
                             default: null,
                             example: nix.thunk(() => ["10.10.0.0/24", "127.0.0.1"]),
                             description: "IPs and subnets that are authorized to connect for this device. If not specified, the server will allow all connections.",
                           })))),
                         extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: iniFields,
-                            default: nix.thunk(() => ({ __proto__: pos$11, flush: true, fua: true })),
+                            default: nix.thunk(() => ({ [nix.POS]: pos$11, flush: true, fua: true })),
                             description: "Extra options for this export. See\n{manpage}`nbd-server(5)`.\n",
                           })))),
                       })),
                     })))))),
               })))),
             listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nullOr, str)),
                 description: "Address to listen on. If not specified, the server will listen on all interfaces.",
                 default: null,
@@ -154,27 +154,27 @@ ${nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), exportSect
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "server", "exports"), "generic"))),
             message: "services.nbd.server exports must not be named 'generic'",
           })),
         ]),
-        boot: nix.thunk(() => ({ __proto__: pos$22, kernelModules: nix.thunk(() => ["nbd"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$22, kernelModules: nix.thunk(() => ["nbd"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "nbd-server": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               before: nix.thunk(() => ["multi-user.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nbd")}/bin/nbd-server -n -C ${serverConfig}`),
                 Type: "simple",
                 DeviceAllow: nix.thunk(() => nix.builtins.map((path) => nix.str`${path} rw`, allowedDevices)),

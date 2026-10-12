@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withPro = nix.argOr($, "withPro", () => false);
   const year = "2026";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tic-80",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nesbox",
           repo: "TIC-80",
           rev: "v1.2.0",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         SDL2,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free and open source fantasy computer for making, playing and sharing tiny games",
         longDescription: "TIC-80 is a free and open source fantasy computer for making, playing and\nsharing tiny games.\n\nThere are built-in tools for development: code, sprites, maps, sound\neditors and the command line, which is enough to create a mini retro\ngame. At the exit you will get a cartridge file, which can be stored and\nplayed on the website.\n\nAlso, the game can be packed into a player that works on all popular\nplatforms and distribute as you wish. To make a retro styled game the\nwhole process of creation takes place under some technical limitations:\n240x136 pixels display, 16 color palette, 256 8x8 color sprites, 4\nchannel sound and etc.\n",
         homepage: "https://github.com/nesbox/TIC-80",

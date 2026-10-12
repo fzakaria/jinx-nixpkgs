@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rssguard",
       version: "4.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martinrotter",
           repo: "rssguard",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple RSS/Atom feed reader with online synchronization",
         mainProgram: "rssguard",
         longDescription: "RSS Guard is a simple, light and easy-to-use RSS/ATOM feed aggregator\ndeveloped using Qt framework and with online feed synchronization support\nfor ownCloud/Nextcloud.\n",

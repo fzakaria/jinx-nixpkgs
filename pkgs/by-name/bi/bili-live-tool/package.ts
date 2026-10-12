@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.3.10";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bili-live-tool",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chenxi-Eumenides",
           repo: "bilibili_live_tool",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       })()),
       unittestFlags: nix.thunk(() => ["-s", "unittest", "-v"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to start and stop streaming and getting streaming codes for Bilibili live",
         homepage: "https://github.com/chenxi-Eumenides/bilibili_live_tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

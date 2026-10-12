@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evolis-card-printer",
       version: "4.12.8",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://archive.org/download/evolisprinter-4.12.8.8/64%20bit%20version%20-%20evolisprinter-4.12.8.8.amd64.deb",
           hash: "sha256-xldAk9FunkIcStu6hAS6onlRS3JdWIVftkbj8Bxtx8c=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups]),
       installPhase: "runHook preInstall\ncp -r usr $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Evolis printer drivers, for Pebble, Badgy, Dualys, Primacy, Quantum, Securion, Tattoo, Tatoo2 and Zenus card printers",
         homepage: "https://myplace.evolis.com/s/product/pebble-4/01t5p00000CXScZAAX?language=en_US&tabset-100fe=2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

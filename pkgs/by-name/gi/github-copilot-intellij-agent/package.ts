@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "github-copilot-intellij-agent";
       const version = "1.4.5.4049";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-${version}-plugin.zip`),
           url: "https://plugins.jetbrains.com/plugin/download?updateId=454005",
           hash: "sha256-ibu3OcmtyLHuumhJQ6QipsNEIdEhvLUS7sb3xmnaR0U=",
@@ -75,7 +75,7 @@ fix_offset PRELUDE_POSITION
         const platforms = nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]);
         const sourceProvenance = nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description,
           longDescription,
           homepage,
@@ -89,7 +89,7 @@ fix_offset PRELUDE_POSITION
         };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

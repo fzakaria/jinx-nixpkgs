@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(runCommandCC, "xkbvalidate", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xkbvalidate",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       buildInputs: nix.thunk(() => [libxkbcommon]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "NixOS tool to validate X keyboard configuration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pname = "qjson";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flavio",
           repo: "qjson",
           rev: version,
@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)\" \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_policy(SET CMP0020 OLD)\" \\\n  \"\"\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-register")),
       }));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [qtbase]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight data-interchange format",
         homepage: "https://qjson.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         src,

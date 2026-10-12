@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libretroPackages",
       version: "0",
       strictDeps: true,
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Dummy package for the libretro package set",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "libretro"))]),

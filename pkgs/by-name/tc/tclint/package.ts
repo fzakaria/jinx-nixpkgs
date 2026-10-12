@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lsprotocol: nix.thunk(() => nix.sel(self, "lsprotocol_2023")),
       pygls: nix.thunk(() => nix.sel(self, "pygls_1")),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tclint",
       version: "0.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nmoroze",
           repo: "tclint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_tclsp.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern dev tools for Tcl. Includes a linter, formatter, and editor integration",
         homepage: "https://github.com/nmoroze/tclint",
         changelog: nix.thunk(() => nix.str`https://github.com/nmoroze/tclint/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

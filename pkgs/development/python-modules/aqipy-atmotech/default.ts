@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aqipy-atmotech",
       version: "0.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atmotube",
           repo: "aqipy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail \"'pytest-runner'\" \"\"\n",
       pythonImportsCheck: nix.thunk(() => ["aqipy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for AQI calculation",
         homepage: "https://github.com/atmotube/aqipy",
         changelog: nix.thunk(() => nix.str`https://github.com/atmotube/aqipy/releases/tag/${nix.sel(finalAttrs, "version")}`),

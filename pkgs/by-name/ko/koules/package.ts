@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const imagemagick = nix.arg($, "imagemagick");
   const debian_extras = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://debian/pool/main/k/koules/koules_1.4-29.debian.tar.xz",
       hash: "sha256-8AQGU3uAu1nCKeu4nqCDOL7FcSJeYvD1pmidEPLLekY=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "koules",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.ucw.cz/~hubicka/koules/packages/koules${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-w2+T/q/uvVmYO/RBACQOZ6hKi6yr1+5SjJMEbe/kohs=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 xkoules $out/bin/xkoules\ninstall -Dm755 koules.sndsrv.linux $out/lib/koules.sndsrv.linux\ninstall -m644 sounds/* $out/lib/\nmkdir -p $out/share/icons/hicolor/32x32/apps\nmagick Koules.xpm -background none -extent 32x32-1 -gravity center $out/share/icons/hicolor/32x32/apps/koules.png\ninstallManPage xkoules.6\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             desktopName: "Koules",
             name: "koules",
             exec: "xkoules",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.ucw.cz/~hubicka/koules/English/",
         description: "Fast arcade game based on the fundamental law of body attraction",
         mainProgram: "xkoules",

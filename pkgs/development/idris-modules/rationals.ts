@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rationals",
       version: "2017-04-29",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mcgordonite",
           repo: "idris-binary-rationals",
           rev: "0d7010b267662d89e76e2cc8b27fd95ecca009b8",
           sha256: "0fc93n4pyqyrjxrspnr3vjzc09m78ni1ardq1vx9g40vmvl0n49s",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris rational number type built from paths in the Stern Brocot tree",
         homepage: "https://github.com/mcgordonite/idris-binary-rationals",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
     })()));
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lilypond",
       version: "2.26.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lilypond.org/download/sources/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/lilypond-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HUkPhaWNZ4UKbmlEyLXepHCFcgrdoRSDtjZMriO68RM=",
         })))),
@@ -104,13 +104,13 @@ done
       autoreconfPhase: "NOCONFIGURE=1 sh autogen.sh",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-lilypond", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl\nversion=\"$(curl -s 'https://gitlab.com/lilypond/lilypond/-/raw/master/VERSION' | grep 'VERSION_STABLE=' | cut -d= -f2)\"\nupdate-source-version lilypond \"$version\"\n")),
       })),
       makeFlags: nix.thunk(() => ["out="]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Music typesetting system",
         homepage: "https://lilypond.org/",
         license: nix.thunk(() => (() => {
@@ -132,8 +132,8 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$5,
-          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$4, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
+          [nix.POS]: pos$5,
+          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$4, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
         })))),
     }));
 })(), formals$1);

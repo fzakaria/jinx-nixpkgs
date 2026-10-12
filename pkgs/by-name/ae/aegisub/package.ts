@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
   const pulseaudioSupport = nix.argOr($, "pulseaudioSupport", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   const spellcheckSupport = nix.argOr($, "spellcheckSupport", () => true);
   const useBundledLuaJIT = nix.argOr($, "useBundledLuaJIT", () => false);
-  const luajit$ = nix.thunk(() => nix.app(nix.sel(luajit, "override"), nix.thunk(() => ({ __proto__: pos$1, enable52Compat: true }))));
+  const luajit$ = nix.thunk(() => nix.app(nix.sel(luajit, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enable52Compat: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aegisub",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "TypesettingTools",
           repo: "aegisub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +99,7 @@ EOF
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv Aegisub.app $out/Applications\nmakeWrapper $out/Applications/Aegisub.app/Contents/MacOS/aegisub $out/bin/aegisub\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/TypesettingTools/Aegisub",
         description: "Advanced subtitle editor",
         longDescription: "Aegisub is a free, cross-platform open source tool for creating and\nmodifying subtitles. Aegisub makes it quick and easy to time subtitles to\naudio, and features many powerful tools for styling them, including a\nbuilt-in real-time video preview.\n",

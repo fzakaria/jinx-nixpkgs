@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(build2_bootstrap, "passthru"));
   const configSharedStatic = nix.thunk(() => nix.attr(from, "configSharedStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "build2",
       version: "0.18.1",
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       setupHook: nix.thunk(() => nix.sel(build2_bootstrap, "setupHook")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/build2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-BLMBd/1kofVuB2MalPyuj4lXNMi3p5uuzVIJUzQv3A0=",
         })))),
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
   --subst-var-by isTargetDarwin '${nix.builtins.toString(nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isDarwin")))}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bootstrap: build2_bootstrap,
         configSharedStatic: configSharedStatic,
       })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(build2_bootstrap, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         license: nix.thunk(() => nix.attr(from_1, "license")),
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),

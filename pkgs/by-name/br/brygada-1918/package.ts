@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brygada-1918",
       version: "3.006",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kosmynkab",
           repo: "Brygada-1918",
           rev: "8325dc36ca87b8c7b8909c3e048fe90fd7e46c4b",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t $out/share/fonts/opentype fonts/otf/*.otf\ninstall -Dm444 -t $out/share/fonts/truetype fonts/ttf/*.ttf\ninstall -Dm444 -t $out/share/fonts/variable fonts/variable/*.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital revival of the Brygada serif typeface",
         homepage: "https://github.com/kosmynkab/Brygada-1918",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

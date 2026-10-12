@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nbogojevic",
           repo: "midea-beautiful-air",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_cli.py"]);
       const pythonImportsCheck = nix.thunk(() => ["midea_beautiful"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for accessing Midea air conditioners and dehumidifiers (Midea, Comfee, Inventor EVO) via local network",
         homepage: "https://github.com/nbogojevic/midea-beautiful-air",
         changelog: nix.thunk(() => nix.str`https://github.com/nbogojevic/midea-beautiful-air/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

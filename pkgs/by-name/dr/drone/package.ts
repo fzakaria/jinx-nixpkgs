@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const enableUnfree = nix.argOr($, "enableUnfree", () => true);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`drone.io${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnfree)), "-oss")}`),
       version: "2.28.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "harness",
           repo: "harness",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableUnfree)), nix.thunk(() => ["oss", "nolimit"]))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Continuous Integration platform built on container technology",
         mainProgram: "drone-server",
         homepage: "https://github.com/harness/harness",

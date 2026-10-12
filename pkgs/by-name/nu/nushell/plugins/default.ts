@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const dbus = nix.arg($, "dbus");
   return nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     bson: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bson/package.nix"), nix.thunk(() => ({})))),
-    dbus: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dbus/package.nix"), nix.thunk(() => ({ __proto__: pos$1, dbus: dbus })))),
+    dbus: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dbus/package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, dbus: dbus })))),
     desktop_notifications: nix.thunk(() => nix.app(callPackage, nix.path(here, "./desktop_notifications/package.nix"), nix.thunk(() => ({})))),
     formats: nix.thunk(() => nix.app(callPackage, nix.path(here, "./formats/package.nix"), nix.thunk(() => ({})))),
     gstat: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gstat/package.nix"), nix.thunk(() => ({})))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     skim: nix.thunk(() => nix.app(callPackage, nix.path(here, "./skim/package.nix"), nix.thunk(() => ({})))),
     units: nix.thunk(() => nix.app(callPackage, nix.path(here, "./units/package.nix"), nix.thunk(() => ({})))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       semver: nix.thunk(() => nix.builtins.throw("nushellPlugins.semver is EOL as starting with 0.114.0, nushell natively supports semver values.")),
     }))));
 })(), formals$1);

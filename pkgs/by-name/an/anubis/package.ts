@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "anubis",
       version: "1.27.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TecharoHQ",
           repo: "anubis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-5eHlR1zMogegkCO9yCU0kZcNQhTdDha0WhUPeR5eep8=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "anubis-npm-deps",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-DDql6lIZdqv59wl7oJSY6SrXe+EYpy6aaRqOGukunm8=",
@@ -62,15 +62,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "export DONT_USE_NETWORK=1\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$3, anubis: nix.thunk(() => nix.attr(nixosTests, "anubis")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, anubis: nix.thunk(() => nix.attr(nixosTests, "anubis")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Weighs the soul of incoming HTTP requests using proof-of-work to stop AI crawlers",
         homepage: "https://anubis.techaro.lol/",
         downloadPage: "https://github.com/TecharoHQ/anubis",

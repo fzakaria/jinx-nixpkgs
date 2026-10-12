@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gitlab-ci-pipelines-exporter";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mvisonneau",
           repo: "gitlab-ci-pipelines-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-k1yqPVaCRtU9qpCSBR4Mo4n+9cOCT9xyRI1Ian9rNOk=";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus / OpenMetrics exporter for GitLab CI pipelines insights",
         mainProgram: "gitlab-ci-pipelines-exporter",
         homepage: "https://github.com/mvisonneau/gitlab-ci-pipelines-exporter",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

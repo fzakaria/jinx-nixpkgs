@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const dbus_glib = nix.arg($, "dbus-glib");
   const pygobject3 = nix.arg($, "pygobject3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dbus-python",
       version: "1.4.0",
       pyproject: true,
       disabled: isPyPy,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dbus-python",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-mRZm5Jj2Db8+Sbi3Z49VWbimUDT99hquYs3s232Jx3A=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/dbus/dbus-python/-/commit/d5e19698a8d6e1485f05b67a5b2daa2392819aaf.patch",
             hash: "sha256-Rmj/ByRLiLnIF3JsMBElJugxsG8IARcBdixLhoWgIYU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.freedesktop.org/dbus/dbus-python/-/commit/ebecd1747c382a57ad8e47d0e32112cdbd454b40.patch",
             hash: "sha256-Hg4o+FPJvQ1/RW9fd8UJg/YEeVOvbJCov7SS7bT0vvs=",
             revert: true,
@@ -63,7 +63,7 @@ mv $out/${nix.sel(python, "sitePackages")}/.dbus_python.mesonpy.libs/pkgconfig/ 
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(dbus, "out"))]),
       checkPhase: "runHook preCheck\n\nmeson test -C build --no-rebuild --print-errorlogs --timeout-multiplier 0\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python DBus bindings",
         homepage: "https://gitlab.freedesktop.org/dbus/dbus-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

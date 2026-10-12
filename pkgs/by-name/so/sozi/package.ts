@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "sozi";
   const version = "23.7.25-1690311612";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/sozi-projects/Sozi/releases/download/v23.07/Sozi-${version}.AppImage`),
       hash: "sha256-QHvgevv60ZTkkdt+IWaCuXt0XVnhe5Q5oROwa2LFie8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +39,7 @@ substituteInPlace $out/share/applications/sozi.desktop \\
   --replace 'Exec=AppRun' 'Exec=sozi'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zooming presentation editor and player",
         homepage: "https://sozi.baierouge.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

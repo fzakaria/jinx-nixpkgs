@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.3";
       const scalaVersion = "2.13";
       const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`${pname}-deps`),
           version: version,
           nativeBuildInputs: nix.thunk(() => [coursier]),
@@ -48,7 +48,7 @@ cat test.v
 grep -qFe "module test" -e "endmodule" test.v
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible Intermediate Representation for RTL",
         mainProgram: "firrtl",
         longDescription: "Firrtl is an intermediate representation (IR) for digital circuits\ndesigned as a platform for writing circuit-level transformations.\n",
@@ -57,7 +57,7 @@ grep -qFe "module test" -e "endmodule" test.v
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         scalaVersion,

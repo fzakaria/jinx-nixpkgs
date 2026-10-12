@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "1.32b-3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quake3-pointrelease",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gwdg.de/pub/misc/ftp.idsoftware.com/idstuff/quake3/linux/linuxq3apoint-${version}.x86.run`),
           sha256: "11piyksfqyxwl9mpgbc71w9sacsh4d3cdsgia0cy0dbbap2k4qf3",
         })))),
       buildCommand: "sh $src --tar xf\n\nmkdir -p $out/baseq3\ncp baseq3/*.pk3 $out/baseq3\n",
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quake 3 Arena point release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

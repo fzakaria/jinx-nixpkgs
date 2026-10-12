@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "snipe-it"));
-  const snipe_it = nix.thunk(() => nix.app(nix.sel(pkgs, "snipe-it", "override"), nix.thunk(() => ({ __proto__: pos$1, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) }))));
+  const snipe_it = nix.thunk(() => nix.app(nix.sel(pkgs, "snipe-it", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) }))));
   const db = nix.thunk(() => nix.sel(cfg, "database"));
   const mail = nix.thunk(() => nix.sel(cfg, "mail"));
   const user = nix.thunk(() => nix.sel(cfg, "user"));
@@ -105,38 +105,38 @@ if [[ "$USER" != ${user} ]]; then
 fi
 $sudo ${phpPackage}/bin/php artisan $*
 `)), "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
-      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$2, mainProgram: "snipe-it" })),
+      [nix.POS]: pos$3,
+      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$2, mainProgram: "snipe-it" })),
     })));
   return {
-    __proto__: pos$78,
+    [nix.POS]: pos$78,
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       services: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         "snipe-it": nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "snipe-it, a free open source IT asset/license management system")),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "snipeit",
               description: "User snipe-it runs as.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "snipeit",
               description: "Group snipe-it runs as.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           appKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "A file containing the Laravel APP_KEY - a 32 character long,\nbase64 encoded key used for encryption where needed. Can be\ngenerated with `head -c 32 /dev/urandom | base64`.\n",
               example: "/run/keys/snipe-it/appkey",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             })))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.fqdnOrHostName")),
@@ -144,7 +144,7 @@ $sudo ${phpPackage}/bin/php artisan $*
               description: "The hostname to serve Snipe-IT on.\n",
             })))),
           appURL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "The root URL that you want to host Snipe-IT on. All URLs in Snipe-IT will be generated using this value.\nIf you change this in the future you may need to run a command to update stored URLs in the database.\nCommand example: `snipe-it snipe-it:update-url https://old.example.com https://new.example.com`\n",
               default: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), tlsEnabled, "s")}://${nix.sel(cfg, "hostName")}`),
               defaultText: "http${lib.optionalString tlsEnabled \"s\"}://${cfg.hostName}\n",
@@ -152,40 +152,40 @@ $sudo ${phpPackage}/bin/php artisan $*
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "snipe-it data directory",
               default: "/var/lib/snipe-it",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 3306n,
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "snipeit",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: user,
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "user")),
                 description: "Database username.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -195,34 +195,34 @@ $sudo ${phpPackage}/bin/php artisan $*
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Create the database and database user locally.",
               })))),
           })),
           mail: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             driver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["smtp", "sendmail"]))),
                 default: "smtp",
                 description: "Mail driver to use.",
               })))),
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "Mail host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 1025n,
                 description: "Mail host port.",
               })))),
             encryption: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["tls", "ssl"]))));
@@ -231,7 +231,7 @@ $sudo ${phpPackage}/bin/php artisan $*
                 description: "SMTP encryption mechanism to use.",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -241,7 +241,7 @@ $sudo ${phpPackage}/bin/php artisan $*
                 description: "Mail username.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -251,36 +251,36 @@ $sudo ${phpPackage}/bin/php artisan $*
                 description: "A file containing the password corresponding to\n{option}`mail.user`.\n",
               })))),
             backupNotificationAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "backup@example.com",
                 description: "Email Address to send Backup Notifications to.",
               })))),
             from: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "Snipe-IT Asset Management",
                   description: "Mail \"from\" name.",
                 })))),
               address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "mail@example.com",
                   description: "Mail \"from\" address.",
                 })))),
             })),
             replyTo: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "Snipe-IT Asset Management",
                   description: "Mail \"reply-to\" name.",
                 })))),
               address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "mail@example.com",
                   description: "Mail \"reply-to\" address.",
@@ -288,14 +288,14 @@ $sudo ${phpPackage}/bin/php artisan $*
             })),
           })),
           maxUploadSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "18M",
               example: "1G",
               description: "The maximum size for uploads (e.g. images).",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -305,7 +305,7 @@ $sudo ${phpPackage}/bin/php artisan $*
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -316,14 +316,14 @@ $sudo ${phpPackage}/bin/php artisan $*
               description: "Options for the snipe-it PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$34, config: config, lib: lib })))), nix.thunk(() => ({})))))),
+              [nix.POS]: pos$35,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$34, config: config, lib: lib })))), nix.thunk(() => ({})))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  serverAliases = [\n    \"snipe-it.${config.networking.domain}\"\n  ];\n  # To enable encryption and let let's encrypt take care of certificate\n  forceSSL = true;\n  enableACME = true;\n}\n")),
               description: "With this option, you can customize the nginx virtualHost settings.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -333,11 +333,11 @@ $sudo ${phpPackage}/bin/php artisan $*
                           nix.thunk(() => nix.lookup(w_1, "path")),
                           nix.thunk(() => nix.lookup(w_1, "str")),
                         ]))), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           options: nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             _secret: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$36,
+                                [nix.POS]: pos$36,
                                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
                                       nix.thunk(() => nix.lookup(w_1, "str")),
                                       nix.thunk(() => nix.lookup(w_1, "path")),
@@ -355,35 +355,35 @@ $sudo ${phpPackage}/bin/php artisan $*
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(db, "createLocally")) || nix.asBool(nix.eq(nix.sel(db, "user"), user)))),
             message: nix.thunk(() => nix.str`services.snipe-it.database.user must be set to ${user} if services.snipe-it.database.createLocally is set true.`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(db, "createLocally")) || nix.asBool(nix.eq(nix.sel(db, "passwordFile"), null)))),
             message: "services.snipe-it.database.passwordFile cannot be specified if services.snipe-it.database.createLocally is set to true.",
           })),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$45, systemPackages: nix.thunk(() => [artisan]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$45, systemPackages: nix.thunk(() => [artisan]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           "snipe-it": nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             config: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               APP_ENV: "production",
-              APP_KEY: nix.thunk(() => ({ __proto__: pos$46, _secret: nix.thunk(() => nix.sel(cfg, "appKeyFile")) })),
+              APP_KEY: nix.thunk(() => ({ [nix.POS]: pos$46, _secret: nix.thunk(() => nix.sel(cfg, "appKeyFile")) })),
               APP_URL: nix.thunk(() => nix.sel(cfg, "appURL")),
               DB_HOST: nix.thunk(() => nix.sel(db, "host")),
               DB_PORT: nix.thunk(() => nix.sel(db, "port")),
               DB_SOCKET: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(db, "createLocally")), "/run/mysqld/mysqld.sock")),
               DB_DATABASE: nix.thunk(() => nix.sel(db, "name")),
               DB_USERNAME: nix.thunk(() => nix.sel(db, "user")),
-              DB_PASSWORD: nix.thunk(() => ({ __proto__: pos$47, _secret: nix.thunk(() => nix.sel(db, "passwordFile")) })),
+              DB_PASSWORD: nix.thunk(() => ({ [nix.POS]: pos$47, _secret: nix.thunk(() => nix.sel(db, "passwordFile")) })),
               MAIL_DRIVER: nix.thunk(() => nix.sel(mail, "driver")),
               MAIL_FROM_NAME: nix.thunk(() => nix.sel(mail, "from", "name")),
               MAIL_FROM_ADDR: nix.thunk(() => nix.sel(mail, "from", "address")),
@@ -394,7 +394,7 @@ $sudo ${phpPackage}/bin/php artisan $*
               MAIL_PORT: nix.thunk(() => nix.sel(mail, "port")),
               MAIL_USERNAME: nix.thunk(() => nix.sel(mail, "user")),
               MAIL_ENCRYPTION: nix.thunk(() => nix.sel(mail, "encryption")),
-              MAIL_PASSWORD: nix.thunk(() => ({ __proto__: pos$48, _secret: nix.thunk(() => nix.sel(mail, "passwordFile")) })),
+              MAIL_PASSWORD: nix.thunk(() => ({ [nix.POS]: pos$48, _secret: nix.thunk(() => nix.sel(mail, "passwordFile")) })),
               APP_SERVICES_CACHE: "/run/snipe-it/cache/services.php",
               APP_PACKAGES_CACHE: "/run/snipe-it/cache/packages.php",
               APP_CONFIG_CACHE: "/run/snipe-it/cache/config.php",
@@ -404,24 +404,24 @@ $sudo ${phpPackage}/bin/php artisan $*
             })),
           })),
           mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(db, "createLocally")), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               enable: true,
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(db, "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   name: nix.thunk(() => nix.sel(db, "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(db, "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             pools: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               "snipe-it": nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 user: user,
                 group: group,
                 phpPackage: phpPackage,
@@ -429,7 +429,7 @@ $sudo ${phpPackage}/bin/php artisan $*
 upload_max_filesize = ${nix.sel(cfg, "maxUploadSize")}
 `),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   "listen.mode": "0660",
                   "listen.owner": user,
                   "listen.group": group,
@@ -438,24 +438,24 @@ upload_max_filesize = ${nix.sel(cfg, "maxUploadSize")}
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "nginx")),
                   nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     root: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), nix.thunk(() => nix.str`${snipe_it}/share/php/snipe-it/public`))),
                     extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "nginx", "addSSL")) || nix.asBool(nix.sel(cfg, "nginx", "forceSSL")))) || nix.asBool(nix.sel(cfg, "nginx", "onlySSL")))) || nix.asBool(nix.sel(cfg, "nginx", "enableACME")))), "fastcgi_param HTTPS on;")),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$57,
+                        [nix.POS]: pos$57,
                         index: "index.php",
                         extraConfig: "try_files $uri $uri/ /index.php?$query_string;",
                       })),
                       "~ \\.php$": nix.thunk(() => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         extraConfig: nix.thunk(() => nix.str`try_files $uri $uri/ /index.php?$query_string;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -464,7 +464,7 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "snipe-it", "
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "nginx", "addSSL")) || nix.asBool(nix.sel(cfg, "nginx", "forceSSL")))) || nix.asBool(nix.sel(cfg, "nginx", "onlySSL")))) || nix.asBool(nix.sel(cfg, "nginx", "enableACME")))), "fastcgi_param HTTPS on;")}
 `),
                       })),
-                      "~ \\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ __proto__: pos$59, extraConfig: "expires 365d;" })),
+                      "~ \\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ [nix.POS]: pos$59, extraConfig: "expires 365d;" })),
                     })),
                   })),
                 ])))],
@@ -472,17 +472,17 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBo
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           services: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             "snipe-it-setup": nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               description: "Preparation tasks for snipe-it",
               before: nix.thunk(() => ["phpfpm-snipe-it.service"]),
               after: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(db, "createLocally")), "mysql.service")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: user,
@@ -494,9 +494,9 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBo
               script: nix.thunk(() => (() => {
                 const isSecret = (v) => (nix.asBool((nix.asBool(nix.app(nix.lookup(w, "isAttrs"), v)) && nix.asBool(nix.has(v, "_secret")))) && nix.asBool((nix.asBool(nix.app(nix.lookup(w, "isString"), nix.thunk(() => nix.sel(v, "_secret")))) || nix.asBool(nix.app(nix.sel(nix.builtins, "isPath"), nix.thunk(() => nix.sel(v, "_secret")))))));
                 const snipeITEnvVars = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), "=", nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         mkValueString: (v) => (() => {
                           const w_1 = nix.withScope(nix.builtins, w);
                           return (nix.asBool(nix.app(nix.lookup(w_1, "isInt"), v)) ? nix.app(nix.builtins.toString, v) : (nix.asBool(nix.app(nix.lookup(w_1, "isString"), v)) ? nix.str`"${v}"` : (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.app(isSecret, v)) ? (nix.asBool(nix.app(nix.lookup(w_1, "isString"), nix.thunk(() => nix.sel(v, "_secret")))) ? nix.app(nix.lookup(w_1, "hashString"), "sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.app(nix.lookup(w_1, "hashString"), "sha256", nix.thunk(() => nix.app(nix.sel(nix.builtins, "readFile"), nix.thunk(() => nix.sel(v, "_secret")))))) : nix.app(nix.builtins.throw, nix.thunk(() => nix.str`unsupported type ${nix.app(nix.lookup(w_1, "typeOf"), v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`)))))));
@@ -547,7 +547,7 @@ fi
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}                              0710 ${user} ${group} - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/bootstrap                    0750 ${user} ${group} - -`),
@@ -581,18 +581,18 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(user, "snipeit")), nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$73,
-              snipeit: nix.thunk(() => ({ __proto__: pos$71, group: group, isSystemUser: true })),
+              [nix.POS]: pos$73,
+              snipeit: nix.thunk(() => ({ [nix.POS]: pos$71, group: group, isSystemUser: true })),
             }, [
-              [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({ __proto__: pos$72, extraGroups: nix.thunk(() => [group]) }))],
+              [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({ [nix.POS]: pos$72, extraGroups: nix.thunk(() => [group]) }))],
             ])))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(group, "snipeit")), nix.thunk(() => ({ __proto__: pos$74, snipeit: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(group, "snipeit")), nix.thunk(() => ({ [nix.POS]: pos$74, snipeit: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "yayayayaka"))];

@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theskumar",
           repo: "python-dotenv",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-MoBt3QsY5u3r852MtVWZS9tFXpyK8aRZlLG3rpzIVrY=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([ipython, pytestCheckHook, sh], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const preCheck = "export PATH=\"$out/bin:$PATH\"\n";
       const pythonImportsCheck = nix.thunk(() => ["dotenv"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/theskumar/python-dotenv/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Add .env support to your django/flask apps in development and deployments",
         mainProgram: "dotenv",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

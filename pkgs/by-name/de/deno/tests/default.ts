@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
     const expectFailure = nix.argOr($_1, "expectFailure", () => false);
     const command = nix.thunk(() => nix.str`deno run ${args_2} ${dir}/${file}`);
     return nix.app(runCommand, nix.thunk(() => nix.str`deno-test-${name}`), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => [deno]),
-        meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
       })), nix.thunk(() => nix.str`HOME=$(mktemp -d)
 if output=$(${command} 2>&1); then
   if [[ $output =~ '${expected}' ]]; then
@@ -58,17 +58,17 @@ fi
 `));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), testDenoRun, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       basic: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         dir: nix.path(here, "./."),
         file: "basic.ts",
         expected: "2",
       })),
-      "import-json": nix.thunk(() => ({ __proto__: pos$4, expected: "hello from JSON" })),
-      "import-ts": nix.thunk(() => ({ __proto__: pos$5, expected: "hello from ts" })),
-      "read-file": nix.thunk(() => ({ __proto__: pos$6, args: "--allow-read", expected: "hello from a file" })),
-      "fail-read-file": nix.thunk(() => ({ __proto__: pos$7, expectFailure: true, dir: nix.path(here, "./read-file") })),
+      "import-json": nix.thunk(() => ({ [nix.POS]: pos$4, expected: "hello from JSON" })),
+      "import-ts": nix.thunk(() => ({ [nix.POS]: pos$5, expected: "hello from ts" })),
+      "read-file": nix.thunk(() => ({ [nix.POS]: pos$6, args: "--allow-read", expected: "hello from a file" })),
+      "fail-read-file": nix.thunk(() => ({ [nix.POS]: pos$7, expectFailure: true, dir: nix.path(here, "./read-file") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

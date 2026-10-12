@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "twolame",
       version: "2017-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "njh",
           repo: "twolame",
           rev: "977c8ac55d8ca6d5f35d1d413a119dac2b3b0333",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MP2 encoder",
         mainProgram: "twolame",
         longDescription: "TwoLAME is an optimised MPEG Audio Layer 2 (MP2) encoder based on\ntooLAME by Mike Cheng, which in turn is based upon the ISO dist10\ncode and portions of LAME.\n",

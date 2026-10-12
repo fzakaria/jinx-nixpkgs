@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ncpamixer",
       version: "1.3.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fulhax",
           repo: "ncpamixer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove_dynamic_download.patch")]),
       postPatch: nix.thunk(() => (() => {
         const PandocMan = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rnpgp/cmake-modules/raw/387084811ee01a69911fe86bcc644b7ed8ad6304/PandocMan.cmake",
             hash: "sha256-KI55Yc2IuQtmbptqkk6Hzr75gIE/uQdUbQsm/fDpaWg=",
           }))));
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, libpulseaudio]),
       configurePhase: "runHook preConfigure\n\nmake PREFIX=$out USE_WIDE=1 RELEASE=1 build/Makefile\n\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal mixer for PulseAudio inspired by pavucontrol",
         homepage: "https://github.com/fulhax/ncpamixer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

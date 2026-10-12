@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stumpylog",
           repo: "tika-client",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [anyio, httpx]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         httpx: nix.thunk(() => [httpx]),
         niquests: nix.thunk(() => [niquests]),
         requests: nix.thunk(() => [requests]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["tika_client"]);
       const doChecks = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern Python REST client for Apache Tika server",
         homepage: "https://github.com/stumpylog/tika-client",
         changelog: nix.thunk(() => nix.str`https://github.com/stumpylog/tika-client/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

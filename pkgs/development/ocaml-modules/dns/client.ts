@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const domain_name = nix.arg($, "domain-name");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-client",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pure DNS resolver API",
         mainProgram: "dns-client.unix",
       })),

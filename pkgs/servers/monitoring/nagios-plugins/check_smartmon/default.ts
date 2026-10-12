@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check-smartmon";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "driehuis",
           repo: "Nagios_check_smartmon",
           tag: version,
@@ -34,7 +34,7 @@ substituteInPlace check_smartmon.py \\
 `);
       const installPhase = "runHook preInstall\ninstall -Dm 755 check_smartmon.py $out/bin/check_smartmon\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nagios-Plugin that uses smartmontools to check disk health status and temperature",
         mainProgram: "check_smartmon",
         homepage: "https://github.com/driehuis/Nagios_check_smartmon",
@@ -45,7 +45,7 @@ substituteInPlace check_smartmon.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jedit",
       version: "5.7.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/jedit/jEdit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Q2uarFMWXTWuJ0brw1PNS/vKWUa9gOTpD6Fumn0wMoI=",
         })))),
       ivyDeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-ivy-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [ant, jdk, xmlstarlet]),
@@ -69,7 +69,7 @@ wrapProgram $out/bin/jedit --set JAVA_HOME ${jre}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/jedit/jEdit/ci/v${nix.sel(finalAttrs, "version")}/tree/doc/CHANGES.txt`),
         description: "Programmer's text editor written in Java",
         homepage: "https://www.jedit.org",

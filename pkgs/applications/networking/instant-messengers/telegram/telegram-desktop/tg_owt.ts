@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tg_owt",
       version: "0-unstable-2026-09-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desktop-app",
           repo: "tg_owt",
           rev: "9826d0e27894a575a63d4b15b2acf8e749e3da67",
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
           libGL,
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fork of Google's webrtc library for telegram-desktop",
         homepage: "https://github.com/desktop-app/tg_owt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

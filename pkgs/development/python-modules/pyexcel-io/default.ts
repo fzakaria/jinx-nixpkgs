@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyexcel",
           repo: "pyexcel-io",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyexcel_io"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "One interface to read and write the data in various excel formats, import the data into and export the data from databases",
         homepage: "http://docs.pyexcel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

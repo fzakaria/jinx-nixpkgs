@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "schemacrawler",
       version: "17.14.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/schemacrawler/SchemaCrawler/releases/download/v${nix.sel(finalAttrs, "version")}/schemacrawler-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-kvI8+fpijubWlSE/1RywGssg8crr1xwiL0/Uw/K1H24=",
         })))),
@@ -37,7 +37,7 @@ runHook postInstall
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Database schema discovery and comprehension tool",
         mainProgram: "schemacrawler",
         homepage: "https://www.schemacrawler.com/",

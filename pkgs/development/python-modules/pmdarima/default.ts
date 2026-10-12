@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alkaline-ml",
           repo: "pmdarima",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "patchShebangs build_tools/get_tag.py\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GITHUB_REF: nix.thunk(() => nix.str`refs/tags/v${version}`),
       }));
       const build_system = nix.thunk(() => [cython, meson_python]);
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_load_from_web"]);
       const pythonImportsCheck = nix.thunk(() => ["pmdarima"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Statistical library designed to fill the void in Python's time series analysis capabilities, including the equivalent of R's auto.arima function",
         homepage: "https://github.com/alkaline-ml/pmdarima",
         changelog: nix.thunk(() => nix.str`https://github.com/alkaline-ml/pmdarima/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

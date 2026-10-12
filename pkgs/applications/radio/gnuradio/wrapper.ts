@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.sel(unwrapped, "qt", "qtbase", "qtQmlPrefix")), qtPackages)}`),
       ])), extraMakeWrapperArgs))))))));
   const packages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/gnuradio-packages.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       stdenv: stdenv,
       newScope: newScope,
@@ -143,14 +143,14 @@ export default nix.lambda((args) => (() => {
       gnuradio: unwrapped,
     }))));
   const passthru = nix.thunk(() => nix.update(nix.sel(unwrapped, "passthru"), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     pythonEnv: pythonEnv,
     pythonPkgs: pythonPkgs,
     unwrapped: unwrapped,
     pkgs: packages,
   }));
   const self = nix.thunk(() => (nix.asBool(doWrap) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       outputs: outputs,
       version: version,
@@ -178,7 +178,7 @@ for i in $out/bin/*; do
 done
 `),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
-    }))) : nix.app(nix.sel(unwrapped, "overrideAttrs"), (_) => ({ __proto__: pos$4, passthru: passthru }))));
+    }))) : nix.app(nix.sel(unwrapped, "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, passthru: passthru }))));
   return nix.force(self);
 })(), formals$1);
 //# sourceMappingURL=wrapper.ts.map

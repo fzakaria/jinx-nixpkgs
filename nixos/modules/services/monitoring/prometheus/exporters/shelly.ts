@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9784n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "metrics-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "Path to the JSON file with the metric definitions\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-shelly-exporter")}/bin/shelly_exporter \\
   -metrics-file ${nix.sel(cfg, "metrics-file")} \\
   -listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}

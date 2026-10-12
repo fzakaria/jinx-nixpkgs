@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const nspr = nix.arg($, "nspr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "svrcore",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://mozilla/directory/svrcore/releases/${nix.sel(finalAttrs, "version")}/src/svrcore-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0n3alg6bxml8952fb6h0bi0l29farvq21q6k20gy2ba90m3znwj7",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [nss, nspr]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secure PIN handling using NSS crypto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl11")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

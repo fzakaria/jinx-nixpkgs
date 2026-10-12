@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const ansible_lint = nix.arg($, "ansible-lint");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ansible-navigator",
       version: "26.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ansible_navigator",
           hash: "sha256-MLzoipI+LPjNmFAC56ITwr1iUuxJYmDaYlMUaw2hi5Y=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ansible_navigator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text-based user interface (TUI) for Ansible",
         homepage: "https://ansible.readthedocs.io/projects/navigator/",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/ansible-navigator/releases/tag/v${nix.sel(finalAttrs, "version")}`),

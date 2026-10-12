@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const pname = "decent-sampler";
   const version = "1.18.1";
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.decentsamples.com/wp-content/uploads/2018/09/cropped-Favicon_512x512.png",
       hash: "sha256-EXjaHrlXY0HU2EGTrActNbltIiqTLfdkFgP7FXoLzrM=",
     }))));
   const decent_sampler = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://cdn.decentsamples.com/production/builds/ds/${version}/Decent_Sampler-${version}-Linux-Static-x86_64.tar.gz`),
           hash: "sha256-wL9L4I2iw9r3r69TOr37XXEs3iECMuNGX9Ez63P/f8w=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, expat]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: "Application",
             name: "decent-sampler",
             desktopName: "Decent Sampler",
@@ -67,7 +67,7 @@ runHook postInstall
 `),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.attr(decent_sampler, "pname")),
       version: nix.thunk(() => nix.attr(decent_sampler, "version")),
       targetPkgs: (pkgs) => [alsa_plugins, decent_sampler, freetype, nghttp2, libx11],
@@ -76,7 +76,7 @@ runHook postInstall
 cp -r ${decent_sampler}/share $out/share
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Audio sample player",
         longDescription: "Decent Sampler is an audio sample player.\nAllowing you to play sample libraries in the DecentSampler format\n(files with extensions: dspreset and dslibrary).\n",
         mainProgram: "decent-sampler",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ksnip",
       version: "1.10.1-unstable-2026-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ksnip",
           repo: "ksnip",
           rev: "f50e2764d0d51af2fd06c9d70f1e5f1631726975",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace desktop/org.ksnip.ksnip.desktop \\\n  --replace-fail \"Exec=/usr/bin/ksnip\" \"Exec=ksnip\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ksnip/ksnip",
         description: "Cross-platform screenshot tool with many annotation features",
         longDescription: "Features:\n\n- Supports Linux (X11, Plasma Wayland, GNOME Wayland and xdg-desktop-portal Wayland), Windows and macOS.\n- Screenshot of a custom rectangular area that can be drawn with mouse cursor.\n- Screenshot of last selected rectangular area without selecting again.\n- Screenshot of the screen/monitor where the mouse cursor is currently located.\n- Screenshot of full-screen, including all screens/monitors.\n- Screenshot of window that currently has focus.\n- Screenshot of window under mouse cursor.\n- Screenshot with or without mouse cursor.\n- Capture mouse cursor as annotation item that can be moved and deleted.\n- Customizable capture delay for all capture options.\n- Upload screenshots directly to imgur.com in anonymous or user mode.\n- Upload screenshots via custom user defined scripts.\n- Command-line support, for capturing screenshots and saving to default location, filename and format.\n- Filename wildcards for Year ($Y), Month ($M), Day ($D), Time ($T) and Counter (multiple # characters for number with zero-leading padding).\n- Print screenshot or save it to PDF/PS.\n- Annotate screenshots with pen, marker, rectangles, ellipses, texts and other tools.\n- Annotate screenshots with stickers and add custom stickers.\n- Obfuscate image regions with blur and pixelate.\n- Add effects to image (Drop Shadow, Grayscale, invert color or Border).\n- Add watermarks to captured images.\n- Global hotkeys for capturing screenshots (currently only for Windows and X11).\n- Tabs for screenshots and images.\n- Open existing images via dialog, drag-and-drop or paste from clipboard.\n- Run as single instance application (secondary instances send cli parameter to primary instance).\n- Pin screenshots in frameless windows that stay atop other windows.\n- User-defined actions for taking screenshot and post-processing.\n- Many configuration options.\n",

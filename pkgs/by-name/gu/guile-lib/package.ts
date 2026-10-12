@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-lib",
       version: "0.2.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/guile-lib/guile-lib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-E3TC2Dnmoz0ZDNHavZx/h3U/g4T1W4ZvPhQhVcIrSbE=",
         })))),
@@ -39,7 +39,7 @@ export LD_LIBRARY_PATH=\\
 "$(dirname $(echo ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib*/libgcc_s.so))\${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/guile-lib/",
         description: "Collection of useful Guile Scheme modules",
         longDescription: "guile-lib is intended as an accumulation place for pure-scheme Guile\nmodules, allowing for people to cooperate integrating their generic Guile\nmodules into a coherent library.  Think \"a down-scaled, limited-scope CPAN\nfor Guile\".\n",

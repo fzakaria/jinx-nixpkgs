@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => nix.sel(indilib, "version"));
   const extraDrivers = nix.argOr($, "extraDrivers", () => []);
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${pname}-${version}`),
       paths: nix.thunk(() => nix.concat([indilib], extraDrivers)),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),

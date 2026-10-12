@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlcmd = nix.arg($, "sqlcmd");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sqlcmd",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "go-sqlcmd",
           owner: "microsoft",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n",
       postInstall: "mv $out/bin/modern $out/bin/sqlcmd\n\ninstallShellCompletion --cmd sqlcmd \\\n  --bash <($out/bin/sqlcmd completion bash) \\\n  --fish <($out/bin/sqlcmd completion fish) \\\n  --zsh <($out/bin/sqlcmd completion zsh)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: sqlcmd,
               command: "sqlcmd --version",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line tool for working with Microsoft SQL Server, Azure SQL Database, and Azure Synapse",
         mainProgram: "sqlcmd",
         homepage: "https://github.com/microsoft/go-sqlcmd",

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ogmios",
           version: version,
           hash: "sha256-+edW34O+OF+JyCoZSjxRwKS6JeXfaZ38+ykUpXwBJ1Q=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cachetools, cardano_tools, coloredlogs, orjson, pydantic, websockets]);
       const pythonImportsCheck = nix.thunk(() => ["ogmios"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for Ogmios",
         homepage: "https://gitlab.com/viperscience/ogmios-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

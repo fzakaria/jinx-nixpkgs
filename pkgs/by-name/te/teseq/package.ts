@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "1.1.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "teseq",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/teseq/teseq-${version}.tar.gz`),
           sha256: "08ln005qciy7f3jhv980kfhhfmh155naq59r5ah9crz1q4mx5yrj",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/teseq/",
         description: "Escape sequence illuminator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

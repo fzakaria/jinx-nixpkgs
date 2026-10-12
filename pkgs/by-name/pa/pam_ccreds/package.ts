@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const db = nix.arg($, "db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam_ccreds",
       version: "10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.padl.com/download/pam_ccreds-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1h7zyg1b1h69civyvrj95w22dg0y7lgw3hq4gqkdcg35w1y76fhz",
         })))),
       patchPhase: "sed 's/-o root -g root//' -i Makefile.in\n",
       buildInputs: nix.thunk(() => [pam, openssl, db]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.padl.com/OSS/pam_ccreds.html",
         description: "PAM module to locally authenticate using an enterprise identity when the network is unavailable",
         mainProgram: "ccreds_chkpwd",

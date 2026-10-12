@@ -66,20 +66,20 @@ export default nix.lambda((args) => (() => {
   const xrootd = nix.arg($, "xrootd");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "root",
       version: "6.40.04",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ __proto__: pos$1, callPackage: callPackage })))),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: pos$1, callPackage: callPackage })))),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://root.cern.ch/download/root_v${nix.sel(finalAttrs, "version")}.source.tar.gz`),
           hash: "sha256-RK2iU7GTXTS2gBIiIy1Qcx/nxePLz6tHc0yFAxz75NM=",
         })))),
       clad_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "vgvassilev",
           repo: "clad",
           tag: "v2.3",
@@ -157,7 +157,7 @@ patchRcPathFish "$out/bin/thisroot.fish" "${nix.app(nix.sel(lib, "makeBinPath"),
       separateDebugInfo: true,
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://root.cern/",
         description: "Data analysis framework",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

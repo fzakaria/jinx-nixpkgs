@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "choose-gui";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chipsenkbeil",
           repo: "choose",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\nxcodebuild -configuration Release SYMROOT=\"./output\" HOME=\"$(mktemp -d)\" build\ncp ./output/Release/choose choose\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\nmkdir -p $out/bin\ncp choose $out/bin/choose\nchmod +x $out/bin/choose\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fuzzy matcher for OS X that uses both std{in,out} and a native GUI",
         homepage: "https://github.com/chipsenkbeil/choose",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "choose",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

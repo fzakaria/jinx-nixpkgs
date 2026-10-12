@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "anup";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonathanlmc",
           repo: "anup",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-925R5pG514JiA7iUegFkxrDpA3o7T/Ct4Igqqcdo3rw=";
       const buildInputs = nix.thunk(() => [sqlite, xdg_utils]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jonathanlmc/anup",
         description: "Anime tracker for AniList featuring a TUI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "anup",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

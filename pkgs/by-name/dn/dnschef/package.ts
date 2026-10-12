@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnschef",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iphelix",
           repo: "dnschef",
           rev: "a395411ae1f5c262d0b80d06a45a445f696f3243",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D ./dnschef.py $out/bin/dnschef\n",
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "dnslib"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/iphelix/dnschef",
         description: "Highly configurable DNS proxy for penetration testers and malware analysts",
         mainProgram: "dnschef",

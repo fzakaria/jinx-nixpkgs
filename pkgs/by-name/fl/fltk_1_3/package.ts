@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const withShared = nix.argOr($, "withShared", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fltk",
       version: "1.3.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fltk",
           repo: "fltk",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -104,14 +104,14 @@ done
 `)))),
       postFixup: "substituteInPlace $out/bin/fltk-config \\\n  --replace-fail \"/$out/\" \"/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(1\\.3\\.[0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ cross-platform lightweight GUI library",
         homepage: "https://www.fltk.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

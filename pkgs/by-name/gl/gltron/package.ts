@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const libmikmod = nix.arg($, "libmikmod");
   const SDL_sound = nix.arg($, "SDL_sound");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gltron",
       version: "0.70",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gltron/gltron-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           sha256: "e0c8ebb41a18a1f8d7302a9c2cb466f5b1dd63e9a9966c769075e6b6bdad8bb0",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./gentoo-prototypes.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-14.patch",
             url: "https://sourceforge.net/p/gltron/patches/7/attachment/gcc-14.patch",
             hash: "sha256-OJAUAM/OQVwxYnIacBkncNxMLn/HDCoysbi+Txe+DC8=",
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-warn"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       })),
       buildInputs: nix.thunk(() => [SDL, libGLU, libGL, zlib, libpng, libvorbis, libmikmod, SDL_sound]),
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.gltron.org/",
         description: "Game based on the movie Tron",
         mainProgram: "gltron",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const enableGUI = nix.argOr($, "enableGUI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.8.4",
       pname: "ttfautohint",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/freetype/ttfautohint-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-iodhF/puv9L/4bNoKpqYyALA9HGJ9X09tLmXdCBoMuE=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableGUI)), nix.thunk(() => ["--without-doc"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic hinter for TrueType fonts",
         mainProgram: "ttfautohint",
         longDescription: "A library and two programs which take a TrueType font as the\ninput, remove its bytecode instructions (if any), and return a\nnew font where all glyphs are bytecode hinted using the\ninformation given by FreeType’s auto-hinting module.\n",

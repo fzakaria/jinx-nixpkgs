@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const buf = nix.arg($, "buf");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ignite-cli",
       version: "28.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "cli",
           owner: "ignite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ignite --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go, buf]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ignite.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/ignite/cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "All-in-one platform to build, launch, and maintain any crypto application on a sovereign and secured blockchain",

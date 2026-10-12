@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const csexp = nix.arg($, "csexp");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? nix.sel(dune, "version") : "3.22.2"));
   return nix.app(buildDunePackage, nix.thunk(() => (() => {
-      const from = nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ __proto__: pos$1, version: version }))));
+      const from = nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version }))));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dune-configurator",
       version: version,
       src: nix.thunk(() => nix.attr(from, "src")),
       dontAddPrefix: true,
       propagatedBuildInputs: nix.thunk(() => [csexp]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper library for gathering system configuration",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

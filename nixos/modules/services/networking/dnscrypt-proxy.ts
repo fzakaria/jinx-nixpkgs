@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "dnscrypt-proxy"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "dnscrypt-proxy2"]), nix.thunk(() => ["services", "dnscrypt-proxy"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "dnscrypt-proxy": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dnscrypt-proxy")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dnscrypt-proxy", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: nix.thunk(() => nix.str`Attrset that is converted and passed as TOML config file.
 For available params, see: <https://github.com/DNSCrypt/dnscrypt-proxy/blob/${nix.sel(pkgs, "dnscrypt-proxy", "version")}/dnscrypt-proxy/example-dnscrypt-proxy.toml>
 `),
@@ -49,18 +49,18 @@ For available params, see: <https://github.com/DNSCrypt/dnscrypt-proxy/blob/${ni
               default: nix.thunk(() => ({})),
             })))),
           upstreamDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Whether to base the config declared in {option}`services.dnscrypt-proxy.settings` on the upstream example config (<https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml>)\n\nDisable this if you want to declare your dnscrypt config from scratch.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Path to TOML config file. See: <https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml>\nIf this option is set, it will override any configuration done in options.services.dnscrypt-proxy.settings.\n",
               example: "/etc/dnscrypt-proxy/dnscrypt-proxy.toml",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "dnscrypt-proxy.toml", nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   json: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "settings")))),
                   passAsFile: nix.thunk(() => ["json"]),
                 })), nix.thunk(() => nix.str`${(nix.asBool(nix.sel(cfg, "upstreamDefaults")) ? nix.str`${nix.sel(pkgs, "buildPackages", "remarshal")}/bin/toml2json ${nix.sel(pkgs, "dnscrypt-proxy")}/etc/dnscrypt-proxy/dnscrypt-proxy.toml > example.json
@@ -74,24 +74,24 @@ ${nix.sel(pkgs, "buildPackages", "remarshal")}/bin/json2toml < config.json > $ou
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["127.0.0.1"]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "dnscrypt-proxy": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "DNSCrypt-proxy client",
               wants: nix.thunk(() => ["network-online.target", "nss-lookup.target"]),
               before: nix.thunk(() => ["nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               aliases: nix.thunk(() => ["dnscrypt-proxy2.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 AmbientCapabilities: "CAP_NET_BIND_SERVICE",
                 CacheDirectory: "dnscrypt-proxy",
                 DynamicUser: true,
@@ -131,7 +131,7 @@ ${nix.sel(pkgs, "buildPackages", "remarshal")}/bin/json2toml < config.json > $ou
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$14, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$14, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=dnscrypt-proxy.ts.map

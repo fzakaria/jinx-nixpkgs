@@ -36,65 +36,65 @@ export default nix.lambda((args) => (() => {
     const packageOption = nix.arg($_1, "packageOption");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       freeformType: nix.thunk(() => nix.sel(format, "type")),
       options: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         apiBaseUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "API base URL that the agent will connect to.\n\nWhen using Hercules CI Enterprise, set this to the URL where your\nHercules CI server is reachable.\n",
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "https://hercules-ci.com",
           })))),
         baseDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: "/var/lib/hercules-ci-agent",
             description: "State directory (secrets, work directory, etc) for agent\n",
           })))),
         concurrentTasks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Number of tasks to perform simultaneously.\n\nA task is a single derivation build, an evaluation or an effect run.\nAt minimum, you need 2 concurrent tasks for `x86_64-linux`\nin your cluster, to allow for import from derivation.\n\n`concurrentTasks` can be around the CPU core count or lower if memory is\nthe bottleneck.\n\nThe optimal value depends on the resource consumption characteristics of your workload,\nincluding memory usage and in-task parallelism. This is typically determined empirically.\n\nWhen scaling, it is generally better to have a double-size machine than two machines,\nbecause each split of resources causes inefficiencies; particularly with regards\nto build latency because of extra downloads.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "ints", "positive")), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["auto"]))))),
             default: "auto",
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`\"auto\"`, meaning equal to the number of CPU cores.\n")),
           })))),
         labels: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "A key-value map of user data.\n\nThis data will be available to organization members in the dashboard and API.\n\nThe values can be of any TOML type that corresponds to a JSON type, but arrays\ncan not contain tables/objects due to limitations of the TOML library. Values\ninvolving arrays of non-primitive types may not be representable currently.\n",
             type: nix.thunk(() => nix.sel(format, "type")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "{\n  agent.source = \"...\"; # One of \"nixpkgs\", \"flake\", \"override\"\n  lib.version = \"...\";\n  pkgs.version = \"...\";\n}\n")),
           })))),
         workDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "The directory in which temporary subdirectories are created for task state. This includes sources for Nix evaluation.\n",
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.add(nix.sel(config, "baseDirectory"), "/work")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "baseDirectory + \"/work\"")),
           })))),
         staticSecretsDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "This is the default directory to look for statically configured secrets like `cluster-join-token.key`.\n\nSee also `clusterJoinTokenPath` and `binaryCachesPath` for fine-grained configuration.\n",
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.add(nix.sel(config, "baseDirectory"), "/secrets")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "baseDirectory + \"/secrets\"")),
           })))),
         clusterJoinTokenPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "Location of the cluster-join-token.key file.\n\nYou can retrieve the contents of the file when creating a new agent via\n<https://hercules-ci.com/dashboard>.\n\nAs this value is confidential, it should not be in the store, but\ninstalled using other means, such as agenix, NixOps\n`deployment.keys`, or manual installation.\n\nThe contents of the file are used for authentication between the agent and the API.\n",
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.add(nix.sel(config, "staticSecretsDirectory"), "/cluster-join-token.key")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "staticSecretsDirectory + \"/cluster-join-token.key\"")),
           })))),
         binaryCachesPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "Path to a JSON file containing binary cache secret keys.\n\nAs these values are confidential, they should not be in the store, but\ncopied over using other means, such as agenix, NixOps\n`deployment.keys`, or manual installation.\n\nThe format is described on <https://docs.hercules-ci.com/hercules-ci-agent/binary-caches-json/>.\n",
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.add(nix.sel(config, "staticSecretsDirectory"), "/binary-caches.json")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "staticSecretsDirectory + \"/binary-caches.json\"")),
           })))),
         secretsJsonPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "Path to a JSON file containing secrets for effects.\n\nAs these values are confidential, they should not be in the store, but\ncopied over using other means, such as agenix, NixOps\n`deployment.keys`, or manual installation.\n\nThe format is described on <https://docs.hercules-ci.com/hercules-ci-agent/secrets-json/>.\n",
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.add(nix.sel(config, "staticSecretsDirectory"), "/secrets.json")),
@@ -102,22 +102,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         labels: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           agent: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             source: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(packageOption, "highestPrio"), nix.sel(nix.app(nix.sel(lib, "modules", "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))) ? "nixpkgs" : nix.app(nix.sel(lib, "mkOptionDefault"), "override"))),
           })),
           pkgs: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             version: nix.thunk(() => nix.sel(pkgs_1, "lib", "version")),
           })),
-          lib: nix.thunk(() => ({ __proto__: pos$13, version: nix.thunk(() => nix.sel(lib, "version")) })),
+          lib: nix.thunk(() => ({ [nix.POS]: pos$13, version: nix.thunk(() => nix.sel(lib, "version")) })),
         })),
       })),
     };
   })(), formals$2);
-  return { __proto__: pos$17, format: format, settingsModule: settingsModule };
+  return { [nix.POS]: pos$17, format: format, settingsModule: settingsModule };
 })(), formals$1);
 //# sourceMappingURL=settings.ts.map

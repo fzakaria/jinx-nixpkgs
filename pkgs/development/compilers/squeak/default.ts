@@ -66,20 +66,20 @@ export default nix.lambda((args) => (() => {
   const squeakVmVersionMinor = nix.thunk(() => nix.app(elemAt, squeakVmVersionBaseSplit, 1n));
   const squeakVmVersionRelease = nix.thunk(() => nix.app(elemAt, squeakVmVersionSplit, 2n));
   const squeakVmCommitHash_1 = nix.thunk(() => nix.app(nullableOr, nix.thunk(() => nix.selOr(args_1, () => null, "squeakVmCommitHash")), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://api.github.com/repos/OpenSmalltalk/opensmalltalk-vm/commits/${squeakVmVersionRelease}`),
         curlOpts: "--header Accept:application/vnd.github.v3.sha",
         hash: nix.thunk(() => nix.app(nullableOr, nix.thunk(() => nix.selOr(args_1, () => null, "squeakVmCommitHashHash")), "sha256-quwmhpJlb2fp0fI9b03fBxSR44j1xmHPW20wkSqTOhQ=")),
       }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "squeak",
       version: squeakVersion_1,
       vmVersionRelease: squeakVmVersionRelease,
       vmHash: squeakVmCommitHash_1,
       vmSrcUrl: "https://github.com/OpenSmalltalk/opensmalltalk-vm.git",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "OpenSmalltalk",
           repo: "opensmalltalk-vm",
           rev: squeakVmVersionRelease,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       imageSrc: nix.thunk(() => (() => {
         const squeakImageName = nix.thunk(() => nix.str`Squeak${squeakVersionBase}-${squeakImageVersion}-${nix.app(toString, bits)}bit`);
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://files.squeak.org/${squeakVersionBase}/${squeakImageName}/${squeakImageName}.zip`),
             name: "source",
             stripRoot: false,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
           })));
       })()),
       sourcesSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://files.squeak.org/sources_files/SqueakV${squeakSourcesVersion_1}.sources.gz`),
           hash: nix.thunk(() => nix.app(nullableOr, nix.thunk(() => nix.selOr(args_1, () => null, "squeakSourcesHash")), "sha256-ZViZ1VgI32LwLTEyw7utp8oaAK3UmCNJnHqsGm1IKYE=")),
         })))),
@@ -148,7 +148,7 @@ substituteInPlace ./platforms/unix/config/mkmf \\
   --replace '/bin/rm ' '${coreutils}/bin/rm '
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(toString, nix.thunk(() => nix.concat(["-fcommon", "-std=gnu17"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=int-conversion",
               "-Wno-error=implicit-function-declaration",
@@ -192,7 +192,7 @@ substituteInPlace ./mvm \\
 cp --no-preserve mode "$sourcesSrc" "$out"/lib/squeak/SqueakV${nix.app(nix.sel(lib, "escapeShellArg"), squeakSourcesVersion_1)}.sources
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Squeak virtual machine",
         homepage: "https://opensmalltalk.org/",
         license: nix.thunk(() => (() => {

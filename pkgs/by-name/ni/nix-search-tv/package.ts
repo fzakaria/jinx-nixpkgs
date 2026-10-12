@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-search-tv",
       version: "2.2.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3timeslazy",
           repo: "nix-search-tv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-SSKDo4A8Nhvylghrw6d7CdHpZ7jObEr5V3r0Y9cH80Y=",
       subPackages: nix.thunk(() => ["cmd/nix-search-tv"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOEXPERIMENT: "jsonv2" })),
       ldflags: nix.thunk(() => ["-s"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fuzzy search for Nix packages",
         homepage: "https://github.com/3timeslazy/nix-search-tv",
         changelog: nix.thunk(() => nix.str`https://github.com/3timeslazy/nix-search-tv/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

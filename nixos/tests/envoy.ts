@@ -29,56 +29,56 @@ export default nix.lambda((args) => (() => {
   const envoyPackage = nix.arg($, "envoyPackage");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: nix.thunk(() => nix.sel(envoyPackage, "pname")),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "cameronnemo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           envoy: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             package: envoyPackage,
             settings: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               admin: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 access_log_path: "/dev/null",
                 address: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  socket_address: nix.thunk(() => ({ __proto__: pos$2, protocol: "TCP", address: "127.0.0.1", port_value: 80n })),
+                  [nix.POS]: pos$3,
+                  socket_address: nix.thunk(() => ({ [nix.POS]: pos$2, protocol: "TCP", address: "127.0.0.1", port_value: 80n })),
                 })),
               })),
-              static_resources: nix.thunk(() => ({ __proto__: pos$5, listeners: [], clusters: [] })),
+              static_resources: nix.thunk(() => ({ [nix.POS]: pos$5, listeners: [], clusters: [] })),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           withoutConfigValidation: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             configuration: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               return {
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 services: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   envoy: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     requireValidConfig: false,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       admin: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         access_log_path: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/var/log/envoy/access.log")),
                       })),
                     })),

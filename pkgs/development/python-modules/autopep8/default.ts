@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hhatto",
           repo: "autopep8",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [pycodestyle]);
       const nativeCheckInputs = nix.thunk(() => [glibcLocales, pytestCheckHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/hhatto/autopep8/releases/tag/v${version}`),
         description: "Tool that automatically formats Python code to conform to the PEP 8 style guide",
         homepage: "https://github.com/hhatto/autopep8",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

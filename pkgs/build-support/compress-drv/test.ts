@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const compressDrv = nix.arg($, "compressDrv");
   const example = nix.thunk(() => nix.app(runCommand, "sample-drv", nix.thunk(() => ({})), "mkdir $out\necho 42 > $out/1.txt\necho 43 > $out/1.md\ntouch $out/2.png\n"));
   const drv = nix.thunk(() => nix.app(compressDrv, example, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       formats: nix.thunk(() => ["txt"]),
       compressors: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         gz: nix.thunk(() => nix.str`${gzip}/bin/gzip --force --keep --fast {}`),
       })),
     }))));
   const wrapped = nix.thunk(() => nix.app(compressDrv, drv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       formats: nix.thunk(() => ["md"]),
       compressors: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gz: nix.thunk(() => nix.str`${gzip}/bin/gzip --force --keep --fast {}`),
       })),
     }))));

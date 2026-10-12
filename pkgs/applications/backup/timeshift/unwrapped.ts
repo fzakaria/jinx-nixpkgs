@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const xapp = nix.arg($, "xapp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "timeshift",
       version: "26.09.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "timeshift",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,11 +52,11 @@ substituteInPlace ./src/timeshift-launcher \\
       nativeBuildInputs: nix.thunk(() => [gettext, help2man, meson, ninja, pkg_config, vala]),
       buildInputs: nix.thunk(() => [gtk3, json_glib, libgee, vte, xapp]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "System restore tool for Linux",
         longDescription: "TimeShift creates filesystem snapshots using rsync+hardlinks or BTRFS snapshots.\nSnapshots can be restored using TimeShift installed on the system or from Live CD or USB.\n",
         homepage: "https://github.com/linuxmint/timeshift",

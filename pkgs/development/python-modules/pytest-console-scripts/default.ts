@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-WoJu2EzAr6IC655EOB19di973ajgwj+feafx9Ez0qJU=",
@@ -36,7 +36,7 @@ substituteInPlace tests/test_run_scripts.py \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["pytest_console_scripts"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for testing console scripts",
         longDescription: "Pytest-console-scripts is a pytest plugin for running python scripts from within tests.\nIt's quite similar to subprocess.run(), but it also has an in-process mode, where the scripts are executed by the interpreter that's running pytest (using some amount of sandboxing).\n",
         homepage: "https://github.com/kvas-it/pytest-console-scripts",
@@ -44,7 +44,7 @@ substituteInPlace tests/test_run_scripts.py \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const joker = nix.arg($, "joker");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "goku",
       version: "0.8.0",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isAarch64")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yqrashawn/GokuRakuJoudo/releases/download/v${nix.sel(finalAttrs, "version")}/goku-arm.zip`),
           hash: "sha256-yRLxUfAQZ+rE7/42wnjls6UnT+vb/b5Y3lVWujZGEAg=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/yqrashawn/GokuRakuJoudo/releases/download/v${nix.sel(finalAttrs, "version")}/goku.zip`),
           hash: "sha256-hbk7QF0kTeBcot4OFV/yhVOUV/OpE44d/7nofdoBipg=",
         }))))),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [joker]),
       sourceRoot: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isAarch64")) ? "goku" : ".")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\"\nchmod +x {goku,gokuw}\ncp {goku,gokuw} \"$out/bin\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/yqrashawn/GokuRakuJoudo/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.org`),
         description: "Karabiner configurator",
         homepage: "https://github.com/yqrashawn/GokuRakuJoudo",

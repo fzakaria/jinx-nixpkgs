@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3-manifolds",
           repo: "knot_floer_homology",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -33,7 +33,7 @@ ${nix.sel(python, "interpreter")} -m knot_floer_homology.test
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for Zoltán Szabó's HFK Calculator",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/knot_floer_homology/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/3-manifolds/knot_floer_homology",
@@ -47,7 +47,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

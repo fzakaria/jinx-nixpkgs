@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const types_requests = nix.arg($, "types-requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "types-tqdm",
       version: "4.70.0.20260906",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_tqdm",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZYHcmWFSqH1Rzi6haRaRh//AqW2s24rb3vKcvujB5jE=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [types_requests]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for tqdm",
         homepage: "https://pypi.org/project/types-tqdm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

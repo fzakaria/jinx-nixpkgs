@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "pillow")),
     ]));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bibata-caelestia",
       version: "0-unstable-2026-09-05",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dim-ghub",
           repo: "Bibata-Caelestia",
           rev: "8b808e86b617ecc94ae500b1c32b804cc11dd57f",
@@ -59,11 +59,11 @@ wrapProgram "$out/bin/bibata-caelestia-builder" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dynamic Material You themeable cursor theme based on Bibata Modern Classic for Caelestia",
         homepage: "https://github.com/dim-ghub/Bibata-Caelestia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

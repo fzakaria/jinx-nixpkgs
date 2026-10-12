@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const ttfautohint_nox = nix.arg($, "ttfautohint-nox");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eb-garamond",
       version: "0.016",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "georgd",
           repo: "EB-Garamond",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake WEB=build EOT=\"\" all\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.georgduffner.at/ebgaramond/",
         description: "Digitization of the Garamond shown on the Egenolff-Berner specimen",
         maintainers: nix.thunk(() => (() => {

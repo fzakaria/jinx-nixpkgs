@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "rhttp-rs",
         version: version,
         src: src,
@@ -39,7 +39,7 @@ chmod -R u+w -- "$sourceRoot"
 runHook postUnpack
 `),
         cargoHash: nix.thunk(() => nix.selOr({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           _0_9_1: "sha256-ZVl1nesepZnmOWeJPOgE6IDCokQm5FedbA5MBvr5S8c=",
           _0_9_6: "sha256-vvzb+jNN5lmRrKJ3zqvORvdduqEHRmbp85L/9Zegh/E=",
           _0_9_8: "sha256-cwb1wYVXOE5YABlMxUDt+OMlDpIlipqeNI7ZFAGHCqo=",
@@ -51,11 +51,11 @@ runHook postUnpack
 Please add cargoHash here. If the cargoHash
 is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
-        env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cfg reqwest_unstable" })),
-        passthru: nix.thunk(() => ({ __proto__: pos$3, libraryPath: "lib/librhttp.so" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg reqwest_unstable" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libraryPath: "lib/librhttp.so" })),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "rhttp",
         version: version,
         src: src,
@@ -63,7 +63,7 @@ is the same with existing versions, add an alias here.
         prePatch: "if [ -d rhttp ]; then pushd rhttp; fi\n",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cargokit.patch"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               output_lib: nix.thunk(() => nix.str`${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")}`),
             })))),
         ]),

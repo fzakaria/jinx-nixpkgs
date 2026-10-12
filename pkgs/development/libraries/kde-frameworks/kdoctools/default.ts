@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kdoctools",
       nativeBuildInputs: nix.thunk(() => [
         cmake,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./kdoctools-no-find-docbook-xml.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "kdoctools-relocate-datapath.patch",
               url: "https://github.com/msys2/MINGW-packages/raw/0900785a1f4e4146ab9561fb92a1c70fa70fcfc4/mingw-w64-kdoctools-qt5/0001-kdoctools-relocate-datapath.patch",
               hash: "sha256-MlokdrabXavWHGXYmdz9zZDJQIwAdNxebJBSAH2Z3vI=",

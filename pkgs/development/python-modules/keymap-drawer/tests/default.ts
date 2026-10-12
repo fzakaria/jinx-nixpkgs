@@ -26,28 +26,28 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const name = nix.arg($_1, "name");
     return nix.app(runCommandWith, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${nix.sel(keymap_drawer, "name")}-${name}`),
         derivationArgs: nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name"])), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => nix.concat([keymap_drawer], nix.selOr(args_2, () => [], "nativeBuildInputs"))),
         })),
       })));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "dump-config": nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "dump-config",
         nativeBuildInputs: nix.thunk(() => [yamllint]),
       })), "keymap dump-config --output \"$out\"\n\nif [ ! -s \"$out\" ]; then\n  >&2 echo 'Expected `dump-config` to have content.'\n  exit 1\nfi\n\nyamllint --strict --config-data relaxed \"$out\"\n")),
-    "invalid-keymap": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({ __proto__: pos$4, name: "invalid-keymap" })), nix.thunk(() => nix.str`keymap \\
+    "invalid-keymap": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({ [nix.POS]: pos$4, name: "invalid-keymap" })), nix.thunk(() => nix.str`keymap \\
   --config ${nix.path(here, "./config.yaml")} \\
   parse --zmk-keymap ${nix.path(here, "./invalid.keymap")} \\
   --output "$out"
 `))))),
     "parse-zmk": nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "parse",
         nativeBuildInputs: nix.thunk(() => [yamllint, yq_go]),
       })), nix.thunk(() => nix.str`keymap \\
@@ -102,7 +102,7 @@ yq --exit-status '.. | select(. == "F1")' "$out" >/dev/null || {
 }
 `))),
     draw: nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "draw",
         nativeBuildInputs: nix.thunk(() => [xmlstarlet, libxml2]),
       })), nix.thunk(() => nix.str`keymap \\

@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
   const textToSpeechSupport = nix.argOr($, "textToSpeechSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(controllerSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "controllerSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/prismlauncher/package.nix:50:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(textToSpeechSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "textToSpeechSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/prismlauncher/package.nix:54:1");
-  const prismlauncher$ = nix.thunk(() => nix.app(nix.sel(prismlauncher_unwrapped, "override"), nix.thunk(() => ({ __proto__: pos$1, msaClientID: msaClientID }))));
+  const prismlauncher$ = nix.thunk(() => nix.app(nix.sel(prismlauncher_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, msaClientID: msaClientID }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prismlauncher",
       version: nix.thunk(() => nix.attr(prismlauncher$, "version")),
       paths: nix.thunk(() => [prismlauncher$]),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(prismlauncher$, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         identifiers: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(prismlauncher$, "meta", "identifiers"));
-          return { __proto__: pos$2, cpeParts: nix.thunk(() => nix.attr(from_1, "cpeParts")) };
+          return { [nix.POS]: pos$2, cpeParts: nix.thunk(() => nix.attr(from_1, "cpeParts")) };
         })()),
       };
       })()),

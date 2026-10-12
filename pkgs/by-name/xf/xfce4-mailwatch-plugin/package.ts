@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-mailwatch-plugin",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-mailwatch-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-mailwatch-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-XCEQJdsQlmY/prjMQSE0ZKbXHyTnYyZJnYV/+B6jhh8=",
         })))),
@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
         libgcrypt,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-mailwatch-plugin",
             "rev-prefix": "xfce4-mailwatch-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-mailwatch-plugin",
         description: "Mail watcher plugin for Xfce panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

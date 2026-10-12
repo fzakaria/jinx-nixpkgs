@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lesbar",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~salmiak",
           repo: "lesbar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, cairo, pango]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming language agnostic view layer for creating desktop widgets and status bars",
         homepage: "https://git.sr.ht/~salmiak/lesbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

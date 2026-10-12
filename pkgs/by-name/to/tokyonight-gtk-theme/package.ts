@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const tweakVariantList = nix.thunk(() => ["moon", "storm", "black", "float", "outline", "macos"]);
   const iconVariantList = nix.thunk(() => ["Dark-Cyan", "Dark", "Light", "Moon"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: colorVariants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: sizeVariants`), sizeVariantList, sizeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: themeVariants`), themeVariantList, themeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: tweakVariants`), tweakVariantList, tweakVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: iconVariants`), iconVariantList, iconVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "0-unstable-2025-10-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fausto-Korpsvart",
           repo: "Tokyonight-GTK-Theme",
           rev: "6c340e058e84c1975a038a8e5d1e384477225dc0",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gnome_shell, sassc]),
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: "patchShebangs themes/install.sh\nsed -i \\\n  -e '/gtkrc\\.sh/d' \\\n  -e '/# GTK2 Themes/d' \\\n  -e '/\"${THEME_DIR}\\/gtk-2.0/d' \\\n  -e '/make_gtkrc /d' \\\n  themes/install.sh\n",
@@ -72,7 +72,7 @@ cp -a ${nix.builtins.toString(nix.thunk(() => nix.builtins.map((v) => nix.str`To
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK theme based on the Tokyo Night colour palette",
         homepage: "https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

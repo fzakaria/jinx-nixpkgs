@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crossmacro-daemon";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alper-han",
           repo: "CrossMacro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = nix.thunk(() => nix.add("install -Dm644 scripts/assets/io.github.alper_han.crossmacro.policy \\\n  $out/share/polkit-1/actions/io.github.alper_han.crossmacro.policy\n\ninstall -Dm644 scripts/assets/50-crossmacro.rules \\\n  $out/share/polkit-1/rules.d/50-crossmacro.rules\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf --add-needed libsystemd.so.0 $out/lib/crossmacro-daemon/CrossMacro.Daemon\n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Privileged input daemon for CrossMacro",
         homepage: "https://github.com/alper-han/CrossMacro",
         changelog: nix.thunk(() => nix.str`https://github.com/alper-han/CrossMacro/releases/tag/v${version}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

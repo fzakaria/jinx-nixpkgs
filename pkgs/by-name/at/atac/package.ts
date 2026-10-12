@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "atac",
       version: "0.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Julien-cpsn",
           repo: "ATAC",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-h3mOVYvtXPpu2zRgKtvFSQe4BSzXm0RreUgwExvL+fI=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, writableTmpDirAsHomeHook, pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       postInstall: "$out/bin/atac completions bash\n$out/bin/atac completions fish\n$out/bin/atac completions zsh\ninstallShellCompletion --cmd atac \\\n  --bash atac.bash \\\n  --fish atac.fish \\\n  --zsh _atac\n\nmkdir -p $out/share/powershell\n$out/bin/atac completions powershell $out/share/powershell\n\n$out/bin/atac man\ninstallManPage atac.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple API client (postman like) in your terminal",
         homepage: "https://github.com/Julien-cpsn/ATAC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

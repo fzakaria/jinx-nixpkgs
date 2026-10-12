@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "patcher9x",
       version: "0.8.50",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "JHRobotics",
             repo: "patcher9x",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
             name: "src",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "JHRobotics",
             repo: "nocrt",
             rev: "f65cc7ef2a3cccd6264b2eb265d7fffbecb06ba4",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "rmdir nocrt\nln -s ../nocrt .\n",
       installPhase: "runHook preInstall\ninstall -D patcher9x $out/bin/patcher9x\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Patch for Windows 95/98/98 SE/Me to fix CPU issues",
         mainProgram: "patcher9x",
         homepage: "https://github.com/JHRobotics/patcher9x",

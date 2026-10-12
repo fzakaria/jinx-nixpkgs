@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.2";
       const pname = "pastebinit";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pastebinit",
           repo: "pastebinit",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "mkdir -p $out/bin\nmkdir -p $out/etc\ncp -a pastebinit $out/bin\ncp -a utils/* $out/bin\ncp -a pastebin.d $out/etc\nsubstituteInPlace $out/bin/pastebinit --subst-var-by \"etc\" \"$out/etc\"\ninstallManPage pastebinit.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://stgraber.org/category/pastebinit/",
         description: "Software that lets you send anything you want directly to a pastebin from the command line",
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_i386"]);
       const pythonImportsCheck = nix.thunk(() => ["unicorn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for Unicorn CPU emulator engine",
         homepage: "https://www.unicorn-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         pyproject,

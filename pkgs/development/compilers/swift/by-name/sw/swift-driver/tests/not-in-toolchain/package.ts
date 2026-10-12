@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const swiftpm = nix.arg($, "swiftpm");
   const swift_release = nix.arg($, "swift_release");
-  return nix.app(runCommand, "swift-driver-test-not-in-toolchain", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [swift, swiftpm]) })), nix.thunk(() => nix.str`swift package --version | grep "Swift Package Manager - Swift ${swift_release}"
+  return nix.app(runCommand, "swift-driver-test-not-in-toolchain", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [swift, swiftpm]) })), nix.thunk(() => nix.str`swift package --version | grep "Swift Package Manager - Swift ${swift_release}"
 touch "$out"
 `));
 })(), formals$1);

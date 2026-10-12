@@ -51,35 +51,35 @@ export default nix.lambda((args) => (() => {
             })(), formals$3), acl);
         })(), formals$2))),
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (text) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           dbname: "/var/lib/heimdal/heimdal",
           acl_file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${name}.acl`), text)),
         }))),
     ])));
   const finalConfig = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     realms: nix.thunk(() => nix.app(mapAttrs, (_) => (v) => nix.builtins.removeAttrs(v, nix.thunk(() => ["acl"])), nix.thunk(() => nix.selOr(cfg, () => ({}), "settings", "realms")))),
-    kdc: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "kdc"), { __proto__: pos$2, database: aclConfigs })),
+    kdc: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "kdc"), { [nix.POS]: pos$2, database: aclConfigs })),
   }));
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ __proto__: pos$4, pkgs: pkgs, lib: lib })), nix.thunk(() => ({ __proto__: pos$5, enableKdcACLEntries: true }))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: pos$5, enableKdcACLEntries: true }))));
   const kdcConfFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "kdc.conf", finalConfig));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(package$, "passthru", "implementation"), "heimdal")))), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
-            "heimdal-kdc/kdc.conf": nix.thunk(() => ({ __proto__: pos$6, source: kdcConfFile })),
+            [nix.POS]: pos$7,
+            "heimdal-kdc/kdc.conf": nix.thunk(() => ({ [nix.POS]: pos$6, source: kdcConfFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "10-heimdal": nix.thunk(() => (() => {
                 const databases = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(finalConfig, "kdc", "database")), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.builtins.map, (dbAttrs) => nix.selOr(dbAttrs, () => null, "dbname"))),
@@ -87,22 +87,22 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(lib, "unique")),
                   ])));
                 return nix.app(nix.sel(lib, "genAttrs"), databases, (_) => ({
-                    __proto__: pos$10,
-                    d: nix.thunk(() => ({ __proto__: pos$9, user: "root", group: "root", mode: "0700" })),
+                    [nix.POS]: pos$10,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$9, user: "root", group: "root", mode: "0700" })),
                   }));
               })()),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             kadmind: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Kerberos Administration Daemon",
               partOf: nix.thunk(() => ["kerberos-server.target"]),
               wantedBy: nix.thunk(() => ["kerberos-server.target"]),
               documentation: nix.thunk(() => ["man:kadmind(8)", "info:heimdal"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${package$}/libexec/kadmind --config-file=/etc/heimdal-kdc/kdc.conf`),
                 Slice: "system-kerberos-server.slice",
                 StateDirectory: "heimdal",
@@ -110,13 +110,13 @@ export default nix.lambda((args) => (() => {
               restartTriggers: nix.thunk(() => [kdcConfFile]),
             })),
             kdc: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Key Distribution Center daemon",
               partOf: nix.thunk(() => ["kerberos-server.target"]),
               wantedBy: nix.thunk(() => ["kerberos-server.target"]),
               documentation: nix.thunk(() => ["man:kdc(8)", "info:heimdal"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${package$}/libexec/kdc`),
                     "--config-file=/etc/heimdal-kdc/kdc.conf",
@@ -127,13 +127,13 @@ export default nix.lambda((args) => (() => {
               restartTriggers: nix.thunk(() => [kdcConfFile]),
             })),
             kpasswdd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Kerberos Password Changing daemon",
               partOf: nix.thunk(() => ["kerberos-server.target"]),
               wantedBy: nix.thunk(() => ["kerberos-server.target"]),
               documentation: nix.thunk(() => ["man:kpasswdd(8)", "info:heimdal"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${package$}/libexec/kpasswdd`),
                 Slice: "system-kerberos-server.slice",
                 StateDirectory: "heimdal",

@@ -40,22 +40,22 @@ export default nix.lambda((args) => (() => {
   })();
   const isPathType = (x) => nix.app(nix.sel(lib, "types", "path", "check"), x);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "self-deploy": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "self-deploy")),
           nixFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/default.nix",
               description: "Path to nix file in repository. Leading '/' refers to root of\ngit repository.\n",
             })))),
           nixAttribute: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -64,19 +64,19 @@ export default nix.lambda((args) => (() => {
               description: "Attribute of `nixFile` that builds the current system.\n",
             })))),
           nixArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Arguments to `nix-build` passed as `--argstr` or `--arg` depending on\nthe type.\n",
             })))),
           switchCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["boot", "switch", "dry-activate", "test"]))),
               default: "switch",
               description: "The `switch-to-configuration` subcommand used.\n",
             })))),
           repository: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
               description: "The repository to fetch from. Must be properly formatted for git.\n\nIf this value is set to a path (must begin with `/`) then it's\nassumed that the repository is local and the resulting service\nwon't wait for the network to be up.\n\nIf the repository will be fetched over SSH, you must add an\nentry to `programs.ssh.knownHosts` for the SSH host for the fetch\nto be successful.\n",
             })))),
           sshKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -96,13 +96,13 @@ export default nix.lambda((args) => (() => {
               description: "Path to SSH private key used to fetch private repositories over\nSSH.\n",
             })))),
           branch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "master",
               description: "Branch to track\n\nTechnically speaking any ref can be specified here, as this is\npassed directly to a `git fetch`, but for the use-case of\ncontinuous deployment you're likely to want to specify a branch.\n",
             })))),
           startAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -114,18 +114,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "self-deploy": nix.thunk(() => (() => {
               const startAt = nix.thunk(() => nix.attr(cfg, "startAt"));
-              const serviceConfig = nix.thunk(() => ({ __proto__: pos$12, Type: "oneshot" }));
+              const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot" }));
               const requires = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.app(isPathType, nix.thunk(() => nix.sel(cfg, "repository"))))), nix.thunk(() => ["network-online.target"])));
               const after = requires;
               const environment = nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 GIT_SSH_COMMAND: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "sshKeyFile"), null)), nix.thunk(() => nix.str`${nix.sel(pkgs, "openssh")}/bin/ssh -i ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "sshKeyFile")))}`))),
               }));
               const restartIfChanged = false;
@@ -148,12 +148,12 @@ ${gitWithRepo} fetch ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => n
 ${gitWithRepo} checkout FETCH_HEAD
 
 nix-build${nix.app(renderNixArgs, nix.thunk(() => nix.sel(cfg, "nixArgs")))} ${nix.app(nix.sel(lib, "cli", "toCommandLineShell"), (optionName) => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   option: nix.thunk(() => nix.str`--${optionName}`),
                   sep: null,
                   explicitBool: false,
                 }), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   attr: nix.thunk(() => nix.sel(cfg, "nixAttribute")),
                   "out-link": outPath,
                 })))} ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${repositoryDirectory}${nix.sel(cfg, "nixFile")}`))}
@@ -169,7 +169,7 @@ ${gitWithRepo} gc --prune=all
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "switchCommand"), "boot")), "systemctl reboot")}
 `);
               return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 startAt,
                 serviceConfig,
                 requires,

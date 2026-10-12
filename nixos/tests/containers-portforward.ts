@@ -29,10 +29,10 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "containers-portforward",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -42,44 +42,44 @@ export default nix.thunk(() => (() => {
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               writableStore: true,
               additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
             })),
             containers: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               webserver: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 privateNetwork: true,
                 hostAddress: hostIp,
                 localAddress: containerIp,
                 forwardPorts: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     protocol: "tcp",
                     hostPort: hostPort,
                     containerPort: containerPort,
                   })),
                 ]),
                 config: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   services: nix.thunk(() => ({
-                    __proto__: pos$5,
-                    httpd: nix.thunk(() => ({ __proto__: pos$4, enable: true, adminAddr: "foo@example.org" })),
+                    [nix.POS]: pos$5,
+                    httpd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, adminAddr: "foo@example.org" })),
                   })),
                   networking: nix.thunk(() => ({
-                    __proto__: pos$7,
-                    firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                    [nix.POS]: pos$7,
+                    firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
                   })),
-                  nix: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
                 })),
               })),
             })),

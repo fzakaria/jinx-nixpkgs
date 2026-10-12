@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyobjc_setup.py \\\n  --replace-fail \"-buildversion\" \"-buildVersion\" \\\n  --replace-fail \"-productversion\" \"-productVersion\" \\\n  --replace-fail \"/usr/bin/sw_vers\" \"sw_vers\" \\\n  --replace-fail \"/usr/bin/xcrun\" \"xcrun\"\n";
       const dependencies = nix.thunk(() => [pyobjc_core, pyobjc_framework_Cocoa]);
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(darwin, "libffi", "dev")}/include`),
             "-Wno-error=unused-command-line-argument",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["WebKit", "JavaScriptCore", "PyObjCTools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyObjC wrappers for the WebKit frameworks on macOS",
         homepage: "https://github.com/ronaldoussoren/pyobjc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         pyproject,
         version,

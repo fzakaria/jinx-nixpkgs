@@ -49,20 +49,20 @@ export default nix.lambda((args) => (() => {
       const fullName = nix.argOr($_1, "fullName", () => null);
       const redistributable = nix.argOr($_1, "redistributable", () => nix.force(free));
       return nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         shortName: shortName,
         free: free,
         deprecated: deprecated,
         redistributable: redistributable,
         licenseType: "simple",
       }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(attrs, "spdxId")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           spdxId: spdxId,
           url: nix.thunk(() => nix.str`https://spdx.org/licenses/${spdxId}.html`),
-        }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(attrs, "url")), nix.thunk(() => ({ __proto__: pos$3, url: url }))), nix.app(optionalAttrs, nix.thunk(() => nix.has(attrs, "fullName")), nix.thunk(() => ({ __proto__: pos$4, fullName: fullName }))))));
+        }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(attrs, "url")), nix.thunk(() => ({ [nix.POS]: pos$3, url: url }))), nix.app(optionalAttrs, nix.thunk(() => nix.has(attrs, "fullName")), nix.thunk(() => ({ [nix.POS]: pos$4, fullName: fullName }))))));
     })(), formals$2);
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       evaluateProperty,
       evaluateNamedProperty,
       isFree,

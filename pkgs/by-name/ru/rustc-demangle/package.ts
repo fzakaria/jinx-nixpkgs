@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rustc-demangle",
       version: "0.1.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rust-lang",
           repo: "rustc-demangle",
           tag: nix.thunk(() => nix.str`rustc-demangle-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Fu9Lvg2QRMQSBWXLZMIRBUoX2aJB4HirfnMe2v9x6Yc=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       cargoBuildFlags: nix.thunk(() => ["-p", "rustc-demangle-capi"]),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
@@ -34,7 +34,7 @@ cp target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")}/release/
 cp -R crates/capi/include $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rust symbol demangling",
         homepage: "https://github.com/rust-lang/rustc-demangle",
         license: nix.thunk(() => (() => {

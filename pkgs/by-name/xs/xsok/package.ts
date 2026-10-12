@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
       const pname = "xsok";
       const version = "1.02";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://http.debian.net/debian/pool/main/x/xsok/xsok_1.02.orig.tar.gz",
           sha256: "0f4z53xsy4w8x8zp5jya689xp3rcfpi5wri2ip0qa8nk3sw7zj73",
         }))));
       const nethackLevels = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://www.electricmonk.nl/data/nethack/nethack.def",
           sha256: "057ircp13hfpy513c7wpyp986hsvhqs7km98w4k39f5wkvp3dj02",
         }))));
       const buildInputs = nix.thunk(() => [libx11, libxt, libxaw, libxpm, libxext]);
       const nativeBuildInputs = nix.thunk(() => [imake]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str` -isystem ${nix.sel(libxpm, "dev")}/include/X11 `),
       }));
       const preConfigure = "sed -e \"s@/usr/@$out/share/@g\" -i src/Imakefile\nsed -e \"s@/var/games/xsok@./.xsok/@g\" -i src/Imakefile\nsed -e '/chown /d' -i src/Imakefile\nsed -e '/chmod /d' -i src/Imakefile\nsed -e '/InstallAppDefaults/d' -i src/Imakefile\nsed -e 's/CC = gcc/CC = cc/g' -i src/Imakefile\n";
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 echo Nethack > "$out/share/games/lib/xsok/gametypes"
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generic Sokoban game for X11",
         mainProgram: "xsok",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -55,7 +55,7 @@ echo Nethack > "$out/share/games/lib/xsok/gametypes"
         homepage: "https://tracker.debian.org/pkg/xsok",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

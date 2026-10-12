@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msgraph-cli";
       const version = "1.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoftgraph",
           repo: "msgraph-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0"));
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0"));
       const runtimeDeps = nix.thunk(() => [libsecret]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "mgc",
         description: "Microsoft Graph CLI",
         homepage: "https://github.com/microsoftgraph/msgraph-cli",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

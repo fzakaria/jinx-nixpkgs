@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pdf2image = nix.arg($, "pdf2image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unstructured-inference",
       version: "1.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unstructured-IO",
           repo: "unstructured-inference",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["unstructured_inference"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hosted model inference code for layout parsing models",
         homepage: "https://github.com/Unstructured-IO/unstructured-inference",
         changelog: nix.thunk(() => nix.str`https://github.com/Unstructured-IO/unstructured-inference/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ruqola",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "network",
           repo: "ruqola",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtwebsockets")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "KDE client for Rocket Chat",
         homepage: "https://invent.kde.org/network/ruqola",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

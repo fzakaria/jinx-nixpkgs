@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin-sipe";
       const version = "1.25.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sipe/${pname}-${version}.tar.gz`),
           sha256: "0262sz00iqxylx0xfyr48xikhiqzr8pg7b4b7vwj5iv4qxpxv939",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://repo.or.cz/siplcs.git/patch/567d0ddc0692adfef5f15d0d383825a9b2ea4b49",
             sha256: "24L8ZfoOGc3JoTCGxuTNjuHzt5QgFDu1+vSoJpGvde4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://repo.or.cz/siplcs.git/patch/583a734e63833f03d11798b7b0d59a17d08ae60f",
             sha256: "Ai6Czpy/FYvBi4GZR7yzch6OcouJgfreI9HcojhGVV4=",
           })))),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const postInstall = "ln -s $out/lib/purple-2 $out/share/pidgin-sipe";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SIPE plugin for Pidgin IM",
         homepage: "http://sipe.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

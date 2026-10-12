@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "node-client";
       const version = "5.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neovim",
           repo: "node-client",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-bhO52di2NmXk2VI8eFwxVKkPh1yEGJCeWXp3xLBWFFQ=",
         }))));
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-Vl6VPcwDrYAC4HWeY+6eWPl/2+Mw6fkScS5fsrLlWxw=",
         }))));
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/neovim-node-host`);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Nvim msgpack API client and remote plugin provider",
         homepage: "https://github.com/neovim/node-client",
         changelog: nix.thunk(() => nix.str`https://github.com/neovim/node-client/releases/tag/v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "neovim-node-host",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

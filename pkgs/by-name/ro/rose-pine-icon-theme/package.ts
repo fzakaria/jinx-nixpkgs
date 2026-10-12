@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rose-pine-icon-theme",
       version: "unstable-2022-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rose-pine",
           repo: "gtk",
           rev: "7a4c40989fd42fd8d4a797f460c79fc4a085c304",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\nmv icons/rose-pine-icons $out/share/icons/rose-pine\nmv icons/rose-pine-dawn-icons $out/share/icons/rose-pine-dawn\nmv icons/rose-pine-moon-icons $out/share/icons/rose-pine-moon\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rosé Pine icon theme for GTK",
         homepage: "https://github.com/rose-pine/gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

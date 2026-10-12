@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webrecorder",
           repo: "cdxj-indexer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cdxj_indexer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CDXJ Indexing of WARC/ARCs",
         homepage: "https://github.com/webrecorder/cdxj-indexer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cdxj-indexer",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

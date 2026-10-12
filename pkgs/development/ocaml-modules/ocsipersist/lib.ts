@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const lwt_ppx = nix.arg($, "lwt_ppx");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocsipersist-lib",
       version: "2.1.0",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "ocsipersist",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lwt_ppx]),
       propagatedBuildInputs: nix.thunk(() => [js_of_ocaml, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Persistent key/value storage (for Ocsigen) - support library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

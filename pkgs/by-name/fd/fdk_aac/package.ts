@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const exampleSupport = nix.argOr($, "exampleSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fdk-aac",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/opencore-amr/fdk-aac/fdk-aac-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-gptrie7zgkCc2mhX/YKvhPq7Y0F7CO3p6npVP4Ect54=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), exampleSupport, "--enable-example")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-quality implementation of the AAC codec from Android",
         homepage: "https://sourceforge.net/projects/opencore-amr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "fraunhofer-fdk")),

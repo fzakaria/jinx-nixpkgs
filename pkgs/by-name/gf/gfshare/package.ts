@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gfshare",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.gitano.org.uk/libgfshare.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "0s37xn9pr5p820hd40489xwra7kg3gzqrxhc2j9rnxnd489hl0pr",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       outputs: nix.thunk(() => ["bin", "lib", "dev", "out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.gitano.org.uk/libgfshare.git/",
         description: "Shamir's secret-sharing method in the Galois Field GF(2**8)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

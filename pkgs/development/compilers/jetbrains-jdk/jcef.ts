@@ -45,17 +45,17 @@ export default nix.lambda((args) => (() => {
   const thrift = nix.arg($, "thrift");
   const cef_binary = nix.arg($, "cef-binary");
   const buildType = nix.thunk(() => (nix.asBool(debugBuild) ? "Debug" : "Release"));
-  const platform = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const arches = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     linuxarm64: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       depsArch: "arm64",
       projectArch: "arm64",
       targetArch: "arm64",
     })),
     linux64: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       depsArch: "amd64",
       projectArch: "x86_64",
       targetArch: "x86_64",
@@ -66,21 +66,21 @@ export default nix.lambda((args) => (() => {
   const targetArch = nix.thunk(() => nix.attr(arches, "targetArch"));
   const cef_name = nix.thunk(() => nix.str`cef_binary_144.0.15+g72717cf+chromium-144.0.7559.172_${platform}_minimal`);
   const cef_bin = nix.thunk(() => nix.app(nix.sel(cef_binary, "override"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "144.0.15",
       gitRevision: "72717cf",
       chromiumVersion: "144.0.7559.172",
       srcHashes: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "aarch64-linux": "sha256-2w2TDj7LGjYeUjpVvojAsHb8HlqG82AwH8Arg0NxREg=",
         "x86_64-linux": "sha256-JDlZmIEg9ajjuFOL8qAr6HDVbeu3/Cg21Z57fHryfdc=",
       })),
     }))));
   const thrift20 = nix.thunk(() => nix.app(nix.sel(thrift, "overrideAttrs"), (old) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "apache",
           repo: "thrift",
           tag: "v0.20.0",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"])),
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "thrift-add-missing-cstdint-include-gcc15.patch",
             url: "https://github.com/apache/thrift/commit/947ad66940cfbadd9b24ba31d892dfc1142dd330.patch",
             hash: "sha256-pWcG6/BepUwc/K6cBs+6d74AWIhZ2/wXvCunb/KyB0s=",
@@ -115,14 +115,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [boost, libGL, libx11, libxdamage, nss, nspr, thrift20]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "jetbrains",
           repo: "jcef",
           rev: rev,
           hash: "sha256-eYn1T4cRrHeVDSye6FKBv8X3zZPDGFurk6HJG+jPypY=",
         }))));
       const clang_fmt = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           url: "https://storage.googleapis.com/chromium-clang-format/dd736afb28430c9782750fc0fd5f0ed497399263",
           hash: "sha256-4H6FVO9jdZtxH40CSfS+4VESAHgYgYxfCBFSMHdT0hE=",
         }))));
@@ -195,7 +195,7 @@ runHook postInstall
       const dontStrip = debugBuild;
       const postFixup = "# stripJavaArchivesHook gets rid of jar file timestamps, but not of jmod file timestamps\n# We have to manually call strip-nondeterminism to do this for jmod files too\nfind $out -name \"*.jmod\" -exec strip-nondeterminism --type jmod {} +\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Jetbrains' fork of JCEF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/JetBrains/JCEF",
@@ -206,7 +206,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname,
         rev,
         version,

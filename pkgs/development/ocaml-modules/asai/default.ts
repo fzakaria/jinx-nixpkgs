@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const algaeff = nix.arg($, "algaeff");
   const bwd = nix.arg($, "bwd");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asai",
       version: "0.3.1",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedPRL",
           repo: "asai",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [algaeff, bwd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for constructing and printing compiler diagnostics",
         homepage: "https://redprl.org/asai/asai/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

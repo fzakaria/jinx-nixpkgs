@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const kyua = nix.arg($, "kyua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlmmj",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlmmj",
           repo: "mlmmj",
           tag: nix.thunk(() => nix.add("RELEASE_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["ac_cv_func_malloc_0_nonnull=yes", "ac_cv_func_realloc_0_nonnull=yes"]))),
       postInstall: "# grab all documentation files\ndocfiles=$(find -maxdepth 1 -name \"[[:upper:]][[:upper:]]*\")\ninstall -vDm 644 -t $out/share/doc/mlmmj/ $docfiles\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://mlmmj.org",
         description: "Mailing List Management Made Joyful",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

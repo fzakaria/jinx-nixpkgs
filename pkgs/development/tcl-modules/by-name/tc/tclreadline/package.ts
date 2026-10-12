@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const tk = nix.arg($, "tk");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tclreadline",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightaware",
           repo: "tclreadline",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "needed_libraries=$(ls .libs | grep '\\.\\(so\\|la\\)$')\nfor lib in $needed_libraries; do\n  if ! ls $out/lib | grep \"$lib\"; then\n    echo \"$lib was not installed correctly\"\n    exit 1\n  fi\ndone\nfor executable in $out/bin/{wishrl,tclshrl}; do\n  patchelf --set-rpath \\\n    \"$(patchelf --print-rpath \"$executable\" | sed \"s@$builddir/.libs@$out/lib@\")\" \\\n    \"$executable\"\ndone\n")),
       tclRequiresCheck: nix.thunk(() => ["tclreadline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU readline for interactive tcl shells",
         homepage: "https://github.com/flightaware/tclreadline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

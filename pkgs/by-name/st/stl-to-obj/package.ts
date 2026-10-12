@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stl-to-obj",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Neizvestnyj",
           repo: "stl-to-obj",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Add missing cstdint include\n# ref. https://github.com/Neizvestnyj/stl-to-obj/pull/12\nfor filename in \\\n  stl2obj/src/mode.cpp \\\n  stl2obj/src/obj_to_stl/StlWriter.cpp \\\n  stl2obj/src/stl_to_obj/importstl.cpp \\\n  stl2obj/src/stl_to_obj/kdtree.h\ndo\n  echo \"$(echo '#include <cstdint>'; cat $filename)\" > $filename\ndone\n\n# Install main executable\n# ref. https://github.com/Neizvestnyj/stl-to-obj/pull/13\necho \"install(TARGETS stl2obj DESTINATION $\"\"{CMAKE_INSTALL_BINDIR})\" >> CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ stl to obj file converter and vice versa",
         homepage: "https://github.com/Neizvestnyj/stl-to-obj",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

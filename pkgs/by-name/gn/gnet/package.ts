@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnet",
       version: "2.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "Archive",
           repo: "gnet",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libtool]),
       preConfigure: "./autogen.sh",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network library, written in C, object-oriented, and built upon GLib",
         homepage: "https://gitlab.gnome.org/Archive/gnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

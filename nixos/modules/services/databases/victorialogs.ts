@@ -45,41 +45,41 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`-httpAuth.username=${nix.sel(cfg, "basicAuthUsername")}`),
     ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)), nix.thunk(() => ["-httpAuth.password=file://%d/basic_auth_password"])))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         victorialogs: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "VictoriaLogs is an open source user-friendly database for logs from VictoriaMetrics")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "victorialogs", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: ":9428",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "TCP address to listen for incoming http requests.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "victorialogs",
               description: "Directory below `/var/lib` to store VictoriaLogs data.\nThis directory will be created automatically using systemd's StateDirectory mechanism.\n",
             })))),
           basicAuthUsername: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Basic Auth username used to protect VictoriaLogs instance by authorization\n",
             })))),
           basicAuthPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "File that contains the Basic Auth password used to protect VictoriaLogs instance by authorization\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[\n  \"-loggerLevel=WARN\"\n]\n")),
@@ -89,26 +89,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "basicAuthUsername"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "basicAuthUsername"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)))))),
             message: "Both basicAuthUsername and basicAuthPasswordFile must be set together to enable basicAuth functionality, or neither should be set.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             victorialogs: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "VictoriaLogs logs database",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               startLimitBurst: 5n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
                     nix.thunk(() => nix.app(escapeShellArgs, startCLIList)),
                     nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "extraOptions")))),

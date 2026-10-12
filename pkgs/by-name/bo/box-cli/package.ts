@@ -17,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const platform = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "platforms", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "box-cli",
       version: nix.thunk(() => nix.attr(sources, "version")),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ariana-dot-dev/agent-server/releases/download/${nix.sel(sources, "tag")}/${nix.sel(platform, "filename")}`),
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
       dontUnpack: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 $src $out/bin/box\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for Ascii Box cloud sandboxes",
         homepage: "https://ascii.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

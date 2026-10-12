@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const lsof = nix.arg($, "lsof");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "explain",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libexplain/libexplain-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KIY7ZezMdJNOI3ysQTZMs8GALDbJ4jGO0EF0YP7oP4A=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const debian_src = "https://sources.debian.org/data/main";
         const debian_ver = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}.D001-17`);
         const debian_patch = (fname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: fname,
             url: nix.thunk(() => nix.str`${debian_src}/libe/libexplain/${debian_ver}/debian/patches/${fname}`),
             hash: hash,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [acl, libcap, lsof]),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library and utility to explain system call errors",
         mainProgram: "explain",
         homepage: "https://libexplain.sourceforge.net",

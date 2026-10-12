@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mqttx-cli",
       version: "1.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emqx",
           repo: "MQTTX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-aUxhCUx89Qrqkv0zvgMZhC6SUQlxFoJs2elYtUlMio4=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/cli/yarn.lock`),
           hash: "sha256-bhqZLZRRAgsvxo2uAS7x77b5OtGn6x/M2tM72UI1Ayc=",
         })))),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nyarn --offline --ignore-engines build\nrunHook postBuild\n",
       postInstall: "# rename binary so it does not conflict with the desktop app\nmv $out/bin/mqttx $out/bin/mqttx-cli\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: mqttx_cli })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: mqttx_cli })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "MQTTX Command Line Tools",
         homepage: "https://mqttx.app/",
         changelog: nix.thunk(() => nix.str`https://mqttx.app/changelogs/v${nix.sel(finalAttrs, "version")}`),

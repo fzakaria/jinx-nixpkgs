@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const stalwartEnterprise = nix.argOr($, "stalwartEnterprise", () => false);
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.add("stalwart", nix.app(nix.sel(lib, "optionalString"), stalwartEnterprise, "-enterprise"))),
       version: "0.15.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stalwartlabs",
           repo: "stalwart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "stalwart"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: true,
         OPENSSL_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), openssl)),
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         ZSTD_SYS_USE_PKG_CONFIG: true,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isArmv7")))))), nix.thunk(() => ({ __proto__: pos$3, JEMALLOC_SYS_WITH_LG_PAGE: 16n }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isArmv7")))))), nix.thunk(() => ({ [nix.POS]: pos$3, JEMALLOC_SYS_WITH_LG_PAGE: 16n }))))),
       postInstall: "mkdir -p $out/etc/stalwart\n\nmkdir -p $out/lib/systemd/system\n\nsubstitute resources/systemd/stalwart-mail.service $out/lib/systemd/system/stalwart.service \\\n  --replace-fail \"__PATH__\" \"$out\"\n",
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => [
           "directory::imap::imap_directory",
@@ -102,15 +102,15 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         rocksdb: rocksdb,
         webadmin: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./webadmin.nix"), nix.thunk(() => ({})))),
         "spam-filter": nix.thunk(() => nix.app(callPackage, nix.path(here, "./spam-filter.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, stalwart: nix.thunk(() => nix.sel(nixosTests, "stalwart")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, stalwart: nix.thunk(() => nix.sel(nixosTests, "stalwart")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Secure, modern, all-in-one mail and collaboration server",
         longDescription: "Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV).\n",
         homepage: "https://github.com/stalwartlabs/stalwart",

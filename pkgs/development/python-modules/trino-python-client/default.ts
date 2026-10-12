@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.338.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "trino-python-client",
           owner: "trinodb",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [lz4, orjson, python_dateutil, pytz, requests, tzlocal, zstandard]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           kerberos: nix.thunk(() => [requests_kerberos]),
           gsaapi: nix.thunk(() => [requests_gssapi]),
           sqlalchemy: nix.thunk(() => [sqlalchemy]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         "test_multithreaded_oauth2_authentication_flow",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/trinodb/trino-python-client/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Client for the Trino distributed SQL Engine",
         homepage: "https://github.com/trinodb/trino-python-client",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

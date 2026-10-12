@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtmultimedia = nix.arg($, "qtmultimedia");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qmltermwidget",
       version: "0.2.0-unstable-2022-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Swordfish90",
           repo: "qmltermwidget",
           rev: "63228027e1f97c24abb907550b22ee91836929c5",
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [qtbase, qtmultimedia]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-qmltermwidget-lomiri-submissions.patch",
             url: "https://github.com/Swordfish90/qmltermwidget/compare/63228027e1f97c24abb907550b22ee91836929c5..ffc6b2b2a20ca785f93300eca93c25c4b74ece17.patch",
             hash: "sha256-1GjC2mdfP3NpePDWZaT8zvIq3vwWIZs+iQ9o01iQtD4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-qmltermwidget-Mark-ColorSchemeManager-singleton-as-C++-owned.patch",
             url: "https://github.com/gber/qmltermwidget/commit/f3050bda066575eebdcff70fc1c3a393799e1d6d.patch",
             hash: "sha256-O8fEpVLYMze6q4ps7RDGbNukRmZZBjLwqmvRqpp+H+Y=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 `),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "QML port of qtermwidget",
         homepage: "https://github.com/Swordfish90/qmltermwidget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

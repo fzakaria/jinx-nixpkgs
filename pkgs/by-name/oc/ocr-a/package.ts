@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "OCR-A",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ocr-a-font/OCR-A/${nix.sel(finalAttrs, "version")}/OCRA.ttf`),
           sha256: "0kpmjjxwzm84z8maz6lq9sk1b0xv1zkvl28lwj7i0m2xf04qixd0",
         })))),
       dontUnpack: true,
       installPhase: "install -D -m 0644 $src $out/share/fonts/truetype/OCRA.ttf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ANSI OCR font from the '60s. CYBER",
         homepage: "https://sourceforge.net/projects/ocr-a-font/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

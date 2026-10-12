@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const racket = nix.arg($, "racket");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "magic-racket",
         publisher: "evzen-wybitul",
         version: "0.9.0",
@@ -29,7 +29,7 @@ jq '.contributes.configuration.properties."magicRacket.general.racketPath".defau
 jq '.contributes.configuration.properties."magicRacket.general.racoPath".default = "${racket}/bin/raco"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/evzen-wybitul.magic-racket/changelog",
         description: "Best coding experience for Racket in VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=evzen-wybitul.magic-racket",

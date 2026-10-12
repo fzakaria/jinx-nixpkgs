@@ -18,39 +18,39 @@ const pos$12 = nix.positions(here + "/gocryptfs.nix", [["machine", 7, 9]]);
 const pos$13 = nix.positions(here + "/gocryptfs.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 32, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$13,
+  [nix.POS]: pos$13,
   name: "gocryptfs",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "gocryptfs")),
             nix.thunk(() => nix.sel(pkgs, "openssl")),
           ]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$4,
-          fuse: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$4,
+          fuse: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "fstab-test": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             configuration: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               virtualisation: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 fileSystems: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   "/plain": nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     device: "/encrypted",
                     fsType: "fuse.gocryptfs",
                     options: nix.thunk(() => ["nofail", "allow_other", "passfile=/tmp/password.txt"]),

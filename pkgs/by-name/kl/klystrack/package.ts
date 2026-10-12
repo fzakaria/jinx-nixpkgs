@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_image = nix.arg($, "SDL2_image");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "klystrack",
       version: "1.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kometbomb",
           repo: "klystrack",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_image]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kometbomb/klystrack/commit/bb537595d02140176831c4a1b8e9121978b32d22.patch",
             hash: "sha256-sb7ZYf27qfmWp8RiZFIIOpUJenp0hNXvTAM8LgFO9Bk=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
         "CFG=release",
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin.release/klystrack $out/bin/klystrack\n\nmkdir -p $out/lib/klystrack\ncp -R res $out/lib/klystrack\ncp -R key $out/lib/klystrack\n\ninstall -DT icon/256x256.png $out/share/icons/hicolor/256x256/apps/klystrack.png\nmkdir -p $out/share/applications\nsubstitute linux/klystrack.desktop $out/share/applications/klystrack.desktop \\\n  --replace \"klystrack %f\" \"$out/bin/klystrack %f\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Chiptune tracker",
         homepage: "https://kometbomb.github.io/klystrack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

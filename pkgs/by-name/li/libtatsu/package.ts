@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libimobiledevice_glue = nix.arg($, "libimobiledevice-glue");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libtatsu",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "libtatsu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export PACKAGE_VERSION=${nix.sel(finalAttrs, "version")}
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libplist, libimobiledevice_glue, curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library handling the communication with Apple's Tatsu Signing Server (TSS)",
         homepage: "https://github.com/libimobiledevice/libtatsu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const wayfire = nix.arg($, "wayfire");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wayfire-wrapped",
       version: nix.thunk(() => nix.attr(wayfire, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => nix.concat([wayfire], plugins)),
       postBuild: "for binary in $out/bin/*; do\n  wrapProgram $binary \\\n    --prefix WAYFIRE_PLUGIN_PATH : $out/lib/wayfire \\\n    --prefix WAYFIRE_PLUGIN_XML_PATH : $out/share/wayfire/metadata\ndone\n",
       preferLocalBuild: true,
-      passthru: nix.thunk(() => nix.update(nix.sel(wayfire, "passthru"), { __proto__: pos$1, unwrapped: wayfire })),
+      passthru: nix.thunk(() => nix.update(nix.sel(wayfire, "passthru"), { [nix.POS]: pos$1, unwrapped: wayfire })),
       meta: nix.thunk(() => nix.update(nix.sel(wayfire, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         outputsToInstall: nix.thunk(() => ["out"]),
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(wayfire, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),

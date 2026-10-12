@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.thunk(() => nix.attr(pkgs, "buildPackages"));
   const callPackage = nix.thunk(() => nix.attr(pkgs, "callPackage"));
   const libconfig_generator = nix.thunk(() => nix.app(nix.sel(buildPackages, "rustPlatform", "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "libconfig-generator",
       version: "0.1.0",
       src: nix.path(here, "./src"),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./src/Cargo.lock") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./src/Cargo.lock") })),
     }))));
   const libconfig_validator = nix.thunk(() => nix.app(nix.sel(buildPackages, "runCommandCC"), "libconfig-validator", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       buildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(buildPackages, null);
         return [nix.thunk(() => nix.lookup(w, "libconfig"))];
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
 $CC -lconfig -x c - -o "$out/bin/libconfig-validator" ${nix.path(here, "./validator.c")}
 `)));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const generator = nix.argOr($_1, "generator", () => nix.force(libconfig_generator));
       const validator = nix.argOr($_1, "validator", () => nix.force(libconfig_validator));
       return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         generator: generator,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -64,16 +64,16 @@ $CC -lconfig -x c - -o "$out/bin/libconfig-validator" ${nix.path(here, "./valida
               nix.thunk(() => nix.lookup(w, "path")),
               nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), valueType)),
               nix.thunk(() => nix.app(nix.lookup(w, "listOf"), valueType)),
-            ])), { __proto__: pos$5, description: "libconfig value" }));
+            ])), { [nix.POS]: pos$5, description: "libconfig value" }));
           return nix.app(nix.lookup(w, "attrsOf"), valueType);
         })()),
         lib: nix.thunk(() => ({
-          __proto__: pos$11,
-          mkHex: (value) => ({ __proto__: pos$6, _type: "hex", value: value }),
-          mkOctal: (value) => ({ __proto__: pos$7, _type: "octal", value: value }),
-          mkFloat: (value) => ({ __proto__: pos$8, _type: "float", value: value }),
-          mkArray: (value) => ({ __proto__: pos$9, _type: "array", value: value }),
-          mkList: (value) => ({ __proto__: pos$10, _type: "list", value: value }),
+          [nix.POS]: pos$11,
+          mkHex: (value) => ({ [nix.POS]: pos$6, _type: "hex", value: value }),
+          mkOctal: (value) => ({ [nix.POS]: pos$7, _type: "octal", value: value }),
+          mkFloat: (value) => ({ [nix.POS]: pos$8, _type: "float", value: value }),
+          mkArray: (value) => ({ [nix.POS]: pos$9, _type: "array", value: value }),
+          mkList: (value) => ({ [nix.POS]: pos$10, _type: "list", value: value }),
         })),
         generate: (name) => (value) => nix.app(callPackage, nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
@@ -82,7 +82,7 @@ $CC -lconfig -x c - -o "$out/bin/libconfig-validator" ${nix.path(here, "./valida
             const libconfig_validator_1 = nix.arg($_2, "libconfig-validator");
             const writeText = nix.arg($_2, "writeText");
             return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 name: name,
                 dontUnpack: true,
                 preferLocalBuild: true,
@@ -96,12 +96,12 @@ $CC -lconfig -x c - -o "$out/bin/libconfig-validator" ${nix.path(here, "./valida
                 installPhase: "runHook preInstall\nmv output.cfg $out\nrunHook postInstall\n",
                 __structuredAttrs: true,
                 passthru: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   json: nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}.json`), nix.thunk(() => nix.sel(finalAttrs, "json")))),
                 })),
               }));
           })(), formals$3), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "libconfig-generator": generator,
             "libconfig-validator": validator,
           }))),

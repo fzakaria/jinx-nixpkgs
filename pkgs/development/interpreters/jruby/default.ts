@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const rubyVersion = nix.thunk(() => nix.app(mkRubyVersion, "3", "4", "2", ""));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jruby",
       version: "10.0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo1.maven.org/maven2/org/jruby/jruby-dist/${nix.sel(finalAttrs, "version")}/jruby-dist-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-uKAm84qphGGgTtCqCyCJHOJX7L5T4SRxnOnuW4BFJfE=",
         })))),
@@ -59,12 +59,12 @@ EOF
         const rubyEngine = "jruby";
         const gemPath = nix.thunk(() => nix.str`lib/${rubyEngine}/gems/${nix.sel(rubyVersion, "libDir")}`);
         const libPath = nix.thunk(() => nix.str`lib/${rubyEngine}/${nix.sel(rubyVersion, "libDir")}`);
-        const devEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../ruby/dev.nix"), nix.thunk(() => ({ __proto__: pos$2, ruby: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) }))));
-        const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://github.com/jruby/jruby.git" }))));
-        return { __proto__: pos$4, rubyEngine, gemPath, libPath, devEnv, updateScript };
+        const devEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../ruby/dev.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ruby: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) }))));
+        const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://github.com/jruby/jruby.git" }))));
+        return { [nix.POS]: pos$4, rubyEngine, gemPath, libPath, devEnv, updateScript };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ruby interpreter written in Java",
         homepage: "https://www.jruby.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jruby/jruby/releases/tag/${nix.sel(finalAttrs, "version")}`),

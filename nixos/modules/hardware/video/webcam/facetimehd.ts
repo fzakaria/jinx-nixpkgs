@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "facetimehd"));
   const kernelPackages = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         facetimehd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the facetimehd kernel module")),
           withCalibration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               example: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -40,19 +40,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           kernelModules: nix.thunk(() => ["facetimehd"]),
           blacklistedKernelModules: nix.thunk(() => ["bdc_pci"]),
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(kernelPackages, "facetimehd"))]),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           firmware: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "facetimehd-firmware"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "withCalibration")), nix.thunk(() => nix.sel(pkgs, "facetimehd-calibration"))))),
         })),
         powerManagement: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           powerDownCommands: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/lsmod | ${nix.sel(pkgs, "gnugrep")}/bin/grep -q "^facetimehd" && ${nix.sel(pkgs, "kmod")}/bin/rmmod -f -v facetimehd
 `),
           resumeCommands: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/modprobe -v facetimehd

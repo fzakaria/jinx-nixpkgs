@@ -36,24 +36,24 @@ export default nix.lambda((args) => (() => {
   const statsPort = 8233n;
   const gitPort = 8418n;
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "soft-serve",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dadada"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -63,8 +63,8 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              __proto__: pos$3,
-              sshKey: nix.thunk(() => ({ __proto__: pos$2, source: snakeOilPrivateKey, mode: "0600" })),
+              [nix.POS]: pos$3,
+              sshKey: nix.thunk(() => ({ [nix.POS]: pos$2, source: snakeOilPrivateKey, mode: "0600" })),
             })),
           })),
         };
@@ -73,29 +73,29 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "soft-serve": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: "TestServer",
                 ssh: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(sshPort)}`),
                 })),
                 git: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(gitPort)}`),
                 })),
                 http: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(httpPort)}`),
                 })),
                 stats: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(statsPort)}`),
                 })),
                 initial_admin_keys: nix.thunk(() => [snakeOilPublicKey]),
@@ -103,9 +103,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             firewall: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               allowedTCPPorts: nix.thunk(() => [sshPort, httpPort, statsPort]),
             })),
           })),

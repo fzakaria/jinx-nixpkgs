@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const mypy = nix.arg($, "mypy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eth-utils",
       version: "6.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "eth-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_install_local_wheel"]),
       disabledTestPaths: nix.thunk(() => ["tests/core/functional-utils/test_type_inference.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/eth-utils/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/release_notes.rst`),
         description: "Common utility functions for codebases which interact with ethereum",
         homepage: "https://github.com/ethereum/eth-utils",

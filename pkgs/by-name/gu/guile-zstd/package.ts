@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-zstd",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "notabug.org",
           owner: "guile-zstd",
           repo: "guile-zstd",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Guile library providing bindings to zstd",
         homepage: "https://notabug.org/guile-zstd/guile-zstd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

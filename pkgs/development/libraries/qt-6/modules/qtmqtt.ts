@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
       const pname = "qtmqtt";
       const version = "6.11.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qt",
           repo: "qtmqtt",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Xg4vfVfYgruRXB6LSWFJWSMtsClJMtML+KhaQExWUGs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [qtbase]);
-      return { __proto__: pos$2, pname, version, src, propagatedBuildInputs };
+      return { [nix.POS]: pos$2, pname, version, src, propagatedBuildInputs };
     })()));
 })(), formals$1);
 //# sourceMappingURL=qtmqtt.ts.map

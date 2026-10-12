@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pname = "monitoring-plugins";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "monitoring-plugins",
           repo: "monitoring-plugins",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -81,7 +81,7 @@ configureFlagsArray+=(
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official monitoring plugins for Nagios/Icinga/Sensu and others",
         homepage: "https://www.monitoring-plugins.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -95,7 +95,7 @@ configureFlagsArray+=(
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

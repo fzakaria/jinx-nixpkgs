@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "cri-o",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "podman", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       crio: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
-          "cri-o": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          "cri-o": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
       })),
     })),

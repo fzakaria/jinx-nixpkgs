@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tf_keras = nix.arg($, "tf-keras");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "energyflow",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pkomiske",
           repo: "EnergyFlow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [h5py, numpy, wasserstein]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [igraph, scikit_learn, tensorflow]),
         archs: nix.thunk(() => [scikit_learn, tensorflow]),
         generation: nix.thunk(() => [igraph]),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_emd_byhand_1_1", "test_emd_return_flow", "test_emde"])))),
       pythonImportsCheck: nix.thunk(() => ["energyflow"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python package for the EnergyFlow suite of tools",
         homepage: "https://energyflow.network/",
         changelog: nix.thunk(() => nix.str`https://github.com/thaler-lab/EnergyFlow/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

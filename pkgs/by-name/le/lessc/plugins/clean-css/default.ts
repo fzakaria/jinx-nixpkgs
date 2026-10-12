@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const lessc = nix.arg($, "lessc");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "less-plugin-clean-css",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "less",
           repo: "less-plugin-clean-css",
           rev: "b2c3886b7af67ab45a5568e7758bbc2d5b82b112",
@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-uAYXFxOoUo8tLrYqNeUFMRuaYp2GArGMLaaes1QhLp4=",
       dontNpmBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               assertion: "lessc compiles a basic less file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "body h1{color:red}\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   nativeBuildInputs: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lessc, "withPlugins"), (p) => [nix.thunk(() => nix.sel(p, "clean-css"))])),
                   ]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/less/less-plugin-clean-css",
         description: "Post-process and compress CSS using clean-css",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -20,9 +20,9 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const lib = nix.arg($_1, "lib");
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       options: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
       })),
     };
@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const lib = nix.arg($_1, "lib");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       options: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         group: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nothing")),
         })),
       })),
     };
   })(), formals$3);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => [typeless, childOfTypeless]),
     config: nix.thunk(() => ({
-      __proto__: pos$7,
-      group: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+      [nix.POS]: pos$7,
+      group: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
     })),
   };
 })(), formals$1);

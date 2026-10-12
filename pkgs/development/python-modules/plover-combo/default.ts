@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const wheel = nix.arg($, "wheel");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plover-combo",
       version: "2.0.0-unstable-2025-09-11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opensteno",
           repo: "plover_combo",
           rev: "82e4b498bd0d7878af4e60fd26453362f41132a8",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       dependency: nix.thunk(() => nix.concat([plover], nix.sel(plover, "optional-dependencies", "gui-qt"))),
       pythonImportsCheck: nix.thunk(() => ["plover_combo", "plover_combo.combo_ui"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Combo Mode for Plover",
         homepage: "https://github.com/opensteno/plover_combo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

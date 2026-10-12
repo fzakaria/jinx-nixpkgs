@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const compiler = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "clang" : (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "gcc" : nix.builtins.throw("unsupported compiler"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wuffs",
       version: "0.4.0-alpha.9",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "wuffs",
           tag: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => (() => {
         const pkgconfig = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./wuffs.pc"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             LIB: nix.thunk(() => nix.builtins.placeholder("lib")),
             DEV: nix.thunk(() => nix.builtins.placeholder("dev")),
             DESCRIPTION: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -58,14 +58,14 @@ install -Dm444 ${pkgconfig} "$dev/lib/pkgconfig/wuffs.pc"
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/google/wuffs",
         description: "memory-safe programming language and standard library for wrangling untrusted data",
         mainProgram: "wuffs",

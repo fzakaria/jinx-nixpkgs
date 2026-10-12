@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const yamale = nix.arg($, "yamale");
   const yamllint = nix.arg($, "yamllint");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chart-testing",
       version: "3.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helm",
           repo: "chart-testing",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ installShellCompletion --cmd ct \\
 wrapProgram $out/bin/ct --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, git, kubectl, kubernetes_helm, yamale, yamllint]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for testing Helm charts",
         homepage: "https://github.com/helm/chart-testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

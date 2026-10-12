@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libkiconv = nix.arg($, "libkiconv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/mount_msdosfs",
       extraPaths: nix.thunk(() => ["sbin/mount"]),
       buildInputs: nix.thunk(() => [libkiconv]),

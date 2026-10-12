@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "r2mod_cli",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://thunderstore.io/package/download/Foldex/r2mod_cli/${nix.sel(finalAttrs, "version")}/`),
           hash: "sha256-J7ybNZa44/H+AjQ7L949I3iClXoDwinl/ITMK/QsTR0=",
           extension: "zip",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/r2mod --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq, p7zip]))}";
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Risk of Rain 2 Mod Manager in Bash",
         homepage: "https://thunderstore.io/package/Foldex/r2mod_cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

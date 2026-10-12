@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "remote-explorer",
         publisher: "ms-vscode",
         version: "0.5.0",
         sha256: "sha256-BNsnetpddxv3Y9MjZERU5jOq1I2g6BNFF1rD7Agpmr8=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual Studio Code extension to view remote machines for SSH and Tunnels",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-explorer",
         homepage: "https://github.com/Microsoft/vscode-remote-release",

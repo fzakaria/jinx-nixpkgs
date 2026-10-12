@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const patch = nix.arg($, "patch");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-core",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       propagatedBuildInputs: nix.thunk(() => [jsonm, ocamlgraph, uutf, re, sha, swhid_core, patch]),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Small standard library extensions, and generic system interaction modules used by opam",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

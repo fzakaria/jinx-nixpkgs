@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "distrobuilder-nixos-generator",
       src: src,
       version: version,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kubeswitch = nix.arg($, "kubeswitch");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kubeswitch",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielfoehrKn",
           repo: "kubeswitch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "mv $out/bin/main $out/bin/switcher\nfor shell in bash zsh fish; do\n  $out/bin/switcher --cmd switcher completion $shell > switcher.$shell\n  installShellCompletion --$shell switcher.$shell\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: kubeswitch })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: kubeswitch })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/danielfoehrKn/kubeswitch/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Kubectx for operators, a drop-in replacement for kubectx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

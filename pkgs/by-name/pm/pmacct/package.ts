@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const gnutls = nix.arg($, "gnutls");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "1.7.9",
       pname: "pmacct",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pmacct",
           repo: "pmacct",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,23 +54,23 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, libtool]),
       buildInputs: nix.thunk(() => nix.concat([libcdada, libpcap], nix.concat(nix.app(nix.sel(lib, "optional"), withKafka, rdkafka), nix.concat(nix.app(nix.sel(lib, "optional"), withJansson, jansson), nix.concat(nix.app(nix.sel(lib, "optional"), withNflog, libnetfilter_log), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, sqlite), nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, libpq), nix.concat(nix.app(nix.sel(lib, "optionals"), withMysql, nix.thunk(() => [libmysqlclient, zlib, numactl])), nix.app(nix.sel(lib, "optional"), gnutlsSupport, gnutls))))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MYSQL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withMysql, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), libmysqlclient)}/bin/mysql_config`))),
       })),
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--with-pcap-includes=${libpcap}/include`)], nix.concat(nix.app(nix.sel(lib, "optional"), withKafka, "--enable-kafka"), nix.concat(nix.app(nix.sel(lib, "optional"), withJansson, "--enable-jansson"), nix.concat(nix.app(nix.sel(lib, "optional"), withNflog, "--enable-nflog"), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "--enable-sqlite3"), nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, "--enable-pgsql"), nix.concat(nix.app(nix.sel(lib, "optional"), withMysql, "--enable-mysql"), nix.app(nix.sel(lib, "optional"), gnutlsSupport, "--enable-gnutls"))))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "pmacct -V",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Small set of multi-purpose passive network monitoring tools",
         longDescription: "pmacct is a small set of multi-purpose passive network monitoring tools\n[NetFlow IPFIX sFlow libpcap BGP BMP RPKI IGP Streaming Telemetry]\n",
         homepage: "http://www.pmacct.net/",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const pname = "tome2";
   const description = "Dungeon crawler similar to Angband, based on the works of Tolkien";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: pname,
       name: pname,
       exec: nix.thunk(() => nix.str`${pname}-x11`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       genericName: pname,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "2.4-unstable-2025-02-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tome2",
           repo: "tome2",
           rev: "3892fbcb1c2446afcb0c34f59e2a24f78ae672c4",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
 cp ${desktopItem}/share/applications/*.desktop $out/share/applications
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: description,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => (() => {

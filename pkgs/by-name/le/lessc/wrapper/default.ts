@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lessc = nix.arg($, "lessc");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "lessc-with-plugins",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildPhase: nix.thunk(() => nix.str`mkdir -p $out/bin

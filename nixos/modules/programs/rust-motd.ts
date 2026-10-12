@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "rust-motd"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const motdConf = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "motd.toml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       __structuredAttrs: true,
       order: nix.thunk(() => nix.attr(cfg, "order")),
       settings: nix.thunk(() => nix.attr(cfg, "settings")),
@@ -53,35 +53,35 @@ export default nix.lambda((args) => (() => {
       ]),
     })), "cat \"$NIX_ATTRS_JSON_FILE\" \\\n  | jq '.settings as $settings\n        | .order\n        | map({ key: ., value: $settings.\"\\(.)\" })\n        | from_entries' -r \\\n  | json2toml /dev/stdin \"$out\"\n"));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "rust-motd": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "rust-motd, a Message Of The Day (MOTD) generator")),
           enableMotdInSSHD: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to let `openssh` print the\nresult when entering a new `ssh`-session.\nBy default either nothing or a static file defined via\n[](#opt-users.motd) is printed. Because of that,\nthe latter option is incompatible with this module.\n",
             })))),
           refreshInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "*:0/5",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Interval in which the {manpage}`motd(5)` file is refreshed.\nFor possible formats, please refer to {manpage}`systemd.time(7)`.\n",
             })))),
           order: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "settings")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "attrNames cfg.settings")),
               description: "The order of the sections in [](#opt-programs.rust-motd.settings).\nBy default they are ordered alphabetically.\n\nContext: since attribute sets in Nix are always\nordered alphabetically internally this means that\n\n```nix\n{\n  uptime = { /* ... */ };\n  banner = { /* ... */ };\n}\n```\n\nwill still have `banner` displayed before `uptime`.\n\nTo work around that, this option can be used to define the order of all keys,\ni.e.\n\n```nix\n{\n  order = [\n    \"uptime\"\n    \"banner\"\n  ];\n}\n```\n\nmakes sure that `uptime` is placed before `banner` in the motd.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(format, "type")))),
               description: "Settings on what to generate. Please read the\n[upstream documentation](https://github.com/rust-motd/rust-motd/blob/main/README.md#configuration)\nfor further information.\n",
             })))),
@@ -89,25 +89,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => nix.eq(nix.sel(config, "users", "motd"), "")),
             message: "`programs.rust-motd` is incompatible with `users.motd`!\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => nix.eq(nix.builtins.sort((a) => (b) => nix.lt(a, b), nix.thunk(() => nix.sel(cfg, "order"))), nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "settings"))))),
             message: "Please ensure that every section from `programs.rust-motd.settings` is present in\n`programs.rust-motd.order`.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "rust-motd": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return nix.concat([nix.thunk(() => nix.lookup(w, "bash"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.selOr(cfg, () => ({}), "settings", "fail_2_ban"), {})), nix.thunk(() => nix.lookup(w, "fail2ban"))));
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
               description: "motd generator",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "update-motd", nix.thunk(() => nix.str`${nix.sel(pkgs, "rust-motd")}/bin/rust-motd ${motdConf} > motd
 `))}`),
                 CapabilityBoundingSet: nix.thunk(() => [""]),
@@ -146,54 +146,54 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "rust-motd": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "refreshInterval")),
               })),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           pam: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               sshd: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 showMotd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableMotdInSSHD")), true)),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           motdFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableMotdInSSHD")), "/var/lib/rust-motd/motd")),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           "rust-motd": nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
-              global: nix.thunk(() => ({ __proto__: pos$23, show_legacy_warning: false })),
+              [nix.POS]: pos$24,
+              global: nix.thunk(() => ({ [nix.POS]: pos$23, show_legacy_warning: false })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           openssh: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "settings"), "last_login")) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "last_login"), {})))), "PrintLastLog no\n")),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];

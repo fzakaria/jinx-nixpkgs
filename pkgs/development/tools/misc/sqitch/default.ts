@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     return nix.concat([nix.thunk(() => nix.lookup(w, "AlgorithmBackoff"))], nix.concat(nix.app(nix.sel(lib, "optional"), mysqlSupport, nix.thunk(() => nix.lookup(w, "DBDmysql"))), nix.concat(nix.app(nix.sel(lib, "optional"), postgresqlSupport, nix.thunk(() => nix.lookup(w, "DBDPg"))), nix.concat(nix.app(nix.sel(lib, "optional"), sqliteSupport, nix.thunk(() => nix.lookup(w, "DBDSQLite"))), nix.app(nix.sel(lib, "optional"), templateToolkitSupport, nix.thunk(() => nix.lookup(w, "TemplateToolkit")))))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sqitch",
       version: nix.thunk(() => nix.sel(sqitch, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -43,7 +43,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sqitch, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

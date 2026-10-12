@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3";
       const minimalOCamlVersion = "4.08";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/LexiFi/ocaml-vdom/archive/refs/tags/${version}.tar.gz`),
           hash: "sha256-mlXOb+KCdHWNL9PAppan7m7JaP83JEjq+tu14JI+NJo=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gen_js_api]);
       const propagatedBuildInputs = nix.thunk(() => [js_of_ocaml_compiler, ojs]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/LexiFi/ocaml-vdom",
         description: "Elm architecture and (V)DOM for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

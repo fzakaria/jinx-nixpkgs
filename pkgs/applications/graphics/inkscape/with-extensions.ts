@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const allExtensions = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (pkg) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) && nix.asBool(!nix.asBool(nix.selOr(pkg, () => false, "meta", "broken")))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), inkscape_extensions))));
   const selectedExtensions = nix.thunk(() => (nix.asBool(nix.eq(inkscapeExtensions, null)) ? nix.force(allExtensions) : nix.force(inkscapeExtensions)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: nix.thunk(() => nix.attr(inkscape, "version")),
       pname: "inkscape-with-extensions",
       outputs: nix.thunk(() => ["out", "man"]),

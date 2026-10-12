@@ -23,10 +23,10 @@ nohup sh -c "sleep 10 && ${exec} '$@' -f;pkill -SIGCONT kodi"
   const execs = nix.thunk(() => nix.builtins.map((core) => (() => {
       const name = nix.thunk(() => nix.sel(core, "core"));
       const path = nix.thunk(() => nix.add(nix.add(core, "/bin/retroarch-"), name));
-      return { __proto__: pos$1, name, path };
+      return { [nix.POS]: pos$1, name, path };
     })(), cores));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kodi-retroarch-advanced-launchers",
       version: "0.2",
       dontBuild: true,
@@ -34,7 +34,7 @@ nohup sh -c "sleep 10 && ${exec} '$@' -f;pkill -SIGCONT kodi"
 ${nix.app(nix.sel(lib, "concatMapStrings"), (exec) => nix.str`ln -s ${nix.app(scriptSh, exec)} $out/bin/kodi-${nix.sel(exec, "name")};`, execs)}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kodi retroarch advanced launchers",
         longDescription: "These retroarch launchers are intended to be used with\nadvanced (emulation) launcher for Kodi since device input is\notherwise caught by both Kodi and the retroarch process.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

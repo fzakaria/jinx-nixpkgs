@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.2";
       const minimalOCamlVersion = "5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/minttea/releases/download/${version}/minttea-${version}.tbz`),
           hash: "sha256-0eB7OuxcPdv9bf2aIQEeir44mQfx5W2AJj7Vb4pGtLI=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [colors, tty]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative styles for TUI applications",
         homepage: "https://github.com/leostera/minttea",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/minttea/blob/${version}/CHANGES.md`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

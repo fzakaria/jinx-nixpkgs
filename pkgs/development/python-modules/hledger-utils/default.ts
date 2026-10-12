@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nobodyinperson",
           repo: "hledger-utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [hledger, perl]);
       const preCheck = "export PATH=$out/bin:$PATH\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities extending hledger",
         homepage: "https://gitlab.com/nobodyinperson/hledger-utils",
         license: nix.thunk(() => (() => {
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

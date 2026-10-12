@@ -22,36 +22,36 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     return (() => {
       const name = "tracee-integration";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.sel(pkgs, "tracee", "meta", "maintainers")),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "hello-world-builder": (pkgs_1) => nix.app(nix.sel(pkgs_1, "dockerTools", "buildImage"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "hello-world",
             tag: "latest",
             config: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               Cmd: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs_1, "hello")}/bin/hello`)]),
             })),
           }))),
       }));
       const nodes = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$6,
-              docker: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              docker: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$8,
-              variables: nix.thunk(() => ({ __proto__: pos$7, PATH: "/tmp/testdir" })),
+              [nix.POS]: pos$8,
+              variables: nix.thunk(() => ({ [nix.POS]: pos$7, PATH: "/tmp/testdir" })),
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs_1, null);
                 return [
@@ -101,7 +101,7 @@ with subtest("run integration tests"):
   ))
 `;
       })());
-      return { __proto__: pos$11, name, meta, passthru, nodes, testScript };
+      return { [nix.POS]: pos$11, name, meta, passthru, nodes, testScript };
     })();
   })(), formals$1)));
 //# sourceMappingURL=tracee.ts.map

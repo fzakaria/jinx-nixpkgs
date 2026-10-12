@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "2.6";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "otpkeyprov",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://keepass.info/extensions/v2/otpkeyprov/OtpKeyProv-${version}.zip`),
           sha256: "1p60k55v2sxnv1varmp0dgbsi2rhjg9kj19cf54mkc87nss5h1ki",
           stripRoot: false,
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Key provider based on one-time passwords",
         homepage: "https://keepass.info/plugins.html#otpkeyprov",
         platforms: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $pluginFilename $out/lib/dotnet/keepass/$pluginFilename\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

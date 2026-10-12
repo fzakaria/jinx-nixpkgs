@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const pname = "hamsket";
   const version = "0.6.5";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/TheGoddessInari/hamsket/releases/download/nightly/Hamsket-${version}.AppImage`),
       sha256: "sha256-r85ZwcalBd/nCIBxOaQk7XClxj7VZtxwky4eWWm2tZ8=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       desktopName: "Hamsket",
       name: pname,
       exec: pname,
       icon: pname,
       categories: nix.thunk(() => ["Network"]),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -41,7 +41,7 @@ install -Dm644 ${appimageContents}/usr/share/icons/hicolor/256x256/apps/hamsket*
 install -Dm644 ${desktopItem}/share/applications/* $out/share/applications
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free and open source messaging and emailing app that combines common web applications into one",
         homepage: "https://github.com/TheGoddessInari/hamsket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

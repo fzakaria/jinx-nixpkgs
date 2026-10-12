@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "e57inspector",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sisakat",
           repo: "e57inspector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "e57inspector-Allow-loading-file-from-CLI.patch",
             url: "https://github.com/nh2/e57inspector/commit/a5a899ee58952ffc2971d18b3734ea405e0020f3.patch",
             hash: "sha256-QRUv0CvX+OdH88CzI/6XjPXnAVIsf6N/Ix/qqCsSaRw=",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 app/e57inspector -t $out/bin\ninstall -Dm755 panorama/e57inspector_panorama -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.sel(nixosTests, "e57inspector")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform E57 file viewer to list and view stored point clouds, images and metadata",
         homepage: "https://github.com/sisakat/e57inspector",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

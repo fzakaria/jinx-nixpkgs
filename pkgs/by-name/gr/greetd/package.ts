@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "greetd",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~kennylevinsen",
           repo: "greetd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pam]),
       postInstall: "for f in man/*; do\n  scdoc < \"$f\" > \"$(sed 's/-\\([0-9]\\)\\.scd$/.\\1/' <<< \"$f\")\"\n  rm \"$f\"\ndone\ninstallManPage man/*\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal and flexible login manager daemon",
         longDescription: "greetd is a minimal and flexible login manager daemon\nthat makes no assumptions about what you want to launch.\nComes with agreety, a simple, text-based greeter.\n",
         homepage: "https://sr.ht/~kennylevinsen/greetd/",

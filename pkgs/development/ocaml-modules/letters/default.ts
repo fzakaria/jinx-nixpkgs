@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pname = "letters";
   const version = "0.4.0";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxidizing",
           repo: "letters",
           tag: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest_lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library for creating and sending emails over SMTP using LWT",
         homepage: "https://github.com/oxidizing/letters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

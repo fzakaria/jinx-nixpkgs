@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withComposefs", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ostree = nix.arg($, "ostree");
-  return nix.app(nix.sel(ostree, "override"), nix.thunk(() => ({ __proto__: pos$1, withComposefs: true })));
+  return nix.app(nix.sel(ostree, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withComposefs: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

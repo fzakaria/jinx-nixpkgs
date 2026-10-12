@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graphql-python",
           repo: "gql",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [anyio, backoff, graphql_core, yarl]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([parse, pytest_asyncio_0, pytest_console_scripts, pytestCheckHook, vcrpy], nix.sel(optional_dependencies, "all")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [aiofiles, aiohttp, botocore, httpx, requests, requests_toolbelt, websockets]),
         aiofiles: nix.thunk(() => [aiofiles]),
         aiohttp: nix.thunk(() => [aiohttp]),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["gql"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GraphQL client in Python",
         homepage: "https://github.com/graphql-python/gql",
         changelog: nix.thunk(() => nix.str`https://github.com/graphql-python/gql/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gql-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

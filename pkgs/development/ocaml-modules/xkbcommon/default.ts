@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xkbcommon",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "talex5",
           repo: "xkbcommon",
           rev: "bcb74feb2a32a41e612ef28c26755181a9ddcff9",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings to libxkbcommon",
         homepage: "https://github.com/talex5/xkbcommon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

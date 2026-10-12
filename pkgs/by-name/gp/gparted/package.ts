@@ -50,17 +50,17 @@ export default nix.lambda((args) => (() => {
   const xfsprogs = nix.arg($, "xfsprogs");
   const xfsdump = nix.arg($, "xfsdump");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gparted",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gparted/gparted-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZziKxAX5/pKkBjbLA7Dh4LtkA62JzMF0sv8ZDvbzI0k=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./polkit.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             polkit_version: nix.thunk(() => nix.sel(polkit, "version")),
           })))),
       ]),
@@ -100,7 +100,7 @@ addToSearchPath "XDG_DATA_DIRS" "${nix.sel(polkit, "out")}/share"
 `),
       postInstall: "install -D -m0644 org.gnome.gparted.policy \\\n  $out/share/polkit-1/actions/org.gnome.gparted.policy\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical disk partitioning tool",
         longDescription: "GNOME Partition Editor for creating, reorganizing, and deleting disk\npartitions. GParted enables you to change the partition organization\nwhile preserving the partition contents.\n",
         homepage: "https://gparted.org",

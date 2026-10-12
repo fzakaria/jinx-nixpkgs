@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snabb",
       version: "2024.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snabbco",
           repo: "snabb",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp src/snabb $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SnabbCo/snabbswitch",
         description: "Simple and fast packet networking toolkit",
         longDescription: "Snabb Switch is a LuaJIT-based toolkit for writing high-speed\npacket networking code (such as routing, switching, firewalling,\nand so on). It includes both a scripting interface for creating\nnew applications and also some built-in applications that are\nready to run.\nIt is especially intended for ISPs and other network operators.\n",

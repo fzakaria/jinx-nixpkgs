@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const libxo = nix.arg($, "libxo");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/procstat",
       buildInputs: nix.thunk(() => [libxo, libsbuf]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "procstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "procstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=procstat.ts.map

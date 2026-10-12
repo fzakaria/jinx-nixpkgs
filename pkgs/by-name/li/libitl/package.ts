@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libitl",
       version: "0.1.8-unstable-2024-05-26",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arabeyes-org",
           repo: "ITL",
           rev: "07de1851722d0818d1f981df234e1b585eb60e05",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Islamic Tools and Libraries (ITL)",
         longDescription: "The Islamic Tools and Libraries (ITL) project provides\na fully featured library for performing common Islamic calculations.\n",
         homepage: "https://www.arabeyes.org/ITL",

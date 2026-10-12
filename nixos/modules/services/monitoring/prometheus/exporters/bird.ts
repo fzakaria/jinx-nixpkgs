@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9324n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       birdVersion: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [1n, 2n]))),
           default: 2n,
           description: "Specifies whether BIRD1 or BIRD2 is in use.\n",
         })))),
       birdSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/run/bird/bird.ctl",
           description: "Path to BIRD2 (or BIRD1 v4) socket.\n",
         })))),
       newMetricFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Enable the new more-generic metric format.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         SupplementaryGroups: "bird",
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-bird-exporter")}/bin/bird_exporter \\
   -web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

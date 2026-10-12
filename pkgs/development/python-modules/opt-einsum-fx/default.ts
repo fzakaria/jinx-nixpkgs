@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opt-einsum-fx",
       version: "0.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Linux-cpp-lisp",
           repo: "opt_einsum_fx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["opt_einsum_fx"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Einsum optimization using opt_einsum and PyTorch FX graph rewriting",
         homepage: "https://github.com/Linux-cpp-lisp/opt_einsum_fx",
         changelog: nix.thunk(() => nix.str`https://github.com/Linux-cpp-lisp/opt_einsum_fx/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

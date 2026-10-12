@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.media-ccc-de";
       const version = "0.3.0+matrix.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/plugin.video.media-ccc-de/plugin.video.media-ccc-de-${version}.zip`),
           hash: "sha256-T8J2HtPVDfaPU0gZEa0xVBzwjNInxkRFCCSxS53QhmU=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, routing]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ __proto__: pos$2, attrPath: "kodi.packages.mediacccde" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.mediacccde" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/voc/plugin.video.media-ccc-de/",
         description: "media.ccc.de for Kodi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         namespace,
         version,

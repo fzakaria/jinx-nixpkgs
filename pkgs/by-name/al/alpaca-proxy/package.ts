@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alpaca-proxy",
       version: "2.0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samuong",
           repo: "alpaca",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# executable is renamed to alpaca-proxy, to avoid collision with the alpaca python application\nmv $out/bin/alpaca $out/bin/alpaca-proxy\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP forward proxy with PAC and NTLM authentication support",
         homepage: "https://github.com/samuong/alpaca",
         changelog: nix.thunk(() => nix.str`https://github.com/samuong/alpaca/releases/tag/v${nix.sel(finalAttrs, "version")}`),

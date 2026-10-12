@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepmind",
           repo: "sonnet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([dm_tree, etils, numpy, tabulate, wrapt], nix.sel(etils, "optional-dependencies", "epath")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, tensorflow: nix.thunk(() => [tensorflow]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tensorflow: nix.thunk(() => [tensorflow]) }));
       const nativeCheckInputs = nix.thunk(() => [
         click,
         docutils,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["sonnet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for building neural networks in TensorFlow",
         homepage: "https://github.com/deepmind/sonnet",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/sonnet/releases/tag/v${version}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

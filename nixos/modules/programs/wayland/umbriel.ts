@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "umbriel"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         umbriel: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Umbriel, a Wayland compositor built on wlroots and SceneFX")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "umbriel", nix.thunk(() => ({})))),
           portalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "xdg-desktop-portal-umbriel", nix.thunk(() => ({})))),
@@ -42,33 +42,33 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             environment: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               user: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 services: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  umbriel: nix.thunk(() => ({ __proto__: pos$7, restartIfChanged: false, enableDefaultPath: false })),
+                  [nix.POS]: pos$8,
+                  umbriel: nix.thunk(() => ({ [nix.POS]: pos$7, restartIfChanged: false, enableDefaultPath: false })),
                 })),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               portal: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 extraPortals: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "portalPackage"))]),
                 configPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "portalPackage"))]),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               lib: lib,
               pkgs: pkgs,
               enableXWayland: false,
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

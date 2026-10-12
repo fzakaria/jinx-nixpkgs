@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const menhirLib = nix.arg($, "menhirLib");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "otoml",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmbaturin",
           repo: "otoml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [menhir]),
       propagatedBuildInputs: nix.thunk(() => [menhirLib, uutf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TOML parsing and manipulation library for OCaml",
         changelog: nix.thunk(() => nix.str`https://github.com/dmbaturin/otoml/raw/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

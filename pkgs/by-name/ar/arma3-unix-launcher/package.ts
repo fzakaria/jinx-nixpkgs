@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const buildDayZLauncher = nix.argOr($, "buildDayZLauncher", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "arma3-unix-launcher",
       version: "420",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muttleyxd",
           repo: "arma3-unix-launcher",
           tag: nix.thunk(() => nix.str`commit-${nix.sel(finalAttrs, "version")}`),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont_fetch_dependencies.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             argparse_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "p-ranav",
                 repo: "argparse",
                 rev: "45664c4e9f05ff287731a9ff8b724d0c89fb6e77",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
             fmt_src: fmt,
             nlohmann_json_src: nlohmann_json,
             pugixml_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "muttleyxd",
                 repo: "pugixml",
                 rev: "simple-build-for-a3ul",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
               })))),
             spdlog_src: spdlog,
             steamworkssdk_src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 url: "https://github.com/julianxhokaxhiu/SteamworksSDKCI/releases/download/1.53/SteamworksSDK-v1.53.0_x64.zip",
                 hash: "sha256-6PQGaPsaxBg/MHVWw2ynYW6LaNSrE9Rd9Q9ZLKFGPFA=",
               })))),
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
             trompeloeil_src: null,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             steamRun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), steam_run)),
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")), cmake, spdlog, curl, curlpp]),
       cmakeFlags: nix.thunk(() => nix.concat(["-Wno-dev"], nix.app(nix.sel(lib, "optionals"), buildDayZLauncher, nix.thunk(() => ["-DBUILD_DAYZ_LAUNCHER=ON"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/muttleyxd/arma3-unix-launcher/",
         description: "Clean, intuitive Arma 3 + DayZ SA Launcher",
         license: nix.thunk(() => (() => {

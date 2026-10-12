@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pefile = nix.arg($, "pefile");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyimpfuzzy",
       version: "0.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyimpfuzzy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-2peW3zAttLBKGXEoY3+EmI8YgvHgj91pu/n9xs+680k=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyimpfuzzy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module which calculates and compares the impfuzzy (import fuzzy hashing)",
         homepage: "https://github.com/JPCERTCC/impfuzzy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

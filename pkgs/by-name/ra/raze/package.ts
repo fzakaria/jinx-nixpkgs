@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raze",
       version: "1.11.0-unstable-2025-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZDoom",
           repo: "Raze",
           rev: "76fe82f5eb318fdeb30ba9fb27093a9a10bc3821",
@@ -57,7 +57,7 @@ install -Dm644 ../source/platform/posix/org.zdoom.Raze.desktop $out/share/applic
 install -Dm644 ../soundfont/raze.sf2 $out/share/raze/soundfonts/raze.sf2
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build engine port backed by GZDoom tech",
         longDescription: "Raze is a fork of Build engine games backed by GZDoom tech and combines\nDuke Nukem 3D, Blood, Redneck Rampage, Shadow Warrior and Exhumed/Powerslave\nin a single package. It is also capable of playing Nam and WW2 GI.\n",
         homepage: "https://github.com/ZDoom/Raze",

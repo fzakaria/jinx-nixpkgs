@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bgnet",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beejjorgensen",
           repo: "bgnet",
           rev: "782a785a35d43c355951b8151628d7c64e4d0346",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -Dm644 src/bgnet.html $out/share/doc/bgnet/html/index.html\n",
       nativeBuildInputs: nix.thunk(() => [python3, pandoc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beej’s Guide to Network Programming",
         homepage: "https://beej.us/guide/bgnet/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

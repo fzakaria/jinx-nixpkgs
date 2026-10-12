@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildDartApplication, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "domine",
       version: "nightly-2023-08-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "breitburg",
           repo: "domine",
           rev: "d99d02b014d009b0201380a21ddaa57696dc77af",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/breitburg/domine",
         mainProgram: "domine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

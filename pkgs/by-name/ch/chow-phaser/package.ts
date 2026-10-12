@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chow-phaser",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jatinchowdhury18",
           repo: "ChowPhaser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/lv2 $out/lib/vst3 $out/bin $out/share/doc/ChowPhaser/\ncd ChowPhaserMono_artefacts/Release\ncp libChowPhaserMono_SharedCode.a  $out/lib\ncp -r VST3/ChowPhaserMono.vst3 $out/lib/vst3\ncp Standalone/ChowPhaserMono  $out/bin\ncd ../../ChowPhaserStereo_artefacts/Release\ncp libChowPhaserStereo_SharedCode.a  $out/lib\ncp -r VST3/ChowPhaserStereo.vst3 $out/lib/vst3\ncp Standalone/ChowPhaserStereo  $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jatinchowdhury18/ChowPhaser",
         description: "Phaser effect based loosely on the Schulte Compact Phasing 'A'",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

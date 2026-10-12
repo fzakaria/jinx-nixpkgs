@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qcal",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~psic4t",
           repo: "qcal",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace helpers.go \\\n  --replace-fail \" config-sample.json \" \" $out/share/qcal/config-sample.json \"\n",
       postInstall: "mkdir -p $out/share/qcal\ncp config-sample.json $out/share/qcal/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI calendar application for CalDAV servers written in Go",
         homepage: "https://git.sr.ht/~psic4t/qcal",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~psic4t/qcal/refs/${nix.sel(finalAttrs, "version")}`),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "elasticsearch-curator"));
   const curatorConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "config.yaml",
       text: nix.thunk(() => nix.str`---
 # Remember, leave a key empty if there is no value.  None will be a string,
@@ -52,39 +52,39 @@ logging:
 `),
     }))));
   const curatorAction = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "action.yaml",
       text: nix.thunk(() => nix.sel(cfg, "actionYAML")),
     }))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "elasticsearch-curator": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "elasticsearch curator")),
           interval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "The frequency to run curator, a systemd.time such as 'hourly'",
               default: "hourly",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           hosts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "a list of elasticsearch hosts to connect to",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["localhost"]),
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "the port that elasticsearch is listening on",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 9200n,
             })))),
           actionYAML: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "curator action.yaml file contents, alternatively use curator-cli which takes a simple action command",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               example: "---\nactions:\n  1:\n    action: delete_indices\n    description: >-\n      Delete indices older than 45 days (based on index name), for logstash-\n      prefixed indices. Ignore the error if the filter does not result in an\n      actionable list of indices (ignore_empty_list) and exit cleanly.\n    options:\n      ignore_empty_list: True\n      disable_action: False\n    filters:\n    - filtertype: pattern\n      kind: prefix\n      value: logstash-\n    - filtertype: age\n      source: name\n      direction: older\n      timestring: '%Y.%m.%d'\n      unit: days\n      unit_count: 45\n",
@@ -93,16 +93,16 @@ logging:
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "elasticsearch-curator": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               startAt: nix.thunk(() => nix.sel(cfg, "interval")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "elasticsearch-curator")}/bin/curator`, nix.str` --config ${curatorConfig} ${curatorAction}`)),
               })),
             })),

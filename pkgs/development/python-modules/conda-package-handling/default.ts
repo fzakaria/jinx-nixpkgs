@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "conda-package-handling";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "conda",
           repo: "conda-package-handling",
           tag: version,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [conda_package_streaming]);
       const pythonImportsCheck = nix.thunk(() => ["conda_package_handling"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create and extract conda packages of various formats",
         homepage: "https://github.com/conda/conda-package-handling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ericthemagician"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

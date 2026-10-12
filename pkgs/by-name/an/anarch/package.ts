@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libxcursor = nix.arg($, "libxcursor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anarch",
       version: "1.0-unstable-2023-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drummyfish",
           repo: "anarch",
           rev: "6f90562161200682459e772f1dacb747f23c5f95",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC -O3 -o anarch main_sdl.c $(sdl2-config --cflags --libs)\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 anarch $out/bin/anarch\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://drummyfish.gitlab.io/anarch/",
         description: "Suckless FPS game",
         maintainers: nix.thunk(() => (() => {

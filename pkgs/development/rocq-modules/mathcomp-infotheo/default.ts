@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       namePrefix: nix.thunk(() => ["coq", "mathcomp"]),
       pname: "infotheo",
       owner: "affeldt-aist",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -64,72 +64,72 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "0.9.8": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-yo+r8RC02a8r3nDpFe5mO+q1qTrdHXKPMDxyFCf+A1k=",
         })),
         "0.9.7": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-cmkBh2vw02R/UivGqaEpg89LMGR/i5Q14IEZDhjFA+Y=",
         })),
         "0.9.6": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-7gwtqTzMMEhUDz2XdxamAqjSdST0HrbWJHQ/YTDRR5E=",
         })),
         "0.9.4": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-btHOBNMdXvlG2jxC04+4qmIjeyuaqtyugm2Ruj3lQr8=",
         })),
         "0.9.3": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-8+cnVKNAvZ3MVV3BpS8UmCIxJphsQRBv3swek1eEBjE=",
         })),
         "0.9.1": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-WI20HxMHr1ZUwOGPIUl+nRI8TxVUa2+F1xcGjRDHO9g=",
         })),
         "0.7.7": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-kEbpMl7U+I2kvqi1VrjhIVFkZFO6h0tTHEUZRbHYG7E=",
         })),
         "0.7.5": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-pzPo+Acjx3vlyqOkSZQ8uT2BDLSTfbAnRm39e+/CqE0=",
         })),
         "0.7.3": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-7+qPtE1KfDmo9ZsQtWMzoR2MYnFpTjFHK/yZYVm+GxA=",
         })),
         "0.7.2": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256-dekrdVmuTcqXXmKhIb831EKtMhbPrXHJZhzmGb9rdRo=",
         })),
         "0.7.1": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-/4Elb35SmscG6EjEcHYDo+AmWrpBUlygZL0WhaD+fcY=",
         })),
         "0.6.1": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256-tFB5lrwRPIlHkP+ebgcJwu03Cc9yVaOINOAo8Bf2LT4=",
         })),
         "0.5.1": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256-yBBl5l+V+dggsg5KM59Yo9CULKog/xxE8vrW+ZRnX7Y=",
         })),
         "0.5.2": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256-8WAnAV53c0pMTdwj8XcUDUkLZbpUgIQbEOgOb63uHQA=",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_analysis_stdlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: "Coq formalization of information theory and linear error-correcting codes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       })),
     }))), "overrideAttrs"), (o) => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(mathcomp, "version"), "dev")) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.5", nix.thunk(() => nix.sel(mathcomp, "version")))))) && nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "0.6.1", nix.thunk(() => nix.sel(o, "version")))) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))))), mathcomp_algebra_tactics), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "0.7.2", nix.thunk(() => nix.sel(o, "version")))) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))), interval)))),
     }));
 })(), formals$1);

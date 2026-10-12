@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.0.3";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mktxp",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akpw",
           repo: "mktxp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n",
       pythonImportsCheck: nix.thunk(() => ["mktxp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/akpw/mktxp",
         changelog: nix.thunk(() => nix.str`https://github.com/akpw/mktxp/releases/tag/v${version}`),
         description: "Prometheus Exporter for Mikrotik RouterOS devices",

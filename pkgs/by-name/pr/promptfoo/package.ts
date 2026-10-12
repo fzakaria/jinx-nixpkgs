@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "promptfoo",
       version: "0.118.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "promptfoo",
           repo: "promptfoo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-MyK533JOVCuO613XWFc2tHLdc4v4IEF8H1xCpS/XxUE=",
         })))),
       npmDepsHash: "sha256-mpe00J5iRwaH7hJIDP3fDuJSUOKk01COpOOvF1YJMyg=",
-      env: nix.thunk(() => ({ __proto__: pos$2, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
       preFixup: "rm -rf $out/lib/node_modules/promptfoo/node_modules/app $out/lib/node_modules/promptfoo/node_modules/promptfoo-docs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Test your prompts, models, RAGs. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality",
         mainProgram: "promptfoo",
         homepage: "https://www.promptfoo.dev/",

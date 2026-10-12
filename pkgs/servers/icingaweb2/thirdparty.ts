@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "icingaweb2-thirdparty";
       const version = "0.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Icinga",
           repo: "icinga-php-thirdparty",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p \"$out\"\ncp -r * \"$out\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           icingaweb2: nix.thunk(() => nix.attr(nixosTests, "icingaweb2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Third party dependencies for Icingaweb 2",
         homepage: "https://github.com/Icinga/icinga-php-thirdparty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "helsinki-Jo"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, installPhase, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=thirdparty.ts.map

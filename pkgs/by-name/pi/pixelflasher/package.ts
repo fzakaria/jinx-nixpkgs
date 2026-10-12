@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pixelflasher",
       version: "9.2.1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "badabing2005",
           repo: "PixelFlasher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "PixelFlasher",
             exec: "pixelflasher",
             icon: "pixelflasher",
@@ -82,11 +82,11 @@ runHook postBuild
       })()),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/icons/hicolor/64x64/apps\ncp dist/PixelFlasher $out/bin/pixelflasher\ncp images/icon-64.png $out/share/icons/hicolor/64x64/apps/pixelflasher.png\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pixel™ phone flashing GUI utility with features",
         homepage: "https://github.com/badabing2005/PixelFlasher",
         changelog: nix.thunk(() => nix.str`https://github.com/badabing2005/PixelFlasher/releases/tag/v${nix.sel(finalAttrs, "version")}`),

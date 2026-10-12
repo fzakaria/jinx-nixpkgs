@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const multipath_tools = nix.arg($, "multipath-tools");
   const dracut = nix.arg($, "dracut");
   const stratisd = nix.arg($, "stratisd");
-  const libblockdevPython = nix.thunk(() => nix.sel(nix.app(nix.sel(libblockdev, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python }))), "python"));
+  const libblockdevPython = nix.thunk(() => nix.sel(nix.app(nix.sel(libblockdev, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))), "python"));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "blivet";
       const version = "3.13.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "storaged-project",
           repo: "blivet",
           tag: nix.thunk(() => nix.str`blivet-${version}`),
@@ -92,7 +92,7 @@ done
       const pythonImportsCheck = nix.thunk(() => ["blivet", "blivet.devicelibs.lvm"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for system storage configuration",
         homepage: "https://github.com/storaged-project/blivet",
         license: nix.thunk(() => [
@@ -106,7 +106,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cogl";
       const version = "1.22.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/cogl/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/cogl-${version}.tar.xz`),
           sha256: "0nfph4ai60ncdx7hy6hl1i1cmp761jgnyjfhagzi0iqq36qb41d8",
         }))));
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         ])))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pangoSupport, nix.thunk(() => [pango, cairo, harfbuzz])));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         COGL_PANGO_DEP_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(pangoSupport))), nix.thunk(() => [
               nix.thunk(() => nix.str`-I${nix.sel(pango, "dev")}/include/pango-1.0`),
               nix.thunk(() => nix.str`-I${nix.sel(cairo, "dev")}/include/cairo`),
@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-std=gnu17"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))))),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Small open source library for using 3D graphics hardware for rendering",
         maintainers: [],
         longDescription: "Cogl is a small open source library for using 3D graphics hardware for\nrendering. The API departs from the flat state machine style of OpenGL\nand is designed to make it easy to write orthogonal components that can\nrender without stepping on each other's toes.\n",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

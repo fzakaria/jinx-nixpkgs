@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libutil = nix.arg($, "libutil");
   const pwd_mkdb = nix.arg($, "pwd_mkdb");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libpam/libpam",
       extraPaths: nix.thunk(() => [
         "lib/libpam",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [
         libradius,
         openssl,
-        nix.thunk(() => nix.app(nix.sel(libutil, "override"), nix.thunk(() => ({ __proto__: pos$1, withPwdMkdb: pwd_mkdb })))),
+        nix.thunk(() => nix.app(nix.sel(libutil, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPwdMkdb: pwd_mkdb })))),
       ]),
       MK_NIS: "no",
       postPatch: "sed -E -i -e /pam_tacplus/d $BSDSRCDIR/lib/libpam/modules/modules.inc\nsed -E -i -e /pam_krb5/d $BSDSRCDIR/lib/libpam/modules/modules.inc\nsed -E -i -e /pam_ksu/d $BSDSRCDIR/lib/libpam/modules/modules.inc\nsed -E -i -e /pam_ssh/d $BSDSRCDIR/lib/libpam/modules/modules.inc\n",

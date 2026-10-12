@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmon",
       version: nix.thunk(() => nix.sel(kernel, "version")),
       src: nix.thunk(() => nix.attr(kernel, "src")),
@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
         "INSTALL_ROOT=\"$(out)\"",
         "BINDIR=bin",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_LINK: "-lgcc_s" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_LINK: "-lgcc_s" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monitoring and Testing Tool for Linux kernel thermal subsystem",
         mainProgram: "tmon",
         homepage: "https://www.kernel.org/",

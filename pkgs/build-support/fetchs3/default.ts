@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const secret_access_key = nix.arg($_2, "secret_access_key");
         const session_token = nix.argOr($_2, "session_token", () => null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           AWS_ACCESS_KEY_ID: access_key_id,
           AWS_SECRET_ACCESS_KEY: secret_access_key,
           AWS_SESSION_TOKEN: session_token,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$3);
       const credentialAttrs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(credentials, null)), nix.thunk(() => nix.app(mkCredentials, credentials))));
       return nix.app(runCommand, name, nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nativeBuildInputs: nix.thunk(() => [awscli2]),
           outputHash: outputHash,
           outputHashAlgo: outputHashAlgo,

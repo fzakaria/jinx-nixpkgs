@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xpadneo",
       version: "0.10.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atar-axis",
           repo: "xpadneo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["modules_install"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, xpadneo: nix.thunk(() => nix.sel(nixosTests, "xpadneo")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, xpadneo: nix.thunk(() => nix.sel(nixosTests, "xpadneo")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([\\d.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Advanced Linux driver for Xbox One wireless controllers",
         homepage: "https://atar-axis.github.io/xpadneo",
         changelog: nix.thunk(() => nix.str`https://github.com/atar-axis/xpadneo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

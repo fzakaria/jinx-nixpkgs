@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "guile";
       const version = "2.2.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.xz`),
           sha256: "013mydzhfswqci6xmyc1ajzd59pfbdak15i0b090nhr9bzm7dxyd",
         }))));
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [boehmgc, gmp, libtool, libunistring]);
       const enableParallelBuilding = false;
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./eai_system.patch")], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(coverageAnalysis, null)), nix.path(here, "./gcov-file-name.patch")), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.gnome.org/GNOME/gtk-osx/raw/52898977f165777ad9ef169f7d4818f2d4c9b731/patches/guile-clocktime.patch",
             sha256: "12wvwdna9j8795x59ldryv9d84c1j3qdk2iskw09306idfsis207",
           }))))))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ __proto__: pos$3, LDFLAGS: "-lgcc_s" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-lgcc_s" }))));
       const configureFlags = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-libreadline-prefix=${nix.app(nix.sel(lib, "getDev"), readline)}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => [
@@ -72,10 +72,10 @@ export default nix.lambda((args) => (() => {
         const effectiveVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version));
         const siteCcacheDir = nix.thunk(() => nix.str`lib/guile/${effectiveVersion}/site-ccache`);
         const siteDir = nix.thunk(() => nix.str`share/guile/site/${effectiveVersion}`);
-        return { __proto__: pos$4, effectiveVersion, siteCcacheDir, siteDir };
+        return { [nix.POS]: pos$4, effectiveVersion, siteCcacheDir, siteDir };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gnu.org/software/guile/",
         description: "Embeddable Scheme implementation",
         longDescription: "GNU Guile is an implementation of the Scheme programming language, with\nsupport for many SRFIs, packaged for use in a wide variety of\nenvironments.  In addition to implementing the R5RS Scheme standard and a\nlarge subset of R6RS, Guile includes a module system, full access to POSIX\nsystem calls, networking support, multiple threads, dynamic linking, a\nforeign function call interface, and powerful string processing.\n",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

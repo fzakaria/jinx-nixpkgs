@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const zoxide = nix.arg($, "zoxide");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "felix",
       version: "2.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyoheiu",
           repo: "felix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [bzip2, libgit2, zlib, zstd]),
       nativeCheckInputs: nix.thunk(() => [zoxide]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       buildFeatures: nix.thunk(() => ["zstd/pkg-config"]),
       checkFlags: nix.thunk(() => [
         "--skip=functions::tests::test_list_up_contents",
         "--skip=state::tests::test_has_write_permission",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tui file manager with vim-like key mapping",
         homepage: "https://github.com/kyoheiu/felix",
         changelog: nix.thunk(() => nix.str`https://github.com/kyoheiu/felix/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

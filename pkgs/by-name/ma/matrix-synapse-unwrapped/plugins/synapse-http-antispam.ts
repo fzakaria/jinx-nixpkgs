@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maunium",
           repo: "synapse-http-antispam",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [matrix_synapse_unwrapped]);
       const dependencies = nix.thunk(() => [twisted]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Synapse module that forwards spam checking to an HTTP server",
         homepage: "https://github.com/maunium/synapse-http-antispam",
         changelog: nix.thunk(() => nix.str`https://github.com/maunium/synapse-http-antispam/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

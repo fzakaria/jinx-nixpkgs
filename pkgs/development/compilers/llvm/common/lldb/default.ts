@@ -44,15 +44,15 @@ export default nix.lambda((args) => (() => {
     const name = "lldb-dap";
     const version_1 = "0.2.0";
     const uniqueId = nix.thunk(() => nix.str`llvm-org.${name}-${version_1}`);
-    return { __proto__: pos$1, name, version: version_1, uniqueId };
+    return { [nix.POS]: pos$1, name, version: version_1, uniqueId };
   })());
   const canRunLldb = nix.thunk(() => (nix.asBool(!nix.asBool(enableManpages)) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lldb",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`lldb-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -130,7 +130,7 @@ ln -s $out/bin/*${nix.sel(vscodeExt, "name")} "$vscodeExtDir/bin"
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         monorepoSrc: monorepoSrc,
         vscodeExtName: nix.thunk(() => nix.sel(vscodeExt, "name")),
         vscodeExtPublisher: "llvm",
@@ -138,21 +138,21 @@ ln -s $out/bin/*${nix.sel(vscodeExt, "name")} "$vscodeExtDir/bin"
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://lldb.llvm.org/",
         description: "Next-generation high-performance debugger",
         longDescription: "LLDB is a next generation, high-performance debugger. It is built as a set\nof reusable components which highly leverage existing libraries in the\nlarger LLVM Project, such as the Clang expression parser and LLVM\ndisassembler.\n",
         mainProgram: "lldb",
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), enableManpages, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "lldb-manpages",
         ninjaFlags: nix.thunk(() => ["docs-lldb-man"]),
         installPhase: "runHook preInstall\n\nmkdir -p $out/share/man/man1\ninstall docs/man/lldb.1 -t $out/share/man/man1/\n\nrunHook postInstall\n",
         postInstall: null,
         outputs: nix.thunk(() => ["out"]),
         meta: nix.thunk(() => nix.update(llvm_meta, {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: nix.thunk(() => nix.str`man pages for LLDB ${version}`),
           homepage: "https://github.com/llvm/llvm-project",
         })),

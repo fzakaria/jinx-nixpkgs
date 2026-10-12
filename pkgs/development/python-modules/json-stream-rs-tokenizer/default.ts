@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smheidrich",
           repo: "py-json-stream-rs-tokenizer",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-D18nMRyCDr2NGBkdo7Lq8gaaMiOXwZAob4DymZwFvW0=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [json_stream]);
       const pythonImportsCheck = nix.thunk(() => ["json_stream_rs_tokenizer"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          runTests: nix.thunk(() => nix.app(nix.sel(json_stream_rs_tokenizer, "overrideAttrs"), (_) => ({ __proto__: pos$3, doCheck: true }))),
+          [nix.POS]: pos$4,
+          runTests: nix.thunk(() => nix.app(nix.sel(json_stream_rs_tokenizer, "overrideAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Faster tokenizer for the json-stream Python library",
         homepage: "https://github.com/smheidrich/py-json-stream-rs-tokenizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const nodePlatform = nix.thunk(() => nix.sel(hostPlatform, "node", "platform"));
   const nodeArch = nix.thunk(() => nix.sel(hostPlatform, "node", "arch"));
   const nodejs = nodejs_22;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
   const productName = nix.thunk(() => (nix.asBool(!nix.eq(buildType, "stable")) ? nix.str`AFFiNE-${buildType}` : "AFFiNE"));
   const binName = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), productName));
   const electron_dist_zip = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "electron-dist-zip",
       version: nix.thunk(() => nix.sel(electron, "version")),
       src: nix.thunk(() => nix.sel(electron, "dist")),
@@ -62,18 +62,18 @@ export default nix.lambda((args) => (() => {
       dontInstall: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: binName,
       version: "0.26.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "toeverything",
           repo: "AFFiNE",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RotC2mNtMig3QKcKo8zr15myAqkPDuBopvV9wLlr2tQ=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -84,21 +84,21 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
 `),
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-vZkKFUaNe9iIAkdUfXnnuD2lM6kuzwqj1Dyt5GAgXsM=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "yarn-offline-cache",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [yarn_berry, cacert, writableTmpDirAsHomeHook]),
-          env: nix.thunk(() => ({ __proto__: pos$6, CI: "1" })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$6, CI: "1" })),
           buildPhase: nix.thunk(() => (() => {
             const supportedArchitectures = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 os: nix.thunk(() => ["darwin", "linux"]),
                 cpu: nix.thunk(() => ["x64", "ia32", "arm64"]),
                 libc: nix.thunk(() => ["glibc", "musl"]),
@@ -136,7 +136,7 @@ runHook postBuild
         writableTmpDirAsHomeHook,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => [copyDesktopItems, makeWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         CI: "1",
         LIBCLANG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`))),
       })),
@@ -200,7 +200,7 @@ runHook postInstall
 `)),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: binName,
             desktopName: productName,
             comment: "AFFiNE Desktop App",
@@ -213,14 +213,14 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Workspace with fully merged docs, whiteboards and databases",
         longDescription: "AFFiNE is an open-source, all-in-one workspace and an operating\nsystem for all the building blocks that assemble your knowledge\nbase and much more -- wiki, knowledge management, presentation\nand digital assets\n",
         homepage: "https://affine.pro/",

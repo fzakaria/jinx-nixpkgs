@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const langchain_ollama = nix.arg($, "langchain-ollama");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-llm",
       version: "0.4.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "sphinx-llm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_llm.txt", "sphinx_llm.docref"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LLM extensions for Sphinx Documentation",
         homepage: "https://github.com/NVIDIA/sphinx-llm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

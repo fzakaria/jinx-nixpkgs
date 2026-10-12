@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const minizip = nix.arg($, "minizip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "zlib",
       version: "1.3.2",
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://github.com/madler/zlib/releases/download/v${version}/zlib-${version}.tar.gz`),
               nix.thunk(() => nix.str`https://www.zlib.net/fossils/zlib-${version}.tar.gz`),
@@ -66,9 +66,9 @@ substituteInPlace win32/zlib.def \\
 done
 `))),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-static-libgcc"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "-DHAVE_UNISTD_H"))))),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "--undefined-version" }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--undefined-version" }))))),
       dontStrip: nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))),
       configurePlatforms: [],
       installFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))), nix.thunk(() => [
@@ -83,16 +83,16 @@ done
         nix.thunk(() => nix.str`pkgconfigdir=${nix.builtins.placeholder("dev")}/share/pkgconfig`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), nix.thunk(() => ["SHAREDLIB=cygz.dll", "IMPLIB=libz.dll.a"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           minizip: minizip,
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://zlib.net",
         description: "Lossless data-compression library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -100,7 +100,7 @@ done
         pkgConfigModules: nix.thunk(() => ["zlib"]),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "zlib", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

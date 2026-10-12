@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pname = nix.argOr($, "pname", () => "mastodon");
   const version = nix.argOr($, "version", () => nix.sel(srcOverride, "version"));
   const patches = nix.argOr($, "patches", () => []);
-  const srcOverride = nix.argOr($, "srcOverride", () => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({ __proto__: pos$1, patches: patches }))));
+  const srcOverride = nix.argOr($, "srcOverride", () => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, patches: patches }))));
   const gemset = nix.argOr($, "gemset", () => nix.add(nix.path(here, "./."), "/gemset.nix"));
   const yarnHash = nix.argOr($, "yarnHash", () => nix.sel(srcOverride, "yarnHash"));
   const yarnMissingHashes = nix.argOr($, "yarnMissingHashes", () => nix.sel(srcOverride, "yarnMissingHashes"));
   const nodejs_slim = nodejs_slim_22;
   const ruby = ruby_3_3;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ __proto__: pos$2, nodejs: nodejs_slim }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_slim }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const src = srcOverride;
       const mastodonGems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${pname_1}-gems-${version_1}`),
           version: version_1,
           gemset: gemset,
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
           gemdir: src,
         }))));
       const mastodonModules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.str`${pname_1}-modules`),
           src: src,
           version: version_1,
           missingHashes: yarnMissingHashes,
-          yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({ __proto__: pos$4, src: src, hash: yarnHash, missingHashes: yarnMissingHashes })))),
+          yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, hash: yarnHash, missingHashes: yarnMissingHashes })))),
           nativeBuildInputs: nix.thunk(() => [
             nodejs_slim,
             yarn_berry,
@@ -90,12 +90,12 @@ runHook postInstall
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, mastodon: nix.thunk(() => nix.sel(nixosTests, "mastodon")) })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, mastodon: nix.thunk(() => nix.sel(nixosTests, "mastodon")) })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Self-hosted, globally interconnected microblogging software based on ActivityPub",
         homepage: "https://joinmastodon.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -110,7 +110,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname_1,
         version: version_1,
         __structuredAttrs,

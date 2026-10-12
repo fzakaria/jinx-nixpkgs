@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-nerdy",
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rolv-Apneseth",
           repo: "rofi-nerdy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, cairo, pango]),
       postInstall: "mkdir -p $out/lib/rofi\nmv $out/lib/librofi_nerdy.so $out/lib/rofi/nerdy.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nerd font icon selector plugin for rofi",
         homepage: "https://github.com/Rolv-Apneseth/rofi-nerdy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

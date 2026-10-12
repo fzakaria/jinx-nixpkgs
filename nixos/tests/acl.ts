@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const acl = nix.arg($, "acl");
   return nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(acl, "overrideAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), "# The runwrapper uses LD_PRELOAD to override available user/groups\nsubstituteInPlace Makefile.in --replace-fail \\\n  'TEST_LOG_COMPILER = $(srcdir)/test/runwrapper' \\\n  'TEST_LOG_COMPILER = $(srcdir)/test/run'\n")),
         nativeCheckInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeCheckInputs"), [perl, coreutils])),
         preCheck: "cp test/test.passwd /etc/passwd\ncp test/test.group /etc/group\n",

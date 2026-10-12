@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const include = nix.arg($, "include");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       noLibc: true,
       path: "lib/libc",
       pname: "libcMinimal-openbsd",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./netbsd-make-to-lower.patch"),
         nix.path(here, "./disable-librebuild.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "skip-tags.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171575286706032&q=raw",
             hash: "sha256-2fqabJZLUvXUIWe5WZ4NrTOwgQCXqH49Wo0hAPu5lu0=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, openbsdSetupHook, makeMinimal, install, tsort, lorder, gencat]),
       buildInputs: nix.thunk(() => [include, csu]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-B${csu}/lib`), "-Wno-error", "-fno-builtin"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenvNoLibc, "hostPlatform", "linker"), "lld")), "--undefined-version")),
       })),
@@ -64,7 +64,7 @@ find lib '(' -type f -o -type l ')' -exec cp -pr "{}" "$out/{}" ';'
 popd
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

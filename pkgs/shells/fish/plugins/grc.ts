@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grc",
       version: "0-unstable-2022-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oh-my-fish",
           repo: "plugin-grc",
           rev: "61de7a8a0d7bda3234f8703d6e07c671992eb079",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "cp conf.d/executables $out/share/fish/vendor_conf.d/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Grc Colourizer for some commands on Fish shell",
         homepage: "https://github.com/oh-my-fish/plugin-grc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

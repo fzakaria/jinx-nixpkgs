@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const v1Type = nix.thunk(() => nix.app(addCheck, int, (v) => nix.eq(v, 0n)));
   const v2Type = nix.thunk(() => nix.app(addCheck, nix.thunk(() => nix.app(attrsOf, int)), (v) => nix.has(v, "foo")));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
-      v1CheckedPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: v1Type, default: 0n })))),
-      v1CheckedFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, type: v1Type, default: 1n })))),
+      [nix.POS]: pos$6,
+      v1CheckedPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: v1Type, default: 0n })))),
+      v1CheckedFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: v1Type, default: 1n })))),
       v2checkedPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: v2Type,
-          default: nix.thunk(() => ({ __proto__: pos$3, foo: 1n })),
+          default: nix.thunk(() => ({ [nix.POS]: pos$3, foo: 1n })),
           apply: (v) => nix.eq(nix.sel(v, "foo"), 1n),
         })))),
       v2checkedFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: v2Type,
           default: nix.thunk(() => ({})),
           apply: (v) => nix.app(nix.sel(lib, "deepSeq"), v, v),

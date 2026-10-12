@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hypnotix",
       version: "5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "hypnotix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libmpv-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libmpv: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), mpv)}/lib/libmpv${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]),
@@ -78,7 +78,7 @@ wrapProgram $out/bin/hypnotix \\
   \${gappsWrapperArgs[@]}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IPTV streaming application",
         homepage: "https://github.com/linuxmint/hypnotix",
         changelog: nix.thunk(() => nix.str`https://github.com/linuxmint/hypnotix/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

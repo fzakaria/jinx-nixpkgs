@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo.mercurial-scm.org/python-hglib/archive/${version}.tar.gz`),
           hash: "sha256-UXersegqJ9VAxy4Kvpb2IiOJfQbWryeeaGvwiR4ncW8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-nose.patch",
             excludes: nix.thunk(() => ["heptapod-ci.yml"]),
             url: "https://repo.mercurial-scm.org/python-hglib/raw-rev/8341f2494b3fc1c0d9ee55fa4487c0ac82f64d2a",
             hash: "sha256-4gicVCAH94itxHY0l8ek0L/RVhUrw2lMbbnENbWrV6U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-tests.patch",
             url: "https://repo.mercurial-scm.org/python-hglib/raw-rev/a2afbf236ca86287e72f54e1248413625d1bc405",
             hash: "sha256-T/yKJ8cMMOBVk24SXwyPOoD321S1fZEIunaPJAxI0KI=",
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HGTMP=$(mktemp -d)\nexport HGUSER=test\n";
       const pythonImportsCheck = nix.thunk(() => ["hglib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library with a fast, convenient interface to Mercurial. It uses Mercurial’s command server for communication with hg",
         homepage: "https://www.mercurial-scm.org/wiki/PythonHglibs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

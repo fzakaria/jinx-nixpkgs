@@ -30,35 +30,35 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hardware", "openrgb"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         hardware: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           openrgb: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenRGB server, for RGB lighting control")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openrgb", nix.thunk(() => ({})))),
             motherboard: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["amd", "intel"]))))),
                 default: nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "cpu", "intel", "updateMicrocode")) ? "intel" : (nix.asBool(nix.sel(config, "hardware", "cpu", "amd", "updateMicrocode")) ? "amd" : null))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "if config.hardware.cpu.intel.updateMicrocode then \"intel\"\nelse if config.hardware.cpu.amd.updateMicrocode then \"amd\"\nelse null;\n")),
                 description: "CPU family of motherboard. Allows for addition motherboard i2c support.",
               })))),
             server: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: 6742n,
                   description: "Set server port of openrgb.",
                 })))),
             })),
             startupProfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The profile file to load from \"/var/lib/OpenRGB\" at startup.",
@@ -68,34 +68,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           kernelModules: nix.thunk(() => nix.concat(["i2c-dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "motherboard"), "amd")), nix.thunk(() => ["i2c-piix4"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "motherboard"), "intel")), nix.thunk(() => ["i2c-i801"]))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             openrgb: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "OpenRGB SDK Server",
               after: nix.thunk(() => ["network.target", "lm_sensors.service"]),
               wants: nix.thunk(() => ["dev-usb.device"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 StateDirectory: "OpenRGB",
                 WorkingDirectory: "/var/lib/OpenRGB",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$18, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$18, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=openrgb.ts.map

@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const enableMMAI = nix.argOr($, "enableMMAI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vcmi",
       version: "1.7.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vcmi",
           repo: "vcmi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.app(nix.sel(lib, "optional"), enableMMAI, onnxruntime))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-mismatched-tags")),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["XDG_CACHE_HOME", "XDG_CONFIG_HOME", "XDG_DATA_HOME"]),
       preVersionCheck: "cd $(mktemp -d)\nexport \\\n  XDG_CACHE_HOME=\"$TMPDIR\" \\\n  XDG_CONFIG_HOME=\"$TMPDIR\" \\\n  XDG_DATA_HOME=\"$TMPDIR\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source engine for Heroes of Might and Magic III",
         longDescription: "VCMI is an open-source engine for Heroes of Might and Magic III, offering\nnew and extended possibilities. To use VCMI, you need to own the original\ndata files.\n",
         homepage: "https://vcmi.eu",

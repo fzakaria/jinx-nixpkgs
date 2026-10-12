@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pyaxmlparser";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "appknox",
           repo: "pyaxmlparser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [asn1crypto, click, lxml]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python3 Parser for Android XML file and get Application Name without using Androguard",
         mainProgram: "apkinfo",
         homepage: "https://github.com/appknox/pyaxmlparser",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

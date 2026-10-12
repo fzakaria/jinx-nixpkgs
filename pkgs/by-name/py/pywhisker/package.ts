@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pywhisker",
       version: "0.1.0-unstable-2025-09-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ShutdownRepo",
           repo: "pywhisker",
           rev: "dc35dba57bb4ad594f052d6598a855d192a37a3f",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pywhisker"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for Shadow Credentials attacks",
         homepage: "https://github.com/ShutdownRepo/pywhisker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

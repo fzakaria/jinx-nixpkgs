@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-S6BkIHh5LfY907LpyPg48qPs9CjHUY1ZIcBTDVNRKs8=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pyasyncore, pyasynchat, pysendfile]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ssl: nix.thunk(() => [pyopenssl]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ssl: nix.thunk(() => [pyopenssl]) }));
       const nativeCheckInputs = nix.thunk(() => [mock, psutil]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyftpdlib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous FTP server library",
         homepage: "https://github.com/giampaolo/pyftpdlib/",
         changelog: nix.thunk(() => nix.str`https://github.com/giampaolo/pyftpdlib/blob/release-${version}/HISTORY.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ftpbench",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

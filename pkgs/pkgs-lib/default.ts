@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$2,
-    formats: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./formats.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, pkgs: pkgs })))),
+    [nix.POS]: pos$2,
+    formats: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./formats.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "forktty",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://ibiblioPubLinux/utils/terminal/forktty-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-6xc5eshCuCIOsDh0r2DizKAeypGH0TRRotZ4itsvpVk=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p \"$out/bin\"\nmkdir -p \"$out/share/man/man8\"\n",
       makeFlags: nix.thunk(() => ["prefix=$(out)", "manprefix=$(out)/share/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to detach from controlling TTY and attach to another",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => (() => {

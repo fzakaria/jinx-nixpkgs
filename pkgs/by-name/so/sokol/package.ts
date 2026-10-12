@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sokol",
       version: "0-unstable-2024-09-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "floooh",
           repo: "sokol",
           rev: "38e4c9a516f8808d706343a5c525acfe7007fe67",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/include/sokol\ncp *.h $out/include/sokol/\ncp -R util $out/include/sokol/util\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal cross-platform standalone C headers",
         homepage: "https://github.com/floooh/sokol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

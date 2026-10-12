@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iocaine",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.madhouse-project.org",
           owner: "iocaine",
           repo: "iocaine",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [nftables]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, iocaine: nix.thunk(() => nix.attr(nixosTests, "iocaine")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, iocaine: nix.thunk(() => nix.attr(nixosTests, "iocaine")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Deadliest poison known to AI",
         homepage: "https://iocaine.madhouse-project.org/",
         changelog: nix.thunk(() => nix.str`https://git.madhouse-project.org/iocaine/iocaine/src/tag/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

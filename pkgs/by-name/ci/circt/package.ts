@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const circt_llvm = nix.thunk(() => nix.app(callPackage, nix.path(here, "./circt-llvm.nix"), nix.thunk(() => ({}))));
   const circt_sv_lang = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sv-lang.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "circt",
       version: "1.160.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "llvm",
           repo: "circt",
           tag: nix.thunk(() => nix.str`firtool-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CIRCT_SLANG_BUILD_FROM_SOURCE", false)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIT_FILTER_OUT: nix.thunk(() => (() => {
           const lit_filters = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["CIRCT :: Target/ExportSystemC/.*\\.mlir"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")), nix.thunk(() => [
               "CIRCT :: Target/ExportSMTLIB/.*\\.mlir",
@@ -125,13 +125,13 @@ substituteInPlace $dev/lib/cmake/circt/CIRCTTargets-release.cmake \\
   --replace-fail "\\\${_IMPORT_PREFIX}/lib" "$lib/lib"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.path(here, "./update.sh"),
         llvm: circt_llvm,
         "sv-lang": circt_sv_lang,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Circuit IR compilers and tools",
         homepage: "https://circt.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

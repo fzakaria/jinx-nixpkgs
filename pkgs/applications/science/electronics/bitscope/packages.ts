@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mkBitscope = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix"))), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     chart: nix.thunk(() => (() => {
       const toolName = "bitscope-chart";
       const version = "2.0.FK22M";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Multi-channel waveform data acquisition and chart recording application",
             homepage: "http://bitscope.com/software/chart/",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "08mc82pjamyyyhh15sagsv0sc7yx5v5n54bg60fpj7v41wdwrzxw",
             })))),
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-console";
       const version = "1.0.FK29A";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Demonstrative communications program designed to make it easy to talk to any model BitScope",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "00b4gxwz7w6pmfrcz14326b24kl44hp0gzzqcqxwi5vws3f0y49d",
             })))),
@@ -77,16 +77,16 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-display";
       const version = "1.0.EC17A";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "Display diagnostic application for BitScope",
             homepage: "http://bitscope.com/software/display/",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "05xr5mnka1v3ibcasg74kmj6nlv1nmn3lca1wv77whkq85cmz0s1",
             })))),
@@ -96,16 +96,16 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-dso";
       const version = "2.8.FE22H";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             description: "Test and measurement software for BitScope",
             homepage: "http://bitscope.com/software/dso/",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "0fc6crfkprj78dxxhvhbn1dx1db5chm0cpwlqpqv8sz6whp12mcj",
             })))),
@@ -115,16 +115,16 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-logic";
       const version = "1.2.FC20C";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             description: "Mixed signal logic timing and serial protocol analysis software for BitScope",
             homepage: "http://bitscope.com/software/logic/",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "0lkb7z9gfkiyxdwh4dq1zxfls8gzdw0na1vrrbgnxfg3klv4xns3",
             })))),
@@ -134,16 +134,16 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-meter";
       const version = "2.0.FK22G";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             description: "Automated oscilloscope, voltmeter and frequency meter for BitScope",
             homepage: "http://bitscope.com/software/logic/",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "0nirbci6ymhk4h4bck2s4wbsl5r9yndk2jvvv72zwkg21248mnbp",
             })))),
@@ -153,16 +153,16 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-proto";
       const version = "0.9.FG13B";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             description: "Demonstrative prototype oscilloscope built using the BitScope Library",
             homepage: "http://bitscope.com/blog/DK/?p=DK15A",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "1ybjfbh3narn29ll4nci4b7rnxy0hj3wdfm4v8c6pjr8pfvv9spy",
             })))),
@@ -172,16 +172,16 @@ export default nix.lambda((args) => (() => {
       const toolName = "bitscope-server";
       const version = "1.0.FK26A";
       return nix.app(mkBitscope, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           toolName: toolName,
           version: version,
           meta: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             description: "Remote access server solution for any BitScope",
             homepage: "http://bitscope.com/software/server/",
           })),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               url: nix.thunk(() => nix.str`http://bitscope.com/download/files/${toolName}_${version}_amd64.deb`),
               sha256: "1079n7msq6ks0n4aasx40rd4q99w8j9hcsaci71nd2im2jvjpw9a",
             })))),

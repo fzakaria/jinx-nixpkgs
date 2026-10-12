@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const snippetexpanderd = nix.arg($, "snippetexpanderd");
   const snippetexpanderx = nix.arg($, "snippetexpanderx");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(snippetexpanderd, "src")),
       version: nix.thunk(() => nix.attr(snippetexpanderd, "version")),
       pname: "snippetexpander",
@@ -36,7 +36,7 @@ wrapProgram $out/bin/snippetexpander \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [snippetexpanderd, snippetexpanderx]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Your little expandable text snippet helper CLI",
         homepage: "https://snippetexpander.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

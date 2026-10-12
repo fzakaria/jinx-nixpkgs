@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "servant-docs": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "servant-docs")))),
     swagger2: nix.thunk(() => nix.app(nix.lookup(w, "dontHaddock"), nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "swagger2")))))),
     happy: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "happy")))),
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const librarySystemDepends = nix.argOr($_1, "librarySystemDepends", () => []);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           librarySystemDepends: nix.thunk(() => nix.concat(librarySystemDepends, [nix.thunk(() => nix.sel(pkgs, "wiringpi"))])),
         };
       })(), formals$2), nix.thunk(() => nix.sel(super$, "wiringPi")))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       BNFC: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "BNFC")))),
       "C-structs": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "C-structs")))),
       "Chart-tests": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "Chart-tests")))),
@@ -82,21 +82,21 @@ export default nix.lambda((args) => (() => {
       half: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "half")))),
       "ghc-prof": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "ghc-prof")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch32")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       cryptonite: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "cryptonite")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (() => {
       const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), w);
       return (nix.asBool(nix.lookup(w_1, "isAarch")) && nix.asBool(nix.lookup(w_1, "isAndroid")));
     })()), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "android-activity": nix.thunk(() => nix.app(nix.lookup(w, "unmarkBroken"), nix.thunk(() => nix.sel(super$, "android-activity")))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (() => {
       const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), w);
       return !nix.asBool(nix.lookup(w_2, "isDarwin"));
     })()), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "botan-low": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           testFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testFlags"), nix.app(nix.sel(lib, "concatMap"), (x) => nix.concat(["--skip"], [x]), nix.thunk(() => [
               "/rdrand/rngInit/",
               "/rdrand/rngGet/",

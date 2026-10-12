@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       const version = "2026.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "pipenv",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-+8xUbpGIEuFboeK+JVVAt46gNcw1tfkmnTYt/IrISik=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" }));
       const build_system = nix.thunk(() => [nix.thunk(() => nix.lookup(w, "setuptools"))]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postPatch = nix.thunk(() => nix.str`# pipenv invokes python in a subprocess to create a virtualenv
@@ -68,9 +68,9 @@ substituteInPlace pipenv/utils/virtualenv.py \\
       const disabledTests = nix.thunk(() => ["test_download_file"]);
       const disabledTestPaths = nix.thunk(() => ["tests/integration"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "verify-venv-patch": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-verify-venv-patch`), nix.thunk(() => ({})), nix.thunk(() => nix.str`export PIPENV_VENV_IN_PROJECT=1
 
 # "pipenv install" should be able to create a venv
@@ -85,7 +85,7 @@ touch $out
       }));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pipenv \\\n  --bash <(_PIPENV_COMPLETE=bash_source $out/bin/pipenv) \\\n  --zsh <(_PIPENV_COMPLETE=zsh_source $out/bin/pipenv) \\\n  --fish <(_PIPENV_COMPLETE=fish_source $out/bin/pipenv)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python Development Workflow for Humans",
         homepage: "https://github.com/pypa/pipenv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -93,7 +93,7 @@ touch $out
         mainProgram: "pipenv",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

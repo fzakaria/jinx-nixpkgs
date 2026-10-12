@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "timm",
       version: "1.0.30",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "pytorch-image-models",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_models.py"]),
       pythonImportsCheck: nix.thunk(() => ["timm", "timm.data"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch image models, scripts, and pretrained weights",
         homepage: "https://huggingface.co/docs/timm/index",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/pytorch-image-models/blob/${nix.sel(finalAttrs, "src", "tag")}/README.md#whats-new`),

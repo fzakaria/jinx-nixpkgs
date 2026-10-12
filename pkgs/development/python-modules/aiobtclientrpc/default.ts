@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const tiny_proxy = nix.arg($, "tiny-proxy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiobtclientrpc",
       version: "6.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plotski",
           repo: "aiobtclientrpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["aiobtclientrpc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous low-level communication with BitTorrent clients",
         homepage: "https://aiobtclientrpc.readthedocs.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => (nix.asBool(nix.eq(nix.str`${version_channel}`, "main")) ? nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources-main.json")) : nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources-stable.json"))));
   const arch = nix.thunk(() => nix.sel(sources, "archMap", nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => (nix.asBool(nix.eq(nix.str`${version_channel}`, "main")) ? "upbound-main" : "upbound")),
       version: nix.thunk(() => nix.sel(sources, "version")),
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "docker-credential-up", nix.key(nix.force(system)), "url")),
             sha256: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "docker-credential-up", nix.key(nix.force(system)), "hash")),
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "up", nix.key(nix.force(system)), "url")),
             sha256: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "up", nix.key(nix.force(system)), "hash")),
           })))),
@@ -58,11 +58,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => [nix.path(here, "./update"), nix.thunk(() => nix.str`${version_channel}`)]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI for interacting with Upbound Cloud, Upbound Enterprise, and Universal Crossplane (UXP)",
         changelog: "https://docs.upbound.io/reference/release-notes/up-cli",
         homepage: "https://upbound.io",

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kirsch",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/molarmanful/kirsch/releases/download/v${nix.sel(finalAttrs, "version")}/kirsch-release_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-j7LMtOQqOl4aTDf/ytVci2M2plFliLkswRsQhY1EWC4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "runHook preInstall\n\nmisc=\"$out/share/fonts/misc\"\ninstall -D -m 644 *.{bdf,otb,pcf} -t \"$misc\"\ninstall -D -m 644 *.ttf -t \"$out/share/fonts/truetype\"\n\n# create fonts.dir so NixOS xorg module adds to fp\nmkfontdir \"$misc\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Versatile bitmap font with an organic flair",
         homepage: "https://github.com/molarmanful/kirsch",
         changelog: nix.thunk(() => nix.str`https://github.com/molarmanful/kirsch/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const elmPackages = nix.arg($, "elmPackages");
   const prometheus_alertmanager = nix.arg($, "prometheus-alertmanager");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "alertmanager-elm-ui",
       src: nix.thunk(() => nix.attr(prometheus_alertmanager, "src")),
       version: nix.thunk(() => nix.attr(prometheus_alertmanager, "version")),
@@ -23,7 +23,7 @@ sed -i '/"elm":/d' package.json
 substituteInPlace elm.json --replace-fail "0.19.1" "${nix.sel(elmPackages, "elm", "version")}"
 `),
       postConfigure: nix.thunk(() => nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),

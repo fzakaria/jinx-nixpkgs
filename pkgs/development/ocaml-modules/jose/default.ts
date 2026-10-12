@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jose",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ulrikstrid/ocaml-jose/releases/download/v${nix.sel(finalAttrs, "version")}/jose-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-F6Odq5JXTkAxdqV3HQusoF+9rvt4BZytslKnsIjJLI8=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [containers, junit_alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JOSE specification implementation in OCaml",
         homepage: "https://github.com/ulrikstrid/ocaml-jose",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

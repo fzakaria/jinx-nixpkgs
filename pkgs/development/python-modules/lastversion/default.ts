@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.6.19";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvershinin",
           repo: "lastversion",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "PATH=\"$out/bin:$PATH\"\n";
       const pythonImportsCheck = nix.thunk(() => ["lastversion"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find the latest release version of an arbitrary project",
         homepage: "https://github.com/dvershinin/lastversion",
         changelog: nix.thunk(() => nix.str`https://github.com/dvershinin/lastversion/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lastversion",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

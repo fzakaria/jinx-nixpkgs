@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jupyterlab_git"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Jupyter lab extension for version control with Git",
         homepage: "https://github.com/jupyterlab/jupyterlab-git",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlab/jupyterlab-git/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         src,
         version,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const python = nix.arg($, "python");
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "pykdl",
         version: nix.thunk(() => nix.attr(orocos_kdl, "version")),
         src: nix.thunk(() => nix.attr(orocos_kdl, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DPYTHON_EXECUTABLE=${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "pythonOnBuildForHost")))}`),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "Kinematics and Dynamics Library (Python bindings)",
           homepage: "https://www.orocos.org/kdl.html",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

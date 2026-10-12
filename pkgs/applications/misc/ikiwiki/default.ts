@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ikiwiki";
       const version = "3.20200202.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/i/ikiwiki/ikiwiki_${version}.orig.tar.xz`),
           sha256: "0skrc8r4wh4mjfgw1c94awr5sacfb9nfsbm4frikanc9xsy16ksr",
         }))));
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./remove-markdown-tests.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Catch-up-to-highlight-4.0-API-change",
             url: "http://source.ikiwiki.branchable.com/?p=source.git;a=patch;h=9ea3f9dfe7c0341f4e002b48728b8139293e19d0",
             sha256: "16s4wvsfclx0a5cm2awr69dvw2vsi8lpm0d7kyl5w0kjlmzfc7h9",
@@ -121,7 +121,7 @@ done
       const checkTarget = "test";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wiki compiler, storing pages and history in a RCS",
         homepage: "http://ikiwiki.info/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -129,7 +129,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "wentasah"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

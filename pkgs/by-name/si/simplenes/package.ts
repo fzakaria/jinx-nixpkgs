@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const sfml_2 = nix.arg($, "sfml_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simplenes",
       version: "0-unstable-2025-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amhndu",
           repo: "SimpleNES",
           rev: "154a2fd4f2f2611a27197aa8d802bbcdfd1a0ea3",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sfml_2]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ./SimpleNES $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/amhndu/SimpleNES",
         description: "NES emulator written in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     addPackagesToPython: (python) => (packages) => (nix.asBool((nix.asBool(nix.has(python, "env")) && nix.asBool(nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(python, "env")))))) ? nix.app(nix.sel(python, "override"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         extraLibs: nix.thunk(() => nix.concat(nix.sel(old, "extraLibs"), packages)),
       })) : nix.app(nix.sel(python, "withPackages"), (ps) => nix.force(packages))),
-    repoifySimple: (name) => (path) => nix.app(runCommand, nix.thunk(() => nix.str`${name}-repoified`), nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [gitMinimal]) })), nix.thunk(() => nix.str`mkdir -p $out
+    repoifySimple: (name) => (path) => nix.app(runCommand, nix.thunk(() => nix.str`${name}-repoified`), nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [gitMinimal]) })), nix.thunk(() => nix.str`mkdir -p $out
 cp -r ${path}/. $out
 cd $out
 chmod -R u+w .
@@ -30,7 +30,7 @@ git config user.email "julia2nix@localhost"
 git config user.name "julia2nix"
 git commit -m "Dummy commit"
 `)),
-    repoifyInfo: (uuid) => (info) => nix.app(runCommand, nix.thunk(() => nix.str`julia-${nix.sel(info, "name")}-${nix.sel(info, "version")}`), nix.thunk(() => ({ __proto__: pos$3, buildInputs: nix.thunk(() => [gitMinimal]) })), nix.thunk(() => nix.str`mkdir -p $out
+    repoifyInfo: (uuid) => (info) => nix.app(runCommand, nix.thunk(() => nix.str`julia-${nix.sel(info, "name")}-${nix.sel(info, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [gitMinimal]) })), nix.thunk(() => nix.str`mkdir -p $out
 cp -r ${nix.sel(info, "src")}/. $out
 cd $out
 chmod -R u+w .

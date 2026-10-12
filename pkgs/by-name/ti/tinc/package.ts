@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0.37",
       pname: "tinc",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.tinc-vpn.org/packages/tinc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9jt+IcMsTGN1dthfNr3SjqZ4taoX+tAkJ2Rd6jDlKsc=",
         })))),
       buildInputs: nix.thunk(() => [lzo, openssl, zlib]),
       configureFlags: nix.thunk(() => ["--localstatedir=/var", "--sysconfdir=/etc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VPN daemon with full mesh routing",
         longDescription: "tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and\nencryption to create a secure private network between hosts on the\nInternet.  It features full mesh routing, as well as encryption,\nauthentication, compression and ethernet bridging.\n",
         homepage: "http://www.tinc-vpn.org/",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "skydns",
       version: "unstable-2019-10-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skynetservices",
           repo: "skydns",
           rev: "94b2ea0d8bfa43395656ea94d4a6235bdda47129",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-J3+DACU9JuazGCZZrfKxHukG5M+nb+WbV3eTG8EaT/w=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/skynetservices/skydns/commit/37be34cd64a3037a6d5a3b3dbb673f391e9d7eb1.patch",
             hash: "sha256-JziYREg3vw8NMIPd8Zv8An7XUj+U6dvgRcaZph0DLPg=",
           })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed service for announcement and discovery of services",
         homepage: "https://github.com/skynetservices/skydns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

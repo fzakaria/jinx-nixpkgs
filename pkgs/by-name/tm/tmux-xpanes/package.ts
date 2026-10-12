@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmux-xpanes",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greymd",
           repo: "tmux-xpanes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, perl]),
       installPhase: "# Create directories.\ninstall -m 755 -d $out/bin/\ninstall -m 755 -d $out/share/man/man1/\n\n# Perform installation.\ninstall -m 755 bin/* $out/bin/\ninstall -m 644 man/*.1 $out/share/man/man1/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "tmux-based terminal divider",
         homepage: "https://github.com/greymd/tmux-xpanes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

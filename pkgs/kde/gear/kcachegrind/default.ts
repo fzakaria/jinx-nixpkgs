@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kcachegrind",
       extraNativeBuildInputs: nix.thunk(() => [qttools]),
       qtWrapperArgs: nix.thunk(() => [

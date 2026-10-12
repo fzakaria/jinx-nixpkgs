@@ -45,23 +45,23 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const nix_update_script = nix.arg($, "nix-update-script");
   const wget = nix.arg($, "wget");
-  const codec2$ = nix.thunk(() => nix.app(nix.sel(codec2, "override"), nix.thunk(() => ({ __proto__: pos$1, freedvSupport: true }))));
+  const codec2$ = nix.thunk(() => nix.app(nix.sel(codec2, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, freedvSupport: true }))));
   const freedvBackendSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "tmiw",
       repo: "freedv-backend",
       rev: "v1.0.0",
       hash: "sha256-t1Bu9XaNRa9zQKEffC4fJxclvzcu9UPMY4Gzt0kTfAY=",
     }))));
   const ebur128Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "jiixyj",
       repo: "libebur128",
       rev: "v1.2.6",
       hash: "sha256-UKO2k+kKH/dwt2xfaYMrH/GXjEkIrnxh1kGG/3P5d3Y=",
     }))));
   const opusSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "xiph",
       repo: "opus",
       rev: "940d4e5af64351ca8ba8390df3f555484c567fbb",
@@ -75,14 +75,14 @@ substituteInPlace autogen.sh \\
       hash: "sha256-P84gjnuiQQBVBExJBY3sUbwo00lXY6HB+AMpx/oovRg=",
     }))));
   const radaeSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "freedv",
       repo: "rade_c",
       rev: "a36161bce0fb37daf3f4602344b095f6817dddb1",
       hash: "sha256-UixeatZpdcu/uQF+KKpivfPs5yMdLJtJhyMgu8zfMgI=",
     }))));
   const rnnoiseSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "xiph",
       repo: "rnnoise",
       rev: "70f1d256acd4b34a572f999a05c87bf00b67730d",
@@ -97,11 +97,11 @@ substituteInPlace autogen.sh \\
       hash: "sha256-t/AwOCuHb5Oahy1fDI3Sc9M08Xz3dSAavhYatRC1OIk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "freedv",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "drowe67",
           repo: "freedv-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -140,7 +140,7 @@ sed -i "/codesign/d;/hdiutil/d" src/CMakeLists.txt
 `),
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, libtool, cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(macdylibbundler, "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               postPatch: "substituteInPlace src/Utils.cpp \\\n  --replace-fail \"--deep --preserve-metadata=entitlements,requirements,flags,runtime\" \"\"\n",
             })))),
           makeWrapper,
@@ -167,20 +167,20 @@ sed -i "/codesign/d;/hdiutil/d" src/CMakeLists.txt
           })()))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(codec2$, "src")}/src`),
       })),
       doCheck: false,
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "install -Dm755 _deps/freedv_backend-build/rade_build/src/librade.* -t $out/lib\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/FreeDV.app $out/Applications\nmakeWrapper $out/Applications/FreeDV.app/Contents/MacOS/FreeDV $out/bin/freedv\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d\\.\\d\\.\\d(\\.\\d)?)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://freedv.org/",
         description: "Digital voice for HF radio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

@@ -80,27 +80,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "containers", "cdi", "dynamic", "nvidia", "enable"]), nix.thunk(() => ["hardware", "nvidia-container-toolkit", "enable"]))),
     ]),
     options: nix.thunk(() => (() => {
       const mountType = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         options: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hostPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Host path.",
             })))),
           containerPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Container path.",
             })))),
           mountOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => ["ro", "nosuid", "nodev", "bind"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Mount options.",
@@ -108,74 +108,74 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         hardware: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           "nvidia-container-toolkit": nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable dynamic CDI configuration for Nvidia devices by running\nnvidia-container-toolkit on boot.\n",
               })))),
             "device-name-strategy": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: "index",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["index", "uuid", "type-index"]))),
                 description: "Specify the strategy for generating device names,\npassed to `nvidia-ctk cdi generate`. This will affect how\nyou reference the device using `nvidia.com/gpu=` in\nthe container runtime.\n",
               })))),
             "discovery-mode": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: "auto",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "csv", "nvml", "wsl"]))),
                 description: "The mode to use when discovering the available entities.\n",
               })))),
             "csv-files": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 description: "The path to the list of CSV files to use when generating the CDI specification in CSV mode.\n",
               })))),
             mounts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), mountType)))),
                 default: [],
                 description: "Mounts to be added to every container under the Nvidia CDI profile.",
               })))),
             "mount-nvidia-executables": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Mount executables nvidia-smi, nvidia-cuda-mps-control, nvidia-cuda-mps-server,\nnvidia-debugdump, nvidia-powerd and nvidia-ctk on containers.\n",
               })))),
             "mount-nvidia-docker-1-directories": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Mount nvidia-docker-1 directories on containers: /usr/local/nvidia/lib and\n/usr/local/nvidia/lib64.\n",
               })))),
             suppressNvidiaDriverAssertion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Suppress the assertion for installing Nvidia driver.\nUseful in WSL where drivers are mounted from Windows, not provided by NixOS.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nvidia-container-toolkit", nix.thunk(() => ({})))),
             "disable-hooks": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))),
                 default: nix.thunk(() => ["create-symlinks"]),
                 description: "List of hooks to disable when generating the CDI specification.\nEach hook name will be passed as `--disable-hook <hook-name>` to nvidia-ctk.\nSet to an empty list to disable no hooks.\n",
               })))),
             "enable-hooks": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))),
                 default: [],
                 description: "List of hooks to enable when generating the CDI specification.\nEach hook name will be passed as `--enable-hook <hook-name>` to nvidia-ctk.\nSet to an empty list to enable no hooks.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra arguments to be passed to nvidia-ctk.\n",
@@ -186,11 +186,11 @@ export default nix.lambda((args) => (() => {
     })()),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "virtualisation", "docker", "enableNvidia")) || nix.asBool(nix.sel(config, "virtualisation", "podman", "enableNvidia")))), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             hardware: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "nvidia-container-toolkit": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
             })),
@@ -199,13 +199,13 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enableNvidia")), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             environment: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               etc: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "nvidia-container-runtime/config.toml": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   text: nix.thunk(() => nix.str`disable-require = true
 supported-driver-capabilities = "compat32,compute,display,graphics,ngx,utility,video"
 [nvidia-container-cli]
@@ -227,18 +227,18 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               docker: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 daemon: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     "default-runtime": "nvidia",
                     runtimes: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       nvidia: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getOutput"), "tools", nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit", "package")))}/bin/nvidia-container-runtime`),
                         args: [],
                       })),
@@ -252,15 +252,15 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit", "enable")), nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "hardware", "nvidia", "datacenter", "enable")) || nix.asBool(nix.app(nix.sel(lib, "elem"), "nvidia", nix.thunk(() => nix.sel(config, "services", "xserver", "videoDrivers")))))) || nix.asBool(nix.sel(config, "hardware", "nvidia-container-toolkit", "suppressNvidiaDriverAssertion")))),
                 message: "`nvidia-container-toolkit` requires nvidia drivers: set `hardware.nvidia.datacenter.enable`, add \"nvidia\" to `services.xserver.videoDrivers`, or set `hardware.nvidia-container-toolkit.suppressNvidiaDriverAssertion` if the driver is provided by another NixOS module (e.g. from NixOS-WSL)",
               })),
               nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 assertion: nix.thunk(() => (!nix.asBool(nix.gt(nix.builtins.length(nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit", "csv-files"))), 0n)) || nix.asBool(nix.eq(nix.sel(config, "hardware", "nvidia-container-toolkit", "discovery-mode"), "csv")))),
                 message: "When CSV files are provided, `config.hardware.nvidia-container-toolkit.discovery-mode` has to be set to `csv`.",
               })),
@@ -271,23 +271,23 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
                   ]))),
               ]))),
             services: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               udev: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 extraRules: nix.thunk(() => nix.str`KERNEL=="nvidia", RUN+="${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "systemctl")} --no-block restart nvidia-container-toolkit-cdi-generator.service'"
 `),
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               containers: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 containersConf: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     engine: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       cdi_spec_dirs: nix.thunk(() => ["/etc/cdi", "/var/run/cdi"]),
                     })),
                   })),
@@ -296,21 +296,21 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
               docker: nix.thunk(() => (() => {
                 const dockerVersion = nix.thunk(() => nix.sel(config, "virtualisation", "docker", "package", "version"));
                 return {
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   daemon: nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), dockerVersion, "25")), nix.thunk(() => ({
-                        __proto__: pos$42,
-                        features: nix.thunk(() => ({ __proto__: pos$41, cdi: true })),
+                        [nix.POS]: pos$42,
+                        features: nix.thunk(() => ({ [nix.POS]: pos$41, cdi: true })),
                       })))),
                   })),
                   rootless: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     daemon: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), dockerVersion, "25")), nix.thunk(() => ({
-                          __proto__: pos$45,
-                          features: nix.thunk(() => ({ __proto__: pos$44, cdi: true })),
+                          [nix.POS]: pos$45,
+                          features: nix.thunk(() => ({ [nix.POS]: pos$44, cdi: true })),
                         })))),
                     })),
                     extraPackages: nix.thunk(() => [
@@ -321,73 +321,73 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
               })()),
             })),
             hardware: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               graphics: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "hardware", "nvidia", "datacenter", "enable"))), true)),
               })),
               "nvidia-container-toolkit": nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 mounts: nix.thunk(() => (() => {
                   const nvidia_driver = nix.thunk(() => nix.sel(config, "hardware", "nvidia", "package"));
                   return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           hostPath: nix.thunk(() => nix.sel(pkgs, "addDriverRunpath", "driverLink")),
                           containerPath: nix.thunk(() => nix.sel(pkgs, "addDriverRunpath", "driverLink")),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           hostPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nvidia_driver)}`),
                           containerPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nvidia_driver)}`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           hostPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "glibc")))}/lib`),
                           containerPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "glibc")))}/lib`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           hostPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "glibc")))}/lib64`),
                           containerPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "glibc")))}/lib64`),
                         })),
                       ]),
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit", "mount-nvidia-executables")), nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$55,
+                            [nix.POS]: pos$55,
                             hostPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nvidia_driver, "nvidia-cuda-mps-control")),
                             containerPath: "/usr/bin/nvidia-cuda-mps-control",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$56,
+                            [nix.POS]: pos$56,
                             hostPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nvidia_driver, "nvidia-cuda-mps-server")),
                             containerPath: "/usr/bin/nvidia-cuda-mps-server",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             hostPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nvidia_driver, "nvidia-debugdump")),
                             containerPath: "/usr/bin/nvidia-debugdump",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$58,
+                            [nix.POS]: pos$58,
                             hostPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nvidia_driver, "nvidia-powerd")),
                             containerPath: "/usr/bin/nvidia-powerd",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$59,
+                            [nix.POS]: pos$59,
                             hostPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nvidia_driver, "nvidia-smi")),
                             containerPath: "/usr/bin/nvidia-smi",
                           })),
                         ]))),
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit", "mount-nvidia-docker-1-directories")), nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$60,
+                            [nix.POS]: pos$60,
                             hostPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nvidia_driver)}/lib`),
                             containerPath: "/usr/local/nvidia/lib",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$61,
+                            [nix.POS]: pos$61,
                             hostPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nvidia_driver)}/lib`),
                             containerPath: "/usr/local/nvidia/lib64",
                           })),
@@ -397,11 +397,11 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               services: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 "nvidia-container-toolkit-cdi-generator": nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   description: "Container Device Interface (CDI) for Nvidia generator",
                   requiredBy: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enable")), nix.thunk(() => ["docker.service"]))),
@@ -409,7 +409,7 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
                     ]))),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     RuntimeDirectory: "cdi",
                     RemainAfterExit: true,
                     ExecStartPre: nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "udevadm")} settle --timeout=180`),
@@ -417,7 +417,7 @@ path = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hard
                       const script = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./cdi-generate.nix"), nix.thunk(() => (() => {
                           const from = nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit"));
                           return {
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           "csv-files": nix.thunk(() => nix.attr(from, "csv-files")),
                           "device-name-strategy": nix.thunk(() => nix.attr(from, "device-name-strategy")),
                           "discovery-mode": nix.thunk(() => nix.attr(from, "discovery-mode")),

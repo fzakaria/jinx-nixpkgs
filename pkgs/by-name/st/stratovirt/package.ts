@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stratovirt",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitee.com/openeuler/stratovirt.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1Ex6ahKBoVRikSqrgHGYaBFzWkPFDm8bGVyB7KmO8tI=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         libseccomp,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitee.com/openeuler/stratovirt",
         description: "Virtual Machine Manager from Huawei",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mulan-psl2")),

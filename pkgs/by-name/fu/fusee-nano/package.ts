@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fusee-nano",
       version: "0.5.3-unstable-2023-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DavidBuchanan314",
           repo: "fusee-nano",
           rev: "2979d34f470d02f34594d8d59be1f5c7bf4bf73f",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(unixtools, "xxd"))]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalist re-implementation of the Fusée Gelée exploit",
         mainProgram: "fusee-nano",
         homepage: "https://github.com/DavidBuchanan314/fusee-nano",

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "epub-thumbnailer",
       version: "0-unstable-2024-03-26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marianosimone",
           repo: "epub-thumbnailer",
           rev: "de4b5bf0fcd1817d560f180231f7bd22d330f1be",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mv $out/bin/epub-thumbnailer.py $out/bin/epub-thumbnailer\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Script to extract the cover of an epub book and create a thumbnail for it",
         homepage: "https://github.com/marianosimone/epub-thumbnailer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

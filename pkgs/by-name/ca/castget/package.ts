@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const taglib = nix.arg($, "taglib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "castget",
       version: "2.0.1-unstable-2026-02-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlj",
           repo: "castget",
           rev: "218734296e2efc53071e0dbd3c4d59930b571aae",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, glib, id3lib, libxml2, taglib]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, glibcLocales, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, command-line based RSS enclosure downloader",
         mainProgram: "castget",
         longDescription: "castget is a simple, command-line based RSS enclosure downloader. It is\nprimarily intended for automatic, unattended downloading of podcasts.\n",

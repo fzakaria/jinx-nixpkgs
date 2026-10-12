@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const idnSupport = nix.argOr($, "idnSupport", () => true);
   const libidn = nix.arg($, "libidn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gloox",
       version: "1.0.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://camaya.net/download/gloox-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-WRvRLCSe3gtQoe9rmawN6O+cG6T9Lhhvl6dAIVzFlmw=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "optional"), idnSupport, libidn)),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable high-level Jabber/XMPP library for C++",
         mainProgram: "gloox-config",
         homepage: "http://camaya.net/gloox",

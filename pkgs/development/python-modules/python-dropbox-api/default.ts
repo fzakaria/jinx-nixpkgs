@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-dropbox-api",
       version: "0.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdr99",
           repo: "python-dropbox-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [aiohttp]),
       pythonImportsCheck: nix.thunk(() => ["python_dropbox_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight wrapper for the Dropbox API intended for use in Home Assistant",
         homepage: "https://github.com/bdr99/python-dropbox-api",
         changelog: nix.thunk(() => nix.str`https://github.com/bdr99/python-dropbox-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

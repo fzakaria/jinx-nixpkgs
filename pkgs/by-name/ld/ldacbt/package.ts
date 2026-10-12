@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ldacbt",
       version: "2.0.72",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-vela",
           repo: "external_libldac",
           rev: "5b4bf66096ba0d69615efb2422ba3d023c34c2fd",
@@ -43,7 +43,7 @@ awk -v want=${nix.sel(finalAttrs, "version")} '
 ' src/ldacBT_api.c > VERSION
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sony LDAC Bluetooth decoder library (from AOSP via open-vela)",
         homepage: "https://github.com/open-vela/external_libldac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

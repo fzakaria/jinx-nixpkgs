@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const enableDebug = nix.argOr($, "enableDebug", () => false);
   return (name) => (emulator) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       src: nix.path(here, "./binfmt-p-wrapper.c"),
       dontUnpack: true,

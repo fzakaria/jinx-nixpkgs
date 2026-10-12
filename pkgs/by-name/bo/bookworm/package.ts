@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bookworm",
       version: "1.1.2-unstable-2026-05-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "babluboy",
           repo: "bookworm",
           rev: "fa06f1b80bb2372c1f20b0cfb21dc88eed410e29",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "patchShebangs $out/share/bookworm/scripts/mobi_lib/*.py\npatchShebangs $out/share/bookworm/scripts/tasks/*.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, focused eBook reader",
         mainProgram: "com.github.babluboy.bookworm",
         longDescription: "Read the books you love without having to worry about different format complexities like epub, pdf, mobi, cbr, etc.\n",

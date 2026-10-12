@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jotta-cli";
       const version = "0.17.176206";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo.jotta.us/archives/linux/amd64/jotta-cli-${version}_linux_amd64.tar.gz`),
           hash: "sha256-fVn1MpjwVUyjTF/oVnmx4AOgIfEfdK+G1ikMO1ZypoE=",
           stripRoot: false,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const installPhase = nix.thunk(() => nix.add("runHook preInstall\n\ninstall -Dm0755 usr/bin/jotta-cli usr/bin/jottad -t $out/bin/\n\nrunHook postInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jotta-cli \\\n  --bash <($out/bin/jotta-cli completion bash) \\\n  --fish <($out/bin/jotta-cli completion fish) \\\n  --zsh <($out/bin/jotta-cli completion zsh)\n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "jotta-cli": nix.thunk(() => nix.attr(nixosTests, "jotta-cli")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Jottacloud CLI",
         homepage: "https://www.jottacloud.com/",
         downloadPage: "https://repo.jotta.us/archives/linux/",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

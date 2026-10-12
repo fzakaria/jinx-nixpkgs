@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const sexplib = nix.arg($, "sexplib");
   const junit_alcotest = nix.arg($, "junit_alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "yaml-sexp",
       version: nix.thunk(() => nix.attr(yaml, "version")),
       src: nix.thunk(() => nix.attr(yaml, "src")),
       propagatedBuildInputs: nix.thunk(() => [yaml, ppx_sexp_conv, sexplib]),
       doCheck: true,
       checkInputs: nix.thunk(() => [junit_alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(yaml, "meta"), { __proto__: pos$1, description: "ocaml-yaml with sexp support" })),
+      meta: nix.thunk(() => nix.update(nix.sel(yaml, "meta"), { [nix.POS]: pos$1, description: "ocaml-yaml with sexp support" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=yaml-sexp.ts.map

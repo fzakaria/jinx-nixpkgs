@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const python_backoff = nix.arg($, "python-backoff");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-hotspring",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Moustachauve",
           repo: "python-hotspring",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["hotspring"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous Python client for Hot Spring Connected Spa Kit 2",
         homepage: "https://github.com/Moustachauve/python-hotspring",
         changelog: nix.thunk(() => nix.str`https://github.com/Moustachauve/python-hotspring/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

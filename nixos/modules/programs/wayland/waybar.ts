@@ -26,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "waybar"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         waybar: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "waybar, a highly customizable Wayland bar for Sway and Wlroots based compositors")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "waybar", nix.thunk(() => ({}))), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
-              apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ __proto__: pos$1, systemdSupport: true }))),
+              [nix.POS]: pos$2,
+              apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, systemdSupport: true }))),
             }))))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The systemd target that will automatically start the Waybar service.\n",
                 default: "graphical-session.target",
@@ -51,20 +51,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               waybar: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "systemd", "target"))]),
               })),
             })),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "FlorianFranzen"))]),
     })),
   };

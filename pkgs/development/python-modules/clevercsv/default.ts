@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alan-turing-institute",
           repo: "CleverCSV",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [chardet_5, regex, packaging]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, full: nix.thunk(() => [faust_cchardet, pandas, tabview]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [faust_cchardet, pandas, tabview]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "full")));
       const pythonImportsCheck = nix.thunk(() => ["clevercsv", "clevercsv.cparser"]);
       const preCheck = nix.thunk(() => nix.str`# by linking the installed version the tests also have access to compiled native libraries
@@ -45,7 +45,7 @@ ln -s $out/${nix.sel(python, "sitePackages")}/clevercsv/ clevercsv
       const enabledTestPaths = nix.thunk(() => ["./tests/test_unit"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_unit/test_console.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python package for handling messy CSV files",
         mainProgram: "clevercsv",
         longDescription: "CleverCSV is a Python package for handling messy CSV files. It provides\na drop-in replacement for the builtin CSV module with improved dialect\ndetection, and comes with a handy command line application for working\nwith CSV files.\n",
@@ -58,7 +58,7 @@ ln -s $out/${nix.sel(python, "sitePackages")}/clevercsv/ clevercsv
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

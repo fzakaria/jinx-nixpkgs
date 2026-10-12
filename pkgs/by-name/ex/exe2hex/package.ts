@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const expect = nix.arg($, "expect");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "exe2hex",
       version: "1.5.2-unstable-2020-04-27",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "g0tmi1k",
           repo: "exe2hex",
           rev: "e563b353306a0f34d96150b8992f543931f907ea",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "install -Dm 555 exe2hex.py $out/bin/exe2hex\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inline file transfer using in-built Windows tools",
         homepage: "https://github.com/g0tmi1k/exe2hex",
         mainProgram: "exe2hex",

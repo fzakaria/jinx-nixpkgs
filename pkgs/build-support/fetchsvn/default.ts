@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
     const preferLocalBuild = nix.argOr($_1, "preferLocalBuild", () => true);
     nix.assert_((!nix.asBool(sshSupport) || nix.asBool(!nix.eq(openssh, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchsvn/default.nix:54:1");
     return (nix.asBool((nix.asBool(!nix.eq(hash, "")) && nix.asBool(!nix.eq(sha256, "")))) ? nix.builtins.throw("Only one of sha256 or hash can be set") : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         builder: nix.path(here, "./builder.sh"),
         nativeBuildInputs: nix.thunk(() => nix.concat([cacert, subversion, glibcLocales], nix.app(nix.sel(lib, "optional"), sshSupport, openssh))),
         strictDeps: true,
         __structuredAttrs: true,
         env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), sshSupport, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             SVN_SSH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "openssh")))),
           })))),
         outputHashAlgo: nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? null : "sha256")),

@@ -206,7 +206,7 @@ export default (lib) => (self) => (super$) => (() => {
   const plasma5Throws = nix.thunk(() => nix.app(mapAliases, nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), deprecatedPlasma5Packages, makePlasma5Throw))));
   const warnAlias = (msg) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v)) ? nix.app(nix.sel(lib, "warnOnInstantiate"), msg, v) : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) ? nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.sel(lib, "warn"), msg), v) : (nix.asBool(nix.app(nix.sel(lib, "isFunction"), v)) ? (arg) => nix.app(nix.sel(lib, "warn"), msg, nix.thunk(() => nix.app(v, arg))) : (nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.app(nix.builtins.map, nix.thunk(() => nix.app(nix.sel(lib, "warn"), msg)), v) : nix.app(nix.sel(lib, "warn"), msg, v)))));
   return nix.update(nix.app(mapAliases, nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       llvmPackages_latest: nix.thunk(() => nix.lookup(w, "llvmPackages_23")),
       llvmPackages_git: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "callPackages"), nix.path(here, "../development/compilers/llvm"), nix.thunk(() => ({}))), "git")),
       clang18Stdenv: nix.thunk(() => nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.sel(nix.lookup(w, "llvmPackages_18"), "stdenv")))),
@@ -246,7 +246,7 @@ export default (lib) => (self) => (super$) => (() => {
       ahoviewer: nix.thunk(() => nix.app(nix.builtins.throw, "'ahoviewer' has been removed as it was unmaintained upstream and the packaged version depended on the deprecated gtk2 via gtkmm2")),
       "akkoma-emoji": nix.thunk(() => nix.app(nix.builtins.throw, "'akkoma-emoji' has been renamed to/replaced by 'blobs_gg'")),
       "akkoma-frontends": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "admin-fe": nix.thunk(() => nix.app(nix.builtins.throw, "'akkoma-frontends.admin-fe' has been renamed to/replaced by 'akkoma-admin-fe'")),
         "akkoma-fe": nix.thunk(() => nix.app(nix.builtins.throw, "'akkoma-frontends.akkoma-fe' has been renamed to/replaced by 'akkoma-fe'")),
       })),
@@ -893,8 +893,8 @@ export default (lib) => (self) => (super$) => (() => {
       fontwinitzkicyrillic: nix.thunk(() => nix.lookup(w, "font-winitzki-cyrillic")),
       fontxfree86type1: nix.thunk(() => nix.lookup(w, "font-xfree86-type1")),
       forceSystem: nix.thunk(() => nix.app(warnAlias, "forceSystem is deprecated in favour of explicitly importing Nixpkgs", (system) => (_) => nix.app(nix.builtins.import, nix.thunk(() => nix.sel(self, "path")), nix.thunk(() => ({
-            __proto__: pos$3,
-            localSystem: nix.thunk(() => ({ __proto__: pos$2, system: system })),
+            [nix.POS]: pos$3,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$2, system: system })),
           }))))),
       forge: nix.thunk(() => nix.app(nix.builtins.throw, "forge was removed due to numerous vulnerabilities in freeimage")),
       "forgejo-actions-runner": nix.thunk(() => nix.app(nix.builtins.throw, "'forgejo-actions-runner' has been renamed to/replaced by 'forgejo-runner'")),
@@ -1021,7 +1021,7 @@ export default (lib) => (self) => (super$) => (() => {
       gnatinspect: nix.thunk(() => nix.app(nix.builtins.throw, "'gnatinspect' has been renamed to/replaced by 'gnatPackages.gnatinspect'")),
       gnaural: nix.thunk(() => nix.app(nix.builtins.throw, "'gnaural' has been removed due to lack of maintenance and relying on gtk2. Consider using 'sbagen' instead")),
       gnome2: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         GConf: nix.thunk(() => nix.app(nix.builtins.throw, "gnome2.GConf has been removed as it was long deprecated upstream. Consider using gsettings and dconf instead.")),
         "gnome-common": nix.thunk(() => nix.app(nix.builtins.throw, "gnome2.gnome-common has been removed as it was deprecated upstream and unused in Nixpkgs")),
         gnome_mime_data: nix.thunk(() => nix.app(nix.builtins.throw, "gnome2.gnome_mime_data has been removed as it was unused in Nixpkgs")),
@@ -1190,7 +1190,7 @@ export default (lib) => (self) => (super$) => (() => {
       "insync-emblem-icons": nix.thunk(() => nix.app(nix.builtins.throw, "'insync-emblem-icons' has been removed, use 'insync-nautilus' instead")),
       intel2200BGFirmware: nix.thunk(() => nix.app(warnAlias, "'intel2200BGFirmware' has been renamed to 'ipw2200-firmware'", nix.thunk(() => nix.lookup(w, "ipw2200-firmware")))),
       "intel-oneapi": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         base: nix.thunk(() => nix.app(warnAlias, "'intel-oneapi.base' and 'intel-oneapi.hpc' have been merged upstream into a single package. Please switch to 'intel-oneapi-toolkit'", nix.thunk(() => nix.lookup(w, "intel-oneapi-toolkit")))),
         hpc: nix.thunk(() => nix.app(warnAlias, "'intel-oneapi.base' and 'intel-oneapi.hpc' have been merged upstream into a single package. Please switch to 'intel-oneapi-toolkit'", nix.thunk(() => nix.lookup(w, "intel-oneapi-toolkit")))),
       })),
@@ -1202,7 +1202,7 @@ export default (lib) => (self) => (super$) => (() => {
       "ipfs-migrator-all-fs-repo-migrations": nix.thunk(() => nix.app(nix.builtins.throw, "'ipfs-migrator-all-fs-repo-migrations' has been renamed to/replaced by 'kubo-fs-repo-migrations'")),
       "ipfs-migrator-unwrapped": nix.thunk(() => nix.app(nix.builtins.throw, "'ipfs-migrator-unwrapped' has been renamed to/replaced by 'kubo-migrator-unwrapped'")),
       iqueue: nix.thunk(() => nix.app(nix.builtins.throw, "'iqueue' has been removed, as it was broken and unmaintained upstream")),
-      ir: nix.thunk(() => ({ __proto__: pos$6, lv2: nix.thunk(() => nix.lookup(w, "ir-lv2")) })),
+      ir: nix.thunk(() => ({ [nix.POS]: pos$6, lv2: nix.thunk(() => nix.lookup(w, "ir-lv2")) })),
       ircdHybrid: nix.thunk(() => nix.app(warnAlias, "'ircdHybrid' has been renamed to 'ircd-hybrid'", nix.thunk(() => nix.lookup(w, "ircd-hybrid")))),
       iroh: nix.thunk(() => nix.app(nix.builtins.throw, "iroh has been split into iroh-dns-server and iroh-relay")),
       isl_0_24: nix.thunk(() => nix.app(nix.builtins.throw, "isl_0_24 has been removed from Nixpkgs, as it is unmaintained and obsolete")),
@@ -1293,7 +1293,7 @@ export default (lib) => (self) => (super$) => (() => {
       kwm: nix.thunk(() => nix.app(nix.builtins.throw, "'kwm' has been removed since upstream is a 404")),
       ladspaH: nix.thunk(() => nix.app(warnAlias, "'ladspaH' has been renamed to 'ladspa-header'", nix.thunk(() => nix.lookup(w, "ladspa-header")))),
       languageMachines: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         frog: nix.thunk(() => nix.lookup(w, "frog")),
         frogdata: nix.thunk(() => nix.lookup(w, "frogdata")),
         libfolia: nix.thunk(() => nix.lookup(w, "libfolia")),
@@ -1620,7 +1620,7 @@ export default (lib) => (self) => (super$) => (() => {
       "lxd-unwrapped": nix.thunk(() => nix.app(nix.builtins.throw, "\n    LXD has been removed from NixOS due to lack of Nixpkgs maintenance.\n    Consider migrating or switching to Incus, or remove from your configuration.\n    https://linuxcontainers.org/incus/docs/main/howto/server_migrate_lxd/\n  ")),
       "lxd-unwrapped-lts": nix.thunk(() => nix.app(nix.builtins.throw, "\n    LXD has been removed from NixOS due to lack of Nixpkgs maintenance.\n    Consider migrating or switching to Incus, or remove from your configuration.\n    https://linuxcontainers.org/incus/docs/main/howto/server_migrate_lxd/\n  ")),
       lxde: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "gtk2-x11": nix.thunk(() => nix.app(nix.builtins.throw, "'lxde.gtk2-x11' has been removed. Use 'gtk2-x11' directly.")),
         lxappearance: nix.thunk(() => nix.app(nix.builtins.throw, "'lxappearance' has been moved to top-level. Use 'lxappearance' directly")),
         "lxappearance-gtk2": nix.thunk(() => nix.app(nix.builtins.throw, "'lxappearance-gtk2' has been moved to top-level. Use 'lxappearance-gtk2' directly")),
@@ -1669,7 +1669,7 @@ export default (lib) => (self) => (super$) => (() => {
       "matrix-appservice-slack": nix.thunk(() => nix.app(nix.builtins.throw, "'matrix-appservice-slack' has been removed, as it relies on Classic Slack Apps, which no longer exist, and is abandoned upstream")),
       "matrix-gtk-theme": nix.thunk(() => nix.app(nix.builtins.throw, "'matrix-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2.")),
       "matrix-synapse-tools": nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "rust-synapse-compress-state": nix.thunk(() => nix.app(nix.builtins.throw, "'matrix-synapse-tools.rust-synapse-compress-state' has been renamed to/replaced by 'rust-synapse-compress-state'")),
         synadm: nix.thunk(() => nix.app(nix.builtins.throw, "'matrix-synapse-tools.synadm' has been renamed to/replaced by 'synadm'")),
       })),
@@ -1683,7 +1683,7 @@ export default (lib) => (self) => (super$) => (() => {
       "mediastreamer-openh264": nix.thunk(() => nix.app(nix.builtins.throw, "'mediastreamer-openh264' has been moved to 'linphonePackages.msopenh264'")),
       meilisearch_1_11: nix.thunk(() => nix.app(nix.builtins.throw, "'meilisearch_1_11' has been removed, as it is no longer supported")),
       mellowplayer: nix.thunk(() => nix.app(nix.builtins.throw, "'mellowplayer' has been removed as it was discontinued upstream in 2021.")),
-      melmatcheq: nix.thunk(() => ({ __proto__: pos$10, lv2: nix.thunk(() => nix.lookup(w, "melmatcheq-lv2")) })),
+      melmatcheq: nix.thunk(() => ({ [nix.POS]: pos$10, lv2: nix.thunk(() => nix.lookup(w, "melmatcheq-lv2")) })),
       melonDS: nix.thunk(() => nix.app(warnAlias, "'melonDS' has been renamed to 'melonds'", nix.thunk(() => nix.lookup(w, "melonds")))),
       "meshlab-unstable": nix.thunk(() => nix.app(nix.builtins.throw, "meshlab-unstable has been removed, as it was behind meshlab")),
       metaBuildEnv: nix.thunk(() => nix.app(nix.builtins.throw, "'metaBuildEnv' has been removed, due to it being ancient unmaintained software")),
@@ -1788,7 +1788,7 @@ export default (lib) => (self) => (super$) => (() => {
       netbox_4_6: nix.thunk(() => nix.app(nix.builtins.throw, "netbox 4.6 series has been removed as it was EOL")),
       netbsdCross: nix.thunk(() => nix.app(nix.builtins.throw, "'netbsdCross' has been renamed to/replaced by 'netbsd'")),
       netsurf: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         browser: nix.thunk(() => nix.app(nix.builtins.throw, "'netsurf.browser' has been renamed to/replaced by 'netsurf-browser'")),
         buildsystem: nix.thunk(() => nix.app(nix.builtins.throw, "'netsurf.buildsystem' has been renamed to/replaced by 'netsurf-buildsystem'")),
         libcss: nix.thunk(() => nix.app(nix.builtins.throw, "'netsurf.libcss' has been renamed to/replaced by 'libcss'")),
@@ -2053,7 +2053,7 @@ export default (lib) => (self) => (super$) => (() => {
       "plasma-theme-switcher": nix.thunk(() => nix.app(nix.builtins.throw, "'plasma-theme-switcher' has been removed, as it is only compatible with Plasma 5, which is EOL")),
       "plata-theme": nix.thunk(() => nix.app(nix.builtins.throw, "'plata-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2.")),
       platformioPackages: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "platformio-chrootenv": nix.thunk(() => nix.lookup(w, "platformio-chrootenv")),
         "platformio-core": nix.thunk(() => nix.lookup(w, "platformio-core")),
       })),
@@ -2337,7 +2337,7 @@ export default (lib) => (self) => (super$) => (() => {
       siproxd: nix.thunk(() => nix.app(nix.builtins.throw, "'siproxd' has been removed as it was unmaintained and incompatible with newer libosip versions")),
       sipwitch: nix.thunk(() => nix.app(nix.builtins.throw, "'sipwitch' has been removed because it has been marked as broken since at least November 2024.")),
       sisco: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         lv2: nix.thunk(() => nix.app(nix.builtins.throw, "'sisco.lv2' has been removed as it was unmaintained and broken")),
       })),
       skeu: nix.thunk(() => nix.app(nix.builtins.throw, "'skeu' has been removed as its source is unavailable")),
@@ -2375,7 +2375,7 @@ export default (lib) => (self) => (super$) => (() => {
       "source-han-serif-simplified-chinese": nix.thunk(() => nix.app(nix.builtins.throw, "'source-han-serif-simplified-chinese' has been renamed to/replaced by 'source-han-serif'")),
       "source-han-serif-traditional-chinese": nix.thunk(() => nix.app(nix.builtins.throw, "'source-han-serif-traditional-chinese' has been renamed to/replaced by 'source-han-serif'")),
       sourceHanPackages: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         mono: nix.thunk(() => nix.app(warnAlias, "'sourceHanPackages.mono' has been renamed to ''source-han-mono", nix.thunk(() => nix.lookup(w, "source-han-mono")))),
         sans: nix.thunk(() => nix.app(warnAlias, "'sourceHanPackages.sans' has been renamed to ''source-han-sans", nix.thunk(() => nix.lookup(w, "source-han-sans")))),
         "sans-vf-otf": nix.thunk(() => nix.app(warnAlias, "'sourceHanPackages.sans-vf-otf' has been renamed to ''source-han-sans-vf-otf", nix.thunk(() => nix.lookup(w, "source-han-sans-vf-otf")))),
@@ -2385,14 +2385,14 @@ export default (lib) => (self) => (super$) => (() => {
         "serif-vf-ttf": nix.thunk(() => nix.app(warnAlias, "'sourceHanPackages.serif-vf-ttf' has been renamed to ''source-han-serif-vf-ttf", nix.thunk(() => nix.lookup(w, "source-han-serif-vf-ttf")))),
       })),
       sourceHanSansPackages: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         japanese: nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSansPackages.japanese' has been renamed to/replaced by 'source-han-sans'")),
         korean: nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSansPackages.korean' has been renamed to/replaced by 'source-han-sans'")),
         "simplified-chinese": nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSansPackages.simplified-chinese' has been renamed to/replaced by 'source-han-sans'")),
         "traditional-chinese": nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSansPackages.traditional-chinese' has been renamed to/replaced by 'source-han-sans'")),
       })),
       sourceHanSerifPackages: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         japanese: nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSerifPackages.japanese' has been renamed to/replaced by 'source-han-serif'")),
         korean: nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSerifPackages.korean' has been renamed to/replaced by 'source-han-serif'")),
         "simplified-chinese": nix.thunk(() => nix.app(nix.builtins.throw, "'sourceHanSerifPackages.simplified-chinese' has been renamed to/replaced by 'source-han-serif'")),
@@ -2438,7 +2438,7 @@ export default (lib) => (self) => (super$) => (() => {
       steamcontroller: nix.thunk(() => nix.app(nix.builtins.throw, "'steamcontroller' has been removed due to lack of upstream maintenance. Consider using 'sc-controller' instead.")),
       "steamos-devkit": nix.thunk(() => nix.app(nix.builtins.throw, "'steamos-devkit' has been removed because it was broken")),
       steamPackages: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         steam: nix.thunk(() => nix.app(nix.builtins.throw, "'steamPackages.steam' has been renamed to/replaced by 'steam-unwrapped'")),
         "steam-fhsenv": nix.thunk(() => nix.app(nix.builtins.throw, "'steamPackages.steam-fhsenv' has been renamed to/replaced by 'steam'")),
         "steam-fhsenv-small": nix.thunk(() => nix.app(nix.builtins.throw, "'steamPackages.steam-fhsenv-small' has been renamed to/replaced by 'steam'")),
@@ -2493,7 +2493,7 @@ export default (lib) => (self) => (super$) => (() => {
       system: nix.thunk(() => nix.app(warnAlias, "'system' has been renamed to/replaced by 'stdenv.hostPlatform.system'", nix.thunk(() => nix.sel(nix.lookup(w, "stdenv"), "hostPlatform", "system")))),
       t1lib: nix.thunk(() => nix.app(nix.builtins.throw, "'t1lib' has been removed as it was broken and unmaintained upstream.")),
       tabnine: nix.thunk(() => nix.app(nix.builtins.throw, "'tabnine' has been removed as its source is unavailable")),
-      tamgamp: nix.thunk(() => ({ __proto__: pos$18, lv2: nix.thunk(() => nix.lookup(w, "tamgamp-lv2")) })),
+      tamgamp: nix.thunk(() => ({ [nix.POS]: pos$18, lv2: nix.thunk(() => nix.lookup(w, "tamgamp-lv2")) })),
       "taplo-cli": nix.thunk(() => nix.app(nix.builtins.throw, "'taplo-cli' has been renamed to/replaced by 'taplo'")),
       "taplo-lsp": nix.thunk(() => nix.app(nix.builtins.throw, "'taplo-lsp' has been renamed to/replaced by 'taplo'")),
       targetcli: nix.thunk(() => nix.app(nix.builtins.throw, "'targetcli' has been renamed to/replaced by 'targetcli-fb'")),
@@ -2641,7 +2641,7 @@ export default (lib) => (self) => (super$) => (() => {
       vacuum: nix.thunk(() => nix.app(nix.builtins.throw, "'vacuum' has been removed as upstream Vacuum-IM has been unmaintained since December 2021")),
       valum: nix.thunk(() => nix.app(nix.builtins.throw, "'valum' has been removed because it has been marked as broken since at least November 2024.")),
       vamp: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         vampSDK: nix.thunk(() => nix.app(nix.builtins.throw, "'vamp.vampSDK' has been renamed to/replaced by 'vamp-plugin-sdk'")),
       })),
       "vapoursynth-nnedi3": nix.thunk(() => nix.app(nix.builtins.throw, "'vapoursynth-nnedi3' has been removed per upstream. Use vapoursynth-znedi3 instead.")),
@@ -2844,7 +2844,7 @@ export default (lib) => (self) => (super$) => (() => {
       xo: nix.thunk(() => nix.app(nix.builtins.throw, "Use 'dbtpl' instead of 'xo'")),
       "xonsh-unwrapped": nix.thunk(() => nix.app(nix.builtins.throw, "'xonsh-unwrapped' has been renamed to/replaced by 'python3Packages.xonsh'")),
       xorg: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(warnAlias, nix.thunk(() => nix.str`The xorg package set has been deprecated, 'xorg.${name}' has been renamed to '${name}'`), value), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           appres: nix.thunk(() => nix.lookup(w, "appres")),
           bdftopcf: nix.thunk(() => nix.lookup(w, "bdftopcf")),
           bitmap: nix.thunk(() => nix.lookup(w, "bitmap")),
@@ -2928,7 +2928,7 @@ export default (lib) => (self) => (super$) => (() => {
           xwininfo: nix.thunk(() => nix.lookup(w, "xwininfo")),
           xwud: nix.thunk(() => nix.lookup(w, "xwud")),
         }))), nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(warnAlias, nix.thunk(() => nix.str`The xorg package set has been deprecated, 'xorg.${name}' has been renamed to '${value}'`), nix.thunk(() => nix.sel(self, nix.key(nix.force(value))))), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           encodings: "font-encodings",
           fontadobe100dpi: "font-adobe-100dpi",
           fontadobe75dpi: "font-adobe-75dpi",
@@ -3064,7 +3064,7 @@ export default (lib) => (self) => (super$) => (() => {
           xorgserver: "xorg-server",
           xorgsgmldoctools: "xorg-sgml-doctools",
         }))), {
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         callPackage: nix.thunk(() => nix.app(nix.builtins.throw, "The xorg package set has been moved to the top level.")),
         fontbitstreamspeedo: nix.thunk(() => nix.app(nix.builtins.throw, "Bitstream Speedo is an obsolete font format that hasn't been supported by Xorg since 2005")),
         libXtrap: nix.thunk(() => nix.app(nix.builtins.throw, "XTrap was a proposed X11 extension that hasn't been in Xorg since X11R6 in 1994, it is deprecated and archived upstream.")),
@@ -3122,7 +3122,7 @@ export default (lib) => (self) => (super$) => (() => {
       "zeal-qt6": nix.thunk(() => nix.app(warnAlias, "'zeal-qt6' has been renamed to 'zeal'", nix.thunk(() => nix.lookup(w, "zeal")))),
       zed: nix.thunk(() => nix.app(nix.builtins.throw, "'zed' has been removed. Use 'super' instead.")),
       zeroadPackages: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         zeroad: nix.thunk(() => nix.app(nix.builtins.throw, "'zeroadPackages.zeroad' has been renamed to/replaced by 'zeroad'")),
         "zeroad-data": nix.thunk(() => nix.app(nix.builtins.throw, "'zeroadPackages.zeroad-data' has been renamed to/replaced by 'zeroad-data'")),
         "zeroad-unwrapped": nix.thunk(() => nix.app(nix.builtins.throw, "'zeroadPackages.zeroad-unwrapped' has been renamed to/replaced by 'zeroad-unwrapped'")),

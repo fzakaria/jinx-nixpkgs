@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "readline",
       version: nix.thunk(() => nix.str`7.0p${nix.builtins.toString(nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.sel(finalAttrs, "upstreamPatches")))))}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}.tar.gz`),
           sha256: "0d13sg9ksf982rrrmv5mb6a2p4ys9rvg9r71d6il0vr8hmql63bm",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       upstreamPatches: nix.thunk(() => (() => {
         const patch = (nr) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}-patches/readline70-${nr}`),
             sha256: sha256,
           })));
@@ -40,10 +40,10 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./link-against-ncurses.patch"),
         nix.path(here, "./no-arch_only-6.3.patch"),
       ], nix.sel(finalAttrs, "upstreamPatches"))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for interactive line editing",
         longDescription: "The GNU Readline library provides a set of functions for use by\napplications that allow users to edit command lines as they are\ntyped in.  Both Emacs and vi editing modes are available.  The\nReadline library includes additional functions to maintain a\nlist of previously-entered command lines, to recall and perhaps\nreedit those lines, and perform csh-like history expansion on\nprevious commands.\n\nThe history facilities are also placed into a separate library,\nthe History library, as part of the build process.  The History\nlibrary may be used without Readline in applications which\ndesire its capabilities.\n",
         homepage: "https://savannah.gnu.org/projects/readline/",

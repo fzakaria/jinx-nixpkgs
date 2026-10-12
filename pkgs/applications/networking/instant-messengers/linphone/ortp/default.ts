@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ortp",
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-Wno-error=stringop-truncation" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-Wno-error=stringop-truncation" })),
       buildInputs: nix.thunk(() => [bctoolbox]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-Time Transport Protocol (RFC3550) stack. Part of the Linphone project",
         mainProgram: "ortp_tester",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

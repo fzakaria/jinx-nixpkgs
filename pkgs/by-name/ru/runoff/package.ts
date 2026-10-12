@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "runoff",
       version: "3.1.0-unstable-2026-05-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Real-Fruit-Snacks",
           repo: "Runoff",
           rev: "fa566364f641fa0656654de2984919df0ddfc536",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["runoff"]),
       disabledTests: nix.thunk(() => ["test_with_results"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Active Directory security audit tool",
         homepage: "https://github.com/Real-Fruit-Snacks/Runoff",
         changelog: nix.thunk(() => nix.str`https://github.com/Real-Fruit-Snacks/Runoff/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

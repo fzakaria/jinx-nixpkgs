@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const owner = "com-lihaoyi";
   const repo = "Ammonite";
   const variants = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     ammonite_2_12: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       scalaVersion: "2.12",
       hash: "sha256-gMyTQDPmHsl6b3CBCsIHb/8z2FwL3+Txuz0siFgvSws=",
     })),
     ammonite_2_13: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       scalaVersion: "2.13",
       hash: "sha256-NCB5ZuW+CqxFlYY10mF6TUHdZl1E8QFygPdyW2FtCe4=",
     })),
     ammonite_3_3: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       scalaVersion: "3.3",
       hash: "sha256-H3/wjBDA8b+a+4FISohLQ10eB7VOMUqj+M39bZOefbw=",
     })),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         const pname = "ammonite";
         const version = "3.0.9";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}/releases/download/${version}/${scalaVersion}-${version}`),
             hash: hash,
           }))));
@@ -100,11 +100,11 @@ fi
 `;
         })());
         const passthru = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           updateScript: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: "update-ammonite",
                   runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, git, gnugrep, gnused, jq, nix$]),
                   text: nix.thunk(() => nix.str`# stdout is reserved for the JSON expected by the \`commit\`
@@ -186,7 +186,7 @@ jq --null-input --compact-output \\
         const doInstallCheck = true;
         const installCheckPhase = "runHook preInstallCheck\n\n$out/bin/amm -h \"$PWD\" -c 'val foo = 21; println(foo * 2)' | grep 42\n\nrunHook postInstallCheck\n";
         const meta = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: nix.thunk(() => nix.str`Improved Scala REPL, built for Scala ${scalaVersion}`),
           longDescription: "The Ammonite-REPL is an improved Scala REPL, re-implemented from first principles.\nIt is much more featureful than the default REPL and comes\nwith a lot of ergonomic improvements and configurability\nthat may be familiar to people coming from IDEs or other REPLs such as IPython or Zsh.\n",
           homepage: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}`),
@@ -207,7 +207,7 @@ jq --null-input --compact-output \\
           platforms: nix.thunk(() => nix.sel(jre, "meta", "platforms")),
         }));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pname,
           version,
           src,

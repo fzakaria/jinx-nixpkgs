@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const protobufc = nix.arg($, "protobufc");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libpg_query",
       version: "18.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pganalyze",
           repo: "libpg_query",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +48,11 @@ runHook postInstall
       doCheck: true,
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, squawk: squawk })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, squawk: squawk })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/pganalyze/libpg_query",
         description: "C library for accessing the PostgreSQL parser outside of the server environment",
         changelog: nix.thunk(() => nix.str`https://github.com/pganalyze/libpg_query/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

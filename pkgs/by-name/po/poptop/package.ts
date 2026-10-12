@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "poptop",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bakks",
           repo: "poptop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-Ccvr+J+GDKnhlrlv0/kTaQYD986As7yb/h6Vyiuqjoc=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern top command that charts system metrics like CPU load, network IO, etc in the terminal",
         changelog: nix.thunk(() => nix.str`https://github.com/bakks/poptop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/bakks/poptop",

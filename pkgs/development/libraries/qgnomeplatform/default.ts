@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qgnomeplatform";
       const version = "0.8.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FedoraQt",
           repo: "QGnomePlatform",
           rev: version,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gds_gsettings_path: nix.thunk(() => nix.app(nix.sel(glib, "getSchemaPath"), gsettings_desktop_schemas)),
           })))),
         nix.path(here, "./qt6-cursor-fix.patch"),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.31")),
       ], nix.app(nix.sel(lib, "optionals"), useQt6, nix.thunk(() => ["-DUSE_QT6=true"]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "QPlatformTheme for a better Qt application inclusion in GNOME",
         homepage: "https://github.com/FedoraQt/QGnomePlatform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

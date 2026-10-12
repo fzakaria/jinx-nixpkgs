@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kivy",
           repo: "plyer",
           tag: version,
@@ -35,25 +35,25 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-plyer-Use-unittest-mock.patch",
             url: "https://github.com/kivy/plyer/commit/c9e73f395e2b51d46ada68119abfae2973591c00.patch",
             hash: "sha256-rWak2GOGnsw+GhEtdob9h1c39aa6Z1yU7vH9kdGjHO0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-plyer-Remove-whitespace-error-during-self.assertEqual-function-call.patch",
             url: "https://github.com/kivy/plyer/commit/8393c61dfd3a7aa0362d3bf530ba9ca052878c1a.patch",
             hash: "sha256-omjpQJQ+vZ6T12vL6LvKOuRSihiHfLdEZ1pDat8VuiM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "0003-plyer-Replace obj.__doc__-with-getdoc-obj-to-automatically-remove-new-lines.patch",
             url: "https://github.com/kivy/plyer/commit/675750f31e9f98cd5de2df732afe34648f343d3e.patch",
             hash: "sha256-Lb7MbbcIjwbfnR8U6t9j0c+bqU7kK3/xEt13pSF8G6M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "0004-plyer-Remove-newline-and-indentation-comparisons-during-self.assertEqual-function-call.patch",
             url: "https://github.com/kivy/plyer/commit/31e96f689771cd43f0a925463a59fcbc49f58e46.patch",
             hash: "sha256-ZYYftI4w+21Q6oKm1wku7NJg3xfkIpkjN+PvZY0YjyY=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "mkdir -p $HOME/.config/ $HOME/Pictures\n";
       const pythonImportsCheck = nix.thunk(() => ["plyer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Plyer is a platform-independent api to use features commonly found on various platforms",
         homepage: "https://github.com/kivy/plyer",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

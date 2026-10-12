@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nicstat",
       version: "0-unstable-2018-05-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scotte",
           repo: "nicstat",
           rev: "1fbe28198b49a2062b0c928554f93db33cb288c3",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC -O2 nicstat.c -o nicstat\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -d \"$out/bin\"\ninstall -m 755 nicstat \"$out/bin\"\n\ninstallManPage nicstat.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network traffic statistics utility for Solaris and Linux",
         homepage: "https://github.com/scotte/nicstat",
         changelog: nix.thunk(() => nix.str`https://github.com/scotte/nicstat/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog.txt`),

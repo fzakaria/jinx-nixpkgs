@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "doomretro",
       version: "6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bradharding",
           repo: "doomretro",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.doomretro.com/",
         description: "Classic, refined DOOM source port",
         longDescription: "DOOM Retro is the classic, refined DOOM source port for Windows PC. It\nrepresents how I like my DOOM to be today, in all its dark and gritty,\nunapologetically pixelated glory. I have strived to craft a unique and\ncohesive set of compelling features, while continuing to uphold my respect\nfor that classic, nostalgic DOOM experience many of us, after all this\ntime, still hold dear.\n\nDOOM Retro has been under relentless, meticulous development since its\ndebut on December 10, 2013 commemorating DOOM's 20th anniversary, and it\nhas absolutely no intention of stopping. Its source code was originally\nderived from Chocolate DOOM but is now very much its own beast. It does\ninclude the usual, necessary enhancements that you'll find in all those\nother DOOM source ports out there, but it also has many of its own cool,\noriginal ideas that continues to set itself apart.\n\nDOOM Retro is and always will be intentionally minimalistic in its\napproach, and does a few things differently. It supports all vanilla,\nlimit removing, BOOM, MBF and MBF21-compatible maps and mods. In order to\nfreely implement certain features, and due to the nature of DOOM demos,\nDOOM Retro does not support their recording or playback.\n\nDOOM Retro is singleplayer only. Written in C, and released as free, open\nsource software under version 3 of the GNU General Public License, DOOM\nRetro's 100,000 or so lines of code are diligently maintained in this\npublic Git repository and regularly compiled into both 32 and 64-bit\nWindows apps using Microsoft Visual Studio Community 2022. Although next\nto no support is provided, DOOM Retro's source code may also be compiled\nand run under Linux and macOS.\n",

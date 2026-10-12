@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fabric-installer",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://maven.fabricmc.net/net/fabricmc/fabric-installer/${nix.sel(finalAttrs, "version")}/fabric-installer-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-YeA1v3v3AVPhJ0QM403kfJA28KLQxl0VKUVL01zu/k8=",
         })))),
@@ -32,7 +32,7 @@ makeWrapper ${jre}/bin/java $out/bin/fabric-installer \\
   --add-flags "-jar $out/lib/fabric/fabric-installer.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fabricmc.net/",
         description: "Lightweight, experimental modding toolchain for Minecraft",
         mainProgram: "fabric-installer",

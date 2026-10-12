@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "letoram-arcan"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -138,12 +138,12 @@ chmod --recursive 744 ${destination}
       postPatch: "substituteInPlace ./src/platform/posix/paths.c \\\n  --replace-fail \"/usr/bin\" \"$out/bin\" \\\n  --replace-fail \"/usr/share\" \"$out/share\"\nsubstituteInPlace ./src/CMakeLists.txt \\\n  --replace-fail \"SETUID\" \"# SETUID\"\n",
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildManPages, "pushd doc\nruby docgen.rb mangen\npopd\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sources: sources,
         wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://arcan-fe.com/",
         description: "Combined Display Server, Multimedia Framework, Game Engine",
         longDescription: "Arcan is a portable and fast self-sufficient multimedia engine for\nadvanced visualization and analysis work in a wide range of applications\ne.g. game development, real-time streaming video, monitoring and\nsurveillance, up to and including desktop compositors and window managers.\n",

@@ -50,11 +50,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), xcbuild, "plutil")} "$@"
 `)));
   nix.assert_((nix.asBool(monolithic) || nix.asBool((nix.asBool(!nix.asBool(monolithic)) && nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(enableDaemon) || nix.asBool(client))) || nix.asBool(textClient))) || nix.asBool(httpServer))) || nix.asBool(apiServer)))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/am/amule/package.nix:50:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("amule", nix.app(nix.sel(lib, "optionalString"), httpServer, "-web")), nix.app(nix.sel(lib, "optionalString"), apiServer, "-api")), nix.app(nix.sel(lib, "optionalString"), enableDaemon, "-daemon")), nix.app(nix.sel(lib, "optionalString"), client, "-gui")), nix.app(nix.sel(lib, "optionalString"), textClient, "-cmd"))),
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amule-org",
           repo: "amule",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,12 +86,12 @@ exec ${nix.app(nix.sel(lib, "getExe'"), xcbuild, "plutil")} "$@"
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for app in \"$out\"/*.app; do\n  [ -e \"$app\" ] || continue\n  mkdir -p \"$out/Applications\" \"$out/bin\"\n  mv \"$app\" \"$out/Applications/\"\n  name=$(basename \"$app\" .app)\n  ln -s \"$out/Applications/$name.app/Contents/MacOS/$name\" \\\n    \"$out/bin/$(echo \"$name\" | tr '[:upper:]' '[:lower:]')\"\ndone\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, amuled: nix.thunk(() => nix.attr(nixosTests, "amuled")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, amuled: nix.thunk(() => nix.attr(nixosTests, "amuled")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Peer-to-peer client for the eD2K and Kademlia networks",
         longDescription: "aMule is an eMule-like client for the eD2k and Kademlia\nnetworks, supporting multiple platforms.  Currently aMule\n(officially) supports a wide variety of platforms and operating\nsystems, being compatible with more than 60 different\nhardware+OS configurations.  aMule is entirely free, its\nsourcecode released under the GPL just like eMule, and includes\nno adware or spyware as is often found in proprietary P2P\napplications.\n",
         homepage: "https://amule-org.github.io/",

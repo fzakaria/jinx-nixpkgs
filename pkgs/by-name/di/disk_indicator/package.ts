@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "disk-indicator",
       version: "0.2.1-unstable-2018-12-18",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MeanEYE",
           repo: "Disk-Indicator",
           rev: "ec2d2f6833f038f07a72d15e2d52625c23e10b12",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstallBin disk_indicator\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/MeanEYE/Disk-Indicator",
         description: "Program that will turn a LED into a hard disk indicator",
         mainProgram: "disk_indicator",

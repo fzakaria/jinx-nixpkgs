@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ddrescueview";
       const version = "0.4.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ddrescueview/ddrescueview-source-${version}.tar.xz`),
           sha256: "sha256-Vzg8OU5iYSzip5lDiwDG48Rlwx+bqUDgd/Yk4ucChGU=",
         }))));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [fpc, lazarus, writableTmpDirAsHomeHook]);
       const buildInputs = nix.thunk(() => [atk, cairo, gdk_pixbuf, glib, gtk3, harfbuzz, libx11, pango]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "--as-needed",
             "-rpath",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "install -Dt $out/bin ddrescueview\ncd ../resources/linux\nmkdir -p \"$out/share\"\ncp -ar applications icons man $out/share\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to graphically examine ddrescue mapfiles",
         homepage: "https://sourceforge.net/projects/ddrescueview/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ddrescueview",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

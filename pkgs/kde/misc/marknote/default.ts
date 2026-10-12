@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
       const pname = "marknote";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/marknote/marknote-${version}.tar.xz`),
           hash: "sha256-07s5YU4i/RqN3XS8+0w4TL/+JWhewBEW9pTkcIFihKk=",
         }))));
       const extraBuildInputs = nix.thunk(() => [qtdeclarative, qtsvg, qtwayland, kxmlgui]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
-      return { __proto__: pos$3, pname, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

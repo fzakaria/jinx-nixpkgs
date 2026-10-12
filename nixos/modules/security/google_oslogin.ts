@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "security", "googleOsLogin"));
   const package$ = nix.thunk(() => nix.sel(pkgs, "google-guest-oslogin"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       security: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         googleOsLogin: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Google OS Login.\n\nThe OS Login package enables the following components:\nAuthorizedKeysCommand to query valid SSH keys from the user's OS Login\nprofile during ssh authentication phase.\nNSS Module to provide user and group information\nPAM Module for the sshd service, providing authorization and\nauthentication support, allowing the system to use data stored in\nGoogle Cloud IAM permissions to control both, the ability to log into\nan instance, and to perform operations as root (sudo).\n",
@@ -52,28 +52,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pam: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               sshd: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 makeHomeDir: true,
                 googleOsLoginAccountVerification: true,
                 googleOsLoginAuthentication: true,
               })),
             })),
           })),
-          sudo: nix.thunk(() => ({ __proto__: pos$8, extraConfig: "#includedir /run/google-sudoers.d\n" })),
-          "sudo-rs": nix.thunk(() => ({ __proto__: pos$9, extraConfig: "#includedir /run/google-sudoers.d\n" })),
+          sudo: nix.thunk(() => ({ [nix.POS]: pos$8, extraConfig: "#includedir /run/google-sudoers.d\n" })),
+          "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$9, extraConfig: "#includedir /run/google-sudoers.d\n" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             rules: nix.thunk(() => [
               "d /run/google-sudoers.d 750 root root -",
               "d /var/google-users.d 750 root root -",
@@ -81,25 +81,25 @@ export default nix.lambda((args) => (() => {
           })),
           packages: nix.thunk(() => [package$]),
           timers: nix.thunk(() => ({
-            __proto__: pos$13,
-            "google-oslogin-cache": nix.thunk(() => ({ __proto__: pos$12, wantedBy: nix.thunk(() => ["timers.target"]) })),
+            [nix.POS]: pos$13,
+            "google-oslogin-cache": nix.thunk(() => ({ [nix.POS]: pos$12, wantedBy: nix.thunk(() => ["timers.target"]) })),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           nssModules: nix.thunk(() => [package$]),
           nssDatabases: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             passwd: nix.thunk(() => ["cache_oslogin", "oslogin"]),
             group: nix.thunk(() => ["cache_oslogin", "oslogin"]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "ssh/authorized_keys_command_google_oslogin": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               mode: "0755",
               text: nix.thunk(() => nix.str`#!/bin/sh
 exec ${package$}/bin/google_authorized_keys "$@"
@@ -108,9 +108,9 @@ exec ${package$}/bin/google_authorized_keys "$@"
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           openssh: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             authorizedKeysCommand: "/etc/ssh/authorized_keys_command_google_oslogin %u",
             authorizedKeysCommandUser: "root",
           })),

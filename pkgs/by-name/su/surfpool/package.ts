@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const studioUiVersion = "v0.1.0";
   const studioUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/solana-foundation/surfpool-web-ui/releases/download/${studioUiVersion}/studio-dist.zip`),
       hash: "sha256-DeWm2FzZbdaHXaEFA8W/YIIcJx4Z+uFkrxuajTM9n1M=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "surfpool-cli",
       version: "1.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "solana-foundation",
           repo: "surfpool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-eOgPoHQVQVm+aSLsxAokjMyAyZBia/j/Bxux69WfklI=",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RUSTFLAGS: "-Aunused",
         OPENSSL_NO_VENDOR: 1n,
         STUDIO_UI_DIST: nix.thunk(() => nix.str`${studioUi}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Surfpool is where developers start their Solana journey",
         homepage: "https://www.surfpool.run/",
         longDescription: "Surfpool is a drop-in replacement for solana-test-validator that lets\ndevelopers spin up local Solana networks mirroring mainnet state without\ndownloading the entire chain. It includes a built-in web UI (Surfpool Studio)\nserved directly from the binary, Infrastructure as Code for declarative\nprogram deployment, transaction inspection, time travel, cheatcodes, and\nan MCP server for agentic workflows\n",

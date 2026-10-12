@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
       const pname = "reaver-wps";
       const confdir = nix.thunk(() => nix.str`/var/db/${pname}-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/reaver-wps/reaver-${version}.tar.gz`),
           sha256: "0bdjai4p8xbsw8zdkkk43rgsif79x0nyx4djpyv0mzh59850blxd",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [libpcap, sqlite]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" }));
       const setSourceRoot = "sourceRoot=$(echo */src)\n";
       const configureFlags = nix.thunk(() => [nix.thunk(() => nix.str`--sysconfdir=${confdir}`)]);
       const installPhase = nix.thunk(() => nix.str`mkdir -p $out/{bin,etc}
@@ -40,7 +40,7 @@ wrapProgram $out/bin/wash   --run "[ -s ${confdir}/reaver/reaver.db ] || install
       const enableParallelBuilding = true;
       const patches = nix.thunk(() => [nix.path(here, "./parallel-build.patch")]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Brute force attack against Wifi Protected Setup",
         homepage: "https://code.google.com/archive/p/reaver-wps/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -51,7 +51,7 @@ wrapProgram $out/bin/wash   --run "[ -s ${confdir}/reaver/reaver.db ] || install
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         confdir,

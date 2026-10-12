@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
   const valhalla = nix.arg($, "valhalla");
   const abseil_cpp_202103 = nix.arg($, "abseil-cpp_202103");
   const date = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "HowardHinnant",
       repo: "date",
       rev: "a45ea7c17b4a7f320e199b71436074bd624c9e15",
       hash: "sha256-Mq7Yd+y8M3JNG9BEScwVEmxGWYEy6gaNNSlTGgR9LB4=",
     }))));
   const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf_21, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
-      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp_202103, "override"), nix.thunk(() => ({ __proto__: pos$2, cxxStandard: "17" })))),
+      [nix.POS]: pos$3,
+      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp_202103, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cxxStandard: "17" })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "osmscout-server",
       version: "3.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "rinigus",
           repo: "osmscout-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,9 +76,9 @@ export default nix.lambda((args) => (() => {
         date,
       ]),
       qmakeFlags: nix.thunk(() => ["SCOUT_FLAVOR=qtcontrols", "CONFIG+=disable_mapnik"]),
-      env: nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-std=c++20" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Maps server providing tiles, geocoder, and router",
         homepage: "https://github.com/rinigus/osmscout-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

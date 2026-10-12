@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lazysql";
       const version = "0.5.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorgerojas26",
           repo: "lazysql",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => [nix.thunk(() => nix.str`-X main.version=${version}`)]);
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11])));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: lazysql, command: "lazysql --version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: lazysql, command: "lazysql --version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform TUI database management tool written in Go",
         homepage: "https://github.com/jorgerojas26/lazysql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lazysql",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

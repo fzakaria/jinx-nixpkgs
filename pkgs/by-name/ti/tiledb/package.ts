@@ -42,11 +42,11 @@ chmod -R +w $out
 cp -r ${nix.sel(rapidcheck, "dev")}/* $out
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tiledb",
       version: "2.30.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TileDB-Inc",
           repo: "TileDB",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ cp -r ${nix.sel(rapidcheck, "dev")}/* $out
         })))),
       patches: nix.thunk(() => [nix.path(here, "./0001-fix-cross-compilation-with-capnproto.patch")]),
       postPatch: "substituteInPlace tiledb/sm/misc/test/unit_parse_argument.cc \\\n  --replace-fail '\"catch.hpp\"' '<catch2/catch_all.hpp>'\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, TILEDB_DISABLE_AUTO_VCPKG: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, TILEDB_DISABLE_AUTO_VCPKG: "1" })),
       cmakeFlags: nix.thunk(() => nix.concat([
         "-DTILEDB_WEBP=OFF",
         "-DTILEDB_WERROR=OFF",
@@ -87,7 +87,7 @@ cp -r ${nix.sel(rapidcheck, "dev")}/* $out
       checkPhase: "runHook preCheck\n\npushd ..\ncmake --build build --target tests\nctest --test-dir build -R '(^unit_|test_assert)' --no-tests=error\nctest --test-dir build -R 'test_ci_asserts'\npopd\n\nrunHook postCheck\n",
       installTargets: nix.thunk(() => ["install-tiledb", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allows you to manage massive dense and sparse multi-dimensional array data",
         homepage: "https://github.com/TileDB-Inc/TileDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

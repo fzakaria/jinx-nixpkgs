@@ -14,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mi2ly",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/mi2ly/mi2ly.${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-lFbqH+syFaQDMbXfb+OUcWnyKnjfVz9yl7DbTTn7JKw=",
         })))),
       sourceRoot: ".",
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fgnu89-inline"]))),
       })),
       buildPhase: "./cc",
       installPhase: "mkdir -p \"$out\"/{bin,share/doc/mi2ly}\ncp mi2ly \"$out/bin\"\ncp README Doc.txt COPYING Manual.txt \"$out/share/doc/mi2ly\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MIDI to Lilypond converter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

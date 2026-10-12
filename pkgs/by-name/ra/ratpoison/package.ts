@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ratpoison",
       version: "1.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/ratpoison/ratpoison-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2Y+kvgJezKRTxAf/MRqzlJ8p8g1tir7fjwcWuF/I0fE=",
         })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/ratpoison/",
         description: "Simple mouse-free tiling window manager",
         longDescription: "Ratpoison is a simple window manager with no fat library\ndependencies, no fancy graphics, no window decorations, and no\nrodent dependence.  It is largely modelled after GNU Screen which\nhas done wonders in the virtual terminal market.\n\nThe screen can be split into non-overlapping frames.  All windows\nare kept maximized inside their frames to take full advantage of\nyour precious screen real estate.\n\nAll interaction with the window manager is done through keystrokes.\nRatpoison has a prefix map to minimize the key clobbering that\ncripples Emacs and other quality pieces of software.\n",

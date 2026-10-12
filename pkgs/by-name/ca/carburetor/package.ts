@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const tractor = nix.arg($, "tractor");
   const version = "5.1.1";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "carburetor",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "framagit.org",
           owner: "tractor",
           repo: "carburetor",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "substituteInPlace $out/share/applications/io.frama.tractor.carburetor.desktop \\\n  --replace-fail \"Exec=gapplication launch io.frama.tractor.carburetor\" \"Exec=$out/bin/carburetor\"\nmakeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://framagit.org/tractor/carburetor",
         description: "Graphical settings app for Tractor in GTK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

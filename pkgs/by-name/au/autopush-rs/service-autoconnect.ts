@@ -29,22 +29,22 @@ export default nix.lambda((args) => (() => {
     const cfg = nix.thunk(() => nix.sel(config, "autoconnect"));
     const tomlFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       _class: "service",
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         autoconnect: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "autopush-rs", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   freeformType: nix.thunk(() => nix.sel(tomlFmt, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     db_dsn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         description: "Endpoint of the database server.",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "",
@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
       config: nix.thunk(() => (() => {
         const configFile = nix.thunk(() => nix.app(nix.sel(tomlFmt, "generate"), "autoconnect.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
         return nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           process: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             argv: nix.thunk(() => [
               nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/autoconnect`),
               "-c",
@@ -70,16 +70,16 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               service: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 after: nix.thunk(() => ["network.target"]),
                 wants: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   Restart: "on-failure",
                   MemoryDenyWriteExecute: true,
                   StateDirectoryMode: 700n,

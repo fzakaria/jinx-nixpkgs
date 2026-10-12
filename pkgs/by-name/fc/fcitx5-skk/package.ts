@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-skk";
       const version = "5.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Input method engine for Fcitx5, which uses libskk as its backend",
         homepage: "https://github.com/fcitx/fcitx5-skk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

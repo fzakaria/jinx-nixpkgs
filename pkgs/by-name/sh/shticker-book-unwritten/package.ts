@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const shticker_book_unwritten_unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({}))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "shticker_book_unwritten",
       version: nix.thunk(() => nix.attr(shticker_book_unwritten_unwrapped, "version")),
       targetPkgs: (pkgs) => (() => {
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })(),
       runScript: "shticker_book_unwritten",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Minimal CLI launcher for the Toontown Rewritten MMORPG",
         mainProgram: "shticker_book_unwritten",
         homepage: "https://github.com/JonathanHelianthicusDoe/shticker_book_unwritten",

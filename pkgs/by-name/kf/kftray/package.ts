@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const cargoHash = nix.thunk(() => nix.selOr(finalAttrs, () => "sha256-NGGeUQUN8+2IZD6F5//G6E2XKG/zeqADr5ek75r7Puk=", "cargoDeps", "hash"));
       const kftrayBinaries = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "kftray-binaries",
           cargoBuildFlags: nix.thunk(() => ["-p", "kftray-helper", "-p", "kftui"]),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
           doCheck: false,
         }))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "kftray",
         version: "0.29.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "hcavarsan",
             repo: "kftray",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           })))),
         cargoRoot: "./",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
             hash: cargoHash,
           })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -117,11 +117,11 @@ ln -s ${kftrayBinaries}/bin/kftray-helper target/release
         strictDeps: true,
         __structuredAttrs: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Kubectl port-forward manager",
           homepage: "https://github.com/hcavarsan/kftray",
           license: nix.thunk(() => (() => {

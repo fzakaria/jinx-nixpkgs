@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "readsb",
       version: "3.16.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wiedehopf",
           repo: "readsb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "cprtest",
       installPhase: "runHook preInstall\n\nmkdir --parent -- $out/bin\nmv readsb viewadsb $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ADS-B decoder swiss knife",
         homepage: "https://github.com/wiedehopf/readsb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

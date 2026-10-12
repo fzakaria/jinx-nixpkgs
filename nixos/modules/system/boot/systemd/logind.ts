@@ -29,30 +29,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const utils = nix.arg($, "utils");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         logind: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the `systemd-logind` login service"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => nix.sel(config, "systemd", "package", "withLogind")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.systemd.package.withLogind")),
           })),
           settings: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             Login: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Settings option for systemd-logind.\nSee {manpage}`logind.conf(5)` for available options.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       KillUserProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           default: false,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "Specifies whether the processes of a user should be killed\nwhen the user logs out.  If true, the scope unit corresponding\nto the session and all processes inside that scope will be\nterminated.  If false, the scope is \"abandoned\"\n(see {manpage}`systemd.scope(5)`),\nand processes are not killed.\n\nSee {manpage}`logind.conf(5)` for more details.\n\nDefaulted to false in nixpkgs because many tools that rely on\npersistent user processes—like `tmux`, `screen`, `mosh`, `VNC`,\n`nohup`, and more — would break by the systemd-default behavior.\n",
@@ -60,33 +60,33 @@ export default nix.lambda((args) => (() => {
                     })),
                   })))),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$5, KillUserProcesses: false, HandleLidSwitch: "ignore" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$5, KillUserProcesses: false, HandleLidSwitch: "ignore" })),
               })))),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "logind", "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           additionalUpstreamSystemUnits: nix.thunk(() => nix.concat(["systemd-logind.service", "systemd-user-sessions.service"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "systemd", "package", "withImportd")), nix.thunk(() => ["dbus-org.freedesktop.import1.service"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "systemd", "package", "withMachined")), nix.thunk(() => ["dbus-org.freedesktop.machine1.service"])), [
             "dbus-org.freedesktop.login1.service",
             "user@.service",
             "user-runtime-dir@.service",
           ])))),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
-            "systemd-logind": nix.thunk(() => ({ __proto__: pos$11, reloadIfChanged: true })),
-            "user-runtime-dir@": nix.thunk(() => ({ __proto__: pos$12, stopIfChanged: false, restartIfChanged: false })),
+            [nix.POS]: pos$13,
+            "systemd-logind": nix.thunk(() => ({ [nix.POS]: pos$11, reloadIfChanged: true })),
+            "user-runtime-dir@": nix.thunk(() => ({ [nix.POS]: pos$12, stopIfChanged: false, restartIfChanged: false })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "systemd/logind.conf": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               text: nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "settingsToSections"), nix.thunk(() => nix.sel(config, "services", "logind", "settings")))),
             })),
           })),

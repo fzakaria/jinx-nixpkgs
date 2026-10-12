@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "json2tsv",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codemadness.org/releases/json2tsv/json2tsv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ET5aeuspXn+BNfIxytkACR+Zrr1smDFvdh03fptQ/YQ=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["RANLIB:=$(RANLIB)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON to TSV converter",
         homepage: "https://codemadness.org/json2tsv.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

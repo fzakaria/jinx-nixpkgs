@@ -18,33 +18,33 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "OpenCorsairLink",
       version: "0-unstable-2019-12-23",
       buildInputs: nix.thunk(() => [libusb1]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyperkineticnerd",
           repo: "OpenCorsairLink",
           rev: "46dbf206e19a40d6de6bd73142ed93bdb26c5c1a",
           sha256: "1nizicl0mc9pslc6065mnrs0fnn8sh7ca8iiw7w9ix57zrhabpld",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fno-common.patch",
             url: "https://github.com/hyperkineticnerd/OpenCorsairLink/commit/d600c7ff032a3911d30b039844a31f0b3acfe26a.patch",
             sha256: "030rwka5bvf79x6ir18vqb09izhz1crp94x5gqjxwv3b20vvv4kx",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux and Mac OS support for the CorsairLink Devices",
         homepage: "https://github.com/hyperkineticnerd/OpenCorsairLink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

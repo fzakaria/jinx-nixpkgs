@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const mkHyprlandPlugin = nix.arg($, "mkHyprlandPlugin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkHyprlandPlugin, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pluginName: "hyprsplit",
       version: "0.54.3-unstable-2026-06-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shezdy",
           repo: "hyprsplit",
           rev: "6b00b677d8905fb38779c91e12d6294e0e586a44",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/shezdy/hyprsplit",
         description: "Hyprland plugin for awesome / dwm like workspaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

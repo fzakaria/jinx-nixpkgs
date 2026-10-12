@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gbforth",
       version: "0-unstable-2025-10-08",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ams-hackers",
           repo: "gbforth",
           rev: "39ec80520bf7bedf881eca01909cc9eeb7334a60",
@@ -44,11 +44,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       installCheckPhase: "runHook preInstallCheck\n$out/bin/gbforth examples/simon/simon.fs\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gbforth.org/",
         description: "Forth-based Game Boy development kit",
         mainProgram: "gbforth",

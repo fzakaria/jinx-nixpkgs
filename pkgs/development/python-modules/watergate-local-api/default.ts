@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "watergate-ai",
           repo: "watergate-local-api-python",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["watergate_local_api"]);
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/watergate-ai/watergate-local-api-python/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python package to interact with the Watergate Local API",
         homepage: "https://github.com/watergate-ai/watergate-local-api-python",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

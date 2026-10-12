@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "homeassistant-cli",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-ecosystem",
           repo: "home-assistant-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["homeassistant_cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool for Home Assistant",
         mainProgram: "hass-cli",
         homepage: "https://github.com/home-assistant-ecosystem/home-assistant-cli",

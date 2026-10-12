@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "3beans",
       version: "0-unstable-2026-08-05",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hydr8gon",
           repo: "3Beans",
           rev: "c5ce9ee29635ba229ba40a534842cf6675533bb1",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libepoxy, portaudio]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Low-level 3DS emulator",
         homepage: "https://github.com/Hydr8gon/3Beans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

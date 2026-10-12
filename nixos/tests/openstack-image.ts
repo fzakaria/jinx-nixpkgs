@@ -19,31 +19,31 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "common/ec2.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       makeTest: nix.thunk(() => nix.lookup(w_1, "makeTest")),
       pkgs: pkgs,
     })))), w_1);
   const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../maintainers/scripts/openstack/openstack-image.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           system: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraDependencies: nix.thunk(() => (() => {
               const w_3 = nix.withScope(pkgs, w_2);
               return [nix.thunk(() => nix.lookup(w_3, "stdenv"))];
             })()),
           })),
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$5, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKeyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "private-key", snakeOilPrivateKey));
   const snakeOilPublicKey = nix.thunk(() => nix.sel(sshKeys, "snakeOilPublicKey"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     metadata: nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "openstack-ec2-metadata",
         image: image,
         sshPublicKey: snakeOilPublicKey,
@@ -95,9 +95,9 @@ machine.wait_for_file("/etc/ec2-metadata/user-data")
 `),
       })))),
     userdata: nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "openstack-ec2-metadata",
-        meta: nix.thunk(() => ({ __proto__: pos$9, broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, broken: true })),
         image: image,
         sshPublicKey: snakeOilPublicKey,
         userData: "{ pkgs, ... }:\n{\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/openstack-config.nix>\n    <nixpkgs/nixos/modules/testing/test-instrumentation.nix>\n    <nixpkgs/nixos/modules/profiles/qemu-guest.nix>\n  ];\n  environment.etc.testFile = {\n    text = \"whoa\";\n  };\n}\n",

@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const youtubeSupport = nix.argOr($, "youtubeSupport", () => true);
   const kid3Support = nix.argOr($, "kid3Support", () => true);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lollypop",
       version: "1.4.40",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "lollypop",
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/lollypop/tags/${nix.sel(finalAttrs, "version")}`),
         description: "Modern music player for GNOME",
         homepage: "https://gitlab.gnome.org/World/lollypop",

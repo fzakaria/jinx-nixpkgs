@@ -42,73 +42,73 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
   ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "authOnce")), nix.thunk(() => ["-1"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "disableLogging")), nix.thunk(() => ["-q"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "outgoingBindIp"), null)), nix.thunk(() => ["-b", nix.thunk(() => nix.sel(cfg, "outgoingBindIp"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "authUsername"), null)), nix.thunk(() => ["-u", nix.thunk(() => nix.sel(cfg, "authUsername"))])))))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         microsocks: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tiny, portable SOCKS5 server with very moderate resource usage")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "microsocks",
               description: "User microsocks runs as.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "microsocks",
               description: "Group microsocks runs as.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "microsocks", nix.thunk(() => ({})))),
           ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "IP on which microsocks should listen. Defaults to 127.0.0.1 for\nsecurity reasons.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 1080n,
               description: "Port on which microsocks should listen.",
             })))),
           disableLogging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If true, microsocks will not log any messages to stdout/stderr.",
             })))),
           authOnce: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If true, once a specific ip address authed successfully with user/pass,\nit is added to a whitelist and may use the proxy without auth.\n",
             })))),
           outgoingBindIp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Specifies which ip outgoing connections are bound to",
             })))),
           authUsername: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "alice",
               description: "Optional username to use for authentication.",
             })))),
           authPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/microsocks-password",
               description: "Path to a file containing the password for authentication.",
             })))),
           execWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "${pkgs.mullvad-vpn}/bin/mullvad-exclude\n",
@@ -118,38 +118,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.eq(!nix.eq(nix.sel(cfg, "authUsername"), null), !nix.eq(nix.sel(cfg, "authPasswordFile"), null))),
             message: "Need to set both authUsername and authPasswordFile for microsocks",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "microsocks")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               microsocks: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "microsocks")), nix.thunk(() => ({ __proto__: pos$17, microsocks: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "microsocks")), nix.thunk(() => ({ [nix.POS]: pos$17, microsocks: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             microsocks: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               description: "a tiny socks server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Restart: "on-failure",

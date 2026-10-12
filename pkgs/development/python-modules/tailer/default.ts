@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "six8",
           repo: "pytailer",
           rev: version,
@@ -30,7 +30,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["tailer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation implementation of GNU tail and head",
         mainProgram: "pytail",
         homepage: "https://github.com/six8/pytailer",
@@ -41,7 +41,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

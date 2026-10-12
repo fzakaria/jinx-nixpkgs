@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kibi",
       version: "0.3.3",
       cargoHash: "sha256-lBBIEceZgxwoM2DoD+iFtlNdnO5LkvIf2/8CB2uPH3Y=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ilai-deutel",
           repo: "kibi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: "install -Dm644 syntax.d/* -t $out/share/kibi/syntax.d\ninstall -Dm644 kibi.desktop -t $out/share/applications\ninstall -Dm644 assets/kibi.svg -t $out/share/icons/hicolor/scalable/apps\nwrapProgram $out/bin/kibi --prefix XDG_DATA_DIRS : \"$out/share\"\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Text editor in ≤1024 lines of code, written in Rust",
         homepage: "https://github.com/ilai-deutel/kibi",
         license: nix.thunk(() => (() => {

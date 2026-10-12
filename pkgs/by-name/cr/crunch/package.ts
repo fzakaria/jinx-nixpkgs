@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crunch",
       version: "3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/crunch-wordlist/crunch-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0mgy6ghjvzr26yrhj1bn73qzw6v9qsniskc5wqq1kk0hfhy6r3va",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         "PREFIX=$(out)",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wordlist generator",
         mainProgram: "crunch",
         homepage: "https://sourceforge.net/projects/crunch-wordlist/",

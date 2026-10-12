@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "goto",
       version: "2.1.0-unstable-2020-11-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iridakos",
           repo: "goto",
           rev: "b7fda54e0817b9cb47e22a78bd00b4571011cf58",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gawk]),
       postInstall: "install -Dm644 goto.sh -t $out/share/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "basic-usage": nix.thunk(() => nix.app(runCommand, "goto-basic-usage", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
             })), nix.thunk(() => nix.str`# Mock \`complete\` since the builder \`pkgs.bash\` is not interactive.
 complete() { return; }
@@ -55,7 +55,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Alias and navigate to directories with tab completion",
         homepage: "https://github.com/iridakos/goto",
         changelog: nix.thunk(() => nix.str`https://github.com/iridakos/goto/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

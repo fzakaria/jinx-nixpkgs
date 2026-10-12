@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const buildDocs = nix.argOr($, "buildDocs", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add("mivisionx-", (nix.asBool((nix.asBool(!nix.asBool(useOpenCL)) && nix.asBool(!nix.asBool(useCPU)))) ? "hip" : (nix.asBool((nix.asBool(!nix.asBool(useOpenCL)) && nix.asBool(!nix.asBool(useCPU)))) ? "opencl" : "cpu")))),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "MIVisionX",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -89,11 +89,11 @@ substituteInPlace amd_openvx_extensions/CMakeLists.txt \\
 `),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDocs, "python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en ../docs _build/html\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Set of comprehensive computer vision and machine intelligence libraries, utilities, and applications",
         homepage: "https://github.com/ROCm/MIVisionX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

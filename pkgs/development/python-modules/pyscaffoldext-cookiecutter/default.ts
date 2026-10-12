@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-H++p/kPASs3IWk39fCXzq20QmMPGkG0bDTnVAm773cU=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [cookiecutter, importlib_metadata, pyscaffold]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         testing: nix.thunk(() => [
           configupdater,
           pre_commit,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pyscaffoldext.cookiecutter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integration of Cookiecutter project templates into PyScaffold (see: https://github.com/cookiecutter/cookiecutter",
         homepage: "https://pypi.org/project/pyscaffoldext-cookiecutter/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

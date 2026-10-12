@@ -38,37 +38,37 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions"));
   const unitOption = nix.thunk(() => nix.attr(from, "unitOption"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         rsync: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "periodic directory syncing via rsync")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rsync", nix.thunk(() => ({})))),
           jobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Synchronization jobs to run.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       sources: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nonEmptyListOf"), nix.thunk(() => nix.sel(types, "str")))),
                           example: nix.thunk(() => ["/srv/src1/", "/srv/src2/"]),
                           description: "Source directories.\n",
                         })))),
                       destination: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "/srv/dst",
                           description: "Destination directory.\n",
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => (() => {
                             const simples = nix.thunk(() => [
                               nix.thunk(() => nix.sel(types, "bool")),
@@ -81,29 +81,29 @@ export default nix.lambda((args) => (() => {
                                 ])))));
                           })()),
                           default: nix.thunk(() => ({})),
-                          example: nix.thunk(() => ({ __proto__: pos$3, verbose: true, archive: true, delete: true, mkpath: true })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$3, verbose: true, archive: true, delete: true, mkpath: true })),
                           description: "Settings that should be passed to rsync via long options.\nSee {manpage}`rsync(1)` for available options.\n",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "root",
                           description: "The name of an existing user account under which the rsync process should run.\n",
                         })))),
                       group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "root",
                           description: "The name of an existing user group under which the rsync process should run.\n",
                         })))),
                       timerConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)))),
-                          default: nix.thunk(() => ({ __proto__: pos$7, OnCalendar: "daily", Persistent: true })),
+                          default: nix.thunk(() => ({ [nix.POS]: pos$7, OnCalendar: "daily", Persistent: true })),
                           description: "When to run the job.\n",
                         })))),
                       inhibit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           default: [],
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^[^:]+$")))),
                           example: nix.thunk(() => ["sleep"]),
@@ -116,15 +116,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (jobName) => (job) => (() => {
               const systemdName = nix.thunk(() => nix.str`rsync-job-${jobName}`);
               const description = nix.thunk(() => nix.str`Directory syncing via rsync job ${jobName}`);
               return {
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 timers: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(systemdName), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     wantedBy: nix.thunk(() => ["timers.target"]),
                     description: description,
                     timerConfig: nix.thunk(() => nix.attr(job, "timerConfig")),
@@ -132,14 +132,14 @@ export default nix.lambda((args) => (() => {
                 ])),
                 services: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(systemdName), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     description: description,
                     path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "programs", "ssh", "package"))]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       Type: "oneshot",
                       ExecStart: nix.thunk(() => (() => {
-                        const settingsToCommandLine = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({ __proto__: pos$17, isLong: (_) => true }))));
+                        const settingsToCommandLine = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({ [nix.POS]: pos$17, isLong: (_) => true }))));
                         const inhibitArgs = nix.thunk(() => [
                           nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "systemd-inhibit")),
                           "--mode",
@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
             })(), nix.thunk(() => nix.sel(cfg, "jobs")))))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lukaswrz"))]),
     })),
   };

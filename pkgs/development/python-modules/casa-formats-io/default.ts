@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const oldest_supported_numpy = nix.arg($, "oldest-supported-numpy");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "casa-formats-io",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "casa_formats_io",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-FpQj0XeZ7vvOzUM/+5qG6FRwNXl3gzoUBItYdQ1M4m4=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["casa_formats_io"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dask-based reader for CASA data",
         homepage: "https://casa-formats-io.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/radio-astro-tools/casa-formats-io/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

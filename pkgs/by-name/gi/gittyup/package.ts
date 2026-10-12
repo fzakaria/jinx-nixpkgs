@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gittyup",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Murmele",
           repo: "Gittyup",
           rev: nix.thunk(() => nix.str`gittyup_v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Those are not program libs, just some Qt5 libs that the build system leaks for some reason\nrm -rf $out/{include,lib}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical Git client designed to help you understand and manage your source code history",
         homepage: "https://murmele.github.io/Gittyup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

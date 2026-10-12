@@ -29,57 +29,57 @@ export default nix.lambda((args) => (() => {
   const api_token = "f87f42114e44b63ad1b9e3c3d33d6fbe";
   const wrong_api_token = "e68ba041fcf1eab923a7a6de3af5f726";
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "librenms",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "johannwagner"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       librenms: nix.thunk(() => ({
-        __proto__: pos$13,
-        time: nix.thunk(() => ({ __proto__: pos$2, timeZone: "Europe/Berlin" })),
+        [nix.POS]: pos$13,
+        time: nix.thunk(() => ({ [nix.POS]: pos$2, timeZone: "Europe/Berlin" })),
         environment: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "curl")), nix.thunk(() => nix.lookup(w, "jq"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           librenms: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             hostname: "librenms",
             database: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               createLocally: true,
               host: "localhost",
               database: "librenms",
               username: "librenms",
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "librenms-db-pass", "librenmsdbpass")),
             })),
-            nginx: nix.thunk(() => ({ __proto__: pos$5, default: true })),
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$5, default: true })),
             enableOneMinutePolling: true,
-            settings: nix.thunk(() => ({ __proto__: pos$6, enable_billing: true })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$6, enable_billing: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "lnms-api-init": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "LibreNMS API init",
               after: nix.thunk(() => ["librenms-setup.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: "root",
@@ -100,11 +100,11 @@ ${nix.sel(pkgs, "mariadb")}/bin/mysql -D librenms -e "INSERT INTO api_tokens (us
         })),
       })),
       snmphost: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           snmpd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: true,
             openFirewall: true,
             configText: "com2sec readonly default public\n\ngroup MyROGroup v2c        readonly\nview all    included  .1                               80\naccess MyROGroup \"\"      any       noauth    exact  all    none   none\n\nsyslocation Testcity, Testcountry\nsyscontact Testi mc Test <test@example.com>\n",

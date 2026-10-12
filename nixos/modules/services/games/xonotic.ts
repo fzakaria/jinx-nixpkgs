@@ -46,34 +46,34 @@ export default nix.lambda((args) => (() => {
           return nix.str`${key} ${value}`;
         })(), nix.thunk(() => nix.sel(cfg, "settings")))))), "\n"), nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "appendConfig")))))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         xonotic: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Xonotic dedicated server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "xonotic-dedicated", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open the firewall for TCP and UDP on the specified port.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               readOnly: true,
               default: "/var/lib/xonotic",
               description: "Data directory.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Generates the `server.cfg` file. Refer to [upstream's example][0] for\ndetails.\n\n[0]: https://gitlab.com/xonotic/xonotic/-/blob/master/server/server.cfg\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     const scalars = nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -84,46 +84,46 @@ export default nix.lambda((args) => (() => {
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [scalars, nix.thunk(() => nix.app(nix.lookup(w, "nonEmptyListOf"), scalars))]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     sv_public: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 0n,
                         example: nix.thunk(() => [nix.thunk(() => nix.neg(1n)), 1n]),
                         description: "Controls whether the server will be publicly listed.\n",
                       })))),
                     hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: "Xonotic $g_xonoticversion Server",
                         description: "The name that will appear in the server list. `$g_xonoticversion`\ngets replaced with the current version.\n",
                       })))),
                     sv_motd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: "",
                         description: "Text displayed when players join the server.\n",
                       })))),
                     sv_termsofservice_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: "",
                         description: "URL for the Terms of Service for playing on your server.\n",
                       })))),
                     maxplayers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 16n,
                         description: "Number of player slots on the server, including spectators.\n",
                       })))),
                     net_address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: "0.0.0.0",
                         description: "The address Xonotic will listen on.\n",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 26000n,
                         description: "The port Xonotic will listen on.\n",
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           appendConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")));
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
               description: "Literal text to insert at the end of `server.cfg`.\n",
             })))),
           prependConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")));
@@ -153,18 +153,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             xonotic: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Xonotic server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$18, HOME: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$18, HOME: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 DynamicUser: true,
                 User: "xonotic",
                 StateDirectory: "xonotic",
@@ -179,21 +179,21 @@ export default nix.lambda((args) => (() => {
                 Restart: "on-failure",
                 RestartSec: 10n,
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$20, StartLimitBurst: 5n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$20, StartLimitBurst: 5n })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firewall: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "CobaltCause"))];

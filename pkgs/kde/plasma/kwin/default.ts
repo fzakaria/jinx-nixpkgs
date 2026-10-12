@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kwin",
       patches: nix.thunk(() => [
         nix.path(here, "./0003-plugins-qpa-allow-using-nixos-wrapper.patch"),

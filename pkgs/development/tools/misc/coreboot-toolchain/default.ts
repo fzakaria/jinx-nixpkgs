@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const zlib = nix.arg($_1, "zlib");
       const withAda = nix.argOr($_1, "withAda", () => true);
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`coreboot-toolchain-${arch}`),
           version: "26.09",
           src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: "https://review.coreboot.org/coreboot",
               rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
               hash: "sha256-4NA1T7o/pWobo08B89VyuITaYkMVq5e+bTBys07BnrE=",
@@ -66,7 +66,7 @@ patchShebangs util/genbuild_h/genbuild_h.sh
 make crossgcc-${arch} CPUS=$NIX_BUILD_CORES DEST=$out
 `),
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             homepage: "https://www.coreboot.org",
             description: nix.thunk(() => nix.str`Coreboot toolchain for ${arch} targets`),
             license: nix.thunk(() => (() => {

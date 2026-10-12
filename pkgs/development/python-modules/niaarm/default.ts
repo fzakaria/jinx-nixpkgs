@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firefly-cpp",
           repo: "NiaARM",
           tag: version,
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["numpy", "plotly", "scikit-learn"]);
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [niapy, nltk, numpy, pandas, plotly, scikit_learn]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, MPLBACKEND: "Agg" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" }))));
       const disabledTests = nix.thunk(() => ["test_text_mining"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["niaarm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimalistic framework for Numerical Association Rule Mining",
         mainProgram: "niaarm",
         homepage: "https://github.com/firefly-cpp/NiaARM",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pianobooster",
       version: "1.0.0-unstable-2023-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pianobooster",
           repo: "PianoBooster",
           rev: "6dafdcbdfc5d35d12cecb051c30632d0f5be5806",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./soundfont.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             possibleSoundFontFolders: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (p) => nix.str`"${p}/share/soundfonts", "${p}/share/sounds/sf2"`, soundFonts)),
           })))),
       ]),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
 ln -s $(readlink -f ${dejavu_fonts}/share/fonts/truetype/DejaVuSans.ttf) $out/share/games/pianobooster/fonts/DejaVuSans.ttf
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\ncp -r build/pianobooster.app $out/Applications\nln -s $out/Applications/pianobooster.app/Contents/MacOS/pianobooster $out/bin/pianobooster\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MIDI file player that teaches you how to play the piano",
         mainProgram: "pianobooster",
         homepage: "https://www.pianobooster.org",

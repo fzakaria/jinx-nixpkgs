@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const outputs = nix.thunk(() => ["out", "man", "py"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpm-software-management",
           repo: "dnf",
           tag: version,
@@ -69,11 +69,11 @@ rm -r $out/etc/bash_completion.d
       const postFixup = nix.thunk(() => nix.str`moveToOutput "lib/${nix.sel(python, "libPrefix")}" "$py"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package manager based on libdnf and libsolv. Replaces YUM",
         homepage: "https://github.com/rpm-software-management/dnf",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/dnf/releases/tag/${version}`),
@@ -86,7 +86,7 @@ rm -r $out/etc/bash_completion.d
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

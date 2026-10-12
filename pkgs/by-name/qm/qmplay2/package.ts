@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers_qmplay2 = nix.thunk(() => nix.app(nix.sel(vulkan_headers, "overrideAttrs"), (oldAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "vulkan-headers-qmplay2"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
     };
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "qmplay2"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add(nix.add(nix.sel(sources, "qmplay2", "pname"), "-qt"), qtVersion)),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -110,9 +110,9 @@ popd
 wrapQtApp $out/bin/qmplay2 \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [deno]))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, sources: sources })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, sources: sources })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/zaps166/QMPlay2/",
         description: "Qt-based Multimedia player",
         longDescription: "QMPlay2 is a video and audio player. It can play all formats supported by\nFFmpeg and libmodplug (including J2B and SFX). It also supports Audio CD,\nraw files, Rayman 2 music, and chiptunes. It also contains YouTube and\nMyFreeMP3 browser.\n",

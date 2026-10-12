@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stegsolve",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fee1-dead",
           repo: "Stegsolve",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: "Application",
             name: "stegsolve",
             desktopName: "Stegsolve",
@@ -53,7 +53,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Steganographic image analyzer, solver and data extractor for challenges",
         homepage: "https://www.wechall.net/forum/show/thread/527/Stegsolve_1.3/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

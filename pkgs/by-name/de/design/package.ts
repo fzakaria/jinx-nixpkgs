@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gjs = nix.arg($, "gjs");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "design",
       version: "48-alpha1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dubstar-04",
           repo: "Design",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libadwaita]),
       postInstall: "mv $out/bin/io.github.dubstar_04.design $out/share/design/\nln -s $out/share/design/io.github.dubstar_04.design $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dubstar-04/Design",
         description: "2D CAD For GNOME",
         maintainers: nix.thunk(() => (() => {

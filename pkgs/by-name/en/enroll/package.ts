@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const libcosmicAppHook = nix.arg($, "libcosmicAppHook");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "enroll",
       version: "1.2.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cosmic-utils",
           repo: "enroll",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libcosmicAppHook]),
       postInstall: "install -Dm0644 resources/org.cosmic_utils.enroll.desktop -t $out/share/applications\ninstall -Dm0644 resources/org.cosmic_utils.enroll.metainfo.xml -t $out/share/metainfo\ninstall -Dm0644 resources/icons/hicolor/scalable/apps/enroll.svg \\\n  $out/share/icons/hicolor/scalable/apps/org.cosmic_utils.enroll.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fingerprint enrollment for COSMIC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

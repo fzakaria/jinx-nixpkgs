@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tranquil-frontend",
       version: "0.6.7",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           did: "did:plc:jj6ajj6duxnlthwtnob4qyuv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bhG5ydQZ9nHXQSlrM2jZaUpEP8ZW3Xx6r5O83vLDf8k=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/frontend`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\npnpm build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ncp -r ./dist $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "First party frontend for the Tranquil PDS implementation",
         homepage: "https://tangled.org/tranquil.farm/tranquil-pds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

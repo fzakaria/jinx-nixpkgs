@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const slang = nix.arg($, "slang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "asciijump",
       version: "1.0.2_beta-12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "games-team",
           repo: "asciijump",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fsigned-char"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [ctags]),
       buildInputs: nix.thunk(() => [slang]),
       postInstall: "rm -rf $out/var\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small and funny ASCII-art game about ski jumping",
         homepage: "https://salsa.debian.org/games-team/asciijump",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/games-team/asciijump/-/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "torcheval";
   const version = "0.0.7";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meta-pytorch",
           repo: "torcheval",
           rev: "f1bc22fc67ec2c77ee519aa4af8079f4fdaa41bb",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torcheval"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rich collection of performant PyTorch model metrics and tools for PyTorch model evaluations",
         homepage: "https://pytorch.org/torcheval",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/torcheval/releases/tag/${version}`),

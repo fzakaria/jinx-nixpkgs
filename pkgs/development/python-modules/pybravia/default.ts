@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybravia",
       version: "0.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Drafteed",
           repo: "pybravia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pybravia"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for remote control of Sony Bravia TVs 2013 and newer",
         homepage: "https://github.com/Drafteed/pybravia",
         changelog: nix.thunk(() => nix.str`https://github.com/Drafteed/pybravia/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const pname = "armitage";
   const version = "1.0-unstable-2022-12-05";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "r00t0v3rr1d3",
       repo: "armitage",
       rev: "991244e9a0c0fc9302e48c4e708347c315f78b13",
@@ -38,25 +38,25 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "Remove-mentions-of-old-metasploit-versions.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/Remove-mentions-of-old-metasploit-versions.patch",
         hash: "sha256-VUey/e8kcBWqAxYTfIXoyTAoDR/UKZKqBJAKmdabArY=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "Update-postgresql-version-to-support-scram-sha-256.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/Update-postgresql-version-to-support-scram-sha-256.patch",
         hash: "sha256-ZPvcRoUCrq32g0Mw8+EhNl8DlI+jMYUlFyPW1VScgzc=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "fix-launch-script.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/fix-launch-script.patch",
         hash: "sha256-I6T7iwShQLn+ZHuKa117VOlItXjY4/51RDbjvNJEW/4=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "fix-meterpreter.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/fix-meterpreter.patch",
         hash: "sha256-p4fs5xFdC2apW0U8x8u9S4p5gq3Eiv+0E4CGccQZYKY=",
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
   ]);
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: src,
       patches: patches,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "armitage",
             desktopName: "Armitage",
             exec: "armitage",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([jdk17, gradle, makeWrapper, copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [writeDarwinBundle])))),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$7, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname, data: nix.path(here, "./deps.json") })))),
       __darwinAllowLocalNetworking: true,
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -108,7 +108,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Graphical cyber attack management tool for Metasploit",
         homepage: "https://github.com/r00t0v3rr1d3/armitage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

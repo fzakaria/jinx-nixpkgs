@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const attr = nix.arg($, "attr");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kio",
       patches: nix.thunk(() => [nix.path(here, "./allow-admin-from-store.patch")]),
       extraBuildInputs: nix.thunk(() => [qt5compat, qttools, kauth, acl, attr]),

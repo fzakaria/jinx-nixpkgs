@@ -20,10 +20,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const passthru = nix.arg($, "passthru");
   const graphicsmagick = nix.arg($, "graphicsmagick");
-  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       meta: meta,
       pname: pname,
       version: version,

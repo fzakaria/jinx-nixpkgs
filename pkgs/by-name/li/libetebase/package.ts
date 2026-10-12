@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const libetebase = nix.arg($, "libetebase");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libetebase",
       version: "0.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etesync",
           repo: "libetebase",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       postInstall: "install -d $out/lib/pkgconfig\nsed s#@prefix@#$out#g etebase.pc.in > $out/lib/pkgconfig/etebase.pc\ninstall -Dm644 EtebaseConfig.cmake -t $out/lib/cmake/Etebase\ninstall -Dm644 target/etebase.h -t $out/include/etebase\nln -s $out/lib/libetebase.so $out/lib/libetebase.so.0\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkgs-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), libetebase)),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C library for Etebase",
         homepage: "https://www.etebase.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

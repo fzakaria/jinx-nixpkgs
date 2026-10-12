@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const vanillaVersion = "7.6.q";
   const patchLevel = "36";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tcp-wrappers",
       version: nix.thunk(() => nix.str`${vanillaVersion}-${patchLevel}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://ftp.porcupine.org/pub/security/tcp_wrappers_7.6.tar.gz",
           hash: "sha256-lUPXre33im3gsiHMu9GVLgi1E4cX9K3oFAObtImkMV0=",
         })))),
       debian: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "salsa.debian.org",
           owner: "md",
           repo: "tcp-wrappers",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["REAL_DAEMON_DIR=$(out)/bin", "linux", "AR:=$(AR)"]),
       installPhase: "mkdir -p \"$out/bin\"\ncp -v safe_finger tcpd tcpdchk tcpdmatch try-from \"$out/bin\"\n\nmkdir -p \"$out/lib\"\ncp -v shared/lib*.so* \"$out/lib\"\n\nmkdir -p \"$out/include\"\ncp -v *.h \"$out/include\"\n\nfor i in 3 5 8;\ndo\n  mkdir -p \"$out/man/man$i\"\n  cp *.$i \"$out/man/man$i\" ;\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TCP Wrappers, a network logger, also known as TCPD or LOG_TCP",
         longDescription: "Wietse Venema's network logger, also known as TCPD or LOG_TCP.\nThese programs log the client host name of incoming telnet, ftp,\nrsh, rlogin, finger etc. requests.  Security options are: access\ncontrol per host, domain and/or service; detection of host name\nspoofing or host address spoofing; booby traps to implement an\nearly-warning system.  The current version supports the System\nV.4 TLI network programming interface (Solaris, DG/UX) in\naddition to the traditional BSD sockets.\n",
         homepage: "ftp://ftp.porcupine.org/pub/security/index.html",

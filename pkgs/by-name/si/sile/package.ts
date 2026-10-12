@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const poppler_utils = nix.arg($, "poppler-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "sile",
       version: "0.15.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sile-typesetter/sile/releases/download/v${nix.sel(finalAttrs, "version")}/sile-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-XpfBllGv9xBoe5MpLVNhy0EWUglLzIxiyBHBn3qBRks=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "man", "dev"]),
       postInstall: "install -Dm0644 documentation/sile.pdf $out/share/doc/sile/manual.pdf\n",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: nix.thunk(() => [gentium_plus]) })))),
+        [nix.POS]: pos$4,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [gentium_plus]) })))),
         LUA: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "passthru", "luaEnv")}/bin/lua`),
       })),
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         luaPackages: nix.thunk(() => nix.concat([
           "cassowary",
           "cldr",
@@ -107,12 +107,12 @@ export default nix.lambda((args) => (() => {
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(luajit, "luaversion")), "5.2")), nix.thunk(() => ["bit32"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(luajit, "luaversion")), "5.3")), nix.thunk(() => ["compat53"]))))),
         luaEnv: nix.thunk(() => nix.app(nix.sel(luajit, "withPackages"), (ps) => nix.app(nix.sel(lib, "attrVals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "luaPackages")), ps))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           test: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 nativeBuildInputs: nix.thunk(() => [poppler_utils, nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 env: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   FONTCONFIG_FILE: nix.thunk(() => nix.sel(finalAttrs, "env", "FONTCONFIG_FILE")),
                 })),
               })), nix.thunk(() => nix.str`output=$(mktemp -t selfcheck-XXXXXX.pdf)
@@ -122,7 +122,7 @@ pdfinfo $output | grep "SILE v${nix.sel(finalAttrs, "version")}" > $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Typesetting system",
         longDescription: "SILE is a typesetting system; its job is to produce beautiful\nprinted documents. Conceptually, SILE is similar to TeX—from\nwhich it borrows some concepts and even syntax and\nalgorithms—but the similarities end there. Rather than being a\nderivative of the TeX family SILE is a new typesetting and\nlayout engine written from the ground up using modern\ntechnologies and borrowing some ideas from graphical systems\nsuch as InDesign.\n",
         homepage: "https://sile-typesetter.org",

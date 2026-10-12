@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const azure_keyvault_keys = nix.arg($, "azure-keyvault-keys");
   const azure_keyvault_secrets = nix.arg($, "azure-keyvault-secrets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-keyvault",
       version: "4.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "zip",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doBuild: false,
       pythonImportsCheck: nix.thunk(() => ["azure.keyvault.keys", "azure.keyvault.secrets"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is the Microsoft Azure Key Vault Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

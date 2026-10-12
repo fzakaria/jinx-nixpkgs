@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cvs-fast-export",
       version: "1.63",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/cvs-fast-export/cvs-fast-export-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-YZF2QebWbvn/N9pLpccudZsFHzocJp/3M0Gx9p7fQ5Y=",
         })))),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
   prefix="$out"
 )
 `),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/cvssync --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rsync]))}
 wrapProgram $out/bin/cvsconvert --prefix PATH : $out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, cvs, diffutils, findutils, git]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Export an RCS or CVS history as a fast-import stream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

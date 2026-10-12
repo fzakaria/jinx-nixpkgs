@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pterm",
       version: "6.0.4",
       buildInputs: nix.thunk(() => [libsndfile, SDL, wxwidgets_3_2]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cyber1.org/download/linux/pterm-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-0OJvoCOGx/a51Ja7n3fOTeQJEcdyn/GhaJ0NtVCyuC8=",
         })))),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace Makefile.common Makefile.wxpterm --replace \"/bin/echo\" \"echo\"\necho \"exit 0\" > wxversion.py\n",
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PTERMVERSION: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 \"pterm\" \"$out/bin/pterm\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal emulator for the Cyber1 mainframe-based CYBIS system",
         homepage: "https://www.cyber1.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

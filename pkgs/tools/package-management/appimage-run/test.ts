@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const xdg_utils = nix.arg($, "xdg-utils");
   const sample_appImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage",
       sha256: "04ws94q71bwskmhizhwmaf41ma4wabvfgjgkagr8wf3vakgv866r",
     }))));
   const owdtest = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/NixOS/nixpkgs/files/10099048/owdtest.AppImage.gz",
       sha256: "sha256-EEp9dxz/+l5XkNaVBFgv5v64sizQILnljRAzwXv/yV8=",
     }))));
   return nix.app(runCommand, "appimage-run-tests", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       buildInputs: nix.thunk(() => [appimage_run, glibcLocales, file, xdg_utils]),
-      meta: nix.thunk(() => ({ __proto__: pos$3, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, platforms: nix.thunk(() => ["x86_64-linux"]) })),
     })), nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 set -x
 

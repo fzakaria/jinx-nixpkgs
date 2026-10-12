@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "1.0.1-beta";
   return nix.app(nix.sel(flutter347, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: version,
       pname: "finamp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "finamp-app",
           repo: "finamp",
           rev: version,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 assets/icon/icon_foreground.svg $out/share/icons/hicolor/scalable/apps/finamp.svg\ninstall -Dm444 assets/com.unicornsonlsd.finamp.metainfo.xml -t $out/share/metainfo\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "com.unicornsonlsd.finamp",
             desktopName: "Finamp",
             genericName: "Music Player",
@@ -62,17 +62,17 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nativeBuildInputs: nix.thunk(() => [yq]),
             src: nix.thunk(() => nix.attr(finamp, "src")),
           })), "cat $src/pubspec.lock | yq > $out\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "finamp.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "finamp.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$5, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))))),
         description: "Open source Jellyfin music player",
         homepage: "https://github.com/finamp-app/finamp",

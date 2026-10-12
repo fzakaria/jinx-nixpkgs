@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxcursor = nix.arg($, "libxcursor");
   const overrideAssets = nix.argOr($, "overrideAssets", () => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/TeamFlos/phira/releases/download/v${nix.sel(phira_unwrapped, "version")}/Phira-windows-x86_64-v${nix.sel(phira_unwrapped, "version")}.zip`),
       hash: "sha256-1/FBg1i8O83yusEAFlXiYWyabv04n1qkXwLgWaw8sTc=",
       stripRoot: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "phira",
       version: nix.thunk(() => nix.sel(phira_unwrapped, "version")),
       paths: nix.thunk(() => [phira_unwrapped]),
@@ -54,9 +54,9 @@ wrapper_options=(
 wrapProgram $out/bin/phira-main "\${wrapper_options[@]}"
 wrapProgram $out/bin/phira-monitor "\${wrapper_options[@]}"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, assets: overrideAssets })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, assets: overrideAssets })),
       meta: nix.thunk(() => nix.update(nix.sel(phira_unwrapped, "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.sel(phira_unwrapped, "meta", "description")),
       })),
     })));

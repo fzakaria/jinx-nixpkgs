@@ -21,37 +21,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const port = 8081n;
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "magnetico",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [9000n]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [9000n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             magnetico: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
-              crawler: nix.thunk(() => ({ __proto__: pos$4, port: 9000n })),
+              crawler: nix.thunk(() => ({ [nix.POS]: pos$4, port: 9000n })),
               web: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 port: port,
                 credentials: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   user: "$2y$12$P88ZF6soFthiiAeXnz64aOWDsY3Dw7Yw8fZ6GtiqFNjknD70zDmNe",
                 })),
               })),

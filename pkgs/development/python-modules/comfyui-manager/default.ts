@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const uv = nix.arg($, "uv");
   const comfyui = nix.arg($, "comfyui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comfyui-manager",
       version: "4.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "comfyui_manager",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7kjoOOetsHroQzLpu0+nvzZFVkNwxGz4qHBviNA0G8Y=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Custom-node manager extension for ComfyUI",
         homepage: "https://github.com/ltdrdata/ComfyUI-Manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

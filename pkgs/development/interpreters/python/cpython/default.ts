@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
   const tzdataSupport = nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(withMinimalDeps)) && nix.asBool(!nix.eq(tzdata, null)))) && nix.asBool(nix.app(nix.sel(passthru, "pythonAtLeast"), "3.9"))));
   const passthru = nix.thunk(() => (() => {
     const splices = nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pythonOnBuildForBuild: nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsBuildBuild, nix.key(nix.force(pythonAttr)))))),
       pythonOnBuildForHost: nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsBuildHost, nix.key(nix.force(pythonAttr)))))),
       pythonOnBuildForTarget: nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsBuildTarget, nix.key(nix.force(pythonAttr)))))),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
     }, __splices));
     const inputs$ = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(nix.builtins.elem(nix.thunk(() => nix.builtins.typeOf(v)), nix.thunk(() => ["int", "bool", "string", "path", "null"]))) || nix.asBool(nix.eq(n, "packageOverrides"))), inputs));
     const override = (attr) => (() => {
-      const python = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { __proto__: pos$2, self: python }))));
+      const python = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { [nix.POS]: pos$2, self: python }))));
       return nix.force(python);
     })();
     const pythonVersion = nix.thunk(() => (() => {
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
     const abiFlags = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableGIL)), "t"), nix.app(nix.sel(lib, "optionalString"), enableDebug, "d")));
     const libPrefix = nix.thunk(() => nix.str`python${pythonVersion}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableGIL)), "t")}`);
     return nix.app(passthruFun, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         self: self,
         sourceVersion: sourceVersion,
         packageOverrides: packageOverrides,
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
   const hasDistutilsCxxPatch = nix.thunk(() => !nix.asBool(nix.selOr(stdenv, () => false, "cc", "isGNU")));
   const pythonOnBuildForHostInterpreter = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? "$out/bin/python" : nix.sel(pythonOnBuildForHost, "interpreter")));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => (() => {
         const w_1 = nix.withScope(sourceVersion, null);
         return nix.str`https://www.python.org/ftp/python/${nix.lookup(w_1, "major")}.${nix.lookup(w_1, "minor")}.${nix.lookup(w_1, "patch")}/Python-${version}.tar.xz`;
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
   const machdep = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "win32" : nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")));
   const pythonHostPlatform = nix.thunk(() => (() => {
     const cpu = nix.thunk(() => nix.selOr({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       powerpc: "ppc",
       powerpcle: "ppcle",
       powerpc64: "ppc64",
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
   const execSuffix = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "executable"));
   const w_1 = nix.withScope(passthru, null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "python3",
       src: src,
       version: version,
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace configure --replace-fail '`/usr/bin/arch`' '\"i386\"'\n")),
       patches: nix.thunk(() => nix.concat([noldconfigPatch], nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [nix.path(here, "./freebsd-cross.patch")])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.lookup(w_1, "pythonOlder"), "3.13")), nix.thunk(() => [nix.path(here, "./virtualenv-permissions.patch")])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.lookup(w_1, "pythonAtLeast"), "3.13")), nix.thunk(() => [nix.path(here, "./3.13/virtualenv-permissions.patch")])), nix.concat(nix.app(optionals, mimetypesSupport, nix.thunk(() => [nix.path(here, "./mimetypes.patch")])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(hasDistutilsCxxPatch) && nix.asBool(nix.app(nix.lookup(w_1, "pythonOlder"), "3.12")))), nix.thunk(() => [
           nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w_1, "pythonAtLeast"), "3.11")) ? nix.path(here, "./3.11/python-3.x-distutils-C++.patch") : nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://bugs.python.org/file48016/python-3.x-distutils-C++.patch",
               sha256: "1h18lnpx539h5lfxyk379dxwr8m2raigcjixkf133l4xy3f4bzi2",
             }))))),
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./3.7/fix-finding-headers-when-cross-compiling.patch"),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.lookup(w_1, "pythonOlder"), "3.12")), nix.thunk(() => [nix.path(here, "./loongarch-support.patch")])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w_1, "pythonAtLeast"), "3.11")) && nix.asBool(nix.app(nix.lookup(w_1, "pythonOlder"), "3.13")))), nix.thunk(() => [nix.path(here, "./platform-triplet-detection.patch")])), nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => (() => {
           const mingw_patch = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "mingw-python-patches",
               url: "https://src.fedoraproject.org/rpms/mingw-python3.git",
               rev: "3edecdbfb4bbf1276d09cd5e80e9fb3dd88c9511",
@@ -234,11 +234,11 @@ export default nix.lambda((args) => (() => {
   --replace-fail "@mime-types@" "${mailcap}"
 `)))),
       env: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         CPPFLAGS: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.app(nix.builtins.map, (p) => nix.str`-I${nix.app(getDev, p)}/include`, buildInputs)))),
         LDFLAGS: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.app(nix.builtins.map, (p) => nix.str`-L${nix.app(getLib, p)}/lib`, buildInputs)))),
         LIBS: nix.thunk(() => nix.str`${nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(withLibxcrypt))), "-lcrypt")}`),
-        NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => nix.selOr({ __proto__: pos$8, glibc: "-lgcc_s", musl: "-lgcc_eh" }, () => "", nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "libc")}`))))),
+        NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => nix.selOr({ [nix.POS]: pos$8, glibc: "-lgcc_s", musl: "-lgcc_eh" }, () => "", nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "libc")}`))))),
         PYTHONHASHSEED: 0n,
       })),
       configureFlags: nix.thunk(() => nix.concat(["--without-ensurepip"], nix.concat(nix.app(optionals, withExpat, nix.thunk(() => ["--with-system-expat"])), nix.concat(nix.app(optionals, withMpdecimal, nix.thunk(() => ["--with-system-libmpdec"])), nix.concat(nix.app(optionals, withOpenssl, nix.thunk(() => [nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`)])), nix.concat(nix.app(optionals, tzdataSupport, nix.thunk(() => [nix.thunk(() => nix.str`--with-tzpath=${tzdata}/share/zoneinfo`)])), nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(execSuffix, "")), nix.thunk(() => [nix.thunk(() => nix.str`--with-suffix=${execSuffix}`)])), nix.concat(nix.app(optionals, enableLTO, nix.thunk(() => ["--with-lto"])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.asBool(static$)) && nix.asBool(!nix.asBool(enableFramework)))), nix.thunk(() => ["--enable-shared"])), nix.concat(nix.app(optionals, enableFramework, nix.thunk(() => [
@@ -393,9 +393,9 @@ EOF
       separateDebugInfo: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => nix.update(passthru, {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         doc: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             src: src,
             name: nix.thunk(() => nix.str`python${nix.lookup(w_1, "pythonVersion")}-${version}-doc`),
             dontConfigure: true,
@@ -414,13 +414,13 @@ EOF
             __structuredAttrs: true,
           })))),
         tests: nix.thunk(() => nix.update(nix.sel(passthru, "tests"), {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "https://www.python.org",
         changelog: nix.thunk(() => (() => {
           const majorMinor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version));
@@ -437,9 +437,9 @@ EOF
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "python"))]),
         broken: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.app(nix.sel(lib, "versions", "minor"), version), "11")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))))),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             vendor: "python",
             product: "python",
             version: version,

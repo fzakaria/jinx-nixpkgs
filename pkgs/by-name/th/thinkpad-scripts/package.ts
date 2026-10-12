@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martin-ueding",
           repo: "thinkpad-scripts",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "setuptools"))];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screen rotation, docking and other scripts for ThinkPad® X220 and X230 Tablet",
         homepage: "https://github.com/martin-ueding/thinkpad-scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

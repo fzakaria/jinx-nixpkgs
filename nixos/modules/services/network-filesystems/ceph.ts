@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
   const makeService = (daemonType) => (daemonId) => (clusterName) => (ceph) => (() => {
     const stateDirectory = nix.thunk(() => nix.str`ceph/${(nix.asBool(nix.eq(daemonType, "rgw")) ? "radosgw" : nix.force(daemonType))}/${clusterName}-${daemonId}`);
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       enable: true,
       description: nix.thunk(() => nix.str`Ceph ${nix.builtins.replaceStrings(nix.thunk(() => nix.sel(lib, "lowerChars")), nix.thunk(() => nix.sel(lib, "upperChars")), daemonType)} daemon ${daemonId}`),
       after: nix.thunk(() => nix.concat(["network-online.target", "time-sync.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(daemonType, "osd")), "ceph-mon.target"))),
@@ -103,13 +103,13 @@ export default nix.lambda((args) => (() => {
       partOf: nix.thunk(() => [nix.thunk(() => nix.str`ceph-${daemonType}.target`)]),
       wantedBy: nix.thunk(() => [nix.thunk(() => nix.str`ceph-${daemonType}.target`)]),
       unitConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ConditionPathExists: nix.thunk(() => nix.str`/var/lib/${stateDirectory}/keyring`),
       })),
       startLimitBurst: nix.thunk(() => (nix.asBool(nix.eq(daemonType, "osd")) ? 30n : (nix.asBool(nix.app(nix.sel(lib, "elem"), daemonType, nix.thunk(() => ["mgr", "mds"]))) ? 3n : 5n))),
       startLimitIntervalSec: nix.thunk(() => nix.mul(60n, 30n)),
       serviceConfig: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LimitNOFILE: 1048576n,
         LimitNPROC: 1048576n,
         Environment: nix.thunk(() => nix.str`CLUSTER=${clusterName}`),
@@ -125,55 +125,55 @@ export default nix.lambda((args) => (() => {
         ExecStart: nix.thunk(() => nix.str`${nix.sel(ceph, "out")}/bin/${(nix.asBool(nix.eq(daemonType, "rgw")) ? "radosgw" : nix.str`ceph-${daemonType}`)} \\
 -f --cluster ${clusterName} --id ${daemonId}`),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(daemonType, "osd")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           ExecStartPre: nix.thunk(() => nix.str`${nix.sel(ceph, "lib")}/libexec/ceph/ceph-osd-prestart.sh --id ${daemonId} --cluster ${clusterName}`),
           RestartSec: "20s",
           PrivateDevices: "no",
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(daemonType, "mon")), nix.thunk(() => ({ __proto__: pos$4, RestartSec: "10" })))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(daemonType, "mon")), nix.thunk(() => ({ [nix.POS]: pos$4, RestartSec: "10" })))))),
     };
   })();
   const makeTarget = (daemonType) => nix.attrsDyn({}, [
     [nix.str`ceph-${daemonType}`, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       description: nix.thunk(() => nix.str`Ceph target allowing to start/stop all ceph-${daemonType} services at once`),
       partOf: nix.thunk(() => ["ceph.target"]),
       wantedBy: nix.thunk(() => ["ceph.target"]),
       before: nix.thunk(() => ["ceph.target"]),
-      unitConfig: nix.thunk(() => ({ __proto__: pos$6, StopWhenUnneeded: true })),
+      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, StopWhenUnneeded: true })),
     }))],
   ]);
   return {
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       services: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         ceph: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph global configuration")),
           global: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             fsid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "433a2193-4f8a-47a0-95d2-209d7ca2cca5\n",
                 description: "Filesystem ID, a generated uuid, its must be generated and set before\nattempting to start a cluster\n",
               })))),
             clusterName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "ceph",
                 description: "Name of cluster\n",
               })))),
             mgrModulePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(pkgs, "ceph", "lib")}/lib/ceph/mgr`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.ceph.lib}/lib/ceph/mgr\"")),
                 description: "Path at which to find ceph-mgr modules.\n",
               })))),
             monInitialMembers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "commas")));
@@ -183,7 +183,7 @@ export default nix.lambda((args) => (() => {
                 description: "List of hosts that will be used as monitors at startup.\n",
               })))),
             monHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "commas")));
@@ -193,31 +193,31 @@ export default nix.lambda((args) => (() => {
                 description: "List of hostname shortnames/IP addresses of the initial monitors.\n",
               })))),
             maxOpenFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 131072n,
                 description: "Max open files for each OSD daemon.\n",
               })))),
             authClusterRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["cephx", "none"]))),
                 default: "cephx",
                 description: "Enables requiring daemons to authenticate with eachother in the cluster.\n",
               })))),
             authServiceRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["cephx", "none"]))),
                 default: "cephx",
                 description: "Enables requiring clients to authenticate with the cluster to access services in the cluster (e.g. radosgw, mds or osd).\n",
               })))),
             authClientRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["cephx", "none"]))),
                 default: "cephx",
                 description: "Enables requiring the cluster to authenticate itself to the client.\n",
               })))),
             publicNetwork: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "commas")));
@@ -227,7 +227,7 @@ export default nix.lambda((args) => (() => {
                 description: "A comma-separated list of subnets that will be used as public networks in the cluster.\n",
               })))),
             clusterNetwork: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "commas")));
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
                 description: "A comma-separated list of subnets that will be used as cluster networks in the cluster.\n",
               })))),
             rgwMimeTypesFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -248,20 +248,20 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
               })()),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$21, "ms bind ipv6": "true" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$21, "ms bind ipv6": "true" })),
               description: "Extra configuration to add to the global section. Use for setting values that are common for all daemons in the cluster.\n",
             })))),
           mgr: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph MGR daemon")),
             daemons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -272,7 +272,7 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ceph", nix.thunk(() => ({})))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -282,10 +282,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           mon: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph MON daemon")),
             daemons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -296,7 +296,7 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ceph", nix.thunk(() => ({})))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -306,10 +306,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           osd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph OSD daemon")),
             daemons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -320,13 +320,13 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ceph", nix.thunk(() => ({})))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
                 })()),
                 default: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   "osd journal size": "10000",
                   "osd pool default size": "3",
                   "osd pool default min size": "2",
@@ -338,10 +338,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           mds: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph MDS daemon")),
             daemons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -352,7 +352,7 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ceph", nix.thunk(() => ({})))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -362,11 +362,11 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           rgw: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph RadosGW daemon")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ceph", nix.thunk(() => ({})))),
             daemons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -377,10 +377,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ceph client configuration")),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -394,56 +394,56 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "ceph", "enable")), nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "global", "fsid"), "")),
             message: "fsid has to be set to a valid uuid for the cluster to function",
           })),
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mon", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "mon", "daemons"), [])))),
             message: "have to set id of atleast one MON if you're going to enable Monitor",
           })),
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mds", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "mds", "daemons"), [])))),
             message: "have to set id of atleast one MDS if you're going to enable Metadata Service",
           })),
           nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "osd", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "osd", "daemons"), [])))),
             message: "have to set id of atleast one OSD if you're going to enable OSD",
           })),
           nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mgr", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "mgr", "daemons"), [])))),
             message: "have to set id of atleast one MGR if you're going to enable MGR",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "global", "monInitialMembers"), null)), "Not setting up a list of members in monInitialMembers requires that you set the host variable for each mon daemon or else the cluster won't function")),
         environment: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           etc: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             "ceph/ceph.conf": nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               text: nix.thunk(() => (() => {
                 const globalSection = nix.thunk(() => nix.app(expandCamelCaseAttrs, nix.thunk(() => nix.update(nix.sel(cfg, "global"), nix.update(nix.sel(cfg, "extraConfig"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "mgr", "enable")), nix.thunk(() => nix.sel(cfg, "mgr", "extraConfig"))))))));
                 const globalSection$ = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.eq(value, null), globalSection));
-                const totalConfig = nix.thunk(() => nix.update({ __proto__: pos$48, global: globalSection$ }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "mon", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "mon", "extraConfig"), {})))), nix.thunk(() => ({ __proto__: pos$49, mon: nix.thunk(() => nix.sel(cfg, "mon", "extraConfig")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "mds", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "mds", "extraConfig"), {})))), nix.thunk(() => ({ __proto__: pos$50, mds: nix.thunk(() => nix.sel(cfg, "mds", "extraConfig")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "osd", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "osd", "extraConfig"), {})))), nix.thunk(() => ({ __proto__: pos$51, osd: nix.thunk(() => nix.sel(cfg, "osd", "extraConfig")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "client", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "client", "extraConfig"), {})))), nix.thunk(() => nix.sel(cfg, "client", "extraConfig"))))))));
+                const totalConfig = nix.thunk(() => nix.update({ [nix.POS]: pos$48, global: globalSection$ }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "mon", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "mon", "extraConfig"), {})))), nix.thunk(() => ({ [nix.POS]: pos$49, mon: nix.thunk(() => nix.sel(cfg, "mon", "extraConfig")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "mds", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "mds", "extraConfig"), {})))), nix.thunk(() => ({ [nix.POS]: pos$50, mds: nix.thunk(() => nix.sel(cfg, "mds", "extraConfig")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "osd", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "osd", "extraConfig"), {})))), nix.thunk(() => ({ [nix.POS]: pos$51, osd: nix.thunk(() => nix.sel(cfg, "osd", "extraConfig")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "client", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "client", "extraConfig"), {})))), nix.thunk(() => nix.sel(cfg, "client", "extraConfig"))))))));
                 return nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), totalConfig);
               })()),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           users: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             ceph: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "ceph")),
               description: "Ceph daemon user",
               group: "ceph",
@@ -451,15 +451,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             ceph: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "ceph")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           services: nix.thunk(() => (() => {
             const services = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mon", "enable")), nix.thunk(() => nix.app(makeServices, "mon", nix.thunk(() => nix.sel(cfg, "mon", "daemons"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mds", "enable")), nix.thunk(() => nix.app(makeServices, "mds", nix.thunk(() => nix.sel(cfg, "mds", "daemons"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "osd", "enable")), nix.thunk(() => nix.app(makeServices, "osd", nix.thunk(() => nix.sel(cfg, "osd", "daemons"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "rgw", "enable")), nix.thunk(() => nix.app(makeServices, "rgw", nix.thunk(() => nix.sel(cfg, "rgw", "daemons"))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mgr", "enable")), nix.thunk(() => nix.app(makeServices, "mgr", nix.thunk(() => nix.sel(cfg, "mgr", "daemons")))))))))));
             return nix.app(nix.sel(lib, "mkMerge"), services);
@@ -467,42 +467,42 @@ export default nix.lambda((args) => (() => {
           targets: nix.thunk(() => (() => {
             const targets = nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 ceph: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   description: "Ceph target allowing to start/stop all ceph service instances at once",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$60, StopWhenUnneeded: true })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$60, StopWhenUnneeded: true })),
                 })),
               })),
             ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mon", "enable")), nix.thunk(() => nix.app(makeTarget, "mon"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mds", "enable")), nix.thunk(() => nix.app(makeTarget, "mds"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "osd", "enable")), nix.thunk(() => nix.app(makeTarget, "osd"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "rgw", "enable")), nix.thunk(() => nix.app(makeTarget, "rgw"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mgr", "enable")), nix.thunk(() => nix.app(makeTarget, "mgr")))))))));
             return nix.app(nix.sel(lib, "mkMerge"), targets);
           })()),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             settings: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               "10-ceph": nix.thunk(() => (() => {
-                const defaultConfig = nix.thunk(() => ({ __proto__: pos$63, user: "ceph", group: "ceph" }));
+                const defaultConfig = nix.thunk(() => ({ [nix.POS]: pos$63, user: "ceph", group: "ceph" }));
                 return {
-                  __proto__: pos$72,
-                  "/etc/ceph": nix.thunk(() => ({ __proto__: pos$64, d: defaultConfig })),
+                  [nix.POS]: pos$72,
+                  "/etc/ceph": nix.thunk(() => ({ [nix.POS]: pos$64, d: defaultConfig })),
                   "/run/ceph": nix.thunk(() => ({
-                    __proto__: pos$66,
-                    d: nix.thunk(() => nix.update(defaultConfig, { __proto__: pos$65, mode: "0770" })),
+                    [nix.POS]: pos$66,
+                    d: nix.thunk(() => nix.update(defaultConfig, { [nix.POS]: pos$65, mode: "0770" })),
                   })),
-                  "/var/log/ceph": nix.thunk(() => ({ __proto__: pos$67, d: defaultConfig })),
-                  "/var/lib/ceph": nix.thunk(() => ({ __proto__: pos$68, d: defaultConfig })),
+                  "/var/log/ceph": nix.thunk(() => ({ [nix.POS]: pos$67, d: defaultConfig })),
+                  "/var/lib/ceph": nix.thunk(() => ({ [nix.POS]: pos$68, d: defaultConfig })),
                   "/var/lib/ceph/mgr": nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "mgr", "enable")), defaultConfig)),
                   })),
                   "/var/lib/ceph/mon": nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "mon", "enable")), defaultConfig)),
                   })),
                   "/var/lib/ceph/osd": nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "osd", "enable")), defaultConfig)),
                   })),
                 };

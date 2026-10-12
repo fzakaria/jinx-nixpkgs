@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         const minimalOCamlVersion = "4.08.1";
         const doCheck = true;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "comby-tools",
             repo: "comby",
             rev: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         ], extraBuildInputs));
         const nativeCheckInputs = nix.thunk(() => [cacert]);
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Tool for searching and changing code structure",
           mainProgram: "comby",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           broken: true,
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname_1,
           preBuild: preBuild_1,
           version,
@@ -84,14 +84,14 @@ export default nix.lambda((args) => (() => {
         };
       })()));
   })(), formals$2);
-  const combyKernel = nix.thunk(() => nix.app(mkCombyPackage, nix.thunk(() => ({ __proto__: pos$4, pname: "comby-kernel" }))));
+  const combyKernel = nix.thunk(() => nix.app(mkCombyPackage, nix.thunk(() => ({ [nix.POS]: pos$4, pname: "comby-kernel" }))));
   const combySemantic = nix.thunk(() => nix.app(mkCombyPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "comby-semantic",
       extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "cohttp-lwt-unix"))]),
     }))));
   return nix.app(mkCombyPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "comby",
       preBuild: "substituteInPlace test/common/dune \\\n  --replace \"test_cli_list\" \"\" \\\n  --replace \"test_cli_helper\" \"\" \\\n  --replace \"test_cli\" \"\"\nrm test/common/{test_cli_list,test_cli_helper,test_cli}.ml\n",
       extraBuildInputs: nix.thunk(() => nix.concat([

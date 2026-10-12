@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const base16_schemes = nix.arg($, "base16-schemes");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "base24-schemes",
       version: nix.thunk(() => nix.attr(base16_schemes, "version")),
       src: nix.thunk(() => nix.attr(base16_schemes, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/themes\ninstall base24/*.yaml $out/share/themes/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(base16_schemes, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Base24 color schemes from Tinted Theming",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

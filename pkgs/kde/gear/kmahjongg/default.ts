@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const libkmahjongg = nix.arg($, "libkmahjongg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kmahjongg",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtsvg]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${libkmahjongg}/share`)]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kmahjongg" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kmahjongg" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lxterminal",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxde",
           repo: "lxterminal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./respect-xml-catalog-files-var.patch")]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "lxterminal")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Standard terminal emulator of LXDE",
         longDescription: "LXTerminal is the standard terminal emulator of LXDE. The terminal is a\ndesktop-independent VTE-based terminal emulator for LXDE without any\nunnecessary dependencies.\n",
         homepage: "https://www.lxde.org/",

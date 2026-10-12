@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "check-uptime",
       version: "0-unstable-2016-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madrisan",
           repo: "nagios-plugins-uptime",
           rev: "51822dacd1d404b3eabf3b4984c64b2475ed6f3b",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "ln -sr $out/libexec $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uptime check plugin for Sensu/Nagios/others",
         homepage: "https://github.com/madrisan/nagios-plugins-uptime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

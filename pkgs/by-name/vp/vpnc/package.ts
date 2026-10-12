@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const opensslSupport = nix.argOr($, "opensslSupport", () => false);
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vpnc",
       version: "0-unstable-2025-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "streambinder",
           repo: "vpnc",
           rev: "6a70db13f6e9201101e1c4890393566be6000e6a",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`SCRIPT_PATH=${vpnc_scripts}/bin/vpnc-script`),
       ], nix.app(nix.sel(lib, "optional"), opensslSupport, "OPENSSL_GPL_VIOLATION=yes"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postPatch: nix.thunk(() => nix.add(nix.str`substituteInPlace src/vpnc-disconnect \\
@@ -58,7 +58,7 @@ substituteInPlace src/makeman.pl --replace-fail \\
       enableParallelInstalling: false,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://davidepucci.it/doc/vpnc/",
         description: "Virtual private network (VPN) client for Cisco's VPN concentrators",
         license: nix.thunk(() => (nix.asBool(opensslSupport) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "gpl2Plus"))),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "repomix";
       const version = "1.18.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yamadashy",
           repo: "repomix",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkPhase = "runHook preCheck\nnpx vitest run\nrunHook postCheck\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to pack repository contents to single file for AI consumption",
         homepage: "https://github.com/yamadashy/repomix",
         changelog: nix.thunk(() => nix.str`https://github.com/yamadashy/repomix/releases/tag/v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "repomix",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

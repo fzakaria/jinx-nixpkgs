@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const url = nix.arg($_1, "url");
     return nix.app(fetchurl, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["url"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         urls: nix.thunk(() => [url, nix.thunk(() => nix.add(url, ".lz"))]),
         postFetch: nix.thunk(() => nix.str`if [[ $url == *.lz ]]; then
   ${lzip}/bin/lzip -c -d $out > uncompressed

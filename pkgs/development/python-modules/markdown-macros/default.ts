@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1lzvrb7nci22yp21ab2qqc9p0fhkazqj29vw0wln2r4ckb2nbawv",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "wnielson-markdown-macros-pull-1.patch",
             url: "https://github.com/wnielson/markdown-macros/commit/e38cba9acb6789cc128f6fe9ca427ba71815a20f.patch",
             sha256: "17njbgq2srzkf03ar6yn92frnsbda3g45cdi529fdh0x8mmyxci0",
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [markdown]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extension for python-markdown that makes writing trac-like macros easy",
         homepage: "https://github.com/wnielson/markdown-macros",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "abigailbuccaneer"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

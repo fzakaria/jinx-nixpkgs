@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const tornado = nix.arg($, "tornado");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "luigi",
       version: "3.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "luigi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-L6XrXTR05JXeCb2WT1ApNsCPix624PPKPIppEWw40MM=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       makeWrapperArgs: nix.thunk(() => ["--prefix PYTHONPATH . :"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package that helps you build complex pipelines of batch jobs",
         longDescription: "Luigi handles dependency resolution, workflow management, visualization,\nhandling failures, command line integration, and much more.\n",
         homepage: "https://github.com/spotify/luigi",

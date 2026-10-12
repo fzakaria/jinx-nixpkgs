@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "pantalaimon-headless"));
   const iniFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const mkConfigFile = (name) => (instanceConfig) => nix.app(nix.sel(iniFmt, "generate"), "pantalaimon.conf", nix.thunk(() => nix.attrsDyn({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       Default: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         LogLevel: nix.thunk(() => nix.sel(instanceConfig, "logLevel")),
         Notifications: false,
       })),
     }, [
       [nix.force(name), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           Homeserver: nix.thunk(() => nix.sel(instanceConfig, "homeserver")),
           ListenAddress: nix.thunk(() => nix.sel(instanceConfig, "listenAddress")),
           ListenPort: nix.thunk(() => nix.sel(instanceConfig, "listenPort")),
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
         })), nix.thunk(() => nix.sel(instanceConfig, "extraSettings"))))],
     ])));
   const mkPantalaimonService = (name) => (instanceConfig) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`pantalaimon-${name}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       description: nix.thunk(() => nix.str`pantalaimon instance ${name} - E2EE aware proxy daemon for matrix clients`),
       wants: nix.thunk(() => ["network-online.target"]),
       after: nix.thunk(() => ["network-online.target"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "pantalaimon-headless")}/bin/pantalaimon --config ${nix.app(mkConfigFile, name, instanceConfig)} --data-path ${nix.sel(instanceConfig, "dataPath")}`),
         Restart: "on-failure",
         DynamicUser: true,
@@ -62,15 +62,15 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "pantalaimon-headless": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./pantalaimon-options.nix"))))))),
               description: "Declarative instance config.\n\nNote: to use pantalaimon interactively, e.g. for a Matrix client which does not\nsupport End-to-end encryption (like `fractal`), refer to the home-manager module.\n",
@@ -79,14 +79,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "services", "pantalaimon-headless", "instances"), {})), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), mkPantalaimonService, nix.thunk(() => nix.sel(config, "services", "pantalaimon-headless", "instances")))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jojosch"))];

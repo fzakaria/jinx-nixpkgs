@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const libdisplay_info = nix.arg($, "libdisplay-info");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amd-debug-tools",
       version: "0.2.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/superm1/amd-debug-tools.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-JDacCakZC+4N4IDAODWLSuensAtFArl052I4weK/zJQ=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debug tools for AMD systems",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/superm1/amd-debug-tools.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

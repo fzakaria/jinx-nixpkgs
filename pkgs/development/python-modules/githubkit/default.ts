@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         version: version,
         src: src,
@@ -48,47 +48,47 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "githubkit",
       version: "0.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "yanyongyu",
           repo: "githubkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-zVUJWwmRx/2phkDWwWyazhPdwthsMMcE0S7E4R1TebQ=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         schemas: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "githubkit-schemas": nix.thunk(() => nix.app(mkGithubkitSchema, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: "githubkit-schemas",
               version: "26.6.14",
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             })))),
           "githubkit-schemas-2022-11-28": nix.thunk(() => nix.app(mkGithubkitSchema, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pname: "githubkit-schemas-2022-11-28",
               version: "26.6.14",
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             })))),
           "githubkit-schemas-2026-03-10": nix.thunk(() => nix.app(mkGithubkitSchema, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "githubkit-schemas-2026-03-10",
               version: "26.6.14",
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             })))),
           "githubkit-schemas-ghec-2022-11-28": nix.thunk(() => nix.app(mkGithubkitSchema, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               pname: "githubkit-schemas-ghec-2022-11-28",
               version: "26.6.14",
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             })))),
           "githubkit-schemas-ghec-2026-03-10": nix.thunk(() => nix.app(mkGithubkitSchema, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               pname: "githubkit-schemas-ghec-2026-03-10",
               version: "26.6.14",
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => nix.concat([anyio, httpx, hishel, typing_extensions, pydantic], nix.concat(nix.sel(hishel, "optional-dependencies", "async"), nix.concat(nix.sel(hishel, "optional-dependencies", "httpx"), nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "schemas"))))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         all: nix.thunk(() => [pyjwt]),
         jwt: nix.thunk(() => [pyjwt]),
         "auth-app": nix.thunk(() => [pyjwt]),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
         "test_versioned_async_call",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "GitHub SDK for Python",
         homepage: "https://github.com/yanyongyu/githubkit",
         changelog: nix.thunk(() => nix.str`https://github.com/yanyongyu/githubkit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

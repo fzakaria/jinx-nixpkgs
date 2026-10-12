@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gcli",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~herrhotzenplotz",
           repo: "gcli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, byacc, flex]),
       buildInputs: nix.thunk(() => [curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable Git(Hub|Lab|ea) CLI tool",
         homepage: "https://herrhotzenplotz.de/gcli/",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~herrhotzenplotz/gcli/tree/v${nix.sel(finalAttrs, "version")}/item/Changelog.md`),

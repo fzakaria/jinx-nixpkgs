@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gershwin-system",
       version: "0-unstable-2026-08-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gershwin-desktop",
           repo: "gershwin-system",
           rev: "a29ac743fea4388d580467e1998d7bf4c06b1de2",
           hash: "sha256-T/1iGevtrkIfoUVDu645UTujd+lhUxOuGiYfCYlaCYw=",
         })))),
       dontBuild: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/gershwin-desktop/gershwin-system",
         description: "Gershwin Desktop configuration defaults and scaffolding files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

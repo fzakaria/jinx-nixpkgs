@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const regex = nix.arg($, "regex");
   const starlette = nix.arg($, "starlette");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastapi-mail",
       version: "1.6.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sabuhish",
           repo: "fastapi-mail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         regex,
         starlette,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, redis: nix.thunk(() => [redis]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, redis: nix.thunk(() => [redis]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       disabledTests: nix.thunk(() => [
         "test_default_checker",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["fastapi_mail"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for sending emails and attachments",
         homepage: "https://github.com/sabuhish/fastapi-mail",
         changelog: nix.thunk(() => nix.str`https://github.com/sabuhish/fastapi-mail/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

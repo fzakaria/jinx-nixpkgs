@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "1.18.2";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "intelephense",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/intelephense/-/intelephense-${version}.tgz`),
           hash: "sha256-9he4PwHY/ohSKVTlD11MOlcrB3ldAp6EWiIYJRMj2b0=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-gamhLTob6xyxwWRf61HwoemP1emuboVcdbltugISclE=",
       dontNpmBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Professional PHP tooling for any Language Server Protocol capable editor",
         homepage: "https://intelephense.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

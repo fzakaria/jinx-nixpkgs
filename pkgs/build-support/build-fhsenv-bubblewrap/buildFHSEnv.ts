@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
 exec ${(nix.asBool(isMultiBuild) ? nix.sel(pkgsi686Linux, "glibc", "bin") : nix.sel(pkgs, "glibc", "bin"))}/bin/ldconfig -f /etc/ld.so.conf -C /etc/ld.so.cache "$@"
 `)));
     const etcProfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${name}-fhsenv-profile`),
         destination: "/etc/profile",
         text: nix.thunk(() => nix.str`export PS1='${name}-fhsenv:\\u@\\h:\\w\\$ '
@@ -120,7 +120,7 @@ ${profile}
         const extraOutputs = nix.thunk(() => nix.builtins.map((out) => nix.selOr(drv, () => null, nix.key(nix.force(out))), extraOutputsToInstall));
         const cleanOutputs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (o) => !nix.eq(o, null), nix.thunk(() => nix.concat(pickedOutputs, extraOutputs))));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           paths: cleanOutputs,
           priority: nix.thunk(() => nix.selOr(drv, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority")),
         };
@@ -137,17 +137,17 @@ ${profile}
       })())));
     const allPaths = nix.thunk(() => nix.concat(paths, paths32));
     const rootfs_builder = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "rustPlatform", "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "fhs-rootfs-bulder",
         src: nix.path(here, "./rootfs-builder"),
-        cargoLock: nix.thunk(() => ({ __proto__: pos$3, lockFile: nix.path(here, "./rootfs-builder/Cargo.lock") })),
+        cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./rootfs-builder/Cargo.lock") })),
         doCheck: false,
       }))));
     const rootfs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${name}-fhsenv-rootfs`), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         __structuredAttrs: true,
         exportReferencesGraph: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           graph: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (p) => nix.sel(p, "paths"), allPaths)),
         })),
         paths: paths,

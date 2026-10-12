@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lastfm",
       version: "2.1.39",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           extension: "zip",
           name: "Last.fm.app",
           url: nix.thunk(() => nix.str`https://cdn.last.fm/client/Mac/Last.fm-${nix.sel(finalAttrs, "version")}.zip`),
@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "lastfm-update-script",
               runtimeInputs: nix.thunk(() => [curl, xmlstarlet, common_updater_scripts]),
               text: "url=$(curl --silent \"https://cdn.last.fm/client/Mac/updates.xml\")\nversion=$(echo \"$url\" | xmlstarlet sel -t -v \"substring-before(substring-after(//enclosure/@url, 'version='), '&')\")\nupdate-source-version lastfm \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Music services manager",
         homepage: "https://www.last.fm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

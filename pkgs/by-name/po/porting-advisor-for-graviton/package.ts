@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const progressbar33 = nix.thunk(() => nix.attr(from, "progressbar33"));
   const xlsxwriter = nix.thunk(() => nix.attr(from, "xlsxwriter"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "porting-advisor-for-graviton",
       version: "1.1.1",
       format: "other",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "porting-advisor-for-graviton",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ runHook postInstall
       postFixup: "wrapPythonPrograms\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AWS Porting Advisor for Graviton helps customers assess and prepare their applications for migration to AWS Graviton processors",
         homepage: "https://github.com/aws/porting-advisor-for-graviton",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/porting-advisor-for-graviton/releases/tag/v${nix.sel(finalAttrs, "version")}`),

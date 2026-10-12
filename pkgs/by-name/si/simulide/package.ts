@@ -24,52 +24,52 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const versionNum = nix.argOr($, "versionNum", () => "1.1.0");
   const versionInfo = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "0.4.15": nix.thunk(() => (() => {
       const release = "SR10";
       const rev = "291";
       const src = nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.launchpad.net/~arcachofo/simulide/simulide_0.4.14",
           sha256: "sha256-BBoZr/S2pif0Jft5wrem8y00dXl08jq3kFiIUtOr3LM=",
           rev: rev,
         }))));
-      return { __proto__: pos$2, release, rev, src };
+      return { [nix.POS]: pos$2, release, rev, src };
     })()),
     "1.0.0": nix.thunk(() => (() => {
       const release = "SR2";
       const rev = "1449";
       const src = nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://code.launchpad.net/~arcachofo/simulide/1.0.0",
           sha256: "sha256-rJWZvnjVzaKXU2ktbde1w8LSNvu0jWkDIk4dq2l7t5g=",
           rev: rev,
         }))));
-      return { __proto__: pos$4, release, rev, src };
+      return { [nix.POS]: pos$4, release, rev, src };
     })()),
     "1.1.0": nix.thunk(() => (() => {
       const release = "SR2";
       const rev = "28965e3bd6dd118598db1f5639ce1cf2e3c56e36";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "Arcachofo",
           repo: "SimuliDE_110",
           rev: rev,
           hash: "sha256-Ec72OE4xBlanFFzrrGu0lTY2BEVu7slc1+ZDFr8lUT8=",
         }))));
-      return { __proto__: pos$6, release, rev, src };
+      return { [nix.POS]: pos$6, release, rev, src };
     })()),
     "1.2.0": nix.thunk(() => (() => {
       const release = "RC1";
       const rev = "da3a925491fab9fa2a8633d18e45f8e1b576c9d2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "Arcachofo",
           repo: "SimulIDE-dev",
           hash: "sha256-6Gh0efBizDK1rUNkyU+/ysj7QwkAs3kTA1mQZYFb/pI=",
           rev: rev,
         }))));
-      return { __proto__: pos$8, release, rev, src };
+      return { [nix.POS]: pos$8, release, rev, src };
     })()),
   }));
   const from = nix.thunk(() => nix.selOr(versionInfo, () => nix.builtins.throw("Unsupported versionNum"), nix.key(nix.force(versionNum))));
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const iconPath = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), versionNum, "1.0.0")) ? "resources/icons/hicolor/256x256/simulide.png" : "resources/icons/simulide.png"));
   const release$ = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), versionNum, "1.2.0")), "-"), release));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "simulide",
       version: nix.thunk(() => nix.str`${versionNum}-${release}`),
       src: src,
@@ -127,7 +127,7 @@ runHook postInstall
       dontWrapQtApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nwrapQtApp $out/Applications/simulide.app/Contents/MacOs/simulide\nln -s $out/Applications/simulide.app/Contents/MacOs/simulide $out/bin/simulide\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Simple real time electronic circuit simulator",
         longDescription: "SimulIDE is a simple real time electronic circuit simulator, intended for hobbyist or students\nto learn and experiment with analog and digital electronic circuits and microcontrollers.\nIt supports PIC, AVR, Arduino and other MCUs and MPUs.\n",
         homepage: "https://simulide.com/",

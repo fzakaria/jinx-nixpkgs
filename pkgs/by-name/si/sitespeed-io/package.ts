@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const firefox = nix.arg($, "firefox");
   nix.assert_((!nix.asBool((nix.asBool(!nix.asBool(withFirefox)) && nix.asBool(!nix.asBool(withChromium)))) || nix.asBool(nix.builtins.throw("Either `withFirefox` or `withChromium` must be enabled."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sitespeed-io/package.nix:26:1");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sitespeed-io",
       version: "42.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sitespeedio",
           repo: "sitespeed.io",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tyEa28WmMa+t55k/CHBZNXno9pTyKJZed47OA5VN5U4=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CHROMEDRIVER_SKIP_DOWNLOAD: true,
         GECKODRIVER_SKIP_DOWNLOAD: true,
         EDGEDRIVER_SKIP_DOWNLOAD: true,
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source tool that helps you monitor, analyze and optimize your website speed and performance",
         homepage: "https://sitespeed.io",
         downloadPage: "https://github.com/sitespeedio/sitespeed.io",

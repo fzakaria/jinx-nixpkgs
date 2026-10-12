@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wiimms-iso-tools",
       version: "3.05a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.wiimm.de/source/wiimms-iso-tools/wiimms-iso-tools.source-${nix.sel(finalAttrs, "version")}.txz`),
           hash: "sha256-5aikiPJkZf9OwD8QmQ7ijhBOtFQpkIErvb6gOvEu2L0=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-paths.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ncurses-6.3.patch",
             url: "https://github.com/Wiimm/wiimms-iso-tools/commit/3f1e84ec6915cc4f658092d33411985bd3eaf4e6.patch",
             sha256: "18cfri4y1082phg6fzh402gk5ri24wr8ff4zl8v5rlgjndh610im",
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       postPatch: "patchShebangs setup.sh gen-template.sh gen-text-file.sh\nsubstituteInPlace setup.sh --replace gcc \"$CC\"\nsubstituteInPlace Makefile --replace gcc \"$CC\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, INSTALL_PATH: "$out" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, INSTALL_PATH: "$out" })),
       installPhase: "mkdir \"$out\"\npatchShebangs install.sh\n./install.sh --no-sudo\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/wit`),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://wit.wiimm.de",
         description: "Set of command line tools to manipulate Wii and GameCube ISO images and WBFS containers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

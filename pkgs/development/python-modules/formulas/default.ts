@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   const sphinxcontrib_restbuilder = nix.arg($, "sphinxcontrib-restbuilder");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "formulas",
       version: "1.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinci1it2000",
           repo: "formulas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "linest-aarch64-blas-rounding.patch",
             url: "https://github.com/vinci1it2000/formulas/commit/2d68e59d1abb10433feefef5c7cdcab378459159.patch",
             hash: "sha256-5jnE7f2HypuFrP8g9rhWZovNw//T+vbHMfbBXhA4UmE=",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const excelDeps = nix.thunk(() => [dictdiffer, ezodf, lxml, openpyxl]);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           excel: excelDeps,
           plot: nix.thunk(() => [docutils, flask, graphviz, jinja2, pygments, regex]),
           cli: nix.thunk(() => nix.concat(excelDeps, [click_log, flask])),
@@ -112,11 +112,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), "cat > test/conftest.py << 'EOF'\nimport copyreg\nimport itertools\n\n\ndef _reduce_count(_obj):\n    return itertools.count, ()\n\n\ncopyreg.pickle(itertools.count, _reduce_count)\nEOF\n")),
       pythonImportsCheck: nix.thunk(() => ["formulas"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Parse and compile Excel formulas and workbooks in Python code",
         homepage: "https://github.com/vinci1it2000/formulas",
         changelog: nix.thunk(() => nix.str`https://github.com/vinci1it2000/formulas/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

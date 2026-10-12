@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const reaction = nix.arg($, "reaction");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     mkReactionPlugin: (name) => (extra) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: name,
         version: nix.thunk(() => nix.attr(reaction, "version")),
         src: nix.thunk(() => nix.attr(reaction, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         cargoHash: nix.thunk(() => nix.attr(reaction, "cargoHash")),
         buildAndTestSubdir: nix.thunk(() => nix.str`plugins/${name}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           changelog: nix.thunk(() => nix.str`https://framagit.org/ppom/reaction/-/releases/v${nix.sel(reaction, "version")}`),
           description: nix.thunk(() => nix.str`Official reaction plugin ${name}`),
           homepage: "https://framagit.org/ppom/reaction",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
         })),
       }, extra))),
-    plugins: nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({ __proto__: pos$3, callPackage: callPackage, directory: nix.path(here, "./.") })))), nix.thunk(() => ["default"]))),
+    plugins: nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({ [nix.POS]: pos$3, callPackage: callPackage, directory: nix.path(here, "./.") })))), nix.thunk(() => ["default"]))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

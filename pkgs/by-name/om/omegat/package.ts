@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "6.1.1",
       pname: "omegat",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/project/omegat/OmegaT%20-%20Standard/OmegaT%206.1.1/OmegaT_6.1.1_Without_JRE.zip",
           sha256: "sha256-apnR+GeHs+ySARtH2LvYR9hfRuznC0xqrWN8WOtq9uk=",
         })))),
@@ -37,7 +37,7 @@ EOF
 chmod +x $out/bin/omegat
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free computer aided translation (CAT) tool for professionals",
         mainProgram: "omegat",
         longDescription: "OmegaT is a free and open source multiplatform Computer Assisted Translation\ntool with fuzzy matching, translation memory, keyword search, glossaries, and\ntranslation leveraging into updated projects.\n",

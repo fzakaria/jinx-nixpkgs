@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
   const version = "2.2.3";
   const nodejsPython = nix.thunk(() => nix.app(nix.sel(buildPackages, "nodejs", "python", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "setuptools"))]));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "safing",
       repo: "portmaster",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-MVcynhN8svv83TDOx54dZ/zFyl4lDfUT1bIgHcmeKYE=",
     }))));
   const portmasterUI = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "portmaster-ui",
       version: version,
       src: src,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-TvH3dIrSFmkfuHoJfUjEfPoOJcIzximFQ8vkwQHJXac=",
       nativeBuildInputs: nix.thunk(() => [nodejsPython]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nodejsPython)),
       })),
       postPatch: "# Assets are provided by the separate assets.zip module.\nrm assets\n",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
     }))));
   const portmasterDesktop = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "portmaster-desktop",
       version: version,
       src: src,
@@ -100,7 +100,7 @@ runHook postInstall
       dontWrapGApps: true,
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "portmaster",
       version: version,
       src: src,
@@ -114,7 +114,7 @@ runHook postInstall
       buildInputs: nix.thunk(() => [glib_networking, libayatana_appindicator, openssl, webkitgtk_4_1]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "portmaster",
             desktopName: "Portmaster",
             genericName: "Application Firewall",
@@ -193,20 +193,20 @@ grep -aF \\
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         portmasterDesktop: portmasterDesktop,
         portmasterUI: portmasterUI,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           portmaster: nix.thunk(() => nix.attr(nixosTests, "portmaster")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--subpackage", "portmasterUI", "--subpackage", "portmasterDesktop"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Free and open-source application firewall",
         homepage: "https://safing.io/portmaster/",
         changelog: nix.thunk(() => nix.str`https://github.com/safing/portmaster/releases/tag/v${version}`),

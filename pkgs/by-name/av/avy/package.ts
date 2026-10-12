@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avy",
       version: "2019.05.01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://bitbucket.org/arieg/extavy",
           rev: "cav19",
           sha256: "0qdzy9srxp5f38x4dbb3prnr9il6cy0kz80avrvd7fxqzy7wdlwy",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(boost, "dev")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-narrowing"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-empty-body",
               "-Wno-tautological-compare",
@@ -59,7 +59,7 @@ patch -p1 -d glucose -i ${nix.path(here, "./glucose-fenv.patch")}
 `),
       installPhase: "mkdir -p $out/bin\ncp avy/src/{avy,avybmc} $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AIGER model checking for Property Directed Reachability",
         homepage: "https://arieg.bitbucket.io/avy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

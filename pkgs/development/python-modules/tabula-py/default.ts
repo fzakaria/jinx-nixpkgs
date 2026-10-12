@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chezou",
           repo: "tabula-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "test_read_pdf_with_silent_true",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to extract table from PDF into pandas DataFrame",
         homepage: "https://github.com/chezou/tabula-py",
         changelog: nix.thunk(() => nix.str`https://github.com/chezou/tabula-py/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liblxqt";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "liblxqt",
           rev: version,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./fix-application-path.patch")]);
       const postPatch = "# https://github.com/NixOS/nixpkgs/issues/119766\nsubstituteInPlace lxqtbacklight/linux_backend/driver/libbacklight_backend.c \\\n  --replace-fail \"pkexec lxqt-backlight_backend\" \"pkexec $out/bin/lxqt-backlight_backend\"\n\nsed -i \"s|\\${POLKITQT-1_POLICY_FILES_INSTALL_DIR}|${out}/share/polkit-1/actions|\" CMakeLists.txt\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Core utility library for all LXQt components",
         mainProgram: "lxqt-backlight_backend",
         homepage: "https://github.com/lxqt/liblxqt",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

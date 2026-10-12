@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         const fonts = nix.argOr($_2, "fonts", () => []);
         const extraWrapperArgs = nix.argOr($_2, "extraWrapperArgs", () => []);
         return nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             meta: nix.thunk(() => nix.attr(typst, "meta")),
             name: nix.thunk(() => nix.str`${nix.sel(typst, "name")}-env`),
             paths: nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.app(packages, typstPkgs)))),

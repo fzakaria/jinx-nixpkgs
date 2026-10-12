@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "xz",
       version: "5.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`https://github.com/tukaani-project/xz/releases/download/v${nix.lookup(w, "version")}/xz-${nix.lookup(w, "version")}.tar.xz`;
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "CONFIG_SHELL=/bin/sh",
       postInstall: "rm -rf $out/share/doc",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-xz", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -57,16 +57,16 @@ new_version="$(curl -s https://tukaani.org/xz/ |
 update-source-version ${nix.sel(finalAttrs, "pname")} "$new_version"
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/tukaani-project/xz/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "General-purpose data compression software, successor of LZMA",
         homepage: "https://tukaani.org/xz/",
@@ -85,7 +85,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         pkgConfigModules: nix.thunk(() => ["liblzma"]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "tukaani", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

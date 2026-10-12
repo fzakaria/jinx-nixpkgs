@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const rename = nix.arg($, "rename");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ubuntu-sans",
       version: "1.006",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canonical",
           repo: "Ubuntu-Sans-fonts",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ ${rename}/bin/rename 's/\\[.*\\]//' $out/share/fonts/truetype/ubuntu-sans/*
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ubuntu Font Family",
         longDescription: "The Ubuntu Font Family are a set of matching libre/open fonts.\n    The fonts were originally developed in 2010–2011,\n    further expanded and improved in 2015,\n    and expanded again in 2022–2023 when variable fonts were added.",
         homepage: "https://design.ubuntu.com/font",

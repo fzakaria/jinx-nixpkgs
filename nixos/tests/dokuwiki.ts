@@ -42,65 +42,65 @@ export default nix.lambda((args) => (() => {
       const name = "bootstrap3";
       const version = "2024-02-06";
       const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "giterlizzi",
           repo: "dokuwiki-template-bootstrap3",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-PSA/rHMkM/kMvOV7CP1byL8Ym4Qu7a4Rz+/aPX31x9k=",
         }))));
       const installPhase = "mkdir -p $out; cp -R * $out/";
-      return { __proto__: pos$2, name, version, src, installPhase };
+      return { [nix.POS]: pos$2, name, version, src, installPhase };
     })())));
   const plugin_icalevents = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const name = "icalevents";
       const version = "2017-06-16";
       const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           stripRoot: false,
           url: nix.thunk(() => nix.str`https://github.com/real-or-random/dokuwiki-plugin-icalevents/releases/download/${version}/dokuwiki-plugin-icalevents-${version}.zip`),
           hash: "sha256-IPs4+qgEfe8AAWevbcCM9PnyI0uoyamtWeg4rEb+9Wc=",
         }))));
       const installPhase = "mkdir -p $out; cp -R * $out/";
-      return { __proto__: pos$4, name, version, src, installPhase };
+      return { [nix.POS]: pos$4, name, version, src, installPhase };
     })())));
   const acronymsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "acronyms.local.conf", "r13y  reproducibility\n"));
   const mkNode = (webserver) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         dokuwiki: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           webserver: webserver,
           sites: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "site1.local": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               templates: nix.thunk(() => [template_bootstrap3]),
-              settings: nix.thunk(() => ({ __proto__: pos$5, useacl: false, userewrite: true, template: "bootstrap3" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$5, useacl: false, userewrite: true, template: "bootstrap3" })),
             })),
             "site2.local": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               usersFile: "/var/lib/dokuwiki/site2.local/users.auth.php",
               plugins: nix.thunk(() => [plugin_icalevents]),
-              extraConfigs: nix.thunk(() => ({ __proto__: pos$7, "acronyms.local.conf": acronymsFile })),
+              extraConfigs: nix.thunk(() => ({ [nix.POS]: pos$7, "acronyms.local.conf": acronymsFile })),
               settings: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 useacl: true,
                 superuser: "admin",
-                title: nix.thunk(() => ({ __proto__: pos$8, _file: titleFile })),
+                title: nix.thunk(() => ({ [nix.POS]: pos$8, _file: titleFile })),
                 plugin: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  dummy: nix.thunk(() => ({ __proto__: pos$9, empty: "This is just for testing purposes" })),
+                  [nix.POS]: pos$10,
+                  dummy: nix.thunk(() => ({ [nix.POS]: pos$9, empty: "This is just for testing purposes" })),
                 })),
               })),
               acl: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$12, page: "*", actor: "@ALL", level: "read" })),
-                nix.thunk(() => ({ __proto__: pos$13, page: "acl-test", actor: "@ALL", level: "none" })),
+                nix.thunk(() => ({ [nix.POS]: pos$12, page: "*", actor: "@ALL", level: "read" })),
+                nix.thunk(() => ({ [nix.POS]: pos$13, page: "acl-test", actor: "@ALL", level: "none" })),
               ]),
               pluginsConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 authad: false,
                 authldap: false,
                 authmysql: false,
@@ -112,19 +112,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         caddy: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           virtualHosts: nix.thunk(() => ({
-            __proto__: pos$20,
-            "site1.local": nix.thunk(() => ({ __proto__: pos$18, hostName: "http://site1.local" })),
-            "site2.local": nix.thunk(() => ({ __proto__: pos$19, hostName: "http://site2.local" })),
+            [nix.POS]: pos$20,
+            "site1.local": nix.thunk(() => ({ [nix.POS]: pos$18, hostName: "http://site1.local" })),
+            "site2.local": nix.thunk(() => ({ [nix.POS]: pos$19, hostName: "http://site2.local" })),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$25,
-        firewall: nix.thunk(() => ({ __proto__: pos$23, allowedTCPPorts: nix.thunk(() => [80n]) })),
+        [nix.POS]: pos$25,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$23, allowedTCPPorts: nix.thunk(() => [80n]) })),
         hosts: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
         })),
       })),
@@ -132,10 +132,10 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const titleFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dokuwiki-title", "DokuWiki on site2"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "dokuwiki",
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -146,7 +146,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       dokuwiki_nginx: nix.thunk(() => nix.app(mkNode, "nginx")),
       dokuwiki_caddy: nix.thunk(() => nix.app(mkNode, "caddy")),
     })),

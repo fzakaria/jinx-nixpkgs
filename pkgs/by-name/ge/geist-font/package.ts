@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geist-font",
       version: "1.7.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/vercel/geist-font/releases/download/${nix.sel(finalAttrs, "version")}/geist-font-${nix.sel(finalAttrs, "version")}.zip`),
             hash: "sha256-BeS7QkBkRjqozrqzOm2lbc/vTG25OCoCgQr96T8ica4=",
           })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font family created by Vercel in collaboration with Basement Studio",
         homepage: "https://vercel.com/font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withQrencode = nix.argOr($, "withQrencode", () => nix.force(withGui));
   const withUpnp = nix.argOr($, "withUpnp", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => (nix.asBool(withGui) ? "gridcoin-research" : "gridcoin-researchd")),
       version: "5.5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gridcoin-community",
           repo: "Gridcoin-Research",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DEFAULT_UPNP", withUpnp)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POS-based cryptocurrency that rewards users for participating on the BOINC network",
         longDescription: "A POS-based cryptocurrency that rewards users for participating on the BOINC network,\nusing peer-to-peer technology to operate with no central authority - managing transactions,\nissuing money and contributing to scientific research are carried out collectively by the network\n",
         homepage: "https://gridcoin.us/",

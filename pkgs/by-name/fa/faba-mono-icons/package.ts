@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const faba_icon_theme = nix.arg($, "faba-icon-theme");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faba-mono-icons",
       version: "2016-04-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snwh",
           repo: "faba-mono-icons",
           rev: "2006c5281eb988c799068734f289a85443800cda",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       postInstall: "for theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full set of Faba monochrome panel icons",
         homepage: "https://snwh.org/moka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

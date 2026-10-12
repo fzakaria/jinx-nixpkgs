@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyramid_exclog",
           version: version,
           hash: "sha256-Tl2rYH/GifNfB9w4nG9UIqAQz0O6kujCED/4iZnPKDw=",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pyramid]);
       const pythonImportsCheck = nix.thunk(() => ["pyramid_exclog"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package which logs to a Python logger when an exception is raised by a Pyramid application",
         homepage: "https://docs.pylonsproject.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

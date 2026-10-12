@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "basiliskii",
       version: "1.0.0-unstable-2026-06-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kanjitalk755",
           repo: "macemu",
           rev: "51b5255eead47203ae78636796a6e6d5713e6705",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "NO_CONFIGURE=1 ./autogen.sh\n",
       configureFlags: nix.thunk(() => ["--enable-sdl-video", "--enable-sdl-audio", "--with-bincue"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "68k Macintosh emulator",
         homepage: "https://basilisk.cebix.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

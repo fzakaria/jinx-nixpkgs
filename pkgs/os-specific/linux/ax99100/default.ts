@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const dos2unix = nix.arg($, "dos2unix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ax99100",
       version: "2.3.0",
       nativeBuildInputs: nix.thunk(() => nix.concat([dos2unix, kmod], nix.sel(kernel, "moduleBuildDependencies"))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.asix.com.tw/en/support/download/file/1956",
           sha256: "sha256-acvKb+ohOFrfytgHp9KUVivqDRvgsFgK8bxxHkIh8PU=",
           extension: "tar.bz2",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 cp ax99100x.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/tty/serial
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ASIX AX99100 Serial and Parallel Port driver",
         homepage: "https://www.asix.com.tw/en/product/Interface/PCIe_Bridge/AX99100",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

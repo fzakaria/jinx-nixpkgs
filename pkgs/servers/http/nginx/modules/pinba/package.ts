@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pinba",
       version: "0-unstable-2019-05-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tony2001",
           repo: "ngx_http_pinba_module",
           rev: "28131255d4797a7e2f82a6a35cf9fc03c4678fe6",
           sha256: "00fii8bjvyipq6q47xhjhm3ylj4rhzmlk3qwxmfpdn37j7bc8p8c",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pinba module for nginx",
         homepage: "https://github.com/tony2001/ngx_http_pinba_module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

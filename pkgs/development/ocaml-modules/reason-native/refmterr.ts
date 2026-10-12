@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pastel = nix.arg($, "pastel");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "refmterr",
       version: "3.3.0-unstable-2024-05-07",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [atdgen, reason]),
       propagatedBuildInputs: nix.thunk(() => [atdgen_runtime, re, pastel]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Error formatter tool for Reason and OCaml. Takes raw error output from compiler and converts to pretty output",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/refmterr",
         homepage: "https://reason-native.com/docs/refmterr/",

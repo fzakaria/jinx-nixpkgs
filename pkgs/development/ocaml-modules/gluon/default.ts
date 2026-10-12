@@ -20,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const rio = nix.arg($, "rio");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gluon",
       version: "0.0.9",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/riot-ml/gluon/releases/download/${nix.sel(finalAttrs, "version")}/gluon-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-YWJCPokY1A7TGqCGoxJl14oKDVeMNybEEB7KiK92WSo=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/riot-ml/gluon/commit/b29c34d04ea05d7721a229c35132320e796ed4b2.patch",
           hash: "sha256-XuzyoteQAgEs93WrgHTWT1I+hIJAiGiJ4XAiLtnEYtw=",
         })))),
       buildInputs: nix.thunk(() => [config]),
       propagatedBuildInputs: nix.thunk(() => [bytestring, libc, rio, uri]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal, portable, and fast API on top of the operating-system's evented I/O API",
         homepage: "https://github.com/riot-ml/gluon",
         changelog: nix.thunk(() => nix.str`https://github.com/riot-ml/gluon/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

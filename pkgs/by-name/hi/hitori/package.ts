@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const itstool = nix.arg($, "itstool");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hitori",
       version: "44.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/hitori/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/hitori-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-QicL1PlSXRgNMVG9ckUzXcXPJIqYTgL2j/kw2nmeWDs=",
         })))),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, cairo]),
       postPatch: "chmod +x build-aux/meson_post_install.py\npatchShebangs build-aux/meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "hitori" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "hitori" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/hitori",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/hitori/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GTK application to generate and let you play games of Hitori",

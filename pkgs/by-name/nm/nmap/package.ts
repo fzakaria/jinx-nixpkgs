@@ -29,24 +29,24 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withLua = nix.argOr($, "withLua", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nmap",
       version: "7.991",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nmap.org/dist/nmap-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-pdUH8pQ3vvO+3Udx/5qqj8HCoQnduh9bHPEgJ0VpKb4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-ncat-signal-propagation.patch",
             url: "https://github.com/nmap/nmap/commit/10fc2ebd1b99c90ec668dc34ea3d7c6faf0fa5ff.patch",
             excludes: nix.thunk(() => ["CHANGELOG"]),
             hash: "sha256-1hvlBCpWIws/+LvE7NN9bUPnW0QI7/4o/+YGdWIITOc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Do-not-call-NSE-if-compiling-without-Lua-support.patch",
             url: "https://github.com/nmap/nmap/commit/4c36cf12f246b52a8d510bdde8becd5c5b3bf8b5.patch",
             hash: "sha256-aWPHfJF1wOE5l6LQUKCqKVKxBoyNFov3r0NGEOxWpw8=",
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "nmap")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "nmap")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free and open source utility for network discovery and security auditing",
         homepage: "http://www.nmap.org",
         changelog: nix.thunk(() => nix.str`https://nmap.org/changelog.html#${nix.sel(finalAttrs, "version")}`),

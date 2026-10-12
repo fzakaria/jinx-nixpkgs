@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nodejs_24 = nix.arg($, "nodejs_24");
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs_24 })), (finalAttrs) => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_24 })), (finalAttrs) => ({
+      [nix.POS]: pos$6,
       pname: "homebridge-config-ui-x",
       version: "5.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "homebridge",
           repo: "homebridge-config-ui-x",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-7YhwV+IJsEVxrgir84uP+YwXgovtVxPMCk5Jt57mez8=",
       npmDeps_ui: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "npm-deps-ui",
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
           hash: "sha256-DKDixaXDDovHVnlWvV16p72a3ejMdDsNWaCfUnzMSX0=",
@@ -57,9 +57,9 @@ export CI=true
       nativeBuildInputs: nix.thunk(() => nix.concat([python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cacert])))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Configure Homebridge, monitor and backup from a browser",
         homepage: "https://github.com/homebridge/homebridge-config-ui-x",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

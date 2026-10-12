@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const werkzeug = nix.arg($, "werkzeug");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pytest-localserver",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_localserver",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JgcZfzkJEqslUl0SmsQ8PIdQSSVzaLP+CbXNA9zFJq8=",
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => [werkzeug]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, smtp: nix.thunk(() => [aiosmtpd]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, smtp: nix.thunk(() => [aiosmtpd]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pytest_localserver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugin for the pytest testing framework to test server connections locally",
         homepage: "https://github.com/pytest-dev/pytest-localserver",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-localserver/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

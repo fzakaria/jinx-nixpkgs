@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvc-s3",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dvc_s3",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8dcYpE3O5Rkb60bkSt9LsiiCy46czdjyZAB4q8VkV9Q=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [botocore, dvc_objects, flatten_dict, funcy, s3fs]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "S3 plugin for dvc",
         homepage: "https://pypi.org/project/dvc-s3",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-s3/releases/tag/${nix.sel(finalAttrs, "version")}`),

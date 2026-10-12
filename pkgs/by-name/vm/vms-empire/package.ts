@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vms-empire",
       version: "1.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/vms-empire/vms-empire-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ILRmql+jlOhJ08yLBpnrpeI5fyMVzcXrXIll4n3lTbM=",
         })))),
@@ -41,7 +41,7 @@ installManPage empire.6
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://catb.org/~esr/vms-empire/",
         description: "Ancestor of all expand/explore/exploit/exterminate games",
         longDescription: "Empire is a simulation of a full-scale war between two emperors, the\ncomputer and you. Naturally, there is only room for one, so the object of\nthe game is to destroy the other. The computer plays by the same rules\nthat you do. This game was ancestral to all later\nexpand/explore/exploit/exterminate games, including Civilization and\nMaster of Orion.\n",

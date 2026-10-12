@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2026.05.10",
       pname: "zathura-pdf-mupdf",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwmt",
           repo: "zathura-pdf-mupdf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
         leptonica,
         mujs,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gtk_mac_integration))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
       postPatch: "sed -i -e '/^mupdfthird =/d' -e 's/, mupdfthird//g' meson.build\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pwmt.org/projects/zathura-pdf-mupdf/",
         description: "Zathura PDF plugin (mupdf)",
         longDescription: "The zathura-pdf-mupdf plugin adds PDF support to zathura by\nusing the mupdf rendering library.\n",

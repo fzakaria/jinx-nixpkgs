@@ -27,53 +27,53 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "input-remapper",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "LunNova"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const user = nix.thunk(() => nix.sel(config, "users", "users", "sybil"));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
-            "input-remapper": nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            "input-remapper": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             users: nix.thunk(() => ({
-              __proto__: pos$6,
-              sybil: nix.thunk(() => ({ __proto__: pos$5, isNormalUser: true, group: "wheel" })),
+              [nix.POS]: pos$6,
+              sybil: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true, group: "wheel" })),
             })),
           })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$9,
-              auto: nix.thunk(() => ({ __proto__: pos$8, user: nix.thunk(() => nix.sel(user, "name")) })),
+              [nix.POS]: pos$9,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$8, user: nix.thunk(() => nix.sel(user, "name")) })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$14,
-            sudo: nix.thunk(() => ({ __proto__: pos$11, enable: true, wheelNeedsPassword: false })),
+            [nix.POS]: pos$14,
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, wheelNeedsPassword: false })),
             wrappers: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               pkexec: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkForce"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   setuid: true,
                   owner: "root",
                   group: "root",

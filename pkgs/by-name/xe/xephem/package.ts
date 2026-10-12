@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxmu = nix.arg($, "libxmu");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xephem",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XEphem",
           repo: "XEphem",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cd GUI/xephem
 substituteInPlace xephem.c splash.c --replace-fail '/etc/XEphem' '${nix.builtins.placeholder("out")}/etc/XEphem'
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: true,
       doCheck: true,
       checkFlags: "-C ../../tests",
@@ -53,7 +53,7 @@ substituteInPlace xephem.c splash.c --replace-fail '/etc/XEphem' '${nix.builtins
       installPhase: "runHook preInstall\ninstallBin xephem\nmkdir -p $out/share/xephem\ncp -R auxil $out/share/xephem/\ncp -R catalogs $out/share/xephem/\ncp -R fifos $out/share/xephem/\ncp -R fits $out/share/xephem/\ncp -R gallery $out/share/xephem/\ncp -R help $out/share/xephem/\ncp -R lo $out/share/xephem/\nmkdir $out/etc\necho \"XEphem.ShareDir: $out/share/xephem\" > $out/etc/XEphem\ninstallManPage xephem.1\ninstall -Dm644 XEphem.png -t $out/share/icons/hicolor/128x128/apps\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "xephem",
             exec: "xephem",
             icon: "XEphem",
@@ -62,7 +62,7 @@ substituteInPlace xephem.c splash.c --replace-fail '/etc/XEphem' '${nix.builtins
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interactive astronomy program for all UNIX platforms",
         longDescription: "Xephem is an interactive astronomical ephemeris program for X Windows systems. It computes\nheliocentric, geocentric and topocentric information for fixed celestial objects and objects\nin heliocentric and geocentric orbits; has built-in support for all planet positions; the\nmoons of Jupiter, Saturn and Earth; Mars' and Jupiter's central meridian longitude; Saturn's\nrings; and Jupiter's Great Red Spot.\n",
         mainProgram: "xephem",

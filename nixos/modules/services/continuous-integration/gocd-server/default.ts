@@ -42,60 +42,60 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "gocd-server"));
   const opt = nix.thunk(() => nix.sel(options, "services", "gocd-server"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "gocd-server": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "gocd-server")),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "gocd-server",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "User the Go.CD server should execute under.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "gocd-server",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "If the default user \"gocd-server\" is configured then this is the primary group of that user.\n",
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: nix.thunk(() => ["wheel", "docker"]),
               description: "List of extra groups that the \"gocd-server\" user should be a part of.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "0.0.0.0",
               example: "localhost",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Specifies the bind address on which the Go.CD server HTTP interface listens.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 8153n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "Specifies port number on which the Go.CD server HTTP interface listens.\n",
             })))),
           sslPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: 8154n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "Specifies port number on which the Go.CD server HTTPS interface listens.\n",
             })))),
           workDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "/var/lib/go-server",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Specifies the working directory in which the Go.CD server java archive resides.\n",
             })))),
           packages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "stdenv")),
                 nix.thunk(() => nix.sel(pkgs, "jre")),
@@ -108,19 +108,19 @@ export default nix.lambda((args) => (() => {
               description: "Packages to add to PATH for the Go.CD server's process.\n",
             })))),
           initialJavaHeapSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "512m",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Specifies the initial java heap memory size for the Go.CD server's java process.\n",
             })))),
           maxJavaHeapMemory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: "1024m",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Specifies the java maximum heap memory size for the Go.CD server's java process.\n",
             })))),
           startupOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => [
                 nix.thunk(() => nix.str`-Xms${nix.sel(cfg, "initialJavaHeapSize")}`),
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
               description: "Specifies startup command line arguments to pass to Go.CD server\njava process.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: nix.thunk(() => [
@@ -170,7 +170,7 @@ export default nix.lambda((args) => (() => {
               description: "Specifies additional command line arguments to pass to Go.CD server's\njava process.  Example contains debug and gcLog arguments.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -182,20 +182,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "gocd-server")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "gocd-server": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "gocd-server")),
               })),
             })))),
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gocd-server")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "gocd-server": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "gocd-server user",
                 createHome: true,
                 home: nix.thunk(() => nix.sel(cfg, "workDir")),
@@ -207,17 +207,17 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "gocd-server": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "GoCD Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => (() => {
                 const selectedSessionVars = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.app(nix.sel(nix.builtins, "elem"), n, nix.thunk(() => ["NIX_PATH"])), nix.thunk(() => nix.sel(config, "environment", "sessionVariables"))));
-                return nix.update(selectedSessionVars, nix.update({ __proto__: pos$22, NIX_REMOTE: "daemon" }, nix.sel(cfg, "environment")));
+                return nix.update(selectedSessionVars, nix.update({ [nix.POS]: pos$22, NIX_REMOTE: "daemon" }, nix.sel(cfg, "environment")));
               })()),
               path: nix.thunk(() => nix.sel(cfg, "packages")),
               script: nix.thunk(() => nix.str`${nix.sel(pkgs, "git")}/bin/git config --global --add http.sslCAinfo ${nix.sel(config, "security", "pki", "caBundle")}
@@ -226,7 +226,7 @@ ${nix.sel(pkgs, "jre")}/bin/java -server ${nix.app(nix.lookup(w, "concatStringsS
                       -jar ${nix.sel(pkgs, "gocd-server")}/go-server/lib/go.jar
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "workDir")),

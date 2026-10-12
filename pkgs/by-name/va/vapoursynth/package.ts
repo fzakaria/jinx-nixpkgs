@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const darwinMinVersionHook = nix.arg($, "darwinMinVersionHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vapoursynth",
       version: "73",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vapoursynth",
           repo: "vapoursynth",
           rev: nix.thunk(() => nix.str`R${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const python3_1 = python3;
         const withPlugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugin-interface.nix")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             lib: lib,
             python3: python3_1,
             buildEnv: buildEnv,
@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
             withPlugins: withPlugins,
           }))));
         const tests = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: vapoursynth,
               version: nix.thunk(() => nix.str`Core R${nix.sel(finalAttrs, "version")}`),
             })))),
         }));
-        return { __proto__: pos$5, python3: python3_1, withPlugins, tests };
+        return { [nix.POS]: pos$5, python3: python3_1, withPlugins, tests };
       })()),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# Export weak symbol nixPluginDir to permit override of default plugin path\nsed -E -i \\\n  -e 's/(VS_PATH_PLUGINDIR)/(nixPluginDir ? nixPluginDir : \\1)/g' \\\n  -e '1i\\extern char const __attribute__((weak)) nixPluginDir[];' \\\n  src/core/vscore.cpp\n")),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/vspipe \\
@@ -96,7 +96,7 @@ fi
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Video processing framework with the future in mind",
         homepage: "http://www.vapoursynth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -38,23 +38,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const test_groups = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     static: "fd00::feed:cafe/32",
     dynamic: "fd00::dead:beef/32",
   }));
   const fixtures = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (group) => (address) => (() => {
       const vrf_name = nix.thunk(() => nix.str`np${group}`);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         links: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           vrf: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${vrf_name}`),
             "getter-cmd": nix.thunk(() => nix.str`ip -o link show dev ${vrf_name} type vrf`),
           })),
           dummy: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`${vrf_name}-lo`),
             "getter-cmd": nix.thunk(() => nix.str`ip -o link show dev ${vrf_name}-lo type dummy master ${vrf_name}`),
             address: address,
@@ -78,31 +78,31 @@ network:
       interfaces: [${nix.sel(links, "dummy", "name")}]
 `);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       filename: nix.thunk(() => nix.str`10-test-${group}-${renderer}.yaml`),
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`netplan-test-${group}-${renderer}`), content)),
     };
   })();
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "netplan",
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mkg20001"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       networkd: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           useNetworkd: true,
           useDHCP: false,
           netplan: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             configFiles: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(fixtures, "static", "cfgs", "networkd", "filename"), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(fixtures, "static", "cfgs", "networkd", "src"))))],
@@ -110,17 +110,17 @@ network:
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
-          network: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+          [nix.POS]: pos$16,
+          network: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               netplan: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "/run/netplan": nix.thunk(() => ({
-                  __proto__: pos$12,
-                  d: nix.thunk(() => ({ __proto__: pos$11, user: "root", group: "root", mode: "0700" })),
+                  [nix.POS]: pos$12,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$11, user: "root", group: "root", mode: "0700" })),
                 })),
               })),
             })),
@@ -128,12 +128,12 @@ network:
         })),
       })),
       networkmanager: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         networking: nix.thunk(() => ({
-          __proto__: pos$20,
-          networkmanager: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+          [nix.POS]: pos$20,
+          networkmanager: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
           netplan: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
             configFiles: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(fixtures, "static", "cfgs", "NetworkManager", "filename"), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(fixtures, "static", "cfgs", "NetworkManager", "src"))))],
@@ -141,16 +141,16 @@ network:
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               netplan: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "/run/netplan": nix.thunk(() => ({
-                  __proto__: pos$22,
-                  d: nix.thunk(() => ({ __proto__: pos$21, user: "root", group: "root", mode: "0700" })),
+                  [nix.POS]: pos$22,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$21, user: "root", group: "root", mode: "0700" })),
                 })),
               })),
             })),

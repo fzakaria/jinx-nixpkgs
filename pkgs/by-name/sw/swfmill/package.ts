@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swfmill",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://swfmill.org/releases/swfmill-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-2yT2OWOVf67AK7FLi2HNr3CWd0+M/eudNXPi4ZIxVI4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libxslt, freetype, libpng, libxml2]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Xml2swf and swf2xml processor with import functionalities",
         homepage: "http://swfmill.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

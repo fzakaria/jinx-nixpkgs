@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const enable9361 = nix.argOr($, "enable9361", () => true);
   const libad9361 = nix.arg($, "libad9361");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iio-oscilloscope",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "analogdevicesinc",
           repo: "iio-oscilloscope",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-main`),
@@ -50,13 +50,13 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.str`-DCMAKE_POLKIT_PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=unused-variable"]))),
       })),
       preInstall: "sed -e 's/Exec=.*/Exec=osc/' \\\n    -e 's/Icon=.*/Icon=osc/' \\\n    -i adi-osc.desktop\n",
       postInstall: "ln -s $out/share/osc/icons/osc.svg $out/share/icons/hicolor/scalable/apps/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK+ based oscilloscope application for interfacing with various IIO devices",
         homepage: "https://wiki.analog.com/resources/tools-software/linux-software/iio_oscilloscope",
         mainProgram: "osc",

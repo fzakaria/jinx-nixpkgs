@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pname = "lanms-neo";
   const version = "1.0.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gen-ko",
           repo: "lanms-neo",
           rev: "6510e19e731a1e105d42b2fbda64de41c169ce2e",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [pybind11, numpy]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standalone module for Locality-Aware NMS",
         homepage: "https://github.com/gen-ko/lanms-neo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

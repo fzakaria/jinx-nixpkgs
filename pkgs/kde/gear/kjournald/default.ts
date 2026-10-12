@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const systemd = nix.arg($, "systemd");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kjournald",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, systemd]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kjournaldbrowser" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kjournaldbrowser" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

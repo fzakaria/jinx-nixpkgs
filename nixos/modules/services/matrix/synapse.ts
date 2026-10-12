@@ -193,26 +193,26 @@ export default nix.lambda((args) => (() => {
   const defaultExtras = nix.thunk(() => ["systemd", "postgres", "url-preview"]);
   const wantedExtras = nix.thunk(() => nix.concat(nix.sel(cfg, "extras"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "oidc_providers")), "oidc"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "jwt_config")), "jwt"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "saml2_config")), "saml2"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "redis")), "redis"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "sentry")), "sentry"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "settings", "url_preview_enabled")), "url-preview"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "name"), "psycopg2")), "postgres")))))))));
   const wrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "matrix-synapse", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extras: wantedExtras,
       plugins: nix.thunk(() => nix.attr(cfg, "plugins")),
     }))));
   const defaultCommonLogConfig = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     version: 1n,
     formatters: nix.thunk(() => ({
-      __proto__: pos$3,
-      journal_fmt: nix.thunk(() => ({ __proto__: pos$2, format: "%(name)s: [%(request)s] %(message)s" })),
+      [nix.POS]: pos$3,
+      journal_fmt: nix.thunk(() => ({ [nix.POS]: pos$2, format: "%(name)s: [%(request)s] %(message)s" })),
     })),
     handlers: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       journal: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         class: "systemd.journal.JournalHandler",
         formatter: "journal_fmt",
       })),
     })),
-    root: nix.thunk(() => ({ __proto__: pos$6, level: "INFO", handlers: nix.thunk(() => ["journal"]) })),
+    root: nix.thunk(() => ({ [nix.POS]: pos$6, level: "INFO", handlers: nix.thunk(() => ["journal"]) })),
     disable_existing_loggers: false,
   }));
   const defaultCommonLogConfigText = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})), defaultCommonLogConfig));
@@ -220,19 +220,19 @@ export default nix.lambda((args) => (() => {
 
 \`\`\`
 ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), defaultCommonLogConfig, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           handlers: nix.thunk(() => ({
-            __proto__: pos$9,
-            journal: nix.thunk(() => ({ __proto__: pos$8, SYSLOG_IDENTIFIER: logName })),
+            [nix.POS]: pos$9,
+            journal: nix.thunk(() => ({ [nix.POS]: pos$8, SYSLOG_IDENTIFIER: logName })),
           })),
         })))))}
 \`\`\`
 `));
   const genLogConfigFile = (logName) => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`synapse-log-${logName}.yaml`), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "attrsets"), "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "log")), nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "log"), "handlers", "journal")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           handlers: nix.thunk(() => ({
-            __proto__: pos$12,
-            journal: nix.thunk(() => nix.update(nix.sel(cfg, "log", "handlers", "journal"), { __proto__: pos$11, SYSLOG_IDENTIFIER: logName })),
+            [nix.POS]: pos$12,
+            journal: nix.thunk(() => nix.update(nix.sel(cfg, "log", "handlers", "journal"), { [nix.POS]: pos$11, SYSLOG_IDENTIFIER: logName })),
           })),
         })))))));
   const toIntBase8 = (str) => nix.app(nix.sel(lib, "pipe"), str, nix.thunk(() => [
@@ -242,7 +242,7 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
     ]));
   const toDecimalFilePermission = (value) => (nix.asBool(nix.eq(value, null)) ? null : nix.app(toIntBase8, value));
   return {
-    __proto__: pos$142,
+    [nix.POS]: pos$142,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "matrix-synapse", "trusted_third_party_id_servers"]), "The `trusted_third_party_id_servers` option as been removed in `matrix-synapse` v1.4.0\nas the behavior is now obsolete.\n")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "matrix-synapse", "create_local_database"]), "Database configuration must be done manually. An exemplary setup is demonstrated in\n<nixpkgs/nixos/tests/matrix/synapse.nix>\n")),
@@ -315,18 +315,18 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
           const $_1 = nix.formals(args_1, formals$4);
           const config_1 = nix.arg($_1, "config");
           return {
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             options: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
                   default: null,
                   example: 8448n,
                   description: "The port to listen for HTTP(S) requests on.\n",
                 })))),
               bind_addresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                   default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "path"), null)) ? null : ["::1", "127.0.0.1"])),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if path != null then\n  null\nelse\n  [\n    \"::1\"\n    \"127.0.0.1\"\n  ]\n")),
@@ -334,13 +334,13 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
                   description: "IP addresses to bind the listener to.\n",
                 })))),
               path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   default: null,
                   description: "Unix domain socket path to bind this listener to.\n\n::: {.note}\n  This option is incompatible with {option}`bind_addresses`, {option}`port`, {option}`tls`\n  and also does not support the `metrics` and `manhole` listener {option}`type`.\n:::\n",
                 })))),
               mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "^[0,2-7]{3,4}$")))),
                   default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "path"), null)) ? "660" : null)),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if path != null then\n  \"660\"\nelse\n  null\n")),
@@ -349,14 +349,14 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
                   apply: toDecimalFilePermission,
                 })))),
               type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["http", "manhole", "metrics", "replication"]))),
                   default: "http",
                   example: "metrics",
                   description: "The type of the listener, usually http.\n",
                 })))),
               tls: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                   default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "path"), null)) ? null : !nix.asBool(workerContext))),
                   defaultText: "Enabled for the main instance listener, unless it is configured with a UNIX domain socket path.\n",
@@ -364,7 +364,7 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
                   description: "Whether to enable TLS on the listener socket.\n\n::: {.note}\n  This option will be ignored for UNIX domain sockets.\n:::\n",
                 })))),
               x_forwarded: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: nix.thunk(() => !nix.eq(nix.sel(config_1, "path"), null)),
                   defaultText: "Enabled if the listener is configured with a UNIX domain socket path\n",
@@ -372,13 +372,13 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
                   description: "Use the X-Forwarded-For (XFF) header as the client IP and not the\nactual client IP.\n",
                 })))),
               resources: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         options: nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           names: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                                     "client",
                                     "consent",
@@ -395,7 +395,7 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
                               example: nix.thunk(() => ["client"]),
                             })))),
                           compress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               default: false,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                               description: "Whether synapse should compress HTTP responses to clients that support it.\nThis should be disabled if running synapse behind a load balancer\nthat can do automatic compression.\n",
@@ -408,14 +408,14 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
           };
         })(), formals$4));
       return {
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         services: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           "matrix-synapse": nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "matrix.org synapse, the reference homeserver")),
             enableRegistrationScript: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => !nix.eq(nix.sel(clientListener, "bind_addresses"), [])),
                 example: false,
@@ -423,57 +423,57 @@ ${nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})
                 description: "Whether to install the `register_new_matrix_user` script, that\nallows account creation on the terminal.\n\n::: {.note}\n  This script does not work when the client listener uses UNIX domain sockets\n:::\n",
               })))),
             serviceUnit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 readOnly: true,
                 description: "The systemd unit (a service or a target) for other services to depend on if they\nneed to be started after matrix-synapse.\n\nThis option is useful as the actual parent unit for all matrix-synapse processes\nchanges when configuring workers.\n",
               })))),
             configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 readOnly: true,
                 description: "Path to the configuration file on the target system. Useful to configure e.g. workers\nthat also need this.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                 readOnly: true,
                 description: "Reference to the `matrix-synapse` wrapper with all extras\n(e.g. for `oidc` or `saml2`) added to the `PYTHONPATH` of all executables.\n\nThis option is useful to reference the \"final\" `matrix-synapse` package that's\nactually used by `matrix-synapse.service`. For instance, when using\nworkers, it's possible to run\n`${config.services.matrix-synapse.package}/bin/synapse_worker` and\nno additional PYTHONPATH needs to be specified for extras or plugins configured\nvia `services.matrix-synapse`.\n\nHowever, this means that this option is supposed to be only declared\nby the `services.matrix-synapse` module itself and is thus read-only.\nIn order to modify `matrix-synapse` itself, use an overlay to override\n`pkgs.matrix-synapse-unwrapped`.\n",
               })))),
             extras: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(pkgs, "matrix-synapse-unwrapped", "optional-dependencies")))))))),
                 default: defaultExtras,
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  \"cache-memory\" # Provide statistics about caching memory consumption\n  \"jwt\"          # JSON Web Token authentication\n  \"oidc\"         # OpenID Connect authentication\n  \"postgres\"     # PostgreSQL database backend\n  \"redis\"        # Redis support for the replication stream between worker processes\n  \"saml2\"        # SAML2 authentication\n  \"sentry\"       # Error tracking and performance metrics\n  \"systemd\"      # Provide the JournalHandler used in the default log_config\n  \"url-preview\"  # Support for oEmbed URL previews\n]\n")),
                 description: "Explicitly install extras provided by matrix-synapse. Most\nwill require some additional configuration.\n\nExtras will automatically be enabled, when the relevant\nconfiguration sections are present.\n\nPlease note that this option is additive: i.e. when adding a new item\nto this list, the defaults are still kept. To override the defaults as well,\nuse `lib.mkForce`.\n",
               })))),
             plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with config.services.matrix-synapse.package.plugins; [\n  matrix-synapse-ldap3\n  matrix-synapse-pam\n];\n")),
                 description: "List of additional Matrix plugins to make available.\n",
               })))),
             withJemalloc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether to preload jemalloc to reduce memory fragmentation and overall usage.\n",
               })))),
             dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "/var/lib/matrix-synapse",
                 description: "The directory where matrix-synapse stores its stateful data such as\ncertificates, media and uploads.\n",
               })))),
             log: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(format, "type")))),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), defaultCommonLogConfigText)),
                 description: "Default configuration for the loggers used by `matrix-synapse` and its workers.\nThe defaults are added with the default priority which means that\nthese will be merged with additional declarations. These additional\ndeclarations also take precedence over the defaults when declared\nwith at least normal priority. For instance\nthe log-level for synapse and its workers can be changed like this:\n\n```nix\n{ lib, ... }: {\n  services.matrix-synapse.log.root.level = \"WARNING\";\n}\n```\n\nAnd another field can be added like this:\n\n```nix\n{\n  services.matrix-synapse.log = {\n    loggers.\"synapse.http.matrixfederationclient\".level = \"DEBUG\";\n  };\n}\n```\n\nAdditionally, the field `handlers.journal.SYSLOG_IDENTIFIER` will be added to\neach log config, i.e.\n* `synapse` for `matrix-synapse.service`\n* `synapse-<worker name>` for `matrix-synapse-worker-<worker name>.service`\n\nThis is only done if this option has a `handlers.journal` field declared.\n\nTo discard all settings declared by this option for each worker and synapse,\n`lib.mkForce` can be used.\n\nTo discard all settings declared by this option for a single worker or synapse only,\n[](#opt-services.matrix-synapse.workers._name_.worker_log_config) or\n[](#opt-services.matrix-synapse.settings.log_config) can be used.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 default: nix.thunk(() => ({})),
                 description: nix.thunk(() => nix.str`The primary synapse configuration. See the
 [sample configuration](https://github.com/element-hq/synapse/blob/v${nix.sel(pkgs, "matrix-synapse-unwrapped", "version")}/docs/sample_config.yaml)
@@ -484,12 +484,12 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$86,
+                      [nix.POS]: pos$86,
                       freeformType: nix.thunk(() => nix.sel(format, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$85,
+                        [nix.POS]: pos$85,
                         server_name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             example: "example.com",
                             default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
@@ -497,87 +497,87 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                             description: "The domain name of the server, with optional explicit port.\nThis is used by remote servers to look up the server address.\nThis is also the last part of your UserID.\n\nThe server_name cannot be changed later so it is important to configure this correctly before you start Synapse.\n",
                           })))),
                         enable_registration: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             description: "Enable registration for new users.\n",
                           })))),
                         registration_shared_secret: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: null,
                             description: "If set, allows registration by anyone who also has the shared\nsecret, even if registration is otherwise disabled.\n\nSecrets should be passed in via `extraConfigFiles`!\n",
                           })))),
                         macaroon_secret_key: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$40,
+                            [nix.POS]: pos$40,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: null,
                             description: "Secret key for authentication tokens. If none is specified,\nthe registration_shared_secret is used, if one is given; otherwise,\na secret key is derived from the signing key.\n\nSecrets should be passed in via `extraConfigFiles`!\n",
                           })))),
                         enable_metrics: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             description: "Enable collection and rendering of performance metrics\n",
                           })))),
                         report_stats: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$42,
+                            [nix.POS]: pos$42,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             description: "Whether or not to report anonymized homeserver usage statistics.\n",
                           })))),
                         signing_key_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")),
                             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/homeserver.signing.key`),
                             description: "Path to the signing key to sign messages with.\n",
                           })))),
                         pid_file: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")),
                             default: "/run/matrix-synapse.pid",
                             readOnly: true,
                             description: "The file to store the PID in.\n",
                           })))),
                         log_config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$45,
+                            [nix.POS]: pos$45,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")),
                             default: nix.thunk(() => nix.app(genLogConfigFile, "synapse")),
                             defaultText: nix.thunk(() => nix.app(logConfigText, "synapse")),
                             description: "The file that holds the logging configuration.\n",
                           })))),
                         media_store_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")),
                             default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "22.05")) ? nix.str`${nix.sel(cfg, "dataDir")}/media_store` : nix.str`${nix.sel(cfg, "dataDir")}/media`)),
                             defaultText: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/media_store for when system.stateVersion is at least 22.05, ${nix.sel(cfg, "dataDir")}/media when lower than 22.05`),
                             description: "Directory where uploaded images and attachments are stored.\n",
                           })))),
                         public_baseurl: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: null,
                             example: "https://example.com:8448/",
                             description: "The public-facing base URL for the client API (not including _matrix/...)\n",
                           })))),
                         tls_certificate_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$48,
+                            [nix.POS]: pos$48,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: null,
                             example: "/var/lib/acme/example.com/fullchain.pem",
                             description: "PEM encoded X509 certificate for TLS.\nYou can replace the self-signed certificate that synapse\nautogenerates on launch with your own SSL certificate + key pair\nif you like.  Any required intermediary certificates can be\nappended after the primary certificate in hierarchical order.\n",
                           })))),
                         tls_private_key_path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$49,
+                            [nix.POS]: pos$49,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: null,
                             example: "/var/lib/acme/example.com/key.pem",
                             description: "PEM encoded private key for TLS. Specify null if synapse is not\nspeaking TLS directly.\n",
                           })))),
                         presence: nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           enabled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$50,
+                              [nix.POS]: pos$50,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                               default: true,
                               example: false,
@@ -585,47 +585,47 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                             })))),
                         })),
                         listeners: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(listenerType, false)))),
                             default: nix.thunk(() => nix.concat([
                               nix.thunk(() => ({
-                                __proto__: pos$54,
+                                [nix.POS]: pos$54,
                                 port: 8008n,
                                 bind_addresses: nix.thunk(() => ["127.0.0.1"]),
                                 type: "http",
                                 tls: false,
                                 x_forwarded: true,
                                 resources: nix.thunk(() => [
-                                  nix.thunk(() => ({ __proto__: pos$52, names: nix.thunk(() => ["client"]), compress: true })),
-                                  nix.thunk(() => ({ __proto__: pos$53, names: nix.thunk(() => ["federation"]), compress: false })),
+                                  nix.thunk(() => ({ [nix.POS]: pos$52, names: nix.thunk(() => ["client"]), compress: true })),
+                                  nix.thunk(() => ({ [nix.POS]: pos$53, names: nix.thunk(() => ["federation"]), compress: false })),
                                 ]),
                               })),
                             ], nix.app(nix.sel(lib, "optional"), hasWorkers, nix.thunk(() => ({
-                                __proto__: pos$56,
+                                [nix.POS]: pos$56,
                                 path: "/run/matrix-synapse/main_replication.sock",
                                 type: "http",
                                 resources: nix.thunk(() => [
-                                  nix.thunk(() => ({ __proto__: pos$55, names: nix.thunk(() => ["replication"]), compress: false })),
+                                  nix.thunk(() => ({ [nix.POS]: pos$55, names: nix.thunk(() => ["replication"]), compress: false })),
                                 ]),
                               }))))),
                             description: "List of ports that Synapse should listen on, their purpose and their configuration.\n\nBy default, synapse will be configured for client and federation traffic on port 8008, and\nuse a UNIX domain socket for worker replication. See [`services.matrix-synapse.workers`](#opt-services.matrix-synapse.workers)\nfor more details.\n",
                           })))),
                         database: nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$58,
+                              [nix.POS]: pos$58,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => ["sqlite3", "psycopg2"]))),
                               default: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w_1, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "18.03")) ? "psycopg2" : "sqlite3")),
                               defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "if versionAtLeast config.system.stateVersion \"18.03\"\nthen \"psycopg2\"\nelse \"sqlite3\"\n")),
                               description: "The database engine name. Can be sqlite3 or psycopg2.\n",
                             })))),
                           args: nix.thunk(() => ({
-                            __proto__: pos$63,
+                            [nix.POS]: pos$63,
                             database: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$60,
+                                [nix.POS]: pos$60,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                 default: nix.thunk(() => nix.sel({
-                                  __proto__: pos$59,
+                                  [nix.POS]: pos$59,
                                   sqlite3: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/homeserver.db`),
                                   psycopg2: "matrix-synapse",
                                 }, nix.key(nix.sel(cfg, "settings", "database", "name")))),
@@ -637,23 +637,23 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                                 description: "Name of the database when using the psycopg2 backend,\npath to the database location when using sqlite3.\n",
                               })))),
                             user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$62,
+                                [nix.POS]: pos$62,
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
-                                default: nix.thunk(() => nix.sel({ __proto__: pos$61, sqlite3: null, psycopg2: "matrix-synapse" }, nix.key(nix.sel(cfg, "settings", "database", "name")))),
+                                default: nix.thunk(() => nix.sel({ [nix.POS]: pos$61, sqlite3: null, psycopg2: "matrix-synapse" }, nix.key(nix.sel(cfg, "settings", "database", "name")))),
                                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  sqlite3 = null;\n  psycopg2 = \"matrix-synapse\";\n}.${cfg.settings.database.name};\n")),
                                 description: "Username to connect with psycopg2, set to null\nwhen using sqlite3.\n",
                               })))),
                           })),
                         })),
                         url_preview_enabled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$65,
+                            [nix.POS]: pos$65,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: true,
                             example: false,
                             description: "Is the preview URL API enabled?  If enabled, you *must* specify an\nexplicit url_preview_ip_range_blacklist of IPs that the spider is\ndenied from accessing.\n",
                           })))),
                         url_preview_ip_range_blacklist: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$66,
+                            [nix.POS]: pos$66,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: nix.thunk(() => [
                               "10.0.0.0/8",
@@ -679,41 +679,41 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                             description: "List of IP address CIDR ranges that the URL preview spider is denied\nfrom accessing.\n",
                           })))),
                         url_preview_ip_range_whitelist: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$67,
+                            [nix.POS]: pos$67,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: [],
                             description: "List of IP address CIDR ranges that the URL preview spider is allowed\nto access even if they are specified in url_preview_ip_range_blacklist.\n",
                           })))),
                         url_preview_url_blacklist: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$68,
+                            [nix.POS]: pos$68,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "coercedTo"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")), nix.thunk(() => nix.app(nix.lookup(w_1, "const"), nix.thunk(() => nix.app(nix.builtins.throw, "Setting `config.services.matrix-synapse.settings.url_preview_url_blacklist`\nto a list of strings has never worked. Due to a bug, this was the type accepted\nby the module, but in practice it broke on runtime and as a result, no URL\npreview worked anywhere if this was set.\n\nSee https://element-hq.github.io/synapse/latest/usage/configuration/config_documentation.html#url_preview_url_blacklist\non how to configure it properly.\n")))), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))))))),
                             default: [],
                             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "[\n  { scheme = \"http\"; } # no http previews\n  { netloc = \"www.acme.com\"; path = \"/foo\"; } # block http(s)://www.acme.com/foo\n]\n")),
                             description: "Optional list of URL matches that the URL preview spider is\ndenied from accessing.\n",
                           })))),
                         max_upload_size: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$69,
+                            [nix.POS]: pos$69,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "50M",
                             example: "100M",
                             description: "The largest allowed upload size in bytes\n",
                           })))),
                         max_image_pixels: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$70,
+                            [nix.POS]: pos$70,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "32M",
                             example: "64M",
                             description: "Maximum number of pixels that will be thumbnailed\n",
                           })))),
                         dynamic_thumbnails: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$71,
+                            [nix.POS]: pos$71,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             example: true,
                             description: "Whether to generate new thumbnails on the fly to precisely match\nthe resolution requested by the client. If true then whenever\na new resolution is requested by the client the server will\ngenerate a new thumbnail. If false the server will pick a thumbnail\nfrom a precalculated list.\n",
                           })))),
                         turn_uris: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$72,
+                            [nix.POS]: pos$72,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                             default: [],
                             example: nix.thunk(() => [
@@ -725,21 +725,21 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                             description: "The public URIs of the TURN server to give to clients\n",
                           })))),
                         turn_shared_secret: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$73,
+                            [nix.POS]: pos$73,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "",
                             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "config.services.coturn.static-auth-secret\n")),
                             description: "The shared secret used to compute passwords for the TURN server.\n\nSecrets should be passed in via `extraConfigFiles`!\n",
                           })))),
                         trusted_key_servers: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$79,
+                            [nix.POS]: pos$79,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$76,
+                                  [nix.POS]: pos$76,
                                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$75,
+                                    [nix.POS]: pos$75,
                                     server_name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$74,
+                                        [nix.POS]: pos$74,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                         example: "matrix.org",
                                         description: "Hostname of the trusted server.\n",
@@ -748,10 +748,10 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                                 })))))),
                             default: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$78,
+                                [nix.POS]: pos$78,
                                 server_name: "matrix.org",
                                 verify_keys: nix.thunk(() => ({
-                                  __proto__: pos$77,
+                                  [nix.POS]: pos$77,
                                   "ed25519:auto": "Noi6WqcDj0QmPxCNQqgezwTlBKrfqehY1u2FyWP9uYw",
                                 })),
                               })),
@@ -759,20 +759,20 @@ Secrets should be passed in by using the \`extraConfigFiles\` option.
                             description: "The trusted servers to download signing keys from.\n",
                           })))),
                         app_service_config_files: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$80,
+                            [nix.POS]: pos$80,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")))),
                             default: [],
                             description: "A list of application service config file to use\n",
                           })))),
                         redis: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$84,
+                            [nix.POS]: pos$84,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$83,
+                                [nix.POS]: pos$83,
                                 freeformType: nix.thunk(() => nix.sel(format, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$82,
+                                  [nix.POS]: pos$82,
                                   enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$81,
+                                      [nix.POS]: pos$81,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                       default: false,
                                       description: "Whether to use redis support\n",
@@ -792,31 +792,31 @@ for available options.
                 })()),
               })))),
             workers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 default: nix.thunk(() => ({})),
                 description: "Options for configuring workers. Worker support will be enabled if at least one worker is configured here.\n\nSee the [worker documention](https://element-hq.github.io/synapse/latest/workers.html#worker-configuration)\nfor possible options for each worker. Worker-specific options overriding the shared homeserver configuration can be\nspecified here for each worker.\n\n::: {.note}\n  Worker support will add a replication listener on port 9093 to the main synapse process using the default\n  value of [`services.matrix-synapse.settings.listeners`](#opt-services.matrix-synapse.settings.listeners) and configure that\n  listener as `services.matrix-synapse.settings.instance_map.main`.\n  If you set either of those options, make sure to configure a replication listener yourself.\n\n  A redis server is required for running workers. A local one can be enabled\n  using [`services.matrix-synapse.configureRedisLocally`](#opt-services.matrix-synapse.configureRedisLocally).\n\n  Workers also require a proper reverse proxy setup to direct incoming requests to the appropriate process. See\n  the [reverse proxy documentation](https://element-hq.github.io/synapse/latest/reverse_proxy.html) for a\n  general reverse proxying setup and\n  the [worker documentation](https://element-hq.github.io/synapse/latest/workers.html#available-worker-applications)\n  for the available endpoints per worker application.\n:::\n",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$5);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$92,
+                        [nix.POS]: pos$92,
                         freeformType: nix.thunk(() => nix.sel(format, "type")),
                         options: nix.thunk(() => ({
-                          __proto__: pos$91,
+                          [nix.POS]: pos$91,
                           worker_app: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$88,
+                              [nix.POS]: pos$88,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["synapse.app.generic_worker", "synapse.app.media_repository"]))),
                               description: "Type of this worker",
                               default: "synapse.app.generic_worker",
                             })))),
                           worker_listeners: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$89,
+                              [nix.POS]: pos$89,
                               default: [],
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(listenerType, true)))),
                               description: "List of ports that this worker should listen on, their purpose and their configuration.\n",
                             })))),
                           worker_log_config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$90,
+                              [nix.POS]: pos$90,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                               default: nix.thunk(() => nix.app(genLogConfigFile, nix.thunk(() => nix.str`synapse-${name}`))),
                               defaultText: nix.thunk(() => nix.app(logConfigText, nix.thunk(() => nix.str`synapse-${name}`))),
@@ -833,20 +833,20 @@ for an example.
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"federation_sender\" = { };\n  \"federation_receiver\" = {\n    worker_listeners = [\n      {\n        type = \"http\";\n        port = 8009;\n        bind_addresses = [ \"127.0.0.1\" ];\n        tls = false;\n        x_forwarded = true;\n        resources = [{\n          names = [ \"federation\" ];\n        }];\n      }\n    ];\n  };\n}\n")),
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 example: nix.thunk(() => ["--no-secrets-in-config"]),
                 description: "Extra command lines argument that are passed to synapse and workers.\n",
               })))),
             extraConfigFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: [],
                 description: "Extra config files to include.\n\nThe configuration files will be included based on the command line\nargument --config-path. This allows to configure secrets without\nhaving to go through the Nix store, e.g. based on deployment keys if\nNixOps is in use.\n",
               })))),
             configureRedisLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$96,
+                [nix.POS]: pos$96,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to automatically configure a local redis server for matrix-synapse.\n",
@@ -856,20 +856,20 @@ for an example.
       };
     })()),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$140,
+        [nix.POS]: pos$140,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             assertion: nix.thunk(() => !nix.eq(clientListener, null)),
             message: "At least one listener which serves the `client` resource via HTTP is required\nby synapse in `services.matrix-synapse.settings.listeners` or in one of the workers!\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             assertion: nix.thunk(() => (!nix.asBool(hasWorkers) || nix.asBool(nix.sel(cfg, "settings", "redis", "enabled")))),
             message: "Workers for matrix-synapse require configuring a redis instance. This can be done\nautomatically by setting `services.matrix-synapse.configureRedisLocally = true`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             assertion: nix.thunk(() => (() => {
               const main = nix.thunk(() => nix.sel(cfg, "settings", "instance_map", "main"));
               const listener = nix.thunk(() => nix.app(nix.sel(lib, "findFirst"), (listener_1) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "port", main)) && nix.asBool(nix.eq(nix.selOr(listener_1, () => null, "port"), nix.sel(main, "port"))))) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "path", main)) && nix.asBool(nix.eq(nix.selOr(listener_1, () => null, "path"), nix.sel(main, "path"))))))) && nix.asBool(nix.app(listenerSupportsResource, "replication", listener_1)))) && nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "host", main)) && nix.asBool(nix.app(nix.sel(lib, "any"), (bind) => (nix.asBool((nix.asBool(nix.eq(bind, nix.sel(main, "host"))) || nix.asBool(nix.eq(bind, "0.0.0.0")))) || nix.asBool(nix.eq(bind, "::"))), nix.thunk(() => nix.sel(listener_1, "bind_addresses")))))) || nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "path", main))))), null, nix.thunk(() => nix.sel(cfg, "settings", "listeners"))));
@@ -878,16 +878,16 @@ for an example.
             message: "Workers for matrix-synapse require setting `services.matrix-synapse.settings.instance_map.main`\nto any listener configured in `services.matrix-synapse.settings.listeners` with a `\"replication\"`\nresource.\n\nThis is done by default unless you manually configure either of those settings.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$103,
+            [nix.POS]: pos$103,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enableRegistrationScript")) || nix.asBool(nix.eq(nix.sel(clientListener, "path"), null)))),
             message: "The client listener on matrix-synapse is configured to use UNIX domain sockets.\nThis configuration is incompatible with the `register_new_matrix_user` script.\n\nDisable  `services.matrix-synapse.enableRegistrationScript` to continue.\n",
           })),
         ], nix.concat(nix.app(nix.builtins.map, (listener) => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(listener, "path"), null), nix.eq(nix.sel(listener, "bind_addresses"), null))),
             message: "Listeners require either a UNIX domain socket `path` or `bind_addresses` for a TCP socket.\n",
           }), nix.thunk(() => nix.sel(cfg, "settings", "listeners"))), nix.concat(nix.app(nix.builtins.map, (listener) => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(listener, "path"), null)) || nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(listener, "bind_addresses"), null)) && nix.asBool(nix.eq(nix.sel(listener, "port"), null)))) && nix.asBool(nix.eq(nix.sel(listener, "tls"), null)))))),
             message: nix.thunk(() => (() => {
               const formatKeyValue = (key) => (value) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => nix.str`  - ${key}=${nix.app(nix.builtins.toString, value)}
@@ -897,25 +897,25 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
 `;
             })()),
           }), nix.thunk(() => nix.sel(cfg, "settings", "listeners"))), nix.app(nix.builtins.map, (listener) => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(listener, "path"), null)) || nix.asBool(nix.eq(nix.sel(listener, "type"), "http")))),
             message: nix.thunk(() => nix.str`Listener configured with UNIX domain socket (${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(listener, "path")))}) only supports the "http" listener type.
 `),
           }), nix.thunk(() => nix.sel(cfg, "settings", "listeners"))))))),
         services: nix.thunk(() => ({
-          __proto__: pos$115,
+          [nix.POS]: pos$115,
           "matrix-synapse": nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             settings: nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               redis: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedisLocally")), nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   enabled: true,
                   path: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "matrix-synapse", "unixSocket")),
                 })))),
               instance_map: nix.thunk(() => ({
-                __proto__: pos$109,
-                main: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasWorkers, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$108, path: "/run/matrix-synapse/main_replication.sock" })))))),
+                [nix.POS]: pos$109,
+                main: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasWorkers, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$108, path: "/run/matrix-synapse/main_replication.sock" })))))),
               })),
             })),
             serviceUnit: nix.thunk(() => (nix.asBool(hasWorkers) ? "matrix-synapse.target" : "matrix-synapse.service")),
@@ -925,19 +925,19 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
             log: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsRecursive"), nix.thunk(() => nix.app(nix.lookup(w, "const"), nix.thunk(() => nix.lookup(w, "mkDefault")))), defaultCommonLogConfig)),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             servers: nix.thunk(() => ({
-              __proto__: pos$113,
-              "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedisLocally")), nix.thunk(() => ({ __proto__: pos$112, enable: true, user: "matrix-synapse" })))),
+              [nix.POS]: pos$113,
+              "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedisLocally")), nix.thunk(() => ({ [nix.POS]: pos$112, enable: true, user: "matrix-synapse" })))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$120,
+          [nix.POS]: pos$120,
           users: nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               group: "matrix-synapse",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: true,
@@ -946,23 +946,23 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$119,
+            [nix.POS]: pos$119,
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$118,
+              [nix.POS]: pos$118,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "matrix-synapse")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$138,
+          [nix.POS]: pos$138,
           slices: nix.thunk(() => ({
-            __proto__: pos$122,
-            "system-synapse": nix.thunk(() => ({ __proto__: pos$121, description: "Matrix reference homeserver" })),
+            [nix.POS]: pos$122,
+            "system-synapse": nix.thunk(() => ({ [nix.POS]: pos$121, description: "Matrix reference homeserver" })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasWorkers, nix.thunk(() => ({
-                __proto__: pos$123,
+                [nix.POS]: pos$123,
                 description: "Synapse Matrix parent target",
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.lookup(w, "optional"), hasLocalPostgresDB, "postgresql.target"))),
@@ -971,27 +971,27 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
           })),
           services: nix.thunk(() => (() => {
             const targetConfig = nix.thunk(() => (nix.asBool(hasWorkers) ? {
-              __proto__: pos$126,
+              [nix.POS]: pos$126,
               partOf: nix.thunk(() => ["matrix-synapse.target"]),
               wantedBy: nix.thunk(() => ["matrix-synapse.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$125, ReloadPropagatedFrom: "matrix-synapse.target" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$125, ReloadPropagatedFrom: "matrix-synapse.target" })),
               requires: nix.thunk(() => nix.app(nix.lookup(w, "optional"), hasLocalPostgresDB, "postgresql.target")),
             } : {
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.lookup(w, "optional"), hasLocalPostgresDB, "postgresql.target"))),
               requires: nix.thunk(() => nix.app(nix.lookup(w, "optional"), hasLocalPostgresDB, "postgresql.target")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             }));
             const baseServiceConfig = nix.thunk(() => nix.update({
-              __proto__: pos$130,
+              [nix.POS]: pos$130,
               environment: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "withJemalloc")), nix.thunk(() => ({
-                  __proto__: pos$128,
+                  [nix.POS]: pos$128,
                   LD_PRELOAD: nix.thunk(() => nix.str`${nix.sel(pkgs, "jemalloc")}/lib/libjemalloc.so`),
                   PYTHONMALLOC: "malloc",
                 })))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$129,
+                [nix.POS]: pos$129,
                 Type: "notify",
                 User: "matrix-synapse",
                 Group: "matrix-synapse",
@@ -1032,20 +1032,20 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
               })),
             }, targetConfig));
             const genWorkerService = (name) => (workerCfg) => (() => {
-              const finalWorkerCfg = nix.thunk(() => nix.update(workerCfg, { __proto__: pos$131, worker_name: name }));
+              const finalWorkerCfg = nix.thunk(() => nix.update(workerCfg, { [nix.POS]: pos$131, worker_name: name }));
               const workerConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`worker-${name}.yaml`), finalWorkerCfg));
               return {
-                __proto__: pos$134,
+                [nix.POS]: pos$134,
                 name: nix.thunk(() => nix.str`matrix-synapse-worker-${name}`),
                 value: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     baseServiceConfig,
                     nix.thunk(() => ({
-                      __proto__: pos$133,
+                      [nix.POS]: pos$133,
                       description: nix.thunk(() => nix.str`Synapse Matrix worker ${name}`),
                       after: nix.thunk(() => ["matrix-synapse.service"]),
                       requires: nix.thunk(() => ["matrix-synapse.service"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$132,
+                        [nix.POS]: pos$132,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/synapse_worker \\
   ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n  ", (x) => nix.str`--config-path ${x} \\`, nix.thunk(() => nix.concat([configFile, workerConfigFile], nix.sel(cfg, "extraConfigFiles"))))}
   --keys-directory ${nix.sel(cfg, "dataDir")} \\
@@ -1057,11 +1057,11 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
               };
             })();
             return nix.update({
-              __proto__: pos$137,
+              [nix.POS]: pos$137,
               "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   baseServiceConfig,
                   nix.thunk(() => ({
-                    __proto__: pos$136,
+                    [nix.POS]: pos$136,
                     description: "Synapse Matrix homeserver",
                     preStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/synapse_homeserver \\
   --config-path ${configFile} \\
@@ -1069,7 +1069,7 @@ ${nix.app(formatKeyValue, "bind_addresses", nix.thunk(() => nix.sel(listener, "b
   --generate-keys
 `),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$135,
+                      [nix.POS]: pos$135,
                       ExecStartPre: nix.thunk(() => [
                         nix.thunk(() => nix.add("+", nix.app(nix.sel(pkgs, "writeShellScript"), "matrix-synapse-fix-permissions", nix.thunk(() => nix.str`chown matrix-synapse:matrix-synapse ${nix.sel(cfg, "settings", "signing_key_path")}
 chmod 0600 ${nix.sel(cfg, "settings", "signing_key_path")}
@@ -1087,14 +1087,14 @@ chmod 0600 ${nix.sel(cfg, "settings", "signing_key_path")}
           })()),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$139,
+          [nix.POS]: pos$139,
           systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableRegistrationScript")), nix.thunk(() => [registerNewMatrixUser]))),
         })),
       })))),
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "matrix-synapse", "meta"));
       return {
-      __proto__: pos$141,
+      [nix.POS]: pos$141,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       buildDocsInSandbox: false,
       doc: nix.path(here, "./synapse.md"),

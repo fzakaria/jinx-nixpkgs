@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "20231119",
       pname: "libewf",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libyal/libewf/releases/download/${nix.sel(finalAttrs, "version")}/libewf-experimental-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7AjUEaXasOzJV9ErZK2a4HMTaqhcBbLKd8M+A5SbKrc=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["ac_cv_openssl_xts_duplicate_keys=yes"]))),
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for support of the Expert Witness Compression Format",
         homepage: "https://sourceforge.net/projects/libewf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const cacheRootHash = "sha256-WruQopxE9uROdbBFiMsjuQj7jlEdNrbhWym6JxGIBi8=";
   const cacheAppHash = "sha256-YlqykBZXcvWOkb07ojZsnWdJTb/OKbDeXh1VpATGS2M=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "github-desktop",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desktop",
           repo: "desktop",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -72,18 +72,18 @@ export default nix.lambda((args) => (() => {
         zip,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_nodedir: nix.thunk(() => nix.sel(electron, "headers")),
       })),
       cacheRoot: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-root`),
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: cacheRootHash,
         })))),
       cacheApp: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-app`),
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/app/yarn.lock")),
           hash: cacheAppHash,
@@ -141,7 +141,7 @@ substituteInPlace script/build.ts \\
       preBuild: "export CIRCLE_SHA1=\"$(cat .gitrev)\"\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "github-desktop",
             desktopName: "GitHub Desktop",
             comment: "Focus on what matters instead of fighting with Git",
@@ -178,11 +178,11 @@ ln -s $out/share/github-desktop/resources/app/static/icon-logo.png $out/share/ic
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         cacheRoot: nix.thunk(() => nix.attr(finalAttrs, "cacheRoot")),
         cacheApp: nix.thunk(() => nix.attr(finalAttrs, "cacheApp")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => [
               "--version-regex",
               "^release-(\\d+\\.\\d+\\.\\d+)$",
@@ -194,7 +194,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "GUI for managing Git and GitHub",
         homepage: "https://desktop.github.com",
         changelog: "https://desktop.github.com/release-notes",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zthrottle",
       version: "0-unstable-2017-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anko",
           repo: "zthrottle",
           rev: "f62066661e49375baeb891fa8e43ad4527cbd0a0",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zsh]),
       installPhase: "install -D zthrottle $out/bin/zthrottle\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program that throttles a pipeline, only letting a line through at most every $1 seconds",
         homepage: "https://github.com/anko/zthrottle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

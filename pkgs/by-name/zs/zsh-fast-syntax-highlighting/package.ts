@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-fast-syntax-highlighting";
       const version = "1.56";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zdharma-continuum",
           repo: "fast-syntax-highlighting",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "plugindir=\"$out/share/zsh/plugins/fast-syntax-highlighting\"\n\nmkdir -p \"$plugindir\"\ncp -r -- {,_,-,.}fast-* *chroma themes \"$plugindir\"/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Syntax-highlighting for Zshell",
         homepage: "https://github.com/zdharma-continuum/fast-syntax-highlighting",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

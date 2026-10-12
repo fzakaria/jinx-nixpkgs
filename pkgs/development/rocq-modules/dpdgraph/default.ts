@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const hasWarning = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(coq, "ocamlPackages", "ocaml", "version")), "4.08"));
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       pname: "dpdgraph",
       repo: "coq-dpdgraph",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, "9.1", "1.0+9.1")),
             nix.thunk(() => nix.app(case$, "9.0", "1.0+9.0")),
@@ -63,84 +63,84 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "1.0+9.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-6bQsXcY8ouxP7pfJrT3leD9kuhNjpskJKpTv6oHZaTE=",
         })),
         "1.0+9.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-gXy70fj2bAkE0did4gI0wTyWp9AIvOo4xTTihaFIpZ0=",
         })),
         "1.0+8.20": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-szfH/OksCH3SCbcFjwEvLwHE5avmHp1vYiJM6KAXFqs=",
         })),
         "1.0+8.19": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-L1vjEydYiwDFTXES3sgfdaO/D50AbTJKBXUKUCgbpto=",
         })),
         "1.0+8.18": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-z14MI1VSYzPqmF1PqDXzymXWRMYoTlQAfR/P3Pdf7fI=",
         })),
         "1.0+8.17": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-gcvL3vseLKEF9xinT0579jXBBaA5E3rJ5KaU8RfKtm4=",
         })),
         "1.0+8.16": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-xy4xcVHaD1OHBdGUzUy3SeZnHtOf1+UIh6YjUYFINm0=",
         })),
         "1.0+8.15": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:1pxr0gakcz297y8hhrnssv5j07ccd58pv7rh7qv5g7855pfqrkg7",
         })),
         "1.0+8.14": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:01pmi7jcc77431jii6x6nd4m8jg4vycachiyi1h6dx9rp3a2508s",
         })),
         "1.0+8.13": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:0f8lj8b99n8nsq2jf5m0snblfs8yz50hmlqqq9nlw4qklq7j4z5z",
         })),
         "0.6.9": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:11mbydpcgk7y8pqzickbzx0ig7g9k9al71i9yfrcscd2xj8fwj8z",
         })),
         "0.6.8": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256:1mj6sknsd53xfb387sp3kdwvl4wn80ck24bfzf3s6mgw1a12vyps",
         })),
         "0.6.7": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256:01vpi7scvkl4ls1z2k2x9zd65wflzb667idj759859hlz3ps9z09",
         })),
         "0.6.6": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256:1gjrm5zjzw4cisiwdr5b3iqa7s4cssa220xr0k96rwgk61rcjd8w",
         })),
         "0.6.5": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hash: "sha256:1f34z24yg05b1096gqv36jr3vffkcjkf9qncii3pzhhvagxd0w2f",
         })),
         "0.6.3": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           rev: "0acbd0a594c7e927574d5f212cc73a486b5305d2",
           hash: "sha256:0c95b0bz2kjm6swr5na4gs06lxxywradszxbr5ldh2zx02r3f3rx",
         })),
         "0.6.2": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           rev: "d76ddde37d918569945774733b7997e8b24daf51",
           hash: "sha256:04lnf4b25yarysj848cfl8pd3i3pr3818acyp9hgwdgd1rqmhjwm",
         })),
         "0.6.1": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           rev: "c3b87af6bfa338e18b83f014ebd0e56e1f611663",
           hash: "sha256:1jaafkwsb5450378nprjsds1illgdaq60gryi8kspw0i25ykz2c9",
         })),
         "0.6": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           hash: "sha256:0qvar8gfbrcs9fmvkph5asqz4l5fi63caykx3bsn8zf0xllkwv0n",
         })),
       })),
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin\n",
       extraInstallFlags: nix.thunk(() => ["BINDIR=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         description: "Build dependency graphs between Coq objects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => (() => {
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }))), "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(o, "version"), "dev")) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "1.0+9.0", nix.thunk(() => nix.sel(o, "version")))))), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
         preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), hasWarning, "substituteInPlace Makefile.in --replace \"-warn-error +a \" \"\"\n")),
       }))));

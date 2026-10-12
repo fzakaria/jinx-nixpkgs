@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const callPackage = nix.thunk(() => nix.app(newScope, self));
   const self = nix.thunk(() => ({
-    __proto__: pos$4,
-    pkgs: nix.thunk(() => nix.update(self, { __proto__: pos$1, recurseForDerivations: false })),
+    [nix.POS]: pos$4,
+    pkgs: nix.thunk(() => nix.update(self, { [nix.POS]: pos$1, recurseForDerivations: false })),
     fetchegg: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchegg"), nix.thunk(() => ({})))),
     eggDerivation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./eggDerivation.nix"), nix.thunk(() => ({})))),
     chicken: nix.thunk(() => nix.app(callPackage, nix.path(here, "./chicken.nix"), nix.thunk(() => ({
-        __proto__: pos$3,
-        "bootstrap-chicken": nix.thunk(() => nix.app(nix.sel(self, "chicken", "override"), nix.thunk(() => ({ __proto__: pos$2, "bootstrap-chicken": null })))),
+        [nix.POS]: pos$3,
+        "bootstrap-chicken": nix.thunk(() => nix.app(nix.sel(self, "chicken", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "bootstrap-chicken": null })))),
       })))),
     chickenEggs: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./eggs.nix"), nix.thunk(() => ({})))))),
     egg2nix: nix.thunk(() => nix.app(callPackage, nix.path(here, "./egg2nix.nix"), nix.thunk(() => ({})))),

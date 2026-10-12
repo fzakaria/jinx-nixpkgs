@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => false);
   const pname = "warp-terminal";
   const versions = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")));
-  const passthru = nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") }));
   const linux_arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x86_64" : "aarch64"));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(versions, nix.key(nix.str`linux_${linux_arch}`)));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       meta: meta,
       passthru: passthru,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(versions, nix.key(nix.str`linux_${linux_arch}`)));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: nix.thunk(() => nix.attr(from_1, "hash")),
           url: nix.thunk(() => nix.str`https://releases.warp.dev/stable/v${nix.sel(finalAttrs, "version")}/warp-terminal-v${nix.sel(finalAttrs, "version")}-1-${linux_arch}.pkg.tar.zst`),
         };
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(versions, "darwin"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       meta: meta,
       passthru: passthru,
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(versions, "darwin"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: nix.thunk(() => nix.attr(from_1, "hash")),
           url: nix.thunk(() => nix.str`https://releases.warp.dev/stable/v${nix.sel(finalAttrs, "version")}/Warp.dmg`),
         };
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
     };
     })()));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "Rust-based terminal",
     homepage: "https://www.warp.dev",
     license: nix.thunk(() => (() => {

@@ -46,37 +46,37 @@ export default nix.lambda((args) => (() => {
   const modulesPath = nix.arg($, "modulesPath");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     imports: nix.thunk(() => [nix.path(here, "../../image/file-options.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       netboot: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         squashfsCompression: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: "zstd -Xcompression-level 19",
             description: "Compression settings to use for the squashfs nix store.\n",
             example: "zstd -Xcompression-level 6",
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           })))),
         storeContents: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.stdenv ]")),
             description: "This option lists additional derivations to be included in the\nNix store in the generated netboot image.\n",
           })))),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       boot: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         loader: nix.thunk(() => ({
-          __proto__: pos$6,
-          grub: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+          [nix.POS]: pos$6,
+          grub: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
           timeout: 10n,
         })),
         initrd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           availableKernelModules: nix.thunk(() => ["squashfs", "overlay"]),
           kernelModules: nix.thunk(() => ["loop", "overlay"]),
         })),
@@ -97,25 +97,25 @@ done
 `),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$14,
-        "/": nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), nix.thunk(() => ({ __proto__: pos$9, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })))),
+        [nix.POS]: pos$14,
+        "/": nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), nix.thunk(() => ({ [nix.POS]: pos$9, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })))),
         "/nix/.ro-store": nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             fsType: "squashfs",
             device: "../nix-store.squashfs",
             options: nix.thunk(() => nix.concat(["loop"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "kernel", "kernelAtLeast"), "6.2")), "threads=multi"))),
             neededForBoot: true,
           })))),
         "/nix/.rw-store": nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             fsType: "tmpfs",
             options: nix.thunk(() => ["mode=0755"]),
             neededForBoot: true,
           })))),
         "/nix/store": nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             overlay: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               lowerdir: nix.thunk(() => ["/nix/.ro-store"]),
               upperdir: "/nix/.rw-store/store",
               workdir: "/nix/.rw-store/work",
@@ -124,22 +124,22 @@ done
           })))),
       })),
       netboot: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         storeContents: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         build: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           squashfsStore: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../../lib/make-squashfs.nix"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               storeContents: nix.thunk(() => nix.sel(config, "netboot", "storeContents")),
               comp: nix.thunk(() => nix.sel(config, "netboot", "squashfsCompression")),
             })))),
           netbootRamdisk: nix.thunk(() => nix.app(nix.sel(pkgs, "makeInitrdNG"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "boot", "initrd"));
               return {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               compressor: nix.thunk(() => nix.attr(from, "compressor")),
               compressorArgs: nix.thunk(() => nix.attr(from, "compressorArgs")),
               prepend: nix.thunk(() => [
@@ -147,7 +147,7 @@ done
               ]),
               contents: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   source: nix.thunk(() => nix.sel(config, "system", "build", "squashfsStore")),
                   target: "/nix-store.squashfs",
                 })),
@@ -174,28 +174,28 @@ kexec -e
 `))),
           kexecTree: nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "kexec-tree", nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 name: "initrd.gz",
                 path: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "netbootRamdisk")}/initrd`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 name: "bzImage",
                 path: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "kernel")}/${nix.sel(config, "system", "boot", "loader", "kernelFile")}`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: "kexec-boot",
                 path: nix.thunk(() => nix.sel(config, "system", "build", "kexecScript")),
               })),
             ]))),
           image: nix.thunk(() => nix.sel(config, "system", "build", "kexecTarball")),
           kexecTarball: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.thunk(() => nix.str`${nix.app(nix.builtins.toString, modulesPath)}/../lib/make-system-tarball.nix`), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               fileName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               storeContents: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   object: nix.thunk(() => nix.sel(config, "system", "build", "kexecScript")),
                   symlink: "/kexec_nixos",
                 })),
@@ -203,21 +203,21 @@ kexec -e
               contents: [],
             })))),
         })),
-        nixos: nix.thunk(() => ({ __proto__: pos$25, tags: nix.thunk(() => ["kexec"]) })),
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$25, tags: nix.thunk(() => ["kexec"]) })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         extension: "tar.xz",
         filePath: nix.thunk(() => nix.str`tarball/${nix.sel(config, "image", "fileName")}`),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           "register-nix-paths": nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             description: "Register Nix Store Paths",
-            unitConfig: nix.thunk(() => ({ __proto__: pos$28, DefaultDependencies: false })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$28, DefaultDependencies: false })),
             wantedBy: nix.thunk(() => ["sysinit.target"]),
             before: nix.thunk(() => [
               "sysinit.target",
@@ -228,7 +228,7 @@ kexec -e
             after: nix.thunk(() => ["local-fs.target"]),
             conflicts: nix.thunk(() => ["shutdown.target"]),
             restartIfChanged: false,
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$29, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$29, Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`# After booting, register the contents of the Nix store
 # in the Nix database in the tmpfs.
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package")), "nix-store")} --load-db < /nix/store/nix-path-registration

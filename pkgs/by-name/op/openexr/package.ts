@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openexr";
       const version = "3.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AcademySoftwareFoundation",
           repo: "openexr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [imath, libdeflate]);
       const nativeCheckInputs = nix.thunk(() => [ctestCheckHook]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-msse2 -mfpmath=sse")),
       }));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")));
@@ -65,16 +65,16 @@ export default nix.lambda((args) => (() => {
           "OpenEXRUtil.testIO",
         ])));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           libjxl: libjxl,
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "openexr")),
           python: nix.thunk(() => nix.sel(python3Packages, "openexr")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High dynamic-range (HDR) image file format",
         homepage: "https://www.openexr.com",
         changelog: nix.thunk(() => nix.str`https://github.com/AcademySoftwareFoundation/OpenEXR/blob/v${version}/CHANGES.md`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

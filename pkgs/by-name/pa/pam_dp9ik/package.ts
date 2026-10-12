@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(tlsclient, "src")),
       version: nix.thunk(() => nix.attr(tlsclient, "version")),
       enableParallelBuilding: nix.thunk(() => nix.attr(tlsclient, "enableParallelBuilding")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       installTargets: "pam.install",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "dp9ik pam module",
         longDescription: "Uses tlsclient to authenticate users against a 9front auth server",
         homepage: "https://git.sr.ht/~moody/tlsclient",

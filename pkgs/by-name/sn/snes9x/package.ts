@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withGtk = nix.argOr($, "withGtk", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("snes9x", nix.app(nix.sel(lib, "optionalString"), withGtk, "-gtk"))),
       version: "1.63",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snes9xgit",
           repo: "snes9x",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +72,7 @@ substituteInPlace external/glad/src/glx.c \\
       meta: nix.thunk(() => (() => {
         const interface$ = nix.thunk(() => (nix.asBool(withGtk) ? "GTK" : "X11"));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://www.snes9x.com",
           description: nix.thunk(() => nix.str`Super Nintendo Entertainment System (SNES) emulator, ${interface$} version`),
           longDescription: nix.thunk(() => nix.str`Snes9x is a portable, freeware Super Nintendo Entertainment System (SNES)
@@ -83,7 +83,7 @@ includes some real gems that were only ever released in Japan.
 Version build with ${interface$} interface.
 `),
           license: nix.thunk(() => nix.update(nix.sel(lib, "licenses", "unfreeRedistributable"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/snes9xgit/snes9x/blob/${nix.sel(finalAttrs, "src", "tag")}/LICENSE`),
           })),
           mainProgram: "snes9x",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pname = "open-pdf-sign";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-pdf-sign",
           repo: "open-pdf-sign",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,11 +44,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/open-pdf-sign \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Digitally sign PDF files from your commandline",
         homepage: "https://github.com/open-pdf-sign/open-pdf-sign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ runHook postInstall
         mainProgram: "open-pdf-sign",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         src,

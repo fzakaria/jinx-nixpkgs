@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torchrl",
       version: "0.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytorch",
           repo: "rl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [cloudpickle, hoptorch, numpy, packaging, pyvers, tensordict, torch]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         atari: nix.thunk(() => nix.concat([gymnasium], nix.sel(gymnasium, "optional-dependencies", "atari"))),
         brax: nix.thunk(() => [brax, jax]),
         checkpointing: nix.thunk(() => [torchsnapshot]),
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
         "test/test_distributed.py::TestSyncCollector",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modular, primitive-first, python-first PyTorch library for Reinforcement Learning",
         homepage: "https://github.com/pytorch/rl",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/rl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

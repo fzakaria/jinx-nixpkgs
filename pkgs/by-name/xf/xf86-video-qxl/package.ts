@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xf86-video-qxl",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, util_macros, xorg_server]),
       buildInputs: nix.thunk(() => [xorg_server, xorgproto, libdrm, libpciaccess, spice_protocol, udev]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=xf86-video-qxl-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Xorg video driver for the QXL virtual GPU",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-video-qxl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

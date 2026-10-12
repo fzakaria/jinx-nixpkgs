@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const clojure = nix.arg($, "clojure");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(clojure, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "babashka-clojure-tools",
       version: "1.12.6.1673",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.sel(previousAttrs, "src", "url")),
           hash: "sha256-/pGUhY511a8TwuKv+S1xBnTVvFEF8rQvkKfZTYLsAjw=",
         })))),

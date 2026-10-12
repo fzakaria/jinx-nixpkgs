@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const kio_extras = nix.arg($, "kio-extras");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "khelpcenter",
       extraBuildInputs: nix.thunk(() => [qtwebengine, xapian, python3, kio_extras]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_nix_paths_for_mansearch_utilities.patch"), nix.thunk(() => ({ __proto__: pos$1, "man-db": man_db })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_nix_paths_for_mansearch_utilities.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, "man-db": man_db })))),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "khelpcenter" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "khelpcenter" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

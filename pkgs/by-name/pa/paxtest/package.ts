@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const paxctl = nix.arg($, "paxctl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paxtest",
       version: "0.9.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.grsecurity.net/~spender/paxtest-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0zv6vlaszlik98gj9200sv0irvfzrvjn46rnr2v2m37x66288lym",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => ["DESTDIR=\"\""]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Test various memory protection measures",
         mainProgram: "paxtest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

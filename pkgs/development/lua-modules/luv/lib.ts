@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(lua, "pkgs", "luv"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libluv",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libuv, lua]),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [fixDarwinDylibNames])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           luv: nix.thunk(() => nix.sel(lua, "pkgs", "luv", "passthru", "tests", "test")),
         })),
       })),

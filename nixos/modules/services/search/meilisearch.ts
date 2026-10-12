@@ -47,23 +47,23 @@ export default nix.lambda((args) => (() => {
       const environment = nix.arg($_1, "environment");
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         environment: environment,
         setting: nix.thunk(() => nix.sel(cfg, "settings", nix.key(nix.force(name)))),
       };
     })(), formals$2), nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$2, environment: "MEILI_SSL_CERT_PATH", name: "ssl_cert_path" })),
-      nix.thunk(() => ({ __proto__: pos$3, environment: "MEILI_SSL_KEY_PATH", name: "ssl_key_path" })),
-      nix.thunk(() => ({ __proto__: pos$4, environment: "MEILI_SSL_AUTH_PATH", name: "ssl_auth_path" })),
-      nix.thunk(() => ({ __proto__: pos$5, environment: "MEILI_SSL_OCSP_PATH", name: "ssl_ocsp_path" })),
+      nix.thunk(() => ({ [nix.POS]: pos$2, environment: "MEILI_SSL_CERT_PATH", name: "ssl_cert_path" })),
+      nix.thunk(() => ({ [nix.POS]: pos$3, environment: "MEILI_SSL_KEY_PATH", name: "ssl_key_path" })),
+      nix.thunk(() => ({ [nix.POS]: pos$4, environment: "MEILI_SSL_AUTH_PATH", name: "ssl_auth_path" })),
+      nix.thunk(() => ({ [nix.POS]: pos$5, environment: "MEILI_SSL_OCSP_PATH", name: "ssl_ocsp_path" })),
     ])));
   const master_key_placeholder = "@MASTER_KEY@";
-  const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "masterKeyFile"), null)) ? nix.update(nix.sel(cfg, "settings"), { __proto__: pos$6, master_key: master_key_placeholder }) : nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["master_key"])))), nix.thunk(() => nix.builtins.map((secret) => nix.sel(secret, "name"), secrets_with_path))))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "masterKeyFile"), null)) ? nix.update(nix.sel(cfg, "settings"), { [nix.POS]: pos$6, master_key: master_key_placeholder }) : nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["master_key"])))), nix.thunk(() => nix.builtins.map((secret) => nix.sel(secret, "name"), secrets_with_path))))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];
@@ -80,46 +80,46 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "meilisearch", "masterKeyEnvironmentFile"]), "Use `services.meilisearch.masterKeyFile` instead. It does not require you to prefix the file with \"MEILI_MASTER_KEY=\".\nIf you were abusing this option to set other options, you can now configure them with `services.meilisearch.settings`.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         meilisearch: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Meilisearch - a RESTful search API")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "meilisearch", nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               extraDescription: "Use this if you require specific features to be enabled. The default package has no features.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "localhost",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The IP address that Meilisearch will listen on.\n\nIt can also be a hostname like \"localhost\". If it resolves to an IPv4 and IPv6 address, Meilisearch will listen on both.\n",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: 7700n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "The port that Meilisearch will listen on.\n",
             })))),
           masterKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Path to file which contains the master key.\nBy doing so, all routes will be protected and will require a key to be accessed.\nIf no master key is provided, all routes can be accessed without requiring any key.\n\nYou can generate a master key by running `openssl rand -base64 36`.\nAlternatively, you can start Meilisearch without a master key and use the pre-generated key from the service's logs that can be obtained by `journalctl -u meilisearch | grep -- --master-key`.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Configuration settings for Meilisearch.\nLook at the documentation for available options:\nhttps://github.com/meilisearch/meilisearch/blob/main/config.toml\nhttps://www.meilisearch.com/docs/learn/self_hosted/configure_meilisearch_at_launch#all-instance-options\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   imports: nix.thunk(() => nix.builtins.map((secret) => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       options: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.sel(secret, "name"), nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             visible: false,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
@@ -132,20 +132,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "master_key"))),
             message: "Do not set `services.meilisearch.settings.master_key` in your configuration.\nUse `services.meilisearch.masterKeyFile` instead.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           meilisearch: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             settings: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               http_addr: nix.thunk(() => nix.str`${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenPort")))}`),
               db_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/meilisearch")),
               dump_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/meilisearch/dumps")),
@@ -156,25 +156,25 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             meilisearch: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Meilisearch daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((secret) => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     name: nix.thunk(() => nix.sel(secret, "environment")),
                     value: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(secret, "setting"), null)), nix.thunk(() => nix.str`%d/${nix.sel(secret, "name")}`))),
                   }), secrets_with_path)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 Type: "simple",
                 DynamicUser: true,
                 Restart: "always",

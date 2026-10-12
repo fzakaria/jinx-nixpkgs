@@ -19,39 +19,39 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const cmake = nix.arg($, "cmake");
   const ads_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "githubuser0xFFFF",
       repo: "Qt-Advanced-Docking-System",
       rev: "34b68d6eab1556cf851d24e033909332771f3dfe",
       hash: "sha256-ojXH9lXs4lzhgclA8BFmyOuWy4DQE0SGK3OzuhHp000=",
     }))));
   const qsimpleupdater_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "alex-spataru",
       repo: "QSimpleUpdater",
       rev: "8e7017f7fbdc2b4b1a26ed1eef9ebcba6a50639c",
       hash: "sha256-YU7z0U8W3s9RE41FPrWObpUOzTpqOQl4nDgyTqvnofc=",
     }))));
   const singleapplication_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "itay-grudev",
       repo: "SingleApplication",
       rev: "494772e98cef0aa88124f154feb575cc60b08b38",
       hash: "sha256-OwfAikUJ+rC0BSLXILs0fBd1ilzu31ghMslwrgbnKhk=",
     }))));
   const editorconfig_core_qt_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "editorconfig",
       repo: "editorconfig-core-qt",
       rev: "ab62f0554abf2bbe4d45427b36a8b2f81ca7b4ab",
       hash: "sha256-EMvkww+SWsLnjCB3gYykz0miLiSFpreoRHJpzgysX/0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "notepad-next",
       version: "0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "dail8859",
           repo: "NotepadNext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -109,7 +109,7 @@ echo "target_link_libraries(lexilla PRIVATE scintilla)" >> thirdparty/CMakeLists
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: "https://github.com/dail8859/NotepadNext",
           description: "Cross-platform, reimplementation of Notepad++",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl3Plus")),

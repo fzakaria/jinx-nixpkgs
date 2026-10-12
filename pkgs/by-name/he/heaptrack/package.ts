@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const rustc_demangle = nix.arg($, "rustc-demangle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "heaptrack",
       version: "1.5.0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "sdk",
           repo: "heaptrack",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \\\n  $out/Applications/KDE/heaptrack_gui.app/Contents/MacOS/heaptrack_gui \\\n  $out/bin/heaptrack_gui\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Heap memory profiler for Linux",
         homepage: "https://github.com/KDE/heaptrack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

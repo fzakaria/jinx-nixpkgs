@@ -23,23 +23,23 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const olm = nix.arg($, "olm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jitsi-meet",
       version: "1.0.9365",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jitsi",
           repo: "jitsi-meet",
           tag: nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))),
           hash: "sha256-gAXY40jvQjGhitbpWjJ+C8GZwuRu/zyJw2NN5yf/l6o=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         makeFlags: "source-package",
         makeCacheWritable: true,
         forceGitDeps: true,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-5fGaX8VFCCMkTeQuhFPwd9W7cBNVML/bVYLODq07s5w=",
             forceGitDeps: true,
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libarchive, nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       installPhase: "runHook preInstall\nmkdir -p $out\nbsdtar -xf jitsi-meet.tar.bz2 -C $out --strip-components 1\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "single-host-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
           })))),
         updateScript: nix.path(here, "./update.sh"),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         const from_1 = nix.thunk(() => nix.sel(olm, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Secure, Simple and Scalable Video Conferences",
         longDescription: "Jitsi Meet is an open-source (Apache) WebRTC JavaScript application that uses Jitsi Videobridge\nto provide high quality, secure and scalable video conferences.\n",
         homepage: "https://github.com/jitsi/jitsi-meet",

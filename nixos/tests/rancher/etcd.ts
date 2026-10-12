@@ -40,22 +40,22 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-etcd`),
     interactive: nix.thunk(() => ({
-      __proto__: pos$2,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+      [nix.POS]: pos$2,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       etcd: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             etcd: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               openFirewall: true,
               listenClientUrls: nix.thunk(() => ["http://192.168.1.1:2379", "http://127.0.0.1:2379"]),
@@ -65,17 +65,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             useDHCP: false,
             defaultGateway: "192.168.1.1",
             interfaces: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               eth1: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$5, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.1", prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -87,9 +87,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -98,14 +98,14 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               role: "server",
               package: rancherPackage,
@@ -116,22 +116,22 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           networking: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             firewall: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => [2379n, 2380n, 6443n]),
               allowedUDPPorts: nix.thunk(() => [8472n]),
             })),
             useDHCP: false,
             defaultGateway: "192.168.1.2",
             interfaces: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               eth1: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$15, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$15, address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -176,7 +176,7 @@ with subtest("should not have a secret in database"):
     etcd.wait_until_fails("[[ $(etcdctl get /registry/secrets/default/nixossecret | head -c1 | wc -c) -ne 0 ]]")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "etcd", "meta", "maintainers"), nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers")))),
     })),
   };

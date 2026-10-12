@@ -39,26 +39,26 @@ ${nix.sel(cfg, "config")}
 exec ${nix.sel(pkgs, "riemann-dash")}/bin/riemann-dash ${conf}
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "riemann-dash": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the riemann-dash dashboard daemon.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Contents added to the end of the riemann-dash configuration file.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/riemann-dash",
               description: "Location of the riemann-base dir. The dashboard configuration file is\nis stored to this directory. The directory is created automatically on\nservice start, and owner is set to the riemanndash user.\n",
@@ -67,20 +67,20 @@ exec ${nix.sel(pkgs, "riemann-dash")}/bin/riemann-dash ${conf}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           groups: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             riemanndash: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "riemanndash")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             riemanndash: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "riemann-dash daemon user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "riemanndash")),
               group: "riemanndash",
@@ -88,30 +88,30 @@ exec ${nix.sel(pkgs, "riemann-dash")}/bin/riemann-dash ${conf}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "10-riemanndash": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$13,
-                  d: nix.thunk(() => ({ __proto__: pos$12, user: "riemanndash", group: "riemanndash" })),
+                  [nix.POS]: pos$13,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$12, user: "riemanndash", group: "riemanndash" })),
                 }))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "riemann-dash": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["riemann.service"]),
               after: nix.thunk(() => ["riemann.service"]),
               preStart: nix.thunk(() => nix.str`mkdir -p '${nix.sel(cfg, "dataDir")}/config'
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: "riemanndash",
                 ExecStart: nix.thunk(() => nix.str`${launcher}/bin/riemann-dash`),
               })),

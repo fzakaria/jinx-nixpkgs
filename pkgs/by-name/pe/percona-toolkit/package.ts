@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perconaToolkit = nix.thunk(() => nix.sel(perlPackages, "PerconaToolkit"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.sel(perconaToolkit, "name")),
       version: nix.thunk(() => nix.sel(perconaToolkit, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -35,7 +35,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(perconaToolkit, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

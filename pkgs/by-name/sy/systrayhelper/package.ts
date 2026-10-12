@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5-unstable-2021-05-20";
       const rev = "da47887f050cf0f22d9348cb4493df9ffda2a229";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ssbc",
           repo: "systrayhelper",
           rev: rev,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libappindicator]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Systray utility written in go, using json over stdio for control and events",
         homepage: "https://github.com/ssbc/systrayhelper",
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "systrayhelper",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

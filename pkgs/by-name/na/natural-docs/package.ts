@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "natural-docs",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://naturaldocs.org/download/natural_docs/${nix.sel(finalAttrs, "version")}/Natural_Docs_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-gjAhS2hdFA8G+E5bJD18BQdb7PrBeRnpBBSlnVJ5hgY=",
         })))),
@@ -32,7 +32,7 @@ cp -r . $out/
 makeWrapper ${mono}/bin/mono $out/bin/NaturalDocs --add-flags "$out/NaturalDocs.exe"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Documentation generator for multiple programming languages",
         longDescription: "Natural Docs is an open source documentation generator for multiple\nprogramming languages. You document your code in a natural syntax that\nreads like plain English. Natural Docs then scans your code and builds\nhigh-quality HTML documentation from it.\n",
         homepage: "https://naturaldocs.org",

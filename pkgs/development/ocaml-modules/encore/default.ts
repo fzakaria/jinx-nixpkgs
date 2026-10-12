@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const angstrom = nix.arg($, "angstrom");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "encore",
       version: "0.8.1",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/encore/releases/download/v${nix.sel(finalAttrs, "version")}/encore-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-qg6heSBc6OSfb7vZxEi4rrKh+nx+ffnsCfVvhVR3yY0=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/encore",
         description: "Library to generate encoder/decoder which ensure isomorphism",
         longDescription: "Encore is a little library to provide an interface to generate an angstrom decoder and\nan internal encoder from a shared description. The goal is to ensure a dual isomorphism\nbetween them.\n",

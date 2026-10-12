@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pretalx",
           repo: "pretalx-vimeo",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["pretalx_vimeo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static vimeo for pretalx, e.g. information, venue listings, a Code of Conduct, etc",
         homepage: "https://github.com/pretalx/pretalx-vimeo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

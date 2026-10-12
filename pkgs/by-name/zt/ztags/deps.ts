@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "zzdoc-0.0.0-tzT1PjPfAAD6wsVuNRwwCStXJC5la08OkS3u4ra7fHpM",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/rockorager/zzdoc",
             rev: "98cdf8ba5ae2d01b4da0793dd43dd2f6d6b1e217",
             hash: "sha256-34FtjraFGbA+QcwiBolpFQoma1bscup/3+4RgkXVJEg=",

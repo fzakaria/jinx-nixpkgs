@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cstruct = nix.arg($, "cstruct");
   const mirage_mtime = nix.arg($, "mirage-mtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-flow-combinators",
       version: nix.thunk(() => nix.attr(mirage_flow, "version")),
       src: nix.thunk(() => nix.attr(mirage_flow, "src")),
       propagatedBuildInputs: nix.thunk(() => [lwt, logs, cstruct, mirage_mtime, mirage_flow]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_flow, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Flow implementations and combinators for MirageOS specialized to lwt",
       })),
     })));

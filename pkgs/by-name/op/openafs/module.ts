@@ -25,25 +25,25 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libtool_2 = nix.arg($, "libtool_2");
   const libkrb5 = nix.arg($, "libkrb5");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const modDestDir = nix.thunk(() => nix.str`$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/extra/openafs`);
   const kernelBuildDir = nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openafs",
       version: nix.thunk(() => nix.str`${version}-${nix.sel(kernel, "modDirVersion")}`),
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gerrit.openafs.org/changes/16927/revisions/a3bd427be8437a38c96ac34ef8216e58ab999945/patch",
             hash: "sha256-q0AOGpWL1r2hMLQgowMBkfOcEvhXEhXVLe1A/tlawFo=",
             decode: "base64 -d",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gerrit.openafs.org/changes/16928/revisions/5f04ae748a1ede14882174a81dfa38baa2e66a20/patch",
             hash: "sha256-fwzRzS799Y68l29vlzIAmHLda57gToLippgNMKWfWaw=",
             decode: "base64 -d",
@@ -74,7 +74,7 @@ cp src/libafs/MODLOAD-*/libafs-${nix.sel(kernel, "modDirVersion")}.* ${modDestDi
 xz -f ${modDestDir}/libafs.ko
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open AFS client kernel module",
         homepage: "https://www.openafs.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ipl10")),

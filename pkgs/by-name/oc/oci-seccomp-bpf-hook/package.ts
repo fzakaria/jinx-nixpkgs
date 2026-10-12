@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bcc = nix.arg($, "bcc");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oci-seccomp-bpf-hook",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containers",
           repo: "oci-seccomp-bpf-hook",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "substituteInPlace oci-seccomp-bpf-hook.json --replace HOOK_BIN_DIR \"$out/bin\"\n",
       installPhase: "install -Dm755 bin/* -t $out/bin\ninstall -Dm644 oci-seccomp-bpf-hook.json -t $out\ninstallManPage docs/*.[1-9]\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/containers/oci-seccomp-bpf-hook",
         description: "OCI hook to trace syscalls and generate a seccomp profile\n",
         mainProgram: "oci-seccomp-bpf-hook",

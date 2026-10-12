@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const confFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "stubby.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => nix.concat([
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["stubby", "debugLogging"]), "Use services.stubby.logLevel = \"debug\"; instead.")),
     ], nix.app(nix.builtins.map, (x) => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "stubby", x]), "Stubby configuration moved to services.stubby.settings."), nix.thunk(() => [
@@ -44,21 +44,21 @@ export default nix.lambda((args) => (() => {
         "upstreamServers",
       ])))),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         stubby: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Stubby DNS resolver")),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.stubby.passthru.settingsExample // {\n  upstream_recursive_servers = [{\n    address_data = \"158.64.1.29\";\n    tls_auth_name = \"kaitain.restena.lu\";\n    tls_pubkey_pinset = [{\n      digest = \"sha256\";\n      value = \"7ftvIkA+UeN/ktVkovd/7rPZ6mbkhVI7/8HnFJIiLa4=\";\n    }];\n  }];\n};\n")),
               description: "Content of the Stubby configuration file. All Stubby settings may be set or queried\nhere. The default settings are available at\n`pkgs.stubby.passthru.settingsExample`. See\n<https://dnsprivacy.org/wiki/display/DP/Configuring+Stubby>.\nA list of the public recursive servers can be found here:\n<https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Test+Servers>.\n",
             })))),
           logLevel: nix.thunk(() => (() => {
             const logLevels = nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               emerg: 0n,
               alert: 1n,
               crit: 2n,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
               debug: 7n,
             }));
             return nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "attrNames"), logLevels), nix.app(nix.lookup(w, "attrValues"), logLevels))))))),
                 apply: (v) => (nix.asBool(nix.app(nix.lookup(w, "isString"), v)) ? nix.sel(logLevels, nix.key(nix.force(v))) : nix.force(v)),
@@ -80,33 +80,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => nix.eq(nix.selOr(cfg, () => "", "settings", "resolution_type"), "GETDNS_RESOLUTION_STUB")),
             message: "services.stubby.settings.resolution_type must be set to \"GETDNS_RESOLUTION_STUB\".\nIs services.stubby.settings unset?\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           stubby: nix.thunk(() => ({
-            __proto__: pos$9,
-            settings: nix.thunk(() => ({ __proto__: pos$8, appdata_dir: "/var/cache/stubby" })),
+            [nix.POS]: pos$9,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$8, appdata_dir: "/var/cache/stubby" })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             stubby: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Stubby local DNS resolver",
               after: nix.thunk(() => ["network.target"]),
               before: nix.thunk(() => ["nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "notify",
                 AmbientCapabilities: "CAP_NET_BIND_SERVICE",
                 CapabilityBoundingSet: "CAP_NET_BIND_SERVICE",

@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const numactl = nix.arg($, "numactl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libfabric",
       version: "2.6.0",
       enableParallelBuilding: true,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ofiwg",
           repo: "libfabric",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(enableOpx) ? "--enable-opx" : "--disable-opx")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ofiwg.github.io/libfabric/",
         description: "Open Fabric Interfaces",
         license: nix.thunk(() => (() => {

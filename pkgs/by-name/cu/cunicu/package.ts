@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const protoc_gen_go_grpc = nix.arg($, "protoc-gen-go-grpc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cunicu",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cunicu",
           repo: "cunicu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-yFpkYI6ue5LXwRCj4EqWDBaO3TYzZ3Ov/39PRQWMWzk=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, protobuf, protoc_gen_go, protoc_gen_go_grpc]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       excludedPackages: nix.thunk(() => ["pkg/config", "pkg/selfupdate", "pkg/tty", "scripts"]),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X cunicu.li/cunicu/pkg/buildinfo.Version=${nix.sel(finalAttrs, "version")}`),
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       preBuild: "go generate ./...\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/cunicu docs --with-frontmatter\ninstallManPage ./docs/usage/man/*.1\ninstallShellCompletion --cmd cunicu \\\n  --bash <($out/bin/cunicu completion bash) \\\n  --zsh <($out/bin/cunicu completion zsh) \\\n  --fish <($out/bin/cunicu completion fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Zeroconf peer-to-peer mesh VPN using Wireguard® and Interactive Connectivity Establishment (ICE)",
         homepage: "https://cunicu.li",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

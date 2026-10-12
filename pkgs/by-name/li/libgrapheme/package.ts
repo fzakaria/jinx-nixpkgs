@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgrapheme",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/libgrapheme/libgrapheme-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Mlha9z3aYvvMD+0U8ZmqG8mIrQHa0L+9Bs8XXZzz1ow=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["AR:=$(AR)", "CC:=$(CC)", "RANLIB:=$(RANLIB)", "BUILD_CC=$(CC_FOR_BUILD)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "LDCONFIG="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode string library",
         homepage: "https://libs.suckless.org/libgrapheme/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

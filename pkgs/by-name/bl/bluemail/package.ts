@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const pname = "bluemail";
       const version = "1.140.93";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_178.snap",
           hash: "sha512-xv7fn+VrtrxauejhgEMdTnmnDXb17TwanXZR6Lqfg5N40MbyDu76XQAWRB8xFU/+GdCTmjv47EaOC7SnnOw4EA==",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bluemail",
             icon: "bluemail",
             exec: "bluemail",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const preFixup = "wrapProgram $out/opt/bluemail/bluemail \\\n  ${makeWrapperArgs[@]} \\\n  ${gappsWrapperArgs[@]}\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross platform email and calendar app, with AI features and a modern design",
         homepage: "https://bluemail.me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bluemail",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

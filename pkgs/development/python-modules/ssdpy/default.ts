@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MoshiBin",
           repo: "ssdpy",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "test_server_extra_fields",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/MoshiBin/ssdpy/releases/tag/${version}`),
         description: "Lightweight, compatible SSDP library for Python",
         homepage: "https://github.com/MoshiBin/ssdpy",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const modules = nix.argOr($, "modules", () => "oldDefaultModules");
   const configuration = nix.argOr($, "configuration", () => "[]");
   const allPkgs = (pkgs) => nix.concat(nix.app(nix.sel(mueval, "defaultPkgs"), pkgs), nix.concat([nix.thunk(() => nix.sel(pkgs, "lambdabot-trusted"))], nix.app(packages, pkgs)));
-  const mueval$ = nix.thunk(() => nix.app(nix.sel(mueval, "override"), nix.thunk(() => ({ __proto__: pos$1, haskellPackages: haskellPackages, packages: allPkgs }))));
+  const mueval$ = nix.thunk(() => nix.app(nix.sel(mueval, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, haskellPackages: haskellPackages, packages: allPkgs }))));
   const bins = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([
       mueval$,
       nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithHoogle"), allPkgs)),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const modulesStr = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => [" "]), modules));
   const configStr = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => [" "]), configuration));
   return nix.app(nix.sel(haskellLib, "overrideCabal"), (self) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       patches: nix.thunk(() => nix.concat(nix.selOr(self, () => [], "patches"), [nix.path(here, "./custom-config.patch")])),
       postPatch: nix.thunk(() => nix.add(nix.selOr(self, () => "", "postPatch"), nix.str`substituteInPlace src/Main.hs \\
   --replace '@config@' '${configStr}'

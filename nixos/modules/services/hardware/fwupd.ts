@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "fwupd"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: (l) => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.builtins.map((s) => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), s), l))),
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), "=")),
     }))));
   const customEtc = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "fwupd/fwupd.conf": nix.thunk(() => ({
-      __proto__: pos$4,
-      source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "fwupd.conf", nix.thunk(() => nix.update({ __proto__: pos$2, fwupd: nix.thunk(() => nix.sel(cfg, "daemonSettings")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "uefiCapsuleSettings"))))), 0n)), nix.thunk(() => ({
-            __proto__: pos$3,
+      [nix.POS]: pos$4,
+      source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "fwupd.conf", nix.thunk(() => nix.update({ [nix.POS]: pos$2, fwupd: nix.thunk(() => nix.sel(cfg, "daemonSettings")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "uefiCapsuleSettings"))))), 0n)), nix.thunk(() => ({
+            [nix.POS]: pos$3,
             uefi_capsule: nix.thunk(() => nix.sel(cfg, "uefiCapsuleSettings")),
           }))))))),
       mode: "0640",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
   }));
   const originalEtc = nix.thunk(() => (() => {
     const mkEtcFile = (n) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/${n}`),
       })));
     const etcFiles = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (f) => (nix.asBool(nix.sel(config, "boot", "loader", "grub", "enable")) || nix.asBool(!nix.eq(f, "grub.d/35_fwupd"))), nix.thunk(() => nix.sel(cfg, "package", "filesInstalledToEtc"))));
@@ -82,12 +82,12 @@ export default nix.lambda((args) => (() => {
   })());
   const extraTrustedKeys = nix.thunk(() => (() => {
     const mkName = (p) => nix.str`pki/fwupd/${nix.builtins.baseNameOf(p)}`;
-    const mkEtcFile = (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(mkName, p)), nix.thunk(() => ({ __proto__: pos$7, source: p })));
+    const mkEtcFile = (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(mkName, p)), nix.thunk(() => ({ [nix.POS]: pos$7, source: p })));
     return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(mkEtcFile, nix.thunk(() => nix.sel(cfg, "extraTrustedKeys")))));
   })());
   const enableRemote = (base) => (remote) => nix.attrsDyn({}, [
     [nix.str`fwupd/remotes.d/${remote}.conf`, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${remote}-enabled.conf`), nix.thunk(() => ({})), nix.thunk(() => nix.str`sed "s,^Enabled=false,Enabled=true," \\
 "${base}/etc/fwupd/remotes.d/${remote}.conf" > "$out"
 `))),
@@ -95,28 +95,28 @@ export default nix.lambda((args) => (() => {
   ]);
   const remotes = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "foldl'"), (configFiles) => (remote) => nix.update(configFiles, nix.app(enableRemote, nix.thunk(() => nix.sel(cfg, "package")), remote)), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "extraRemotes"))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(cfg, () => false, "daemonSettings", "TestDevices")), nix.thunk(() => nix.app(enableRemote, nix.thunk(() => nix.sel(cfg, "package", "installedTests")), "fwupd-tests")))));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         fwupd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable fwupd, a DBus service that allows\napplications to update firmware.\n",
             })))),
           extraTrustedKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ /etc/nixos/fwupd/myfirmware.pem ]")),
               description: "Installing a public key allows firmware signed with a matching private key to be recognized as trusted, which may require less authentication to install than for untrusted files. By default trusted firmware can be upgraded (but not downgraded) without the user or administrator password. Only very few keys are installed by default.\n",
             })))),
           extraRemotes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -127,35 +127,35 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fwupd", nix.thunk(() => ({})))),
           daemonSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => nix.sel(format, "type", "nestedTypes", "elemType")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     DisabledDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         example: nix.thunk(() => ["2082b5e0-7a64-478a-b1b2-e3404fab6dad"]),
                         description: "List of device GUIDs to be disabled.\n",
                       })))),
                     DisabledPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         example: nix.thunk(() => ["udev"]),
                         description: "List of plugins to be disabled.\n",
                       })))),
                     EspLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: nix.thunk(() => nix.sel(config, "boot", "loader", "efi", "efiSysMountPoint")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.loader.efi.efiSysMountPoint")),
                         description: "The EFI system partition (ESP) path used if UDisks is not available\nor if this partition is not mounted at /boot/efi, /boot, or /efi\n",
                       })))),
                     TestDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         internal: true,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
@@ -167,9 +167,9 @@ export default nix.lambda((args) => (() => {
               description: "Configurations for the fwupd daemon.\n",
             })))),
           uefiCapsuleSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(format, "type", "nestedTypes", "elemType")),
                 })))),
               default: nix.thunk(() => ({})),
@@ -186,71 +186,71 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "fwupd", "enableTestRemote"]), "This option was removed after being removed upstream. It only provided a method for testing fwupd functionality, and should not have been exposed for use outside of nix tests.")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           fwupd: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             daemonSettings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               EspLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "boot", "loader", "efi", "efiSysMountPoint")))),
             })),
           })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
-          udisks2: nix.thunk(() => ({ __proto__: pos$28, enable: true })),
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$28, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.update(originalEtc, nix.update(customEtc, nix.update(extraTrustedKeys, remotes)))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`C+ /run/fwupd-efi - - - - ${nix.sel(cfg, "package", "fwupd-efi")}/libexec/fwupd/efi`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             "fwupd-refresh": nix.thunk(() => ({
-              __proto__: pos$33,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$32, StateDirectory: "fwupd", StandardError: "inherit" })),
+              [nix.POS]: pos$33,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$32, StateDirectory: "fwupd", StandardError: "inherit" })),
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$36,
-            "fwupd-refresh": nix.thunk(() => ({ __proto__: pos$35, wantedBy: nix.thunk(() => ["timers.target"]) })),
+            [nix.POS]: pos$36,
+            "fwupd-refresh": nix.thunk(() => ({ [nix.POS]: pos$35, wantedBy: nix.thunk(() => ["timers.target"]) })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           users: nix.thunk(() => ({
-            __proto__: pos$39,
-            "fwupd-refresh": nix.thunk(() => ({ __proto__: pos$38, isSystemUser: true, group: "fwupd-refresh" })),
+            [nix.POS]: pos$39,
+            "fwupd-refresh": nix.thunk(() => ({ [nix.POS]: pos$38, isSystemUser: true, group: "fwupd-refresh" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$40, "fwupd-refresh": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$40, "fwupd-refresh": nix.thunk(() => ({})) })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           polkit: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             enable: true,
             extraConfig: "polkit.addRule(function(action, subject) {\n  if ((action.id == \"org.freedesktop.fwupd.get-remotes\" ||\n       action.id == \"org.freedesktop.fwupd.refresh-remote\") &&\n      subject.user == \"fwupd-refresh\") {\n    return polkit.Result.YES;\n  }\n});\n",
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       maintainers: nix.thunk(() => nix.sel(pkgs, "fwupd", "meta", "maintainers")),
     })),
   };

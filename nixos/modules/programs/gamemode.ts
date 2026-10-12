@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "gamemode"));
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "gamemode.ini", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gamemode: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GameMode to optimise system performance on demand")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gamemode", nix.thunk(() => ({})))),
-          enableRenice: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "CAP_SYS_NICE on gamemoded to support lowering process niceness"), { __proto__: pos$2, default: true })),
+          enableRenice: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "CAP_SYS_NICE on gamemoded to support lowering process niceness"), { [nix.POS]: pos$2, default: true })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "System-wide configuration for GameMode (/etc/gamemode.ini).\nSee {manpage}`gamemoded(8)` man page for available settings.\n",
@@ -59,26 +59,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "gamemode.ini": nix.thunk(() => ({ __proto__: pos$7, source: configFile })),
+            [nix.POS]: pos$8,
+            "gamemode.ini": nix.thunk(() => ({ [nix.POS]: pos$7, source: configFile })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           polkit: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRenice")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               gamemoded: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/gamemoded`),
@@ -87,19 +87,19 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               gamemoded: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "pkexec", nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           name: "pkexec",
                           path: nix.thunk(() => nix.str`${nix.sel(config, "security", "wrapperDir")}/pkexec`),
                         })),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(config, "environment", "etc", "gamemode.ini", "source")),
                 ]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRenice")), nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.str`${nix.sel(config, "security", "wrapperDir")}/gamemoded`),
@@ -121,12 +121,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
-          groups: nix.thunk(() => ({ __proto__: pos$21, gamemode: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$22,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$21, gamemode: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];

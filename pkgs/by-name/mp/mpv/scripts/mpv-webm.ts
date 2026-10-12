@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const lua55Packages = nix.arg($, "lua55Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mpv-webm",
       version: "0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ekisu",
           repo: "mpv-webm",
           rev: "395a5835909df26b556b4e929498d93f95638270",
           hash: "sha256-hWX7RySnvzVBz3d/MnJuex4ZJ7Z/RnyNIAr2YaecmqY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       dontBuild: false,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(lua55Packages, "moonscript"))]),
       scriptPath: "build/webm.lua",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple WebM maker for mpv, with no external dependencies",
         homepage: "https://github.com/ekisu/mpv-webm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

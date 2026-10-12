@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const texliveSmall = nix.arg($, "texliveSmall");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "enblend-enfuse",
       version: "4.3-unstable-2022-03-06",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://hg.code.sf.net/p/enblend/code",
           rev: "0f423c72e51872698fe2985ca3bd453961ffe4e0",
           hash: "sha256-0gCUSdg3HR3YeIbOByEBCZh2zGlYur6DeCOzUM53fdc=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, help2man, perl, pkg_config, texliveSmall]),
       preConfigure: "patchShebangs src/embrace\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://enblend.sourceforge.net/",
         description: "Blends away the seams in a panoramic image mosaic using a multiresolution spline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.2.4",
       pname: "extundelete",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/extundelete/extundelete-0.2.4.tar.bz2",
           sha256: "1x0r7ylxlp9lbj3d7sqf6j2a222dwy2nfpff05jd6mkh4ihxvyd1",
         })))),
       buildInputs: nix.thunk(() => [e2fsprogs]),
       patchPhase: "substituteInPlace src/insertionops.cc \\\n  --replace \"Directory ACL:\" \"High 32 bits of size:\" \\\n  --replace \"inode.i_dir_acl\" \"inode.i_size_high\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility that can recover deleted files from an ext3 or ext4 partition",
         homepage: "https://extundelete.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -36,37 +36,37 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const mlnRelease = "core-fa8a9c8e3261ce64940127aecc1d52f540c21c57";
   const mlnHeaders = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native/releases/download/${mlnRelease}/maplibre-native-headers.tar.gz`),
       hash: "sha256-SqZaqePNbqBZoUgMJIsZf0zqKc8EAwInYNRciv/jX1A=",
     }))));
   const mlnLibrary = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const sources = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "aarch64-linux": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native/releases/download/${mlnRelease}/libmaplibre-native-core-amalgam-linux-arm64-vulkan.a`),
           hash: "sha256-iug/ZEIoM0LUczPkVbzVelILoc1uzsM519V2em7Va4U=",
         })),
         "x86_64-linux": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native/releases/download/${mlnRelease}/libmaplibre-native-core-amalgam-linux-x64-vulkan.a`),
           hash: "sha256-FoUFDoUw+eM/aaXMfO7iuoUrv8gUGVdBW1tiqxjYCbI=",
         })),
       }));
       return nix.update(nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         downloadToTemp: true,
         recursiveHash: true,
         postFetch: "install -Dm644 $downloadedFile $out/libmbgl-core-amalgam.a\n",
       });
     })())));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "martin",
       version: "1.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "maplibre",
           repo: "martin",
           tag: nix.thunk(() => nix.str`martin-v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./dont-build-webui.patch")]),
       cargoHash: "sha256-p5sAkmMTirMdmXnVb2aqGKhPYpX/uluvzq0uw4W1Bt8=",
       webui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: "martin-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           doCheck: nix.thunk(() => nix.attr(finalAttrs, "doCheck")),
@@ -98,24 +98,24 @@ cp -r ${nix.sel(finalAttrs, "webui")} martin/martin-ui/dist
       doCheck: false,
       checkFlags: nix.thunk(() => ["--skip=test_nonexistent_tables_functions_generate_warning"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(postgresqlTestHook, "meta", "broken"))), nix.thunk(() => ({
-            __proto__: pos$9,
-            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$8, doCheck: true })))),
+            [nix.POS]: pos$9,
+            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$8, doCheck: true })))),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraArgs: nix.thunk(() => ["--version-regex=martin-v(.*)", "--subpackage=webui"]),
           })))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         MLN_PRECOMPILE: 1n,
         MLN_CORE_LIBRARY_PATH: nix.thunk(() => nix.str`${mlnLibrary}/libmbgl-core-amalgam.a`),
         MLN_CORE_LIBRARY_HEADERS_PATH: nix.thunk(() => nix.str`${mlnHeaders}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Blazing fast and lightweight PostGIS vector tiles server",
         homepage: "https://martin.maplibre.org/",
         license: nix.thunk(() => (() => {

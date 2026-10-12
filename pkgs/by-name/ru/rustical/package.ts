@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rustical",
       version: "0.16.5",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lennart-k",
           repo: "rustical",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,20 +36,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [aws_lc, sqlite]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         AWS_LC_SYS_USE_SYSTEM: true,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: true,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rustical: nix.thunk(() => nix.attr(nixosTests, "rustical")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Yet another calendar server aiming to be simple, fast and passwordless",
         homepage: "https://github.com/lennart-k/rustical",
         changelog: nix.thunk(() => nix.str`https://github.com/lennart-k/rustical/releases/tag/v${nix.sel(finalAttrs, "version")}`),

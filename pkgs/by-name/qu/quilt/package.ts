@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quilt",
       version: "0.69",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/quilt/quilt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-VV3f/eIto8htHK9anB+4oVKsK4RzBDe9OcwIhJyfSFI=",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/quilt --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://savannah.nongnu.org/projects/quilt",
         description: "Easily manage large numbers of patches",
         longDescription: "Quilt allows you to easily manage large numbers of\npatches by keeping track of the changes each patch\nmakes. Patches can be applied, un-applied, refreshed,\nand more.\n",

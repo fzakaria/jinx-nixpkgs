@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const libisoburn = nix.arg($, "libisoburn");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const installer_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "git://git.proxmox.com/git/pve-installer.git",
       rev: "32afcd4cd534d8e2f99ae76aa0234a0a5c697ba9",
       hash: "sha256-mlTSkBr5glkCr21l2Z1GFICLOn02IOWjMKBy8BvkSzc=",
     }))));
   const proxmox_crates_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "git://git.proxmox.com/git/proxmox.git",
       rev: "b9bc28082f820dbf88f8dcc02ba2250fc999f9d0",
       name: "proxmox",
       hash: "sha256-NPJi2BzANBfQx995lzIcgCKthWSv+8NeD8zrYnoMye8=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "proxmox-auto-install-assistant",
       version: "9.2.5",
       srcs: nix.thunk(() => [installer_src, proxmox_crates_src]),
@@ -53,7 +53,7 @@ proxmox-sys.path = "../proxmox/proxmox-sys"
 EOF
 `),
       buildAndTestSubdir: "proxmox-auto-install-assistant",
-      cargoLock: nix.thunk(() => ({ __proto__: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libxcrypt, nix.thunk(() => nix.sel(openssl, "dev"))]),
       propagatedBuildInputs: nix.thunk(() => [libisoburn]),
@@ -61,7 +61,7 @@ EOF
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to prepare a Proxmox installation ISO for automated installations",
         longDescription: "This tool can be used to prepare a Proxmox installation ISO for automated installations.\nAdditional uses are to validate the format of an answer file or to test match filters and\nprint information on the properties to match against for the current hardware.\n",
         homepage: "https://pve.proxmox.com/wiki/Automated_Installation",

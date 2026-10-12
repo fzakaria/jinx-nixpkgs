@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
-  return nix.app(makeInstalledTest, nix.thunk(() => ({ __proto__: pos$1, tested: nix.thunk(() => nix.sel(pkgs, "glib-testing")) })));
+  return nix.app(makeInstalledTest, nix.thunk(() => ({ [nix.POS]: pos$1, tested: nix.thunk(() => nix.sel(pkgs, "glib-testing")) })));
 })(), formals$1);
 //# sourceMappingURL=glib-testing.ts.map

@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const jre = jdk25;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       __structuredAttrs: true,
       pname: nix.thunk(() => nix.add("stirling-pdf", nix.app(nix.sel(lib, "optionalString"), isDesktopVariant, "-desktop"))),
       version: "2.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stirling-Tools",
           repo: "Stirling-PDF",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isDesktopVariant, "# Nixpkgs does not produce artifacts for Stirling-PDF's upstream updater\n# and does not have access to upstream's private signing key.\nsubstituteInPlace frontend/editor/src-tauri/tauri.conf.json \\\n  --replace-fail '\"createUpdaterArtifacts\": true' '\"createUpdaterArtifacts\": false'\n")),
       npmRoot: "frontend",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "frontend/editor/src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -82,13 +82,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-YhDFSmx6XK7x5wzQaPslyuaRbiX8W/X8y/Z0fxjbGwk=",
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PUPPETEER_SKIP_DOWNLOAD: "1",
         DISABLE_ADDITIONAL_FEATURES: nix.thunk(() => (nix.asBool(withAdditionalFeatures) ? "false" : "true")),
       })),
@@ -112,17 +112,17 @@ runHook postInstall
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(isDesktopVariant) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "makeWrapper \"$out/Applications/Stirling PDF.app/Contents/MacOS/Stirling-PDF\" \"$out/bin/stirling-pdf\"\n")),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "stirling-pdf-desktop": nix.thunk(() => nix.attr(nixosTests, "stirling-pdf-desktop")),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isDesktopVariant)), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         changelog: nix.thunk(() => nix.str`https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: nix.thunk(() => nix.add("Powerful, open-source PDF editing platform ", (nix.asBool(isDesktopVariant) ? "runnable as a desktop app" : "hostable as a web app"))),
         homepage: "https://github.com/Stirling-Tools/Stirling-PDF",

@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "cpu", "amd"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cpu: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           amd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             updateMicrocode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Update the CPU microcode for AMD processors.\n",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "cpu", "amd", "updateMicrocode")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boot: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           initrd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             prepend: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 1n, nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "microcodePackage")}/amd-ucode.img`)]))),
           })),
         })),

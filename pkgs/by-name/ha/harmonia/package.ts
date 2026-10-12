@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "harmonia",
       version: "3.3.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "harmonia",
           tag: nix.thunk(() => nix.str`harmonia-v${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "harmonia-v(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           harmonia: nix.thunk(() => nix.attr(nixosTests, "harmonia")),
           "harmonia-gc": nix.thunk(() => nix.attr(nixosTests, "harmonia-gc")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Nix binary cache",
         homepage: "https://github.com/nix-community/harmonia",
         changelog: nix.thunk(() => nix.str`https://github.com/nix-community/harmonia/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

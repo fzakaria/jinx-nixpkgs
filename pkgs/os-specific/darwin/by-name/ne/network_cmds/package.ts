@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const xnuHeaders = nix.arg($, "xnuHeaders");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "network_cmds-deps-private-headers",
       nativeBuildInputs: nix.thunk(() => [unifdef]),
       buildCommand: nix.thunk(() => nix.str`# Different strategies are needed to make private headers available to network_cmds:
@@ -157,7 +157,7 @@ install -D -t "$out/include/sys" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "network_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-OIYpa71CvCOL8Ln7s8wUqWj9yD9lEeRifkj5gPvD78Y=",
@@ -167,12 +167,12 @@ install -D -t "$out/include/sys" \\
       ]),
       postPatch: "# Fix invalid pointer conversion error from trying to pass `NULL` to a `size_t`.\nsubstituteInPlace ndp.tproj/ndp.c \\\n  --replace-fail 'NULL, NULL);' 'NULL, 0);'\n\n# Fix invalid pointer conversion error. These parameters seem to be in the wrong order …\nsubstituteInPlace netstat.tproj/main.c \\\n  --replace-fail 'tp->pr_name, tp->pr_protocol' 'tp->pr_protocol, tp->pr_name'\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpcap, libresolv, libutil, openssl]),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "Network commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Network commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

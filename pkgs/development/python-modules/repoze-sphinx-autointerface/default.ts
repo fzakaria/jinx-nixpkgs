@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "repoze.sphinx.autointerface",
           version: version,
           hash: "sha256-SGvxQjpGlrkVPkiM750ybElv/Bbd6xSwyYh7RsYOKKE=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["repoze.sphinx.autointerface"]);
       const pythonNamespaces = nix.thunk(() => ["repoze", "repoze.sphinx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/repoze/repoze.sphinx.autointerface",
         description: "Auto-generate Sphinx API docs from Zope interfaces",
         changelog: nix.thunk(() => nix.str`https://github.com/repoze/repoze.sphinx.autointerface/blob/${version}/CHANGES.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(sphinx, "version")), "7.2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

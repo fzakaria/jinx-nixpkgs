@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const mkScript = (pname) => (args_1) => (() => {
     const self = nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "0-unstable-2024-11-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "occivink",
           repo: "mpv-image-viewer",
           rev: "128b498e3e57a14deea5ca9bbf662f8c1ca79e8d",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(self, "src", "name")}/scripts`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configuration, scripts and tips for using mpv as an image viewer",
         longDescription: nix.thunk(() => nix.str`${pname} is a component of mpv-image-viewer.
 
@@ -68,47 +68,47 @@ additional configuration tips or examples.
     return nix.app(buildLua, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), self, args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkScript, name))), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "detect-image": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           meta: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "Allows you to run specific commands when images are being displayed. Does not do anything by default, needs to be configured through detect_image.conf",
           })),
         })),
         equalizer: nix.thunk(() => ({})),
         "freeze-window": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           meta: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "By default, mpv automatically resizes the window when the current file changes to fit its size. This script freezes the window so that this does not happen. There is no configuration",
           })),
         })),
         "image-positioning": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           meta: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "Adds several high-level commands to zoom and pan",
           })),
         })),
         minimap: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           meta: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             description: "Adds a minimap that displays the position of the image relative to the view",
           })),
         })),
         ruler: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           meta: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             description: "Adds a ruler command that lets you measure positions, distances and angles in the image. Can be configured through ruler.conf",
           })),
         })),
         "status-line": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           meta: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             description: "Adds a status line that can show different properties in the corner of the window. By default it shows filename [positon/total] in the bottom left",
           })),
         })),

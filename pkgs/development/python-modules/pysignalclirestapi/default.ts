@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.25";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bbernhard",
           repo: "pysignalclirestapi",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pysignalclirestapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/bbernhard/pysignalclirestapi/releases/tag/${version}`),
         description: "Small python library for the Signal Cli REST API",
         homepage: "https://github.com/bbernhard/pysignalclirestapi",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

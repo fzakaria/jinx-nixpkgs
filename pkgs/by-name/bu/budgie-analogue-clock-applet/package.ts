@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libpeas2 = nix.arg($, "libpeas2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "budgie-analogue-clock-applet",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samlane-ma",
           repo: "analogue-clock-applet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, vala]),
       buildInputs: nix.thunk(() => [budgie_desktop, gtk3, gtk_layer_shell, libpeas2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Analogue Clock Applet for the Budgie desktop",
         homepage: "https://github.com/samlane-ma/analogue-clock-applet",
         changelog: nix.thunk(() => nix.str`https://github.com/samlane-ma/analogue-clock-applet/releases/tag/v${nix.sel(finalAttrs, "version")}`),

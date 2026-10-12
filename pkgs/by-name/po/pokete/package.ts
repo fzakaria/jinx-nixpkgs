@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pokete = nix.arg($, "pokete");
   const faketty = nix.arg($, "faketty");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pokete",
       version: "0.9.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxgr-linux",
           repo: "pokete",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/share/pokete\ncp -r assets pokete_classes pokete_data mods *.py $out/share/pokete/\nmkdir -p $out/bin\nln -s $out/share/pokete/pokete.py $out/bin/pokete\n",
       postFixup: "wrapPythonProgramsIn $out/share/pokete \"${pythonPath[*]}\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pokete-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: pokete,
               command: nix.thunk(() => nix.str`${faketty}/bin/faketty pokete --help`),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Terminal based Pokemon like game",
         mainProgram: "pokete",
         homepage: "https://lxgr-linux.github.io/pokete",

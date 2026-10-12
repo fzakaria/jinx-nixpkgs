@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libsbuf = nix.arg($, "libsbuf");
   const libbsdxml = nix.arg($, "libbsdxml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/lib80211",
       buildInputs: nix.thunk(() => [libsbuf, libbsdxml]),
       clangFixup: true,

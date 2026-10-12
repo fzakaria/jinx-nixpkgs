@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const passthru = nix.arg($, "passthru");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: meta,
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
       nativeBuildInputs: nix.thunk(() => [undmg, nix.thunk(() => nix.sel(darwin, "sigtool"))]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\n# Bypass the /Applications path check in the main index.js\n# Bionic verifies the app is running from /Applications and shows an\n# error dialog + refuses to auto-update if not. Replace the '/Applications'\n# string literal with '/' so that any absolute path (e.g. /nix/store/...)\n# passes the startsWith check. This works across obfuscated versions because\n# the literal string '/Applications' is stable even when variable names change.\nlocal indexJs=\"$out/Applications/Bionic.app/Contents/Resources/app/.webpack-bionic/main/index.js\"\nsubstituteInPlace \"$indexJs\" --replace-quiet \"'/Applications'\" \"'/'\"\n\n# Re-sign the main executable, otherwise macOS reports the app as damaged\nappBundle=\"$out/Applications/Bionic.app\"\nmainExe=\"$appBundle/Contents/MacOS/Bionic\"\ncodesign --force --sign - \"$mainExe\"\n\nrunHook postInstall\n",

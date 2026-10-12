@@ -14,23 +14,23 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "sssd-legacy-config",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bbigras"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         machine: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             sssd: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               config: "[sssd]\nservices = nss, pam\ndomains = shadowutils\n\n[nss]\n\n[pam]\n\n[domain/shadowutils]\nid_provider = proxy\nproxy_lib_name = files\nauth_provider = proxy\nproxy_pam_target = sssd-shadowutils\nproxy_fast_alias = True\n",
             })),

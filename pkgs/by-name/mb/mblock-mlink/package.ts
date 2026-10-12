@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mblock-mlink";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.makeblock.com/mblock5/linux/mLink-${version}-amd64.deb`),
           sha256: "sha256-KLxj81ZjbEvhhaz0seNB4WXX5ybeZ7/WcT1dGfdWle0=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
       const installPhase = "mv $out/usr/local/makeblock $out/usr/makeblock\nrmdir $out/usr/local\nmkdir -p $out/bin\necho $out/usr/makeblock/mLink/mnode $out/usr/makeblock/mLink/app.js > $out/bin/mlink\nchmod +x $out/bin/mlink\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for mBlock web version",
         homepage: "https://mblock.makeblock.com/en-us/download/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mausch"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

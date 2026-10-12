@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const tmux = nix.arg($, "tmux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hollywood",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dustinkirkland",
           repo: "hollywood",
           rev: "35275a68c37bbc39d8b2b0e4664a0c2f5451e5f6",
@@ -79,7 +79,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fill your console with Hollywood melodrama technobabble",
         mainProgram: "hollywood",
         homepage: "https://a.hollywood.computer/",

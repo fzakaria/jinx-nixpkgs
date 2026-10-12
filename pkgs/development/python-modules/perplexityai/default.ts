@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "perplexityai",
       version: "0.42.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "perplexityai",
           repo: "perplexity-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"hatchling==1.26.3\"' '\"hatchling\"'\n",
       "build-system": nix.thunk(() => [hatch_fancy_pypi_readme, hatchling]),
       dependencies: nix.thunk(() => [anyio, distro, httpx, pydantic, sniffio, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         pyright,
         mypy,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "aiohttp"))),
       pythonImportsCheck: nix.thunk(() => ["perplexity"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "API for Perplexity AI",
         homepage: "https://github.com/perplexityai/perplexity-py",
         changelog: nix.thunk(() => nix.str`https://github.com/perplexityai/perplexity-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

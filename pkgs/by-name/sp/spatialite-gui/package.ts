@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spatialite-gui",
       version: "2.1.0-beta1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/spatialite-gui-sources/spatialite_gui-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ukjZbfGM68P/I/aXlyB64VgszmL0WWtpuuMAyjwj2zM=",
         })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rm -fr $out/share\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical user interface for SpatiaLite",
         homepage: "https://www.gaia-gis.it/fossil/spatialite_gui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

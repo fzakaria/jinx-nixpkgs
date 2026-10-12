@@ -51,62 +51,62 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const packages = nix.thunk(() => (() => {
     const w_1 = nix.withScope(pkgs, w);
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "17": nix.thunk(() => nix.lookup(w_1, "teleport_17")),
       "18": nix.thunk(() => nix.lookup(w_1, "teleport_18")),
     };
   })());
   const minimal = (package$) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     services: nix.thunk(() => ({
-      __proto__: pos$5,
-      teleport: nix.thunk(() => ({ __proto__: pos$4, enable: true, package: package$ })),
+      [nix.POS]: pos$5,
+      teleport: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, package: package$ })),
     })),
   });
   const client = (package$) => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     services: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       teleport: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         enable: true,
         package: package$,
         settings: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           teleport: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             nodename: "client",
             advertise_ip: "192.168.1.20",
             auth_token: "8d1957b2-2ded-40e6-8297-d48156a898a9",
             auth_servers: nix.thunk(() => ["192.168.1.10:3025"]),
-            log: nix.thunk(() => ({ __proto__: pos$7, severity: "DEBUG" })),
+            log: nix.thunk(() => ({ [nix.POS]: pos$7, severity: "DEBUG" })),
           })),
           ssh_service: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enabled: true,
-            labels: nix.thunk(() => ({ __proto__: pos$9, role: "client" })),
+            labels: nix.thunk(() => ({ [nix.POS]: pos$9, role: "client" })),
           })),
-          proxy_service: nix.thunk(() => ({ __proto__: pos$11, enabled: false })),
-          auth_service: nix.thunk(() => ({ __proto__: pos$12, enabled: false })),
+          proxy_service: nix.thunk(() => ({ [nix.POS]: pos$11, enabled: false })),
+          auth_service: nix.thunk(() => ({ [nix.POS]: pos$12, enabled: false })),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       interfaces: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         eth1: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             addresses: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$16, address: "192.168.1.20", prefixLength: 24n })),
+              nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.1.20", prefixLength: 24n })),
             ]),
           })),
         })),
@@ -114,39 +114,39 @@ export default nix.lambda((args) => (() => {
     })),
   });
   const server = (package$) => ({
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     services: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       teleport: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         enable: true,
         package: package$,
         settings: nix.thunk(() => ({
-          __proto__: pos$26,
-          teleport: nix.thunk(() => ({ __proto__: pos$22, nodename: "server", advertise_ip: "192.168.1.10" })),
-          ssh_service: nix.thunk(() => ({ __proto__: pos$23, enabled: true })),
-          proxy_service: nix.thunk(() => ({ __proto__: pos$24, enabled: true })),
+          [nix.POS]: pos$26,
+          teleport: nix.thunk(() => ({ [nix.POS]: pos$22, nodename: "server", advertise_ip: "192.168.1.10" })),
+          ssh_service: nix.thunk(() => ({ [nix.POS]: pos$23, enabled: true })),
+          proxy_service: nix.thunk(() => ({ [nix.POS]: pos$24, enabled: true })),
           auth_service: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enabled: true,
             tokens: nix.thunk(() => ["node:8d1957b2-2ded-40e6-8297-d48156a898a9"]),
           })),
         })),
-        diag: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
-        insecure: nix.thunk(() => ({ __proto__: pos$28, enable: true })),
+        diag: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+        insecure: nix.thunk(() => ({ [nix.POS]: pos$28, enable: true })),
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$36,
-      firewall: nix.thunk(() => ({ __proto__: pos$31, allowedTCPPorts: nix.thunk(() => [3025n]) })),
+      [nix.POS]: pos$36,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [3025n]) })),
       interfaces: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         eth1: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             addresses: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$32, address: "192.168.1.10", prefixLength: 24n })),
+              nix.thunk(() => ({ [nix.POS]: pos$32, address: "192.168.1.10", prefixLength: 24n })),
             ]),
           })),
         })),
@@ -155,30 +155,30 @@ export default nix.lambda((args) => (() => {
   });
   return nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (package$) => nix.attrsDyn({}, [
       [nix.str`minimal_${name}`, nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           name: "teleport-minimal-setup",
           meta: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             maintainers: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w);
               return [nix.thunk(() => nix.lookup(w_2, "justinas"))];
             })()),
           })),
-          nodes: nix.thunk(() => ({ __proto__: pos$39, minimal: nix.thunk(() => nix.app(minimal, package$)) })),
+          nodes: nix.thunk(() => ({ [nix.POS]: pos$39, minimal: nix.thunk(() => nix.app(minimal, package$)) })),
           testScript: "minimal.wait_for_open_port(3025)\nminimal.wait_for_open_port(3080)\nminimal.wait_for_open_port(3022)\n",
         }))))],
       [nix.str`basic_${name}`, nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           name: "teleport-server-client",
           meta: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             maintainers: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w);
               return [nix.thunk(() => nix.lookup(w_2, "justinas"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             server: nix.thunk(() => nix.app(server, package$)),
             client: nix.thunk(() => nix.app(client, package$)),
           })),

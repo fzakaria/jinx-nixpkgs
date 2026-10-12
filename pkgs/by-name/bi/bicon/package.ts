@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kbd = nix.arg($, "kbd");
   const xkbutils = nix.arg($, "xkbutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bicon",
       version: "0.5-unstable-2024-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "behdad",
           repo: "bicon",
           rev: "48720c0f22197d4d5f7b0f5162a3d8f071e6e8a8",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       preConfigure: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bidirectional console",
         homepage: "https://github.com/behdad/bicon",
         license: nix.thunk(() => (() => {

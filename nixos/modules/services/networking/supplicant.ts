@@ -54,7 +54,7 @@ ${nix.sel(suppl, "extraConf")}
         nix.thunk(() => nix.str`-I${extraConfFile}`),
       ]))));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: nix.thunk(() => nix.str`Supplicant ${iface}${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(iface, "WLAN")) || nix.asBool(nix.eq(iface, "LAN")))), " %I")}`),
       wantedBy: nix.thunk(() => nix.concat(["multi-user.target"], deps)),
       wants: nix.thunk(() => ["network.target"]),
@@ -68,83 +68,83 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(suppl, "userC
 `))}
 `),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "wpa_supplicant")}/bin/wpa_supplicant -s ${driverArg} ${confArgs} ${bridgeArg} ${nix.sel(suppl, "extraCmdArgs")} ${(nix.asBool((nix.asBool(nix.eq(iface, "WLAN")) || nix.asBool(nix.eq(iface, "LAN")))) ? "-i%I" : (nix.asBool(nix.eq(iface, "DBUS")) ? "-u" : nix.force(ifaceArg)))}`),
       })),
     };
   })();
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       networking: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         supplicant: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       configFile: nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")))),
                             default: null,
                             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "/etc/wpa_supplicant.conf")),
                             description: "External {file}`wpa_supplicant.conf` configuration file.\nThe configuration options defined declaratively within `networking.supplicant` have\nprecedence over options defined in `configFile`.\n",
                           })))),
                         writable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             description: "Whether the configuration file at `configFile.path` should be written to by\n`wpa_supplicant`.\n",
                           })))),
                       })),
                       extraConf: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                           default: "",
                           example: "ap_scan=1\ndevice_name=My-NixOS-Device\ndevice_type=1-0050F204-1\ndriver_param=use_p2p_group_interface=1\ndisable_scan_offload=1\np2p_listen_reg_class=81\np2p_listen_channel=1\np2p_oper_reg_class=81\np2p_oper_channel=1\nmanufacturer=NixOS\nmodel_name=NixOS_Unstable\nmodel_number=2015\n",
                           description: "Configuration options for {file}`wpa_supplicant.conf`.\nOptions defined here have precedence over options in `configFile`.\nNOTE: Do not write sensitive data into `extraConf` as it will\nbe world-readable in the `nix-store`. For sensitive information\nuse the `configFile` instead.\n",
                         })))),
                       extraCmdArgs: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                           default: "",
                           example: "-e/run/wpa_supplicant/entropy.bin",
                           description: "Command line arguments to add when executing `wpa_supplicant`.",
                         })))),
                       driver: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                           default: "nl80211,wext",
                           description: "Force a specific wpa_supplicant driver.",
                         })))),
                       bridge: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                           default: "",
                           description: "Name of the bridge interface that wpa_supplicant should listen at.",
                         })))),
                       userControlled: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             description: "Allow normal users to control wpa_supplicant through wpa_gui or wpa_cli.\nThis is useful for laptop users that switch networks a lot and don't want\nto depend on a large package such as NetworkManager just to pick nearby\naccess points.\n",
                           })))),
                         socketDir: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "/run/wpa_supplicant",
                             description: "Directory of sockets for controlling wpa_supplicant.",
                           })))),
                         group: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "wheel",
                             example: "network",
@@ -161,22 +161,22 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(suppl, "userC
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(cfg, {})), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wpa_supplicant"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           dbus: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wpa_supplicant"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             packages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   name: "99-zzz-60-supplicant.rules",
                   destination: "/etc/udev/rules.d/99-zzz-60-supplicant.rules",
                   text: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), "\n")), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (n) => (nix.asBool((nix.asBool(!nix.eq(n, "WLAN")) && nix.asBool(!nix.eq(n, "LAN")))) && nix.asBool(!nix.eq(n, "DBUS"))), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), cfg)))), (iface) => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), "\n")), nix.thunk(() => nix.app(nix.lookup(w, "splitString"), " ", iface)), (i) => nix.str`ACTION=="add", SUBSYSTEM=="net", ENV{INTERFACE}=="${i}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="supplicant-${nix.app(nix.lookup(w, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => ["-"]), iface)}.service", TAG+="SUPPLICANT_ASSIGNED"`))}
@@ -189,7 +189,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(nix.lookup(w,
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.app(serviceName, n)), nix.thunk(() => nix.app(supplicantService, n, v))), cfg)),
         })),
       })))),

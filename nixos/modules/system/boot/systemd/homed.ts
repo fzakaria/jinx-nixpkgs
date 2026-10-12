@@ -33,25 +33,25 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "homed"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homed: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "systemd home area/user account manager")),
-          promptOnFirstBoot: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "interactively prompting for user creation on first boot\n"), { __proto__: pos$1, default: true })),
+          promptOnFirstBoot: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "interactively prompting for user creation on first boot\n"), { [nix.POS]: pos$1, default: true })),
           settings: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             Home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                   })))),
-                example: nix.thunk(() => ({ __proto__: pos$3, DefaultStorage: "luks", DefaultFileSystemType: "btrfs" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$3, DefaultStorage: "luks", DefaultFileSystemType: "btrfs" })),
                 description: "Options for systemd-homed. See {manpage}`homed.conf(5)` man page for\navailable options.\n",
               })))),
           })),
@@ -59,55 +59,55 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => nix.sel(config, "services", "nscd", "enable")),
             message: "systemd-homed requires the use of the systemd nss module.\nservices.nscd.enable must be set to true.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           additionalUpstreamSystemUnits: nix.thunk(() => [
             "systemd-homed.service",
             "systemd-homed-activate.service",
             "systemd-homed-firstboot.service",
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "systemd-homed": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               path: nix.thunk(() => nix.sel(config, "system", "fsPackages")),
               aliases: nix.thunk(() => ["dbus-org.freedesktop.home1.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
-            "systemd-homed-activate": nix.thunk(() => ({ __proto__: pos$11, wantedBy: nix.thunk(() => ["systemd-homed.service"]) })),
+            "systemd-homed-activate": nix.thunk(() => ({ [nix.POS]: pos$11, wantedBy: nix.thunk(() => ["systemd-homed.service"]) })),
             "systemd-homed-firstboot": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.sel(cfg, "promptOnFirstBoot")),
               wantedBy: nix.thunk(() => ["systemd-homed.service"]),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           userdbd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: true,
             enableSSHSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "openssh", "enable")))),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           supportedFilesystems: nix.thunk(() => ["btrfs", "ext4", "xfs"]),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "systemd/homed.conf": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               text: nix.thunk(() => nix.str`[Home]
 ${nix.app(nix.sel(utils, "systemdUtils", "lib", "attrsToSection"), nix.thunk(() => nix.sel(cfg, "settings", "Home")))}
 `),

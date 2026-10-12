@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "vg",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/vg/releases/vg-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-qcTtvIfSUwzpUZDspL+54UTNvWY6u3BTvfGWF6c0Jvw=",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative 2D vector graphics for OCaml",
         longDescription: "Vg is an OCaml module for declarative 2D vector graphics. In Vg, images\nare values that denote functions mapping points of the cartesian plane\nto colors. The module provides combinators to define and compose these\nvalues.\n\nRenderers for PDF, SVG and the HTML canvas are distributed with the\nmodule. An API allows to implement new renderers.\n",
         homepage: "https://erratique.ch/software/vg",

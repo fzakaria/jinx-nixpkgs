@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const hello_x86_32 = nix.arg($, "hello-x86_32");
   nix.assert_((!nix.asBool(withDynarec) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/emulators/box86/default.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "box86",
       version: "0.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ptitSeb",
           repo: "box86",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,19 +58,19 @@ $out/bin/box86 -v | grep ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() 
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(buildPackages, "gitUpdater"), nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix.sel(buildPackages, "gitUpdater"), nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hello: nix.thunk(() => nix.app(runCommand, "box86-test-hello", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`BOX86_NOBANNER=0 BOX86_LOG=1 box86 ${nix.app(nix.sel(lib, "getExe"), hello_x86_32)} --version | tee $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://box86.org/",
         description: "Lets you run x86 Linux programs on non-x86 Linux systems",
         changelog: nix.thunk(() => nix.str`https://github.com/ptitSeb/box86/releases/tag/v${nix.sel(finalAttrs, "version")}`),

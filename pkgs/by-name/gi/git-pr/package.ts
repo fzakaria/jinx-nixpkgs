@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-pr",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "picosh",
           repo: "git-pr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-7aHr5CWZVmhBiuCXaK49zYJXMufCxZBnS917mF0QJlg=",
       subPackages: nix.thunk(() => ["cmd/ssh", "cmd/web"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: "mv $out/bin/ssh $out/bin/git-ssh\nmv $out/bin/web $out/bin/git-web\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://pr.pico.sh",
         description: "Simple git collaboration tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

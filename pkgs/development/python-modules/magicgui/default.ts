@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyapp-kit",
           repo: "magicgui",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
       const dependencies = nix.thunk(() => [typing_extensions, superqt, psygnal, docstring_parser]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pyside2: nix.thunk(() => [pyside2]),
         pyside6: nix.thunk(() => [pyside6]),
         pyqt6: nix.thunk(() => [pyqt6]),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, napari: napari })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, napari: napari })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Build GUIs from python functions, using magic.  (napari/magicgui)",
         homepage: "https://github.com/pyapp-kit/magicgui",
         changelog: nix.thunk(() => nix.str`https://github.com/pyapp-kit/magicgui/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

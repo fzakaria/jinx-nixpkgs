@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: snakeLibName,
           hash: "sha256-uZUAHJsuG0zqDPXzhAp8eRiKjLutBT1pNXK9jBwexGA=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) }));
       const pythonImportsCheck = nix.thunk(() => [snakeLibName]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "cli")));
       const disabledTests = nix.thunk(() => ["test_generate_categories", "test_generate_confusables"]);
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const licenses = nix.thunk(() => nix.attr(lib, "licenses"));
         const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Detect confusable usage of unicode homoglyphs, prevent homograph attacks",
           homepage: "https://sr.ht/~valhalla/confusable_homoglyphs/",
           changelog: "https://confusable-homoglyphs.readthedocs.io/en/latest/history.html",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

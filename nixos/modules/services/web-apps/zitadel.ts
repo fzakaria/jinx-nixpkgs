@@ -48,85 +48,85 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "zitadel"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         zitadel: nix.thunk(() => (() => {
           const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
           const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
           const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
           const types = nix.thunk(() => nix.attr(lib, "types"));
           return {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(mkEnableOption, "ZITADEL, a user and identity access management platform")),
-            package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ZITADEL", nix.thunk(() => ({ __proto__: pos$1, default: nix.thunk(() => ["zitadel"]) })))),
+            package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ZITADEL", nix.thunk(() => ({ [nix.POS]: pos$1, default: nix.thunk(() => ["zitadel"]) })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "zitadel",
                 description: "The user to run ZITADEL under.",
               })))),
             group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "zitadel",
                 description: "The group to run ZITADEL under.",
               })))),
             openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to open the port specified in `listenPort` in the firewall.\n",
               })))),
             masterKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 description: "Path to a file containing a master encryption key for ZITADEL. The\nkey must be 32 bytes.\n",
               })))),
             tlsMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["external", "enabled", "disabled"]))),
                 default: "external",
                 example: "enabled",
                 description: "The TLS mode to use. Options are:\n\n- enabled: ZITADEL accepts HTTPS connections directly. You must\n  configure TLS if this option is selected.\n- external: ZITADEL forces HTTPS connections, with TLS terminated at a\n  reverse proxy.\n- disabled: ZITADEL accepts HTTP connections only. Should only be used\n  for testing.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       Port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 8080n,
                           description: "The port that ZITADEL listens on.",
                         })))),
                       TLS: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         KeyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: null,
                             description: "Path to the TLS certificate private key.",
                           })))),
                         Key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             description: "The TLS certificate private key, as a base64-encoded string.\n\nNote that the contents of this option will be added to the Nix\nstore as world-readable plain text. Set\n[KeyPath](#opt-services.zitadel.settings.TLS.KeyPath) instead\nif this is undesired.\n",
                           })))),
                         CertPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: null,
                             description: "Path to the TLS certificate.",
                           })))),
                         Cert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             description: "The TLS certificate, as a base64-encoded string.\n\nNote that the contents of this option will be added to the Nix\nstore as world-readable plain text. Set\n[CertPath](#opt-services.zitadel.settings.TLS.CertPath) instead\nif this is undesired.\n",
@@ -139,20 +139,20 @@ export default nix.lambda((args) => (() => {
                 description: "Contents of the runtime configuration file. See\n<https://zitadel.com/docs/self-hosting/manage/configure> for more\ndetails.\n",
               })))),
             extraSettingsPaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: [],
                 description: "A list of paths to extra settings files. These will override the\nvalues set in [settings](#opt-services.zitadel.settings). Useful if\nyou want to keep sensitive secrets out of the Nix store.\n",
               })))),
             steps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  FirstInstance = {\n    InstanceName = \"Example\";\n    Org.Human = {\n      UserName = \"foobar\";\n      FirstName = \"Foo\";\n      LastName = \"Bar\";\n    };\n  };\n}\n")),
                 description: "Contents of the database initialization config file. See\n<https://zitadel.com/docs/self-hosting/manage/configure> for more\ndetails.\n",
               })))),
             extraStepsPaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: [],
                 description: "A list of paths to extra steps files. These will override the values\nset in [steps](#opt-services.zitadel.steps). Useful if you want to\nkeep sensitive secrets out of the Nix store.\n",
@@ -162,37 +162,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "tlsMode"), "enabled")) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings", "TLS", "Key"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "TLS", "KeyPath"), null)))) && nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings", "TLS", "Cert"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "TLS", "CertPath"), null)))))))),
             message: "A TLS certificate and key must be configured in\nservices.zitadel.settings.TLS if services.zitadel.tlsMode is enabled.\n",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "Port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             zitadel: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "ZITADEL identity access management",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Type: "simple",
                 ExecStart: nix.thunk(() => (() => {
                   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
                   const stepsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "steps.yaml", nix.thunk(() => nix.sel(cfg, "steps"))));
                   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       config: nix.thunk(() => nix.concat(nix.sel(cfg, "extraSettingsPaths"), [configFile])),
                       steps: nix.thunk(() => nix.concat(nix.sel(cfg, "extraStepsPaths"), [stepsFile])),
                       masterkeyFile: nix.thunk(() => nix.sel(cfg, "masterKeyFile")),
@@ -208,22 +208,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             zitadel: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "zitadel")), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             zitadel: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "zitadel")), nix.thunk(() => ({})))),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$35, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$35, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=zitadel.ts.map

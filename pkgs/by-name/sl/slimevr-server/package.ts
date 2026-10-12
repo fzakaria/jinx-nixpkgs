@@ -28,17 +28,17 @@ ln -s ${hidapi}/lib/libhidapi-hidraw.so $out/lib/libhidapi.so
     return nix.str`-Djna.library.path='${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [hidapi, libhidapi]))}'`;
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "slimevr-server",
       src: nix.thunk(() => nix.attr(slimevr, "src")),
       version: nix.thunk(() => nix.attr(slimevr, "version")),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./no-grgit.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./no-grgit.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       postPatch: "# Disable Android, so its files don't have to be patched.\nsubstituteInPlace settings.gradle.kts \\\n  --replace-fail 'include(\":server:android\")' \"\"\n",
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
@@ -55,9 +55,9 @@ makeWrapper ${java}/bin/java $out/bin/slimevr-server \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, java: java, javaOptions: javaOptions })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, java: java, javaOptions: javaOptions })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://docs.slimevr.dev/",
         description: "App for facilitating full-body tracking in virtual reality",
         license: nix.thunk(() => (() => {

@@ -22,39 +22,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         kdeconnect: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "kdeconnect.\n\nNote that it will open the TCP and UDP port from\n1714 to 1764 as they are needed for it to function properly.\nYou can use the {option}`package` to use\n`gnomeExtensions.gsconnect` as an alternative\nimplementation if you use Gnome\n")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["kdePackages", "kdeconnect-kde"]), nix.thunk(() => ({ __proto__: pos$1, nullable: true, example: "gnomeExtensions.gsconnect" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["kdePackages", "kdeconnect-kde"]), nix.thunk(() => ({ [nix.POS]: pos$1, nullable: true, example: "gnomeExtensions.gsconnect" })))),
         })),
       })),
     })),
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "programs", "kdeconnect"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             uinput: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             firewall: nix.thunk(() => (() => {
-              const allowedTCPPortRanges = nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$8, from: 1714n, to: 1764n }))]);
+              const allowedTCPPortRanges = nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, from: 1714n, to: 1764n }))]);
               const allowedUDPPortRanges = allowedTCPPortRanges;
-              return { __proto__: pos$9, allowedTCPPortRanges, allowedUDPPortRanges };
+              return { [nix.POS]: pos$9, allowedTCPPortRanges, allowedUDPPortRanges };
             })()),
           })),
         })));

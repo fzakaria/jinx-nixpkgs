@@ -89,37 +89,37 @@ export default nix.lambda((args) => (() => {
   const nodeNames = nix.thunk(() => ["a", "b", "c"]);
   const nodeDirs = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nodeNames, (n) => nix.add(nix.path(here, "./test-nodes"), nix.str`/${n}`)));
   const nodeData = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cert: nix.thunk(() => nix.str`${v}/cert.pem`),
       key: nix.thunk(() => nix.str`${v}/key.pem`),
       id: nix.thunk(() => nix.app(nix.sel(lib, "fileContents"), nix.thunk(() => nix.add(v, "/id")))),
     }), nodeDirs));
   const testPassword = "it's a secret";
   const commonNodeConfigModule = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     services: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       syncthing: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enable: true,
         openDefaultPorts: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$3,
-          devices: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => ({ __proto__: pos$2, id: nix.thunk(() => nix.attr(v, "id")) }), nodeData)),
+          [nix.POS]: pos$3,
+          devices: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => ({ [nix.POS]: pos$2, id: nix.thunk(() => nix.attr(v, "id")) }), nodeData)),
         })),
       })),
     })),
   }));
   const nodeConfigModules = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     a: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         syncthing: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nodeData, "a"));
           return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cert: nix.thunk(() => nix.attr(from, "cert")),
           key: nix.thunk(() => nix.attr(from, "key")),
           guiAddress: "unix:///run/syncthing/syncthing.sock",
@@ -128,13 +128,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     b: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         syncthing: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nodeData, "b"));
           return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cert: nix.thunk(() => nix.attr(from, "cert")),
           key: nix.thunk(() => nix.attr(from, "key")),
         };
@@ -142,13 +142,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     c: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         syncthing: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nodeData, "c"));
           return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           cert: nix.thunk(() => nix.attr(from, "cert")),
           key: nix.thunk(() => nix.attr(from, "key")),
         };
@@ -159,17 +159,17 @@ export default nix.lambda((args) => (() => {
   const nodeFolderConfigModules = nix.thunk(() => [
     nix.thunk(() => (() => {
       const abFooConfig = nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               folders: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 foo: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   path: "/var/lib/syncthing/foo",
                   devices: nix.thunk(() => ["a", "b"]),
                 })),
@@ -178,35 +178,35 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       }));
-      return { __proto__: pos$23, a: abFooConfig, b: abFooConfig, c: nix.thunk(() => ({})) };
+      return { [nix.POS]: pos$23, a: abFooConfig, b: abFooConfig, c: nix.thunk(() => ({})) };
     })()),
     nix.thunk(() => (() => {
       const abBarConfig = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           environment: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             etc: nix.thunk(() => ({
-              __proto__: pos$25,
-              "bar-encryption-password": nix.thunk(() => ({ __proto__: pos$24, text: testPassword })),
+              [nix.POS]: pos$25,
+              "bar-encryption-password": nix.thunk(() => ({ [nix.POS]: pos$24, text: testPassword })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             syncthing: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               settings: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 folders: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   bar: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     path: "/var/lib/syncthing/bar",
                     devices: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         name: "c",
                         encryptionPasswordFile: nix.thunk(() => nix.str`/etc/${nix.sel(config, "environment", "etc", "bar-encryption-password", "target")}`),
                       })),
@@ -219,21 +219,21 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2);
       return {
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         a: abBarConfig,
         b: abBarConfig,
         c: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             syncthing: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               settings: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 folders: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   bar: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     path: "/var/lib/syncthing/bar",
                     devices: nix.thunk(() => ["a", "b"]),
                     type: "receiveencrypted",
@@ -246,19 +246,19 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       a: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         services: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             settings: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               folders: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 baz: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   path: "/var/lib/syncthing/baz",
                   devices: nix.thunk(() => ["b", "c"]),
                   ignorePatterns: [],
@@ -269,17 +269,17 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       b: nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         services: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             settings: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               folders: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 baz: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   path: "/var/lib/syncthing/baz",
                   devices: nix.thunk(() => ["a", "c"]),
                   ignorePatterns: nix.thunk(() => ["notB", "apostrophe'"]),
@@ -290,17 +290,17 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       c: nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         services: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             settings: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               folders: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 baz: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   path: "/var/lib/syncthing/baz",
                   devices: nix.thunk(() => ["a", "b"]),
                   ignorePatterns: nix.thunk(() => ["notC"]),
@@ -312,19 +312,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       a: nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         services: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             settings: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               folders: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 "foo bar": nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   path: "/var/lib/syncthing/foo-bar",
                   devices: nix.thunk(() => ["b"]),
                 })),
@@ -334,17 +334,17 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       b: nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         services: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             settings: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               folders: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 "foo bar": nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   path: "/var/lib/syncthing/foo-bar",
                   devices: nix.thunk(() => ["a"]),
                   ignorePatterns: nix.thunk(() => ["notB"]),
@@ -358,10 +358,10 @@ export default nix.lambda((args) => (() => {
     })),
   ]);
   return {
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     name: "syncthing-folders",
     meta: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -371,9 +371,9 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     passthru: nix.thunk(() => ({
-      __proto__: pos$75,
+      [nix.POS]: pos$75,
       genNodeData: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           name: "genNodeData.sh",
           runtimeInputs: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
@@ -396,7 +396,7 @@ done
         })))),
     })),
     containers: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nodeNames, (n) => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         imports: nix.thunk(() => nix.concat([
           commonNodeConfigModule,
           nix.thunk(() => nix.sel(nodeConfigModules, nix.key(nix.str`${n}`))),

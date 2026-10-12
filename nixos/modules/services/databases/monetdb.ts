@@ -33,48 +33,48 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "monetdb"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "StillerHarpo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         monetdb: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the MonetDB database server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "monetdb", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "monetdb",
               description: "User account under which MonetDB runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "monetdb",
               description: "Group under which MonetDB runs.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/monetdb",
               description: "Data directory for the dbfarm.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 50000n,
               description: "Port to listen on.",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
@@ -84,13 +84,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             monetdb: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "monetdb")), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "monetdb")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "MonetDB user",
@@ -99,34 +99,34 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             monetdb: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "monetdb")), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "monetdb")),
                 members: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user"))]),
               })))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             monetdb: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "MonetDB database server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 RequiresMountsFor: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/monetdbd start -n ${nix.sel(cfg, "dataDir")}`),

@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.2.3",
       pname: "notty",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pqwy/notty/releases/download/v${nix.sel(finalAttrs, "version")}/notty-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-dGWfsUBz20Q4mJiRqyTyS++Bqkl9rBbZpn+aHJwgCCQ=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/pqwy/notty/commit/a4d62f467e257196a5192da2184bd021dfd948b7.patch",
           hash: "sha256-p1eUuCvQKLj8uBeGyT2+i9WOYy4rk84pf9L3QioJDNY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       propagatedBuildInputs: nix.thunk(() => [lwt, uutf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pqwy/notty",
         description: "Declarative terminal graphics for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

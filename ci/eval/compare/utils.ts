@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const packagePath = nix.thunk(() => nix.app(nix.sel(lib, "init"), splittedPath));
       const name = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", packagePath));
       return (nix.asBool(nix.eq(name, "")) ? null : {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         packagePath: packagePath,
         name: name,
         platform: nix.thunk(() => nix.app(nix.sel(lib, "last"), splittedPath)),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const getLabels = (rebuildCountByKernel) => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (kernel) => (rebuildCount) => (() => {
           const range = (from) => (to) => (nix.asBool(nix.le(from, rebuildCount)) && nix.asBool((nix.asBool(nix.eq(to, null)) || nix.asBool(nix.le(rebuildCount, to)))));
           return nix.app(nix.sel(lib, "mapAttrs'"), (number) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`10.rebuild-${kernel}: ${number}`)), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "0": nix.thunk(() => nix.app(range, 0n, 0n)),
               "1": nix.thunk(() => nix.app(range, 1n, 1n)),
               "1-10": nix.thunk(() => nix.app(range, 1n, 10n)),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
             })));
         })(), rebuildCountByKernel)));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       uniqueStrings,
       convertToPackagePlatformAttr,
       convertToPackagePlatformAttrs,

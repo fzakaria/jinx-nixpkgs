@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autodiff",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autodiff",
           repo: "autodiff",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace python/package/CMakeLists.txt \\\n  --replace-fail PYTHON_EXECUTABLE Python_EXECUTABLE\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic differentiation made easier for C++",
         homepage: "https://github.com/autodiff/autodiff/tree/main",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "athas"))]),

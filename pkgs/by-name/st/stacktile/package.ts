@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stacktile",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~leon_plickat",
           repo: "stacktile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix-compilation.patch?h=stacktile&id=388a522b69e34c01cc5d57341d8578470a7dccfb",
             hash: "sha256-y5ArQyjIqT2ICmm8ZYDHZ04DwGgw2d7wsgoH5XJPZf0=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sr.ht/~leon_plickat/stacktile/",
         description: "Layout generator for the river Wayland compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

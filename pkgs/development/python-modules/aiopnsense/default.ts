@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pythonOlder = nix.arg($, "pythonOlder");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiopnsense",
       version: "1.1.9",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Snuffy2",
           repo: "aiopnsense",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aiohttp, pytest_asyncio, pytest_cov_stub, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aiopnsense"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python client library for OPNsense",
         homepage: "https://github.com/Snuffy2/aiopnsense",
         changelog: nix.thunk(() => nix.str`https://github.com/Snuffy2/aiopnsense/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crate2nix",
       version: "0.15.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "crate2nix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ installShellCompletion --bash crate2nix.bash --zsh _crate2nix --fish crate2nix.f
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nix build file generator for Rust crates",
         mainProgram: "crate2nix",
         longDescription: "Crate2nix generates Nix files from Cargo.toml/lock files\nso that you can build every crate individually in a Nix sandbox.\n",

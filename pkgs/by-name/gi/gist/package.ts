@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const gemName = "gist";
       const version = "6.0.0";
       const source = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "0qnd1jqd7b04871v4l73grcmi7c0pivm8nsfrqvwivm4n4b3c2hd",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Upload code to https://gist.github.com (or github enterprise)",
         homepage: "http://defunkt.io/gist/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(ruby_1, "meta", "platforms")),
       }));
-      return { __proto__: pos$3, ruby: ruby_1, name, gemName, version, source, meta };
+      return { [nix.POS]: pos$3, ruby: ruby_1, name, gemName, version, source, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

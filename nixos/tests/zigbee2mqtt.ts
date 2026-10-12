@@ -20,36 +20,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "zigbee2mqtt",
     containers: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "dummy-serial": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "socat")}/bin/socat pty,link=/dev/ttyACM0,mode=666 pty,link=/dev/ttyACM1`),
               })),
             })),
             zigbee2mqtt: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 DevicePolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "auto")),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
-          zigbee2mqtt: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          [nix.POS]: pos$8,
+          zigbee2mqtt: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
         })),
       })),
     })),

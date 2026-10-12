@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const skops = nix.arg($, "skops");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sagemaker-mlflow",
       version: "0.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "sagemaker-mlflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "test_presigned_url_with_fields",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MLFlow plugin for SageMaker",
         homepage: "https://github.com/aws/sagemaker-mlflow",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/sagemaker-mlflow/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

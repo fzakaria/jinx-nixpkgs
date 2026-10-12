@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const rtld = nix.arg($, "rtld");
   const version = nix.arg($, "version");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libc-openbsd",
       version: version,
       outputs: nix.thunk(() => ["out", "dev", "man"]),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         ], nix.thunk(() => nix.concat([libcMinimal, libm, librthread, librpcsvc, libutil, libexecinfo, libkvm], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoLibc, "hostPlatform", "isStatic"))), rtld))))),
       postBuild: "rm -r \"$out/nix-support\"\nmkdir -p \"$man/share/man\"\nmv \"$out/share\"/man* \"$man/share/man\"\nrmdir \"$out/share\"\nfixupPhase\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

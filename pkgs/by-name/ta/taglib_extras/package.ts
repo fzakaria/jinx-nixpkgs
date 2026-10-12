@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "taglib-extras",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.kde.org/stable/taglib-extras/${nix.sel(finalAttrs, "version")}/src/taglib-extras-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0cln49ws9svvvals5fzxjxlzqm0fzjfymn7yfp4jfcjz655nnm7y",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "2001-taglib-extras-Fix-taglib-2.x-compat.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/taglib-2.0.diff?h=taglib-extras&id=5826657b841b138c501e0633d1c9333fe9197b00",
             hash: "sha256-yhme2KcIS5SPXz+mx/R2OiLV57WHz6WW8LJtYab4h5I=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "sed -i -e 's/STRLESS/VERSION_LESS/g' cmake/modules/FindTaglib.cmake\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Additional taglib plugins",
         mainProgram: "taglib-extras-config",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

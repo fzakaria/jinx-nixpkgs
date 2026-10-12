@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const extra_floyd_files = nix.thunk(() => nix.concat(["ASTsize.v", "io_events.v", "powerlater.v"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "8.13", nix.thunk(() => nix.sel(coq, "coq-version"))))), "printf.v"), ["quickprogram.v"])));
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: nix.thunk(() => nix.str`coq${nix.sel(coq, "coq-version")}-VST`),
       namePrefix: [],
-      displayVersion: nix.thunk(() => ({ __proto__: pos$1, coq: false })),
+      displayVersion: nix.thunk(() => ({ [nix.POS]: pos$1, coq: false })),
       owner: "PrincetonUniversity",
       repo: "VST",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$2, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$2, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.1", "9.2")), "2.17")),
@@ -51,45 +51,45 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "2.17": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-iDrX3uA6yOilwtg/9hIVx7e9U18pA2h5TXBh0bvBQkY=",
         })),
         "2.16": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-/IlFLiojtuENHE9d+j55Z2rYw5HUkltwVim75w/UFVE=",
         })),
         "2.15": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-51k2W4efMaEO4nZ0rdkRT9rA8ZJLpot1YpFmd6RIAXw=",
         })),
         "2.14": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-NHc1ZQ2VmXZy4lK2+mtyeNz1Qr9Nhj2QLxkPhhQB7Iw=",
         })),
         "2.13": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-i6rvP3cpayBln5KHZOpeNfraYU5h0O9uciBQ4jRH4XA=",
         })),
         "2.12": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-4HL0U4HA5/usKNXC0Dis1UZY/Hb/LRd2IGOrqrvdWkw=",
         })),
         "2.11.1": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-unpNstZBnRT4dIqAYOv9n1J0tWJMeRuaaa2RG1U0Xs0=",
         })),
         "2.10": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-RIxfPWoHnV1CFkpxCusoGY/LIk07TgC7wWGRP4BSq8w=",
         })),
         "2.9": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:1adwzbl1pprrrwrm7cm493098fizxanxpv7nyfbvwdhgbhcnv6qf",
         })),
         "2.8": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-cyK88uzorRfjapNQ6XgQEmlbWnDsiyLve5po1VG52q0=",
         })),
       })),
@@ -115,7 +115,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(compcert, "meta"));
         return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Verified Software Toolchain",
         homepage: "https://vst.cs.princeton.edu/",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

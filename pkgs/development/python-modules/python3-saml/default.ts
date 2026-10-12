@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const xmlsec = nix.arg($, "xmlsec");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python3-saml",
       version: "1.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onelogin",
           repo: "python3-saml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-to-poetry-core.patch",
             url: "https://github.com/SAML-Toolkits/python3-saml/commit/231a7e19543138fdd7424c01435dfe3f82bbe9ce.patch",
             hash: "sha256-MvX1LXhf3LJUy3O7L0/ySyVY4KDGc/GKJud4pOkwVIk=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "OneLogin_Saml2_Logout_Request_Test",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OneLogin's SAML Python Toolkit",
         homepage: "https://github.com/onelogin/python3-saml",
         changelog: nix.thunk(() => nix.str`https://github.com/SAML-Toolkits/python3-saml/blob/v${nix.sel(finalAttrs, "version")}/changelog.md`),

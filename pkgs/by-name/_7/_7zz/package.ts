@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const makefile = nix.thunk(() => nix.str`../../cmpl_${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "clang" : "gcc"))}${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "_x64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "_arm64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "_x86" : "")))}.mak`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "7zz",
       version: "26.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ip7z",
           repo: "7zip",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail windres.exe ${nix.sel(stdenv, "cc", "targetPrefix")}windres
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=array-bounds"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-deprecated-copy-dtor"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ["-Wno-conversion", "-Wno-unused-macros"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-declaration-after-statement",
               nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))), "13")), nix.thunk(() => ["-Wno-reserved-identifier", "-Wno-unused-but-set-variable"]))),
@@ -78,30 +78,30 @@ install -Dm555 -t $lib/lib ../Format7zF/b/*/7z.*
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 attrPath: "_7zz",
                 extraArgs: nix.thunk(() => ["--use-github-releases"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 attrPath: "_7zz-rar",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
           ]))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "7zz --help",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Command line version of the 7-Zip archiver utility",
         homepage: "https://7-zip.org",
         changelog: "https://7-zip.org/history.txt",
@@ -126,9 +126,9 @@ runHook postInstall
         })()),
         mainProgram: "7zz",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             vendor: "7-zip",
             product: "7-zip",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),

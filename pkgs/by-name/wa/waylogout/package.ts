@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "waylogout",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "loserMcloser",
           repo: "waylogout",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, scdoc, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland, wayland_protocols, libxkbcommon, cairo, gdk_pixbuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical logout/suspend/reboot/shutdown dialog for wayland",
         homepage: "https://github.com/loserMcloser/waylogout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

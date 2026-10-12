@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const python3 = nix.arg($, "python3");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orioledb",
       version: "1.10-beta19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orioledb",
           repo: "orioledb",
           tag: "beta19",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         return (() => {
           const from = nix.thunk(() => nix.sel(postgresql, "meta"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: nix.thunk(() => nix.attr(from, "description")),
           maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
           license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [

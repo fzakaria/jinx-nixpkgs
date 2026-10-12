@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "google-cloud-asset",
       version: "4.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-asset-v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         proto_plus,
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc"))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, libcst: nix.thunk(() => [libcst]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) })),
       nativeCheckInputs: nix.thunk(() => [google_cloud_testutils, mock, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => [
         "google.cloud.asset",
@@ -64,15 +64,15 @@ export default nix.lambda((args) => (() => {
         "google.cloud.asset_v1p5beta1",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^google-cloud-asset: v([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python Client for Google Cloud Asset API",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-asset",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(finalAttrs, "src", "tag")}/packages/google-cloud-asset/CHANGELOG.md`),

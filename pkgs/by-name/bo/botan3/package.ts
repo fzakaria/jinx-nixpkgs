@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const exposeSelftests = nix.argOr($, "exposeSelftests", () => false);
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "policy", policy, nix.thunk(() => [null, "bsi", "fips140", "modern"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bo/botan3/package.nix:34:1");
   const stdenv_1 = nix.thunk(() => (nix.asBool(static$) ? nix.force(libcxxStdenv) : nix.sel(args_1, "stdenv")));
-  const empty_libgcc_eh = nix.thunk(() => nix.app(runCommandLocal, "empty-libgcc_eh", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`mkdir -p "$out"/lib
+  const empty_libgcc_eh = nix.thunk(() => nix.app(runCommandLocal, "empty-libgcc_eh", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`mkdir -p "$out"/lib
 ${nix.sel(stdenv_1, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
 `)));
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "3.13.0",
       pname: "botan",
       __structuredAttrs: true,
@@ -48,7 +48,7 @@ ${nix.sel(stdenv_1, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
       strictDeps: true,
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev", "doc", "man"], nix.app(nix.sel(lib, "optionals"), exposeSelftests, nix.thunk(() => ["selftests"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "randombit",
           repo: "botan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,11 +75,11 @@ ${nix.sel(stdenv_1, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), exposeSelftests, "mkdir -p $selftests/bin\ninstall -Dpm755 -D botan-test $selftests/bin/botan-test\n\n# don't copy leading source folder structure\npushd src/tests/data &> /dev/null\nfind . -type d -exec install -d $selftests/test-data/{} \\;\nfind . -type f -exec install -Dpm644 {} $selftests/test-data/{} \\;\npopd &> /dev/null\n"), "cd \"$out\"/lib/pkgconfig\nln -s botan-*.pc botan.pc || true\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "botan3")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "botan3")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cryptographic algorithms library",
         homepage: "https://botan.randombit.net",
         mainProgram: "botan",

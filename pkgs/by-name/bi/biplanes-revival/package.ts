@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "biplanes-revival",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "regular-dev",
           repo: "biplanes-revival",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: "id=\"org.regular_dev.biplanes_revival\"\ninstall -Dm644 $src/flatpak-data/$id.desktop -t $out/share/applications\ninstall -Dm644 $src/flatpak-data/$id.metainfo.xml -t $out/share/metainfo\ninstall -Dm644 $src/flatpak-data/$id.svg -t $out/share/icons/hicolor/scalable/apps\n\n# Move assets directory into the preferred location.\nmkdir -p $out/share/biplanes-revival\nmv $out/bin/assets $out/share/biplanes-revival\n\n# Remove TimeUtils headers.\nrm -rf $out/include\n",
       postFixup: "# Set assets root, the default is the current working directory.\n# The game automatically appends \"/assets\" to the variable.\nwrapProgram $out/bin/BiplanesRevival \\\n  --set BIPLANES_ASSETS_ROOT \"$out/share/biplanes-revival\";\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-I ../deps/TimeUtils/include" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-I ../deps/TimeUtils/include" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "BiplanesRevival",
         description: "Old cellphone arcade recreated for PC",
         homepage: "https://regular-dev.org/biplanes-revival",

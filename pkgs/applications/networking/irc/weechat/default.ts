@@ -60,52 +60,52 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
-  const php_embed = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({ __proto__: pos$1, embedSupport: true, apxs2Support: false }))));
+  const php_embed = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, embedSupport: true, apxs2Support: false }))));
   const plugins = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "perl",
       enabled: perlSupport,
       cmakeFlag: "ENABLE_PERL",
       buildInputs: nix.thunk(() => [perl]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "tcl",
       enabled: tclSupport,
       cmakeFlag: "ENABLE_TCL",
       buildInputs: nix.thunk(() => [tcl]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "ruby",
       enabled: rubySupport,
       cmakeFlag: "ENABLE_RUBY",
       buildInputs: nix.thunk(() => [ruby]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "guile",
       enabled: guileSupport,
       cmakeFlag: "ENABLE_GUILE",
       buildInputs: nix.thunk(() => [guile]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "lua",
       enabled: luaSupport,
       cmakeFlag: "ENABLE_LUA",
       buildInputs: nix.thunk(() => [lua5_3]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "python",
       enabled: pythonSupport,
       cmakeFlag: "ENABLE_PYTHON3",
       buildInputs: nix.thunk(() => [python]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "php",
       enabled: phpSupport,
       cmakeFlag: "ENABLE_PHP",
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weechat";
       const version = "4.10.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           url: nix.thunk(() => nix.str`https://weechat.org/files/src/weechat-${version}.tar.xz`),
           hash: "sha256-uHRMb13FVDBieR9WPgUW28lqNhYeGgPEaLO33Mi+Wv8=",
         }))));
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([cmake, pkg_config, asciidoctor], nix.app(nix.sel(lib, "optionals"), enableTests, nix.thunk(() => [cpputest]))));
       const buildInputs = nix.thunk(() => nix.concat([ncurses, openssl, cjson, enchant, gnutls, gettext, zlib, curl, libgcrypt], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libresolv])), nix.concat(nix.app(nix.sel(lib, "concatMap"), (p) => nix.sel(p, "buildInputs"), enabledPlugins), extraBuildInputs))));
       const env = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.str`-I${python}/include/${nix.sel(python, "libPrefix")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBIND_8_COMPAT=1 -lresolv"))),
       }));
       const postInstall = nix.thunk(() => nix.str`for p in ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (p) => nix.sel(p, "name"), enabledPlugins)}; do
@@ -153,11 +153,11 @@ done
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-weechat", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p coreutils gawk git gnugrep common-updater-scripts\nset -eu -o pipefail\n\nversion=\"$(git ls-remote --refs https://github.com/weechat/weechat | \\\n  awk '{ print $2 }' | \\\n  grep \"refs/tags/v\" | \\\n  sed -E -e 's,refs/tags/v(.*)$,\\1,' | \\\n  sort --version-sort --reverse | \\\n  head -n1)\"\nupdate-source-version weechat-unwrapped \"$version\"\n")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://weechat.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/weechat/weechat/releases/tag/v${version}`),
         description: "Fast, light and extensible chat client",
@@ -171,7 +171,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname,
         version,
         src,

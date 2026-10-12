@@ -12,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const renode_bin = nix.arg($, "renode-bin");
   return nix.app(nix.sel(renode_bin, "overrideAttrs"), (finalAttrs) => (_) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "renode-unstable",
       version: "1.17.0+20260923gite1227827a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://builds.renode.io/renode-${nix.sel(finalAttrs, "version")}.linux.tar.gz`),
           hash: "sha256-a/iJjN14eZRy+1AKvWk0Fpxri1JJouKqMp4nad8VGkk=",
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

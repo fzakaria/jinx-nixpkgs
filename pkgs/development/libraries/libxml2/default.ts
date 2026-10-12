@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const fetchpatch = nix.arg($, "fetchpatch");
   const packages = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     libxml2_13: nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "2.13.9",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             domain: "gitlab.gnome.org",
             owner: "GNOME",
             repo: "libxml2",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         extraPatches: nix.thunk(() => [
           nix.path(here, "./xml-attr-extra.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "CVE-2026-0990.patch",
               url: "https://gitlab.gnome.org/GNOME/libxml2/-/commit/1961208e958ca22f80a0b4e4c9d71cfa050aa982.patch",
               hash: "sha256-Df2WLCTsP/ItSzgnVkNjRpLKkBP4xUOXEfCUV9o/Yks=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./2.13-CVE-2026-0992.patch"),
           nix.path(here, "./2.13-CVE-2026-0989.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "CVE-2026-11979.patch",
               url: "https://gitlab.gnome.org/GNOME/libxml2/-/commit/c2e233fc1b341685fc99621b2768b503f777a72e.patch",
               hash: "sha256-DcPZl6rOuP6aycK+1EHUgPX4YWDAH+ctAZtOI48QO2Q=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ]),
         freezeUpdateScript: true,
         extraMeta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "gepbird"))];
@@ -60,10 +60,10 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     libxml2: nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "2.15.4",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             domain: "gitlab.gnome.org",
             owner: "GNOME",
             repo: "libxml2",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-NHk5HIGBRmWwRbX2JMBmMDiIDdee2atZEfhz3QTgcOo=",
           })))),
         extraMeta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "jtojnar"))];

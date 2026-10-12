@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libcMinimal = nix.arg($, "libcMinimal");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libgcc_eh",
       extraPaths: nix.thunk(() => [
         "lib/libgcc_s",

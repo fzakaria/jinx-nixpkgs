@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const graphicsmagick = nix.arg($, "graphicsmagick");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "graphicsmagick-imagemagick-compat",
       version: nix.thunk(() => nix.attr(graphicsmagick, "version")),
       outputs: nix.thunk(() => ["out", "man"]),
@@ -45,7 +45,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(graphicsmagick, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Repack of GraphicsMagick that provides compatibility with ImageMagick interfaces",
       })),
     })));

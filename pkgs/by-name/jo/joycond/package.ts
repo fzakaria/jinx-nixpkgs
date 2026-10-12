@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "joycond",
       version: "0-unstable-2026-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanielOgorchock",
           repo: "joycond",
           rev: "0df025ac5dc284b1f31172b6b252321ba788c4de",
@@ -49,11 +49,11 @@ substituteInPlace $out/etc/udev/rules.d/89-joycond.rules --replace \\
   "/bin/setfacl"  "${acl}/bin/setfacl"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/DanielOgorchock/joycond",
         description: "Userspace daemon to combine joy-cons from the hid-nintendo kernel driver",
         mainProgram: "joycond",

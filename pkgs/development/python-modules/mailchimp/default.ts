@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "mailchimp";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "5227999904233a7d2e9ce5eac5225b9a5fac0318ae5107e3ed09c8bf89286768",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const patchPhase = "sed -i 's/==/>=/' setup.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI client and Python API library for the MailChimp email platform",
         homepage: "http://apidocs.mailchimp.com/api/2.0/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

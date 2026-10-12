@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
   const targetPrefix = nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   const pname = nix.thunk(() => nix.add(nix.add(targetPrefix, "gdb"), nix.app(optionalString, hostCpuOnly, "-host-cpu-only")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: "17.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gdb/gdb-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-HANsDXLks9H7XJTIhjKt1vnXb018TS6nk8EqnxmjIow=",
         })))),
@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
         sourceHighlight,
         xxhash,
         dejagnu,
-      ], nix.concat(nix.app(optional, withTui, ncurses), nix.concat(nix.app(optional, withMpfr, mpfr), nix.concat(nix.app(optional, withGmp, gmp), nix.concat(nix.app(optional, withGuile, guile), nix.concat(nix.app(optional, enableDebuginfod, nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ __proto__: pos$2, enableDebuginfod: true }))))), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv)))))))),
+      ], nix.concat(nix.app(optional, withTui, ncurses), nix.concat(nix.app(optional, withMpfr, mpfr), nix.concat(nix.app(optional, withGmp, gmp), nix.concat(nix.app(optional, withGuile, guile), nix.concat(nix.app(optional, enableDebuginfod, nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableDebuginfod: true }))))), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv)))))))),
       propagatedNativeBuildInputs: nix.thunk(() => [setupDebugInfoDirs]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       strictDeps: true,
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["format"]))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-format-nonliteral" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-format-nonliteral" })),
       configurePlatforms: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => ["build", "host", "target"]))),
       preConfigure: "# remove precompiled docs, required for man gdbinit to mention /etc/gdb/gdbinit\nrm gdb/doc/*.info*\nrm gdb/doc/*.5\nrm gdb/doc/*.1\n\n# fix doc build https://sourceware.org/bugzilla/show_bug.cgi?id=27808\nrm gdb/doc/GDBvn.texi\n\n# GDB have to be built out of tree.\nmkdir _build\ncd _build\n",
       configureScript: "../configure",
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-gdb", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -138,7 +138,7 @@ update-source-version ${pname} "$new_version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GNU Project debugger",
         mainProgram: nix.thunk(() => nix.str`${targetPrefix}gdb`),
         longDescription: "GDB, the GNU Project debugger, allows you to see what is going\non `inside' another program while it executes -- or what another\nprogram was doing at the moment it crashed.\n",

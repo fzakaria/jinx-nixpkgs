@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "database";
       const version = "2.4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "1c0n76adi0jw6bx62s04vjyda6kb6ca8lzz2vam43vdy10prcq9p",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(libpq, "pg_config"))]);
       const requiredOctavePackages = nix.thunk(() => [struct]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/database/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         description: "Interface to SQL databases, currently only postgresql using libpq",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

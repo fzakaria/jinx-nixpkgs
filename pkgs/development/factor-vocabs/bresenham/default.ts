@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(factorPackages, "buildFactorVocab"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bresenham",
       version: "dev",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Capital-EX",
           repo: "bresenham",
           rev: "58d76b31a17f547e19597a09d02d46a742bf6808",
           hash: "sha256-cfQOlB877sofxo29ahlRHVpN3wYTUc/rFr9CJ89dsME=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bresenham's line interpolation algorithm",
         homepage: "https://github.com/Capital-EX/bresenham",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

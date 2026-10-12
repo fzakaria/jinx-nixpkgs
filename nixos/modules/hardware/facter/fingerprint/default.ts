@@ -23,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib.nix")), lib));
   const devices = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./devices.json")))));
-  const default$ = nix.thunk(() => ({ __proto__: pos$1, value: 0n }));
+  const default$ = nix.thunk(() => ({ [nix.POS]: pos$1, value: 0n }));
   const isSupported = nix.thunk(() => nix.app(nix.sel(lib, "any"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const vendor = nix.argOr($_1, "vendor", () => nix.force(default$));
       const device = nix.argOr($_1, "device", () => nix.force(default$));
-      const bus_type = nix.argOr($_1, "bus_type", () => ({ __proto__: pos$2, name: "" }));
+      const bus_type = nix.argOr($_1, "bus_type", () => ({ [nix.POS]: pos$2, name: "" }));
       return (nix.asBool(nix.eq(nix.sel(bus_type, "name"), "USB")) && nix.asBool(nix.has(devices, nix.key(nix.str`${nix.app(nix.sel(facterLib, "toZeroPaddedHex"), nix.thunk(() => nix.sel(vendor, "value")))}:${nix.app(nix.sel(facterLib, "toZeroPaddedHex"), nix.thunk(() => nix.sel(device, "value")))}`))));
     })(), formals$2)));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       hardware: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         facter: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           detected: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             fingerprint: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Fingerprint devices"), {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(isSupported, nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "unknown")))) || nix.asBool(nix.app(isSupported, nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "fingerprint")))))) || nix.asBool(nix.app(isSupported, nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "usb")))))),
                 defaultText: "hardware dependent",
               })),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         fprintd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "fingerprint", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
         })),
       })),

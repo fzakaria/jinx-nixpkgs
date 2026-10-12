@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.attr(ironcalc, "src"));
   const cargoHash = nix.thunk(() => nix.attr(ironcalc, "cargoHash"));
   const wasm = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ironcalc-wasm",
       version: version,
       src: src,
@@ -85,10 +85,10 @@ EOF
       doCheck: true,
       installPhase: "cp -r pkg $out\n",
       __structuredAttrs: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { __proto__: pos$1, description: "Ironcalc wasm bindings" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$1, description: "Ironcalc wasm bindings" })),
     }))));
   const widget = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ironcalc-widget",
       version: version,
       src: src,
@@ -105,10 +105,10 @@ echo '{"name": "@ironcalc/wasm", "version": "${nix.sel(ironcalc, "version")}"}' 
       installPhase: "mkdir -p $out\ncp -r . $out\n",
       __structuredAttrs: true,
       strictDeps: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { __proto__: pos$3, description: "Ironcalc frontend widget package" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$3, description: "Ironcalc frontend widget package" })),
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ironcalc-frontend",
       version: version,
       src: src,
@@ -135,8 +135,8 @@ cp -rv ${wasm}/. node_modules/@ironcalc/wasm
       installPhase: "mkdir -p $out\ncp -r dist/. $out\n",
       __structuredAttrs: true,
       strictDeps: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { __proto__: pos$5, description: "Ironcalc frontend package" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$5, description: "Ironcalc frontend package" })),
     }))));
-  return { __proto__: pos$7, wasm: wasm, widget: widget, frontend: frontend };
+  return { [nix.POS]: pos$7, wasm: wasm, widget: widget, frontend: frontend };
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

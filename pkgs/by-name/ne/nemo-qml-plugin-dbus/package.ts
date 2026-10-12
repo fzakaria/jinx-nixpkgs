@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nemo-qml-plugin-dbus";
       const version = "2.1.24";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.sailfishos.org",
           owner: "mer-core",
           repo: "nemo-qml-plugin-dbus",
@@ -36,14 +36,14 @@ substituteInPlace src/plugin/plugin.pro \\
   --replace '$$[QT_INSTALL_QML]' $out'/${nix.sel(qt5, "qtbase", "qtQmlPrefix")}'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nemo DBus plugin for qml",
         homepage: "https://git.sailfishos.org/mer-core/nemo-qml-plugin-dbus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Thra11"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, postPatch, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

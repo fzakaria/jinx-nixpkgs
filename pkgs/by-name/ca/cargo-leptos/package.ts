@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cargo-leptos",
       version: "0.3.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leptos-rs",
           repo: "cargo-leptos",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-iFkpIOkj8Ems9C2DjylFwvFLFrUnGachNyld4BLwurU=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, CRATE_CC_NO_DEFAULTS: 1n }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, CRATE_CC_NO_DEFAULTS: 1n }))))),
       buildFeatures: nix.thunk(() => ["no_downloads"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Build tool for the Leptos web framework",
         mainProgram: "cargo-leptos",
         homepage: "https://github.com/leptos-rs/cargo-leptos",

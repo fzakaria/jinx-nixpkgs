@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wlay",
       version: "0-unstable-2022-01-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atx",
           repo: "wlay",
           rev: "ed316060ac3ac122c0d3d8918293e19dfe9a6c90",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/atx/wlay",
         description: "Graphical output management for Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

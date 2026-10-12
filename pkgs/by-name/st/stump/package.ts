@@ -33,23 +33,23 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "stump",
       version: "0.1.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stumpapp",
           repo: "stump",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-MV9vhY15JgiCDN5J62AjI2uSkcM+cYjlT5hocxQXSOA=",
         })))),
       frontend: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (_) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "stump-frontend",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
               hash: "sha256-eKp7rRuo1kk8Nq7mK9JwvliUdaV8L03SoKAqXGQfWLg=",
             })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-eKS4Cax2HCPpeyjuHRFJy42I8KTwhv1oNH4jKaN+2dQ=",
       cargoBuildFlags: nix.thunk(() => ["--package", "stump_server", "--bin", "stump_server"]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         GIT_REV: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
   --set-default API_VERSION v1
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.sel(nixosTests, "stump")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://stumpapp.dev/",
         description: "A free and open source comics, manga and digital book server with OPDS support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

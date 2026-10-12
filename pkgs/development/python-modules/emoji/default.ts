@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carpedm20",
           repo: "emoji",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_emojize_name_only"]);
       const pythonImportsCheck = nix.thunk(() => ["emoji"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Emoji for Python",
         homepage: "https://github.com/carpedm20/emoji/",
         changelog: nix.thunk(() => nix.str`https://github.com/carpedm20/emoji/blob/${nix.sel(src, "tag")}/CHANGES.md`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

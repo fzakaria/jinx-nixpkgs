@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const hashes = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./hashes.json")))));
   const fetchWinSdk = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchWinSdk.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       pname: "win-sdk",
       src: nix.thunk(() => nix.app(fetchWinSdk, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           manifest: nix.path(here, "./manifest.json"),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.sel(finalAttrs, "src", "arch")))),
         })))),
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nxwin \"${xwinArgs[@]}\"\n\nmkdir -p \"$out\"\ncp -r splat/* \"$out\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.nu"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "hello-world": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "hello-msvc",
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped")),
@@ -83,12 +83,12 @@ fi
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "MSVC SDK and Windows CRT for cross compiling",
         homepage: "https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "RossSmyth"))]),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             fullName: "Microsoft Software License Terms",
             shortName: "msvc",
             free: false,

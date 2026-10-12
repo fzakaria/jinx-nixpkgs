@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0wpn9ijlsmrpyiwg3drmgz4dms1i1i347adgqw37bkrh3vn6yq16",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [chmlib]);
       const pythonImportsCheck = nix.thunk(() => ["chm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to manipulate Microsoft HTML Help (CHM) files",
         homepage: "https://github.com/dottedmag/pychm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

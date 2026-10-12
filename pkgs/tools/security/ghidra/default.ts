@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const icoutils = nix.arg($, "icoutils");
   const pkg_path = "$out/lib/ghidra";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ghidra",
       exec: "ghidra",
       icon: "ghidra",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.1.2";
       const versiondate = "20260605";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${version}_build/ghidra_${version}_PUBLIC_${versiondate}.zip`),
           hash: "sha256-ulIBecjWAnrM8iJmqQZAZRerUCKpIBcXyv6KIB7I/ZA=",
         }))));
@@ -67,7 +67,7 @@ wrapProgram "${pkg_path}/support/launch.sh" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openjdk21]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software reverse engineering (SRE) suite of tools developed by NSA's Research Directorate in support of the Cybersecurity mission",
         mainProgram: "ghidra",
         homepage: "https://github.com/NationalSecurityAgency/ghidra",
@@ -88,7 +88,7 @@ wrapProgram "${pkg_path}/support/launch.sh" \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         versiondate,

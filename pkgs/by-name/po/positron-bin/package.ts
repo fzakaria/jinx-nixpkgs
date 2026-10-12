@@ -44,20 +44,20 @@ export default nix.lambda((args) => (() => {
   const pname = "positron-bin";
   const version = "2026.08.2-4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       version: version,
       pname: pname,
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.posit.co/positron/releases/mac/arm64/Positron-${version}-arm64.dmg`),
           hash: "sha256-ocDWNEWiIfgLcFOTD6KqaqswRpQqf4dVqJe28lDYs9k=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://cdn.posit.co/positron/releases/deb/arm64/Positron-${version}-arm64.deb`),
           hash: "sha256-EHZZYLGquikmhWYPjv7+I4f1ZkSvyI9Q6nRJXvgGBk0=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://cdn.posit.co/positron/releases/deb/x86_64/Positron-${version}-x64.deb`),
           hash: "sha256-DmlFAr24drfuqWK22uPXfHvPIuvQrtq3Yl5hUgcY3Oo=",
         })))))),
@@ -122,9 +122,9 @@ mkdir -p "$out/bin"
 ln -s "$out/share/positron/positron" "$out/bin/positron"
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Positron, a next-generation data science IDE",
         homepage: "https://github.com/posit-dev/positron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "luv";
       const version = "1.52.1-0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luvit",
           repo: "luv",
           rev: version,
@@ -42,21 +42,21 @@ export default nix.lambda((args) => (() => {
       const rockspecFilename = "luv-scm-0.rockspec";
       const postConfigure = "mv \"$rockspecFilename\" \"$generatedRockspecFilename\"\nrockspecFilename=\"$generatedRockspecFilename\"\nsubstituteInPlace \"$rockspecFilename\" \\\n  --replace-fail 'version = \"scm-0\"' \"version = \\\"$version\\\"\"\n";
       const luarocksConfig = nix.thunk(() => ({
-        __proto__: pos$3,
-        variables: nix.thunk(() => ({ __proto__: pos$2, WITH_SHARED_LIBUV: "ON" })),
+        [nix.POS]: pos$3,
+        variables: nix.thunk(() => ({ [nix.POS]: pos$2, WITH_SHARED_LIBUV: "ON" })),
       }));
       const __darwinAllowLocalNetworking = true;
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\nluarocks test\nrunHook postInstallCheck\n";
       const disabled = nix.thunk(() => nix.app(luaOlder, "5.1"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(lua, "pkgs"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           test: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`luv-${version}-test`), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lua, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "luv"))])),
               ]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/luvit/luv",
         description: "Bare libuv bindings for lua",
         longDescription: "This library makes libuv available to lua scripts. It was made for the luvit\nproject but should usable from nearly any lua project.\n",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lua, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

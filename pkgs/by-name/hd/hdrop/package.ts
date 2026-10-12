@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hdrop";
       const version = "0.7.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Schweber",
           repo: "hdrop",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils, curl, util_linux, jq, libnotify, gawk], nix.app(nix.sel(lib, "optional"), withHyprland, hyprland))))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Emulate 'tdrop' in Hyprland (run, show and hide specific programs per keybind)",
         homepage: "https://github.com/Schweber/hdrop",
         changelog: nix.thunk(() => nix.str`https://github.com/Schweber/hdrop/releases/tag/v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hdrop",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

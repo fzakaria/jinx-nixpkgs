@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const timeout_decorator = nix.arg($, "timeout-decorator");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "checkdmarc",
       version: "6.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "domainaware",
           repo: "checkdmarc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +80,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
         "testTooManySPFVoidDNSLookups",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for SPF and DMARC DNS records",
         homepage: "https://github.com/domainaware/checkdmarc",
         changelog: nix.thunk(() => nix.str`https://github.com/domainaware/checkdmarc/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

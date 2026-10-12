@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const coursier = nix.arg($, "coursier");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scala-runners",
       version: "unstable-2021-07-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "scala-runners",
           owner: "dwijnand",
           rev: "9bf096ca81f4974d7327e291eac291e22b344a8f",
@@ -34,7 +34,7 @@ ln -s $out/lib/scala-runner $out/bin/scalap
 ln -s $out/lib/scala-runner $out/bin/scaladoc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dwijnand/scala-runners",
         description: "Alternative implementation of the Scala distribution's runners",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

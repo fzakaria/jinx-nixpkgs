@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const root = expr;
   const uniqueFiles = nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "file"), nix.thunk(() => nix.app(genericClosure, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         startSet: nix.thunk(() => nix.builtins.map((file) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             key: nix.thunk(() => (() => {
               const w = nix.withScope(file, null);
               return nix.add((nix.asBool(nix.eq(nix.lookup(w, "type"), null)) ? "" : nix.add(nix.lookup(w, "type"), "+")), nix.lookup(w, "hash"));
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         operator: nix.thunk(() => nix.app(const$, [])),
       }))))));
   const files = nix.thunk(() => nix.builtins.map((drv) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       urls: nix.thunk(() => nix.selOr(drv, () => [nix.thunk(() => nix.sel(drv, "url"))], "urls")),
       hash: nix.thunk(() => nix.sel(drv, "outputHash")),
       isPatch: nix.thunk(() => (nix.asBool(nix.has(drv, "postFetch")) && nix.asBool(!nix.eq(nix.sel(drv, "postFetch"), "")))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     }), fetchurlDependencies));
   const fetchurlDependencies = nix.thunk(() => nix.app(filter, (drv) => (nix.asBool((nix.asBool(!nix.eq(nix.selOr(drv, () => "", "outputHash"), "")) && nix.asBool(nix.eq(nix.selOr(drv, () => "flat", "outputHashMode"), "flat")))) && nix.asBool((nix.asBool(nix.has(drv, "url")) || nix.asBool(nix.has(drv, "urls"))))), dependencies));
   const dependencies = nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "value"), nix.thunk(() => nix.app(genericClosure, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         startSet: nix.thunk(() => nix.builtins.map(keyDrv, nix.thunk(() => nix.app(derivationsIn$, root)))),
         operator: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2),
       }))))));
   const derivationsIn$ = (x) => (nix.asBool(!nix.asBool(nix.app(canEval, x))) ? [] : (nix.asBool(nix.app(isDerivation, x)) ? nix.app(optional, nix.thunk(() => nix.app(canEval, nix.thunk(() => nix.sel(x, "drvPath")))), x) : (nix.asBool(nix.app(isList, x)) ? nix.app(concatLists, nix.thunk(() => nix.builtins.map(derivationsIn$, x))) : (nix.asBool(nix.app(isAttrs, x)) ? nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (n) => (v) => nix.app(addErrorContext, nix.thunk(() => nix.str`while finding tarballs in '${n}':`), nix.thunk(() => nix.app(derivationsIn$, v))), x))) : []))));
-  const keyDrv = (drv) => (nix.asBool(nix.app(canEval, nix.thunk(() => nix.sel(drv, "drvPath")))) ? { __proto__: pos$5, key: nix.thunk(() => nix.sel(drv, "drvPath")), value: drv } : {});
+  const keyDrv = (drv) => (nix.asBool(nix.app(canEval, nix.thunk(() => nix.sel(drv, "drvPath")))) ? { [nix.POS]: pos$5, key: nix.thunk(() => nix.sel(drv, "drvPath")), value: drv } : {});
   const immediateDependenciesOf = (drv) => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (n) => (v) => nix.app(derivationsIn, v), nix.thunk(() => nix.builtins.removeAttrs(drv, nix.thunk(() => nix.concat(["meta", "passthru"], nix.app(optionals, nix.thunk(() => nix.has(drv, "passthru")), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(drv, "passthru"))))))))))));
   const derivationsIn = (x) => (nix.asBool(!nix.asBool(nix.app(canEval, x))) ? [] : (nix.asBool(nix.app(isDerivation, x)) ? nix.app(optional, nix.thunk(() => nix.app(canEval, nix.thunk(() => nix.sel(x, "drvPath")))), x) : (nix.asBool(nix.app(isList, x)) ? nix.app(concatLists, nix.thunk(() => nix.builtins.map(derivationsIn, x))) : [])));
   const canEval = (val) => nix.sel(nix.builtins.tryEval(val), "success");

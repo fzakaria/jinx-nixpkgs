@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const defaultSpecificationFile = nix.argOr($, "defaultSpecificationFile", () => null);
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "open-web-calendar",
       version: "1.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "open_web_calendar",
           hash: "sha256-r+7ZKdNOhjnjE1MBNAkni4Rrpx4DMRhUaP1Mmk5wzOo=",
@@ -72,15 +72,15 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["open_web_calendar.app"]),
       defaultSpecificationPath: nix.thunk(() => nix.str`${nix.sel(python, "sitePackages")}/open_web_calendar/default_specification.yml`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         python: python,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "open-web-calendar": nix.thunk(() => nix.attr(nixosTests, "open-web-calendar")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Highly customizable web calendar that can be embedded into websites using ICal source links",
         homepage: "https://open-web-calendar.quelltext.eu",
         changelog: nix.thunk(() => (() => {

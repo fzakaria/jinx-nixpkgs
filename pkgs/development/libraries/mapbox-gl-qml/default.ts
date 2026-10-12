@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qtpositioning = nix.arg($, "qtpositioning");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mapbox-gl-qml",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rinigus",
           repo: "mapbox-gl-qml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [maplibre_native_qt, qtpositioning]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/rinigus/mapbox-gl-qml/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Unofficial Mapbox GL Native bindings for Qt QML",
         homepage: "https://github.com/rinigus/mapbox-gl-qml",

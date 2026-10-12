@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdent",
           repo: "wsgi-intercept",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["wsgi_intercept"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module that acts as a WSGI application in place of a real URI for testing",
         homepage: "https://github.com/cdent/wsgi-intercept",
         changelog: nix.thunk(() => nix.str`https://github.com/cdent/wsgi-intercept/releases/tag/v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const tytanic = nix.arg($, "tytanic");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tytanic",
       version: "0.4.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "typst-community",
           repo: "tytanic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,20 +39,20 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-gqIsrQLwOcs+FTVhu8lgQfISiGQVVCnmMHJTCgD9fh0=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Man pages: `tt util manpage [DIR]` writes tytanic*.1 files\nmkdir -p ./man\n$out/bin/tt util manpage ./man\ninstallManPage ./man/*.1\n\n# Shell completions: `tt util completion <shell>` supports bash/fish/zsh (+ elvish/powershell,\n# but installShellCompletion only supports --bash/--fish/--zsh, so only those are installed)\ninstallShellCompletion --cmd tt \\\n  --bash <($out/bin/tt util completion bash) \\\n  --fish <($out/bin/tt util completion fish) \\\n  --zsh <($out/bin/tt util completion zsh)\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: tytanic })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: tytanic })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Test runner for Typst projects",
         longDescription: "Tytanic is a test runner for Typst projects. It helps you worry less about\nregressions and speeds up your development.\n",
         homepage: "https://typst-community.github.io/tytanic/",

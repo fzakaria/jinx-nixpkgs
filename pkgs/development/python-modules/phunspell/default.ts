@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvwright",
           repo: "phunspell",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-package-data-warning.patch",
             url: "https://github.com/dvwright/phunspell/commit/70a0ee8af8442797e03916cea31637c21e6d32d9.patch",
             hash: "sha256-kSaKHd7dVJM8+2dqxjs26Hv0feNXAXXymUE97DNVBFM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "replace-description-file-deprecated-option.patch",
             url: "https://github.com/dvwright/phunspell/commit/331c593b486cebe1a9b72befa568de9b51033f15.patch",
             hash: "sha256-gdYfeG1vBtjnDDCjmg+ZSuToqVe0hrzB3RIqBLGNvBQ=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["phunspell"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pure Python spell checker, wrapping spylls a port of Hunspell",
         homepage: "https://github.com/dvwright/phunspell",
         changelog: nix.thunk(() => nix.str`https://github.com/dvwright/phunspell/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

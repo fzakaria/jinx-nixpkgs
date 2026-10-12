@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const pname = "papirus-nord";
   const version = "3.2.0";
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: accent colors`), validAccents, nix.thunk(() => [accent]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adapta-projects",
           repo: "papirus-nord",
           rev: version,
@@ -67,7 +67,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nord version of Papirus Icon Theme",
         homepage: "https://github.com/Adapta-Projects/Papirus-Nord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

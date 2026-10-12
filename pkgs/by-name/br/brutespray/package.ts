@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const medusa = nix.arg($, "medusa");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brutespray",
       version: "2.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "x90skysn3k",
           repo: "brutespray",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ mkdir -p $out/share/brutespray
 cp -r wordlist $out/share/brutespray/wordlist
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to do brute-forcing from Nmap output",
         homepage: "https://github.com/x90skysn3k/brutespray",
         longDescription: "This tool automatically attempts default credentials on found services\ndirectly from Nmap output.\n",

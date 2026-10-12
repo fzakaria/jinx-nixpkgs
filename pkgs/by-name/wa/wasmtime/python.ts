@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const systemDir = nix.thunk(() => nix.str`${nix.sel(targetPlatform, "parsed", "kernel", "name")}-${nix.sel(targetPlatform, "parsed", "cpu", "name")}`);
   const libExt = nix.thunk(() => nix.sel(targetPlatform, "extensions", "sharedLibrary"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wasmtime",
       version: "49.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bytecodealliance",
           repo: "wasmtime-py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +71,7 @@ export NIX_HARDENING_ENABLE=""
 export PYTHONPATH="$PWD:$PYTHONPATH"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python WebAssembly runtime powered by Wasmtime",
         homepage: "https://github.com/bytecodealliance/wasmtime-py",
         changelog: nix.thunk(() => nix.str`https://github.com/bytecodealliance/wasmtime-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

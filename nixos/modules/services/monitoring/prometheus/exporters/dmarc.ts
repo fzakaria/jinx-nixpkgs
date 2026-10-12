@@ -34,91 +34,91 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const json = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       folders: nix.thunk(() => nix.attr(cfg, "folders")),
       port: nix.thunk(() => nix.attr(cfg, "port")),
       listen_addr: nix.thunk(() => nix.sel(cfg, "listenAddress")),
       storage_path: "$STATE_DIRECTORY",
-      imap: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "imap")), nix.thunk(() => ["passwordFile"])), { __proto__: pos$1, password: "$IMAP_PASSWORD", use_ssl: true })),
+      imap: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "imap")), nix.thunk(() => ["passwordFile"])), { [nix.POS]: pos$1, password: "$IMAP_PASSWORD", use_ssl: true })),
       poll_interval_seconds: nix.thunk(() => nix.sel(cfg, "pollIntervalSeconds")),
       deduplication_max_seconds: nix.thunk(() => nix.sel(cfg, "deduplicationMaxSeconds")),
-      logging: nix.thunk(() => ({ __proto__: pos$2, version: 1n, disable_existing_loggers: false })),
+      logging: nix.thunk(() => ({ [nix.POS]: pos$2, version: 1n, disable_existing_loggers: false })),
     }))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     port: 9797n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       imap: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "localhost",
             description: "Hostname of IMAP server to connect to.\n",
           })))),
         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(types, "port")),
             default: 993n,
             description: "Port of the IMAP server to connect to.\n",
           })))),
         username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(types, "str")),
             example: "postmaster@example.org",
             description: "Login username for the IMAP connection.\n",
           })))),
         passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(types, "str")),
             example: "/run/secrets/dovecot_pw",
             description: "File containing the login password for the IMAP connection.\n",
           })))),
       })),
       folders: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         inbox: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "INBOX",
             description: "IMAP mailbox that is checked for incoming DMARC aggregate reports\n",
           })))),
         done: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "Archive",
             description: "IMAP mailbox that successfully processed reports are moved to.\n",
           })))),
         error: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "Invalid",
             description: "IMAP mailbox that emails are moved to that could not be processed.\n",
           })))),
       })),
       pollIntervalSeconds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
           default: 60n,
           description: "How often to poll the IMAP server in seconds.\n",
         })))),
       deduplicationMaxSeconds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
           default: 604800n,
           defaultText: "7 days (in seconds)",
           description: "How long individual report IDs will be remembered to avoid\ncounting double delivered reports twice.\n",
         })))),
       debug: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to declare enable `--debug`.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       path: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         StateDirectory: "prometheus-dmarc-exporter",
         WorkingDirectory: "/var/lib/prometheus-dmarc-exporter",
         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "setup-cfg", nix.thunk(() => nix.str`export IMAP_PASSWORD="$(<${nix.sel(cfg, "imap", "passwordFile")})"

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "curie";
       const version = "1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/oppiliappan/curie/releases/download/v${version}/curie-v${version}.tar.gz`),
           hash: "sha256-B89GNbOmm3lY/cRWQJEFu/5morCM/WrRQb/m6covbt8=",
         }))));
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/misc\ninstall *.otb $out/share/fonts/misc\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Upscaled version of scientifica",
         homepage: "https://github.com/oppiliappan/curie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "moni"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, sourceRoot, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, sourceRoot, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -22,50 +22,50 @@ const pos$13 = nix.positions(here + "/holo-daemon-modular.nix", [["_class", 3, 3
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     _class: "nixosTest",
     name: "holo-daemon-modular-service-test",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "holo-daemon")),
               nix.thunk(() => nix.sel(pkgs, "holo-cli")),
             ]),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "holo-daemon": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "holo-daemon", "services", "default"))]),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             users: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               holo: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 isSystemUser: true,
                 group: "holo",
                 home: "/var/lib/holo",
                 createHome: true,
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$7, holo: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$7, holo: nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
-            getty: nix.thunk(() => ({ __proto__: pos$9, autologinUser: "root" })),
+            [nix.POS]: pos$10,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$9, autologinUser: "root" })),
           })),
         };
       })(), formals$2),

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const inquirer = nix.arg($, "inquirer");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "translatepy",
       version: "2.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Animenosekai",
           repo: "translate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_translate.py", "tests/test_translators.py"]),
       pythonImportsCheck: nix.thunk(() => ["translatepy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module grouping multiple translation APIs",
         mainProgram: "translatepy",
         homepage: "https://github.com/Animenosekai/translate",

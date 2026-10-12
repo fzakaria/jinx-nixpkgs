@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const simplejson = nix.arg($, "simplejson");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alexapy",
       version: "1.30.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keatontaylor",
           repo: "alexapy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alexapy"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Package for controlling Alexa devices (echo dot, etc) programmatically",
         homepage: "https://gitlab.com/keatontaylor/alexapy",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/keatontaylor/alexapy/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const backend = nix.argOr($, "backend", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "OpenGL" : "GLES"));
   const version = "0.9.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "gemrb",
       repo: "gemrb",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-gPtmJb3GhBrvP1vy933wPPy+n3BwBIbJ2o8VV674Mso=",
     }))));
-  const icons = nix.thunk(() => nix.app(runCommand, "gemrb-icons", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [imagemagick]) })), nix.thunk(() => nix.str`for s in 48 64 96 128 256 512 1024; do
+  const icons = nix.thunk(() => nix.app(runCommand, "gemrb-icons", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [imagemagick]) })), nix.thunk(() => nix.str`for s in 48 64 96 128 256 512 1024; do
   size=\${s}x\${s}
   dir=$out/share/icons/hicolor/$size
   mkdir -p $dir
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
 done
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gemrb",
       version: version,
       src: src,
@@ -80,7 +80,7 @@ done
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reimplementation of the Infinity Engine, used by games such as Baldur's Gate",
         longDescription: "GemRB (Game engine made with pre-Rendered Background) is a portable\nopen-source implementation of Bioware's Infinity Engine. It was written to\nsupport pseudo-3D role playing games based on the Dungeons & Dragons\nruleset (Baldur's Gate and Icewind Dale series, Planescape: Torment).\n",
         homepage: "https://gemrb.org/",

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "arviz-base",
       version: nix.thunk(() => nix.attr(arviz, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arviz-devs",
           repo: "arviz-base",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [lazy_loader, numpy, typing_extensions, xarray]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         h5netcdf: nix.thunk(() => [h5netcdf]),
         netcdf4: nix.thunk(() => [netcdf4]),
         zarr: nix.thunk(() => [zarr]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [h5netcdf, netcdf4, pytestCheckHook, writableTmpDirAsHomeHook]),
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Base ArviZ features and converters",
         homepage: "https://github.com/arviz-devs/arviz-base",
         changelog: nix.thunk(() => nix.str`https://github.com/arviz-devs/arviz-base/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

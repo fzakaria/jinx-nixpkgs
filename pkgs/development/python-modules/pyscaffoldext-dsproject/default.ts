@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-SF99noD6C31p4LWlwVAwArPYeNspF+ARK8Dzl5B1T9g=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [importlib_metadata, pyscaffold, pyscaffoldext_markdown]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         testing: nix.thunk(() => [
           configupdater,
           pre_commit,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pyscaffoldext.dsproject"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyScaffold extension for Data Science projects",
         homepage: "https://pypi.org/project/pyscaffoldext-dsproject/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

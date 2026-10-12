@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fscrypt";
       const version = "0.3.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "fscrypt",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-level tool for the management of Linux filesystem encryption",
         mainProgram: "fscrypt",
         longDescription: "This tool manages metadata, key generation, key wrapping, PAM integration,\nand provides a uniform interface for creating and modifying encrypted\ndirectories.\n",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

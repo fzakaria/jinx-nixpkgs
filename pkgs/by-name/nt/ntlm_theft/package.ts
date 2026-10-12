@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ntlm_theft",
       version: "0-unstable-2026-09-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Greenwolf",
           repo: "ntlm_theft",
           rev: "7ef7fb5cda5cc3b03d512f2a9bc4d17bb93d0656",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       preVersionCheck: "export version=0.1.0",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for generating multiple types of NTLMv2 hash theft files",
         homepage: "https://github.com/Greenwolf/ntlm_theft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

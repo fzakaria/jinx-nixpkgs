@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inform6",
       version: "6.44-r3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ifarchive.org/if-archive/infocom/compilers/inform6/source/inform-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-NVO1bvDRdQowkkr6tBhDYzu7yLPd47XaTOXBivGJplk=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive fiction compiler and libraries",
         longDescription: "Inform 6 is a C-like programming language for writing interactive fiction\n(text adventure) games.\n",
         homepage: "https://gitlab.com/DavidGriffith/inform6unix",

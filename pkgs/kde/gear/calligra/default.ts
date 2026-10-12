@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "calligra",
       extraBuildInputs: nix.thunk(() => [
         boost,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_FLAGS", "-DKDE_NO_DEBUG_OUTPUT")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

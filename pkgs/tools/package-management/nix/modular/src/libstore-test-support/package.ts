@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const version = nix.arg($, "version");
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-store-test-support",
       version: version,
       workDir: nix.path(here, "./."),
       propagatedBuildInputs: nix.thunk(() => nix.concat([nix_util_test_support, nix_store, nix_store_c, rapidcheck], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.34pre")), gtest))),
       mesonFlags: [],
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

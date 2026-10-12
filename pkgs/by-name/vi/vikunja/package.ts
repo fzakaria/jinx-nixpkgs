@@ -33,11 +33,11 @@ ${jumpAndAppend} t.Skip();
 `;
   })();
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "vikunja",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "go-vikunja",
           repo: "vikunja",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,12 +55,12 @@ fi
       })()),
       vendorHash: "sha256-NLtp+2QyfS06W/Puuo5MEqalpLc9NodoPqtDJPBbOH4=",
       frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         })))),
       veans: nix.thunk(() => nix.app(callPackage, nix.path(here, "./veans.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -81,17 +81,17 @@ rm pkg/web/error_codes_test.go
       checkPhase: "runHook preCheck\n\nmage test:feature\nmage test:web\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin vikunja\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         desktop: nix.thunk(() => nix.app(callPackage, nix.path(here, "./desktop.nix"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             frontend: nix.thunk(() => nix.attr(finalAttrs, "frontend")),
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, vikunja: nix.thunk(() => nix.sel(nixosTests, "vikunja")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, vikunja: nix.thunk(() => nix.sel(nixosTests, "vikunja")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => [
               "--subpackage",
               "frontend",
@@ -103,7 +103,7 @@ rm pkg/web/error_codes_test.go
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/go-vikunja/vikunja/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Todo-app to organize your life",
         homepage: "https://vikunja.io/",

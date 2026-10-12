@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const withShishi = nix.argOr($, "withShishi", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const shishi = nix.arg($, "shishi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gss",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitweb.git.savannah.gnu.org/gitweb/?p=gss.git;a=snapshot;h=v${nix.sel(finalAttrs, "version")};sf=tgz`),
           extension: "tar.gz",
           hash: "sha256-yT19kwAhGzbIoMjRbrrsn6CyvkMH5v1nxxWpnGYmZUw=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, GNULIB_SRCDIR: nix.thunk(() => nix.sel(gnulib, "src")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GNULIB_SRCDIR: nix.thunk(() => nix.sel(gnulib, "src")) })),
       postPatch: "rm tests/krb5context.c\n",
       nativeBuildInputs: nix.thunk(() => [
         autoconf269,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withShishi, nix.thunk(() => nix.str`sed -i 's,\\(-lshishi\\),-L${shishi}/lib \\1,' $out/lib/libgss.la
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/gss/",
         description: "Generic Security Service",
         mainProgram: "gss",

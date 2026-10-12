@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const eprover = nix.arg($, "eprover");
   const w = nix.withScope(haskellPackages, null);
   return nix.app(nix.lookup(w, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "Naproche-SAD",
       version: "unstable-2024-05-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "naproche",
           repo: "naproche",
           rev: "ccb35e6eeb31c82bdd8857d5f84deda296ed53ec",

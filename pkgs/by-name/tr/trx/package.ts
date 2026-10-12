@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libopus = nix.arg($, "libopus");
   const linphonePackages = nix.arg($, "linphonePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trx",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.pogo.org.uk/~mark/trx/releases/trx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1jjgca92nifjhcr3n0fmpfr6f5gxlqyal2wmgdlgd7hx834r1if7",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple toolset for broadcasting live audio using RTP/UDP and Opus",
         homepage: "http://www.pogo.org.uk/~mark/trx/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

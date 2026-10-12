@@ -32,23 +32,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const libmobility = nix.arg($, "libmobility");
   const uammd_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "RaulPPelaez",
       repo: "uammd",
       tag: "v3.0.1",
       hash: "sha256-/7ceXlA96dZQs1WzkV1OpRv61xa0Tdt5gFe17I0s1BI=",
     }))));
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libmobility",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "stochasticHydroTools",
           repo: "libMobility",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "nanobind_DIR", nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind/cmake`))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CMAKE_CUDA_ARCHITECTURES: nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")),
       })),
       preBuild: "export BUILD_JOBS=\"$NIX_BUILD_CORES\"\n",
@@ -105,15 +105,15 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(libmobility, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Python interface to a collection of GPU hydrodynamic mobility solvers",
         homepage: "https://github.com/stochasticHydroTools/libMobility",
         changelog: nix.thunk(() => nix.str`https://github.com/stochasticHydroTools/libMobility/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

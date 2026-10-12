@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mimikatz",
       version: "2.2.0-20220919",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gentilkiwi/mimikatz/releases/download/${nix.sel(finalAttrs, "version")}/mimikatz_trunk.zip`),
           hash: "sha256-wmatI/rEMziBdNiA3HE3MJ0ckdpvsD+LdbB7SKOYdI0=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/windows/mimikatz\ncp -a * $out/share/windows/mimikatz/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gentilkiwi/mimikatz",
         description: "Little tool to play with Windows security",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),

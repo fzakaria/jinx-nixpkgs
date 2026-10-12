@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "6.0.1",
       pname: "coan",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/coan2/v${nix.sel(finalAttrs, "version")}/coan-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1d041j0nd1hc0562lbj269dydjm4rbzagdgzdnmwdxr98544yw44",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mv -v $out/share/man/man1/coan.1.{1,gz}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C preprocessor chainsaw",
         mainProgram: "coan",
         longDescription: "A software engineering tool for analysing preprocessor-based\nconfigurations of C or C++ source code. Its principal use is to simplify\na body of source code by eliminating any parts that are redundant with\nrespect to a specified configuration. Dead code removal is an\napplication of this sort.\n",

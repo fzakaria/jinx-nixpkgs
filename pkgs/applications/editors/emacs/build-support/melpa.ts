@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const emacs = nix.arg($, "emacs");
   const texinfo = nix.arg($, "texinfo");
-  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
+  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
   const packageBuild = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "package-build",
       version: "4.0.0-unstable-2026-03-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "melpa",
           repo: "package-build",
           rev: "c25ea902ac4fceb1eb998d46ac176a1de077439b",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "\n      mkdir -p $out\n      cp -r * $out\n    ",
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: genericBuild,
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         const postUnpack = nix.argOr($_1, "postUnpack", () => "");
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           elpa2nix: nix.thunk(() => nix.selOr(args_2, () => nix.path(here, "./elpa2nix.el"), "elpa2nix")),
           melpa2nix: nix.thunk(() => nix.selOr(args_2, () => nix.path(here, "./melpa2nix.el"), "melpa2nix")),
           commit: commit,
@@ -106,7 +106,7 @@ emacs --batch -Q \\
 runHook postInstall
 `, "installPhase")),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             homepage: nix.thunk(() => nix.selOr(args_2, () => nix.str`https://melpa.org/#/${pname}`, "src", "meta", "homepage")),
           }, meta)),
         };

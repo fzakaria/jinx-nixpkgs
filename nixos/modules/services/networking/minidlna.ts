@@ -41,57 +41,57 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "minidlna"));
-  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const cfgfile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "minidlna.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   const mediaDirsUnderHome = nix.thunk(() => nix.app(nix.sel(lib, "any"), (dir) => !nix.eq(nix.builtins.match("([AVP],)?/home/.*", dir), null), nix.thunk(() => nix.sel(cfg, "settings", "media_dir"))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         minidlna: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MiniDLNA, a simple DLNA server. Consider adding `openFirewall = true` into your config")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening HTTP (TCP) and SSDP (UDP) ports in the firewall")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "minidlna", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: nix.thunk(() => ({})),
               description: "Configuration for {manpage}`minidlna.conf(5)`.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     media_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         example: nix.thunk(() => ["/data/media", "V,/home/alice/video"]),
                         description: "Directories to be scanned for media files.\nThe `A,` `V,` `P,` prefixes restrict a directory to audio, video or image files.\nThe directories must be accessible to the `minidlna` user account.\n",
                       })))),
                     notify_interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 90000n,
                         description: "The interval between announces (in seconds).\nInstead of waiting for announces, you should set `openFirewall` option to use SSDP discovery.\nLower values (e.g. 30 seconds) should be used if your network is blocking the SSDP multicast.\nSome relevant information can be found [here](https://sourceforge.net/p/minidlna/discussion/879957/thread/1389d197/).\n",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8200n,
                         description: "Port number for HTTP traffic (descriptions, SOAP, media transfer).",
                       })))),
                     db_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/cache/minidlna",
                         example: "/tmp/minidlna",
                         description: "Specify the directory to store database and album art cache.",
                       })))),
                     friendly_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.hostName")),
@@ -99,39 +99,39 @@ export default nix.lambda((args) => (() => {
                         description: "Name that the server presents to clients.",
                       })))),
                     root_container: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "B",
                         example: ".",
                         description: "Use a different container as the root of the directory tree presented to clients.",
                       })))),
                     log_level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "warn",
                         example: "general,artwork,database,inotify,scanner,metadata,http,ssdp,tivo=warn",
                         description: "Defines the type of messages that should be logged and down to which level of importance.",
                       })))),
                     enable_subtitles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["yes", "no"]))),
                         default: "yes",
                         description: "Enable subtitle support on unknown clients.",
                       })))),
                     inotify: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["yes", "no"]))),
                         default: "no",
                         description: "Whether to enable inotify monitoring to automatically discover new files.",
                       })))),
                     enable_tivo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["yes", "no"]))),
                         default: "no",
                         description: "Support for streaming .jpg and .mp3 files to a TiVo supporting HMO.",
                       })))),
                     wide_links: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["yes", "no"]))),
                         default: "no",
                         description: "Set this to yes to allow symlinks that point outside user-defined `media_dir`.",
@@ -143,28 +143,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         networking: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           firewall: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [1900n]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           groups: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             minidlna: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "minidlna")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             minidlna: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "MiniDLNA daemon user",
               group: "minidlna",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "minidlna")),
@@ -172,16 +172,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             minidlna: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "MiniDLNA Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 User: "minidlna",
                 Group: "minidlna",
                 CacheDirectory: "minidlna",

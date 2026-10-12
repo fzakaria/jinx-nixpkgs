@@ -32,48 +32,48 @@ export default nix.lambda((args) => (() => {
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const fetchpatch = nix.arg($, "fetchpatch");
   const variantOverlays = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     "3": (final) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       berryCacheVersion: "8",
       berryOfflinePatches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./berry-3-offline.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             yarnv1: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), yarn)),
           })))),
       ]),
-      libzip: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ __proto__: pos$2, zlib: zlib }))), "overrideAttrs"), (old) => ({
-          __proto__: pos$3,
+      libzip: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, zlib: zlib }))), "overrideAttrs"), (old) => ({
+          [nix.POS]: pos$3,
           patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
             nix.thunk(() => nix.add(nix.sel(final, "yarn-berry-fetcher", "src"), "/libzip-revert-to-old-versionneeded-behavior.patch")),
           ])),
         }))),
     }),
     "4": (final) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       berryCacheVersion: "10",
       berryOfflinePatches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./berry-4-offline.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             yarnv1: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), yarn)),
             YARN_LOCKFILE_VERSION_PLACEHOLDER: nix.thunk(() => nix.sel(yarn_berry, "lockfileVersion")),
           })))),
       ]),
       libzip: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           zlib: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(zlib_ng, "overrideAttrs"), (old) => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     url: "https://github.com/zlib-ng/zlib-ng/commit/be819413be8a284b1827437006c0859644d0c367.patch",
                     revert: true,
                     hash: "sha256-rwRcNKpA2dMWkC6WRATDOCYCDDqqPvFJkQ6DLDohQd8=",
                   })))),
               ])),
-            })), "override"), nix.thunk(() => ({ __proto__: pos$8, withZlibCompat: true })))),
+            })), "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withZlibCompat: true })))),
         }))), "overrideAttrs"), (old) => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [nix.path(here, "./libzip-revert-to-old-versionneeded-behavior.patch")])),
         }))),
     }),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
   const berryVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(yarn_berry, "version"))));
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => nix.str`yarn-berry_${berryVersion}-fetcher`)));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       otherSplices: otherSplices,
       f: (final) => (() => {
         const err = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Berry version ${nix.builtins.toString(berryVersion)} not supported by yarn-berry-fetcher.
@@ -89,11 +89,11 @@ Supported versions: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(
 `)));
         const variantOverlay = nix.thunk(() => nix.app(nix.selOr(variantOverlays, () => nix.force(err), nix.key(nix.force(berryVersion))), final));
         return nix.update({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "yarn-berry": yarn_berry,
           berryVersion: berryVersion,
           "yarn-berry-offline": nix.thunk(() => nix.app(nix.sel(final, "yarn-berry", "overrideAttrs"), (old) => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-offline")),
               patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), nix.sel(final, "berryOfflinePatches"))),
             }))),

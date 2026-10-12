@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const chromedriver = nix.arg($, "chromedriver");
   return nix.app(nix.sel(chromium, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "chromedriver",
       packageName: "chromedriver",
       buildTargets: nix.thunk(() => ["chromedriver.unstripped"]),
@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       postFixup: null,
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: chromedriver })))),
+          [nix.POS]: pos$2,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: chromedriver })))),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(chromium, "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://chromedriver.chromium.org/",
         description: "WebDriver server for running Selenium tests on Chrome",
         longDescription: "WebDriver is an open source tool for automated testing of webapps across\nmany browsers. It provides capabilities for navigating to web pages, user\ninput, JavaScript execution, and more. ChromeDriver is a standalone\nserver that implements the W3C WebDriver standard.\n",

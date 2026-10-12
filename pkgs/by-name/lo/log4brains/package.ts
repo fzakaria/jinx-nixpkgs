@@ -30,24 +30,24 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "log4brains",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomvaill",
           repo: "log4brains",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2EAETbICK3XSjAEoLV0KP2xeOYlw8qgctit+shMp5Qs=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-HHiWlOYwR+PhfpQlUfuTXUiQ+6w1HATGlmflQvqdNlg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-replace-version-check-using-package.json.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             NIX_LOG4BRAINS_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
           })))),
         nix.path(here, "./0002-move-nextjs-build-into-temporary-directory.patch"),
@@ -73,17 +73,17 @@ wrapProgram $out/bin/log4brains \\
         jq,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "basic-scenario": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-basic-scenario.nix"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               log4brains: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Architecture Decision Records (ADR) management and publication tool",
         longDescription: "Log4brains is a docs-as-code knowledge base for your development and infrastructure projects.\nIt enables you to log Architecture Decision Records (ADR) right from your IDE and to publish them automatically as a static website.\n",
         homepage: "https://github.com/thomvaill/log4brains",

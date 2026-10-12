@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const excludeDrvArgNames = nix.arg($, "excludeDrvArgNames");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       excludeDrvArgNames: excludeDrvArgNames,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const loname = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), productShort));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           desktopName: product,
           dontFixup: true,
           installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -43,7 +43,7 @@ runHook postInstall
 `),
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [undmg])),
           sourceRoot: ".",
-          meta: nix.thunk(() => nix.update(meta, { __proto__: pos$1, mainProgram: loname })),
+          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$1, mainProgram: loname })),
         };
       })(), formals$2),
     })));

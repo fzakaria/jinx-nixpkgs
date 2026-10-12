@@ -22,40 +22,40 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "qui",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "undefined-landmark"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const testSecretFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "session_secret", "not-secret"));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            qui: nix.thunk(() => ({ __proto__: pos$2, enable: true, secretFile: testSecretFile })),
+            [nix.POS]: pos$3,
+            qui: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, secretFile: testSecretFile })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settingsPort: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               configuration: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 services: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   qui: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     enable: true,
                     secretFile: testSecretFile,
-                    settings: nix.thunk(() => ({ __proto__: pos$4, port: 7777n })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$4, port: 7777n })),
                   })),
                 })),
               })),

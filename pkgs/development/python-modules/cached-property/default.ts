@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydanny",
           repo: "cached-property",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_threads_ttl_expiry"]);
       const pythonImportsCheck = nix.thunk(() => ["cached_property"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decorator for caching properties in classes",
         homepage: "https://github.com/pydanny/cached-property",
         changelog: nix.thunk(() => nix.str`https://github.com/pydanny/cached-property/releases/tag/${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

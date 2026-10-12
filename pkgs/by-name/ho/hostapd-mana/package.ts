@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hostapd-mana";
       const version = "2.6.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sensepost",
           repo: "hostapd-mana",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sensepost/hostapd-mana/commit/8581994d8d19646da63e1e37cde27dd4c966e526.patch",
             hash: "sha256-UBkhuqvX1nFiceECAIC9B13ReKbrAAUtPKjqD17mQgg=",
           })))),
@@ -47,7 +47,7 @@ runHook postConfigure
 `);
       const preInstall = "mkdir -p $out/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sensepost/hostapd-mana",
         description: "Featureful rogue wifi access point tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -58,7 +58,7 @@ runHook postConfigure
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

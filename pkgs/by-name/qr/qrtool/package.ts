@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qrtool",
       version: "0.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sorairolake",
           repo: "qrtool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [asciidoctor, installShellFiles]),
       postInstall: nix.thunk(() => nix.add("asciidoctor -b manpage docs/man/man1/*.1.adoc\ninstallManPage docs/man/man1/*.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd qrtool \\\n  --bash <($out/bin/qrtool completion bash) \\\n  --fish <($out/bin/qrtool completion fish) \\\n  --zsh <($out/bin/qrtool completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for encoding and decoding QR code images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://sorairolake.github.io/qrtool/book/index.html",

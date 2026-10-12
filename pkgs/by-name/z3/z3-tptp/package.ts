@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "z3-tptp",
       version: nix.thunk(() => nix.sel(z3, "version")),
       src: nix.thunk(() => nix.sel(z3, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(z3, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

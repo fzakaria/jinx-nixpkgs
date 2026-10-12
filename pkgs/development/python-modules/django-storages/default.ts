@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jschneier",
           repo: "django-storages",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jschneier/django-storages/commit/e1aedcf2d137f164101d31f2f430f1594eedd78c.patch",
             hash: "sha256-jSb/uJ0RXvPsXl+WUAzAgDvJl9Y3ad2F30X1SbsCc04=",
             name: "add_moto_5_support.patch",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         azure: nix.thunk(() => [azure_storage_blob]),
         boto3: nix.thunk(() => [boto3]),
         dropbox: nix.thunk(() => [dropbox]),
@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([cryptography, moto, pytestCheckHook, rsa], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const checkInputs = nix.thunk(() => [pynacl]);
       const pythonImportsCheck = nix.thunk(() => ["storages"]);
-      const env = nix.thunk(() => ({ __proto__: pos$4, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Collection of custom storage backends for Django",
         changelog: nix.thunk(() => nix.str`https://github.com/jschneier/django-storages/blob/${version}/CHANGELOG.rst`),
         downloadPage: "https://github.com/jschneier/django-storages/",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

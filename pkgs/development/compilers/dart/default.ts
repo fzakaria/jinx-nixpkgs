@@ -24,27 +24,27 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const darwin = nix.arg($, "darwin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "dart",
       version: "3.13.0",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const system = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "linux-x64",
             "aarch64-linux": "linux-arm64",
             "riscv64-linux": "linux-riscv64",
             "aarch64-darwin": "macos-arm64",
           }))));
         const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-h5Alc/rNisrKx+4f5z+o0GaOBgZQFgaOLtbFyZxrHuA=",
             "aarch64-linux": "sha256-IBQaBlMyeTm7IMS4eyMSJr66ESjYqa7bswy1rxonkNQ=",
             "riscv64-linux": "sha256-VmvqaHCVsXv9W8+YdgnWAaW+THuDcc851O/6czx7WFE=",
             "aarch64-darwin": "sha256-GBLWAq7Qqc9ygck/UUoeGuz2DcNFxDN9uk/yj6jTmMo=",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://storage.googleapis.com/dart-archive/channels/${(nix.asBool(nix.app(nix.sel(lib, "strings", "hasSuffix"), ".beta", nix.thunk(() => nix.sel(finalAttrs, "version")))) ? "beta" : "stable")}/release/${nix.sel(finalAttrs, "version")}/sdk/dartsdk-${system}-release.zip`),
             hash: hash,
           })));
@@ -63,23 +63,23 @@ done
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         fetchGitHashesScript: nix.path(here, "./fetch-git-hashes.py"),
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           testCreate: nix.thunk(() => nix.app(runCommand, "dart-test-create", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "PROJECTNAME=\"dart_test_project\"\ndart create --no-pub $PROJECTNAME\n\n[[ -d $PROJECTNAME ]]\n[[ -f $PROJECTNAME/bin/$PROJECTNAME.dart ]]\ntouch $out\n")),
           testCompile: nix.thunk(() => nix.app(runCommand, "dart-test-compile", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, nix.thunk(() => nix.sel(darwin, "sigtool"))])))),
             })), "HELLO_MESSAGE=\"Hello, world!\"\necho \"void main() => print('$HELLO_MESSAGE');\" > hello.dart\ndart compile exe hello.dart\nPROGRAM_OUT=$(./hello.exe)\n\n[[ \"$PROGRAM_OUT\" == \"$HELLO_MESSAGE\" ]]\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://dart.dev",
         maintainers: [],
         description: "Scalable programming language, with robust libraries and runtimes, for building web, server, and mobile apps",

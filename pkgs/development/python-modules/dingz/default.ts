@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pkg_resources_backport = nix.arg($, "pkg-resources-backport");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dingz",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-ecosystem",
           repo: "python-dingz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dingz"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for interacting with Dingz devices",
         homepage: "https://github.com/home-assistant-ecosystem/python-dingz",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-ecosystem/python-dingz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

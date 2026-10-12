@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "belle-sip",
       nativeBuildInputs: nix.thunk(() => [python3]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=cast-function-type",
             "-Wno-error=deprecated-declarations",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })),
       propagatedBuildInputs: nix.thunk(() => [libantlr3c, bctoolbox, belr, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern library implementing SIP (RFC 3261) transport, transaction and dialog layers. Part of the Linphone project",
         mainProgram: "belle_sip_tester",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

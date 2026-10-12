@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "windows")),
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
         return nix.update({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           dlfcn: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dlfcn"), nix.thunk(() => ({})))),
-          mingw_w64: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mingw-w64"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenvNoLibc })))),
+          mingw_w64: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mingw-w64"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenvNoLibc })))),
           crossThreadsStdenv: nix.thunk(() => nix.app(overrideCC, stdenvNoLibc, nix.thunk(() => (nix.asBool(nix.selOr(stdenv, () => false, "hostPlatform", "useLLVM")) ? nix.sel(buildPackages, "llvmPackages", "clangNoLibcxx") : (nix.asBool(nix.selOr(stdenv, () => false, "hostPlatform", "useGccNG")) ? nix.sel(buildPackages, "gccNGPackages", "gccWithLibcAndBasicLibgcc") : nix.app(nix.sel(buildPackages, "gccWithoutTargetLibc", "override"), (old) => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 bintools: nix.thunk(() => nix.app(nix.sel(old, "bintools", "override"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     libc: nix.thunk(() => nix.sel(pkgsHostTarget, "libc")),
                     noLibc: nix.thunk(() => nix.eq(libc, null)),
                     nativeLibc: false,
@@ -48,18 +48,18 @@ export default nix.lambda((args) => (() => {
               }))))))),
           mingw_w64_headers: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mingw-w64/headers.nix"), nix.thunk(() => ({})))),
           mcfgthreads: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mcfgthreads"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               stdenv: nix.thunk(() => nix.sel(self, "crossThreadsStdenv")),
             })))),
           npiperelay: nix.thunk(() => nix.app(callPackage, nix.path(here, "./npiperelay"), nix.thunk(() => ({})))),
           pthreads: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mingw-w64/pthreads.nix"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               stdenv: nix.thunk(() => nix.sel(self, "crossThreadsStdenv")),
             })))),
           libgnurx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libgnurx"), nix.thunk(() => ({})))),
           sdk: nix.thunk(() => nix.app(callPackage, nix.path(here, "./msvcSdk"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mingw_w64_pthreads: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "windows.mingw_w64_pthreads is deprecated, windows.pthreads should be preferred", nix.thunk(() => nix.sel(self, "pthreads")))),
           }))));
       })(),

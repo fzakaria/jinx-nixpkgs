@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const airspy = nix.arg($, "airspy");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "soapyairspy",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapyAirspy",
           rev: nix.thunk(() => nix.str`soapy-airspy-${nix.sel(finalAttrs, "version")}`),
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [airspy, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pothosware/SoapyAirspy/commit/1be30c33b394fc4d2aeea4287e8df8701adad5a0.patch",
             hash: "sha256-ZEIyyd2tOK1diPh8BsEqALHGgdVCV6tZP9xeQNeeXl8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/pothosware/SoapyAirspy/pull/31/commits/0ee4a5e8edff9f2bbea60dd069d2cc958e314a3e.patch",
             hash: "sha256-TQs4rDw+kRmxnuUwhhq9ioCsbKKniwuspSk/c7wazMM=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/pothosware/SoapyAirspy",
         description: "SoapySDR plugin for Airspy devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

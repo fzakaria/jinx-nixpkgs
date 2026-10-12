@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   nix.assert_((!nix.asBool(systemdSupport) || nix.asBool(dbusSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pc/pcsc-tools/package.nix:26:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pcsc-tools",
       version: "1.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LudovicRousseau",
           repo: "pcsc-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -90,11 +90,11 @@ wrapProgram $out/bin/pcsc_scan \\
 install -Dm444 -t $out/share/pcsc smartcard_list.txt
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "pcsc_scan -V",
             })))),
@@ -102,7 +102,7 @@ install -Dm444 -t $out/share/pcsc smartcard_list.txt
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tools used to test a PC/SC driver, card or reader",
         homepage: "https://pcsc-tools.apdu.fr/",
         changelog: nix.thunk(() => nix.str`https://github.com/LudovicRousseau/pcsc-tools/releases/tag/${nix.sel(finalAttrs, "version")}`),

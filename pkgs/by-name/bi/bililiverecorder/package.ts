@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bililiverecorder",
       version: "2.20.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/BililiveRecorder/BililiveRecorder/releases/download/v${nix.sel(finalAttrs, "version")}/BililiveRecorder-CLI-any.zip`),
           hash: "sha256-nlXjPUvsi/mn3nHfTCXh1Irjjs5qFezjPS8iELCcSUc=",
           stripRoot: false,
@@ -42,7 +42,7 @@ makeWrapper ${dotnet}/bin/dotnet $out/bin/BililiveRecorder \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convenient free open source bilibili live recording tool",
         homepage: "https://rec.danmuji.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/BililiveRecorder/BililiveRecorder/releases/tag/v${nix.sel(finalAttrs, "version")}`),

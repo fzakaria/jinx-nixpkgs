@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const comfyui_workflow_templates_media_image = nix.arg($, "comfyui-workflow-templates-media-image");
   const comfyui_workflow_templates_media_other = nix.arg($, "comfyui-workflow-templates-media-other");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comfyui-workflow-templates",
       version: "0.11.66",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "comfyui_workflow_templates",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-PYTvWQ0u7MavD9lPHaEytxkdXOy35eze55qjd+D8tGI=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Workflow templates for ComfyUI",
         homepage: "https://github.com/Comfy-Org/workflow_templates",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const vcs_versioning = nix.arg($, "vcs-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vcs-versioning",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "setuptools-scm",
           tag: nix.thunk(() => nix.str`vcs-versioning-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-CfRzupWFtvmQLbubyr+eXRnLi4auZc2PA/Zz0aFNgaU=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postPatch: "pushd vcs-versioning\n",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git, pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["-vvv"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(vcs_versioning, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(vcs_versioning, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/setuptools-scm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "The blessed package to manage your versions by scm tags",
         homepage: "https://github.com/pypa/setuptools-scm/tree/main/vcs-versioning",

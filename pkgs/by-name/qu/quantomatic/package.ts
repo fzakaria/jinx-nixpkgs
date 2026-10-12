@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quantomatic",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Quantomatic/quantomatic/releases/download/v${nix.sel(finalAttrs, "version")}/Quantomatic-v${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "04dd5p73a7plb4l4x2balam8j7mxs8df06rjkalxycrr1id52q4r",
         })))),
@@ -32,7 +32,7 @@ mkdir -p $out/bin
 makeWrapper ${jre}/bin/java $out/bin/quantomatic --add-flags "-jar $out/libexec/quantomatic/quantomatic.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Piece of software for reasoning about monoidal theories; in particular, quantum information processing",
         mainProgram: "quantomatic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

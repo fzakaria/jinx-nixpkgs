@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const unprivileged = nix.argOr($, "unprivileged", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "2.12",
       pname: "wpa_supplicant",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://w1.fi/releases/wpa_supplicant-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-COI5N+FtAVXlXKsrUfUfvhDYChqpHE4VRCZFBZtzfvY=",
         })))),
@@ -60,22 +60,22 @@ export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE \\
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p $out/share/man/man5 $out/share/man/man8\ncp -v \"doc/docbook/\"*.5 $out/share/man/man5/\ncp -v \"doc/docbook/\"*.8 $out/share/man/man8/\n", nix.app(nix.sel(lib, "optionalString"), dbusSupport, "mkdir -p $out/share/dbus-1/system.d $out/share/dbus-1/system-services $out/etc/systemd/system\ncp -v \"dbus/\"*service $out/share/dbus-1/system-services\ncp -v dbus/dbus-wpa_supplicant.conf $out/share/dbus-1/system.d\ncp -v \"systemd/\"*.service $out/etc/systemd/system\n")), "rm $out/share/man/man8/wpa_priv.8\ninstall -Dm444 wpa_supplicant.conf $out/share/doc/wpa_supplicant/wpa_supplicant.conf.example\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           wpa_supplicant: nix.thunk(() => nix.attr(nixosTests, "wpa_supplicant")),
           wpa_supplicant_gui: wpa_supplicant_gui,
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://w1.fi/wpa_supplicant/",
         description: "Tool for connecting to WPA and WPA2-protected wireless networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "w1.fi", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

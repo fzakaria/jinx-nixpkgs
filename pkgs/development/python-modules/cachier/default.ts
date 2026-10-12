@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-cachier",
           repo: "cachier",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -71,10 +71,10 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_bad_cache_file", "test_delete_cache_file"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/sql_tests/test_sql_core.py"]);
       const preBuild = "export HOME=\"$(mktemp -d)\"\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, RELEASING_PROCESS: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, RELEASING_PROCESS: "1" }));
       const pythonImportsCheck = nix.thunk(() => ["cachier"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/python-cachier/cachier",
         changelog: nix.thunk(() => nix.str`https://github.com/python-cachier/cachier/releases/tag/${nix.sel(src, "tag")}`),
         description: "Persistent, stale-free, local and cross-machine caching for functions",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

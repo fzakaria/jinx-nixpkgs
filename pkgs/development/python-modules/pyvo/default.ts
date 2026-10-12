@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyvo",
       version: "1.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-08xgqj00FtIsieRloE36n1IQhf3VIozOLP/S/uOp5wk=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["pyvo/dal/tests/test_datalink.py"]),
       pythonImportsCheck: nix.thunk(() => ["pyvo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Astropy affiliated package for accessing Virtual Observatory data and services",
         homepage: "https://github.com/astropy/pyvo",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/pyvo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

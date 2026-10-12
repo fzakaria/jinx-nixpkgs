@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "globus",
           repo: "globus-cli",
           tag: version,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const postInstall = "mkdir -p completions/{bash,zsh}\n$out/bin/globus --bash-completer > completions/bash/globus\n$out/bin/globus --zsh-completer > completions/zsh/_globus\ninstallShellCompletion \\\n  --bash completions/bash/globus \\\n  --zsh completions/zsh/_globus\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "globus",
         description: "Command-line interface to Globus REST APIs, including the Transfer API and the Globus Auth API",
         homepage: "https://github.com/globus/globus-cli",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "richardjacton"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

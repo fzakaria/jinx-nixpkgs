@@ -10,18 +10,18 @@ const pos$5 = nix.positions(here + "/early-mount-options.nix", [["machine", 5, 9
 const pos$6 = nix.positions(here + "/early-mount-options.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$6,
+  [nix.POS]: pos$6,
   name: "early-mount-options",
   nodes: nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     machine: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "/var": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             fsType: "none",
             options: nix.thunk(() => ["bind", "nosuid", "nodev", "noexec"]),
             device: "/var",

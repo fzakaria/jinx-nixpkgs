@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "async_generator",
           version: version,
           hash: "sha256-brs9EGwSkgqq5CzLb3h+9e79zdFm6j1ij6hHar5xIUQ=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_aclose_on_unstarted_generator"])));
       const pythonImportsCheck = nix.thunk(() => ["async_generator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async generators and context managers for Python 3.5+",
         homepage: "https://github.com/python-trio/async_generator",
         license: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

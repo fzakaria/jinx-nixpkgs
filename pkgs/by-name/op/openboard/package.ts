@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6Packages, "wrapQtAppsHook"));
   const quazip = nix.thunk(() => nix.attr(qt6Packages, "quazip"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openboard",
       version: "1.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenBoard-org",
           repo: "OpenBoard",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         libxfixes,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive whiteboard application",
         homepage: "https://openboard.ch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const gradio = nix.arg($, "gradio");
   const gradio_client = nix.arg($, "gradio-client");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gradio-pdf",
       version: "0.0.23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freddyaboulton",
           repo: "gradio-pdf",
           rev: "57deb0bd2823a9a75c5da498cc39a85f8fd4ff02",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gradio_pdf"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for easily interacting with trained machine learning models",
         homepage: "https://pypi.org/project/gradio-pdf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

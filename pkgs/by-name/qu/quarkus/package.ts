@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quarkus-cli",
       version: "3.39.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/quarkusio/quarkus/releases/download/${nix.sel(finalAttrs, "version")}/quarkus-cli-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jVokge3colai8SC5HrB9EFsq6Gv7IPQn4193fpdbLnk=",
         })))),
@@ -41,7 +41,7 @@ makeWrapper ${jdk}/bin/java $out/bin/quarkus \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kubernetes-native Java framework tailored for GraalVM and HotSpot, crafted from best-of-breed Java libraries and standards",
         homepage: "https://quarkus.io",
         changelog: nix.thunk(() => nix.str`https://github.com/quarkusio/quarkus/releases/tag/${nix.sel(finalAttrs, "version")}`),

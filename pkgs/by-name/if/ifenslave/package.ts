@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ifenslave",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/i/ifenslave-2.6/ifenslave-2.6_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "0h9hrmy19zdksl7ys250r158b943ihbgkb95n8p4k8l0vqsby5vr",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin\ncp -a ifenslave $out/bin\n",
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for enslaving networking interfaces under a bond",
         mainProgram: "ifenslave",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

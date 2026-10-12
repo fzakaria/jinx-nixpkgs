@@ -51,35 +51,35 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runTest = nix.arg($, "runTest");
   const makeTest = (conf) => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       name: "espanso",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "n8henrie"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         machine: nix.thunk(() => (() => {
           const base = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs = nix.arg($_1, "pkgs");
             const config = nix.arg($_1, "config");
             return {
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               services: nix.thunk(() => ({
-                __proto__: pos$3,
-                espanso: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+                [nix.POS]: pos$3,
+                espanso: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     espanso: nix.thunk(() => (() => {
                       const confdir = nix.thunk(() => nix.str`${nix.sel(config, "users", "users", "alice", "home")}/.config/espanso`);
                       const mode = "0755";
@@ -87,36 +87,36 @@ export default nix.lambda((args) => (() => {
                       const group = nix.thunk(() => nix.sel(config, "users", "users", "alice", "group"));
                       return nix.attrsDyn({}, [
                         [nix.str`${nix.sel(config, "users", "users", "alice", "home")}/.config`, nix.thunk(() => ({
-                          __proto__: pos$5,
-                          d: nix.thunk(() => ({ __proto__: pos$4, mode: mode, user: user, group: group })),
+                          [nix.POS]: pos$5,
+                          d: nix.thunk(() => ({ [nix.POS]: pos$4, mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}`, nix.thunk(() => ({
-                          __proto__: pos$7,
-                          d: nix.thunk(() => ({ __proto__: pos$6, mode: mode, user: user, group: group })),
+                          [nix.POS]: pos$7,
+                          d: nix.thunk(() => ({ [nix.POS]: pos$6, mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/config`, nix.thunk(() => ({
-                          __proto__: pos$9,
-                          d: nix.thunk(() => ({ __proto__: pos$8, mode: mode, user: user, group: group })),
+                          [nix.POS]: pos$9,
+                          d: nix.thunk(() => ({ [nix.POS]: pos$8, mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/match`, nix.thunk(() => ({
-                          __proto__: pos$11,
-                          d: nix.thunk(() => ({ __proto__: pos$10, mode: mode, user: user, group: group })),
+                          [nix.POS]: pos$11,
+                          d: nix.thunk(() => ({ [nix.POS]: pos$10, mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/config/default.yml`, nix.thunk(() => ({
-                          __proto__: pos$13,
-                          f: nix.thunk(() => ({ __proto__: pos$12, mode: "0644", user: user, group: group })),
+                          [nix.POS]: pos$13,
+                          f: nix.thunk(() => ({ [nix.POS]: pos$12, mode: "0644", user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/match/base.yml`, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           f: nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             mode: "0644",
                             user: user,
                             group: group,
                             argument: nix.thunk(() => nix.app(nix.sel(lib, "toJSON"), nix.thunk(() => ({
-                                __proto__: pos$15,
+                                [nix.POS]: pos$15,
                                 matches: nix.thunk(() => [
-                                  nix.thunk(() => ({ __proto__: pos$14, trigger: ":nixostest", replace: "My NixOS Test Passed!" })),
+                                  nix.thunk(() => ({ [nix.POS]: pos$14, trigger: ":nixostest", replace: "My NixOS Test Passed!" })),
                                 ]),
                               })))),
                           })),
@@ -128,29 +128,29 @@ export default nix.lambda((args) => (() => {
               })),
             };
           })(), formals$2);
-          return { __proto__: pos$22, imports: nix.thunk(() => [base, conf]) };
+          return { [nix.POS]: pos$22, imports: nix.thunk(() => [base, conf]) };
         })()),
       })),
       enableOCR: true,
       testScript: "machine.wait_for_unit(\"graphical.target\")\nmachine.wait_for_text(\"Espanso is running!\")\nmachine.send_chars(\":nixostest\")\nmachine.wait_for_text(\"My NixOS Test Passed!\")\n",
     })));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     x11: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
         "test-support": nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$26,
-            auto: nix.thunk(() => ({ __proto__: pos$25, user: "alice" })),
+            [nix.POS]: pos$26,
+            auto: nix.thunk(() => ({ [nix.POS]: pos$25, user: "alice" })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => ({
-            __proto__: pos$29,
-            alice: nix.thunk(() => ({ __proto__: pos$28, extraGroups: nix.thunk(() => ["input"]) })),
+            [nix.POS]: pos$29,
+            alice: nix.thunk(() => ({ [nix.POS]: pos$28, extraGroups: nix.thunk(() => ["input"]) })),
           })),
         })),
       })))),
@@ -159,31 +159,31 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           programs: nix.thunk(() => ({
-            __proto__: pos$33,
-            sway: nix.thunk(() => ({ __proto__: pos$32, enable: true })),
+            [nix.POS]: pos$33,
+            sway: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             greetd: nix.thunk(() => (() => {
               const initial_session = nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 user: nix.thunk(() => nix.sel(config, "users", "users", "alice", "name")),
                 command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sway")))),
               }));
               return {
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   initial_session: initial_session,
                   default_session: initial_session,
                 })),
               };
             })()),
             espanso: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               package: nix.thunk(() => nix.sel(pkgs, "espanso-wayland")),
             })),
           })),

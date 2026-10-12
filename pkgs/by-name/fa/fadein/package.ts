@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg8 = nix.arg($, "libjpeg8");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fadein",
       version: "5.0.15",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260929081038/https://www.fadeinpro.com/download/demo/fadein-linux-x64-demo.tar.gz",
           hash: "sha256-pfpdAouRUTL8NhemKDybzi6B2J2Y/DCTfWZpmt1kMQU=",
         })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/share\ncp -r usr/share/* $out/share\n\n# Fix icons\nfor size in 16 24 32 48 64 96 128 256 512; do\n  install -Dm444 \\\n    \"usr/share/fadein/icon_app/fadein_icon_${size}x${size}.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/fadein.png\"\n\n  install -Dm444 \\\n    \"usr/share/fadein/icon_app/fadein_doc_${size}x${size}.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/mimetypes/application-x-fadein-document.png\"\ndone\n\nsubstituteInPlace $out/share/applications/fadein.desktop \\\n  --replace-fail 'Icon=/usr/share/fadein/icon_app/fadein_icon_256x256.png' 'Icon=fadein'\n\nmkdir -p $out/bin\nln -s \"$out/share/fadein/fadein\" \"$out/bin/fadein\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Writing motion picture screenplays",
         homepage: "https://www.fadeinpro.com/",
         changelog: "https://www.fadeinpro.com/page.pl?content=version_notes",

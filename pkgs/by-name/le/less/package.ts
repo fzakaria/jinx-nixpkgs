@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const withSecure = nix.argOr($, "withSecure", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "less",
       version: "710",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.greenwoodsoftware.com/less/less-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0QCPt43K4TI92rZkvLNSph8CKxsTG9gBhUjgIdl17Ho=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.greenwoodsoftware.com/less/",
         description: "More advanced file pager than 'more'",
         changelog: nix.thunk(() => nix.str`https://www.greenwoodsoftware.com/less/news.${nix.sel(finalAttrs, "version")}.html`),

@@ -57,49 +57,49 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
 ` : "install -m 640 -o sogo -g sogo /etc/sogo/sogo.conf.raw /etc/sogo/sogo.conf\n")}
 `)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         sogo: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "SOGo groupware")),
             vhostName: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Name of the nginx vhost",
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "sogo",
               })))),
             timezone: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Timezone of your SOGo instance",
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 example: "America/Montreal",
               })))),
             language: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Language of SOGo",
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "English",
               })))),
             ealarmsCredFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Optional path to a credentials file for email alarms",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
               })))),
             configReplaces: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Replacement-filepath mapping for sogo.conf.\nEvery key is replaced with the contents of the file specified as value.\n\nIn the example, every occurrence of LDAP_BINDPW will be replaced with the text of the\nspecified file.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$5, LDAP_BINDPW: "/var/lib/secrets/sogo/ldappw" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$5, LDAP_BINDPW: "/var/lib/secrets/sogo/ldappw" })),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Extra sogo.conf configuration lines",
                 type: nix.thunk(() => nix.lookup(w_1, "lines")),
                 default: "",
@@ -109,14 +109,14 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sogo"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "sogo/sogo.conf.raw": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               text: nix.thunk(() => nix.str`{
   // Mandatory parameters
   SOGoTimeZone = "${nix.sel(cfg, "timezone")}";
@@ -136,11 +136,11 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             sogo: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "SOGo groupware",
               after: nix.thunk(() => [
                 "postgresql.target",
@@ -154,11 +154,11 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
                 nix.thunk(() => nix.sel(config, "environment", "etc", "sogo/sogo.conf.raw", "source")),
               ]),
               environment: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 LDAPTLS_CACERT: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Type: "forking",
                 ExecStartPre: nix.thunk(() => nix.add(nix.add("+", preStart), "/bin/sogo-prestart")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sogo")}/bin/sogod -WOLogFile - -WOPidFile /run/sogo/sogo.pid`),
@@ -186,11 +186,11 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
               })),
             })),
             "sogo-tmpwatch": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "SOGo tmpwatch",
               startAt: nix.thunk(() => ["hourly"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => [
                   "find /var/lib/sogo/spool -type f -user sogo -atime +23 -delete",
@@ -219,7 +219,7 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
               })),
             })),
             "sogo-ealarms": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "SOGo email alarms",
               after: nix.thunk(() => [
                 "postgresql.target",
@@ -234,7 +234,7 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
               ]),
               startAt: nix.thunk(() => ["minutely"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sogo")}/bin/sogo-ealarms-notify${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ealarmsCredFile"), null)), nix.thunk(() => nix.str` -p ${nix.sel(cfg, "ealarmsCredFile")}`))}`),
                 ProtectSystem: "strict",
@@ -262,45 +262,45 @@ ${nix.sel(pkgs, "perl")}/bin/perl -p ${nix.app(nix.lookup(w, "concatStringsSep")
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           nginx: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "vhostName")}`, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     extraConfig: "rewrite ^ https://$server_name/SOGo;\nallow all;\n",
                   })),
                   "/principals/": nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     extraConfig: "rewrite ^ https://$server_name/SOGo/dav;\nallow all;\n",
                   })),
                   "^~/SOGo": nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     extraConfig: "proxy_pass http://127.0.0.1:20000;\nproxy_redirect http://127.0.0.1:20000 default;\n\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\nproxy_set_header Host $host;\nproxy_set_header x-webobjects-server-protocol HTTP/1.0;\nproxy_set_header x-webobjects-remote-host 127.0.0.1;\nproxy_set_header x-webobjects-server-port $server_port;\nproxy_set_header x-webobjects-server-name $server_name;\nproxy_set_header x-webobjects-server-url $scheme://$host;\nproxy_connect_timeout 90;\nproxy_send_timeout 90;\nproxy_read_timeout 90;\nproxy_buffer_size 64k;\nproxy_buffers 8 64k;\nproxy_busy_buffers_size 64k;\nproxy_temp_file_write_size 64k;\nclient_max_body_size 50m;\nclient_body_buffer_size 128k;\nbreak;\n",
                   })),
                   "/SOGo.woa/WebServerResources/": nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(pkgs, "sogo")}/lib/GNUstep/SOGo/WebServerResources/;
 allow all;
 `),
                   })),
                   "/SOGo/WebServerResources/": nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(pkgs, "sogo")}/lib/GNUstep/SOGo/WebServerResources/;
 allow all;
 `),
                   })),
                   "~ ^/SOGo/so/ControlPanel/Products/([^/]*)/Resources/(.*)$": nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(pkgs, "sogo")}/lib/GNUstep/SOGo/$1.SOGo/Resources/$2;
 `),
                   })),
                   "~ ^/SOGo/so/ControlPanel/Products/[^/]*UI/Resources/.*\\.(jpg|png|gif|css|js)$": nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(pkgs, "sogo")}/lib/GNUstep/SOGo/$1.SOGo/Resources/$2;
 `),
                   })),
@@ -310,12 +310,12 @@ allow all;
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
-          groups: nix.thunk(() => ({ __proto__: pos$34, sogo: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$37,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$34, sogo: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             sogo: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               group: "sogo",
               isSystemUser: true,
               description: "SOGo service user",

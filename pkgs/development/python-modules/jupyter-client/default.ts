@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const traitlets = nix.arg($, "traitlets");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jupyter-client",
       version: "8.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jupyter_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-pY9zDdnnKLoWuh1i68z3/+Hrvbzk6Vz66UG3Mhrh9Po=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["jupyter_client"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter protocol implementation and client libraries",
         homepage: "https://github.com/jupyter/jupyter_client",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/jupyter_client/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_full = ffmpeg_8_full;
   const nodejs = nodejs_24;
   const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       "ffmpeg-full": ffmpeg_full,
       nunicode: nunicode,
       getopt: getopt,
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "audiobookshelf",
       version: "2.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "advplyr",
           repo: "audiobookshelf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       npmInstallFlags: nix.thunk(() => ["--only-production"]),
       client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           nodejs: nix.thunk(() => nix.attr(finalAttrs, "nodejs")),
@@ -74,15 +74,15 @@ chmod +x $out/bin/audiobookshelf
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           basic: nix.thunk(() => nix.sel(nixosTests, "audiobookshelf")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage=client"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage=client"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.audiobookshelf.org/",
         description: "Self-hosted audiobook and podcast server",
         changelog: nix.thunk(() => nix.str`https://github.com/advplyr/audiobookshelf/releases/tag/v${nix.sel(finalAttrs, "version")}`),

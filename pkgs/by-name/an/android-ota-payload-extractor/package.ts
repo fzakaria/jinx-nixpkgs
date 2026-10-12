@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finallAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "android-ota-payload-extractor",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tobyxdd",
           repo: "android-ota-payload-extractor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finallAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-JsinGljnb+kC0QgaF4Vbi6Mh3Lwwwk/SbC+p5WLt08A=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A fast & natively cross-platform Android OTA payload extractor written in Go",
         homepage: "https://github.com/tobyxdd/android-ota-payload-extractor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

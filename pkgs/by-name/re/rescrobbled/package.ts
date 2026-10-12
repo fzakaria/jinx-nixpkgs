@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rescrobbled",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "InputUsername",
           repo: "rescrobbled",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ substituteInPlace src/filter.rs --replace-fail '#!/usr/bin/env sh' '#!${dash}/bi
 `),
       postInstall: "substituteInPlace rescrobbled.service --replace-fail '%h/.cargo/bin/rescrobbled' \"$out/bin/rescrobbled\"\ninstall -Dm644 rescrobbled.service -t \"$out/share/systemd/user\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MPRIS music scrobbler daemon",
         homepage: "https://github.com/InputUsername/rescrobbled",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

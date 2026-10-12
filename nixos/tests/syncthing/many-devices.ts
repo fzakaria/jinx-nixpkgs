@@ -48,60 +48,60 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const configPath = "/var/lib/syncthing/.config/syncthing/config.xml";
   const settingsWithId = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     devices: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       test_device1: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         id: "IVTZ5XF-EF3GKFT-GS4AZLG-IT6H2ZP-6WK75SF-AFXQXJJ-BNRZ4N6-XPDKVAU",
       })),
       test_device2: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         id: "5C35H56-Z2GFF4F-F3IVD4B-GJYVWIE-SMDBJZN-GI66KWP-52JIQGN-4AVLYAM",
       })),
       test_device3: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         id: "XKLSKHE-BZOHV7B-WQZACEF-GTH36NP-6JSBB6L-RXS3M7C-EEVWO2L-C5B4OAJ",
       })),
       test_device4: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         id: "APN5Q7J-35GZETO-5KCLF35-ZA7KBWK-HGWPBNG-FERF24R-UTLGMEX-4VJ6PQX",
       })),
       test_device5: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         id: "D4YXQEE-5MK6LIK-BRU5QWM-ZRXJCK2-N3RQBJE-23JKTQQ-LYGDPHF-RFPZIQX",
       })),
       test_device6: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         id: "TKMCH64-T44VSLI-6FN2YLF-URBZOBR-ATO4DYX-GEDRIII-CSMRQAI-UAQMDQG",
       })),
       test_device7: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         id: "472EEBG-Q4PZCD4-4CX6PGF-XS3FSQ2-UFXBZVB-PGNXWLX-7FKBLER-NJ3EMAR",
       })),
       test_device8: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         id: "HW6KUMK-WTBG24L-2HZQXLO-TGJSG2M-2JG3FHX-5OGYRUJ-T6L5NN7-L364QAZ",
       })),
       test_device9: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         id: "YAE24AP-7LSVY4T-J74ZSEM-A2IK6RB-FGA35TP-AG4CSLU-ED4UYYY-2J2TDQU",
       })),
       test_device10: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         id: "277XFSB-OFMQOBI-3XGNGUE-Y7FWRV3-QQDADIY-QIIPQ26-EOGTYKW-JP2EXAI",
       })),
       test_device11: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         id: "2WWXVTN-Q3QWAAY-XFORMRM-2FDI5XZ-OGN33BD-XOLL42R-DHLT2ML-QYXDQAU",
       })),
     })),
     folders: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), 6n, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.builtins.genList, (x) => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: nix.thunk(() => nix.str`/var/lib/syncthing/test_folder${nix.builtins.toString(x)}`),
             value: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               id: nix.thunk(() => nix.str`DontDeleteMe${nix.builtins.toString(x)}`),
             })),
           }))),
@@ -109,13 +109,13 @@ export default nix.lambda((args) => (() => {
       ]))),
   }));
   const settingsWithoutId = nix.thunk(() => ({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       autoUpgradeIntervalH: 0n,
       urAccepted: nix.thunk(() => nix.neg(1n)),
     })),
-    gui: nix.thunk(() => ({ __proto__: pos$17, theme: "dark" })),
+    gui: nix.thunk(() => ({ [nix.POS]: pos$17, theme: "dark" })),
   }));
   const checkSettingWithId = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -151,7 +151,7 @@ assert "${v}" ${(nix.asBool(not) ? "not" : "")} in configVal_${t}_${n}
     const not = nix.arg($_1, "not");
     return nix.app(nix.sel(lib, "pipe"), IDsToDelete, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.builtins.map, (obj) => nix.app(checkSettingWithId, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               t: nix.thunk(() => nix.attr(obj, "t")),
               id: nix.thunk(() => nix.attr(obj, "id")),
               not: not,
@@ -161,19 +161,19 @@ assert "${v}" ${(nix.asBool(not) ? "not" : "")} in configVal_${t}_${n}
   })(), formals$4);
   const IDsToDelete = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       t: "device",
       id: "LZ2CTHT-3W2M7BC-CMKDFZL-DLUQJFS-WJR73PA-NZGODWG-DZBHCHI-OXTQXAK",
       name: "DeleteThisDevice",
     })),
-    nix.thunk(() => ({ __proto__: pos$21, t: "folder", id: "DeleteMe" })),
-    nix.thunk(() => ({ __proto__: pos$22, t: "folder", id: "Delete Me" })),
+    nix.thunk(() => ({ [nix.POS]: pos$21, t: "folder", id: "DeleteMe" })),
+    nix.thunk(() => ({ [nix.POS]: pos$22, t: "folder", id: "Delete Me" })),
   ]);
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: "syncthing-many-devices",
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -183,15 +183,15 @@ assert "${v}" ${(nix.asBool(not) ? "not" : "")} in configVal_${t}_${n}
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           environment: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             systemPackages: nix.thunk(() => (() => {
               const addDeviceToDeleteScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeBashBin"), "syncthing-add-device-to-delete.sh", nix.thunk(() => nix.str`set -euo pipefail
 
@@ -213,11 +213,11 @@ curl() {
         "$@"
 }
 ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d ${nix.app(nix.sel(lib_1, "escapeShellArg"), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (nix.asBool(nix.eq(nix.sel(obj, "t"), "device")) ? {
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         deviceID: nix.thunk(() => nix.sel(obj, "id")),
                         name: nix.thunk(() => nix.attr(obj, "name")),
                       } : (nix.asBool(nix.eq(nix.sel(obj, "t"), "folder")) ? {
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         id: nix.thunk(() => nix.attr(obj, "id")),
                         path: nix.thunk(() => nix.str`/var/lib/syncthing/${nix.sel(obj, "id")}`),
                       } : nix.builtins.throw(nix.thunk(() => nix.str`unsupported object type ${nix.sel(obj, "t")}`))))))))} \\
@@ -232,9 +232,9 @@ ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d 
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             syncthing: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               overrideDevices: true,
               overrideFolders: true,
@@ -246,7 +246,7 @@ ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d 
     })),
     testScript: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add("machine.wait_for_unit(\"syncthing-init.service\")\n", nix.app(nix.sel(lib, "pipe"), settingsWithId, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (id) => nix.app(checkSettingWithId, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               t: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "s", nix.thunk(() => nix.builtins.elemAt(path, 0n)))),
               id: id,
             }))))),
@@ -254,19 +254,19 @@ ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d 
         nix.thunk(() => nix.sel(lib, "concatStrings")),
       ]))), nix.app(nix.sel(lib, "pipe"), settingsWithoutId, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (value) => nix.app(checkSettingWithoutId, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               t: nix.thunk(() => nix.builtins.elemAt(path, 0n)),
               n: nix.thunk(() => nix.builtins.elemAt(path, 1n)),
               v: nix.thunk(() => nix.builtins.toString(value)),
             }))))),
         nix.thunk(() => nix.app(nix.sel(lib, "collect"), nix.thunk(() => nix.builtins.isString))),
         nix.thunk(() => nix.sel(lib, "concatStrings")),
-      ]))), "# Run the script on the machine\nmachine.succeed(\"syncthing-add-device-to-delete.sh\")\n"), nix.app(checkSettingsToDelete, nix.thunk(() => ({ __proto__: pos$33, not: false })))), nix.str`# Useful for debugging later
+      ]))), "# Run the script on the machine\nmachine.succeed(\"syncthing-add-device-to-delete.sh\")\n"), nix.app(checkSettingsToDelete, nix.thunk(() => ({ [nix.POS]: pos$33, not: false })))), nix.str`# Useful for debugging later
 machine.copy_from_machine("${configPath}", "before")
 
 machine.systemctl("restart syncthing-init.service")
 machine.wait_for_unit("syncthing-init.service")
-`), nix.app(checkSettingsToDelete, nix.thunk(() => ({ __proto__: pos$34, not: true })))), nix.str`# Useful for debugging later
+`), nix.app(checkSettingsToDelete, nix.thunk(() => ({ [nix.POS]: pos$34, not: true })))), nix.str`# Useful for debugging later
 machine.copy_from_machine("${configPath}", "after")
 
 # Copy the systemd unit's bash script, to inspect it for debugging.

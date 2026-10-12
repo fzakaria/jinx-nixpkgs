@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ugdb",
       version: "0.1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ftilde",
           repo: "ugdb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [oniguruma]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       cargoHash: "sha256-+J4gwjQXB905yk4b2GwpamXO/bHpwqMxw6GsnusbJKU=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
       doCheck: false,
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Alternative TUI for gdb",
           homepage: "https://github.com/ftilde/ugdb",
           changelog: "https://github.com/ftilde/ugdb/blob/master/CHANGELOG.md",

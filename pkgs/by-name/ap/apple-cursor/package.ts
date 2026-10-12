@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenv = nix.arg($, "stdenv");
   const _src = (variant) => (suffix) => (hash) => nix.app(fetchzip, nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: variant,
       url: nix.thunk(() => nix.str`https://github.com/ful1e5/apple_cursor/releases/download/v${version}/${variant}.${suffix}`),
       hash: hash,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "zip")), nix.thunk(() => ({ __proto__: pos$2, stripRoot: false }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "tar.xz")), nix.thunk(() => ({ __proto__: pos$3, stripRoot: false })))))));
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "zip")), nix.thunk(() => ({ [nix.POS]: pos$2, stripRoot: false }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "tar.xz")), nix.thunk(() => ({ [nix.POS]: pos$3, stripRoot: false })))))));
   const srcs = nix.thunk(() => [
     nix.thunk(() => nix.app(_src, "macOS", "tar.xz", "sha256-nS4g+VwM+4q/S1ODb3ySi2SBk7Ha8vF8d9XpP5cEkok=")),
   ]);
   const version = "2.0.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apple_cursor",
       version: version,
       srcs: srcs,
       sourceRoot: ".",
       installPhase: "install -dm 0755 $out/share/icons\ncp -r macOS/macOS* $out/share/icons/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Opensource macOS Cursors",
         homepage: "https://github.com/ful1e5/apple_cursor",
         license: nix.thunk(() => [

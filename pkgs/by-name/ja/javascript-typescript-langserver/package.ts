@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "javascript-typescript-langserver";
       const version = "2.11.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sourcegraph",
           repo: "javascript-typescript-langserver",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-nHGTi1aH9YY01dzBeNyUEUEswrdjZPWaoycDVZZmIAA=";
       const postInstall = "find $out/lib/node_modules -xtype l -delete\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JavaScript and TypeScript code intelligence through the Language Server Protocol",
         homepage: "https://github.com/sourcegraph/javascript-typescript-langserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dywedir"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, postInstall, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, postInstall, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

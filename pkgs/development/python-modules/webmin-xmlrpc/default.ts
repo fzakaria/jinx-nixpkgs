@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autinerd",
           repo: "webmin-xmlrpc",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["webmin_xmlrpc"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/autinerd/webmin-xmlrpc/releases/tag/${version}`),
         description: "Python interface to interact with the Webmin XML-RPC API",
         homepage: "https://github.com/autinerd/webmin-xmlrpc",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lun = nix.arg($, "lun");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ppx_lun",
       version: nix.thunk(() => nix.attr(lun, "version")),
       src: nix.thunk(() => nix.attr(lun, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [fmt]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(lun, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Optics with lun package and PPX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

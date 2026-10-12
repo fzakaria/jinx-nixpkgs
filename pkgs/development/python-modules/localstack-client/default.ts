@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "localstack_client",
           version: version,
           hash: "sha256-HL178fA7m1U//n6hD+E39E6NaQo3r5xlFeumGiN5/EY=",
@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_session"]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, localstack: nix.thunk(() => nix.attr(pkgs, "localstack")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, localstack: nix.thunk(() => nix.attr(pkgs, "localstack")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight Python client for LocalStack",
         homepage: "https://github.com/localstack/localstack-python-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

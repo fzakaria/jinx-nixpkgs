@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "morse-driver",
       version: nix.thunk(() => nix.str`1.16.4-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MorseMicro",
           repo: "morse_driver",
           rev: "7f95fe37750a09259b4d2988a9cf22df60f76fdf",
@@ -52,7 +52,7 @@ install -D -m 644 dot11ah/dot11ah.ko "$out/lib/modules/${nix.sel(kernel, "modDir
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Morse Micro Wi-Fi driver",
         homepage: "https://github.com/MorseMicro/morse_driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

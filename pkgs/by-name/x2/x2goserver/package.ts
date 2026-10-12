@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const sshfs = nix.arg($, "sshfs");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "x2goserver",
       version: "4.1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.x2go.org/releases/source/x2goserver/x2goserver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Q1vbB84iQZ2eRWDf+Kyn+utrNgkdVayrwXZCm5Ia65Y=",
         })))),
@@ -123,9 +123,9 @@ sed -i -e "s,.\\+bin/perl,#!${perl}/bin/perl -I ${nix.sel(finalAttrs, "passthru"
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x2go-perl": nix.thunk(() => nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "x2go-perl",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -149,7 +149,7 @@ sed -i -e "s,.\\+bin/perl,#!${perl}/bin/perl -I ${nix.sel(finalAttrs, "passthru"
           })())),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Remote desktop application, server component",
         homepage: "http://x2go.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

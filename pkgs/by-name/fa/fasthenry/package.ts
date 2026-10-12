@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fasthenry",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ediloren",
           repo: "FastHenry2",
           tag: nix.thunk(() => nix.str`R${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jM0mLVJRUmtHF9dcDJw81vkHpgqyz1RihB7+ZGJm8wQ=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-fcommon -O -DFOUR",
             nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-m64")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["all"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp -r bin/* $out/bin/\nmkdir -p $out/share/fasthenry/doc\ncp -r doc/* $out/share/fasthenry/doc\nmkdir -p $out/share/fasthenry/examples\ncp -r examples/* $out/share/fasthenry/examples\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multipole-accelerated inductance analysis program",
         longDescription: "Fasthenry is an inductance extraction program based on a\nmultipole-accelerated algorithm.",
         homepage: "https://www.fastfieldsolvers.com/fasthenry2.htm",

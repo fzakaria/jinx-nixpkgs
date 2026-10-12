@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-q2",
           repo: "django-q2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         redisTestHook,
       ]);
       const pythonImportsCheck = nix.thunk(() => ["django_q"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, MONGO_HOST: "127.0.0.1", REDIS_HOST: "127.0.0.1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, MONGO_HOST: "127.0.0.1", REDIS_HOST: "127.0.0.1" }));
       const disabledTests = nix.thunk(() => nix.concat(["test_mongo"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           "test_max_rss",
           "test_recycle",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-vv"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multiprocessing distributed task queue for Django based on Django-Q",
         homepage: "https://github.com/django-q2/django-q2",
         changelog: nix.thunk(() => nix.str`https://github.com/django-q2/django-q2/releases/tag/${nix.sel(src, "tag")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const smlnj_legacy = nix.arg($, "smlnj-legacy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "celf",
       version: "2.9.3-unstable-2013-07-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clf",
           repo: "celf",
           rev: "d61d95900ab316468ae850fa34a2fe9488bc5b59",
@@ -33,7 +33,7 @@ cp .heap* $out/bin/
 ./.mkexec ${smlnj_legacy}/bin/sml $out/bin celf
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linear logic programming system",
         mainProgram: "celf",
         homepage: "https://github.com/clf/celf",

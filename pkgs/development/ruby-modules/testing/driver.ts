@@ -17,8 +17,8 @@ export default nix.lambda((args) => (() => {
   const testTools = nix.thunk(() => (() => {
     const test = nix.thunk(() => nix.builtins.import(nix.path(here, "./testing.nix")));
     const stubs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stubs.nix")), defs));
-    const should = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ __proto__: pos$1, test: test, lib: lib }))));
-    return { __proto__: pos$2, test, stubs, should };
+    const should = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, test: test, lib: lib }))));
+    return { [nix.POS]: pos$2, test, stubs, should };
   })());
   const tap = nix.thunk(() => nix.builtins.import(nix.path(here, "./tap-support.nix")));
   const results = nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => nix.builtins.map((file) => nix.app(callPackage, file, testTools), testFiles))));

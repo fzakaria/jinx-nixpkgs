@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libc = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isMusl")) ? nix.force(musl) : nix.force(glibc)));
   const headerPath = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isMusl")) ? nix.str`musl-${nix.sel(libc, "version")}/include/elf.h` : nix.str`glibc-${nix.sel(libc, "version")}/elf/elf.h`));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "elf-header",
       version: nix.thunk(() => nix.attr(libc, "version")),
       src: null,
@@ -30,7 +30,7 @@ tar -xf \\
   > "$out/include/elf.h"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(libc, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         outputsToInstall: nix.thunk(() => ["out"]),
         description: "Datastructures of ELF according to the target platform's libc",
         longDescription: "The Executable and Linkable Format (ELF, formerly named Extensible Linking\nFormat), is usually defined in a header like this.\n",

@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "1.12.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "screego",
       repo: "server",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-xWy7aqpUznIYeBPqdpYdRMJxxfiPNa4JmjS3o5i3xxY=",
     }))));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "screego-ui",
       version: version,
       src: nix.thunk(() => nix.add(src, "/ui")),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/ui/yarn.lock`),
           hash: "sha256-JPSbBUny5unUHVkaVGlHyA90IpT9ahcSmt9R1hxERRk=",
         })))),
@@ -59,7 +59,7 @@ cp -r "${ui}" ./ui/build
       const postInstall = "mv $out/bin/server $out/bin/screego\n";
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Screen sharing for developers",
         homepage: "https://screego.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -70,7 +70,7 @@ cp -r "${ui}" ./ui/build
         mainProgram: "screego",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         src: src_1,
         version: version_1,
         pname,

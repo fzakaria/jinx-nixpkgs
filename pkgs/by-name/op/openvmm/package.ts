@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openvmm",
       version: "0-unstable-2025-03-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "openvmm",
           rev: "047fde8a2b3eec17a46203fbc54ce7f3aa9b4dfd",
           hash: "sha256-w6MxJVm5/ABU04MZUCSjzHVZLXQIsOVCIJZkHOfxQC0=",
         })))),
       separateDebugInfo: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n, PROTOC: "protoc" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n, PROTOC: "protoc" })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
       buildInputs: nix.thunk(() => [openssl]),
       cargoHash: "sha256-u0E09yFssd71wUS1BD766ztDImauu90T/jIWOb2v0mE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/microsoft/openvmm",
         description: "Modular, cross-platform Virtual Machine Monitor (VMM), written in Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "emporia_vue";
       const version = "0.12.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magico13",
           repo: "ha-emporia-vue",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyemvue]);
       const ignoreVersionRequirement = nix.thunk(() => ["boto3", "pyemvue"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reads data from the Emporia Vue energy monitor into Home Assistant",
         homepage: "https://github.com/magico13/ha-emporia-vue",
         changelog: nix.thunk(() => nix.str`https://github.com/magico13/ha-emporia-vue/releases/tag/v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "check",
       version: "0.15.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libcheck/check/releases/download/${nix.sel(finalAttrs, "version")}/check-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qN5OC6z7TXbdHGGN7SY1I7U7hdkqFG2INesaUpMvogo=",
         })))),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unit testing framework for C",
         longDescription: "Check is a unit testing framework for C.  It features a simple\ninterface for defining unit tests, putting little in the way of the\ndeveloper.  Tests are run in a separate address space, so Check can\ncatch both assertion failures and code errors that cause\nsegmentation faults or other signals.  The output from unit tests\ncan be used within source code editors and IDEs.\n",
         homepage: "https://libcheck.github.io/check/",

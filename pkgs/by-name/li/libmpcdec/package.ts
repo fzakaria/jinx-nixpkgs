@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmpcdec",
       version: "1.2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.musepack.net/source/libmpcdec-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1a0jdyga1zfi4wgkg3905y6inghy3s4xfs5m4x7pal08m0llkmab",
         })))),
       configureFlags: nix.thunk(() => ["ac_cv_func_memcmp_working=yes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Musepack SV7 decoder library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "mail_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-X9WKaCXm7gJI04iOJ3upmqTwZ6Lw+JjH0xSs+ng/9J0=",
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Traditional mail command for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Traditional mail command for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

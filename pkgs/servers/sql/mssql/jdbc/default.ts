@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "mssql-jdbc";
       const version = "13.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Microsoft/mssql-jdbc/releases/download/v${version}/mssql-jdbc-${version}.jre8.jar`),
           sha256: "sha256-gba5hgxxO1PCN70x9tZQJRUXgYqD2T5emf3/JQol+NM=",
         }))));
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/java\ncp $src $out/share/java/mssql-jdbc.jar\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryBytecode"))];
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

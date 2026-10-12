@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libotr = nix.arg($, "libotr");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mcabber",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mcabber.com/files/mcabber-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0q1i5acyghsmzas88qswvki8kkk2nfpr8zapgnxbcd3lwcxl38f4",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ncurses-6.3.patch",
             url: "https://github.com/McKael/mcabber/commit/5a0893d69023b77b7671731defbdca5d47731130.patch",
             sha256: "01bc23z0mva9l9jv587sq2r9w3diachgkmb9ad99hlzgj02fmq4v",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://mcabber.com/",
         description: "Small Jabber console client",
         mainProgram: "mcabber",

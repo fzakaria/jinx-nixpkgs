@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mysides";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mosen/mysides/releases/download/v${version}/mysides-${version}.pkg`),
           sha256: "sha256-dpRrj3xb9xQSXXXxragUDgNPBaniiMc6evRF12wqVRQ=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "7z x $src\nbsdtar -xf Payload~\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 usr/local/bin/mysides -t $out/bin\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage macOS Finder sidebar favorites",
         homepage: "https://github.com/mosen/mysides",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

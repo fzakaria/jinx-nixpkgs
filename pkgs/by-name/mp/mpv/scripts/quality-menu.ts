@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
       const pname = "mpv-quality-menu";
       const version = "4.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "christoph-heinrich",
           repo: "mpv-quality-menu",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-W+6OYjh0S7nYrNC/P9sF7t6p1Rt/awOtO865cr6qtR0=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const extraScriptsToCopy = nix.thunk(() => nix.app(nix.sel(lib, "optional"), oscSupport, "quality-menu-osc.lua"));
       const extraScriptsToLoad = nix.thunk(() => nix.app(nix.sel(lib, "optional"), oscSupport, "quality-menu-osc.lua"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Userscript for MPV that allows you to change youtube video quality (ytdl-format) on the fly",
         homepage: "https://github.com/christoph-heinrich/mpv-quality-menu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

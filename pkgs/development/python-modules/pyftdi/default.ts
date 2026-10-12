@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pyusb = nix.arg($, "pyusb");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyftdi",
       version: "0.57.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eblot",
           repo: "pyftdi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyftdi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-space driver for modern FTDI devices",
         longDescription: "PyFtdi aims at providing a user-space driver for popular FTDI devices.\nThis includes UART, GPIO and multi-serial protocols (SPI, I2C, JTAG)\nbridges.\n",
         homepage: "https://github.com/eblot/pyftdi",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-bysHoD6btaYt4vMvllIWc54XUXb51lTdGeevLCLsNuM=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["matplotlib_venn.layout.venn3.cost_based.LayoutAlgorithm"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Functions for plotting area-proportional two- and three-way Venn diagrams in matplotlib",
         homepage: "https://github.com/konstantint/matplotlib-venn",
         changelog: nix.thunk(() => nix.str`https://github.com/konstantint/matplotlib-venn/releases/tag/${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

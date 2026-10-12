@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-bd",
       version: "2018-07-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tarrasch",
           repo: "zsh-bd",
           rev: "d4a55e661b4c9ef6ae4568c6abeff48bdf1b1af7",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -D bd.zsh \\\n  $out/share/plugins/zsh-bd/bd.zsh\nln -s $out/share/plugins/zsh-bd/bd.zsh \\\n  $out/share/plugins/zsh-bd/bd.plugin.zsh\nln -s $out/share/plugins/zsh-bd \\\n  $out/share/zsh-bd\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jump back to a specific directory, without doing `cd ../../..`",
         homepage: "https://github.com/Tarrasch/zsh-bd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.29.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "python-api-core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [googleapis_common_protos, google_auth, protobuf, proto_plus, requests]);
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async_rest: nix.thunk(() => nix.concat([google_auth], nix.sel(google_auth, "optional-dependencies", "aiohttp"))),
         grpc: nix.thunk(() => [grpcio, grpcio_status]),
         grpcgcp: nix.thunk(() => [grpcio_gcp]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["google.api_core"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Core Library for Google Client Libraries",
         longDescription: "This library is not meant to stand-alone. Instead it defines common\nhelpers used by all Google API clients.\n",
         homepage: "https://github.com/googleapis/python-api-core",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

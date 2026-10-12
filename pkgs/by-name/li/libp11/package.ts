@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libp11";
       const version = "0.4.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenSC",
           repo: "libp11",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         openssl: openssl,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "default-pkcs11-module": nix.thunk(() => nix.app(runCommand, "libp11-default-pkcs11-module", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), openssl))]),
             })), nix.thunk(() => nix.str`# The default module path is baked into both the engine and the provider.
 grep -q "${nix.app(nix.sel(lib, "getLib"), p11_kit)}/lib/p11-kit-proxy.so" ${libp11}/lib/engines/pkcs11.so
@@ -73,14 +73,14 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Small layer on top of PKCS#11 API to make PKCS#11 implementations easier",
         homepage: "https://github.com/OpenSC/libp11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

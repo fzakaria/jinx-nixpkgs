@@ -15,31 +15,31 @@ const pos$9 = nix.positions(here + "/nginx-njs.nix", [["machine", 4, 9]]);
 const pos$10 = nix.positions(here + "/nginx-njs.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 32, 3]]);
 
 export default (_) => ({
-  __proto__: pos$10,
+  [nix.POS]: pos$10,
   name: "nginx-njs",
   nodes: nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nginx: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             additionalModules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nginxModules", "njs"))]),
             commonHttpConfig: nix.thunk(() => nix.str`js_import http from ${nix.builtins.toFile("http.js", "function hello(r) {\n    r.return(200, \"Hello world!\");\n}\nexport default {hello};\n")};
 `),
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               localhost: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  "/njs": nix.thunk(() => ({ __proto__: pos$1, extraConfig: "js_content http.hello;\n" })),
-                  "/qjs": nix.thunk(() => ({ __proto__: pos$2, extraConfig: "js_engine qjs;\njs_content http.hello;\n" })),
+                  [nix.POS]: pos$3,
+                  "/njs": nix.thunk(() => ({ [nix.POS]: pos$1, extraConfig: "js_content http.hello;\n" })),
+                  "/qjs": nix.thunk(() => ({ [nix.POS]: pos$2, extraConfig: "js_engine qjs;\njs_content http.hello;\n" })),
                 })),
               })),
             })),

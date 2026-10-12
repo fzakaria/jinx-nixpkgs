@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const isPy3k = nix.arg($, "isPy3k");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.20.0",
       pyproject: true,
       __structuredAttrs: true,
       pname: "azure-mgmt-common",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "zip",
@@ -40,7 +40,7 @@ echo "__import__('pkg_resources').declare_namespace(__name__)" >> "$out/${nix.se
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.common"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is the Microsoft Azure Resource Management common code",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

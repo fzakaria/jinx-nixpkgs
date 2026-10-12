@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "OSX" : "X64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "littlegptracker",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "djdiskmachine",
           repo: "littlegptracker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PLATFORM=${platform}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-framework Foundation")),
       })),
       installPhase: nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Music tracker optimised to run on portable game consoles",
         longDescription: "Little Piggy Tracker (f.k.a 'LittleGPTracker') is a music tracker optimised to run on portable game consoles.\nIt is currently running on Windows, MacOS (intel/arm) & Linux, PSP, Miyoo Mini, and a collection of other retro gaming handhelds.\nIt implements the user interface of littlesounddj and precedes M8 tracker, two popular trackers greatly loved in the tracker community.\n",
         homepage: "https://github.com/djdiskmachine/LittleGPTracker",

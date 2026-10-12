@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "middleware",
       version: "0.0.1",
       minimalOCamlVersion: "4.14.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/skolemlabs/middleware/releases/download/${nix.sel(finalAttrs, "version")}/middleware-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-zhLEGvyZiKrdBKWcEbB4PHvYzBlkrp1Ldnon0mP2Ypg=",
         })))),
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composable stacked functions, which can respond to inner calls",
         homepage: "https://github.com/skolemlabs/middleware",
         changelog: nix.thunk(() => nix.str`https://github.com/skolemlabs/middleware/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

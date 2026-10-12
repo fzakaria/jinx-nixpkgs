@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const jupyter_builder = nix.arg($, "jupyter-builder");
   const jupyter_collaboration = nix.arg($, "jupyter-collaboration");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jupyter-docprovider",
       version: "3.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jupyter_docprovider",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yO49NbuaWAOFZBPkR7G5vYDOF7J6xtLaYj4cpER/LIw=",
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_jupyter_builder, jupyter_builder]),
       pythonImportsCheck: nix.thunk(() => ["jupyter_docprovider"]),
       doCheck: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: jupyter_collaboration })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: jupyter_collaboration })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JupyterLab/Jupyter Notebook 7+ extension integrating collaborative shared models",
         homepage: "https://github.com/jupyterlab/jupyter-collaboration/tree/main/projects/jupyter-docprovider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

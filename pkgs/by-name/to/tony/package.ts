@@ -39,24 +39,24 @@ export default nix.lambda((args) => (() => {
   const sord = nix.arg($, "sord");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tony",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.soundsoftware.ac.uk/attachments/download/2616/tony-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "03g2bmlj08lmgvh54dyd635xccjn730g4wwlhpvsw04bffz8b7fp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sonic-visualiser/svcore/commit/5a7b517e43b7f0b3f03b7fc3145102cf4e5b0ffc.patch",
             stripLen: 1n,
             extraPrefix: "svcore/",
             hash: "sha256-DOCdQqCihkR0g/6m90DbJxw00QTpyVmFzCxagrVWKiI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/sonic-visualiser/svgui/commit/5b6417891cff5cc614e8c96664d68674eb12b191.patch",
             stripLen: 1n,
             extraPrefix: "svgui/",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sed -i 's/sub_test_svcore_/#sub_test_svcore_/' tony.pro\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pitch and note annotation of unaccompanied melody",
         mainProgram: "tony",
         homepage: "https://www.sonicvisualiser.org/tony/",

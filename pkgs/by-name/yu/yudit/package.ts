@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yudit",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.yudit.org/download/yudit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-oYgjTWEnNXaE9Sw9bGpLnY9avQ99tnJWa/RE73p85Vc=",
         })))),
       buildInputs: nix.thunk(() => [libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free Unicode plain-text editor for Unix-like systems",
         homepage: "https://www.yudit.org/",
         mainProgram: "yudit",

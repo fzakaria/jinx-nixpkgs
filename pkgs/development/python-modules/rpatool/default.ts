@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpatool";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shiz",
           repo: "rpatool",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["rpatool"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://codeberg.org/shiz/rpatool",
         description: "Simple tool allowing you to create, modify and extract Ren'Py Archive (.rpa/.rpi) files",
         mainProgram: "rpatool",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

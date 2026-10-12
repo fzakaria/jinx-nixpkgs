@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ounit = nix.arg($, "ounit");
   const qcheck = nix.arg($, "qcheck");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bencode",
       version: "2.0",
       minimalOCamlVersion: "4.02.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgrinberg",
           repo: "bencode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit, qcheck]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bencode (.torrent file format) reader/writer in OCaml ",
         homepage: "https://github.com/rgrinberg/bencode",
         changelog: nix.thunk(() => nix.str`https://github.com/rgrinberg/bencode/blob/${nix.sel(finalAttrs, "version")}/Changelog.md`),

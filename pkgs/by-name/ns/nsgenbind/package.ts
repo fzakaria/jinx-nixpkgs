@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const netsurf_buildsystem = nix.arg($, "netsurf-buildsystem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nsgenbind",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/nsgenbind-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-Iyzg9my8LD7tYoiuJt4sVnu/u8Adiw9vxsHBZJ1LOF0=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.netsurf-browser.org/",
         description: "Generator for JavaScript bindings for netsurf browser",
         mainProgram: "nsgenbind",

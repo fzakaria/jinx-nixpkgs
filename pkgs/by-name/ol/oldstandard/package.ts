@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oldstandard",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/akryukov/oldstand/releases/download/v${nix.sel(finalAttrs, "version")}/oldstandard-${nix.sel(finalAttrs, "version")}.otf.zip`),
           stripRoot: false,
           hash: "sha256-cDB5KJm87DK+GczZ3Nmn4l5ejqViswVbwrJ9XbhEh8I=",
@@ -31,7 +31,7 @@ install -m444 -Dt $out/share/doc/oldstandard-${nix.sel(finalAttrs, "version")}  
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/akryukov/oldstand",
         description: "Attempt to revive a specific type of Modern style of serif typefaces",
         maintainers: nix.thunk(() => (() => {

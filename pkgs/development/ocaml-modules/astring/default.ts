@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const topkg = nix.arg($, "topkg");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.05")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "0.8.5",
     sha256: "1ykhg9gd3iy7zsgyiy2p9b1wkpqg9irw5pvcqs3sphq71iir4ml6",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0.8.3",
     sha256: "0ixjwc3plrljvj24za3l9gy0w30lsbggp8yh02lwrzw61ls4cri0",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-astring`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/astring/releases/astring-${nix.sel(param, "version")}.tbz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: nix.thunk(() => nix.attr(topkg, "buildPhase")),
       installPhase: nix.thunk(() => nix.attr(topkg, "installPhase")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://erratique.ch/software/astring",
         description: "Alternative String module for OCaml",
         longDescription: "Astring exposes an alternative String module for OCaml. This module tries\nto balance minimality and expressiveness for basic, index-free, string\nprocessing and provides types and functions for substrings, string sets\nand string maps.\n\nRemaining compatible with the OCaml String module is a non-goal.\nThe String module exposed by Astring has exception safe functions, removes\ndeprecated and rarely used functions, alters some signatures and names,\nadds a few missing functions and fully exploits OCaml's newfound string\nimmutability.\n",

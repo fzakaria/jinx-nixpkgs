@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chunkfs",
       version: "0.8",
       patches: nix.thunk(() => [nix.path(here, "./fuse3.diff")]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://chunkfs.florz.de/chunkfs_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-HFv51ta2eNW9Qt9CUp2oTTlC8Lpwc1XKR/uYzMDfd88=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FUSE filesystems for viewing chunksync-style directory trees as a block device and vice versa",
         homepage: "http://chunkfs.florz.de",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

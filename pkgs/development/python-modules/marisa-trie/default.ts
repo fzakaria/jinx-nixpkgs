@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytries",
           repo: "marisa-trie",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./unvendor-marisa.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             marisa: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), marisa_cpp)),
           })))),
       ]);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_packaging.py"]);
       const pythonImportsCheck = nix.thunk(() => ["marisa_trie"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Static memory-efficient Trie-like structures for Python based on marisa-trie C++ library",
         longDescription: "There are official SWIG-based Python bindings included in C++ library distribution.\nThis package provides alternative Cython-based pip-installable Python bindings.\n",
         homepage: "https://github.com/kmike/marisa-trie",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     const extraMeta = nix.argOr($_1, "extraMeta", () => ({}));
     const pysparkPython = nix.argOr($_1, "pysparkPython", () => nix.force(python3));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: pname,
         version: version,
         hash: hash,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         pysparkPython: pysparkPython,
         jdk: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "4")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "hadoop", "jdk", "version")), "21")))) ? nix.force(jdk21_headless) : nix.sel(finalAttrs, "hadoop", "jdk"))),
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://apache/spark/${pname}-${version}/${pname}-${version}-bin-without-hadoop.tgz`),
             hash: nix.thunk(() => nix.attr(finalAttrs, "hash")),
           })))),
@@ -65,18 +65,18 @@ ln -s ${nix.sel(finalAttrs, "hadoop")} "$out/opt/hadoop"
 ${nix.app(nix.sel(lib, "optionalString"), RSupport, nix.thunk(() => nix.str`ln -s ${nix.sel(finalAttrs, "R")} "$out/opt/R"`))}
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "spark", "default", "passthru", "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               sparkPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           withPythonPackages: (f) => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pysparkPython: nix.thunk(() => nix.app(nix.sel(old, "pysparkPython", "withPackages"), f)),
             })),
         })),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Apache Spark is a fast and general engine for large-scale data processing",
           homepage: "https://spark.apache.org/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -97,21 +97,21 @@ ${nix.app(nix.sel(lib, "optionalString"), RSupport, nix.thunk(() => nix.str`ln -
       }));
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     spark_4_0: nix.thunk(() => nix.app(spark, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "spark",
         version: "4.0.1",
         hash: "sha256-AW+EQ83b4orJO3+dUPPDlTRAH/D94U7KQBKvKjguChY=",
       })))),
     spark_3_5: nix.thunk(() => nix.app(spark, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "spark",
         version: "3.5.5",
         hash: "sha256-vzcWgIfHPhN3nyrxdk3f0p4fW3MpQ+FuEPnWPw0xNPg=",
       })))),
     spark_3_4: nix.thunk(() => nix.app(spark, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "spark",
         version: "3.4.4",
         hash: "sha256-GItHmthLhG7y0XSF3QINCyE7wYFb0+lPZmYLUuMa4Ww=",

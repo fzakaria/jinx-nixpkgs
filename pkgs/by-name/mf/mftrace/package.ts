@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const potrace = nix.arg($, "potrace");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mftrace",
       version: "1.2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hanwen",
           repo: "mftrace",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15.patch",
             url: "https://salsa.debian.org/debian/mftrace/-/raw/628987e5ce8bdab737f9fbc730a75fdd29ce81d2/debian/patches/gcc-15.patch",
             hash: "sha256-eTDohSGzy2hxZmpAXiYaAk3DBnrXduNum0fO6bHGUQw=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/mftrace --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tlDeps: (ps) => [
           nix.thunk(() => nix.sel(ps, "kpathsea")),
           nix.thunk(() => nix.sel(ps, "t1utils")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ],
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Scalable PostScript Fonts for MetaFont",
         longDescription: "mftrace is a small Python program that lets you trace a TeX bitmap\nfont into a PFA or PFB font (A PostScript Type1 Scalable Font) or\nTTF (TrueType) font.\n",
         homepage: "https://lilypond.org/mftrace/",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "presenterm_export",
           version: version,
           hash: "sha256-9TkZ52lA1l3PYs2DTgji0LDrG5kixnFffuMIfhILY1E=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [ansi2html, libtmux, weasyprint, dataclass_wizard]);
       const pythonImportsCheck = nix.thunk(() => ["presenterm_export"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF exporter for presenterm",
         homepage: "https://github.com/mfontanini/presenterm-export",
         changelog: nix.thunk(() => nix.str`https://github.com/mfontanini/presenterm-export/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -37,29 +37,29 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         qdrant: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Vector Search Engine for the next generation of AI applications")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "qdrant", nix.thunk(() => ({})))),
           webUIPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "qdrant-web-ui", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Configuration for Qdrant\nRefer to <https://github.com/qdrant/qdrant/blob/master/config/config.yaml> for details on supported values.\n",
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 storage: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   storage_path: "/var/lib/qdrant/storage",
                   snapshots_path: "/var/lib/qdrant/snapshots",
                 })),
-                hsnw_index: nix.thunk(() => ({ __proto__: pos$2, on_disk: true })),
-                service: nix.thunk(() => ({ __proto__: pos$3, host: "127.0.0.1", http_port: 6333n, grpc_port: 6334n })),
+                hsnw_index: nix.thunk(() => ({ [nix.POS]: pos$2, on_disk: true })),
+                service: nix.thunk(() => ({ [nix.POS]: pos$3, host: "127.0.0.1", http_port: 6333n, grpc_port: 6334n })),
                 telemetry_disabled: true,
               })),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  storage = {\n    storage_path = \"/var/lib/qdrant/storage\";\n    snapshots_path = \"/var/lib/qdrant/snapshots\";\n  };\n  hsnw_index = {\n    on_disk = true;\n  };\n  service = {\n    host = \"127.0.0.1\";\n    http_port = 6333;\n    grpc_port = 6334;\n  };\n  telemetry_disabled = true;\n}\n")),
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           qdrant: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               service: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 static_content_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "webUIPackage")))),
                 max_request_size_mb: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 32n)),
                 max_workers: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
@@ -86,22 +86,22 @@ export default nix.lambda((args) => (() => {
                 host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
               })),
               storage: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 storage_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/qdrant/storage")),
                 snapshots_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/qdrant/snapshots")),
                 on_disk_payload: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 wal: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   wal_capacity_mb: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 32n)),
                   wal_segments_ahead: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
                 })),
                 performance: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   max_search_threads: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
                   max_optimization_threads: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
                 })),
                 optimizers: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   deleted_threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0.2)),
                   vacuum_min_vector_number: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1000n)),
                   default_segment_number: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
                   max_optimization_threads: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
                 })),
                 hnsw_index: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   m: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 16n)),
                   ef_construct: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 100n)),
                   full_scan_threshold_kb: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 10000n)),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               cluster: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               })),
               telemetry_disabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -130,16 +130,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             qdrant: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Vector Search Engine for the next generation of AI applications",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 LimitNOFILE: 65536n,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/qdrant --config-path ${configFile}`),
                 DynamicUser: true,

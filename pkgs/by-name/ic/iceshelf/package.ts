@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iceshelf",
       version: "0-unstable-2025-06-29",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrworf",
           repo: "iceshelf",
           rev: "5380c49e3f7f3df04b61a494b2d94db2f2c65e25",
@@ -39,11 +39,11 @@ cp -v iceshelf.sample.conf $out/share/doc/iceshelf/
 cp -rv modules $out/${nix.sel(python3Packages, "python", "sitePackages")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple tool to allow storage of signed, encrypted, incremental backups using Amazon's Glacier storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         homepage: "https://github.com/mrworf/iceshelf",

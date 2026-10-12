@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-flags",
       version: "5.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cfpb",
           repo: "django-flags",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flags"]),
       nativeCheckInputs: nix.thunk(() => [django_debug_toolbar, jinja2, pytest_django, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Feature flags for Django projects",
         homepage: "https://github.com/cfpb/django-flags",
         changelog: nix.thunk(() => nix.str`https://github.com/cfpb/django-flags/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

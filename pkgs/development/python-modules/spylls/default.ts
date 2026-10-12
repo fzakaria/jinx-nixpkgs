@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-cEWJLcvTJNNoX2nFp2AGPnj7g5kTckzhgHfPCgyT8iA=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "spylls.hunspell.algo.string_metrics",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Python spell-checker, (almost) full port of Hunspell",
         homepage: "https://github.com/zverok/spylls",
         changelog: "https://github.com/zverok/spylls/blob/master/CHANGELOG.rst",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const testEnv = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables, iproute2, inetutils])));
   const disabledTests = nix.thunk(() => ["syscall_socketcall", "filter_exclude", "field_compare"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "audit-testsuite",
       version: "0-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-audit",
           repo: "audit-testsuite",
           rev: "25296c6623e95312437a58f76bb771ba31187bed",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/tweag/audit-testsuite/commit/bd3f8b612ce3290d86a82170e69ac510818d52e3.patch",
             hash: "sha256-rsSQ9uTjTEnDnB1Wlt2/Of2HmS+ajCIX7Iw/FRA4Fng=",
           })))),
@@ -61,10 +61,10 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace tests/Makefile ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (t) => nix.str`--replace-fail '${t}' ''`, disabledTests)}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         runner: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "audit-testsuite-runner",
             runtimeInputs: nix.thunk(() => [coreutils, systemd]),
             text: nix.thunk(() => nix.str`# log to journal for easier introspection in a VM test
@@ -121,7 +121,7 @@ wrapProgram $out/runtests.pl \\
   --prefix PATH : ${testEnv}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "A simple, self-contained regression test suite for the Linux Kernel's audit subsystem",
         homepage: "https://github.com/linux-audit/audit-testsuite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

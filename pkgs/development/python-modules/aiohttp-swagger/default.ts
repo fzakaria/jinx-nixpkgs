@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cr0hn",
           repo: "aiohttp-swagger",
           tag: version,
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["markupsafe", "jinja2"]);
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_swagger"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Swagger API Documentation builder for aiohttp",
         homepage: "https://github.com/cr0hn/aiohttp-swagger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

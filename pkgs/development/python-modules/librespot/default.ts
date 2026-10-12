@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kokarare1212",
           repo: "librespot-python",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-VjVPrWttOYfWsxzZpRgpZVenmP0y9Fea6Bhv9U8BO9U=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const pythonRelaxDeps = true;
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["librespot"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open Source Spotify Client",
         homepage: "https://github.com/kokarare1212/librespot-python",
         changelog: nix.thunk(() => nix.str`https://github.com/kokarare1212/librespot-python/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

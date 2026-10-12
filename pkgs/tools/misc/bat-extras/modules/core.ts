@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nushell = nix.arg($, "nushell");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bat-extras",
       version: "2024.08.24-unstable-2025-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eth-p",
           repo: "bat-extras",
           rev: "3860f0f1481f1d0e117392030f55ef19cc018ee4",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -a . $out\nrunHook postInstall\n",
       dontPatchShebangs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bash scripts that integrate bat with various command line tools",
         homepage: "https://github.com/eth-p/bat-extras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

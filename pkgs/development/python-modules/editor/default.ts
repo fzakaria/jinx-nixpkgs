@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rec",
           repo: "editor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, tdir]);
       const pythonImportsCheck = nix.thunk(() => ["editor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open the default text editor",
         homepage: "https://github.com/rec/editor",
         changelog: nix.thunk(() => nix.str`https://github.com/rec/editor/blob/${nix.sel(src, "rev")}/CHANGELOG`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

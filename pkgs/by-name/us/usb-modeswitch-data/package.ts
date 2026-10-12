@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const usb_modeswitch = nix.arg($, "usb-modeswitch");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usb-modeswitch-data",
       version: "20251207",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.draisberghof.de/usb_modeswitch/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-C7EtZK7l5GfDGvYaU/uCj/eqWcVKgsqF7u3kxWkL+mY=",
         })))),
@@ -35,7 +35,7 @@ sed -i 's/,,/,/g' 40-usb_modeswitch.rules
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(usb_modeswitch, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Device database and the rules file for 'multi-mode' USB devices",
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

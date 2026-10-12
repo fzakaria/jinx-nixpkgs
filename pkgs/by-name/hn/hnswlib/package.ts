@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "numpy"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hnswlib",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nmslib",
           repo: "hnswlib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ popd
 `),
       checkPhase: "runHook preCheck\n\n./test_updates\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Header-only C++/python library for fast approximate nearest neighbors",
         homepage: "https://github.com/nmslib/hnswlib",
         changelog: nix.thunk(() => nix.str`https://github.com/nmslib/hnswlib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libutil = nix.arg($, "libutil");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/limits",
       buildInputs: nix.thunk(() => [libutil]),
       MK_TESTS: "no",

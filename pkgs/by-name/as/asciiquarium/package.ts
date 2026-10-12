@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asciiquarium",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://robobunny.com/projects/asciiquarium/asciiquarium_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GwjGYTUl516HVG9OiYSrOzPx6SIIAmjHSfF3fVbJ02E=",
         })))),
@@ -32,7 +32,7 @@ wrapProgram $out/bin/asciiquarium \\
   --set PERL5LIB ${nix.app(nix.sel(perlPackages, "makeFullPerlPath"), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "TermAnimation"))]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enjoy the mysteries of the sea from the safety of your own terminal",
         mainProgram: "asciiquarium",
         homepage: "https://robobunny.com/projects/asciiquarium/html/",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fpp",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "PathPicker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/share/fpp $out/bin\ncp -r fpp src $out/share/fpp\nln -s $out/share/fpp/fpp $out/bin/fpp\ninstallManPage debian/usr/share/man/man1/fpp.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI program that accepts piped input and presents files for selection",
         homepage: "https://facebook.github.io/PathPicker/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

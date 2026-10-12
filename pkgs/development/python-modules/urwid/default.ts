@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "urwid",
           repo: "urwid",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [typing_extensions, wcwidth]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         curses: [],
         glib: nix.thunk(() => [pygobject3]),
         tornado: nix.thunk(() => [tornado]),
@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
         lcd: nix.thunk(() => [pyserial]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([glibcLocales, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
-      const env = nix.thunk(() => ({ __proto__: pos$3, LC_ALL: "en_US.UTF8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF8" }));
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const disabledTests = nix.thunk(() => ["TwistedEventLoopTest"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_vterm.py"]);
       const pythonImportsCheck = nix.thunk(() => ["urwid"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full-featured console (xterm et al.) user interface library",
         changelog: nix.thunk(() => nix.str`https://github.com/urwid/urwid/releases/tag/${nix.sel(src, "tag")}`),
         downloadPage: "https://github.com/urwid/urwid",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

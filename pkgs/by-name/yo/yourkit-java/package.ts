@@ -23,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const jre = jdk21;
   const vPath = (v) => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", v)), 0n);
   const version = "2025.9-b191";
-  const arches = nix.thunk(() => ({ __proto__: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "x64" }));
+  const arches = nix.thunk(() => ({ [nix.POS]: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "x64" }));
   const arch = nix.thunk(() => nix.selOr(arches, () => nix.builtins.throw("Unsupported system"), nix.key(nix.sel(stdenvNoCC, "targetPlatform", "system"))));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     arm64: "sha256-gBvz+SsiVIjFtqra8BZ3fsmpLPn/vk1PSN57pDm9lA4=",
     x64: "sha256-0jgWKQyJkbE2Dd/s6wq2wwIgvGZQmnAKtqXN4ISuofc=",
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "YourKit Java Profiler",
       desktopName: nix.thunk(() => nix.add("YourKit Java Profiler ", version)),
       type: "Application",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       startupWMClass: "YourKit Java Profiler",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       pname: "yourkit-java",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://download.yourkit.com/yjp/${nix.app(vPath, version)}/YourKit-JavaProfiler-${version}-${arch}.zip`),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(arch)))),
         })))),
@@ -80,9 +80,9 @@ sed -i -e "/^YD=/isource $out/bin/forbid-desktop-item-creation\\\\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Award winning, fully featured low overhead profiler for Java EE and Java SE platforms",
         homepage: "https://www.yourkit.com",
         changelog: "https://www.yourkit.com/changes/",

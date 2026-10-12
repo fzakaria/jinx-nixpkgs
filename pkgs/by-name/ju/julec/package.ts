@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const irFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(clangStdenv, "hostPlatform", "system"), "x86_64-linux")) ? "linux-amd64.cpp" : (nix.asBool(nix.eq(nix.sel(clangStdenv, "hostPlatform", "system"), "aarch64-linux")) ? "linux-arm64.cpp" : (nix.asBool(nix.eq(nix.sel(clangStdenv, "hostPlatform", "system"), "i686-linux")) ? "linux-i386.cpp" : (nix.asBool(nix.eq(nix.sel(clangStdenv, "hostPlatform", "system"), "x86_64-darwin")) ? "darwin-amd64.cpp" : (nix.asBool(nix.eq(nix.sel(clangStdenv, "hostPlatform", "system"), "aarch64-darwin")) ? "darwin-arm64.cpp" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(clangStdenv, "hostPlatform", "system")}`))))))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "julec",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "julelang",
           repo: "jule",
           tag: nix.thunk(() => nix.str`jule${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-m+IJiTNOrOzx/3e67r/yWOjGRRyOy5TWHhjFZXaMOsc=",
         })))),
       irSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "julelang",
           repo: "julec-ir",
           tag: nix.thunk(() => nix.str`jule${nix.sel(finalAttrs, "version")}`),
@@ -90,21 +90,21 @@ ln -s $out/lib/jule/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} $out/bin/$
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             julec: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "hello-jule": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               julec: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Jule Programming Language Compiler",
         longDescription: "Jule is an effective programming language designed to build efficient, fast, reliable and safe software while maintaining simplicity.\nIt is a statically typed, compiled language with a syntax influenced by Go, Rust, and C++.\n",
         homepage: "https://jule.dev",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quantities",
       version: "2018-04-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timjb",
           repo: "quantities",
           rev: "76bb872bd89122043083351993140ae26eb91ead",
           sha256: "0fv12kdi9089b4kkr6inhqvs2s8x62nv5vqj76wzk8hy0lrzylzj",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type-safe physical computations and unit conversions in Idris",
         homepage: "https://github.com/timjb/quantities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

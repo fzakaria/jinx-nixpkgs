@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const imake = nix.arg($, "imake");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlvwm",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "morgant",
           repo: "mlvwm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/{bin,etc}\ncp mlvwm/mlvwm $out/bin\ncp sample_rc/Mlvwmrc* $out/etc\nrunHook postInstall\n",
       postInstall: "mv man/mlvwm.man man/mlvwm.1\ninstallManPage man/mlvwm.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/morgant/mlvwm",
         description: "Macintosh-like Virtual Window Manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

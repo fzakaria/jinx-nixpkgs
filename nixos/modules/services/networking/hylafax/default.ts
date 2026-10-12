@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => [nix.path(here, "./options.nix"), nix.path(here, "./systemd.nix")]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mkIf"), nix.thunk(() => nix.sel(config, "services", "hylafax", "enable")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "hylafax", "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           users: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             uucp: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "users", "users", "nobody"));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "uucp")),
               group: "uucp",
               description: "Unix-to-Unix CoPy system",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => !nix.eq(nix.sel(config, "services", "hylafax", "modems"), {})),
             message: "HylaFAX cannot be used without modems.\nPlease define at least one modem with\n<option>config.services.hylafax.modems</option>.\n",
           })),
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "datetime",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pytz, zope_interface]);
       const pythonImportsCheck = nix.thunk(() => ["DateTime"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DateTime data type, as known from Zope",
         homepage: "https://github.com/zopefoundation/DateTime",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/DateTime/blob/${version}/CHANGES.rst`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

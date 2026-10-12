@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const mpv = nix.arg($, "mpv");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.2",
       pyproject: true,
       pname: "curseradio",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chronitis",
           repo: "curseradio",
           rev: "1bd4bd0faeec675e0647bac9a100b526cba19f8d",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mpv.patch"), nix.thunk(() => ({ __proto__: pos$2, mpv: mpv })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mpv.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, mpv: mpv })))),
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line radio player",
         mainProgram: "curseradio",
         homepage: "https://github.com/chronitis/curseradio",

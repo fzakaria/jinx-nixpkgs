@@ -60,33 +60,33 @@ export default nix.lambda((args) => (() => {
   const hasFirewall = nix.thunk(() => nix.sel(cfg, "settings", "firewall", "enable"));
   const description = "iocaine, the deadliest poison known to AI";
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         iocaine: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, description)),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "iocaine", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(attrsOf, str)),
               description: "Environment variables for iocaine.",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  RUST_LOG = \"info\";\n  RUST_BACKTRACE = \"1\";\n}\n")),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       firewall: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             default: false,
                             type: bool,
                             description: "Enables the firewall",
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(literalExpression, "{\n  server.default = {\n    bind = \"localhost:2137\";\n    mode = \"http\";\n    use.handler-from = \"default\";\n  };\n\n  handler.default = {\n    settings = {\n      \"ai-robots-txt-path\" = \"/etc/iocaine/data/ai.robots.txt-robots.json\";\n      sources = {\n        training-corpus = [\n          \"/data/corpus/1984.txt\"\n          \"/data/corpus/brave-new-world.txt\"\n        ];\n        wordlists = [ \"/data/corpus/words.txt\" ];\n      };\n    };\n  };\n}\n")),
             })))),
           extraSettingsPaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(listOf, path)),
               default: [],
               description: "Configuration paths to run iocaine with. Useful for secrets",
@@ -110,32 +110,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "iocaine/iocaine.json": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), null)), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 source: nix.thunk(() => nix.app(nix.sel(jsonFormat, "generate"), "iocaine.json", nix.thunk(() => nix.sel(cfg, "settings")))),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 iocaine: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   description: description,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
-                  environment: nix.thunk(() => nix.update({ __proto__: pos$14, HOME: "%S/home" }, nix.sel(cfg, "environment"))),
+                  environment: nix.thunk(() => nix.update({ [nix.POS]: pos$14, HOME: "%S/home" }, nix.sel(cfg, "environment"))),
                   restartTriggers: nix.thunk(() => nix.concat(nix.app(ifHasSettings, nix.thunk(() => nix.sel(config, "environment", "etc", "iocaine/iocaine.json", "source"))), nix.sel(cfg, "extraSettingsPaths"))),
                   stopIfChanged: false,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     Type: "notify",
                     ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package"))))], nix.concat(nix.builtins.map((path_1) => nix.str`--config-path=${path_1}`, nix.thunk(() => nix.concat(nix.app(ifHasSettings, "/etc/iocaine/iocaine.json"), nix.sel(cfg, "extraSettingsPaths")))), ["start"]))))),
                     Restart: "on-failure",
@@ -173,13 +173,13 @@ export default nix.lambda((args) => (() => {
               })),
               nix.thunk(() => (() => {
                 const iocaineDep = nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   requires: nix.thunk(() => ["iocaine.service"]),
                   after: nix.thunk(() => ["iocaine.service"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$18, SupplementaryGroups: nix.thunk(() => ["iocaine"]) })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, SupplementaryGroups: nix.thunk(() => ["iocaine"]) })),
                 }));
                 return {
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(config, "services", "nginx", "enable")) && nix.asBool(hasUDSbind))), iocaineDep)),
                   caddy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(config, "services", "caddy", "enable")) && nix.asBool(hasUDSbind))), iocaineDep)),
                 };
@@ -188,7 +188,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "poz"))];

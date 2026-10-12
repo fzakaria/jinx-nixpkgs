@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const eqaf = nix.arg($, "eqaf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "4.13",
       pname: "mirage-crypto",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-crypto/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-crypto-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-MyiGw2XGA1B3485namPaj3UAwVoWKLPAfhObDlUfH28=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [eqaf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/mirage-crypto",
         description: "Simple symmetric cryptography for the modern age",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/mirage-crypto/refs/tags/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

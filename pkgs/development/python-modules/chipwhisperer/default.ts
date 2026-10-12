@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chipwhisperer";
       const version = "5.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "newaetech",
           repo: "chipwhisperer",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/test_api.py"]);
       const disabledTests = nix.thunk(() => ["TestCPA"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolchain for side-channel power analysis and glitching attacks",
         homepage: "https://github.com/newaetech/chipwhisperer",
         changelog: nix.thunk(() => nix.str`https://github.com/newaetech/chipwhisperer/releases/tag/${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

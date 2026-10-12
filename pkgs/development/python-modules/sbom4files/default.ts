@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthonyharrison",
           repo: "sbom4files",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [lib4sbom, python_magic]);
       const pythonImportsCheck = nix.thunk(() => ["sbom4files"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/anthonyharrison/sbom4files/releases/tag/v${version}`),
         description: "SBOM generator for files within a directory",
         homepage: "https://github.com/anthonyharrison/sbom4files",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

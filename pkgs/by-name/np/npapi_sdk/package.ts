@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "npapi-sdk",
       version: "0.27.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/mgorny/npapi-sdk/downloads/npapi-sdk-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0xxfcsjmmgbbyl9zwpzdshbx27grj5fnzjfmldmm9apws2yk9gq1",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bundle of NPAPI headers by Mozilla",
         homepage: "https://bitbucket.org/mgorny/npapi-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

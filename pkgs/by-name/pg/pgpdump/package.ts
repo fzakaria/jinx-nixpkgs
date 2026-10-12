@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgpdump",
       version: "0.37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kazu-yamamoto",
           repo: "pgpdump",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), supportCompressedPackets, nix.thunk(() => [zlib, bzip2]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PGP packet visualizer",
         mainProgram: "pgpdump",
         longDescription: "pgpdump is a PGP packet visualizer which displays the packet format of\nOpenPGP (RFC 4880) and PGP version 2 (RFC 1991).\n",

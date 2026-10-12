@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eventlog",
       version: "0.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "balabit",
           repo: "eventlog",
           rev: "a5c19163ba131f79452c6dfe4e31c2b4ce4be741",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Syslog event logger library",
         longDescription: "The EventLog library aims to be a replacement of the simple syslog() API\nprovided on UNIX systems. The major difference between EventLog and\nsyslog is that EventLog tries to add structure to messages.\n\nWhere you had a simple non-structrured string in syslog() you have a\ncombination of description and tag/value pairs.\n",
         homepage: "https://www.balabit.com/support/community/products/",

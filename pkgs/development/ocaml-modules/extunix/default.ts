@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extunix",
       version: "0.4.4",
       minimalOCamlVersion: "5.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ygrek/extunix/releases/download/v${nix.sel(finalAttrs, "version")}/extunix-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kzTIkjFiI+aK73lcpystQp1O7Apkf0GLA142oFPRSX0=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppxlib]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of thin bindings to various low-level system API",
         homepage: "https://github.com/ygrek/extunix",
         changelog: nix.thunk(() => nix.str`https://github.com/ygrek/extunix/releases/tag/v${nix.sel(finalAttrs, "version")}`),

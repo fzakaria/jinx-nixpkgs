@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.1";
       const pname = "neon";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://notroj.github.io/${pname}/${pname}-${version}.tar.gz`),
           sha256: "sha256-qZtyYlJaRU0QZc923RckD9gI38TvFWNpkP+DpdDZ50A=",
         }))));
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const preConfigure = "export PKG_CONFIG=\"$(command -v \"$PKG_CONFIG\")\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         compressionSupport: compressionSupport,
         sslSupport: sslSupport,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP and WebDAV client library",
         mainProgram: "neon-config",
         homepage: "https://notroj.github.io/neon/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         src,

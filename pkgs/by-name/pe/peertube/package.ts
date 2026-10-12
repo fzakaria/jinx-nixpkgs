@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const nodejs_24 = nix.arg($, "nodejs_24");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "peertube",
       version: "8.3.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Chocobozzz",
           repo: "PeerTube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["out", "cli", "runner"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,13 +62,13 @@ done
       buildPhase: "runHook preBuild\n\n# Build PeerTube server\nnpm run build:server\n\n# Build PeerTube client\nnpm run build:client\n\n# Build PeerTube cli\nnpm run build:peertube-cli\npatchShebangs ./apps/peertube-cli/dist/peertube.mjs\n\n# Build PeerTube runner\nnpm run build:peertube-runner\npatchShebangs ./apps/peertube-runner/dist/peertube-runner.mjs\n\n# Clean up declaration files\nfind \\\n  ./dist/ \\\n  ./packages/core-utils/dist/ \\\n  ./packages/ffmpeg/dist/ \\\n  ./packages/models/dist/ \\\n  ./packages/node-utils/dist/ \\\n  ./packages/server-commands/dist/ \\\n  ./packages/transcription/dist/ \\\n  ./packages/typescript-utils/dist/ \\\n  \\( -name '*.d.ts' -o -name '*.d.ts.map' \\) -type f -delete\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/dist\nmv ./dist $out\nmv ./node_modules $out/node_modules\n\nmkdir $out/client\nmv ./client/{dist,node_modules,package.json} $out/client\n\nmkdir -p $out/packages/{core-utils,ffmpeg,models,node-utils,server-commands,transcription,typescript-utils}\nmv ./packages/core-utils/{dist,package.json} $out/packages/core-utils\nmv ./packages/ffmpeg/{dist,package.json} $out/packages/ffmpeg\nmv ./packages/models/{dist,package.json} $out/packages/models\nmv ./packages/node-utils/{dist,package.json} $out/packages/node-utils\nmv ./packages/server-commands/{dist,package.json} $out/packages/server-commands\nmv ./packages/transcription/{dist,package.json} $out/packages/transcription\nmv ./packages/typescript-utils/{dist,package.json} $out/packages/typescript-utils\nmv ./{config,support,CREDITS.md,FAQ.md,LICENSE,README.md,package.json,pnpm-lock.yaml} $out\n\n# Remove broken symlinks in node_modules from workspace packages that aren't needed\n# by the built artifact. If any new packages break the check for broken symlinks,\n# they should be checked before adding them here to make sure they aren't likely to\n# be needed, either now or in the future. If they might be, then we probably want\n# to move the package to $out above instead of removing the broken symlink.\nrm $out/node_modules/.pnpm/node_modules/@peertube/{peertube-cli,peertube-runner,peertube-server,peertube-transcription-devtools,peertube-types-generator,tests,player}\nrm $out/client/node_modules/@peertube/player\n\nmkdir -p $cli/bin\nmv ./apps/peertube-cli/{dist,node_modules,package.json} $cli\nln -s $cli/dist/peertube.mjs $cli/bin/peertube-cli\n\nmkdir -p $runner/bin\nmv ./apps/peertube-runner/{dist,node_modules,package.json} $runner\nln -s $runner/dist/peertube-runner.mjs $runner/bin/peertube-runner\n\n# Create static gzip and brotli files\nfd -e css -e eot -e html -e js -e json -e svg -e webmanifest -e xlf \\\n  --type file --search-path $out/client/dist --threads $NIX_BUILD_CORES \\\n  --exec gzip -9 -n -c {} > {}.gz \\;\\\n  --exec brotli --best -f {} -o {}.br\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nodejs: nodejs_24,
-        tests: nix.thunk(() => ({ __proto__: pos$3, peertube: nix.thunk(() => nix.sel(nixosTests, "peertube")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, peertube: nix.thunk(() => nix.sel(nixosTests, "peertube")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free software to take back control of your videos",
         longDescription: "PeerTube aspires to be a decentralized and free/libre alternative to video\nbroadcasting services.\nPeerTube is not meant to become a huge platform that would centralize\nvideos from all around the world. Rather, it is a network of\ninter-connected small videos hosters.\nAnyone with a modicum of technical skills can host a PeerTube server, aka\nan instance. Each instance hosts its users and their videos. In this way,\nevery instance is created, moderated and maintained independently by\nvarious administrators.\nYou can still watch from your account videos hosted by other instances\nthough if the administrator of your instance had previously connected it\nwith other instances.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

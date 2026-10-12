@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const spacy_models = nix.arg($, "spacy-models");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "spacy-annotation-test",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./annotate.py")]))),
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest, nix.thunk(() => nix.sel(spacy_models, "en_core_web_sm"))]),
       checkPhase: "pytest annotate.py\n",
       installPhase: "touch $out\n",
-      meta: nix.thunk(() => ({ __proto__: pos$2, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 60n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

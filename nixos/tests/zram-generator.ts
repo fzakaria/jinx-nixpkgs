@@ -13,17 +13,17 @@ const pos$6 = nix.positions(here + "/zram-generator.nix", [["single", 5, 5], ["m
 const pos$7 = nix.positions(here + "/zram-generator.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 35, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   name: "zram-generator",
   nodes: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     single: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       return {
-        __proto__: pos$3,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$1, emptyDiskImages: nix.thunk(() => [512n]) })),
+        [nix.POS]: pos$3,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [512n]) })),
         zramSwap: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: true,
           priority: 10n,
           algorithm: "lz4",
@@ -37,9 +37,9 @@ export default nix.thunk(() => ({
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$2);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         zramSwap: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: true,
           priority: 10n,
           algorithm: "lz4",

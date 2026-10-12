@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const tt_rss = nix.arg($, "tt-rss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tt-rss-plugin-feediron",
       version: "1.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "feediron",
           repo: "ttrss_plugin-feediron",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tt_rss, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Evolution of ttrss_plugin-af_feedmod",
         longDescription: "This is a plugin for Tiny Tiny RSS (tt-rss).\nIt allows you to replace an article's contents by the contents of an element on the linked URL's page\n\ni.e. create a \"full feed\".\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

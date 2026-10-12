@@ -38,31 +38,31 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "go2rtc.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$18,
-    meta: nix.thunk(() => ({ __proto__: pos$1, buildDocsInSandbox: false })),
+    [nix.POS]: pos$18,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, buildDocsInSandbox: false })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         go2rtc: nix.thunk(() => (() => {
           const w = nix.withScope(types, null);
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(mkEnableOption, "go2rtc streaming server")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "go2rtc", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: nix.thunk(() => ({})),
                 description: "go2rtc configuration as a Nix attribute set.\n\nSee the [wiki](https://github.com/AlexxIT/go2rtc/blob/master/internal/app/README.md) for possible configuration options.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       api: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             default: ":1984",
                             example: "127.0.0.1:1984",
@@ -70,9 +70,9 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       ffmpeg: nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         bin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.lookup(w, "path")),
                             default: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "ffmpeg-headless")))),
                             defaultText: nix.thunk(() => nix.app(literalExpression, "lib.getExe pkgs.ffmpeg-headless")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                       })),
                       rtsp: nix.thunk(() => ({})),
                       streams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))))))),
                           default: nix.thunk(() => ({})),
                           example: nix.thunk(() => nix.app(literalExpression, "{\n  cam1 = \"onvif://admin:password@192.168.1.123:2020\";\n  cam2 = \"tcp://192.168.1.123:12345\";\n}\n")),
@@ -99,18 +99,18 @@ Check the [configuration reference](https://github.com/AlexxIT/go2rtc/blob/v${ni
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             go2rtc: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 DynamicUser: true,
                 User: "go2rtc",
                 SupplementaryGroups: nix.thunk(() => ["video"]),

@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const chrootSetprivPath = nix.argOr($, "chrootSetprivPath", () => "/usr/bin/setpriv");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "arch-install-scripts",
       version: "31",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.archlinux.org",
           owner: "archlinux",
           repo: "arch-install-scripts",
@@ -62,9 +62,9 @@ substituteInPlace ./arch-chroot.in \\
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: true,
       solutions: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         profile: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           scripts: nix.thunk(() => ["bin/arch-chroot", "bin/genfstab", "bin/pacstrap"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, gawk, gnugrep, gnused, pacman, util_linux]),
@@ -73,10 +73,10 @@ substituteInPlace ./arch-chroot.in \\
             nix.thunk(() => nix.str`cannot:${pacman}/bin/pacman-key`),
           ]),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             external: nix.thunk(() => ["systemd-escape", "systemd-run"]),
           })),
-          fix: nix.thunk(() => ({ __proto__: pos$3, mount: true, umount: true })),
+          fix: nix.thunk(() => ({ [nix.POS]: pos$3, mount: true, umount: true })),
           keep: nix.thunk(() => [
             "$setup",
             "$pid_unshare",
@@ -87,7 +87,7 @@ substituteInPlace ./arch-chroot.in \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Useful scripts for installing Arch Linux",
         longDescription: "A small suite of scripts aimed at automating some menial tasks when installing Arch Linux.\n",
         homepage: "https://github.com/archlinux/arch-install-scripts",

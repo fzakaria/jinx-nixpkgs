@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const callPackage = nix.arg($, "callPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
-  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
+  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
   const mecab_ipadic = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ipadic.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(mecab_base, finalAttrs), {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mecab",
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/lib/mecab/dic
 ln -s ${mecab_ipadic} $out/lib/mecab/dic/ipadic
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Japanese morphological analysis system",
         homepage: "http://taku910.github.io/mecab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

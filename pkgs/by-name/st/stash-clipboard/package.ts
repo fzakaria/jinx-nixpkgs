@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const createSymlinks = nix.argOr($, "createSymlinks", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stash-clipboard",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NotAShelf",
           repo: "stash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), createSymlinks, "mkdir -p $out\nfor bin in stash-copy stash-paste wl-copy wl-paste; do\n  ln -sf $out/bin/stash $out/bin/$bin\ndone\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wayland clipboard manager with fast persistent history and multi-media support",
         homepage: "https://github.com/NotAShelf/stash",
         changelog: nix.thunk(() => nix.str`https://github.com/NotAShelf/stash/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

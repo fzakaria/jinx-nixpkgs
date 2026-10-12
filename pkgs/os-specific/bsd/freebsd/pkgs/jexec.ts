@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libjail = nix.arg($, "libjail");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/jexec",
       buildInputs: nix.thunk(() => [libjail]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "jexec" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "jexec" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jexec.ts.map

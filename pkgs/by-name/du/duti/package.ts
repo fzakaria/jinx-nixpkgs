@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duti",
       version: "1.5.5pre",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moretension",
           repo: "duti",
           rev: "fe3d3dc411bcea6af7a8cbe53c0e08ed5ecacdb2",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./buildConfigure.patch")]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool to select default applications for document types and URL schemes on Mac OS X",
         longDescription: "duti is a command-line utility capable of setting default applications for\nvarious document types on Mac OS X, using Apple's Uniform Type Identifiers. A\nUTI is a unique string describing the format of a file's content. For instance,\na Microsoft Word document has a UTI of com.microsoft.word.doc. Using duti, the\nuser can change which application acts as the default handler for a given UTI.\n",
         mainProgram: "duti",

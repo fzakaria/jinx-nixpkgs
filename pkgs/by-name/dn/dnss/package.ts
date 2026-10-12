@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnss",
       version: "0-unstable-2024-03-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "albertito",
           repo: "dnss",
           rev: "da8986dd432870f5710e3e8652c92c95f34b830b",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-d9aGSBRblkvH5Ixw3jpbgC8lMW/qEYNJfLTVeUlos7A=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemon for using DNS over HTTPS",
         homepage: "https://blitiri.com.ar/git/r/dnss/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

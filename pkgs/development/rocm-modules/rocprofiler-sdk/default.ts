@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
   const buildTests = nix.argOr($, "buildTests", () => false);
   const buildSamples = nix.argOr($, "buildSamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "rocprofiler-sdk",
       version: "7.2.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -93,20 +93,20 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ROCm/rocm-systems/commit/86ee7b2eb2273adaf1181ef9a6b2091465c6f0c7.patch",
             hash: "sha256-PRmv8SI90jmO6MgJmk1DWf/WVmFy18nUTZClfOvI6a8=",
             excludes: nix.thunk(() => ["external/fmt"]),
             relative: "projects/rocprofiler-sdk",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/ROCm/rocm-systems/commit/36d9d33d90879bfbd406498011070ebd929a56b1.patch",
             hash: "sha256-yRy5pmCX9hd4eeZIz/g3B5VFCL9idkEaGK+S5+2sOsk=",
             relative: "projects/rocprofiler-sdk",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/ROCm/rocm-systems/commit/94a4595a5d02bc066f7a32e1b2134a99a5231213.patch",
             hash: "sha256-86Fx0bKL0pvXTwVN8QJL+yzCbMYkmMaKzcU4PYcW6ig=",
             relative: "projects/rocprofiler-sdk",
@@ -157,11 +157,11 @@ wrapProgram $out/bin/rocprofv3 --add-flags "--att-library-path ${nix.app(nix.sel
 `),
       postInstall: "mkdir -p $dev/lib $dev/share/rocprofiler-sdk\nmv $out/lib/cmake $dev/lib/\nmv $out/share/rocprofiler-sdk/{samples,tests} $dev/share/rocprofiler-sdk/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$5, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$5, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "ROCm GPU performance analysis SDK",
         homepage: "https://github.com/ROCm/rocprofiler-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

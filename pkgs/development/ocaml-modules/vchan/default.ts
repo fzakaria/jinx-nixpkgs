@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.2";
       const minimalOCamlVersion = "4.08";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-vchan/releases/download/v${version}/vchan-${version}.tbz`),
           hash: "sha256-fki12lrWuIweGX/vSD2gbMX9qaM4KthiDZLeJYWcX+U=",
         }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [ounit2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Xen Vchan implementation",
         homepage: "https://github.com/mirage/ocaml-vchan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

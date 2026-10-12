@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-image",
           repo: "scikit-image",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +59,7 @@ substituteInPlace src/skimage/_build_utils/version.py \\
       const build_system = nix.thunk(() => [cython, meson_python, numpy, pythran]);
       const dependencies = nix.thunk(() => [imageio, lazy_loader, networkx, numpy, packaging, pillow, scipy, tifffile]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         data: nix.thunk(() => [pooch]),
         optional: nix.thunk(() => nix.concat([simpleitk, scikit_learn, pyamg], nix.sel(self, "passthru", "optional-dependencies", "optional_free_threaded"))),
         optional_free_threaded: nix.thunk(() => nix.concat([astropy, dask, matplotlib, pooch, pywavelets], nix.sel(dask, "optional-dependencies", "array"))),
@@ -97,14 +97,14 @@ substituteInPlace src/skimage/_build_utils/version.py \\
         "skimage.segmentation",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          "all-tests": nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          "all-tests": nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Image processing routines for SciPy",
         homepage: "https://scikit-image.org",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-image/scikit-image/releases/tag/${nix.sel(src, "tag")}`),
@@ -115,7 +115,7 @@ substituteInPlace src/skimage/_build_utils/version.py \\
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

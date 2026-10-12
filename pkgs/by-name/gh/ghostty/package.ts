@@ -41,19 +41,19 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const optimizeLevel = nix.argOr($, "optimizeLevel", () => "ReleaseFast");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ghostty",
       version: "1.3.1",
       outputs: nix.thunk(() => ["out", "man", "shell_integration", "terminfo", "vim"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghostty-org",
           repo: "ghostty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+ddMmUe9Jjkun4qqW8XFXVgwVZdVHsGWcQzndgIlBjQ=",
         })))),
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-${nix.sel(finalAttrs, "version")}`),
         })))),
       strictDeps: true,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`),
         nix.thunk(() => nix.str`-Dversion-string=${nix.sel(finalAttrs, "version")}`),
         "-Dcpu=baseline",
-      ], nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (package$) => nix.str`-fsys=${name} --search-prefix ${nix.app(nix.sel(lib, "getLib"), package$)}`, nix.thunk(() => ({ __proto__: pos$3, glslang: glslang }))))),
+      ], nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (package$) => nix.str`-fsys=${name} --search-prefix ${nix.app(nix.sel(lib, "getLib"), package$)}`, nix.thunk(() => ({ [nix.POS]: pos$3, glslang: glslang }))))),
       zigBuildFlags: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "zigCheckFlags"), [nix.thunk(() => nix.str`-Doptimize=${optimizeLevel}`)])),
       doCheck: true,
       postFixup: nix.thunk(() => nix.str`ln -s $man/share/man $out/share/man
@@ -112,16 +112,16 @@ substituteInPlace $out/share/applications/com.mitchellh.ghostty.desktop \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             allTerminfo: nix.thunk(() => nix.attr(nixosTests, "allTerminfo")),
             nixos: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "ghostty")),
           })))),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast, native, feature-rich terminal emulator pushing modern features",
         longDescription: "Ghostty is a terminal emulator that differentiates itself by being\nfast, feature-rich, and native. While there are many excellent terminal\nemulators available, they all force you to choose between speed,\nfeatures, or native UIs. Ghostty provides all three.\n",
         homepage: "https://ghostty.org/",

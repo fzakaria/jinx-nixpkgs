@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paprefs",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/pulseaudio/paprefs/paprefs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-s/IeQNw5NtFeP/yRD7DAfBS4jowodxW0VqlIwXY49jM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, gettext, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [pulseaudioFull, glibmm_2_4, gtkmm3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PulseAudio Preferences",
         mainProgram: "paprefs",
         longDescription: "PulseAudio Preferences (paprefs) is a simple GTK based configuration\ndialog for the PulseAudio sound server.\n",

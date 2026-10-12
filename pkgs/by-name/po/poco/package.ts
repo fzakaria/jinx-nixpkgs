@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "poco";
       const version = "1.15.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pocoproject",
           repo: "poco",
           hash: "sha256-IpBwGwPY873EqWXOYFOBiuNrJBu1r+dBTOByHZ9Lnhg=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [zlib, pcre2, utf8proc, expat, sqlite, openssl]);
       const outputs = nix.thunk(() => ["out", "dev"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MYSQL_DIR: libmysqlclient,
         MYSQL_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.sel(env, "MYSQL_DIR")}/include/mysql`),
       }));
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [writableTmpDirAsHomeHook]);
       const postFixup = "grep -rlF INTERFACE_INCLUDE_DIRECTORIES \"$dev/lib/cmake/Poco\" | while read -r f; do\n  substituteInPlace \"$f\" \\\n    --replace-quiet \"$\"'{_IMPORT_PREFIX}/include' \"\"\ndone\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=poco-(.*)-release"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pocoproject.org/",
         description: "Cross-platform C++ libraries with a network/internet focus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

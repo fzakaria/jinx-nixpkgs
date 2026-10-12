@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const aws_sdk_cpp = nix.arg($, "aws-sdk-cpp");
   const aws_sdk_cpp_arrow = nix.argOr($, "aws-sdk-cpp-arrow", () => nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       apis: nix.thunk(() => ["cognito-identity", "config", "identity-management", "s3", "sts", "transfer"]),
     }))));
   const azure_sdk_for_cpp = nix.arg($, "azure-sdk-for-cpp");
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
   const enableGcs = nix.argOr($, "enableGcs", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")));
   const enableAzure = nix.argOr($, "enableAzure", () => true);
   const arrow_testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "arrow-testing",
       owner: "apache",
       repo: "arrow-testing",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-mna6I/a5ZxMLdWN0QfCsgsre6yMeuSv4syX5ePGLhfg=",
     }))));
   const parquet_testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "parquet-testing",
       owner: "apache",
       repo: "parquet-testing",
@@ -92,11 +92,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = "24.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "arrow-cpp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "apache",
           repo: "arrow",
           rev: nix.thunk(() => nix.str`apache-arrow-${version}`),
@@ -105,37 +105,37 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cpp`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/apache/arrow/commit/e6a89be6c7cc537b04844796bd84ac8240942050.patch",
             hash: "sha256-hB2ebq6a64FPBZeg7aS+tSZZIzhFs3w9A3n2NK+/ob8=",
           })))),
       ]),
       patchFlags: nix.thunk(() => ["-p2"]),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableJemalloc, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           ARROW_JEMALLOC_URL: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2",
               hash: "sha256-LbgtHnEZ3z5xt2QCGbbf6EeJvAU3mDw7esT3GJrs/qo=",
             })))),
         }))), {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         ARROW_MIMALLOC_URL: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "microsoft",
             repo: "mimalloc",
             tag: "v3.1.5",
             hash: "sha256-fk6nfyBFS1G0sJwUJVgTC1+aKd0We/JjsIYTO+IOfyg=",
           })))),
         ARROW_XSIMD_URL: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             owner: "xtensor-stack",
             repo: "xsimd",
             tag: "14.0.0",
             hash: "sha256-ijNoHb6xC+OHJbUB4j1PRsoHMzjrnOHVoDRe/nKguDo=",
           })))),
         ARROW_SUBSTRAIT_URL: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "substrait-io",
             repo: "substrait",
             tag: "v0.44.0",
@@ -275,7 +275,7 @@ runHook postInstallCheck
       })()),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
         description: "Cross-language development platform for in-memory data",
         homepage: "https://arrow.apache.org/docs/cpp/",
@@ -307,13 +307,13 @@ runHook postInstallCheck
         ]),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         enableFlight: enableFlight,
         enableJemalloc: enableJemalloc,
         enableS3: enableS3,
         enableGcs: enableGcs,
         tests: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),

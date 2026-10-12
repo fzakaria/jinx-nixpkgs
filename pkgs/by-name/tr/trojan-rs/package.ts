@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ipset = nix.arg($, "ipset");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trojan-rs",
       version: "0.16.0-unstable-2024-11-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lazytiger",
           repo: "trojan-rs",
           rev: "a996b83e3d57b571fa59f01034fcdd32a09ee8bc",
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1HrIjkv/CyHCiC3RzQ2M8kHl74eMsWNfypr8PsL6kA0=",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [ipset]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: true, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: true, RUSTFLAGS: "--cfg tokio_unstable" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lazytiger/trojan-rs",
         description: "Trojan server and proxy programs written in Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

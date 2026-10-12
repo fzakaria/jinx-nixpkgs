@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const alp = nix.arg($, "alp");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "alp",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gernotfeichter",
           repo: "alp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\ngo test -run Test_main_init\n\nrunHook postCheck\n",
       buildPhase: "runHook preBuild\n\ngo build -o $GOPATH/bin/alp main.go\n\nrunHook postBuild\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "test-version": nix.thunk(() => nix.app(runCommand, "alp-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${alp}/bin/alp version > $out
 cat $out | grep '${nix.sel(finalAttrs, "version")}'
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Convenient authentication method that lets you use your android device as a key for your Linux machine",
         homepage: "https://github.com/gernotfeichter/alp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

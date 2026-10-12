@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
   const kirigami = nix.thunk(() => nix.attr(kdePackages, "kirigami"));
   const kirigami_addons = nix.thunk(() => nix.attr(kdePackages, "kirigami-addons"));
   const qqc2_desktop_style = nix.thunk(() => nix.attr(kdePackages, "qqc2-desktop-style"));
-  const speexdsp$ = nix.thunk(() => nix.app(nix.sel(speexdsp, "override"), nix.thunk(() => ({ __proto__: pos$1, withFftw3: false }))));
+  const speexdsp$ = nix.thunk(() => nix.app(nix.sel(speexdsp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withFftw3: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "easyeffects",
       version: "8.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "wwmm",
           repo: "easyeffects",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -129,11 +129,11 @@ export default nix.lambda((args) => (() => {
       })()),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Audio effects for PipeWire applications",
         homepage: "https://github.com/wwmm/easyeffects",
         changelog: nix.thunk(() => nix.str`https://github.com/wwmm/easyeffects/blob/v${nix.sel(finalAttrs, "version")}/src/contents/docs/community/CHANGELOG.md`),

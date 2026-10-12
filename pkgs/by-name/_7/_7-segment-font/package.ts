@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "7-segment-font",
       version: "3.0-unstable-2025-06-03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://torinak.com/font/7segment.ttf",
           hash: "sha256-zIjaEGDLR9ad192GH9pIU6/A3ZGAuR0oF3ZB3Ew3Xbs=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -Dm444 \"$src\" \"$out/share/fonts/truetype/7segment.ttf\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font that imitates classic seven-segment LCD and LED displays",
         longDescription: "A font that imitates classic seven-segment LCD and LED displays.\nBeside digits, it contains Latin letters and some symbols constructed from segments,\nwith separate dot and colon as used in calculators and digital clocks.\n",
         homepage: "https://torinak.com/font/7-segment",

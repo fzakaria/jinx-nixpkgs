@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "retro-gtk",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/retro-gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/retro-gtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1lnb7dwcj3lrrvdzd85dxwrlid28xf4qdbrgfjyg1wn1z6sv063i",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./gio-unix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.gnome.org/GNOME/retro-gtk/-/commit/8016c10e7216394bc66281f2d9be740140b6fad6.patch",
             sha256: "sha256-HcQnqadK5sJM5mMqi4KERkJM3H+MUl8AJAorpFDsJ68=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gobject_introspection, gtk_doc, meson, ninja, pkg_config, vala]),
       buildInputs: nix.thunk(() => [libepoxy, glib, gtk3, libpulseaudio, libsamplerate]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK Libretro frontend framework",
         mainProgram: "retro-demo",
         longDescription: "Libretro is a plugin format design to implement video game\nconsole emulators, video games and similar multimedia\nsoftware. Such plugins are called Libretro cores.\n\nRetroGTK is a framework easing the use of Libretro cores in\nconjunction with GTK.\n\nIt encourages the cores to be installed in a well defined\ncentralized place — namely the libretro subdirectory of your lib\ndirectory — and it recommends them to come with Libretro core\ndescriptors.\n",

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-commonmark",
       version: "0.1.2-unstable-2020-04-30",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OrangeShark",
           repo: "guile-commonmark",
           rev: "538ffea25ca69d9f3ee17033534ba03cc27ba468",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OrangeShark/guile-commonmark",
         description: "Implementation of CommonMark for Guile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

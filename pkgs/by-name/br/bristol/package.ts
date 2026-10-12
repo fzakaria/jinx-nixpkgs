@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bristol",
       version: "0.60.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/bristol/bristol-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fR8LvQ19MD/HfGuVSbYXCNeoO03AB4GAEbH1XR+pIro=",
         })))),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '41,43d' libbristolaudio/audioEngineJack.c  # disable alsa/iatomic\nsed -i '35i void doPitchWheel(Baudio *baudio);' bristol/bristolmemorymoog.c\n",
       configureFlags: nix.thunk(() => ["--enable-jack-default-audio", "--enable-jack-default-midi"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-implicit-int", "-std=gnu17"]))),
       })),
       preInstall: "sed -e \"s@\\`which bristol\\`@$out/bin/bristol@g\" -i bin/startBristol\nsed -e \"s@\\`which brighton\\`@$out/bin/brighton@g\" -i bin/startBristol\n",
       postInstall: "mkdir -p $out/share/icons/hicolor/scalable/apps/\nln -s $out/share/bristol/bitmaps/bicon.svg $out/share/icons/hicolor/scalable/apps/\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Bristol",
             exec: "bristol",
             icon: "bicon",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Range of synthesiser, electric piano and organ emulations",
         homepage: "https://bristol.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

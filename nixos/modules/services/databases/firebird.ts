@@ -37,33 +37,33 @@ export default nix.lambda((args) => (() => {
   const dataDir = nix.thunk(() => nix.str`${nix.sel(cfg, "baseDir")}/data`);
   const systemDir = nix.thunk(() => nix.str`${nix.sel(cfg, "baseDir")}/system`);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         firebird: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Firebird super server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "firebird", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "firebird_3",
               extraDescription: "For SuperServer use override: `pkgs.firebird_3.override { superServer = true; };`\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 3050n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Port Firebird uses.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "firebird",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User account under which firebird runs.\n",
             })))),
           baseDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/lib/firebird",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Location containing data/ and system/ directories.\ndata/ stores the databases, system/ stores the password database security2.fdb.\n",
@@ -72,15 +72,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "firebird", "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
-            "firebird/firebird.msg": nix.thunk(() => ({ __proto__: pos$8, source: nix.thunk(() => nix.str`${firebird}/firebird.msg`) })),
+            [nix.POS]: pos$10,
+            "firebird/firebird.msg": nix.thunk(() => ({ [nix.POS]: pos$8, source: nix.thunk(() => nix.str`${firebird}/firebird.msg`) })),
             "firebird/firebird.conf": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               text: nix.thunk(() => nix.str`# RootDirectory = Restrict ${dataDir}
 DatabaseAccess = Restrict ${dataDir}
 ExternalFileAccess = Restrict ${dataDir}
@@ -110,18 +110,18 @@ RemoteServicePort = ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${dataDir}' 0700 ${nix.sel(cfg, "user")} - - -`),
               nix.thunk(() => nix.str`d '${systemDir}' 0700 ${nix.sel(cfg, "user")} - - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             firebird: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Firebird Super-Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.str`if ! test -e "${systemDir}/security2.fdb"; then
@@ -139,7 +139,7 @@ fi
 chmod -R 700         "${dataDir}" "${systemDir}" /var/log/firebird
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 LogsDirectory: "firebird",
                 LogsDirectoryMode: "0700",
@@ -149,20 +149,20 @@ chmod -R 700         "${dataDir}" "${systemDir}" /var/log/firebird
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             firebird: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Firebird server user",
               group: "firebird",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "firebird")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             firebird: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "firebird")),
             })),
           })),

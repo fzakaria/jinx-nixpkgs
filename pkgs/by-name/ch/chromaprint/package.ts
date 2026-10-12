@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withTools = nix.argOr($, "withTools", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "chromaprint",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acoustid",
           repo: "chromaprint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,22 +46,22 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkPhase: nix.thunk(() => (() => {
         const exampleAudio = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "Dvorak_Symphony_9_1.mp3",
             url: "https://archive.org/download/Dvorak_Symphony_9/01.Adagio-Allegro_Molto.mp3",
             hash: "sha256-I+Ve3/OpL+3Joc928F8M21LhCH2eQfRtaJVx9mNOLW0=",
             meta: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))));
@@ -73,7 +73,7 @@ runHook postCheck
 `;
       })()),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/acoustid/chromaprint/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://acoustid.org/chromaprint",
         description: "AcoustID audio fingerprinting library",
@@ -81,7 +81,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quantenzitrone"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         pkgConfigModules: nix.thunk(() => ["libchromaprint"]),
-      }, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), withTools, nix.thunk(() => ({ __proto__: pos$7, mainProgram: "fpcalc" }))))),
+      }, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), withTools, nix.thunk(() => ({ [nix.POS]: pos$7, mainProgram: "fpcalc" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

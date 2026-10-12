@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libxisf",
       version: "0.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.nouspiro.space",
           owner: "nou",
           repo: "libXISF",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lz4, pugixml, zlib, zstd]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to load and write XISF format from PixInsight",
         homepage: "https://gitea.nouspiro.space/nou/libXISF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

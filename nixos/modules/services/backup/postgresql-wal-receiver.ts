@@ -38,49 +38,49 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const receiverSubmodule = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
-      postgresqlPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "postgresql", nix.thunk(() => ({ __proto__: pos$1, example: "postgresql_15" })))),
+      [nix.POS]: pos$10,
+      postgresqlPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "postgresql", nix.thunk(() => ({ [nix.POS]: pos$1, example: "postgresql_15" })))),
       directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "path")),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "/mnt/pg_wal/main/")),
           description: "Directory to write the output to.\n",
         })))),
       statusInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 10n,
           description: "Specifies the number of seconds between status packets sent back to the server.\nThis allows for easier monitoring of the progress from server.\nA value of zero disables the periodic status updates completely,\nalthough an update will still be sent when requested by the server, to avoid timeout disconnect.\n",
         })))),
       slot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "",
           example: "some_slot_name",
           description: "Require {command}`pg_receivewal` to use an existing replication slot (see\n[Section 26.2.6 of the PostgreSQL manual](https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS)).\nWhen this option is used, {command}`pg_receivewal` will report a flush position to the server,\nindicating when each segment has been synchronized to disk so that the server can remove that segment if it is not otherwise needed.\n\nWhen the replication client of {command}`pg_receivewal` is configured on the server as a synchronous standby,\nthen using a replication slot will report the flush position to the server, but only when a WAL file is closed.\nTherefore, that configuration will cause transactions on the primary to wait for a long time and effectively not work satisfactorily.\nThe option {option}`synchronous` must be specified in addition to make this work correctly.\n",
         })))),
       synchronous: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Flush the WAL data to disk immediately after it has been received.\nAlso send a status packet back to the server immediately after flushing, regardless of {option}`statusInterval`.\n\nThis option should be specified if the replication client of {command}`pg_receivewal` is configured on the server as a synchronous standby,\nto ensure that timely feedback is sent to the server.\n",
         })))),
       compress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 9n)),
           default: 0n,
           description: "Enables gzip compression of write-ahead logs, and specifies the compression level\n(`0` through `9`, `0` being no compression and `9` being best compression).\nThe suffix `.gz` will automatically be added to all filenames.\n\nThis option requires PostgreSQL >= 10.\n",
         })))),
       connection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           example: "postgresql://user@somehost",
           description: "Specifies parameters used to connect to the server, as a connection string.\nSee [Section 34.1.1 of the PostgreSQL manual](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) for more information.\n\nBecause {command}`pg_receivewal` doesn't connect to any particular database in the cluster,\ndatabase name in the connection string will be ignored.\n",
         })))),
       extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
           description: "A list of extra arguments to pass to the {command}`pg_receivewal` command.\n",
         })))),
       environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -102,15 +102,15 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         postgresqlWalReceiver: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           receivers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), receiverSubmodule)));
@@ -125,47 +125,47 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const receivers = nix.thunk(() => nix.sel(config, "services", "postgresqlWalReceiver", "receivers"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(receivers, {})), nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             users: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               postgres: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "postgres")),
                 group: "postgres",
                 description: "PostgreSQL server user",
               })),
             })),
             groups: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               postgres: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "postgres")),
               })),
             })),
           })),
           assertions: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (config_1) => [
                 nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   assertion: nix.thunk(() => (!nix.asBool(nix.gt(nix.sel(config_1, "compress"), 0n)) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config_1, "postgresqlPackage", "version")), "10")))),
                   message: nix.thunk(() => nix.str`Invalid configuration for WAL receiver "${name}": compress requires PostgreSQL version >= 10.`),
                 })),
               ], receivers)))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               rules: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (config_1) => nix.str`d ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(config_1, "directory")))} 0750 postgres postgres - -
 `, receivers)),
             })),
             services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (config_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`postgresql-wal-receiver-${name}`), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   description: nix.thunk(() => nix.str`PostgreSQL WAL receiver (${name})`),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   startLimitIntervalSec: 0n,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     User: "postgres",
                     Group: "postgres",
                     KillSignal: "SIGINT",
@@ -191,7 +191,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "euxane"))];

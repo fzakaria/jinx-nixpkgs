@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const opencloud_desktop_shell_integration_resources = nix.arg($, "opencloud-desktop-shell-integration-resources");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencloud-desktop-shell-integration-dolphin",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opencloud-eu",
           repo: "desktop-shell-integration-dolphin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenCloud Desktop shell integration for the great KDE Dolphin in KDE Frameworks 6",
         homepage: "https://github.com/opencloud-eu/desktop-shell-integration-dolphin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

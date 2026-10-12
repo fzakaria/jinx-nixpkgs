@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.18";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luispedro",
           repo: "mahotas",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [imread, numpy, pillow, scipy]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c++14" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++14" }))));
       const preCheck = "cd build/lib*\n";
       const disabledTests = nix.thunk(() => nix.concat(["test_colors", "test_ellipse_axes", "test_normalize", "test_haralick3d"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_close_holes_simple", "test_watershed"]))));
       const pythonImportsCheck = nix.thunk(() => ["mahotas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")))),
         description: "Computer vision package based on numpy",
         homepage: "https://mahotas.readthedocs.io/",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

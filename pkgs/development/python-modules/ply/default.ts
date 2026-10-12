@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3",
@@ -28,13 +28,13 @@ ${nix.sel(python, "interpreter")} test/testyacc.py
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.dabeaz.com/ply/",
         description: "PLY (Python Lex-Yacc), an implementation of the lex and yacc parsing tools for Python",
         longDescription: "PLY is an implementation of lex and yacc parsing tools for Python.\nIn a nutshell, PLY is nothing more than a straightforward lex/yacc\nimplementation.  Here is a list of its essential features: It's\nimplemented entirely in Python; It uses LR-parsing which is\nreasonably efficient and well suited for larger grammars; PLY\nprovides most of the standard lex/yacc features including support for\nempty productions, precedence rules, error recovery, and support for\nambiguous grammars; PLY is straightforward to use and provides very\nextensive error checking; PLY doesn't try to do anything more or less\nthan provide the basic lex/yacc functionality.  In other words, it's\nnot a large parsing framework or a component of some larger system.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, checkPhase, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, checkPhase, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         patches: patches,
         src: src,
         version: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         postPatch: "for f in default/Makefile extras/Makefile; do\n  substituteInPlace $f \\\n    --replace-fail \"usr/share\" \"share\" \\\n    --replace-fail \"/usr/bin/\" \"\" \\\n    --replace-fail \"/bin/\" \"\"\ndone\n\nfor f in $(find . -name '*.xml'); do\n  substituteInPlace $f \\\n    --replace-fail \"/usr/share\" \"$out/share\"\ndone;\n",
         installFlags: nix.thunk(() => ["DESTDIR=$(out)", "WP_DIR_LN=$(DESTDIR)/share/backgrounds/$(WP_NAME)"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: "https://github.com/fedoradesign/backgrounds",
           description: "Set of default and supplemental wallpapers for Fedora",
           license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

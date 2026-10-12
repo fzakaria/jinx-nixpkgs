@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const phpDrv = nix.thunk(() => nix.selOr(finalAttrs, () => nix.force(php), "php"));
     const composer = nix.thunk(() => nix.selOr(finalAttrs, () => nix.sel(phpDrv, "packages", "composer-local-repo-plugin"), "composer"));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       composerLock: nix.thunk(() => nix.selOr(previousAttrs, () => null, "composerLock")),
       composerNoDev: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoDev")),
       composerNoPlugins: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoPlugins")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.selOr(previousAttrs, () => false, "doInstallCheck")),
       installCheckPhase: nix.thunk(() => nix.selOr(previousAttrs, () => "runHook preInstallCheck\n\nrunHook postInstallCheck\n", "installCheckPhase")),
       composerRepository: nix.thunk(() => nix.selOr(previousAttrs, () => nix.app(nix.sel(phpDrv, "mkComposerRepository"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             composer: composer,
             patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
             composerStrictValidation: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerStrictValidation")),
           }))), "composerRepository")),
       passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.selOr(previousAttrs, () => (nix.asBool(nix.eq(nix.sel(finalAttrs, "composerRepository", "composerLock"), null)) ? nix.app(nix_update_script, nix.thunk(() => ({}))) : null), "passthru", "updateScript")),
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     };

@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const useWin32ThreadModel = (stdenv) => nix.app(overrideCC, stdenv, nix.thunk(() => nix.app(nix.sel(stdenv, "cc", "override"), (old) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             cc: nix.thunk(() => nix.app(nix.sel(old, "cc", "override"), nix.thunk(() => ({
-                __proto__: pos$2,
-                threadsCross: nix.thunk(() => ({ __proto__: pos$1, model: "win32", package: null })),
+                [nix.POS]: pos$2,
+                threadsCross: nix.thunk(() => ({ [nix.POS]: pos$1, model: "win32", package: null })),
               })))),
           }))));
       const mingw32Stdenv = nix.thunk(() => nix.app(useWin32ThreadModel, nix.thunk(() => nix.sel(pkgsCross, "mingw32", "stdenv"))));
       const mingwW64Stdenv = nix.thunk(() => nix.app(useWin32ThreadModel, nix.thunk(() => nix.sel(pkgsCross, "mingwW64", "stdenv"))));
-      const dxvk32 = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(pkgsCross, "mingw32", "dxvk_1", "override"), nix.thunk(() => ({ __proto__: pos$4, stdenv: mingw32Stdenv, enableMoltenVKCompat: true }))) : nix.app(nix.sel(pkgsCross, "mingw32", "dxvk_3", "override"), nix.thunk(() => ({ __proto__: pos$5, stdenv: mingw32Stdenv })))));
-      const dxvk64 = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(pkgsCross, "mingwW64", "dxvk_1", "override"), nix.thunk(() => ({ __proto__: pos$6, stdenv: mingwW64Stdenv, enableMoltenVKCompat: true }))) : nix.app(nix.sel(pkgsCross, "mingwW64", "dxvk_3", "override"), nix.thunk(() => ({ __proto__: pos$7, stdenv: mingwW64Stdenv })))));
+      const dxvk32 = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(pkgsCross, "mingw32", "dxvk_1", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, stdenv: mingw32Stdenv, enableMoltenVKCompat: true }))) : nix.app(nix.sel(pkgsCross, "mingw32", "dxvk_3", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: mingw32Stdenv })))));
+      const dxvk64 = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(pkgsCross, "mingwW64", "dxvk_1", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, stdenv: mingwW64Stdenv, enableMoltenVKCompat: true }))) : nix.app(nix.sel(pkgsCross, "mingwW64", "dxvk_3", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: mingwW64Stdenv })))));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: "dxvk",
         version: nix.thunk(() => nix.attr(dxvk64, "version")),
         outputs: nix.thunk(() => ["out", "bin", "lib"]),
@@ -52,10 +52,10 @@ for arch in "\${!dxvks[@]}"; do
   ln -s "\${dxvks[$arch]}/lib" $lib/$arch
 done
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$8, dxvk32: dxvk32, dxvk64: dxvk64 })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$8, dxvk32: dxvk32, dxvk64: dxvk64 })),
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: "Setup script for DXVK",
           mainProgram: "setup_dxvk.sh",
           homepage: "https://github.com/doitsujin/dxvk",

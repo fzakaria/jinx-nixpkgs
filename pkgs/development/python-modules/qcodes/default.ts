@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qcodes",
       version: "0.56.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "Qcodes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
         xarray,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         docs: nix.thunk(() => [furo, nbsphinx, pyvisa_sim, scipy, sphinx, sphinx_issues, towncrier]),
         loop: [],
         refactor: nix.thunk(() => [libcst]),
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["qcodes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python-based data acquisition framework",
         changelog: nix.thunk(() => nix.str`https://github.com/QCoDeS/Qcodes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         downloadPage: "https://github.com/QCoDeS/Qcodes",

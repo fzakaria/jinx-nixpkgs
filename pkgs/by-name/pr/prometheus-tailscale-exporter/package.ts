@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tailscale-exporter",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adinhodovic",
           repo: "tailscale-exporter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-NY0tyZu+k+EaDmUvVPuRlEWon4eZ08/gONpnV+rxi+w=",
       subPackages: nix.thunk(() => ["cmd/tailscale-exporter", "collector"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$3, tailscale: nix.thunk(() => nix.attr(from, "tailscale")) };
+          return { [nix.POS]: pos$3, tailscale: nix.thunk(() => nix.attr(from, "tailscale")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tailscale Tailnet metric exporter for Prometheus",
         homepage: "https://github.com/adinhodovic/tailscale-exporter",
         changelog: nix.thunk(() => nix.str`https://github.com/adinhodovic/tailscale-exporter/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

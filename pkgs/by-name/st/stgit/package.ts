@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stgit",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stacked-git",
           repo: "stgit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ installShellCompletion --cmd stg \\
   --zsh completion/stgit.zsh
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Patch manager implemented on top of Git",
         homepage: "https://stacked-git.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

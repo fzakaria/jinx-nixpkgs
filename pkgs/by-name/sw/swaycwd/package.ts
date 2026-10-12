@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const enableShells = nix.argOr($, "enableShells", () => ["bash", "zsh", "fish", "sh", "posh", "codium"]);
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swaycwd",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cab404",
           repo: "swaycwd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
 `),
       nimFlags: nix.thunk(() => ["--opt:speed"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/cab404/swaycwd",
         description: "Returns cwd for shell in currently focused sway window, or home directory if cannot find shell",
         maintainers: nix.thunk(() => (() => {

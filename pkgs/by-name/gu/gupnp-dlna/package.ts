@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gupnp-dlna/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gupnp-dlna-${version}.tar.xz`),
           sha256: "PVO5b4W8VijTPjZ+yb8q2zjvKzTXrQQ0proM9K2QSOY=",
         }))));
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postPatch = "chmod +x tests/test-discoverer.sh.in\npatchShebangs tests/test-discoverer.sh.in\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/gupnp-dlna",
         description: "Library to ease DLNA-related bits for applications using GUPnP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

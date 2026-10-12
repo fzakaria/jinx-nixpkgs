@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const uiua = nix.arg($, "uiua");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "uiua386",
       src: nix.thunk(() => nix.attr(uiua, "src")),
       version: nix.thunk(() => nix.attr(uiua, "version")),
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t $out/share/fonts/truetype ./src/assets/Uiua386.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Uiua font",
         homepage: "https://uiua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

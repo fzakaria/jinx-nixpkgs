@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elfkickers",
       version: "3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.muppetlabs.com/~breadbox/pub/software/ELFkickers-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-m4HmxT4MlPwZjZiC63NxVvNtVlFS3DIRiJfHewaiaHw=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.muppetlabs.com/~breadbox/software/elfkickers.html",
         description: "Collection of programs that access and manipulate ELF files",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

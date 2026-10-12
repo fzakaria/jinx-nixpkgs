@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const _binaryName = nix.argOr($, "_binaryName", () => "zjstatus");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zjstatus",
       version: "0.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dj95",
           repo: "zjstatus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-oQ0GzTHpmrG/+Uyw11Uztbz+k3PwnWwECaNa+YSwQaw=",
       cargoBuildFlags: nix.thunk(() => [nix.thunk(() => nix.str`--bin=${_binaryName}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configurable statusbar plugin for Zellij",
         homepage: "https://github.com/dj95/zjstatus",
         changelog: nix.thunk(() => nix.str`https://github.com/dj95/zjstatus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

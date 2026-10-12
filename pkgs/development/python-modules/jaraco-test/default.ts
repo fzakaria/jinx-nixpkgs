@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const jaraco_collections = nix.arg($, "jaraco-collections");
   const pytest8_3CheckHook = nix.arg($, "pytest8_3CheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jaraco-test",
       version: "5.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaraco",
           repo: "jaraco.test",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest8_3CheckHook]),
       pythonImportsCheck: nix.thunk(() => ["jaraco.test"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing support by jaraco",
         homepage: "https://github.com/jaraco/jaraco.test",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/jaraco.test/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.rst`),

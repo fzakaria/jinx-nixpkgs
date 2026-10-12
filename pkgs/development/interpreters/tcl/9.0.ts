@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const release = "9.0";
       const version = nix.thunk(() => nix.str`${release}.4`);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tcl${version}-src.tar.gz`),
           hash: "sha256-2yfj4ddGX/QT601NKG5y30LToMBu3jomFGnNUdzRaNw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "windows-disable-tzdata.patch",
             url: "https://github.com/tcltk/tcl/commit/54b509164606717adb3fbeacf71524f0a6e940f4.patch",
             includes: nix.thunk(() => ["win/configure.ac", "win/Makefile.in"]),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const extraPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`substituteInPlace unix/configure unix/configure.ac \\
   --replace-fail '\`uname -s\`' '${nix.sel(stdenv, "hostPlatform", "uname", "system")}'
 `)));
-      return { __proto__: pos$3, release, version, src, patches, extraPatch };
+      return { [nix.POS]: pos$3, release, version, src, patches, extraPatch };
     })())));
 })(), formals$1);
 //# sourceMappingURL=9.0.ts.map

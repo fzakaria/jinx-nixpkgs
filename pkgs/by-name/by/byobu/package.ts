@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "snack"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "byobu",
       version: "7.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dustinkirkland",
           repo: "byobu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +80,7 @@ for file in $out/bin/byobu*; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.byobu.org/",
         description: "Text-based window manager and terminal multiplexer",
         longDescription: "Byobu is a text-based window manager and terminal multiplexer. It was\noriginally designed to provide elegant enhancements to the otherwise\nfunctional, plain, practical GNU Screen, for the Ubuntu server\ndistribution. Byobu now includes an enhanced profiles, convenient\nkeybindings, configuration utilities, and toggle-able system status\nnotifications for both the GNU Screen window manager and the more modern\nTmux terminal multiplexer, and works on most Linux, BSD, and Mac\ndistributions.\n",

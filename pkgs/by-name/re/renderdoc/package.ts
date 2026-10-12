@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const custom_swig = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "baldurk",
       repo: "swig",
       rev: "renderdoc-modified-7",
       hash: "sha256-RsdvxBBQvwuE5wSwL8OBXg5KMSpcO6EuMS0CzWapIpc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "renderdoc",
       version: "1.46",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "baldurk",
           repo: "renderdoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-pcre.patch")]),
       swig_patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "renderdoc-swig-pcre2-1.patch",
             url: "https://src.fedoraproject.org/rpms/renderdoc/raw/19ce666d120a229e5c1ab62fc142610ab3b21b3c/f/renderdoc-swig-pcre2-1.patch",
             hash: "sha256-xuqHu72vAbxFELNTfJT5SbQOsnG/ee++MZgpuEGLT/w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "renderdoc-swig-pcre2-2.patch",
             url: "https://src.fedoraproject.org/rpms/renderdoc/raw/19ce666d120a229e5c1ab62fc142610ab3b21b3c/f/renderdoc-swig-pcre2-2.patch",
             hash: "sha256-LUm5Ekmccy4x+hR+iK49zJc75VxuhDhpNw8rkVnn4rc=",
@@ -120,14 +120,14 @@ wrapProgram $out/bin/renderdoccmd \\
       })()),
       postFixup: "addDriverRunpath $out/lib/librenderdoc.so\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         custom_swig: custom_swig,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         vulkanLayers: nix.thunk(() => ["renderdoc_capture.json"]),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           vulkanLayersExist: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "renderdoc-vulkan-layers-exist",
               dontUnpack: true,
               buildCommand: nix.thunk(() => nix.str`touch $out # Dummy file to satisfy the build system
@@ -143,7 +143,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://renderdoc.org/",
         description: "Single-frame graphics debugger",
         longDescription: "RenderDoc is a free MIT licensed stand-alone graphics debugger that\nallows quick and easy single-frame capture and detailed introspection\nof any application using Vulkan, D3D11, OpenGL or D3D12 across\nWindows 7 - 10, Linux or Android.\n",

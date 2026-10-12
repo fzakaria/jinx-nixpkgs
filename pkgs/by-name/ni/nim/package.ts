@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const patches = nix.arg($_1, "patches");
     const targetPlatformConfig = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "config"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${targetPlatformConfig}-nim-wrapper`),
         version: nix.thunk(() => nix.attr(nimUnwrapped, "version")),
         preferLocalBuild: true,
@@ -110,9 +110,9 @@ makeWrapper \\
 ln -s $out/bin/${targetPlatformConfig}-testament $out/bin/testament
 
 `, "runHook postInstall\n")),
-        passthru: nix.thunk(() => nix.update(nix.sel(nimUnwrapped, "passthru"), { __proto__: pos$1, wrapNim: wrapNim, nim: nimUnwrapped })),
+        passthru: nix.thunk(() => nix.update(nix.sel(nimUnwrapped, "passthru"), { [nix.POS]: pos$1, wrapNim: wrapNim, nim: nimUnwrapped })),
         meta: nix.thunk(() => nix.update(nix.sel(nimUnwrapped, "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: nix.thunk(() => nix.add(nix.sel(nimUnwrapped, "meta", "description"), nix.str` (${targetPlatformConfig} wrapper)`)),
           platforms: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -122,7 +122,7 @@ ln -s $out/bin/${targetPlatformConfig}-testament $out/bin/testament
       }));
   })(), formals$2);
   return nix.app(wrapNim, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nimUnwrapped: nim_unwrapped,
       patches: nix.thunk(() => [nix.path(here, "./nim2.cfg.patch")]),
     })));

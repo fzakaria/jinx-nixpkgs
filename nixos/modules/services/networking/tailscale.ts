@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "tailscale"));
   const isNetworkd = nix.thunk(() => nix.sel(config, "networking", "useNetworkd"));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [
@@ -68,83 +68,83 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         tailscale: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Tailscale client daemon")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 41641n,
               description: "The port to listen on for tunnel traffic (0=autoselect).",
             })))),
           interfaceName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "tailscale0",
               description: "The interface name for tunnel traffic. Use \"userspace-networking\" (beta) to not use TUN.",
             })))),
           permitCertUid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "nonEmptyStr")))),
               default: null,
               description: "Username or user ID of the user allowed to to fetch Tailscale TLS certificates for the node.",
             })))),
           disableTaildrop: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to disable the Taildrop feature for sending files between nodes.",
             })))),
           disableUpstreamLogging: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to disable Tailscaled from sending debug logging upstream.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tailscale", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to open the firewall for the specified port.",
             })))),
           useRoutingFeatures: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["none", "client", "server", "both"]))),
               default: "none",
               example: "server",
               description: "Enables settings required for Tailscale's routing features like subnet routers and exit nodes.\n\nTo use these these features, you will still need to call `sudo tailscale up` with the relevant flags like `--advertise-exit-node` and `--exit-node`.\n\nWhen set to `client` or `both`, reverse path filtering will be set to loose instead of strict.\nWhen set to `server` or `both`, IP forwarding will be enabled.\n",
             })))),
           authKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/secrets/tailscale_key",
               description: "A file containing the auth key.\nTailscale will be automatically started if provided.\n\nServices that bind to Tailscale IPs should order using {option}`systemd.services.<name>.after` `tailscaled-autoconnect.service`.\n",
             })))),
           authKeyParameters: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     ephemeral: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                         default: null,
                         description: "Whether to register as an ephemeral node.",
                       })))),
                     preauthorized: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                         default: null,
                         description: "Whether to skip manual device approval.",
                       })))),
                     baseURL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: null,
                         description: "Base URL for the Tailscale API.",
@@ -155,21 +155,21 @@ export default nix.lambda((args) => (() => {
               description: "Extra parameters to pass after the auth key.\nSee <https://tailscale.com/kb/1215/oauth-clients#registering-new-nodes-using-oauth-credentials>\n",
             })))),
           extraUpFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Extra flags to pass to {command}`tailscale up`. Only applied if {option}`services.tailscale.authKeyFile` is specified.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["--ssh"]),
             })))),
           extraSetFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Extra flags to pass to {command}`tailscale set`.",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["--advertise-exit-node"]),
             })))),
           extraDaemonFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Extra flags to pass to {command}`tailscaled`.",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
@@ -179,18 +179,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             tailscaled: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               after: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")), nix.thunk(() => ["NetworkManager-wait-online.service"]))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.concat([
@@ -200,7 +200,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "kmod")),
               ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "networking", "resolvconf", "enable")), nix.thunk(() => nix.sel(config, "networking", "resolvconf", "package"))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Environment: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`PORT=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}`),
                   nix.thunk(() => nix.str`"FLAGS=--tun ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "interfaceName")))} ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraDaemonFlags")))}"`),
@@ -211,11 +211,11 @@ export default nix.lambda((args) => (() => {
               stopIfChanged: false,
             })),
             "tailscaled-autoconnect": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "authKeyFile"), null)), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 after: nix.thunk(() => ["tailscaled.service"]),
                 wants: nix.thunk(() => ["tailscaled.service"]),
                 wantedBy: nix.thunk(() => ["tailscaled.service"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$25, Type: "notify" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$25, Type: "notify" })),
                 path: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "package")),
                   nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -260,47 +260,47 @@ done
                 })()),
               })))),
             "tailscaled-set": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraSetFlags"), [])), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 after: nix.thunk(() => ["tailscaled.service", "tailscaled-autoconnect.service"]),
                 wants: nix.thunk(() => ["tailscaled.service"]),
                 wantedBy: nix.thunk(() => ["tailscaled.service"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$27, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$27, Type: "oneshot" })),
                 script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} set ${nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraSetFlags")))}
 `),
               })))),
           })),
           network: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             networks: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "50-tailscale": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), isNetworkd, nix.thunk(() => ({
-                  __proto__: pos$32,
-                  matchConfig: nix.thunk(() => ({ __proto__: pos$30, Name: nix.thunk(() => nix.sel(cfg, "interfaceName")) })),
-                  linkConfig: nix.thunk(() => ({ __proto__: pos$31, Unmanaged: true, ActivationPolicy: "manual" })),
+                  [nix.POS]: pos$32,
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$30, Name: nix.thunk(() => nix.sel(cfg, "interfaceName")) })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$31, Unmanaged: true, ActivationPolicy: "manual" })),
                 })))),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           kernel: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             sysctl: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "server")) || nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "both")))), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 "net.ipv4.conf.all.forwarding": nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 97n, true)),
                 "net.ipv6.conf.all.forwarding": nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 97n, true)),
               })))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           firewall: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             allowedUDPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
             checkReversePath: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "client")) || nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "both")))), "loose")),
           })),
           dhcpcd: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             denyInterfaces: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "interfaceName"))]),
           })),
         })),

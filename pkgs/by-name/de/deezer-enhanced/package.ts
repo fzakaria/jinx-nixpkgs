@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deezer-enhanced";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/duzda/deezer-enhanced/releases/download/v${version}/deezer-enhanced_${version}_amd64.deb`),
           hash: "sha256-iMqQ6mqP5/1nKjqH58kfiQERUeOF54gHvAOiI8narKI=",
         }))));
@@ -97,7 +97,7 @@ wrapProgram $out/bin/${pname} \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/duzda/deezer-enhanced",
         changelog: nix.thunk(() => nix.str`https://github.com/duzda/deezer-enhanced/releases/tag/v${version}`),
         description: "Unofficial application for Deezer with enhanced features",
@@ -110,7 +110,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

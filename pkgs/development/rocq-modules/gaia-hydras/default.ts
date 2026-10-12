@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const mathcomp = nix.arg($, "mathcomp");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gaia-hydras",
       repo: "hydra-battles",
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "0.5": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256:121pcbn6v59l0c165ha9n00whbddpy11npx2y9cn7g879sfk2nqk",
         })),
         "0.6": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:1dri4sisa7mhclf8w4kw7ixs5zxm8xyjr034r1377p96rdk3jj0j",
         })),
         "0.9": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-wlK+154owQD/03FB669KCjyQlL2YOXLCi0KLSo0DOwc=",
         })),
       })),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(mathcomp, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.16")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.12.0", "1.18.0")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
               out: "0.9",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.14")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.12.0", "1.18.0")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [hydra_battles, gaia, mathcomp_zify]),
       useDune: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Comparison between ordinals in Gaia and Hydra battles",
         longDescription: "The Gaia and Hydra battles projects develop different notions of ordinals.\nThis development bridges the different notions.\n",
         maintainers: nix.thunk(() => (() => {

@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const xkeyboard_config = nix.arg($, "xkeyboard_config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "deskflow",
       version: "1.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deskflow",
           repo: "deskflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,14 +106,14 @@ substituteInPlace src/lib/net/CMakeLists.txt \\
       checkPhase: "runHook preCheck\n\nexport QT_QPA_PLATFORM=offscreen\nctest --test-dir  \"src/unittests\" --output-on-failure \\\n  --exclude-regex \"OSX(KeyState|Clipboard)Tests\"\n./bin/legacytests\n\nrunHook postCheck\n",
       postInstall: "install -Dm644 ../README.md ../doc/user/configuration.md -t $out/share/doc/deskflow\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/deskflow/deskflow",
         description: "Share one mouse and keyboard between multiple computers on Windows, macOS and Linux",
         mainProgram: "deskflow",

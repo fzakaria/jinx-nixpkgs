@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
   const withZitaResampler = nix.argOr($, "withZitaResampler", () => true);
   nix.assert_((!nix.asBool(enableNSM) || nix.asBool(withLiblo)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gu/guitarix/package.nix:55:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "guitarix",
       version: "0.47.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brummer10",
           repo: "guitarix",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p2"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "make-boost-system-stub-optional.patch",
             url: "https://github.com/brummer10/guitarix/compare/v0.47.0..187670358ffc47a0fa09e140586b2e88dfdcf043.patch?full_index=1",
             hash: "sha256-9Z0sAM/oTm3ejv9chDbXEpkjNvlX/SN+k48XaJTqdy0=",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         "--install-roboto-font",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), enableFaust, "--faust"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableFaust)), "--no-faust"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableNSM)), "--no-nsm"), nix.concat(nix.app(nix.sel(lib, "optional"), enableOptimization, "--optimization"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableSse)), "--disable-sse"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withAvahi)), "--no-avahi"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withBluez)), "--no-bluez"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withZitaConvolver)), "--includeconvolver"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withZitaResampler)), "--includeresampler"))))))))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Virtual guitar amplifier for Linux running with JACK",
         mainProgram: "guitarix",
         longDescription: "Guitarix takes the signal from your guitar as any real amp would do: as a\nmono-signal from your sound card. Your tone is processed by a main amp and\na rack-section. Both can be routed separately and deliver a processed\nstereo-signal via JACK. You may fill the rack with effects from more than\n25 built-in modules spanning from a simple noise-gate to brain-slashing\nmodulation-fx like flanger, phaser or auto-wah. Your signal is processed\nwith minimum latency. On a properly set-up Linux-system you do not need to\nwait for more than 10 milliseconds for your playing to be delivered,\nprocessed by guitarix.\n\nGuitarix offers the range of sounds you would expect from a full-featured\nuniversal guitar-amp. You can get crisp clean-sounds, nice overdrive, fat\ndistortion and a diversity of crazy sounds never heard before.\n",

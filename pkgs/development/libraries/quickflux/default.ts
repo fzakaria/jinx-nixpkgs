@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtquickcontrols2 = nix.arg($, "qtquickcontrols2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quickflux",
       version: "1.1-unstable-2020-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benlau",
           repo: "quickflux",
           rev: "2a37acff0416c56cb349e5bc1b841b25ff1bb6f8",
@@ -40,7 +40,7 @@ substituteInPlace $out/lib/cmake/QuickFlux/QuickFluxTargets.cmake \\
   --replace "\\\${_IMPORT_PREFIX}/include" '${nix.builtins.placeholder("dev")}/include'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flux implementation for QML",
         homepage: "https://github.com/benlau/quickflux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

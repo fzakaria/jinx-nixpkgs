@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const clipper = nix.arg($, "clipper");
   const distutils = nix.arg($, "distutils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "5.3.0",
       pname: "pynest2d",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ultimaker",
           repo: "pynest2d",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [libnest2d, sip4, clipper, distutils]),
       nativeBuildInputs: nix.thunk(() => [cmake, sip4]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CLIPPER_PATH: nix.thunk(() => nix.sel(clipper, "out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CLIPPER_PATH: nix.thunk(() => nix.sel(clipper, "out")) })),
       postPatch: nix.thunk(() => nix.str`sed -i 's#\${Python3_SITEARCH}#${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}#' cmake/SIPMacros.cmake
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for libnest2d",
         homepage: "https://github.com/Ultimaker/pynest2d",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

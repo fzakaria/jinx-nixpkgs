@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tower-pixel-dungeon";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FixAkaTheFix",
           repo: "Tower-Pixel-Dungeon",
           tag: nix.thunk(() => nix.str`TPDv${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}`),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const patches = [];
       const postPatch = "rm core/src/main/assets/{levelsplashes,sprites}/*.pdn\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/FixAkaTheFix/Tower-Pixel-Dungeon",
         downloadPage: "https://github.com/FixAkaTheFix/Tower-Pixel-Dungeon/releases",
         description: "Turn-based tower defense game based on Shattered Pixel Dungeon",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

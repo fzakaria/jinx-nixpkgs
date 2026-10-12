@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const fetchtorrent = nix.arg($, "fetchtorrent");
   const emptyDirectory = nix.arg($, "emptyDirectory");
   const sintel = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "An open source short film to show off open source technologies.",
       longDescription: "An independently produced short film, initiated by the Blender Foundation\nas a means to further improve and validate the free/open source 3D\ncreation suite Blender.\n",
       license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-30")),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const http = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: nix.thunk(() => nix.str`${nix.path(here, "./test-sintel.torrent")}`),
   }));
   const magnet = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent",
   }));
   const flattened = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     postFetch: nix.thunk(() => nix.str`pushd "$out" &&
 sha512sum --check --strict ${nix.path(here, "./test-hashes.sha512sum")} &&
 sed 's/.*  //' ${nix.path(here, "./test-hashes.sha512sum")} | xargs rm --verbose &&
@@ -55,7 +55,7 @@ popd || exit 1
 `),
   }));
   const unflattened = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     postFetch: nix.thunk(() => nix.str`pushd "$out" &&
 pushd Sintel &&
 sha512sum --check --strict ${nix.path(here, "./test-hashes.sha512sum")} &&
@@ -66,58 +66,58 @@ popd || exit 1
 `),
   }));
   const fetchtorrentWithHash = (args_1) => nix.app(fetchtorrent, nix.thunk(() => nix.update({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       hash: "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=",
-      meta: nix.thunk(() => ({ __proto__: pos$7, hydraPlatforms: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$7, hydraPlatforms: [] })),
     }, args_1)));
   return nix.update(nix.builtins.mapAttrs((n) => (v) => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchtorrentWithHash, v), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       "http-link": nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         url: nix.thunk(() => nix.attr(http, "url")),
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "http-link-transmission": nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         url: nix.thunk(() => nix.attr(http, "url")),
         backend: "transmission",
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "magnet-link": nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         url: nix.thunk(() => nix.attr(magnet, "url")),
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "magnet-link-transmission": nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         url: nix.thunk(() => nix.attr(magnet, "url")),
         backend: "transmission",
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "http-link-rqbit-flattened": nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         url: nix.thunk(() => nix.attr(http, "url")),
         backend: "rqbit",
         flatten: true,
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "magnet-link-rqbit-flattened": nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         url: nix.thunk(() => nix.attr(magnet, "url")),
         backend: "rqbit",
         flatten: true,
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
     }))), {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     "single-file": nix.thunk(() => nix.app(fetchtorrent, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         hash: "sha256-u5c/ZN5V79Jg1aN6spbui4OdhExsXjofk1JpvUdW7Ro=",
         backend: "transmission",
         flatten: true,
         url: nix.thunk(() => nix.str`${nix.path(here, "./test-single-file.torrent")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hydraPlatforms: [],
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           description: "The license file for the Nixpkgs repository as of 7 March 2026",

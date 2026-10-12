@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ripgrep = nix.arg($, "ripgrep");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "serpl",
       version: "0.3.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yassinebridi",
           repo: "serpl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ wrapProgram $out/bin/serpl \\
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/serpl`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple terminal UI for search and replace, ala VS Code",
         homepage: "https://github.com/yassinebridi/serpl.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

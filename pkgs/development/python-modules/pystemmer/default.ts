@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const libstemmer = nix.arg($, "libstemmer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pystemmer",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snowballstem",
           repo: "pystemmer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libstemmer-3.1-algorithms.patch",
             url: "https://github.com/snowballstem/pystemmer/commit/301c074791708ab2c479808b410480c34183cd9a.patch?full_index=1",
             hash: "sha256-830nep2gjlVuVaepsHIkzL/U4fejwK0jH+WujLrOfUs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "dont-hard-code-algorithms-doctest.patch",
             url: "https://github.com/snowballstem/pystemmer/commit/77ee7b34fdcd61c78146ae4c6e536a63755db0e6.patch?full_index=1",
             hash: "sha256-eEfNFpD6T+prokVnpAOx4rABCPS5YXdbG3xKdJzb48M=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`export PYSTEMMER_SYSTEM_LIBSTEMMER="${nix.app(nix.sel(lib, "getDev"), libstemmer)}/include"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libstemmer)}/include`),
           ]))),
@@ -63,7 +63,7 @@ runHook postCheck
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Snowball stemming algorithms, for information retrieval",
         homepage: "https://github.com/snowballstem/pystemmer",
         license: nix.thunk(() => (() => {

@@ -161,8 +161,8 @@ export default nix.lambda((args) => (() => {
   const virtualHosts = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (vhostName) => (vhostConfig) => (() => {
       const serverName = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vhostConfig, "serverName"), null)) ? nix.sel(vhostConfig, "serverName") : nix.force(vhostName)));
       const certName = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vhostConfig, "useACMEHost"), null)) ? nix.sel(vhostConfig, "useACMEHost") : nix.force(serverName)));
-      return nix.update(vhostConfig, nix.update({ __proto__: pos$1, serverName: serverName, certName: certName }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(vhostConfig, "enableACME")) || nix.asBool(!nix.eq(nix.sel(vhostConfig, "useACMEHost"), null)))), nix.thunk(() => ({
-          __proto__: pos$2,
+      return nix.update(vhostConfig, nix.update({ [nix.POS]: pos$1, serverName: serverName, certName: certName }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(vhostConfig, "enableACME")) || nix.asBool(!nix.eq(nix.sel(vhostConfig, "useACMEHost"), null)))), nix.thunk(() => ({
+          [nix.POS]: pos$2,
           sslCertificate: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(certName)), "directory")}/fullchain.pem`),
           sslCertificateKey: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(certName)), "directory")}/key.pem`),
           sslTrustedCertificate: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vhostConfig, "sslTrustedCertificate"), null)) ? nix.sel(vhostConfig, "sslTrustedCertificate") : nix.str`${nix.sel(certs, nix.key(nix.force(certName)), "directory")}/chain.pem`)),
@@ -211,7 +211,7 @@ export default nix.lambda((args) => (() => {
     "text/xml",
   ]);
   const defaultFastcgiParams = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     SCRIPT_FILENAME: "$document_root$fastcgi_script_name",
     QUERY_STRING: "$query_string",
     REQUEST_METHOD: "$request_method",
@@ -395,17 +395,17 @@ ${nix.sel(cfg, "appendConfig")}
         const onlySSL = nix.thunk(() => nix.sel(vhost, "onlySSL"));
         const hasSSL = nix.thunk(() => (nix.asBool((nix.asBool(onlySSL) || nix.asBool(nix.sel(vhost, "addSSL")))) || nix.asBool(nix.sel(vhost, "forceSSL"))));
         const mkDefaultListenVhost = (listenLines) => nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => (nix.asBool(hasSSL) || nix.asBool(nix.sel(vhost, "rejectSSL")))), nix.thunk(() => nix.app(nix.builtins.map, (listen) => nix.update({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               port: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "hasPrefix"), "unix:", nix.thunk(() => nix.sel(listen, "addr")))) ? null : nix.sel(cfg, "defaultSSLListenPort"))),
               ssl: true,
             }, listen), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (listen) => (nix.asBool(!nix.asBool(nix.has(listen, "ssl"))) || nix.asBool(nix.sel(listen, "ssl"))), listenLines))))), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.asBool(onlySSL)), nix.thunk(() => nix.app(nix.builtins.map, (listen) => nix.update({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               port: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "hasPrefix"), "unix:", nix.thunk(() => nix.sel(listen, "addr")))) ? null : nix.sel(cfg, "defaultHTTPListenPort"))),
               ssl: false,
             }, listen), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (listen) => (nix.asBool(!nix.asBool(nix.has(listen, "ssl"))) || nix.asBool(!nix.asBool(nix.sel(listen, "ssl")))), listenLines))))));
         const defaultListen = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vhost, "listen"), [])) ? nix.sel(vhost, "listen") : (nix.asBool(!nix.eq(nix.sel(cfg, "defaultListen"), [])) ? nix.app(mkDefaultListenVhost, nix.thunk(() => nix.app(nix.builtins.map, (listenLine) => nix.app(nix.lookup(w, "filterAttrs"), (_) => (v) => !nix.eq(v, null), listenLine), nix.thunk(() => nix.sel(cfg, "defaultListen"))))) : (() => {
           const addrs = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vhost, "listenAddresses"), [])) ? nix.sel(vhost, "listenAddresses") : nix.sel(cfg, "defaultListenAddresses")));
-          return nix.app(mkDefaultListenVhost, nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({ __proto__: pos$6, addr: addr }), addrs)));
+          return nix.app(mkDefaultListenVhost, nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({ [nix.POS]: pos$6, addr: addr }), addrs)));
         })())));
         const hostListen = nix.thunk(() => (nix.asBool(nix.sel(vhost, "forceSSL")) ? nix.app(nix.lookup(w, "filter"), (x) => nix.sel(x, "ssl"), defaultListen) : nix.force(defaultListen)));
         const locationsWantGrpcErrorPages = nix.thunk(() => nix.app(nix.sel(nix.builtins, "any"), (location) => nix.sel(location, "useGrpcErrorPages"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(vhost, "locations"))))));
@@ -517,7 +517,7 @@ uwsgi_pass $nix_proxy_target;
   ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "uwsgiPass"), null)) && nix.asBool(nix.sel(config_1, "recommendedUwsgiSettings")))), nix.thunk(() => nix.str`include ${nix.sel(cfg, "package")}/conf/uwsgi_params;`))}
   ${nix.app(mkBasicAuth, "sublocation", config_1)}
 }
-`, nix.thunk(() => nix.app(nix.lookup(w, "sortProperties"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (k) => (v) => nix.update(v, { __proto__: pos$7, location: k }), locations)))))));
+`, nix.thunk(() => nix.app(nix.lookup(w, "sortProperties"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (k) => (v) => nix.update(v, { [nix.POS]: pos$7, location: k }), locations)))))));
   const mkBasicAuth = (name) => (zone) => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(zone, "basicAuthFile"), null)) || nix.asBool(!nix.eq(nix.sel(zone, "basicAuth"), {})))), nix.thunk(() => (() => {
       const auth_file = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(zone, "basicAuthFile"), null)) ? nix.sel(zone, "basicAuthFile") : nix.app(mkHtpasswd, name, nix.thunk(() => nix.sel(zone, "basicAuth")))));
       return nix.str`auth_basic secured;
@@ -529,109 +529,109 @@ auth_basic_user_file ${auth_file};
   const mkCertOwnershipAssertion = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../../security/acme/mk-cert-ownership-assertion.nix"), lib));
   const oldHTTP2 = nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "1.25.1")) && nix.asBool(!nix.asBool(nix.eq(nix.sel(cfg, "package", "pname"), "angie")))));
   return {
-    __proto__: pos$140,
+    [nix.POS]: pos$140,
     options: nix.thunk(() => ({
-      __proto__: pos$99,
+      [nix.POS]: pos$99,
       services: nix.thunk(() => ({
-        __proto__: pos$98,
+        [nix.POS]: pos$98,
         nginx: nix.thunk(() => ({
-          __proto__: pos$97,
+          [nix.POS]: pos$97,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Nginx Web Server")),
           statusPage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable status page reachable from localhost on http://127.0.0.1/nginx_status.\n",
             })))),
           recommendedTlsSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable recommended TLS settings.\n",
             })))),
           recommendedOptimisation: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable recommended optimisation settings.\n",
             })))),
           recommendedBrotliSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable recommended brotli settings.\nLearn more about compression in Brotli format [here](https://github.com/google/ngx_brotli/).\n\nThis adds `pkgs.nginxModules.brotli` to `services.nginx.additionalModules`.\n",
             })))),
           recommendedGzipSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable recommended gzip settings.\nLearn more about compression in Gzip format [here](https://docs.nginx.com/nginx/admin-guide/web-server/compression/).\n",
             })))),
           experimentalZstdSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable alpha quality zstd module with recommended settings.\nLearn more about compression in Zstd format [here](https://github.com/tokers/zstd-nginx-module).\n\nThis adds `pkgs.nginxModules.zstd` to `services.nginx.additionalModules`.\n",
             })))),
           recommendedProxySettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to enable recommended proxy settings if a vhost does not specify the option manually.\n",
             })))),
           proxyTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "60s",
               example: "20s",
               description: "Change the proxy related timeouts in recommendedProxySettings.\n",
             })))),
           recommendedUwsgiSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to enable recommended uwsgi settings if a vhost does not specify the option manually.\n",
             })))),
           uwsgiTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "60s",
               example: "20s",
               description: "Change the uwsgi related timeouts in recommendedUwsgiSettings.\n",
             })))),
           defaultListen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       options: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         addr: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             description: "IP address.",
                           })))),
                         port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")))),
                             description: "Port number.",
                             default: null,
                           })))),
                         ssl: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "bool")))),
                             default: null,
                             description: "Enable SSL.",
                           })))),
                         proxyProtocol: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.lookup(w_1, "bool")),
                             description: "Enable PROXY protocol.",
                             default: false,
                           })))),
                         extraParameters: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             description: "Extra parameters of this listen directive.",
                             default: [],
@@ -645,7 +645,7 @@ auth_basic_user_file ${auth_file};
               description: "If vhosts do not specify listen, use these addresses by default.\nThis option takes precedence over {option}`defaultListenAddresses` and\nother listen-related defaults options.\n",
             })))),
           defaultListenAddresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => nix.concat(["0.0.0.0"], nix.app(nix.lookup(w, "optional"), enableIPv6, "[::0]"))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"0.0.0.0\" ] ++ lib.optional config.networking.enableIPv6 \"[::0]\"")),
@@ -653,21 +653,21 @@ auth_basic_user_file ${auth_file};
               description: "If vhosts do not specify listenAddresses, use these addresses by default.\nThis is akin to writing `defaultListen = [ { addr = \"0.0.0.0\" } ]`.\n",
             })))),
           defaultHTTPListenPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 80n,
               example: 8080n,
               description: "If vhosts do not specify listen.port, use these ports for HTTP by default.\n",
             })))),
           defaultSSLListenPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 443n,
               example: 8443n,
               description: "If vhosts do not specify listen.port, use these ports for SSL by default.\n",
             })))),
           defaultMimeTypes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "mailcap")}/etc/nginx/mime.types`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "$''{pkgs.mailcap}/etc/nginx/mime.types")),
@@ -675,28 +675,28 @@ auth_basic_user_file ${auth_file};
               description: "Default MIME types for NGINX, as MIME types definitions from NGINX are very incomplete,\nwe use by default the ones bundled in the mailcap package, used by most of the other\nLinux distributions.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               default: nix.thunk(() => nix.sel(pkgs, "nginxStable")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.nginxStable")),
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               apply: (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   modules: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(p, "modules"), nix.concat(nix.sel(cfg, "additionalModules"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "lua", "enable")) && nix.asBool(!nix.asBool(nix.app(packageBundlesLua, p))))), nix.thunk(() => nix.sel(pkgs, "nginxModules", "lua")))))))),
                 }))),
               description: "Nginx package to use. This defaults to the stable version. Note\nthat the nginx team recommends to use the mainline version which\navailable in nixpkgs as `nginxMainline`.\nSupported Nginx forks include `angie` and `openresty`.\n",
             })))),
           additionalModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))))),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.nginxModules.echo ]")),
               description: "Additional [third-party nginx modules](https://www.nginx.com/resources/wiki/modules/)\nto install. Packaged modules are available in `pkgs.nginxModules`.\n",
             })))),
           lua: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Lua scripting in nginx via OpenResty's lua-nginx-module,\nwiring up `lua_package_path`/`lua_package_cpath` for\n{option}`services.nginx.lua.extraPackages`.\n\nUse this to add Lua to a stock nginx. For the full OpenResty platform —\nrequired by libraries that depend on its bundled lualib (for example\n`lua-resty-openidc`, which needs `resty.string` and friends) — set\n{option}`services.nginx.package` to `pkgs.openresty` instead; this option\nthen only sets up the search path and leaves OpenResty's built-in Lua\nmodule in place\n")),
             extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
                 default: (ps) => [],
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "ps: [ ]")),
@@ -705,105 +705,105 @@ auth_basic_user_file ${auth_file};
               })))),
           })),
           logError: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               default: "stderr",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Configures logging.\nThe first parameter defines a file that will store the log. The\nspecial value stderr selects the standard error file. Logging to\nsyslog can be configured by specifying the “syslog:” prefix.\nThe second parameter determines the level of logging, and can be\none of the following: debug, info, notice, warn, error, crit,\nalert, or emerg. Log levels above are listed in the order of\nincreasing severity. Setting a certain log level will cause all\nmessages of the specified and more severe log levels to be logged.\nIf this parameter is omitted then error is used.\n",
             })))),
           preStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Shell commands executed before the service's nginx is started.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Verbatim {file}`nginx.conf` configuration.\nThis is mutually exclusive to any other config option for\n{file}`nginx.conf` except for\n- [](#opt-services.nginx.appendConfig)\n- [](#opt-services.nginx.httpConfig)\n- [](#opt-services.nginx.logError)\n\nIf additional verbatim config in addition to other options is needed,\n[](#opt-services.nginx.appendConfig) should be used instead.\n",
             })))),
           prependConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines prepended to the generated Nginx\nconfiguration file. Can for example be used to load modules.\n{option}`prependConfig` can be specified more than once\nand its value will be concatenated (contrary to {option}`config`\nwhich can be set only once).\n",
             })))),
           appendConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines appended to the generated Nginx\nconfiguration file. Commonly used by different modules\nproviding http snippets. {option}`appendConfig`\ncan be specified more than once and its value will be\nconcatenated (contrary to {option}`config` which\ncan be set only once).\n",
             })))),
           commonHttpConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "resolver 127.0.0.1 valid=5s;\n\nlog_format myformat '$remote_addr - $remote_user [$time_local] '\n                    '\"$request\" $status $body_bytes_sent '\n                    '\"$http_referer\" \"$http_user_agent\"';\n",
               description: "With nginx you must provide common http context definitions before\nthey are used, e.g. log_format, resolver, etc. inside of server\nor location contexts. Use this attribute to set these definitions\nat the appropriate location.\n",
             })))),
           httpConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines to be set inside the http block.\nThis is mutually exclusive with the structured configuration\nvia virtualHosts and the recommendedXyzSettings configuration\noptions. See appendHttpConfig for appending to the generated http block.\n",
             })))),
           streamConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "server {\n  listen 127.0.0.1:53 udp reuseport;\n  proxy_timeout 20s;\n  proxy_pass 192.168.0.1:53535;\n}\n",
               description: "Configuration lines to be set inside the stream block.\n",
             })))),
           eventsConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines to be set inside the events block.\n",
             })))),
           appendHttpConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines to be appended to the generated http block.\nThis is mutually exclusive with using config and httpConfig for\nspecifying the whole http block verbatim.\n",
             })))),
           enableReload: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Reload nginx when configuration file changes (instead of restart).\nThe configuration file is exposed at {file}`/etc/nginx/nginx.conf`.\nSee also `systemd.services.*.restartIfChanged`.\n",
             })))),
           enableQuicBPF: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enables routing of QUIC packets using eBPF. When enabled, this allows\nto support QUIC connection migration. The directive is only supported\non Linux 5.7+.\nNote that enabling this option will make nginx run with extended\ncapabilities that are usually limited to processes running as root\nnamely `CAP_SYS_ADMIN` and `CAP_NET_ADMIN`.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nginx",
               description: "User account under which nginx runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nginx",
               description: "Group account under which nginx runs.",
             })))),
           serverTokens: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Show nginx version in headers and error pages.",
             })))),
           clientMaxBodySize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "10m",
               description: "Set nginx global client_max_body_size.",
             })))),
           sslCiphers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))))),
               default: nix.thunk(() => [
                 "ECDHE-ECDSA-AES128-GCM-SHA256",
@@ -816,101 +816,101 @@ auth_basic_user_file ${auth_file};
               description: "List of available cipher suites to choose from when negotiating TLS sessions.\n\n:::{.warn}\nThis option only handles cipher suites up to TLSv1.2. Use\n`ssl_conf_command CipherSuites` to configure TLSv1.3 cipher suites.\n:::\n",
             })))),
           sslProtocols: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "TLSv1.2 TLSv1.3",
               example: "TLSv1.3",
               description: "Allowed TLS protocol versions.",
             })))),
           proxyResolveWhileRunning: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Resolves domains of proxyPass targets at runtime and not only at startup.\nThis can be used as a workaround if nginx fails to start because of not-yet-working DNS.\n\n:::{.warn}\n`services.nginx.resolver` must be set for this option to work.\n:::\n",
             })))),
           uwsgiResolveWhileRunning: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Resolves domains of uwsgi targets at runtime\nand not only at start, you have to set\nservices.nginx.resolver, too.\n",
             })))),
           mapHashBucketSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
               default: null,
               description: "Sets the bucket size for the map variables hash tables. Default\nvalue depends on the processor’s cache line size.\n\nRefer to [the nginx docs on hashes](https://nginx.org/en/docs/hash.html)\nfor more information.\n",
             })))),
           mapHashMaxSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
               default: null,
               description: "Sets the maximum size of the map variables hash tables.\n",
             })))),
           serverNamesHashBucketSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
               default: null,
               description: "Sets the bucket size for the server names hash tables. Default\nvalue depends on the processor’s cache line size.\n",
             })))),
           serverNamesHashMaxSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
               default: null,
               description: "Sets the maximum size of the server names hash tables.\n",
             })))),
           typesHashMaxSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "defaultMimeTypes"), nix.str`${nix.sel(pkgs, "mailcap")}/etc/nginx/mime.types`)) ? 2688n : 1024n)),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if config.services.nginx.defaultMimeTypes == \"${pkgs.mailcap}/etc/nginx/mime.types\" then 2688 else 1024")),
               description: "Sets the maximum size of the types hash tables (`types_hash_max_size`).\nIt is recommended that the minimum size possible size is used.\nIf {option}`recommendedOptimisation` is disabled, nginx would otherwise\nfail to start since the mailmap `mime.types` database has more entries\nthan the nginx default value 1024.\n",
             })))),
           proxyCachePath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$3);
                     return {
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       options: nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "this proxy cache path entry")),
                         keysZoneName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$60,
+                            [nix.POS]: pos$60,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "cache",
                             example: "my_cache",
                             description: "Set name to shared memory zone.",
                           })))),
                         keysZoneSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$61,
+                            [nix.POS]: pos$61,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "10m",
                             example: "32m",
                             description: "Set size to shared memory zone.",
                           })))),
                         levels: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$62,
+                            [nix.POS]: pos$62,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "1:2",
                             example: "1:2:2",
                             description: "The levels parameter defines structure of subdirectories in cache: from\n1 to 3, each level accepts values 1 or 2. Can be used any combination of\n1 and 2 in these formats: x, x:x and x:x:x.\n",
                           })))),
                         useTempPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$63,
+                            [nix.POS]: pos$63,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             example: true,
                             description: "Nginx first writes files that are destined for the cache to a temporary\nstorage area, and the use_temp_path=off directive instructs Nginx to\nwrite them to the same directories where they will be cached. Recommended\nthat you set this parameter to off to avoid unnecessary copying of data\nbetween file systems.\n",
                           })))),
                         inactive: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$64,
+                            [nix.POS]: pos$64,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "10m",
                             example: "1d",
                             description: "Cached data that has not been accessed for the time specified by\nthe inactive parameter is removed from the cache, regardless of\nits freshness.\n",
                           })))),
                         maxSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$65,
+                            [nix.POS]: pos$65,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "1g",
                             example: "2048m",
@@ -923,33 +923,33 @@ auth_basic_user_file ${auth_file};
               description: "Configure a proxy cache path entry.\nSee <https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path> for documentation.\n",
             })))),
           resolver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   options: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     addresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"[::1]\" \"127.0.0.1:5353\" ]")),
                         description: "List of resolvers to use",
                       })))),
                     valid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "",
                         example: "30s",
                         description: "By default, nginx caches answers using the TTL value of a response.\nAn optional valid parameter allows overriding it\n",
                       })))),
                     ipv4: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: true,
                         description: "By default, nginx will look up both IPv4 and IPv6 addresses while resolving.\nIf looking up of IPv4 addresses is not desired, the ipv4=off parameter can be\nspecified.\n",
                       })))),
                     ipv6: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$72,
+                        [nix.POS]: pos$72,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: nix.thunk(() => nix.sel(config, "networking", "enableIPv6")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.enableIPv6")),
@@ -961,24 +961,24 @@ auth_basic_user_file ${auth_file};
               default: nix.thunk(() => ({})),
             })))),
           upstreams: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$82,
+                    [nix.POS]: pos$82,
                     options: nix.thunk(() => ({
-                      __proto__: pos$81,
+                      [nix.POS]: pos$81,
                       servers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$78,
+                                [nix.POS]: pos$78,
                                 freeformType: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "oneOf"), nix.thunk(() => [
                                       nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                                       nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                       nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                     ]))))),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$77,
+                                  [nix.POS]: pos$77,
                                   backup: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$76,
+                                      [nix.POS]: pos$76,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                                       default: false,
                                       description: "Marks the server as a backup server. It will be passed\nrequests when the primary servers are unavailable.\n",
@@ -990,7 +990,7 @@ auth_basic_user_file ${auth_file};
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "see [](#opt-services.nginx.upstreams)")),
                         })))),
                       extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$80,
+                          [nix.POS]: pos$80,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                           default: "",
                           description: "These lines go to the end of the upstream verbatim.\n",
@@ -1000,36 +1000,36 @@ auth_basic_user_file ${auth_file};
               description: "Defines a group of servers to use as proxy target.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 backend: nix.thunk(() => ({
-                  __proto__: pos$88,
+                  [nix.POS]: pos$88,
                   servers: nix.thunk(() => ({
-                    __proto__: pos$87,
-                    "backend1.example.com:8080": nix.thunk(() => ({ __proto__: pos$83, weight: 5n })),
-                    "backend2.example.com": nix.thunk(() => ({ __proto__: pos$84, max_fails: 3n, fail_timeout: "30s" })),
+                    [nix.POS]: pos$87,
+                    "backend1.example.com:8080": nix.thunk(() => ({ [nix.POS]: pos$83, weight: 5n })),
+                    "backend2.example.com": nix.thunk(() => ({ [nix.POS]: pos$84, max_fails: 3n, fail_timeout: "30s" })),
                     "backend3.example.com": nix.thunk(() => ({})),
-                    "backup1.example.com": nix.thunk(() => ({ __proto__: pos$85, backup: true })),
-                    "backup2.example.com": nix.thunk(() => ({ __proto__: pos$86, backup: true })),
+                    "backup1.example.com": nix.thunk(() => ({ [nix.POS]: pos$85, backup: true })),
+                    "backup2.example.com": nix.thunk(() => ({ [nix.POS]: pos$86, backup: true })),
                   })),
                   extraConfig: "keepalive 16;\n",
                 })),
                 memcached: nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   servers: nix.thunk(() => ({
-                    __proto__: pos$89,
+                    [nix.POS]: pos$89,
                     "unix:/run/memcached/memcached.sock": nix.thunk(() => ({})),
                   })),
                 })),
               })),
             })))),
           virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$95,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$93, config: config, lib: lib })))))))),
-              default: nix.thunk(() => ({ __proto__: pos$94, localhost: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$95,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$93, config: config, lib: lib })))))))),
+              default: nix.thunk(() => ({ [nix.POS]: pos$94, localhost: nix.thunk(() => ({})) })),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"hydra.example.com\" = {\n    forceSSL = true;\n    enableACME = true;\n    locations.\"/\" = {\n      proxyPass = \"http://localhost:3000\";\n    };\n  };\n};\n")),
               description: "Declarative vhost config",
             })))),
-          validateConfigFile: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "validating configuration with pkgs.writeNginxConfig"), { __proto__: pos$96, default: true })),
+          validateConfigFile: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "validating configuration with pkgs.writeNginxConfig"), { [nix.POS]: pos$96, default: true })),
         })),
       })),
     })),
@@ -1045,17 +1045,17 @@ auth_basic_user_file ${auth_file};
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "nginx", "recommendedZstdSettings"]), "The zstd module for Nginx has known bugs and is not maintained well. It is thus not\ngenerally recommend to use it. You may enable anyway by setting\n`services.nginx.experimentalZstdSettings` which adds the same configuration as the\nremoved option.\n")),
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         assertions: nix.thunk(() => (() => {
           const hostOrAliasIsNull = (l) => (nix.asBool(nix.eq(nix.sel(l, "root"), null)) || nix.asBool(nix.eq(nix.sel(l, "alias"), null)));
           return nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (host) => nix.app(nix.lookup(w, "all"), hostOrAliasIsNull, nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(host, "locations"))))), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), virtualHosts)))),
               message: "Only one of nginx root or alias can be specified on a location.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (host) => (() => {
                   const w_1 = nix.withScope(host, w);
                   return nix.le(nix.app(nix.lookup(w_1, "count"), nix.thunk(() => nix.lookup(w_1, "id")), nix.thunk(() => [
@@ -1068,17 +1068,17 @@ auth_basic_user_file ${auth_file};
               message: "Options services.nginx.service.virtualHosts.<name>.addSSL,\nservices.nginx.virtualHosts.<name>.onlySSL,\nservices.nginx.virtualHosts.<name>.forceSSL and\nservices.nginx.virtualHosts.<name>.rejectSSL are mutually exclusive.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (host) => !nix.asBool((nix.asBool(nix.sel(host, "enableACME")) && nix.asBool(!nix.eq(nix.sel(host, "useACMEHost"), null)))), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), virtualHosts)))),
               message: "Options services.nginx.service.virtualHosts.<name>.enableACME and\nservices.nginx.virtualHosts.<name>.useACMEHost are mutually exclusive.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (host) => nix.app(nix.lookup(w, "all"), (location) => !nix.asBool((nix.asBool(!nix.eq(nix.sel(location, "proxyPass"), null)) && nix.asBool(!nix.eq(nix.sel(location, "uwsgiPass"), null)))), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(host, "locations"))))), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), virtualHosts)))),
               message: "Options services.nginx.service.virtualHosts.<name>.proxyPass and\nservices.nginx.virtualHosts.<name>.uwsgiPass are mutually exclusive.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               assertion: nix.thunk(() => (() => {
                 const hasAtLeastHttpListener = (listenOptions) => nix.app(nix.lookup(w, "any"), (listenLine) => (nix.asBool(nix.has(listenLine, "proxyProtocol")) ? !nix.asBool(nix.sel(listenLine, "proxyProtocol")) : true), listenOptions);
                 const hasAtLeastDefaultHttpListener = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "defaultListen"), [])) ? nix.app(hasAtLeastHttpListener, nix.thunk(() => nix.sel(cfg, "defaultListen"))) : !nix.eq(nix.sel(cfg, "defaultListenAddresses"), [])));
@@ -1091,32 +1091,32 @@ auth_basic_user_file ${auth_file};
               message: "services.nginx.virtualHosts.<name>.enableACME requires a HTTP listener\nto answer to ACME requests.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "resolver", "ipv4")) || nix.asBool(nix.sel(cfg, "resolver", "ipv6")))),
               message: "At least one of services.nginx.resolver.ipv4 and services.nginx.resolver.ipv6 must be true.\n",
             })),
           ], nix.app(nix.builtins.map, (name) => nix.app(mkCertOwnershipAssertion, nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 cert: nix.thunk(() => nix.sel(config, "security", "acme", "certs", nix.key(nix.force(name)))),
                 groups: nix.thunk(() => nix.sel(config, "users", "groups")),
                 services: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "systemd", "services", "nginx"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableReload")) || nix.asBool(!nix.eq(vhostCertNames, [])))), nix.thunk(() => nix.sel(config, "systemd", "services", "nginx-config-reload"))))),
               }))), vhostCertNames));
         })()),
         services: nix.thunk(() => ({
-          __proto__: pos$115,
+          [nix.POS]: pos$115,
           nginx: nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             additionalModules: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "recommendedBrotliSettings")), nix.thunk(() => nix.sel(pkgs, "nginxModules", "brotli"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "experimentalZstdSettings")), nix.thunk(() => nix.sel(pkgs, "nginxModules", "zstd"))))),
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               localhost: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "statusPage")), nix.thunk(() => ({
-                  __proto__: pos$109,
+                  [nix.POS]: pos$109,
                   serverAliases: nix.thunk(() => nix.concat(["127.0.0.1"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "[::1]"))),
                   listenAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.concat(["0.0.0.0"], nix.app(nix.sel(lib, "optional"), enableIPv6, "[::]"))))),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$108,
+                    [nix.POS]: pos$108,
                     "/nginx_status": nix.thunk(() => ({
-                      __proto__: pos$107,
+                      [nix.POS]: pos$107,
                       extraConfig: nix.thunk(() => nix.str`stub_status on;
 access_log off;
 allow 127.0.0.1;
@@ -1129,11 +1129,11 @@ deny all;
             })),
           })),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             settings: nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               nginx: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (_) => nix.force(nix.lookup(w, "mkDefault")), nix.thunk(() => ({
-                  __proto__: pos$112,
+                  [nix.POS]: pos$112,
                   files: nix.thunk(() => ["/var/log/nginx/*.log"]),
                   frequency: "weekly",
                   su: nix.thunk(() => nix.str`${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
@@ -1147,11 +1147,11 @@ deny all;
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$124,
+          [nix.POS]: pos$124,
           services: nix.thunk(() => nix.update({
-            __proto__: pos$121,
+            [nix.POS]: pos$121,
             nginx: nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               description: "Nginx Web Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableReload"))), nix.thunk(() => nix.app(nix.lookup(w, "concatLists"), nix.thunk(() => nix.app(nix.builtins.map, (certName) => [nix.thunk(() => nix.str`acme-${certName}.service`)], vhostCertNames)))))),
@@ -1163,7 +1163,7 @@ ${execCommand} -t
 `),
               startLimitIntervalSec: 60n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 ExecStart: execCommand,
                 ExecReload: nix.thunk(() => [
                   nix.thunk(() => nix.str`${execCommand} -t`),
@@ -1211,19 +1211,19 @@ ${execCommand} -t
               const sslServices = nix.thunk(() => nix.app(nix.builtins.map, (certName) => nix.str`acme-${certName}.service`, vhostCertNames));
               const sslOrderRenewServices = nix.thunk(() => nix.app(nix.builtins.map, (certName) => nix.str`acme-order-renew-${certName}.service`, vhostCertNames));
               return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableReload")) || nix.asBool(!nix.eq(vhostCertNames, [])))), nix.thunk(() => ({
-                  __proto__: pos$120,
+                  [nix.POS]: pos$120,
                   wants: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ["nginx.service"]))),
                   wantedBy: nix.thunk(() => nix.concat(["multi-user.target"], nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "enableReload")), sslServices))),
                   after: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "enableReload")), sslServices)),
                   before: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "enableReload")), sslOrderRenewServices)),
                   restartTriggers: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => [configFile]))),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$118,
+                    [nix.POS]: pos$118,
                     ConditionPathExists: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(vhostCertNames, [])), nix.thunk(() => nix.app(nix.builtins.map, (certName) => nix.add(nix.sel(certs, nix.key(nix.force(certName)), "directory"), "/fullchain.pem"), vhostCertNames)))),
                     StartLimitIntervalSec: 0n,
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$119,
+                    [nix.POS]: pos$119,
                     Type: "oneshot",
                     TimeoutSec: 60n,
                     ExecCondition: "/run/current-system/systemd/bin/systemctl -q is-active nginx.service",
@@ -1232,68 +1232,68 @@ ${execCommand} -t
                 })));
             })()),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (name) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`acme-${name}`), nix.thunk(() => ({
-                    __proto__: pos$122,
+                    [nix.POS]: pos$122,
                     before: nix.thunk(() => ["nginx.service"]),
                     wantedBy: nix.thunk(() => ["nginx.service"]),
                   }))), vhostCertNames))))))),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$123,
+            [nix.POS]: pos$123,
             rules: nix.thunk(() => ["X /tmp/systemd-private-%b-nginx.service-*/tmp/nginx_*"]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$127,
+          [nix.POS]: pos$127,
           etc: nix.thunk(() => ({
-            __proto__: pos$126,
-            "nginx/nginx.conf": nix.thunk(() => ({ __proto__: pos$125, source: configFile })),
+            [nix.POS]: pos$126,
+            "nginx/nginx.conf": nix.thunk(() => ({ [nix.POS]: pos$125, source: configFile })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$131,
+          [nix.POS]: pos$131,
           acme: nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             certs: nix.thunk(() => (() => {
               const acmePairs = nix.thunk(() => nix.concat(nix.app(nix.builtins.map, (vhostConfig) => (() => {
                   const hasRoot = nix.thunk(() => !nix.eq(nix.sel(vhostConfig, "acmeRoot"), null));
                   return nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.sel(vhostConfig, "serverName")), nix.thunk(() => ({
-                      __proto__: pos$128,
+                      [nix.POS]: pos$128,
                       reloadServices: nix.thunk(() => ["nginx.service"]),
                       group: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "group")))),
                       webroot: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), nix.thunk(() => (nix.asBool(hasRoot) ? 1000n : 2000n)), nix.thunk(() => nix.sel(vhostConfig, "acmeRoot")))),
                       dnsProvider: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), nix.thunk(() => (nix.asBool(hasRoot) ? 1000n : 2000n)), null)),
                       extraDomainNames: nix.thunk(() => nix.sel(vhostConfig, "serverAliases")),
                     })));
-                })(), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (vhostConfig) => nix.eq(nix.sel(vhostConfig, "useACMEHost"), null), acmeEnabledVhosts))), nix.app(nix.builtins.map, (vhostConfig) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.sel(vhostConfig, "useACMEHost")), nix.thunk(() => ({ __proto__: pos$129, reloadServices: nix.thunk(() => ["nginx.service"]) }))), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (vhostConfig) => !nix.eq(nix.sel(vhostConfig, "useACMEHost"), null), acmeEnabledVhosts)))));
+                })(), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (vhostConfig) => nix.eq(nix.sel(vhostConfig, "useACMEHost"), null), acmeEnabledVhosts))), nix.app(nix.builtins.map, (vhostConfig) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.sel(vhostConfig, "useACMEHost")), nix.thunk(() => ({ [nix.POS]: pos$129, reloadServices: nix.thunk(() => ["nginx.service"]) }))), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (vhostConfig) => !nix.eq(nix.sel(vhostConfig, "useACMEHost"), null), acmeEnabledVhosts)))));
               return nix.app(nix.lookup(w, "listToAttrs"), acmePairs);
             })()),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$136,
+          [nix.POS]: pos$136,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               nginx: nix.thunk(() => ({
-                __proto__: pos$132,
+                [nix.POS]: pos$132,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "nginx")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$135,
+              [nix.POS]: pos$135,
               nginx: nix.thunk(() => ({
-                __proto__: pos$134,
+                [nix.POS]: pos$134,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "nginx")),
               })),
             })))),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.app(nix.lookup(w, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "4.17")), "tls")),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$139,
+      [nix.POS]: pos$139,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
         nix.thunk(() => nix.sel(lib, "maintainers", "ma27")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openhue-cli",
       version: "0.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openhue",
           repo: "openhue-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       vendorHash: "sha256-HJ5GdCMVeO3Ve1U9j/GKmwN5VqPmeabQL9MhaSFPsSI=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/openhue/openhue-cli/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "CLI for interacting with Philips Hue smart lighting systems",
         homepage: "https://github.com/openhue/openhue-cli",

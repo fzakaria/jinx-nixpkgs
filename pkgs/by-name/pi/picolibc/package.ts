@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const canExecute = nix.thunk(() => nix.app(nix.sel(stdenvNoLibc, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoLibc, "hostPlatform"))));
   const isHosted = nix.thunk(() => !nix.asBool(nix.sel(stdenvNoLibc, "hostPlatform", "isNone")));
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "picolibc",
       version: "1.8.12-1",
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "picolibc",
           repo: "picolibc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/picolibc/picolibc/commit/11a46b6ed03c4dca64e0534435da9841e837b160.patch",
             hash: "sha256-i1dKW1L5si0gf0/Sn4sU/BuIof778tvHgCCCY1TxMME=",
           })))),
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
         ]))))),
       doCheck: nix.thunk(() => (nix.asBool(canExecute) && nix.asBool(nix.eq(nix.sel(stdenvNoLibc, "hostPlatform"), nix.sel(stdenvNoLibc, "buildPlatform"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           arm: nix.thunk(() => nix.sel(pkgsCross, "arm-embedded", "picolibc")),
           musl64: nix.thunk(() => nix.sel(pkgsCross, "musl64", "picolibc")),
           riscv64: nix.thunk(() => nix.sel(pkgsCross, "riscv64-embedded", "picolibc")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "C library designed for embedded 32- and 64-bit systems",
         longDescription: "Picolibc is library offering standard C library APIs that targets small\nembedded systems with limited RAM. Picolibc was formed by blending code\nfrom [Newlib](http://sourceware.org/newlib/) and [AVR\nLibc](https://www.nongnu.org/avr-libc/).\n",
         homepage: "https://keithp.com/picolibc/",

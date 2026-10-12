@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gforcada",
           repo: "flake8-deprecated",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["run_tests.py"]);
       const pythonImportsCheck = nix.thunk(() => ["flake8_deprecated"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/gforcada/flake8-deprecated/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "Flake8 plugin that warns about deprecated method calls",
         homepage: "https://github.com/gforcada/flake8-deprecated",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

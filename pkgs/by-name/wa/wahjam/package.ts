@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const portmidi = nix.arg($, "portmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wahjam",
       version: "1.3.1-unstable-2023-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wahjam",
           repo: "wahjam",
           rev: "4fde74da3be1fa53cdc2d3bc4b577b40951d6809",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "wahjam",
             desktopName: "Wahjam",
             icon: "net.jammr.jammr",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/icons/hicolor/scalable/apps\n\ncp qtclient/wahjam $out/bin/wahjam\ncp qtclient/net.jammr.jammr.svg $out/share/icons/hicolor/scalable/apps\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software for musicians to play together over the internet",
         mainProgram: "wahjam",
         homepage: "https://github.com/wahjam/wahjam",

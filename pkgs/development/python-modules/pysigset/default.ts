@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "13ef98b058489ff572b6667c38970a544699895c0844cb3ac2494e3a59ac51e6",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides access to sigprocmask(2) and friends and convenience wrappers to python application developers wanting to SIG_BLOCK and SIG_UNBLOCK signals",
         homepage: "https://github.com/ossobv/pysigset",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dzabraev"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

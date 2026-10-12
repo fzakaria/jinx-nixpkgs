@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jbangdev/jbang/releases/download/v${version}/${pname}-${version}.tar`),
           sha256: "sha256-fw87WrmqdVH+NJ+rAnuMukz7qMTRg6CMgLVg/+JPahI=",
         }))));
@@ -40,7 +40,7 @@ runHook postInstall
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/jbang --version 2>&1 | grep -q "${version}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run java as scripts anywhere",
         mainProgram: "jbang",
         longDescription: "jbang uses the java language to build scripts similar to groovy scripts. Dependencies are automatically\ndownloaded and the java code runs.\n",
@@ -57,7 +57,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         __structuredAttrs,

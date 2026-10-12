@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.48.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "StevenLooman",
           repo: "async_upnp_client",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_ssdp_listener.py"]);
       const pythonImportsCheck = nix.thunk(() => ["async_upnp_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asyncio UPnP Client library for Python",
         homepage: "https://github.com/StevenLooman/async_upnp_client",
         changelog: nix.thunk(() => nix.str`https://github.com/StevenLooman/async_upnp_client/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "upnp-client",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

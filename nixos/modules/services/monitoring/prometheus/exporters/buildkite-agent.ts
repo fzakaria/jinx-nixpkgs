@@ -25,31 +25,31 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     port: 9876n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       tokenPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           apply: (final) => (nix.asBool(nix.eq(final, null)) ? null : nix.builtins.toString(final)),
           description: "The token from your Buildkite \"Agents\" page.\n\nA run-time path to the token file, which is supposed to be provisioned\noutside of Nix store.\n",
         })))),
       interval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "30s",
           example: "1min",
           description: "How often to update metrics.\n",
         })))),
       endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "https://agent.buildkite.com/v3",
           description: "The Buildkite Agent API endpoint.\n",
         })))),
       queues: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       script: nix.thunk(() => (() => {
         const queues = nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.builtins.map((q) => nix.str`-queue ${q}`, nix.thunk(() => nix.sel(cfg, "queues"))))));
         return nix.str`export BUILDKITE_AGENT_TOKEN="$(cat ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "tokenPath")))})"
@@ -73,7 +73,7 @@ exec ${nix.sel(pkgs, "buildkite-agent-metrics")}/bin/buildkite-agent-metrics \\
 `;
       })()),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         DynamicUser: false,
         RuntimeDirectory: "buildkite-agent-metrics",
       })),

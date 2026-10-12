@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pinecone-io",
           repo: "pinecone-python-client",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-yWGW9qx4zb4FnDLXvtXREYXRO7e5Jk/KJoaQlpKMwpg=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PROTOC: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "protobuf")))}`),
       }));
       const dependencies = nix.thunk(() => [httpx, msgspec, orjson]);
       const pythonImportsCheck = nix.thunk(() => ["pinecone"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pinecone Python SDK",
         homepage: "https://www.pinecone.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pinecone-io/python-sdk/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

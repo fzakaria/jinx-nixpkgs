@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: buildGoModule,
       excludeDrvArgNames: nix.thunk(() => ["sha256", "rev"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
         const sha256 = nix.arg($_1, "sha256");
         const rev = nix.argOr($_1, "rev", () => nix.force(version));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "kops",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               rev: rev,
               owner: "kubernetes",
               repo: "kops",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           doCheck: false,
           postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kops \\\n  --bash <($GOPATH/bin/kops completion bash) \\\n  --fish <($GOPATH/bin/kops completion fish) \\\n  --zsh <($GOPATH/bin/kops completion zsh)\n")),
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Easiest way to get a production Kubernetes up and running",
             mainProgram: "kops",
             homepage: "https://github.com/kubernetes/kops",

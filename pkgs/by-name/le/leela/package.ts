@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const poppler = nix.arg($, "poppler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leela",
       version: "12.fe7a35a",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrilbyWhite",
           repo: "Leela",
           rev: "576a60185b191d3a3030fef10492fe32d2125563",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [poppler]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=$(out)/share/man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI frontend to the poppler-glib library of PDF tools",
         homepage: "https://github.com/TrilbyWhite/Leela",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

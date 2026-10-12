@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "get-video-properties",
       version: "0.1.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mvasilkov",
           repo: "python-get-video-properties",
           rev: "944c68addbc27e320ebc6313d3f016fb69b5e880",
@@ -34,7 +34,7 @@ rm -r videoprops/binary_dependencies
 `),
       pythonImportsCheck: nix.thunk(() => ["videoprops"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get video properties",
         homepage: "https://github.com/mvasilkov/python-get-video-properties",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

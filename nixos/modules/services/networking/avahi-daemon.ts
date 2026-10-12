@@ -90,95 +90,95 @@ ${nix.lookup(w, "extraConfig")}
 `));
   })());
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "avahi", "interfaces"]), nix.thunk(() => ["services", "avahi", "allowInterfaces"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "avahi", "nssmdns"]), nix.thunk(() => ["services", "avahi", "nssmdns4"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       services: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         avahi: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run the Avahi daemon, which allows Avahi clients\nto use Avahi's service discovery facilities and also allows\nthe local machine to advertise its presence and services\n(through the mDNS responder implemented by `avahi-daemon`).\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "avahi", nix.thunk(() => ({})))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.hostName")),
               description: "Host name advertised on the LAN. If not set, avahi will use the value\nof {option}`config.networking.hostName`.\n",
             })))),
           domainName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "local",
               description: "Domain name for all advertisements.\n",
             })))),
           browseDomains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["0pointer.de", "zeroconf.org"]),
               description: "List of non-local DNS domains to be browsed.\n",
             })))),
           ipv4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to use IPv4.",
             })))),
           ipv6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "networking", "enableIPv6")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.enableIPv6")),
               description: "Whether to use IPv6.",
             })))),
           allowInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "List of network interfaces that should be used by the {command}`avahi-daemon`.\nOther interfaces will be ignored. If `null`, all local interfaces\nexcept loopback and point-to-point will be used.\n",
             })))),
           denyInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "List of network interfaces that should be ignored by the\n{command}`avahi-daemon`. Other unspecified interfaces will be used,\nunless {option}`allowInterfaces` is set. This option takes precedence\nover {option}`allowInterfaces`.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to open the firewall for UDP port 5353.\nDisabling this setting also disables discovering of network devices.\n",
             })))),
           allowPointToPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use POINTTOPOINT interfaces. Might make mDNS unreliable due to usually large\nlatencies with such links and opens a potential security hole by allowing mDNS access from Internet\nconnections.\n",
             })))),
           wideArea: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable wide-area service discovery.\n\nIt is recommended to keep this options disabled as it exposes the system to `CVE-2024-52615`/`GHSA-x6vp-f33h-h32g`.\n",
             })))),
           reflector: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Reflect incoming mDNS requests to all allowed network interfaces.",
             })))),
           extraServiceFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "path")))));
@@ -188,70 +188,70 @@ ${nix.lookup(w, "extraConfig")}
               description: "Specify custom service definitions which are placed in the avahi service directory.\nSee the {manpage}`avahi.service(5)` manpage for detailed information.\n",
             })))),
           publish: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to allow publishing in general.",
               })))),
             userServices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to publish user services. Will set `addresses=true`.",
               })))),
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to register mDNS address records for all local IP addresses.",
               })))),
             hinfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to register a mDNS HINFO record which contains information about the\nlocal operating system and CPU.\n",
               })))),
             workstation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to register a service of type \"_workstation._tcp\" on the local LAN.\n",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to announce the locally used domain name for browsing by other hosts.",
               })))),
           })),
           nssmdns4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the mDNS NSS (Name Service Switch) plug-in for IPv4.\nEnabling it allows applications to resolve names in the `.local`\ndomain by transparently querying the Avahi daemon.\n",
             })))),
           nssmdns6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the mDNS NSS (Name Service Switch) plug-in for IPv6.\nEnabling it allows applications to resolve names in the `.local`\ndomain by transparently querying the Avahi daemon.\n\n::: {.note}\nDue to the fact that most mDNS responders only register local IPv4 addresses,\nmost user want to leave this option disabled to avoid long timeouts when applications first resolve the none existing IPv6 address.\n:::\n",
             })))),
           nssmdnsFull: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the full mDNS NSS (Name Service Switch) plug-in.\n\nBy default, only the minimal module is enabled. The minimal module\nwill only resolve `.local` domains and only perform reverse hostname\nlookups for `169.254.0.0/16`. The full module will use mDNS to resolve any\ndomain allowed by [`/etc/mdns.allow`][1] and will perform reverse hostname\nlookups for any IP address.\n\n[1]: https://github.com/avahi/nss-mdns/tree/master#etcmdnsallow\n\n::: {.note}\nEnabling this option will introduce a 5 second delay to failed reverse\nhostname lookups. For example, this will often add a 5 second delay to\nping.\n:::\n",
             })))),
           cacheEntriesMax: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "Number of resource records to be cached per interface. Use 0 to\ndisable caching. Avahi daemon defaults to 4096 if not set.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra config to append to avahi-daemon.conf.\n",
@@ -261,36 +261,36 @@ ${nix.lookup(w, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         warnings: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "wideArea")), "Enabling `services.avahi.wideArea` exposes this system to `CVE-2024-52615`.")),
         ]),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "nssmdnsFull")) || nix.asBool((nix.asBool(nix.sel(cfg, "nssmdns4")) || nix.asBool(nix.sel(cfg, "nssmdns6")))))),
             message: "`services.avahi.nssmdnsFull` requires one or both of `services.avahi.nssmdns4` and/or `services.avahi.nssmdns6` to be enabled.\n",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             avahi: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "avahi-daemon privilege separation user",
               home: "/var/empty",
               group: "avahi",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$32, avahi: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$32, avahi: nix.thunk(() => ({})) })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           nssModules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "nssmdns4")) || nix.asBool(nix.sel(cfg, "nssmdns6")))), nix.thunk(() => nix.sel(pkgs, "nssmdns")))),
           nssDatabases: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             hosts: nix.thunk(() => (() => {
               const mdns = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "nssmdns4")) && nix.asBool(nix.sel(cfg, "nssmdns6")))) ? "mdns" : (nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "nssmdns4"))) && nix.asBool(nix.sel(cfg, "nssmdns6")))) ? "mdns6" : (nix.asBool((nix.asBool(nix.sel(cfg, "nssmdns4")) && nix.asBool(!nix.asBool(nix.sel(cfg, "nssmdns6"))))) ? "mdns4" : ""))));
               return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "nssmdns4")) || nix.asBool(nix.sel(cfg, "nssmdns6")))), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
@@ -301,18 +301,18 @@ ${nix.lookup(w, "extraConfig")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`avahi/services/${n}.service`), nix.thunk(() => nix.attrsDyn({}, [
                 [(nix.asBool(nix.app(nix.sel(lib, "types", "path", "check"), v)) ? "source" : "text"), v],
               ]))), nix.thunk(() => nix.sel(cfg, "extraServiceFiles")))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           sockets: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "avahi-daemon": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Avahi mDNS/DNS-SD Stack Activation Socket",
               listenStreams: nix.thunk(() => ["/run/avahi-daemon/socket"]),
               wantedBy: nix.thunk(() => ["sockets.target"]),
@@ -320,13 +320,13 @@ ${nix.lookup(w, "extraConfig")}
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             rules: nix.thunk(() => ["d /run/avahi-daemon - avahi avahi -"]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             "avahi-daemon": nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "Avahi mDNS/DNS-SD Stack",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["avahi-daemon.socket"]),
@@ -337,7 +337,7 @@ ${nix.lookup(w, "extraConfig")}
                 "man:avahi.service(5)",
               ]),
               environment: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
               })),
               path: nix.thunk(() => [
@@ -345,7 +345,7 @@ ${nix.lookup(w, "extraConfig")}
                 nix.thunk(() => nix.sel(cfg, "package")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 NotifyAccess: "main",
                 BusName: "org.freedesktop.Avahi",
                 Type: "dbus",
@@ -381,17 +381,17 @@ ${nix.lookup(w, "extraConfig")}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           dbus: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             enable: true,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           firewall: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [5353n]))),
           })),
         })),

@@ -8,21 +8,21 @@ const pos$3 = nix.positions(here + "/shards.nix", [["url", 13, 5], ["rev", 14, 5
 const pos$4 = nix.positions(here + "/shards.nix", [["lucky_task", 2, 3], ["lucky_template", 7, 3], ["nox", 12, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$4,
+  [nix.POS]: pos$4,
   lucky_task: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://github.com/luckyframework/lucky_task.git",
     rev: "v0.3.0",
     sha256: "0lp2wv01wdcfr3h43n3dqgaymvypy0i6kbffb4mg4l30lijgpfb6",
   })),
   lucky_template: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://github.com/luckyframework/lucky_template.git",
     rev: "v0.2.0",
     sha256: "1xix82d0xanq4xkcv83hm56nj5f2rsbrqhk70j5zr37d3kydfypl",
   })),
   nox: nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://github.com/crystal-loot/nox.git",
     rev: "v0.2.3",
     sha256: "0393v0lrk58i68nd96gqsb89w9a4ykbcyqvmrvp1c32nspqynyaz",

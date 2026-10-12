@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libirc",
       version: "0-unstable-2025-11-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grumpy-irc",
           repo: "libirc",
           rev: "59c6d81242910d8205b94acadf54cec0d2313884",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "mkdir -p $out/libirc/libirc{,client}\ncp ../libirc/*.h $out/libirc/libirc\ncp ../libircclient/*.h $out/libirc/libircclient\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ IRC library written in Qt with support for data serialization",
         homepage: "https://github.com/grumpy-irc/libirc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

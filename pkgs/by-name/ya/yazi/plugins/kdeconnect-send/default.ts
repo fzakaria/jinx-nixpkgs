@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kdeconnect-send.yazi",
       version: "0-unstable-2026-05-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Deepak22903",
           repo: "kdeconnect-send.yazi",
           rev: "06674d12779bd7243793bb29cf0a5f1273467d3d",
           hash: "sha256-pfvmjQw8m/0yUdCK+TW0mvZDWAfyx1skmPjvWSTvk00=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Send selected files to your smartphone or other devices using KDE Connect",
         homepage: "https://github.com/Deepak22903/kdeconnect-send.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

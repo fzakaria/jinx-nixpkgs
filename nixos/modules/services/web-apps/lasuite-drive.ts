@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "lasuite-drive"));
   const pythonEnvironment = nix.thunk(() => nix.app(mapAttrs, (_) => (value) => (nix.asBool(nix.eq(value, null)) ? "None" : (nix.asBool(nix.eq(value, true)) ? "True" : (nix.asBool(nix.eq(value, false)) ? "False" : nix.builtins.toString(value)))), nix.thunk(() => nix.sel(cfg, "settings"))));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     RuntimeDirectory: "lasuite-drive",
     StateDirectory: "lasuite-drive",
     WorkingDirectory: "/var/lib/lasuite-drive",
@@ -139,79 +139,79 @@ export default nix.lambda((args) => (() => {
   ${envArgs} ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} "$@"
 `)));
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         "lasuite-drive": nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(mkEnableOption, "SuiteNumérique Drive")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "lasuite-drive", nix.thunk(() => ({})))),
           bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "unix:/run/lasuite-drive/gunicorn.sock",
               example: "127.0.0.1:8000",
               description: "The path, host/port or file descriptior to bind the gunicorn socket to.\n\nSee  <https://docs.gunicorn.org/en/stable/settings.html#bind> for possible options.\n",
             })))),
-          enableNginx: nix.thunk(() => nix.update(nix.app(mkEnableOption, "enable and configure Nginx for reverse proxying"), { __proto__: pos$3, default: true })),
+          enableNginx: nix.thunk(() => nix.update(nix.app(mkEnableOption, "enable and configure Nginx for reverse proxying"), { [nix.POS]: pos$3, default: true })),
           secretKeyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Path to the Django secret key.\n\nThe key can be generated using:\n```\npython3 -c 'import secrets; print(secrets.token_hex())'\n```\n\n:::{.note}\nIf not specified, a secret key is automatically generated and stored in the state directory.\n:::\n",
             })))),
           s3Url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "URL of the S3 bucket.\n",
             })))),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Configure local PostgreSQL database server for drive.\n",
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Configure local Redis cache server for drive.\n",
               })))),
           })),
           gunicorn: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => ["--name=drive", "--workers=3"]),
                 description: "Extra arguments to pass to the gunicorn process.\n",
               })))),
           })),
           celery: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 description: "Extra arguments to pass to the celery process.\n",
               })))),
           })),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Domain name of the drive instance.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(types, "str")),
                           nix.thunk(() => nix.sel(types, "bool")),
@@ -219,36 +219,36 @@ export default nix.lambda((args) => (() => {
                           nix.thunk(() => nix.sel(types, "int")),
                         ]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     DJANGO_CONFIGURATION: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         internal: true,
                         default: "Production",
                         description: "The configuration that Django will use",
                       })))),
                     DJANGO_SETTINGS_MODULE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         internal: true,
                         default: "drive.settings",
                         description: "The configuration module that Django will use",
                       })))),
                     DJANGO_SECRET_KEY_FILE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "secretKeyPath"), null)) ? "/var/lib/lasuite-drive/django_secret_key" : nix.sel(cfg, "secretKeyPath"))),
                         description: "The path to the file containing Django's secret key",
                       })))),
                     DATA_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/lib/lasuite-drive",
                         description: "Path to the data directory",
                         readOnly: true,
                       })))),
                     DJANGO_ALLOWED_HOSTS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? ["localhost", "127.0.0.1", nix.thunk(() => nix.sel(cfg, "domain"))] : [])),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if cfg.enableNginx then [ \"localhost\" \"127.0.0.1\" cfg.domain ] else [ ]\n")),
@@ -256,31 +256,31 @@ export default nix.lambda((args) => (() => {
                         description: "Comma-separated list of hosts that are able to connect to the server",
                       })))),
                     DB_NAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "lasuite-drive",
                         description: "Name of the database",
                       })))),
                     DB_USER: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "lasuite-drive",
                         description: "User of the database",
                       })))),
                     DB_HOST: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "postgresql", "createLocally")) ? "/run/postgresql" : null)),
                         description: "Host of the database",
                       })))),
                     REDIS_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? nix.str`unix://${nix.sel(config, "services", "redis", "servers", "lasuite-drive", "unixSocket")}?db=1` : null)),
                         description: "URL of the redis backend",
                       })))),
                     CELERY_BROKER_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? nix.str`redis+socket://${nix.sel(config, "services", "redis", "servers", "lasuite-drive", "unixSocket")}?db=2` : null)),
                         description: "URL of the redis backend for celery",
@@ -298,7 +298,7 @@ See <https://github.com/suitenumerique/drive/blob/v${nix.sel(cfg, "package", "ve
 `),
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "Path to environment files.\n\nThis can be useful to pass secrets to drive via tools like `agenix` or `sops`.\n",
@@ -307,17 +307,17 @@ See <https://github.com/suitenumerique/drive/blob/v${nix.sel(cfg, "package", "ve
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         warnings: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) && nix.asBool(!nix.asBool(nix.app(hasSuffix, "/", nix.thunk(() => nix.sel(cfg, "s3Url"))))))), nix.thunk(() => [
             "services.lasuite-drive.s3Url should end with a trailing slash (/).\nThis could break the HTTP requests by nginx to the S3 backend.\n",
           ]))),
-        environment: nix.thunk(() => ({ __proto__: pos$32, systemPackages: nix.thunk(() => [manage]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$32, systemPackages: nix.thunk(() => [manage]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             "lasuite-drive": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Drive from SuiteNumérique",
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-drive.service")))),
               wants: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-drive.service"))),
@@ -340,7 +340,7 @@ fi
 `),
               environment: pythonEnvironment,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 BindReadOnlyPaths: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/static:/var/lib/lasuite-drive/static`),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "gunicorn")),
@@ -349,28 +349,28 @@ fi
               }, commonServiceConfig)),
             })),
             "lasuite-drive-celery": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Docs Celery broker from SuiteNumérique",
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-drive.service")))),
               wants: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-drive.service"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: pythonEnvironment,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "celery")),
                   ], nix.concat(nix.sel(cfg, "celery", "extraArgs"), ["--app=drive.celery_app", "worker"]))))),
               }, commonServiceConfig)),
             })),
             "lasuite-drive-beat": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "Docs Celery beat from SuiteNumérique",
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-drive.service")))),
               wants: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-drive.service"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: pythonEnvironment,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "celery")),
                   ], nix.concat(nix.sel(cfg, "celery", "extraArgs"), ["--app=drive.celery_app", "beat"]))))),
@@ -379,63 +379,63 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: true,
               ensureDatabases: nix.thunk(() => ["lasuite-drive"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$41, name: "lasuite-drive", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$41, name: "lasuite-drive", ensureDBOwnership: true })),
               ]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             servers: nix.thunk(() => ({
-              __proto__: pos$44,
-              "lasuite-drive": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({ __proto__: pos$43, enable: true })))),
+              [nix.POS]: pos$44,
+              "lasuite-drive": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({ [nix.POS]: pos$43, enable: true })))),
             })),
           })),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   extraConfig: "error_page 401 /401.html;\nerror_page 403 /403.html;\nerror_page 404 /404.html;\n",
                   root: nix.thunk(() => nix.sel(cfg, "package", "frontend")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$56,
-                    "/": nix.thunk(() => ({ __proto__: pos$46, tryFiles: "$uri $uri.html index.html $uri/ =404" })),
-                    "~ '^/explorer/items/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/?$'": nix.thunk(() => ({ __proto__: pos$47, tryFiles: "$uri /explorer/items/[id].html" })),
-                    "~ '^/explorer/items/files/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/?$'": nix.thunk(() => ({ __proto__: pos$48, tryFiles: "$uri /explorer/items/files/[id].html" })),
-                    "~ '^/wopi/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/?$'": nix.thunk(() => ({ __proto__: pos$49, tryFiles: "$uri /wopi/[id].html" })),
+                    [nix.POS]: pos$56,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$46, tryFiles: "$uri $uri.html index.html $uri/ =404" })),
+                    "~ '^/explorer/items/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/?$'": nix.thunk(() => ({ [nix.POS]: pos$47, tryFiles: "$uri /explorer/items/[id].html" })),
+                    "~ '^/explorer/items/files/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/?$'": nix.thunk(() => ({ [nix.POS]: pos$48, tryFiles: "$uri /explorer/items/files/[id].html" })),
+                    "~ '^/wopi/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/?$'": nix.thunk(() => ({ [nix.POS]: pos$49, tryFiles: "$uri /wopi/[id].html" })),
                     "/static/": nix.thunk(() => ({
-                      __proto__: pos$50,
+                      [nix.POS]: pos$50,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/static/`),
                     })),
                     "/api": nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "bind")}`),
                       recommendedProxySettings: true,
                     })),
                     "/admin": nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "bind")}`),
                       recommendedProxySettings: true,
                     })),
                     "/media-auth": nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "bind")}${proxySuffix}/api/v1.0/items/media-auth/`),
                       recommendedProxySettings: true,
                       extraConfig: "proxy_set_header X-Original-URL $request_uri;\nproxy_pass_request_body off;\nproxy_set_header Content-Length \"\";\nproxy_set_header X-Original-Method $request_method;\n",
                     })),
                     "/media/": nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       proxyPass: nix.thunk(() => nix.sel(cfg, "s3Url")),
                       extraConfig: "auth_request /media-auth;\nauth_request_set $authHeader $upstream_http_authorization;\nauth_request_set $authDate $upstream_http_x_amz_date;\nauth_request_set $authContentSha256 $upstream_http_x_amz_content_sha256;\n\nproxy_set_header Authorization $authHeader;\nproxy_set_header X-Amz-Date $authDate;\nproxy_set_header X-Amz-Content-SHA256 $authContentSha256;\n\nadd_header Content-Disposition \"attachment\";\n",
                     })),
                     "/media/preview/": nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       proxyPass: nix.thunk(() => nix.sel(cfg, "s3Url")),
                       extraConfig: "auth_request /media-auth;\nauth_request_set $authHeader $upstream_http_authorization;\nauth_request_set $authDate $upstream_http_x_amz_date;\nauth_request_set $authContentSha256 $upstream_http_x_amz_content_sha256;\n\nproxy_set_header Authorization $authHeader;\nproxy_set_header X-Amz-Date $authDate;\nproxy_set_header X-Amz-Content-SHA256 $authContentSha256;\n",
                     })),
@@ -446,7 +446,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "soyouzpanda"))]),
     })),

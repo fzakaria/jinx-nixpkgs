@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "uwsm"));
   const mk_uwsm_desktop_entry = (opts) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(opts, "name")}-uwsm`),
       text: nix.thunk(() => nix.str`[Desktop Entry]
 Name=${nix.sel(opts, "prettyName")} (UWSM)
@@ -49,15 +49,15 @@ Type=Application
 `),
       destination: nix.thunk(() => nix.str`/share/wayland-sessions/${nix.sel(opts, "name")}-uwsm.desktop`),
       derivationArgs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           providedSessions: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(opts, "name")}-uwsm`)]),
         })),
       })),
     })));
   const desktopEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(mk_uwsm_desktop_entry, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: name,
         prettyName: nix.thunk(() => nix.attr(value, "prettyName")),
         comment: nix.thunk(() => nix.attr(value, "comment")),
@@ -66,44 +66,44 @@ Type=Application
       }))), nix.thunk(() => nix.sel(cfg, "waylandCompositors"))));
   const sessionServices = nix.thunk(() => ["wayland-wm@", "wayland-session-bindpid@"]);
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         uwsm: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "uwsm, which wraps standalone Wayland compositors with a set\nof Systemd units on the fly. This essentially\nbinds the wayland compositor into `graphical-session-pre.target`,\n`graphical-session.target`, `xdg-desktop-autostart.target`.\n\nThis is useful for Wayland compositors like Hyprland, Sway, Wayfire,\netc. that do not start these targets and services on their own.\n\n::: {.note}\nYou must configure `waylandCompositors` suboptions as well\nso that UWSM knows which compositors to manage.\n\nAdditionally, this by default uses `dbus-broker` as the dbus\nimplementation for better compatibility. If you dislike this behavior\nyou can set `services.dbus.implementation = lib.mkForce \"dbus\"`\nin your configuration.\n:::\n\nIf you are having trouble starting a service that depends on\n`graphical-session.target`, while using a WM, enabling this option\nmight help\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "uwsm", nix.thunk(() => ({})))),
           waylandCompositors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Configuration for UWSM-managed Wayland Compositors. This\ncreates a desktop entry file which will be used by Display\nManagers like GDM, to allow starting the UWSM managed session.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     return {
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       options: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         prettyName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The full name of the desktop entry file.",
                             example: "ExampleWaylandCompositor",
                           })))),
                         comment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The comment field of the desktop entry file.",
                             default: "An intelligent Wayland compositor managed by UWSM.",
                           })))),
                         binPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "The wayland-compositor binary path that will be called by UWSM.\n\nIt is recommended to use the `/run/current-system/sw/bin/` path\ninstead of `lib.getExe pkgs.<compositor>` to avoid version mismatch\nof the compositor used by UWSM and the one installed in the system.\n",
                             example: "/run/current-system/sw/bin/ExampleCompositor",
                           })))),
                         extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -122,36 +122,36 @@ Type=Application
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             environment: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               pathsToLink: nix.thunk(() => ["/share/uwsm", "/share/wayland-sessions"]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               user: nix.thunk(() => ({
-                __proto__: pos$17,
-                services: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), sessionServices, (_) => ({ __proto__: pos$16, restartIfChanged: false, enableDefaultPath: false }))),
+                [nix.POS]: pos$17,
+                services: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), sessionServices, (_) => ({ [nix.POS]: pos$16, restartIfChanged: false, enableDefaultPath: false }))),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$20,
-              dbus: nix.thunk(() => ({ __proto__: pos$19, implementation: "broker" })),
+              [nix.POS]: pos$20,
+              dbus: nix.thunk(() => ({ [nix.POS]: pos$19, implementation: "broker" })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "waylandCompositors"), {})), nix.thunk(() => ({
-              __proto__: pos$25,
-              environment: nix.thunk(() => ({ __proto__: pos$22, systemPackages: desktopEntries })),
+              [nix.POS]: pos$25,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$22, systemPackages: desktopEntries })),
               services: nix.thunk(() => ({
-                __proto__: pos$24,
-                displayManager: nix.thunk(() => ({ __proto__: pos$23, sessionPackages: desktopEntries })),
+                [nix.POS]: pos$24,
+                displayManager: nix.thunk(() => ({ [nix.POS]: pos$23, sessionPackages: desktopEntries })),
               })),
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

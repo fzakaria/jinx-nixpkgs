@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xrsh",
       version: "0-unstable-2025-05-23",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fetchSubmodules: true,
           owner: "xrsh",
           repo: "xrsh",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: nix.thunk(() => (() => {
         const launcher = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "xrsh",
             runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "twisted"))]),
             text: "XRSH_ROOT=\"${1}\"\nXRSH_PORT=\"${XRSH_PORT-8080}\"\n\nexec twistd -n web --listen \"tcp:${XRSH_PORT}\" --path \"${XRSH_ROOT}\"\n",
@@ -51,11 +51,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "xrsh",
         description: "Terminal for WebXR to run REPLs & linux ISO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

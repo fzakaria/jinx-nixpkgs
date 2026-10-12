@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1npcc4adcc3c9diw4kgmd5c0ikym1iz364p2zp6gs011rqaprald",
         }))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, six]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "All-in-one infinity value for Python. Can be compared to any object",
         homepage: "https://github.com/kvesteri/infinity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mupdt"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, nativeCheckInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, nativeCheckInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

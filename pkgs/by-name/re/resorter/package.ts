@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rWrapper = nix.arg($, "rWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "resorter",
       version: "0-unstable-2023-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hiAndrewQuinn",
           repo: "resorter",
           rev: "81f8922d41d062794e1563a468cb5ca78680436b",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(rPackages, null);
               return [
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -pv $out/bin/\ncp -v resorter.r $out/bin/resorter\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to sort a list of items based on pairwise comparisons",
         homepage: "https://github.com/hiAndrewQuinn/resorter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chicago95",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grassmunk",
           repo: "Chicago95",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nfind . -xtype l -delete\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/themes\nmv Theme/Chicago95 $out/share/themes\n\nmkdir -p $out/share/icons\nmv Icons/Chicago95 $out/share/icons\ngtk-update-icon-cache $out/share/icons/Chicago95\n\nmkdir -p $out/share/sddm/themes\ntar -xzf KDE/SDDM/Chicago95.tar.gz -C \"$out/share/sddm/themes/\"\n\nmkdir -p $out/share/fonts\ncp Fonts/vga_font/* $out/share/fonts\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Windows 95 theme for GTK",
         homepage: "https://github.com/grassmunk/Chicago95",
         changelog: nix.thunk(() => nix.str`https://github.com/grassmunk/Chicago95/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "highmon",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/KenjiE20/highmon/182e67d070c75efc81999e68c2ac7fdfe44d2872/highmon.pl",
           sha256: "1vvgzscb12l3cp2nq954fx6j3awvpjsb0nqylal51ps9cq9a3wir",
         })))),
       dontUnpack: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["highmon.pl"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["highmon.pl"]) })),
       installPhase: "runHook preInstall\n\ninstall -D $src $out/share/highmon.pl\n\nrunHook postInstall\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         homepage: "https://github.com/KenjiE20/highmon/",
         description: "WeeChat script that adds 'Highlight Monitor'",

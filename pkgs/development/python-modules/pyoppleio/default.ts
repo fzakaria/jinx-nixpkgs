@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-S1w3pPqhX903kkXUq9ALz0+zRvNGOimLughRRVKjV8E=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyoppleio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting with OPPLE lights",
         homepage: "https://github.com/jedmeng/python-oppleio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "oppleio",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

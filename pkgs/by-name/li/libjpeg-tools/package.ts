@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libjpeg-tools",
       version: "1.71",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thorfdbg",
           repo: "libjpeg",
           rev: "25f71280913fde7400801772bbf885bb3e873242",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -m755 -D jpeg $out/bin/jpeg\ninstall -m644 -D libjpeg.so $lib/lib/libjpeg\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A complete implementation of 10918-1 (JPEG) coming from jpeg.org (the ISO group) with extensions for HDR, lossless and alpha channel coding standardized as ISO/IEC 18477 (JPEG XT)",
         homepage: "https://github.com/thorfdbg/libjpeg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

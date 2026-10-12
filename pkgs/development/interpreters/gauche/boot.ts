@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gauche-bootstrap";
       const version = "0.9.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/shirok/Gauche/releases/download/release${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}/Gauche-${version}.tgz`),
           hash: "sha256-NkPie8fIgiz9b7KJLbGF9ljo42STi8LM/O2yOeNa94M=",
         }))));
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "R7RS Scheme scripting engine (released version)",
         homepage: "https://practical-scheme.net/gauche/",
         mainProgram: "gosh",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

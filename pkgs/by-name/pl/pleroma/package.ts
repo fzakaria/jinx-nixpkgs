@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const glib = nix.arg($, "glib");
   const fetchpatch = nix.arg($, "fetchpatch");
-  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam, "packages", "erlang_27", "overrideScope"), (final) => (prev) => ({ __proto__: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
+  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam, "packages", "erlang_27", "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
   return nix.app(nix.sel(beamPackages, "mixRelease"), nix.thunk(() => (() => {
       const pname = "pleroma";
       const version = "2.10.2";
       const src = nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "git.pleroma.social",
           owner: "pleroma",
           repo: "pleroma",
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./Revert-Config-Restrict-permissions-of-OTP-config.patch")]);
       const mixNixDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mix.nix")), nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           beamPackages: beamPackages,
           lib: lib,
           overrides: (final) => (prev) => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             phoenix: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "phoenix",
                 version: "1.7.14-websocket-headers",
                 src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     owner: "phoenixframework",
                     repo: "phoenix",
                     tag: "v1.7.14",
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
                   })))),
                 patches: nix.thunk(() => [
                   nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       name: "0001-Support-passing-through-the-value-of-the-sec-websocket-protocol-header.patch",
                       url: "https://github.com/feld/phoenix/commit/fb6dc76c657422e49600896c64aab4253fceaef6.patch",
                       hash: "sha256-eMla+D3EcVTc1WwlRaKvLPV5eXwGfAgZOxiYlGSkBIQ=",
@@ -108,11 +108,11 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
             captcha: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "captcha",
                 version: "0.1.0",
                 src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     domain: "git.pleroma.social",
                     owner: "pleroma/elixir-libraries",
                     repo: "elixir-captcha",
@@ -122,11 +122,11 @@ export default nix.lambda((args) => (() => {
                 beamDeps: [],
               })))),
             prometheus_ex: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 name: "prometheus_ex",
                 version: "3.0.5",
                 src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     owner: "lanodan",
                     repo: "prometheus.ex",
                     rev: "31f7fbe4b71b79ba27efc2a5085746c4011ceb8f",
@@ -138,11 +138,11 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
             oban_plugins_lazarus: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 name: "oban_plugins_lazarus",
                 version: "0.1.0",
                 src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     domain: "git.pleroma.social",
                     owner: "pleroma/elixir-libraries",
                     repo: "oban_plugins_lazarus",
@@ -155,11 +155,11 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
             remote_ip: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 name: "remote_ip",
                 version: "0.1.5",
                 src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     domain: "git.pleroma.social",
                     owner: "pleroma/elixir-libraries",
                     repo: "remote_ip",
@@ -175,42 +175,42 @@ export default nix.lambda((args) => (() => {
                   ];
                 })()),
               })))),
-            majic: nix.thunk(() => nix.app(nix.sel(prev, "majic", "override"), nix.thunk(() => ({ __proto__: pos$14, buildInputs: nix.thunk(() => [file]) })))),
+            majic: nix.thunk(() => nix.app(nix.sel(prev, "majic", "override"), nix.thunk(() => ({ [nix.POS]: pos$14, buildInputs: nix.thunk(() => [file]) })))),
             http_signatures: nix.thunk(() => nix.app(nix.sel(prev, "http_signatures", "override"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 patchPhase: "substituteInPlace mix.exs --replace \":logger\" \":logger, :public_key\"\n",
               })))),
             fast_html: nix.thunk(() => nix.app(nix.sel(prev, "fast_html", "override"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 nativeBuildInputs: nix.thunk(() => [cmake]),
                 dontUseCmakeConfigure: true,
               })))),
             syslog: nix.thunk(() => nix.app(nix.sel(prev, "syslog", "override"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 buildPlugins: nix.thunk(() => (() => {
                   const w = nix.withScope(beamPackages, null);
                   return [nix.thunk(() => nix.lookup(w, "pc"))];
                 })()),
               })))),
             phoenix_live_view: nix.thunk(() => nix.app(nix.sel(prev, "phoenix_live_view", "override"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 postPatch: "sed -i '/listeners: \\[Phoenix.CodeReloader\\]/d' mix.exs\n",
               })))),
             oban_web: nix.thunk(() => nix.app(nix.sel(prev, "oban_web", "override"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 postPatch: "sed -i '/listeners: \\[Phoenix.CodeReloader\\]/d' mix.exs\n",
               })))),
             vix: nix.thunk(() => nix.app(nix.sel(prev, "vix", "override"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 nativeBuildInputs: nix.thunk(() => [pkg_config]),
                 buildInputs: nix.thunk(() => [vips, nix.thunk(() => nix.sel(glib, "dev"))]),
-                env: nix.thunk(() => ({ __proto__: pos$20, VIX_COMPILATION_MODE: "PLATFORM_PROVIDED_LIBVIPS" })),
+                env: nix.thunk(() => ({ [nix.POS]: pos$20, VIX_COMPILATION_MODE: "PLATFORM_PROVIDED_LIBVIPS" })),
               })))),
             eimp: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildRebar3"), nix.thunk(() => (() => {
                 const name = "eimp";
                 const version_1 = "1.0.18";
                 const src_1 = nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchHex"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     pkg: name,
                     version: version_1,
                     sha256: "0fnx2pm1n2m0zs2skivv43s42hrgpq9i143p9mngw9f3swjqpxvx",
@@ -225,7 +225,7 @@ export default nix.lambda((args) => (() => {
                   return [nix.thunk(() => nix.lookup(w_1, "p1_utils"))];
                 })());
                 return {
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   name,
                   version: version_1,
                   src: src_1,
@@ -238,16 +238,16 @@ export default nix.lambda((args) => (() => {
                 const name = "p1_utils";
                 const version_1 = "1.0.18";
                 const src_1 = nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     pkg: nix.thunk(() => nix.str`${name}`),
                     version: version_1,
                     sha256: "120znzz0yw1994nk6v28zql9plgapqpv51n9g6qm6md1f4x7gj0z",
                   }))));
                 const beamDeps = [];
-                return { __proto__: pos$25, name, version: version_1, src: src_1, beamDeps };
+                return { [nix.POS]: pos$25, name, version: version_1, src: src_1, beamDeps };
               })()))),
             mime: nix.thunk(() => nix.app(nix.sel(prev, "mime", "override"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 patchPhase: nix.thunk(() => (() => {
                   const cfgFile = nix.thunk(() => nix.app(writeText, "config.exs", "use Mix.Config\nconfig :mime, :types, %{\n  \"application/activity+json\" => [\"activity+json\"],\n  \"application/jrd+json\" => [\"jrd+json\"],\n  \"application/ld+json\" => [\"activity+json\"],\n  \"application/xml\" => [\"xml\"],\n  \"application/xrd+xml\" => [\"xrd+xml\"]\n}\n"));
                   return nix.str`mkdir config
@@ -258,22 +258,22 @@ cp ${cfgFile} config/config.exs
             mochiweb: nix.thunk(() => nix.app(nix.sel(prev, "mochiweb", "override"), nix.thunk(() => (() => {
                 const version_1 = "3.3.0";
                 const src_1 = nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     pkg: "mochiweb",
                     version: nix.thunk(() => nix.str`${version_1}`),
                     sha256: "sha256-qoW3d/sj6ZcuvEJOQLXTUQbxm8mYhz4Cbe3Ydt+O5Qw=",
                   }))));
-                return { __proto__: pos$28, version: version_1, src: src_1 };
+                return { [nix.POS]: pos$28, version: version_1, src: src_1 };
               })()))),
           }),
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$32,
-        tests: nix.thunk(() => ({ __proto__: pos$31, pleroma: nix.thunk(() => nix.sel(nixosTests, "pleroma")) })),
+        [nix.POS]: pos$32,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$31, pleroma: nix.thunk(() => nix.sel(nixosTests, "pleroma")) })),
         mixNixDeps: mixNixDeps,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         description: "ActivityPub microblogging server",
         homepage: "https://git.pleroma.social/pleroma/pleroma",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -286,7 +286,7 @@ cp ${cfgFile} config/config.exs
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$34, pname, version, src, patches, mixNixDeps, passthru, meta };
+      return { [nix.POS]: pos$34, pname, version, src, patches, mixNixDeps, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

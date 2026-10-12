@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tev";
       const version = "2.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tom94",
           repo: "tev",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const cmakeFlags = nix.thunk(() => ["-DTEV_DEPLOY=1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High dynamic range (HDR) image viewer for people who care about colors",
         mainProgram: "tev",
         longDescription: "High dynamic range (HDR) image viewer for people who care about colors. It is\n- Lightning fast: starts up instantly, loads hundreds of images in seconds.\n- Accurate: understands color profiles and displays HDR.\n- Versatile: supports many formats, histograms, pixel peeping, tonemaps, etc.\n",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

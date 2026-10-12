@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-ironicclient",
           tag: version,
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
         stevedore,
       ]);
       const nativeCheckInputs = nix.thunk(() => [stestr, requests_mock, oslotest]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["ironicclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client for OpenStack bare metal provisioning API, includes a Python module (ironicclient) and CLI (baremetal)",
         mainProgram: "baremetal",
         homepage: "https://github.com/openstack/python-ironicclient",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

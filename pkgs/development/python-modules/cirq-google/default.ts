@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const typedunits = nix.arg($, "typedunits");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "cirq-google",
       pyproject: true,
       version: nix.thunk(() => nix.attr(cirq_core, "version")),

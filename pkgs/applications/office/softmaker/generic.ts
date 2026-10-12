@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const archive = nix.arg($, "archive");
   const desktopItems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./desktop_items.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       makeDesktopItem: makeDesktopItem,
       pname: pname,
       suiteName: suiteName,
     }))));
   const shortEdition = nix.thunk(() => nix.builtins.substring(2n, 2n, edition));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       src: src,
       version: nix.thunk(() => (nix.asBool(!nix.eq(edition, "")) ? nix.str`${edition}.${version}` : nix.force(version))),
@@ -120,7 +120,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => nix.builtins.attrValues(desktopItems)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Office suite with a word processor, spreadsheet and presentation program",
         homepage: "https://www.softmaker.com/",
         sourceProvenance: nix.thunk(() => (() => {

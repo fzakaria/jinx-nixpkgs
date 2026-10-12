@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   nix.assert_(nix.app(nix.sel(lib, "xor"), withLibiodbc, withUnixODBC), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ps/psqlodbc/package.nix:17:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "psqlodbc",
       version: "18.00.0003",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postgresql-interfaces",
           repo: "psqlodbc",
           tag: nix.thunk(() => nix.str`REL-${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libpq=${nix.app(nix.sel(lib, "getDev"), libpq)}`),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withLibiodbc, nix.thunk(() => nix.str`--with-iodbc=${libiodbc}`)), nix.app(nix.sel(lib, "optional"), withUnixODBC, nix.thunk(() => nix.str`--with-unixodbc=${unixodbc}`))))),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^REL-(\\d+)_(\\d+)_(\\d+)$"]),
           })))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), withUnixODBC, nix.thunk(() => ({ __proto__: pos$4, fancyName: "PostgreSQL", driver: "lib/psqlodbcw.so" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), withUnixODBC, nix.thunk(() => ({ [nix.POS]: pos$4, fancyName: "PostgreSQL", driver: "lib/psqlodbcw.so" }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://odbc.postgresql.org/",
         description: "ODBC driver for PostgreSQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

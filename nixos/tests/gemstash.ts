@@ -24,50 +24,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     gemstash_works: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "gemstash-works",
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "viraptor"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           machine: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
-              gemstash: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              [nix.POS]: pos$3,
+              gemstash: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             })),
           })),
         })),
         testScript: "machine.wait_for_unit(\"gemstash.service\")\nmachine.wait_for_file(\"/var/lib/gemstash\")\nmachine.wait_for_open_port(9292)\nmachine.succeed(\"curl http://localhost:9292\")\n",
       })))),
     gemstash_custom_port: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "gemstash-custom-port",
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "viraptor"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           machine: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               gemstash: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 enable: true,
                 openFirewall: true,
-                settings: nix.thunk(() => ({ __proto__: pos$8, bind: "tcp://0.0.0.0:12345" })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$8, bind: "tcp://0.0.0.0:12345" })),
               })),
             })),
           })),

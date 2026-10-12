@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rich-toolkit",
       version: "0.20.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patrick91",
           repo: "rich-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ sed -i 's/version = ".*"/version = "${nix.sel(finalAttrs, "version")}"/' pyproje
       nativeCheckInputs: nix.thunk(() => [inline_snapshot, pydantic, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["rich_toolkit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/patrick91/rich-toolkit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Rich toolkit for building command-line applications",
         homepage: "https://github.com/patrick91/rich-toolkit/",

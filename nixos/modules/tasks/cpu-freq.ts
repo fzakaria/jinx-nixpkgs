@@ -28,29 +28,29 @@ export default nix.lambda((args) => (() => {
   const cpupower = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "cpupower"));
   const cfg = nix.thunk(() => nix.sel(config, "powerManagement"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       powerManagement: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         cpuFreqGovernor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             example: "ondemand",
             description: "Configure the governor used to regulate the frequency of the\navailable CPUs. By default, the kernel configures the\nperformance governor, although this may be overwritten in your\nhardware-configuration.nix file.\n\nOften used values: \"ondemand\", \"powersave\", \"performance\"\n",
           })))),
         cpufreq: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           max: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")))),
               default: null,
               example: 2200000n,
               description: "The maximum frequency the CPU will use.  Defaults to the maximum possible.\n",
             })))),
           min: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")))),
               default: null,
               example: 800000n,
@@ -65,25 +65,25 @@ export default nix.lambda((args) => (() => {
       const minEnable = nix.thunk(() => !nix.eq(nix.sel(cfg, "cpufreq", "min"), null));
       const enable = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "isContainer"))) && nix.asBool((nix.asBool((nix.asBool(governorEnable) || nix.asBool(maxEnable))) || nix.asBool(minEnable)))));
       return nix.app(nix.lookup(w, "mkIf"), enable, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "optional"), governorEnable, nix.thunk(() => nix.str`cpufreq_${nix.sel(cfg, "cpuFreqGovernor")}`))),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$8, systemPackages: nix.thunk(() => [cpupower]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$8, systemPackages: nix.thunk(() => [cpupower]) })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               cpufreq: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "CPU Frequency Setup",
                 after: nix.thunk(() => ["systemd-modules-load.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [cpupower, nix.thunk(() => nix.sel(pkgs, "kmod"))]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$9, ConditionVirtualization: false })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, ConditionVirtualization: false })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   Type: "oneshot",
                   RemainAfterExit: "yes",
                   ExecStart: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`${cpupower}/bin/cpupower frequency-set `, nix.app(nix.lookup(w, "optionalString"), governorEnable, nix.thunk(() => nix.str`--governor ${nix.sel(cfg, "cpuFreqGovernor")} `))), nix.app(nix.lookup(w, "optionalString"), maxEnable, nix.thunk(() => nix.str`--max ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "cpufreq", "max")))} `))), nix.app(nix.lookup(w, "optionalString"), minEnable, nix.thunk(() => nix.str`--min ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "cpufreq", "min")))} `)))),

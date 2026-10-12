@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const openbangla_keyboard = nix.arg($, "openbangla-keyboard");
-  return nix.app(nix.sel(openbangla_keyboard, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, withFcitx5Support: true, withIbusSupport: false }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["openbangla-keyboard"])))));
+  return nix.app(nix.sel(openbangla_keyboard, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, withFcitx5Support: true, withIbusSupport: false }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["openbangla-keyboard"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

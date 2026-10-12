@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "vinyl-cache",
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://vinyl-cache.org/downloads/${nix.sel(finalAttrs, "pname")}-${version}.tgz`),
             hash: hash,
           })))),
@@ -84,18 +84,18 @@ substituteInPlace Makefile \\
         postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram "$out/sbin/vinyld" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]))}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "cp bin/vinyld/vhp_hufdec.h $vhp_hufdec_h\n"))),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-fexcess-precision=standard")),
         })),
         outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ["man", "vhp_hufdec_h"])))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           python: python3,
           tests: nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`vinyl-cache_${nix.app(nix.sel(lib, "versions", "major"), version)}`))),
           stateDir: stateDir,
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Web application accelerator also known as a caching HTTP reverse proxy",
           homepage: "https://vinyl-cache.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -109,9 +109,9 @@ substituteInPlace Makefile \\
       }));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "vinyl-cache_9": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "9.0.1",
         hash: "sha256-Lo7GfNIT6mhkx2OTnWSRICVVc0L60qX/2mx8W1m96xc=",
       })))),

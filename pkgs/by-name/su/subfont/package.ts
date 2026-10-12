@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pname = "subfont";
   const version = "7.2.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://registry.npmjs.org/subfont/-/subfont-${version}.tgz`),
       hash: "sha256-daHPt03dPBCWYXFS8x1SNTRlkmCCdWmmondur6fRBgY=",
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
@@ -41,20 +41,20 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [cairo, pango, pixman]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version: version,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command line tool to optimize webfont loading by aggressively subsetting based on font use, self-hosting of Google fonts and preloading",
         mainProgram: "subfont",
         homepage: "https://github.com/Munter/subfont",

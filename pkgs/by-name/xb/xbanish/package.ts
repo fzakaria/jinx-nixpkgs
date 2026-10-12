@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libxfixes = nix.arg($, "libxfixes");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.8",
       pname: "xbanish",
       buildInputs: nix.thunk(() => [libx11, libxi, libxt, libxfixes, libxext]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcs",
           repo: "xbanish",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       preInstall: "mkdir -p $out/bin $out/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hides mouse pointer while not in use",
         longDescription: "xbanish hides the mouse cursor when you start typing, and shows it again when\nthe mouse cursor moves or a mouse button is pressed.  This is similar to\nxterm's pointerMode setting, but xbanish works globally in the X11 session.\n\nunclutter's -keystroke mode is supposed to do this, but it's broken[0].  I\nlooked into fixing it, but the unclutter source code is terrible, so I wrote\nxbanish.\n\nThe name comes from ratpoison's \"banish\" command that sends the cursor to the\ncorner of the screen.\n",
         homepage: "https://github.com/jcs/xbanish",

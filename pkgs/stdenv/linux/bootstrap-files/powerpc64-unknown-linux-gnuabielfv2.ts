@@ -7,14 +7,14 @@ const pos$2 = nix.positions(here + "/powerpc64-unknown-linux-gnuabielfv2.nix", [
 const pos$3 = nix.positions(here + "/powerpc64-unknown-linux-gnuabielfv2.nix", [["bootstrapTools", 12, 3], ["busybox", 16, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   bootstrapTools: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://tarballs.nixos.org/stdenv/powerpc64-unknown-linux-gnuabielfv2/57cf2e0b24fb52344cc718913eaed78f389b1319/bootstrap-tools.tar.xz",
       hash: "sha256-CvMRR2tUs5nzAkuS6cUYNjrNKxX3E+g9C7T7P48m2Ys=",
     })))),
   busybox: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "http://tarballs.nixos.org/stdenv/powerpc64-unknown-linux-gnuabielfv2/57cf2e0b24fb52344cc718913eaed78f389b1319/busybox",
       hash: "sha256-+vnQrVBHg793JIdQR4Y9KuqdmNZ+Ic0FZvVqrPOKnOY=",
       executable: true,

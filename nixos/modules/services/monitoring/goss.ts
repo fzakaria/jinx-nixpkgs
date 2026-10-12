@@ -35,26 +35,26 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "goss.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./goss.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         goss: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Goss daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "goss", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 GOSS_FMT: "json",
                 GOSS_LOGLEVEL: "FATAL",
                 GOSS_LISTEN: ":8080",
@@ -62,21 +62,21 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables to set for the goss service.\n\nSee <https://github.com/goss-org/goss/blob/master/docs/manual.md>\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 addr: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  "tcp://localhost:8080": nix.thunk(() => ({ __proto__: pos$5, reachable: true, "local-address": "127.0.0.1" })),
+                  [nix.POS]: pos$6,
+                  "tcp://localhost:8080": nix.thunk(() => ({ [nix.POS]: pos$5, reachable: true, "local-address": "127.0.0.1" })),
                 })),
                 service: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  goss: nix.thunk(() => ({ __proto__: pos$7, enabled: true, running: true })),
+                  [nix.POS]: pos$8,
+                  goss: nix.thunk(() => ({ [nix.POS]: pos$7, enabled: true, running: true })),
                 })),
               })),
               description: "The global options in `config` file in yaml format.\n\nRefer to <https://github.com/goss-org/goss/blob/master/docs/goss-json-schema.yaml> for schema.\n",
@@ -85,29 +85,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             goss: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Goss - Quick and Easy server validation",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Documentation: "https://github.com/goss-org/goss/blob/master/docs/manual.md",
               })),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
-              environment: nix.thunk(() => nix.update({ __proto__: pos$16, GOSS_FILE: configFile }, nix.sel(cfg, "environment"))),
+              environment: nix.thunk(() => nix.update({ [nix.POS]: pos$16, GOSS_FILE: configFile }, nix.sel(cfg, "environment"))),
               reloadTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 DynamicUser: true,
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/goss serve`),

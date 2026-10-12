@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pseudoFilesArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.str`-p "${f}" `, pseudoFiles));
   const compFlag = nix.thunk(() => (nix.asBool(nix.eq(comp, null)) ? "-no-compression" : nix.str`-comp ${comp}`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${fileName}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(hydraBuildProduct)), ".img")}`),
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$1, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
       nativeBuildInputs: nix.thunk(() => [squashfs_tools]),
-      buildCommand: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`closureInfo=${nix.app(closureInfo, nix.thunk(() => ({ __proto__: pos$2, rootPaths: storeContents })))}
+      buildCommand: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`closureInfo=${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: storeContents })))}
 
 # Also include a manifest of the closures in a format suitable
 # for nix-store --load-db.

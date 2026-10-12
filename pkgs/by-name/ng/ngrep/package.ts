@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ngrep",
       version: "1.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpr5",
           repo: "ngrep",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`sed -i "s|BPF=.*|BPF=${libpcap}/include/pcap/bpf.h|" configure
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network packet analyzer",
         longDescription: "ngrep strives to provide most of GNU grep's common features, applying\nthem to the network layer. ngrep is a pcap-aware tool that will allow you\nto specify extended regular or hexadecimal expressions to match against\ndata payloads of packets. It currently recognizes IPv4/6, TCP, UDP,\nICMPv4/6, IGMP and Raw across Ethernet, PPP, SLIP, FDDI, Token Ring and\nnull interfaces, and understands BPF filter logic in the same fashion as\nmore common packet sniffing tools, such as tcpdump and snoop.\n",
         homepage: "https://github.com/jpr5/ngrep/",

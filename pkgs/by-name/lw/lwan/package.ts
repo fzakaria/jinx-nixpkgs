@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lwan";
       const version = "0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lpereira",
           repo: "lwan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([zlib], nix.app(nix.sel(lib, "optional"), enableJemalloc, jemalloc)));
       const cmakeFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableJemalloc, "-DUSE_ALTERNATIVE_MALLOC=jemalloc"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight high-performance multi-threaded web server",
         mainProgram: "lwan",
         longDescription: "A lightweight and speedy web server with a low memory\n      footprint (~500KiB for 10k idle connections), with minimal system calls and\n      memory allocation.  Lwan contains a hand-crafted HTTP request parser. Files are\n      served using the most efficient way according to their size: no copies between\n      kernel and userland for files larger than 16KiB.  Smaller files are sent using\n      vectored I/O of memory-mapped buffers. Header overhead is considered before\n      compressing small files.  Features include: mustache templating engine and IPv6\n      support.\n    ",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

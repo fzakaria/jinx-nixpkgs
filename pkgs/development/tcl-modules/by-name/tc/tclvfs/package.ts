@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(mkTclDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tclvfs",
       version: "1.4-unstable-2023-11-23",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://core.tcl-lang.org/tclvfs/tarball/8cdab08997fe82d8/tclvfs-8cdab08997fe82d8.tar.gz",
           hash: "sha256-DzZ4Puwscbr0KarMyEKeah7jDJy7cfKNBbBSh0boaUw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tcl extension that exposes Tcl's Virtual File System (VFS) subsystem to the script level",
         homepage: "https://www.tcl-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

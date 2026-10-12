@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dircolors-solarized",
       version: "0-unstable-2026-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seebi",
           repo: "dircolors-solarized",
           rev: "bd9d473393a78366d5c3658d9cd2db7d8944b447",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfor f in dircolors.*; do\n  install -Dm644 $f $out/${f#dircolors.}\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Repository of themes for GNU, supporting Solarized color scheme",
         homepage: "https://github.com/seebi/dircolors-solarized",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

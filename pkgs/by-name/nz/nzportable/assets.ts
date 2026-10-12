@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nzp-assets",
       version: "0-unstable-2025-11-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nzp-team",
           repo: "assets",
           rev: "96dd29602d6d8af0cce9208910e7ab68bfc95019",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "pc"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r common/* $out\n\nmkdir -p $pc\ncp -r pc/* $pc\nchmod -R +w $pc/nzp\ncp -r $out/* $pc/nzp\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Game asset repository for Nazi Zombies: Portable",
         homepage: "https://github.com/nzp-team/assets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "0.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "regionset",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://linvdr.org/download/regionset/regionset-${version}.tar.gz`),
           sha256: "1fgps85dmjvj41a5bkira43vs2aiivzhqwzdvvpw5dpvdrjqcp0d",
         })))),
       prePatch: "substituteInPlace regionset.8 \\\n    --replace-fail /usr/share/doc/ \"$out\"/share/doc/\n",
       installPhase: "install -Dm755 {.,$out/bin}/regionset\ninstall -Dm644 {.,$out/share/man/man8}/regionset.8\ninstall -Dm644 {.,$out/share/doc/regionset}/README\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: version,
         homepage: "https://manpages.debian.org/trixie/regionset/regionset.8.en.html",
         description: "Tool for changing the region code setting of DVD players",

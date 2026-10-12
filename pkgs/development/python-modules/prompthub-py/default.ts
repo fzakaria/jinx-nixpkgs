@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "prompthub-py";
   const version = "4.0.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: pname,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepset-ai",
           repo: "prompthub-py",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [poetry_core]),
       propagatedBuildInputs: nix.thunk(() => [pyyaml, requests]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple client to fetch prompts from Prompt Hub using its REST API",
         homepage: "https://github.com/deepset-ai/prompthub-py",
         changelog: nix.thunk(() => nix.str`https://github.com/deepset-ai/prompthub-py/releases/tag/v${version}`),

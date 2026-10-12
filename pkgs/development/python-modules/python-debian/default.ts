@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const charset_normalizer = nix.arg($, "charset-normalizer");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-debian",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "python-debian-team",
           repo: "python-debian",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-K5i0zDZXeAgoAdblqp+f5QX9FIZYVpJ4wWk29hwVjfM=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, encodings: nix.thunk(() => [charset_normalizer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, encodings: nix.thunk(() => [charset_normalizer]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_debfile.py"]))),
       pythonImportsCheck: nix.thunk(() => ["debian"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Debian package related modules",
         homepage: "https://salsa.debian.org/python-debian-team/python-debian",
         changelog: "https://salsa.debian.org/python-debian-team/python-debian/-/blob/master/debian/changelog",

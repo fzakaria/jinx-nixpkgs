@@ -26,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const pname = "matrix-appservice-irc";
   const version = "4.0.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "matrix-org",
       repo: "matrix-appservice-irc",
       tag: version,
       hash: "sha256-bM1CUuFRBOg/4y50gI7ZLwnrbBU6pZlqyitTI2WeVsA=",
     }))));
   const yarnOfflineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${pname}-${version}-offline-cache`),
       yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
       hash: "sha256-JHSHhkfDGAra6Lq2QB5ngkLo1jR+vrWeux+LYORciZ8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -66,15 +66,15 @@ ln -sv ${matrix_sdk_crypto_nodejs}/lib/node_modules/@matrix-org/matrix-sdk-crypt
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "matrix-appservice-irc": nix.thunk(() => nix.sel(nixosTests, "matrix-appservice-irc")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/matrix-org/matrix-appservice-irc/releases/tag/${version}`),
         description: "Node.js IRC bridge for Matrix",
         mainProgram: "matrix-appservice-irc",

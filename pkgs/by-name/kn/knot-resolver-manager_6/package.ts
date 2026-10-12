@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const kresd = nix.thunk(() => nix.sel(knot_resolver_6, "finalPackage"));
   nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kresd, "version")), "6.0.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/kn/knot-resolver-manager_6/package.nix:10:1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "knot-resolver",
       version: nix.thunk(() => nix.attr(kresd, "version")),
       src: nix.thunk(() => nix.attr(kresd, "src")),
@@ -78,11 +78,11 @@ echo -e 'quit()' | env -i ./kresd -a 127.0.0.1#53535 -c test-http.lua
         "tests/pytests/test_tls.py",
       ]),
       disabledTests: nix.thunk(() => ["test_proxy_random_close", "test_proxy_rehandshake_tls12"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, kresd: kresd })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, kresd: kresd })),
       meta: nix.thunk(() => nix.update(nix.sel(kresd, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(kresd, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "knot-resolver",
         description: nix.thunk(() => nix.attr(from, "description")),
       };

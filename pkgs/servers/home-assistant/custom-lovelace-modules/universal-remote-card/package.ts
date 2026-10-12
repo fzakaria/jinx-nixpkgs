@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "universal-remote-card";
       const version = "4.11.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nerwyn",
           repo: "android-tv-card",
           rev: version,
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-8A5FPbxqUIS76/6K6oTrgQMRYgl9Q+4JgQJAYGSCI2U=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/universal-remote-card.min.js $out\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "universal-remote-card.min.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "universal-remote-card.min.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Completely customizable universal remote card for Home Assistant. Supports multiple platforms out of the box",
         homepage: "https://github.com/Nerwyn/android-tv-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

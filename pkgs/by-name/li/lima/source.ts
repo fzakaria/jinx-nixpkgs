@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.2.0";
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "lima-vm",
         repo: "lima",
         tag: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       })))),
     vendorHash: "sha256-gD9C0kupcEWCsU0nYOg+VcBCWR0oRf6Gaw0DDn0xits=",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://github.com/lima-vm/lima",
       changelog: nix.thunk(() => nix.str`https://github.com/lima-vm/lima/releases/tag/v${version}`),
       knownVulnerabilities: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "2")), nix.thunk(() => nix.str`Lima version ${version} is EOL. See https://lima-vm.io/docs/releases/.`))),

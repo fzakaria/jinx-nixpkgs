@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zi",
       version: "1.0.0-unstable-2022-04-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "z-shell",
           repo: "zi",
           rev: "4ca4d3276ca816c3d37a31e47d754f9a732c40b9",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       installPhase: "mkdir -p $out\ncp -r lib zi.zsh $out\ninstallManPage docs/man/zi.1\ninstallShellCompletion --zsh lib/_zi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/z-shell/zi",
         description: "Swiss Army Knife for Zsh - Unix Shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

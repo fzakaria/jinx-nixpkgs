@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "rstudio-server-test",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jbedo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            "rstudio-server": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            "rstudio-server": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         };
       })(), formals$2),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "rstudio-server": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "rstudioServerWrapper", "override"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "rPackages", "ggplot2"))]),
                 })))),
             })),

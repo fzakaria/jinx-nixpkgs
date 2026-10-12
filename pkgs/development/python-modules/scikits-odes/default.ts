@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_lsodi"])));
       const meta = nix.thunk(() => nix.update(nix.sel(scikits_odes_core, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Scikit offering extra ode/dae solvers, as an extension to what is available in scipy",
         homepage: "https://github.com/bmcage/odes/blob/master/packages/scikits-odes",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         src,
         pname,

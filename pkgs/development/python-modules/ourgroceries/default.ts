@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ljmerza",
           repo: "py-our-groceries",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ourgroceries"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ljmerza/py-our-groceries/releases/tag/${nix.sel(src, "tag")}`),
         description: "Unofficial Python Wrapper for Our Groceries",
         homepage: "https://github.com/ljmerza/py-our-groceries",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

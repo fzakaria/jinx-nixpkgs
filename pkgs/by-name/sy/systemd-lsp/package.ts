@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const crateVersion = "0.2.1";
   const releaseDate = "2026.09.28";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "systemd-lsp",
       version: nix.thunk(() => nix.str`${crateVersion}-${releaseDate}`),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JFryy",
           repo: "systemd-lsp",
           tag: nix.thunk(() => nix.str`v${releaseDate}`),
@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
       preVersionCheck: nix.thunk(() => nix.str`version=${crateVersion}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         crateVersion: crateVersion,
         releaseDate: releaseDate,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-update-script`),
               runtimeInputs: nix.thunk(() => [curl, yq_go, common_updater_scripts, nix$, nix_update]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.bash"))),
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Language server implementation for systemd unit files made in Rust",
         homepage: "https://github.com/JFryy/systemd-lsp",
         changelog: nix.thunk(() => nix.str`https://github.com/JFryy/systemd-lsp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

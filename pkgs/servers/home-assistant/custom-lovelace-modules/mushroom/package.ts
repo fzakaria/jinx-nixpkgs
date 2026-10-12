@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mushroom";
       const version = "5.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "piitaya",
           repo: "lovelace-mushroom",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-5tiG9Daxk2souekAgsVVo8P2wlT+RAVaH0RrP2X8N5s=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ninstall -m0644 dist/mushroom.js $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/piitaya/lovelace-mushroom/releases/tag/v${version}`),
         description: "Mushroom Cards - Build a beautiful dashboard easily",
         homepage: "https://github.com/piitaya/lovelace-mushroom",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "hexa"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

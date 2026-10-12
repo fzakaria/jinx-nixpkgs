@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const ply = nix.arg($, "ply");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "djangoql",
       version: "0.19.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-vOCdUoV4V7InRPkyQfFtXGKhsRing04civoUvruWTu4=",
@@ -35,7 +35,7 @@ ${nix.sel(python, "executable")} test_project/manage.py test core.tests
 `),
       pythonImportsCheck: nix.thunk(() => ["djangoql"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced search language for Django",
         homepage: "https://github.com/ivelum/djangoql",
         changelog: "https://github.com/ivelum/djangoql/blob/master/CHANGES.rst",

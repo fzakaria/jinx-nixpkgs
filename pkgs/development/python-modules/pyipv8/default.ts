@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyipv8",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tribler",
           repo: "py-ipv8",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["ipv8/test/REST/"]),
       pythonImportsCheck: nix.thunk(() => ["ipv8"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of Tribler's IPv8 p2p-networking layer",
         homepage: "https://github.com/Tribler/py-ipv8",
         changelog: nix.thunk(() => nix.str`https://github.com/Tribler/py-ipv8/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

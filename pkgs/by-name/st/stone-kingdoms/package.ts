@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stone-kingdoms";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stone-kingdoms",
           repo: "stone-kingdoms",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, makeWrapper, strip_nondeterminism, zip]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "stone-kingdoms",
             exec: "stone-kingdoms",
             icon: "stone-kingdoms",
@@ -52,7 +52,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/stone-kingdoms \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real-time strategy game made with LÖVE based on the original Stronghold by Firefly studios",
         homepage: "https://gitlab.com/stone-kingdoms/stone-kingdoms",
         platforms: nix.thunk(() => nix.sel(love, "meta", "platforms")),
@@ -69,7 +69,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

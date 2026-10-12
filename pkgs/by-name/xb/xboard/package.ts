@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xboard",
       version: "4.9.1-unstable-2026-08-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://https.git.savannah.gnu.org/git/xboard.git",
           rev: "46b3c1d4ea45529cb2054516ff50feb902628d1c",
           sha256: "sha256-P21e6ikimEvm0k98RCeEuvC/ZVtWbosXzioOB18tUbI=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for chess engines",
         mainProgram: "xboard",
         homepage: "https://www.gnu.org/software/xboard/",

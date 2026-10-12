@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const reason = nix.arg($, "reason");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rebez",
       version: "unstable-2019-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jchavarri",
           repo: "rebez",
           rev: "03fa3b707abb28fdd710eb9e57ba40d9cd6ae163",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [reason]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cubic bezier implementation in Reason / OCaml",
         homepage: "https://github.com/jchavarri/rebez/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

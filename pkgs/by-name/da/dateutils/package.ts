@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.4.11",
       pname: "dateutils",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/hroptatyr/dateutils/downloads/dateutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uP6gsJcUu63yArmzQ0zOa1nCgueGkmjQwIuFiA/btEY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/hroptatyr/dateutils/commit/b30902c2f46288b570c7fa8de06e17cc7dfd6a37.patch",
             hash: "sha256-38LBUv4FLpK3TTIXXvIGr0qE0CSqF2IqCbZY5RGyi6Q=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line utilities for date and time calculations and conversions",
         homepage: "http://www.fresse.org/dateutils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -44,31 +44,31 @@ const pos$35 = nix.positions(here + "/nginx.nix", [["name", 9, 3], ["meta", 10, 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: "nginx",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nginx: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               commonHttpConfig: "log_format ceeformat '@cee: {\"status\":\"$status\",'\n  '\"request_time\":$request_time,'\n  '\"upstream_response_time\":$upstream_response_time,'\n  '\"pipe\":\"$pipe\",\"bytes_sent\":$bytes_sent,'\n  '\"connection\":\"$connection\",'\n  '\"remote_addr\":\"$remote_addr\",'\n  '\"host\":\"$host\",'\n  '\"timestamp\":\"$time_iso8601\",'\n  '\"request\":\"$request\",'\n  '\"http_referer\":\"$http_referer\",'\n  '\"upstream_addr\":\"$upstream_addr\"}';\n",
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "0.my.test": nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   extraConfig: "access_log syslog:server=unix:/dev/log,facility=user,tag=mytag,severity=info ceeformat;\nlocation /favicon.ico { allow all; access_log off; log_not_found off; }\n",
                 })),
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir \"$out\"\necho hello world > \"$out/index.html\"\n")),
                 })),
               })),
@@ -76,19 +76,19 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             etagSystem: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               configuration: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 services: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       localhost: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testdir2", nix.thunk(() => ({})), "mkdir \"$out\"\necho content changed > \"$out/index.html\"\n")))),
                       })),
                     })),
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             justReloadSystem: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               configuration: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 services: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       "1.my.test": nix.thunk(() => ({
-                        __proto__: pos$14,
-                        listen: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$13, addr: "127.0.0.1", port: 8080n }))]),
+                        [nix.POS]: pos$14,
+                        listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, addr: "127.0.0.1", port: 8080n }))]),
                       })),
                     })),
                   })),
@@ -116,31 +116,31 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             reloadRestartSystem: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               configuration: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 services: nix.thunk(() => ({
-                  __proto__: pos$21,
-                  nginx: nix.thunk(() => ({ __proto__: pos$20, package: nix.thunk(() => nix.sel(pkgs, "nginxMainline")) })),
+                  [nix.POS]: pos$21,
+                  nginx: nix.thunk(() => ({ [nix.POS]: pos$20, package: nix.thunk(() => nix.sel(pkgs, "nginxMainline")) })),
                 })),
               })),
             })),
             reloadWithErrorsSystem: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               configuration: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 services: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     package: nix.thunk(() => nix.sel(pkgs, "nginxMainline")),
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       "!@$$(#*%": nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         locations: nix.thunk(() => ({
-                          __proto__: pos$25,
-                          "~@#*$*!)": nix.thunk(() => ({ __proto__: pos$24, proxyPass: ";;;" })),
+                          [nix.POS]: pos$25,
+                          "~@#*$*!)": nix.thunk(() => ({ [nix.POS]: pos$24, proxyPass: ";;;" })),
                         })),
                       })),
                     })),

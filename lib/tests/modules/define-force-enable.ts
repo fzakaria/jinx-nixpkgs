@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/define-force-enable.nix", [["enable", 4, 3]
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  return nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ __proto__: pos$1, enable: false })));
+  return nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })));
 })(), formals$1);
 //# sourceMappingURL=define-force-enable.ts.map

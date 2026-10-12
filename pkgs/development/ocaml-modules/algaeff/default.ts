@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const qcheck_core = nix.arg($, "qcheck-core");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "algaeff",
       version: "2.0.0",
       minimalOCamlVersion: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedPRL",
           repo: "algaeff",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, qcheck_core]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reusable Effects-Based Components",
         homepage: "https://github.com/RedPRL/algaeff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

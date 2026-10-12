@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sqlline";
       const version = "1.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "julianhyde",
           repo: "sqlline",
           tag: nix.thunk(() => nix.str`sqlline-${version}`),
@@ -41,7 +41,7 @@ makeWrapper ${jre}/bin/java $out/bin/sqlline \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shell for issuing SQL to relational databases via JDBC",
         homepage: "https://github.com/julianhyde/sqlline",
         mainProgram: "sqlline",
@@ -52,7 +52,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

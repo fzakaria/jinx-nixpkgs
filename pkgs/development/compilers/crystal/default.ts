@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   const archs = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x86_64",
     "i686-linux": "linux-i686",
     "aarch64-darwin": "darwin-universal",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         const pname = "crystal-binary";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.app(binaryUrl, version_1, rel)),
             sha256: nix.thunk(() => nix.sel(sha256s, nix.key(nix.sel(stdenv, "system")))),
           }))));
@@ -85,10 +85,10 @@ tar --strip-components=1 -C $out -xf ${src}
 patchShebangs $out/bin/crystal
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), sha256s)),
         }));
-        return { __proto__: pos$4, pname, version: version_1, src, buildCommand, meta };
+        return { [nix.POS]: pos$4, pname, version: version_1, src, buildCommand, meta };
       })()));
   })(), formals$2);
   const generic = nix.lambda((args_1) => (() => {
@@ -101,20 +101,20 @@ patchShebangs $out/bin/crystal
     const extraBuildInputs = nix.argOr($_1, "extraBuildInputs", () => []);
     const buildFlags = nix.argOr($_1, "buildFlags", () => ["all", "docs", "release=1"]);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "crystal",
         buildFlags: buildFlags,
         doCheck: doCheck,
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "crystal-lang",
             repo: "crystal",
             rev: version,
             sha256: sha256,
           })))),
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata.patch"), nix.thunk(() => ({ __proto__: pos$6, tzdata: tzdata })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, tzdata: tzdata })))),
         ]),
         outputs: nix.thunk(() => ["out", "lib", "bin"]),
         postPatch: nix.thunk(() => nix.add(nix.str`export TMP=$(mktemp -d)
@@ -164,7 +164,7 @@ substituteInPlace spec/std/socket/udp_socket_spec.cr \\
         buildInputs: nix.thunk(() => nix.concat([boehmgc, pcre2, libevent, libyaml, zlib, libxml2, openssl], nix.concat(extraBuildInputs, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))))),
         makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CRYSTAL_CONFIG_VERSION=${version}`), "progress=1"]),
         env: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           LLVM_CONFIG: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "llvm", "dev")}/bin/llvm-config`),
           FLAGS: "--single-module",
           CRYSTAL_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/crystal`),
@@ -206,10 +206,10 @@ runHook postInstall
 export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           buildBinary: binary,
           buildCrystalPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-package.nix"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               crystal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           llvmPackages: llvmPackages,
@@ -217,7 +217,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(binary, "meta"));
           return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           description: "Compiled language with Ruby like syntax and type inference",
           mainProgram: "crystal",
@@ -237,17 +237,17 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
   })(), formals$3);
   return (() => {
     const binaryCrystal_1_10 = nix.thunk(() => nix.app(genericBinary, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         version: "1.10.1",
         sha256s: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "x86_64-linux": "sha256-F0LjdV02U9G6B8ApHxClF/o5KvhxMNukSX7Z2CwSNIs=",
           "aarch64-darwin": "sha256-5kkObQl0VIO6zqQ8TYl0JzYyUmwfmPE9targpfwseSQ=",
           "aarch64-linux": "sha256-AzFz+nrU/HJmCL1hbCKXf5ej/uypqV1GJPVLQ4J3778=",
         })),
       }))));
     const crystal_1_14 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         version: "1.14.1",
         sha256: "sha256-cQWK92BfksOW8GmoXn4BmPGJ7CLyLAeKccOffQMh5UU=",
         binary: binaryCrystal_1_10,
@@ -255,7 +255,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_15 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         version: "1.15.1",
         sha256: "sha256-L/Q8yZdDq/wn4kJ+zpLfi4pxznAtgjxTCbLnEiCC2K0=",
         binary: binaryCrystal_1_10,
@@ -263,7 +263,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_16 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         version: "1.16.3",
         sha256: "sha256-U9H1tHUMyDNicZnXzEccDki5bGXdV0B2Wu2PyCksPVI=",
         binary: binaryCrystal_1_10,
@@ -271,7 +271,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_17 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         version: "1.17.1",
         sha256: "sha256-+wHhozPhpIsfQy1Lw+V48zvuWCfXzT4IC9KA1AU/DLw=",
         binary: binaryCrystal_1_10,
@@ -279,7 +279,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_18 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         version: "1.18.2",
         sha256: "sha256-bwKs9bwD1WfS95DSxVY5AjT5Q61jOsfAH897tmiurng=",
         binary: binaryCrystal_1_10,
@@ -287,7 +287,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_19 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         version: "1.19.1",
         sha256: "sha256-vMS2GJb6c6RvflDSS2EWHsERJ0rvzZMVm50gaTXRs4Y=",
         binary: binaryCrystal_1_10,
@@ -296,7 +296,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
       }))));
     const crystal = crystal_1_19;
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       binaryCrystal_1_10,
       crystal_1_14,
       crystal_1_15,

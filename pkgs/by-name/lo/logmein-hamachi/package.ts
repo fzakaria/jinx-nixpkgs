@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "logmein-hamachi";
       const version = "2.1.0.203";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://vpn.net/installers/${pname}-${version}-${arch}.tgz`),
           sha256: sha256,
         }))));
@@ -34,7 +34,7 @@ ln -s $out/bin/hamachid $out/bin/hamachi
       const dontStrip = true;
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hosted VPN service that lets you securely extend LAN-like networks to distributed teams",
         homepage: "https://secure.logmein.com/products/hamachi/",
         changelog: "https://support.logmeininc.com/central/help/whats-new-in-hamachi",
@@ -47,7 +47,7 @@ ln -s $out/bin/hamachid $out/bin/hamachi
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const celestia_content = nix.argOr($, "celestia-content", () => nix.app(callPackage, nix.path(here, "./content.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "celestia",
       version: "1.6.4-unstable-2026-07-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CelestiaProject",
           repo: "Celestia",
           rev: "ded2c69ec7b819640a6c807fc7d4280bbf08e26b",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${celestia_content}/share/locale/* $out/share/locale
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://celestiaproject.space/",
         description: "Real-time 3D simulation of space",
         mainProgram: "celestia",

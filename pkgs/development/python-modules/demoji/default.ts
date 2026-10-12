@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bsolomon1124",
           repo: "demoji",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "substituteInPlace setup.cfg \\\n  --replace-fail \"pytest-runner\" \"\"\n";
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ujson: nix.thunk(() => [ujson]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ujson: nix.thunk(() => [ujson]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["demoji"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to find/replace/remove emojis in text strings",
         homepage: "https://github.com/bsolomon1124/demoji",
         changelog: nix.thunk(() => nix.str`https://github.com/bsolomon1124/demoji/blob/${version}/CHANGELOG.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

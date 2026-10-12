@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "greenlight",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       greenlight: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           greenlight: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$2, RAILS_ENV: "development", RAILS_DUMP_SCHEMA: false })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$2, RAILS_ENV: "development", RAILS_DUMP_SCHEMA: false })),
           })),
         })),
       })),

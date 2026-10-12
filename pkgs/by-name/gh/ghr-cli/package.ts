@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ghr-cli",
       version: "0.9.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chenyukang",
           repo: "ghr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-si8sQXC/F6PYYgGh7PT3jxKmLBzmp3QzlH1szYerA4k=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast terminal workspace for staying on top of GitHub",
         homepage: "https://catcoding.me/ghr/",
         changelog: nix.thunk(() => nix.str`https://github.com/chenyukang/ghr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

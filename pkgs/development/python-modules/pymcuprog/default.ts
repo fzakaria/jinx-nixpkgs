@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymcuprog",
       version: "3.19.4.61",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microchip-pic-avr-tools",
           repo: "pymcuprog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       versionCheckKeepEnvironment: "HOME",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python utility for programming various Microchip MCU devices using Microchip CMSIS-DAP based debuggers",
         mainProgram: "pymcuprog",
         homepage: "https://github.com/microchip-pic-avr-tools/pymcuprog",

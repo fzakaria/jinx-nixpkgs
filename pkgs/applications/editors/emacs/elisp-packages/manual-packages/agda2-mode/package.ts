@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const Agda = nix.thunk(() => nix.sel(haskellPackages, "Agda"));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "agda2-mode",
       src: nix.thunk(() => nix.attr(Agda, "src")),
       version: nix.thunk(() => nix.attr(Agda, "version")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(Agda, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Agda2-mode for Emacs extracted from Agda package",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const kubectl = nix.arg($, "kubectl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kns",
       version: "0-unstable-2023-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blendle",
           repo: "kns",
           rev: "86502949c31432bd95895cfb26d1c5893c533d5c",
@@ -35,7 +35,7 @@ install -D -m755 -t $out/bin bin/kns bin/ktx
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kubernetes namespace switcher",
         homepage: "https://github.com/blendle/kns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const atd = nix.arg($, "atd");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "atd-jsonlike",
       src: nix.thunk(() => nix.attr(atd, "src")),
       version: nix.thunk(() => nix.attr(atd, "version")),
       minimalOCamlVersion: "4.12",
       propagatedBuildInputs: nix.thunk(() => [re]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(atd, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Generic JSON-like AST for use with ATD code generators",
       })),
     })));

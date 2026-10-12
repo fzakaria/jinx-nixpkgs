@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "movim"));
   const defaultPHPCfg = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     output_buffering: 0n,
     error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT",
     "opcache.enable_cli": 1n,
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
     "opcache.fast_shutdown": 1n,
   }));
   const phpCfg = nix.thunk(() => nix.app(nix.sel(generators, "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(generators, "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
     })), nix.thunk(() => nix.update(defaultPHPCfg, nix.sel(cfg, "phpCfg")))));
   const podConfigFlags = nix.thunk(() => (() => {
@@ -181,10 +181,10 @@ export default nix.lambda((args) => (() => {
   })());
   const package$ = nix.thunk(() => (() => {
     const p = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         phpCfg: phpCfg,
         minifyStaticFiles: nix.thunk(() => nix.attr(cfg, "minifyStaticFiles")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgresql")), nix.thunk(() => ({ __proto__: pos$4, withPostgreSQL: true }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mariadb")), nix.thunk(() => ({ __proto__: pos$5, withMySQL: true }))))))));
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgresql")), nix.thunk(() => ({ [nix.POS]: pos$4, withPostgreSQL: true }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mariadb")), nix.thunk(() => ({ [nix.POS]: pos$5, withMySQL: true }))))))));
     return nix.app(nix.sel(p, "overrideAttrs"), (finalAttrs) => (prevAttrs) => (() => {
         const appDir = nix.thunk(() => nix.str`$out/share/php/${nix.sel(finalAttrs, "pname")}`);
         const stateDirectories = nix.thunk(() => nix.str`# Symlinking in our state directories
@@ -225,7 +225,7 @@ echo " done."
             ]));
         })());
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           postInstall: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n\n", nix.thunk(() => [
               nix.thunk(() => nix.sel(prevAttrs, "postInstall")),
               stateDirectories,
@@ -244,7 +244,7 @@ echo " done."
   const pool = "movim";
   const fpm = nix.thunk(() => nix.sel(config, "services", "phpfpm", "pools", nix.key(pool)));
   const phpExecutionUnit = nix.thunk(() => nix.str`phpfpm-${pool}`);
-  const dbUnit = nix.thunk(() => nix.sel({ __proto__: pos$7, postgresql: "postgresql.target", mariadb: "mysql.service" }, nix.key(nix.sel(cfg, "database", "type"))));
+  const dbUnit = nix.thunk(() => nix.sel({ [nix.POS]: pos$7, postgresql: "postgresql.target", mariadb: "mysql.service" }, nix.key(nix.sel(cfg, "database", "type"))));
   const webServerService = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "h2o"), null)) ? "h2o.service" : (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) ? "nginx.service" : null)));
   const socketOwner = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "h2o"), null)) ? nix.sel(config, "services", "h2o", "user") : (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) ? nix.sel(config, "services", "nginx", "user") : nix.sel(cfg, "user"))));
   const movimCSP = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "; ", nix.thunk(() => [
@@ -255,18 +255,18 @@ echo " done."
       "style-src 'self' 'unsafe-inline'",
     ])));
   return {
-    __proto__: pos$139,
+    [nix.POS]: pos$139,
     options: nix.thunk(() => ({
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       services: nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         movim: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           enable: nix.thunk(() => nix.app(mkEnableOption, "a Movim instance")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "movim", nix.thunk(() => ({})))),
           phpPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "php", nix.thunk(() => ({})))),
           phpCfg: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -280,73 +280,73 @@ echo " done."
               description: "Extra PHP INI options such as `memory_limit`, `max_execution_time`, etc.",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "movim",
               description: "User running Movim service",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "movim",
               description: "Group running Movim service",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/movim",
               description: "State directory of the `movim` user which holds the application’s state & data.",
             })))),
           logDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/log/movim",
               description: "Log directory of the `movim` user which holds the application’s logs.",
             })))),
           runtimeDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/run/movim",
               description: "Runtime directory of the `movim` user which holds the application’s caches & temporary files.",
             })))),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               description: "Fully-qualified domain name (FQDN) for the Movim instance.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "Movim daemon port.",
             })))),
           debug: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Debugging logs.",
             })))),
           verbose: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Verbose logs.",
             })))),
           minifyStaticFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "bool")), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     options: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       script: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               options: nix.thunk(() => ({
-                                __proto__: pos$19,
+                                [nix.POS]: pos$19,
                                 enable: nix.thunk(() => nix.app(mkEnableOption, "Script minification via esbuild")),
                                 target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$18,
+                                    [nix.POS]: pos$18,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                                     default: null,
                                     description: "esbuild target environment string. If not set, a sane\ndefault will be provided. See:\n<https://esbuild.github.io/api/#target>.\n",
@@ -355,14 +355,14 @@ echo " done."
                             })))),
                         })))),
                       style: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               options: nix.thunk(() => ({
-                                __proto__: pos$23,
+                                [nix.POS]: pos$23,
                                 enable: nix.thunk(() => nix.app(mkEnableOption, "Script minification via Lightning CSS")),
                                 target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$22,
+                                    [nix.POS]: pos$22,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                                     default: null,
                                     description: "Browserslists string target for browser compatibility.\nIf not set, a sane default will be provided. See:\n<https://browsersl.ist>.\n",
@@ -371,11 +371,11 @@ echo " done."
                             })))),
                         })))),
                       svg: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               options: nix.thunk(() => ({
-                                __proto__: pos$26,
+                                [nix.POS]: pos$26,
                                 enable: nix.thunk(() => nix.app(mkEnableOption, "SVG minification via Scour")),
                               })),
                             })))),
@@ -387,28 +387,28 @@ echo " done."
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  script.enable = false;\n  style = {\n    enable = true;\n    target = \"> 0.5%, last 2 versions, Firefox ESR, not dead\";\n  };\n  svg.enable = true;\n}\n")),
             })))),
           precompressStaticFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   options: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     brotli: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       enable: nix.thunk(() => nix.app(mkEnableOption, "Brotli precompression")),
                       package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "brotli", nix.thunk(() => ({})))),
                       compressionLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 11n)),
                           default: 11n,
                           description: "Brotli compression level",
                         })))),
                     })),
                     gzip: nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       enable: nix.thunk(() => nix.app(mkEnableOption, "Gzip precompression")),
                       package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gzip", nix.thunk(() => ({})))),
                       compressionLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1n, 9n)),
                           default: 9n,
                           description: "Gzip compression level",
@@ -417,80 +417,80 @@ echo " done."
                   })),
                 })))),
               default: nix.thunk(() => ({
-                __proto__: pos$40,
-                brotli: nix.thunk(() => ({ __proto__: pos$38, enable: true })),
-                gzip: nix.thunk(() => ({ __proto__: pos$39, enable: false })),
+                [nix.POS]: pos$40,
+                brotli: nix.thunk(() => ({ [nix.POS]: pos$38, enable: true })),
+                gzip: nix.thunk(() => ({ [nix.POS]: pos$39, enable: false })),
               })),
               description: "Aggressively precompress static files",
             })))),
           podConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   options: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     info: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "Content of the info box on the login page",
                       })))),
                     description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "General description of the instance",
                       })))),
                     timezone: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "The server timezone",
                       })))),
                     restrictsuggestions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
                         default: null,
                         description: "Only suggest chatrooms, Communities and other contents that are available on the user XMPP server and related services",
                       })))),
                     chatonly: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
                         default: null,
                         description: "Disable all the social feature (Communities, Blog…) and keep only the chat ones",
                       })))),
                     disableregistration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
                         default: null,
                         description: "Remove the XMPP registration flow and buttons from the interface",
                       })))),
                     loglevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 3n)))),
                         default: null,
                         description: "The server loglevel",
                       })))),
                     locale: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "The server main locale",
                       })))),
                     xmppdomain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "The default XMPP server domain",
                       })))),
                     xmppdescription: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "The default XMPP server description",
                       })))),
                     xmppwhitelist: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$52,
+                        [nix.POS]: pos$52,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "The allowlisted XMPP servers",
@@ -501,7 +501,7 @@ echo " done."
               description: "Pod configuration (values from `php daemon.php config --help`).\nNote that these values will now be disabled in the admin panel.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -514,55 +514,55 @@ echo " done."
               description: ".env settings for Movim. Secrets should use `secretFile` option instead. `null`s will be culled.",
             })))),
           secretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "The secret file to be sourced for the .env settings.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mariadb", "postgresql"]))),
                 example: "mariadb",
                 default: "postgresql",
                 description: "Database engine to use.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                 default: "movim",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                 default: "movim",
                 description: "Database username.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "local database using UNIX socket authentication",
               })))),
           })),
           h2o: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$64,
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$63, config: config, lib: lib })))))))),
+              [nix.POS]: pos$64,
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$63, config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.movim.domain}\"\n  ];\n  acme.enable = true;\n  tls.policy = \"force\";\n}\n")),
               description: "With this option, you can customize an H2O virtual host which already\nhas sensible defaults for Movim. Set to `{ }` if you do not need any\ncustomization to the virtual host. If enabled, then by default, the\n{option}`serverName` is `${domain}`, If this is set to `null` (the\ndefault), no H2O `hosts` will be configured.\n",
             })))),
           nginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$66,
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$65, config: config, lib: lib })))))))),
+              [nix.POS]: pos$66,
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$65, config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.movim.domain}\"\n  ];\n  enableACME = true;\n  forceHttps = true;\n}\n")),
               description: "With this option, you can customize an Nginx virtual host which\nalready has sensible defaults for Movim. Set to `{ }` if you do not\nneed any customization to the virtual host. If enabled, then by\ndefault, the {option}`serverName` is `${domain}`, If this is set to\n`null` (the default), no Nginx `virtualHost` will be configured.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -578,13 +578,13 @@ echo " done."
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         assertions: nix.thunk(() => [
           nix.thunk(() => (() => {
             const webServers = nix.thunk(() => ["h2o", "nginx"]);
             const checkConfigs = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (ws) => nix.str`services.movim.${ws}`, webServers));
             return {
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               assertion: nix.thunk(() => nix.le(nix.builtins.length(nix.thunk(() => nix.app(nix.sel(lib, "lists", "filter"), (ws) => !nix.eq(nix.sel(cfg, nix.key(nix.force(ws))), null), webServers))), 1n)),
               message: nix.thunk(() => nix.str`At most 1 web server virtual host configuration should be enabled
 for Movim at a time. Check ${checkConfigs}.
@@ -592,36 +592,36 @@ for Movim at a time. Check ${checkConfigs}.
             };
           })()),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$72, systemPackages: nix.thunk(() => [package$]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$72, systemPackages: nix.thunk(() => [package$]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           users: nix.thunk(() => nix.update({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             movim: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "movim")), nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })))),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "h2o"), null)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "services", "h2o", "user")}`, nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
               }))],
             ]))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
               }))],
             ])))))),
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$112,
+          [nix.POS]: pos$112,
           movim: nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             settings: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   DAEMON_URL: nix.thunk(() => nix.str`//${nix.sel(cfg, "domain")}`),
                   DAEMON_PORT: nix.thunk(() => nix.sel(cfg, "port")),
                   DAEMON_INTERFACE: "127.0.0.1",
@@ -629,8 +629,8 @@ for Movim at a time. Check ${checkConfigs}.
                   DAEMON_VERBOSE: nix.thunk(() => nix.sel(cfg, "verbose")),
                 })),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$80,
-                    DB_DRIVER: nix.thunk(() => nix.sel({ __proto__: pos$79, postgresql: "pgsql", mariadb: "mysql" }, nix.key(nix.sel(cfg, "database", "type")))),
+                    [nix.POS]: pos$80,
+                    DB_DRIVER: nix.thunk(() => nix.sel({ [nix.POS]: pos$79, postgresql: "pgsql", mariadb: "mysql" }, nix.key(nix.sel(cfg, "database", "type")))),
                     DB_HOST: "localhost",
                     DB_PORT: nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "database", "type")), "settings", "port")),
                     DB_DATABASE: nix.thunk(() => nix.sel(cfg, "database", "name")),
@@ -639,7 +639,7 @@ for Movim at a time. Check ${checkConfigs}.
                   })))),
               ]))),
             poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), v))), nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 pm: "dynamic",
                 "php_admin_value[error_log]": "stderr",
                 "php_admin_flag[log_errors]": true,
@@ -652,39 +652,39 @@ for Movim at a time. Check ${checkConfigs}.
               })))),
           })),
           h2o: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "h2o"), null)), nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               enable: true,
               hosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$91,
+                      [nix.POS]: pos$91,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$90,
+                        [nix.POS]: pos$90,
                         paths: nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           "/ws/": nix.thunk(() => ({
-                            __proto__: pos$83,
+                            [nix.POS]: pos$83,
                             "proxy.preserve-host": "ON",
                             "proxy.tunnel": "ON",
                             "proxy.reverse.url": nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "DAEMON_INTERFACE")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}/`),
                           })),
                           "/": nix.thunk(() => nix.update({
-                            __proto__: pos$85,
+                            [nix.POS]: pos$85,
                             "file.dir": nix.thunk(() => nix.str`${package$}/share/php/movim/public`),
                             "file.index": nix.thunk(() => ["index.php", "index.html"]),
-                            redirect: nix.thunk(() => ({ __proto__: pos$84, url: "/index.php/", internal: "YES", status: 307n })),
+                            redirect: nix.thunk(() => ({ [nix.POS]: pos$84, url: "/index.php/", internal: "YES", status: 307n })),
                             "header.set": nix.thunk(() => [nix.thunk(() => nix.str`Content-Security-Policy: ${movimCSP}`)]),
                           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "precompressStaticFiles")), null);
                               return (nix.asBool(nix.sel(nix.lookup(w, "brotli"), "enable")) || nix.asBool(nix.sel(nix.lookup(w, "gzip"), "enable")));
-                            })()), nix.thunk(() => ({ __proto__: pos$86, "file.send-compressed": "ON" }))))),
+                            })()), nix.thunk(() => ({ [nix.POS]: pos$86, "file.send-compressed": "ON" }))))),
                         })),
                         "file.custom-handler": nix.thunk(() => ({
-                          __proto__: pos$89,
+                          [nix.POS]: pos$89,
                           extension: nix.thunk(() => [".php"]),
                           "fastcgi.document_root": package$,
                           "fastcgi.connect": nix.thunk(() => ({
-                            __proto__: pos$88,
+                            [nix.POS]: pos$88,
                             port: nix.thunk(() => nix.sel(fpm, "socket")),
                             type: "unix",
                           })),
@@ -696,7 +696,7 @@ for Movim at a time. Check ${checkConfigs}.
               ])),
             })))),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.update({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               enable: true,
               recommendedOptimisation: nix.thunk(() => nix.app(mkDefault, true)),
               recommendedProxySettings: true,
@@ -705,29 +705,29 @@ for Movim at a time. Check ${checkConfigs}.
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$101,
+                      [nix.POS]: pos$101,
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${package$}/share/php/movim/public`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$100,
+                        [nix.POS]: pos$100,
                         "/favicon.ico": nix.thunk(() => ({
-                          __proto__: pos$93,
+                          [nix.POS]: pos$93,
                           priority: 100n,
                           extraConfig: "access_log off;\nlog_not_found off;\n",
                         })),
                         "/robots.txt": nix.thunk(() => ({
-                          __proto__: pos$94,
+                          [nix.POS]: pos$94,
                           priority: 100n,
                           extraConfig: "access_log off;\nlog_not_found off;\n",
                         })),
-                        "~ /\\.(?!well-known).*": nix.thunk(() => ({ __proto__: pos$95, priority: 210n, extraConfig: "deny all;\n" })),
+                        "~ /\\.(?!well-known).*": nix.thunk(() => ({ [nix.POS]: pos$95, priority: 210n, extraConfig: "deny all;\n" })),
                         "/picture": nix.thunk(() => ({
-                          __proto__: pos$96,
+                          [nix.POS]: pos$96,
                           priority: 400n,
                           tryFiles: "$uri $uri/ /index.php$is_args$args",
                           extraConfig: "set $no_cache 0; # Enable cache only there\n",
                         })),
                         "/": nix.thunk(() => ({
-                          __proto__: pos$97,
+                          [nix.POS]: pos$97,
                           priority: 490n,
                           tryFiles: "$uri $uri/ /index.php$is_args$args",
                           extraConfig: nix.thunk(() => nix.str`add_header Content-Security-Policy "${movimCSP}";
@@ -735,7 +735,7 @@ set $no_cache 1;
 `),
                         })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$98,
+                          [nix.POS]: pos$98,
                           priority: 500n,
                           tryFiles: "$uri =404",
                           extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
@@ -751,7 +751,7 @@ fastcgi_pass unix:${nix.sel(fpm, "socket")};
 `),
                         })),
                         "/ws/": nix.thunk(() => ({
-                          __proto__: pos$99,
+                          [nix.POS]: pos$99,
                           priority: 900n,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "DAEMON_INTERFACE")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}/`),
                           proxyWebsockets: true,
@@ -764,32 +764,32 @@ fastcgi_pass unix:${nix.sel(fpm, "socket")};
                   ])))],
               ])),
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "precompressStaticFiles", "gzip", "enable")), nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 recommendedGzipSettings: nix.thunk(() => nix.app(mkDefault, true)),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "precompressStaticFiles", "brotli", "enable")), nix.thunk(() => ({
-                __proto__: pos$104,
+                [nix.POS]: pos$104,
                 recommendedBrotliSettings: nix.thunk(() => nix.app(mkDefault, true)),
               })))))))),
           mysql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mariadb")))), nix.thunk(() => ({
-              __proto__: pos$106,
+              [nix.POS]: pos$106,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$105,
+                  [nix.POS]: pos$105,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")))), nix.thunk(() => ({
-              __proto__: pos$108,
+              [nix.POS]: pos$108,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -798,16 +798,16 @@ fastcgi_pass unix:${nix.sel(fpm, "socket")};
 `),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             pools: nix.thunk(() => nix.attrsDyn({}, [
               [pool, nix.thunk(() => ({
-                __proto__: pos$110,
+                [nix.POS]: pos$110,
                 phpPackage: nix.thunk(() => nix.sel(package$, "php")),
                 user: nix.thunk(() => nix.sel(cfg, "user")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 phpOptions: "error_log = 'stderr'\nlog_errors = on\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$109,
+                  [nix.POS]: pos$109,
                   "listen.owner": socketOwner,
                   "listen.group": nix.thunk(() => nix.sel(cfg, "group")),
                   "listen.mode": "0660",
@@ -818,11 +818,11 @@ fastcgi_pass unix:${nix.sel(fpm, "socket")};
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             "movim-data-setup": nix.thunk(() => ({
-              __proto__: pos$115,
+              [nix.POS]: pos$115,
               description: "Movim setup: .env file, databases init, cache reload",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requiredBy: nix.thunk(() => [nix.thunk(() => nix.str`${phpExecutionUnit}.service`)]),
@@ -831,13 +831,13 @@ fastcgi_pass unix:${nix.sel(fpm, "socket")};
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit)),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit)),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$113,
+                [nix.POS]: pos$113,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 UMask: "077",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   LoadCredential: nix.thunk(() => nix.str`env-secrets:${nix.sel(cfg, "secretFile")}`),
                 }))))),
               script: nix.thunk(() => nix.add(nix.str`# Env vars
@@ -868,7 +868,7 @@ fi
                 })())))),
             })),
             movim: nix.thunk(() => ({
-              __proto__: pos$118,
+              [nix.POS]: pos$118,
               description: "Movim daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network.target", "local-fs.target"]),
@@ -881,12 +881,12 @@ fi
                 nix.thunk(() => nix.str`${phpExecutionUnit}.service`),
               ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(webServerService, null)), webServerService)))),
               environment: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 PUBLIC_URL: nix.thunk(() => nix.str`//${nix.sel(cfg, "domain")}`),
                 WS_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$117,
+                [nix.POS]: pos$117,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 WorkingDirectory: nix.thunk(() => nix.str`${package$}/share/php/movim`),
@@ -895,7 +895,7 @@ fi
             })),
           }, [
             [nix.force(phpExecutionUnit), nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(webServerService, null)), webServerService)),
               requiredBy: nix.thunk(() => ["movim.service"]),
               before: nix.thunk(() => nix.concat(["movim.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(webServerService, null)), webServerService))),
@@ -905,70 +905,70 @@ fi
             }))],
           ])),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             settings: nix.thunk(() => ({
-              __proto__: pos$135,
+              [nix.POS]: pos$135,
               "10-movim": nix.thunk(() => (() => {
                 const w = nix.withScope(cfg, null);
                 return nix.attrsDyn({}, [
                   [nix.str`${nix.lookup(w, "dataDir")}`, nix.thunk(() => ({
-                    __proto__: pos$122,
+                    [nix.POS]: pos$122,
                     d: nix.thunk(() => ({
-                      __proto__: pos$121,
+                      [nix.POS]: pos$121,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0710",
                     })),
                   }))],
                   [nix.str`${nix.lookup(w, "dataDir")}/public`, nix.thunk(() => ({
-                    __proto__: pos$124,
+                    [nix.POS]: pos$124,
                     d: nix.thunk(() => ({
-                      __proto__: pos$123,
+                      [nix.POS]: pos$123,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0750",
                     })),
                   }))],
                   [nix.str`${nix.lookup(w, "dataDir")}/public/cache`, nix.thunk(() => ({
-                    __proto__: pos$126,
+                    [nix.POS]: pos$126,
                     d: nix.thunk(() => ({
-                      __proto__: pos$125,
+                      [nix.POS]: pos$125,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0750",
                     })),
                   }))],
                   [nix.str`${nix.lookup(w, "dataDir")}/public/images`, nix.thunk(() => ({
-                    __proto__: pos$128,
+                    [nix.POS]: pos$128,
                     d: nix.thunk(() => ({
-                      __proto__: pos$127,
+                      [nix.POS]: pos$127,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0750",
                     })),
                   }))],
                   [nix.str`${nix.lookup(w, "runtimeDir")}`, nix.thunk(() => ({
-                    __proto__: pos$130,
+                    [nix.POS]: pos$130,
                     d: nix.thunk(() => ({
-                      __proto__: pos$129,
+                      [nix.POS]: pos$129,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0700",
                     })),
                   }))],
                   [nix.str`${nix.lookup(w, "runtimeDir")}/cache`, nix.thunk(() => ({
-                    __proto__: pos$132,
+                    [nix.POS]: pos$132,
                     d: nix.thunk(() => ({
-                      __proto__: pos$131,
+                      [nix.POS]: pos$131,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0700",
                     })),
                   }))],
                   [nix.str`${nix.lookup(w, "logDir")}`, nix.thunk(() => ({
-                    __proto__: pos$134,
+                    [nix.POS]: pos$134,
                     d: nix.thunk(() => ({
-                      __proto__: pos$133,
+                      [nix.POS]: pos$133,
                       user: nix.thunk(() => nix.lookup(w, "user")),
                       group: nix.thunk(() => nix.lookup(w, "group")),
                       mode: "0700",

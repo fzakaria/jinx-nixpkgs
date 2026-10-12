@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const ocsigen_server = nix.arg($, "ocsigen_server");
   const xml_light = nix.arg($, "xml-light");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocsipersist-pgsql-config",
       version: nix.thunk(() => nix.attr(ocsipersist_pgsql, "version")),
       src: nix.thunk(() => nix.attr(ocsipersist_pgsql, "src")),
       propagatedBuildInputs: nix.thunk(() => [findlib, ocsipersist_pgsql, ocsigen_server, xml_light]),
       meta: nix.thunk(() => nix.update(nix.sel(ocsipersist_pgsql, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Ocsigen Server configuration file extension for ocsipersist-pgsql",
       })),
     })));

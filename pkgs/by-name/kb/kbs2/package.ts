@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kbs2",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woodruffw",
           repo: "kbs2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => nix.concat(["--skip=kbs2::config::tests::test_find_config_dir"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=test_ragelib_rewrap_keyfile"])))),
       postInstall: nix.thunk(() => nix.add("mkdir -p $out/share/kbs2\ncp -r contrib/ $out/share/kbs2\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kbs2 \\\n  --bash <($out/bin/kbs2 --completions bash) \\\n  --fish <($out/bin/kbs2 --completions fish) \\\n  --zsh <($out/bin/kbs2 --completions zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secret manager backed by age",
         mainProgram: "kbs2",
         homepage: "https://github.com/woodruffw/kbs2",

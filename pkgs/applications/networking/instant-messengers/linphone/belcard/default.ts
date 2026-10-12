@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   const testers = nix.arg($, "testers");
   return nix.app(mkLinphoneDerivation, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "belcard",
       propagatedBuildInputs: nix.thunk(() => [bctoolbox, belr]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=NO"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["BelCard"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ library to manipulate VCard standard format. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),

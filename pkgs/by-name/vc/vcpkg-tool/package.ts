@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const extraRuntimeDeps = nix.argOr($, "extraRuntimeDeps", () => []);
   const doWrap = nix.argOr($, "doWrap", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "vcpkg-tool",
       version: "2025-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "vcpkg-tool",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,25 +77,25 @@ export default nix.lambda((args) => (() => {
         ], extraRuntimeDeps));
         const argsWithDefault = nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arg: "--downloads-root",
             env: "NIX_VCPKG_DOWNLOADS_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/downloads",
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             arg: "--x-buildtrees-root",
             env: "NIX_VCPKG_BUILDTREES_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/buildtrees",
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             arg: "--x-packages-root",
             env: "NIX_VCPKG_PACKAGES_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/packages",
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             arg: "--x-install-root",
             env: "NIX_VCPKG_INSTALL_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/installed",
@@ -177,11 +177,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       })()),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), doWrap, "mv \"$out/bin/vcpkg\" \"$out/bin/.vcpkg-wrapped\"\nprintf \"%s\" \"$vcpkgWrapper\" > \"$out/bin/vcpkg\"\nchmod 555 \"$out/bin/vcpkg\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), doWrap, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             testWrapper: nix.thunk(() => nix.app(runCommand, "vcpkg-tool-test-wrapper", nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), nix.thunk(() => nix.str`export NIX_VCPKG_DEBUG_PRINT_ENVVARS=true
 export VCPKG_ROOT=.
@@ -193,7 +193,7 @@ cat "$out" | head -n 4 | diff - ${nix.app(writeText, "vcpkg-tool-test-wrapper-ex
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Components of microsoft/vcpkg's binary",
         mainProgram: "vcpkg",
         homepage: "https://github.com/microsoft/vcpkg-tool",

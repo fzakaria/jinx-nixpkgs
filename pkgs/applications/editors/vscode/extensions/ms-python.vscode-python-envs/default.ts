@@ -18,40 +18,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "linux-x64",
             hash: "sha256-fOqG/GSQmKDHA3J10x/m9q5URjSPAoWHqg/OfZtz418=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "linux-arm64",
             hash: "sha256-MA2kXhM6rSp9OPtDm4daFrBpH+CNNXLjSG095QndOvM=",
           })),
           "x86_64-darwin": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             arch: "darwin-x64",
             hash: "sha256-UiA9Ar34UuHKBKm0B6jc+qWwzxlJbXEG2FaMBV39AeI=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             arch: "darwin-arm64",
             hash: "sha256-+v8U/aFNp/b6Dj62J+MLYQ8dcfO4qinWd/XST6ntnNc=",
           })),
         }));
         return nix.update({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "vscode-python-envs",
           publisher: "ms-python",
           version: "1.36.0",
         }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Provides a unified python environment experience",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-python-envs",
         homepage: "https://github.com/microsoft/vscode-python-environments",

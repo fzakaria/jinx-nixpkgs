@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libnvvm",
       outputs: nix.thunk(() => ["out"]),
       prePatch: "nixLog \"un-nesting top-level $PWD/nvvm directory\"\nmv -v \"$PWD/nvvm\"/* \"$PWD/\"\nnixLog \"removing empty $PWD/nvvm directory\"\nrmdir -v \"$PWD/nvvm\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Interface for generating PTX code from both binary and text NVVM IR inputs",
         longDescription: "libNVVM API provides an interface for generating PTX code from both binary and text NVVM IR inputs.\n",
         homepage: "https://docs.nvidia.com/cuda/libnvvm-api",

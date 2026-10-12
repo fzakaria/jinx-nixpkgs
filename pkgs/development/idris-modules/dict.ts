@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dict",
       version: "2016-12-26",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "be5invis",
           repo: "idris-dict",
           rev: "dddc7c9f45e079b151ee03c9752b968ceeab9dab",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "sed -i 's/\\\"//g' source/dict.ipkg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dict k v in Idris",
         homepage: "https://github.com/be5invis/idris-dict",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

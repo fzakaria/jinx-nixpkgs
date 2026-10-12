@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "geocode-glib",
       version: "3.26.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/geocode-glib/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/geocode-glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "LZpoJtFYRwRJoXOHEiFZbaD4Pr3P+YuQxwSQiQVqN6o=",
         })))),
@@ -54,15 +54,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dinstalled_test_prefix=${nix.builtins.placeholder("installedTests")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, attrPath: "geocode-glib_2", packageName: "geocode-glib" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "geocode-glib_2", packageName: "geocode-glib" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "geocode-glib")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/geocode-glib/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Convenience library for the geocoding and reverse geocoding using Nominatim service",
         homepage: "https://gitlab.gnome.org/GNOME/geocode-glib",

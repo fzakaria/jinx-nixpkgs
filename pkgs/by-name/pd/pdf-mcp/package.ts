@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jztan",
           repo: "pdf-mcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rejects_text_html_content_type"]);
       const pytestFlags = nix.thunk(() => ["-m", "not slow", "--ignore-glob=*/test_benchmark_*.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MCP server that lets AI agents work through large PDFs without overflowing their context",
         homepage: "https://github.com/jztan/pdf-mcp",
         changelog: nix.thunk(() => nix.str`https://github.com/jztan/pdf-mcp/releases/tag/v${version}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const mbedtls = nix.arg($, "mbedtls");
   const open62541 = nix.arg($, "open62541");
-  const encryptionBackend = nix.thunk(() => nix.selOr({ __proto__: pos$1, openssl: openssl, mbedtls: mbedtls }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported encryption backend: ${withEncryption}`)), nix.key(nix.str`${withEncryption}`)));
+  const encryptionBackend = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, openssl: openssl, mbedtls: mbedtls }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported encryption backend: ${withEncryption}`)), nix.key(nix.str`${withEncryption}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "open62541",
       version: "1.4.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "open62541",
           repo: "open62541",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -105,13 +105,13 @@ rm -r bin/libopen62541*
 `)))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
-          const open62541Full = (encBackend) => nix.app(nix.sel(nix.app(nix.sel(open62541, "overrideAttrs"), (_) => ({ __proto__: pos$3, doCheck: true })), "override"), nix.thunk(() => ({ __proto__: pos$4, withDoc: true, withEncryption: encBackend })));
+          const open62541Full = (encBackend) => nix.app(nix.sel(nix.app(nix.sel(open62541, "overrideAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true })), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withDoc: true, withEncryption: encBackend })));
           return {
-            __proto__: pos$6,
-            open62541WithTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$5, doCheck: true }))),
+            [nix.POS]: pos$6,
+            open62541WithTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$5, doCheck: true }))),
             open62541Full: nix.thunk(() => nix.app(open62541Full, false)),
             "open62541Full-openssl": nix.thunk(() => nix.app(open62541Full, "openssl")),
             "open62541Full-mbedtls": nix.thunk(() => nix.app(open62541Full, "mbedtls")),
@@ -119,7 +119,7 @@ rm -r bin/libopen62541*
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open source implementation of OPC UA",
         longDescription: "open62541 (http://open62541.org) is an open source and free implementation\nof OPC UA (OPC Unified Architecture) written in the common subset of the\nC99 and C++98 languages.\nThe library is usable with all major compilers and provides the necessary\ntools to implement dedicated OPC UA clients and servers, or to integrate\nOPC UA-based communication into existing applications.\n",
         homepage: "https://www.open62541.org",

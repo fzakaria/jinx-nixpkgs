@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const description = "PrusaSlicer fork with more features and faster development cycle";
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/supermerill/SuperSlicer/commit/fa7c545efa5d1880cf24af32083094fc872d3692.patch",
         hash: "sha256-fh31qrqjQiRQL03pQl4KJAEtbKMwG8/nJroqIDOIePw=",
       })))),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
     nix.path(here, "./no-ilmbase.patch"),
   ]);
   const wxwidgets_3_1_prusa = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_1, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wxwidgets-prusa3d-patched",
       version: "3.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "prusa3d",
           repo: "wxWidgets",
           rev: "489f6118256853cf5b299d595868641938566cdb",
@@ -57,23 +57,23 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-fix-assertion-using-hide-in-destroy.patch")]),
     })));
   const versions = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     stable: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2.5.59.13",
       hash: "sha256-FkoGcgVoBeHSZC3W5y30TBPmPrWnZSlO66TgwskgqAU=",
       patches: patches,
-      overrides: nix.thunk(() => ({ __proto__: pos$4, "wxGTK-override": wxwidgets_3_1_prusa })),
+      overrides: nix.thunk(() => ({ [nix.POS]: pos$4, "wxGTK-override": wxwidgets_3_1_prusa })),
     })),
     latest: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "2.5.59.13",
       hash: "sha256-FkoGcgVoBeHSZC3W5y30TBPmPrWnZSlO66TgwskgqAU=",
       patches: patches,
-      overrides: nix.thunk(() => ({ __proto__: pos$6, "wxGTK-override": wxwidgets_3_1_prusa })),
+      overrides: nix.thunk(() => ({ [nix.POS]: pos$6, "wxGTK-override": wxwidgets_3_1_prusa })),
     })),
     beta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "2.7.61.6",
       hash: "sha256-j9er2/z4jl04HI6aOMJ6YCXwhZ6qEhgMJjW117cLnz0=",
       patches: nix.thunk(() => [nix.path(here, "./super-slicer-allow-wayland.patch")]),
@@ -85,12 +85,12 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const patches_1 = nix.argOr($_1, "patches", () => []);
     return (super$) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       version: version,
       pname: pname,
       patches: patches_1,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "supermerill",
           repo: "SuperSlicer",
           hash: hash,
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.sel(super$, "buildInputs"), [libspnav])),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "superslicer",
             exec: "superslicer",
             icon: appname,
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: description,
         homepage: "https://github.com/supermerill/SuperSlicer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
       passthru: allVersions,
     });
   })(), formals$2);
-  const prusa_slicer_deps_override = nix.thunk(() => nix.app(nix.sel(prusa_slicer, "override"), nix.thunk(() => ({ __proto__: pos$14, "opencascade-override": opencascade_occt_7_6 }))));
+  const prusa_slicer_deps_override = nix.thunk(() => nix.app(nix.sel(prusa_slicer, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, "opencascade-override": opencascade_occt_7_6 }))));
   const allVersions = nix.thunk(() => nix.builtins.mapAttrs((_name) => (version) => nix.app(nix.sel(nix.app(nix.sel(prusa_slicer_deps_override, "override"), nix.thunk(() => nix.selOr(version, () => ({}), "overrides"))), "overrideAttrs"), nix.thunk(() => nix.app(override, version))), versions));
   return nix.sel(allVersions, "stable");
 })(), formals$1);

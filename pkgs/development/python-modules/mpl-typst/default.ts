@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daskol",
           repo: "mpl-typst",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,11 +55,11 @@ substituteInPlace mpl_typst/config.py \\
         "tests/regression/issue32_test.py::TestIssue32::test_reference",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["mpl_typst/backend_test.py"]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Typst backend for matplotlib",
         homepage: "https://github.com/daskol/mpl-typst",
         changelog: nix.thunk(() => nix.str`https://github.com/daskol/mpl-typst/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +70,7 @@ substituteInPlace mpl_typst/config.py \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

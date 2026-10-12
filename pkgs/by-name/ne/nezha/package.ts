@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const frontendName = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "nezha-theme-"));
   const frontend_templates = nix.thunk(() => (() => {
     const mkTemplate = (theme) => (extra) => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: nix.thunk(() => nix.str`${nix.app(frontendName, nix.thunk(() => nix.sel(theme, "pname")))}-dist`),
       name: nix.thunk(() => nix.app(frontendName, nix.thunk(() => nix.sel(theme, "pname")))),
       repository: nix.thunk(() => nix.selOr(theme, () => "", "meta", "homepage")),
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
       is_admin: false,
     }, extra);
     const officialThemes = nix.thunk(() => [
-      nix.thunk(() => nix.app(mkTemplate, nezha_theme_admin, nix.thunk(() => ({ __proto__: pos$2, name: "OfficialAdmin", is_admin: true, is_official: true })))),
-      nix.thunk(() => nix.app(mkTemplate, nezha_theme_user, nix.thunk(() => ({ __proto__: pos$3, name: "Official", is_official: true })))),
+      nix.thunk(() => nix.app(mkTemplate, nezha_theme_admin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "OfficialAdmin", is_admin: true, is_official: true })))),
+      nix.thunk(() => nix.app(mkTemplate, nezha_theme_user, nix.thunk(() => ({ [nix.POS]: pos$3, name: "Official", is_official: true })))),
     ]);
     const communityThemes = nix.thunk(() => nix.builtins.map((t) => nix.app(mkTemplate, t, nix.thunk(() => ({}))), withThemes));
     return nix.app(nix.sel(nix.app(nix.sel(formats, "yaml"), nix.thunk(() => ({}))), "generate"), "frontend-templates.yaml", nix.thunk(() => nix.concat(officialThemes, communityThemes)));
   })());
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "nezha",
       version: "2.3.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "nezhahq",
           repo: "nezha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,12 +83,12 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", installThemeCmd, allThemes)
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, nezha: nix.thunk(() => nix.attr(nixosTests, "nezha")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nezha: nix.thunk(() => nix.attr(nixosTests, "nezha")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Self-hosted, lightweight server and website monitoring and O&M tool",
         homepage: "https://github.com/nezhahq/nezha",
         changelog: nix.thunk(() => nix.str`https://github.com/nezhahq/nezha/releases/tag/v${nix.sel(finalAttrs, "version")}`),

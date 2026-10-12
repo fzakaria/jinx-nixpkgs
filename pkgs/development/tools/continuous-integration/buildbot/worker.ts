@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "buildbot_worker",
       src: nix.thunk(() => nix.attr(buildbot, "src")),
       version: nix.thunk(() => nix.attr(buildbot, "version")),
@@ -38,14 +38,14 @@ substituteInPlace buildbot_worker/scripts/logwatcher.py \\
       nativeCheckInputs: nix.thunk(() => [parameterized, psutil]),
       dontCheckPythonMetadata: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "buildbot")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://buildbot.net/",
         description: "Buildbot Worker Daemon",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),

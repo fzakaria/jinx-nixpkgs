@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "radicale"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkValueStringDefault"), nix.thunk(() => ({})))))),
     }))));
   const pkg = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "package"), null)) ? nix.sel(pkgs, "radicale") : nix.sel(cfg, "package")));
@@ -50,21 +50,21 @@ export default nix.lambda((args) => (() => {
   const rightsFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "radicale.rights", nix.thunk(() => nix.sel(cfg, "rights"))));
   const bindLocalhost = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) && nix.asBool(!nix.asBool(nix.app(nix.lookup(w, "hasAttrByPath"), nix.thunk(() => ["server", "hosts"]), nix.thunk(() => nix.sel(cfg, "settings")))))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         radicale: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Radicale CalDAV and CardDAV server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Radicale package to use.",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.update(nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "package"))), {
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w_1, "package")), "description")),
                 });
               })()),
@@ -72,39 +72,39 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.radicale")),
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Radicale configuration, this will set the service\nconfiguration file.\nThis option is mutually exclusive with {option}`settings`.\nThis option is deprecated.  Use {option}`settings` instead.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for Radicale. See\n<https://radicale.org/v3.html#configuration>.\nThis option is mutually exclusive with {option}`config`.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "server = {\n  hosts = [ \"0.0.0.0:5232\" \"[::]:5232\" ];\n};\nauth = {\n  type = \"htpasswd\";\n  htpasswd_filename = \"/etc/radicale/users\";\n  htpasswd_encryption = \"bcrypt\";\n};\nstorage = {\n  filesystem_folder = \"/var/lib/radicale/collections\";\n};\n")),
             })))),
           rights: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "Configuration for Radicale's rights file. See\n<https://radicale.org/v3.html#authentication-and-rights>.\nThis option only works in conjunction with {option}`settings`.\nSetting this will also set {option}`settings.rights.type` and\n{option}`settings.rights.file` to appropriate values.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "root = {\n  user = \".+\";\n  collection = \"\";\n  permissions = \"R\";\n};\nprincipal = {\n  user = \".+\";\n  collection = \"{user}\";\n  permissions = \"RW\";\n};\ncalendars = {\n  user = \".+\";\n  collection = \"{user}/[^/]+\";\n  permissions = \"rw\";\n};\n")),
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Extra arguments passed to the Radicale daemon.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "radicale",
               description: "User account under which Radicale runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "radicale",
               description: "Group under which Radicale runs.",
@@ -113,59 +113,59 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings"), {})) || nix.asBool(nix.eq(nix.sel(cfg, "config"), "")))),
             message: "The options services.radicale.config and services.radicale.settings\nare mutually exclusive.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "config"), "")) || nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "settings"), "auth")) && nix.asBool(nix.has(nix.sel(cfg, "settings", "auth"), "type")))))),
             message: "Radicale 3.5.0 changed the default value for `auth.type` from `none` to `denyall`.\nYou probably don't want `denyall`, so please set this explicitly.\nhttps://github.com/Kozea/Radicale/blob/v3.5.0/CHANGELOG.md\n",
           })),
         ]),
         warnings: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "package"), null)) && nix.asBool(nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "17.09")))), "The configuration and storage formats of your existing Radicale\ninstallation might be incompatible with the newest version.\nFor upgrade instructions see\nhttps://radicale.org/2.1.html#documentation/migration-from-1xx-to-2xx.\nSet services.radicale.package to suppress this warning.\n"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "package"), null)) && nix.asBool(nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "20.09")))), "The configuration format of your existing Radicale installation might be\nincompatible with the newest version.  For upgrade instructions see\nhttps://github.com/Kozea/Radicale/blob/3.0.6/NEWS.md#upgrade-checklist.\nSet services.radicale.package to suppress this warning.\n"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), "")), "The option services.radicale.config is deprecated.\nUse services.radicale.settings instead.\n")))),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           radicale: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               rights: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "rights"), {})), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: "from_file",
                   file: nix.thunk(() => nix.app(nix.builtins.toString, rightsFile)),
                 })))),
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$19, systemPackages: nix.thunk(() => [pkg]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$19, systemPackages: nix.thunk(() => [pkg]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "radicale")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               radicale: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "radicale")), nix.thunk(() => ({ __proto__: pos$22, radicale: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "radicale")), nix.thunk(() => ({ [nix.POS]: pos$22, radicale: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             radicale: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "A Simple Calendar and Contact Server",
               after: nix.thunk(() => ["network.target"]),
               requires: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${pkg}/bin/radicale`), "-C", confFile], nix.app(nix.builtins.map, nix.thunk(() => nix.lookup(w, "escapeShellArg")), nix.thunk(() => nix.sel(cfg, "extraArgs"))))))),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -208,7 +208,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "dotlambda"))];

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const yajl = nix.arg($, "yajl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libmodsecurity",
       version: "3.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owasp-modsecurity",
           repo: "ModSecurity",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +56,14 @@ cp ${nix.sel(finalAttrs, "src")}/{AUTHORS,CHANGES,LICENSE,README.md,modsecurity.
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nginx-modsecurity": nix.thunk(() => nix.sel(nixosTests, "nginx-modsecurity")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/owasp-modsecurity/ModSecurity",
         description: "ModSecurity v3 library component.\n",
         longDescription: "Libmodsecurity is one component of the ModSecurity v3 project. The\nlibrary codebase serves as an interface to ModSecurity Connectors taking\nin web traffic and applying traditional ModSecurity processing. In\ngeneral, it provides the capability to load/interpret rules written in\nthe ModSecurity SecRules format and apply them to HTTP content provided\nby your application via Connectors.\n",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const utf8proc = nix.arg($, "utf8proc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crengine-ng",
       version: "0.9.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coolreader-ng",
           repo: "crengine-ng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace crengine/crengine-ng.pc.cmake \\\n  --replace-fail '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/coolreader-ng/crengine-ng",
         description: "Cross-platform library designed to implement text viewers and e-book readers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

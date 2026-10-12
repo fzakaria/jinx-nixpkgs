@@ -89,11 +89,11 @@ export default nix.lambda((args) => (() => {
   const user = "dokuwiki";
   const webserver = nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "webserver"))));
   const mkPhpIni = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
     }))));
   const mkPhpPackage = (cfg_1) => nix.app(nix.sel(cfg_1, "phpPackage", "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraConfig: nix.thunk(() => nix.app(mkPhpIni, nix.thunk(() => nix.sel(cfg_1, "phpOptions")))),
     })));
   const toPhpString = (s) => nix.str`'${nix.app(nix.lookup(w, "escape"), nix.thunk(() => ["'", "\\"]), s)}'`;
@@ -109,12 +109,12 @@ ${(nix.asBool(nix.app(nix.lookup(w, "isString"), acl)) ? nix.force(acl) : nix.ap
 `));
   })();
   const mergeConfig = (cfg_1) => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     useacl: false,
     savedir: nix.thunk(() => nix.sel(cfg_1, "stateDir")),
   }, nix.sel(cfg_1, "settings"));
   const writePhpFile = (name) => (text) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: name,
       text: nix.thunk(() => nix.str`<?php
 ${text}`),
@@ -141,7 +141,7 @@ ${text}`),
 `));
   })();
   const pkg = (hostName) => (cfg_1) => nix.app(nix.sel(cfg_1, "package", "combine"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       plugins: nix.thunk(() => nix.attr(cfg_1, "plugins")),
       templates: nix.thunk(() => nix.attr(cfg_1, "templates")),
       extraConfigs: nix.thunk(() => nix.attr(cfg_1, "extraConfigs")),
@@ -154,24 +154,24 @@ ${text}`),
   const aclOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       options: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         page: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Page or namespace to restrict",
             example: "start",
           })))),
         actor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "User or group to restrict",
             example: "@external",
           })))),
         level: nix.thunk(() => (() => {
           const available = nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             none: 0n,
             read: 1n,
             edit: 2n,
@@ -180,7 +180,7 @@ ${text}`),
             delete: 16n,
           }));
           return nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "attrValues"), available), nix.app(nix.lookup(w, "attrNames"), available))))),
               apply: (x) => (nix.asBool(nix.app(nix.lookup(w, "isInt"), x)) ? nix.force(x) : nix.sel(available, nix.key(nix.force(x)))),
               description: "Permission level to restrict the actor(s) to.\nSee <https://www.dokuwiki.org/acl#background_info> for explanation\n",
@@ -197,7 +197,7 @@ ${text}`),
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       imports: nix.thunk(() => [
         nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$4);
@@ -206,20 +206,20 @@ ${text}`),
           const removalNote = "The option has had no effect for 3+ years. There is no replacement available.";
           const optPath = nix.thunk(() => nix.app(nix.sel(lib_1, "options", "showOption"), nix.thunk(() => ["services", "dokuwiki", "sites", name, "enable"])));
           return {
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             options: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   visible: false,
                   apply: (x) => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`The option \`${optPath}' can no longer be used since it's been removed. ${removalNote}`)),
                 })))),
             })),
             config: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   assertion: nix.thunk(() => !nix.asBool(nix.sel(options_1, "enable", "isDefined"))),
                   message: nix.thunk(() => nix.str`  The option definition \`${optPath}' in ${nix.app(showFiles, nix.thunk(() => nix.sel(options_1, "enable", "files")))} no longer has any effect; please remove it.
 ${removalNote}
@@ -231,16 +231,16 @@ ${removalNote}
         })(), formals$4),
       ]),
       options: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "dokuwiki", nix.thunk(() => ({})))),
         stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`/var/lib/dokuwiki/${name}/data`),
             description: "Location of the DokuWiki state directory.",
           })))),
         acl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), aclOpts)))));
@@ -250,7 +250,7 @@ ${removalNote}
             description: "Access Control Lists: see <https://www.dokuwiki.org/acl>\nMutually exclusive with services.dokuwiki.aclFile\nSet this to a value other than null to take precedence over aclFile option.\n\nWarning: Consider using aclFile instead if you do not\nwant to store the ACL in the world-readable Nix store.\n",
           })))),
         aclFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -260,13 +260,13 @@ ${removalNote}
             example: nix.thunk(() => nix.str`/var/lib/dokuwiki/${name}/acl.auth.php`),
           })))),
         pluginsConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "bool")));
             })()),
             default: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               authad: false,
               authldap: false,
               authmysql: false,
@@ -275,7 +275,7 @@ ${removalNote}
             description: "List of the dokuwiki (un)loaded plugins.\n",
           })))),
         usersFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -285,28 +285,28 @@ ${removalNote}
             example: nix.thunk(() => nix.str`/var/lib/dokuwiki/${name}/users.auth.php`),
           })))),
         plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: [],
             description: "List of path(s) to respective plugin(s) which are copied into the 'plugin' directory.\n\n::: {.note}\nThese plugins need to be packaged before use, see example.\n:::\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "let\n  plugin-icalevents = pkgs.stdenv.mkDerivation rec {\n    name = \"icalevents\";\n    version = \"2017-06-16\";\n    src = pkgs.fetchzip {\n      stripRoot = false;\n      url = \"https://github.com/real-or-random/dokuwiki-plugin-icalevents/releases/download/${version}/dokuwiki-plugin-icalevents-${version}.zip\";\n      hash = \"sha256-IPs4+qgEfe8AAWevbcCM9PnyI0uoyamtWeg4rEb+9Wc=\";\n    };\n    installPhase = \"mkdir -p $out; cp -R * $out/\";\n  };\n# And then pass this plugin to the plugin list like this:\nin [ plugin-icalevents ]\n")),
           })))),
         templates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: [],
             description: "List of path(s) to respective template(s) which are copied into the 'tpl' directory.\n\n::: {.note}\nThese templates need to be packaged before use, see example.\n:::\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "let\n  template-bootstrap3 = pkgs.stdenv.mkDerivation rec {\n  name = \"bootstrap3\";\n  version = \"2022-07-27\";\n  src = pkgs.fetchFromGitHub {\n    owner = \"giterlizzi\";\n    repo = \"dokuwiki-template-bootstrap3\";\n    rev = \"v${version}\";\n    hash = \"sha256-B3Yd4lxdwqfCnfmZdp+i/Mzwn/aEuZ0ovagDxuR6lxo=\";\n  };\n  installPhase = \"mkdir -p $out; cp -R * $out/\";\n};\n# And then pass this theme to the template list like this:\nin [ template-bootstrap3 ]\n")),
           })))),
         extraConfigs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => ({})),
             description: "Path(s) to additional configuration files that are then linked to the 'conf' directory.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"acronyms.local.conf\" = pkgs.writeText \"acronyms.local.conf\" ''\n    r13y  reproducibility\n  '';\n  \"entities.local.conf\" = ./dokuwiki-entities;\n}\n")),
           })))),
         poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -316,7 +316,7 @@ ${removalNote}
                   ]))));
             })()),
             default: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               pm: "dynamic",
               "pm.max_children": 32n,
               "pm.start_servers": 2n,
@@ -326,30 +326,30 @@ ${removalNote}
             })),
             description: "Options for the DokuWiki PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
           })))),
-        phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "php", nix.thunk(() => ({ __proto__: pos$28, default: "php84" })))),
+        phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "php", nix.thunk(() => ({ [nix.POS]: pos$28, default: "php84" })))),
         phpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: nix.thunk(() => ({})),
             description: "Options for PHP's php.ini file for this dokuwiki site.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"opcache.interned_strings_buffer\" = \"8\";\n  \"opcache.max_accelerated_files\" = \"10000\";\n  \"opcache.memory_consumption\" = \"128\";\n  \"opcache.revalidate_freq\" = \"15\";\n  \"opcache.fast_shutdown\" = \"1\";\n}\n")),
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))),
-            default: nix.thunk(() => ({ __proto__: pos$30, useacl: true, superuser: "admin" })),
+            default: nix.thunk(() => ({ [nix.POS]: pos$30, useacl: true, superuser: "admin" })),
             description: "Structural DokuWiki configuration.\nRefer to <https://www.dokuwiki.org/config>\nfor details and supported values.\nSettings can either be directly set from nix,\nloaded from a file using `._file` or obtained from any\nPHP function calls using `._raw`.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  title = \"My Wiki\";\n  userewrite = 1;\n  disableactions = [ \"register\" ]; # Will be concatenated with commas\n  plugin.smtp = {\n    smtp_pass._file = \"/var/run/secrets/dokuwiki/smtp_pass\";\n    smtp_user._raw = \"getenv('DOKUWIKI_SMTP_USER')\";\n  };\n}\n")),
           })))),
         mergedConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             readOnly: true,
             default: nix.thunk(() => nix.app(mergeConfig, config_1)),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  useacl = true;\n}\n")),
             description: "Read only representation of the final configuration.\n",
           })))),
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "unspecified")))),
             default: [],
             visible: false,
@@ -359,21 +359,21 @@ ${removalNote}
     };
   })(), formals$3);
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         dokuwiki: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           sites: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), siteOpts)))),
               default: nix.thunk(() => ({})),
               description: "Specification of one or more DokuWiki sites to serve",
             })))),
           webserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["nginx", "caddy"]))),
               default: "nginx",
               description: "Whether to use nginx or caddy for virtual host management.\n\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n\nFurther caddy configuration can be done by adapting `services.caddy.virtualHosts.<name>`.\nSee [](#opt-services.caddy.virtualHosts) for further information.\n",
@@ -383,26 +383,26 @@ ${removalNote}
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(eachSite, {})), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertions: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (_) => (cfg_1) => nix.sel(cfg_1, "assertions"), eachSite)))),
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 pools: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`dokuwiki-${hostName}`), nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       user: user,
                       group: nix.thunk(() => nix.sel(webserver, "group")),
                       phpPackage: nix.thunk(() => nix.app(mkPhpPackage, cfg_1)),
                       phpEnv: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg_1, "usersFile"), null)), nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           DOKUWIKI_USERS_AUTH_CONFIG: nix.thunk(() => nix.str`${nix.sel(cfg_1, "usersFile")}`),
                         }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg_1, "mergedConfig", "useacl")), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           DOKUWIKI_ACL_AUTH_CONFIG: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg_1, "acl"), null)) ? nix.str`${nix.app(dokuwikiAclAuthConfig, hostName, cfg_1)}` : nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg_1, "aclFile")))}`)),
                         }))))),
                       settings: nix.thunk(() => nix.update({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         "listen.owner": nix.thunk(() => nix.sel(webserver, "user")),
                         "listen.group": nix.thunk(() => nix.sel(webserver, "group")),
                       }, nix.sel(cfg_1, "poolConfig"))),
@@ -411,11 +411,11 @@ ${removalNote}
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             systemd: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 rules: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => nix.concat([
                       nix.thunk(() => nix.str`d ${nix.sel(cfg_1, "stateDir")}/attic 0750 ${user} ${nix.sel(webserver, "group")} - -`),
                       nix.thunk(() => nix.str`d ${nix.sel(cfg_1, "stateDir")}/cache 0750 ${user} ${nix.sel(webserver, "group")} - -`),
@@ -432,10 +432,10 @@ ${removalNote}
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [user, nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   group: nix.thunk(() => nix.sel(webserver, "group")),
                   isSystemUser: true,
                 }))],
@@ -443,37 +443,37 @@ ${removalNote}
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               services: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (hostName) => (cfg_1) => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       serverName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), hostName)),
                       root: nix.thunk(() => nix.str`${nix.app(pkg, hostName, cfg_1)}/share/dokuwiki`),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$59,
-                        "~ /(conf/|bin/|inc/|install.php)": nix.thunk(() => ({ __proto__: pos$53, extraConfig: "deny all;" })),
+                        [nix.POS]: pos$59,
+                        "~ /(conf/|bin/|inc/|install.php)": nix.thunk(() => ({ [nix.POS]: pos$53, extraConfig: "deny all;" })),
                         "~ ^/data/": nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           root: nix.thunk(() => nix.str`${nix.sel(cfg_1, "stateDir")}`),
                           extraConfig: "internal;",
                         })),
-                        "~ ^/lib.*\\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ __proto__: pos$55, extraConfig: "expires 365d;" })),
+                        "~ ^/lib.*\\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ [nix.POS]: pos$55, extraConfig: "expires 365d;" })),
                         "/": nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           priority: 1n,
                           index: "doku.php",
                           extraConfig: "try_files $uri $uri/ @dokuwiki;",
                         })),
                         "@dokuwiki": nix.thunk(() => ({
-                          __proto__: pos$57,
+                          [nix.POS]: pos$57,
                           extraConfig: "# rewrites \"doku.php/\" out of the URLs if you set the userwrite setting to .htaccess in dokuwiki config page\nrewrite ^/_media/(.*) /lib/exe/fetch.php?media=$1 last;\nrewrite ^/_detail/(.*) /lib/exe/detail.php?media=$1 last;\nrewrite ^/_export/([^/]+)/(.*) /doku.php?do=export_$1&id=$2 last;\nrewrite ^/(.*) /doku.php?id=$1&$args last;\n",
                         })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           extraConfig: nix.thunk(() => nix.str`try_files $uri $uri/ /doku.php;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -487,14 +487,14 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.s
               })),
             })))),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "caddy")), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               services: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 caddy: nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), hostName, nix.thunk(() => ({
-                        __proto__: pos$64,
+                        [nix.POS]: pos$64,
                         extraConfig: nix.thunk(() => nix.str`root * ${nix.app(pkg, hostName, cfg_1)}/share/dokuwiki
 file_server
 
@@ -531,7 +531,7 @@ try_files {path} {path}/ /doku.php?id={path}&{query}
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [

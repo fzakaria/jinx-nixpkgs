@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const lammps = nix.arg($, "lammps");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(lammps, "override"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraNativeBuildInputs: nix.thunk(() => [mpi]),
-        extraCmakeFlags: nix.thunk(() => ({ __proto__: pos$1, BUILD_MPI: "ON" })),
+        extraCmakeFlags: nix.thunk(() => ({ [nix.POS]: pos$1, BUILD_MPI: "ON" })),
       })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

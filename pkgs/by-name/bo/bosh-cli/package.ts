@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openssh = nix.arg($, "openssh");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bosh-cli",
       version: "7.10.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudfoundry",
           repo: "bosh-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/bosh --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line interface to CloudFoundry BOSH",
         homepage: "https://bosh.io",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudfoundry/bosh-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

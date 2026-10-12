@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const targets = nix.argOr($, "targets", () => ["all"]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iso-flags",
       version: "0-unstable-2020-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joielechong",
           repo: "iso-country-flags-svg-collection",
           rev: "9ebbd577b9a70fbfd9a1931be80c66e0d2f31a9d",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: targets,
       installPhase: "mkdir -p $out/share\nmv build $out/share/iso-flags\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/joielechong/iso-country-flags-svg-collection",
         description: "248 country flag SVG & PNG icons with different icon styles",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

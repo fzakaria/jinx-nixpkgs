@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
   })();
   const hasLuaModule = (drv) => nix.has(drv, "luaModule");
   const overrideLuarocks = (drv) => (f) => nix.update(nix.app(nix.sel(drv, "override"), (args_1) => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildLuarocksPackage: (drv_1) => nix.app(nix.sel(nix.app(nix.sel(args_1, "buildLuarocksPackage"), drv_1), "override"), f),
     })), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     overrideScope: (scope) => nix.app(overrideLuarocks, nix.thunk(() => nix.app(nix.sel(drv, "overrideScope"), scope)), f),
   });
   return (() => {
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
     const isLuaJIT = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "getName"), lua), "luajit"));
     const getDataFolder = (drv) => nix.str`${nix.sel(drv, "pname")}-${nix.sel(drv, "version")}-rocks/${nix.sel(drv, "pname")}/${nix.sel(drv, "version")}`;
     const toLuaModule = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           luaModule: lua,
           requiredLuaModules: nix.thunk(() => nix.app(requiredLuaModules_1, nix.thunk(() => nix.sel(drv, "propagatedBuildInputs")))),
         })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const externalDeps = nix.argOr($_1, "externalDeps", () => []);
       const requiredLuaRocks = nix.argOr($_1, "requiredLuaRocks", () => []);
       const rocksTrees = nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (dep) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`dep-${nix.builtins.toString(i)}`),
           root: nix.thunk(() => nix.str`${dep}`),
           rocks_dir: nix.thunk(() => (nix.asBool(nix.has(dep, "rocksSubdir")) ? nix.str`${dep}/${nix.sel(dep, "rocksSubdir")}` : nix.str`${nix.sel(dep, "pname")}-${nix.sel(dep, "version")}-rocks`)),
@@ -89,33 +89,33 @@ export default nix.lambda((args) => (() => {
       const externalDeps$ = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (dep) => !nix.asBool(nix.app(nix.sel(lib, "isDerivation"), dep)), externalDeps));
       const externalDepsDirs = nix.thunk(() => nix.builtins.map((x) => nix.builtins.toString(x), nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), externalDeps))));
       const generatedConfig = nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         rocks_trees: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "current",
             root: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
             rocks_dir: "current",
           })),
         ], rocksTrees)),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(lua, "pkgs", "isLuaJIT")), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rocks_provided: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             jit: nix.thunk(() => nix.str`${nix.sel(lua, "luaversion")}-1`),
             ffi: nix.thunk(() => nix.str`${nix.sel(lua, "luaversion")}-1`),
             luaffi: nix.thunk(() => nix.str`${nix.sel(lua, "luaversion")}-1`),
             bit: nix.thunk(() => nix.str`${nix.sel(lua, "luaversion")}-1`),
           })),
         }))), nix.update({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         external_deps_dirs: externalDepsDirs,
         variables: depVariables,
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["requiredLuaRocks", "externalDeps"]))))));
       return nix.force(generatedConfig);
     })(), formals$2);
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       overrideLuarocks: overrideLuarocks_1,
       hasLuaModule: hasLuaModule_1,
       requiredLuaModules: requiredLuaModules_1,

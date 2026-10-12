@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rmpc",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mierak",
           repo: "rmpc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-DDOJqA5S+JiRCOgAPqw1k1b8SNCLS0aKsJsFqlykZDI=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config, cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postInstall: "installManPage target/man/rmpc.1\n\ninstallShellCompletion --cmd rmpc \\\n  --bash target/completions/rmpc.bash \\\n  --fish target/completions/rmpc.fish \\\n  --zsh target/completions/_rmpc\n\ninstall -m 444 -D assets/rmpc.desktop $out/share/applications/rmpc.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/mierak/rmpc/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "TUI music player client for MPD with album art support via kitty image protocol",
         homepage: "https://rmpc.mierak.dev/",

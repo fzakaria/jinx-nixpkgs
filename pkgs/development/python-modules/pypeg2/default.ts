@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pypeg2";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0v8ziaam2r637v94ra4dbjw6jzxz99gs5x4i585kgag1v204yb9b",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "# The tests assume that test_xmlast does not run before test_pyPEG2.\npython -m unittest pypeg2.test.test_pyPEG2 pypeg2.test.test_xmlast\n";
       const doCheck = nix.thunk(() => !nix.asBool(isPy3k));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PEG parser interpreter in Python",
         homepage: "http://fdik.org/pyPEG",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { __proto__: pos$3, version, format, pname, src, checkPhase, doCheck, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, checkPhase, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

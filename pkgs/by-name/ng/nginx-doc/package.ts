@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nginx-doc-unstable",
       version: "0-unstable-2026-05-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nginx",
           repo: "nginx.org",
           rev: "7884e3ae20269c6aa718dc104c0c578f797e5269",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libxslt, libxml2]),
       installPhase: "mkdir -p $out/share/doc/nginx\nmv libxslt/en $out/share/doc/nginx\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reverse proxy and lightweight webserver (documentation)",
         homepage: "https://nginx.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

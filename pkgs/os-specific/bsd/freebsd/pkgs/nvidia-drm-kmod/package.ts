@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "debug"]);
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "565")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/d07cdab9108a8cf6ab66aa1ff834339f8695f457/graphics/nvidia-drm-61-kmod/files/extra-patch-nvidia-drm-conftest.h",
               extraPrefix: "a/src/nvidia-drm",
               hash: "sha256-EgzEx1VxQyoNpnY0MnNVa08A0ENSyU/rdRM2hOwUE2g=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "555")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/d07cdab9108a8cf6ab66aa1ff834339f8695f457/graphics/nvidia-drm-61-kmod/files/extra-patch-nvidia-drm-freebsd-lkpi.c",
               extraPrefix: "a/src/nvidia-drm",
               hash: "sha256-aFOs811J5e9Nu8Kwd6dImiSefEOlKlnRp3kg7DTIccg=",
@@ -48,7 +48,7 @@ ln -s ${nix.sel(stdenv, "cc")}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}nm $T
 export PATH=$PATH:$TMP/bin
 `));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         CONFTEST_BSD_KMODPATHS: nix.thunk(() => nix.str`${sys}/kernel ${drm_kmod}/kernel`),
       }));
@@ -67,12 +67,12 @@ export PATH=$PATH:$TMP/bin
       const KERN_DEBUGDIR_KMODDIR = nix.thunk(() => nix.str`${KERN_DEBUGDIR}/kernel`);
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         path,
         pname,
         version,

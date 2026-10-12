@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libssh = nix.arg($, "libssh");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtrlib",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "rtrlib",
           owner: "rtrlib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]),
       postFixup: "substituteInPlace \"$out\"/lib/pkgconfig/rtrlib.pc \\\n  --replace '=${prefix}//' '=/'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source C implementation of the RPKI/Router Protocol client",
         homepage: "https://github.com/rtrlib/rtrlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "docker-credential-gcr",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "docker-credential-gcr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm -rf ./test\n",
       vendorHash: "sha256-gghmzq1eBMh+d5m5Ez6t3jxAc58NbLHr9F8vcYdOYSk=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
         nix.thunk(() => nix.str`-X github.com/GoogleCloudPlatform/docker-credential-gcr/v2/config.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: docker_credential_gcr,
               command: "docker-credential-gcr version",
             })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Docker credential helper for GCR (https://gcr.io) users",
         longDescription: "docker-credential-gcr is Google Container Registry's Docker credential\nhelper. It allows for Docker clients v1.11+ to easily make\nauthenticated requests to GCR's repositories (gcr.io, eu.gcr.io, etc.).\n",
         homepage: "https://github.com/GoogleCloudPlatform/docker-credential-gcr",

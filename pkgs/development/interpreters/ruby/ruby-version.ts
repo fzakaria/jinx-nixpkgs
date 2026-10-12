@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     })());
     const __toString = (self) => nix.add(nix.sel(self, "majMinTiny"), (nix.asBool(!nix.eq(nix.sel(self, "patchLevel"), null)) ? nix.str`-p${nix.sel(self, "patchLevel")}` : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(self, "tail"), "")), nix.thunk(() => nix.str`-${nix.sel(self, "tail")}`))));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       major: major_1,
       minor: minor_1,
       tiny: tiny_1,

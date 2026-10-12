@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mherrmann",
           repo: "gitignore_parser",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["gitignore_parser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spec-compliant gitignore parser",
         homepage: "https://github.com/mherrmann/gitignore_parser",
         changelog: nix.thunk(() => nix.str`https://github.com/mherrmann/gitignore_parser/releases/tag/${nix.sel(src, "tag")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

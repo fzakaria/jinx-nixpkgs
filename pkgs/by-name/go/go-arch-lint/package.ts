@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-arch-lint",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fe3dback",
           repo: "go-arch-lint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GoLang architecture linter (checker) tool. Will check all project import path and compare with arch rules defined in yml file",
         homepage: "https://github.com/fe3dback/go-arch-lint",
         changelog: nix.thunk(() => nix.str`https://github.com/fe3dback/go-arch-lint/releases/tag/v${nix.sel(finalAttrs, "version")}`),

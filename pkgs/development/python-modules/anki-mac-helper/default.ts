@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const swift = nix.arg($, "swift");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "anki-mac-helper",
       version: nix.thunk(() => nix.attr(anki, "version")),
       src: nix.thunk(() => nix.attr(anki, "src")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["anki_mac_helper"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Small support library for Anki on Macs",
         homepage: "https://github.com/ankitects/anki",
         sourceProvenance: nix.thunk(() => (() => {

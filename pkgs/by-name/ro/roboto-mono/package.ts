@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roboto-mono",
       version: "3.001",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "robotomono",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://fonts.google.com/specimen/Roboto+Mono",
         description: "Google Roboto Mono fonts",
         longDescription: "Roboto Mono is a monospaced addition to the Roboto type family. Like\nthe other members of the Roboto family, the fonts are optimized for\nreadability on screens across a wide variety of devices and reading\nenvironments. While the monospaced version is related to its variable\nwidth cousin, it doesn't hesitate to change forms to better fit the\nconstraints of a monospaced environment. For example, narrow glyphs\nlike 'I', 'l' and 'i' have added serifs for more even texture while\nwider glyphs are adjusted for weight. Curved caps like 'C' and 'O'\ntake on the straighter sides from Roboto Condensed.\n",

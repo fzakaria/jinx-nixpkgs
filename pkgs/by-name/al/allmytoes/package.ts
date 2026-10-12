@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "allmytoes",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allmytoes",
           repo: "allmytoes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/allmytoes" --prefix XDG_DATA_DIRS : "${shared_mime_info}/share"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides thumbnails by using the freedesktop-specified thumbnail database (aka XDG standard)",
         homepage: "https://gitlab.com/allmytoes/allmytoes",
         mainProgram: "allmytoes",

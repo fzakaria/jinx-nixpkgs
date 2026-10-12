@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "within",
       version: "1.1.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sjmulder",
           repo: "within",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
       dontVersionCheck: nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "unstable", nix.thunk(() => nix.sel(finalAttrs, "version")))),
       installFlags: nix.thunk(() => ["PREFIX:=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           within: nix.thunk(() => nix.app(runCommand, "within-test", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "mkdir $out\nresult=$(within $PWD $out - pwd)\nexpected=$(printf '%s\\n' \"$PWD: $PWD\" \"$out: $out\")\ntest \"$result\" = \"$expected\"\n")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://codeberg.org/sjmulder/within",
         description: "Run a command in other directories",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/sjmulder/within/src/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

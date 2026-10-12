@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qt6Packages = nix.arg($, "qt6Packages");
   const throne_srslist_info = nix.argOr($, "throne-srslist-info", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     rev: "1aa995b5fc30c26b931a61171aea2ab49c3d1711",
     hash: "sha256-jKYUjgxpE1zwcVv+9Fdj8H1QnPZpTzmzVsMfOMOKGFw=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "throne",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "throneproj",
           repo: "Throne",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "NKR_ELEVATION_HINT", "On NixOS, use programs.throne with tunMode.enable.")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         INPUT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized",
       })),
       preBuild: nix.thunk(() => (() => {
         const srslist = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`throne-srslist-${nix.sel(throne_srslist_info, "rev")}.h`),
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/throneproj/routeprofiles/${nix.sel(throne_srslist_info, "rev")}/srslist.h`),
             hash: nix.thunk(() => nix.sel(throne_srslist_info, "hash")),
@@ -93,7 +93,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "throne",
             desktopName: "Throne",
             exec: "Throne",
@@ -104,9 +104,9 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         core: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: "throne-core",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -140,10 +140,10 @@ runHook postInstall
               "noparentcheck",
             ]),
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, extraArgs: nix.thunk(() => ["--subpackage", "core"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--subpackage", "core"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Qt based cross-platform GUI proxy configuration manager",
         homepage: "https://github.com/throneproj/Throne",
         changelog: nix.thunk(() => nix.str`https://github.com/throneproj/Throne/releases/tag/${nix.sel(finalAttrs, "version")}`),

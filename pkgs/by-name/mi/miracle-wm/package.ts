@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "miracle-wm",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miracle-wm-org",
           repo: "miracle-wm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -109,13 +109,13 @@ wrapGApp $out/bin/miracle-wm-basic-error-reporter
 wrapGApp $out/bin/miracle-wm-debug-overlay
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         providedSessions: nix.thunk(() => ["miracle-wm"]),
-        tests: nix.thunk(() => ({ __proto__: pos$3, vm: nix.thunk(() => nix.sel(nixosTests, "miracle-wm")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, vm: nix.thunk(() => nix.sel(nixosTests, "miracle-wm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tiling Wayland compositor based on Mir",
         longDescription: nix.thunk(() => nix.str`miracle-wm is a Wayland compositor based on Mir. It features a tiling window manager at its core, very much in
 the style of i3 and sway. The intention is to build a compositor that is flashier and more feature-rich than

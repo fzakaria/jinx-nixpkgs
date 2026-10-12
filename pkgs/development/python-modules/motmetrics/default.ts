@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const version = "1.4.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "motmetrics",
       version: nix.thunk(() => nix.str`${version}-unstable-2025-01-14`),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cheind",
           repo: "py-motmetrics",
           rev: "c199b3e853d589af4b6a7d88f5bcc8b8802fc434",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["motmetrics"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Benchmark multiple object trackers (MOT) in Python",
         homepage: "https://github.com/cheind/py-motmetrics",
         changelog: nix.thunk(() => nix.str`https://github.com/cheind/py-motmetrics/releases/tag/v${version}`),

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const mpiSupport = nix.argOr($, "mpiSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "conduit",
       version: "0.9.9",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LLNL",
           repo: "conduit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,17 +54,17 @@ runHook postInstallCheck
       })()),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          withMpi: nix.thunk(() => nix.app(nix.sel(conduit, "override"), nix.thunk(() => ({ __proto__: pos$2, mpiSupport: true })))),
+          [nix.POS]: pos$3,
+          withMpi: nix.thunk(() => nix.app(nix.sel(conduit, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, mpiSupport: true })))),
           pythonModule: nix.thunk(() => nix.sel(python3Packages, "conduit")),
           pythonModuleWithMpi: nix.thunk(() => nix.sel(python3Packages, "conduit-mpi")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simplified Data Exchange for HPC Simulations",
         homepage: "https://github.com/LLNL/conduit",
         changelog: nix.thunk(() => nix.str`https://github.com/LLNL/conduit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

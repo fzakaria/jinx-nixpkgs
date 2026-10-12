@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const dwarf_therapist = nix.thunk(() => nix.sel(dwarf_fortress, "dwarf-therapist"));
   const mainProgram = nix.thunk(() => (nix.asBool(enableDFHack) ? "dfhack" : "dwarf-fortress"));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dwarf-fortress-full",
       version: dfVersion,
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(dwarf_fortress, "override"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enableDFHack: enableDFHack,
             enableTWBT: enableTWBT,
             enableSoundSense: enableSoundSense,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ], nix.concat(nix.app(optional, enableDwarfTherapist, dwarf_therapist), nix.app(optional, enableLegendsBrowser, legends_browser)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: mainProgram,
         description: "Opinionated wrapper for Dwarf Fortress",
         maintainers: nix.thunk(() => (() => {

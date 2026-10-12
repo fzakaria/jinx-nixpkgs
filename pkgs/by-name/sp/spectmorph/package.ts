@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const fftwFloat = nix.arg($, "fftwFloat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spectmorph",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/swesterfeld/spectmorph/releases/download/${nix.sel(finalAttrs, "version")}/spectmorph-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-H/PaczAkjxeu2Q6S/jazZ0PU9oCmhBzsLgbGLusxXm8=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows to analyze samples of musical instruments, and to combine them (morphing) to construct hybrid sounds",
         homepage: "https://spectmorph.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

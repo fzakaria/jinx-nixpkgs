@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lifx-emulator-core",
       version: "3.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Djelibeybi",
           repo: "lifx-emulator",
           tag: nix.thunk(() => nix.str`core-v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["lifx_emulator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Core Python library for emulating LIFX devices using the LAN protocol",
         homepage: "https://github.com/Djelibeybi/lifx-emulator/tree/main/packages/lifx-emulator-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "upl")),

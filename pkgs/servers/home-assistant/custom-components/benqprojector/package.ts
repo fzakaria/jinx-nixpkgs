@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "benqprojector";
       const version = "0.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "homeassistant-benqprojector",
           tag: version,
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "sephalon"))];
         })());
-        return { __proto__: pos$2, description, homepage, changelog, license, maintainers };
+        return { [nix.POS]: pos$2, description, homepage, changelog, license, maintainers };
       })());
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

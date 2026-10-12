@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vimUtils = nix.arg($, "vimUtils");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bitbake",
       version: "6.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openembedded",
           repo: "bitbake",
           tag: "yocto-6.0.2",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: "source/contrib/vim",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/openembedded/bitbake",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

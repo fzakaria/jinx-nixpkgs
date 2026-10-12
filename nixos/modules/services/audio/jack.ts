@@ -72,73 +72,73 @@ export default nix.lambda((args) => (() => {
   const umaskNeeded = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "jackd", "package", "version")), "1.9.12"));
   const bridgeNeeded = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "jackd", "package", "version")), "1.9.12"));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         jack: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           jackd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "JACK Audio Connection Kit. You need to add yourself to the \"jackaudio\" group\n")),
-            package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jack2", nix.thunk(() => ({ __proto__: pos$1, example: "jack1" }))), { __proto__: pos$2, internal: true })),
+            package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jack2", nix.thunk(() => ({ [nix.POS]: pos$1, example: "jack1" }))), { [nix.POS]: pos$2, internal: true })),
             extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["-dalsa"]),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"-dalsa\" \"--device\" \"hw:1\" ];\n")),
                 description: "Specifies startup command line arguments to pass to JACK server.\n",
               })))),
             session: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 description: "Commands to run after JACK is started.\n",
               })))),
           })),
           alsa: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Route audio to/from generic ALSA-using applications using ALSA JACK PCM plugin.\n",
               })))),
             support32Bit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to support sound for 32-bit ALSA applications on 64-bit system.\n",
               })))),
           })),
           loopback: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Create ALSA loopback device, instead of using PCM plugin. Has broader\napplication support (things like Steam will work), but may need fine-tuning\nfor concrete hardware.\n",
               })))),
             index: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 10n,
                 description: "Index of an ALSA loopback device.\n",
               })))),
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 description: "ALSA config for loopback device.\n",
               })))),
             dmixConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 example: "period_size 2048\nperiods 2\n",
                 description: "For music production software that still doesn't support JACK natively you\nwould like to put buffer/period adjustments here\nto decrease dmix device latency.\n",
               })))),
             session: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 description: "Additional commands to run to setup loopback device.\n",
               })))),
@@ -148,13 +148,13 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), pcmPlugin, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             environment: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               etc: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "alsa/conf.d/98-jack.conf": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   text: nix.thunk(() => nix.str`pcm_type.jack {
   libs.native = ${nix.sel(pkgs, "alsa-plugins")}/lib/alsa-lib/libasound_module_pcm_jack.so ;
   ${nix.app(nix.sel(lib, "optionalString"), enable32BitAlsaPlugins, nix.thunk(() => nix.str`libs.32Bit = ${nix.sel(pkgs, "pkgsi686Linux", "alsa-plugins")}/lib/alsa-lib/libasound_module_pcm_jack.so ;`))}
@@ -170,35 +170,35 @@ pcm.!default {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), loopback, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             boot: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               kernelModules: nix.thunk(() => ["snd-aloop"]),
               kernelParams: nix.thunk(() => [
                 nix.thunk(() => nix.str`snd-aloop.index=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "loopback", "index")))}`),
               ]),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               etc: nix.thunk(() => ({
-                __proto__: pos$24,
-                "alsa/conf.d/99-jack-loopback.conf": nix.thunk(() => ({ __proto__: pos$23, text: nix.thunk(() => nix.sel(cfg, "loopback", "config")) })),
+                [nix.POS]: pos$24,
+                "alsa/conf.d/99-jack-loopback.conf": nix.thunk(() => ({ [nix.POS]: pos$23, text: nix.thunk(() => nix.sel(cfg, "loopback", "config")) })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "jackd", "enable")), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             services: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               jack: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 jackd: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   session: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), bridgeNeeded, nix.thunk(() => nix.str`${nix.sel(pkgs, "a2jmidid")}/bin/a2jmidid -e &`))}
 `),
                 })),
                 loopback: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   config: nix.thunk(() => nix.str`pcm.loophw00 {
   type hw
   card ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "loopback", "index")))}
@@ -252,45 +252,45 @@ pcm.!default {
                 })),
               })),
               udev: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 extraRules: "ACTION==\"add\", SUBSYSTEM==\"sound\", ATTRS{id}!=\"Loopback\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"jack.service\"\n",
               })),
             })),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "alsa", "enable")) && nix.asBool(nix.sel(cfg, "loopback", "enable"))))),
                 message: "For JACK both alsa and loopback options shouldn't be used at the same time.",
               })),
             ]),
             users: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               users: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 jackaudio: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   group: "jackaudio",
                   extraGroups: nix.thunk(() => ["audio"]),
                   description: "JACK Audio system service user",
                   isSystemUser: true,
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$35, jackaudio: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$35, jackaudio: nix.thunk(() => ({})) })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               pam: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 loginLimits: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     domain: "@jackaudio",
                     type: "-",
                     item: "rtprio",
                     value: "99",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     domain: "@jackaudio",
                     type: "-",
                     item: "memlock",
@@ -300,49 +300,49 @@ pcm.!default {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "jackd", "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 "alsa/conf.d/50-jack.conf": nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   source: nix.thunk(() => nix.str`${nix.sel(pkgs, "alsa-plugins")}/etc/alsa/conf.d/50-jack.conf`),
                 })),
               })),
-              variables: nix.thunk(() => ({ __proto__: pos$43, JACK_PROMISCUOUS_SERVER: "jackaudio" })),
+              variables: nix.thunk(() => ({ [nix.POS]: pos$43, JACK_PROMISCUOUS_SERVER: "jackaudio" })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               services: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 jack: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   description: "JACK Audio Connection Kit",
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     User: "jackaudio",
                     SupplementaryGroups: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "pulseaudio", "enable")) && nix.asBool(!nix.asBool(nix.sel(config, "services", "pulseaudio", "systemWide"))))), "users")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "jackd", "package")}/bin/jackd ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "jackd", "extraOptions")))}`),
                     LimitRTPRIO: 99n,
                     LimitMEMLOCK: "infinity",
-                  }, nix.app(nix.sel(lib, "optionalAttrs"), umaskNeeded, nix.thunk(() => ({ __proto__: pos$46, UMask: "007" }))))),
+                  }, nix.app(nix.sel(lib, "optionalAttrs"), umaskNeeded, nix.thunk(() => ({ [nix.POS]: pos$46, UMask: "007" }))))),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "jackd", "package"))]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     JACK_PROMISCUOUS_SERVER: "jackaudio",
                     JACK_NO_AUDIO_RESERVATION: "1",
                   })),
                   restartIfChanged: false,
                 })),
                 "jack-session": nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   description: "JACK session",
                   script: nix.thunk(() => nix.str`${nix.sel(pkgs, "jack-example-tools")}/bin/jack_wait -w
 ${nix.sel(cfg, "jackd", "session")}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "loopback", "enable")), nix.thunk(() => nix.sel(cfg, "loopback", "session")))}
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     RemainAfterExit: true,
                     User: "jackaudio",
                     StateDirectory: "jack",
@@ -351,7 +351,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "loopback
                   })),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "jackd", "package"))]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     JACK_PROMISCUOUS_SERVER: "jackaudio",
                     HOME: "/var/lib/jack",
                   })),
@@ -364,7 +364,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "loopback
             })),
           })))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$55, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$55, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=jack.ts.map

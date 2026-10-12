@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "quattrocento-sans";
       const version = "2.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20170709124317/http://www.impallari.com/media/releases/quattrocento-sans-v${version}.zip`),
           stripRoot: false,
           hash: "sha256-L3aFZmaA94B9APxsp8bSBpocIlK3Ehvj/RFXVcW2nso=",
@@ -29,13 +29,13 @@ install -Dm644 */FONTLOG.txt             -t $out/share/doc/${pname}-${version}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Classic, elegant and sober sans-serif typeface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

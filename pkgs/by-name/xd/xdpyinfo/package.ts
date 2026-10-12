@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xdpyinfo",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "xorg",
           repo: "app/xdpyinfo",
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
         libxxf86vm,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=xdpyinfo-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "display information utility for X",
         longDescription: "xdpyinfo is a utility for displaying information about an X server.\nIt is used to examine the capabilities of a server, the predefined\nvalues for various parameters used in communicating between clients\nand the server, and the different types of screens, visuals, and X11\nprotocol extensions that are available.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xdpyinfo",

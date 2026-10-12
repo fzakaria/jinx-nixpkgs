@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const brokenTests = nix.thunk(() => [nix.path(here, "./resonant-cavity.py")]);
   const nameOf = (file) => nix.app(nix.sel(lib, "removeSuffix"), ".py", nix.thunk(() => nix.app(nix.sel(lib, "baseNameOf"), file)));
   const mkTest = (file) => nix.app(runCommand, nix.thunk(() => nix.str`test-${nix.app(nameOf, file)}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => (() => {
         const pyEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         EMERGE_MP_SOLVER: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(python, "pkgs", "emerge", "cudaSupport")), "CUDSS")),
         NUMBA_DISABLE_JIT: 1n,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "elem"), file, brokenTests)),
       })),
     })), nix.thunk(() => nix.str`xvfb-run python ${file}
@@ -53,7 +53,7 @@ mkdir -p $out
 cp *.png $out
 `));
   const testAttrs = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((file) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.app(nameOf, file)),
         value: nix.thunk(() => nix.app(mkTest, file)),
       }), testFiles))));

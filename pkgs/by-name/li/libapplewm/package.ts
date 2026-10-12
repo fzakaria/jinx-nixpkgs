@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libapplewm",
       version: "1.4.1-unstable-2021-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "xorg/lib",
           repo: "libapplewm",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, util_macros]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxext]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Xlib-based library for the Apple-WM extension",
         longDescription: "AppleWM is a simple library designed to interface with the Apple-WM extension.\nThis extension allows X window managers to better interact with the Mac OS X Aqua user\ninterface when running X11 in a rootless mode.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libapplewm",

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const nixops = nix.arg($, "nixops");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nixops-encrypted-links",
       version: "0-unstable-2021-02-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nixops-encrypted-links",
           rev: "e2f196fce15fcfb00d18c055e1ac53aec33b8fb1",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nixops]),
       pythonImportsCheck: nix.thunk(() => ["nixops_encrypted_links"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "EncryptedLinksTo from Nixops 1 module port",
         homepage: "https://github.com/nix-community/nixops-encrypted-links",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

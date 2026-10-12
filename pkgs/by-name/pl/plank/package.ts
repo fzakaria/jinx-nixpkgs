@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plank",
       version: "0.11.89",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/plank/1.0/${nix.sel(finalAttrs, "version")}/+download/plank-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "17cxlmy7n13jp1v8i4abxyx9hylzb39andhz3mk41ggzmrpa8qm6",
         })))),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   --replace "/usr/bin/file" "${file}/bin/file"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elegant, simple, clean dock",
         mainProgram: "plank",
         homepage: "https://launchpad.net/plank",

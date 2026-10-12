@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "astroterm",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "da-luce",
           repo: "astroterm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-u0UKYoZCDClRmG12czmm0rmOcy3nruarSyjdh8Lu2dw=",
         })))),
       bsc5File: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20231007085824/http://tdc-www.harvard.edu/catalogs/BSC5",
           hash: "sha256-5HHQLq9O7LYcEvh5octkMrqde2ipqMVlSh60KgyMw0A=",
         })))),
@@ -47,11 +47,11 @@ ln -s ${nix.sel(finalAttrs, "bsc5File")} data/bsc5
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Celestial viewer for the terminal, written in C",
         homepage: "https://github.com/da-luce/astroterm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

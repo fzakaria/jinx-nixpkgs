@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const importlib_resources = nix.arg($, "importlib-resources");
   const arrow_adbc = nix.arg($, "arrow-adbc");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adbc-driver-postgresql",
       version: "1.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "adbc_driver_postgresql",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-dmoAJTG7mbaR0rkufZKN6iHCTqVnwDpu4e22H+lbkYc=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [adbc_driver_manager, importlib_resources]),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ADBC_POSTGRESQL_LIBRARY: nix.thunk(() => nix.str`libadbc_driver_postgresql${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
       })),
       preBuild: nix.thunk(() => nix.str`cp ${nix.app(nix.sel(lib, "getLib"), arrow_adbc)}/lib/$ADBC_POSTGRESQL_LIBRARY .
@@ -42,7 +42,7 @@ chmod u+w $ADBC_POSTGRESQL_LIBRARY
 `),
       pythonImportsCheck: nix.thunk(() => ["adbc_driver_postgresql"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "libpq-based ADBC driver for working with PostgreSQL",
         homepage: "https://pypi.org/project/adbc-driver-postgresql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unnamed-sdvx-clone",
       version: "0.6.0-unstable-2025-07-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Drewol",
           repo: "unnamed-sdvx-clone",
           rev: "2472fcc5c8b6b8bc7323dc61ea80b3b1899dd45f",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       wrapperScript: nix.thunk(() => nix.app(writeShellScriptBin, "usc-game-wrapped", "DATA_PATH=\"${XDG_CONFIG_HOME:-$HOME/.local/share}/usc\"\nmkdir -p $DATA_PATH\n\ncp -r @out@/bin/audio $DATA_PATH\ncp -r @out@/bin/fonts $DATA_PATH\ncp -r @out@/bin/skins $DATA_PATH\ncp -r @out@/bin/LightPlugins $DATA_PATH\n\nfind $DATA_PATH -type d -exec chmod 755 {} +\nfind $DATA_PATH -type f -exec chmod 644 {} +\n\n@out@/bin/usc-game -gamedir=\"$DATA_PATH\"\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Unnamed SDVX Clone",
             exec: "usc-game-wrapped",
             comment: "Unnamed SDVX Clone",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nsubstituteAll $wrapperScript/bin/usc-game-wrapped $out/bin/usc-game-wrapped\nchmod +x $out/bin/usc-game-wrapped\nmkdir $out/share\ncp -r /build/source/bin $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Game based on K-Shoot MANIA and Sound Voltex",
         homepage: "https://github.com/Drewol/unnamed-sdvx-clone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(enableViewer) || nix.asBool(!nix.eq(gtk3, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ar/aravis/package.nix:28:1");
   nix.assert_((!nix.asBool(enableViewer) || nix.asBool(!nix.eq(wrapGAppsHook3, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ar/aravis/package.nix:29:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aravis",
       version: "0.8.35",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AravisProject",
           repo: "aravis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           return [
             nix.thunk(() => nix.lookup(w, "gstreamer")),
             nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-            nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+            nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
             nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
           ];
         })())), nix.app(nix.sel(lib, "optionals"), enableViewer, nix.thunk(() => [gtk3])))))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for video acquisition using GenICam cameras",
         longDescription: "Implements the gigabit ethernet and USB3 protocols used by industrial cameras.\n",
         homepage: "https://aravisproject.github.io/docs/aravis-0.8",

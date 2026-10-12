@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const zenroom = nix.arg($, "zenroom");
-  return nix.app(runCommand, "basic-tests", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [zenroom]) })), nix.thunk(() => nix.str`mkdir -p $out
+  return nix.app(runCommand, "basic-tests", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [zenroom]) })), nix.thunk(() => nix.str`mkdir -p $out
 
 TEST_DIR="${nix.path(here, "./.")}"
 

@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scikit-build-core",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-build",
           repo: "scikit-build-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_editable.py"]),
       pythonImportsCheck: nix.thunk(() => ["scikit_build_core"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next generation Python CMake adaptor and Python API for plugins",
         homepage: "https://github.com/scikit-build/scikit-build-core",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-build/scikit-build-core/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/about/changelog.md`),

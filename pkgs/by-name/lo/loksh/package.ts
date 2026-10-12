@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "loksh",
       version: "7.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dimkr",
           repo: "loksh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       strictDeps: true,
       postInstall: "mv $out/bin/ksh $out/bin/loksh\npushd $man/share/man/man1/\nmv ksh.1 loksh.1\nmv sh.1 loksh-sh.1\npopd\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, shellPath: "/bin/loksh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/loksh" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dimkr/loksh",
         description: "Linux port of OpenBSD's ksh",
         mainProgram: "loksh",

@@ -158,7 +158,7 @@ sed -i -e 's/,"WebRTCPipeWireCapturer"/,"LebRTCPipeWireCapturer"/' $out/lib/slac
 runHook postInstall
 `);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname_1,
         version: version_1,
         src: src_1,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const freerdp = nix.arg($, "freerdp");
   const fuse3 = nix.arg($, "fuse3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "krdc",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtwayland, libssh, libvncserver, freerdp, fuse3]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "krdc" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "krdc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

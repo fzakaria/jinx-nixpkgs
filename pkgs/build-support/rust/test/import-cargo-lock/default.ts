@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const python3Packages = nix.arg($, "python3Packages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     basic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./basic"), nix.thunk(() => ({})))),
     basicDynamic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./basic-dynamic"), nix.thunk(() => ({})))),
     gitDependency: nix.thunk(() => nix.app(callPackage, nix.path(here, "./git-dependency"), nix.thunk(() => ({})))),
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
     maturin: nix.thunk(() => nix.sel(maturin, "tests", "pyo3")),
     v1: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v1"), nix.thunk(() => ({})))),
     gitDependencyWorkspaceInheritance: nix.thunk(() => nix.app(callPackage, nix.path(here, "./git-dependency-workspace-inheritance"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         replaceWorkspaceValues: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "replace-workspace-values", nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [

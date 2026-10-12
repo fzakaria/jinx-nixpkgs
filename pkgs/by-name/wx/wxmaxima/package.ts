@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wxmaxima",
       version: "26.09.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wxMaxima-developers",
           repo: "wxmaxima",
           rev: nix.thunk(() => nix.str`Version-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH ":" ${maxima}/bin)
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross platform GUI for the computer algebra system Maxima",
         mainProgram: "wxmaxima",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

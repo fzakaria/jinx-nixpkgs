@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "easeprobe",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "megaease",
           repo: "easeprobe",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-FPApT6snyzYbMn/Am7Zxpwp5w8VZ8F6/YhwCLwDaRAw=",
       subPackages: nix.thunk(() => ["cmd/easeprobe"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/megaease/easeprobe/pkg/version.REPO=megaease/easeprobe",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, standalone, and lightweight tool that can do health/status checking, written in Go",
         homepage: "https://github.com/megaease/easeprobe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

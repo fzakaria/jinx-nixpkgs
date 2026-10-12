@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const withHistory = nix.argOr($, "withHistory", () => true);
   const withRoaFilter = nix.argOr($, "withRoaFilter", () => false);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "flap-alerted",
       version: "4.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kioubit",
           repo: "FlapAlerted",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-D4+FLAMt/cHXCks4GQI33ymbZIHzBajpvKU6QQntofk=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -48,15 +48,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "flap-alerted": nix.thunk(() => nix.attr(nixosTests, "flap-alerted")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "BGP Update based flap detection & statistics",
         homepage: "https://github.com/Kioubit/FlapAlerted",
         changelog: nix.thunk(() => nix.str`https://github.com/Kioubit/FlapAlerted/releases/tag/v${nix.sel(finalAttrs, "version")}`),

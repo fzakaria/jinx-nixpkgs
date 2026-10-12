@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((!nix.asBool(framePointerSupport) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.01"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ocaml/generic.nix:43:1");
     nix.assert_((!nix.asBool(noNakedPointers) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.02")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "5.0"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ocaml/generic.nix:44:1");
     const src = nix.thunk(() => nix.selOr(args_1, () => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.selOr(args_1, () => nix.str`http://caml.inria.fr/pub/distrib/ocaml-${versionNoPatch}/ocaml-${version}.tar.xz`, "url")),
           sha256: nix.thunk(() => nix.attr(args_1, "sha256")),
         }))), "src"));
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(optionalString, framePointerSupport, "+fp")),
       ])));
     const x11env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "x11env",
         paths: nix.thunk(() => [libx11, xorgproto]),
       }))));
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
     const x11inc = nix.thunk(() => nix.add(x11env, "/include"));
     const fetchpatch$ = (x) => (nix.asBool(nix.builtins.isAttrs(x)) ? nix.app(fetchpatch, x) : nix.force(x));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalArgs) => nix.update(args_1, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: pname,
         version: version,
         src: src,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
             ])), nix.concat(nix.app(optional, noNakedPointers, nix.thunk(() => nix.app(flags, "--disable-naked-pointers", "-no-naked-pointers"))), nix.app(optional, nix.thunk(() => nix.sel(finalArgs, "doCheck")), "--enable-ocamltest"))))))))));
         })()),
         dontAddStaticConfigureFlags: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.08")),
-        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.14")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "5.0")))), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.14")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
         configurePlatforms: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.08")) && nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))))), nix.thunk(() => ["host", "target"]))),
         hardeningDisable: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "5.0")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))), "strictoverflow"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(args_1, "hardeningDisable")), nix.thunk(() => nix.sel(args_1, "hardeningDisable"))))),
         enableParallelBuilding: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.08")),
@@ -114,11 +114,11 @@ export default nix.lambda((args) => (() => {
 AS="${nix.sel(stdenv, "cc")}/bin/cc -c" ASPP="${nix.sel(stdenv, "cc")}/bin/cc -c"
 `))), nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.08")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), "configureFlagsArray+=(\"-cc\" \"$CC\" \"-as\" \"$AS\" \"-partialld\" \"$LD -r\")\n"))),
         postBuild: "mkdir -p $out/include\nln -sv $out/lib/ocaml/caml $out/include/caml\n",
-        passthru: nix.thunk(() => ({ __proto__: pos$4, nativeCompilers: useNativeCompilers })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, nativeCompilers: useNativeCompilers })),
         checkTarget: "tests",
         doCheck: doCheck,
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://ocaml.org/",
           branch: versionNoPatch,
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

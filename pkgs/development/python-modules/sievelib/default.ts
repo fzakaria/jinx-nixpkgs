@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Kvuq8lA6/pEt4IgeTFdzg+b5D4dikx+00y8rVBI85FA=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["sievelib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client-side Sieve and Managesieve library",
         longDescription: "A library written in Python that implements RFC 5228 (Sieve: An Email\nFiltering Language) and RFC 5804 (ManageSieve: A Protocol for\nRemotely Managing Sieve Scripts), as well as the following extensions:\n\n * Copying Without Side Effects (RFC 3894)\n * Body (RFC 5173)\n * Date and Index (RFC 5260)\n * Vacation (RFC 5230)\n * Imap4flags (RFC 5232)\n",
         homepage: "https://github.com/tonioo/sievelib",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

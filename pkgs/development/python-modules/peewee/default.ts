@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.19.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coleifer",
           repo: "peewee",
           tag: version,
@@ -43,7 +43,7 @@ ${nix.sel(python, "interpreter")} runtests.py
 `);
       const pythonImportsCheck = nix.thunk(() => ["peewee"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python ORM with support for various database implementation",
         homepage: "http://peewee-orm.com",
         changelog: nix.thunk(() => nix.str`https://github.com/coleifer/peewee/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ ${nix.sel(python, "interpreter")} runtests.py
         mainProgram: "pwiz.py",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

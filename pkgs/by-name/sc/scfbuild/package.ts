@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scfbuild",
       version: "2.0.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "13rac1",
           repo: "scfbuild",
           rev: "6d84339512a892972185d894704efa67dd82e87a",
@@ -43,7 +43,7 @@ cp -r bin $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SVGinOT color font builder",
         homepage: "https://github.com/13rac1/scfbuild",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

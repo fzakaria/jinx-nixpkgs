@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "python-fire",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["testFireAsyncio"])));
       const pythonImportsCheck = nix.thunk(() => ["fire"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for automatically generating command line interfaces",
         longDescription: "Python Fire is a library for automatically generating command line\ninterfaces (CLIs) from absolutely any Python object.\n\n* Python Fire is a simple way to create a CLI in Python.\n\n* Python Fire is a helpful tool for developing and debugging\n  Python code.\n\n* Python Fire helps with exploring existing code or turning other\n  people's code into a CLI.\n\n* Python Fire makes transitioning between Bash and Python easier.\n\n* Python Fire makes using a Python REPL easier by setting up the\n  REPL with the modules and variables you'll need already imported\n  and created.\n",
         homepage: "https://github.com/google/python-fire",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

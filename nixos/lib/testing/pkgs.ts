@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     config: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       _module: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         args: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pkgs: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.sel(hostPkgs, "stdenv", "hostPlatform", "isDarwin")), "Do not use the `pkgs` module argument in tests you want to run on darwin. It is ambiguous, and many tests are broken because of it. If you need to use a package on the VM host, use `hostPkgs`. Otherwise, use `config.node.pkgs`, or `config.nodes.<name>.nixpkgs.pkgs`.", hostPkgs)),
         })),
       })),

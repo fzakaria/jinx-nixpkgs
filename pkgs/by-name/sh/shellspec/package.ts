@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ksh = nix.arg($, "ksh");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "shellspec",
       version: "0.28.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shellspec",
           repo: "shellspec",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,30 +41,30 @@ export default nix.lambda((args) => (() => {
 `),
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => (() => {
-          const enabled = nix.thunk(() => nix.app(nix.sel(finalAttrs, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true }))));
+          const enabled = nix.thunk(() => nix.app(nix.sel(finalAttrs, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true }))));
           const testWith = nix.thunk(() => nix.sel(enabled, "overrideAttrs"));
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "with-bin-sh": enabled,
             "with-bash": nix.thunk(() => nix.app(testWith, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 extraTestArgs: nix.thunk(() => nix.str`--shell ${nix.app(nix.sel(lib, "getExe"), bash)}`),
               })))),
             "with-ksh": nix.thunk(() => nix.app(testWith, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 extraTestArgs: nix.thunk(() => nix.str`--shell ${nix.app(nix.sel(lib, "getExe"), ksh)}`),
               })))),
             "with-zsh": nix.thunk(() => nix.app(testWith, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 extraTestArgs: nix.thunk(() => nix.str`--shell ${nix.app(nix.sel(lib, "getExe"), zsh)}`),
               })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Full-featured BDD unit testing framework for bash, ksh, zsh, dash and all POSIX shells",
         homepage: "https://shellspec.info/",
         changelog: nix.thunk(() => nix.str`https://github.com/shellspec/shellspec/releases/tag/${nix.sel(finalAttrs, "version")}`),

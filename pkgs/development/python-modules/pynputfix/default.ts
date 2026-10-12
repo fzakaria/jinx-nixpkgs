@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pynputfix",
       version: "1.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AuroraWright",
           repo: "pynputfix",
           tag: "1.8.2",
           hash: "sha256-SKw745hh0G2NoWgUUjShyjiG2NYPd4iJlWx7IeGpW/4=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail \"'sphinx >=1.3.1',\" \"\" \\\n  --replace-fail \"'twine >=4.0']\" \"]\"\n",
       nativeBuildInputs: nix.thunk(() => [setuptools, setuptools_lint, sphinx]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Library to control and monitor input devices",
         homepage: "https://github.com/moses-palmer/pynput",

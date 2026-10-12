@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const ply = nix.arg($, "ply");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thriftpy2",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Thriftpy",
           repo: "thriftpy2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [cython]),
       dependencies: nix.thunk(() => [ply, ijson]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, aiohttp: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["thriftpy2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for Apache Thrift",
         homepage: "https://github.com/Thriftpy/thriftpy2",
         changelog: nix.thunk(() => nix.str`https://github.com/Thriftpy/thriftpy2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

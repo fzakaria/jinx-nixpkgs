@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "yabridgectl",
       version: nix.thunk(() => nix.sel(yabridge, "version")),
       src: nix.thunk(() => nix.sel(yabridge, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(wineWow64Packages, "yabridge"))]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Small, optional utility to help set up and update yabridge for several directories at once",
         homepage: nix.thunk(() => nix.str`${nix.sel(yabridge, "src", "meta", "homepage")}/tree/${nix.sel(yabridge, "version")}/tools/yabridgectl`),
         changelog: nix.thunk(() => nix.sel(yabridge, "meta", "changelog")),

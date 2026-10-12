@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hii",
       version: "1.1.5-unstable-2025-08-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nmeum",
           repo: "hii",
           rev: "6c07f4955a85eb32fcc0589238d5a00c1a8722f2",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage hii.1 hii.5\ninstall -Dm644 README.md $doc/share/doc/hii/README.md\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nmeum/hii/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         description: "A file-based IRC client inspired by ii",

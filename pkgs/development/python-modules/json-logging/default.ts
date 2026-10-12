@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bobbui",
           repo: "json-logging-python",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/smoketests/test_run_smoketest.py"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to emit logs in JSON format",
         longDescription: "Python logging library to emit JSON log that can be easily indexed and searchable by logging\ninfrastructure such as ELK, EFK, AWS Cloudwatch, GCP Stackdriver.\n",
         homepage: "https://github.com/bobbui/json-logging-python",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

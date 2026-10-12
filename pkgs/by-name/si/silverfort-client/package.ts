@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const electron = nix.arg($, "electron");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "silverfort-client",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -32,14 +32,14 @@ to the Nix store using \`nix-prefetch-url file:///$PWD/${name}\`.
 It is recommended to add this file to the garbage collector root
 to prevent garbage collection.
 `);
-          return { __proto__: pos$1, name, hash, message };
+          return { [nix.POS]: pos$1, name, hash, message };
         })()))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [asar, copyDesktopItems, dpkg, wrapGAppsHook3]),
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "silverfort-client",
             desktopName: "Silverfort Client",
             genericName: "Multi-factor authentication client",
@@ -60,7 +60,7 @@ to prevent garbage collection.
   "\${gappsWrapperArgs[@]}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Silverfort multi-factor authentication client",
         homepage: "https://www.silverfort.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

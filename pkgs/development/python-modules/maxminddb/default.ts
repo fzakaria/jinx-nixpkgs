@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-l5KxliWUXf8Ubi4xh/nkcLgjMKkS986lWBuL1a8w2os=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["maxminddb"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["multiprocessing"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reader for the MaxMind DB format",
         homepage: "https://github.com/maxmind/MaxMind-DB-Reader-python",
         changelog: nix.thunk(() => nix.str`https://github.com/maxmind/MaxMind-DB-Reader-python/blob/v${version}/HISTORY.rst`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

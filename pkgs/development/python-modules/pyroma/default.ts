@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "regebro",
           repo: "pyroma",
           tag: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_complete", "test_distribute"]);
       const pythonImportsCheck = nix.thunk(() => ["pyroma"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Test your project's packaging friendliness",
         mainProgram: "pyroma",
         homepage: "https://github.com/regebro/pyroma",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

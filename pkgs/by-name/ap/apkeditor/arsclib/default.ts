@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const REAndroidLibrary = nix.arg($, "REAndroidLibrary");
   const self = nix.thunk(() => nix.app(REAndroidLibrary, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "arsclib",
       version: "1.3.8-unstable-2026-05-16",
       projectName: "ARSCLib",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "REAndroid",
           repo: "ARSCLib",
           rev: "a28c6fb2a77de392f2758c4dfe1a4d7d1aa86c5a",
           hash: "sha256-0SwowTDkgF9Rdenx/nlSPuGf3kvk7ucxtr7D6r9fU/c=",
         })))),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$2, pkg: self, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pkg: self, data: nix.path(here, "./deps.json") })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }))));

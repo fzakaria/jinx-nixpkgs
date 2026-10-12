@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const makeFontsConf = nix.arg($, "makeFontsConf");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: [] }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: [] }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dovi-tool",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "quietvoid",
           repo: "dovi_tool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,14 +46,14 @@ export XDG_CACHE_HOME="$(mktemp -d)"
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/dovi_tool`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^(?!libdovi-)(.*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI tool combining multiple utilities for working with Dolby Vision",
         homepage: "https://github.com/quietvoid/dovi_tool",
         changelog: nix.thunk(() => nix.str`https://github.com/quietvoid/dovi_tool/releases/tag/${nix.sel(finalAttrs, "version")}`),

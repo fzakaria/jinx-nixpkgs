@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const mp3rtpSupport = nix.argOr($, "mp3rtpSupport", () => false);
   const debugSupport = nix.argOr($, "debugSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lame",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lame/lame-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-PfUSTVrTqYMS/9e6aps2Iw5Pij5m084PQl4zbDLSFus=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), debugSupport, "--enable-debug=alot")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High quality MPEG Audio Layer III (MP3) encoder",
         homepage: "https://lame.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

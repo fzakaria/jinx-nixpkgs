@@ -28,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const redis = nix.arg($, "redis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "banks",
       version: "2.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "masci",
           repo: "banks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+8TDRnZGPYDG0WFDVvr7Fj+JKT4+/RRjNEs+dqPHtAw=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       "build-system": nix.thunk(() => [hatchling]),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
         platformdirs,
         pydantic,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, all: nix.thunk(() => [litellm, redis]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, all: nix.thunk(() => [litellm, redis]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["banks"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Module that provides tools and functions to build prompts text and chat messages from generic blueprints",
         homepage: "https://github.com/masci/banks",
         changelog: nix.thunk(() => nix.str`https://github.com/masci/banks/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

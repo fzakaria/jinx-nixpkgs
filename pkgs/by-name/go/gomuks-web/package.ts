@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libheif = nix.arg($, "libheif");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gomuks-web",
       version: "26.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gomuks",
           repo: "gomuks",
           tag: nix.thunk(() => nix.str`v0.${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.0`),
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), pkg_config]),
       buildInputs: nix.thunk(() => [libheif]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         npmRoot: "web",
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
             hash: "sha256-t45wpiuBy9S2UaI/bQJqHOCWn11QWlcEuP7lNrgH90E=",
           })))),
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/gomuks", "cmd/gomuks-terminal", "cmd/archivemuks"]),
       preBuild: "CGO_ENABLED=0 go generate ./web\n",
       postInstall: "mv $out/bin/gomuks $out/bin/gomuks-web\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "gomuks-web",
         description: "Matrix client written in Go",
         homepage: "https://github.com/tulir/gomuks",

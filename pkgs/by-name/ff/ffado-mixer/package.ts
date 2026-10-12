@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withMixer", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ffado = nix.arg($, "ffado");
-  return nix.app(nix.sel(ffado, "override"), nix.thunk(() => ({ __proto__: pos$1, withMixer: true })));
+  return nix.app(nix.sel(ffado, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withMixer: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

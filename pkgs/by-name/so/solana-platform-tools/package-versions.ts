@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const xz = nix.arg($, "xz");
   const hashes = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "1.54": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "linux-x86_64": "sha256-/MQWMcf3dWG/VBIhi/KXUB3M8DBeooDzOPCs4qq58x4=",
       "linux-aarch64": "sha256-9igS3Za2scjg4s9ncUaRLFjIPpXXYsMOiSMNZp+cLmo=",
       "osx-x86_64": "sha256-0ctxZYkgB9Ea1y/e0Wx2km5d+p/yhv49mZRAwa80p1g=",
       "osx-aarch64": "sha256-HIs69ehhThxFk5OpXFsZv7zI7ROCKhy1OfrmhHH5v7s=",
     })),
     "1.57": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "linux-x86_64": "sha256-sPevEErfcm//KmoJ6i6y8tKWXJIpX01ziMCNFA4MKwA=",
       "linux-aarch64": "sha256-8vMckyXLLQAkTfI7ShoJBOUYGc7EnTkjWj7T7iMgN10=",
       "osx-x86_64": "sha256-5vYjGxSeZK1swSYF0PmTQFzlWGKqREBsAjVjFZ+MPK8=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const mkPlatformTools = (version) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "solana-platform-tools",
       version: version,
       __structuredAttrs: true,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : "x86_64"));
         const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://github.com/anza-xyz/platform-tools/releases/download/v${nix.sel(finalAttrs, "version")}/platform-tools-${platform}-${arch}.tar.bz2`),
             hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(version)), nix.key(nix.str`${platform}-${arch}`))),
           })));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out\nfor dir in llvm rust env-vars; do\n  [ -d \"$dir\" ] && cp -r \"$dir\" $out/\ndone\n[ -f version.md ] && cp version.md $out/\nrunHook postInstall\n",
       preFixup: "find $out/llvm/lib -maxdepth 1 -name 'liblldb*' -delete\nfind $out/llvm/bin -maxdepth 1 \\\n  \\( -name 'lldb*' -o -name 'solana-lldb' -o -name 'solana_commands' \\\n     -o -name 'rust_types.py' -o -name 'solana_*.py' \\) -delete\nrm -rf $out/llvm/lib/python3.*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Solana SBF platform tools (LLVM + Rust toolchain)",
         homepage: "https://github.com/anza-xyz/platform-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/anza-xyz/platform-tools/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       })),
     }));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "solana-platform-tools_154": nix.thunk(() => nix.app(mkPlatformTools, "1.54")),
     "solana-platform-tools_157": nix.thunk(() => nix.app(mkPlatformTools, "1.57")),
     "solana-platform-tools_latest": nix.thunk(() => nix.app(mkPlatformTools, "1.57")),

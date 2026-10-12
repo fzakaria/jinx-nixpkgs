@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gifticlib",
       version: "0-unstable-2020-07-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NIFTI-Imaging",
           repo: "gifti_clib",
           rev: "5eae81ba1e87ef3553df3b6ba585f12dc81a0030",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       checkFlags: nix.thunk(() => ["-LE", "NEEDS_DATA"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nitrc.org/projects/gifti",
         description: "Medical imaging geometry format C API",
         maintainers: nix.thunk(() => (() => {

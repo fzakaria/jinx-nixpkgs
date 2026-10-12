@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xcd",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.muppetlabs.com/~breadbox/pub/software/xcd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1cgwspy08q05rhxbp7m1yrrix252i9jzfcfbzmhdvlgf5bfpl25g",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\ninstall -D $pname $out/bin/$pname\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colorized hexdump tool",
         homepage: "https://www.muppetlabs.com/~breadbox/software/xcd.html",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xfnw"))]),

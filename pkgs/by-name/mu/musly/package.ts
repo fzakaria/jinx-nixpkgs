@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libresample = nix.arg($, "libresample");
   const kissfft = nix.arg($, "kissfft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "musly",
       version: "0.1-unstable-2019-09-05",
       outputs: nix.thunk(() => ["bin", "dev", "out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dominikschnitzer",
           repo: "musly",
           rev: "7a0c6a9a2782e6fca84fb86fce5232a8c8a104ed",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [eigen, ffmpeg, libresample, kissfft]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.musly.org",
         description: "Fast and high-quality audio music similarity library written in C/C++",
         longDescription: "Musly analyzes the the audio signal of music pieces to estimate their similarity.\nNo meta-data about the music piece is included in the similarity estimation.\nTo use Musly in your application, have a look at the library documentation\nor try the command line application included in the package and start generating\nsome automatic music playlists right away.\n",

@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(x11Support))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/es/espanso/package.nix:35:1");
   nix.assert_((!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(waylandSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/es/espanso/package.nix:36:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "espanso",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "espanso",
           repo: "espanso",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,12 +84,12 @@ wrapProgram $out/bin/espanso \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnotify, setxkbmap])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [kdotool, wl_clipboard])), nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [xclip]))))))}
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         waylandSupport: waylandSupport,
         tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "espanso"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             })))),
@@ -97,7 +97,7 @@ wrapProgram $out/bin/espanso \\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform Text Expander written in Rust",
         mainProgram: "espanso",
         homepage: "https://espanso.org",

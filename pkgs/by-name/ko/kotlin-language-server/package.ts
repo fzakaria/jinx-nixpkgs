@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const maven = nix.arg($, "maven");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kotlin-language-server",
       version: "1.3.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/fwcd/kotlin-language-server/releases/download/${nix.sel(finalAttrs, "version")}/server.zip`),
           hash: "sha256-ypiOeXA+14Js31WPGJAdSjskQJR9sBPVWGecLkKHiN4=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/kotlin-language-server" --set JAVA_HOME ${openjdk} --prefix PATH : ${nix.app(nix.sel(lib, "strings", "makeBinPath"), nix.thunk(() => [openjdk, maven]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kotlin language server",
         longDescription: "About Kotlin code completion, linting and more for any editor/IDE\nusing the Language Server Protocol Topics",
         maintainers: nix.thunk(() => (() => {

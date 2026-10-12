@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lwgrp",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LLNL",
           repo: "lwgrp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       propagatedBuildInputs: nix.thunk(() => [mpi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data structures and operations to group MPI processes as an ordered set",
         homepage: "https://github.com/LLNL/lwgrp",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

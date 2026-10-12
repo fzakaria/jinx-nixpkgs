@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "XStatic-Font-Awesome",
           version: version,
           hash: "sha256-8HWHEJYShjjy4VOQINgid1TD2IXdaOfubemgEjUHaCg=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_80]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xstatic-py/xstatic-font-awesome",
         description: "Font Awesome packaged for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

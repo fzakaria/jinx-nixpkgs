@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tautulli",
       version: "2.18.2",
       pyproject: false,
       pythonPath: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "wrapPython")), makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tautulli",
           repo: "Tautulli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ runHook postInstall
 `),
       checkPhase: "runHook preCheck\n\n$out/bin/tautulli --help\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python based monitoring and tracking tool for Plex Media Server",
         homepage: "https://tautulli.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bennylope",
           repo: "django-organizations",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytestCheckHook, mock, mock_django, django_autoslug]);
       const pythonImportsCheck = nix.thunk(() => ["organizations"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-user accounts for Django projects",
         homepage: "https://github.com/bennylope/django-organizations",
         changelog: nix.thunk(() => nix.str`https://github.com/bennylope/django-organizations/blob/${version}/HISTORY.rst`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

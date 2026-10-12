@@ -13,20 +13,20 @@ const pos$6 = nix.positions(here + "/commafeed.nix", [["name", 3, 3], ["nodes", 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "commafeed",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       server: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          commafeed: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          commafeed: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
     })),
     testScript: "server.start()\nserver.wait_for_unit(\"commafeed.service\")\nserver.wait_for_open_port(8082)\nserver.succeed(\"curl --fail --silent http://localhost:8082\")\n",
-    meta: nix.thunk(() => ({ __proto__: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=commafeed.ts.map

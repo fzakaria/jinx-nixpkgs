@@ -76,21 +76,21 @@ export default nix.lambda((args) => (() => {
   const bootstrappedPypaBuildHook = nix.thunk(() => nix.app(nix.sel(pypaBuildHook, "override"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "pkgs", "bootstrap"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       build: nix.thunk(() => nix.attr(from, "build")),
       wheel: null,
     };
     })())));
   const bootstrappedPypaInstallHook = nix.thunk(() => nix.app(nix.sel(pypaInstallHook, "override"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "pkgs", "bootstrap"));
-      return { __proto__: pos$2, installer: nix.thunk(() => nix.attr(from, "installer")) };
+      return { [nix.POS]: pos$2, installer: nix.thunk(() => nix.attr(from, "installer")) };
     })())));
   const bootstrappedRuntimeDepsCheckHook = nix.thunk(() => nix.app(nix.sel(pythonRuntimeDepsCheckHook, "override"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "pkgs", "bootstrap"));
-      return { __proto__: pos$3, packaging: nix.thunk(() => nix.attr(from, "packaging")) };
+      return { [nix.POS]: pos$3, packaging: nix.thunk(() => nix.attr(from, "packaging")) };
     })())));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "disabled",
@@ -186,7 +186,7 @@ ${optionalLocation}
         const name = nix.thunk(() => nix.add(namePrefix, nix.selOr(attrs, () => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`, "name")));
         const runtimeDepsCheckHook = nix.thunk(() => (nix.asBool(isBootstrapPackage) ? nix.force(bootstrappedRuntimeDepsCheckHook) : nix.force(pythonRuntimeDepsCheckHook)));
         return nix.update({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: name,
           catchConflicts: catchConflicts,
           nativeBuildInputs: nix.thunk(() => nix.concat([
@@ -204,7 +204,7 @@ ${optionalLocation}
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(validatePythonMatches, "propagatedBuildInputs", nix.thunk(() => nix.concat(propagatedBuildInputs, nix.app(getFinalPassthru, "dependencies")))), [python])),
           strictDeps: strictDeps,
           env: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             LANG: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(python, "stdenv", "hostPlatform", "isDarwin")) ? "en_US" : "C")}.UTF-8`),
           }, nix.selOr(attrs, () => ({}), "env"))),
           doCheck: false,
@@ -216,7 +216,7 @@ ${optionalLocation}
           disallowedReferences: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(python, "stdenv", "hostPlatform"), nix.sel(python, "stdenv", "buildPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(python, "pythonOnBuildForHost"))]))),
           outputs: nix.thunk(() => nix.concat(outputs, nix.app(optional, withDistOutput, "dist"))),
           passthru: nix.thunk(() => nix.update(nix.attrsDyn({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pyproject: pyproject,
             "build-system": build_system,
             dependencies: dependencies,
@@ -228,16 +228,16 @@ ${optionalLocation}
             [(nix.asBool(nix.has(attrs, "stdenv")) ? "__stdenvPythonCompatPos" : null), nix.thunk(() => nix.builtins.unsafeGetAttrPos("stdenv", attrs))],
           ]), nix.selOr(attrs, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             platforms: nix.thunk(() => nix.sel(python, "meta", "platforms")),
             isBuildPythonPackage: nix.thunk(() => nix.sel(python, "meta", "platforms")),
           }, nix.update(meta, {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             problems: nix.thunk(() => (() => {
               const disabled$ = nix.thunk(() => (nix.asBool(nix.has(meta, "problems", "unsupportedPython")) || nix.asBool(disabled)));
               return nix.update(nix.selOr(meta, () => ({}), "problems"), nix.attrsDyn({}, [
                 [(nix.asBool(disabled$) ? "unsupportedPython" : null), nix.thunk(() => nix.update(nix.selOr(meta, () => ({}), "problems", "unsupportedPython"), {
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   kind: "broken",
                   message: nix.thunk(() => nix.selOr(meta, () => nix.str`${nix.app(removePrefix, namePrefix, nix.thunk(() => nix.sel(finalAttrs, "name")))} not supported for interpreter ${nix.sel(python, "executable")}`, "problems", "unsupportedPython", "message")),
                 }))],
@@ -245,7 +245,7 @@ ${optionalLocation}
             })()),
           }))),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(attrs, "checkPhase")), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             installCheckPhase: nix.thunk(() => nix.sel(attrs, "checkPhase")),
           }))), nix.update((() => {
           const deprecatedFlagNotEmpty = nix.thunk(() => (nix.asBool((nix.asBool(nix.has(attrs, "pytestFlagsArray")) && nix.asBool(!nix.eq(nix.sel(attrs, "pytestFlagsArray"), null)))) && nix.asBool(!nix.eq(nix.sel(attrs, "pytestFlagsArray"), []))));

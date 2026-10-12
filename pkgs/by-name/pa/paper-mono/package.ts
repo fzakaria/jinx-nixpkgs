@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paper-mono",
       version: "1.000",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/paper-design/paper-mono/releases/download/v${nix.sel(finalAttrs, "version")}/paper-mono-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-h5yTJS+Oln2r4HcuHu3gjrw41udw/Uj/rmV/niPfaEg=",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Beautiful monospace font for design and code by Paper",
         homepage: "https://github.com/paper-design/paper-mono",
         changelog: nix.thunk(() => nix.str`https://github.com/paper-design/paper-mono/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const indent = nix.argOr($_1, "indent", () => 2n);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         __structuredAttrs: true,
         strictDeps: true,
         src: src,

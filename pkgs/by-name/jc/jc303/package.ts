@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const buildLV2 = nix.argOr($, "buildLV2", () => true);
   const buildCLAP = nix.argOr($, "buildCLAP", () => true);
   const juce_clap_extensions = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "free-audio",
       repo: "clap-juce-extensions",
       rev: "02f91b7988298f7f1f05c706da16e1d9da852a87",
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const chowdsp_utils = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "Chowdhury-DSP",
       repo: "chowdsp_utils",
       rev: "ffc70ba399f9afaeefb996eb14e55a1d487270b8",
       hash: "sha256-rKjrhb+w/lW9k3Dg5jWM2eJRa0fPDF8SNVrCTFrRMoM=",
     }))));
   const rtneural = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "jatinchowdhury18",
       repo: "RTNeural",
       rev: "04cb333bc4b174760958a77c7ce076eae38fe8e4",
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       postFetch: "# note: if rtneural is updated, this won't be needed anymore\nsubstituteInPlace $out/CMakeLists.txt \\\n  --replace-fail \"include(cmake/CPM.cmake)\" \"# No tests\" \\\n\n# Required for CMake 4\nsubstituteInPlace $out/CMakeLists.txt \\\n  --replace-fail \\\n    \"cmake_minimum_required(VERSION 3.5)\" \\\n    \"cmake_minimum_required(VERSION 4.0)\"\n",
     }))));
   const math_approx = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "Chowdhury-DSP",
       repo: "math_approx",
       rev: "0c68d4d17242d707ba07fa7f1901692b7ed72d58",
       hash: "sha256-t6UrsZGRJjJVp+aGkwBa++Skj9xkdQuZKAxRrTkfM0E=",
     }))));
   const ea_variant = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "eyalamirmusic",
       repo: "Variant",
       rev: "3fce49cfca50ba3b05026d41ffc4911a8e653378",
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildLV2, "LV2")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "jc303",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "midilab",
           repo: "jc303",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/midilab/jc303/commit/837d3fc5cf4e993375403a45d7e23df1b4e3cf7f.diff",
             hash: "sha256-WvLIcSHrLiXj1VEV+IxS05YSWEq7oz57qIbNsqRySaY=",
           })))),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_CLAP", buildCLAP)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))))),
       })),
@@ -139,11 +139,11 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Roland TB-303 clone plugin",
         homepage: "https://github.com/midilab/jc303",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

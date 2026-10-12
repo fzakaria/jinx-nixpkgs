@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tblue",
           repo: "python-jproperties",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_simple_utf8.py"]);
       const pythonImportsCheck = nix.thunk(() => ["jproperties"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java Property file parser and writer for Python",
         homepage: "https://github.com/Tblue/python-jproperties",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "propconv",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

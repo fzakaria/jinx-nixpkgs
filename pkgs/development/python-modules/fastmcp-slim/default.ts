@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const websockets = nix.arg($, "websockets");
   const anyio = nix.arg($, "anyio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastmcp-slim",
       version: nix.thunk(() => nix.attr(fastmcp, "version")),
       src: nix.thunk(() => nix.attr(fastmcp, "src")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       pyproject: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/PrefectHQ/fastmcp/commit/6be0ac8e15d35ff8f5121266855bc34c1158c9a1.patch",
             includes: nix.thunk(() => ["fastmcp/tools/function_tool.py"]),
             stripLen: 1n,
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ], nix.sel(pydantic, "optional-dependencies", "email"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         anthropic: nix.thunk(() => [anthropic]),
         apps: [],
         azure: nix.thunk(() => [azure_identity, pyjwt]),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\ncd \"$TMPDIR\"\npython - <<'PY'\nfrom functools import partial\n\nfrom fastmcp.tools.function_tool import _resolve_param_hints\n\n\nclass Item:\n    pass\n\n\nasync def base(prefix: str, items: list[Item]) -> str:\n    return prefix\n\n\nhints = _resolve_param_hints(partial(base, \"bound\"))\nassert hints[\"items\"] == list[Item]\nassert \"prefix\" not in hints\nPY\n\nrunHook postInstallCheck\n",
       doCheck: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dependency-slim FastMCP package",
         changelog: nix.thunk(() => nix.str`https://github.com/jlowin/fastmcp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/PrefectHQ/fastmcp/tree/main/fastmcp_slim",

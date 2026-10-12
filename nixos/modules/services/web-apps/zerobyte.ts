@@ -46,51 +46,51 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "zerobyte"));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pbek"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         zerobyte: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Zerobyte, backup automation for self-hosters built on top of restic")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zerobyte", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "zerobyte",
               description: "User account under which Zerobyte runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "zerobyte",
               description: "Group under which Zerobyte runs.",
             })))),
           appSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/zerobyte-app-secret",
               description: "Path to a file containing the application secret (32–256 characters),\nused to encrypt sensitive data in the database. Generate one with\n`openssl rand -hex 32`.\n\nThis should not be a path in the Nix store. The file is passed to the\nservice via systemd credentials.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/zerobyte",
               description: "Directory used to store the database, encryption keys, local\nrepositories, volume mounts and the restic cache.\n\nDo not point this to a network share, this will cause permission\nissues and strong performance degradation.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "bool")),
                         nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 BASE_URL: "https://zerobyte.example.com",
                 LOG_LEVEL: "debug",
                 GOMAXPROCS: 2n,
@@ -108,20 +108,20 @@ export default nix.lambda((args) => (() => {
               description: "Zerobyte configuration passed as environment variables. See\n<https://github.com/nicotsx/zerobyte#configuration> for the available\nsettings.\n\n`BASE_URL` is required. It is highly discouraged to expose Zerobyte\ndirectly to the internet; bind `HOST` to localhost and use a secure\ntunnel or an authenticating reverse proxy instead.\n\nDo not put secrets here; use\n[](#opt-services.zerobyte.environmentFile) instead.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/zerobyte.env",
               description: "Environment file loaded by systemd, which may be used to pass secrets\nsuch as `APP_SECRET` to Zerobyte without putting them into the Nix\nstore.\n",
             })))),
           provisioningFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a JSON file with operator-managed repositories and volumes to\nsync at startup. See\n<https://zerobyte.app/docs/guides/provisioning> for the format.\n\nThis may contain secrets, so it should not be a path in the Nix store.\nThe file is passed to the service via systemd credentials.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
               description: "Extra packages added to the `PATH` of the Zerobyte service. The\ndefault contains the tools needed to mount NFS, SMB, WebDAV and SFTP\nvolumes. Add `shoutrrr` here if you want notifications to be\ndelivered.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the Zerobyte web interface.",
@@ -148,13 +148,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           zerobyte: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               NODE_ENV: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "production")),
               HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
               PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 4096n)),
@@ -166,39 +166,39 @@ export default nix.lambda((args) => (() => {
               RESTIC_CACHE_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/restic/cache`),
               RCLONE_CONFIG_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/rclone`),
               ENABLE_LOCAL_AGENT: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
-            }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "provisioningFile"), null)), nix.thunk(() => ({ __proto__: pos$17, PROVISIONING_PATH: "%d/provisioning.json" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "appSecretFile"), null)), nix.thunk(() => ({ __proto__: pos$18, APP_SECRET_FILE: "%d/app-secret" })))))),
+            }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "provisioningFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$17, PROVISIONING_PATH: "%d/provisioning.json" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "appSecretFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$18, APP_SECRET_FILE: "%d/app-secret" })))))),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "BASE_URL")),
             message: "services.zerobyte.settings.BASE_URL must be set.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "appSecretFile"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "environmentFile"), null)))) || nix.asBool(nix.has(nix.sel(cfg, "settings"), "APP_SECRET")))),
             message: "services.zerobyte: A secret is required to encrypt sensitive data in\nthe database. Set `services.zerobyte.appSecretFile` or provide\n`APP_SECRET` via `services.zerobyte.environmentFile`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "APP_SECRET"))),
             message: "services.zerobyte.settings.APP_SECRET would expose the secret in the\nNix store. Use `services.zerobyte.appSecretFile` or\n`services.zerobyte.environmentFile` instead.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             zerobyte: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Zerobyte backup automation",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : nix.builtins.toString(value)), nix.thunk(() => nix.sel(cfg, "settings")))),
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -220,22 +220,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "zerobyte")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               zerobyte: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "zerobyte")), nix.thunk(() => ({ __proto__: pos$30, zerobyte: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "zerobyte")), nix.thunk(() => ({ [nix.POS]: pos$30, zerobyte: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "PORT")))))),
               ]),

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_image = nix.arg($, "scikit-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "glymur",
       version: "0.14.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quintusdias",
           repo: "glymur",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-lib-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             openjp2_lib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openjpeg)}/lib/libopenjp2${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             tiff_lib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libtiff)}/lib/libtiff${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_config.py"]),
       pythonImportsCheck: nix.thunk(() => ["glymur"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for accessing JPEG2000 files",
         homepage: "https://github.com/quintusdias/glymur",
         changelog: nix.thunk(() => nix.str`https://github.com/quintusdias/glymur/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.txt`),

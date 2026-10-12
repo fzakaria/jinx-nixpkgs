@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scalecodec",
       version: "1.2.12",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JAMdotTech",
           repo: "py-scale-codec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [more_itertools, base58, requests]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TRAVIS_TAG: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["scalecodec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SCALE Codec Library",
         longDescription: "Substrate uses a lightweight and efficient encoding and decoding program to optimize how data is sent and received over the network.\nThe program used to serialize and deserialize data is called the SCALE codec, with SCALE being an acronym for Simple Concatenated Aggregate Little-Endian.\n",
         homepage: "https://github.com/JAMdotTech/py-scale-codec",

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "avd-fw",
       version: "0.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AsahiLinux",
           repo: "avd-fw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonFlags: nix.thunk(() => ["--cross-file=arm-none-eabi-gcc.ini", "--buildtype", "release"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for the Apple Video Decoder, found on M-Series Apple Silicon Devices",
         homepage: "https://github.com/AsahiLinux/avd-fw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const qcmaquisSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "qcscine",
       repo: "qcmaquis",
       rev: "9ff551fecbdbad43d17600c441a9c9bfb9811d3e",
       hash: "sha256-+EtfgYg6apREDOltXu8zfUbpuiV56k4RvuPAYO0fbsM=",
     }))));
   const nevpt2Src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nevpt2-src",
       version: "unstable",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "qcscine",
           repo: "nevpt2",
           rev: "e1484fd4901ae93ab0188bde417cf5dc440a8a3b",
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir $out\ncp -r * $out/.\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "openmolcas",
       version: "26.06",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "Molcas",
           repo: "OpenMolcas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,8 +106,8 @@ substituteInPlace cmake/custom/nevpt2.cmake \\
         lapack_ilp64,
         libwignernj,
       ], nix.app(nix.sel(lib, "optionals"), enableMpi, nix.thunk(() => [mpi, globalarrays_ilp64])))),
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enableMpi, nix.thunk(() => ({ __proto__: pos$5, mpi: mpi })))),
-      env: nix.thunk(() => ({ __proto__: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enableMpi, nix.thunk(() => ({ [nix.POS]: pos$5, mpi: mpi })))),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         "-DOPENMP=ON",
         "-DTOOLS=ON",
@@ -136,7 +136,7 @@ done
 wrapProgram $out/bin/pymolcas --set MOLCAS $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Advanced quantum chemistry software package",
         homepage: "https://gitlab.com/Molcas/OpenMolcas",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),

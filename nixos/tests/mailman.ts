@@ -28,38 +28,38 @@ const pos$19 = nix.positions(here + "/mailman.nix", [["name", 3, 3], ["nodes", 5
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "mailman",
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "mailutils"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mailman: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              serve: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              serve: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
               siteOwner: "postmaster@example.com",
               webHosts: nix.thunk(() => ["example.com"]),
             })),
             postfix: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 main: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   mydestination: nix.thunk(() => ["example.com", "example.net"]),
                   relay_domains: nix.thunk(() => ["hash:/var/lib/mailman/data/postfix_domains"]),
                   local_recipient_maps: nix.thunk(() => ["hash:/var/lib/mailman/data/postfix_lmtp", "proxy:unix:passwd.byname"]),
@@ -69,22 +69,22 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             users: nix.thunk(() => ({
-              __proto__: pos$9,
-              user: nix.thunk(() => ({ __proto__: pos$8, isNormalUser: true })),
+              [nix.POS]: pos$9,
+              user: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$11, memorySize: 2048n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, memorySize: 2048n })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             restApiPassFileSystem: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               configuration: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 services: nix.thunk(() => ({
-                  __proto__: pos$13,
-                  mailman: nix.thunk(() => ({ __proto__: pos$12, restApiPassFile: "/var/lib/mailman/pass" })),
+                  [nix.POS]: pos$13,
+                  mailman: nix.thunk(() => ({ [nix.POS]: pos$12, restApiPassFile: "/var/lib/mailman/pass" })),
                 })),
               })),
             })),

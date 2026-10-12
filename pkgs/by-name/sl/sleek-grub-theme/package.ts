@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const withStyle = nix.argOr($, "withStyle", () => "light");
   nix.assert_(nix.builtins.elem(withStyle, nix.thunk(() => ["light", "dark", "orange", "bigSur"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sl/sleek-grub-theme/package.nix:9:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sleek-grub-theme",
       version: "0-unstable-2025-05-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sandesh236",
           repo: "sleek--themes",
           rev: "e103aa4cd655be6a38dbab37b1911c6ed9ef7765",
@@ -36,7 +36,7 @@ sed -i "s/Grub Bootloader/${withBanner}/" $out/theme.txt
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Grub bootloader themes, contains light/dark/orange/bigSur styles",
         homepage: "https://github.com/sandesh236/sleek--themes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

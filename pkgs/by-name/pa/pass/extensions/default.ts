@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const callPackage = nix.thunk(() => nix.attr(pkgs, "callPackage"));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "pass-audit": nix.thunk(() => nix.app(callPackage, nix.path(here, "./audit"), nix.thunk(() => ({})))),
     "pass-checkup": nix.thunk(() => nix.app(callPackage, nix.path(here, "./checkup.nix"), nix.thunk(() => ({})))),
     "pass-import": nix.thunk(() => nix.app(callPackage, nix.path(here, "./import.nix"), nix.thunk(() => ({})))),

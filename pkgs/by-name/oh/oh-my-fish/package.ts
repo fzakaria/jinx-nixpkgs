@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oh-my-fish",
       version: "8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oh-my-fish",
           repo: "oh-my-fish",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 mkdir -pv $out/bin $out/share/oh-my-fish
 cp -vr * $out/share/oh-my-fish
 
-cp -v ${nix.app(replaceVars, nix.path(here, "./omf-install"), nix.thunk(() => ({ __proto__: pos$2, fish: fish, runtimeShell: runtimeShell, omf: null })))} $out/bin/omf-install
+cp -v ${nix.app(replaceVars, nix.path(here, "./omf-install"), nix.thunk(() => ({ [nix.POS]: pos$2, fish: fish, runtimeShell: runtimeShell, omf: null })))} $out/bin/omf-install
 
 substituteInPlace $out/bin/omf-install \\
   --replace-fail '@omf@' "$out"
@@ -50,13 +50,13 @@ cat $out/bin/omf-install
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fish, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/oh-my-fish/oh-my-fish",
         description: "Fish Shell Framework",
         longDescription: "Oh My Fish provides core infrastructure to allow you to install packages\nwhich extend or modify the look of your shell. It's fast, extensible and\neasy to use.\n",

@@ -32,71 +32,71 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "rstp",
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       client: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         containers: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           peer: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             autoStart: true,
             privateNetwork: true,
             hostBridge: "br0",
             config: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               networking: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   eth0: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$1, address: "192.168.1.122", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$1, address: "192.168.1.122", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })),
               })),
-              nix: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+              nix: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           bridges: nix.thunk(() => ({
-            __proto__: pos$11,
-            br0: nix.thunk(() => ({ __proto__: pos$10, interfaces: [], rstp: true })),
+            [nix.POS]: pos$11,
+            br0: nix.thunk(() => ({ [nix.POS]: pos$10, interfaces: [], rstp: true })),
           })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             eth1: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
               ipv6: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
             br0: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$15, address: "192.168.1.2", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$15, address: "192.168.1.2", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$20, vlans: nix.thunk(() => [1n]) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$20, vlans: nix.thunk(() => [1n]) })),
       })),
     })),
     testScript: "client.start()\nclient.wait_for_unit(\"default.target\")\nclient.wait_until_succeeds(\"journalctl | grep 'Port vb-peer : up'\", timeout=10)\n",

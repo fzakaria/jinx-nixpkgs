@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const muparser = nix.arg($, "muparser");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qcad",
       version: "3.32.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-src`),
           owner: "qcad",
           repo: "qcad",
@@ -103,7 +103,7 @@ installManPage qcad.1
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "2D CAD package based on Qt",
         homepage: "https://qcad.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

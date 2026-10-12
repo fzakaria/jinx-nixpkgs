@@ -11,14 +11,14 @@ const pos$3 = nix.positions(here + "/pam-lastlog.nix", [["name", 4, 3], ["nodes"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     name: "pam-lastlog",
     nodes: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
         };
       })(), formals$2),

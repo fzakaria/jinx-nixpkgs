@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => false);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "far2l",
       version: "_2.9.0-unstable-2026-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elfmz",
           repo: "far2l",
           rev: "c12197bceb57b645dcbac99af6c51be815cb756b",
@@ -95,11 +95,11 @@ for file in ${nix.sel(_7zz, "lib")}/lib/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux port of FAR Manager v2 with enhanced plugin support",
         homepage: "https://github.com/elfmz/far2l",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

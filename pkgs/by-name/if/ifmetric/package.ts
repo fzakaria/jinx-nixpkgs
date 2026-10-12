@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lynx = nix.arg($, "lynx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ifmetric",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://0pointer.de/lennart/projects/ifmetric/ifmetric-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1v0s5x81jzwnnl7hr254d4nkyc8qcv983pzr6vqmbr9l9q553a0g",
         })))),
       buildInputs: nix.thunk(() => [lynx]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://launchpadlibrarian.net/85974387/10_netlink_fix.patch",
             sha256: "1pnlcr0qvk0bd5243wpg14i387zp978f4xhwwkcqn1cir91x7fbc",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for setting IP interface metrics",
         longDescription: "ifmetric is a Linux tool for setting the metrics of all IPv4 routes\nattached to a given network interface at once. This may be used to change\nthe priority of routing IPv4 traffic over the interface. Lower metrics\ncorrelate with higher priorities.\n",
         homepage: "http://0pointer.de/lennart/projects/ifmetric",

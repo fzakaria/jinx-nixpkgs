@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const hiprand = nix.arg($, "hiprand");
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.str`rocfft${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DGPU_TARGETS=${nix.app(nix.sel(lib, "concatStringsSep"), ";", gpuTargets)}`),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         test: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
             postInstall: "rm -r \"$out/lib/fftw\"\nrmdir \"$out/lib\"\n",
           })))),
         benchmark: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-benchmark`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
             postInstall: "cp -a ../../../scripts/perf \"$out/bin\"\n",
           })))),
         samples: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-samples`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -113,11 +113,11 @@ export default nix.lambda((args) => (() => {
             buildInputs: nix.thunk(() => [boost, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), openmp, rocrand]),
             installPhase: "runHook preInstall\nmkdir \"$out\"\ncp -a bin \"$out\"\nrunHook postInstall\n",
           })))),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$5, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$5, finalAttrs: finalAttrs })))),
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "FFT implementation for ROCm",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocfft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

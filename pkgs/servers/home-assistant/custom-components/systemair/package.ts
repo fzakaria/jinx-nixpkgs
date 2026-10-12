@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const domain = "systemair";
       const version = "1.0.37";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "systemair",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest9_0CheckHook, pytest_homeassistant_custom_component]);
       const pytestFlags = nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn9Warning"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/AN3Orik/systemair/releases/tag/v${version}`),
         description: "Home Assistant component for Systemair SAVE ventilation units",
         homepage: "https://github.com/AN3Orik/systemair",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

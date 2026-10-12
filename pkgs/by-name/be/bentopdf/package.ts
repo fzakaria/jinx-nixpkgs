@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const simpleMode = nix.argOr($, "simpleMode", () => true);
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bentopdf",
       version: "2.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alam00000",
           repo: "bentopdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
       npmDepsFetcherVersion: 2n,
       npmBuildFlags: nix.thunk(() => ["--", "--mode", "production"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SIMPLE_MODE: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), simpleMode)),
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/* $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "bentopdf"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           caddy: nix.thunk(() => nix.attr(from, "caddy")),
           nginx: nix.thunk(() => nix.attr(from, "nginx")),
         };
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Privacy-first PDF toolkit",
         homepage: "https://bentopdf.com",
         changelog: "https://github.com/alam00000/bentopdf/releases",

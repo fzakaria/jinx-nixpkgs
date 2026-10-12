@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const sandboxPathsTest = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " || ", sandboxPathsTests));
   const sandboxPathsList = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", sandboxPaths));
   const testDerivation = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`test-run-${name}`),
         requiredSystemFeatures: nix.thunk(() => ["nixos-test"]),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out
@@ -38,7 +38,7 @@ fi
 # Run test
 ${testScript}
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$1, runScript: runScript })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, runScript: runScript })),
       })), nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => [
           "lib",
           "stdenv",
@@ -58,8 +58,8 @@ ${prepareRunCommands}
 sudo --preserve-env=NIXPKGS_ALLOW_UNFREE nix-build --option extra-sandbox-paths '${sandboxPathsList}' ${nix.app(nix.sel(lib, "escapeShellArgs"), nixFlags)} -A ${testPath} "$@"
 `)));
   return nix.app(nix.sel(runScript, "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, testDerivation: testDerivation })),
+      [nix.POS]: pos$4,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, testDerivation: testDerivation })),
     }));
 })(), formals$1);
 //# sourceMappingURL=make-impure-test.ts.map

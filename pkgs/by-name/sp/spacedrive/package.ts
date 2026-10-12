@@ -29,20 +29,20 @@ export default nix.lambda((args) => (() => {
   const pname = "spacedrive";
   const version = "0.4.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "aarch64-darwin": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/spacedriveapp/spacedrive/releases/download/${version}/Spacedrive-darwin-aarch64.dmg`),
         hash: "sha256-0Bj6GjsxLUgLlycA33pXIvItoqFtatjJl2Z/ZwjnC0c=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/spacedriveapp/spacedrive/releases/download/${version}/Spacedrive-linux-x86_64.deb`),
         hash: "sha256-MLCAHNLJ/9bdCBLBBssrpk98uvKTfHs9YGxmxJ11/oY=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version}: ${nix.sel(stdenv, "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "system"))))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     broken: true,
     description: "Open source file manager, powered by a virtual distributed filesystem",
     homepage: "https://www.spacedrive.com",
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
     mainProgram: "spacedrive",
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Spacedrive.app\"\ncp -r . \"$out/Applications/Spacedrive.app\"\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Spacedrive.app/Contents/MacOS/sd-desktop\" \"$out/bin/spacedrive\"\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elevenlabs",
       version: "2.70.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elevenlabs",
           repo: "elevenlabs-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [httpx, pydantic, pydantic_core, requests, typing_extensions, websockets]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pyaudio: nix.thunk(() => [pyaudio]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pyaudio: nix.thunk(() => [pyaudio]) })),
       pythonImportsCheck: nix.thunk(() => ["elevenlabs"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/elevenlabs/elevenlabs-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Official Python API for ElevenLabs Text to Speech",
         homepage: "https://github.com/elevenlabs/elevenlabs-python",

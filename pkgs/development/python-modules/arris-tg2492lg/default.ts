@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vanbalken",
           repo: "arris-tg2492lg",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_aiohttp, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["arris_tg2492lg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to connect to an Arris TG2492LG",
         homepage: "https://github.com/vanbalken/arris-tg2492lg",
         changelog: nix.thunk(() => nix.str`https://github.com/vanbalken/arris-tg2492lg/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

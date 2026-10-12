@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const lua5_5 = nix.arg($, "lua5_5");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprland-config",
       version: "0.9.18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlueManCZ",
           repo: "hyprland-config",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, lua5_5, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["hyprland_config"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Round-trip parser and editor for Hyprland configuration files",
         homepage: "https://github.com/BlueManCZ/hyprland-config",
         changelog: nix.thunk(() => nix.str`https://github.com/BlueManCZ/hyprland-config/releases/tag/v${nix.sel(finalAttrs, "version")}`),

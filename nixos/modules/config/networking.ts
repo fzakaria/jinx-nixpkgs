@@ -51,36 +51,36 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "networking"));
   const localhostMultiple = nix.thunk(() => nix.app(nix.sel(lib, "any"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "localhost")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "hosts")), nix.thunk(() => ["127.0.0.1", "::1"])))))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["networking", "hostConf"]), "Use environment.etc.\"host.conf\" instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       networking: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"127.0.0.1\" = [ \"foo.bar.baz\" ];\n  \"192.168.0.2\" = [ \"fileserver.local\" \"nameserver.local\" ];\n};\n")),
             description: "Locally defined maps of hostnames to IP addresses.\n",
           })))),
         hostFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "Hosts from {option}`networking.hosts` and {option}`networking.extraHosts`")),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"${pkgs.my-blocklist-package}/share/my-blocklist/hosts\" ]")),
             description: "Files that should be concatenated together to form {file}`/etc/hosts`.\n",
           })))),
         extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: "192.168.0.1 lanlocalhost",
             description: "Additional verbatim entries to be appended to {file}`/etc/hosts`.\nFor adding hosts from derivation results, use {option}`networking.hostFiles` instead.\n",
           })))),
         timeServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: nix.thunk(() => [
               "0.nixos.pool.ntp.org",
               "1.nixos.pool.ntp.org",
@@ -91,16 +91,16 @@ export default nix.lambda((args) => (() => {
             description: "The set of NTP servers from which to synchronise.\n",
           })))),
         proxy: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           default: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "This option specifies the default value for httpProxy, httpsProxy, ftpProxy and rsyncProxy.\n",
               example: "http://127.0.0.1:3128",
             })))),
           httpProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(cfg, "proxy", "default")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "proxy", "default")}`))),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
               example: "http://127.0.0.1:3128",
             })))),
           httpsProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(cfg, "proxy", "default")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "proxy", "default")}`))),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
               example: "http://127.0.0.1:3128",
             })))),
           ftpProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(cfg, "proxy", "default")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "proxy", "default")}`))),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
               example: "http://127.0.0.1:3128",
             })))),
           rsyncProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(cfg, "proxy", "default")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "proxy", "default")}`))),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
               example: "http://127.0.0.1:3128",
             })))),
           allProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(cfg, "proxy", "default")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "proxy", "default")}`))),
@@ -140,14 +140,14 @@ export default nix.lambda((args) => (() => {
               example: "http://127.0.0.1:3128",
             })))),
           noProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "This option specifies the no_proxy environment variable.\nIf a default proxy is used and noProxy is null,\nthen noProxy will be set to 127.0.0.1,localhost.\n",
               example: "127.0.0.1,localhost,.localdomain",
             })))),
           envVars: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               internal: true,
               default: nix.thunk(() => ({})),
@@ -157,19 +157,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           assertion: nix.thunk(() => !nix.asBool(localhostMultiple)),
           message: "`networking.hosts` maps \"localhost\" to something other than \"127.0.0.1\"\nor \"::1\". This will break some applications. Please use\n`networking.extraHosts` if you really want to add such a mapping.\n",
         })),
       ]),
       networking: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         hosts: nix.thunk(() => (() => {
           const hostnames = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "hostName"), "")) && nix.asBool(!nix.eq(nix.sel(cfg, "domain"), null)))), nix.thunk(() => nix.str`${nix.sel(cfg, "hostName")}.${nix.sel(cfg, "domain")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostName"), "")), nix.thunk(() => nix.sel(cfg, "hostName")))));
-          return { __proto__: pos$17, "127.0.0.2": hostnames };
+          return { [nix.POS]: pos$17, "127.0.0.2": hostnames };
         })()),
         hostFiles: nix.thunk(() => (() => {
           const localhostHosts = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "localhost-hosts", nix.thunk(() => nix.str`127.0.0.1 localhost
@@ -184,53 +184,53 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableIP
           return nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [localhostHosts, stringHosts, extraHosts]));
         })()),
         proxy: nix.thunk(() => ({
-          __proto__: pos$25,
-          envVars: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "default"), null)), nix.thunk(() => ({ __proto__: pos$18, no_proxy: "127.0.0.1,localhost" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "httpProxy"), null)), nix.thunk(() => ({
-              __proto__: pos$19,
+          [nix.POS]: pos$25,
+          envVars: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "default"), null)), nix.thunk(() => ({ [nix.POS]: pos$18, no_proxy: "127.0.0.1,localhost" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "httpProxy"), null)), nix.thunk(() => ({
+              [nix.POS]: pos$19,
               http_proxy: nix.thunk(() => nix.sel(cfg, "proxy", "httpProxy")),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "httpsProxy"), null)), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               https_proxy: nix.thunk(() => nix.sel(cfg, "proxy", "httpsProxy")),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "rsyncProxy"), null)), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               rsync_proxy: nix.thunk(() => nix.sel(cfg, "proxy", "rsyncProxy")),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "ftpProxy"), null)), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               ftp_proxy: nix.thunk(() => nix.sel(cfg, "proxy", "ftpProxy")),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "allProxy"), null)), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               all_proxy: nix.thunk(() => nix.sel(cfg, "proxy", "allProxy")),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "proxy", "noProxy"), null)), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               no_proxy: nix.thunk(() => nix.sel(cfg, "proxy", "noProxy")),
             })))))))))),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         etc: nix.thunk(() => nix.update({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             source: nix.thunk(() => nix.add(nix.sel(pkgs, "iana-etc"), "/etc/services")),
           })),
           protocols: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             source: nix.thunk(() => nix.add(nix.sel(pkgs, "iana-etc"), "/etc/protocols")),
           })),
           hosts: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             source: nix.thunk(() => nix.app(nix.sel(pkgs, "concatText"), "hosts", nix.thunk(() => nix.sel(cfg, "hostFiles")))),
           })),
           netgroup: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             text: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "")),
           })),
-          "host.conf": nix.thunk(() => ({ __proto__: pos$31, text: "multi on\n" })),
+          "host.conf": nix.thunk(() => ({ [nix.POS]: pos$31, text: "multi on\n" })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "libc"), "glibc")), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             rpc: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               source: nix.thunk(() => nix.add(nix.sel(pkgs, "stdenv", "cc", "libc", "out"), "/etc/rpc")),
             })),
           }))))),

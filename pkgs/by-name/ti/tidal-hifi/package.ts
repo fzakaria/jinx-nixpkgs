@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
       vulkan_loader,
     ])));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tidal-hifi",
       version: "8.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mastermindzh",
           repo: "tidal-hifi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-6qOeWKLBlGy32zY4p0Ar0scToQthbtrpCSi7MyS8igA=",
       forceGitDeps: true,
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 npm run compile
@@ -128,7 +128,7 @@ runHook postBuild
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "TIDAL Hi-Fi",
             genericName: "Music Player",
@@ -140,7 +140,7 @@ runHook postBuild
             categories: nix.thunk(() => ["Audio", "Music", "Player", "Network", "AudioVideo"]),
             startupNotify: true,
             startupWMClass: "tidal-hifi",
-            extraConfig: nix.thunk(() => ({ __proto__: pos$3, "X-PulseAudio-Properties": "media.role=music" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$3, "X-PulseAudio-Properties": "media.role=music" })),
           })))),
       ]),
       dontWrapGApps: true,
@@ -164,7 +164,7 @@ makeShellWrapper "$out/share/tidal-hifi/tidal-hifi" "$out/bin/tidal-hifi" \\
   "\${gappsWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "castlabs-electron": castlabs_electron,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`set -xeuo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix_update, yq, curl, common_updater_scripts]))}:$PATH"
@@ -178,7 +178,7 @@ NIXPKGS_ALLOW_UNFREE=1 update-source-version tidal-hifi.castlabs-electron "$NEW_
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/Mastermindzh/tidal-hifi/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Web version of Tidal running in Electron with Hi-Fi support thanks to Widevine",
         homepage: "https://github.com/Mastermindzh/tidal-hifi",

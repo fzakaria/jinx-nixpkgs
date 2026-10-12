@@ -35,36 +35,36 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "meshcentral-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         meshcentral: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "MeshCentral computer management server")),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "meshcentral", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Settings for MeshCentral. Refer to upstream documentation for details:\n\n- [JSON Schema definition](https://github.com/Ylianst/MeshCentral/blob/master/meshcentral-config-schema.json)\n- [simple sample configuration](https://github.com/Ylianst/MeshCentral/blob/master/sample-config.json)\n- [complex sample configuration](https://github.com/Ylianst/MeshCentral/blob/master/sample-config-advanced.json)\n- [Old homepage with documentation link](https://www.meshcommander.com/meshcentral2)\n",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.sel(configFormat, "type")))),
                   })))),
                 example: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     WANonly: true,
                     Cert: "meshcentral.example.com",
                     TlsOffload: "10.0.0.2,fd42::2",
                     Port: 4430n,
                   })),
                   domains: nix.thunk(() => ({
-                    __proto__: pos$4,
-                    "": nix.thunk(() => ({ __proto__: pos$3, certUrl: "https://meshcentral.example.com/" })),
+                    [nix.POS]: pos$4,
+                    "": nix.thunk(() => ({ [nix.POS]: pos$3, certUrl: "https://meshcentral.example.com/" })),
                   })),
                 })),
               })))),
@@ -73,17 +73,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           meshcentral: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               settings: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 autoBackup: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   backupPath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/meshcentral/backups")),
                 })),
               })),
@@ -91,14 +91,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             meshcentral: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/meshcentral --datapath /var/lib/meshcentral --configfile ${configFile}`),
                 DynamicUser: true,
                 StateDirectory: "meshcentral",
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$20, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$20, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=meshcentral.ts.map

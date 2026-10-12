@@ -31,41 +31,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "ccache"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ccache: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CCache, a compiler cache for fast recompilation of C/C++ code")),
           cacheDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "CCache directory",
               default: "/var/cache/ccache",
             })))),
           packageNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Nix top-level packages to be compiled using CCache",
               default: [],
               example: nix.thunk(() => ["wxwidgets_3_2", "ffmpeg", "libav_all"]),
             })))),
           owner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "root",
               description: "Owner of CCache directory",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nixbld",
               description: "Group owner of CCache directory",
             })))),
           trace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Trace ccache usage to see which derivations use ccache",
@@ -75,22 +75,22 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             systemd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "cacheDir")} 0770 ${nix.sel(cfg, "owner")} ${nix.sel(cfg, "group")} -`),
                 ]),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               wrappers: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "nix-ccache": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   owner: nix.thunk(() => nix.attr(cfg, "owner")),
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                   setuid: false,
@@ -113,18 +113,18 @@ exec('${nix.sel(pkgs, "ccache")}/bin/ccache', map { untaint $_ } @ARGV);
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "packageNames"), [])), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             nixpkgs: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               overlays: nix.thunk(() => [
                 (self) => (super$) => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(cfg, "packageNames")), (pn) => nix.app(nix.sel(super$, nix.key(nix.force(pn)), "override"), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       stdenv: nix.thunk(() => (nix.asBool(nix.sel(cfg, "trace")) ? nix.builtins.trace(nix.thunk(() => nix.str`with ccache: ${pn}`), nix.thunk(() => nix.sel(self, "ccacheStdenv"))) : nix.sel(self, "ccacheStdenv"))),
                     })))),
                 (self) => (super$) => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   ccacheWrapper: nix.thunk(() => nix.app(nix.sel(super$, "ccacheWrapper", "override"), nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       extraConfig: nix.thunk(() => nix.str`export CCACHE_COMPRESS=1
 export CCACHE_SLOPPINESS=random_seed
 export CCACHE_DIR="${nix.sel(cfg, "cacheDir")}"

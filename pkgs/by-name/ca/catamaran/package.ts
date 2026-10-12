@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catamaran",
       version: "0-unstable-2024-03-02",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.1001fonts.com/download/catamaran.zip",
           stripRoot: false,
           hash: "sha256-9s11lZSS4pYJZwl8Uk7qtdwfZ2bkoZkSIf1MkQlv7H4=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       stripRoot: false,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv *.ttf $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fonts.google.com/specimen/Catamaran",
         description: "Stylish sans-serif Tamil and Latin typeface",
         longDescription: "Catamaran is a Unicode-compliant Latin and Tamil text type family designed for the digital age.\nThe Tamil is monolinear and was designed alongside the sans serif Latin and Devanagari family Palanquin.\n\nIt currently comprises of 9 text weights, making it a versatile family that strikes a balance between typographic conventions and that bit of sparkle.\n(A catamaran is a multihulled vessel consisting of two parallel hulls of equal size.\nThe catamaran concept is a relative newcomer for Western boat designers, been used since time immemorial among the Dravidian people, in South India.)\n",

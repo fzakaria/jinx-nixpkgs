@@ -59,17 +59,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vmware-workstation",
       version: "25H2u1",
       build: "25219725",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.org/download/VMware-Workstation-Full-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "build")}.x86_64/VMware-Workstation-Full-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "build")}.x86_64.bundle`),
           hash: "sha256-chqpPE68qlGsbbde2Xx6TbEKqIEQRGiQ2x5Av6/HVmo=",
         })))),
       "vmware-unpack-env": nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "vmware-unpack-env",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           targetPkgs: (pkgs) => [zlib],
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vmware-unpack-env")}/bin/vmware-unpack-env -c "sh ${nix.sel(finalAttrs, "src")} --extract unpacked"
 `),
       macOSUnlockerSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "paolo-projects",
           repo: "unlocker",
           tag: "3.0.5",
@@ -92,7 +92,7 @@ substituteInPlace unlocker/unlocker.py --replace \\
   "/usr/lib/vmware/lib/libvmwarebase.so/libvmwarebase.so" "$out/lib/vmware/lib/libvmwarebase.so/libvmwarebase.so"
 `))),
       readline70_compat63: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "readline70_compat63",
           paths: nix.thunk(() => [readline70]),
           postBuild: "ln -s $out/lib/libreadline.so $out/lib/libreadline.so.6\n",
@@ -378,7 +378,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Industry standard desktop hypervisor for x86-64 architecture",
         homepage: "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion",
         sourceProvenance: nix.thunk(() => (() => {

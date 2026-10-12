@@ -38,37 +38,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "deviceTree"));
   const overlayType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Name of this overlay\n",
           })))),
         filter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             example: "*rpi*.dtb",
             description: "Only apply to .dtb files matching glob expression.\n",
           })))),
         dtsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             description: "Path to .dts overlay file, overlay is applied to\neach .dtb file matching \"compatible\" of the overlay.\n",
             default: null,
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "./dts/overlays.dts")),
           })))),
         dtsText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             description: "Literal DTS contents, overlay is applied to\neach .dtb file matching \"compatible\" of the overlay.\n",
             example: "/dts-v1/;\n/plugin/;\n/ {\n        compatible = \"raspberrypi\";\n};\n&{/soc} {\n        pps {\n                compatible = \"pps-gpio\";\n                status = \"okay\";\n        };\n};\n",
           })))),
         dtboFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             default: null,
             description: "Path to .dtbo compiled overlay file.\n",
@@ -82,7 +82,7 @@ find . -type f -name '${nix.sel(cfg, "filter")}' -print0 \\
 `)));
   const filteredDTBs = nix.thunk(() => nix.app(filterDTBs, nix.thunk(() => nix.sel(cfg, "dtbSource"))));
   const withDTBOs = (xs) => nix.app(nix.sel(lib, "flip"), nix.builtins.map, xs, (o) => nix.update(o, {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       dtboFile: nix.thunk(() => (() => {
         const includePaths = nix.thunk(() => nix.concat([
           nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cfg, "kernelPackage")))}/lib/modules/${nix.sel(cfg, "kernelPackage", "modDirVersion")}/source/scripts/dtc/include-prefixes`),
@@ -91,7 +91,7 @@ find . -type f -name '${nix.sel(cfg, "filter")}' -print0 \\
         return (nix.asBool(nix.eq(nix.sel(o, "dtboFile"), null)) ? (() => {
           const dtsFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(o, "dtsFile"), null)) ? nix.app(nix.sel(pkgs, "writeText"), "dts", nix.thunk(() => nix.sel(o, "dtsText"))) : nix.sel(o, "dtsFile")));
           return nix.app(nix.sel(pkgs, "deviceTree", "compileDTS"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: nix.thunk(() => nix.str`${nix.sel(o, "name")}-dtbo`),
               includePaths: includePaths,
               extraPreprocessorFlags: extraPreprocessorFlags,
@@ -101,25 +101,25 @@ find . -type f -name '${nix.sel(cfg, "filter")}' -print0 \\
       })()),
     }));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["hardware", "deviceTree", "base"]), "Use hardware.deviceTree.kernelPackage instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       hardware: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         deviceTree: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "buildDTBs")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.kernelPackages.kernel.buildDTBs")),
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Build device tree files. These are used to describe the\nnon-discoverable hardware of a system.\n",
             })))),
           kernelPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.kernelPackages.kernel")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.linux_latest")),
@@ -127,46 +127,46 @@ find . -type f -name '${nix.sel(cfg, "filter")}' -print0 \\
               description: "Kernel package where device tree include directory is from. Also used as default source of dtb package to apply overlays to\n",
             })))),
           dtboBuildExtraPreprocessorFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"-DMY_DTB_DEFINE\" ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Additional flags to pass to the preprocessor during dtbo compilations\n",
             })))),
           dtboBuildExtraIncludePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  ./my_custom_include_dir_1\n  ./custom_include_dir_2\n]\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Additional include paths that will be passed to the preprocessor when creating the final .dts to compile into .dtbo\n",
             })))),
           dtbSource: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "kernelPackage")}/dtbs`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${cfg.kernelPackage}/dtbs")),
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to dtb directory that overlays and other processing will be applied to. Uses\ndevice trees bundled with the Linux kernel by default.\n",
             })))),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: null,
               example: "some-dtb.dtb",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "The name of an explicit dtb to be loaded, relative to the dtb base.\nUseful in extlinux scenarios if the bootloader doesn't pick the\nright .dtb file from FDTDIR.\n",
             })))),
           filter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "*rpi*.dtb",
               description: "Only include .dtb files matching glob expression.\n",
             })))),
           overlays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  { name = \"pps\"; dtsFile = ./dts/pps.dts; }\n  { name = \"spi\";\n    dtsText = \"...\";\n  }\n  { name = \"precompiled\"; dtboFile = ./dtbos/example.dtbo; }\n]\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "coercedTo"), nix.thunk(() => nix.sel(lib, "types", "path")), (path) => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     name: nix.thunk(() => nix.builtins.baseNameOf(path)),
                     filter: null,
                     dtboFile: path,
@@ -174,7 +174,7 @@ find . -type f -name '${nix.sel(cfg, "filter")}' -print0 \\
               description: "List of overlays to apply to base device-tree (.dtb) files.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               internal: true,
@@ -184,11 +184,11 @@ find . -type f -name '${nix.sel(cfg, "filter")}' -print0 \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => (() => {
           const invalidOverlay = (o) => (nix.asBool((nix.asBool(nix.eq(nix.sel(o, "dtsFile"), null)) && nix.asBool(nix.eq(nix.sel(o, "dtsText"), null)))) && nix.asBool(nix.eq(nix.sel(o, "dtboFile"), null)));
           return nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (o) => !nix.asBool(nix.app(invalidOverlay, o)), nix.thunk(() => nix.sel(cfg, "overlays")))),
               message: nix.thunk(() => nix.str`deviceTree overlay needs one of dtsFile, dtsText or dtboFile set.
 Offending overlay(s):
@@ -197,9 +197,9 @@ ${nix.builtins.toString(nix.thunk(() => nix.builtins.map((o) => nix.sel(o, "name
             })));
         })()),
         hardware: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           deviceTree: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             package: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "overlays"), [])) ? nix.app(nix.sel(pkgs, "deviceTree", "applyOverlays"), filteredDTBs, nix.thunk(() => nix.app(withDTBOs, nix.thunk(() => nix.sel(cfg, "overlays"))))) : nix.force(filteredDTBs))),
           })),
         })),

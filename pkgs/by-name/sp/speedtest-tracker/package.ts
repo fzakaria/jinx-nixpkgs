@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/speedtest-tracker");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "speedtest-tracker",
       version: "1.14.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexjustesen",
           repo: "speedtest-tracker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(php84, "composerHooks2", "composerInstallHook")),
       ]),
       composerVendor: nix.thunk(() => nix.app(nix.sel(php84, "mkComposerVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-a8y0W8kTzvR3wdqiUfzVt2ui5jksneggRqsMsex0Vrc=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           hash: "sha256-JjHtsW1lfI4xp6qw7ZMCWLF953lKB5bDlBVq4G/Wrz0=",
@@ -63,12 +63,12 @@ ln -s ${dataDir}/storage $out/storage
 ln -s ${dataDir}/cache $out/bootstrap/cache
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         phpPackage: php84,
         tests: nix.thunk(() => nix.sel(nixosTests, "speedtest-tracker")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Speedtest Tracker is a self-hosted application that monitors the performance and uptime of your internet connection",
         homepage: "https://github.com/alexjustesen/speedtest-tracker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

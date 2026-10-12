@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withNativeLibs = nix.argOr($, "withNativeLibs", () => false);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wl-clipboard-rs",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YaLTeR",
           repo: "wl-clipboard-rs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installManPage target/man/wl-copy.1\ninstallManPage target/man/wl-paste.1\n\ninstallShellCompletion --cmd wl-copy \\\n  --bash target/completions/wl-copy.bash \\\n  --fish target/completions/wl-copy.fish \\\n  --zsh target/completions/_wl-copy\n\ninstallShellCompletion --cmd wl-paste \\\n  --bash target/completions/wl-paste.bash \\\n  --fish target/completions/wl-paste.fish \\\n  --zsh target/completions/_wl-paste\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line copy/paste utilities for Wayland, written in Rust",
         homepage: "https://github.com/YaLTeR/wl-clipboard-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/YaLTeR/wl-clipboard-rs/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

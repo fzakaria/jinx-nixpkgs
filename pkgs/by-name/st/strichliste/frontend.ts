@@ -19,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "strichliste-frontend",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strichliste",
           repo: "strichliste-web-frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LzTdFYuIIFmAVuHtGjljqSBZGEPibwXcK5WuYB6ELNg=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-leMwcsyhbxPoHJdA3kZDz97Ti77d1TCe8SrzTQMGrWo=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]),
       installPhase: "mkdir $out\ncp -R build/* $out/\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/strichliste/strichliste-web-frontend/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
       })),
     }));

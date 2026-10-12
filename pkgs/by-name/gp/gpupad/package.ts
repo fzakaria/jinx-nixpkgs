@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const spirv_cross = nix.arg($, "spirv-cross");
   const vulkan_memory_allocator = nix.arg($, "vulkan-memory-allocator");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpupad",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "houmain",
           repo: "gpupad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         vulkan_memory_allocator,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible GLSL and HLSL shader editor and IDE",
         homepage: "https://github.com/houmain/gpupad",
         changelog: nix.thunk(() => nix.str`https://github.com/houmain/gpupad/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

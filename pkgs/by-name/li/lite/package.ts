@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openlibm = nix.arg($, "openlibm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lite",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rxi",
           repo: "lite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "# extracted and adapted from build.sh\nCC=$NIX_CC/bin/cc\nCFLAGS=\"-Wall -O3 -g -std=gnu11 -Isrc -DLUA_USE_POPEN $(pkg-config --cflags lua sdl2)\"\nLDFLAGS=\"$(pkg-config --libs lua sdl2 openlibm)\"\nfor f in $(find src -name \"*.c\"); do\n  $CC -c $CFLAGS $f -o \"${f//\\//_}.o\"\ndone\n$CC *.o $LDFLAGS -o lite\n",
       installPhase: "mkdir -p $out/bin $out/lib/lite\ncp -a lite $out/lib/lite\ncp -a data $out/lib/lite\nmakeWrapper $out/lib/lite/lite $out/bin/lite\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight text editor written in Lua",
         homepage: "https://github.com/rxi/lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

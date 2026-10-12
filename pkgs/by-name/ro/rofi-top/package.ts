@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rofi_unwrapped = nix.arg($, "rofi-unwrapped");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-top",
       version: "0-unstable-2017-10-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davatorium",
           repo: "rofi-top",
           rev: "9416addf91dd1bd25dfd5a8c5f1c7297c444408e",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gobject_introspection, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [cairo, glib, libgtop, rofi_unwrapped]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for rofi that emulates top behaviour",
         homepage: "https://github.com/davatorium/rofi-top",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ncmpc",
       version: "0.54",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MusicPlayerDaemon",
           repo: "ncmpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "lirc", false))]),
       outputs: nix.thunk(() => ["out", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Curses-based interface for MPD (music player daemon)",
         homepage: "https://www.musicpd.org/clients/ncmpc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

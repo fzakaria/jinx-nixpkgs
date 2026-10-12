@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jsign";
       const version = "7.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ebourg",
           repo: "jsign",
           tag: version,
@@ -45,7 +45,7 @@ makeWrapper ${jre}/bin/java $out/bin/jsign \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Authenticode signing for Windows executables, installers & scripts",
         homepage: "https://ebourg.github.io/jsign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -58,7 +58,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pkg-resources-backport",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pkg_resources_backport",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-M4wkI+YhPIEPP8LN+yi6q87ikZRDpritDjdirWyuPzw=",
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
         "test_interop_pkg_resources_iter_entry_points",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Snapshot of last pkg_resources module from setuptools",
         homepage: "https://pypi.org/project/pkg-resources-backport",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

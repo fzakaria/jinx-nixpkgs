@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinyxml2",
       version: "11.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leethomason",
           repo: "tinyxml2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_INSTALL_LIBDIR=lib",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, small, efficient, C++ XML parser",
         homepage: "https://github.com/leethomason/tinyxml2",
         changelog: nix.thunk(() => nix.str`https://github.com/leethomason/tinyxml2/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

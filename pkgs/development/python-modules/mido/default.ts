@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GuyzC38oJATxfkN2jL90pqMb8is7eDvdEXoc6dIst0w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libportmidi-cdll.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libportmidi: nix.thunk(() => nix.str`${nix.sel(portmidi, "out")}/lib/libportmidi${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["packaging"]);
       const dependencies = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "ports-pygame": nix.thunk(() => [pygame]),
         "ports-rtmidi": nix.thunk(() => [python_rtmidi]),
         "ports-rtmidi-python": nix.thunk(() => [rtmidi_python]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["mido"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MIDI Objects for Python",
         homepage: "https://mido.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/mido/mido/releases/tag/${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

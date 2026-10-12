@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const junit = nix.arg($, "junit");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "junit_alcotest",
       src: nix.thunk(() => nix.attr(junit, "src")),
       version: nix.thunk(() => nix.attr(junit, "version")),

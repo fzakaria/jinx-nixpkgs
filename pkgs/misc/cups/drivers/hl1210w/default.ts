@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const version = "3.0.1-1";
   const cupsdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101546/hl1210wcupswrapper-${version}.i386.deb`),
       sha256: "0395mnw6c7qpjgjch9in5q9p2fjdqvz9bwfwp6q1hzhs08ryk7w0",
     }))));
   const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101547/hl1210wlpr-${version}.i386.deb`),
       sha256: "1sl3g2cd4a2gygryrr27ax3qaa65cbirz3kzskd8afkwqpmjyv7j",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-brother-hl1210W",
       version: version,
       srcs: nix.thunk(() => [lprdeb, cupsdeb]),
@@ -74,7 +74,7 @@ wrapProgram $out/opt/brother/Printers/HL1210W/cupswrapper/brother_lpdwrapper_HL1
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused, coreutils, gawk]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.brother.com/",
         description: "Brother HL1210W printer driver",
         sourceProvenance: nix.thunk(() => (() => {

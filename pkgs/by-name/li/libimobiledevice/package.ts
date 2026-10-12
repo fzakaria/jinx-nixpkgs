@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libimobiledevice_glue = nix.arg($, "libimobiledevice-glue");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libimobiledevice",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "libimobiledevice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/libimobiledevice/libimobiledevice",
         description: "Software library that talks the protocols to support iPhone®, iPod Touch® and iPad® devices on Linux",
         longDescription: "libimobiledevice is a software library that talks the protocols to support\niPhone®, iPod Touch® and iPad® devices on Linux. Unlike other projects, it\ndoes not depend on using any existing proprietary libraries and does not\nrequire jailbreaking. It allows other software to easily access the\ndevice's filesystem, retrieve information about the device and it's\ninternals, backup/restore the device, manage SpringBoard® icons, manage\ninstalled applications, retrieve addressbook/calendars/notes and bookmarks\nand synchronize music and video to the device. The library is in\ndevelopment since August 2007 with the goal to bring support for these\ndevices to the Linux Desktop.\n",

@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nmtrust",
       version: "0.1.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brett",
           repo: "nmtrust-nix",
           rev: "v0.1.1",
@@ -46,11 +46,11 @@ wrapProgram $out/bin/nmtrust \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nmtrust: nix.thunk(() => nix.attr(nixosTests, "nmtrust")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nmtrust: nix.thunk(() => nix.attr(nixosTests, "nmtrust")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Declarative network trust management for NixOS",
         longDescription: "nmtrust evaluates the trust state of active NetworkManager connections\nand activates corresponding systemd targets. Services bound to these\ntargets start and stop automatically as you move between trusted,\nuntrusted, and offline networks.\n\nA NixOS-native reimplementation of nmtrust by Peter Hogg (pigmonkey).\n",
         homepage: "https://github.com/brett/nmtrust-nix",

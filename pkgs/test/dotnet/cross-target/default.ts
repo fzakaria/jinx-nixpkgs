@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   const sdks = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     sdk_10_0: nix.thunk(() => nix.attr(dotnetCorePackages, "sdk_10_0")),
     sdk_9_0: nix.thunk(() => nix.attr(dotnetCorePackages, "sdk_9_0")),
     sdk_8_0: nix.thunk(() => nix.attr(dotnetCorePackages, "sdk_8_0")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 </Project>
 `)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`dotnet-cross-target-${nix.sel(runtime, "version")}-from-${nix.sel(dotnet_sdk, "version")}-test`),
         nativeBuildInputs: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "combinePackages"), nix.thunk(() => [dotnet_sdk, runtime]))),

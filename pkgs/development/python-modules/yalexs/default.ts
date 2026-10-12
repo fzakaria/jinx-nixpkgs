@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yalexs",
       version: "9.2.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdraco",
           repo: "yalexs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test__raise_response_exceptions"]),
       pythonImportsCheck: nix.thunk(() => ["yalexs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for Yale Access (formerly August) Smart Lock and Doorbell",
         homepage: "https://github.com/bdraco/yalexs",
         changelog: nix.thunk(() => nix.str`https://github.com/bdraco/yalexs/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

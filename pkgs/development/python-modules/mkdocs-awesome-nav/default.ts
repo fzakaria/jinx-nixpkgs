@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lukasgeiter",
           repo: "mkdocs-awesome-nav",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "tests/compatibility/test_static_i18n_suffix.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for customizing the navigation structure of your MkDocs site",
         homepage: "https://github.com/lukasgeiter/mkdocs-awesome-nav",
         changelog: nix.thunk(() => nix.str`https://github.com/lukasgeiter/mkdocs-awesome-nav/releases/tag/v${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

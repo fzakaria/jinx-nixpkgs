@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-git",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkInputs: nix.thunk(() => [mtime, alcotest, irmin_test, cacert]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { __proto__: pos$1, description: "Git backend for Irmin" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "Git backend for Irmin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=git.ts.map

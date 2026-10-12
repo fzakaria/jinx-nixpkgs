@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opendataloader-pdf",
       version: "2.4.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opendataloader-project",
           repo: "opendataloader-pdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/${nix.sel(finalAttr
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF Parser for AI-ready data",
         homepage: "https://github.com/opendataloader-project/opendataloader-pdf",
         changelog: nix.thunk(() => nix.str`https://github.com/opendataloader-project/opendataloader-pdf/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

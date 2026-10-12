@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const x264 = nix.arg($, "x264");
   const xvidcore = nix.arg($, "xvidcore");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "alvr",
       version: "20.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alvr-org",
           repo: "ALVR",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,18 +70,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-OTCMWrlwnfpUhm6ssOE133e/3DaQFnOU+NunN2c1N+g=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-finding-libs.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), ffmpeg_alvr)),
             x264: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), x264)),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/alvr-org/ALVR/commit/12a238b9ac9d63438163ff82cbd689733558a1e4.patch",
             hash: "sha256-yvIGjopXIwGXajs5/RlAo+eqfVNnXlomKy/VO/dL+gc=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lbrotlicommon", "-lbrotlidec", "-lcrypto", "-lpng", "-lssl"]))),
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((a) => nix.str`-C link-arg=${a}`, nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
@@ -144,12 +144,12 @@ cp -r ./build/alvr_streamer_linux/share/. $out/share
 ln -s $out/lib $out/lib64
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "ffmpeg-alvr": ffmpeg_alvr,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Stream VR games from your PC to your headset via Wi-Fi",
         homepage: "https://github.com/alvr-org/ALVR/",
         changelog: nix.thunk(() => nix.str`https://github.com/alvr-org/ALVR/releases/tag/v${nix.sel(finalAttrs, "version")}`),

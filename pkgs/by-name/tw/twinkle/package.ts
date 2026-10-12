@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twinkle";
       const version = "unstable-2024-20-11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LubosD",
           repo: "twinkle",
           rev: "e067dcba28f4e2acd7f71b875fc4168e9706aaaa",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         "-DHAVE_LIBATOMIC=atomic",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/LubosD/twinkle/blob/${version}/NEWS`),
         description: "SIP-based VoIP client",
         homepage: "http://twinkle.dolezel.info/",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const jeepney = nix.arg($, "jeepney");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "secretstorage",
       version: "3.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mitya57",
           repo: "secretstorage",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["secretstorage"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mitya57/secretstorage/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog`),
         description: "Python bindings to FreeDesktop.org Secret Service API",
         homepage: "https://github.com/mitya57/secretstorage",

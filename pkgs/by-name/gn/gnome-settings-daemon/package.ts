@@ -53,19 +53,19 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnome-settings-daemon",
       version: "50.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-settings-daemon/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-settings-daemon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3SyXMJFPDs7KAindiowpQKV93rCAJDRVjUsWTXnP4Fw=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./add-gnome-session-ctl-option.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, tzdata: tzdata })))),
       ]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")), pkg_config]),
       nativeBuildInputs: nix.thunk(() => [
@@ -108,15 +108,15 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => [
           nix.thunk(() => nix.str`-Dgnome_session_ctl_path=${gnome_session_ctl}/libexec/gnome-session-ctl`),
         ])))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-DG_DISABLE_CAST_CHECKS" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DG_DISABLE_CAST_CHECKS" })),
       postPatch: "for f in plugins/power/gsd-power-constants-update.pl; do\n  chmod +x $f\n  patchShebangs $f\ndone\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "gnome-settings-daemon" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-settings-daemon" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GNOME Settings Daemon",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-settings-daemon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

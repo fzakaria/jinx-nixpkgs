@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const apparmorRulesFromClosure = nix.arg($, "apparmorRulesFromClosure");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iputils",
       version: "20250605",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iputils",
           repo: "iputils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ $out/bin/ping {
   include <abstractions/base>
   include <abstractions/consoles>
   include <abstractions/nameservice>
-  include "${nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ __proto__: pos$2, name: "ping" })), nix.thunk(() => nix.concat([libcap], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))), libidn2))))}"
+  include "${nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ [nix.POS]: pos$2, name: "ping" })), nix.thunk(() => nix.concat([libcap], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))), libidn2))))}"
   include if exists <local/bin.ping>
   capability net_raw,
   network inet raw,
@@ -73,11 +73,11 @@ $out/bin/ping {
 EOF
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/iputils/iputils",
         changelog: nix.thunk(() => nix.str`https://github.com/iputils/iputils/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Set of small useful utilities for Linux networking",

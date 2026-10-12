@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jdk = openjdk25;
   const version = "5.9.6";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cratedb",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crate",
           repo: "crate",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [libarchive, makeWrapper]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-poms.patch"), nix.thunk(() => ({ __proto__: pos$2, jdk: jdk })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-poms.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk: jdk })))),
       ]),
       mvnHash: "sha256-p0LSR6I876/JNfrLp19PnLAx00gL4E2mZK+CO8X2IzU=",
       mvnJdk: jdk,
@@ -51,7 +51,7 @@ runHook postInstall
 `),
       postFixup: "# By default it wants to write to $out/data and $out/logs. Bad program.\nwrapProgram $out/bin/crate \\\n  --set CRATE_DISABLE_GC_LOGGING 1 \\\n  --add-flags '-Cpath.data=\"${XDG_DATA_HOME:-$HOME/.local/share}/crate\"' \\\n  --add-flags '-Cpath.logs=\"${XDG_STATE_HOME:-$HOME/.local/state}/crate\"'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed and scalable SQL database",
         longDescription: "CrateDB is a distributed SQL database that makes it simple to store and analyze massive\namounts of data in real-time.\n\nCrateDB offers the benefits of an SQL database and the scalability and flexibility typically\nassociated with NoSQL databases. Modest CrateDB clusters can ingest tens of thousands of records\nper second without breaking a sweat. You can run ad-hoc queries using standard SQL.\nCrateDB's blazing-fast distributed query execution engine parallelizes query workloads across\nthe whole cluster.\n",
         homepage: "https://cratedb.com/database",

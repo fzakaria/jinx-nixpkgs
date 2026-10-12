@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sord = nix.arg($, "sord");
   const sratom = nix.arg($, "sratom");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plugin-torture",
       version: "2016-07-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cth103",
           repo: "plugin-torture",
           rev: "8b9c43197dca372da6b9c8212224ec86b5f16b4a",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, ladspa_header, lilv, lv2, serd, sord, sratom]),
       installPhase: "mkdir -p $out/bin\ncp plugin-torture $out/bin/\ncp find-safe-plugins $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://github.com/cth103/plugin-torture",
         description: "Tool to test LADSPA and LV2 plugins",

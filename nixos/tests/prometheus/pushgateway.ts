@@ -28,39 +28,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "prometheus-pushgateway",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       prometheus: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             firewall: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
-              globalConfig: nix.thunk(() => ({ __proto__: pos$4, scrape_interval: "2s" })),
+              globalConfig: nix.thunk(() => ({ [nix.POS]: pos$4, scrape_interval: "2s" })),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   job_name: "pushgateway",
                   static_configs: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$5, targets: nix.thunk(() => ["pushgateway:9091"]) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$5, targets: nix.thunk(() => ["pushgateway:9091"]) })),
                   ]),
                 })),
               ]),
@@ -73,16 +73,16 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
-            firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [9091n]) })),
+            [nix.POS]: pos$11,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [9091n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$13,
-              pushgateway: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+              [nix.POS]: pos$13,
+              pushgateway: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
             })),
           })),
         };

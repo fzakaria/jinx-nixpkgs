@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "leaves",
       version: "0.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patonw",
           repo: "leaves",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "leaves",
         description: "A text-mode disk usage visualization utility",
         longDescription: "Leaves is a disk usage analyzer inspired by WinDirStat and QDirStat.\n\nIt shows files and directories in a hierarchy of nested rectangles.\nThe area of a rectangle is proportional to its size.\nA 200 MB file will have twice the size as a sibling with 100 MB.\nThe parent directory will have about 3 times the area of the smaller file.\n",
@@ -54,10 +54,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "patonw", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "github",
             spec: nix.thunk(() => nix.str`patonw/leaves@v${nix.sel(finalAttrs, "version")}`),
           })),

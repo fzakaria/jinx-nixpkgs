@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     return (content) => (() => {
       const interpreter = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), librariesFun));
       const tester = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`tester-${name}`), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "removeAttrs"), args_2, nix.thunk(() => ["gpuCheckArgs", "libraries", "name"])), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           content: content,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [makeWrapper])),
           passAsFile: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "passAsFile"), ["content"])),
@@ -46,11 +46,11 @@ if [[ -n "\${makeWrapperArgs+\${makeWrapperArgs[@]}}" ]] ; then
 fi
 `)));
       const tester$ = nix.thunk(() => nix.app(nix.sel(tester, "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           passthru: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             gpuCheck: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`test-${name}`), nix.thunk(() => nix.update(gpuCheckArgs, {
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => nix.concat([tester$], nix.selOr(gpuCheckArgs, () => [], "nativeBuildInputs"))),
                 requiredSystemFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(feature, null)), nix.thunk(() => [feature])), nix.selOr(gpuCheckArgs, () => [], "requiredSystemFeatures"))),
               })), nix.thunk(() => nix.str`set -e

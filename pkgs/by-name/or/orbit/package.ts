@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "orbit",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuzeguitarist/Orbit/releases/download/v${nix.sel(finalAttrs, "version")}/Orbit.dmg`),
           hash: "sha256-5SHMfufwQgR5u008Ws4qNT5x5Owb4qCO+bKijnfu0YA=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A radial, gesture-first app switcher and file hub for macOS.",
         homepage: "https://github.com/yuzeguitarist/Orbit",
         changelog: nix.thunk(() => nix.str`https://github.com/yuzeguitarist/Orbit/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const buildPgrxExtension = nix.arg($, "buildPgrxExtension");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "postgresql_anonymizer",
       version: "3.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dalibo",
           repo: "postgresql_anonymizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace sql/init.sql \\\n  --replace-fail \"SELECT setting AS sharedir\" \"SELECT '$out/share/postgresql' AS sharedir\" \\\n  --replace-fail \"FROM pg_catalog.pg_config\" \"\" \\\n  --replace-fail \"WHERE name = 'SHAREDIR'\" \"\"\n",
       postInstall: "install -Dm644 -t $out/share/postgresql/extension/anon data/*.csv data/en_US/fake/*.csv\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "anonymizer", "passthru", "override"), postgresql)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extension to mask or replace personally identifiable information (PII) or commercially sensitive data from a PostgreSQL database",
         homepage: "https://postgresql-anonymizer.readthedocs.io/en/stable/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dalibo/postgresql_anonymizer/-/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

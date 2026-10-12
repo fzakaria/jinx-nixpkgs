@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_image = nix.arg($, "libxcb-image");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alfaview",
       version: "9.26.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://assets.alfaview.com/stable/linux/deb/alfaview_${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-IGhwEZYVg/lLeLhayUHMbjmhTozbllP1Vrmk4Fdgf7k=",
         })))),
@@ -91,7 +91,7 @@ makeWrapper $out/opt/alfaview/alfaview $out/bin/alfaview \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Video-conferencing application, specialized in virtual online meetings, seminars, training sessions and conferences",
         homepage: "https://alfaview.com",
         sourceProvenance: nix.thunk(() => (() => {

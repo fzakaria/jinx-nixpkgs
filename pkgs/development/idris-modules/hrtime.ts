@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const idrisscript = nix.arg($, "idrisscript");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hrtime",
       version: "2017-04-16",
       ipkgName: "hrTime",
       idrisDeps: nix.thunk(() => [idrisscript]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pierrebeaucamp",
           repo: "idris-hrtime",
           rev: "e1f54ce74bde871010ae76d9afd42048cd2aae83",
           sha256: "0rmmpi1kp1h7ficmcxbxkny9lq9pjli2qhwy17vgbgx8fx60m8l0",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris library for high resolution time",
         homepage: "https://github.com/pierrebeaucamp/idris-hrtime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

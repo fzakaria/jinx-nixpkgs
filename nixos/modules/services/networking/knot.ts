@@ -121,7 +121,7 @@ ${indent}  ` : " ")}`, nix.app(n2y, nix.thunk(() => nix.add(indent, "  ")), aval
     return nix.sel(cfg, "settingsFile");
   })() : nix.app(mkConfigFile, yamlConfig)));
   const mkConfigFile = (configString) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "knot.conf",
       text: nix.thunk(() => nix.add(nix.add(nix.app(concatMapStringsSep, "\n", (file) => nix.str`include: ${file}`, nix.thunk(() => nix.sel(cfg, "keyFiles"))), "\n"), configString)),
       checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "checkConfig")), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/knotc --config=$out conf-check
@@ -129,7 +129,7 @@ ${indent}  ` : " ")}`, nix.app(n2y, nix.thunk(() => nix.add(indent, "  ")), aval
     })));
   const socketFile = "/run/knot/knot.sock";
   const knot_cli_wrappers = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "knot-cli-wrappers",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -151,16 +151,16 @@ ln -s '${nix.sel(cfg, "package")}/share/man' "$out/share/"
 `),
     }))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         knot: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Knot authoritative-only DNS server")),
           enableXDP: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: nix.thunk(() => nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["xdp", "listen"]), nix.thunk(() => nix.sel(cfg, "settings")))),
               defaultText: "Enabled when the `xdp.listen` setting is configured through `settings`.\n",
@@ -168,7 +168,7 @@ ln -s '${nix.sel(cfg, "package")}/share/man' "$out/share/"
               description: "Extends the systemd unit with permissions to allow for the use of\nthe eXpress Data Path (XDP).\n\n::: {.note}\n  Make sure to read up on functional [limitations](https://www.knot-dns.cz/docs/latest/singlehtml/index.html#mode-xdp-limitations)\n  when running in XDP mode.\n:::\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "keyFiles"), [])) && nix.asBool(!nix.asBool(nix.sel(cfg, "enableXDP"))))),
               defaultText: "Disabled when the config uses `keyFiles` or `enableXDP`.\n",
@@ -176,25 +176,25 @@ ln -s '${nix.sel(cfg, "package")}/share/man' "$out/share/"
               description: "Toggles the configuration test at build time. It runs in a\nsandbox, and therefore cannot be used in all scenarios.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "List of additional command line parameters for knotd\n",
             })))),
           keyFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "A list of files containing additional configuration\nto be included using the include directive. This option\nallows to include configuration like TSIG keys without\nexposing them to the nix store readable to any process.\nNote that using this option will also disable configuration\nchecks at build time.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type")),
               default: nix.thunk(() => ({})),
               description: "Extra configuration as nix values.\n",
             })))),
           settingsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "As alternative to ``settings``, you can provide whole configuration\ndirectly in the almost-YAML format of Knot DNS.\nYou might want to utilize ``pkgs.writeText \"knot.conf\" \"longConfigString\"`` for this.\n",
@@ -207,14 +207,14 @@ ln -s '${nix.sel(cfg, "package")}/share/man' "$out/share/"
       nix.thunk(() => nix.app(mkChangedOptionModule, nix.thunk(() => ["services", "knot", "extraConfig"]), nix.thunk(() => ["services", "knot", "settingsFile"]), (config_1) => nix.app(mkConfigFile, nix.thunk(() => nix.sel(config_1, "services", "knot", "extraConfig"))))),
     ]),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "knot", "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         users: nix.thunk(() => ({
-          __proto__: pos$15,
-          groups: nix.thunk(() => ({ __proto__: pos$12, knot: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$15,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, knot: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             knot: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               isSystemUser: true,
               group: "knot",
               description: "Knot daemon user",
@@ -222,21 +222,21 @@ ln -s '${nix.sel(cfg, "package")}/share/man' "$out/share/"
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
-            "knot/knot.conf": nix.thunk(() => ({ __proto__: pos$16, source: configFile })),
+            [nix.POS]: pos$17,
+            "knot/knot.conf": nix.thunk(() => ({ [nix.POS]: pos$16, source: configFile })),
           })),
           systemPackages: nix.thunk(() => [knot_cli_wrappers]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             knot: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Documentation: nix.thunk(() => nix.str`man:knotd(8) man:knot.conf(5) man:knotc(8) https://www.knot-dns.cz/docs/${nix.sel(cfg, "package", "version")}/html/`),
               })),
               description: nix.thunk(() => nix.sel(cfg, "package", "meta", "description")),
@@ -246,7 +246,7 @@ ln -s '${nix.sel(cfg, "package")}/share/man' "$out/share/"
               serviceConfig: nix.thunk(() => (() => {
                 const xdpCapabilities = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableXDP")), nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW", "CAP_SYS_ADMIN", "CAP_IPC_LOCK"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "5.11")), nix.thunk(() => ["CAP_SYS_RESOURCE"]))));
                 return {
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Type: "notify",
                   ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),

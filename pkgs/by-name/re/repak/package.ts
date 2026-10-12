@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "repak",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trumank",
           repo: "repak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1jpjVQ+EiDUnGaTwDHMpLwLA/CkVGdZ+iLiWEkEpAwg=",
       checkFlags: nix.thunk(() => ["--skip=test::test_oodle"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unreal Engine .pak file library and CLI in rust",
         homepage: "https://github.com/trumank/repak",
         changelog: nix.thunk(() => nix.str`https://github.com/trumank/repak/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
     const eol = nix.argOr($_1, "eol", () => false);
     const broken = nix.argOr($_1, "broken", () => false);
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "garage",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             domain: "git.deuxfleurs.fr",
             owner: "Deuxfleurs",
             repo: "garage",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [installShellFiles, protobuf, pkg_config]),
         buildInputs: nix.thunk(() => [openssl]),
         checkInputs: nix.thunk(() => [cacert]),
-        env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
         buildFeatures: nix.thunk(() => [
           "bundled-libs",
           "consul-discovery",
@@ -69,10 +69,10 @@ export default nix.lambda((args) => (() => {
         ]),
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "2.3.0")) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))), "installShellCompletion --cmd garage \\\n  --bash <($out/bin/garage completions bash) \\\n  --fish <($out/bin/garage completions fish) \\\n  --zsh <($out/bin/garage completions zsh)\n")),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tests: nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`garage_${nix.app(nix.sel(lib, "versions", "major"), version)}`))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               extraArgs: nix.thunk(() => [
                 "--version-regex",
                 nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), version)}\\.[0-9.]+)`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "S3-compatible object store for small self-hosted geo-distributed deployments",
           changelog: nix.thunk(() => nix.str`https://git.deuxfleurs.fr/Deuxfleurs/garage/releases/tag/v${version}`),
           homepage: "https://garagehq.deuxfleurs.fr",
@@ -102,19 +102,19 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return (() => {
     const garage_1 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "1.3.1",
         hash: "sha256-wkCnJmbulnhzwHvzdpzh9MRceOzmPdhOogffwhqNGPg=",
         cargoHash: "sha256-jfYe2A6zkVgTLrWBDbahICSKCRO3FwsBPNSVFapH0Rs=",
       }))));
     const garage_2 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "2.4.1",
         hash: "sha256-+3w4R0IGxc7GCVW3t7Izt6Y5PVUjxHsdLrr74ckR9Mg=",
         cargoHash: "sha256-G928EsavtEgxugLzpBGSbo2RMHLzu9PZf9r3GqU5J3E=",
       }))));
     const garage = garage_1;
-    return { __proto__: pos$9, garage_1, garage_2, garage };
+    return { [nix.POS]: pos$9, garage_1, garage_2, garage };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "get-activity",
       version: nix.thunk(() => nix.attr(get_activity_lib, "version")),
       src: nix.thunk(() => nix.attr(get_activity_lib, "src")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/tarides/get-activity/commit/3f1ccbbcf7fc65c69c7752726f6886fc92b986fa.patch",
             hash: "sha256-6uvkBEI/ZCPrJ3Aus0/L86zUIa+kOBD0k8ADMEi+pkI=",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect, alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tarides/get-activity",
         description: "Collect activity and format as markdown for a journal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

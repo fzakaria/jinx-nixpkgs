@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const clang = nix.arg($, "clang");
   const rustfmt = nix.arg($, "rustfmt");
-  const rustfmt_nightly = nix.thunk(() => nix.app(nix.sel(rustfmt, "override"), nix.thunk(() => ({ __proto__: pos$1, asNightly: true }))));
+  const rustfmt_nightly = nix.thunk(() => nix.app(nix.sel(rustfmt, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, asNightly: true }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => (() => {
       const pname = "rust-bindgen-unwrapped";
       const version = "0.72.1";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "bindgen-cli",
           version: version,
           hash: "sha256-rhdQZcnlqVSUqvFDg0Scs1+DHGcKyazeS5H9HH7u8Fk=",
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const nativeCheckInputs = nix.thunk(() => [clang]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RUSTFMT: nix.thunk(() => nix.str`${rustfmt_nightly}/bin/rustfmt`),
       }));
       const preCheck = "# for the ci folder, notably\npatchShebangs .\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, clang: clang }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, clang: clang }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Automatically generates Rust FFI bindings to C (and some C++) libraries",
         longDescription: "Bindgen takes a c or c++ header file and turns them into\nrust ffi declarations.\n",
         homepage: "https://github.com/rust-lang/rust-bindgen",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ecederstrand",
           repo: "exchangelib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,21 +60,21 @@ export default nix.lambda((args) => (() => {
         tzlocal,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         complete: nix.thunk(() => [requests_gssapi]),
         kerberos: nix.thunk(() => [requests_gssapi]),
       }));
       const nativeCheckInputs = nix.thunk(() => [psutil, python_dateutil, pytz, pyyaml, requests_mock]);
       const pythonImportsCheck = nix.thunk(() => ["exchangelib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client for Microsoft Exchange Web Services (EWS)",
         homepage: "https://github.com/ecederstrand/exchangelib",
         changelog: nix.thunk(() => nix.str`https://github.com/ecederstrand/exchangelib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const version = "2.0.2-unstable-2026-07-22";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "system76-scheduler",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "system76-scheduler",
           rev: "8651bbf74bcfc8a46443b30199b380e12defa97e",
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [dbus, pipewire]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         EXECSNOOP_PATH: nix.thunk(() => nix.str`${bcc}/bin/execsnoop`),
       })),
       doCheck: false,
       postInstall: "mkdir -p $out/data\ninstall -D -m 0644 data/com.system76.Scheduler.conf $out/etc/dbus-1/system.d/com.system76.Scheduler.conf\ninstall -D -m 0644 data/*.kdl $out/data/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "System76 Scheduler",
         mainProgram: "system76-scheduler",
         homepage: "https://github.com/pop-os/system76-scheduler",

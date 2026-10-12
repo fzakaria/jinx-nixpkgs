@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pssh",
       version: "2.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lilydjwg",
           repo: "pssh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel SSH Tools",
         longDescription: "PSSH provides parallel versions of OpenSSH and related tools,\nincluding pssh, pscp, prsync, pnuke and pslurp.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

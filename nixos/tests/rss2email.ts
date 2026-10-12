@@ -21,40 +21,40 @@ const pos$15 = nix.positions(here + "/rss2email.nix", [["server", 5, 5]]);
 const pos$16 = nix.positions(here + "/rss2email.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 69, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "rss2email",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       server: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const config = nix.arg($, "config");
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             nginx: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$2,
-                "127.0.0.1": nix.thunk(() => ({ __proto__: pos$1, root: nix.path(here, "./common/webroot") })),
+                [nix.POS]: pos$2,
+                "127.0.0.1": nix.thunk(() => ({ [nix.POS]: pos$1, root: nix.path(here, "./common/webroot") })),
               })),
             })),
             rss2email: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               to: "alice@localhost",
               interval: "1",
-              config: nix.thunk(() => ({ __proto__: pos$4, from: "test@example.org" })),
+              config: nix.thunk(() => ({ [nix.POS]: pos$4, from: "test@example.org" })),
               feeds: nix.thunk(() => ({
-                __proto__: pos$6,
-                nixos: nix.thunk(() => ({ __proto__: pos$5, url: "http://127.0.0.1/news-rss.xml" })),
+                [nix.POS]: pos$6,
+                nixos: nix.thunk(() => ({ [nix.POS]: pos$5, url: "http://127.0.0.1/news-rss.xml" })),
               })),
             })),
             opensmtpd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               extraServerArgs: nix.thunk(() => ["-v"]),
               serverConfiguration: nix.thunk(() => nix.str`listen on 127.0.0.1
@@ -64,21 +64,21 @@ match from any for local action dovecot_deliver
 `),
             })),
             dovecot2: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               enablePAM: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 dovecot_config_version: "2.4.3",
                 dovecot_storage_version: nix.thunk(() => nix.sel(config, "services", "dovecot2", "package", "version")),
                 mail_driver: "maildir",
                 mail_path: "~/mail",
-                protocols: nix.thunk(() => ({ __proto__: pos$9, imap: true })),
+                protocols: nix.thunk(() => ({ [nix.POS]: pos$9, imap: true })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => (() => {
               const checkMailLanded = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "check-mail-landed", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "python3", "interpreter")}
 import imaplib

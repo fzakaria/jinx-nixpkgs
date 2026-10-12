@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const multicore_magic = nix.arg($, "multicore-magic");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multicore-bench",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/multicore-bench/releases/download/${nix.sel(finalAttrs, "version")}/multicore-bench-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vrp9yiuTwhijhYjeDKPFRGyh/5LeydKWJSyMLZRRXIM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [backoff, domain_local_await, mtime, multicore_magic, yojson]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for writing multicore benchmark executables to run on current-bench",
         homepage: "https://github.com/ocaml-multicore/multicore-bench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

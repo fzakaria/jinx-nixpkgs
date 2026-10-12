@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pymorphy2_dicts_ru = nix.arg($, "pymorphy2-dicts-ru");
   const pkg_resources_backport = nix.arg($, "pkg-resources-backport");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymorphy2",
       version: "0.9.1",
       format: "setuptools",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hsRHFX3uLrI0HvvkU44SgadUdWuhqjLad6iWFMWLVgw=",
@@ -38,7 +38,7 @@ PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH" \\
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Morphological analyzer/inflection engine for Russian and Ukrainian",
         mainProgram: "pymorphy",
         homepage: "https://github.com/kmike/pymorphy2",

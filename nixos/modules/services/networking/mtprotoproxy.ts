@@ -30,73 +30,73 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "mtprotoproxy"));
   const configOpts = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     PORT: nix.thunk(() => nix.sel(cfg, "port")),
     USERS: nix.thunk(() => nix.sel(cfg, "users")),
     SECURE_ONLY: nix.thunk(() => nix.sel(cfg, "secureOnly")),
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "adTag"), null)), nix.thunk(() => ({ __proto__: pos$2, AD_TAG: nix.thunk(() => nix.sel(cfg, "adTag")) }))), nix.sel(cfg, "extraConfig"))));
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "adTag"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, AD_TAG: nix.thunk(() => nix.sel(cfg, "adTag")) }))), nix.sel(cfg, "extraConfig"))));
   const convertOption = (opt) => (nix.asBool((nix.asBool(nix.app(nix.lookup(w, "isString"), opt)) || nix.asBool(nix.app(nix.lookup(w, "isInt"), opt)))) ? nix.app(nix.sel(nix.builtins, "toJSON"), opt) : (nix.asBool(nix.app(nix.lookup(w, "isBool"), opt)) ? (nix.asBool(opt) ? "True" : "False") : (nix.asBool(nix.app(nix.lookup(w, "isList"), opt)) ? nix.add(nix.add("[", nix.app(nix.lookup(w, "concatMapStringsSep"), ",", convertOption, opt)), "]") : (nix.asBool(nix.app(nix.lookup(w, "isAttrs"), opt)) ? nix.add(nix.add("{", nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (opt_1) => nix.str`${nix.app(nix.sel(nix.builtins, "toJSON"), name)}: ${nix.app(convertOption, opt_1)}`, opt)))), "}") : nix.app(nix.builtins.throw, "Invalid option type")))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.py", nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (opt) => nix.str`${name} = ${nix.app(convertOption, opt)}`, configOpts))))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         mtprotoproxy: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "mtprotoproxy")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 3256n,
               description: "TCP port to accept mtproto connections on.\n",
             })))),
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 tg: "00000000000000000000000000000000",
                 tg2: "0123456789abcdef0123456789abcdef",
               })),
               description: "Allowed users and their secrets. A secret is a 32 characters long hex string.\n",
             })))),
           secureOnly: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Don't allow users to connect in non-secure mode (without random padding).\n",
             })))),
           adTag: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "3c09c680b76ee91a4c25ad51f742267d",
               description: "Tag for advertising that can be obtained from @MTProxybot.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$8, STATS_PRINT_PERIOD: 600n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, STATS_PRINT_PERIOD: 600n })),
               description: "Extra configuration options for mtprotoproxy.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             mtprotoproxy: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "MTProto Proxy Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "mtprotoproxy")}/bin/mtprotoproxy ${configFile}`),
                 DynamicUser: true,
               })),

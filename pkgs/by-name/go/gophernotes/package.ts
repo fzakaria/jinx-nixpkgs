@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gophernotes",
       version: "0.7.5-unstable-2023-11-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gopherdata",
           repo: "gophernotes",
           rev: "55142043d19696ba037e3e93f9ec6c7f8436e82d",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./bump-gomacro-and-x-tools-for-generics.patch")]),
       vendorHash: "sha256-bGaXnd0E6dRNiwvGIn7Ptddrt7dRzPfkPThgHPuL2Vo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go kernel for Jupyter notebooks",
         homepage: "https://github.com/gopherdata/gophernotes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

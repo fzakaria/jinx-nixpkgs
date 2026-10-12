@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const testPkgName = "dummy_pkg";
   const testLicense = "MIT License\n\nCopyright (c) 2026 The Nixpkgs Authors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n";
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     usage: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "pana-usage-test",
         buildInputs: nix.thunk(() => [pana]),
         script: "export HOME=$TMPDIR\npana > output.txt 2>&1 || true\nif grep -q \"Usage: pana\" output.txt; then\n  touch $out\nelse\n  echo \"Usage string not found in output.\"\n  exit 1\nfi\n",
       })))),
     "json-output": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "pana-json-test",
         buildInputs: nix.thunk(() => [pana, git, jq]),
         script: nix.thunk(() => nix.str`      # Nix sandbox environment setup

@@ -28,33 +28,33 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const patchelf = nix.arg($, "patchelf");
   const extInfo = nix.thunk(() => nix.selOr({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       arch: "linux-x64",
       hash: "sha256-NnINb4ywaINKqNagJK6XampTqhBb3ztT/crNe0YV0fg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       arch: "linux-arm64",
       hash: "sha256-ejzWiDT7Ie3rWkfXHUEyIJGh7Tn/vwXAHRz7q7gwjD8=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       arch: "darwin-arm64",
       hash: "sha256-LXAtSvfxEGxt7YHMl8S9imDIb6/Mfi7BsTamwnx9sGE=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const roslyn_copilot = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "https://roslyn.blob.core.windows.net/releases/Microsoft.VisualStudio.Copilot.Roslyn.LanguageServer-18.3.72-alpha.zip",
       hash: "sha256-vzowJOPp/VVeWkPihvWX2jvTrbFMZMtgX03eLezdanE=",
       postFetch: "touch \"$out/install.Lock\"\n",
     }))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "csharp",
         publisher: "ms-dotnettools",
         version: "2.160.4",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Official C# support for Visual Studio Code",
         homepage: "https://github.com/dotnet/vscode-csharp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

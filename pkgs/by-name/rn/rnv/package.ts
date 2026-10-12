@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rnv",
       version: "1.7.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/rnv/rnv-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1rlxrkkkp8b5j6lyvnd9z1d85grmwwmdggkxq6yl226nwkqj1faa",
         })))),
       buildInputs: nix.thunk(() => [expat]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Relax NG Compact Syntax validator",
         homepage: "http://www.davidashen.net/rnv.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

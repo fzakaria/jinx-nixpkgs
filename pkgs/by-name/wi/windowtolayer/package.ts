@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "windowtolayer";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mstoeckl",
           repo: "windowtolayer",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-MqcutNzorDeYoGKWFbCzIrNuo1w2vwnGEFOuooZwPgk=";
       const nativeBuildInputs = nix.thunk(() => [python3, rustfmt]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display existing Wayland applications as a wallpaper instead",
         homepage: "https://gitlab.freedesktop.org/mstoeckl/windowtolayer",
         mainProgram: "windowtolayer",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

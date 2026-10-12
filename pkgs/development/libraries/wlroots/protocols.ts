@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wlr-protocols",
       version: "0-unstable-2022-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "wlroots",
           repo: "wlr-protocols",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "check",
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wayland roots protocol extensions",
         longDescription: "wlr-protocols contains Wayland protocols that add functionality not\navailable in the Wayland core protocol, and specific to wlroots-based\ncompositors. Such protocols either add completely new functionality, or\nextend the functionality of some other protocol either in Wayland core,\nor some other protocol in wayland-protocols.\n",
         homepage: "https://gitlab.freedesktop.org/wlroots/wlr-protocols",

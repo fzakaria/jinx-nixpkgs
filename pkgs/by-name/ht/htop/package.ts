@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const withVimKeys = nix.argOr($, "withVimKeys", () => false);
   nix.assert_((!nix.asBool(systemdSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ht/htop/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("htop", nix.app(nix.sel(lib, "optionalString"), withVimKeys, "-vim"))),
       version: "3.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "htop-dev",
           repo: "htop",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8Lm8TLWsJCX2rg5J16RPjnnUvjGPOm6BWGp1aMfyHhM=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withVimKeys, nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vim-keybindings.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/vim-keybindings.patch?h=htop-vim&id=d10f022b3ca1207200187a55f5b116a5bd8224f7",
             hash: "sha256-fZDTA2dCOmXxUYD6Wm41q7TxL7fgQOj8a/8yJC7Zags=",
@@ -62,7 +62,7 @@ ${nix.app(optionalPatch, systemdSupport, nix.thunk(() => nix.str`${systemdLibs}/
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add("Interactive process viewer", nix.app(nix.sel(lib, "optionalString"), withVimKeys, ", with vim-style keybindings"))),
         homepage: nix.thunk(() => (nix.asBool(withVimKeys) ? "https://aur.archlinux.org/packages/htop-vim" : "https://htop.dev")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

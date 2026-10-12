@@ -25,24 +25,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         conman: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable the conman Console manager.\n\nEither `configFile` or `config` must be specified.\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "conman", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/conman.conf",
               description: "The absolute path to the configuration file.\n\nEither `configFile` or `config` must be specified.\n\nSee <https://github.com/dun/conman/wiki/Man-5-conman.conf#files>.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               example: "server coredump=off\nserver keepalive=on\nserver loopback=off\nserver timestamp=1h\n\n# global config\nglobal log=\"/var/log/conman/%N.log\"\nglobal seropts=\"9600,8n1\"\nglobal ipmiopts=\"U:<user>,P:<password>\"\n",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "frantathefranta"))];
@@ -61,34 +61,34 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "services", "conman"));
       const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: "conman.conf",
           text: nix.thunk(() => nix.sel(cfg, "config")),
         })))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "config"), null)))) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "config"), null)))))),
               message: "Either but not both `configFile` and `config` must be specified for conman.",
             })),
           ]),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               conmand: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "serial console management program",
                 documentation: nix.thunk(() => ["man:conman(8)"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/conmand -F -c ${configFile}`),
                   KillMode: "process",
                 })),

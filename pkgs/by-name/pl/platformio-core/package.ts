@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         marshmallow: nix.thunk(() => nix.app(nix.sel(super$, "marshmallow", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "3.26.1";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "marshmallow-code",
                 repo: "marshmallow",
                 tag: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "packaging"))];
             })());
             const disabledTests = nix.thunk(() => ["test_from_timestamp_with_overflow_value"]);
-            return { __proto__: pos$2, version, src, dependencies, disabledTests };
+            return { [nix.POS]: pos$2, version, src, dependencies, disabledTests };
           })())),
       }),
     }))));
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.19";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "platformio",
           repo: "platformio-core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,16 +66,16 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "udev"]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./interpreter.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             interpreter: nix.thunk(() => nix.sel(nix.app(nix.sel(python3Packages, "python", "withPackages"), (_) => nix.force(dependencies)), "interpreter")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-local-spdx-license-list.patch"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             spdx_license_list_data: nix.thunk(() => nix.sel(spdx_license_list_data, "json")),
           })))),
         nix.path(here, "./missing-udev-rules-nixos.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://github.com/platformio/platformio-core/commit/097de2be98af533578671baa903a3ae825d90b94.patch",
             hash: "sha256-yq+/QHCkhAkFND11MbKFiiWT3oF1cHhgWj5JkYjwuY0=",
             revert: true,
@@ -198,11 +198,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_api_cache", "test_ping_internet_ips", "test_metadata_dump"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         python: nix.thunk(() => nix.sel(python3Packages, "python")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         changelog: nix.thunk(() => nix.str`https://github.com/platformio/platformio-core/releases/tag/${nix.sel(src, "tag")}`),
         description: "Open source ecosystem for IoT development",
         downloadPage: "https://github.com/platformio/platformio-core",
@@ -218,7 +218,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "platformio",
       }));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname,
         version,
         pyproject,

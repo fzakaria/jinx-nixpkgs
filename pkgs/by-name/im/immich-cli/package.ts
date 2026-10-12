@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "immich-cli",
       version: nix.thunk(() => nix.attr(immich, "version")),
       src: nix.thunk(() => nix.attr(immich, "src")),
@@ -50,7 +50,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Self-hosted photo and video backup solution (command line interface)",
         homepage: "https://immich.app/docs/features/command-line-interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "smpeg",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icculus",
           repo: "smpeg",
           rev: nix.thunk(() => nix.str`release_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./format.patch"),
         nix.path(here, "./gcc6.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/icculus/smpeg/commit/cc114ba0dd8644c0d6205bbce2384781daeff44b.patch",
             hash: "sha256-GxSD82j05pw0r2SxmPYAe/BXX4iUc+iHWhB9Ap4GzfA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/icculus/smpeg/commit/b369feca5bf99d6cff50d8eb316395ef48acf24f.patch",
             hash: "sha256-U+a6dbc5cm249KlUcf4vi79yUiT4hgEvMv522K4PqUc=",
           })))),
@@ -68,7 +68,7 @@ wrapProgram $dev/bin/smpeg-config \\
   --prefix PKG_CONFIG_PATH ":" "${nix.app(nix.sel(lib, "getDev"), SDL)}/lib/pkgconfig"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://icculus.org/smpeg/",
         description: "MPEG decoding library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sic",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/sic-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MEePqz68dfLrXQjLtbL+3K9IkRbnWi3XGX4+nHM9ZdI=",
         })))),
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple IRC client",
         mainProgram: "sic",
         homepage: "https://tools.suckless.org/sic/",

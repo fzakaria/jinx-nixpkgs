@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glaxnimate";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "glaxnimate",
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
           ]))}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: glaxnimate,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), xvfb_run)} glaxnimate --version`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://glaxnimate.org/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "glaxnimate",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

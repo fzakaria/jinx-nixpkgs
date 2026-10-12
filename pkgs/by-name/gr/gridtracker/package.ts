@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nwjs = nix.arg($, "nwjs");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gridtracker",
       version: "1.24.0922",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gridtracker.org",
           repo: "gridtracker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ substituteInPlace gridtracker.desktop \\
 `),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "NO_DIST_INSTALL=1"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Amateur radio companion to WSJT-X or JTDX",
         mainProgram: "gridtracker",
         longDescription: "GridTracker listens to traffic from WSJT-X/JTDX, displays it on a map,\nand has a sophisticated alerting and filtering system for finding and\nworking interesting stations. It also will upload QSO records to multiple\nlogging frameworks including Logbook of the World.\n",

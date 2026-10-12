@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "flask_wtf",
           version: version,
           hash: "sha256-edLuHkNs9XC8y32RZTP6GHV6LxjCkKzP+rG5oLaEZms=",
         }))));
       const build_system = nix.thunk(() => [hatchling, setuptools]);
       const dependencies = nix.thunk(() => [flask, itsdangerous, wtforms]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, email: nix.thunk(() => [email_validator]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, email: nix.thunk(() => [email_validator]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["flask_wtf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple integration of Flask and WTForms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-wtf/releases/tag/v${version}`),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

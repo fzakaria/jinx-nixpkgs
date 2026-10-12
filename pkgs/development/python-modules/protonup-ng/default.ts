@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const configparser = nix.arg($, "configparser");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protonup-ng",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-rys9Noa3+w4phttfcI1OGEDfHMy8s80bm8kM8TzssQA=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["protonup"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cloudishBenne/protonup-ng",
         description: "CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

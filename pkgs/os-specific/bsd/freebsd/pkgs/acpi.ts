@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/acpi",
       extraPaths: nix.thunk(() => ["sys/contrib/dev/acpica"]),
       extraNativeBuildInputs: nix.thunk(() => [flex, byacc]),

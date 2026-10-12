@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.lookup(w, "mkShell"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => [pyEnv, nix.thunk(() => nix.lookup(w, "nix-prefetch-scripts"))]),
     })));
 })(), formals$1);

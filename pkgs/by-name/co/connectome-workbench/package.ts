@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "connectome-workbench",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Washington-University",
           repo: "workbench",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       patches: nix.thunk(() => [nix.path(here, "./gcc15-cstdint.patch")]),
       postPatch: nix.thunk(() => nix.add("substituteInPlace kloewe/{cpuinfo,dot}/CMakeLists.txt --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n", "substituteInPlace CMakeLists.txt  \\\n  --replace-fail \"ADD_SUBDIRECTORY ( Tests )\" \"\"  \\\n  --replace-fail \"ENABLE_TESTING()\" \"\"\n")),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => nix.concat([libGL, libGLU], (() => {
         const w = nix.withScope(qt6, null);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })())),
       cmakeFlags: nix.thunk(() => ["-DWORKBENCH_USE_QT6=TRUE", "-DWORKBENCH_USE_QT5=FALSE"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Visualization and discovery tool used to map neuroimaging data",
         homepage: "https://www.humanconnectome.org/software/connectome-workbench",
         license: nix.thunk(() => (() => {

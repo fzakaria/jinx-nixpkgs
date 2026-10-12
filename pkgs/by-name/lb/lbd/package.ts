@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const host = nix.arg($, "host");
   const netcat_openbsd = nix.arg($, "netcat-openbsd");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lbd",
       version: "0-unstable-2024-02-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "D3vil0p3r",
           repo: "lbd",
           rev: "73baaaecddcd834d43d79f50f0808b779c9a97c3",
@@ -42,7 +42,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), bash)} $out/bin/lbd \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Detect if a domain uses DNS and/or HTTP Load-Balancing",
         mainProgram: "lbd",
         homepage: "https://github.com/D3vil0p3r/lbd",

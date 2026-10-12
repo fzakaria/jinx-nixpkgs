@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "http-getter",
       version: "0-unstable-2020-12-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tohojo",
           repo: "http-getter",
           rev: "0b20f08133206aaf225946814ceb6b85ab37e136",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake4-fix",
             url: "https://github.com/tohojo/http-getter/commit/a3646c4cd5f4558f942c2323bbeb83d82a6ce8c1.patch?full_index=1",
             hash: "sha256-/fQP0AlEKm/hDj9POGjdAPoW4Z+UExaNnk9PbvW22uE=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tohojo/http-getter",
         description: "Simple getter for HTTP URLs using cURL",
         mainProgram: "http-getter",

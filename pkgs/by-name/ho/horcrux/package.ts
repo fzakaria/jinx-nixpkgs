@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "horcrux",
       version: "0.3-unstable-2023-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jesseduffield",
           repo: "horcrux",
           rev: "5e848abcca49a7ad359f5a24ef4ca7e0eda80889",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Split your file into encrypted fragments so that you don't need to remember a passcode",
         homepage: "https://github.com/jesseduffield/horcrux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const expecttest = nix.arg($, "expecttest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torch-checkpointing",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meta-pytorch",
           repo: "torch_checkpointing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance asynchronous checkpointing for PyTorch",
         homepage: "https://github.com/meta-pytorch/torch_checkpointing",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/torch_checkpointing/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

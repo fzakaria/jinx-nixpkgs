@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const lastVersion = "2.5.2";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mmj2",
       version: nix.thunk(() => nix.str`${lastVersion}-unstable-2023-06-27`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digama0",
           repo: "mmj2",
           fetchSubmodules: true,
@@ -42,7 +42,7 @@ wrapProgram $bin \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI Proof Assistant for the Metamath project",
         longDescription: "mmj2 is a proof assistant for the Metamath language. Metamath is a\nlanguage that lets you express mathematical axioms and theorems. The proof\nassistant includes a GUI for creating proofs, proof verification tools,\nand grammatical/syntax analysis.\n",
         homepage: "https://github.com/digama0/mmj2",

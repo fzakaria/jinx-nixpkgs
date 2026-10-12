@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torque",
       version: "6.1.3h2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adaptivecomputing",
           repo: "torque",
           rev: "458883319157cfc5c509046d09f9eb8e68e8d398",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, flex, bison, libxml2]),
       buildInputs: nix.thunk(() => [openssl, groff, libxml2, util_linux, libtool, which, boost, zlib]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error -fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error -fpermissive" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am \\
   --replace-fail "contrib/init.d contrib/systemd" ""
 substituteInPlace src/cmds/Makefile.am \\
@@ -54,7 +54,7 @@ substituteInPlace src/resmom/requests.c \\
       preConfigure: "# fix broken libxml2 detection\nsed -i '/xmlLib\\=/c\\xmlLib=xml2' ./configure\n\nfor s in fifo cray_t3e dec_cluster msic_cluster sgi_origin umn_cluster; do\n  substituteInPlace src/scheduler.cc/samples/$s/Makefile.in \\\n    --replace-fail \"schedprivdir = \" \"schedprivdir = $out/\"\ndone\n\nfor f in $(find ./ -name Makefile.in); do\n  echo patching $f...\n  sed -i $f -e '/PBS_MKDIRS/d' -e '/chmod u+s/d'\ndone\n\npatchShebangs buildutils\n",
       postInstall: "install -Dm755 torque.setup buildutils/pbs_mkdirs -t $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/adaptivecomputing/torque",
         description: "Resource management system for submitting and controlling jobs on supercomputers, clusters, and grids",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

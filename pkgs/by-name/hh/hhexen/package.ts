@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hhexen",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sezero",
           repo: "hhexen",
           rev: nix.thunk(() => nix.str`hhexen-${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-audio=sdlmixer"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 hhexen-gl -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "hhexen-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "hhexen-" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux port of Raven Game's Hexen",
         homepage: "https://hhexen.sourceforge.net/hhexen.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

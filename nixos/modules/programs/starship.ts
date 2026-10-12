@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const userSettingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "starship.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const settingsFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "presets"), [])) ? nix.force(userSettingsFile) : nix.app(nix.sel(pkgs, "runCommand"), "starship.toml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yq"))]),
     })), nix.thunk(() => nix.str`tomlq -s -t 'reduce .[] as $item ({}; . * $item)' \\
   ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map((f) => nix.str`${nix.sel(cfg, "package")}/share/starship/presets/${f}.toml`, nix.thunk(() => nix.sel(cfg, "presets")))))} \\
@@ -42,22 +42,22 @@ export default nix.lambda((args) => (() => {
 `))));
   const initOption = nix.thunk(() => (nix.asBool(nix.sel(cfg, "interactiveOnly")) ? "promptInit" : "shellInit"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         starship: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Starship shell prompt")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "starship", nix.thunk(() => ({})))),
-          enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Bash integration"), { __proto__: pos$2, default: true })),
-          enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Fish integration"), { __proto__: pos$3, default: true })),
-          enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "zsh integration"), { __proto__: pos$4, default: true })),
-          enableXonshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Xonsh integration"), { __proto__: pos$5, default: true })),
-          interactiveOnly: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "starship only when the shell is interactive.\nSome plugins require this to be set to false to function correctly\n"), { __proto__: pos$6, default: true })),
+          enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Bash integration"), { [nix.POS]: pos$2, default: true })),
+          enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Fish integration"), { [nix.POS]: pos$3, default: true })),
+          enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "zsh integration"), { [nix.POS]: pos$4, default: true })),
+          enableXonshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Xonsh integration"), { [nix.POS]: pos$5, default: true })),
+          interactiveOnly: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "starship only when the shell is interactive.\nSome plugins require this to be set to false to function correctly\n"), { [nix.POS]: pos$6, default: true })),
           presets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: [],
               example: nix.thunk(() => ["nerd-font-symbols"]),
               type: nix.thunk(() => (() => {
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
               description: "Presets files to be merged with settings in order.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration included in {file}`starship.toml`.\n\nSee <https://starship.rs/config/#prompt> for documentation.\n",
             })))),
           transientPrompt: nix.thunk(() => (() => {
             const mkTransientPromptOption = (side) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
-                  return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.update(nix.lookup(w, "str"), { __proto__: pos$9, description: "Fish shell code concatenated with \"\\n\"" })));
+                  return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.update(nix.lookup(w, "str"), { [nix.POS]: pos$9, description: "Fish shell code concatenated with \"\\n\"" })));
                 })()),
                 description: nix.thunk(() => (() => {
                   const function$ = nix.thunk(() => nix.str`\`starship_transient_${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(side, "right")), "r")}prompt_func\` function`);
@@ -93,7 +93,7 @@ prompt is ${(nix.asBool(nix.eq(side, "right")) ? "empty" : "a bold-green '❯' c
                 default: null,
               })));
             return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Starship's [transient prompt](https://starship.rs/advanced-config/#transientprompt-and-transientrightprompt-in-fish)\nfeature in `fish` shells. After a command has been entered, Starship\nreplaces the usual prompt with the terminal output of the commands\ndefined in the `programs.starship.transientPrompt.left`\nand `programs.starship.transientPrompt.right` options.\n\nThis option only works with `fish`, as `bash` requires a\n[custom configuration](https://starship.rs/advanced-config/#transientprompt-and-transientrightprompt-in-bash)\ninvolving [Ble.sh](https://github.com/akinomyoga/ble.sh), which can be\nenabled with `programs.bash.blesh.enable`, but not configured using NixOS\n")),
               left: nix.thunk(() => nix.app(mkTransientPromptOption, "left")),
               right: nix.thunk(() => nix.app(mkTransientPromptOption, "right")),
@@ -103,13 +103,13 @@ prompt is ${(nix.asBool(nix.eq(side, "right")) ? "empty" : "a bold-green '❯' c
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           bash: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(initOption), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.str`if [[ $TERM != "dumb" ]]; then
   # don't set STARSHIP_CONFIG automatically if there's a user-specified
@@ -160,7 +160,7 @@ fi
 `)))],
           ])),
           xonsh: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableXonshIntegration")), nix.thunk(() => nix.str`if $TERM != "dumb":
   # don't set STARSHIP_CONFIG automatically if there's a user-specified
   # config file.  starship appears to use a hardcoded config location
@@ -177,7 +177,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => nix.sel(pkgs, "starship", "meta", "maintainers")),
     })),
   };

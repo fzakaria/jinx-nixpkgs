@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const leptonica = nix.arg($, "leptonica");
   const tesseract = nix.arg($, "tesseract");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ccextractor",
       version: "0.96.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CCExtractor",
           repo: "ccextractor",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       cmakeDir: "../src",
       cargoRoot: "src/rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-0FPxU3rUoT3/Xy3mQjjQGmxkNjs++sQxjCJ1/UuRQlc=",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_HARDSUBX", true)),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         FFMPEG_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), ffmpeg)}/include`),
         FFMPEG_DLL_PATH: nix.thunk(() => (() => {
           const ffmpegLibNames = nix.thunk(() => [
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
           const ffmpegLibExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "library"));
           const ffmpegLibPath = (ffmpegLibName) => nix.str`${ffmpegLibDir}/lib${ffmpegLibName}.${ffmpegLibExt}`;
           const ffmpegLinkerScript = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "ccextractor-ffmpeg-linker-script",
               destination: "/lib/ffmpeg.ld",
               text: nix.thunk(() => nix.str`INPUT(${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", ffmpegLibPath, ffmpegLibNames)})`),
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'getenv("TESSDATA_PREFIX")' '"${tesseract}/share/"'
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.ccextractor.org/",
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/CHANGES.TXT`),
         description: "Tool that produces subtitles from closed caption data in videos",

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "matrix-dl",
       version: "0-unstable-2020-07-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rubo77",
           repo: "matrix-dl",
           rev: "b1a86d1421f39ee327284e1023f09dc165e3c8a5",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "matrix-client"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Download backlogs from Matrix as raw text",
         mainProgram: "matrix-dl",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),

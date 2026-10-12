@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-update",
       version: "1.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mic92",
           repo: "nix-update",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       ]),
       checkPhase: "runHook preCheck\n\n$out/bin/nix-update --help >/dev/null\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        "nix-update-script": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nix-update-script.nix"), nix.thunk(() => ({ __proto__: pos$2, "nix-update": nix_update })))),
+        [nix.POS]: pos$3,
+        "nix-update-script": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nix-update-script.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "nix-update": nix_update })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Swiss-knife for updating nix packages",
         homepage: "https://github.com/Mic92/nix-update/",
         changelog: nix.thunk(() => nix.str`https://github.com/Mic92/nix-update/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ntlm-challenger",
       version: "0-unstable-2022-11-10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nopfor",
           repo: "ntlm_challenger",
           rev: "bd61ef65c7692fb1968383894da662bf99026aec",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\ninstall -D ntlm_challenger.py $out/bin/ntlm_challenger\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse NTLM challenge messages over HTTP and SMB",
         mainProgram: "ntlm_challenger",
         homepage: "https://github.com/nopfor/ntlm_challenger",

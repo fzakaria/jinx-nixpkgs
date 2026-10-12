@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const planDescription = "The znapzend backup plan to use for the source.\n\nThe plan specifies how often to backup and for how long to keep the\nbackups. It consists of a series of retention periods to interval\nassociations:\n\n```\n  retA=>intA,retB=>intB,...\n```\n\nBoth intervals and retention periods are expressed in standard units\nof time or multiples of them. You can use both the full name or a\nshortcut according to the following listing:\n\n```\n  second|sec|s, minute|min, hour|h, day|d, week|w, month|mon|m, year|y\n```\n\nSee {manpage}`znapzendzetup(1)` for more info.\n";
   const planExample = "1h=>10min,1d=>1h,1w=>1d,1m=>1w,1y=>1m";
   const mbufferSizeType = nix.thunk(() => nix.update(nix.sel(lib, "types", "str"), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     check: (x) => (nix.asBool(nix.app(nix.sel(lib, "types", "str", "check"), x)) && nix.asBool(nix.builtins.isList(nix.thunk(() => nix.builtins.match("^[0-9]+[bkMG]$", x))))),
     description: "string of the form number{b|k|M|G}",
   }));
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const stringContainingStrings = (list) => (() => {
     const matching = (s) => nix.builtins.map((str) => nix.builtins.match(nix.thunk(() => nix.str`.*${str}.*`), s), list);
     return nix.update(nix.sel(lib, "types", "str"), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       check: (x) => (nix.asBool(nix.app(nix.sel(lib, "types", "str", "check"), x)) && nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(lib, "isList")), nix.thunk(() => nix.app(matching, x))))),
       description: nix.thunk(() => nix.str`string containing all of the characters ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", list)}`),
     });
@@ -83,42 +83,42 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Label for this destination. Defaults to the attribute name.",
             })))),
           plan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: planDescription,
               example: planExample,
             })))),
           dataset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Dataset name to send snapshots to.",
               example: "tank/main",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Host to use for the destination dataset. Can be prefixed with\n`user@` to specify the ssh user.\n",
               default: null,
               example: "john@example.com",
             })))),
           presend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Command to run before sending the snapshot to the destination.\nIntended to run a remote script via {command}`ssh` on the\ndestination, e.g. to bring up a backup disk or server or to put a\nzpool online/offline. See also {option}`postsend`.\n",
               default: null,
               example: "ssh root@bserv zpool import -Nf tank",
             })))),
           postsend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Command to run after sending the snapshot to the destination.\nIntended to run a remote script via {command}`ssh` on the\ndestination, e.g. to bring up a backup disk or server or to put a\nzpool online/offline. See also {option}`presend`.\n",
               default: null,
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           label: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
           plan: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(srcConfig, "plan")))),
         })),
@@ -137,37 +137,37 @@ export default nix.lambda((args) => (() => {
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         options: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable this source.",
               default: true,
             })))),
           recursive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to do recursive snapshots.",
               default: false,
             })))),
           mbuffer: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to use {command}`mbuffer`.",
                 default: false,
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "u16")))),
                 description: "Port to use for {command}`mbuffer`.\n\nIf this is null, it will run {command}`mbuffer` through\nssh.\n\nIf this is not null, it will run {command}`mbuffer`\ndirectly through TCP, which is not encrypted but faster. In that\ncase the given port needs to be open on the destination host.\n",
                 default: null,
               })))),
             size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: mbufferSizeType,
                 description: "The size for {command}`mbuffer`.\nSupports the units b, k, M, G.\n",
                 default: "1G",
@@ -175,47 +175,47 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           presnap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Command to run before snapshots are taken on the source dataset,\ne.g. for database locking/flushing. See also\n{option}`postsnap`.\n",
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "''${pkgs.mariadb}/bin/mysql -e \"set autocommit=0;flush tables with read lock;\\\\! ${pkgs.coreutils}/bin/sleep 600\" &  ${pkgs.coreutils}/bin/echo $! > /tmp/mariadblock.pid ; sleep 10''\n")),
             })))),
           postsnap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Command to run after snapshots are taken on the source dataset,\ne.g. for database unlocking. See also {option}`presnap`.\n",
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.coreutils}/bin/kill `${pkgs.coreutils}/bin/cat /tmp/mariadblock.pid`;${pkgs.coreutils}/bin/rm /tmp/mariadblock.pid\"\n")),
             })))),
           timestampFormat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: timestampType,
               description: "The timestamp format to use for constructing snapshot names.\nThe syntax is `strftime`-like. The string must\nconsist of the mandatory `%Y %m %d %H %M %S`.\nOptionally  `- _ . :`  characters as well as any\nalphanumeric character are allowed. If suffixed by a\n`Z`, times will be in UTC.\n",
               default: "%Y-%m-%d-%H%M%S",
               example: "znapzend-%m.%d.%Y-%H%M%SZ",
             })))),
           sendDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Specify delay (in seconds) before sending snaps to the destination.\nMay be useful if you want to control sending time.\n",
               default: 0n,
               example: 60n,
             })))),
           plan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: planDescription,
               example: planExample,
             })))),
           dataset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The dataset to use for this source.",
               example: "tank/home",
             })))),
           destinations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(destType, config_1)))),
               description: "Additional destinations.",
               default: nix.thunk(() => ({})),
@@ -223,7 +223,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           dataset: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
         })),
       };
@@ -236,15 +236,15 @@ export default nix.lambda((args) => (() => {
   const mkDestAttrs = (dst) => (() => {
     const w = nix.withScope(dst, null);
     return nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`dst_${nix.lookup(w, "label")}${n}`), v), nix.thunk(() => nix.update({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         "": nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.lookup(w, "host"), null)), nix.thunk(() => nix.str`${nix.lookup(w, "host")}:`)), nix.lookup(w, "dataset"))),
         _plan: nix.thunk(() => nix.lookup(w, "plan")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.lookup(w, "presend"), null)), nix.thunk(() => ({ __proto__: pos$29, _precmd: nix.thunk(() => nix.lookup(w, "presend")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.lookup(w, "postsend"), null)), nix.thunk(() => ({ __proto__: pos$30, _pstcmd: nix.thunk(() => nix.lookup(w, "postsend")) })))))));
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.lookup(w, "presend"), null)), nix.thunk(() => ({ [nix.POS]: pos$29, _precmd: nix.thunk(() => nix.lookup(w, "presend")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.lookup(w, "postsend"), null)), nix.thunk(() => ({ [nix.POS]: pos$30, _pstcmd: nix.thunk(() => nix.lookup(w, "postsend")) })))))));
   })();
   const mkSrcAttrs = (srcCfg) => (() => {
     const w = nix.withScope(srcCfg, null);
     return nix.update({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       enabled: nix.thunk(() => nix.app(onOff, nix.thunk(() => nix.lookup(w, "enable")))),
       mbuffer: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "mbuffer")), w);
@@ -263,67 +263,67 @@ export default nix.lambda((args) => (() => {
   const files = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (srcCfg) => (() => {
       const fileText = nix.thunk(() => nix.app(attrsToFile, nix.thunk(() => nix.app(mkSrcAttrs, srcCfg))));
       return {
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         name: nix.thunk(() => nix.sel(srcCfg, "dataset")),
         value: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.app(stripSlashes, nix.thunk(() => nix.sel(srcCfg, "dataset")))), fileText)),
       };
     })(), nix.thunk(() => nix.sel(cfg, "zetup"))));
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     options: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       services: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         znapzend: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ZnapZend ZFS backup daemon")),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               default: "debug",
               example: "warning",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["debug", "info", "warning", "err", "alert"]))),
               description: "The log level when logging to file. Any of debug, info, warning, err,\nalert. Default in daemonized form is debug.\n",
             })))),
           logTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "syslog::daemon",
               example: "/var/log/znapzend.log",
               description: "Where to log to (syslog::\\<facility\\> or \\<filepath\\>).\n",
             })))),
           mailErrorSummaryTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
               default: "",
               description: "Email address to send a summary to if \"send task(s) failed\".\n",
             })))),
           noDestroy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Does all changes to the filesystem except destroy.",
             })))),
           autoCreation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Automatically create the destination dataset if it does not exist.",
             })))),
           zetup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), srcType)),
               description: "Znapzend configuration.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"tank/home\" = {\n    # Make snapshots of tank/home every hour, keep those for 1 day,\n    # keep every days snapshot for 1 month, etc.\n    plan = \"1d=>1h,1m=>1d,1y=>1m\";\n    recursive = true;\n    # Send all those snapshots to john@example.com:rtank/john as well\n    destinations.remote = {\n      host = \"john@example.com\";\n      dataset = \"rtank/john\";\n    };\n  };\n};\n")),
             })))),
           pure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Do not persist any stateful znapzend setups. If this option is\nenabled, your previously set znapzend setups will be cleared and only\nthe ones defined with this module will be applied.\n",
               default: false,
             })))),
           features: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             oracleMode: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "destroying snapshots one by one instead of using one long argument list.\nIf source and destination are out of sync for a long time, you may have\nso many snapshots to destroy that the argument gets is too long and the\ncommand fails\n")),
             recvu: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "recvu feature which uses `-u` on the receiving end to keep the destination\nfilesystem unmounted\n")),
             compressed: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "compressed feature which adds the options `-Lce` to\nthe {command}`zfs send` command. When this is enabled, make\nsure that both the sending and receiving pool have the same relevant\nfeatures enabled. Using `-c` will skip unnecessary\ndecompress-compress stages, `-L` is for large block\nsupport and -e is for embedded data support. see\n{manpage}`znapzend(1)`\nand {manpage}`zfs(8)`\nfor more info\n")),
@@ -336,17 +336,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "znapzend"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             znapzend: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "ZnapZend - ZFS Backup System",
               wantedBy: nix.thunk(() => ["zfs.target"]),
               after: nix.thunk(() => ["zfs.target"]),
@@ -366,7 +366,7 @@ ${nix.sel(pkgs, "znapzend")}/bin/znapzendzetup list \\
 ${nix.sel(pkgs, "znapzend")}/bin/znapzendzetup import --write ${dataset} ${config_1} &
 `, files)))), "wait\n")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 TimeoutStartSec: 180n,
                 User: "root",
                 ExecStart: nix.thunk(() => (() => {
@@ -388,7 +388,7 @@ ${nix.sel(pkgs, "znapzend")}/bin/znapzendzetup import --write ${dataset} ${confi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "SlothOfAnarchy"))];

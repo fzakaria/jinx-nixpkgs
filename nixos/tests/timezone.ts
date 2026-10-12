@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "timezone",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       node_eutz: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
-          time: nix.thunk(() => ({ __proto__: pos$2, timeZone: "Europe/Amsterdam" })),
+          [nix.POS]: pos$3,
+          time: nix.thunk(() => ({ [nix.POS]: pos$2, timeZone: "Europe/Amsterdam" })),
         };
       })(), formals$2),
       node_nulltz: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
-          time: nix.thunk(() => ({ __proto__: pos$4, timeZone: null })),
+          [nix.POS]: pos$5,
+          time: nix.thunk(() => ({ [nix.POS]: pos$4, timeZone: null })),
         };
       })(), formals$3),
     })),

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const withGlslang = nix.argOr($, "withGlslang", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "shader-slang",
       version: "2026.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shader-slang",
           repo: "slang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,11 +80,11 @@ export RANLIB="${nix.sel(stdenv, "cc", "targetPrefix")}gcc-ranlib"
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", ignoredVersions: "*-draft" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", ignoredVersions: "*-draft" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          hello: nix.thunk(() => nix.app(runCommandCC, "compile-hello-world", nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })), nix.thunk(() => nix.str`cat > hello.slang << EOF
+          [nix.POS]: pos$4,
+          hello: nix.thunk(() => nix.app(runCommandCC, "compile-hello-world", nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })), nix.thunk(() => nix.str`cat > hello.slang << EOF
 export __extern_cpp int main()
 {
     printf("Hello, world!\\n");
@@ -100,7 +100,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Shading language that makes it easier to build and maintain large shader codebases in a modular and extensible fashion",
         homepage: "https://github.com/shader-slang/slang",
         changelog: nix.thunk(() => nix.str`https://github.com/shader-slang/slang/releases/tag/v${nix.sel(finalAttrs, "version")}`),

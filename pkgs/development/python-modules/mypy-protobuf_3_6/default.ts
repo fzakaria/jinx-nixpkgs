@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const types_protobuf = nix.arg($, "types-protobuf");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mypy-protobuf",
       version: "3.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nipunn1313",
           repo: "mypy-protobuf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mypy_protobuf"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nipunn1313/mypy-protobuf/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Generate mypy stub files from protobuf specs",
         homepage: "https://github.com/nipunn1313/mypy-protobuf",

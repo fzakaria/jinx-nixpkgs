@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "klipper"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: (l) => (nix.asBool(nix.eq(nix.builtins.length(l), 1n)) ? nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "head"), l))) : nix.app(nix.sel(lib, "concatMapStrings"), (s) => nix.str`
   ${nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), s)}`, l)),
       mkKeyValue: (key) => (value) => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), ":", key, nix.thunk(() => (nix.asBool((nix.asBool(nix.builtins.isString(value)) && nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "\n", value)))) ? nix.str`
@@ -72,60 +72,60 @@ export default nix.lambda((args) => (() => {
       const mcu = nix.thunk(() => nix.sel(local, "name"));
       const subcfg = nix.thunk(() => nix.sel(local, "config"));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         options: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "building of firmware for manual flashing\n")),
           enableKlipperFlash: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "flashings scripts for firmware. This will add `klipper-flash-$mcu` scripts to your environment which can be called to flash the firmware.\nPlease check the configs at [klipper](https://github.com/Klipper3d/klipper/tree/master/config) whether your board supports flashing via `make flash`\n")),
           serial: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Path to serial port this mcu is connected to. Derived from `service.klipper.settings` by default.",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.klipper.settings.<name>.serial")),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => [nix.thunk(() => nix.str`${mcu}`), "serial"]), nix.thunk(() => nix.sel(cfg, "settings")))) ? nix.sel(cfg, "settings", nix.key(nix.str`${mcu}`), "serial") : null)),
             })))),
           canbus_uuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "CAN bus uuid of this mcu. Derived from `service.klipper.settings` by default.",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.klipper.settings.<name>.canbus_uuid")),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => [nix.thunk(() => nix.str`${mcu}`), "canbus_uuid"]), nix.thunk(() => nix.sel(cfg, "settings")))) ? nix.sel(cfg, "settings", nix.key(nix.str`${mcu}`), "canbus_uuid") : null)),
             })))),
           canbusNetwork: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "CAN bus network this mcu is connected to. Defaults to can0 if canbus_uuid is set.",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if canbus_uuid != null then \"can0\" else null")),
               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(subcfg, "canbus_uuid"), null)) ? "can0" : null)),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to firmware config which is generated using `klipper-genconf`",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               readOnly: true,
               description: "Path to the built firmware package.",
             })))),
           klipperFlashPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               readOnly: true,
               description: "Path to the built klipper-flash package.",
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           package: nix.thunk(() => (nix.asBool(nix.sel(subcfg, "enable")) ? nix.app(nix.sel(pkgs, "klipper-firmware", "override"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               klipper: nix.thunk(() => nix.sel(cfg, "package")),
               mcu: nix.thunk(() => nix.app(nix.sel(lib, "strings", "sanitizeDerivationName"), mcu)),
               firmwareConfig: nix.thunk(() => nix.sel(subcfg, "configFile")),
             }))) : null)),
           klipperFlashPackage: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(subcfg, "enable")) && nix.asBool(nix.sel(subcfg, "enableKlipperFlash")))) ? nix.app(nix.sel(pkgs, "klipper-flash", "override"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               klipper: nix.thunk(() => nix.sel(cfg, "package")),
               "klipper-firmware": nix.thunk(() => nix.sel(subcfg, "package")),
               mcu: nix.thunk(() => nix.app(nix.sel(lib, "strings", "sanitizeDerivationName"), mcu)),
@@ -138,95 +138,95 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$2)));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "klipper", "mutableConfigFolder"]), nix.thunk(() => ["services", "klipper", "configDir"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         klipper: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Klipper, the 3D printer firmware")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "klipper", nix.thunk(() => ({})))),
           logFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/klipper/klipper.log",
               description: "Path of the file Klipper should log to.\nIf `null`, it logs to stdout, which is not recommended by upstream.\n",
             })))),
           inputTTY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/run/klipper/tty",
               description: "Path of the virtual printer symlink to create.",
             })))),
           apiSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: "/run/klipper/api",
               description: "Path of the API socket to create.",
             })))),
           mutableConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to manage the config outside of NixOS.\n\nIt will still be initialized with the defined NixOS config if the file doesn't already exist.\n",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/klipper",
               description: "Path to Klipper config file.",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to default Klipper config.",
             })))),
           octoprintIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allows Octoprint to control Klipper.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "User account under which Klipper runs.\n\nIf null is specified (default), a temporary user will be created by systemd.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Group account under which Klipper runs.\n\nIf null is specified (default), a temporary user will be created by systemd.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(format, "type")))),
               default: null,
               description: "Configuration for Klipper. See the [documentation](https://www.klipper3d.org/Overview.html#configuration-and-tuning-guides)\nfor supported values.\n",
             })))),
           extraSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to append to the generated Klipper configuration.",
             })))),
           firmwares: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Firmwares Klipper should manage",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), firmwareSubmodule)),
               example: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 mcu: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   enable: true,
                   enableKlipperFlash: true,
                   serial: "/dev/serial/by-id/usb-Klipper_123ABCDEF",
@@ -238,30 +238,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "octoprintIntegration")) || nix.asBool(nix.sel(config, "services", "octoprint", "enable")))),
             message: "Option services.klipper.octoprintIntegration requires Octoprint to be enabled on this system. Please enable services.octoprint to use it.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "group"), null)))),
             message: "Option services.klipper.group is not set when services.klipper.user is specified.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => !nix.eq(!nix.eq(nix.sel(cfg, "configFile"), null), !nix.eq(nix.sel(cfg, "settings"), null))),
             message: "You need to either specify services.klipper.settings or services.klipper.configFile.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "extraSettings"), "")))),
             message: "You can't use services.klipper.extraSettings with services.klipper.configFile.",
           })),
         ], nix.app(nix.sel(lib, "mapAttrsToList"), (mcu) => (firmware) => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(firmware, "enableKlipperFlash")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(firmware, "serial"), null)) || nix.asBool(!nix.eq(nix.sel(firmware, "canbus_uuid"), null)))))),
             message: nix.thunk(() => nix.str`Unable to determine the serial or canbus connection for services.klipper.firmwares."${mcu}". Please set one of the following:
 
@@ -272,22 +272,22 @@ export default nix.lambda((args) => (() => {
 `),
           }), nix.thunk(() => nix.sel(cfg, "firmwares"))))),
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           klipper: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "octoprintIntegration")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               user: nix.thunk(() => nix.sel(config, "services", "octoprint", "user")),
               group: nix.thunk(() => nix.sel(config, "services", "octoprint", "group")),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             klipper: nix.thunk(() => (() => {
               const klippyArgs = nix.thunk(() => nix.add(nix.add(nix.str`--input-tty=${nix.sel(cfg, "inputTTY")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiSocket"), null)), nix.thunk(() => nix.str` --api-server=${nix.sel(cfg, "apiSocket")}`))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logFile"), null)), nix.thunk(() => nix.str` --logfile=${nix.sel(cfg, "logFile")}`))));
               const printerConfig = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), null)) ? nix.builtins.toFile("klipper.cfg", nix.thunk(() => nix.add(nix.sel(nix.app(nix.sel(format, "generate"), "", nix.thunk(() => nix.sel(cfg, "settings"))), "text"), nix.sel(cfg, "extraSettings")))) : nix.sel(cfg, "configFile")));
               return {
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "Klipper 3D Printer Firmware",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -308,7 +308,7 @@ popd
 `),
                 restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "mutableConfig"))), nix.thunk(() => [printerConfig]))),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/klippy ${klippyArgs} ${nix.sel(cfg, "configDir")}/printer.cfg`),
                   RuntimeDirectory: "klipper",
                   StateDirectory: "klipper",
@@ -321,18 +321,18 @@ popd
                   IOSchedulingPriority: 0n,
                   UMask: "0002",
                 }, (nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) ? {
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   User: nix.thunk(() => nix.sel(cfg, "user")),
-                } : { __proto__: pos$39, DynamicUser: true, User: "klipper" }))),
+                } : { [nix.POS]: pos$39, DynamicUser: true, User: "klipper" }))),
               };
             })()),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           systemPackages: nix.thunk(() => (() => {
-            const genconf = nix.thunk(() => nix.app(nix.sel(pkgs, "klipper-genconf", "override"), nix.thunk(() => ({ __proto__: pos$43, klipper: nix.thunk(() => nix.sel(cfg, "package")) }))));
+            const genconf = nix.thunk(() => nix.app(nix.sel(pkgs, "klipper-genconf", "override"), nix.thunk(() => ({ [nix.POS]: pos$43, klipper: nix.thunk(() => nix.sel(cfg, "package")) }))));
             const firmwares = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => !nix.eq(v, null), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (mcu) => (firmware) => nix.sel(firmware, "package"), nix.thunk(() => nix.sel(cfg, "firmwares"))))));
             const firmwareFlashers = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => !nix.eq(v, null), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (mcu) => (firmware) => nix.sel(firmware, "klipperFlashPackage"), nix.thunk(() => nix.sel(cfg, "firmwares"))))));
             return nix.concat([genconf], nix.concat(firmwares, firmwareFlashers));
@@ -340,7 +340,7 @@ popd
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cab404"))]),
     })),
   };

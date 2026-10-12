@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "Nuget",
       version: "6.6.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mono",
           repo: "linux-packaging-nuget",
           rev: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}.bin`),
@@ -42,7 +42,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mono, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package manager for the .NET platform",
         mainProgram: "nuget",
         homepage: "https://www.mono-project.com/",

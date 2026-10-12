@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "superscs",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kul-optec",
           repo: "superscs",
           rev: "500070e807f92347a7c6cbdc96739521a256b71e",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast conic optimization in C",
         homepage: "https://github.com/kul-optec/superscs",
         changelog: nix.thunk(() => nix.str`https://github.com/kul-optec/superscs/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

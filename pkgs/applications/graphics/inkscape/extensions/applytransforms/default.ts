@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inkscape-applytransforms",
       version: "0-unstable-2024-12-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Klowner",
           repo: "inkscape-applytransforms",
           rev: "979f98dfe199d25ceecff68a86684b941e703e18",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\n\ninstall -Dt \"$out/share/inkscape/extensions\" *.inx *.py\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inkscape extension which removes all matrix transforms by applying them recursively to shapes",
         homepage: "https://github.com/Klowner/inkscape-applytransforms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

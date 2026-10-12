@@ -35,45 +35,45 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "lokinet"));
   const dataDir = "/var/lib/lokinet";
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "lokinet.ini", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))))));
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         lokinet: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Lokinet daemon")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "lokinet", nix.thunk(() => ({})))),
           useLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               example: true,
               description: "Whether to use Lokinet locally.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       dns: nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         bind: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             default: "127.3.2.1",
                             description: "Address to bind to for handling DNS requests.",
                           })))),
                         upstream: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: nix.thunk(() => ["9.9.9.10"]),
                             example: nix.thunk(() => ["1.1.1.1", "8.8.8.8"]),
@@ -81,22 +81,22 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       network: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         exit: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.lookup(w_1, "bool")),
                             default: false,
                             description: "Whether to act as an exit node. Beware that this\nincreases demand on the server and may pose liability concerns.\nEnable at your own risk.\n",
                           })))),
                         "exit-node": nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))))),
                             default: null,
                             example: "exit-node = [ \"example.loki\" ];              # maps all exit traffic to example.loki\nexit-node = [ \"example.loki:100.0.0.0/24\" ]; # maps 100.0.0.0/24 to example.loki\n",
                             description: "Specify a `.loki` address and an optional ip range to use as an exit broker.\nSee <http://probably.loki/wiki/index.php?title=Exit_Nodes> for\na list of exit nodes.\n",
                           })))),
                         keyfile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             example: "snappkey.private",
@@ -114,21 +114,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           resolvconf: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "useLocally")), nix.thunk(() => nix.str`name_servers="${nix.sel(cfg, "settings", "dns", "bind")}"
 `))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             lokinet: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Lokinet",
               after: nix.thunk(() => ["network-online.target", "network.target"]),
               wants: nix.thunk(() => ["network-online.target", "network.target"]),
@@ -140,7 +140,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
 `))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 DynamicUser: true,
                 StateDirectory: "lokinet",
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_BIND_SERVICE"]),
@@ -169,7 +169,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

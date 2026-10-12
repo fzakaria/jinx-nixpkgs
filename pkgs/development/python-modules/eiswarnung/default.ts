@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eiswarnung",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "klaasnicolaas",
           repo: "python-eiswarnung",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["eiswarnung"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for getting Eiswarning API forecasts",
         homepage: "https://github.com/klaasnicolaas/python-eiswarnung",
         changelog: nix.thunk(() => nix.str`https://github.com/klaasnicolaas/python-eiswarnung/releases/tag/v${nix.sel(finalAttrs, "version")}`),

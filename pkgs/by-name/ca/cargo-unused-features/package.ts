@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-unused-features",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gdwIbbQDw/DgBV9zY2Rk/oWjPv1SS/+oFnocsMo2Axo=",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-IiS4d6knNKqoUkt0sRSJ+vNluqllS3mTsnphrafugIo=",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(curl, "dev")), pkg_config]),
       buildInputs: nix.thunk(() => [curl, libgit2, openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to find potential unused enabled feature flags and prune them",
         homepage: "https://github.com/timonpost/cargo-unused-features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

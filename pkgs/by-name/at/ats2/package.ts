@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const withContrib = nix.argOr($, "withContrib", () => true);
   const versionPkg = "0.4.2";
   const contrib = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/ats2-lang/ATS2-Postiats-contrib-${versionPkg}.tgz`),
       hash: "sha256-m0hfBLsaNiLaIktcioK+ZtWUsWht3IDSJ6CzgJmS06c=",
     }))));
@@ -32,7 +32,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
       const pname = "ats2";
       const version = versionPkg;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ats2-lang/ATS2-Postiats-gmp-${version}.tgz`),
           hash: "sha256-UWgDjFojPBYgykrCrJyYvVWY+Gc5d4aRGjTWjc528AM=",
         }))));
@@ -45,7 +45,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
         nix.thunk(() => nix.str`CCOMP=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       }));
       const setupHook = nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
       })());
       const postInstall = nix.thunk(() => nix.add(postInstallContrib, postInstallEmacs));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Functional programming language with dependent types",
         homepage: "http://www.ats-lang.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +68,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

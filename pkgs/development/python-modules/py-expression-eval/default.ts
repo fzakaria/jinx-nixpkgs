@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.14";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axiacore",
           repo: "py-expression-eval",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "YxhZd8V6ofphcNdcbBbrT5mc37O9c6W1mfhsvFVC+KM=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/AxiaCore/py-expression-eval/",
         description: "Python Mathematical Expression Evaluator",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "cynerd"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

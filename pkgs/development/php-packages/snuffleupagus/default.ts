@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snuffleupagus";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jvoisin",
           repo: "snuffleupagus",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["--enable-snuffleupagus"]);
       const postPhpize = "./configure --enable-snuffleupagus\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Security module for php7 and php8 - Killing bugclasses and virtual-patching the rest",
         homepage: "https://github.com/jvoisin/snuffleupagus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

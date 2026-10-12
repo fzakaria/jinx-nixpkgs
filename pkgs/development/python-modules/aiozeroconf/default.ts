@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ENupazLlOqfwHugNLEgeTZjPOYxRgznuCKHpU5unlxw=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [netifaces]);
       const pythonImportsCheck = nix.thunk(() => ["aiozeroconf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of multicast DNS service discovery",
         homepage: "https://github.com/jstasiak/python-zeroconf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "aiozeroconf",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

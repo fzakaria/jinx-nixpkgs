@@ -56,7 +56,7 @@ nix-store --add-fixed sha256 --recursive /tmp/baseq3
 Alternatively you can set services.quake3-server.baseq3 to a path and
 copy the baseq3 directory into the .q3a subdirectory of that path.
 `);
-      return { __proto__: pos$1, name, hashMode, sha256, message };
+      return { [nix.POS]: pos$1, name, hashMode, sha256, message };
     })())));
   const home = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "quake3-home", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/.q3a/baseq3
 
@@ -67,28 +67,28 @@ done
 ln -s ${configFile} $out/.q3a/baseq3/nix.cfg
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "quake3-server", "port"]), nix.thunk(() => ["services", "quake3-server", "settings", "net_port"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "quake3-server": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Quake 3 dedicated server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ioquake3", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open the firewall.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(types, "str")),
                           nix.thunk(() => nix.sel(types, "bool")),
@@ -97,9 +97,9 @@ ln -s ${configFile} $out/.q3a/baseq3/nix.cfg
                           nix.thunk(() => nix.sel(types, "port")),
                         ]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     net_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 27960n,
                         description: "UDP port for the dedicated server to bind to.",
@@ -108,7 +108,7 @@ ln -s ${configFile} $out/.q3a/baseq3/nix.cfg
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 sv_hostname: "My Quake 3 server",
                 g_gametype: 0n,
                 sv_pure: true,
@@ -116,14 +116,14 @@ ln -s ${configFile} $out/.q3a/baseq3/nix.cfg
               description: "Quake 3 cvars set via `seta` on server start (i.e. persisted,\narchive-flagged cvars – the vast majority of server settings).\nNote that options changed via RCON will not be persisted. To list\nall possible options, use \"cvarlist 1\" via RCON.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               example: "// map rotation and other things that don't map onto plain cvars\nset d1 \"map q3dm1 ; set nextmap vstr d2\"\nset d2 \"map q3dm7 ; set nextmap vstr d1\"\nvstr d1\n\n// rarely needed: cvars with a non-seta flag\nsets sv_privatePassword \"hidden\"\n",
               description: "Extra configuration lines appended after `settings`, for anything\nthat isn't a plain persisted cvar: map-rotation scripts, `exec`,\n`vstr`, aliases, or cvars that need `set`/`sets`/`sett`/`setu`\ninstead of `seta`. Note that options changed via RCON will not be\npersisted. To list all possible options, use \"cvarlist 1\" via RCON.\n",
             })))),
           baseq3: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "package")), nix.thunk(() => nix.sel(types, "path")))),
               default: defaultBaseq3,
               defaultText: nix.thunk(() => nix.app(literalMD, "Manually downloaded Quake 3 installation directory.")),
@@ -136,31 +136,31 @@ ln -s ${configFile} $out/.q3a/baseq3/nix.cfg
     config: nix.thunk(() => (() => {
       const baseq3InStore = nix.thunk(() => nix.eq(nix.builtins.typeOf(nix.thunk(() => nix.sel(cfg, "baseq3"))), "set"));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             firewall: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               allowedUDPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "net_port"))]))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               q3ds: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Quake 3 dedicated server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   HOME: nix.thunk(() => (nix.asBool(baseq3InStore) ? nix.force(home) : nix.sel(cfg, "baseq3"))),
                 })),
                 serviceConfig: nix.thunk(() => (() => {
                   const w = nix.withScope(lib, null);
                   return {
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     Restart: "always",
                     DynamicUser: true,
                     WorkingDirectory: nix.thunk(() => (nix.asBool(baseq3InStore) ? nix.force(home) : nix.sel(cfg, "baseq3"))),

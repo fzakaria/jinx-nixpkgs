@@ -31,21 +31,21 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const version = "0.8.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kylebarron",
       repo: "arro3",
       tag: nix.thunk(() => nix.str`py-v${version}`),
       hash: "sha256-24aMiFHQdwZwTthPt7GILjQzbbLp3K2UcXYw3ZGWUJ4=",
     }))));
   const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: src,
       pname: "arro3-vendor",
       hash: "sha256-8pD7vfGtwknUKLQ/DARmRvvnffBqbGLY9lWJgU7VvWM=",
     }))));
   const commonMeta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     homepage: "https://github.com/kylebarron/arro3",
     changelog: nix.thunk(() => nix.str`https://github.com/kylebarron/arro3/releases/tag/py-v${version}`),
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
     const pythonImportsCheck = nix.arg($_1, "pythonImportsCheck");
     const dependencies = nix.argOr($_1, "dependencies", () => []);
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname,
         version: version,
         src: src,
@@ -76,23 +76,23 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "maturinBuildHook")),
           ];
         })()),
-        env: nix.thunk(() => ({ __proto__: pos$4, CARGO_TARGET_DIR: "./target" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$4, CARGO_TARGET_DIR: "./target" })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
-          tests: nix.thunk(() => ({ __proto__: pos$5, "arro3-tests": arro3_tests })),
+          [nix.POS]: pos$6,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$5, "arro3-tests": arro3_tests })),
         })),
-        meta: nix.thunk(() => nix.update(commonMeta, { __proto__: pos$7, description: description })),
+        meta: nix.thunk(() => nix.update(commonMeta, { [nix.POS]: pos$7, description: description })),
       })));
   })(), formals$2);
   const arro3_core = nix.thunk(() => nix.app(buildArro3Package, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "arro3-core",
       subdir: "arro3-core",
       description: "Core library for representing Arrow data in Python",
       pythonImportsCheck: nix.thunk(() => ["arro3.core"]),
     }))));
   const arro3_compute = nix.thunk(() => nix.app(buildArro3Package, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "arro3-compute",
       subdir: "arro3-compute",
       description: "Rust-based compute kernels for Arrow in Python",
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [arro3_core]),
     }))));
   const arro3_io = nix.thunk(() => nix.app(buildArro3Package, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "arro3-io",
       subdir: "arro3-io",
       description: "Rust-based readers and writers for Arrow in Python",
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [arro3_core]),
     }))));
   const arro3_tests = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "arro3-tests",
       version: nix.thunk(() => nix.sel(arro3_core, "version")),
       pyproject: false,
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     "arro3-core": arro3_core,
     "arro3-io": arro3_io,
     "arro3-compute": arro3_compute,

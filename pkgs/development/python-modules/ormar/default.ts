@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "collerek",
           repo: "ormar",
           tag: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const propagatedBuildInputs = nix.thunk(() => [databases, psycopg2, pydantic, sqlalchemy, psycopg2]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postgresql: nix.thunk(() => [asyncpg]),
         postgres: nix.thunk(() => [asyncpg]),
         aiopg: nix.thunk(() => [aiopg]),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["ormar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Async ORM with fastapi in mind and pydantic validation",
         homepage: "https://github.com/collerek/ormar",
         changelog: nix.thunk(() => nix.str`https://github.com/collerek/ormar/releases/tag/${nix.sel(src, "tag")}`),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

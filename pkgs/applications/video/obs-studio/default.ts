@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
       const version = "6533";
       const revision = "6";
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
-            url: nix.thunk(() => nix.str`https://cdn-fastly.obsproject.com/downloads/cef_binary_${version}_linux_${nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$1, "aarch64-linux": "aarch64", "x86_64-linux": "x86_64" })))}_v${revision}.tar.xz`),
+            [nix.POS]: pos$3,
+            url: nix.thunk(() => nix.str`https://cdn-fastly.obsproject.com/downloads/cef_binary_${version}_linux_${nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "aarch64-linux": "aarch64", "x86_64-linux": "x86_64" })))}_v${revision}.tar.xz`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "aarch64-linux": "sha256-ZCUURp6qKaXIh4kQhNLnP33C10Bfffp3JrLbwkswmZk=",
                 "x86_64-linux": "sha256-eWMzVRmhnM3FIz9zNMWrAjAm4vPpoMxBcAfAnYZggUY=",
               })))),
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
       };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "obs-studio",
       version: "32.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "obsproject",
           repo: "obs-studio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_BROWSER", browserSupport)),
       ], nix.app(nix.sel(lib, "optional"), browserSupport, "-DCEF_ROOT_DIR=../../cef"))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=deprecated-declarations",
             "-Wno-error=sign-compare",
@@ -198,11 +198,11 @@ ln -sf ${cef}/${nix.sel(cef, "buildType")}/* $out/lib/obs-plugins/
 `))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Free and open source software for video recording and live streaming",
         longDescription: "This project is a rewrite of what was formerly known as \"Open Broadcaster\nSoftware\", software originally designed for recording and streaming live\nvideo content, efficiently\n",
         homepage: "https://obsproject.com",

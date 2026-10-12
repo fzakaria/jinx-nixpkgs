@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qtwebapp",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fffaraz",
           repo: "QtWebApp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       pkgConfigFile: nix.path(here, "./pkg-config.in"),
       postInstall: "mkdir -p \"$out/lib/pkgconfig\"\ncp \"$pkgConfigFile\" \"$out/lib/pkgconfig/QtWebApp.pc\"\nsubstituteInPlace \"$out/lib/pkgconfig/QtWebApp.pc\" \\\n  --subst-var out \\\n  --subst-var version\n\nmkdir -p \"$out/include/QtWebApp/httpserver\"\ncp httpserver/*.h \"$out/include/QtWebApp/httpserver\"\n\nmkdir -p \"$out/include/QtWebApp/logging\"\ncp logging/*.h \"$out/include/QtWebApp/logging\"\n\nmkdir -p \"$out/include/QtWebApp/templateengine\"\ncp templateengine/*.h \"$out/include/QtWebApp/templateengine\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xddxdd"))];

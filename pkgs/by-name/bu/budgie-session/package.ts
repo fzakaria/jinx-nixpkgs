@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const libepoxy = nix.arg($, "libepoxy");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "budgie-session",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BuddiesOfBudgie",
           repo: "budgie-session",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gsettings: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), glib, "gsettings")),
             dbusLaunch: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), dbus, "dbus-launch")),
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Session manager for Budgie",
         homepage: "https://github.com/BuddiesOfBudgie/budgie-session",
         changelog: nix.thunk(() => nix.str`https://github.com/BuddiesOfBudgie/budgie-session/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const libsigcxx_2_0 = nix.arg($, "libsigcxx_2_0");
   const lrdf = nix.arg($, "lrdf");
   const waf = nix.arg($, "waf");
-  const wafHook = nix.thunk(() => nix.sel(nix.app(nix.sel(waf, "override"), nix.thunk(() => ({ __proto__: pos$1, extraTools: nix.thunk(() => ["gccdeps"]) }))), "hook"));
+  const wafHook = nix.thunk(() => nix.sel(nix.app(nix.sel(waf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraTools: nix.thunk(() => ["gccdeps"]) }))), "hook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "non",
       version: "unstable-2021-01-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "linuxaudio",
           repo: "non",
           rev: "cdad26211b301d2fad55a26812169ab905b85bbb",
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
         lrdf,
       ]),
       prePatch: "rm waf\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, CXXFLAGS: "-std=c++14" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++14" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight and lightning fast modular Digital Audio Workstation",
         homepage: "http://non.tuxfamily.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

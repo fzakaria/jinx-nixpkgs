@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sway-easyfocus",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edzdez",
           repo: "sway-easyfocus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [atk, cairo, gdk_pixbuf, glib, gtk3, gtk_layer_shell, pango]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to help efficiently focus windows in Sway, inspired by i3-easyfocus",
         homepage: "https://github.com/edzdez/sway-easyfocus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

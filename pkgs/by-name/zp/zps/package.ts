@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zps",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orhun",
           repo: "zps",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postInstall: "mkdir -p $out/share/applications\nsubstitute ../.application/zps.desktop $out/share/applications/zps.desktop \\\n  --replace Exec=zps Exec=$out/zps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small utility for listing and reaping zombie processes on GNU/Linux",
         homepage: "https://github.com/orhun/zps",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/zps/releases/tag/${nix.sel(finalAttrs, "version")}`),

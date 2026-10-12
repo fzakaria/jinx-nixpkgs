@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ragenix",
       version: "2025.03.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yaxitech",
           repo: "ragenix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-aM7kjyJJ8h4Yd1k2FTE8Vk/ezAXcCbfdAPxuNewptNQ=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RAGENIX_NIX_BIN_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix$)),
       })),
       checkNoDefaultFeatures: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "set -euo pipefail\n\n# Provide a symlink from `agenix` to `ragenix` for compat\nln -sr \"$out/bin/ragenix\" \"$out/bin/agenix\"\n\n# Stdout of build.rs\nbuildOut=$(grep -m 1 -Rl 'RAGENIX_COMPLETIONS_BASH=/' target/ | head -n 1)\nprintf \"found build script output at %s\\n\" \"$buildOut\"\n\nset +u # required due to `installShellCompletion`'s implementation\ninstallShellCompletion --bash \"$(grep -oP 'RAGENIX_COMPLETIONS_BASH=\\K.+' \"$buildOut\")\"\ninstallShellCompletion --zsh  \"$(grep -oP 'RAGENIX_COMPLETIONS_ZSH=\\K.+'  \"$buildOut\")\"\ninstallShellCompletion --fish \"$(grep -oP 'RAGENIX_COMPLETIONS_FISH=\\K.+' \"$buildOut\")\"\nset -x\n\ninstallManPage docs/ragenix.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Age-encrypted secrets for NixOS, drop-in replacement for agenix",
         homepage: "https://github.com/yaxitech/ragenix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

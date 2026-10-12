@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NeuralEnsemble",
           repo: "python-neo",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test__time_slice_deepcopy_data"]);
       const pythonImportsCheck = nix.thunk(() => ["neo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package for representing electrophysiology data",
         homepage: "https://neuralensemble.org/neo/",
         changelog: nix.thunk(() => nix.str`https://neo.readthedocs.io/en/${nix.sel(src, "tag")}/releases/${nix.sel(src, "tag")}.html`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "csmith",
       version: "2.3.0-unstable-2026-03-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csmith-project",
           repo: "csmith",
           rev: "0cdc710315cfee9035e22ef4363ca479270d1934",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "SysCPU")),
         ];
       })())),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
       postInstall: nix.thunk(() => nix.str`substituteInPlace $out/bin/compiler_test.pl \\
   --replace-fail '$CSMITH_HOME/runtime' $out/include/csmith-${nix.sel(finalAttrs, "version")} \\
   --replace-fail ' \${CSMITH_HOME}/runtime' " $out/include/csmith-${nix.sel(finalAttrs, "version")}" \\
@@ -57,7 +57,7 @@ mv $out/bin/compiler_test.in $out/share/csmith/
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Random generator of C programs",
         homepage: "https://embed.cs.utah.edu/csmith",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

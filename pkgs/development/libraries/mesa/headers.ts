@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   const headers = nix.thunk(() => [
     "include/GL/internal/dri_interface.h",
     "include/EGL/eglext_angle.h",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mesa-gl-headers";
       const version = "25.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "mesa",
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
   install -Dm444 $header $out/$header
 done
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, headers: headers }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, headers: headers }));
       const meta = nix.thunk(() => nix.attr(common, "meta"));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

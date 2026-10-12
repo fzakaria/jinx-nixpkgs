@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kaminpar",
       version: "3.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KaHIP",
           repo: "KaMinPar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       nativeCheckInputs: nix.thunk(() => [gtest, mpiCheckPhaseHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel heuristic solver for the balanced k-way graph partitioning problem",
         homepage: "https://github.com/KaHIP/KaMinPar",
         changelog: nix.thunk(() => nix.str`https://github.com/KaHIP/KaMinPar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

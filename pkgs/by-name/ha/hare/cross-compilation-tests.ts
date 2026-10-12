@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const archs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "-linux")), nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.app(nix.sel(lib, "hasSuffix"), "-linux")), nix.thunk(() => nix.sel(hare, "meta", "platforms"))))))));
   const mainDotHare = nix.thunk(() => nix.app(writeText, "main.ha", "export fn main() void = void;\n"));
-  return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(hare, "pname")}-cross-compilation-test`), nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [hare, file]) })), nix.thunk(() => nix.str`HARECACHE="$(mktemp -d)"
+  return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(hare, "pname")}-cross-compilation-test`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [hare, file]) })), nix.thunk(() => nix.str`HARECACHE="$(mktemp -d)"
 export HARECACHE
 readonly binprefix="bin"
 for a in ${archs}; do

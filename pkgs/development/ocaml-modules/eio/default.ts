@@ -32,30 +32,30 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const mdx = nix.arg($, "mdx");
   const param = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "0.12": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       minimalOCamlVersion: "5.0",
       hash: "sha256-2EhHzoX/t4ZBSWrSS+PGq1zCxohc7a1q4lfsrFnZJqA=",
     })),
     "1.2": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       minimalOCamlVersion: "5.1",
       hash: "sha256-N5LpEr2NSUuy449zCBgl5NISsZcM8sHxspZsqp/WvEA=",
     })),
     "1.6": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "5.2",
       hash: "sha256-wfBJhrQBCUF2SUhj3eHKmykrWf3GeanXAj5VjYD7WxU=",
     })),
   }, nix.key(nix.str`${version}`)));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "eio",
       version: version,
       minimalOCamlVersion: nix.thunk(() => nix.attr(param, "minimalOCamlVersion")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/eio/releases/download/v${version}/eio-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.1")),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/ocaml-multicore/eio",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/eio/raw/v${version}/CHANGES.md`),
         description: "Effects-Based Parallel IO for OCaml",

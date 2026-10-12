@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Neoteroi",
           repo: "essentials-openapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatchling]);
       const nativeCheckInputs = nix.thunk(() => [flask, httpx, pydantic, pytestCheckHook, rich, setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [pyyaml, essentials, markupsafe]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, full: nix.thunk(() => [click, jinja2, rich, httpx]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [click, jinja2, rich, httpx]) }));
       const pythonRelaxDeps = nix.thunk(() => ["markupsafe"]);
       const pythonImportsCheck = nix.thunk(() => ["openapidocs"]);
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_cli.py"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Neoteroi/essentials-openapi",
         description: "Functions to handle OpenAPI Documentation",
         changelog: nix.thunk(() => nix.str`https://github.com/Neoteroi/essentials-openapi/releases/${nix.sel(src, "tag")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

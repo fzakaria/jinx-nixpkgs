@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const containers = nix.arg($, "containers");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ghc-settings-edit",
       version: "0.1.0",
       src: nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           path: nix.path(here, "./."),
           name: "source",
           filter: (path) => (_) => !nix.eq(nix.builtins.baseNameOf(path), "default.nix"),

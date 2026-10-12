@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "719f6a36f908ada1c29dae0d934dd0f1e1f6e3305784edbec23ad719397de678",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Date Api that support Hijri Umalqurra calendar",
         homepage: "https://github.com/tytkal/python-hijiri-ummalqura",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

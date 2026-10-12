@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xroar",
       version: "1.13.0.dev-unstable-2026-08-07",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.6809.org.uk/git/xroar.git",
           rev: "190788e71ae63a4ca44f4e6e66f907852aaf26bb",
           hash: "sha256-GMOh7EQT7u4JeRnIHaSIZqgTTWK4s/3jXtNscGuOm5w=",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
         adwaita_icon_theme,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "xroar --version",
               version: nix.thunk(() => nix.str`XRoar ${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))), 0n)}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Emulator for the Dragon 32/64; Tandy Colour Computers 1, 2 and 3; the Tandy MC-10; and others",
         homepage: "https://www.6809.org.uk/xroar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

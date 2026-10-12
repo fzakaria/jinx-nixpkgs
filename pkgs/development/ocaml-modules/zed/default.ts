@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.3";
       const propagatedBuildInputs = nix.thunk(() => [react, result, uchar, uutf, uucp, uuseg]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-community",
           repo: pname,
           rev: version,
           sha256: "sha256-lbhqjZxeUqHdd+yahRO+B6L2mc+h+4T2+qKVgWC2HY8=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Abstract engine for text edition in OCaml",
         longDescription: "Zed is an abstract engine for text edition. It can be used to write text editors, edition widgets, readlines, ...\n\nZed uses Camomile to fully support the Unicode specification, and implements an UTF-8 encoded string type with validation, and a rope datastructure to achieve efficient operations on large Unicode buffers. Zed also features a regular expression search on ropes.\n\nTo support efficient text edition capabilities, Zed provides macro recording and cursor management facilities.\n",
         homepage: "https://github.com/ocaml-community/zed",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gal_bolle"))]),
       }));
-      return { __proto__: pos$3, pname, version, propagatedBuildInputs, src, meta };
+      return { [nix.POS]: pos$3, pname, version, propagatedBuildInputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

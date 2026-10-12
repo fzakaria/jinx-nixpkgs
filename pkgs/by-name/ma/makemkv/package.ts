@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       const srcs = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         bin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://www.makemkv.com/download/makemkv-bin-${version}.tar.gz`),
               nix.thunk(() => nix.str`https://www.makemkv.com/download/old/makemkv-bin-${version}.tar.gz`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-8SZedIdaGG79+7vsdFmmTpaQM1FeU8vE2AXwo3TwoSQ=",
           })))),
         oss: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://www.makemkv.com/download/makemkv-oss-${version}.tar.gz`),
               nix.thunk(() => nix.str`https://www.makemkv.com/download/old/makemkv-oss-${version}.tar.gz`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "makemkv",
         version: "2.0.0",
         srcs: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs")))),
@@ -72,22 +72,22 @@ export default nix.lambda((args) => (() => {
         })()),
         installPhase: "runHook preInstall\n\ninstall -Dm555 -t \"$out\"/bin                              out/{makemkv,mmccextr,mmgplsrv} \\\n                                                          ../makemkv-bin-\"$version\"/bin/amd64/makemkvcon\ninstall -D     -t \"$out\"/lib                              out/lib{driveio,makemkv,mmbd}.so.*\ninstall -D     -t \"$out\"/share/MakeMKV                    ../makemkv-bin-\"$version\"/src/share/*\ninstall -Dm444 -t \"$out\"/share/applications               ../makemkv-oss-\"$version\"/makemkvgui/share/makemkv.desktop\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/16x16/apps   ../makemkv-oss-\"$version\"/makemkvgui/share/icons/16x16/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/32x32/apps   ../makemkv-oss-\"$version\"/makemkvgui/share/icons/32x32/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/64x64/apps   ../makemkv-oss-\"$version\"/makemkvgui/share/icons/64x64/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/128x128/apps ../makemkv-oss-\"$version\"/makemkvgui/share/icons/128x128/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/256x256/apps ../makemkv-oss-\"$version\"/makemkvgui/share/icons/256x256/*\n\nrunHook postInstall\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           srcs: srcs,
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "update-makemkv",
                 runtimeInputs: nix.thunk(() => [
                   common_updater_scripts,
                   curl,
                   nix.thunk(() => nix.sel(rubyPackages, "nokogiri")),
                 ]),
-                runtimeEnv: nix.thunk(() => ({ __proto__: pos$4, oldVersion: version })),
+                runtimeEnv: nix.thunk(() => ({ [nix.POS]: pos$4, oldVersion: version })),
                 text: "get_version() {\n  # shellcheck disable=SC2016\n  curl --fail --silent 'https://forum.makemkv.com/forum/viewtopic.php?f=3&t=224' \\\n    | nokogiri -e 'puts $_.css(\"head title\").first.text.match(/\\bMakeMKV (\\d+\\.\\d+\\.\\d+) /)[1]'\n}\nnewVersion=$(get_version)\nif [ \"$oldVersion\" == \"$newVersion\" ]; then\n  echo \"$0: New version same as old version, nothing to do.\" >&2\n  exit\nfi\nupdate-source-version makemkv \"$newVersion\" --source-key=passthru.srcs.bin\nupdate-source-version makemkv \"$newVersion\" --source-key=passthru.srcs.oss --ignore-same-version\n",
               })))))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Convert blu-ray and dvd to mkv",
           longDescription: "makemkv is a one-click QT application that transcodes an encrypted\nblu-ray or DVD disc into a more portable set of mkv files, preserving\nsubtitles, chapter marks, all video and audio tracks.\n\nProgram is time-limited -- it will stop functioning after 60 days. You\ncan always download the latest version from makemkv.com that will reset the\nexpiration date.\n",
           sourceProvenance: nix.thunk(() => (() => {

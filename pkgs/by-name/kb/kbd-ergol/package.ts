@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kbd-ergol",
       version: "0-unstable-2026-07-07",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alerymin",
           repo: "kbd-ergol",
           rev: "0af6404625fe4da03bc27e1141dc255ac49fa94e",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       postPatch: "substituteInPlace Makefile \\\n  --replace \"/usr/share/kbd/\" \"$out/share/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ergo-L layout in keymap format for linux console",
         homepage: "https://codeberg.org/Alerymin/kbd-ergol",
         maintainers: nix.thunk(() => (() => {

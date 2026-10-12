@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const version = "2.1.3";
   const appId = "io.krunker.desktop";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://client2.krunker.io/Official%20Krunker.io%20Client-${version}.AppImage`),
       hash: "sha512-a8E5heLsKXOtv/wRKlrnV0GD48cY1mOiSSDW93c7YZ+HoeuBQDxtRaHKg5EqU51Yi+d4tPF5nOh10jZW36c7WQ==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,

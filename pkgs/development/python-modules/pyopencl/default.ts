@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const mako = nix.arg($, "mako");
   const pocl = nix.arg($, "pocl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyopencl",
       version: "2026.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inducer",
           repo: "pyopencl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy, platformdirs, pytools, typing_extensions]),
       nativeCheckInputs: nix.thunk(() => [pocl, mako, pytestCheckHook, writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CL_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), opencl_headers)}/include`),
         CL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), ocl_icd)}/lib`),
         CL_LIBNAME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), ocl_icd)}/lib/libOpenCL${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "pyopencl.tools",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for OpenCL",
         homepage: "https://github.com/pyopencl/pyopencl",
         changelog: nix.thunk(() => nix.str`https://github.com/inducer/pyopencl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

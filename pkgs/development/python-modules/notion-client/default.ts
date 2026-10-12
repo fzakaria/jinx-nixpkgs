@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ramnes",
           repo: "notion-sdk-py",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["notion_client"]);
       const disabledTests = nix.thunk(() => ["test_api_http_response_error"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for the official Notion API",
         homepage: "https://github.com/ramnes/notion-sdk-py",
         changelog: nix.thunk(() => nix.str`https://github.com/ramnes/notion-sdk-py/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

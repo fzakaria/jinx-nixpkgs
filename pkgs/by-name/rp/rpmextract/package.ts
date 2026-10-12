@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rpmextract",
       version: nix.thunk(() => nix.attr(rpm, "version")),
       buildCommand: "install -Dm755 $script $out/bin/rpmextract\n",
       script: nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.path(here, "./rpmextract.sh"),
           isExecutable: true,
           replacements: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             rpm: rpm,
             cpio: cpio,
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
           })),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Script to extract RPM archives",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

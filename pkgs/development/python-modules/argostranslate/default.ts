@@ -26,8 +26,8 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const ctranslate2OneDNN = nix.thunk(() => nix.app(nix.sel(ctranslate2, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      "ctranslate2-cpp": nix.thunk(() => nix.app(nix.sel(ctranslate2_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, withOneDNN: true, withOpenblas: false })))),
+      [nix.POS]: pos$2,
+      "ctranslate2-cpp": nix.thunk(() => nix.app(nix.sel(ctranslate2_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withOneDNN: true, withOpenblas: false })))),
     }))));
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.thunk(() => nix.attr(from, "isAarch64"));
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "argostranslate",
       version: "1.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "argosopentech",
           repo: "argos-translate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isAarch64Linux)), nix.thunk(() => ["argostranslate", "argostranslate.translate"]))),
       doCheck: nix.thunk(() => !nix.asBool(isAarch64Linux)),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source offline translation library written in Python",
         homepage: "https://www.argosopentech.com",
         changelog: nix.thunk(() => nix.str`https://github.com/argosopentech/argos-translate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

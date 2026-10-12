@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-NncPUZ31vs08v+C+5Ku/v5ufa0604DNh0oK378/E8N8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nose-devs/nose2/commit/2043fdfa264dc04e379e11c227e63a5704cb0185.patch",
             hash: "sha256-OWzBInMI0ef9g0H3muka7J7FP01IZEFkuzJfaku78bI=",
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, coverage_plugin: nix.thunk(() => [coverage]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, coverage_plugin: nix.thunk(() => [coverage]) }));
       const pythonImportsCheck = nix.thunk(() => ["nose2"]);
       const __darwinAllowLocalNetworking = true;
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/nose-devs/nose2/blob/${version}/docs/changelog.rst`),
         description: "Test runner for Python",
         mainProgram: "nose2",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

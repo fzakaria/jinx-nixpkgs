@@ -17,25 +17,25 @@ const pos$12 = nix.positions(here + "/ping.nix", [["name", 21, 3], ["nodes", 23,
 
 export default nix.thunk(() => (() => {
   const mkNode = (id) => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$3,
-      interfaces: nix.thunk(() => ({ __proto__: pos$2, eth1: nix.thunk(() => ({ __proto__: pos$1, vlan: 1n })) })),
+      [nix.POS]: pos$3,
+      interfaces: nix.thunk(() => ({ [nix.POS]: pos$2, eth1: nix.thunk(() => ({ [nix.POS]: pos$1, vlan: 1n })) })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       ifstate: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enable: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             eth1: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8::${nix.builtins.toString(id)}/64`)]),
-              link: nix.thunk(() => ({ __proto__: pos$4, state: "up", kind: "physical" })),
+              link: nix.thunk(() => ({ [nix.POS]: pos$4, state: "up", kind: "physical" })),
             })),
           })),
         })),
@@ -43,10 +43,10 @@ export default nix.thunk(() => (() => {
     })),
   });
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "ifstate-ping",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       foo: nix.thunk(() => nix.app(mkNode, 1n)),
       bar: nix.thunk(() => nix.app(mkNode, 2n)),
     })),

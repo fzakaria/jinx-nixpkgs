@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
   const vulkanBuildInputs = nix.thunk(() => [spirv_headers, vulkan_headers, vulkan_loader]);
   const buildCc = nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "llama-cpp",
       version: "0.6.0",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ggml-org",
           repo: "llama.cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ggml-org/llama.cpp/commit/07ccce23cf7fe3c84e13d810accff672b1d966bf.patch",
             hash: "sha256-KtsPcveFM51fY1hDWntiqCW/KHoWLv05Gmnhd1U/9Zs=",
           })))),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       npmRoot: "tools/ui",
       npmDepsHash: "sha256-a17M+L3nLdRnN6WMB6imPFmwqG2g8uv+gwN0XTAUrf8=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -166,9 +166,9 @@ popd
         "test-thread-safety",
         "test-state-restore-fragmented",
       ]),
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(!nix.asBool(rocmSupport)))) && nix.asBool(!nix.asBool(vulkanSupport)))), nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })))),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(!nix.asBool(rocmSupport)))) && nix.asBool(!nix.asBool(vulkanSupport)))), nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.add(nix.add(nix.add("Inference of Meta's LLaMA model (and others) in pure C/C++", nix.app(optionalString, cudaSupport, ", with CUDA support")), nix.app(optionalString, rocmSupport, ", with ROCm support")), nix.app(optionalString, vulkanSupport, ", with Vulkan support"))),
         homepage: "https://github.com/ggml-org/llama.cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

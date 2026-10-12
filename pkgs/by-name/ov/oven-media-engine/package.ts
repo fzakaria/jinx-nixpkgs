@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oven-media-engine";
       const version = "0.20.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OvenMediaLabs",
           repo: "OvenMediaEngine",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "cd src\n\npatchShebangs core/colorg++\npatchShebangs core/colorgcc\npatchShebangs projects/main/update_git_info.sh\n\nsed -i -e '/^CC =/d' -e '/^CXX =/d' -e '/^AR =/d' projects/third_party/pugixml-1.9/scripts/pugixml.make\n";
       const installPhase = "install -Dm0755 bin/RELEASE/OvenMediaEngine $out/bin/OvenMediaEngine\ninstall -Dm0644 ../misc/conf_examples/Origin.xml $out/share/examples/origin_conf/Server.xml\ninstall -Dm0644 ../misc/conf_examples/Logger.xml $out/share/examples/origin_conf/Logger.xml\ninstall -Dm0644 ../misc/conf_examples/Edge.xml $out/share/examples/edge_conf/Server.xml\ninstall -Dm0644 ../misc/conf_examples/Logger.xml $out/share/examples/edge_conf/Logger.xml\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source streaming video service with sub-second latency",
         mainProgram: "OvenMediaEngine",
         homepage: "https://ovenmediaengine.com",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   })();
   const versionToYear = (version) => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)), 0n);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       __structuredAttrs: true,
       pname: "silo",
       version: "2026-09-16T00-00-00Z",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgsty",
           repo: "silo",
           tag: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-STpltATG8UVhJMuUn3NeNOpHLv3jBdtyheB0jQ28qjY=",
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       tags: nix.thunk(() => ["kqueue"]),
       ldflags: nix.thunk(() => (() => {
         const t = "github.com/minio/minio/cmd";
@@ -54,18 +54,18 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "ln -s \"$out/bin/minio\" \"$out/bin/silo\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Community-maintained fork of MinIO packaged as silo",
         homepage: "https://github.com/pgsty/silo",
         changelog: nix.thunk(() => nix.str`https://github.com/pgsty/silo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const docutils = nix.arg($, "docutils");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rst2ansi",
       version: "0.1.5-unstable-2025-02-12",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Snaipe",
           repo: "python-rst2ansi",
           rev: "3728e16f8b8b1dc338e5df90ba2c4a93ee054b3f",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [docutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rst converter to ansi-decorated console output",
         mainProgram: "rst2ansi",
         homepage: "https://github.com/Snaipe/python-rst-to-ansi",

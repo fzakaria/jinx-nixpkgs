@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const python_dotenv = nix.arg($, "python-dotenv");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtfs-station-stop",
       version: "0.11.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcpearce",
           repo: "gtfs-station-stop",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["gtfs_station_stop"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Reformatting GTFS data for Station Arrivals",
         homepage: "https://github.com/bcpearce/gtfs-station-stop",
         changelog: nix.thunk(() => nix.str`https://github.com/bcpearce/gtfs-station-stop/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

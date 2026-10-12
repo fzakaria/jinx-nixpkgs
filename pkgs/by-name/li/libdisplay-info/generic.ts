@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
     const hwdata = nix.arg($_1, "hwdata");
     const libv4l = nix.arg($_1, "libv4l");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "libdisplay-info",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             hash: hash,
             domain: "gitlab.freedesktop.org",
             owner: "emersion",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, hwdata, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => [libv4l])))),
         postPatch: "patchShebangs tool/gen-search-table.py\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "EDID and DisplayID library",
           mainProgram: "di-edid-decode",
           homepage: "https://gitlab.freedesktop.org/emersion/libdisplay-info",

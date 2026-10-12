@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "langsmith",
       version: "0.12.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langsmith-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["langsmith"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library to connect to the LangSmith LLM Tracing and Evaluation Platform",
         homepage: "https://github.com/langchain-ai/langsmith-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langsmith-sdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

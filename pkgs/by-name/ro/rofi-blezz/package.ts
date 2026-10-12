@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rofi_unwrapped = nix.arg($, "rofi-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-blezz",
       version: "2023-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davatorium",
           repo: "rofi-blezz",
           rev: "3a00473471e7c56d2c349ad437937107b7d8e961",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [cairo, rofi_unwrapped]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for rofi that emulates blezz behaviour",
         homepage: "https://github.com/davatorium/rofi-blezz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

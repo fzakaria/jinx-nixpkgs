@@ -108,7 +108,7 @@ fastcgi_param PATH_INFO $fastcgi_path_info;
   const cgitrcEntry = (name) => (value) => (nix.asBool(nix.app(nix.sel(lib, "isList"), value)) ? nix.builtins.map(nix.thunk(() => nix.app(cgitrcLine, name)), value) : [nix.thunk(() => nix.app(cgitrcLine, name, value))]);
   const mkCgitrc = (cfg) => nix.app(nix.sel(pkgs, "writeText"), "cgitrc", nix.thunk(() => nix.str`# global settings
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), cgitrcEntry, nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "virtual-root": nix.thunk(() => nix.sel(cfg, "nginx", "location")),
           }, nix.sel(cfg, "settings"))))))))}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "scanPath"), null)), nix.thunk(() => nix.app(cgitrcLine, "scan-path", nix.thunk(() => nix.sel(cfg, "scanPath")))))}
@@ -125,35 +125,35 @@ ${nix.sel(cfg, "extraConfig")}
   const fcgiwrapRuntimeDir = (name) => nix.str`/run/${nix.app(fcgiwrapUnitName, name)}`;
   const gitProjectRoot = (name) => (cfg) => (nix.asBool(!nix.eq(nix.sel(cfg, "scanPath"), null)) ? nix.sel(cfg, "scanPath") : nix.str`${nix.app(fcgiwrapRuntimeDir, name)}/repos`);
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         cgit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             description: "Configure cgit instances.",
             default: nix.thunk(() => ({})),
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const config_1 = nix.arg($_1, "config");
                   return {
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "cgit")),
                       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cgit", nix.thunk(() => ({})))),
                       nginx: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             description: "VirtualHost to serve cgit on, defaults to the attribute name.",
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.sel(config_1, "_module", "args", "name")),
                             example: "git.example.com",
                           })))),
                         location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             description: "Location to serve cgit under.",
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "/",
@@ -161,7 +161,7 @@ ${nix.sel(cfg, "extraConfig")}
                           })))),
                       })),
                       repos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           description: "cgit repository settings, see {manpage}`cgitrc(5)`",
                           type: nix.thunk(() => (() => {
                             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -169,56 +169,56 @@ ${nix.sel(cfg, "extraConfig")}
                           })()),
                           default: nix.thunk(() => ({})),
                           example: nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             blah: nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               path: "/var/lib/git/example",
                               desc: "An example repository",
                             })),
                           })),
                         })))),
                       scanPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           description: "A path which will be scanned for repositories.",
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           example: "/var/lib/git",
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           description: "cgit configuration, see {manpage}`cgitrc(5)`",
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), repeatedSettingType)),
                           default: nix.thunk(() => ({})),
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  enable-follow-links = true;\n  source-filter = \"${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py\";\n}\n")),
                         })))),
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           description: "These lines go to the end of cgitrc verbatim.",
                           type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                           default: "",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           description: "User to run the cgit service as.",
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "cgit",
                         })))),
                       group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           description: "Group to run the cgit service as.",
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "cgit",
                         })))),
                       gitHttpBackend: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             description: "Whether to bypass cgit and use git-http-backend for HTTP clones.\nWhile this enables HTTP clones to use the more efficient smart protocol,\nit does not support access control via cgit's settings (e.g. the `ignore` repository setting).\n\nIf you want to disallow access to some repositories with this backend,\nenable `checkExportOkFiles` and set `strict-export = \"git-daemon-export-ok\"` in `settings`.\n",
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                           })))),
                         checkExportOkFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             description: "Whether git-http-backend should only export repositories that contain a `git-daemon-export-ok` file.\n\nWhen the backend is enabled and the check is disabled all repositories can be cloned\nirrespective of cgit's settings (e.g. the `ignore` repository setting).\n\nWhen enabled you must also configure `strict-export = \"git-daemon-export-ok\"`\nin `settings` to make cgit check for the same files.\n",
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           })))),
@@ -230,29 +230,29 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (cfg) => nix.sel(cfg, "enable"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), cfgs)))), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (vhost) => (cfg) => [
               nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "enable"))) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "scanPath"), null), nix.eq(nix.sel(cfg, "repos"), {}))))),
                 message: nix.thunk(() => nix.str`Misconfigured services.cgit.${vhost}: Exactly one of scanPath or repos must be set.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enable")) || nix.asBool((!nix.asBool(nix.sel(cfg, "gitHttpBackend", "enable")) || nix.asBool((!nix.asBool(nix.sel(cfg, "gitHttpBackend", "checkExportOkFiles")) || nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "settings"), "strict-export")) && nix.asBool(nix.eq(nix.sel(cfg, "settings", "strict-export"), "git-daemon-export-ok")))))))))),
                 message: nix.thunk(() => nix.str`Misconfigured services.cgit.${vhost}: When gitHttpBackend.checkExportOkFiles is true then settings.strict-export must be "git-daemon-export-ok".`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enable")) || nix.asBool((!nix.asBool(nix.sel(cfg, "gitHttpBackend", "enable")) || nix.asBool((!nix.asBool(!nix.asBool(nix.sel(cfg, "gitHttpBackend", "checkExportOkFiles"))) || nix.asBool((!nix.asBool(nix.has(nix.sel(cfg, "settings"), "strict-export")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "strict-export"), null)))))))))),
                 message: nix.thunk(() => nix.str`Misconfigured services.cgit.${vhost}: settings.strict-export is set but the gitHttpBackend is enabled and checkExportOkFiles is false.`),
               })),
             ], cfgs)))),
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), cfgs, (_) => (cfg) => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "user"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   isSystemUser: true,
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                 }))],
@@ -260,20 +260,20 @@ ${nix.sel(cfg, "extraConfig")}
               groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
             }))))),
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           fcgiwrap: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             instances: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), cfgs, (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`cgit-${name}`), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   process: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                   socket: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config, "services", "nginx"));
                     return {
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     user: nix.thunk(() => nix.attr(from, "user")),
                     group: nix.thunk(() => nix.attr(from, "group")),
                   };
@@ -281,30 +281,30 @@ ${nix.sel(cfg, "extraConfig")}
                 }))))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: true,
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (cfg) => nix.attrsDyn({}, [
                   [nix.sel(cfg, "nginx", "virtualHost"), nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     locations: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => ["cgit.css", "cgit.js", "cgit.png", "favicon.ico", "robots.txt"]), (fileName) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`= ${nix.app(stripLocation, cfg)}/${fileName}`), nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           alias: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/cgit/${fileName}`))),
                         })))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "gitHttpBackend", "enable")), nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`~ ${nix.app(regexLocation, cfg)}/.+/(info/refs|git-upload-pack)`, nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           fastcgiParams: nix.thunk(() => nix.update((() => {
                             const SCRIPT_FILENAME = nix.thunk(() => nix.str`${nix.sel(pkgs, "git")}/libexec/git-core/git-http-backend`);
                             const GIT_PROJECT_ROOT = nix.thunk(() => nix.app(gitProjectRoot, name, cfg));
                             const HOME = GIT_PROJECT_ROOT;
-                            return { __proto__: pos$31, SCRIPT_FILENAME, GIT_PROJECT_ROOT, HOME };
-                          })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "gitHttpBackend", "checkExportOkFiles"))), nix.thunk(() => ({ __proto__: pos$32, GIT_HTTP_EXPORT_ALL: "1" }))))),
+                            return { [nix.POS]: pos$31, SCRIPT_FILENAME, GIT_PROJECT_ROOT, HOME };
+                          })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "gitHttpBackend", "checkExportOkFiles"))), nix.thunk(() => ({ [nix.POS]: pos$32, GIT_HTTP_EXPORT_ALL: "1" }))))),
                           extraConfig: nix.thunk(() => nix.app(mkFastcgiPass, name, cfg)),
                         }))],
                       ]))), nix.attrsDyn({}, [
                       [nix.str`${nix.app(stripLocation, cfg)}/`, nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         fastcgiParams: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           SCRIPT_FILENAME: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/cgit/cgit.cgi`),
                           QUERY_STRING: "$args",
                           HTTP_HOST: "$server_name",
@@ -318,11 +318,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           services: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), cfgs, (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(fcgiwrapUnitName, name)), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "repos"), {})), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     RuntimeDirectory: nix.thunk(() => nix.app(fcgiwrapUnitName, name)),
                   })),
                   preStart: nix.thunk(() => nix.str`GIT_PROJECT_ROOT=${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(gitProjectRoot, name, cfg)))}

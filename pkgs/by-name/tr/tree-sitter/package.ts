@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const webUISupport = nix.argOr($, "webUISupport", () => false);
   const buildGrammar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./grammars/build-grammar.nix"), nix.thunk(() => ({}))));
   const grammars = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       "nix-update-script": nix_update_script,
       fetchFromGitHub: fetchFromGitHub,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const builtGrammars = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.sel(lib, "makeOverridable"), buildGrammar), grammars));
   const hasTreeSitterPrefix = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "tree-sitter-"));
-  const grammarAliases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars/aliases.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
+  const grammarAliases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars/aliases.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
   const grammarDerivationsFrom = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => (nix.asBool(nix.app(hasTreeSitterPrefix, name)) && nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)))));
   const removeTreesitterPrefix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removePrefix"), "tree-sitter-"));
   const removeGrammarSuffix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-grammar"));
@@ -67,24 +67,24 @@ export default nix.lambda((args) => (() => {
   const mkGrammarLinkFarm = (grammars_1) => nix.app(linkFarm, "grammars", nix.thunk(() => nix.builtins.map((drv) => (() => {
         const name = nix.thunk(() => nix.app(nix.sel(lib, "strings", "getName"), drv));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.add(nix.app(replaceHyphens, nix.thunk(() => nix.app(removeTreesitterPrefix, nix.thunk(() => nix.app(removeGrammarSuffix, name))))), ".so")),
           path: nix.thunk(() => nix.str`${drv}/parser`),
         };
       })(), grammars_1)));
   const grammarsScope = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => nix.update(builtGrammars, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(grammarAliases, self, builtGrammars))), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       derivations: nix.thunk(() => nix.app(grammarDerivationsFrom, self)),
       allGrammars: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => !nix.asBool(nix.selOr(p, () => false, "meta", "broken")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(grammarDerivationsFrom, self)))))),
       withPlugins: (grammarFn) => nix.app(mkGrammarLinkFarm, nix.thunk(() => nix.app(grammarFn, nix.thunk(() => nix.app(grammarDerivationsFrom, self))))),
     }))));
   const isWasi = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWasi"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => nix.attrsDyn({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "tree-sitter",
       version: "0.26.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "tree-sitter",
           repo: "tree-sitter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,9 +96,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.concat(nix.app(nix.sel(lib, "optionals"), wasmSupport, nix.thunk(() => [wasmtime_36])), nix.app(nix.sel(lib, "optionals"), webUISupport, nix.thunk(() => [openssl]))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), which], nix.concat(nix.app(nix.sel(lib, "optionals"), wasmSupport, nix.thunk(() => [cmake])), nix.app(nix.sel(lib, "optionals"), webUISupport, nix.thunk(() => [emscripten, pkg_config]))))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(webUISupport)), nix.thunk(() => [
-          nix.thunk(() => nix.app(substitute, nix.thunk(() => ({ __proto__: pos$6, src: nix.path(here, "./remove-web-interface.patch") })))),
+          nix.thunk(() => nix.app(substitute, nix.thunk(() => ({ [nix.POS]: pos$6, src: nix.path(here, "./remove-web-interface.patch") })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "feat: allow `-` in grammar names",
               url: "https://github.com/tree-sitter/tree-sitter/commit/7d3c32125379c1dc02f47277bcd4eceaac299bdb.diff",
               hash: "sha256-ZNjdNateHVHDy0/txlAW8TUdz+DVxLKXpw8ojZbIQS8=",
@@ -126,7 +126,7 @@ mv docs/src/assets/schemas/config.schema.json $out/
 `)))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         buildGrammar: buildGrammar,
         builtGrammars: builtGrammars,
         grammars: grammars,
@@ -135,10 +135,10 @@ mv docs/src/assets/schemas/config.schema.json $out/
         withPlugins: nix.thunk(() => nix.attr(grammarsScope, "withPlugins")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           builtGrammars: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), builtGrammars)),
         }, nix.app(nix.sel(lib, "optionalAttrs"), isWasi, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             wasmGrammar: nix.thunk(() => (() => {
               const grammar = nix.thunk(() => nix.sel(builtGrammars, "tree-sitter-nix"));
               return nix.app(runCommand, "tree-sitter-wasm-grammar-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`test -f ${grammar}/parser.wasm
@@ -151,7 +151,7 @@ touch $out
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://github.com/tree-sitter/tree-sitter",
         description: "Parser generator tool and an incremental parsing library",
         mainProgram: "tree-sitter",

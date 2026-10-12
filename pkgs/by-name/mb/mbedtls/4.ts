@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "4.2.0",
       hash: "sha256-Xz5W5zYPNlASPyc1/Sz2O1LONdxpUkg1hgzKdax/3ag=",
       patches: nix.thunk(() => nix.concat([nix.path(here, "./0001-fix-gcc14-build.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => [nix.path(here, "./fix-gcc153-32bit-v4.patch")])))),

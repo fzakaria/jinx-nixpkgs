@@ -126,12 +126,12 @@ export default nix.lambda((args) => (() => {
     zlib,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: "1.2.95.453.g0eeebbed",
       rev: "99",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`spotify-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "rev")}.snap`),
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/pOBIoZ2LrCB3rDohMxoYGnbN14EHOgD7_${nix.sel(finalAttrs, "rev")}.snap`),
           hash: "sha512-IRjGDAdXY4O9KkMpNLKnPxgrQp3WmpHbaAIvM6Xq6969HON39dajHebVQAxZUvKOSWOeS9W1yn1Cl/3uFMbwsw==",
@@ -163,7 +163,7 @@ runHook postUnpack
       env: nix.thunk(() => (() => {
         const libdir = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/spotify`);
         const librarypath = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeLibraryPath"), deps)}:${libdir}`);
-        return { __proto__: pos$2, libdir, librarypath };
+        return { [nix.POS]: pos$2, libdir, librarypath };
       })()),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -217,9 +217,9 @@ wrapProgramShell $out/share/spotify/spotify \\
 
 runHook postFixup
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: updateScript })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ma27"))];

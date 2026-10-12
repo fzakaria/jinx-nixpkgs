@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aerogramme",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.deuxfleurs.fr/Deuxfleurs/aerogramme/",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ER+P/XGqNzTLwDLK5EBZq/Dl29ZZKl2FdxDb+oLEJ8Y=",
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./0001-update-time-rs.patch")]),
       cargoHash: "sha256-GPj8qhfKgfAadQD9DJafN4ec8L6oY62PS/w/ljkPHpw=",
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true, RUSTC_BOOTSTRAP: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true, RUSTC_BOOTSTRAP: true })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Encrypted e-mail storage over Garage",
         homepage: "https://aerogramme.deuxfleurs.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

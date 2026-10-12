@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rustfinity",
       version: "0.4.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-0xEVYHvVOugfE4mQxYt+U7AsejOxm/SnDV8HsmcZxBs=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Zc3m+hTotgCqBguUB/KM4BtGsdD4W5MR/ZBg2X/0nNk=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       checkFlags: nix.thunk(() => nix.builtins.map((t) => nix.str`--skip=${t}`, nix.thunk(() => [
           "challenge::tests::test_challenge_exists",
           "crates_io::tests::test_get_latest_version",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           "download::tests::download_file::test_renames_starter",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for Rustfinity challenges solving",
         homepage: "https://github.com/rustfinity/rustfinity/tree/main/crates/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

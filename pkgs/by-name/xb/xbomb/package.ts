@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxaw = nix.arg($, "libxaw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xbomb",
       version: "2.2b",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gedanken.org.uk/software/xbomb/download/xbomb-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0692gjw28qvh8wj9l58scjw6kxj7jdyb3yzgcgs9wcznq11q839m",
         })))),
       buildInputs: nix.thunk(() => [libx11, libxaw]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`INSTDIR=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.gedanken.org.uk/software/xbomb/",
         description: "Minesweeper for X11 with various grid sizes and shapes",
         mainProgram: "xbomb",

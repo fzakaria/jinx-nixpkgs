@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cloudlog";
       const version = "2.8.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magicbug",
           repo: "Cloudlog",
           rev: version,
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace index.php \\\n  --replace \"define('ENVIRONMENT', 'development');\" \"define('ENVIRONMENT', 'production');\"\n";
       const installPhase = "mkdir $out/\ncp -R ./* $out\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cloudlog: nix.thunk(() => nix.attr(nixosTests, "cloudlog")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web based amateur radio logging application built using PHP & MySQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://www.magicbug.co.uk/cloudlog",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

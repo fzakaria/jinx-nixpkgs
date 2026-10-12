@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "vimwiki-markdown";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: pname,
           hash: "sha256-hJl0OTE6kHucVGOxgOZBG0noYRfxma3yZSrUWEssLN4=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vimwiki markdown plugin",
         homepage: "https://github.com/WnP/vimwiki_markdown",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "vimwiki_markdown",
       }));
-      return { __proto__: pos$3, version, format, pname, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

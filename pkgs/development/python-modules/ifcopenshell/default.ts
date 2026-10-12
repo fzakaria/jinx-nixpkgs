@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IfcOpenShell",
           repo: "IfcOpenShell",
           tag: nix.thunk(() => nix.str`ifcopenshell-python-${version}`),
@@ -70,13 +70,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ifcopenshell-boost-1.86-mt19937.patch",
             url: "https://github.com/IfcOpenShell/IfcOpenShell/commit/1fe168d331123920eeb9a96e542fcc1453de57fe.patch",
             hash: "sha256-oZDEL8cPcEu83lW+qSvCbmDGYpaNNRrptW9MLu2pN70=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ifcopenshell-boost-1.86-json.patch",
             url: "https://github.com/IfcOpenShell/IfcOpenShell/commit/88b861737c7c206d0e7307f90d37467e9585515c.patch",
             hash: "sha256-zMoQcBWRdtavL0xdsr53SqyG6CZoeon8/mmJhrw85lc=",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ]);
       const pythonImportsCheck = nix.thunk(() => ["ifcopenshell"]);
-      const env = nix.thunk(() => ({ __proto__: pos$4, PYTHONUSERBASE: "." }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, PYTHONUSERBASE: "." }));
       const cmakeFlags = nix.thunk(() => [
         "-DUSERSPACE_PYTHON_PREFIX=ON",
         "-DBUILD_SHARED_LIBS=ON",
@@ -156,15 +156,15 @@ popd
       const disabledTestPaths = nix.thunk(() => ["test/test_open.py"]);
       const postCheck = "popd\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "ifcopenshell-python-" })))),
+        [nix.POS]: pos$8,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "ifcopenshell-python-" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$6, command: "IfcConvert --version", package: ifcopenshell })))),
+          [nix.POS]: pos$7,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, command: "IfcConvert --version", package: ifcopenshell })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Open source IFC library and geometry engine",
         homepage: "https://ifcopenshell.org/",
@@ -172,7 +172,7 @@ popd
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

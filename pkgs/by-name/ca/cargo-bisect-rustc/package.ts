@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cargo-bisect-rustc",
       version: "0.6.12",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rust-lang",
           repo: "cargo-bisect-rustc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => (() => {
         const patchelfPatch = nix.thunk(() => nix.app(runCommand, "0001-dynamically-patchelf-binaries.patch", nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             CC: nix.thunk(() => nix.sel(stdenv, "cc")),
             patchelf: patchelf,
             libPath: nix.thunk(() => nix.str`$ORIGIN/../lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [zlib]))}`),
@@ -52,11 +52,11 @@ substitute ${nix.path(here, "./0001-dynamically-patchelf-binaries.patch")} $out 
       cargoHash: "sha256-kJ/mLHBrp67U5RkVZrkCyFjWLLwHvuLTCSxDmG1n9l0=",
       checkFlags: nix.thunk(() => ["--skip=test_github", "--skip=cli_tests"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bisects rustc, either nightlies or CI artifacts",
         mainProgram: "cargo-bisect-rustc",
         homepage: "https://github.com/rust-lang/cargo-bisect-rustc",

@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const float = nix.thunk(() => nix.attr(types, "float"));
   const package$ = nix.thunk(() => nix.attr(types, "package"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const comment = nix.argOr($_1, "comment", () => "Generated with Nix");
       const boolToString = nix.argOr($_1, "boolToString", () => nix.sel(lib, "boolToString"));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => (() => {
           const elemType = nix.thunk(() => nix.update(nix.app(oneOf, nix.thunk(() => [
               nix.thunk(() => nix.app(coercedTo, package$, nix.builtins.toString, str)),
               nix.thunk(() => nix.app(coercedTo, bool, boolToString, str)),
               nix.thunk(() => nix.app(coercedTo, int, nix.builtins.toString, str)),
               nix.thunk(() => nix.app(coercedTo, float, nix.builtins.toString, str)),
-            ])), { __proto__: pos$1, description: "string, package, bool, int or float" }));
+            ])), { [nix.POS]: pos$1, description: "string, package, bool, int or float" }));
           return nix.app(attrsOf, elemType);
         })()),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
             const jq = nix.arg($_2, "jq");
             const libiconvReal = nix.arg($_2, "libiconvReal");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 preferLocalBuild: true,
                 value: nix.thunk(() => nix.builtins.toJSON(value)),
                 nativeBuildInputs: nix.thunk(() => [jq, libiconvReal]),

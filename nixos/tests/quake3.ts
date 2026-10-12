@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const overrides = (pkgs) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     quake3game: nix.thunk(() => nix.app(nix.sel(pkgs, "quake3game", "override"), (args_1) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         stdenv: nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvAdapters", "addCoverageInstrumentation"), nix.thunk(() => nix.sel(args_1, "stdenv")))),
       }))),
   });
@@ -40,52 +40,52 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
-        graphics: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+        [nix.POS]: pos$4,
+        graphics: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "quake3demo"))]),
       })),
       nixpkgs: nix.thunk(() => ({
-        __proto__: pos$7,
-        config: nix.thunk(() => ({ __proto__: pos$6, packageOverrides: overrides })),
+        [nix.POS]: pos$7,
+        config: nix.thunk(() => ({ [nix.POS]: pos$6, packageOverrides: overrides })),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "quake3",
-    meta: nix.thunk(() => ({ __proto__: pos$9, maintainers: [] })),
-    node: nix.thunk(() => ({ __proto__: pos$10, pkgsReadOnly: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$9, maintainers: [] })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$10, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "quake3-server": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 script: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "quake3demo")}/bin/quake3-server +set g_gametype 0 `, "+map q3dm7 +addbot grunt +addbot daemia 2> /tmp/log")),
               })),
             })),
           })),
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$15,
-            config: nix.thunk(() => ({ __proto__: pos$14, packageOverrides: overrides })),
+            [nix.POS]: pos$15,
+            config: nix.thunk(() => ({ [nix.POS]: pos$14, packageOverrides: overrides })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$17,
-            firewall: nix.thunk(() => ({ __proto__: pos$16, allowedUDPPorts: nix.thunk(() => [27960n]) })),
+            [nix.POS]: pos$17,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$16, allowedUDPPorts: nix.thunk(() => [27960n]) })),
           })),
         };
       })(), formals$3),

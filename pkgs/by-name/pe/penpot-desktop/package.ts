@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "penpot-desktop";
       const version = "0.23.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "author-more",
           repo: "penpot-desktop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const npmFlags = nix.thunk(() => ["--engine-strict", "--legacy-peer-deps"]);
       const npmDepsHash = "sha256-5CD/sK/DYfzIgnuvTi4OevtyNLEOTedmuStrg4ru14A=";
       const dontNpmBuild = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const nativeBuildInputs = nix.thunk(() => [jq, nodejs, makeWrapper, copyDesktopItems]);
       const preBuild = nix.thunk(() => nix.str`if [[ $(jq --raw-output '.devDependencies.electron' < package.json | grep -E --only-matching '\\^[0-9]+' | sed -e 's/\\^//') != ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(electron, "version")))))} ]]; then
   echo 'ERROR: electron version mismatch'
@@ -76,7 +76,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Penpot",
             exec: "penpot-desktop %U",
             icon: icon,
@@ -86,7 +86,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/author-more/penpot-desktop/releases/tag/v${version}`),
         description: description,
         homepage: "https://github.com/author-more/penpot-desktop",
@@ -100,7 +100,7 @@ runHook postInstall
         mainProgram: "penpot-desktop",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

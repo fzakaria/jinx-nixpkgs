@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "enpass-mac",
       version: "6.11.20.2229",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.enpass.io/stable/mac/package/${nix.sel(finalAttrs, "version")}/Enpass.pkg`),
           hash: "sha256-o4IHDeuoOtZ6gvvfxrPFXCou0nkLOpcMnip/+f6eVkU=",
         })))),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\n\nxar -xf $src\ngunzip -dc Enpass_temp.pkg/Payload > decompressed.out\ncat decompressed.out | cpio -it | grep -v '/._' > file-list-no-resource-forks.txt\ncat decompressed.out | cpio -i -E file-list-no-resource-forks.txt\n\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nmv Enpass.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "enpass-mac-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, gawk, common_updater_scripts]),
               text: "url=\"https://www.enpass.io/download/macos/website/stable\"\nversion=$(curl -Ls -o /dev/null -w \"%{url_effective}\" \"$url\" | awk -F'/' '{print $7}')\nupdate-source-version enpass-mac \"$version\"\n",
@@ -61,7 +61,7 @@ echo $marketing_version.$build_version
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Choose your own safest place to store passwords",
         homepage: "https://www.enpass.io",
         changelog: "https://www.enpass.io/release-notes/macos-website-ver/",

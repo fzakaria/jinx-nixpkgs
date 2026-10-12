@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const groff = nix.arg($, "groff");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mktemp",
       version: "1.7",
-      env: nix.thunk(() => ({ __proto__: pos$1, NROFF: nix.thunk(() => nix.str`${groff}/bin/nroff`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NROFF: nix.thunk(() => nix.str`${groff}/bin/nroff`) })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "parallel-install.patch",
             url: "https://www.mktemp.org/repos/mktemp/raw-rev/eb87d96ce8b7",
             hash: "sha256-cJ/0pFj8tOkByUwhlMwLNSQgTHyAU8svEkjKWWwsNmY=",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace Makefile.in --replace \" 0555 -s \" \" 0555 \"\n",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`ftp://ftp.mktemp.org/pub/mktemp/mktemp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0x969152znxxjbj7387xb38waslr4yv6bnj5jmhb4rpqxphvk54f",
         })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple tool to make temporary file handling in shells scripts safe and simple",
         mainProgram: "mktemp",
         homepage: "https://www.mktemp.org",

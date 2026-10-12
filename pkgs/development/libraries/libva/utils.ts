@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libva-utils";
       const version = "2.24.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "libva-utils",
           rev: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config]);
       const buildInputs = nix.thunk(() => [libdrm, libva, libx11, libxext, libxfixes, wayland]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of utilities and examples for VA-API",
         longDescription: "libva-utils is a collection of utilities and examples to exercise VA-API\nin accordance with the libva project.\n",
         homepage: "https://github.com/intel/libva-utils",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=utils.ts.map

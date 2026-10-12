@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "compyte",
       version: "git-20150817",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inducer",
           repo: "compyte",
           rev: "ac1c71d46428c14aa1bd1c09d7da19cd0298d5cc",

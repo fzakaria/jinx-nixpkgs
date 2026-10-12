@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labwc-tweaks-gtk",
       version: "0-unstable-2026-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "labwc",
           repo: "labwc-tweaks-gtk",
           rev: "5cb8680865c72d1b9c9dfd5b41fb5f2bb58e22d9",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
 substituteInPlace theme.c --replace /usr/share /run/current-system/sw/share
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/labwc/labwc-tweaks-gtk",
         description: "Configuration gui app for labwc; gtk fork",
         mainProgram: "labwc-tweaks-gtk",

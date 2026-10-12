@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const menulibre = nix.arg($, "menulibre");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "menulibre",
       version: "2.4.0",
       pyproject: true,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bluesabre",
           repo: "menulibre",
           tag: nix.thunk(() => nix.str`menulibre-${nix.sel(finalAttrs, "version")}`),
@@ -58,19 +58,19 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail 'data_dir =' \"data_dir = '$out/share/menulibre' #\" \\\n  --replace-fail 'update_desktop_file(desktop_file, script_path)' \"\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: menulibre,
               command: "HOME=$TMPDIR menulibre --version | cut -d' ' -f2",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Advanced menu editor with an easy-to-use interface",
         homepage: "https://bluesabre.org/projects/menulibre",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

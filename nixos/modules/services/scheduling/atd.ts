@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "atd"));
   const at = nix.thunk(() => nix.attr(pkgs, "at"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         atd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the {command}`at` daemon, a command scheduler.\n",
             })))),
           allowEveryone: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to make {file}`/var/spool/at{jobs,spool}`\nwriteable by everyone (and sticky).  This is normally not\nneeded since the {command}`at` commands are\nsetuid/setgid `atd`.\n",
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           wrappers: nix.thunk(() => nix.app(nix.sel(nix.builtins, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (program) => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: nix.thunk(() => nix.str`${program}`),
                 value: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   source: nix.thunk(() => nix.str`${at}/bin/${program}`),
                   owner: "atd",
                   group: "atd",
@@ -74,17 +74,17 @@ export default nix.lambda((args) => (() => {
                 })),
               }), nix.thunk(() => ["at", "atq", "atrm"]))))),
           pam: nix.thunk(() => ({
-            __proto__: pos$9,
-            services: nix.thunk(() => ({ __proto__: pos$8, atd: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$9,
+            services: nix.thunk(() => ({ [nix.POS]: pos$8, atd: nix.thunk(() => ({})) })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [at]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [at]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             atd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "atd")),
               group: "atd",
               description: "atd user",
@@ -92,19 +92,19 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             atd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "atd")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             atd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Job Execution Daemon (atd)",
               documentation: nix.thunk(() => ["man:atd(8)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -133,7 +133,7 @@ if [ ! -f "$jobdir"/.SEQ ]; then
 fi
 `),
               script: "atd",
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$17, Type: "forking" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "forking" })),
             })),
           })),
         })),

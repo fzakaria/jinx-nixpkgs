@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-0HZZCDmajuK1e+euiBzy6ljWbbOve78z5utI+DvqVJU=",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [docutils, jinja2, nbconvert, nbformat, sphinx, traitlets]);
       const doCheck = false;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         JUPYTER_PATH: nix.thunk(() => nix.str`${nbconvert}/share/jupyter`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["nbsphinx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Jupyter Notebook Tools for Sphinx",
         homepage: "https://nbsphinx.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/spatialaudio/nbsphinx/blob/${version}/NEWS.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

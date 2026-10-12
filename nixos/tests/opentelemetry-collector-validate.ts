@@ -48,31 +48,31 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const evalSystem = nix.arg($, "evalSystem");
   const evalService = (module) => nix.sel(nix.app(evalSystem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
-        "opentelemetry-collector": nix.thunk(() => nix.update({ __proto__: pos$1, enable: true }, module)),
+        [nix.POS]: pos$2,
+        "opentelemetry-collector": nix.thunk(() => nix.update({ [nix.POS]: pos$1, enable: true }, module)),
       })),
     }))), "config");
   const optionsOf = (config) => nix.sel(config, "services", "opentelemetry-collector");
   const execStartOf = (config) => nix.sel(config, "systemd", "services", "opentelemetry-collector", "serviceConfig", "ExecStart");
   const confOf = (config) => nix.sel(config, "system", "build", "opentelemetryCollectorConfig");
   const minimalSettings = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     receivers: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       otlp: nix.thunk(() => ({
-        __proto__: pos$5,
-        protocols: nix.thunk(() => ({ __proto__: pos$4, http: nix.thunk(() => ({})) })),
+        [nix.POS]: pos$5,
+        protocols: nix.thunk(() => ({ [nix.POS]: pos$4, http: nix.thunk(() => ({})) })),
       })),
     })),
-    exporters: nix.thunk(() => ({ __proto__: pos$7, debug: nix.thunk(() => ({})) })),
+    exporters: nix.thunk(() => ({ [nix.POS]: pos$7, debug: nix.thunk(() => ({})) })),
     service: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pipelines: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         logs: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           receivers: nix.thunk(() => ["otlp"]),
           exporters: nix.thunk(() => ["debug"]),
         })),
@@ -81,31 +81,31 @@ export default nix.lambda((args) => (() => {
   }));
   const secretRef = "${file:/var/lib/secrets/otel-token}";
   const secretSettings = nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     receivers: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       otlp: nix.thunk(() => ({
-        __proto__: pos$13,
-        protocols: nix.thunk(() => ({ __proto__: pos$12, http: nix.thunk(() => ({})) })),
+        [nix.POS]: pos$13,
+        protocols: nix.thunk(() => ({ [nix.POS]: pos$12, http: nix.thunk(() => ({})) })),
       })),
     })),
     exporters: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       otlphttp: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         endpoint: "http://localhost:4318",
         headers: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           authorization: nix.thunk(() => nix.str`Bearer ${secretRef}`),
         })),
       })),
     })),
     service: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       pipelines: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         logs: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           receivers: nix.thunk(() => ["otlp"]),
           exporters: nix.thunk(() => ["otlphttp"]),
         })),
@@ -113,46 +113,46 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const invalidSettings = nix.thunk(() => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     receivers: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       otlp: nix.thunk(() => ({
-        __proto__: pos$23,
-        protocols: nix.thunk(() => ({ __proto__: pos$22, http: nix.thunk(() => ({})) })),
+        [nix.POS]: pos$23,
+        protocols: nix.thunk(() => ({ [nix.POS]: pos$22, http: nix.thunk(() => ({})) })),
       })),
     })),
-    exporters: nix.thunk(() => ({ __proto__: pos$25, debug: nix.thunk(() => ({})) })),
+    exporters: nix.thunk(() => ({ [nix.POS]: pos$25, debug: nix.thunk(() => ({})) })),
     service: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       pipelines: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         logs: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           receivers: nix.thunk(() => ["otlp"]),
           exporters: nix.thunk(() => ["nonexistent"]),
         })),
       })),
     })),
   }));
-  const fromSettings = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ __proto__: pos$30, settings: minimalSettings }))));
+  const fromSettings = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ [nix.POS]: pos$30, settings: minimalSettings }))));
   const fromStoreConfigFile = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       configFile: nix.thunk(() => nix.app(writeText, "config.yaml", nix.thunk(() => nix.builtins.toJSON(minimalSettings)))),
     }))));
-  const fromExternalConfigFile = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ __proto__: pos$32, configFile: "/etc/opentelemetry-collector/config.yaml" }))));
+  const fromExternalConfigFile = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ [nix.POS]: pos$32, configFile: "/etc/opentelemetry-collector/config.yaml" }))));
   const withOverrides = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       settings: secretSettings,
       validateConfigOverrides: nix.thunk(() => ["exporters::otlphttp::headers::authorization=stub"]),
     }))));
-  const withoutOverrides = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ __proto__: pos$34, settings: secretSettings }))));
-  const invalid = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ __proto__: pos$35, settings: invalidSettings }))));
+  const withoutOverrides = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ [nix.POS]: pos$34, settings: secretSettings }))));
+  const invalid = nix.thunk(() => nix.app(evalService, nix.thunk(() => ({ [nix.POS]: pos$35, settings: invalidSettings }))));
   nix.assert_(nix.sel(nix.app(optionsOf, fromSettings), "validateConfigFile"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/opentelemetry-collector-validate.nix:78:1");
   nix.assert_(nix.sel(nix.app(optionsOf, fromStoreConfigFile), "validateConfigFile"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/opentelemetry-collector-validate.nix:79:1");
   nix.assert_(!nix.asBool(nix.sel(nix.app(optionsOf, fromExternalConfigFile), "validateConfigFile")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/opentelemetry-collector-validate.nix:82:1");
   nix.assert_(nix.app(nix.sel(lib, "hasSuffix"), "--config=file:/etc/opentelemetry-collector/config.yaml", nix.thunk(() => nix.app(execStartOf, fromExternalConfigFile))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/opentelemetry-collector-validate.nix:83:1");
   return nix.app(runCommand, "opentelemetry-collector-validate-test", nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       validated: nix.thunk(() => nix.app(confOf, withOverrides)),
       invalidFailure: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(confOf, invalid)))),
       unresolvableFailure: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(confOf, withoutOverrides)))),

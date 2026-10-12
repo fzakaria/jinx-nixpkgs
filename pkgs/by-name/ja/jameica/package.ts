@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const swtSystem = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "linux" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "linux64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? "linux-arm64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")) ? "macos64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? "macos-aarch64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`))))))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "jameica",
       exec: "jameica",
       comment: "Free Runtime Environment for Java Applications.",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jameica";
       const version = "2.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "willuhn",
           repo: "jameica",
           tag: version,
@@ -77,7 +77,7 @@ cp -r releases/${version}/tmp/jameica.app $out/Applications/Jameica.app
   "\${gappsWrapperArgs[@]}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.willuhn.de/products/jameica/",
         description: "Free Runtime Environment for Java Applications",
         longDescription: "Runtime Environment for plugins like Hibiscus (HBCI Online Banking),\nSynTAX (accounting) and JVerein (club management).\n",
@@ -97,7 +97,7 @@ cp -r releases/${version}/tmp/jameica.app $out/Applications/Jameica.app
         mainProgram: "jameica",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

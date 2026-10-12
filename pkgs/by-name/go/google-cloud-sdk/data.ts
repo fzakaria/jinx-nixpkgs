@@ -13,27 +13,27 @@ const pos$6 = nix.positions(here + "/data.nix", [["version", 4, 3], ["googleClou
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     version: "583.0.0",
     googleCloudSdkPkgs: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-583.0.0-linux-x86_64.tar.gz",
         sha256: "0xxi4vs6cld358iqgcj44pm667f13vp0j5y7fhcmv6qsar1q4aqb",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-583.0.0-linux-arm.tar.gz",
         sha256: "0clqkah2s2k62i628wc6zmqpns43r01clvfww5bdzibmzy6csgxp",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-583.0.0-darwin-arm.tar.gz",
         sha256: "17z79g05zs5afcjzapj1kzn43c7asrjlf65qwb7vx7nm186y1z6j",
       })),
       "i686-linux": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-583.0.0-linux-x86.tar.gz",
         sha256: "1x5avi90wq21h6sy38xpwv6nwfhxwxicwsngv2la5y94ym4rdvfr",
       })),

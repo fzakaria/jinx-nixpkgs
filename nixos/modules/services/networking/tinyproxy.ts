@@ -42,23 +42,23 @@ export default nix.lambda((args) => (() => {
     return (sep) => (k) => (v) => (nix.asBool(nix.eq(null, v)) ? "" : nix.str`${nix.app(nix.sel(lib, "strings", "escape"), nix.thunk(() => [sep]), k)}${sep}${nix.app(mkValueString, v)}`);
   })(), formals$2);
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
-      mkKeyValue: nix.thunk(() => nix.app(mkKeyValueTinyproxy, nix.thunk(() => ({ __proto__: pos$1, mkValueString: mkValueStringTinyproxy })), " ")),
+      [nix.POS]: pos$2,
+      mkKeyValue: nix.thunk(() => nix.app(mkKeyValueTinyproxy, nix.thunk(() => ({ [nix.POS]: pos$1, mkValueString: mkValueStringTinyproxy })), " ")),
       listsAsDuplicateKeys: true,
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "tinyproxy.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tinyproxy: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tinyproxy daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tinyproxy", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Configuration for [tinyproxy](https://tinyproxy.github.io/).",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  Port 8888;\n  Listen 127.0.0.1;\n  Timeout 600;\n  Allow 127.0.0.1;\n  Anonymous = ['\"Host\"' '\"Authorization\"'];\n  ReversePath = '\"/example/\" \"http://www.example.com/\"';\n}\n")),
@@ -66,30 +66,30 @@ export default nix.lambda((args) => (() => {
                   const $_1 = nix.formals(args_1, formals$3);
                   const name = nix.arg($_1, "name");
                   return {
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       Listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: "127.0.0.1",
                           description: "Specify which address to listen to.\n",
                         })))),
                       Port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 8888n,
                           description: "Specify which port to listen to.\n",
                         })))),
                       Anonymous: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           description: "If an `Anonymous` keyword is present, then anonymous proxying is enabled. The headers listed with `Anonymous` are allowed through, while all others are denied. If no Anonymous keyword is present, then all headers are allowed through. You must include quotes around the headers.\n",
                         })))),
                       Filter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "Tinyproxy supports filtering of web sites based on URLs or domains. This option specifies the location of the file containing the filter rules, one rule per line.\n",
@@ -102,18 +102,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             tinyproxy: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "TinyProxy daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 User: "tinyproxy",
                 Group: "tinyproxy",
                 Type: "simple",
@@ -127,16 +127,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
-            tinyproxy: nix.thunk(() => ({ __proto__: pos$17, group: "tinyproxy", isSystemUser: true })),
+            [nix.POS]: pos$18,
+            tinyproxy: nix.thunk(() => ({ [nix.POS]: pos$17, group: "tinyproxy", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, tinyproxy: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, tinyproxy: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tcheronneau"))];

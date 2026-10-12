@@ -38,33 +38,33 @@ const pos$28 = nix.positions(here + "/ejabberd.nix", [["name", 12, 3], ["meta", 
 
 export default nix.thunk(() => (() => {
   const cert = (pkgs) => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=example.com/CN=muc.example.com/CN=matrix.example.com' -addext \"subjectAltName = DNS:example.com,DNS:muc.example.com,DNS:matrix.example.com\" -days 36500\nmkdir -p $out\ncp key.pem cert.pem $out\n");
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       name: "ejabberd",
-      meta: nix.thunk(() => ({ __proto__: pos$2, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, maintainers: [] })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         "client-a": nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const nodes = nix.arg($_1, "nodes");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             security: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pki: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} example.com
 `),
             })),
@@ -76,24 +76,24 @@ export default nix.thunk(() => (() => {
           const nodes = nix.arg($_1, "nodes");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             security: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pki: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} example.com
 `),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./xmpp-sendmessage.nix"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     connectTo: nix.thunk(() => nix.sel(nodes, "server", "networking", "primaryIPAddress")),
                   })))),
               ]),
@@ -105,33 +105,33 @@ export default nix.thunk(() => (() => {
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             security: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               pki: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               extraHosts: nix.thunk(() => nix.str`${nix.sel(config, "networking", "primaryIPAddress")} example.com
 ${nix.sel(config, "networking", "primaryIPAddress")} matrix.example.com
 `),
-              firewall: nix.thunk(() => ({ __proto__: pos$15, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
-              ejabberd: nix.thunk(() => ({ __proto__: pos$17, enable: true, configFile: "/etc/ejabberd.yml" })),
+              [nix.POS]: pos$18,
+              ejabberd: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, configFile: "/etc/ejabberd.yml" })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               services: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ejabberd: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     TimeoutStartSec: "15min",
                     EnvironmentFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "ejabberd.env", "EJABBERD_MACRO_MATRIX_SECRET=SU4mu/j8b8A1i1EdyxIcKlFlrp+eSRBIlZwGyHP7Mfo=\n")),
                   })),
@@ -139,11 +139,11 @@ ${nix.sel(config, "networking", "primaryIPAddress")} matrix.example.com
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               etc: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "ejabberd.yml": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   user: "ejabberd",
                   mode: "0600",
                   text: nix.thunk(() => nix.str`loglevel: 3

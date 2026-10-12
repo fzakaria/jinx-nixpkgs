@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const csprojName = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? "FamiStudio.Linux" : (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "FamiStudio.Mac" : nix.builtins.throw(nix.thunk(() => nix.str`Don't know how to build FamiStudio for ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)))));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "famistudio",
       version: "4.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BleuBleu",
           repo: "FamiStudio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => (() => {
         const libname = (library) => nix.str`${library}${nix.sel(stdenvNoCC, "hostPlatform", "extensions", "sharedLibrary")}`;
         const buildNativeWrapper = (args_1) => nix.app(callPackage, nix.path(here, "./build-native-wrapper.nix"), nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ThirdParty/${nix.sel(args_1, "depname")}`),
@@ -63,46 +63,46 @@ export default nix.lambda((args) => (() => {
         const nativeWrapperToReplaceFormat = (args_1) => (() => {
           const libPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), "lib"));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: nix.thunk(() => nix.app(buildNativeWrapper, args_1)),
             expectedName: nix.thunk(() => nix.str`${libPrefix}${nix.sel(args_1, "depname")}`),
             ourName: nix.thunk(() => nix.str`${libPrefix}${nix.sel(args_1, "depname")}`),
           };
         })();
         const librariesToReplace = nix.thunk(() => nix.concat([
-          nix.thunk(() => ({ __proto__: pos$4, package: glfw, expectedName: "libglfw", ourName: "libglfw" })),
+          nix.thunk(() => ({ [nix.POS]: pos$4, package: glfw, expectedName: "libglfw", ourName: "libglfw" })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             package: rtmidi,
             expectedName: "librtmidi",
             ourName: "librtmidi",
           })),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: openal,
               expectedName: "libopenal32",
               ourName: "libopenal",
             })),
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               package: portaudio,
               expectedName: "libportaudio.2",
               ourName: "libportaudio.2",
             })),
           ])), [
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ __proto__: pos$8, depname: "GifDec" })))),
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ __proto__: pos$9, depname: "NesSndEmu" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$8, depname: "GifDec" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$9, depname: "NesSndEmu" })))),
           nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               depname: "NotSoFatso",
               extraPostPatch: "# C++17 does not allow register storage class specifier\nsubstituteInPlace build.sh \\\n  --replace-fail \"$CXX\" \"$CXX -std=c++14\"\n",
             })))),
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ __proto__: pos$11, depname: "ShineMp3" })))),
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ __proto__: pos$12, depname: "Stb" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$11, depname: "ShineMp3" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$12, depname: "Stb" })))),
           nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               depname: "Vorbis",
               buildInputs: nix.thunk(() => [libogg, libvorbis]),
             })))),
@@ -135,14 +135,14 @@ substituteInPlace FamiStudio/Source/AudioStreams/OpenALStream.cs \\
   \${makeWrapperArgs[@]}
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.sel(nix.app(gitUpdater, nix.thunk(() => ({}))), "command")),
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "fetch-deps")),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "https://famistudio.org/",
         description: "NES Music Editor",
         longDescription: "FamiStudio is very simple music editor for the Nintendo Entertainment System\nor Famicom. It is targeted at both chiptune artists and NES homebrewers.\n",

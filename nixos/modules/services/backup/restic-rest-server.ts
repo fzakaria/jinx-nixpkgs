@@ -39,59 +39,59 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "restic", "server"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bachp"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         restic: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           server: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Restic REST Server")),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "8000",
                 example: "127.0.0.1:8080",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Listen on a specific IP address and port or unix socket.",
               })))),
             dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: "/var/lib/restic",
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "The directory for storing the restic repository.",
               })))),
             appendOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable append only mode.\nThis mode allows creation of new backups but prevents deletion and modification of existing backups.\nThis can be useful when backing up systems that have a potential of being hacked.\n",
               })))),
             "htpasswd-file": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 description: "The path to the servers .htpasswd file. Defaults to `${dataDir}/.htpasswd`.",
               })))),
             privateRepos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable private repos.\nGrants access only when a subdirectory with the same name as the user is specified in the repository URL.\n",
               })))),
             prometheus: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable Prometheus metrics at /metrics.",
               })))),
             extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra commandline options to pass to Restic REST server.\n",
@@ -102,26 +102,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "substring"), 0n, 1n, nix.thunk(() => nix.sel(cfg, "listenAddress"))), ":")),
             message: nix.thunk(() => nix.str`The restic-rest-server now uses systemd socket activation, which expects only the Port number: services.restic.server.listenAddress = "${nix.app(nix.sel(lib, "substring"), 1n, 6n, nix.thunk(() => nix.sel(cfg, "listenAddress")))}";`),
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "restic-rest-server": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Restic REST Server",
               after: nix.thunk(() => ["network.target", "restic-rest-server.socket"]),
               requires: nix.thunk(() => ["restic-rest-server.socket"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rest-server \\
 --path ${nix.sel(cfg, "dataDir")} \\
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "htpasswd-file"), null)), nix.thunk(() => nix.str`--htpasswd-file ${nix.sel(cfg, "htpasswd-file")}`))} \\
@@ -164,27 +164,27 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFl
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "restic-rest-server": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               listenStreams: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listenAddress"))]),
               wantedBy: nix.thunk(() => ["sockets.target"]),
-              socketConfig: nix.thunk(() => ({ __proto__: pos$17, ReusePort: true, FreeBind: true })),
+              socketConfig: nix.thunk(() => ({ [nix.POS]: pos$17, ReusePort: true, FreeBind: true })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "privateRepos")), nix.thunk(() => [
                 nix.thunk(() => nix.str`f ${nix.sel(cfg, "dataDir")}/.htpasswd 0700 restic restic -`),
               ]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             restic: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               group: "restic",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: true,
@@ -192,9 +192,9 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFl
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             restic: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               gid: nix.thunk(() => nix.sel(config, "ids", "uids", "restic")),
             })),
           })),

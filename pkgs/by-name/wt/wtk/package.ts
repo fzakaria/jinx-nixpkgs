@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sun-java-wtk";
       const version = "2.5.2_01";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://java.sun.com/products/sjwtoolkit/download.html",
           name: nix.thunk(() => nix.str`sun_java_wireless_toolkit-${version}-linuxi486.bin.sh`),
           sha256: "1cjb9c27847wv0hq3j645ckn4di4vsfvp29fr4zmdqsnvk4ahvj1",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://java.sun.com/products/sjwtoolkit/download.html",
         description: "Sun Java Wireless Toolkit 2.5.2_01 for CLDC",
         sourceProvenance: nix.thunk(() => (() => {
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const bap = nix.arg($, "bap");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bap",
       version: "1.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BinaryAnalysisPlatform",
           repo: "bap-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [bap, requests]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform for binary analysis. It is written in OCaml, but can be used from other languages",
         homepage: "https://github.com/BinaryAnalysisPlatform/bap/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "maurer"))]),

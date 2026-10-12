@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   const authelia_web = nix.argOr($, "authelia-web", () => nix.app(callPackage, nix.path(here, "./web.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nodejs: nodejs,
       fetchPnpmDeps: fetchPnpmDeps,
       pnpmConfigHook: pnpmConfigHook,
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       fetchFromGitHub: fetchFromGitHub,
     }))));
   const buildGoModule = buildGo127Module;
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ __proto__: pos$2, fetchFromGitHub: fetchFromGitHub }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, fetchFromGitHub: fetchFromGitHub }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const vendorHash = nix.thunk(() => nix.attr(from, "vendorHash"));
   const web = authelia_web;
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -72,16 +72,16 @@ $out/bin/authelia build-info | grep 'v${nix.sel(finalAttrs, "version")}\\|nixpkg
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         web: web,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           authelia: nix.thunk(() => nix.attr(nixosTests, "authelia")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.authelia.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/authelia/authelia/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Single Sign-On Multi-Factor portal for web apps",

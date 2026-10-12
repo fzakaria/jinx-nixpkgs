@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const withLua = nix.argOr($, "withLua", () => false);
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rtorrent",
       version: "0.16.22",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rakshasa",
           repo: "rtorrent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,19 +56,19 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-h",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "libtorrent-rakshasa": libtorrent_rakshasa,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rtorrent: nix.thunk(() => nix.attr(nixosTests, "rtorrent")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, attrPath: "libtorrent-rakshasa" })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "libtorrent-rakshasa" })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ncurses client for libtorrent, ideal for use with screen, tmux, or dtach",
         homepage: "https://rakshasa.github.io/rtorrent/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

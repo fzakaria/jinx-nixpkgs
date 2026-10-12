@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "overmind",
       version: "2.5.1",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/overmind" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tmux, which]))}"
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DarthSim",
           repo: "overmind",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-XhF4oizOZ6g0351Q71Wp9IA3aFpocC5xGovDefIoL78=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/DarthSim/overmind",
         description: "Process manager for Procfile-based applications and tmux",
         mainProgram: "overmind",

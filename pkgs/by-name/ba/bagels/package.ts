@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bagels",
       version: "0.3.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EnhancedJax",
           repo: "bagels",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         "test_update_template",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/EnhancedJax/Bagels",
         description: "Powerful expense tracker that lives in your terminal",
         longDescription: "Bagels expense tracker is a TUI application where you can track and analyse your money flow, with convenience oriented features and a complete interface.\n",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const name = nix.arg($, "name");
   const offloadArches = nix.arg($, "offloadArches");
   const vectoradd = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rocm-hip-vectoradd",
       version: "2024-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "HIP-Examples",
           rev: "cdf9d101acd9a3fc89ee750f73c1f1958cbd5cc3",
@@ -41,7 +41,7 @@ amdclang++ -x hip -o $out/bin/vectoradd \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "vectorAdd HIP example for ROCm",
         homepage: "https://github.com/ROCm/HIP-Examples",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -50,14 +50,14 @@ runHook postInstall
       })),
     }))));
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: name,
       testedPackage: "rocmPackages.clr",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
       nativeBuildInputs: nix.thunk(() => [vectoradd, rocm_smi]),
       testScript: "rocm-smi\n\nvectoradd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const faraday = nix.arg($, "faraday");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httpun-types",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/httpun/releases/download/${nix.sel(finalAttrs, "version")}/httpun-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-os4n70yFro4cEAjR49Xok9ayEbk0WGod0pQvfbaHvSw=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [faraday]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Common HTTP/1.x types",
         homepage: "https://github.com/anmonteiro/httpun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -76,19 +76,19 @@ export default nix.lambda((args) => (() => {
   const withHiredis = nix.argOr($, "withHiredis", () => true);
   const hiredis = nix.arg($, "hiredis");
   const nixosTests = nix.arg($, "nixosTests");
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ __proto__: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rsyslog",
       version: "8.2608.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.rsyslog.com/files/download/rsyslog/rsyslog-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-49YMg0BSaMQi+V/ux0BFWhzEuRHQC9hCTV0ScrxQmxo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2026-78002.patch",
             url: "https://github.com/rsyslog/rsyslog/commit/667e3f61aec5ee02c5c2ee6f0f8accf6fe4301a9.patch",
             hash: "sha256-QsxOJCvr6VBbLbXzednwgvCfisSvNm6zfxPaMFxXVT0=",
@@ -171,10 +171,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withCurl, "omhttp")),
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), true, "generate-man-pages")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_LINK: "-lz" })),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, tests: nix.thunk(() => nix.sel(nixosTests, "rsyslogd")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_LINK: "-lz" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, tests: nix.thunk(() => nix.sel(nixosTests, "rsyslogd")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.rsyslog.com/",
         description: "Enhanced syslog implementation",
         mainProgram: "rsyslogd",

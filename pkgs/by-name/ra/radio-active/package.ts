@@ -18,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const pyradios_1_0_2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "pyradios", "overrideAttrs"), (finalAttrs) => (previousAttrs) => (() => {
       const version_1 = "1.0.2";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: version_1,
         src: nix.thunk(() => nix.app(nix.sel(previousAttrs, "src", "override"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             version: version_1,
             hash: "sha256-O30ExmvWu4spwDytFVPWGjR8w3XSTaWd2Z0LGQibq9g=",
           })))),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pname = "radio-active";
   const version = "2.9.1";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "S0AndS0",
           repo: "radio-active",
           rev: "2befa6a309d9c411ef1ea522e706ed3e098e5341",
@@ -66,7 +66,7 @@ substituteInPlace radioactive/ffplay.py \\
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Play any radios from around the globe right from the terminal",
         homepage: "https://www.radio-browser.info/",
         changelog: nix.thunk(() => nix.str`https://github.com/deep5050/radio-active/releases/tag/v${version}`),

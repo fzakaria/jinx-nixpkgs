@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2025-06-15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "verso-browser",
           repo: "verso",
           rev: "ace264e0e73da37bfb14818d92f0e54946ce9871",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["WebIDL"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebIDL parser written in Python",
         homepage: "https://gitlab.com/verso-browser/verso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

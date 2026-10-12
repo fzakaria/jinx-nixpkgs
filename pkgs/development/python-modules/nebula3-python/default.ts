@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vesoft-inc",
           repo: "nebula-python",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_ssl_pool.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client API of Nebula Graph in Python",
         homepage: "https://github.com/vesoft-inc/nebula-python",
         changelog: nix.thunk(() => nix.str`https://github.com/vesoft-inc/nebula-python/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

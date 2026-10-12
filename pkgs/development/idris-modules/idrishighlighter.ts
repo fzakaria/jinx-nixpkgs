@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "idrishighlighter",
       version: "2018-02-22",
       ipkgName: "idris-code-highlighter",
       idrisDeps: nix.thunk(() => [effects, lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "david-christiansen",
           repo: "idris-code-highlighter",
           rev: "708a29c7d1433adf7b0f69d1aec50e69b2915bba",
           sha256: "16ahzf2jzh7wzi4jjq94s5z9nzkgnj2962dy13s1crim53csjgw5",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Semantic highlighter for Idris code",
         homepage: "https://github.com/david-christiansen/idris-code-highlighter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

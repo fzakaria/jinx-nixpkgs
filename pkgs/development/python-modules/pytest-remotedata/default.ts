@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-BcCL9jjN0e1m6wFzihZHw8cUc3w+w6vgCdLB95O0u1k=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_strict_check.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_remotedata"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for controlling remote data access",
         homepage: "https://github.com/astropy/pytest-remotedata",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/pytest-remotedata/blob/v${version}/CHANGES.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "4.14.4";
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dependency-track-frontend",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DependencyTrack",
           repo: "frontend",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pname = "dependency-track";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "DependencyTrack",
           repo: "dependency-track",
           tag: version_1,
@@ -88,18 +88,18 @@ makeWrapper ${jre_headless}/bin/java $out/bin/dependency-track \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         frontend: frontend,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "dependency-track": nix.thunk(() => nix.attr(nixosTests, "dependency-track")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_headless, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain",
         homepage: "https://github.com/DependencyTrack/dependency-track",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -115,7 +115,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: version_1,
         pname,
         src,

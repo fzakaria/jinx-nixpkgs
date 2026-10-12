@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const tsm_client = nix.arg($, "tsm-client");
   const dsmSysCli = nix.thunk(() => nix.app(writeText, "cli.dsm.sys", "defaultserver  testserver\nserver  testserver\n  commmethod  v6tcpip\n  tcpserveraddress  192.0.0.8\n  nodename  ARBITRARYNODENAME\n"));
-  const tsm_client_ = nix.thunk(() => nix.app(nix.sel(tsm_client, "override"), nix.thunk(() => ({ __proto__: pos$1, dsmSysCli: dsmSysCli }))));
-  const env = nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [tsm_client_]) }));
+  const tsm_client_ = nix.thunk(() => nix.app(nix.sel(tsm_client, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, dsmSysCli: dsmSysCli }))));
+  const env = nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [tsm_client_]) }));
   const versionString = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.sel(tsm_client_, "passthru", "unwrapped"));
     const version = nix.thunk(() => nix.attr(from, "version"));

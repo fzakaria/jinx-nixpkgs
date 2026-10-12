@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
     })(), formals$2), nix.thunk(() => ({}))));
   const hasJetsonCudaCapability = nix.thunk(() => nix.app(nix.sel(lib, "any"), (cudaCapability) => nix.selOr(_cuda, () => false, "db", "cudaCapabilityToInfo", nix.key(nix.force(cudaCapability)), "isJetson"), nix.thunk(() => nix.selOr(config, () => [], "cudaCapabilities"))));
   const mkCudaPackages = (manifestVersions) => nix.app(callPackage, nix.path(here, "../development/cuda-modules"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       manifests: nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "selectManifests"), manifestVersions)),
     })));
   const cudaPackages_12_6 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cublasmp: "0.10.0",
       cuda: "12.6.3",
       cudnn: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "9.20.0" : "9.27.0")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.7.0" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "10.13.0" : "11.3.0"))),
     }))));
   const cudaPackages_12_8 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       cublasmp: "0.10.0",
       cuda: "12.8.2",
       cudnn: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "9.20.0" : "9.27.0")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.7.0" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "10.13.0" : "11.3.0"))),
     }))));
   const cudaPackages_12_9 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       cublasmp: "0.10.0",
       cuda: "12.9.2",
       cudnn: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "9.20.0" : "9.27.0")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.7.0" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "10.13.0" : "11.3.0"))),
     }))));
   const cudaPackages_13_0 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       cublasmp: "0.10.0",
       cuda: "13.0.3",
       cudnn: "9.27.0",
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.16.1" : "11.3.0")),
     }))));
   const cudaPackages_13_1 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       cublasmp: "0.10.0",
       cuda: "13.1.2",
       cudnn: "9.27.0",
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.16.1" : "11.3.0")),
     }))));
   const cudaPackages_13_2 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       cublasmp: "0.10.0",
       cuda: "13.2.2",
       cudnn: "9.27.0",
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "11.1.0" : "11.3.0")),
     }))));
   const cudaPackages_13_3 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       cublasmp: "0.10.0",
       cuda: "13.3.1",
       cudnn: "9.27.0",
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "11.1.0" : "11.3.0")),
     }))));
   const cudaPackages_13_4 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       cublasmp: "0.10.0",
       cuda: "13.4.2",
       cudnn: "9.27.0",
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "11.1.0" : "11.3.0")),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     cudaPackages_12_6: cudaPackages_12_6,
     cudaPackages_12_8: cudaPackages_12_8,
     cudaPackages_12_9: cudaPackages_12_9,

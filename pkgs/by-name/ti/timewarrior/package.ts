@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "timewarrior",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GothenburgBitFactory",
           repo: "timewarrior",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeBuildDir: true,
       postInstall: "installShellCompletion --cmd timew \\\n  --bash completion/timew-completion.bash \\\n  --fish completion/timew.fish \\\n  --zsh completion/timew.zsh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line time tracker",
         homepage: "https://timewarrior.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

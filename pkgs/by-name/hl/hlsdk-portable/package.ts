@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const wafHook = nix.arg($, "wafHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hlsdk-portable",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FWGS",
           repo: "hlsdk-portable",
           fetchSubmodules: true,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       wafConfigureFlags: nix.thunk(() => nix.concat(["-T release"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "is64bit")), nix.thunk(() => ["-8"])))),
       wafInstallFlags: nix.thunk(() => [nix.thunk(() => nix.str`--destdir=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/FWGS/hlsdk-portable",
         description: "Portable crossplatform Half-Life SDK for GoldSource and Xash3D engines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

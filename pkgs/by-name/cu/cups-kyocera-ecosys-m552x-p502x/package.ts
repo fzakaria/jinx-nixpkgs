@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const region = nix.argOr($, "region", () => "Global");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-kyocera-ecosys-m552x-p502x",
       version: "8.1602",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.kyoceradocumentsolutions.de/content/dam/download-center-cf/de/drivers/all/Linux_8_1602_ECOSYS_M5521_5526_P5021_5026_zip.download.zip",
           sha256: "sha256-XDH5deZmWNghfoO7JaYYvnVq++mbQ8RwLY57L2CKYaY=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 cp ${region}/English/*.PPD $out/share/cups/model/Kyocera/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PPD files for Kyocera ECOSYS M5521cdn/M5521cdw/M5526cdn/M5526cdw/P5021cdn/P5021cdw/P5026cdn/P5026cdw",
         homepage: "https://www.kyoceradocumentsolutions.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

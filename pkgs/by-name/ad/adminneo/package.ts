@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const installPlugins = nix.argOr($, "installPlugins", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adminneo",
       version: "5.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adminneo-org",
           repo: "adminneo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PHP=${php}/bin/php`)]),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\nmkdir $out\ncp compiled/adminneo.php $out/adminneo.php\n# for compatibility\nln -s adminneo.php $out/index.php\n", nix.app(nix.sel(lib, "optionalString"), installPlugins, "cp -r compiled/adminneo-plugins $out/\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database management in a single PHP file (fork of Adminer)",
         homepage: "https://www.adminneo.org/",
         license: nix.thunk(() => (() => {

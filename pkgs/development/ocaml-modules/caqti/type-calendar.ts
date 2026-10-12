@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const calendar = nix.arg($, "calendar");
   const caqti = nix.arg($, "caqti");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "caqti-type-calendar",
       src: nix.thunk(() => nix.attr(caqti, "src")),
       version: nix.thunk(() => nix.attr(caqti, "version")),
       propagatedBuildInputs: nix.thunk(() => [calendar, caqti]),
       meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Date and time field types using the calendar library",
       })),
     })));

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "657c8fe04513caecccd6086b347aa4b85db6b4c0f761b162cb9cd789abe7abb6",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [blessed, docopt, pillow, requests]);
       const pythonImportsCheck = nix.thunk(() => ["pixcat"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display images on a kitty terminal with optional resizing",
         mainProgram: "pixcat",
         homepage: "https://github.com/mirukan/pixcat",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "tilcreator"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

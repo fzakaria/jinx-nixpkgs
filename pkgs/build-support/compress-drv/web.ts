@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
     ]);
     const extraFormats = nix.argOr($_1, "extraFormats", () => []);
     const compressors = nix.argOr($_1, "compressors", () => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       br: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), brotli)} --keep --no-copy-stat {}`),
       gz: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), zopfli)} --keep {}`),
       zstd: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), zstd)} --force --keep --quiet -19 {}`),
     }));
     const extraFindOperands = nix.argOr($_1, "extraFindOperands", () => "");
     return nix.app(compressDrv, drv, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         formats: nix.thunk(() => nix.concat(formats, extraFormats)),
         compressors: compressors,
         extraFindOperands: extraFindOperands,

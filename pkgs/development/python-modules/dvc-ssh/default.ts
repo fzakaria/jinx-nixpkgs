@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const sshfs = nix.arg($, "sshfs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dvc-ssh",
       version: "4.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dvc_ssh",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NgfzEZW5WmDaP85apROMvITy545CHse9z94xC/Jw9OA=",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["dvc"]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [bcrypt, dvc_objects, sshfs]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, gssapi: nix.thunk(() => [sshfs]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, gssapi: nix.thunk(() => [sshfs]) })),
       postPatch: "substituteInPlace setup.cfg --replace \"sshfs[bcrypt]\" \"sshfs\"\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SSH plugin for dvc",
         homepage: "https://pypi.org/project/dvc-ssh/",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-ssh/releases/tag/${nix.sel(finalAttrs, "version")}`),

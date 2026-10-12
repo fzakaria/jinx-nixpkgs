@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const minimalJavaVersion = "11";
   const newsPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.tvbrowser.org/data/uploads/1372016422809_543/NewsPlugin.jar",
       hash: "sha256-5XoypuMd2AFBE2SJ6EdECuvq6D81HLLuu9UoA9kcKAM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tvbrowser",
       version: "4.2.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tvbrowser/TV-Browser%20Releases%20%28Java%20${minimalJavaVersion}%20and%20higher%29/${nix.sel(finalAttrs, "version")}/tvbrowser_${nix.sel(finalAttrs, "version")}_src.zip`),
           hash: "sha256-dmNfI6T0MU7UtMH+C/2hiAeDwZlFCB4JofQViZezoqI=",
         })))),
@@ -72,14 +72,14 @@ makeWrapper  \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           startwindow: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Electronic TV Program Guide",
         downloadPage: "https://www.tvbrowser.org/index.php?id=tv-browser",
         homepage: "https://www.tvbrowser.org/",

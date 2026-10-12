@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lightway",
       version: "0-unstable-2026-04-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "expressvpn",
           repo: "lightway",
           rev: "8e0940f047ee72db5daa1fb7c3bb82bc89e0f1d9",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-gY8KokOtdBT7Vq+lGn2sk4/o3A0TypEqv09TVJqaZjc=",
       cargoBuildFlags: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           package: nix.thunk(() => ["lightway-client", "lightway-server"]),
           features: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["io-uring"]))),
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
           return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.lookup(w, "isAarch")) && nix.asBool(nix.lookup(w, "isLinux")))), nix.thunk(() => nix.str`-march=${nix.sel(nix.lookup(w, "gcc"), "arch")}+crypto`));
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A modern VPN protocol in Rust",
         homepage: "https://expressvpn.com/lightway",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "la-capitaine-icon-theme",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keeferrourke",
           repo: "la-capitaine-icon-theme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs configure\n\nsubstituteInPlace configure \\\n  --replace 'DISTRO=$(format \"$(lsb_release -si 2>/dev/null)\")' 'DISTRO=nixos'\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons/la-capitaine-icon-theme\ncp -a * $out/share/icons/la-capitaine-icon-theme\nrm $out/share/icons/la-capitaine-icon-theme/{configure,COPYING,LICENSE,*.md}\ncp \"$out/share/icons/la-capitaine-icon-theme/places/scalable/\"distributor-logo-{archlinux,debian,kubuntu}.svg \"$out/share/icons/la-capitaine-icon-theme/apps/scalable/\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icon theme inspired by macOS and Google's Material Design",
         homepage: "https://github.com/keeferrourke/la-capitaine-icon-theme",
         license: nix.thunk(() => (() => {

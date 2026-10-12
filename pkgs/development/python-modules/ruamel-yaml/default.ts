@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ruamel_yaml",
           version: version,
           hash: "sha256-U+tmzSeEnv+Wjr+PC/YfRs2sLaHR81dt1MzumyXDGZM=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.concat([ruamel_base], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(isPyPy)), ruamel_yaml_clib)));
       const pythonImportsCheck = nix.thunk(() => ["ruamel.yaml"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
         homepage: "https://sourceforge.net/projects/ruamel-yaml/",
         changelog: "https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree/CHANGES",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

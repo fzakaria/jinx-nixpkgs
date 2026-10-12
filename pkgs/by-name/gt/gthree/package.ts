@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libepoxy = nix.arg($, "libepoxy");
   const json_glib = nix.arg($, "json-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gthree",
       version: "0.9.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexlarsson",
           repo: "gthree",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/alexlarsson/gthree/commit/75f05c40aba9d5f603d8a3c490c3406c1fe06776.patch",
             sha256: "PBwLz4DLhC+7BtypVTFMFiF3hKAJeskU3XBKFHa3a84=",
           })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "-Dexamples=false",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GObject/GTK port of three.js",
         homepage: "https://github.com/alexlarsson/gthree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

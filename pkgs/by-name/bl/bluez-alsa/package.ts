@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => true);
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bluez-alsa",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arkq",
           repo: "bluez-alsa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), systemdSupport, "bluealsaaplayuser", "bluealsa")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Arkq/bluez-alsa",
         description: "Bluez 5 Bluetooth Audio ALSA Backend",
         longDescription: "Bluez-ALSA (BlueALSA) is an ALSA backend for Bluez 5 audio interface.\nBluez-ALSA registers all Bluetooth devices with audio profiles in Bluez\nunder a virtual ALSA PCM device called `bluealsa` that supports both\nplayback and capture.\n\nSome backstory: Bluez 5 removed built-in support for ALSA in favor of a\ngeneric interface for 3rd party applications. Thereafter, PulseAudio\nimplemented a backend for that interface and became the only way to get\nBluetooth audio with Bluez 5. Users preferring ALSA stayed on Bluez 4.\nHowever, Bluez 4 eventually became deprecated.\n\nThis package is a rebirth of a direct interface between ALSA and Bluez 5,\nthat, unlike PulseAudio, provides KISS near-metal-like experience. It is\nnot possible to run BluezALSA and PulseAudio Bluetooth at the same time\ndue to limitations in Bluez, but it is possible to run PulseAudio over\nBluezALSA if you disable `bluetooth-discover` and `bluez5-discover`\nmodules in PA and configure it to play/capture sound over `bluealsa` PCM.\n",

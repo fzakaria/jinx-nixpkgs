@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const freefont_ttf = nix.arg($, "freefont_ttf");
   const makeFontsConf = nix.arg($, "makeFontsConf");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyqtgraph",
       version: "0.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pyqtgraph",
           repo: "pyqtgraph",
           tag: nix.thunk(() => nix.str`pyqtgraph-${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export FONTCONFIG_FILE=${fontsConf}
         "test_simple",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => ["test_PolyLineROI"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_rescaleData"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scientific Graphics and GUI Library for Python",
         homepage: "https://www.pyqtgraph.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pyqtgraph/pyqtgraph/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

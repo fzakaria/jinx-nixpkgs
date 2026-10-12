@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const httpx2 = nix.arg($, "httpx2");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "genai-prices",
       version: "0.1.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "genai-prices",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["genai_prices"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Calculate prices for calling LLM inference APIs",
         homepage: "https://github.com/pydantic/genai-prices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

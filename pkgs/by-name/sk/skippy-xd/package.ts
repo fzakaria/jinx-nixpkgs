@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const giflib = nix.arg($, "giflib");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "skippy-xd",
       version: "2025.11.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "felixfung",
           repo: "skippy-xd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       preInstall: "sed -e \"s@/etc/xdg@$out&@\" -i Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Expose-style compositing-based standalone window switcher",
         homepage: "https://github.com/felixfung/skippy-xd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

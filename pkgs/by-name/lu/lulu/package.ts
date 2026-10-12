@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lulu",
       version: "4.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/objective-see/LuLu/releases/download/v${nix.sel(finalAttrs, "version")}/LuLu_${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-mPTTQn9Mb8z5aA/tIoeb6Qpa6B6A64YWwddYdVtrtiQ=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R LuLu.app \"$out/Applications/LuLu.app\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free open-source macOS firewall that alerts you to outgoing network connections",
         longDescription: "Nearly every application makes network connections. So does malware.\nLuLu is a free, open-source firewall that blocks unknown outgoing\nconnections, protecting your privacy and your Mac.\n",
         homepage: "https://objective-see.org/products/lulu.html",
@@ -51,16 +51,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             vendor: "objective-see",
             product: "lulu",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             target_sw: "macos",
           })),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "github",
             namespace: "objective-see",
             name: "lulu",

@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "archimedes",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/archimedes/archimedes-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jfpnd3pns5wxcxbiw49v5sgpmm5b4v8s4q1a5292hxxk2hzmb3z",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "c99.patch",
             url: "https://savannah.gnu.org/bugs/download.php?file_id=53393",
             sha256: "1xmy1w4ln1gynldk3srdi2h0fxpx465dsa1yxc3rzrrjpxh6087f",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNU package for semiconductor device simulations",
         mainProgram: "archimedes",
         homepage: "https://www.gnu.org/software/archimedes",

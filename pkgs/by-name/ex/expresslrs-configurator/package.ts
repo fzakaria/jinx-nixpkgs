@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const installPath = nix.thunk(() => nix.str`share/${pname}`);
   const resourcesPath = nix.thunk(() => nix.str`${installPath}/resources`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ExpressLRS/ExpressLRS-Configurator/releases/download/v${version}/${pname}-${version}.zip`),
           stripRoot: false,
           hash: "sha256-KoT9YoeAkYrr9FIS7+Lm1CafTNwvV+jLTYYHziCVvrs=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems, asar]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             exec: pname,
             icon: pname,
@@ -74,7 +74,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/${pname}" \
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform build & configuration tool for ExpressLRS",
         homepage: "https://github.com/ExpressLRS/ExpressLRS-Configurator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "gettext-stub",
       src: nix.thunk(() => nix.attr(ocaml_gettext, "src")),
       version: nix.thunk(() => nix.attr(ocaml_gettext, "version")),

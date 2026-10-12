@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const bubblewrap = nix.arg($, "bubblewrap");
   return nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["multiPkgs", "targetPkgs", "runScript"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
             return nix.builtins.map((path) => nix.str`/etc/${path}`, files);
           })());
           const containerInit = nix.thunk(() => nix.app(runCommandCC, "container-init", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.selOr(stdenv, () => null, "cc", "libc", "static"))]),
             })), nix.thunk(() => nix.str`$CXX -static -s -o $out ${nix.path(here, "./container-init.cc")}
 `)));
@@ -261,9 +261,9 @@ cmd=(
 exec "\${cmd[@]}"
 `);
           })(), formals$3);
-          const bin = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${name}-bwrap`), nix.thunk(() => nix.app(bwrapCmd, nix.thunk(() => ({ __proto__: pos$2, initArgs: "\"$@\"" }))))));
+          const bin = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${name}-bwrap`), nix.thunk(() => nix.app(bwrapCmd, nix.thunk(() => ({ [nix.POS]: pos$2, initArgs: "\"$@\"" }))))));
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${bin} $out/bin/${executableName}
 
@@ -275,15 +275,15 @@ ${nix.selOr(finalAttrs, () => "", "extraInstallCommands")}
             preferLocalBuild: true,
             allowSubstitutes: false,
             passthru: nix.thunk(() => nix.update(passthru, {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               env: nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${name}-shell-env`), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   shellHook: nix.thunk(() => nix.app(bwrapCmd, nix.thunk(() => ({})))),
                 })), "echo >&2 \"\"\necho >&2 \"*** User chroot 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n")),
               args: args_2,
               fhsenv: fhsenv,
             })),
-            meta: nix.thunk(() => nix.update({ __proto__: pos$5, mainProgram: executableName }, meta)),
+            meta: nix.thunk(() => nix.update({ [nix.POS]: pos$5, mainProgram: executableName }, meta)),
           };
         })(), formals$2),
       })))));

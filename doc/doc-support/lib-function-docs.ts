@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nixdoc = nix.arg($, "nixdoc");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "nixpkgs-lib-docs",
       src: nix.path(here, "../../lib"),
       nativeBuildInputs: nix.thunk(() => [nixdoc]),

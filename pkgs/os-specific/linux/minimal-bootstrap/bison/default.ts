@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pname = "bison";
   const version = "3.8.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/bison/bison-${version}.tar.xz`),
       hash: "sha256-m7oCFMz38QecXVkhAEUie89hlRmEDr+oDNOEnP9aW/I=",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -52,16 +52,16 @@ export default nix.lambda((args) => (() => {
         gnum4,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/bison --version
 mkdir $out
 `)),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Yacc-compatible parser generator",
         homepage: "https://www.gnu.org/software/bison/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

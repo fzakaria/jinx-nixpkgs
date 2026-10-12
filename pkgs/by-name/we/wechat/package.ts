@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const pname = "wechat";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Messaging and calling app",
     homepage: "https://www.wechat.com/en/",
     downloadPage: "https://linux.weixin.qq.com/en",
@@ -40,34 +40,34 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]),
   }));
   const sources = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "aarch64-darwin": nix.thunk(() => (() => {
       const version = "4.1.13.59-269627";
       const version$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "-", "_", version));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://dldir1v6.qq.com/weixin/Universal/Mac/xWeChatMac_universal_${version$}.dmg`),
             hash: "sha256-45zrtADGKikIfN+BQRMR74Pnmr4VHfXShamWEnOTdOk=",
           })))),
       };
     })()),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "4.1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://web.archive.org/web/20260818044444if_/https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.AppImage",
           hash: "sha256-RLHhac3wSS1C9rx3GsA07Tp1EzxSf2LLBMyPtrECnUY=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "4.1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "https://web.archive.org/web/20260818044436if_/https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.AppImage",
           hash: "sha256-RX26ArkbAxzdRBLu4HT7v/udnQax5Q/Bgi00hw4RSZA=",
         })))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       meta: meta,
       version: nix.thunk(() => nix.attr(from_1, "version")),

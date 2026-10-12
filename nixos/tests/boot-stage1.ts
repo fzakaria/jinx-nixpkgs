@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "boot-stage1",
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           boot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             initrd: nix.thunk(() => ({
-              __proto__: pos$6,
-              systemd: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+              [nix.POS]: pos$6,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
               kernelModules: nix.thunk(() => ["kcanary"]),
               extraUtilsCommands: nix.thunk(() => (() => {
-                const compile = (name) => (source) => nix.app(nix.sel(pkgs_1, "runCommandCC"), name, nix.thunk(() => ({ __proto__: pos$2, source: source })), "mkdir -p \"$out/bin\"\necho \"$source\" | gcc -Wall -o \"$out/bin/$name\" -xc -\n");
+                const compile = (name) => (source) => nix.app(nix.sel(pkgs_1, "runCommandCC"), name, nix.thunk(() => ({ [nix.POS]: pos$2, source: source })), "mkdir -p \"$out/bin\"\necho \"$source\" | gcc -Wall -o \"$out/bin/$name\" -xc -\n");
                 const daemonize = (name) => (source) => nix.app(compile, name, nix.thunk(() => nix.str`#include <stdio.h>
 #include <unistd.h>
 
@@ -63,7 +63,7 @@ int main(void) {
                   return nix.update(nix.app(daemonize, name, nix.thunk(() => nix.str`char *argv[] = {"${cmdline}", NULL};
 execvp("${name}-child", argv);
 `)), {
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     child: nix.thunk(() => nix.app(compile, nix.thunk(() => nix.str`${name}-child`), nix.thunk(() => nix.str`#include <stdio.h>
 #include <unistd.h>
 
@@ -82,11 +82,11 @@ copy_bin_and_libs "${canary}/bin/${nix.sel(canary, "name")}"
                 return nix.app(copyCanaries, nix.thunk(() => [
                     nix.thunk(() => nix.app(daemonize, "canary1", "while (1) sleep(1);")),
                     nix.thunk(() => nix.app(mkCmdlineCanary, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         name: "canary2",
                         source: "FILE *f;\nf = fopen(\"/run/canary2.pid\", \"w\");\nfprintf(f, \"%d\\n\", getpid());\nfclose(f);\n",
                       })))),
-                    nix.thunk(() => nix.app(mkCmdlineCanary, nix.thunk(() => ({ __proto__: pos$5, name: "canary3", cmdline: "@canary3" })))),
+                    nix.thunk(() => nix.app(mkCmdlineCanary, nix.thunk(() => ({ [nix.POS]: pos$5, name: "canary3", cmdline: "@canary3" })))),
                   ]));
               })()),
               postMountCommands: "canary1\ncanary2\ncanary3\n# Make sure the pidfile of canary 2 is created so that we still can get\n# its former pid after the killing spree starts next within stage 1.\nwhile [ ! -s /run/canary2.pid ]; do sleep 0.1; done\n",
@@ -100,7 +100,7 @@ copy_bin_and_libs "${canary}/bin/${nix.sel(canary, "name")}"
                   const hardeningDisable = nix.thunk(() => ["pic"]);
                   const nativeBuildInputs = nix.thunk(() => nix.sel(kdev, "moduleBuildDependencies"));
                   return {
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     source: source_1,
                     kdev,
                     kver,
@@ -118,7 +118,7 @@ copy_bin_and_libs "${canary}/bin/${nix.sel(canary, "name")}"
     })),
     testScript: "machine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"test -s /run/canary2.pid\")\nmachine.fail(\"pgrep -a canary1\")\nmachine.fail(\"kill -0 $(< /run/canary2.pid)\")\nmachine.succeed('pgrep -a -f \"^@canary3$\"')\nmachine.succeed('pgrep -a -f \"^\\\\[kcanary\\\\]$\"')\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aszlig"))];

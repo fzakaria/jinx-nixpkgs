@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gef",
       version: "2026.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hugsy",
           repo: "gef",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ sed -i 's+/bin/ls+${coreutils}/bin/ls+g' tests/runtests.py
 make test
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern experience for GDB with advanced debugging features for exploit developers & reverse engineers",
         mainProgram: "gef",
         homepage: "https://github.com/hugsy/gef",

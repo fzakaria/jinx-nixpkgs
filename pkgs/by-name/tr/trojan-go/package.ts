@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trojan-go";
       const version = "0.10.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p4gefau1t",
           repo: "trojan-go",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const tags = nix.thunk(() => ["api", "client", "server", "forward", "nat", "other"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proxy mechanism to bypass GFW",
         homepage: "https://p4gefau1t.github.io/trojan-go/",
         changelog: nix.thunk(() => nix.str`https://github.com/p4gefau1t/trojan-go/releases/tag/v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trojan-go",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

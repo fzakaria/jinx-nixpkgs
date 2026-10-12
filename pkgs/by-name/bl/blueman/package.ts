@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blueman";
       const version = "2.4.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/blueman-project/blueman/releases/download/${version}/blueman-${version}.tar.xz`),
           sha256: "sha256-xxKnN/mFWQZoTAdNFm1PEMfxZTeK+WYSgYu//Pv45WY=",
         }))));
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postFixup = "# This mimics ../../../development/interpreters/python/wrap.sh\nwrapPythonProgramsIn \"$out/bin\" \"$out ${pythonPath[*]}\"\nwrapPythonProgramsIn \"$out/libexec\" \"$out ${pythonPath[*]}\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/blueman-project/blueman",
         description: "GTK-based Bluetooth Manager",
         mainProgram: "blueman-manager",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

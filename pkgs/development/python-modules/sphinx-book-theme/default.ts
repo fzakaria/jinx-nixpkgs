@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           format: "wheel",
           dist: "py3",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pydata_sphinx_theme, sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_book_theme"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "jupyter-book": jupyter_book })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "jupyter-book": jupyter_book })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Clean book theme for scientific explanations and documentation with Sphinx",
         homepage: "https://github.com/executablebooks/sphinx-book-theme",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-book-theme/raw/v${version}/CHANGELOG.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

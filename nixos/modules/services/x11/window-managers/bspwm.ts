@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "bspwm"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             bspwm: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "bspwm")),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "bspwm", nix.thunk(() => ({})))),
               configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -51,10 +51,10 @@ export default nix.lambda((args) => (() => {
                   description: "Path to the bspwm configuration file.\nIf null, $HOME/.config/bspwm/bspwmrc will be used.\n",
                 })))),
               sxhkd: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "sxhkd", nix.thunk(() => ({})))),
                 configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: nix.thunk(() => (() => {
                       const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                       return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -70,15 +70,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           xserver: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   name: "bspwm",
                   start: nix.thunk(() => nix.str`export _JAVA_AWT_WM_NONREPARENTING=1
 SXHKD_SHELL=/bin/sh ${nix.sel(cfg, "sxhkd", "package")}/bin/sxhkd ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "sxhkd", "configFile"), null)), nix.thunk(() => nix.str`-c ${nix.app(nix.lookup(w, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "sxhkd", "configFile")))}`))} &
@@ -90,7 +90,7 @@ waitPID=$!
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

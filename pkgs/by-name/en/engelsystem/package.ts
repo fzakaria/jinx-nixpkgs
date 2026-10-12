@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "engelsystem",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "engelsystem",
           repo: "engelsystem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       composerStrictValidation: false,
       vendorHash: "sha256-Q1Vr8AywDAI6Apb4ShyV6DhSV3Fm0rX6X0uXlnO3CZo=",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-yarn-deps`),
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-FRwmsnRsTVphSFurgaLcfNlNvxcC8fTR79G8r6RGB5A=",
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
       preBuild: "yarn build\n",
       preInstall: "rm -rf node_modules\n\n# link config and storage into FHS locations\nln -sf /etc/engelsystem/config.php ./config/config.php\nrm -rf storage\nln -snf /var/lib/engelsystem/storage/ ./storage\n",
       postInstall: "mkdir $out/bin\nln -s $out/share/php/engelsystem/bin/migrate $out/bin/migrate\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "engelsystem")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "engelsystem")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/engelsystem/engelsystem/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Coordinate your volunteers in teams, assign them to work shifts or let them decide for themselves when and where they want to help with what",
         homepage: "https://engelsystem.de",

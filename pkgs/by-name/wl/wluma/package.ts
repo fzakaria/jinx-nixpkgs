@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wluma",
       version: "4.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "max-baz",
           repo: "wluma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +53,11 @@ substituteInPlace wluma.service --replace-fail \\
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [wayland]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatic brightness adjustment based on screen contents and ALS",
         homepage: "https://github.com/max-baz/wluma",
         changelog: nix.thunk(() => nix.str`https://github.com/max-baz/wluma/releases/tag/${nix.sel(finalAttrs, "version")}`),

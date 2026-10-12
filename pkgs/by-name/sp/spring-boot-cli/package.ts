@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "spring-boot-cli",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/org/springframework/boot/spring-boot-cli/${nix.sel(finalAttrs, "version")}/spring-boot-cli-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-0QexrxlQBOq917CyFFZzt6AV/HCwxIafNAPGLnOlN/o=",
         })))),
@@ -44,25 +44,25 @@ wrapProgram $out/bin/spring \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/spring-projects/spring-boot",
             ignoredVersions: ".*-(RC|M).*",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI which makes it easy to create spring-based applications\n",
         longDescription: "Spring Boot makes it easy to create stand-alone, production-grade\nSpring-based Applications that you can run. We take an opinionated view\nof the Spring platform and third-party libraries, so that you can get\nstarted with minimum fuss. Most Spring Boot applications need very\nlittle Spring configuration.\n\nYou can use Spring Boot to create Java applications that can be started\nby using java -jar or more traditional war deployments. We also provide\na command line tool that runs “spring scripts”.\n",
         homepage: "https://spring.io/projects/spring-boot",

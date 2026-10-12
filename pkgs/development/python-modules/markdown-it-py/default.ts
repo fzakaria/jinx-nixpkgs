@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "markdown-it-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")));
       const pythonImportsCheck = nix.thunk(() => ["markdown_it"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         compare: nix.thunk(() => [commonmark, markdown, mistletoe, mistune, panflute]),
         linkify: nix.thunk(() => [linkify_it_py]),
         plugins: nix.thunk(() => [mdit_py_plugins]),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Markdown parser in Python",
         homepage: "https://markdown-it-py.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/markdown-it-py/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "markdown-it",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

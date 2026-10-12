@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withMiddleClickScroll = nix.argOr($, "withMiddleClickScroll", () => false);
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "equibop",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Equicord",
           repo: "Equibop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ substituteInPlace scripts/build/compileArrpc.mts \\
   --replace-fail -baseline ""
 `),
       "node-modules": nix.thunk(() => nix.app(callPackage, nix.path(here, "./node-modules.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           equibop: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         })))),
       nativeBuildInputs: nix.thunk(() => [bun, jq, nodejs, autoPatchelfHook, copyDesktopItems, makeWrapper]),
@@ -110,7 +110,7 @@ makeWrapper ${electron}/bin/electron $out/bin/equibop \\
         ]))}"
 `),
       desktopItems: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "equibop",
           desktopName: "Equibop",
           exec: "equibop %U",
@@ -122,7 +122,7 @@ makeWrapper ${electron}/bin/electron $out/bin/equibop \\
         })))),
       passthru: nix.thunk(() => ({})),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Custom Discord App aiming to give you better performance and improve linux support",
         homepage: "https://github.com/Equicord/Equibop",
         changelog: nix.thunk(() => nix.str`https://github.com/Equicord/Equibop/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "mesen-s",
       version: "0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "mesen-s",
           rev: "9e4fdeb9b336470bc96beb8765b2e79c86a2da1e",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd Libretro",
       normalizeCore: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Mesen-S to libretro",
         homepage: "https://github.com/libretro/mesen-s",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

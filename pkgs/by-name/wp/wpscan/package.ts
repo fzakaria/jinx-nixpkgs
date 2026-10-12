@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const curl = nix.arg($, "curl");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wpscan",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["wpscan"]),
@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.str`wrapProgram "$out/bin/wpscan" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl]))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Black box WordPress vulnerability scanner",
         homepage: "https://wpscan.org/",
         changelog: "https://github.com/wpscanteam/wpscan/releases",

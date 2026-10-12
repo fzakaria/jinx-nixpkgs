@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "odl-renderer",
       version: "0.5.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenDisplay",
           repo: "odl-renderer",
           tag: nix.thunk(() => nix.str`odl-renderer-v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, pillow, qrcode, resize_image]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         property: nix.thunk(() => [hypothesis]),
         visual: nix.thunk(() => [imagehash, syrupy]),
       })),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["odl_renderer"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure image rendering from drawing instructions for e-paper displays",
         homepage: "https://github.com/OpenDisplay/odl-renderer",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenDisplay/odl-renderer/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

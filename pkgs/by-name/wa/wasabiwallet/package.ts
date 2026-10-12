@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const pname = "wasabiwallet";
       const version = "2.7.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/WalletWasabi/WalletWasabi/releases/download/v${version}/Wasabi-${version}-linux-x64.tar.gz`),
           sha256: "sha256-o2e2NDG2aMrEYc/7x5iFex9oRlrQXeKIINuW80ZwWcI=",
         }))));
       const dontBuild = true;
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "wasabi",
           exec: "wasabiwallet-desktop",
           desktopName: "Wasabi",
@@ -66,7 +66,7 @@ done
 cp -v $desktopItem/share/applications/* $out/share/applications
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Privacy focused Bitcoin wallet",
         homepage: "https://wasabiwallet.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -81,7 +81,7 @@ cp -v $desktopItem/share/applications/* $out/share/applications
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

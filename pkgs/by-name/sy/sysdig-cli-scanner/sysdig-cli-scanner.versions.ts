@@ -9,25 +9,25 @@ const pos$4 = nix.positions(here + "/sysdig-cli-scanner.versions.nix", [["url", 
 const pos$5 = nix.positions(here + "/sysdig-cli-scanner.versions.nix", [["version", 2, 3], ["x86_64-linux", 4, 3], ["aarch64-linux", 9, 3], ["x86_64-darwin", 14, 3], ["aarch64-darwin", 19, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   version: "1.30.1",
   "x86_64-linux": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/1.30.1/linux/amd64/sysdig-cli-scanner",
     hash: "sha256-m5I1aIcorN7I4e9STfRCgyOKU3u6xv/k52hcMq45zaQ=",
   })),
   "aarch64-linux": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/1.30.1/linux/arm64/sysdig-cli-scanner",
     hash: "sha256-A0sdBNrE2z/mdPsE0214f1IN07KV3h0ic/OprtWHkwE=",
   })),
   "x86_64-darwin": nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/1.30.1/darwin/amd64/sysdig-cli-scanner",
     hash: "sha256-X/O2ZBL+AhjkkdXeSX/q0TBTZGV69ln1aiH/FW9mfZk=",
   })),
   "aarch64-darwin": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/1.30.1/darwin/arm64/sysdig-cli-scanner",
     hash: "sha256-A9k+ihoSW+DajgoZ+/gC1IY7q6re3fK5SHalrsPxlxk=",
   })),

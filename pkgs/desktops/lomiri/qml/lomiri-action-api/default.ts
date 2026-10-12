@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withDocumentation = nix.argOr($, "withDocumentation", () => true);
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lomiri-action-api",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-action-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,15 +63,15 @@ substituteInPlace documentation/qml/pages/* \\
 export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.sel(qtbase, "qtQmlPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Allow applications to export actions in various forms to the Lomiri Shell",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-action-api",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-action-api/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

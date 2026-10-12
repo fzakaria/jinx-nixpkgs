@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lineax",
       version: "0.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patrick-kidger",
           repo: "lineax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ ${nix.sel(python, "interpreter")} -m tests
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linear solvers in JAX and Equinox",
         homepage: "https://github.com/patrick-kidger/lineax",
         changelog: nix.thunk(() => nix.str`https://github.com/patrick-kidger/lineax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cfn-changeset-viewer";
       const version = "0.3.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trek10inc",
           repo: "cfn-changeset-viewer",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI to view the changes calculated in a CloudFormation ChangeSet in a more human-friendly way",
         homepage: "https://github.com/trek10inc/cfn-changeset-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

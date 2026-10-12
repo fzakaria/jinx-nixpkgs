@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "69221502dac74f5df1317011ce62c85a83eef5da3b71c63b1908e98224304a8c",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pandocfilters]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aaren/pandoc-attributes",
         description: "Attribute class to be used with pandocfilters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

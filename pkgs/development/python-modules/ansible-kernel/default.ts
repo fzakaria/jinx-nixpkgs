@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ansible = nix.arg($, "ansible");
   const python = nix.arg($, "python");
   const kernelSpecFile = nix.thunk(() => nix.app(writeText, "kernel.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         argv: nix.thunk(() => [
           nix.thunk(() => nix.sel(python, "interpreter")),
           "-m",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           hash: "sha256-UJjm9FpmXSznXtaIR2rVv5YJS/H83FvRkNz09vwoe0c=",
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
 ln -s ${kernelSpecFile} $out/share/jupyter/kernels/ansible/kernel.json
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ansible kernel for Jupyter",
         homepage: "https://github.com/ansible/ansible-jupyter-kernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

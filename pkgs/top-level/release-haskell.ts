@@ -53,7 +53,7 @@ const pos$46 = nix.positions(here + "/release-haskell.nix", [["mergeable", 615, 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./release-supported-systems.json")))));
-  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ __proto__: pos$1, supportedSystems: supportedSystems }))));
+  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, supportedSystems: supportedSystems }))));
   const lib = nix.thunk(() => nix.attr(releaseLib, "lib"));
   const mapTestOn = nix.thunk(() => nix.attr(releaseLib, "mapTestOn"));
   const packagePlatforms = nix.thunk(() => nix.attr(releaseLib, "packagePlatforms"));
@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
   })());
   const compilerPlatforms = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(packagePlatforms, v), nix.thunk(() => nix.sel(pkgs, "haskell", "packages"))));
   const versionedCompilerJobs = (config) => nix.app(mapTestOn, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       haskell: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         packages: nix.thunk(() => (() => {
           const onlyConfigJobs = (ghc) => (jobs_1) => (() => {
             const configFilteredJobset = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (jobName) => (platforms) => nix.app(nix.sel(lib, "elem"), ghc, nix.thunk(() => nix.selOr(config, () => [], nix.key(nix.str`${jobName}`)))), jobs_1));
@@ -91,20 +91,20 @@ export default nix.lambda((args) => (() => {
   const removePlatforms = (platformsToRemove) => (packageSet) => nix.app(nix.sel(lib, "mapAttrsRecursive"), (_) => (val) => (nix.asBool(nix.app(nix.sel(lib, "isList"), val)) ? nix.app(nix.sel(lib, "subtractLists"), platformsToRemove, val) : nix.force(val)), packageSet);
   const jobs = nix.thunk(() => nix.app(recursiveUpdateMany, nix.thunk(() => [
       nix.thunk(() => nix.app(mapTestOn, nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           haskellPackages: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "haskellPackages")))),
           haskell: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             compiler: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "haskell", "compiler")))),
           })),
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             haskell: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "tests", "haskell")))),
           })),
           nixosTests: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "nixosTests"))));
             return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             agda: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "nixosTests", "agda")))),
             kmonad: nix.thunk(() => nix.attr(from, "kmonad")),
             xmonad: nix.thunk(() => nix.attr(from, "xmonad")),
@@ -224,21 +224,21 @@ export default nix.lambda((args) => (() => {
           elmPackages: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgsPlatforms, "elmPackages"));
             return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             elm: nix.thunk(() => nix.attr(from, "elm")),
             "elm-format": nix.thunk(() => nix.attr(from, "elm-format")),
           };
           })()),
           pkgsMusl: nix.thunk(() => nix.app(removePlatforms, nix.thunk(() => ["aarch64-linux", "aarch64-darwin"]), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               haskell: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 compiler: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "microhs", name)), nix.thunk(() => nix.sel(pkgs, "pkgsMusl", "haskell", "compiler")))))),
               })),
               haskellPackages: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsMusl", "haskellPackages"))));
                 return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 hello: nix.thunk(() => nix.attr(from, "hello")),
                 lens: nix.thunk(() => nix.attr(from, "lens")),
                 random: nix.thunk(() => nix.attr(from, "random")),
@@ -246,11 +246,11 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           pkgsStatic: nix.thunk(() => nix.app(removePlatforms, nix.thunk(() => ["aarch64-linux", "aarch64-darwin"]), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               haskellPackages: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsStatic", "haskellPackages"))));
                 return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 hello: nix.thunk(() => nix.attr(from, "hello")),
                 lens: nix.thunk(() => nix.attr(from, "lens")),
                 random: nix.thunk(() => nix.attr(from, "random")),
@@ -262,15 +262,15 @@ export default nix.lambda((args) => (() => {
               };
               })()),
               haskell: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 packages: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   "native-bignum": nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     ghc948: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsStatic", "haskell", "packages", "native-bignum", "ghc948"))));
                       return {
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       hello: nix.thunk(() => nix.attr(from, "hello")),
                       lens: nix.thunk(() => nix.attr(from, "lens")),
                       random: nix.thunk(() => nix.attr(from, "random")),
@@ -286,26 +286,26 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           pkgsCross: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             ghcjs: nix.thunk(() => nix.app(removePlatforms, nix.thunk(() => ["aarch64-linux"]), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 haskellPackages: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ghcjs", "haskellPackages"))));
                   return {
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   ghc: nix.thunk(() => nix.attr(from, "ghc")),
                   hello: nix.thunk(() => nix.attr(from, "hello")),
                   microlens: nix.thunk(() => nix.attr(from, "microlens")),
                 };
                 })()),
                 haskell: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   packages: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     ghc912: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ghcjs", "haskell", "packages", "ghc912"))));
                       return {
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       ghc: nix.thunk(() => nix.attr(from, "ghc")),
                       hello: nix.thunk(() => nix.attr(from, "hello")),
                       microlens: nix.thunk(() => nix.attr(from, "microlens")),
@@ -316,7 +316,7 @@ export default nix.lambda((args) => (() => {
                     ghcHEAD: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ghcjs", "haskell", "packages", "ghcHEAD"))));
                       return {
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       ghc: nix.thunk(() => nix.attr(from, "ghc")),
                       hello: nix.thunk(() => nix.attr(from, "hello")),
                       microlens: nix.thunk(() => nix.attr(from, "microlens")),
@@ -326,15 +326,15 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             ucrt64: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               haskell: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 packages: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   ghc912: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ucrt64", "haskell", "packages", "ghc912"))));
                     return {
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     ghc: nix.thunk(() => nix.attr(from, "ghc")),
                     microlens: nix.thunk(() => nix.attr(from, "microlens")),
                   };
@@ -343,30 +343,30 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             riscv64: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               haskell: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 compiler: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "riscv64", "haskell", "compiler"))));
-                  return { __proto__: pos$27, ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
+                  return { [nix.POS]: pos$27, ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
                 })()),
               })),
             })),
             "aarch64-multiplatform": nix.thunk(() => nix.update({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               haskell: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 compiler: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "aarch64-multiplatform", "haskell", "compiler"))));
-                  return { __proto__: pos$30, ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
+                  return { [nix.POS]: pos$30, ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
                 })()),
               })),
             }, nix.app(removePlatforms, nix.thunk(() => ["aarch64-darwin", "aarch64-linux"]), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 haskellPackages: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "aarch64-multiplatform", "haskellPackages"))));
                   return {
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   ghc: nix.thunk(() => nix.attr(from, "ghc")),
                   hello: nix.thunk(() => nix.attr(from, "hello")),
                   "th-orphans": nix.thunk(() => nix.attr(from, "th-orphans")),
@@ -376,7 +376,7 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       nix.thunk(() => nix.app(versionedCompilerJobs, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           "cabal-install": nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => [nix.thunk(() => nix.sel(compilerNames, "ghc948"))]), released)),
           Cabal_3_10_3_0: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => [nix.thunk(() => nix.sel(compilerNames, "ghc9123"))]), released)),
           Cabal_3_12_1_0: released,
@@ -422,12 +422,12 @@ export default nix.lambda((args) => (() => {
           random: nix.thunk(() => [nix.thunk(() => nix.sel(compilerNames, "microhs"))]),
         })))),
       nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         mergeable: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             name: "haskell-updates-mergeable",
             meta: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "Critical haskell packages that should work at all times,\nserves as minimum requirement for an update merge\n",
               teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "haskell"))]),
             })),
@@ -457,20 +457,20 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         maintained: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             name: "maintained-haskell-packages",
             meta: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "Aggregate jobset of all haskell packages with a maintainer",
               teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "haskell"))]),
             })),
             constituents: nix.thunk(() => nix.app(accumulateDerivations, nix.thunk(() => nix.builtins.map((name) => nix.sel(jobs, "haskellPackages", nix.key(nix.str`${name}`)), nix.thunk(() => nix.app(maintainedPkgNames, nix.thunk(() => nix.sel(pkgs, "haskellPackages")))))))),
           })))),
         muslGHCs: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             name: "haskell-pkgsMusl-ghcs",
             meta: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "GHCs built with musl",
               maintainers: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -483,10 +483,10 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         staticHaskellPackages: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             name: "static-haskell-packages",
             meta: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "Static haskell builds using the pkgsStatic infrastructure",
               maintainers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann")),

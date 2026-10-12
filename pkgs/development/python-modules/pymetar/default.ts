@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-SNvmxJKZYQIcth5Ju54GBbVMS2G5+5reUQdnBaCOzVQ=",
@@ -36,7 +36,7 @@ export PYTHONPATH="$PYTHONPATH:$out/${nix.sel(python, "sitePackages")}"
 ./runtests.sh
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool to show the weather report by a given station ID",
         mainProgram: "pymetar",
         homepage: "https://github.com/klausman/pymetar",
@@ -47,7 +47,7 @@ export PYTHONPATH="$PYTHONPATH:$out/${nix.sel(python, "sitePackages")}"
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

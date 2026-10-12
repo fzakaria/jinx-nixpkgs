@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withRootSupport = nix.argOr($, "withRootSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yoda",
       version: "2.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hepcedar",
           repo: "yoda",
           rev: nix.thunk(() => nix.str`yoda-${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })(), nix.app(nix.sel(lib, "optionals"), withRootSupport, nix.thunk(() => [root]))))),
       propagatedBuildInputs: nix.thunk(() => [zlib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DWITH_OSX")),
       })),
       strictDeps: true,
@@ -60,7 +60,7 @@ substituteInPlace pyext/yoda/plotting/script_generator.py \\
       doInstallCheck: true,
       installCheckTarget: "check",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides small set of data analysis (specifically histogramming) classes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: "https://yoda.hepforge.org",

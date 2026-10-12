@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const makeDictdDBFreedict = (src) => (name) => (locale) => nix.app(makeDictdDB, src, name, "{.,bin}", locale);
   const makeDictdDB = (src) => (_name) => (_subdir) => (_locale) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`dictd-db-${_name}`),
       src: src,
       locale: _locale,
@@ -44,54 +44,54 @@ cp $(ls ./${_subdir}/*.{dict*,index} || true) $out/share/dictd
 echo "${_locale}" >$out/share/dictd/locale
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Dictd-db dictionary for dictd",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));
   return (() => {
     const deu2eng = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "mirror://sourceforge/freedict/deu-eng.tar.gz",
           sha256: "0dqrhv04g4f5s84nbgisgcfwk5x0rpincif0yfhfh4sc1bsvzsrb",
         })))), "deu-eng", "de_DE"));
     const eng2deu = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "mirror://sourceforge/freedict/eng-deu.tar.gz",
           sha256: "01x12p72sa3071iff3jhzga8588440f07zr56r3x98bspvdlz73r",
         })))), "eng-deu", "en_EN"));
     const nld2eng = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "mirror://sourceforge/freedict/nld-eng.tar.gz",
           sha256: "1vhw81pphb64fzsjvpzsnnyr34ka2fxizfwilnxyjcmpn9360h07",
         })))), "nld-eng", "nl_NL"));
     const eng2nld = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "mirror://sourceforge/freedict/eng-nld.tar.gz",
           sha256: "0rcg28ldykv0w2mpxc6g4rqmfs33q7pbvf68ssy1q9gpf6mz7vcl",
         })))), "eng-nld", "en_UK"));
     const eng2rus = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: "mirror://sourceforge/freedict/eng-rus.tar.gz",
           sha256: "15409ivhww1wsfjr05083pv6mg10bak8v5pg1wkiqybk7ck61rry",
         })))), "eng-rus", "en_UK"));
     const fra2eng = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: "mirror://sourceforge/freedict/fra-eng.tar.gz",
           sha256: "0sdd88s2zs5whiwdf3hd0s4pzzv75sdsccsrm1wxc87l3hjm85z3",
         })))), "fra-eng", "fr_FR"));
     const eng2fra = nix.thunk(() => nix.app(makeDictdDBFreedict, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           url: "mirror://sourceforge/freedict/eng-fra.tar.gz",
           sha256: "0fi6rrnbqnhc6lq8d0nmn30zdqkibrah0mxfg27hsn9z7alwbj3m",
         })))), "eng-fra", "en_UK"));
     const epo2eng = nix.thunk(() => nix.app(makeDictdDB, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           url: "https://download.freedict.org/dictionaries/epo-eng/1.0.1/freedict-epo-eng-1.0.1.dictd.tar.xz",
           sha256: "095xwqfc43dnm0g74i83lg03542f064jy2xbn3qnjxiwysz9ksnz",
         })))), "epo-eng", "epo-eng", "eo"));
     const jpn2eng = nix.thunk(() => nix.app(makeDictdDB, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           url: nix.thunk(() => (() => {
             const version = "0.1";
             return nix.str`mirror://sourceforge/freedict/jpn-eng/${version}/freedict-jpn-eng-${version}.dictd.tar.xz`;
@@ -99,7 +99,7 @@ echo "${_locale}" >$out/share/dictd/locale
           sha256: "sha256-juJBoEq7EztLZzOomc7uoZhXVaQPKoUvIxxPLB0xByc=",
         })))), "jpn-eng", "jpn-eng", "ja_JP"));
     const eng2jpn = nix.thunk(() => nix.app(makeDictdDB, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           url: nix.thunk(() => (() => {
             const version = "2022.04.06";
             return nix.str`https://download.freedict.org/dictionaries/eng-jpn/${version}/freedict-eng-jpn-${version}.dictd.tar.xz`;
@@ -107,40 +107,40 @@ echo "${_locale}" >$out/share/dictd/locale
           sha256: "sha256-kfRT2kgbV3XKarCr4mqDRT5A1jR8M8APky5M5MFYatE=",
         })))), "eng-jpn", "eng-jpn", "en_UK"));
     const mueller_eng2rus_pkg = nix.thunk(() => nix.app(makeDictdDB, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           url: "mirror://sourceforge/mueller-dict/mueller-dict-3.1.tar.gz",
           sha256: "04r5xxznvmcb8hkxqbjgfh2gxvbdd87jnhqn5gmgvxxw53zpwfmq",
         })))), "mueller-eng-rus", "mueller-dict-*/dict", "en_UK"));
     const mueller_enru_abbr = nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       outPath: nix.thunk(() => nix.str`${mueller_eng2rus_pkg}/share/dictd/mueller-abbrev`),
       name: "mueller-abbr",
       dbName: "mueller-abbr",
       locale: "en_UK",
     }));
     const mueller_enru_base = nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       outPath: nix.thunk(() => nix.str`${mueller_eng2rus_pkg}/share/dictd/mueller-base`),
       name: "mueller-base",
       dbName: "mueller-base",
       locale: "en_UK",
     }));
     const mueller_enru_dict = nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       outPath: nix.thunk(() => nix.str`${mueller_eng2rus_pkg}/share/dictd/mueller-dict`),
       name: "mueller-dict",
       dbName: "mueller-dict",
       locale: "en_UK",
     }));
     const mueller_enru_geo = nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       outPath: nix.thunk(() => nix.str`${mueller_eng2rus_pkg}/share/dictd/mueller-geo`),
       name: "mueller-geo",
       dbName: "mueller-geo",
       locale: "en_UK",
     }));
     const mueller_enru_names = nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       outPath: nix.thunk(() => nix.str`${mueller_eng2rus_pkg}/share/dictd/mueller-names`),
       name: "mueller-names",
       dbName: "mueller-names",
@@ -149,7 +149,7 @@ echo "${_locale}" >$out/share/dictd/locale
     const wordnet = nix.thunk(() => nix.app(callPackage, nix.path(here, "./dictd-wordnet.nix"), nix.thunk(() => ({}))));
     const wiktionary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wiktionary"), nix.thunk(() => ({}))));
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       deu2eng,
       eng2deu,
       nld2eng,

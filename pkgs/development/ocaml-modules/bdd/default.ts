@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bdd",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "backtracking",
           repo: "ocaml-bdd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace lib/bdd.ml \\\n  --replace-fail \"Buffer.truncate Format.stdbuf 0;\" \"Buffer.clear Format.stdbuf;\"\n",
       propagatedBuildInputs: nix.thunk(() => [stdlib_shims]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quick implementation of a Binary Decision Diagrams (BDD) library for OCaml",
         homepage: "https://github.com/backtracking/ocaml-bdd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

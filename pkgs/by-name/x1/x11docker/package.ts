@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const weston = nix.arg($, "weston");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x11docker",
       version: "7.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mviereck",
           repo: "x11docker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ wrapProgram "$out/bin/x11docker" \\
         ]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run graphical applications with Docker",
         homepage: "https://github.com/mviereck/x11docker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

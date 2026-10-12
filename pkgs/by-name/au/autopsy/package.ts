@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const findutils = nix.arg($, "findutils");
   const sleuthkit = nix.arg($, "sleuthkit");
-  const jdkWithJfx = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))))));
+  const jdkWithJfx = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "autopsy",
       version: "4.23.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/sleuthkit/autopsy/releases/download/autopsy-${nix.sel(finalAttrs, "version")}/autopsy-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-4MADKow3FX0n4IzblWxcfNLfDKSkLDtIil24/QioF7U=",
         })))),
@@ -50,7 +50,7 @@ wrapProgram $out/bin/autopsy \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical interface to The Sleuth Kit and other open source digital forensics tools",
         homepage: "https://www.sleuthkit.org/autopsy",
         changelog: nix.thunk(() => nix.str`https://github.com/sleuthkit/autopsy/releases/tag/autopsy-${nix.sel(finalAttrs, "version")}`),

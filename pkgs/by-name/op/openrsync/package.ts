@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "openrsync",
       version: "0.5.0-unstable-2026-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kristapsdz",
           repo: "openrsync",
           rev: "48070e68d73f67d6922b2ffc8c2dee9754e659c6",
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, prefixKey: "PREFIX=" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, prefixKey: "PREFIX=" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=^VERSION_(\\d+)_(\\d+)_(\\d+.*)", "--version=branch"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.openrsync.org/",
         description: "BSD-licensed implementation of rsync",
         mainProgram: "openrsync",

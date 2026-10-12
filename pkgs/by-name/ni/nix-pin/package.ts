@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-pin";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timbertson",
           repo: "nix-pin",
           rev: nix.thunk(() => nix.str`version-${version}`),
@@ -42,13 +42,13 @@ wrapProgram $out/bin/nix-pin \\
       const passthru = nix.thunk(() => (() => {
         const defaults = nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.str`${self}/share/nix/defaults.nix`)));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           api: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pinConfig = nix.argOr($_1, "pinConfig", () => nix.sel(defaults, "pinConfig"));
-            const impl = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${self}/share/nix/api.nix`)), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, pinConfig: pinConfig }))));
+            const impl = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${self}/share/nix/api.nix`)), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, pinConfig: pinConfig }))));
             return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               augmentedPkgs: nix.thunk(() => nix.attr(impl, "augmentedPkgs")),
               pins: nix.thunk(() => nix.attr(impl, "pins")),
               callPackage: nix.thunk(() => nix.attr(impl, "callPackage")),
@@ -71,7 +71,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/timbertson/nix-pin",
         description: "Nixpkgs development utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -80,7 +80,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         mainProgram: "nix-pin",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

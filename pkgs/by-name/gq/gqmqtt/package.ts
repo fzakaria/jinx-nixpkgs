@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gqmqtt",
       version: "0.2.0-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "klumw",
           repo: "gqmqtt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-4kT3dswD+Zlgal/kt3jOclDKkrBNXOZqvSPXg79TqX0=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GQ GMC-500+ USB serial to MQTT bridge",
         homepage: "https://github.com/klumw/gqmqtt",
         changelog: nix.thunk(() => nix.str`https://github.com/klumw/gqmqtt/releases/tag/v${nix.sel(finalAttrs, "version")}`),

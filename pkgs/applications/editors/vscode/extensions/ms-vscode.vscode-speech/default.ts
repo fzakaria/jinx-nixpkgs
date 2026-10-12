@@ -22,28 +22,28 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "linux-x64",
             hash: "sha256-dZwOBehoYEqaYskvcPB55IKnG1CMToioyUJXlndqorA=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "linux-arm64",
             hash: "sha256-/EaOfoubfq1ufwB7TTQ2hqmh1ZJiZ1+B6QeYu3MoFPI=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             arch: "darwin-arm64",
             hash: "sha256-JhZWNlGXljsjmT3/xDi9Z7I4a2vsi/9EkWYbnlteE98=",
           })),
         }));
         return nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "vscode-speech",
           publisher: "ms-vscode",
           version: "0.16.0",
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/vscode/extensions/ms-vscode.vscode-speech/node_modules/@vscode/node-speech/build/Release`),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Enables speech-to-text and text-to-speech capabilities in VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-speech",
         homepage: "https://github.com/microsoft/vscode",

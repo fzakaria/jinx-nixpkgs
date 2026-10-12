@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const openstackdocstheme = nix.arg($, "openstackdocstheme");
   const sphinxcontrib_apidoc = nix.arg($, "sphinxcontrib-apidoc");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-swiftclient",
       version: "4.10.0",
       pyproject: true,
       "build-system": nix.thunk(() => [pbr, setuptools]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openstack",
           repo: "python-swiftclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd swift --bash tools/swift.bash_completion\ninstallManPage doc/manpages/*\n",
       pythonImportsCheck: nix.thunk(() => ["swiftclient"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client library for OpenStack Swift API",
         mainProgram: "swift",
         homepage: "https://docs.openstack.org/python-swiftclient/latest/",

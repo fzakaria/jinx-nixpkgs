@@ -10,6 +10,6 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   const lib = nix.arg($, "lib");
-  return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, nix.update(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./3.0.json")), { __proto__: pos$1, generation: "3_0" }))));
+  return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, nix.update(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./3.0.json")), { [nix.POS]: pos$1, generation: "3_0" }))));
 })(), formals$1);
 //# sourceMappingURL=3.0.ts.map

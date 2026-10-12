@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const release = "0.1.0-unstable-2025-04-24";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "acer-wmi-battery",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-${release}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frederik-h",
           repo: "acer-wmi-battery",
           rev: "0889d3ea54655eaa88de552b334911ce7375952f",
@@ -39,7 +39,7 @@ install -Dm444 -t $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/dr
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for the Acer WMI battery health control interface",
         homepage: "https://github.com/frederik-h/acer-wmi-battery",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

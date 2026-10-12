@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ergo",
       version: "6.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ergoplatform/ergo/releases/download/v${nix.sel(finalAttrs, "version")}/ergo-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-hhb0BRM1zzt+4/MJmCG3snsZE7zYu1lX7X/ELd4m6fo=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`makeWrapper ${jre}/bin/java $out/bin/ergo --add-flags "-jar $src"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ergo: nix.thunk(() => nix.attr(nixosTests, "ergo")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ergo: nix.thunk(() => nix.attr(nixosTests, "ergo")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open protocol that implements modern scientific ideas in the blockchain area",
         homepage: "https://ergoplatform.org/en/",
         sourceProvenance: nix.thunk(() => (() => {

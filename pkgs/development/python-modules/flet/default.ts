@@ -60,7 +60,7 @@ def update_version():
       const nativeCheckInputs = nix.thunk(() => [numpy, pillow, pytest_asyncio, pytestCheckHook, scikit_image]);
       const pythonImportsCheck = nix.thunk(() => ["flet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: true,
         description: "Framework that enables you to easily build realtime web, mobile, and desktop apps in Python",
         homepage: "https://flet.dev/",
@@ -73,7 +73,7 @@ def update_version():
         mainProgram: "flet",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

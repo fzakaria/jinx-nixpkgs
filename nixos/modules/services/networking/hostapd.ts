@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
   const unique = nix.thunk(() => nix.attr(lib, "unique"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "hostapd"));
   const extraSettingsFormat = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     type: nix.thunk(() => (() => {
       const singleAtom = nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
           nix.thunk(() => nix.sel(types, "bool")),
@@ -181,16 +181,16 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(types, "str")),
         ])));
       const atom = nix.thunk(() => nix.update(nix.app(nix.sel(types, "either"), singleAtom, nix.thunk(() => nix.app(nix.sel(types, "listOf"), singleAtom))), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "atom (bool, int or string) or a list of them for duplicate keys",
       }));
       return nix.app(nix.sel(types, "attrsOf"), atom);
     })()),
     generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(generators, "toKeyValue"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           listsAsDuplicateKeys: true,
           mkKeyValue: nix.thunk(() => nix.app(nix.sel(generators, "mkKeyValueDefault"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               mkValueString: (v) => (nix.asBool(nix.app(isInt, v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(isString, v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "1" : (nix.asBool(nix.eq(false, v)) ? "0" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported type ${nix.builtins.typeOf(v)}: ${nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), v)}`)))))),
             })), "=")),
         })), value))),
@@ -234,91 +234,91 @@ ${nix.app(concatMapStrings, (script) => nix.str`${script} "$hostapd_config_file"
 `, nix.thunk(() => nix.sel(radioCfg, "networks"))))))))));
   const runtimeConfigFiles = nix.thunk(() => nix.app(mapAttrsToList, (radio) => (_) => nix.str`/run/hostapd/${radio}.hostapd.conf`, nix.thunk(() => nix.sel(cfg, "radios"))));
   return {
-    __proto__: pos$129,
+    [nix.POS]: pos$129,
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "oddlama"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$108,
+      [nix.POS]: pos$108,
       services: nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         hostapd: nix.thunk(() => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           enable: nix.thunk(() => nix.app(mkEnableOption, "hostapd, a user space daemon for access point and\nauthentication servers. It implements IEEE 802.11 access point management,\nIEEE 802.1X/WPA/WPA2/EAP Authenticators, RADIUS client, EAP server, and RADIUS\nauthentication server\n")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "hostapd", nix.thunk(() => ({})))),
           radios: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  # Simple 2.4GHz AP\n  wlp2s0 = {\n    # countryCode = \"US\";\n    networks.wlp2s0 = {\n      ssid = \"AP 1\";\n      authentication.saePasswords = [{ passwordFile = \"/run/secrets/my-password\"; }];\n    };\n  };\n\n  # WiFi 5 (5GHz) with two advertised networks\n  wlp3s0 = {\n    band = \"5g\";\n    channel = 0; # Enable automatic channel selection (ACS). Use only if your hardware supports it.\n    # countryCode = \"US\";\n    networks.wlp3s0 = {\n      ssid = \"My AP\";\n      authentication.saePasswords = [{ passwordFile = \"/run/secrets/my-password\"; }];\n    };\n    networks.wlp3s0-1 = {\n      ssid = \"Open AP with WiFi5\";\n      authentication.mode = \"none\";\n    };\n  };\n\n  # Legacy WPA2 example\n  wlp4s0 = {\n    # countryCode = \"US\";\n    networks.wlp4s0 = {\n      ssid = \"AP 2\";\n      authentication = {\n        mode = \"wpa2-sha256\";\n        wpaPassword = \"a flakey password\"; # Use wpaPasswordFile if possible.\n      };\n    };\n  };\n}\n")),
               description: "This option allows you to define APs for one or multiple physical radios.\nAt least one radio must be specified.\n\nFor each radio, hostapd requires a separate logical interface (like wlp3s0, wlp3s1, ...).\nA default interface is usually be created automatically by your system, but to use\nmultiple radios of a single device, it may be required to create additional logical interfaces\nfor example by using {option}`networking.wlanInterfaces`.\n\nEach physical radio can only support a single hardware-mode that is configured via\n({option}`services.hostapd.radios.<radio>.band`). To create a dual-band\nor tri-band AP, you will have to use a device that has multiple physical radios\nand supports configuring multiple APs (Refer to valid interface combinations in\n{command}`iw list`).\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), (radioSubmod) => ({
-                    __proto__: pos$104,
+                    [nix.POS]: pos$104,
                     options: nix.thunk(() => ({
-                      __proto__: pos$95,
+                      [nix.POS]: pos$95,
                       driver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           default: "nl80211",
                           example: "none",
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "The driver {command}`hostapd` will use.\n{var}`nl80211` is used with all Linux mac80211 drivers.\n{var}`none` is used if building a standalone RADIUS server that does\nnot control any wireless/wired driver.\nMost applications will probably use the default.\n",
                         })))),
                       noScan: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Disables scan for overlapping BSSs in HT40+/- mode.\nCaution: turning this on will likely violate regulatory requirements!\n",
                         })))),
                       countryCode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           default: null,
                           example: "US",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           description: "Country code (ISO/IEC 3166-1). Used to set regulatory domain.\nSet as needed to indicate country in which device is operating.\nThis can limit available channels and transmit power.\nThese two octets are used as the first two octets of the Country String\n(dot11CountryString).\n\nSetting this will force you to also enable IEEE 802.11d and IEEE 802.11h.\n\nIEEE 802.11d: This advertises the countryCode and the set of allowed channels\nand transmit power levels based on the regulatory limits.\n\nIEEE802.11h: This enables radar detection and DFS (Dynamic Frequency Selection)\nsupport if available. DFS support is required on outdoor 5 GHz channels in most\ncountries of the world.\n",
                         })))),
                       band: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           default: "2g",
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["2g", "5g", "6g", "60g"]))),
                           description: "Specifies the frequency band to use, possible values are 2g for 2.4 GHz,\n5g for 5 GHz, 6g for 6 GHz and 60g for 60 GHz.\n",
                         })))),
                       channel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           default: 0n,
                           example: 11n,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           description: "The channel to operate on. Use 0 to enable ACS (Automatic Channel Selection).\nBeware that not every device supports ACS in which case {command}`hostapd`\nwill fail to start.\n",
                         })))),
                       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           default: nix.thunk(() => ({})),
-                          example: nix.thunk(() => ({ __proto__: pos$11, acs_exclude_dfs: true })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$11, acs_exclude_dfs: true })),
                           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               freeformType: nix.thunk(() => nix.sel(extraSettingsFormat, "type")),
                             })))),
                           description: "Extra configuration options to put at the end of global initialization, before defining BSSs.\nTo find out which options are global and which are per-bss you have to read hostapd's source code,\nwhich is non-trivial and not documented otherwise.\n\nLists will be converted to multiple definitions of the same key, and booleans to 0/1.\nOtherwise, the inputs are not modified or checked for correctness.\n",
                         })))),
                       dynamicConfigScripts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           default: nix.thunk(() => ({})),
                           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                           example: nix.thunk(() => nix.app(literalExpression, "{\n  exampleDynamicConfig = pkgs.writeShellScript \"dynamic-config\" ''\n    HOSTAPD_CONFIG=$1\n\n    cat >> \"$HOSTAPD_CONFIG\" << EOF\n    # Add some dynamically generated statements here,\n    # for example based on the physical adapter in use\n    EOF\n  '';\n}\n")),
                           description: "All of these scripts will be executed in lexicographical order before hostapd\nis started, right after the global segment was generated and may dynamically\nappend global options the generated configuration file.\n\nThe first argument will point to the configuration file that you may append to.\n",
                         })))),
                       wifi4: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             default: true,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Enables support for IEEE 802.11n (WiFi 4, HT).\nThis is enabled by default, since the vase majority of devices\nare expected to support this.\n",
                           })))),
                         capabilities: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             default: nix.thunk(() => ["HT40", "SHORT-GI-20", "SHORT-GI-40"]),
                             example: nix.thunk(() => [
@@ -334,22 +334,22 @@ ${nix.app(concatMapStrings, (script) => nix.str`${script} "$hostapd_config_file"
                             description: "HT (High Throughput) capabilities given as a list of flags.\nPlease refer to the hostapd documentation for allowed values and\nonly set values supported by your physical adapter.\n\nThe default contains common values supported by most adapters.\n",
                           })))),
                         require: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Require stations (clients) to support WiFi 4 (HT) and disassociate them if they don't.",
                           })))),
                       })),
                       wifi5: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             default: true,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Enables support for IEEE 802.11ac (WiFi 5, VHT)",
                           })))),
                         capabilities: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             default: [],
                             example: nix.thunk(() => [
@@ -362,290 +362,290 @@ ${nix.app(concatMapStrings, (script) => nix.str`${script} "$hostapd_config_file"
                             description: "VHT (Very High Throughput) capabilities given as a list of flags.\nPlease refer to the hostapd documentation for allowed values and\nonly set values supported by your physical adapter.\n",
                           })))),
                         require: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Require stations (clients) to support WiFi 5 (VHT) and disassociate them if they don't.",
                           })))),
                         operatingChannelWidth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             default: "20or40",
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["20or40", "80", "160", "80+80"]))),
-                            apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ __proto__: pos$22, "20or40": 0n, "80": 1n, "160": 2n, "80+80": 3n }))),
+                            apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ [nix.POS]: pos$22, "20or40": 0n, "80": 1n, "160": 2n, "80+80": 3n }))),
                             description: "Determines the operating channel width for VHT.\n\n- {var}`\"20or40\"`: 20 or 40 MHz operating channel width\n- {var}`\"80\"`: 80 MHz channel width\n- {var}`\"160\"`: 160 MHz channel width\n- {var}`\"80+80\"`: 80+80 MHz channel width\n",
                           })))),
                       })),
                       wifi6: nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Enables support for IEEE 802.11ax (WiFi 6, HE)",
                           })))),
                         require: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Require stations (clients) to support WiFi 6 (HE) and disassociate them if they don't.",
                           })))),
                         singleUserBeamformer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "HE single user beamformer support",
                           })))),
                         singleUserBeamformee: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "HE single user beamformee support",
                           })))),
                         multiUserBeamformer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "HE multi user beamformee support",
                           })))),
                         operatingChannelWidth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             default: "20or40",
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["20or40", "80", "160", "80+80"]))),
-                            apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ __proto__: pos$30, "20or40": 0n, "80": 1n, "160": 2n, "80+80": 3n }))),
+                            apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ [nix.POS]: pos$30, "20or40": 0n, "80": 1n, "160": 2n, "80+80": 3n }))),
                             description: "Determines the operating channel width for HE.\n\n- {var}`\"20or40\"`: 20 or 40 MHz operating channel width\n- {var}`\"80\"`: 80 MHz channel width\n- {var}`\"160\"`: 160 MHz channel width\n- {var}`\"80+80\"`: 80+80 MHz channel width\n",
                           })))),
                       })),
                       wifi7: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "Enables support for IEEE 802.11be (WiFi 7, EHT). This is currently experimental\nand requires you to manually enable CONFIG_IEEE80211BE when building hostapd.\n",
                           })))),
                         singleUserBeamformer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "EHT single user beamformer support",
                           })))),
                         singleUserBeamformee: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "EHT single user beamformee support",
                           })))),
                         multiUserBeamformer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             description: "EHT multi user beamformee support",
                           })))),
                         operatingChannelWidth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             default: "20or40",
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["20or40", "80", "160", "80+80"]))),
-                            apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ __proto__: pos$37, "20or40": 0n, "80": 1n, "160": 2n, "80+80": 3n }))),
+                            apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ [nix.POS]: pos$37, "20or40": 0n, "80": 1n, "160": 2n, "80+80": 3n }))),
                             description: "Determines the operating channel width for EHT.\n\n- {var}`\"20or40\"`: 20 or 40 MHz operating channel width\n- {var}`\"80\"`: 80 MHz channel width\n- {var}`\"160\"`: 160 MHz channel width\n- {var}`\"80+80\"`: 80+80 MHz channel width\n",
                           })))),
                       })),
                       networks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$94,
+                          [nix.POS]: pos$94,
                           default: nix.thunk(() => ({})),
                           example: nix.thunk(() => nix.app(literalExpression, "{\n  wlp2s0 = {\n    ssid = \"Primary advertised network\";\n    authentication.saePasswords = [{ passwordFile = \"/run/secrets/my-password\"; }];\n  };\n  wlp2s0-1 = {\n    ssid = \"Secondary advertised network (Open)\";\n    authentication.mode = \"none\";\n  };\n}\n")),
                           description: "This defines a BSS, colloquially known as a WiFi network.\nYou have to specify at least one.\n",
                           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), (bssSubmod) => ({
-                                __proto__: pos$93,
+                                [nix.POS]: pos$93,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$77,
+                                  [nix.POS]: pos$77,
                                   logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$40,
+                                      [nix.POS]: pos$40,
                                       default: 2n,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 4n)),
                                       description: "Levels (minimum value for logged events):\n0 = verbose debugging\n1 = debugging\n2 = informational messages\n3 = notification\n4 = warning\n",
                                     })))),
                                   group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$41,
+                                      [nix.POS]: pos$41,
                                       default: "wheel",
                                       example: "network",
                                       type: nix.thunk(() => nix.sel(types, "str")),
                                       description: "Members of this group can access the control socket for this interface.\n",
                                     })))),
                                   utf8Ssid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$42,
+                                      [nix.POS]: pos$42,
                                       default: true,
                                       type: nix.thunk(() => nix.sel(types, "bool")),
                                       description: "Whether the SSID is to be interpreted using UTF-8 encoding.",
                                     })))),
                                   ssid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$43,
+                                      [nix.POS]: pos$43,
                                       example: "❄️ cool ❄️",
                                       type: nix.thunk(() => nix.sel(types, "str")),
                                       description: "SSID to be used in IEEE 802.11 management frames.",
                                     })))),
                                   bssid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$44,
+                                      [nix.POS]: pos$44,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                       default: null,
                                       example: "11:22:33:44:55:66",
                                       description: "Specifies the BSSID for this BSS. Usually determined automatically,\nbut for now you have to manually specify them when using multiple BSS.\nTry assigning related addresses from the locally administered MAC address ranges,\nby reusing the hardware address but replacing the second nibble with 2, 6, A or E.\n(e.g. if real address is `XX:XX:XX:XX:XX`, try `X2:XX:XX:XX:XX:XX`, `X6:XX:XX:XX:XX:XX`, ...\nfor the second, third, ... BSS)\n",
                                     })))),
                                   macAcl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$46,
+                                      [nix.POS]: pos$46,
                                       default: "deny",
                                       type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["deny", "allow", "radius"]))),
-                                      apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ __proto__: pos$45, deny: 0n, allow: 1n, radius: 2n }))),
+                                      apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ [nix.POS]: pos$45, deny: 0n, allow: 1n, radius: 2n }))),
                                       description: "Station MAC address -based authentication. The following modes are available:\n\n- {var}`\"deny\"`: Allow unless listed in {option}`macDeny` (default)\n- {var}`\"allow\"`: Deny unless listed in {option}`macAllow`\n- {var}`\"radius\"`: Use external radius server, but check both {option}`macAllow` and {option}`macDeny` first\n\nPlease note that this kind of access control requires a driver that uses\nhostapd to take care of management frame processing and as such, this can be\nused with driver=hostap or driver=nl80211, but not with driver=atheros.\n",
                                     })))),
                                   macAllow: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$47,
+                                      [nix.POS]: pos$47,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                                       default: [],
                                       example: nix.thunk(() => ["11:22:33:44:55:66"]),
                                       description: "Specifies the MAC addresses to allow if {option}`macAcl` is set to {var}`\"allow\"` or {var}`\"radius\"`.\nThese values will be world-readable in the Nix store. Values will automatically be merged with\n{option}`macAllowFile` if necessary.\n",
                                     })))),
                                   macAllowFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$48,
+                                      [nix.POS]: pos$48,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                       default: null,
                                       description: "Specifies a file containing the MAC addresses to allow if {option}`macAcl` is set to {var}`\"allow\"` or {var}`\"radius\"`.\nThe file should contain exactly one MAC address per line. Comments and empty lines are ignored,\nonly lines starting with a valid MAC address will be considered (e.g. `11:22:33:44:55:66`) and\nany content after the MAC address is ignored.\n",
                                     })))),
                                   macDeny: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$49,
+                                      [nix.POS]: pos$49,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                                       default: [],
                                       example: nix.thunk(() => ["11:22:33:44:55:66"]),
                                       description: "Specifies the MAC addresses to deny if {option}`macAcl` is set to {var}`\"deny\"` or {var}`\"radius\"`.\nThese values will be world-readable in the Nix store. Values will automatically be merged with\n{option}`macDenyFile` if necessary.\n",
                                     })))),
                                   macDenyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$50,
+                                      [nix.POS]: pos$50,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                       default: null,
                                       description: "Specifies a file containing the MAC addresses to deny if {option}`macAcl` is set to {var}`\"deny\"` or {var}`\"radius\"`.\nThe file should contain exactly one MAC address per line. Comments and empty lines are ignored,\nonly lines starting with a valid MAC address will be considered (e.g. `11:22:33:44:55:66`) and\nany content after the MAC address is ignored.\n",
                                     })))),
                                   ignoreBroadcastSsid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$52,
+                                      [nix.POS]: pos$52,
                                       default: "disabled",
                                       type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["disabled", "empty", "clear"]))),
-                                      apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ __proto__: pos$51, disabled: 0n, empty: 1n, clear: 2n }))),
+                                      apply: (x) => nix.app(getAttr, x, nix.thunk(() => ({ [nix.POS]: pos$51, disabled: 0n, empty: 1n, clear: 2n }))),
                                       description: "Send empty SSID in beacons and ignore probe request frames that do not\nspecify full SSID, i.e., require stations to know SSID. Note that this does\nnot increase security, since your clients will then broadcast the SSID instead,\nwhich can increase congestion.\n\n- {var}`\"disabled\"`: Advertise ssid normally.\n- {var}`\"empty\"`: send empty (length=0) SSID in beacon and ignore probe request for broadcast SSID\n- {var}`\"clear\"`: clear SSID (ASCII 0), but keep the original length (this may be required with some\n  legacy clients that do not support empty SSID) and ignore probe requests for broadcast SSID. Only\n  use this if empty does not work with your clients.\n",
                                     })))),
                                   apIsolate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$53,
+                                      [nix.POS]: pos$53,
                                       default: false,
                                       type: nix.thunk(() => nix.sel(types, "bool")),
                                       description: "Isolate traffic between stations (clients) and prevent them from\ncommunicating with each other.\n",
                                     })))),
                                   settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$56,
+                                      [nix.POS]: pos$56,
                                       default: nix.thunk(() => ({})),
-                                      example: nix.thunk(() => ({ __proto__: pos$54, multi_ap: true })),
+                                      example: nix.thunk(() => ({ [nix.POS]: pos$54, multi_ap: true })),
                                       type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                          __proto__: pos$55,
+                                          [nix.POS]: pos$55,
                                           freeformType: nix.thunk(() => nix.sel(extraSettingsFormat, "type")),
                                         })))),
                                       description: "Extra configuration options to put at the end of this BSS's defintion in the\nhostapd.conf for the associated interface. To find out which options are global\nand which are per-bss you have to read hostapd's source code, which is non-trivial\nand not documented otherwise.\n\nLists will be converted to multiple definitions of the same key, and booleans to 0/1.\nOtherwise, the inputs are not modified or checked for correctness.\n",
                                     })))),
                                   dynamicConfigScripts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$57,
+                                      [nix.POS]: pos$57,
                                       default: nix.thunk(() => ({})),
                                       type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                                       example: nix.thunk(() => nix.app(literalExpression, "{\n  exampleDynamicConfig = pkgs.writeShellScript \"dynamic-config\" ''\n    HOSTAPD_CONFIG=$1\n    # These always exist, but may or may not be used depending on the actual configuration\n    MAC_ALLOW_FILE=$2\n    MAC_DENY_FILE=$3\n\n    cat >> \"$HOSTAPD_CONFIG\" << EOF\n    # Add some dynamically generated statements here\n    EOF\n  '';\n}\n")),
                                       description: "All of these scripts will be executed in lexicographical order before hostapd\nis started, right after the bss segment was generated and may dynamically\nappend bss options to the generated configuration file.\n\nThe first argument will point to the configuration file that you may append to.\nThe second and third argument will point to this BSS's MAC allow and MAC deny file respectively.\n",
                                     })))),
                                   authentication: nix.thunk(() => ({
-                                    __proto__: pos$76,
+                                    [nix.POS]: pos$76,
                                     mode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$58,
+                                        [nix.POS]: pos$58,
                                         default: "wpa3-sae",
                                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["none", "wpa2-sha1", "wpa2-sha256", "wpa3-sae-transition", "wpa3-sae"]))),
                                         description: "Selects the authentication mode for this AP.\n\n- {var}`\"none\"`: Don't configure any authentication. This will disable wpa alltogether\n  and create an open AP. Use {option}`settings` together with this option if you\n  want to configure the authentication manually. Any password options will still be\n  effective, if set.\n- {var}`\"wpa2-sha1\"`: Not recommended. WPA2-Personal using HMAC-SHA1. Passwords are set\n  using {option}`wpaPassword` or preferably by {option}`wpaPasswordFile` or {option}`wpaPskFile`.\n- {var}`\"wpa2-sha256\"`: WPA2-Personal using HMAC-SHA256 (IEEE 802.11i/RSN). Passwords are set\n  using {option}`wpaPassword` or preferably by {option}`wpaPasswordFile` or {option}`wpaPskFile`.\n- {var}`\"wpa3-sae-transition\"`: Use WPA3-Personal (SAE) if possible, otherwise fallback\n  to WPA2-Personal. Only use if necessary and switch to the newer WPA3-SAE when possible.\n  You will have to specify both {option}`wpaPassword` and {option}`saePasswords` (or one of their alternatives).\n- {var}`\"wpa3-sae\"`: Use WPA3-Personal (SAE). This is currently the recommended way to\n  setup a secured WiFi AP (as of March 2023) and therefore the default. Passwords are set\n  using either {option}`saePasswords` or {option}`saePasswordsFile`.\n",
                                       })))),
                                     transitionDisable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$59,
+                                        [nix.POS]: pos$59,
                                         default: false,
                                         example: true,
                                         type: nix.thunk(() => nix.sel(types, "bool")),
                                         description: "Enable the WPA3-Personal Transition Disable indication. After a successful\nWPA3 association, compatible stations will disable WPA2-Personal for this\nnetwork profile, protecting subsequent associations against downgrade attacks.\nLegacy stations can still connect using WPA2 in transition mode.\n\nThis option is supported in `\"wpa3-sae\"` and `\"wpa3-sae-transition\"` modes.\n\n::: {.warning}\nEnable this only when every BSS in the network using this SSID supports\nWPA3-Personal. The indication applies to a station's entire network profile\nand can prevent it from connecting to WPA2-only BSSs. Therefore, the WPA3 spec\nrequires this to be disabled by default.\n:::\n",
                                       })))),
                                     pairwiseCiphers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$60,
+                                        [nix.POS]: pos$60,
                                         default: nix.thunk(() => ["CCMP"]),
                                         example: nix.thunk(() => ["GCMP", "GCMP-256"]),
                                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                                         description: "Set of accepted cipher suites (encryption algorithms) for pairwise keys (unicast packets).\nBy default this allows just CCMP, which is the only commonly supported secure option.\nUse {option}`enableRecommendedPairwiseCiphers` to also enable newer recommended ciphers.\n\nPlease refer to the hostapd documentation for allowed values. Generally, only\nCCMP or GCMP modes should be considered safe options. Most devices support CCMP while\nGCMP and GCMP-256 is often only available with devices supporting WiFi 5 (IEEE 802.11ac) or higher.\nCCMP-256 support is rare.\n",
                                       })))),
                                     enableRecommendedPairwiseCiphers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$61,
+                                        [nix.POS]: pos$61,
                                         default: false,
                                         example: true,
                                         type: nix.thunk(() => nix.sel(types, "bool")),
                                         description: "Additionally enable the recommended set of pairwise ciphers.\nThis enables newer secure ciphers, additionally to those defined in {option}`pairwiseCiphers`.\nYou will have to test whether your hardware supports these by trial-and-error, because\neven if `iw list` indicates hardware support, your driver might not expose it.\n\nBeware {command}`hostapd` will most likely not return a useful error message in case\nthis is enabled despite the driver or hardware not supporting the newer ciphers.\nLook out for messages like `Failed to set beacon parameters`.\n",
                                       })))),
                                     wpaPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$62,
+                                        [nix.POS]: pos$62,
                                         default: null,
                                         example: "a flakey password",
                                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                         description: "Sets the password for WPA-PSK that will be converted to the pre-shared key.\nThe password length must be in the range [8, 63] characters. While some devices\nmay allow arbitrary characters (such as UTF-8) to be used, but the standard specifies\nthat each character in the passphrase must be an ASCII character in the range [0x20, 0x7e]\n(IEEE Std. 802.11i-2004, Annex H.4.1). Use emojis at your own risk.\n\nNot used when {option}`mode` is {var}`\"wpa3-sae\"`.\n\nWarning: This password will get put into a world-readable file in the Nix store!\nUsing {option}`wpaPasswordFile` or {option}`wpaPskFile` instead is recommended.\n",
                                       })))),
                                     wpaPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$63,
+                                        [nix.POS]: pos$63,
                                         default: null,
                                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                         description: "Sets the password for WPA-PSK. Follows the same rules as {option}`wpaPassword`,\nbut reads the password from the given file to prevent the password from being\nput into the Nix store.\n\nNot used when {option}`mode` is {var}`\"wpa3-sae\"`.\n",
                                       })))),
                                     wpaPskFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$64,
+                                        [nix.POS]: pos$64,
                                         default: null,
                                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                         description: "Sets the password(s) for WPA-PSK. Similar to {option}`wpaPasswordFile`,\nbut additionally allows specifying multiple passwords, and some other options.\n\nEach line, except for empty lines and lines starting with #, must contain a\nMAC address and either a 64-hex-digit PSK or a password separated with a space.\nThe password must follow the same rules as outlined in {option}`wpaPassword`.\nThe special MAC address `00:00:00:00:00:00` can be used to configure PSKs\nthat any client can use.\n\nAn optional key identifier can be added by prefixing the line with `keyid=<keyid_string>`\nAn optional VLAN ID can be specified by prefixing the line with `vlanid=<VLAN ID>`.\nAn optional WPS tag can be added by prefixing the line with `wps=<0/1>` (default: 0).\nAny matching entry with that tag will be used when generating a PSK for a WPS Enrollee\ninstead of generating a new random per-Enrollee PSK.\n\nNot used when {option}`mode` is {var}`\"wpa3-sae\"`.\n",
                                       })))),
                                     saePasswords: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$73,
+                                        [nix.POS]: pos$73,
                                         default: [],
                                         example: nix.thunk(() => nix.app(literalExpression, "[\n  # Any client may use these passwords\n  { password = \"Wi-Figure it out\"; }\n  { passwordFile = \"/run/secrets/my-password-file\"; mac = \"ff:ff:ff:ff:ff:ff\"; }\n\n  # Only the client with MAC-address 11:22:33:44:55:66 can use this password\n  { password = \"sekret pazzword\"; mac = \"11:22:33:44:55:66\"; }\n]\n")),
                                         description: "Sets allowed passwords for WPA3-SAE.\n\nThe last matching (based on peer MAC address and identifier) entry is used to\nselect which password to use. An empty string has the special meaning of\nremoving all previously added entries.\n\nWarning: These entries will get put into a world-readable file in\nthe Nix store! Using {option}`saePasswordFile` instead is recommended.\n\nNot used when {option}`mode` is {var}`\"wpa2-sha1\"` or {var}`\"wpa2-sha256\"`.\n",
                                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                              __proto__: pos$72,
+                                              [nix.POS]: pos$72,
                                               options: nix.thunk(() => ({
-                                                __proto__: pos$71,
+                                                [nix.POS]: pos$71,
                                                 password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                    __proto__: pos$65,
+                                                    [nix.POS]: pos$65,
                                                     default: null,
                                                     example: "a flakey password",
                                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                                     description: "The password for this entry. SAE technically imposes no restrictions on\npassword length or character set. But due to limitations of {command}`hostapd`'s\nconfig file format, a true newline character cannot be parsed.\n\nWarning: This password will get put into a world-readable file in\nthe Nix store! Prefer using the sibling option {option}`passwordFile` or directly set {option}`saePasswordsFile`.\n",
                                                   })))),
                                                 passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                    __proto__: pos$66,
+                                                    [nix.POS]: pos$66,
                                                     default: null,
                                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                                     description: "The password for this entry, read from the given file when starting hostapd.\nSAE technically imposes no restrictions on password length or character set.\nBut due to limitations of {command}`hostapd`'s config file format, a true newline\ncharacter cannot be parsed.\n",
                                                   })))),
                                                 mac: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                    __proto__: pos$67,
+                                                    [nix.POS]: pos$67,
                                                     default: null,
                                                     example: "11:22:33:44:55:66",
                                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                                     description: "If this attribute is not included, or if is set to the wildcard address (`ff:ff:ff:ff:ff:ff`),\nthe entry is available for any station (client) to use. If a specific peer MAC address is included,\nonly a station with that MAC address is allowed to use the entry.\n",
                                                   })))),
                                                 vlanid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                    __proto__: pos$68,
+                                                    [nix.POS]: pos$68,
                                                     default: null,
                                                     example: 1n,
                                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "ints", "unsigned")))),
                                                     description: "If this attribute is given, all clients using this entry will get tagged with the given VLAN ID.",
                                                   })))),
                                                 pk: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                    __proto__: pos$69,
+                                                    [nix.POS]: pos$69,
                                                     default: null,
                                                     example: "",
                                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                                     description: "If this attribute is given, SAE-PK will be enabled for this connection.\nThis prevents evil-twin attacks, but a public key is required additionally to connect.\n(Essentially adds pubkey authentication such that the client can verify identity of the AP)\n",
                                                   })))),
                                                 id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                    __proto__: pos$70,
+                                                    [nix.POS]: pos$70,
                                                     default: null,
                                                     example: "",
                                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
@@ -655,13 +655,13 @@ ${nix.app(concatMapStrings, (script) => nix.str`${script} "$hostapd_config_file"
                                             })))))),
                                       })))),
                                     saePasswordsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$74,
+                                        [nix.POS]: pos$74,
                                         default: null,
                                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                         description: "Sets the password for WPA3-SAE. Follows the same rules as {option}`saePasswords`,\nbut reads the entries from the given file to prevent them from being\nput into the Nix store.\n\nOne entry per line, empty lines and lines beginning with # will be ignored.\nEach line must match the following format, although the order of optional\nparameters doesn't matter:\n`<password>[|mac=<peer mac>][|vlanid=<VLAN ID>][|pk=<m:ECPrivateKey-base64>][|id=<identifier>]`\n\nNot used when {option}`mode` is {var}`\"wpa2-sha1\"` or {var}`\"wpa2-sha256\"`.\n",
                                       })))),
                                     saeAddToMacAllow: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$75,
+                                        [nix.POS]: pos$75,
                                         type: nix.thunk(() => nix.sel(types, "bool")),
                                         default: false,
                                         description: "If set, all sae password entries that have a non-wildcard MAC associated to\nthem will additionally be used to populate the MAC allow list. This is\nadditional to any entries set via {option}`macAllow` or {option}`macAllowFile`.\n",
@@ -672,9 +672,9 @@ ${nix.app(concatMapStrings, (script) => nix.str`${script} "$hostapd_config_file"
                                   const bssCfg = nix.thunk(() => nix.sel(bssSubmod, "config"));
                                   const pairwiseCiphers = nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.app(unique, nix.thunk(() => nix.concat(nix.sel(bssCfg, "authentication", "pairwiseCiphers"), nix.app(optionals, nix.thunk(() => nix.sel(bssCfg, "authentication", "enableRecommendedPairwiseCiphers")), nix.thunk(() => ["CCMP", "GCMP", "GCMP-256"]))))))));
                                   return {
-                                    __proto__: pos$92,
+                                    [nix.POS]: pos$92,
                                     settings: nix.thunk(() => nix.update({
-                                      __proto__: pos$78,
+                                      [nix.POS]: pos$78,
                                       ssid: nix.thunk(() => nix.sel(bssCfg, "ssid")),
                                       utf8_ssid: nix.thunk(() => nix.sel(bssCfg, "utf8Ssid")),
                                       logger_syslog: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.neg(1n)))),
@@ -689,32 +689,32 @@ ${nix.app(concatMapStrings, (script) => nix.str`${script} "$hostapd_config_file"
                                       auth_algs: nix.thunk(() => nix.app(mkDefault, 1n)),
                                       wmm_enabled: nix.thunk(() => nix.app(mkDefault, true)),
                                       ap_isolate: nix.thunk(() => nix.sel(bssCfg, "apIsolate")),
-                                    }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "bssid"), null)), nix.thunk(() => ({ __proto__: pos$79, bssid: nix.thunk(() => nix.sel(bssCfg, "bssid")) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(bssCfg, "macAllow"), [])) || nix.asBool(!nix.eq(nix.sel(bssCfg, "macAllowFile"), null)))) || nix.asBool(nix.sel(bssCfg, "authentication", "saeAddToMacAllow")))), nix.thunk(() => ({
-                                        __proto__: pos$80,
+                                    }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "bssid"), null)), nix.thunk(() => ({ [nix.POS]: pos$79, bssid: nix.thunk(() => nix.sel(bssCfg, "bssid")) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(bssCfg, "macAllow"), [])) || nix.asBool(!nix.eq(nix.sel(bssCfg, "macAllowFile"), null)))) || nix.asBool(nix.sel(bssCfg, "authentication", "saeAddToMacAllow")))), nix.thunk(() => ({
+                                        [nix.POS]: pos$80,
                                         accept_mac_file: nix.thunk(() => nix.str`/run/hostapd/${nix.sel(bssCfg, "_module", "args", "name")}.mac.allow`),
                                       }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(bssCfg, "macDeny"), [])) || nix.asBool(!nix.eq(nix.sel(bssCfg, "macDenyFile"), null)))), nix.thunk(() => ({
-                                        __proto__: pos$81,
+                                        [nix.POS]: pos$81,
                                         deny_mac_file: nix.thunk(() => nix.str`/run/hostapd/${nix.sel(bssCfg, "_module", "args", "name")}.mac.deny`),
-                                      }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "none")), nix.thunk(() => ({ __proto__: pos$82, wpa: nix.thunk(() => nix.app(mkDefault, 0n)) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa3-sae")), nix.thunk(() => ({ __proto__: pos$83, wpa: 2n, wpa_key_mgmt: "SAE", sae_pwe: 2n, ieee80211w: 2n }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa3-sae-transition")), nix.thunk(() => ({
-                                        __proto__: pos$84,
+                                      }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "none")), nix.thunk(() => ({ [nix.POS]: pos$82, wpa: nix.thunk(() => nix.app(mkDefault, 0n)) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa3-sae")), nix.thunk(() => ({ [nix.POS]: pos$83, wpa: 2n, wpa_key_mgmt: "SAE", sae_pwe: 2n, ieee80211w: 2n }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa3-sae-transition")), nix.thunk(() => ({
+                                        [nix.POS]: pos$84,
                                         wpa: 2n,
                                         wpa_key_mgmt: "WPA-PSK WPA-PSK-SHA256 SAE",
                                         ieee80211w: 1n,
-                                      }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa2-sha1")), nix.thunk(() => ({ __proto__: pos$85, wpa: 2n, wpa_key_mgmt: "WPA-PSK", ieee80211w: 1n }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa2-sha256")), nix.thunk(() => ({ __proto__: pos$86, wpa: 2n, wpa_key_mgmt: "WPA-PSK-SHA256", ieee80211w: 1n }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "authentication", "mode"), "none")), nix.thunk(() => ({
-                                        __proto__: pos$87,
+                                      }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa2-sha1")), nix.thunk(() => ({ [nix.POS]: pos$85, wpa: 2n, wpa_key_mgmt: "WPA-PSK", ieee80211w: 1n }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(bssCfg, "authentication", "mode"), "wpa2-sha256")), nix.thunk(() => ({ [nix.POS]: pos$86, wpa: 2n, wpa_key_mgmt: "WPA-PSK-SHA256", ieee80211w: 1n }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "authentication", "mode"), "none")), nix.thunk(() => ({
+                                        [nix.POS]: pos$87,
                                         wpa_pairwise: pairwiseCiphers,
                                         rsn_pairwise: pairwiseCiphers,
-                                      }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(bssCfg, "authentication", "transitionDisable")), nix.thunk(() => ({ __proto__: pos$88, transition_disable: "0x01" }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "authentication", "wpaPassword"), null)), nix.thunk(() => ({
-                                        __proto__: pos$89,
+                                      }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(bssCfg, "authentication", "transitionDisable")), nix.thunk(() => ({ [nix.POS]: pos$88, transition_disable: "0x01" }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "authentication", "wpaPassword"), null)), nix.thunk(() => ({
+                                        [nix.POS]: pos$89,
                                         wpa_passphrase: nix.thunk(() => nix.sel(bssCfg, "authentication", "wpaPassword")),
                                       }))), nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "authentication", "wpaPskFile"), null)), nix.thunk(() => ({
-                                        __proto__: pos$90,
+                                        [nix.POS]: pos$90,
                                         wpa_psk_file: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(bssCfg, "authentication", "wpaPskFile")))),
                                       })))))))))))))))),
                                     dynamicConfigScripts: nix.thunk(() => (() => {
                                       const saeMacs = nix.thunk(() => nix.app(filter, (mac) => (nix.asBool(!nix.eq(mac, null)) && nix.asBool(!nix.eq(nix.app(toLower, mac), "ff:ff:ff:ff:ff:ff"))), nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "mac"), nix.thunk(() => nix.sel(bssCfg, "authentication", "saePasswords"))))));
                                       return {
-                                        __proto__: pos$91,
+                                        [nix.POS]: pos$91,
                                         "20-addMacAllow": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(bssCfg, "macAllow"), [])), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "add-mac-allow", nix.thunk(() => nix.str`MAC_ALLOW_FILE=$2
 cat >> "$MAC_ALLOW_FILE" <<EOF
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.sel(bssCfg, "macAllow")))}
@@ -768,33 +768,33 @@ grep -v '^\\s*#' ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(bssCfg, "auth
                         })))),
                     })),
                     config: nix.thunk(() => ({
-                      __proto__: pos$103,
+                      [nix.POS]: pos$103,
                       settings: nix.thunk(() => (() => {
                         const radioCfg = nix.thunk(() => nix.sel(radioSubmod, "config"));
                         return nix.update({
-                          __proto__: pos$97,
+                          [nix.POS]: pos$97,
                           driver: nix.thunk(() => nix.sel(radioCfg, "driver")),
-                          hw_mode: nix.thunk(() => nix.sel({ __proto__: pos$96, "2g": "g", "5g": "a", "6g": "a", "60g": "ad" }, nix.key(nix.sel(radioCfg, "band")))),
+                          hw_mode: nix.thunk(() => nix.sel({ [nix.POS]: pos$96, "2g": "g", "5g": "a", "6g": "a", "60g": "ad" }, nix.key(nix.sel(radioCfg, "band")))),
                           channel: nix.thunk(() => nix.sel(radioCfg, "channel")),
                           noscan: nix.thunk(() => nix.sel(radioCfg, "noScan")),
                         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(radioCfg, "countryCode"), null)), nix.thunk(() => ({
-                            __proto__: pos$98,
+                            [nix.POS]: pos$98,
                             country_code: nix.thunk(() => nix.sel(radioCfg, "countryCode")),
                             ieee80211d: true,
                             ieee80211h: true,
                           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(radioCfg, "wifi4", "enable")), nix.thunk(() => ({
-                            __proto__: pos$99,
+                            [nix.POS]: pos$99,
                             ieee80211n: true,
                             require_ht: nix.thunk(() => nix.sel(radioCfg, "wifi4", "require")),
                             ht_capab: nix.thunk(() => nix.app(concatMapStrings, (x) => nix.str`[${x}]`, nix.thunk(() => nix.sel(radioCfg, "wifi4", "capabilities")))),
                           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(radioCfg, "wifi5", "enable")), nix.thunk(() => ({
-                            __proto__: pos$100,
+                            [nix.POS]: pos$100,
                             ieee80211ac: true,
                             require_vht: nix.thunk(() => nix.sel(radioCfg, "wifi5", "require")),
                             vht_oper_chwidth: nix.thunk(() => nix.sel(radioCfg, "wifi5", "operatingChannelWidth")),
                             vht_capab: nix.thunk(() => nix.app(concatMapStrings, (x) => nix.str`[${x}]`, nix.thunk(() => nix.sel(radioCfg, "wifi5", "capabilities")))),
                           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(radioCfg, "wifi6", "enable")), nix.thunk(() => ({
-                            __proto__: pos$101,
+                            [nix.POS]: pos$101,
                             ieee80211ax: true,
                             require_he: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(radioCfg, "wifi6", "require")), true)),
                             he_oper_chwidth: nix.thunk(() => nix.sel(radioCfg, "wifi6", "operatingChannelWidth")),
@@ -802,7 +802,7 @@ grep -v '^\\s*#' ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(bssCfg, "auth
                             he_su_beamformee: nix.thunk(() => nix.sel(radioCfg, "wifi6", "singleUserBeamformee")),
                             he_mu_beamformer: nix.thunk(() => nix.sel(radioCfg, "wifi6", "multiUserBeamformer")),
                           }))), nix.app(optionalAttrs, nix.thunk(() => nix.sel(radioCfg, "wifi7", "enable")), nix.thunk(() => ({
-                            __proto__: pos$102,
+                            [nix.POS]: pos$102,
                             ieee80211be: true,
                             eht_oper_chwidth: nix.thunk(() => nix.sel(radioCfg, "wifi7", "operatingChannelWidth")),
                             eht_su_beamformer: nix.thunk(() => nix.sel(radioCfg, "wifi7", "singleUserBeamformer")),
@@ -836,7 +836,7 @@ Refer to the documentation of \`services.hostapd.radios\` for an example and mor
       ];
     })()),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$128,
+        [nix.POS]: pos$128,
         warnings: nix.thunk(() => (() => {
           const wirelessEnabled = nix.thunk(() => nix.sel(config, "networking", "wireless", "enable"));
           const wirelessInterfaces = nix.thunk(() => nix.sel(config, "networking", "wireless", "interfaces"));
@@ -847,23 +847,23 @@ Refer to the documentation of \`services.hostapd.radios\` for an example and mor
         })()),
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "radios"), {})),
             message: "At least one radio must be configured with hostapd!",
           })),
         ], nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (radio) => (radioCfg) => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$110,
+                [nix.POS]: pos$110,
                 assertion: nix.thunk(() => !nix.eq(nix.sel(radioCfg, "networks"), {})),
                 message: nix.thunk(() => nix.str`hostapd radio ${radio}: At least one network must be configured!`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$111,
+                [nix.POS]: pos$111,
                 assertion: nix.thunk(() => nix.eq(nix.app(length, nix.thunk(() => nix.app(filter, (bss) => nix.eq(bss, radio), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(radioCfg, "networks"))))))), 1n)),
                 message: nix.thunk(() => nix.str`hostapd radio ${radio}: Exactly one network must be named like the radio, for reasons internal to hostapd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(radioCfg, "wifi4", "enable")) && nix.asBool(nix.builtins.elem("HT40-", nix.thunk(() => nix.sel(radioCfg, "wifi4", "capabilities")))))) || nix.asBool(!nix.eq(nix.sel(radioCfg, "channel"), 0n)))),
                 message: nix.thunk(() => nix.str`hostapd radio ${radio}: using ACS (channel = 0) together with HT40- (wifi4.capabilities) is unsupported by hostapd`),
               })),
@@ -876,66 +876,66 @@ Refer to the documentation of \`services.hostapd.radios\` for an example and mor
                     ])));
                   return nix.concat([
                     nix.thunk(() => ({
-                      __proto__: pos$113,
+                      [nix.POS]: pos$113,
                       assertion: nix.thunk(() => nix.app(hasPrefix, radio, bss)),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: The bss (network) name ${bss} is invalid. It must be prefixed by the radio name for reasons internal to hostapd. A valid name would be e.g. ${radio}, ${radio}-1, ...`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$114,
+                      [nix.POS]: pos$114,
                       assertion: nix.thunk(() => (!nix.asBool(nix.gt(nix.app(length, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(radioCfg, "networks"))))), 1n)) || nix.asBool(!nix.eq(nix.sel(bssCfg, "bssid"), null)))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: bssid must be specified manually (for now) since this radio uses multiple BSS.`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$115,
+                      [nix.POS]: pos$115,
                       assertion: nix.thunk(() => nix.le(countWpaPasswordDefinitions, 1n)),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: must use at most one WPA password option (wpaPassword, wpaPasswordFile, wpaPskFile)`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$116,
+                      [nix.POS]: pos$116,
                       assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(auth, "wpaPassword"), null)) || nix.asBool((nix.asBool(nix.ge(nix.app(stringLength, nix.thunk(() => nix.sel(auth, "wpaPassword"))), 8n)) && nix.asBool(nix.le(nix.app(stringLength, nix.thunk(() => nix.sel(auth, "wpaPassword"))), 63n)))))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: uses a wpaPassword of invalid length (must be in [8,63]).`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$117,
+                      [nix.POS]: pos$117,
                       assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(auth, "saePasswords"), [])) || nix.asBool(nix.eq(nix.sel(auth, "saePasswordsFile"), null)))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: must use only one SAE password option (saePasswords or saePasswordsFile)`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$118,
+                      [nix.POS]: pos$118,
                       assertion: nix.thunk(() => (!nix.asBool(nix.sel(auth, "transitionDisable")) || nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(auth, "mode")), nix.thunk(() => ["wpa3-sae", "wpa3-sae-transition"]))))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: transitionDisable requires WPA3-SAE or WPA3-SAE transition mode`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$119,
+                      [nix.POS]: pos$119,
                       assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(auth, "mode"), "wpa3-sae")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(auth, "saePasswords"), [])) || nix.asBool(!nix.eq(nix.sel(auth, "saePasswordsFile"), null)))))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: uses WPA3-SAE which requires defining a sae password option`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$120,
+                      [nix.POS]: pos$120,
                       assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(auth, "mode"), "wpa3-sae-transition")) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(auth, "saePasswords"), [])) || nix.asBool(!nix.eq(nix.sel(auth, "saePasswordsFile"), null)))) && nix.asBool(nix.eq(countWpaPasswordDefinitions, 1n)))))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: uses WPA3-SAE in transition mode requires defining both a wpa password option and a sae password option`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$121,
+                      [nix.POS]: pos$121,
                       assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.eq(nix.sel(auth, "mode"), "wpa2-sha1")) || nix.asBool(nix.eq(nix.sel(auth, "mode"), "wpa2-sha256")))) || nix.asBool(nix.eq(countWpaPasswordDefinitions, 1n)))),
                       message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss}: uses WPA2-PSK which requires defining a wpa password option`),
                     })),
                   ], nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(auth, "saePasswords"), [])), nix.thunk(() => nix.app(imap1, (i) => (entry) => ({
-                        __proto__: pos$122,
+                        [nix.POS]: pos$122,
                         assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(entry, "password"), null), nix.eq(nix.sel(entry, "passwordFile"), null))),
                         message: nix.thunk(() => nix.str`hostapd radio ${radio} bss ${bss} saePassword entry ${i}: must set exactly one of \`password\` or \`passwordFile\``),
                       }), nix.thunk(() => nix.sel(auth, "saePasswords"))))));
                 })(), nix.thunk(() => nix.sel(radioCfg, "networks")))))), nix.thunk(() => nix.sel(cfg, "radios"))))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$123,
+          [nix.POS]: pos$123,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$127,
+          [nix.POS]: pos$127,
           services: nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             hostapd: nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               description: "IEEE 802.11 Host Access-Point Daemon",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               after: nix.thunk(() => nix.builtins.map((radio) => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), radio)}.device`, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(cfg, "radios")))))),
@@ -943,7 +943,7 @@ Refer to the documentation of \`services.hostapd.radios\` for an example and mor
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, makeRadioRuntimeFiles, nix.thunk(() => nix.sel(cfg, "radios")))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$124,
+                [nix.POS]: pos$124,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hostapd ${nix.app(concatStringsSep, " ", runtimeConfigFiles)}`),
                 Restart: "always",
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),

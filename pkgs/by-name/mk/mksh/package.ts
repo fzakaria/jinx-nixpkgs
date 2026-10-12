@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mksh",
       version: "59c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.mirbsd.org/MirOS/dist/mir/mksh/mksh-R${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`http://pub.allbsd.org/MirOS/dist/mir/mksh/mksh-R${nix.sel(finalAttrs, "version")}.tgz`),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       buildPhase: "runHook preBuild\nsh ./Build.sh -r\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -D mksh $out/bin/mksh\ninstall -D dot.mkshrc $out/share/mksh/mkshrc\ninstallManPage mksh.1\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, shellPath: "/bin/mksh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/mksh" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.mirbsd.org/mksh.htm",
         changelog: "http://www.mirbsd.org/mksh.htm#clog",
         description: "MirBSD Korn Shell",

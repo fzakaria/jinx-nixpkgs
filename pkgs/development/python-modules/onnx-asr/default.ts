@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const huggingface_hub = nix.arg($, "huggingface-hub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "onnx-asr",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "istupakov",
           repo: "onnx-asr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling, ml_dtypes, numpy, onnxscript]),
       dependencies: nix.thunk(() => [numpy, onnxruntime]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cpu: nix.thunk(() => [onnxruntime]),
         hub: nix.thunk(() => [huggingface_hub]),
         gpu: nix.thunk(() => [onnxruntime]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => ["onnx_asr"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight Automatic Speech Recognition using ONNX models",
         homepage: "https://github.com/istupakov/onnx-asr",
         changelog: nix.thunk(() => nix.str`https://github.com/istupakov/onnx-asr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

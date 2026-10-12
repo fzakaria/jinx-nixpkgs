@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dissect-squashfs",
       version: "1.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.squashfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [dissect_cstruct, dissect_util]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, full: nix.thunk(() => [lz4, python_lzo, zstandard]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [lz4, python_lzo, zstandard]) })),
       pythonImportsCheck: nix.thunk(() => ["dissect.squashfs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dissect module implementing a parser for the SquashFS file system",
         homepage: "https://github.com/fox-it/dissect.squashfs",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.squashfs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

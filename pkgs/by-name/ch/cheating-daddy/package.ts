@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cheating-daddy",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sohzm",
           repo: "cheating-daddy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         zip,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ONNXRUNTIME_NODE_INSTALL: "skip",
         ONNXRUNTIME_NODE_INSTALL_CUDA: "skip",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
@@ -63,7 +63,7 @@ substituteInPlace node_modules/@electron/packager/dist/packager.js \\
       buildPhase: "runHook preBuild\n\nnpm run package\n\nrunHook postBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "cheating-daddy",
             desktopName: "Cheating Daddy",
             genericName: "AI Assistant",
@@ -87,11 +87,11 @@ install -D --mode=0644 src/assets/logo.png $out/share/icons/hicolor/512x512/apps
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/sohzm/cheating-daddy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Real-time AI assistant that provides contextual help during video calls, interviews, presentations, and meetings using screen capture and audio analysis",
         homepage: "https://github.com/sohzm/cheating-daddy",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pms",
       version: "unstable-2022-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kimtore",
           repo: "pms",
           rev: "40d6e37111293187ab4542c7a64bd73d1b13974f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-XNFzG4hGDUN0wWbpBoQWUH1bWIgoYcyP4tNRGSV4ro4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive Vim-like console client for MPD",
         homepage: "https://ambientsound.github.io/pms/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

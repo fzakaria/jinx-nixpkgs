@@ -54,37 +54,37 @@ export default nix.lambda((args) => (() => {
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ["-x", nix.thunk(() => nix.sel(cfg, "configFile"))]))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "opendkim.conf", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name} ${value}`, nix.thunk(() => nix.sel(cfg, "settings"))))))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "opendkim", "keyFile"]), nix.thunk(() => ["services", "opendkim", "keyPath"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         opendkim: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenDKIM sender authentication system")),
           socket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultSock,
               description: "Socket which is used for communication with OpenDKIM.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opendkim",
               description: "User for the daemon.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opendkim",
               description: "Group for the daemon.",
             })))),
           domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`csl:${nix.sel(config, "networking", "hostName")}`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"csl:${config.networking.hostName}\"")),
@@ -92,28 +92,28 @@ export default nix.lambda((args) => (() => {
               description: "Local domains set (see {manpage}`opendkim(8)` for more information on datasets).\nMessages from them are signed, not verified.\n",
             })))),
           keyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The path that opendkim should put its generated private keys into.\nThe DNS settings will be found in this directory with the name selector.txt.\n",
               default: "/var/lib/opendkim/keys",
             })))),
           selector: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Selector to use when signing.",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Additional opendkim configuration as a file.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   })));
               })()),
@@ -124,52 +124,52 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "opendkim")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               opendkim: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "opendkim")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "opendkim")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               opendkim: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "opendkim")),
               })),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-              __proto__: pos$19,
-              "opendkim/opendkim.conf": nix.thunk(() => ({ __proto__: pos$18, source: configFile })),
+              [nix.POS]: pos$19,
+              "opendkim/opendkim.conf": nix.thunk(() => ({ [nix.POS]: pos$18, source: configFile })),
             })))),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "opendkim"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           opendkim: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), configFile)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "keyPath")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             opendkim: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "OpenDKIM signing and verification daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -183,7 +183,7 @@ if ! test -f ${nix.sel(cfg, "selector")}.private; then
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "opendkim")}/bin/opendkim ${nix.app(nix.sel(lib, "escapeShellArgs"), args_1)}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),

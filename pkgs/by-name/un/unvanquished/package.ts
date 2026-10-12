@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const version = "0.56.2";
   const binary_deps_version = "11";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Unvanquished",
       repo: "Unvanquished",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unvanquished-binary-deps";
       const version_1 = binary_deps_version;
       const src_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://dl.unvanquished.net/deps/linux-amd64-default_${version_1}.tar.xz`),
           hash: "sha256-1PPqQYnMBFR7Jr48qiqQEduEjiFWx3XyvfPBwX/PzIY=",
         }))));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# check it links correctly\npnacl/bin/clang -v\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ncp -R ./* $out/\n\nrunHook postInstall\n";
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src: src_1,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   const libstdcpp_preload_for_unvanquished_nacl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "libstdcpp-preload-for-unvanquished-nacl",
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(gcc, "cc", "lib"))]),
       buildCommand: nix.thunk(() => nix.str`mkdir $out/etc -p
@@ -89,7 +89,7 @@ echo ${nix.sel(gcc, "cc", "lib")}/lib/libstdc++.so.6 > $out/etc/ld-nix.so.preloa
 `),
     }))));
   const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unvanquished-fhs-wrapper",
       version: version,
       targetPkgs: (pkgs) => [libstdcpp_preload_for_unvanquished_nacl],
@@ -107,7 +107,7 @@ EOT
 chmod +x $out/bin/${wrappername}
 `;
   const unvanquished_assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "unvanquished-assets",
       version: version,
       src: src,
@@ -161,7 +161,7 @@ chmod +w -R daemon/external_deps/"$TARGET"/
       ]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "net.unvanquished.Unvanquished.desktop",
             desktopName: "Unvanquished",
             comment: "FPS/RTS Game - Aliens vs. Humans",
@@ -171,7 +171,7 @@ chmod +w -R daemon/external_deps/"$TARGET"/
             prefersNonDefaultGPU: true,
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "net.unvanquished.UnvanquishedProtocolHandler.desktop",
             desktopName: "Unvanquished (protocol handler)",
             noDisplay: true,
@@ -199,7 +199,7 @@ done
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://unvanquished.net/",
         downloadPage: "https://unvanquished.net/download/",
         description: "Fast paced, first person strategy game",
@@ -231,7 +231,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version: version_1,
         src: src_1,

@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const korganizer = nix.arg($, "korganizer");
   const zanshin = nix.arg($, "zanshin");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kontact",
       extraBuildInputs: nix.thunk(() => [qtwebengine, akregator, kaddressbook, kmail, korganizer, zanshin]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kontact" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kontact" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

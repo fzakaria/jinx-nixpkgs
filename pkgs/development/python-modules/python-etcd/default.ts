@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pyopenssl = nix.arg($, "pyopenssl");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "python-etcd",
       version: "0.4.5-unstable-2024-08-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jplana",
           repo: "python-etcd",
           rev: "d2889f7b23feee8797657b19c404f0d4034dd03c",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
         ]))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python client for Etcd",
         homepage: "https://github.com/jplana/python-etcd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

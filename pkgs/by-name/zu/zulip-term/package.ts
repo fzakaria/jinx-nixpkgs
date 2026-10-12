@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const libnotify = nix.arg($, "libnotify");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: py,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         urwid: nix.thunk(() => nix.app(nix.sel(super$, "urwid", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "2.1.2";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "urwid",
                 repo: "urwid",
                 tag: version,
                 hash: "sha256-oPb2h/+gaqkZTXIiESjExMfBNnOzDvoMkXvkZ/+KVwo=",
               }))));
             const doCheck = false;
-            return { __proto__: pos$2, version, src, doCheck };
+            return { [nix.POS]: pos$2, version, src, doCheck };
           })())),
       }),
     }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0-unstable-2026-02-10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "zulip",
           repo: "zulip-terminal",
           rev: "6a799870eccc00d612e25ff881d18f4ff66d92fa",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libnotify]))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Zulip's official terminal client",
         homepage: "https://github.com/zulip/zulip-terminal",
         changelog: nix.thunk(() => nix.str`https://github.com/zulip/zulip-terminal/releases/tag/${version}`),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powerhub",
       version: "2.0.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdrianVollmer",
           repo: "PowerHub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["powerhub"]),
       preCheck: "cd tests/helpers\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Post exploitation tool based on a web application, focusing on bypassing endpoint protection and application whitelisting",
         homepage: "https://github.com/AdrianVollmer/PowerHub",
         changelog: nix.thunk(() => nix.str`https://github.com/AdrianVollmer/PowerHub/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

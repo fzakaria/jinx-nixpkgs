@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const systemdStage1 = nix.arg($, "systemdStage1");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: nix.thunk(() => nix.add("fsck", nix.app(nix.sel(lib, "optionalString"), systemdStage1, "-systemd-stage-1"))),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           emptyDiskImages: nix.thunk(() => [1n]),
           fileSystems: nix.thunk(() => ({
-            __proto__: pos$2,
-            "/mnt": nix.thunk(() => ({ __proto__: pos$1, device: "/dev/vdb", fsType: "ext4", autoFormat: true })),
+            [nix.POS]: pos$2,
+            "/mnt": nix.thunk(() => ({ [nix.POS]: pos$1, device: "/dev/vdb", fsType: "ext4", autoFormat: true })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           initrd: nix.thunk(() => ({
-            __proto__: pos$5,
-            systemd: nix.thunk(() => ({ __proto__: pos$4, enable: systemdStage1 })),
+            [nix.POS]: pos$5,
+            systemd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: systemdStage1 })),
           })),
         })),
       })),

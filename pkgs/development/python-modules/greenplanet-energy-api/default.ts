@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const aioresponses = nix.arg($, "aioresponses");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "greenplanet-energy-api",
       version: "0.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "petschni",
           repo: "greenplanet-energy-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_get_electricity_prices_timeout"]),
       pythonImportsCheck: nix.thunk(() => ["greenplanet_energy_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python library for querying the Green Planet Energy API",
         homepage: "https://github.com/petschni/greenplanet-energy-api",
         changelog: nix.thunk(() => nix.str`https://github.com/petschni/greenplanet-energy-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

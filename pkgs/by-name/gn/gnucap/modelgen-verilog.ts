@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnucap-modelgen-verilog",
       version: "20260729-dev",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://https.git.savannah.gnu.org/git/gnucap/gnucap-modelgen-verilog.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GfMfwSZOpi/NKWLporb8pVEeNthxWV7gIxbeiebo3Fk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gnucap-modelgen-verilog-fprintf.patch",
             url: "https://codeberg.org/gnucap/gnucap-modelgen-verilog/commit/172fc7cddb66b79febab3b87fc1b9e87bee80308.patch",
             hash: "sha256-oURJ96qr7RnT6Pn5+GRO1k9K/8CLXfOfdoZgWYO8a58=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "export GNUCAP_EXEC_PREFIX=$out\nexport GNUCAP_DATA=$out/share/gnucap\nmkdir -p $out/include/gnucap\nexport GNUCAP_INCLUDEDIR=$out/include/gnucap\nexport GNUCAP_PKGLIBDIR=$out/lib/gnucap\n",
       postInstall: "installManPage man/*.*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "gnucap modelgen to preprocess, parse and dump vams files",
         homepage: "http://www.gnucap.org/",
         mainProgram: "gnucap-mg-vams",

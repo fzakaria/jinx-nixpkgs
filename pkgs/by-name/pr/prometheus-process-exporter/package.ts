@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "process-exporter";
       const version = "0.8.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ncabatoff",
           repo: "process-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace proc/read_test.go --replace /bin/cat cat\n";
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, process: nix.thunk(() => nix.attr(from, "process")) };
+          return { [nix.POS]: pos$2, process: nix.thunk(() => nix.attr(from, "process")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter that mines /proc to report on selected processes",
         homepage: "https://github.com/ncabatoff/process-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const haskellPackages = nix.arg($, "haskellPackages");
   return nix.app(nix.sel(nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./nix-run.nix"), nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "A non-experimental replacement for nix run",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "WeetHet"))]),
       })),

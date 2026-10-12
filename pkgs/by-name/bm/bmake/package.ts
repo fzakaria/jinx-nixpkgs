@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bmake",
       version: "20260313",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.crufty.net/ftp/pub/sjg/bmake-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-dsjzzULuBc/7R7zIElbj1edCb00I5zN4i0WYXe30+XU=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [bc, tzdata]),
       configureFlags: nix.thunk(() => ["--without-makefile"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BROKEN_TESTS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
             "cmd-interrupt",
             "directive-export",
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n./boot-strap -o . op=test\n\nrunHook postCheck\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bmakeMusl: nix.thunk(() => nix.selOr(pkgsMusl, () => null, "bmake")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.crufty.net/help/sjg/bmake.html",
         description: "Portable version of NetBSD 'make'",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

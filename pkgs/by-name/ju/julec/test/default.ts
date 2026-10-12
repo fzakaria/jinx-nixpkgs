@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const julec = nix.arg($, "julec");
   const clangStdenv = nix.arg($, "clangStdenv");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hello-jule",
       version: nix.thunk(() => nix.attr(julec, "version")),
       src: nix.path(here, "./hello-jule"),
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(julec, "meta"));
-        return { __proto__: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     }));
 })(), formals$1);

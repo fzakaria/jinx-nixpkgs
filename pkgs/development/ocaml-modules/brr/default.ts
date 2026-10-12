@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml_compiler = nix.arg($, "js_of_ocaml-compiler");
   const js_of_ocaml_toplevel = nix.arg($, "js_of_ocaml-toplevel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-brr`),
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/brr/releases/brr-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Zuh+DRpGxB8DxrLnLyf8Ok+YJDQwWiaI59HlZKdD4Jk=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://erratique.ch/software/brr",
         description: "Toolkit for programming browsers in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

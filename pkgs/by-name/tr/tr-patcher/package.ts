@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   const translation_file = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gitlab.com/bmwinger/tr-patcher/-/raw/master/lib/Translation.txt?inline=false",
       sha256: "136zd2s73b4n1w2n34wxi656bm448748nn3y7a64fd89ysg9n7n8",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tr-patcher",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://gitlab.com/bmwinger/tr-patcher/uploads/b57899980b2351c136393f02977c4fab/tr-patcher-shadow.zip",
           sha256: "0va7nbmlgf3p2nc0z2b9n1285y4q5rpyjr4w93rdnx38wrhinxnw",
         })))),
@@ -38,7 +38,7 @@ makeWrapper ${jre}/bin/java $out/bin/tr-patcher \\
 --add-flags "-jar $out/lib/tr-patcher.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allow to update dependencies of the Tamriel-Data mod for morrowind",
         mainProgram: "tr-patcher",
         homepage: "https://gitlab.com/bmwinger/tr-patcher",

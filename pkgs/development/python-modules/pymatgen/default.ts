@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "materialsproject",
           repo: "pymatgen",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         uncertainties,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         abinit: nix.thunk(() => [netcdf4]),
         ase: nix.thunk(() => [ase]),
         electronic_structure: [],
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_mean_field"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_timer_10_2_7", "test_timer"])))));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/cli/test_pmg_plot.py", "tests/io/abinit/test_abitimer.py"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Robust materials analysis code that defines core object representations for structures and molecules",
         homepage: "https://pymatgen.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/materialsproject/pymatgen/releases/tag/${nix.sel(src, "tag")}`),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

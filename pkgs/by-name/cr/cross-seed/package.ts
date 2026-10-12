@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs_22 = nix.arg($, "nodejs_22");
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs_22 })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_22 })), nix.thunk(() => (() => {
       const pname = "cross-seed";
       const version = "6.13.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cross-seed",
           repo: "cross-seed",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-HoIiO7cj4JNY+sJEuH1v0AgagDuBTySJaoVo/4SsfIc=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "cross-seed": nix.thunk(() => nix.sel(nixosTests, "cross-seed")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fully-automatic torrent cross-seeding with Torznab",
         homepage: "https://cross-seed.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mkez"))];
         })()),
       }));
-      return { __proto__: pos$6, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$6, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

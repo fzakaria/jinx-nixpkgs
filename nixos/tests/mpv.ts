@@ -18,34 +18,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = nix.thunk(() => nix.builtins.toString(4321n));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "mpv",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zopieux"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "curl")),
               nix.thunk(() => nix.app(nix.sel(pkgs, "mpv", "override"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   scripts: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mpvScripts", "simple-mpv-webui"))]),
                 })))),
             ]),
             etc: nix.thunk(() => ({
-              __proto__: pos$4,
-              "mpv/mpv.conf": nix.thunk(() => ({ __proto__: pos$3, text: "[nixos-test-profile]\n" })),
+              [nix.POS]: pos$4,
+              "mpv/mpv.conf": nix.thunk(() => ({ [nix.POS]: pos$3, text: "[nixos-test-profile]\n" })),
             })),
           })),
         };

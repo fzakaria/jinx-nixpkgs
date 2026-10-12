@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const kicad = nix.arg($, "kicad");
   return {
-    __proto__: pos$3,
-    kikit: nix.thunk(() => nix.app(nix.sel(kicad, "callPackage"), nix.path(here, "./kikit.nix"), nix.thunk(() => ({ __proto__: pos$1, addonName: "kikit" })))),
-    "kikit-library": nix.thunk(() => nix.app(nix.sel(kicad, "callPackage"), nix.path(here, "./kikit.nix"), nix.thunk(() => ({ __proto__: pos$2, addonName: "kikit-library" })))),
+    [nix.POS]: pos$3,
+    kikit: nix.thunk(() => nix.app(nix.sel(kicad, "callPackage"), nix.path(here, "./kikit.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, addonName: "kikit" })))),
+    "kikit-library": nix.thunk(() => nix.app(nix.sel(kicad, "callPackage"), nix.path(here, "./kikit.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, addonName: "kikit-library" })))),
   };
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const opencl_headers = nix.arg($, "opencl-headers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tesseract",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tesseract-ocr",
           repo: "tesseract",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, autoconf_archive]),
       buildInputs: nix.thunk(() => [leptonica, libpng, libtiff, icu, pango, opencl_headers]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCR engine",
         homepage: "https://github.com/tesseract-ocr/tesseract",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

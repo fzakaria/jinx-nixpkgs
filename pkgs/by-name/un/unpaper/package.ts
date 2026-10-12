@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unpaper",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.flameeyes.eu/files/unpaper-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JXX7vybCJxnRy4grWWAsmQDH90cRisEwiD9jQZvkaoA=",
         })))),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preCheck: "mesonCheckFlagsArray+=(--test-args \"--numprocesses=auto --maxprocesses=6\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           paperless: nix.thunk(() => nix.attr(nixosTests, "paperless")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.flameeyes.eu/projects/unpaper",
         changelog: nix.thunk(() => nix.str`https://github.com/unpaper/unpaper/blob/unpaper-${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Post-processing tool for scanned sheets of paper",

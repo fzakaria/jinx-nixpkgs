@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libepoxy",
       version: "1.5.10",
       src: nix.thunk(() => (() => {
         const w = nix.withScope(finalAttrs, null);
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "anholt",
             repo: "libepoxy",
             rev: nix.thunk(() => nix.lookup(w, "version")),
@@ -51,22 +51,22 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dx11=${nix.app(nix.sel(lib, "boolToString"), x11Support)}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(x11Support) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => nix.str`-DLIBGL_PATH="${nix.app(nix.sel(lib, "getLib"), libGL)}/lib"`))),
       })),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for handling OpenGL function pointer management",
         homepage: "https://github.com/anholt/libepoxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

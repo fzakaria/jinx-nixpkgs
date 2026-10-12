@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "noriskclient-launcher-unwrapped",
       version: "0.6.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NoRiskClient",
           repo: "noriskclient-launcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X0j5cWAIMdpLSUSDAUx7oSJ42xvRLL1PY8JK9i4wGhA=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-VWl6YqTiBRz85GICFKGwDZRBcITGQdWE7EUzW58wHdY=",
         })))),
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, libayatana_appindicator, openssl, webkitgtk_4_1]),
       postInstall: "desktop-file-edit \\\n--set-name \"NoRiskClient Launcher\" \\\n--set-comment \"Launcher for NoRiskClient\" \\\n--set-key=\"Categories\" --set-value=\"Game\" \\\n--set-key=\"Keywords\" --set-value=\"nrc;minecraft;mc;\" \\\n$out/share/applications/NoRisk\\ Launcher.desktop\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/NoRiskClient/noriskclient-launcher/blob/v3/changelogs/${nix.sel(finalAttrs, "version")}.txt`),
         description: "Minecraft Launcher for NoRisk Client",
         homepage: "https://norisk.gg",

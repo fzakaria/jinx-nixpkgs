@@ -35,60 +35,60 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "tailscale", "serve"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const serveConfig = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "0.0.1",
     services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (serviceCfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`svc:${name}`), nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           endpoints: nix.thunk(() => nix.sel(serviceCfg, "endpoints")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(serviceCfg, "advertised"), null)), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             advertised: nix.thunk(() => nix.attr(serviceCfg, "advertised")),
           })))))), nix.thunk(() => nix.sel(cfg, "services")))),
   }));
   const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(settingsFormat, "generate"), "tailscale-serve-config.json", serveConfig)));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bouk"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         tailscale: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           serve: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tailscale Serve configuration")),
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Path to a Tailscale Serve configuration file in JSON format.\nIf set, this takes precedence over {option}`services.tailscale.serve.services`.\n\nSee <https://tailscale.com/kb/1589/tailscale-services-configuration-file> for the configuration format.\n",
                 example: "/run/secrets/tailscale-serve.json",
               })))),
             services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       options: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         endpoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             description: "Map of incoming traffic patterns to local targets.\n\nKeys should be in the format `<protocol>:<port>` or `<protocol>:<port-range>`.\nCurrently only `tcp` protocol is supported.\n\nValues should be in the format `<protocol>://<host:port>` where protocol\nis `http`, `https`, or `tcp`.\n",
                             example: nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               "tcp:443": "https://localhost:443",
                               "tcp:8080": "http://localhost:8080",
                             })),
                           })))),
                         advertised: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                             default: null,
                             description: "Whether the service should accept new connections.\nDefaults to `true` when not specified.\n",
@@ -104,25 +104,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => nix.sel(config, "services", "tailscale", "enable")),
             message: "services.tailscale.serve requires services.tailscale.enable to be true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "services"), {})))),
             message: "services.tailscale.serve requires either configFile or services to be set",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "tailscale-serve": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Tailscale Serve Configuration",
               after: nix.thunk(() => [
                 "tailscaled.service",
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config, "services", "tailscale", "package")))} serve set-config --all ${configFile}`),

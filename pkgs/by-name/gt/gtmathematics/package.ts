@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const GTE_VERSION_MAJOR = "8";
   const GTE_VERSION_MINOR = "2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtmathematics",
       version: nix.thunk(() => nix.str`${GTE_VERSION_MAJOR}.${GTE_VERSION_MINOR}`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davideberly",
           repo: "GeometricTools",
           tag: nix.thunk(() => nix.str`GTE-version-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "GTE_VERSION_MINOR", nix.thunk(() => nix.str`${GTE_VERSION_MINOR}`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A collection of source code for computing in the fields of mathematics, geometry, graphics, image analysis and physics.",
         homepage: "https://www.geometrictools.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rod2ik",
           repo: "mkdocs-graphviz",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace-path-to-dot.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             command: nix.thunk(() => nix.str`"${graphviz}/bin/" + command`),
           })))),
       ]);
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_graphviz"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configurable Python markdown extension for graphviz and Mkdocs",
         homepage: "https://gitlab.com/rod2ik/mkdocs-graphviz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

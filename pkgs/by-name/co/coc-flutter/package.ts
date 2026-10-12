@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const esbuild$ = nix.thunk(() => (() => {
     const version = "0.9.0";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,32 +46,32 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "coc-flutter",
       version: "1.9.3-unstable-2023-03-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "iamcco",
           repo: "coc-flutter",
           rev: "883c269eaacbeddbd4fb08e32e6a05051933429d",
           hash: "sha256-K3NvqZnAEj/qfsvomYl7dPtEo3ad7w1dCfZHjMRwbAA=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aEjfhjkMlHSdISfG9baRfaUiTUbj8TPZi2edAFiqKlg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnBuildHook, yarnConfigHook, yarnInstallHook, nodejs, esbuild$]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$8,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Flutter support for (Neo)vim",
         homepage: "https://github.com/iamcco/coc-flutter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

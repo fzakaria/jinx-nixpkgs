@@ -31,49 +31,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "gnome-extensions",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (e) => nix.has(e, "extensionUuid"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(pkgs_1, "gnomeExtensions")))))),
           })),
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$5,
-            config: nix.thunk(() => ({ __proto__: pos$4, allowBroken: true, allowAliases: false })),
+            [nix.POS]: pos$5,
+            config: nix.thunk(() => ({ [nix.POS]: pos$4, allowBroken: true, allowAliases: false })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
-            xserver: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            [nix.POS]: pos$12,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$9,
-              gdm: nix.thunk(() => ({ __proto__: pos$7, enable: true, debug: true })),
-              autoLogin: nix.thunk(() => ({ __proto__: pos$8, enable: true, user: "alice" })),
+              [nix.POS]: pos$9,
+              gdm: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, debug: true })),
+              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, user: "alice" })),
             })),
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$11,
-              gnome: nix.thunk(() => ({ __proto__: pos$10, enable: true, debug: true })),
+              [nix.POS]: pos$11,
+              gnome: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, debug: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             user: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               services: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 "org.gnome.Shell@": nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     ExecStart: nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.str`${nix.sel(pkgs_1, "gnome-shell")}/bin/gnome-shell --unsafe-mode`),

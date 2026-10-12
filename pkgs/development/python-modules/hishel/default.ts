@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karpetrosyan",
           repo: "hishel",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatchling]);
       const dependencies = nix.thunk(() => [msgpack, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [anyio, anysqlite]),
         requests: nix.thunk(() => [requests]),
         httpx: nix.thunk(() => [httpx]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["hishel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP Cache implementation for HTTPX and HTTP Core",
         homepage: "https://github.com/karpetrosyan/hishel",
         changelog: nix.thunk(() => nix.str`https://github.com/karpetrosyan/hishel/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

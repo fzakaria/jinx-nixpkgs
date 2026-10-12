@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "valentina";
       const version = "0.7.53";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smart-pattern",
           repo: "valentina",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "installManPage dist/debian/*.1\ninstall -Dm644 dist/debian/valentina.sharedmimeinfo $out/share/mime/packages/valentina.xml\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source sewing pattern drafting software",
         homepage: "https://smart-pattern.com.ua/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/smart-pattern/valentina/-/blob/v${version}/ChangeLog.txt`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

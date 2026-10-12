@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "dosbox-pure",
       version: "0-unstable-2026-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schellingb",
           repo: "dosbox-pure",
           rev: "73e03aa145e0549ed4d5a20f8e65532714da33f5",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of DOSBox to libretro aiming for simplicity and ease of use",
         homepage: "https://github.com/schellingb/dosbox-pure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

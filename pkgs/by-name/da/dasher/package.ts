@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const speechSupport = nix.argOr($, "speechSupport", () => true);
   const speechd_minimal = nix.arg($, "speechd-minimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dasher",
       version: "5.0-beta-unstable-2021-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "dasher",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([glib, gtk3, expat, itstool, at_spi2_core, dbus], nix.app(nix.sel(lib, "optional"), speechSupport, speechd_minimal))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.inference.org.uk/dasher/",
         description: "Information-efficient text-entry interface, driven by natural continuous pointing gestures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

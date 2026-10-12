@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const otf2bdf = nix.arg($, "otf2bdf");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "console-setup",
       version: "1.242",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "installer-team",
           repo: "console-setup",
@@ -41,11 +41,11 @@ substituteInPlace Fonts/Makefile --replace-fail '/usr/share/unifont/' '${nix.sel
       preBuild: "make -j$NIX_BUILD_CORES bdf",
       installTargets: nix.thunk(() => ["install-linux"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Console font and keymap setup program",
         homepage: "https://salsa.debian.org/installer-team/console-setup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

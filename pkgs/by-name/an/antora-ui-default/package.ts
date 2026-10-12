@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const srcFetchFromGitLab = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     owner: "trueNAHO",
     repo: "antora-ui-default",
     rev: "11f563294248e9b64124b9289d639e349f2e9f5f",
     hash: "sha256-gUQLLjnWZ1OsAe005IOPIfoM0qmjoevcUuGBRD3oHXA=",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "antora-ui-default",
       version: "0-unstable-2024-12-26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, srcFetchFromGitLab)),
       buildCommand: "mkdir --parents \"$out\"\ncp \"$src/ui-bundle.zip\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Antora default UI bundle",
         homepage: "https://gitlab.com/antora/antora-ui-default",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

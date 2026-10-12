@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libax25",
       version: "0.0.12-rc5",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([autoreconfHook, glibc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => [nix.thunk(() => nix.sel(glibc, "static"))])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radiocatalog",
           repo: "libax25",
           tag: nix.thunk(() => nix.str`libax25-${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-static-libgcc", "-static"]))),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AX.25 library for hamradio applications",
         homepage: "https://linux-ax25.in-berlin.de/wiki/Main_Page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

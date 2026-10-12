@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.34.0";
       const buildVersion = "220906";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.supermicro.com/Bios/sw_download/481/IPMICFG_${version}_build.${buildVersion}.zip`),
           hash: "sha256-ZumCXuR7M2Ep7maBOBFk0UsxyRo4fBkf+9AVmkz4AF0=",
         }))));
@@ -33,7 +33,7 @@ ln -s "$out/opt/ipmicfg/IPMICFG-Linux.x86_64" "$out/bin/ipmicfg"
 `);
       const dontPatchShebangs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Supermicro IPMI configuration tool",
         homepage: "http://www.supermicro.com/products/nfo/ipmi.cfm",
         sourceProvenance: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ ln -s "$out/opt/ipmicfg/IPMICFG-Linux.x86_64" "$out/bin/ipmicfg"
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         buildVersion,

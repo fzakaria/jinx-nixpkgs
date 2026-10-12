@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const width = nix.thunk(() => nix.builtins.stringLength(nix.thunk(() => nix.builtins.toString(extraThumbgens))));
   const extraThumbgenScripts = nix.thunk(() => nix.builtins.genList((i) => nix.str`gallery-thumbgen.${nix.app(zeroPad, nix.thunk(() => nix.add(i, 1n)), width)}.lua`, extraThumbgens));
   return nix.app(buildLua, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-gallery-view",
       version: "0-unstable-2024-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "occivink",
           repo: "mpv-gallery-view",
           rev: "4a8e664d52679fff3f05f29aa7a54b86150704bc",
@@ -50,7 +50,7 @@ runHook postInstall
       scriptPath: "playlist-view.lua",
       extraScripts: nix.thunk(() => nix.concat(["contact-sheet.lua", "gallery-thumbgen.lua"], extraThumbgenScripts)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         extraWrapperArgs: nix.thunk(() => nix.builtins.map((script) => [
             "--add-flags",
@@ -58,7 +58,7 @@ runHook postInstall
           ], nix.thunk(() => nix.sel(finalAttrs, "extraScripts")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gallery-view scripts for mpv",
         homepage: "https://github.com/occivink/mpv-gallery-view",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

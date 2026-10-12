@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     const cmake = nix.arg($_1, "cmake");
     const buildPackages = nix.arg($_1, "buildPackages");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "nix-eval-jobs",
         version: nix.thunk(() => nix.str`${version}${suffix}`),
         src: src,
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => nix.concat([nlohmann_json, lix, boost], nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.93")), nix.thunk(() => [capnproto])))),
         nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, cmake], nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(buildPackages, "clang-tools"))))),
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", args_1)),
-        passthru: nix.thunk(() => ({ __proto__: pos$1, nix: lix })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, nix: lix })),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Hydra's builtin `hydra-eval-jobs` as a standalone tool",
           mainProgram: "nix-eval-jobs",
           homepage: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.93")) ? "https://git.lix.systems/lix-project/lix/src/branch/main/subprojects/nix-eval-jobs" : "https://git.lix.systems/lix-project/nix-eval-jobs")),

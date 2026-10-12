@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tradingview",
       version: "3.4.0",
       revision: "73",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/nJdITJ6ZJxdvfu8Ch7n5kH5P99ClzBYV_${nix.sel(finalAttrs, "revision")}.snap`),
           hash: "sha512-1VDbejiLW8HrvZ/2aoUpphVIuq8g/2+gvdZ0gPaO5vxDStwarJAcobyQ/xVXySZDzoyFQ974aQBV7M0c1AuXng==",
         })))),
@@ -81,9 +81,9 @@ makeWrapper $out/share/tradingview/tradingview $out/bin/tradingview \\
 runHook postInstall
 `),
       preFixup: "patchelf --add-needed libGL.so.1 $out/share/tradingview/tradingview\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Charting platform for traders and investors",
         homepage: "https://www.tradingview.com/desktop/",
         changelog: "https://www.tradingview.com/support/solutions/43000673888/",

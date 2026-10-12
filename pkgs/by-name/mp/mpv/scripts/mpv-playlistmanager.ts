@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-playlistmanager",
       version: "0-unstable-2026-03-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonniek",
           repo: "mpv-playlistmanager",
           rev: "2eb09e1e7a2f66549145b728d570fda83703ed86",
           hash: "sha256-NZ6tRq0DLzg1NlpIwbMZPoWQmJZ0cynDuyF5TGazOfc=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace playlistmanager.lua \\
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   'youtube_dl_executable = "${nix.app(nix.sel(lib, "getExe"), yt_dlp)}"',
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mpv lua script to create and manage playlists",
         homepage: "https://github.com/jonniek/mpv-playlistmanager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

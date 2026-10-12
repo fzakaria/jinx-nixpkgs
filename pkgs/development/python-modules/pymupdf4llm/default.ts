@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pymupdf = nix.arg($, "pymupdf");
   const tabulate = nix.arg($, "tabulate");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymupdf4llm",
       version: "0.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymupdf",
           repo: "RAG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\npython3 - <<'EOF'\nimport fitz\nimport pymupdf4llm\n\ndoc = fitz.open()\npage = doc.new_page()\npage.insert_text((72, 72), \"Hello, Nix!\")\ndoc.save(\"input.pdf\")\n\nmd = pymupdf4llm.to_markdown(\"input.pdf\")\nassert isinstance(md, str), \"Returned value is not a string\"\nassert \"Hello, Nix!\" in md, \"Returned value does not contain the expected text\"\nEOF\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["pymupdf4llm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyMuPDF Utilities for LLM/RAG - converts PDF pages to Markdown format for Retrieval-Augmented Generation",
         homepage: "https://github.com/pymupdf/RAG",
         changelog: nix.thunk(() => nix.str`https://github.com/pymupdf/RAG/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

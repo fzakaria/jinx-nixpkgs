@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geonkick",
       version: "3.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Geonkick-Synthesizer",
           repo: "geonkick",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsndfile, rapidjson, libjack2, lv2, libx11, cairo, openssl]),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_LIBDIR=lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/iurie-sw/geonkick",
         description: "Free software percussion synthesizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

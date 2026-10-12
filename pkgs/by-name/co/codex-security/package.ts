@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const nativePluginTarget = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "darwin-arm64",
     "aarch64-linux": "linux-arm64-gnu",
     "x86_64-darwin": "darwin-x64",
     "x86_64-linux": "linux-x64-gnu",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "codex-security",
       version: "0.1.31",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openai",
           repo: "codex-security",
           tag: nix.thunk(() => nix.str`npm-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TA0dxV9VYvvmPU2ZqI5i0XGHaIzNYhqlkLPztZMbtCQ=",
         })))),
       npmPackage: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@openai/codex-security/-/codex-security-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha512-XdxIQ+JQH3iysFPW2VdFcKAJJo+M+G4hR9x/KlVimMcbmocDVtQT+trjjfNPqZUdb2ZHrW7HHGepeRhMbMvCHQ==",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/sdk/typescript`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -101,14 +101,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex", "npm-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities in your code",
         homepage: "https://github.com/openai/codex-security",
         changelog: nix.thunk(() => nix.str`https://github.com/openai/codex-security/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kane610",
           repo: "deconz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_aiohttp, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pydeconz"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library wrapping the Deconz REST API",
         homepage: "https://github.com/Kane610/deconz",
         changelog: nix.thunk(() => nix.str`https://github.com/Kane610/deconz/releases/tag/v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pydeconz",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "anyqt",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ales-erjavec",
           repo: "anyqt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +49,11 @@ export QT_QPA_PLATFORM=offscreen
         ]))),
       pythonImportsCheck: nix.thunk(() => ["AnyQt"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyQt/PySide compatibility layer",
         homepage: "https://github.com/ales-erjavec/anyqt",
         changelog: nix.thunk(() => nix.str`https://github.com/ales-erjavec/anyqt/releases/tag/${nix.sel(finalAttrs, "version")}`),

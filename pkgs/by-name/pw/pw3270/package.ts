@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const scour = nix.arg($, "scour");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pw3270",
       version: "5.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PerryWerneck",
           repo: "pw3270",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ rm -rf $out/share/gsettings-schemas
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3270 Emulator for gtk",
         homepage: "https://softwarepublico.gov.br/social/pw3270/",
         changelog: nix.thunk(() => nix.str`https://github.com/PerryWerneck/pw3270/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

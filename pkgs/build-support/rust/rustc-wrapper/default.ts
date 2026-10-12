@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool(nix.lookup(w, "isMusl")) && nix.asBool(!nix.asBool(nix.lookup(w, "isStatic"))));
     })()), "-C target-feature=-crt-static"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(rustc_unwrapped, "pname")}-wrapper-${nix.sel(rustc_unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       preferLocalBuild: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.attr(rustc_unwrapped, "outputs")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: nix.thunk(() => nix.attr(rustc_unwrapped, "pname")),
         version: nix.thunk(() => nix.attr(rustc_unwrapped, "version")),
         src: nix.thunk(() => nix.attr(rustc_unwrapped, "src")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(rustc_unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`${nix.sel(rustc_unwrapped, "meta", "description")} (wrapper script)`),
         priority: 10n,
       })),

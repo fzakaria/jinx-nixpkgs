@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "handlr",
       version: "0.6.4-unstable-2021-08-28",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chmln",
           repo: "handlr",
           rev: "90e78ba92d0355cb523abf268858f3123fd81238",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/common/mime_types.rs \\\n  --replace-fail '\"application/x-shellscript\"' '\"text/x-shellscript\"'\n",
       postInstall: "installShellCompletion \\\n  --zsh  completions/_handlr \\\n  --bash  completions/handlr \\\n  --fish completions/handlr.fish\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative to xdg-open to manage default applications with ease",
         homepage: "https://github.com/chmln/handlr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

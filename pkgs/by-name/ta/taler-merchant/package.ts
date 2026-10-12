@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "taler-merchant",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/merchant.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [jq]),
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.sel(nixosTests, "taler", "basic")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Merchant component for the GNU Taler electronic payment system",
         longDescription: "This is the GNU Taler merchant backend. It provides the logic that should run\nat every GNU Taler merchant.  The GNU Taler merchant is a RESTful backend that\ncan be used to setup orders and process payments.  This component allows\nmerchants to receive payments without invading the customers' privacy. Of\ncourse, this applies mostly for digital goods, as the merchant does not need\nto know the customer's physical address.\n",
         homepage: "https://www.taler.net/en/",

@@ -58,76 +58,76 @@ export default nix.lambda((args) => (() => {
   const keyType = "ed25519";
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "darwin-builder"));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         disabledModules: nix.thunk(() => [
           nix.path(here, "../virtualisation/nixos-containers.nix"),
           nix.path(here, "../services/x11/desktop-managers/xterm.nix"),
         ]),
         config: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           boot: nix.thunk(() => ({
-            __proto__: pos$2,
-            swraid: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+            [nix.POS]: pos$2,
+            swraid: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
           })),
         })),
         options: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           boot: nix.thunk(() => ({
-            __proto__: pos$6,
-            isContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, default: false, internal: true })))),
-            isNspawnContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$5, default: false, internal: true })))),
+            [nix.POS]: pos$6,
+            isContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, default: false, internal: true })))),
+            isNspawnContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$5, default: false, internal: true })))),
           })),
         })),
       })),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "darwin-builder": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             diskSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: nix.thunk(() => nix.mul(20n, 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 30720n,
                 description: "The maximum disk space allocated to the runner in MiB (1024×1024 bytes).",
               })))),
             memorySize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: nix.thunk(() => nix.mul(3n, 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 8192n,
                 description: "The runner's memory in MiB (1024×1024 bytes).",
               })))),
             "min-free": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: nix.thunk(() => nix.mul(nix.mul(1024n, 1024n), 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 1073741824n,
                 description: "The threshold (in bytes) of free disk space left at which to\nstart garbage collection on the runner\n",
               })))),
             "max-free": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: nix.thunk(() => nix.mul(nix.mul(nix.mul(3n, 1024n), 1024n), 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 3221225472n,
                 description: "The threshold (in bytes) of free disk space left at which to\nstop garbage collection on the runner\n",
               })))),
             workingDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: ".",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 example: "/var/lib/darwin-builder",
                 description: "The working directory to use to run the script. When running\nas part of a flake will need to be set to a non read-only filesystem.\n",
               })))),
             hostPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: 31022n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 example: 22n,
@@ -138,40 +138,40 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$43,
-      documentation: nix.thunk(() => ({ __proto__: pos$18, enable: false })),
+      [nix.POS]: pos$43,
+      documentation: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
       environment: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         etc: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "ssh/ssh_host_ed25519_key": nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             mode: "0600",
             source: nix.path(here, "./keys/ssh_host_ed25519_key"),
           })),
           "ssh/ssh_host_ed25519_key.pub": nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             mode: "0644",
             source: nix.path(here, "./keys/ssh_host_ed25519_key.pub"),
           })),
         })),
       })),
       nix: nix.thunk(() => ({
-        __proto__: pos$25,
-        channel: nix.thunk(() => ({ __proto__: pos$23, enable: false })),
+        [nix.POS]: pos$25,
+        channel: nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
         settings: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           "min-free": nix.thunk(() => nix.sel(cfg, "min-free")),
           "max-free": nix.thunk(() => nix.sel(cfg, "max-free")),
           "trusted-users": nix.thunk(() => [user]),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         disableInstallerTools: true,
-        systemBuilderArgs: nix.thunk(() => ({ __proto__: pos$26, allowSubstitutes: true })),
+        systemBuilderArgs: nix.thunk(() => ({ [nix.POS]: pos$26, allowSubstitutes: true })),
         build: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           "macos-builder-installer": nix.thunk(() => (() => {
             const privateKey = nix.thunk(() => nix.str`/etc/nix/${user}_${keyType}`);
             const publicKey = nix.thunk(() => nix.str`${privateKey}.pub`);
@@ -202,7 +202,7 @@ KEYS="\${KEYS:-./keys}"
 KEYS="$(${nix.sel(hostPkgs, "nix")}/bin/nix-store --add "$KEYS")" ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config, "system", "build", "vm")))}
 `)));
             return nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 name: "create-builder",
                 executable: true,
                 destination: "/bin/create-builder",
@@ -215,7 +215,7 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
                 checkPhase: nix.thunk(() => nix.str`${nix.sel(hostPkgs, "stdenv", "shellDryRun")} "$target"
 `),
                 meta: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   mainProgram: "create-builder",
                   description: "Create a Linux builder VM for macOS",
                   platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
@@ -225,7 +225,7 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
                   })()),
                 })),
                 passthru: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   nixosConfig: config,
                   nixosOptions: options,
                   "add-keys": add_keys,
@@ -234,28 +234,28 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
               })));
           })()),
         })),
-        nixos: nix.thunk(() => ({ __proto__: pos$31, revision: null, versionSuffix: "" })),
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$31, revision: null, versionSuffix: "" })),
         stateVersion: "24.05",
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$35,
-        getty: nix.thunk(() => ({ __proto__: pos$33, autologinUser: user })),
+        [nix.POS]: pos$35,
+        getty: nix.thunk(() => ({ [nix.POS]: pos$33, autologinUser: user })),
         openssh: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           enable: true,
           authorizedKeysFiles: nix.thunk(() => [nix.thunk(() => nix.str`${keysDirectory}/%u_${keyType}.pub`)]),
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         users: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.str`${user}`, nix.thunk(() => ({ __proto__: pos$36, isNormalUser: true }))],
+          [nix.str`${user}`, nix.thunk(() => ({ [nix.POS]: pos$36, isNormalUser: true }))],
         ])),
       })),
       security: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         polkit: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           enable: true,
           extraConfig: nix.thunk(() => nix.str`polkit.addRule(function(action, subject) {
   if (action.id === "org.freedesktop.login1.power-off" && subject.user === "${user}") {
@@ -268,12 +268,12 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         diskSize: nix.thunk(() => nix.sel(cfg, "diskSize")),
         memorySize: nix.thunk(() => nix.sel(cfg, "memorySize")),
         sharedDirectories: nix.thunk(() => ({
-          __proto__: pos$41,
-          keys: nix.thunk(() => ({ __proto__: pos$40, source: "\"$KEYS\"", target: keysDirectory })),
+          [nix.POS]: pos$41,
+          keys: nix.thunk(() => ({ [nix.POS]: pos$40, source: "\"$KEYS\"", target: keysDirectory })),
         })),
         writableStore: true,
         writableStoreUseTmpfs: false,

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsspec",
           repo: "s3fs",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["fsspec"]);
       const dependencies = nix.thunk(() => [aiobotocore, fsspec, aiohttp]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         awscli: nix.thunk(() => nix.sel(aiobotocore, "optional-dependencies", "awscli")),
         boto3: nix.thunk(() => nix.sel(aiobotocore, "optional-dependencies", "boto3")),
       }));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_async_close", "test_session_close"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pythonic file interface for S3",
         homepage: "https://github.com/fsspec/s3fs",
         changelog: nix.thunk(() => nix.str`https://github.com/fsspec/s3fs/blob/${nix.sel(src, "tag")}/docs/source/changelog.rst`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

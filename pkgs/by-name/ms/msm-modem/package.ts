@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const libqmi = nix.arg($, "libqmi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "msm-modem",
       version: "13",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "msm-modem",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libqmi, gawk, gnugrep]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Common support for Qualcomm MSM modems",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/msm-modem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -59,25 +59,25 @@ export default nix.lambda((args) => (() => {
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => nix.str`CONFIG_${name}=${nix.app(toStr, value)}`, nix.thunk(() => nix.sel(cfg, "config")))))}
 `)));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "automysqlbackup", "config"]), nix.thunk(() => ["services", "automysqlbackup", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         automysqlbackup: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "AutoMySQLBackup")),
           calendar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "01:15:00",
               description: "Configured when to run the backup service systemd unit (DayOfWeek Year-Month-Day Hour:Minute:Second).\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -95,20 +95,20 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "mysqlBackup", "enable"))),
             message: "Please choose one of services.mysqlBackup or services.automysqlbackup.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           automysqlbackup: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             config: nix.thunk(() => nix.app(mapAttrs, (name) => nix.force(mkDefault), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 mysql_dump_username: user,
                 mysql_dump_host: "localhost",
                 mysql_dump_socket: "/run/mysqld/mysqld.sock",
@@ -119,36 +119,36 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
               })))),
           })),
           mysql: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             ensureUsers: nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(config, "services", "mysql", "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "config", "mysql_dump_host"), "localhost")))), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: user,
-                ensurePermissions: nix.thunk(() => ({ __proto__: pos$9, "*.*": "SELECT, SHOW VIEW, TRIGGER, LOCK TABLES, EVENT" })),
+                ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$9, "*.*": "SELECT, SHOW VIEW, TRIGGER, LOCK TABLES, EVENT" })),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           timers: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             automysqlbackup: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "automysqlbackup timer",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "calendar")),
                 AccuracySec: "5m",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             automysqlbackup: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "automysqlbackup service",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: user,
                 Group: group,
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/automysqlbackup ${configFile}`),
@@ -156,17 +156,17 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "config", "backup_dir")}' 0750 ${user} ${group} - -`),
             ]),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$21, systemPackages: nix.thunk(() => [pkg]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$21, systemPackages: nix.thunk(() => [pkg]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [user, nix.thunk(() => ({ __proto__: pos$22, group: group, isSystemUser: true }))],
+            [user, nix.thunk(() => ({ [nix.POS]: pos$22, group: group, isSystemUser: true }))],
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [[group, nix.thunk(() => ({}))]])),
         })),

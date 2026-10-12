@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "tdarr",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mistyttm"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             tdarr: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
-              server: nix.thunk(() => ({ __proto__: pos$2, serverPort: 9266n, webUIPort: 9265n })),
+              server: nix.thunk(() => ({ [nix.POS]: pos$2, serverPort: 9266n, webUIPort: 9265n })),
               nodes: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 main: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: "tdarr-main-custom",
                   serverURL: "http://127.0.0.1:9266",
                   serverIP: "127.0.0.1",
@@ -60,18 +60,18 @@ export default nix.lambda((args) => (() => {
                   maxLogSizeMB: 42n,
                   cronPluginUpdate: "*/15 * * * *",
                   pathTranslators: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$3, server: "/mnt/server/cache", node: "/mnt/node/cache" })),
-                    nix.thunk(() => ({ __proto__: pos$4, server: "/mnt/server/media", node: "/mnt/node/media" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$3, server: "/mnt/server/cache", node: "/mnt/node/cache" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$4, server: "/mnt/server/media", node: "/mnt/node/media" })),
                   ]),
                   workers: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     transcodeGPU: 1n,
                     transcodeCPU: 3n,
                     healthcheckGPU: 1n,
                     healthcheckCPU: 2n,
                   })),
                 })),
-                secondary: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+                secondary: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
               })),
             })),
           })),

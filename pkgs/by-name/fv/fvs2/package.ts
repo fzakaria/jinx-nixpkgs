@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const git = nix.arg($, "git");
   const core = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "fvs-lab",
       repo: "core",
       tag: "v0.1.3",
       hash: "sha256-9AjUaTRBrcNr1yYakzXfLBuRCKqDIrVwrEKlQgb4m0o=",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fvs2",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fvs-lab",
           repo: "fvs2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standalone CLI for FVS v2",
         homepage: "https://github.com/fvs-lab/fvs2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

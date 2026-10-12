@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const suffix = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux_x86_64.AppImage",
     "aarch64-linux": "linux_arm64.AppImage",
     "aarch64-darwin": "mac_arm64.dmg",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/streetwriters/notesnook/releases/download/v${version}/notesnook_${suffix}`),
       hash: nix.thunk(() => nix.selOr({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "x86_64-linux": "sha256-NwNfhTufJ25wqdZuRXV73aVOHjdqGPQ4jZdMXaW+3vM=",
         "aarch64-linux": "sha256-dAjLOiWvozJoz8O/feKrM4/qE9XS83INA4IC4gWZtg0=",
         "aarch64-darwin": "sha256-aZFiaWA8tr1Nuule/qKTr1hUuQ/9gTs2AJqrojAFeDQ=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
-  const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$5, pname: pname, version: version, src: src }))));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version, src: src }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "Fully open source & end-to-end encrypted note taking alternative to Evernote",
     longDescription: "Notesnook is a free (as in speech) & open source note taking app\nfocused on user privacy & ease of use. To ensure zero knowledge\nprinciples, Notesnook encrypts everything on your device using\nXChaCha20-Poly1305 & Argon2.\n",
     homepage: "https://notesnook.com",
@@ -69,7 +69,7 @@ substituteInPlace $out/share/applications/notesnook.desktop \\
   --replace 'Exec=AppRun --no-sandbox %U' 'Exec=${pname_1}'
 `);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -81,7 +81,7 @@ substituteInPlace $out/share/applications/notesnook.desktop \\
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,

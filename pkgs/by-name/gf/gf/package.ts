@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const extraFlags = nix.argOr($, "extraFlags", () => "");
   const pluginsFile = nix.argOr($, "pluginsFile", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gf",
       version: "0-unstable-2026-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "gf",
           owner: "nakst",
           rev: "1c04ed95d45d49fb4b06cbc620c61acd58818977",
@@ -49,14 +49,14 @@ runHook postBuild
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/gf2 --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), "--version=branch")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GDB Frontend",
         homepage: "https://github.com/nakst/gf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

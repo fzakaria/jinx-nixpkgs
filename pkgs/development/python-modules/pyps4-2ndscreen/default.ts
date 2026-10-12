@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ktnrg45",
           repo: "pyps4-2ndscreen",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/ktnrg45/pyps4-2ndscreen/commit/c3c89f9cce09d91e2b325474d28d7f1b3ccdf0f4.patch",
             hash: "sha256-igLa+DUvQWUZtrHiq9UXTSG2h7cktElaXbTsxYPEeLM=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook, asynctest]);
       const pythonImportsCheck = nix.thunk(() => ["pyps4_2ndscreen"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PS4 2nd Screen Python Library",
         homepage: "https://github.com/ktnrg45/pyps4-2ndscreen",
         changelog: nix.thunk(() => nix.str`https://github.com/ktnrg45/pyps4-2ndscreen/releases/tag/${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

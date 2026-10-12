@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const nativeCpuSupport = nix.argOr($, "nativeCpuSupport", () => true);
   const enableManpages = nix.argOr($, "enableManpages", () => true);
   const ccWrapperStub = nix.thunk(() => nix.app(wrapCC, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "ccWrapperStub",
         dontUnpack: true,
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -62,10 +62,10 @@ chmod +x $out/bin/clang-${llvmMajorVersion}
 cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang
 cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$1, isClang: true, langC: true, langCC: true, isROCm: true })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isClang: true, langC: true, langCC: true, isROCm: true })),
       }))))));
   const unified_runtime = nix.thunk(() => nix.app(make_unified_runtime, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       levelZeroSupport: levelZeroSupport,
       cudaSupport: cudaSupport,
       rocmSupport: rocmSupport,
@@ -73,7 +73,7 @@ cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
       nativeCpuSupport: nativeCpuSupport,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "intel-llvm",
       src: src,
       version: version,
@@ -99,7 +99,7 @@ cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
         hwloc,
         emhash,
         parallel_hashmap,
-        nix.thunk(() => nix.app(nix.sel(zstd, "override"), nix.thunk(() => ({ __proto__: pos$4, static: true })))),
+        nix.thunk(() => nix.app(nix.sel(zstd, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, static: true })))),
       ], nix.sel(unified_runtime, "buildInputs"))),
       propagatedBuildInputs: nix.thunk(() => [zlib, libedit, opencl_headers]),
       cmakeBuildType: "Release",
@@ -108,7 +108,7 @@ cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
         nix.path(here, "./gnu-install-dirs.patch"),
         nix.path(here, "./sycl-jit-exclude-cmake-files.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/llvm/llvm-project/commit/3dc4fd6dd41100f051a63642f449b16324389c96.patch?full_index=1",
             hash: "sha256-BJwFPeYCBO+PnUMMC/3GSYPgn0vczkkbdw5qcnURPbI=",
           })))),
@@ -209,7 +209,7 @@ substituteInPlace "$dev/include/clang/Config/config.h" \\
   --replace-fail "../lib/clang/${llvmMajorVersion}" "$lib/lib/clang/${llvmMajorVersion}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         isClang: true,
         langC: true,
         langCC: true,
@@ -219,7 +219,7 @@ substituteInPlace "$dev/include/clang/Config/config.h" \\
         hardeningUnsupportedFlags: nix.thunk(() => ["zerocallusedregs"]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Intel LLVM-based compiler with SYCL support",
         longDescription: "Intel's LLVM-based compiler toolchain with Data Parallel C++ (DPC++)\nand SYCL support for heterogeneous computing across CPUs, GPUs, and FPGAs.\n",
         homepage: "https://github.com/intel/llvm",

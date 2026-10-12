@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const x11RuntimePackages = nix.argOr($, "x11RuntimePackages", () => [xclip, xdotool]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "voxtype",
       version: "1.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peteonrails",
           repo: "voxtype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
           ];
         })())), nix.concat(nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => [vulkan_headers, vulkan_loader])), nix.app(nix.sel(lib, "optionals"), onnxSupport, nix.thunk(() => [onnxruntime])))))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libclang)}/lib`),
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "-C target-cpu=x86-64-v3")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), hipSupport, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           HIP_PATH: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}`),
           AMDGPU_TARGETS: rocmGpuTargets,
         }))))),
@@ -105,11 +105,11 @@ wrapProgram $out/bin/voxtype \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "update-script": nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Voice-to-text with push-to-talk for Wayland compositors",
         longDescription: "Voxtype is a push-to-talk voice-to-text daemon for Linux.\nHold a hotkey while speaking, release to transcribe and output\ntext at your cursor position. Supports Whisper, Parakeet,\nSenseVoice, Moonshine, Paraformer, Dolphin, and Omnilingual engines.\n",
         homepage: "https://voxtype.io",

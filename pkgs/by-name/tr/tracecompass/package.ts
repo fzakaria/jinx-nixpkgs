@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const buildId = "20251212-2003";
   const archiveName = nix.thunk(() => nix.str`trace-compass-${version}-${buildId}-linux.gtk.x86_64.tar.gz`);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tracecompass",
       exec: "tracecompass",
       icon: "tracecompass",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.eclipse.org/tracecompass/releases/${version_1}/rcp/${archiveName}`),
           hash: "sha256-QNJAJkgpV8v94IJx/jnQQ5HhX0kuASET3ywa/nfhsEs=",
         }))));
@@ -108,15 +108,15 @@ done
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           smoke: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "tracecompass-smoke-test",
               nativeBuildInputs: nix.thunk(() => [coreutils, xvfb_run]),
-              meta: nix.thunk(() => ({ __proto__: pos$3, timeout: 120n })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 120n })),
               script: nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -158,7 +158,7 @@ touch $out
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Eclipse Trace Compass trace event analyzer",
           longDescription: "Trace Compass is an Eclipse application for analyzing and visualizing traces and logs.\nIt helps diagnose performance issues in the Linux kernel, Android, and other systems\nby understanding what the system is doing over time.\n",
           homepage: "https://www.eclipse.org/tracecompass/",
@@ -177,7 +177,7 @@ touch $out
         };
       })());
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version: version_1,
         strictDeps,

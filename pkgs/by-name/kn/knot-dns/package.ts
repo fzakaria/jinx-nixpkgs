@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const knot_dns = nix.arg($, "knot-dns");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "knot-dns",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://knot-dns.nic.cz/release/knot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "9af5818f6b53f8a387e013676a308d5c932bdb469d47f1ca926e1842badea75e",
         })))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O2", "-DNDEBUG"]))),
       })),
       __darwinAllowLocalNetworking: true,
@@ -95,15 +95,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "rm -r \"$out\"/lib/*.la\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => nix.update({ __proto__: pos$3, "knot-resolver_5": knot_resolver_5 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$5,
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$3, "knot-resolver_5": knot_resolver_5 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
+            [nix.POS]: pos$5,
             "knot-resolver-manager_6": knot_resolver_manager_6,
             knot: nix.thunk(() => nix.attr(nixosTests, "knot")),
             kea: nix.thunk(() => nix.attr(nixosTests, "kea")),
             "prometheus-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "knot")),
             deps: nix.thunk(() => nix.app(runCommandLocal, "knot-deps-test", nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))),
                 ]),
@@ -117,7 +117,7 @@ touch "$out"
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Authoritative-only DNS server from .cz domain registry",
         homepage: "https://knot-dns.cz",
         changelog: nix.thunk(() => nix.str`https://gitlab.nic.cz/knot/knot-dns/-/releases/v${nix.sel(finalAttrs, "version")}`),

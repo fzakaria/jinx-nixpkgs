@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libmowgli",
       version: "2.1.3-unstable-2026-08-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atheme",
           repo: "libmowgli-2",
           rev: "35d10d758d5aec35c9265640969e5d1dd32f975b",
           hash: "sha256-6jGGUhwFN9zb+oAuVBzW6GbeNn3iaNm3QxfTsUvBM2w=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Development framework for C providing high performance and highly flexible algorithms",
         homepage: "https://github.com/atheme/libmowgli-2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

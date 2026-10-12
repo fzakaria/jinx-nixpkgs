@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const puredata = nix.arg($, "puredata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "puremapping",
       version: "20160130",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.chnry.net/data/puremapping-${nix.sel(finalAttrs, "version")}-generic.zip`),
           name: "puremapping",
           sha256: "1h7qgqd8srrxw2y1rkdw5js4k6f5vc8x6nlm2mq9mq9vjck7n1j7",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "unzip $src\n",
       installPhase: "mkdir -p $out/puremapping\nmv puremapping/ $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of externals to facilitate the use of sensors within Pure Data and to create complex relations between input and output of a dynamic system",
         homepage: "http://www.chnry.net/ch/?090-Pure-Mapping&lang=en",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Only")),

@@ -18,33 +18,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "cocoon",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             cocoon: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 COCOON_DID: "did:web:cocoon.example.com",
                 COCOON_HOSTNAME: "cocoon.example.com",
                 COCOON_CONTACT_EMAIL: "test@example.com",
                 COCOON_ADMIN_PASSWORD: "84f54c1229e02b662214e2af2df97cb6",
                 COCOON_SESSION_SECRET: "8ed099b41bb67939bf4e796fd4bd618add775a9265bcb32c63d00341a0f71b6c",
                 COCOON_ROTATION_KEY_PATH: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "rotation-key", nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cocoon"))]),
                   })), "cocoon create-rotation-key --out $out\n")),
                 COCOON_JWK_PATH: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "jwk-key", nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cocoon"))]),
                   })), "cocoon create-private-jwk --out $out\n")),
               })),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.wait_for_unit(\"cocoon.service\")\nmachine.wait_for_open_port(8080)\nmachine.succeed(\"curl --fail http://localhost:8080\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "isabelroses"))]),
     })),
   };

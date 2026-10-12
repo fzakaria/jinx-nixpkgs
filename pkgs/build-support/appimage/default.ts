@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   return (() => {
     const appimage_exec = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         src: nix.path(here, "./appimage-exec.sh"),
         isExecutable: true,
         dir: "bin",
         replacements: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           runtimeShell: runtimeShell,
           path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, binutils_unwrapped, coreutils, gawk, libarchive, pv, squashfs_tools]))),
         })),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.arg($_1, "src");
       nix.assert_((nix.asBool(nix.eq(name, null)) || nix.asBool(nix.builtins.throw("The `name` argument is deprecated. Use `pname` and `version` instead to construct the name."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/appimage/default.nix:44:5");
       return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}-extracted`), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nativeBuildInputs: nix.thunk(() => [appimage_exec]),
           strictDeps: true,
         })), nix.thunk(() => nix.str`appimage-exec.sh -x $out ${src}
@@ -63,7 +63,7 @@ ${postExtract}
     const extractType2 = nix.thunk(() => nix.app(nix.sel(lib, "warn"), "'appimageTools.extractType2' is deprecated, use 'appimageTools.extract' instead", extract));
     const wrapType1 = nix.thunk(() => nix.app(nix.sel(lib, "warn"), "'appimageTools.wrapType1' is deprecated, use 'appimageTools.wrapType2' instead", wrapType2));
     const wrapAppImage = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         constructDrv: buildFHSEnv,
         excludeDrvArgNames: nix.thunk(() => ["extraPkgs"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -73,11 +73,11 @@ ${postExtract}
           const extraPkgs = nix.argOr($_1, "extraPkgs", () => (pkgs) => []);
           const meta = nix.argOr($_1, "meta", () => ({}));
           return nix.update(defaultFhsEnvArgs, {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             targetPkgs: (pkgs) => nix.concat([appimage_exec], nix.concat(nix.app(nix.sel(defaultFhsEnvArgs, "targetPkgs"), pkgs), nix.app(extraPkgs, pkgs))),
             runScript: nix.thunk(() => nix.str`appimage-exec.sh -w ${nix.selOr(finalAttrs, () => nix.sel(prev, "src"), "contents")} --`),
             meta: nix.thunk(() => nix.update({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               sourceProvenance: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
                 return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
@@ -87,10 +87,10 @@ ${postExtract}
         })(), formals$3),
       }))));
     const wrapType2 = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         constructDrv: wrapAppImage,
         extendDrvArgs: (finalAttrs) => (args_1) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           contents: nix.thunk(() => nix.app(extract, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (value) => nix.builtins.elem(key, nix.thunk(() => ["pname", "version", "src"])), finalAttrs)))),
           passthru: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "pipe"), finalAttrs, nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "attrNames")),
@@ -100,7 +100,7 @@ ${postExtract}
         }),
       }))));
     const defaultFhsEnvArgs = nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       targetPkgs: (pkgs) => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -228,7 +228,7 @@ ${postExtract}
       })(),
     }));
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       "appimage-exec": appimage_exec,
       extract,
       extractType1,

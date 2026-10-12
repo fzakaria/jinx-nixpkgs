@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "r0x0r",
           repo: "pywebview",
           tag: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const pythonImportsCheck = nix.thunk(() => ["webview"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight cross-platform wrapper around a webview",
         homepage: "https://github.com/r0x0r/pywebview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

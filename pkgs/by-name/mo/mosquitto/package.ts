@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const uthash = nix.arg($, "uthash");
   const nixosTests = nix.arg($, "nixosTests");
-  const libwebsockets$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libwebsockets, "override"), nix.thunk(() => ({ __proto__: pos$1, withExternalPoll: true }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+  const libwebsockets$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libwebsockets, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withExternalPoll: true }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$2,
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), ["-DLWS_WITH_HTTP2=OFF"])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mosquitto",
       version: "2.1.2",
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "eclipse-mosquitto",
           repo: "mosquitto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,14 +74,14 @@ done
       ]),
       postFixup: "sed -i \"s|^libdir=.*|libdir=$lib/lib|g\" $dev/lib/pkgconfig/*.pc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           mosquitto: nix.thunk(() => nix.attr(nixosTests, "mosquitto")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open source MQTT v3.1/3.1.1/5.0 broker",
         homepage: "https://mosquitto.org/",
         changelog: "https://github.com/eclipse-mosquitto/mosquitto/blob/v2.0.22/ChangeLog.txt",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gum",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "charmbracelet",
           repo: "gum",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ["-linkmode=external", "-extldflags", "-static"])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/gum man > gum.1\ninstallManPage gum.1\ninstallShellCompletion --cmd gum \\\n  --bash <($out/bin/gum completion bash) \\\n  --fish <($out/bin/gum completion fish) \\\n  --zsh <($out/bin/gum completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tasty Bubble Gum for your shell",
         homepage: "https://github.com/charmbracelet/gum",
         changelog: nix.thunk(() => nix.str`https://github.com/charmbracelet/gum/releases/tag/v${nix.sel(finalAttrs, "version")}`),

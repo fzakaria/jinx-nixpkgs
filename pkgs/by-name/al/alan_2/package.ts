@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alan2",
       version: "2.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alan-if",
           repo: "alan",
           rev: "71f23ec79f7f5d66aa5ae9fd3f9b8dae41a89f15",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile.unix",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-fcommon",
             "-Wno-error=incompatible-pointer-types",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/alan2\ncp compiler/alan $out/bin/alan2\ncp interpreter/arun $out/bin/arun2\ncp alan.readme ChangeLog $out/share/alan2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.alanif.se/",
         description: "Alan interactive fiction language (legacy version)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

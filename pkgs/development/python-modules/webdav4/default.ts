@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const wsgidav = nix.arg($, "wsgidav");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "webdav4",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skshetry",
           repo: "webdav4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [httpx, python_dateutil]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fsspec: nix.thunk(() => [fsspec]),
         http2: nix.thunk(() => [nix.thunk(() => nix.sel(httpx, "optional-dependencies", "http2"))]),
         all: nix.thunk(() => [fsspec, nix.thunk(() => nix.sel(httpx, "optional-dependencies", "http2"))]),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_client.py", "tests/test_fsspec.py", "tests/test_cli.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for interacting with WebDAV",
         mainProgram: "dav",
         homepage: "https://skshetry.github.io/webdav4/",

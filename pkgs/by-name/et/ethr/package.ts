@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ethr",
       version: "1.0.0-unstable-2025-12-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "ethr",
           rev: "86e07049d11357f69da89317d55f11bed62e0007",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-UHZNe6vlqdYaHzt2IZ5HTQxqR0sf8m9Lfo5tXvpiFlg=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comprehensive Network Measurement Tool for TCP, UDP & ICMP",
         homepage: "https://github.com/microsoft/ethr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

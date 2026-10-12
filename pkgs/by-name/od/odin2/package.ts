@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "odin2",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheWaveWarden",
           repo: "odin2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         libGL,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       preConfigure: "export HOME=\"$TMPDIR\"\n",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin $out/lib/vst3 $out/lib/lv2 $out/lib/clap $out/share/icons/hicolor/512x512/apps\ncd Odin2_artefacts/Release\ncp Standalone/Odin2 $out/bin\ncp -r VST3/Odin2.vst3 $out/lib/vst3\ncp -r LV2/Odin2.lv2 $out/lib/lv2\ncp -r CLAP/Odin2.clap $out/lib/clap\n# There’s no application icon, so the vendor’s logo will have to do.\ncp $src/manual/graphics/logo.png $out/share/icons/hicolor/512x512/apps/odin2.png\ncopyDesktopItems\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Odin2",
             desktopName: "Odin 2",
             comment: "Odin 2 Free Synthesizer",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Odin 2 Synthesizer Plugin",
         homepage: "https://thewavewarden.com/odin2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

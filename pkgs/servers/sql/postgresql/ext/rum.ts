@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rum",
       version: "1.3.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postgrespro",
           repo: "rum",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION rum;\nCREATE TABLE test_table (t text, v tsvector);\nCREATE INDEX test_table_rumindex ON test_table USING rum (v rum_tsvector_ops);\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Full text search index method for PostgreSQL",
         homepage: "https://github.com/postgrespro/rum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "postgresql")),

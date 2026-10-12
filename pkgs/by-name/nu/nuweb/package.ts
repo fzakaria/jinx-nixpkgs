@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "nuweb";
       const version = "1.64";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/nuweb/nuweb-${version}.tar.gz`),
           hash: "sha256-DEi0cbcyO8qUDXbIRS3JtYixezaPX/vxDddbF7hbGeA=",
         }))));
       const buildInputs = nix.thunk(() => [texliveMedium]);
       const postPatch = "sed -i -e 's|nuweb -r|./nuweb -r|' Makefile\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const buildPhase = "runHook preBuild\n\nmake nuweb\nmake nuweb.pdf nuwebdoc.pdf all\n\nrunHook postBuild\n";
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
@@ -37,7 +37,7 @@ cp htdocs/index.html nuweb.w nuweb.pdf nuwebdoc.pdf README $out/share/doc/nuweb-
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple literate programming tool",
         mainProgram: "nuweb",
         homepage: "https://nuweb.sourceforge.net",
@@ -46,7 +46,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

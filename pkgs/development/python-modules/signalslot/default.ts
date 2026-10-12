@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "signalslot",
       version: "0.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "signalslot",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZNodibNGfCOa8xd3myN+cRa28rY3/ynNUia1kwjTIOU=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [eventlet, mock, pytest_xdist, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["signalslot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Signal/Slot implementation",
         homepage: "https://github.com/numergy/signalslot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

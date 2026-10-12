@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/define-attrsOfSub-bar.nix", [["bar", 2, 14]
 const pos$2 = nix.positions(here + "/define-attrsOfSub-bar.nix", [["attrsOfSub", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  attrsOfSub: nix.thunk(() => ({ __proto__: pos$1, bar: nix.thunk(() => ({})) })),
+  [nix.POS]: pos$2,
+  attrsOfSub: nix.thunk(() => ({ [nix.POS]: pos$1, bar: nix.thunk(() => ({})) })),
 }));
 //# sourceMappingURL=define-attrsOfSub-bar.ts.map

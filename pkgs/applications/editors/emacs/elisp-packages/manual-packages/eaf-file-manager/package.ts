@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "eaf-file-manager",
       version: "0-unstable-2025-03-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacs-eaf",
           repo: "eaf-file-manager",
           rev: "57f2e8a7f6282fbb4689b3fc8b99458ed3667dc6",
           hash: "sha256-IET9b3nS/Z4dxqFVyNITVoMDo6E/+sm3E7cfO7pozRo=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-dzfw+CgoM1CulPoa0KEzUX9dlBiquX4BkYNwU3vMb+Q=",
@@ -56,8 +56,8 @@ cp -r node_modules $LISPDIR/
 cp -r dist $LISPDIR/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         eafPythonDeps: (ps) => (() => {
           const w = nix.withScope(ps, null);
           return [
@@ -68,7 +68,7 @@ cp -r dist $LISPDIR/
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "File manager application for the EAF",
         homepage: "https://github.com/emacs-eaf/eaf-file-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

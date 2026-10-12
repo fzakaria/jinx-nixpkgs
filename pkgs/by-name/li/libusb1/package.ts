@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withStatic = nix.argOr($, "withStatic", () => false);
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libusb",
       version: "1.0.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libusb",
           repo: "libusb",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withExamples, "mkdir -p $out/{bin,sbin,examples/bin}\ncp -r examples/.libs/* $out/examples/bin\nln -s $out/examples/bin/fxload $out/sbin/fxload\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://libusb.info/",
         description: "Cross-platform user-mode USB device library",
         longDescription: "libusb is a cross-platform user-mode library that provides access to USB devices.\n",

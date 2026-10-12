@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "msp430-gcc-support-files";
       const version = "1.207";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/${mspgccVersion}/exports/msp430-gcc-support-files-${version}.zip`),
           sha256: "1gyi9zc5vh9c1lxd22dwvk6b17dcd17hah2rayr062p4l51kzam1",
         }))));
       const buildCommand = "find $src/include -name '*.ld' | xargs install -Dm0644 -t $out/lib\nfind $src/include -name '*.h' | xargs install -Dm0644 -t $out/include\ninstall -Dm0644 -t $out/include $src/include/devices.csv\n\n# appease bintoolsWrapper_addLDVars, search path needed for ld scripts\ntouch $out/lib/lib\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Development headers and linker scripts for TI MSP430 microcontrollers\n",
         homepage: "https://www.ti.com/tool/msp430-gcc-opensource",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "aerialx"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, buildCommand, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildCommand, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=gcc-support.ts.map

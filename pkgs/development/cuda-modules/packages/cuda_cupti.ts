@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_cupti",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "include", "lib", "samples"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(backendStdenv, "hostRedistSystem"), "linux-x86_64")) || nix.asBool((nix.asBool(nix.eq(nix.sel(backendStdenv, "hostRedistSystem"), "linux-sbsa")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "12.6")))))), nix.thunk(() => ["static"])))),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "C-based interface for creating profiling and tracing tools designed for CUDA applications",
         longDescription: "The CUDA Profiling Tools Interface (CUPTI) provides a C-based interface for creating profiling and tracing tools\ndesigned for CUDA applications.\n",
         homepage: "https://docs.nvidia.com/cupti",

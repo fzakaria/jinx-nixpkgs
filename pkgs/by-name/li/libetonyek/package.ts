@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
   const mdds = nix.arg($, "mdds");
   const zlib = nix.arg($, "zlib");
   const mdds_2_1 = nix.thunk(() => nix.app(nix.sel(mdds, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdds",
           repo: "mdds",
           rev: "2.1.1",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libetonyek",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "LibreOffice",
           repo: "libetonyek",
           rev: nix.thunk(() => nix.str`libetonyek-${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library and a set of tools for reading and converting Apple iWork documents (Keynote, Pages and Numbers)",
         homepage: "https://github.com/LibreOffice/libetonyek",
         changelog: nix.thunk(() => nix.str`https://github.com/LibreOffice/libetonyek/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

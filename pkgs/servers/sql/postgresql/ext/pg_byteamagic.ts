@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pg_byteamagic",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nmandery",
           repo: "pg_byteamagic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [file]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION byteamagic;\nSELECT byteamagic_mime('test');\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   query: "SELECT byteamagic_mime('test')",
                   expected: "'text/plain'",
                   description: "`byteamagic_mime(...) should return proper mimetype.",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PostgreSQL extension to determinate the filetypes of bytea BLOBs",
         homepage: "https://github.com/nmandery/pg_byteamagic",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/nmandery/pg_byteamagic/refs/tags/v${nix.sel(finalAttrs, "version")}/Changes`),

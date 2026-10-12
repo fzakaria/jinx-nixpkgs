@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libcufile",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       appendRunpaths: nix.thunk(() => nix.builtins.map((pkg) => nix.str`${nix.app(nix.sel(lib, "getLib"), pkg)}/lib`, nix.thunk(() => [systemdLibs, util_linux, liburcu, numactl]))),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(["libcuda.so.1"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaOlder, "11.7")), nix.thunk(() => ["libcufile.so.0"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library to leverage GDS technology",
         homepage: "https://docs.nvidia.com/gpudirect-storage/api-reference-guide",
       })),

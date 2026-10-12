@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const withVlc = nix.argOr($, "withVlc", () => false);
   const withMplayer = nix.argOr($, "withMplayer", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wtwitch",
       version: "2.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krathalan",
           repo: "wtwitch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ wrapProgram $out/bin/wtwitch \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal user interface for Twitch",
         homepage: "https://github.com/krathalan/wtwitch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.argOr($, "php", () => nix.sel(pkgs, "php85"));
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "strichliste-backend",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strichliste",
           repo: "strichliste-backend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir $out/bin\nln -s $out/share/php/strichliste-backend/bin/console $out/bin/strichliste-console\n",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ __proto__: pos$2, meta: nix.thunk(() => nix.attr(finalAttrs, "meta")) })))),
+        [nix.POS]: pos$4,
+        frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, meta: nix.thunk(() => nix.attr(finalAttrs, "meta")) })))),
         phpPackage: php,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           strichliste: nix.thunk(() => nix.attr(nixosTests, "strichliste")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/strichliste/strichliste/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "strichliste is a tool to replace a tally sheet.",
         homepage: "https://www.strichliste.org/",

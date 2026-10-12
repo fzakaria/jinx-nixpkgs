@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const pname = "sql-studio";
   const version = "0.1.53";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "frectonz",
       repo: "sql-studio",
       tag: version,
       hash: "sha256-8QUXe3ooaeFoW175OGSutI93iqH5L+7aerq+tmxgwa8=",
     }))));
   const ui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sql-studio-ui",
       version: version,
       src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -pr --reflink=auto -- dist \"$out/\"\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -pr --reflink=auto -- ${ui} ui/dist
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ui: ui,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "SQL Database Explorer [SQLite, libSQL, PostgreSQL, MySQL/MariaDB, ClickHouse, Microsoft SQL Server]",
         homepage: "https://github.com/frectonz/sql-studio",
         mainProgram: "sql-studio",

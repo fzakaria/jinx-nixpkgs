@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httm",
       version: "0.51.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kimono-koans",
           repo: "httm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "chmod +x scripts/*.bash\npatchShebangs scripts/*.bash\n",
       postInstall: "installManPage httm.1\n\ninstallShellCompletion --cmd httm \\\n  --zsh scripts/httm-key-bindings.zsh\n\nfor script in scripts/*.bash; do\n  install -Dm755 \"$script\" \"$out/bin/$(basename \"$script\" .bash)\"\ndone\n\ninstall -Dm644 README.md $out/share/doc/README.md\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive, file-level Time Machine-like tool for ZFS/btrfs",
         homepage: "https://github.com/kimono-koans/httm",
         changelog: nix.thunk(() => nix.str`https://github.com/kimono-koans/httm/releases/tag/${nix.sel(finalAttrs, "version")}`),

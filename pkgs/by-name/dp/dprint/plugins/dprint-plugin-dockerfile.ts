@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Dockerfile code formatter",
       hash: "sha256-GaK1sYdZPwQWJmz2ULcsGpWDiKjgPhqNRoGgQfGOkqc=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "dockerfile",
         fileExtensions: nix.thunk(() => ["dockerfile"]),

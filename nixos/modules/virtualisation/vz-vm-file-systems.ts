@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const sharedDirectories = nix.arg($, "sharedDirectories");
   const writableStoreUseTmpfs = nix.arg($, "writableStoreUseTmpfs");
   return nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "/": nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         device: "tmpfs",
         fsType: "tmpfs",
         neededForBoot: true,
         options: nix.thunk(() => ["mode=0755"]),
       })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(writableStoreUseTmpfs)) && nix.asBool(!nix.eq(diskImage, null)))), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "/nix": nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           device: "/dev/vdb",
           fsType: "ext4",
           autoFormat: true,
           neededForBoot: true,
         })))),
     }))), nix.app(nix.sel(lib, "mapAttrs'"), (_) => (share) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(share, "target")), nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           device: nix.thunk(() => nix.sel(share, "tag")),
           fsType: "virtiofs",
         }))))), sharedDirectories)));

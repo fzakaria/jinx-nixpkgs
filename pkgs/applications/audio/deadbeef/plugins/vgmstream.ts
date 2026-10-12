@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deadbeef-vgmstream-plugin",
       version: "2026-06-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jchv",
           repo: "deadbeef-vgmstream",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
 cp --no-preserve=mode,ownership -LR ${nix.sel(vgmstream, "src")} $sourceRoot/vgmstream
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Streaming video game music decoder plugin for the DeaDBeeF music player",
         homepage: "https://github.com/jchv/deadbeef-vgmstream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

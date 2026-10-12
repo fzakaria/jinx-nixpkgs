@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ebtables",
       version: "2.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.netfilter.org/pub/ebtables/ebtables-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0apxgmkhsk3vxn9q3libxn3dgrdljrxyy4mli2gk49m7hi3na7xp",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         "SYSCONFIGDIR=$(out)/etc/sysconfig",
         "LOCALSTATEDIR=/var",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       preInstall: "mkdir -p $out/etc/sysconfig",
       postInstall: "ln -s $out/sbin/ebtables-legacy          $out/sbin/ebtables\nln -s $out/sbin/ebtables-legacy-restore  $out/sbin/ebtables-restore\nln -s $out/sbin/ebtables-legacy-save     $out/sbin/ebtables-save\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Filtering tool for Linux-based bridging firewalls",
         homepage: "http://ebtables.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

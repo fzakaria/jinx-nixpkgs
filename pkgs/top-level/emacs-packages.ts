@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/elpa-devel-packages.nix")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
         lib: lib_1,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/elpa-packages.nix")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
         lib: lib_1,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/nongnu-devel-packages.nix")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
         lib: lib_1,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/nongnu-packages.nix")), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
         lib: lib_1,
@@ -95,20 +95,20 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$6);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/melpa-packages.nix")), nix.thunk(() => ({ __proto__: pos$5, lib: lib_1, pkgs: pkgs })));
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/melpa-packages.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, lib: lib_1, pkgs: pkgs })));
   })(), formals$6);
   const mkManualPackages = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$7);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/manual-packages.nix")), nix.thunk(() => ({ __proto__: pos$6, lib: lib_1, pkgs: pkgs })));
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/manual-packages.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, lib: lib_1, pkgs: pkgs })));
   })(), formals$7);
   const emacsWithPackages = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$8);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/wrapper.nix"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         lndir: nix.thunk(() => nix.attr(pkgs, "lndir")),
         lib: lib_1,
       })));
@@ -117,29 +117,29 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$9);
         const pkgs = nix.argOr($_1, "pkgs", () => nix.force(pkgs$));
         const lib_1 = nix.argOr($_1, "lib", () => nix.sel(pkgs, "lib"));
-        const elpaDevelPackages = nix.argOr($_1, "elpaDevelPackages", () => nix.app(mkElpaDevelPackages, nix.thunk(() => ({ __proto__: pos$8, pkgs: pkgs, lib: lib_1 })), self));
-        const elpaPackages = nix.argOr($_1, "elpaPackages", () => nix.app(mkElpaPackages, nix.thunk(() => ({ __proto__: pos$9, pkgs: pkgs, lib: lib_1 })), self));
-        const nongnuDevelPackages = nix.argOr($_1, "nongnuDevelPackages", () => nix.app(mkNongnuDevelPackages, nix.thunk(() => ({ __proto__: pos$10, pkgs: pkgs, lib: lib_1 })), self));
-        const nongnuPackages = nix.argOr($_1, "nongnuPackages", () => nix.app(mkNongnuPackages, nix.thunk(() => ({ __proto__: pos$11, pkgs: pkgs, lib: lib_1 })), self));
-        const melpaStablePackages = nix.argOr($_1, "melpaStablePackages", () => nix.app(melpaGeneric, nix.thunk(() => ({ __proto__: pos$12, pkgs: pkgs, lib: lib_1 })), "stable", self));
-        const melpaPackages = nix.argOr($_1, "melpaPackages", () => nix.app(melpaGeneric, nix.thunk(() => ({ __proto__: pos$13, pkgs: pkgs, lib: lib_1 })), "unstable", self));
-        const manualPackages = nix.argOr($_1, "manualPackages", () => nix.app(mkManualPackages, nix.thunk(() => ({ __proto__: pos$14, pkgs: pkgs, lib: lib_1 })), self));
-        return nix.update({}, nix.update(elpaDevelPackages, nix.update({ __proto__: pos$15, elpaDevelPackages: elpaDevelPackages }, nix.update(elpaPackages, nix.update({ __proto__: pos$16, elpaPackages: elpaPackages }, nix.update(nongnuDevelPackages, nix.update({ __proto__: pos$17, nongnuDevelPackages: nongnuDevelPackages }, nix.update(nongnuPackages, nix.update({ __proto__: pos$18, nongnuPackages: nongnuPackages }, nix.update(melpaStablePackages, nix.update({ __proto__: pos$19, melpaStablePackages: melpaStablePackages }, nix.update(melpaPackages, nix.update({ __proto__: pos$20, melpaPackages: melpaPackages }, nix.update(manualPackages, nix.update({ __proto__: pos$21, manualPackages: manualPackages }, nix.update({
-          __proto__: pos$29,
+        const elpaDevelPackages = nix.argOr($_1, "elpaDevelPackages", () => nix.app(mkElpaDevelPackages, nix.thunk(() => ({ [nix.POS]: pos$8, pkgs: pkgs, lib: lib_1 })), self));
+        const elpaPackages = nix.argOr($_1, "elpaPackages", () => nix.app(mkElpaPackages, nix.thunk(() => ({ [nix.POS]: pos$9, pkgs: pkgs, lib: lib_1 })), self));
+        const nongnuDevelPackages = nix.argOr($_1, "nongnuDevelPackages", () => nix.app(mkNongnuDevelPackages, nix.thunk(() => ({ [nix.POS]: pos$10, pkgs: pkgs, lib: lib_1 })), self));
+        const nongnuPackages = nix.argOr($_1, "nongnuPackages", () => nix.app(mkNongnuPackages, nix.thunk(() => ({ [nix.POS]: pos$11, pkgs: pkgs, lib: lib_1 })), self));
+        const melpaStablePackages = nix.argOr($_1, "melpaStablePackages", () => nix.app(melpaGeneric, nix.thunk(() => ({ [nix.POS]: pos$12, pkgs: pkgs, lib: lib_1 })), "stable", self));
+        const melpaPackages = nix.argOr($_1, "melpaPackages", () => nix.app(melpaGeneric, nix.thunk(() => ({ [nix.POS]: pos$13, pkgs: pkgs, lib: lib_1 })), "unstable", self));
+        const manualPackages = nix.argOr($_1, "manualPackages", () => nix.app(mkManualPackages, nix.thunk(() => ({ [nix.POS]: pos$14, pkgs: pkgs, lib: lib_1 })), self));
+        return nix.update({}, nix.update(elpaDevelPackages, nix.update({ [nix.POS]: pos$15, elpaDevelPackages: elpaDevelPackages }, nix.update(elpaPackages, nix.update({ [nix.POS]: pos$16, elpaPackages: elpaPackages }, nix.update(nongnuDevelPackages, nix.update({ [nix.POS]: pos$17, nongnuDevelPackages: nongnuDevelPackages }, nix.update(nongnuPackages, nix.update({ [nix.POS]: pos$18, nongnuPackages: nongnuPackages }, nix.update(melpaStablePackages, nix.update({ [nix.POS]: pos$19, melpaStablePackages: melpaStablePackages }, nix.update(melpaPackages, nix.update({ [nix.POS]: pos$20, melpaPackages: melpaPackages }, nix.update(manualPackages, nix.update({ [nix.POS]: pos$21, manualPackages: manualPackages }, nix.update({
+          [nix.POS]: pos$29,
           emacs: nix.thunk(() => nix.app(nix.sel(emacs$, "overrideAttrs"), (old) => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 pkgs: nix.thunk(() => nix.app(nix.sel(lib_1, "dontRecurseIntoAttrs"), self)),
               })),
             }))),
-          trivialBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/trivial.nix"), nix.thunk(() => ({ __proto__: pos$24, emacs: nix.thunk(() => nix.attr(self, "emacs")) })))),
-          elpaBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/elpa.nix"), nix.thunk(() => ({ __proto__: pos$25, emacs: nix.thunk(() => nix.attr(self, "emacs")) })))),
-          melpaBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/melpa.nix"), nix.thunk(() => ({ __proto__: pos$26, emacs: nix.thunk(() => nix.attr(self, "emacs")) })))),
-          emacsWithPackages: nix.thunk(() => nix.app(emacsWithPackages, nix.thunk(() => ({ __proto__: pos$27, pkgs: pkgs, lib: lib_1 })), self)),
-          withPackages: nix.thunk(() => nix.app(emacsWithPackages, nix.thunk(() => ({ __proto__: pos$28, pkgs: pkgs, lib: lib_1 })), self)),
+          trivialBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/trivial.nix"), nix.thunk(() => ({ [nix.POS]: pos$24, emacs: nix.thunk(() => nix.attr(self, "emacs")) })))),
+          elpaBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/elpa.nix"), nix.thunk(() => ({ [nix.POS]: pos$25, emacs: nix.thunk(() => nix.attr(self, "emacs")) })))),
+          melpaBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../applications/editors/emacs/build-support/melpa.nix"), nix.thunk(() => ({ [nix.POS]: pos$26, emacs: nix.thunk(() => nix.attr(self, "emacs")) })))),
+          emacsWithPackages: nix.thunk(() => nix.app(emacsWithPackages, nix.thunk(() => ({ [nix.POS]: pos$27, pkgs: pkgs, lib: lib_1 })), self)),
+          withPackages: nix.thunk(() => nix.app(emacsWithPackages, nix.thunk(() => ({ [nix.POS]: pos$28, pkgs: pkgs, lib: lib_1 })), self)),
         }, {
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           exwm: nix.thunk(() => nix.attr(elpaDevelPackages, "exwm")),
         }))))))))))))))));
       })(), formals$9), nix.thunk(() => ({}))));

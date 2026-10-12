@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const geany = nix.arg($, "geany");
   const vte = nix.arg($, "vte");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`geany-with-vte-${nix.sel(geany, "version")}`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(geany, null);
@@ -32,7 +32,7 @@ makeWrapper ${geany}/bin/geany $out/bin/geany \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(geany, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

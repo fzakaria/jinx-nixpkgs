@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const graphql = nix.arg($, "graphql");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "graphql-lwt",
       version: nix.thunk(() => nix.attr(graphql, "version")),
       src: nix.thunk(() => nix.attr(graphql, "src")),
       propagatedBuildInputs: nix.thunk(() => [graphql, lwt]),
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { __proto__: pos$1, description: "Build GraphQL schemas with Lwt support" })),
+      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { [nix.POS]: pos$1, description: "Build GraphQL schemas with Lwt support" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

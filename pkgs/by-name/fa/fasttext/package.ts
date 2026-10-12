@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fasttext",
       version: "0.9.2-unstable-2023-11-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "fastText",
           rev: "6c2204ba66776b700095ff73e3e599a908ffd9c3",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/science-team/fasttext/-/raw/b2a0e52d302b32b6786b1a8fb9c0b21ca23e2be9/debian/patches/fix-ftbfs-cmake4.patch",
             hash: "sha256-I5w+/4SNyp2FtHGYBWU2Fi76vmJpG4nbgsb0akVddAs=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for text classification and representation learning",
         mainProgram: "fasttext",
         homepage: "https://fasttext.cc/",

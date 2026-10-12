@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "moonfire-nvr",
       version: "0.7.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scottlamb",
           repo: "moonfire-nvr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/server`),
       cargoHash: "sha256-5caBXqy95K/ljrKL4/TKBQpi9cTCmu45ZhRShD1Zg3c=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -49,26 +49,26 @@ ln -s ${nix.sel(moonfire_nvr, "ui")} $out/lib/ui
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: moonfire_nvr,
               command: "moonfire-nvr --version",
               version: nix.thunk(() => nix.str`Version: v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "update-moonfire-nvr",
               runtimeInputs: nix.thunk(() => [nix_update]),
               text: "set -euo pipefail\n\nnix-update moonfire-nvr\nnix-update moonfire-nvr.ui --version=skip\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Moonfire NVR, a security camera network video recorder",
         homepage: "https://github.com/scottlamb/moonfire-nvr",
         changelog: nix.thunk(() => nix.str`https://github.com/scottlamb/moonfire-nvr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

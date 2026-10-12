@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "2.5-unstable-2026-07-25";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rr-",
       repo: "szurubooru",
       rev: "10ac8509ff73d539360215f65b95ad704e6a2740",
       hash: "sha256-7uvhB1kaRUpPr2qWcoVNXtOzK218w8SY3AsCPF0HeF4=",
     }))));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
-      const client = nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
-      const server = nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ __proto__: pos$3, src: src, version: version }))));
+      const client = nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+      const server = nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version }))));
       const tests = nix.thunk(() => nix.attr(server, "tests"));
-      return { __proto__: pos$4, client, server, tests };
+      return { [nix.POS]: pos$4, client, server, tests };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

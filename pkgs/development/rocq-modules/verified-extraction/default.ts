@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const metarocq_erasure_plugin = nix.arg($, "metarocq-erasure-plugin");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "verified-extraction",
       owner: "MetaRocq",
       repo: "rocq-verified-extraction",
       "opam-name": "rocq-verified-extraction",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mr) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
+        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
             nix.thunk(() => nix.sel(metarocq_erasure_plugin, "version")),
           ]), nix.thunk(() => [nix.thunk(() => nix.app(case$, "9.1", "1.5.1-9.1", "1.0.0-9.1"))]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "1.0.0-9.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-0eKpchQtnPI12rcsb9+qN1pdNX9KY8VryZP0oqHuYeU=",
         })),
       })),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://metarocq.github.io/",
           description: "Verified Extraction from Rocq to OCaml. Including a bootstrapped extraction plugin",
           maintainers: nix.thunk(() => (() => {

@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "0.10.7";
     const rSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "abathur",
         repo: "resholve",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-aUhxaxniGcmFAawUTXa5QrWUSpw5NUoJO5y4INk5mQU=",
       }))));
-    return { __proto__: pos$2, version, rSrc };
+    return { [nix.POS]: pos$2, version, rSrc };
   })();
 })(), formals$1);
 //# sourceMappingURL=source.ts.map

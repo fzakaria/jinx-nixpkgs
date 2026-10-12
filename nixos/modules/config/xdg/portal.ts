@@ -46,52 +46,52 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "str")))), (x) => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.app(nix.sel(lib, "toList"), x))), nix.thunk(() => nix.lookup(w, "str")))));
   })());
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "flatpak", "extraPortals"]), nix.thunk(() => ["xdg", "portal", "extraPortals"]))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["xdg", "portal", "gtkUsePortal"]), "This option has been removed due to being unsupported and discouraged by the GTK developers.")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(teams, "freedesktop"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       xdg: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         portal: nix.thunk(() => ({
-          __proto__: pos$11,
-          enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "[xdg desktop integration](https://github.com/flatpak/xdg-desktop-portal)"), { __proto__: pos$2, default: false })),
+          [nix.POS]: pos$11,
+          enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "[xdg desktop integration](https://github.com/flatpak/xdg-desktop-portal)"), { [nix.POS]: pos$2, default: false })),
           extraPortals: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               description: "List of additional portals to add to path. Portals allow interaction\nwith system, like choosing files or taking screenshots. At minimum,\na desktop portal implementation should be listed. GNOME and KDE already\nadds `xdg-desktop-portal-gtk`; and\n`xdg-desktop-portal-kde` respectively. On other desktop\nenvironments you probably want to add them yourself.\n",
             })))),
           xdgOpenUsePortal: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Sets environment variable `NIXOS_XDG_OPEN_USE_PORTAL` to `1`\nThis will make `xdg-open` use the portal to open programs, which resolves bugs involving\nprograms opening inside FHS envs or with unexpected env vars set from wrappers.\nSee [#160923](https://github.com/NixOS/nixpkgs/issues/160923) for more info.\n",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), associationOptions)),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
-                "x-cinnamon": nix.thunk(() => ({ __proto__: pos$5, default: nix.thunk(() => ["xapp", "gtk"]) })),
+                [nix.POS]: pos$8,
+                "x-cinnamon": nix.thunk(() => ({ [nix.POS]: pos$5, default: nix.thunk(() => ["xapp", "gtk"]) })),
                 pantheon: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   default: nix.thunk(() => ["pantheon", "gtk"]),
                   "org.freedesktop.impl.portal.Secret": nix.thunk(() => ["gnome-keyring"]),
                 })),
-                common: nix.thunk(() => ({ __proto__: pos$7, default: nix.thunk(() => ["gtk"]) })),
+                common: nix.thunk(() => ({ [nix.POS]: pos$7, default: nix.thunk(() => ["gtk"]) })),
               })),
               description: "Sets which portal backend should be used to provide the implementation\nfor the requested interface. For details check {manpage}`portals.conf(5)`.\n\nConfigs will be linked to {file}`/etc/xdg/xdg-desktop-portal/` with the name {file}`$desktop-portals.conf`\nfor {file}`xdg.portal.config.$desktop` and {file}`portals.conf` for {file}`xdg.portal.config.common`\nas an exception.\n",
             })))),
           configPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.gnome-session ]")),
@@ -107,36 +107,36 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgs, "xdg-utils")),
       ], nix.sel(cfg, "extraPortals")));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           programs: nix.thunk(() => ({
-            __proto__: pos$15,
-            fuse: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+            [nix.POS]: pos$15,
+            fuse: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
           })),
           warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configPackages"), [])) && nix.asBool(nix.eq(nix.sel(cfg, "config"), {})))), "xdg-desktop-portal 1.17 reworked how portal implementations are loaded, you\nshould either set `xdg.portal.config` or `xdg.portal.configPackages`\nto specify which portal backend to use for the requested interface.\n\nhttps://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in\n\nIf you simply want to keep the behaviour in < 1.17, which uses the first\nportal implementation found in lexicographical order, use the following:\n\nxdg.portal.config.common.default = \"*\";\n")),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "extraPortals"), [])),
               message: "Setting xdg.portal.enable to true requires a portal implementation in xdg.portal.extraPortals such as xdg-desktop-portal-gtk or xdg-desktop-portal-kde.",
             })),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
-            dbus: nix.thunk(() => ({ __proto__: pos$17, packages: packages })),
+            [nix.POS]: pos$18,
+            dbus: nix.thunk(() => ({ [nix.POS]: pos$17, packages: packages })),
           })),
-          systemd: nix.thunk(() => ({ __proto__: pos$19, packages: packages })),
+          systemd: nix.thunk(() => ({ [nix.POS]: pos$19, packages: packages })),
           environment: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             systemPackages: nix.thunk(() => nix.concat(packages, nix.sel(cfg, "configPackages"))),
             pathsToLink: nix.thunk(() => ["/share/xdg-desktop-portal", "/share/applications"]),
             sessionVariables: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               NIXOS_XDG_OPEN_USE_PORTAL: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "xdgOpenUsePortal")), "1")),
             })),
             etc: nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (desktop) => (conf) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(conf, {})), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`xdg/xdg-desktop-portal/${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(desktop, "common")), nix.thunk(() => nix.str`${desktop}-`))}portals.conf`, nix.thunk(() => ({
-                    __proto__: pos$22,
-                    text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$21, preferred: conf })))),
+                    [nix.POS]: pos$22,
+                    text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$21, preferred: conf })))),
                   }))],
                 ]))), nix.thunk(() => nix.sel(cfg, "config")))),
           })),

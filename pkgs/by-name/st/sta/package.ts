@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const cxxtest = nix.arg($, "cxxtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sta",
       version: "0-unstable-2021-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonccarter",
           repo: "sta",
           rev: "94559e3dfa97d415e3f37b1180b57c17c7222b4f",
@@ -43,7 +43,7 @@ popd
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple statistics from the command line interface (CLI), fast",
         longDescription: "This is a lightweight, fast tool for calculating basic descriptive\nstatistics from the command line. Inspired by\nhttps://github.com/nferraz/st, this project differs in that it is written\nin C++, allowing for faster computation of statistics given larger\nnon-trivial data sets.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

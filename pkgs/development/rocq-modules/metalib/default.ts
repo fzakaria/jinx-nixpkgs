@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "metalib",
       owner: "plclub",
       version: version,
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "8.18")),
               out: "8.15",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.13")),
               out: "8.10",
             })),
@@ -40,23 +40,23 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`coq${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "8.15": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:0wbp058zwa4bkdjj38aysy2g1avf9nrh8q23a3dil0q00qczi616",
         })),
         "8.10": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256:0wbypc05d2lqfm9qaw98ynr5yc1p0ipsvyc3bh1rk9nz7zwirmjs",
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jwiegley"))]),
       })),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(oldAttrs, "src", "name")}/Metalib`),
     }));
 })(), formals$1);

@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((!nix.asBool(withGd) || nix.asBool((nix.asBool(!nix.eq(gd, null)) && nix.asBool(!nix.eq(libpng, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/glibc/common.nix:59:1");
     nix.assert_((!nix.asBool(nix.eq(enableCET, false)) || nix.asBool(!nix.asBool(enableCETRuntimeDefault))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/glibc/common.nix:60:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: nix.thunk(() => nix.add(version, patchSuffix)),
         enableParallelBuilding: true,
         patches: nix.thunk(() => nix.concat([
@@ -108,14 +108,14 @@ EOF
         env: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           linuxHeaders: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withLinuxHeaders, linuxHeaders)),
           is64bit: nix.thunk(() => nix.attr(from, "is64bit")),
           BASH_SHELL: "/bin/sh",
         };
         })()),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version,
           minorRelease: version,
           threadModel: "posix",
@@ -128,9 +128,9 @@ EOF
           "postInstall",
           "makeFlags",
         ])), {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`mirror://gnu/glibc/glibc-${version}.tar.xz`),
             sha256: sha256,
           })))),
@@ -139,7 +139,7 @@ EOF
         doCheck: false,
         __structuredAttrs: true,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://www.gnu.org/software/libc/",
           description: "GNU C Library",
           longDescription: "Any Unix-like operating system needs a C library: the library which\ndefines the \"system calls\" and other basic facilities such as\nopen, malloc, printf, exit...\n\nThe GNU C library is used as the C library in the GNU system and\nmost systems with the Linux kernel.\n",

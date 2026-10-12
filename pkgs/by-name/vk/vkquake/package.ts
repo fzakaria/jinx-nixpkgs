@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const spirv_tools = nix.arg($, "spirv-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vkquake",
       version: "1.36.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Novum",
           repo: "vkQuake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [moltenvk, vulkan_headers])))),
       mesonFlags: nix.thunk(() => ["-Ddo_userdirs=enabled"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               "-Wno-error=unused-but-set-variable",
               "-Wno-error=implicit-const-int-float-conversion",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp vkquake \"$out/bin\"\n\ninstall -D ../Misc/vkQuake_256.png \"$out/share/icons/hicolor/256x256/apps/vkquake.png\"\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             name: "vkquake",
             icon: "vkquake",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader]))}
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vulkan Quake port based on QuakeSpasm",
         homepage: "https://github.com/Novum/vkQuake",
         changelog: "https://github.com/Novum/vkQuake/releases",

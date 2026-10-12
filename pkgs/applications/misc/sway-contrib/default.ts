@@ -30,22 +30,22 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "1.11";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "OctopusET",
       repo: "sway-contrib",
       tag: version,
       hash: "sha256-/gWL0hA8hDjpK5YJxuZqmvo0zuVRQkhAkgHlI4JzNP8=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://github.com/OctopusET/sway-contrib",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
   }));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     grimshot: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version,
         src: src,
         pname: "grimshot",
@@ -65,7 +65,7 @@ wrapProgram $out/bin/grimshot --set PATH \\
         doInstallCheck: true,
         installCheckPhase: "# check always returns 0\nif [[ $($out/bin/grimshot check | grep \"NOT FOUND\") ]]; then false\nelse\n  echo \"grimshot check passed\"\nfi\n",
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Helper for screenshots within sway",
           maintainers: [],
           mainProgram: "grimshot",
@@ -74,7 +74,7 @@ wrapProgram $out/bin/grimshot --set PATH \\
     "inactive-windows-transparency": nix.thunk(() => (() => {
       const lname = "inactive-windows-transparency";
       return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: version,
           src: src,
           pname: nix.thunk(() => nix.str`sway-${lname}`),
@@ -85,7 +85,7 @@ wrapProgram $out/bin/grimshot --set PATH \\
           installPhase: nix.thunk(() => nix.str`install -Dm 0755 $src/${lname}.py $out/bin/${lname}.py
 `),
           meta: nix.thunk(() => nix.update(meta, {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "It makes inactive sway windows transparent",
             mainProgram: nix.thunk(() => nix.str`${lname}.py`),
             maintainers: [],

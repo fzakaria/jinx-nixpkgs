@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const csv = nix.arg($, "csv");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "csv-lwt",
       src: nix.thunk(() => nix.attr(csv, "src")),
       version: nix.thunk(() => nix.attr(csv, "version")),

@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const gpsdSupport = nix.argOr($, "gpsdSupport", () => true);
   const extraScripts = nix.argOr($, "extraScripts", () => false);
   return nix.app(nix.sel(nix.app(nix.sel(direwolf, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       hamlibSupport: hamlibSupport,
       gpsdSupport: gpsdSupport,
       extraScripts: extraScripts,
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.8.1-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "wb2osz",
           repo: "direwolf",
           rev: "f11c82b81a23ca425f91bf9810fe9e2dc4f7539e",
@@ -35,8 +35,8 @@ export default nix.lambda((args) => (() => {
         })))),
       dontVersionCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch=dev"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch=dev"]) })))),
       })),
     }));
 })(), formals$1);

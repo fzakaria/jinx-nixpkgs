@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lilex",
       version: "2.700",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mishamyrt/Lilex/releases/download/${nix.sel(finalAttrs, "version")}/Lilex.zip`),
           hash: "sha256-NDEO20unSfdy1CuI4+7EpjGFJ+dc7qqWz8VW7jU2b7w=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts, unzip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source programming font",
         homepage: "https://github.com/mishamyrt/Lilex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

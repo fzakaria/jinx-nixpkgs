@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parted",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/parted/parted-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-oreBH0ew3bH3sdCqRW98EnDacHCM4jHC/gVMcZnq+mM=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       nativeCheckInputs: nix.thunk(() => [check, dosfstools, e2fsprogs, perl, python3, util_linux]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create, destroy, resize, check, and copy partitions",
         longDescription: "GNU Parted is an industrial-strength package for creating, destroying,\nresizing, checking and copying partitions, and the file systems on\nthem.  This is useful for creating space for new operating systems,\nreorganising disk usage, copying data on hard disks and disk imaging.\n\nIt contains a library, libparted, and a command-line frontend, parted,\nwhich also serves as a sample implementation and script backend.\n",
         homepage: "https://www.gnu.org/software/parted/",

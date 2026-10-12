@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sh4d0wup",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kpcyrd",
           repo: "sh4d0wup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         OPENSSL_NO_VENDOR: 1n,
         SH4D0WUP_GCC_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gcc)),
         SH4D0WUP_GO_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), go)),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         SH4D0WUP_SQ_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sequoia_sq)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Signing-key abuse and update exploitation framework",
         homepage: "https://github.com/kpcyrd/sh4d0wup",
         changelog: nix.thunk(() => nix.str`https://github.com/kpcyrd/sh4d0wup/releases/tag/v${nix.sel(finalAttrs, "version")}`),

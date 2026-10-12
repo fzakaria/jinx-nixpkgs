@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const swift_sources = nix.arg($, "swift_sources");
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
   const swift = nix.thunk(() => nix.app(nix.sel(swift_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "swift-corelibs-libdispatch": swift_corelibs_libdispatch,
       "swift-foundation": swift_foundation,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "swift-tools-support-core",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-tools-support-core"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "swiftlang",
           repo: "swift-tools-support-core",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -73,11 +73,11 @@ done
 `)))),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/swiftlang/swift-tools-support-core",
         description: "Common infrastructure code used by SwiftPM and llbuild",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

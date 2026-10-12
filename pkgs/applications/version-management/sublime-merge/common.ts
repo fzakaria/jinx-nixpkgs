@@ -100,23 +100,23 @@ makeWrapper $out/.${primaryBinary}-wrapped $out/ssh-askpass-sublime \\
   --argv0 "/ssh-askpass-sublime"
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sources: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.app(downloadUrl, "arm64")),
                 sha256: aarch64sha256,
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: nix.thunk(() => nix.app(downloadUrl, "x64")),
                 sha256: x64sha256,
               })))),
           })),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname,
           version,
           src,
@@ -155,7 +155,7 @@ done
 runHook postInstall
 `));
         const passthru = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           unwrapped: binaryPackage,
           updateScript: nix.thunk(() => (() => {
             const script = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${packageAttribute}-update-script`), nix.thunk(() => nix.str`set -o errexit
@@ -177,7 +177,7 @@ done
           })()),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Git client from the makers of Sublime Text",
           homepage: "https://www.sublimemerge.com",
           mainProgram: "sublime_merge",
@@ -193,7 +193,7 @@ done
           platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
         }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version,
           dontUnpack,

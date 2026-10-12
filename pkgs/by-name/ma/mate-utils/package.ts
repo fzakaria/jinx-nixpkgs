@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mate-utils",
       version: "1.28.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mate-desktop",
           repo: "mate-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,16 +77,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Workaround undefined version requirements\n# https://github.com/mate-desktop/mate-utils/issues/361\nsubstituteInPlace configure.ac \\\n  --replace-fail '>= $GTK_LAYER_SHELL_REQUIRED_VERSION' \"\" \\\n  --replace-fail '>= $GDK_WAYLAND_REQUIRED_VERSION' \"\"\n\n# Do not build gsearchtool help translations\n# https://github.com/mate-desktop/mate-utils/issues/210\nsubstituteInPlace gsearchtool/help/Makefile.am \\\n  --replace 'if USE_NLS' 'if FALSE'\n",
       configureFlags: nix.thunk(() => ["--enable-wayland"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Utilities for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

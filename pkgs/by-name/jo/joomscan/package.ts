@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "joomscan",
       version: "0.0.7-unstable-2021-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owasp",
           repo: "joomscan",
           rev: "79315393509caa39895e553c489667636ac31b85",
@@ -43,7 +43,7 @@ makeWrapper ${p}/bin/perl $out/bin/joomscan.pl \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Joomla Vulnerability Scanner",
         homepage: "https://wiki.owasp.org/index.php/Category:OWASP_Joomla_Vulnerability_Scanner_Project",
         mainProgram: "joomscan.pl",

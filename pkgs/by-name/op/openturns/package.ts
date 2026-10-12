@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const runTests = nix.argOr($, "runTests", () => false);
   const enablePython = nix.argOr($, "enablePython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openturns",
       version: "1.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openturns",
           repo: "openturns",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: runTests,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://openturns.github.io/www/",
         description: "Multivariate probabilistic modeling and uncertainty treatment library",
         changelog: nix.thunk(() => nix.str`https://github.com/openturns/openturns/raw/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

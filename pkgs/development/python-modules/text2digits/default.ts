@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-oB2NyNVxediIulid9A4Ccw878t2JKrIsN1OOR5lyi7I=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pypaInstallHook, setuptoolsBuildHook]);
       const pythonImportsCheck = nix.thunk(() => ["text2digits"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts text such as 'twenty three' to number/digit '23' in any sentence",
         homepage: "https://github.com/ShailChoksi/text2digits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

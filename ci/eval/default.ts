@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const nixpkgs = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "fileset")), null);
       return nix.app(nix.lookup(w, "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "../.."),
           fileset: nix.thunk(() => nix.app(nix.lookup(w, "unions"), nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.app(nix.sel(lib, "path", "append"), nix.path(here, "../.."))), nix.thunk(() => [
                 ".version",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const evalSystem = nix.arg($_2, "evalSystem");
       return nix.app(runCommand, "pre-eval", nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nixpkgs,
           nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => [busybox, nix$]))),
         })), nix.thunk(() => nix.str`export NIX_STATE_DIR=$(mktemp -d)
@@ -87,7 +87,7 @@ command time -f "Pre-eval done [%MKB max resident, %Es elapsed] %C" \\
     const singleSystem = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$4);
       const evalSystem = nix.argOr($_2, "evalSystem", () => nix.builtins.currentSystem);
-      const preEvalFile = nix.argOr($_2, "preEvalFile", () => nix.str`${nix.app(preEval, nix.thunk(() => ({ __proto__: pos$3, evalSystem: evalSystem })))}/result.json`);
+      const preEvalFile = nix.argOr($_2, "preEvalFile", () => nix.str`${nix.app(preEval, nix.thunk(() => ({ [nix.POS]: pos$3, evalSystem: evalSystem })))}/result.json`);
       const countInstructions = nix.argOr($_2, "countInstructions", () => false);
       const singleChunk = nix.thunk(() => nix.app(writeShellScript, "single-chunk", nix.thunk(() => nix.str`set -euo pipefail
 chunkSize=$1
@@ -138,16 +138,16 @@ elif [[ -s "$outputDir/stderr/$myChunk" ]]; then
 fi
 `)));
       return nix.app(runCommand, nix.thunk(() => nix.str`nixpkgs-eval-${evalSystem}`), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => nix.concat([busybox, jq, nix$], nix.app(nix.sel(lib, "optionals"), countInstructions, nix.thunk(() => [perf])))))),
           env: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             evalSystem: evalSystem,
             chunkSize: chunkSize,
             countInstructions: countInstructions,
           })),
           __structuredAttrs: true,
-          unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$5, out: true })),
+          unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$5, out: true })),
         })), nix.thunk(() => nix.str`export NIX_STATE_DIR=$(mktemp -d)
 nix-store --init
 
@@ -251,7 +251,7 @@ cat "$chunkOutputDirs"/*/result/* | jq -s 'add | map_values(.meta)' > $out/${eva
       const $_2 = nix.formals(args_2, formals$5);
       const diffDir = nix.arg($_2, "diffDir");
       return nix.app(runCommand, "combined-eval", nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => [jq]))),
         })), nix.thunk(() => nix.str`mkdir -p $out
 
@@ -296,10 +296,10 @@ done
       const evalSystems = nix.argOr($_2, "evalSystems", () => (nix.asBool(quickTest) ? ["x86_64-linux"] : nix.force(supportedSystems)));
       const countInstructions = nix.argOr($_2, "countInstructions", () => false);
       return nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "nixpkgs-eval-baseline",
           paths: nix.thunk(() => nix.builtins.map((evalSystem) => nix.app(singleSystem, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 evalSystem: evalSystem,
                 countInstructions: countInstructions,
               }))), evalSystems)),
@@ -313,29 +313,29 @@ done
       const baseBranch = nix.argOr($_2, "baseBranch", () => "master");
       const countInstructions = nix.argOr($_2, "countInstructions", () => false);
       const diffs = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "nixpkgs-eval-diffs",
           paths: nix.thunk(() => nix.builtins.map((evalSystem) => nix.app(diff, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 evalSystem: evalSystem,
                 beforeDir: baseline_1,
                 afterDir: nix.thunk(() => nix.app(singleSystem, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     evalSystem: evalSystem,
                     countInstructions: countInstructions,
                   })))),
               }))), evalSystems)),
         }))));
       const comparisonReport = nix.thunk(() => nix.app(compare, nix.thunk(() => ({
-          __proto__: pos$14,
-          combinedDir: nix.thunk(() => nix.app(combine, nix.thunk(() => ({ __proto__: pos$13, diffDir: diffs })))),
+          [nix.POS]: pos$14,
+          combinedDir: nix.thunk(() => nix.app(combine, nix.thunk(() => ({ [nix.POS]: pos$13, diffDir: diffs })))),
           touchedFilesJson: touchedFilesJson,
           baseBranch: baseBranch,
         }))));
       return nix.force(comparisonReport);
     })(), formals$7);
     return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       preEval: preEval,
       singleSystem: singleSystem,
       diff: diff,

@@ -13,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const test_dmg_file = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/kovidgoyal/kitty/releases/download/v0.17.4/kitty-0.17.4.dmg",
       hash: "sha256-m+c5s8fFrgUc0xQNI196WplYBZq9+lNgems5haZUdvA=",
     }))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     name: "darling-dmg",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Luflosi"))];
       })()),
     })),
-    nodes: nix.thunk(() => ({ __proto__: pos$3, machine: nix.thunk(() => ({})) })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$3, machine: nix.thunk(() => ({})) })),
     testScript: nix.thunk(() => nix.str`start_all()
 
 machine.succeed("mkdir mount-point")

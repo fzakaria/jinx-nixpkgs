@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jketterl",
           repo: "js8py",
           tag: version,
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonImportsCheck = nix.thunk(() => ["js8py", "test"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jketterl/js8py",
         description: "Library to decode the output of the js8 binary of JS8Call",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
     })())));
   const owrx_connector = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "owrx_connector";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "jketterl",
           repo: "owrx_connector",
           tag: version,
@@ -69,14 +69,14 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/rtl_connector`);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/jketterl/owrx_connector",
         description: "Set of connectors that are used by OpenWebRX to interface with SDR hardware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "jketterl",
           repo: "openwebrx",
           tag: version,
@@ -120,9 +120,9 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["csdr", "owrx", "test"]);
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$8, js8py: js8py, owrx_connector: owrx_connector }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$8, js8py: js8py, owrx_connector: owrx_connector }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://github.com/jketterl/openwebrx",
         description: "Simple DSP library and command-line tool for Software Defined Radio",
         mainProgram: "openwebrx",
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         format,

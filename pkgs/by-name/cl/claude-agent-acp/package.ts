@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const claude_code = nix.arg($, "claude-code");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "claude-agent-acp",
       version: "0.88.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agentclientprotocol",
           repo: "claude-agent-acp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --set-default CLAUDE_CODE_EXECUTABLE ${nix.app(nix.sel(lib, "getExe"), claude_code)}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ACP-compatible coding agent powered by the Claude Agent SDK",
         homepage: "https://github.com/agentclientprotocol/claude-agent-acp",
         changelog: nix.thunk(() => nix.str`https://github.com/agentclientprotocol/claude-agent-acp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

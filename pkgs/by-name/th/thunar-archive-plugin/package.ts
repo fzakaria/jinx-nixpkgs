@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "thunar-archive-plugin",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "thunar-plugins",
           repo: "thunar-archive-plugin",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [thunar, glib, gtk3, libxfce4util]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "thunar-archive-plugin-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "thunar-archive-plugin-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Thunar plugin providing file context menus for archives",
         homepage: "https://gitlab.xfce.org/thunar-plugins/thunar-archive-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

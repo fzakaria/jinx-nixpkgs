@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pairdrop";
       const version = "1.11.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schlagmichdoch",
           repo: "PairDrop",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,14 +43,14 @@ makeWrapper ${nodejs}/bin/node "$out/bin/pairdrop" \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pairdrop: nix.thunk(() => nix.attr(nixosTests, "pairdrop")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Local file sharing in your browser",
         mainProgram: "pairdrop",
         longDescription: "PairDrop is a sublime alternative to AirDrop that works on all platforms.\nSend images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.\n",
@@ -62,7 +62,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

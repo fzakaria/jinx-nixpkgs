@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.16";
       const src = nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "x86_64",
             hash: "sha256-JcVKRINEWHJXzpdyiMSzx+cp/BzHBhrXRxYizQmkerI=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "arm64",
             hash: "sha256-FDZz3Aarz9j8ppaLO6C1IhVKr7Dns77fLdQQCaCoKg0=",
           })),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
         return nix.app(fetchurl, nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(sources, nix.key(nix.force(system))));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://github.com/pavlobu/deskreen/releases/download/v${version}/deskreen-ce-${version}-${nix.sel(sources, nix.key(nix.force(system)), "arch")}.AppImage`),
             hash: nix.thunk(() => nix.attr(from_1, "hash")),
           };
           })()));
       })());
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$5, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version, src: src }))));
         return nix.str`install -m 444 -D ${contents}/deskreen-ce.desktop $out/share/applications/deskreen-ce.desktop
 install -m 444 -D ${contents}/usr/share/icons/hicolor/256x256/apps/deskreen-ce.png \\
   $out/share/icons/hicolor/512x512/apps/deskreen-ce.png
@@ -55,7 +55,7 @@ substituteInPlace $out/share/applications/deskreen-ce.desktop \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Turn any device into a secondary screen for your computer",
         homepage: "https://deskreen.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -66,7 +66,7 @@ substituteInPlace $out/share/applications/deskreen-ce.desktop \\
         })()),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
-      return { __proto__: pos$7, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$7, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

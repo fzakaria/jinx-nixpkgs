@@ -14,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pmccabe",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/main/p/pmccabe/pmccabe_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0a3h1b9fb87c82d5fbql5lc4gp338pa5s9i66dhw7zk8jdygx474",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./getopt_on_darwin.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       configurePhase: "runHook preConfigure\n\nsed -i -r Makefile \\\n  -e 's,/usr/,/,g' \\\n  -e \"s,^DESTDIR =.*$,DESTDIR = $out,\" \\\n  -e \"s,^INSTALL = install.*$,INSTALL = install,\" \\\n  -e \"s,^all:.*$,all: \\$(PROGS),\"\n\nrunHook postConfigure\n",
       checkPhase: "make test",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "McCabe-style function complexity and line counting for C and C++",
         homepage: "https://people.debian.org/~bame/pmccabe/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

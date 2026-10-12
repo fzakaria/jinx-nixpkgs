@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nixfmt = nix.arg($, "nixfmt");
   const mobilizon_frontend = nix.argOr($, "mobilizon-frontend", () => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({}))));
-  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam, "packages", "erlang_27", "overrideScope"), (final) => (prev) => ({ __proto__: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
+  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam, "packages", "erlang_27", "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(beamPackages, "mixRelease"), nix.thunk(() => (() => {
       const pname = nix.thunk(() => nix.attr(common, "pname"));
@@ -47,20 +47,20 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => nix.attr(common, "patches"));
       const nativeBuildInputs = nix.thunk(() => [git]);
       const mixNixDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mix.nix")), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           beamPackages: beamPackages,
           lib: lib,
-          overrides: (final) => (prev) => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => nix.app(nix.sel(value, "override"), nix.thunk(() => ({ __proto__: pos$2, appConfigPath: nix.thunk(() => nix.add(src, "/config")) }))), prev), {
-            __proto__: pos$14,
+          overrides: (final) => (prev) => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => nix.app(nix.sel(value, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, appConfigPath: nix.thunk(() => nix.add(src, "/config")) }))), prev), {
+            [nix.POS]: pos$14,
             fast_html: nix.thunk(() => nix.app(nix.sel(prev, "fast_html", "override"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 nativeBuildInputs: nix.thunk(() => [cmake]),
                 dontUseCmakeConfigure: true,
               })))),
             ex_cldr: nix.thunk(() => nix.app(nix.sel(prev, "ex_cldr", "overrideAttrs"), (old) => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     owner: "elixir-cldr",
                     repo: "cldr",
                     rev: nix.thunk(() => nix.str`v${nix.sel(old, "version")}`),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
 `),
               }))),
             web_push_encryption: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "web_push_encryption",
                 version: "0.3.1",
                 src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     owner: "danhper",
                     repo: "elixir-web-push-encryption",
                     rev: "6e143dcde0a2854c4f0d72816b7ecab696432779",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
                 const name = "icalendar";
                 const version_1 = "1.1.2";
                 const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     owner: "mobilizon-tools",
                     repo: name,
                     rev: "b8fc5360b1755f60f2768d40f6aca949ef598a00",
@@ -109,13 +109,13 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.lookup(w, "timex")),
                   ];
                 })());
-                return { __proto__: pos$9, name, version: version_1, src: src_1, beamDeps };
+                return { [nix.POS]: pos$9, name, version: version_1, src: src_1, beamDeps };
               })()))),
             rajska: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => (() => {
                 const name = "rajska";
                 const version_1 = "1.3.3";
                 const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     owner: "tcitworld",
                     repo: name,
                     rev: "0c036448e261e8be6a512581c592fadf48982d84",
@@ -132,13 +132,13 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.lookup(w, "mock")),
                   ];
                 })());
-                return { __proto__: pos$11, name, version: version_1, src: src_1, beamDeps };
+                return { [nix.POS]: pos$11, name, version: version_1, src: src_1, beamDeps };
               })()))),
             exkismet: nix.thunk(() => nix.app(nix.sel(beamPackages, "buildMix"), nix.thunk(() => (() => {
                 const name = "exkismet";
                 const version_1 = "0.0.3";
                 const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     owner: "tcitworld",
                     repo: name,
                     rev: "8b5485fde00fafbde20f315bec387a77f7358334",
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.lookup(w, "dialyxir")),
                   ];
                 })());
-                return { __proto__: pos$13, name, version: version_1, src: src_1, beamDeps };
+                return { [nix.POS]: pos$13, name, version: version_1, src: src_1, beamDeps };
               })()))),
           }),
         }))));
@@ -163,13 +163,13 @@ chmod 770 -R ./priv
 `);
       const postBuild = "mix phx.digest --no-deps-check\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         tests: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           mobilizon: nix.thunk(() => nix.attr(nixosTests, "mobilizon")),
         })),
         updateScript: nix.thunk(() => (() => {
-          const patchedSource = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({ __proto__: pos$17, src: src, patches: patches }))));
+          const patchedSource = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({ [nix.POS]: pos$17, src: src, patches: patches }))));
           return nix.app(writeShellScriptBin, "update-mobilizon", nix.thunk(() => nix.str`set -euo pipefail
 
 ${nix.app(nix.sel(lib, "getExe"), mix2nix)} '${patchedSource}/mix.lock' > pkgs/by-name/mo/mobilizon/mix.nix
@@ -180,7 +180,7 @@ ${nix.app(nix.sel(lib, "getExe"), nixfmt)} pkgs/by-name/mo/mobilizon/mix.nix
         mixNixDeps: mixNixDeps,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         description: "Mobilizon is an online tool to help manage your events, your profiles and your groups",
         homepage: "https://joinmobilizon.org/",
         changelog: nix.thunk(() => nix.str`https://framagit.org/framasoft/mobilizon/-/releases/${nix.sel(src, "tag")}`),
@@ -191,7 +191,7 @@ ${nix.app(nix.sel(lib, "getExe"), nixfmt)} pkgs/by-name/mo/mobilizon/mix.nix
         })()),
       }));
       return {
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         pname,
         version,
         src,

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia-optical-flow-sdk",
       version: "2.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "NVIDIAOpticalFlowSDK",
           rev: "edb50da3cf849840d680249aa6dbef248ebce2ca",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/include\ncp -R * $out/include\n\nrunHook postInstall\n",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "markForCudatoolkitRootHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nvidia optical flow headers for computing the relative motion of pixels between images",
         homepage: "https://developer.nvidia.com/opticalflow-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

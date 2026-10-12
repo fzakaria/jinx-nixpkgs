@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rsyslog = nix.arg($, "rsyslog");
   return nix.app(nix.sel(rsyslog, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withLibyaml: false,
       withKrb5: false,
       withSystemd: false,

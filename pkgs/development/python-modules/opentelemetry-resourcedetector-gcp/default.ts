@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opentelemetry-resourcedetector-gcp",
       version: "1.12.0a0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "opentelemetry_resourcedetector_gcp",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1eP3goOicuuSVH4Au+/0W3Myo0rnkacKtOuoGvm8O68=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_mapping.py", "tests/test_gcp_resource_detector.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud resource detector for OpenTelemetry",
         homepage: "https://pypi.org/project/opentelemetry-resourcedetector-gcp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

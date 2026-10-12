@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gl3w",
       version: "0-unstable-2026-08-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skaslev",
           repo: "gl3w",
           rev: "372e391702acac616e0fd32e3eaccf19d58b9626",
@@ -37,11 +37,11 @@ cp ${nix.sel(libglvnd, "dev")}/include/GL/glcorearb.h include/GL/glcorearb.h
 cp ${nix.sel(libglvnd, "dev")}/include/KHR/khrplatform.h include/KHR/khrplatform.h
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple OpenGL core profile loading",
         homepage: "https://github.com/skaslev/gl3w",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

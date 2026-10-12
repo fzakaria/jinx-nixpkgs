@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "freedoom",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freedoom",
           repo: "freedoom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "patchShebangs .\n",
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Game based on the Doom engine",
         longDescription: "Freedoom is a complete, free content first person shooter game,\nbased on the Doom engine.\n\nFreedoom is not a program - rather, it consists of the levels,\nartwork, sound effects and music that make up the game.  To play\nFreedoom, [it must be paired with an\nengine](https://github.com/freedoom/freedoom#How-to-play) that\ncan play it.\n",
         homepage: "https://freedoom.github.io",

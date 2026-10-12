@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const icinga2 = nix.arg($, "icinga2");
   return nix.app(nix.sel(icinga2, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nameSuffix: "-agent",
       withMysql: false,
       withNotification: false,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lionheart",
           repo: "pinboard.py",
           rev: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for Pinboard.in",
         mainProgram: "pinboard",
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/lionheart/pinboard.py",
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

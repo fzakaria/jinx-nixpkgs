@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           format: "wheel",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
           sha256: "0nv855qm2fav70lndsrv810pqgg41sbmd70fk86wk18ih825yxzf",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "What-If Tool TensorBoard plugin",
         homepage: "http://tensorflow.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ndl"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

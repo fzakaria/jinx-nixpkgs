@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withNyx) || nix.asBool(nix.eq(nix.sel(stdenv, "targetPlatform", "system"), "x86_64-linux"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/security/aflplusplus/default.nix:30:1");
   const aflplusplus_qemu = nix.thunk(() => nix.app(callPackage, nix.path(here, "./qemu.nix"), nix.thunk(() => ({}))));
   const qemu_exe_name = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "targetPlatform", "system"), "x86_64-linux")) ? "qemu-x86_64" : (nix.asBool(nix.eq(nix.sel(stdenv, "targetPlatform", "system"), "i686-linux")) ? "qemu-i386" : nix.builtins.throw(nix.thunk(() => nix.str`aflplusplus: no support for ${nix.sel(stdenv, "targetPlatform", "system")}!`)))));
-  const libdislocator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdislocator.nix"), nix.thunk(() => ({ __proto__: pos$1, aflplusplus: aflplusplus }))));
-  const libtokencap = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libtokencap.nix"), nix.thunk(() => ({ __proto__: pos$2, aflplusplus: aflplusplus }))));
-  const libnyx = nix.thunk(() => (nix.asBool(withNyx) ? nix.app(callPackage, nix.path(here, "./nyx_mode/libnyx/libnyx.nix"), nix.thunk(() => ({ __proto__: pos$3, aflplusplus: aflplusplus }))) : null));
-  const qemu_nyx = nix.thunk(() => (nix.asBool(withNyx) ? nix.app(callPackage, nix.path(here, "./nyx_mode/QEMU-Nyx/qemu-nyx.nix"), nix.thunk(() => ({ __proto__: pos$4, aflplusplus: aflplusplus }))) : null));
-  const nyx_packer = nix.thunk(() => (nix.asBool(withNyx) ? nix.app(callPackage, nix.path(here, "./nyx_mode/packer/packer.nix"), nix.thunk(() => ({ __proto__: pos$5, aflplusplus: aflplusplus, "qemu-nyx": qemu_nyx }))) : null));
+  const libdislocator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdislocator.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, aflplusplus: aflplusplus }))));
+  const libtokencap = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libtokencap.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, aflplusplus: aflplusplus }))));
+  const libnyx = nix.thunk(() => (nix.asBool(withNyx) ? nix.app(callPackage, nix.path(here, "./nyx_mode/libnyx/libnyx.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, aflplusplus: aflplusplus }))) : null));
+  const qemu_nyx = nix.thunk(() => (nix.asBool(withNyx) ? nix.app(callPackage, nix.path(here, "./nyx_mode/QEMU-Nyx/qemu-nyx.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, aflplusplus: aflplusplus }))) : null));
+  const nyx_packer = nix.thunk(() => (nix.asBool(withNyx) ? nix.app(callPackage, nix.path(here, "./nyx_mode/packer/packer.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, aflplusplus: aflplusplus, "qemu-nyx": qemu_nyx }))) : null));
   const aflplusplus = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "aflplusplus";
       const version = "5.00c";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "AFLplusplus",
           repo: "AFLplusplus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,7 +87,7 @@ substituteInPlace GNUmakefile.llvm \\
   --replace-fail "\\$(LLVM_BINDIR)/clang" "${clang}/bin/clang"
 `, nix.app(nix.sel(lib, "optionalString"), withNyx, "patchShebangs nyx_mode/build_nyx_support.sh\n")));
       const env = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=use-after-free"]))),
       }));
       const makeFlags = nix.thunk(() => [
@@ -145,7 +145,7 @@ makeWrapperArgs="--set-default 'AFL_WINE_PATH' '$winePath'" \\
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\n# replace references to tools in build directory with references to installed locations\nsubstituteInPlace test/test-qemu-mode.sh \\\n  --replace-fail '../libcompcov.so' '`$out/bin/get-afl-qemu-libcompcov-so`' \\\n  --replace-fail '../afl-qemu-trace' '$out/bin/afl-qemu-trace' \\\n  --replace-fail '../afl-fuzz' '$out/bin/afl-fuzz' \\\n  --replace-fail '../qemu_mode/unsigaction/unsigaction32.so' '$out/lib/afl/unsigaction32.so' \\\n  --replace-fail '../qemu_mode/unsigaction/unsigaction64.so' '$out/lib/afl/unsigaction64.so'\n\nsubstituteInPlace test/test-libextensions.sh \\\n  --replace-fail '../libdislocator.so' '`$out/bin/get-libdislocator-so`' \\\n  --replace-fail '../libtokencap.so' '`$out/bin/get-libtokencap-so`'\nsubstituteInPlace test/test-llvm.sh \\\n  --replace-fail '../afl-cmin.bash' '`$out/bin/afl-cmin.bash`'\n# perl -pi -e 's|(?<!\\.)(?<!-I)(\\.\\./)([^\\s\\/]+?)(?<!\\.c)(?<!\\.s?o)(?=\\s)|\\$out/bin/\\2|g' test/test.sh\npatchShebangs .\ncd test && ./test-all.sh\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         libdislocator: libdislocator,
         libtokencap: libtokencap,
         libnyx: libnyx,
@@ -154,7 +154,7 @@ makeWrapperArgs="--set-default 'AFL_WINE_PATH' '$winePath'" \\
         qemu: aflplusplus_qemu,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Heavily enhanced version of AFL, incorporating many features\nand improvements from the community\n",
         homepage: "https://aflplus.plus",
         changelog: "https://aflplus.plus/docs/changelog",
@@ -173,7 +173,7 @@ makeWrapperArgs="--set-default 'AFL_WINE_PATH' '$winePath'" \\
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "tl.eggdeps",
           sha256: "a094ed7961a3dd38fcaaa69cf7a58670038acdff186360166d9e3d964b7a7323",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [zope_interface, zope_testing]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool which computes a dependency graph between active Python eggs",
         mainProgram: "eggdeps",
         homepage: "https://thomas-lotze.de/en/software/eggdeps/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zpl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

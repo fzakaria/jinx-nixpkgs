@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "local_luftdaten";
       const version = "2.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lichtteil",
           repo: "local_luftdaten",
           tag: version,
           hash: "sha256-VVMTZjxcfq/nAh4FhlDlkmLV45M9y5fkWa5s68Qd8oI=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/lichtteil/local_luftdaten/releases/tag/${version}`),
         description: "Custom component for Home Assistant that integrates your (own) local Luftdaten sensor (air quality/particle sensor) without using the cloud",
         homepage: "https://github.com/lichtteil/local_luftdaten",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "hexa"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

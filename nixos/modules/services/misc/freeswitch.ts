@@ -37,22 +37,22 @@ cp ${filePath} $out/${fileName}
 `)));
   const configPath = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableReload")) ? "/etc/freeswitch" : nix.force(configDirectory)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         freeswitch: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FreeSWITCH")),
           enableReload: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Issue the `reloadxml` command to FreeSWITCH when configuration directory changes (instead of restart).\nSee [FreeSWITCH documentation](https://freeswitch.org/confluence/display/FREESWITCH/Reloading) for more info.\nThe configuration directory is exposed at {file}`/etc/freeswitch`.\nSee also `systemd.services.*.restartIfChanged`.\n",
             })))),
           configTemplate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`${nix.sel(config, "services", "freeswitch", "package")}/share/freeswitch/conf/vanilla`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.freeswitch.package}/share/freeswitch/conf/vanilla\"")),
@@ -60,7 +60,7 @@ cp ${filePath} $out/${fileName}
               description: "Configuration template to use.\nSee available templates in [FreeSWITCH repository](https://github.com/signalwire/freeswitch/tree/master/conf).\nYou can also set your own configuration directory.\n",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -74,38 +74,38 @@ cp ${filePath} $out/${fileName}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            freeswitch: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ({ __proto__: pos$7, source: configDirectory })))),
+            [nix.POS]: pos$8,
+            freeswitch: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ({ [nix.POS]: pos$7, source: configDirectory })))),
           })),
           systemPackages: nix.thunk(() => [pkg]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "freeswitch-config-reload": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 before: nix.thunk(() => ["freeswitch.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 restartTriggers: nix.thunk(() => [configDirectory]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: "/run/current-system/systemd/bin/systemctl try-reload-or-restart freeswitch.service",
                   RemainAfterExit: true,
                   Type: "oneshot",
                 })),
               })))),
             freeswitch: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Free and open-source application server for real-time communication",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DynamicUser: true,
                 StateDirectory: "freeswitch",
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/freeswitch -nf \\

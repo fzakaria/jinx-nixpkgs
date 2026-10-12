@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(rocksdb, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "7.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "rocksdb",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-5P7IqJ14EZzDkbjaBvbix04ceGGdlWBuVFH/5dpD5VM=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=rocksdb.ts.map

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cxx/CXX/PyCXX%20V${version}/pycxx-${version}.tar.gz`),
           hash: "sha256-S5Hh4RQcI/vVA532NcS7bnVjIWhUj1a4POF3GTwMmMY=",
         }))));
@@ -32,14 +32,14 @@ mv $out/CXX $dev/src
 sed -i "s|Src|$dev/src|" $dev/src/cxxextensions.c $dev/src/cxxsupport.cxx
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of classes to help create extensions of Python in the C++ language",
         homepage: "https://sourceforge.net/projects/cxx/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zs-wait4host";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ytrizja.de/distfiles/zs-wait4host-${version}.tar.gz`),
           sha256: "9F1264BDoGlRR7bWlRXhfyvxWio4ydShKmabUQEIz9I=",
         }))));
@@ -31,14 +31,14 @@ done
 `);
       const installPhase = "runHook preInstall\ninstall -D -t $out/bin zs-wait4host zs-wait4host-inf\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wait for a host to come up/go down",
         homepage: "https://ytrizja.de/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, postPatch, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, postPatch, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

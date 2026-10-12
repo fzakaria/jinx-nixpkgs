@@ -29,34 +29,34 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "local-ai": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "local-ai", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
             })))),
-          threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$3, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
+          threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
           models: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "package")), nix.thunk(() => nix.sel(types, "str")))),
               default: "models",
             })))),
-          parallelRequests: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$5, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
+          parallelRequests: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
           logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["error", "warn", "info", "debug", "trace"]))),
               default: "warn",
             })))),
@@ -64,20 +64,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "local-ai": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 LLAMACPP_PARALLEL: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "parallelRequests")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/local-ai`),

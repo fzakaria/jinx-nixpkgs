@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "printbox-text",
       src: nix.thunk(() => nix.attr(printbox, "src")),
       version: nix.thunk(() => nix.attr(printbox, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(nix.sel(printbox, "doCheck")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")))),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => nix.update(nix.sel(printbox, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Text renderer for printbox, using unicode edges",
       })),
     })));

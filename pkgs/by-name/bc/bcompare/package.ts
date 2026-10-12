@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const version = "5.2.4.32425";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://www.scootersoftware.com/files/bcompare-${version}_amd64.deb`),
         sha256: "sha256-gXmz7ZgTLPNzqckzKV7r+B8V0oS10/GQNTM0/0EYs3s=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://www.scootersoftware.com/files/BCompareOSX-${version}.zip`),
         sha256: "sha256-CzAARAKDBSORI/zCELEdA8VRdWXHq+sMHGPkr3wV+G8=",
       })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
       })()));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
         src: src,
@@ -88,7 +88,7 @@ substituteInPlace $out/lib/beyondcompare/bcmount.sh \\
       })));
   })());
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -99,7 +99,7 @@ substituteInPlace $out/lib/beyondcompare/bcmount.sh \\
       strictDeps: true,
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "GUI application that allows to quickly and easily compare files and folders",
     longDescription: "Beyond Compare is focused. Beyond Compare allows you to quickly and easily compare your files and folders.\nBy using simple, powerful commands you can focus on the differences you're interested in and ignore those you're not.\nYou can then merge the changes, synchronize your files, and generate reports for your records.\n",
     homepage: "https://www.scootersoftware.com",

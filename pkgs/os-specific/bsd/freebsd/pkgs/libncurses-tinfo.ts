@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/ncurses/tinfo",
       extraPaths: nix.thunk(() => ["lib/ncurses", "contrib/ncurses", "lib/Makefile.inc"]),
       CC_HOST: nix.thunk(() => nix.str`${nix.sel(pkgsBuildBuild, "stdenv", "cc")}/bin/cc`),

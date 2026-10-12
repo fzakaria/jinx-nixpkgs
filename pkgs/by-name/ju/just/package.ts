@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const withDocumentation = nix.argOr($, "withDocumentation", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const version = "1.58.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: "just",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), installManPages, nix.thunk(() => ["man"])), nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["doc"]))))),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "casey",
           repo: "just",
           tag: version,
@@ -73,11 +73,11 @@ patchShebangs tests
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), withDocumentation, "$out/bin/generate-book\nrm $out/bin/generate-book\n# No linkcheck in sandbox\necho 'optional = true' >> book/en/book.toml\nmdbook build book/en\nmkdir -p $doc/share/doc/$name/html\nmv ./book/en/build/* $doc/share/doc/$name/html\n"), nix.app(nix.sel(lib, "optionalString"), installManPages, "$out/bin/just --man > ./just.1\ninstallManPage ./just.1\n")), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd just \\\n  --bash <($out/bin/just --completions bash) \\\n  --fish <($out/bin/just --completions fish) \\\n  --zsh <($out/bin/just --completions zsh)\n"))),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/casey/just",
         changelog: nix.thunk(() => nix.str`https://github.com/casey/just/blob/${version}/CHANGELOG.md`),
         description: "Handy way to save and run project-specific commands",

@@ -29,76 +29,76 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     port: 2112n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       exporterType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["rest", "mqtt"]))),
           default: "rest",
           example: "mqtt",
           description: "The type of exporter you'd like to use.\nPossible values: \"rest\" and \"mqtt\". Default value is \"rest\".\nChoose \"rest\" for the ecoflow online cloud api use \"rest\" and define: accessKey, secretKey.\nChoose \"mqtt\" for the lan realtime integration use \"mqtt\" and define: email, password, devices.\n",
         })))),
       ecoflowAccessKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/etc/ecoflow-access-key",
           description: "Path to the file with your personal api access string from the Ecoflow development website <https://developer-eu.ecoflow.com>.\nDo to share or commit your plaintext scecrets to a public repo use: agenix or soaps.\n",
         })))),
       ecoflowSecretKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/etc/ecoflow-secret-key",
           description: "Path to the file with your personal api secret string from the Ecoflow development website <https://developer-eu.ecoflow.com>.\nDo to share or commit your plaintext scecrets to a public repo use: agenix or soaps.\n",
         })))),
       ecoflowEmailFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/etc/ecoflow-email",
           description: "Path to the file with your personal ecoflow app login email address.\nDo to share or commit your plaintext scecrets to a public repo use: agenix or soaps.\n",
         })))),
       ecoflowPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/etc/ecoflow-password",
           description: "Path to the file with your personal ecoflow app login email password.\nDo to share or commit your plaintext passwords to a public repo use: agenix or soaps here!\n",
         })))),
       ecoflowDevicesFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/etc/ecoflow-devices",
           description: "File must contain one line, example: R3300000,R3400000,NC430000,....\nThe list of devices serial numbers separated by comma. For instance: SN1,SN2,SN3.\nInstead of \"devicesFile\" you can specify \"devicesPrettynamesFile\" which will also work. You can specify both.\nDo to share or commit your plaintext serial numbers to a public repo use: agenix or soaps.\n",
         })))),
       ecoflowDevicesPrettyNamesFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/etc/ecoflow-devices-pretty-names",
           description: "File must contain one line, example: {\"R3300000\":\"Delta 2\",\"R3400000\":\"Delta Pro\",...}\nThe key/value map of custom names for your devices. Key is a serial number, value is a device name you want\nto see in Grafana Dashboard. It's helpful to see a meaningful name in Grafana dashboard instead of a serialnumber.\nDo to share or commit your plaintext serial numbers to a public repo use: agenix or soaps.\n",
         })))),
       debug: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "0",
           example: "1",
           description: "Enable debug log messages. Disabled by default. Set to \"1\" to enable.\n",
         })))),
       prefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "ecoflow",
           example: "ecoflow_privateSite",
           description: "The prefix that will be added to all metrics. Default value is ecoflow.\nFor instance metric bms_bmsStatus.minCellTemp will be exported to prometheus as ecoflow.bms_bmsStatus.minCellTemp.\nWith default value \"ecoflow\" you can use Grafana Dashboard with ID 17812 without any changes.\n",
         })))),
       scrapingInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => nix.sel(types, "ints", "positive")),
           default: 30n,
           example: 120n,
           description: "Scrapping interval in seconds. How often should the exporter execute requests to Ecoflow Rest API in order to get the data.\nDefault value is 30 seconds. Align this value with your prometheus scraper interval settings.\n",
         })))),
       mqttDeviceOfflineThreshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.sel(types, "ints", "positive")),
           default: 60n,
           example: 120n,
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       environment: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         PROMETHEUS_ENABLED: "1",
         EXPORTER_TYPE: nix.thunk(() => nix.sel(cfg, "exporterType")),
         DEBUG_ENABLED: nix.thunk(() => nix.sel(cfg, "debug")),
@@ -124,7 +124,7 @@ export ECOFLOW_DEVICES="$(cat ${nix.builtins.toString(nix.thunk(() => nix.sel(cf
 export ECOFLOW_DEVICES_PRETTY_NAMES="$(cat ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ecoflowDevicesPrettyNamesFile")))})"
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "go-ecoflow-exporter")))}`),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         MemoryDenyWriteExecute: true,

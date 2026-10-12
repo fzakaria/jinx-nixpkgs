@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "thicket";
       const version = "0.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taylorthurlow",
           repo: "thicket",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const format = "shards";
       const crystalBinaries = nix.thunk(() => ({
-        __proto__: pos$3,
-        thicket: nix.thunk(() => ({ __proto__: pos$2, src: "src/thicket.cr" })),
+        [nix.POS]: pos$3,
+        thicket: nix.thunk(() => ({ [nix.POS]: pos$2, src: "src/thicket.cr" })),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Better one-line git log",
         homepage: "https://github.com/taylorthurlow/thicket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "thicket",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const trove_classifiers = nix.arg($, "trove-classifiers");
   const validate_pyproject_schema_store = nix.arg($, "validate-pyproject-schema-store");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "validate-pyproject",
       version: "0.26",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abravalheri",
           repo: "validate-pyproject",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [fastjsonschema]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [packaging, tomli, trove_classifiers]),
         store: nix.thunk(() => [validate_pyproject_schema_store]),
       })),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
           ], examples), ["test_downloaded"]));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Validation library for simple check on pyproject.toml",
         homepage: "https://github.com/abravalheri/validate-pyproject",
         changelog: nix.thunk(() => nix.str`https://github.com/abravalheri/validate-pyproject/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const zug = nix.arg($, "zug");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kazv",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://iron.lily-is.land/diffusion/K/kazv.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7o6xUt/cryOg71/R33VBGpubskqlm9eYGSTyoGderDA=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convergent matrix client and instant messaging app",
         homepage: "https://kazv.chat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.interface",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.interface/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "Implementation of object interfaces, a mechanism for labeling objects as conforming to a given API or contract",
         homepage: "https://github.com/zopefoundation/zope.interface",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

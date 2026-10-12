@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "surfraw",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/surfraw/Surfraw/uploads/2de827b2786ef2fe43b6f07913ca7b7f/surfraw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "099nbif0x5cbcf18snc58nx1a3q7z0v9br9p2jiq9pcc7ic2015d",
         })))),
       configureFlags: nix.thunk(() => ["--disable-opensearch"]),
       nativeBuildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a fast unix command line interface to a variety of popular WWW search engines and other artifacts of power",
         homepage: "https://gitlab.com/surfraw/Surfraw",
         maintainers: [],

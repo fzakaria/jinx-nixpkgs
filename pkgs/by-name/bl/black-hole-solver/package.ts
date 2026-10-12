@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rinutils = nix.arg($, "rinutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "black-hole-solver",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fc-solve.shlomifish.org/downloads/fc-solve/black-hole-solver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-XEe9CT27Fg9LCQ/WcKt8ErQ3HTmxezu9jGxKEpdVV8A=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rinutils]),
       prePatch: "patchShebangs ./scripts\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Solver for Solitaire variants Golf, Black Hole, and All in a Row",
         mainProgram: "black-hole-solve",
         homepage: "https://www.shlomifish.org/open-source/projects/black-hole-solitaire-solver/",

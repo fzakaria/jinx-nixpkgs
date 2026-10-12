@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const mirage_clock = nix.arg($, "mirage-clock");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-mirage",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
       propagatedBuildInputs: nix.thunk(() => [irmin, fmt, ptime, mirage_clock]),
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { __proto__: pos$1, description: "MirageOS-compatible Irmin stores" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "MirageOS-compatible Irmin stores" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mirage.ts.map

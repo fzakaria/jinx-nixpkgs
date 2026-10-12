@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg_tileserv",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CrunchyData",
           repo: "pg_tileserv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share\ncp -r assets $out/share\n\nmkdir -p $out/share/config\ncp config/pg_tileserv.toml.example $out/share/config/pg_tileserv.toml\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very thin PostGIS-only tile server in Go",
         mainProgram: "pg_tileserv",
         homepage: "https://github.com/CrunchyData/pg_tileserv",

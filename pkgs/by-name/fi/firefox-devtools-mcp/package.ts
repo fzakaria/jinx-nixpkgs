@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const geckodriver = nix.arg($, "geckodriver");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "firefox-devtools-mcp",
       version: "0.9.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "firefox-devtools-mcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [geckodriver]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Model Context Protocol server for Firefox DevTools automation",
         longDescription: "A Model Context Protocol (MCP) server that automates Firefox via WebDriver BiDi.\nIt works with MCP clients such as Claude Code, Claude Desktop, Cursor and Cline,\nexposing tools to navigate pages, take snapshots, inspect the DOM, capture network requests\nand console messages, take screenshots and more.\n\nA local Firefox installation is required at runtime.\n",
         homepage: "https://github.com/mozilla/firefox-devtools-mcp",

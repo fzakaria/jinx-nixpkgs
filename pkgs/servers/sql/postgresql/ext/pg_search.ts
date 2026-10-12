@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pg_search",
       version: "0.25.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paradedb",
           repo: "paradedb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => (() => {
         const linderaVersion = "1.5.1";
         const dict = (language) => (filename) => (hash) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           filename: filename,
           language: language,
           source: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://lindera.dev/${filename}`),
               hash: hash,
             })))),
         });
         const dictionaries = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "lindera-ko-dic": nix.thunk(() => nix.app(dict, "Korean", "mecab-ko-dic-2.1.1-20180720.tar.gz", "sha256-cCztIcYWfp2a68Z0q17lSvWNREOXXylA030FZ8AgWRo=")),
           "lindera-cc-cedict": nix.thunk(() => nix.app(dict, "Chinese", "CC-CEDICT-MeCab-0.1.0-20200409.tar.gz", "sha256-7Tz54+yKgGR/DseD3Ana1DuMytLplPXqtv8TpB0JFsg=")),
           "lindera-ipadic": nix.thunk(() => nix.app(dict, "Japanese", "mecab-ipadic-2.7.0-20250920.tar.gz", "sha256-p7qfZF/+cJTlauHEqB0QDfj7seKLvheSYi6XKOFi2z0=")),
@@ -68,11 +68,11 @@ echo "Lindera cache prepared at $LINDERA_CACHE"
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [openblas]))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Transactional Elasticsearch alternative as a PostgreSQL extension",
         homepage: "https://paradedb.com",
         changelog: nix.thunk(() => nix.str`https://github.com/paradedb/paradedb/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

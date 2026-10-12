@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const xwayland_run = nix.arg($, "xwayland-run");
   const compositors = nix.thunk(() => nix.concat([weston], nix.concat(nix.app(nix.sel(lib, "optional"), withCage, cage), nix.concat(nix.app(nix.sel(lib, "optional"), withKwin, nix.thunk(() => nix.sel(kdePackages, "kwin"))), nix.concat(nix.app(nix.sel(lib, "optional"), withMutter, mutter), nix.concat(nix.app(nix.sel(lib, "optional"), withPhoc, phoc), nix.app(nix.sel(lib, "optional"), withDbus, dbus)))))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xwayland-run",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "ofourdan",
           repo: "xwayland-run",
@@ -55,11 +55,11 @@ wrapProgram $out/bin/xwfb-run \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(compositors, [xwayland, xauth])))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           build: nix.thunk(() => nix.app(nix.sel(xwayland_run, "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               withCage: true,
               withKwin: true,
               withMutter: true,
@@ -68,7 +68,7 @@ wrapProgram $out/bin/xwfb-run \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/ofourdan/xwayland-run/-/releases/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Set of small utilities revolving around running Xwayland and various Wayland compositor headless",
         homepage: "https://gitlab.freedesktop.org/ofourdan/xwayland-run",

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const starlette = nix.arg($, "starlette");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "datastar-py",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "starfederation",
           repo: "datastar-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["datastar_py"]),
       nativeCheckInputs: nix.thunk(() => [anyio, django, fastapi, httpx, litestar, pytestCheckHook, starlette, uvicorn]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/starfederation/datastar-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Helper functions and classes for the Datastar library",
         homepage: "https://github.com/starfederation/datastar-python",

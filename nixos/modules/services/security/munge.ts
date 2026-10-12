@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "munge"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         munge: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "munge service")),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "/etc/munge/munge.key",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The path to a daemon's secret key.\n",
@@ -44,30 +44,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "munge"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             munge: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Munge daemon user",
               isSystemUser: true,
               group: "munge",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$8, munge: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$8, munge: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             munged: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               documentation: nix.thunk(() => ["man:munged(8)", "man:mungekey(8)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target", "time-sync.target"]),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStartPre: nix.thunk(() => nix.str`+${nix.sel(pkgs, "coreutils")}/bin/chmod 0400 ${nix.sel(cfg, "password")}`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "munge")}/bin/munged --foreground --key-file ${nix.sel(cfg, "password")}`),
                 User: "munge",

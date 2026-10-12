@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "multiple-entity-row",
       version: "4.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benct",
           repo: "lovelace-multiple-entity-row",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LlpxVanOD+rbEwSzfrA4GsgYfyEtP+CFfdJV+t2Oxjs=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-LuXzfRV/jXe4jt9whkHRjAUxvLyhzikQ3WoXzpTQWe0=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnBuildHook, yarnConfigHook, nodejs]),
       installPhase: "runHook preInstall\n\nmkdir $out\ninstall -m0644 ./multiple-entity-row.js $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Show multiple entity states and attributes on entity rows in Home Assistant's Lovelace UI",
         homepage: "https://github.com/benct/lovelace-multiple-entity-row",
         changelog: nix.thunk(() => nix.str`https://github.com/benct/lovelace-multiple-entity-row/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

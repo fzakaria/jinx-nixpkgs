@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "picgo",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Molunerfinn",
           repo: "PicGo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wT9CfPchNbD2CzSVA9kZAYsstpc2mvgqAl305rmrUdo=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpm: pnpm,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         copyDesktopItems,
         writableTmpDirAsHomeHook,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NODE_ENV: "development" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_ENV: "development" })),
       postPatch: "# Maximizing a hidden BrowserWindow makes it visible on Linux. Defer restoring\n# the maximized state until the main window is explicitly shown.\n# https://github.com/Molunerfinn/PicGo/blob/4676326eb88d087432989366d71e61e17a039e98/src/main/apis/app/window/windowList.ts#L83-L94\nsubstituteInPlace src/main/apis/app/window/windowList.ts \\\n  --replace-fail \"      window.maximize()\" \\\n    \"      window.once('show', () => window.maximize())\"\n",
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       postBuild: "# Renderer assets are loaded from a file:// URL, so the mini window logo must\n# use a path relative to its index.html.\nsubstituteInPlace dist_electron/renderer/assets/mini-*.js \\\n  --replace-fail '\"/squareLogo.png\"' '\"./squareLogo.png\"'\n",
@@ -104,7 +104,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "picgo",
             desktopName: "PicGo",
             genericName: "Picture Uploader",
@@ -117,11 +117,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple tool for uploading pictures",
         longDescription: "PicGo is a simple & beautiful tool for uploading pictures built by `electron-vue`.\nIt supports uploading images to various cloud storage services and clipboard management.\nThe application features a plugin system for extending functionality.\n",
         homepage: "https://picgo.app",

@@ -24,51 +24,51 @@ export default nix.lambda((args) => (() => {
       const name = nix.thunk(() => nix.attr(params, "name"));
       const sha256 = nix.thunk(() => nix.attr(params, "sha256"));
       const url = nix.thunk(() => nix.str`https://salsa.debian.org/debian/acpitool/raw/33e2ef42a663de820457b212ea2925e506df3b88/debian/patches/${name}`);
-      return { __proto__: pos$1, name, sha256, url };
+      return { [nix.POS]: pos$1, name, sha256, url };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "acpitool",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/acpitool/acpitool-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "004fb6cd43102918b6302cf537a2db7ceadda04aef2e0906ddf230f820dad34f",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(acpitool_patch_051_4, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ac_adapter.patch",
             sha256: "0rn14vfv9x5gmwyvi6bha5m0n0pm4wbpg6h8kagmy3i1f8lkcfi8",
           })))),
         nix.thunk(() => nix.app(acpitool_patch_051_4, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "battery.patch",
             sha256: "190msm5cgqgammxp1j4dycfz206mggajm5904r7ifngkcwizh9m7",
           })))),
         nix.thunk(() => nix.app(acpitool_patch_051_4, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "kernel3.patch",
             sha256: "1qb47iqnv09i7kgqkyk9prr0pvlx0yaip8idz6wc03wci4y4bffg",
           })))),
         nix.thunk(() => nix.app(acpitool_patch_051_4, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "wakeup.patch",
             sha256: "1mmzf8n4zsvc7ngn51map2v42axm9vaf8yknbd5amq148sjf027z",
           })))),
         nix.thunk(() => nix.app(acpitool_patch_051_4, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "0001-Do-not-assume-fixed-line-lengths-for-proc-acpi-wakeu.patch",
             sha256: "10wwh7l3jbmlpa80fzdr18nscahrg5krl18pqwy77f7683mg937m",
           })))),
         nix.thunk(() => nix.app(acpitool_patch_051_4, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "typos.patch",
             sha256: "1178fqpk6sbqp1cyb1zf9qv7ahpd3pidgpid3bbpms7gyhqvvdpa",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Small, convenient command-line ACPI client with a lot of features",
         mainProgram: "acpitool",
         homepage: "https://sourceforge.net/projects/acpitool/",

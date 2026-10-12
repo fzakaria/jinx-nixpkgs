@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sl",
       version: "5.05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eyJhb",
           repo: "sl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin sl\ninstall -Dm644 -t $out/share/man/man1 sl.1{,.ja}\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Steam Locomotive runs across your terminal when you type 'sl'",
         homepage: "http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html",
         license: nix.thunk(() => (() => {
           const shortName = "Toyoda Masashi's free software license";
           const fullName = shortName;
           const url = "https://github.com/eyJhb/sl/blob/master/LICENSE";
-          return { __proto__: pos$2, shortName, fullName, url };
+          return { [nix.POS]: pos$2, shortName, fullName, url };
         })()),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

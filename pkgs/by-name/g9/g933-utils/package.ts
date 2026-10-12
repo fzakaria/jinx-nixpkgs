@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "g933-utils",
       version: "0-unstable-2021-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ashkitten",
           repo: "g933-utils",
           rev: "1fc8cec375ed0d6f72191eadec788a49f51032d1",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [udev]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application to configure Logitech wireless G933/G533 headsets",
         homepage: "https://github.com/ashkitten/g933-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

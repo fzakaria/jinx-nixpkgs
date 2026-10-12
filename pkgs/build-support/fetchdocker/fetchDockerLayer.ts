@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const layerDigest = nix.arg($_1, "layerDigest");
     return nix.app(generic_fetcher, nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fetcher: "hocker-layer",
         name: nix.thunk(() => nix.str`docker-layer-${layerDigest}.tar.gz`),
         tag: "unused",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "web-eid-app";
       const version = "2.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "web-eid",
           repo: "web-eid-app",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [gtest, pcsclite]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Signing and authentication operations with smart cards for the Web eID browser extension",
         mainProgram: "web-eid",
         longDescription: "The Web eID application performs cryptographic digital signing and\nauthentication operations with electronic ID smart cards for the Web eID\nbrowser extension (it is the [native messaging host](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging)\nfor the extension). Also works standalone without the extension in command-line\nmode.\n",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "flokli"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

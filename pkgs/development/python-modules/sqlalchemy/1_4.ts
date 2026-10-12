@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.54-unstable-2025-08-16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sqlalchemy",
           repo: "sqlalchemy",
           rev: "1712b81a5b8d9d3abd5a85fbb089470f0bc38cdd",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [greenlet]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           asyncio: nix.thunk(() => [greenlet]),
           mypy: nix.thunk(() => [mypy]),
           mssql: nix.thunk(() => [pyodbc]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/ext/mypy", "test/aaa_profiling"]);
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => (() => {
           const shortVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version))));
           return nix.str`https://github.com/sqlalchemy/sqlalchemy/blob/${nix.sel(src, "rev")}/doc/build/changelog/changelog_${shortVersion}.rst`;
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

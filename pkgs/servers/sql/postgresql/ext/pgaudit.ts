@@ -23,44 +23,44 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const sources = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "18": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "18.0",
       hash: "sha256-+1YKJxMFkok7MsYeA9GRkc2FLxuBGRLpC+JzdK/xqoM=",
     })),
     "17": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "17.1",
       hash: "sha256-9St/ESPiFq2NiPKqbwHLwkIyATKUkOGxFcUrWgT+Iqo=",
     })),
     "16": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "16.1",
       hash: "sha256-fzoAcXEKmA+xD4HtcHZgcduh1XmSgL8ZS4R72og7RGQ=",
     })),
     "15": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.7.1",
       hash: "sha256-emwoTowT7WKFX0RQDqJXjIblrzqaUIUkzqSqBCHVKQ8=",
     })),
     "14": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.6.3",
       hash: "sha256-KgLidJHjUK9BTp6ffmGUj1chcwIe6IzlcadRpGCfNdM=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for pgaudit is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "pgaudit",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "pgaudit",
           repo: "pgaudit",
           tag: nix.thunk(() => nix.sel(source, "version")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       enableUpdateScript: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Open Source PostgreSQL Audit Logging",
         homepage: "https://github.com/pgaudit/pgaudit",

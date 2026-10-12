@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const texsoup = nix.arg($, "texsoup");
   const defusedxml = nix.arg($, "defusedxml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-jupyterbook-latex",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "sphinx-jupyterbook-latex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_jblatex_show_tocs", "test_build_no_ext", "test_build_with_ext"]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_jupyterbook_latex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Latex specific features for jupyter book",
         homepage: "https://github.com/executablebooks/sphinx-jupyterbook-latex",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-jupyterbook-latex/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fil-plugins",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/FIL-plugins-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-HAvycSEZZfZwoVp3g7QWcwfbdyZKwWJKBuVmeWTajuk=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace /usr/lib/ladspa \"$out/lib/ladspa\" \\\n  --replace g++             \"$CXX\"\n",
       preInstall: "mkdir -p \"$out/lib/ladspa\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Four-band parametric equaliser, which has the nice property of being stable even while parameters are being changed",
         longDescription: "Each section has an active/bypass switch, frequency, bandwidth and gain controls.\nThere is also a global bypass switch and gain control.\nThe 2nd order resonant filters are implemented using a Mitra-Regalia style lattice filter.\nAll switches and controls are internally smoothed, so they can be used 'live' without any clicks or zipper noises.\nThis should make this plugin a good candidate for use in systems that allow automation of plugin control ports, such as Ardour, or for stage use.\n",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/ladspa/index.html",

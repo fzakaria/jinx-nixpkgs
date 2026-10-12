@@ -20,34 +20,34 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "inventree",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kurogeek"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       psqlTest: nix.thunk(() => ({
-        __proto__: pos$5,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2048n })),
+        [nix.POS]: pos$5,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
         services: nix.thunk(() => ({
-          __proto__: pos$4,
-          inventree: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$4,
+          inventree: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
       })),
       mysqlTest: nix.thunk(() => ({
-        __proto__: pos$10,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$6, memorySize: 2048n })),
+        [nix.POS]: pos$10,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, memorySize: 2048n })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           inventree: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
-            database: nix.thunk(() => ({ __proto__: pos$7, dbtype: "mysql" })),
+            database: nix.thunk(() => ({ [nix.POS]: pos$7, dbtype: "mysql" })),
           })),
         })),
       })),

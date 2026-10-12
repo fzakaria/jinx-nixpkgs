@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-IxabBKI8StRBnvm3Zm1AH0jfMkez38P4dL4sFP0ttAE=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_check_users"]);
       const pythonImportsCheck = nix.thunk(() => ["nagiosplugin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python class library which helps with writing Nagios (Icinga) compatible plugins",
         homepage: "https://github.com/mpounsett/nagiosplugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zpl21")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundler = nix.arg($, "bundler");
   const bundix = nix.arg($, "bundix");
-  const bundler_ = nix.thunk(() => nix.app(nix.sel(bundler, "override"), nix.thunk(() => ({ __proto__: pos$1, ruby: ruby }))));
-  const bundix_ = nix.thunk(() => nix.app(nix.sel(bundix, "override"), nix.thunk(() => ({ __proto__: pos$2, bundler: bundler_ }))));
+  const bundler_ = nix.thunk(() => nix.app(nix.sel(bundler, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby }))));
+  const bundix_ = nix.thunk(() => nix.app(nix.sel(bundix, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, bundler: bundler_ }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(ruby, "rubyEngine")}-dev-${nix.sel(ruby, "version")}`),
       paths: nix.thunk(() => [bundix_, bundler_, ruby]),
       pathsToLink: nix.thunk(() => ["/bin"]),

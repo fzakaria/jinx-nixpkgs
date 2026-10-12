@@ -37,38 +37,38 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "ustreamer"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ustreamer: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "µStreamer, a lightweight MJPEG-HTTP streamer")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ustreamer", nix.thunk(() => ({})))),
           autoStart: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Wether to start µStreamer on boot. Disabling this will use socket\nactivation. The service will stop gracefully after some inactivity.\nDisabling this will set `--exit-on-no-clients=300`\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               example: false,
             })))),
           listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Address to expose the HTTP server. This accepts values for\nListenStream= defined in {manpage}`systemd.socket(5)`\n",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "0.0.0.0:8080",
               example: "/run/ustreamer.sock",
             })))),
           device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "The v4l2 device to stream.\n",
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/dev/video0",
               example: "/dev/v4l/by-id/usb-0000_Dummy_abcdef-video-index0",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Extra arguments to pass to `ustreamer`. See {manpage}`ustreamer(1)`\n",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -81,26 +81,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           ustreamer: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             extraArgs: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--device=${nix.sel(cfg, "device")}`)], nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(cfg, "autoStart"))), nix.thunk(() => ["--exit-on-no-clients=300"])))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             ustreamer: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "µStreamer, a lightweight MJPEG-HTTP streamer",
               after: nix.thunk(() => ["network.target"]),
               requires: nix.thunk(() => ["ustreamer.socket"]),
               wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "autoStart")), nix.thunk(() => ["multi-user.target"]))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
                     "--systemd",
@@ -117,13 +117,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             ustreamer: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               partOf: nix.thunk(() => ["ustreamer.service"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ListenStream: nix.thunk(() => nix.sel(cfg, "listenAddress")),
               })),
             })),

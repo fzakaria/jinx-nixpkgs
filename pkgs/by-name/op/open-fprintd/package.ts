@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uunicorn",
           repo: "open-fprintd",
           rev: version,
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const makeWrapperArgs = nix.thunk(() => ["${gappsWrapperArgs[@]}"]);
       const postFixup = "wrapPythonProgramsIn \"$out/lib/open-fprintd\" \"$out ${pythonPath[*]}\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fprintd replacement which allows you to have your own backend as a standalone service",
         homepage: "https://github.com/uunicorn/open-fprintd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

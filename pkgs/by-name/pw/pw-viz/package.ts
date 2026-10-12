@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pw-viz",
       version: "0.3.0-2025-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ax9d",
           repo: "pw-viz",
           rev: "b3fb0fb05059ba12f58d2a998842e13f0636cfed",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxkbcommon, wayland]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and elegant pipewire graph editor",
         homepage: "https://github.com/ax9d/pw-viz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

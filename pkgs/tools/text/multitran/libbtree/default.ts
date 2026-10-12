@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
       const pname = "libbtree";
       const version = "0.0.1alpha2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/libbtree-${version}.tar.bz2`),
           sha256: "34a584e45058950337ff9342693b6739b52c3ce17e66440526c4bd6f9575802c",
         }))));
       const patchPhase = "sed -i -e 's@\\$(DESTDIR)/usr@'$out'@' src/Makefile;\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran lib: library for reading Multitran's BTREE database format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, patchPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sx-go";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "v-byte-cpu",
           repo: "sx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-TWRMNt6x8zuvhP1nz4R6IVCX+9HityvVpzxRhDiMyO4=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "non-linux-method-signature.patch",
             url: "https://github.com/v-byte-cpu/sx/commit/56457bfaa49eb6fbb7a33d7092d9c636b9c85895.patch",
             hash: "sha256-0lCu3tZ0fEiC7qWfk1APLVwwrK9eovbVa/yG7OuXEWQ=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 mv $out/bin/sx $out/bin/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line network scanner",
         homepage: "https://github.com/v-byte-cpu/sx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +50,7 @@ mv $out/bin/sx $out/bin/${pname}
         mainProgram: "sx-go",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const gdb = nix.arg($, "gdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "6.0.0",
       pname: "igprof",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igprof",
           repo: "igprof",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libunwind, gdb, pcre2]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fPIC", "-O2", "-w", "-fpermissive"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ignominous Profiler",
         longDescription: "IgProf is a fast and light weight profiler. It correctly handles\ndynamically loaded shared libraries, threads and sub-processes started by\nthe application.  We have used it routinely with large C++ applications\nconsisting of many hundreds of shared libraries and thousands of symbols\nfrom millions of source lines of code. It requires no special privileges\nto run. The performance reports provide full navigable call stacks and\ncan be customised by applying filters. Results from any number of\nprofiling runs can be included. This means you can both dig into the\ndetails and see the big picture from combined workloads.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

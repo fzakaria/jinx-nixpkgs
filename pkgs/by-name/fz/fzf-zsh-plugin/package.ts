@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fzf-zsh-plugin",
       version: "1.0.0-unstable-2026-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unixorn",
           repo: "fzf-zsh-plugin",
           rev: "e3894e83a3e8a3e8751456d56c51bb49b34e8d2b",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, zsh]),
       installPhase: "runHook preInstall\ninstall -D fzf-settings.zsh $out/share/zsh/fzf-zsh-plugin/fzf-settings.zsh\ninstall -D fzf-zsh-plugin.plugin.zsh $out/share/zsh/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh\nmkdir -p $out/bin\ncp -r bin/* $out/bin/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/unixorn/fzf-zsh-plugin",
         description: "ZSH plugin to enable fzf searches of a lot more stuff - docker, tmux, homebrew and more",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

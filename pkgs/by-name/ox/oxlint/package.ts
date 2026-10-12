@@ -35,25 +35,25 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "oxlint",
       version: "1.86.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxc-project",
           repo: "oxc",
           tag: nix.thunk(() => nix.str`oxlint_v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-B/L7rXj9Bjp7RJgLYNRGGyC01jmYle/0c4htmHXcN04=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Uz8Lau2kGdIJI2q1JoZ/dgYa+mHO6VdKxP9NAEIzfI0=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         OXC_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`for cli in node_modules/.pnpm/@napi-rs+cli@*/node_modules/@napi-rs/cli/dist/cli.js; do
@@ -105,16 +105,16 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nexpectFail() {\n  local needle=\"$1\"; shift\n  local output\n  output=\"$(\"$@\" 2>&1)\" && {\n    printf 'expected `%s` to fail\\n%s\\n' \"$*\" \"$output\" >&2\n    exit 1\n  }\n  grep -Fq \"$needle\" <<<\"$output\"\n}\n\ncd \"$(mktemp -d)\"\n\ncat >plugin.mjs <<'EOF'\nexport default {\n  meta: { name: \"smoke-plugin\" },\n  rules: {\n    \"always-error\": {\n      create: (context) => ({\n        Program(node) {\n          context.report({ node, message: \"plugin-smoke-ok\" });\n        },\n      }),\n    },\n  },\n};\nEOF\necho '{\"jsPlugins\":[\"./plugin.mjs\"],\"rules\":{\"smoke-plugin/always-error\":\"error\"}}' >plugin.jsonc\necho 'void 0;' >plugin.js\nexpectFail plugin-smoke-ok \"$out/bin/oxlint\" -c plugin.jsonc plugin.js\n\necho 'const s: string = \"\"; const _: string = s as string;' >type-aware.ts\nexpectFail no-unnecessary-type-assertion \\\n  \"$out/bin/oxlint\" -D typescript/no-unnecessary-type-assertion --type-aware type-aware.ts\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=^oxlint_v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs_slim_24, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Collection of JavaScript tools written in Rust",
         homepage: "https://github.com/oxc-project/oxc",
         changelog: nix.thunk(() => nix.str`https://github.com/oxc-project/oxc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

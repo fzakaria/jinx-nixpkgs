@@ -24,30 +24,30 @@ export default nix.lambda((args) => (() => {
   const userPassword = "password";
   const mismatchPass = "mismatch";
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "pam-zfs-key",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           boot: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             supportedFilesystems: nix.thunk(() => ["zfs"]),
-            zfs: nix.thunk(() => ({ __proto__: pos$1, forceImportRoot: false })),
+            zfs: nix.thunk(() => ({ [nix.POS]: pos$1, forceImportRoot: false })),
           })),
-          networking: nix.thunk(() => ({ __proto__: pos$3, hostId: "12345678" })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$3, hostId: "12345678" })),
           security: nix.thunk(() => ({
-            __proto__: pos$6,
-            pam: nix.thunk(() => ({ __proto__: pos$5, zfs: nix.thunk(() => ({ __proto__: pos$4, enable: true })) })),
+            [nix.POS]: pos$6,
+            pam: nix.thunk(() => ({ [nix.POS]: pos$5, zfs: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })) })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             users: nix.thunk(() => ({
-              __proto__: pos$9,
-              alice: nix.thunk(() => ({ __proto__: pos$7, isNormalUser: true, password: userPassword })),
-              bob: nix.thunk(() => ({ __proto__: pos$8, isNormalUser: true, password: userPassword })),
+              [nix.POS]: pos$9,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$7, isNormalUser: true, password: userPassword })),
+              bob: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true, password: userPassword })),
             })),
           })),
         };

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "2.0.78",
       pname: "munin",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "munin-monitoring",
           repo: "munin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(perlPackages, "FileSlurp")),
         nix.thunk(() => nix.sel(perlPackages, "IOStringy")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PERL_USE_UNSAFE_INC: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PERL_USE_UNSAFE_INC: "1" })),
       doCheck: false,
       checkPhase: nix.thunk(() => nix.str`export PERL5LIB="$PERL5LIB:${rrdtool}/${nix.sel(perlPackages, "perl", "libPrefix")}"
 LC_ALL=C make -j1 test
@@ -146,11 +146,11 @@ for file in "$out"/bin/munindoc "$out"/sbin/munin-* "$out"/lib/munin-* "$out"/ww
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, munin: nix.thunk(() => nix.attr(nixosTests, "munin")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, munin: nix.thunk(() => nix.attr(nixosTests, "munin")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Networked resource monitoring tool",
         longDescription: "Munin is a monitoring tool that surveys all your computers and remembers\nwhat it saw. It presents all the information in graphs through a web\ninterface. Munin can help analyze resource trends and 'what just happened\nto kill our performance?' problems.\n",
         homepage: "https://munin-monitoring.org/",

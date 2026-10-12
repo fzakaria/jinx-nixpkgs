@@ -25,32 +25,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "lk-jwt-service"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quadradical"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "lk-jwt-service": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "lk-jwt-service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lk-jwt-service", nix.thunk(() => ({})))),
           livekitUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "^wss?://.*")),
               example: "wss://example.com/livekit/sfu",
               description: "The public websocket URL for livekit.\nThe proto needs to be either  `wss://` (recommended) or `ws://` (insecure).\n",
             })))),
           keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to a file containing the credential mapping (`<keyname>: <secret>`) to access LiveKit.\n\nExample:\n`lk-jwt-service: f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE`\n\nFor more information, see <https://github.com/element-hq/lk-jwt-service#configuration>.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Port that lk-jwt-service should listen on.",
@@ -59,26 +59,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "lk-jwt-service": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Minimal service to issue LiveKit JWTs for MatrixRTC",
               documentation: nix.thunk(() => ["https://github.com/element-hq/lk-jwt-service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 LIVEKIT_URL: nix.thunk(() => nix.sel(cfg, "livekitUrl")),
                 LIVEKIT_JWT_BIND: nix.thunk(() => nix.str`:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 LIVEKIT_KEY_FILE: "/run/credentials/lk-jwt-service.service/livekit-secrets",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`livekit-secrets:${nix.sel(cfg, "keyFile")}`)]),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 DynamicUser: true,

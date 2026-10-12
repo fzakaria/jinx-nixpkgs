@@ -45,47 +45,47 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "hyprland"));
-  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       programs: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         hyprland: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Hyprland, the dynamic tiling Wayland compositor that doesn't sacrifice on its looks.\nYou can manually launch Hyprland by executing {command}`start-hyprland` on a TTY.\nA configuration file will be generated in {file}`~/.config/hypr/hyprland.conf`.\nSee <https://wiki.hyprland.org> for more information")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hyprland", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               extraDescription: "If the package is not overridable with `enableXWayland`, then the module option\n{option}`xwayland` will have no effect.\n",
             }))), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             apply: (p) => nix.app(nix.sel(wayland_lib, "genFinalPackage"), p, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enableXWayland: nix.thunk(() => nix.sel(cfg, "xwayland", "enable")),
               }))),
           })),
           portalPackage: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "xdg-desktop-portal-hyprland", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraDescription: "If the package is not overridable with `hyprland`, then the Hyprland package\nused by the portal may differ from the one set in the module option {option}`package`.\n",
             }))), {
-            __proto__: pos$7,
-            apply: (p) => nix.app(nix.sel(wayland_lib, "genFinalPackage"), p, nix.thunk(() => ({ __proto__: pos$6, hyprland: nix.thunk(() => nix.sel(cfg, "package")) }))),
+            [nix.POS]: pos$7,
+            apply: (p) => nix.app(nix.sel(wayland_lib, "genFinalPackage"), p, nix.thunk(() => ({ [nix.POS]: pos$6, hyprland: nix.thunk(() => nix.sel(cfg, "package")) }))),
           })),
           xwayland: nix.thunk(() => ({
-            __proto__: pos$9,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { __proto__: pos$8, default: true })),
+            [nix.POS]: pos$9,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { [nix.POS]: pos$8, default: true })),
           })),
           withUWSM: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             description: "Launch Hyprland with the UWSM (Universal Wayland Session Manager) session manager.\nThis has improved systemd support and is recommended for most users.\nThis automatically starts appropriate targets like `graphical-session.target`,\nand `wayland-session@Hyprland.target`.\n\n::: {.note}\nSome changes may need to be made to Hyprland configs depending on your setup, see\n[Hyprland wiki](https://wiki.hyprland.org/Useful-Utilities/Systemd-start/#uwsm).\n:::\n",
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             setPath: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "0.41.2")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.versionOlder cfg.package.version \"0.41.2\"")),
                 example: false,
@@ -98,18 +98,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             environment: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               pathsToLink: nix.thunk(() => ["/share/hypr"]),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wrappers: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Hyprland: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   owner: "root",
                   group: "root",
                   capabilities: "cap_sys_nice+ep",
@@ -118,29 +118,29 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               portal: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 enable: true,
                 extraPortals: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "portalPackage"))]),
                 configPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               })),
             })),
             systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemd", "setPath", "enable")), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 user: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     Manager: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       DefaultEnvironment: "PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH",
                     })),
                   })),
@@ -148,14 +148,14 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "withUWSM")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               programs: nix.thunk(() => ({
-                __proto__: pos$31,
-                uwsm: nix.thunk(() => ({ __proto__: pos$30, enable: true })),
+                [nix.POS]: pos$31,
+                uwsm: nix.thunk(() => ({ [nix.POS]: pos$30, enable: true })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               lib: lib,
               pkgs: pkgs,
               enableXWayland: nix.thunk(() => nix.sel(cfg, "xwayland", "enable")),
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["programs", "hyprland", "nvidiaPatches"]), "Nvidia patches are no longer needed")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "hyprland"))]),
     })),
   };

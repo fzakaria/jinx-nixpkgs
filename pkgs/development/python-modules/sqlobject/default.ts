@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.13.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sqlobject",
           repo: "sqlobject",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_fail"]);
       const pythonImportsCheck = nix.thunk(() => ["sqlobject"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Object Relational Manager for providing an object interface to your database",
         homepage: "https://www.sqlobject.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/sqlobject/sqlobject/blob/${nix.sel(src, "tag")}/docs/News.rst`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

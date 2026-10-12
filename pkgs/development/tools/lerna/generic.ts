@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lerna";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/lerna/-/lerna-${version_1}.tgz`),
           hash: hash,
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash_1 = npmDepsHash;
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, modern build system for managing and publishing multiple JavaScript/TypeScript packages from the same repository",
         homepage: "https://lerna.js.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/lerna/lerna/blob/v${version_1}/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const name = "networkaudiod";
   const cfg = nix.thunk(() => nix.sel(config, "services", "networkaudiod"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         networkaudiod: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Networkaudiod (NAA)")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         systemd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "networkaudiod"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            networkaudiod: nix.thunk(() => ({ __proto__: pos$4, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: pos$5,
+            networkaudiod: nix.thunk(() => ({ [nix.POS]: pos$4, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
         })),
       })))),

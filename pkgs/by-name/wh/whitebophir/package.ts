@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whitebophir";
       const version = "1.19.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lovasoa",
           repo: "whitebophir",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ EOF
 chmod +x $out/bin/whitebophir
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Online collaborative whiteboard that is simple, free, easy to use and to deploy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         homepage: "https://github.com/lovasoa/whitebophir",
@@ -50,7 +50,7 @@ chmod +x $out/bin/whitebophir
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

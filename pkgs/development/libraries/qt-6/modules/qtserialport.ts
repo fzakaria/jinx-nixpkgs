@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const udevSupport = nix.argOr($, "udevSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtserialport",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => nix.concat([qtbase], nix.app(nix.sel(lib, "optionals"), udevSupport, nix.thunk(() => [udev])))),

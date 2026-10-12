@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "2.2.5";
     const src = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "paperwork-patched-src",
         version: version,
         stdenv: stdenv,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             domain: "gitlab.gnome.org",
             repo: "paperwork",
             group: "World",
@@ -36,20 +36,20 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => (() => {
             nix.assert_(nix.eq(version, "2.2.5"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/office/paperwork/src.nix:24:9");
             return nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/commit/b8e2633ace0f3d9d57e68c27db8f594b8a5ddd7e.patch",
                 hash: "sha256-VUT86kF0ZHLGK457ZrrIBMeiZqg/rPRpbkBA/ua9rU8=",
               })));
           })()),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/commit/ab244d9c483b23f53e2548b73236d7fe4b94cb3f.patch",
               hash: "sha256-Wd6OK0BdyTcjLy1NhkLp9N2oOcQWB6geEPOlYDTBsHw=",
             })))),
         ]),
       }))));
     const sample_documents = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         domain: "gitlab.gnome.org",
         repo: "paperwork-test-documents",
         group: "World",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         rev: "2.1",
         sha256: "0m79fgc1ycsj0q0alqgr0axn16klz1sfs2km1h83zn3kysqcs6xr",
       }))));
-    return { __proto__: pos$6, version, src, sample_documents };
+    return { [nix.POS]: pos$6, version, src, sample_documents };
   })();
 })(), formals$1);
 //# sourceMappingURL=src.ts.map

@@ -45,48 +45,48 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/esphome";
   const esphomeParams = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableUnixSocket")) ? "--socket /run/esphome/esphome.sock" : nix.str`--address ${nix.sel(cfg, "address")} --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "oddlama"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         esphome: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "esphome, for making custom firmwares for ESP32/ESP8266")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "esphome", nix.thunk(() => ({})))),
           enableUnixSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Listen on a unix socket `/run/esphome/esphome.sock` instead of the TCP port.",
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               description: "esphome address",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 6052n,
               description: "esphome port",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to open the firewall for the specified port.",
             })))),
           allowedDevices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ["char-ttyS", "char-ttyUSB"]),
               example: nix.thunk(() => [
                 "/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0",
@@ -95,20 +95,20 @@ export default nix.lambda((args) => (() => {
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             })))),
           usePing: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Use ping to check online status of devices instead of mDNS",
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Extra environment variables to pass to ESPHome. Secrets should be passed\nusing the {option}`services.esphome.environmentFile` option.\n",
-              example: nix.thunk(() => ({ __proto__: pos$8, USERNAME: "reimu", PASSWORD: "gensokyo9" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, USERNAME: "reimu", PASSWORD: "gensokyo9" })),
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               description: "Path to an environment file.\nUse this option for setting the dashboard password.\n",
@@ -117,39 +117,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         networking: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           firewall: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(!nix.asBool(nix.sel(cfg, "enableUnixSocket"))))), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
-            esphome: nix.thunk(() => ({ __proto__: pos$16, isSystemUser: true, home: stateDir, group: "esphome" })),
+            [nix.POS]: pos$17,
+            esphome: nix.thunk(() => ({ [nix.POS]: pos$16, isSystemUser: true, home: stateDir, group: "esphome" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$18, esphome: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$18, esphome: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             esphome: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "ESPHome dashboard",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 PLATFORMIO_CORE_DIR: nix.thunk(() => nix.str`${stateDir}/.platformio`),
                 HOME: stateDir,
-              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "usePing")), nix.thunk(() => ({ __proto__: pos$21, ESPHOME_DASHBOARD_USE_PING: "true" }))), nix.sel(cfg, "environment")))),
+              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "usePing")), nix.thunk(() => ({ [nix.POS]: pos$21, ESPHOME_DASHBOARD_USE_PING: "true" }))), nix.sel(cfg, "environment")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/esphome dashboard ${esphomeParams} ${stateDir}`),
                 User: "esphome",
                 Group: "esphome",

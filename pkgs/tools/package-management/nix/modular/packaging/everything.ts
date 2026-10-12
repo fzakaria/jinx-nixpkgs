@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const patchedSrc = nix.argOr($, "patchedSrc", () => null);
   const libs = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "nix-util": nix_util,
     "nix-util-c": nix_util_c,
     "nix-store": nix_store,
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
     "nix-main": nix_main,
     "nix-main-c": nix_main_c,
     "nix-cmd": nix_cmd,
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.29pre")), nix.thunk(() => ({ __proto__: pos$2, "nix-fetchers-c": nix_fetchers_c }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "2.35pre")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))), nix.thunk(() => ({ __proto__: pos$3, "nix-perl-bindings": nix_perl_bindings }))))));
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.29pre")), nix.thunk(() => ({ [nix.POS]: pos$2, "nix-fetchers-c": nix_fetchers_c }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "2.35pre")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))), nix.thunk(() => ({ [nix.POS]: pos$3, "nix-perl-bindings": nix_perl_bindings }))))));
   const devdoc = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`nix-${nix.sel(nix_cli, "version")}-devdoc`),
       paths: nix.thunk(() => [nix_internal_api_docs, nix_external_api_docs]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "nix",
       version: nix.thunk(() => nix.sel(nix_cli, "version")),
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
@@ -109,16 +109,16 @@ ln -sT ${nix.sel(nix_manual, "man")} $man
 `)));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: nix.thunk(() => nix.attr(nix_cli, "version")),
         "nix-cli": nix_cli,
         src: patchedSrc,
         libs: libs,
         devdoc: devdoc,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -126,7 +126,7 @@ ln -sT ${nix.sel(nix_manual, "man")} $man
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nix_cli, "meta"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mainProgram: "nix",
         description: "Nix package manager",
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
@@ -148,7 +148,7 @@ ln -sT ${nix.sel(nix_manual, "man")} $man
           "nix-util-c",
         ]))),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "nixos", version)),
         })),
       };

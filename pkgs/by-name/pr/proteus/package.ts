@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "proteus";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GuitarML",
           repo: "Proteus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace modules/libsamplerate/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1..3.18)\" \"cmake_minimum_required(VERSION 3.18)\"\nsubstituteInPlace modules/{json,RTNeural}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const runtimeDependencies = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), buildInputs));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DJUCE_JACK", "-ffat-lto-objects"]))),
       }));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/lib\ncp -rT Proteus_artefacts/*/Standalone $out/bin\ncp -rT Proteus_artefacts/*/LV2 $out/lib/lv2\ncp -rT Proteus_artefacts/*/VST3 $out/lib/vst3\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Guitar amp and pedal capture plugin using neural networks",
         homepage: "https://github.com/GuitarML/Proteus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "Proteus",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

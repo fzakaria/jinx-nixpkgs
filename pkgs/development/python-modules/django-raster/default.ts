@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "django-raster";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "213758fe96d74be502f69f2620f7666961a85caa0551d14573637315035a9745",
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
         importlib_metadata,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Basic raster data integration for Django",
         homepage: "https://github.com/geodesign/django-raster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

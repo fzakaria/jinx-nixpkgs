@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxft = nix.arg($, "libxft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xosd-xft",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kdmurthy",
           repo: "libxosd-xft",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/osd-echo`),
       versionCheckProgramArg: "--help",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Show text content with Xft/TTF fonts on X11 display",
         homepage: "https://github.com/kdmurthy/libxosd-xft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

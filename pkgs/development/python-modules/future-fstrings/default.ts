@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "future_fstrings",
           sha256: "6cf41cbe97c398ab5a81168ce0dbb8ad95862d3caf23c21e4430627b90844089",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/asottile/future-fstrings",
         description: "Backport of fstrings to python<3.6",
         mainProgram: "future-fstrings-show",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "nyanloutre"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

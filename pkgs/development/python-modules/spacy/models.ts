@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
     const requires_sentencepiece = nix.thunk(() => (nix.asBool(nix.eq(pname, "fr_dep_news_trf")) || nix.asBool(nix.eq(pname, "sl_core_news_trf"))));
     const requires_transformers = nix.thunk(() => nix.eq(pname, "uk_core_news_trf"));
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
         pyproject: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/explosion/spacy-models/releases/download/${pname}-${version}/${pname}-${version}.tar.gz`),
             sha256: sha256,
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat([setuptools], nix.app(nix.sel(lib, "optionals"), requires_protobuf, nix.thunk(() => [protobuf])))),
         pythonImportsCheck: nix.thunk(() => [pname]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           updateScript: nix.thunk(() => nix.app(writeScript, "update-spacy-models", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eou pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq, nix$, moreutils]))}
@@ -80,7 +80,7 @@ popd || exit
 `))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Models for the spaCy NLP library",
           homepage: "https://github.com/explosion/spacy-models",
           license: nix.thunk(() => nix.sel(lib, "licenses", nix.key(nix.force(license)))),

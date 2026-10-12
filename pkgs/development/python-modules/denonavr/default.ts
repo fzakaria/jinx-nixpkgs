@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "denonavr",
       version: "1.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ol-iver",
           repo: "denonavr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook, pytest_httpx, pytest_timeout]),
       pythonImportsCheck: nix.thunk(() => ["denonavr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automation Library for Denon AVR receivers",
         homepage: "https://github.com/ol-iver/denonavr",
         changelog: nix.thunk(() => nix.str`https://github.com/ol-iver/denonavr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

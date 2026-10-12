@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gcc = nix.arg($, "gcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pvsneslib",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alekmaul",
           repo: "pvsneslib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export PVSNESLIB_HOME=$(pwd)\n",
       installPhase: "runHook preInstall\ncp -r . $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free and open source development kit for the Nintendo SNES",
         homepage: "https://github.com/alekmaul/pvsneslib",
         changelog: nix.thunk(() => nix.str`https://github.com/alekmaul/pvsneslib/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
 `);
     })(), nix.thunk(() => nix.builtins.attrNames(properties_1)));
   const properties = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "dysnomia-properties",
       buildCommand: nix.thunk(() => nix.str`cat > $out << "EOF"
 ${nix.app(printProperties, nix.thunk(() => nix.sel(cfg, "properties")))}
@@ -78,7 +78,7 @@ EOF
 `),
     }))));
   const containersDir = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "dysnomia-containers",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out
 cd $out
@@ -106,16 +106,16 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (componentName) => (() => {
 `;
   })(), formals$2);
   const componentsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "dysnomia-components",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out
 cd $out
 
-${nix.app(nix.sel(lib, "concatMapStrings"), (containerName) => nix.app(linkMutableComponents, nix.thunk(() => ({ __proto__: pos$3, containerName: containerName }))), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "components")))))}
+${nix.app(nix.sel(lib, "concatMapStrings"), (containerName) => nix.app(linkMutableComponents, nix.thunk(() => ({ [nix.POS]: pos$3, containerName: containerName }))), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "components")))))}
 `),
     }))));
   const dysnomiaFlags = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     enableApacheWebApplication: nix.thunk(() => nix.sel(config, "services", "httpd", "enable")),
     enableAxis2WebService: nix.thunk(() => nix.sel(config, "services", "tomcat", "axis2", "enable")),
     enableDockerContainer: nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enable")),
@@ -128,68 +128,68 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (containerName) => nix.app(linkMutab
     enableInfluxDatabase: nix.thunk(() => nix.sel(config, "services", "influxdb", "enable")),
   }));
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         dysnomia: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Dysnomia",
             })))),
           enableAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to publish privacy-sensitive authentication credentials",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The Dysnomia package",
             })))),
           properties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "An attribute set in which each attribute represents a machine property. Optionally, these values can be shell substitutions.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             })))),
           containers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "An attribute set in which each key represents a container and each value an attribute set providing its configuration properties",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
             })))),
           components: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "An attribute set in which each key represents a container and each value an attribute set in which each key represents a component and each value a derivation constructing its initial state",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
             })))),
           extraContainerProperties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "An attribute set providing additional container settings in addition to the default properties",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             })))),
           extraContainerPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "A list of paths containing additional container configurations that are added to the search folders",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             })))),
           extraModulePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "A list of paths containing additional modules that are added to the search folders",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             })))),
           enableLegacyModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable Dysnomia legacy process and wrapper modules",
@@ -201,17 +201,17 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (containerName) => nix.app(linkMutab
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["dysnomia"]), nix.thunk(() => ["services", "dysnomia"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
-            "dysnomia/containers": nix.thunk(() => ({ __proto__: pos$19, source: containersDir })),
-            "dysnomia/components": nix.thunk(() => ({ __proto__: pos$20, source: componentsDir })),
-            "dysnomia/properties": nix.thunk(() => ({ __proto__: pos$21, source: properties })),
+            [nix.POS]: pos$22,
+            "dysnomia/containers": nix.thunk(() => ({ [nix.POS]: pos$19, source: containersDir })),
+            "dysnomia/components": nix.thunk(() => ({ [nix.POS]: pos$20, source: componentsDir })),
+            "dysnomia/properties": nix.thunk(() => ({ [nix.POS]: pos$21, source: properties })),
           })),
           variables: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             DYSNOMIA_STATEDIR: "/var/state/dysnomia-nixos",
             DYSNOMIA_CONTAINERS_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStrings"), (containerPath) => nix.str`${containerPath}:`, nix.thunk(() => nix.sel(cfg, "extraContainerPaths")))}/etc/dysnomia/containers`),
             DYSNOMIA_MODULES_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStrings"), (modulePath) => nix.str`${modulePath}:`, nix.thunk(() => nix.sel(cfg, "extraModulePaths")))}/etc/dysnomia/modules`),
@@ -219,17 +219,17 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (containerName) => nix.app(linkMutab
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           dysnomia: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             package: nix.thunk(() => nix.app(nix.sel(pkgs, "dysnomia", "override"), (origArgs) => nix.update(dysnomiaFlags, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableLegacyModules")), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enableLegacy: nix.thunk(() => nix.builtins.trace("WARNING: Dysnomia has been configured to use the legacy 'process' and 'wrapper'\nmodules for compatibility reasons! If you rely on these modules, consider\nmigrating to better alternatives.\n\nMore information: <https://raw.githubusercontent.com/svanderburg/dysnomia/f65a9a84827bcc4024d6b16527098b33b02e4054/README-legacy.md>\n\nIf you have migrated already or don't rely on these Dysnomia modules, you can\ndisable legacy mode with the following NixOS configuration option:\n\ndysnomia.enableLegacyModules = false;\n\nIn a future version of Dysnomia (and NixOS) the legacy option will go away!\n", true)),
                 })))))),
             properties: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform"));
               return {
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               hostname: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               system: nix.thunk(() => nix.attr(from, "system")),
               supportedTypes: nix.thunk(() => nix.concat([
@@ -244,61 +244,61 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (containerName) => nix.app(linkMutab
             };
             })()),
             containers: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.update({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 process: nix.thunk(() => ({})),
                 wrapper: nix.thunk(() => ({})),
               }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "httpd", "enable")), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   "apache-webapplication": nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     documentRoot: nix.thunk(() => nix.sel(config, "services", "httpd", "virtualHosts", "localhost", "documentRoot")),
                   })),
-                }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "tomcat", "axis2", "enable")), nix.thunk(() => ({ __proto__: pos$30, "axis2-webservice": nix.thunk(() => ({})) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "ejabberd", "enable")), nix.thunk(() => ({
-                  __proto__: pos$32,
+                }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "tomcat", "axis2", "enable")), nix.thunk(() => ({ [nix.POS]: pos$30, "axis2-webservice": nix.thunk(() => ({})) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "ejabberd", "enable")), nix.thunk(() => ({
+                  [nix.POS]: pos$32,
                   "ejabberd-dump": nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     ejabberdUser: nix.thunk(() => nix.sel(config, "services", "ejabberd", "user")),
                   })),
                 }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "mysql", "enable")), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   "mysql-database": nix.thunk(() => nix.update({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     mysqlPort: nix.thunk(() => nix.sel(config, "services", "mysql", "settings", "mysqld", "port")),
                     mysqlSocket: "/run/mysqld/mysqld.sock",
-                  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableAuthentication")), nix.thunk(() => ({ __proto__: pos$34, mysqlUsername: "root" }))))),
+                  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableAuthentication")), nix.thunk(() => ({ [nix.POS]: pos$34, mysqlUsername: "root" }))))),
                 }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "postgresql", "enable")), nix.thunk(() => ({
-                  __proto__: pos$37,
-                  "postgresql-database": nix.thunk(() => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableAuthentication")), nix.thunk(() => ({ __proto__: pos$36, postgresqlUsername: "postgres" }))))),
+                  [nix.POS]: pos$37,
+                  "postgresql-database": nix.thunk(() => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableAuthentication")), nix.thunk(() => ({ [nix.POS]: pos$36, postgresqlUsername: "postgres" }))))),
                 }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "tomcat", "enable")), nix.thunk(() => ({
-                  __proto__: pos$39,
-                  "tomcat-webapplication": nix.thunk(() => ({ __proto__: pos$38, tomcatPort: 8080n })),
-                }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "mongodb", "enable")), nix.thunk(() => ({ __proto__: pos$40, "mongo-database": nix.thunk(() => ({})) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "influxdb", "enable")), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$39,
+                  "tomcat-webapplication": nix.thunk(() => ({ [nix.POS]: pos$38, tomcatPort: 8080n })),
+                }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "mongodb", "enable")), nix.thunk(() => ({ [nix.POS]: pos$40, "mongo-database": nix.thunk(() => ({})) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "influxdb", "enable")), nix.thunk(() => ({
+                  [nix.POS]: pos$42,
                   "influx-database": nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     influxdbUsername: nix.thunk(() => nix.sel(config, "services", "influxdb", "user")),
                     influxdbDataDir: nix.thunk(() => nix.str`${nix.sel(config, "services", "influxdb", "dataDir")}/data`),
                     influxdbMetaDir: nix.thunk(() => nix.str`${nix.sel(config, "services", "influxdb", "dataDir")}/meta`),
                   })),
                 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "services", "svnserve", "enable")), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   "subversion-repository": nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     svnBaseDir: nix.thunk(() => nix.sel(config, "services", "svnserve", "svnBaseDir")),
                   })),
                 }))))))))))))), nix.thunk(() => nix.sel(cfg, "extraContainerProperties")))),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           extraSystemdUnitPaths: nix.thunk(() => ["/etc/systemd-mutable/system"]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           targets: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             dysnomia: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "Services that are activated and deactivated by Dysnomia",
               after: "final.target",
             })),

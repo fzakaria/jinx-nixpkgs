@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const systemFlags = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "CFLAGS=\"-O2 -Wall -fomit-frame-pointer -no-cpp-precomp\"\nLDFLAGS=\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "CFLAGS=\"-O2 -Wall -fomit-frame-pointer\"\nLDFLAGS=-s\nTREE_DEST=tree.exe\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isOpenBSD")))), "CFLAGS=\"-O2 -Wall -fomit-frame-pointer\"\nLDFLAGS=-s\n")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tree",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OldManProgrammer",
           repo: "unix-tree",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://oldmanprogrammer.net/source.php?dir=projects/tree",
         description: "Command to produce a depth indented directory listing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

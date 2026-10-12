@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const core = "fbalpha2012";
       const version = "0-unstable-2026-07-28";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "fbalpha2012",
           rev: "0ce31536bef3162fe7e69ff5f555334ec4913cef",
@@ -40,13 +40,13 @@ cp ${minizip_src}/* src/burner
       const makeFlags = nix.thunk(() => ["EXTERNAL_ZLIB=1"]);
       const makefile = "makefile.libretro";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Final Burn Alpha ~2012 to libretro",
         homepage: "https://github.com/libretro/fbalpha2012",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         core,
         version,
         src,

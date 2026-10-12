@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cozy",
       version: "1.3.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geigi",
           repo: "cozy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "ln -s $out/bin/com.github.geigi.cozy $out/bin/cozy\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern audio book player for Linux",
         homepage: "https://cozy.geigi.de/",
         maintainers: nix.thunk(() => (() => {

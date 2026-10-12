@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const luafilesystem = nix.thunk(() => nix.attr(luajitPackages, "luafilesystem"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "luakit",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luakit",
           repo: "luakit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://luakit.github.io/",
         description: "Fast, small, webkit-based browser framework extensible in Lua",
         longDescription: "Luakit is a highly configurable browser framework based on the WebKit web\ncontent engine and the GTK+ toolkit. It is very fast, extensible with Lua,\nand licensed under the GNU GPLv3 license. It is primarily targeted at\npower users, developers and anyone who wants to have fine-grained control\nover their web browser’s behaviour and interface.\n",

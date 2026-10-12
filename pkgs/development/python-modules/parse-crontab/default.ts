@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crontab",
       version: "1.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "josiahcarlson",
           repo: "parse-crontab",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, python_dateutil, pytz]),
       pythonImportsCheck: nix.thunk(() => ["crontab"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parse crontab schedules and compute execution times",
         homepage: "https://github.com/josiahcarlson/parse-crontab",
         license: nix.thunk(() => (() => {

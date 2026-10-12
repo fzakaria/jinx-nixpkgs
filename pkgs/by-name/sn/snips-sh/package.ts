@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snips-sh",
       version: "0.12.0",
       vendorHash: "sha256-BSPvvVH0nalkHZUJ0iLfHI00nJ4teJ9f+Qr4oKaoLSg=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robherley",
           repo: "snips.sh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
         })))),
       tags: nix.thunk(() => ["noguesser"]),
       buildInputs: nix.thunk(() => [sqlite]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "snips-sh")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "snips-sh")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Passwordless, anonymous SSH-powered pastebin with a human-friendly TUI and web UI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

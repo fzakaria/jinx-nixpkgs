@@ -48,48 +48,48 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       options: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             example: "laptop-internal",
             description: "Keyboard name.",
           })))),
         device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
             example: "/dev/input/by-id/some-dev",
             description: "Path to the keyboard's device file.",
           })))),
         extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             description: "Extra permission groups to attach to the KMonad instance for\nthis keyboard.\n\nSince KMonad runs as an unprivileged user, it may sometimes\nneed extra permissions in order to read the keyboard device\nfile.  If your keyboard's device file isn't in the input\ngroup, you'll need to list its group in this option.\n",
           })))),
         enableHardening: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             example: false,
             description: "Whether to enable systemd hardening.\n\n::: {.note}\nIf KMonad is used to execute shell commands, hardening may make some of them fail.\n:::\n",
           })))),
         defcfg: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatic generation of the defcfg block.\n\nWhen this option is set to true, the config option for\nthis keyboard should not include a defcfg block\n")),
           compose: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "ralt",
                 description: "The (optional) compose key to use.",
               })))),
             delay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 5n,
                 description: "The delay (in milliseconds) between compose key sequences.",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
           allowCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "keys to run shell commands")),
         })),
         config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             description: "Keyboard configuration.",
           })))),
@@ -119,7 +119,7 @@ cmp-seq-delay ${nix.builtins.toString(nix.thunk(() => nix.sel(keyboard_1, "defcf
 )
 `);
     return nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.str`${nix.app(mkName, nix.thunk(() => nix.sel(keyboard_1, "name")))}.kbd`),
         text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(keyboard_1, "defcfg", "enable")), nix.thunk(() => nix.add(defcfg, "\n"))), nix.sel(keyboard_1, "config"))),
         checkPhase: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -d $out`),
@@ -128,22 +128,22 @@ cmp-seq-delay ${nix.builtins.toString(nix.thunk(() => nix.sel(keyboard_1, "defcf
   const mkPath = (keyboard_1) => (() => {
     const name = nix.thunk(() => nix.app(mkName, nix.thunk(() => nix.sel(keyboard_1, "name"))));
     return nix.app(nix.sel(lib, "nameValuePair"), name, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: nix.thunk(() => nix.str`KMonad trigger for ${nix.sel(keyboard_1, "device")}`),
         wantedBy: nix.thunk(() => ["paths.target"]),
         pathConfig: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           Unit: nix.thunk(() => nix.str`${name}.service`),
           PathExists: nix.thunk(() => nix.sel(keyboard_1, "device")),
         })),
       })));
   })();
   const mkService = (keyboard_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(mkName, nix.thunk(() => nix.sel(keyboard_1, "name")))), nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       description: nix.thunk(() => nix.str`KMonad for ${nix.sel(keyboard_1, "device")}`),
-      unitConfig: nix.thunk(() => ({ __proto__: pos$15, StartLimitIntervalSec: 2n, StartLimitBurst: 5n })),
+      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$15, StartLimitIntervalSec: 2n, StartLimitBurst: 5n })),
       serviceConfig: nix.thunk(() => nix.update({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(mkCfg, keyboard_1)} \\
   ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}
 `),
@@ -157,7 +157,7 @@ cmp-seq-delay ${nix.builtins.toString(nix.thunk(() => nix.sel(keyboard_1, "defcf
           nix.thunk(() => nix.sel(config, "users", "groups", "uinput", "name")),
         ], nix.sel(keyboard_1, "extraGroups"))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(keyboard_1, "enableHardening")), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           DeviceAllow: nix.thunk(() => ["/dev/uinput w", "char-input r"]),
           CapabilityBoundingSet: nix.thunk(() => [""]),
           DevicePolicy: "closed",
@@ -186,23 +186,23 @@ cmp-seq-delay ${nix.builtins.toString(nix.thunk(() => nix.sel(keyboard_1, "defcf
       stopIfChanged: false,
     })));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         kmonad: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "KMonad: an advanced keyboard manager")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "KMonad", nix.thunk(() => ({ __proto__: pos$19, default: "kmonad" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "KMonad", nix.thunk(() => ({ [nix.POS]: pos$19, default: "kmonad" })))),
           keyboards: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), keyboard)))),
               default: nix.thunk(() => ({})),
               description: "Keyboard configuration.",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--log-level", "debug"]),
@@ -212,15 +212,15 @@ cmp-seq-delay ${nix.builtins.toString(nix.thunk(() => nix.sel(keyboard_1, "defcf
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         hardware: nix.thunk(() => ({
-          __proto__: pos$26,
-          uinput: nix.thunk(() => ({ __proto__: pos$25, enable: true })),
+          [nix.POS]: pos$26,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           udev: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             extraRules: nix.thunk(() => (() => {
               const mkRule = (name) => nix.str`ACTION=="add", KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="${name}", ATTRS{id/product}=="5679", ATTRS{id/vendor}=="1235", SYMLINK+="input/by-id/${name}"
 `;
@@ -229,13 +229,13 @@ cmp-seq-delay ${nix.builtins.toString(nix.thunk(() => nix.sel(keyboard_1, "defcf
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (_) => mkPath, nix.thunk(() => nix.sel(cfg, "keyboards")))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (_) => mkService, nix.thunk(() => nix.sel(cfg, "keyboards")))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "flask"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcy",
       version: "2020.08.03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YosysHQ",
           repo: "mcy",
           rev: "62048e69df13f8e03670424626755ae8ef4c36ff",
@@ -45,7 +45,7 @@ substituteInPlace scripts/create_mutated.sh \\
       dontBuild: true,
       installPhase: "mkdir -p $out/bin $out/share/mcy/{dash,scripts}\ninstall mcy.py      $out/bin/mcy      && chmod +x $out/bin/mcy\ninstall mcy-dash.py $out/bin/mcy-dash && chmod +x $out/bin/mcy-dash\ncp -r dash/.    $out/share/mcy/dash/.\ncp -r scripts/. $out/share/mcy/scripts/.\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mutation-based coverage testing for hardware designs, with Yosys",
         homepage: "https://github.com/YosysHQ/mcy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

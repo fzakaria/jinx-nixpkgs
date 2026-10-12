@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const json_data_encoding = nix.arg($, "json-data-encoding");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_deriving_encoding",
       version: "0.4.2",
       minimalOCamlVersion: "4.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.com",
           owner: "o-labs",
           repo: "ppx_deriving_encoding",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [ppxlib, json_data_encoding]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ppx deriver for json_encoding",
         homepage: "https://gitlab.com/o-labs/ppx_deriving_encoding",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")), nix.thunk(() => nix.sel(lib, "licenses", "ocamlLgplLinkingException")))),

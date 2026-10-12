@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const bignums = nix.arg($, "bignums");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: "coqprime",
       owner: "thery",
       version: version,
@@ -38,69 +38,69 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.20", "9.1")),
               out: "8.20",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "8.20")),
               out: "8.18",
             })),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.16")),
               out: "8.15",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.11")),
               out: "8.10",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.9")),
               out: "8.8",
             })),
-            nix.thunk(() => ({ __proto__: pos$6, case: "8.7", out: "8.7.2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$6, case: "8.7", out: "8.7.2" })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "8.20": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-bwQPgxCVm6iFRJjNplPtUJqRfr6vXPaWs7OxLNnMjs8=",
         })),
         "8.18": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-KObBEYerWhIStmq90G3vs9K5LUEOfB2SPxirwLiWQ6E=",
         })),
         "8.17": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-D878t/PijVCopRKHYqfwdNvt3arGlI8yxbK/vI6qZUY=",
         })),
         "8.15": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:1zr2q52r08na8265019pj9spcz982ivixk6cnzk6l1srn2g328gv",
         })),
         "8.14.1": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:0dqf87xkzcpg7gglbxjyx68ad84w1w73icxgy3s7d3w563glc2p7",
         })),
         "8.12": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:1slka4w0pya15js4drx9frj7lxyp3k2lzib8v23givzpnxs8ijdj",
         })),
         "8.10": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256:0r9gnh5a5ykiiz5h1i8xnzgiydpwc4z9qhndxyya85xq0f910qaz",
         })),
         "8.8": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256:075yjczk79pf1hd3lgdjiz84ilkzfxjh18lgzrhhqp7d3kz5lxp5",
         })),
         "8.7.2": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256:15zlcrx06qqxjy3nhh22wzy0rb4npc8l4nx2bbsfsvrisbq1qb7k",
         })),
       })),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [bignums]),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: "Library to certify primality using Pocklington certificate and Elliptic Curve Certificate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

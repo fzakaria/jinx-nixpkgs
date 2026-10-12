@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.0.6",
       pname: "migrate",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://peterbeerli.com/migrate-html5/download_version4/migrate-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-twkoR9L6VPUye12OC0B5w0PxcxyKain6RkhCswLEdwg=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, mpi]),
       buildFlags: nix.thunk(() => ["thread", "mpis"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Estimates population size, migration, population splitting parameters using genetic/genomic data",
         homepage: "https://peterbeerli.com/migrate-html5/index.html",

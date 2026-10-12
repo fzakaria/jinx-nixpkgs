@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.0.0-unstable-2022-11-20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "workhorsy",
           repo: "py-cpuinfo",
           rev: "f3f0fec58335b9699b9b294267c15f516045b1fe",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cpuinfo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get CPU info with pure Python",
         mainProgram: "cpuinfo",
         longDescription: "Py-cpuinfo gets CPU info with pure Python and should work without any\nextra programs or libraries, beyond what your OS provides. It does not\nrequire any compilation (C/C++, assembly, etc.) to use and works with\nPython.\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

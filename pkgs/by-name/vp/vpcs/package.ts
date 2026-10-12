@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const vpcs = nix.arg($, "vpcs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vpcs",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GNS3",
           repo: "vpcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +38,16 @@ runHook postBuild
       postInstall: "install -D -m555 vpcs $out/bin/vpcs\ninstall -D -m444 ../man/vpcs.1 $out/share/man/man1/vpcs.1\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: vpcs, command: "vpcs -v" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: vpcs, command: "vpcs -v" })))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple virtual PC simulator",
         longDescription: "The VPCS (Virtual PC Simulator) can simulate up to 9 PCs. You can\nping/traceroute them, or ping/traceroute the other hosts/routers from the\nVPCS when you study the Cisco routers in the dynamips.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

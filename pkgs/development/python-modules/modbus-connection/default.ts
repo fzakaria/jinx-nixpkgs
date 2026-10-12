@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tmodbus = nix.arg($, "tmodbus");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "modbus-connection",
       version: "4.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "modbus-connection",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tmodbus-0.6.2-compat.patch",
             url: "https://github.com/home-assistant-libs/modbus-connection/commit/34631716aaa0330f915ad58a351ddaaef123e7cf.patch",
             hash: "sha256-Oi47zSOaTPTLhrErBF9LwzixLh6+UpUS5rOvGoQbL4w=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       "build-system": nix.thunk(() => [hatchling]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pymodbus: nix.thunk(() => nix.concat([pymodbus], nix.sel(pymodbus, "optional-dependencies", "serial"))),
         tmodbus: nix.thunk(() => nix.concat([tmodbus], nix.sel(tmodbus, "optional-dependencies", "async-serial"))),
       })),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_official_model_catalogue_generates_and_imports"]),
       pythonImportsCheck: nix.thunk(() => ["modbus_connection"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small, backend-neutral Modbus connection abstraction",
         homepage: "https://github.com/home-assistant-libs/modbus-connection",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/modbus-connection/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

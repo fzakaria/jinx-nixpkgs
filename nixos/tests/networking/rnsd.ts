@@ -20,36 +20,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mainPort = 4242n;
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "rnsd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "drupol"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           rnsd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               reticulum: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable_transport: "Yes",
                 share_instance: "Yes",
                 instance_name: "default",
                 discover_interfaces: "No",
                 panic_on_interface_error: "No",
               })),
-              logging: nix.thunk(() => ({ __proto__: pos$3, loglevel: 5n })),
+              logging: nix.thunk(() => ({ [nix.POS]: pos$3, loglevel: 5n })),
               interfaces: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 test: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: "BackboneInterface",
                   enabled: "yes",
                   discoverable: "yes",

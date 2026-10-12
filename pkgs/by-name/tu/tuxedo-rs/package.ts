@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuxedo-rs",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AaronErhardt",
           repo: "tuxedo-rs",
           rev: nix.thunk(() => nix.str`tailor-v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       postInstall: "install -Dm444 tailord/com.tux.Tailor.conf -t $out/share/dbus-1/system.d\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust utilities for interacting with hardware from TUXEDO Computers",
         longDescription: "An alternative to the TUXEDO Control Center daemon.\n\nContains the following binaries:\n- tailord: Daemon handling fan, keyboard and general HW support for Tuxedo laptops\n- tailor: CLI\n",
         homepage: "https://github.com/AaronErhardt/tuxedo-rs",

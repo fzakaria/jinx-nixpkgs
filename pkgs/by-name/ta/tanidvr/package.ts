@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tanidvr",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tanidvr/TaniDVR/tanidvr-${nix.sel(finalAttrs, "version")}/tanidvr-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0irwwf6mb72n3y4xcrl3s081nbnldvdlc6ypjqxa4p32c1d0g6ql",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for managing and capturing video from DVRs which use the DVR-IP protocol",
         homepage: "https://tanidvr.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

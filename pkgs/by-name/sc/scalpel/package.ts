@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const tre = nix.arg($, "tre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scalpel",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sleuthkit",
           repo: "scalpel",
           rev: "35e1367ef2232c0f4883c92ec2839273c821dd39",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
   src/scalpel.h
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.add("-std=c++14", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), " -Wno-error=reserved-user-defined-literal"))),
       })),
       preConfigure: "./bootstrap\n",
       configureFlags: nix.thunk(() => ["--with-pic"]),
       postInstall: "install -Dm644 scalpel.conf -t $out/share/scalpel/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sleuthkit/scalpel",
         description: "Recover files based on their headers, footers and internal data structures, based on Foremost",
         mainProgram: "scalpel",

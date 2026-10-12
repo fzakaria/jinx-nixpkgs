@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xk6";
       const version = "1.4.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grafana",
           repo: "xk6",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.str`wrapProgram $out/bin/xk6 --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "k6 extension development toolbox",
         mainProgram: "xk6",
         homepage: "https://github.com/grafana/xk6",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

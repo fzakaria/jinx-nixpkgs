@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dns2tcp",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alex-sector",
           repo: "dns2tcp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/dns2tcp/-/raw/86b518ce169e88488d71c6b0270d4fc814dc1fbc/debian/patches/01_fix_gcc10_issues.patch.",
             hash: "sha256-IGpUIajkhruou7meZZJEJ5nnsQ/hVflyPfAuh3J0otI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/debian/dns2tcp/-/raw/13481f37b7184e52b83cc0c41edfc6b20a5debed/debian/patches/fix_spelling_errors.patch",
             hash: "sha256-b65olctlwLOY2GnVb7i7axGFiR0iLoTYstXdtVkU3vQ=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for relaying TCP connections over DNS",
         homepage: "https://github.com/alex-sector/dns2tcp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

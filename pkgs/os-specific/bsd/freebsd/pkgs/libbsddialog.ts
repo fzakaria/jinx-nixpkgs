@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libncurses_form = nix.arg($, "libncurses-form");
   const libncurses_tinfo = nix.arg($, "libncurses-tinfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libbsddialog",
       extraPaths: nix.thunk(() => ["contrib/bsddialog"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),

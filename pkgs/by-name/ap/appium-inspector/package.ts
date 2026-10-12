@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const electron = electron_44;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "appium-inspector",
       version: "2026.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "appium",
           repo: "appium-inspector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "appium-inspector",
             exec: "appium-inspector",
             desktopName: "Appium Inspector",
@@ -78,15 +78,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-electron-updater`),
                   runtimeInputs: nix.thunk(() => [nix$, jq]),
                   runtimeEnv: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     PNAME: nix.thunk(() => nix.sel(finalAttrs, "pname")),
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                   })),
@@ -95,7 +95,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GUI inspector for the appium UI automation tool",
         homepage: "https://appium.github.io/appium-inspector",
         changelog: nix.thunk(() => nix.str`https://github.com/appium/appium-inspector/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

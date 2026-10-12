@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zip",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evanmiller",
           repo: "mod_zip",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-gcc16-unused-counter.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-upstream-subrequest-crc-calculation.patch",
             url: "https://github.com/evanmiller/mod_zip/commit/8e65b82c82c7890f67a6107271c127e9881b6313.patch",
             hash: "sha256-rPmdWlTJID/GoS3Ud8S7DM93icA9zWTJ1a4DIVzH5Ug=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Streaming ZIP archiver for nginx",
         homepage: "https://github.com/evanmiller/mod_zip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

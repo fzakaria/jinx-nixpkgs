@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "g810-led"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "g810-led": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "g810-led, a Linux LED controller for some Logitech G Keyboards")),
           earlySetup: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "g810-led in early stage initrd")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "g810-led", nix.thunk(() => ({})))),
           profile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               example: "# G810-LED Profile (turn all keys on)\n\n# Set all keys on\na ffffff\n\n# Commit changes\nc\n",
@@ -51,48 +51,48 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           etc: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "g810-led/profile": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               text: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "profile"), null)), nix.thunk(() => nix.sel(cfg, "profile")))),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           initrd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "earlySetup")) && nix.asBool(!nix.eq(nix.sel(cfg, "profile"), null)))), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               services: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 udev: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   binPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 contents: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  "/etc/g810-led/profile": nix.thunk(() => ({ __proto__: pos$10, text: nix.thunk(() => nix.sel(cfg, "profile")) })),
+                  [nix.POS]: pos$11,
+                  "/etc/g810-led/profile": nix.thunk(() => ({ [nix.POS]: pos$10, text: nix.thunk(() => nix.sel(cfg, "profile")) })),
                 })),
               })),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           udev: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "GaetanLepage"))];

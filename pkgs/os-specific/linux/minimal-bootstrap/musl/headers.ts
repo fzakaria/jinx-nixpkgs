@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const gnutar = nix.arg($, "gnutar");
   const gzip = nix.arg($, "gzip");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const version = "1.2.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://musl.libc.org/releases/musl-${version}.tar.gz`),
       hash: "sha256-1YX9O2E8ZhUfwySejtRPdwIMtebB5jWmFtP5+CRgUSo=",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,

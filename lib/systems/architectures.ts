@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   return (() => {
     const features = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default: [],
       "x86-64": [],
       "x86-64-v2": nix.thunk(() => ["sse3", "ssse3", "sse4_1", "sse4_2"]),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
     const inferiors = nix.thunk(() => (() => {
       const withInferiors = (archs) => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(archs, nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "attrVals"), archs, inferiors))))));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         default: [],
         "x86-64": [],
         "x86-64-v2": nix.thunk(() => ["x86-64"]),
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
     const predicates = nix.thunk(() => (() => {
       const featureSupport = (feature) => (x) => nix.builtins.elem(feature, nix.thunk(() => nix.selOr(features, () => [], nix.key(nix.force(x)))));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sse3Support: nix.thunk(() => nix.app(featureSupport, "sse3")),
         ssse3Support: nix.thunk(() => nix.app(featureSupport, "ssse3")),
         sse4_1Support: nix.thunk(() => nix.app(featureSupport, "sse4_1")),
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
         lasxSupport: nix.thunk(() => nix.app(featureSupport, "lasx")),
       };
     })());
-    return { __proto__: pos$4, features, inferiors, hasInferior, canExecute, predicates };
+    return { [nix.POS]: pos$4, features, inferiors, hasInferior, canExecute, predicates };
   })();
 })(), formals$1);
 //# sourceMappingURL=architectures.ts.map

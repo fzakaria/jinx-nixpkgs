@@ -36,26 +36,26 @@ export default nix.lambda((args) => (() => {
   const enable_implicitly_for_old_state_versions = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "23.11"));
   const minimum_config_is_set = (config_text) => !nix.eq(nix.builtins.match(".*(MAILADDR|PROGRAM).*", nix.thunk(() => nix.sel(mdadm_conf, "text"))), null);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "initrd", "services", "swraid", "enable"]), nix.thunk(() => ["boot", "swraid", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "initrd", "services", "swraid", "mdadmConf"]), nix.thunk(() => ["boot", "swraid", "mdadmConf"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "initrd", "mdadmConf"]), nix.thunk(() => ["boot", "swraid", "mdadmConf"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         swraid: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "swraid support using mdadm"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to enable support for Linux MD RAID arrays.\n\nWhen this is enabled, mdadm will be added to the system path,\nand MD RAID arrays will be detected and activated\nautomatically, both in stage-1 (initramfs) and in stage-2 (the\nfinal NixOS system).\n\nThis should be enabled if you want to be able to access and/or\nboot from MD RAID arrays. {command}`nixos-generate-config`\nshould detect it correctly in the standard installation\nprocedure.\n",
             default: enable_implicitly_for_old_state_versions,
             defaultText: "`true` if stateVersion is older than 23.11",
           })),
           mdadmConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Contents of {file}`/etc/mdadm.conf`.",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
@@ -64,36 +64,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(enable_implicitly_for_old_state_versions)) && nix.asBool(!nix.asBool(nix.app(minimum_config_is_set, mdadm_conf))))), nix.thunk(() => [
             "mdadm: Neither MAILADDR nor PROGRAM has been set. This will cause the `mdmon` service to crash.",
           ]))),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mdadm"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "mdadm.conf": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               text: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => nix.sel(cfg, "mdadmConf")))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mdadm"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mdadm"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           initrd: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             availableKernelModules: nix.thunk(() => ["md_mod", "raid0", "raid1", "raid10", "raid456"]),
             extraUdevRulesCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`cp -v ${nix.sel(pkgs, "mdadm")}/lib/udev/rules.d/*.rules $out/
 `))),
@@ -103,25 +103,25 @@ copy_bin_and_libs ${nix.sel(pkgs, "mdadm")}/sbin/mdmon
 `))),
             extraUtilsCommandsTest: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "$out/bin/mdadm --version\n")),
             extraFiles: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "/etc/mdadm.conf": nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mdadm.conf", nix.thunk(() => nix.sel(mdadm_conf, "text")))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               contents: nix.thunk(() => ({
-                __proto__: pos$15,
-                "/etc/mdadm.conf": nix.thunk(() => ({ __proto__: pos$14, text: nix.thunk(() => nix.sel(mdadm_conf, "text")) })),
+                [nix.POS]: pos$15,
+                "/etc/mdadm.conf": nix.thunk(() => ({ [nix.POS]: pos$14, text: nix.thunk(() => nix.sel(mdadm_conf, "text")) })),
               })),
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mdadm"))]),
               initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mdadm"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               udev: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mdadm"))]),
               })),
             })),

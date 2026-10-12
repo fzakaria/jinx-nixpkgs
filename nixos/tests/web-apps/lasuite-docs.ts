@@ -42,49 +42,49 @@ export default nix.lambda((args) => (() => {
   const garageAccessKey = "GKaaaaaaaaaaaaaaaaaaaaaaaa";
   const garageSecretKey = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "lasuite-docs",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "soyouzpanda"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            hosts: nix.thunk(() => ({ __proto__: pos$2, "127.0.0.1": nix.thunk(() => [domain]) })),
+            [nix.POS]: pos$3,
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [domain]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
             etc: nix.thunk(() => ({
-              __proto__: pos$5,
-              "dex/lasuite-docs": nix.thunk(() => ({ __proto__: pos$4, mode: "0400", user: "dex", text: "lasuitedocsclientsecret" })),
+              [nix.POS]: pos$5,
+              "dex/lasuite-docs": nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0400", user: "dex", text: "lasuitedocsclientsecret" })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "lasuite-docs": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               enableNginx: true,
-              redis: nix.thunk(() => ({ __proto__: pos$7, createLocally: true })),
-              postgresql: nix.thunk(() => ({ __proto__: pos$8, createLocally: true })),
+              redis: nix.thunk(() => ({ [nix.POS]: pos$7, createLocally: true })),
+              postgresql: nix.thunk(() => ({ [nix.POS]: pos$8, createLocally: true })),
               domain: domain,
               s3Url: nix.thunk(() => nix.str`http://${s3Addr}/lasuite-docs`),
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 DJANGO_SECRET_KEY_FILE: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "django-secret-file", "8540db59c03943d48c3ed1a0f96ce3b560e0f45274f120f7ee4dace3cc366a6b\n")),
                 OIDC_OP_JWKS_ENDPOINT: nix.thunk(() => nix.str`http://${oidcAddr}/dex/keys`),
                 OIDC_OP_AUTHORIZATION_ENDPOINT: nix.thunk(() => nix.str`http://${oidcAddr}/dex/auth/mock`),
@@ -110,21 +110,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dex: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 issuer: nix.thunk(() => nix.str`http://${oidcAddr}/dex`),
                 storage: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: "postgres",
-                  config: nix.thunk(() => ({ __proto__: pos$11, host: "/var/run/postgresql" })),
+                  config: nix.thunk(() => ({ [nix.POS]: pos$11, host: "/var/run/postgresql" })),
                 })),
-                web: nix.thunk(() => ({ __proto__: pos$13, http: "127.0.0.1:8080" })),
-                oauth2: nix.thunk(() => ({ __proto__: pos$14, skipApprovalScreen: true })),
+                web: nix.thunk(() => ({ [nix.POS]: pos$13, http: "127.0.0.1:8080" })),
+                oauth2: nix.thunk(() => ({ [nix.POS]: pos$14, skipApprovalScreen: true })),
                 staticClients: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     id: "lasuite-docs",
                     name: "Docs",
                     redirectURIs: nix.thunk(() => [nix.thunk(() => nix.str`http://${domain}/api/v1.0/callback/`)]),
@@ -133,34 +133,34 @@ export default nix.lambda((args) => (() => {
                 ]),
                 connectors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     type: "mockPassword",
                     id: "mock",
                     name: "Example",
-                    config: nix.thunk(() => ({ __proto__: pos$16, username: "admin", password: "password" })),
+                    config: nix.thunk(() => ({ [nix.POS]: pos$16, username: "admin", password: "password" })),
                   })),
                 ]),
               })),
             })),
             garage: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
               settings: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 rpc_bind_addr: "127.0.0.1:3901",
                 rpc_public_addr: "127.0.0.1:3901",
                 rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 replication_factor: 1n,
-                s3_api: nix.thunk(() => ({ __proto__: pos$20, s3_region: "garage", api_bind_addr: s3Addr })),
+                s3_api: nix.thunk(() => ({ [nix.POS]: pos$20, s3_region: "garage", api_bind_addr: s3Addr })),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               ensureDatabases: nix.thunk(() => ["dex"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$23, name: "dex", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$23, name: "dex", ensureDBOwnership: true })),
               ]),
             })),
           })),

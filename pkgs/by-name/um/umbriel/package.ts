@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "umbriel",
       version: "0-unstable-2026-10-06",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noctalia-dev",
           repo: "umbriel",
           rev: "9091e3feb75473f38a6cc300ea99f03ad0b2b6e8",
@@ -88,12 +88,12 @@ wrapProgram $out/bin/umbriel \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         providedSessions: nix.thunk(() => ["umbriel"]),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wayland compositor built on wlroots and SceneFX",
         homepage: "https://docs.noctalia.dev/umbriel/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

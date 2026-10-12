@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-zsh",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["colcon_zsh"]);
       const disabledTestPaths = nix.thunk(() => ["test/test_flake8.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for colcon-core to provide Z shell scripts",
         homepage: "http://colcon.readthedocs.io/",
         downloadPage: "https://github.com/colcon/colcon-zsh#",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

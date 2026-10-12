@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
       const pname = "coqfmt";
       const owner = "toku-sa-n";
       const version_1 = version;
-      const displayVersion = nix.thunk(() => ({ __proto__: pos$1, coqfmt: (v) => nix.str`master-${v}` }));
+      const displayVersion = nix.thunk(() => ({ [nix.POS]: pos$1, coqfmt: (v) => nix.str`master-${v}` }));
       const release = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         master: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rev: "c26ce64d6ad1a1c3cafee38ab4889ad3b68a5c33",
           hash: "sha256-4Q0z/KUHrJZKeKJDqa9mkxfy9LrGh2xPt561muUFYAY=",
         })),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")),
               out: "master",
             })),
@@ -55,7 +55,7 @@ runHook postInstall
         return [nix.thunk(() => nix.lookup(w_1, "dune-build-info")), coq_lsp];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI tool to format your Coq source code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         owner,
         version: version_1,

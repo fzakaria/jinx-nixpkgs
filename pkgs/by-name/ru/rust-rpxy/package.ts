@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rust-rpxy",
       version: "0.14.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "junkurihara",
           repo: "rust-rpxy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cacert]),
       cargoHash: "sha256-sehnZSQnlb1yd8A7iE/D5kuGX45QeIB2jcndpIt2Nzg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Http reverse proxy serving multiple domain names and terminating TLS for http/1.1, 2 and 3, written in Rust",
         homepage: "https://github.com/junkurihara/rust-rpxy",
         changelog: nix.thunk(() => nix.str`https://github.com/junkurihara/rust-rpxy/releases/tag/${nix.sel(finalAttrs, "version")}`),

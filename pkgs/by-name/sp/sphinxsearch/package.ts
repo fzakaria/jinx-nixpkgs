@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const enableXmlpipe2 = nix.argOr($, "enableXmlpipe2", () => false);
   const enableMysql = nix.argOr($, "enableMysql", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sphinxsearch",
       version: "2.2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sphinxsearch.com/files/sphinx-${nix.sel(finalAttrs, "version")}-release.tar.gz`),
           sha256: "1aa1mh32y019j8s3sjzn4vwi0xn83dwgl685jnbgh51k16gh6qk6",
         })))),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--program-prefix=sphinxsearch-", "--enable-id64"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableMysql)), nix.thunk(() => ["--without-mysql"])))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableMysql, nix.thunk(() => [libmysqlclient])), nix.app(nix.sel(lib, "optionals"), enableXmlpipe2, nix.thunk(() => [expat])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source full text search server",
         homepage: "http://sphinxsearch.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

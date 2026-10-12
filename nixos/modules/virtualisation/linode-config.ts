@@ -26,31 +26,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [nix.path(here, "../profiles/qemu-guest.nix")]),
     services: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       openssh: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enable: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           PermitRootLogin: "prohibit-password",
           PasswordAuthentication: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       usePredictableInterfaceNames: false,
       useDHCP: false,
       interfaces: nix.thunk(() => ({
-        __proto__: pos$5,
-        eth0: nix.thunk(() => ({ __proto__: pos$4, useDHCP: true, tempAddress: "disabled" })),
+        [nix.POS]: pos$5,
+        eth0: nix.thunk(() => ({ [nix.POS]: pos$4, useDHCP: true, tempAddress: "disabled" })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       systemPackages: nix.thunk(() => (() => {
         const w_1 = nix.withScope(pkgs, w);
         return [
@@ -61,23 +61,23 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     fileSystems: nix.thunk(() => ({
-      __proto__: pos$9,
-      "/": nix.thunk(() => ({ __proto__: pos$8, fsType: "ext4", device: "/dev/sda", autoResize: true })),
+      [nix.POS]: pos$9,
+      "/": nix.thunk(() => ({ [nix.POS]: pos$8, fsType: "ext4", device: "/dev/sda", autoResize: true })),
     })),
-    swapDevices: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$10, device: "/dev/sdb" }))]))),
+    swapDevices: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, device: "/dev/sdb" }))]))),
     boot: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       initrd: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         availableKernelModules: nix.thunk(() => ["virtio_pci", "virtio_scsi", "ahci", "sd_mod"]),
       })),
       kernelParams: nix.thunk(() => ["console=ttyS0,19200n8"]),
       kernelModules: nix.thunk(() => ["virtio_net"]),
       loader: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 10n)),
         grub: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: true,
           forceInstall: true,
           device: "nodev",

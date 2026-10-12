@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const csexp = nix.arg($, "csexp");
   const menhir = nix.arg($, "menhir");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocamlmerlin-mlx",
       version: nix.thunk(() => nix.attr(mlx, "version")),
       src: nix.thunk(() => nix.attr(mlx, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ppxlib, merlin_lib, csexp, menhir]),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Merlin support for MLX OCaml dialect",
         homepage: "https://github.com/ocaml-mlx/mlx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

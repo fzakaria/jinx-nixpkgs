@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Pyment",
           version: version,
           sha256: "951a4c52d6791ccec55bc739811169eed69917d3874f5fe722866623a697f39d",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dadadel/pyment",
         description: "Create, update or convert docstrings in existing Python files, managing several styles",
         mainProgram: "pyment",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "jethro"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

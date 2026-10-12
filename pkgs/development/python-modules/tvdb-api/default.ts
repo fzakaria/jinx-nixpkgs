@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const requests_cache = nix.arg($, "requests-cache");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tvdb-api",
       version: "3.2.0-beta",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbr",
           repo: "tvdb_api",
           rev: "ce0382181a9e08a5113bfee0fed2c78f8b1e613f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple to use TVDB (thetvdb.com) API in Python",
         homepage: "https://github.com/dbr/tvdb_api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

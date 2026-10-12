@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const addAttributeName = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (a) => (v) => nix.update(v, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(v, "text"), "")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         text: nix.thunk(() => nix.str`#### Activation script snippet ${a}:
 _localstatus=0
 ${nix.sel(v, "text")}
@@ -53,10 +53,10 @@ fi
 `),
       }))))));
   const systemActivationScript = (set) => (onlyDry) => (() => {
-    const set$ = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (_) => (v) => (nix.asBool(nix.app(nix.lookup(w, "isString"), v)) ? nix.update(nix.app(nix.lookup(w, "noDepEntry"), v), { __proto__: pos$2, supportsDryActivation: false }) : nix.force(v)), set));
+    const set$ = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (_) => (v) => (nix.asBool(nix.app(nix.lookup(w, "isString"), v)) ? nix.update(nix.app(nix.lookup(w, "noDepEntry"), v), { [nix.POS]: pos$2, supportsDryActivation: false }) : nix.force(v)), set));
     const withHeadlines = nix.thunk(() => nix.app(addAttributeName, set$));
     const withDrySnippets = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (a) => (v) => (nix.asBool((nix.asBool(onlyDry) && nix.asBool(!nix.asBool(nix.sel(v, "supportsDryActivation"))))) ? nix.update(v, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         text: nix.thunk(() => nix.str`#### Activation script snippet ${a} does not support dry activation.`),
       }) : nix.force(v)), withHeadlines));
     return nix.add(nix.str`source ${nix.path(here, "./lib/lib.sh")}
@@ -92,48 +92,48 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
   const scriptType = (withDry) => (() => {
     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
     const scriptOptions = nix.thunk(() => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       deps: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
           default: [],
           description: "List of dependencies. The script will run after these.",
         })))),
       text: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "lines")),
           description: "The content of the script.",
         })))),
     }, nix.app(nix.lookup(w_2, "optionalAttrs"), withDry, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         supportsDryActivation: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "bool")),
             default: false,
             description: "Whether this activation script supports being dry-activated.\nThese activation scripts will also be executed on dry-activate\nactivations with the environment variable\n`NIXOS_ACTION` being set to `dry-activate`.\nit's important that these activation scripts  don't\nmodify anything about the system when the variable is set.\n",
           })))),
       })))));
-    return nix.app(nix.lookup(w_2, "either"), nix.thunk(() => nix.lookup(w_2, "str")), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({ __proto__: pos$9, options: scriptOptions })))));
+    return nix.app(nix.lookup(w_2, "either"), nix.thunk(() => nix.lookup(w_2, "str")), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$9, options: scriptOptions })))));
   })();
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       system: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         activationScripts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  stdio = {\n    # Run after /dev has been mounted\n    deps = [ \"specialfs\" ];\n    text =\n      ''\n        # Needed by some programs.\n        ln -sfn /proc/self/fd /dev/fd\n        ln -sfn /proc/self/fd/0 /dev/stdin\n        ln -sfn /proc/self/fd/1 /dev/stdout\n        ln -sfn /proc/self/fd/2 /dev/stderr\n      '';\n  };\n}\n")),
             description: "A set of shell script fragments that are executed when a NixOS\nsystem configuration is activated.  Examples are updating\n/etc, creating accounts, and so on.  Since these are executed\nevery time you boot the system or run\n{command}`nixos-rebuild`, it's important that they are\nidempotent and fast.\n",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(scriptType, true)))),
             apply: (set) => nix.update(set, {
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               script: nix.thunk(() => nix.app(systemActivationScript, set, false)),
             }),
           })))),
         dryActivationScript: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             description: "The shell script that is to be run when dry-activating a system.",
             readOnly: true,
             internal: true,
@@ -141,7 +141,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalMD"), "generated activation script")),
           })))),
         userActivationScripts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ plasmaSetup = {\n    text = ''\n      ${pkgs.libsForQt5.kservice}/bin/kbuildsycoca5\"\n    '';\n    deps = [];\n  };\n}\n")),
             description: "A set of shell script fragments that are executed by a systemd user\nservice when a NixOS system configuration is activated. Examples are\nrebuilding the .desktop file cache for showing applications in the menu.\nSince these are executed every time you run\n{command}`nixos-rebuild`, it's important that they are\nidempotent and fast.\n",
@@ -150,7 +150,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(scriptType, false)));
             })()),
             apply: (set) => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               script: nix.thunk(() => nix.str`export PATH=
 for i in ${nix.app(nix.builtins.toString, path)}; do
   PATH=$PATH:$i/bin:$i/sbin
@@ -170,24 +170,24 @@ exit $_status
             }),
           })))),
         build: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           installBootLoader: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               internal: true,
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "no-bootloader", "echo 'Warning: do not know how to make this configuration bootable; please enable a boot loader.' 1>&2\n")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeShellScript \"no-bootloader\" ''\n  echo 'Warning: do not know how to make this configuration bootable; please enable a boot loader.' 1>&2\n''\n")),
               description: "A program that writes a bootloader installation script to the path passed in the first command line argument.\n\nSee `pkgs/by-name/sw/switch-to-configuration-ng/src/src/main.rs`.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "unique"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   message: "Only one bootloader can be enabled at a time. This requirement has not\nbeen checked until NixOS 22.05. Earlier versions defaulted to the last\ndefinition. Change your configuration to enable only one bootloader.\n",
                 })), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
             })))),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         usrbinenv: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             default: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/env`),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.coreutils}/bin/env\"")),
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.busybox}/bin/env\"")),
@@ -198,11 +198,11 @@ exit $_status
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       system: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         activationScripts: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           stdio: "",
           var: "",
           usrbinenv: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "environment", "usrbinenv"), null)) ? nix.str`mkdir -p /usr/bin
@@ -229,25 +229,25 @@ source ${nix.sel(config, "system", "build", "earlyMountScript")}
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           rules: nix.thunk(() => nix.concat(["D /var/empty 0555 root root -", "h /var/empty - - - - +i"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "nix", "enable")), nix.thunk(() => [
               "d /nix/var/nix/gcroots -",
               "L+ /nix/var/nix/gcroots/current-system - - - - /run/current-system",
             ])))),
         })),
         user: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "activatable")), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             services: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               "nixos-activation": nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "Run user-specific NixOS activation",
                 script: nix.thunk(() => nix.sel(config, "system", "userActivationScripts", "script")),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$25, ConditionUser: "!@system" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$25, ConditionUser: "!@system" })),
                 restartIfChanged: false,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$26, RemainAfterExit: true, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, RemainAfterExit: true, Type: "oneshot" })),
                 wantedBy: nix.thunk(() => ["default.target"]),
               })),
             })),

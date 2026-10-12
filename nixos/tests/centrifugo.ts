@@ -30,39 +30,39 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: "centrifugo",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "tie")),
           nix.thunk(() => nix.sel(lib, "maintainers", "valodim")),
         ]),
       })),
       nodes: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (index) => (name) => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: name,
             value: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const config = nix.arg($_1, "config");
               return {
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 services: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   centrifugo: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     enable: true,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$8,
-                      node: nix.thunk(() => ({ __proto__: pos$2, name: name })),
-                      http_server: nix.thunk(() => ({ __proto__: pos$3, port: centrifugoPort })),
-                      http_api: nix.thunk(() => ({ __proto__: pos$4, insecure: true })),
-                      usage_stats: nix.thunk(() => ({ __proto__: pos$5, disabled: true })),
+                      [nix.POS]: pos$8,
+                      node: nix.thunk(() => ({ [nix.POS]: pos$2, name: name })),
+                      http_server: nix.thunk(() => ({ [nix.POS]: pos$3, port: centrifugoPort })),
+                      http_api: nix.thunk(() => ({ [nix.POS]: pos$4, insecure: true })),
+                      usage_stats: nix.thunk(() => ({ [nix.POS]: pos$5, disabled: true })),
                       engine: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: "redis",
                         redis: nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           address: nix.thunk(() => (() => {
                             const toRedisAddresses = nix.thunk(() => nix.app(nix.builtins.map, (name_1) => nix.str`${name_1}:${nix.builtins.toString(redisPort)}`));
                             return nix.concat(nix.app(toRedisAddresses, nix.thunk(() => nix.app(nix.sel(lib, "take"), index, nodes))), nix.concat([
@@ -77,16 +77,16 @@ export default nix.thunk(() => (() => {
                     ]),
                   })),
                   redis: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     servers: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       centrifugo: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         enable: true,
                         bind: null,
                         port: redisPort,
                         openFirewall: true,
-                        settings: nix.thunk(() => ({ __proto__: pos$10, "protected-mode": false })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$10, "protected-mode": false })),
                       })),
                     })),
                   })),

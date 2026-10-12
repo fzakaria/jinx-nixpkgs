@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     imports: nix.thunk(() => [
       nix.path(here, "./nix-builder.nix"),
       nix.path(here, "../virtualisation/qemu-vm.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         forwardPorts: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             from: "host",
-            guest: nix.thunk(() => ({ __proto__: pos$1, port: 22n })),
+            guest: nix.thunk(() => ({ [nix.POS]: pos$1, port: 22n })),
             host: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               port: nix.thunk(() => nix.sel(config, "virtualisation", "darwin-builder", "hostPort")),
             })),
           })),

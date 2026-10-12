@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: version,
         patches: patches,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             domain: "gitlab.freedesktop.org",
             owner: "emersion",
             repo: "libliftoff",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     libliftoff_0_4: nix.thunk(() => nix.app(mkVariant, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "0.4.1",
         hash: "sha256-NPwhsd6IOQ0XxNQQNdaaM4kmwoLftokV86WYhoa5csY=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "libliftoff-gcc-14-calloc.patch",
               url: "https://gitlab.freedesktop.org/emersion/libliftoff/-/commit/29a06add8ef184f85e37ff8abdc34fbaa2f4ee1e.patch",
               hash: "sha256-Y8x1RK3o/I9bs/ZOLeC4t9AIK78l0QnlBWHhiVC+sz8=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     libliftoff_0_5: nix.thunk(() => nix.app(mkVariant, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "0.5.0",
         hash: "sha256-PcQY8OXPqfn8C30+GAYh0Z916ba5pik8U0fVpZtFb5g=",
       })))),

@@ -40,28 +40,28 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "iniWithGlobalSection"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "rsyncd.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         rsyncd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the rsync daemon")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 873n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "TCP port the daemon will listen on.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 globalSection: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   uid: "nobody",
                   gid: "nobody",
                   "use chroot": true,
@@ -69,10 +69,10 @@ export default nix.lambda((args) => (() => {
                   address: "0.0.0.0",
                 })),
                 sections: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  ftp: nix.thunk(() => ({ __proto__: pos$3, path: "/var/ftp/./pub", comment: "whole ftp area" })),
+                  [nix.POS]: pos$5,
+                  ftp: nix.thunk(() => ({ [nix.POS]: pos$3, path: "/var/ftp/./pub", comment: "whole ftp area" })),
                   cvs: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     path: "/data/cvs",
                     comment: "CVS repository (requires authentication)",
                     "auth users": nix.thunk(() => ["tridge", "susan"]),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for rsyncd. See\n{manpage}`rsyncd.conf(5)`.\n",
             })))),
           socketActivated: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If enabled Rsync will be socket-activated rather than run persistently.",
@@ -93,15 +93,15 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => nix.builtins.map((option) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "rsyncd", option]), "This option was removed in favor of `services.rsyncd.settings`."), nix.thunk(() => ["address", "extraConfig", "motd", "user", "group"]))),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           rsyncd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               globalSection: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 port: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               })),
             })),
@@ -109,35 +109,35 @@ export default nix.lambda((args) => (() => {
         })),
         systemd: nix.thunk(() => (() => {
           const serviceConfigSecurity = nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ProtectSystem: "full",
             PrivateDevices: "on",
             NoNewPrivileges: "on",
           }));
           return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             services: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               rsync: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: nix.thunk(() => !nix.asBool(nix.sel(cfg, "socketActivated"))),
                 aliases: nix.thunk(() => ["rsyncd.service"]),
                 description: "fast remote file copy program daemon",
                 after: nix.thunk(() => ["network.target"]),
                 documentation: nix.thunk(() => ["man:rsync(1)", "man:rsyncd.conf(5)"]),
                 serviceConfig: nix.thunk(() => nix.update(serviceConfigSecurity, {
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "rsync")}/bin/rsync --daemon --no-detach --config=${configFile}`),
                   RestartSec: 1n,
                 })),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
               })),
               "rsync@": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "fast remote file copy program daemon",
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => nix.update(serviceConfigSecurity, {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "rsync")}/bin/rsync --daemon --config=${configFile}`),
                   StandardInput: "socket",
                   StandardOutput: "inherit",
@@ -146,14 +146,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               rsync: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 enable: nix.thunk(() => nix.sel(cfg, "socketActivated")),
                 description: "socket for fast remote file copy program daemon",
                 conflicts: nix.thunk(() => ["rsync.service"]),
                 listenStreams: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
-                socketConfig: nix.thunk(() => ({ __proto__: pos$22, Accept: true })),
+                socketConfig: nix.thunk(() => ({ [nix.POS]: pos$22, Accept: true })),
                 wantedBy: nix.thunk(() => ["sockets.target"]),
               })),
             })),

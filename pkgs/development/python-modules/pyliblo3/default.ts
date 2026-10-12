@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gesellkammer",
           repo: "pyliblo3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-compilation-for-cython-3.1.2",
             url: "https://github.com/gesellkammer/pyliblo3/commit/baa249acf91bcb851aa4e30e53e88728fe0fb0c9.patch?full_index=1",
             hash: "sha256-fMKBVIZLBq62khhX40tpaM47nuHB0eqiURIul/4LMig=",
@@ -45,7 +45,7 @@ ${nix.sel(python, "interpreter")} ./test/unit.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/gesellkammer/pyliblo3/",
         description: "Python wrapper for the liblo OSC library",
         changelog: nix.thunk(() => nix.str`https://github.com/gesellkammer/pyliblo3/blob/${nix.sel(src, "tag")}/NEWS`),
@@ -53,7 +53,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "archercatneo"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

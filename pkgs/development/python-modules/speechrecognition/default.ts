@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const respx = nix.arg($, "respx");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "speechrecognition",
       version: "3.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Uberi",
           repo: "speech_recognition",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ substituteInPlace speech_recognition/audio.py \\
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [standard_aifc, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         assemblyai: nix.thunk(() => [requests]),
         audio: nix.thunk(() => [pyaudio]),
         cohere: nix.thunk(() => [cohere]),
@@ -70,7 +70,7 @@ substituteInPlace speech_recognition/audio.py \\
       disabledTestPaths: nix.thunk(() => ["tests/recognizers/test_vosk.py"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Speech recognition module for Python, supporting several engines and APIs, online and offline",
         homepage: "https://github.com/Uberi/speech_recognition",
         changelog: nix.thunk(() => nix.str`https://github.com/Uberi/speech_recognition/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

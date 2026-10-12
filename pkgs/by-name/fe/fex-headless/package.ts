@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withQt", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fex = nix.arg($, "fex");
-  return nix.app(nix.sel(fex, "override"), nix.thunk(() => ({ __proto__: pos$1, withQt: false })));
+  return nix.app(nix.sel(fex, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withQt: false })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

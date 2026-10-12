@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const pname = "performous";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "performous",
           repo: "performous",
           tag: version,
           hash: "sha256-f70IHA8LqIlkMRwJqSmszx3keStSx50nKcEWLGEjc3g=",
         }))));
       const cedSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "performous",
           repo: "compact_enc_det",
           rev: "9ca1351fe0b1e85992a407b0fc54a63e9b3adc6e",
@@ -57,27 +57,27 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./performous-cmake.patch"),
         nix.path(here, "./performous-fftw.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "performous-ffmpeg.patch",
             url: "https://github.com/performous/performous/commit/f26c27bf74b85fa3e3b150682ab9ecf9aecb3c50.patch",
             excludes: nix.thunk(() => [".github/workflows/macos.yml"]),
             hash: "sha256-cQVelET/g2Kx2PlV3pspjEoNIwwn5Yz6enYl5vCMMKo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "performous-gcc14.patch",
             url: "https://github.com/performous/performous/commit/eb9b97f46b7d064c32ed0f086d89a70427ce1d14.patch",
             hash: "sha256-98pcO/sFQJ+G67ErwlO/aAITNDPuRgPziQiF1cAlc0g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/performous/compact_enc_det/commit/28f46c18c60b851773b0ff61f3ce416fb09adcf3.patch?full_index=1",
             stripLen: 1n,
             extraPrefix: "ced-src/",
             hash: "sha256-23VD/4X4BOtcX5k+koSlRMowlbo2jAXbp3XKTXP7VrM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "performous-ffmpeg_8.patch",
             url: "https://github.com/performous/performous/commit/783befe576051458da7ea0d915d2b4cb986eaf86.patch",
             excludes: nix.thunk(() => ["osx-utils/macos-bundler.py"]),
@@ -107,7 +107,7 @@ cp -R ${cedSrc}/* ced-src
         portaudio,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Karaoke, band and dancing game",
         mainProgram: "performous",
         homepage: "https://performous.org/",
@@ -119,7 +119,7 @@ cp -R ${cedSrc}/* ced-src
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

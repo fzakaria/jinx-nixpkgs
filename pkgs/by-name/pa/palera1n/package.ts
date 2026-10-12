@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const checkra1nVersion = "0.1337.3";
   const checkra1nNames = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x86_64",
     "aarch64-linux": "linux-arm64",
     "i686-linux": "linux-x86",
     "armv7l-linux": "linux-armel",
   }));
   const checkra1nHashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-UxVNh1lM9nxWZZ8kVH8bW7Uzb4TqWMLULyWnst+BqWQ=",
     "aarch64-linux": "sha256-B4BTwR6aMB8Ocbh7a4VObIppyHlyMl3QyQ3u66HDy3A=",
     "i686-linux": "sha256-VV4aIc5QvtMYJtSc7660vZCZhGzSrAx+4M/mSctYiIc=",
@@ -48,39 +48,39 @@ export default nix.lambda((args) => (() => {
   }));
   const checkra1nName = nix.thunk(() => nix.sel(checkra1nNames, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const checkra1n = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://assets.checkra.in/downloads/preview/${checkra1nVersion}/checkra1n-${checkra1nName}`),
       hash: nix.thunk(() => nix.sel(checkra1nHashes, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   const kpf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "https://web.archive.org/web/20260305175557id_/https://cdn.nickchan.lol/palera1n/artifacts/kpf/iOS15/checkra1n-kpf-pongo",
       sha256: "sha256-EWKaBuDXYzED5AcdJglhnenVJTQNvACMps8K10l7wRg=",
     }))));
   const ramdisk = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "https://web.archive.org/web/20260310113826id_/https://cdn.nickchan.lol/palera1n/c-rewrite/deps/ramdisk.dmg",
       sha256: "sha256-4ubbTpLGUk0KqRXBJP6WPW+mfefC+jO7jbnk7kVGa2w=",
     }))));
   const binpack = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: "https://web.archive.org/web/20260310113826id_/https://cdn.nickchan.lol/palera1n/c-rewrite/deps/binpack.dmg",
       sha256: "sha256-JmxGdlE5OOXHOLpOa/xsyUyuxXOSyWDM22cmA+uk1HY=",
     }))));
   const pongo = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: "https://web.archive.org/web/20260310113826id_/https://cdn.nickchan.lol/palera1n/artifacts/kpf/iOS15/Pongo.bin",
       sha256: "sha256-HE0LxY+MuWrH/xrLXl03E9PC7aLLexZNvPOEB9mR/qE=",
     }))));
   const makeFlagsList = nix.thunk(() => [nix.thunk(() => nix.str`CHECKRA1N_NAME=${checkra1nName}`)]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "palera1n",
       version: "2.2.1-unstable-2026-01-17",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "palera1n",
           repo: "palera1n",
           rev: "62e03acf81f7aaa5a7b3d4a25d08d0bef3731a05",
@@ -115,7 +115,7 @@ runHook postBuild
 `),
       installPhase: "install -Dm755 src/palera1n $out/bin/palera1n\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Jailbreak for A8 through A11, T2 devices, on iOS/iPadOS/tvOS 15.0+",
         homepage: "https://palera.in",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

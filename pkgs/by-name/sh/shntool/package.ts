@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const flac = nix.arg($, "flac");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.0.10+git20130108.4ca41f4-1",
       pname: "shntool",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "shntool",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "additional_patches=$(grep -v '#' ./debian/patches/series | while read patch; do echo \"./debian/patches/$patch\"; done | tr '\\n' ' ')\npatches=\"$patches $additional_patches\"\n",
       buildInputs: nix.thunk(() => [flac]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-purpose WAVE data processing and reporting utility",
         homepage: "https://packages.qa.debian.org/s/shntool.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

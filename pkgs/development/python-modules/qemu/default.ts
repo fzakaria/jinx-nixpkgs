@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fusepy = nix.arg($, "fusepy");
   const qemu_qmp = nix.arg($, "qemu-qmp");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qemu",
       version: "0.6.1.0a1",
       pyproject: true,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["qemu"]),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(fuseSupport)), "rm $out/bin/qom-fuse\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://www.qemu.org/",
         description: "Python tooling used by the QEMU project to build, configure, and test QEMU",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

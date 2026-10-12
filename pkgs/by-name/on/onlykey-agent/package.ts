@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
         const version = "1.2.0";
         const format = "setuptools";
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: pname,
             version: version,
             sha256: "sha256-fW24IUYDvXhx/PpsCCbvaLhbCr2Q+iHChanF4h0r2Jk=",
           }))));
-        return { __proto__: pos$2, pname, version, format, src };
+        return { [nix.POS]: pos$2, pname, version, format, src };
       })()));
   })());
   const lib_agent = nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(nix.lookup(w_1, "libagent"), "overridePythonAttrs"), (old) => (() => {
         const version = "1.0.6";
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: version,
             pname: "lib-agent",
             sha256: "sha256-IrJizIHDIPHo4tVduUat7u31zHo3Nt8gcMOyUUqkNu0=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const pythonImportsCheck = nix.thunk(() => ["libagent"]);
         const meta = nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Using OnlyKey as hardware SSH and GPG agent",
           homepage: "https://github.com/trustcrypto/onlykey-agent/tree/ledger",
           maintainers: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version,
           src,
           propagatedBuildInputs,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.15";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: pname,
           version: version,
           hash: "sha256-SbGb7CjcD7cFPvASZtip56B4uxRiFKZBvbsf6sb8fds=",
@@ -95,7 +95,7 @@ chmod a-x $out/${nix.sel(python3Packages, "python", "sitePackages")}/onlykey_age
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["onlykey_agent"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Middleware that lets you use OnlyKey as a hardware SSH/GPG device",
         homepage: "https://github.com/trustcrypto/onlykey-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -105,7 +105,7 @@ chmod a-x $out/${nix.sel(python3Packages, "python", "sitePackages")}/onlykey_age
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         format,

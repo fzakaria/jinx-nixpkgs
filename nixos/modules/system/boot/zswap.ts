@@ -34,41 +34,41 @@ export default nix.lambda((args) => (() => {
   const kernelVersion = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version"));
   const zsmallocSupported = nix.thunk(() => nix.app(nix.lookup(w, "versionAtLeast"), kernelVersion, "6.3"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       boot: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         zswap: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Zswap (Compressed Cache for Swap Pages)")),
           compressor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["zstd", "lz4", "lzo", "lz4hc", "deflate", "842"]))),
               default: "zstd",
               description: "Compression algorithm to use for zswap.\n\nAvailable options:\n- 'zstd': Best compression ratio, excellent for Nix builds (default)\n- 'lz4': Fastest compression, lowest latency\n- 'lz4hc': High-compression variant of lz4, slower but better ratio\n- 'lzo': Good balance of speed and compression (kernel default)\n- 'deflate': Higher compression, slower processing\n- '842': Hardware-accelerated compression on supported systems\n\nNote: The chosen algorithm must be supported by your kernel configuration.\n",
             })))),
           zpool: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["zsmalloc", "zbud"]))),
               default: nix.thunk(() => (nix.asBool(zsmallocSupported) ? "zsmalloc" : "zbud")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if kernel >= 6.3 then \"zsmalloc\" else \"zbud\"")),
               description: "Kernel zpool allocator.\n'zsmalloc' is strongly recommended for kernels >= 6.3 as it offers the best density.\nFor older kernels, 'zbud' is the fallback.\n\nNote: 'z3fold' was removed from Linux kernel 6.8 and later.\n",
             })))),
           maxPoolPercent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1n, 100n)),
               default: 25n,
               description: "The maximum percentage of system memory that Zswap can occupy (1-100).\n\nHigher values provide more compression cache but increase memory pressure.\nDefault is 25% (higher than kernel default of 20%) for better Nix build performance.\n\nRecommended ranges:\n- Desktop systems: 15-25%\n- Low-memory systems: 30-50%\n- Server systems: 10-20%\n",
             })))),
           acceptThresholdPercent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1n, 100n)),
               default: 90n,
               description: "Threshold percentage at which zswap starts accepting pages again after the pool becomes full (1-100).\n\nThis parameter provides hysteresis to prevent pool oscillation.\nWhen the pool usage drops below this threshold, zswap starts accepting new pages.\nDefault is 90% as recommended by kernel documentation.\n",
             })))),
           shrinkerEnabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable the zswap shrinker to reclaim memory when under pressure.\n\nWhen enabled, the shrinker will automatically reclaim compressed pages\nfrom the zswap pool when the system is under memory pressure, helping\nto prevent out-of-memory situations.\n\nIt is recommended to keep this enabled for most workloads, especially\non systems with limited memory.\n",
@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         boot: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           kernelParams: nix.thunk(() => [
             "zswap.enabled=1",
             nix.thunk(() => nix.str`zswap.compressor=${nix.sel(cfg, "compressor")}`),
@@ -89,22 +89,22 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`zswap.shrinker_enabled=${(nix.asBool(nix.sel(cfg, "shrinkerEnabled")) ? "1" : "0")}`),
           ]),
           initrd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             kernelModules: nix.thunk(() => [
               nix.thunk(() => nix.sel(cfg, "compressor")),
               nix.thunk(() => nix.sel(cfg, "zpool")),
             ]),
           })),
           kernel: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             sysfs: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               module: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 zswap: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   parameters: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     enabled: true,
                     compressor: nix.thunk(() => nix.sel(cfg, "compressor")),
                     zpool: nix.thunk(() => nix.sel(cfg, "zpool")),
@@ -119,17 +119,17 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "zramSwap", "enable"))),
             message: "Conflicting options enabled: 'boot.zswap.enable' and 'zramSwap.enable'.\n\nYou cannot enable Zswap and Zram simultaneously as it leads to double compression\nand inefficient memory management.\n\nPlease disable one of them:\n  - To use Zswap (requires a physical swap device): Set 'zramSwap.enable = false'.\n  - To use Zram (swap in RAM): Set 'boot.zswap.enable = false'.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => !nix.eq(nix.sel(config, "swapDevices"), [])),
             message: "Zswap requires at least one physical swap device to function as a backing store.\n\nTry adding the following to your configuration (example):\n\nswapDevices = [ {\n  device = \"/var/lib/swapfile\";\n  size = 16 * 1024; # 16GB\n} ];\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "zpool"), "zsmalloc")) || nix.asBool(zsmallocSupported))),
             message: nix.thunk(() => nix.str`Zswap allocator 'zsmalloc' is not supported on kernel version ${kernelVersion}.
 Support for zsmalloc in Zswap was added in Linux 6.3.
@@ -140,7 +140,7 @@ Please use 'zbud' instead: boot.zswap.zpool = "zbud";
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "luochen1990"))];

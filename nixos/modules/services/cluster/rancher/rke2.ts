@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const mkRancherModule = nix.arg($, "mkRancherModule");
   const cfg = nix.thunk(() => nix.sel(config, "services", "rke2"));
   const baseModule = nix.thunk(() => nix.app(mkRancherModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rke2",
       serviceName: nix.thunk(() => nix.str`rke2-${nix.sel(cfg, "role")}`),
       extraBinFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cni"), null)), nix.thunk(() => nix.str`--cni=${nix.sel(cfg, "cni")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "cisHardening")), nix.thunk(() => nix.str`--profile=${(nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "1.25")) ? "cis" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "1.23")) ? "cis-1.23" : "cis-1.6"))}`)))),
@@ -40,23 +40,23 @@ export default nix.lambda((args) => (() => {
       staticContentPort: 9345n,
     }))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         rke2: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(baseModule, "options")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             role: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Whether rke2 should run as a server or agent.\n\nIf it's a server:\n\n- By default it also runs workloads as an agent.\n- All options can be set.\n\nIf it's an agent:\n\n- `serverAddr` is required.\n- `token` or `tokenFile` is required.\n- `agentToken`, `agentTokenFile`, `disable` and `cni` should not be set.\n",
             })),
             disable: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Disable default components, see the [RKE2 documentation](https://docs.rke2.io/install/packaged_components#using-the---disable-flag).\n",
             })),
             images: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (pkgs.dockerTools.pullImage {\n    imageName = \"docker.io/bitnami/keycloak\";\n    imageDigest = \"sha256:714dfadc66a8e3adea6609bda350345bd3711657b7ef3cf2e8015b526bac2d6b\";\n    hash = \"sha256-IM2BLZ0EdKIZcRWOtuFY9TogZJXCpKtPZnMnPsGlq0Y=\";\n    finalImageTag = \"21.1.2-debian-11-r0\";\n  })\n\n  config.services.rke2.package.images-core-linux-amd64-tar-zst\n  config.services.rke2.package.images-canal-linux-amd64-tar-zst\n]\n")),
               description: nix.thunk(() => nix.str`List of derivations that provide container images.
 All images are linked into {file}\`${nix.sel(baseModule, "paths", "imageDir")}/nixos/\` before rke2 starts and are consequently imported
@@ -67,7 +67,7 @@ of the rke2 package in use.
 `),
             })),
             cni: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["none", "canal", "cilium", "calico", "flannel"]))));
@@ -76,7 +76,7 @@ of the rke2 package in use.
                 default: null,
               })))),
             cisHardening: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable CIS Hardening for RKE2.\n\nThe OS-level configuration options required to pass the CIS benchmark are enabled by default.\nThis option only creates the `etcd` user and group, and passes the `--profile=cis` flag to RKE2.\n\nLearn more about [CIS Hardening for RKE2](https://docs.rke2.io/security/hardening_guide).\n",
                 default: false,
@@ -87,25 +87,25 @@ of the rke2 package in use.
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.sel(baseModule, "config")),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "role"), "agent")) && nix.asBool(!nix.eq(nix.sel(cfg, "cni"), null)))), "rke2: cni should not be set if role is 'agent'")),
             environment: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               etc: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "NetworkManager/conf.d/rke2-canal.conf": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   enable: nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")),
                   text: "[keyfile]\nunmanaged-devices=interface-name:flannel*;interface-name:cali*;interface-name:tunl*;interface-name:vxlan.calico;interface-name:vxlan-v6.calico;interface-name:wireguard.cali;interface-name:wg-v6.cali\n",
                 })),
               })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               kernel: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   "vm.panic_on_oom": 0n,
                   "vm.overcommit_memory": 1n,
                   "kernel.panic": 10n,
@@ -114,12 +114,12 @@ of the rke2 package in use.
               })),
             })),
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "cisHardening")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 users: nix.thunk(() => ({
-                  __proto__: pos$17,
-                  etcd: nix.thunk(() => ({ __proto__: pos$16, isSystemUser: true, group: "etcd" })),
+                  [nix.POS]: pos$17,
+                  etcd: nix.thunk(() => ({ [nix.POS]: pos$16, isSystemUser: true, group: "etcd" })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$18, etcd: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$18, etcd: nix.thunk(() => ({})) })),
               })))),
           })),
         ]))))),

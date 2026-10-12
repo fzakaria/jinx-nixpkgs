@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   const trayEnabled = nix.argOr($, "trayEnabled", () => nix.force(systemdSupport));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       enableXWayland: enableXWayland,
       isNixOS: isNixOS,
       systemdSupport: systemdSupport,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pname: "swayfx-unwrapped",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wlrfx",
           repo: "swayfx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./load-configuration-from-etc.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, swaybg: swaybg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, swaybg: swaybg })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "isNixOS"))), nix.thunk(() => [nix.path(here, "./sway-config-no-nix-store-references.patch")])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "isNixOS")), nix.thunk(() => [nix.path(here, "./sway-config-nixos-paths.patch")]))))),
       strictDeps: true,
       depsBuildBuild: nix.thunk(() => [pkg_config]),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         wayland,
         wayland_protocols,
         nix.thunk(() => nix.app(nix.sel(wlroots_0_20, "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enableXWayland: nix.thunk(() => nix.attr(finalAttrs, "enableXWayland")),
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "enableXWayland")), nix.thunk(() => [libxcb_wm])))),
@@ -101,12 +101,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           basic: nix.thunk(() => nix.sel(nixosTests, "swayfx")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "sway --version",
               version: nix.thunk(() => nix.str`swayfx version ${nix.sel(finalAttrs, "version")}`),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Sway, but with eye candy",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/releases/tag/${nix.sel(finalAttrs, "version")}`),

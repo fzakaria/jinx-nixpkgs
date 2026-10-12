@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "avogadrolibs",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenChemistry",
           repo: "avogadrolibs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,21 +47,21 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: nix.thunk(() => (() => {
         const moleculesRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "OpenChemistry",
             repo: "molecules",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-hMLf0gYYnQpjSGKcPy4tihNbmpRR7UxnXF/hyhforgI=",
           }))));
         const crystalsRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "OpenChemistry",
             repo: "crystals",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-WhzFldaOt/wJy1kk+ypOkw1OYFT3hqD7j5qGdq9g+IY=",
           }))));
         const fragmentsRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "OpenChemistry",
             repo: "fragments",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,7 +87,7 @@ cp -r ${fragmentsRepo} fragments
       ]),
       postInstall: "substituteInPlace $out/lib/cmake/avogadrolibs/AvogadroLibsConfig.cmake \\\n  --replace-fail \"$out/\" \"\"\n\nsubstituteInPlace $out/lib/cmake/avogadrolibs/AvogadroLibsTargets.cmake \\\n  --replace-fail \"_IMPORT_PREFIX \\\"$out\\\"\" '_IMPORT_PREFIX \"/\"'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Molecule editor and visualizer",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

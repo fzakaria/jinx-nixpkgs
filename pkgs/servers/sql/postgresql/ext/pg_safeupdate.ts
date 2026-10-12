@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg-safeupdate",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eradman",
           repo: "pg-safeupdate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-V1P6gdFHwAFd4g8CrSRdRrL1wKs3bFfin8LLDNhZcUI=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple extension to PostgreSQL that requires criteria for UPDATE and DELETE",
         homepage: "https://github.com/eradman/pg-safeupdate",
         changelog: nix.thunk(() => nix.str`https://github.com/eradman/pg-safeupdate/raw/${nix.sel(finalAttrs, "version")}/NEWS`),

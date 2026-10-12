@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const staticOnly = nix.argOr($, "staticOnly", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const googleapisRev = "8cd3749f4b98f2eeeef511c16431979aeb3a6502";
   const googleapis = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "googleapis-src",
       owner: "googleapis",
       repo: "googleapis",
@@ -41,25 +41,25 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-w7jq21qLEiMhuI20C6iUeSskAfZCkZgDCPu5Flr8D48=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "google-cloud-cpp",
       version: "2.44.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "googleapis",
           repo: "google-cloud-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-vE3oGGT33cITdAd4e5Xnlx9tX5Sz+wIFQXzj5hdcGDI=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-googleapis-path.patch"), nix.thunk(() => ({ __proto__: pos$3, url: googleapis })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-googleapis-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, url: googleapis })))),
       ]),
       postPatch: "substituteInPlace cmake/GoogleCloudCppFeatures.cmake \\\n  --replace-fail \\\n    \"bigtable;bigquery;iam;logging;pubsub;spanner;storage\" \\\n    \"bigtable;bigquery;iam;logging;pubsub;spanner;storage;universe_domain\" \\\n\nsed -e '1i #include <algorithm>' -i google/cloud/testing_util/command_line_parsing.cc\n",
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [
         c_ares,
         crc32c,
-        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$4, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, openssl: openssl })))),
         grpc,
         nlohmann_json,
         openssl,
@@ -108,7 +108,7 @@ runHook postInstallCheck
         ]))))),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/googleapis/google-cloud-cpp",
         description: "C++ Idiomatic Clients for Google Cloud Platform services",

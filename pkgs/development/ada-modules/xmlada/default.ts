@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xmlada";
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`xmlada-${version}-src`),
           owner: "AdaCore",
           repo: "xmlada",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [gnat, gprbuild_boot]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XML/Ada: An XML parser for Ada",
         homepage: "https://github.com/AdaCore/xmlada",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

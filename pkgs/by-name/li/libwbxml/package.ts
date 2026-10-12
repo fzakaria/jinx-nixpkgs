@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libwbxml";
       const version = "0.11.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libwbxml",
           repo: "libwbxml",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, check]);
       const buildInputs = nix.thunk(() => [expat]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libwbxml/libwbxml",
         description: "WBXML Library (aka libwbxml) contains a library and its associated tools to Parse, Encode and Handle WBXML documents",
         maintainers: nix.thunk(() => (() => {
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

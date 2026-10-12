@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "styx",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "styx-static",
           repo: "styx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir $out\ninstall -D -m 777 src/styx.sh $out/bin/styx\n\nmkdir -p $out/share/styx-src\ncp -r ./* $out/share/styx-src\n\nmkdir -p $out/share/doc/styx\nasciidoctor src/doc/index.adoc       -o $out/share/doc/styx/index.html\nasciidoctor src/doc/styx-themes.adoc -o $out/share/doc/styx/styx-themes.html\nasciidoctor src/doc/library.adoc     -o $out/share/doc/styx/library.html\ncp -r src/doc/highlight $out/share/doc/styx/\ncp -r src/doc/imgs $out/share/doc/styx/\n\nsubstituteAllInPlace $out/bin/styx\nsubstituteAllInPlace $out/share/doc/styx/index.html\nsubstituteAllInPlace $out/share/doc/styx/styx-themes.html\nsubstituteAllInPlace $out/share/doc/styx/library.html\n\nmkdir -p $out/share/styx/scaffold\ncp -r src/scaffold $out/share/styx\ncp -r src/tools $out/share/styx\n\nmkdir $lib\ncp -r src/lib/* $lib\n\nmkdir $themes\ncp -r themes/* $themes\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nix based static site generator",
         maintainers: [],
         homepage: "https://styx-static.github.io/styx-site/",

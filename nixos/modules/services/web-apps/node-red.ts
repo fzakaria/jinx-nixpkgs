@@ -37,66 +37,66 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "node-red"));
   const defaultUser = "node-red";
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "node-red": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Node-RED service")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, nix.thunk(() => ["node-red"]), nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for the server.\n",
             })))),
           withNpmAndGcc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Give Node-RED access to npm and GCC at runtime, so 'Nodes' can be\ndownloaded and managed imperatively via the 'Palette Manager'.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/node_modules/node-red/packages/node_modules/node-red/settings.js`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${package}/lib/node_modules/node-red/packages/node_modules/node-red/settings.js\"")),
               description: "Path to the JavaScript configuration file.\nSee <https://github.com/node-red/node-red/blob/master/packages/node_modules/node-red/settings.js>\nfor a configuration example.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 1880n,
               description: "Listening port.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: defaultUser,
               description: "User under which Node-RED runs.If left as the default value this user\nwill automatically be created on system activation, otherwise the\nsysadmin is responsible for ensuring the user exists.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: defaultUser,
               description: "Group under which Node-RED runs.If left as the default value this group\nwill automatically be created on system activation, otherwise the\nsysadmin is responsible for ensuring the group exists.\n",
             })))),
           userDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/node-red",
               description: "The directory to store all user data, such as flow and credential files and all library data. If left\nas the default value this directory will automatically be created before the node-red service starts,\notherwise the sysadmin is responsible for ensuring the directory exists with appropriate ownership\nand permissions.\n",
             })))),
           safe: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to launch Node-RED in --safe mode.",
             })))),
           define: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({})),
               description: "List of settings.js overrides to pass via -D to Node-RED.",
@@ -106,38 +106,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
-              [defaultUser, nix.thunk(() => ({ __proto__: pos$13, isSystemUser: true, group: defaultUser }))],
+              [defaultUser, nix.thunk(() => ({ [nix.POS]: pos$13, isSystemUser: true, group: defaultUser }))],
             ])))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [[defaultUser, nix.thunk(() => ({}))]])))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "node-red": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Node-RED Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$17, HOME: nix.thunk(() => nix.sel(cfg, "userDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$17, HOME: nix.thunk(() => nix.sel(cfg, "userDir")) })),
               path: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "withNpmAndGcc")), nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "nodejs")),
                   nix.thunk(() => nix.sel(pkgs, "gcc")),
                 ]))),
               serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/node-red ${nix.app(nix.sel(pkgs, "lib", "optionalString"), nix.thunk(() => nix.sel(cfg, "safe")), "--safe")} --settings ${nix.sel(cfg, "configFile")} --port ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))} --userDir ${nix.sel(cfg, "userDir")} ${nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (value) => nix.str`-D ${name}=${value}`, nix.thunk(() => nix.sel(cfg, "define")))))}`),
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
                     Restart: "always",
                     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "userDir")),
                   })),
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "userDir"), "/var/lib/node-red")), nix.thunk(() => ({ __proto__: pos$19, StateDirectory: "node-red" })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "userDir"), "/var/lib/node-red")), nix.thunk(() => ({ [nix.POS]: pos$19, StateDirectory: "node-red" })))),
                 ]))),
             })),
           })),

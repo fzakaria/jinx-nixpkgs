@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/sstorytime";
   const defaultDatabaseUri = nix.thunk(() => nix.str`postgresql://${dbName}@/${dbName}?host=/run/postgresql`);
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     User: dbName,
     Group: dbName,
     StateDirectory: "sstorytime",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`--working-directory=${stateDir}`),
       nix.thunk(() => nix.str`--property=StateDirectory=${nix.sel(commonServiceConfig, "StateDirectory")}`),
     ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.str`--property=EnvironmentFile=${nix.sel(cfg, "environmentFile")}`)), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`--setenv=${name}=${value}`, nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
       }))), ["--"]))))));
   const sstorytime_run = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "sstorytime-run",
       text: nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "systemd-run")} \\
   ${systemdRunArgs} \\
@@ -93,34 +93,34 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         sstorytime: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(mkEnableOption, "SSTorytime, a unified graph process for mapping knowledge")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "sstorytime", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(mkEnableOption, "opening the SSTorytime ports in the firewall")),
           httpPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "HTTP listen port (redirects to HTTPS).",
             })))),
           httpsPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8443n,
               description: "HTTPS listen port for the web UI and API.",
             })))),
           configDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/SSTconfig`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.sstorytime.package}/share/SSTconfig\"")),
@@ -129,21 +129,21 @@ export default nix.lambda((args) => (() => {
 `),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     POSTGRESQL_URI: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: "postgresql://sstoryline@/sstoryline?host=/run/postgresql",
                         description: "PostgreSQL connection URI. When\n{option}`database.createLocally` is true, defaults to a peer-auth\nsocket URI. For remote databases prefer\n{option}`environmentFile` if the URI contains secrets.\n",
                       })))),
                     SST_CONFIG_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: configPath,
@@ -156,29 +156,29 @@ Defaults to {file}\`${configPath}\` when the service is enabled.
               default: nix.thunk(() => ({})),
               apply: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null))),
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 POSTGRESQL_URI: "postgresql://sstoryline@/sstoryline?host=/run/postgresql",
               })),
               description: "Environment for the service and {command}`sstorytime-run`.\nNull values are omitted. Extra freeform keys are passed through as\nadditional environment variables.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/secrets/sstorytime.env",
               description: "Optional EnvironmentFile (e.g. secrets for `POSTGRESQL_URI` via sops).\nUsed by the service and by {command}`sstorytime-run`.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Local PostgreSQL role/database `sstoryline` and default\n{option}`settings.POSTGRESQL_URI` using the Unix socket at\n{file}`/run/postgresql` (peer auth as user `sstoryline`).\n",
               })))),
           })),
           finalPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "package")),
               visible: false,
               readOnly: true,
@@ -190,20 +190,20 @@ Defaults to {file}\`${configPath}\` when the service is enabled.
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.has(nix.sel(cfg, "settings"), "POSTGRESQL_URI")))) || nix.asBool(!nix.eq(nix.sel(cfg, "environmentFile"), null)))),
             message: "services.sstorytime: when database.createLocally is false, set\nsettings.POSTGRESQL_URI or environmentFile (e.g. sops) so the service\ncan reach PostgreSQL.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             sstorytime: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "configDir")}/*`),
             })),
           })),
@@ -213,10 +213,10 @@ Defaults to {file}\`${configPath}\` when the service is enabled.
           ]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [dbName, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               isSystemUser: true,
               group: dbName,
               description: "SSTorytime service and database user",
@@ -225,44 +225,44 @@ Defaults to {file}\`${configPath}\` when the service is enabled.
           groups: nix.thunk(() => nix.attrsDyn({}, [[dbName, nix.thunk(() => ({}))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           sstorytime: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             settings: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   SST_CONFIG_PATH: nix.thunk(() => nix.app(mkDefault, configPath)),
                 })),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     POSTGRESQL_URI: nix.thunk(() => nix.app(mkDefault, defaultDatabaseUri)),
                   })))),
               ]))),
           })),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$30, name: dbName, ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$30, name: dbName, ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => [dbName]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             sstorytime: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "SSTorytime Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
               environment: nix.thunk(() => nix.sel(cfg, "settings")),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$33, StartLimitBurst: 5n, StartLimitIntervalSec: 100n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$33, StartLimitBurst: 5n, StartLimitIntervalSec: 100n })),
               preStart: "mkdir -p cacheroot\nif [ ! -f cert.pem ] || [ ! -f key.pem ]; then\n  openssl req -x509 -newkey rsa:4096 \\\n    -keyout key.pem -out cert.pem \\\n    -days 365 -nodes \\\n    -subj \"/CN=localhost\"\nfi\n",
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 Restart: "on-failure",
                 RestartSec: 5n,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => [
@@ -298,9 +298,9 @@ Defaults to {file}\`${configPath}\` when the service is enabled.
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           firewall: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "httpPort")),
                 nix.thunk(() => nix.sel(cfg, "httpsPort")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const rWrapper = nix.arg($, "rWrapper");
   const stdenv = nix.arg($, "stdenv");
   const my_r_packages = nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => (() => {
         const w = nix.withScope(rPackages, null);
         return [
@@ -32,21 +32,21 @@ export default nix.lambda((args) => (() => {
     }))));
   const transcriptome_url = "https://kumisystems.dl.sourceforge.net/project/splicing-prediction-pipeline/transcriptome/";
   const transcriptome19 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.add(transcriptome_url, "/transcriptome_hg19.RData")),
       hash: "sha256-E8UmHoNoySSIde+TRE6bxVP0PrccpKDvIHBGCvWnYOw=",
     }))));
   const transcriptome38 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.add(transcriptome_url, "/transcriptome_hg38.RData")),
       hash: "sha256-mQMMZVN1byXMYjFoRdezmoZtnhUur2CHOP/j/pmw8as=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spip",
       version: "0-unstable-2023-04-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "LBGC-CFB",
           repo: "SPiP",
           rev: "cae95fe0ee7a2602630b7a4eacbf7cfa0e1763f0",
@@ -67,7 +67,7 @@ makeWrapper ${my_r_packages}/bin/Rscript $out/bin/spip \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Random forest model for splice prediction in genomics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/LBGC-CFB/SPiP",

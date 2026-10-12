@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multimon-ng",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EliasOenal",
           repo: "multimon-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/multimon-ng --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sox]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital baseband audio protocol decoder",
         mainProgram: "multimon-ng",
         longDescription: "multimon-ng a fork of multimon, a digital baseband audio\nprotocol decoder for common signaling modes in commercial and\namateur radio data services. It decodes the following digital\ntransmission modes:\n\nPOCSAG512 POCSAG1200 POCSAG2400 EAS UFSK1200 CLIPFSK AFSK1200\nAFSK2400 AFSK2400_2 AFSK2400_3 HAPN4800 FSK9600 DTMF ZVEI1 ZVEI2\nZVEI3 DZVEI PZVEI EEA EIA CCIR MORSE CW\n",

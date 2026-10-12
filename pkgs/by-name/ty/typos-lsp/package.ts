@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "typos-lsp",
       version: "0.1.56",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tekumara",
           repo: "typos-lsp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-zXafwVK9RgUbH8iJ8kR3+AWoH7WM1TrCe1jaXhiCWHA=",
       prePatch: "rm .cargo/config.toml\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Source code spell checker",
         homepage: "https://github.com/tekumara/typos-lsp",
         changelog: nix.thunk(() => nix.str`https://github.com/tekumara/typos-lsp/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

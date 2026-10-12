@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "screen"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         screen: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "screen, a basic terminal multiplexer")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "screen", nix.thunk(() => ({})))),
           screenrc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "defscrollback 10000\nstartup_message off\n",
@@ -44,20 +44,20 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             environment: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               etc: nix.thunk(() => ({
-                __proto__: pos$6,
-                screenrc: nix.thunk(() => ({ __proto__: pos$5, text: nix.thunk(() => nix.sel(cfg, "screenrc")) })),
+                [nix.POS]: pos$6,
+                screenrc: nix.thunk(() => ({ [nix.POS]: pos$5, text: nix.thunk(() => nix.sel(cfg, "screenrc")) })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               pam: nix.thunk(() => ({
-                __proto__: pos$9,
-                services: nix.thunk(() => ({ __proto__: pos$8, screen: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$9,
+                services: nix.thunk(() => ({ [nix.POS]: pos$8, screen: nix.thunk(() => ({})) })),
               })),
             })),
           })))),

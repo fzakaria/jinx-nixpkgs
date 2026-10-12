@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pulumiPackages = nix.arg($, "pulumiPackages");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return (f) => nix.app(runCommand, "pulumi-with-packages", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pulumi: pulumi,
       makeWrapperArgs: nix.thunk(() => [
         "--suffix",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "pulumi" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "pulumi" })),
     })), "mkdir -p \"$out/bin\"\nln -s -t \"$out\" \"$pulumi/share\"\nmakeWrapper \"$pulumi/bin/pulumi\" \"$out/bin/pulumi\" \"${makeWrapperArgs[@]}\"\n");
 })(), formals$1);
 //# sourceMappingURL=with-packages.ts.map

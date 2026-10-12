@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tide";
       const version = "6.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IlanCosman",
           repo: "tide",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const postInstall = "cp -R functions/tide $out/share/fish/vendor_functions.d/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ultimate Fish prompt",
         homepage: "https://github.com/IlanCosman/tide",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jocelynthode"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, postInstall, meta };
+      return { [nix.POS]: pos$3, pname, version, src, postInstall, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=tide.ts.map

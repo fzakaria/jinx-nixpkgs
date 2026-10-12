@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libxml++";
       const version = "3.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libxml++/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libxml++-${version}.tar.xz`),
           hash: "sha256-DJs4G1qD1rOrSwuGXXJW2rJ9V1mBtjvi+Fnty5TaWcc=",
         }))));
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "strings", "optionalString"), withDocumentation, "doxygen -u docs/reference/Doxyfile\n"));
       const postFixup = "substituteInPlace $dev/lib/pkgconfig/libxml++-3.0.pc \\\n  --replace-fail 'docdir=${datarootdir}' \"docdir=$doc/share\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             attrPath: "libxmlxx3",
             packageName: "libxml++",
             versionPolicy: "odd-unstable",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://libxmlplusplus.sourceforge.net/",
         description: "C++ wrapper for the libxml2 XML parser library, version 3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

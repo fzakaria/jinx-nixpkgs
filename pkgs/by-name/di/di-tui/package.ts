@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "di-tui",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.adriano.fyi",
           owner: "me",
           repo: "di-tui",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-b7dG0nSjPQpjWUbOlIxWudPZWKqtq96sQaJxKvsQT9I=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple terminal UI player for di.fm",
         homepage: "https://code.adriano.fyi/me/di-tui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

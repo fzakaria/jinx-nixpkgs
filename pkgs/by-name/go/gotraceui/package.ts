@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gotraceui",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dominikh",
           repo: "gotraceui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-to-gio-fork.patch",
             url: "https://github.com/dominikh/gotraceui/commit/00289f5f4c1da3e13babd2389e533b069cd18e3c.diff",
             hash: "sha256-dxsVMjyKkRG4Q6mONlJAohWJ8YTu8KN7ynPVycJhcs8=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-X gioui.org/app.ID=co.honnef.Gotraceui"]),
       postInstall: "cp -r share $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Efficient frontend for Go execution traces",
         mainProgram: "gotraceui",
         homepage: "https://github.com/dominikh/gotraceui",

@@ -55,35 +55,35 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "_3proxy"));
   const optionalList = (list) => (nix.asBool(nix.eq(list, [])) ? "*" : nix.app(nix.sel(lib, "concatMapStringsSep"), ",", nix.builtins.toString, list));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         _3proxy: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "3proxy")),
           confFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/var/lib/3proxy/3proxy.conf",
               description: "Ignore all other 3proxy options and load configuration from this file.\n",
             })))),
           usersFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/3proxy/3proxy.passwd",
               description: "Load users and passwords from this file.\n\nExample users file with plain-text passwords:\n\n```\n  test1:CL:password1\n  test2:CL:password2\n```\n\nExample users file with md5-crypted passwords:\n\n```\n  test1:CR:$1$tFkisVd2$1GA8JXkRmTXdLDytM/i3a1\n  test2:CR:$1$rkpibm5J$Aq1.9VtYAn0JrqZ8M.1ME.\n```\n\nYou can generate md5-crypted passwords via <https://unix4lyfe.org/crypt/>\nNote that htpasswd tool generates incompatible md5-crypted passwords.\nConsult [documentation](https://github.com/z3APA3A/3proxy/wiki/How-To-%28incomplete%29#USERS) for more information.\n",
             })))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     options: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                               "proxy",
                               "socks",
@@ -99,67 +99,67 @@ export default nix.lambda((args) => (() => {
                           description: "Service type. The following values are valid:\n\n- `\"proxy\"`: HTTP/HTTPS proxy (default port 3128).\n- `\"socks\"`: SOCKS 4/4.5/5 proxy (default port 1080).\n- `\"pop3p\"`: POP3 proxy (default port 110).\n- `\"ftppr\"`: FTP proxy (default port 21).\n- `\"admin\"`: Web interface (default port 80).\n- `\"dnspr\"`: Caching DNS proxy (default port 53).\n- `\"tcppm\"`: TCP portmapper.\n- `\"udppm\"`: UDP portmapper.\n- `\"auto\"`: Proxy with protocol autoselection between proxy / socks / tlspr.\n",
                         })))),
                       bindAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "[::]",
                           example: "127.0.0.1",
                           description: "Address used for service.\n",
                         })))),
                       bindPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                           default: null,
                           example: 3128n,
                           description: "Override default port used for service.\n",
                         })))),
                       maxConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 100n,
                           example: 1000n,
                           description: "Maximum number of simulationeous connections to this service.\n",
                         })))),
                       auth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "iponly", "strong"]))))),
                           example: nix.thunk(() => ["iponly", "strong"]),
                           description: "Authentication type. The following values are valid:\n\n- `\"none\"`: disables both authentication and authorization. You can not use ACLs.\n- `\"iponly\"`: specifies no authentication. ACLs authorization is used.\n- `\"strong\"`: authentication by username/password. If user is not registered their access is denied regardless of ACLs.\n\nDouble authentication is possible, e.g.\n\n```\n  {\n    auth = [ \"iponly\" \"strong\" ];\n    acl = [\n      {\n        rule = \"allow\";\n        targets = [ \"192.168.0.0/16\" ];\n      }\n      {\n        rule = \"allow\"\n        users = [ \"user1\" \"user2\" ];\n      }\n    ];\n  }\n```\nIn this example strong username authentication is not required to access 192.168.0.0/16.\n",
                         })))),
                       acl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$13,
+                                  [nix.POS]: pos$13,
                                   rule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$8,
+                                      [nix.POS]: pos$8,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["allow", "deny"]))),
                                       example: "allow",
                                       description: "ACL rule. The following values are valid:\n\n- `\"allow\"`: connections allowed.\n- `\"deny\"`: connections not allowed.\n",
                                     })))),
                                   users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$9,
+                                      [nix.POS]: pos$9,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                       default: [],
                                       example: nix.thunk(() => ["user1", "user2", "user3"]),
                                       description: "List of users, use empty list for any.\n",
                                     })))),
                                   sources: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$10,
+                                      [nix.POS]: pos$10,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                       default: [],
                                       example: nix.thunk(() => ["127.0.0.1", "192.168.1.0/24"]),
                                       description: "List of source IP range, use empty list for any.\n",
                                     })))),
                                   targets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$11,
+                                      [nix.POS]: pos$11,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                       default: [],
                                       example: nix.thunk(() => ["127.0.0.1", "192.168.1.0/24"]),
                                       description: "List of target IP ranges, use empty list for any.\nMay also contain host names instead of addresses.\nIt's possible to use wildmask in the beginning and in the the end of hostname, e.g. `*badsite.com` or `*badcontent*`.\nHostname is only checked if hostname presents in request.\n",
                                     })))),
                                   targetPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$12,
+                                      [nix.POS]: pos$12,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                                       default: [],
                                       example: nix.thunk(() => [80n, 443n]),
@@ -172,14 +172,14 @@ export default nix.lambda((args) => (() => {
                           description: "Use this option to limit user access to resources.\n",
                         })))),
                       extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           example: "-46",
                           description: "Extra arguments for service.\nConsult \"Options\" section in [documentation](https://github.com/z3APA3A/3proxy/wiki/3proxy.cfg) for available arguments.\n",
                         })))),
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                           default: null,
                           description: "Extra configuration for service. Use this to configure things like bandwidth limiter or ACL-based redirection.\nConsult [documentation](https://github.com/z3APA3A/3proxy/wiki/3proxy.cfg) for available options.\n",
@@ -191,13 +191,13 @@ export default nix.lambda((args) => (() => {
               description: "Use this option to define 3proxy services.\n",
             })))),
           denyPrivate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to deny access to private IP ranges including loopback.\n",
             })))),
           privateRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => [
                 "0.0.0.0/8",
@@ -213,32 +213,32 @@ export default nix.lambda((args) => (() => {
               description: "What IP ranges to deny access when denyPrivate is set tu true.\n",
             })))),
           resolution: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   options: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     nserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         example: nix.thunk(() => ["127.0.0.53", "192.168.1.3:5353/tcp"]),
                         description: "List of nameservers to use.\n\nUp to 5 nservers may be specified. If no nserver is configured,\ndefault system name resolution functions are used.\n",
                       })))),
                     nscache: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 65535n,
                         description: "Set name cache size for IPv4.",
                       })))),
                     nscache6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 65535n,
                         description: "Set name cache size for IPv6.",
                       })))),
                     nsrecord: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ({})),
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"files.local\" = \"192.168.1.12\";\n  \"site.local\" = \"192.168.1.43\";\n}\n")),
@@ -250,7 +250,7 @@ export default nix.lambda((args) => (() => {
               description: "Use this option to configure name resolution and DNS caching.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               description: "Extra configuration, appended to the 3proxy configuration file.\nConsult [documentation](https://github.com/z3APA3A/3proxy/wiki/3proxy.cfg) for available options.\n",
@@ -259,11 +259,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         services: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           _3proxy: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             confFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "3proxy.conf", nix.thunk(() => nix.str`# log to stdout
 log
 
@@ -300,17 +300,17 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "3proxy": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Tiny free proxy server",
               documentation: nix.thunk(() => ["https://github.com/z3APA3A/3proxy/wiki"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 DynamicUser: true,
                 StateDirectory: "3proxy",
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/3proxy ${nix.sel(cfg, "confFile")}`),
@@ -321,7 +321,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "misuzu"))];

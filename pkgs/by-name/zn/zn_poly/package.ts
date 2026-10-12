@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pname = "zn_poly";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sagemath",
           repo: "zn_poly",
           rev: version,
@@ -39,7 +39,7 @@ cp include/*.h "$out/include/zn_poly"
 `);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://web.maths.unsw.edu.au/~davidharvey/code/zn_poly/",
         description: "Polynomial arithmetic over Z/nZ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -47,7 +47,7 @@ cp include/*.h "$out/include/zn_poly"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

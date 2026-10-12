@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const processor = nix.thunk(() => nix.attr(from, "processor"));
   const version = "5.5.1";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-Linux.tar.gz`),
       hash: "sha256-MgN+VcPcjzYP4Wt/uxiNMTh+p1mA5I2M8CgzDjI5xAQ=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-LinuxARMPreview.tar.gz`),
       hash: "sha256-nrPKnsMqvw6+HGQAKxkQi/6lPEEca1VrDCaJUUuMvW8=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       pname: "geekbench",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "system")))))),
@@ -63,7 +63,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform benchmark",
         homepage: "https://geekbench.com/",
         sourceProvenance: nix.thunk(() => (() => {

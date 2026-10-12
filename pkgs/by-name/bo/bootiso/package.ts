@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bootiso";
       const version = "4.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsamr",
           repo: "bootiso",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://code.opensuse.org/package/bootiso/raw/3799710e3da40c1b429ea1a2ce3896d18d08a5c5/f/syslinux-lib-root.patch",
             sha256: "sha256-x2EJppQsPPymSrjRwEy7mylW+2OKcGzKsKF3y7fzrB8=",
           })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bc, jq, coreutils, util_linux, wimlib, file, syslinux, gnugrep, busybox]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Script for securely creating a bootable USB device from one image file",
         homepage: "https://github.com/jsamr/bootiso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bootiso",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

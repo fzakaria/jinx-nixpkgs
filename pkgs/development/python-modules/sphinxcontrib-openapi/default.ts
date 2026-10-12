@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const sphinx_mdinclude = nix.arg($, "sphinx-mdinclude");
   const sphinxcontrib_httpdomain = nix.arg($, "sphinxcontrib-httpdomain");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinxcontrib-openapi",
       version: "0.8.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-34g4CKW15LQROtaXGFxDo/Qt89znBFOveLpwdpB+miA=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["sphinxcontrib"]),
       pythonImportsCheck: nix.thunk(() => ["sphinxcontrib.openapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ikalnytskyi/sphinxcontrib-openapi",
         description: "OpenAPI (fka Swagger) spec renderer for Sphinx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "asusd"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "asusd", "auraConfig"]), "This option has been replaced by `services.asusd.auraConfigs' because asusd\nsupports multiple aura devices since version 6.0.0.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "asusd", "enableUserService"]), "The asusd user service is no longer required.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         asusd: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           const configType = nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
               const text = nix.arg($_1, "text");
               const source = nix.arg($_1, "source");
               return {
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 options: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   text: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       default: null,
                       type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")))),
                       description: "Text of the file.",
                     })))),
                   source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       default: null,
                       type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                       description: "Path of the source file.",
@@ -72,41 +72,41 @@ export default nix.lambda((args) => (() => {
               };
             })(), formals$2)));
           return {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the asusd service for ASUS ROG laptops")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "asusctl", nix.thunk(() => ({})))),
             animeConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), configType)),
                 default: null,
                 description: "The content of /etc/asusd/anime.ron.\nSee <https://asus-linux.org/manual/asusctl-manual/#anime-control>.\n",
               })))),
             asusdConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), configType)),
                 default: null,
                 description: "The content of /etc/asusd/asusd.ron.\nSee <https://asus-linux.org/manual/asusctl-manual/>.\n",
               })))),
             auraConfigs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), configType)),
                 default: nix.thunk(() => ({})),
                 description: "The content of /etc/asusd/aura_<name>.ron.\nSee <https://asus-linux.org/manual/asusctl-manual/#led-keyboard-control>.\n",
               })))),
             profileConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), configType)),
                 default: null,
                 description: "The content of /etc/asusd/profile.ron.\nSee <https://asus-linux.org/manual/asusctl-manual/#profiles>.\n",
               })))),
             fanCurvesConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), configType)),
                 default: null,
                 description: "The content of /etc/asusd/fan_curves.ron.\nSee <https://asus-linux.org/manual/asusctl-manual/#fan-curves>.\n",
               })))),
             userLedModesConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), configType)),
                 default: null,
                 description: "The content of /etc/asusd/asusd-user-ledmodes.ron.\nSee <https://asus-linux.org/manual/asusctl-manual/#led-keyboard-control>.\n",
@@ -116,14 +116,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => (() => {
-            const maybeConfig = (name) => (cfg_1) => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(cfg_1, null)), nix.thunk(() => nix.update((nix.asBool(!nix.eq(nix.sel(cfg_1, "source"), null)) ? { __proto__: pos$14, source: nix.thunk(() => nix.sel(cfg_1, "source")) } : { __proto__: pos$15, text: nix.thunk(() => nix.sel(cfg_1, "text")) }), { __proto__: pos$16, mode: "0644" })));
+            const maybeConfig = (name) => (cfg_1) => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(cfg_1, null)), nix.thunk(() => nix.update((nix.asBool(!nix.eq(nix.sel(cfg_1, "source"), null)) ? { [nix.POS]: pos$14, source: nix.thunk(() => nix.sel(cfg_1, "source")) } : { [nix.POS]: pos$15, text: nix.thunk(() => nix.sel(cfg_1, "text")) }), { [nix.POS]: pos$16, mode: "0644" })));
             return nix.update({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "asusd/anime.ron": nix.thunk(() => nix.app(maybeConfig, "anime.ron", nix.thunk(() => nix.sel(cfg, "animeConfig")))),
               "asusd/asusd.ron": nix.thunk(() => nix.app(maybeConfig, "asusd.ron", nix.thunk(() => nix.sel(cfg, "asusdConfig")))),
               "asusd/profile.ron": nix.thunk(() => nix.app(maybeConfig, "profile.ron", nix.thunk(() => nix.sel(cfg, "profileConfig")))),
@@ -135,24 +135,24 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           dbus: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => nix.sel(pkgs, "asusctl", "meta", "maintainers")),
     })),
   };

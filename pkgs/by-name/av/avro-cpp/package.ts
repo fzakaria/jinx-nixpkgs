@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "avro-c++",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/avro/avro-${nix.sel(finalAttrs, "version")}/cpp/avro-cpp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8u33cSanWw7BrRZncr4Fg1HOo9dESL5+LO8gBQwPmKs=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/avrogencpp`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library which implements parts of the Avro Specification",
         mainProgram: "avrogencpp",
         homepage: "https://avro.apache.org/",

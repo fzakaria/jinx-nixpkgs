@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtsystems",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["bin"])))),
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => nix.concat(["CONFIG+=git_build"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["CONFIG+=ofono", "CONFIG+=udisks", "CONFIG+=upower"])))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapQtApp $bin/bin/servicefw\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];

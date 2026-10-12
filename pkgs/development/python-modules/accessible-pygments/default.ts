@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "accessible_pygments",
           version: version,
           hash: "sha256-QJGNPmorYZrUJMuR5Va9O9iGVEPZ8i8dzfeeM8gEaHI=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["a11y_pygments", "a11y_pygments.utils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of accessible pygments styles",
         homepage: "https://github.com/Quansight-Labs/accessible-pygments",
         changelog: nix.thunk(() => nix.str`https://github.com/Quansight-Labs/accessible-pygments/raw/v${version}/CHANGELOG.md`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

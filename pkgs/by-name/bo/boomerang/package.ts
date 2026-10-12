@@ -21,32 +21,32 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "boomerang",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BoomerangDecompiler",
           repo: "boomerang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-PQJvEXxXH7Ip949FfuHbccZP4WlFrl3/pMRn9MFtzHY=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, bison, flex, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qtbase")), capstone]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "include-missing-cstdint.patch",
             url: "https://github.com/BoomerangDecompiler/boomerang/commit/3342b0eac6b7617d9913226c06c1470820593e74.patch",
             hash: "sha256-941IydcV3mqj7AWvXTM6GePW5VgawEcL0wrBCXqeWvc=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/BoomerangDecompiler/boomerang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "General, open source, retargetable decompiler",

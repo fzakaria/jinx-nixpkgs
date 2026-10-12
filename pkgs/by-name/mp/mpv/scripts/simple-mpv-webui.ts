@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simple-mpv-ui";
       const version = "3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-dynaMIX",
           repo: "simple-mpv-webui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
           sparseCheckout: nix.thunk(() => ["main.lua", "webui-page"]),
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         scriptName: "webui",
       }));
       const postInstall = "rm -f $out/share/mpv/scripts/webui/setup.cfg\n";
       const scriptPath = ".";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web based user interface with controls for the mpv mediaplayer",
         homepage: "https://github.com/open-dynaMIX/simple-mpv-webui",
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

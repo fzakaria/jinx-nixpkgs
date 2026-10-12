@@ -27,29 +27,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "felix"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         felix: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Apache Felix OSGi service")),
           bundles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "felix_remoteshell"))]),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.felix_remoteshell ]")),
               description: "List of bundles that should be activated on startup",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "osgi",
               description: "User account under which Apache Felix runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "osgi",
               description: "Group account under which Apache Felix runs.",
@@ -58,20 +58,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           groups: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             osgi: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "osgi")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             osgi: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "osgi")),
               description: "OSGi user",
               home: "/homeless-shelter",
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             felix: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Felix server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.str`# Initialise felix instance on first startup

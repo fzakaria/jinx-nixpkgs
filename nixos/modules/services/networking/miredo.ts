@@ -31,35 +31,35 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "bindPort"), null)), nix.thunk(() => nix.str`BindPort ${nix.sel(cfg, "bindPort")}`))}
 `)));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         miredo: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Miredo IPv6 tunneling service")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "miredo", nix.thunk(() => ({})))),
           serverAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "teredo.remlab.net",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The hostname or primary IPv4 address of the Teredo server.\nThis setting is required if Miredo runs as a Teredo client.\n\"teredo.remlab.net\" is an experimental service for testing only.\nPlease use another server for production and/or large scale deployments.\n",
             })))),
           interfaceName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "teredo",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Name of the network tunneling interface.\n",
             })))),
           bindAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Depending on the local firewall/NAT rules, you might need to force\nMiredo to use a fixed UDP port and or IPv4 address.\n",
             })))),
           bindPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Depending on the local firewall/NAT rules, you might need to force\nMiredo to use a fixed UDP port and or IPv4 address.\n",
@@ -68,18 +68,18 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             miredo: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               description: "Teredo IPv6 Tunneling Daemon",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Restart: "always",
                 RestartSec: "5s",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/miredo -c ${miredoConf} -p ${pidFile} -f`),

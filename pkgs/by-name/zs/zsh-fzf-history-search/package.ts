@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zsh-fzf-history-search",
       version: "0-unstable-2025-11-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joshskidmore",
           repo: "zsh-fzf-history-search",
           rev: "35df458f7d9478fa88c74af762dcd296cdfd485d",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\n\ninstall -D zsh-fzf-history-search*.zsh  --target-directory=$out/share/zsh-fzf-history-search\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple zsh plugin that replaces Ctrl+R with an fzf-driven select which includes date/times",
         homepage: "https://github.com/joshskidmore/zsh-fzf-history-search",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

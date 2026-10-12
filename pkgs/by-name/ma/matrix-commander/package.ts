@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "matrix-commander";
       const version = "8.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "8go",
           repo: "matrix-commander",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(python3Packages, null);
         return [
           nix.thunk(() => nix.lookup(w, "setuptools")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "matrix-nio"), "override"), nix.thunk(() => ({ __proto__: pos$2, withVodozemac: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withVodozemac: true })))),
           nix.thunk(() => nix.lookup(w, "python-magic")),
           nix.thunk(() => nix.lookup(w, "markdown")),
           nix.thunk(() => nix.lookup(w, "pillow")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple but convenient CLI-based Matrix client app for sending and receiving",
         mainProgram: "matrix-commander",
         homepage: "https://github.com/8go/matrix-commander",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "seb314"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

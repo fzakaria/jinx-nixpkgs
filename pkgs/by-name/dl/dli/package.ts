@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dli",
       version: "0-unstable-2025-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haylinmoore",
           repo: "dli",
           rev: "176302f80cf771a7a15d9df58c3296a979f18e28",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-kgf/tt1Mr/3ja3or0zL/Mqnwy00XiGj7rdM/MnhjWZw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI based tool for managing DNS records",
         homepage: "https://github.com/haylinmoore/dli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sil-padauk";
       const version = "6.000";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/padauk/Padauk-${version}.zip`),
           hash: "sha256-zxhYMQ+Go00vETokHpPHIqrVLxuM0F8OKIXATtE3S2s=",
         }))));
@@ -30,7 +30,7 @@ mv *.txt documentation/ $out/share/doc/${pname}-${version}/
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode-based font family with broad support for writing systems that use the Myanmar script",
         homepage: "https://software.sil.org/padauk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -40,7 +40,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

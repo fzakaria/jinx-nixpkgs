@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ciftilib",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Washington-University",
           repo: "CiftiLib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, libxmlxx, zlib]),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_CTEST_ARGUMENTS=--exclude-regex;'big|datatype-md5'"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-UCIFTILIB_BOOST_NO_FSV3 -UCIFTILIB_BOOST_NO_CANONICAL",
       })),
       doCheck: true,
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"CMAKE_POLICY(VERSION 2.8.7)\" \"CMAKE_POLICY(VERSION 3.10)\" \\\n  --replace-fail \"CMAKE_POLICY(SET CMP0045 OLD)\" \"\" \\\n  --replace-fail \"FIND_PACKAGE(Boost REQUIRED COMPONENTS filesystem system)\" \\\n                 \"FIND_PACKAGE(Boost REQUIRED COMPONENTS filesystem)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Washington-University/CiftiLib",
         description: "Library for reading and writing CIFTI files",
         maintainers: nix.thunk(() => (() => {

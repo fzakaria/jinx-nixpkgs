@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-gateway-oss",
       version: "0.0.29",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_gateway_oss",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fsjqL3+DvHIBMm1sI2DHj9CSvBkxxYJNNotG1Nh3m+4=",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_gateway_oss"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aliyun Gateway OSS Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-gateway-oss/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

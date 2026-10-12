@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   const zed_open_capture = nix.arg($, "zed-open-capture");
   const hidapi = nix.arg($, "hidapi");
   const gitUpdater = nix.arg($, "gitUpdater");
-  const pcl$ = nix.thunk(() => nix.app(nix.sel(pcl, "override"), nix.thunk(() => ({ __proto__: pos$1, vtk: vtkWithQt6 }))));
+  const pcl$ = nix.thunk(() => nix.app(nix.sel(pcl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, vtk: vtkWithQt6 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rtabmap",
       version: "0.23.8",
       outputs: nix.thunk(() => ["out", "dev"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "introlab",
           repo: "rtabmap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,17 +89,17 @@ export default nix.lambda((args) => (() => {
         zed_open_capture,
         hidapi,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-c++20-extensions" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-c++20-extensions" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INCLUDE_PATH", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), pcl$)}/include/pcl-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(pcl$, "version")))}`))),
       ]),
       postInstall: "moveToOutput \"lib/*/*.cmake\" \"${!outputDev}\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Real-Time Appearance-Based 3D Mapping",
         homepage: "https://introlab.github.io/rtabmap/",
         changelog: nix.thunk(() => nix.str`https://github.com/introlab/rtabmap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

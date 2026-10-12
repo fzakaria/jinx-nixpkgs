@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const rapidjson = nix.arg($, "rapidjson");
   const bento4 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "xbmc",
       repo: "Bento4",
       tag: nix.thunk(() => nix.str`1.6.0-641-3-${rel}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "inputstream.adaptive";
       const version = "21.5.18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "xbmc",
           repo: "inputstream.adaptive",
           tag: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/xbmc/inputstream.adaptive",
         description: "Kodi inputstream addon for several manifest types",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         namespace,
         version,

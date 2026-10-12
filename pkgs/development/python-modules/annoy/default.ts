@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spotify",
           repo: "annoy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/accuracy_test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["annoy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk",
         homepage: "https://github.com/spotify/annoy",
         changelog: nix.thunk(() => nix.str`https://github.com/spotify/annoy/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

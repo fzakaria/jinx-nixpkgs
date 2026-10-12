@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wasabibackend";
       const version = "2.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WalletWasabi",
           repo: "WalletWasabi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       const executables = nix.thunk(() => ["WalletWasabi.Backend"]);
       const postFixup = "mv $out/bin/WalletWasabi.Backend $out/bin/WasabiBackend\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           wasabibackend: nix.thunk(() => nix.attr(nixosTests, "wasabibackend")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/WalletWasabi/WalletWasabi/releases/tag/${nix.sel(src, "tag")}`),
         description: "Backend for the Wasabi Wallet",
         homepage: "https://wasabiwallet.io/",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

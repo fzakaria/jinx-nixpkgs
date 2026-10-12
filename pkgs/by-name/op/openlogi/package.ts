@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   const gpuiComponentThemes = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "longbridge",
       repo: "gpui-component",
       rev: "031555662e99a1b5a549990b47f246d475b8288a",
       hash: "sha256-yOXdgxQgfvGN2/+OdDnl1pYti0DoGFvS3Tyqvj3Bkng=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "openlogi",
       version: "0.6.25",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AprilNEA",
           repo: "OpenLogi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ substituteInPlace .cargo/config.toml \\
       cargoTestFlags: nix.thunk(() => ["--workspace"]),
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["gpui_platform/runtime_shaders"]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         OPENLOGI_THEMES_DIR: nix.thunk(() => nix.str`${gpuiComponentThemes}/themes`),
       })),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`runHook preInstall
@@ -127,11 +127,11 @@ install -Dm644 crates/openlogi-gui/icon/AppIcon.icns \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Local-first companion for Logitech HID++ peripherals",
         homepage: "https://github.com/AprilNEA/OpenLogi",
         changelog: nix.thunk(() => nix.str`https://github.com/AprilNEA/OpenLogi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

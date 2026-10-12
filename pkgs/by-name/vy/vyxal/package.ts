@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const lockedMill = nix.thunk(() => nix.app(nix.sel(mill, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "0.11.12";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/com-lihaoyi/mill/releases/download/${version}/${version}-assembly`),
           hash: "sha256-k4/oMHvtq5YXY8hRlX4gWN16ClfjXEAn6mRIoEBHNJo=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vyxal",
       version: "3.4.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Vyxal",
           repo: "Vyxal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8hA4u9zz8jm+tlSZ88z69/PUFNYk7+i3jtgUntgDgPE=",
         })))),
       deps: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`vyxal-${nix.sel(finalAttrs, "version")}-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [lockedMill]),
@@ -61,7 +61,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm755 out/native/nativeLink.dest/out $out/bin/vyxal\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Vyxal/Vyxal/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Code-golfing language that has aspects of traditional programming languages",
         homepage: "https://github.com/Vyxal/Vyxal",

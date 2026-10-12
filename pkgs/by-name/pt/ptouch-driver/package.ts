@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const patchPpdFilesHook = nix.arg($, "patchPpdFilesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ptouch-driver",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "philpem",
           repo: "printer-driver-ptouch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/ptouch-driver" -typ
 `),
       ppdFileCommands: nix.thunk(() => ["rastertoptch", "gs", "foomatic-rip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/philpem/printer-driver-ptouch/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Printer Driver for Brother P-touch and QL Label Printers",
         downloadPage: "https://github.com/philpem/printer-driver-ptouch",

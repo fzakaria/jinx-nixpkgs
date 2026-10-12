@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const which = nix.arg($, "which");
   const p = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     arch: "x86_64",
     gcclib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
     sha256: "sha256-HH/pLZmDr6m/B3e6MHafDGnNWR83oR2y1ijVMR/LOF0=",
     webarchive: "20220519080155",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     arch: "i386",
     gcclib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
     sha256: "sha256-28dmdnJf+qh9r3F0quwlYXB/UqcOzcHzuzFq8vt2bf0=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yandex-disk";
       const version = "0.1.6.1080";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://repo.yandex.ru/yandex-disk/rpm/stable/${nix.sel(p, "arch")}/${pname}-${version}-1.fedora.${nix.sel(p, "arch")}.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/${nix.sel(p, "webarchive")}/https://repo.yandex.ru/yandex-disk/rpm/stable/${nix.sel(p, "arch")}/${pname}-${version}-1.fedora.${nix.sel(p, "arch")}.rpm`),
@@ -66,7 +66,7 @@ ${patchelf}/bin/patchelf \\
   $out/bin/yandex-disk
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://help.yandex.com/disk/cli-clients.xml",
         description: "Free cloud file storage service",
         maintainers: [],
@@ -79,7 +79,7 @@ ${patchelf}/bin/patchelf \\
         longDescription: "Yandex.Disk console client for Linux lets you manage files on Disk without\nusing a window interface or programs that support WebDAV. The advantages\nof the console client compared to a WebDAV connection:\n * low system resource requirements;\n * faster file reading and writing speeds;\n * faster syncing with Disk's server;\n * no need to be constantly connected to work with files.\n",
         mainProgram: "yandex-disk",
       }));
-      return { __proto__: pos$5, pname, version, src, buildInputs, builder, meta };
+      return { [nix.POS]: pos$5, pname, version, src, buildInputs, builder, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

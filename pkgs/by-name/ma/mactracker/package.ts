@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mactracker",
       version: "8.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mactracker.ca/downloads/Mactracker_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-c78Bj63nJ+/qejUiD7hBEJlxubmIc+wElazwHGRRyfI=",
         })))),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "Mactracker.app",
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\nunzip -d $out/Applications $src -x '__MACOSX/*'\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "mactracker-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, libxml2, xmlstarlet, common_updater_scripts]),
               text: "url=\"https://mactracker.ca/releasenotes-mac.html\"\nversion=$(curl -s \"$url\" | xmllint -html -xmlout - | xmlstarlet sel -t -v \"//faq/h5[1]\")\nupdate-source-version mactracker \"$version\"\n",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Provides detailed information on every Apple Macintosh, iPod, iPhone, iPad, and Apple Watch ever made",
         homepage: "https://mactracker.ca",
         changelog: "https://mactracker.ca/releasenotes-mac.html",

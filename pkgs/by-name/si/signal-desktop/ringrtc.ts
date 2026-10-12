@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cubeb = nix.arg($, "cubeb");
   const cubeb$ = nix.thunk(() => nix.app(nix.sel(cubeb, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       alsaSupport: false,
       pulseSupport: true,
       jackSupport: false,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       enableShared: false,
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ringrtc",
       version: "2.72.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "signalapp",
           repo: "ringrtc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ grep 'webrtc.version=${nix.sel(webrtc, "version")}' config/version.properties
 `),
       cargoBuildFlags: nix.thunk(() => ["-p", "ringrtc", "--features", "electron"]),
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$3, LIBCUBEB_SYS_USE_PKG_CONFIG: 1n, LIBCUBEB_STATIC: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBCUBEB_SYS_USE_PKG_CONFIG: 1n, LIBCUBEB_STATIC: 1n })),
       nativeBuildInputs: nix.thunk(() => [protobuf, cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([webrtc, cubeb$], nix.sel(cubeb$, "buildInputs"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/signalapp/ringrtc",
         description: "RingRTC library used by Signal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

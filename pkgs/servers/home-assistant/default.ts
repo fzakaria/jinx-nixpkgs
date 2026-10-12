@@ -60,60 +60,60 @@ export default nix.lambda((args) => (() => {
   const skipPip = nix.argOr($, "skipPip", () => true);
   const defaultOverrides = nix.thunk(() => [
     (self) => (super$) => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       aionotion: nix.thunk(() => nix.app(nix.sel(super$, "aionotion", "overridePythonAttrs"), nix.thunk(() => (() => {
           const version = "2024.03.0";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "bachya",
               repo: "aionotion",
               tag: version,
               hash: "sha256-BsbfLb5wCVxR8v2U2Zzt7LMl7XJcZWfVjZN47VDkhFc=",
             }))));
           const postPatch = null;
-          return { __proto__: pos$2, version, src, postPatch };
+          return { [nix.POS]: pos$2, version, src, postPatch };
         })()))),
       aioskybell: nix.thunk(() => nix.app(nix.sel(super$, "aioskybell", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "22.7.0";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "tkdrob",
               repo: "aioskybell",
               tag: version,
               hash: "sha256-aBT1fDFtq1vasTvCnAXKV2vmZ6LBLZqRCiepv1HDJ+Q=",
             }))));
-          return { __proto__: pos$4, version, src };
+          return { [nix.POS]: pos$4, version, src };
         })())),
       aiowatttime: nix.thunk(() => nix.app(nix.sel(super$, "aiowatttime", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.1.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "bachya",
               repo: "aiowatttime",
               tag: version,
               hash: "sha256-tWnxGLJT+CRFvkhxFamHxnLXBvoR8tfOvzH1o1i5JJg=",
             }))));
           const postPatch = "substituteInPlace pyproject.toml --replace-fail \\\n  '\"setuptools >= 35.0.2\", \"wheel >= 0.29.0\", \"poetry>=0.12\"' \\\n  '\"poetry-core\"'\n";
-          return { __proto__: pos$6, version, src, postPatch };
+          return { [nix.POS]: pos$6, version, src, postPatch };
         })())),
       astral: nix.thunk(() => nix.app(nix.sel(super$, "astral", "overridePythonAttrs"), (oldAttrs) => (() => {
           const pname = "astral";
           const version = "2.2";
           const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               pname: pname,
               version: version,
               hash: "sha256-5B2ZZ9XEi+QhNGVS8PTe2tQ/85qDV09f8q0ytmJ7b74=",
             }))));
           const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \"poetry>=1.0.0b1\" \"poetry-core\" \\\n  --replace-fail \"poetry.masonry\" \"poetry.core.masonry\"\n";
           const propagatedBuildInputs = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "propagatedBuildInputs"), [nix.thunk(() => nix.sel(self, "pytz"))]));
-          return { __proto__: pos$8, pname, version, src, postPatch, propagatedBuildInputs };
+          return { [nix.POS]: pos$8, pname, version, src, postPatch, propagatedBuildInputs };
         })())),
       caldav: nix.thunk(() => nix.sel(self, "caldav_2")),
       gspread: nix.thunk(() => nix.app(nix.sel(super$, "gspread", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "5.12.4";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               owner: "burnash",
               repo: "gspread",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -123,25 +123,25 @@ export default nix.lambda((args) => (() => {
             const w = nix.withScope(self, null);
             return [nix.thunk(() => nix.lookup(w, "requests"))];
           })());
-          return { __proto__: pos$10, version, src, dependencies };
+          return { [nix.POS]: pos$10, version, src, dependencies };
         })())),
       livisi: nix.thunk(() => nix.app(nix.sel(super$, "livisi", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.0.25";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               owner: "planbnet",
               repo: "livisi",
               tag: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-kEkbuZmYzxhrbTdo7eZJYu2N2uJtfspgqepplXvSXFg=",
             }))));
-          return { __proto__: pos$12, version, src };
+          return { [nix.POS]: pos$12, version, src };
         })())),
       "notifications-android-tv": nix.thunk(() => nix.app(nix.sel(super$, "notifications-android-tv", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.1.5";
           const format = "setuptools";
           const pyproject = null;
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               owner: "engrbm87",
               repo: "notifications_android_tv",
               tag: version,
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
           })());
           const doCheck = false;
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             version,
             format,
             pyproject,
@@ -170,29 +170,29 @@ export default nix.lambda((args) => (() => {
       plexapi: nix.thunk(() => nix.app(nix.sel(super$, "plexapi", "overrideAttrs"), (oldAttrs) => (() => {
           const version = "4.15.16";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               owner: "pkkid",
               repo: "python-plexapi",
               tag: version,
               hash: "sha256-NwGGNN6LC3gvE8zoVL5meNWMbqZjJ+6PcU2ebJTfJmU=",
             }))));
           const nativeBuildInputs = nix.thunk(() => nix.concat(nix.sel(oldAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(self, "setuptools_80"))]));
-          return { __proto__: pos$16, version, src, nativeBuildInputs };
+          return { [nix.POS]: pos$16, version, src, nativeBuildInputs };
         })())),
       poolsense: nix.thunk(() => nix.app(nix.sel(super$, "poolsense", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.0.8";
           const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               pname: "poolsense",
               version: version,
               hash: "sha256-17MHrYRmqkH+1QLtgq2d6zaRtqvb9ju9dvPt9gB2xCc=",
             }))));
-          return { __proto__: pos$18, version, src };
+          return { [nix.POS]: pos$18, version, src };
         })())),
       "py-madvr2": nix.thunk(() => nix.app(nix.sel(super$, "py-madvr2", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "1.6.40";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               owner: "iloveicedgreentea",
               repo: "py-madvr",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -200,24 +200,24 @@ export default nix.lambda((args) => (() => {
             }))));
           const pythonImportsCheck = nix.thunk(() => ["madvr"]);
           const disabledTests = nix.thunk(() => nix.concat(nix.sel(oldAttrs, "disabledTests"), ["test_async_add_tasks", "test_send_heartbeat"]));
-          return { __proto__: pos$20, version, src, pythonImportsCheck, disabledTests };
+          return { [nix.POS]: pos$20, version, src, pythonImportsCheck, disabledTests };
         })())),
       pyflume: nix.thunk(() => nix.app(nix.sel(super$, "pyflume", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.6.5";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               owner: "ChrisMandich",
               repo: "PyFlume",
               tag: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-kIE3y/qlsO9Y1MjEQcX0pfaBeIzCCHk4f1Xa215BBHo=",
             }))));
           const dependencies = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "propagatedBuildInputs"), [nix.thunk(() => nix.sel(self, "pytz"))]));
-          return { __proto__: pos$22, version, src, dependencies };
+          return { [nix.POS]: pos$22, version, src, dependencies };
         })())),
       pysnooz: nix.thunk(() => nix.app(nix.sel(super$, "pysnooz", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.8.6";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               owner: "AustinBrunkhorst",
               repo: "pysnooz",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -225,12 +225,12 @@ export default nix.lambda((args) => (() => {
             }))));
           const patches = [];
           const doCheck = false;
-          return { __proto__: pos$24, version, src, patches, doCheck };
+          return { [nix.POS]: pos$24, version, src, patches, doCheck };
         })())),
       pytradfri: nix.thunk(() => nix.app(nix.sel(super$, "pytradfri", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "9.0.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               owner: "home-assistant-libs",
               repo: "pytradfri",
               tag: version,
@@ -238,10 +238,10 @@ export default nix.lambda((args) => (() => {
             }))));
           const patches = [];
           const doCheck = false;
-          return { __proto__: pos$26, version, src, patches, doCheck };
+          return { [nix.POS]: pos$26, version, src, patches, doCheck };
         })())),
       serialx: nix.thunk(() => nix.app(nix.sel(super$, "serialx", "overridePythonAttrs"), (oldAttrs) => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           dependencies: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "dependencies"), nix.sel(oldAttrs, "optional-dependencies", "esphome"))),
           disabledTests: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "disabledTests"), ["test_connect_timeout_raises_timeout_error"])),
         }))),
@@ -271,14 +271,14 @@ export default nix.lambda((args) => (() => {
       const disabled = nix.thunk(() => nix.app(nix.sel(python3Packages, "pythonOlder"), "3.14"));
       const dontStrip = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           owner: "home-assistant",
           repo: "core",
           tag: version,
           hash: "sha256-DoJ0Y0v6Q+ZoXGcLWHxiPw0ZVAELCTGp/9k3FlgZbm8=",
         }))));
       const sdist = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           pname: pname,
           version: version,
           hash: "sha256-MKb9e2NJnJlZvpVnxLffuMFzFGbeZ6sm5VmKutGrv/c=",
@@ -296,7 +296,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/nixos-was-never-supported.patch"),
         nix.path(here, "./patches/portainer-fixture-autouse.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/ffmpeg-path.patch"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             ffmpeg: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), ffmpeg_headless)}`),
           })))),
       ]);
@@ -422,7 +422,7 @@ mkdir "$NIX_BUILD_TOP"/media
 export PATH=${inetutils}/bin:$PATH
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         availableComponents: availableComponents,
         extraComponents: extraComponents,
         getPackages: getPackages,
@@ -432,18 +432,18 @@ export PATH=${inetutils}/bin:$PATH
         frontend: nix.thunk(() => nix.sel(python3Packages, "home-assistant-frontend")),
         intents: nix.thunk(() => nix.sel(python3Packages, "home-assistant-intents")),
         tests: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           nixos: nix.thunk(() => nix.sel(nixosTests, "home-assistant")),
           components: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
           withoutCheckDeps: nix.thunk(() => nix.app(nix.sel(home_assistant, "overridePythonAttrs"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               pname: "home-assistant-without-check-deps",
               doCheck: false,
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         homepage: "https://home-assistant.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant/core/releases/tag/${nix.sel(src, "tag")}`),
         description: "Open source home automation that puts local control and privacy first",
@@ -453,7 +453,7 @@ export PATH=${inetutils}/bin:$PATH
         mainProgram: "hass",
       }));
       return {
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         pname,
         version,
         pyproject,

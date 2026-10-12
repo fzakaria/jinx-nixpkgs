@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const kleeuClibc = nix.argOr($, "kleeuClibc", () => null);
   const extraKleeuClibcConfig = nix.argOr($, "extraKleeuClibcConfig", () => ({}));
   const chosenKleeuClibc = nix.thunk(() => (nix.asBool(nix.eq(kleeuClibc, null)) ? nix.app(callPackage, nix.path(here, "./klee-uclibc.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       llvmPackages: llvmPackages,
       extraKleeuClibcConfig: extraKleeuClibcConfig,
       debugRuntime: debugRuntime,
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const llvmPackages = llvmPackages_19;
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "klee",
       version: "3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "klee",
           repo: "klee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "missing-cstdint-include.patch",
             url: "https://github.com/klee/klee/commit/efa1e0529499f954885489d30210dfc7a3697258.patch",
             hash: "sha256-mhnyTG36iyVrCFxvP+2PWcacmRjZvGczMTto8xSrfhw=",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [
         gtest,
         kleePython,
-        nix.thunk(() => nix.app(nix.sel(lit, "override"), nix.thunk(() => ({ __proto__: pos$4, python: kleePython })))),
+        nix.thunk(() => nix.app(nix.sel(lit, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, python: kleePython })))),
       ]),
       cmakeBuildType: nix.thunk(() => (nix.asBool(debug) ? "Debug" : (nix.asBool((nix.asBool(!nix.asBool(debug)) && nix.asBool(includeDebugInfo))) ? "RelWithDebInfo" : "MinSizeRel"))),
       cmakeFlags: nix.thunk(() => (() => {
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-macro-redefined"]))),
         FILECHECK_OPTS: "--dump-input-filter=all",
         LIT_XFAIL: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => [
@@ -216,16 +216,16 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d\\.\\d)"]),
           })))),
         uclibc: chosenKleeuClibc,
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mainProgram: "klee",
         description: "Symbolic virtual machine built on top of LLVM",
         longDescription: "KLEE is a symbolic virtual machine built on top of the LLVM compiler\ninfrastructure. Currently, there are two primary components:\n\n1. The core symbolic virtual machine engine; this is responsible for\n   executing LLVM bitcode modules with support for symbolic values. This\n   is comprised of the code in lib/.\n\n2. A POSIX/Linux emulation layer oriented towards supporting uClibc, with\n   additional support for making parts of the operating system environment\n   symbolic.\n\nAdditionally, there is a simple library for replaying computed inputs on\nnative code (for closed programs). There is also a more complicated\ninfrastructure for replaying the inputs generated for the POSIX/Linux\nemulation layer, which handles running native programs in an environment\nthat matches a computed test input, including setting up files, pipes,\nenvironment variables, and passing command line arguments.\n",

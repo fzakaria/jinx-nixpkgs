@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "6d4fe287766166a98ca7bc6f6312daf04a0481b1eda43e7173484051c0ab4366",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Robpol86/colorclass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Automatic support for console colors",
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

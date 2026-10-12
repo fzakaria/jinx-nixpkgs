@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const mavenGroupIdUrl = "https://packages.atlassian.com/maven/public/com/atlassian/amps";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "atlassian-plugin-sdk",
       version: "9.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${mavenGroupIdUrl}/atlassian-plugin-sdk/${nix.sel(finalAttrs, "version")}/atlassian-plugin-sdk-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6svtGwk9d+/ipPHy/1kCQ5kyt1v9uaTwjYv6/ncCStc=",
         })))),
@@ -50,11 +50,11 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: atlassian_plugin_sdk,
               command: "atlas-version",
               version: nix.thunk(() => nix.str`atlassian-plugin-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ update-source-version "atlassian-plugin-sdk" "$NEW_VERSION" "$NIX_HASH" "$DOWNLO
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Atlassian Plugin SDK",
         homepage: "https://developer.atlassian.com/server/framework/atlassian-sdk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

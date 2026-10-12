@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "generics";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flupe",
           repo: "generics",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [standard_library]);
       const preBuild = "rm tests.agda-lib\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for datatype-generic programming in Agda",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "turion"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, preBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, preBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

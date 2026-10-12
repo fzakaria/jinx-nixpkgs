@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const awscli = nix.arg($, "awscli");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "awscli",
       version: "1.44.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,12 +61,12 @@ runHook postInstallCheck
 `),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         python: nix.thunk(() => nix.sel(python3Packages, "python")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://aws.amazon.com/cli/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-cli/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),
         description: "Unified tool to manage your AWS services",

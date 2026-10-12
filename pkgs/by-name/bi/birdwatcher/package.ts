@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "birdwatcher",
       version: "2.2.5",
       vendorHash: "sha256-NTD2pnA/GeTn4tXtIFJ227qjRtvBFCjWYZv59Rumc74=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alice-lg",
           repo: "birdwatcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
         })))),
       deleteVendor: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           birdwatcher: nix.thunk(() => nix.attr(nixosTests, "birdwatcher")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/alice-lg/birdwatcher",
         description: "Small HTTP server meant to provide an API defined by Barry O'Donovan's birds-eye to the BIRD internet routing daemon",
         changelog: "https://github.com/alice-lg/birdwatcher/blob/master/CHANGELOG",

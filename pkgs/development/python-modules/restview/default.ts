@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-i011oL7Xa2e0Vu9wEfTrbJilVsn4N2Qt8iAscxL8zBo=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["restview"]);
       const disabledTests = nix.thunk(() => ["rest_to_html"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ReStructuredText viewer",
         homepage: "https://mg.pov.lt/restview/",
         changelog: nix.thunk(() => nix.str`https://github.com/mgedmin/restview/blob/${version}/CHANGES.rst`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "restview",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

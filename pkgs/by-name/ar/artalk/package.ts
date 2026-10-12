@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "artalk",
       version: "2.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArtalkJS",
           repo: "artalk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s"]),
       preConfigure: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "passthru", "frontend")}/* ./public
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       __darwinAllowLocalNetworking: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd artalk \\\n  --bash <($out/bin/artalk completion bash) \\\n  --fish <($out/bin/artalk completion fish) \\\n  --zsh <($out/bin/artalk completion zsh)\n")),
@@ -48,16 +48,16 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["XDG_DATA_HOME"]),
       preVersionCheck: "XDG_DATA_HOME=$TMPDIR",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$3, artalk: nix.thunk(() => nix.attr(nixosTests, "artalk")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, artalk: nix.thunk(() => nix.attr(nixosTests, "artalk")) })),
         frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             artalk: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage=frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage=frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Self-hosted comment system",
         homepage: "https://github.com/ArtalkJS/Artalk",
         changelog: nix.thunk(() => nix.str`https://github.com/ArtalkJS/Artalk/releases/tag/v${nix.sel(finalAttrs, "version")}`),

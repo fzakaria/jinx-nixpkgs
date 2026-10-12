@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myrddin",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "mc",
           owner: "oridb",
           rev: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ done
       checkPhase: "make check\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Systems language that is both powerful and fun to use",
         homepage: "https://myrlang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -41,51 +41,51 @@ const pos$33 = nix.positions(here + "/dns.nix", [["singlenode", 196, 3], ["multi
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system })))), null);
   const domain = "my.zyx";
   const redisPod = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "redis-pod.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         kind: "Pod",
         apiVersion: "v1",
         metadata: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "redis",
-          labels: nix.thunk(() => ({ __proto__: pos$3, name: "redis" })),
+          labels: nix.thunk(() => ({ [nix.POS]: pos$3, name: "redis" })),
         })),
         spec: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           containers: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "redis",
               image: "redis",
               args: nix.thunk(() => ["--bind", "0.0.0.0"]),
               imagePullPolicy: "Never",
               ports: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$5, name: "redis-server", containerPort: 6379n })),
+                nix.thunk(() => ({ [nix.POS]: pos$5, name: "redis-server", containerPort: 6379n })),
               ]),
             })),
           ]),
         })),
       }))))));
   const redisService = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "redis-service.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         kind: "Service",
         apiVersion: "v1",
-        metadata: nix.thunk(() => ({ __proto__: pos$9, name: "redis" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: pos$9, name: "redis" })),
         spec: nix.thunk(() => ({
-          __proto__: pos$12,
-          ports: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$10, port: 6379n, targetPort: 6379n }))]),
-          selector: nix.thunk(() => ({ __proto__: pos$11, name: "redis" })),
+          [nix.POS]: pos$12,
+          ports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, port: 6379n, targetPort: 6379n }))]),
+          selector: nix.thunk(() => ({ [nix.POS]: pos$11, name: "redis" })),
         })),
       }))))));
   const redisImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "redis",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [
@@ -93,22 +93,22 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(pkgs, "bind", "host")),
           ]),
         })))),
-      config: nix.thunk(() => ({ __proto__: pos$15, Entrypoint: nix.thunk(() => ["/bin/redis-server"]) })),
+      config: nix.thunk(() => ({ [nix.POS]: pos$15, Entrypoint: nix.thunk(() => ["/bin/redis-server"]) })),
     }))));
   const probePod = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "probe-pod.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         kind: "Pod",
         apiVersion: "v1",
         metadata: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "probe",
-          labels: nix.thunk(() => ({ __proto__: pos$17, name: "probe" })),
+          labels: nix.thunk(() => ({ [nix.POS]: pos$17, name: "probe" })),
         })),
         spec: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           containers: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: "probe",
               image: "probe",
               args: nix.thunk(() => ["-f"]),
@@ -119,11 +119,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))))));
   const probeImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       name: "probe",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(pkgs, "busybox")),
           ]),
         })))),
-      config: nix.thunk(() => ({ __proto__: pos$23, Entrypoint: nix.thunk(() => ["/bin/tail"]) })),
+      config: nix.thunk(() => ({ [nix.POS]: pos$23, Entrypoint: nix.thunk(() => ["/bin/tail"]) })),
     }))));
   const extraConfiguration = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -139,18 +139,18 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib = nix.arg($_1, "lib");
     return {
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       environment: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "bind", "host"))]),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         dnsmasq: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             server: nix.thunk(() => [
               nix.thunk(() => nix.str`/cluster.local/${nix.sel(config, "services", "kubernetes", "addons", "dns", "clusterIp")}#53`),
             ]),
@@ -160,13 +160,13 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   const base = nix.thunk(() => ({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     name: "dns",
     domain: domain,
     extraConfiguration: extraConfiguration,
   }));
   const singleNodeTest = nix.thunk(() => ({
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     test: nix.thunk(() => nix.str`# prepare machine1 for test
 machine1.wait_until_succeeds("kubectl get node machine1.${domain} | grep -w Ready")
 machine1.wait_until_succeeds(
@@ -198,7 +198,7 @@ machine1.succeed("kubectl exec probe -- /bin/host redis.default.svc.cluster.loca
 `),
   }));
   const multiNodeTest = nix.thunk(() => ({
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     test: nix.thunk(() => nix.str`# Node token exchange
 machine1.wait_until_succeeds(
     "cp -f /var/lib/cfssl/apitoken.secret /tmp/shared/apitoken.secret"
@@ -239,7 +239,7 @@ machine1.succeed("kubectl exec probe -- /bin/host redis.default.svc.cluster.loca
 `),
   }));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     singlenode: nix.thunk(() => nix.app(nix.lookup(w, "mkKubernetesSingleNodeTest"), nix.thunk(() => nix.update(base, singleNodeTest)))),
     multinode: nix.thunk(() => nix.app(nix.lookup(w, "mkKubernetesMultiNodeTest"), nix.thunk(() => nix.update(base, multiNodeTest)))),
   };

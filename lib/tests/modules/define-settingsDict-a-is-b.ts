@@ -10,8 +10,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$2,
-    settingsDict: nix.thunk(() => ({ __proto__: pos$1, a: nix.thunk(() => nix.sel(config, "settingsDict", "b")) })),
+    [nix.POS]: pos$2,
+    settingsDict: nix.thunk(() => ({ [nix.POS]: pos$1, a: nix.thunk(() => nix.sel(config, "settingsDict", "b")) })),
   };
 })(), formals$1);
 //# sourceMappingURL=define-settingsDict-a-is-b.ts.map

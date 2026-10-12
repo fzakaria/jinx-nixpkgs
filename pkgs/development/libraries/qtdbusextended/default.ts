@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtdbusextended";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nemomobile",
           repo: "qtdbusextended",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace src/src.pro \\\n  --replace '$$[QT_INSTALL_LIBS]' \"$out/lib\" \\\n  --replace '$$[QT_INSTALL_HEADERS]' \"$out/include\" \\\n  --replace '$$[QMAKE_MKSPECS]' \"$out/mkspecs\"\n";
       const nativeBuildInputs = nix.thunk(() => [qmake, wrapQtAppsHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt provides several classes for DBus communication",
         homepage: "https://github.com/nemomobile/qtdbusextended",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "wineee"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, postPatch, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, postPatch, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

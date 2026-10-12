@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webrecorder",
           repo: "py-wacz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clean-up-deps.patch",
             url: "https://github.com/webrecorder/py-wacz/compare/1e8f724a527f28855eedeb0d969ee39b00b2a80a...9d3ad60f125247b8a4354511d9123b85ce6a23c5.patch",
             hash: "sha256-zH6BKhsq9ybjzaWcNbVkk1sWh8vVCkv7Qxuwl0MQhNM=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_verify_signed"]);
       const pythonImportsCheck = nix.thunk(() => ["wacz"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for working with web archive data using the WACZ format specification",
         homepage: "https://github.com/webrecorder/py-wacz",
         changelog: nix.thunk(() => nix.str`https://github.com/webrecorder/py-wacz/blob/${nix.sel(src, "rev")}/CHANGES.md`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wacz",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

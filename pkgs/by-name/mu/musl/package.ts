@@ -28,42 +28,42 @@ export default nix.lambda((args) => (() => {
   const stdenv$ = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.force(stdenvNoLibc) : nix.force(stdenv)));
   const stdenv_1 = stdenv$;
   const cdefs_h = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "sys-cdefs.h",
       url: "https://git.alpinelinux.org/aports/plain/main/libc-dev/sys-cdefs.h?id=7ca0ed62d4c0d713d9c7dd5b9a077fba78bce578",
       sha256: "16l3dqnfq0f20rzbkhc38v74nqcsh9n3f343bpczqq8b1rz6vfrh",
     }))));
   const queue_h = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "sys-queue.h",
       url: "http://git.alpinelinux.org/aports/plain/main/libc-dev/sys-queue.h?id=7ca0ed62d4c0d713d9c7dd5b9a077fba78bce578",
       sha256: "12qm82id7zys92a1qh2l1qf2wqgq6jr4qlbjmqyfffz3s3nhfd61",
     }))));
   const tree_h = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "sys-tree.h",
       url: "http://git.alpinelinux.org/aports/plain/main/libc-dev/sys-tree.h?id=7ca0ed62d4c0d713d9c7dd5b9a077fba78bce578",
       sha256: "14igk6k00bnpfw660qhswagyhvr0gfqg4q55dxvaaq7ikfkrir71",
     }))));
   const stack_chk_fail_local_c = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "__stack_chk_fail_local.c",
       url: "https://git.alpinelinux.org/aports/plain/main/musl/__stack_chk_fail_local.c?id=9afbe3cbbf4c30ff23c733218c3c03d7e8c6461d",
       sha256: "1nhkzzy9pklgjcq2yg89d3l18jif331srd3z3vhy5qwxl1spv6i9",
     }))));
   const iconv_c = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "iconv.c",
       url: "https://git.alpinelinux.org/aports/plain/main/musl/iconv.c?id=a3d97e95f766c9c378194ee49361b375f093b26f",
       sha256: "1mzxnc2ncq8lw9x6n7p00fvfklc9p3wfv28m68j0dfz5l8q2k6pp",
     }))));
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isx86_32")) ? "i386" : (nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isAarch64")) ? "aarch64" : null))));
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "musl",
       version: "1.2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://musl.libc.org/releases/musl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1YX9O2E8ZhUfwySejtRPdwIMtebB5jWmFtP5+CRgUSo=",
         })))),
@@ -72,25 +72,25 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace configure \\\n  --replace -fno-unwind-tables \"\" \\\n  --replace -fno-asynchronous-unwind-tables \"\"\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://raw.githubusercontent.com/openwrt/openwrt/87606e25afac6776d1bbc67ed284434ec5a832b4/toolchain/musl/patches/300-relative.patch",
             sha256: "0hfadrycb60sm6hb6by4ycgaqc9sgrhh42k39v8xpmcvdzxrsq2n",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "CVE-2026-6042",
             url: "https://www.openwall.com/lists/musl/2026/04/03/2/1",
             hash: "sha256-RE+nDlLKFY+31LrVYGN3kLv49y6AuC//hA3Wb6gwkeM=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "CVE-2026-40200.patch",
             url: "https://www.openwall.com/lists/musl/2026/04/10/3/1",
             hash: "sha256-HuKfZPnKjorXw0l3nWYf9rUhJqJ1ddNYaYE1elLEBvs=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-fstack-protector-strong"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv_1, "hostPlatform", "isPower")), nix.thunk(() => ["-mlong-double-64"])))))),
         NIX_DONT_SET_RPATH: true,
       })),
@@ -140,11 +140,11 @@ ln -rs $out/lib/libc.so $out/lib/libc.musl-${arch}.so.1
 install -D ${cdefs_h} $dev/include/sys/cdefs.h
 install -D ${tree_h} $dev/include/sys/tree.h
 `)))),
-      passthru: nix.thunk(() => ({ __proto__: pos$11, linuxHeaders: linuxHeaders, threadModel: "posix" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$11, linuxHeaders: linuxHeaders, threadModel: "posix" })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Efficient, small, quality libc implementation",
         homepage: "https://musl.libc.org/",
         changelog: nix.thunk(() => nix.str`https://git.musl-libc.org/cgit/musl/tree/WHATSNEW?h=v${nix.sel(finalAttrs, "version")}`),

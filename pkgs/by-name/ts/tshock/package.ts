@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tshock";
       const version = "6.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pryaxis",
           repo: "TShock",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       const nugetSource = "https://api.nuget.org/v3/index.json";
       const nugetDeps = nix.path(here, "./deps.json");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Pryaxis/TShock",
         description: "Modded server software for Terraria, providing a plugin system and inbuilt tools such as anti-cheat, server-side characters, groups, permissions, and item bans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "TShock.Server",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

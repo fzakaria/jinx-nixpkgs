@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const buildArch = nix.argOr($, "buildArch", () => "x86-64");
   const rev = "27771d884d3607cf6331da16b15e27aba819573d";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "translatelocally",
       version: "0-unstable-2024-05-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XapaJIaMnu",
           repo: "translateLocally",
           rev: rev,
@@ -71,11 +71,11 @@ substituteInPlace 3rd_party/bergamot-translator/3rd_party/marian-dev/src/3rd_par
         nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => nix.str`-DBUILD_ARCH=${buildArch}`))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "cli-translate": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-cli-translate`), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [
                 translatelocally,
                 nix.thunk(() => nix.sel(translatelocally_models, "fr-en-tiny")),
@@ -84,7 +84,7 @@ substituteInPlace 3rd_party/bergamot-translator/3rd_party/marian-dev/src/3rd_par
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "translateLocally",
         homepage: "https://translatelocally.com/",
         description: "Fast and secure translation on your local machine, powered by marian and Bergamot",

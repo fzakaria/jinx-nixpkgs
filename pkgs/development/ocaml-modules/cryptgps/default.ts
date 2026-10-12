@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-cryptgps",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://download.camlcity.org/download/cryptgps-0.2.1.tar.gz",
           sha256: "1mp7i42cm9w9grmcsa69m3h1ycpn6a48p43y4xj8rsc12x9nav3s",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://projects.camlcity.org/projects/cryptgps.html",
         description: "Cryptographic functions for OCaml",
         longDescription: "This library implements the symmetric cryptographic algorithms\nBlowfish, DES, and 3DES. The algorithms are written in O'Caml,\ni.e. this is not a binding to some C library, but the implementation\nitself.\n",

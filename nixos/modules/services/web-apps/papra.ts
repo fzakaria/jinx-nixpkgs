@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const defaultUser = "papra";
   const defaultGroup = "papra";
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "papra", "environmentFile"]), nix.thunk(() => ["services", "papra", "environmentFiles"]), (config_1) => (() => {
           const value = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), nix.thunk(() => ["services", "papra", "environmentFile"]), config_1));
@@ -53,20 +53,20 @@ export default nix.lambda((args) => (() => {
         })())),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         papra: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Papra")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: defaultUser,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User under which Papra runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: defaultGroup,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: nix.thunk(() => nix.str`If the default user "${defaultUser}" is configured then this is the primary
@@ -75,15 +75,15 @@ group of that user.
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "papra", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for Papra.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -96,33 +96,33 @@ group of that user.
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 1221n,
                         description: "The port on which Papra listens.\nSee <https://docs.papra.app/self-hosting/configuration/#port> for more information.\n",
                       })))),
                     DATABASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "file:/var/lib/papra/db.sqlite",
                         description: "The URL of the database.\nSee <https://docs.papra.app/self-hosting/configuration/#database_url> for more information.\n\n::: {.note}\nWhen specifying a `file:` URL with an absolute path through this option,\nthe database's parent directory is automatically added to the systemd\nservice's `ReadWritePaths`. Other local database paths, including paths\nspecified through `environmentFiles`, may need to be added to `ReadWritePaths` manually.\n:::\n",
                       })))),
                     INGESTION_FOLDER_ROOT_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/papra/ingestion",
                         description: "The root directory in which ingestion folders for each organization are stored.\nThe parent directory must already exist if using a custom path.\nSee <https://docs.papra.app/self-hosting/configuration/#ingestion_folder_root_path> for more information.\n",
                       })))),
                     DOCUMENT_STORAGE_FILESYSTEM_ROOT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/papra/local-documents",
                         description: "The root directory to store documents in.\nThe parent directory must already exist if using a custom path.\nSee <https://docs.papra.app/self-hosting/configuration/#document_storage_filesystem_root> for more information.\n",
                       })))),
                     SERVER_SERVE_PUBLIC_DIR: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Whether to serve the public directory.\nSee <https://docs.papra.app/self-hosting/configuration/#server_serve_public_dir> for more information.\n",
@@ -133,7 +133,7 @@ group of that user.
               description: "Environment variables to pass to Papra.\nSee <https://docs.papra.app/self-hosting/configuration/#configuration-variables> for more information.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -146,12 +146,12 @@ group of that user.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${defaultUser}`, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Papra service user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -160,25 +160,25 @@ group of that user.
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${defaultGroup}`, nix.thunk(() => ({}))]])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "10-papra": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "environment", "DOCUMENT_STORAGE_FILESYSTEM_ROOT")}`, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   d: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     mode: "0700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "environment", "INGESTION_FOLDER_ROOT_PATH")}`, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   d: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     mode: "0770",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -188,12 +188,12 @@ group of that user.
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             papra: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Restart: "on-failure",
                 ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "papra-migrate-up")}`),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "papra")}`),
@@ -235,15 +235,15 @@ group of that user.
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environment", "PORT"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wariuccio"))];

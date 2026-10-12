@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.15.7",
       pname: "liburcu",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lttng.org/files/urcu/userspace-rcu-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-JVa4OtwPmzrIAk5hPhfQFNBMTEkRBgTOVfyxTq4y7dM=",
         })))),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       preCheck: "patchShebangs tests/unit",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.lttng.org/userspace-rcu.git",
             "rev-prefix": "v",
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Userspace RCU (read-copy-update) library",
         homepage: "https://lttng.org/urcu",
         changelog: nix.thunk(() => nix.str`https://github.com/urcu/userspace-rcu/raw/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

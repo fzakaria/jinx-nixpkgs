@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libseccomp = nix.arg($, "libseccomp");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "virtiofsd",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "virtio-fs",
           repo: "virtiofsd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       cargoHash: "sha256-7byiMT2/jf0R7zHr/HBeXKk2T+OQhlVhZ9QJHlEY/Ao=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBCAPNG_LIB_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libcap_ng)}/lib`),
         LIBCAPNG_LINK_TYPE: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "static" : "dylib")),
       })),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/virtio-fs/virtiofsd",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/virtio-fs/virtiofsd/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "vhost-user virtio-fs device backend written in Rust",

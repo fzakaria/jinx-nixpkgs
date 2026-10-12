@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.23";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "cloudsmith_api",
           format: format,
           version: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["cloudsmith_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloudsmith API Client",
         homepage: "https://github.com/cloudsmith-io/cloudsmith-api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

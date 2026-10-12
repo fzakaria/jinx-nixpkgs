@@ -15,56 +15,56 @@ const pos$10 = nix.positions(here + "/initrd-compressor-meta.nix", [["executable
 const pos$11 = nix.positions(here + "/initrd-compressor-meta.nix", [["cat", 2, 3], ["gzip", 6, 3], ["bzip2", 11, 3], ["xz", 15, 3], ["lzma", 23, 3], ["lz4", 31, 3], ["lzop", 36, 3], ["zstd", 40, 3], ["pigz", 45, 3], ["pixz", 48, 3]]);
 
 export default nix.thunk(() => (() => {
-  const cat = nix.thunk(() => ({ __proto__: pos$1, executable: (pkgs) => "cat", extension: ".cpio" }));
+  const cat = nix.thunk(() => ({ [nix.POS]: pos$1, executable: (pkgs) => "cat", extension: ".cpio" }));
   const gzip = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "gzip")}/bin/gzip`,
     defaultArgs: nix.thunk(() => ["-9n"]),
     extension: ".gz",
   }));
   const bzip2 = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "bzip2")}/bin/bzip2`,
     extension: ".bz2",
   }));
   const xz = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "xz")}/bin/xz`,
     defaultArgs: nix.thunk(() => ["--check=crc32", "--lzma2=dict=512KiB"]),
     extension: ".xz",
   }));
   const lzma = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "xz")}/bin/lzma`,
     defaultArgs: nix.thunk(() => ["--check=crc32", "--lzma1=dict=512KiB"]),
     extension: ".lzma",
   }));
   const lz4 = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     executable: (pkgs) => nix.app(nix.sel(pkgs, "lib", "getExe"), nix.thunk(() => nix.sel(pkgs, "lz4"))),
     defaultArgs: nix.thunk(() => ["-l"]),
     extension: ".lz4",
   }));
   const lzop = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "lzop")}/bin/lzop`,
     extension: ".lzo",
   }));
   const zstd = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "zstd")}/bin/zstd`,
     defaultArgs: nix.thunk(() => ["-10"]),
     extension: ".zst",
   }));
   const pigz = nix.thunk(() => nix.update(gzip, {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "pigz")}/bin/pigz`,
   }));
   const pixz = nix.thunk(() => nix.update(xz, {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     executable: (pkgs) => nix.str`${nix.sel(pkgs, "pixz")}/bin/pixz`,
     defaultArgs: [],
   }));
-  return { __proto__: pos$11, cat, gzip, bzip2, xz, lzma, lz4, lzop, zstd, pigz, pixz };
+  return { [nix.POS]: pos$11, cat, gzip, bzip2, xz, lzma, lz4, lzop, zstd, pigz, pixz };
 })());
 //# sourceMappingURL=initrd-compressor-meta.ts.map

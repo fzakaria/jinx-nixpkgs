@@ -31,86 +31,86 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [nix.path(here, "./perlless.nix")]),
     system: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "nixos-init": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
       activatable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       forbiddenDependenciesRegexes: nix.thunk(() => ["bash"]),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       shell: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
       corePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       bash: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     nix: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     documentation: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       man: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "man-db": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
     })),
     console: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       useNetworkd: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       firewall: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       bcache: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
       kexec: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     security: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       enableWrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     powerManagement: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     users: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       manageLingering: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       lvm: nix.thunk(() => ({
-        __proto__: pos$21,
-        resizeHelper: nix.thunk(() => ({ __proto__: pos$20, enable: false })),
+        [nix.POS]: pos$21,
+        resizeHelper: nix.thunk(() => ({ [nix.POS]: pos$20, enable: false })),
       })),
     })),
   };

@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const flint = nix.arg($, "flint");
   const zstd_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "facebook",
       repo: "zstd",
       rev: "0b96e6d42a9b22eb472a050fcd2cc4be3ffb8e2b",
       hash: "sha256-EPsLRjCCj0ruQ+z7eBzr/ACF0wh5LzUmdpbw/w5moWU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "form",
       version: "5.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "form-dev",
           repo: "form",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ cp -r ${zstd_src}/zlibWrapper source/extern/zstd/
 chmod -R +w source
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Symbolic manipulation of very big expressions",
         homepage: "https://www.nikhef.nl/~form/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

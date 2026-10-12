@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const gperf = nix.arg($, "gperf");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libid3tag",
       version: "0.16.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenacityteam",
           repo: "libid3tag",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, gperf]),
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ID3 tag manipulation library",
         homepage: "https://codeberg.org/tenacityteam/libid3tag",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

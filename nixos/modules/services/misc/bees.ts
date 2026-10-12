@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "beesd"));
   const logLevels = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     emerg: 0n,
     alert: 1n,
     crit: 2n,
@@ -43,36 +43,36 @@ export default nix.lambda((args) => (() => {
   const fsOptions = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         spec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.lookup(w, "str")),
             description: "Description of how to identify the filesystem to be duplicated by this\ninstance of bees. Note that deduplication crosses subvolumes; one must\nnot configure multiple instances for subvolumes of the same filesystem\n(or block devices which are part of the same filesystem), but only for\ncompletely independent btrfs filesystems.\n\nThis must be in a format usable by findmnt; that could be a key=value\npair, or a bare path to a mount point.\nUsing bare paths will allow systemd to start the beesd service only\nafter mounting the associated path.\n",
             example: "LABEL=MyBulkDataDrive",
           })))),
         hashTableSizeMB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "int")), (n) => nix.eq(nix.app(nix.sel(lib, "mod"), n, 16n), 0n))),
             default: 1024n,
             description: "Hash table size in MB; must be a multiple of 16.\n\nA larger ratio of index size to storage size means smaller blocks of\nduplicate content are recognized.\n\nIf you have 1TB of data, a 4GB hash table (which is to say, a value of\n4096) will permit 4KB extents (the smallest possible size) to be\nrecognized, whereas a value of 1024 -- creating a 1GB hash table --\nwill recognize only aligned duplicate blocks of 16KB.\n",
           })))),
         verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrNames"), logLevels), nix.app(nix.sel(lib, "attrValues"), logLevels))))),
             apply: (v) => (nix.asBool(nix.app(nix.sel(lib, "isString"), v)) ? nix.sel(logLevels, nix.key(nix.force(v))) : nix.force(v)),
             default: "info",
             description: "Log verbosity (syslog keyword/level).",
           })))),
         workDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.lookup(w, "str")),
             default: ".beeshome",
             description: "Name (relative to the root of the filesystem) of the subvolume where\nthe hash table will be stored.\n",
           })))),
         extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
             default: [],
             description: "Extra command-line options passed to the daemon. See upstream bees documentation.\n",
@@ -82,15 +82,15 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         beesd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           filesystems: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), fsOptions)));
@@ -103,15 +103,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "filesystems"), {})), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bees"))]),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (fs) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`beesd@${name}`), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 overrideStrategy: "asDropin",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStart: nix.thunk(() => (() => {
                     const configOpts = nix.thunk(() => [
                       nix.thunk(() => nix.sel(fs, "spec")),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
                   MemoryMin: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(fs, "hashTableSizeMB")))}M`),
                 })),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   RequiresMountsFor: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(fs, "spec")))), nix.thunk(() => nix.sel(fs, "spec")))),
                 })),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),

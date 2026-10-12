@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libipfix",
       version: "110209",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/libipfix/files/libipfix/libipfix_110209.tgz",
           sha256: "0h7v0sxjjdc41hl5vq2x0yhyn04bczl11bqm97825mivrvfymhn6",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libipfix.sourceforge.net/",
         description: "C library that implements the IPFIX protocol defined by the IP Flow Information Export working group of the IETF",
         mainProgram: "ipfix_collector",

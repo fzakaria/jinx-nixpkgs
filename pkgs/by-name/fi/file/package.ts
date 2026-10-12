@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkgsMusl = nix.argOr($, "pkgsMusl", () => ({}));
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "file",
       version: "5.48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://astron.com/pub/file/file-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://distfiles.macports.org/file/file-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(stdenv, "buildPlatform"))))), nix.thunk(() => nix.str`FILE_COMPILE=${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "file")))}`))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           musl: nix.thunk(() => nix.selOr(pkgsMusl, () => null, "file")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://darwinsys.com/file",
         description: "Program that shows the type of files",
         maintainers: nix.thunk(() => (() => {

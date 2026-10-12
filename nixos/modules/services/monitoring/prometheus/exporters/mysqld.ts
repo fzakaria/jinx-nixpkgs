@@ -26,33 +26,33 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const escapeShellArgs = nix.thunk(() => nix.attr(lib, "escapeShellArgs"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9104n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       runAsLocalSuperUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to run the exporter as {option}`services.mysql.user`.\n",
         })))),
       configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "path")),
           example: "/var/lib/prometheus-mysqld-exporter.cnf",
           description: "Path to the services config file.\n\nSee <https://github.com/prometheus/mysqld_exporter#running> for more information about\nthe available options.\n\n::: {.warn}\nPlease do not store this file in the nix store if you choose to include any credentials here,\nas it would be world-readable.\n:::\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         DynamicUser: nix.thunk(() => !nix.asBool(nix.sel(cfg, "runAsLocalSuperUser"))),
         User: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "runAsLocalSuperUser")), nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.sel(config, "services", "mysql", "user")))))),
         LoadCredential: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.add("config:", nix.sel(cfg, "configFile"))))))),

@@ -13,13 +13,13 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 34, 5], ["gr
 const pos$9 = nix.positions(here + "/gemset.nix", [["csv", 2, 3], ["enumerable-statistics", 12, 3], ["unicode_plot", 22, 3], ["youplot", 33, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   csv: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0kmx36jjh2sahd989vcvw74lrlv07dqc3rnxchc5sj2ywqsw3w3g",
       type: "gem",
@@ -27,11 +27,11 @@ export default nix.thunk(() => ({
     version: "3.3.2",
   })),
   "enumerable-statistics": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1cqksgv0cf69cd30kxk2r0lq1y784wn5nvlyabfqilf1vvy6j38y",
       type: "gem",
@@ -39,12 +39,12 @@ export default nix.thunk(() => ({
     version: "2.0.8",
   })),
   unicode_plot: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     dependencies: nix.thunk(() => ["enumerable-statistics"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0fzpg1zizf19xgfzqw6lmb38xir423wwxb2mjsb3nym6phvn5kli",
       type: "gem",
@@ -52,12 +52,12 @@ export default nix.thunk(() => ({
     version: "0.0.5",
   })),
   youplot: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     dependencies: nix.thunk(() => ["csv", "unicode_plot"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1p1vbb7p4h5a4r2rwl64gwv6cmf350grjn97zrpjhvrjih81y3yg",
       type: "gem",

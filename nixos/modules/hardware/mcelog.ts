@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mcelog: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the Machine Check Exception logger.\n",
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "mcelog", "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mcelog"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mcelog: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$5, ProtectHome: true, PrivateNetwork: true, PrivateTmp: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, ProtectHome: true, PrivateNetwork: true, PrivateTmp: true })),
             })),
           })),
         })),

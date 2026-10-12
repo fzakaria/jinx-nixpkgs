@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       const pname = "supercollider";
       const version = "3.14.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/supercollider/supercollider/releases/download/Version-${version}/SuperCollider-${version}-Source.tar.bz2`),
           sha256: "sha256-7mQMaHd65pdoIGbOXEqLflbFsiPnbHnBO1vlOH7lW7I=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/supercollider/supercollider/commit/e997e47890a9cee137756dede664811a58dbf85a.patch",
             hash: "sha256-Koh5CwkedDEXwvSFyZSrdKyVIKpX7nPrIcsr2FXaejo=",
           })))),
@@ -82,24 +82,24 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SC_USE_QTWEBENGINE", useQtWebEngine)),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/supercollider/supercollider.git",
             "rev-prefix": "Version-",
             ignoredVersions: "rc|beta",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "sclang-sc3-plugins": nix.thunk(() => (() => {
             const supercollider_with_test_plugins = nix.thunk(() => nix.app(nix.sel(supercollider_with_plugins, "override"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 plugins: nix.thunk(() => (() => {
                   const w = nix.withScope(supercolliderPlugins, null);
                   return [nix.thunk(() => nix.lookup(w, "sc3-plugins"))];
                 })()),
               }))));
-            return nix.app(runCommand, "sclang-sc3-plugins-test", nix.thunk(() => ({ __proto__: pos$5, QT_QPA_PLATFORM: "offscreen" })), nix.thunk(() => nix.str`export XDG_CONFIG_HOME="$TMPDIR/config"
+            return nix.app(runCommand, "sclang-sc3-plugins-test", nix.thunk(() => ({ [nix.POS]: pos$5, QT_QPA_PLATFORM: "offscreen" })), nix.thunk(() => nix.str`export XDG_CONFIG_HOME="$TMPDIR/config"
 export XDG_DATA_HOME="$TMPDIR/data"
 export XDG_CACHE_HOME="$TMPDIR/cache"
 mkdir -p "$out"
@@ -114,7 +114,7 @@ fi
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Programming language for real time audio synthesis",
         homepage: "https://supercollider.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/supercollider/supercollider/blob/Version-${version}/CHANGELOG.md`),
@@ -126,7 +126,7 @@ fi
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

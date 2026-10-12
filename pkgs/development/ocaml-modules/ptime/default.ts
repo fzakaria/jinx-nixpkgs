@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const topkg = nix.arg($, "topkg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2.0",
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ptime`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/ptime/releases/ptime-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-lhZ0f99JDsNugCTKsn7gHjoK9XfYojImY4+kA03nOrA=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: nix.thunk(() => nix.attr(topkg, "buildPhase")),
       installPhase: nix.thunk(() => nix.attr(topkg, "installPhase")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POSIX time for OCaml",
         homepage: "https://erratique.ch/software/ptime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const lru = nix.arg($, "lru");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "index",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/index/releases/download/${nix.sel(finalAttrs, "version")}/index-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-k4iDUJik7UTuztBw7YaFXASd8SqYMR1JgLm3JOyriGA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mirage/index/commit/aa7aa4734213f74a246f66719a1085b522f431d4.patch",
             hash: "sha256-Vc4r/I3TeIy/D4FcYzj4vRrH87vI2JRagqAXhD9BUxc=",
             includes: nix.thunk(() => ["*.ml"]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, crowbar, re]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform-agnostic multi-level index",
         homepage: "https://github.com/mirage/index",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

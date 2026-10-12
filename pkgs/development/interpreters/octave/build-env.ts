@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const localeArchiveArgs = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(glibcLocalesUtf8, null)), nix.thunk(() => nix.str`--set LOCALE_ARCHIVE "${glibcLocalesUtf8}/lib/locale/locale-archive"
 `)));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(octave, "name")}-env`),
       paths: nix.thunk(() => nix.concat(extraLibs, [octave])),
       ignoreCollisions: ignoreCollisions,
@@ -87,11 +87,11 @@ substitute \\
       meta: nix.thunk(() => nix.attr(octave, "meta")),
       version: nix.thunk(() => nix.attr(octave, "version")),
       passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(octave, "passthru")), nix.thunk(() => ["tests"])), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         interpreter: "$out/bin/octave",
         octave: octave,
         env: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`interactive-${nix.sel(octave, "name")}-environment`),
             buildCommand: "echo >&2 \"\"\necho >&2 \"*** octave 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n",
           })))),

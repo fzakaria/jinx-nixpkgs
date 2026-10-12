@@ -23,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "18.0.0" : "15.0.0"));
   const cmdlinerSupport = nix.argOr($, "cmdlinerSupport", () => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cmdliner, "version")), "1.1"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "uuseg",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uuseg/releases/uuseg-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "18.0.0": "sha256-bXzGAF6U+HH6B0TEzvPuB25fC+TlMcSu7wy4budLvRA=",
             "15.0.0": "sha256-q8x3bia1QaKpzrWFxUmLWIraKqby7TuPNGvbSjkY4eM=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -50,7 +50,7 @@ runHook postBuild
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCaml library for segmenting Unicode text",
         homepage: "https://erratique.ch/software/uuseg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

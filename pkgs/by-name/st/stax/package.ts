@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stax",
       version: "0.102.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cesarferreira",
           repo: "stax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ItRt0J2nR94nmg9L6Pion/OB7wW7mmMFE5CHZmr2Yvs=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       postPatch: "# Remove darwin linker override that breaks nix builds\nrm -f .cargo/config.toml\n",
       nativeBuildInputs: nix.thunk(() => [perl, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libgit2, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stacked-branch workflow for Git with an interactive TUI, smart PRs, and safe undo",
         homepage: "https://github.com/cesarferreira/stax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

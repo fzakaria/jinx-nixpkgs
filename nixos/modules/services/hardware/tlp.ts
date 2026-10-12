@@ -52,33 +52,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "tlp"));
   const enableRDW = nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable"));
   const mkTlpConfig = (tlpConfig) => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (val) => (nix.asBool(nix.app(nix.sel(lib, "isList"), val)) ? nix.add(nix.add("\"", nix.builtins.toString(val)), "\"") : nix.builtins.toString(val)),
         })), "=")),
     })), tlpConfig);
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tlp: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the TLP power management daemon.",
             })))),
           pd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the power-profiles-daemon like DBus interface for TLP")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tlp-pd", nix.thunk(() => ({})))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -91,22 +91,22 @@ export default nix.lambda((args) => (() => {
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 SATA_LINKPWR_ON_BAT: "med_power_with_dipm",
                 USB_BLACKLIST_PHONE: 1n,
               })),
               description: "Options passed to TLP. See <https://linrunner.de/tlp> for all supported options..\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Verbatim additional configuration variables for TLP.\nDEPRECATED: use services.tlp.settings instead.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
-              default: nix.thunk(() => nix.app(nix.sel(pkgs, "tlp", "override"), nix.thunk(() => ({ __proto__: pos$8, enableRDW: enableRDW })))),
+              default: nix.thunk(() => nix.app(nix.sel(pkgs, "tlp", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, enableRDW: enableRDW })))),
               defaultText: "pkgs.tlp.override { enableRDW = config.networking.networkmanager.enable; }",
               description: "The tlp package to use.",
             })))),
@@ -114,61 +114,61 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         hardware: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           cpu: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             x86: nix.thunk(() => ({
-              __proto__: pos$14,
-              msr: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+              [nix.POS]: pos$14,
+              msr: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
             })),
           })),
         })),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), "")), "Using config.services.tlp.extraConfig is deprecated and will become unsupported in a future release. Use config.services.tlp.settings instead.\n")),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.eq(nix.sel(config, "powerManagement", "scsiLinkPolicy"), null)))),
             message: "`services.tlp.enable` and `config.powerManagement.scsiLinkPolicy` cannot be set both.\nSet `services.tlp.settings.SATA_LINKPWR_ON_AC` and `services.tlp.settings.SATA_LINKPWR_ON_BAT` instead.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "pd", "enable")) || nix.asBool(!nix.asBool(nix.sel(config, "services", "power-profiles-daemon", "enable"))))),
             message: "`services.tlp.pd` and `services.power-profiles-daemon` cannot be enabled together,\nbecause they are using the same dbus interface and have the same functionality.\nGenerally, `services.tlp.pd` should be preferred as upstream does not recommend\nusing tlp together with power-profiles-daemon.\nSet `services.power-profiles-daemon.enable` to `false` to resolve this error.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "pd", "enable")) || nix.asBool(!nix.asBool((nix.asBool(nix.sel(config, "services", "tuned", "enable")) && nix.asBool(nix.sel(config, "services", "tuned", "ppdSupport"))))))),
             message: "`services.tlp.pd` and `services.tuned.ppdSupport` cannot be enabled together,\nbecause they are using the same dbus interface and have the same functionality.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "tlp.conf": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               text: nix.thunk(() => nix.add(nix.app(mkTlpConfig, nix.thunk(() => nix.sel(cfg, "settings"))), nix.sel(cfg, "extraConfig"))),
             })),
           }, nix.app(nix.sel(lib, "optionalAttrs"), enableRDW, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               "NetworkManager/dispatcher.d/99tlp-rdw-nm": nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/NetworkManager/dispatcher.d/99tlp-rdw-nm`),
               })),
             }))))),
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "pd", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "pd", "package"))])))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tlp: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             settings: nix.thunk(() => (() => {
               const cfg_1 = nix.thunk(() => nix.sel(config, "powerManagement"));
               const maybeDefault = (val) => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(val, null)), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), val)));
               return {
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 CPU_SCALING_GOVERNOR_ON_AC: nix.thunk(() => nix.app(maybeDefault, nix.thunk(() => nix.sel(cfg_1, "cpuFreqGovernor")))),
                 CPU_SCALING_GOVERNOR_ON_BAT: nix.thunk(() => nix.app(maybeDefault, nix.thunk(() => nix.sel(cfg_1, "cpuFreqGovernor")))),
                 CPU_SCALING_MIN_FREQ_ON_AC: nix.thunk(() => nix.app(maybeDefault, nix.thunk(() => nix.sel(cfg_1, "cpufreq", "min")))),
@@ -179,33 +179,33 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$35,
-            cpufreq: nix.thunk(() => ({ __proto__: pos$29, enable: false })),
-            "systemd-rfkill": nix.thunk(() => ({ __proto__: pos$30, enable: false })),
+            [nix.POS]: pos$35,
+            cpufreq: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
+            "systemd-rfkill": nix.thunk(() => ({ [nix.POS]: pos$30, enable: false })),
             tlp: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(config, "environment", "etc", "tlp.conf", "source"))]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "tlp-sleep": nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               before: nix.thunk(() => ["sleep.target"]),
               wantedBy: nix.thunk(() => ["sleep.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$32, StateDirectory: "tlp" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$32, StateDirectory: "tlp" })),
             })),
-            "tlp-pd": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "pd", "enable")), nix.thunk(() => ({ __proto__: pos$34, wantedBy: nix.thunk(() => ["graphical.target"]) })))),
+            "tlp-pd": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "pd", "enable")), nix.thunk(() => ({ [nix.POS]: pos$34, wantedBy: nix.thunk(() => ["graphical.target"]) })))),
           })),
           packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "pd", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "pd", "package"))])))),
           sockets: nix.thunk(() => ({
-            __proto__: pos$37,
-            "systemd-rfkill": nix.thunk(() => ({ __proto__: pos$36, enable: false })),
+            [nix.POS]: pos$37,
+            "systemd-rfkill": nix.thunk(() => ({ [nix.POS]: pos$36, enable: false })),
           })),
         })),
       })))),

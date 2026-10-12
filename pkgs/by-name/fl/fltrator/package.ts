@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fltrator",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fltrator/fltrator-${nix.sel(finalAttrs, "version")}-code.zip`),
           sha256: "125aqq1sfrm0c9cm6gyylwdmc8xrb0rjf563xvw7q28sdbl6ayp7",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["HOME=$(out)", "RSC_PATH=$(out)/fltrator"]),
       postInstall: "mkdir -p $out/share/applications\ncp rsc/fltrator.desktop $out/share/applications\nmkdir -p $out/share/icons/hicolor/128x128/apps/\ncp rsc/fltrator-128.png $out/share/icons/hicolor/128x128/apps/fltrator2.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple retro style arcade side-scroller game",
         longDescription: "FLTrator is a simple retro style arcade side-scroller game in which you steer a spaceship through a landscape with hostile rockets and other obstacles.\nIt has ten different levels and a level editor to create new levels or modify the existing.\n",
         homepage: "https://fltrator.sourceforge.net/",

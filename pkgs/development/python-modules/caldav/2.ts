@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-caldav",
           repo: "caldav",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         proxy_py,
         pyfakefs,
         pytestCheckHook,
-        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ __proto__: pos$2, python3: python })))))),
+        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python })))))),
         tzlocal,
         vobject,
         writableTmpDirAsHomeHook,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rfc8764_test_conf", "testConfigfile"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-caldav/caldav/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "CalDAV (RFC4791) client library",
         homepage: "https://github.com/python-caldav/caldav",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

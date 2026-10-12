@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types-MarkupSafe",
           version: version,
           hash: "sha256-hbOocmg9Aq6jpawqjvWQGTw0QJIDL1hFcof7+OBnEbE=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for MarkupSafe",
         homepage: "https://pypi.org/project/types-markupsafe",
         changelog: "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/MarkupSafe.md",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

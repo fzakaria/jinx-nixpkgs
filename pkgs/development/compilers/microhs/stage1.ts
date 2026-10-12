@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const args$ = nix.thunk(() => nix.app(args_1, finalAttrs));
       return nix.update(args$, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "microhs-stage1",
         patches: nix.thunk(() => nix.concat(nix.selOr(args$, () => [], "patches"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(microhs_boot, "usesHugs")), nix.thunk(() => [nix.path(here, "patches/simple-unicode.patch")])))),
         makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),

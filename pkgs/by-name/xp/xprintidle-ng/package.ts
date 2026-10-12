@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xprintidle-ng",
       version: "0-unstable-2015-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taktoa",
           repo: "xprintidle-ng",
           rev: "9083ba284d9222541ce7da8dc87d5a27ef5cc592",
@@ -59,7 +59,7 @@ runHook postConfigure
 `),
       buildInputs: nix.thunk(() => [libx11, libxscrnsaver, libxext]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         description: "Command-line tool to print idle time from libXss",
         homepage: "https://github.com/taktoa/xprintidle-ng",

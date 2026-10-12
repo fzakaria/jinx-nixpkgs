@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "questdb",
       version: "9.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/questdb/questdb/releases/download/${nix.sel(finalAttrs, "version")}/questdb-${nix.sel(finalAttrs, "version")}-no-jre-bin.tar.gz`),
           hash: "sha256-f8EaA7jiq4UxQia3sQvtVN/v4dh8fsg26FyK1hdefVw=",
         })))),
@@ -38,7 +38,7 @@ wrapProgram $out/bin/questdb.sh --set JAVA_HOME "${jdk25_headless}"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance, open-source SQL database for applications in financial services, IoT, machine learning, DevOps and observability",
         homepage: "https://questdb.io/",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

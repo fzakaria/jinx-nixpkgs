@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "anuko-time-tracker",
       version: "1.22.19.5806",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anuko",
           repo: "timetracker",
           rev: "43a19fcb51a21f6e3169084ac81308a6ef751e63",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir $out/\ncp -R ./* $out\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "anuko-time-tracker": nix.thunk(() => nix.attr(nixosTests, "anuko-time-tracker")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple, easy to use, open source time tracking system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "sspl")),
         homepage: "https://github.com/anuko/timetracker/",

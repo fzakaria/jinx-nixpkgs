@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.6.0",
       pname: "arduino-mk",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sudar",
           repo: "Arduino-Makefile",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir $out\ncp -rT $src $out\ninstallManPage *.1\n",
       postFixupPhase: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Makefile for Arduino sketches",
         homepage: "https://github.com/sudar/Arduino-Makefile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

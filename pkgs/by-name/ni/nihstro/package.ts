@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nihstro",
       version: "0-unstable-2024-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neobrain",
           repo: "nihstro",
           rev: "f4d8659decbfe5d234f04134b5002b82dc515a44",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "3DS shader assembler and disassembler",
         homepage: "https://github.com/neobrain/nihstro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

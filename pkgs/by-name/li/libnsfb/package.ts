@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const uilib = nix.argOr($, "uilib", () => "gtk3");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "uilib", uilib, nix.thunk(() => ["framebuffer", "gtk2", "gtk3"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libnsfb/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnsfb",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libnsfb-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-vkRso+tU35A/LamDEdEH11dM0R9awHE+YZFW1NGeo5o=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.netsurf-browser.org/projects/libnsfb/",
         description: "Netsurf framebuffer abstraction library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

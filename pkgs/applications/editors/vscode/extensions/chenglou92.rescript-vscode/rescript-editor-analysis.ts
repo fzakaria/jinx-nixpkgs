@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "analysis",
       version: "1.72.0",
       minimalOCamlVersion: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rescript-lang",
           repo: "rescript-vscode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "cppo"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9]+\\.[0-9]+\\.[0-9]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Analysis binary for the ReScript VSCode plugin",
         homepage: "https://github.com/rescript-lang/rescript-vscode",
         changelog: nix.thunk(() => nix.str`https://github.com/rescript-lang/rescript-vscode/releases/tag/${nix.sel(finalAttrs, "version")}`),

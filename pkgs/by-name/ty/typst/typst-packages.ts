@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const toPackageName = (name) => (version) => nix.str`${name}_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`;
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
-      const buildUniversePackage = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./build-universe-package.nix"), nix.thunk(() => ({ __proto__: pos$1, typstPackages: self }))));
+      const buildUniversePackage = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./build-universe-package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, typstPackages: self }))));
       const makeVersionedPackage = (pname) => (version) => (packageSpec) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.app(toPackageName, pname, version)),
         value: nix.thunk(() => nix.app(buildUniversePackage, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             homepage: nix.thunk(() => nix.selOr(packageSpec, () => null, "homepage")),
             pname: pname,
             version: version,

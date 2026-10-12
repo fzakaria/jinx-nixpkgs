@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Toblerity",
           repo: "rtree",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [numpy, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["rtree"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "R-Tree spatial index for Python GIS",
         homepage: "https://github.com/Toblerity/rtree",
         changelog: nix.thunk(() => nix.str`https://github.com/Toblerity/rtree/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

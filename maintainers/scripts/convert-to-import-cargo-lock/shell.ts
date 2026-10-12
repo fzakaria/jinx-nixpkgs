@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.thunk(() => nix.attr(pkgs, "stdenv"));
   const mkShell = nix.thunk(() => nix.attr(pkgs, "mkShell"));
   return nix.app(mkShell, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return nix.concat([

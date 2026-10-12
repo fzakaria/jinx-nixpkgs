@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytest_rerunfailures = nix.arg($, "pytest-rerunfailures");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "datasketch",
       version: "1.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ekzhu",
           repo: "datasketch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         const experimental_aio = nix.thunk(() => [motor, aiounittest]);
         const bloom = nix.thunk(() => [pybloomfilter3]);
         const all = nix.thunk(() => nix.concat(cassandra, nix.concat(redis_1, nix.concat(experimental_aio, bloom))));
-        return { __proto__: pos$2, cassandra, redis: redis_1, experimental_aio, bloom, all };
+        return { [nix.POS]: pos$2, cassandra, redis: redis_1, experimental_aio, bloom, all };
       })()),
       nativeCheckInputs: nix.thunk(() => [
         pytestCheckHook,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/test_lsh.py", "test/test_lshensemble.py"]),
       disabledTests: nix.thunk(() => ["test_soft_remove_and_pop_and_clean"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ekzhu/datasketch/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "MinHash, LSH, LSH Forest, Weighted MinHash, HyperLogLog, HyperLogLog++, LSH Ensemble and HNSW",
         homepage: "https://ekzhu.com/datasketch/",

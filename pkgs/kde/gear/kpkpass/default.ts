@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kpkpass",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),

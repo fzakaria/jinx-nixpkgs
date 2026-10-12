@@ -33,29 +33,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "goeland"));
   const tomlFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         goeland: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "goeland, an alternative to rss2email")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Configuration of goeland.\nSee the [example config file](https://github.com/slurdge/goeland/blob/master/cmd/asset/config.default.toml) for the available options.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(tomlFormat, "type")),
             })))),
           schedule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "12h",
               example: "Mon, 00:00:00",
               description: "How often to run goeland, in systemd time format.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/goeland",
               description: "The data directory for goeland where the database will reside if using the unseen filter.\nIf left as the default value this directory will automatically be created before the goeland\nserver starts, otherwise you are responsible for ensuring the directory exists with\nappropriate ownership and permissions.\n",
@@ -64,33 +64,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           goeland: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               database: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/goeland.db`),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             goeland: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               serviceConfig: nix.thunk(() => (() => {
                 const confFile = nix.thunk(() => nix.app(nix.sel(tomlFormat, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
                 return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "goeland")}/bin/goeland run -c ${confFile}`),
                       User: "goeland",
                       Group: "goeland",
                     })),
-                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/goeland")), nix.thunk(() => ({ __proto__: pos$11, StateDirectory: "goeland", StateDirectoryMode: "0750" })))),
+                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/goeland")), nix.thunk(() => ({ [nix.POS]: pos$11, StateDirectory: "goeland", StateDirectoryMode: "0750" })))),
                   ]));
               })()),
               startAt: nix.thunk(() => nix.sel(cfg, "schedule")),
@@ -98,24 +98,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             goeland: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "goeland user",
               group: "goeland",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$17, goeland: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$17, goeland: nix.thunk(() => ({})) })),
         })),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "password", nix.thunk(() => nix.sel(cfg, "settings", "email")))), nix.thunk(() => [
             "It is not recommended to set the \"services.goeland.settings.email.password\"\noption as it will be in cleartext in the Nix store.\nPlease use \"services.goeland.settings.email.password_file\" instead.\n",
           ]))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sweenu"))];

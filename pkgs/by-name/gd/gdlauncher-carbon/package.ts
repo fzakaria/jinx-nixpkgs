@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
   const jdk21 = nix.arg($, "jdk21");
   const jdks = nix.argOr($, "jdks", () => [jdk8, jdk17, jdk21]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gdlauncher-carbon",
       version: "2.0.24",
       src: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://cdn-raw.gdl.gg/launcher/GDLauncher__${nix.sel(finalAttrs, "version")}__linux__x64.AppImage`),
               hash: "sha256-d5ZvWSLA/7mY0540TDLMW9qmEFA5xC6Zd83IWakOmGo=",
             })))),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "GDLauncher",
             exec: "gdlauncher-carbon",
             icon: "gdlauncher-carbon",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple, yet powerful Minecraft custom launcher with a strong focus on the user experience",
         homepage: "https://gdlauncher.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),

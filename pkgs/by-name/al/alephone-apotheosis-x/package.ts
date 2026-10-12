@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const alephone = nix.arg($, "alephone");
   const requireFile = nix.arg($, "requireFile");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apotheosis-x",
       version: "1.1",
       desktopName: "Marathon-Apotheosis-X",
       zip: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "Apotheosis_X_1.1.zip",
           url: "https://www.moddb.com/mods/apotheosis-x/downloads",
           hash: "sha256-4Y/RQQeN4VTpig8ZyxUpVHwzN8W8ciTBCkSzND8SMbs=",
         })))),
       sourceRoot: "Apotheosis X 1.1",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Total conversion for Marathon Infinity running on the Aleph One engine",
         homepage: "https://simplici7y.com/items/apotheosis-x-5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

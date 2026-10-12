@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pynac",
       version: "0.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/project/pynac/pynac/pynac-0.2/pynac-0.2.tar.gz",
           sha256: "0avzqqcxl54karjmla9jbsyid98mva36lxahwmrsx5h40ys2ggxp",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/se-esss-litterbox/Pynac",
         description: "Python wrapper around the Dynac charged particle simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

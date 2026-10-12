@@ -92,9 +92,9 @@ export default nix.lambda((args) => (() => {
     ], nix.concat(nix.app(nix.sel(lib, "optionals"), libnotifySupport, nix.thunk(() => [libnotify])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [libxkbcommon, libdrm, libGL])), nix.concat(nix.app(nix.sel(lib, "optionals"), pipewireSupport, nix.thunk(() => [pipewire])), nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), libvaSupport, nix.thunk(() => [libva])), nix.app(nix.sel(lib, "optionals"), mediaSupport, nix.thunk(() => [ffmpeg_7])))))))))));
   const version = "15.0.24";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`https://archive.torproject.org/tor-package-archive/torbrowser/${version}/tor-browser-linux-x86_64-${version}.tar.xz`),
           nix.thunk(() => nix.str`https://dist.torproject.org/torbrowser/${version}/tor-browser-linux-x86_64-${version}.tar.xz`),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-sD7vtuvirLU6HWT4LJXA3wztnA+dYmWG6MbIHZgF1gQ=",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`https://archive.torproject.org/tor-package-archive/torbrowser/${version}/tor-browser-linux-i686-${version}.tar.xz`),
           nix.thunk(() => nix.str`https://dist.torproject.org/torbrowser/${version}/tor-browser-linux-i686-${version}.tar.xz`),
@@ -115,9 +115,9 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   const distributionIni = nix.thunk(() => nix.app(writeText, "distribution.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         Global: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           id: "nixos",
           version: "1.0",
           about: "Tor Browser for NixOS",
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       const allowSubstitutes = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "tor-browser",
             exec: "tor-browser %U",
             icon: "tor-browser",
@@ -281,12 +281,12 @@ install -Dvm644 ${distributionIni} $out/share/tor-browser/distribution/distribut
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sources: sources,
-        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ __proto__: pos$7, pname: pname, version: version_1, meta: meta })))),
+        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname, version: version_1, meta: meta })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Privacy-focused browser routing traffic through the Tor network",
         mainProgram: "tor-browser",
         homepage: "https://www.torproject.org/",
@@ -318,7 +318,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version: version_1,
         src,

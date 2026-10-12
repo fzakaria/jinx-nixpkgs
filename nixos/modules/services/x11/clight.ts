@@ -48,24 +48,24 @@ export default nix.lambda((args) => (() => {
   const convertAttrs = (attrs) => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (value) => nix.str`${nix.app(nix.builtins.toString, name)} ${nix.app(getSep, value)} ${nix.app(toConf, value)};`, attrs)));
   const clightConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "clight.conf", nix.thunk(() => nix.app(convertAttrs, nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (_) => (value) => !nix.eq(value, null), nix.thunk(() => nix.sel(cfg, "settings"))))))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         clight: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "clight")),
           temperature: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             day: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 5500n,
                 description: "Colour temperature to use during the day, between\n`1000` and `25000` K.\n",
               })))),
             night: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 3700n,
                 description: "Colour temperature to use at night, between\n`1000` and `25000` K.\n",
@@ -89,14 +89,14 @@ export default nix.lambda((args) => (() => {
                 ]));
             })());
             return nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_3, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_3, "either"), collectionTypes, nix.thunk(() => nix.app(nix.lookup(w_3, "attrsOf"), collectionTypes)))))));
                 })()),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   captures: 20n,
                   gamma_long_transition: true,
                   ac_capture_timeouts: nix.thunk(() => [120n, 300n, 60n]),
@@ -108,20 +108,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         assertions: nix.thunk(() => (() => {
           const inRange = (v) => (l) => (r) => (nix.asBool(nix.ge(v, l)) && nix.asBool(nix.le(v, r)));
           return [
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(config, "location", "provider"), "manual")) || nix.asBool((nix.asBool(nix.app(inRange, nix.thunk(() => nix.sel(config, "location", "latitude")), nix.thunk(() => nix.neg(90n)), 90n)) && nix.asBool(nix.app(inRange, nix.thunk(() => nix.sel(config, "location", "longitude")), nix.thunk(() => nix.neg(180n)), 180n)))))),
               message: "You must specify a valid latitude and longitude if manually providing location",
             })),
           ];
         })()),
-        boot: nix.thunk(() => ({ __proto__: pos$10, kernelModules: nix.thunk(() => ["i2c_dev"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$10, kernelModules: nix.thunk(() => ["i2c_dev"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => (() => {
             const w_1 = nix.withScope(pkgs, w);
             return [
@@ -131,9 +131,9 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           dbus: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, w);
               return [
@@ -142,13 +142,13 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })),
-          upower: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+          upower: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           clight: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               gamma: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 temp: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "temperature")), w);
                   return nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => [
@@ -158,33 +158,33 @@ export default nix.lambda((args) => (() => {
                 })()),
               })),
             }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(config, "location", "provider"), "manual")), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 daytime: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   latitude: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(config, "location", "latitude")))),
                   longitude: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(config, "location", "longitude")))),
                 })),
               }))))),
           })),
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             appConfig: nix.thunk(() => ({
-              __proto__: pos$20,
-              clightc: nix.thunk(() => ({ __proto__: pos$19, isAllowed: true, isSystem: true })),
+              [nix.POS]: pos$20,
+              clightc: nix.thunk(() => ({ [nix.POS]: pos$19, isAllowed: true, isSystem: true })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             clightd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               requires: nix.thunk(() => ["polkit.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Bus service to manage various screen related properties (gamma, dpms, backlight)",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Type: "dbus",
                 BusName: "org.clightd.clightd",
                 Restart: "on-failure",
@@ -195,18 +195,18 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             services: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               clight: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 after: nix.thunk(() => ["upower.service", "clightd.service"]),
                 wants: nix.thunk(() => ["upower.service", "clightd.service"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 description: "C daemon to adjust screen brightness to match ambient brightness, as computed capturing frames from webcam",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   Restart: "on-failure",
                   RestartSec: 5n,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "clight")}/bin/clight --conf-file ${clightConf}

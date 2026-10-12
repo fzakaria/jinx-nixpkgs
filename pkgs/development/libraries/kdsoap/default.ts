@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kdsoap";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/KDAB/KDSoap/releases/download/kdsoap-${version}/kdsoap-${version}.tar.gz`),
           sha256: "sha256-2e8RlIRCGXyfpEvW+63IQrcoCmDfxAV3r2b97WN681Y=",
         }))));
@@ -34,7 +34,7 @@ substituteInPlace "$out/lib/cmake/${cmakeName}/KDSoapTargets-release.cmake" \\
   --replace $out/bin $dev/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based client-side and server-side SOAP component",
         longDescription: "KD Soap is a Qt-based client-side and server-side SOAP component.\n\nIt can be used to create client applications for web services and also\nprovides the means to create web services without the need for any further\ncomponent such as a dedicated web server.\n",
         license: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ substituteInPlace "$out/lib/cmake/${cmakeName}/KDSoapTargets-release.cmake" \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

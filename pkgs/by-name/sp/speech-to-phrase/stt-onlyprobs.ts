@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const fft2d = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "fft2d-source",
       owner: "petewarden",
       repo: "OouraFFT",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-mkG6jWuMVzCB433qk2wW/HPA9vp/LivPTDa2c0hFir4=",
     }))));
   const flatbuffers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "flatbuffers-source",
       owner: "google",
       repo: "flatbuffers",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-L1B5Y/c897Jg9fGwT2J3+vaXsZ+lfXnskp8Gto1p/Tg=",
     }))));
   const fxdiv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "fxdiv-source",
       owner: "Maratyszcza",
       repo: "FXdiv",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-BEjscsejYVhRxDAmah5DT3+bglp8G5wUTTYL7+HjWds=",
     }))));
   const gemmlowp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "gemmlowp-source",
       owner: "google",
       repo: "gemmlowp",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-tE+w72sfudZXWyMxG6CGMqXYswve57/cpvwrketEd+k=",
     }))));
   const neon2sse = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "neon2sse-source",
       owner: "intel",
       repo: "ARM_NEON_2_x86_SSE",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-wlaraZ4Ga/J2pRo7yQmAI1Wfu57Jg1kWe2LFP4qB5uY=",
     }))));
   const pthreadpool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "pthreadpool-source",
       owner: "Maratyszcza",
       repo: "pthreadpool",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-sBpMElc8kUYV6EfLD+OmrZZzeN6NDdu3U4/cInAny7M=",
     }))));
   const ruy = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "ruy-source",
       owner: "google",
       repo: "ruy",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-OF0Bp29ftiCpulc2n/SojamJZa4ufneWseD+Ib2GC84=",
     }))));
   const xnnpack = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "xnnpack-source",
       owner: "google",
       repo: "XNNPACK",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-YWP6YfwHBppfamz+aAs4rTMu6yvPifGYBsGNoWHoCOg=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "stt_onlyprobs",
       version: version,
       src: src,
@@ -128,7 +128,7 @@ substituteInPlace ../tensorflow/tensorflow/lite/CMakeLists.txt \\
       NIX_CFLAGS_COMPILE: "-std=c++17",
       installPhase: "mkdir -p $out/bin\ncp stt_onlyprobs $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mainProgram: "stt_onlyprobs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         platforms: nix.thunk(() => ["x86_64-linux"]),

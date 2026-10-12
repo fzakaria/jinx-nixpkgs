@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "orion-browser",
       version: "151",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.kagi.com/updates/26_0/${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-d6Va5mwN+ulAaFbo4dIKENzQammRdfkFnqOV2zmPgQA=",
         })))),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R Orion.app \"$out/Applications\"\nmakeWrapper \"$out/Applications/Orion.app/Contents/MacOS/Orion\" \"$out/bin/orion\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WebKit-based web browser by Kagi",
         homepage: "https://orionbrowser.com/",
         changelog: "https://orionbrowser.com/updates/orion-release-notes",

@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
   const redisActuallyCreateLocally = nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "redis", "host"), "127.0.0.1")) || nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))))));
   const databaseActuallyCreateLocally = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "/run/postgresql"))));
   const env = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     RAILS_ENV: "production",
     NODE_ENV: "production",
     BOOTSNAP_CACHE_DIR: "/var/cache/mastodon/precompile",
@@ -176,29 +176,29 @@ export default nix.lambda((args) => (() => {
     PAPERCLIP_ROOT_URL: "/system",
     ES_ENABLED: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "elasticsearch", "host"), null)) ? "true" : "false")),
     TRUSTED_PROXY_IP: nix.thunk(() => nix.sel(cfg, "trustedProxy")),
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "host"), null)), nix.thunk(() => ({ __proto__: pos$2, REDIS_HOST: nix.thunk(() => nix.sel(cfg, "redis", "host")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "port"), null)), nix.thunk(() => ({
-      __proto__: pos$3,
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "host"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, REDIS_HOST: nix.thunk(() => nix.sel(cfg, "redis", "host")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "port"), null)), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       REDIS_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket")))), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       REDIS_URL: nix.thunk(() => nix.str`unix://${nix.sel(config, "services", "redis", "servers", "mastodon", "unixSocket")}`),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), "/run/postgresql")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "port"), null)))), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       DB_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))),
-    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "smtp", "authenticate")), nix.thunk(() => ({ __proto__: pos$6, SMTP_LOGIN: nix.thunk(() => nix.sel(cfg, "smtp", "user")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "elasticsearch", "host"), null)), nix.thunk(() => ({
-      __proto__: pos$7,
+    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "smtp", "authenticate")), nix.thunk(() => ({ [nix.POS]: pos$6, SMTP_LOGIN: nix.thunk(() => nix.sel(cfg, "smtp", "user")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "elasticsearch", "host"), null)), nix.thunk(() => ({
+      [nix.POS]: pos$7,
       ES_HOST: nix.thunk(() => nix.sel(cfg, "elasticsearch", "host")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "elasticsearch", "host"), null)), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       ES_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "elasticsearch", "port")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "elasticsearch", "host"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "elasticsearch", "prefix"), null)))), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       ES_PREFIX: nix.thunk(() => nix.sel(cfg, "elasticsearch", "prefix")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "elasticsearch", "host"), null)), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       ES_PRESET: nix.thunk(() => nix.sel(cfg, "elasticsearch", "preset")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "elasticsearch", "user"), null)), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       ES_USER: nix.thunk(() => nix.sel(cfg, "elasticsearch", "user")),
     }))), nix.sel(cfg, "extraConfig")))))))))))));
   const systemCallsList = nix.thunk(() => [
@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
     "@setuid",
   ]);
   const cfgService = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     User: nix.thunk(() => nix.sel(cfg, "user")),
     Group: nix.thunk(() => nix.sel(cfg, "group")),
     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "package")),
@@ -273,18 +273,18 @@ $sudo ${nix.sel(cfg, "package")}/bin/tootctl "$@"
         const jobClassLabel = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([""], nix.sel(processCfg, "jobClasses")))));
         const threads = nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.eq(nix.sel(processCfg, "threads"), null)) ? nix.sel(cfg, "sidekiqThreads") : nix.sel(processCfg, "threads")))));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           after: nix.thunk(() => nix.concat(["network.target", "mastodon-init-dirs.service"], commonUnits)),
           requires: nix.thunk(() => nix.concat(["mastodon-init-dirs.service"], commonUnits)),
           description: nix.thunk(() => nix.str`Mastodon sidekiq${jobClassLabel}`),
           wantedBy: nix.thunk(() => ["mastodon.target"]),
           environment: nix.thunk(() => nix.update(env, {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "sidekiqPort")))),
             DB_POOL: threads,
           })),
           serviceConfig: nix.thunk(() => nix.update({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/sidekiq ${jobClassArgs} -c ${threads} -r ${nix.sel(cfg, "package")}`),
             Restart: "always",
             RestartSec: 20n,
@@ -308,20 +308,20 @@ $sudo ${nix.sel(cfg, "package")}/bin/tootctl "$@"
         };
       })())), nix.thunk(() => nix.sel(cfg, "sidekiqProcesses"))));
   const streamingUnits = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((i) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: nix.thunk(() => nix.str`mastodon-streaming-${nix.builtins.toString(i)}`),
         value: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           after: nix.thunk(() => nix.concat(["network.target", "mastodon-init-dirs.service"], commonUnits)),
           requires: nix.thunk(() => nix.concat(["mastodon-init-dirs.service"], commonUnits)),
           wantedBy: nix.thunk(() => ["mastodon.target", "mastodon-streaming.target"]),
           description: nix.thunk(() => nix.str`Mastodon streaming ${nix.builtins.toString(i)}`),
           environment: nix.thunk(() => nix.update(env, {
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             SOCKET: nix.thunk(() => nix.str`/run/mastodon-streaming/streaming-${nix.builtins.toString(i)}.socket`),
           })),
           serviceConfig: nix.thunk(() => nix.update({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/run-streaming.sh`),
             Restart: "always",
             RestartSec: 20n,
@@ -338,88 +338,88 @@ $sudo ${nix.sel(cfg, "package")}/bin/tootctl "$@"
         })),
       }), nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.sel(cfg, "streamingProcesses"))))))));
   return {
-    __proto__: pos$143,
+    [nix.POS]: pos$143,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mastodon", "streamingPort"]), "Mastodon currently doesn't support streaming via TCP ports. Please open a PR if you need this.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mastodon", "otpSecretFile"]), "The OTP_SECRET option was removed from Mastodon in version 4.4.0")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$87,
+      [nix.POS]: pos$87,
       services: nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         mastodon: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mastodon, a federated social network server")),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Configure nginx as a reverse proxy for mastodon.\nNote that this makes some assumptions on your setup, and sets settings that will\naffect other virtualHosts running on your nginx instance, if any.\nAlternatively you can configure a reverse-proxy of your choice to serve these paths:\n\n`/ -> ${pkgs.mastodon}/public`\n\n`/ -> 127.0.0.1:{{ webPort }} `(If there was no file in the directory above.)\n\n`/system/ -> /var/lib/mastodon/public-system/`\n\n`/api/v1/streaming/ -> 127.0.0.1:{{ streamingPort }}`\n\nMake sure that websockets are forwarded properly. You might want to set up caching\nof some requests. Take a look at mastodon's provided nginx configuration at\n`https://github.com/mastodon/mastodon/blob/master/dist/nginx.conf`.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "User under which mastodon runs. If it is set to \"mastodon\",\nthat user will be created, otherwise it should be set to the\nname of a user created elsewhere.\nIn both cases, the `mastodon` package will be added to the user's package set\nand a tootctl wrapper to system packages that switches to the configured account\nand load the right environment.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mastodon",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Group under which mastodon runs.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mastodon",
             })))),
           streamingProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Number of processes used by the mastodon-streaming service.\nPlease define this explicitly, recommended is the amount of your CPU cores minus one.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
               example: 3n,
             })))),
           webPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "TCP port used by the mastodon-web service.",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 55001n,
             })))),
           webProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Processes used by the mastodon-web service.",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 2n,
             })))),
           webThreads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Threads per process used by the mastodon-web service.",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 5n,
             })))),
           sidekiqPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "TCP port used by the mastodon-sidekiq service.",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 55002n,
             })))),
           sidekiqThreads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Worker threads used by the mastodon-sidekiq-all service. If `sidekiqProcesses` is configured and any processes specify null `threads`, this value is used.",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 25n,
             })))),
           sidekiqProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "How many Sidekiq processes should be used to handle background jobs, and which job classes they handle. *Read the [upstream documentation](https://docs.joinmastodon.org/admin/scaling/#sidekiq) before configuring this!*",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       options: nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         jobClasses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["default", "fasp", "push", "pull", "mailers", "scheduler", "ingress"]))))),
                             description: "If not empty, which job classes should be executed by this process. *Only one process should handle the 'scheduler' class. If left empty, this process will handle the 'scheduler' class.*",
                           })))),
                         threads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")))),
                             description: "Number of threads this process should use for executing jobs. If null, the configured `sidekiqThreads` are used.",
                           })))),
@@ -427,85 +427,85 @@ $sudo ${nix.sel(cfg, "package")}/bin/tootctl "$@"
                     })))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$34,
-                all: nix.thunk(() => ({ __proto__: pos$33, jobClasses: [], threads: null })),
+                [nix.POS]: pos$34,
+                all: nix.thunk(() => ({ [nix.POS]: pos$33, jobClasses: [], threads: null })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$39,
-                all: nix.thunk(() => ({ __proto__: pos$35, jobClasses: [], threads: null })),
-                ingress: nix.thunk(() => ({ __proto__: pos$36, jobClasses: nix.thunk(() => ["ingress"]), threads: 5n })),
-                default: nix.thunk(() => ({ __proto__: pos$37, jobClasses: nix.thunk(() => ["default"]), threads: 10n })),
+                [nix.POS]: pos$39,
+                all: nix.thunk(() => ({ [nix.POS]: pos$35, jobClasses: [], threads: null })),
+                ingress: nix.thunk(() => ({ [nix.POS]: pos$36, jobClasses: nix.thunk(() => ["ingress"]), threads: 5n })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$37, jobClasses: nix.thunk(() => ["default"]), threads: 10n })),
                 "push-pull": nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   jobClasses: nix.thunk(() => ["push", "pull"]),
                   threads: 5n,
                 })),
               })),
             })))),
           vapidPublicKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               description: "Path to file containing the public key used for Web Push\nVoluntary Application Server Identification.  A new keypair can\nbe generated by running:\n\n`nix build -f '<nixpkgs>' mastodon; cd result; RAILS_ENV=production bin/rake webpush:generate_keys`\n\nIf {option}`mastodon.vapidPrivateKeyFile`does not\nexist, it and this file will be created with a new keypair.\n",
               default: "/var/lib/mastodon/secrets/vapid-public-key",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           vapidPrivateKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "Path to file containing the private key used for Web Push\nVoluntary Application Server Identification.  A new keypair can\nbe generated by running:\n\n`nix build -f '<nixpkgs>' mastodon; cd result; bin/rake webpush:generate_keys`\n\nIf this file does not exist, it will be created with a new\nprivate key.\n",
               default: "/var/lib/mastodon/secrets/vapid-private-key",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           localDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               description: "The domain serving your Mastodon instance.",
               example: "social.example.org",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           activeRecordEncryptionDeterministicKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "This key must be set to enable the Active Record Encryption feature within\nRails that Mastodon uses to encrypt and decrypt some database attributes.\nA new Active Record keys can be generated by running:\n\n`nix build -f '<nixpkgs>' mastodon; cd result; RAILS_ENV=production ./bin/rails db:encryption:init`\n\nIf this file does not exist, it will be created with a new Active Record\nkeys.\n",
               default: "/var/lib/mastodon/secrets/active-record-encryption-deterministic-key",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           activeRecordEncryptionKeyDerivationSaltFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               description: "This key must be set to enable the Active Record Encryption feature within\nRails that Mastodon uses to encrypt and decrypt some database attributes.\nA new Active Record keys can be generated by running:\n\n`nix build -f '<nixpkgs>' mastodon; cd result; RAILS_ENV=production ./bin/rails db:encryption:init`\n\nIf this file does not exist, it will be created with a new Active Record\nkeys.\n",
               default: "/var/lib/mastodon/secrets/active-record-encryption-key-derivation-salt",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           activeRecordEncryptionPrimaryKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "This key must be set to enable the Active Record Encryption feature within\nRails that Mastodon uses to encrypt and decrypt some database attributes.\nA new Active Record keys can be generated by running:\n\n`nix build -f '<nixpkgs>' mastodon; cd result; RAILS_ENV=production ./bin/rails db:encryption:init`\n\nIf this file does not exist, it will be created with a new Active Record\nkeys.\n",
               default: "/var/lib/mastodon/secrets/active-record-encryption-primary-key",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               description: "Path to file containing the secret key base.\nA new secret key base can be generated by running:\n\n`nix build -f '<nixpkgs>' mastodon; cd result; bin/bundle exec rails secret`\n\nIf this file does not exist, it will be created with a new secret key base.\n",
               default: "/var/lib/mastodon/secrets/secret-key-base",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           trustedProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "You need to set it to the IP from which your reverse proxy sends requests to Mastodon's web process,\notherwise Mastodon will record the reverse proxy's own IP as the IP of all requests, which would be\nbad because IP addresses are used for important rate limits and security functions.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
             })))),
           enableUnixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               description: "Instead of binding to an IP address like 127.0.0.1, you may bind to a Unix socket. This variable\nis process-specific, e.g. you need different values for every process, and it works for both web (Puma)\nprocesses and streaming API (Node.js) processes.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 description: "Configure local Redis server for Mastodon.",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 description: "Redis host.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))))) ? "127.0.0.1" : null)),
@@ -513,7 +513,7 @@ $sudo ${nix.sel(cfg, "package")}/bin/tootctl "$@"
 `))),
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 description: "Redis port.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))))) ? 31637n : null)),
@@ -521,36 +521,36 @@ $sudo ${nix.sel(cfg, "package")}/bin/tootctl "$@"
 `))),
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 description: "A file containing the password for Redis database.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/mastodon-redis-password",
               })))),
             enableUnixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 description: "Use Unix socket",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 description: "Configure local PostgreSQL database server for Mastodon.",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/run/postgresql",
                 example: "192.168.23.42",
                 description: "Database host address or unix socket.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) ? null : 5432n)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "createLocally")}
@@ -560,19 +560,19 @@ else 5432
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "mastodon",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "mastodon",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/var/lib/mastodon/secrets/db-password",
@@ -580,45 +580,45 @@ else 5432
               })))),
           })),
           smtp: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 description: "Configure local Postfix SMTP server for Mastodon.",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             authenticate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 description: "Authenticate with the SMTP server using username and password.",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 description: "SMTP host used when sending emails to users.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 description: "SMTP port used when sending emails to users.",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 25n,
               })))),
             fromAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 description: "\"From\" address used when sending Emails to users.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "mastodon@example.com",
                 description: "SMTP login name.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/var/lib/mastodon/secrets/smtp-password",
@@ -626,42 +626,42 @@ else 5432
               })))),
           })),
           elasticsearch: nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 description: "Elasticsearch host.\nIf it is not null, Elasticsearch full text search will be enabled.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 description: "Elasticsearch port.",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9200n,
               })))),
             prefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 description: "If provided, adds a prefix to indexes in Elasticsearch. This allows to use the same\nElasticsearch cluster between different projects or Mastodon servers.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "mastodon",
               })))),
             preset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 description: "It controls the ElasticSearch indices configuration (number of shards and replica).\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["single_node_cluster", "small_cluster", "large_cluster"]))),
                 default: "single_node_cluster",
                 example: "large_cluster",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 description: "Used for optionally authenticating with Elasticsearch.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "elasticsearch-mastodon",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 description: "Path to file containing password for optionally authenticating with Elasticsearch.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
@@ -670,13 +670,13 @@ else 5432
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mastodon", nix.thunk(() => ({})))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Extra environment variables to pass to all mastodon services.\n",
             })))),
           extraEnvFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -686,29 +686,29 @@ else 5432
               example: nix.thunk(() => ["/etc/mastodon/s3config.env"]),
             })))),
           automaticMigrations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Do automatic database migrations.\n",
             })))),
           mediaAutoRemove: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
                 description: "Automatically remove remote media attachments and preview cards older than the configured amount of days.\n\nRecommended in <https://docs.joinmastodon.org/admin/setup/>.\n",
               })))),
             startAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "daily",
                 example: "hourly",
                 description: "How often to remove remote media.\n\nThe format is described in {manpage}`systemd.time(7)`.\n",
               })))),
             olderThanDays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 30n,
                 example: 14n,
@@ -720,76 +720,76 @@ else 5432
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$139,
+            [nix.POS]: pos$139,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(redisActuallyCreateLocally)) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "redis", "host"), "127.0.0.1")) && nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), null)))))),
                 message: "`services.mastodon.redis.host` and `services.mastodon.redis.port` need to be set if\n  `services.mastodon.redis.createLocally` is not enabled.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 assertion: nix.thunk(() => (!nix.asBool(redisActuallyCreateLocally) || nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "redis", "host"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "redis", "port"), null)))))))),
                 message: "`services.mastodon.redis.enableUnixSocket` needs to be disabled if\n  `services.mastodon.redis.host` and `services.mastodon.redis.port` is used.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 assertion: nix.thunk(() => (!nix.asBool(redisActuallyCreateLocally) || nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))) || nix.asBool(nix.eq(nix.sel(cfg, "redis", "passwordFile"), null)))))),
                 message: "<option>services.mastodon.redis.enableUnixSocket</option> needs to be disabled if\n  <option>services.mastodon.redis.passwordFile</option> is used.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 assertion: nix.thunk(() => (!nix.asBool(databaseActuallyCreateLocally) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "user"), nix.sel(cfg, "database", "user"))) && nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))))),
                 message: "For local automatic database provisioning (services.mastodon.database.createLocally == true) with peer\n  authentication (services.mastodon.database.host == \"/run/postgresql\") to work services.mastodon.user\n  and services.mastodon.database.user must be identical.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(databaseActuallyCreateLocally)) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), "/run/postgresql")))),
                 message: "<option>services.mastodon.database.host</option> needs to be set if\n  <option>services.mastodon.database.createLocally</option> is not enabled.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "smtp", "authenticate")) || nix.asBool(!nix.eq(nix.sel(cfg, "smtp", "user"), null)))),
                 message: "<option>services.mastodon.smtp.user</option> needs to be set if\n  <option>services.mastodon.smtp.authenticate</option> is enabled.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "smtp", "authenticate")) || nix.asBool(!nix.eq(nix.sel(cfg, "smtp", "passwordFile"), null)))),
                 message: "<option>services.mastodon.smtp.passwordFile</option> needs to be set if\n  <option>services.mastodon.smtp.authenticate</option> is enabled.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 assertion: nix.thunk(() => nix.eq(1n, nix.app(nix.sel(lib, "count"), (x) => nix.force(x), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => (nix.asBool(nix.builtins.elem("scheduler", nix.thunk(() => nix.sel(v, "jobClasses")))) || nix.asBool(nix.eq(nix.sel(v, "jobClasses"), []))), nix.thunk(() => nix.sel(cfg, "sidekiqProcesses"))))))),
                 message: "There must be exactly one Sidekiq queue in services.mastodon.sidekiqProcesses with jobClass \"scheduler\".",
               })),
               nix.thunk(() => ({
-                __proto__: pos$96,
+                [nix.POS]: pos$96,
                 assertion: nix.thunk(() => (!nix.asBool(databaseActuallyCreateLocally) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "services", "postgresql", "finalPackage", "version")), "14")))),
                 message: "Mastodon requires at least PostgreSQL 14.",
               })),
             ]),
-            environment: nix.thunk(() => ({ __proto__: pos$97, systemPackages: nix.thunk(() => [mastodonTootctl]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$97, systemPackages: nix.thunk(() => [mastodonTootctl]) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               targets: nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 mastodon: nix.thunk(() => ({
-                  __proto__: pos$98,
+                  [nix.POS]: pos$98,
                   description: "Target for all Mastodon services",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                 })),
                 "mastodon-streaming": nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   description: "Target for all Mastodon streaming services",
                   wantedBy: nix.thunk(() => ["multi-user.target", "mastodon.target"]),
                   after: nix.thunk(() => ["network.target"]),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 "mastodon-init-dirs": nix.thunk(() => ({
-                  __proto__: pos$102,
+                  [nix.POS]: pos$102,
                   script: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`umask 077
 
 if ! test -d /var/cache/mastodon/precompile; then
@@ -832,7 +832,7 @@ VAPID_PUBLIC_KEY="$(cat ${nix.sel(cfg, "vapidPublicKeyFile")})"
 `))), "EOF\n")),
                   environment: env,
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$101,
+                    [nix.POS]: pos$101,
                     Type: "oneshot",
                     SyslogIdentifier: "mastodon-init-dirs",
                     SystemCallFilter: nix.thunk(() => [
@@ -845,7 +845,7 @@ VAPID_PUBLIC_KEY="$(cat ${nix.sel(cfg, "vapidPublicKeyFile")})"
                   after: nix.thunk(() => ["network.target"]),
                 })),
                 "mastodon-init-db": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "automaticMigrations")), nix.thunk(() => ({
-                    __proto__: pos$105,
+                    [nix.POS]: pos$105,
                     script: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(databaseActuallyCreateLocally)), nix.thunk(() => nix.str`umask 077
 export PGPASSWORD="$(cat '${nix.sel(cfg, "database", "passwordFile")}')"
 `)), "result=\"$(psql -t --csv -c \\\n    \"select count(*) from pg_class c \\\n    join pg_namespace s on s.oid = c.relnamespace \\\n    where s.nspname not in ('pg_catalog', 'pg_toast', 'information_schema') \\\n    and s.nspname not like 'pg_temp%';\")\" || error_code=$?\nif [ \"${error_code:-0}\" -ne 0 ]; then\n  echo \"Failure checking if database is seeded. psql gave exit code $error_code\"\n  exit \"$error_code\"\nfi\nif [ \"$result\" -eq 0 ]; then\n  echo \"Seeding database\"\n  SAFETY_ASSURED=1 rails db:schema:load\n  rails db:seed\nelse\n  echo \"Migrating database (this might be a noop)\"\n  rails db:migrate\nfi\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(databaseActuallyCreateLocally)), "unset PGPASSWORD\n"))),
@@ -854,14 +854,14 @@ export PGPASSWORD="$(cat '${nix.sel(cfg, "database", "passwordFile")}')"
                       nix.thunk(() => (nix.asBool(databaseActuallyCreateLocally) ? nix.sel(config, "services", "postgresql", "package") : nix.sel(pkgs, "postgresql"))),
                     ]),
                     environment: nix.thunk(() => nix.update(env, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(databaseActuallyCreateLocally)), nix.thunk(() => ({
-                        __proto__: pos$103,
+                        [nix.POS]: pos$103,
                         PGHOST: nix.thunk(() => nix.sel(cfg, "database", "host")),
                         PGPORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))),
                         PGDATABASE: nix.thunk(() => nix.sel(cfg, "database", "name")),
                         PGUSER: nix.thunk(() => nix.sel(cfg, "database", "user")),
                       }))))),
                     serviceConfig: nix.thunk(() => nix.update({
-                      __proto__: pos$104,
+                      [nix.POS]: pos$104,
                       Type: "oneshot",
                       EnvironmentFile: nix.thunk(() => nix.concat(["/var/lib/mastodon/.secrets_env"], nix.sel(cfg, "extraEnvFiles"))),
                       WorkingDirectory: nix.thunk(() => nix.sel(cfg, "package")),
@@ -876,17 +876,17 @@ export PGPASSWORD="$(cat '${nix.sel(cfg, "database", "passwordFile")}')"
                     requires: nix.thunk(() => nix.concat(["mastodon-init-dirs.service"], nix.app(nix.sel(lib, "optional"), databaseActuallyCreateLocally, "postgresql.target"))),
                   })))),
                 "mastodon-web": nix.thunk(() => ({
-                  __proto__: pos$109,
+                  [nix.POS]: pos$109,
                   after: nix.thunk(() => nix.concat(["network.target", "mastodon-init-dirs.service"], commonUnits)),
                   requires: nix.thunk(() => nix.concat(["mastodon-init-dirs.service"], commonUnits)),
                   wantedBy: nix.thunk(() => ["mastodon.target"]),
                   description: "Mastodon web",
-                  environment: nix.thunk(() => nix.update(env, (nix.asBool(nix.sel(cfg, "enableUnixSocket")) ? { __proto__: pos$106, SOCKET: "/run/mastodon-web/web.socket" } : {
-                    __proto__: pos$107,
+                  environment: nix.thunk(() => nix.update(env, (nix.asBool(nix.sel(cfg, "enableUnixSocket")) ? { [nix.POS]: pos$106, SOCKET: "/run/mastodon-web/web.socket" } : {
+                    [nix.POS]: pos$107,
                     PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "webPort")))),
                   }))),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$108,
+                    [nix.POS]: pos$108,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/puma -C config/puma.rb`),
                     Restart: "always",
                     RestartSec: 20n,
@@ -910,11 +910,11 @@ export PGPASSWORD="$(cat '${nix.sel(cfg, "database", "passwordFile")}')"
                   })()),
                 })),
                 "mastodon-media-auto-remove": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "mediaAutoRemove", "enable")), nix.thunk(() => ({
-                    __proto__: pos$111,
+                    [nix.POS]: pos$111,
                     description: "Mastodon media auto remove",
                     environment: env,
                     serviceConfig: nix.thunk(() => nix.update({
-                      __proto__: pos$110,
+                      [nix.POS]: pos$110,
                       Type: "oneshot",
                       EnvironmentFile: nix.thunk(() => nix.concat(["/var/lib/mastodon/.secrets_env"], nix.sel(cfg, "extraEnvFiles"))),
                     }, cfgService)),
@@ -929,28 +929,28 @@ ${nix.sel(cfg, "package")}/bin/tootctl preview_cards remove --days=${olderThanDa
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-                  __proto__: pos$123,
+                  [nix.POS]: pos$123,
                   enable: true,
                   recommendedProxySettings: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "localDomain")}`, nix.thunk(() => ({
-                      __proto__: pos$119,
+                      [nix.POS]: pos$119,
                       root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public/`),
                       forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$118,
-                        "/system/": nix.thunk(() => ({ __proto__: pos$114, alias: "/var/lib/mastodon/public-system/" })),
-                        "/": nix.thunk(() => ({ __proto__: pos$115, tryFiles: "$uri @proxy" })),
+                        [nix.POS]: pos$118,
+                        "/system/": nix.thunk(() => ({ [nix.POS]: pos$114, alias: "/var/lib/mastodon/public-system/" })),
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$115, tryFiles: "$uri @proxy" })),
                         "@proxy": nix.thunk(() => ({
-                          __proto__: pos$116,
+                          [nix.POS]: pos$116,
                           proxyPass: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableUnixSocket")) ? "http://unix:/run/mastodon-web/web.socket" : nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "webPort")))}`)),
                           proxyWebsockets: true,
                         })),
                         "/api/v1/streaming": nix.thunk(() => ({
-                          __proto__: pos$117,
+                          [nix.POS]: pos$117,
                           proxyPass: "http://mastodon-streaming",
                           proxyWebsockets: true,
                         })),
@@ -958,12 +958,12 @@ ${nix.sel(cfg, "package")}/bin/tootctl preview_cards remove --days=${olderThanDa
                     }))],
                   ])),
                   upstreams: nix.thunk(() => ({
-                    __proto__: pos$122,
+                    [nix.POS]: pos$122,
                     "mastodon-streaming": nix.thunk(() => ({
-                      __proto__: pos$121,
+                      [nix.POS]: pos$121,
                       extraConfig: "least_conn;\n",
                       servers: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((i) => ({
-                            __proto__: pos$120,
+                            [nix.POS]: pos$120,
                             name: nix.thunk(() => nix.str`unix:/run/mastodon-streaming/streaming-${nix.builtins.toString(i)}.socket`),
                             value: nix.thunk(() => ({})),
                           }), nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.sel(cfg, "streamingProcesses")))))))),
@@ -971,32 +971,32 @@ ${nix.sel(cfg, "package")}/bin/tootctl preview_cards remove --days=${olderThanDa
                   })),
                 })))),
               postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "smtp", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "smtp", "host"), "127.0.0.1")))), nix.thunk(() => ({
-                  __proto__: pos$126,
+                  [nix.POS]: pos$126,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$125,
+                    [nix.POS]: pos$125,
                     main: nix.thunk(() => ({
-                      __proto__: pos$124,
+                      [nix.POS]: pos$124,
                       myhostname: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "localDomain")}`))),
                     })),
                   })),
                 })))),
               redis: nix.thunk(() => ({
-                __proto__: pos$130,
+                [nix.POS]: pos$130,
                 servers: nix.thunk(() => ({
-                  __proto__: pos$129,
+                  [nix.POS]: pos$129,
                   mastodon: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), redisActuallyCreateLocally, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$127, enable: true })),
-                        nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))), nix.thunk(() => ({ __proto__: pos$128, port: nix.thunk(() => nix.sel(cfg, "redis", "port")) })))),
+                        nix.thunk(() => ({ [nix.POS]: pos$127, enable: true })),
+                        nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))), nix.thunk(() => ({ [nix.POS]: pos$128, port: nix.thunk(() => nix.sel(cfg, "redis", "port")) })))),
                       ]))))),
                 })),
               })),
               postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), databaseActuallyCreateLocally, nix.thunk(() => ({
-                  __proto__: pos$132,
+                  [nix.POS]: pos$132,
                   enable: true,
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$131,
+                      [nix.POS]: pos$131,
                       name: nix.thunk(() => nix.sel(cfg, "database", "name")),
                       ensureDBOwnership: true,
                     })),
@@ -1005,12 +1005,12 @@ ${nix.sel(cfg, "package")}/bin/tootctl preview_cards remove --days=${olderThanDa
                 })))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "mastodon")), nix.thunk(() => ({
-                      __proto__: pos$135,
+                      [nix.POS]: pos$135,
                       mastodon: nix.thunk(() => ({
-                        __proto__: pos$134,
+                        [nix.POS]: pos$134,
                         isSystemUser: true,
                         home: nix.thunk(() => nix.sel(cfg, "package")),
                         group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -1018,27 +1018,27 @@ ${nix.sel(cfg, "package")}/bin/tootctl preview_cards remove --days=${olderThanDa
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "setAttrByPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user")), "packages"]), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket")))), nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.sel(config, "services", "mastodon", "user"), nix.thunk(() => ({ __proto__: pos$136, extraGroups: nix.thunk(() => ["redis-mastodon"]) }))],
+                      [nix.sel(config, "services", "mastodon", "user"), nix.thunk(() => ({ [nix.POS]: pos$136, extraGroups: nix.thunk(() => ["redis-mastodon"]) }))],
                     ])))),
                 ]))),
               groups: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "group"), nix.thunk(() => ({
-                  __proto__: pos$137,
+                  [nix.POS]: pos$137,
                   members: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => nix.sel(config, "services", "nginx", "user")))),
                 }))],
               ])),
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             systemd: nix.thunk(() => ({
-              __proto__: pos$140,
+              [nix.POS]: pos$140,
               services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [sidekiqUnits, streamingUnits]))),
             })),
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$142,
+      [nix.POS]: pos$142,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

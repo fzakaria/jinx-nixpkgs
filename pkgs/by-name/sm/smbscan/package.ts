@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smbscan",
       version: "0-unstable-2022-05-26",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeffhacks",
           repo: "smbscan",
           rev: "1b19d6040cab279b97bf002934bf6f8b34d6a8b4",
@@ -42,7 +42,7 @@ cp wordlists/pattern* $out/${nix.sel(python3, "sitePackages")}/wordlists
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to enumerate file shares",
         homepage: "https://github.com/jeffhacks/smbscan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

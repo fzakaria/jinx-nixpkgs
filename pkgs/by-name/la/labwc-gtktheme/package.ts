@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labwc-gtktheme",
       version: "0-unstable-2025-02-11",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "labwc",
           repo: "labwc-gtktheme",
           rev: "619fa316702a6c21a0d974d7cf3dde0b82f9f64b",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp -a labwc-gtktheme.py $out/bin/labwc-gtktheme\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/labwc/labwc-gtktheme",
         description: "Create a labwc theme based on current Gtk theme",
         mainProgram: "labwc-gtktheme",

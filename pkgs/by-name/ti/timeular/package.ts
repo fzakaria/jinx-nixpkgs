@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const version = "6.9.1";
   const pname = "timeular";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://s3.amazonaws.com/timeular-desktop-packages/linux/production/Timeular-${version}.AppImage`),
       hash: "sha256-oXdalYfysZ4Jb46eHABSkiWThMuc2JGCmP/mk0vCjkE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -32,7 +32,7 @@ substituteInPlace $out/share/applications/timeular.desktop \\
   --replace "Exec=AppRun --no-sandbox %U" "Exec=$out/bin/${pname_1}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Timetracking by flipping 8-sided dice",
         longDescription: "The Timeular Tracker is an 8-sided dice that sits on your desk.\nAssign an activity to each side and flip to start tracking your time.\nThe desktop app tell you where every minute of your day is spent.\n",
         homepage: "https://timeular.com",
@@ -45,7 +45,7 @@ substituteInPlace $out/share/applications/timeular.desktop \\
         mainProgram: "timeular",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src: src_1,

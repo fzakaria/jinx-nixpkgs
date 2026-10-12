@@ -30,7 +30,7 @@ export default (self) => nix.lambda((args) => (() => {
   const projectInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../generated/projects.json")));
   const licenseInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../generated/licenses.json")));
   const licensesBySpdxId = nix.thunk(() => nix.update(nix.sel(lib, "licensesSpdx"), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "LicenseRef-KDE-Accepted-GPL": nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
     "LicenseRef-KFQF-Accepted-GPL": nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
     "LicenseRef-KDE-Accepted-LGPL": nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -47,19 +47,19 @@ export default (self) => nix.lambda((args) => (() => {
     None: null,
   }));
   const moveOutputsHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "kf6-move-outputs-hook",
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./move-outputs-hook.sh")));
   const qmllintHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "qmllint-validate-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         qmllint: nix.thunk(() => nix.str`${nix.sel(qt6, "qtdeclarative")}/bin/qmllint`),
         jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./qmllint-hook.sh")));
   return nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -87,7 +87,7 @@ export default (self) => nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(traceDuplicateDeps, "extraPropagatedBuildInputs", extraPropagatedBuildInputs)),
       ])));
     const defaultArgs = nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: version,
       src: src,
       outputs: nix.thunk(() => nix.concat(["out", "dev", "devtools"], nix.app(nix.sel(lib, "optionals"), hasPythonBindings, nix.thunk(() => ["python"])))),
@@ -111,7 +111,7 @@ export default (self) => nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DQT_MAJOR_VERSION=6"], extraCmakeFlags)),
       doInstallCheck: true,
       separateDebugInfo: true,
-      env: nix.thunk(() => ({ __proto__: pos$7, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$7, LANG: "C.UTF-8" })),
     }));
     const cleanArgs = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => [
         "extraBuildInputs",
@@ -123,7 +123,7 @@ export default (self) => nix.lambda((args) => (() => {
         "meta",
       ])));
     const meta = nix.thunk(() => nix.update({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       description: nix.thunk(() => nix.sel(projectInfo, nix.key(nix.force(pname)), "description")),
       homepage: nix.thunk(() => nix.str`https://invent.kde.org/${nix.sel(projectInfo, nix.key(nix.force(pname)), "repo_path")}`),
       donationPage: "https://kde.org/donate/",
@@ -132,7 +132,7 @@ export default (self) => nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
     }, nix.selOr(args_2, () => ({}), "meta")));
     const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_2));
-    return nix.app(traceAllDuplicateDeps, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(defaultArgs, nix.update(cleanArgs, { __proto__: pos$10, meta: meta, pos: pos }))))));
+    return nix.app(traceAllDuplicateDeps, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(defaultArgs, nix.update(cleanArgs, { [nix.POS]: pos$10, meta: meta, pos: pos }))))));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=mk-kde-derivation.ts.map

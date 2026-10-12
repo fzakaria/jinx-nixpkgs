@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "1.0.1";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "pspell",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "php",
           repo: "pecl-text-pspell",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-pspell=${aspell}`)]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP extension for checking the spelling of a word",
         homepage: "https://pecl.php.net/package/pspell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

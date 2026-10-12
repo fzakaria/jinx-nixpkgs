@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const mpfi = nix.arg($, "mpfi");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wcpg",
       version: "0.9",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fixif",
           repo: "wcpg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [blas, gmp, lapack, libf2c, mpfi, mpfr]),
       makeFlags: nix.thunk(() => ["CFLAGS=-std=c17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Worst-Case Peak-Gain library",
         homepage: "https://github.com/fixif/WCPG",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),

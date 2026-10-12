@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "textile",
       version: "4.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textile",
           repo: "python-textile",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [nh3, regex]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, imagesize: nix.thunk(() => [pillow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, imagesize: nix.thunk(() => [pillow]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["textile"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for generating web text",
         homepage: "https://github.com/textile/python-textile",
         changelog: nix.thunk(() => nix.str`https://github.com/textile/python-textile/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.textile`),

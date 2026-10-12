@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "acc",
       version: "1.60",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zdoom",
           repo: "acc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./disable-static.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-fix-1",
             url: "https://github.com/ZDoom/acc/commit/a0e7d2437c7f66a2b973537c2e854e2b91cd9c4c.patch",
             hash: "sha256-n+YctiUFYbv6u3ixB5wTsT8KBmearECoUtC74OpoG6c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "cmake-fix-2",
             url: "https://github.com/ZDoom/acc/commit/df6a2735acccad9131ce73fa07506445cfe69ec2.patch",
             hash: "sha256-DFMxZ8/Shv+tBSPXdhaPI1iTi1fbng/IMO//0Jk4Lk4=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\n\ninstall -D acc $out/bin/acc\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ACS script compiler for use with ZDoom and Hexen",
         homepage: "https://zdoom.org/wiki/ACC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "activision")),

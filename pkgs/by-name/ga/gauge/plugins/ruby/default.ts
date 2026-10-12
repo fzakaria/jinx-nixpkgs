@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const makeGaugePlugin = nix.arg($, "makeGaugePlugin");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ruby",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/gauge-ruby",
       releasePrefix: "gauge-ruby-",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Gauge plugin that lets you write tests in Ruby",
         homepage: "https://github.com/getgauge/gauge-ruby/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

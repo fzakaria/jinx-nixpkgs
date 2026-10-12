@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "l8w8jwt",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GlitchedPolygons",
           repo: "l8w8jwt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p -m777 $out/include $out/lib64\ncp -pr $src/include/l8w8jwt $out/include\ncp -pr l8w8jwt/bin/release/libl8w8jwt.a $out/lib64\n\nrunHook postInstall\n",
       postPatch: "substituteInPlace lib/chillbuff/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal, OpenSSL-less and super lightweight JWT library written in C",
         homepage: "https://codeberg.org/GlitchedPolygons/l8w8jwt",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/GlitchedPolygons/l8w8jwt/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "icingaweb2";
       const version = "2.12.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Icinga",
           repo: "icingaweb2",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ cp -ra doc $out/share
 wrapProgram $out/bin/icingacli --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [php83]))}"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           icingaweb2: nix.thunk(() => nix.attr(nixosTests, "icingaweb2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Webinterface for Icinga 2",
         longDescription: "A lightweight and extensible web interface to keep an eye on your environment.\nAnalyse problems and act on them.\n",
         homepage: "https://www.icinga.com/products/icinga-web-2/",
@@ -55,7 +55,7 @@ wrapProgram $out/bin/icingacli --prefix PATH : "${nix.app(nix.sel(lib, "makeBinP
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

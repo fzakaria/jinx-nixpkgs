@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnugo",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnugo/gnugo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0wkahvqpzq6lzl5r49a4sd4p52frdmphnqsfdv7gdp24bykdfs6s",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://savannah.gnu.org/patch/download.php?file_id=53240",
             sha256: "0s96qvmx244vq5pv2nzf7x863kq2y5skzjhbpyzaajfkldbj0sw4",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNU Go - A computer go player",
         mainProgram: "gnugo",
         homepage: "https://www.gnu.org/software/gnugo/",

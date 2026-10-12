@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "24.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twisted",
           repo: "incremental",
           tag: nix.thunk(() => nix.str`incremental-${version}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [twisted]);
       const checkPhase = "trial incremental\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(incremental, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          check: nix.thunk(() => nix.app(nix.sel(incremental, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["incremental"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/twisted/incremental/blob/${nix.sel(src, "tag")}/NEWS.rst`),
         homepage: "https://github.com/twisted/incremental",
         description: "Small library that versions your Python projects",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

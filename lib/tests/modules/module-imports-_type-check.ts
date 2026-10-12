@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/module-imports-_type-check.nix", [["_type",
 const pos$2 = nix.positions(here + "/module-imports-_type-check.nix", [["imports", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  imports: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, _type: "flake" }))]),
+  [nix.POS]: pos$2,
+  imports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, _type: "flake" }))]),
 }));
 //# sourceMappingURL=module-imports-_type-check.ts.map

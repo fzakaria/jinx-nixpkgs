@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const timidity = nix.arg($, "timidity");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "corsix-th",
       version: "0.69.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CorsixTH",
           repo: "CorsixTH",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-Wno-dev"]),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapProgram $out/bin/corsix-th \\\n--set LUA_PATH \"$LUA_PATH\" \\\n--set LUA_CPATH \"$LUA_CPATH\"\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/CorsixTH.app $out/Applications\nwrapProgram $out/Applications/CorsixTH.app/Contents/MacOS/CorsixTH \\\n  --set LUA_PATH \"$LUA_PATH\" \\\n  --set LUA_CPATH \"$LUA_CPATH\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reimplementation of the 1997 Bullfrog business sim Theme Hospital",
         mainProgram: "corsix-th",
         homepage: "https://corsixth.com/",

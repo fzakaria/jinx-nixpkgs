@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const pname = "horizon-eda";
     const version = "2.7.2";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "horizon-eda",
         repo: "horizon",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
       podofo0,
       sqlite,
     ]);
-    const env = nix.thunk(() => ({ __proto__: pos$2, CASROOT: opencascade_occt }));
+    const env = nix.thunk(() => ({ [nix.POS]: pos$2, CASROOT: opencascade_occt }));
     const meta = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       description: "Free EDA software to develop printed circuit boards",
       homepage: "https://horizon-eda.org",
       maintainers: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     }));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname,
       version,
       src,

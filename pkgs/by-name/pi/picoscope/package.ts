@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "picoscope"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "picoscope",
       version: nix.thunk(() => nix.attr(from, "version")),
       srcs: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (src) => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(src, "url")),
             sha256: nix.thunk(() => nix.attr(src, "sha256")),
           }))), sources)),
@@ -87,11 +87,11 @@ runHook postInstall
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         rules: nix.thunk(() => nix.app(writeTextDir, "lib/udev/rules.d/95-pico.rules", "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"0ce9\", MODE=\"664\",GROUP=\"pico\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.picotech.com/downloads/linux",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

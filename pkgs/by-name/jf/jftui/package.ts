@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mpv = nix.arg($, "mpv");
   const yajl = nix.arg($, "yajl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jftui",
       version: "0.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aanok",
           repo: "jftui",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, mpv, yajl]),
       installPhase: "install -Dm555 build/jftui $out/bin/jftui\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jellyfin Terminal User Interface",
         homepage: "https://github.com/Aanok/jftui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

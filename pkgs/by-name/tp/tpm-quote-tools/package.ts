@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const trousers = nix.arg($, "trousers");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tpm-quote-tools",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/tpmquotetools/${nix.sel(finalAttrs, "version")}/tpm-quote-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qjs83xb4np4yn1bhbjfhvkiika410v8icwnjix5ad96w2nlxp0h",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   $out/bin/tpm_mkaik
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of programs that provide support for TPM based attestation using the TPM quote mechanism",
         longDescription: "The TPM Quote Tools is a collection of programs that provide support\nfor TPM based attestation using the TPM quote mechanism.  The manual\npage for tpm_quote_tools provides a usage overview.\n",
         homepage: "http://tpmquotetools.sourceforge.net/",

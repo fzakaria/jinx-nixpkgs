@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ua",
       version: "0-unstable-2022-10-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sloonz",
           repo: "ua",
           rev: "f636f5eec425754d8a8be8e767c5b3e4f31fe1f9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libxml2]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sloonz/ua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Universal Aggregator",

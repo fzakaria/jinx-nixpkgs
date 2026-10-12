@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "flit",
           rev: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         "test_symlink_module_pep621",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/flit/blob/${version}/doc/history.rst`),
         description: "Simple packaging tool for simple packages",
         mainProgram: "flit",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

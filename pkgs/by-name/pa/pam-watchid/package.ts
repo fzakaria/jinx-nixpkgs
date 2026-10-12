@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam-watchid",
       version: "2-unstable-2024-12-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mostpinkest",
           repo: "pam-watchid",
           rev: "bb9c6ea62207dd9d41a08ca59c7a1f5d6fa07189",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [swift, swiftpm]),
       installPhase: "binPath=\"$(swiftpmBinPath)\"\nmkdir -p $out/lib\ncp $binPath/libpam-watchid.dylib $out/lib/pam_watchid.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PAM plugin module that allows the Apple Watch to be used for authentication",
         homepage: "https://github.com/mostpinkest/pam-watchid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

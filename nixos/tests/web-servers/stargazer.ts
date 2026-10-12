@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const test_script = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stargazer"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "stargazer-test-script",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
   const test_env = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stargazer"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "stargazer-test-env",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
   const scgi_server = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stargazer"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stargazer-test-scgi-server",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -97,44 +97,44 @@ export default nix.lambda((args) => (() => {
     };
     })())));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     name: "stargazer",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "gaykitty"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       geminiserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             stargazer: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               connectionLogging: false,
               requestTimeout: 1n,
               routes: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   route: "localhost",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   route: "localhost=/en.gmi",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   lang: "en",
                   charset: "ascii",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   route: "localhost~/(.*).gemini",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   rewrite: "\\1.gmi",
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
                   charset: "ascii",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   route: "localhost=/plain.txt",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   lang: "en",
@@ -151,38 +151,38 @@ export default nix.lambda((args) => (() => {
                   "key-path": "/var/lib/gemini/certs/localhost.key",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   route: "localhost:/cgi-bin",
                   root: nix.thunk(() => nix.str`${test_env}/test_data`),
                   cgi: true,
                   "cgi-timeout": 5n,
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   route: "localhost:/scgi",
                   scgi: true,
                   "scgi-address": "127.0.0.1:1099",
                 })),
-                nix.thunk(() => ({ __proto__: pos$11, route: "localhost=/root", redirect: "..", permanent: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$11, route: "localhost=/root", redirect: "..", permanent: true })),
                 nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   route: "localhost=/priv.gmi",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   "client-cert": nix.thunk(() => nix.str`${test_env}/test_data/client_cert/good.crt`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   route: "example.com~(.*)",
                   redirect: "gemini://localhost",
                   rewrite: "\\1",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   route: "localhost:/no-exist",
                   root: nix.thunk(() => nix.str`${test_env}/does_not_exist`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   route: "localhost=/rss.xml",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   "mime-override": "application/atom+xml",
@@ -191,15 +191,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               scgi_server: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ExecStart: nix.thunk(() => nix.str`${scgi_server}/bin/scgi-server`),
                 })),
               })),
@@ -210,26 +210,26 @@ export default nix.lambda((args) => (() => {
       cgiTestServer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             users: nix.thunk(() => ({
-              __proto__: pos$24,
-              cgi: nix.thunk(() => ({ __proto__: pos$23, isSystemUser: true, group: "cgi" })),
+              [nix.POS]: pos$24,
+              cgi: nix.thunk(() => ({ [nix.POS]: pos$23, isSystemUser: true, group: "cgi" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$25, cgi: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$25, cgi: nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             stargazer: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: true,
               connectionLogging: false,
               requestTimeout: 1n,
               allowCgiUser: true,
               routes: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   route: "localhost:/cgi-bin",
                   root: nix.thunk(() => nix.str`${test_env}/test_data`),
                   cgi: true,

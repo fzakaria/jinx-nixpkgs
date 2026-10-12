@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       src: src,
@@ -30,7 +30,7 @@ ${nix.app(nix.sel(lib, "getExe"), asar)} pack app $out/resources/app.asar
 `),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: appimageContents,
@@ -46,7 +46,7 @@ wrapProgram $out/bin/todoist-electron \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "To-Do List App & Task Manager",
         homepage: "https://www.todoist.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

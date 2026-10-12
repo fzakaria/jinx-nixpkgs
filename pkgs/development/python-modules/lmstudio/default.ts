@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lmstudio",
       version: "1.6.0b1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmstudio-ai",
           repo: "lmstudio-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LM Studio Python SDK",
         homepage: "https://github.com/lmstudio-ai/lmstudio-python",
         changelog: nix.thunk(() => nix.str`https://github.com/lmstudio-ai/lmstudio-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

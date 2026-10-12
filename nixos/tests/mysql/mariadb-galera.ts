@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, lib: lib }))));
   const mkTestName = nix.thunk(() => nix.attr(from, "mkTestName"));
   const mariadbPackages = nix.thunk(() => nix.attr(from, "mariadbPackages"));
   const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./../make-test-python.nix")));
@@ -52,10 +52,10 @@ export default nix.lambda((args) => (() => {
     const name = nix.argOr($_1, "name", () => nix.app(mkTestName, mariadbPackage));
     const galeraPackage = nix.argOr($_1, "galeraPackage", () => nix.sel(pkgs, "mariadb-galera"));
     return nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: nix.thunk(() => nix.str`${name}-galera-mariabackup`),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [
@@ -74,27 +74,27 @@ export default nix.lambda((args) => (() => {
             const address = nix.thunk(() => nix.str`192.168.1.${nix.builtins.toString(id)}`);
             const isFirstClusterNode = nix.thunk(() => (nix.asBool(nix.eq(id, 1n)) || nix.asBool(nix.eq(id, 4n))));
             return {
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               users: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 users: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  testuser: nix.thunk(() => ({ __proto__: pos$4, isSystemUser: true, group: "testusers" })),
+                  [nix.POS]: pos$5,
+                  testuser: nix.thunk(() => ({ [nix.POS]: pos$4, isSystemUser: true, group: "testusers" })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$6, testusers: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$6, testusers: nix.thunk(() => ({})) })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$9,
-                      addresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$8, address: address, prefixLength: 24n }))]),
+                      [nix.POS]: pos$9,
+                      addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, address: address, prefixLength: 24n }))]),
                     })),
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     })),
                   })),
@@ -102,22 +102,22 @@ export default nix.lambda((args) => (() => {
                 extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (i) => nix.str`192.168.1.${nix.builtins.toString(i)} galera_0${nix.builtins.toString(i)}`, nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, 6n)))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   enable: true,
                   package: mariadbPackage,
                   ensureDatabases: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isFirstClusterNode, nix.thunk(() => ["testdb"]))),
                   ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isFirstClusterNode, nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         name: "testuser",
-                        ensurePermissions: nix.thunk(() => ({ __proto__: pos$14, "testdb.*": "ALL PRIVILEGES" })),
+                        ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$14, "testdb.*": "ALL PRIVILEGES" })),
                       })),
                     ]))),
                   initialScript: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isFirstClusterNode, nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mariadb-init.sql", "GRANT ALL PRIVILEGES ON *.* TO 'check_repl'@'localhost' IDENTIFIED BY 'check_pass' WITH GRANT OPTION;\nFLUSH PRIVILEGES;\n")))),
                   galeraCluster: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     enable: true,
                     package: galeraPackage,
                     sstMethod: method,
@@ -126,26 +126,26 @@ export default nix.lambda((args) => (() => {
                     clusterAddress: nix.thunk(() => nix.add(nix.add("gcomm://", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(id, 2n)) || nix.asBool(nix.eq(id, 3n)))), "galera_01,galera_02,galera_03")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(id, 5n)) || nix.asBool(nix.eq(id, 6n)))), "galera_04,galera_05,galera_06"))),
                   })),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$18,
-                    galera: nix.thunk(() => ({ __proto__: pos$17, wsrep_debug: "NONE" })),
+                    [nix.POS]: pos$18,
+                    galera: nix.thunk(() => ({ [nix.POS]: pos$17, wsrep_debug: "NONE" })),
                   })),
                 })),
               })),
             };
           })(), formals$3);
           return {
-            __proto__: pos$28,
-            galera_01: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ __proto__: pos$22, id: 1n, method: "mariabackup" })))),
-            galera_02: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ __proto__: pos$23, id: 2n, method: "mariabackup" })))),
-            galera_03: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ __proto__: pos$24, id: 3n, method: "mariabackup" })))),
-            galera_04: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ __proto__: pos$25, id: 4n, method: "rsync" })))),
-            galera_05: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ __proto__: pos$26, id: 5n, method: "rsync" })))),
-            galera_06: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ __proto__: pos$27, id: 6n, method: "rsync" })))),
+            [nix.POS]: pos$28,
+            galera_01: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ [nix.POS]: pos$22, id: 1n, method: "mariabackup" })))),
+            galera_02: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ [nix.POS]: pos$23, id: 2n, method: "mariabackup" })))),
+            galera_03: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ [nix.POS]: pos$24, id: 3n, method: "mariabackup" })))),
+            galera_04: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ [nix.POS]: pos$25, id: 4n, method: "rsync" })))),
+            galera_05: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ [nix.POS]: pos$26, id: 5n, method: "rsync" })))),
+            galera_06: nix.thunk(() => nix.app(mkGaleraNode, nix.thunk(() => ({ [nix.POS]: pos$27, id: 6n, method: "rsync" })))),
           };
         })()),
         testScript: "galera_01.start()\ngalera_01.wait_for_unit(\"mysql\")\ngalera_01.wait_for_open_port(3306)\ngalera_01.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; create table db1 (test_id INT, PRIMARY KEY (test_id)) ENGINE = InnoDB;'\"\n)\ngalera_01.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; insert into db1 values (37);'\"\n)\ngalera_02.start()\ngalera_02.wait_for_unit(\"mysql\")\ngalera_02.wait_for_open_port(3306)\ngalera_03.start()\ngalera_03.wait_for_unit(\"mysql\")\ngalera_03.wait_for_open_port(3306)\ngalera_02.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db1;' -N | grep 37\"\n)\ngalera_02.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; create table db2 (test_id INT, PRIMARY KEY (test_id)) ENGINE = InnoDB;'\"\n)\ngalera_02.succeed(\"systemctl stop mysql\")\ngalera_01.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; insert into db2 values (38);'\"\n)\ngalera_03.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; create table db3 (test_id INT, PRIMARY KEY (test_id)) ENGINE = InnoDB;'\"\n)\ngalera_01.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; insert into db3 values (39);'\"\n)\ngalera_02.succeed(\"systemctl start mysql\")\ngalera_02.wait_for_open_port(3306)\ngalera_02.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'show status' -N | grep 'wsrep_cluster_size.*3'\"\n)\ngalera_03.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'show status' -N | grep 'wsrep_local_state_comment.*Synced'\"\n)\ngalera_01.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db3;' -N | grep 39\"\n)\ngalera_02.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db2;' -N | grep 38\"\n)\ngalera_03.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db1;' -N | grep 37\"\n)\ngalera_01.succeed(\"sudo -u testuser mysql -u testuser -e 'use testdb; drop table db3;'\")\ngalera_02.succeed(\"sudo -u testuser mysql -u testuser -e 'use testdb; drop table db2;'\")\ngalera_03.succeed(\"sudo -u testuser mysql -u testuser -e 'use testdb; drop table db1;'\")\ngalera_01.crash()\ngalera_02.crash()\ngalera_03.crash()\n\ngalera_04.start()\ngalera_04.wait_for_unit(\"mysql\")\ngalera_04.wait_for_open_port(3306)\ngalera_04.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; create table db1 (test_id INT, PRIMARY KEY (test_id)) ENGINE = InnoDB;'\"\n)\ngalera_04.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; insert into db1 values (41);'\"\n)\ngalera_05.start()\ngalera_05.wait_for_unit(\"mysql\")\ngalera_05.wait_for_open_port(3306)\ngalera_06.start()\ngalera_06.wait_for_unit(\"mysql\")\ngalera_06.wait_for_open_port(3306)\ngalera_05.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db1;' -N | grep 41\"\n)\ngalera_05.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; create table db2 (test_id INT, PRIMARY KEY (test_id)) ENGINE = InnoDB;'\"\n)\ngalera_05.succeed(\"systemctl stop mysql\")\ngalera_04.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; insert into db2 values (42);'\"\n)\ngalera_06.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; create table db3 (test_id INT, PRIMARY KEY (test_id)) ENGINE = InnoDB;'\"\n)\ngalera_04.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; insert into db3 values (43);'\"\n)\ngalera_05.succeed(\"systemctl start mysql\")\ngalera_05.wait_for_open_port(3306)\ngalera_05.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'show status' -N | grep 'wsrep_cluster_size.*3'\"\n)\ngalera_06.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'show status' -N | grep 'wsrep_local_state_comment.*Synced'\"\n)\ngalera_04.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db3;' -N | grep 43\"\n)\ngalera_05.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db2;' -N | grep 42\"\n)\ngalera_06.succeed(\n    \"sudo -u testuser mysql -u testuser -e 'use testdb; select test_id from db1;' -N | grep 41\"\n)\ngalera_04.succeed(\"sudo -u testuser mysql -u testuser -e 'use testdb; drop table db3;'\")\ngalera_05.succeed(\"sudo -u testuser mysql -u testuser -e 'use testdb; drop table db2;'\")\ngalera_06.succeed(\"sudo -u testuser mysql -u testuser -e 'use testdb; drop table db1;'\")\n",
       })));
   })(), formals$2);
-  return nix.app(nix.sel(lib, "mapAttrs"), (_) => (mariadbPackage) => nix.app(makeGaleraTest, nix.thunk(() => ({ __proto__: pos$30, mariadbPackage: mariadbPackage }))), mariadbPackages);
+  return nix.app(nix.sel(lib, "mapAttrs"), (_) => (mariadbPackage) => nix.app(makeGaleraTest, nix.thunk(() => ({ [nix.POS]: pos$30, mariadbPackage: mariadbPackage }))), mariadbPackages);
 })(), formals$1);
 //# sourceMappingURL=mariadb-galera.ts.map

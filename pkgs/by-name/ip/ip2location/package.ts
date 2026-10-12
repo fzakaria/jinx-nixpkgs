@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ip2location",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "05zbc02z7vm19byafi05i1rnkxc6yrfkhnm30ly68zzyipkmzx1l",
           url: nix.thunk(() => nix.str`https://www.ip2location.com/downloads/ip2location-${nix.sel(finalAttrs, "version")}.tar.gz`),
         })))),
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Look up locations of host names and IP addresses",
         longDescription: "A command-line tool to find the country, region, city,coordinates,\nzip code, time zone, ISP, domain name, connection type, area code,\nweather, MCC, MNC, mobile brand name, elevation and usage type of\nany IP address or host name in the IP2Location databases.\n",
         homepage: "https://www.ip2location.com/free/applications",

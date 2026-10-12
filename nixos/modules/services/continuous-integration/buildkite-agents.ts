@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "buildkite-agents"));
   const hooksDir = (hooks) => (() => {
-    const mkHookEntry = (name) => (text) => nix.str`ln --symbolic ${nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ __proto__: pos$1, name: name, text: text })))}/bin/${name} $out/${name}
+    const mkHookEntry = (name) => (text) => nix.str`ln --symbolic ${nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$1, name: name, text: text })))}/bin/${name} $out/${name}
 `;
-    return nix.app(nix.sel(pkgs, "runCommand"), "buildkite-agent-hooks", nix.thunk(() => ({ __proto__: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
+    return nix.app(nix.sel(pkgs, "runCommand"), "buildkite-agent-hooks", nix.thunk(() => ({ [nix.POS]: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mkHookEntry, hooks)))}
 `));
   })();
@@ -52,30 +52,30 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
     const name = nix.argOr($_1, "name", () => "");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       options: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to enable this buildkite agent",
           })))),
         package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "buildkite-agent", nix.thunk(() => ({})))),
         dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: nix.thunk(() => nix.str`/var/lib/buildkite-agent-${name}`),
             description: "The workdir for the agent",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
           })))),
         extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: nix.thunk(() => ["keys"]),
             description: "Groups the user for this buildkite agent should belong to",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           })))),
         runtimePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             default: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "bash")),
               nix.thunk(() => nix.sel(pkgs, "gnutar")),
@@ -88,53 +88,53 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
           })))),
         tokenPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
             description: "The token from your Buildkite \"Agents\" page.\n\nA run-time path to the token file, which is supposed to be provisioned\noutside of Nix store.\n",
           })))),
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`%hostname-${name}-%n`),
             description: "The name of the agent as seen in the buildkite dashboard.\n",
           })))),
         tags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))))),
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$9, queue: "default", docker: "true", ruby2: "true" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$9, queue: "default", docker: "true", ruby2: "true" })),
             description: "Tags for the agent.\n",
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: "debug=true",
             description: "Extra lines to be added verbatim to the configuration file.\n",
           })))),
         privateSshKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             default: null,
             apply: (final) => (nix.asBool(nix.eq(final, null)) ? null : nix.builtins.toString(final)),
             description: "OpenSSH private key\n\nA run-time path to the key file, which is supposed to be provisioned\noutside of Nix store.\n",
           })))),
         hooks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  environment = ''\n    export SECRET_VAR=`head -1 /run/keys/secret`\n  '';\n}")),
             description: "\"Agent\" hooks to install.\nSee <https://buildkite.com/docs/agent/v3/hooks> for possible options.\n",
           })))),
         hooksPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
             default: nix.thunk(() => nix.app(hooksDir, nix.thunk(() => nix.sel(config_1, "hooks")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "generated from {option}`services.buildkite-agents.<name>.hooks`")),
             description: "Path to the directory storing the hooks.\nConsider using {option}`services.buildkite-agents.<name>.hooks.<name>`\ninstead.\n",
           })))),
         shell: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash -e -c`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.bash}/bin/bash -e -c\"")),
@@ -146,13 +146,13 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
   const enabledAgents = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.sel(v, "enable"), cfg));
   const mapAgents = (function$) => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), function$, enabledAgents)));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "buildkite-agents": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), buildkiteOptions)))),
             default: nix.thunk(() => ({})),
             description: "Attribute set of buildkite agents.\nThe attribute key is combined with the hostname and a unique integer to\ncreate the final agent name. This can be overridden by setting the `name`\nattribute.\n",
@@ -160,12 +160,12 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       users: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         users: nix.thunk(() => nix.app(mapAgents, (name) => (cfg_1) => nix.attrsDyn({}, [
             [nix.str`buildkite-agent-${name}`, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               name: nix.thunk(() => nix.str`buildkite-agent-${name}`),
               home: nix.thunk(() => nix.sel(cfg_1, "dataDir")),
               createHome: true,
@@ -178,10 +178,10 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
         groups: nix.thunk(() => nix.app(mapAgents, (name) => (cfg_1) => nix.attrsDyn({}, [[nix.str`buildkite-agent-${name}`, nix.thunk(() => ({}))]]))),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => nix.app(mapAgents, (name) => (cfg_1) => nix.attrsDyn({}, [
             [nix.str`buildkite-agent-${name}`, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Buildkite Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -190,7 +190,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
               ])),
               environment: nix.thunk(() => nix.update(nix.sel(config, "networking", "proxy", "envVars"), {
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 HOME: nix.thunk(() => nix.sel(cfg_1, "dataDir")),
                 NIX_REMOTE: "daemon",
               })),
@@ -212,7 +212,7 @@ EOF
 `);
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg_1, "package")}/bin/buildkite-agent start --config ${nix.sel(cfg_1, "dataDir")}/buildkite-agent.cfg`),
                 User: nix.thunk(() => nix.str`buildkite-agent-${name}`),
                 RestartSec: 5n,
@@ -226,7 +226,7 @@ EOF
       })),
       assertions: nix.thunk(() => nix.app(mapAgents, (name) => (cfg_1) => [
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg_1, "hooksPath"), nix.app(hooksDir, nix.thunk(() => nix.sel(cfg_1, "hooks"))))) || nix.asBool(nix.eq(nix.sel(cfg_1, "hooks"), {})))),
             message: nix.thunk(() => nix.str`Options \`services.buildkite-agents.${name}.hooksPath' and
 \`services.buildkite-agents.${name}.hooks.<name>' are mutually exclusive.

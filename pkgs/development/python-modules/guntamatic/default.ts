@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guntamatic",
       version: "1.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JensTimmerman",
           repo: "guntamatic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["guntamatic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to get data from a Guntamatic heater e.g. BMK 20",
         homepage: "https://github.com/JensTimmerman/guntamatic",
         changelog: nix.thunk(() => nix.str`https://github.com/JensTimmerman/guntamatic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

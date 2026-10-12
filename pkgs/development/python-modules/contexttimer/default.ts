@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "contexttimer",
       version: "0.3.3-unstable-2024-09-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brouberol",
           repo: "contexttimer",
           rev: "8e77927b8b75365f8e2bc456d2457b3e47c67815",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["contexttimer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/brouberol/contexttimer",
         description: "Timer as a context manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

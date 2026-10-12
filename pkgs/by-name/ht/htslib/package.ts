@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const libdeflate = nix.arg($, "libdeflate");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "htslib",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/samtools/htslib/releases/download/${nix.sel(finalAttrs, "version")}/htslib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-YlDB3yl9tHdRbmCsjfRe11plLR8lsPN/EvWxcmnq/ek=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/samtools/htslib/commit/31006e1c8edd02eb6321ed9be76b84fca5d20cb6.patch",
             hash: "sha256-sbnkVmXIbs/Cn/msUUrJpJZCI2DHX5kpGSka2cccZIQ=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library for reading/writing high-throughput sequencing data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "http://www.htslib.org/",

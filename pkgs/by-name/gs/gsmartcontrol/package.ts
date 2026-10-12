@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gsmartcontrol",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ashaduri",
           repo: "gsmartcontrol",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [smartmontools]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hard disk drive health inspection tool",
         longDescription: "GSmartControl is a graphical user interface for smartctl (from\nsmartmontools package), which is a tool for querying and controlling\nSMART (Self-Monitoring, Analysis, and Reporting Technology) data on\nmodern hard disk drives.\n\nIt allows you to inspect the drive's SMART data to determine its health,\nas well as run various tests on it.\n",
         homepage: "https://gsmartcontrol.shaduri.dev",

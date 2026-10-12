@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2022-12-05";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thevinter",
           repo: "styli.sh",
           rev: "d595412a949c6cdc7e151ae0cf929aa1958aa7f1",
@@ -39,7 +39,7 @@ runHook postInstall
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/styli.sh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, feh, file, jq, util_linux, wget]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/thevinter/styli.sh",
         description: "Shell script to manage wallpapers",
         mainProgram: "styli.sh",
@@ -51,7 +51,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nativeBuildInputs,

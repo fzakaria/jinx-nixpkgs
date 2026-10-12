@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aklajnert",
           repo: "pytest-subprocess",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin to fake subprocess for pytest",
         homepage: "https://github.com/aklajnert/pytest-subprocess",
         changelog: nix.thunk(() => nix.str`https://github.com/aklajnert/pytest-subprocess/blob/${nix.sel(src, "tag")}/HISTORY.rst`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

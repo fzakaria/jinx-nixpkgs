@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libusermetrics",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/libusermetrics",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-libusermetrics-revert-qdjango-vendoring.patch",
             url: "https://gitlab.com/ubports/development/core/libusermetrics/-/commit/87f83dd4711bfb4e94fd87bc68403a9bd5cfef2a.patch",
             revert: true,
@@ -80,7 +80,7 @@ substituteInPlace doc/CMakeLists.txt \\
         qtbase,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LC_ALL: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "en_US.UTF-8")),
       })),
       nativeCheckInputs: nix.thunk(() => [dbus, glibcLocales]),
@@ -95,15 +95,15 @@ substituteInPlace doc/CMakeLists.txt \\
 export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/lib/qt-${nix.sel(qtbase, "version")}/qml/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Enables apps to locally store interesting numerical data for later presentation",
         homepage: "https://gitlab.com/ubports/development/core/libusermetrics",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/libusermetrics/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

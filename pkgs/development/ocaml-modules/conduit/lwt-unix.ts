@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const lwt_log = nix.arg($, "lwt_log");
   const ssl = nix.arg($, "ssl");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "conduit-lwt-unix",
       version: nix.thunk(() => nix.attr(conduit_lwt, "version")),
       src: nix.thunk(() => nix.attr(conduit_lwt, "src")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0"))),
       checkInputs: nix.thunk(() => [lwt_log, ssl]),
       meta: nix.thunk(() => nix.update(nix.sel(conduit_lwt, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Network connection establishment library for Lwt_unix",
       })),
     })));

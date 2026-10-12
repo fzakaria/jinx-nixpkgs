@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elkhound",
       version: "0-unstable-2020-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WeiDUorg",
           repo: "elkhound",
           rev: "a7eb4bb2151c00cc080613a770d37560f62a285c",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-Wno-dev"]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin ast/astgen elkhound/elkhound\nfor d in ast elkhound smbase; do\n  install -Dm444 -t $out/lib $d/*.a\n  install -Dm444 -t $out/include/$d $src/src/$d/*.h\ndone\ninstall -Dm444 -t $out/share/doc/elkhound $src/src/elkhound/*.txt\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser generator which emits GLR parsers, either in OCaml or C++",
         homepage: "https://scottmcpeak.com/elkhound/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

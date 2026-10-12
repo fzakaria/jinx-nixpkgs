@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.6";
       const pname = nix.thunk(() => nix.add(nix.add(nix.add(nix.add("hdf5", nix.app(nix.sel(lib, "optionalString"), cppSupport, "-cpp")), nix.app(nix.sel(lib, "optionalString"), fortranSupport, "-fortran")), nix.app(nix.sel(lib, "optionalString"), mpiSupport, "-mpi")), nix.app(nix.sel(lib, "optionalString"), threadsafe, "-threadsafe")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HDFGroup",
           repo: "hdf5",
           rev: nix.thunk(() => nix.str`hdf5_${version}`),
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "reproducible-build.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/hdf5/-/raw/721d33408db902ff738db18f1e977611d49b4ba8/hdf5-make-reproducible.patch",
             hash: "sha256-Z31dCsLjYpqjoGXooOXI81EPjPwyTK8890xCENTh8aM=",
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cppSupport: cppSupport,
         fortranSupport: fortranSupport,
         fortran: fortran,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mpi: mpi,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
-          return { __proto__: pos$3, h5py: nix.thunk(() => nix.attr(from, "h5py")) };
+          return { [nix.POS]: pos$3, h5py: nix.thunk(() => nix.attr(from, "h5py")) };
         })()),
       }));
       const outputs = nix.thunk(() => ["out", "dev", "bin"]);
@@ -106,7 +106,7 @@ find "$out" -type f -exec remove-references-to -t ${fortran} '{}' +
 `))));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Data model, library, and file format for storing and managing data",
         longDescription: "HDF5 supports an unlimited variety of datatypes, and is designed for flexible and efficient\nI/O and for high volume and complex data. HDF5 is portable and is extensible, allowing\napplications to evolve in their use of HDF5. The HDF5 Technology suite includes tools and\napplications for managing, manipulating, viewing, and analyzing data in the HDF5 format.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -115,7 +115,7 @@ find "$out" -type f -exec remove-references-to -t ${fortran} '{}' +
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         pname,
         src,

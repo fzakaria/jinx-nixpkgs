@@ -49,62 +49,62 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Enable this table.",
           })))),
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Table name.",
           })))),
         content: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             description: "The table content.",
           })))),
         family: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Table family.",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ip", "ip6", "inet", "arp", "bridge", "netdev"]))),
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       networking: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         nftables: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nftables and use nftables based firewall if enabled.\nnftables is a Linux-based packet filtering framework intended to\nreplace frameworks like iptables.\n\nNote that if you have Docker enabled you will not be able to use\nnftables without intervention. Docker uses iptables internally to\nsetup NAT for containers. This module disables the ip_tables kernel\nmodule, however Docker automatically loads the module. Please see\n<https://github.com/NixOS/nixpkgs/issues/24318#issuecomment-289216273>\nfor more information.\n\nThere are other programs that use iptables internally too, such as\nlibvirt. For information on how the two firewalls interact, see\n<https://wiki.nftables.org/wiki-nftables/index.php/Troubleshooting#Question_4._How_do_nftables_and_iptables_interact_when_used_on_the_same_system.3F>.\n\nSome network configurations may prevent VMs from having network access, see\n<https://wiki.nixos.org/wiki/Networking#Virtualization>.\n",
             })))),
           checkRuleset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Run `nft check` on the ruleset to spot syntax errors during build.\nBecause this is executed in a sandbox, the check might fail if it requires\naccess to any environmental factors or paths outside the Nix store.\nTo circumvent this, the ruleset file can be edited using the preCheckRuleset\noption to work in the sandbox environment.\n",
             })))),
           checkRulesetRedirects: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))), (attrs) => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(lib, "types", "path", "check")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), attrs))))),
               default: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "/etc/hosts": nix.thunk(() => nix.sel(config, "environment", "etc", "hosts", "source")),
                 "/etc/protocols": nix.thunk(() => nix.sel(config, "environment", "etc", "protocols", "source")),
                 "/etc/services": nix.thunk(() => nix.sel(config, "environment", "etc", "services", "source")),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
               description: "Set of paths that should be intercepted and rewritten while checking the ruleset\nusing `pkgs.buildPackages.libredirect`.\n",
             })))),
           preCheckRuleset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# replace users/groups that don't exist in the test\nsed 's/skgid meadow/skgid root/g' -i ruleset.conf\n")),
@@ -121,40 +121,40 @@ export default nix.lambda((args) => (() => {
             })))),
           flushRuleset: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "flushing the entire ruleset on each reload")),
           extraDeletions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "# this makes deleting a non-existing table a no-op instead of an error\ntable inet some-table;\n\ndelete table inet some-table;\n",
               description: "Extra deletion commands to be run on every firewall start, reload\nand after stopping the firewall.\n",
             })))),
           ruleset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "# Check out https://wiki.nftables.org/ for better documentation.\n# Table for both IPv4 and IPv6.\ntable inet filter {\n  # Block all incoming connections traffic except SSH and \"ping\".\n  chain input {\n    type filter hook input priority 0;\n\n    # accept any localhost traffic\n    iifname lo accept\n\n    # accept traffic originated from us\n    ct state {established, related} accept\n\n    # ICMP\n    # routers may also want: mld-listener-query, nd-router-solicit\n    ip6 nexthdr icmpv6 icmpv6 type { destination-unreachable, packet-too-big, time-exceeded, parameter-problem, nd-router-advert, nd-neighbor-solicit, nd-neighbor-advert } accept\n    ip protocol icmp icmp type { destination-unreachable, router-advertisement, time-exceeded, parameter-problem } accept\n\n    # allow \"ping\"\n    ip6 nexthdr icmpv6 icmpv6 type echo-request accept\n    ip protocol icmp icmp type echo-request accept\n\n    # accept SSH connections (required for a server)\n    tcp dport 22 accept\n\n    # count and drop any other traffic\n    counter drop\n  }\n\n  # Allow all outgoing connections.\n  chain output {\n    type filter hook output priority 0;\n    accept\n  }\n\n  chain forward {\n    type filter hook forward priority 0;\n    accept\n  }\n}\n",
               description: "The ruleset to be used with nftables.  Should be in a format that\ncan be loaded using \"/bin/nft -f\".  The ruleset is updated atomically.\nNote that if the tables should be cleaned first, either:\n- networking.nftables.flushRuleset = true; needs to be set (flushes all tables)\n- networking.nftables.extraDeletions needs to be set\n- or networking.nftables.tables can be used, which will clean up the table automatically\n",
             })))),
           rulesetFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The ruleset file to be used with nftables.  Should be in a format that\ncan be loaded using \"nft -f\".  The ruleset is updated atomically.\n",
             })))),
           flattenRulesetFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Use `builtins.readFile` rather than `include` to handle {option}`networking.nftables.rulesetFile`. It is useful when you want to apply {option}`networking.nftables.preCheckRuleset` to {option}`networking.nftables.rulesetFile`.\n\n::: {.note}\nIt is expected that {option}`networking.nftables.rulesetFile` can be accessed from the build sandbox.\n:::\n",
             })))),
           tables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), tableSubmodule)))),
               default: nix.thunk(() => ({})),
               description: "Tables to be added to ruleset.\nTables will be added together with delete statements to clean up the table before every update.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 filter: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   family: "inet",
                   content: "# Check out https://wiki.nftables.org/ for better documentation.\n# Table for both IPv4 and IPv6.\n# Block all incoming connections traffic except SSH and \"ping\".\nchain input {\n  type filter hook input priority 0;\n\n  # accept any localhost traffic\n  iifname lo accept\n\n  # accept traffic originated from us\n  ct state {established, related} accept\n\n  # ICMP\n  # routers may also want: mld-listener-query, nd-router-solicit\n  ip6 nexthdr icmpv6 icmpv6 type { destination-unreachable, packet-too-big, time-exceeded, parameter-problem, nd-router-advert, nd-neighbor-solicit, nd-neighbor-advert } accept\n  ip protocol icmp icmp type { destination-unreachable, router-advertisement, time-exceeded, parameter-problem } accept\n\n  # allow \"ping\"\n  ip6 nexthdr icmpv6 icmpv6 type echo-request accept\n  ip protocol icmp icmp type echo-request accept\n\n  # accept SSH connections (required for a server)\n  tcp dport 22 accept\n\n  # count and drop any other traffic\n  counter drop\n}\n\n# Allow all outgoing connections.\nchain output {\n  type filter hook output priority 0;\n  accept\n}\n\nchain forward {\n  type filter hook forward priority 0;\n  accept\n}\n",
                 })),
@@ -164,25 +164,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
-        boot: nix.thunk(() => ({ __proto__: pos$23, blacklistedKernelModules: nix.thunk(() => ["ip_tables"]) })),
+        [nix.POS]: pos$33,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$23, blacklistedKernelModules: nix.thunk(() => ["ip_tables"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nftables"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           nftables: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             flushRuleset: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "23.11")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "rulesetFile"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "ruleset"), "")))))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             nftables: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "nftables firewall",
               after: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => ["network-pre.target", "shutdown.target"]),
@@ -206,7 +206,7 @@ ${nix.sel(cfg, "extraDeletions")}
                 const cleanupDeletionsScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "nftables-cleanup-deletions", nix.thunk(() => nix.str`rm ${deletionsScriptVar}
 `)));
                 const rulesScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     name: "nftables-rules",
                     executable: true,
                     text: nix.thunk(() => nix.str`#! ${nix.sel(pkgs, "nftables")}/bin/nft -f
@@ -231,7 +231,7 @@ LD_PRELOAD="${nix.sel(pkgs, "buildPackages", "libredirect")}/lib/libredirect.so 
 `))),
                   }))));
                 return {
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => [ensureDeletions, rulesScript]),
@@ -241,7 +241,7 @@ LD_PRELOAD="${nix.sel(pkgs, "buildPackages", "libredirect")}/lib/libredirect.so 
                   StateDirectory: "nftables",
                 };
               })()),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$29, DefaultDependencies: false })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$29, DefaultDependencies: false })),
             })),
           })),
         })),

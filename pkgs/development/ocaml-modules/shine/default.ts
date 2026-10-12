@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shine";
       const version = "0.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-shine",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [dune_configurator]);
       const propagatedBuildInputs = nix.thunk(() => [shine]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-shine",
         description: "Bindings to the fixed-point mp3 encoding library shine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -37,44 +37,44 @@ export default nix.lambda((args) => (() => {
   const ldmcfg = nix.thunk(() => nix.sel(dmcfg, "lightdm"));
   const cfg = nix.thunk(() => nix.sel(ldmcfg, "greeters", "tiny"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         xserver: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             lightdm: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               greeters: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 tiny: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                       default: false,
                       description: "Whether to enable lightdm-tiny-greeter as the lightdm greeter.\n\nNote that this greeter starts only the default X session.\nYou can configure the default X session using\n[](#opt-services.displayManager.defaultSession).\n",
                     })))),
                   label: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Username",
                         description: "The string to represent the user_text label.\n",
                       })))),
                     pass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Password",
                         description: "The string to represent the pass_text label.\n",
                       })))),
                   })),
                   extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                       default: "",
                       description: "Section to describe style and ui.\n",
@@ -87,18 +87,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(ldmcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           xserver: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 greeters: nix.thunk(() => ({
-                  __proto__: pos$14,
-                  gtk: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+                  [nix.POS]: pos$14,
+                  gtk: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
                 })),
                 greeter: nix.thunk(() => (() => {
                   const configHeader = nix.thunk(() => nix.str`#include <gtk/gtk.h>
@@ -107,9 +107,9 @@ static const char *pass_text = "${nix.sel(cfg, "label", "pass")}";
 static const char *session = "${nix.sel(dmcfg, "defaultSession")}";
 `);
                   const config_1 = nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), "")), nix.thunk(() => nix.add(configHeader, nix.sel(cfg, "extraConfig")))));
-                  const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "lightdm-tiny-greeter", "override"), nix.thunk(() => ({ __proto__: pos$15, conf: config_1 }))));
+                  const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "lightdm-tiny-greeter", "override"), nix.thunk(() => ({ [nix.POS]: pos$15, conf: config_1 }))));
                   return nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       package: nix.thunk(() => nix.sel(package$, "xgreeters")),
                       name: "lightdm-tiny-greeter",
                     })));
@@ -120,7 +120,7 @@ static const char *session = "${nix.sel(dmcfg, "defaultSession")}";
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.eq(nix.sel(dmcfg, "defaultSession"), null)),
             message: "Please set: services.displayManager.defaultSession\n",
           })),

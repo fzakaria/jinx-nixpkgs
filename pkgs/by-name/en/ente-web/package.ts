@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const enteMainUrl = nix.argOr($, "enteMainUrl", () => null);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`ente-web-${enteApp}`),
       version: "1.3.61",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ente",
           repo: "ente",
           sparseCheckout: nix.thunk(() => ["rust", "web"]),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/web`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -83,12 +83,12 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, ente: nix.thunk(() => nix.attr(nixosTests, "ente")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, ente: nix.thunk(() => nix.attr(nixosTests, "ente")) })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update-ente-web", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p coreutils nix-update gnugrep gnused curl\n\nset -eu -o pipefail\n\n# Assume the current working directory is Nixpkgs\nfile_path=\"./pkgs/by-name/en/ente-web/package.nix\"\n\n# Extract version, then update\nold_version=$(grep -oP 'version = \"\\K[^\"]+' \"$file_path\" | head -n1)\nif [[ -z \"$old_version\" ]]; then\n  echo \"Failed to extract old version from $file_path\"\n  exit 1\nfi\n\nnix-update ente-web --version-regex 'photos-v(.*)'\n\nnew_version=$(grep -oP 'version = \"\\K[^\"]+' \"$file_path\" | head -n1)\nif [[ -z \"$new_version\" ]]; then\n  echo \"Failed to extract new version from $file_path\"\n  exit 1\nfi\n\nif [[ \"$old_version\" == \"$new_version\" ]]; then\n  echo \"No update\"\n  exit 0\nfi\n\necho \"Updated to version $new_version, checking wasm-bindgen...\"\n\n# Fetch Cargo.lock from GitHub instead of cloning repository\ncargo_lock_url=\"https://raw.githubusercontent.com/ente-io/ente/photos-v$new_version/rust/Cargo.lock\"\n\nwasm_bindgen_version=$(curl -s \"$cargo_lock_url\" | tr -d '\\r' | grep -A1 '^name = \"wasm-bindgen\"$' | grep -oP 'version = \"\\K[^\"]+' | head -n1)\n\nif [[ -z \"$wasm_bindgen_version\" ]]; then\n  echo \"Failed to find wasm-bindgen version in Cargo.lock from $cargo_lock_url\"\n  exit 1\nfi\n\necho \"Found wasm-bindgen version: $wasm_bindgen_version\"\n\n# Construct new attribute name\nwasm_bindgen_attr=\"wasm-bindgen-cli_${wasm_bindgen_version//./_}\"\n\n# Replace old attribute name in file\nsed -i \"s/wasm-bindgen-cli_[0-9_]\\+/$wasm_bindgen_attr/g\" \"$file_path\"\n\necho \"Successfully updated wasm-bindgen-cli to $wasm_bindgen_attr\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ente application web frontends",
         homepage: "https://ente.io/",
         changelog: "https://github.com/ente/ente/releases",

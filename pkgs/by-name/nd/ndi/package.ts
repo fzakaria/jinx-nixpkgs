@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const majorVersion = nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.splitVersion(version))));
       const installerName = nix.thunk(() => nix.str`Install_NDI_SDK_v${majorVersion}_Linux`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://downloads.ndi.tv/SDK/NDI_SDK_Linux/${installerName}.tar.gz`),
           hash: nix.thunk(() => nix.sel(versionJSON, "hash")),
@@ -54,15 +54,15 @@ done
 `);
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           distroav: nix.thunk(() => nix.attr(obs_studio_plugins, "distroav")),
         })),
         updateScript: nix.path(here, "./update.py"),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://ndi.video/ndi-sdk/",
         description: "NDI Software Developer Kit",
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-linux", "armv7l-linux"]),
@@ -78,7 +78,7 @@ done
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         majorVersion,

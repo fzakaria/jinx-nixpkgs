@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ZEWL26VLp0gsAseF+WDPPWz2FZSk2rPWTDJUOQlPwbc=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "tests"]);
       const pythonImportsCheck = nix.thunk(() => ["tinysegmenter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very compact Japanese tokenizer",
         homepage: "https://tinysegmenter.tuxfamily.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

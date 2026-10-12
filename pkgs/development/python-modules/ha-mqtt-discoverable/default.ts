@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pyaml = nix.arg($, "pyaml");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ha-mqtt-discoverable",
       version: "0.25.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unixorn",
           repo: "ha-mqtt-discoverable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ha_mqtt_discoverable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to create MQTT entities that are automatically discovered by Home Assistant",
         homepage: "https://github.com/unixorn/ha-mqtt-discoverable",
         changelog: nix.thunk(() => nix.str`https://github.com/unixorn/ha-mqtt-discoverable/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

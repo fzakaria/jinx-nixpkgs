@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
   const user = nix.thunk(() => nix.sel(cfg, "user"));
   const group = nix.thunk(() => nix.sel(cfg, "group"));
   const pixelfed = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dataDir: nix.thunk(() => nix.attr(cfg, "dataDir")),
       runtimeDir: nix.thunk(() => nix.attr(cfg, "runtimeDir")),
     }))));
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   const phpPackage = nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extensions: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const enabled = nix.arg($_1, "enabled");
@@ -131,44 +131,44 @@ if [[ "$USER" != ${user} ]]; then
 fi
 $sudo ${phpPackage}/bin/php artisan "$@"
 `)));
-  const dbSocket = nix.thunk(() => nix.sel({ __proto__: pos$3, pgsql: "/run/postgresql", mysql: "/run/mysqld/mysqld.sock" }, nix.key(nix.sel(cfg, "database", "type"))));
-  const dbUnit = nix.thunk(() => nix.sel({ __proto__: pos$4, pgsql: "postgresql.target", mysql: "mysql.service" }, nix.key(nix.sel(cfg, "database", "type"))));
+  const dbSocket = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, pgsql: "/run/postgresql", mysql: "/run/mysqld/mysqld.sock" }, nix.key(nix.sel(cfg, "database", "type"))));
+  const dbUnit = nix.thunk(() => nix.sel({ [nix.POS]: pos$4, pgsql: "postgresql.target", mysql: "mysql.service" }, nix.key(nix.sel(cfg, "database", "type"))));
   const redisService = "redis-pixelfed.service";
   return {
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         pixelfed: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "a Pixelfed instance")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "pixelfed", nix.thunk(() => ({})))),
           phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "php83", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "pixelfed",
               description: "User account under which pixelfed runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the pixelfed application starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "pixelfed",
               description: "Group account under which pixelfed runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the group exists before the pixelfed application starts.\n:::\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "FQDN for the Pixelfed instance.\n",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "A secret file to be sourced for the .env settings.\nPlace `APP_KEY` and other settings that should not end up in the Nix store here.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -180,42 +180,42 @@ $sudo ${phpPackage}/bin/php artisan "$@"
               description: ".env settings for Pixelfed.\nSecrets should use `secretFile` option instead.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$10, config: config, lib: lib })))))))),
+              [nix.POS]: pos$11,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.networking.domain}\"\n  ];\n  enableACME = true;\n  forceSSL = true;\n}\n")),
               description: "With this option, you can customize an nginx virtual host which already has sensible defaults for Pixelfed.\nSet to {} if you do not need any customization to the virtual host.\nIf enabled, then by default, the {option}`serverName` is\n`${domain}`,\nIf this is set to null (the default), no nginx virtualHost will be configured.\n",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$13,
-            createLocally: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "a local Redis database using UNIX socket authentication"), { __proto__: pos$12, default: true })),
+            [nix.POS]: pos$13,
+            createLocally: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "a local Redis database using UNIX socket authentication"), { [nix.POS]: pos$12, default: true })),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$18,
-            createLocally: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "a local database using UNIX socket authentication"), { __proto__: pos$14, default: true })),
-            automaticMigrations: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "automatic migrations for database schema and data"), { __proto__: pos$15, default: true })),
+            [nix.POS]: pos$18,
+            createLocally: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "a local database using UNIX socket authentication"), { [nix.POS]: pos$14, default: true })),
+            automaticMigrations: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "automatic migrations for database schema and data"), { [nix.POS]: pos$15, default: true })),
             type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["mysql", "pgsql"]))),
                 example: "pgsql",
                 default: "mysql",
                 description: "Database engine to use.\nNote that PGSQL is not well supported: <https://github.com/pixelfed/pixelfed/issues/2727>\n",
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "pixelfed",
                 description: "Database name.",
               })))),
           })),
           maxUploadSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "8M",
               description: "Max upload size with units.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -228,19 +228,19 @@ $sudo ${phpPackage}/bin/php artisan "$@"
               description: "Options for Pixelfed's PHP-FPM pool.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/lib/pixelfed",
               description: "State directory of the `pixelfed` user which holds\nthe application's state and data.\n",
             })))),
           runtimeDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/run/pixelfed",
               description: "Ruutime directory of the `pixelfed` user which holds\nthe application's caches and temporary files.\n",
             })))),
           schedulerInterval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "1d",
               description: "How often the Pixelfed cron task should run",
@@ -249,45 +249,45 @@ $sudo ${phpPackage}/bin/php artisan "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         users: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           users: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             pixelfed: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "pixelfed")), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-pixelfed")),
               })))),
           }, [
             [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
             }))],
           ])),
           groups: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             pixelfed: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "pixelfed")), nix.thunk(() => ({})))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           redis: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             servers: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               pixelfed: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), true)),
               })),
             })),
           })),
           pixelfed: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   APP_ENV: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "production")),
                   APP_DEBUG: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
                   APP_URL: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}`))),
@@ -308,7 +308,7 @@ $sudo ${phpPackage}/bin/php artisan "$@"
                   LOG_CHANNEL: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "stderr")),
                 })),
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     BROADCAST_DRIVER: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "redis")),
                     CACHE_DRIVER: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "redis")),
                     QUEUE_DRIVER: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "redis")),
@@ -319,7 +319,7 @@ $sudo ${phpPackage}/bin/php artisan "$@"
                     REDIS_PATH: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "pixelfed", "unixSocket")),
                   })))),
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     DB_CONNECTION: nix.thunk(() => nix.sel(cfg, "database", "type")),
                     DB_SOCKET: dbSocket,
                     DB_DATABASE: nix.thunk(() => nix.sel(cfg, "database", "name")),
@@ -328,7 +328,7 @@ $sudo ${phpPackage}/bin/php artisan "$@"
                   })))),
               ]))),
             poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), v))), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 pm: "dynamic",
                 "php_admin_value[error_log]": "stderr",
                 "php_admin_flag[log_errors]": true,
@@ -341,30 +341,30 @@ $sudo ${phpPackage}/bin/php artisan "$@"
               })))),
           })),
           mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")))), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   name: user,
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "pgsql")))), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
-              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$42, name: user }))]),
+              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, name: user }))]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             pools: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               pixelfed: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 user: user,
                 group: group,
                 phpPackage: phpPackage,
@@ -373,7 +373,7 @@ upload_max_filesize = ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(c
 max_execution_time = 600;
 `),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   "listen.owner": user,
                   "listen.group": group,
                   "listen.mode": "0660",
@@ -383,27 +383,27 @@ max_execution_time = 600;
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${pixelfed}/public/`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$53,
-                        "/": nix.thunk(() => ({ __proto__: pos$48, tryFiles: "$uri $uri/ /index.php?$query_string" })),
-                        "/favicon.ico": nix.thunk(() => ({ __proto__: pos$49, extraConfig: "access_log off; log_not_found off;\n" })),
-                        "/robots.txt": nix.thunk(() => ({ __proto__: pos$50, extraConfig: "access_log off; log_not_found off;\n" })),
+                        [nix.POS]: pos$53,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$48, tryFiles: "$uri $uri/ /index.php?$query_string" })),
+                        "/favicon.ico": nix.thunk(() => ({ [nix.POS]: pos$49, extraConfig: "access_log off; log_not_found off;\n" })),
+                        "/robots.txt": nix.thunk(() => ({ [nix.POS]: pos$50, extraConfig: "access_log off; log_not_found off;\n" })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "pixelfed", "socket")};
 fastcgi_index index.php;
 `),
                         })),
-                        "~ /\\.(?!well-known).*": nix.thunk(() => ({ __proto__: pos$52, extraConfig: "deny all;\n" })),
+                        "~ /\\.(?!well-known).*": nix.thunk(() => ({ [nix.POS]: pos$52, extraConfig: "deny all;\n" })),
                       })),
                       extraConfig: nix.thunk(() => nix.str`add_header X-Frame-Options "SAMEORIGIN";
 add_header X-Content-Type-Options "nosniff";
@@ -416,26 +416,26 @@ client_max_body_size ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cf
               ])),
             })))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$57, systemPackages: nix.thunk(() => [pixelfed_manage]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$57, systemPackages: nix.thunk(() => [pixelfed_manage]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           services: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             "phpfpm-pixelfed": nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               after: nix.thunk(() => ["pixelfed-data-setup.service"]),
               requires: nix.thunk(() => nix.concat(["pixelfed-horizon.service", "pixelfed-data-setup.service"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), redisService)))),
               path: extraPrograms,
             })),
             "pixelfed-horizon": nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               description: "Pixelfed task queueing via Laravel Horizon framework",
               after: nix.thunk(() => ["network.target", "pixelfed-data-setup.service"]),
               requires: nix.thunk(() => nix.concat(["pixelfed-data-setup.service"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), redisService)))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: extraPrograms,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${pixelfed_manage}/bin/pixelfed-manage horizon`),
                 StateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/pixelfed")), "pixelfed")),
@@ -445,11 +445,11 @@ client_max_body_size ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cf
               })),
             })),
             "pixelfed-cron": nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               description: "Pixelfed periodic tasks",
               path: extraPrograms,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 ExecStart: nix.thunk(() => nix.str`${pixelfed_manage}/bin/pixelfed-manage schedule:run`),
                 User: user,
                 Group: group,
@@ -457,7 +457,7 @@ client_max_body_size ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cf
               })),
             })),
             "pixelfed-data-setup": nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               description: "Pixelfed setup: migrations, environment file update, cache reload, data changes",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit)),
@@ -471,7 +471,7 @@ client_max_body_size ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cf
                 ], extraPrograms);
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 Type: "oneshot",
                 User: user,
                 Group: group,
@@ -534,22 +534,22 @@ pixelfed-manage config:cache
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             "pixelfed-cron": nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               description: "Pixelfed periodic tasks timer",
               after: nix.thunk(() => ["pixelfed-data-setup.service"]),
               requires: nix.thunk(() => ["phpfpm-pixelfed.service"]),
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 OnBootSec: nix.thunk(() => nix.sel(cfg, "schedulerInterval")),
                 OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "schedulerInterval")),
               })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "runtimeDir")}/                         0700 ${user} ${group} - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "runtimeDir")}/cache                    0700 ${user} ${group} - -`),

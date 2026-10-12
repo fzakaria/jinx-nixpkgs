@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const libqtpas = nix.argOr($, "libqtpas", () => null);
   const wrapQtAppsHook = nix.argOr($, "wrapQtAppsHook", () => null);
   const version = "4.8-0";
-  const overrides = nix.thunk(() => nix.app(writeText, "revision.inc", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`const ${k} = '${v}';`, nix.thunk(() => ({ __proto__: pos$1, RevisionStr: version }))))))));
+  const overrides = nix.thunk(() => nix.app(writeText, "revision.inc", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`const ${k} = '${v}';`, nix.thunk(() => ({ [nix.POS]: pos$1, RevisionStr: version }))))))));
   const LCL_PLATFORM = nix.thunk(() => (nix.asBool(withQt) ? nix.str`qt${qtVersion}` : "gtk3"));
   const qtVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = nix.thunk(() => nix.str`lazarus-${LCL_PLATFORM}`);
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lazarus/Lazarus%20Zip%20_%20GZip/Lazarus%20${nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)}/lazarus-${version_1}.tar.gz`),
           hash: "sha256-a0yeyU/nn+TlgCfde/ENm2w1ycsvkdtZMLdYC0ogGpk=",
         }))));
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         "bigide",
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LCL_PLATFORM: LCL_PLATFORM,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
@@ -111,7 +111,7 @@ substituteInPlace ide/packages/ideconfig/include/unix/lazbaseconf.inc \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Graphical IDE for the FreePascal language",
         homepage: "https://www.lazarus.freepascal.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -122,7 +122,7 @@ substituteInPlace ide/packages/ideconfig/include/unix/lazbaseconf.inc \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

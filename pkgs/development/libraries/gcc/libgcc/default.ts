@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(gcc, "cc"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libgcc",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),

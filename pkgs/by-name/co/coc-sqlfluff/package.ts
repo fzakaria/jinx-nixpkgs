@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const esbuild$ = nix.thunk(() => (() => {
     const version = "0.16.17";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,32 +45,32 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "coc-sqlfluff",
       version: "0.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "yaegassy",
           repo: "coc-sqlfluff",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hTe0rtjIKdlPSvwcHI2m0sRkVfmW8eQ/63WLmPsiovI=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Pz7OCAiPIMVCAYe9OGWKMLfGSwK8ulA/JW55eB8xJqw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs, esbuild$]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "SQLFluff extension for coc.nvim",
         homepage: "https://github.com/yaegassy/coc-sqlfluff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

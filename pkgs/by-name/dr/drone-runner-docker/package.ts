@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "drone-runner-docker";
       const version = "1.8.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drone-runners",
           repo: "drone-runner-docker",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-7iU7IE3lo8A3TO6LXF5D+/VEOTbfTJzWBFO0dycOSLs=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         homepage: "https://github.com/drone-runners/drone-runner-docker",
         description: "Drone pipeline runner that executes builds inside Docker containers",
         mainProgram: "drone-runner-docker",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

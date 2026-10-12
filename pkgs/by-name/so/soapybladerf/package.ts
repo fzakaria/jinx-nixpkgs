@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const soapysdr = nix.arg($, "soapysdr");
   const version = "0.4.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "soapybladerf",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapyBladeRF",
           rev: nix.thunk(() => nix.str`soapy-bladerf-${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libbladeRF, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pothosware/SoapyBladeRF/commit/f141b61624f24a56aa3bdf7b0cc61c9fa65c26a3.patch",
             hash: "sha256-szqHbSAHiK0F83bxYnrblEBi/U7tpD0AXotYV1eTFxU=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pothosware/SoapyBladeRF",
         description: "SoapySDR plugin for BladeRF devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

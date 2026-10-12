@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shantell-sans",
       version: "1.011",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/arrowtype/shantell-sans/releases/download/${nix.sel(finalAttrs, "version")}/Shantell_Sans_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-xgE4BSl2A7yeVP5hWWUViBDoU8pZ8KkJJrsSfGRIjOk=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A marker-style variable font by ArrowType and Shantell Martin",
         homepage: "https://github.com/arrowtype/shantell-sans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(applyPatches, (final) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ceph-src",
       version: "20.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.ceph.com/tarballs/ceph-${nix.sel(final, "version")}.tar.gz`),
           hash: "sha256-XzRWkkGiiQRGuTHwbNhE+TvKZl90CiBjFCnS1Vsemzc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ceph-s3select-arrow-cpp-20.patch",
             url: "https://github.com/ceph/s3select/pull/169.diff?full_index=1",
             extraPrefix: "src/s3select/",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0002-s3select-std-span.patch"),
         nix.path(here, "./patches/0001-mgr-python-interpreter.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ceph-20.2.1-backport-gcc16-fixes.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/ceph-20.2.1-backport-gcc16-fixes.patch?h=ceph&id=b158fda8a3e3834a7aa362954dc17077dc46f609",
             hash: "sha256-uLl20Sdd+JJFWqbMHIZRt53OpGRXlTaceajgpzYCaTM=",
             excludes: nix.thunk(() => ["src/test/CMakeLists.txt", "src/rgw/CMakeLists.txt"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ceph-20.2.4-radosgw-gcc16-fixes.patch",
             url: "https://github.com/ceph/ceph/pull/69166.patch?full_index=1",
             hash: "sha256-yaqOrmw0ZItT2efzNfpDqjTRsva8VN0R+TLqbTX0snc=",

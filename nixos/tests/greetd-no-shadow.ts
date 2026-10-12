@@ -24,38 +24,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const latestKernel = nix.argOr($, "latestKernel", () => false);
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "greetd-no-shadow",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             users: nix.thunk(() => ({
-              __proto__: pos$3,
-              alice: nix.thunk(() => ({ __proto__: pos$2, isNormalUser: true, group: "alice", password: "foobar" })),
+              [nix.POS]: pos$3,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true, group: "alice", password: "foobar" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$4, alice: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$4, alice: nix.thunk(() => ({})) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$7,
-            shadow: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+            [nix.POS]: pos$7,
+            shadow: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             greetd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default_session: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   command: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "greetd")}/bin/agreety --cmd bash`),
                 })),
               })),

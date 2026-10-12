@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.4";
       const underscoreMajMin = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/hsqldb/hsqldb/hsqldb_${underscoreMajMin}/hsqldb-${version}.zip`),
           sha256: "sha256-k4ih0VHD+RV1+kyrx/kiWUqm7P0gEpV66FPoKjpQCNU=",
         }))));
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://hsqldb.org",
         description: "Relational, embedable database management system written in Java and a set of related tools",
         sourceProvenance: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         underscoreMajMin,

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "3.4";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "World",
       repo: "apostrophe",
       domain: "gitlab.gnome.org",
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-Sj5Y4QPMYavdXbU+iVv76qOFNhgBjAeX9+/TvQHZzeI=",
     }))));
   const reveal_js = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "hakimel",
       repo: "reveal.js",
       tag: "5.1.0",
       hash: "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=",
     }))));
   return nix.app(nix.sel(python312Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       src: src,
       pname: "apostrophe",
@@ -84,12 +84,12 @@ cp -r ${reveal_js} $out/share/apostrophe/libs/reveal.js
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "reveal-js": reveal_js,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/World/apostrophe",
         description: "Distraction free Markdown editor for GNU/Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

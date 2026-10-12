@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const openmpi = nix.arg($, "openmpi");
   const numpy = nix.arg($, "numpy");
   const mpiSupport = nix.argOr($, "mpiSupport", () => false);
-  const conduit = nix.thunk(() => nix.app(nix.sel(pkgs, "conduit", "override"), nix.thunk(() => ({ __proto__: pos$1, mpiSupport: mpiSupport }))));
+  const conduit = nix.thunk(() => nix.app(nix.sel(pkgs, "conduit", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpiSupport: mpiSupport }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(conduit, "pname")),
       version: nix.thunk(() => nix.attr(conduit, "version")),
       src: nix.thunk(() => nix.attr(conduit, "src")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pyproject: true,
       __structuredAttrs: true,
       postPatch: nix.thunk(() => nix.add(nix.selOr(conduit, () => "", "postPatch"), "substituteInPlace pyproject.toml \\\n  --replace-fail \\\n    \"cmake<=3.30.0\" \\\n    \"cmake\"\n")),
-      env: nix.thunk(() => ({ __proto__: pos$2, ENABLE_MPI: mpiSupport })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ENABLE_MPI: mpiSupport })),
       "build-system": nix.thunk(() => [cmake, ninja, pip, setuptools]),
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(conduit, "nativeBuildInputs"), [openmpi])),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(conduit, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for the conduit library",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

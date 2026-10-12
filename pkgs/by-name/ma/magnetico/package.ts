@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "magnetico",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "maxwell.eurofusion.eu/git",
           owner: "rnhmjoj",
           repo: "magnetico",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           magnetico: nix.thunk(() => nix.attr(nixosTests, "magnetico")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Autonomous (self-hosted) BitTorrent DHT search engine suite",
         homepage: "https://maxwell.eurofusion.eu/git/rnhmjoj/magnetico",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

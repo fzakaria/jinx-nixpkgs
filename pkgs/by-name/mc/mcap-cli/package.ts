@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.0.62";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mcap-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "mcap",
           owner: "foxglove",
           rev: nix.thunk(() => nix.str`releases/mcap-cli/v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/foxglove/mcap/go/cli/mcap/cmd.Version=${version}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "1", GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "1", GOWORK: "off" })),
       postConfigure: "chmod -R u+w vendor\nrm -rf vendor/github.com/foxglove/mcap/go/{mcap,ros}\ncp -r ../../{mcap,ros} vendor/github.com/foxglove/mcap/go\n",
       checkFlags: nix.thunk(() => [
         "-skip=TestCat|TestInfo|TestRequiresDuplicatedSchemasForIndexedMessages|TestPassesIndexedMessagesWithRepeatedSchemas|TestSortFile",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
 `;
         })()))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MCAP CLI tool to inspect and fix MCAP files",
         homepage: "https://github.com/foxglove/mcap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

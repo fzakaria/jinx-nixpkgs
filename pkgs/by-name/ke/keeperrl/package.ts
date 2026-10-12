@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const pname = "keeperrl";
   const version = "alpha34";
   const free_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "miki151",
       repo: "keeperrl",
       rev: version,
@@ -48,10 +48,10 @@ Then add this archive to the nix store with
 "nix-prefetch-url file://$PWD/${name}".
 `);
       const sha256 = "0115pxdzdyma2vicxgr0j21pp82gxdyrlj090s8ihp0b50f0nlll";
-      return { __proto__: pos$2, name, message, sha256 };
+      return { [nix.POS]: pos$2, name, message, sha256 };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       srcs: nix.thunk(() => nix.concat([free_src], nix.app(nix.sel(lib, "optional"), unfree_assets, assets))),
@@ -59,7 +59,7 @@ Then add this archive to the nix store with
       postUnpack: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), unfree_assets, "mv data $sourceRoot\n")),
       buildInputs: nix.thunk(() => [openal, curl, libogg, libvorbis, libtheora, SDL2, SDL2_image, zlib, clang]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
           ]))),
@@ -80,7 +80,7 @@ cp -r data_contrib $out/share
 ${nix.app(nix.sel(lib, "optionalString"), unfree_assets, "cp -r data $out/share")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dungeon management rogue-like",
         mainProgram: "keeper",
         homepage: "https://keeperrl.com/",

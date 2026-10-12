@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const extraBuildInputs = nix.argOr($, "extraBuildInputs", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patchutils",
       version: version,
       patches: patches,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cyberelk.net/tim/data/patchutils/stable/patchutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: sha256,
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to manipulate patch files",
         homepage: "http://cyberelk.net/tim/software/patchutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "ySYdS2taMEZyMS0esImb4Cj6yRdgGQqA/szTHTo7UEI=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["speaklater"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implements a lazy string for python useful for use with gettext",
         homepage: "https://github.com/mitsuhiko/speaklater",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "gador"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

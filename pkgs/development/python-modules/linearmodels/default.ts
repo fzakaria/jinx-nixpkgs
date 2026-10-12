@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linearmodels",
       version: "7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bashtage",
           repo: "linearmodels",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/unFszNGaEPsoXDtaS3tsLnsX4A6e7Y88O8pDrf4nKc=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools_scm>=9.2.0,<10\" \"setuptools_scm\"\n",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm linearmodels/__init__.py\n",
       disabledTestPaths: nix.thunk(() => ["linearmodels/tests/panel/test_panel_ols.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Models for panel data, system regression, instrumental variables and asset pricing",
         homepage: "https://bashtage.github.io/linearmodels/",
         changelog: nix.thunk(() => nix.str`https://github.com/bashtage/linearmodels/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

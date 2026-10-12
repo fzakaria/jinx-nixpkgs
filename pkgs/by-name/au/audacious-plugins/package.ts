@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audacious-plugins";
       const version = "4.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "audacious-media-player",
           repo: "audacious-plugins",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -110,12 +110,12 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`ln -s ${nix.sel(vgmstream, "audacious")}/lib/audacious/Input/* $out/lib/audacious/Input
 `);
       const meta = nix.thunk(() => nix.update(nix.sel(audacious_bare, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugins for Audacious music player",
         downloadPage: "https://github.com/audacious-media-player/audacious-plugins",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qmarkdowntextedit",
       version: "unstable-2023-04-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pbek",
           repo: "qmarkdowntextedit",
           rev: "a23cc53e7e40e9dcfd0f815b2b3b6a5dc7304405",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBDIR=${nix.builtins.placeholder("out")}/lib`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ Qt QPlainTextEdit widget with markdown highlighting and some other goodies",
         homepage: "https://github.com/pbek/qmarkdowntextedit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

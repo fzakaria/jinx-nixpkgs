@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xterm = nix.arg($, "xterm");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xvfb-run",
       version: "1+g87f6705",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "archlinux",
           repo: "svntogit-packages",
           rev: "87f67054c49b32511893acd22be94c47ecd44b4a",
@@ -59,9 +59,9 @@ wrapProgram $out/bin/xvfb-run \\
   $out/bin/xvfb-run ${nix.app(nix.sel(lib, "getBin"), xterm)}/bin/xterm -e true
 )
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convenience script to run a virtualized X-Server",
         homepage: "https://github.com/archlinux/svntogit-packages",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

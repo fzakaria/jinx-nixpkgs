@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redoflacs",
       version: "0.30.20190903",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sirjaren",
           repo: "redoflacs",
           rev: "4ca544cbc075d0865884906208cb2b8bc318cf9e",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [flac, sox]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel BASH commandline FLAC compressor, verifier, organizer, analyzer, and retagger",
         mainProgram: "redoflacs",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),

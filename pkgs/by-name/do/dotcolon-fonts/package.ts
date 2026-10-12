@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const melete = nix.arg($, "melete");
   const fa_1 = nix.arg($, "fa_1");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "dotcolon-fonts",
       paths: nix.thunk(() => [
         aileron,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         fa_1,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Font Collection by Sora Sagano",
         homepage: "https://dotcolon.net/",
         license: nix.thunk(() => (() => {

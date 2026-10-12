@@ -28,54 +28,54 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "zrepl.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "cole-h"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         zrepl: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zrepl")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zrepl", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => ({})),
               description: "Configuration for zrepl. See <https://zrepl.github.io/configuration.html>\nfor more information.\n",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "zrepl/zrepl.yml": nix.thunk(() => ({ __proto__: pos$7, source: configFile })),
+            [nix.POS]: pos$8,
+            "zrepl/zrepl.yml": nix.thunk(() => ({ [nix.POS]: pos$7, source: configFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             zrepl: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               requires: nix.thunk(() => ["local-fs.target"]),
               wantedBy: nix.thunk(() => ["zfs.target"]),
               after: nix.thunk(() => ["zfs.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))]),
               restartTriggers: nix.thunk(() => [configFile]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$10, Restart: "on-failure" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$10, Restart: "on-failure" })),
             })),
           })),
         })),

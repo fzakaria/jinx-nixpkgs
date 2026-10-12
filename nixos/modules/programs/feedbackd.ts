@@ -23,39 +23,39 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "feedbackd"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         feedbackd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the feedbackd D-BUS service and udev rules.\n\nYour user needs to be in the `feedbackd` group to trigger effects\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "feedbackd", nix.thunk(() => ({})))),
-          "theme-package": nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "feedbackd-device-themes", nix.thunk(() => ({ __proto__: pos$1, nullable: true })))),
+          "theme-package": nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "feedbackd-device-themes", nix.thunk(() => ({ [nix.POS]: pos$1, nullable: true })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], (nix.asBool(!nix.eq(nix.sel(cfg, "theme-package"), null)) ? [nix.thunk(() => nix.sel(cfg, "theme-package"))] : []))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           dbus: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$10,
-          groups: nix.thunk(() => ({ __proto__: pos$9, feedbackd: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$10,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$9, feedbackd: nix.thunk(() => ({})) })),
         })),
       })))),
   };

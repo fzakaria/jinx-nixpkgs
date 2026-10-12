@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lelit",
           repo: "pglast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# import from $out\nrm -r pglast\n";
       const pythonImportsCheck = nix.thunk(() => ["pglast", "pglast.parser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PostgreSQL Languages AST and statements prettifier",
         homepage: "https://github.com/lelit/pglast",
         changelog: nix.thunk(() => nix.str`https://github.com/lelit/pglast/blob/v${version}/CHANGES.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pgpp",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -31,69 +31,69 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       system: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         nssModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             internal: true,
             default: [],
             description: "Search path for NSS (Name Service Switch) modules.  This allows\nseveral DNS resolution methods to be specified via\n{file}`/etc/nsswitch.conf`.\n",
             apply: (list) => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               list: list,
               path: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), list)),
             }),
           })))),
         nssDatabases: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           passwd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of passwd entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended while \"systemd\" is appended if nscd is enabled.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of group entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended while \"systemd\" is appended if nscd is enabled.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           shadow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of shadow entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           sudoers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of sudoers entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of hosts entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended, and \"dns\" and \"myhostname\" are always appended.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of services entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           subuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of subuid entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
             })))),
           subgid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of subgid entries to configure in {file}`/etc/nsswitch.conf`.\n\nNote that \"files\" is always prepended.\n\nThis option only takes effect if nscd is enabled.\n",
               default: [],
@@ -105,10 +105,10 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["system", "nssHosts"]), nix.thunk(() => ["system", "nssDatabases", "hosts"]))),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(config, "system", "nssModules", "path"), "")) || nix.asBool(nix.sel(config, "services", "nscd", "enable")))),
           message: nix.thunk(() => nix.str`Loading NSS modules from system.nssModules (${nix.sel(config, "system", "nssModules", "path")}),
 requires services.nscd.enable being set to true.
@@ -119,11 +119,11 @@ by setting \`system.nssModules = lib.mkForce [];\` in your configuration.nix.
         })),
       ]),
       environment: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         etc: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "nsswitch.conf": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             text: nix.thunk(() => nix.str`passwd:    ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "system", "nssDatabases", "passwd")))}
 group:     ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "system", "nssDatabases", "group")))}
 shadow:    ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "system", "nssDatabases", "shadow")))}
@@ -144,9 +144,9 @@ subgid:    ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         nssDatabases: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           passwd: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => ["files"]))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => ["files"]))),
           shadow: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => ["files"]))),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "difftastic",
       version: "0.71.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wilfred",
           repo: "difftastic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-HEX8njuArbgMQI8yDr66siRB8t+4P2Q7rxHuCeaD9Uw=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-C relocation-model=static" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C relocation-model=static" })))),
       checkFlags: nix.thunk(() => ["--skip=options::tests::test_detect_display_width"]),
       postInstall: "installManPage difft.1\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/difft`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Syntax-aware diff",
         homepage: "https://github.com/Wilfred/difftastic",
         changelog: nix.thunk(() => nix.str`https://github.com/Wilfred/difftastic/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

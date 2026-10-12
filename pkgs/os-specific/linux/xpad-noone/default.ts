@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xpad-noone",
       version: "0-unstable-2024-01-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "medusalix",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: "c3d1610",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: kernelModuleMakeFlags,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-usage-of-deprecated-ida-simple-xx-api.patch",
             url: "https://github.com/medusalix/xpad-noone/commit/e0f6ad5f2fabd5f8e74796a87154c92c8e9b6068.patch",
             hash: "sha256-7Ye/rd51RpzThgts8R5RT0CRVvx5bKmy5i0KPidic30=",
@@ -47,7 +47,7 @@ install *.ko -Dm444 -t $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kern
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/medusalix/xpad-noone",
         description: "Xpad driver from the Linux kernel with support for Xbox One controllers removed",
         license: nix.thunk(() => (() => {

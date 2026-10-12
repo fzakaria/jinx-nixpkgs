@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const libgreeting = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "libgreeting",
       code: "const char* getGreeting() { return \"Hello, world!\"; }\n",
       unpackPhase: "echo \"$code\" > libgreeting.c\n",
       installPhase: "mkdir -p $out/lib\n$CC -c -fpic libgreeting.c\n$CC -shared libgreeting.o -o $out/lib/libgreeting.so\n",
     }))));
   const libgoodbye = nix.thunk(() => nix.app(nix.sel(libgreeting, "overrideAttrs"), (_) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "libgoodbye",
       code: "const char* getGreeting() { return \"Goodbye, world!\"; }\n",
     })));
   const testProgram = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "greeting-test",
       buildInputs: nix.thunk(() => [libgreeting]),
       code: "#include <stdio.h>\n\nextern const char* getGreeting(void);\n\nint main() {\n  puts(getGreeting());\n}\n",
@@ -50,7 +50,7 @@ $CC greeting-test.o -lgreeting -o $out/bin/greeting-test
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "test-LD_LIBRARY_PATH",
       nativeBuildInputs: nix.thunk(() => [testProgram]),
       buildCommand: nix.thunk(() => nix.str`# And for good measure, repeat the tests again from a separate derivation,
@@ -62,7 +62,7 @@ $CC greeting-test.o -lgreeting -o $out/bin/greeting-test
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

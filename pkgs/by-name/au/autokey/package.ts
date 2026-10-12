@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const wmctrl = nix.arg($, "wmctrl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autokey",
       version: "0.96.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autokey",
           repo: "autokey",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "# remove Qt version which we currently do not support\nrm $out/bin/autokey-qt $out/share/applications/autokey-qt.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop automation utility for Linux and X11",
         homepage: "https://github.com/autokey/autokey",
         changelog: nix.thunk(() => nix.str`https://github.com/autokey/autokey/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

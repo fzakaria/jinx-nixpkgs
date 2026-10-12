@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elixir-ls";
       const version = "0.31.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elixir-lsp",
           repo: "elixir-ls",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./launch.sh.patch")]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, elixir: elixir }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, elixir: elixir }));
       const dontConfigure = true;
       const dontBuild = true;
       const installPhase = "cp -R . $out\nln -s $out/VERSION $out/scripts/VERSION\n\nsubstituteAllInPlace $out/scripts/launch.sh\n\nmkdir -p $out/bin\n\nmakeWrapper $out/scripts/language_server.sh $out/bin/elixir-ls \\\n  --set ELS_LOCAL \"1\"\n\nmakeWrapper $out/scripts/debug_adapter.sh $out/bin/elixir-debug-adapter \\\n  --set ELS_LOCAL \"1\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/elixir-lsp/elixir-ls",
         changelog: nix.thunk(() => nix.str`https://github.com/elixir-lsp/elixir-ls/releases/tag/v${version}`),
         description: "A frontend-independent IDE \"smartness\" server for Elixir.\nImplements the \"Language Server Protocol\" standard and provides debugger support via the \"Debug Adapter Protocol\"\n",
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "beam"))]),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const md5 = nix.argOr($_1, "md5", () => "");
     const sha256 = nix.argOr($_1, "sha256", () => "");
     return (nix.asBool(!nix.eq(md5, "")) ? nix.builtins.throw("fetchegg does not support md5 anymore, please use sha256") : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`chicken-${name}-export-${version}`),
         builder: nix.path(here, "./builder.sh"),
         nativeBuildInputs: nix.thunk(() => [chicken]),

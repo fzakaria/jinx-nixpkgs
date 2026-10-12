@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const variant = nix.argOr($, "variant", () => "standalone");
   const variants = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     gimp: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraDeps: nix.thunk(() => [gimp, nix.thunk(() => nix.sel(gimp, "gtk"))]),
       description: "GIMP plugin for the G'MIC image processing framework",
     })),
     standalone: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraDeps: [],
       description: "Versatile front-end to the image processing framework G'MIC",
     })),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.builtins.hasAttr(variant, variants)), nix.thunk(() => nix.str`gmic-qt variant "${variant}" is not supported. Please use one of ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.attrNames(variants)))}.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gm/gmic-qt/package.nix:44:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.builtins.all((d) => !nix.eq(d, null), nix.thunk(() => nix.sel(variants, nix.key(nix.force(variant)), "extraDeps")))), nix.thunk(() => nix.str`gmic-qt variant "${variant}" is missing one of its dependencies.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gm/gmic-qt/package.nix:47:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: nix.thunk(() => nix.str`gmic-qt${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, "standalone")), nix.thunk(() => nix.str`-${variant}`))}`),
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "GreycLab",
           repo: "gmic-qt",
           rev: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -103,22 +103,22 @@ ln -s ${nix.sel(gmic, "src")}/src/gmic.cpp ../src/gmic.cpp
 wrapQtApp "$out/${nix.sel(gimp, "targetPluginDir")}/gmic_gimp_qt/gmic_gimp_qt"
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "gimp-plugin": nix.thunk(() => nix.sel(gimpPlugins, "gmic")),
           cimg: cimg,
           gmic: gmic,
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "^v\\.(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(variants, nix.key(nix.force(variant))));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "http://gmic.eu/",
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

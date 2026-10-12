@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lazyspotify-librespot",
       version: "0.7.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dubeyKartikay",
           repo: "go-librespot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm755 $out/bin/daemon $out/bin/lazyspotify-librespot\nrm $out/bin/daemon\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Librespot daemon tailored for lazyspotify",
         mainProgram: "lazyspotify-librespot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const swiftpm = nix.arg($, "swiftpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dark-mode-notify",
       version: "0-unstable-2022-07-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bouk",
           repo: "dark-mode-notify",
           rev: "4d7fe211f81c5b67402fad4bed44995344a260d1",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       dontUseSwiftpmInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run a script whenever dark mode changes in macOS",
         homepage: "https://github.com/bouk/dark-mode-notify",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),

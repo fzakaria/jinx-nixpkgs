@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const withNonfreeDb = nix.argOr($, "withNonfreeDb", () => false);
   const foomatic_db_packages = nix.thunk(() => nix.concat([foomatic_db], nix.app(nix.sel(lib, "lists", "optional"), withNonfreeDb, foomatic_db_nonfree)));
   const foomatic_db_combined = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "foomatic-db-combined",
       paths: foomatic_db_packages,
       pathsToLink: nix.thunk(() => ["/share/foomatic"]),
@@ -41,7 +41,7 @@ eof
       nix.thunk(() => nix.app(nix.sel(lib, "lists", "all"), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "attrByPath"), nix.thunk(() => ["free"]), true)))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "foomatic-db-ppds",
       version: nix.thunk(() => nix.app(nix.sel(lib, "trivial", "pipe"), foomatic_db_packages, nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "lists", "map"), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "getAttr"), "version")))),
@@ -60,7 +60,7 @@ foomatic-compiledb -j "$NIX_BUILD_CORES" -d "${nix.builtins.placeholder("out")}/
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ppdFileCommands: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => [
             "cat",
             "echo",
@@ -78,7 +78,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db-ppds" -
   | xargs -0r -n 64 -P "$NIX_BUILD_CORES" gzip -9n
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenPrinting ppd files",
         homepage: "https://openprinting.github.io/projects/02-foomatic/",
         license: nix.thunk(() => (nix.asBool(isFree) ? nix.sel(lib, "licenses", "free") : nix.sel(lib, "licenses", "unfree"))),

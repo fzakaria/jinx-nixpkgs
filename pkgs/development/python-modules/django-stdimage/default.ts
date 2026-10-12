@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const django = nix.arg($, "django");
   const gettext = nix.arg($, "gettext");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-stdimage",
       version: "6.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codingjoe",
           repo: "django-stdimage",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["stdimage", "stdimage.validators", "stdimage.models"]),
       nativeCheckInputs: nix.thunk(() => [gettext, pytest_django, pytest_cov_stub, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django Standardized Image Field",
         homepage: "https://github.com/codingjoe/django-stdimage",
         changelog: nix.thunk(() => nix.str`https://github.com/codingjoe/django-stdimage/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

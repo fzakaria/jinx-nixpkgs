@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protoc-gen-dart";
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "protobuf.dart",
           tag: nix.thunk(() => nix.str`protoc_plugin-v${version}`),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const preBuild = "pushd protoc_plugin\n";
       const postInstall = "popd\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.update(nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "protoc_plugin-v" }))), { __proto__: pos$3, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "protoc_plugin-v" }))), { [nix.POS]: pos$3, supportedFeatures: [] })),
             nix.thunk(() => nix.app(writeShellScript, "update-protoc-gen-dart", nix.thunk(() => nix.str`src=$(nix build --print-out-paths --no-link .#protoc-gen-dart.src)
 export HOME=$(mktemp -d)
 WORKDIR=$(mktemp -d)
@@ -50,7 +50,7 @@ popd
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Protobuf plugin for generating Dart code",
         mainProgram: "protoc-gen-dart",
         homepage: "https://pub.dev/packages/protoc_plugin",
@@ -61,7 +61,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

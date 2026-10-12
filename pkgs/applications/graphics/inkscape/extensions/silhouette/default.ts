@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const launch_sendto_silhouette = nix.thunk(() => nix.app(writeScript, "sendto_silhouette.sh", "cd $(dirname $0)\n./sendto_silhouette.py \"$@\"\n"));
   const launch_silhouette_multi = nix.thunk(() => nix.app(writeScript, "silhouette_multi.sh", "cd $(dirname $0)\n./silhouette_multi.py \"$@\"\n"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inkscape-silhouette",
       version: "1.29",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fablabnbg",
           repo: "inkscape-silhouette",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ cp ${launch_silhouette_multi} $out/share/inkscape/extensions/silhouette_multi.sh
 `),
       postFixup: "wrapPythonProgramsIn \"$out/share/inkscape/extensions/\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension to drive Silhouette vinyl cutters (e.g. Cameo, Portrait, Curio series) from within Inkscape",
         homepage: "https://github.com/fablabnbg/inkscape-silhouette",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

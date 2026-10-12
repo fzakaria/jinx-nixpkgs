@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "commons-bsf",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/bsf/binaries/bsf-bin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1my3hv4y8cvrd1kr315wvbjqsamzlzswnbqcmsa2m4hqcafddfr8",
         })))),
       installPhase: "mkdir -p $out/share/java\ncp lib/bsf.jar $out/share/java/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to scripting languages, including JSR-223",
         homepage: "https://commons.apache.org/proper/commons-bsf/",
         sourceProvenance: nix.thunk(() => (() => {

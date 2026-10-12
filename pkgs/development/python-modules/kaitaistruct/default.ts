@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const setuptools = nix.arg($, "setuptools");
   const kaitai_compress = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kaitai-io",
       repo: "kaitai_compress",
       rev: "12f4cffb45d95b17033ee4f6679987656c6719cc",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           hash: "sha256-BT7nZCiOeLjlOs90jpczJorL1Xm42CpCexgFRTYl10s=",
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["kaitaistruct", "kaitai.compress"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kaitai Struct: runtime library for Python",
         homepage: "https://github.com/kaitai-io/kaitai_struct_python_runtime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

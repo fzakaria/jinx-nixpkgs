@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "reaction",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       server: (_) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           reaction: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: true,
             stopForFirewall: false,
             settingsFiles: nix.thunk(() => [
@@ -52,25 +52,25 @@ export default nix.lambda((args) => (() => {
             ]),
             runAsRoot: false,
           })),
-          openssh: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           users: nix.thunk(() => ({
-            __proto__: pos$6,
-            reaction: nix.thunk(() => ({ __proto__: pos$4, extraGroups: nix.thunk(() => ["systemd-journal"]) })),
-            nixos: nix.thunk(() => ({ __proto__: pos$5, isNormalUser: true })),
+            [nix.POS]: pos$6,
+            reaction: nix.thunk(() => ({ [nix.POS]: pos$4, extraGroups: nix.thunk(() => ["systemd-journal"]) })),
+            nixos: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             reaction: nix.thunk(() => ({
-              __proto__: pos$10,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$8, ConditionCapability: "CAP_NET_ADMIN" })),
+              [nix.POS]: pos$10,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, ConditionCapability: "CAP_NET_ADMIN" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_ADMIN"]),
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN"]),
               })),
@@ -79,9 +79,9 @@ export default nix.lambda((args) => (() => {
         })),
       }),
       client: (_) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "sshpass")),
             nix.thunk(() => nix.sel(pkgs, "libressl", "nc")),
@@ -133,18 +133,18 @@ client.succeed(f"nc -w3 -z {server_addr} 22")
 `;
     })(), formals$2),
     interactive: nix.thunk(() => ({
-      __proto__: pos$22,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+      [nix.POS]: pos$22,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$20,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$18, memorySize: 4096n, graphics: false })),
+            [nix.POS]: pos$20,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, memorySize: 4096n, graphics: false })),
             environment: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -160,7 +160,7 @@ client.succeed(f"nc -w3 -z {server_addr} 22")
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return nix.concat([nix.thunk(() => nix.lookup(w, "ppom"))], nix.sel(lib, "teams", "ngi", "members"));

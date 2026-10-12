@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cabextract = nix.arg($, "cabextract");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vista-fonts-cht",
       version: "1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://download.microsoft.com/download/7/6/b/76bd7a77-be02-47f3-8472-fa1de7eda62f/VistaFont_CHT.EXE",
           hash: "sha256-fSnbbxlMPzbhFSQyKxQaS5paiWji8njK7tS8Eppsj6g=",
         })))),
@@ -36,7 +36,7 @@ substitute ${nix.path(here, "./no-op.conf")} $out/etc/fonts/conf.d/30-msjhenghei
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TrueType fonts from Microsoft Windows Vista For Traditional Chinese (Microsoft JhengHei)",
         homepage: "https://www.microsoft.com/typography/fonts/family.aspx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

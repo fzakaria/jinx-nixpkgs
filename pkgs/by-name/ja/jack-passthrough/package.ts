@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fmt_9 = nix.arg($, "fmt_9");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jack-passthrough",
       version: "0-unstable-2021-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guysherman",
           repo: "jack-passthrough",
           rev: "aad03b7c5ccc4a4dcb8fa38c49aa64cb9d628660",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [fmt_9, libjack2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple app to help with JACK apps that behave strangely",
         longDescription: "Creates a JACK passthrough client with an arbitrary name and number of\nports. Common uses include tricking stubborn applications into creating\nmore ports than they normally would or to prevent them from\nauto-connecting to certain things.\n",
         homepage: "https://github.com/guysherman/jack-passthrough",

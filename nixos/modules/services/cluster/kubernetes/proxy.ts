@@ -39,42 +39,42 @@ export default nix.lambda((args) => (() => {
   const otop = nix.thunk(() => nix.sel(options, "services", "kubernetes"));
   const cfg = nix.thunk(() => nix.sel(top, "proxy"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kubernetes", "proxy", "address"]), nix.thunk(() => ["services", "kubernetes", "proxy", "bindAddress"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           proxy: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               bindAddress: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   description: "Kubernetes proxy listening address.",
                   default: "0.0.0.0",
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                 })))),
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "Kubernetes proxy")),
               extraOpts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "Kubernetes proxy extra command line options.",
                   default: "",
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "separatedString"), " ")),
                 })))),
               featureGates: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "Attribute set of feature gates.",
                   default: nix.thunk(() => nix.sel(top, "featureGates")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "featureGates")}`))),
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "bool")))),
                 })))),
               hostname: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   description: "Kubernetes proxy hostname override.",
                   default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "config.networking.hostName")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               kubeconfig: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkKubeConfigOptions"), "Kubernetes proxy")),
               verbosity: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   description: "Optional glog verbosity level for logging statements. See\n<https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
@@ -93,13 +93,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "kube-proxy": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Kubernetes Proxy Service",
               wantedBy: nix.thunk(() => ["kubernetes.target"]),
               after: nix.thunk(() => ["kube-apiserver.service"]),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Slice: "kubernetes.slice",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(top, "package")}/bin/kube-proxy \\
 --bind-address=${nix.sel(cfg, "bindAddress")} \\
@@ -126,31 +126,31 @@ ${nix.sel(cfg, "extraOpts")}
                 Restart: "on-failure",
                 RestartSec: 5n,
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$11, StartLimitIntervalSec: 0n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, StartLimitIntervalSec: 0n })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           kubernetes: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             proxy: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               hostname: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(config, "networking")), w);
                 return nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => nix.lookup(w_1, "hostName")));
               })()),
               kubeconfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 server: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(top, "apiserverAddress")))),
               })),
             })),
             pki: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               certs: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 kubeProxyClient: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkCert"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     name: "kube-proxy-client",
                     CN: "system:kube-proxy",
                     action: "systemctl restart kube-proxy.service",
@@ -160,7 +160,7 @@ ${nix.sel(cfg, "extraOpts")}
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$23, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$23, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=proxy.ts.map

@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pietrasanta-traceroute",
       version: "0.0.5-unstable-2024-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catchpoint",
           repo: "Pietrasanta-traceroute",
           rev: "e4a5cf94dccd646e03b9b75a762e9b014e3a3128",
           hash: "sha256-5FbuITewgSh6UFUU1vttkokk8uZ2IrzkDwsCuWJPKlM=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       buildInputs: nix.thunk(() => [openssl]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ECN-aware version of traceroute",
         longDescription: "An enhanced version of Dmitry Butskoy's traceroute, developed by Catchpoint.\n- Support for \"TCP InSession\": opens a TCP connection with the destination and sends TCP probes with\n  increasing TTL values, to prevent false packet loss introduced by firewalls, and ensure packets\n  follow a single flow, akin to a normal TCP session.\n- Similar QUIC-based traceroute.\n- Enhanced ToS (DSCP/ECN) field report.\n",
         homepage: "https://github.com/catchpoint/Pietrasanta-traceroute/",

@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const withInsults = nix.argOr($, "withInsults", () => false);
   const withSssd = nix.argOr($, "withSssd", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sudo",
       version: "1.9.17p2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.sudo.ws/dist/sudo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SjihqzrbEZklftwqfEor1xRmXrYFsENohDsG2tos/Ps=",
         })))),
@@ -65,16 +65,16 @@ installFlags="sudoers_uid=$(id -u) sudoers_gid=$(id -g) sysconfdir=$out/etc rund
       doCheck: false,
       postInstall: "rm $out/share/doc/sudo/ChangeLog\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, sudo: nix.thunk(() => nix.attr(nixosTests, "sudo")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, sudo: nix.thunk(() => nix.attr(nixosTests, "sudo")) })),
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             versionLister: nix.thunk(() => nix.app(writeShellScript, "sudo-versionLister", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), curl)} -sL https://www.sudo.ws/dist | grep -Po 'href="sudo-\\K[\\w.]*(?=\\.tar\\.gz")'
 `))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command to run commands as root",
         longDescription: "Sudo (su \"do\") allows a system administrator to delegate\nauthority to give certain users (or groups of users) the ability\nto run some (or all) commands as root or another user while\nproviding an audit trail of the commands and their arguments.\n",
         homepage: "https://www.sudo.ws/",

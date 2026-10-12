@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "rasdaemon"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 10029n,
     extraOpts: nix.thunk(() => (() => {
       const w = nix.withScope(types, null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         databasePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.lookup(w, "path")),
             default: "/var/lib/rasdaemon/ras-mc_event.db",
             description: "Path to the RAS daemon machine check event database.\n",
           })))),
         enabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["aer", "mce", "mc", "extlog", "devlink", "disk"]))))),
             default: nix.thunk(() => ["aer", "mce", "mc"]),
             description: "List of error types to collect from the event database.\n",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "prometheus-rasdaemon-exporter")))),
             "--address",

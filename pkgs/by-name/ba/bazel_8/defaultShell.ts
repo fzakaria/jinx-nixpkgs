@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const defaultShellUtils = nix.arg($_1, "defaultShellUtils");
     const defaultShellPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultShellUtils));
     const bashWithDefaultShellUtilsSh = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "bash",
         runtimeInputs: defaultShellUtils,
         text: nix.thunk(() => nix.str`if [[ "$PATH" == "/no-such-path" ]]; then
@@ -30,11 +30,11 @@ exec ${bash}/bin/bash "$@"
 `),
       }))));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       defaultShellUtils: defaultShellUtils,
       defaultShellPath: defaultShellPath,
       bashWithDefaultShellUtils: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "bash",
           src: bashWithDefaultShellUtilsSh,
           nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),

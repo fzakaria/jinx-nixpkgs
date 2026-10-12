@@ -41,37 +41,37 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "mollysocket", nix.thunk(() => nix.str`MOLLY_CONF=${configuration} exec ${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "mollysocket")))} "$@"
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         mollysocket: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "[MollySocket](https://github.com/mollyim/mollysocket) for getting Signal\nnotifications via UnifiedPush\n")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               description: "Configuration for MollySocket. Available options are listed\n[here](https://github.com/mollyim/mollysocket#configuration).\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         default: "127.0.0.1",
                         description: "Listening address of the web server",
                         type: nix.thunk(() => nix.sel(types, "str")),
                       })))),
                     port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         default: 8020n,
                         description: "Listening port of the web server",
                         type: nix.thunk(() => nix.sel(types, "port")),
                       })))),
                     allowed_endpoints: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         default: nix.thunk(() => ["*"]),
                         description: "List of UnifiedPush servers",
                         example: nix.thunk(() => ["https://ntfy.sh"]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                         })()),
                       })))),
                     allowed_uuids: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         default: nix.thunk(() => ["*"]),
                         description: "UUIDs of Signal accounts that may use this server",
                         example: nix.thunk(() => ["abcdef-12345-tuxyz-67890"]),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: null,
               description: "Environment file (see {manpage}`systemd.exec(5)` \"EnvironmentFile=\"\nsection for the syntax) passed to the service. This option can be\nused to safely include secrets in the configuration.\n",
               example: "/run/secrets/mollysocket",
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "info",
               description: "Set the {env}`RUST_LOG` environment variable",
               example: "debug",
@@ -114,21 +114,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
-        environment: nix.thunk(() => ({ __proto__: pos$13, systemPackages: nix.thunk(() => [package$]) })),
+        [nix.POS]: pos$19,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$13, systemPackages: nix.thunk(() => [package$]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             mollysocket: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "MollySocket",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$14, RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$14, RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")) })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, package$)} server`),
                 KillSignal: "SIGINT",
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dotlambda"))];

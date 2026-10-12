@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-hbDbETYlMU8PRPP+bvDrJWTWw03S7lZ3tJXRUUK7SXM=",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_80]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python components for parsing HTML, XML and other textual content",
         longDescription: "Python library that provides an integrated set of components for\nparsing, generating, and processing HTML, XML or other textual\ncontent for output generation on the web.\n",
         homepage: "https://genshi.edgewall.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

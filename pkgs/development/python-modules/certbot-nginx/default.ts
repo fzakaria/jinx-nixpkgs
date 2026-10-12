@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [certbot, pyparsing]);
       const pythonImportsCheck = nix.thunk(() => ["certbot_nginx", "certbot.plugins.nginx"]);
-      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { __proto__: pos$1, description: "Nginx plugin for Certbot" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { [nix.POS]: pos$1, description: "Nginx plugin for Certbot" }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         src,

@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const makeGaugePlugin = nix.arg($, "makeGaugePlugin");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "html-report",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/html-report",
       releasePrefix: "html-report-",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "HTML report generation plugin for Gauge",
         homepage: "https://github.com/getgauge/html-report/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

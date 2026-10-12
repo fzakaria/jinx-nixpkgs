@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "manifest-check-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pythonCheckInterpreter: nix.thunk(() => nix.sel(python3Packages, "python", "interpreter")),
         checkManifest: nix.path(here, "./check_manifest.py"),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./manifest-requirements-check-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=manifest-requirements-check-hook.ts.map

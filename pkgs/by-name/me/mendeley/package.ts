@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const appimageTools = nix.arg($, "appimageTools");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mendeley",
       version: "2.149.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://static.mendeley.com/bin/desktop/mendeley-reference-manager-${nix.sel(finalAttrs, "version")}-x86_64.AppImage`),
           hash: "sha256-XarirKKV7hyW+I5kfRLWX78yS2BiLJOL16/Vw0vGswg=",
         })))),
@@ -31,7 +31,7 @@ substituteInPlace $out/share/applications/mendeley-reference-manager.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=mendeley'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.mendeley.com",
         description: "Reference manager and academic social network",
         sourceProvenance: nix.thunk(() => (() => {

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pgbackrest",
       version: "2.58.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgbackrest",
           repo: "pgbackrest",
           tag: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, python3]),
       buildInputs: nix.thunk(() => [bzip2, libbacktrace, libpq, libssh2, libxml2, libyaml, lz4, zlib, zstd]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "pgbackrest")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "pgbackrest")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reliable PostgreSQL backup & restore",
         homepage: "https://pgbackrest.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pgbackrest/pgbackrest/releases/tag/release%2F${nix.sel(finalAttrs, "version")}`),

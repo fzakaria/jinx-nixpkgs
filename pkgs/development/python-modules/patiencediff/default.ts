@@ -25,26 +25,26 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.19";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "breezy-team",
           repo: "patiencediff",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-xynrYf5oCIPk22jqjvXNYTyaXzVaUjRpn35vbx+t8vU=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
           hash: "sha256-JW2Oj1oxAVf9K3lyJQpbHqw9eeNYDg3Agb189bduqlI=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$3, CIBUILDWHEEL: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, CIBUILDWHEEL: "1" }));
       const nativeBuildInputs = nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), rustc]);
       const build_system = nix.thunk(() => [setuptools, setuptools_rust]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["patiencediff"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C implementation of patiencediff algorithm for Python",
         mainProgram: "patiencediff",
         homepage: "https://github.com/breezy-team/patiencediff",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

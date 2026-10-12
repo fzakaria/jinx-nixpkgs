@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libdockapp = nix.arg($, "libdockapp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wmsm.app",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/wmsm.app/wmsm`),
       buildInputs: nix.thunk(() => [libx11, libxext, libxpm, libdockapp]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       postPatch: "substituteInPlace Makefile \\\n  --replace \"PREFIX\t= /usr/X11R6/bin\" \"\" \\\n  --replace \"/usr/bin/install\" \"install\"\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -32,7 +32,7 @@ runHook postInstall
 `),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}/bin`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System monitor for Windowmaker",
         homepage: "https://www.dockapps.net/wmsmapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

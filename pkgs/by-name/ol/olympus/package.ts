@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const finderHints = nix.argOr($, "finderHints", () => []);
   const wrapper_to_env = (wrapper) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), wrapper)) ? nix.app(nix.sel(lib, "getExe"), wrapper) : (nix.asBool(!nix.eq(wrapper, null)) ? nix.force(wrapper) : ""));
   const miniinstaller_fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "olympus-miniinstaller-fhs",
       version: "1.0.0",
       targetPkgs: (pkgs) => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const miniinstaller_wrapper = nix.thunk(() => (nix.asBool(nix.eq(miniinstallerWrapper, null)) ? nix.app(writeShellScript, "miniinstaller-wrapper", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), miniinstaller_fhs)} -c "$@"`)) : nix.app(wrapper_to_env, miniinstallerWrapper)));
   const finderHints$ = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isList"), finderHints)) ? nix.app(nix.sel(lib, "concatMapStringsSep"), ":", (hint) => nix.str`${hint}`, finderHints) : nix.str`${finderHints}`));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(olympus_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(olympus_unwrapped, "meta")),
       pname: "olympus",

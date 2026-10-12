@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tevent",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://samba/tevent/tevent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-G+LepzfN4l/gZiH4SUXmPrcSWeDEPp+PXaSC2rGnvpI=",
         })))),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
           "--cross-compile",
           nix.thunk(() => nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
         ])))),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--undefined-version" }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Event system based on the talloc memory management library",
         homepage: "https://tevent.samba.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

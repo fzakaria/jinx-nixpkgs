@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const platformAttrs = nix.arg($, "platformAttrs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hadoop-yarn-containerexecutor",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/hadoop/common/hadoop-${nix.sel(finalAttrs, "version")}/hadoop-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: nix.thunk(() => nix.sel(platformAttrs, nix.key(nix.sel(stdenv, "system")), "srcHash")),
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DHADOOP_CONF_DIR=/run/wrappers/yarn-nodemanager/etc/hadoop"]),
       installPhase: "mkdir $out\nmv target/usr/local/bin $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://hadoop.apache.org/",
         description: "Framework for distributed processing of large data sets across clusters of computers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

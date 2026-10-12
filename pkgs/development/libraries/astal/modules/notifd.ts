@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const quarrel = nix.arg($, "quarrel");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "notifd",
       buildInputs: nix.thunk(() => [json_glib, gdk_pixbuf, quarrel]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for notification daemon" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for notification daemon" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=notifd.ts.map

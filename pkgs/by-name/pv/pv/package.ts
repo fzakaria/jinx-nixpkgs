@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pv",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ivarch.com/programs/sources/pv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Mf29tEnHFDzSloVnvvdZnp8DGVDmFY7nu3bkCuv2/7g=",
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "sanoid")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "sanoid")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.ivarch.com/programs/pv.shtml",
         description: "Tool for monitoring the progress of data through a pipeline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

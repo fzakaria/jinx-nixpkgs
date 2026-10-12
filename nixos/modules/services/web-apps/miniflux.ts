@@ -49,47 +49,47 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "miniflux"));
   const boolToInt = (b) => (nix.asBool(b) ? 1n : 0n);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         miniflux: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "miniflux")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "miniflux", nix.thunk(() => ({})))),
           createDatabaseLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether a PostgreSQL database should be automatically created and\nconfigured on the local host. If set to `false`, you need provision a\ndatabase yourself.\n",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "int"))]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     LISTEN_ADDR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "localhost:8080",
                         description: "Address to listen on. Use absolute path for a Unix socket.\nMultiple addresses can be specified, separated by commas.\n",
                         example: "127.0.0.1:8080, 127.0.0.1:8081",
                       })))),
                     DATABASE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         defaultText: nix.thunk(() => nix.app(literalExpression, "if createDatabaseLocally then \"user=miniflux host=/run/postgresql dbname=miniflux\" else null\n")),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "createDatabaseLocally")) ? "user=miniflux host=/run/postgresql dbname=miniflux" : null)),
                         description: "Postgresql connection parameters.\nSee [lib/pq](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) for more details.\n",
                       })))),
                     RUN_MIGRATIONS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "bool")), boolToInt, nix.thunk(() => nix.lookup(w_1, "int")));
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
                         description: "Run database migrations.",
                       })))),
                     CREATE_ADMIN: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "bool")), boolToInt, nix.thunk(() => nix.lookup(w_1, "int")));
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
                         description: "Create an admin user from environment variables.",
                       })))),
                     WATCHDOG: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "bool")), boolToInt, nix.thunk(() => nix.lookup(w_1, "int")));
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for Miniflux, refer to\n<https://miniflux.app/docs/configuration.html>\nfor documentation on the supported values.\n",
             })))),
           adminCredentialsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "File containing the ADMIN_USERNAME and\nADMIN_PASSWORD (length >= 6) in the format of\nan EnvironmentFile=, as described by {manpage}`systemd.exec(5)`.\n",
@@ -131,49 +131,49 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config", "CREATE_ADMIN"), 0n)) || nix.asBool(!nix.eq(nix.sel(cfg, "adminCredentialsFile"), null)))),
             message: "services.miniflux.adminCredentialsFile must be set if services.miniflux.config.CREATE_ADMIN is 1",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "createDatabaseLocally")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$15, name: "miniflux", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$15, name: "miniflux", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["miniflux"]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "miniflux-dbsetup": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "createDatabaseLocally")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Miniflux database setup",
                 requires: nix.thunk(() => ["postgresql.target"]),
                 after: nix.thunk(() => ["network.target", "postgresql.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(config, "services", "postgresql", "superUser")),
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(config, "services", "postgresql", "package")}/bin/psql "miniflux" -c "DROP EXTENSION IF EXISTS hstore"`),
                 })),
               })))),
             miniflux: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Miniflux service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "createDatabaseLocally")), nix.thunk(() => ["miniflux-dbsetup.service", "postgresql.target"]))),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "createDatabaseLocally")), nix.thunk(() => ["postgresql.target", "miniflux-dbsetup.service"])))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 User: "miniflux",
@@ -213,17 +213,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           apparmor: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             policies: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "bin.miniflux": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 profile: nix.thunk(() => nix.str`abi <abi/4.0>,
 include <tunables/global>
 
@@ -238,7 +238,7 @@ profile ${nix.sel(cfg, "package")}/bin/miniflux flags=(attach_disconnected) {
   include <abstractions/nameservice>
   include <abstractions/ssl_certs>
   include <abstractions/golang>
-  include "${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({ __proto__: pos$25, name: "miniflux" })), nix.thunk(() => nix.sel(cfg, "package")))}"
+  include "${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({ [nix.POS]: pos$25, name: "miniflux" })), nix.thunk(() => nix.sel(cfg, "package")))}"
   ${nix.sel(cfg, "package")}/bin/miniflux r,
   /run/miniflux/** rw,
   /run/postgresql/.s.PGSQL.* rw,

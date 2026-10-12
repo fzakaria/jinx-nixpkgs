@@ -135,56 +135,56 @@ else
 fi
 `)));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         xserver: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             xauthBin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 internal: true,
                 default: nix.thunk(() => nix.str`${nix.sel(pkgs, "xauth")}/bin/xauth`),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.xauth}/bin/xauth\"")),
                 description: "Path to the {command}`xauth` program used by display managers.",
               })))),
             xserverBin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 description: "Path to the X server used by display managers.",
               })))),
             xserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 example: nix.thunk(() => ["-ac", "-logverbose", "-verbose", "-nolisten tcp"]),
                 description: "List of arguments for the X server.",
               })))),
             setupCommands: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 default: "",
                 description: "Shell commands executed just after the X server has started.\n\nThis option is only effective for display managers for which this feature\nis supported; currently these are LightDM, GDM and SDDM.\n",
               })))),
             sessionCommands: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 default: "",
                 example: "xmessage \"Hello World!\" &\n",
                 description: "Shell commands executed just before the window or desktop manager is\nstarted. These commands are not currently sourced for Wayland sessions.\n",
               })))),
             session: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "attrs")))),
                 example: nix.thunk(() => nix.app(literalExpression, "[ { manage = \"desktop\";\n    name = \"xterm\";\n    start = ''\n      ${pkgs.xterm}/bin/xterm -ls &\n      waitPID=$!\n    '';\n  }\n]\n")),
                 description: "List of sessions supported with the command used to start each\nsession.  Each session script can set the\n{var}`waitPID` shell variable to make this script\nwait until the end of the user session.  Each script is used\nto define either a window manager or a desktop manager.  These\ncan be differentiated by setting the attribute\n{var}`manage` either to `\"window\"`\nor `\"desktop\"`.\n\nThe list of desktop manager and window manager should appear\ninside the display manager with the desktop manager name\nfollowed by the window manager name.\n",
               })))),
             importedVariables: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "[a-zA-Z_][a-zA-Z0-9_]*")))),
                 visible: false,
                 description: "Environment variables to import into the systemd user environment.\n",
@@ -194,12 +194,12 @@ fi
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$16,
-          sessionData: nix.thunk(() => ({ __proto__: pos$12, wrapper: xsessionWrapper })),
+          [nix.POS]: pos$16,
+          sessionData: nix.thunk(() => ({ [nix.POS]: pos$12, wrapper: xsessionWrapper })),
           sessionPackages: nix.thunk(() => (() => {
             const dms = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (s) => nix.eq(nix.sel(s, "manage"), "desktop"), nix.thunk(() => nix.sel(cfg, "displayManager", "session"))));
             const wms = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (s) => nix.eq(nix.sel(s, "manage"), "window"), nix.thunk(() => nix.sel(cfg, "displayManager", "session"))));
@@ -233,7 +233,7 @@ exit 0
                   const script = nix.thunk(() => nix.app(xsession, dm, wm));
                   const desktopNames = nix.thunk(() => (nix.asBool(nix.has(dm, "desktopNames")) ? nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(dm, "desktopNames"))) : nix.force(sessionName)));
                   return nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(dm, "name"), "none")) || nix.asBool(!nix.eq(nix.sel(wm, "name"), "none")))), nix.thunk(() => nix.update(nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         name: nix.thunk(() => nix.str`${sessionName}-xsession`),
                         destination: nix.thunk(() => nix.str`/share/xsessions/${sessionName}.desktop`),
                         text: nix.thunk(() => nix.str`[Desktop Entry]
@@ -244,29 +244,29 @@ Exec=${script}
 Name=${prettyName}
 DesktopNames=${desktopNames}
 `),
-                      }))), { __proto__: pos$14, providedSessions: nix.thunk(() => [sessionName]) })));
-                })(), formals$2), nix.thunk(() => ({ __proto__: pos$15, dm: dms, wm: wms })))));
+                      }))), { [nix.POS]: pos$14, providedSessions: nix.thunk(() => [sessionName]) })));
+                })(), formals$2), nix.thunk(() => ({ [nix.POS]: pos$15, dm: dms, wm: wms })))));
           })()),
         })),
         xserver: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             xserverBin: nix.thunk(() => nix.str`${nix.sel(pkgs, "xorg-server", "out")}/bin/X`),
             importedVariables: nix.thunk(() => ["DBUS_SESSION_BUS_ADDRESS", "DISPLAY", "XAUTHORITY", "XDG_SESSION_ID"]),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         user: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           targets: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "nixos-fake-graphical-session": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Description: "Fake graphical-session target for non-systemd-aware sessions",
                 BindsTo: "graphical-session.target",
               })),

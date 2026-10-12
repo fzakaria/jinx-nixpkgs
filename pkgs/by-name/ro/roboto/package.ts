@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "roboto",
       version: "3.016",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/googlefonts/roboto-3-classic/releases/download/v${nix.sel(finalAttrs, "version")}/Roboto_v${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-oIeLqZpdWvqIgnKnQFFLhWkvfuFPKfR2CniOFh5cVdM=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/unhinted/static`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/googlefonts/roboto-3-classic",
         description: "This is a variable version of Roboto intended to be a 1:1 match with the official non-variable release from Google",
         longDescription: "This is not an official Google project, but was enabled with generous\nfunding by Google Fonts, who contracted Type Network. The Roboto family of\ninstances contained 6 weights and two widths of normal, along with italic\nof the regular width.\n",

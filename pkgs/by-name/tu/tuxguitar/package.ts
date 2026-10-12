@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const libraryPath = nix.thunk(() => nix.concat(["$out/lib", fluidsynth, lilv], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [swt, alsa_lib, jack2, libpulseaudio]))));
   const wrapperPaths = nix.thunk(() => [jre, which]);
   const mvnHashByPlatform = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "sha256-KYF7vSMXPgi6xvtgcSIIEOltK5RL4ynGQf1579Is5nM=",
     "aarch64-linux": "sha256-KYF7vSMXPgi6xvtgcSIIEOltK5RL4ynGQf1579Is5nM=",
     "aarch64-darwin": "sha256-uJXOACtuE4fKIb4a6C3Cy+MilI8OOdsuAgtJyklxHdw=",
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const version = "2.0.1";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "tuxguitar",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "helge17",
           repo: "tuxguitar",
           tag: version,
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "create-new-file",
             url: "https://github.com/helge17/tuxguitar/commit/3dc828a9b92e932952c2b33d8ee41db734f2fcc0.patch",
             hash: "sha256-umZlCSCTWqj3tgR+qFcPucEDv5vpaC6zHbDJg/W5KUI=",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       mvnParameters: mvnParams,
       mvnDepsParameters: mvnParams,
       mvnFetchExtraArgs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         dontWrapQtApps: true,
         dontWrapGApps: true,
         preBuild: nix.thunk(() => nix.str`mkdir -p $out/.m2
@@ -143,11 +143,11 @@ makeWrapper "$out/Applications/TuxGuitar.app/Contents/MacOS/tuxguitar.sh" \\
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/tuxguitar ${nix.app(nix.sel(lib, "concatStringsSep"), " ", wrapperArgs)}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "tuxguitar")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "tuxguitar")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Multitrack guitar tablature editor",
         longDescription: "TuxGuitar is a multitrack guitar tablature editor and player written\nin Java-SWT. It can open GuitarPro, PowerTab and TablEdit files.\n",
         homepage: "https://github.com/helge17/tuxguitar",

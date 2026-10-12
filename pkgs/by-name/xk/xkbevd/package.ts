@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxkbfile = nix.arg($, "libxkbfile");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xkbevd",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, pkg_config, util_macros]),
       buildInputs: nix.thunk(() => [util_macros, libx11, libxkbfile]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=xkbevd-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "XKB event daemon",
         longDescription: "The xkbevd event daemon listens for specified XKB events and executes requested commands if\nthey occur. The configuration file consists of a list of event specification/action pairs\nand/or variable definitions.\nThis command is very raw and is therefore only partially implemented; it is a rough prototype\nfor developers, not a general purpose tool for end users.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xkbevd",

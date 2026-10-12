@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pname = "marksman";
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0_1xx-bin"));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       "dotnet-sdk": dotnet_sdk,
       version: "2026-02-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "artempyanykh",
           repo: "marksman",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -m 644 -D -t "$out/share/doc/${pname}" LICENSE
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language Server for Markdown",
         longDescription: "Marksman is a program that integrates with your editor\nto assist you in writing and maintaining your Markdown documents.\nUsing LSP protocol it provides completion, goto definition,\nfind references, rename refactoring, diagnostics, and more.\nIn addition to regular Markdown, it also supports wiki-link-style\nreferences that enable Zettelkasten-like note taking.\n",
         homepage: "https://github.com/artempyanykh/marksman",

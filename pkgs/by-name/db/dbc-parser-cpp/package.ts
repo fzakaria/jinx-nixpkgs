@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fast_float = nix.arg($, "fast-float");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbc-parser-cpp",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LinuxDevon",
           repo: "dbc_parser_cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DBC file parsing library written in C++",
         homepage: "https://github.com/LinuxDevon/dbc_parser_cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pytest-pook",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~sara",
           repo: "pytest-pook",
           rev: "a7c2d0ca4287af671ebd065b0f6415bb4110f338",
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       buildInputs: nix.thunk(() => [pytest]),
       dependencies: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pook, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(pook, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false })))),
       ]),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pytest_pook"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pytest plugin for pook",
         homepage: "https://git.sr.ht/~sara/pytest-pook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

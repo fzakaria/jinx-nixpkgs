@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocb-stubblr`);
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pqwy/ocb-stubblr/releases/download/v${version}/ocb-stubblr-${version}.tbz`),
           name: "src.tar.bz",
           hash: "sha256-Zd9a2EFT5j944xCFmWD4Td21VB7uGHZoNE4yvgfI9y0=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCamlbuild plugin for C stubs",
         homepage: "https://github.com/pqwy/ocb-stubblr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

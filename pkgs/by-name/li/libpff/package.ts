@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libpff",
       version: "20231205",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libyal/libpff/releases/download/${nix.sel(finalAttrs, "version")}/libpff-alpha-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VrdfZRC2iwTfv3YrObQvIH9QZPTi9pUQoAyUcBVJyes=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and tools to access the Personal Folder File (PFF) and the Offline Folder File (OFF) format",
         homepage: "https://github.com/libyal/libpff",
         downloadPage: "https://github.com/libyal/libpff/releases",

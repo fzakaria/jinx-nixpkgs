@@ -41,49 +41,49 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/rqbit";
   const defaultDownloadDir = nix.thunk(() => nix.str`${stateDir}/downloads`);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         rqbit: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "rqbit BitTorrent daemon")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "rqbit", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "rqbit",
               description: "User account under which rqbit runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "rqbit",
               description: "Group account under which rqbit runs.",
             })))),
           downloadDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: defaultDownloadDir,
               example: "/mnt/storage/torrents",
               description: "Directory where to download torrents.",
             })))),
           httpPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3030n,
               description: "The listen port for the HTTP API.",
             })))),
           httpHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The listen host for the HTTP API.",
             })))),
           peerPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 4240n,
               description: "The port to listen for incoming BitTorrent peer connections (TCP and uTP).",
@@ -93,25 +93,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             rqbit: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "rqbit BitTorrent Service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 HOME: stateDir,
                 RQBIT_HTTP_API_LISTEN_ADDR: nix.thunk(() => nix.str`${(nix.asBool(nix.app(nix.sel(lib, "hasInfix"), ":", nix.thunk(() => nix.sel(cfg, "httpHost")))) ? nix.str`[${nix.sel(cfg, "httpHost")}]` : nix.sel(cfg, "httpHost"))}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "httpPort")))}`),
                 RQBIT_LISTEN_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "peerPort")))),
                 RQBIT_SESSION_PERSISTENCE_LOCATION: stateDir,
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} server start ${nix.sel(cfg, "downloadDir")}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -154,21 +154,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "rqbit")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               rqbit: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "rqbit")), nix.thunk(() => ({ __proto__: pos$17, rqbit: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "rqbit")), nix.thunk(() => ({ [nix.POS]: pos$17, rqbit: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "httpPort")),
                 nix.thunk(() => nix.sel(cfg, "peerPort")),
@@ -178,7 +178,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "CodedNil"))];

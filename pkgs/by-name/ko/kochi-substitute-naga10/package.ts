@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "kochi-substitute-naga10";
       const version = "20030809";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://osdn/efont/5411/kochi-substitute-${version}.tar.bz2`),
           stripRoot: false,
           hash: "sha256-dRJAxeVGYcNjLWqJJ+9Z2FW3BHrgyGRzlgM2x5YG3AM=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv */kochi-gothic-subst.ttf $out/share/fonts/truetype/kochi-gothic-subst-naga10.ttf\nmv */kochi-mincho-subst.ttf $out/share/fonts/truetype/kochi-mincho-subst-naga10.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Japanese font, non-free replacement for MS Gothic and MS Mincho",
         longDescription: "Kochi Gothic and Kochi Mincho were developed as free replacements for the\nMS Gothic and MS Mincho fonts from Microsoft. This version of the fonts\nincludes some non-free glyphs from the naga10 font, which stipulate that\nthis font may not be sold commercially. See kochi-substitute for the free\nDebian version.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "auntie"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

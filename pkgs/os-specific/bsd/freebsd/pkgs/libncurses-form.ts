@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libncurses_tinfo = nix.arg($, "libncurses-tinfo");
   const libncurses = nix.arg($, "libncurses");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ncurses-form",
       path: "lib/ncurses/form",
       extraPaths: nix.thunk(() => ["lib/ncurses", "contrib/ncurses", "lib/Makefile.inc"]),

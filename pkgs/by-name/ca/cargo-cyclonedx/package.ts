@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-cyclonedx",
       version: "0.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CycloneDX",
           repo: "cyclonedx-rust-cargo",
           rev: nix.thunk(() => nix.str`cargo-cyclonedx-${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curl])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Creates CycloneDX Software Bill of Materials (SBOM) from Rust (Cargo) projects",
         mainProgram: "cargo-cyclonedx",
         longDescription: "The CycloneDX module for Rust (Cargo) creates a valid CycloneDX Software\nBill-of-Material (SBOM) containing an aggregate of all project\ndependencies. CycloneDX is a lightweight SBOM specification that is\neasily created, human and machine readable, and simple to parse.\n",

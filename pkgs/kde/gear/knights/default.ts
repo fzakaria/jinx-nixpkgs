@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const qtspeech = nix.arg($, "qtspeech");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "knights",
       extraNativeBuildInputs: nix.thunk(() => [_7zz]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qtspeech]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "knights" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "knights" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

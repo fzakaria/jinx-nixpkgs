@@ -20,9 +20,9 @@ export default nix.lambda((args) => (() => {
   const asar = nix.arg($, "asar");
   const makeWrapper = nix.arg($, "makeWrapper");
   const electron = nix.arg($, "electron");
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$1, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       passthru: passthru,
@@ -61,7 +61,7 @@ makeWrapper "${electron}/bin/electron" "$out/bin/fastmail" \\
 
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$2, mainProgram: "fastmail" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, mainProgram: "fastmail" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

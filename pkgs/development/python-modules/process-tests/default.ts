@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-5dV96nFhJR6RytuEvz7MhSdfsSH9R45Xn4AHd7HUJL0=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ionelmc/python-process-tests/commit/236c3e83722a36eddb4abb111a2fcceb49cc9ab7.patch",
             hash: "sha256-LbLaDXHbywvsq++lklNiLw8u0USuiEpuxzpNMhXBWtE=",
           })))),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for testing processes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://github.com/ionelmc/python-process-tests",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

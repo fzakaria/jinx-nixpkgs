@@ -40,46 +40,46 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "timesyncd"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "timesyncd", "extraConfig"]), "Use services.timesyncd.settings.Time instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         timesyncd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "!config.boot.isContainer")),
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enables the systemd NTP client daemon.\n",
             })))),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               description: "The set of NTP servers from which to synchronise.\n\nSetting this option to an empty list will write `NTP=` to the\n{file}`timesyncd.conf` file as opposed to setting this option to null which\nwill remove `NTP=` entirely.\n\nSee {manpage}`timesyncd.conf(5)` for details.\n",
             })))),
           fallbackServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => nix.sel(config, "networking", "timeServers")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.timeServers")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               description: "The set of fallback NTP servers from which to synchronise.\n\nSetting this option to an empty list will write `FallbackNTP=` to the\n{file}`timesyncd.conf` file as opposed to setting this option to null which\nwill remove `FallbackNTP=` entirely.\n\nSee {manpage}`timesyncd.conf(5)` for details.\n",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             Time: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                   })))),
-                example: nix.thunk(() => ({ __proto__: pos$5, PollIntervalMaxSec: 180n })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$5, PollIntervalMaxSec: 180n })),
                 description: "Settings for systemd-timesyncd. See {manpage}`timesyncd.conf(5)` for\navailable options.\n",
               })))),
           })),
@@ -87,39 +87,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-timesyncd.service"]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "systemd-timesyncd": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               aliases: nix.thunk(() => ["dbus-org.freedesktop.timesync1.service"]),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "systemd/timesyncd.conf", "source")),
               ]),
               environment: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           timesyncd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               Time: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "servers"), null)), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       NTP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "servers")))))),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "fallbackServers"), null)), nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       FallbackNTP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "fallbackServers")))))),
                     })))),
                 ]))),
@@ -127,29 +127,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "systemd/timesyncd.conf": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               text: nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "settingsToSections"), nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           users: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "systemd-timesync": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "systemd-timesync")),
               group: "systemd-timesync",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "systemd-timesync": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "systemd-timesync")),
             })),
           })),

@@ -61,78 +61,78 @@ export default nix.lambda((args) => (() => {
   const pkg = nix.thunk(() => nix.sel(cfg, "package"));
   const opt = nix.thunk(() => nix.sel(options, "services", "moonraker"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: (l) => (nix.asBool(nix.eq(nix.builtins.length(l), 1n)) ? nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "head"), l))) : nix.app(nix.sel(lib, "concatMapStrings"), (s) => nix.str`
   ${nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), s)}`, l)),
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), ":")),
     }))));
   const unifiedConfigDir = nix.thunk(() => nix.add(nix.sel(cfg, "stateDir"), "/config"));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         moonraker: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Moonraker, an API web server for Klipper")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "moonraker", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nullable: true,
               example: "moonraker.override { useGpiod = true; }",
             })))),
           klipperSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.sel(config, "services", "klipper", "apiSocket")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.klipper.apiSocket")),
               description: "Path to Klipper's API socket.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/moonraker",
               description: "The directory containing the Moonraker databases.",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Deprecated directory containing client-writable configuration files.\n\nClients will be able to edit files in this directory via the API. This directory must be writable.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "moonraker",
               description: "User account under which Moonraker runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "moonraker",
               description: "Group account under which Moonraker runs.",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The IP or host to listen on.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 7125n,
               description: "The port to listen on.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 authorization: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   trusted_clients: nix.thunk(() => ["10.0.0.0/24"]),
                   cors_domains: nix.thunk(() => ["https://app.fluidd.xyz", "https://my.mainsail.xyz"]),
                 })),
@@ -140,68 +140,68 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for Moonraker. See the [documentation](https://moonraker.readthedocs.io/en/latest/configuration/)\nfor supported values.\n",
             })))),
           allowSystemControl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to allow Moonraker to perform system-level operations.\n\nMoonraker exposes APIs to perform system-level operations, such as\nreboot, shutdown, and management of systemd units. See the\n[documentation](https://moonraker.readthedocs.io/en/latest/web_api/#machine-commands)\nfor details on what clients are able to do.\n",
             })))),
           analysis: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Runtime analysis with klipper-estimator")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         warnings: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.selOr(cfg, () => [false], "settings", "update_manager", "enable_system_updates")))), "Enabling system updates is not supported on NixOS and will lead to non-removable warnings in some clients.\n"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configDir"), null)), nix.thunk(() => nix.str`services.moonraker.configDir has been deprecated upstream and will be removed.
 
 Action: ${(nix.asBool(nix.eq(nix.sel(cfg, "configDir"), unifiedConfigDir)) ? "Simply remove services.moonraker.configDir from your config." : nix.str`Move files from \`${nix.sel(cfg, "configDir")}\` to \`${unifiedConfigDir}\` then remove services.moonraker.configDir from your config.`)}
 `))))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "allowSystemControl")) || nix.asBool(nix.sel(config, "security", "polkit", "enable")))),
             message: "services.moonraker.allowSystemControl requires polkit to be enabled (security.polkit.enable).",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "moonraker")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               moonraker: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "moonraker")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "moonraker")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               moonraker: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "moonraker")),
               })),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           etc: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "moonraker.cfg": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               source: nix.thunk(() => (() => {
                 const forcedConfig = nix.thunk(() => nix.update({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   server: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     host: nix.thunk(() => nix.sel(cfg, "address")),
                     port: nix.thunk(() => nix.sel(cfg, "port")),
                     klippy_uds_address: nix.thunk(() => nix.sel(cfg, "klipperSocket")),
                   })),
-                  machine: nix.thunk(() => ({ __proto__: pos$25, validate_service: false })),
+                  machine: nix.thunk(() => ({ [nix.POS]: pos$25, validate_service: false })),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configDir"), null)), nix.thunk(() => ({
-                    __proto__: pos$28,
-                    file_manager: nix.thunk(() => ({ __proto__: pos$27, config_path: nix.thunk(() => nix.sel(cfg, "configDir")) })),
+                    [nix.POS]: pos$28,
+                    file_manager: nix.thunk(() => ({ [nix.POS]: pos$27, config_path: nix.thunk(() => nix.sel(cfg, "configDir")) })),
                   })))));
                 const fullConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), forcedConfig));
                 return nix.app(nix.sel(format, "generate"), "moonraker.cfg", fullConfig);
@@ -210,9 +210,9 @@ Action: ${(nix.asBool(nix.eq(nix.sel(cfg, "configDir"), unifiedConfigDir)) ? "Si
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configDir"), null)), nix.thunk(() => nix.str`d '${nix.sel(cfg, "configDir")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`)), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "analysis", "enable")), nix.thunk(() => [
@@ -222,9 +222,9 @@ Action: ${(nix.asBool(nix.eq(nix.sel(cfg, "configDir"), unifiedConfigDir)) ? "Si
               ]))))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             moonraker: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Moonraker, an API web server for Klipper",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "klipper", "enable")), "klipper.service"))),
@@ -236,7 +236,7 @@ exec ${pkg}/bin/moonraker -d ${nix.sel(cfg, "stateDir")} -c "$config_path"
 `),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 PrivateTmp: true,
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -246,27 +246,27 @@ exec ${pkg}/bin/moonraker -d ${nix.sel(cfg, "stateDir")} -c "$config_path"
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           moonraker: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             settings: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               file_manager: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 check_klipper_config_path: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "services", "klipper", "mutableConfig"))), false)),
               })),
-              analysis: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "analysis", "enable")), nix.thunk(() => ({ __proto__: pos$38, platform: "linux", enable_estimator_updates: false })))),
+              analysis: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "analysis", "enable")), nix.thunk(() => ({ [nix.POS]: pos$38, platform: "linux", enable_estimator_updates: false })))),
               machine: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 provider: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "allowSystemControl"))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "none")))),
               })),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           polkit: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "allowSystemControl")), nix.thunk(() => nix.str`// nixos/moonraker: Allow Moonraker to perform system-level operations
 //
 // This was enabled via services.moonraker.allowSystemControl.
@@ -286,7 +286,7 @@ polkit.addRule(function(action, subject) {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

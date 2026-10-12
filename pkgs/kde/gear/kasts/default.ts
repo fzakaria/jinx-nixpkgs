@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const taglib_1 = nix.arg($, "taglib_1");
   const libvlc = nix.arg($, "libvlc");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kasts",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qtmultimedia, taglib_1, libvlc]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kasts" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kasts" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

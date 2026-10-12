@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hg_evolve",
           version: version,
           hash: "sha256-ccFq7sASkOkFJ4Or5dhZpfKR0FdZAmbziDfK3FGcaYM=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mercurial]);
       const checkPhase = "runHook preCheck\n\nexport TESTTMP=$(mktemp -d)\nexport HOME=$TESTTMP\ncat <<EOF >$HOME/.hgrc\n[extensions]\nevolve =\ntopic =\nEOF\n\n# Shipped tests use the mercurial testing framework, and produce inconsistent results.\n# Do a quick smoke-test to see if things do what we expect.\nhg init $TESTTMP/repo\npushd $TESTTMP/repo\ntouch a\nhg add a\nhg commit -m \"init a\"\nhg topic something\n\ntouch b\nhg add b\nhg commit -m \"init b\"\n\necho hi > b\nhg amend\n\nhg obslog\npopd\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enables the “changeset evolution” feature of Mercurial core",
         homepage: "https://www.mercurial-scm.org/doc/evolution/",
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

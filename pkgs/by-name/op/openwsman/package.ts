@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const sblim_sfcc = nix.arg($, "sblim-sfcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openwsman",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Openwsman",
           repo: "openwsman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "appendToVar cmakeFlags \"-DPACKAGE_ARCHITECTURE=$(uname -m)\"\n",
       configureFlags: nix.thunk(() => ["--disable-more-warnings"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source implementation of WS-Management",
         downloadPage: "https://github.com/Openwsman/openwsman/releases",
         homepage: "https://openwsman.github.io",

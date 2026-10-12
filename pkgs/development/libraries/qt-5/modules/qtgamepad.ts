@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtgamepad",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),

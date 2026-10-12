@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const openal = nix.arg($, "openal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bstone",
       version: "1.3.4",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bibendovsky",
           repo: "bstone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ wrapProgram $out/bin/bstone \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [openal, vulkan_loader]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial source port for the Blake Stone series",
         homepage: "https://bibendovsky.github.io/bstone",
         changelog: nix.thunk(() => nix.str`https://github.com/bibendovsky/bstone/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

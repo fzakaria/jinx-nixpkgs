@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "20.3.4";
       const format = "other";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: pname,
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [scripttest, virtualenv, pretend]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyPA recommended tool for installing Python packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://pip.pypa.io/",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         priority: 10n,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

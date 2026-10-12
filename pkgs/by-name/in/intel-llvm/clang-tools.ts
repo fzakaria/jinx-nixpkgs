@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const unwrapped = nix.arg($, "unwrapped");
   const wrapper = nix.arg($, "wrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "intel-llvm-clang-tools",
       version: nix.thunk(() => nix.sel(unwrapped, "version")),
       dontUnpack: true,
@@ -35,7 +35,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(nix.sel(unwrapped, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Wrapped Intel LLVM clang tools with proper include paths",
       })),
     })));

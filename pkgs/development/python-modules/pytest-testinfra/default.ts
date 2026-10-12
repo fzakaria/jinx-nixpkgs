@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_testinfra",
           version: version,
           hash: "sha256-U3/V64jaYYwfRhJIqiBZTPjURRLoUZsjmDfoOHXh6c0=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["test/test_modules.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for testing your infrastructure",
         homepage: "https://github.com/pytest-dev/pytest-testinfra",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-testinfra/releases/tag/${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const mssqlHash = nix.arg($_1, "mssqlHash");
       return nix.app(buildGoModule, (finalAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "zabbix-agent2-plugin-mssql",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix-agent2-plugins/sources/mssql/zabbix-agent2-plugin-mssql-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: mssqlHash,
             })))),
           vendorHash: null,
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Zabbix agent2 plugin for monitoring Microsoft SQL servers",
             mainProgram: "mssql",
             homepage: "https://www.zabbix.com/documentation/current/en/manual/appendix/config/zabbix_agent2_plugins/mssql_plugin",

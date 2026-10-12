@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const nodejs_slim = nix.arg($, "nodejs-slim");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fernglas",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wobcom",
           repo: "fernglas",
           rev: nix.thunk(() => nix.str`fernglas-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [yarn, nodejs_slim, fixup_yarn_lock, python3, jq]),
       nlnog_communities: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NLNOG",
           repo: "lg.ring.nlnog.net",
           rev: "20f9a9f3da8b1bc9d7046e88c62df4b41b4efb99",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-aY5/dIplV8yWaQ2IdWxxC7T1DoKeRjsN5eT+UxsaA1E=",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/frontend/yarn.lock")),
           hash: "sha256-/ubCAs4C5nG8xNC77jTH+cJVNgddSxqGGPEVLDH/Cdo=",
         })))),
@@ -63,7 +63,7 @@ cp -r dist/ ../static
 popd
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Looking glass for your network using BGP and BMP as data source",
         homepage: "https://wobcom.github.io/fernglas/",
         changelog: nix.thunk(() => nix.str`https://github.com/wobcom/fernglas/releases/tag/fernglas-${nix.sel(finalAttrs, "version")}`),

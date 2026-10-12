@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libevent = nix.arg($, "libevent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.60",
       pname: "ocproxy",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cernekee",
           repo: "ocproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libevent]),
       preConfigure: "patchShebangs autogen.sh\n./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenConnect proxy",
         longDescription: "ocproxy is a user-level SOCKS and port forwarding proxy for OpenConnect\nbased on lwIP.\n",
         homepage: "https://github.com/cernekee/ocproxy",

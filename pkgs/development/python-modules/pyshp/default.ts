@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeospatialPython",
           repo: "pyshp",
           tag: version,
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["shapefile"]);
       const disabledTests = nix.thunk(() => ["test_reader_url"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python read/write support for ESRI Shapefile format",
         homepage: "https://github.com/GeospatialPython/pyshp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

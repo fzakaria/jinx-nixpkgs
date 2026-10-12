@@ -192,14 +192,14 @@ export default nix.lambda((args) => (() => {
       "zfs-siebenmann",
       "zfs",
     ]), (name) => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/exporters/${name}.nix`))), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         config: config,
         lib: lib,
         pkgs: pkgs,
         options: options,
         utils: utils,
       })))), nix.app(mapAttrs, (name) => (params) => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/exporters/${nix.sel(params, "name")}.nix`))), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         config: config,
         lib: lib,
         pkgs: pkgs,
@@ -207,48 +207,48 @@ export default nix.lambda((args) => (() => {
         utils: utils,
         type: nix.thunk(() => nix.sel(params, "type")),
       }))), nix.thunk(() => ({
-      __proto__: pos$9,
-      "exportarr-bazarr": nix.thunk(() => ({ __proto__: pos$3, name: "exportarr", type: "bazarr" })),
-      "exportarr-lidarr": nix.thunk(() => ({ __proto__: pos$4, name: "exportarr", type: "lidarr" })),
-      "exportarr-prowlarr": nix.thunk(() => ({ __proto__: pos$5, name: "exportarr", type: "prowlarr" })),
-      "exportarr-radarr": nix.thunk(() => ({ __proto__: pos$6, name: "exportarr", type: "radarr" })),
-      "exportarr-readarr": nix.thunk(() => ({ __proto__: pos$7, name: "exportarr", type: "readarr" })),
-      "exportarr-sonarr": nix.thunk(() => ({ __proto__: pos$8, name: "exportarr", type: "sonarr" })),
+      [nix.POS]: pos$9,
+      "exportarr-bazarr": nix.thunk(() => ({ [nix.POS]: pos$3, name: "exportarr", type: "bazarr" })),
+      "exportarr-lidarr": nix.thunk(() => ({ [nix.POS]: pos$4, name: "exportarr", type: "lidarr" })),
+      "exportarr-prowlarr": nix.thunk(() => ({ [nix.POS]: pos$5, name: "exportarr", type: "prowlarr" })),
+      "exportarr-radarr": nix.thunk(() => ({ [nix.POS]: pos$6, name: "exportarr", type: "radarr" })),
+      "exportarr-readarr": nix.thunk(() => ({ [nix.POS]: pos$7, name: "exportarr", type: "readarr" })),
+      "exportarr-sonarr": nix.thunk(() => ({ [nix.POS]: pos$8, name: "exportarr", type: "sonarr" })),
     })))));
   const mkExporterOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     const port = nix.arg($_1, "port");
     return {
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       enable: nix.thunk(() => nix.app(mkEnableOption, nix.thunk(() => nix.str`the prometheus ${name} exporter`))),
       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: port,
           description: "Port to listen on.\n",
         })))),
       listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "0.0.0.0",
           description: "Address to listen on.\n",
         })))),
       extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           description: nix.thunk(() => nix.str`Extra commandline options to pass to the ${name} exporter.
 `),
         })))),
       openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Open port in firewall for incoming connections.\n",
         })))),
       firewallFilter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"-i eth0 -p tcp -m tcp --dport ${nix.builtins.toString(port)}"
@@ -259,7 +259,7 @@ is true. It is used as \`ip46tables -I nixos-fw firewallFilter -j nixos-fw-accep
 `),
         })))),
       firewallRules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "lines")))),
           default: null,
           example: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`iifname "eth0" tcp dport ${nix.builtins.toString(port)} counter accept
@@ -269,14 +269,14 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
 `),
         })))),
       user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.str`${name}-exporter`),
           description: nix.thunk(() => nix.str`User name under which the ${name} exporter shall be run.
 `),
         })))),
       group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.str`${name}-exporter`),
           description: nix.thunk(() => nix.str`Group under which the ${name} exporter shall be run.
@@ -292,18 +292,18 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
     const imports = nix.arg($_1, "imports");
     return nix.attrsDyn({}, [
       [nix.force(name), nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 imports: imports,
-                options: nix.thunk(() => nix.update(nix.app(mkExporterOpts, nix.thunk(() => ({ __proto__: pos$19, name: name, port: port }))), extraOpts)),
+                options: nix.thunk(() => nix.update(nix.app(mkExporterOpts, nix.thunk(() => ({ [nix.POS]: pos$19, name: name, port: port }))), extraOpts)),
               })),
               nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 const config_1 = nix.arg($_2, "config");
                 return nix.app(mkIf, nix.thunk(() => nix.sel(config_1, "openFirewall")), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     firewallFilter: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`-p tcp -m tcp --dport ${nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "port")))}`))),
                     firewallRules: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`tcp dport ${nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "port")))} accept comment "${name}-exporter"`))),
                   })));
@@ -315,7 +315,7 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
     ]);
   })(), formals$3);
   const mkSubModules = nix.thunk(() => nix.app(foldl$, (a) => (b) => nix.update(a, b), nix.thunk(() => ({})), nix.thunk(() => nix.app(mapAttrsToList, (name) => (opts) => nix.app(mkSubModule, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           name: name,
           port: nix.thunk(() => nix.attr(opts, "port")),
           extraOpts: nix.thunk(() => nix.selOr(opts, () => ({}), "extraOpts")),
@@ -329,14 +329,14 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
     const enableDynamicUser = nix.thunk(() => nix.selOr(serviceOpts, () => true, "serviceConfig", "DynamicUser"));
     const nftables = nix.thunk(() => nix.sel(config, "networking", "nftables", "enable"));
     return nix.app(mkIf, nix.thunk(() => nix.sel(conf, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         warnings: nix.thunk(() => nix.selOr(conf, () => [], "warnings")),
         assertions: nix.thunk(() => nix.selOr(conf, () => [], "assertions")),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${name}-exporter`, nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(conf, "user"), nix.str`${name}-exporter`)) && nix.asBool(!nix.asBool(enableDynamicUser)))), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: nix.thunk(() => nix.str`Prometheus ${name} exporter service user`),
                 isSystemUser: true,
                 group: nix.thunk(() => nix.attr(conf, "group")),
@@ -345,21 +345,21 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
           ])),
           groups: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(conf, "group"), nix.str`${name}-exporter`)) && nix.asBool(!nix.asBool(enableDynamicUser)))), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}-exporter`, nix.thunk(() => ({}))]])))),
-              nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(name, "smartctl")), nix.thunk(() => ({ __proto__: pos$25, "smartctl-exporter-access": nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(name, "smartctl")), nix.thunk(() => ({ [nix.POS]: pos$25, "smartctl-exporter-access": nix.thunk(() => ({})) })))),
             ]))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           udev: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             extraRules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(name, "smartctl")), nix.thunk(() => nix.str`ACTION=="add", SUBSYSTEM=="nvme", KERNEL=="nvme[0-9]*", RUN+="${nix.sel(pkgs, "acl")}/bin/setfacl -m g:smartctl-exporter-access:rw /dev/$kernel"
 `))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             extraCommands: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(conf, "openFirewall")) && nix.asBool(!nix.asBool(nftables)))), nix.thunk(() => nix.app(concatStrings, nix.thunk(() => [
                   nix.thunk(() => nix.str`ip46tables -A nixos-fw ${nix.sel(conf, "firewallFilter")} `),
                   nix.thunk(() => nix.str`-m comment --comment ${name}-exporter -j nixos-fw-accept`),
@@ -368,15 +368,15 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`prometheus-${name}-exporter`, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     Restart: nix.thunk(() => nix.app(mkDefault, "always")),
                     PrivateTmp: nix.thunk(() => nix.app(mkDefault, true)),
                     WorkingDirectory: nix.thunk(() => nix.app(mkDefault, "/tmp")),
@@ -413,17 +413,17 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
       })));
   })(), formals$5);
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     options: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       services: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           exporters: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   options: mkSubModules,
                   imports: nix.thunk(() => [
                     nix.path(here, "../../../misc/assertions.nix"),
@@ -442,70 +442,70 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           assertions: nix.thunk(() => nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "ipmi", "enable")) || nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "ipmi", "configFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/tmp/", nix.thunk(() => nix.sel(cfg, "ipmi", "configFile"))))))))),
               message: "Config file specified in `services.prometheus.exporters.ipmi.configFile' must\n  not reside within /tmp - it won't be visible to the systemd service.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "ipmi", "enable")) || nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "ipmi", "webConfigFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/tmp/", nix.thunk(() => nix.sel(cfg, "ipmi", "webConfigFile"))))))))),
               message: "Config file specified in `services.prometheus.exporters.ipmi.webConfigFile' must\n  not reside within /tmp - it won't be visible to the systemd service.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "restic", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "restic", "repository"), null), nix.eq(nix.sel(cfg, "restic", "repositoryFile"), null))))),
               message: "Please specify either 'services.prometheus.exporters.restic.repository'\n  or 'services.prometheus.exporters.restic.repositoryFile'.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "snmp", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "snmp", "configurationPath"), null), nix.eq(nix.sel(cfg, "snmp", "configuration"), null))))),
               message: "Please ensure you have either `services.prometheus.exporters.snmp.configuration'\n  or `services.prometheus.exporters.snmp.configurationPath' set!\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mikrotik", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "mikrotik", "configFile"), null), nix.eq(nix.sel(cfg, "mikrotik", "configuration"), null))))),
               message: "Please specify either `services.prometheus.exporters.mikrotik.configuration'\n  or `services.prometheus.exporters.mikrotik.configFile'.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mail", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "mail", "configFile"), null), nix.eq(nix.sel(cfg, "mail", "configuration"), null))))),
               message: "Please specify either 'services.prometheus.exporters.mail.configuration'\n  or 'services.prometheus.exporters.mail.configFile'.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mysqld", "runAsLocalSuperUser")) || nix.asBool(nix.sel(config, "services", "mysql", "enable")))),
               message: "The exporter is configured to run as 'services.mysql.user', but\n  'services.mysql.enable' is set to false.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "nextcloud", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "nextcloud", "passwordFile"), null), nix.eq(nix.sel(cfg, "nextcloud", "tokenFile"), null))))),
               message: "Please specify either 'services.prometheus.exporters.nextcloud.passwordFile' or\n  'services.prometheus.exporters.nextcloud.tokenFile'\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "sql", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "sql", "configFile"), null), nix.eq(nix.sel(cfg, "sql", "configuration"), null))))),
               message: "Please specify either 'services.prometheus.exporters.sql.configuration' or\n  'services.prometheus.exporters.sql.configFile'\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "idrac", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "idrac", "configurationPath"), null), nix.eq(nix.sel(cfg, "idrac", "configuration"), null))))),
               message: "Please ensure you have either `services.prometheus.exporters.idrac.configuration'\n  or `services.prometheus.exporters.idrac.configurationPath' set!\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "deluge", "enable")) || nix.asBool(!nix.eq(nix.eq(nix.sel(cfg, "deluge", "delugePassword"), null), nix.eq(nix.sel(cfg, "deluge", "delugePasswordFile"), null))))),
               message: "Please ensure you have either `services.prometheus.exporters.deluge.delugePassword'\n  or `services.prometheus.exporters.deluge.delugePasswordFile' set!\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "pgbouncer", "enable")) || nix.asBool(nix.app(xor, nix.thunk(() => nix.eq(nix.sel(cfg, "pgbouncer", "connectionEnvFile"), null)), nix.thunk(() => nix.eq(nix.sel(cfg, "pgbouncer", "connectionString"), null)))))),
               message: "Options `services.prometheus.exporters.pgbouncer.connectionEnvFile` and\n`services.prometheus.exporters.pgbouncer.connectionString` are mutually exclusive!\n",
             })),
           ], nix.concat(nix.app(flip, nix.builtins.map, nix.thunk(() => nix.app(attrNames, exporterOpts)), (exporter) => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, nix.key(nix.force(exporter)), "firewallFilter"), null)) || nix.asBool(nix.sel(cfg, nix.key(nix.force(exporter)), "openFirewall")))),
               message: nix.thunk(() => nix.str`The \`firewallFilter'-option of exporter ${exporter} doesn't have any effect unless
 \`openFirewall' is set to \`true'!
@@ -517,23 +517,23 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
         })),
       ], nix.concat([
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "rtl_433", "enable")), nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             hardware: nix.thunk(() => ({
-              __proto__: pos$55,
-              "rtl-sdr": nix.thunk(() => ({ __proto__: pos$54, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+              [nix.POS]: pos$55,
+              "rtl-sdr": nix.thunk(() => ({ [nix.POS]: pos$54, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
             })),
           })))),
       ], nix.concat([
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "postfix", "enable")), nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             services: nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               prometheus: nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 exporters: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   postfix: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     group: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(config, "services", "postfix", "setgidGroup")))),
                   })),
                 })),
@@ -541,12 +541,12 @@ when {option}\`services.prometheus.exporters.${name}.openFirewall\` is true.
             })),
           })))),
       ], nix.app(mapAttrsToList, (name) => (conf) => nix.app(mkExporterConf, nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             name: name,
             serviceOpts: nix.thunk(() => nix.attr(conf, "serviceOpts")),
             conf: nix.thunk(() => nix.sel(cfg, nix.key(nix.force(name)))),
           }))), exporterOpts))))))),
-    meta: nix.thunk(() => ({ __proto__: pos$63, doc: nix.path(here, "./exporters.md"), maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$63, doc: nix.path(here, "./exporters.md"), maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=exporters.ts.map

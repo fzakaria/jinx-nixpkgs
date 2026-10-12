@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkgsCross = nix.arg($, "pkgsCross");
   const versionInfoTable = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     latest: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "0.3.2",
       srcHash: "sha256-DUkeOkUf9roZGKqdjoy/DfUL1OrVfSVjMhEvfACLEoo=",
       cargoHash: "sha256-AiBoM7rywsuokz/fmLmye630N+t1GtwZsxkmtlH5MI8=",
     })),
     heroic: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "0.2.0",
       srcHash: "sha256-LAEt2i/SRABrz+y2CTMudrugifLgHNxkMSdC8PXYF0E=",
       cargoHash: "sha256-SvDE+QqaSK0+4XgB3bdmqOtwxBDTlf7yckTR8XjmMXc=",
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   }));
   const versionInfo = nix.thunk(() => nix.sel(versionInfoTable, nix.key(nix.force(comet_gog_kind))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "comet-gog",
       version: nix.thunk(() => nix.attr(versionInfo, "version")),
       cargoHash: nix.thunk(() => nix.attr(versionInfo, "cargoHash")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "imLinguin",
           repo: "comet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm .cargo/config.toml\n",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "protobuf")), "protoc")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "dummy-service": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: "galaxy-dummy-service",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/imLinguin/comet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open Source implementation of GOG Galaxy's Communication Service",
         homepage: "https://github.com/imLinguin/comet",

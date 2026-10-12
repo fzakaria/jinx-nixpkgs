@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "pnpm-fixup-state-db-test",
       nativeBuildInputs: nix.thunk(() => [pnpm_fixup_state_db, sqlite]),
       script: nix.thunk(() => nix.str`install -Dm644 ${nix.path(here, "./index.db")} ./store/index.db

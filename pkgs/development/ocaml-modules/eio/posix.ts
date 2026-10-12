@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const iomux = nix.arg($, "iomux");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "eio_posix",
       meta: nix.thunk(() => nix.attr(eio, "meta")),
       src: nix.thunk(() => nix.attr(eio, "src")),
       patches: nix.thunk(() => nix.attr(eio, "patches")),
       version: nix.thunk(() => nix.attr(eio, "version")),
       minimalOCamlVersion: "5.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [eio, fmt, logs, iomux]),
       dontStrip: true,

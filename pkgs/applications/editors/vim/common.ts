@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const version = "9.2.1001";
     const outputs = nix.thunk(() => ["out", "xxd"]);
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "vim",
         repo: "vim",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const postPatch = "substituteInPlace runtime/ftplugin/man.vim \\\n  --replace \"/usr/bin/man \" \"man \"\n";
     const postFixup = "moveToOutput bin/xxd \"$xxd\"\nmoveToOutput share/man/man1/xxd.1.gz \"$xxd\"\nfor manFile in $out/share/man/*/man1/xxd.1*; do\n  # moveToOutput does not take full paths or wildcards...\n  moveToOutput \"share/man/$(basename \"$(dirname \"$(dirname \"$manFile\")\")\")/man1/xxd.1.gz\" \"$xxd\"\ndone\n";
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Most popular clone of the VI editor",
       homepage: "https://www.vim.org",
       license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputsToInstall: nix.thunk(() => ["out", "xxd"]),
     }));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version,
       outputs,
       src,

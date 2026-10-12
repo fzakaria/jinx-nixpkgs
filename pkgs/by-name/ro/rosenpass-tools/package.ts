@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const rosenpass = nix.arg($, "rosenpass");
   const wireguard_tools = nix.arg($, "wireguard-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(rosenpass, "version")),
       src: nix.thunk(() => nix.attr(rosenpass, "src")),
       pname: "rosenpass-tools",
@@ -29,7 +29,7 @@ wrapProgram $out/bin/rp \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, findutils, gawk, rosenpass, wireguard_tools]))}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(rosenpass, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Rosenpass tool `rp`, which is a script that wraps the `rosenpass` binary",
         mainProgram: "rp",
       })),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gojo",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "itchyny",
           repo: "gojo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postInstallCheck: "$out/bin/gojo --help > /dev/null\nseq 1 10 | $out/bin/gojo -a | grep '^\\[1,2,3,4,5,6,7,8,9,10\\]$' > /dev/null\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Yet another Go implementation of jo",
         homepage: "https://github.com/itchyny/gojo",
         changelog: nix.thunk(() => nix.str`https://github.com/itchyny/gojo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

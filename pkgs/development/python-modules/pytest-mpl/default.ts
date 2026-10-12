@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-mpl",
       version: "0.19.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matplotlib",
           repo: "pytest-mpl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "export MPLBACKEND=agg\nsubstituteInPlace pytest_mpl/plugin.py \\\n  --replace-fail \"DEFAULT_TOLERANCE = 2\" \"DEFAULT_TOLERANCE = 10\"\nsubstituteInPlace tests/test_pytest_mpl.py \\\n  --replace-fail \"DEFAULT_TOLERANCE = 10 if WIN else 2\" \"DEFAULT_TOLERANCE = 10\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/matplotlib/pytest-mpl/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),
         description: "Pytest plugin to help with testing figures output from Matplotlib",
         homepage: "https://github.com/matplotlib/pytest-mpl",

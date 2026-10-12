@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const withDblatex = nix.argOr($, "withDblatex", () => false);
   const dblatex = nix.arg($, "dblatex");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gtk-doc",
       version: "1.36.1",
       outputDevdoc: "out",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gtk-doc",
@@ -58,12 +58,12 @@ substituteInPlace $out/nix-support/propagated-build-inputs \\
   --replace-fail "${python3}" ""
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gtk-doc", versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gtk-doc", versionPolicy: "none" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gtk-doc/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Tools to extract documentation embedded in GTK and GNOME source code",
         homepage: "https://gitlab.gnome.org/GNOME/gtk-doc",

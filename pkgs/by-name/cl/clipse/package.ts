@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const xsel = nix.arg($, "xsel");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.app(nix.sel(lib, "xor"), enableX11, enableWayland)))), "Exactly one of enableWayland, enableX11 must be true"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cl/clipse/package.nix:21:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`clipse${nix.app(nix.sel(lib, "optionalString"), enableX11, "-x11")}`),
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savedra1",
           repo: "clipse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-LxwST4Zjxq6Fwc47VeOdv19J3g/DHZ7Fywp2ZvVR06I=",
       tags: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["darwin"] : (nix.asBool(enableWayland) ? ["wayland"] : (nix.asBool(enableX11) ? ["linux"] : [])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_ENABLED: nix.thunk(() => (nix.asBool((nix.asBool(enableX11) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) ? "1" : "0")),
       })),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [pkg_config]))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       proxyVendor: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://github.com/savedra1/clipse/blob/main/CHANGELOG.md",
         description: "Useful clipboard manager TUI for Unix",
         homepage: "https://github.com/savedra1/clipse",

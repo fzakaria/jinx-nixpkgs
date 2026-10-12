@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.1";
       const git_version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mighty-gerbils",
           repo: "gerbil",
           rev: "23c30a6062cd7e63f9d85300ce01585bb9035d2d",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const gambit_stampYmd = "20231029";
       const gambit_stampHms = "163035";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         "git-version": git_version,
         src,

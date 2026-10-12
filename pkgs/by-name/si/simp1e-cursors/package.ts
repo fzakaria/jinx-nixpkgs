@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simp1e-cursors";
       const version = "20250223";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cursors",
           repo: "simp1e",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\npatchShebangs ./build.sh ./cursor-generator\nHOME=$TMP ./build.sh\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\ninstall -dm 755 $out/share/icons\ncp -r built_themes/* $out/share/icons/\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aesthetic cursor theme for Linux desktops",
         homepage: "https://gitlab.com/cursors/simp1e",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/cursors/simp1e/-/tags/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "natto1784"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -15,27 +15,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "kavita",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "misterio77"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       kavita: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             kavita: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               tokenKeyFile: nix.thunk(() => nix.builtins.toFile("kavita.key", "d26ba694b455271a8872415830fb7b5c58f8da98f9ef7f58b2ca4c34bd406512")),
             })),

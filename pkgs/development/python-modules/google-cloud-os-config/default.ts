@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_os_config",
           version: version,
           hash: "sha256-UfWpARWvtg6oTg8OS5OMQGfP8VyvzRij4JvLkjwkptA=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.osconfig"]);
       const disabledTests = nix.thunk(() => ["test_patch_deployment", "test_patch_job", "test_list_patch_jobs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud OS Config API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-os-config",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-os-config-v${version}/packages/google-cloud-os-config/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

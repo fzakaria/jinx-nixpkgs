@@ -6,11 +6,11 @@ const pos$1 = nix.positions(here + "/sd-image-aarch64-installer.nix", [["cloneCo
 const pos$2 = nix.positions(here + "/sd-image-aarch64-installer.nix", [["imports", 2, 3], ["installer", 9, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   imports: nix.thunk(() => [
     nix.path(here, "../../profiles/installation-device.nix"),
     nix.path(here, "./sd-image-aarch64.nix"),
   ]),
-  installer: nix.thunk(() => ({ __proto__: pos$1, cloneConfig: false })),
+  installer: nix.thunk(() => ({ [nix.POS]: pos$1, cloneConfig: false })),
 }));
 //# sourceMappingURL=sd-image-aarch64-installer.ts.map

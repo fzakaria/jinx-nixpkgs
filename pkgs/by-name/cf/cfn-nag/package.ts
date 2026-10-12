@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const ruby = nix.arg($, "ruby");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cfn-nag",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "cfn-nag")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linting tool for CloudFormation templates",
         homepage: "https://github.com/stelligent/cfn_nag",
         mainProgram: "cfn_nag",

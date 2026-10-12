@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`roo-code-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "roo-code-vsix",
       version: "3.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RooCodeInc",
           repo: "Roo-Code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pVJcFAI/xxNflzf+wj0fOASP8Fx9oybu9V6dGrDx7do=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "roo-code",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "RooVeterinaryInc",
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             attrPath: "vscode-extensions.rooveterinaryinc.roo-cline.vsix",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "AI-powered autonomous coding agent that lives in your editor",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline",
         homepage: "https://github.com/RooCodeInc/Roo-Code",

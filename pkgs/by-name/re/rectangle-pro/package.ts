@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rectangle-pro",
       version: "3.75",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://rectangleapp.com/pro/downloads/Rectangle%20Pro%20${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-1NIR3iql9+e2nX/mzThkJ2LnLi0onrgF8gLwFBf2iKc=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://rectangleapp.com/pro/versions",
         description: "Move and resize windows in macOS using keyboard shortcuts or snap areas",
         homepage: "https://rectangleapp.com/pro",

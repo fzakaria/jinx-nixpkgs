@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "redis"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     port: 9121n,
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         RestrictAddressFamilies: nix.thunk(() => ["AF_UNIX"]),
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-redis-exporter")}/bin/redis_exporter \\
   -web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

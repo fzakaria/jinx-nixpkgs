@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ncompress = nix.arg($, "ncompress");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rnxcmp",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://terras.gsi.go.jp/ja/crx2rnx/RNXCMP_${nix.sel(finalAttrs, "version")}_src.tar.gz`),
           hash: "sha256-mkUtKQiifFsxUsxCTgSIRyIcBl6X9rHxpYXHsMNPus4=",
         })))),
@@ -69,11 +69,11 @@ substituteInPlace front-end-tools/unix/* \\
       buildPhase: "runHook preBuild\n\n# Build commands taken from docs/RNXCMP.txt and adjusted\n\"$CC\" -O2 source/crx2rnx.c -o CRX2RNX\n\"$CC\" -O2 source/rnx2crx.c -o RNX2CRX\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -D -m555 -t \"$out/bin\" CRX2RNX RNX2CRX front-end-tools/unix/*\ninstall -D -m555 -t \"$out/share/doc\" docs/*\ninstall -D -m555 -t \"$out/share/licenses\" docs/LICENSE.txt\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# rtkpost_qt wants crx2rnx instead of CRX2RNX\nln --verbose --symbolic CRX2RNX \"$out/bin/crx2rnx\"\nln --verbose --symbolic RNX2CRX \"$out/bin/rnx2crx\"\n")), "\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({}))));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           crx: nix.thunk(() => nix.attr(from, "crx")),
           crz: nix.thunk(() => nix.attr(from, "crz")),
           rnx: nix.thunk(() => nix.attr(from, "rnx")),
@@ -81,7 +81,7 @@ substituteInPlace front-end-tools/unix/* \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Compression/restoration of RINEX observation files developed by Y. Hatanaka of GSI",
         homepage: "https://terras.gsi.go.jp/ja/crx2rnx.html",
         changelog: "https://terras.gsi.go.jp/ja/crx2rnx/CHANGES.txt",

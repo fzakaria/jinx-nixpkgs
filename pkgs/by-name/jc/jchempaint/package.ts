@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jchempaint",
       version: "3.4-SNAPSHOT-2026-04-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JChemPaint",
           repo: "jchempaint",
           rev: "f128d0d15be1bac4d324463f269cf130d2211253",
@@ -57,7 +57,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "jchempaint",
             desktopName: "JChemPaint",
             exec: "jchempaint",
@@ -68,11 +68,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Chemical 2D structure editor application/applet based on the Chemistry Development Kit",
         homepage: "https://jchempaint.github.io",
         changelog: "https://github.com/JChemPaint/jchempaint/releases/tag/nightly",

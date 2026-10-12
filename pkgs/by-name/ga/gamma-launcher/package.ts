@@ -24,7 +24,7 @@ ln -s ${_7zz}/bin/7zz $out/bin/7z
       const version = "3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mord3rca",
           repo: "gamma-launcher",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ ln -s ${_7zz}/bin/7zz $out/bin/7z
 --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [_7z]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python cli to download S.T.A.L.K.E.R. GAMMA",
         changelog: nix.thunk(() => nix.str`https://github.com/Mord3rca/gamma-launcher/releases/tag/v${version}`),
         homepage: "https://github.com/Mord3rca/gamma-launcher",
@@ -68,7 +68,7 @@ ln -s ${_7zz}/bin/7zz $out/bin/7z
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

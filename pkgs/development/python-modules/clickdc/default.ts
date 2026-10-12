@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "clickdc",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kamilcuk",
           repo: "clickdc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clickdc-fix-click-8.2-tests.patch",
             url: "https://github.com/Kamilcuk/clickdc/commit/906faf8dfc48ff4bde9b3e5eec19620fc5100927.patch",
             hash: "sha256-S6Wl/yotKD3RvqSp0Z3vNls7XnxgF42GBjeCrMWtIMQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "clickdc-modernize-tests.patch",
             url: "https://github.com/Kamilcuk/clickdc/commit/83e79a4522b9070fd4bdad2f521f8f502380a7a9.patch",
             hash: "sha256-d2ZxFa2I5StDnJyDrgTHTIasyXcprBF6lcf5s7eGRRE=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pydantic, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["clickdc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Define click command line options from a python dataclass",
         homepage: "https://github.com/Kamilcuk/clickdc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

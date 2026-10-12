@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const riffdiff = nix.arg($, "riffdiff");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "riffdiff",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "walles",
           repo: "riff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Jg9c7tSjluhHSl2GoZkZlkBs+ojCGjjQ3dheROUC60g=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: riffdiff })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: riffdiff })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Diff filter highlighting which line parts have changed",
         homepage: "https://github.com/walles/riff",
         changelog: nix.thunk(() => nix.str`https://github.com/walles/riff/releases/tag/${nix.sel(finalAttrs, "version")}`),

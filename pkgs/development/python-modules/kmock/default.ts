@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const looptime = nix.arg($, "looptime");
   const aresponses = nix.arg($, "aresponses");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kmock",
       version: "0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nolar",
           repo: "kmock",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP/API/Kubernetes Mock Server in Python",
         homepage: "https://github.com/nolar/kmock",
         changelog: nix.thunk(() => nix.str`https://github.com/nolar/kmock/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

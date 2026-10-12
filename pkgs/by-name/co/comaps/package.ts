@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   const world_feed_integration_tests_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "organicmaps",
       repo: "world_feed_integration_tests_data",
       rev: "30ecb0b3fe694a582edfacc2a7425b6f01f9fec6",
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
   const mapSeries = "2026.06.28";
   const mapRev = 260830n;
   const worldMap = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`World-${mapSeries}-${nix.builtins.toString(mapRev)}.mwm`),
       url: nix.thunk(() => nix.str`https://mapgen-fi-1.comaps.app/maps/${mapSeries}/${nix.builtins.toString(mapRev)}/World.mwm`),
       hash: "sha256-TcaGJK8xAkceA7wFsCrYt6euOnts0w7LZCKLFPnU3wM=",
     }))));
   const worldCoasts = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`WorldCoasts-${mapSeries}-${nix.builtins.toString(mapRev)}.mwm`),
       url: nix.thunk(() => nix.str`https://mapgen-fi-1.comaps.app/maps/${mapSeries}/${nix.builtins.toString(mapRev)}/WorldCoasts.mwm`),
       hash: "sha256-pNb0cLGRN6YkliraL+DZyAPh+JJSM6vTzoejeKvi/oc=",
@@ -69,13 +69,13 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "protobuf"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "comaps",
       version: "2026.08.31-14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "comaps",
           repo: "comaps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -130,7 +130,7 @@ substituteInPlace tools/python/{categories/json_to_txt.py,generate_desktop_ui_st
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_SYSTEM_PROVIDED_3PARTY", true)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-I/build/source/3party/fast_double_parser/include"]))),
         PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python",
         SKIP_PYTHON_VENV: 1n,
@@ -139,11 +139,11 @@ substituteInPlace tools/python/{categories/json_to_txt.py,generate_desktop_ui_st
 install -Dm644 ${worldCoasts} $out/share/comaps/data/WorldCoasts.mwm
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["-vr", "v(.*)"]) })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["-vr", "v(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Community-led fork of Organic Maps",
         homepage: "https://comaps.app",

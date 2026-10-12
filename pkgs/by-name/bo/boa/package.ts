@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "boa",
       version: "0.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boa-dev",
           repo: "boa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--package", "boa_cli"]),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cmake])))),
       buildInputs: nix.thunk(() => [bzip2, openssl, zstd]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Embeddable and experimental Javascript engine written in Rust",
         homepage: "https://github.com/boa-dev/boa",
         changelog: nix.thunk(() => nix.str`https://github.com/boa-dev/boa/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

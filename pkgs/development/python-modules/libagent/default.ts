@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const pynacl = nix.arg($, "pynacl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libagent",
       version: "0.16.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romanz",
           repo: "trezor-agent",
           tag: nix.thunk(() => nix.str`libagent/${nix.sel(finalAttrs, "version")}`),
@@ -69,14 +69,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_get_agent_sock_path"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=libagent/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Using hardware wallets as SSH/GPG agent",
         homepage: "https://github.com/romanz/trezor-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ent-go",
       version: "0.14.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ent",
           repo: "ent",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-CCjZv9ef/F+Cx6qmIkG/isX2Dd8WO/1mtjsJ4d8E3m0=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ent_version.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             sum: nix.thunk(() => nix.sel(finalAttrs, "src", "outputHash")),
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ent \\\n  --bash <($out/bin/ent completion bash) \\\n  --fish <($out/bin/ent completion fish) \\\n  --zsh <($out/bin/ent completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Entity framework for Go",
         homepage: "https://entgo.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ent/ent/releases/tag/v${nix.sel(finalAttrs, "version")}`),

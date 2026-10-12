@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const mpfr = nix.arg($, "mpfr");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wcalc",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/w-calc/wcalc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1vi8dl6rccqiq1apmpwawyg2ywx6a1ic1d3cvkf2hlwk1z11fb0f",
         })))),
       buildInputs: nix.thunk(() => [mpfr, readline]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line calculator",
         homepage: "https://w-calc.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

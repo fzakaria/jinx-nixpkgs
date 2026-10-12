@@ -96,19 +96,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "samba"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
     }))));
   const globalConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "smb-global.conf", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       global: nix.thunk(() => nix.sel(cfg, "settings", "global")),
     }))));
   const sharesConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "smb-shares.conf", nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["global"])))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "concatText"), "smb.conf", nix.thunk(() => [globalConfigFile, sharesConfigFile])));
   return {
-    __proto__: pos$85,
+    [nix.POS]: pos$85,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       doc: nix.path(here, "./samba.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
@@ -124,64 +124,64 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "samba", "enableNmbd"]), nix.thunk(() => ["services", "samba", "nmbd", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         samba: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Samba, the SMB/CIFS protocol")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "samba", nix.thunk(() => ({ __proto__: pos$4, example: "samba4Full" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "samba", nix.thunk(() => ({ [nix.POS]: pos$4, example: "samba4Full" })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening the default ports in the firewall for Samba")),
           smbd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable Samba's smbd daemon.",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra arguments to pass to the smbd service.",
               })))),
           })),
           nmbd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable Samba's nmbd, which replies to NetBIOS over IP name\nservice requests. It also participates in the browsing protocols\nwhich make up the Windows \"Network Neighborhood\" view.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra arguments to pass to the nmbd service.",
               })))),
           })),
           winbindd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable Samba's winbindd, which provides a number of services\nto the Name Service Switch capability found in most modern C libraries,\nto arbitrary applications via PAM and ntlm_auth and to Samba itself.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra arguments to pass to the winbindd service.",
               })))),
           })),
           usershares: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "user-configurable Samba shares")),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "samba",
                 description: "Name of the group members of which will be allowed to create usershares.\n\nThe group will be created automatically.\n",
@@ -189,28 +189,28 @@ export default nix.lambda((args) => (() => {
           })),
           nsswins: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "WINS NSS (Name Service Switch) plug-in.\n\nEnabling it allows applications to resolve WINS/NetBIOS names (a.k.a.\nWindows machine names) by transparently querying the winbindd daemon\n")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     global: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       security: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "user", "domain", "ads"]))),
                           default: "user",
                           description: "Samba security type.",
                         })))),
                       "invalid users": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ["root"]),
                           description: "List of users who are denied to login via Samba.",
                         })))),
                       "passwd program": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/run/wrappers/bin/passwd %u",
                           description: "Path to a program that can be used to set UNIX user passwords.",
@@ -219,24 +219,24 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 global: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   security: "user",
                   "passwd program": "/run/wrappers/bin/passwd %u",
                   "invalid users": nix.thunk(() => ["root"]),
                 })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 global: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   security: "user",
                   "passwd program": "/run/wrappers/bin/passwd %u",
                   "invalid users": nix.thunk(() => ["root"]),
                 })),
                 public: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   path: "/srv/public",
                   "read only": "yes",
                   browseable: "yes",
@@ -251,43 +251,43 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "nsswins")) || nix.asBool(nix.sel(cfg, "winbindd", "enable")))),
               message: "If services.samba.nsswins is enabled, then services.samba.winbindd.enable must also be enabled",
             })),
           ]),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             environment: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               etc: nix.thunk(() => ({
-                __proto__: pos$34,
-                "samba/smb.conf": nix.thunk(() => ({ __proto__: pos$33, source: configFile })),
+                [nix.POS]: pos$34,
+                "samba/smb.conf": nix.thunk(() => ({ [nix.POS]: pos$33, source: configFile })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               nssModules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nsswins")), nix.thunk(() => nix.sel(cfg, "package")))),
               nssDatabases: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 hosts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nsswins")), "wins")),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               slices: nix.thunk(() => ({
-                __proto__: pos$39,
-                "system-samba": nix.thunk(() => ({ __proto__: pos$38, description: "Samba (SMB Networking Protocol) Slice" })),
+                [nix.POS]: pos$39,
+                "system-samba": nix.thunk(() => ({ [nix.POS]: pos$38, description: "Samba (SMB Networking Protocol) Slice" })),
               })),
               targets: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 samba: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   description: "Samba Server",
                   after: nix.thunk(() => ["network.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
@@ -295,7 +295,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 rules: nix.thunk(() => [
                   "d /var/lock/samba - - - - -",
                   "d /var/log/samba - - - - -",
@@ -305,15 +305,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               pam: nix.thunk(() => ({
-                __proto__: pos$45,
-                services: nix.thunk(() => ({ __proto__: pos$44, samba: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$45,
+                services: nix.thunk(() => ({ [nix.POS]: pos$44, samba: nix.thunk(() => ({})) })),
               })),
               wrappers: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 "mount.cifs": nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   program: "mount.cifs",
                   source: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "cifs-utils")))}/bin/mount.cifs`),
                   owner: "root",
@@ -323,22 +323,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               firewall: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [139n, 445n]))),
                 allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [137n, 138n]))),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "nmbd", "enable")))), nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             systemd: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               services: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 "samba-nmbd": nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   description: "Samba NMB Daemon",
                   documentation: nix.thunk(() => ["man:nmbd(8)", "man:samba(7)", "man:smb.conf(5)"]),
                   after: nix.thunk(() => ["network.target", "network-online.target"]),
@@ -346,11 +346,11 @@ export default nix.lambda((args) => (() => {
                   wantedBy: nix.thunk(() => ["samba.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/nmbd --foreground --no-process-group ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "nmbd", "extraArgs")))}`),
                     LimitCORE: "infinity",
@@ -358,20 +358,20 @@ export default nix.lambda((args) => (() => {
                     Slice: "system-samba.slice",
                     Type: "notify",
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$54, RequiresMountsFor: "/var/lib/samba" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$54, RequiresMountsFor: "/var/lib/samba" })),
                   restartTriggers: nix.thunk(() => [configFile]),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "smbd", "enable")))), nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             systemd: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               services: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 "samba-smbd": nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   description: "Samba SMB Daemon",
                   documentation: nix.thunk(() => ["man:smbd(8)", "man:samba(7)", "man:smb.conf(5)"]),
                   after: nix.thunk(() => nix.concat(["network.target", "network-online.target"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "nmbd", "enable")), nix.thunk(() => ["samba-nmbd.service"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "winbindd", "enable")), nix.thunk(() => ["samba-winbindd.service"]))))),
@@ -379,11 +379,11 @@ export default nix.lambda((args) => (() => {
                   wantedBy: nix.thunk(() => ["samba.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/smbd --foreground --no-process-group ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "smbd", "extraArgs")))}`),
                     LimitCORE: "infinity",
@@ -392,31 +392,31 @@ export default nix.lambda((args) => (() => {
                     Slice: "system-samba.slice",
                     Type: "notify",
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$61, RequiresMountsFor: "/var/lib/samba" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$61, RequiresMountsFor: "/var/lib/samba" })),
                   restartTriggers: nix.thunk(() => [configFile]),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "winbindd", "enable")))), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             systemd: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               services: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 "samba-winbindd": nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   description: "Samba Winbind Daemon",
                   documentation: nix.thunk(() => ["man:winbindd(8)", "man:samba(7)", "man:smb.conf(5)"]),
                   after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "nmbd", "enable")), nix.thunk(() => ["samba-nmbd.service"])))),
                   partOf: nix.thunk(() => ["samba.target"]),
                   wantedBy: nix.thunk(() => ["samba.target"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/winbindd --foreground --no-process-group ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "winbindd", "extraArgs")))}`),
                     LimitCORE: "infinity",
@@ -424,30 +424,30 @@ export default nix.lambda((args) => (() => {
                     Slice: "system-samba.slice",
                     Type: "notify",
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$68, RequiresMountsFor: "/var/lib/samba" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$68, RequiresMountsFor: "/var/lib/samba" })),
                   restartTriggers: nix.thunk(() => [configFile]),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "usershares", "enable")))), nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             users: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "usershares", "group"), nix.thunk(() => ({}))]])),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   "50-samba-usershares": nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     "/var/lib/samba/usershares": nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       d: nix.thunk(() => ({
-                        __proto__: pos$74,
+                        [nix.POS]: pos$74,
                         user: "root",
                         group: nix.thunk(() => nix.sel(cfg, "usershares", "group")),
                         mode: "1775",
@@ -458,13 +458,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               samba: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   global: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$80,
+                      [nix.POS]: pos$80,
                       "usershare path": "/var/lib/samba/usershares",
                       "usershare max shares": 100n,
                       "usershare allow guests": true,

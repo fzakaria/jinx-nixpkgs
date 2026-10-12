@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const imlib2 = nix.arg($, "imlib2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alock",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arkq",
           repo: "alock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xfPhsXZrTlEqea75SvacDfjM9o21MTudrqfNN9xtdcg=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PAM_DEFAULT_SERVICE: "login" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PAM_DEFAULT_SERVICE: "login" })),
       configureFlags: nix.thunk(() => ["--enable-pam", "--enable-hash", "--enable-xrender", "--enable-imlib2"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libx11, pam, libgcrypt, libxrender, imlib2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v", allowedVersions: "\\." })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", allowedVersions: "\\." })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/Arkq/alock",
         description: "Simple screen lock application for X server",
         mainProgram: "alock",

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msgpack-numpy-opentensor",
       version: "0.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ITIywg4u/VKOyKmIK2Beith8/DW1ffz+/gXTOqqr5XQ=",
@@ -37,7 +37,7 @@ ${nix.sel(python, "interpreter")} tests.py
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Numpy data serialization using msgpack (opentensor fork)",
         homepage: "https://github.com/opentensor/msgpack-numpy",
         changelog: nix.thunk(() => nix.str`https://pypi.org/project/msgpack-numpy-opentensor/${nix.sel(finalAttrs, "version")}`),

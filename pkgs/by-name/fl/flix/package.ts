@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flix";
       const version = "0.76.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flix/flix/releases/download/v${version}/flix.jar`),
           sha256: "sha256-vgbYwMw6/fZ2mB9I10M1QVHHBg9v6OaJcgImaCqAyK4=",
         }))));
@@ -36,7 +36,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flix Programming Language",
         mainProgram: "flix",
         homepage: "https://github.com/flix/flix",
@@ -53,7 +53,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

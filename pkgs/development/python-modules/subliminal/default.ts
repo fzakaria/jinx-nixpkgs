@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Diaoul",
           repo: "subliminal",
           tag: version,
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         "test_hash",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to search and download subtitles",
         mainProgram: "subliminal",
         homepage: "https://github.com/Diaoul/subliminal",
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

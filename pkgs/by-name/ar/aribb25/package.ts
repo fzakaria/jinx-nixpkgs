@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcsclite = nix.arg($, "pcsclite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aribb25",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "aribb25",
@@ -34,20 +34,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pcsclite]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-deprecated-non-prototype")),
       })),
       patches: nix.thunk(() => (() => {
         const url = (commit) => nix.str`https://code.videolan.org/videolan/aribb25/-/commit/${commit}.diff`;
         return [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "make-cli-pipes-work-1.patch",
               url: nix.thunk(() => nix.app(url, "0425184dbf3fdaf59854af5f530da88b2196a57b")),
               sha256: "0ysm2jivpnqxz71vw1102616qxww2gx005i0c5lhi6jbajqsa1cd",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "make-cli-pipes-work-2.patch",
               url: nix.thunk(() => nix.app(url, "cebabeab2bda065dca1c9f033b42d391be866d86")),
               sha256: "1283kqv1r4rbaba0sv2hphkhcxgjkmh8ndlcd24fhx43nn63hd28",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "substituteInPlace src/td.c \\\n  --replace-fail 'static void show_usage();' 'static void show_usage(int exit_code);'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Sample implementation of the ARIB STD-B25 standard",
         homepage: "https://code.videolan.org/videolan/aribb25",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

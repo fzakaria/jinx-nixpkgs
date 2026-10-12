@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-machete",
       version: "3.46.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "virtuslab",
           repo: "git-machete",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       postInstallCheck: nix.thunk(() => nix.str`test "$($out/bin/git-machete version)" = "git-machete version ${nix.sel(finalAttrs, "version")}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/VirtusLab/git-machete",
         description: "Git repository organizer and rebase/merge workflow automation tool",
         changelog: nix.thunk(() => nix.str`https://github.com/VirtusLab/git-machete/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

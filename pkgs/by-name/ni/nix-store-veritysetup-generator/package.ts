@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-store-veritysetup-generator",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nikstur",
           repo: "nix-store-veritysetup-generator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "export SYSTEMD_VERITYSETUP_PATH=\"systemd-veritysetup\";\n",
       stripAllList: nix.thunk(() => ["bin"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nix-store-veritysetup": nix.thunk(() => nix.attr(nixosTests, "nix-store-veritysetup")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Systemd unit generator for a verity protected Nix Store",
         homepage: "https://github.com/nikstur/nix-store-veritysetup-generator",
         changelog: nix.thunk(() => nix.str`https://github.com/nikstur/nix-store-veritysetup-generator/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

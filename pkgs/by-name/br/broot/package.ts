@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withClipboard = nix.argOr($, "withClipboard", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "broot",
       version: "1.60.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Canop",
           repo: "broot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeBinaryWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libgit2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [zlib])))),
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withClipboard, nix.thunk(() => ["clipboard"]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       postPatch: nix.thunk(() => nix.str`# Fill the version stub in the man page. We can't fill the date
 # stub reproducibly.
 substitute man/page man/broot.1 \\
@@ -61,11 +61,11 @@ install -Dm0444 -t $out/share/fish/vendor_functions.d br.fish
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interactive tree view, a fuzzy search, a balanced BFS descent and customizable commands",
         homepage: "https://dystroy.org/broot/",
         changelog: nix.thunk(() => nix.str`https://github.com/Canop/broot/releases/tag/v${nix.sel(finalAttrs, "version")}`),

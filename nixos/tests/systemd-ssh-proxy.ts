@@ -39,75 +39,75 @@ export default nix.lambda((args) => (() => {
   const snakeOilEd25519PrivateKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PrivateKey"));
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "systemd-ssh-proxy",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marie"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       virthost: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           openssh: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$3, PermitRootLogin: "prohibit-password" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$3, PermitRootLogin: "prohibit-password" })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             root: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               openssh: nix.thunk(() => ({
-                __proto__: pos$7,
-                authorizedKeys: nix.thunk(() => ({ __proto__: pos$6, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                [nix.POS]: pos$7,
+                authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$6, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
               })),
             })),
-            nixos: nix.thunk(() => ({ __proto__: pos$9, isNormalUser: true })),
+            nixos: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true })),
           })),
         })),
         containers: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           guest: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             autoStart: true,
             config: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               users: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 users: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   root: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     openssh: nix.thunk(() => ({
-                      __proto__: pos$13,
-                      authorizedKeys: nix.thunk(() => ({ __proto__: pos$12, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                      [nix.POS]: pos$13,
+                      authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$12, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                     })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   enable: true,
-                  settings: nix.thunk(() => ({ __proto__: pos$17, PermitRootLogin: "prohibit-password" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$17, PermitRootLogin: "prohibit-password" })),
                 })),
               })),
               system: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
               })),
             })),

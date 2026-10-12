@@ -22,31 +22,31 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "mtp",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "matthewcroughan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            getty: nix.thunk(() => ({ __proto__: pos$2, autologinUser: "root" })),
-            gvfs: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "root" })),
+            gvfs: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
-            variables: nix.thunk(() => ({ __proto__: pos$5, XDG_RUNTIME_DIR: "/run/user/0" })),
+            [nix.POS]: pos$6,
+            variables: nix.thunk(() => ({ [nix.POS]: pos$5, XDG_RUNTIME_DIR: "/run/user/0" })),
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             qemu: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               options: nix.thunk(() => ["-usb", "-device usb-mtp,rootdir=/tmp,readonly=false"]),
             })),
           })),
@@ -97,7 +97,7 @@ do
 done
 ${unmountAllMtpDevices}
 `)));
-        return { __proto__: pos$11, mountAllMtpDevices, unmountAllMtpDevices, gvfsTest };
+        return { [nix.POS]: pos$11, mountAllMtpDevices, unmountAllMtpDevices, gvfsTest };
       })());
       return nix.str`start_all()
 client.wait_for_unit("multi-user.target")

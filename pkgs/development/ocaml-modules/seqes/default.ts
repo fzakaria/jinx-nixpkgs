@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "seqes";
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/raphael-proust/seqes/-/archive/${version}/seqes-${version}.tar.gz`),
           hash: "sha256-E4BalN68CJP7u6NSC0XBooWvUeSNqV+3KEOtoJ4g/dM=",
         }))));
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [qcheck, qcheck_alcotest, alcotest]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Variations of the Seq module with monads folded into the type",
         homepage: "https://gitlab.com/nomadic-labs/seqes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

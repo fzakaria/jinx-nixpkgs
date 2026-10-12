@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pam_ussh",
       version: "0-unstable-2021-06-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uber",
           repo: "pam-ussh",
           rev: "e9524bda90ba19d3b9eb24f49cb63a6a56a19193",
@@ -36,14 +36,14 @@ cp ${nix.path(here, "./go.sum")} go.sum
       checkPhase: "runHook preCheck\n\ngo test -v -p $NIX_BUILD_CORES .\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/security\ncp pam_ussh.so $out/lib/security\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pam-ussh": nix.thunk(() => nix.attr(nixosTests, "pam-ussh")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/uber/pam-ussh",
         description: "PAM module to authenticate using SSH certificates",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -52,38 +52,38 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool((nix.asBool(nix.sel(initrd, "network", "enable")) || nix.asBool(nix.sel(initrd, "systemd", "network", "enable")))) && nix.asBool(nix.sel(cfg, "enable")));
   })());
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       boot: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         initrd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           network: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ssh: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Start SSH service during initrd boot. It can be used to debug failing\nboot on a remote server, enter pasphrase for an encrypted partition etc.\nService is killed when stage-1 boot is finished.\n\nThe sshd configuration is largely inherited from\n{option}`services.openssh`.\n",
                 })))),
               port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                   default: 22n,
                   description: "Port on which SSH initrd service should listen.\n",
                 })))),
               shell: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   default: null,
                   defaultText: "\"/bin/ash\"",
                   description: "Login shell of the remote user. Can be used to limit actions user can do.\n",
                 })))),
               hostKeys: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))))),
                   default: [],
                   example: nix.thunk(() => [
@@ -93,13 +93,13 @@ export default nix.lambda((args) => (() => {
                   description: "Specify SSH host keys to import into the initrd.\n\nTo generate keys, use\n{manpage}`ssh-keygen(1)`\nas root:\n\n```\nssh-keygen -t rsa -N \"\" -f /etc/secrets/initrd/ssh_host_rsa_key\nssh-keygen -t ed25519 -N \"\" -f /etc/secrets/initrd/ssh_host_ed25519_key\n```\n\n::: {.warning}\nUnless your bootloader supports initrd secrets, these keys\nare stored insecurely in the global Nix store. Do NOT use\nyour regular SSH host private keys for this purpose or\nyou'll expose them to regular users!\n\nAdditionally, even if your initrd supports secrets, if\nyou're using initrd SSH to unlock an encrypted disk then\nusing your regular host keys exposes the private keys on\nyour unencrypted boot partition.\n:::\n",
                 })))),
               ignoreEmptyHostKeys: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Allow leaving {option}`config.boot.initrd.network.ssh.hostKeys` empty,\nto deploy ssh host keys out of band.\n",
                 })))),
               authorizedKeys: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   default: nix.thunk(() => nix.sel(config, "users", "users", "root", "openssh", "authorizedKeys", "keys")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.users.users.root.openssh.authorizedKeys.keys")),
@@ -110,14 +110,14 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })))),
               authorizedKeyFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   default: nix.thunk(() => nix.sel(config, "users", "users", "root", "openssh", "authorizedKeys", "keyFiles")),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.users.users.root.openssh.authorizedKeys.keyFiles")),
                   description: "Authorized keys taken from files for the root user on initrd.\nYou can combine the `authorizedKeyFiles` and `authorizedKeys` options.\n",
                 })))),
               extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   default: "",
                   description: "Verbatim contents of {file}`sshd_config`.",
@@ -157,24 +157,24 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(c
 ${nix.sel(cfg, "extraConfig")}
 `));
       return nix.app(nix.lookup(w, "mkIf"), enabled, nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "authorizedKeys"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "authorizedKeyFiles"), [])))),
               message: "You should specify at least one authorized key for initrd SSH",
             })),
             nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "hostKeys"), [])) || nix.asBool(nix.sel(cfg, "ignoreEmptyHostKeys")))),
               message: "You must now pre-generate the host keys for initrd SSH.\nSee the boot.initrd.network.ssh.hostKeys documentation\nfor instructions.\n",
             })),
           ]),
           warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "shell"), null)))), "Please set 'boot.initrd.systemd.users.root.shell' instead of 'boot.initrd.network.ssh.shell'\n")),
           boot: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             initrd: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${package$}/bin/sshd
 copy_bin_and_libs ${package$}/libexec/sshd-auth
 copy_bin_and_libs ${package$}/libexec/sshd-session
@@ -191,7 +191,7 @@ echo -n ${nix.app(nix.lookup(w, "escapeShellArg"), sshdConfig)} |
 rm "$tmpkey"
 `))),
               network: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 postCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`echo '${shell}' > /etc/shells
 echo 'root:x:0:0:root:/root:${shell}' > /etc/passwd
 echo 'sshd:x:1:1:sshd:/var/empty:/bin/nologin' >> /etc/passwd
@@ -222,21 +222,21 @@ chmod 0600 "${nix.app(initrdKeyPath, path)}"
               postMountCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "# Stop sshd cleanly before stage 2.\n#\n# If you want to keep it around to debug post-mount SSH issues,\n# run `touch /.keep_sshd` (either from an SSH session or in\n# another initrd hook like preDeviceCommands).\nif ! [ -e /.keep_sshd ]; then\n  pkill -x sshd\nfi\n")),
               secrets: nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (path) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.app(initrdKeyPath, path)), path), nix.thunk(() => nix.sel(cfg, "hostKeys")))))),
               systemd: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   users: nix.thunk(() => ({
-                    __proto__: pos$19,
-                    sshd: nix.thunk(() => ({ __proto__: pos$17, uid: 1n, group: "sshd" })),
+                    [nix.POS]: pos$19,
+                    sshd: nix.thunk(() => ({ [nix.POS]: pos$17, uid: 1n, group: "sshd" })),
                     root: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       shell: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "boot", "initrd", "network", "ssh", "shell"), null)), nix.thunk(() => nix.sel(config, "boot", "initrd", "network", "ssh", "shell")))),
                     })),
                   })),
-                  groups: nix.thunk(() => ({ __proto__: pos$21, sshd: nix.thunk(() => ({ __proto__: pos$20, gid: 1n })) })),
+                  groups: nix.thunk(() => ({ [nix.POS]: pos$21, sshd: nix.thunk(() => ({ [nix.POS]: pos$20, gid: 1n })) })),
                   contents: nix.thunk(() => ({
-                    __proto__: pos$24,
-                    "/etc/ssh/sshd_config": nix.thunk(() => ({ __proto__: pos$22, text: sshdConfig })),
+                    [nix.POS]: pos$24,
+                    "/etc/ssh/sshd_config": nix.thunk(() => ({ [nix.POS]: pos$22, text: sshdConfig })),
                     "/etc/ssh/authorized_keys.d/root": nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       text: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.sel(config, "boot", "initrd", "network", "ssh", "authorizedKeys"), nix.app(nix.builtins.map, (file) => nix.app(nix.sel(lib, "fileContents"), file), nix.thunk(() => nix.sel(config, "boot", "initrd", "network", "ssh", "authorizedKeyFiles"))))))),
                     })),
                   })),
@@ -246,9 +246,9 @@ chmod 0600 "${nix.app(initrdKeyPath, path)}"
                     nix.thunk(() => nix.str`${package$}/libexec/sshd-session`),
                   ]),
                   services: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     sshd: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       description: "SSH Daemon",
                       wantedBy: nix.thunk(() => ["initrd.target"]),
                       after: nix.thunk(() => ["network.target", "initrd-nixos-copy-secrets.service"]),
@@ -256,9 +256,9 @@ chmod 0600 "${nix.app(initrdKeyPath, path)}"
                       conflicts: nix.thunk(() => ["shutdown.target"]),
                       preStart: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "concatMapStrings")), nix.thunk(() => nix.sel(cfg, "hostKeys")), (path) => nix.str`/bin/chmod 0600 "${nix.app(initrdKeyPath, path)}"
 `)),
-                      unitConfig: nix.thunk(() => ({ __proto__: pos$25, DefaultDependencies: false })),
+                      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$25, DefaultDependencies: false })),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         ExecStart: nix.thunk(() => nix.str`${package$}/bin/sshd -D -f /etc/ssh/sshd_config`),
                         Type: "simple",
                         KillMode: "process",

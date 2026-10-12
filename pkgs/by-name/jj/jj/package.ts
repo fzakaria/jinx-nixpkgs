@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const jj = nix.arg($, "jj");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "jj",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tidwall",
           repo: "jj",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,31 +36,31 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-39rA3jMGYhsh1nrGzI1vfHZzZDy4O6ooYWB8af654mM=",
       subPackages: nix.thunk(() => ["cmd/jj"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const w = nix.withScope(testers, null);
           return {
-            __proto__: pos$6,
-            version: nix.thunk(() => nix.app(nix.lookup(w, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: jj })))),
+            [nix.POS]: pos$6,
+            version: nix.thunk(() => nix.app(nix.lookup(w, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: jj })))),
             examples: nix.thunk(() => nix.app(nix.lookup(w, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 assertion: "examples from projects README.md work",
-                actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [jj]) })), "{\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name.last\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -v Andy name.first\n  echo '{\"friends\":[\"Tom\",\"Jane\",\"Carol\"]}' | jj -v Andy friends.-1\n  echo '{\"age\":46,\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -D age\n} > $out\n")),
+                actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [jj]) })), "{\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name.last\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -v Andy name.first\n  echo '{\"friends\":[\"Tom\",\"Jane\",\"Carol\"]}' | jj -v Andy friends.-1\n  echo '{\"age\":46,\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -D age\n} > $out\n")),
                 expected: nix.thunk(() => nix.app(writeText, "expected", "Smith\n{\"first\":\"Tom\",\"last\":\"Smith\"}\n{\"name\":{\"first\":\"Andy\",\"last\":\"Smith\"}}\n{\"friends\":[\"Tom\",\"Jane\",\"Carol\",\"Andy\"]}\n{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}\n")),
               })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "JSON Stream Editor (command line utility)",
         longDescription: "JJ is a command line utility that provides a fast and simple way to retrieve\nor update values from JSON documents. It's powered by GJSON and SJSON under the hood.\nIt's fast because it avoids parsing irrelevant sections of json, skipping over values\nthat do not apply, and aborts as soon as the target value has been found or updated.\n",
         homepage: "https://github.com/tidwall/jj",

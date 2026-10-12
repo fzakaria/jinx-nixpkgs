@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$7,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$7,
       pname: "flash-attn-3",
       version: "3.0.0-unstable-2026-06-10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Dao-AILab",
           repo: "flash-attention",
           rev: "fc8cbad6b6b90220cf6ef8121c29e299a3ba7d9a",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace setup.py \\\n  --replace-fail \\\n    'subprocess.run([\"git\", \"submodule\", \"update\", \"--init\", \"../csrc/cutlass\"])' \\\n    'pass'\n", "substituteInPlace setup.py \\\n  --replace-fail \\\n    'if bare_metal_version >= Version(\"12.3\") and bare_metal_version < Version(\"13.0\") and bare_metal_version != Version(\"12.8\"):' \\\n    'if False:'\n")),
       preConfigure: "export MAX_JOBS=\"$NIX_BUILD_CORES\"\nexport NVCC_THREADS=2\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         FLASH_ATTENTION_FORCE_BUILD: "TRUE",
         FLASH_ATTENTION_SKIP_CUDA_BUILD: "FALSE",
         TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flash_attn_config", "flash_attn_interface"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=v(3.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Official implementation of FlashAttention-3",
         homepage: "https://github.com/Dao-AILab/flash-attention/blob/main/hopper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

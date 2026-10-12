@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "minitube";
       const version = "4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "minitube",
           owner: "flaviotordini",
           tag: version,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const qmakeFlags = nix.thunk(() => [nix.thunk(() => nix.str`DEFINES+=APP_GOOGLE_API_KEY=${withAPIKey}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stand-alone YouTube video player",
         longDescription: "Watch YouTube videos in a new way: you type a keyword, Minitube gives\nyou an endless video stream. Minitube is not about cloning the YouTube\nwebsite, it aims to create a new TV-like experience.\n",
         homepage: "https://flavio.tordini.org/minitube",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "minitube",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

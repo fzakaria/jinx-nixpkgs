@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const ujson = nix.arg($, "ujson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cpe-search",
       version: "0.2.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ra1nb0rn",
           repo: "cpe_search",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, aiolimiter, requests, tqdm, ujson]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [aiohttp, aiolimiter, mariadb, requests, tqdm, ujson]),
         mariadb: nix.thunk(() => [mariadb]),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["cpe_search"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Search for Common Platform Enumeration (CPE) strings using software names and titles",
         homepage: "https://github.com/ra1nb0rn/cpe_search",
         changelog: nix.thunk(() => nix.str`https://github.com/ra1nb0rn/cpe_search/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

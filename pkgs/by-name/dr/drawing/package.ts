@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const itstool = nix.arg($, "itstool");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drawing",
       version: "1.0.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maoschanz",
           repo: "drawing",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       strictDeps: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free basic image editor, similar to Microsoft Paint, but aiming at the GNOME desktop",
         mainProgram: "drawing",
         homepage: "https://maoschanz.github.io/drawing/",

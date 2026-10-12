@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wmderland",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aesophor",
           repo: "wmderland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, xorgproto]),
       postInstall: "install -Dm0644 -t $out/share/wmderland/contrib $src/example/config\ninstall -Dm0644 -t $out/share/xsessions $src/example/wmderland.desktop\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, basic: nix.thunk(() => nix.sel(nixosTests, "wmderland")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, basic: nix.thunk(() => nix.sel(nixosTests, "wmderland")) })),
         providedSessions: nix.thunk(() => ["wmderland"]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern and minimal X11 tiling window manager",
         homepage: "https://github.com/aesophor/wmderland",
         changelog: nix.thunk(() => nix.str`https://github.com/aesophor/wmderland/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

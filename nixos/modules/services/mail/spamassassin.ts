@@ -38,29 +38,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "spamassassin"));
   const spamassassin_local_cf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "local.cf", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         spamassassin: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the SpamAssassin daemon")),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run the SpamAssassin daemon in debug mode",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "The SpamAssassin local.cf config\n\nIf you are using this configuration:\n\n    add_header all Status _YESNO_, score=_SCORE_ required=_REQD_ tests=_TESTS_ autolearn=_AUTOLEARN_ version=_VERSION_\n\nThen you can Use this sieve filter:\n\n    require [\"fileinto\", \"reject\", \"envelope\"];\n\n    if header :contains \"X-Spam-Flag\" \"YES\" {\n      fileinto \"spam\";\n    }\n\nOr this procmail filter:\n\n    :0:\n    * ^X-Spam-Flag: YES\n    /var/vpopmail/domains/lastlog.de/js/.maildir/.spam/new\n\nTo filter your messages based on the additional mail headers added by spamassassin.\n",
               example: "#rewrite_header Subject [***** SPAM _SCORE_ *****]\nrequired_score          5.0\nuse_bayes               1\nbayes_auto_learn        1\nadd_header all Status _YESNO_, score=_SCORE_ required=_REQD_ tests=_TESTS_ autolearn=_AUTOLEARN_ version=_VERSION_\n",
               default: "",
             })))),
           initPreConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "path")));
@@ -73,22 +73,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
-            "mail/spamassassin/init.pre": nix.thunk(() => ({ __proto__: pos$7, source: nix.thunk(() => nix.sel(cfg, "initPreConf")) })),
-            "mail/spamassassin/local.cf": nix.thunk(() => ({ __proto__: pos$8, source: spamassassin_local_cf })),
+            [nix.POS]: pos$9,
+            "mail/spamassassin/init.pre": nix.thunk(() => ({ [nix.POS]: pos$7, source: nix.thunk(() => nix.sel(cfg, "initPreConf")) })),
+            "mail/spamassassin/local.cf": nix.thunk(() => ({ [nix.POS]: pos$8, source: spamassassin_local_cf })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "spamassassin"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             spamd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Spam Assassin Daemon",
               home: "/var/lib/spamassassin",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "spamd")),
@@ -96,23 +96,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             spamd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "spamd")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "sa-update": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "oneshot",
                 User: "spamd",
                 Group: "spamd",
@@ -139,7 +139,7 @@ ${nix.sel(pkgs, "spamassassin")}/bin/sa-compile
 `),
             })),
             spamd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "SpamAssassin Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["sa-update.service"]),
@@ -149,7 +149,7 @@ ${nix.sel(pkgs, "spamassassin")}/bin/sa-compile
                 nix.thunk(() => nix.sel(config, "environment", "etc", "mail/spamassassin/local.cf", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 User: "spamd",
                 Group: "spamd",
                 ExecStart: nix.thunk(() => nix.str`+${nix.sel(pkgs, "spamassassin")}/bin/spamd ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "debug")), "-D")} --username=spamd --groupname=spamd --virtual-config-dir=%S/spamassassin/user-%u --allow-tell --pidfile=/run/spamd.pid`),
@@ -159,13 +159,13 @@ ${nix.sel(pkgs, "spamassassin")}/bin/sa-compile
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "sa-update": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "sa-update-service",
               partOf: nix.thunk(() => ["sa-update.service"]),
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$21, OnCalendar: "1:*", Persistent: true })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$21, OnCalendar: "1:*", Persistent: true })),
             })),
           })),
         })),

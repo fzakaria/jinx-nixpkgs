@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const withNaiveOutbound = nix.argOr($, "withNaiveOutbound", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(withNaiveOutbound) || nix.asBool((!nix.asBool(!nix.asBool(withStaticCronet)) || nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")))))), "Dynamic linking to cronet-go is only available on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sing-box/package.nix:16:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sing-box",
       version: "1.14.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SagerNet",
           repo: "sing-box",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "tfogo_checklinkname0",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withNaiveOutbound, "with_naive_outbound"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withNaiveOutbound) && nix.asBool(!nix.asBool(withStaticCronet)))), "with_purego")))),
       subPackages: nix.thunk(() => ["cmd/sing-box"]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, CGO_ENABLED: 0n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withNaiveOutbound) && nix.asBool(withStaticCronet))), nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 1n, CGO_LDFLAGS: "-fuse-ld=lld" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, CGO_ENABLED: 0n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withNaiveOutbound) && nix.asBool(withStaticCronet))), nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 1n, CGO_LDFLAGS: "-fuse-ld=lld" }))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withNaiveOutbound) && nix.asBool(withStaticCronet))), nix.thunk(() => nix.sel(buildPackages, "rustc", "llvmPackages", "bintools"))))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withNaiveOutbound) && nix.asBool(withStaticCronet))), cronet_go)),
       ldflags: nix.thunk(() => [
@@ -88,14 +88,14 @@ install -Dm444 release/config/sing-box-split-dns.xml $out/share/dbus-1/system.d/
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withNaiveOutbound) && nix.asBool(!nix.asBool(withStaticCronet)))), nix.thunk(() => nix.str`ln -s "${cronet_go}/lib/${nix.sel(go, "GOOS")}_${nix.sel(go, "GOARCH")}/libcronet.so" "$out/lib/"
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "sing-box": nix.thunk(() => nix.attr(nixosTests, "sing-box")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://sing-box.sagernet.org",
         description: "Universal proxy platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -13,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "4.51.180",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://downloads.slack-edge.com/desktop-releases/mac/arm64/4.51.180/Slack-4.51.180-macOS.dmg",
           hash: "sha256-6QhuZWEwQiW8ZyYTJRLMZq5MayBgX9xlBLdhttiTaoA=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.51.180",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://downloads.slack-edge.com/desktop-releases/linux/x64/4.51.180/slack-desktop-4.51.180-amd64.deb",
           hash: "sha256-qkXhUXlHAzdwEqmtePCyFSw2iFLghSZ65ona+1wwjqE=",
         })))),

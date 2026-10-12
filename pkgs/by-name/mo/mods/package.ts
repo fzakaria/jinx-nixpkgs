@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const installShellCompletions = nix.argOr($, "installShellCompletions", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const installManPages = nix.argOr($, "installManPages", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mods",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "charmbracelet",
           repo: "mods",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
       ]),
       checkFlags: nix.thunk(() => ["-skip=^TestLoad/http_url$|^TestLoad/https_url$"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", ignoredVersions: ".(rc|beta).*" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", ignoredVersions: ".(rc|beta).*" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: mods, command: "HOME=$(mktemp -d) mods -v" })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: mods, command: "HOME=$(mktemp -d) mods -v" })))),
         })),
       })),
       postInstall: nix.thunk(() => nix.add(nix.add("export HOME=$(mktemp -d)\n", nix.app(nix.sel(lib, "optionalString"), installManPages, "$out/bin/mods man > ./mods.1\ninstallManPage ./mods.1\n")), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd mods \\\n  --bash <($out/bin/mods completion bash) \\\n  --fish <($out/bin/mods completion fish) \\\n  --zsh <($out/bin/mods completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "AI on the command line",
         homepage: "https://github.com/charmbracelet/mods",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

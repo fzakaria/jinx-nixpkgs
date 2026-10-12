@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-s3";
       const version = "0.17.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hypnoglow",
           repo: "helm-s3",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["cmd/helm-s3"]);
       const postInstall = "install -dm755 $out/helm-s3\nmv $out/bin $out/helm-s3/\ninstall -m644 -Dt $out/helm-s3 plugin.yaml\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helm plugin that allows to set up a chart repository using AWS S3",
         homepage: "https://github.com/hypnoglow/helm-s3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

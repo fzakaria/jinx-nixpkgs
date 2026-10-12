@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     file_picker: nix.thunk(() => nix.app(callPackage, nix.path(here, "./file_picker"), nix.thunk(() => ({})))),
     flutter_discord_rpc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./flutter_discord_rpc"), nix.thunk(() => ({})))),
     flutter_secure_storage_linux: nix.thunk(() => nix.app(callPackage, nix.path(here, "./flutter-secure-storage-linux"), nix.thunk(() => ({})))),

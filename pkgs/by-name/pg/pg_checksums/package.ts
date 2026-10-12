@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pg_checksums";
       const version = "1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "credativ",
           repo: "pg_checksums",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "install -Dm755 -t $out/bin pg_checksums_ext\ninstall -Dm644 -t $out/share/man/man1 doc/man1/pg_checksums_ext.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Activate/deactivate/verify checksums in offline PostgreSQL clusters",
         homepage: "https://github.com/credativ/pg_checksums",
         maintainers: [],
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "postgresql")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

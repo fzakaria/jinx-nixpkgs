@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const crcmod = nix.arg($, "crcmod");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fx2",
       version: "0.16",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GlasgowEmbedded",
           repo: "libfx2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/share/libfx2\ncp -R ../firmware/library/{.stamp,lib,include,fx2{rules,conf}.mk} \\\n  $out/share/libfx2\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chip support package for Cypress EZ-USB FX2 series microcontrollers",
         mainProgram: "fx2tool",
         homepage: "https://codeberg.org/GlasgowEmbedded/libfx2",

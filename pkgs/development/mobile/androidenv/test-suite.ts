@@ -17,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const meta = nix.arg($, "meta");
-  const examples_shell = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell.nix"), nix.thunk(() => ({ __proto__: pos$1, licenseAccepted: true }))));
-  const examples_shell_with_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-with-emulator.nix"), nix.thunk(() => ({ __proto__: pos$2, licenseAccepted: true }))));
-  const examples_shell_without_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-without-emulator.nix"), nix.thunk(() => ({ __proto__: pos$3, licenseAccepted: true }))));
+  const examples_shell = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, licenseAccepted: true }))));
+  const examples_shell_with_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-with-emulator.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, licenseAccepted: true }))));
+  const examples_shell_without_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-without-emulator.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, licenseAccepted: true }))));
   const all_tests = nix.thunk(() => nix.update(nix.sel(examples_shell, "passthru", "tests"), nix.update(nix.sel(examples_shell_with_emulator, "passthru", "tests"), nix.sel(examples_shell_without_emulator, "passthru", "tests"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "androidenv-test-suite",
       version: nix.thunk(() => nix.selOr(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./repo.json")), () => "0000000000000000", "latest", "fingerprint")),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), all_tests)),
       buildCommand: "touch $out\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: all_tests,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           command: nix.thunk(() => [nix.path(here, "./update.rb")]),
           attrPath: "androidenv.test-suite",
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$6, timeout: 60n })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$6, timeout: 60n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=test-suite.ts.map

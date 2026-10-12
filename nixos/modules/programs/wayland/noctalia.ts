@@ -36,20 +36,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "noctalia"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         noctalia: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "noctalia, a sleek and customizable desktop shell for Wayland")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "noctalia", nix.thunk(() => ({})))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a systemd user service for noctalia")),
             target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "graphical-session.target",
                 example: "hyprland-session.target",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           recommendedServices: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the services used by noctalia's integrations, namely NetworkManager, bluetooth, UPower and a power profile daemon")),
           })),
         })),
@@ -65,23 +65,23 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             environment: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$9,
-              sounds: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+              [nix.POS]: pos$9,
+              sounds: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               user: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 services: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   noctalia: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemd", "enable")), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       description: "Noctalia Wayland desktop shell",
                       documentation: nix.thunk(() => ["https://docs.noctalia.dev/v5/"]),
                       partOf: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "systemd", "target"))]),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
                       wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "systemd", "target"))]),
                       enableDefaultPath: false,
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                         Restart: "on-failure",
                       })),
@@ -99,36 +99,36 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "recommendedServices", "enable")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               networking: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 networkmanager: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
               hardware: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 bluetooth: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 upower: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
                 "power-profiles-daemon": nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

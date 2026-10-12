@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marathon-evil",
       version: "0",
       desktopName: "Marathon-Evil",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://files3.bungie.org/trilogy/MarathonEvil.zip",
           hash: "sha256-Ja3kvg6fCkRWURgw4av1X0iglTkLrozvAqFnceX60SI=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "First conversion for Marathon Infinity",
         homepage: "https://alephone.lhowon.org/scenarios.html",
       })),

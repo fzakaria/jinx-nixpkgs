@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "icingaweb2",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -45,53 +45,53 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       icingaweb2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             icingaweb2: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               modulePackages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "icingaweb2Modules")), null);
                 return {
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   particles: nix.thunk(() => nix.lookup(w, "theme-particles")),
                   spring: nix.thunk(() => nix.lookup(w, "theme-spring")),
                 };
               })()),
               modules: nix.thunk(() => ({
-                __proto__: pos$8,
-                doc: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
-                migrate: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
-                setup: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
-                test: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
-                translation: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+                [nix.POS]: pos$8,
+                doc: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                migrate: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                setup: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                test: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+                translation: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
               })),
               generalConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 global: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   module_path: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "icingaweb2")}/modules`),
                 })),
               })),
               authentications: nix.thunk(() => ({
-                __proto__: pos$12,
-                icingaweb: nix.thunk(() => ({ __proto__: pos$11, backend: "external" })),
+                [nix.POS]: pos$12,
+                icingaweb: nix.thunk(() => ({ [nix.POS]: pos$11, backend: "external" })),
               })),
               groupBackends: nix.thunk(() => ({
-                __proto__: pos$14,
-                icingaweb: nix.thunk(() => ({ __proto__: pos$13, backend: "db", resource: "icingaweb_db" })),
+                [nix.POS]: pos$14,
+                icingaweb: nix.thunk(() => ({ [nix.POS]: pos$13, backend: "db", resource: "icingaweb_db" })),
               })),
               resources: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 icingaweb_db: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: "db",
                   db: "mysql",
                   host: "localhost",
@@ -101,8 +101,8 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               roles: nix.thunk(() => ({
-                __proto__: pos$18,
-                Administrators: nix.thunk(() => ({ __proto__: pos$17, users: "*", permissions: "*" })),
+                [nix.POS]: pos$18,
+                Administrators: nix.thunk(() => ({ [nix.POS]: pos$17, users: "*", permissions: "*" })),
               })),
             })),
           })),

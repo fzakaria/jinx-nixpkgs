@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 0n));
   const plat = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 1n));
   const hashes = nix.thunk(() => (nix.asBool(enableUnfree) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "sha512-9JzopnY43Osoy4/0G9gxJYlbCl1a9Qy2pL4GL1uyjJ3uSNoOskEBhhsqLp9BhtJXOaquuRDgbJnXhbBrlE0rKg==",
     "aarch64-linux": "sha512-V2Nt/lup4ofgoMqpAH3OHF8Fp0PvC1M8nl6sCKmTf+ZXQYHNjAJkJwGJwHeQQ0L/348JHyCkeWL43dS7Jr6ZJQ==",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha512-L11ZUdXC8VDiSEVDBMous2OaMlAFgvkQ+eDbmbA9r/sDIXY8W7dx3jgPNXoorDtatTemwy8aXw1XJGaVmj4T3Q==",
     "aarch64-linux": "sha512-iVft0kZYhvFJ1NKCfdePhRxDljPTwV+3G7wV94iykYISgLTVoehzDTMdxUyfK/mmQhu3hmmHbVpw1jXjTrS7ng==",
   }));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = elk7Version;
       const pname = nix.thunk(() => nix.str`logstash${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnfree)), "-oss")}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/logstash/${pname}-${version}-${plat}-${arch}.tar.gz`),
           hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw("Unknown architecture"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         }))));
@@ -63,7 +63,7 @@ wrapProgram $out/bin/logstash-plugin \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Logstash is a data pipeline that helps you process logs and other event data from a variety of systems",
         homepage: "https://www.elastic.co/products/logstash",
         sourceProvenance: nix.thunk(() => (() => {
@@ -82,17 +82,17 @@ runHook postInstall
         })()),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "allowUnfree")) && nix.asBool(enableUnfree))), nix.thunk(() => (() => {
             nix.assert_(nix.eq(nix.sel(this$, "drvPath"), nix.sel(nixosTests, "elk", "unfree", "ELK-7", "elkPackages", "logstash", "drvPath")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/misc/logstash/7.x.nix:81:7");
             return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               elk: nix.thunk(() => nix.sel(nixosTests, "elk", "unfree", "ELK-7")),
             };
           })()))),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version,
         pname,
         src,

@@ -49,41 +49,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         name: name,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           client: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               services: nix.thunk(() => ({
-                __proto__: pos$4,
-                davfs2: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+                [nix.POS]: pos$4,
+                davfs2: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     nextcloud: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       "/tmp/davfs2-secrets": nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         "f+": nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           mode: "0600",
                           argument: nix.thunk(() => nix.str`http://nextcloud/remote.php/dav/files/${nix.sel(config, "adminuser")} ${nix.sel(config, "adminuser")} ${nix.sel(config, "adminpass")}`),
                         })),
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               virtualisation: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 fileSystems: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "/mnt/dav": nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     device: nix.thunk(() => nix.str`http://nextcloud/remote.php/dav/files/${nix.sel(config, "adminuser")}`),
                     fsType: "davfs",
                     options: nix.thunk(() => (() => {
@@ -118,43 +118,43 @@ export default nix.lambda((args) => (() => {
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               systemd: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   rules: nix.thunk(() => ["d /var/lib/nextcloud-data 0750 nextcloud nginx - -"]),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enable: true,
-                  config: nix.thunk(() => ({ __proto__: pos$17, dbtype: "sqlite" })),
+                  config: nix.thunk(() => ({ [nix.POS]: pos$17, dbtype: "sqlite" })),
                   datadir: "/var/lib/nextcloud-data",
-                  autoUpdateApps: nix.thunk(() => ({ __proto__: pos$18, enable: true, startAt: "20:00" })),
+                  autoUpdateApps: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true, startAt: "20:00" })),
                   phpExtraExtensions: (all) => [nix.thunk(() => nix.sel(all, "bz2"))],
-                  nginx: nix.thunk(() => ({ __proto__: pos$19, enableFastcgiRequestBuffering: true })),
-                  secrets: nix.thunk(() => ({ __proto__: pos$20, mysecret: "/etc/nextcloud/mysecretfile" })),
+                  nginx: nix.thunk(() => ({ [nix.POS]: pos$19, enableFastcgiRequestBuffering: true })),
+                  secrets: nix.thunk(() => ({ [nix.POS]: pos$20, mysecret: "/etc/nextcloud/mysecretfile" })),
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$24,
-                  "nextcloud/mysecretfile": nix.thunk(() => ({ __proto__: pos$23, text: "foobar" })),
+                  [nix.POS]: pos$24,
+                  "nextcloud/mysecretfile": nix.thunk(() => ({ [nix.POS]: pos$23, text: "foobar" })),
                 })),
               })),
               specialisation: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 withoutMagick: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   configuration: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     services: nix.thunk(() => ({
-                      __proto__: pos$27,
-                      nextcloud: nix.thunk(() => ({ __proto__: pos$26, enableImagemagick: false })),
+                      [nix.POS]: pos$27,
+                      nextcloud: nix.thunk(() => ({ [nix.POS]: pos$26, enableImagemagick: false })),
                     })),
                   })),
                 })),
@@ -163,12 +163,12 @@ export default nix.lambda((args) => (() => {
           })(), formals$4),
         })),
         "test-helpers": nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           extraTests: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$5);
             const nodes = nix.arg($_2, "nodes");
             const findInClosure = (what) => (drv) => nix.app(nix.sel(pkgs, "runCommand"), "find-in-closure", nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 exportReferencesGraph: nix.thunk(() => ["graph", drv]),
                 what: what,
               })), "test -e graph\ngrep \"$what\" graph >$out || true\n");

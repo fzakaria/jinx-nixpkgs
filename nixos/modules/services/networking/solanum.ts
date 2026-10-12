@@ -35,28 +35,28 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "solanum"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "solanum.conf", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         solanum: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Solanum IRC daemon")),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "serverinfo {\n  name = \"irc.example.com\";\n  sid = \"1ix\";\n  description = \"irc!\";\n\n  vhost = \"0.0.0.0\";\n  vhost6 = \"::\";\n};\n\nlisten {\n  host = \"0.0.0.0\";\n  port = 6667;\n};\n\nclass \"users\" {\n  number_per_ip = 3;\n};\n\nauth {\n  user = \"*@*\";\n  class = \"users\";\n  flags = exceed_limit;\n};\nchannel {\n  default_split_user_count = 0;\n};\n",
               description: "Solanum IRC daemon configuration file.\ncheck <https://github.com/solanum-ircd/solanum/blob/main/doc/reference.conf> for all options.\n",
             })))),
           openFilesLimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 1024n,
               description: "Maximum number of open files. Limits the clients and server connections.\n",
             })))),
           motd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "lines")))),
               default: null,
               description: "Solanum MOTD text.\n\nSolanum will read its MOTD from `/etc/solanum/ircd.motd`.\nIf set, the value of this option will be written to this path.\n",
@@ -66,27 +66,27 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             environment: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               etc: nix.thunk(() => ({
-                __proto__: pos$8,
-                "solanum/ircd.conf": nix.thunk(() => ({ __proto__: pos$7, source: configFile })),
+                [nix.POS]: pos$8,
+                "solanum/ircd.conf": nix.thunk(() => ({ [nix.POS]: pos$7, source: configFile })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               services: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 solanum: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   description: "Solanum IRC daemon",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   reloadIfChanged: true,
                   restartTriggers: nix.thunk(() => [configFile]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "solanum")))),
                         "-foreground",
@@ -116,12 +116,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "motd"), null)), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  "solanum/ircd.motd": nix.thunk(() => ({ __proto__: pos$15, text: nix.thunk(() => nix.sel(cfg, "motd")) })),
+                  [nix.POS]: pos$16,
+                  "solanum/ircd.motd": nix.thunk(() => ({ [nix.POS]: pos$15, text: nix.thunk(() => nix.sel(cfg, "motd")) })),
                 })),
               })),
             })))),

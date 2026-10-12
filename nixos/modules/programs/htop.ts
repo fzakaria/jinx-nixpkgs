@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "htop"));
   const fmt = (value) => (nix.asBool(nix.builtins.isList(value)) ? nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.builtins.map(fmt, value))) : (nix.asBool(nix.builtins.isString(value)) ? nix.force(value) : (nix.asBool(nix.builtins.isBool(value)) ? (nix.asBool(value) ? "1" : "0") : (nix.asBool(nix.builtins.isInt(value)) ? nix.builtins.toString(value) : nix.builtins.throw(nix.thunk(() => nix.str`Unrecognized type ${nix.builtins.typeOf(value)} in htop settings`))))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         htop: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "htop", nix.thunk(() => ({})))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "htop process monitor")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -47,21 +47,21 @@ export default nix.lambda((args) => (() => {
                     ]))));
               })()),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$1, hide_kernel_threads: true, hide_userland_threads: true })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$1, hide_kernel_threads: true, hide_userland_threads: true })),
               description: "Extra global default configuration for htop\nwhich is read on first startup only.\nHtop subsequently uses ~/.config/htop/htoprc\nas configuration source.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             htoprc: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               text: nix.thunk(() => nix.add("# Global htop configuration\n# To change set: programs.htop.settings.KEY = VALUE;\n", nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (value) => nix.str`${key}=${nix.app(fmt, value)}`, nix.thunk(() => nix.sel(cfg, "settings"))))))),
             })),
           })),

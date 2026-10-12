@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "djangocms_text_ckeditor",
           hash: "sha256-xyl2TMXzyFaRGyBDku8fu++DE0G72cYv8AstPwcVnIM=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["djangocms_text_ckeditor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text Plugin for django CMS using CKEditor 4",
         homepage: "https://github.com/django-cms/djangocms-text-ckeditor",
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/djangocms-text-ckeditor/blob/${version}/CHANGELOG.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

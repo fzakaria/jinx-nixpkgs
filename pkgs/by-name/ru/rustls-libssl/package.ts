@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec"));
   const libExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rustls-libssl",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rustls",
           repo: "rustls-openssl-compat",
           rev: nix.thunk(() => nix.str`v/${version}`),
@@ -64,11 +64,11 @@ sed -i \\
   $dev/lib/pkgconfig/*.pc
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.sel(nixosTests, "rustls-libssl")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Partial reimplementation of the OpenSSL 3 libssl ABI using rustls",
         homepage: "https://github.com/rustls/rustls-openssl-compat",
         changelog: "https://github.com/rustls/rustls-openssl-compat/releases",

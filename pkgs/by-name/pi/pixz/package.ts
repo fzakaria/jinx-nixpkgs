@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pixz",
       version: "1.0.7",
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoconf, automake]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "echo \"XML_CATALOG_FILES='$XML_CATALOG_FILES'\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vasi",
           repo: "pixz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       preConfigure: "./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel compressor/decompressor for xz format",
         homepage: "https://github.com/vasi/pixz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

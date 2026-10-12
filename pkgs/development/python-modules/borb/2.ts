@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const qrcode = nix.arg($, "qrcode");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "borb",
       version: "2.1.25",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gTolInuW9HHSkkS/PAens9821h1ivL7PRbFJRLgBHvQ=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["borb.pdf", "borb.pdf.canvas.layout.table.fixed_column_width_table"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for reading, creating and manipulating PDF files",
         homepage: "https://borbpdf.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/jorisschellekens/borb/releases/tag/v${nix.sel(finalAttrs, "version")}`),

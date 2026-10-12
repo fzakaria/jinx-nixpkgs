@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weather-icons",
       version: "2.0.12",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/erikflowers/weather-icons/archive/refs/tags/${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-0ZFH2awUo4BkTpK1OsWZ4YKczJHo+HHM6ezGBJAmT+U=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Remove duplicate fonts in gh-pages to prevent installFonts hook from tripping\nrm -rf _docs/gh-pages\n",
       outputs: nix.thunk(() => ["out", "webfont"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Weather Icons",
         longDescription: "Weather Icons is the only icon font and CSS with 222 weather themed icons,\nready to be dropped right into Bootstrap, or any project that needs high\nquality weather, maritime, and meteorological based icons!\n",
         homepage: "https://erikflowers.github.io/weather-icons/",

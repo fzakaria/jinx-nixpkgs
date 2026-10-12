@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const sd = nix.arg($, "sd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "galene-file-transfer",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jech",
           repo: "galene-file-transfer",
           tag: nix.thunk(() => nix.str`galene-file-transfer-${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Z2IYZtB2PAxJD8993reu+ldTG3LdPLNMbr9pP2NUBMA=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           vm: nix.thunk(() => nix.sel(nixosTests, "galene", "file-transfer")),
         })),
-        updateScriptSrc: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "galene-file-transfer-" })))),
+        updateScriptSrc: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "galene-file-transfer-" })))),
         updateScriptVendor: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "update-galene-file-transfer-vendorHash",
             runtimeInputs: nix.thunk(() => [nix$, sd]),
             text: nix.thunk(() => nix.str`export UPDATE_NIX_ATTR_PATH="\${UPDATE_NIX_ATTR_PATH:-galene-file-transfer}"
@@ -70,7 +70,7 @@ ${nix.sel(sd, "meta", "mainProgram")} --string-mode "$oldhash" "$newhash" "$fnam
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(galene, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command-line file transfer client for the Galene videoconferencing server",
         homepage: "https://github.com/jech/galene-file-transfer",
         changelog: nix.thunk(() => nix.str`https://github.com/jech/galene-file-transfer/raw/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),

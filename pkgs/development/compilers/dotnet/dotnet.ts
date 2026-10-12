@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.app(nix.sel(lib, "pathExists"), path)) ? nix.app(buildDotnetSdk, path) : {});
   })());
   const withVMR = nix.thunk(() => nix.app(nix.sel(lib, "pathExists"), nix.thunk(() => nix.add(dir, "/release.json"))));
-  const sourcePackages = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withVMR, nix.thunk(() => nix.app(callPackage, nix.path(here, "./source"), nix.thunk(() => nix.update(attrs, { __proto__: pos$1, binary: binary }))))));
+  const sourcePackages = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withVMR, nix.thunk(() => nix.app(callPackage, nix.path(here, "./source"), nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$1, binary: binary }))))));
   const pkgs = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), binary), nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${k}-bin`), v), binary), sourcePackages)));
   const suffix = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), channel));
   const sdkAttr = nix.thunk(() => nix.add(nix.str`sdk_${suffix}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withVMR)), "-bin")));
   return nix.update(pkgs, nix.attrsDyn({}, [
     [nix.force(sdkAttr), nix.thunk(() => nix.app(nix.sel(pkgs, nix.key(nix.force(sdkAttr)), "overrideAttrs"), (prev) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         passthru: nix.thunk(() => nix.update(nix.selOr(prev, () => ({}), "passthru"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), channel]),
         })),
       })))],

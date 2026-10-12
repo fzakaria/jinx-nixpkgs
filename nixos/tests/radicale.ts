@@ -35,70 +35,70 @@ export default nix.lambda((args) => (() => {
   const filesystem_folder = "/data/radicale";
   const cli = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "calendar-cli")))} --caldav-user ${user} --caldav-pass ${password}`);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "radicale3",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dotlambda"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             radicale: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 auth: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: "htpasswd",
                   htpasswd_filename: "/etc/radicale/users",
                   htpasswd_encryption: "bcrypt",
                 })),
                 storage: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   filesystem_folder: filesystem_folder,
                   hook: "git add -A && (git diff --cached --quiet || git commit -m 'Changes by '%(user)s)",
                 })),
-                logging: nix.thunk(() => ({ __proto__: pos$4, level: "info" })),
+                logging: nix.thunk(() => ({ [nix.POS]: pos$4, level: "info" })),
               })),
               rights: nix.thunk(() => ({
-                __proto__: pos$8,
-                principal: nix.thunk(() => ({ __proto__: pos$6, user: ".+", collection: "{user}", permissions: "RW" })),
-                calendars: nix.thunk(() => ({ __proto__: pos$7, user: ".+", collection: "{user}/[^/]+", permissions: "rw" })),
+                [nix.POS]: pos$8,
+                principal: nix.thunk(() => ({ [nix.POS]: pos$6, user: ".+", collection: "{user}", permissions: "RW" })),
+                calendars: nix.thunk(() => ({ [nix.POS]: pos$7, user: ".+", collection: "{user}/[^/]+", permissions: "rw" })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               radicale: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               rules: nix.thunk(() => [nix.thunk(() => nix.str`d ${filesystem_folder} 0750 radicale radicale -`)]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
             etc: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "radicale/users": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "htpasswd", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "apacheHttpd")}/bin/htpasswd -bcB "$out" ${user} ${password}
 `))),
               })),

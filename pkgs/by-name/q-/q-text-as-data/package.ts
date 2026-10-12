@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "q-text-as-data",
       version: "2.0.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "harelba",
           repo: "q",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       patchPhase: "# remove broken symlink\nrm bin/qtextasdata.py\n\n# not considered good practice pinning in install_requires\nsubstituteInPlace setup.py --replace-fail 'six==' 'six>='\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run SQL directly on CSV or TSV files",
         longDescription: "q is a command line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files).\n\nq treats ordinary files as database tables, and supports all SQL constructs, such as WHERE, GROUP BY, JOINs etc. It supports automatic column name and column type detection, and provides full support for multiple encodings.\n",
         homepage: "http://harelba.github.io/q/",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tedder",
           repo: "requests-aws4auth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, httpx: nix.thunk(() => [httpx]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, httpx: nix.thunk(() => [httpx]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "httpx")));
       const pythonImportsCheck = nix.thunk(() => ["requests_aws4auth"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Amazon Web Services version 4 authentication for the Python Requests library",
         homepage: "https://github.com/sam-washington/requests-aws4auth",
         changelog: nix.thunk(() => nix.str`https://github.com/tedder/requests-aws4auth/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

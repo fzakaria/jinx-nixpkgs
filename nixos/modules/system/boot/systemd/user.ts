@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
     const user = nix.argOr($_1, "user", () => null);
     const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(user, null)), nix.thunk(() => nix.str`-${user}`)));
     return nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`nixos-user-tmpfiles.d${suffix}`),
         destination: nix.thunk(() => nix.str`/etc/xdg/user-tmpfiles.d/00-nixos${suffix}.conf`),
         text: nix.thunk(() => nix.str`# This file is created automatically and should not be modified.
@@ -111,91 +111,91 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", rules)}
       })));
   })(), formals$2);
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["systemd", "user", "extraConfig"]), "Use systemd.user.settings.Manager instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       systemd: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         user: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           settings: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             Manager: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                   })))),
-                example: nix.thunk(() => ({ __proto__: pos$3, DefaultTimeoutStartSec: 60n })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$3, DefaultTimeoutStartSec: 60n })),
                 description: "Settings for systemd user instances. See {manpage}`systemd-user.conf(5)`\nfor available options.\n",
               })))),
           })),
           units: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Definition of systemd per-user units.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "units")),
             })))),
           paths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "paths")),
               description: "Definition of systemd per-user path units.",
             })))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "services")),
               description: "Definition of systemd per-user service units.",
             })))),
           slices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "slices")),
               description: "Definition of systemd per-user slice units.",
             })))),
           sockets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "sockets")),
               description: "Definition of systemd per-user socket units.",
             })))),
           targets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "targets")),
               description: "Definition of systemd per-user target units.",
             })))),
           timers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "timers")),
               description: "Definition of systemd per-user timer units.",
             })))),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$19,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd user units systemd-tmpfiles-setup.service and systemd-tmpfiles-clean.timer"), { __proto__: pos$13, default: true, example: false })),
+            [nix.POS]: pos$19,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd user units systemd-tmpfiles-setup.service and systemd-tmpfiles-clean.timer"), { [nix.POS]: pos$13, default: true, example: false })),
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => ["D %C - - - 7d"]),
                 description: "Global user rules for creation, deletion and cleaning of volatile and\ntemporary files automatically. See\n{manpage}`tmpfiles.d(5)`\nfor the exact format.\n",
               })))),
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "Per-user rules for creation, deletion and cleaning of volatile and\ntemporary files automatically.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       options: nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             example: nix.thunk(() => ["D %C - - - 7d"]),
@@ -206,15 +206,15 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", rules)}
               })))),
           })),
           generators: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$20, "systemd-gpt-auto-generator": "/dev/null" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$20, "systemd-gpt-auto-generator": "/dev/null" })),
               description: "Definition of systemd generators; see {manpage}`systemd.generator(5)`.\n\nFor each `NAME = VALUE` pair of the attrSet, a link is generated from\n`/etc/systemd/user-generators/NAME` to `VALUE`.\n",
             })))),
         })),
         additionalUpstreamUserUnits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             example: [],
@@ -224,46 +224,46 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", rules)}
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       systemd: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         additionalUpstreamSystemUnits: nix.thunk(() => ["user.slice"]),
         user: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           units: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${n}.path`), nix.thunk(() => nix.app(pathToUnit, v))), nix.thunk(() => nix.sel(cfg, "paths"))), nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${n}.service`), nix.thunk(() => nix.app(serviceToUnit, v))), nix.thunk(() => nix.sel(cfg, "services"))), nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${n}.slice`), nix.thunk(() => nix.app(sliceToUnit, v))), nix.thunk(() => nix.sel(cfg, "slices"))), nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${n}.socket`), nix.thunk(() => nix.app(socketToUnit, v))), nix.thunk(() => nix.sel(cfg, "sockets"))), nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${n}.target`), nix.thunk(() => nix.app(targetToUnit, v))), nix.thunk(() => nix.sel(cfg, "targets"))), nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${n}.timer`), nix.thunk(() => nix.app(timerToUnit, v))), nix.thunk(() => nix.sel(cfg, "timers"))))))))),
           timers: nix.thunk(() => nix.update({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "systemd-tmpfiles-clean": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "tmpfiles", "enable")), "timers.target")),
             })),
           }, nix.app(nix.sel(lib, "mapAttrs"), (name) => (service) => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$28, OnCalendar: nix.thunk(() => nix.sel(service, "startAt")) })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$28, OnCalendar: nix.thunk(() => nix.sel(service, "startAt")) })),
             }), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (service) => !nix.eq(nix.sel(service, "startAt"), []), nix.thunk(() => nix.sel(cfg, "services"))))))),
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "systemd-tmpfiles-setup": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "tmpfiles", "enable")), "basic.target")),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$35,
-          "user@": nix.thunk(() => ({ __proto__: pos$33, restartIfChanged: false })),
-          "systemd-user-sessions": nix.thunk(() => ({ __proto__: pos$34, restartIfChanged: false })),
+          [nix.POS]: pos$35,
+          "user@": nix.thunk(() => ({ [nix.POS]: pos$33, restartIfChanged: false })),
+          "systemd-user-sessions": nix.thunk(() => ({ [nix.POS]: pos$34, restartIfChanged: false })),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         etc: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           "systemd/user": nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             source: nix.thunk(() => nix.app(generateUnits, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: "user",
                 units: nix.thunk(() => nix.attr(cfg, "units")),
                 upstreamUnits: upstreamUserUnits,
@@ -271,40 +271,40 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", rules)}
               })))),
           })),
           "systemd/user.conf": nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             text: nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "settingsToSections"), nix.thunk(() => nix.sel(cfg, "settings")))),
           })),
         })),
         systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tmpfiles", "rules"), [])), nix.thunk(() => nix.app(writeTmpfiles, nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(cfg, "tmpfiles"));
-              return { __proto__: pos$41, rules: nix.thunk(() => nix.attr(from_1, "rules")) };
+              return { [nix.POS]: pos$41, rules: nix.thunk(() => nix.attr(from_1, "rules")) };
             })()))))),
       })),
       security: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         pam: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$44,
-            "systemd-user": nix.thunk(() => ({ __proto__: pos$43, startSession: true, pamMount: false })),
+            [nix.POS]: pos$44,
+            "systemd-user": nix.thunk(() => ({ [nix.POS]: pos$43, startSession: true, pamMount: false })),
           })),
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         users: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (user) => (cfg$) => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg$, "rules"), [])), nix.thunk(() => nix.app(writeTmpfiles, nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   rules: nix.thunk(() => nix.attr(cfg$, "rules")),
                   user: user,
                 })))))),
           }), nix.thunk(() => nix.sel(cfg, "tmpfiles", "users")))),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         userActivationScripts: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           tmpfiles: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/systemd-tmpfiles --user --create --remove
 `),
         })),

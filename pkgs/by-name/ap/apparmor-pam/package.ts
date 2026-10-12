@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libapparmor = nix.arg($, "libapparmor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "apparmor-pam",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["USE_SYSTEM=1"]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mandatory access control system - PAM service",
       })),
     })));

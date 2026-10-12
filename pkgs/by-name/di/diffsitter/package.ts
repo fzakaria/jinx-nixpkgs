@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const grammarToAttrSet = (drv) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     name: nix.thunk(() => nix.add(nix.add("lib", nix.app(nix.sel(lib, "strings", "removeSuffix"), "-grammar", nix.thunk(() => nix.app(nix.sel(lib, "strings", "getName"), drv)))), ".so")),
     path: nix.thunk(() => nix.str`${drv}/parser`),
   });
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "diffsitter";
       const version = "0.8.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "afnanenayet",
           repo: "diffsitter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,11 +52,11 @@ wrapProgram "$out/bin/diffsitter" \\
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/afnanenayet/diffsitter",
         description: "Tree-sitter based AST difftool to get meaningful semantic diffs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -66,7 +66,7 @@ wrapProgram "$out/bin/diffsitter" \\
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

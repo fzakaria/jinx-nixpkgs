@@ -29,13 +29,13 @@ export default nix.thunk(() => (() => {
     const packages = nix.thunk(() => (() => {
       const w = nix.withScope(self, null);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         katana_code: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "katana_code",
             version: "2.4.3",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pkg: "katana_code",
                 version: "2.4.3",
                 sha256: "sha256-YUxjQ9uqRc7e8n0j6wkBo4PEa/61dwOaXmDK0XGGzO4=",
@@ -43,11 +43,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         getopt: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "getopt",
             version: "1.0.3",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 pkg: "getopt",
                 version: "1.0.3",
                 sha256: "sha256-fgHekKxUDyFJT/cnkrHjFi05mWbrv8Z0tM5Sy49JMk8=",
@@ -55,11 +55,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         elvis_core: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "elvis_core",
             version: "5.0.4",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 pkg: "elvis_core",
                 version: "5.0.4",
                 sha256: "sha256-fgzg0yNrG1afDvE5jrJzIf2GNnJy4LFPOJDQQTrMPpo=",

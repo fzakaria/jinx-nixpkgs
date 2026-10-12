@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "switchres",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antonioginer",
           repo: "switchres",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,10 +43,10 @@ substituteInPlace ./custom_video_drmkms.cpp \\
 
 runHook postPatch
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: "$(out)" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: "$(out)" })),
       preInstall: "install -Dm755 switchres $out/bin/switchres\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modeline generation engine for emulation",
         homepage: "https://github.com/antonioginer/switchres",
         changelog: nix.thunk(() => nix.str`https://github.com/antonioginer/switchres/releases/tag/v${nix.sel(finalAttrs, "version")}`),

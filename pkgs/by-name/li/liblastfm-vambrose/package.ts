@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblastfm-vambrose",
       version: "0.5",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [curl, openssl]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/liblastfm/libclastfm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0hpfflvfx6r4vvsbvdc564gkby8kr07p8ma7hgpxiy2pnlbpian9",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://liblastfm.sourceforge.net",
         description: "Unofficial C lastfm library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

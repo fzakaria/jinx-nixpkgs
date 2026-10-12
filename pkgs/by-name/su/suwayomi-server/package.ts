@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const jdk = jdk21_headless;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "suwayomi-server",
       version: "2.1.1867",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Suwayomi/Suwayomi-Server/releases/download/v${nix.sel(finalAttrs, "version")}/Suwayomi-Server-v${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-UeMHwlgeThoAKZGrPjp3UDyLB0xCaVmHqYSnOC0Kxa8=",
         })))),
@@ -37,15 +37,15 @@ makeWrapper ${jdk}/bin/java $out/bin/tachidesk-server \\
 runHook postBuild
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "suwayomi-server-with-auth": nix.thunk(() => nix.sel(nixosTests, "suwayomi-server", "with-auth")),
           "suwayomi-server-without-auth": nix.thunk(() => nix.sel(nixosTests, "suwayomi-server", "without-auth")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free and open source manga reader server that runs extensions built for Mihon (Tachiyomi)",
         longDescription: "Suwayomi is an independent Mihon (Tachiyomi) compatible software and is not a Fork of Mihon (Tachiyomi).\n\nSuwayomi-Server is as multi-platform as you can get. Any platform that runs java and/or has a modern browser can run it. This includes Windows, Linux, macOS, chrome OS, etc.\n",
         homepage: "https://github.com/Suwayomi/Suwayomi-Server",

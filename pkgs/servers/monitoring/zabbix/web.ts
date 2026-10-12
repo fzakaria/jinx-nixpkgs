@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
           const pname = "zabbix-web";
           const version_1 = version;
           const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix/sources/stable/${nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)}/zabbix-${version_1}.tar.gz`),
               hash: hash,
             }))));
@@ -32,7 +32,7 @@ cp -a ui/. $out/share/zabbix/
 cp ${phpConfig} $out/share/zabbix/conf/zabbix.conf.php
 `);
           const meta = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Enterprise-class open source distributed monitoring solution (web frontend)",
             homepage: "https://www.zabbix.com/",
             license: nix.thunk(() => (nix.asBool(nix.ge(nix.app(nix.sel(lib, "versions", "major"), version_1), "7")) ? nix.sel(lib, "licenses", "agpl3Only") : nix.sel(lib, "licenses", "gpl2Plus"))),
@@ -46,7 +46,7 @@ cp ${phpConfig} $out/share/zabbix/conf/zabbix.conf.php
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           }));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname,
             version: version_1,
             src,

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const extraJavaOpts = nix.argOr($, "extraJavaOpts", () => "-XX:+UseG1GC -XX:+UseStringDeduplication -Xss4m -Xms100m");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "metals",
       version: "1.6.9",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, setJavaClassPath, unzip]),
@@ -61,21 +61,21 @@ $out/bin/metals-mcp --version | grep -q "${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         deps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`metals-deps-${nix.sel(finalAttrs, "version")}`),
             buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch org.scalameta:metals_2.13:${nix.sel(finalAttrs, "version")} org.scalameta:metals-mcp_2.13:${nix.sel(finalAttrs, "version")} > deps
@@ -88,7 +88,7 @@ cp $(< deps) $out/share/java/
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://scalameta.org/metals/",
         changelog: nix.thunk(() => nix.str`https://github.com/scalameta/metals/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

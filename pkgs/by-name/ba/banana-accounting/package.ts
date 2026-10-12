@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "banana-accounting",
       version: "10.1.24",
       srcs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250416013207/https://www.banana.ch/accounting/files/bananaplus/exe/bananaplus.tgz",
           hash: "sha256-5GewPGOCyeS6faL8aMUZ/JDUUn2PGuur0ws/7nlNX6M=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/opt $out/bin $out/share\ncp -r . $out/opt/banana-accounting\nln -s $out/opt/banana-accounting/usr/bin/bananaplus $out/bin/bananaplus\nln -s $out/opt/banana-accounting/usr/share/applications $out/share/applications\nln -s $out/opt/banana-accounting/usr/share/icons $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Accounting Software for small companies, associations and individuals",
         homepage: "https://www.banana.ch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

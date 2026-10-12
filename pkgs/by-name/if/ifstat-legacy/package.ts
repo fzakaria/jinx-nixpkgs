@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const net_snmp = nix.arg($, "net-snmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ifstat-legacy",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://gael.roualland.free.fr/ifstat/ifstat-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "01zmv6vk5kh5xmd563xws8a1qnxjb6b6kv59yzz9r3rrghxhd6c5",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mv $out/bin/ifstat $out/bin/ifstat-legacy\nmv $out/share/man/man1/ifstat.1 $out/share/man/man1/ifstat-legacy.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Report network interfaces bandwidth just like vmstat/iostat do for other system counters - legacy version",
         homepage: "http://gael.roualland.free.fr/ifstat/",
         maintainers: nix.thunk(() => (() => {

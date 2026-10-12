@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ];
     })());
     const pre_src = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-ethereum",
@@ -59,7 +59,7 @@ EOF
 chmod a+x $out/bin/run-ethereum-test-net
 `);
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Gerbil Ethereum: a Scheme alternative to web3.js",
       homepage: "https://github.com/fare/gerbil-ethereum",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +70,7 @@ chmod a+x $out/bin/run-ethereum-test-net
       })()),
     }));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname,
       version,
       "git-version": git_version,

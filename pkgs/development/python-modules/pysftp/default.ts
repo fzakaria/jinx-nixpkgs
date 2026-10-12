@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0jl5qix5cxzrv4lb8rfpjkpcghbkacnxkb006ikn7mkl5s05mxgv",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [paramiko]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bitbucket.org/dundeemt/pysftp",
         description: "Friendly face on SFTP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "A simple interface to SFTP. The module offers high level abstractions\nand task based routines to handle your SFTP needs. Checkout the Cook\nBook, in the docs, to see what pysftp can do for you.\n",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

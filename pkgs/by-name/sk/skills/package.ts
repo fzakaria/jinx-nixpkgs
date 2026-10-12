@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "skills",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vercel-labs",
           repo: "skills",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wynuiFQK0QR6bbClhGNM+tsoyAE/bsHSSwDUPVb8+gE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           fetcherVersion: 3n,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -48,18 +48,18 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nnode_modules/.bin/obuild\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nrm -rf node_modules\npnpm install --force --offline --production --ignore-scripts\n\nmkdir -p $out/lib/node_modules/skills/\nmkdir $out/bin\ncp -r dist bin node_modules package.json $out/lib/node_modules/skills\n\nln -s $out/lib/node_modules/skills/bin/cli.mjs $out/bin/skills\nchmod +x $out/bin/skills\npatchShebangs $out/bin/skills\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/vercel-labs/skills/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "The open agent skills tool",
         homepage: "https://github.com/vercel-labs/skills",

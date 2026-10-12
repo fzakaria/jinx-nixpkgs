@@ -27,53 +27,53 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "turn-rs",
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       server: nix.thunk(() => ({
-        __proto__: pos$17,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$17,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           network: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             networks: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "turn-rs": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: true,
             secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "USER_1_CREDS=\"foobar\"\n")),
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               server: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 realm: "localhost",
                 interfaces: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     transport: "udp",
                     listen: "127.0.0.1:3478",
                     external: "127.0.0.1:3478",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     transport: "tcp",
                     listen: "127.0.0.1:3478",
                     external: "127.0.0.1:3478",
@@ -81,8 +81,8 @@ export default nix.lambda((args) => (() => {
                 ]),
               })),
               auth: nix.thunk(() => ({
-                __proto__: pos$13,
-                "static-credentials": nix.thunk(() => ({ __proto__: pos$12, user1: "$USER_1_CREDS" })),
+                [nix.POS]: pos$13,
+                "static-credentials": nix.thunk(() => ({ [nix.POS]: pos$12, user1: "$USER_1_CREDS" })),
               })),
             })),
           })),

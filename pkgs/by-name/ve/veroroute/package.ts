@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "veroroute",
       version: "2.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/veroroute/veroroute-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4Wmvstjq0u8u5EFlvcGRb+UshZbtzAfRShQS2NFCllA=",
         })))),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       preConfigure: "cd Src/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           veroroute: nix.thunk(() => nix.sel(nixosTests, "veroroute")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Qt based Veroboard/Perfboard/PCB layout and routing application",
         homepage: "https://sourceforge.net/projects/veroroute",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-findlib`);
       const version = "1.9.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.camlcity.org/download/findlib-${version}.tar.gz`),
           hash: "sha256-ZiyRD3dOn+46GcTgV/OAWBqy/E7lLaR2EwSsnDG4hp0=",
         }))));
@@ -79,7 +79,7 @@ if [[ -z "\${dontDetectOcamlConflicts-}" ]]; then
 fi
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "O'Caml library manager",
         homepage: "http://projects.camlcity.org/projects/findlib.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -88,7 +88,7 @@ fi
         platforms: nix.thunk(() => nix.selOr(ocaml, () => [], "meta", "platforms")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

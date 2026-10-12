@@ -59,96 +59,96 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "dockerRegistry"));
   const blobCache = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableRedisCache")) ? "redis" : "inmemory"));
   const registryConfig = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     version: "0.1",
     log: nix.thunk(() => ({
-      __proto__: pos$2,
-      fields: nix.thunk(() => ({ __proto__: pos$1, service: "registry" })),
+      [nix.POS]: pos$2,
+      fields: nix.thunk(() => ({ [nix.POS]: pos$1, service: "registry" })),
     })),
     storage: nix.thunk(() => nix.update({
-      __proto__: pos$5,
-      cache: nix.thunk(() => ({ __proto__: pos$3, blobdescriptor: blobCache })),
-      delete: nix.thunk(() => ({ __proto__: pos$4, enabled: nix.thunk(() => nix.sel(cfg, "enableDelete")) })),
+      [nix.POS]: pos$5,
+      cache: nix.thunk(() => ({ [nix.POS]: pos$3, blobdescriptor: blobCache })),
+      delete: nix.thunk(() => ({ [nix.POS]: pos$4, enabled: nix.thunk(() => nix.sel(cfg, "enableDelete")) })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storagePath"), null)), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         filesystem: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rootdirectory: nix.thunk(() => nix.sel(cfg, "storagePath")),
         })),
       }))))),
     http: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       addr: nix.thunk(() => nix.str`${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
-      headers: nix.thunk(() => ({ __proto__: pos$8, "X-Content-Type-Options": nix.thunk(() => ["nosniff"]) })),
+      headers: nix.thunk(() => ({ [nix.POS]: pos$8, "X-Content-Type-Options": nix.thunk(() => ["nosniff"]) })),
     })),
     health: nix.thunk(() => ({
-      __proto__: pos$11,
-      storagedriver: nix.thunk(() => ({ __proto__: pos$10, enabled: true, interval: "10s", threshold: 3n })),
+      [nix.POS]: pos$11,
+      storagedriver: nix.thunk(() => ({ [nix.POS]: pos$10, enabled: true, interval: "10s", threshold: 3n })),
     })),
   }));
   const configFile = nix.thunk(() => nix.sel(cfg, "configFile"));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         dockerRegistry: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Docker Registry")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "distribution", nix.thunk(() => ({ __proto__: pos$13, example: "gitlab-container-registry" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "distribution", nix.thunk(() => ({ [nix.POS]: pos$13, example: "gitlab-container-registry" })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Docker registry host or ip to bind to.",
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Docker registry port to bind to.",
               default: 5000n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Opens the port used by the firewall.",
             })))),
           storagePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: "/var/lib/docker-registry",
               description: "Docker registry storage path for the filesystem storage backend. Set to\nnull to configure another backend via extraConfig.\n",
             })))),
           enableDelete: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable delete for manifests and blobs.",
             })))),
           enableRedisCache: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "redis as blob cache")),
           redisUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost:6379",
               description: "Set redis host and port.",
             })))),
           redisPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Set redis password.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Docker extra registry configuration.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  log.level = \"debug\";\n}\n")),
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "docker-registry-config.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), registryConfig, nix.thunk(() => nix.sel(cfg, "extraConfig")))))))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"docker-registry-config.yml\" \"# my custom docker-registry-config.yml ...\"")),
               description: "Path to CNCF distribution config file.\n\nSetting this option will override any configuration applied by the extraConfig option.\n",
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
             })))),
           enableGarbageCollect: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "garbage collect")),
           garbageCollectDates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: "daily",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specification (in the format described by\n{manpage}`systemd.time(7)`) of the time at\nwhich the garbage collect will occur.\n",
@@ -165,37 +165,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           dockerRegistry: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRedisCache")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 redis: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   addr: nix.thunk(() => nix.str`${nix.sel(cfg, "redisUrl")}`),
                   password: nix.thunk(() => nix.str`${nix.sel(cfg, "redisPassword")}`),
                   db: 0n,
                   dialtimeout: "10ms",
                   readtimeout: "10ms",
                   writetimeout: "10ms",
-                  pool: nix.thunk(() => ({ __proto__: pos$27, maxidle: 16n, maxactive: 64n, idletimeout: "300s" })),
+                  pool: nix.thunk(() => ({ [nix.POS]: pos$27, maxidle: 16n, maxactive: 64n, idletimeout: "300s" })),
                 })),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "docker-registry": nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               description: "Docker Container Registry",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} serve ${configFile}`),
                 User: "docker-registry",
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "storagePath")),
@@ -203,11 +203,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "docker-registry-garbage-collect": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Run Garbage Collection for docker registry",
               restartIfChanged: false,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$34, "X-StopOnRemoval": false })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$35, Type: "oneshot" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$34, "X-StopOnRemoval": false })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$35, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/registry garbage-collect ${configFile}
 /run/current-system/systemd/bin/systemctl restart docker-registry.service
 `),
@@ -216,21 +216,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           users: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             "docker-registry": nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storagePath"), null)), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 createHome: true,
                 home: nix.thunk(() => nix.sel(cfg, "storagePath")),
-              }))), { __proto__: pos$40, group: "docker-registry", isSystemUser: true })),
+              }))), { [nix.POS]: pos$40, group: "docker-registry", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$42, "docker-registry": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$42, "docker-registry": nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

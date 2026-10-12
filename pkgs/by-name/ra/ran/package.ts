@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const ran = nix.arg($, "ran");
   const curl = nix.arg($, "curl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ran",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m3ng9i",
           repo: "ran",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iMvUvzr/jaTNdgHQFuoJNJnnkx2XHIUUlrPWyTlreEw=",
         })))),
       vendorHash: "sha256-ObroruWWNilHIclqNvbEaa7vwk+1zMzDKbjlVs7Fito=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-X",
         nix.thunk(() => nix.str`main._version_=v${nix.sel(finalAttrs, "version")}`),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
         "main._branch_=master",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           simple: nix.thunk(() => nix.app(runCommand, "ran-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo hello world > index.html
 ${ran}/bin/ran &
 # Allow ran to fully initialize
@@ -52,7 +52,7 @@ ${ran}/bin/ran --version > $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/m3ng9i/ran",
         description: "Simple web server for serving static files",
         mainProgram: "ran",

@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     "letoram-arcan": nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "arcan",
         version: "0.7.1",
         src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "letoram",
             repo: "arcan",
             tag: nix.thunk(() => nix.sel(self, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       return nix.force(self);
     })()),
     "letoram-openal": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "letoram-openal",
       version: "0.6.2-unstable-2025-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "letoram",
           repo: "openal",
           rev: "731bdaefeb9cfcc52267bb8fc884248e4420e9ec",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     libuvc: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libuvc",
       version: "0.0.7-unstable-2024-03-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "libuvc",
           repo: "libuvc",
           rev: "047920bcdfb1dac42424c90de5cc77dfc9fba04d",
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     luajit: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "luajit",
       version: "2.1-unstable-2024-04-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "LuaJIT",
           repo: "LuaJIT",
           rev: "9b5e837ac2dfdc0638830c048a47ca9378c504d3",
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     tracy: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "tracy",
       version: "0.9.1-unstable-2023-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "wolfpld",
           repo: "tracy",
           rev: "93537dff336e0796b01262e8271e4d63bf39f195",
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     "letoram-tracy": nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "letoram-tracy",
       version: "0-unstable-2024-04-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           owner: "letoram",
           repo: "tracy",
           rev: "5b3513d9838317bfc0e72344b94aa4443943c2fd",

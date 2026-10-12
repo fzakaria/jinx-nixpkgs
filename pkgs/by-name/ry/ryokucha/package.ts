@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ryokucha",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryonakano",
           repo: "ryokucha",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK4 library that includes customized widgets",
         homepage: "https://github.com/ryonakano/ryokucha",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

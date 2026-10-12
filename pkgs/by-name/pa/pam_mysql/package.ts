@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const mariadb = nix.arg($, "mariadb");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pam_mysql",
       version: "1.0.0-beta2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NigelCunningham",
           repo: "pam-MySQL",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, ninja]),
       buildInputs: nix.thunk(() => [pam, libmysqlclient, mariadb, libxcrypt]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "auth-mysql": nix.thunk(() => nix.attr(nixosTests, "auth-mysql")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PAM authentication module against a MySQL database",
         homepage: "https://github.com/NigelCunningham/pam-MySQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

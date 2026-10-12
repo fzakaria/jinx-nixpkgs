@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const tinycmmc = nix.arg($, "tinycmmc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geomcpp",
       version: "0.0.0-unstable-2025-06-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Grumbel",
           repo: "geomcpp",
           rev: "282e3710fbe6dacee630391e4af8ffe03181f8a9",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "echo $version > VERSION\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of point, size and rect classes",
         homepage: "https://github.com/Grumbel/geomcpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

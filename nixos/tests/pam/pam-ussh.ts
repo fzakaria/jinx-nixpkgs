@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const testOnlySSHCredentials = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "pam-ussh-test-ca", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssh"))]),
     })), "mkdir $out\nssh-keygen -t ed25519 -N \"\" -f $out/ca\n\nssh-keygen -t ed25519 -N \"\" -f $out/alice\nssh-keygen -s $out/ca -I \"alice user key\" -n \"alice,root\" -V 19700101:forever $out/alice.pub\n\nssh-keygen -t ed25519 -N \"\" -f $out/bob\nssh-keygen -s $out/ca -I \"bob user key\" -n \"bob\" -V 19700101:forever $out/bob.pub\n"));
   const makeTestScript = (user) => nix.app(nix.sel(pkgs, "writeShellScript"), nix.thunk(() => nix.str`pam-ussh-${user}-test-script`), nix.thunk(() => nix.str`set -euo pipefail
@@ -43,10 +43,10 @@ ${nix.sel(pkgs, "openssh")}/bin/ssh-add -l &>2
 exec sudo id -u -n
 `));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "pam-ussh",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lukegb"))];
@@ -55,35 +55,35 @@ exec sudo id -u -n
     machine: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         users: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             alice: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               isNormalUser: true,
               extraGroups: nix.thunk(() => ["wheel"]),
             })),
             bob: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               isNormalUser: true,
               extraGroups: nix.thunk(() => ["wheel"]),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pam: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ussh: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               authorizedPrincipals: "root",
               caFile: nix.thunk(() => nix.str`${testOnlySSHCredentials}/ca.pub`),
             })),
           })),
-          sudo: nix.thunk(() => ({ __proto__: pos$9, enable: true, extraConfig: "Defaults lecture=\"never\"\n" })),
+          sudo: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, extraConfig: "Defaults lecture=\"never\"\n" })),
         })),
       };
     })(), formals$2),

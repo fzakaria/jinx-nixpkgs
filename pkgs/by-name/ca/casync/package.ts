@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "casync",
       version: "2-unstable-2023-10-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "casync",
           rev: "e6817a79d89b48e1c6083fb1868a28f1afb32505",
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, python3, sphinx]),
       nativeCheckInputs: nix.thunk(() => nix.concat([glibcLocales, rsync], nix.app(nix.sel(lib, "optionals"), udevSupport, nix.thunk(() => [udevCheckHook])))),
       postPatch: "for f in test/test-*.sh.in; do\n  patchShebangs $f\ndone\npatchShebangs test/http-server.py\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, PKG_CONFIG_UDEV_UDEVDIR: "lib/udev" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_UDEV_UDEVDIR: "lib/udev" })),
       mesonFlags: nix.thunk(() => nix.concat(["-Dfuse=false"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(udevSupport)), nix.thunk(() => ["-Dudev=false"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(selinuxSupport)), nix.thunk(() => ["-Dselinux=false"]))))),
       doCheck: true,
       preCheck: "export LC_ALL=\"en_US.utf-8\"\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Content-Addressable Data Synchronizer",
         mainProgram: "casync",
         homepage: "https://github.com/systemd/casync",

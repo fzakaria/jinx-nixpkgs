@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "networking", "rxe"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       networking: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         rxe: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "RDMA over converged ethernet")),
           interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["eth0"]),
@@ -41,19 +41,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             rxe: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "RoCE interfaces",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["systemd-modules-load.service", "network-online.target"]),
               wants: nix.thunk(() => ["network-pre.target", "network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.app(nix.builtins.map, (x) => nix.str`${nix.sel(pkgs, "iproute2")}/bin/rdma link add rxe_${x} type rxe netdev ${x}`, nix.thunk(() => nix.sel(cfg, "interfaces")))),

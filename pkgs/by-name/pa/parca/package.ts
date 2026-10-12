@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.28.0";
   const parca_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "parca-dev",
       repo: "parca",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-7ndRiOYa7HiOwwHRXqeCr3A+5EAVvbo4I4vkoqSya+E=",
     }))));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "parca-ui",
       src: nix.thunk(() => nix.str`${parca_src}/ui`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.str`# Copy the built UI into the right place for the Go build to embed it.
 cp -r ${ui}/share/parca/ui/* ui/packages/app/web/build
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, ui: ui, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, ui: ui, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "parca",
         description: "Continuous profiling for analysis of CPU and memory usage",
         homepage: "https://github.com/parca-dev/parca",
@@ -77,7 +77,7 @@ cp -r ${ui}/share/parca/ui/* ui/packages/app/web/build
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: version_1,
         pname,
         src,

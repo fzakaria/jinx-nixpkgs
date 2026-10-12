@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igraph",
           repo: "python-igraph",
           tag: version,
@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [igraph]);
       const dependencies = nix.thunk(() => [texttable]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cairo: nix.thunk(() => [cairocffi]),
         matplotlib: nix.thunk(() => [matplotlib]),
         plotly: nix.thunk(() => [plotly]),
         plotting: nix.thunk(() => [cairocffi]),
       }));
-      const env = nix.thunk(() => ({ __proto__: pos$3, IGRAPH_USE_PKG_CONFIG: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, IGRAPH_USE_PKG_CONFIG: true }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["testAuthorityScore", "test_labels"]);
       const pythonImportsCheck = nix.thunk(() => ["igraph"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High performance graph data structures and algorithms",
         mainProgram: "igraph",
         homepage: "https://igraph.org/python/",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

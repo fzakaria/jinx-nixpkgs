@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const gi_docgen = nix.arg($, "gi-docgen");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gexiv2",
       __structuredAttrs: true,
       strictDeps: true,
       version: "0.16.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gexiv2/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gexiv2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qtniQP3/voXjkPRu4KVn4lG66lwpw9hpAmA4hoPcjQo=",
         })))),
@@ -61,7 +61,7 @@ export GI_TYPELIB_PATH=$PWD/gexiv2
       })()),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/GNOME/gexiv2",
         description: "GObject wrapper around the Exiv2 photo metadata library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

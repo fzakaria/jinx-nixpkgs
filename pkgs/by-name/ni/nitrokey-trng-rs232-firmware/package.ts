@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nitrokey-trng-rs232-firmware",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "nitrokey-trng-rs232-firmware",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["all"]),
       installPhase: "runHook preInstall\ninstall -D TRNGSerial.bin $out/TRNGSerial.bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for the Nitrokey TRNG RS232 device",
         longDescription: "This package does not provide an executable. It should be built using `nix-build -A nitrokey-trng-rs232-firmware` or `nix build nixpkgs#nitrokey-trng-rs232-firmware` and flashed using `libnitrokey`\n",
         homepage: "https://github.com/Nitrokey/nitrokey-trng-rs232-firmware",

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "websockets"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kurve",
       version: "3.5.1",
       dontWrapQtApps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luisbocanegra",
           repo: "kurve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,13 +48,13 @@ cp -r package/* $out/share/plasma/plasmoids/luisbocanegra.audio.visualizer
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "kwindowsystem", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "KDE Plasma widget displaying CAVA audio visualizations.",
         homepage: "https://github.com/luisbocanegra/kurve",
         changelog: nix.thunk(() => nix.str`https://github.com/luisbocanegra/kurve/releases/tag/v${nix.sel(finalAttrs, "version")}`),

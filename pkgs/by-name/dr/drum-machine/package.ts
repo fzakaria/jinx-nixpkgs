@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "drum-machine",
       version: "2.2.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Revisto",
           repo: "drum-machine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern and intuitive application for creating, playing, and managing drum patterns",
         homepage: "https://apps.gnome.org/DrumMachine",
         changelog: nix.thunk(() => nix.str`https://github.com/Revisto/drum-machine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const googleapis_common_protos = nix.arg($, "googleapis-common-protos");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tensorflow-metadata",
       version: "1.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tensorflow",
           repo: "metadata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "google.protobuf.runtime_version",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard representations for metadata that are useful when training machine learning models with TensorFlow",
         homepage: "https://github.com/tensorflow/metadata",
         changelog: nix.thunk(() => nix.str`https://github.com/tensorflow/metadata/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

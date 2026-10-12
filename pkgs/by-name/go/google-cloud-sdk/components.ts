@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const python3 = nix.arg($, "python3");
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
-  const arches = nix.thunk(() => ({ __proto__: pos$1, x86: "i686", x86_64: "x86_64", arm: "aarch64" }));
+  const arches = nix.thunk(() => ({ [nix.POS]: pos$1, x86: "i686", x86_64: "x86_64", arm: "aarch64" }));
   const oses = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     LINUX: "linux",
     MACOSX: "darwin",
     WINDOWS: "windows",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     const schema_version = nix.arg($_1, "schema_version");
     const version = nix.arg($_1, "version");
     return nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         components: nix.thunk(() => [component]),
         revision: revision,
         schema_version: schema_version,
@@ -63,10 +63,10 @@ export default nix.lambda((args) => (() => {
     const schema_version = nix.arg($_1, "schema_version");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(lib, "fix"), (self) => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((component) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: nix.thunk(() => nix.sel(component, "id")),
             value: nix.thunk(() => nix.app(componentFromSnapshot, self, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 component: component,
                 revision: revision,
                 schema_version: schema_version,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
     const architectures = nix.thunk(() => nix.builtins.filter((arch) => nix.builtins.elem(arch, nix.thunk(() => nix.builtins.attrNames(arches))), nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["platform", "architectures"]), allArches, component))));
     const operating_systems = nix.thunk(() => nix.builtins.filter((os) => nix.builtins.elem(os, nix.thunk(() => nix.builtins.attrNames(oses))), nix.thunk(() => nix.sel(component, "platform", "operating_systems"))));
     return nix.app(mkComponent, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.sel(component, "id")),
         version: nix.thunk(() => nix.sel(component, "version", "version_string")),
         src: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["data", "source"]), component)), nix.thunk(() => nix.str`${baseUrl}/${nix.sel(component, "data", "source")}`))),
@@ -107,11 +107,11 @@ export default nix.lambda((args) => (() => {
     const platforms = nix.argOr($_1, "platforms", () => nix.sel(lib, "platforms", "all"));
     const snapshot_1 = nix.arg($_1, "snapshot");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: pname,
         version: version,
         snapshot: snapshot_1,
-        src: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(src, "")), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$7, url: src, sha256: sha256 })))))),
+        src: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(src, "")), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$7, url: src, sha256: sha256 })))))),
         dontUnpack: true,
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/google-cloud-sdk/.install
 
@@ -132,11 +132,11 @@ printf "%s" "$snapshot" > $out/google-cloud-sdk/.install/${pname}.snapshot.json
         nativeBuildInputs: nix.thunk(() => nix.concat([python3, nix.thunk(() => nix.sel(stdenv, "cc", "cc"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
         buildInputs: nix.thunk(() => [libxcrypt_legacy]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           dependencies: nix.thunk(() => nix.app(filterForSystem, dependencies)),
         })),
         __structuredAttrs: true,
-        meta: nix.thunk(() => ({ __proto__: pos$9, description: description, platforms: platforms })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, description: description, platforms: platforms })),
       })));
   })(), formals$5);
   return nix.app(componentsFromSnapshot, snapshot);

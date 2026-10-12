@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libappimage",
       version: "1.0.4-5",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AppImageCommunity",
           repo: "libappimage",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/AppImageCommunity/libappimage/commit/1e0515b23b90588ce406669134feca56ddcbbe43.patch",
             hash: "sha256-WIMvXNqC1stgPiBTRpXHWq3edIRnQomtRSW2qO52TRo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "libappimage-use-system-gtest.patch",
             url: "https://github.com/AppImageCommunity/libappimage/commit/7b83b7247fd2d86c330e09f534c9cec1b03f649f.patch",
             excludes: nix.thunk(() => ["ci/*", "lib/gtest", "tests/*"]),
             hash: "sha256-H+ph5TfKJPFcAzw2c7pzmqvB9R50HtZP/DbroOxLTVU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "libappimage-fix-cmake-4.patch",
             url: "https://github.com/AppImageCommunity/libappimage/commit/e5f6ea562611d534dc8e899a12ddf15c50e820be.patch",
             hash: "sha256-P6fPoiqVX3TrKGrU2EXIMBpQLGl7xNcy41Iq7vRM+n8=",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [cairo, glib, librsvg, zlib]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Implements functionality for dealing with AppImage files",
         homepage: "https://github.com/AppImageCommunity/libappimage/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

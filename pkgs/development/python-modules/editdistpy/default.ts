@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const symspellpy = nix.arg($, "symspellpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "editdistpy",
       version: "0.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mammothb",
           repo: "editdistpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r editdistpy\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(editdistpy, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          check: nix.thunk(() => nix.app(nix.sel(editdistpy, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["editdistpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast Levenshtein and Damerau optimal string alignment algorithms",
         homepage: "https://github.com/mammothb/editdistpy",
         changelog: nix.thunk(() => nix.str`https://github.com/mammothb/editdistpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

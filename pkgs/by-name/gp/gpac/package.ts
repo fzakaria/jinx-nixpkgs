@@ -53,30 +53,30 @@ export default nix.lambda((args) => (() => {
   const stable = nix.thunk(() => (() => {
     const version = "26.07.0";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "gpac",
         repo: "gpac",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-L4GKXCFsKVxWXZJJeiAegXJySoS9+/V+/cuzEJEse+I=",
       }))));
-    const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", ignoredVersions: "^(abi|test)" }))));
-    return { __proto__: pos$3, version, src, updateScript };
+    const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", ignoredVersions: "^(abi|test)" }))));
+    return { [nix.POS]: pos$3, version, src, updateScript };
   })());
   const unstable = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     version: "26.07.0-unstable-2026-08-04",
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner: "gpac",
         repo: "gpac",
         rev: "014bb6de5136e9466f6339486901db4d46570784",
         hash: "sha256-Uj3+CH2xkw504A2LUmruQ5vdQXhGqKY7Lx1Yp5263J0=",
       })))),
-    updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$5, tagFormat: "v*", tagPrefix: "v" })))),
+    updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, tagFormat: "v*", tagPrefix: "v" })))),
   }));
   const channelToUse = nix.thunk(() => (nix.asBool(nix.eq(releaseChannel, "unstable")) ? nix.force(unstable) : nix.force(stable)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gpac",
       version: nix.thunk(() => nix.attr(channelToUse, "version")),
       src: nix.thunk(() => nix.attr(channelToUse, "src")),
@@ -108,11 +108,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.sel(channelToUse, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open Source multimedia framework for research and academic purposes",
         longDescription: "GPAC is an Open Source multimedia framework for research and academic purposes.\nThe project covers different aspects of multimedia, with a focus on presentation\ntechnologies (graphics, animation and interactivity) and on multimedia packaging\nformats such as MP4.\n\nGPAC provides three sets of tools based on a core library called libgpac:\n\nA multimedia player, called Osmo4 / MP4Client,\nA multimedia packager, called MP4Box,\nAnd some server tools included in MP4Box and MP42TS applications.\n",
         homepage: "https://gpac.wp.imt.fr",

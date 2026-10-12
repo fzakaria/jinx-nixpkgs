@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ocaml-modules/lacaml/default.nix:10:1");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lacaml",
       version: "11.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mmottl/lacaml/releases/download/${nix.sel(finalAttrs, "version")}/lacaml-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-NEs7A/lfA+8AE6k19EPW02e1pseDE7HobGSB/ZwLcoc=",
         })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [lapack, blas]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mmottl.github.io/lacaml",
         description: "OCaml bindings for BLAS and LAPACK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.002";
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mozilla/zilla-slab/releases/download/v${version}/Zilla-Slab-Fonts-v${version}.zip`),
           stripRoot: false,
           hash: "sha256-yOHu+dSWlyI7w1N1teED9R1Fphso2bKAlYDC1KdqBCc=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mozilla/zilla-slab",
         description: "Zilla Slab fonts",
         longDescription: "Zilla Slab is Mozilla's core typeface, used\nfor the Mozilla wordmark, headlines and\nthroughout their designs. A contemporary\nslab serif, based on Typotheque's Tesla, it\nis constructed with smooth curves and true\nitalics, which gives text an unexpectedly\nsophisticated industrial look and a friendly\napproachability in all weights.\n",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, outputs, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, outputs, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

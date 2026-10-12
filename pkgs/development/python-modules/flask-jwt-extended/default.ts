@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
       const version = "4.7.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "flask_jwt_extended",
           version: version,
           hash: "sha256-eP0PRgMX+s86AISmRX/68vHdqe771Xb5TOo1sOrdVTE=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [flask, pyjwt, python_dateutil, werkzeug]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, asymmetric_crypto: nix.thunk(() => [cryptography]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, asymmetric_crypto: nix.thunk(() => [cryptography]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["flask_jwt_extended"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/vimalloc/flask-jwt-extended/releases/tag/${version}`),
         description: "JWT extension for Flask",
         homepage: "https://flask-jwt-extended.readthedocs.io/",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

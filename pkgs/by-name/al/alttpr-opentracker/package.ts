@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opentracker";
       const version = "1.8.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trippsc2",
           repo: "opentracker",
           tag: version,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [gtk3, openssl, xinput, libice, libsm, libx11, libxi]);
       const autoPatchelfIgnoreMissingDeps = nix.thunk(() => ["libc.musl-x86_64.so.1", "libintl.so.8"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tracking application for A Link to the Past Randomizer",
         homepage: "https://github.com/trippsc2/OpenTracker",
         sourceProvenance: nix.thunk(() => (() => {
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

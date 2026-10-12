@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const enableGist = nix.argOr($, "enableGist", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gecode",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gecode",
           repo: "gecode",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bison, cmake, flex]),
       buildInputs: nix.thunk(() => nix.concat([perl, gmp, mpfr], nix.app(nix.sel(lib, "optional"), enableGist, nix.thunk(() => nix.sel(libsForQt5, "qtbase"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://www.gecode.org",
         description: "Toolkit for developing constraint-based systems",

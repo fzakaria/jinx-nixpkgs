@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getmoto",
           repo: "moto",
           tag: version,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         jinja2,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           antlr4_python3_runtime,
           joserfc,
@@ -272,7 +272,7 @@ export default nix.lambda((args) => (() => {
         pytest_xdist,
         pytestCheckHook,
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, AWS_ACCESS_KEY_ID: "ak", AWS_SECRET_ACCESS_KEY: "sk" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, AWS_ACCESS_KEY_ID: "ak", AWS_SECRET_ACCESS_KEY: "sk" }));
       const pytestFlags = nix.thunk(() => ["--dist=loadscope"]);
       const disabledTestMarks = nix.thunk(() => ["network", "requires_docker"]);
       const disabledTests = nix.thunk(() => [
@@ -314,7 +314,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_ec2/test_instance_types.py::test_describe_instance_types_gpu_instance_types",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Allows your tests to easily mock out AWS Services",
         homepage: "https://github.com/getmoto/moto",
         changelog: nix.thunk(() => nix.str`https://github.com/getmoto/moto/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -325,7 +325,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

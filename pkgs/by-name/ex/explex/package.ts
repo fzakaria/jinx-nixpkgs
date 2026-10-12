@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "explex",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/Explex/releases/download/v${nix.sel(finalAttrs, "version")}/Explex_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-OUmzF8GrwVgFAMSEiZLvh85nsOw1a0a7B70u2cRXXO8=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 Explex/*.ttf -t $out/share/fonts/truetype/explex\ninstall -Dm444 Explex35/*.ttf -t $out/share/fonts/truetype/explex-35\ninstall -Dm444 ExplexConsole/*.ttf -t $out/share/fonts/truetype/explex-console\ninstall -Dm444 Explex35Console/*.ttf -t $out/share/fonts/truetype/explex-35console\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composite font of 0xProto and IBM Plex Sans JP",
         homepage: "https://github.com/yuru7/Explex",
         changelog: nix.thunk(() => nix.str`https://github.com/yuru7/Explex/releases/tag/v${nix.sel(finalAttrs, "version")}`),

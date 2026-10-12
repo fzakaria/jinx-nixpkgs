@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const libtiff = nix.arg($, "libtiff");
   const jabcode = nix.arg($, "jabcode");
   const subdir = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), subproject, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       library: "jabcode",
       reader: "jabcodeReader",
       writer: "jabcodeWriter",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`jabcode-${subproject}`),
       version: "0-unstable-2022-06-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           repo: "jabcode",
           owner: "jabcode",
           rev: "ee0e4c88b9f3c1da46d6f679ee8b69c547907c20",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`cd src/${subdir}`),
       installPhase: nix.thunk(() => (nix.asBool(nix.eq(subproject, "library")) ? "mkdir -p $out/lib\ncp build/* $out/lib\n" : "mkdir -p $out/bin\ncp -RT bin $out/bin\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`High-capacity 2D color bar code (${subproject})`),
         longDescription: nix.thunk(() => nix.str`JAB Code (Just Another Bar Code) is a high-capacity 2D color bar code, which can encode more data than traditional black/white (QR) codes. This is the ${subproject} part.`),
         homepage: "https://jabcode.org/",

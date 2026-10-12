@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const execline = nix.arg($, "execline");
   const s6 = nix.arg($, "s6");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "s6-rc",
       version: "0.7.0.0",
       sha256: "sha256-v1uM4NpaTucNZCuBi2HZkWp6m2SkV1lfOIET5UoYhog=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "s6-rc-man-pages",
           version: "0.6.0.0.1",
           sha256: "sha256-zHkh5H0/nXsLjHJE9PT+2ga8gK1evm4ktheMqqNV1hQ=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "qyliss"))]),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Service manager for s6-based systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),

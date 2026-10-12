@@ -33,8 +33,8 @@ export default nix.lambda((args) => (() => {
       const dontUseSetuptoolsBuild = true;
       const dontUsePipInstall = true;
       const propagatedBuildInputs = nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pipInstallHook, "override"), nix.thunk(() => ({ __proto__: pos$1, pip: null })))),
-        nix.thunk(() => nix.app(nix.sel(setuptoolsBuildHook, "override"), nix.thunk(() => ({ __proto__: pos$2, setuptools: null, wheel: null })))),
+        nix.thunk(() => nix.app(nix.sel(pipInstallHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, pip: null })))),
+        nix.thunk(() => nix.app(nix.sel(setuptoolsBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, setuptools: null, wheel: null })))),
       ]);
       const postPatch = "mkdir -p $out/bin\n";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, unzip]);
@@ -65,7 +65,7 @@ ${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m pip install --no-bu
 popd
 `));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Version of pip used for bootstrapping",
         license: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(pip, "meta", "license")),
@@ -74,7 +74,7 @@ popd
         homepage: nix.thunk(() => nix.sel(pip, "meta", "homepage")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         name,

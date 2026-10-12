@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glitter",
       version: "1.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "milo123459",
           repo: "glitter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "git init\n",
       checkFlags: nix.thunk(() => ["--skip", "runs_correctly"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git wrapper that allows you to compress multiple commands into one",
         homepage: "https://github.com/milo123459/glitter",
         changelog: nix.thunk(() => nix.str`https://github.com/Milo123459/glitter/releases/tag/v${nix.sel(finalAttrs, "version")}`),

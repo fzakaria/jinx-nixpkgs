@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const typescript_5 = nix.arg($, "typescript_5");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vscode-html-languageserver",
       version: "1.138.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "vscode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ makeBinaryWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/vscode-htm
 ln -s $out/bin/vscode-html-languageserver $out/bin/vscode-html-language-server
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTML language server",
         homepage: nix.thunk(() => nix.str`https://github.com/microsoft/vscode/tree/${nix.sel(finalAttrs, "src", "tag")}/extensions/html-language-features/server`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

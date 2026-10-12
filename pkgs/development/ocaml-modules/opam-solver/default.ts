@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const z3 = nix.arg($, "z3");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-solver",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       propagatedBuildInputs: nix.thunk(() => [cudf, dose3, mccs, opam_0install_cudf, opam_format, re, z3]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "This library is based on the Cudf and Dose libraries, and handles calls to the external solver from opam",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

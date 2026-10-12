@@ -30,24 +30,24 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const setupHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "pybind11-setup-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         out: nix.thunk(() => nix.builtins.placeholder("out")),
         pythonInterpreter: nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "interpreter")),
         pythonIncludeDir: nix.thunk(() => nix.str`${python}/include/python${nix.sel(python, "pythonVersion")}`),
         pythonSitePackages: nix.thunk(() => nix.str`${python}/${nix.sel(python, "sitePackages")}`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./pybind11-setup-hook.sh")));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pybind11",
       version: "2.13.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "pybind",
           repo: "pybind11",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./pybind11.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "pybind11-python314-fopen.patch",
             url: "https://github.com/pybind/pybind11/commit/3bd75bddf966ca32fec6e7d7ffc25630431e8815.patch",
             includes: nix.thunk(() => ["include/pybind11/eval.h"]),
             hash: "sha256-98gdGDUQFM/0el6j+fqyBppOfrjub4Cyxlu7wc7S8SQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "pybind11-python314-unhashable-message.patch",
             url: "https://github.com/pybind/pybind11/commit/236b32f5c53665c1b1ea3d70f4a776287dadf863.patch",
             hash: "sha256-zCapiTpNuPyYepOYmHCRjEFOn8z0UmlT2PmgX59XzM8=",
@@ -96,7 +96,7 @@ ln -sf $out/include/pybind11 $out/include/${nix.sel(python, "libPrefix")}/pybind
       postCheck: "make cpptest\n",
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "fortify")),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/pybind/pybind11",
         changelog: nix.thunk(() => nix.str`https://github.com/pybind/pybind11/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/changelog.rst`),
         description: "Seamless operability between C++11 and Python",

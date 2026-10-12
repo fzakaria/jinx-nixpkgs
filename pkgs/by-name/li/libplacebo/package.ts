@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const fast_float = nix.arg($, "fast-float");
   const vulkanSupport = nix.argOr($, "vulkanSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libplacebo",
       version: "7.360.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "libplacebo",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "unwind", false))])))),
       postPatch: "substituteInPlace meson.build \\\n  --replace 'python_env.append' '#'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reusable library for GPU-accelerated video/image rendering primitives",
         longDescription: "Reusable library for GPU-accelerated image/view processing primitives and\nshaders, as well a batteries-included, extensible, high-quality rendering\npipeline (similar to mpv's vo_gpu). Supports Vulkan, OpenGL and Metal (via\nMoltenVK).\n",
         homepage: "https://code.videolan.org/videolan/libplacebo",

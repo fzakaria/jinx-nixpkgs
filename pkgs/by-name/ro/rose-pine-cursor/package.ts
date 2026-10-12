@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rose-pine-cursor",
       version: "1.1.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/rose-pine/cursor/releases/download/v${nix.sel(finalAttrs, "version")}/BreezeX-RosePine-Linux.tar.xz`),
             hash: "sha256-szDVnOjg5GAgn2OKl853K3jZ5rVsz2PIpQ6dlBKJoa8=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/rose-pine/cursor/releases/download/v${nix.sel(finalAttrs, "version")}/BreezeX-RosePineDawn-Linux.tar.xz`),
             hash: "sha256-hanfwx9ooT1TbmcgCr63KVYwC1OIzTwjmxzi4Zjcrdg=",
           })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons\ncp -R BreezeX-RosePine-Linux $out/share/icons/\ncp -R BreezeX-RosePineDawn-Linux $out/share/icons/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soho vibes for Cursors",
         downloadPage: "https://github.com/rose-pine/cursor/releases",
         homepage: "https://rosepinetheme.com/",

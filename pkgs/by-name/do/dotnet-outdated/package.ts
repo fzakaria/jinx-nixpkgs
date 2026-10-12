@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
       const nugetHash = "sha256-f5su1er+1wP35rrU3S+qvwfPp/C55tR7xZ4bv4z7zL0=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: ".NET Core global tool to display and update outdated NuGet packages in a project",
         downloadPage: "https://www.nuget.org/packages/dotnet-outdated-tool",
         homepage: "https://github.com/dotnet-outdated/dotnet-outdated",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dotnet-outdated",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         nugetName,
         version,

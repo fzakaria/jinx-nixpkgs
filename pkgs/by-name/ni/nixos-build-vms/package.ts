@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nixos-build-vms",
       src: nix.path(here, "./nixos-build-vms.sh"),
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         runtimeShell: runtimeShell,
         buildVms: nix.thunk(() => nix.str`${nix.path(here, "./build-vms.nix")}`),
       })),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.path(here, "./nixos-build-vms.8")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "nixos-build-vms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

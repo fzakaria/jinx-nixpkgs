@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   const pythonDocs = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     html: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       recurseForDerivations: true,
-      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-html.nix")), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
+      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-html.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
     })),
     text: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       recurseForDerivations: true,
-      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-text.nix")), nix.thunk(() => ({ __proto__: pos$3, stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
+      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-text.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
     })),
     texinfo: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       recurseForDerivations: true,
-      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-texinfo.nix")), nix.thunk(() => ({ __proto__: pos$5, stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
+      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-texinfo.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
     })),
   }));
   return nix.force(pythonDocs);

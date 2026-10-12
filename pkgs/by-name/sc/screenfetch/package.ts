@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "screenfetch",
       version: "3.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KittyKatt",
           repo: "screenFetch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ runHook postInstall
 `),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fetches system/theme information in terminal for Linux desktop screenshots",
         longDescription: "screenFetch is a \"Bash Screenshot Information Tool\". This handy Bash\nscript can be used to generate one of those nifty terminal theme\ninformation + ASCII distribution logos you see in everyone's screenshots\nnowadays. It will auto-detect your distribution and display an ASCII\nversion of that distribution's logo and some valuable information to the\nright. There are options to specify no ascii art, colors, taking a\nscreenshot upon displaying info, and even customizing the screenshot\ncommand! This script is very easy to add to and can easily be extended.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

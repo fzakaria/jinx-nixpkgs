@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "21.5.31";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aboutcode-org",
           repo: "scancode-plugins",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ popd
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["extractcode_libarchive"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ScanCode Toolkit plugin to provide pre-built binary libraries and utilities and their locations",
         homepage: "https://github.com/aboutcode-org/scancode-plugins/tree/main/builtins/extractcode_libarchive-linux",
         license: nix.thunk(() => (() => {
@@ -65,7 +65,7 @@ popd
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

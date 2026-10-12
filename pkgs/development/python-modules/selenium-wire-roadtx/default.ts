@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const wsproto = nix.arg($, "wsproto");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "selenium-wire-roadtx",
       version: "5.2.4-unstable-2026-05-20",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dirkjanm",
           repo: "selenium-wire-roadtx",
           rev: "98e91ea9e2472902d19b4a328a2ea08539b488b9",
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/end2end/test_end2end.py", "tests/seleniumwire/test_server.py"]),
       disabledTests: nix.thunk(() => ["BackendIntegrationTest", "test_save_response"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extends Selenium's Python bindings to give you the ability to inspect requests made by the browser",
         homepage: "https://github.com/dirkjanm/selenium-wire-roadtx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

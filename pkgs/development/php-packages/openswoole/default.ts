@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "26.2.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "openswoole",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openswoole",
           repo: "swoole-src",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => nix.concat([pcre2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [valgrind])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/openswoole/swoole-src/releases/tag/v${version}`),
         description: "Coroutine-based concurrency library and high performance programmatic server for PHP",
         homepage: "https://www.openswoole.com/",

@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.arg($, "majorVersion");
   const repo = "git@github.com:scala/scala.git";
   const versionMap = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "2.12": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "2.12.18",
       hash: "sha256-naIJCET+YPrbXln39F9aU3DBdnjcn7PYMmhDxETOA5g=",
       pname: "scala_2_12",
     })),
     "2.13": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.13.15",
       hash: "sha256-jXIZ0q2IHIHPdwmp5JU05s4S0Bft4Uc+r9Hpuyh8ObE=",
       pname: "scala_2_13",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.lookup(w, "version"));
       const pname = "scala";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: nix.thunk(() => nix.lookup(w, "hash")),
           url: nix.thunk(() => nix.str`https://www.scala-lang.org/files/archive/scala-${version}.tgz`),
         }))));
@@ -76,7 +76,7 @@ runHook postInstall
 echo 'println("foo"*3)' | $out/bin/scala 2>/dev/null | grep "foofoofoo"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -o errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, coreutils, git, gnused, nix$]))}
@@ -91,7 +91,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "General purpose programming language",
         longDescription: "Scala is a general purpose programming language designed to express\ncommon programming patterns in a concise, elegant, and type-safe way.\nIt smoothly integrates features of object-oriented and functional\nlanguages, enabling Java and other programmers to be more productive.\nCode sizes are typically reduced by a factor of two to three when\ncompared to an equivalent Java application.\n",
         homepage: "https://www.scala-lang.org/",
@@ -104,7 +104,7 @@ fi
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version,
         pname,
         src,

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "9router",
       version: "0.5.86",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/9router/-/9router-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-djgKrsZ19tbGQ5GEhYaMrolk7aU5wXVPClACTHYB2zI=",
         })))),
@@ -40,11 +40,11 @@ cp ${nix.path(here, "./package-lock.json")} package-lock.json
       dontNpmBuild: true,
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Local AI gateway routing requests across multiple AI providers",
         homepage: "https://github.com/decolua/9router",
         downloadPage: "https://www.npmjs.com/package/9router",

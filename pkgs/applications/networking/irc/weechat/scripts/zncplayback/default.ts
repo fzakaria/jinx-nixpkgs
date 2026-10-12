@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-zncplayback",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/weechat/scripts/raw/bcc9643136addd2cd68ac957dd64e336e4f88aa1/python/zncplayback.py",
           sha256: "1k32p6naxg40g664ip48zvm61xza7l9az3v3rawmjw97i0mwz7y3",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/share\ncp $src $out/share/zncplayback.py\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["zncplayback.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["zncplayback.py"]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Add support for the ZNC Playback module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

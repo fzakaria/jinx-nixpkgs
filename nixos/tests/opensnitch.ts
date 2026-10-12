@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const test_ebpf = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86"));
   const monitorMethods = nix.thunk(() => nix.concat(["proc", "ftrace", "audit"], nix.app(nix.sel(lib, "optional"), test_ebpf, "ebpf")));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "opensnitch",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "onny")),
           nix.thunk(() => nix.lookup(w, "grimmauld")),
@@ -47,65 +47,65 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => nix.update({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       server: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: pos$3,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           caddy: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$5,
-              localhost: nix.thunk(() => ({ __proto__: pos$4, extraConfig: "respond \"Hello, world!\"\n" })),
+              [nix.POS]: pos$5,
+              localhost: nix.thunk(() => ({ [nix.POS]: pos$4, extraConfig: "respond \"Hello, world!\"\n" })),
             })),
           })),
         })),
       })),
     }, nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((m) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`client_blocked_${m}`), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               opensnitch: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: true,
-                settings: nix.thunk(() => ({ __proto__: pos$10, DefaultAction: "deny", ProcMonitorMethod: m, LogLevel: 1n })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$10, DefaultAction: "deny", ProcMonitorMethod: m, LogLevel: 1n })),
               })),
             })),
           }))), monitorMethods))), nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((m) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`client_allowed_${m}`), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             services: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               opensnitch: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
-                settings: nix.thunk(() => ({ __proto__: pos$14, DefaultAction: "deny", ProcMonitorMethod: m, LogLevel: 1n })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$14, DefaultAction: "deny", ProcMonitorMethod: m, LogLevel: 1n })),
                 rules: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   curl: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     name: "curl",
                     enabled: true,
                     action: "allow",
                     duration: "always",
                     operator: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       type: "list",
                       operand: "list",
                       list: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: "simple",
                           sensitive: false,
                           operand: "process.path",
                           data: nix.thunk(() => nix.str`${nix.sel(pkgs, "curl")}/bin/curl`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: "network",
                           sensitive: false,
                           operand: "dest.network",

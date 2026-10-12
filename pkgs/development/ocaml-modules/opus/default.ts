@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ogg = nix.arg($, "ogg");
   const libopus = nix.arg($, "libopus");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opus",
       version: nix.thunk(() => nix.attr(ogg, "version")),
       src: nix.thunk(() => nix.attr(ogg, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ogg, nix.thunk(() => nix.sel(libopus, "dev"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/savonet/ocaml-opus",
         description: "Bindings to libopus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

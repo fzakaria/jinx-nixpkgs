@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const withKerberos = nix.argOr($, "withKerberos", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ksmbd-tools",
       version: "3.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cifsd-team",
           repo: "ksmbd-tools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "--sysconfdir /etc",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace utilities for the ksmbd kernel SMB server",
         homepage: "https://www.kernel.org/doc/html/latest/filesystems/cifs/ksmbd.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

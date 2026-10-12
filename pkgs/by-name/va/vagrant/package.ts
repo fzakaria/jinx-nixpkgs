@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const version = "2.4.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "hashicorp",
       repo: "vagrant",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
       const gemfile = nix.thunk(() => nix.app(writeText, "Gemfile", ""));
       const lockfile = nix.thunk(() => nix.app(writeText, "Gemfile.lock", ""));
       const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           vagrant: nix.thunk(() => ({
-            __proto__: pos$3,
-            source: nix.thunk(() => ({ __proto__: pos$2, type: "path", path: src })),
+            [nix.POS]: pos$3,
+            source: nix.thunk(() => ({ [nix.POS]: pos$2, type: "path", path: src })),
             version: version_1,
             dontCheckForBrokenSymlinks: true,
           })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), withLibvirt, nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset_libvirt.nix"))))))));
       const postBuild = "for gem in \"$out\"/lib/ruby/gems/*/gems/*; do\n  cp -a \"$gem/\" \"$gem.new\"\n  rm \"$gem\"\n  # needed on macOS, otherwise the mv yields permission denied\n  chmod +w \"$gem.new\"\n  mv \"$gem.new\" \"$gem\"\ndone\n";
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         ruby: ruby_1,
@@ -101,9 +101,9 @@ cp -av contrib/zsh/_vagrant $out/share/zsh/site-functions/
 `)));
       })());
       const installCheckPhase = "HOME=\"$(mktemp -d)\" $out/bin/vagrant init --output - > /dev/null\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$6, ruby: ruby_1, deps: deps }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, ruby: ruby_1, deps: deps }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool for building complete development environments",
         homepage: "https://www.vagrantup.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
@@ -117,7 +117,7 @@ cp -av contrib/zsh/_vagrant $out/share/zsh/site-functions/
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name,
         gemName,
         ruby: ruby_1,

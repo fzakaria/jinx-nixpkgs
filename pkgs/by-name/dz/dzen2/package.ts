@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dzen2",
       version: "0.9.5",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libx11, libxft, libxinerama, libxpm]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robm/dzen/tarball/master/dzen2-${nix.sel(finalAttrs, "version")}git.tar.gz`),
           sha256: "d4f7943cd39dc23fd825eb684b49dc3484860fa8443d30b06ee38af72a53b556",
         })))),
       patchPhase: "CFLAGS=\" -Wall -Os ${INCS} -DVERSION=\\\"${VERSION}\\\" -DDZEN_XINERAMA -DDZEN_XPM -DDZEN_XFT `pkg-config --cflags xft`\"\nLIBS=\" -L/usr/lib -lc -lXft -lXpm -lXinerama -lX11\"\necho \"CFLAGS=$CFLAGS\" >>config.mk\necho \"LIBS=$LIBS\" >>config.mk\necho \"LDFLAGS=$LIBS\" >>config.mk\nsubstituteInPlace config.mk --replace /usr/local \"$out\"\nsubstituteInPlace gadgets/config.mk --replace /usr/local \"$out\"\n",
       buildPhase: "mkdir -p $out/bin $out/man/man1\nmake clean install\ncd gadgets\nmake clean install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/robm/dzen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "X notification utility",

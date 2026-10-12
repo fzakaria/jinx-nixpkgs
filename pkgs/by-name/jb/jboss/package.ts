@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jboss-as";
       const version = "7.1.1.Final";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jboss.org/jbossas/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/jboss-as-${version}/jboss-as-${version}.tar.gz`),
           sha256: "1bdjw0ib9qr498vpfbg8klqw6rl11vbz7vwn6gp1r5gpqkd3zzc8",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
 find $out/bin -name \\*.sh -print0 | xargs -0 sed -i -e '/#!\\/bin\\/sh/aJAVA_HOME=${jdk}'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.jboss.org/",
         description: "Open Source J2EE application server",
         sourceProvenance: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ find $out/bin -name \\*.sh -print0 | xargs -0 sed -i -e '/#!\\/bin\\/sh/aJAVA_HO
           "CVE-2015-7501: remote code execution in apache-commons-collections: InvokerTransformer during deserialisation",
         ]),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

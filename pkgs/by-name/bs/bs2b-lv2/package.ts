@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libbs2b = nix.arg($, "libbs2b");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bs2b-lv2",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nilninull",
           repo: "bs2b-lv2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, python3, wafHook]),
       buildInputs: nix.thunk(() => [libbs2b, lv2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LV2 plugin for using Bauer stereophonic-to-binaural DSP library",
         homepage: "https://github.com/nilninull/bs2b-lv2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

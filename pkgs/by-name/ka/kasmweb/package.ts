@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const build = "06fdc8";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kasm-static-content.s3.amazonaws.com/kasm_release_${version}.${build}.tar.gz`),
           sha256: "sha256-7z5lc4QEpQQdVGMEMc04wXlJTK5VXJ4rufZmDEflJLw=",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir $out\nrm bin/utils/yq*\ncp -r bin conf www $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.kasmweb.com/",
         description: "Streaming containerized apps and desktops to end-users",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         build,

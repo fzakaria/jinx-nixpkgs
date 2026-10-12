@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtfeedback = nix.arg($, "qtfeedback");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hfd-service",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/hfd-service",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,11 +65,11 @@ substituteInPlace src/CMakeLists.txt \\
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DBus-activated service that manages human feedback devices such as LEDs and vibrators on mobile devices",
         homepage: "https://gitlab.com/ubports/development/core/hfd-service",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/hfd-service/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

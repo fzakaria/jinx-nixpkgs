@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cfv",
       version: "3.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cfv-project",
           repo: "cfv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\ncd test\nulimit -n 4096\npython3 test.py\nrunHook postCheck\n",
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cksfv"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to verify and create a wide range of checksums",
         homepage: "https://github.com/cfv-project/cfv",
         changelog: nix.thunk(() => nix.str`https://github.com/cfv-project/cfv/releases/tag/v${nix.sel(finalAttrs, "version")}`),

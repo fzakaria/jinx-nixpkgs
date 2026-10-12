@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lemonbar";
       const version = "1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LemonBoy",
           repo: "bar",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libxcb, perl]);
       const installFlags = nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight xcb based bar",
         homepage: "https://github.com/LemonBoy/bar",
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "lemonbar",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

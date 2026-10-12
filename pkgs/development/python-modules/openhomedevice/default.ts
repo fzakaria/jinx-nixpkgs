@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openhomedevice",
       version: "2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bazwilliams",
           repo: "openhomedevice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["openhomedevice"]),
       enabledTestPaths: nix.thunk(() => ["tests/*.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to access Linn Ds and Openhome devices",
         homepage: "https://github.com/bazwilliams/openhomedevice",
         changelog: nix.thunk(() => nix.str`https://github.com/bazwilliams/openhomedevice/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

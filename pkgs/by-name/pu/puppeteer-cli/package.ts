@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const pname = "puppeteer-cli";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JarvusInnovations",
           repo: "puppeteer-cli",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "0xrb8r4qc9ds7wmfd30nslnkqylxqfwr4gqf7b30v651sjyds29x",
         }))));
       const npmDepsHash = "sha256-R22lXQuYNQ+TQ7U2l4wZeBmAl8AXHUPG/3qVQBi3Ezo=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
       const dontNpmBuild = true;
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/puppeteer \\
   --set PUPPETEER_EXECUTABLE_PATH ${chromium}/bin/chromium
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line wrapper for generating PDF prints and PNG screenshots with Puppeteer",
         homepage: "https://github.com/JarvusInnovations/puppeteer-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

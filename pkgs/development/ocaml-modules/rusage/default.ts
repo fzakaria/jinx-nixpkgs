@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rusage",
       version: "1.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/CraigFe/ocaml-rusage/releases/download/${nix.sel(finalAttrs, "version")}/rusage-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-OgYA2Fe1goqoaOS45Z6FBJNNYN/uq+KQoUwG8KSo6Fk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to the GETRUSAGE(2) syscall",
         homepage: "https://github.com/CraigFe/ocaml-rusage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

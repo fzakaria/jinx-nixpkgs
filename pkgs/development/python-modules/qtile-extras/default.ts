@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const xorg_server = nix.arg($, "xorg-server");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qtile-extras",
       version: "0.37.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elParaguayo",
           repo: "qtile-extras",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,14 +86,14 @@ sed -i 's#/usr/bin/sleep#sleep#' test/widget/test_snapcast.py
 `),
       pythonImportsCheck: nix.thunk(() => ["qtile_extras"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "qtile-extras": nix.thunk(() => nix.sel(nixosTests, "qtile-extras")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extra modules and widgets for the Qtile tiling window manager",
         homepage: "https://github.com/elParaguayo/qtile-extras",
         changelog: nix.thunk(() => nix.str`https://github.com/elParaguayo/qtile-extras/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

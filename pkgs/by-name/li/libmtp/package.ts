@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmtp",
       version: "1.1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libmtp",
           repo: "libmtp",
           rev: nix.thunk(() => nix.str`libmtp-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libmtp/libmtp",
         description: "Implementation of Microsoft's Media Transfer Protocol",
         longDescription: "libmtp is an implementation of Microsoft's Media Transfer Protocol (MTP)\nin the form of a library suitable primarily for POSIX compliant operating\nsystems. We implement MTP Basic, the stuff proposed for standardization.\n",

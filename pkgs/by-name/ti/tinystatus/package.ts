@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const netcat = nix.arg($, "netcat");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinystatus",
       version: "0-unstable-2025-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bderenzo",
           repo: "tinystatus",
           rev: "169ee0bb2efe4531080936d1e2a46e451feebe3e",
@@ -55,7 +55,7 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ncat <<EOF >test.csv\nping, 0, testing, this.should.fail.example.com\nEOF\n\n$out/bin/tinystatus test.csv | grep Disrupted\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static HTML status page generator written in pure shell",
         mainProgram: "tinystatus",
         homepage: "https://github.com/bderenzo/tinystatus",

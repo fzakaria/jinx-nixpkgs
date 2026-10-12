@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lovelace-expander-card",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alia5",
           repo: "lovelace-expander-card",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-D76gZR2yEZJrfaesomrpyMg/OPRfVjdDUwcl0EqqNmg=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp dist/*.js \"$out\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Home Assistant Lovelace card that wraps other cards in a collapsible expander",
         homepage: "https://github.com/Alia5/lovelace-expander-card",
         changelog: nix.thunk(() => nix.str`https://github.com/Alia5/lovelace-expander-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

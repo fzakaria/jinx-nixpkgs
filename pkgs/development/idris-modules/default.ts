@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const fix$ = nix.thunk(() => nix.attr(from, "fix'"));
   const extends$ = nix.thunk(() => nix.attr(from, "extends"));
   const callPackageWithScope = (scope) => (drv) => (args_1) => nix.update(nix.app(callPackageWith, scope, drv, args_1), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     overrideScope: (f) => nix.app(callPackageWithScope, nix.thunk(() => nix.app(mkScope, nix.thunk(() => nix.app(fix$, nix.thunk(() => nix.app(extends$, f, nix.thunk(() => nix.sel(scope, "__unfix__")))))))), drv, args_1),
   });
   const mkScope = (scope) => nix.update(pkgs, scope);
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const defaultScope = nix.thunk(() => nix.app(mkScope, self));
     const callPackage = nix.thunk(() => nix.app(callPackageWithScope, defaultScope));
     const builtins_ = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mapAttrs"), nix.thunk(() => nix.sel(self, "build-builtin-package")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         prelude: [],
         base: nix.thunk(() => [nix.thunk(() => nix.sel(self, "prelude"))]),
         contrib: nix.thunk(() => [
@@ -45,10 +45,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     return nix.update({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "idris-no-deps": idris_no_deps,
       callPackage: callPackage,
-      idris: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./idris-wrapper.nix"), nix.thunk(() => ({ __proto__: pos$3, "idris-no-deps": idris_no_deps })))),
+      idris: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./idris-wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, "idris-no-deps": idris_no_deps })))),
       "with-packages": nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-packages.nix"), nix.thunk(() => ({})))),
       "build-builtin-package": nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-builtin-package.nix"), nix.thunk(() => ({})))),
       "build-idris-package": nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-idris-package.nix"), nix.thunk(() => ({})))),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
       yaml: nix.thunk(() => nix.app(callPackage, nix.path(here, "./yaml.nix"), nix.thunk(() => ({})))),
       yampa: nix.thunk(() => nix.app(callPackage, nix.path(here, "./yampa.nix"), nix.thunk(() => ({})))),
     }, nix.update(builtins_, nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         descncrunch: nix.thunk(() => nix.builtins.throw("descncrunch has been removed because it has been marked as broken since 2018.")),
         protobuf: nix.thunk(() => nix.builtins.throw("idrisPackages.protobuf has been removed: abandoned by upstream")),
         sdl: nix.thunk(() => nix.builtins.throw("'idrisPackages.sdl' has been removed, as it was broken and unmaintained")),

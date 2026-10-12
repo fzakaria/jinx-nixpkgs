@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cyan-skillfish-governor-smu",
       version: "0.4.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filippor",
           repo: "cyan-skillfish-governor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libdrm]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CYAN_SKILLFISH_GOVERNOR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postInstall: "install -Dm755 scripts/cyan-skillfish-performance-mode \\\n  $out/bin/cyan-skillfish-performance-mode\n\ninstall -Dm644 com.cyanskillfish.Governor.conf \\\n  $out/share/dbus-1/system.d/com.cyanskillfish.Governor.conf\n\ninstall -Dm644 default-config.toml \\\n  $out/share/cyan-skillfish-governor-smu/default-config.toml\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SMU-based GPU governor for the AMD Cyan Skillfish APU (ASRock BC-250)",
         homepage: "https://github.com/filippor/cyan-skillfish-governor",
         changelog: nix.thunk(() => nix.str`https://github.com/filippor/cyan-skillfish-governor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

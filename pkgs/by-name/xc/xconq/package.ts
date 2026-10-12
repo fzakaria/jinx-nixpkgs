@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xconq",
       version: "7.5.0-0pre.0.20050612",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/xconq/xconq/xconq-${nix.sel(finalAttrs, "version")}/xconq-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1za78yx57mgwcmmi33wx3533yz1x093dnqis8q2qmqivxav51lca",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-tkconfig=${tk}/lib`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11", "-DUSE_INTERP_RESULT", "-Wno-writable-strings"]))),
       })),
       enableParallelBuilding: true,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programmable turn-based strategy game",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const aiohttp = nix.arg($, "aiohttp");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylibrespot-java",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uvjustin",
           repo: "pylibrespot-java",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [aiohttp]),
       pythonImportsCheck: nix.thunk(() => ["pylibrespot_java"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple library to interface with a librespot-java server",
         homepage: "https://github.com/uvjustin/pylibrespot-java",
         changelog: nix.thunk(() => nix.str`https://github.com/uvjustin/pylibrespot-java/releases/tag/v${nix.sel(finalAttrs, "version")}`),

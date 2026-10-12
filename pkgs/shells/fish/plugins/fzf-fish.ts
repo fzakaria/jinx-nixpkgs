@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fzf.fish";
       const version = "11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PatrickF1",
           repo: "fzf.fish",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const checkFunctionDirs = nix.thunk(() => ["./functions"]);
       const checkPhase = nix.thunk(() => nix.add("# Disable git tests which inspect the project's git repo, which isn't\n# possible since we strip the impure .git from our build input\nrm -r tests/*git*\nrm -r tests/preview_changed_file/modified_path_with_spaces.fish\nrm -r tests/preview_changed_file/renamed_path_modifications.fish\n\n# Disable tests that are failing, probably because of our wrappers\nrm -r tests/configure_bindings\nrm -r tests/search_variables\n\n# Disable tests that are failing, because there is not 'rev' command\nrm tests/preview_file/custom_file_preview.fish\n", (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "script /dev/null fish -c \"fishtape tests/*/*.fish\"" : "script -c 'fish -c \"fishtape tests/*/*.fish\"' ")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Augment your fish command line with fzf key bindings",
         homepage: "https://github.com/PatrickF1/fzf.fish",
         changelog: nix.thunk(() => nix.str`https://github.com/PatrickF1/fzf.fish/releases/tag/${nix.sel(src, "rev")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

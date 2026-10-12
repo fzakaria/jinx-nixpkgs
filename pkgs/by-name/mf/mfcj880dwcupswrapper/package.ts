@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj880dw-cupswrapper";
       const version = "1.0.0-0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102044/mfcj880dw_cupswrapper_GPL_source_${version}.tar.gz`),
           hash: "sha256-vykf4x1kr+rvtbDmBvS6+AxB2AAJ40syt31W91npz5Q=",
         }))));
@@ -44,7 +44,7 @@ ln -s ${mfcj880dwlpr}/lib/cups/filter/brother_lpdwrapper_mfcj880dw $out/lib/cups
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother MFC-J880DW CUPS wrapper driver",
         license: nix.thunk(() => (() => {
@@ -62,7 +62,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

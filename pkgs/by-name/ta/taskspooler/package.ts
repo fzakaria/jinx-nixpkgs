@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taskspooler",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://vicerveza.homeunix.net/%7Eviric/wsgi-bin/hgweb.wsgi/ts/archive/7cf9a8bda6d3.tar.gz",
           sha256: "11i21s8sdmjl4gy5f3dyfsxsmg1japgs4r5ym0b3jdyp99xhpbl1",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   --set-default TS_SLOTS "$(${coreutils}/bin/nproc --all)"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple single node task scheduler",
         homepage: "https://vicerveza.homeunix.net/~viric/wsgi-bin/hgweb.wsgi/ts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

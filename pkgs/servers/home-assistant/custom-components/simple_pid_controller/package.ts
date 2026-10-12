@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "bvweerd",
       domain: "simple_pid_controller",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bvweerd",
           repo: "simple_pid_controller",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         syrupy,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/bvweerd/simple_pid_controller/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "PID Controller integration for Home Assistant",
         homepage: "https://github.com/bvweerd/simple_pid_controller",

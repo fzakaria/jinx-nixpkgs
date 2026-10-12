@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "howl",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/howl-editor/howl/releases/download/${nix.sel(finalAttrs, "version")}/howl-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1qc58l3rkr37cj6vhf8c7bnwbz93nscyraz7jxqwjq6k4gj0cjw3",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "wrapProgram $out/bin/howl \\\n  --set GDK_PIXBUF_MODULE_FILE \"$GDK_PIXBUF_MODULE_FILE\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://howl.io/",
         description: "General purpose, fast and lightweight editor with a keyboard-centric minimalistic user interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

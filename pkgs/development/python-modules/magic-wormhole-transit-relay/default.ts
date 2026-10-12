@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "magic-wormhole-transit-relay",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magic-wormhole",
           repo: "magic-wormhole-transit-relay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 rm "$out/${nix.sel(python, "sitePackages")}/twisted/plugins/dropin.cache"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transit Relay server for Magic-Wormhole",
         homepage: "https://github.com/magic-wormhole/magic-wormhole-transit-relay",
         changelog: nix.thunk(() => nix.str`https://github.com/magic-wormhole/magic-wormhole-transit-relay/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.md`),

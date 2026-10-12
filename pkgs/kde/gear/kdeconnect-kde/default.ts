@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const libfakekey = nix.arg($, "libfakekey");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kdeconnect-kde",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-sshfs-path.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             sshfs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sshfs)),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://invent.kde.org/network/kdeconnect-kde/-/commit/a0d71485a540270421261e05cbe9102a0031ec34.diff",
             hash: "sha256-Klfz3a4AfUMNGWqk/E8xqRvqg7Wn0PrB9+aYmUHoNGM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://invent.kde.org/network/kdeconnect-kde/-/commit/e00d56efce0409a4a7905f7f105d06d5c96031d0.diff",
             hash: "sha256-nRaQSR/jKHgaiSmrJaYNqSI0Hd2QmtwHWUZY8TeL/2Y=",
           })))),

@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const iproute2 = nix.arg($, "iproute2");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bootmac",
       version: "0.7.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "bootmac",
@@ -48,7 +48,7 @@ substituteInPlace \\
   --replace-fail /usr/bin/bootmac $out/bin/bootmac
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configure the MAC addresses of WLAN and Bluetooth interfaces at boot",
         mainProgram: "bootmac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

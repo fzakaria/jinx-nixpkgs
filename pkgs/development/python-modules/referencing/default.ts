@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-jsonschema",
           repo: "referencing",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [jsonschema, pytestCheckHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          referencing: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          referencing: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["referencing"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-specification JSON referencing",
         homepage: "https://github.com/python-jsonschema/referencing",
         changelog: nix.thunk(() => nix.str`https://github.com/python-jsonschema/referencing/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

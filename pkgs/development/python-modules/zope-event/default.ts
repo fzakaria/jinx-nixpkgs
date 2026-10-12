@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_80 = nix.arg($, "setuptools_80");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zope-event",
       version: "6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.event",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["src/zope/event/tests.py"]),
       pythonNamespaces: nix.thunk(() => ["zope"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Event publishing system",
         homepage: "https://github.com/zopefoundation/zope.event",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.event/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

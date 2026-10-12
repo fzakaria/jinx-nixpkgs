@@ -36,32 +36,32 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const attrsOfModule = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             options: nix.thunk(() => ({
-              __proto__: pos$2,
-              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
+              [nix.POS]: pos$2,
+              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
             })),
           })))))),
     }))));
   const listOfModule = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             options: nix.thunk(() => ({
-              __proto__: pos$6,
-              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$5, type: nix.thunk(() => nix.sel(types, "int")) })))),
+              [nix.POS]: pos$6,
+              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "int")) })))),
             })),
           })))))),
     }))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           attrsOfModule: attrsOfModule,
           mergedAttrsOfModule: attrsOfModule,
           listOfModule: listOfModule,
@@ -69,36 +69,36 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         options: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           mergedAttrsOfModule: attrsOfModule,
           mergedListOfModule: listOfModule,
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$17,
-        attrsOfModule: nix.thunk(() => ({ __proto__: pos$14, foo: nix.thunk(() => ({ __proto__: pos$13, bar: 42n })) })),
-        mergedAttrsOfModule: nix.thunk(() => ({ __proto__: pos$16, foo: nix.thunk(() => ({ __proto__: pos$15, bar: 42n })) })),
+        [nix.POS]: pos$17,
+        attrsOfModule: nix.thunk(() => ({ [nix.POS]: pos$14, foo: nix.thunk(() => ({ [nix.POS]: pos$13, bar: 42n })) })),
+        mergedAttrsOfModule: nix.thunk(() => ({ [nix.POS]: pos$16, foo: nix.thunk(() => ({ [nix.POS]: pos$15, bar: 42n })) })),
       })),
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const options = nix.arg($_1, "options");
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           config: nix.thunk(() => ({
-            __proto__: pos$20,
-            listOfModule: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$18, bar: 42n }))]),
-            mergedListOfModule: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$19, bar: 42n }))]),
+            [nix.POS]: pos$20,
+            listOfModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$18, bar: 42n }))]),
+            mergedListOfModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$19, bar: 42n }))]),
           })),
           options: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             listResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default: nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(options, "listOfModule", "valueMeta", "list"))), "configuration", "options", "bar", "value")),
               })))),
             mergedListResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 default: nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(options, "mergedListOfModule", "valueMeta", "list"))), "configuration", "options", "bar", "value")),
               })))),
           })),

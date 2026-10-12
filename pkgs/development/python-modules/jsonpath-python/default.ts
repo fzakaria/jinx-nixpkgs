@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "jsonpath_python",
           hash: "sha256-3e2ZMrTsQfuHJuCcg6+k5r5hj5OMLbKHzCqBcjxjlnE=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_benchmark, pytestCheckHook], nix.sel(pytest_benchmark, "optional-dependencies", "histogram")));
       const pythonImportsCheck = nix.thunk(() => ["jsonpath"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sean2077/jsonpath-python",
         description: "More powerful JSONPath implementations in modern python",
         maintainers: nix.thunk(() => (() => {
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

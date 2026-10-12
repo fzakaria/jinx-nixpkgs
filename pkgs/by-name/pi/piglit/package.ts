@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "piglit",
       version: "unstable-2026-05-04",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "piglit",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenGL test suite, and test-suite runner",
         homepage: "https://gitlab.freedesktop.org/mesa/piglit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

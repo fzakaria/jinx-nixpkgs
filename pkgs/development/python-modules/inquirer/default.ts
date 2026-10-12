@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magmax",
           repo: "python-inquirer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pexpect, pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["inquirer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of common interactive command line user interfaces, based on Inquirer.js",
         homepage: "https://github.com/magmax/python-inquirer",
         changelog: nix.thunk(() => nix.str`https://github.com/magmax/python-inquirer/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

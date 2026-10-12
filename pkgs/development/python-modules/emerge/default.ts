@@ -46,23 +46,23 @@ export default nix.lambda((args) => (() => {
   const nvmath_python$ = nix.thunk(() => nix.app(nix.sel(nvmath_python, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nvmath-python",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-sIVvehCmkPvpPbHxhUPbKZ1cHnHTSlrgBHKSsHbUJPg=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["cuda-core"]);
-      return { __proto__: pos$2, version, src, pythonRelaxDeps };
+      return { [nix.POS]: pos$2, version, src, pythonRelaxDeps };
     })())));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "emerge",
       version: "2.8.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "FennisRobert",
           repo: "EMerge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withMkl, nix.thunk(() => [mkl])), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "libcudss"))])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cudss: nix.thunk(() => [cupy, nix.thunk(() => nix.sel(cudaPackages, "libcudss")), nvmath_python$]),
         dxf: nix.thunk(() => [ezdxf]),
         gerber: nix.thunk(() => [pygerber]),
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["emerge"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         cudaSupport: cudaSupport,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=^v(2\\.[0-9].*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Electromagnetic field computation program",
         homepage: "https://github.com/FennisRobert/EMerge",
         mainProgram: "emerge",

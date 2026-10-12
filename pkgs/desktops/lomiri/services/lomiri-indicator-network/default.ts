@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "lomiri-indicator-network",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-indicator-network",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -94,22 +94,22 @@ export default nix.lambda((args) => (() => {
   --replace-fail '/bin/false' '${nix.app(nix.sel(lib, "getExe'"), coreutils, "false")}'
 `))),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
             lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-network")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-          __proto__: pos$6,
-          "ayatana-indicators": nix.thunk(() => ({ __proto__: pos$5, "lomiri-indicator-network": nix.thunk(() => ["lomiri"]) })),
+          [nix.POS]: pos$6,
+          "ayatana-indicators": nix.thunk(() => ({ [nix.POS]: pos$5, "lomiri-indicator-network": nix.thunk(() => ["lomiri"]) })),
         }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Ayatana indiator exporting the network settings menu through D-Bus",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-indicator-network",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-indicator-network/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

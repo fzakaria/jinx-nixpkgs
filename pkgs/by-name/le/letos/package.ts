@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const letos_plugins = nix.arg($, "letos-plugins");
   const includeOfficialPlugins = nix.argOr($, "includeOfficialPlugins", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), letos_plugins));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "letos",
       version: "4.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pawelsalawa",
           repo: "letos",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for size in 16 48 256; do\n  mv \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/letos_${size}.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/letos.png\"\ndone\n\ninstall -Dm644 ../LICENSE -t \"$out/share/licenses/letos\"\ninstall -Dm644 ../README.md ../ChangeLog.md -t \"$out/share/doc/letos\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Database manager for SQLite (formerly SQLiteStudio)",
         homepage: "https://letos.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

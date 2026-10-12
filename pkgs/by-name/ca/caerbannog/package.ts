@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caerbannog",
       version: "0.3",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~craftyguy",
           repo: "caerbannog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mobile-friendly Gtk frontend for password-store",
         mainProgram: "caerbannog",
         homepage: "https://sr.ht/~craftyguy/caerbannog/",

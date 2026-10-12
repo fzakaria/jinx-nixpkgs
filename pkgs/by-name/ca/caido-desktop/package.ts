@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const pname = "caido-desktop";
   const version = "0.57.0";
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://caido.download/releases/v${version}/caido-desktop-v${version}-linux-x86_64.AppImage`),
       hash: "sha256-a+WHhJ+TvwhOqHOxU7Y5LXeXAJ6T8hk71meFuTR+ra8=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://caido.download/releases/v${version}/caido-desktop-v${version}-linux-aarch64.AppImage`),
       hash: "sha256-B7dw9uoG++AqT264ZlyHxGpv68fH5SlYzDKUaIM8c14=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://caido.download/releases/v${version}/caido-desktop-v${version}-mac-aarch64.dmg`),
       hash: "sha256-GmpMnaGR7gYz1RvSO5xj9AA3xU1mn2IBInakmVkuG7A=",
     })),
   }));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`caido-desktop: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     description: "Caido Desktop — lightweight web security auditing toolkit",
     homepage: "https://caido.io/",
     changelog: nix.thunk(() => nix.str`https://github.com/caido/caido/releases/tag/v${version}`),
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w_1, "binaryNativeCode"))];
     })()),
   }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$6, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, src: src }))));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
@@ -82,7 +82,7 @@ wrapProgram $out/bin/${pname} \\
 `),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,

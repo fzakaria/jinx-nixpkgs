@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stac-utils",
           repo: "pystac-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_filter_conversion_to_cql2_json", "test_filter_conversion_to_cql2_text"]);
       const pythonImportsCheck = nix.thunk(() => ["pystac_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for working with STAC Catalogs and APIs",
         homepage: "https://github.com/stac-utils/pystac-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

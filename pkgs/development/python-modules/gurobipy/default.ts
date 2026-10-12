@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const format = "wheel";
   const pyShortVersion = nix.thunk(() => nix.add("cp", nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))));
   const platforms = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": nix.thunk(() => (nix.asBool(nix.eq(pyShortVersion, "cp314")) ? "macosx_10_15_universal2" : "macosx_10_13_universal2")),
     "aarch64-linux": "manylinux_2_26_aarch64",
     "x86_64-linux": "manylinux2014_x86_64.manylinux_2_17_x86_64",
   }));
   const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "cp313-aarch64-darwin": "sha256-Zcp6DNHl7VfIDmE/NVCcCuqsFUTRdwW3P5pXB9QOJYg=",
     "cp313-aarch64-linux": "sha256-OnyM8RjyOB7J+A8ZkNUy6tZ9YfW7wL5Pl3/p6wzW/EE=",
     "cp313-x86_64-linux": "sha256-1U6n9B3/NRgCDBpiQPo++PiuMHcEC04eRF/mmiOemMo=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "13.0.3";
       const format_1 = format;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           python: pyShortVersion,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonImportsCheck = nix.thunk(() => ["gurobipy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python interface to Gurobi",
         homepage: "https://www.gurobi.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.builtins.attrNames(platforms)),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format: format_1,

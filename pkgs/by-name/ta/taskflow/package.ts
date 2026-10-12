@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "taskflow",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taskflow",
           repo: "taskflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IxorLV5qQ8veFiwRka8k5oMR51KTUn10MbCIYNVToLk=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./unvendor-doctest.patch"), nix.thunk(() => ({ __proto__: pos$2, doctest: doctest })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./unvendor-doctest.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, doctest: doctest })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "gcc16-inclusive-scan-regression.patch",
             url: "https://salsa.debian.org/debian/taskflow/-/raw/039540a03c90cc825ce588f7ffae70db5472428f/debian/patches/fix-gcc16-inclusive-scan-move.patch",
             hash: "sha256-A8dUYKtjvvHAOrFGzDjat2hUHO1zoMbfdNnFJLZZbL0=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General-purpose Parallel and Heterogeneous Task Programming System",
         homepage: "https://taskflow.github.io/",
         changelog: nix.thunk(() => (() => {

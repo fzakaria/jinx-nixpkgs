@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyproj4",
           repo: "pyproj",
           tag: version,
           hash: "sha256-+2wUMbswg2yltNMLPc9U8MbEFx2xKVWxGjP/TBfCjto=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001.proj.patch"), nix.thunk(() => ({ __proto__: pos$2, proj: proj, projdev: nix.thunk(() => nix.sel(proj, "dev")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001.proj.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, proj: proj, projdev: nix.thunk(() => nix.sel(proj, "dev")) })))),
       ]);
       const build_system = nix.thunk(() => [cython, setuptools]);
       const buildInputs = nix.thunk(() => [proj]);
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         "pyproj.exceptions",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python interface to PROJ library",
         mainProgram: "pyproj",
         homepage: "https://github.com/pyproj4/pyproj",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const buildDotnetModule = nix.thunk(() => nix.attr(buildPackages, "buildDotnetModule"));
   const dotnet_runtime = nix.thunk(() => nix.attr(buildPackages, "dotnet-runtime"));
   const app = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "use-dotnet-from-env-test-application",
       src: nix.path(here, "./src"),
       nugetDeps: nix.path(here, "./nuget-deps.json"),
       useDotnetFromEnv: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         TargetFramework: nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`),
       })),
     }))));
   const appWithoutFallback = nix.thunk(() => nix.app(nix.sel(app, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "nativeBuildInputs"), [removeReferencesTo])),
       postFixup: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postFixup"), nix.str`remove-references-to -t ${dotnet_runtime} "$out/bin/Application"
 `)),
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
   const runtimeVersion = nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_runtime))))));
   const runtimeVersionFile = nix.thunk(() => nix.builtins.toFile("dotnet-version.txt", runtimeVersion));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     fallback: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         assertion: "buildDotnetModule sets fallback DOTNET_ROOT in wrapper",
         expected: runtimeVersionFile,
         actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-fallback-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${app}/bin/Application >"$out"
@@ -55,23 +55,23 @@ export default nix.lambda((args) => (() => {
     "without-fallback": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-without-fallback-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${appWithoutFallback}/bin/Application >"$out"
 `))))),
     "use-dotnet-root-env": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         assertion: "buildDotnetModule uses DOTNET_ROOT from environment in wrapper",
         expected: runtimeVersionFile,
         actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-root-test", nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             env: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               DOTNET_ROOT: nix.thunk(() => nix.str`${dotnet_runtime}/share/dotnet`),
             })),
           })), nix.thunk(() => nix.str`${appWithoutFallback}/bin/Application >"$out"
 `))),
       })))),
     "use-dotnet-path-env": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         assertion: "buildDotnetModule uses DOTNET_ROOT from dotnet in PATH in wrapper",
         expected: runtimeVersionFile,
-        actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-path-test", nix.thunk(() => ({ __proto__: pos$8, dotnetRuntime: dotnet_runtime })), nix.thunk(() => nix.str`PATH=$dotnetRuntime/bin\${PATH+:}$PATH ${appWithoutFallback}/bin/Application >"$out"
+        actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-path-test", nix.thunk(() => ({ [nix.POS]: pos$8, dotnetRuntime: dotnet_runtime })), nix.thunk(() => nix.str`PATH=$dotnetRuntime/bin\${PATH+:}$PATH ${appWithoutFallback}/bin/Application >"$out"
 `))),
       })))),
   };

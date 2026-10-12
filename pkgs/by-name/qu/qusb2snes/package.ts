@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const enableGui = nix.argOr($, "enableGui", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qusb2snes",
       version: "0.7.35",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Skarsnik",
           repo: "QUsb2snes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => nix.concat(["QUsb2snes.pro", "CONFIG+=release"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableGui)), "QUSB2SNES_NOGUI=1"))),
       installPhase: "runHook preInstall\ninstallBin QUsb2Snes\ninstallManPage --name QUsb2Snes.1 QUsb2Snes.manpage.1\ninstall -Dm644 ui/icons/cheer128x128.png $out/share/icons/hicolor/128x128/apps/fr.nyo.QUsb2Snes.png\ninstall -Dm644 QUsb2Snes.desktop $out/share/applications/fr.nyo.QUsb2Snes.desktop\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Websocket server that provides a unified protocol for accessing SNES (or SNES emulators) software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://skarsnik.github.io/QUsb2snes/",

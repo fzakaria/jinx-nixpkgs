@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssl-cert-check",
       version: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Matty9191",
           repo: "ssl-cert-check",
           rev: "4056ceeab5abc0e39f4e0ea40cd54147253a3369",
@@ -41,7 +41,7 @@ wrapProgram $out/bin/$pname \\
   --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bourne shell script that can be used to report on expiring SSL certificates",
         mainProgram: "ssl-cert-check",
         homepage: "https://github.com/Matty9191/ssl-cert-check",

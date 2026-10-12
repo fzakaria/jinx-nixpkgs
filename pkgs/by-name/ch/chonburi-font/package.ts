@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chonburi",
       version: "0-unstable-2021-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cadsondemak",
           repo: "chonburi",
           rev: "daf26bf77d82fba50eaa3aa3fad905cb9f6b5e28",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/doc/chonburi $out/share/fonts/{opentype,truetype}\n\ncp $src/OFL.txt $src/BRIEF.md $out/share/doc/chonburi\ncp $src/fonts/*.otf $out/share/fonts/opentype\ncp $src/fonts/*.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cadsondemak.github.io/chonburi/",
         description: "Didonic Thai and Latin display typeface",
         longDescription: "The objective of this project is to create a Thai and Latin Display\ntypeface. Chonburi is a display typeface with high contrast in a Didone\nstyle. This single-weight typeface provides advance typographical support\nwith features such as discretionary ligature. This font can be extended\nthe family to other weights including both narrow and extended version. It\nis also ready to be matched with other non-Latin script.\n",

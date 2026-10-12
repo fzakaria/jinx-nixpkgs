@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kuzmoyev",
           repo: "google-calendar-simple-api",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pyfakefs]);
       const pythonImportsCheck = nix.thunk(() => ["gcsa"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic wrapper for the Google Calendar API",
         homepage: "https://github.com/kuzmoyev/google-calendar-simple-api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

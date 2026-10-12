@@ -44,38 +44,38 @@ export default nix.lambda((args) => (() => {
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const enabled = nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(cfg, "ensureProfiles", "secrets", "entries"))), 0n));
   const nmFileSecretAgentConfig = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     entry: nix.thunk(() => nix.builtins.map((i) => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         key: nix.thunk(() => nix.sel(i, "key")),
         file: nix.thunk(() => nix.sel(i, "file")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchId"), null)), nix.thunk(() => ({ __proto__: pos$2, match_id: nix.thunk(() => nix.sel(i, "matchId")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchUuid"), null)), nix.thunk(() => ({ __proto__: pos$3, match_uuid: nix.thunk(() => nix.sel(i, "matchUuid")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchType"), null)), nix.thunk(() => ({ __proto__: pos$4, match_type: nix.thunk(() => nix.sel(i, "matchType")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchIface"), null)), nix.thunk(() => ({ __proto__: pos$5, match_iface: nix.thunk(() => nix.sel(i, "matchIface")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchSetting"), null)), nix.thunk(() => ({ __proto__: pos$6, match_setting: nix.thunk(() => nix.sel(i, "matchSetting")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "trim"), null)), nix.thunk(() => ({ __proto__: pos$7, trim: nix.thunk(() => nix.sel(i, "trim")) }))))))))), nix.thunk(() => nix.sel(cfg, "ensureProfiles", "secrets", "entries")))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchId"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, match_id: nix.thunk(() => nix.sel(i, "matchId")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchUuid"), null)), nix.thunk(() => ({ [nix.POS]: pos$3, match_uuid: nix.thunk(() => nix.sel(i, "matchUuid")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchType"), null)), nix.thunk(() => ({ [nix.POS]: pos$4, match_type: nix.thunk(() => nix.sel(i, "matchType")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchIface"), null)), nix.thunk(() => ({ [nix.POS]: pos$5, match_iface: nix.thunk(() => nix.sel(i, "matchIface")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "matchSetting"), null)), nix.thunk(() => ({ [nix.POS]: pos$6, match_setting: nix.thunk(() => nix.sel(i, "matchSetting")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "trim"), null)), nix.thunk(() => ({ [nix.POS]: pos$7, trim: nix.thunk(() => nix.sel(i, "trim")) }))))))))), nix.thunk(() => nix.sel(cfg, "ensureProfiles", "secrets", "entries")))),
   }));
   const nmFileSecretAgentConfigFile = nix.thunk(() => nix.app(nix.sel(toml, "generate"), "config.toml", nmFileSecretAgentConfig));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lilioid"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       networking: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         networkmanager: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           ensureProfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             secrets: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nm-file-secret-agent", nix.thunk(() => ({})))),
               entries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "A list of secrets to provide to NetworkManager by reading their values from configured files.\n\nNote that NetworkManager should be configured to read secrets from a secret agent.\nThis can be done for example through the `networking.networkmanager.ensureProfiles.profiles` options.\n",
                   default: [],
                   example: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       matchId: "My WireGuard VPN",
                       matchType: "wireguard",
                       matchSetting: "wireguard",
@@ -84,54 +84,54 @@ export default nix.lambda((args) => (() => {
                     })),
                   ]),
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         options: nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           matchId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               description: "connection id used by NetworkManager. Often displayed as name in GUIs.\n\nNetworkManager describes this as a human readable unique identifier for the connection, like \"Work Wi-Fi\" or \"T-Mobile 3G\".\n",
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                               example: "wifi1",
                             })))),
                           matchUuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               description: "UUID of the connection profile\n\nUUIDs are assigned once on connection creation and should never change as long as the connection still applies to the same network.\n",
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                               example: "669ea4c9-4cb3-4901-ab52-f9606590976e",
                             })))),
                           matchType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               description: "NetworkManager connection type\n\nThe NetworkManager configuration settings reference roughly corresponds to connection types.\nMore might be available on your system depending on the installed plugins.\n\n<https://networkmanager.dev/docs/api/latest/ch01.html>\n",
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                               example: "wireguard",
                             })))),
                           matchIface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               description: "interface name of the NetworkManager connection",
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                             })))),
                           matchSetting: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               description: "name of the setting section for which secrets are requested",
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                             })))),
                           key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$16,
+                              [nix.POS]: pos$16,
                               description: "key in the setting section for which this entry provides a value",
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             })))),
                           file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               description: "file from which the secret value is read",
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             })))),
                           trim: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               description: "whether leading and trailing whitespace should be stripped from the files content before being passed to NetworkManager",
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                               default: true,
@@ -145,13 +145,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enabled, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "nm-file-secret-agent": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "NetworkManager secret agent that responds with the content of preconfigured files",
               documentation: nix.thunk(() => ["https://github.com/lilioid/nm-file-secret-agent/"]),
               requires: nix.thunk(() => ["NetworkManager.service"]),

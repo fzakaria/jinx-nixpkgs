@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const mpich = nix.arg($, "mpich");
   const superlu_dist = nix.arg($, "superlu_dist");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "superlu_dist",
       version: "9.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xiaoyeli",
           repo: "superlu_dist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,8 +52,8 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, gfortran]),
       buildInputs: nix.thunk(() => nix.concat([
         mpi,
-        nix.thunk(() => nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ __proto__: pos$2, isILP64: false })))),
-        nix.thunk(() => nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ __proto__: pos$3, isILP64: false })))),
+        nix.thunk(() => nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, isILP64: false })))),
+        nix.thunk(() => nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, isILP64: false })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withParmetis, nix.thunk(() => [metis, parmetis])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.thunk(() => nix.sel(gfortran, "cc", "lib")),
           nix.thunk(() => nix.sel(llvmPackages, "openmp")),
@@ -77,18 +77,18 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         isILP64: isILP64,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$5,
-          ilp64: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ __proto__: pos$4, isILP64: true })))),
+          [nix.POS]: pos$5,
+          ilp64: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, isILP64: true })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$7,
-            mpich: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ __proto__: pos$6, mpi: mpich })))),
+            [nix.POS]: pos$7,
+            mpich: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, mpi: mpich })))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://portal.nersc.gov/project/sparse/superlu/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const harfbuzz = nix.arg($, "harfbuzz");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-font-viewer",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-font-viewer/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-font-viewer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lWSwiMWxUMVOKjp7xwFN7sbuVRJh6YSI+JGx8bjca4A=",
         })))),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, glib, harfbuzz, libadwaita, fribidi]),
       postInstall: "substituteInPlace $out/share/thumbnailers/gnome-font-viewer.thumbnailer \\\n  --replace-fail \"TryExec=gnome-thumbnail-font\" \"TryExec=$out/bin/gnome-thumbnail-font\" \\\n  --replace-fail \"Exec=gnome-thumbnail-font\" \"Exec=$out/bin/gnome-thumbnail-font\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-font-viewer" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-font-viewer" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Program that can preview fonts and create thumbnails for fonts",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-font-viewer",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "passt",
       version: "2026_07_16.090d739",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://passt.top/passt/snapshot/passt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UD4fkctSqMDQTmZxpmBjR1uKLV0Lf9QoqtSK1u8EQ+4=",
         })))),
@@ -40,19 +40,19 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.sel(unixtools, "script")}/bin/script -c 'passt --version'`),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, url: "https://passt.top/passt" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, url: "https://passt.top/passt" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://passt.top/passt/about/",
         description: "Plug A Simple Socket Transport",
         longDescription: "passt implements a translation layer between a Layer-2 network interface\nand native Layer-4 sockets (TCP, UDP, ICMP/ICMPv6 echo) on a host.\nIt doesn't require any capabilities or privileges, and it can be used as\na simple replacement for Slirp.\n\npasta (same binary as passt, different command) offers equivalent\nfunctionality, for network namespaces: traffic is forwarded using a tap\ninterface inside the namespace, without the need to create further\ninterfaces on the host, hence not requiring any capabilities or\nprivileges.\n",

@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "biome",
         publisher: "biomejs",
         version: "2026.8.190716",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."biome.lsp.bin".oneOf[0].default = "${nix.app(nix.sel(lib, "getExe"), biome)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--pre-release"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--pre-release"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://github.com/biomejs/biome-vscode/blob/main/CHANGELOG.md",
         description: "Biome LSP extension for Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=biomejs.biome",

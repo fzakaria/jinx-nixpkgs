@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
     "gatemate",
     "example",
   ]);
-  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$1, python: python3, enablePython: true }))));
+  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python: python3, enablePython: true }))));
   const prjbeyond_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "YosysHQ-GmbH",
       repo: "prjbeyond-db",
       rev: "f49f66be674d9857c657930353b867ba94bcbdd7",
       hash: "sha256-B/VmKgMu6f2Y8umE+NgGD5W0FYBIfDcMVwgHocFzreA=",
     }))));
   const prjpeppercorn_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "YosysHQ",
       repo: "prjpeppercorn",
       tag: "v1.13",
@@ -58,12 +58,12 @@ export default nix.lambda((args) => (() => {
   const hasArch = (arch) => (output) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), arch, selectedArches)), output);
   const hasUArch = (arch) => (output) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), arch, selectedUArches)), output);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nextpnr",
       version: "0.11.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "YosysHQ",
           repo: "nextpnr",
           tag: nix.thunk(() => nix.str`nextpnr-${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Place and route tool for FPGAs",
         homepage: "https://github.com/yosyshq/nextpnr",
         changelog: nix.thunk(() => nix.str`https://github.com/YosysHQ/nextpnr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const logPrefix = "services.prometheus.exporter.php-fpm";
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "php-fpm"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9253n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-php-fpm-exporter", nix.thunk(() => ({})))),
       telemetryPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: null,
           example: "/root/prometheus-php-fpm-exporter.env",
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} server \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

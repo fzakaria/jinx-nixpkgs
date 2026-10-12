@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const polkitPolicyOwners = nix.argOr($, "polkitPolicyOwners", () => []);
   const policyOwners = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map((user) => nix.str`unix-user:${user}`, polkitPolicyOwners))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -122,7 +122,7 @@ makeShellWrapper $out/share/1password/1password $out/bin/1password \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [udev]))} \\
   --add-flags "\\\${NIXOS_OZONE_WL:+--ozone-platform-hint=auto}"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

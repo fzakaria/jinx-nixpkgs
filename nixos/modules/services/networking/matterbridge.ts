@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "matterbridge"));
   const matterbridgeConfToml = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configPath"), null)) ? nix.app(nix.sel(pkgs, "writeText"), "matterbridge.toml", nix.thunk(() => nix.sel(cfg, "configFile"))) : nix.sel(cfg, "configPath")));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         matterbridge: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Matterbridge chat platform bridge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matterbridge", nix.thunk(() => ({})))),
           configPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -50,19 +50,19 @@ export default nix.lambda((args) => (() => {
               description: "The path to the matterbridge configuration file.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "# WARNING: as this file contains credentials, do not use this option!\n# It is kept only for backwards compatibility, and would cause your\n# credentials to be in the nix-store, thus with the world-readable\n# permission bits.\n# Use services.matterbridge.configPath instead.\n\n[irc]\n    [irc.libera]\n    Server=\"irc.libera.chat:6667\"\n    Nick=\"matterbot\"\n\n[mattermost]\n    [mattermost.work]\n     # Do not prefix it with http:// or https://\n     Server=\"yourmattermostserver.domain\"\n     Team=\"yourteam\"\n     Login=\"yourlogin\"\n     Password=\"yourpass\"\n     PrefixMessagesWithNick=true\n\n[[gateway]]\nname=\"gateway1\"\nenable=true\n    [[gateway.inout]]\n    account=\"irc.libera\"\n    channel=\"#testing\"\n\n    [[gateway.inout]]\n    account=\"mattermost.work\"\n    channel=\"off-topic\"\n",
               description: "WARNING: THIS IS INSECURE, as your password will end up in\n{file}`/nix/store`, thus publicly readable. Use\n`services.matterbridge.configPath` instead.\n\nThe matterbridge configuration file in the TOML file format.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "matterbridge",
               description: "User which runs the matterbridge service.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "matterbridge",
               description: "Group which runs the matterbridge service.\n",
@@ -71,27 +71,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(options, "services", "matterbridge", "configFile", "isDefined")), "The option services.matterbridge.configFile is insecure and should be replaced with services.matterbridge.configPath")),
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "matterbridge")), nix.thunk(() => ({
-              __proto__: pos$9,
-              matterbridge: nix.thunk(() => ({ __proto__: pos$8, group: "matterbridge", isSystemUser: true })),
+              [nix.POS]: pos$9,
+              matterbridge: nix.thunk(() => ({ [nix.POS]: pos$8, group: "matterbridge", isSystemUser: true })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "matterbridge")), nix.thunk(() => ({ __proto__: pos$10, matterbridge: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "matterbridge")), nix.thunk(() => ({ [nix.POS]: pos$10, matterbridge: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             matterbridge: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Matterbridge chat platform bridge",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/matterbridge -conf ${matterbridgeConfToml}`),

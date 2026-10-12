@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nuttcp",
       version: "8.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nuttcp.net/nuttcp/nuttcp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-fq16ieeqoFnSDjQELFihmMKYHK1ylVDROI3fyQNtOYM=",
         })))),
@@ -29,7 +29,7 @@ cp nuttcp-${nix.sel(finalAttrs, "version")} $out/bin/nuttcp
 `),
       postInstall: "installManPage nuttcp.8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network performance measurement tool",
         longDescription: "nuttcp is a network performance measurement tool intended for use by\nnetwork and system managers. Its most basic usage is to determine the raw\nTCP (or UDP) network layer throughput by transferring memory buffers from\na source system across an interconnecting network to a destination\nsystem, either transferring data for a specified time interval, or\nalternatively transferring a specified number of bytes. In addition to\nreporting the achieved network throughput in Mbps, nuttcp also provides\nadditional useful information related to the data transfer such as user,\nsystem, and wall-clock time, transmitter and receiver CPU utilization,\nand loss percentage (for UDP transfers).\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

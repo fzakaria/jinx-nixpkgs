@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     const base = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         stdenv: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? nix.sel(llvmPackages, "stdenv") : nix.force(stdenv))),
         version: version,
         hash: hash,
@@ -78,24 +78,24 @@ export default nix.lambda((args) => (() => {
       })(), formals$3));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     php82: nix.thunk(() => nix.app(mkPhp, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "8.2.34",
         hash: "sha256-BGfWOoGQFoEdNf0U9zR2SBOrFJdQN5eQY0KUxyPNdWI=",
       })))),
     php83: nix.thunk(() => nix.app(mkPhp, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "8.3.35",
         hash: "sha256-4nnZ7JDZvKuQDRRoFuWxHT6JJLgOK6NsfX2ufXHcvy0=",
       })))),
     php84: nix.thunk(() => nix.app(mkPhp, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "8.4.26",
         hash: "sha256-QglpTXsPY8RaN3PgfNwrv8cSSSZaXZUbH/U+EUftxco=",
       })))),
     php85: nix.thunk(() => nix.app(mkPhp, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "8.5.11",
         hash: "sha256-3JQHFqjHPlMcAHjuy5VdWV0yHsLMnUcUnPAInqbhj2Q=",
       })))),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hepmc",
       version: "2.06.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hepmc.web.cern.ch/hepmc/releases/HepMC-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1pp89bs05nv60wjk1690ndwh4dsd5mk20bzsd4a2lklysdifvb6f",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HepMC package is an object oriented event record written in C++ for High Energy Physics Monte Carlo Generators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "http://hepmc.web.cern.ch/hepmc/",

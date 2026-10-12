@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libcpr = nix.arg($, "libcpr");
   const trompeloeil = nix.arg($, "trompeloeil");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "influxdb-cxx",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "offa",
           repo: "influxdb-cxx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "InfluxDB C++ client library",
         homepage: "https://github.com/offa/influxdb-cxx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const trimesh = nix.arg($, "trimesh");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mujoco-mjx",
       src: nix.thunk(() => nix.attr(mujoco_main, "src")),
       version: nix.thunk(() => nix.attr(mujoco_main, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mujoco, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "MuJoCo XLA (MJX)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

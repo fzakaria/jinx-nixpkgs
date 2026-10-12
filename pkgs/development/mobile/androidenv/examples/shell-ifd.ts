@@ -13,15 +13,15 @@ const pos$6 = nix.positions(here + "/shell-ifd.nix", [["name", 39, 3], ["package
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({
-      __proto__: pos$2,
-      config: nix.thunk(() => ({ __proto__: pos$1, allowUnfree: true })),
+      [nix.POS]: pos$2,
+      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowUnfree: true })),
     }))));
   const licenseAccepted = nix.argOr($, "licenseAccepted", () => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../license.nix"), nix.thunk(() => ({}))));
-  const androidEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$3, pkgs: pkgs, licenseAccepted: licenseAccepted }))));
+  const androidEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs, licenseAccepted: licenseAccepted }))));
   const sdkArgs = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     repoXmls: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       packages: nix.thunk(() => [nix.path(here, "../xml/repository2-3.xml")]),
       images: nix.thunk(() => [
         nix.path(here, "../xml/android-sys-img2-3.xml"),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const platformTools = nix.thunk(() => nix.sel(androidComposition, "platform-tools"));
   const jdk = nix.thunk(() => nix.sel(pkgs, "jdk"));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "androidenv-example-ifd-demo",
       packages: nix.thunk(() => [androidSdk, platformTools, jdk]),
       LANG: "C.UTF-8",

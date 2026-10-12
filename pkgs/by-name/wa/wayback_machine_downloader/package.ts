@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wayback_machine_downloader",
       exes: nix.thunk(() => ["wayback_machine_downloader"]),
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "wayback_machine_downloader")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Download websites from the Internet Archive Wayback Machine",
         homepage: "https://github.com/hartator/wayback-machine-downloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

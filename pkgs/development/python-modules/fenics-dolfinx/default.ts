@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
   const fenics_dolfinx = nix.arg($, "fenics-dolfinx");
   const mpich = nix.arg($, "mpich");
   const fenicsPackages = nix.thunk(() => nix.app(nix.sel(petsc4py, "petscPackages", "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       slepc: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(slepc4py, "override")), nix.thunk(() => ({})))),
       adios2: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(adios2, "override")), nix.thunk(() => ({})))),
       kahip: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(kahip, "override")), nix.thunk(() => ({})))),
-      dolfinx: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(dolfinx, "override")), nix.thunk(() => ({ __proto__: pos$1, withParmetis: withParmetis })))),
+      dolfinx: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(dolfinx, "override")), nix.thunk(() => ({ [nix.POS]: pos$1, withParmetis: withParmetis })))),
     })));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       version: nix.thunk(() => nix.attr(dolfinx, "version")),
       src: nix.thunk(() => nix.attr(dolfinx, "src")),
       pname: "fenics-dolfinx",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(fenicsPackages, "slepc")),
         nix.thunk(() => nix.sel(fenicsPackages, "adios2")),
         nix.thunk(() => nix.sel(fenicsPackages, "kahip")),
-        nix.thunk(() => nix.app(nix.sel(mpi4py, "override"), nix.thunk(() => ({ __proto__: pos$3, mpi: nix.thunk(() => nix.attr(fenicsPackages, "mpi")) })))),
+        nix.thunk(() => nix.app(nix.sel(mpi4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: nix.thunk(() => nix.attr(fenicsPackages, "mpi")) })))),
       ]),
       nativeCheckInputs: nix.thunk(() => [
         scipy,
@@ -86,23 +86,23 @@ export default nix.lambda((args) => (() => {
       preCheck: "cd test\n",
       pythonImportsCheck: nix.thunk(() => ["dolfinx"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           complex: nix.thunk(() => nix.app(nix.sel(fenics_dolfinx, "override"), nix.thunk(() => ({
-              __proto__: pos$5,
-              petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ __proto__: pos$4, scalarType: "complex" })))),
+              [nix.POS]: pos$5,
+              petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, scalarType: "complex" })))),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             mpich: nix.thunk(() => nix.app(nix.sel(fenics_dolfinx, "override"), nix.thunk(() => ({
-                __proto__: pos$8,
-                petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ __proto__: pos$7, mpi: mpich })))),
+                [nix.POS]: pos$8,
+                petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, mpi: mpich })))),
               })))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://fenicsproject.org",
         downloadPage: "https://github.com/fenics/dolfinx",
         description: "Computational environment of FEniCSx and implements the FEniCS Problem Solving Environment in C++ and Python",

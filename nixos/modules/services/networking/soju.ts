@@ -52,77 +52,77 @@ ${nix.sel(cfg, "extraConfig")}
   const sojuctl = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "sojuctl", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "sojuctl")} --config ${nix.sel(cfg, "configFile")} "$@"
 `)));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         soju: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "soju")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "soju", nix.thunk(() => ({})))),
           listen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => [":6697"]),
               description: "Where soju should listen for incoming connections. See the\n`listen` directive in\n{manpage}`soju(1)`.\n",
             })))),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.networking.hostName")),
               description: "Server hostname.",
             })))),
           tlsCertificate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/var/host.cert",
               description: "Path to server TLS certificate.",
             })))),
           tlsCertificateKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/var/host.key",
               description: "Path to server TLS certificate key.",
             })))),
           enableMessageLogging: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to enable message logging.",
             })))),
           adminSocket: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Listen for admin connections from sojuctl at /run/soju/admin.\n",
               })))),
           })),
           httpOrigins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "List of allowed HTTP origins for WebSocket listeners. The parameters are\ninterpreted as shell patterns, see\n{manpage}`glob(7)`.\n",
             })))),
           acceptProxyIP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Allow the specified IPs to act as a proxy. Proxys have the ability to\noverwrite the remote and local connection addresses (via the X-Forwarded-\\*\nHTTP header fields). The special name \"localhost\" accepts the loopback\naddresses 127.0.0.0/8 and ::1/128. By default, all IPs are rejected.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Lines added verbatim to the generated configuration file.",
             })))),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: configFile,
               defaultText: "Config file generated from other options.",
@@ -133,28 +133,28 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.eq(!nix.eq(nix.sel(cfg, "tlsCertificate"), null), !nix.eq(nix.sel(cfg, "tlsCertificateKey"), null))),
             message: "services.soju.tlsCertificate and services.soju.tlsCertificateKey\nmust both be specified to enable TLS.\n",
           })),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$16, systemPackages: nix.thunk(() => [sojuctl]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$16, systemPackages: nix.thunk(() => [sojuctl]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             soju: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "soju IRC bouncer",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               documentation: nix.thunk(() => ["man:soju(1)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 DynamicUser: true,
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "soju")} -config ${nix.sel(cfg, "configFile")}`),
@@ -168,7 +168,7 @@ ${nix.sel(cfg, "extraConfig")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "malte-v"))];

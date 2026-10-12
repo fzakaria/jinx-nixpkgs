@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Edinburgh-Genome-Foundry",
           repo: "DnaChisel",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["dnachisel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Edinburgh-Genome-Foundry/DnaChisel",
         description: "Optimize DNA sequences under constraints",
         changelog: nix.thunk(() => nix.str`https://github.com/Edinburgh-Genome-Foundry/DnaChisel/releases/tag/${nix.sel(src, "tag")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const djangorestframework = nix.arg($, "djangorestframework");
   const orjson = nix.arg($, "orjson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drf-orjson-renderer",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brianjbuck",
           repo: "drf_orjson_renderer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [django, djangorestframework, orjson]),
       pythonImportsCheck: nix.thunk(() => ["drf_orjson_renderer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/brianjbuck/drf_orjson_renderer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "JSON renderer and parser for Django Rest Framework using the orjson library",
         homepage: "https://github.com/brianjbuck/drf_orjson_renderer",

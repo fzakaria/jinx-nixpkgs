@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.0.26";
   const tag = nix.thunk(() => nix.str`v${version}`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "type-infer",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mindsdb",
           repo: "type_infer",
           tag: tag,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mindsdb/type_infer/commit/d09f88d5ddbe55125b1fff4506b03165d019d88b.patch",
             hash: "sha256-wNBzb+RxoZC8zn5gdOrtJeXJIIH3DTt1gTZfgN/WnQQ=",
           })))),
@@ -73,10 +73,10 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_1_stack_overflow_survey"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NLTK_DATA: testNltkData })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NLTK_DATA: testNltkData })),
       pythonImportsCheck: nix.thunk(() => ["type_infer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/mindsdb/type_infer/releases/tag/${tag}`),
         description: "Automated type inference for Machine Learning pipelines",
         homepage: "https://github.com/mindsdb/type_infer",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nezha-theme-nazhua",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hi2shark",
           repo: "nazhua",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-V+fdXp2QevPRYQQ4j5w9OQro6w3qnyi7imhgzGdUiVs=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VITE_NEZHA_VERSION: "v1",
         VITE_SARASA_TERM_SC_USE_CDN: "1",
         VITE_USE_CDN: "1",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       dontNpmInstall: true,
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Nezha monitoring theme called Nazhua",
         changelog: nix.thunk(() => nix.str`https://github.com/hi2shark/nazhua/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/hi2shark/nazhua",

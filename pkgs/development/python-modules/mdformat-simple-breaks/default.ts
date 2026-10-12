@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mdformat = nix.arg($, "mdformat");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdformat-simple-breaks",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csala",
           repo: "mdformat-simple-breaks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mdformat_simple_breaks"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mdformat plugin to render thematic breaks using three dashes",
         changelog: nix.thunk(() => nix.str`https://github.com/csala/mdformat-simple-breaks/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/csala/mdformat-simple-breaks",

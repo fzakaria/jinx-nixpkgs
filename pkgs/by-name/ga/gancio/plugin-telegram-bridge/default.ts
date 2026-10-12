@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nodejs_22;
   const yarnConfigHook$ = nix.thunk(() => nix.app(nix.sel(yarnConfigHook, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs })))),
+      [nix.POS]: pos$2,
+      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gancio-plugin-telegram-bridge",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "framagit.org",
           owner: "bcn.convocala",
           repo: "gancio-plugin-telegram-bridge",
@@ -42,19 +42,19 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cp --no-preserve=all ${nix.path(here, "./yarn.lock")} ./yarn.lock
 `),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.path(here, "./yarn.lock"),
           hash: "sha256-3842mgKcsa0FIAFdClVorYFKWODiQJm7ytw2bkJ1WG4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook$, yarnInstallHook, nodejs]),
       postInstall: "ln -s \"$out/lib/node_modules/gancio-plugin-telegram/index.js\" \"$out/index.js\"\nln -s \"$out/lib/node_modules/gancio-plugin-telegram/node_modules\" \"$out/node_modules\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nodejs: nodejs,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Telegram bridge for Gancio, republishes content to Telegram channels or groups",
         homepage: "https://framagit.org/bcn.convocala/gancio-plugin-telegram-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

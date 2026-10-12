@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     makeDataWriter: nix.thunk(() => nix.builtins.throw("pkgs.writers.makeDataWriter has been removed. Use pkgs.writeTextFile instead.")),
     writeText: nix.thunk(() => nix.attr(pkgs, "writeText")),
     writeJSON: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate")),

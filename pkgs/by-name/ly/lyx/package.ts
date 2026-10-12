@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.1";
       const pname = "lyx";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.lyx.org/pub/lyx/stable/2.5.x/lyx-${version}.tar.xz`),
           hash: "sha256-8qI4e8s/L1RsH8E+THTLT4qmSHBs5XiO9wXdUTRNLP0=",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const qtWrapperArgs = nix.thunk(() => [nix.thunk(() => nix.str` --prefix PATH : ${python3}/bin`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://www.lyx.org/announce/${nix.app(nix.sel(lib, "replaceString"), ".", "_", version)}.txt`),
         description: "WYSIWYM frontend for LaTeX, DocBook",
         homepage: "https://www.lyx.org",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

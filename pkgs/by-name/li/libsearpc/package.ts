@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const commit = "d00c062d76d86b76c8c179bfb4babc9e2200b3f1";
       const pname = "libsearpc";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haiwen",
           repo: "libsearpc",
           rev: commit,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config, python3]);
       const propagatedBuildInputs = nix.thunk(() => [glib, jansson]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/haiwen/libsearpc",
         description: "Simple and easy-to-use C language RPC framework based on GObject System",
         mainProgram: "searpc-codegen.py",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         commit,
         pname,

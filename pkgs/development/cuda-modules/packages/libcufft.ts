@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libnvjitlink = nix.arg($, "libnvjitlink");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libcufft",
       appendRunpaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.0")), nix.thunk(() => nix.builtins.map((pkg) => nix.str`${nix.app(nix.sel(lib, "getLib"), pkg)}/lib`, nix.thunk(() => [cuda_nvrtc, libnvjitlink]))))),
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "High-performance FFT product CUDA library",
         homepage: "https://developer.nvidia.com/cufft",
       })),

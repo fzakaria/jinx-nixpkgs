@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "check-manifest",
       version: "0.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mgedmin",
           repo: "check-manifest",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_build_sdist_pep517_isolated"]),
       pythonImportsCheck: nix.thunk(() => ["check_manifest"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Check MANIFEST.in in a Python source package for completeness",
         homepage: "https://github.com/mgedmin/check-manifest",
         changelog: nix.thunk(() => nix.str`https://github.com/mgedmin/check-manifest/blob/${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benoitc",
           repo: "gunicorn",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gevent: nix.thunk(() => [gevent]),
         eventlet: nix.thunk(() => [eventlet]),
         tornado: nix.thunk(() => [tornado]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestSignalHandlingIntegration"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_control_socket_integration.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WSGI HTTP Server for UNIX, fast clients and sleepy applications",
         homepage: "https://github.com/benoitc/gunicorn",
         changelog: nix.thunk(() => nix.str`https://github.com/benoitc/gunicorn/releases/tag/${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gunicorn",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

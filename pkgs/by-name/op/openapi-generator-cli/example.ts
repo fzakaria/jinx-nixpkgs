@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const formats = nix.arg($, "formats");
   return nix.app(runCommand, "openapi-generator-cli-test", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [openapi_generator_cli]),
       petstore: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/14c0908becbccd78252be49bd92be8c53cd2b9e3/examples/v3.0/petstore.yaml",
           hash: "sha256-q2D1naR41KwxLNn6vMbL0G+Pl1q4oaDCApsqQfZf7dU=",
         })))),
-      config: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))), "generate"), "config.json", nix.thunk(() => ({ __proto__: pos$2, elmVersion: "0.19", elmPrefixCustomTypeVariants: false })))),
+      config: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))), "generate"), "config.json", nix.thunk(() => ({ [nix.POS]: pos$2, elmVersion: "0.19", elmPrefixCustomTypeVariants: false })))),
     })), "openapi-generator-cli generate \\\n  --input-spec $petstore \\\n  --enable-post-process-file \\\n  --generator-name elm \\\n  --config \"$config\" \\\n  --additional-properties elmEnableCustomBasePaths=true \\\n  --output \"$out\" \\\n  ;\nfind $out\necho >&2 'Looking for some keywords'\nset -x\ngrep 'module Api.Request.Pets' $out/src/Api/Request/Pets.elm\ngrep 'createPets' $out/src/Api/Request/Pets.elm\ngrep '\"limit\"' $out/src/Api/Request/Pets.elm\nset +x\necho \"Looks OK!\"\n");
 })(), formals$1);
 //# sourceMappingURL=example.ts.map

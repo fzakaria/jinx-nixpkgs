@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const expect = nix.arg($, "expect");
   const dutctl = nix.arg($, "dutctl");
   const dutctl_test = nix.thunk(() => nix.app(runCommand, "test-dutctl-basic", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [dutctl, interactive_repeat_test]),
     })), nix.thunk(() => nix.str`cfg="${nix.sel(dutctl, "src")}/contrib/dutagent-cfg-example.yaml"
 

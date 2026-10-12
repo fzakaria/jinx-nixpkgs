@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "auditok",
       version: "0.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "auditok",
           hash: "sha256-HNsw9VLP7XEgs8E2X6p7ygDM47AwWxMYjptipknFig4=",
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       unittestFlagsArray: nix.thunk(() => ["-s", "tests"]),
       pythonImportsCheck: nix.thunk(() => ["auditok"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Audio Activity Detection tool that can process online data as well as audio files",
         mainProgram: "auditok",
         homepage: "https://github.com/amsehili/auditok/",

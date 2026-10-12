@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oppai-ng",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Francesco149",
           repo: "oppai-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "./build\n./libbuild\n",
       installPhase: "install -D oppai $out/bin/oppai\ninstall -D oppai.c $out/include/oppai.c\ninstall -D liboppai.so $out/lib/liboppai.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Difficulty and pp calculator for osu!",
         homepage: "https://github.com/Francesco149/oppai-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

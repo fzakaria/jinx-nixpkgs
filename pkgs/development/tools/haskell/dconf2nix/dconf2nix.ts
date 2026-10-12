@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const template_haskell = nix.arg($, "template-haskell");
   const text = nix.arg($, "text");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dconf2nix",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/gvolpe/dconf2nix.git",
           sha256: "0frqnq7ryr4gvkbb67n0615d9h1blps2kp55ic05n7wxyh26adgz",
           rev: "2fc3b0dfbbce9f1ea2ee89f3689a7cb95b33b63f",

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.argOr($_1, "url", () => null);
     const extraRegex = nix.argOr($_1, "extraRegex", () => null);
     return nix.app(genericUpdater, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         version: version,
         attrPath: attrPath,

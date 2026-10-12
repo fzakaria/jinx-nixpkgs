@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const runCommand = nix.arg($, "runCommand");
   const mkCustomFlutter = (args_1) => nix.app(callPackage, nix.path(here, "./flutter.nix"), args_1);
-  const wrapFlutter = (flutter) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ __proto__: pos$1, flutter: flutter })));
+  const wrapFlutter = (flutter) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, flutter: flutter })));
   const getPatches = (dir) => (() => {
     const files = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.readDir(dir))));
     return (nix.asBool(nix.builtins.pathExists(dir)) ? nix.builtins.map((f) => nix.add(dir, nix.add("/", f)), files) : []);
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     const artifactHashes = nix.arg($_1, "artifactHashes");
     const channel = nix.arg($_1, "channel");
     const args_2 = nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: version,
       engineVersion: engineVersion,
       patches: patches,
@@ -58,24 +58,24 @@ export default nix.lambda((args) => (() => {
       dart: nix.thunk(() => (() => {
         const hash = nix.thunk(() => nix.selOr(dartHash, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "3.41")) ? nix.app(nix.sel(dart_bin, "overrideAttrs"), (oldAttrs) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: dartVersion,
-            src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "overrideAttrs"), (_) => ({ __proto__: pos$2, hash: hash }))),
+            src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, hash: hash }))),
           })) : nix.app(nix.sel(nix.app(nix.sel(dart_bin, "overrideAttrs"), (_) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             version: dartVersion,
             __intentionallyOverridingVersion: true,
           })), "overrideAttrs"), (oldAttrs) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
-                return { __proto__: pos$5, url: nix.thunk(() => nix.attr(from, "url")), hash: hash };
+                return { [nix.POS]: pos$5, url: nix.thunk(() => nix.attr(from, "url")), hash: hash };
               })()))),
           })));
       })()),
       src: nix.thunk(() => (() => {
         const source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "flutter",
             repo: "flutter",
             tag: version,
@@ -90,14 +90,14 @@ touch $out/bin/cache/engine.realm
       })()),
     }));
     return nix.app(nix.sel(nix.app(mkCustomFlutter, args_2), "overrideAttrs"), (prev) => (next) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         passthru: nix.thunk(() => nix.update(nix.sel(next, "passthru"), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           wrapFlutter: wrapFlutter,
           mkCustomFlutter: mkCustomFlutter,
           mkFlutter: mkFlutter,
           buildFlutterApplication: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/build-flutter-application.nix"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               flutter: nix.thunk(() => nix.app(wrapFlutter, nix.thunk(() => nix.app(mkCustomFlutter, args_2)))),
             })))),
         })),
@@ -107,17 +107,17 @@ touch $out/bin/cache/engine.realm
       const versionDir = nix.thunk(() => nix.add(nix.path(here, "./versions"), nix.str`/${version}`));
       const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.add(versionDir, "/data.json"))));
       return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`v${version}`), nix.thunk(() => nix.app(wrapFlutter, nix.thunk(() => nix.app(mkFlutter, nix.thunk(() => nix.update({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               patches: nix.thunk(() => nix.concat(nix.app(getPatches, nix.path(here, "./patches")), nix.app(getPatches, nix.thunk(() => nix.add(versionDir, "/patches"))))),
             }, data)))))));
     })(), nix.thunk(() => nix.builtins.readDir(nix.path(here, "./versions")))));
   const stableFlutterVersions = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (v) => nix.eq(nix.sel(v, "channel"), "stable"), flutterVersions));
   const betaFlutterVersions = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (v) => nix.eq(nix.sel(v, "channel"), "beta"), flutterVersions));
-  return nix.update(flutterVersions, nix.update({ __proto__: pos$13, wrapFlutter: wrapFlutter, mkFlutter: mkFlutter }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(betaFlutterVersions, {})), nix.thunk(() => ({
-      __proto__: pos$14,
+  return nix.update(flutterVersions, nix.update({ [nix.POS]: pos$13, wrapFlutter: wrapFlutter, mkFlutter: mkFlutter }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(betaFlutterVersions, {})), nix.thunk(() => ({
+      [nix.POS]: pos$14,
       beta: nix.thunk(() => nix.sel(flutterVersions, nix.key(nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "naturalSort"), nix.thunk(() => nix.builtins.attrNames(betaFlutterVersions)))))))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(stableFlutterVersions, {})), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       stable: nix.thunk(() => nix.sel(flutterVersions, nix.key(nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "naturalSort"), nix.thunk(() => nix.builtins.attrNames(stableFlutterVersions)))))))),
     }))))));
 })(), formals$1);

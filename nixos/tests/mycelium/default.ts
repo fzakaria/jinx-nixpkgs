@@ -31,39 +31,39 @@ export default nix.lambda((args) => (() => {
   const peer1_ip = "538:f40f:1c51:9bd9:9569:d3f6:d0a1:b2df";
   const peer2_ip = "5b6:6776:fee0:c1f3:db00:b6a8:d013:d38f";
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "mycelium",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lassulus"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       peer1: nix.thunk(() => ({
-        __proto__: pos$10,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$10,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             eth1: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$3, address: "192.168.1.11", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$3, address: "192.168.1.11", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           mycelium: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             addHostedPublicNodes: false,
             openFirewall: true,
@@ -73,27 +73,27 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       peer2: nix.thunk(() => ({
-        __proto__: pos$19,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$11, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$19,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             eth1: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$12, address: "192.168.1.12", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$12, address: "192.168.1.12", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           mycelium: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             addHostedPublicNodes: false,
             openFirewall: true,

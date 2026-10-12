@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0"));
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "artifacts-credprovider",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       const testProjectFile = "CredentialProvider.Microsoft.Tests/CredentialProvider.Microsoft.Tests.csproj";
       const nugetDeps = nix.path(here, "./deps.json");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const patchPhase = "sed -i 's|<TargetFrameworks>.*</TargetFrameworks>|<TargetFramework>net8.0</TargetFramework>|' Build.props\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/microsoft/artifacts-credprovider",
         description: "Azure Artifacts Credential Provider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "dotnet-sdk": dotnet_sdk,
         "dotnet-runtime": dotnet_runtime,
         version,

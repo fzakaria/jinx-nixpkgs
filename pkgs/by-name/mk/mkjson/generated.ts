@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mkjson";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfussenegger",
           repo: "mkjson",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
       })());
       const mainProgram = "mkjson";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

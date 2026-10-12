@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = nix.arg($, "yarn-berry");
   const substitute = nix.arg($, "substitute");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "horizon-card",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "rejuvenate",
           repo: "lovelace-horizon-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-p4GI4R5P1LjiXwzF1Hlk6Kk57i+YUcEEsm8bN+qIYdE=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -42,16 +42,16 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       nativeBuildInputs: nix.thunk(() => [yarn_berry, nix.thunk(() => nix.sel(yarn_berry, "yarnBerryConfigHook"))]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-iHMIcnCQEbDkAugB9FO4G++eDq3/ABfp0E7Q6893fVY=",
         })))),
       buildPhase: "runHook preBuild\n\nyarn build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall dist/lovelace-horizon-card.js -Dt $out\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, entrypoint: "lovelace-horizon-card.js" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, entrypoint: "lovelace-horizon-card.js" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Sun Card successor: Visualize the position of the Sun over the horizon",
         homepage: "https://github.com/rejuvenate/lovelace-horizon-card",
         changelog: nix.thunk(() => nix.str`https://github.com/rejuvenate/lovelace-horizon-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "17.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Lfy/7ItNlg80acUqzxMxE8KovxKse5jWKfqRr4ckjUI=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_utime"]);
       const pythonImportsCheck = nix.thunk(() => ["path"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Object-oriented file system path manipulation",
         homepage: "https://github.com/jaraco/path",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/path/blob/v${version}/NEWS.rst`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

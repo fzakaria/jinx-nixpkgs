@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const vips = nix.arg($, "vips");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyvips",
       version: "3.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libvips",
           repo: "pyvips",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, vips]),
       dependencies: nix.thunk(() => [cffi]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         })))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/perf"]),
       pythonImportsCheck: nix.thunk(() => ["pyvips"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for libvips",
         homepage: "https://github.com/libvips/pyvips",
         changelog: nix.thunk(() => nix.str`https://github.com/libvips/pyvips/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

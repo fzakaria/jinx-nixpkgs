@@ -25,42 +25,42 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const testing = nix.argOr($, "testing", () => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs }))));
+  const testing = nix.argOr($, "testing", () => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
   const secretInStore = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "topsecret", "iamasecret"));
   const testWithCompressor = (compressor) => nix.app(nix.sel(testing, "makeTest"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: nix.thunk(() => nix.str`initrd-secrets-${compressor}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: [],
         broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$14,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$4, useBootLoader: true })),
+            [nix.POS]: pos$14,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, useBootLoader: true })),
             boot: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               initrd: nix.thunk(() => ({
-                __proto__: pos$12,
-                secrets: nix.thunk(() => ({ __proto__: pos$5, "/test": secretInStore, "/run/test": secretInStore })),
+                [nix.POS]: pos$12,
+                secrets: nix.thunk(() => ({ [nix.POS]: pos$5, "/test": secretInStore, "/run/test": secretInStore })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   enable: true,
                   tmpfiles: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       "00-copy-secret": nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         "/sysroot/secret-from-initramfs": nix.thunk(() => ({
-                          __proto__: pos$7,
-                          C: nix.thunk(() => ({ __proto__: pos$6, argument: "/test" })),
+                          [nix.POS]: pos$7,
+                          C: nix.thunk(() => ({ [nix.POS]: pos$6, argument: "/test" })),
                         })),
                       })),
                     })),

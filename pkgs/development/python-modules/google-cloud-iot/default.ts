@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-pLQgcwR89F+9jcSDtW/5+6Gy+Wk7XQf4iD49vDPkN9U=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_list_device_registries"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.iot", "google.cloud.iot_v1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud IoT API API client library",
         homepage: "https://github.com/googleapis/python-iot",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-iot/blob/v${version}/CHANGELOG.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -65,10 +65,10 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => (nix.asBool(nix.eq(system, "x86_64-linux")) ? nix.str`https://download.anydesk.com/linux/anydesk-${version}-amd64.tar.gz` : (nix.asBool(nix.eq(system, "aarch64-linux")) ? nix.str`https://download.anydesk.com/rpi/anydesk-${version}-arm64.tar.gz` : nix.builtins.throw(nix.thunk(() => nix.str`cannot install AnyDesk on ${system}`)))));
   const hash = nix.thunk(() => nix.sel(pin, nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "anydesk",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
       buildInputs: nix.thunk(() => [
         atk,
         cairo,
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "AnyDesk",
             exec: "anydesk %u",
             icon: "anydesk",
@@ -133,9 +133,9 @@ wrapProgram $out/bin/anydesk \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [net_tools]))} \\
   --set GTK_THEME Adwaita
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: description,
         homepage: "https://www.anydesk.com",
         sourceProvenance: nix.thunk(() => (() => {

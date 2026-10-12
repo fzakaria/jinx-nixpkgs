@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const prePatch = "if [ -d printing ]; then pushd printing; fi\n";
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./printing.patch"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pdfiumLib: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), pdfium)),
               pdfiumDev: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), pdfium)),
             })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const dontBuild = true;
         const installPhase = "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n";
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname,
           version: version_1,
           src: src_1,

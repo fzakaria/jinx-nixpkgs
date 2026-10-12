@@ -45,14 +45,14 @@ ln -s ${zlib}/lib $out/lib
   const pname = "intiface-central";
   const version = "3.0.4+40";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "intiface",
       repo: "intiface-central",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-RMllaThwCp2mRl0ecMtj3z6DC4uhdLqYNPI8lZChmhI=",
     }))));
   const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -63,35 +63,35 @@ ln -s ${buttplug} ../../buttplug
       cargoHash: "sha256-2KmwfvSDIaLvGda/EofUxGPRevv+/UQOUdSPRF2LEJw=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus, udev]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, libraryPath: "lib/librust_lib_intiface_central.so" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/librust_lib_intiface_central.so" })),
     }))));
   const buttplug_dart = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "buttplugio",
       repo: "buttplug_dart",
       tag: "v1.0.0",
       hash: "sha256-nm9TdEL9+80hCbaPnpAJTQ0w1t40vWYcxyilQTwvEBU=",
     }))));
   const buttplug = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "buttplugio",
       repo: "buttplug",
       tag: "intiface_engine_4.0.2",
       hash: "sha256-4tzGZEsqfCnz/ZX6qNx/Hku6yDK0g6gyep6p6WZGoQk=",
     }))));
   return nix.app(nix.sel(flutter338, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: pname,
       version: version,
       src: src,
       patches: nix.thunk(() => [nix.path(here, "./corrosion.patch")]),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         buttplug: "sha256-nm9TdEL9+80hCbaPnpAJTQ0w1t40vWYcxyilQTwvEBU=",
       })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: pname,
           version: version,
           src: src,
@@ -100,13 +100,13 @@ ln -s ${buttplug} ../../buttplug
         })))),
       cargoRoot: "rust",
       customSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         rust_lib_intiface_central: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pname: "rust_lib_intiface_central",
               version: version_1,
               src: src_1,
@@ -133,7 +133,7 @@ endfunction()
         copyDesktopItems,
       ]),
       buildInputs: nix.thunk(() => [jdk, udev]),
-      env: nix.thunk(() => ({ __proto__: pos$10, ZLIB_ROOT: zlib_root })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$10, ZLIB_ROOT: zlib_root })),
       preBuild: nix.thunk(() => nix.str`chmod +w ..
 ln -s ${buttplug_dart} ../buttplug_dart
 ln -s ${buttplug} ../buttplug
@@ -142,7 +142,7 @@ ln -s ${buttplug} ../buttplug
       postInstall: "install -Dm644 $out/app/intiface-central/data/flutter_assets/assets/icons/intiface_central_icon.png $out/share/icons/hicolor/512x512/apps/intiface-central.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "intiface-central",
             exec: "intiface_central",
             icon: "intiface-central",
@@ -150,9 +150,9 @@ ln -s ${buttplug} ../buttplug
             desktopName: "Intiface Central",
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$12, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$12, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         mainProgram: "intiface_central",
         description: "Intiface Central (Buttplug Frontend) Application for Desktop",
         homepage: "https://intiface.com/",

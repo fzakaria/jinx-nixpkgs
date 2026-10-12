@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ucs-fonts",
       version: "20090406",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "http://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts.tar.gz",
             sha256: "12hgizg25fzmk10wjl0c88x97h3pg5r9ga122s3y28wixz6x2bvh",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "http://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts-asian.tar.gz",
             sha256: "0ibjy4xpz5j373hsdr8bx99czfpclqmviwwv768j8n7z12z3wa51",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "http://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts-75dpi100dpi.tar.gz",
             sha256: "08vqr8yb636xa1s28vf3pm22dzkia0gisvsi2svqjqh4kk290pzh",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -m 644 -D *.otb *.pcf.gz -t \"$out/share/fonts/misc\"\ninstall -m 644 -D *.bdf -t \"$bdf/share/fonts/misc\"\n\nmkfontdir \"$out/share/fonts/misc\"\nmkfontdir \"$bdf/share/fonts/misc\"\n",
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html",
         description: "Unicode bitmap fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

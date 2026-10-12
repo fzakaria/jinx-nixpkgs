@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const posix_base = nix.arg($, "posix-base");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "posix-types",
       version: nix.thunk(() => nix.attr(posix_base, "version")),
       src: nix.thunk(() => nix.attr(posix_base, "src")),
       propagatedBuildInputs: nix.thunk(() => [posix_base]),
       meta: nix.thunk(() => nix.update(nix.sel(posix_base, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Bindings for the types defined in <sys/types.h>",
       })),
     })));

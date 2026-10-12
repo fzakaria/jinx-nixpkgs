@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trendmicro",
           repo: "tlsh",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["tlsh"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Trend Micro Locality Sensitive Hash",
         homepage: "https://tlsh.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/trendmicro/tlsh/releases/tag/${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

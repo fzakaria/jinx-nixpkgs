@@ -92,18 +92,18 @@ export default nix.lambda((args) => (() => {
   const hostSupportsRaspiCamera = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))));
   nix.assert_((!nix.asBool(raspiCameraSupport) || nix.asBool(hostSupportsRaspiCamera)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/gstreamer/good/default.nix:80:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "gst-plugins-good",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hyVpacgs87yFdDAfPnBEqQ3grFAKWifYujjE3eiU3Ys=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./souploader.diff"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nixLibSoup3Path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libsoup_3)}/lib`),
           })))),
       ]),
@@ -165,7 +165,7 @@ export default nix.lambda((args) => (() => {
           ];
         })())), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libdrm, libGL, libv4l, libpulseaudio, libgudev])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableFireWire, nix.thunk(() => [libavc1394, libiec61883])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableWayland, nix.thunk(() => [wayland])), nix.app(nix.sel(lib, "optionals"), enableJack, nix.thunk(() => [libjack2]))))))))))))),
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           orc: true,
           "orc-compiler": true,
           nls: true,
@@ -192,27 +192,27 @@ export default nix.lambda((args) => (() => {
         ])))),
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py \\\n  ext/qt6/qsb-wrapper.py\n",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")))), "-lncurses")),
       })),
       doCheck: false,
       dontWrapQtApps: true,
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$8,
-          gtk: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ __proto__: pos$5, gtkSupport: true })))),
-          qt5: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ __proto__: pos$6, qt5Support: true })))),
-          qt6: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ __proto__: pos$7, qt6Support: true })))),
+          [nix.POS]: pos$8,
+          gtk: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, gtkSupport: true })))),
+          qt5: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, qt5Support: true })))),
+          qt6: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, qt6Support: true })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), hostSupportsRaspiCamera, nix.thunk(() => ({
-            __proto__: pos$10,
-            raspiCamera: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ __proto__: pos$9, raspiCameraSupport: true })))),
+            [nix.POS]: pos$10,
+            raspiCamera: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, raspiCameraSupport: true })))),
           }))))),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$11, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$11, "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "GStreamer Good Plugins",
         homepage: "https://gstreamer.freedesktop.org",
         longDescription: "a set of plug-ins that we consider to have good quality code,\ncorrect functionality, our preferred license (LGPL for the plug-in\ncode, LGPL or LGPL-compatible for the supporting library).\n",
@@ -223,7 +223,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_4, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

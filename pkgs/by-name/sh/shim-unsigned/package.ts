@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
-  const archSuffix = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "x64", "aarch64-linux": "aa64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const archSuffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "aa64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "shim",
       version: "16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "rhboot",
           repo: "shim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/rhboot/shim/commit/c4665d282072df2ed8ab6ae1d5fa0de41e5db02f.patch?full_index=1",
             hash: "sha256-0QGqEo5qu3TrG9yqwQLZGuKhgoeReF+RrJzlOVQYDmA=",
           })))),
       ]),
       buildInputs: nix.thunk(() => [elfutils]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.builtins.toString(nix.thunk(() => nix.sel(elfutils, "dev")))}/include`),
           ]))),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install-as-data"]),
       installFlags: nix.thunk(() => ["DATATARGETDIR=$(out)/share/shim"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         archSuffix: archSuffix,
         target: nix.thunk(() => nix.str`shim${archSuffix}.efi`),
         mokManagerTarget: nix.thunk(() => nix.str`mm${archSuffix}.efi`),
         fallbackTarget: nix.thunk(() => nix.str`fb${archSuffix}.efi`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "UEFI shim loader",
         homepage: "https://github.com/rhboot/shim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd1")),

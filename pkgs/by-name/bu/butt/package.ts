@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const portmidi = nix.arg($, "portmidi");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "butt",
       version: "1.46.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://danielnoethen.de/butt/release/${nix.sel(finalAttrs, "version")}/butt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3RIC2H5HMn/e5Bl4XCPxxpv+FET9RgV7MxtcOuscXzs=",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [fdk_aac]),
       postInstall: "cp -r usr/share $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://danielnoethen.de/butt/Changelog.html",
         description: "Easy to use, multi OS streaming tool",
         homepage: "https://danielnoethen.de/butt/",

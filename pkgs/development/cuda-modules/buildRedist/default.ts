@@ -95,8 +95,8 @@ export default nix.lambda((args) => (() => {
   })();
   const getSupportedReleases = nix.thunk(() => (() => {
     const desiredCudaVariants = nix.thunk(() => nix.app(_mkCudaVariants, cudaMajorMinorPatchVersion));
-    return (release) => (nix.asBool(nix.has(release, "source")) ? { __proto__: pos$1, source: nix.thunk(() => nix.attr(release, "source")) } : (nix.asBool(nix.has(release, "linux-all")) ? {
-      __proto__: pos$2,
+    return (release) => (nix.asBool(nix.has(release, "source")) ? { [nix.POS]: pos$1, source: nix.thunk(() => nix.attr(release, "source")) } : (nix.asBool(nix.has(release, "linux-all")) ? {
+      [nix.POS]: pos$2,
       "linux-all": nix.thunk(() => nix.attr(release, "linux-all")),
     } : (() => {
       const hasCudaVariants = nix.thunk(() => nix.has(release, "cuda_variant"));
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
   })());
   const getPreferredRelease = (supportedReleases) => nix.selOr(supportedReleases, () => nix.selOr(supportedReleases, () => nix.selOr(supportedReleases, () => null, nix.key(nix.force(hostRedistSystem))), "linux-all"), "source");
   return nix.app(extendMkDerivation, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       constructDrv: nix.thunk(() => nix.sel(backendStdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "redistName",
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
           "stubs",
         ]);
         const outputToPatterns = nix.argOr($_1, "outputToPatterns", () => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bin: nix.thunk(() => ["bin"]),
           dev: nix.thunk(() => ["**/*.pc", "**/*.cmake"]),
           include: nix.thunk(() => ["include"]),
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
           stubs: nix.thunk(() => ["stubs", "lib/stubs"]),
         }));
         const outputNameVarFallbacks = nix.argOr($_1, "outputNameVarFallbacks", () => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           outputBin: nix.thunk(() => ["bin"]),
           outputDev: nix.thunk(() => ["dev"]),
           outputDoc: nix.thunk(() => ["doc"]),
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
           outputStubs: nix.thunk(() => ["stubs", "lib"]),
         }));
         return nix.update({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           __structuredAttrs: true,
           strictDeps: true,
           version: nix.thunk(() => nix.selOr(finalAttrs, () => "0-unsupported", "passthru", "release", "version")),
@@ -189,14 +189,14 @@ export default nix.lambda((args) => (() => {
               const relative_path = nix.arg($_2, "relative_path");
               const sha256 = nix.arg($_2, "sha256");
               return nix.app(srcOnly, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   __structuredAttrs: true,
                   strictDeps: true,
                   stdenv: stdenvNoCC,
                   pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
                   version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       url: nix.thunk(() => nix.app(mkRedistUrl, nix.thunk(() => nix.sel(finalAttrs, "passthru", "redistName")), relative_path)),
                       sha256: sha256,
                     })))),
@@ -235,7 +235,7 @@ printWords >>"\${!outputStubs:?}/nix-support/propagated-build-inputs" \\
   "${nix.app(getDev, removeStubsFromRunpathHook)}"
 `)))),
           passthru: nix.thunk(() => nix.update(passthru, {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             redistName: redistName,
             release: release,
             supportedReleases: nix.thunk(() => nix.selOr(passthru, () => nix.app(getSupportedReleases, nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(finalAttrs, "passthru", "release"))))), "supportedReleases")),
@@ -251,7 +251,7 @@ printWords >>"\${!outputStubs:?}/nix-support/propagated-build-inputs" \\
             outputNameVarFallbacks: outputNameVarFallbacks,
             brokenAssertions: nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 message: "lib output precedes static output",
                 assertion: nix.thunk(() => (() => {
                   const libIndex = nix.thunk(() => nix.app(findFirstIndex, (x) => nix.eq(x, "lib"), null, nix.thunk(() => nix.sel(finalAttrs, "outputs"))));
@@ -260,17 +260,17 @@ printWords >>"\${!outputStubs:?}/nix-support/propagated-build-inputs" \\
                 })()),
               })),
               nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 message: "outputNameVarFallbacks is a super set of expectedOutputs",
                 assertion: nix.thunk(() => nix.eq(nix.app(subtractLists, nix.thunk(() => nix.app(map, mkOutputNameVar, nix.thunk(() => nix.sel(finalAttrs, "passthru", "expectedOutputs")))), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(finalAttrs, "passthru", "outputNameVarFallbacks"))))), [])),
               })),
               nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 message: "outputToPatterns is a super set of expectedOutputs",
                 assertion: nix.thunk(() => nix.eq(nix.app(subtractLists, nix.thunk(() => nix.sel(finalAttrs, "passthru", "expectedOutputs")), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(finalAttrs, "passthru", "outputToPatterns"))))), [])),
               })),
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 message: "propagatedBuildOutputs is a subset of outputs",
                 assertion: nix.thunk(() => nix.eq(nix.app(subtractLists, nix.thunk(() => nix.sel(finalAttrs, "outputs")), nix.thunk(() => nix.sel(finalAttrs, "propagatedBuildOutputs"))), [])),
               })),
@@ -279,12 +279,12 @@ printWords >>"\${!outputStubs:?}/nix-support/propagated-build-inputs" \\
               const isSupportedRedistSystem = nix.thunk(() => nix.app(_redistSystemIsSupported, hostRedistSystem, nix.thunk(() => nix.sel(finalAttrs, "passthru", "supportedRedistSystems"))));
               return nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   message: "src is null if and only if hostRedistSystem is unsupported",
                   assertion: nix.thunk(() => nix.eq(nix.eq(nix.sel(finalAttrs, "src"), null), !nix.asBool(isSupportedRedistSystem))),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   message: nix.thunk(() => nix.str`hostRedistSystem (${hostRedistSystem}) is supported (${nix.builtins.toJSON(nix.thunk(() => nix.sel(finalAttrs, "passthru", "supportedRedistSystems")))})`),
                   assertion: isSupportedRedistSystem,
                 })),
@@ -292,7 +292,7 @@ printWords >>"\${!outputStubs:?}/nix-support/propagated-build-inputs" \\
             })()),
           })),
           meta: nix.thunk(() => nix.update(meta, {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             longDescription: nix.thunk(() => nix.add(nix.selOr(meta, () => "", "longDescription"), "By downloading and using this package you accept the terms and conditions of the associated license(s).\n")),
             sourceProvenance: nix.thunk(() => nix.selOr(meta, () => [nix.thunk(() => nix.sel(sourceTypes, "binaryNativeCode"))], "sourceProvenance")),
             platforms: nix.thunk(() => nix.sel(finalAttrs, "passthru", "supportedNixSystems")),

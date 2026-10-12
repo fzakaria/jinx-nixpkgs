@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rtl8821au",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2025-04-08`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "morrownr",
           repo: "8821au-20210708",
           rev: "b90b76d30709fb82705cbc2e295a7dde9372a0a8",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([bc, nukeReferences], nix.sel(kernel, "moduleBuildDependencies"))),
       hardeningDisable: nix.thunk(() => ["pic", "format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       makeFlags: nix.thunk(() => nix.concat([
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "rtl8821AU and rtl8812AU chipset driver with firmware",
         homepage: "https://github.com/morrownr/8821au-20210708",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

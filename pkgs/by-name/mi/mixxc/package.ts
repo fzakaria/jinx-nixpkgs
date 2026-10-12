@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableSass = nix.argOr($, "enableSass", () => true);
   const enableX11 = nix.argOr($, "enableX11", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mixxc",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "mixxc",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YVh6SOXCf4GHqDduXP7QupC48hcIMQtjIdGJYXNXQ1E=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "installManPage $src/doc/mixxc.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalistic and customizable volume mixer",
         homepage: "https://github.com/Elvyria/mixxc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

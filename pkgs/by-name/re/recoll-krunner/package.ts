@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const recoll = nix.arg($, "recoll");
   const xapian = nix.arg($, "xapian");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "recoll-krunner",
       src: nix.thunk(() => nix.attr(recoll, "src")),
       version: nix.thunk(() => nix.attr(recoll, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(recoll, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Krunner plugin for recoll",

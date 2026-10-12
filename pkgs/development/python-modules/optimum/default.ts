@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "optimum",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["transformers"]);
       const dependencies = nix.thunk(() => [huggingface_hub, numpy, packaging, torch, transformers]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         onnx: nix.thunk(() => [optimum_onnx]),
         onnxruntime: nix.thunk(() => nix.concat([optimum_onnx], nix.sel(optimum_onnx, "optional-dependencies", "onnxruntime"))),
         intel: [],
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["optimum"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Accelerate training and inference of Transformers and Diffusers with easy to use hardware optimization tools",
         mainProgram: "optimum-cli",
         homepage: "https://github.com/huggingface/optimum",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

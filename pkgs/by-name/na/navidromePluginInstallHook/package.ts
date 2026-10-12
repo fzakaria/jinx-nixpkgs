@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const zip = nix.arg($, "zip");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "navidrome-plugin-install-hook",
       propagatedBuildInputs: nix.thunk(() => [zip]),
     })), nix.path(here, "./install-phase.sh"));

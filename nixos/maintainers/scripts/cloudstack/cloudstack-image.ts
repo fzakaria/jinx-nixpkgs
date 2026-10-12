@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     imports: nix.thunk(() => [
       nix.path(here, "../../../modules/virtualisation/cloudstack-config.nix"),
       nix.path(here, "../../../modules/image/file-options.nix"),
     ]),
     system: nix.thunk(() => ({
-      __proto__: pos$4,
-      nixos: nix.thunk(() => ({ __proto__: pos$1, tags: nix.thunk(() => ["cloudstack"]) })),
+      [nix.POS]: pos$4,
+      nixos: nix.thunk(() => ({ [nix.POS]: pos$1, tags: nix.thunk(() => ["cloudstack"]) })),
       build: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         image: nix.thunk(() => nix.sel(config, "system", "build", "cloudstackImage")),
         cloudstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(config, "virtualisation"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             lib: lib,
             config: config,
             pkgs: pkgs,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           })()))),
       })),
     })),
-    image: nix.thunk(() => ({ __proto__: pos$5, extension: "qcow2" })),
+    image: nix.thunk(() => ({ [nix.POS]: pos$5, extension: "qcow2" })),
   };
 })(), formals$1);
 //# sourceMappingURL=cloudstack-image.ts.map

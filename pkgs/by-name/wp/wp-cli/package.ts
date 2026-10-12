@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const phpIniFile = nix.argOr($, "phpIniFile", () => null);
   const version = "2.12.0";
   const completion = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/wp-cli/wp-cli/v${version}/utils/wp-completion.bash`),
       hash: "sha256-RDygYQzK6NLWrOug7EqnkpuH7Wz1T2Zq/tGNZjoYo5U=",
     }))));
   const ini = nix.thunk(() => (nix.asBool(nix.eq(phpIniFile, null)) ? nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "php.ini", nix.thunk(() => ({
-      __proto__: pos$4,
-      PHP: nix.thunk(() => ({ __proto__: pos$2, memory_limit: nix.thunk(() => nix.neg(1n)) })),
-      Phar: nix.thunk(() => ({ __proto__: pos$3, "phar.readonly": "Off" })),
+      [nix.POS]: pos$4,
+      PHP: nix.thunk(() => ({ [nix.POS]: pos$2, memory_limit: nix.thunk(() => nix.neg(1n)) })),
+      Phar: nix.thunk(() => ({ [nix.POS]: pos$3, "phar.readonly": "Off" })),
     }))) : nix.force(phpIniFile)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wp-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/wp-cli/wp-cli/releases/download/v${version}/wp-cli-${version}.phar`),
           hash: "sha256-zjTd2Dj3NR1nWQaNCXk/JnVUY7SkYQpaXAqXtoIg2Fw=",
         })))),
@@ -74,7 +74,7 @@ runHook postInstall
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/wp`),
       versionCheckProgramArg: "--info",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         completion: completion,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-wp-cli", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)}
 version=$(nix-instantiate --eval -E "with import ./. {}; wp-cli.version or (lib.getVersion wp-cli)" | tr -d '"')
@@ -82,7 +82,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Command line interface for WordPress",
         homepage: "https://wp-cli.org",
         changelog: nix.thunk(() => nix.str`https://github.com/wp-cli/wp-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

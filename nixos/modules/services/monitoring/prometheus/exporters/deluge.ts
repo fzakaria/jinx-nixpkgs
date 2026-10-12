@@ -23,49 +23,49 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     port: 9354n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       delugeHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "localhost",
           description: "Hostname where deluge server is running.\n",
         })))),
       delugePort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 58846n,
           description: "Port where deluge server is listening.\n",
         })))),
       delugeUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "localclient",
           description: "User to connect to deluge server.\n",
         })))),
       delugePassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           description: "Password to connect to deluge server.\n\nThis stores the password unencrypted in the nix store and is thus considered unsafe. Prefer\nusing the delugePasswordFile option.\n",
         })))),
       delugePasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           description: "File containing the password to connect to deluge server.\n",
         })))),
       exportPerTorrentMetrics: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Enable per-torrent metrics.\n\nThis may significantly increase the number of time series depending on the number of\ntorrents in your Deluge instance.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       script: nix.thunk(() => nix.str`passwordfile="$CREDENTIALS_DIRECTORY/password-file"
 if [ -e "$passwordfile" ]; then
   export DELUGE_PASSWORD="$(cat "$passwordfile")"
@@ -74,7 +74,7 @@ fi
 exec ${nix.sel(pkgs, "prometheus-deluge-exporter")}/bin/deluge-exporter
 `),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "services", "prometheus", "exporters", "deluge", "delugePasswordFile"), null)), nix.thunk(() => [
             nix.thunk(() => nix.str`password-file:${nix.sel(config, "services", "prometheus", "exporters", "deluge", "delugePasswordFile")}`),
           ]))),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tinycmmc = nix.arg($, "tinycmmc");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinygettext",
       version: "0.1.0-unstable-2025-05-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinygettext",
           repo: "tinygettext",
           rev: "ef4164639004d7de5bf8ab28ed0e85ea521b7c5e",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tinycmmc]),
       propagatedBuildInputs: nix.thunk(() => [libiconv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A simple gettext replacement that works directly on .po files",
         homepage: "https://github.com/tinygettext/tinygettext",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

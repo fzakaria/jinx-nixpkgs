@@ -117,50 +117,50 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "strichliste"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "strichliste.yaml", nix.thunk(() => ({
-      __proto__: pos$2,
-      parameters: nix.thunk(() => ({ __proto__: pos$1, strichliste: nix.thunk(() => nix.sel(cfg, "settings")) })),
+      [nix.POS]: pos$2,
+      parameters: nix.thunk(() => ({ [nix.POS]: pos$1, strichliste: nix.thunk(() => nix.sel(cfg, "settings")) })),
     }))));
   const unitDependencies = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "pgpsql", nix.thunk(() => nix.sel(cfg, "environment", "DATABASE_URL")))) || nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "postgres", nix.thunk(() => nix.sel(cfg, "environment", "DATABASE_URL")))))), nix.thunk(() => ["postgresql.service"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "mysql", nix.thunk(() => nix.sel(cfg, "environment", "DATABASE_URL")))), nix.thunk(() => ["mysql.service"]))));
   return {
-    __proto__: pos$98,
-    meta: nix.thunk(() => ({ __proto__: pos$3, buildDocsInSandbox: false })),
+    [nix.POS]: pos$98,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$3, buildDocsInSandbox: false })),
     options: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       services: nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         strichliste: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           enable: nix.thunk(() => nix.app(mkEnableOption, "strichliste, a web based tally sheet.")),
           packages: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             backend: nix.thunk(() => nix.app(mkPackageOption, pkgs, "strichliste", nix.thunk(() => ({})))),
             frontend: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "package")),
                 default: nix.thunk(() => nix.sel(pkgs, "strichliste", "frontend")),
                 description: "The strichliste-frontend package to use.\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     common: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       idleTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 30000n,
                           description: "Time until the app returns to the start page.\n",
                         })))),
                     })),
                     user: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       stalePeriod: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "10 day",
                           example: "1 week",
@@ -168,9 +168,9 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     i18n: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       timezone: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: nix.thunk(() => nix.sel(config, "time", "timeZone")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.time.timeZone")),
@@ -178,28 +178,28 @@ export default nix.lambda((args) => (() => {
                           description: "Timezone used throughout the app, e.g. in the transaction log.\n",
                         })))),
                       language: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "en",
                           example: "de",
                           description: "Language used throughout the app.\n",
                         })))),
                       currency: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             example: "Euro",
                             description: "Name of the currency.\n",
                           })))),
                         symbol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             example: "€",
                             description: "Symbol for the currency.\n",
                           })))),
                         alpha3: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             example: "EUR",
                             description: "[ISO 4217] alpha code representing the currency.\n\n[ISO 4217]: https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes\n",
@@ -207,18 +207,18 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     account: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       boundary: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         lower: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.sel(types, "int")),
                             default: nix.thunk(() => nix.neg(200000n)),
                             example: 0n,
                             description: "The credit limit for user accounts.\n",
                           })))),
                         upper: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                             default: 200000n,
                             description: "The maximum balance on a user account.\n",
@@ -226,39 +226,39 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     payment: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       boundary: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         lower: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.sel(types, "int")),
                             default: nix.thunk(() => nix.neg(2000n)),
                             example: 0n,
                             description: "The lowest amount that can be used for payments.\n",
                           })))),
                         upper: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                             default: 15000n,
                             description: "The highest amount that can be used for payment.\n",
                           })))),
                       })),
                       deposit: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow money deposits.\n",
                           })))),
                         custom: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow custom amounts for deposits.\n",
                           })))),
                         steps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                                   nix.thunk(() => nix.sel(types, "int")),
                                   nix.thunk(() => nix.sel(types, "float")),
@@ -268,21 +268,21 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       dispense: nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow spending money.\n",
                           })))),
                         custom: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow custom spending amounts.\n",
                           })))),
                         steps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                                   nix.thunk(() => nix.sel(types, "int")),
                                   nix.thunk(() => nix.sel(types, "float")),
@@ -292,39 +292,39 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       splitInvoice: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow splitting invoices.\n",
                           })))),
                       })),
                       transactions: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow transactions between user accounts.\n",
                           })))),
                       })),
                       undo: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow undoing transactions withing the {option}`services.strichliste.settings.payment.undo.timeout` period.\n",
                           })))),
                         delete: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether to allow deleting within the {option}`services.strichliste.settings.payment.undo.timeout` period.\n",
                           })))),
                         timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "5 minute",
                             description: "The time period after creating a transaction in which undoing/deleting remains possible.\n\nThe format used is documented in <https://www.php.net/manual/en/dateinterval.createfromdatestring.php>.\n",
@@ -340,45 +340,45 @@ for possible options.
 `),
             })))),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "strichliste.example.com",
               description: "Domain name used to configure the webserver virtual host.\n",
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   freeformType: nix.thunk(() => nix.sel(types, "attrs")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     APP_ENV: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "prod",
                         description: "The active environment.\n",
                       })))),
                     APP_LOG_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/log/strichliste",
                         description: "Directory to write logs.\n",
                       })))),
                     APP_CACHE_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/cache/strichliste",
                         description: "Directory used for caching.\n",
                       })))),
                     CORS_ALLOW_ORIGIN: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: nix.thunk(() => nix.str`^https?://${nix.sel(config, "services", "strichliste", "domain")}(:[0-9]+)?$`),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "^https?://$${config.services.strichliste.domain}(:[0-9]+)?$")),
                         description: "Regular expression defining the allowed CORS origins.\n",
                       })))),
                     DATABASE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "sqlite:////var/lib/strichliste/db.sqlite",
                         example: "postgresql://strichliste@localhost/strichliste?host=/run/postgresql",
@@ -393,7 +393,7 @@ See <https://github.com/strichliste/strichliste-backend/blob/v${nix.sel(cfg, "pa
 `),
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"/run/keys/strichliste.env\"\n]\n")),
@@ -407,16 +407,16 @@ You should configure \`APP_SECRET\` here.
 `),
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to enable and configure an nginx vhost to serve strichliste.\n",
               })))),
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$56,
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$55, config: config, lib: lib })))))),
+                [nix.POS]: pos$56,
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$55, config: config, lib: lib })))))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  enableACME = true;\n  forceSSL = true;\n}\n")),
                 description: "Nginx virtual settings to allow direct customization of its settings.\n",
               })))),
@@ -426,17 +426,17 @@ You should configure \`APP_SECRET\` here.
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "nginx", "enable")))), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             services: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 pools: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   strichliste: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                       "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                     })),
@@ -444,24 +444,24 @@ You should configure \`APP_SECRET\` here.
                 })),
               })),
               nginx: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 enable: true,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "domain"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "nginx", "virtualHost")),
                       nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         root: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`${nix.sel(cfg, "packages", "frontend")}`))),
                         locations: nix.thunk(() => ({
-                          __proto__: pos$68,
+                          [nix.POS]: pos$68,
                           "/": nix.thunk(() => ({
-                            __proto__: pos$65,
+                            [nix.POS]: pos$65,
                             tryFiles: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["$uri", "$uri/", "index.html"]))),
                           })),
                           "/api/": nix.thunk(() => ({
-                            __proto__: pos$67,
+                            [nix.POS]: pos$67,
                             fastcgiParams: nix.thunk(() => ({
-                              __proto__: pos$66,
+                              [nix.POS]: pos$66,
                               SCRIPT_FILENAME: nix.thunk(() => nix.str`${nix.sel(cfg, "packages", "backend")}/share/php/strichliste-backend/public/index.php`),
                               SCRIPT_NAME: "/index.php",
                               REQUEST_URI: "$request_uri",
@@ -481,43 +481,43 @@ fastcgi_request_buffering off;
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             environment: nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               etc: nix.thunk(() => ({
-                __proto__: pos$74,
-                "strichliste.yaml": nix.thunk(() => ({ __proto__: pos$73, source: settingsFile })),
+                [nix.POS]: pos$74,
+                "strichliste.yaml": nix.thunk(() => ({ [nix.POS]: pos$73, source: settingsFile })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   strichliste: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.sel(cfg, "environment", "APP_CACHE_DIR"), nix.thunk(() => ({
-                      __proto__: pos$77,
-                      d: nix.thunk(() => ({ __proto__: pos$76, user: "strichliste", group: "strichliste", mode: "0700" })),
+                      [nix.POS]: pos$77,
+                      d: nix.thunk(() => ({ [nix.POS]: pos$76, user: "strichliste", group: "strichliste", mode: "0700" })),
                     }))],
                     [nix.sel(cfg, "environment", "APP_LOG_DIR"), nix.thunk(() => ({
-                      __proto__: pos$79,
-                      d: nix.thunk(() => ({ __proto__: pos$78, user: "strichliste", group: "strichliste", mode: "0700" })),
+                      [nix.POS]: pos$79,
+                      d: nix.thunk(() => ({ [nix.POS]: pos$78, user: "strichliste", group: "strichliste", mode: "0700" })),
                     }))],
                   ])),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 "strichliste-migrate": nix.thunk(() => ({
-                  __proto__: pos$83,
+                  [nix.POS]: pos$83,
                   wantedBy: nix.thunk(() => ["phpfpm-strichliste.service"]),
                   before: nix.thunk(() => ["phpfpm-strichliste.service"]),
                   wants: unitDependencies,
                   after: unitDependencies,
                   environment: nix.thunk(() => nix.attr(cfg, "environment")),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$82,
+                    [nix.POS]: pos$82,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     User: "strichliste",
@@ -532,10 +532,10 @@ fastcgi_request_buffering off;
                   })),
                 })),
                 "phpfpm-strichliste": nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   environment: nix.thunk(() => nix.attr(cfg, "environment")),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$84,
+                    [nix.POS]: pos$84,
                     EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
                   })),
                   restartTriggers: nix.thunk(() => [settingsFile]),
@@ -547,19 +547,19 @@ fastcgi_request_buffering off;
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 pools: nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   strichliste: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(cfg, "packages", "backend"));
                     return {
-                    __proto__: pos$89,
+                    [nix.POS]: pos$89,
                     user: "strichliste",
                     group: "strichliste",
                     settings: nix.thunk(() => ({
-                      __proto__: pos$88,
+                      [nix.POS]: pos$88,
                       clear_env: false,
                       pm: "dynamic",
                       "pm.max_children": 8n,
@@ -575,12 +575,12 @@ fastcgi_request_buffering off;
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$96,
-              groups: nix.thunk(() => ({ __proto__: pos$93, strichliste: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$96,
+              groups: nix.thunk(() => ({ [nix.POS]: pos$93, strichliste: nix.thunk(() => ({})) })),
               users: nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 strichliste: nix.thunk(() => ({
-                  __proto__: pos$94,
+                  [nix.POS]: pos$94,
                   group: "strichliste",
                   home: "/var/lib/strichliste",
                   createHome: true,

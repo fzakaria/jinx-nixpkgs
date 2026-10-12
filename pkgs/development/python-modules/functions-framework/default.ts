@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "functions-framework",
       version: "3.10.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "functions-framework-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["tests/test_timeouts.py"]))),
       disabledTests: nix.thunk(() => ["test_cloud_run_http"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FaaS (Function as a service) framework for writing portable Python functions",
         homepage: "https://github.com/GoogleCloudPlatform/functions-framework-python",
         changelog: nix.thunk(() => nix.str`https://github.com/GoogleCloudPlatform/functions-framework-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

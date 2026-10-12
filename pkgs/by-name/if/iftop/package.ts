@@ -20,33 +20,33 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "iftop",
       version: "1.0pre4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ex-parrot.com/pdw/iftop/download/iftop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "15sgkdyijb7vbxpxjavh5qm5nvyii3fqcg9mzvw7fx8s6zmfwczp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/iftop/-/raw/750d49dd3fabc338586a86f5bb0a5b97a5ff5fa2/debian/patches/bug-debian-1096832-ftbfs-with-GCC-15.patch",
             hash: "sha256-BhjN7AZNCJCqrY2IAutUYYDZkLq+TD2YnKYZxHgVdYg=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-lgcc_s")),
         NIX_CFLAGS_COMPILE: "-fcommon",
       })),
       buildInputs: nix.thunk(() => [ncurses, libpcap]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, iftop: nix.thunk(() => nix.attr(nixosTests, "iftop")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, iftop: nix.thunk(() => nix.attr(nixosTests, "iftop")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Display bandwidth usage on a network interface",
         longDescription: "iftop does for network usage what top(1) does for CPU usage. It listens\nto network traffic on a named interface and displays a table of current\nbandwidth usage by pairs of hosts.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

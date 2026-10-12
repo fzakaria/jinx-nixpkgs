@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-trio",
           repo: "asyncclick",
           tag: nix.thunk(() => nix.str`${version}+async`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_context_pushing", "test_echo_via_pager"]);
       const pythonImportsCheck = nix.thunk(() => ["asyncclick"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python composable command line utility",
         homepage: "https://github.com/python-trio/asyncclick",
         changelog: nix.thunk(() => nix.str`https://github.com/python-trio/asyncclick/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

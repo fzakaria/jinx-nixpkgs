@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const pike_bootstrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pike-bootstrap",
       version: "8.0.1956",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/p/pike8.0/pike8.0-core_${nix.sel(finalAttrs, "version")}-1_amd64.deb`),
           hash: "sha256-kDaP7GZOW9Wlzg9dSxi+Q8IYduIZneWSsFqRfNh1NFQ=",
         })))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r usr/* $out/\n\n# The binary should be in bin/pike8.0\nif [ -f $out/bin/pike8.0 ]; then\n  ln -s pike8.0 $out/bin/pike\nfi\n\n# Fix broken symlinks to Debian license files\nrm -f $out/lib/pike8.0/modules/Tools.pmod/Legal.pmod/License.pmod/*.txt || true\n\n# Create wrapper to set proper paths\nwrapProgram $out/bin/pike8.0 \\\n  --set PIKE_MODULE_PATH \"$out/lib/pike8.0/modules\" \\\n  --add-flags \"-m$out/lib/pike8.0/master.pike\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pike programming language bootstrap",
         longDescription: "Pike is a dynamic programming language with a syntax similar to Java and C.\nIt is simple to learn, does not require long compilation passes and has\npowerful built-in data types allowing simple and really fast data manipulation.\n",
         homepage: "https://pike.lysator.liu.se/",
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pike",
       version: "8.0.2042",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "pikelang",
           repo: "Pike",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "patchShebangs .\ncd src\n./run_autoconfig\n",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RUNPIKE: nix.thunk(() => nix.str`${pike_bootstrap}/bin/pike`),
         PIKE: nix.thunk(() => nix.str`${pike_bootstrap}/bin/pike`),
       })),
@@ -147,11 +147,11 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["INSTALLARGS=--traditional"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$6, allowedVersions: "^8\\..*" })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, allowedVersions: "^8\\..*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Pike programming language",
         longDescription: "Pike is a dynamic programming language with a syntax similar to Java and C.\nIt is simple to learn, does not require long compilation passes and has\npowerful built-in data types allowing simple and really fast data manipulation.\n",
         homepage: "https://pike.lysator.liu.se/",

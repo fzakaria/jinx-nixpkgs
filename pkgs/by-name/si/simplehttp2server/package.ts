@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "simplehttp2server",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleChromeLabs",
           repo: "simplehttp2server",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/GoogleChromeLabs/simplehttp2server/commit/7090b4af33846c48b336335f6a19514b7c1d4392.patch",
             hash: "sha256-xGBPNdAmOAUkr7j2VDfTi3Bm13y/b3nuqDLf1jiGct4=",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-PcDy+46Pz6xOxxwkSjojsbKZyR1yHdbWAJT+HFAEKkA=",
       proxyVendor: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/GoogleChromeLabs/simplehttp2server",
         description: "HTTP/2 server for development purposes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

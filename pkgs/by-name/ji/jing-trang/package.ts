@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const saxon = nix.arg($, "saxon");
   const jdk_headless = jdk8_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jing-trang",
       version: "20181222",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "relaxng",
           repo: "jing-trang",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       buildInputs: nix.thunk(() => [jdk_headless, ant, saxon]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CLASSPATH: "lib/saxon.jar" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CLASSPATH: "lib/saxon.jar" })),
       patches: nix.thunk(() => [nix.path(here, "./no-git-during-build.patch")]),
       preBuild: "ant",
       installPhase: nix.thunk(() => nix.str`mkdir -p "$out"/{share/java,bin}
@@ -50,7 +50,7 @@ chmod +x "$out"/bin/*
       doCheck: true,
       checkPhase: "ant test",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RELAX NG validator in Java",
         homepage: "https://www.thaiopensource.com/relaxng/trang.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

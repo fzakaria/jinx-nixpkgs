@@ -57,18 +57,18 @@ export default nix.lambda((args) => (() => {
   const hugin = nix.arg($, "hugin");
   const gnumake = nix.arg($, "gnumake");
   const testData = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://invent.kde.org/graphics/digikam-test-data.git",
       rev: "d02dd20b23cc279792325a0f03d21688547a7a59",
       fetchLFS: true,
       hash: "sha256-SvsmcniDRorwu9x9OLtHD9ftgquyoE5Kl8qDgqi1XdQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "digikam",
       version: "9.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "digikam",
@@ -162,11 +162,11 @@ substituteInPlace $out/bin/digitaglinktree \\
 `),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Photo management application",
         homepage: "https://www.digikam.org/",
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}-/blob/master/project/NEWS.${nix.sel(finalAttrs, "version")}`),

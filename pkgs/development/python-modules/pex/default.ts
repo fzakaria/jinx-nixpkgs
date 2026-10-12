@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const setuptools = nix.arg($, "setuptools");
   const uv_trampoline = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     version: "0.5.29",
     "aarch64-gui": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-aarch64-gui.exe`),
         hash: "sha256-mb8x1FpyH+wy11X5YgWfqh/VUwBb62M4Zf9aFr5V4EE=",
       })))),
     "aarch64-console": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-aarch64-console.exe`),
         hash: "sha256-1S2aM+6CV7rKz+3ncM5X7kk7uDQeuha1+8lUEMYC75k=",
       })))),
     "x86_64-gui": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-x86_64-gui.exe`),
         hash: "sha256-icnp1oXrOZpc+dHTGvDbTHjr+D8M0eamvRrC9bPI/KI=",
       })))),
     "x86_64-console": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-x86_64-console.exe`),
         hash: "sha256-nLopBrlCMMFjkKVRlY7Ke2zFGpQOyF5mSlLs0d7+HRQ=",
       })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.38.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: pname,
           version: version,
           hash: "sha256-ejd9JWmDutYpwR+KPiS90Y3XKyyOwRAMpCEN013VMdI=",
@@ -63,7 +63,7 @@ cp ${nix.sel(uv_trampoline, "x86_64-console")} pex/windows/stubs/uv-trampoline-x
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pex"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Python library and tool for generating .pex (Python EXecutable) files",
         homepage: "https://github.com/pantsbuild/pex",
         changelog: nix.thunk(() => nix.str`https://github.com/pantsbuild/pex/releases/tag/v${version}`),
@@ -71,7 +71,7 @@ cp ${nix.sel(uv_trampoline, "x86_64-console")} pex/windows/stubs/uv-trampoline-x
         maintainers: [],
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trygveaa",
           repo: "python-tunigo",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, responses, pytest]);
       const checkPhase = "py.test\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for the browse feature of Spotify",
         homepage: "https://github.com/trygveaa/python-tunigo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

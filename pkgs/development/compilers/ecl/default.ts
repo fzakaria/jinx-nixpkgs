@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ecl";
       const version = "26.5.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://common-lisp.net/project/ecl/static/files/release/ecl-${version}.tgz`),
           hash: "sha256-oBpbzajFtz5Z3aNJT9E+X+xdtqodrXgsPMO7V/FjNDU=",
         }))));
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`sed -e 's/@[-a-zA-Z_]*@//g' -i $out/bin/ecl-config
 wrapProgram "$out/bin/ecl" --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cc, nix.thunk(() => nix.sel(cc, "bintools", "bintools"))]))}"
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sbcl: sbcl })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sbcl: sbcl })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lisp implementation aiming to be small, fast and easy to embed",
         homepage: "https://common-lisp.net/project/ecl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +70,7 @@ wrapProgram "$out/bin/ecl" --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPat
         changelog: nix.thunk(() => nix.str`https://gitlab.com/embeddable-common-lisp/ecl/-/raw/${version}/CHANGELOG`),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

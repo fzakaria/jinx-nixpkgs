@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "socalabs-rp2a03",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FigBug",
           repo: "RP2A03",
           rev: "dd90863aed05afe110a5302b5eff4b5144f28d4c",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: "Application",
             name: "socalabs-rp2a03",
             desktopName: "Socalabs RP2A03",
@@ -105,7 +105,7 @@ install -Dm444 $src/plugin/Resources/logo.png $out/share/pixmaps/RP2A03.png
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -118,7 +118,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Socalabs NES Ricoh 2A03 Emulation Plugin",
         homepage: "https://socalabs.com/synths/rp2a03/",
         mainProgram: "RP2A03",

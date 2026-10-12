@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "home-assistant"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
-  const renderYAMLFile = (fn) => (yaml) => nix.app(nix.sel(pkgs, "runCommand"), fn, nix.thunk(() => ({ __proto__: pos$1, preferLocalBuilds: true })), nix.thunk(() => nix.str`cp ${nix.app(nix.sel(format, "generate"), fn, yaml)} $out
+  const renderYAMLFile = (fn) => (yaml) => nix.app(nix.sel(pkgs, "runCommand"), fn, nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuilds: true })), nix.thunk(() => nix.str`cp ${nix.app(nix.sel(format, "generate"), fn, yaml)} $out
 sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
 `));
   const filteredConfig = nix.thunk(() => nix.app(converge, nix.thunk(() => nix.app(filterAttrsRecursive, (_) => (v) => !nix.asBool(nix.app(elem, v, nix.thunk(() => [null]))))), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.update(customLovelaceModulesResources, themesConfig)), nix.thunk(() => nix.selOr(cfg, () => ({}), "config"))))));
@@ -132,35 +132,35 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
   const useComponent = (component) => (nix.asBool((nix.asBool((nix.asBool(nix.app(hasAttrByPath, nix.thunk(() => nix.app(splitString, ".", component)), nix.thunk(() => nix.sel(cfg, "config")))) || nix.asBool(nix.app(useComponentPlatform, component)))) || nix.asBool(nix.app(useExplicitComponent, component)))) || nix.asBool(nix.builtins.elem(component, nix.thunk(() => nix.concat(nix.sel(cfg, "extraComponents"), nix.concat(nix.sel(cfg, "defaultIntegrations"), nix.builtins.map(nix.thunk(() => nix.app(getAttr, "domain")), nix.thunk(() => nix.sel(cfg, "customComponents")))))))));
   const extraComponents = nix.thunk(() => nix.app(filter, useComponent, availableComponents));
   const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), (oldArgs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraComponents: nix.thunk(() => nix.concat(nix.selOr(oldArgs, () => [], "extraComponents"), extraComponents)),
       extraPackages: (ps) => nix.concat(nix.app(nix.selOr(oldArgs, () => (_) => [], "extraPackages"), ps), nix.concat(nix.app(nix.sel(cfg, "extraPackages"), ps), nix.app(concatMap, (component) => nix.selOr(component, () => [], "propagatedBuildInputs"), nix.thunk(() => nix.sel(cfg, "customComponents"))))),
     })));
   const customLovelaceModulesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "home-assistant-custom-lovelace-modules",
       paths: nix.thunk(() => nix.sel(cfg, "customLovelaceModules")),
     }))));
   const customLovelaceModulesResources = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     lovelace: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       resources: nix.thunk(() => nix.builtins.map((card) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`/local/nixos-lovelace-modules/${nix.selOr(card, () => nix.add(nix.sel(card, "pname"), ".js"), "entrypoint")}?${nix.sel(card, "version")}`),
           type: "module",
         }), nix.thunk(() => nix.sel(cfg, "customLovelaceModules")))),
     })),
   }));
   const themesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "home-assistant-themes",
       paths: nix.thunk(() => nix.sel(cfg, "themes")),
     }))));
   const themesConfig = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "themes"), [])) ? {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     frontend: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       themes: nix.thunk(() => nix.str`!include_dir_merge_named ${themesDir}/themes`),
     })),
   } : {}));
@@ -265,45 +265,45 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
   const componentsUsingInputDevices = nix.thunk(() => ["keyboard_remote"]);
   const componentsUsingCecDevices = nix.thunk(() => ["hdmi_cec"]);
   return {
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "home-assistant", "applyDefaultConfig"]), "The default config was migrated into services.home-assistant.config")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "home-assistant", "autoExtraComponents"]), "Components are now parsed from services.home-assistant.config unconditionally")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "home-assistant", "openFirewall"]), "The frontend port is not configured in YAML any more and therefore cannot be determined at eval time any longer.")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       buildDocsInSandbox: false,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       services: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         "home-assistant": nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               example: true,
               description: "Whether to enable Home Assistant, open source home automation that puts local control and privacy first.\n\nYour instance will bind to `*:8123` by default. This can be changed in the [HTTP] integration in the frontend.\n\n:::{.warning}\nThe upstream project does not support this installation method. Make sure to file issues against nixpkgs first.\n:::\n\n[HTTP]: https://www.home-assistant.io/integrations/http/\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--debug"]),
               description: "Extra arguments to pass to the hass executable.\n",
             })))),
           configDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: "/var/lib/hass",
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "The config directory, where your {file}`configuration.yaml` is located.",
             })))),
           defaultIntegrations: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), availableComponents)))),
               default: nix.thunk(() => [
                 "application_credentials",
@@ -333,14 +333,14 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
               description: "List of integrations set are always set up, unless in recovery mode.\n",
             })))),
           extraComponents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), availableComponents)))),
               default: nix.thunk(() => nix.concat(["default_config", "met", "esphome"], nix.app(optionals, nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch")), nix.thunk(() => ["rpi_power"])))),
               example: nix.thunk(() => nix.app(literalExpression, "[\n  \"analytics\"\n  \"default_config\"\n  \"esphome\"\n  \"my\"\n  \"shopping_list\"\n  \"wled\"\n]\n")),
               description: "List of [components](https://www.home-assistant.io/integrations/) that have their dependencies included in the package.\n\nThe component name can be found in the URL, for example `https://www.home-assistant.io/integrations/ffmpeg/` would map to `ffmpeg`.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))))),
               default: (_) => [],
               defaultText: nix.thunk(() => nix.app(literalExpression, "python3Packages: with python3Packages; [];\n")),
@@ -348,9 +348,9 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
               description: "List of packages to add to propagatedBuildInputs.\n\nA popular example is `python3Packages.psycopg2`\nfor PostgreSQL support in the recorder component.\n",
             })))),
           customComponents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.update(nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "package")), (p) => nix.selOr(p, () => false, "isHomeAssistantComponent")), {
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   name: "home-assistant-component",
                   description: "package that is a Home Assistant component",
                 })))),
@@ -359,16 +359,16 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
               description: "List of custom component packages to install.\n\nAvailable components can be found below `pkgs.home-assistant-custom-components`.\n",
             })))),
           customLovelaceModules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "with pkgs.home-assistant-custom-lovelace-modules; [\n  mini-graph-card\n  mini-media-player\n];\n")),
               description: "List of custom lovelace card packages to load as lovelace resources.\n\nAvailable cards can be found below `pkgs.home-assistant-custom-lovelace-modules`.\n\n::: {.note}\nWhen non-empty, `lovelace.resource_mode` is automatically set to `\"yaml\"`\nso that resources are loaded from the YAML configuration.\n:::\n",
             })))),
           themes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.update(nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "package")), (p) => nix.selOr(p, () => false, "isHomeAssistantTheme")), {
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   name: "home-assistant-theme",
                   description: "package that is a Home Assistant theme",
                 })))),
@@ -377,51 +377,51 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
               description: "List of themes to load.\n\nAvailable themes can be found below `pkgs.home-assistant-themes`.\n\n::: {.note}\nWhen `themes` is set, the module takes authoritative control\nover the `frontend.themes` setting in\n{option}`services.home-assistant.config`.\n:::\n",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       homeassistant: nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             example: "Home",
                             description: "Name of the location where Home Assistant is running.\n",
                           })))),
                         latitude: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "float")), nix.thunk(() => nix.sel(types, "str")))))),
                             default: null,
                             example: 52.3,
                             description: "Latitude of your location required to calculate the time the sun rises and sets.\n",
                           })))),
                         longitude: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "float")), nix.thunk(() => nix.sel(types, "str")))))),
                             default: null,
                             example: 4.9,
                             description: "Longitude of your location required to calculate the time the sun rises and sets.\n",
                           })))),
                         unit_system: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["metric", "us_customary"]))))),
                             default: null,
                             example: "metric",
                             description: "The unit system to use. This also sets temperature_unit, Celsius for Metric and Fahrenheit for US Customary.\n",
                           })))),
                         temperature_unit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["C", "F"]))))),
                             default: null,
                             example: "C",
                             description: "Override temperature unit set by unit_system. `C` for Celsius, `F` for Fahrenheit.\n",
                           })))),
                         time_zone: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: nix.thunk(() => nix.selOr(config, () => null, "time", "timeZone")),
                             defaultText: nix.thunk(() => nix.app(literalExpression, "config.time.timeZone or null\n")),
@@ -430,14 +430,14 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
                           })))),
                       })),
                       lovelace: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         dashboards: nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           "nixos-lovelace": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(format, "type")))),
                               default: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "lovelaceConfig"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "lovelaceConfigFile"), null)))) ? {
-                                __proto__: pos$29,
+                                [nix.POS]: pos$29,
                                 mode: "yaml",
                                 filename: "ui-lovelace.yaml",
                                 title: "Overview",
@@ -449,7 +449,7 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
                             })))),
                         })),
                         resource_mode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["yaml", "storage"]))))),
                             default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "customLovelaceModules"), [])) ? "yaml" : null)),
                             defaultText: nix.thunk(() => nix.app(literalExpression, "if cfg.customLovelaceModules != [ ] then \"yaml\" else null\n")),
@@ -462,41 +462,41 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
               description: "Your {file}`configuration.yaml` as a Nix attribute set.\n\nYAML functions like [secrets](https://www.home-assistant.io/docs/configuration/secrets/)\ncan be passed as a string and will be unquoted automatically.\n\nUnless this option is explicitly set to `null`\nwe assume your {file}`configuration.yaml` is\nmanaged through this module and thereby overwritten on startup.\n",
             })))),
           configWritable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to make {file}`configuration.yaml` writable.\n\nThis will allow you to edit it from Home Assistant's web interface.\n\nThis only has an effect if {option}`config` is set.\nHowever, bear in mind that it will be overwritten at every start of the service.\n",
             })))),
           lovelaceConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(format, "type")))),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  title = \"My Awesome Home\";\n  views = [ {\n    title = \"Example\";\n    cards = [ {\n      type = \"markdown\";\n      title = \"Lovelace\";\n      content = \"Welcome to your **Lovelace UI**.\";\n    } ];\n  } ];\n}\n")),
               description: "Your {file}`ui-lovelace.yaml` as a Nix attribute set.\nSetting this option will automatically configure a Lovelace dashboard in YAML mode.\n\nBeware that setting this option will delete your previous {file}`ui-lovelace.yaml`\n",
             })))),
           lovelaceConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               example: "/path/to/ui-lovelace.yaml",
               description: "Your {file}`ui-lovelace.yaml` managed as configuration file.\nSetting this option will automatically configure a Lovelace dashboard in YAML mode.\n",
             })))),
           lovelaceConfigWritable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to make {file}`ui-lovelace.yaml` writable.\n\nThis will allow you to edit it from Home Assistant's web interface.\n\nThis only has an effect if {option}`lovelaceConfig` is set.\nHowever, bear in mind that it will be overwritten at every start of the service.\n",
             })))),
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$42,
-              default: nix.thunk(() => nix.app(nix.sel(pkgs, "home-assistant", "overrideAttrs"), (oldAttrs) => ({ __proto__: pos$41, doInstallCheck: false }))),
+              [nix.POS]: pos$42,
+              default: nix.thunk(() => nix.app(nix.sel(pkgs, "home-assistant", "overrideAttrs"), (oldAttrs) => ({ [nix.POS]: pos$41, doInstallCheck: false }))),
               defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.home-assistant.overrideAttrs (oldAttrs: {\n  doInstallCheck = false;\n})\n")),
               type: nix.thunk(() => nix.sel(types, "package")),
               example: nix.thunk(() => nix.app(literalExpression, "pkgs.home-assistant.override {\n  extraPackages = python3Packages: with python3Packages; [\n    psycopg2\n  ];\n  extraComponents = [\n    \"default_config\"\n    \"esphome\"\n    \"met\"\n  ];\n}\n")),
               description: "The Home Assistant package to use.\n",
             })))),
           finalPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               default: package$,
               internal: true,
               readOnly: true,
@@ -504,14 +504,14 @@ sed -i -e "s/'\\!\\([a-z_]\\+\\) \\(.*\\)'/\\!\\1 \\2/;s/^\\!\\!/\\!/;" $out
               description: "The final Home Assistant package which is being used in the service.\n",
             })))),
           openFirewallForComponents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to open required firewall ports for enabled components.\n",
             })))),
           blueprints: nix.thunk(() => nix.app(mergeAttrsList, nix.thunk(() => nix.builtins.map((domain) => nix.attrsDyn({}, [
                 [nix.force(domain), nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     default: [],
                     description: nix.thunk(() => nix.str`List of ${domain}
 [blueprints](https://www.home-assistant.io/docs/blueprint/) to
@@ -525,49 +525,49 @@ install into {file}\`\${config.services.home-assistant.configDir}/blueprints/${d
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         warnings: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.has(nix.sel(cfg, "config"), "lovelace", "mode")), nix.thunk(() => [
             "services.home-assistant.config.lovelace.mode is deprecated.\nHome Assistant 2026.8 renames the legacy top-level `lovelace.mode`\nsetting in favour of per-dashboard configuration.\n\nUse `services.home-assistant.config.lovelace.dashboards` and\n`services.home-assistant.config.lovelace.resource_mode` instead.\n\nSee https://www.home-assistant.io/dashboards/dashboards/ for details.\n",
           ]))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "lovelaceConfig"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "lovelaceConfigFile"), null))))),
             message: "Only one of `lovelaceConfig` or `lovelaceConfigFile` can be configured at the same time.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "themes"), [])) || nix.asBool(!nix.asBool(nix.app(hasAttrByPath, nix.thunk(() => ["frontend", "themes"]), nix.thunk(() => nix.selOr(cfg, () => ({}), "config"))))))),
             message: "`services.home-assistant.themes` and `services.home-assistant.config.frontend.themes` cannot both be set. When `themes` is non-empty the module sets `frontend.themes` authoritatively.",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           firewall: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewallForComponents")), nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.app(useComponent, "homekit")), nix.thunk(() => [21063n])), nix.app(optionals, nix.thunk(() => nix.app(useComponent, "sonos")), nix.thunk(() => [1400n])))))),
             allowedUDPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewallForComponents")), nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.app(useComponent, "homekit")), nix.thunk(() => [5353n]))))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           etc: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "config"), null)) && nix.asBool(!nix.asBool(nix.sel(cfg, "configWritable"))))), nix.thunk(() => ({
-                  __proto__: pos$54,
-                  "home-assistant/configuration.yaml": nix.thunk(() => ({ __proto__: pos$53, source: configFile })),
+                  [nix.POS]: pos$54,
+                  "home-assistant/configuration.yaml": nix.thunk(() => ({ [nix.POS]: pos$53, source: configFile })),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "lovelaceConfig"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "lovelaceConfigFile"), null)))) && nix.asBool(!nix.asBool(nix.sel(cfg, "lovelaceConfigWritable"))))), nix.thunk(() => ({
-                  __proto__: pos$56,
-                  "home-assistant/ui-lovelace.yaml": nix.thunk(() => ({ __proto__: pos$55, source: lovelaceConfigFile })),
+                  [nix.POS]: pos$56,
+                  "home-assistant/ui-lovelace.yaml": nix.thunk(() => ({ [nix.POS]: pos$55, source: lovelaceConfigFile })),
                 })))),
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           services: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             "home-assistant": nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               description: "Home Assistant",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "mysql.service", "postgresql.target"]),
@@ -622,13 +622,13 @@ ln -s ${nix.app(escapeShellArg, blueprint)} ${nix.app(escapeShellArg, nix.thunk(
                 return nix.add(nix.add(nix.add(nix.add(nix.add(nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), null)), copyConfig), nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "lovelaceConfig"), null)), copyLovelaceConfig)), copyCustomLovelaceModules), copyCustomComponents), removeBlueprints), copyBlueprints);
               })()),
               environment: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 PYTHONPATH: nix.thunk(() => nix.sel(package$, "pythonPath")),
               })),
               serviceConfig: nix.thunk(() => (() => {
                 const capabilities = nix.thunk(() => nix.app(unique, nix.thunk(() => nix.concat([""], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(any, useComponent, componentsUsingBluetooth)), nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW"])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(any, useComponent, componentsUsingPacketCapture)), nix.thunk(() => ["CAP_NET_RAW"])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(useComponent, "emulated_hue")), nix.thunk(() => ["CAP_NET_BIND_SERVICE"])), nix.app(optionals, nix.thunk(() => nix.app(useComponent, "nmap_tracker")), nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_BIND_SERVICE", "CAP_NET_RAW"])))))))));
                 return {
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), package$)),
                       "--config",
@@ -688,22 +688,22 @@ ln -s ${nix.app(escapeShellArg, blueprint)} ${nix.app(escapeShellArg, nix.thunk(
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             "home-assistant": nix.thunk(() => (() => {
               const description = "Home Assistant";
               const wantedBy = nix.thunk(() => ["multi-user.target"]);
               const wants = nix.thunk(() => ["home-assistant.service"]);
               const after = wants;
-              return { __proto__: pos$62, description, wantedBy, wants, after };
+              return { [nix.POS]: pos$62, description, wantedBy, wants, after };
             })()),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           users: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             hass: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               home: nix.thunk(() => nix.sel(cfg, "configDir")),
               createHome: true,
               group: "hass",
@@ -711,9 +711,9 @@ ln -s ${nix.app(escapeShellArg, blueprint)} ${nix.app(escapeShellArg, nix.thunk(
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             hass: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "hass")),
             })),
           })),

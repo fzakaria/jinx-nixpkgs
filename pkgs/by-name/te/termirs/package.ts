@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "termirs",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caelansar",
           repo: "termirs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-z0TgeDALtpDoR3YEHi+udRgTLwDhWQcGVejNBjuzY4c=",
       postPatch: "substituteInPlace ../termirs-0.3.3-vendor/source-git-0/wezterm-term-0.1.0/src/terminalstate/mod.rs \\\n  --replace-fail 'include_bytes!(\"../../../termwiz/data/wezterm\")' 'include_bytes!(\"../../../termwiz-0.24.0/data/wezterm\")'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           "--skip=async_ssh_client::tests::test_sftp_send_receive_roundtrip",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern async SSH terminal client built with Rust and Ratatui",
         longDescription: "TermiRs provides a fast, secure, and user-friendly terminal\ninterface for managing SSH connections with advanced features\nlike secure file transfers and encrypted configuration storage.\n",
         homepage: "https://github.com/caelansar/termirs",

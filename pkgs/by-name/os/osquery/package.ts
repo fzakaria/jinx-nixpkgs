@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const info = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./info.json")))));
   const opensslSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(info, "openssl"))));
   const toolchain = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./toolchain-bin.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       lib: lib,
       fetchzip: fetchzip,
@@ -61,17 +61,17 @@ cmake .. \\
 remove-references-to -t ${toolchain} $out/bin/osqueryd
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         opensslSrc: opensslSrc,
         toolchain: toolchain,
-        tests: nix.thunk(() => ({ __proto__: pos$2, osquery: nix.thunk(() => nix.attr(nixosTests, "osquery")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, osquery: nix.thunk(() => nix.attr(nixosTests, "osquery")) })),
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "osquery-update", nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             makeWrapperArgs: nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix_prefetch_git]))}`),
           })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.py"))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "SQL powered operating system instrumentation, monitoring, and analytics",
         homepage: "https://osquery.io",
         license: nix.thunk(() => (() => {
@@ -96,7 +96,7 @@ remove-references-to -t ${toolchain} $out/bin/osqueryd
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

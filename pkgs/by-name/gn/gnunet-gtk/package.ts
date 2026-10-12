@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnunet-gtk",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnunet/gnunet-gtk-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-rsQzMvOoQEuushd0jBGQt9j6zXj2G1SMax8d4QoDV6s=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs pixmaps/icon-theme-installer",
       postInstall: "ln -s $out/share/gnunet-gtk/gnunet_logo.png $out/share/gnunet/gnunet-logo-color.png\n",
       meta: nix.thunk(() => nix.update(nix.sel(gnunet, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNUnet GTK User Interface",
         homepage: "https://git-www.taler.net/gnunet-gtk.git",
         broken: true,

@@ -13,7 +13,7 @@ export default nix.thunk(() => (() => {
     const jq = nix.arg($, "jq");
     const llvm = nix.arg($, "llvm");
     return (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "nativeBuildInputs"), [jq, llvm])),
       buildPhase: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "buildPhase"), nix.str`echo "Removing the following dylibs from the libSystem reexported libraries list: ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", removedDylibs)))}"
 for libSystem in libSystem.B.tbd libSystem.B_asan.tbd; do

@@ -24,22 +24,22 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qtdeclarative",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtlanguageserver, qtshadertools, qtsvg, openssl]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "sigtool"))]))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-cache-nix-store-paths.patch"), nix.thunk(() => ({ __proto__: pos$1, nixStore: nix.thunk(() => nix.builtins.storeDir) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-cache-nix-store-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, nixStore: nix.thunk(() => nix.builtins.storeDir) })))),
         nix.path(here, "./use-versioned-import-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/qt/qtdeclarative/commit/a7084abd9778b955d80e7419e82f6f7b92f7978d.diff",
             hash: "sha256-ESy35OlmsvI4yFQ/rFT8oelOUBCwCmlcbQJvwcTrCig=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://codereview.qt-project.org/changes/qt%2Fqtdeclarative~768697/revisions/4/patch?download&raw",
             hash: "sha256-HiHAWbLr2MaZpw+yaA+JIveYory5cWkL2ZNf3zveYX4=",
           })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DQt6QmlTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtdeclarative")}/lib/cmake/Qt6QmlTools`),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

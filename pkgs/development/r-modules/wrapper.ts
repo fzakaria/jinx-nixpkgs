@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const recommendedPackages = nix.arg($, "recommendedPackages");
   const packages = nix.arg($, "packages");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.add(nix.sel(R, "name"), "-wrapper")),
       preferLocalBuild: true,
       allowSubstitutes: false,
@@ -34,9 +34,9 @@ done
 
 ln -s ${nix.sel(R, "man")} $man
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, recommendedPackages: recommendedPackages })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, recommendedPackages: recommendedPackages })),
       meta: nix.thunk(() => nix.update(nix.sel(R, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(R, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

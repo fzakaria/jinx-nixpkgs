@@ -30,59 +30,59 @@ export default nix.lambda((args) => (() => {
   const mobilizonDomain = nix.thunk(() => nix.sel(certs, "domain"));
   const port = 41395n;
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "mobilizon",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mobilizon: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ":mobilizon": nix.thunk(() => ({
-                  __proto__: pos$5,
-                  ":instance": nix.thunk(() => ({ __proto__: pos$2, name: "Test Mobilizon", hostname: mobilizonDomain })),
-                  "Mobilizon.Web.Endpoint": nix.thunk(() => ({ __proto__: pos$4, http: nix.thunk(() => ({ __proto__: pos$3, port: port })) })),
+                  [nix.POS]: pos$5,
+                  ":instance": nix.thunk(() => ({ [nix.POS]: pos$2, name: "Test Mobilizon", hostname: mobilizonDomain })),
+                  "Mobilizon.Web.Endpoint": nix.thunk(() => ({ [nix.POS]: pos$4, http: nix.thunk(() => ({ [nix.POS]: pos$3, port: port })) })),
                 })),
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${mobilizonDomain}`, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(mobilizonDomain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(mobilizonDomain)), "key")),
                 }))],
               ])),
             })),
-            postgresql: nix.thunk(() => ({ __proto__: pos$10, package: nix.thunk(() => nix.sel(pkgs, "postgresql_17")) })),
+            postgresql: nix.thunk(() => ({ [nix.POS]: pos$10, package: nix.thunk(() => nix.sel(pkgs, "postgresql_17")) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pki: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            hosts: nix.thunk(() => ({ __proto__: pos$14, "::1": nix.thunk(() => [mobilizonDomain]) })),
+            [nix.POS]: pos$15,
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$14, "::1": nix.thunk(() => [mobilizonDomain]) })),
           })),
         };
       })(), formals$2),

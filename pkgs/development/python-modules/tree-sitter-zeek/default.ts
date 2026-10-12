@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeek",
           repo: "tree-sitter-zeek",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-khode6gx0ZAOyD8Q3Rche9F1S2+0FGGNhos+rTiKQF0=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, core: nix.thunk(() => [tree_sitter]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, core: nix.thunk(() => [tree_sitter]) }));
       const pythonImportsCheck = nix.thunk(() => ["tree_sitter_zeek"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tree-sitter grammar for the Zeek scripting language",
         homepage: "https://github.com/zeek/tree-sitter-zeek",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

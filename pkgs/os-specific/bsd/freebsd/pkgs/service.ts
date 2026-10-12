@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const env = nix.arg($, "env");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/service",
       postPatch: nix.thunk(() => nix.str`substituteInPlace usr.sbin/service/service.sh --replace-fail /usr/bin/env ${nix.app(nix.sel(lib, "getExe"), env)}
 `),

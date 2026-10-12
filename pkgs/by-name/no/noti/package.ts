@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "noti",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roble",
           repo: "noti",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PATH=$out/bin:$PATH\n",
       postInstall: "installManPage docs/man/dist/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monitor a process and trigger a notification",
         longDescription: "Monitor a process and trigger a notification.\n\nNever sit and wait for some long-running process to finish. Noti can alert\nyou when it's done. You can receive messages on your computer or phone.\n",
         homepage: "https://codeberg.org/roble/noti",

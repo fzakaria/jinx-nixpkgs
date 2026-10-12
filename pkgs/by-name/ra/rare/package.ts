@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const legendary_gl = nix.arg($, "legendary-gl");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rare",
       version: "1.10.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RareDevs",
           repo: "Rare",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ install -Dm644 $out/${nix.sel(python3Packages, "python", "sitePackages")}/rare/r
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for Legendary, an Epic Games Launcher open source alternative",
         homepage: "https://github.com/RareDevs/Rare",
         maintainers: [],

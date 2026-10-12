@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zsh = nix.arg($, "zsh");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "direnv",
       version: "2.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "direnv",
           repo: "direnv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-SAIGFQGACTB3Q0KnIdiKKNYY6fVjf/09wGqNr0Hkg+M=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BASH_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), nix.thunk(() => nix.str`${bash}/bin/bash`))),
         CGO_ENABLED: 0n,
       })),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\nmake test-go test-bash test-fish test-zsh\n\nrunHook postCheck\n",
       postInstall: "rm -rf \"$out/share/fish\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Shell extension that manages your environment",
         longDescription: "Once hooked into your shell direnv is looking for an .envrc file in your\ncurrent directory before every prompt.\n\nIf found it will load the exported environment variables from that bash\nscript into your current environment, and unload them if the .envrc is\nnot reachable from the current path anymore.\n\nIn short, this little tool allows you to have project-specific\nenvironment variables.\n",
         homepage: "https://direnv.net",

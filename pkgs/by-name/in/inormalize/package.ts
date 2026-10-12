@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libminc = nix.arg($, "libminc");
   const ebtks = nix.arg($, "ebtks");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inormalize",
       version: "1.2.00-unstable-2023-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "inormalize",
           rev: "4928e573165d76551c3d273ccf0c46f4fbab11fc",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "for p in $out/bin/*; do\n  wrapProgram $p --prefix PERL5LIB : $PERL5LIB\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BIC-MNI/inormalize",
         description: "Program to normalize intensity of MINC files",
         maintainers: nix.thunk(() => (() => {

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const libexif = nix.arg($, "libexif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qiv",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ciberandy",
           repo: "qiv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, file, lcms2, libexif]),
       preBuild: "substituteInPlace Makefile \\\n  --replace-fail /usr/local \"$out\" \\\n  --replace-fail /man/ /share/man/ \\\n  --replace-fail /share/share/ /share/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quick image viewer",
         homepage: "http://spiegl.de/qiv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fira-code-symbols",
       version: "20160811",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip",
           hash: "sha256-7y51blEn0Osf8azytK08zJgtfVX/CIWQkiOoRzYKIa4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FiraCode unicode ligature glyphs in private use area",
         longDescription: "FiraCode uses ligatures, which some editors don’t support.\nThis addition adds them as glyphs to the private unicode use area.\nSee https://github.com/tonsky/FiraCode/issues/211.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

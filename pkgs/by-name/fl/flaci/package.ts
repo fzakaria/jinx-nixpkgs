@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const electron = nix.arg($, "electron");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flaci",
       version: "0-unstable-2024-12-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitmh",
           repo: "FLACI",
           rev: "cc03bb2b4c8cf205d04936cc2110acd34397b789",
           hash: "sha256-Wgkxlz4d1KNoPL9290D1qIbOqUYW/iAIWE9YL35Tfno=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       npmDepsHash: "sha256-6X4R6D9GAe4DiIXCT62xKbHhLqdTE/BLlXJQKwt8oaQ=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       dontNpmBuild: true,
@@ -42,7 +42,7 @@ runHook postInstall
 `),
       dontWrapGApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create and test formal languages with automaton and create diagrams for them",
         homepage: "https://flaci.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

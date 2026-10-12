@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eddy",
       version: "3.7.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obdasystems",
           repo: "eddy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`wrapQtApp "$out/bin/eddy" --prefix JAVA_HOME : ${jre}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.obdasystems.com/eddy",
         description: "Graphical editor for the specification and visualization of Graphol ontologies",
         mainProgram: "eddy",

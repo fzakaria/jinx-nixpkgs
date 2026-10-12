@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const testers = nix.arg($, "testers");
   const zchunk = nix.arg($, "zchunk");
-  return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: zchunk, command: "zck --version" })));
+  return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: zchunk, command: "zck --version" })));
 })(), formals$1);
 //# sourceMappingURL=version.ts.map

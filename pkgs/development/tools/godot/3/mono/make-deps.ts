@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const godot3_mono = nix.arg($, "godot3-mono");
   const nuget_to_json = nix.arg($, "nuget-to-json");
   return nix.app(nix.sel(godot3_mono, "overrideAttrs"), (self) => (base) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "godot3-mono-make-deps",
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [nuget_to_json])),
       nugetDeps: null,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "echo \"No output intended. Run make-deps.sh instead.\" > $out",
       makeDeps: "set -e\noutdir=\"$(pwd)\"\nwrkdir=\"$(mktemp -d)\"\ntrap 'rm -rf -- \"$wrkdir\"' EXIT\npushd \"$wrkdir\" > /dev/null\n  unpackPhase\n  cd source\n  patchPhase\n  configurePhase\n\n  # Without RestorePackagesPath set, it restores packages to a temp directory. Specifying\n  # a path ensures we have a place to run nuget-to-json.\n  nugetRestore() { dotnet msbuild -t:Restore -p:RestorePackagesPath=nugetPackages $1; }\n\n  nugetRestore modules/mono/glue/GodotSharp/GodotSharp.sln\n  nugetRestore modules/mono/editor/GodotTools/GodotTools.sln\n\n  nuget-to-json nugetPackages > \"$outdir\"/deps.json\npopd > /dev/null\n",
       meta: nix.thunk(() => nix.update(nix.sel(base, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Derivation with no output that exists to provide an environment for make-deps.sh",
       })),
     }));

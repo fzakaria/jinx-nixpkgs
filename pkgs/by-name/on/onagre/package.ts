@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onagre",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onagre-launcher",
           repo: "onagre",
           rev: "1.1.1",
@@ -48,7 +48,7 @@ wrapProgram $out/bin/onagre \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General purpose application launcher for X and wayland inspired by rofi/wofi and alfred",
         homepage: "https://github.com/onagre-launcher/onagre",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

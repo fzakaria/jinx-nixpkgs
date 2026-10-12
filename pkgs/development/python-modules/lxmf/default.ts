@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lxmf",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "lxmf",
           hash: "sha256-8UJDKDuQrQY1YHHZA5Q1dkCSQgH5yZLc3+y8I2FPswk=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["LXMF"]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), propagateRns, nix.thunk(() => [versionCheckHook]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Extensible Message Format for Reticulum",
         homepage: "https://github.com/markqvist/lxmf",
         changelog: nix.thunk(() => nix.str`https://github.com/markqvist/LXMF/releases/tag/${nix.sel(finalAttrs, "version")}`),

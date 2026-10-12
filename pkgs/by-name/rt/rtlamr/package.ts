@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtlamr",
       version: "0.9.3-unstable-2023-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bemasher",
           repo: "rtlamr",
           rev: "dcdddc5a6e7717a038e9346d0adcf9669e4f60b7",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-uT6zfsWgIot0EMNqwtwJNFXN/WaAyOGfcYJjuyOXT4g=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rtl-sdr receiver for Itron ERT compatible smart meters",
         longDescription: "An rtl-sdr receiver for Itron ERT compatible smart meters operating\nin the 900MHz ISM band\n",
         homepage: "https://github.com/bemasher/rtlamr",

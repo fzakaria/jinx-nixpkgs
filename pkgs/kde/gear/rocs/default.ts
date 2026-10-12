@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const boost = nix.arg($, "boost");
-  return nix.app(mkKdeDerivation, nix.thunk(() => ({ __proto__: pos$1, pname: "rocs", extraBuildInputs: nix.thunk(() => [boost]) })));
+  return nix.app(mkKdeDerivation, nix.thunk(() => ({ [nix.POS]: pos$1, pname: "rocs", extraBuildInputs: nix.thunk(() => [boost]) })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -31,13 +31,13 @@ Only CUDA capabilities must be "${minSupportedCudaCapability}" or newer.
 Build \`python3Packages.deep-ep\` with a compatible \`cudaCapabilities\` list.
 `)) : nix.force(cudaCapabilities)));
   const disableSm90Features = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), minCudaCapability, "9.0"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$6,
       pname: "deep-ep",
       version: "1.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "deepseek-ai",
           repo: "DeepEP",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,12 +45,12 @@ Build \`python3Packages.deep-ep\` with a compatible \`cudaCapabilities\` list.
         })))),
       "build-system": nix.thunk(() => [ninja, setuptools, torch]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), " ", cudaCapabilities$)}`),
           DISABLE_SM90_FEATURES: nix.thunk(() => (nix.asBool(disableSm90Features) ? "1" : "0")),
           CUDA_HOME: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))), "outPath")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(disableSm90Features)), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             NVSHMEM_DIR: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "libnvshmem"))), "outPath")),
           }))))))),
       buildInputs: nix.thunk(() => nix.concat([pybind11, rdma_core], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => (() => {
@@ -66,7 +66,7 @@ Build \`python3Packages.deep-ep\` with a compatible \`cudaCapabilities\` list.
       pythonImportsCheck: nix.thunk(() => ["deep_ep"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Efficient expert-parallel communication library",
         homepage: "https://github.com/deepseek-ai/DeepEP",
         changelog: nix.thunk(() => nix.str`https://github.com/deepseek-ai/DeepEP/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

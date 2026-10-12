@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const pname = "aquosctl";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: "0-unstable-2014-04-06",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jdwhite",
           repo: "aquosctl",
           rev: "b5e48d9ef848188b97dfb24bfcc99d5196cab5f6",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -Dm0755 aquosctl $out/bin/aquosctl\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sharp Aquos television RS-232 control application",
         homepage: "https://codeberg.org/jdwhite/aquosctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

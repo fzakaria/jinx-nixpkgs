@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const withPDFDoc = nix.argOr($, "withPDFDoc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "algol68g",
       version: "3.12.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://algol68genie.nl/algol68g-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TS5m+Byi+5j4jiOuQbR159QERfNJsQiGNngtoyC9IrE=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: nix.thunk(() => (() => {
         const pdfdoc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://algol68genie.nl/learning-algol-68-genie.pdf",
             hash: "sha256-BrVjYXd5sknV0+UCRgQMf0H3QMzMQcLhytEEuiTGkLE=",
           }))));
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://algol68genie.nl/en/algol-68-genie/",
         description: "Algol 68 Genie compiler-interpreter",
         longDescription: "Algol 68 Genie (a68g) is a recent checkout hybrid compiler-interpreter,\nwritten from scratch by Marcel van der Veer. It ranks among the most\ncomplete Algol 68 implementations. It implements for example arbitrary\nprecision arithmetic, complex numbers, parallel processing, partial\nparametrisation and formatted transput, as well as support for curses,\nregular expressions and sounds. It can be linked to GNU plotutils, the GNU\nscientific library and PostgreSQL.\n",

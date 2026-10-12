@@ -25,30 +25,30 @@ export default nix.lambda((args) => (() => {
   const optint = nix.arg($, "optint");
   const mdx = nix.arg($, "mdx");
   const param = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "0.9": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       minimalOCamlVersion: "4.12",
       hash: "sha256-eXWIxfL9UsKKf4sanBjKfr6Od4fPDctVnkU+wjIXW0M=",
     })),
     "2.14.0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       minimalOCamlVersion: "5.1.0",
       hash: "sha256-U6B3/ExryC7WLYj1iIUHoXZQluFE56Rf3dwOpux/qIE=",
     })),
     "2.15.0": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "5.2.0",
       hash: "sha256-MK1F5tTbvZT5MkyZrz28+nj4+Yo8VxdxCBDHghUdMYY=",
     })),
   }, nix.key(nix.force(version))));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "uring",
       version: version,
       minimalOCamlVersion: nix.thunk(() => nix.attr(param, "minimalOCamlVersion")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/ocaml-uring/releases/download/v${nix.sel(finalAttrs, "version")}/uring-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/ocaml-multicore/ocaml-uring",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/ocaml-multicore/ocaml-uring/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Bindings to io_uring for OCaml",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libfido2 = nix.arg($, "libfido2");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "age-plugin-fido2prf",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiloSottile",
           repo: "typage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ substituteInPlace vendor/github.com/keys-pub/go-libfido2/fido2_static_amd64.go \
     '-I${nix.sel(libfido2, "dev")}/include'
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Age plugin to encrypt files with FIDO2 tokens in a way compatible to typage",
         homepage: "https://github.com/FiloSottile/typage/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

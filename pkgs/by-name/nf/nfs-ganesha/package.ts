@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const rdma_core = nix.arg($, "rdma-core");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nfs-ganesha",
       version: "15.4",
       outputs: nix.thunk(() => ["out", "man", "tools"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nfs-ganesha",
           repo: "nfs-ganesha",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), useDbus, nix.path(here, "./allow-bypassing-dbus-pkg-config-test.patch"))),
       preConfigure: "cd src",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-redundant-move" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-redundant-move" })),
       cmakeFlags: nix.thunk(() => nix.concat([
         "-DUSE_SYSTEM_NTIRPC=ON",
         "-DSYSSTATEDIR=/var",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add("patchelf --add-rpath $out/lib $out/bin/ganesha.nfsd\npatchelf --add-rpath $out/lib $out/lib/libganesha_nfsd.so\n", nix.app(nix.sel(lib, "optionalString"), useCeph, "patchelf --add-rpath $out/lib $out/bin/ganesha-rados-grace\npatchelf --add-rpath $out/lib $out/lib/libganesha_rados_recov.so\npatchelf --add-rpath $out/lib $out/lib/libganesha_rados_urls.so\n"))),
       postInstall: nix.thunk(() => nix.add("install -Dm755 ../tools/mount.9P $tools/bin/mount.9P\n", nix.app(nix.sel(lib, "optionalString"), useDbus, "# Policy for D-Bus statistics interface\ninstall -Dm644 $src/src/scripts/ganeshactl/org.ganesha.nfsd.conf $out/etc/dbus-1/system.d/org.ganesha.nfsd.conf\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NFS server that runs in user space",
         homepage: "https://github.com/nfs-ganesha/nfs-ganesha/wiki",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),

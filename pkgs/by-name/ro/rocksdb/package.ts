@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const sse42Support = nix.argOr($, "sse42Support", () => nix.sel(stdenv, "hostPlatform", "sse4_2Support"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rocksdb",
       version: "10.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "rocksdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ cp tools/{ldb,sst_dump}${nix.sel(stdenv, "hostPlatform", "extensions", "executab
 `)))),
       postFixup: "if [ -f \"$out\"/lib/pkgconfig/rocksdb.pc ]; then\n  substituteInPlace \"$out\"/lib/pkgconfig/rocksdb.pc \\\n    --replace '=\"${prefix}//' '=\"/'\nfi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rocksdb.org",
         description: "Library that provides an embeddable, persistent key-value store for fast storage",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/rocksdb/raw/v${nix.sel(finalAttrs, "version")}/HISTORY.md`),

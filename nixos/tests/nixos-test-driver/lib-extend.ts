@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const patchedPkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (new$) => (old) => ({
-      __proto__: pos$2,
-      lib: nix.thunk(() => nix.app(nix.sel(old, "lib", "extend"), (self) => (super$) => ({ __proto__: pos$1, sorry_dave: "sorry dave" }))),
+      [nix.POS]: pos$2,
+      lib: nix.thunk(() => nix.app(nix.sel(old, "lib", "extend"), (self) => (super$) => ({ [nix.POS]: pos$1, sorry_dave: "sorry dave" }))),
     })));
   const testBody = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "demo lib overlay",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             etc: nix.thunk(() => ({
-              __proto__: pos$4,
-              "got-lib-overlay": nix.thunk(() => ({ __proto__: pos$3, text: nix.thunk(() => nix.sel(lib, "sorry_dave")) })),
+              [nix.POS]: pos$4,
+              "got-lib-overlay": nix.thunk(() => ({ [nix.POS]: pos$3, text: nix.thunk(() => nix.sel(lib, "sorry_dave")) })),
             })),
           })),
         };
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const evaluationNixosTest = nix.thunk(() => nix.app(nixosTest, testBody));
   const evaluationRunNixOSTest = nix.thunk(() => nix.app(runNixOSTest, testBody));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     nixosTest: nix.thunk(() => nix.sel(evaluationNixosTest, "driver", "nodes", "machine", "system", "build", "toplevel")),
     runNixOSTest: nix.thunk(() => nix.sel(evaluationRunNixOSTest, "driver", "nodes", "machine", "system", "build", "toplevel")),
   };

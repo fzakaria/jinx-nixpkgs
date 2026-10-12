@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name_1 = nix.arg($_1, "name");
     const artifact = nix.arg($_1, "artifact");
-    return nix.app(runCommandLocal, name_1, nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [zig_0_15]) })), nix.thunk(() => nix.str`hash="$(zig fetch --global-cache-dir "$TMPDIR" ${artifact})"
+    return nix.app(runCommandLocal, name_1, nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [zig_0_15]) })), nix.thunk(() => nix.str`hash="$(zig fetch --global-cache-dir "$TMPDIR" ${artifact})"
 mv "$TMPDIR/p/$hash" "$out"
 chmod 755 "$out"
 `));
@@ -112,8 +112,8 @@ chmod 755 "$out"
     const name_1 = nix.arg($_1, "name");
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
-    const artifact = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$2, url: url, hash: hash }))));
-    return nix.app(unpackZigArtifact, nix.thunk(() => ({ __proto__: pos$3, name: name_1, artifact: artifact })));
+    const artifact = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, url: url, hash: hash }))));
+    return nix.app(unpackZigArtifact, nix.thunk(() => ({ [nix.POS]: pos$3, name: name_1, artifact: artifact })));
   })(), formals$3);
   const fetchGitZig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
@@ -126,7 +126,7 @@ chmod 755 "$out"
     const rev_base = nix.thunk(() => nix.builtins.elemAt(parts, 1n));
     const rev = nix.thunk(() => (nix.asBool(!nix.eq(nix.builtins.match("^[a-fA-F0-9]{40}$", rev_base), null)) ? nix.force(rev_base) : nix.str`refs/heads/${rev_base}`));
     return nix.app(fetchgit, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: name_1,
         rev: rev,
         hash: hash,
@@ -144,27 +144,27 @@ chmod 755 "$out"
     const proto = nix.thunk(() => nix.builtins.elemAt(parts, 0n));
     const path = nix.thunk(() => nix.builtins.elemAt(parts, 1n));
     const fetcher = nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       "git+http": nix.thunk(() => nix.app(fetchGitZig, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`http://${path}`),
         })))),
       "git+https": nix.thunk(() => nix.app(fetchGitZig, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`https://${path}`),
         })))),
       http: nix.thunk(() => nix.app(fetchZig, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`http://${path}`),
         })))),
       https: nix.thunk(() => nix.app(fetchZig, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`https://${path}`),
@@ -174,360 +174,360 @@ chmod 755 "$out"
   })(), formals$5);
   return nix.app(linkFarm, name, nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "N-V-__8AANT61wB--nJ95Gj_ctmzAtcjloZ__hRqNw5lC1Kr",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "bindings",
             url: "https://deps.files.ghostty.org/DearBindings_v0.17_ImGui_v1.92.5-docking.tar.gz",
             hash: "sha256-i/7FAOAJJvZ5hT7iPWfMOS08MYFzPKRwRzhlHT9wuqM=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "N-V-__8AALw2uwF_03u4JRkZwRLc3Y9hakkYV7NKRR9-RIZJ",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: "breakpad",
             url: "https://deps.files.ghostty.org/breakpad-b99f444ba5f6b98cac261cbb391d8766b34a5918.tar.gz",
             hash: "sha256-bMqYlD0amQdmzvYQd8Ca/1k4Bj/heh7+EijlQSttatk=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: "N-V-__8AAIrfdwARSa-zMmxWwFuwpXf1T3asIN7s5jqi9c1v",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: "fontconfig",
             url: "https://deps.files.ghostty.org/fontconfig-2.14.2.tar.gz",
             hash: "sha256-O6LdkhWHGKzsXKrxpxYEO1qgVcJ7CB2RSvPMtA3OilU=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "N-V-__8AAKLKpwC4H27Ps_0iL3bPkQb-z6ZVSrB-x_3EEkub",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: "freetype",
             url: "https://deps.files.ghostty.org/freetype-1220b81f6ecfb3fd222f76cf9106fecfa6554ab07ec7fdc4124b9bb063ae2adf969d.tar.gz",
             hash: "sha256-QnIB9dUVFnDQXB9bRb713aHy592XHvVPD+qqf/0quQw=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "N-V-__8AADcZkgn4cMhTUpIz6mShCKyqqB-NBtf_S2bHaTC-",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             name: "gettext",
             url: "https://deps.files.ghostty.org/gettext-0.24.tar.gz",
             hash: "sha256-yRhQPVk9cNr0hE0XWhPYFq+stmfAb7oeydzVACwVGLc=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: "N-V-__8AABzkUgISeKGgXAzgtutgJsZc0-kkeqBBscJgMkvy",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             name: "glslang",
             url: "https://deps.files.ghostty.org/glslang-12201278a1a05c0ce0b6eb6026c65cd3e9247aa041b1c260324bf29cee559dd23ba1.tar.gz",
             hash: "sha256-FKLtu1Ccs+UamlPj9eQ12/WXFgS0uDPmPmB26MCpl7U=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         name: "gobject-0.3.0-Skun7ANLnwDvEfIpVmohcppXgOvg_I6YOJFmPIsKfXk-",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             name: "gobject",
             url: "https://deps.files.ghostty.org/gobject-2025-11-08-23-1.tar.zst",
             hash: "sha256-2b1DBvAIHY5LhItq3+q9L6tJgi7itnnrSAHc7fXWDEg=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             name: "gtk4_layer_shell",
             url: "https://deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz",
             hash: "sha256-mChCgSYKXu9bT2OlXxbEv2p4ihAgptsDfssPcfozaYg=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         name: "N-V-__8AAG02ugUcWec-Ndp-i7JTsJ0dgF8nnJRUInkGLG7G",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             name: "harfbuzz",
             url: "https://deps.files.ghostty.org/harfbuzz-11.0.0.tar.xz",
             hash: "sha256-8WNRuv4hRyX+LB1bWfDZPkmQWkskeJn7kNcM/5U6K5s=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: "N-V-__8AAGmZhABbsPJLfbqrh6JTHsXhY6qCaLAQyx25e0XE",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             name: "highway",
             url: "https://deps.files.ghostty.org/highway-66486a10623fa0d72fe91260f96c892e41aceb06.tar.gz",
             hash: "sha256-h9T4iT704I8iSXNgj/6/lCaKgTgLp5wS6IQZaMgKohI=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         name: "N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             name: "imgui",
             url: "https://github.com/ocornut/imgui/archive/refs/tags/v1.92.5-docking.tar.gz",
             hash: "sha256-yBbCDox18+Fa6Gc1DnmSVQLRpqhZOLsac7iSfl8x+cs=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         name: "N-V-__8AABVbAwBwDRyZONfx553tvMW8_A2OKUoLzPUSRiLF",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             name: "iterm2_themes",
             url: "https://deps.files.ghostty.org/ghostty-themes-release-20260216-151611-fc73ce3.tgz",
             hash: "sha256-FCALuGoMgUq2lgnVALKAs5a20uuDXt8Gdt5KeJwKqP0=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         name: "N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             name: "jetbrains_mono",
             url: "https://deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz",
             hash: "sha256-xXppHouCrQmLWWPzlZAy5AOPORCHr3cViFulkEYQXMQ=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         name: "N-V-__8AAJrvXQCqAT8Mg9o_tk6m0yf5Fz-gCNEOKLyTSerD",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             name: "libpng",
             url: "https://deps.files.ghostty.org/libpng-1220aa013f0c83da3fb64ea6d327f9173fa008d10e28bc9349eac3463457723b1c66.tar.gz",
             hash: "sha256-/syVtGzwXo4/yKQUdQ4LparQDYnp/fF16U/wQcrxoDo=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         name: "libxev-0.0.0-86vtc4IcEwCqEYxEYoN_3KXmc6A9VLcm22aVImfvecYs",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             name: "libxev",
             url: "https://deps.files.ghostty.org/libxev-34fa50878aec6e5fa8f532867001ab3c36fae23e.tar.gz",
             hash: "sha256-YAPqa5bkpRihKPkyMn15oRvTCZaxO3O66ymRY3lIfdc=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         name: "N-V-__8AAG3RoQEyRC2Vw7Qoro5SYBf62IHn3HjqtNVY6aWK",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             name: "libxml2",
             url: "https://deps.files.ghostty.org/libxml2-2.11.5.tar.gz",
             hash: "sha256-bCgFni4+60K1tLFkieORamNGwQladP7jvGXNxdiaYhU=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         name: "N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             name: "nerd_fonts_symbols_only",
             url: "https://deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz",
             hash: "sha256-EWTRuVbUveJI17LwmYxDzJT1ICQxoVZKeTiVsec7DQQ=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         name: "N-V-__8AAHjwMQDBXnLq3Q2QhaivE0kE2aD138vtX2Bq1g7c",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             name: "oniguruma",
             url: "https://deps.files.ghostty.org/oniguruma-1220c15e72eadd0d9085a8af134904d9a0f5dfcbed5f606ad60edc60ebeccd9706bb.tar.gz",
             hash: "sha256-ABqhIC54RI9MC/GkjHblVodrNvFtks4yB+zP1h2Z8qA=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         name: "N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             name: "pixels",
             url: "https://deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz",
             hash: "sha256-Veg7FtCRCCUCvxSb9FfzH0IJLFmCZQ4/+657SIcb8Ro=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         name: "N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             name: "plasma_wayland_protocols",
             url: "https://deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz",
             hash: "sha256-XFi6IUrNjmvKNCbcCLAixGqN2Zeymhs+KLrfccIN9EE=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         name: "N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             name: "sentry",
             url: "https://deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
             hash: "sha256-KsZJfMjWGo0xCT5HrduMmyxFsWsHBbszSoNbZCPDGN8=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         name: "N-V-__8AANb6pwD7O1WG6L5nvD_rNMvnSc9Cpg1ijSlTYywv",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             name: "spirv_cross",
             url: "https://deps.files.ghostty.org/spirv_cross-1220fb3b5586e8be67bc3feb34cbe749cf42a60d628d2953632c2f8141302748c8da.tar.gz",
             hash: "sha256-tStvz8Ref6abHwahNiwVVHNETizAmZVVaxVsU7pmV+M=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         name: "N-V-__8AAHffAgDU0YQmynL8K35WzkcnMUmBVQHQ0jlcKpjH",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             name: "utfcpp",
             url: "https://deps.files.ghostty.org/utfcpp-1220d4d18426ca72fc2b7e56ce47273149815501d0d2395c2a98c726b31ba931e641.tar.gz",
             hash: "sha256-/8ZooxDndgfTk/PBizJxXyI9oerExNbgV5oR345rWc8=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         name: "uucode-0.1.0-ZZjBPj96QADXyt5sqwBJUnhaDYs_qBeeKijZvlRa0eqM",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             name: "uucode",
             url: "git+https://github.com/jacobsandlund/uucode#5f05f8f83a75caea201f12cc8ea32a2d82ea9732",
             hash: "sha256-sHPh+TQSdUGus/QTbj7KSJJkTuNTrK4VNmQDjS30Lf8=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         name: "uucode-0.2.0-ZZjBPqZVVABQepOqZHR7vV_NcaN-wats0IB6o-Exj6m9",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             name: "uucode",
             url: "https://deps.files.ghostty.org/uucode-0.2.0-ZZjBPqZVVABQepOqZHR7vV_NcaN-wats0IB6o-Exj6m9.tar.gz",
             hash: "sha256-0KvuD0+L1urjwFF3fhbnxC2JZKqqAVWRxOVlcD9GX5U=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         name: "vaxis-0.5.1-BWNV_LosCQAGmCCNOLljCIw6j6-yt53tji6n6rwJ2BhS",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             name: "vaxis",
             url: "https://deps.files.ghostty.org/vaxis-7dbb9fd3122e4ffad262dd7c151d80d863b68558.tar.gz",
             hash: "sha256-LnIzK8icW1Qexua9SHaeHz+3V8QAbz0a+UC1T5sIjvY=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         name: "N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             name: "wayland",
             url: "https://deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz",
             hash: "sha256-6kGR1o5DdnflHzqs3ieCmBAUTpMdOXoyfcYDXiw5xQ0=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         name: "N-V-__8AAKw-DAAaV8bOAAGqA0-oD7o-HNIlPFYKRXSPT03S",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             name: "wayland_protocols",
             url: "https://deps.files.ghostty.org/wayland-protocols-258d8f88f2c8c25a830c6316f87d23ce1a0f12d9.tar.gz",
             hash: "sha256-XO3K3egbdeYPI+XoO13SuOtO+5+Peb16NH0UiusFMPg=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         name: "N-V-__8AAAzZywE3s51XfsLbP9eyEw57ae9swYB9aGB6fCMs",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             name: "wuffs",
             url: "https://deps.files.ghostty.org/wuffs-122037b39d577ec2db3fd7b2130e7b69ef6cc1807d68607a7c232c958315d381b5cd.tar.gz",
             hash: "sha256-nkzSCr6W5sTG7enDBXEIhgEm574uLD41UVR2wlC+HBM=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         name: "z2d-0.10.0-j5P_Hu-6FgBsZNgwphIqh17jDnj8_yPtD8yzjO6PpHRQ",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             name: "z2d",
             url: "https://deps.files.ghostty.org/z2d-0.10.0-j5P_Hu-6FgBsZNgwphIqh17jDnj8_yPtD8yzjO6PpHRQ.tar.gz",
             hash: "sha256-afIdou/V7gk3/lXE0J5Ir8T7L5GgHvFnyMJ1rgRnl/c=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         name: "zf-0.10.3-OIRy8RuJAACKA3Lohoumrt85nRbHwbpMcUaLES8vxDnh",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             name: "zf",
             url: "https://deps.files.ghostty.org/zf-3c52637b7e937c5ae61fd679717da3e276765b23.tar.gz",
             hash: "sha256-OwFdkorwTp4mJyvBXrTbtNmp1GnrbSkKDdrmc7d8RWg=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         name: "zig_js-0.0.0-rjCAV-6GAADxFug7rDmPH-uM_XcnJ5NmuAMJCAscMjhi",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             name: "zig_js",
             url: "https://deps.files.ghostty.org/zig_js-04db83c617da1956ac5adc1cb9ba1e434c1cb6fd.tar.gz",
             hash: "sha256-TCAY5WAV05UEuAkDhq2c6Tk/ODgAhdnDI3O/flb8c6M=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         name: "zig_objc-0.0.0-Ir_Sp5gTAQCvxxR7oVIrPXxXwsfKgVP7_wqoOQrZjFeK",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             name: "zig_objc",
             url: "https://deps.files.ghostty.org/zig_objc-f356ed02833f0f1b8e84d50bed9e807bf7cdc0ae.tar.gz",
             hash: "sha256-3YSvc3YlNW/NciyzCQnzsujXAmZ89XlxSqfqvArAjsw=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         name: "wayland-0.5.0-dev-lQa1khrMAQDJDwYFKpdH3HizherB7sHo5dKMECfvxQHe",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             name: "zig_wayland",
             url: "https://deps.files.ghostty.org/zig_wayland-1b5c038ec10da20ed3a15b0b2a6db1c21383e8ea.tar.gz",
             hash: "sha256-TxRrc17Q1Sf1IOO/cdPpP3LD0PpYOujt06SFH3B5Ek4=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         name: "zigimg-0.1.0-8_eo2vHnEwCIVW34Q14Ec-xUlzIoVg86-7FU2ypPtxms",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             name: "zigimg",
             url: "https://github.com/ivanstepanovftw/zigimg/archive/d7b7ab0ba0899643831ef042bd73289510b39906.tar.gz",
             hash: "sha256-LB7Xa6KzVRRUSwwnyWM+y6fDG+kIDjfnoBDJO1obxVM=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         name: "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             name: "zlib",
             url: "https://deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz",
             hash: "sha256-F+iIY/NgBnKrSRgvIXKBtvxNPHYr3jYZNeQ2qVIU0Fw=",

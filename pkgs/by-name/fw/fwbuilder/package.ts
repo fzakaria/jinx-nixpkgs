@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fwbuilder",
       version: "6.0.0-rc1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fwbuilder",
           repo: "fwbuilder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtwayland")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI Firewall Management Application",
         longDescription: "Firewall Builder is a GUI firewall management application for iptables,\nPF, Cisco ASA/PIX/FWSM, Cisco router ACL and more. Firewall configuration\ndata is stored in a central file that can scale to hundreds of firewalls\nmanaged from a single UI.\n",
         homepage: "https://github.com/fwbuilder/fwbuilder",

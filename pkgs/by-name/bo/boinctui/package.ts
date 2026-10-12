@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "boinctui",
       version: "2.7.1-unstable-2023-12-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "suleman1971",
           repo: "boinctui",
           rev: "6656f288580170121f53d0e68c35077f5daa700b",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [expat, ncurses, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Curses based fullscreen BOINC manager",
         homepage: "https://github.com/suleman1971/boinctui",
         changelog: "https://github.com/suleman1971/boinctui/blob/master/changelog",

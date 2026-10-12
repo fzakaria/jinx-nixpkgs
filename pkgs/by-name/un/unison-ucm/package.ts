@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "unison-code-manager",
       version: "1.5.0",
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/unisonweb/unison/releases/download/release/${nix.sel(finalAttrs, "version")}/ucm-macos-arm64.tar.gz`),
             hash: "sha256-Ph1ql4I1qPmJpYTjMuZw7KGMFfEJn88YgfwSa2K9vq4=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/unisonweb/unison/releases/download/release/${nix.sel(finalAttrs, "version")}/ucm-linux-arm64.tar.gz`),
             hash: "sha256-pL4UQdBAu6vbQB24KUz3aRqT+QIhmSvY59W46frb/04=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/unisonweb/unison/releases/download/release/${nix.sel(finalAttrs, "version")}/ucm-linux-x64.tar.gz`),
             hash: "sha256-/LLtYoTh9puhDE6Kgo3WVxDwnPHujLh25zKqnvVmz/Q=",
           })))),
@@ -61,9 +61,9 @@ makeWrapper $out/unison/unison $out/bin/ucm \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [less]))}" \\
   --set UCM_WEB_UI "$out/ui"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modern, statically-typed purely functional language",
         homepage: "https://unisonweb.org/",
         license: nix.thunk(() => [

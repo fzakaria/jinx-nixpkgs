@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_image = nix.arg($, "SDL2_image");
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opendune",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenDUNE",
           repo: "OpenDUNE",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin bin/opendune\ninstall -Dm444 -t $out/share/doc/opendune enhancement.txt README.txt\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dune, Reinvented",
         mainProgram: "opendune",
         homepage: "https://github.com/OpenDUNE/OpenDUNE",

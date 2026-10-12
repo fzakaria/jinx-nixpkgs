@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cmsis-svd",
           repo: "cmsis-svd",
           tag: nix.thunk(() => nix.str`python-${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [six, lxml]);
       const pythonImportsCheck = nix.thunk(() => ["cmsis_svd", "cmsis_svd.parser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CMSIS SVD parser",
         homepage: "https://github.com/cmsis-svd/cmsis-svd",
         changelog: nix.thunk(() => nix.str`https://github.com/cmsis-svd/cmsis-svd/blob/${nix.sel(src, "rev")}/CHANGELOG`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

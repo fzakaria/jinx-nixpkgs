@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const Cli = nix.arg($, "Cli");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-importGraph",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "import-graph",
           rev: "e928b72544873815af278d38681b31c0293588e3",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       leanPackageName: "importGraph",
       leanDeps: nix.thunk(() => [Cli]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to analyse and visualise Lean 4 import structures",
         homepage: "https://github.com/leanprover-community/import-graph",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

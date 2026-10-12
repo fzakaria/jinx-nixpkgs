@@ -31,49 +31,49 @@ export default nix.lambda((args) => (() => {
   const nixos = nix.arg($, "nixos");
   const pkgs = nix.arg($, "pkgs");
   const runCommand = nix.arg($, "runCommand");
-  const linuxPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs, "path"))), nix.thunk(() => ({ __proto__: pos$1, system: "aarch64-linux" }))));
+  const linuxPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs, "path"))), nix.thunk(() => ({ [nix.POS]: pos$1, system: "aarch64-linux" }))));
   const nixosConfig = nix.thunk(() => nix.sel(nix.app(nixos, nix.thunk(() => ({
-      __proto__: pos$17,
-      nixpkgs: nix.thunk(() => ({ __proto__: pos$2, pkgs: linuxPkgs })),
+      [nix.POS]: pos$17,
+      nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: linuxPkgs })),
       imports: nix.thunk(() => [
         nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/modules/profiles/qemu-guest.nix`),
       ]),
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         kernelParams: nix.thunk(() => ["console=hvc0"]),
         loader: nix.thunk(() => ({
-          __proto__: pos$5,
-          efi: nix.thunk(() => ({ __proto__: pos$3, canTouchEfiVariables: false })),
-          "systemd-boot": nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$5,
+          efi: nix.thunk(() => ({ [nix.POS]: pos$3, canTouchEfiVariables: false })),
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
         })),
       })),
-      documentation: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
-      environment: nix.thunk(() => ({ __proto__: pos$8, defaultPackages: [] })),
+      documentation: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
+      environment: nix.thunk(() => ({ [nix.POS]: pos$8, defaultPackages: [] })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$11,
-        "/": nix.thunk(() => ({ __proto__: pos$9, device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
-        "/boot": nix.thunk(() => ({ __proto__: pos$10, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        [nix.POS]: pos$11,
+        "/": nix.thunk(() => ({ [nix.POS]: pos$9, device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: pos$10, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "krunkit-boot-ok": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             after: nix.thunk(() => ["multi-user.target"]),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Type: "oneshot" })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot" })),
             script: "echo krunkit-boot-ok >/dev/hvc0\n",
           })),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       })),
     }))), "config"));
   const image = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/lib/make-disk-image.nix`)), nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       lib: lib,
       config: nixosConfig,
       pkgs: linuxPkgs,
@@ -85,9 +85,9 @@ export default nix.lambda((args) => (() => {
       partitionTableType: "efi",
     }))));
   return nix.app(runCommand, "krunkit-nixos-boot-test", nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       requiredSystemFeatures: nix.thunk(() => ["apple-virt"]),
-      meta: nix.thunk(() => ({ __proto__: pos$19, platforms: nix.thunk(() => ["aarch64-darwin"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$19, platforms: nix.thunk(() => ["aarch64-darwin"]) })),
     })), nix.thunk(() => nix.str`image=${image}/krunkit-nixos.img
 disk=$TMPDIR/disk.img
 console=$TMPDIR/console.log

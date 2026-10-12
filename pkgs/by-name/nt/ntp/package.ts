@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ntp",
       version: "4.2.8p18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.ntp.org/ntp4/ntp-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ntp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-z4TF8/saKVKElCYk2CP/+mNBROCWz8T5lprJjvX0aOU=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/ntp/-/raw/8513bf75be3c0425318475e30f5725a03d8fb067/ntp-4.2.8.p18-glib-2.43.patch",
             hash: "sha256-20ztNAnirijKt8rgaMz6FGoHubBOskNL5ynXte3NTvM=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl, perl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pps_tools, libcap])))),
       postInstall: "rm -rf $out/share/doc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.ntp.org/",
         description: "Implementation of the Network Time Protocol",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [

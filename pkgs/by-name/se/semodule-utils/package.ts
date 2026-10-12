@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libsepol = nix.arg($, "libsepol");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "semodule-utils",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/semodule-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-DFdOFUE/9+1mDEXgEb7+JIu4nqonPbb1brKX1h3rLtY=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsepol, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SELinux policy core utilities (packaging additions)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

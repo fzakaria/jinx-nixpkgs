@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elm-test";
       const version = "0.19.2-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rtfeldman",
           repo: "node-test-runner",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const postInstall = "# clean up broken symlinks to build tool binaries\nfind $out/lib/node_modules/elm-test/node_modules/.bin \\\n  -xtype l \\\n  -delete\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/rtfeldman/node-test-runner/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Runs elm-test suites from Node.js",
         mainProgram: "elm-test",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

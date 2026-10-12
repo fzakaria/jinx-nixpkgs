@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.1.1",
       pname: "t4kcommon",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tux4kids",
           repo: "t4kcommon",
           rev: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/tux4kids-pkg-team/t4kcommon/raw/f7073fa384f5a725139f54844e59b57338b69dc7/debian/patches/libpng16.patch",
             hash: "sha256-auQ8VvOyvLE1PD2dfeHZJV+MzIt1OtUa7OcOqsXTAYI=",
           })))),
         nix.path(here, "./linebreak-fix.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-fcommon -DGNULIB_UNISTR_U8_MBTOUC_UNSAFE -Wno-incompatible-pointer-types -std=gnu17",
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [SDL, SDL_image, SDL_mixer, SDL_net, SDL_ttf, libpng, librsvg, libxml2]),
       postPatch: "substituteInPlace {src/,./}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library of code shared between tuxmath and tuxtype",
         homepage: "https://github.com/tux4kids/t4kcommon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

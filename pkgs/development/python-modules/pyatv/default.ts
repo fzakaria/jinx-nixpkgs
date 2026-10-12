@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const tinytag = nix.arg($, "tinytag");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyatv",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postlund",
           repo: "pyatv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [
         deepdiff,
         pyfakefs,
-        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ __proto__: pos$2, "pytest-asyncio": pytest_asyncio_0 })))),
+        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "pytest-asyncio": pytest_asyncio_0 })))),
         pytest_asyncio_0,
         pytest_httpserver,
         pytest_timeout,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pyatv"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client library for the Apple TV",
         homepage: "https://github.com/postlund/pyatv",
         changelog: nix.thunk(() => nix.str`https://github.com/postlund/pyatv/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

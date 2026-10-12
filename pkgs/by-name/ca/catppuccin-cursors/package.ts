@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const zip = nix.arg($, "zip");
   const dimensions = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     palette: nix.thunk(() => ["frappe", "latte", "macchiato", "mocha"]),
     color: nix.thunk(() => [
       "Blue",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const variants = nix.thunk(() => nix.app(nix.sel(lib, "mapCartesianProduct"), variantName, dimensions));
   const version = "2.0.0";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "catppuccin-cursors",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "catppuccin",
           repo: "cursors",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npatchShebangs .\n\njust all\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nfor output in $(getAllOutputNames); do\n  if [ \"$output\" != \"out\" ]; then\n    local outputDir=\"${!output}\"\n    local iconsDir=\"$outputDir\"/share/icons\n\n    mkdir -p \"$iconsDir\"\n\n    # Convert to kebab case with the first letter of each word capitalized\n    local variant=$(sed 's/\\([A-Z]\\)/-\\1/g' <<< \"$output\")\n    local variant=${variant,,}\n\n    mv \"dist/catppuccin-$variant-cursors\" \"$iconsDir\"\n  fi\ndone\n\n# Needed to prevent breakage\nmkdir -p \"$out\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Catppuccin cursor theme based on Volantes",
         homepage: "https://github.com/catppuccin/cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

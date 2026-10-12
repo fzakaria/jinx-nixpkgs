@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://beeper-desktop.download.beeper.com/builds/Beeper-${version}-x86_64.AppImage`),
         hash: "sha256-j6HTTqU7+z8AJ20hYgia6wOH0/n3gxrUocCpMPmgQvQ=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://beeper-desktop.download.beeper.com/builds/Beeper-${version}-arm64.AppImage`),
         hash: "sha256-kWlKMZdicJ+DhGgYXCTqvSCYinI9QD0pJD4nb4yYdpI=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://beeper-desktop.download.beeper.com/builds/Beeper-${version}-arm64-mac.zip`),
         hash: "sha256-79T3pPLEt+tQQ2xoC3XBAI/xpxMdnY11qSmVA2VFiVw=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`beeper is not supported on ${system}`)), nix.key(nix.force(system))));
-  const linuxSrc = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`Beeper-${version}-appimage`), nix.thunk(() => ({ __proto__: pos$5, src: src })), "cp $src $out\nchmod +w $out\nprintf 'AI\\x02' | dd of=$out bs=1 seek=8 conv=notrunc status=none\n"));
+  const linuxSrc = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`Beeper-${version}-appimage`), nix.thunk(() => ({ [nix.POS]: pos$5, src: src })), "cp $src $out\nchmod +w $out\nprintf 'AI\\x02' | dd of=$out bs=1 seek=8 conv=notrunc status=none\n"));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "Universal chat app",
     longDescription: "Beeper is a universal chat app. With Beeper, you can send\nand receive messages to friends, family and colleagues on\nmany different chat networks.\n",
     homepage: "https://beeper.com",
@@ -75,10 +75,10 @@ export default nix.lambda((args) => (() => {
     mainProgram: "beeper",
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     sources: sources,
     updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: "update-beeper",
           runtimeInputs: nix.thunk(() => [curl, common_updater_scripts]),
           text: nix.thunk(() => nix.str`set -o errexit
@@ -92,7 +92,7 @@ done
   }));
   const linux = nix.thunk(() => (() => {
     const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname,
         version: version,
         src: linuxSrc,
@@ -117,7 +117,7 @@ substituteInPlace $appRoot/build/main/main-entry-*.mjs \\
 `),
       }))));
     return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: pname,
         version: version,
         meta: meta,
@@ -137,7 +137,7 @@ wrapProgram $out/bin/beeper \\
       })));
   })());
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       version: version,
       src: src,

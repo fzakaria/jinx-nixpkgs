@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/data.nix", [["linux-aarch_64", 4, 5], ["lin
 const pos$2 = nix.positions(here + "/data.nix", [["version", 2, 3], ["hashes", 3, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   version: "1.84.0",
   hashes: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "linux-aarch_64": "sha256-2TV3YbTmndx6vsPTqA4QlrXto+JdbtbQserQcGZgCoY=",
     "linux-ppcle_64": "sha256-/CsKC+8AIRHWDJGsHGayu1heJ8+SOC3ZC6CI2Um2J2M=",
     "linux-s390_64": "sha256-ugcWqz1IrtGsHhyEYobtQH2o7fW5f04cQvrTZAjeBnw=",

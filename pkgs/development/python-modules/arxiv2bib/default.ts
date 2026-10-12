@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arxiv2bib",
       version: "1.0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nathangrigg",
           repo: "arxiv2bib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       unittestFlagsArray: nix.thunk(() => ["-s", "tests"]),
       pythonImportsCheck: nix.thunk(() => ["arxiv2bib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get a BibTeX entry from an arXiv id number, using the arxiv.org API",
         mainProgram: "arxiv2bib",
         homepage: "http://nathangrigg.github.io/arxiv2bib/",

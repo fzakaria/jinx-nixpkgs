@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-gnupg",
       version: "0.5.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vsajip",
           repo: "python-gnupg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ substituteInPlace test_gnupg.py \\
       disabledTests: nix.thunk(() => ["test_search_keys"]),
       pythonImportsCheck: nix.thunk(() => ["gnupg"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API for the GNU Privacy Guard (GnuPG)",
         homepage: "https://github.com/vsajip/python-gnupg",
         changelog: nix.thunk(() => nix.str`https://github.com/vsajip/python-gnupg/releases/tag/${nix.sel(finalAttrs, "version")}`),

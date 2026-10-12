@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nvidia_ml_py = nix.arg($, "nvidia-ml-py");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pynvml",
       version: "13.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gpuopenanalytics",
           repo: "pynvml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "tester-nvmlInit": nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               libraries: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "from pynvml_utils import nvidia_smi  # noqa: F401\nnvsmi = nvidia_smi.getInstance()\nprint(nvsmi.DeviceQuery('memory.free, memory.total'))\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unofficial Python bindings for the NVIDIA Management Library",
         homepage: "https://github.com/gpuopenanalytics/pynvml",
         changelog: "https://github.com/gpuopenanalytics/pynvml?tab=readme-ov-file#release-notes",

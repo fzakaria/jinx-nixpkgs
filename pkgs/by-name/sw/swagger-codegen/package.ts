@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const jarfilename = nix.thunk(() => nix.str`${pname}-cli-${version}.jar`);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/io/swagger/${pname}-cli/${version}/${jarfilename}`),
           sha256: "sha256-8MwqDGP6A2V2B0kGOTVpf66yOGzUCe1bFOO/l+GBrmY=",
         }))));
@@ -31,7 +31,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
   --add-flags "-jar $out/share/java/${jarfilename}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an OpenAPI Spec",
         homepage: "https://github.com/swagger-api/swagger-codegen",
         sourceProvenance: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
         mainProgram: "swagger-codegen",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         jarfilename,

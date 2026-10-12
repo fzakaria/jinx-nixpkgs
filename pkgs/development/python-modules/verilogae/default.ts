@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const ncurses = nix.arg($, "ncurses");
   const zlib = nix.arg($, "zlib");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.sel(llvmPackages, "stdenv")) })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.sel(llvmPackages, "stdenv")) })), nix.thunk(() => (() => {
       const pname = "verilogae";
       const version = "24.0.0mob-unstable-2026-08-01";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "OpenVAF",
           repo: "OpenVAF-Reloaded",
           rev: "3369a83f9c626f6d298f9f881379f561ce432e27",
@@ -47,7 +47,7 @@ substituteInPlace setup.py \\
     'binding=Binding.NoBinding, features=["llvm${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version")))}"],'
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           src: src,
@@ -72,11 +72,11 @@ substituteInPlace setup.py \\
       const pythonImportsCheck = nix.thunk(() => ["verilogae"]);
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Verilog-A tool useful for compact model parameter extraction",
         homepage: "https://man.sr.ht/~dspom/openvaf_doc/verilogae/",
         downloadPage: "https://github.com/OpenVAF/OpenVAF-Reloaded",
@@ -92,7 +92,7 @@ substituteInPlace setup.py \\
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

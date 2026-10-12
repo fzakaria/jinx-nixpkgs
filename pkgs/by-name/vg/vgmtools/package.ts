@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vgmtools",
       version: "0.1-unstable-2026-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vgmrips",
           repo: "vgmtools",
           rev: "f60cdc3da1828a11debb289def9a7001fa32a8c6",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       makeFlags: nix.thunk(() => ["all", "optdac", "optvgm32"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/vgmrips/vgmtools.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/vgmrips/vgmtools.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/vgmrips/vgmtools",
         description: "Collection of tools for the VGM file format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pkginfo2",
       version: "30.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aboutcode-org",
           repo: "pkginfo2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_ctor_w_path", "test_ctor_w_egg_info_as_file"]),
       disabledTestPaths: nix.thunk(() => ["tests/wonky/", "tests/examples/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Query metadatdata from sdists, bdists or installed packages",
         homepage: "https://github.com/aboutcode-org/pkginfo2",
         changelog: nix.thunk(() => nix.str`https://github.com/aboutcode-org/pkginfo2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

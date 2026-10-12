@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-yU6d2dR7PZSU7KMF/vlEfQC0vxoyr/hap0b6Psf7lcM=",
         }))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/anyascii/anyascii/blob/${version}/CHANGELOG.md`),
         description: "Unicode to ASCII transliteration",
         homepage: "https://github.com/anyascii/anyascii",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
-      return { __proto__: pos$3, pname, version, format, src, nativeCheckInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, nativeCheckInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

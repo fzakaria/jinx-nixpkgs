@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conjure",
       version: "0.1.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nate-xyz",
           repo: "conjure",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Magically transform your images",
         mainProgram: "conjure",
         longDescription: "Resize, crop, rotate, flip images, apply various filters and effects,\nadjust levels and brightness, and much more. An intuitive tool for designers,\nartists, or just someone who wants to enhance their images.\nBuilt on top of the popular image processing library, ImageMagick with python\nbindings from Wand.\n",

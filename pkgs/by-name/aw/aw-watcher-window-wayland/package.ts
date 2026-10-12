@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aw-watcher-window-wayland",
       version: "0-unstable-2026-06-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ActivityWatch",
           repo: "aw-watcher-window-wayland",
           rev: "24aecc62973a0bae784c7c4f3e179a50c989892b",
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-WWT8tOrHPf5x3bXsVPt32VKut4qK+K8gickBfEc0zmk=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, wayland]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WIP window and afk watcher for some Wayland compositors",
         homepage: "https://github.com/ActivityWatch/aw-watcher-window-wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

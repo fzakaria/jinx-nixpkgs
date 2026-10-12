@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pixman = nix.arg($, "pixman");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprshell",
       version: "4.10.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "H3rmt",
           repo: "hyprshell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern GTK4-based window switcher and application launcher for Hyprland",
         mainProgram: "hyprshell",
         homepage: "https://github.com/H3rmt/hyprshell",

@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
   const Info = nix.thunk(() => (() => {
     const CFBundleIdentifier = nix.thunk(() => nix.str`com.apple.platform.${Name}`);
     const DefaultProperties = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       COMPRESS_PNG_FILES: "NO",
       DEPLOYMENT_TARGET_SETTING_NAME: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "darwinMinVersionVariable")),
       STRIP_PNG_TEXT: "NO",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
     const Type = "Platform";
     const Version = sdkVersion;
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       CFBundleIdentifier,
       DefaultProperties,
       Description,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
   })());
   const Architectures = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       Identifier: "Standard",
       Type: "Architecture",
       Name: "Standard Architectures (Apple Silicon)",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       ArchitectureSetting: "ARCHS_STANDARD",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       Identifier: "Universal",
       Type: "Architecture",
       Name: "Universal (Apple Silicon)",
@@ -105,14 +105,14 @@ export default nix.lambda((args) => (() => {
       ArchitectureSetting: "ARCHS_STANDARD_32_64_BIT",
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       Identifier: "Native",
       Type: "Architecture",
       Name: "Native Architecture of Build Machine",
       ArchitectureSetting: "NATIVE_ARCH_ACTUAL",
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       Identifier: "Standard64bit",
       Type: "Architecture",
       Name: "Apple Silicon",
@@ -120,13 +120,13 @@ export default nix.lambda((args) => (() => {
       ArchitectureSetting: "ARCHS_STANDARD_64_BIT",
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       Identifier: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "darwinArch")),
       Type: "Architecture",
       Name: "Apple Silicon",
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       Identifier: "Standard_Including_64_bit",
       Type: "Architecture",
       Name: "Standard Architectures (including 64-bit)",
@@ -136,79 +136,79 @@ export default nix.lambda((args) => (() => {
   ]);
   const PackageTypes = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       Identifier: "com.apple.package-type.mach-o-executable",
       Type: "PackageType",
       Name: "Mach-O Executable",
       DefaultBuildSettings: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         EXECUTABLE_NAME: "$(EXECUTABLE_PREFIX)$(PRODUCT_NAME)$(EXECUTABLE_VARIANT_SUFFIX)$(EXECUTABLE_SUFFIX)",
         EXECUTABLE_PATH: "$(EXECUTABLE_NAME)",
       })),
       ProductReference: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         FileType: "compiled.mach-o.executable",
         Name: "$(EXECUTABLE_NAME)",
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       Identifier: "com.apple.package-type.mach-o-objfile",
       Type: "PackageType",
       Name: "Mach-O Object File",
       DefaultBuildSettings: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         EXECUTABLE_NAME: "$(EXECUTABLE_PREFIX)$(PRODUCT_NAME)$(EXECUTABLE_VARIANT_SUFFIX)$(EXECUTABLE_SUFFIX)",
         EXECUTABLE_PATH: "$(EXECUTABLE_NAME)",
       })),
       ProductReference: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         FileType: "compiled.mach-o.objfile",
         Name: "$(EXECUTABLE_NAME)",
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       Identifier: "com.apple.package-type.mach-o-dylib",
       Type: "PackageType",
       Name: "Mach-O Dynamic Library",
       DefaultBuildSettings: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         EXECUTABLE_NAME: "$(EXECUTABLE_PREFIX)$(PRODUCT_NAME)$(EXECUTABLE_VARIANT_SUFFIX)$(EXECUTABLE_SUFFIX)",
         EXECUTABLE_PATH: "$(EXECUTABLE_NAME)",
       })),
       ProductReference: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         FileType: "compiled.mach-o.dylib",
         Name: "$(EXECUTABLE_NAME)",
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       Identifier: "com.apple.package-type.static-library",
       Type: "PackageType",
       Name: "Mach-O Static Library",
       DefaultBuildSettings: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         EXECUTABLE_PREFIX: "lib",
         EXECUTABLE_SUFFIX: ".a",
         EXECUTABLE_NAME: "$(EXECUTABLE_PREFIX)$(PRODUCT_NAME)$(EXECUTABLE_VARIANT_SUFFIX)$(EXECUTABLE_SUFFIX)",
         EXECUTABLE_PATH: "$(EXECUTABLE_NAME)",
       })),
       ProductReference: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         FileType: "archive.ar",
         Name: "$(EXECUTABLE_NAME)",
         IsLaunchable: "NO",
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       Identifier: "com.apple.package-type.wrapper",
       Type: "PackageType",
       Name: "Wrapper",
       DefaultBuildSettings: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         WRAPPER_SUFFIX: ".bundle",
         WRAPPER_NAME: "$(WRAPPER_PREFIX)$(PRODUCT_NAME)$(WRAPPER_SUFFIX)",
         CONTENTS_FOLDER_PATH: "$(WRAPPER_NAME)/Contents",
@@ -233,21 +233,21 @@ export default nix.lambda((args) => (() => {
         SCRIPTS_FOLDER_PATH: "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Scripts",
       })),
       ProductReference: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         FileType: "wrapper.cfbundle",
         Name: "$(WRAPPER_NAME)",
         IsLaunchable: "NO",
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       Identifier: "com.apple.package-type.wrapper.application",
       Type: "PackageType",
       BasedOn: "com.apple.package-type.wrapper",
       Name: "Application Wrapper",
-      DefaultBuildSettings: nix.thunk(() => ({ __proto__: pos$24, GENERATE_PKGINFO_FILE: "YES" })),
+      DefaultBuildSettings: nix.thunk(() => ({ [nix.POS]: pos$24, GENERATE_PKGINFO_FILE: "YES" })),
       ProductReference: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         FileType: "wrapper.application",
         Name: "$(WRAPPER_NAME)",
         IsLaunchable: "YES",
@@ -256,27 +256,27 @@ export default nix.lambda((args) => (() => {
   ]);
   const ProductTypes = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       Identifier: "com.apple.product-type.tool",
       Type: "ProductType",
       Name: "Command-line Tool",
       PackageTypes: nix.thunk(() => ["com.apple.package-type.mach-o-executable"]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       Identifier: "com.apple.product-type.objfile",
       Type: "ProductType",
       Name: "Object File",
       PackageTypes: nix.thunk(() => ["com.apple.package-type.mach-o-objfile"]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       Identifier: "com.apple.product-type.library.dynamic",
       Type: "ProductType",
       Name: "Dynamic Library",
       PackageTypes: nix.thunk(() => ["com.apple.package-type.mach-o-dylib"]),
       DefaultBuildProperties: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         FULL_PRODUCT_NAME: "$(EXECUTABLE_NAME)",
         MACH_O_TYPE: "mh_dylib",
         REZ_EXECUTABLE: "YES",
@@ -294,13 +294,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       Identifier: "com.apple.product-type.library.static",
       Type: "ProductType",
       Name: "Static Library",
       PackageTypes: nix.thunk(() => ["com.apple.package-type.static-library"]),
       DefaultBuildProperties: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         FULL_PRODUCT_NAME: "$(EXECUTABLE_NAME)",
         MACH_O_TYPE: "staticlib",
         REZ_EXECUTABLE: "YES",
@@ -316,12 +316,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       Type: "ProductType",
       Identifier: "com.apple.product-type.bundle",
       Name: "Bundle",
       DefaultBuildProperties: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         FULL_PRODUCT_NAME: "$(WRAPPER_NAME)",
         MACH_O_TYPE: "mh_bundle",
         WRAPPER_PREFIX: "",
@@ -339,13 +339,13 @@ export default nix.lambda((args) => (() => {
       HasInfoPlistStrings: "YES",
     })),
     nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       Identifier: "com.apple.product-type.application",
       Type: "ProductType",
       BasedOn: "com.apple.product-type.bundle",
       Name: "Application",
       DefaultBuildProperties: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         MACH_O_TYPE: "mh_execute",
         WRAPPER_SUFFIX: ".$(WRAPPER_EXTENSION)",
         WRAPPER_EXTENSION: "app",
@@ -353,12 +353,12 @@ export default nix.lambda((args) => (() => {
       PackageTypes: nix.thunk(() => ["com.apple.package-type.wrapper.application"]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       Type: "ProductType",
       Identifier: "com.apple.product-type.framework",
       Name: "Bundle",
       DefaultBuildProperties: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         FULL_PRODUCT_NAME: "$(WRAPPER_NAME)",
         MACH_O_TYPE: "mh_bundle",
         WRAPPER_PREFIX: "",
@@ -376,14 +376,14 @@ export default nix.lambda((args) => (() => {
       HasInfoPlistStrings: "YES",
     })),
   ]);
-  const ToolchainInfo = nix.thunk(() => ({ __proto__: pos$39, Identifier: "com.apple.dt.toolchain.XcodeDefault" }));
+  const ToolchainInfo = nix.thunk(() => ({ [nix.POS]: pos$39, Identifier: "com.apple.dt.toolchain.XcodeDefault" }));
   return {
-    __proto__: pos$45,
-    "Info.plist": nix.thunk(() => nix.builtins.toFile("Info.plist", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ __proto__: pos$40, escape: true })), Info)))),
-    "ToolchainInfo.plist": nix.thunk(() => nix.builtins.toFile("ToolchainInfo.plist", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ __proto__: pos$41, escape: true })), ToolchainInfo)))),
-    "Architectures.xcspec": nix.thunk(() => nix.builtins.toFile("Architectures.xcspec", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ __proto__: pos$42, escape: true })), Architectures)))),
-    "PackageTypes.xcspec": nix.thunk(() => nix.builtins.toFile("PackageTypes.xcspec", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ __proto__: pos$43, escape: true })), PackageTypes)))),
-    "ProductTypes.xcspec": nix.thunk(() => nix.builtins.toFile("ProductTypes.xcspec", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ __proto__: pos$44, escape: true })), ProductTypes)))),
+    [nix.POS]: pos$45,
+    "Info.plist": nix.thunk(() => nix.builtins.toFile("Info.plist", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$40, escape: true })), Info)))),
+    "ToolchainInfo.plist": nix.thunk(() => nix.builtins.toFile("ToolchainInfo.plist", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$41, escape: true })), ToolchainInfo)))),
+    "Architectures.xcspec": nix.thunk(() => nix.builtins.toFile("Architectures.xcspec", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$42, escape: true })), Architectures)))),
+    "PackageTypes.xcspec": nix.thunk(() => nix.builtins.toFile("PackageTypes.xcspec", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$43, escape: true })), PackageTypes)))),
+    "ProductTypes.xcspec": nix.thunk(() => nix.builtins.toFile("ProductTypes.xcspec", nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$44, escape: true })), ProductTypes)))),
   };
 })(), formals$1);
 //# sourceMappingURL=plists.ts.map

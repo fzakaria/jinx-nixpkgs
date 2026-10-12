@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zd1211-firmware",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/zd1211/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8R04ENf3KDOZf2NFhKWG3M7XGjU/llq/gQYuxDHQKxI=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/firmware/zd1211\ncp zd1211* $out/lib/firmware/zd1211\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for the ZyDAS ZD1211(b) 802.11a/b/g USB WLAN chip",
         homepage: "https://sourceforge.net/projects/zd1211/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

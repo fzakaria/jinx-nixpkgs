@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pidgin = nix.arg($, "pidgin");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "purple-slack-unstable",
       version: "2020-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dylex",
           repo: "slack-libpurple",
           rev: "2e9fa028224b02e29473b1b998fc1e5f487e79ec",
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [pidgin]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_PURPLE_PLUGINDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/purple-2`),
         PKG_CONFIG_PURPLE_DATAROOTDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dylex/slack-libpurple",
         description: "Slack plugin for Pidgin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

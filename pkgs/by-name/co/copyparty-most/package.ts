@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const copyparty = nix.arg($, "copyparty");
   return nix.app(nix.sel(nix.app(nix.sel(copyparty, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withHashedPasswords: true,
       withCertgen: true,
       withThumbnails: true,
@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
       nameSuffix: "-most",
       longDescription: "Almost-full variant, all dependencies and features except those marked buggy",
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
-      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { __proto__: pos$2, updateScript: null })),
+      [nix.POS]: pos$4,
+      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: pos$2, updateScript: null })),
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add(nix.sel(old, "meta", "description"), " - most variant")),
       })),
     }));

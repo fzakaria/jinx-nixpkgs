@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nanosaur",
       version: "1.4.4-unstable-2024-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorio",
           repo: "nanosaur",
           rev: "4f2612f81697a0852f63fa2ea1ac80892f8a5a9c",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, libGL]),
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\"\nmkdir -p \"$out/share/Nanosaur\"\nmv Data ReadMe.txt \"$out/share/Nanosaur/\"\ninstall -Dm755 {.,$out/bin}/Nanosaur\nwrapProgram $out/bin/Nanosaur --chdir \"$out/share/Nanosaur\"\ninstall -Dm644 $src/packaging/io.jor.nanosaur.desktop $out/share/applications/nanosaur.desktop\ninstall -Dm644 $src/packaging/io.jor.nanosaur.png -t $out/share/icons/hicolor/512x512/apps\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of Nanosaur, a 1998 Macintosh game by Pangea Software, for modern operating systems",
         longDescription: "Nanosaur is a 1998 Macintosh game by Pangea Software.\nIn it, you’re a cybernetic dinosaur from the future who’s sent back in time 20 minutes before a giant asteroid hits the Earth.\nAnd you get to shoot at T-Rexes with nukes.\n",
         homepage: "https://github.com/jorio/Nanosaur",

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ahcpd",
       version: "0.53",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.pps.univ-paris-diderot.fr/~jch/software/files/ahcpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0lhdmky3zdyk51hclv2lrhw3hzymbdc8bw2khs3rnaibgn0jwqm4",
         })))),
       preBuild: "makeFlags=\"PREFIX=$out ETCDIR=$out/etc\"\nsed -i -e s,etc,$out/etc, Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.pps.univ-paris-diderot.fr/~jch/software/ahcp/",
         description: "Autoconfiguration protocol for IPv6 and dual-stack IPv6/IPv4 networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

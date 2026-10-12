@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const homepage = nix.thunk(() => nix.str`https://github.com/${owner}/${pname}`);
   const llvm = nix.thunk(() => nix.attr(llvmPackages_22, "llvm"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "cargo-llvm-cov",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "test-helper-0.0.0": "sha256-nPNYhfGVL6rNdfCoWLNJuVeP6Gt4m1CwEOyPtFYIXfk=",
         })),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         LLVM_COV: nix.thunk(() => nix.str`${llvm}/bin/llvm-cov`),
         LLVM_PROFDATA: nix.thunk(() => nix.str`${llvm}/bin/llvm-profdata`),
       })),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "git init -b main\ngit add .\n",
       checkFlags: nix.thunk(() => ["--skip=trybuild", "--skip=ui_test"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: homepage,
         changelog: nix.thunk(() => nix.add(homepage, nix.str`/blob/v${version}/CHANGELOG.md`)),
         description: "Cargo subcommand to easily use LLVM source-based code coverage",

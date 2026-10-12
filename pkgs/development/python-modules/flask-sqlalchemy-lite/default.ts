@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pallets-eco",
           repo: "flask-sqlalchemy-lite",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_sqlalchemy_lite"]);
       const nativeCheckInputs = nix.thunk(() => [aiosqlite, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-sqlalchemy-lite/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Integrate SQLAlchemy with Flask",
         homepage: "https://github.com/pallets-eco/flask-sqlalchemy-lite",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

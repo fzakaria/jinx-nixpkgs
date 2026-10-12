@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const jotdown = nix.arg($, "jotdown");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jaq",
       version: "3.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "01mf02",
           repo: "jaq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,21 +39,21 @@ export default nix.lambda((args) => (() => {
       postBuild: "pushd docs || true\nmake jaq.1\npopd\n",
       postInstall: "install -D docs/jaq.1 -t $out/share/man/man1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           simple: nix.thunk(() => nix.app(runCommand, "jaq-test", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "set -o pipefail\n\n# checking if 1 + 2 == 3.\nif [[ \"$(echo '{\"a\": 1, \"b\": 2}' | jaq 'add')\" -eq 3 ]]; then\n  echo \"test 1 passed\"\nelse\n  echo \"test 1 failed\"\n  exit 1\nfi\n\n# echo out 0-3, map over them multiplying by 2, keep all elements under 5, add the results up together. Should be 6\nif [[ \"$(echo '[0, 1, 2, 3]' | jaq 'map(.*2) | [.[] | select(. < 5)] | add')\" -eq 6 ]]; then\n  echo \"test 2 passed\"\nelse\n  echo \"test 2 failed\"\n  exit 1\nfi\n\n# fail on malformed input\nif ! echo \"0, 1, 4, \" | jaq &>/dev/null; then\n  echo \"test 3 passed\"\nelse\n  echo \"test 3 failed\"\n  exit 1\nfi\n\necho \"All tests passed!\"\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Jq clone focused on correctness, speed and simplicity",
         homepage: "https://github.com/01mf02/jaq",
         changelog: nix.thunk(() => nix.str`https://github.com/01mf02/jaq/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

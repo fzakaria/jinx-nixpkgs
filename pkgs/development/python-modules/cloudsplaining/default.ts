@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "salesforce",
           repo: "cloudsplaining",
           tag: version,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_policy_expansion", "test_statement_details_for_allow_not_action"]);
       const pythonImportsCheck = nix.thunk(() => ["cloudsplaining"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for AWS IAM security assessment",
         homepage: "https://github.com/salesforce/cloudsplaining",
         changelog: nix.thunk(() => nix.str`https://github.com/salesforce/cloudsplaining/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cloudsplaining",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

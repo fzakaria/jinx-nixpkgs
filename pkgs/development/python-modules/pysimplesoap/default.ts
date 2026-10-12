@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "pysimplesoap",
       version: "1.16.2",
       pyproject: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "PySimpleSOAP",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-sbv00NCt/5tlIZfWGqG3ZzGtYYhJ4n0o/lyyUJFtZ+E=",
@@ -41,39 +41,39 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       propagatedBuildInputs: nix.thunk(() => [m2crypto]),
       patches: nix.thunk(() => nix.concat(nix.builtins.map((args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "5",
           }, args_1))), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             patch: "Add-quotes-to-SOAPAction-header-in-SoapClient.patch",
             hash: "sha256-xA8Wnrpr31H8wy3zHSNfezFNjUJt1HbSXn3qUMzeKc0=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             patch: "fix-httplib2-version-check.patch",
             hash: "sha256-zUeF3v0N/eMyRVRH3tQLfuUfMKOD/B/aqEwFh/7HxH4=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             patch: "reorder-type-check-to-avoid-a-TypeError.patch",
             hash: "sha256-2p5Cqvh0SPfJ8B38wb/xq7jWGYgpI9pavA6qkMUb6hA=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             patch: "Support-integer-values-in-maxOccurs-attribute.patch",
             hash: "sha256-IZ0DP7io+ihcnB5547cR53FAdnpRLR6z4J5KsNrkfaI=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             patch: "PR204.patch",
             hash: "sha256-JlxeTnKDFxvEMFBthZsaYRbNOoBvLJhBnXCRoiL/nVw=",
           })),
         ])), [nix.path(here, "./stringIO.patch")])),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Python simple and lightweight SOAP Library",
         homepage: "https://github.com/pysimplesoap/pysimplesoap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
     })();
     const cartesianProduct = (attrsOfLists) => nix.app(foldl$, (listOfAttrs) => (attrName) => nix.app(concatMap, (attrs) => nix.builtins.map((listValue) => nix.update(attrs, nix.attrsDyn({}, [[nix.force(attrName), listValue]])), nix.thunk(() => nix.sel(attrsOfLists, nix.key(nix.force(attrName))))), listOfAttrs), nix.thunk(() => [nix.thunk(() => ({}))]), nix.thunk(() => nix.app(attrNames, attrsOfLists)));
     const mapCartesianProduct = (f) => (attrsOfLists) => nix.builtins.map(f, nix.thunk(() => nix.app(cartesianProduct, attrsOfLists)));
-    const nameValuePair = (name) => (value) => ({ __proto__: pos$1, name: name, value: value });
+    const nameValuePair = (name) => (value) => ({ [nix.POS]: pos$1, name: name, value: value });
     const mapAttrs = nix.thunk(() => nix.builtins.mapAttrs);
     const mapAttrs$ = (f) => (set) => nix.app(listToAttrs, nix.thunk(() => nix.app(mapAttrsToList, f, set)));
     const mapAttrsToList = (f) => (attrs) => nix.app(attrValues, nix.thunk(() => nix.app(mapAttrs, f, attrs)));
@@ -119,13 +119,13 @@ export default nix.lambda((args) => (() => {
       const recurse = (path) => (set_1) => nix.app(concatMap, (name) => nix.app(mapRecursive, nix.thunk(() => nix.concat(path, [name])), nix.thunk(() => nix.sel(set_1, nix.key(nix.force(name))))), nix.thunk(() => nix.app(attrNames, set_1)));
       return nix.app(recurse, [], set);
     })();
-    const genAttrs = (names) => (f) => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((name) => ({ __proto__: pos$2, name: name, value: nix.thunk(() => nix.app(f, name)) }), names)));
+    const genAttrs = (names) => (f) => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((name) => ({ [nix.POS]: pos$2, name: name, value: nix.thunk(() => nix.app(f, name)) }), names)));
     const genAttrs$ = (xs) => (f) => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map(f, xs)));
     const isDerivation = (value) => nix.eq(nix.selOr(value, () => null, "type"), "derivation");
     const toDerivation = (path) => (() => {
       const path$ = nix.thunk(() => nix.builtins.storePath(path));
       const res = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: "derivation",
         name: nix.thunk(() => nix.app(sanitizeDerivationName, nix.thunk(() => nix.builtins.substring(33n, nix.thunk(() => nix.neg(1n)), nix.thunk(() => nix.builtins.baseNameOf(path$)))))),
         outPath: path$,
@@ -177,11 +177,11 @@ export default nix.lambda((args) => (() => {
     const getMan = nix.thunk(() => nix.app(getOutput, "man"));
     const chooseDevOutputs = nix.thunk(() => nix.app(nix.builtins.map, getDev));
     const recurseIntoAttrs = nix.thunk(() => (() => {
-      const doRecurse = nix.thunk(() => ({ __proto__: pos$4, recurseForDerivations: true }));
+      const doRecurse = nix.thunk(() => ({ [nix.POS]: pos$4, recurseForDerivations: true }));
       return (attrs) => nix.update(attrs, doRecurse);
     })());
     const dontRecurseIntoAttrs = nix.thunk(() => (() => {
-      const dontRecurse = nix.thunk(() => ({ __proto__: pos$5, recurseForDerivations: false }));
+      const dontRecurse = nix.thunk(() => ({ [nix.POS]: pos$5, recurseForDerivations: false }));
       return (attrs) => nix.update(attrs, dontRecurse);
     })());
     const unionOfDisjoint = (x) => (y) => (() => {
@@ -191,7 +191,7 @@ export default nix.lambda((args) => (() => {
       return nix.update(nix.update(x, y), mask);
     })();
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       attrNames,
       listToAttrs,
       hasAttr,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keyfuzz",
       version: "0.2",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Manipulate the scancode/keycode translation tables of keyboard drivers",
         mainProgram: "keyfuzz",
         homepage: "http://0pointer.de/lennart/projects/keyfuzz/",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://0pointer.de/lennart/projects/keyfuzz/keyfuzz-0.2.tar.gz",
           sha256: "0xv9ymivp8fnyc5xcyh1vamxnx90bzw66wlld813fvm6q2gsiknk",
         })))),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const soapysdr = nix.arg($, "soapysdr");
   const version = "0.3.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "soapyhackrf",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapyHackRF",
           rev: nix.thunk(() => nix.str`soapy-hackrf-${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [hackrf, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pothosware/SoapyHackRF/commit/143ff5e7e0f786e341df8846c04e8273c5183c26.patch",
             hash: "sha256-8tMN6uEWUt1sUC45kBM6WHXDd/oTFyo6u+NpVPg+z5Q=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pothosware/SoapyHackRF",
         description: "SoapySDR plugin for HackRF devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

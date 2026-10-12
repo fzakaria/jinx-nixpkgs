@@ -20,7 +20,7 @@ const pos$11 = nix.positions(here + "/default.nix", [["maybeMissing", 186, 3], [
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const _coerce = nix.thunk(() => nix.attr(from, "_coerce"));
   const _coerceResult = nix.thunk(() => nix.attr(from, "_coerceResult"));
   const _singleton = nix.thunk(() => nix.attr(from, "_singleton"));
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
   const isFunction = nix.thunk(() => nix.attr(from_6, "isFunction"));
   const pipe = nix.thunk(() => nix.attr(from_6, "pipe"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     maybeMissing: (path) => (nix.asBool(!nix.asBool(nix.app(isPath, path))) ? (nix.asBool(nix.app(isStringLike, path)) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.maybeMissing: Argument ("${nix.builtins.toString(path)}") is a string-like value, but it should be a path instead.`)) : nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.maybeMissing: Argument is of type ${nix.app(typeOf, path)}, but it should be a path instead.`))) : (nix.asBool(!nix.asBool(nix.app(pathExists, path))) ? nix.force(_emptyWithoutBase) : nix.app(_singleton, path))),
     trace: (fileset) => (() => {
       const actualFileset = nix.thunk(() => nix.app(_coerce, "lib.fileset.trace: Argument", fileset));
@@ -84,16 +84,16 @@ export default nix.lambda((args) => (() => {
     - If you want to import the file into the store _without_ a containing directory, use string interpolation or \`builtins.path\` instead of this function.
     - If you want to import the file into the store _with_ a containing directory, set \`root\` to the containing directory, such as ${nix.builtins.toString(nix.thunk(() => nix.builtins.dirOf(root)))}, and set \`fileset\` to the file path.`)) : (nix.asBool((nix.asBool(!nix.asBool(nix.sel(fileset_1, "_internalIsEmptyWithoutBase"))) && nix.asBool(!nix.asBool(nix.app(hasPrefix, root, nix.thunk(() => nix.sel(fileset_1, "_internalBase"))))))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.toSource: \`fileset\` could contain files in ${nix.builtins.toString(nix.thunk(() => nix.sel(fileset_1, "_internalBase")))}, which is not under the \`root\` (${nix.builtins.toString(root)}). Potential solutions:
     - Set \`root\` to ${nix.builtins.toString(nix.thunk(() => nix.sel(fileset_1, "_internalBase")))} or any directory higher up. This changes the layout of the resulting store path.
-    - Set \`fileset\` to a file set that cannot contain files outside the \`root\` (${nix.builtins.toString(root)}). This could change the files included in the result.`)) : nix.app(seq, sourceFilter, cleanSourceWith, nix.thunk(() => ({ __proto__: pos$2, name: "source", src: root, filter: sourceFilter }))))))));
+    - Set \`fileset\` to a file set that cannot contain files outside the \`root\` (${nix.builtins.toString(root)}). This could change the files included in the result.`)) : nix.app(seq, sourceFilter, cleanSourceWith, nix.thunk(() => ({ [nix.POS]: pos$2, name: "source", src: root, filter: sourceFilter }))))))));
     })(), formals$2),
     toList: (fileset) => nix.app(_toList, nix.thunk(() => nix.app(_coerce, "lib.fileset.toList: Argument", fileset))),
     union: (fileset1) => (fileset2) => nix.app(_unionMany, nix.thunk(() => nix.app(_coerceMany, "lib.fileset.union", nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$3, context: "First argument", value: fileset1 })),
-          nix.thunk(() => ({ __proto__: pos$4, context: "Second argument", value: fileset2 })),
+          nix.thunk(() => ({ [nix.POS]: pos$3, context: "First argument", value: fileset1 })),
+          nix.thunk(() => ({ [nix.POS]: pos$4, context: "Second argument", value: fileset2 })),
         ])))),
     unions: (filesets) => (nix.asBool(!nix.asBool(nix.app(isList, filesets))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.unions: Argument is of type ${nix.app(typeOf, filesets)}, but it should be a list instead.`)) : nix.app(pipe, filesets, nix.thunk(() => [
         nix.thunk(() => nix.app(imap0, (i) => (el) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             context: nix.thunk(() => nix.str`Element ${nix.builtins.toString(i)}`),
             value: el,
           }))),
@@ -102,15 +102,15 @@ export default nix.lambda((args) => (() => {
       ]))),
     intersection: (fileset1) => (fileset2) => (() => {
       const filesets = nix.thunk(() => nix.app(_coerceMany, "lib.fileset.intersection", nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$6, context: "First argument", value: fileset1 })),
-          nix.thunk(() => ({ __proto__: pos$7, context: "Second argument", value: fileset2 })),
+          nix.thunk(() => ({ [nix.POS]: pos$6, context: "First argument", value: fileset1 })),
+          nix.thunk(() => ({ [nix.POS]: pos$7, context: "Second argument", value: fileset2 })),
         ])));
       return nix.app(_intersection, nix.thunk(() => nix.app(elemAt, filesets, 0n)), nix.thunk(() => nix.app(elemAt, filesets, 1n)));
     })(),
     difference: (positive) => (negative) => (() => {
       const filesets = nix.thunk(() => nix.app(_coerceMany, "lib.fileset.difference", nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$8, context: "First argument (positive set)", value: positive })),
-          nix.thunk(() => ({ __proto__: pos$9, context: "Second argument (negative set)", value: negative })),
+          nix.thunk(() => ({ [nix.POS]: pos$8, context: "First argument (positive set)", value: positive })),
+          nix.thunk(() => ({ [nix.POS]: pos$9, context: "Second argument (negative set)", value: negative })),
         ])));
       return nix.app(_difference, nix.thunk(() => nix.app(elemAt, filesets, 0n)), nix.thunk(() => nix.app(elemAt, filesets, 1n)));
     })(),
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
     gitTrackedWith: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const recurseSubmodules = nix.argOr($_1, "recurseSubmodules", () => false);
-      return (path) => (nix.asBool(!nix.asBool(nix.app(isBool, recurseSubmodules))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.gitTrackedWith: Expected the attribute \`recurseSubmodules\` of the first argument to be a boolean, but it's a ${nix.app(typeOf, recurseSubmodules)} instead.`)) : nix.app(_fromFetchGit, "gitTrackedWith", "second argument", path, nix.thunk(() => ({ __proto__: pos$10, submodules: recurseSubmodules }))));
+      return (path) => (nix.asBool(!nix.asBool(nix.app(isBool, recurseSubmodules))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.gitTrackedWith: Expected the attribute \`recurseSubmodules\` of the first argument to be a boolean, but it's a ${nix.app(typeOf, recurseSubmodules)} instead.`)) : nix.app(_fromFetchGit, "gitTrackedWith", "second argument", path, nix.thunk(() => ({ [nix.POS]: pos$10, submodules: recurseSubmodules }))));
     })(), formals$3),
     empty: _emptyWithoutBase,
     isFileset: (x) => nix.sel(nix.app(_coerceResult, "", x), "success"),

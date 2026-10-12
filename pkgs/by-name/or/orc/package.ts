@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const vips = nix.arg($, "vips");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "orc",
       version: "0.4.44",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), buildDevDoc, "devdoc"))),
       outputBin: "dev",
       outputDoc: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDevDoc, "devdoc")),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "gstreamer",
           repo: "orc",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "# This benchmark times out on Hydra.nixos.org\nsed -i '/memcpy_speed/d' testsuite/meson.build\n")),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           examples: false,
           benchmarks: false,
           tests: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja], nix.app(nix.sel(lib, "optionals"), buildDevDoc, nix.thunk(() => [hotdoc])))),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) && nix.asBool(nix.sel(stdenv, "cc", "isGNU")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gst-plugins-good": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good")),
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
           "gst-plugins-ugly": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-ugly")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Oil Runtime Compiler",
         homepage: "https://gstreamer.freedesktop.org/projects/orc.html",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/gstreamer/orc/-/blob/${nix.sel(finalAttrs, "version")}/RELEASE`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gstreamer", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

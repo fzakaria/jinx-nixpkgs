@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oswald",
       version: "4.103",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "OswaldFont",
           rev: "89795261ac9eeb9aa8cd99f43982c4e4b0e53261",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm -r legacy/",
       installPhase: "runHook preInstall\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reworking of the classic gothic typeface style",
         longDescription: "Oswald is a reworking of the classic gothic typeface style\nhistorically represented by designs such as 'Alternate Gothic'.\nThe characters of Oswald have been re-drawn and reformed to\nbetter fit the pixel grid of standard digital screens.\n",
         homepage: "https://github.com/googlefonts/OswaldFont",

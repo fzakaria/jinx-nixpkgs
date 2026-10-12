@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const gsl = nix.arg($, "gsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xsnow",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ratrabbit.nl/downloads/xsnow/xsnow-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-PMZsxZUmVHZwU6+KBPMq8sjyt42jlrXazgk7DGc9bvo=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["gamesdir=$(out)/bin"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))),
         description: "X-windows application that will let it snow on the root, in between and on windows",
         mainProgram: "xsnow",

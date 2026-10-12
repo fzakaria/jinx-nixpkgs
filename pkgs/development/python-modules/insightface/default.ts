@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "insightface",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-J68kiRu7pHDLNXOzZqD8yomJ/IUDyfjygejLpv1xYHU=",
@@ -61,18 +61,18 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gui: nix.thunk(() => [pillow, pyside6, reportlab, scikit_learn]),
         face3d: nix.thunk(() => [albumentationsx, matplotlib]),
       })),
       pythonImportsCheck: nix.thunk(() => ["insightface", "insightface.app", "insightface.data"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: insightface,
               command: "insightface-cli --help",
               version: "help",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "State-of-the-art 2D and 3D Face Analysis Project",
         mainProgram: "insightface-cli",
         homepage: "https://github.com/deepinsight/insightface",

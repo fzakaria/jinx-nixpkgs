@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => nix.concat([nix.thunk(() => nix.sel(ps, "devpi-server"))], nix.app(extraPackages, ps))));
   const server = nix.thunk(() => nix.sel(python3, "pkgs", "devpi-server"));
   return nix.app(runCommand, nix.thunk(() => nix.str`devpi-${nix.sel(server, "version")}`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(server, "pname")),
       version: nix.thunk(() => nix.attr(server, "version")),
       meta: nix.thunk(() => nix.attr(server, "meta")),

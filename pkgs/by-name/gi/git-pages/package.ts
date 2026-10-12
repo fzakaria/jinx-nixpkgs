@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "git-pages",
       version: "0.9.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-pages",
           repo: "git-pages",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "mkdirall-parent-dir-create.patch",
             url: "https://codeberg.org/git-pages/git-pages/commit/507e57edbcfc0ec933a877bf26b1756ca0a61870.patch",
             hash: "sha256-1CjU4yGmDOmYsxo3U44Cg2xLJkrmUOX5ZXTycdLs6OE=",
@@ -55,28 +55,28 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "git-pages-modular": nix.thunk(() => nix.attr(nixosTests, "git-pages-modular")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           default: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             imports: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ __proto__: pos$4, formats: formats, coreutils: coreutils })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, formats: formats, coreutils: coreutils })))),
             ]),
             "git-pages": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Scalable static site server for Git forges (like GitHub Pages or Netlify",
         homepage: "https://codeberg.org/git-pages/git-pages",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/git-pages/git-pages/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

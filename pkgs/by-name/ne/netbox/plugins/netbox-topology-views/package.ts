@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const netaddr = nix.arg($, "netaddr");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-topology-views",
       version: "4.7.0",
       pyproject: true,
       disabled: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netbox-community",
           repo: "netbox-topology-views",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_topology_views"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_topology_views" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_topology_views" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin for generate topology views/maps from your devices",
         homepage: "https://github.com/netbox-community/netbox-topology-views",
         changelog: nix.thunk(() => nix.str`https://github.com/netbox-community/netbox-topology-views/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

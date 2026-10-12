@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const checkPhaseThreadLimitHook = nix.arg($, "checkPhaseThreadLimitHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "mpi-checkPhase-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         iface: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "lo0" : "lo")),
         topology: nix.path(here, "./topology.xml"),
       })),
       propagatedNativeBuildInputs: nix.thunk(() => [checkPhaseThreadLimitHook]),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./mpi-check-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

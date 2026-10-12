@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zig = nix.arg($, "zig");
   const versions = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       zig: zig,
       version: "0-unstable-2026-04-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vexu",
           repo: "arocc",
           rev: "5f5a050569a95ecc40a426f0c3666ae7ef987ede",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
     const zig_1 = nix.arg($_1, "zig");
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
-    return nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ __proto__: pos$3, zig: zig_1, version: version, src: src })));
+    return nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, zig: zig_1, version: version, src: src })));
   })(), formals$2);
   const pkgsList = nix.thunk(() => nix.app(nix.sel(lib, "map"), mkPackage, versions));
   const pkgsAttrsUnwrapped = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (pkg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${nix.sel(pkg, "version")}-unwrapped`), pkg), pkgsList))));
   const pkgsAttrsWrapped = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (pkg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(pkg, "version")), nix.thunk(() => nix.sel(pkg, "wrapped"))), pkgsList))));
   const pkgsAttrs = nix.thunk(() => nix.update(pkgsAttrsWrapped, pkgsAttrsUnwrapped));
   return nix.update({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "latest-unwrapped": nix.thunk(() => nix.app(nix.sel(lib, "last"), pkgsList)),
     latest: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "last"), pkgsList), "wrapped")),
   }, pkgsAttrs);

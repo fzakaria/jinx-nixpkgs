@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool((nix.asBool(enableSDL) && nix.asBool(enableX11)))), "RVVM can have only one GUI backend at a time"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rv/rvvm/package.nix:22:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(enableX11)))), "macOS supports only SDL GUI backend"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rv/rvvm/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rvvm",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LekKit",
           repo: "RVVM",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["all", "lib"]),
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)"], nix.concat(nix.app(nix.sel(lib, "optional"), enableSDL, "USE_SDL=2"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(enableSDL)) && nix.asBool(!nix.asBool(enableX11)))), "USE_FB=0")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/LekKit/RVVM",
         description: "RISC-V Virtual Machine",

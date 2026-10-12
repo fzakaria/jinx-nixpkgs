@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const settingName = "prefix";
   const settingValue = "/some/path";
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     name: "npmrc",
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [nix.str`${machineName}`, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         programs: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           npm: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: true,
             npmrc: nix.thunk(() => nix.str`${settingName} = ${settingValue}
 `),

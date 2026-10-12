@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Roche",
           repo: "pyreadstat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} tests/test_basic.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to read SAS, SPSS and Stata files into pandas data frames",
         homepage: "https://github.com/Roche/pyreadstat",
         changelog: nix.thunk(() => nix.str`https://github.com/Roche/pyreadstat/blob/${nix.sel(src, "tag")}/change_log.md`),
@@ -53,7 +53,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const tcpdump = nix.arg($, "tcpdump");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcpreplay",
       version: "4.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/appneta/tcpreplay/releases/download/v${nix.sel(finalAttrs, "version")}/tcpreplay-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-zDZCgWBz+x2Ws68230+2bBH1I9pCf5W3sMTJneqlOvs=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-tcpdump=${tcpdump}/bin/tcpdump`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Suite of utilities for editing and replaying network traffic",
         homepage: "https://tcpreplay.appneta.com/",
         license: nix.thunk(() => (() => {

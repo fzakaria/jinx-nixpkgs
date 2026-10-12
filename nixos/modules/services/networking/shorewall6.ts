@@ -26,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.sel(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "shorewall6"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         shorewall6: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable Shorewall IPv6 Firewall.\n\n::: {.warning}\nEnabling this service WILL disable the existing NixOS\nfirewall! Default firewall rules provided by packages are not\nconsidered at the moment.\n:::\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "shorewall", nix.thunk(() => ({})))),
           configs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "lines")))),
               default: nix.thunk(() => ({})),
               description: "This option defines the Shorewall configs.\nThe attribute name defines the name of the config,\nand the attribute value defines the content of the config.\n",
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            firewall: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+            [nix.POS]: pos$9,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
             shorewall6: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Shorewall IPv6 Firewall",
               after: nix.thunk(() => ["ipset.target"]),
               before: nix.thunk(() => ["network-pre.target"]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
               reloadIfChanged: true,
               restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "configs")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "oneshot",
                 RemainAfterExit: "yes",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/shorewall6 start`),
@@ -79,8 +79,8 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
-          etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`shorewall6/${name}`), nix.thunk(() => ({ __proto__: pos$11, source: conf }))), nix.thunk(() => nix.sel(cfg, "configs")))),
+          [nix.POS]: pos$12,
+          etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`shorewall6/${name}`), nix.thunk(() => ({ [nix.POS]: pos$11, source: conf }))), nix.thunk(() => nix.sel(cfg, "configs")))),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

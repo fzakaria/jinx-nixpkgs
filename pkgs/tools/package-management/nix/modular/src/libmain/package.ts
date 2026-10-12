@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const nix_expr = nix.arg($, "nix-expr");
   const version = nix.arg($, "version");
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-main",
       version: version,
       workDir: nix.path(here, "./."),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.28")), nix.thunk(() => [nix_expr])), [nix_util, nix_store, openssl])),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

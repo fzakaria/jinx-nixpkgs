@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "doom-bcc",
       version: "0.8.0-unstable-2018-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "positively-charged",
           repo: "bcc",
           rev: "d58b44d9f18b28fd732c27113e5607a454506d19",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./bcc-warning-fix.patch")]),
       installPhase: "mkdir -p $out/{bin,lib,share/doc}\ninstall -m755 bcc $out/bin/bcc\ncp -av doc $out/share/doc/bcc\ncp -av lib $out/lib/bcc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler for Doom/Hexen scripts (ACS, BCS)",
         mainProgram: "bcc",
         homepage: "https://github.com/positively-charged/bcc",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ojacques",
           repo: "mkdocs-git-committers-plugin-2",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_git_committers_plugin_2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MkDocs plugin for displaying a list of contributors on each page",
         homepage: "https://github.com/ojacques/mkdocs-git-committers-plugin-2",
         changelog: nix.thunk(() => nix.str`https://github.com/ojacques/mkdocs-git-committers-plugin-2/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-v6+Vib20GO46mG2FdQxzGNnSg5wbGh1v6PxT7CAc8UA=",
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
         "test_extend_flag_backwards_stdlib",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_extend_enum_shadow_property_stdlib"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced Enumerations (compatible with Python's stdlib Enum), NamedTuples, and NamedConstants",
         homepage: "https://github.com/ethanfurman/aenum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

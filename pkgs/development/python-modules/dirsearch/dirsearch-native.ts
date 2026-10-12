@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const meta = nix.arg($, "meta");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dirsearch-native",
       version: "0.1.0",
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/native`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "cargoCheckHook"))]),
       pythonImportsCheck: nix.thunk(() => ["dirsearch_native"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust native backend for dirsearch",
         homepage: nix.thunk(() => nix.attr(meta, "homepage")),
         changelog: nix.thunk(() => nix.attr(meta, "changelog")),

@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const jplatform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "darwin" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) ? "raspberry" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : "unsupported"))));
   const j64x = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")) ? "j32" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(avx2Support))) ? "j64avx2" : "j64") : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "j64arm" : "j64") : "unsupported"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "j",
       version: "9.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsoftware",
           repo: "jsource",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-fW6Tc0UEPYFTgEFMUxZaVm2NU5LNFqszifqOqfdFJZY=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers",
         NIX_LDFLAGS: "-lgmp",
       })),
@@ -49,7 +49,7 @@ runHook postBuild
       doInstallCheck: false,
       installCheckPhase: "runHook preInstallCheck\nHOME=\"$TMPDIR\" $out/bin/jconsole -lib $out/bin/libj* script/testga.ijs\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://jsoftware.com/",
         changelog: "https://code.jsoftware.com/wiki/System/ReleaseNotes",
         description: "J programming language, an ASCII-based APL successor",

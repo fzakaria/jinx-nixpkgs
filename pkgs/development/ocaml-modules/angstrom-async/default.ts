@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const angstrom = nix.arg($, "angstrom");
   const async$ = nix.arg($, "async");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "angstrom-async",
       version: nix.thunk(() => nix.attr(angstrom, "version")),
       src: nix.thunk(() => nix.attr(angstrom, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(angstrom, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Async support for Angstrom",

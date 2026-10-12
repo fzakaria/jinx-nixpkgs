@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-VCjrHklK95VFRs1P8Vye8aMKdeBbJaOf1gbO8iIB6fE=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, requests_ntlm, xmltodict]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         credssp: nix.thunk(() => [requests_credssp]),
         kerberos: nix.thunk(() => [pykerberos]),
       }));
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["winrm"]);
       const enabledTestPaths = nix.thunk(() => ["winrm/tests/"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for Windows Remote Management",
         homepage: "https://github.com/diyan/pywinrm",
         changelog: nix.thunk(() => nix.str`https://github.com/diyan/pywinrm/blob/v${version}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

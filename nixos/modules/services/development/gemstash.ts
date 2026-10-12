@@ -36,57 +36,57 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const prefixColon = (s) => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((attrName) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`:${attrName}`),
         value: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), nix.thunk(() => nix.sel(s, nix.key(nix.force(attrName)))))) ? nix.app(prefixColon, nix.thunk(() => nix.sel(s, nix.key(nix.str`${attrName}`)))) : nix.sel(s, nix.key(nix.str`${attrName}`)))),
       }), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), s)))));
   const parseBindPort = (bind) => nix.app(nix.sel(lib, "strings", "toInt"), nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ":", bind)))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "gemstash"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         gemstash: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gemstash, a cache for rubygems.org and a private gem server")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the port in {option}`services.gemstash.bind`.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gemstash", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               description: "Configuration for Gemstash. The details can be found at in\n[gemstash documentation](https://github.com/rubygems/gemstash/blob/master/man/gemstash-configuration.5.md).\nEach key set here is automatically prefixed with \":\" to match the gemstash expectations.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     base_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/gemstash",
                         description: "Path to store the gem files and the sqlite database. If left unchanged, the directory will be created.",
                       })))),
                     bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "tcp://0.0.0.0:9292",
                         description: "Host and port combination for the server to listen on.",
                       })))),
                     db_adapter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite3", "postgres", "mysql", "mysql2"]))))),
                         default: null,
                         description: "Which database type to use. For choices other than sqlite3, the dbUrl has to be specified as well.",
                       })))),
                     db_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "The database to connect to when using postgres, mysql, or mysql2.",
@@ -98,35 +98,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
-            gemstash: nix.thunk(() => ({ __proto__: pos$13, group: "gemstash", isSystemUser: true })),
+            [nix.POS]: pos$14,
+            gemstash: nix.thunk(() => ({ [nix.POS]: pos$13, group: "gemstash", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, gemstash: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, gemstash: nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => nix.app(parseBindPort, nix.thunk(() => nix.sel(cfg, "settings", "bind")))),
               ]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             gemstash: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} start --no-daemonize --config-file ${nix.app(nix.sel(settingsFormat, "generate"), "gemstash.yaml", nix.thunk(() => nix.app(prefixColon, nix.thunk(() => nix.sel(cfg, "settings")))))}`),
                     NoNewPrivileges: true,
                     User: "gemstash",
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
                     RestrictSUIDSGID: true,
                     LockPersonality: true,
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "base_path"), "/var/lib/gemstash")), nix.thunk(() => ({ __proto__: pos$20, StateDirectory: "gemstash" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "base_path"), "/var/lib/gemstash")), nix.thunk(() => ({ [nix.POS]: pos$20, StateDirectory: "gemstash" })))),
                 ]))),
             })),
           })),

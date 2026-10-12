@@ -44,86 +44,86 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       name: "containers-bridge",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aszlig"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               writableStore: true,
               additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               bridges: nix.thunk(() => ({
-                __proto__: pos$4,
-                br0: nix.thunk(() => ({ __proto__: pos$3, interfaces: [] })),
+                [nix.POS]: pos$4,
+                br0: nix.thunk(() => ({ [nix.POS]: pos$3, interfaces: [] })),
               })),
               interfaces: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 br0: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    addresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, address: hostIp, prefixLength: 24n }))]),
+                    [nix.POS]: pos$6,
+                    addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, address: hostIp, prefixLength: 24n }))]),
                   })),
                   ipv6: nix.thunk(() => ({
-                    __proto__: pos$8,
-                    addresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$7, address: hostIp6, prefixLength: 7n }))]),
+                    [nix.POS]: pos$8,
+                    addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, address: hostIp6, prefixLength: 7n }))]),
                   })),
                 })),
               })),
             })),
             containers: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               webserver: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 autoStart: true,
                 privateNetwork: true,
                 hostBridge: "br0",
                 localAddress: containerIp,
                 localAddress6: containerIp6,
                 config: nix.thunk(() => ({
-                  __proto__: pos$17,
-                  nix: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+                  [nix.POS]: pos$17,
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$14,
-                    httpd: nix.thunk(() => ({ __proto__: pos$13, enable: true, adminAddr: "foo@example.org" })),
+                    [nix.POS]: pos$14,
+                    httpd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, adminAddr: "foo@example.org" })),
                   })),
                   networking: nix.thunk(() => ({
-                    __proto__: pos$16,
-                    firewall: nix.thunk(() => ({ __proto__: pos$15, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                    [nix.POS]: pos$16,
+                    firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [80n]) })),
                   })),
                 })),
               })),
               "web-noip": nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 autoStart: true,
                 privateNetwork: true,
                 hostBridge: "br0",
                 config: nix.thunk(() => ({
-                  __proto__: pos$24,
-                  nix: nix.thunk(() => ({ __proto__: pos$19, enable: false })),
+                  [nix.POS]: pos$24,
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$21,
-                    httpd: nix.thunk(() => ({ __proto__: pos$20, enable: true, adminAddr: "foo@example.org" })),
+                    [nix.POS]: pos$21,
+                    httpd: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true, adminAddr: "foo@example.org" })),
                   })),
                   networking: nix.thunk(() => ({
-                    __proto__: pos$23,
-                    firewall: nix.thunk(() => ({ __proto__: pos$22, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                    [nix.POS]: pos$23,
+                    firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [80n]) })),
                   })),
                 })),
               })),

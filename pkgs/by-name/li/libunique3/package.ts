@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libunique3";
       const srcName = nix.thunk(() => nix.str`libunique-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnome.org/pub/GNOME/sources/libunique/${majorVer}/${srcName}.tar.xz`),
           sha256: "0f70lkw66v9cj72q0iw1s2546r6bwwcd8idcm3621fg2fgh2rw58",
         }))));
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         libxml2,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/Archive/unique",
         description: "Library for writing single instance applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         majorVer,
         minorVer,
         version,

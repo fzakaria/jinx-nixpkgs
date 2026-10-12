@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const mparser = nix.arg($, "mparser");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mparser-re",
       src: nix.thunk(() => nix.attr(mparser, "src")),
       version: nix.thunk(() => nix.attr(mparser, "version")),
       propagatedBuildInputs: nix.thunk(() => [mparser, re]),
       meta: nix.thunk(() => nix.update(nix.sel(mparser, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "MParser plugin: RE-based regular expressions",
       })),
     })));

@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "libinput"));
   const xorgBool = (v) => (nix.asBool(v) ? "on" : "off");
   const mkConfigForDevice = (deviceType) => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     dev: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: null,
         example: "/dev/input/event0",
@@ -62,160 +62,160 @@ auto-detected ${deviceType}.
 `),
       })))),
     accelProfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["flat", "adaptive", "custom"]))),
         default: "adaptive",
         example: "flat",
         description: "Sets the pointer acceleration profile to the given profile.\nPermitted values are `adaptive`, `flat`, `custom`.\nNot all devices support this option or all profiles.\nIf a profile is unsupported, the default profile for this is used.\n`flat`: Pointer motion is accelerated by a constant\n(device-specific) factor, depending on the current speed.\n`adaptive`: Pointer acceleration depends on the input speed.\nThis is the default profile for most devices.\n`custom`: Allows the user to define a custom acceleration function.\nTo define custom functions use the accelPoints<Fallback/Motion/Scroll>\nand accelStep<Fallback/Motion/Scroll> options.\n",
       })))),
     accelSpeed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: null,
         example: "-0.5",
         description: "Cursor acceleration (how fast speed increases from minSpeed to maxSpeed).\nThis only applies to the flat or adaptive profile.\n",
       })))),
     accelPointsFallback: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "number")))))),
         default: null,
         example: nix.thunk(() => [0.0, 1.0, 2.4, 2.5]),
         description: "Sets the points of the fallback acceleration function. The value must be a list of\nfloating point non-negative numbers. This only applies to the custom profile.\n",
       })))),
     accelPointsMotion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "number")))))),
         default: null,
         example: nix.thunk(() => [0.0, 1.0, 2.4, 2.5]),
         description: "Sets the points of the (pointer) motion acceleration function. The value must be a\nlist of floating point non-negative numbers. This only applies to the custom profile.\n",
       })))),
     accelPointsScroll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "number")))))),
         default: null,
         example: nix.thunk(() => [0.0, 1.0, 2.4, 2.5]),
         description: "Sets the points of the scroll acceleration function. The value must be a list of\nfloating point non-negative numbers. This only applies to the custom profile.\n",
       })))),
     accelStepFallback: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "number")))),
         default: null,
         example: 0.1,
         description: "Sets the step between the points of the fallback acceleration function. When a step of\n0.0 is provided, libinput's Fallback acceleration function is used. This only applies\nto the custom profile.\n",
       })))),
     accelStepMotion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "number")))),
         default: null,
         example: 0.1,
         description: "Sets the step between the points of the (pointer) motion acceleration function. When a\nstep of 0.0 is provided, libinput's Fallback acceleration function is used. This only\napplies to the custom profile.\n",
       })))),
     accelStepScroll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "number")))),
         default: null,
         example: 0.1,
         description: "Sets the step between the points of the scroll acceleration function. When a step of\n0.0 is provided, libinput's Fallback acceleration function is used. This only applies\nto the custom profile.\n",
       })))),
     buttonMapping: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: null,
         example: "1 6 3 4 5 0 7",
         description: "Sets the logical button mapping for this device, see {manpage}`XSetPointerMapping(3)`. The string  must\nbe  a  space-separated  list  of  button mappings in the order of the logical buttons on the\ndevice, starting with button 1.  The default mapping is \"1 2 3 ... 32\". A mapping of 0 deac‐\ntivates the button. Multiple buttons can have the same mapping.  Invalid mapping strings are\ndiscarded and the default mapping is used for all buttons.  Buttons  not  specified  in  the\nuser's mapping use the default mapping. See section BUTTON MAPPING for more details.\n",
       })))),
     calibrationMatrix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: null,
         example: "0.5 0 0 0 0.8 0.1 0 0 1",
         description: "A string of 9 space-separated floating point numbers. Sets the calibration matrix to the\n3x3 matrix where the first row is (abc), the second row is (def) and the third row is (ghi).\n",
       })))),
     clickMethod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "buttonareas", "clickfinger"]))))),
         default: null,
         example: "buttonareas",
         description: "Enables a click method. Permitted values are `none`,\n`buttonareas`, `clickfinger`.\nNot all devices support all methods, if an option is unsupported,\nthe default click method for this device is used.\n",
       })))),
     leftHanded: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Enables left-handed button orientation, i.e. swapping left and right buttons.",
       })))),
     middleEmulation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: true,
         description: "Enables middle button emulation. When enabled, pressing the left and right buttons\nsimultaneously produces a middle mouse button click.\n",
       })))),
     naturalScrolling: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Enables or disables natural scrolling behavior.",
       })))),
     scrollButton: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
         default: null,
         example: 1n,
         description: "Designates a button as scroll button. If the ScrollMethod is button and the button is logically\nheld down, x/y axis movement is converted into scroll events.\n",
       })))),
     scrollMethod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["twofinger", "edge", "button", "none"]))),
         default: "twofinger",
         example: "edge",
         description: "Specify the scrolling method: `twofinger`, `edge`,\n`button`, or `none`\n",
       })))),
     horizontalScrolling: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: true,
         description: "Enables or disables horizontal scrolling. When disabled, this driver will discard any\nhorizontal scroll events from libinput. This does not disable horizontal scroll events\nfrom libinput; it merely discards the horizontal axis from any scroll events.\n",
       })))),
     sendEventsMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["disabled", "enabled", "disabled-on-external-mouse"]))),
         default: "enabled",
         example: "disabled",
         description: "Sets the send events mode to `disabled`, `enabled`,\nor `disabled-on-external-mouse`\n",
       })))),
     tapping: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: true,
         description: "Enables or disables tap-to-click behavior.\n",
       })))),
     tappingButtonMap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["lrm", "lmr"]))))),
         default: null,
         description: "Set the button mapping for 1/2/3-finger taps to left/right/middle or left/middle/right, respectively.\n",
       })))),
     tappingDragLock: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: true,
         description: "Enables or disables drag lock during tapping behavior. When enabled, a finger up during tap-\nand-drag will not immediately release the button. If the finger is set down again within the\ntimeout, the dragging process continues.\n",
       })))),
     transformationMatrix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         default: null,
         example: "0.5 0 0 0 0.8 0.1 0 0 1",
         description: "A string of 9 space-separated floating point numbers. Sets the transformation matrix to\nthe 3x3 matrix where the first row is (abc), the second row is (def) and the third row is (ghi).\n",
       })))),
     disableWhileTyping: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Disable input method while typing.\n",
       })))),
     additionalOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         type: nix.thunk(() => nix.sel(lib, "types", "lines")),
         default: "",
         example: "Option \"DragLockButtons\" \"L1 B1 L2 B2\"\n",
@@ -255,7 +255,7 @@ Option "DisableWhileTyping" "${nix.app(xorgBool, nix.thunk(() => nix.sel(cfg, ni
 ${nix.sel(cfg, nix.key(nix.force(deviceType)), "additionalOptions")}
 `;
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     imports: nix.thunk(() => nix.concat(nix.builtins.map((option) => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "libinput", option]), nix.thunk(() => ["services", "libinput", "touchpad", option])), nix.thunk(() => [
         "accelProfile",
         "accelSpeed",
@@ -281,13 +281,13 @@ ${nix.sel(cfg, nix.key(nix.force(deviceType)), "additionalOptions")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "libinput", "touchpad"]), nix.thunk(() => ["services", "libinput", "touchpad"]))),
     ])),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         libinput: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "libinput"), {
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             default: nix.thunk(() => nix.sel(config, "services", "xserver", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.xserver.enable")),
           })),
@@ -298,21 +298,21 @@ ${nix.sel(cfg, nix.key(nix.force(deviceType)), "additionalOptions")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               udev: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libinput", "out"))]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(config, "services", "xserver", "enable")))), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             services: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               xserver: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 modules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xf86-input-libinput"))]),
                 inputClassSections: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkX11ConfigForDevice, "mouse", "Pointer")),
@@ -321,13 +321,13 @@ ${nix.sel(cfg, nix.key(nix.force(deviceType)), "additionalOptions")}
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xf86-input-libinput"))]),
               etc: nix.thunk(() => (() => {
                 const cfgPath = "X11/xorg.conf.d/40-libinput.conf";
                 return nix.attrsDyn({}, [
                   [cfgPath, nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     source: nix.thunk(() => nix.add(nix.add(nix.sel(pkgs, "xf86-input-libinput", "out"), "/share/"), cfgPath)),
                   }))],
                 ]);

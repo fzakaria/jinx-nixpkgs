@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const tcllib = nix.arg($, "tcllib");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ruff",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/magicsplat/ruff/ruff-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-BeO0YtFDSg3e0ehdcpbojAw6WsInkiiHh01I0bYOkRY=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [tcllib]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -r . $out/lib/ruff\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Documentation generator for Tcl",
         longDescription: "Ruff! (Runtime function formatter) is a documentation generation system\nfor programs written in the Tcl programming language. Ruff! uses runtime\nintrospection in conjunction with comment analysis to generate reference\nmanuals for Tcl programs.\n",
         homepage: "https://ruff.magicsplat.com/",

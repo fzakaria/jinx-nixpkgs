@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const clusterName = "NixOS Automated-Test Cluster";
   const testRemoteAuth = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(testPackage, "version")), "3.11"));
   const jmxRoles = nix.thunk(() => [
-    nix.thunk(() => ({ __proto__: pos$1, username: "me", password: "password" })),
+    nix.thunk(() => ({ [nix.POS]: pos$1, username: "me", password: "password" })),
   ]);
   const jmxRolesFile = nix.path(here, "./cassandra-jmx-roles");
   const jmxAuthArgs = nix.thunk(() => nix.str`-u ${nix.sel(nix.builtins.elemAt(jmxRoles, 0n), "username")} -pw ${nix.sel(nix.builtins.elemAt(jmxRoles, 0n), "password")}`);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const checkHeapLimitCommand = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "check-heap-limit.sh", nix.thunk(() => nix.str`[ 1 -eq "$(echo "$(${getHeapLimitCommand}) < ${numMaxHeapSize}" | ${nix.sel(pkgs, "bc")}/bin/bc)" ]
 `)));
   const cassandraCfg = (pkgs_1) => (ipAddress) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     enable: true,
     clusterName: clusterName,
     listenAddress: ipAddress,
@@ -60,52 +60,52 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     return (() => {
       const environment = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.app(getPackage, pkgs_1))]),
       }));
       const networking = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         firewall: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           allowedTCPPorts: nix.thunk(() => [7000n, 9042n, nix.thunk(() => nix.sel(services, "cassandra", "jmxPort"))]),
         })),
         useDHCP: false,
         interfaces: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           eth1: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ipv4: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$5, address: ipAddress, prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$5, address: ipAddress, prefixLength: 24n })),
                 ]))),
             })),
           })),
         })),
       }));
       const services = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         cassandra: nix.thunk(() => nix.update(nix.app(cassandraCfg, pkgs_1, ipAddress), extra)),
       }));
-      return { __proto__: pos$11, environment, networking, services };
+      return { [nix.POS]: pos$11, environment, networking, services };
     })();
   })(), formals$2);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: nix.thunk(() => nix.str`cassandra-${nix.sel(testPackage, "version")}`),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "johnazoidberg"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       cass0: nix.thunk(() => nix.app(nodeCfg, "192.168.1.1", nix.thunk(() => ({})))),
-      cass1: nix.thunk(() => nix.app(nodeCfg, "192.168.1.2", nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), testRemoteAuth, nix.thunk(() => ({ __proto__: pos$13, jmxRoles: jmxRoles, remoteJmx: true })))))),
+      cass1: nix.thunk(() => nix.app(nodeCfg, "192.168.1.2", nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), testRemoteAuth, nix.thunk(() => ({ [nix.POS]: pos$13, jmxRoles: jmxRoles, remoteJmx: true })))))),
       cass2: nix.thunk(() => nix.app(nodeCfg, "192.168.1.3", nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           jvmOpts: nix.thunk(() => ["-Dcassandra.replace_address=cass1"]),
         })))),
     })),
@@ -176,7 +176,7 @@ with subtest("Replace crashed node"):
         "nodetool status -p ${jmxPortStr} --resolve-ip | egrep '^UN[[:space:]]+cass2'"
     )
 `)),
-    passthru: nix.thunk(() => ({ __proto__: pos$16, testPackage: testPackage })),
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$16, testPackage: testPackage })),
   };
 })(), formals$1);
 //# sourceMappingURL=cassandra.ts.map

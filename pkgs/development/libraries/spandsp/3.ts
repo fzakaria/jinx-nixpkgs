@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freeswitch",
           repo: "spandsp",
           rev: "6ec23e5a7e411a22d59e5678d12c4d2942c4a4b6",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./Fix-buffer-overrun-in-t85-tests.patch")]),
     }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "propagatedBuildInputs"), [libjpeg])),
     }));
 })(), formals$1);

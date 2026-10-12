@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const x11Support = nix.argOr($, "x11Support", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "farge",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sdushantha",
           repo: "farge",
           rev: "2ff6669e2350644d4f0b1bd84526efe5eae3c302",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           bc,
           feh,
           libnotify,
-          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ __proto__: pos$2, ghostscriptSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ghostscriptSupport: true })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [grim, slurp, wl_clipboard])), nix.app(nix.sel(lib, "optional"), x11Support, xcolor)))))),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 install -Dm755 farge $out/bin/farge
@@ -49,7 +49,7 @@ wrapProgram $out/bin/farge \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "View the color value of a specific pixel on your screen",
         homepage: "https://github.com/sdushantha/farge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const version = "0.10.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "rmw",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theimpossibleastronaut",
           repo: "rmw",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, meson, ninja], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), linuxHeaders))),
       buildInputs: nix.thunk(() => nix.concat([canfigger, ncurses, glib], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gettext))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "trashcan/recycle bin utility for the command line",
         homepage: "https://github.com/theimpossibleastronaut/rmw",
         changelog: nix.thunk(() => nix.str`https://github.com/theimpossibleastronaut/rmw/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

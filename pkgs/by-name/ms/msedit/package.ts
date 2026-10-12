@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const icu76 = nix.arg($, "icu76");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "msedit",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "edit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-r7AR6Mf13UUeooPV5/8gyp7HvmOeSaOJNotWWqU10SQ=",
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTC_BOOTSTRAP: 1n,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
               return (nix.asBool(nix.lookup(w, "isDarwin")) && nix.asBool(nix.lookup(w, "isx86_64")));
             })()), nix.thunk(() => ["-headerpad_max_install_names"]))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           EDIT_CFG_ICUUC_SONAME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), icu76)}/lib/libicuuc.so.76`),
           EDIT_CFG_ICUI18N_SONAME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), icu76)}/lib/libicui18n.so.76`),
           EDIT_CFG_ICU_RENAMING_VERSION: 76n,
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/edit`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple editor for simple needs",
         longDescription: "This editor pays homage to the classic MS-DOS Editor,\nbut with a modern interface and input controls similar to VS Code.\nThe goal is to provide an accessible editor that even users largely\nunfamiliar with terminals can easily use.\n",
         mainProgram: "edit",

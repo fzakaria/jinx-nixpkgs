@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "masterpdfeditor4";
       const version = "4.3.89";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code-industry.net/public/master-pdf-editor-${version}_qt5.amd64.tar.gz`),
           sha256: "0k5bzlhqglskiiq86nmy18mnh5bf2w3mr9cq3pibrwn5pisxnxxc",
         }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\napp_dir=$out/opt/masterpdfeditor4\nmkdir -p $out/bin\n\nsubstituteInPlace masterpdfeditor4.desktop \\\n  --replace-fail 'Exec=/opt/master-pdf-editor-4/' \"Exec=\" \\\n  --replace-fail 'Path=/opt/master-pdf-editor-4' \"\" \\\n  --replace-fail 'Icon=/opt/master-pdf-editor-4/masterpdfeditor4.png' \"Icon=masterpdfeditor4\"\n\ninstall -Dm644 -t $out/share/icons/hicolor/128x128/apps masterpdfeditor4.png\ninstall -Dm644 -t $out/share/applications masterpdfeditor4.desktop\ninstall -Dm755 -t $app_dir                masterpdfeditor4\ninstall -Dm644 license.txt $out/share/$name/LICENSE\nln -s $app_dir/masterpdfeditor4 $out/bin/masterpdfeditor4\ncp -v -r stamps templates lang fonts $app_dir\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Master PDF Editor - version 4, without watermark",
         homepage: "https://code-industry.net/free-pdf-editor/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

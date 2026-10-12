@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const cstruct = nix.arg($, "cstruct");
   const mirage_random = nix.arg($, "mirage-random");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-random-test",
       version: "0.1.0",
       minimalOCamlVersion: "4.06",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-random-test/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-random-test-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "1jmjyb9a4v7l0xxgdwpr9zshzr8xk3hybra6y2dp51anbwk8kv46",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, mirage_random]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stub random device implementation for testing",
         homepage: "https://github.com/mirage/mirage-random",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

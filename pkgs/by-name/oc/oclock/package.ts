@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oclock",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxkbfile, libx11, libxext, libxmu, libxt]),
       installFlags: nix.thunk(() => ["appdefaultdir=$(out)/share/X11/app-defaults"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=oclock-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "simple analog clock using the X11 SHAPE extension to make a round window",
         homepage: "https://gitlab.freedesktop.org/xorg/app/oclock",
         license: nix.thunk(() => (() => {

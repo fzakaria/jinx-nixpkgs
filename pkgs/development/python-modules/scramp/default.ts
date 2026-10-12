@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tlocke",
           repo: "scramp",
           rev: version,
@@ -39,14 +39,14 @@ sed -i "/dynamic =/d" pyproject.toml
       const pythonImportsCheck = nix.thunk(() => ["scramp"]);
       const disabledTests = nix.thunk(() => ["test_readme"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the SCRAM authentication protocol",
         homepage: "https://github.com/tlocke/scramp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

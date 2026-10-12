@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const buildNavidromeGoPlugin = nix.arg($, "buildNavidromeGoPlugin");
   return nix.app(buildNavidromeGoPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "listenbrainz-daily-playlist",
       version: "6.0.0",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kgarner7",
           repo: "navidrome-listenbrainz-daily-playlist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-wvRQjLom1ZmDabsPwin5uiR8ggSDWBrEvaFljuUd/bo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/kgarner7/navidrome-listenbrainz-daily-playlist/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "fetch daily/weekly playlists from ListenBrainz",
         homepage: "https://github.com/kgarner7/navidrome-listenbrainz-daily-playlist",

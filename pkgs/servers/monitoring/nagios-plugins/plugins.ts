@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./labs_consol_de"), nix.thunk(() => ({}))));
     return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     check_esxi_hardware: nix.thunk(() => nix.app(callPackage, nix.path(here, "./check_esxi_hardware"), nix.thunk(() => ({})))),
     check_interfaces: nix.thunk(() => nix.app(callPackage, nix.path(here, "./check_interfaces"), nix.thunk(() => ({})))),
     check_openvpn: nix.thunk(() => nix.app(callPackage, nix.path(here, "./check_openvpn"), nix.thunk(() => ({})))),

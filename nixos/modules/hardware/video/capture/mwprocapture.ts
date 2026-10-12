@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "mwProCapture"));
   const kernelPackages = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mwProCapture: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Magewell Pro Capture family kernel module")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           kernelModules: nix.thunk(() => ["ProCapture"]),
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(kernelPackages, "mwprocapture"))]),
           extraModprobeConfig: nix.thunk(() => nix.str`# Set the png picture to be displayed when no input signal is detected.
@@ -64,7 +64,7 @@ options ProCapture locking_file=${nix.sel(kernelPackages, "mwprocapture")}/res/L
 `),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(kernelPackages, "mwprocapture"))]),
         })),
       })))),

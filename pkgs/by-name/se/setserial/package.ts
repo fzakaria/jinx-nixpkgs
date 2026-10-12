@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "setserial",
       version: "2.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/setserial/setserial-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jkrnn3i8gbsl48k3civjmvxyv9rbm1qjha2cf2macdc439qfi3y",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "substituteInPlace Makefile \\\n  --replace-fail /usr/man/ /share/man/ \\\n  --replace-fail DESTDIR out\n",
       preInstall: "mkdir -p \"$out/bin\" \"$out/share/man/man8\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Serial port configuration utility",
         homepage: "https://setserial.sourceforge.net",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

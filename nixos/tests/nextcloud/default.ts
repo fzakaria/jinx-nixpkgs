@@ -42,54 +42,54 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
   const baseModule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           options: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "test-helpers": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               rclone: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 })))),
               "upload-sample": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 })))),
               "check-sample": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 })))),
               init: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "",
                 })))),
               provision: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "",
                 })))),
               extraTests: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                   default: "",
                 })))),
             })),
             adminuser: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               })))),
             adminpass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               })))),
           })),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       adminuser: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkDefault"), "root")),
       adminpass: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkDefault"), "hunter2")),
       "test-helpers": nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         rclone: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "rclone", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.sel(pkgs, "rclone")}/bin:$PATH"
 export RCLONE_CONFIG_NEXTCLOUD_TYPE=webdav
@@ -112,7 +112,7 @@ exec "$@"
         "check-sample": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "check-sample", "set -e\ndiff <(echo 'hi') <(rclone cat nextcloud:test-shared-file)\n")}`),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         client: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           return {};
@@ -121,24 +121,24 @@ exec "$@"
           const $_2 = nix.formals(args_2, formals$4);
           const lib = nix.arg($_2, "lib");
           return {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             networking: nix.thunk(() => ({
-              __proto__: pos$15,
-              firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: pos$15,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               nextcloud: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: true,
                 hostName: "nextcloud",
                 https: false,
                 database: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
                 config: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   adminpassFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "adminpass", nix.thunk(() => nix.sel(config_1, "adminpass")))}`),
                 })),
               })),
@@ -177,22 +177,22 @@ ${(nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), nix.thunk(() => nix.se
   })(), formals$2);
   const genTests = (version) => (() => {
     const testBase = nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       imports: nix.thunk(() => [
         baseModule,
         nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           nodes: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             nextcloud: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$6);
               const pkgs_1 = nix.arg($_1, "pkgs");
               return {
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 services: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   nextcloud: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     package: nix.thunk(() => nix.sel(pkgs_1, nix.key(nix.str`nextcloud${nix.app(nix.builtins.toString, version)}`))),
                   })),
                 })),
@@ -205,7 +205,7 @@ ${(nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), nix.thunk(() => nix.se
     const callNextcloudTest = (path) => (() => {
       const name = nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "removeSuffix"), ".nix", nix.thunk(() => nix.app(nix.builtins.baseNameOf, path)))}${nix.app(nix.builtins.toString, version)}`);
       return nix.app(nix.lookup(w, "nameValuePair"), name, nix.thunk(() => nix.app(nix.builtins.import, path, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             system: system,
             pkgs: pkgs,
             testBase: testBase,

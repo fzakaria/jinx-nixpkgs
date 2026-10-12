@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libgsf = nix.arg($, "libgsf");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crackxls",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GavinSmith0123",
           repo: "crackxls2003",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, libgsf, gmp]),
       installPhase: "mkdir -p $out/bin\ncp crackxls2003 $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/GavinSmith0123/crackxls2003/",
         description: "Used to break the encryption on old Microsoft Excel and Microsoft Word files",
         mainProgram: "crackxls2003",

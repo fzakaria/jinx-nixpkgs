@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libxmi",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/libxmi/libxmi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "03d4ikh29l38rl1wavb0icw7m5pp7yilnv7bb2k8qij1dinsymlx",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu89" })),
       preConfigure: nix.thunk(() => nix.str`cp ${libtool}/share/libtool/build-aux/config.sub .`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for rasterizing 2-D vector graphics",
         homepage: "https://www.gnu.org/software/libxmi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

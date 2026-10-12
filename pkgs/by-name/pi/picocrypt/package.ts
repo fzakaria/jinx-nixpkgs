@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "picocrypt",
       version: "1.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Picocrypt",
           repo: "Picocrypt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       buildInputs: nix.thunk(() => nix.concat(nix.selOr(glfw, () => [], "buildInputs"), nix.concat(nix.selOr(glfw, () => [], "propagatedBuildInputs"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [gtk3, libxxf86vm]))))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, pkg_config, wrapGAppsHook3]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       postInstall: "mv $out/bin/Picocrypt $out/bin/picocrypt-gui\ninstall -Dm644 $src/images/key.svg $out/share/icons/hicolor/scalable/apps/picocrypt.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Picocrypt",
             exec: "picocrypt-gui",
             icon: "picocrypt",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Very small, very simple, yet very secure encryption tool, written in Go",
         homepage: "https://github.com/Picocrypt/Picocrypt",
         changelog: nix.thunk(() => nix.str`https://github.com/Picocrypt/Picocrypt/blob/${nix.sel(finalAttrs, "version")}/Changelog.md`),

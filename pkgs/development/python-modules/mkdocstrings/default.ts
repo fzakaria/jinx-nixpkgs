@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const dirty_equals = nix.arg($, "dirty-equals");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocstrings",
       version: "1.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkdocstrings",
           repo: "mkdocstrings",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "test_nested_autodoc[ext_markdown0]",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic documentation from sources for MkDocs",
         homepage: "https://github.com/mkdocstrings/mkdocstrings",
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/mkdocstrings/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

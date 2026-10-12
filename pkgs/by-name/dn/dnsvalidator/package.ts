@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnsvalidator",
       version: "0.1-unstable-2023-01-17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vortexau",
           repo: "dnsvalidator",
           rev: "146c9b0e24d806b25697fbb541bf9f19a3086d41",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dnsvalidator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to maintain a list of IPv4 DNS servers",
         homepage: "https://github.com/vortexau/dnsvalidator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

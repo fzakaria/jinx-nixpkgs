@@ -120,48 +120,48 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
   -p ${nix.sel(cfg, "dataDir")}/projects
 `)));
   return {
-    __proto__: pos$86,
+    [nix.POS]: pos$86,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         rundeck: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Rundeck service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rundeck", nix.thunk(() => ({})))),
           adminUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "admin",
               description: "Username for the Rundeck admin user",
               example: "rundeck-admin",
             })))),
           adminPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to a file containing the admin password",
               example: "/run/secrets/rundeck-admin-password",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "rundeck",
               description: "User account under which Rundeck runs",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "rundeck",
               description: "Group account under which Rundeck runs",
             })))),
           serverHostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "Hostname for the Rundeck server",
             })))),
           serverURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`${scheme}://${nix.sel(cfg, "serverHostname")}:${nix.builtins.toString(effectivePort)}`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`<scheme>://<serverHostname>:<port>`, where scheme is `https` when\n`ssl.enable` else `http`, and port is `ssl.port` when `ssl.enable`\nelse `serverPort`.\n")),
@@ -169,99 +169,99 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
               example: "https://myhost:4443/rundeck",
             })))),
           serverPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4440n,
               description: "Port on which Rundeck will listen",
             })))),
           serverUUID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "UUID for the Rundeck server (automatically generated if not specified)",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/rundeck",
               description: "Directory for Rundeck runtime data (RDECK_BASE)",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/etc/rundeck",
               description: "Directory for Rundeck configuration files",
             })))),
           javaOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["-Xmx1024m", "-Xms256m", "-XX:MaxMetaspaceSize=256m", "-server"]),
               description: "Additional Java options for Rundeck",
             })))),
           aclPolicies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "admin.aclpolicy": "description: Admin, all access.\ncontext:\n  project: '.*'\nfor:\n  resource:\n    - allow: '*'\n  adhoc:\n    - allow: '*'\n  job:\n    - allow: '*'\n  node:\n    - allow: '*'\n  runner:\n    - allow: '*'\nby:\n  group: admin\n\n---\n\ndescription: Admin, all access.\ncontext:\n  application: 'rundeck'\nfor:\n  resource:\n    - allow: '*'\n  project:\n    - allow: '*'\n  project_acl:\n    - allow: '*'\n  storage:\n    - allow: '*'\nby:\n  group: admin\n",
               })),
               description: "ACL policies for Rundeck, where the attribute name is the filename and the value is the policy content",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"admin.aclpolicy\" = ''\n    description: Admin access for administrators\n    context:\n      project: '.*'\n    for:\n      resource:\n        - allow: '*'\n      job:\n        - allow: '*'\n      node:\n        - allow: '*'\n    by:\n      group: admin\n    ---\n    description: Admin access in application scope\n    context:\n      application: 'rundeck'\n    for:\n      resource:\n        - allow: '*'\n      project:\n        - allow: '*'\n    by:\n      group: admin\n  '';\n}\n")),
             })))),
           sshKeyType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["rsa", "ed25519"]))),
               default: "rsa",
               description: "Type of SSH key to generate (rsa for compatibility, ed25519 for better security)",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the Rundeck port in the firewall",
             })))),
           startTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 180n,
               description: "Timeout in seconds before systemd considers the service startup as failed",
               example: 120n,
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["h2", "postgresql", "mysql"]))),
                 default: "h2",
                 description: "Database type to use (h2, postgresql, or mysql)",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Database host",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? 5432n : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? 3306n : null))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.rundeck.database.type == \"postgresql\" then\n  5432\nelse if config.services.rundeck.database.type == \"mysql\" then\n  3306\nelse\n  null\n")),
                 description: "Database port (defaults: PostgreSQL: 5432, MySQL: 3306)",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "rundeck",
                 description: "Database name",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "rundeck",
                 description: "Database username",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Path to a file containing the database password",
@@ -269,9 +269,9 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
@@ -279,9 +279,9 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"rundeck.feature.repository.enabled\" = \"true\";\n  \"rundeck.projectsStorageType\" = \"db\";\n  \"rundeck.gui.title\" = \"My Rundeck Instance\";\n  \"rdeck.security.useHMacRequestTokens\" = \"true\";\n  \"rundeck.web.jetty.servlet.MaxFormKeys\" = \"2000\";\n}\n")),
             })))),
           frameworkSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
@@ -289,22 +289,22 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"framework.ssh.timeout\" = \"120\";\n  \"framework.ssh.user\" = \"deploy\";\n}\n")),
             })))),
           ssl: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SSL support")),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 4443n,
                 description: "Port on which Rundeck will listen for HTTPS when ssl.enable is true",
               })))),
             keyStore: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 example: "/etc/rundeck/ssl/keystore",
                 description: "Path to the keystore containing the SSL certificate",
               })))),
             keyStorePasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Path to a file containing the SSL keystore password",
                 example: "/run/secrets/rundeck-keystore-password",
@@ -314,25 +314,25 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "h2")) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), "")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "username"), "")))) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))))),
             message: "When using external database (PostgreSQL/MySQL), host, username, and passwordFile must be provided",
           })),
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "h2")) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "port"), null)))),
             message: "Database port must be set when using an external database",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           rundeck: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               "server.address": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0.0.0.0")),
               "server.port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "serverPort")))))),
               "grails.serverURL": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "serverURL")))),
@@ -341,22 +341,22 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
               "dataSource.driverClassName": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "h2")) ? "org.h2.Driver" : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? "org.postgresql.Driver" : "org.mariadb.jdbc.Driver"))))),
               "dataSource.username": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "database", "username")))),
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 "dataSource.password": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@DB_PASSWORD@")),
               }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "h2")), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 "dataSource.dialect": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "org.hibernate.dialect.H2Dialect")),
               }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql")), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "dataSource.dialect": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "org.hibernate.dialect.MariaDB103Dialect")),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "ssl", "enable")), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 "server.https.port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ssl", "port")))))),
                 "server.ssl.keyStore": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ssl", "keyStore")))))),
                 "server.ssl.keyStorePassword": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@KEYSTORE_PASSWORD@")),
               })))))))),
             frameworkSettings: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               "framework.server.name": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "serverHostname")))),
               "framework.server.hostname": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "serverHostname")))),
               "framework.server.port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(effectivePort)))),
@@ -376,10 +376,10 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "group")),
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -389,115 +389,115 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             settings: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               "10-rundeck": nix.thunk(() => nix.attrsDyn({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 "/var/log/rundeck": nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   L: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     argument: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/var/logs`),
                   })),
                 })),
               }, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   d: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/etc`, nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   d: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/data`, nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   d: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/projects`, nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   d: nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/libext`, nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   d: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/var`, nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   d: nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/var/logs`, nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   d: nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/var/tmp`, nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   d: nix.thunk(() => ({
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/.ssh`, nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   d: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     mode: "0700",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "configDir")}`, nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   d: nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "configDir")}/ssl`, nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   d: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -507,22 +507,22 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             rundeck: nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               description: "Rundeck Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql")), "mysql.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgresql")), "postgresql.service")))),
               wants: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql")), "mysql.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgresql")), "postgresql.service"))),
               environment: nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 RDECK_BASE: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 RUNDECK_CONFIG_DIR: nix.thunk(() => nix.sel(cfg, "configDir")),
                 JAVA_OPTS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "javaOpts")))),
               })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "replace-secret"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: rundeckStartScript,
@@ -590,11 +590,11 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           etc: nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             "rundeck/jaas-loginmodule.conf": nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               mode: "0640",
               user: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -606,7 +606,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
 `),
             })),
             "rundeck/log4j2.properties": nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               mode: "0640",
               user: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -640,9 +640,9 @@ logger.hibernate.level = ERROR
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           firewall: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => (nix.asBool(nix.sel(cfg, "ssl", "enable")) ? nix.sel(cfg, "ssl", "port") : nix.sel(cfg, "serverPort"))),
               ]))),

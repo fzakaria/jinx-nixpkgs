@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-tMJYkLt1BQ1UwIEj0nMxVreKWaJVX1Rh9psORM2RJC8=",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$TMPDIR\n";
       const pythonImportsCheck = nix.thunk(() => ["launchpadlib", "launchpadlib.apps", "launchpadlib.credentials"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script Launchpad through its web services interfaces. Officially supported",
         homepage: "https://help.launchpad.net/API/launchpadlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

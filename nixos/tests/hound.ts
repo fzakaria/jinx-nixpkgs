@@ -21,42 +21,42 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "hound",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             hound: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "max-concurrent-indexers": 1n,
                 dbpath: "/var/lib/hound/data",
                 repos: nix.thunk(() => ({
-                  __proto__: pos$2,
-                  nix: nix.thunk(() => ({ __proto__: pos$1, url: "file:///var/lib/hound/my-git" })),
+                  [nix.POS]: pos$2,
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$1, url: "file:///var/lib/hound/my-git" })),
                 })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               houndseed: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "seed hound with a git repo",
                 requiredBy: nix.thunk(() => ["hound.service"]),
                 before: nix.thunk(() => ["hound.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   User: "hound",
                   Group: "hound",
                   WorkingDirectory: "/var/lib/hound",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hayabusa",
       version: "0.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notarin",
           repo: "hayabusa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace distribution/hayabusa.service \\\n  --replace \"/usr/local\" \"$out\"\n",
       postInstall: "install -Dm444 distribution/hayabusa.service -t $out/lib/systemd/system/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Swift rust fetch program",
         homepage: "https://github.com/notarin/hayabusa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

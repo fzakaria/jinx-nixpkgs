@@ -53,29 +53,29 @@ network {
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         aerospike: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Aerospike server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "aerospike", nix.thunk(() => ({})))),
           workDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/aerospike",
               description: "Location where Aerospike stores its files",
             })))),
           networkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "service {\n  address any\n  port 3000\n}\n\nheartbeat {\n  address any\n  mode mesh\n  port 3002\n  interval 150\n  timeout 10\n}\n\nfabric {\n  address any\n  port 3001\n}\n\ninfo {\n  address any\n  port 3003\n}\n",
               description: "network section of configuration file",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "namespace test {\n  replication-factor 2\n  memory-size 4G\n  default-ttl 30d\n  storage-engine memory\n}\n",
@@ -85,13 +85,13 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "aerospike", "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             aerospike: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "aerospike",
               group: "aerospike",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "aerospike")),
@@ -99,34 +99,34 @@ ${nix.sel(cfg, "extraConfig")}
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             aerospike: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "aerospike")),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           kernel: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "net.core.rmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 15728640n)),
               "net.core.wmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 5242880n)),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             aerospike: nix.thunk(() => (() => {
               const description = "Aerospike server";
               const wantedBy = nix.thunk(() => ["multi-user.target"]);
               const after = nix.thunk(() => ["network.target"]);
               const serviceConfig = nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/asd --fgdaemon --config-file ${aerospikeConf}`),
                 User: "aerospike",
                 Group: "aerospike",
@@ -146,7 +146,7 @@ install -d -m0700 -o ${nix.sel(serviceConfig, "User")} -g ${nix.sel(serviceConfi
 install -d -m0700 -o ${nix.sel(serviceConfig, "User")} -g ${nix.sel(serviceConfig, "Group")} "${nix.sel(cfg, "workDir")}/udf"
 install -d -m0700 -o ${nix.sel(serviceConfig, "User")} -g ${nix.sel(serviceConfig, "Group")} "${nix.sel(cfg, "workDir")}/udf/lua"
 `);
-              return { __proto__: pos$16, description, wantedBy, after, serviceConfig, preStart };
+              return { [nix.POS]: pos$16, description, wantedBy, after, serviceConfig, preStart };
             })()),
           })),
         })),

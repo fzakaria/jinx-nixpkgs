@@ -61,33 +61,33 @@ export default nix.lambda((args) => (() => {
   const xcfg = nix.thunk(() => nix.sel(config, "services", "xserver"));
   const cfg = nix.thunk(() => nix.sel(xcfg, "desktopManager", "mate"));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             mate: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Enable the MATE desktop environment",
                 })))),
               debug: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "mate-session debug messages")),
               extraPanelApplets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   default: [],
                   example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with pkgs; [ mate-applets ]")),
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                   description: "Extra applets to add to mate-panel.",
                 })))),
               extraCajaExtensions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   default: [],
                   example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ caja-extensions ]")),
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
@@ -99,11 +99,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mate: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           excludePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.mate-terminal pkgs.pluma ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
@@ -114,42 +114,42 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(cfg, "enableWaylandSession")))), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             services: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mate-session-manager"))]),
               })),
               gnome: nix.thunk(() => ({
-                __proto__: pos$17,
-                "at-spi2-core": nix.thunk(() => ({ __proto__: pos$13, enable: true })),
-                "glib-networking": nix.thunk(() => ({ __proto__: pos$14, enable: true })),
-                "gnome-keyring": nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+                [nix.POS]: pos$17,
+                "at-spi2-core": nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+                "glib-networking": nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+                "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
                 "gcr-ssh-agent": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 })),
               })),
               udev: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mate-settings-daemon"))]),
               })),
-              gvfs: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+              gvfs: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
               upower: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: nix.thunk(() => nix.sel(config, "powerManagement", "enable")),
               })),
               libinput: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               extraInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "services", "gnome", "gcr-ssh-agent", "enable")), "# Hack: https://bugzilla.redhat.com/show_bug.cgi?id=2250704 still\n# applies to sessions not managed by systemd.\nif [ -z \"$SSH_AUTH_SOCK\" ] && [ -n \"$XDG_RUNTIME_DIR\" ]; then\n  export SSH_AUTH_SOCK=\"$XDG_RUNTIME_DIR/gcr/ssh\"\nfi\n")),
               sessionVariables: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 MATE_SESSION_DEBUG: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "debug")), "1")),
               })),
               systemPackages: nix.thunk(() => nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => (() => {
@@ -189,11 +189,11 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.lookup(w_1, "mozo")),
                     nix.thunk(() => nix.lookup(w_1, "pluma")),
                     nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "caja-with-extensions"), "override"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         extensions: nix.thunk(() => nix.sel(cfg, "extraCajaExtensions")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mate-panel-with-applets"), "override"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         applets: nix.thunk(() => nix.sel(cfg, "extraPanelApplets")),
                       })))),
                     nix.thunk(() => nix.lookup(w_1, "desktop-file-utils")),
@@ -207,62 +207,62 @@ export default nix.lambda((args) => (() => {
               pathsToLink: nix.thunk(() => ["/share"]),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$31,
-              dconf: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+              [nix.POS]: pos$31,
+              dconf: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
               bash: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 vteIntegration: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
               zsh: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 vteIntegration: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
               "system-config-printer": nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)))),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               pam: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 services: nix.thunk(() => ({
-                  __proto__: pos$33,
-                  "mate-screensaver": nix.thunk(() => ({ __proto__: pos$32, unixAuth: true })),
+                  [nix.POS]: pos$33,
+                  "mate-screensaver": nix.thunk(() => ({ [nix.POS]: pos$32, unixAuth: true })),
                 })),
               })),
               polkit: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 enable: true,
                 enablePkexecWrapper: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               portal: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 configPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mate-desktop"))]))),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableWaylandSession")), nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             programs: nix.thunk(() => ({
-              __proto__: pos$41,
-              wayfire: nix.thunk(() => ({ __proto__: pos$40, enable: true })),
+              [nix.POS]: pos$41,
+              wayfire: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               sessionVariables: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 NIX_GSETTINGS_OVERRIDES_DIR: nix.thunk(() => nix.str`${nix.sel(pkgs, "mate-gsettings-overrides")}/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas`),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mate-wayland-session"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mate-wayland-session"))]),
               })),
             })),

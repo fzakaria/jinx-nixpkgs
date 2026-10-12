@@ -26,21 +26,21 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linuxsampler",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.linuxsampler.org/packages/linuxsampler-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-T7quk5N5JBiPqIziQd0vaCr8tLDbwS6otz6egY01OTE=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, HAVE_UNIX98: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, HAVE_UNIX98: "1" })),
       preConfigure: "make -f Makefile.svn\n",
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, bison, libtool, pkg_config, which]),
       buildInputs: nix.thunk(() => [alsa_lib, asio, libjack2, libgig, libsndfile, lv2]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.linuxsampler.org",
         description: "Sampler backend",
         longDescription: "Includes sampler engine, audio and MIDI drivers, network layer\n(LSCP) API and native C++ API.\n\nLinuxSampler is licensed under the GNU GPL with the exception\nthat USAGE of the source code, libraries and applications FOR\nCOMMERCIAL HARDWARE OR SOFTWARE PRODUCTS IS NOT ALLOWED without\nprior written permission by the LinuxSampler authors. If you\nhave questions on the subject, that are not yet covered by the\nFAQ, please contact us.\n",

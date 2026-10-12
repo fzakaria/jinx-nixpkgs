@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "philippj",
       repo: "SteamworksPy",
       rev: "c021d1c186084d22a21817fc4fe5fad1e1c20a7e",
       hash: "sha256-pAl/utInHYZsqCjvVHTeQU4jOX/Vim9EEO6jIFhwz9w=",
     }))));
   const steamworksSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://web.archive.org/web/20250527013243/https://partner.steamgames.com/downloads/steamworks_sdk_162.zip",
       hash: "sha256-yDA92nGj3AKTNI4vnoLaa+7mDqupQv0E4YKRRUWqyZw=",
     }))));
   const library = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steamworks-c",
       version: "1.6.5-unstable-2026-06-18",
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
@@ -46,7 +46,7 @@ runHook postUnpack
       installPhase: "mkdir -p $out\ncp SteamworksPy.so $out/\n",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "steamworks",
       version: "1.6.5-unstable-2026-06-18",
       pyproject: true,
@@ -55,7 +55,7 @@ runHook postUnpack
       postInstall: nix.thunk(() => nix.str`cp ${library}/SteamworksPy.so $out/lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python API system for Valve's Steamworks",
         homepage: "https://github.com/philippj/SteamworksPy",
         license: nix.thunk(() => (() => {

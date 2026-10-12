@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zap-chip";
       const version = "2026.05.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "project-chip",
           repo: "zap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-R95ljHvKPGyJh3tlWI1feo9HVE7abPLVLzScqReJBPw=";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         CYPRESS_INSTALL_BINARY: "0",
       }));
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = nix.thunk(() => (() => {
         const versionJson = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: version,
           timestamp: 1n,
           date: version,
@@ -53,7 +53,7 @@ cat .version.json
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = "# this file is also used at runtime\ninstall -m644 .version.json $out/lib/node_modules/zap/\n# home-assistant chip-* python packages need the executable under the name zap-cli\nmv $out/bin/zap $out/bin/zap-cli\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generic generation engine and user interface for applications and libraries based on Zigbee Cluster Library (ZCL)",
         changelog: nix.thunk(() => nix.str`https://github.com/project-chip/zap/releases/tag/v${version}`),
         homepage: "https://github.com/project-chip/zap",
@@ -66,7 +66,7 @@ cat .version.json
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

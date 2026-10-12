@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "twitch-dl",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ihabunek",
           repo: "twitch-dl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "scdoc < twitch-dl.1.scd > twitch-dl.1\ninstallManPage twitch-dl.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for downloading videos from Twitch",
         homepage: "https://github.com/ihabunek/twitch-dl",
         changelog: nix.thunk(() => nix.str`https://github.com/ihabunek/twitch-dl/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
   const xdg_desktop_portal = nix.arg($, "xdg-desktop-portal");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "waytrogen",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nikolaizombie1",
           repo: "waytrogen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-3whabM2leDPZS276FRCC5q6XSKWCIisQ0HLM8l8T5WE=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -93,9 +93,9 @@ export default nix.lambda((args) => (() => {
         xdg_utils,
         xdg_desktop_portal,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({})),
       })),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lightning fast wallpaper setter for Wayland",
         longDescription: "A GUI wallpaper setter for Wayland that is a spiritual successor\nfor the minimalistic wallpaper changer for X11 nitrogen. Written purely\nin the Rust 🦀 programming language. Supports hyprpaper, swaybg, mpvpaper, swww  and gSlapper wallpaper changers.\n",
         homepage: "https://github.com/nikolaizombie1/waytrogen",

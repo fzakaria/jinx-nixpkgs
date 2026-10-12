@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "0.4.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitprompt-rs",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "9ary",
           repo: "gitprompt-rs",
           rev: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --replace 'Command::new("git")' 'Command::new("${git}/bin/git")'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Git prompt",
         homepage: "https://github.com/9ary/gitprompt-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

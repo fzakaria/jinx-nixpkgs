@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const vapoursynth = nix.arg($, "vapoursynth");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "av1an-unwrapped",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rust-av",
           repo: "Av1an",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
         "--skip=scenes::tests::validate_zones_target_quality",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform command-line encoding framework",
         longDescription: "Cross-platform command-line AV1 / VP9 / HEVC / H264 encoding framework with per scene quality encoding.\nIt can increase your encoding speed and improve cpu utilization by running multiple encoder processes in parallel.\n",
         homepage: "https://github.com/rust-av/Av1an",

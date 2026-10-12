@@ -79,98 +79,98 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         sharkey: nix.thunk(() => (() => {
           const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
           const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
           const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
           const types = nix.thunk(() => nix.attr(lib, "types"));
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Sharkey, a Sharkish microblogging platform")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "sharkey", nix.thunk(() => ({})))),
             environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: [],
                 example: nix.thunk(() => ["/run/secrets/sharkey-env"]),
                 description: "List of paths to files containing environment variables for Sharkey to use at runtime.\n\nThis is useful for keeping secrets out of the Nix store. See\n<https://docs.joinsharkey.org/docs/install/configuration/> for how to configure Sharkey using environment\nvariables.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 example: true,
                 description: "Whether to open ports in the NixOS firewall for Sharkey.\n",
               })))),
             setupMeilisearch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 example: true,
                 description: "Whether to automatically set up a local Meilisearch instance and configure Sharkey to use it.\n\nYou need to ensure `services.meilisearch.masterKeyFile` is correctly configured for a working\nMeilisearch setup. You also need to configure Sharkey to use an API key obtained from Meilisearch with the\n`MK_CONFIG_MEILISEARCH_APIKEY` environment variable, and set `services.sharkey.settings.meilisearch.index` to\nthe created index. See <https://docs.joinsharkey.org/docs/customisation/search/meilisearch/> for how to create\nan API key and index.\n",
               })))),
             setupPostgresql: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 example: false,
                 description: "Whether to automatically set up a local PostgreSQL database and configure Sharkey to use it.\n",
               })))),
             setupRedis: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 example: false,
                 description: "Whether to automatically set up a local Redis cache and configure Sharkey to use it.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "https://blahaj.social/",
                           description: "The full URL that the Sharkey instance will be publically accessible on.\n\nDo NOT change this after initial setup!\n",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 3000n,
                           description: "The port that Sharkey will listen on.\n",
                         })))),
                       address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0.0.0.0",
                           example: "127.0.0.1",
                           description: "The address that Sharkey binds to.\n",
                         })))),
                       socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           example: "/run/sharkey/sharkey.sock",
                           description: "If specified, creates a UNIX socket at the given path that Sharkey listens on.\n",
                         })))),
                       mediaDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: "/var/lib/sharkey",
                           description: "Path to the folder where Sharkey stores uploaded media such as images and attachments.\n",
                         })))),
                       fulltextSearch: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         provider: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlLike", "sqlPgroonga", "sqlTsvector", "meilisearch"]))),
                             default: "sqlLike",
                             example: "sqlPgroonga",
@@ -178,7 +178,7 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["aid", "aidx", "meid", "ulid", "objectid"]))),
                           default: "aidx",
                           description: "The ID generation method for Sharkey to use.\n\nDo NOT change this after initial setup!\n",
@@ -198,21 +198,21 @@ export default nix.lambda((args) => (() => {
       const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               systemd: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 services: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   sharkey: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     description: "Sharkey",
                     documentation: nix.thunk(() => ["https://docs.joinsharkey.org/"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     startLimitBurst: 5n,
                     startLimitIntervalSec: 60n,
-                    environment: nix.thunk(() => ({ __proto__: pos$20, MISSKEY_CONFIG_DIR: "/etc/sharkey" })),
+                    environment: nix.thunk(() => ({ [nix.POS]: pos$20, MISSKEY_CONFIG_DIR: "/etc/sharkey" })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       Type: "simple",
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} migrateandstart`),
                       EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
@@ -251,39 +251,39 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$26,
-                  "sharkey/default.yml": nix.thunk(() => ({ __proto__: pos$25, source: configFile })),
+                  [nix.POS]: pos$26,
+                  "sharkey/default.yml": nix.thunk(() => ({ [nix.POS]: pos$25, source: configFile })),
                 })),
               })),
             })),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   firewall: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]),
                   })),
                 })),
               })))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "setupMeilisearch")), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 services: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   meilisearch: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     enable: nix.thunk(() => nix.app(mkDefault, true)),
-                    settings: nix.thunk(() => ({ __proto__: pos$32, env: nix.thunk(() => nix.app(mkDefault, "production")) })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$32, env: nix.thunk(() => nix.app(mkDefault, "production")) })),
                   })),
                   sharkey: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$36,
-                      fulltextSearch: nix.thunk(() => ({ __proto__: pos$34, provider: "meilisearch" })),
+                      [nix.POS]: pos$36,
+                      fulltextSearch: nix.thunk(() => ({ [nix.POS]: pos$34, provider: "meilisearch" })),
                       meilisearch: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         host: nix.thunk(() => nix.sel(config, "services", "meilisearch", "listenAddress")),
                         port: nix.thunk(() => nix.sel(config, "services", "meilisearch", "listenPort")),
                       })),
@@ -291,11 +291,11 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   services: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     sharkey: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       after: nix.thunk(() => ["meilisearch.service"]),
                       wants: nix.thunk(() => ["meilisearch.service"]),
                     })),
@@ -303,32 +303,32 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "setupPostgresql")), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 services: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   postgresql: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     enable: nix.thunk(() => nix.app(mkDefault, true)),
                     ensureDatabases: nix.thunk(() => ["sharkey"]),
                     ensureUsers: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$43, name: "sharkey", ensureDBOwnership: true })),
+                      nix.thunk(() => ({ [nix.POS]: pos$43, name: "sharkey", ensureDBOwnership: true })),
                     ]),
                     extensions: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "fulltextSearch", "provider"), "sqlPgroonga")), (ps) => [nix.thunk(() => nix.sel(ps, "pgroonga"))])),
                   })),
                   sharkey: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$46,
-                      db: nix.thunk(() => ({ __proto__: pos$45, host: "/run/postgresql", db: "sharkey" })),
+                      [nix.POS]: pos$46,
+                      db: nix.thunk(() => ({ [nix.POS]: pos$45, host: "/run/postgresql", db: "sharkey" })),
                     })),
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   services: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     sharkey: nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       after: nix.thunk(() => ["postgresql.target"]),
                       bindsTo: nix.thunk(() => ["postgresql.target"]),
                     })),
@@ -336,37 +336,37 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "setupRedis")), nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 services: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   redis: nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     servers: nix.thunk(() => ({
-                      __proto__: pos$54,
-                      sharkey: nix.thunk(() => ({ __proto__: pos$53, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                      [nix.POS]: pos$54,
+                      sharkey: nix.thunk(() => ({ [nix.POS]: pos$53, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
                     })),
                   })),
                   sharkey: nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       redis: nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         path: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "sharkey", "unixSocket")),
                       })),
                     })),
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   services: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     sharkey: nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       after: nix.thunk(() => ["redis-sharkey.service"]),
                       bindsTo: nix.thunk(() => ["redis-sharkey.service"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         SupplementaryGroups: nix.thunk(() => [
                           nix.thunk(() => nix.sel(config, "services", "redis", "servers", "sharkey", "group")),
                         ]),
@@ -378,7 +378,7 @@ export default nix.lambda((args) => (() => {
           ]))));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tmarkus"))];

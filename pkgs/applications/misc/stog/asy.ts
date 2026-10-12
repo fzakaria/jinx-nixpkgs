@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const stog = nix.arg($, "stog");
   const ocf_ppx = nix.arg($, "ocf_ppx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "stog_asy",
       version: nix.thunk(() => nix.attr(stog, "version")),
       src: nix.thunk(() => nix.attr(stog, "src")),
       buildInputs: nix.thunk(() => [ocf_ppx]),
       propagatedBuildInputs: nix.thunk(() => [stog]),
       meta: nix.thunk(() => nix.update(nix.sel(stog, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Stog plugin to include Asymptote results in documents",
       })),
     })));

@@ -9,26 +9,26 @@ const pos$4 = nix.positions(here + "/operators.nix", [["licenseType", 120, 5], [
 const pos$5 = nix.positions(here + "/operators.nix", [["OR", 26, 3], ["AND", 56, 3], ["WITH", 89, 3], ["PLUS", 119, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   OR: (licenses) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     licenseType: "compound",
     operator: "OR",
     licenses: licenses,
   }),
   AND: (licenses) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     licenseType: "compound",
     operator: "AND",
     licenses: licenses,
   }),
   WITH: (license) => (exception) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     licenseType: "exception",
     operator: "WITH",
     license: license,
     exception: exception,
   }),
-  PLUS: (license) => ({ __proto__: pos$4, licenseType: "plus", operator: "+", license: license }),
+  PLUS: (license) => ({ [nix.POS]: pos$4, licenseType: "plus", operator: "+", license: license }),
 }));
 //# sourceMappingURL=operators.ts.map

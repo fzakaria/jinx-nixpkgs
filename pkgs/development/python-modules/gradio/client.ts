@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const tomlkit = nix.arg($, "tomlkit");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gradio-client",
       version: "2.7.1",
       pyproject: true,
@@ -70,9 +70,9 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gradio_client"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "sans-reverse-dependencies": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-sans-reverse-dependencies")),
             doInstallCheck: false,
             doCheck: false,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.attr(gradio, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight library to use any Gradio app as an API",
         homepage: "https://www.gradio.app/",
         downloadPage: "https://github.com/gradio-app/gradio/tree/main/client/python",

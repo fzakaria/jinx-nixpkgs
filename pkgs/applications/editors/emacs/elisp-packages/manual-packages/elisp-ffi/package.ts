@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elisp-ffi",
       ename: "ffi",
       version: "1.0.0-unstable-2017-05-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skeeto",
           repo: "elisp-ffi",
           rev: "da37c516a0e59bdce63fb2dc006a231dee62a1d9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libffi]),
       preBuild: "make CXX=$CXX\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/skeeto/elisp-ffi",
         description: "Emacs Lisp Foreign Function Interface",
         longDescription: "This library provides an FFI for Emacs Lisp so that Emacs\nprograms can invoke functions in native libraries. It works by\ndriving a subprocess to do the heavy lifting, passing result\nvalues on to Emacs.\n",

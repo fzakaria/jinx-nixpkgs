@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zziplib",
       version: "0.13.80",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gdraheim",
           repo: "zziplib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILDTESTS=OFF",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gdraheim/zziplib",
         changelog: nix.thunk(() => nix.str`https://github.com/gdraheim/zziplib/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "Library to extract data from files archived in a zip file",

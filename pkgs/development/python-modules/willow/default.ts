@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wagtail",
           repo: "Willow",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [filetype, defusedxml]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         wand: nix.thunk(() => [wand]),
         pillow: nix.thunk(() => [pillow]),
         heif: nix.thunk(() => [pillow_heif]),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([opencv4, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["test_gif"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python image library that sits on top of Pillow, Wand and OpenCV",
         homepage: "https://github.com/torchbox/Willow/",
         changelog: nix.thunk(() => nix.str`https://github.com/wagtail/Willow/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

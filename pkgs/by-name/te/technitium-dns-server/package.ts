@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libmsquic = nix.arg($, "libmsquic");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "technitium-dns-server",
       version: "15.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TechnitiumSoftware",
           repo: "DnsServer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +40,15 @@ cp -r ${technitium_dns_server_library}/lib/${nix.sel(technitium_dns_server_libra
       postFixup: "mv $out/bin/DnsServerApp $out/bin/technitium-dns-server\n",
       runtimeDeps: nix.thunk(() => [libmsquic]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "technitium-dns-server": nix.thunk(() => nix.attr(nixosTests, "technitium-dns-server")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://github.com/TechnitiumSoftware/DnsServer/blob/master/CHANGELOG.md",
         description: "Authoritative and Recursive DNS server for Privacy and Security",
         homepage: "https://github.com/TechnitiumSoftware/DnsServer",

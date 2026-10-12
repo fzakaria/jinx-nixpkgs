@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gperf = nix.arg($, "gperf");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "html-xml-utils",
       version: "8.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.w3.org/Tools/HTML-XML-utils/html-xml-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-iIoxYxp6cDCLsvMz4HfQQW9Lt4MX+Gl/+0qVGH9ncwE=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gperf]),
       buildInputs: nix.thunk(() => [curl, libiconv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for manipulating HTML and XML files",
         homepage: "https://www.w3.org/Tools/HTML-XML-utils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "w3c")),

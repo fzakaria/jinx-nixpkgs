@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
 exec "${emulator}/bin/x16emu" -rom $defaultRom "$@"
 `)));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "run-x16",
         version: nix.thunk(() => nix.attr(emulator, "version")),
         paths: nix.thunk(() => [emulator, rom, runScript]),

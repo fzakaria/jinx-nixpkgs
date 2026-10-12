@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const eigen = nix.arg($, "eigen");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "analitza",
       extraNativeBuildInputs: nix.thunk(() => [qt5compat, qtsvg, qttools]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, eigen]),

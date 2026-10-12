@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rustlings",
       version: "6.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rust-lang",
           repo: "rustlings",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/rustlings --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cargo, rustc, clippy, gcc]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Explore the Rust programming language and learn more about it while doing exercises",
         homepage: "https://rustlings.cool/",
         changelog: "https://github.com/rust-lang/rustlings/releases",

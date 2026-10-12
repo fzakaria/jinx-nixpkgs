@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const libgpg_error = nix.arg($, "libgpg-error");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libksba",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/libksba/libksba-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-KWuduQlXSfKqEEIC16t/0JrRBxDgB4CnCcl1SxodkpI=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $dev/bin\nmv $out/bin/*-config $dev/bin/\nrmdir --ignore-fail-on-non-empty $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnupg.org",
         description: "CMS and X.509 access library",
         mainProgram: "ksba-config",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const underVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "_", version));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://archives.boost.io/release/${version}/source/boost_${underVersion}.tar.bz2`),
               nix.thunk(() => nix.str`mirror://sourceforge/boost/boost_${underVersion}.tar.bz2`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
             sha256: "5c1d40cb8e19adbf740a4ec2da35b3e58f3f5804b1dce44deb53df72193cbc6c",
           })));
       })());
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())));
 })(), formals$1);
 //# sourceMappingURL=1.92.ts.map

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mfakto",
       version: "0.16.0-beta.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "primesearch",
           repo: "mfakto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 mfakto $out/bin/mfakto\ninstall -Dm644 mfakto.ini -t $out/share/mfakto\n\ninstall -Dm444 *.cl $out/share/mfakto\ninstall -Dm444 *.h $out/share/mfakto\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Trial Factoring program using OpenCL for GIMPS",
         longDescription: "mfakto is an OpenCL port of mfaktc that aims to have the same features and\nfunctions. mfaktc is a program that trial factors Mersenne numbers. It stands\nfor \"Mersenne faktorisation* with CUDA\" and was written for Nvidia GPUs. Both\nprograms are used primarily in the Great Internet Mersenne Prime Search. mfakto\ncan also run on CPUs, although this is not done in practice.\n",
         homepage: "https://github.com/primesearch/mfakto",

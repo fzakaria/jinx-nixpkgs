@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const libufs = nix.arg($, "libufs");
   const libutil = nix.arg($, "libutil");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "sbin/growfs",
       extraPaths: nix.thunk(() => ["sbin/mount"]),
       buildInputs: nix.thunk(() => [libufs, libutil]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "growfs" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "growfs" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=growfs.ts.map

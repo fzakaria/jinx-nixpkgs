@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnureadline";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-CXI5K9LzEkTi2YEXgkb+i3Kch2ZFT9rrJ1lGrEe36f0=",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const patchPhase = nix.thunk(() => nix.str`substituteInPlace setup.py --replace "/bin/bash" "${nix.sel(pkgs, "bash")}/bin/bash"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard Python readline extension statically linked against the GNU readline library",
         homepage: "https://github.com/ludwigschwardt/python-gnureadline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pkgutil_resolve_name",
           version: version,
           hash: "sha256-NX1snmp1VlPP14iTgXwIU682XdUeyX89NYqBk3O70XQ=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/graingert/pkgutil-resolve-name/commit/042834290c735fa836bb308ce9e93c9f64d67cbe.patch",
             hash: "sha256-M1rcrkdFcoFa3IncPnJaRhnXbelyk56QnMGtmgB6bvk=",
           })))),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pypi.org/project/pkgutil_resolve_name/",
         description: "Backport of Python 3.9’s pkgutil.resolve_name",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

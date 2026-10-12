@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuya-device-handlers",
       version: "0.0.27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "tuya-device-handlers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_customer_device_with_quirk_as_dict"]),
       pythonImportsCheck: nix.thunk(() => ["tuya_device_handlers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tuya quirks library",
         homepage: "https://github.com/home-assistant-libs/tuya-device-handlers",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/tuya-device-handlers/releases/tag/v${nix.sel(finalAttrs, "version")}`),

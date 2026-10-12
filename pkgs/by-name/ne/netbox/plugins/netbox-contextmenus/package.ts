@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-contextmenus",
       version: "1.4.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PieterL75",
           repo: "netbox_contextmenus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YqyxZaHKXhMLDdBTAAKQsCBBSXikxBgcOvXEfa6f+0Y=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_contextmenus" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_contextmenus" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin to add context buttons to the links, making navigating less clicky",
         homepage: "https://github.com/PieterL75/netbox_contextmenus/",
         changelog: nix.thunk(() => nix.str`https://github.com/PieterL75/netbox_contextmenus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

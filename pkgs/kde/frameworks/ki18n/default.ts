@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gettext = nix.arg($, "gettext");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ki18n",
       extraNativeBuildInputs: nix.thunk(() => [python3]),
       propagatedNativeBuildInputs: nix.thunk(() => [gettext]),

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "variants",
       version: "0.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "variants",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UR91tM90g8J+TYbZrM8rUxcmeQDBZtF2Nr7u0RiSm5A=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, six]),
       pythonImportsCheck: nix.thunk(() => ["variants"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library providing syntactic sugar for creating variant forms of a canonical function",
         homepage: "https://github.com/python-variants/variants",
         changelog: nix.thunk(() => nix.str`https://github.com/python-variants/variants/releases/tag/${nix.sel(finalAttrs, "version")}`),

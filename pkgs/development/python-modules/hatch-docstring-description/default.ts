@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flying-sheep",
           repo: "hatch-docstring-description",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_e2e[.]", "test_e2e[src]"]);
       const pythonImportsCheck = nix.thunk(() => ["hatch_docstring_description"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Derive PyPI package description from Python package docstring",
         homepage: "https://github.com/flying-sheep/hatch-docstring-description",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const qlementine_icons = nix.arg($, "qlementine-icons");
   const qtappinstancemanager = nix.arg($, "qtappinstancemanager");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "solarus-launcher",
       version: nix.thunk(() => nix.attr(solarus, "version")),
       src: nix.thunk(() => nix.add(nix.sel(solarus, "src"), "/launcher")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./github-fetches.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "qlementine-src": nix.thunk(() => nix.sel(qlementine, "src")),
             "qlementine-icons-src": nix.thunk(() => nix.sel(qlementine_icons, "src")),
             "qtappinstancemanager-src": nix.thunk(() => nix.sel(qtappinstancemanager, "src")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         glm,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Launcher for the Zelda-like ARPG game engine, Solarus",
         longDescription: "Solarus is a game engine for Zelda-like ARPG games written in lua.\nMany full-fledged games have been written for the engine.\nGames can be created easily using the editor.\n",
         homepage: "https://www.solarus-games.org",

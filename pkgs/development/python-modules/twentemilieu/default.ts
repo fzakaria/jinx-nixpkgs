@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "twentemilieu",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frenck",
           repo: "python-twentemilieu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ substituteInPlace pyproject.toml \\
 `),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [aiohttp, yarl]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [rich, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [rich, typer]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["twentemilieu"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for Twente Milieu",
         homepage: "https://github.com/frenck/python-twentemilieu",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-twentemilieu/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

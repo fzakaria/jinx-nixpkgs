@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "mailman"));
   const from = nix.thunk(() => nix.app(nix.sel(cfg, "packageSet", "buildEnvs"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withHyperkitty: nix.thunk(() => nix.sel(cfg, "hyperkitty", "enable")),
       withLDAP: nix.thunk(() => nix.sel(cfg, "ldap", "enable")),
     }))));
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
   const webEnv = nix.thunk(() => nix.attr(from, "webEnv"));
   const withPostgresql = nix.thunk(() => nix.sel(config, "services", "postgresql", "enable"));
   const webSettings = nix.thunk(() => nix.update({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     DEFAULT_FROM_EMAIL: nix.thunk(() => nix.sel(cfg, "siteOwner")),
     SERVER_EMAIL: nix.thunk(() => nix.sel(cfg, "siteOwner")),
     ALLOWED_HOSTS: nix.thunk(() => nix.concat(["localhost", "127.0.0.1"], nix.sel(cfg, "webHosts"))),
@@ -130,28 +130,28 @@ export default nix.lambda((args) => (() => {
     STATIC_ROOT: "/var/lib/mailman-web-static",
     MEDIA_ROOT: "/var/lib/mailman-web/media",
     LOGGING: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: 1n,
       disable_existing_loggers: true,
       handlers: nix.thunk(() => ({
-        __proto__: pos$3,
-        console: nix.thunk(() => ({ __proto__: pos$2, class: "logging.StreamHandler" })),
+        [nix.POS]: pos$3,
+        console: nix.thunk(() => ({ [nix.POS]: pos$2, class: "logging.StreamHandler" })),
       })),
       loggers: nix.thunk(() => ({
-        __proto__: pos$5,
-        django: nix.thunk(() => ({ __proto__: pos$4, handlers: nix.thunk(() => ["console"]), level: "INFO" })),
+        [nix.POS]: pos$5,
+        django: nix.thunk(() => ({ [nix.POS]: pos$4, handlers: nix.thunk(() => ["console"]), level: "INFO" })),
       })),
     })),
     HAYSTACK_CONNECTIONS: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       default: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ENGINE: "haystack.backends.whoosh_backend.WhooshEngine",
         PATH: "/var/lib/mailman-web/fulltext-index",
       })),
     })),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enablePostfix")), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       EMAIL_BACKEND: "django.core.mail.backends.smtp.EmailBackend",
       EMAIL_HOST: "127.0.0.1",
       EMAIL_PORT: 25n,
@@ -162,8 +162,8 @@ postmap_command: ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(conf
 transport_file_type: hash
 `)));
   const mailmanCfg = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ({
-        __proto__: pos$12,
-        webservice: nix.thunk(() => ({ __proto__: pos$11, admin_pass: "#NIXOS_MAILMAN_REST_API_PASS_SECRET#" })),
+        [nix.POS]: pos$12,
+        webservice: nix.thunk(() => ({ [nix.POS]: pos$11, admin_pass: "#NIXOS_MAILMAN_REST_API_PASS_SECRET#" })),
       }))))));
   const mailmanCfgFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mailman-raw.cfg", mailmanCfg));
   const mailmanHyperkittyCfg = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mailman-hyperkitty.cfg", nix.thunk(() => nix.str`[general]
@@ -178,7 +178,7 @@ base_url: ${nix.sel(cfg, "hyperkitty", "baseUrl")}
 api_key: @API_KEY@
 `)));
   return {
-    __proto__: pos$103,
+    [nix.POS]: pos$103,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "mailman", "hyperkittyBaseUrl"]), nix.thunk(() => ["services", "mailman", "hyperkitty", "baseUrl"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mailman", "hyperkittyApiKey"]), "The Hyperkitty API key is now generated on first run, and not\nstored in the world-readable Nix store.  To continue using\nHyperkitty, you must set services.mailman.hyperkitty.enable = true.\n")),
@@ -186,65 +186,65 @@ api_key: @API_KEY@
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mailman", "extraPythonPackages"]), "Didn't have an effect for several years.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       services: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         mailman: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Mailman on this host. Requires an active MTA on the host (e.g. Postfix).",
             })))),
-          packageSet: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mailmanPackages", nix.thunk(() => ({}))), { __proto__: pos$14, type: nix.thunk(() => nix.sel(lib, "types", "attrs")) })),
+          packageSet: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mailmanPackages", nix.thunk(() => ({}))), { [nix.POS]: pos$14, type: nix.thunk(() => nix.sel(lib, "types", "attrs")) })),
           ldap: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "LDAP auth")),
             serverUri: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "ldaps://ldap.host",
                 description: "LDAP host to connect against.\n",
               })))),
             bindDn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "cn=root,dc=nixos,dc=org",
                 description: "Service account to bind against.\n",
               })))),
             bindPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "/run/secrets/ldap-bind",
                 description: "Path to the file containing the bind password of the service account\ndefined by [](#opt-services.mailman.ldap.bindDn).\n",
               })))),
             superUserGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "cn=admin,ou=groups,dc=nixos,dc=org",
                 description: "Group where a user must be a member of to gain superuser rights.\n",
               })))),
             userSearch: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               query: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   example: "(&(objectClass=inetOrgPerson)(|(uid=%(user)s)(mail=%(user)s)))",
                   description: "Query to find a user in the LDAP database.\n",
                 })))),
               ou: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   example: "ou=users,dc=nixos,dc=org",
                   description: "Organizational unit to look up a user.\n",
                 })))),
             })),
             groupSearch: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                       "posixGroup",
                       "groupOfNames",
@@ -263,40 +263,40 @@ api_key: @API_KEY@
                   description: "Type of group to perform a group search against.\n",
                 })))),
               query: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   example: "(objectClass=groupOfNames)",
                   description: "Query to find a group associated to a user in the LDAP database.\n",
                 })))),
               ou: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   example: "ou=groups,dc=nixos,dc=org",
                   description: "Organizational unit to look up a group.\n",
                 })))),
             })),
             attrMap: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   default: "uid",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "LDAP-attribute that corresponds to the `username`-attribute in mailman.\n",
                 })))),
               firstName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   default: "givenName",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "LDAP-attribute that corresponds to the `firstName`-attribute in mailman.\n",
                 })))),
               lastName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   default: "sn",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "LDAP-attribute that corresponds to the `lastName`-attribute in mailman.\n",
                 })))),
               email: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   default: "mail",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "LDAP-attribute that corresponds to the `email`-attribute in mailman.\n",
@@ -304,60 +304,60 @@ api_key: @API_KEY@
             })),
           })),
           enablePostfix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               example: false,
               description: "Enable Postfix integration. Requires an active Postfix installation.\n\nIf you want to use another MTA, set this option to false and configure\nsettings in services.mailman.settings.mta.\n\nRefer to the Mailman manual for more info.\n",
             })))),
           siteOwner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "postmaster@example.org",
               description: "Certain messages that must be delivered to a human, but which can't\nbe delivered to a list owner (e.g. a bounce from a list owner), will\nbe sent to this address. It should point to a human.\n",
             })))),
           webHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "The list of hostnames and/or IP addresses from which the Mailman Web\nUI will accept requests. By default, \"localhost\" and \"127.0.0.1\" are\nenabled. All additional names under which your web server accepts\nrequests for the UI must be listed here or incoming requests will be\nrejected.\n",
             })))),
           webUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mailman-web",
               description: "User to run mailman-web as\n",
             })))),
           webSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Overrides for the default mailman-web Django settings.\n",
             })))),
           restApiPassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Path to the file containing the value for `MAILMAN_REST_API_PASS`.\n",
             })))),
           serve: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatic nginx and uwsgi setup for mailman-web")),
             uwsgiSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
                 return {
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$39,
-                  uwsgi: nix.thunk(() => ({ __proto__: pos$38, "buffer-size": 8192n })),
+                  [nix.POS]: pos$39,
+                  uwsgi: nix.thunk(() => ({ [nix.POS]: pos$38, "buffer-size": 8192n })),
                 })),
                 type: nix.thunk(() => nix.attr(from_1, "type")),
                 description: "Extra configuration to merge into uwsgi config.\n",
               };
               })()))),
             virtualRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 default: "/",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "/lists")),
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -365,16 +365,16 @@ api_key: @API_KEY@
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               description: "Settings for mailman.cfg",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: nix.thunk(() => ({})),
             })))),
           hyperkitty: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Hyperkitty archiver for Mailman")),
             baseUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "http://localhost:18507/archives/",
                 description: "Where can Mailman connect to Hyperkitty's internal API, preferably on\nlocalhost?\n",
@@ -384,20 +384,20 @@ api_key: @API_KEY@
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         services: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           mailman: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               mailman: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 site_owner: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "siteOwner")))),
                 layout: "fhs",
               })),
               "paths.fhs": nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 bin_dir: nix.thunk(() => nix.str`${nix.sel(cfg, "packageSet", "mailman")}/bin`),
                 var_dir: "/var/lib/mailman",
                 queue_dir: "$var_dir/queue",
@@ -408,11 +408,11 @@ api_key: @API_KEY@
                 pid_file: "/run/mailman/master.pid",
               })),
               mta: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enablePostfix")) ? nix.str`${postfixMtaConfig}` : nix.builtins.throw("When Mailman Postfix integration is disabled, set `services.mailman.settings.mta.configuration` to the path of the config file required to integrate with your MTA."))))),
               })),
               "archiver.hyperkitty": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hyperkitty", "enable")), nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   class: "mailman_hyperkitty.Archiver",
                   enable: "yes",
                   configuration: "/var/lib/mailman/mailman-hyperkitty.cfg",
@@ -435,18 +435,18 @@ api_key: @API_KEY@
                 "smtp",
               ]);
               const loggerSectionNames = nix.thunk(() => nix.builtins.map((n) => nix.str`logging.${n}`, loggerNames));
-              return nix.app(nix.sel(lib, "genAttrs"), loggerSectionNames, (name) => ({ __proto__: pos$54, handler: "stderr" }));
+              return nix.app(nix.sel(lib, "genAttrs"), loggerSectionNames, (name) => ({ [nix.POS]: pos$54, handler: "stderr" }));
             })())),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "serve", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "webHosts"), [])))), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(cfg, "webHosts")), (webHost) => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   locations: nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.sel(cfg, "serve", "virtualRoot"), nix.thunk(() => ({ __proto__: pos$56, uwsgiPass: "unix:/run/mailman-web.socket" }))],
+                    [nix.sel(cfg, "serve", "virtualRoot"), nix.thunk(() => ({ [nix.POS]: pos$56, uwsgiPass: "unix:/run/mailman-web.socket" }))],
                     [nix.str`${nix.app(nix.sel(lib, "removeSuffix"), "/", nix.thunk(() => nix.sel(cfg, "serve", "virtualRoot")))}/static/`, nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       alias: nix.thunk(() => nix.add(nix.sel(webSettings, "STATIC_ROOT"), "/")),
                     }))],
                   ])),
@@ -454,10 +454,10 @@ api_key: @API_KEY@
               proxyTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "120s")),
             })))),
           postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enablePostfix")), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               settings: nix.thunk(() => ({
-                __proto__: pos$61,
-                main: nix.thunk(() => ({ __proto__: pos$60, owner_request_special: "no", recipient_delimiter: "+" })),
+                [nix.POS]: pos$61,
+                main: nix.thunk(() => ({ [nix.POS]: pos$60, owner_request_special: "no", recipient_delimiter: "+" })),
               })),
             })))),
         })),
@@ -468,7 +468,7 @@ api_key: @API_KEY@
             const expected = nix.thunk(() => nix.str`hash:/var/lib/mailman/data/${dataFile}`);
             const value = nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), optionPath, [], postfix));
             return {
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(postfix, "enable")) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isList"), value)) && nix.asBool(nix.app(nix.sel(lib, "elem"), expected, value)))))),
               message: nix.thunk(() => nix.str`services.postfix.${nix.app(nix.sel(lib, "concatStringsSep"), ".", optionPath)} must contain
 "${expected}".
@@ -478,13 +478,13 @@ See <https://mailman.readthedocs.io/en/latest/src/mailman/docs/mta.html>.
           })();
           return nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "webHosts"), [])),
               message: "services.mailman.serve.enable requires there to be at least one entry\nin services.mailman.webHosts.\n",
             })),
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enablePostfix")), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 assertion: nix.thunk(() => nix.sel(postfix, "enable")),
                 message: "Mailman's default NixOS configuration requires Postfix to be enabled.\n\nIf you want to use another MTA, set services.mailman.enablePostfix\nto false and configure settings in services.mailman.settings.mta.\n\nRefer to <https://mailman.readthedocs.io/en/latest/src/mailman/docs/mta.html>\nfor more info.\n",
               })),
@@ -494,30 +494,30 @@ See <https://mailman.readthedocs.io/en/latest/src/mailman/docs/mta.html>.
             ])));
         })()),
         users: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           users: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             mailman: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               description: "GNU Mailman",
               isSystemUser: true,
               group: "mailman",
             })),
             "mailman-web": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webUser"), "mailman-web")), nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 description: "GNU Mailman web interface",
                 isSystemUser: true,
                 group: "mailman",
               })))),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$70, mailman: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$70, mailman: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           etc: nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             "mailman3/settings.py": nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               text: nix.thunk(() => nix.str`import os
 from configparser import ConfigParser
 
@@ -570,7 +570,7 @@ AUTHENTICATION_BACKENDS = (
           })),
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 name: "mailman-tools",
                 pathsToLink: nix.thunk(() => ["/bin"]),
                 paths: nix.thunk(() => [mailmanEnv, webEnv]),
@@ -589,20 +589,20 @@ chmod +x $out/bin/mailman
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           sockets: nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             "mailman-uwsgi": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "serve", "enable")), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 before: nix.thunk(() => ["nginx.service"]),
-                socketConfig: nix.thunk(() => ({ __proto__: pos$76, ListenStream: "/run/mailman-web.socket" })),
+                socketConfig: nix.thunk(() => ({ [nix.POS]: pos$76, ListenStream: "/run/mailman-web.socket" })),
               })))),
           })),
           services: nix.thunk(() => nix.update({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             mailman: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               description: "GNU Mailman Master Process",
               before: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enablePostfix")), "postfix.service")),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enablePostfix")), "postfix-setup.service"), nix.app(nix.sel(lib, "optional"), withPostgresql, "postgresql.target")))),
@@ -610,7 +610,7 @@ chmod +x $out/bin/mailman
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPostgresql, "postgresql.target")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 ExecStart: nix.thunk(() => nix.str`${mailmanEnv}/bin/mailman start`),
                 ExecStop: nix.thunk(() => nix.str`${mailmanEnv}/bin/mailman stop`),
                 User: "mailman",
@@ -625,7 +625,7 @@ chmod +x $out/bin/mailman
               })),
             })),
             "mailman-settings": nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               description: "Generate settings files (including secrets) for Mailman",
               before: nix.thunk(() => [
                 "mailman.service",
@@ -645,7 +645,7 @@ chmod +x $out/bin/mailman
               })()),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPostgresql, "postgresql.target")),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPostgresql, "postgresql.target")),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$81, RemainAfterExit: true, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$81, RemainAfterExit: true, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`install -m0750 -o mailman -g mailman ${mailmanCfgFile} /etc/mailman.cfg
 ${(nix.asBool(nix.eq(nix.sel(cfg, "restApiPassFile"), null)) ? "sed -i \"s/#NIXOS_MAILMAN_REST_API_PASS_SECRET#/$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 64)/g\" \\\n  /etc/mailman.cfg\n" : nix.str`${nix.sel(pkgs, "replace-secret")}/bin/replace-secret \\
   '#NIXOS_MAILMAN_REST_API_PASS_SECRET#' \\
@@ -682,7 +682,7 @@ mv "$mailmanCfgTmp" "$mailmanCfg"
 `),
             })),
             "mailman-web-setup": nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               description: "Prepare mailman-web files and database",
               before: nix.thunk(() => ["hyperkitty.service", "mailman-uwsgi.service"]),
               requiredBy: nix.thunk(() => ["hyperkitty.service", "mailman-uwsgi.service"]),
@@ -695,7 +695,7 @@ ${webEnv}/bin/mailman-web collectstatic
 ${webEnv}/bin/mailman-web compress
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 User: nix.thunk(() => nix.sel(cfg, "webUser")),
                 Group: "mailman",
                 Type: "oneshot",
@@ -704,23 +704,23 @@ ${webEnv}/bin/mailman-web compress
             })),
             "mailman-uwsgi": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "serve", "enable")), nix.thunk(() => (() => {
                 const uwsgiConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-                    __proto__: pos$88,
+                    [nix.POS]: pos$88,
                     uwsgi: nix.thunk(() => nix.update({
-                      __proto__: pos$85,
+                      [nix.POS]: pos$85,
                       type: "normal",
                       plugins: nix.thunk(() => ["python3"]),
                       home: webEnv,
                       http: "127.0.0.1:18507",
                       "buffer-size": 8192n,
-                    }, (nix.asBool(nix.eq(nix.sel(cfg, "serve", "virtualRoot"), "/")) ? { __proto__: pos$86, module: "mailman_web.wsgi:application" } : {
-                      __proto__: pos$87,
+                    }, (nix.asBool(nix.eq(nix.sel(cfg, "serve", "virtualRoot"), "/")) ? { [nix.POS]: pos$86, module: "mailman_web.wsgi:application" } : {
+                      [nix.POS]: pos$87,
                       mount: nix.thunk(() => nix.str`${nix.sel(cfg, "serve", "virtualRoot")}=mailman_web.wsgi:application`),
                       "manage-script-name": true,
                     }))),
                   })), nix.thunk(() => nix.sel(cfg, "serve", "uwsgiSettings"))));
                 const uwsgiConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "uwsgi-mailman.json", nix.thunk(() => nix.builtins.toJSON(uwsgiConfig))));
                 return {
-                  __proto__: pos$91,
+                  [nix.POS]: pos$91,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPostgresql, "postgresql.target")),
                   requires: nix.thunk(() => nix.concat(["mailman-uwsgi.socket", "mailman-web-setup.service"], nix.app(nix.sel(lib, "optional"), withPostgresql, "postgresql.target"))),
@@ -728,9 +728,9 @@ ${webEnv}/bin/mailman-web compress
                     nix.thunk(() => nix.sel(config, "environment", "etc", "mailman3/settings.py", "source")),
                   ]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$90,
+                    [nix.POS]: pos$90,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/env -C $RUNTIME_DIRECTORY ${nix.app(nix.sel(pkgs, "uwsgi", "override"), nix.thunk(() => ({
-                        __proto__: pos$89,
+                        [nix.POS]: pos$89,
                         plugins: nix.thunk(() => ["python3"]),
                         python3: nix.thunk(() => nix.sel(webEnv, "python")),
                       })))}/bin/uwsgi --json ${uwsgiConfigFile}`),
@@ -742,19 +742,19 @@ ${webEnv}/bin/mailman-web compress
                 };
               })()))),
             "mailman-daily": nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               description: "Trigger daily Mailman events",
               startAt: "daily",
               restartTriggers: nix.thunk(() => [mailmanCfgFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 ExecStart: nix.thunk(() => nix.str`${mailmanEnv}/bin/mailman digests --send`),
                 User: "mailman",
                 Group: "mailman",
               })),
             })),
             hyperkitty: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hyperkitty", "enable")), nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 description: "GNU Hyperkitty QCluster Process",
                 after: nix.thunk(() => ["network.target"]),
                 restartTriggers: nix.thunk(() => [
@@ -762,7 +762,7 @@ ${webEnv}/bin/mailman-web compress
                 ]),
                 wantedBy: nix.thunk(() => ["mailman.service", "multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$94,
+                  [nix.POS]: pos$94,
                   ExecStart: nix.thunk(() => nix.str`${webEnv}/bin/mailman-web qcluster`),
                   User: nix.thunk(() => nix.sel(cfg, "webUser")),
                   Group: "mailman",
@@ -771,7 +771,7 @@ ${webEnv}/bin/mailman-web compress
                 })),
               })))),
           }, nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               minutely: "minutely",
               quarter_hourly: "*:00/15",
               hourly: "hourly",
@@ -779,14 +779,14 @@ ${webEnv}/bin/mailman-web compress
               weekly: "weekly",
               yearly: "yearly",
             })), (name) => (startAt) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`hyperkitty-${name}`), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hyperkitty", "enable")), nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   description: nix.thunk(() => nix.str`Trigger ${name} Hyperkitty events`),
                   startAt: startAt,
                   restartTriggers: nix.thunk(() => [
                     nix.thunk(() => nix.sel(config, "environment", "etc", "mailman3/settings.py", "source")),
                   ]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$98,
+                    [nix.POS]: pos$98,
                     ExecStart: nix.thunk(() => nix.str`${webEnv}/bin/mailman-web runjobs ${name}`),
                     User: nix.thunk(() => nix.sel(cfg, "webUser")),
                     Group: "mailman",
@@ -796,7 +796,7 @@ ${webEnv}/bin/mailman-web compress
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$102,
+      [nix.POS]: pos$102,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "qyliss"))];

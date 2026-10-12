@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "sympa",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             sympa: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               domains: nix.thunk(() => ({
-                __proto__: pos$3,
-                "lists.example.org": nix.thunk(() => ({ __proto__: pos$2, webHost: "localhost" })),
+                [nix.POS]: pos$3,
+                "lists.example.org": nix.thunk(() => ({ [nix.POS]: pos$2, webHost: "localhost" })),
               })),
               listMasters: nix.thunk(() => ["bob@example.org"]),
-              web: nix.thunk(() => ({ __proto__: pos$4, enable: true, https: false })),
-              database: nix.thunk(() => ({ __proto__: pos$5, type: "PostgreSQL", createLocally: true })),
+              web: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, https: false })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$5, type: "PostgreSQL", createLocally: true })),
             })),
           })),
         };

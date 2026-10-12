@@ -37,38 +37,38 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "thelounge"));
   const dataDir = "/var/lib/thelounge";
   const configJsData = nix.thunk(() => nix.add("module.exports = ", nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       public: nix.thunk(() => nix.attr(cfg, "public")),
       port: nix.thunk(() => nix.attr(cfg, "port")),
     }, nix.sel(cfg, "extraConfig"))))));
   const pluginManifest = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     dependencies: nix.thunk(() => nix.app(nix.sel(nix.builtins, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (pkg) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.app(nix.lookup(w, "getName"), pkg)),
           value: nix.thunk(() => nix.app(nix.lookup(w, "getVersion"), pkg)),
         }), nix.thunk(() => nix.sel(cfg, "plugins")))))),
   }));
-  const plugins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "thelounge-plugins", nix.thunk(() => ({ __proto__: pos$4, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out/node_modules
+  const plugins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "thelounge-plugins", nix.thunk(() => ({ [nix.POS]: pos$4, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out/node_modules
 echo ${nix.app(nix.lookup(w, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), pluginManifest)))} >> $out/package.json
 ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (pkg) => nix.str`ln -s ${pkg}/lib/node_modules/${nix.app(nix.lookup(w, "getName"), pkg)} $out/node_modules/${nix.app(nix.lookup(w, "getName"), pkg)}
 `, nix.thunk(() => nix.sel(cfg, "plugins")))}
 `)));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "thelounge", "private"]), "The option was renamed to `services.thelounge.public` to follow upstream changes.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         thelounge: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "The Lounge web IRC client")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "thelounge", nix.thunk(() => ({})))),
           public: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: nix.thunk(() => nix.str`Make your The Lounge instance public.
@@ -79,20 +79,20 @@ The Lounge after making changes to the state directory.
 `),
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 9000n,
               description: "TCP port to listen on for http connections.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  reverseProxy = true;\n  defaults = {\n    name = \"Your Network\";\n    host = \"localhost\";\n    port = 6697;\n  };\n}\n")),
               description: "The Lounge's {file}`config.js` contents as attribute set (will be\nconverted to JSON to generate the configuration file).\n\nThe options defined here will be merged to the default configuration file.\nNote: In case of duplicate configuration, options from {option}`extraConfig` have priority.\n\nDocumentation: <https://thelounge.chat/docs/server/configuration>\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.theLoungePlugins.themes.solarized ]")),
@@ -102,37 +102,37 @@ The Lounge after making changes to the state directory.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             thelounge: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "The Lounge service user",
               group: "thelounge",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$14, thelounge: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$14, thelounge: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             thelounge: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "The Lounge web IRC client",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               preStart: nix.thunk(() => nix.str`ln -sf ${nix.app(nix.sel(pkgs, "writeText"), "config.js", configJsData)} ${dataDir}/config.js`),
               environment: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 THELOUNGE_PACKAGES: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "plugins"), [])), nix.thunk(() => nix.str`${plugins}`))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 User: "thelounge",
                 StateDirectory: nix.thunk(() => nix.app(nix.builtins.baseNameOf, dataDir)),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} start`),
@@ -141,12 +141,12 @@ The Lounge after making changes to the state directory.
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "winter"))];

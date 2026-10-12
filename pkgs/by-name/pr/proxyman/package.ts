@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const pname = "proxyman";
   const updateScript = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     command: nix.thunk(() => nix.app(writeShellScript, "proxyman-update-script", nix.thunk(() => nix.str`set -euo pipefail
 
 updateArtifact() {
@@ -58,7 +58,7 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} -n "$linuxChanges + $darwinChanges"
     supportedFeatures: nix.thunk(() => ["commit"]),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Capture, inspect, and manipulate HTTP(s) requests/responses with ease",
     homepage: "https://proxyman.com",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -75,6 +75,6 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} -n "$linuxChanges + $darwinChanges"
       return [nix.thunk(() => nix.lookup(w_1, "binaryNativeCode"))];
     })()),
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, updateScript: updateScript, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ __proto__: pos$4, pname: pname, updateScript: updateScript, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, updateScript: updateScript, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, updateScript: updateScript, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pyusb = nix.thunk(() => nix.attr(python3Packages, "pyusb"));
   const unittestCheckHook = nix.thunk(() => nix.attr(python3Packages, "unittestCheckHook"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qcsuper",
       version: "2.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "P1sec",
           repo: "QCSuper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       unittestFlags: nix.thunk(() => ["-s", "src/qcsuper/tests", "-v"]),
       pythonImportsCheck: nix.thunk(() => ["qcsuper"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to communicate with Qualcomm-based phones and modems, allowing to capture raw 2G/3G/4G radio frames",
         homepage: "https://github.com/P1sec/QCSuper",
         changelog: nix.thunk(() => nix.str`https://github.com/P1sec/QCSuper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

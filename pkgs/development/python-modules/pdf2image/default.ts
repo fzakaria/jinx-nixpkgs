@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-6qlZvBFrQg3X7EFfyuSbmBAN2j3RjNL9+obQnxEvbVc=",
@@ -34,7 +34,7 @@ substituteInPlace pdf2image/pdf2image.py \\
       const propagatedBuildInputs = nix.thunk(() => [pillow]);
       const pythonImportsCheck = nix.thunk(() => ["pdf2image"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module that wraps the pdftoppm utility to convert PDF to PIL Image object",
         homepage: "https://github.com/Belval/pdf2image",
         changelog: nix.thunk(() => nix.str`https://github.com/Belval/pdf2image/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ substituteInPlace pdf2image/pdf2image.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

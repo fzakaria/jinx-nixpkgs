@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dash",
       version: "3.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plotly",
           repo: "dash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, nodejs]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/@plotly/dash-jupyterlab/yarn.lock`),
           hash: "sha256-Nvm9BS55q/HW9ArpHD01F5Rmx8PLS3yqaz1yDK8Sg68=",
         })))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["werkzeug", "flask"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         celery: nix.thunk(() => nix.concat([celery, kombu, redis], nix.sel(celery, "optional-dependencies", "redis"))),
         diskcache: nix.thunk(() => [diskcache, multiprocess, psutil]),
         compress: nix.thunk(() => [flask_compress]),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/unit/test_browser.py", "tests/unit/test_app_runners.py"]),
       pythonImportsCheck: nix.thunk(() => ["dash"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/plotly/dash/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Python framework for building analytical web applications",
         homepage: "https://dash.plot.ly/",

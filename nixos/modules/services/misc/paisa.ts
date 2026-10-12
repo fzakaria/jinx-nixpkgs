@@ -38,69 +38,69 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => ["--config /var/lib/paisa/paisa.yaml"])));
   const settings = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), null)) ? nix.builtins.removeAttrs(nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       journal_path: nix.thunk(() => nix.add(nix.sel(cfg, "settings", "dataDir"), nix.sel(cfg, "settings", "journalFile"))),
       db_path: nix.thunk(() => nix.add(nix.sel(cfg, "settings", "dataDir"), nix.sel(cfg, "settings", "dbFile"))),
     })), nix.thunk(() => ["dataDir", "journalFile", "dbFile"])) : null));
-  const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(settingsFormat, "generate"), "paisa.yaml", settings), "overrideAttrs"), (_) => ({ __proto__: pos$2, checkPhase: "" })));
+  const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(settingsFormat, "generate"), "paisa.yaml", settings), "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, checkPhase: "" })));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         paisa: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Paisa personal finance manager")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "paisa", nix.thunk(() => ({})))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: false,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Open ports in the firewall for the Paisa web server.",
               })))),
             mutableSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: true,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Allow changes made on the web interface to persist between service\nrestarts.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "0.0.0.0",
                 description: "Host bind IP address.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.lookup(w, "port")),
                 default: 7500n,
                 description: "Port to serve Paisa on.",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "/var/lib/paisa/",
                             description: "Path to paisa data directory.",
                           })))),
                         journalFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "main.ledger",
                             description: "Filename of the main journal / ledger file.",
                           })))),
                         dbFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "paisa.sqlite3",
                             description: "Filename of the Paisa database.",
@@ -114,18 +114,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: [],
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             paisa: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Paisa: Web Application",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$16, StartLimitIntervalSec: 5n, StartLimitBurst: 10n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$16, StartLimitIntervalSec: 5n, StartLimitBurst: 10n })),
               preStart: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(settings, null)), nix.thunk(() => nix.str`if [ -e "$STATE_DIRECTORY/paisa.yaml" ] && [ "${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "mutableSettings")))}" = "1" ]; then
   # do not write directly to the config file
   ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "yaml-merge")))} "$STATE_DIRECTORY/paisa.yaml" "${configFile}" > "$STATE_DIRECTORY/paisa.yaml.tmp"
@@ -136,7 +136,7 @@ else
 fi
 `))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} serve ${args_1}`),
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
@@ -149,15 +149,15 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           firewall: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "skowalak"))];

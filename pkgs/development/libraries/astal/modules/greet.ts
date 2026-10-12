@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const quarrel = nix.arg($, "quarrel");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "greet",
       buildInputs: nix.thunk(() => [json_glib, quarrel]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for greetd using IPC" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for greetd using IPC" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=greet.ts.map

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildDotnetModule = nix.arg($, "buildDotnetModule");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imewlconverter",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "studyzy",
           repo: "imewlconverter",
           rev: "v3.3.0",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_8_0")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "ImeWlConverterCmd",
         description: "FOSS program for converting IME dictionaries",
         homepage: "https://github.com/studyzy/imewlconverter",

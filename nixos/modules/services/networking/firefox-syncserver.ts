@@ -71,23 +71,23 @@ export default nix.lambda((args) => (() => {
   const syncserver = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "package"), null)) ? nix.sel(cfg, "package") : (nix.asBool(dbIsMySQL) ? nix.sel(pkgs, "syncstorage-rs-mysql") : nix.sel(pkgs, "syncstorage-rs-pgsql"))));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const settings = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     human_logs: true,
-    syncstorage: nix.thunk(() => ({ __proto__: pos$1, database_url: dbURL })),
+    syncstorage: nix.thunk(() => ({ [nix.POS]: pos$1, database_url: dbURL })),
     tokenserver: nix.thunk(() => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       node_type: nix.thunk(() => (nix.asBool(dbIsMySQL) ? "mysql" : "postgres")),
       database_url: dbURL,
       fxa_email_domain: "api.accounts.firefox.com",
       fxa_oauth_server_url: "https://oauth.accounts.firefox.com/v1",
       run_migrations: true,
       additional_blocking_threads_for_fxa_requests: 10n,
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "singleNode", "enable")), nix.thunk(() => ({ __proto__: pos$3, node_capacity_release_rate: 1n }))))),
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "singleNode", "enable")), nix.thunk(() => ({ [nix.POS]: pos$3, node_capacity_release_rate: 1n }))))),
   }));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "syncstorage.toml", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), settings, nix.thunk(() => nix.sel(cfg, "settings"))))));
   const setupScript = nix.thunk(() => (() => {
     const dbSpecific = nix.thunk(() => (nix.asBool(dbIsMySQL) ? {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       listTables: nix.thunk(() => nix.str`mysql ${nix.sel(cfg, "database", "name")} -Ne 'SHOW TABLES'`),
       execSql: nix.thunk(() => nix.str`mysql ${nix.sel(cfg, "database", "name")}`),
       upsertSql: nix.thunk(() => nix.str`BEGIN;
@@ -104,7 +104,7 @@ INSERT INTO \`nodes\` (\`id\`, \`service\`, \`node\`, \`available\`, \`current_l
 COMMIT;
 `),
     } : {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       listTables: nix.thunk(() => nix.str`psql -d ${nix.sel(cfg, "database", "name")} -tAc "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"`),
       execSql: nix.thunk(() => nix.str`psql -d ${nix.sel(cfg, "database", "name")}`),
       upsertSql: nix.thunk(() => nix.str`BEGIN;
@@ -148,13 +148,13 @@ exit 1
 `));
   })());
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     options: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       services: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         "firefox-syncserver": nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`the Firefox Sync storage service.
 
 Out of the box this will not be very useful unless you also configure at least
@@ -171,7 +171,7 @@ by running
 {option}\`${nix.sel(opt, "singleNode", "enable")}\` does this automatically when enabled
 `))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "type")} == "mysql" then
@@ -184,14 +184,14 @@ selected automatically based on {option}\`${nix.sel(opt, "database", "type")}\`.
 `),
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["mysql", "postgresql"]))),
                 description: "Which database backend to use for storage.\n::: {.note}\n`\"postgresql\"` is recommended for new deployments. `\"mysql\"` is the\nbackend used by legacy installations.\n:::\n",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[a-z_][a-z0-9_]*")),
                 default: defaultDatabase,
                 description: nix.thunk(() => nix.str`Database to use for storage. Will be created automatically if it does not exist
@@ -199,7 +199,7 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
 `),
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => (nix.asBool(dbIsPostgreSQL) ? defaultDatabase : defaultUser)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if database.type == "postgresql" then "${defaultDatabase}" else "${defaultUser}"
@@ -207,47 +207,47 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
                 description: "Username for database connections.  When using PostgreSQL with\n`createLocally`, this defaults to the database name so that\n`ensureDBOwnership` works (it requires user and database names\nto match).\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Database host name. `localhost` is treated specially and inserts\nsystemd dependencies, other hostnames or IP addresses of the local machine do not.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to create database and user on the local machine if they do not exist.\nThis includes enabling the configured database service and setting up\nauthentication for the configured user.\n",
               })))),
           })),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "error",
               description: "Log level to run with. This can be a simple log level like `error`\nor `trace`, or a more complicated logging expression.\n",
             })))),
           secrets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "A file containing the various secrets. Should be in the format expected by systemd's\n`EnvironmentFile` directory. Two secrets are currently available:\n`SYNC_MASTER_SECRET` and\n`SYNC_TOKENSERVER__FXA_METRICS_HASH_SECRET`.\n",
             })))),
           singleNode: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "auto-configuration for a simple single-node setup")),
             enableTLS: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatic TLS setup")),
             enableNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nginx virtualhost definitions")),
             hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Host name to use for this service.\n",
               })))),
             capacity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 10n,
                 description: "How many sync accounts are allowed on this server. Setting this value\nequal to or less than the number of currently active accounts will\neffectively deny service to accounts not yet registered here.\n",
               })))),
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(cfg, "singleNode", "enableTLS")) ? "https" : "http")}://${nix.sel(cfg, "singleNode", "hostname")}`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`\${if cfg.singleNode.enableTLS then "https" else "http"}://\${config.${nix.sel(opt, "singleNode", "hostname")}}
@@ -256,22 +256,22 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 5000n,
                         description: "Port to bind to.\n",
                       })))),
                     tokenserver: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to enable the token service as well.\n",
@@ -286,44 +286,44 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         services: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(dbIsMySQL))), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "all privileges"]])),
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(dbIsPostgreSQL))), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "singleNode", "enableNginx")), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "singleNode", "hostname"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   enableACME: nix.thunk(() => nix.sel(cfg, "singleNode", "enableTLS")),
                   forceSSL: nix.thunk(() => nix.sel(cfg, "singleNode", "enableTLS")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))}`),
                       recommendedProxySettings: true,
                     })),
@@ -333,18 +333,18 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "firefox-syncserver": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), dbIsLocal, nix.thunk(() => [dbService]))),
               after: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), dbIsLocal, nix.thunk(() => [dbService]))),
               restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "singleNode", "enable")), setupScript)),
-              environment: nix.thunk(() => ({ __proto__: pos$38, RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$38, RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")) })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), syncserver)),
                     "--config",
@@ -384,16 +384,16 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
               })),
             })),
             "firefox-syncserver-setup": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "singleNode", "enable")), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 wantedBy: nix.thunk(() => ["firefox-syncserver.service"]),
                 requires: nix.thunk(() => nix.concat(["firefox-syncserver.service"], nix.app(nix.sel(lib, "optional"), dbIsLocal, dbService))),
                 after: nix.thunk(() => nix.concat(["firefox-syncserver.service"], nix.app(nix.sel(lib, "optional"), dbIsLocal, dbService))),
                 path: nix.thunk(() => (nix.asBool(dbIsMySQL) ? [nix.thunk(() => nix.sel(config, "services", "mysql", "package"))] : [nix.thunk(() => nix.sel(config, "services", "postgresql", "package"))])),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   ExecStart: nix.thunk(() => [nix.thunk(() => nix.str`${setupScript}`)]),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), dbIsPostgreSQL, nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     User: nix.thunk(() => nix.sel(cfg, "database", "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "database", "user")),
                     DynamicUser: true,
@@ -403,7 +403,7 @@ and \`config.${nix.sel(opt, "database", "createLocally")}\` is set.
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       maintainers: [],
       doc: nix.path(here, "./firefox-syncserver.md"),
     })),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "15five",
           repo: "scim2-filter-parser",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-poetry-with-poetry-core.patch",
             url: "https://github.com/15five/scim2-filter-parser/commit/675d85f3a3ff338e96a408827d64d9e893fa5255.patch",
             hash: "sha256-PjJH1S5CDe/BMI0+mB34KdpNNcHfexBFYBmHolsWH4o=",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace \"poetry.masonry.api\" \"poetry.core.masonry.api\"\n";
       const dependencies = nix.thunk(() => [sly]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, "django-query": nix.thunk(() => [django]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, "django-query": nix.thunk(() => [django]) }));
       const pythonImportsCheck = nix.thunk(() => ["scim2_filter_parser"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "django-query")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Customizable parser/transpiler for SCIM2.0 filters",
         homepage: "https://github.com/15five/scim2-filter-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/15five/scim2-filter-parser/blob/${version}/CHANGELOG.rst`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const epkowa = nix.arg($, "epkowa");
   const plugins = nix.argOr($, "plugins", () => nix.sel(epkowa, "plugins"));
   const common_meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     homepage: "http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX",
     sourceProvenance: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   }));
   const plugins$ = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => nix.sel(lib, "isDerivation"), plugins));
   const fwdir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "esci-firmware-dir",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.add(value, "/share/esci"), plugins$)),
     }))));
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iscan-data";
       const version = "1.39.2-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://support.epson.net/linux/src/scanner/iscan/iscan-data_${version}.tar.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/http://support.epson.net/linux/src/scanner/iscan/iscan-data_${version}.tar.gz`),
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [libxslt]);
       const meta = common_meta;
-      return { __proto__: pos$4, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, src, buildInputs, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "iscan";
       const version = "2.30.4-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://support.epson.net/linux/src/scanner/iscan/iscan_${version}.tar.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/http://support.epson.net/linux/src/scanner/iscan/iscan_${version}.tar.gz`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk2, libxml2, libusb_compat_0_1, sane_backends]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             urls: nix.thunk(() => [
               "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/iscan/files/iscan-2.28.1.3+libpng-1.5.patch?h=b6e4c805d53b49da79a0f64ef16bb82d6d800fcf",
               "https://web.archive.org/web/https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/iscan/files/iscan-2.28.1.3+libpng-1.5.patch?h=b6e4c805d53b49da79a0f64ef16bb82d6d800fcf",
@@ -113,11 +113,11 @@ registry=$out/bin/iscan-registry;
 ${nix.sel(value, "passthru", "registrationCommand")}
 `, plugins$)))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
-        plugins: nix.thunk(() => nix.app(callPackages, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ __proto__: pos$7, common_meta: common_meta })))),
+        [nix.POS]: pos$8,
+        plugins: nix.thunk(() => nix.app(callPackages, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, common_meta: common_meta })))),
       }));
       const meta = nix.thunk(() => nix.update(common_meta, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "sane-epkowa backend for some epson scanners",
         longDescription: nix.thunk(() => nix.add(nix.add("Includes gui-less iscan (aka. Image Scan! for Linux).\nSupported hardware: at least :\n", nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.sel(value, "passthru", "hw"), plugins$)))), "It is possible to only use a subset of the plugins by overriding the `plugins` input:\nepkowa' = pkgs.epkowa.override {\n  plugins = {\n    inherit (pkgs.epkowa.plugins) x770; # Select correct plugins for your scanner here\n  };\n};\n")),
         maintainers: nix.thunk(() => (() => {
@@ -129,7 +129,7 @@ ${nix.sel(value, "passthru", "registrationCommand")}
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

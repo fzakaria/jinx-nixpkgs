@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "solarman";
       const version = "26.01.31";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davidrapan",
           repo: "ha-solarman",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [aiofiles, aiohttp, propcache, pyyaml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant component for Solarman Stick Loggers",
         changelog: nix.thunk(() => nix.str`https://github.com/davidrapan/ha-solarman/releases/tag/${version}`),
         homepage: "https://github.com/davidrapan/ha-solarman",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

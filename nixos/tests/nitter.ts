@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const sessionsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sessions.jsonl", "{\"oauth_token\":\"1719213587296620928-BsXY2RIJEw7fjxoNwbBemgjJhueK0m\",\"oauth_token_secret\":\"N0WB0xhL4ng6WTN44aZO82SUJjz7ssI3hHez2CUhTiYqy\"}\n"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "nitter",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erdnaxe"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nitter: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
-            server: nix.thunk(() => ({ __proto__: pos$2, port: 80n })),
+            server: nix.thunk(() => ({ [nix.POS]: pos$2, port: 80n })),
             sessionsFile: sessionsFile,
           })),
         })),

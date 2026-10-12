@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "SPARQLWrapper",
           version: version,
           hash: "sha256-P+0+vMd2F6SnTSZEuG/Yjg8y5/cAOseyszTAJiAXMfE=",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const propagatedBuildInputs = nix.thunk(() => [keepalive]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is a wrapper around a SPARQL service. It helps in creating the query URI and, possibly, convert the result into a more manageable format",
         mainProgram: "rqw",
         homepage: "http://rdflib.github.io/sparqlwrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "w3c")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

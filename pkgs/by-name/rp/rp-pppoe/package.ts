@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const ppp = nix.arg($, "ppp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rp-pppoe",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dskoll",
           repo: "rp-pppoe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export PPPD=${ppp}/sbin/pppd
       postConfigure: "sed -i Makefile -e 's@DESTDIR)/etc/ppp@out)/etc/ppp@'\nsed -i Makefile -e 's@/etc/ppp/plugins@$(out)/lib@'\nsed -i Makefile -e 's@PPPOESERVER_PPPD_OPTIONS=@&$(out)@'\nsed -i Makefile -e '/# Directory created by rp-pppoe for kernel-mode plugin/d'\n",
       makeFlags: nix.thunk(() => ["AR:=$(AR)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Roaring Penguin Point-to-Point over Ethernet tool",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://dianne.skoll.ca/projects/rp-pppoe/",

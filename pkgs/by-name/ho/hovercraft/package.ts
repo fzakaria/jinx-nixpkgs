@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hovercraft",
       version: "2.7",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(nix.sel(python3Packages, "isPy3k"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "regebro",
           repo: "hovercraft",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix tests with pygments 2.14",
             url: "https://sources.debian.org/data/main/h/hovercraft/2.7-5/debian/patches/0003-Fix-tests-with-pygments-2.14.patch",
             hash: "sha256-qz4Kp4MxlS3KPKRB5/VESCI++66U9q6cjQ0cHy3QjTc=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Makes impress.js presentations from reStructuredText",
         mainProgram: "hovercraft",
         homepage: "https://github.com/regebro/hovercraft",

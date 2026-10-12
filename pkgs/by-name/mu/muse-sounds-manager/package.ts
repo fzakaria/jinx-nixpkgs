@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "muse-sounds-manager",
       version: "2.2.1.953",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://muse-cdn.com/muse-sounds-manager/Muse_Sounds_Manager_x64_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-y7fKHh2pG8uT4p0vq20rsW8bSAp1mepkd2sW/06N3EI=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage Muse Sounds (Muse Hub) libraries for MuseScore",
         homepage: "https://musescore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

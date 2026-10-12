@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libwacom = nix.arg($, "libwacom");
   const xf86_input_wacom = nix.arg($, "xf86-input-wacom");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "wacomtablet",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [libwacom, xf86_input_wacom]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kde_wacom_tabletfinder" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kde_wacom_tabletfinder" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

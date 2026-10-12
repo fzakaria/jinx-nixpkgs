@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simple-dftd3";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dftd3",
           repo: "simple-dftd3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reimplementation of the DFT-D3 program",
         mainProgram: "s-dftd3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

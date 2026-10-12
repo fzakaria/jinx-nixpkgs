@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const version = "0.3.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cutentr",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BoltsJ",
           repo: "cuteNTR",
           tag: version,
           hash: "sha256-KfnC9R38qSMhQDeaMBWm1HoO3Wzs5kyfPFwdMZCWw4E=",
         })))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cuteNTR",
             desktopName: "cuteNTR",
             icon: "cutentr",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nqmake\nmake\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp -r cutentr $out/bin\n\ninstall -m 444 -D setup/gui/com.gitlab.BoltsJ.cuteNTR.svg $out/share/icons/hicolor/scalable/apps/cutentr.svg\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3DS streaming client for Linux",
         homepage: "https://gitlab.com/BoltsJ/cuteNTR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

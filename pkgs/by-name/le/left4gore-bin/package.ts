@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const version = "2.3";
   const left4gore_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "left4gore-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.left4gore.com/dist/left4gore-${version}-linux.tar.gz`),
           sha256: "1n57nh32ybn6kirn8djh0nsjx6m84c0jfi1x8r4w2qr0qky3z7p0",
         })))),
       installPhase: "mkdir -p $out/bin\ncp left4gore $out/bin\n",
     }))));
   const env = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "left4gore-env",
       version: version,
       targetPkgs: (_) => [left4gore_unwrapped],
       runScript: "left4gore",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "left4gore",
       version: version,
       dontUnpack: true,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${env}/bin/* $out/bin/left4gore
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.left4gore.com",
         description: "Memory patcher which adds the gore back into Left 4 Dead 2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

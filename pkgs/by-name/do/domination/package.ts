@@ -25,25 +25,25 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nixosTests = nix.arg($, "nixosTests");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "domination",
       desktopName: "Domination",
       exec: "domination",
       icon: "domination",
     }))));
   const editorDesktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "domination-map-editor",
       desktopName: "Domination Map Editor",
       exec: "domination-map-editor",
       icon: "domination",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "domination",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://svn.code.sf.net/p/domination/code/Domination",
           rev: "2778",
           hash: "sha256-OsCpSL/0QgaaUAzoyPPrAlJixRlqsLJu2D8FkEuo0Ak=",
@@ -76,15 +76,15 @@ runHook postInstall
 `),
       preFixup: "# remove extra metadata files for jar files which break stripJavaArchivesHook\nfind $out/share/domination/lib -type f -name '._*.jar' -delete\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "domination-starts": nix.thunk(() => nix.sel(nixosTests, "domination")),
         })),
         updateScript: nix.path(here, "./update.tcl"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://domination.sourceforge.net/",
         downloadPage: "https://domination.sourceforge.net/download.shtml",
         description: "Game that is a bit like the board game Risk or RisiKo",

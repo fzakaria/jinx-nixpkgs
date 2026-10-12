@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "emboss",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "7184a763d39ad96bb598bfd531628a34aa53e474db9e7cac4416c2a40ab10c6e",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildInputs: nix.thunk(() => [readline, perl, libharu, libpng, libx11, libxt, zlib]),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-hpdf=${libharu}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postConfigure: "sed -i 's@$(bindir)/embossupdate@true@' Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "European Molecular Biology Open Software Suite",
         longDescription: "EMBOSS is a free Open Source software analysis package\nspecially developed for the needs of the molecular biology (e.g. EMBnet)\nuser community, including libraries. The software automatically copes with\ndata in a variety of formats and even allows transparent retrieval of\nsequence data from the web.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

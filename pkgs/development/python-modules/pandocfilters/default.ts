@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pandocfilters";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ACtKVV7k68A/i2Ywfih/pJLkp3tOoU0/k0MoKXu0k54=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for writing pandoc filters, with a collection of examples",
         homepage: "https://github.com/jgm/pandocfilters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, version, format, pname, src, doCheck, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

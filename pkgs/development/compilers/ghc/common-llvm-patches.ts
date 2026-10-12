@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.6")), nix.thunk(() => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "ghc-9.4-llvm-support-15.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/0cc16aaf89d7dc3963764b7193ceac73e4e3329b.patch",
           hash: "sha256-G0gqrj5iPuQ5JuC2+d151yka72XZMbrqMWPZd4EuT04=",
@@ -30,31 +30,31 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.6")) ? null : nix.path(here, "./ghc-9.6-llvm-restore-import.patch"))),
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.10")), nix.thunk(() => [
       nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.8")) ? nix.path(here, "./ghc-9.4-llvm-add-metadata-exports.patch") : nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "ghc-9.8-llvm-add-metadata-exports.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/fcfc1777c22ad47613256c3c5e7304cfd29bc761.patch",
           hash: "sha256-9rpyeH8TUVeKoW4PA6qn7DG2+P9MhBCywmbi1O/NsTQ=",
         }))))),
       nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.8")) ? nix.path(here, "./ghc-9.4-llvm-allow-llvmlits-in-metaexprs.patch") : nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "ghc-9.8-llvm-allow-llvmlits-in-metaexprs.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/5880fff6d353a14785c457999fded5a7100c9514.patch",
           hash: "sha256-NDMGNc0PYpWJUW+nI2YvMsBOWRIfNix4oWHQZAIxrVY=",
         }))))),
       nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.8")) ? null : nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "ghc-9.8-move-feature-predicates-to-dynflags.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/86ce92a2f81a04aa980da2891d0e300cb3cb7efd.patch",
           hash: "sha256-SzJgzq4b5wAMPz+/QSa67iSOxB2enqejvV0lsF0+9L8=",
         }))))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "ghc-9.4-llvm-add-module-flag-metadata-infra.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/a6a3874276ced1b037365c059dcd0a758e813a5b.patch",
           hash: "sha256-tAYDRNXmpp5cZtyONpO8vlsDmnNEBbh4J3oSCy/uWWc=",
         })))),
       nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.8")) ? nix.path(here, "./ghc-9.4-llvm-fix-stack-alignment.patch") : nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "ghc-9.8-llvm-fix-stack-alignment.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/e9af2cf3f16ab60b5c79ed91df95359b11784df6.patch",
           hash: "sha256-RmYwFN3c3AgJxF9KXWQLdwOgugzepCW1wcTdJX1h0C4=",
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.6")) ? nix.path(here, "./ghc-9.4-llvm-use-new-pass-manager.patch") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.8")) ? nix.path(here, "./ghc-9.6-llvm-use-new-pass-manager.patch") : nix.path(here, "./ghc-9.8-llvm-use-new-pass-manager.patch")))),
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.12")), nix.thunk(() => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: "ghc-9.4-llvm-support-16-17-18.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/ae170155e82f1e5f78882f7a682d02a8e46a5823.patch",
           hash: "sha256-U1znWqXZTORmAg480p5TjTL53T2Zn+1+9Fnk2V1Drfs=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "ghc-9.4-llvm-support-19.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/36bbb167f354a2fbc6c4842755f2b1e374e3580e.patch",
           excludes: nix.thunk(() => [".gitlab-ci.yml"]),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })))),
     ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.14")), nix.thunk(() => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "ghc-9.4-llvm-support-20.patch",
           url: "https://gitlab.haskell.org/ghc/ghc/-/commit/ca03226db2db2696460bfcb8035dd3268d546706.patch",
           hash: "sha256-7cO049DQtJHUAhwPujoFO+zQtXsMg6VFTHtMDwenrKs=",

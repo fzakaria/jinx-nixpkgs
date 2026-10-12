@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const sandboxShell = nix.argOr($, "sandboxShell", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.str`${busybox_sandbox_shell}/bin/busybox` : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) ? nix.str`${nix.sel(pkgsStatic, "bash")}/bin/bash` : null)));
   const withAWS = nix.argOr($, "withAWS", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), aws_c_common)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))));
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-store",
       version: version,
       workDir: nix.path(here, "./."),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "sandbox-shell", sandboxShell)),
         ]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unifi-protect-backup",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ep1cman",
           repo: "unifi-protect-backup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-uiprotect.patch",
             url: "https://github.com/ep1cman/unifi-protect-backup/commit/ccf2cde27229ade5c70ebfa902f289bf1a439f64.patch",
             hash: "sha256-kogl/crvLE+7t9DLTuZqeW3/WB5/sytWDgbndoBw+RQ=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python tool to backup unifi event clips in realtime",
         homepage: "https://github.com/ep1cman/unifi-protect-backup",
         changelog: nix.thunk(() => nix.str`https://github.com/ep1cman/unifi-protect-backup/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

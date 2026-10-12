@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const libcanberra = nix.arg($, "libcanberra");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "knotifyconfig",
       extraBuildInputs: nix.thunk(() => [libcanberra]),
     })));

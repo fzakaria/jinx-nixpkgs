@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`mtr${nix.app(nix.sel(lib, "optionalString"), withGtk, "-gui")}`);
       const version = "0.96";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "traviscross",
           repo: "mtr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const outputs = nix.thunk(() => ["out", "man"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network diagnostics tool",
         homepage: "https://www.bitwizard.nl/mtr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

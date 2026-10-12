@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const ppx_optcomp = nix.arg($, "ppx_optcomp");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kqueue",
       version: "0.4.0",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anuragsoni/kqueue-ml/releases/download/${nix.sel(finalAttrs, "version")}/kqueue-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-fJHhmAp0EFzR9JH93a+EHy1auwSBKZV/XcBQLCedJLc=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for kqueue event notification interface",
         homepage: "https://github.com/anuragsoni/kqueue-ml",
         changelog: nix.thunk(() => nix.str`https://github.com/anuragsoni/kqueue-ml/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

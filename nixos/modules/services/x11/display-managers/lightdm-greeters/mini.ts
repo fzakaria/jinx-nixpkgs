@@ -71,35 +71,35 @@ password-border-width = 2px
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         xserver: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             lightdm: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               greeters: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 mini: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                       default: false,
                       description: "Whether to enable lightdm-mini-greeter as the lightdm greeter.\n\nNote that this greeter starts only the default X session.\nYou can configure the default X session using\n[](#opt-services.displayManager.defaultSession).\n",
                     })))),
                   user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: "root",
                       description: "The user to login as.\n",
                     })))),
                   extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                       default: "",
                       description: "Extra configuration that should be put in the lightdm-mini-greeter.conf\nconfiguration file.\n",
@@ -112,21 +112,21 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(ldmcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           xserver: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 greeters: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  gtk: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+                  [nix.POS]: pos$12,
+                  gtk: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
                 })),
                 greeter: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     package: nix.thunk(() => nix.sel(pkgs, "lightdm-mini-greeter", "xgreeters")),
                     name: "lightdm-mini-greeter",
                   })))),
@@ -135,10 +135,10 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
-            "lightdm/lightdm-mini-greeter.conf": nix.thunk(() => ({ __proto__: pos$18, source: miniGreeterConf })),
+            [nix.POS]: pos$19,
+            "lightdm/lightdm-mini-greeter.conf": nix.thunk(() => ({ [nix.POS]: pos$18, source: miniGreeterConf })),
           })),
         })),
       })))),

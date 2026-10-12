@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gmobile = nix.arg($, "gmobile");
   const gvdb = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "gvdb",
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "phoc",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -93,10 +93,10 @@ export default nix.lambda((args) => (() => {
 `),
       mesonFlags: nix.thunk(() => ["-Dembed-wlroots=disabled"]),
       wlroots: nix.thunk(() => nix.app(nix.sel(wlroots_0_19, "overrideAttrs"), (old) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
             nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: "0001-Revert-layer-shell-error-on-0-dimension-without-anch.patch",
                 src: nix.thunk(() => nix.attr(finalAttrs, "src")),
                 preferLocalBuild: true,
@@ -106,20 +106,20 @@ export default nix.lambda((args) => (() => {
           ])),
         }))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          "dependency-versions": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-dependency-versions.nix"), nix.thunk(() => ({ __proto__: pos$6, gvdb: gvdb })))),
+          "dependency-versions": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-dependency-versions.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, gvdb: gvdb })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Wayland compositor for mobile phones like the Librem 5",
         mainProgram: "phoc",
         homepage: "https://gitlab.gnome.org/World/Phosh/phoc",

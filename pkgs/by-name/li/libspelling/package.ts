@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const libsysprof_capture = nix.arg($, "libsysprof-capture");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libspelling",
       version: "0.4.10",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libspelling/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libspelling-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VuPwGjoYtXW+6kw0NJ+ZzaujFuH3wnGxIx97z12a9zs=",
         })))),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glib, gtk4, gtksourceview5]),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "libspelling" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libspelling" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Spellcheck library for GTK 4",
         homepage: "https://gitlab.gnome.org/GNOME/libspelling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

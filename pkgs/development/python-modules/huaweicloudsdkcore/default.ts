@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const simplejson = nix.arg($, "simplejson");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "huaweicloudsdkcore",
       version: "3.1.213",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huaweicloud",
           repo: "huaweicloud-sdk-python-v3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["huaweicloudsdkcore"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Core module of Huawei Cloud Python SDK",
         homepage: "https://github.com/huaweicloud/huaweicloud-sdk-python-v3",
         changelog: nix.thunk(() => nix.str`https://github.com/huaweicloud/huaweicloud-sdk-python-v3/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pname = "agave";
   const version = "37";
   const mkAg = (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/agarick/agave/releases/download/v${version}/Agave-${name}.ttf`),
       sha256: hash,
       name: nix.thunk(() => nix.str`Agave-${name}.ttf`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(mkAg, "Bold", "sha256-Ax/l/RKyc03law0ThiLac/7HHV4+YxibKzcZnjZs6VI=")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       srcs: fonts,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "install -D $srcs -t $out/share/fonts/truetype/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TrueType monospaced typeface designed for X environments",
         homepage: "https://b.agaric.net/page/agave",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

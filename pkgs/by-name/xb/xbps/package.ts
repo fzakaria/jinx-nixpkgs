@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "xbps",
       version: "0.60.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "void-linux",
           repo: "xbps",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,34 +39,34 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cert-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/void-linux/xbps/commit/7d02b79d3d7e0bf644adf8b412e76dba1b1fdce1.patch",
             hash: "sha256-iUNBmkkfR02/EFDkax/ZpE7oM+5IVDMmD0FYz7p0dQ4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/void-linux/xbps/commit/9a8002c5688c3cdda700b022bf432b4426d64042.patch",
             hash: "sha256-/94HKeyv9LaQv6QHE0CqmM1ajBOSNt9Sfh0XKV0RLMQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/void-linux/xbps/commit/7f2f10300f235639c5880bea1e4b14245fd5fbda.patch",
             hash: "sha256-iZXiNYrSFaP55qyzefc3hqJ+SoIOsFILqnra6u5iGpM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/void-linux/xbps/commit/84f6a1be26348c265afedebe9cea958424b0aabf.patch",
             hash: "sha256-WDsGkI+3JnJskM+UKjI/UZP6ypMCd5+3rYtlQgQEr40=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: "-Wno-error=unused-result -Wno-error=deprecated-declarations",
       })),
       postPatch: "substituteInPlace data/Makefile \\\n  --replace-fail '$(DESTDIR)/$(DBDIR)' '$(DESTDIR)/$(SHAREDIR)'\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/void-linux/xbps",
         description: "X Binary Package System",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

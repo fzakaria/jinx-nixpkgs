@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "ephemeral-port-reserve";
   const version = "1.1.4";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yelp",
           repo: "ephemeral-port-reserve",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["ephemeral_port_reserve"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find an unused port, reliably",
         mainProgram: "ephemeral-port-reserve",
         homepage: "https://github.com/Yelp/ephemeral-port-reserve/",

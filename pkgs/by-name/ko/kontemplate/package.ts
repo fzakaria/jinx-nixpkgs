@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kontemplate",
       version: "1.8.0-unstable-2024-06-09",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.tvl.fyi/depot.git",
           hash: "sha256-Cv/y1Tj+hUKP0gi9ceS1Gml1WRYbUGSeWfJfXyX6dLA=",
           rev: "b16ddb54b0327606cec2df220eaabb1328e18e3e",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       modRoot: "ops/kontemplate",
       vendorHash: "sha256-xPGVM2dq5fAVOiuodOXhDm3v3k+ncNLhlk6aCtF5S9E=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extremely simple Kubernetes resource templates",
         mainProgram: "kontemplate",
         homepage: "https://code.tvl.fyi/about/ops/kontemplate",

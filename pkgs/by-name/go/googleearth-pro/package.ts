@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "googleearth-pro";
       const version = "7.3.7.1155";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.google.com/linux/earth/deb/pool/main/g/google-earth-pro-stable/google-earth-pro-stable_${version}-r0_${arch}.deb`),
           sha256: "sha256-lWFGpO4fCywxK/najHzFQoftfCEFiYX/31nloJSzCyM=",
         }))));
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
   --set QT_XKB_CONFIG_ROOT "${xkeyboard_config}/share/X11/xkb"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "World sphere viewer",
         homepage: "https://www.google.com/earth/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

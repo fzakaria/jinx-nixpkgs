@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cudaLib = nix.thunk(() => nix.sel(_cuda, "lib"));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     majorMinorPatch: nix.thunk(() => nix.app(nix.sel(cudaLib, "trimComponents"), 3n)),
     trimComponents: (n) => (v) => nix.app(nix.sel(lib, "pipe"), v, nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "splitVersion")),

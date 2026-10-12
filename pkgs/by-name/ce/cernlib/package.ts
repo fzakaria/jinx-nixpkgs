@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cernlib";
       const year = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://ftp.riken.jp/cernlib/download/${year}_source/tar/cernlib-cernlib-${version}-free.tar.gz`),
             nix.thunk(() => nix.str`https://cernlib.web.cern.ch/download/${year}_source/tar/cernlib-cernlib-${version}-free.tar.gz`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([freetype, gfortran, openssl, libx11, libxaw, libxft, libxt, libxcrypt, motif], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libnsl)));
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://cernlib.web.cern.ch",
         description: "Legacy collection of libraries and modules for data analysis in high energy physics",
         platforms: nix.thunk(() => ["aarch64-linux", "i686-linux", "x86_64-linux"]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         year,

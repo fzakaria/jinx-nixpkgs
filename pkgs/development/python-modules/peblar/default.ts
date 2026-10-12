@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frenck",
           repo: "python-peblar",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,11 +45,11 @@ substituteInPlace pyproject.toml \\
 `);
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [aiohttp, awesomeversion, mashumaro, orjson, tenacity, yarl]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [rich, typer, zeroconf]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [rich, typer, zeroconf]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["peblar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for Peblar EV chargers",
         homepage: "https://github.com/frenck/python-peblar",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-peblar/releases/tag/v${version}`),
@@ -61,7 +61,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

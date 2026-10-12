@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(mkDerivation, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "agda2hs"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "agda2hs-base",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
       postUnpack: "sourceRoot=\"$sourceRoot/lib/base\"\n",
       libraryFile: "base.agda-lib",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/agda/agda2hs",
         description: "Standard library for compiling Agda code to readable Haskell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

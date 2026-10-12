@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         const mapAttrsToStringsSep = (sep) => (mapFn) => (attrs) => nix.app(concatStringsSep, sep, nix.thunk(() => nix.app(mapAttrsToList, mapFn, attrs)));
         const mkSection = (sectName) => (sectValues) => nix.add(nix.str`[${nix.app(mkSectionName, sectName)}]
 `, nix.app(toKeyValue, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             mkKeyValue: mkKeyValue,
             listsAsDuplicateKeys: listsAsDuplicateKeys,
           })), sectValues));
@@ -129,11 +129,11 @@ export default nix.lambda((args) => (() => {
         const globalSection = nix.arg($_2, "globalSection");
         const sections = nix.argOr($_2, "sections", () => ({}));
         return nix.add((nix.asBool(nix.eq(globalSection, {})) ? "" : nix.add(nix.app(toKeyValue, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             mkKeyValue: mkKeyValue,
             listsAsDuplicateKeys: listsAsDuplicateKeys,
           })), globalSection), "\n")), nix.app(toINI, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             mkSectionName: mkSectionName,
             mkKeyValue: mkKeyValue,
             listsAsDuplicateKeys: listsAsDuplicateKeys,
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
         return (v) => nix.app(mkValueStringDefault, nix.thunk(() => ({})), nix.thunk(() => (nix.asBool(nix.app(isString, v)) ? nix.str`"${nix.app(escape_1, v)}"` : nix.force(v))));
       })());
       const mkKeyValue = nix.thunk(() => (() => {
-        const mkKeyValue_1 = nix.thunk(() => nix.app(mkKeyValueDefault, nix.thunk(() => ({ __proto__: pos$4, mkValueString: mkValueString })), " = "));
+        const mkKeyValue_1 = nix.thunk(() => nix.app(mkKeyValueDefault, nix.thunk(() => ({ [nix.POS]: pos$4, mkValueString: mkValueString })), " = "));
         const attrToString = (k) => (v) => nix.add("\t", nix.app(mkKeyValue_1, k, v));
         return (k) => (v) => (nix.asBool(nix.app(isList, v)) ? nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(attrToString, k)), v))) : nix.app(attrToString, k, v));
       })());
@@ -170,14 +170,14 @@ export default nix.lambda((args) => (() => {
           return nix.update(nix.builtins.removeAttrs(attrs, namesToRewrite), nix.app(foldl, recursiveUpdate, nix.thunk(() => ({})), nix.thunk(() => nix.app(recurse, [], attrsToRewrite))));
         })();
       })());
-      const toINI_ = nix.thunk(() => nix.app(toINI, nix.thunk(() => ({ __proto__: pos$5, mkKeyValue: mkKeyValue, mkSectionName: mkSectionName }))));
+      const toINI_ = nix.thunk(() => nix.app(toINI, nix.thunk(() => ({ [nix.POS]: pos$5, mkKeyValue: mkKeyValue, mkSectionName: mkSectionName }))));
       return (attrs) => nix.app(toINI_, nix.thunk(() => nix.app(gitFlattenAttrs, attrs)));
     })());
     const mkDconfKeyValue = nix.thunk(() => nix.app(mkKeyValueDefault, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mkValueString: (v) => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(gvariant, "mkValue"), v))),
       })), "="));
-    const toDconfINI = nix.thunk(() => nix.app(toINI, nix.thunk(() => ({ __proto__: pos$7, mkKeyValue: mkDconfKeyValue }))));
+    const toDconfINI = nix.thunk(() => nix.app(toINI, nix.thunk(() => ({ [nix.POS]: pos$7, mkKeyValue: mkDconfKeyValue }))));
     const withRecursion = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$8);
       const depthLimit = nix.arg($_1, "depthLimit");
@@ -280,7 +280,7 @@ ${innerIndent}` : " "));
         const outroSpace = nix.thunk(() => (nix.asBool(multiline) ? nix.str`
 ${indent}` : " "));
         const innerArgs = nix.thunk(() => nix.update(args_2, {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           indent: nix.thunk(() => (nix.asBool(asBindings) ? nix.force(indent) : nix.force(innerIndent))),
           asBindings: false,
         }));
@@ -300,9 +300,9 @@ ${indent}` : " "));
         return (nix.asBool(asBindings) ? nix.force(generatedBindings) : (nix.asBool(nix.eq(v, null)) ? "nil" : (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.app(isInt, v)) || nix.asBool(nix.app(isFloat, v)))) || nix.asBool(nix.app(isString, v)))) || nix.asBool(nix.app(isBool, v)))) ? nix.app(toJSON, v) : (nix.asBool((nix.asBool(nix.app(isPath, v)) || nix.asBool(nix.app(isDerivation, v)))) ? nix.app(toJSON, nix.thunk(() => nix.str`${v}`)) : (nix.asBool(nix.app(isList, v)) ? (nix.asBool(nix.eq(v, [])) ? "{}" : nix.str`{${introSpace}${nix.app(concatItems, nix.thunk(() => nix.builtins.map((value) => nix.str`${nix.app(toLua, innerArgs, value)}`, v)))}${outroSpace}}`) : (nix.asBool(nix.app(isAttrs, v)) ? (nix.asBool(nix.app(isLuaInline, v)) ? nix.str`(${nix.sel(v, "expr")})` : (nix.asBool(nix.eq(v, {})) ? "{}" : nix.str`{${introSpace}${nix.app(concatItems, nix.thunk(() => nix.app(mapAttrsToList, (key) => (value) => nix.str`[${nix.app(toJSON, key)}] = ${nix.app(toLua, innerArgs, value)}`, v)))}${outroSpace}}`)) : nix.builtins.abort(nix.thunk(() => nix.str`generators.toLua: type ${nix.app(typeOf, v)} is unsupported`))))))));
       })();
     })(), formals$12);
-    const mkLuaInline = (expr) => ({ __proto__: pos$9, _type: "lua-inline", expr: expr });
+    const mkLuaInline = (expr) => ({ [nix.POS]: pos$9, _type: "lua-inline", expr: expr });
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       mkValueStringDefault,
       mkKeyValueDefault,
       toKeyValue,
@@ -319,7 +319,7 @@ ${indent}` : " "));
       mkLuaInline,
     };
   })(), {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     toJSON: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$14);
       return nix.sel(lib, "strings", "toJSON");

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kitti3",
       version: "0.5.1-unstable-2021-09-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LandingEllipse",
           repo: "kitti3",
           rev: "f9f94c8b9f8b61a9d085206ada470cfe755a2a92",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "poetry-core"))]),
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "i3ipc"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-kitti3", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p git common-updater-scripts perl tomlq
 tmpdir="$(mktemp -d)"
@@ -50,7 +50,7 @@ perl -pe 's/^(.*version = ")([\\d\\.]+)(.*)$/\${1}'"\${newVersion}"'";/' \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/LandingEllipse/kitti3",
         description: "Kitty drop-down service for sway & i3wm",
         mainProgram: "kitti3",

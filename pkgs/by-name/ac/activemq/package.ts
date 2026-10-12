@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "activemq",
       version: "6.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/activemq/${nix.sel(finalAttrs, "version")}/apache-activemq-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-/jvyO8cDQ666i8J53SXPS5WyBmN5GZwK6TVaDxXxJhM=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmv * $out/\nfor j in $(find $out/lib -name \"*.jar\"); do\n  cp=\"${cp:+\"$cp:\"}$j\";\ndone\necho \"CLASSPATH=$cp\" > $out/lib/classpath.env\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://activemq.apache.org/",
         description: "Messaging and Integration Patterns server written in Java",
         sourceProvenance: nix.thunk(() => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "apache", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

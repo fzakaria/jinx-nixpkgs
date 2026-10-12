@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patch",
       version: "2.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/patch/patch-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+Hzuae7CtPy/YKOWsDCtaqNBXxkqpffuhMrV4R9/WuM=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Patch, a program to apply differences to files",
         mainProgram: "patch",
         longDescription: "GNU Patch takes a patch file containing a difference listing\nproduced by the diff program and applies those differences to one or\nmore original files, producing patched versions.\n",

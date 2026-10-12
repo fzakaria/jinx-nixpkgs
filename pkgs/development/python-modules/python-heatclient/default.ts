@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
   const testscenarios = nix.arg($, "testscenarios");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-heatclient",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-heatclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-KUFpFqjFtuF9VFQ0Fn9oVQSpwsocZhKY6vWtqpefUJs=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [openstackdocstheme, python_openstackclient, setuptools, pbr, sphinxHook]),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenStack Heat Client and bindings",
         mainProgram: "heat",
         homepage: "https://docs.openstack.org/python-heatclient/latest/",

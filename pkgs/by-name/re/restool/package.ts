@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "restool",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nxp-qoriq",
           repo: "restool",
           rev: "abd2f5b7181db9d03db9e6ccda0194923b73e9a2",
@@ -51,7 +51,7 @@ for tool in ls-append-dpl ls-debug ls-main; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DPAA2 Resource Management Tool",
         longDescription: "restool is a user space application providing the ability to dynamically\ncreate and manage DPAA2 containers and objects from Linux.\n",
         homepage: "https://github.com/nxp-qoriq/restool",

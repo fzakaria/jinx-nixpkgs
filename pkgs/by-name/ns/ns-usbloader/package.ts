@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const pkgDescription = "All-in-one tool for managing Nintendo Switch homebrew";
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-  const jreWithJavaFX = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jreWithJavaFX = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "ns-usbloader";
       const version = "7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "developersu",
           repo: "ns-usbloader",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./make-deterministic.patch"),
       ]);
       const mvnHash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": "sha256-vXZAlZOh9pXNF1RL78oQRal5pkXFRKDz/7SP9LibgiA=",
           "aarch64-linux": "sha256-xC+feb41EPi30gBrVR8usanVULI2Pt0knztzNagPQiw=",
         }))));
@@ -72,7 +72,7 @@ makeWrapper ${jreWithJavaFX}/bin/java $out/bin/ns-usbloader \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "Application",
             name: "ns-usbloader",
             desktopName: "NS-USBLoader",
@@ -85,7 +85,7 @@ makeWrapper ${jreWithJavaFX}/bin/java $out/bin/ns-usbloader \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: pkgDescription,
         homepage: "https://github.com/developersu/ns-usbloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -97,7 +97,7 @@ makeWrapper ${jreWithJavaFX}/bin/java $out/bin/ns-usbloader \\
         mainProgram: "ns-usbloader",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

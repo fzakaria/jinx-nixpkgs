@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "edl",
       version: "3.52.1-unstable-2025-12-17",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bkerler",
           repo: "edl",
           rev: "dffc6833ad51fb7e561c7c2bd26057edd18d9f7a",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '/'usb'/d' setup.py\n",
       postInstall: "mkdir -p $out/etc/udev/rules.d\ncp $src/Drivers/51-edl.rules $out/etc/udev/rules.d/51-edl.rules\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/bkerler/edl",
         description: "Qualcomm EDL tool (Sahara / Firehose / Diag)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
     const version = "3.12.4";
     const pyproject = true;
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "openrazer",
         repo: "openrazer",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-WgDYs0ehnzWlX/wvfur0UhFLbZv7jZ6FMybqDaFDuLg=",
       }))));
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://openrazer.github.io/",
       changelog: nix.thunk(() => nix.str`https://github.com/openrazer/openrazer/releases/tag/${nix.sel(src, "tag")}`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })()),
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     }));
-    return { __proto__: pos$3, version, pyproject, src, meta };
+    return { [nix.POS]: pos$3, version, pyproject, src, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

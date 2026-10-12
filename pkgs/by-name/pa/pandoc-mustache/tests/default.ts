@@ -19,7 +19,7 @@ mustache: ${vars}
 The temperature in {{place}} was {{temperature}} degrees.
 `)));
   return nix.app(runCommand, "pandoc-mustache-test", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [pandoc_mustache, nix.thunk(() => nix.sel(pkgs, "pandoc"))]),
     })), nix.thunk(() => nix.str`pandoc --filter pandoc-mustache ${markdown} --to plain | grep 'The temperature in Montreal was 7 degrees.' || exit 1
 touch $out

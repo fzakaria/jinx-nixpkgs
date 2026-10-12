@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytorchviz",
       version: "0.0.2-unstable-2024-12-30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "szagoruyko",
           repo: "pytorchviz",
           rev: "5cf04c13e601366f6b9cf5939b5af5144d55b887",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       unittestFlagsArray: nix.thunk(() => ["test/"]),
       pythonImportsCheck: nix.thunk(() => ["torchviz"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small package to create visualizations of PyTorch execution graphs",
         homepage: "https://github.com/szagoruyko/pytorchviz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

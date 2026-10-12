@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "komodo",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moghtech",
           repo: "komodo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "rm -f $out/bin/xtask\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "komodo-periphery": nix.thunk(() => nix.attr(nixosTests, "komodo-periphery")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to build and deploy software on many servers",
         longDescription: "Komodo is a web app to provide structure for managing your servers, builds, deployments, and automated procedures.\n\nWith Komodo you can:\n* Connect all of your servers, and alert on CPU usage, memory usage, and disk usage.\n* Create, start, stop, and restart Docker containers on the connected servers, and view their status and logs.\n* Deploy docker compose stacks. The file can be defined in UI, or in a git repo, with auto deploy on git push.\n* Build application source into auto-versioned Docker images, auto built on webhook. Deploy single-use AWS instances for infinite capacity.\n* Manage repositories on connected servers, which can perform automation via scripting / webhooks.\n* Manage all your configuration / environment variables, with shared global variable and secret interpolation.\n* Keep a record of all the actions that are performed and by whom.\n\nKomodo is composed of a single core and any amount of connected servers running the periphery application.\n",
         homepage: "https://komo.do",

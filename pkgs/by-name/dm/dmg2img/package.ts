@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmg2img",
       version: "1.6.7-unstable-2020-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lekensteyn",
           repo: "dmg2img",
           rev: "a3e413489ccdd05431401357bf21690536425012",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 dmg2img vfdecrypt -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool which allows converting Apple compressed dmg archives to standard (hfsplus) image disk files",
         homepage: "https://github.com/Lekensteyn/dmg2img",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

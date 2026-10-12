@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const passthruFun = nix.arg($, "passthruFun");
   return nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.0.1774896119",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LuaJIT",
           repo: "LuaJIT",
           rev: "e4c7d8b38040518d42599eef8ddb5e67aa967a9c",
           hash: "sha256-nioJxKo6msQQTP4skMEFDh6xD2cekOEXbMRFus73XuI=",
         })))),
       extraMeta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "aarch64-", p)), nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))))),
       })),
       self: self,

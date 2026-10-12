@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comonad",
       version: "2018-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmchale",
           repo: "comonad",
           rev: "23282592d4506708bdff79bfe1770c5f7a4ccb92",
           sha256: "0iiknx6gj4wr9s59iz439c63h3887pilymxrc80v79lj1lsk03ac",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comonads for Idris",
         homepage: "https://github.com/vmchale/comonad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

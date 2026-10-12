@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const netsurf_buildsystem = nix.arg($, "netsurf-buildsystem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libwapcaplet",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libwapcaplet-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-myqh3W1mRfjpkrNpf9vYfwwOHaVyH6VO0ptITRMWDFw=",
         })))),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         "PREFIX=$(out)",
         nix.thunk(() => nix.str`NSSHARED=${netsurf_buildsystem}/share/netsurf-buildsystem`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=cast-function-type" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=cast-function-type" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.netsurf-browser.org/projects/libwapcaplet/",
         description: "String internment library for netsurf browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

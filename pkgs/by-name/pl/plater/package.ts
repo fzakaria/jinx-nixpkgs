@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "plater";
       const version = "1.0.0-unstable-2025-03-24";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rhoban",
           repo: "Plater",
           rev: "6c4f924504979095b1b45cf8fd81b1e38f0f8642",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGLU, nix.thunk(() => nix.sel(qt5, "qtbase"))]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "plater",
             exec: "plater",
             icon: "plater",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -D $src/gui/img/plater.png -t $out/share/icons/hicolor/128x128/apps\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3D-printer parts placer and plate generator",
         homepage: "https://github.com/Rhoban/Plater",
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-30")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

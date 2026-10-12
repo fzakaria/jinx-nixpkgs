@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_14 = nix.arg($, "zig_0_14");
   const zig = zig_0_14;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glsl_analyzer",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nolanderc",
           repo: "glsl_analyzer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'b.run(&.{ "git", "describe", "--tags", "--always" })' '"${nix.sel(finalAttrs, "src", "rev")}"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server for GLSL (OpenGL Shading Language)",
         changelog: nix.thunk(() => nix.str`https://github.com/nolanderc/glsl_analyzer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/nolanderc/glsl_analyzer",

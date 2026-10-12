@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "epson-tm-t88vi",
       version: "3.0.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download3.ebz.epson.net/dsc/f/03/00/15/35/42/b1a708bb8b21d7a68ae7394287db440974b68a0e/tmx-cups-src-ImpactReceipt-${nix.sel(finalAttrs, "version")}_pck_e.zip`),
           hash: "sha256-c6VpnNXYebkDkK9kcTZ/ILE8pD/qSWKCHYqkHV+WIkc=",
         })))),
@@ -34,7 +34,7 @@ runHook postUnpack
       postPatch: "substituteInPlace ./ppd/*.ppd --replace-fail \"rastertotmtr\" \"$out/lib/cups/filter/rastertotmtr\"\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       installPhase: "runHook preInstall\n\ninstall -Ds ./rastertotmtr $out/lib/cups/filter/rastertotmtr\ninstall ../ppd/*.ppd -Dt $out/share/cups/model/EPSON\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "EPSON TM Series T88VI Series Printer Driver for Linux",
         downloadPage: "https://epson.com/Support/Point-of-Sale/OmniLink-Printers/Epson-TM-T88VI-Series/s/SPT_C31CE94061?review-filter=Linux",
         homepage: "https://www.epson.com/",

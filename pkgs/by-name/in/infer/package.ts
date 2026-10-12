@@ -42,24 +42,24 @@ export default nix.lambda((args) => (() => {
   const pname = "infer";
   const version = "1.3.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "facebook",
       repo: pname,
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Kq7sJVBqe4ei1HbZz8R+P4V6yxisxEmPVHjyVlpL1aw=",
     }))));
   const llvmSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "llvm",
       repo: "llvm-project",
       tag: "llvmorg-21.1.6",
       hash: "sha256-mqZLJYDEs6FXAjbSOruR2ATZZxemNMagNG9SMjSWBFE=",
     }))));
   const ocamlPackages = nix.thunk(() => nix.app(nix.sel(ocaml_ng, "ocamlPackages_5_3", "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$5,
-      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ __proto__: pos$3, version: "0.34.0" })))),
+      [nix.POS]: pos$5,
+      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "0.34.0" })))),
       charon: nix.thunk(() => nix.app(nix.sel(super$, "buildDunePackage"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "charon",
           version: "0.1",
           src: nix.thunk(() => nix.str`${src}/dependencies/charon`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
   })());
   const javaDeps = nix.thunk(() => [jdk]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       src: src,
       version: version,
@@ -202,7 +202,7 @@ substituteInPlace infer/dune-workspace.in \\
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Facebook's static analysis tool for Java, C++, Objective-C, and C.",
         homepage: "https://fbinfer.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

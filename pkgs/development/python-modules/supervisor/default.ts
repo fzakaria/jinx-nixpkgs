@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pname = "supervisor";
   const version = "4.3.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-SivxSa30KZfhu0S3DEO2EydeyYUsPtrMqGqRZrJ+lF4=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["supervisor"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System for controlling process state under UNIX",
         homepage: "https://supervisord.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Supervisor/supervisor/blob/${version}/CHANGES.rst`),

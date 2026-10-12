@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const getent = nix.arg($, "getent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencryptoki",
       version: "3.26.0-unstable-2026-04-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opencryptoki",
           repo: "opencryptoki",
           rev: "ed378f463ef73364c89feb0fc923f4dc867332a3",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/opencryptoki/opencryptoki/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "PKCS#11 implementation for Linux",
         homepage: "https://github.com/opencryptoki/opencryptoki",

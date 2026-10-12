@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const dynamic_linker = nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "dynamicLinker"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "psc-package-simple",
       version: "0.6.2",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/purescript/psc-package/releases/download/v0.6.2/macos.tar.gz",
           sha256: "17dh3bc5b6ahfyx0pi6n9qnrhsyi83qdynnca6k1kamxwjimpcq1",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/purescript/psc-package/releases/download/v0.6.2/linux64.tar.gz",
           sha256: "1zvay9q3xj6yd76w6qyb9la4jaj9zvpf4dp78xcznfqbnbhm1a54",
         }))))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`patchelf --interpreter ${dynamic_linker} --set-rpath ${nix.sel(finalAttrs, "libPath")} $PSC_PACKAGE
 `))), "chmod u-w $PSC_PACKAGE\n\ninstallShellCompletion --cmd psc-package \\\n  --bash <($PSC_PACKAGE --bash-completion-script $PSC_PACKAGE) \\\n  --fish <($PSC_PACKAGE --fish-completion-script $PSC_PACKAGE) \\\n  --zsh <($PSC_PACKAGE --zsh-completion-script $PSC_PACKAGE)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package manager for PureScript based on package sets",
         mainProgram: "psc-package",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

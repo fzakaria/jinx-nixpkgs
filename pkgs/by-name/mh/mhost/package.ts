@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mhost",
       version: "0.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lukaspustina",
           repo: "mhost",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-5LSgPFozTPItTLD1WVcLPGycjxjMOoY4U6eiD49hEdE=",
         })))),
       cargoHash: "sha256-PO4d1OosHhbFuPQSI8yZNaVQ2tAcFONAso+p+Qq8wTg=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CARGO_CRATE_NAME: "mhost" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CARGO_CRATE_NAME: "mhost" })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern take on the classic host DNS lookup utility including an easy to use and very fast Rust lookup library",
         homepage: "https://github.com/lukaspustina/mhost",
         license: nix.thunk(() => (() => {

@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const fetchpatch = nix.arg($, "fetchpatch");
   const vscodeSpectral = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vscode-spectral",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stoplightio",
           repo: "vscode-spectral",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TWy+bC6qhTKDY874ORTBbvCIH8ycpmBiU8GLYxBIiAs=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-am27A9VyFoXuOlgG9mnvNqV3Q7Bi7GJzDqqVFGDVWIA=",
         })))),
@@ -44,18 +44,18 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n# FIXME: vscode-spactral depends on @rollup/pluginutils, but it may have a bug that doesn't provide the type definitions for NodeNext module resolution. (ref: https://github.com/rollup/plugins/issues/1192)\n# tsc detects some type errors in the code. However we ignore this because it's not a problem for the final build if server/dist is generated.\ntsc -p server || true\ntest -d server/dist\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -R server/dist $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/stoplightio/vscode-spectral",
         description: "VS Code extension bringing the awesome Spectral JSON/YAML linter with OpenAPI/AsyncAPI support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "spectral-language-server",
       version: "1.0.8-unstable-2023-06-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "luizcorreia",
           repo: "spectral-language-server",
           rev: "c9a7752b08e6bba937ef4f5435902afd41b6957f",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-ixAXy/rRkyWL3jdAkrXJh1qhWcKIkr5nH/Bhu2JV6k8=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "fix-package-lock.patch",
             url: "https://github.com/luizcorreia/spectral-language-server/commit/909704850dd10e7b328fc7d15f8b07cdef88899d.patch",
             hash: "sha256-+mN93xP4HCll4dTcnh2W/m9k3XovvgnB6AOmuJpZUZ0=",
@@ -82,7 +82,7 @@ cp -R ./node_modules/* $out/node_modules
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/luizcorreia/spectral-language-server",
         description: "Awesome Spectral JSON/YAML linter with OpenAPI/AsyncAPI support",
         maintainers: [],

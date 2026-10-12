@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yacas",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grzegorzmazur",
           repo: "yacas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./jsoncpp-fix-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/grzegorzmazur/yacas/commit/8bc22d517ecfdde3ac94800dc8506f5405564d48.patch",
             sha256: "sha256-aPO5T8iYNkGtF8j12YxNJyUPJJPKrXje1DmfCPt317A=",
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, perl], nix.app(nix.sel(lib, "optionals"), enableJava, nix.thunk(() => [openjdk])))),
       buildInputs: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), enableJupyter, nix.thunk(() => [boost, jsoncpp, openssl, zmqpp])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy to use, general purpose Computer Algebra System, optionally with GUI",
         homepage: "http://www.yacas.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

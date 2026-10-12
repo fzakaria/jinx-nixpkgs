@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sqlsrv",
       version: "5.13.0",
       sha256: "sha256-MdbCg1oFp7btDw3bZ1VsqRRlKlelccJokfAtitmbflw=",
       buildInputs: nix.thunk(() => nix.concat([unixodbc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Microsoft Drivers for PHP for SQL Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Microsoft/msphpsql",

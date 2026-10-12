@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const hypre = nix.arg($, "hypre");
   nix.assert_(nix.app(nix.sel(lib, "elem"), precision, nix.thunk(() => ["single", "double", "long-double"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/hy/hypre/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "hypre",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hypre-space",
           repo: "hypre",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/spack/spack-packages/eb4b23847f0079d0c9c8de99aaa32557ad4c9194/repos/builtin/packages/hypre/hypre-precision-fix.patch?full_index=1",
             hash: "sha256-Ni5xlfFmok884x5Hctf9VOsAgZp8ICG7QNVGTdVKPzE=",
           })))),
@@ -58,8 +58,8 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(mpiSupport)), "substituteInPlace src/test/CMakeLists.txt \\\n  --replace-fail '${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} 1' \"\"\n")),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, gfortran]),
       propagatedBuildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ __proto__: pos$3, isILP64: isILP64 })))),
-        nix.thunk(() => nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ __proto__: pos$4, isILP64: isILP64 })))),
+        nix.thunk(() => nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, isILP64: isILP64 })))),
+        nix.thunk(() => nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, isILP64: isILP64 })))),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), mpiSupport, mpi), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp")))))),
       cmakeDir: "../src",
       cmakeFlags: nix.thunk(() => [
@@ -80,21 +80,21 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "rm -rf $out/bin\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               moduleNames: nix.thunk(() => ["HYPRE"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          ilp64: nix.thunk(() => nix.app(nix.sel(hypre, "override"), nix.thunk(() => ({ __proto__: pos$6, isILP64: true })))),
-          single: nix.thunk(() => nix.app(nix.sel(hypre, "override"), nix.thunk(() => ({ __proto__: pos$7, precision: "single" })))),
-          serial: nix.thunk(() => nix.app(nix.sel(hypre, "override"), nix.thunk(() => ({ __proto__: pos$8, mpiSupport: false })))),
+          ilp64: nix.thunk(() => nix.app(nix.sel(hypre, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, isILP64: true })))),
+          single: nix.thunk(() => nix.app(nix.sel(hypre, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, precision: "single" })))),
+          serial: nix.thunk(() => nix.app(nix.sel(hypre, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, mpiSupport: false })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Parallel solvers for sparse linear systems featuring multigrid methods",
         homepage: "https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

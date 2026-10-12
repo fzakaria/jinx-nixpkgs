@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const librevenge = nix.arg($, "librevenge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libpagemaker",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libpagemaker/libpagemaker-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fAtCNbP0fI2LxTOPPh5zbdF50wWhsrfSoNFPVU9tBas=",
         })))),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, doxygen, librevenge]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libpagemaker/-/raw/main/libpagemaker-0.0.4-const-ref-exception.patch?ref_type=heads",
             hash: "sha256-yZbiLAZHgzygGetiuoKiQS010pRfZTi2CbAAxQdCZbs=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Adobe PageMaker import library",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

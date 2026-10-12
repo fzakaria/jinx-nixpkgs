@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ares-rs",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bee-san",
           repo: "ares",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-3L1LpmH96rYFB947sEhZcDK5g97zUgr2runjc1EYzZk=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automated decoding of encrypted text without knowing the key or ciphers used",
         homepage: "https://github.com/bee-san/ares",
         changelog: nix.thunk(() => nix.str`https://github.com/bee-san/Ares/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
   const stateDir = nix.thunk(() => nix.sel(cfg, "package", "stateDir"));
   const commandLineAddresses = nix.thunk(() => nix.app(concatMapStringsSep, " ", (a) => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add("-a ", nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(a, "name"))))), nix.thunk(() => nix.str`${nix.sel(a, "name")}=`))), nix.sel(a, "address")), nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(a, "port"))))), nix.thunk(() => nix.str`:${nix.builtins.toString(nix.thunk(() => nix.sel(a, "port")))}`))), nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(a, "proto"))))), nix.thunk(() => nix.str`,${nix.sel(a, "proto")}`))), nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(a, "user"))))), nix.thunk(() => nix.str`,user=${nix.sel(a, "user")}`))), nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(a, "group"))))), nix.thunk(() => nix.str`,group=${nix.sel(a, "group")}`))), nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(a, "mode"))))), nix.thunk(() => nix.str`,mode=${nix.sel(a, "mode")}`))), nix.thunk(() => nix.sel(cfg, "listen"))));
   const addressSubmodule = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       options: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Name is referenced in logs. If name is not specified, 'a0', 'a1', etc. is used.",
             default: null,
             type: nix.thunk(() => (() => {
@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "If given an IP address, it can be a host name (\"localhost\"), an IPv4 dotted-quad\n(\"127.0.0.1\") or an IPv6  address enclosed in square brackets (\"[::1]\").\n\n(VCL4.1 and higher) If given an absolute Path (\"/path/to/listen.sock\") or \"@\"\nfollowed by the name of an abstract socket (\"@myvinyld\") accept connections\non a Unix domain socket.\n\nThe user, group and mode sub-arguments may be used to specify the permissions\nof the socket file. These sub-arguments do not apply to  abstract sockets.\n",
             type: nix.thunk(() => nix.sel(types, "str")),
           })))),
         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "The port to use for IP sockets. If port is not specified, port 80 (http) is used.",
             default: null,
             type: nix.thunk(() => (() => {
@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         proto: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "PROTO can be 'HTTP' (the default) or 'PROXY'.  Both version 1 and 2 of the proxy protocol can be used.",
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["HTTP", "PROXY"]))),
             default: "HTTP",
           })))),
         user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "User name who owns the socket file.",
             default: null,
             type: nix.thunk(() => (() => {
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Group name who owns the socket file.",
             default: null,
             type: nix.thunk(() => (() => {
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         mode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "Permission of the socket file (3-digit octal value).",
             default: null,
             type: nix.thunk(() => (() => {
@@ -123,43 +123,43 @@ export default nix.lambda((args) => (() => {
   const checkedAddressModule = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), addressSubmodule, (m) => (nix.asBool((nix.asBool(nix.app(hasPrefix, "@", nix.thunk(() => nix.sel(m, "address")))) || nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(m, "address")))))) ? !nix.eq(nix.sel(m, "port"), null) : (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(m, "address"))))) && nix.asBool(!nix.eq(nix.sel(m, "group"), null)))) || nix.asBool(!nix.eq(nix.sel(m, "user"), null)))) || nix.asBool(!nix.eq(nix.sel(m, "mode"), null)))) ? false : true))));
   const commandLine = nix.thunk(() => nix.add(nix.str`-f ${nix.app(nix.sel(pkgs, "writeText"), "default.vcl", nix.thunk(() => nix.sel(cfg, "config")))}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraModules"), [])), nix.thunk(() => nix.str` -p vmod_path='${nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/vinyl/vmods", nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraModules"))))}' -r vmod_path`))));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
         nix.thunk(() => nix.sel(lib, "maintainers", "osnyx")),
       ]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         "vinyl-cache": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Vinyl Cache")),
-          enableConfigCheck: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking the config during build time"), { __proto__: pos$11, default: true })),
+          enableConfigCheck: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking the config during build time"), { [nix.POS]: pos$11, default: true })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vinyl-cache", nix.thunk(() => ({})))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Accept for client requests on the specified listen addresses.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), checkedAddressModule)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ { address=\"*\"; port=6081; } ]")),
-              default: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, address: "*", port: 6081n }))]),
+              default: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, address: "*", port: 6081n }))]),
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Verbatim default.vcl configuration.\n",
             })))),
           extraModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Vinyl Cache modules (except 'std').\n",
             })))),
           extraCommandLine: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "-s malloc,256M",
@@ -171,18 +171,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             systemd: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 "vinyl-cache": nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "Vinyl Cache",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     Type: "simple",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vinyld ${commandLineAddresses} -F ${nix.sel(cfg, "extraCommandLine")} ${commandLine}`),
                     Restart: "always",
@@ -199,11 +199,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               checks: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableConfigCheck")), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "check-vinyl-cache-syntax", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vinyld -C ${commandLine} 2> $out || (cat $out; exit 1)
 `))),
@@ -211,42 +211,42 @@ export default nix.lambda((args) => (() => {
             })),
             assertions: nix.thunk(() => nix.concat(nix.app(concatMap, (m) => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(m, "address")))) || nix.asBool(nix.app(hasPrefix, "@", nix.thunk(() => nix.sel(m, "address")))))) || nix.asBool(nix.eq(nix.sel(m, "port"), null)))),
                   message: nix.thunk(() => nix.str`Listen ports must not be specified with UNIX sockets: ${nix.builtins.toJSON(m)}`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(m, "address"))))) || nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(m, "user"), null)) && nix.asBool(nix.eq(nix.sel(m, "group"), null)))) && nix.asBool(nix.eq(nix.sel(m, "mode"), null)))))),
                   message: nix.thunk(() => nix.str`Abstract UNIX sockets or IP sockets can not be used with user, group, and mode settings: ${nix.builtins.toJSON(m)}`),
                 })),
               ], nix.thunk(() => nix.sel(cfg, "listen"))), [
               nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "package", "pname"), "vinyl-cache")),
                 message: "services.vinyl-cache only supports Vinyl Cache. Please use services.varnish.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "strings", "hasPrefix"), "/run/", stateDir)),
                 message: nix.thunk(() => nix.str`The vinyl-cache NixOS mosule only supports statedirs in /run/, but vinyl-cache package was compiled with ${stateDir}.`),
               })),
             ])),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "enableFileLogging")))), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             systemd: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               services: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 vinylncsa: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   after: nix.thunk(() => ["vinyl-cache.service"]),
                   requires: nix.thunk(() => ["vinyl-cache.service"]),
                   description: "Vinyl Cache logging daemon",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     Type: "forking",
                     Restart: "always",
                     RuntimeDirectory: "vinylncsa",
@@ -261,13 +261,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               logrotate: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   "vinyl-cache": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       files: nix.thunk(() => ["/var/log/vinyl-cache/*.log"]),
                       frequency: "daily",
                       rotate: 14n,

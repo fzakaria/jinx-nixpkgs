@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "firewalld"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "xml"), nix.thunk(() => ({}))));
-  const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const filterNullAttrs = nix.thunk(() => nix.attr(lib$, "filterNullAttrs"));
   const mkPortOption = nix.thunk(() => nix.attr(lib$, "mkPortOption"));
   const mkXmlAttr = nix.thunk(() => nix.attr(lib$, "mkXmlAttr"));
@@ -85,165 +85,165 @@ export default nix.lambda((args) => (() => {
   const strMatching = nix.thunk(() => nix.attr(from, "strMatching"));
   const submodule = nix.thunk(() => nix.attr(from, "submodule"));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         firewalld: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           zones: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "firewalld zone configuration files.\nSee {manpage}`firewalld.zone(5)`.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 public: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   forward: true,
                   services: nix.thunk(() => ["ssh", "dhcpv6-client"]),
                 })),
                 external: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   forward: true,
                   services: nix.thunk(() => ["ssh"]),
                   masquerade: true,
                 })),
-                dmz: nix.thunk(() => ({ __proto__: pos$4, forward: true, services: nix.thunk(() => ["ssh"]) })),
+                dmz: nix.thunk(() => ({ [nix.POS]: pos$4, forward: true, services: nix.thunk(() => ["ssh"]) })),
                 work: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   forward: true,
                   services: nix.thunk(() => ["ssh", "dhcpv6-client"]),
                 })),
                 home: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   forward: true,
                   services: nix.thunk(() => ["ssh", "mdns", "samba-client", "dhcpv6-client"]),
                 })),
                 internal: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   forward: true,
                   services: nix.thunk(() => ["ssh", "mdns", "samba-client", "dhcpv6-client"]),
                 })),
               })),
               type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     options: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                           description: "Version of the zone.",
                           default: null,
                         })))),
                       target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["ACCEPT", "%%REJECT%%", "DROP"]))),
                           description: "Action for packets that doesn't match any rules.",
                           default: "%%REJECT%%",
                         })))),
                       ingressPriority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.sel(ints, "s16")))),
                           description: "Priority for inbound traffic.\nLower values have higher priority.\n",
                           default: null,
                         })))),
                       egressPriority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.sel(ints, "s16")))),
                           description: "Priority for outbound traffic.\nLower values have higher priority.\n",
                           default: null,
                         })))),
                       interfaces: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "Interfaces to bind.",
                           default: [],
                         })))),
                       sources: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(attrTag, nix.thunk(() => ({
-                                __proto__: pos$17,
+                                [nix.POS]: pos$17,
                                 address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$14,
+                                    [nix.POS]: pos$14,
                                     type: nonEmptyStr,
                                     description: "An IP address or a network IP address with a mask for IPv4 or IPv6.\nFor IPv4, the mask can be a network mask or a plain number.\nFor IPv6 the mask is a plain number.\nThe use of host names is not supported.\n",
                                   })))),
                                 mac: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$15,
+                                    [nix.POS]: pos$15,
                                     type: nix.thunk(() => nix.app(strMatching, "([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}")),
                                     description: "A MAC address.",
                                   })))),
-                                ipset: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$16, type: nonEmptyStr, description: "An ipset." })))),
+                                ipset: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$16, type: nonEmptyStr, description: "An ipset." })))),
                               })))))),
                           description: "Source addresses, address ranges, MAC addresses or ipsets to bind.",
                           default: [],
                         })))),
                       icmpBlockInversion: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: bool,
                           description: "Whether to invert the icmp block handling.\nOnly enabled ICMP types are accepted and all others are rejected in the zone.\n",
                           default: false,
                         })))),
                       forward: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: bool,
                           description: "Whether to enable intra-zone forwarding.\nWhen enabled, packets will be forwarded between interfaces or sources within a zone, even if the zone's target is not set to ACCEPT.\n",
                           default: false,
                         })))),
                       short: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                           description: "Short description for the zone.",
                           default: null,
                         })))),
                       description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                           description: "Description for the zone.",
                           default: null,
                         })))),
                       services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "Services to allow in the zone.",
                           default: [],
                         })))),
                       ports: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, portProtocolOptions)))),
                           description: "Ports to allow in the zone.",
                           default: [],
                         })))),
                       protocols: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "Protocols to allow in the zone.",
                           default: [],
                         })))),
                       icmpBlocks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "ICMP types to block in the zone.",
                           default: [],
                         })))),
                       masquerade: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: bool,
                           description: "Whether to enable masquerading in the zone.",
                           default: false,
                         })))),
                       forwardPorts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                                __proto__: pos$32,
+                                [nix.POS]: pos$32,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$31,
+                                  [nix.POS]: pos$31,
                                   port: nix.thunk(() => nix.app(mkPortOption, nix.thunk(() => ({})))),
                                   protocol: protocolOption,
-                                  "to-port": nix.thunk(() => nix.update(nix.app(mkPortOption, nix.thunk(() => ({ __proto__: pos$28, optional: true }))), { __proto__: pos$29, default: null })),
+                                  "to-port": nix.thunk(() => nix.update(nix.app(mkPortOption, nix.thunk(() => ({ [nix.POS]: pos$28, optional: true }))), { [nix.POS]: pos$29, default: null })),
                                   "to-addr": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$30,
+                                      [nix.POS]: pos$30,
                                       type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                                       description: "Destination IP address.",
                                       default: null,
@@ -254,13 +254,13 @@ export default nix.lambda((args) => (() => {
                           default: [],
                         })))),
                       sourcePorts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, portProtocolOptions)))),
                           description: "Source ports to allow in the zone.",
                           default: [],
                         })))),
                       rules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(format, "type")))),
                           description: "Rich rules for the zone.",
                           default: [],
@@ -272,38 +272,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         services: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           firewalld: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             zones: nix.thunk(() => ({
-              __proto__: pos$45,
-              drop: nix.thunk(() => ({ __proto__: pos$42, target: "DROP", forward: true })),
-              block: nix.thunk(() => ({ __proto__: pos$43, forward: true })),
-              trusted: nix.thunk(() => ({ __proto__: pos$44, target: "ACCEPT", forward: true })),
+              [nix.POS]: pos$45,
+              drop: nix.thunk(() => ({ [nix.POS]: pos$42, target: "DROP", forward: true })),
+              block: nix.thunk(() => ({ [nix.POS]: pos$43, forward: true })),
+              trusted: nix.thunk(() => ({ [nix.POS]: pos$44, target: "ACCEPT", forward: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`firewalld/zones/${name}.xml`), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 source: nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`firewalld-zone-${name}.xml`), nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     zone: nix.thunk(() => (() => {
                       const mkXmlAttrList = (name_1) => nix.app(nix.builtins.map, nix.thunk(() => nix.app(mkXmlAttr, name_1)));
                       const mkXmlTag = (value_1) => (nix.asBool(value_1) ? "" : null);
                       return nix.app(filterNullAttrs, nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => [
                             nix.thunk(() => nix.app(toXmlAttrs, nix.thunk(() => ({
-                                __proto__: pos$48,
+                                [nix.POS]: pos$48,
                                 version: nix.thunk(() => nix.attr(value, "version")),
                                 target: nix.thunk(() => nix.attr(value, "target")),
                               })))),
                             nix.thunk(() => nix.app(mkXmlAttr, "ingress-priority", nix.thunk(() => nix.sel(value, "ingressPriority")))),
                             nix.thunk(() => nix.app(mkXmlAttr, "egress-priority", nix.thunk(() => nix.sel(value, "egressPriority")))),
                             nix.thunk(() => ({
-                              __proto__: pos$49,
+                              [nix.POS]: pos$49,
                               interface: nix.thunk(() => nix.app(mkXmlAttrList, "name", nix.thunk(() => nix.sel(value, "interfaces")))),
                               source: nix.thunk(() => nix.builtins.map(toXmlAttrs, nix.thunk(() => nix.sel(value, "sources")))),
                               "icmp-block-inversion": nix.thunk(() => nix.app(mkXmlTag, nix.thunk(() => nix.sel(value, "icmpBlockInversion")))),

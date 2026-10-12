@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "soxr",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/soxr/soxr-${nix.sel(finalAttrs, "version")}-Source.tar.xz`),
           sha256: "12aql6svkplxq5fjycar18863hcq84c5kx8g6f4rj0lcvigw24di",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required (VERSION 3.1 FATAL_ERROR)' \\\n    'cmake_minimum_required (VERSION 3.10 FATAL_ERROR)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audio resampling library",
         homepage: "https://soxr.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

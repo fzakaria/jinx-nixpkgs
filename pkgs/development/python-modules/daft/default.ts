@@ -78,20 +78,20 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "daft",
       version: "0.7.25",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Eventual-Inc",
           repo: "Daft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-XVtMB+fZ1zbFoStwlZmmam3/t8eD7vRop+7YlNhuLhs=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [nasm])))),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DAFT_RUNNER: "native",
         NIX_CFLAGS_COMPILE: "-Wno-error",
         CI: "1",
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["tqdm"]),
       dependencies: nix.thunk(() => [packaging, pyarrow, tqdm, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         aws: nix.thunk(() => [boto3, mypy_boto3_glue]),
         azure: [],
         clickhouse: nix.thunk(() => [clickhouse_connect]),
@@ -253,7 +253,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["daft"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Distributed dataframes for multimodal data",
         homepage: "https://github.com/Eventual-Inc/Daft",
         changelog: nix.thunk(() => nix.str`https://github.com/Eventual-Inc/Daft/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

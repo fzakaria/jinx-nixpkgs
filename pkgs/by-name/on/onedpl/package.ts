@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(intelLlvmStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "onedpl",
       version: "2022.11.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uxlfoundation",
           repo: "oneDPL",
           tag: nix.thunk(() => nix.str`oneDPL-${nix.sel(finalAttrs, "version")}-release`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "'oneDPL-(.*)-release'"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "oneAPI DPC++ Library (oneDPL)",
         homepage: "http://uxlfoundation.github.io/oneDPL",
         changelog: nix.thunk(() => nix.str`https://github.com/uxlfoundation/oneDPL/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

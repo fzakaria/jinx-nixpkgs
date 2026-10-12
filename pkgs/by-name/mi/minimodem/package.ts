@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.24-1";
       const pname = "minimodem";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kamalmostafa",
           repo: "minimodem",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [fftw, fftwSinglePrec, alsa_lib, libsndfile, libpulseaudio]);
       const preConfigure = "aclocal \\\n&& autoheader \\\n&& automake --gnu --add-missing \\\n&& autoconf\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General-purpose software audio FSK modem",
         longDescription: "Minimodem is a command-line program which decodes (or generates) audio\nmodem tones at any specified baud rate, using various framing protocols. It\nacts a general-purpose software FSK modem, and includes support for various\nstandard FSK protocols such as Bell103, Bell202, RTTY, NOAA SAME, and\nCaller-ID.\n",
         homepage: "http://www.whence.com/minimodem/",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "minimodem",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

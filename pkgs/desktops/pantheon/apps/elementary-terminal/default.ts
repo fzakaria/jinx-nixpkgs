@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-terminal";
       const version = "8.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "terminal",
           tag: version,
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [desktop_file_utils, meson, ninja, pkg_config, vala, wrapGAppsHook4]);
       const buildInputs = nix.thunk(() => [granite7, gtk4, libadwaita, libgee, pcre2, vte_gtk4]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal emulator designed for elementary OS",
         longDescription: "A super lightweight, beautiful, and simple terminal. Comes with sane defaults, browser-class tabs, sudo paste protection,\nsmart copy/paste, and little to no configuration.\n",
         homepage: "https://github.com/elementary/terminal",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.terminal",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

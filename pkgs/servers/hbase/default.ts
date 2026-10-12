@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const pname = "hbase";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://apache/hbase/${version_1}/hbase-${version_1}-bin.tar.gz`),
             hash: hash,
           }))));
@@ -47,9 +47,9 @@ wrapProgram $out/bin/hbase --set-default JAVA_HOME ${nix.sel(jdk, "home")} \\
   --run "test -d /etc/hadoop-conf && export HBASE_CONF_DIR=\\\${HBASE_CONF_DIR-'/etc/hadoop-conf/'}" \\
   --set-default HBASE_CONF_DIR "$out/conf/"
 `);
-        const passthru = nix.thunk(() => ({ __proto__: pos$2, tests: tests }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, tests: tests }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Distributed, scalable, big data store",
           homepage: "https://hbase.apache.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,7 +60,7 @@ wrapProgram $out/bin/hbase --set-default JAVA_HOME ${nix.sel(jdk, "home")} \\
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           src,
@@ -72,37 +72,37 @@ wrapProgram $out/bin/hbase --set-default JAVA_HOME ${nix.sel(jdk, "home")} \\
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     hbase_2_4: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "2.4.18",
         hash: "sha256-zYrHAxzlPRrRchHGVp3fhQT0BD0+wavZ4cAWncrv+MQ=",
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           standalone: nix.thunk(() => nix.sel(nixosTests, "hbase_2_4")),
         })),
       })))),
     hbase_2_5: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "2.5.11",
         hash: "sha256-W3o8J+aY2bQoiu1Lr1n5EQWDVoS1OwWTNIUAU03a5Es=",
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           standalone: nix.thunk(() => nix.sel(nixosTests, "hbase_2_5")),
         })),
       })))),
     hbase_2_6: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         version: "2.6.2",
         hash: "sha256-X/mjmTAx9anh2U/Xlfuf+O4AO5BXDkdsY69tPddEpYM=",
-        tests: nix.thunk(() => ({ __proto__: pos$9, standalone: nix.thunk(() => nix.sel(nixosTests, "hbase2")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$9, standalone: nix.thunk(() => nix.sel(nixosTests, "hbase2")) })),
       })))),
     hbase_3_0: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         version: "3.0.0-beta-1",
         hash: "sha256-lmeaH2gDP6sBwZpzROKhR2Je7dcrwnq7qlMUh0B5fZs=",
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           standalone: nix.thunk(() => nix.sel(nixosTests, "hbase3")),
         })),
       })))),

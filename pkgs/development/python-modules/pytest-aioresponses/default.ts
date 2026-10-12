@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_aioresponses",
           version: version,
           hash: "sha256-VnezLfoaNpCLNHUktYZ6qzWsHFzh1JcCRNb2YAm8p7Y=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-poetry-core.patch",
             url: "https://github.com/pheanex/pytest-aioresponses/commit/05595c1b73a9d9b01179bd434fb7cc57230c9251.patch",
             hash: "sha256-CejYyzAYwsueI0k9O4fcTGC0O8dz0vgE057IrvC5YRo=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://github.com/pheanex/pytest-aioresponses/blob/main/Changelog",
         description: "Py.test integration for aioresponses",
         homepage: "https://github.com/pheanex/pytest-aioresponses",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

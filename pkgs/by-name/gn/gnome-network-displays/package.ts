@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const protobufc = nix.arg($, "protobufc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-network-displays",
       version: "0.99.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-network-displays/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-network-displays-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-Hs5KG8gix+v3JeiEe4zomYtH0ewXFaS03bnd1xaR7YU=",
         })))),
@@ -76,12 +76,12 @@ export default nix.lambda((args) => (() => {
         protobufc,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.str`-I${nix.sel(gst_all_1, "gst-plugins-base", "dev")}/include/gstreamer-1.0`),
       })),
       preConfigure: "patchShebangs ./build-aux/meson/postinstall.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.gnome.org/GNOME/gnome-network-displays",
         description: "Miracast implementation for GNOME",
         maintainers: nix.thunk(() => (() => {

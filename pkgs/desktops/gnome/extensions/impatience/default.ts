@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-shell-extension-impatience",
       version: "0.5.3-unstable-2026-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timbertson",
           repo: "gnome-shell-impatience",
           rev: "f3f145d33d88a46abcfd77f84665bc64b8c0e01c",
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake schemas\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/gnome-shell/extensions\ncp -r impatience \"$out/share/gnome-shell/extensions/impatience@gfxmonk.net\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionUuid: "impatience@gfxmonk.net",
         extensionPortalSlug: "impatience",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Speed up builtin gnome-shell animations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {

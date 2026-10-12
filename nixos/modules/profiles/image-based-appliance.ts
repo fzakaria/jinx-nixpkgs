@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const modulesPath = nix.arg($, "modulesPath");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/minimal.nix`)]),
-    nix: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+    nix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
     system: nix.thunk(() => ({
-      __proto__: pos$3,
-      switch: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+      [nix.POS]: pos$3,
+      switch: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
     })),
-    users: nix.thunk(() => ({ __proto__: pos$4, mutableUsers: false })),
+    users: nix.thunk(() => ({ [nix.POS]: pos$4, mutableUsers: false })),
     boot: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       initrd: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         systemd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       useNetworkd: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
     })),
   };

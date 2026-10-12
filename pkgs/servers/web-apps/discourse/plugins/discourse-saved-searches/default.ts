@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "discourse-saved-searches",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "discourse",
           repo: "discourse-saved-searches",
           rev: "a930ddee76321bb929989a2edbabb799199f1445",
           sha256: "sha256-etcN88cIgaVvVAtE+z3zNacpNpwCp+cn2lE1DzeICyk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/discourse/discourse-saved-searches",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Allow users to save searches and be notified of new results",

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vaporizer2",
       version: "3.5.0-unstable-2024-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VASTDynamics",
           repo: "Vaporizer2",
           rev: "1c56c4be304255f1c397dad725ea784f15a55ef5",
@@ -63,13 +63,13 @@ ln -s ${nix.sel(finalAttrs, "passthru", "clapJuceExtensions")} clap-juce-extensi
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "USE_SYSTEM_JUCE", "ON")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         clapJuceExtensions: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "free-audio",
             repo: "clap-juce-extensions",
             rev: "645ed2fd0949d36639e3d63333f26136df6df769",
@@ -78,7 +78,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "clapJuceExtensions")} clap-juce-extensi
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wavetable synthesizer",
         longDescription: "Hybrid wavetable additive / subtractive VST / AU / AAX synthesizer / sampler workstation plugin\n",
         homepage: "https://www.vast-dynamics.com/?q=Vaporizer2",

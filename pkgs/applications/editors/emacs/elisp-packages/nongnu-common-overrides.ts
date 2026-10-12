@@ -9,7 +9,7 @@ export default (pkgs) => (lib) => (self) => (super$) => (() => {
   const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")), pkgs, lib));
   const addPackageRequires = nix.thunk(() => nix.attr(from, "addPackageRequires"));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "haskell-tng-mode": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "haskell-tng-mode")), nix.thunk(() => (() => {
         const w = nix.withScope(self, null);
         return [
@@ -21,7 +21,7 @@ export default (pkgs) => (lib) => (self) => (super$) => (() => {
         ];
       })()))),
     jabber: nix.thunk(() => nix.app(nix.sel(super$, "jabber", "overrideAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "mbedtls"))])),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
         postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "pushd $out/share/emacs/site-lisp/elpa/jabber-*/src\nmake CC=$CC\nrm -r $out/share/emacs/site-lisp/elpa/jabber-*/src\npopd\n")),

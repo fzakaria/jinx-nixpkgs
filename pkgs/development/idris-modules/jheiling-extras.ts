@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extras",
       version: "2018-03-06",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jheiling",
           repo: "idris-extras",
           rev: "20e79087043ddb00301cdc3036964a2b1c5b1c5f",
           sha256: "0j34a7vawrkc7nkwwnv6lsjjdcr00d85csjw06nnbh8rj4vj5ps0",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Some useful functions for Idris",
         homepage: "https://github.com/jheiling/idris-extras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -27,7 +27,7 @@ substituteInPlace pyproject.toml \\
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ua_parser, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -36,7 +36,7 @@ substituteInPlace pyproject.toml \\
       };
       })());
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

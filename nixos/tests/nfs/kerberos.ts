@@ -41,48 +41,48 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     const security = nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       krb5: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$5,
-          domain_realm: nix.thunk(() => ({ __proto__: pos$1, "nfs.test": "NFS.TEST" })),
-          libdefaults: nix.thunk(() => ({ __proto__: pos$2, default_realm: "NFS.TEST" })),
+          [nix.POS]: pos$5,
+          domain_realm: nix.thunk(() => ({ [nix.POS]: pos$1, "nfs.test": "NFS.TEST" })),
+          libdefaults: nix.thunk(() => ({ [nix.POS]: pos$2, default_realm: "NFS.TEST" })),
           realms: nix.thunk(() => ({
-            __proto__: pos$4,
-            "NFS.TEST": nix.thunk(() => ({ __proto__: pos$3, admin_server: "server.nfs.test", kdc: "server.nfs.test" })),
+            [nix.POS]: pos$4,
+            "NFS.TEST": nix.thunk(() => ({ [nix.POS]: pos$3, admin_server: "server.nfs.test", kdc: "server.nfs.test" })),
           })),
         })),
       })),
     }));
     const hosts = "192.168.1.1 client.nfs.test\n192.168.1.2 server.nfs.test\n";
     const users = nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       users: nix.thunk(() => ({
-        __proto__: pos$9,
-        alice: nix.thunk(() => ({ __proto__: pos$8, isNormalUser: true, name: "alice", uid: 1000n })),
+        [nix.POS]: pos$9,
+        alice: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true, name: "alice", uid: 1000n })),
       })),
     }));
     return {
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       name: "nfsv4-with-kerberos",
       nodes: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             security: security,
             users: users,
-            networking: nix.thunk(() => ({ __proto__: pos$11, extraHosts: hosts, domain: "nfs.test", hostName: "client" })),
+            networking: nix.thunk(() => ({ [nix.POS]: pos$11, extraHosts: hosts, domain: "nfs.test", hostName: "client" })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               fileSystems: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "/data": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   device: "server.nfs.test:/",
                   fsType: "nfs",
                   options: nix.thunk(() => ["nfsvers=4", "sec=krb5p", "noauto"]),
@@ -95,44 +95,44 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$3);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             security: security,
             users: users,
             networking: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               extraHosts: hosts,
               domain: "nfs.test",
               hostName: "server",
               firewall: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 allowedTCPPorts: nix.thunk(() => [111n, 2049n, 88n, 749n]),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               kerberos_server: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 enable: true,
                 realms: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "NFS.TEST": nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     acl: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$18, access: "all", principal: "admin/admin" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$18, access: "all", principal: "admin/admin" })),
                     ]),
                   })),
                 })),
               })),
               nfs: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 server: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   enable: true,
                   createMountPoints: true,
                   exports: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     "/data": nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       "*": nix.thunk(() => ["rw", "no_root_squash", "fsid=0", "sec=krb5p"]),
                     })),
                   })),
@@ -144,7 +144,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
       })),
       testScript: "server.succeed(\"mkdir -p /data/alice\")\nserver.succeed(\"chown alice:users /data/alice\")\n\n# set up kerberos database\nserver.succeed(\n    \"kdb5_util create -s -r NFS.TEST -P master_key\",\n    \"systemctl restart kadmind.service kdc.service\",\n)\nserver.wait_for_unit(\"kadmind.service\")\nserver.wait_for_unit(\"kdc.service\")\n\n# create principals\nserver.succeed(\n    \"kadmin.local add_principal -randkey nfs/server.nfs.test\",\n    \"kadmin.local add_principal -randkey nfs/client.nfs.test\",\n    \"kadmin.local add_principal -pw admin_pw admin/admin\",\n    \"kadmin.local add_principal -pw alice_pw alice\",\n)\n\n# add principals to server keytab\nserver.succeed(\"kadmin.local ktadd nfs/server.nfs.test\")\nserver.succeed(\"systemctl start rpc-gssd.service rpc-svcgssd.service\")\nserver.wait_for_unit(\"rpc-gssd.service\")\nserver.wait_for_unit(\"rpc-svcgssd.service\")\n\nclient.systemctl(\"start network-online.target\")\nclient.wait_for_unit(\"network-online.target\")\n\n# add principals to client keytab\nclient.succeed(\"echo admin_pw | kadmin -p admin/admin ktadd nfs/client.nfs.test\")\nclient.succeed(\"systemctl start rpc-gssd.service\")\nclient.wait_for_unit(\"rpc-gssd.service\")\n\nwith subtest(\"nfs share mounts\"):\n    client.succeed(\"systemctl restart data.mount\")\n    client.wait_for_unit(\"data.mount\")\n\nwith subtest(\"permissions on nfs share are enforced\"):\n    client.fail(\"su alice -c 'ls /data'\")\n    client.succeed(\"su alice -c 'echo alice_pw | kinit'\")\n    client.succeed(\"su alice -c 'ls /data'\")\n\n    client.fail(\"su alice -c 'echo bla >> /data/foo'\")\n    client.succeed(\"su alice -c 'echo bla >> /data/alice/foo'\")\n    server.succeed(\"test -e /data/alice/foo\")\n\nwith subtest(\"uids/gids are mapped correctly on nfs share\"):\n    ids = client.succeed(\"stat -c '%U %G' /data/alice\").split()\n    expected = [\"alice\", \"users\"]\n    assert ids == expected, f\"ids incorrect: got {ids} expected {expected}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dblsaiko"))]),
       })),
     };

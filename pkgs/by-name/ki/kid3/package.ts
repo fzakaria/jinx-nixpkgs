@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6, "wrapQtAppsHook"));
   const apps = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withCLI, nix.thunk(() => ["CLI"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withKDE, nix.thunk(() => ["KDE"])), nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => ["Qt"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kid3",
       version: "3.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kid3/${nix.sel(finalAttrs, "version")}/kid3-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Agw1fHTDnJMUNbSedAkyjQt/baVJG1jC9zLtcjbqmkU=",
         })))),
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_MP4V2", true)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DOCBOOKDIR: nix.thunk(() => nix.str`${docbook_xsl}/xml/xsl/docbook/`),
         LANG: "C.UTF-8",
         NIX_LDFLAGS: "-lm -lpthread",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://kid3.kde.org/",
         description: "Simple and powerful audio tag editor",
         longDescription: "If you want to easily tag multiple MP3, Ogg/Vorbis, FLAC, MPC, MP4/AAC,\nMP2, Opus, Speex, TrueAudio, WavPack, WMA, WAV and AIFF files (e.g. full\nalbums) without typing the same information again and again and have\ncontrol over both ID3v1 and ID3v2 tags, then Kid3 is the program you are\nlooking for.\n\nWith Kid3 you can:\n- Edit ID3v1.1 tags;\n- Edit all ID3v2.3 and ID3v2.4 frames;\n- Convert between ID3v1.1, ID3v2.3 and ID3v2.4 tags\n- Edit tags in MP3, Ogg/Vorbis, FLAC, MPC, MP4/AAC, MP2, Opus, Speex,\n  TrueAudio, WavPack, WMA, WAV, AIFF files and tracker modules (MOD, S3M,\n  IT, XM);\n- Edit tags of multiple files, e.g. the artist, album, year and genre of\n  all files of an album typically have the same values and can be set\n  together;\n- Generate tags from filenames;\n- Generate tags from the contents of tag fields;\n- Generate filenames from tags;\n- Rename and create directories from tags;\n- Generate playlist files;\n- Automatically convert upper and lower case and replace strings;\n- Import from gnudb.org, TrackType.org, MusicBrainz, Discogs, Amazon and\n  other sources of album data;\n- Export tags as CSV, HTML, playlists, Kover XML and in other formats;\n- Edit synchronized lyrics and event timing codes, import and export\n  LRC files.\n",

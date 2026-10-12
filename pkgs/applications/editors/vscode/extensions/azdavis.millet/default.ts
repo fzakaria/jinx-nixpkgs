@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const millet = nix.arg($, "millet");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "Millet",
         publisher: "azdavis",
         version: "0.15.2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."millet.server.path".default = "${millet}/bin/millet-ls"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard ML support for VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=azdavis.millet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

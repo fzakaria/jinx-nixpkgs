@@ -87,48 +87,48 @@ export default nix.lambda((args) => (() => {
       const levels = nix.thunk(() => ["ignore", "warn", "error"]);
       const lessThan = (a) => (b) => (nix.asBool(nix.eq(a, "error")) ? false : (nix.asBool(nix.eq(a, "warn")) ? nix.eq(b, "error") : !nix.eq(b, "ignore")));
       const max_1 = (a) => (b) => (nix.asBool(nix.app(lessThan, a, b)) ? nix.force(b) : nix.force(a));
-      return { __proto__: pos$1, levels, lessThan, max: max_1 };
+      return { [nix.POS]: pos$1, levels, lessThan, max: max_1 };
     })());
     const kinds = nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainerless: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         manualAllowed: false,
         isUnique: false,
         nixpkgsInternalUseAllowed: true,
         automatic: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           condition: (config) => (attrs) => (nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.selOr(attrs, () => [], "meta", "maintainers"), [])) && nix.asBool(nix.eq(nix.selOr(attrs, () => [], "meta", "teams"), [])))) && nix.asBool(!nix.asBool(nix.has(attrs, "outputHash"))))) && nix.asBool(nix.has(attrs, "meta", "description"))),
           value: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: "This package has no declared maintainer, i.e. an empty `meta.maintainers` and `meta.teams` attribute.",
           })),
         })),
       })),
       broken: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         manualAllowed: true,
         isUnique: false,
         nixpkgsInternalUseAllowed: true,
         automatic: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           condition: (config) => (() => {
             const allowBroken = nix.thunk(() => (nix.asBool(nix.sel(config, "allowBroken")) || nix.asBool(nix.eq(nix.builtins.getEnv("NIXPKGS_ALLOW_BROKEN"), "1"))));
             const allowBrokenPredicate = nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2605n)), "config.allowBrokenPredicate is deprecated, use config.problems.handlers.myPackage.broken = \"warn\" for individual packages instead.", nix.thunk(() => nix.sel(config, "allowBrokenPredicate"))));
             return (nix.asBool(allowBroken) ? (attrs) => false : (nix.asBool(nix.has(config, "allowBrokenPredicate")) ? (attrs) => (nix.asBool((nix.asBool(nix.has(attrs, "meta", "broken")) && nix.asBool(nix.sel(attrs, "meta", "broken")))) && nix.asBool(!nix.asBool(nix.app(allowBrokenPredicate, attrs)))) : (attrs) => (nix.asBool(nix.has(attrs, "meta", "broken")) && nix.asBool(nix.sel(attrs, "meta", "broken")))));
           })(),
-          value: nix.thunk(() => ({ __proto__: pos$5, message: "This package is broken." })),
+          value: nix.thunk(() => ({ [nix.POS]: pos$5, message: "This package is broken." })),
         })),
       })),
       removal: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         manualAllowed: true,
         isUnique: true,
         nixpkgsInternalUseAllowed: false,
         automatic: null,
       })),
       deprecated: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         manualAllowed: true,
         isUnique: false,
         nixpkgsInternalUseAllowed: false,
@@ -138,16 +138,16 @@ export default nix.lambda((args) => (() => {
     const manualKinds = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(value, "manualAllowed"), kinds));
     const uniqueKinds = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(value, "isUnique"), kinds));
     const disallowNixpkgsInternalUseKinds = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.asBool(nix.sel(value, "nixpkgsInternalUseAllowed")), kinds));
-    const automaticProblems = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.update(nix.sel(value, "automatic"), { __proto__: pos$11, kindName: name }), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.eq(nix.sel(value, "automatic"), null), kinds))));
+    const automaticProblems = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.update(nix.sel(value, "automatic"), { [nix.POS]: pos$11, kindName: name }), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.eq(nix.sel(value, "automatic"), null), kinds))));
     const genAutomaticProblems = (config) => (attrs) => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((problem) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(problem, "kindName")), nix.thunk(() => nix.sel(problem, "value"))), nix.thunk(() => nix.app(filter, (problem) => nix.app(nix.sel(problem, "condition"), config, attrs), automaticProblems)))));
     const configOptions = nix.thunk(() => (() => {
       const types = nix.thunk(() => nix.sel(lib, "types"));
       const handlerType = nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => nix.sel(handlers, "levels"))));
       const problemKindType = nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => nix.app(attrNames, kinds))));
       return {
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         handlers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), handlerType)));
@@ -156,48 +156,48 @@ export default nix.lambda((args) => (() => {
             description: "Specify how to handle packages with problems.\nEach key has the format `packageName.problemName`, each value is one of \"error\", \"warn\" or \"ignore\".\n\nThis option takes precedence over anything in `problems.matchers`.\n\nPackage names are taken from `lib.getName`, which looks at the `pname` first and falls back to extracting the \"pname\" part from the `name` attribute.\n\nSee [Installing packages with problems](https://nixos.org/manual/nixpkgs/stable/#sec-ignore-problems) in the NixOS manual.\n",
           })))),
         matchers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const config = nix.arg($_1, "config");
                   return {
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     options: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           description: "Match problems of packages with this name",
                           default: null,
                         })))),
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           description: "Match problems with this problem name",
                           default: null,
                         })))),
                       kind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), problemKindType)),
                           description: "Match problems of this problem kind",
                           default: null,
                         })))),
                       handler: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: handlerType,
                           description: "Specify the handler for matched problems",
                         })))),
                       assertions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "anything")))),
                           default: [],
                           internal: true,
                         })))),
                     })),
                     config: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       assertions: nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "package"), null)) && nix.asBool(!nix.eq(nix.sel(config, "name"), null)))), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           assertion: false,
                           message: nix.thunk(() => nix.str`There is a problems.matchers with \`package = "${nix.sel(config, "package")}"\` and \`name = "${nix.sel(config, "name")}". Use the following instead:
   problems.handlers.${nix.app(escapeNixIdentifier, nix.thunk(() => nix.sel(config, "package")))}.${nix.app(escapeNixIdentifier, nix.thunk(() => nix.sel(config, "name")))} = "${nix.sel(config, "handler")}";
@@ -209,14 +209,14 @@ export default nix.lambda((args) => (() => {
             default: [],
             description: "A more powerful and less ergonomic version of `problems.handlers`.\nEach value is a matcher, that may match onto certain properties of a problem and specify a handler for them.\n\nIf multiple matchers match a problem, the handler with the highest severity (error > warn > ignore) will be used.\nValues in `problems.handlers` always take precedence over matchers.\n\nAny matchers must not contain both a `package` and `name` field, for this should be handled by using `problems.handlers` instead.\n",
             example: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$22, kind: "maintainerless", handler: "warn" })),
-              nix.thunk(() => ({ __proto__: pos$23, package: "myPackageICareAbout", handler: "error" })),
+              nix.thunk(() => ({ [nix.POS]: pos$22, kind: "maintainerless", handler: "warn" })),
+              nix.thunk(() => ({ [nix.POS]: pos$23, package: "myPackageICareAbout", handler: "error" })),
             ]),
           })))),
       };
     })());
     const problemsType = nix.thunk(() => (() => {
-      const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")), nix.thunk(() => ({ __proto__: pos$26, lib: lib }))));
+      const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")), nix.thunk(() => ({ [nix.POS]: pos$26, lib: lib }))));
       const str = nix.thunk(() => nix.attr(types, "str"));
       const listOf = nix.thunk(() => nix.attr(types, "listOf"));
       const attrsOf = nix.thunk(() => nix.attr(types, "attrsOf"));
@@ -224,14 +224,14 @@ export default nix.lambda((args) => (() => {
       const enum$ = nix.thunk(() => nix.attr(types, "enum"));
       const kindType = nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.app(attrNames, kinds))));
       const subRecord = nix.thunk(() => nix.app(record, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           kind: kindType,
           message: str,
           urls: nix.thunk(() => nix.app(listOf, str)),
         }))));
       const simpleType = nix.thunk(() => nix.app(attrsOf, subRecord));
       return {
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: "problems",
         verify: (v) => (nix.asBool(nix.eq(v, {})) || nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(simpleType, "verify"), v)) && nix.asBool(nix.app(all, (problem) => nix.has(problem, "message"), nix.thunk(() => nix.app(attrValues, v)))))) && nix.asBool((() => {
           const kindGroups = nix.thunk(() => nix.app(groupBy, (kind) => nix.force(kind), nix.thunk(() => nix.app(mapAttrsToList, (name) => (problem) => nix.selOr(problem, () => nix.force(name), "kind"), v))));
@@ -239,7 +239,7 @@ export default nix.lambda((args) => (() => {
         })())))),
         errors: (ctx) => (v) => (() => {
           const kindGroups = nix.thunk(() => nix.app(groupBy, (attrs) => nix.sel(attrs, "kind"), nix.thunk(() => nix.app(mapAttrsToList, (name) => (problem) => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 name: name,
                 explicit: nix.thunk(() => nix.has(problem, "kind")),
                 kind: nix.thunk(() => nix.selOr(problem, () => nix.force(name), "kind")),
@@ -249,8 +249,8 @@ export default nix.lambda((args) => (() => {
       };
     })());
     const genHandlerSwitch = (config) => (() => {
-      const constraints = nix.thunk(() => nix.concat(nix.builtins.map((m) => nix.update(m, { __proto__: pos$30, priority: 0n }), nix.thunk(() => nix.sel(config, "problems", "matchers"))), nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (package$) => (forPackage) => nix.app(mapAttrsToList, (name) => (handler) => ({
-              __proto__: pos$31,
+      const constraints = nix.thunk(() => nix.concat(nix.builtins.map((m) => nix.update(m, { [nix.POS]: pos$30, priority: 0n }), nix.thunk(() => nix.sel(config, "problems", "matchers"))), nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (package$) => (forPackage) => nix.app(mapAttrsToList, (name) => (handler) => ({
+              [nix.POS]: pos$31,
               package: package$,
               name: name,
               handler: handler,
@@ -258,15 +258,15 @@ export default nix.lambda((args) => (() => {
               priority: 1n,
             }), forPackage), nix.thunk(() => nix.sel(config, "problems", "handlers")))))));
       const definedConstraints = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((ident) => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             name: nix.thunk(() => nix.str`${ident}s`),
             value: nix.thunk(() => nix.app(unique, nix.thunk(() => nix.app(concatMap, (constraint) => nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(constraint, nix.key(nix.force(ident))), null)) && nix.asBool(!nix.eq(nix.sel(constraint, "handler"), "ignore")))), nix.thunk(() => [nix.thunk(() => nix.sel(constraint, nix.key(nix.force(ident))))])), constraints)))),
           }), identOrder))));
       const getHandler = (list) => nix.sel(nix.app(foldl$, (acc) => (el) => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           priority: nix.thunk(() => nix.app(max, nix.thunk(() => nix.sel(acc, "priority")), nix.thunk(() => nix.sel(el, "priority")))),
           handler: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(acc, "priority"), nix.sel(el, "priority"))) ? nix.app(nix.sel(handlers, "max"), nix.thunk(() => nix.sel(acc, "handler")), nix.thunk(() => nix.sel(el, "handler"))) : (nix.asBool(nix.gt(nix.sel(acc, "priority"), nix.sel(el, "priority"))) ? nix.sel(acc, "handler") : nix.sel(el, "handler")))),
-        }), nix.thunk(() => ({ __proto__: pos$34, priority: 0n, handler: "ignore" })), list), "handler");
+        }), nix.thunk(() => ({ [nix.POS]: pos$34, priority: 0n, handler: "ignore" })), list), "handler");
       const identOrder = nix.thunk(() => ["kind", "name", "package"]);
       const doLevel = (index) => (() => {
         const ident = nix.thunk(() => nix.app(elemAt, identOrder, index));
@@ -284,7 +284,7 @@ export default nix.lambda((args) => (() => {
       })();
       const switch$ = nix.thunk(() => nix.app(doLevel, 0n, constraints));
       return {
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         switch: switch$,
         definedConstraints: definedConstraints,
         handlerForProblem: nix.thunk(() => (nix.asBool(nix.app(isString, switch$)) ? (kind) => (name) => (pname) => nix.force(switch$) : (kind) => (() => {
@@ -302,7 +302,7 @@ export default nix.lambda((args) => (() => {
       const definedConstraints = nix.thunk(() => nix.attr(from_1, "definedConstraints"));
       const configuredProblems = nix.thunk(() => nix.concat(nix.sel(definedConstraints, "kinds"), nix.sel(definedConstraints, "names")));
       const automaticProblemsConfigCache = nix.thunk(() => nix.app(concatMap, (problem) => nix.app(optional, nix.thunk(() => nix.app(elem, nix.thunk(() => nix.sel(problem, "kindName")), configuredProblems)), nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             condition: nix.thunk(() => nix.app(nix.sel(problem, "condition"), config)),
             handler: nix.thunk(() => nix.app(handlerForProblem, nix.thunk(() => nix.sel(problem, "kindName")), nix.thunk(() => nix.sel(problem, "kindName")))),
           }))), automaticProblems));
@@ -314,14 +314,14 @@ export default nix.lambda((args) => (() => {
               const kind = nix.thunk(() => nix.selOr(problem_1, () => nix.force(name_1), "kind"));
               const handler = nix.thunk(() => nix.app(handlerForProblem, kind, name_1, pname));
               const problem_1 = problem;
-              return { __proto__: pos$37, name: name_1, kind, handler, problem: problem_1 };
+              return { [nix.POS]: pos$37, name: name_1, kind, handler, problem: problem_1 };
             })(), problems))));
         return nix.app(processProblems, pname, problemsToHandle);
       })());
     })();
     const completeMetaProblems = (config) => (() => {
       const automaticProblems_1 = nix.thunk(() => nix.app(genAutomaticProblems, config));
-      return (attrs) => nix.app(mapAttrs, (name) => (problem) => nix.update({ __proto__: pos$38, kind: name }, problem), nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "meta", "problems"), nix.app(automaticProblems_1, attrs))));
+      return (attrs) => nix.app(mapAttrs, (name) => (problem) => nix.update({ [nix.POS]: pos$38, kind: name }, problem), nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "meta", "problems"), nix.app(automaticProblems_1, attrs))));
     })();
     const processProblems = (pname) => (problemsToHandle) => (() => {
       const grouped = nix.thunk(() => nix.app(groupBy, (v) => nix.sel(v, "handler"), problemsToHandle));
@@ -329,13 +329,13 @@ export default nix.lambda((args) => (() => {
       const errorProblems = nix.thunk(() => nix.selOr(grouped, () => [], "error"));
       const fullMessage = (v) => nix.add(nix.str`${nix.sel(v, "name")}${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(v, "kind"), nix.sel(v, "name"))), nix.thunk(() => nix.str` (kind "${nix.sel(v, "kind")}")`))}: `, nix.str`${nix.sel(v, "problem", "message")}${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.selOr(v, () => [], "problem", "urls"), [])), nix.thunk(() => nix.str` (${nix.app(concatStringsSep, ", ", nix.thunk(() => nix.sel(v, "problem", "urls")))})`))}`);
       const warnings = nix.thunk(() => nix.builtins.map((x) => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           reason: "problem",
           msg: nix.thunk(() => nix.str`has the following problem: ${nix.app(fullMessage, x)}`),
           remediation: "See https://nixos.org/manual/nixpkgs/unstable#sec-problems",
         }), warnProblems));
       const error = nix.thunk(() => (nix.asBool(nix.eq(errorProblems, [])) ? null : {
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         reason: "problem",
         handleProblem: (handleEvalIssue) => nix.app(nix.sel(lib, "foldl'"), (result) => (problem) => nix.app(handleEvalIssue, nix.thunk(() => nix.sel(problem, "kind")), nix.thunk(() => nix.app(fullMessage, problem))), true, errorProblems),
         msg: nix.thunk(() => nix.str`has problems:
@@ -354,10 +354,10 @@ To allow evaluation regardless, use:
   }
 `),
       }));
-      return { __proto__: pos$41, error: error, warnings: warnings };
+      return { [nix.POS]: pos$41, error: error, warnings: warnings };
     })();
     return {
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       escapeNixIdentifier,
       any,
       listToAttrs,

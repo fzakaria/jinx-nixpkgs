@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(deltachat_rpc_server, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

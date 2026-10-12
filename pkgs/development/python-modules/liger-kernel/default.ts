@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const triton = nix.arg($, "triton");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liger-kernel",
       version: "0.8.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linkedin",
           repo: "liger-kernel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["liger_kernel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient Triton Kernels for LLM Training",
         homepage: "https://github.com/linkedin/liger-kernel",
         changelog: nix.thunk(() => nix.str`https://github.com/linkedin/liger-kernel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

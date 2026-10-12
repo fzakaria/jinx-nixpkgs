@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml_compiler = nix.arg($, "js_of_ocaml-compiler");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "js_of_ocaml-toplevel",
       src: nix.thunk(() => nix.attr(js_of_ocaml_compiler, "src")),
       version: nix.thunk(() => nix.attr(js_of_ocaml_compiler, "version")),
       buildInputs: nix.thunk(() => [ppxlib]),
       propagatedBuildInputs: nix.thunk(() => [js_of_ocaml_compiler]),
-      meta: nix.thunk(() => nix.update(nix.sel(js_of_ocaml_compiler, "meta"), { __proto__: pos$1, mainProgram: "jsoo_mktop" })),
+      meta: nix.thunk(() => nix.update(nix.sel(js_of_ocaml_compiler, "meta"), { [nix.POS]: pos$1, mainProgram: "jsoo_mktop" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=toplevel.ts.map

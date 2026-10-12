@@ -46,44 +46,44 @@ export DBUS_SESSION_BUS_ADDRESS="\${DBUS_SESSION_BUS_ADDRESS:-unix:path=$XDG_RUN
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${configFile} "$@"
 `)));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         moonshine: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Moonshine, a headless game streaming server for Moonlight clients")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "moonshine", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               example: "alice",
               description: "User under which to run Moonshine. The user must be declared separately\nin {option}`users.users`. Lingering is enabled automatically so the\nserver can run without an active login session.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(tomlFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  name = \"my-desktop\";\n  address = \"0.0.0.0\";\n  application = [\n    {\n      title = \"Steam\";\n      command = [ \"steam\" \"steam://open/bigpicture\" ];\n    }\n  ];\n  application_scanner = [\n    {\n      type = \"steam\";\n      library = \"$HOME/.local/share/Steam\";\n      command = [ \"steam\" \"-bigpicture\" \"steam://rungameid/{game_id}\" ];\n    }\n  ];\n}\n")),
               description: "Moonshine configuration, generated as a TOML file in the Nix store.\nSee <https://github.com/hgaiser/moonshine/blob/main/moonshine-core/src/config.rs>\nfor the available settings and <https://github.com/hgaiser/moonshine#configuration> for some examples.\n\nDo not leave this option empty: Moonshine's upstream defaults configure\nSteam at {file}`/usr/bin/steam`, which does not exist on NixOS. Define\nat least `application` with an executable in the Nix store, as shown in\nthe example. Setting `application` explicitly is sufficient;\n`application_scanners` may be omitted.\n\nMoonshine stores {file}`cert.pem` and {file}`key.pem` in\n{file}`~/.config/moonshine/`, and paired-client state in\n{file}`~/.local/share/moonshine/state.toml` for the configured user.\n\nSince the service runs without a desktop session, its notification\naction cannot reliably open the pairing page. Pair clients by visiting\n{file}`http://<host>:47989/pin` in a browser instead.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.steam ]")),
               description: "Packages added to the service's {env}`PATH` for applications launched\nby Moonshine.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$4, MESA_VK_DEVICE_SELECT: "10de:25a2!" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, MESA_VK_DEVICE_SELECT: "10de:25a2!" })),
               description: "Environment variables set for Moonshine.\n\n::: {.note}\nThose are not inherited by launched applications.\n:::\n",
             })))),
           firewallInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["tailscale0", "wg0"]),
@@ -93,33 +93,33 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfg, "user")), nix.thunk(() => nix.sel(config, "users", "users")))),
             message: nix.thunk(() => nix.str`services.moonshine.user refers to undeclared user '${nix.sel(cfg, "user")}'.`),
           })),
         ]),
-        boot: nix.thunk(() => ({ __proto__: pos$11, kernelModules: nix.thunk(() => ["uinput", "uhid"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$11, kernelModules: nix.thunk(() => ["uinput", "uhid"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           graphics: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             interfaces: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(cfg, "firewallInterfaces")), (_) => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 allowedTCPPorts: nix.thunk(() => [
                   nix.thunk(() => nix.selOr(cfg, () => 47984n, "settings", "webserver", "port_https")),
                   nix.thunk(() => nix.selOr(cfg, () => 47989n, "settings", "webserver", "port")),
@@ -135,25 +135,25 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           udev: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             moonshine: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Streaming server using the NVIDIA GameStream / Moonlight protocol.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "xwayland"))], nix.sel(cfg, "extraPackages"))),
-              environment: nix.thunk(() => nix.update({ __proto__: pos$20, MOONSHINE_LOG: "moonshine=info" }, nix.sel(cfg, "environment"))),
+              environment: nix.thunk(() => nix.update({ [nix.POS]: pos$20, MOONSHINE_LOG: "moonshine=info" }, nix.sel(cfg, "environment"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 SupplementaryGroups: nix.thunk(() => ["moonshine"]),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), runScript)),
@@ -171,10 +171,10 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
-          groups: nix.thunk(() => ({ __proto__: pos$25, moonshine: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$27,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$25, moonshine: nix.thunk(() => ({})) })),
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.sel(cfg, "user"), nix.thunk(() => ({ __proto__: pos$26, linger: true, extraGroups: nix.thunk(() => ["input"]) }))],
+            [nix.sel(cfg, "user"), nix.thunk(() => ({ [nix.POS]: pos$26, linger: true, extraGroups: nix.thunk(() => ["input"]) }))],
           ])),
         })),
       })))),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.eq(checksumType, "mhash")) || nix.asBool(!nix.eq(libmhash, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/netrw/package.nix:10:1");
   nix.assert_((!nix.asBool(nix.eq(checksumType, "openssl")) || nix.asBool(!nix.eq(openssl, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/netrw/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netrw",
       version: "1.3.2",
       configureFlags: nix.thunk(() => [
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(checksumType, "mhash")), libmhash), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(checksumType, "openssl")), openssl))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://mamuti.net/files/netrw/netrw-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             nix.thunk(() => nix.str`http://www.sourcefiles.org/Networking/FTP/Other/netrw-${nix.sel(finalAttrs, "version")}.tar.bz2`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           sha256: "1gnl80i5zkyj2lpnb4g0q0r5npba1x6cnafl2jb3i3pzlfz1bndr",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool for transporting data over the network",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://mamuti.net/netrw/index.en.html",

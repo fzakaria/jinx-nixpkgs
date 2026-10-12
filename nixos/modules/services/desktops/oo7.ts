@@ -33,57 +33,57 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "oo7"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         oo7: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "oo7, a service providing the Secret Service D-Bus API\n")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "oo7"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           dbus: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "oo7-server"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "oo7-server"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
-              "oo7-daemon": nix.thunk(() => ({ __proto__: pos$7, wantedBy: nix.thunk(() => ["default.target"]) })),
+              [nix.POS]: pos$8,
+              "oo7-daemon": nix.thunk(() => ({ [nix.POS]: pos$7, wantedBy: nix.thunk(() => ["default.target"]) })),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           pam: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               login: nix.thunk(() => ({
-                __proto__: pos$12,
-                oo7: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+                [nix.POS]: pos$12,
+                oo7: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
               })),
             })),
           })),
           wrappers: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "oo7-daemon": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               owner: "root",
               group: "root",
               capabilities: "cap_ipc_lock=ep",
@@ -92,9 +92,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           portal: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             extraPortals: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "oo7-portal"))]),
           })),
         })),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "oo7", "meta"));
       return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),

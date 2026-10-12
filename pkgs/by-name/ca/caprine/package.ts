@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const pname = "caprine";
       const version = "2.61.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sindresorhus",
           repo: "caprine",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hBGsqOqKMHNy2SNw1kHCQq1lPDd2S36L5pdKgD2O8FA=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const npmDepsHash = "sha256-FgOHuMMUX92VHF6hdznoi7bhO/27t6+l038kmpqjctQ=";
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const postBuild = nix.thunk(() => nix.str`electron_dist="$(mktemp -d)"
@@ -65,7 +65,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "caprine",
             exec: "caprine %U",
             icon: "caprine",
@@ -77,13 +77,13 @@ runHook postInstall
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/sindresorhus/caprine/releases/tag/${nix.sel(src, "rev")}`),
         description: "Elegant Facebook Messenger desktop app",
         homepage: "https://github.com/sindresorhus/caprine",
@@ -96,7 +96,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

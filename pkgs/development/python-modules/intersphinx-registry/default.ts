@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const types_requests = nix.arg($, "types-requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "intersphinx-registry",
       version: "0.2705.27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Quansight-labs",
           repo: "intersphinx_registry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "lookup")),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lookup: nix.thunk(() => [platformdirs, requests, requests_cache, sphinx]),
         tests: nix.thunk(() => [mypy, pytest, pytest_xdist, types_requests]),
       })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["intersphinx_registry"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility package that provides a default intersphinx mapping",
         homepage: "https://github.com/Quansight-labs/intersphinx_registry",
         mainProgram: "intersphinx-registry",

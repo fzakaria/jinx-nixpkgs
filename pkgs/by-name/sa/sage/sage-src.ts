@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       version: "10.9",
       pname: "sage-src",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sagemath",
           repo: "sage",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [bashNonInteractive]),
       "configure-src": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "mirror://sageupstream/configure/configure-8592858fd4c0eb936cfa9ebf704d165f6b857617.tar.gz",
           hash: "sha256-jakdc+4S/2uRooEaXMlNZpo01dVBumVp7HHHP4iZu0c=",
         })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/revert-blas-mesonification.patch"),
         nix.path(here, "./patches/link-ntl-directly-for-ntl-cython-extensions.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/sagemath/sage/commit/854ea0e546ee24ff09072ee77550b944b54f697c.patch?full_index=1",
             revert: true,
             hash: "sha256-j5evAmOtKEG4OVFb/w/SVY2vvP5BSkqHBDmnroh8XY0=",
@@ -66,19 +66,19 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/lower-sleep2-test-threshold.patch"),
         nix.path(here, "./patches/faster-flint.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "gap-element-stability.patch",
             url: "https://github.com/sagemath/sage/commit/11da83dd3666c2509288a828c54eb0273ee0cf50.patch?full_index=1",
             hash: "sha256-CjZyeUJVIevDaStLs+9BMT9JlISEdRw3TyTIso/BXi0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "gap-root-paths.patch",
             url: "https://github.com/sagemath/sage/commit/24c9605a770b2419cd401bf6c8780bb4be923244.patch?full_index=1",
             hash: "sha256-68w2HWLR6mb13BWi5Fb6SfPAqPbdJrns0l5T6SoMqNI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "relax-svd-doctest-tolerance.patch",
             url: "https://github.com/sagemath/sage/commit/8f7b7299c985f74179555b2c7a0dad8a741bf879.patch?full_index=1",
             hash: "sha256-9o0t5n3oWt/NmQTRlDsad5g8g7FhSYpAV62BMvY+w2Q=",
@@ -86,37 +86,37 @@ export default nix.lambda((args) => (() => {
       ]),
       packageUpgradePatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "flint-3.5.0-update.patch",
             url: "https://github.com/sagemath/sage/commit/f1cf1552c2c7636fa069fbc47c5bfc937753f7b2.patch?full_index=1",
             hash: "sha256-Z3SU6cSCnnaTZLcTh0LNb672HyBqhBd6+iYUEeK1cGQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "maxima-5.49-update.patch",
             url: "https://raw.githubusercontent.com/void-linux/void-packages/f8951eacbdc6538af3330d17d5587a0c208ab349/srcpkgs/sagemath/patches/40679-Update_to_maxima_5.49.patch",
             hash: "sha256-n6YSVNomLM7f5kRAGzhijag8QnlXxKJz9RHFLVtZpdk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "matplotlib-3.11-update.patch",
             url: "https://github.com/sagemath/sage/commit/3d3a04bbfb66dc1141afadbfaefa01dff8749761.patch?full_index=1",
             hash: "sha256-LlEblRKlPPmvSU26LmT6DTxFElvhA9SBkrU3xeIFZu4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "numpy-2.5-update.patch",
             url: "https://github.com/sagemath/sage/commit/3e709448881442c133047f2993db39d855c70bd8.patch?full_index=1",
             hash: "sha256-8vxIYG6yhCBML9vioJhAjBgTeCCGmdfk7qAtEEQnK/g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "scipy-1.18-update.patch",
             url: "https://github.com/sagemath/sage/commit/926f32aab22f81ddb9fda874a20fee84c7bfacc3.patch?full_index=1",
             hash: "sha256-EMn/fr5WlRQtFj5GHo02kczasmKaiqFfRSVZo2uvOPI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: "gfan-0_8-doctest-order.patch",
             url: "https://github.com/sagemath/sage/commit/7ee0e41ce28f2c52b2ecb1041032e605af4ce0cc.patch?full_index=1",
             hash: "sha256-msXUEbeO2rbP5m+EV8WmX6i8oQIfRLWEDGbIdz//lek=",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "reiser4progs";
       const version = "2.0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/reiser4/reiser4-utils/${pname}-${version}.tar.gz`),
           sha256: "sha256-DBR2C5h6ue4aqHmDG50jCLXe13DSWAYwfibrzTM+7Sw=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "substituteInPlace Makefile --replace ./run-ldconfig true\n";
       const postInstall = "mkdir -p $out/lib\ncp ./libmisc/.libs/libmisc.a $out/lib/libreiser4misc.a.la\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: version,
         homepage: "https://sourceforge.net/projects/reiser4/",
         description: "Reiser4 utilities",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

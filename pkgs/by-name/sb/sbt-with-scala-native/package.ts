@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(sbt, "overrideAttrs"), (previousAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [makeWrapper])),
       postFixup: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postFixup"), nix.str`for program in sbt sbtn; do
   [ -e "$out/bin/$program" ] || continue
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
 done
 `)),
       meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.add(nix.sel(previousAttrs, "meta", "description"), ", with the Scala Native toolchain")),
       })),
     }));

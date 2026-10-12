@@ -104,27 +104,27 @@ export default nix.lambda((args) => (() => {
   const nonEmptyStringType = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "str")), (value) => !nix.eq(value, "")));
   const relativeDirectoryType = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "str")), (value) => (nix.asBool(nix.eq(value, "")) || nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/", value))) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "/", value))))) && nix.asBool(nix.builtins.all((component) => !nix.asBool(nix.builtins.elem(component, nix.thunk(() => ["", ".", ".."]))), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", value)))))))));
   const fingerprintType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["path", "cmdline", "env", "tag"]))),
             description: "Portmaster fingerprint type.",
           })))),
         key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nonEmptyStringType)),
             default: null,
             description: "Environment variable or metadata tag key. Required for `env` and\n`tag` fingerprints, and invalid for `path` and `cmdline` fingerprints.\n",
           })))),
         operation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["equals", "prefix", "regex"]))),
             description: "Operation used to compare the fingerprint value.",
           })))),
         value: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nonEmptyStringType,
             description: "The value to match against.",
           })))),
@@ -134,36 +134,36 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         options: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "package")),
               description: "Package from which to derive a Portmaster fingerprint.",
             })))),
           type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["path", "cmdline"]))),
               default: "path",
               description: "Fingerprint type used for the generated package regular expression.",
             })))),
           storeNameRegex: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nonEmptyStringType)),
               default: null,
               example: "python3[0-9.]*-umu-launcher-unwrapped-[0-9.]+",
               description: "Regular expression matching the package output name after the Nix\nstore hash. `null` matches the package's `pname` with an optional\nversion suffix.\n",
             })))),
           directory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: relativeDirectoryType,
               default: "bin",
               example: "share/go/bin",
               description: "Relative directory below the package output that contains the\nexecutable. An empty string selects the output root.\n",
             })))),
           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nonEmptyStringType)),
               default: nix.thunk(() => nix.selOr(config_1, () => nix.selOr(config_1, () => nix.app(getName, nix.thunk(() => nix.sel(config_1, "package"))), "package", "pname"), "package", "meta", "mainProgram")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "package.meta.mainProgram or package.pname")),
@@ -171,19 +171,19 @@ export default nix.lambda((args) => (() => {
               description: "Executable name. Set this to `null` and disable `strictLast` to\nmatch every path below `directory`.\n",
             })))),
           wrapped: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Also match Nix wrapper names such as `.program-wrapped`.",
             })))),
           strictHead: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Anchor the generated regular expression at the beginning.",
             })))),
           strictLast: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Anchor the generated regular expression at the end.",
@@ -191,18 +191,18 @@ export default nix.lambda((args) => (() => {
         })),
       };
     })(), formals$2)));
-  const profilePackageType = nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "package")), (package$) => ({ __proto__: pos$17, package: package$ }), packageMatchType));
+  const profilePackageType = nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "package")), (package$) => ({ [nix.POS]: pos$17, package: package$ }), packageMatchType));
   const normalizeFingerprint = (fingerprint) => nix.update({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     type: nix.thunk(() => nix.attr(fingerprint, "type")),
     operation: nix.thunk(() => nix.attr(fingerprint, "operation")),
     value: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(fingerprint, "value")))),
-  }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.selOr(fingerprint, () => null, "key"), null)), nix.thunk(() => ({ __proto__: pos$19, key: nix.thunk(() => nix.attr(fingerprint, "key")) }))));
+  }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.selOr(fingerprint, () => null, "key"), null)), nix.thunk(() => ({ [nix.POS]: pos$19, key: nix.thunk(() => nix.attr(fingerprint, "key")) }))));
   const fingerprintIdentityKey = (fingerprint) => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.toJSON(fingerprint)));
   const normalizeFingerprints = (fingerprints) => nix.app(mapAttrsToList, (_) => (fingerprintsWithSameIdentity) => (() => {
       const fingerprint = nix.thunk(() => nix.builtins.head(fingerprintsWithSameIdentity));
       return nix.update(fingerprint, {
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         value: nix.thunk(() => nix.builtins["foldl'"]((value) => (duplicate) => nix.app(nix.sel(lib, "addContextFrom"), nix.thunk(() => nix.sel(duplicate, "value")), value), nix.thunk(() => nix.sel(fingerprint, "value")), nix.thunk(() => nix.builtins.tail(fingerprintsWithSameIdentity)))),
       });
     })(), nix.thunk(() => nix.builtins.groupBy(fingerprintIdentityKey, nix.thunk(() => nix.builtins.map(normalizeFingerprint, fingerprints)))));
@@ -222,7 +222,7 @@ export default nix.lambda((args) => (() => {
       ]));
   })();
   const mkPackageFingerprint = (packageMatch) => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     type: nix.thunk(() => nix.attr(packageMatch, "type")),
     operation: "regex",
     value: nix.thunk(() => nix.app(mkPackageRegex, packageMatch)),
@@ -243,7 +243,7 @@ export default nix.lambda((args) => (() => {
   const profilesEnabled = nix.thunk(() => !nix.eq(nix.sel(cfg, "profiles"), {}));
   const shouldGenerateManagedConfig = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(configSettings, {})) || nix.asBool(hasExternalConfigInputs))) || nix.asBool(profilesEnabled)));
   const managedConfigSettings = nix.thunk(() => nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(shouldGenerateManagedConfig) && nix.asBool(!nix.asBool(nix.builtins.hasAttr("core/devMode", nix.thunk(() => nix.sel(cfg, "settings"))))))), nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       "core/devMode": nix.thunk(() => nix.sel(cfg, "settings", "devmode")),
     }))), configSettings));
   const generatedManagedConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "portmaster-config.json", managedConfigSettings));
@@ -265,7 +265,7 @@ export default nix.lambda((args) => (() => {
     "cap_bpf",
     "cap_perfmon",
   ]);
-  const tmpfileDir = nix.thunk(() => ({ __proto__: pos$23, mode: "0755", user: "root", group: "root" }));
+  const tmpfileDir = nix.thunk(() => ({ [nix.POS]: pos$23, mode: "0755", user: "root", group: "root" }));
   const tmpfileDirectories = nix.thunk(() => [stateDir, logsDir, configDir]);
   const mkProfileResolution = (logicalName) => (profileCfg) => (() => {
     const rawFingerprints = nix.thunk(() => nix.concat(nix.builtins.map(mkPackageFingerprint, nix.thunk(() => nix.sel(profileCfg, "packages"))), nix.sel(profileCfg, "fingerprints")));
@@ -274,7 +274,7 @@ export default nix.lambda((args) => (() => {
     const fingerprintErrors = nix.thunk(() => nix.builtins.filter((error_1) => !nix.eq(error_1, null), nix.thunk(() => nix.builtins.map(fingerprintError, fingerprints))));
     const error = nix.thunk(() => (nix.asBool(nix.eq(rawFingerprints, [])) ? "one of `packages` or `fingerprints` must be non-empty" : (nix.asBool(!nix.eq(packageErrors, [])) ? nix.builtins.head(packageErrors) : (nix.asBool(!nix.eq(fingerprintErrors, [])) ? nix.builtins.head(fingerprintErrors) : null))));
     return {
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       logicalName: logicalName,
       error: error,
       fingerprints: fingerprints,
@@ -285,7 +285,7 @@ export default nix.lambda((args) => (() => {
   const profileResolutions = nix.thunk(() => nix.app(mapAttrs, mkProfileResolution, nix.thunk(() => nix.sel(cfg, "profiles"))));
   const profileErrors = nix.thunk(() => nix.builtins.filter((error) => !nix.eq(error, null), nix.thunk(() => nix.app(mapAttrsToList, (logicalName) => (resolution) => (nix.asBool(!nix.eq(nix.sel(resolution, "error"), null)) ? nix.str`\`${logicalName}\`: ${nix.sel(resolution, "error")}` : null), profileResolutions))));
   const mkProfilePayload = (profileCfg) => ({
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     type: "profile",
     source: "local",
     name: nix.thunk(() => nix.attr(profileCfg, "name")),
@@ -293,7 +293,7 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => nix.sel(profileCfg, "settings")),
   });
   const profileIdentityEntries = nix.thunk(() => nix.builtins.filter((entry) => !nix.eq(entry, null), nix.thunk(() => nix.app(mapAttrsToList, (logicalName) => (resolution) => (nix.asBool(nix.eq(nix.sel(resolution, "error"), null)) ? {
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         logicalName: logicalName,
         normalizedFingerprints: nix.thunk(() => nix.sel(resolution, "fingerprints")),
         identityKey: nix.thunk(() => nix.app(fingerprintIdentityKey, nix.thunk(() => nix.sel(resolution, "fingerprints")))),
@@ -306,7 +306,7 @@ export default nix.lambda((args) => (() => {
     return nix.str`profiles ${nix.app(concatStringsSep, ", ", profileNames)} normalize to the same fingerprints: ${nix.builtins.toJSON(normalizedFingerprints)}`;
   })();
   const profileExports = nix.thunk(() => nix.app(mapAttrsToList, (logicalName) => (resolution) => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       logicalName: logicalName,
       path: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), nix.thunk(() => nix.str`portmaster-profile-${nix.app(sanitizeDerivationName, logicalName)}.json`), nix.thunk(() => nix.app(mkProfilePayload, resolution)))),
     }), profileResolutions));
@@ -382,31 +382,31 @@ ${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "install")} -m 0
 ${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "chmod")} 0600 ${nix.app(escapeShellArg, runtimeConfigManagedMarkerPath)}
 `)));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     options: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       services: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         portmaster: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Portmaster application firewall")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "portmaster", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(types, "externalPath")),
               default: "/var/lib/portmaster",
               example: "/persist/portmaster",
               description: "Directory used for Portmaster's mutable state, configuration, and logs.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     devmode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Enable development mode, which relaxes local API authentication\nfor debugging and browser access to 127.0.0.1:817. The packaged\ndesktop client does not require this option.\n",
@@ -414,59 +414,59 @@ ${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "chmod")} 0600 $
                   })),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$32, "core/log/level": "warning" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$32, "core/log/level": "warning" })),
               description: "Global Portmaster settings for runtime {file}`config.json`.\nPer-application profiles are managed by {option}`profiles`.\n\nMerge order is recursive and later inputs win: this option,\n{option}`settingsFile`, then {option}`secretsFile`.\n\nWhen declarative configuration is active, the module owns runtime\n{file}`config.json`; global changes made only through the UI are not\npreserved across service starts.\n\nDo not put secrets here; values are stored in the Nix store. Use\n{option}`secretsFile` instead.\n\nUpstream currently documents the available keys in\n[basic_config.go](https://github.com/safing/portmaster/blob/v2.2.1/base/config/basic_config.go#L10-L96).\n",
             })))),
           settingsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "externalPath")))),
               default: null,
               example: "/run/secrets/portmaster-settings.json",
               description: "Additional global settings JSON file merged after {option}`settings`.\nOverlapping keys override values from that option.\n",
             })))),
           secretsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "externalPath")))),
               default: null,
               example: "/run/secrets/portmaster-secrets.json",
               description: "Sensitive global settings JSON file merged last into runtime\n{file}`config.json`, keeping secret values out of the Nix store.\n",
             })))),
           profilePrefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               example: "[NixOS] ",
               description: "Prefix added to the display name of every declarative profile.",
             })))),
           profiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$3);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       options: nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nonEmptyStringType,
                             default: name,
                             description: "Human-readable Portmaster profile name.",
                           })))),
                         packages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), profilePackageType)),
                             default: [],
                             example: nix.thunk(() => nix.app(literalExpression, "[\n  pkgs.firefox\n  {\n    package = pkgs.go;\n    directory = \"share/go/bin\";\n  }\n]\n")),
                             description: "Packages from which to derive Portmaster fingerprints.\n\nA package can be specified directly for the default matching\nbehavior, or as an attribute set to customize its generated\nfingerprint. Package-derived regular expressions do not include\na specific store hash or package version and also match\nNix-generated `.program-wrapped` executables by default.\n",
                           })))),
                         fingerprints: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$40,
+                            [nix.POS]: pos$40,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), fingerprintType)),
                             default: [],
                             example: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$39,
+                                [nix.POS]: pos$39,
                                 type: "env",
                                 key: "CHROME_DESKTOP",
                                 operation: "equals",
@@ -476,16 +476,16 @@ ${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "chmod")} 0600 $
                             description: "Additional Portmaster fingerprints for this profile. These are\nmerged with fingerprints generated from `packages`.\n\nPortmaster fingerprints are ORed, not ANDed, so broad\nfingerprints can match unrelated applications.\n",
                           })))),
                         settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$41,
+                                [nix.POS]: pos$41,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({})),
                               })))),
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => ({
-                              __proto__: pos$43,
-                              filter: nix.thunk(() => ({ __proto__: pos$42, defaultAction: "permit" })),
+                              [nix.POS]: pos$43,
+                              filter: nix.thunk(() => ({ [nix.POS]: pos$42, defaultAction: "permit" })),
                             })),
                             description: "Per-application Portmaster settings for this profile, using the\nupstream nested per-app configuration shape such as\n`history.enable`, `filter.defaultAction`, or `spn.use`.\nGlobal-only settings are rejected by Portmaster during sync.\n\nDo not put secrets here; generated profile payloads are stored in\nthe Nix store.\n",
                           })))),
@@ -497,7 +497,7 @@ ${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "chmod")} 0600 $
               description: "Declarative per-application profiles keyed by logical name.\n\nProfiles are imported through Portmaster's profile import API with\n`allowReplace`. Package-derived regular expressions remain stable across\npackage updates. At least one entry in `packages` or `fingerprints` is\nrequired. Changing a profile's normalized\nfingerprints creates a different Portmaster identity and can leave the\nprevious imported profile behind. Removing a declaration does not delete\na previously imported profile.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--print-stack-on-exit"]),
@@ -507,31 +507,31 @@ ${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "chmod")} 0600 $
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         assertions: nix.thunk(() => nix.app(optional, profilesEnabled, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(profileErrors, [])) && nix.asBool(nix.eq(profileIdentityCollisions, [])))),
             message: nix.thunk(() => nix.str`services.portmaster.profiles must be valid and have unique normalized fingerprints; ${nix.app(concatStringsSep, "; ", nix.thunk(() => nix.concat(profileErrors, nix.builtins.map(formatProfileIdentityCollision, profileIdentityCollisions))))}
 `),
           })))),
         environment: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$54, kernelModules: nix.thunk(() => ["nfnetlink_queue"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$54, kernelModules: nix.thunk(() => ["nfnetlink_queue"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             settings: nix.thunk(() => ({
-              __proto__: pos$56,
-              "10-portmaster": nix.thunk(() => nix.app(genAttrs, tmpfileDirectories, (_) => ({ __proto__: pos$55, d: tmpfileDir }))),
+              [nix.POS]: pos$56,
+              "10-portmaster": nix.thunk(() => nix.app(genAttrs, tmpfileDirectories, (_) => ({ [nix.POS]: pos$55, d: tmpfileDir }))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             portmaster: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               description: "Portmaster by Safing",
               documentation: nix.thunk(() => ["https://safing.io", "https://docs.safing.io"]),
               before: nix.thunk(() => ["nss-lookup.target", "network.target", "shutdown.target"]),
@@ -555,7 +555,7 @@ fi
                 ]);
                 const devmodeArgs = nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(!nix.asBool(managesConfig)) && nix.asBool(nix.sel(cfg, "settings", "devmode")))), "--devmode"));
                 return {
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat(baseArgs, nix.concat(devmodeArgs, nix.sel(cfg, "extraArgs")))))),
                   ExecStopPost: nix.thunk(() => nix.str`-${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "portmaster-core")} recover-iptables`),
@@ -588,13 +588,13 @@ fi
               })()),
             })),
             "portmaster-managed-profiles": nix.thunk(() => nix.app(mkIf, profilesEnabled, nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 description: "Sync declarative Portmaster managed profiles",
                 wantedBy: nix.thunk(() => ["portmaster.service"]),
                 after: nix.thunk(() => ["portmaster.service"]),
                 partOf: nix.thunk(() => ["portmaster.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`managed-profiles-api-key:${profilesApiKeyPath}`)]),
@@ -726,7 +726,7 @@ ${nix.app(concatMapStringsSep, "\n", (profile) => nix.str`import_profile ${nix.a
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       doc: nix.path(here, "./portmaster.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

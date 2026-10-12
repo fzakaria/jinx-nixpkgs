@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kasasa",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KelvinNovais",
           repo: "Kasasa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook4, desktop_file_utils, gettext]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libportal_gtk4]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snip and pin useful information to a small floating window",
         longDescription: "Clip and pin what's important to a small floating window, so you don't\nhave to switch between windows or workspaces repeatedly. The window can\nbecome miniaturized or have its opacity reduced, in order to not block\nwhat's behind it.\n",
         homepage: "https://github.com/KelvinNovais/Kasasa",

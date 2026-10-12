@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const initialMarkStackSize = nix.argOr($, "initialMarkStackSize", () => null);
   const nixVersions = nix.arg($, "nixVersions");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "boehm-gc",
       version: "8.2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdwgc",
           repo: "bdwgc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           latest: nix.thunk(() => nix.attr(nixVersions, "latest")),
           stable: nix.thunk(() => nix.attr(nixVersions, "stable")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://hboehm.info/gc/",
         description: "Boehm-Demers-Weiser conservative garbage collector for C and C++",
         longDescription: "The Boehm-Demers-Weiser conservative garbage collector can be used as a\ngarbage collecting replacement for C malloc or C++ new.  It allows you\nto allocate memory basically as you normally would, without explicitly\ndeallocating memory that is no longer useful.  The collector\nautomatically recycles memory when it determines that it can no longer\nbe otherwise accessed.\n\nThe collector is also used by a number of programming language\nimplementations that either use C as intermediate code, want to\nfacilitate easier interoperation with C libraries, or just prefer the\nsimple collector interface.\n\nAlternatively, the garbage collector may be used as a leak detector for\nC or C++ programs, though that is not its primary goal.\n",
@@ -71,8 +71,8 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "boehm-demers-weiser", nix.thunk(() => nix.sel(finalAttrs, "version"))), { __proto__: pos$4, product: "garbage_collector" })),
+          [nix.POS]: pos$5,
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "boehm-demers-weiser", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$4, product: "garbage_collector" })),
         })),
       })),
     }));

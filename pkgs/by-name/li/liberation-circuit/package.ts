@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liberation-circuit",
       version: "1.3-unstable-2022-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linleyh",
           repo: "liberation-circuit",
           rev: "19e3363547793e931fd9419b61ebc2cd8e257714",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/opt\ncp -r bin $out/opt/liberation-circuit\nchmod +x $out/opt/liberation-circuit/launcher.sh\n\ninstall -D linux-packaging/liberation-circuit.desktop $out/share/applications/liberation-circuit.desktop\ninstall -D linux-packaging/liberation-circuit.appdata.xml $out/share/metainfo/liberation-circuit.appdata.xml\ninstall -D linux-packaging/icon-16px.png $out/share/icons/hicolor/16x16/apps/liberation-circuit.png\ninstall -D linux-packaging/icon-32px.png $out/share/icons/hicolor/32x32/apps/liberation-circuit.png\ninstall -D linux-packaging/icon-256px.png $out/share/icons/hicolor/256x256/apps/liberation-circuit.png\n\nrunHook postInstall\n",
       postFixup: "makeWrapper $out/opt/liberation-circuit/launcher.sh $out/bin/liberation-circuit \\\n  \"${gappsWrapperArgs[@]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time strategy game with programmable units",
         mainProgram: "liberation-circuit",
         longDescription: "Escape from a hostile computer system!\nHarvest data to create an armada of battle-processes to aid your escape!\nTake command directly and play the game as an RTS, or use the game's built-in\neditor and compiler to write your own unit AI in a simplified version of C.\n",

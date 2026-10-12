@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const tokenspeed_triton = nix.arg($, "tokenspeed-triton");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tokenspeed-mla",
       version: "0.2.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightseekorg",
           repo: "tokenspeed",
           rev: "bf2e923bb422bbc3777fec11ad6b388d2576fde1",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tokenspeed_mla"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Speed-of-light TokenSpeed MLA kernels for Blackwell SM100 and SM103",
         homepage: "https://github.com/lightseekorg/tokenspeed/tree/main/tokenspeed-mla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

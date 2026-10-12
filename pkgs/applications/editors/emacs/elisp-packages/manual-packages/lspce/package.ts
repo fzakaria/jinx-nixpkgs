@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const yasnippet = nix.arg($, "yasnippet");
   const lspce_module = nix.thunk(() => nix.app(callPackage, nix.path(here, "./module.nix"), nix.thunk(() => ({}))));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "lspce",
       version: nix.thunk(() => nix.attr(lspce_module, "version")),
       src: nix.thunk(() => nix.attr(lspce_module, "src")),
       meta: nix.thunk(() => nix.attr(lspce_module, "meta")),
       packageRequires: nix.thunk(() => [f, markdown_mode, yasnippet]),
       files: nix.thunk(() => nix.str`(:defaults "${nix.app(nix.sel(lib, "getLib"), lspce_module)}/lib/lspce-module.*")`),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, "lspce-module": lspce_module })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "lspce-module": lspce_module })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

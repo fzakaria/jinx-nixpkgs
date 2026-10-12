@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "augustus-go",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "praetorian-inc",
           repo: "augustus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s"]),
       preCheck: "# We don't care about Benchmarks\nrm -r benchmarks\n# Assert mismatch\nsubstituteInPlace internal/detectors/packagehallucination/rubygems_test.go \\\n  --replace-fail \"TestRubyGems_Detect_FakeGem\" \"Skip_TestRubyGems_Detect_FakeGem\"\n# Tests require network access\nrm  internal/generators/bedrock/bedrock_test.go\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LLM security testing framework for detecting prompt injection, jailbreaks and adversarial attacks",
         homepage: "https://github.com/praetorian-inc/augustus",
         changelog: nix.thunk(() => nix.str`https://github.com/praetorian-inc/augustus/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

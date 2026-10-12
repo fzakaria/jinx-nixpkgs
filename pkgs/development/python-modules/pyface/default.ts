@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const wxpython = nix.arg($, "wxpython");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyface",
       version: "8.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "enthought",
           repo: "pyface",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [traits]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pillow: nix.thunk(() => [pillow]),
         pyqt5: nix.thunk(() => [pygments, pyqt5]),
         pyqt6: nix.thunk(() => [pygments, pyqt6]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pyface"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Traits-capable windowing framework",
         homepage: "https://github.com/enthought/pyface",
         changelog: nix.thunk(() => nix.str`https://github.com/enthought/pyface/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

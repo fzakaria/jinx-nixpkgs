@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const dieHook = nix.arg($, "dieHook");
   const link_grammar = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "link-grammar",
       version: "5.13.0",
       outputs: nix.thunk(() => ["bin", "out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gnucash.org/link-grammar/downloads/${nix.sel(finalAttrs, "version")}/link-grammar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-5qDJBd+xdfNZefA1CgzzxnyzimgZ2fK3PGhN/nKpQd8=",
         })))),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export DYLD_LIBRARY_PATH=$(pwd)/link-grammar/.libs\n")),
       doCheck: nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          quick: nix.thunk(() => nix.app(runCommand, "link-grammar-quick-test", nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [link_grammar, dieHook]) })), "echo \"Furiously sleep ideas green colorless.\" | link-parser en | grep \"No complete linkages found.\" || die \"Grammaticaly invalid sentence was parsed.\"\necho \"Colorless green ideas sleep furiously.\" | link-parser en | grep \"Found .* linkages.\" || die \"Grammaticaly valid sentence was not parsed.\"\ntouch $out\n")),
+          [nix.POS]: pos$3,
+          quick: nix.thunk(() => nix.app(runCommand, "link-grammar-quick-test", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [link_grammar, dieHook]) })), "echo \"Furiously sleep ideas green colorless.\" | link-parser en | grep \"No complete linkages found.\" || die \"Grammaticaly invalid sentence was parsed.\"\necho \"Colorless green ideas sleep furiously.\" | link-parser en | grep \"Found .* linkages.\" || die \"Grammaticaly valid sentence was not parsed.\"\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Grammar Checking library",
         homepage: "https://opencog.github.io/link-grammar-website/",
         changelog: nix.thunk(() => nix.str`https://github.com/opencog/link-grammar/blob/link-grammar-${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const port = 1080n;
   const uploadDir = "/var/lib/tusd/data";
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "tusd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -33,20 +33,20 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       client: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
         })),
       })),
       server: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           tusd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             port: port,
             uploadDir: uploadDir,

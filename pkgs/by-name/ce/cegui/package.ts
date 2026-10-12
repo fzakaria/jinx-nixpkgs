@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cegui",
       version: "0-unstable-2025-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paroj",
           repo: "cegui",
           rev: "a630bcc3f1e4b66edcf0fd00edcb9b29ad8446a3",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DCMAKE_OSX_ARCHITECTURES=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, branch: "v0", hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "v0", hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/paroj/cegui",
         description: "C++ Library for creating GUIs",

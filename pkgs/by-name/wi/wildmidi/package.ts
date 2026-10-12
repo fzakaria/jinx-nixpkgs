@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wildmidi";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mindwerks",
           repo: "wildmidi",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => [nix.thunk(() => nix.str`-DWILDMIDI_CFG=${defaultCfgPath}`)]);
       const postInstall = nix.thunk(() => (() => {
         const defaultCfg = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "wildmidi.cfg",
             text: nix.thunk(() => nix.str`dir ${freepats}
 source ${freepats}/freepats.cfg
@@ -45,7 +45,7 @@ ln -s ${defaultCfg} ${defaultCfgPath}
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software MIDI player and library",
         mainProgram: "wildmidi",
         longDescription: "WildMIDI is a simple software midi player which has a core softsynth\nlibrary that can be use with other applications.\n",
@@ -55,7 +55,7 @@ ln -s ${defaultCfg} ${defaultCfgPath}
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

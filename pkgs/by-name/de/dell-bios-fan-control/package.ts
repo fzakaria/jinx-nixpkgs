@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dell-bios-fan-control",
       version: "0-unstable-2022-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TomFreudenberg",
           repo: "dell-bios-fan-control",
           rev: "27006106595bccd6c309da4d1499f93d38903f9a",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify"]),
       installPhase: "runHook preInstall\n\ninstallBin dell-bios-fan-control\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool to enable or disable the SMBIOS (auto) fan control on various Dell laptops",
         homepage: "https://github.com/TomFreudenberg/dell-bios-fan-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

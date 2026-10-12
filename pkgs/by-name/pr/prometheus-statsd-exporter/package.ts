@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "statsd_exporter";
       const version = "0.31.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus",
           repo: "statsd_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })());
       const vendorHash = "sha256-iMRqQ77KbOaxSneMRm1ihcqqprxcw/azeyOOyR4Fu0Q=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Receives StatsD-style metrics and exports them to Prometheus",
         mainProgram: "statsd_exporter",
         homepage: "https://github.com/prometheus/statsd_exporter",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "benley"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, ldflags, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, ldflags, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

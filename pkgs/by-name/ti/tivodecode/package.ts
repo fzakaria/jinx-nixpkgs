@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "0.2pre4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tivodecode",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tivodecode/tivodecode/${version}/tivodecode-${version}.tar.gz`),
           sha256: "1pww5r2iygscqn20a1cz9xbfh18p84a6a5ifg4h5nvyn9b63k23q",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts a .TiVo file (produced by TiVoToGo) to a normal MPEG file",
         homepage: "https://tivodecode.sourceforge.net",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

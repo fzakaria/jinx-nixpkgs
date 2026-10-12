@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
   const systemArgs = nix.thunk(() => nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, "x86_64-linux")))),
       nativeBuildInputs: nix.thunk(() => [asar, dpkg, makeWrapper]),
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -61,7 +61,7 @@ substituteInPlace $out/share/applications/breitbandmessung.desktop \\
 `),
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, "aarch64-darwin")))),
       nativeBuildInputs: nix.thunk(() => [undmg]),
       sourceRoot: "Breitbandmessung.app",
@@ -70,23 +70,23 @@ substituteInPlace $out/share/applications/breitbandmessung.desktop \\
       installPhase: "runHook preInstall\nmkdir -p $out/Applications/Breitbandmessung.app\ncp -R . $out/Applications/Breitbandmessung.app\nrunHook postInstall\n",
     })),
   }, () => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`))),
     }), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "breitbandmessung",
       version: nix.thunk(() => nix.attr(sources, "version")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           breitbandmessung: nix.thunk(() => nix.attr(nixosTests, "breitbandmessung")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Broadband internet speed test app from the german Bundesnetzagentur",
         homepage: "https://www.breitbandmessung.de",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

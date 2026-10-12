@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tw",
       version: "0-unstable-2026-06-23",
       minimalOCamlVersion: "5.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samoht",
           repo: "tw",
           rev: "594d35df46ec2afcfe97632923331badf2940b93",
@@ -38,7 +38,7 @@ dune install --prefix=$bin --libdir=$lib/lib/ocaml/${nix.sel(ocaml, "version")}/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type-safe Tailwind CSS v4 in OCaml",
         homepage: "https://github.com/samoht/tw",
         mainProgram: "tw",

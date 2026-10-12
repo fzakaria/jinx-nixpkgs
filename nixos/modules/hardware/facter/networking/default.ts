@@ -27,33 +27,33 @@ export default nix.lambda((args) => (() => {
   const detectedInterfaceNames = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (iface) => nix.selOr(iface, () => [], "unix_device_names"), physicalInterfaces));
   const interfaceNames = nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "dhcp", "interfaces"));
   const perInterfaceConfig = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (name) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         value: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           useDHCP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
       }), interfaceNames))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [nix.path(here, "./initrd.nix"), nix.path(here, "./intel.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         facter: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           detected: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             dhcp: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Facter dhcp module"), {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "network_interface"))), 0n)),
                 defaultText: "hardware dependent",
               })),
               interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: detectedInterfaceNames,
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "automatically detected from facter report")),
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "facter", "enable")) && nix.asBool(nix.sel(config, "hardware", "facter", "detected", "dhcp", "enable")))), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           useDHCP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           interfaces: perInterfaceConfig,
         })),

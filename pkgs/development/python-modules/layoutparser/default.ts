@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pname = "layoutparser";
   const version = "0.3.4";
   const optional_dependencies = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     ocr: nix.thunk(() => [google_cloud_vision, pytesseract]),
     gcv: nix.thunk(() => [google_cloud_vision]),
     tesseract: nix.thunk(() => [pytesseract]),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
     effdet: nix.thunk(() => [torch, torchvision, effdet]),
   }));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Layout-Parser",
           repo: "layout-parser",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ]),
       "optional-dependencies": optional_dependencies,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unified toolkit for Deep Learning Based Document Image Analysis",
         homepage: "https://github.com/Layout-Parser/layout-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/Layout-Parser/layout-parser/releases/tag/v${version}`),

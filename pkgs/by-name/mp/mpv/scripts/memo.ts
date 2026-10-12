@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "memo",
       version: "0-unstable-2024-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "po5",
           repo: "memo",
           rev: "e0624611438b2e19ef4b7e24f53461c9d0304b07",
           hash: "sha256-6+fI3TdBDfKcozxLcsykavgi17ywqRRhyiMK7PgAzGs=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Recent files menu for mpv",
         homepage: "https://github.com/po5/memo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tinycmmc = nix.arg($, "tinycmmc");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logmich",
       version: "0.1.0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "logmich",
           repo: "logmich",
           rev: "c73c7b7d6cd050d1bcc42d522ce80a2eb86da5c8",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tinycmmc]),
       propagatedBuildInputs: nix.thunk(() => [fmt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A trivial logging library",
         homepage: "https://github.com/logmich/logmich",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

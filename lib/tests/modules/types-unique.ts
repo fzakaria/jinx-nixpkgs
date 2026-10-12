@@ -25,37 +25,37 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       examples: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "unique"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 message: "We require a single definition, because seeing the whole value at once helps us maintain critical invariants of our system.",
               })), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))))),
         })))),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$6,
-        examples: nix.thunk(() => ({ __proto__: pos$5, merged: nix.thunk(() => ({ __proto__: pos$4, b: "bee" })) })),
+        [nix.POS]: pos$6,
+        examples: nix.thunk(() => ({ [nix.POS]: pos$5, merged: nix.thunk(() => ({ [nix.POS]: pos$4, b: "bee" })) })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         examples: nix.thunk(() => ({
-          __proto__: pos$8,
-          override: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ __proto__: pos$7, b: "bee" })))),
+          [nix.POS]: pos$8,
+          override: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$7, b: "bee" })))),
         })),
       })),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       examples: nix.thunk(() => ({
-        __proto__: pos$13,
-        merged: nix.thunk(() => ({ __proto__: pos$10, a: "aye" })),
-        override: nix.thunk(() => ({ __proto__: pos$11, a: "aye" })),
-        badLazyType: nix.thunk(() => ({ __proto__: pos$12, a: true })),
+        [nix.POS]: pos$13,
+        merged: nix.thunk(() => ({ [nix.POS]: pos$10, a: "aye" })),
+        override: nix.thunk(() => ({ [nix.POS]: pos$11, a: "aye" })),
+        badLazyType: nix.thunk(() => ({ [nix.POS]: pos$12, a: true })),
       })),
     })),
   };

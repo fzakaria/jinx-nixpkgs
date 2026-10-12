@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       gst_libav,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gmrender-resurrect",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hzeller",
           repo: "gmrender-resurrect",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Resource efficient UPnP/DLNA renderer, optimal for Raspberry Pi, CuBox or a general MediaServer",
         mainProgram: "gmediarender",
         homepage: "https://github.com/hzeller/gmrender-resurrect",

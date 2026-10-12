@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rizin-sigdb";
       const version = "0-unstable-2023-08-23";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rizinorg",
           repo: "sigdb",
           rev: "4addbed50cd3b50eeef5a41d72533d079ebbfbf8",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "mkdir installdir\ncp -r elf pe installdir\n.scripts/verify-sigs-install.sh\n";
       const installPhase = "mkdir -p $out/share/rizin\nmv installdir $out/share/rizin/sigdb\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rizin FLIRT Signature Database",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "chayleaf"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, buildPhase, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildPhase, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=sigdb.ts.map

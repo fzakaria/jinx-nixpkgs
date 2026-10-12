@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeff-dh",
           repo: "SolidPython",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["solid2"]);
       const checkPhase = "runHook preCheck\npython $TMPDIR/source/tests/run_tests.py\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jeff-dh/SolidPython",
         description: "Python frontend for solid modelling that compiles to OpenSCAD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

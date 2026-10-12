@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtserialport = nix.arg($, "qtserialport");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtserialbus",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtserialport]),
     })));

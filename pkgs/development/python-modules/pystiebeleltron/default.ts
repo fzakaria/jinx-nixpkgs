@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pystiebeleltron",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThyMYthOS",
           repo: "python-stiebel-eltron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_mock]),
       pythonImportsCheck: nix.thunk(() => ["pystiebeleltron"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for interacting with the Stiebel Eltron ISG web gateway via Modbus",
         homepage: "https://github.com/ThyMYthOS/python-stiebel-eltron",
         changelog: nix.thunk(() => nix.str`https://github.com/ThyMYthOS/python-stiebel-eltron/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

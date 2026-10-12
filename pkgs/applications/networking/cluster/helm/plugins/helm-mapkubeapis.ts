@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-mapkubeapis";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helm",
           repo: "helm-mapkubeapis",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i '/^hooks:/,+2 d' plugin.yaml\n";
       const postInstall = "install -dm755 $out/helm-mapkubeapis\nmv $out/bin $out/helm-mapkubeapis/\ninstall -m644 -Dt $out/helm-mapkubeapis/config/ config/Map.yaml\ninstall -m644 -Dt $out/helm-mapkubeapis plugin.yaml\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helm plugin which maps deprecated or removed Kubernetes APIs in a release to supported APIs",
         homepage: "https://github.com/helm/helm-mapkubeapis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

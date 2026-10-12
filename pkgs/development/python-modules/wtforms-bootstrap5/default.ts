@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LaunchPlatform",
           repo: "wtforms-bootstrap5",
           rev: version,
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [wtforms]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, lxml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple library for rendering WTForms in HTML as Bootstrap 5 form controls",
         homepage: "https://github.com/LaunchPlatform/wtforms-bootstrap5",
         changelog: nix.thunk(() => nix.str`https://github.com/LaunchPlatform/wtforms-bootstrap5/releases/tag/${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

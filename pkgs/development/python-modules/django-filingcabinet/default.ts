@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
   const nh3 = nix.arg($, "nh3");
   const pnpm = pnpm_11;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "django-filingcabinet",
       version: "0.17-unstable-2026-05-07",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "okfde",
           repo: "django-filingcabinet",
           rev: "53fe999d9c984bed84bf0e76aca5d0dab9d2954b",
@@ -85,12 +85,12 @@ export default nix.lambda((args) => (() => {
         zipstream_ng,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tabledetection: nix.thunk(() => [camelot]),
         ocr: nix.thunk(() => [pytesseract]),
       })),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["filingcabinet"]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(playwright_driver, "browsers")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Django app that manages documents with pages, annotations and collections",
         homepage: "https://github.com/okfde/django-filingcabinet",
         changelog: nix.thunk(() => nix.str`https://github.com/feincms/django-cabinet/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ldid",
       version: "2.1.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.saurik.com/ldid.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RM5pU3mrgyvwNfWKNvCT3UYVGKtVhD7ifgp8fq9xXiM=",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       buildInputs: nix.thunk(() => [libplist, libxml2, openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypto", "-lplist-2.0"]))),
       })),
       buildPhase: "runHook preBuild\n\ncc -c -o lookup2.o lookup2.c -I.\nc++ -std=c++11 -o ldid lookup2.o ldid.cpp -I.\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 {,$out/bin/}ldid\nln -s $out/bin/ldid $out/bin/ldid2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Link Identity Editor",
         homepage: "https://cydia.saurik.com/info/ldid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

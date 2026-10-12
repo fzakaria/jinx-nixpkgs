@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hynek",
           repo: "argon2-cffi-bindings",
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libargon2]);
       const build_system = nix.thunk(() => [setuptools_scm, cffi]);
       const dependencies = nix.thunk(() => [cffi]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, ARGON2_CFFI_USE_SYSTEM: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ARGON2_CFFI_USE_SYSTEM: 1n }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["_argon2_cffi_bindings"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/hynek/argon2-cffi-bindings/releases/tag/${nix.sel(src, "tag")}`),
         description: "Low-level CFFI bindings for Argon2",
         homepage: "https://github.com/hynek/argon2-cffi-bindings",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

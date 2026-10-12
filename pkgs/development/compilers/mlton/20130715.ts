@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version_1 = version;
       const binSrc = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mlton/mlton/${version_1}/${pname}-${version_1}-1.x86-linux.tgz`),
           hash: "sha256-ktiWJ892DFbQ6XJ/MosAY0G/W+KD/H1hamJ2wm2Vss8=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mlton/mlton/${version_1}/${pname}-${version_1}-1.amd64-linux.tgz`),
           hash: "sha256-9vkSAJsJRrc6+I/18+cTtr5juHFpbiaXzPFWS1bn0Ds=",
         }))) : nix.builtins.throw("Architecture not supported"))));
       const codeSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mlton/mlton/${version_1}/${pname}-${version_1}.src.tgz`),
           hash: "sha256-IVhXrRHUT42Uwn9150AXqkSyyXAzBLzsnjjCBDMUPWw=",
         }))));
@@ -96,9 +96,9 @@ cp -r $(pwd)/install/${usr_prefix}/bin $out
 cp -r $(pwd)/install/${usr_prefix}/lib $out
 cp -r $(pwd)/install/${usr_prefix}/man $out
 `);
-      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib }))));
+      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         binSrc,

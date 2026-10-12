@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vim-vint",
       version: "0.3.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vimjas",
           repo: "vint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-A0yXDkB/b9kEEXSoLeqVdmdm4p2PYL2QHqbF4FgAn30=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-pkg-resources.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-pkg-resources.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       postPatch: "substituteInPlace \\\n  test/acceptance/test_cli.py \\\n  test/acceptance/test_cli_vital.py \\\n  --replace-fail \\\n    \"cmd = ['bin/vint'\" \\\n    \"cmd = ['$out/bin/vint'\"\n",
       "build-system": nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and Highly Extensible Vim script Language Lint implemented by Python",
         homepage: "https://github.com/Kuniwak/vint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

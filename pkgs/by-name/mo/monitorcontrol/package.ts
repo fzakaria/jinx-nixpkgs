@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "MonitorControl";
       const version = "4.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MonitorControl/${pname}/releases/download/v${version}/MonitorControl.${version}.dmg`),
           hash: "sha256-myx3adoU3FYYrs6LFRSiXtwSsoaujjQ/PYgAF/Xuk2g=",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const unpackCmd = "runHook preUnpack\nundmg $src\nrunHook postUnpack\n";
       const installPhase = "mkdir -p \"$out/Applications/MonitorControl.app\"\ncp -R . \"$out/Applications/MonitorControl.app\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MacOS system extension to control brightness and volume of external displays with native OSD",
         longDescription: "Controls your external display brightness and volume and shows native OSD. Use menulet sliders or the keyboard, including native Apple keys!",
         homepage: "https://github.com/MonitorControl/MonitorControl#readme",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

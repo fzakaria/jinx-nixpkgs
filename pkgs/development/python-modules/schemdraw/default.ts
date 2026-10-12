@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdelker",
           repo: "schemdraw",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pyparsing]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         matplotlib: nix.thunk(() => [matplotlib]),
         svgmath: nix.thunk(() => [latex2mathml, ziafont, ziamath]),
       }));
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--nbval-lax"]);
       const pythonImportsCheck = nix.thunk(() => ["schemdraw"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package for producing high-quality electrical circuit schematic diagrams",
         homepage: "https://schemdraw.readthedocs.io/en/latest/",
         changelog: "https://schemdraw.readthedocs.io/en/latest/changes.html",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pikopixel";
       const version = "1.0-b10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://twilightedge.com/downloads/PikoPixel.Sources.${version}.tar.gz`),
           sha256: "1b27npgsan2nx1p581b9q2krx4506yyd6s34r4sf1r9x9adshm77",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gnustep_back]);
       const preFixup = "mkdir -p $out/share/applications\nsed \\\n  -e \"s@^Exec=.*\\$@Exec=$out/bin/PikoPixel %F@\" \\\n  -e \"s@^Icon=.*/local@Icon=$out@\" \\\n  PikoPixel.app/Resources/PikoPixel.desktop > $out/share/applications/PikoPixel.desktop\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application for drawing and editing pixel-art images",
         mainProgram: "PikoPixel",
         homepage: "https://twilightedge.com/mac/pikopixel/",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

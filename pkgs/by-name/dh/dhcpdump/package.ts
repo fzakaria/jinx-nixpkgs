@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const yascreen = nix.arg($, "yascreen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dhcpdump",
       version: "2.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dhcpdump-org",
           repo: "dhcpdump",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpcap, yascreen]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 dhcpdump \"$out/bin/dhcpdump\"\ninstallManPage dhcpdump.8\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for visualization of DHCP packets as recorded and output by tcpdump to analyze DHCP server responses",
         homepage: "https://github.com/dhcpdump-org/dhcpdump",
         changelog: nix.thunk(() => nix.str`https://github.com/dhcpdump-org/dhcpdump/releases/tag/v${nix.sel(finalAttrs, "version")}`),

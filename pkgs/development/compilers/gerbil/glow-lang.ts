@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ];
     })());
     const pre_src = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "Glow-Lang",
       repo: "glow",
@@ -60,7 +60,7 @@ EOF
 chmod a+x $out/bin/glow
 `);
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Glow: language for safe Decentralized Applications (DApps)",
       homepage: "https://glow-lang.org",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -72,7 +72,7 @@ chmod a+x $out/bin/glow
       broken: true,
     }));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname,
       version,
       "git-version": git_version,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const jansson = nix.arg($, "jansson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xnbd",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/hirofuchi/xnbd/downloads/xnbd-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "00wkvsa0yaq4mabczcbfpj6rjvp02yahw8vdrq8hgb3wpm80x913",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, jansson]),
       prePatch: "rm -rf doc\nsubstituteInPlace configure.ac --replace \"doc/Makefile\" \"\"\nsubstituteInPlace Makefile.am --replace \"lib doc .\" \"lib .\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bitbucket.org/hirofuchi/xnbd",
         description: "Yet another NBD (Network Block Device) server program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

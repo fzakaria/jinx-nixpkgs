@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const pyparsing = nix.arg($, "pyparsing");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylibconfig2",
       version: "0.2.5",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "1iwm11v0ghv2pq2cyvly7gdwrhxsx6iwi581fz46l0snhgcd4sqq",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       propagatedBuildInputs: nix.thunk(() => [pyparsing]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/heinzK1X/pylibconfig2",
         description: "Pure python library for libconfig syntax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

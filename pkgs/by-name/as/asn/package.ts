@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nmap = nix.arg($, "nmap");
   const aha = nix.arg($, "aha");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asn",
       version: "0.83.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nitefood",
           repo: "asn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ wrapProgram $out/bin/asn \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, whois, bind, mtr, jq, ipcalc, grepcidr, nmap, aha]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OSINT command line tool for investigating network data",
         longDescription: "ASN / RPKI validity / BGP stats / IPv4v6 / Prefix / URL / ASPath / Organization /\nIP reputation / IP geolocation / IP fingerprinting / Network recon /\nlookup API server / Web traceroute server\n",
         homepage: "https://github.com/nitefood/asn",

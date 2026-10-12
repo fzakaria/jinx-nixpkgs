@@ -144,33 +144,33 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config "${configFile}" "$@"
 `)));
   const settings = nix.thunk(() => ({
-    __proto__: pos$20,
-    log: nix.thunk(() => ({ __proto__: pos$1, level: nix.thunk(() => nix.sel(cfg, "logLevel")) })),
+    [nix.POS]: pos$20,
+    log: nix.thunk(() => ({ [nix.POS]: pos$1, level: nix.thunk(() => nix.sel(cfg, "logLevel")) })),
     opentelemetry: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "openTelemetry", "enable")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enabled: true,
         "grpc-url": nix.thunk(() => nix.sel(cfg, "openTelemetry", "grpcURL")),
       })))),
-    prometheus: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "prometheus", "enable")), nix.thunk(() => ({ __proto__: pos$3, enabled: true })))),
+    prometheus: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "prometheus", "enable")), nix.thunk(() => ({ [nix.POS]: pos$3, enabled: true })))),
     analytics: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       reporting: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enabled: nix.thunk(() => nix.sel(cfg, "analytics", "reporting", "enable")),
         samples: nix.thunk(() => nix.sel(cfg, "analytics", "reporting", "samples")),
       })),
     })),
-    server: nix.thunk(() => ({ __proto__: pos$6, addr: nix.thunk(() => nix.sel(cfg, "server", "addr")) })),
+    server: nix.thunk(() => ({ [nix.POS]: pos$6, addr: nix.thunk(() => nix.sel(cfg, "server", "addr")) })),
     cache: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       "allow-delete-verb": nix.thunk(() => nix.sel(cfg, "cache", "allowDeleteVerb")),
       "allow-put-verb": nix.thunk(() => nix.sel(cfg, "cache", "allowPutVerb")),
       hostname: nix.thunk(() => nix.sel(cfg, "cache", "hostName")),
       "database-url": nix.thunk(() => nix.sel(cfg, "cache", "databaseURL")),
       database: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pool: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "max-open-conns": nix.thunk(() => nix.sel(cfg, "cache", "database", "pool", "maxOpenConns")),
           "max-idle-conns": nix.thunk(() => nix.sel(cfg, "cache", "database", "pool", "maxIdleConns")),
         })),
@@ -178,7 +178,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
       cdc: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfg, "cache", "cdc"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         enabled: nix.thunk(() => nix.attr(from, "enabled")),
         min: nix.thunk(() => nix.attr(from, "min")),
         avg: nix.thunk(() => nix.attr(from, "avg")),
@@ -187,44 +187,44 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
       })()),
       "max-size": nix.thunk(() => nix.sel(cfg, "cache", "maxSize")),
       lru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         schedule: nix.thunk(() => nix.sel(cfg, "cache", "lru", "schedule")),
         timezone: nix.thunk(() => nix.sel(cfg, "cache", "lru", "scheduleTimeZone")),
       })),
       "sign-narinfo": nix.thunk(() => nix.sel(cfg, "cache", "signNarinfo")),
       storage: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) ? {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         s3: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           bucket: nix.thunk(() => nix.sel(cfg, "cache", "storage", "s3", "bucket")),
           endpoint: nix.thunk(() => nix.sel(cfg, "cache", "storage", "s3", "endpoint")),
           region: nix.thunk(() => nix.sel(cfg, "cache", "storage", "s3", "region")),
           "force-path-style": nix.thunk(() => nix.sel(cfg, "cache", "storage", "s3", "forcePathStyle")),
         })),
       } : {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         local: nix.thunk(() => nix.sel(cfg, "cache", "storage", "local")),
       })),
       "temp-path": nix.thunk(() => nix.sel(cfg, "cache", "tempPath")),
       "netrc-file": nix.thunk(() => nix.sel(cfg, "netrcFile")),
       upstream: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         urls: nix.thunk(() => nix.sel(cfg, "cache", "upstream", "urls")),
         "public-keys": nix.thunk(() => nix.sel(cfg, "cache", "upstream", "publicKeys")),
         "dialer-timeout": nix.thunk(() => nix.sel(cfg, "cache", "upstream", "dialerTimeout")),
         "response-header-timeout": nix.thunk(() => nix.sel(cfg, "cache", "upstream", "responseHeaderTimeout")),
       })),
       lock: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         backend: nix.thunk(() => nix.sel(cfg, "cache", "lock", "backend")),
         redis: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "key-prefix": nix.thunk(() => nix.sel(cfg, "cache", "lock", "redisKeyPrefix")),
         })),
         "download-lock-ttl": nix.thunk(() => nix.sel(cfg, "cache", "lock", "downloadTTL")),
         "lru-lock-ttl": nix.thunk(() => nix.sel(cfg, "cache", "lock", "lruTTL")),
         retry: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "max-attempts": nix.thunk(() => nix.sel(cfg, "cache", "lock", "retry", "maxAttempts")),
           "initial-delay": nix.thunk(() => nix.sel(cfg, "cache", "lock", "retry", "initialDelay")),
           "max-delay": nix.thunk(() => nix.sel(cfg, "cache", "lock", "retry", "maxDelay")),
@@ -233,7 +233,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         "allow-degraded-mode": nix.thunk(() => nix.sel(cfg, "cache", "lock", "allowDegradedMode")),
       })),
       redis: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "redis"), null)), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           addrs: nix.thunk(() => nix.sel(cfg, "cache", "redis", "addresses")),
           db: nix.thunk(() => nix.sel(cfg, "cache", "redis", "database")),
           username: nix.thunk(() => nix.sel(cfg, "cache", "redis", "username")),
@@ -247,7 +247,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
   const dbPath = nix.thunk(() => (nix.asBool(isSqlite) ? nix.app(nix.sel(lib, "removePrefix"), "sqlite:", nix.thunk(() => nix.sel(cfg, "cache", "databaseURL"))) : null));
   const dbDir = nix.thunk(() => (nix.asBool(isSqlite) ? nix.builtins.dirOf(dbPath) : null));
   return {
-    __proto__: pos$122,
+    [nix.POS]: pos$122,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "ncps", "cache", "dataPath"]), nix.thunk(() => ["services", "ncps", "cache", "storage", "local"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "ncps", "upstream", "caches"]), nix.thunk(() => ["services", "ncps", "cache", "upstream", "urls"]))),
@@ -256,18 +256,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "ncps", "cache", "lock", "postgresKeyPrefix"]), "PostgreSQL lock backend was removed upstream")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$89,
+      [nix.POS]: pos$89,
       services: nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         ncps: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ncps: Nix binary cache proxy service implemented in Go")),
           analytics: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             reporting: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Enable reporting anonymous usage statistics (DB type, Lock type, Total Size) to the project maintainers.\n",
@@ -277,81 +277,81 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ncps", nix.thunk(() => ({})))),
           openTelemetry: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable OpenTelemetry logs, metrics, and tracing")),
             grpcURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Configure OpenTelemetry gRPC URL. Missing or \"https\" scheme enables\nsecure gRPC, \"insecure\" otherwise. Omit to emit telemetry to\nstdout.\n",
               })))),
           })),
           prometheus: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable Prometheus metrics endpoint at /metrics")),
           })),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), logLevels)),
               default: "info",
               description: "Set the level for logging. Refer to\n<https://pkg.go.dev/github.com/rs/zerolog#readme-leveled-logging> for\nmore information.\n",
             })))),
           cache: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             allowDeleteVerb: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether to allow the DELETE verb to delete narinfo and nar files from\nthe cache.\n")),
             allowPutVerb: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether to allow the PUT verb to push narinfo and nar files directly\nto the cache.\n")),
             cdc: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether to enable Content-Defined Chunking (CDC) for deduplication (experimental).\n")),
               min: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                   default: 16384n,
                   description: "The minimum chunk size for CDC in bytes.\n",
                 })))),
               avg: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                   default: 65536n,
                   description: "The average chunk size for CDC in bytes.\n",
                 })))),
               max: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                   default: 262144n,
                   description: "The maximum chunk size for CDC in bytes.\n",
                 })))),
             })),
             hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The hostname of the cache server. **This is used to generate the\nprivate key used for signing store paths (.narinfo)**\n",
               })))),
             databaseURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => nix.str`sqlite:${nix.sel(cfg, "cache", "storage", "local")}/db/db.sqlite`),
                 defaultText: "sqlite:/var/lib/ncps/db/db.sqlite",
                 description: "The URL of the database (currently only SQLite is supported)\n",
               })))),
             databaseURLFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "File containing the URL of the database.\n",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               pool: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 maxOpenConns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     type: nix.thunk(() => nix.sel(lib, "types", "int")),
                     default: 0n,
                     description: "Maximum number of open connections to the database (0 = use\ndatabase-specific defaults).\n",
                   })))),
                 maxIdleConns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     type: nix.thunk(() => nix.sel(lib, "types", "int")),
                     default: 0n,
                     description: "Maximum number of idle connections in the pool (0 = use\ndatabase-specific defaults).\n",
@@ -359,16 +359,16 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
               })),
             })),
             lru: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               schedule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   example: "0 2 * * *",
                   description: "The cron spec for cleaning the store to keep it under\nconfig.ncps.cache.maxSize. Refer to\nhttps://pkg.go.dev/github.com/robfig/cron/v3#hdr-Usage for\ndocumentation.\n",
                 })))),
               scheduleTimeZone: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "Local",
                   example: "America/Los_Angeles",
@@ -376,116 +376,116 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
                 })))),
             })),
             lock: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["local", "redis"]))),
                   default: "local",
                   description: "Lock backend to use: 'local' (single instance), 'redis'\n(distributed).\n",
                 })))),
               redisKeyPrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "ncps:lock:",
                   description: "Prefix for all Redis lock keys (only used when Redis is\nconfigured).\n",
                 })))),
               downloadTTL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "5m0s",
                   description: "TTL for download locks (per-hash locks).\n",
                 })))),
               lruTTL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "30m0s",
                   description: "TTL for LRU lock (global exclusive lock).\n",
                 })))),
               retry: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 maxAttempts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     type: nix.thunk(() => nix.sel(lib, "types", "int")),
                     default: 3n,
                     description: "Maximum number of retry attempts for distributed locks.\n",
                   })))),
                 initialDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     default: "100ms",
                     description: "Initial retry delay for distributed locks.\n",
                   })))),
                 maxDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     default: "2s",
                     description: "Maximum retry delay for distributed locks (exponential backoff\ncaps at this).\n",
                   })))),
                 jitter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     default: true,
                     description: "Enable jitter in retry delays to prevent thundering herd.\n",
                   })))),
               })),
               allowDegradedMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Allow falling back to local locks if Redis is unavailable (WARNING:\nbreaks HA guarantees).\n",
                 })))),
             })),
             maxSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "100G",
                 description: "The maximum size of the store. It can be given with units such as\n5K, 10G etc. Supported units: B, K, M, G, T.\n",
               })))),
             redis: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       options: nix.thunk(() => ({
-                        __proto__: pos$61,
+                        [nix.POS]: pos$61,
                         addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$54,
+                            [nix.POS]: pos$54,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             example: "[\"redis0:6379\" \"redis1:6379\"]\n",
                             description: "A list of host:port for the Redis servers that are part of a cluster.\nTo use a single Redis instance, just set this to its single address.\n",
                           })))),
                         database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$55,
+                            [nix.POS]: pos$55,
                             type: nix.thunk(() => nix.sel(lib, "types", "int")),
                             default: 0n,
                             description: "Redis database number (0-15)\n",
                           })))),
                         username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$56,
+                            [nix.POS]: pos$56,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "Redis username for authentication (for Redis ACL).\n",
                           })))),
                         password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "Redis password for authentication (for Redis ACL).\n",
                           })))),
                         passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$58,
+                            [nix.POS]: pos$58,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
                             description: "File containing the redis password for authentication (for Redis ACL).\n",
                           })))),
                         poolSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$59,
+                            [nix.POS]: pos$59,
                             type: nix.thunk(() => nix.sel(lib, "types", "int")),
                             default: 10n,
                             description: "Redis connection pool size.\n",
                           })))),
                         useTLS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$60,
+                            [nix.POS]: pos$60,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Use TLS for Redis connection.\n",
@@ -496,55 +496,55 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
                 description: "Configure Redis.\n",
               })))),
             secretKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to load the secretKey for signing narinfos. Leave this\nempty to automatically generate a private/public key.\n",
               })))),
             storage: nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               local: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: "/var/lib/ncps",
                   description: "The local directory for storing configuration and cached store\npaths. This is ignored if services.ncps.cache.storage.s3 is not\nnull.\n",
                 })))),
               s3: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         options: nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           bucket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$66,
+                              [nix.POS]: pos$66,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The name of the S3 bucket.\n",
                             })))),
                           endpoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$67,
+                              [nix.POS]: pos$67,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "S3-compatible endpoint URL with scheme.\n",
                               example: "https://s3.amazonaws.com",
                             })))),
                           forcePathStyle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$68,
+                              [nix.POS]: pos$68,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               default: false,
                               description: "Force path-style S3 addressing (bucket/key vs key.bucket).\n",
                             })))),
                           region: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$69,
+                              [nix.POS]: pos$69,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                               description: "The S3 region.\n",
                             })))),
                           accessKeyIdPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$70,
+                              [nix.POS]: pos$70,
                               type: nix.thunk(() => nix.sel(lib, "types", "path")),
                               description: "The path to a file containing only the access-key-id.\n",
                             })))),
                           secretAccessKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$71,
+                              [nix.POS]: pos$71,
                               type: nix.thunk(() => nix.sel(lib, "types", "path")),
                               description: "The path to a file containing only the secret-access-key.\n",
                             })))),
@@ -555,42 +555,42 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
                 })))),
             })),
             tempPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: "/tmp",
                 description: "The path to the temporary directory that is used by the cache to download NAR files\n",
               })))),
             signNarinfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
                 description: "Whether to sign narInfo files or passthru as-is from upstream\n",
               })))),
             upstream: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               dialerTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "Timeout for establishing TCP connections to upstream caches (e.g., 3s, 5s, 10s).\n",
                 })))),
               responseHeaderTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   example: "5s",
                   description: "Timeout for waiting for upstream server's response headers.\n",
                 })))),
               publicKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: [],
                   example: nix.thunk(() => ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="]),
                   description: "A list of public keys of upstream caches in the format\n`host[-[0-9]*]:public-key`. This flag is used to verify the\nsignatures of store paths downloaded from upstream caches.\n",
                 })))),
               urls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   example: nix.thunk(() => ["https://cache.nixos.org"]),
                   description: "A list of URLs of upstream binary caches.\n",
@@ -598,16 +598,16 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
             })),
           })),
           server: nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: ":8501",
                 description: "The address and port the server listens on.\n",
               })))),
           })),
           netrcFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/etc/nix/netrc",
@@ -617,66 +617,66 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "databaseURL"), null)), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "databaseURLFile"), null)))),
             message: "You must specify exactly one of config.ncps.cache.databaseURL or config.ncps.cache.databaseURLFile",
           })),
           nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "cache", "lru", "schedule"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "cache", "maxSize"), null)))),
             message: "You must specify config.ncps.cache.lru.schedule when config.ncps.cache.maxSize is set",
           })),
           nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "cache", "redis"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "cache", "redis", "password"), null)))) || nix.asBool(nix.eq(nix.sel(cfg, "cache", "redis", "passwordFile"), null)))),
             message: "You cannot specify both config.ncps.cache.redis.password and config.ncps.cache.redis.passwordFile",
           })),
           nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "cache", "lock", "backend"), "redis")) || nix.asBool(!nix.eq(nix.sel(cfg, "cache", "redis"), null)))),
             message: "You must specify config.ncps.cache.redis when config.ncps.cache.lock.backend is set to 'redis'",
           })),
           nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "cache", "redis"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "cache", "lock", "backend"), "redis")))),
             message: "You must set config.ncps.cache.lock.backend to 'redis' when config.ncps.cache.redis is set",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           users: nix.thunk(() => ({
-            __proto__: pos$96,
-            ncps: nix.thunk(() => ({ __proto__: pos$95, isSystemUser: true, group: "ncps" })),
+            [nix.POS]: pos$96,
+            ncps: nix.thunk(() => ({ [nix.POS]: pos$95, isSystemUser: true, group: "ncps" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$97, ncps: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$97, ncps: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$119,
+          [nix.POS]: pos$119,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             settings: nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               ncps: nix.thunk(() => (() => {
-                const perms = nix.thunk(() => ({ __proto__: pos$99, group: "ncps", mode: "0700", user: "ncps" }));
+                const perms = nix.thunk(() => ({ [nix.POS]: pos$99, group: "ncps", mode: "0700", user: "ncps" }));
                 return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "cache", "storage", "local"), "/var/lib/ncps")))), nix.thunk(() => nix.attrsDyn({}, [
-                        [nix.str`${nix.sel(cfg, "cache", "storage", "local")}`, nix.thunk(() => ({ __proto__: pos$100, d: perms }))],
+                        [nix.str`${nix.sel(cfg, "cache", "storage", "local")}`, nix.thunk(() => ({ [nix.POS]: pos$100, d: perms }))],
                       ])))),
-                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isSqlite, nix.thunk(() => nix.attrsDyn({}, [[nix.str`${dbDir}`, nix.thunk(() => ({ __proto__: pos$101, d: perms }))]])))),
+                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isSqlite, nix.thunk(() => nix.attrsDyn({}, [[nix.str`${dbDir}`, nix.thunk(() => ({ [nix.POS]: pos$101, d: perms }))]])))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "tempPath"), "/tmp")), nix.thunk(() => nix.attrsDyn({}, [
-                        [nix.str`${nix.sel(cfg, "cache", "tempPath")}`, nix.thunk(() => ({ __proto__: pos$102, d: perms }))],
+                        [nix.str`${nix.sel(cfg, "cache", "tempPath")}`, nix.thunk(() => ({ [nix.POS]: pos$102, d: perms }))],
                       ])))),
                   ]));
               })()),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             ncps: nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               description: "ncps binary cache proxy service",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -689,7 +689,7 @@ ${nix.sel(cfg, "package")}/bin/dbmate-ncps up
 `),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$105,
+                    [nix.POS]: pos$105,
                     ExecStart: nix.thunk(() => nix.str`${ncpsWrapper} serve`),
                     User: "ncps",
                     Group: "ncps",
@@ -697,37 +697,37 @@ ${nix.sel(cfg, "package")}/bin/dbmate-ncps up
                     RuntimeDirectory: "ncps",
                   })),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "secretKeyPath"), null)), nix.thunk(() => ({
-                      __proto__: pos$106,
+                      [nix.POS]: pos$106,
                       LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.str`secretKey:${nix.sel(cfg, "cache", "secretKeyPath")}`))),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)), nix.thunk(() => ({
-                      __proto__: pos$107,
+                      [nix.POS]: pos$107,
                       LoadCredential: nix.thunk(() => [
                         nix.thunk(() => nix.str`s3AccessKeyId:${nix.sel(cfg, "cache", "storage", "s3", "accessKeyIdPath")}`),
                         nix.thunk(() => nix.str`s3SecretAccessKey:${nix.sel(cfg, "cache", "storage", "s3", "secretAccessKeyPath")}`),
                       ]),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "cache", "redis"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "cache", "redis", "passwordFile"), null)))), nix.thunk(() => ({
-                      __proto__: pos$108,
+                      [nix.POS]: pos$108,
                       LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.str`redisPassword:${nix.sel(cfg, "cache", "redis", "passwordFile")}`))),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "databaseURLFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$109,
+                      [nix.POS]: pos$109,
                       LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.str`databaseURL:${nix.sel(cfg, "cache", "databaseURLFile")}`))),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "cache", "storage", "local"), "/var/lib/ncps")))), nix.thunk(() => ({
-                      __proto__: pos$110,
+                      [nix.POS]: pos$110,
                       ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "cache", "storage", "local"))]),
                     })))),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "cache", "storage", "local"), "/var/lib/ncps")))), nix.thunk(() => ({ __proto__: pos$111, StateDirectory: "ncps", StateDirectoryMode: "0700" })))),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) && nix.asBool(isSqlite))) && nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "/var/lib/ncps", dbDir)))), nix.thunk(() => ({ __proto__: pos$112, StateDirectory: "ncps", StateDirectoryMode: "0700" })))),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(isSqlite) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "/var/lib/ncps", dbDir))))), nix.thunk(() => ({ __proto__: pos$113, ReadWritePaths: nix.thunk(() => [dbDir]) })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "cache", "storage", "local"), "/var/lib/ncps")))), nix.thunk(() => ({ [nix.POS]: pos$111, StateDirectory: "ncps", StateDirectoryMode: "0700" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)) && nix.asBool(isSqlite))) && nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "/var/lib/ncps", dbDir)))), nix.thunk(() => ({ [nix.POS]: pos$112, StateDirectory: "ncps", StateDirectoryMode: "0700" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(isSqlite) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "/var/lib/ncps", dbDir))))), nix.thunk(() => ({ [nix.POS]: pos$113, ReadWritePaths: nix.thunk(() => [dbDir]) })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cache", "tempPath"), "/tmp")), nix.thunk(() => ({
-                      __proto__: pos$114,
+                      [nix.POS]: pos$114,
                       ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "cache", "tempPath"))]),
                     })))),
                   nix.thunk(() => ({
-                    __proto__: pos$115,
+                    [nix.POS]: pos$115,
                     SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged", "~@resources"]),
                     CapabilityBoundingSet: "",
                     PrivateUsers: true,
@@ -760,7 +760,7 @@ ${nix.sel(cfg, "package")}/bin/dbmate-ncps up
                   })),
                 ]))),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 RequiresMountsFor: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "cache", "storage", "s3"), null)), nix.thunk(() => nix.str`${nix.sel(cfg, "cache", "storage", "local")}`)), nix.app(nix.sel(lib, "optional"), isSqlite, dbDir))))),
               })),
             })),
@@ -768,7 +768,7 @@ ${nix.sel(cfg, "package")}/bin/dbmate-ncps up
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$121,
+      [nix.POS]: pos$121,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

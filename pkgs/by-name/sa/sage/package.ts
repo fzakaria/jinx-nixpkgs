@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.thunk(() => nix.attr(pkgs, "callPackage"));
   const mathjax = nix.thunk(() => nix.attr(pkgs, "mathjax"));
   const python3 = nix.thunk(() => nix.update(nix.sel(pkgs, "python3"), {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "pkgs", "overrideScope"), (self) => (super$) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sagelib: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./sagelib.nix"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             flint: flint,
             "sage-src": sage_src,
             "env-locations": env_locations,
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
             linbox: nix.thunk(() => nix.sel(pkgs, "linbox")),
             "pkg-config": nix.thunk(() => nix.sel(pkgs, "pkg-config")),
           })))),
-        "sage-docbuild": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./python-modules/sage-docbuild.nix"), nix.thunk(() => ({ __proto__: pos$2, "sage-src": sage_src })))),
-        "sage-setup": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./python-modules/sage-setup.nix"), nix.thunk(() => ({ __proto__: pos$3, "sage-src": sage_src })))),
+        "sage-docbuild": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./python-modules/sage-docbuild.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "sage-src": sage_src })))),
+        "sage-setup": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./python-modules/sage-setup.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, "sage-src": sage_src })))),
       }))),
   }));
   const jupyter_kernel_definition = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     displayName: nix.thunk(() => nix.str`SageMath ${nix.sel(sage_src, "version")}`),
     argv: nix.thunk(() => [
       nix.thunk(() => nix.str`${sage_with_env}/bin/sage`),
@@ -73,12 +73,12 @@ export default nix.lambda((args) => (() => {
     logo64: nix.thunk(() => nix.str`${sage_src}/src/sage/ext_data/notebook-ipython/logo-64x64.png`),
   }));
   const jupyter_kernel_specs = nix.thunk(() => nix.app(nix.sel(pkgs, "jupyter-kernel", "create"), nix.thunk(() => ({
-      __proto__: pos$8,
-      definitions: nix.thunk(() => nix.update(nix.sel(pkgs, "jupyter-kernel", "default"), { __proto__: pos$7, sagemath: jupyter_kernel_definition })),
+      [nix.POS]: pos$8,
+      definitions: nix.thunk(() => nix.update(nix.sel(pkgs, "jupyter-kernel", "default"), { [nix.POS]: pos$7, sagemath: jupyter_kernel_definition })),
     }))));
   const three = nix.thunk(() => nix.app(callPackage, nix.path(here, "./threejs-sage.nix"), nix.thunk(() => ({}))));
   const env_locations = nix.thunk(() => nix.app(callPackage, nix.path(here, "./env-locations.nix"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pari_data: pari_data,
       singular: singular,
       maxima: maxima,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       mathjax: mathjax,
     }))));
   const sage_env = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sage-env.nix"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       sagelib: nix.thunk(() => nix.sel(python3, "pkgs", "sagelib")),
       "sage-docbuild": nix.thunk(() => nix.sel(python3, "pkgs", "sage-docbuild")),
       "env-locations": env_locations,
@@ -100,12 +100,12 @@ export default nix.lambda((args) => (() => {
       "pkg-config": nix.thunk(() => nix.sel(pkgs, "pkg-config")),
     }))));
   const sagedoc = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sagedoc.nix"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "sage-with-env": sage_with_env,
       "jupyter-kernel-specs": jupyter_kernel_specs,
     }))));
   const sage_with_env = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sage-with-env.nix"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       python3: python3,
       pythonEnv: pythonEnv,
       "sage-env": sage_env,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       "pkg-config": nix.thunk(() => nix.sel(pkgs, "pkg-config")),
     }))));
   const sage_tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sage-tests.nix"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       "sage-with-env": sage_with_env,
       pytest: nix.thunk(() => nix.sel(python3, "pkgs", "pytest")),
     }))));
@@ -142,25 +142,25 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "setuptools")),
     ], nix.app(extraPythonPackages, nix.thunk(() => nix.sel(python3, "pkgs"))));
   })());
-  const pythonEnv = nix.thunk(() => nix.update(nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({ __proto__: pos$14, extraLibs: pythonRuntimeDeps, ignoreCollisions: true }))), { __proto__: pos$15, extraLibs: pythonRuntimeDeps }));
-  const singular = nix.thunk(() => nix.app(nix.sel(pkgs, "singular", "override"), nix.thunk(() => ({ __proto__: pos$16, flint: flint }))));
+  const pythonEnv = nix.thunk(() => nix.update(nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({ [nix.POS]: pos$14, extraLibs: pythonRuntimeDeps, ignoreCollisions: true }))), { [nix.POS]: pos$15, extraLibs: pythonRuntimeDeps }));
+  const singular = nix.thunk(() => nix.app(nix.sel(pkgs, "singular", "override"), nix.thunk(() => ({ [nix.POS]: pos$16, flint: flint }))));
   const maxima = nix.thunk(() => nix.app(nix.sel(pkgs, "maxima-ecl", "override"), nix.thunk(() => ({
-      __proto__: pos$18,
-      "lisp-compiler": nix.thunk(() => nix.app(nix.sel(pkgs, "ecl", "override"), nix.thunk(() => ({ __proto__: pos$17, threadSupport: false, useBoehmgc: true })))),
+      [nix.POS]: pos$18,
+      "lisp-compiler": nix.thunk(() => nix.app(nix.sel(pkgs, "ecl", "override"), nix.thunk(() => ({ [nix.POS]: pos$17, threadSupport: false, useBoehmgc: true })))),
     }))));
-  const flint = nix.thunk(() => nix.app(nix.sel(pkgs, "flint", "override"), nix.thunk(() => ({ __proto__: pos$19, withBlas: false }))));
+  const flint = nix.thunk(() => nix.app(nix.sel(pkgs, "flint", "override"), nix.thunk(() => ({ [nix.POS]: pos$19, withBlas: false }))));
   const palp = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       name: nix.thunk(() => nix.str`palp-${nix.sel(pkgs, "palp", "version")}`),
       paths: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ __proto__: pos$20, dimensions: 4n, doSymlink: false })))),
-        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ __proto__: pos$21, dimensions: 5n, doSymlink: false })))),
-        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ __proto__: pos$22, dimensions: 6n, doSymlink: true })))),
-        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ __proto__: pos$23, dimensions: 11n, doSymlink: false })))),
+        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ [nix.POS]: pos$20, dimensions: 4n, doSymlink: false })))),
+        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ [nix.POS]: pos$21, dimensions: 5n, doSymlink: false })))),
+        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ [nix.POS]: pos$22, dimensions: 6n, doSymlink: true })))),
+        nix.thunk(() => nix.app(nix.sel(pkgs, "palp", "override"), nix.thunk(() => ({ [nix.POS]: pos$23, dimensions: 11n, doSymlink: false })))),
       ]),
     }))));
   const pari_data = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       name: "pari_data",
       paths: nix.thunk(() => (() => {
         const w_1 = nix.withScope(pkgs, null);
@@ -171,7 +171,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(callPackage, nix.path(here, "./sage.nix"), nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       "sage-tests": sage_tests,
       "sage-with-env": sage_with_env,
       sagedoc: sagedoc,

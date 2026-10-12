@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const extraConfig = nix.argOr($, "extraConfig", () => "");
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "toybox",
       version: "0.8.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "landley",
           repo: "toybox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,10 +55,10 @@ make oldconfig
       installTargets: nix.thunk(() => ["install_flat"]),
       nativeCheckInputs: nix.thunk(() => [which]),
       checkTarget: "tests",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight implementation of some Unix command line utilities",
         homepage: "https://landley.net/toybox/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

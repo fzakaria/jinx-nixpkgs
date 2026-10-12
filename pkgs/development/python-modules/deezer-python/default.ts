@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tornado = nix.arg($, "tornado");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deezer-python",
       version: "7.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "browniebroke",
           repo: "deezer-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["deezer"]),
       disabledTests: nix.thunk(() => ["test_get_user_flow", "test_with_language_header"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper around the Deezer API",
         homepage: "https://github.com/browniebroke/deezer-python",
         changelog: nix.thunk(() => nix.str`https://github.com/browniebroke/deezer-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

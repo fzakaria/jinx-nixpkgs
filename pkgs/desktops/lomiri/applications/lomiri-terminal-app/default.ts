@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const qtsystems = nix.arg($, "qtsystems");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lomiri-terminal-app",
       version: "2.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/apps/lomiri-terminal-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,19 +60,19 @@ sed -i -e '/add_subdirectory(tests)/d' CMakeLists.txt
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CLICK_MODE", false)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "lomiri"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "desktop-basics": nix.thunk(() => nix.attr(from, "desktop-basics")),
           "desktop-appinteractions": nix.thunk(() => nix.attr(from, "desktop-appinteractions")),
         };
         })()),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Terminal app for desktop and mobile devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-terminal-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-terminal-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

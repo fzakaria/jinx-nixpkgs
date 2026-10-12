@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openinference-instrumentation-claude-agent-sdk",
       version: "0.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arize-ai",
           repo: "openinference",
           tag: nix.thunk(() => nix.str`python-openinference-instrumentation-claude-agent-sdk-v${nix.sel(finalAttrs, "version")}`),
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         wrapt,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, instruments: nix.thunk(() => [claude_agent_sdk]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, instruments: nix.thunk(() => [claude_agent_sdk]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_timeout, pytestCheckHook, pyyaml, sniffio], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["openinference.instrumentation.claude_agent_sdk"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OpenInference Claude Agent SDK Instrumentation",
         homepage: "https://github.com/Arize-ai/openinference",
         changelog: nix.thunk(() => nix.str`https://github.com/Arize-ai/openinference/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

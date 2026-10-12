@@ -49,16 +49,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const config = nix.arg($, "config");
   const nativeBignumExcludes = nix.thunk(() => ["native-bignum", "ghc902Binary", "ghc966DebianBinary", "ghc984Binary"]);
-  const haskellLibUncomposable = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/haskell-modules/lib")), nix.thunk(() => ({ __proto__: pos$1, lib: nix.thunk(() => nix.attr(pkgs, "lib")), pkgs: pkgs }))));
+  const haskellLibUncomposable = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/haskell-modules/lib")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(pkgs, "lib")), pkgs: pkgs }))));
   const callPackage = nix.thunk(() => nix.app(newScope, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       haskellLib: nix.thunk(() => nix.sel(haskellLibUncomposable, "compose")),
       overrides: nix.thunk(() => nix.sel(pkgs, "haskell", "packageOverrides")),
     }))));
   const bootstrapPackageSet = (self) => (super$) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     mkDerivation: (drv) => nix.app(nix.sel(super$, "mkDerivation"), nix.thunk(() => nix.update(drv, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         doCheck: false,
         doHaddock: false,
         enableExecutableProfiling: false,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const buildTargetLlvmPackages = nix.thunk(() => nix.sel(pkgsBuildTarget, "llvmPackages_20"));
   const llvmPackages = nix.thunk(() => nix.sel(pkgs, "llvmPackages_20"));
   const chooseDefaultVersions = (sets) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     ghc94: nix.thunk(() => nix.sel(sets, "ghc948")),
     ghc96: nix.thunk(() => nix.sel(sets, "ghc967")),
     ghc98: nix.thunk(() => nix.sel(sets, "ghc984")),
@@ -84,21 +84,21 @@ export default nix.lambda((args) => (() => {
     microhs: nix.thunk(() => nix.sel(sets, "microhs_0_15")),
   });
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     lib: haskellLibUncomposable,
     "package-list": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/package-list.nix"), nix.thunk(() => ({})))),
     compiler: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "recurseIntoAttrs"), nix.thunk(() => (() => {
         const bb = nix.thunk(() => nix.sel(pkgsBuildBuild, "haskell"));
         return nix.update({
-          __proto__: pos$18,
-          ghc902Binary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/ghc/9.0.2-binary.nix"), nix.thunk(() => ({ __proto__: pos$6, llvmPackages: llvmPackages })))),
+          [nix.POS]: pos$18,
+          ghc902Binary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/ghc/9.0.2-binary.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, llvmPackages: llvmPackages })))),
           ghc966DebianBinary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/ghc/9.6.6-debian-binary.nix"), nix.thunk(() => ({})))),
           ghc984Binary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/ghc/9.8.4-binary.nix"), nix.thunk(() => ({})))),
           ghc948: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/ghc/9.4.8.nix"), nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               bootPkgs: nix.thunk(() => nix.sel(bb, "packages", "ghc902Binary")),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               bootPkgs: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "buildPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isBigEndian")))) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAbiElfv1")))) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isRiscV64")) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isLoongArch64")) ? nix.sel(bb, "packages", "ghc966DebianBinary") : nix.sel(bb, "packages", "ghc948"))))),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               bootPkgs: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "buildPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isBigEndian")))) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAbiElfv1")))) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isRiscV64")) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isLoongArch64")) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isi686")) ? nix.sel(bb, "packages", "ghc948") : nix.sel(bb, "packages", "ghc984Binary")))))),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               bootPkgs: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "buildPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isBigEndian")))) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAbiElfv1")))) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isRiscV64")) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isLoongArch64")) ? nix.sel(bb, "packages", "ghc966DebianBinary") : (nix.asBool(nix.sel(stdenv, "buildPlatform", "isi686")) ? nix.sel(bb, "packages", "ghc967") : nix.sel(bb, "packages", "ghc984Binary")))))),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               bootPkgs: nix.thunk(() => nix.sel(bb, "packages", "ghc9103")),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               bootPkgs: nix.thunk(() => nix.sel(bb, "packages", "ghc9103")),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               bootPkgs: nix.thunk(() => nix.sel(bb, "packages", "ghc9103")),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
               const from_1 = nix.thunk(() => nix.sel(buildPackages, "python3Packages"));
               const from_2 = nix.thunk(() => nix.sel(buildPackages, "darwin"));
               return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               bootPkgs: nix.thunk(() => nix.sel(bb, "packages", "ghc910")),
               sphinx: nix.thunk(() => nix.attr(from_1, "sphinx")),
               xattr: nix.thunk(() => nix.attr(from_2, "xattr")),
@@ -201,21 +201,21 @@ export default nix.lambda((args) => (() => {
           "native-bignum": nix.thunk(() => (() => {
             const isNativeBignumGhc = (name) => (nix.asBool(nix.app(nix.sel(pkgs, "lib", "hasPrefix"), "ghc", name)) && nix.asBool(!nix.asBool(nix.builtins.elem(name, nativeBignumExcludes))));
             const nativeBignumGhcNames = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "filter"), isNativeBignumGhc, nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "attrNames"), compiler))));
-            return nix.app(nix.sel(pkgs, "lib", "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "genAttrs"), nativeBignumGhcNames, (name) => nix.app(nix.sel(compiler, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ __proto__: pos$15, enableNativeBignum: true }))))));
+            return nix.app(nix.sel(pkgs, "lib", "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "genAttrs"), nativeBignumGhcNames, (name) => nix.app(nix.sel(compiler, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$15, enableNativeBignum: true }))))));
           })()),
           "microhs-boot": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/microhs/boot.nix"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "microhs-src": nix.thunk(() => nix.sel(bb, "compiler", "microhs_0_15_4_0")),
             })))),
           microhs_0_15_4_0: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/microhs/0.15.4.0.nix"), nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(bb, "compiler"));
               return {
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "microhs-boot": nix.thunk(() => nix.attr(from_1, "microhs-boot")),
             };
             })()))),
         }, nix.update(nix.app(chooseDefaultVersions, compiler), nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             ghc810: nix.thunk(() => nix.builtins.throw("'haskell.compiler.ghc810' has been removed.")),
             ghc90: nix.thunk(() => nix.builtins.throw("'haskell.compiler.ghc90' has been removed.")),
             ghc92: nix.thunk(() => nix.builtins.throw("'haskell.compiler.ghc92' has been removed.")),
@@ -228,72 +228,72 @@ export default nix.lambda((args) => (() => {
     packages: nix.thunk(() => (() => {
       const bh = nix.thunk(() => nix.sel(buildPackages, "haskell"));
       return nix.update({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         ghc902Binary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc902Binary")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc902Binary")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.0.x.nix"), nix.thunk(() => ({})))),
             packageSetConfig: bootstrapPackageSet,
           })))),
         ghc966DebianBinary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc966DebianBinary")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc966DebianBinary")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.6.x.nix"), nix.thunk(() => ({})))),
             packageSetConfig: bootstrapPackageSet,
           })))),
         ghc984Binary: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc984Binary")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc984Binary")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.8.x.nix"), nix.thunk(() => ({})))),
             packageSetConfig: bootstrapPackageSet,
           })))),
         ghc948: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc948")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc948")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.4.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghc967: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc967")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc967")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.6.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghc984: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc984")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc984")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.8.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghc9103: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc9103")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc9103")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.10.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghc9123: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc9123")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc9123")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.12.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghc9124: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc9124")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc9124")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.12.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghc9141: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghc9141")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghc9141")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.14.x.nix"), nix.thunk(() => ({})))),
           })))),
         ghcHEAD: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "ghcHEAD")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "ghcHEAD")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-ghc-9.16.x.nix"), nix.thunk(() => ({})))),
@@ -301,20 +301,20 @@ export default nix.lambda((args) => (() => {
         "native-bignum": nix.thunk(() => (() => {
           const nativeBignumGhcNames = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "filter"), (name) => !nix.asBool(nix.builtins.elem(name, nativeBignumExcludes)), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "attrNames"), packages))));
           return nix.app(nix.sel(pkgs, "lib", "genAttrs"), nativeBignumGhcNames, (name) => nix.app(nix.sel(packages, nix.key(nix.force(name)), "override"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 ghc: nix.thunk(() => nix.sel(bh, "compiler", "native-bignum", nix.key(nix.force(name)))),
                 buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "native-bignum", nix.key(nix.force(name)))),
               }))));
         })()),
         microhs_0_15_4_0: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             buildHaskellPackages: nix.thunk(() => nix.sel(bh, "packages", "microhs_0_15_4_0")),
             ghc: nix.thunk(() => nix.sel(bh, "compiler", "microhs_0_15_4_0")),
             compilerConfig: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/haskell-modules/configuration-microhs.nix"), nix.thunk(() => ({})))),
             packageSetConfig: bootstrapPackageSet,
           })))),
       }, nix.update(nix.app(chooseDefaultVersions, packages), nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           ghc810: nix.thunk(() => nix.builtins.throw("'haskell.packages.ghc810' has been removed.")),
           ghc90: nix.thunk(() => nix.builtins.throw("'haskell.packages.ghc90' has been removed.")),
           ghc92: nix.thunk(() => nix.builtins.throw("'haskell.packages.ghc92' has been removed.")),

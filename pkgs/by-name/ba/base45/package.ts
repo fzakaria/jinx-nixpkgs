@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "base45",
       version: "20230124",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ehmry",
           repo: "base45",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-9he+14yYVGt2s1IuRLPRsv23xnJzERkWRvIHr3PxFYk=",
         })))),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base45 library for Nim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         mainProgram: "base45",

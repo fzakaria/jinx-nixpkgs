@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wl-vapi-gen",
       version: "1.1.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kotontrion",
           repo: "wl-vapi-gen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs wl-vapi-gen.py\n",
       nativeBuildInputs: nix.thunk(() => [meson, ninja, python3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate vala bindings for wayland protocols",
         homepage: "https://codeberg.org/kotontrion/wl-vapi-gen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

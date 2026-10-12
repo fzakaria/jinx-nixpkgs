@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "syncthing",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            syncthing: nix.thunk(() => ({ __proto__: pos$3, enable: true, openDefaultPorts: true })),
+            [nix.POS]: pos$4,
+            syncthing: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, openDefaultPorts: true })),
           })),
         };
       })(), formals$2);
-      return { __proto__: pos$6, a: containerModule, b: containerModule };
+      return { [nix.POS]: pos$6, a: containerModule, b: containerModule };
     })()),
     testScript: "import json\nimport shlex\n\nconfdir = \"/var/lib/syncthing/.config/syncthing\"\n\n\ndef addPeer(host, name, deviceID):\n    APIKey = host.succeed(\n        \"xmllint --xpath 'string(configuration/gui/apikey)' %s/config.xml\" % confdir\n    ).strip()\n    oldConf = host.succeed(\n        \"curl -Ssf -H 'X-API-Key: %s' 127.0.0.1:8384/rest/config\" % APIKey\n    )\n    conf = json.loads(oldConf)\n    conf[\"devices\"].append({\"deviceID\": deviceID, \"id\": name})\n    conf[\"folders\"].append(\n        {\n            \"devices\": [{\"deviceID\": deviceID}],\n            \"id\": \"foo\",\n            \"path\": \"/var/lib/syncthing/foo\",\n            \"rescanIntervalS\": 1,\n        }\n    )\n    newConf = json.dumps(conf)\n    host.succeed(\n        \"curl -Ssf -H 'X-API-Key: %s' 127.0.0.1:8384/rest/config -X PUT -d %s\"\n        % (APIKey, shlex.quote(newConf))\n    )\n\n\nstart_all()\na.wait_for_unit(\"syncthing.service\")\nb.wait_for_unit(\"syncthing.service\")\na.wait_for_open_port(22000)\nb.wait_for_open_port(22000)\n\naDeviceID = a.succeed(\"syncthing --home=%s device-id\" % confdir).strip()\nbDeviceID = b.succeed(\"syncthing --home=%s device-id\" % confdir).strip()\naddPeer(a, \"b\", bDeviceID)\naddPeer(b, \"a\", aDeviceID)\n\na.wait_for_file(\"/var/lib/syncthing/foo\")\nb.wait_for_file(\"/var/lib/syncthing/foo\")\na.succeed(\"echo a2b > /var/lib/syncthing/foo/a2b\")\nb.succeed(\"echo b2a > /var/lib/syncthing/foo/b2a\")\na.wait_for_file(\"/var/lib/syncthing/foo/b2a\")\nb.wait_for_file(\"/var/lib/syncthing/foo/a2b\")\n",
   };

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const patches = nix.argOr($, "patches", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quark",
       version: "0-unstable-2021-02-22",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.suckless.org/quark",
           rev: "68b4f733b2755762e43df90f73db5a6ec8d14104",
           sha256: "sha256-Jtu5zJfHd+6Oq572nVem5msMDCOjdqDNH4SQck8/O5A=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extremely small and simple HTTP GET/HEAD-only web server for static content",
         mainProgram: "quark",
         homepage: "http://tools.suckless.org/quark",

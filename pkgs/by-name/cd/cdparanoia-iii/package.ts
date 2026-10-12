@@ -34,28 +34,28 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const freebsd = nix.arg($, "freebsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       pname: "cdparanoia-iii",
       version: "10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/cdparanoia/cdparanoia-III-${nix.sel(finalAttrs, "version")}.src.tgz`),
           sha256: "1pv4zrajm46za0f6lv162iqffih57a8ly4pc69f7y0gfyigb8p80",
         })))),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/macports/macports-ports/raw/c8e15973bc3c1e1ab371bc0ee2de14209e639f17/audio/cdparanoia/files/osx_interface.patch",
               hash: "sha256-9p4+9dRvqLHkpR0RWLQcNL1m7fb7L6r+c9Q2tt4jh0U=",
               excludes: nix.thunk(() => ["configure.in"]),
             })))),
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://trac.macports.org/export/70964/trunk/dports/audio/cdparanoia/files/patch-paranoia_paranoia.c.10.4.diff",
               hash: "sha256-TW1RkJ0bKaPIrDSfUTKorNlmKDVRF++z8ZJAjSzEgp4=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://github.com/macports/macports-ports/raw/f210a6061bc53c746730a37922399c6de6d69cb7/audio/cdparanoia/files/fixing-include.patch",
               hash: "sha256-6a/u4b8/H/4XjyFup23xySgyAI9SMVMom4PLvH8KzhE=",
             })))),
@@ -63,78 +63,78 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix_private_keyword.patch"),
         nix.path(here, "./configure.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/macports/macports-ports/raw/f210a6061bc53c746730a37922399c6de6d69cb7/audio/cdparanoia/files/fixing-labs.patch",
             hash: "sha256-BMMQ5bbPP3eevuwWUVjQCtRBiWbkAHD+O0C0fp+BPaw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/macports/macports-ports/raw/f210a6061bc53c746730a37922399c6de6d69cb7/audio/cdparanoia/files/fixing-fprintf.patch",
             hash: "sha256-2dJl16p+f5l3wxVOJhsuLiQ9a4prq7jsRZP8/ygEae4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://salsa.debian.org/optical-media-team/cdparanoia/-/raw/bbf353721834b3784ccc0fd54a36a6b25181f5a4/debian/patches/02-ide-devices.patch",
             hash: "sha256-S6OzftUIPPq9JHsoAE2K51ltsI1WkVaQrpgCjgm5AG4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://salsa.debian.org/optical-media-team/cdparanoia/-/raw/f7bab3024c5576da1fdb7497abbd6abc8959a98c/debian/patches/04-endian.patch",
             hash: "sha256-krfprwls0L3hsNfoj2j69J5k1RTKEQtzE0fLYG9EJKo=",
           })))),
         nix.path(here, "./freebsd.patch"),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.path(here, "./utils.patch")), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_low__interface.h",
               hash: "sha256-bXrcRFCbU7/7/N+J8VGKGSxIB1m8XwoAlc/KTnt9wN0=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_scan__devices.c",
               hash: "sha256-UD7SXeypF3bAqT7Y24UOrGZNaD8ZmpS2V7XQU+3VKXk=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<private\\>/private_data/g' $out\nsed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_cdda__interface.h",
               hash: "sha256-JL4qe4LwmNp2jQFqTvyRjc6bixGqYr6BZmqsYIY9xhw=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_common__interface.c",
               hash: "sha256-vw0oFM6w15YBaAK01FwVcSN+oztSfo5jL6OlGy0iWBg=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_cooked__interface.c",
               hash: "sha256-g39dhxb8+K9BIb2/5cmkQ9GYjg4gDjj6sv+dXx93kQ4=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_interface.c",
               hash: "sha256-LMWfbqLjbQM3L4H3orAxyyAHf1hVtFwfmZY8NmBLKzs=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<private\\>/private_data/g' $out\nsed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-interface_scsi__interface.c",
               hash: "sha256-dx6YCWW8J0e455phaYDUMiOCvp4DsfINjSEiEfnHaNI=",
               extraPrefix: "",
               postFetch: "sed -E -i -e 's/\\<private\\>/private_data/g' $out\nsed -E -i -e 's/\\<Linux\\>/__linux__/g' $out\n",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/42da4cdf2d9161fea8f7cdfc19aefda7707fadf4/audio/cdparanoia/files/patch-Makefile.in",
               hash: "sha256-Wje2d58xrSWHJNktQRHcNSbh5yh6vMtpgc/3G4D1vrI=",
               extraPrefix: "",
@@ -143,14 +143,14 @@ export default nix.lambda((args) => (() => {
         ])))))),
       nativeBuildInputs: nix.thunk(() => [updateAutotoolsGnuConfigScriptsHook, autoreconfHook]),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => [nix.thunk(() => nix.sel(freebsd, "libcam"))]))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ __proto__: pos$17, NIX_LDFLAGS: "-lcam" }))), {
-        __proto__: pos$18,
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$17, NIX_LDFLAGS: "-lcam" }))), {
+        [nix.POS]: pos$18,
         BSD_INSTALL_PROGRAM: "install",
         BSD_INSTALL_LIB: "install",
       })),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         homepage: "https://xiph.org/paranoia",
         description: "Tool and library for reading digital audio from CDs",
         license: nix.thunk(() => (() => {

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdvbcsa",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://get.videolan.org/libdvbcsa/${nix.sel(finalAttrs, "version")}/libdvbcsa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "4db78af5cdb2641dfb1136fe3531960a477c9e3e3b6ba19a2754d046af3f456d",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free implementation of the DVB Common Scrambling Algorithm with encryption and decryption capabilities",
         homepage: "http://www.videolan.org/developers/libdvbcsa.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

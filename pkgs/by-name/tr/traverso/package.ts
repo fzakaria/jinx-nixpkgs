@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const wavpack = nix.arg($, "wavpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "traverso",
       version: "0-unstable-2024-09-28",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.savannah.nongnu.org/git/traverso.git",
           rev: "f34717623a8d19dd7c04d9604ef4468734140abc",
           hash: "sha256-eobQFJohndwQjXRXBAehkTWS9jR/1bQOjrOF1XJN5L4=",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "-DWANT_LV2=0",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform multitrack audio recording and audio editing suite",
         mainProgram: "traverso",
         homepage: "https://savannah.nongnu.org/projects/traverso",

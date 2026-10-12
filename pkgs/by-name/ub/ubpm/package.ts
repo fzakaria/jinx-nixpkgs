@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ubpm",
       version: "1.13.0-unstable-2025-10-18",
       baseVersion: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LazyT",
           repo: "ubpm",
           rev: "748ce8504185ae96dbdbd1cff5352d1eef2c046d",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         udev,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://codeberg.org/LazyT/ubpm",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/LazyT/ubpm/releases/tag/${nix.sel(finalAttrs, "baseVersion")}`),
         description: "Universal Blood Pressure Manager",

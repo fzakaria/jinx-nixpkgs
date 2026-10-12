@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
 \`security.krb5.settings.${name}' for structured configuration.
 `));
   const cfg = nix.thunk(() => nix.sel(config, "security", "krb5"));
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./krb5-conf-format.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs, lib: lib })), nix.thunk(() => ({}))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, lib: lib })), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModuleCfg, "libdefaults")),
       nix.thunk(() => nix.app(mkRemovedOptionModuleCfg, "realms")),
@@ -56,39 +56,39 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule$, "kerberos", "The option `krb5.kerberos' has been moved to `security.krb5.package'.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       security: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         krb5: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               description: "Enable and configure Kerberos utilities",
               type: bool,
             })))),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "krb5", nix.thunk(() => ({ __proto__: pos$3, example: "heimdal" })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "krb5", nix.thunk(() => ({ [nix.POS]: pos$3, example: "heimdal" })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "Structured contents of the {file}`krb5.conf` file. See\n{manpage}`krb5.conf(5)` for details about configuration.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 include: nix.thunk(() => ["/run/secrets/secret-krb5.conf"]),
                 includedir: nix.thunk(() => ["/run/secrets/secret-krb5.conf.d"]),
-                libdefaults: nix.thunk(() => ({ __proto__: pos$4, default_realm: "ATHENA.MIT.EDU" })),
+                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$4, default_realm: "ATHENA.MIT.EDU" })),
                 realms: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   "ATHENA.MIT.EDU": nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     admin_server: "athena.mit.edu",
                     kdc: nix.thunk(() => ["athena01.mit.edu", "athena02.mit.edu"]),
                   })),
                 })),
-                domain_realm: nix.thunk(() => ({ __proto__: pos$7, "mit.edu": "ATHENA.MIT.EDU" })),
+                domain_realm: nix.thunk(() => ({ [nix.POS]: pos$7, "mit.edu": "ATHENA.MIT.EDU" })),
                 logging: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   kdc: "SYSLOG:NOTICE",
                   admin_server: "SYSLOG:NOTICE",
                   default: "SYSLOG:NOTICE",
@@ -99,12 +99,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       assertions: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(config, "services", "kerberos_server", "enable")))), nix.thunk(() => [
           nix.thunk(() => (() => {
             const implementation = nix.thunk(() => nix.selOr(cfg, () => "<NOT SET>", "package", "passthru", "implementation"));
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "elem"), implementation, nix.thunk(() => ["krb5", "heimdal"]))),
               message: nix.thunk(() => nix.str`\`security.krb5.package\` must be one of:
 
@@ -117,23 +117,23 @@ Currently chosen implementation: ${implementation}
           })()),
         ]))),
       environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "krb5.conf": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "krb5.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })))),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(lib, "maintainers"));
           return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           dblsaiko: nix.thunk(() => nix.attr(from_1, "dblsaiko")),
           h7x4: nix.thunk(() => nix.attr(from_1, "h7x4")),
         };

@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "disnix"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         disnix: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Disnix")),
           enableMultiUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to support multi-user mode by enabling the Disnix D-Bus service",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "disnix", nix.thunk(() => ({})))),
           enableProfilePath: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "exposing the Disnix profiles in the system's PATH")),
           profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["default"]),
               description: "Names of the Disnix profiles to expose in the system's PATH",
@@ -61,17 +61,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
-          dysnomia: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+          [nix.POS]: pos$9,
+          dysnomia: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "disnix"))]),
           })),
           tomcat: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.sel(cfg, "useWebServiceInterface")),
             extraGroups: nix.thunk(() => ["disnix"]),
             javaOpts: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "useWebServiceInterface")), nix.thunk(() => nix.str`-Djava.library.path=${nix.sel(pkgs, "libmatthew_java")}/lib/jni`))} `),
@@ -80,30 +80,30 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "disnix"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "useWebServiceInterface")), nix.thunk(() => nix.sel(pkgs, "disnix-web-service"))))),
           variables: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableProfilePath")), nix.thunk(() => nix.builtins.map((profileName) => nix.str`/nix/var/nix/profiles/disnix/${profileName}/bin`, nix.thunk(() => nix.sel(cfg, "profiles")))))),
             DISNIX_REMOTE_CLIENT: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableMultiUser")), "disnix-client")),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           groups: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             disnix: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "disnix")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             disnix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableMultiUser")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Disnix server",
                 wants: nix.thunk(() => ["dysnomia.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -115,21 +115,21 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(config, "services", "dysnomia", "package")),
                   "/run/current-system/sw",
                 ]),
-                environment: nix.thunk(() => nix.update({ __proto__: pos$15, HOME: "/root" }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(config, "environment", "variables"), "DYSNOMIA_CONTAINERS_PATH")), nix.thunk(() => (() => {
+                environment: nix.thunk(() => nix.update({ [nix.POS]: pos$15, HOME: "/root" }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(config, "environment", "variables"), "DYSNOMIA_CONTAINERS_PATH")), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config, "environment", "variables"));
                     return {
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     DYSNOMIA_CONTAINERS_PATH: nix.thunk(() => nix.attr(from, "DYSNOMIA_CONTAINERS_PATH")),
                   };
                   })())), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(config, "environment", "variables"), "DYSNOMIA_MODULES_PATH")), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config, "environment", "variables"));
                     return {
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     DYSNOMIA_MODULES_PATH: nix.thunk(() => nix.attr(from, "DYSNOMIA_MODULES_PATH")),
                   };
                   })()))))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/disnix-service`),
                 })),
               })))),

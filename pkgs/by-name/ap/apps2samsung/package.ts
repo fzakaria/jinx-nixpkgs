@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apps2samsung",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Apps2Samsung",
           repo: "Apps2Samsung",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ install -Dm444 Jellyfin2Samsung-CrossOS/Assets/jelly2sams.png \\
       postFixup: "ln -s $out/bin/Apps2Samsung $out/bin/apps2samsung\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "apps2samsung",
             desktopName: "Apps2Samsung",
             comment: "Install any app on Samsung TVs, projectors and smart monitors",
@@ -84,11 +84,11 @@ install -Dm444 Jellyfin2Samsung-CrossOS/Assets/jelly2sams.png \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sideload Jellyfin and other apps onto Samsung Tizen TVs, projectors and smart monitors",
         longDescription: "Apps2Samsung (formerly Jellyfin2Samsung) side-loads applications onto Samsung\ndevices running Tizen OS. It handles device detection, Samsung developer\ncertificate provisioning and installation, so Tizen Studio or manual\nsideloading is not needed. Jellyfin, Moonlight, Moonfin, Litefin, the\ncommunity package catalog and custom `.wgt` files are supported.\n\nThe target device must have Developer Mode enabled.\n",
         homepage: "https://github.com/Apps2Samsung/Apps2Samsung",

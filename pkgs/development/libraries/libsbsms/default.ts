@@ -15,7 +15,7 @@ export default nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.str`mirror://sourceforge/sbsms/${pname_1}-${version}.tar.gz`);
         const sha256 = "sha256-zqs9lwZkszcFe0a89VKD1Q0ynaY2v4PQ7nw24iNBru4=";
         const homepage = "https://sourceforge.net/projects/sbsms/files/sbsms";
-        return { __proto__: pos$1, pname: pname_1, version, url, sha256, homepage };
+        return { [nix.POS]: pos$1, pname: pname_1, version, url, sha256, homepage };
       })())));
     const libsbsms_2_3_0 = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./common.nix"), nix.thunk(() => (() => {
         const pname_1 = pname;
@@ -23,10 +23,10 @@ export default nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.str`https://github.com/claytonotey/${pname_1}/archive/refs/tags/${version}.tar.gz`);
         const sha256 = "sha256-T4jRUrwG/tvanV1lUX1AJUpzEMkFBgGpMSIwnUWv0sk=";
         const homepage = "https://github.com/claytonotey/libsbsms";
-        return { __proto__: pos$2, pname: pname_1, version, url, sha256, homepage };
+        return { [nix.POS]: pos$2, pname: pname_1, version, url, sha256, homepage };
       })())));
     const libsbsms = libsbsms_2_0_2;
-    return { __proto__: pos$3, libsbsms_2_0_2, libsbsms_2_3_0, libsbsms };
+    return { [nix.POS]: pos$3, libsbsms_2_0_2, libsbsms_2_3_0, libsbsms };
   })();
 })());
 //# sourceMappingURL=default.ts.map

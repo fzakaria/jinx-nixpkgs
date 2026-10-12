@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
   })());
   const npmDepsFile = nix.path(here, "./npm-deps.nix");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.app(nix.sel(dotnetCorePackages, "addNuGetDeps"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nugetDeps: nix.path(here, "./deps.json"),
         overrideFetchAttrs: (old) => (() => {
           const runtimeIds = nix.thunk(() => nix.builtins.map((system) => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), system), nix.thunk(() => nix.sel(old, "meta", "platforms"))));
           const buildInputs = nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), runtimeIds, nix.thunk(() => nix.sel(dotnet_sdk, "targetPackages")))))))));
-          return { __proto__: pos$1, runtimeIds, buildInputs };
+          return { [nix.POS]: pos$1, runtimeIds, buildInputs };
         })(),
       })), nix.thunk(() => (() => {
         const pname = "Avalonia";
         const version = "11.3.13";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "AvaloniaUI",
             repo: "Avalonia",
             tag: version,
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./0004-disable-windows-desktop.patch"),
         ]);
         const env = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           UNICODE_CHARACTER_DATABASE: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://www.unicode.org/Public/15.0.0/ucd/UCD.zip",
               hash: "sha256-jj6bX46VcnH7vpc9GwM9gArG+hSPbOGL6E4SaVd0s60=",
               stripRoot: false,
             })))),
           FONTCONFIG_FILE: nix.thunk(() => (() => {
-            const fc = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$5, fontDirectories: nix.thunk(() => [liberation_ttf]) }))));
+            const fc = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$5, fontDirectories: nix.thunk(() => [liberation_ttf]) }))));
             return nix.app(runCommand, "fonts.conf", nix.thunk(() => ({})), nix.thunk(() => nix.str`substitute ${fc} $out \\
 --replace-fail "/etc/" "${nix.sel(fontconfig, "out")}/etc/"
 `));
@@ -106,7 +106,7 @@ dotnet nuget add source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotn
             const $_1 = nix.formals(args_1, formals$2);
             const path = nix.arg($_1, "path");
             const hash = nix.arg($_1, "hash");
-            const deps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({ __proto__: pos$7, src: nix.thunk(() => nix.str`${src}/${path}`), hash: hash }))));
+            const deps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({ [nix.POS]: pos$7, src: nix.thunk(() => nix.str`${src}/${path}`), hash: hash }))));
             return nix.str`npmRoot=${path} npmDeps="${deps}" npmConfigHook
 rm -rf "$TMPDIR/cache"
 `;
@@ -125,12 +125,12 @@ rm -rf "$TMPDIR/cache"
         const buildPhase = "runHook preBuild\n# ValidateApiDiff requires a network connection\n./build.sh --target $buildTarget --verbosity Verbose --skip ValidateApiDiff\nrunHook postBuild\n";
         const installPhase = "runHook preInstall\nmkdir -p \"$out/share/nuget/source\"\ncp artifacts/nuget/* \"$out/share/nuget/source\"\nrunHook postInstall\n";
         const passthru = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           updateScript: nix.path(here, "./update.bash"),
           npmDepsFile: npmDepsFile,
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           homepage: "https://avaloniaui.net/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -149,7 +149,7 @@ rm -rf "$TMPDIR/cache"
           broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         }));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pname,
           version,
           src,

@@ -30,73 +30,73 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const mescc_tools_extra = nix.arg($, "mescc-tools-extra");
   const bash_2_05 = nix.arg($, "bash_2_05");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "bash";
   const version = "2.05b";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/bash/bash-${version}.tar.gz`),
       sha256: "1r1z2qdw3rz668nxrzwa14vk2zcn00hw7mpjn384picck49d80xs",
     }))));
   const liveBootstrap = "https://github.com/fosslinux/live-bootstrap/raw/c0494d9af84b9e8c3e76e34c6e898978013a3b39/steps/bash-2.05b";
   const main_mk = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`${liveBootstrap}/mk/main.mk`),
       sha256: "0hj29q3pq3370p18sxkpvv9flb7yvx2fs96xxlxqlwa8lkimd0j4",
     }))));
   const common_mk = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`${liveBootstrap}/mk/common.mk`),
       sha256: "sha256-9BzUJPz6Vx+r69i2SQlqRTH9ihgLaUp1JSYGlTbWWu8=",
     }))));
   const builtins_mk = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: nix.thunk(() => nix.str`${liveBootstrap}/mk/builtins.mk`),
       sha256: "0939dy5by1xhfmsjj6w63nlgk509fjrhpb2crics3dpcv7prl8lj",
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/mes-libc.patch`),
         sha256: "0zksdjf6zbb3p4hqg6plq631y76hhhgab7kdvf7cnpk8bcykn12z",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/tinycc.patch`),
         sha256: "042d2kr4a8klazk1hlvphxr6frn4mr53k957aq3apf6lbvrjgcj2",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/missing-defines.patch`),
         sha256: "1q0k1kj5mrvjkqqly7ki5575a5b3hy1ywnmvhrln318yh67qnkj4",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/locale.patch`),
         sha256: "1p1q1slhafsgj8x4k0dpn9h6ryq5fwfx7dicbbxhldbw7zvnnbx9",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         url: nix.thunk(() => nix.str`${liveBootstrap}/patches/dev-tty.patch`),
         sha256: "1315slv5f7ziajqyxg4jlyanf1xwd06xw14y6pq7xpm3jzjk55j9",
       })))),
   ]);
   return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: pname,
       version: version,
       meta: meta,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tinycc, "compiler")), gnumake, gnupatch, coreutils]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         runCommand: nix.thunk(() => (() => {
           const bashBuilder = nix.thunk(() => nix.builtins.toFile("bash-builder.sh", "export CONFIG_SHELL=$SHELL\n\n# Normalize the NIX_BUILD_CORES variable. The value might be 0, which\n# means that we're supposed to try and auto-detect the number of\n# available CPU cores at run-time. We don't have nproc to detect the\n# number of available CPU cores so default to 1 if not set.\nNIX_BUILD_CORES=\"${NIX_BUILD_CORES:-1}\"\nif [ $NIX_BUILD_CORES -le 0 ]; then\n  NIX_BUILD_CORES=1\nfi\nexport NIX_BUILD_CORES\n\nbash -eux $buildCommandPath\n"));
           const defaultBuildInputs = nix.thunk(() => [bash_2_05, coreutils, mescc_tools_extra]);
           const defaultBinPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultBuildInputs));
           const removedAttributeNames = nix.thunk(() => ["nativeBuildInputs"]);
           return (name) => (env) => (buildCommand) => nix.app(derivationWithMeta, nix.thunk(() => nix.update({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: name,
               buildCommand: buildCommand,
               builder: nix.thunk(() => nix.str`${bash_2_05}/bin/bash`),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
             }, nix.builtins.removeAttrs(env, removedAttributeNames))));
         })()),
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "get-version": (result) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/bash --version
 mkdir \${out}
 `)),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libisds",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://xpisar.wz.cz/libisds/dist/libisds-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-YUb4N7J7EaYHHiFI965kUhtNitRTJfmY/ns3MTfkGPs=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [expat, gpgme, libgcrypt, libxml2, libxslt, curl, docbook_xsl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client library for accessing SOAP services of Czech government-provided Databox information system",
         homepage: "http://xpisar.wz.cz/libisds/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

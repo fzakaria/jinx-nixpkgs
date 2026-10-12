@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "offensive-azure",
       version: "0.4.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blacklanternsecurity",
           repo: "offensive-azure",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Use default Python module\nsubstituteInPlace pyproject.toml \\\n  --replace 'uuid = \"^1.30\"' \"\" \\\n  --replace 'python-whois = \"^0.7.3\"' 'python-whois = \"*\"'\n",
       pythonImportsCheck: nix.thunk(() => ["offensive_azure"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of offensive tools targeting Microsoft Azure",
         homepage: "https://github.com/blacklanternsecurity/offensive-azure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

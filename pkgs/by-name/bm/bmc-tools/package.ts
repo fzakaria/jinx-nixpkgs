@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bmc-tools",
       version: "3.0.4-unstable-2025-01-21",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ANSSI-FR",
           repo: "bmc-tools",
           rev: "94037ce01ceb651a10b04e3275b53face69f9e03",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bmc-tools.py $out/bin/bmc-tools\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RDP Bitmap Cache parser",
         homepage: "https://github.com/ANSSI-FR/bmc-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

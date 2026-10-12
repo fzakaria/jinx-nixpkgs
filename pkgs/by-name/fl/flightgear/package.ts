@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openscenegraph = nix.thunk(() => nix.app(callPackage, nix.path(here, "./openscenegraph-flightgear.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "flightgear",
       version: "2024.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightgear",
           repo: "flightgear",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         libjpeg,
         openal,
         plib,
-        nix.thunk(() => nix.app(nix.sel(simgear, "override"), nix.thunk(() => ({ __proto__: pos$2, openscenegraph: openscenegraph })))),
+        nix.thunk(() => nix.app(nix.sel(simgear, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openscenegraph: openscenegraph })))),
         zlib,
         boost,
         libpng,
@@ -98,14 +98,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add("# Remove redundant AppImage artifacts\nrm -rf \"$out/appdir\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# The bundle copies OSG dylib dangling symlinks\nrm -rf \"$out/FlightGear.app/Contents/Frameworks\"\n# Place app bundle where macOS expects it\nmkdir -p \"$out/Applications\"\nmv \"$out/FlightGear.app\" \"$out/Applications/\"\n# Provide fgfs in bin/ for CLI use, pointing into the bundle\nln -s \"$out/Applications/FlightGear.app/Contents/MacOS/FlightGear\" \"$out/bin/fgfs\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         data: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "flightgear-data",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "flightgear",
                 repo: "fgdata",
                 tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "A free and highly sophisticated flight simulator",
         homepage: "https://www.flightgear.org/",
         changelog: nix.thunk(() => nix.str`https://www.flightgear.org/download/releases/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

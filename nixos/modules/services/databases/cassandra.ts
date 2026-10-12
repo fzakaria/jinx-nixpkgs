@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "cassandra"));
   const defaultUser = "cassandra";
   const cassandraConfig = nix.thunk(() => nix.app(flip, recursiveUpdate, nix.thunk(() => nix.sel(cfg, "extraConfig")), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       commitlog_sync: "batch",
       commitlog_sync_batch_window_in_ms: 2n,
       start_native_transport: nix.thunk(() => nix.sel(cfg, "allowClients")),
@@ -103,14 +103,14 @@ export default nix.lambda((args) => (() => {
       saved_caches_directory: nix.thunk(() => nix.str`${nix.sel(cfg, "homeDir")}/saved_caches`),
       hints_directory: nix.thunk(() => nix.str`${nix.sel(cfg, "homeDir")}/hints`),
     }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "seedAddresses"), [])), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         seed_provider: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             class_name: "org.apache.cassandra.locator.SimpleSeedProvider",
             parameters: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 seeds: nix.thunk(() => nix.app(concatStringsSep, ",", nix.thunk(() => nix.sel(cfg, "seedAddresses")))),
               })),
             ]),
@@ -118,17 +118,17 @@ export default nix.lambda((args) => (() => {
         ]),
       })))))));
   const cassandraConfigWithAddresses = nix.thunk(() => nix.update(cassandraConfig, nix.update((nix.asBool(nix.eq(nix.sel(cfg, "listenAddress"), null)) ? {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     listen_interface: nix.thunk(() => nix.sel(cfg, "listenInterface")),
   } : {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     listen_address: nix.thunk(() => nix.sel(cfg, "listenAddress")),
   }), (nix.asBool(nix.eq(nix.sel(cfg, "rpcAddress"), null)) ? {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     rpc_interface: nix.thunk(() => nix.sel(cfg, "rpcInterface")),
-  } : { __proto__: pos$8, rpc_address: nix.thunk(() => nix.sel(cfg, "rpcAddress")) }))));
+  } : { [nix.POS]: pos$8, rpc_address: nix.thunk(() => nix.sel(cfg, "rpcAddress")) }))));
   const cassandraEtc = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "cassandra-etc",
       cassandraYaml: nix.thunk(() => nix.builtins.toJSON(cassandraConfigWithAddresses)),
       cassandraEnvPkg: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/conf/cassandra-env.sh`),
@@ -149,186 +149,186 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`-Djava.rmi.server.hostname=${nix.sel(cfg, "rpcAddress")}`),
     ]))))));
   const commonEnv = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     CASSANDRA_CONF: nix.thunk(() => nix.str`${cassandraEtc}`),
     CASSANDRA_LOGBACK_CONF: nix.thunk(() => nix.str`${cassandraEtc}/logback.xml`),
   }));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     options: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       services: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         cassandra: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Apache Cassandra – Scalable and highly available database\n")),
           clusterName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "Test Cluster",
               description: "The name of the cluster.\nThis setting prevents nodes in one logical cluster from joining\nanother. All nodes in a cluster must have the same value.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultUser,
               description: "Run Apache Cassandra under this user.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultUser,
               description: "Run Apache Cassandra under this group.",
             })))),
           homeDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/cassandra",
               description: "Home directory for Apache Cassandra.\n",
             })))),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "cassandra", nix.thunk(() => ({ __proto__: pos$15, example: "cassandra_4" })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "cassandra", nix.thunk(() => ({ [nix.POS]: pos$15, example: "cassandra_4" })))),
           jvmOpts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Populate the `JVM_OPT` environment variable.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "127.0.0.1",
               example: null,
               description: "Address or interface to bind to and tell other Cassandra nodes\nto connect to. You _must_ change this if you want multiple\nnodes to be able to communicate!\n\nSet {option}`listenAddress` OR {option}`listenInterface`, not both.\n\nLeaving it blank leaves it up to\n`InetAddress.getLocalHost()`. This will always do the \"Right\nThing\" _if_ the node is properly configured (hostname, name\nresolution, etc), and the Right Thing is to use the address\nassociated with the hostname (it might not be).\n\nSetting {option}`listenAddress` to `0.0.0.0` is always wrong.\n",
             })))),
           listenInterface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "eth1",
               description: "Set `listenAddress` OR `listenInterface`, not both. Interfaces\nmust correspond to a single address, IP aliasing is not\nsupported.\n",
             })))),
           rpcAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "127.0.0.1",
               example: null,
               description: "The address or interface to bind the native transport server to.\n\nSet {option}`rpcAddress` OR {option}`rpcInterface`, not both.\n\nLeaving {option}`rpcAddress` blank has the same effect as on\n{option}`listenAddress` (i.e. it will be based on the configured hostname\nof the node).\n\nNote that unlike {option}`listenAddress`, you can specify `\"0.0.0.0\"`, but you\nmust also set `extraConfig.broadcast_rpc_address` to a value other\nthan `\"0.0.0.0\"`.\n\nFor security reasons, you should not expose this port to the\ninternet. Firewall it if needed.\n",
             })))),
           rpcInterface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "eth1",
               description: "Set {option}`rpcAddress` OR {option}`rpcInterface`, not both. Interfaces must\ncorrespond to a single address, IP aliasing is not supported.\n",
             })))),
           logbackConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "<configuration scan=\"false\">\n  <appender name=\"STDOUT\" class=\"ch.qos.logback.core.ConsoleAppender\">\n    <encoder>\n      <pattern>%-5level %date{HH:mm:ss,SSS} %msg%n</pattern>\n    </encoder>\n  </appender>\n\n  <root level=\"INFO\">\n    <appender-ref ref=\"STDOUT\" />\n  </root>\n\n  <logger name=\"com.thinkaurelius.thrift\" level=\"ERROR\"/>\n</configuration>\n",
               description: "XML logback configuration for cassandra\n",
             })))),
           seedAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ["127.0.0.1"]),
               description: "The addresses of hosts designated as contact points in the cluster. A\njoining node contacts one of the nodes in the seeds list to learn the\ntopology of the ring.\nSet to `[ \"127.0.0.1\" ]` for a single node cluster.\n",
             })))),
           allowClients: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Enables or disables the native transport server (CQL binary protocol).\nThis server uses the same address as the {option}`rpcAddress`,\nbut the port it uses is not `rpc_port` but\n`native_transport_port`. See the official Cassandra\ndocs for more information on these variables and set them using\n{option}`extraConfig`.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(types, "attrs")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$24, commitlog_sync_batch_window_in_ms: 3n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$24, commitlog_sync_batch_window_in_ms: 3n })),
               description: "Extra options to be merged into {file}`cassandra.yaml` as nix attribute set.\n",
             })))),
           extraEnvSh: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               example: nix.thunk(() => nix.app(literalExpression, "\"CLASSPATH=$CLASSPATH:${extraJar}\"")),
               description: "Extra shell lines to be appended onto {file}`cassandra-env.sh`.\n",
             })))),
           fullRepairInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "3w",
               example: null,
               description: "Set the interval how often full repairs are run, i.e.\n{command}`nodetool repair --full` is executed. See\n<https://cassandra.apache.org/doc/latest/operating/repair.html>\nfor more information.\n\nSet to `null` to disable full repairs.\n",
             })))),
           fullRepairOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--partitioner-range"]),
               description: "Options passed through to the full repair command.\n",
             })))),
           incrementalRepairInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "3d",
               example: null,
               description: "Set the interval how often incremental repairs are run, i.e.\n{command}`nodetool repair` is executed. See\n<https://cassandra.apache.org/doc/latest/operating/repair.html>\nfor more information.\n\nSet to `null` to disable incremental repairs.\n",
             })))),
           incrementalRepairOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--partitioner-range"]),
               description: "Options passed through to the incremental repair command.\n",
             })))),
           maxHeapSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "4G",
               description: "Must be left blank or set together with {option}`heapNewSize`.\nIf left blank a sensible value for the available amount of RAM and CPU\ncores is calculated.\n\nOverride to set the amount of memory to allocate to the JVM at\nstart-up. For production use you may wish to adjust this for your\nenvironment. `MAX_HEAP_SIZE` is the total amount of memory dedicated\nto the Java heap. `HEAP_NEWSIZE` refers to the size of the young\ngeneration.\n\nThe main trade-off for the young generation is that the larger it\nis, the longer GC pause times will be. The shorter it is, the more\nexpensive GC will be (usually).\n",
             })))),
           heapNewSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "800M",
               description: "Must be left blank or set together with {option}`heapNewSize`.\nIf left blank a sensible value for the available amount of RAM and CPU\ncores is calculated.\n\nOverride to set the amount of memory to allocate to the JVM at\nstart-up. For production use you may wish to adjust this for your\nenvironment. `HEAP_NEWSIZE` refers to the size of the young\ngeneration.\n\nThe main trade-off for the young generation is that the larger it\nis, the longer GC pause times will be. The shorter it is, the more\nexpensive GC will be (usually).\n\nThe example `HEAP_NEWSIZE` assumes a modern 8-core+ machine for decent pause\ntimes. If in doubt, and if you do not particularly want to tweak, go with\n100 MB per physical CPU core.\n",
             })))),
           mallocArenaMax: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
               default: null,
               example: 4n,
               description: "Set this to control the amount of arenas per-thread in glibc.\n",
             })))),
           remoteJmx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Cassandra ships with JMX accessible *only* from localhost.\nTo enable remote JMX connections set to true.\n\nBe sure to also enable authentication and/or TLS.\nSee: <https://wiki.apache.org/cassandra/JmxSecurity>\n",
             })))),
           jmxPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 7199n,
               description: "Specifies the default port over which Cassandra will be available for\nJMX connections.\nFor security reasons, you should not expose this port to the internet.\nFirewall it if needed.\n",
             })))),
           jmxRoles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               default: [],
               description: "Roles that are allowed to access the JMX (e.g. {command}`nodetool`)\nBEWARE: The passwords will be stored world readable in the nix store.\n        It's recommended to use your own protected file using\n        {option}`jmxRolesFile`\n\nDoesn't work in versions older than 3.11 because they don't like that\nit's world readable.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     options: nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Username for JMX",
                         })))),
                       password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Password for JMX",
                         })))),
@@ -336,7 +336,7 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           jmxRolesFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "jmx-roles-file", defaultJmxRolesFile)),
               defaultText: "generated configuration file",
@@ -347,34 +347,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "listenAddress"), null), nix.eq(nix.sel(cfg, "listenInterface"), null))),
             message: "You have to set either listenAddress or listenInterface",
           })),
           nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "rpcAddress"), null), nix.eq(nix.sel(cfg, "rpcInterface"), null))),
             message: "You have to set either rpcAddress or rpcInterface",
           })),
           nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertion: nix.thunk(() => nix.eq(nix.eq(nix.sel(cfg, "maxHeapSize"), null), nix.eq(nix.sel(cfg, "heapNewSize"), null))),
             message: "If you set either of maxHeapSize or heapNewSize you have to set both",
           })),
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "remoteJmx")) || nix.asBool(!nix.eq(nix.sel(cfg, "jmxRolesFile"), null)))),
             message: "If you want JMX available remotely you need to set a password using\n<literal>jmxRoles</literal>.\n",
           })),
         ]),
         users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "homeDir")),
                 createHome: true,
@@ -384,21 +384,21 @@ export default nix.lambda((args) => (() => {
             ])),
             groups: nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "cassandra")),
               }))],
             ])),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           services: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             cassandra: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               description: "Apache Cassandra service",
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.update(commonEnv, {
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 JVM_OPTS: nix.thunk(() => nix.builtins.concatStringsSep(" ", fullJvmOptions)),
                 MAX_HEAP_SIZE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxHeapSize")))),
                 HEAP_NEWSIZE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "heapNewSize")))),
@@ -408,7 +408,7 @@ export default nix.lambda((args) => (() => {
               })),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/cassandra -f`),
@@ -416,13 +416,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "cassandra-full-repair": nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: "Perform a full repair on this Cassandra node",
               after: nix.thunk(() => ["cassandra.service"]),
               requires: nix.thunk(() => ["cassandra.service"]),
               environment: commonEnv,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat([
@@ -433,13 +433,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "cassandra-incremental-repair": nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               description: "Perform an incremental repair on this cassandra node.",
               after: nix.thunk(() => ["cassandra.service"]),
               requires: nix.thunk(() => ["cassandra.service"]),
               environment: commonEnv,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/nodetool`), "repair"], nix.sel(cfg, "incrementalRepairOptions"))))),
@@ -447,24 +447,24 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             "cassandra-full-repair": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "fullRepairInterval"), null)), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 description: "Schedule full repairs on Cassandra",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   OnBootSec: nix.thunk(() => nix.sel(cfg, "fullRepairInterval")),
                   OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "fullRepairInterval")),
                   Persistent: true,
                 })),
               })))),
             "cassandra-incremental-repair": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "incrementalRepairInterval"), null)), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 description: "Schedule incremental repairs on Cassandra",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   OnBootSec: nix.thunk(() => nix.sel(cfg, "incrementalRepairInterval")),
                   OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "incrementalRepairInterval")),
                   Persistent: true,
@@ -474,7 +474,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "roberth"))];

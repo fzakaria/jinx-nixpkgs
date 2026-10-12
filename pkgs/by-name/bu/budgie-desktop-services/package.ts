@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const toml11 = nix.arg($, "toml11");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "budgie-desktop-services",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "forge.moderndesktop.dev",
           owner: "BuddiesOfBudgie",
           repo: "budgie-desktop-services",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   '${nix.sel(buildPackages, "kdePackages", "extra-cmake-modules")}/share/ECM/modules/ECMFindModuleHelpers.cmake'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Future central hub and orchestrator for Budgie Desktop",
         mainProgram: "org.buddiesofbudgie.Services",
         homepage: "https://forge.moderndesktop.dev/BuddiesOfBudgie/budgie-desktop-services",

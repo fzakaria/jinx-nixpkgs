@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aasvg-rs",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "aasvg-cli",
           hash: "sha256-0qGCXHSCTg2yXLxREOfY7lOA3ZQCNFvST6GTBIsG/f4=",
         })))),
       cargoHash: "sha256-zl3IPKKG738cr1Au4Vw9SRstgOp57hM/JhPRNl0VsII=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to convert ASCII art diagrams to SVG",
         homepage: "https://github.com/bearcove/aasvg-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

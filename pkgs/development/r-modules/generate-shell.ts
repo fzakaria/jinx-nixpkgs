@@ -8,7 +8,7 @@ const pos$2 = nix.positions(here + "/generate-shell.nix", [["name", 4, 3], ["bui
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({})))), null);
   return nix.app(nix.sel(nix.lookup(w, "stdenv"), "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "generate-r-packages-shell",
       buildCommand: "exit 1",
       buildInputs: nix.thunk(() => [
@@ -18,7 +18,7 @@ export default nix.thunk(() => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "rWrapper"), "override"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             packages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "rPackages")), w);
               return [

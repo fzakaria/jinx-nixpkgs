@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${sourceDir}`),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           yarnLock: nix.thunk(() => (nix.asBool(!nix.eq(yarnLock, null)) ? nix.force(yarnLock) : nix.str`${nix.sel(finalAttrs, "src")}/${sourceDir}/yarn.lock`)),
           hash: hash,
         })))),

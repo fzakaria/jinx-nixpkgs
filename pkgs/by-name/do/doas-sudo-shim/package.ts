@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "doas-sudo-shim";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jirutka",
           repo: "doas-sudo-shim",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, gawk, glibc, util_linux]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           helpTest: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-helpTest`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${doas_sudo_shim}/bin/sudo -h > $out
 grep -q "Execute a command as another user using doas(1)" $out
 `))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shim for the sudo command that utilizes doas",
         homepage: "https://github.com/jirutka/doas-sudo-shim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -63,7 +63,7 @@ grep -q "Execute a command as another user using doas(1)" $out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

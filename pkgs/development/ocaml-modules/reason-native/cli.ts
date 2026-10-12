@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pastel = nix.arg($, "pastel");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "cli",
       version: "0.0.1-alpha-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       buildInputs: nix.thunk(() => [re, pastel]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         downloadPage: "https://github.com/reasonml/reason-native",
         homepage: "https://reason-native.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

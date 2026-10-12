@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ffts",
       version: "0-unstable-2019-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linkotec",
           repo: "ffts",
           rev: "2c8da4877588e288ff4cd550f14bec2dc7bf668c",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DENABLE_SHARED=ON"]),
       patches: nix.thunk(() => [nix.path(here, "./cmake4.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fastest Fourier Transform in the South",
         homepage: "https://github.com/linkotec/ffts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

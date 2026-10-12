@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.arg($, "pythonPackages");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-soundcloud",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mopidy",
           repo: "mopidy-soundcloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mopidy_soundcloud"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mopidy extension for playing music from SoundCloud",
         homepage: "https://github.com/mopidy/mopidy-soundcloud",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

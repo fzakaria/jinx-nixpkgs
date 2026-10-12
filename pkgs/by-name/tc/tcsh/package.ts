@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tcsh",
       version: "6.24.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://tcsh/tcsh-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QgjPRjD7ZNkdgZh/hU+VcKWg6KABqSgn3vN9Dtjzc2Q=",
         })))),
       strictDeps: true,
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       buildInputs: nix.thunk(() => [libxcrypt, ncurses]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, shellPath: "/bin/tcsh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/tcsh" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.tcsh.org/",
         description: "Enhanced version of the Berkeley UNIX C shell (csh)",
         mainProgram: "tcsh",

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-VrnYQaObQDDjiOkMe3fazUefHOXi/5sYw5VNl9Vwmhk=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/functional/test_openidbaseclient.py"]);
       const pythonImportsCheck = nix.thunk(() => ["fedora"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with the infrastructure of the Fedora Project",
         homepage: "https://github.com/fedora-infra/python-fedora",
         changelog: nix.thunk(() => nix.str`https://github.com/fedora-infra/python-fedora/releases/tag/${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

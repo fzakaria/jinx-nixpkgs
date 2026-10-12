@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const perl = nix.arg($, "perl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "goredo",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.goredo.cypherpunks.ru/download/goredo-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-XTL/otfCKC55TsUBBVors2kgFpOFh+6oekOOafOhcUs=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [zstd]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [python3, perl]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SHARNESS_TEST_SRCDIR: nix.thunk(() => nix.attr(sharness, "SHARNESS_TEST_SRCDIR")),
       })),
       vendorHash: null,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p \"$out/share/info\"\ncp goredo.info \"$out/share/info\"\n",
       outputs: nix.thunk(() => ["out", "info"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         outputsToInstall: nix.thunk(() => ["out"]),
         description: "Makefile replacement that sucks less",
         homepage: "https://www.goredo.cypherpunks.ru",

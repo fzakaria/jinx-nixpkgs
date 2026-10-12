@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reptor",
       version: "0.34",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Syslifters",
           repo: "reptor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         xmltodict,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ghostwriter: nix.thunk(() => nix.concat([gql], nix.sel(gql, "optional-dependencies", "aiohttp"))),
         translate: nix.thunk(() => [deepl]),
       })),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["reptor"]),
       disabledTestMarks: nix.thunk(() => ["integration"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to do automated pentest reporting with SysReptor",
         homepage: "https://github.com/Syslifters/reptor",
         changelog: nix.thunk(() => nix.str`https://github.com/Syslifters/reptor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

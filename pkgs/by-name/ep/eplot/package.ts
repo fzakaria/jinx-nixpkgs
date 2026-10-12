@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const gnuplot = nix.arg($, "gnuplot");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eplot",
       version: "2.09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://liris.cnrs.fr/christian.wolf/software/eplot/download/eplot",
           sha256: "0y9x82i3sfpgxsqz2w42r6iad6ph7vxb7np1xbwapx5iipciclw5",
         })))),
       ecSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://liris.cnrs.fr/christian.wolf/software/eplot/download/ec",
           sha256: "0fg31g8mrcx14h2rjcf091cbd924n19z55iscaiflspifya30yhd",
         })))),
@@ -43,7 +43,7 @@ sed -i -e "s|gnuplot -persist|${gnuplot}/bin/gnuplot -persist|" "$out/bin/eplot"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create plots quickly with gnuplot",
         longDescription: "eplot (\"easy gnuplot\") is a ruby script which allows to pipe data easily\nthrough gnuplot and create plots quickly, which can be saved in\npostscript, PDF, PNG or EMF files. Plotting of multiple files into a\nsingle diagram is supported.\n\nThis package also includes the complementary 'ec' tool (say \"extract\ncolumn\").\n",
         homepage: "https://perso.liris.cnrs.fr/christian.wolf/software/eplot/",

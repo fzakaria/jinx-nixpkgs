@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cryptodatahub",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coroner",
           repo: "cryptodatahub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cryptodatahub"]),
       disabledTests: nix.thunk(() => ["test_validity", "TestClasses"]),
       disabledTestPaths: nix.thunk(() => ["test/updaters/test_common.py", "test/common/test_utils.py"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Repository of cryptography-related data",
         homepage: "https://gitlab.com/coroner/cryptodatahub",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/coroner/cryptodatahub/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const angstrom = nix.arg($, "angstrom");
   const faraday = nix.arg($, "faraday");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hpack",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/ocaml-h2/releases/download/${nix.sel(finalAttrs, "version")}/h2-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-DYm28XgXUpTnogciO+gdW4P8Mbl1Sb7DTwQyo7KoBw8=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [angstrom, faraday]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "HPACK (Header Compression for HTTP/2) implementation in OCaml",
         homepage: "https://github.com/anmonteiro/ocaml-h2",

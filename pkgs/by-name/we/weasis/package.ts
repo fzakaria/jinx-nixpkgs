@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const platform = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "x86_64-linux": "linux-x86-64",
       "aarch64-linux": "linux-aarch64",
       "aarch64-darwin": "macosx-aarch64",
     }))));
   const runtimeDeps = nix.thunk(() => [libGL, libx11, libxrender, libxxf86vm]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "weasis",
       version: "4.7.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/nroduit/Weasis/releases/download/v${nix.sel(finalAttrs, "version")}/weasis-native.zip`),
           hash: "sha256-VssbmzOEZVHfzkUS9zyKIgT8kn9JqEoelI8ns15GQD4=",
           stripRoot: false,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([copyDesktopItems, makeBinaryWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), unzip))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "DICOMizer",
             exec: "Dicomizer",
             icon: "Dicomizer",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
             comment: "Convert standard images into DICOM",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Weasis",
             exec: "Weasis",
             icon: "Weasis",
@@ -81,7 +81,7 @@ done
 mv weasis-${platform}-jdk${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(jdk25, "version")))}-${nix.sel(finalAttrs, "version")}/Weasis.app $out/Applications/
 `))), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Multipurpose standalone and web-based DICOM viewer with a highly modular architecture",
         homepage: "https://weasis.org",
         changelog: nix.thunk(() => nix.str`https://github.com/nroduit/Weasis/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -37,24 +37,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "acpid"));
   const canonicalHandlers = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     powerEvent: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       event: "button/power.*",
       action: nix.thunk(() => nix.sel(cfg, "powerEventCommands")),
     })),
     lidEvent: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       event: "button/lid.*",
       action: nix.thunk(() => nix.sel(cfg, "lidEventCommands")),
     })),
     acEvent: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       event: "ac_adapter.*",
       action: nix.thunk(() => nix.sel(cfg, "acEventCommands")),
     })),
   }));
-  const acpiConfDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "acpi-events", nix.thunk(() => ({ __proto__: pos$5, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const acpiConfDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "acpi-events", nix.thunk(() => ({ [nix.POS]: pos$5, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 ${(() => {
       const f = (name) => (handler) => nix.str`fn=$out/${name}
 echo "event=${nix.sel(handler, "event")}" > $fn
@@ -64,34 +64,34 @@ echo "action=${nix.app(nix.sel(pkgs, "writeShellScriptBin"), nix.thunk(() => nix
     })()}
 `)));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         acpid: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the ACPI daemon")),
           logEvents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Log all event activity.",
             })))),
           handlers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       event: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"button/power.*\" \"button/lid.*\" \"ac_adapter.*\" \"button/mute.*\" \"button/volumedown.*\" \"cd/play.*\" \"cd/next.*\"")),
                           description: "Event type.",
                         })))),
                       action: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                           description: "Shell commands to execute when the event is triggered.",
                         })))),
@@ -100,28 +100,28 @@ echo "action=${nix.app(nix.sel(pkgs, "writeShellScriptBin"), nix.thunk(() => nix
               description: "Event handlers.\n\n::: {.note}\nHandler can be a single command.\n:::\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "ac-power": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   event: "ac_adapter/*",
                   action: "vals=($1)  # space separated string to array of multiple values\ncase ${vals[3]} in\n    00000000)\n        echo unplugged >> /tmp/acpi.log\n        ;;\n    00000001)\n        echo plugged in >> /tmp/acpi.log\n        ;;\n    *)\n        echo unknown >> /tmp/acpi.log\n        ;;\nesac\n",
                 })),
               })),
             })))),
           powerEventCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Shell commands to execute on a button/power.* event.",
             })))),
           lidEventCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Shell commands to execute on a button/lid.* event.",
             })))),
           acEventCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Shell commands to execute on an ac_adapter.* event.",
@@ -130,18 +130,18 @@ echo "action=${nix.app(nix.sel(pkgs, "writeShellScriptBin"), nix.thunk(() => nix
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             acpid: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "ACPI Daemon",
               documentation: nix.thunk(() => ["man:acpid(8)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "acpid")}/bin/acpid`),
                     "--foreground",
@@ -151,7 +151,7 @@ echo "action=${nix.app(nix.sel(pkgs, "writeShellScriptBin"), nix.thunk(() => nix
                   ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "logEvents")), "--logevents"))))),
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ConditionVirtualization: "!systemd-nspawn",
                 ConditionPathExists: nix.thunk(() => ["/proc/acpi"]),
               })),

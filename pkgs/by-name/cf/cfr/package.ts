@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const jdk11 = nix.arg($, "jdk11");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cfr",
       version: "0.152",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leibnitz27",
           repo: "cfr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre_headless)} $out/bin/cfr \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Another java decompiler",
         longDescription: "CFR will decompile modern Java features - Java 8 lambdas (pre and post\nJava beta 103 changes), Java 7 String switches etc, but is written\nentirely in Java 6.\n",
         homepage: "https://github.com/leibnitz27/cfr",

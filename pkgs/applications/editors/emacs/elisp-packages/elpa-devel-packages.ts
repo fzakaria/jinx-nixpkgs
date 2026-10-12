@@ -20,8 +20,8 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const generated = nix.argOr($_1, "generated", () => nix.path(here, "./elpa-devel-generated.nix"));
         const imported = nix.thunk(() => nix.app(nix.builtins.import(generated), nix.thunk(() => ({
-            __proto__: pos$2,
-            callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { __proto__: pos$1, fetchurl: fetchurl }))),
+            [nix.POS]: pos$2,
+            callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, fetchurl: fetchurl }))),
           }))));
         const super$ = imported;
         const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elpa-common-overrides.nix")), pkgs, lib, buildPackages));

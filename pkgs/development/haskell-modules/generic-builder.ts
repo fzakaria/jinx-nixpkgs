@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
     const iservWrapper = nix.thunk(() => (() => {
       const wrapperScript = (enableProfiling) => (() => {
         const overrides = nix.thunk(() => nix.app(nix.sel(haskellLib, "overrideCabal"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enableLibraryProfiling: enableProfiling,
             enableExecutableProfiling: enableProfiling,
           }))));
@@ -102,14 +102,14 @@ ${buildProxy} $@ --pipe ${emulator} ${hostProxy} tmp --stdio
 `));
       })();
       const both = nix.thunk(() => nix.app(nix.sel(buildPackages, "symlinkJoin"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "iserv-wrapper-both",
           paths: nix.thunk(() => nix.builtins.map(wrapperScript, nix.thunk(() => [false, true]))),
         }))));
       return nix.str`${both}/bin/iserv-wrapper`;
     })());
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       emulator,
       needsExternalInterpreterSetup,
       canProxyTH,
@@ -131,7 +131,7 @@ ${buildProxy} $@ --pipe ${emulator} ${hostProxy} tmp --stdio
     const revision = nix.argOr($_1, "revision", () => null);
     const sha256 = nix.argOr($_1, "sha256", () => null);
     const src = nix.argOr($_1, "src", () => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`mirror://hackage/${pname}-${version}.tar.gz`),
         sha256: sha256,
       }))));
@@ -265,7 +265,7 @@ ${buildProxy} $@ --pipe ${emulator} ${hostProxy} tmp --stdio
     const binDir = nix.thunk(() => (nix.asBool(enableSeparateBinOutput) ? "$bin/bin" : "$out/bin"));
     const newCabalFileUrl = nix.thunk(() => nix.str`mirror://hackage/${pname}-${version}/revision/${revision}.cabal`);
     const newCabalFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: newCabalFileUrl,
         sha256: editedCabalFile,
         name: nix.thunk(() => nix.str`${pname}-${version}-r${revision}.cabal`),
@@ -332,13 +332,13 @@ ${buildProxy} $@ --pipe ${emulator} ${hostProxy} tmp --stdio
     const allPkgconfigDepends = nix.thunk(() => (() => {
       const propagateValue = (drv) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), drv)) && nix.asBool((!nix.asBool(__onlyPropagateKnownPkgConfigModules) || nix.asBool(nix.has(drv, "meta", "pkgConfigModules")))));
       const propagatePlainBuildInputs = (drvs) => nix.builtins.map((i) => nix.sel(i, "val"), nix.thunk(() => nix.builtins.genericClosure(nix.thunk(() => ({
-            __proto__: pos$8,
-            startSet: nix.thunk(() => nix.builtins.map((drv) => ({ __proto__: pos$6, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv }), nix.thunk(() => nix.builtins.filter(propagateValue, drvs)))),
+            [nix.POS]: pos$8,
+            startSet: nix.thunk(() => nix.builtins.map((drv) => ({ [nix.POS]: pos$6, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv }), nix.thunk(() => nix.builtins.filter(propagateValue, drvs)))),
             operator: nix.lambda((args_3) => (() => {
               const $_2 = nix.formals(args_3, formals$3);
               const val = nix.arg($_2, "val");
               return nix.builtins.concatMap((drv) => (nix.asBool(nix.app(propagateValue, drv)) ? [
-                  nix.thunk(() => ({ __proto__: pos$7, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv })),
+                  nix.thunk(() => ({ [nix.POS]: pos$7, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv })),
                 ] : []), nix.thunk(() => nix.concat(nix.selOr(val, () => [], "buildInputs"), nix.selOr(val, () => [], "propagatedBuildInputs"))));
             })(), formals$3),
           })))));
@@ -381,16 +381,16 @@ fi
       const shouldAdd = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isGhcjs")) && nix.asBool(isExecutable)));
       const shouldCopy = nix.thunk(() => (nix.asBool(shouldAdd) && nix.asBool(!nix.asBool(doInstallIntermediates))));
       const shouldSymlink = nix.thunk(() => (nix.asBool(shouldAdd) && nix.asBool(doInstallIntermediates)));
-      return { __proto__: pos$9, shouldAdd, shouldCopy, shouldSymlink };
+      return { [nix.POS]: pos$9, shouldAdd, shouldCopy, shouldSymlink };
     })());
     const testWrapperScript = nix.thunk(() => nix.app(nix.sel(buildPackages, "writeShellScript"), "haskell-generic-builder-test-wrapper.sh", "set -eu\n\n# We expect this to be either empty or set by checkPhase\nif [[ -n \"${NIX_GHC_PACKAGE_PATH_FOR_TEST}\" ]]; then\n  export GHC_PACKAGE_PATH=\"${NIX_GHC_PACKAGE_PATH_FOR_TEST}\"\nfi\n\nexec \"$@\"\n"));
     const testTargetsString = nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(testTarget, "")), "haskellPackages.mkDerivation: testTarget is deprecated. Use testTargets instead", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", testTargets))));
-    const env$ = nix.thunk(() => nix.update({ __proto__: pos$10, LANG: "en_US.UTF-8" }, nix.update(env, nix.app(optionalAttrs, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ghc, "version")), "9.6.5")) && nix.asBool(nix.sel(stdenv, "hasCC")))) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))), nix.thunk(() => ({
-        __proto__: pos$11,
+    const env$ = nix.thunk(() => nix.update({ [nix.POS]: pos$10, LANG: "en_US.UTF-8" }, nix.update(env, nix.app(optionalAttrs, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ghc, "version")), "9.6.5")) && nix.asBool(nix.sel(stdenv, "hasCC")))) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))), nix.thunk(() => ({
+        [nix.POS]: pos$11,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-Wno-error=int-conversion", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(env, "NIX_CFLAGS_COMPILE")), nix.thunk(() => nix.add(" ", nix.sel(env, "NIX_CFLAGS_COMPILE")))))),
       }))))));
     return nix.app(nix.sel(lib, "fix"), (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.attrsDyn({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           pname: pname,
           version: version,
           outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(optional, enableSeparateDataOutput, "data"), nix.concat(nix.app(optional, enableSeparateDocOutput, "doc"), nix.concat(nix.app(optional, enableSeparateBinOutput, "bin"), nix.app(optional, enableSeparateIntermediatesOutput, "intermediates")))))),
@@ -405,7 +405,7 @@ fi
           buildInputs: nix.thunk(() => nix.concat(otherBuildInputs, nix.concat(nix.app(optionals, nix.thunk(() => !nix.asBool(isLibrary)), propagatedBuildInputs), nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGhcjs")), nix.thunk(() => [nodejs]))))),
           propagatedBuildInputs: nix.thunk(() => nix.app(optionals, isLibrary, propagatedBuildInputs)),
           env: nix.thunk(() => nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               LOCALE_ARCHIVE: nix.thunk(() => nix.str`${nix.sel(buildPackages, "glibcLocales")}/lib/locale/locale-archive`),
             }))), env$)),
           prePatch: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(optionalString, nix.thunk(() => !nix.eq(editedCabalFile, null)), nix.thunk(() => nix.str`echo "Replace Cabal file with edited version from ${newCabalFileUrl}."
@@ -574,7 +574,7 @@ runHook postInstall
             const disallowGhcReference_1 = disallowGhcReference;
             const compiler = ghc;
             const getCabalDeps = nix.thunk(() => nix.update({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               buildDepends: buildDepends,
               buildTools: buildTools,
               executableFrameworkDepends: executableFrameworkDepends,
@@ -591,7 +591,7 @@ runHook postInstall
               "pkg-configDepends": pkg_configDepends,
               setupHaskellDepends: setupHaskellDepends,
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), doCheck, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 testDepends: testDepends,
                 testFrameworkDepends: testFrameworkDepends,
                 testHaskellDepends: testHaskellDepends,
@@ -599,7 +599,7 @@ runHook postInstall
                 testSystemDepends: testSystemDepends,
                 testToolDepends: testToolDepends,
               }))), nix.app(nix.sel(lib, "optionalAttrs"), doBenchmark, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 benchmarkDepends: benchmarkDepends,
                 benchmarkFrameworkDepends: benchmarkFrameworkDepends,
                 benchmarkHaskellDepends: benchmarkHaskellDepends,
@@ -615,7 +615,7 @@ runHook postInstall
               const systemBuildInputs = nix.thunk(() => nix.sel(isHaskellPartition, "wrong"));
               const isHaskellPartition = nix.thunk(() => nix.app(nix.sel(lib, "partition"), isHaskellPkg, nix.thunk(() => nix.concat(propagatedBuildInputs_1, nix.concat(otherBuildInputs_1, nix.concat(depsBuildBuild, nativeBuildInputs))))));
               return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 propagatedBuildInputs: propagatedBuildInputs_1,
                 otherBuildInputs: otherBuildInputs_1,
                 allPkgconfigDepends: allPkgconfigDepends_1,
@@ -638,7 +638,7 @@ runHook postInstall
               const ghcEnv = nix.thunk(() => nix.app(withPackages, (_) => nix.concat(otherBuildInputsHaskell, nix.concat(propagatedBuildInputs, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isCross)), setupHaskellDepends)))));
               const ghcCommandCaps = nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), ghcCommand$));
               return nix.app(runCommandCC, name, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   shellHook: shellHook,
                   depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optional"), isCross, ghcEnvForBuild)),
                   nativeBuildInputs: nix.thunk(() => nix.concat([ghcEnv], nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(allPkgconfigDepends, [])), pkg_config), collectedToolDepends))),
@@ -649,14 +649,14 @@ runHook postInstall
                     [nix.str`NIX_${ghcCommandCaps}_DOCDIR`, nix.thunk(() => nix.str`${ghcEnv}/share/doc/ghc/html`)],
                     [nix.str`NIX_${ghcCommandCaps}_LIBDIR`, nix.thunk(() => (nix.asBool(nix.selOr(ghc, () => false, "isHaLVM")) ? nix.str`${ghcEnv}/lib/HaLVM-${nix.sel(ghc, "version")}` : nix.str`${ghcEnv}/${ghcLibdir}`))],
                   ]), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       LOCALE_ARCHIVE: nix.thunk(() => nix.str`${nix.sel(buildPackages, "glibcLocales")}/lib/locale/locale-archive`),
                     }))), env$))),
                 })), "echo $nativeBuildInputs $buildInputs > $out");
             })(), formals$4);
             const env_1 = nix.thunk(() => nix.app(envFunc, nix.thunk(() => ({}))));
             return {
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               pname: pname_1,
               version: version_1,
               disallowGhcReference: disallowGhcReference_1,
@@ -669,7 +669,7 @@ runHook postInstall
               env: env_1,
             };
           })())),
-          meta: nix.thunk(() => nix.update({ __proto__: pos$20, homepage: homepage, platforms: platforms }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "broken")), nix.thunk(() => ({ __proto__: pos$21, broken: broken }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "description")), nix.thunk(() => ({ __proto__: pos$22, description: description }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "license")), nix.thunk(() => ({ __proto__: pos$23, license: license }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "maintainers")), nix.thunk(() => ({ __proto__: pos$24, maintainers: maintainers }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "teams")), nix.thunk(() => ({ __proto__: pos$25, teams: teams }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "hydraPlatforms")), nix.thunk(() => ({ __proto__: pos$26, hydraPlatforms: hydraPlatforms }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "badPlatforms")), nix.thunk(() => ({ __proto__: pos$27, badPlatforms: badPlatforms }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "changelog")), nix.thunk(() => ({ __proto__: pos$28, changelog: changelog }))), nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "mainProgram")), nix.thunk(() => ({ __proto__: pos$29, mainProgram: mainProgram }))))))))))))),
+          meta: nix.thunk(() => nix.update({ [nix.POS]: pos$20, homepage: homepage, platforms: platforms }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "broken")), nix.thunk(() => ({ [nix.POS]: pos$21, broken: broken }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "description")), nix.thunk(() => ({ [nix.POS]: pos$22, description: description }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "license")), nix.thunk(() => ({ [nix.POS]: pos$23, license: license }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "maintainers")), nix.thunk(() => ({ [nix.POS]: pos$24, maintainers: maintainers }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "teams")), nix.thunk(() => ({ [nix.POS]: pos$25, teams: teams }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "hydraPlatforms")), nix.thunk(() => ({ [nix.POS]: pos$26, hydraPlatforms: hydraPlatforms }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "badPlatforms")), nix.thunk(() => ({ [nix.POS]: pos$27, badPlatforms: badPlatforms }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "changelog")), nix.thunk(() => ({ [nix.POS]: pos$28, changelog: changelog }))), nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "mainProgram")), nix.thunk(() => ({ [nix.POS]: pos$29, mainProgram: mainProgram }))))))))))))),
         }, [
           [(nix.asBool(doInstallIntermediates) ? "installIntermediatesPhase" : null), nix.thunk(() => nix.str`runHook preInstallIntermediates
 intermediatesOutput=${(nix.asBool(enableSeparateIntermediatesOutput) ? "$intermediates" : "$out")}
@@ -685,11 +685,11 @@ ${nix.app(optionalString, nix.thunk(() => nix.sel(jsexe, "shouldSymlink")), nix.
 done
 `))}
 `)],
-        ]), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "sourceRoot")), nix.thunk(() => ({ __proto__: pos$31, sourceRoot: sourceRoot }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "setSourceRoot")), nix.thunk(() => ({ __proto__: pos$32, setSourceRoot: setSourceRoot }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preCompileBuildDriver")), nix.thunk(() => ({ __proto__: pos$33, preCompileBuildDriver: preCompileBuildDriver }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postCompileBuildDriver")), nix.thunk(() => ({ __proto__: pos$34, postCompileBuildDriver: postCompileBuildDriver }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preUnpack")), nix.thunk(() => ({ __proto__: pos$35, preUnpack: preUnpack }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postUnpack")), nix.thunk(() => ({ __proto__: pos$36, postUnpack: postUnpack }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "patches")), nix.thunk(() => ({ __proto__: pos$37, patches: patches }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "patchPhase")), nix.thunk(() => ({ __proto__: pos$38, patchPhase: patchPhase }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preConfigure")), nix.thunk(() => ({ __proto__: pos$39, preConfigure: preConfigure }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postConfigure")), nix.thunk(() => ({ __proto__: pos$40, postConfigure: postConfigure }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preBuild")), nix.thunk(() => ({ __proto__: pos$41, preBuild: preBuild }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postBuild")), nix.thunk(() => ({ __proto__: pos$42, postBuild: postBuild }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "doBenchmark")), nix.thunk(() => ({ __proto__: pos$43, doBenchmark: doBenchmark }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "checkPhase")), nix.thunk(() => ({ __proto__: pos$44, checkPhase: checkPhase }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preCheck")), nix.thunk(() => ({ __proto__: pos$45, preCheck: preCheck }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postCheck")), nix.thunk(() => ({ __proto__: pos$46, postCheck: postCheck }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preHaddock")), nix.thunk(() => ({ __proto__: pos$47, preHaddock: preHaddock }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postHaddock")), nix.thunk(() => ({ __proto__: pos$48, postHaddock: postHaddock }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preInstall")), nix.thunk(() => ({ __proto__: pos$49, preInstall: preInstall }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "installPhase")), nix.thunk(() => ({ __proto__: pos$50, installPhase: installPhase }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postInstall")), nix.thunk(() => ({ __proto__: pos$51, postInstall: postInstall }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preFixup")), nix.thunk(() => ({ __proto__: pos$52, preFixup: preFixup }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postFixup")), nix.thunk(() => ({ __proto__: pos$53, postFixup: postFixup }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "dontStrip")), nix.thunk(() => ({ __proto__: pos$54, dontStrip: dontStrip }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(postPhases, [])), nix.thunk(() => ({ __proto__: pos$55, postPhases: postPhases }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.eq(disallowedRequisites, [])) || nix.asBool(disallowGhcReference))), nix.thunk(() => ({
-            __proto__: pos$56,
+        ]), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "sourceRoot")), nix.thunk(() => ({ [nix.POS]: pos$31, sourceRoot: sourceRoot }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "setSourceRoot")), nix.thunk(() => ({ [nix.POS]: pos$32, setSourceRoot: setSourceRoot }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preCompileBuildDriver")), nix.thunk(() => ({ [nix.POS]: pos$33, preCompileBuildDriver: preCompileBuildDriver }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postCompileBuildDriver")), nix.thunk(() => ({ [nix.POS]: pos$34, postCompileBuildDriver: postCompileBuildDriver }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preUnpack")), nix.thunk(() => ({ [nix.POS]: pos$35, preUnpack: preUnpack }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postUnpack")), nix.thunk(() => ({ [nix.POS]: pos$36, postUnpack: postUnpack }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "patches")), nix.thunk(() => ({ [nix.POS]: pos$37, patches: patches }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "patchPhase")), nix.thunk(() => ({ [nix.POS]: pos$38, patchPhase: patchPhase }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preConfigure")), nix.thunk(() => ({ [nix.POS]: pos$39, preConfigure: preConfigure }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postConfigure")), nix.thunk(() => ({ [nix.POS]: pos$40, postConfigure: postConfigure }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preBuild")), nix.thunk(() => ({ [nix.POS]: pos$41, preBuild: preBuild }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postBuild")), nix.thunk(() => ({ [nix.POS]: pos$42, postBuild: postBuild }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "doBenchmark")), nix.thunk(() => ({ [nix.POS]: pos$43, doBenchmark: doBenchmark }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "checkPhase")), nix.thunk(() => ({ [nix.POS]: pos$44, checkPhase: checkPhase }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preCheck")), nix.thunk(() => ({ [nix.POS]: pos$45, preCheck: preCheck }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postCheck")), nix.thunk(() => ({ [nix.POS]: pos$46, postCheck: postCheck }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preHaddock")), nix.thunk(() => ({ [nix.POS]: pos$47, preHaddock: preHaddock }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postHaddock")), nix.thunk(() => ({ [nix.POS]: pos$48, postHaddock: postHaddock }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preInstall")), nix.thunk(() => ({ [nix.POS]: pos$49, preInstall: preInstall }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "installPhase")), nix.thunk(() => ({ [nix.POS]: pos$50, installPhase: installPhase }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postInstall")), nix.thunk(() => ({ [nix.POS]: pos$51, postInstall: postInstall }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "preFixup")), nix.thunk(() => ({ [nix.POS]: pos$52, preFixup: preFixup }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "postFixup")), nix.thunk(() => ({ [nix.POS]: pos$53, postFixup: postFixup }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "dontStrip")), nix.thunk(() => ({ [nix.POS]: pos$54, dontStrip: dontStrip }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(postPhases, [])), nix.thunk(() => ({ [nix.POS]: pos$55, postPhases: postPhases }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.eq(disallowedRequisites, [])) || nix.asBool(disallowGhcReference))), nix.thunk(() => ({
+            [nix.POS]: pos$56,
             disallowedRequisites: nix.thunk(() => nix.concat(disallowedRequisites, (nix.asBool(disallowGhcReference) ? [ghc] : []))),
           }))), nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(__darwinAllowLocalNetworking) || nix.asBool(nix.has(args_2, "__darwinAllowLocalNetworking")))), nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             __darwinAllowLocalNetworking: __darwinAllowLocalNetworking,
           })))))))))))))))))))))))))))))))));
   })(), formals$2);

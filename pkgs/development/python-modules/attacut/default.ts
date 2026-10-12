@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0-dev";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyThaiNLP",
           repo: "attacut",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i \"/nptyping>=/d\" setup.py\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-nptyping-deprecated-array.patch",
             url: "https://github.com/PyThaiNLP/attacut/commit/a707297b3f08a015d32d8ac241aa8cb11128cbd4.patch",
             includes: nix.thunk(() => ["attacut/evaluation.py"]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/*"]);
       const pythonImportsCheck = nix.thunk(() => ["attacut"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and Accurate Neural Thai Word Segmenter",
         homepage: "https://github.com/PyThaiNLP/attacut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "attacut-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

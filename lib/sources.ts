@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       return !nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(baseName, ".git")) || nix.asBool((nix.asBool(nix.eq(type, "directory")) && nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(baseName, ".svn")) || nix.asBool(nix.eq(baseName, "CVS")))) || nix.asBool(nix.eq(baseName, ".hg")))) || nix.asBool(nix.eq(baseName, ".jj")))) || nix.asBool(nix.eq(baseName, ".pijul")))) || nix.asBool(nix.eq(baseName, "_darcs")))))))) || nix.asBool(nix.app(hasEmacsBackupFileSuffix, baseName)))) || nix.asBool(!nix.eq(nix.app(match, "^\\.sw[a-z]$", baseName), null)))) || nix.asBool(!nix.eq(nix.app(match, "^\\..*\\.sw[a-z]$", baseName), null)))) || nix.asBool(nix.app(hasObjectSuffix, baseName)))) || nix.asBool(nix.app(hasSharedObjectSuffix, baseName)))) || nix.asBool((nix.asBool(nix.eq(type, "symlink")) && nix.asBool(nix.app(hasResultPrefix, baseName)))))) || nix.asBool(nix.eq(type, "unknown"))));
     })();
   })());
-  const cleanSource = (src) => nix.app(cleanSourceWith, nix.thunk(() => ({ __proto__: pos$1, filter: cleanSourceFilter, src: src })));
+  const cleanSource = (src) => nix.app(cleanSourceWith, nix.thunk(() => ({ [nix.POS]: pos$1, filter: cleanSourceFilter, src: src })));
   const cleanSourceWith = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const src = nix.arg($_1, "src");
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.argOr($_1, "name", () => null);
     const orig = nix.thunk(() => nix.app(toSourceAttributes, src));
     return nix.app(fromSourceAttributes, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         origSrc: nix.thunk(() => nix.attr(orig, "origSrc")),
         filter: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(orig, "filter"), null)) ? nix.force(filter_1) : (nix.asBool(nix.eq(filter_1, null)) ? nix.sel(orig, "filter") : (path) => (type) => (nix.asBool(nix.app(filter_1, path, type)) && nix.asBool(nix.app(nix.sel(orig, "filter"), path, type)))))),
         name: nix.thunk(() => (nix.asBool(!nix.eq(name, null)) ? nix.force(name) : nix.sel(orig, "name"))),
@@ -79,13 +79,13 @@ export default nix.lambda((args) => (() => {
   const trace = (src) => (() => {
     const attrs = nix.thunk(() => nix.app(toSourceAttributes, src));
     return nix.update(nix.app(fromSourceAttributes, nix.thunk(() => nix.update(attrs, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         filter: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(attrs, "filter"), null)) ? (path) => (type) => nix.builtins.trace(nix.thunk(() => nix.str`${nix.sel(attrs, "name")}.filter ${path} = true`), true) : (path) => (type) => (() => {
           const r = nix.thunk(() => nix.app(nix.sel(attrs, "filter"), path, type));
           return nix.builtins.trace(nix.thunk(() => nix.str`${nix.sel(attrs, "name")}.filter ${path} = ${nix.app(boolToString, r)}`), r);
         })())),
       }))), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       satisfiesSubpathInvariant: nix.thunk(() => (nix.asBool(nix.has(src, "satisfiesSubpathInvariant")) && nix.asBool(nix.sel(src, "satisfiesSubpathInvariant")))),
     });
   })();
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
     const isFiltered = nix.thunk(() => nix.has(src, "_isLibCleanSourceWith"));
     const origSrc = nix.thunk(() => (nix.asBool(isFiltered) ? nix.sel(src, "origSrc") : nix.force(src)));
     return nix.app(cleanSourceWith, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         filter: (path) => (type) => (() => {
           const relPath = nix.thunk(() => nix.app(removePrefix, nix.thunk(() => nix.add(nix.builtins.toString(origSrc), "/")), nix.thunk(() => nix.builtins.toString(path))));
           return nix.app(any, (re) => !nix.eq(nix.app(match, re, relPath), null), regexes);
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       const base = nix.thunk(() => nix.builtins.baseNameOf(name));
       return (nix.asBool(nix.eq(type, "directory")) || nix.asBool(nix.app(any, (ext) => nix.app(hasSuffix, ext, base), exts)));
     })();
-    return nix.app(cleanSourceWith, nix.thunk(() => ({ __proto__: pos$6, filter: filter_1, src: src })));
+    return nix.app(cleanSourceWith, nix.thunk(() => ({ [nix.POS]: pos$6, filter: filter_1, src: src })));
   })();
   const pathIsGitRepo = (path) => nix.has(nix.app(_commitIdFromGitRepoOrError, path), "value");
   const commitIdFromGitRepo = (path) => (() => {
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool(nix.app(pathIsRegularFile, path)) ? (() => {
         const m = nix.thunk(() => nix.app(match, "^gitdir: (.*)$", nix.thunk(() => nix.app(nix.sel(lib, "fileContents"), path))));
         return (nix.asBool(nix.eq(m, null)) ? {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           error: nix.thunk(() => nix.add("File contains no gitdir reference: ", path)),
         } : (() => {
           const gitDir = nix.thunk(() => nix.app(absolutePath, nix.thunk(() => nix.builtins.dirOf(path)), nix.thunk(() => nix.app(head, m))));
@@ -134,21 +134,21 @@ export default nix.lambda((args) => (() => {
       })() : (nix.asBool(nix.app(pathIsRegularFile, fileName)) ? (() => {
         const fileContent = nix.thunk(() => nix.app(fileContents, fileName));
         const matchRef = nix.thunk(() => nix.app(match, "^ref: (.*)$", fileContent));
-        return (nix.asBool(nix.eq(matchRef, null)) ? { __proto__: pos$8, value: fileContent } : nix.app(readCommitFromFile, nix.thunk(() => nix.app(head, matchRef)), path));
+        return (nix.asBool(nix.eq(matchRef, null)) ? { [nix.POS]: pos$8, value: fileContent } : nix.app(readCommitFromFile, nix.thunk(() => nix.app(head, matchRef)), path));
       })() : (nix.asBool(nix.app(pathIsRegularFile, packedRefsName)) ? (() => {
         const fileContent = nix.thunk(() => nix.app(readFile, packedRefsName));
         const matchRef = nix.thunk(() => nix.app(match, nix.thunk(() => nix.str`([a-z0-9]+) ${file}`)));
         const isRef = (s) => (nix.asBool(nix.app(isString, s)) && nix.asBool(!nix.eq(nix.app(matchRef, s), null)));
         const refs = nix.thunk(() => nix.app(filter, isRef, nix.thunk(() => nix.app(split, "\n", fileContent))));
         return (nix.asBool(nix.eq(refs, [])) ? {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           error: nix.thunk(() => nix.add(nix.add(nix.add("Could not find ", file), " in "), packedRefsName)),
         } : {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           value: nix.thunk(() => nix.app(head, nix.thunk(() => nix.app(matchRef, nix.thunk(() => nix.app(head, refs)))))),
         });
       })() : {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         error: nix.thunk(() => nix.add("Not a .git directory: ", nix.builtins.toString(path))),
       })));
     })();
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
   const toSourceAttributes = (src) => (() => {
     const isFiltered = nix.thunk(() => nix.has(src, "_isLibCleanSourceWith"));
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       origSrc: nix.thunk(() => (nix.asBool(isFiltered) ? nix.sel(src, "origSrc") : nix.force(src))),
       filter: nix.thunk(() => (nix.asBool(isFiltered) ? nix.sel(src, "filter") : null)),
       name: nix.thunk(() => (nix.asBool(isFiltered) ? nix.sel(src, "name") : "source")),
@@ -173,12 +173,12 @@ export default nix.lambda((args) => (() => {
       const filter_1 = nix.arg($_1, "filter");
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         _isLibCleanSourceWith: true,
         origSrc: origSrc,
         name: name,
         filter: nix.thunk(() => (nix.asBool(nix.eq(filter_1, null)) ? (_) => (__1) => true : nix.force(filter_1))),
-        outPath: nix.thunk(() => nix.app(path, nix.thunk(() => nix.attrsDyn({ __proto__: pos$13, name: name, path: origSrc }, [[(nix.asBool(!nix.eq(filter_1, null)) ? "filter" : null), filter_1]])))),
+        outPath: nix.thunk(() => nix.app(path, nix.thunk(() => nix.attrsDyn({ [nix.POS]: pos$13, name: name, path: origSrc }, [[(nix.asBool(!nix.eq(filter_1, null)) ? "filter" : null), filter_1]])))),
       };
     })(), formals$3);
   })());
@@ -235,13 +235,13 @@ export default nix.lambda((args) => (() => {
       })();
     })();
     return (src) => (patterns) => nix.app(cleanSourceWith, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         filter: nix.thunk(() => nix.app(mkSourceFilter, src, patterns)),
         src: src,
       })));
   })());
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     pathIsGitRepo: pathIsGitRepo,
     commitIdFromGitRepo: commitIdFromGitRepo,
     cleanSource: cleanSource,

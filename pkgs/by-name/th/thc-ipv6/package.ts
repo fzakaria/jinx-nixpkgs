@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libnetfilter_queue = nix.arg($, "libnetfilter_queue");
   const libnfnetlink = nix.arg($, "libnfnetlink");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thc-ipv6",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vanhauser-thc",
           repo: "thc-ipv6",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15.patch",
             url: "https://github.com/vanhauser-thc/thc-ipv6/commit/c9617d5638196bd88336225a6abdfd45c3df0bcf.patch",
             hash: "sha256-4+LmRsDInzzNFHvj8WK+r1fKeoLggQW7yrahC1d6WCs=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IPv6 attack toolkit",
         homepage: "https://github.com/vanhauser-thc/thc-ipv6",
         maintainers: nix.thunk(() => (() => {

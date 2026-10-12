@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const node_modules = (finalAttrs) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "opencode",
       version: "1.18.35",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "anomalyco",
           repo: "opencode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ patchShebangs packages/*/node_modules
 runHook postConfigure
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         MODELS_DEV_API_JSON: nix.thunk(() => nix.str`${models_dev}/dist/_api.json`),
         OPENCODE_DISABLE_MODELS_FETCH: true,
         OPENCODE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -129,21 +129,21 @@ runHook postInstall
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME", "OPENCODE_DISABLE_MODELS_FETCH"]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         jsonschema: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           config: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/config.json`),
           theme: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/theme.json`),
           tui: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/tui.json`),
         })),
         node_modules: nix.thunk(() => nix.app(node_modules, finalAttrs)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "AI coding agent built for the terminal",
         homepage: "https://github.com/anomalyco/opencode",
         changelog: nix.thunk(() => nix.str`https://github.com/anomalyco/opencode/releases/tag/v${nix.sel(finalAttrs, "version")}`),

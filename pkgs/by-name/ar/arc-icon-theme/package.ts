@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const moka_icon_theme = nix.arg($, "moka-icon-theme");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arc-icon-theme",
       version: "20161122",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "horst3180",
           repo: "arc-icon-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       postFixup: "gtk-update-icon-cache $out/share/icons/Arc",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Arc icon theme",
         homepage: "https://github.com/horst3180/arc-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-idprt-mt890",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "idprt_mt890_printer_linux_driver.zip",
           url: "https://www.idprt.com/prt_v2/files/down_file/id/320/fid/778.html",
           hash: "sha256-8yH+DSPRp4mjKOXw90TiGA4OzxJKHpBUMSLh3L2njw8=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, unzip]),
       installPhase: nix.thunk(() => (() => {
-        const arch = nix.thunk(() => nix.selOr({ __proto__: pos$2, "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-mt890: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+        const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-mt890: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
         return nix.str`runHook preInstall
 mkdir -p $out/share/cups/model $out/lib/cups/filter
 cp -r filter/${arch}/. $out/lib/cups/filter
@@ -40,7 +40,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS driver for the iDPRT MT890",
         platforms: nix.thunk(() => ["x86_64-linux", "x86-linux"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

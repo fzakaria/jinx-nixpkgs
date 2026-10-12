@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const mkRenamedOptionModule = nix.thunk(() => nix.attr(lib, "mkRenamedOptionModule"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "draupnir", "dataPath"]), nix.thunk(() => ["services", "draupnir", "settings", "dataPath"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "draupnir", "homeserverUrl"]), nix.thunk(() => ["services", "draupnir", "settings", "homeserverUrl"]))),
@@ -56,25 +56,25 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "draupnir", "pantalaimon"]), "`services.draupnir.pantalaimon.*` has been removed because it depends on the deprecated and vulnerable\nlibolm library for end-to-end encryption and upstream support for Pantalaimon in Draupnir is limited.\nSee <https://the-draupnir-project.github.io/draupnir-documentation/bot/encryption> for details.\nIf you nontheless require E2EE via Pantalaimon, you can configure `services.pantalaimon-headless.instances`\nyourself and use that with `services.draupnir.settings.pantalaimon` and `services.draupnir.secrets.pantalaimon.password`.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         draupnir: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Draupnir, a moderations bot for Matrix")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "draupnir", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               example: nix.thunk(() => nix.app(literalExpression, "{\n  homeserverUrl = \"https://matrix.org\";\n  managementRoom = \"#moderators:example.org\";\n\n  autojoinOnlyIfManager = true;\n  automaticallyRedactForReasons = [ \"spam\" \"advertising\" ];\n}\n")),
               description: "Free-form settings written to Draupnir's configuration file.\nSee [Draupnir's default configuration](https://github.com/the-draupnir-project/Draupnir/blob/main/config/default.yaml) for available settings.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     homeserverUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "https://matrix.org",
                         description: nix.thunk(() => nix.str`Base URL of the Matrix homeserver that provides the Client-Server API.
@@ -86,7 +86,7 @@ When using Pantalaimon, set this to the Pantalaimon URL and
 `),
                       })))),
                     rawHomeserverUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "https://matrix.org",
                         default: nix.thunk(() => nix.sel(cfg, "settings", "homeserverUrl")),
@@ -94,13 +94,13 @@ When using Pantalaimon, set this to the Pantalaimon URL and
                         description: "Public base URL of the Matrix homeserver that provides the Client-Server API when using the Draupnir's\n[Report forwarding feature](https://the-draupnir-project.github.io/draupnir-documentation/bot/homeserver-administration#report-forwarding).\n\n::: {.warning}\nWhen using Pantalaimon, do not set this to the Pantalaimon URL!\n:::\n",
                       })))),
                     managementRoom: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "#moderators:example.org",
                         description: "The room ID or alias where moderators can use the bot's functionality.\n\nThe bot has no access controls, so anyone in this room can use the bot - secure this room!\nDo not enable end-to-end encryption for this room, unless set up with Pantalaimon.\n\n::: {.warning}\nWhen using a room alias, make sure the alias used is on the local homeserver!\nThis prevents an issue where the control room becomes undefined when the alias can't be resolved.\n:::\n",
                       })))),
                     dataPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         readOnly: true,
                         default: "/var/lib/draupnir",
@@ -110,9 +110,9 @@ When using Pantalaimon, set this to the Pantalaimon URL and
                 })))),
             })))),
           secrets: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             accessToken: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: nix.thunk(() => nix.str`File containing the access token for Draupnir's Matrix account
@@ -120,9 +120,9 @@ to be used in place of {option}\`${nix.sel(opt, "settings")}.accessToken\`.
 `),
               })))),
             pantalaimon: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                   default: null,
                   description: nix.thunk(() => nix.str`File containing the password for Draupnir's Matrix account when used in
@@ -138,11 +138,11 @@ Take note that upstream has limited Pantalaimon and E2EE support:
                 })))),
             })),
             web: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               synapseHTTPAntispam: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 authorization: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                     default: null,
                     description: nix.thunk(() => nix.str`File containing the secret token when using the Synapse HTTP Antispam module
@@ -159,20 +159,20 @@ See <https://the-draupnir-project.github.io/draupnir-documentation/bot/synapse-h
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "protectedRooms"))),
             message: nix.thunk(() => nix.str`Unset ${nix.sel(opt, "settings")}.protectedRooms, as it is unsupported on Draupnir. Add these rooms via \`!draupnir rooms add\` instead.`),
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             draupnir: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Draupnir - a moderation bot for Matrix",
               wants: nix.thunk(() => [
                 "network-online.target",
@@ -189,7 +189,7 @@ See <https://the-draupnir-project.github.io/draupnir-documentation/bot/synapse-h
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               startLimitIntervalSec: 0n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                     "--draupnir-config",
@@ -216,7 +216,7 @@ See <https://the-draupnir-project.github.io/draupnir-documentation/bot/synapse-h
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       doc: nix.path(here, "./draupnir.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

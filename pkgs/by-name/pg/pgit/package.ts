@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const pgit = nix.arg($, "pgit");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgit",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "picosh",
           repo: "pgit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-in8GVcOlGsvmcbegJmYwvE0AVJhVJ83x1v3ymV0uTpg=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          smoke: nix.thunk(() => nix.app(runCommand, "pgit-smoke-test", nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [git]) })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), git)} init -b smoke
+          [nix.POS]: pos$3,
+          smoke: nix.thunk(() => nix.app(runCommand, "pgit-smoke-test", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [git]) })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), git)} init -b smoke
 ${nix.app(nix.sel(lib, "getExe"), git)} config --local user.name "Nick Spackages"
 ${nix.app(nix.sel(lib, "getExe"), git)} config --local user.email "nixbld@localhost"
 echo "Read me please" > README
@@ -48,7 +48,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "static site generator for git",
         homepage: "https://pgit.pico.sh/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

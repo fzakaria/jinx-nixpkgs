@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const ocaml_pcre = nix.arg($, "ocaml_pcre");
   const mparser = nix.arg($, "mparser");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mparser-pcre",
       src: nix.thunk(() => nix.attr(mparser, "src")),
       version: nix.thunk(() => nix.attr(mparser, "version")),
       propagatedBuildInputs: nix.thunk(() => [ocaml_pcre, mparser]),
-      meta: nix.thunk(() => nix.update(nix.sel(mparser, "meta"), { __proto__: pos$1, description: "PCRE-based regular expressions" })),
+      meta: nix.thunk(() => nix.update(nix.sel(mparser, "meta"), { [nix.POS]: pos$1, description: "PCRE-based regular expressions" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=pcre.ts.map

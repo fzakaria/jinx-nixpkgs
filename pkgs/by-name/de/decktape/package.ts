@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "decktape";
       const version = "3.16.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astefanutti",
           repo: "decktape",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-B84p4VBaQMZlhwiwXdF9Ijwpn3MisMlOXWc0E+5R5l8=";
       const npmPackFlags = nix.thunk(() => ["--ignore-scripts"]);
       const dontNpmBuild = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: 1n }));
       const postFixup = nix.thunk(() => nix.str`wrapProgram $out/bin/decktape \\
   --add-flags "--chrome-path ${chromium}/bin/chromium" \\
   --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [chromium]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-quality PDF exporter for HTML presentation frameworks",
         mainProgram: "decktape",
         homepage: "https://github.com/astefanutti/decktape",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

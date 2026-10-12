@@ -24,21 +24,21 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "prometheus-xmpp-alerts.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "prometheus", "xmpp-alerts", "configuration"]), nix.thunk(() => ["services", "prometheus", "xmpp-alerts", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "xmpp-alerts": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "XMPP Web hook service for Alertmanager")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 description: "Configuration for prometheus xmpp-alerts, see\n<https://github.com/jelmer/prometheus-xmpp-alerts/blob/master/xmpp-alerts.yml.example>\nfor supported values.\n",
@@ -48,18 +48,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "prometheus-xmpp-alerts": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-xmpp-alerts")}/bin/prometheus-xmpp-alerts --config ${configFile}`),
                 Restart: "on-failure",
                 DynamicUser: true,

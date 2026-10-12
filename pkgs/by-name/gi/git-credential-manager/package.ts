@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "git-credential-manager";
       const version = "2.7.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-ecosystem",
           repo: "git-credential-manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
         "--inherit-argv0",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: git_credential_manager })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: git_credential_manager })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Secure, cross-platform Git credential storage with authentication to GitHub, Azure Repos, and other popular Git hosting services",
         homepage: "https://github.com/git-ecosystem/git-credential-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "git-credential-manager",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

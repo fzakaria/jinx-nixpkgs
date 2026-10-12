@@ -57,23 +57,23 @@ export default nix.lambda((args) => (() => {
   const setTarget = (x) => (nix.asBool(nix.eq(target, null)) ? nix.force(x) : nix.force(target));
   const setDynamicArch = (x) => (nix.asBool(nix.eq(dynamicArch, null)) ? nix.force(x) : nix.force(dynamicArch));
   const configs = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     "armv6l-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       BINARY: 32n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ARMV6")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, false)),
       USE_OPENMP: true,
     })),
     "armv7l-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       BINARY: 32n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ARMV7")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, false)),
       USE_OPENMP: true,
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "VORTEX")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
@@ -81,21 +81,21 @@ export default nix.lambda((args) => (() => {
       MACOSX_DEPLOYMENT_TARGET: "11.0",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ARMV8")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))),
       USE_OPENMP: true,
     })),
     "i686-linux": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       BINARY: 32n,
       TARGET: nix.thunk(() => nix.app(setTarget, "P2")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
       USE_OPENMP: true,
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ATHLON")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       USE_OPENMP: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
     })),
     "x86_64-windows": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ATHLON")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
@@ -111,41 +111,41 @@ export default nix.lambda((args) => (() => {
       USE_OPENMP: false,
     })),
     "powerpc64-linux": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "POWER4")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, false)),
       USE_OPENMP: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
     })),
     "powerpc64le-linux": nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "POWER5")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
       USE_OPENMP: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
     })),
     "riscv64-linux": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "RISCV64_GENERIC")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, false)),
       USE_OPENMP: true,
     })),
     "loongarch64-linux": nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       TARGET: nix.thunk(() => nix.app(setTarget, "LA64_GENERIC")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, false)),
       USE_OPENMP: true,
     })),
     "s390x-linux": nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ZARCH_GENERIC")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
       USE_OPENMP: true,
     })),
     "x86_64-freebsd": nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       BINARY: 64n,
       TARGET: nix.thunk(() => nix.app(setTarget, "ATHLON")),
       DYNAMIC_ARCH: nix.thunk(() => nix.app(setDynamicArch, true)),
@@ -157,12 +157,12 @@ export default nix.lambda((args) => (() => {
   const blas64_1 = nix.thunk(() => (nix.asBool(!nix.eq(blas64_, null)) ? nix.force(blas64_) : nix.app(nix.sel(lib, "hasPrefix"), "x86_64", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")))));
   const shlibExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       pname: "openblas",
       version: "0.3.33",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           owner: "OpenMathLib",
           repo: "OpenBLAS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -171,13 +171,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-include-fixes.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             url: "https://github.com/OpenMathLib/OpenBLAS/commit/e3ce4623c299068bbd47c35ee87aab334bac73b1.patch",
             revert: true,
             hash: "sha256-WrP3RCDk/EbpqVOw9XGLnFI+6/bBGJTIrt2TRYGLVQ4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             url: "https://github.com/OpenMathLib/OpenBLAS/commit/3f6e928d34aca977bd5d4191e6d2c2338a342.patch",
             revert: true,
             hash: "sha256-EccgzxgyfAjVbV+HPemGHmzkRe0kpixu3eS3BZWr0g4=",
@@ -241,11 +241,11 @@ ln -s $out/lib/libopenblas${shlibExt} $out/lib/liblapack${shlibExt}.3
 ln -s $out/lib/libopenblas${shlibExt} $out/lib/liblapacke${shlibExt}.3
 `))), nix.app(nix.sel(lib, "optionalString"), enableStatic, "ln -s $out/lib/libopenblas.a $out/lib/libblas.a\nln -s $out/lib/libopenblas.a $out/lib/libcblas.a\nln -s $out/lib/libopenblas.a $out/lib/liblapack.a\nln -s $out/lib/libopenblas.a $out/lib/liblapacke.a\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           numpy: nix.thunk(() => nix.attr(from, "numpy")),
           scipy: nix.thunk(() => nix.attr(from, "scipy")),
           "scikit-learn": nix.thunk(() => nix.attr(from, "scikit-learn")),
@@ -256,11 +256,11 @@ ln -s $out/lib/libopenblas${shlibExt} $out/lib/liblapacke${shlibExt}.3
           opencv: opencv,
           R: R,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           cmake: nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["OpenBLAS"]),
             })))),
@@ -269,7 +269,7 @@ ln -s $out/lib/libopenblas${shlibExt} $out/lib/liblapacke${shlibExt}.3
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         description: "Basic Linear Algebra Subprograms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/OpenMathLib/OpenBLAS",

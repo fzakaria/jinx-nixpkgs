@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const rev = nix.argOr($_1, "rev", () => nix.force(version));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "font-awesome",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "FortAwesome",
             repo: "Font-Awesome",
             rev: rev,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         dontInstallWebfonts: true,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${(nix.asBool(nix.eq(version, "4.7.0")) ? "fonts" : "otfs")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Font Awesome - OTF font",
           longDescription: "Font Awesome gives you scalable vector icons that can instantly be customized.\nThis package includes only the OTF font. For full CSS etc. see the project website.\n",
           homepage: "https://fontawesome.com/",
@@ -56,25 +56,25 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     v4: nix.thunk(() => nix.app(font_awesome, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "4.7.0",
         rev: "v4.7.0",
         hash: "sha256-LL9zWFC+76wH74nqKszPQf2ZDfXq8BiH6tuiK43wYHA=",
       })))),
     v5: nix.thunk(() => nix.app(font_awesome, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "5.15.4",
         hash: "sha256-gd23ZplNY56sm1lfkU3kPXUOmNmY5SRnT0qlQZRNuBo=",
       })))),
     v6: nix.thunk(() => nix.app(font_awesome, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "6.7.2",
         hash: "sha256-MaJG96kYj8ukJVyqOTDpkHH/eWr/ZlbVKk9AvJM7ub4=",
       })))),
     v7: nix.thunk(() => nix.app(font_awesome, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "7.2.0",
         hash: "sha256-BTm78NCZXksCuzoXm2B39/UIB/Sb/wwL1vvaGRVUaio=",
       })))),

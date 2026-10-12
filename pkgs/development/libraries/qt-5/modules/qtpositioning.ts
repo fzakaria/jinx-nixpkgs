@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtpositioning",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtserialport]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),

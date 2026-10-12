@@ -60,38 +60,38 @@ export default nix.lambda((args) => (() => {
   const seedAdminEnabled = nix.thunk(() => !nix.eq(nix.sel(cfg, "adminUser", "email"), null));
   const seedAdminScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "plausible-seed-admin.exs", "# This script runs via `plausible eval`, which evaluates it WITHOUT\n# starting the `:plausible` application or its Ecto repos. We therefore\n# start them ourselves before querying/inserting, mirroring the private\n# `Plausible.Release.prepare/0` (the same startup the release uses for its\n# `migrate`/`seed` commands): load the app, start the DB-related apps and\n# start each Ecto repo. Otherwise `Repo.exists?/1` raises\n# `could not lookup Ecto repo Plausible.Repo because it was not started`.\n:ok = Application.ensure_loaded(:plausible)\nEnum.each([:ssl, :postgrex, :ch, :ecto], &Application.ensure_all_started/1)\nEnum.each(Application.fetch_env!(:plausible, :ecto_repos), & &1.start_link(pool_size: 2))\n\nalias Plausible.Repo\nalias Plausible.Auth.User\n\nunless Repo.exists?(User) do\n  email = System.fetch_env!(\"SEED_ADMIN_USER_EMAIL\")\n  name = System.fetch_env!(\"SEED_ADMIN_USER_NAME\")\n  password_hash = System.fetch_env!(\"SEED_ADMIN_USER_PASSWORD_HASH\")\n\n  %User{\n    email: email,\n    name: name,\n    password_hash: password_hash,\n    email_verified: true\n  }\n  |> Repo.insert!()\n\n  IO.puts(\"plausible: seeded admin user #{email}\")\nend\n"));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         plausible: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "plausible")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "plausible", nix.thunk(() => ({})))),
           database: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             clickhouse: nix.thunk(() => ({
-              __proto__: pos$3,
-              setup: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "creating a clickhouse instance"), { __proto__: pos$1, default: true })),
+              [nix.POS]: pos$3,
+              setup: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "creating a clickhouse instance"), { [nix.POS]: pos$1, default: true })),
               url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   default: "http://localhost:8123/default",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "The URL to be used to connect to `clickhouse`.\n",
                 })))),
             })),
             postgres: nix.thunk(() => ({
-              __proto__: pos$7,
-              setup: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "creating a postgresql instance"), { __proto__: pos$4, default: true })),
+              [nix.POS]: pos$7,
+              setup: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "creating a postgresql instance"), { [nix.POS]: pos$4, default: true })),
               dbname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   default: "plausible",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "Name of the database to use.\n",
                 })))),
               socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   default: "/run/postgresql",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "Path to the UNIX domain-socket to communicate with `postgres`.\n",
@@ -99,22 +99,22 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           adminUser: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             email: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "Email address of an admin user to seed into the database before the\nPlausible web server starts accepting connections.\n\nPlausible Community Edition shows an unauthenticated \"first launch\"\nsetup wizard whenever no user exists in the database, which redirects\nevery page to `/register` and lets anyone reaching the instance over\nthe network create the first admin account. Setting this option (and\n{option}`services.plausible.adminUser.passwordHashFile`) seeds an\nadmin user before the port is opened, so the wizard is never reachable\nby strangers.\n\nWhen `null`, no user is seeded and Plausible's setup wizard is used as\nusual.\n\nSeeding is idempotent: if any user already exists, no user is created.\n",
                 example: "admin@example.org",
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: "Admin",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Display name of the seeded admin user (see\n{option}`services.plausible.adminUser.email`).\n",
               })))),
             passwordHashFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -125,66 +125,66 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           server: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             disableRegistration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: true,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [true, false, "invite_only"]))),
                 description: "Whether to prohibit creating an account in plausible's UI or allow on `invite_only`.\n",
               })))),
             secretKeybaseFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "Path to the secret used by the `phoenix`-framework. Instructions\nhow to generate one are documented in the\n[framework docs](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Secret.html#content).\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: "127.0.0.1",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The IP address on which the server is listening.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: 8000n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 description: "Port where the service should be available.\n",
               })))),
             baseUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Public URL where plausible is available.\n\nNote that `/path` components are currently ignored:\n<https://github.com/plausible/analytics/issues/1182>.\n",
               })))),
           })),
           mail: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             email: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: "hello@plausible.local",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The email id to use for as *from* address of all communications\nfrom Plausible.\n",
               })))),
             smtp: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               hostAddr: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   default: "localhost",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "The host address of your smtp server.\n",
                 })))),
               hostPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   default: 25n,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                   description: "The port of your smtp server.\n",
                 })))),
               user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   default: null,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   description: "The username/email in case SMTP auth is enabled.\n",
                 })))),
               passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   default: null,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -194,7 +194,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               enableSSL: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "SSL when connecting to the SMTP server")),
               retries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                   default: 2n,
                   description: "Number of retries to make until mailer gives up.\n",
@@ -210,39 +210,39 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "plausible", "adminUser", "activate"]), "The seeded admin user is always created as email-verified; self-hosted Plausible does not require email verification")),
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (!nix.asBool(seedAdminEnabled) || nix.asBool(!nix.eq(nix.sel(cfg, "adminUser", "passwordHashFile"), null)))),
             message: "services.plausible.adminUser.passwordHashFile must be set when services.plausible.adminUser.email is set.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
-          postgresql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "postgres", "setup")), nix.thunk(() => ({ __proto__: pos$31, enable: true })))),
-          clickhouse: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "clickhouse", "setup")), nix.thunk(() => ({ __proto__: pos$32, enable: true })))),
+          [nix.POS]: pos$33,
+          postgresql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "postgres", "setup")), nix.thunk(() => ({ [nix.POS]: pos$31, enable: true })))),
+          clickhouse: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "clickhouse", "setup")), nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           services: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 plausible: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(cfg, "package", "meta"));
                   return {
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   description: nix.thunk(() => nix.attr(from, "description")),
                   documentation: nix.thunk(() => ["https://plausible.io/docs/self-hosting"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "database", "clickhouse", "setup")), "clickhouse.service"), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "postgres", "setup")), nix.thunk(() => ["postgresql.target", "plausible-postgres.service"])))),
                   requires: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "database", "clickhouse", "setup")), "clickhouse.service"), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "postgres", "setup")), nix.thunk(() => ["postgresql.target", "plausible-postgres.service"])))),
                   environment: nix.thunk(() => nix.update({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     STORAGE_DIR: "/var/lib/plausible/elixir_tzdata",
                     PORT: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "server", "port")))),
                     LISTEN_IP: nix.thunk(() => nix.sel(cfg, "server", "listenAddress")),
@@ -261,7 +261,7 @@ export default nix.lambda((args) => (() => {
                     SMTP_HOST_SSL_ENABLED: nix.thunk(() => nix.app(nix.lookup(w, "boolToString"), nix.thunk(() => nix.sel(cfg, "mail", "smtp", "enableSSL")))),
                     SELFHOST: "true",
                   }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "mail", "smtp", "user"), null)), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       SMTP_USER_NAME: nix.thunk(() => nix.sel(cfg, "mail", "smtp", "user")),
                     }))))),
                   path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "database", "postgres", "setup")), nix.thunk(() => nix.sel(config, "services", "postgresql", "package"))))),
@@ -294,7 +294,7 @@ export IP_GEOLOCATION_DB=${nix.sel(pkgs, "dbip-country-lite")}/share/dbip/dbip-c
 exec plausible start
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     DynamicUser: true,
                     PrivateTmp: true,
                     WorkingDirectory: "/var/lib/plausible",
@@ -311,13 +311,13 @@ exec plausible start
                 })()),
               })),
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "postgres", "setup")), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   "plausible-postgres": nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     after: nix.thunk(() => ["postgresql.target"]),
                     partOf: nix.thunk(() => ["plausible.service"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       Type: "oneshot",
                       User: nix.thunk(() => nix.sel(config, "services", "postgresql", "superUser")),
                       RemainAfterExit: true,
@@ -340,7 +340,7 @@ fi
             ]))),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$45, maintainers: [], doc: nix.path(here, "./plausible.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$45, maintainers: [], doc: nix.path(here, "./plausible.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=plausible.ts.map

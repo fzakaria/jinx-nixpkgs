@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "leo2";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://page.mi.fu-berlin.de/cbenzmueller/leo/leo2_v${version}.tgz`),
           sha256: "sha256:1b2q7vsz6s9ighypsigqjm1mzjiq3xgnz5id5ssb4rh9zm190r82",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [zlib]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/niklasso/minisat/commit/7eb6015313561a2586032574788fcb133eeaa19f.patch",
             stripLen: 1n,
             extraPrefix: "lib/",
@@ -48,7 +48,7 @@ substituteInPlace Makefile.pre \\
 `);
       const buildFlags = nix.thunk(() => ["opt"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-reserved-user-defined-literal")),
       }));
       const preInstall = "mkdir -p $out/bin";
@@ -59,7 +59,7 @@ wrapProgram $out/bin/leo \\
   --add-flags "--atprc $out/etc/leoatprc"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-performance typed higher order prover",
         mainProgram: "leo",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -68,7 +68,7 @@ wrapProgram $out/bin/leo \\
         homepage: "http://www.leoprover.org/",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

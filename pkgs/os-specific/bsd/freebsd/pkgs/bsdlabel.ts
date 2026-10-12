@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libgeom = nix.arg($, "libgeom");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/bsdlabel",
       extraPaths: nix.thunk(() => ["sys/geom"]),
       buildInputs: nix.thunk(() => [libgeom]),

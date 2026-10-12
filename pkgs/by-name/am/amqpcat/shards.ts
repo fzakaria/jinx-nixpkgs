@@ -7,15 +7,15 @@ const pos$2 = nix.positions(here + "/shards.nix", [["url", 8, 5], ["rev", 9, 5],
 const pos$3 = nix.positions(here + "/shards.nix", [["amq-protocol", 2, 3], ["amqp-client", 7, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   "amq-protocol": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://github.com/cloudamqp/amq-protocol.cr.git",
     rev: "v1.1.15",
     sha256: "0zjwhgr1rz1kwrh8qpawqspv8qnyk3khqprhgr4h6gqgckqxkkli",
   })),
   "amqp-client": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://github.com/cloudamqp/amqp-client.cr.git",
     rev: "v1.3.1",
     sha256: "00gkfsa20ilbawbhg0c6rxgaf2s2lz4paikwizn182fm7vx67b16",

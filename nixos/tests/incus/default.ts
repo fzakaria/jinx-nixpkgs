@@ -38,77 +38,77 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.arg($, "package");
   const runTestOn = nix.arg($, "runTestOn");
   const incusRunTest = (config) => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       imports: nix.thunk(() => [
         nix.path(here, "./incus-tests-module.nix"),
         nix.path(here, "./incus-tests.nix"),
       ]),
       tests: nix.thunk(() => ({
-        __proto__: pos$2,
-        incus: nix.thunk(() => nix.update({ __proto__: pos$1, package: package$ }, config)),
+        [nix.POS]: pos$2,
+        incus: nix.thunk(() => nix.update({ [nix.POS]: pos$1, package: package$ }, config)),
       })),
     })));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     all: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "all",
         appArmor: true,
-        feature: nix.thunk(() => ({ __proto__: pos$4, user: true })),
+        feature: nix.thunk(() => ({ [nix.POS]: pos$4, user: true })),
         instances: nix.thunk(() => ({
-          __proto__: pos$7,
-          c1: nix.thunk(() => ({ __proto__: pos$5, type: "container" })),
-          vm1: nix.thunk(() => ({ __proto__: pos$6, type: "virtual-machine" })),
+          [nix.POS]: pos$7,
+          c1: nix.thunk(() => ({ [nix.POS]: pos$5, type: "container" })),
+          vm1: nix.thunk(() => ({ [nix.POS]: pos$6, type: "virtual-machine" })),
         })),
-        network: nix.thunk(() => ({ __proto__: pos$8, ovs: true })),
-        storage: nix.thunk(() => ({ __proto__: pos$9, lvm: true, zfs: true })),
+        network: nix.thunk(() => ({ [nix.POS]: pos$8, ovs: true })),
+        storage: nix.thunk(() => ({ [nix.POS]: pos$9, lvm: true, zfs: true })),
       })))),
     channel: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "channel",
         instances: nix.thunk(() => ({
-          __proto__: pos$12,
-          c1: nix.thunk(() => ({ __proto__: pos$11, type: "container", copyChannel: true })),
+          [nix.POS]: pos$12,
+          c1: nix.thunk(() => ({ [nix.POS]: pos$11, type: "container", copyChannel: true })),
         })),
       })))),
     container: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         name: "container",
         instances: nix.thunk(() => ({
-          __proto__: pos$15,
-          c1: nix.thunk(() => ({ __proto__: pos$14, type: "container" })),
+          [nix.POS]: pos$15,
+          c1: nix.thunk(() => ({ [nix.POS]: pos$14, type: "container" })),
         })),
       })))),
     lvm: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         name: "lvm",
-        storage: nix.thunk(() => ({ __proto__: pos$17, lvm: true })),
+        storage: nix.thunk(() => ({ [nix.POS]: pos$17, lvm: true })),
       })))),
     openvswitch: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: "openvswitch",
-        network: nix.thunk(() => ({ __proto__: pos$19, ovs: true })),
+        network: nix.thunk(() => ({ [nix.POS]: pos$19, ovs: true })),
       })))),
     ui: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         imports: nix.thunk(() => [nix.path(here, "./ui.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$22,
-          args: nix.thunk(() => ({ __proto__: pos$21, package: package$ })),
+          [nix.POS]: pos$22,
+          args: nix.thunk(() => ({ [nix.POS]: pos$21, package: package$ })),
         })),
       })))),
     "virtual-machine": nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         name: "virtual-machine",
         instances: nix.thunk(() => ({
-          __proto__: pos$25,
-          vm1: nix.thunk(() => ({ __proto__: pos$24, type: "virtual-machine" })),
+          [nix.POS]: pos$25,
+          vm1: nix.thunk(() => ({ [nix.POS]: pos$24, type: "virtual-machine" })),
         })),
       })))),
     zfs: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         name: "zfs",
-        storage: nix.thunk(() => ({ __proto__: pos$27, zfs: true })),
+        storage: nix.thunk(() => ({ [nix.POS]: pos$27, zfs: true })),
       })))),
   };
 })(), formals$1);

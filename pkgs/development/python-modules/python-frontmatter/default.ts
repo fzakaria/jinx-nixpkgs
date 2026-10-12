@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const toml = nix.arg($, "toml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-frontmatter",
       version: "1.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eyeseast",
           repo: "python-frontmatter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--doctest-glob=README.md", "--doctest-modules"]),
       pythonImportsCheck: nix.thunk(() => ["frontmatter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse and manage posts with YAML (or other) frontmatter",
         homepage: "https://github.com/eyeseast/python-frontmatter",
         changelog: nix.thunk(() => nix.str`https://github.com/eyeseast/python-frontmatter/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

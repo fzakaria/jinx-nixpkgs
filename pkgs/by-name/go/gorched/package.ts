@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gorched",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zladovan",
           repo: "gorched",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ohFj0jEHt0SV3pC9+mz+XAjOJ6MIBFY7CJf+G++r72U=",
       postPatch: "mkdir ./cmd/gorched\nmv ./cmd/main.go ./cmd/gorched/main.go\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal based game written in Go inspired by \"The Mother of all games\" Scorched Earth",
         homepage: "https://github.com/zladovan/gorched",
         changelog: nix.thunk(() => nix.str`https://github.com/zladovan/gorched/releases/tag/v${nix.sel(finalAttrs, "version")}`),

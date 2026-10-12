@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const curlMinimal = nix.arg($, "curlMinimal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snis",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smcameron",
           repo: "space-nerds-in-space",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,11 +78,11 @@ substituteInPlace snis_text_to_speech.sh \\
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       buildFlags: nix.thunk(() => ["all", "models"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Space Nerds In Space, a multi-player spaceship bridge simulator",
         homepage: "https://smcameron.github.io/space-nerds-in-space/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

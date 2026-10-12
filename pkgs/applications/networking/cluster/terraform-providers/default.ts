@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const provider_source_address = nix.argOr($_1, "provider-source-address", () => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["https://registry", ".io/providers"]), nix.thunk(() => ["registry", ".io"]), homepage));
       nix.assert_(nix.gt(nix.app(nix.sel(lib, "stringLength"), provider_source_address), 0n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/networking/cluster/terraform-providers/default.nix:38:5");
       return nix.app(mkProviderGoModule, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: repo,
           vendorHash: vendorHash,
           version: version,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           proxyVendor: proxyVendor,
           subPackages: nix.thunk(() => ["."]),
           doCheck: false,
-          env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
           ldflags: nix.thunk(() => [
             "-s",
             "-w",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`-X main.commit=${rev}`),
           ]),
           src: nix.thunk(() => nix.app(mkProviderFetcher, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`source-${rev}`),
               owner: owner,
               repo: repo,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
               hash: hash,
             })))),
           meta: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             homepage: homepage,
             license: nix.thunk(() => nix.app(nix.sel(lib, "getLicenseFromSpdxId"), spdx)),
           })),
@@ -83,7 +83,7 @@ mv $out/bin/* "$dir/terraform-provider-$(basename ${provider_source_address})_${
 rmdir $out/bin
 `),
           passthru: nix.thunk(() => nix.update(attrs, {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "provider-source-address": provider_source_address,
             updateScript: nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`./pkgs/applications/networking/cluster/terraform-providers/update-provider "${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["registry.terraform.io/", "/"]), nix.thunk(() => ["", "_"]), provider_source_address)}"
 `))),
@@ -93,21 +93,21 @@ rmdir $out/bin
   const list = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./providers.json")));
   const automated_providers = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (attrs) => nix.app(mkProvider, attrs), list));
   const special_providers = nix.thunk(() => ({
-    __proto__: pos$13,
-    checkly_checkly: nix.thunk(() => nix.app(nix.sel(automated_providers, "checkly_checkly", "override"), nix.thunk(() => ({ __proto__: pos$6, spdx: "MIT" })))),
-    gitlabhq_gitlab: nix.thunk(() => nix.app(nix.sel(automated_providers, "gitlabhq_gitlab", "override"), nix.thunk(() => ({ __proto__: pos$7, mkProviderFetcher: fetchFromGitLab, owner: "gitlab-org" })))),
-    dmacvicar_libvirt: nix.thunk(() => nix.app(nix.sel(automated_providers, "dmacvicar_libvirt", "overrideAttrs"), (_) => ({ __proto__: pos$8, propagatedBuildInputs: nix.thunk(() => [cdrtools]) }))),
-    aminueza_minio: nix.thunk(() => nix.app(nix.sel(automated_providers, "aminueza_minio", "override"), nix.thunk(() => ({ __proto__: pos$9, spdx: "AGPL-3.0-only" })))),
-    "1password_onepassword": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(automated_providers, "1password_onepassword", "override"), nix.thunk(() => ({ __proto__: pos$10, proxyVendor: true }))), "overrideAttrs"), (finalAttrs) => ({
-        __proto__: pos$12,
-        env: nix.thunk(() => nix.update(nix.sel(finalAttrs, "env"), { __proto__: pos$11, CGO_ENABLED: "1" })),
+    [nix.POS]: pos$13,
+    checkly_checkly: nix.thunk(() => nix.app(nix.sel(automated_providers, "checkly_checkly", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, spdx: "MIT" })))),
+    gitlabhq_gitlab: nix.thunk(() => nix.app(nix.sel(automated_providers, "gitlabhq_gitlab", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, mkProviderFetcher: fetchFromGitLab, owner: "gitlab-org" })))),
+    dmacvicar_libvirt: nix.thunk(() => nix.app(nix.sel(automated_providers, "dmacvicar_libvirt", "overrideAttrs"), (_) => ({ [nix.POS]: pos$8, propagatedBuildInputs: nix.thunk(() => [cdrtools]) }))),
+    aminueza_minio: nix.thunk(() => nix.app(nix.sel(automated_providers, "aminueza_minio", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, spdx: "AGPL-3.0-only" })))),
+    "1password_onepassword": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(automated_providers, "1password_onepassword", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, proxyVendor: true }))), "overrideAttrs"), (finalAttrs) => ({
+        [nix.POS]: pos$12,
+        env: nix.thunk(() => nix.update(nix.sel(finalAttrs, "env"), { [nix.POS]: pos$11, CGO_ENABLED: "1" })),
       }))),
   }));
   const removed_providers = nix.thunk(() => (() => {
     const archived = (name) => (date) => nix.builtins.throw(nix.thunk(() => nix.str`the ${name} terraform provider has been archived by upstream on ${date}`));
     const removed = (name) => (date) => nix.builtins.throw(nix.thunk(() => nix.str`the ${name} terraform provider removed from nixpkgs on ${date}`));
     return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         ccloud: nix.thunk(() => nix.app(removed, "ccloud", "2025/11. Try sap-cloud-infrastructure_sci instead.")),
         sapcc_ccloud: nix.thunk(() => nix.app(removed, "sapcc_ccloud", "2025/11. Try sap-cloud-infrastructure_sci instead.")),
         argocd: nix.thunk(() => nix.app(removed, "argocd", "2025/12. Try argoproj-labs_argocd instead.")),
@@ -115,6 +115,6 @@ rmdir $out/bin
       })));
   })());
   const actualProviders = nix.thunk(() => nix.update(automated_providers, special_providers));
-  return nix.update(actualProviders, nix.update(removed_providers, { __proto__: pos$15, actualProviders: actualProviders, mkProvider: mkProvider }));
+  return nix.update(actualProviders, nix.update(removed_providers, { [nix.POS]: pos$15, actualProviders: actualProviders, mkProvider: mkProvider }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

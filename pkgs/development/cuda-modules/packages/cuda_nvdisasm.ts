@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nvdisasm",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Extracts information from standalone cubin files and presents them in human readable format",
         longDescription: "`nvdisasm` extracts information from standalone cubin files and presents them in human readable format. The\noutput of `nvdisasm` includes CUDA assembly code for each kernel, listing of ELF data sections and other CUDA\nspecific sections. Output style and options are controlled through `nvdisasm` command-line options. `nvdisasm`\nalso does control flow analysis to annotate jump/branch targets and makes the output easier to read.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#nvdisasm",

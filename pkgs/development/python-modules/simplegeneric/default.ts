@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           extension: "zip",
           sha256: "dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple generic functions",
         homepage: "http://cheeseshop.python.org/pypi/simplegeneric",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zpl21")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

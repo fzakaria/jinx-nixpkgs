@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pallets",
           repo: "click",
           tag: version,
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn10Warning"]);
       const disabledTests = nix.thunk(() => ["test_echo_via_pager", "test_file_surrogates"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           black: black,
           flask: flask,
           "magic-wormhole": magic_wormhole,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/pallets/click/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         homepage: "https://click.palletsprojects.com/",
         description: "Create beautiful command line interfaces in Python",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

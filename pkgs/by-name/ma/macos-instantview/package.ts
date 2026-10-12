@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "instantview",
       version: "3.24R0004",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.siliconmotion.com/downloads/macOS_InstantView_V${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-lozVykKK1edUQlwxNKy/GyMKjsQaXeR9XVoau72Bwhg=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications\"\n\n# Extract the DMG using 7zip\n7zz x \"$src\" -oextracted -y\n\ncp -r extracted/*.app \"$out/Applications/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         description: "USB Docking Station plugin-and-display support with SM76x driver",
         homepage: "https://www.siliconmotion.com/events/instantview/",

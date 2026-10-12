@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-/az6hS8rNPxb8cDiz9SOyUBi/X48r9prJNFUnx1wPHM=",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         wordcloud,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         infographics: nix.thunk(() => [peacasso]),
         tools: nix.thunk(() => [basemap, basemap_data_hires, geopy]),
         transformers: nix.thunk(() => [llmx]),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["lida"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatic Generation of Visualizations and Infographics using Large Language Models",
         homepage: "https://github.com/microsoft/lida",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lida",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

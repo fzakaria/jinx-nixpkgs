@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snobol4",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://ftp.regressive.org/snobol4/snobol4-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://ftp.regressive.org/snobol4/old/snobol4-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       preConfigurePhases: nix.thunk(() => ["prePreConfigurePhase"]),
       prePreConfigurePhase: "preConfigureHooks=\"${preConfigureHooks//_multioutConfig/}\"\nprependToVar configureFlags --mandir=\"$man\"/share/man\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Macro Implementation of SNOBOL4 in C",
         longDescription: "An open source port of Macro SNOBOL4 (The original Bell Telephone Labs implementation, written in SIL macros) by Phil Budne.\nSupports full SNOBOL4 language plus SPITBOL, [Blocks](https://www.regressive.org/snobol4/blocks/) and other extensions.\n",
         homepage: "https://www.regressive.org/snobol4/csnobol4/",

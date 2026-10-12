@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pykaleidescape",
       version: "1.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SteveEasley",
           repo: "pykaleidescape",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           "test_refresh_after_reconnect",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for controlling Kaleidescape devices",
         homepage: "https://github.com/SteveEasley/pykaleidescape",
         changelog: nix.thunk(() => nix.str`https://github.com/SteveEasley/pykaleidescape/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

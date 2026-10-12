@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const fusepy = nix.arg($, "fusepy");
   const crcmod = nix.arg($, "crcmod");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gcsfs",
       version: "2026.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsspec",
           repo: "gcsfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
         requests,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gcsfuse: nix.thunk(() => [fusepy]),
         crc: nix.thunk(() => [crcmod]),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["gcsfs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convenient Filesystem interface over GCS",
         homepage: "https://github.com/fsspec/gcsfs",
         changelog: nix.thunk(() => nix.str`https://github.com/fsspec/gcsfs/raw/${nix.sel(finalAttrs, "src", "tag")}/docs/source/changelog.rst`),

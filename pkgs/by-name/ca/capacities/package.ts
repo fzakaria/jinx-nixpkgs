@@ -21,10 +21,10 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => nix.attr(from, "url"));
   const sha256 = nix.thunk(() => nix.attr(from, "sha256"));
   const pname = "capacities";
-  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, sha256: sha256 }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, src: src, version: version }))));
+  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       src: src,
       version: version,
@@ -53,9 +53,9 @@ else
   install -m 444 -D capacities_512.png $out/share/icons/hicolor/512x512/apps/capacities.png
 fi
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Calm place to make sense of the world and create amazing things",
         homepage: "https://capacities.io/",
         platforms: nix.thunk(() => ["x86_64-linux"]),

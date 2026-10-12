@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "reaction-firewall-interaction",
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             reaction: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               stopForFirewall: true,
               settingsFiles: nix.thunk(() => [
@@ -48,36 +48,36 @@ export default nix.lambda((args) => (() => {
               ]),
               runAsRoot: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 plugins: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  ipset: nix.thunk(() => ({ __proto__: pos$1, systemd: false })),
-                  virtual: nix.thunk(() => ({ __proto__: pos$2, systemd: false })),
+                  [nix.POS]: pos$3,
+                  ipset: nix.thunk(() => ({ [nix.POS]: pos$1, systemd: false })),
+                  virtual: nix.thunk(() => ({ [nix.POS]: pos$2, systemd: false })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$8,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\n\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.wait_for_unit(\"firewall.service\")\nmachine.wait_for_unit(\"reaction.service\")\n\ndef check_reaction_in_iptables(context = \"\"):\n  with subtest(\"check reaction chain exists\"):\n    machine.sleep(3)\n    output = machine.succeed(\"iptables -nvL\")\n    assert \"reaction\" in output, f\"error: reaction chain missing in iptables, {context}\"\n\ncheck_reaction_in_iptables()\n\nwith subtest(\"reload firewall\"):\n  machine.succeed(\"systemctl reload firewall\")\n  output = machine.succeed(\"journalctl -u firewall.service --no-pager\")\n  assert \"ERROR\" not in output, \"firewall reload failed due to reaction\"\n\n  check_reaction_in_iptables(context=\"after firewall reload\")\n\nwith subtest(\"restart firewall\"):\n  machine.succeed(\"systemctl restart firewall\")\n  output = machine.succeed(\"journalctl -u reaction.service --no-pager\")\n  assert \"INFO stop command\" in output and \"INFO start command\" in output, \"reaction did not restart when firewall was restarted\"\n\n  check_reaction_in_iptables(context=\"after firewall restart\")\n\nwith subtest(\"stop reaction manually and verify chains are cleaned up\"):\n  machine.succeed(\"systemctl stop reaction\")\n  machine.sleep(3)\n  output = machine.succeed(\"iptables -nvL\")\n  assert \"reaction\" not in output, \"reaction chain still exists after the service was stopped\"\n\n  with subtest(\"start reaction again and verify it works\"):\n    machine.succeed(\"systemctl start reaction\")\n    machine.wait_for_unit(\"reaction.service\")\n\n    check_reaction_in_iptables()\n",
     interactive: nix.thunk(() => ({
-      __proto__: pos$15,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+      [nix.POS]: pos$15,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         machine: (_) => ({
-          __proto__: pos$13,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$12, graphics: false })),
+          [nix.POS]: pos$13,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$12, graphics: false })),
         }),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return nix.concat([nix.thunk(() => nix.lookup(w, "ppom"))], nix.sel(lib, "teams", "ngi", "members"));

@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const taskwarrior2 = nix.arg($, "taskwarrior2");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(taskwarrior2, "version")),
       pname: nix.thunk(() => nix.attr(taskwarrior2, "pname")),
       src: nix.thunk(() => nix.str`${nix.sel(taskwarrior2, "src")}/scripts/vim`),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(taskwarrior2, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

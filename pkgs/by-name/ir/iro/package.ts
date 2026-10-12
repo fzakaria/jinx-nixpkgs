@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iro",
       version: "0-unstable-2024-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyoheiu",
           repo: "iro",
           rev: "ba4adc00e13da9086389357b0e92e608928a8b39",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-7QAhgUI6Pu0iqE6JyfYI4x3O/XTDb8B1Sy3hw9EVMYo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to convert Hex color code or RGB to color code, RGB, HSL and color name",
         homepage: "https://github.com/kyoheiu/iro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

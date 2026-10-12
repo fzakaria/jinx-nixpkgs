@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sonar-scanner-cli";
       const version = "8.1.0.6389";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SonarSource",
           repo: "sonar-scanner-cli",
           tag: version,
@@ -45,11 +45,11 @@ wrapProgram $out/bin/sonar-scanner-debug \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scanner CLI for SonarQube and SonarCloud",
         homepage: "https://github.com/SonarSource/sonar-scanner-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -61,7 +61,7 @@ wrapProgram $out/bin/sonar-scanner-debug \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

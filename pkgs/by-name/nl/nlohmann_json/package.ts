@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   const testData = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nlohmann",
       repo: "json_test_data",
       rev: "v3.1.0",
       hash: "sha256-bG34W63ew7haLnC82A3lS7bviPDnApLipaBjJAjLcVk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nlohmann_json",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nlohmann",
           repo: "json",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-char8_t.patch",
             url: "https://github.com/nlohmann/json/commit/756ca22ec5b0d89b5d107b4c30891d1293650c87.patch?full_index=1",
             hash: "sha256-OK8FIXClj5paZNiEvPwJWr5PxyVYtJ3zkRlcZoe8d20=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/nlohmann/json/commit/0a8b48ac6a89131deaeb0d57047c9462a23b34a2.diff",
             hash: "sha256-gOZfRyDRI6USdUIY+sH7cygPrSIKGIo8AWcjqc/GQNI=",
           })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "checkFlagsArray+=(\"ARGS=-LE 'not_reproducible|git_required'\")\n",
       postInstall: "rm -rf $out/lib64",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "JSON for Modern C++",
         homepage: "https://json.nlohmann.me",
         changelog: "https://github.com/nlohmann/json/blob/develop/ChangeLog.md",

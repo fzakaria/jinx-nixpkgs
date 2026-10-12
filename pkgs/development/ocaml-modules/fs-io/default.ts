@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const dune = nix.arg($, "dune");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "fs-io",
       version: nix.thunk(() => nix.attr(dune, "version")),
       src: nix.thunk(() => nix.attr(dune, "src")),
       dontAddPrefix: true,
-      meta: nix.thunk(() => nix.update(nix.sel(dune, "meta"), { __proto__: pos$1, description: "Dune's file system IO library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dune, "meta"), { [nix.POS]: pos$1, description: "Dune's file system IO library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

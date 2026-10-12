@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-smc-raghumalayalamsans",
       version: "20241013",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://smc.org.in/downloads/fonts/raghumalayalamsans/raghumalayalamsans.zip",
           hash: "sha256-rSM77MiFqRzs67mme8xkJZkw13esB9eG13j8OzytCaA=",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfind . -name \"*.otf\" -exec install -Dm644 {} -t \"$out/share/fonts/opentype\" \\;\nfind . -name \"*.ttf\" -exec install -Dm644 {} -t \"$out/share/fonts/truetype\" \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A collaborative effort of Hussain K H, Prof. R. K. Joshi (TypeFont Design Director), Mr. Rajith Kumar K. M. (TypeFont Designer), assisted by Mr. Nirmal Biswas, Ms. Jui Mhatre and Ms. Supriya Kharkar at C-DAC Mumbai. This is the last version maintained by SMC",
         homepage: "https://smc.org.in/fonts/raghumalayalamsans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const types_h = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/3da53417998c611f340d75e45962da2fa912add5/multimedia/libv4l/files/types.h",
       hash: "sha256-vbw82kxDC02vFhqdK3klh52pk/ecL+HwmmgQYYMEV9w=",
     }))));
   const videodev_h = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/3da53417998c611f340d75e45962da2fa912add5/multimedia/libv4l/files/videodev.h",
       hash: "sha256-tcSZeBkaRo+K6i/tUYjhgQdEAuMhstvWsyVydIevAU4=",
     }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "v4l-compat";
       const version = "5.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/kernel/v${nix.app(nix.sel(lib, "versions", "major"), version)}.x/linux-${version}.tar.xz`),
           hash: "sha256-5/dRhqoGQhFK+PGdmVWZNzAMonrK90UbNtT5sPhc8fU=",
         }))));
@@ -63,13 +63,13 @@ cp ${types_h} $out/include/linux/types.h
 cp ${videodev_h} $out/include/linux/videodev.h
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Video4Linux header files for FreeBSD",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rhelmot"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

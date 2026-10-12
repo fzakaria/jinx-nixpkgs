@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.str`pgjwt-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "spinus"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           master: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               services: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   package: package$,
                   enable: true,
                   extensions: (ps) => (() => {
@@ -73,7 +73,7 @@ master.succeed(
       };
     })(), formals$2));
   return nix.app(genTests, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       makeTestFor: makeTestFor,
       filter: (_) => (p) => !nix.asBool(nix.sel(p, "pkgs", "pgjwt", "meta", "broken")),
     })));

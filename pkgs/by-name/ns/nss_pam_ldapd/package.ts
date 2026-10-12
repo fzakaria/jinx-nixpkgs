@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nss-pam-ldapd",
       version: "0.9.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://arthurdejong.org/nss-pam-ldapd/nss-pam-ldapd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-4BeE4Xy1M7tmvQYB4gXnhSY0RcPC33pvkCMqtBMccW0=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram $out/sbin/nslcd --prefix LD_LIBRARY_PATH \":\" $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LDAP identity and authentication for NSS/PAM",
         homepage: "https://arthurdejong.org/nss-pam-ldapd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

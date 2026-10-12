@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "edition", edition, nix.thunk(() => ["enterprise", "oss", "saas"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fo/fosrl-pangolin/package.nix:21:1");
   const db = (isLong) => (nix.asBool(nix.eq(databaseType, "sqlite")) ? "sqlite" : (nix.asBool(isLong) ? "postgresql" : "pg"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "pangolin",
       version: "1.24.0",
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fosrl",
           repo: "pangolin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,42 +64,42 @@ npm run db:generate
       installPhase: "runHook preInstall\n\ncp -r node_modules $out/share/pangolin/node_modules\ncp -r .next/standalone/. $out/share/pangolin\ncp -r .next/static $out/share/pangolin/.next/static\ncp -r dist $out/share/pangolin/dist\ncp -r server/migrations $out/share/pangolin/dist/init\ncp package.json $out/share/pangolin/package.json\n\ncp server/db/names.json $out/share/pangolin/dist/names.json\ncp server/db/ios_models.json $out/share/pangolin/dist/ios_models.json\ncp server/db/mac_models.json $out/share/pangolin/dist/mac_models.json\n\ncp -r public $out/share/pangolin/public\n\nrunHook postInstall\n",
       preFixup: nix.thunk(() => (() => {
         const defaultConfig = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "yaml"), nix.thunk(() => ({}))), "generate"), "pangolin-default-config", nix.thunk(() => ({
-            __proto__: pos$7,
-            app: nix.thunk(() => ({ __proto__: pos$2, dashboard_url: "https://pangolin.example.test" })),
+            [nix.POS]: pos$7,
+            app: nix.thunk(() => ({ [nix.POS]: pos$2, dashboard_url: "https://pangolin.example.test" })),
             domains: nix.thunk(() => ({
-              __proto__: pos$4,
-              domain1: nix.thunk(() => ({ __proto__: pos$3, base_domain: "example.test" })),
+              [nix.POS]: pos$4,
+              domain1: nix.thunk(() => ({ [nix.POS]: pos$3, base_domain: "example.test" })),
             })),
-            gerbil: nix.thunk(() => ({ __proto__: pos$5, base_endpoint: "pangolin.example.test" })),
+            gerbil: nix.thunk(() => ({ [nix.POS]: pos$5, base_endpoint: "pangolin.example.test" })),
             server: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               secret: "A secret string used for encrypting sensitive data. Must be at least 8 characters long.",
             })),
           }))));
         const variablesMapped = (isServer) => nix.add(nix.app(nix.sel(lib, "concatMapAttrsStringSep"), " ", (name) => (value) => nix.str`--set ${name} ${value}`, nix.thunk(() => nix.update({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             NODE_OPTIONS: "enable-source-maps",
             NODE_ENV: "development",
             ENVIRONMENT: "prod",
           }, environmentVariables))), nix.app(nix.sel(lib, "optionalString"), isServer, nix.thunk(() => nix.str` --run '${nix.app(nix.sel(lib, "concatMapStringsSep"), " && ", (dir) => nix.str`test -f ${dir}/.nix_skip_setup || { rm -${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(dir, ".next")), "r")}f ${dir} && ${(nix.asBool(nix.eq(dir, ".next")) ? "cp -rd" : "ln -s")} ${nix.builtins.placeholder("out")}/share/pangolin/${dir} .; }`, nix.thunk(() => [".next", "public", "node_modules"]))} && test -f config/config.yml || { install -Dm600 ${defaultConfig} config/config.yml && { test -z $EDITOR && { echo "Please edit $(pwd)/config/config.yml" and run the server again. && exit 255; } || $EDITOR config/config.yml; }; } && command ${nix.builtins.placeholder("out")}/bin/migrate-pangolin-database'`)));
         return nix.app(nix.sel(lib, "concatMapStrings"), (attr) => nix.str`makeWrapper $out/share/pangolin/dist/${nix.sel(attr, "mjs")}.mjs $out/bin/${nix.sel(attr, "command")} ${nix.app(variablesMapped, nix.thunk(() => nix.eq(nix.sel(attr, "mjs"), "server")))}
 `, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$9, mjs: "cli", command: "pangctl" })),
-            nix.thunk(() => ({ __proto__: pos$10, mjs: "migrations", command: "migrate-pangolin-database" })),
-            nix.thunk(() => ({ __proto__: pos$11, mjs: "server", command: "pangolin" })),
+            nix.thunk(() => ({ [nix.POS]: pos$9, mjs: "cli", command: "pangctl" })),
+            nix.thunk(() => ({ [nix.POS]: pos$10, mjs: "migrations", command: "migrate-pangolin-database" })),
+            nix.thunk(() => ({ [nix.POS]: pos$11, mjs: "server", command: "pangolin" })),
           ]));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         databaseType: databaseType,
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pangolin: nix.thunk(() => nix.attr(nixosTests, "pangolin")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Tunneled reverse proxy server with identity and access control",
         homepage: "https://github.com/fosrl/pangolin",
         changelog: nix.thunk(() => nix.str`https://github.com/fosrl/pangolin/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
   const txt2tags = nix.arg($, "txt2tags");
   const zstd = nix.arg($, "zstd");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       self: py,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$2,
-        pyqt6: nix.thunk(() => nix.app(nix.sel(super$, "pyqt6", "override"), nix.thunk(() => ({ __proto__: pos$1, withSerialPort: true })))),
+        [nix.POS]: pos$2,
+        pyqt6: nix.thunk(() => nix.app(nix.sel(super$, "pyqt6", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withSerialPort: true })))),
       }),
     }))));
   const pythonBuildInputs = nix.thunk(() => (() => {
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.2";
       const outputs = nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "man")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "qgis",
           repo: "QGIS",
           rev: nix.thunk(() => nix.str`final-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '("mod_spatialite", "sqlite3_modspatialite_init")' \\
     '("${libspatialite}/lib/mod_spatialite${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}", "sqlite3_modspatialite_init")'
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$5, pythonBuildInputs: pythonBuildInputs, py: py }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, pythonBuildInputs: pythonBuildInputs, py: py }));
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper, wrapGAppsHook3, wrapQtAppsHook, bison, cmake, flex, ninja], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")), lndir]))));
       const buildInputs = nix.thunk(() => nix.concat([
         draco,
@@ -147,7 +147,7 @@ export default nix.lambda((args) => (() => {
         zstd,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withGrass, grass), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libtasn1, qtsvg])), pythonBuildInputs))));
       const env = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         QT_QPA_PLATFORM_PLUGIN_PATH: nix.thunk(() => nix.str`${qtbase}/${nix.sel(qtbase, "qtPluginPrefix")}/platforms`),
       }));
       const cmakeFlags = nix.thunk(() => nix.concat([
@@ -327,7 +327,7 @@ EOF
 `))));
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Free and Open Source Geographic Information System",
         homepage: "https://www.qgis.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -335,7 +335,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         outputs,

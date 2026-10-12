@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-ssl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest]);
       const preCheck = "mkdir -p _build/default/tests/\ncp tests/digicert_certificate.pem _build/default/tests/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.liquidsoap.info/ocaml-ssl/ssl/index.html",
         description: "OCaml bindings for libssl",
         license: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         duneVersion,

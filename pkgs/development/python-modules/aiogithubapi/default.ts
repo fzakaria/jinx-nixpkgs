@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const sigstore = nix.arg($, "sigstore");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiogithubapi",
       version: "26.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ludeeus",
           repo: "aiogithubapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ substituteInPlace pyproject.toml \\
       preCheck: "# Need sigstore is an optional dependencies and need <2\nrm -rf tests/test_helper.py\n",
       pythonImportsCheck: nix.thunk(() => ["aiogithubapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for the GitHub API",
         homepage: "https://github.com/ludeeus/aiogithubapi",
         changelog: nix.thunk(() => nix.str`https://github.com/ludeeus/aiogithubapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

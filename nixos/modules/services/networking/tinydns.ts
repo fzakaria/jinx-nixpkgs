@@ -28,27 +28,27 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tinydns: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to run the tinydns dns server",
             })))),
           data: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "The DNS data to serve, in the format described by {manpage}`tinydns-data(8)`",
             })))),
           ip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "0.0.0.0",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "IP address on which to listen for connections",
@@ -57,25 +57,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "tinydns", "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "djbdns"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$9,
-            tinydns: nix.thunk(() => ({ __proto__: pos$8, isSystemUser: true, group: "tinydns" })),
+            [nix.POS]: pos$9,
+            tinydns: nix.thunk(() => ({ [nix.POS]: pos$8, isSystemUser: true, group: "tinydns" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$10, tinydns: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$10, tinydns: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             tinydns: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "djbdns tinydns server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -93,7 +93,7 @@ ln -sf ${nix.app(nix.sel(pkgs, "writeText"), "tinydns-data", nix.thunk(() => nix
 tinydns-data
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 StateDirectory: "tinydns",
                 WorkingDirectory: "/var/lib/tinydns",
                 ExecStart: "/var/lib/tinydns/run",

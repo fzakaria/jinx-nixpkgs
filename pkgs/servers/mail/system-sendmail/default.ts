@@ -26,7 +26,7 @@ else
 fi
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "system-sendmail",
       version: "1.0",
       src: script,
@@ -34,7 +34,7 @@ fi
       dontInstall: true,
       buildPhase: "mkdir -p $out/bin\n< $src sed \"s#{{MYPATH}}#$out/bin/sendmail#\" > $out/bin/sendmail\nchmod +x $out/bin/sendmail\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "A sendmail wrapper that calls the system sendmail. Do not install as system-wide sendmail!\n",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "sendmail",

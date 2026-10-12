@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "django_environ",
           version: version,
           hash: "sha256-In3IkUU91b3nacNEnPSnS28u6PerI2HJOgcGj0F5BBo=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["environ"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilize environment variables to configure your Django application",
         homepage: "https://github.com/joke2k/django-environ/",
         changelog: nix.thunk(() => nix.str`https://github.com/joke2k/django-environ/releases/tag/v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

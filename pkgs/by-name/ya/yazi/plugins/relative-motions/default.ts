@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "relative-motions.yazi",
       version: "0-unstable-2025-07-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dedukun",
           repo: "relative-motions.yazi",
           rev: "a603d9ea924dfc0610bcf9d3129e7cba605d4501",
           hash: "sha256-9i6x/VxGOA3bB3FPieB7mQ1zGaMK5wnMhYqsq4CvaM4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin based about vim motions",
         homepage: "https://github.com/dedukun/relative-motions.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

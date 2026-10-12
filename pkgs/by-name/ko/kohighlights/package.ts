@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.1.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noembryo",
           repo: "KoHighlights",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "kohighlights",
             desktopName: "KoHighlights",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -72,7 +72,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/KoHigh
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for viewing and/or exporting KOReader's highlights",
         homepage: "https://github.com/noembryo/KoHighlights",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -83,7 +83,7 @@ runHook postInstall
         mainProgram: "KoHighlights",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

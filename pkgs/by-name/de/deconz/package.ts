@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deconz";
       const version = "2.32.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://deconz.dresden-elektronik.de/ubuntu/beta/deconz-${version}-qt5.deb`),
           sha256: "sha256-57HS7x76qLBfBGuYu8gEXqVTLldLz/ixg4fE6+LnIzI=",
         }))));
@@ -74,11 +74,11 @@ done
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, deconz: nix.thunk(() => nix.attr(nixosTests, "deconz")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, deconz: nix.thunk(() => nix.attr(nixosTests, "deconz")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Manage Zigbee network with ConBee, ConBee II or RaspBee hardware",
         homepage: "https://www.dresden-elektronik.com/wireless/software/deconz.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -94,7 +94,7 @@ runHook postInstall
         mainProgram: "deCONZ",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

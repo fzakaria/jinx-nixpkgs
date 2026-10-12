@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const leveldb = nix.arg($, "leveldb");
   const geos = nix.arg($, "geos");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imposm",
       version: "0.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omniscale",
           repo: "imposm3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Imports OpenStreetMap data into PostGIS",
         homepage: "https://imposm.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/omniscale/imposm3/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

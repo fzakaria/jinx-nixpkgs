@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "boinc";
       const version = "8.2.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-${version}-src`),
           owner: "BOINC",
           repo: "boinc",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           libxcb,
           libxcb_util,
         ]))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lX11" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" }))));
       const preConfigure = "./_autosetup\n";
       const enableParallelBuilding = true;
       const configureFlags = nix.thunk(() => nix.concat([
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), headless, nix.thunk(() => ["--disable-manager"]))));
       const postInstall = "install --mode=444 -D 'client/scripts/boinc-client.service' \"$out/etc/systemd/system/boinc.service\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free software for distributed and grid computing",
         homepage: "https://boinc.berkeley.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

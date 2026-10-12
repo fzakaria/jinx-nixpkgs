@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "35e630eca2aa50ce998b9b1a127bb26b30dfee573702782aa982f875e3f16061",
           extension: "zip",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure python download utility",
         homepage: "https://bitbucket.org/techtonik/python-wget/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "prusnak"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const hepmc = hepmc2;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pythia",
       version: "8.317",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pythia.org/download/pythia83/pythia${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tgz`),
           hash: "sha256-GuVR0U2sSV3f5rNEeSA16+QQ/mxgBNRKM14Ozg50Wt8=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--enable-shared", nix.thunk(() => nix.str`--with-lhapdf6=${lhapdf}`)], (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(hepmc, "version"))), "3")) ? [nix.thunk(() => nix.str`--with-hepmc3=${hepmc}`)] : [nix.thunk(() => nix.str`--with-hepmc2=${hepmc}`)]))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program for the generation of high-energy physics events",
         mainProgram: "pythia8-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

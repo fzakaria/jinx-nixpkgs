@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gts",
       version: "0.7.6",
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gts/gts-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07mqx09jxh8cv9753y2d2jsv7wp8vjmrd7zcfpbrddz3wc9kx705",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, glib]),
       buildInputs: nix.thunk(() => [gettext]),
       propagatedBuildInputs: nix.thunk(() => [glib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       doCheck: false,
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => nix.str`pushd src
 make CC=${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc predicates_init
@@ -42,7 +42,7 @@ popd
 substituteInPlace src/Makefile --replace "./predicates_init" "./predicates_init_build"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gts.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         description: "GNU Triangulated Surface Library",

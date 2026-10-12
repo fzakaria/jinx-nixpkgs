@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.6.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quotient-im",
           repo: "libQuotient",
           rev: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const postInstall = "# causes cyclic dependency but is not used\nrm $out/share/ndk-modules/Android.mk\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt5/Qt6 library to write cross-platform clients for Matrix",
         homepage: "https://quotient-im.github.io/libQuotient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

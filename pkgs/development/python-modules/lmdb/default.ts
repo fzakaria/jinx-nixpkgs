@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const cffi = nix.arg($, "cffi");
   const lmdb = nix.arg($, "lmdb");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lmdb",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Jg9ENkDuLaPP0FmoQlhlkxn/OcqRLBa/l0jDJAdrnQk=",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       buildInputs: nix.thunk(() => [lmdb]),
       nativeBuildInputs: nix.thunk(() => [cffi]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LMDB_FORCE_SYSTEM: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LMDB_FORCE_SYSTEM: 1n })),
       dependencies: nix.thunk(() => [patch_ng]),
       pythonImportsCheck: nix.thunk(() => ["lmdb"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Universal Python binding for the LMDB 'Lightning' Database",
         homepage: "https://github.com/dw/py-lmdb",
         changelog: nix.thunk(() => nix.str`https://github.com/jnwatson/py-lmdb/blob/py-lmdb_${nix.sel(finalAttrs, "version")}/ChangeLog`),

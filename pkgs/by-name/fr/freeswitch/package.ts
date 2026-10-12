@@ -97,11 +97,11 @@ export default nix.lambda((args) => (() => {
     return nix.builtins.toFile("modules.conf", str);
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "freeswitch",
       version: "1.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "signalwire",
           repo: "freeswitch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (mod) => nix.sel(mod, "inputs"), enabledModules))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error", "-Wno-incompatible-pointer-types"]))),
         CXXFLAGS: "-std=c++14",
         CFLAGS: "-D_ANSI_SOURCE",
@@ -139,14 +139,14 @@ cp "${modulesConf}" modules.conf
 `),
       postInstall: "# helper for compiling modules... not generally useful; also pulls in perl dependency\nrm \"$out\"/bin/fsxs\n# include configuration templates\ncp -r conf $out/share/freeswitch/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           freeswitch: nix.thunk(() => nix.sel(nixosTests, "freeswitch")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-Platform Scalable FREE Multi-Protocol Soft Switch",
         homepage: "https://freeswitch.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl11")),

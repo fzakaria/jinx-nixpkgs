@@ -104,57 +104,57 @@ const pos$96 = nix.positions(here + "/test.nix", [["result", 310, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, config: nix.thunk(() => ({})), overlays: [] }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, config: nix.thunk(() => ({})), overlays: [] }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const fun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maintainers.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
-  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")), nix.thunk(() => ({ __proto__: pos$3, lib: lib }))));
+  const fun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maintainers.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
+  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib }))));
   const mockPkgs = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const packages = nix.argOr($_1, "packages", () => []);
     const modules = nix.argOr($_1, "modules", () => []);
     const githubTeams = nix.argOr($_1, "githubTeams", () => true);
     return nix.app(nix.sel(lib, "updateManyAttrsByPath"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (p) => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           path: p,
           update: (_) => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             meta: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               maintainersPosition: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 file: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "/", p)),
               })),
-              nonTeamMaintainers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, githubId: i }))]),
+              nonTeamMaintainers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, githubId: i }))]),
               teams: nix.thunk(() => (nix.asBool(githubTeams) ? [
-                nix.thunk(() => ({ __proto__: pos$6, githubId: nix.thunk(() => nix.add(i, 100n)) })),
+                nix.thunk(() => ({ [nix.POS]: pos$6, githubId: nix.thunk(() => nix.add(i, 100n)) })),
               ] : [
                 nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   members: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$7, githubId: nix.thunk(() => nix.add(i, 100n)) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$7, githubId: nix.thunk(() => nix.add(i, 100n)) })),
                   ]),
                 })),
               ])),
             })),
           }),
         }), packages)), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         nixos: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           return {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             config: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               meta: nix.thunk(() => ({
-                __proto__: pos$16,
-                maintainers: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (m) => nix.app(nix.sel(lib, "nameValuePair"), m, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, githubId: i }))])), modules)))),
+                [nix.POS]: pos$16,
+                maintainers: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (m) => nix.app(nix.sel(lib, "nameValuePair"), m, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, githubId: i }))])), modules)))),
                 teams: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (m) => nix.app(nix.sel(lib, "nameValuePair"), m, nix.thunk(() => (nix.asBool(githubTeams) ? [
-                        nix.thunk(() => ({ __proto__: pos$13, githubId: nix.thunk(() => nix.add(i, 100n)) })),
+                        nix.thunk(() => ({ [nix.POS]: pos$13, githubId: nix.thunk(() => nix.add(i, 100n)) })),
                       ] : [
                         nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           members: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$14, githubId: nix.thunk(() => nix.add(i, 100n)) })),
+                            nix.thunk(() => ({ [nix.POS]: pos$14, githubId: nix.thunk(() => nix.add(i, 100n)) })),
                           ]),
                         })),
                       ]))), modules)))),
@@ -165,79 +165,79 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const tests = nix.thunk(() => ({
-    __proto__: pos$95,
+    [nix.POS]: pos$95,
     testEmpty: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({})))),
           changedFiles: [],
           affectedAttrPaths: [],
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         packages: [],
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({})),
       })),
     })),
     testNonExistentAffected: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({})))),
           changedFiles: nix.thunk(() => ["a"]),
           affectedAttrPaths: nix.thunk(() => [nix.thunk(() => ["b"])]),
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         packages: [],
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({})),
       })),
     })),
     testIrrelevantAffected: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$27,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$26, packages: nix.thunk(() => [nix.thunk(() => ["b"])]) })))),
+          [nix.POS]: pos$27,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$26, packages: nix.thunk(() => [nix.thunk(() => ["b"])]) })))),
           changedFiles: nix.thunk(() => ["a"]),
           affectedAttrPaths: nix.thunk(() => [nix.thunk(() => ["b"])]),
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         packages: [],
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({})),
       })),
     })),
     testRelevantAffected: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$31,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$30, packages: nix.thunk(() => [nix.thunk(() => ["b"])]) })))),
+          [nix.POS]: pos$31,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$30, packages: nix.thunk(() => [nix.thunk(() => ["b"])]) })))),
           changedFiles: nix.thunk(() => ["b/c"]),
           affectedAttrPaths: nix.thunk(() => [nix.thunk(() => ["b"])]),
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         packages: nix.thunk(() => [nix.thunk(() => ["b"])]),
         teams: nix.thunk(() => ({
-          __proto__: pos$33,
-          "100": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$32, attrPath: nix.thunk(() => ["b"]) }))]),
+          [nix.POS]: pos$33,
+          "100": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$32, attrPath: nix.thunk(() => ["b"]) }))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$35,
-          "0": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$34, attrPath: nix.thunk(() => ["b"]) }))]),
+          [nix.POS]: pos$35,
+          "0": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$34, attrPath: nix.thunk(() => ["b"]) }))]),
         })),
       })),
     })),
     testRelevantAffectedNonGitHub: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               packages: nix.thunk(() => [nix.thunk(() => ["b"])]),
               githubTeams: false,
             })))),
@@ -245,160 +245,160 @@ export default nix.lambda((args) => (() => {
           affectedAttrPaths: nix.thunk(() => [nix.thunk(() => ["b"])]),
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         packages: nix.thunk(() => [nix.thunk(() => ["b"])]),
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({
-          __proto__: pos$42,
-          "0": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$40, attrPath: nix.thunk(() => ["b"]) }))]),
-          "100": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$41, attrPath: nix.thunk(() => ["b"]) }))]),
+          [nix.POS]: pos$42,
+          "0": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, attrPath: nix.thunk(() => ["b"]) }))]),
+          "100": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$41, attrPath: nix.thunk(() => ["b"]) }))]),
         })),
       })),
     })),
     testByNameChanged: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$46,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$45, packages: nix.thunk(() => [nix.thunk(() => ["hello"])]) })))),
+          [nix.POS]: pos$46,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$45, packages: nix.thunk(() => [nix.thunk(() => ["hello"])]) })))),
           changedFiles: nix.thunk(() => ["pkgs/by-name/he/hello/sources.json"]),
           affectedAttrPaths: [],
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         packages: nix.thunk(() => [nix.thunk(() => ["hello"])]),
         teams: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           "100": nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$47, attrPath: nix.thunk(() => ["hello"]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$47, attrPath: nix.thunk(() => ["hello"]) })),
           ]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           "0": nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$49, attrPath: nix.thunk(() => ["hello"]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$49, attrPath: nix.thunk(() => ["hello"]) })),
           ]),
         })),
       })),
     })),
     testByNameNonExistentChanged: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$54,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$53, packages: [] })))),
+          [nix.POS]: pos$54,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$53, packages: [] })))),
           changedFiles: nix.thunk(() => ["pkgs/by-name/he/hello/sources.json"]),
           affectedAttrPaths: [],
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         packages: [],
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({})),
       })),
     })),
     testByNameReadmeChanged: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$58,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$57, packages: nix.thunk(() => [nix.thunk(() => ["hello"])]) })))),
+          [nix.POS]: pos$58,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$57, packages: nix.thunk(() => [nix.thunk(() => ["hello"])]) })))),
           changedFiles: nix.thunk(() => ["pkgs/by-name/README.md"]),
           affectedAttrPaths: [],
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         packages: [],
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({})),
       })),
     })),
     testNoDuplicates: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$62,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$61, packages: nix.thunk(() => [nix.thunk(() => ["hello"])]) })))),
+          [nix.POS]: pos$62,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$61, packages: nix.thunk(() => [nix.thunk(() => ["hello"])]) })))),
           changedFiles: nix.thunk(() => ["hello", "pkgs/by-name/he/hello/sources.json"]),
           affectedAttrPaths: nix.thunk(() => [nix.thunk(() => ["hello"])]),
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         packages: nix.thunk(() => [nix.thunk(() => ["hello"])]),
         teams: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           "100": nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$63, attrPath: nix.thunk(() => ["hello"]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$63, attrPath: nix.thunk(() => ["hello"]) })),
           ]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           "0": nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$65, attrPath: nix.thunk(() => ["hello"]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$65, attrPath: nix.thunk(() => ["hello"]) })),
           ]),
         })),
       })),
     })),
     testModuleMaintainers: nix.thunk(() => ({
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$70,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$69, modules: nix.thunk(() => ["a"]) })))),
+          [nix.POS]: pos$70,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$69, modules: nix.thunk(() => ["a"]) })))),
           changedFiles: nix.thunk(() => ["a"]),
           affectedAttrPaths: [],
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         packages: [],
         teams: nix.thunk(() => ({
-          __proto__: pos$72,
-          "100": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$71, file: "a" }))]),
+          [nix.POS]: pos$72,
+          "100": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$71, file: "a" }))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$74,
-          "0": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$73, file: "a" }))]),
+          [nix.POS]: pos$74,
+          "0": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$73, file: "a" }))]),
         })),
       })),
     })),
     testModuleMaintainersNonGithub: nix.thunk(() => ({
-      __proto__: pos$83,
+      [nix.POS]: pos$83,
       expr: nix.thunk(() => nix.app(fun, nix.thunk(() => ({
-          __proto__: pos$78,
-          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ __proto__: pos$77, modules: nix.thunk(() => ["a"]), githubTeams: false })))),
+          [nix.POS]: pos$78,
+          pkgs: nix.thunk(() => nix.app(mockPkgs, nix.thunk(() => ({ [nix.POS]: pos$77, modules: nix.thunk(() => ["a"]), githubTeams: false })))),
           changedFiles: nix.thunk(() => ["a"]),
           affectedAttrPaths: [],
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$82,
+        [nix.POS]: pos$82,
         packages: [],
         teams: nix.thunk(() => ({})),
         users: nix.thunk(() => ({
-          __proto__: pos$81,
-          "100": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$79, file: "a" }))]),
-          "0": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$80, file: "a" }))]),
+          [nix.POS]: pos$81,
+          "100": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$79, file: "a" }))]),
+          "0": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$80, file: "a" }))]),
         })),
       })),
     })),
     testGroupAttrdiffByPlatform: nix.thunk(() => ({
-      __proto__: pos$89,
+      [nix.POS]: pos$89,
       expr: nix.thunk(() => nix.app(nix.sel(utils, "groupAttrdiffByPlatform"), nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           added: nix.thunk(() => ["new-tool.aarch64-linux", "new-tool.x86_64-darwin"]),
           changed: nix.thunk(() => ["updated-tool.x86_64-darwin", "shared-tool.x86_64-darwin"]),
           removed: nix.thunk(() => ["removed-tool.aarch64-darwin", "shared-tool.aarch64-darwin"]),
         })))),
       expected: nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         "aarch64-darwin": nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           added: [],
           changed: [],
           removed: nix.thunk(() => ["removed-tool", "shared-tool"]),
         })),
         "aarch64-linux": nix.thunk(() => ({
-          __proto__: pos$86,
+          [nix.POS]: pos$86,
           added: nix.thunk(() => ["new-tool"]),
           changed: [],
           removed: [],
         })),
         "x86_64-darwin": nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           added: nix.thunk(() => ["new-tool"]),
           changed: nix.thunk(() => ["shared-tool", "updated-tool"]),
           removed: [],
@@ -406,10 +406,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     testGroupAttrdiffByKernel: nix.thunk(() => ({
-      __proto__: pos$94,
+      [nix.POS]: pos$94,
       expr: nix.thunk(() => (() => {
         const grouped = nix.thunk(() => nix.app(nix.sel(utils, "groupAttrdiffByKernel"), nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             added: nix.thunk(() => ["new-tool.aarch64-linux", "new-tool.x86_64-darwin"]),
             changed: nix.thunk(() => ["updated-tool.x86_64-darwin", "shared-tool.x86_64-darwin"]),
             removed: nix.thunk(() => ["removed-tool.aarch64-darwin", "shared-tool.aarch64-darwin"]),
@@ -417,15 +417,15 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib, "mapAttrs"), (_) => (diff) => nix.app(nix.sel(lib, "mapAttrs"), (__1) => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan"))), diff), grouped);
       })()),
       expected: nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         darwin: nix.thunk(() => ({
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           added: nix.thunk(() => ["new-tool"]),
           changed: nix.thunk(() => ["shared-tool", "updated-tool"]),
           removed: nix.thunk(() => ["removed-tool", "shared-tool"]),
         })),
         linux: nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           added: nix.thunk(() => ["new-tool"]),
           changed: [],
           removed: [],
@@ -434,7 +434,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$96,
+    [nix.POS]: pos$96,
     result: nix.thunk(() => nix.app(nix.sel(lib, "runTests"), tests)),
   };
 })(), formals$1);

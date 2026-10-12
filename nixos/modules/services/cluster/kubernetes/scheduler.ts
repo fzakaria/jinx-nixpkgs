@@ -39,32 +39,32 @@ export default nix.lambda((args) => (() => {
   const otop = nix.thunk(() => nix.sel(options, "services", "kubernetes"));
   const cfg = nix.thunk(() => nix.sel(top, "scheduler"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           scheduler: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   description: "Kubernetes scheduler listening address.",
                   default: "127.0.0.1",
                   type: nix.thunk(() => nix.lookup(w, "str")),
                 })))),
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kubernetes scheduler")),
               extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "Kubernetes scheduler extra command line options.",
                   default: "",
                   type: nix.thunk(() => nix.app(nix.lookup(w, "separatedString"), " ")),
                 })))),
               featureGates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "Attribute set of feature gates.",
                   default: nix.thunk(() => nix.sel(top, "featureGates")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(otop, "featureGates")}`))),
@@ -72,19 +72,19 @@ export default nix.lambda((args) => (() => {
                 })))),
               kubeconfig: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkKubeConfigOptions"), "Kubernetes scheduler")),
               leaderElect: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   description: "Whether to start leader election before executing main loop.",
                   type: nix.thunk(() => nix.lookup(w, "bool")),
                   default: true,
                 })))),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   description: "Kubernetes scheduler listening port.",
                   default: 10251n,
                   type: nix.thunk(() => nix.lookup(w, "port")),
                 })))),
               verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: "Optional glog verbosity level for logging statements. See\n<https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md>\n",
                   default: null,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")))),
@@ -95,18 +95,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "kube-scheduler": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Kubernetes Scheduler Service",
               wantedBy: nix.thunk(() => ["kubernetes.target"]),
               after: nix.thunk(() => ["kube-apiserver.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Slice: "kubernetes.slice",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(top, "package")}/bin/kube-scheduler \\
           --bind-address=${nix.sel(cfg, "address")} \\
@@ -123,20 +123,20 @@ export default nix.lambda((args) => (() => {
                 Restart: "on-failure",
                 RestartSec: 5n,
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$12, StartLimitIntervalSec: 0n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, StartLimitIntervalSec: 0n })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           kubernetes: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             pki: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               certs: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 schedulerClient: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkCert"), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     name: "kube-scheduler-client",
                     CN: "system:kube-scheduler",
                     action: "systemctl restart kube-scheduler.service",
@@ -144,16 +144,16 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             scheduler: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               kubeconfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 server: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(top, "apiserverAddress")))),
               })),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$24, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$24, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=scheduler.ts.map

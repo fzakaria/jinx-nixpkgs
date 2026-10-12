@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const python_jose = nix.arg($, "python-jose");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "warrant",
       version: "0.6.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "capless",
           repo: "warrant",
           rev: "ff2e4793d8479e770f2461ef7cbc0c15ee784395",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-pip10-compat.patch",
             url: "https://github.com/capless/warrant/commit/ae17d17d9888b9218a8facf6f6ad0bf4adae9a12.patch",
             hash: "sha256-7IRvDoqQXUKlUHSmb/f28Y5m+2FULFXAb30O5bCIeNM=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["warrant"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for using AWS Cognito with support for SRP",
         homepage: "https://github.com/capless/warrant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

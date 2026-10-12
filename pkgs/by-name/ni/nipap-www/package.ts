@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gunicorn: nix.thunk(() => nix.attr(python3Packages, "gunicorn")),
         python: nix.thunk(() => nix.attr(python3Packages, "python")),
         pythonPath: nix.thunk(() => nix.app(nix.sel(python3Packages, "makePythonPath"), dependencies)),
-        tests: nix.thunk(() => ({ __proto__: pos$1, nixos: nix.thunk(() => nix.sel(nixosTests, "nipap")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, nixos: nix.thunk(() => nix.sel(nixosTests, "nipap")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neat IP Address Planner CLI, web UI",
         longDescription: "NIPAP is the best open source IPAM in the known universe,\nchallenging classical IP address management (IPAM) systems in many areas.\n",
         homepage: "https://github.com/SpriteLink/NIPAP",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

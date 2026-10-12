@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => true);
   const withAutostart = nix.argOr($, "withAutostart", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cosmic-session",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "cosmic-session",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ substituteInPlace data/cosmic.desktop \\
       cargoHash: "sha256-IoSLvxpc/1X1a6cDl4ZpoUpxHM7bsH3v2BU6wiQROhM=",
       separateDebugInfo: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, ORCA: "orca" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ORCA: "orca" })),
       nativeBuildInputs: nix.thunk(() => [just]),
       buildInputs: nix.thunk(() => [bash]),
       buildNoDefaultFeatures: true,
@@ -63,22 +63,22 @@ substituteInPlace data/cosmic.desktop \\
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         providedSessions: nix.thunk(() => ["cosmic"]),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/pop-os/cosmic-session",
         description: "Session manager for the COSMIC desktop environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

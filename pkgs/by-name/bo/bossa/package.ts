@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const fetchpatch = nix.arg($, "fetchpatch");
   const bin2c = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "bossa-bin2c",
       src: nix.path(here, "./bin2c.c"),
       dontUnpack: true,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin; cp bin2c $out/bin/",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bossa",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "shumatech",
           repo: "BOSSA",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "pr-172-fix.patch",
             url: "https://github.com/shumatech/BOSSA/commit/6e54973c3c758674c3d04b5e2cf12e097006f6a3.patch",
             hash: "sha256-2lp6Ej3IfofztC1n/yHLjabn0MH4BA/CM3dsnAw8klA=",
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wxwidgets_3_2, libx11, readline]),
       makeFlags: nix.thunk(() => ["WXVERSION=3.2", "bin/bossac", "bin/bossash", "bin/bossa"]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=deprecated-declarations"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=vla-cxx-extension"])))))),
       })),
       installPhase: "mkdir -p $out/bin\ncp bin/bossa{c,sh,} $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Flash programming utility for Atmel's SAM family of flash-based ARM microcontrollers",
         longDescription: "BOSSA is a flash programming utility for Atmel's SAM family of\nflash-based ARM microcontrollers. The motivation behind BOSSA is\nto create a simple, easy-to-use, open source utility to replace\nAtmel's SAM-BA software. BOSSA is an acronym for Basic Open\nSource SAM-BA Application to reflect that goal.\n",
         homepage: "https://github.com/shumatech/BOSSA",

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ptouch-print",
       version: "1.7-unstable-2026-01-23",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.familie-radermacher.ch/linux/ptouch-print.git",
           rev: "3e026ef26b48dda338bb983132494935d6aeb626",
           hash: "sha256-LpBgZWpbOiEf+yA/fDNwsSPxkgMVLnOsrE65Q3lvhwg",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gd, gettext, libjpeg, libpng, zlib, libusb1], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")))), nix.thunk(() => [argp_standalone])))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmv ptouch-print $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool to print labels on Brother P-Touch printers on Linux",
         homepage: "https://dominic.familie-radermacher.ch/projekte/ptouch-print/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

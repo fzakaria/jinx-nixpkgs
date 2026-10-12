@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dstep";
       const version = "1.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jacob-carlborg",
           repo: "dstep",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "runHook preInstall\ninstall -Dm755 bin/dstep -t $out/bin\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for converting C and Objective-C headers to D modules",
         homepage: "https://github.com/jacob-carlborg/dstep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

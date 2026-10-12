@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const symlinks = nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "symlink"), storeContents));
   const objects = nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "object"), storeContents));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "tarball",
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$1, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
       buildCommandPath: nix.path(here, "./make-system-tarball.sh"),
       nativeBuildInputs: extraInputs,
       fileName: fileName,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       targets: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "target"), contents)),
       symlinks: symlinks,
       objects: objects,
-      closureInfo: nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({ __proto__: pos$2, rootPaths: objects })))),
+      closureInfo: nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: objects })))),
       extension: compressionExtension,
     })));
 })(), formals$1);

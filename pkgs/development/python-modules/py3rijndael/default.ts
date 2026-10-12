@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pname = "py3rijndael";
   const version = "0.3.3";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-tmVaPr/zoQVA6u0EnoeI7qOsk9a3GzpqwrACJLvs6ag=",
         })))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rijndael algorithm library",
         homepage: "https://github.com/meyt/py3rijndael",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

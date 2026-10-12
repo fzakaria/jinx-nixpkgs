@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.add("ibus-with-plugins-", nix.app(nix.sel(lib, "getVersion"), ibus))),
       paths: nix.thunk(() => nix.concat([ibus], plugins)),
       pathsToLink: nix.thunk(() => [

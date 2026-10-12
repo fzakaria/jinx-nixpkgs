@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tesserocr",
       version: "2.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sirfz",
           repo: "tesserocr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf tesserocr\n",
       disabledTests: nix.thunk(() => ["test_init_full"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, Pillow-friendly, wrapper around the tesseract-ocr API for Optical Character Recognition (OCR)",
         homepage: "https://github.com/sirfz/tesserocr",
         changelog: nix.thunk(() => nix.str`https://github.com/sirfz/tesserocr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

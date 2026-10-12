@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const runTaskScript = "$out/bin/wpcleaner-run-task";
   const extraJavaArgs = nix.thunk(() => ["-Dawt.useSystemAAFontSettings=gasp", "-Xms1g", "-Xmx8g"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wpcleaner",
       version: "2.0.5-unstable-2026-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WPCleaner",
           repo: "wpcleaner",
           rev: "5d94f34e8aeb1d8353ec1981083acbc50eca10ee",
@@ -80,7 +80,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "wpcleaner",
             desktopName: "WPCleaner",
             comment: "Perform maintenance on Wikipedia",
@@ -91,7 +91,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for performing maintenance on Wikipedia",
         longDescription: "WPCleaner is a tool designed to help with various maintenance tasks, especially repairing\nlinks to disambiguation pages, checking Wikipedia, fixing spelling and typography, and\nhelping with translation of articles coming from other wikis.\n",
         homepage: "https://wpcleaner.toolforge.org/",

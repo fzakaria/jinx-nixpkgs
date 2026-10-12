@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const mkl_gnulibs = nix.arg($, "mkl-gnulibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mkl-gnulibs-test",
       version: nix.thunk(() => nix.sel(mkl_gnulibs, "version")),
       unpackPhase: nix.thunk(() => nix.str`cp ${nix.path(here, "./test.c")} test.c

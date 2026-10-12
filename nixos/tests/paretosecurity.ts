@@ -32,29 +32,29 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "paretosecurity",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zupo"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       terminal: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             paretosecurity: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               users: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 alice: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   inviteId: "test-invite-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 })),
               })),
@@ -66,36 +66,36 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
-            paretosecurity: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$15,
+            paretosecurity: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
             xserver: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$9,
-                lightdm: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+                [nix.POS]: pos$9,
+                lightdm: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
               })),
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$11,
-                xfce: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+                [nix.POS]: pos$11,
+                xfce: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$14,
-              autoLogin: nix.thunk(() => ({ __proto__: pos$13, enable: true, user: "alice" })),
+              [nix.POS]: pos$14,
+              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, user: "alice" })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$17,
-            resolution: nix.thunk(() => ({ __proto__: pos$16, x: 640n, y: 480n })),
+            [nix.POS]: pos$17,
+            resolution: nix.thunk(() => ({ [nix.POS]: pos$16, x: 640n, y: 480n })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xdotool"))]),
-            variables: nix.thunk(() => ({ __proto__: pos$18, XAUTHORITY: "/home/alice/.Xauthority" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$18, XAUTHORITY: "/home/alice/.Xauthority" })),
           })),
         };
       })(), formals$3),

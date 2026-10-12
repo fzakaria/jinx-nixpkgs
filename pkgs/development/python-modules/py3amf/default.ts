@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "StdCarrot",
           repo: "Py3AMF",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [defusedxml]);
       const pythonImportsCheck = nix.thunk(() => ["pyamf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Action Message Format (AMF) support for Python 3",
         homepage: "https://github.com/StdCarrot/Py3AMF",
         changelog: nix.thunk(() => nix.str`https://github.com/StdCarrot/Py3AMF/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

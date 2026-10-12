@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const swift_asn1 = nix.arg($, "swift-asn1");
   const swift_crypto = nix.arg($, "swift-crypto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-certificates",
       version: "1.19.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apple",
           repo: "swift-certificates",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,12 +47,12 @@ substitute ${nix.path(here, "./files/SwiftCertificatesConfig.cmake")} "\${!outpu
   --replace-fail '@swiftPlatform@' ${nix.sel(stdenv, "hostPlatform", "swift", "platform")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/apple/swift-certificates",
         description: "An implementation of X.509 for Swift",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

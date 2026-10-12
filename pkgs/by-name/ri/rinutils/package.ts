@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rinutils",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/shlomif/rinutils/releases/download/${nix.sel(finalAttrs, "version")}/rinutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-+eUn03psyMe4hwraY8qiTzKrDSn9ERbfPrtoZYMDCVU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       postPatch: "substituteInPlace librinutils.pc.in \\\n  --replace '$'{exec_prefix}/@RINUTILS_INSTALL_MYLIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C11 / gnu11 utilities C library by Shlomi Fish / Rindolf",
         homepage: "https://github.com/shlomif/rinutils",
         changelog: nix.thunk(() => nix.str`https://github.com/shlomif/rinutils/raw/${nix.sel(finalAttrs, "version")}/NEWS.asciidoc`),

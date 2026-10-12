@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AsahiLinux",
           repo: "asahi-installer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +36,11 @@ substituteInPlace asahi_firmware/update.py \\
 `);
       const build_system = nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asahi firmware extraction script",
         homepage: "https://github.com/AsahiLinux/asahi-installer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ substituteInPlace asahi_firmware/update.py \\
         platforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

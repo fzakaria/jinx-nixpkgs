@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libmusicbrainz = nix.arg($, "libmusicbrainz");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyanrip",
       version: "0.9.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cyanreg",
           repo: "cyanrip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [ffmpeg_8_headless, libcdio, libcdio_paranoia, libmusicbrainz, curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cyanreg/cyanrip",
         changelog: nix.thunk(() => nix.str`https://github.com/cyanreg/cyanrip/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Bule-ish CD ripper",

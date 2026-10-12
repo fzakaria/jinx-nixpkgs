@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libticables2 = nix.arg($, "libticables2");
   const libticalcs2 = nix.arg($, "libticalcs2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tilem",
       version: "2.1-unstable-2025-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kuba160",
           repo: "tilem-gtk3",
           rev: "64b9a38a4460abf52bf09ab28dffdc3784f002a3",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [glib, gtk3, libticonv, libtifiles2, libticables2, libticalcs2]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lm"]))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-tilem", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} "$UPDATE_NIX_ATTR_PATH" --version=branch
 ${nix.app(nix.sel(lib, "getExe"), gnused)} -i -E \\
   's/version = "0-unstable-([0-9-]+)";/version = "2.1-unstable-\\1";/' \\
@@ -51,7 +51,7 @@ ${nix.app(nix.sel(lib, "getExe"), gnused)} -i -E \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/kuba160/tilem-gtk3",
         description: "Emulator and debugger for Texas Instruments Z80-based graphing calculators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const pythonOlder = nix.arg($, "pythonOlder");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiohomematic",
       version: "2026.9.2",
       pyproject: true,
       __structuredAttrs: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SukramJ",
           repo: "aiohomematic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/benchmarks", "tests/github_scripts"]),
       pythonImportsCheck: nix.thunk(() => ["aiohomematic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with HomeMatic devices",
         homepage: "https://github.com/SukramJ/aiohomematic",
         changelog: nix.thunk(() => nix.str`https://github.com/SukramJ/aiohomematic/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),

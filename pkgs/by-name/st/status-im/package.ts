@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const version = "2.36.1";
   const commit = "ad089d";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`StatusIm-Desktop-${version}-${commit}-x86_64.AppImage`),
       url: nix.thunk(() => nix.str`https://github.com/status-im/status-desktop/releases/download/${version}/StatusIm-Desktop-${version}-${commit}-x86_64.tar.gz`),
       hash: "sha256-urBk1CqVRuBpXc8WAVyyzP1devK8NwbpbBJ+FPX1Awg=",
@@ -30,7 +30,7 @@ mv $TMPDIR/tmp $out
 `),
     }))));
   const desktopEntry = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "status",
       desktopName: "Status Desktop",
       exec: "status-desktop",
@@ -39,13 +39,13 @@ mv $TMPDIR/tmp $out
       categories: nix.thunk(() => ["Network"]),
     }))));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://github.com/status-im/status-desktop/raw/afde83651724a555626b5d9a3d582918de6c3d59/status.png",
       hash: "sha256-ViGuOr9LskGs/P7pjPO9zYgosWaZlZZYVuPpliOA5dY=",
     }))));
   const pname = "status-desktop";
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -53,7 +53,7 @@ mv $TMPDIR/tmp $out
 install -m 444 -D ${icon} $out/share/icons/hicolor/512x512/apps/status.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Desktop client for the Status Network",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

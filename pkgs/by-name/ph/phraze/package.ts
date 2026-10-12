@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "phraze",
       version: "0.3.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sts10",
           repo: "phraze",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-xKqEZdZqu76rE1/rdMW3nTzZEXdCr2qMTp7SY1dbQTQ=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: phraze })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: phraze })))),
         })),
       })),
       postInstall: "installManPage target/man/phraze.1\n\ninstallShellCompletion --cmd phraze \\\n  --bash target/completions/phraze.bash \\\n  --fish target/completions/phraze.fish \\\n  --zsh target/completions/_phraze\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generate random passphrases",
         homepage: "https://github.com/sts10/phraze",
         changelog: nix.thunk(() => nix.str`https://github.com/sts10/phraze/releases/tag/v${nix.sel(finalAttrs, "version")}`),

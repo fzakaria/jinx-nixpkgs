@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sstorytime",
       version: "1.0-beta-unstable-2026-09-15",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markburgess",
           repo: "SSTorytime",
           rev: "f56e7b01b098dff89422c15a56414dd8dec80b03",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [postgresql, postgresqlTestHook, writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PGUSER: "nixbld",
         PGDATABASE: "sstoryline",
         postgresqlTestUserOptions: "LOGIN SUPERUSER",
@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
       postFixup: "for bin in $out/bin/*; do\n  wrapProgram \"$bin\" \\\n    --set-default SST_CONFIG_PATH \"$out/share/SSTconfig\"\ndone\n",
       installCheckPhase: "runHook preInstallCheck\n\npostgresqlStart\nexport POSTGRESQL_URI=\"postgresql://$PGUSER@/$PGDATABASE?host=$PGHOST\"\n\nfailed=0\nbin=$out/bin/N4L\n\nfor f in tests/pass_*.in; do\n  if \"$bin\" -adj=all \"$f\" >/dev/null; then\n    echo \"ok $f\"\n  else\n    echo \"FAIL $f\"\n    failed=1\n  fi\ndone\n\nfor f in tests/fail_*.in; do\n  if \"$bin\" \"$f\" >/dev/null 2>&1; then\n    echo \"FAIL $f (expected non-zero exit)\"\n    failed=1\n  else\n    echo \"ok $f\"\n  fi\ndone\n\nif \"$bin\" -wipe -u examples/doors.n4l >/dev/null; then\n  echo \"ok N4L -wipe -u doors.n4l\"\nelse\n  echo \"FAIL N4L -wipe -u doors.n4l\"\n  failed=1\nfi\n\npostgresqlStop\n\nif [ \"$failed\" -ne 0 ]; then\n  exit 1\nfi\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           sstorytime: nix.thunk(() => nix.attr(nixosTests, "sstorytime")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Unified graph process for mapping knowledge",
         homepage: "https://github.com/markburgess/SSTorytime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

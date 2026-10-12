@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drumkv1",
       version: "1.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/drumkv1/drumkv1-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tMzNLWclKkYStICOn4ztb2vcYnA2WniSPSjZNk9TmqQ=",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       cmakeFlags: nix.thunk(() => ["-DCONFIG_LV2_PORT_CHANGE_REQUEST=false", "-DCMAKE_INSTALL_LIBDIR=lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Old-school drum-kit sampler synthesizer with stereo fx",
         mainProgram: "drumkv1_jack",
         homepage: "http://drumkv1.sourceforge.net/",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mentalisttraceur",
           repo: "python-reprshed",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonImportsCheck = nix.thunk(() => ["reprshed"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mentalisttraceur/python-reprshed",
         description: "Toolshed for writing great __repr__ methods quickly and easily",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "netali"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

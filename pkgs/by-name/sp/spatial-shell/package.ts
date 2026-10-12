@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spatial-shell";
       const version = "7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lthms",
           repo: "spatial-shell",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementing a spatial model inspired by Material Shell, for i3 and sway",
         homepage: "https://github.com/lthms/spatial-shell",
         changelog: nix.thunk(() => nix.str`https://github.com/lthms/spatial-shell/blob/${nix.sel(src, "rev")}/CHANGES.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "spatial",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

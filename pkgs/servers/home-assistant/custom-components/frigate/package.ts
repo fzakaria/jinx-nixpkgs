@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const domain = "frigate";
       const version = "5.15.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blakeblackshear",
           repo: "frigate-hass-integration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_media_source.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides Home Assistant integration to interface with a separately running Frigate service",
         homepage: "https://github.com/blakeblackshear/frigate-hass-integration",
         changelog: nix.thunk(() => nix.str`https://github.com/blakeblackshear/frigate-hass-integration/releases/tag/v${version}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

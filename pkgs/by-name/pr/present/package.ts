@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
-  const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({ __proto__: pos$1, mistune: nix.thunk(() => nix.sel(self, "mistune_2")) })));
+  const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({ [nix.POS]: pos$1, mistune: nix.thunk(() => nix.sel(self, "mistune_2")) })));
   return nix.app(nix.sel(pythonPackages, "buildPythonPackage"), nix.thunk(() => (() => {
       const pname = "present";
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           hash: "sha256-l9W5L4LD9qRo3rLBkgd2I/aDaj+ucib5UYg+X4RYg6c=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["present"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal-based presentation tool with colors and effects",
         homepage: "https://github.com/vinayak-mehta/present",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "present",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

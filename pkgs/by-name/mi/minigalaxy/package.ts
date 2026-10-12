@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sharkwouter",
           repo: "minigalaxy",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-launcher-umu-run.diff"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             umurun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), umu_launcher)),
           })))),
       ]);
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://sharkwouter.github.io/minigalaxy/",
         changelog: nix.thunk(() => nix.str`https://github.com/sharkwouter/minigalaxy/blob/${version}/CHANGELOG.md`),
         downloadPage: "https://github.com/sharkwouter/minigalaxy/releases",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

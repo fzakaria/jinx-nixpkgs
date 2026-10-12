@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diamond",
       version: "3.10",
       nativeBuildInputs: nix.thunk(() => [rpmextract, patchelf, makeWrapper, file]),
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "diamond_3_10-base_x64-111-2-x86_64-linux.rpm",
           url: "http://www.latticesemi.com/view_document?document_id=52180",
           sha256: "ec0b370cf8bd55831eeed7c5eadcabacbd6e63ac657c20209d672119a07a5c0f",
@@ -137,7 +137,7 @@ done
           libusb_compat_0_1,
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vendor development tools for Lattice FPGA devices",
         longDescription: "Lattice Diamond software is the leading-edge software design environment\nfor cost- sensitive, low-power Lattice FPGA architectures. It is the\nnext-generation replacement for ispLEVER.\n",
         homepage: "https://www.latticesemi.com/latticediamond",

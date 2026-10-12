@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const lzo = nix.arg($, "lzo");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "squashfuse",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vasi",
           repo: "squashfuse",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, libtool, pkg_config]),
       buildInputs: nix.thunk(() => [lz4, xz, zlib, lzo, zstd, fuse3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FUSE filesystem to mount squashfs archives",
         homepage: "https://github.com/vasi/squashfuse",
         maintainers: [],

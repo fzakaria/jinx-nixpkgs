@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiocsv",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MKuranowski",
           repo: "aiocsv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aiocsv"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_parser.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for asynchronous CSV reading/writing",
         homepage: "https://github.com/MKuranowski/aiocsv",
         changelog: nix.thunk(() => nix.str`https://github.com/MKuranowski/aiocsv/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

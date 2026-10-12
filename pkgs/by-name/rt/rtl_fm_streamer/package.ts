@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libev = nix.arg($, "libev");
   const rtl_sdr = nix.arg($, "rtl-sdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl_fm_streamer",
       version: "0-unstable-2026-05-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlbrechtL",
           repo: "rtl_fm_streamer",
           rev: "7d98bcee154be86b772ab9440bc65361ac2cad67",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turns your Realtek RTL2832 based DVB dongle into a FM radio stereo receiver",
         homepage: "https://github.com/AlbrechtL/rtl_fm_streamer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

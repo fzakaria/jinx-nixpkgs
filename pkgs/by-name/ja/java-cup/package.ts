@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "java-cup",
       version: "11b-20160615",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www2.cs.tum.edu/projects/cup/releases/java-cup-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4OdzYG5FzhqorROD5jk9U+2dzyhh5D76gZT1Z+kdv/o=",
         })))),
@@ -41,7 +41,7 @@ makeWrapper ${nix.sel(jdk, "jre")}/bin/java $out/bin/javacup \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LALR parser generator for Java",
         homepage: "http://www2.cs.tum.edu/projects/cup/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

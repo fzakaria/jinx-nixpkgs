@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "buildstream-plugins-community",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buildstream",
           repo: "buildstream-plugins-community",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["buildstream"]),
       pythonImportsCheck: nix.thunk(() => ["buildstream_plugins_community"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pytest: nix.thunk(() => nix.sel(nixosTests, "buildstream-plugins-community")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/BuildStream/buildstream-plugins-community/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "BuildStream community plugins",
         homepage: "https://gitlab.com/buildstream/buildstream-plugins-community",

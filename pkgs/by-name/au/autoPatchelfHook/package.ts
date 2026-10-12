@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const bintools = nix.arg($, "bintools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "auto-patchelf-hook",
       propagatedBuildInputs: nix.thunk(() => [auto_patchelf, bintools]),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         hostPlatform: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "layus"))];

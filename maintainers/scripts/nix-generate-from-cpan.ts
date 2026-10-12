@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "nix-generate-from-cpan-3",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ patchShebangs $out/bin/nix-generate-from-cpan
 wrapProgram $out/bin/nix-generate-from-cpan --set PERL5LIB $PERL5LIB
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Utility to generate a Nix expression for a Perl package from CPAN",
         mainProgram: "nix-generate-from-cpan",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

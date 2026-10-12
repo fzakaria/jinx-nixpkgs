@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const version = "3.13.0";
   const tools = nix.thunk(() => nix.app(callPackage, nix.path(here, "../../flutter/engine/tools.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       hostPlatform: nix.thunk(() => nix.attr(stdenv, "hostPlatform")),
       buildPlatform: nix.thunk(() => nix.attr(stdenv, "buildPlatform")),
     }))));
   const getArchInfo = (platform) => (() => {
     const arch = nix.thunk(() => (nix.asBool(nix.sel(platform, "isx86_64")) ? "x64" : nix.sel(platform, "linuxArch")));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       arch: arch,
       outSuffix: nix.thunk(() => nix.app(nix.sel(lib, "strings", "toUpper"), arch)),
     };
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dart-source-deps",
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         GIT_SSL_CAINFO: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
@@ -128,7 +128,7 @@ cp --recursive sdk $out
 `),
     })));
   return nix.app(nix.sel(dart_bin, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [gitMinimal, gitSetupHook, python3, ripgrep, pkg_config]),
@@ -138,7 +138,7 @@ cp --recursive sdk $out
         nix.path(here, "./zlib-not-found.patch"),
         nix.path(here, "./custom-flags.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "dart-ignore-binaryen-warnings.patch",
             url: "https://github.com/dart-lang/sdk/commit/963b46dfebad01cab9e063fc8b508df227154a31.patch",
             hash: "sha256-+JY97WFq+UWNoGikXfHIPxBwPdCWV1HYHjhi9pzqVCo=",
@@ -148,7 +148,7 @@ cp --recursive sdk $out
 patchShebangs runtime/tools/
 sed --in-place 's/ldflags = pkgresult\\[4\\]/ldflags = []/' build/config/linux/pkg_config.gni
 cp ${nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "https://raw.githubusercontent.com/chromium/chromium/631a813125b886a52274653144019fd1681a0e97/build/config/linux/pkg-config.py",
           hash: "sha256-9coRpgCewlkFXSGrMVkudaZUll0IFc9jDRBP+2PloOI=",
         })))} build/config/linux/pkg-config.py
@@ -178,7 +178,7 @@ install -D --mode=0644 ${nix.path(here, "./unbundle/zlib.gn")} build/linux/unbun
 install -D --mode=0755 ${nix.path(here, "./unbundle/replace_gn_files.py")} build/linux/unbundle/replace_gn_files.py
 install -D --mode=0644 ${nix.path(here, "./unbundle/shim_headers.gni")} build/shim_headers.gni
 install -D --mode=0644 ${nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://raw.githubusercontent.com/dart-lang/sdk/d684a576a6aa954ae107a03b2b4e1d61c3bebe93/tools/generate_shim_headers.py",
             hash: "sha256-jE3RZFnqq0mUR7tIrTGU5sblBaBsi/SwhKg2H37ypGg=",
           })))} tools/generate_shim_headers.py
@@ -217,12 +217,12 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => nix.update(nix.sel(oldAttrs, "passthru"), {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-dart", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=$(${nix.app(nix.sel(lib, "getExe"), curlMinimal)} --fail --location --silent https://storage.googleapis.com/dart-archive/channels/stable/release/latest/VERSION | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output .version)
 `))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),
       })),

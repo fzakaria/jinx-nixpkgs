@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const locales = nix.argOr($, "locales", () => ["en_US.UTF-8/UTF-8"]);
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const withLinuxHeaders = nix.argOr($, "withLinuxHeaders", () => !nix.asBool(nix.sel(stdenv, "cc", "isGNU")));
-  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => nix.update({ __proto__: pos$1, stdenv: stdenv }, nix.app(nix.sel(lib, "optionalAttrs"), withLinuxHeaders, nix.thunk(() => ({ __proto__: pos$2, linuxHeaders: linuxHeaders }))))), nix.thunk(() => ({
-      __proto__: pos$3,
+  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, stdenv: stdenv }, nix.app(nix.sel(lib, "optionalAttrs"), withLinuxHeaders, nix.thunk(() => ({ [nix.POS]: pos$2, linuxHeaders: linuxHeaders }))))), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       pname: "glibc-locales",
       extraNativeBuildInputs: nix.thunk(() => [glibc]),
       withLinuxHeaders: withLinuxHeaders,
     }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       outputs: nix.thunk(() => ["out"]),
       env: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "env"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         LOCALEDEF_FLAGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian")) ? "--little-endian" : "--big-endian")),
         NIX_NO_SELF_RPATH: 1n,
       })),
@@ -74,7 +74,7 @@ echo SUPPORTED-LOCALES='${nix.builtins.toString(locales)}' > ../localedata/SUPPO
       ])),
       installPhase: "mkdir -p \"$out/lib/locale\" \"$out/share/i18n\"\ncp -v \"$TMPDIR/$NIX_STORE/\"*\"/lib/locale/locale-archive\" \"$out/lib/locale\"\ncp -v ../localedata/SUPPORTED \"$out/share/i18n/SUPPORTED\"\n",
       setupHook: nix.thunk(() => nix.app(writeText, "locales-setup-hook.sh", "export LOCALE_ARCHIVE=@out@/lib/locale/locale-archive\n")),
-      meta: nix.thunk(() => ({ __proto__: pos$5, description: "Locale information for the GNU C Library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$5, description: "Locale information for the GNU C Library" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=locales.ts.map

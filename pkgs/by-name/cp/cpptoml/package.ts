@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libcxxCmakeModule = nix.argOr($, "libcxxCmakeModule", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpptoml",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skystrife",
           repo: "cpptoml",
           rev: "fededad7169e538ca47e11a9ee9251bc361a9a65",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 3.1.0)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ TOML configuration library",
         homepage: "https://github.com/skystrife/cpptoml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

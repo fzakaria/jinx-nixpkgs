@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyturbojpeg",
       version: "2.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lilohuang",
           repo: "PyTurboJPEG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./lib-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libturbojpeg: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libjpeg_turbo)}/lib/libturbojpeg${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_library_loading_error_message"]),
       pythonImportsCheck: nix.thunk(() => ["turbojpeg"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/lilohuang/PyTurboJPEG/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python wrapper of libjpeg-turbo for decoding and encoding JPEG image",
         homepage: "https://github.com/lilohuang/PyTurboJPEG",

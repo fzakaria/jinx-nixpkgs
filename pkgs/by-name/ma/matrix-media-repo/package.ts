@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const pname = "matrix-media-repo";
   const version = "1.3.8";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "t2bot",
           repo: "matrix-media-repo",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-AzWZGhqJlHC9MI2jv6Z54C8OqGZIZm8CPqoaLwbtyA8=";
   const asset_compiler = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-compile_assets`),
       version: version,
       src: src,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/utilities/compile_assets"]),
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Highly configurable multi-domain media repository for Matrix",
         homepage: "https://github.com/t2bot/matrix-media-repo",
         changelog: nix.thunk(() => nix.str`https://github.com/t2bot/matrix-media-repo/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),

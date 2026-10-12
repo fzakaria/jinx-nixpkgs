@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "1";
   const minorVersion = "10";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "route159",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/route159_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-1InyBW1LGbp/IU/ql9mvT14W3MTxJdWThFwRH6VHpTU=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dotcolon.net/font/route159/",
         description: "Weighted sans serif font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

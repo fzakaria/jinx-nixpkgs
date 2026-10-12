@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const getBin = nix.thunk(() => nix.attr(lib, "getBin"));
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "flash-mla",
       version: "0-unstable-2026-04-29",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "deepseek-ai",
           repo: "FlashMLA",
           rev: "9241ae3ef9bac614dd25e45e507e089f888280e0",
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-git-rev.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             git_rev: nix.thunk(() => nix.str`+${nix.sel(finalAttrs, "src", "rev")}`),
           })))),
       ]),
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail \\\n    'subprocess.run([\"git\", \"submodule\", \"update\", \"--init\", \"csrc/cutlass\"])' \\\n    \"\"\n",
       env: nix.thunk(() => nix.app(optionalAttrs, cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CUDA_HOME: nix.thunk(() => nix.sel(nix.app(getBin, nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))), "outPath")),
         })))),
       "build-system": nix.thunk(() => [setuptools, torch]),
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flash_mla"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Efficient Multi-head Latent Attention Kernels",
         homepage: "https://github.com/deepseek-ai/FlashMLA",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

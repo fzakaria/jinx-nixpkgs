@@ -19,32 +19,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const addMetaAttrs = nix.thunk(() => nix.attr(lib, "addMetaAttrs"));
   const addToNativeBuildInputs = (pkg) => (old) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addToBuildInputs = (pkg) => (old) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addPkgConfig = (old) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
   });
   const addToBuildInputsWithPkgConfig = (pkg) => (old) => nix.update(nix.app(addPkgConfig, old), nix.app(addToBuildInputs, pkg, old));
   const addToCscOptions = (opt) => (old) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     env: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       CSC_OPTIONS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.selOr(old, () => "", "env", "CSC_OPTIONS"))], nix.app(nix.sel(lib, "toList"), opt))))),
     })),
   });
-  const broken = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ __proto__: pos$6, broken: true }))));
+  const broken = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: pos$6, broken: true }))));
   const brokenOnDarwin = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     blas: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "blas")))),
     breadline: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "readline")))),
     bvconv: (old) => nix.update(nix.app(addToBuildInputs, nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(pkgs, "libiconv")))), old), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(addToCscOptions, "-L -liconv", old)))),

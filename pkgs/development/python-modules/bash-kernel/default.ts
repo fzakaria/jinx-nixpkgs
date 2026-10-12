@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "takluyver",
           repo: "bash_kernel",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bash-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bashInteractive)),
           })))),
       ]);
@@ -58,7 +58,7 @@ runHook postCheck
 `);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bash Kernel for Jupyter",
         homepage: "https://github.com/takluyver/bash_kernel",
         changelog: nix.thunk(() => nix.str`https://github.com/takluyver/bash_kernel/releases/tag/${version}`),
@@ -69,7 +69,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

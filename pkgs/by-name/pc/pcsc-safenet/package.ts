@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.8.1050";
       const debName = nix.thunk(() => nix.str`Installation/Standard/Ubuntu-2204/safenetauthenticationclient_${version}_amd64.deb`);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.digicert.com/StaticFiles/Linux_SAC_10_8_R1_GA.zip",
           hash: "sha256-Wh2Ax4ZVFKqn0yDwZmwvtUqwQNYyBng08IPfemHzZC0=",
         }))));
@@ -74,7 +74,7 @@ for mod in $(find "$out" -type f -name '*.so.*'); do
 done;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://safenet.gemalto.com/multi-factor-authentication/security-applications/authentication-client-token-management",
         description: "Safenet Authentication Client",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -89,7 +89,7 @@ done;
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         debName,

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glitchtip",
           repo: "django-vtasks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, orjson, croniter]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         metrics: nix.thunk(() => [prometheus_client]),
         valkey: nix.thunk(() => nix.concat([django_vcache], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(pythonOlder, "3.14")), pyzstd))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["django_vtasks"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DATABASE_URL: "postgresql://postgres@%2Fbuild%2Frun%2Fpostgresql",
         VALKEY_URL: "redis://127.0.0.1:6379",
       }));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         redisTestHook,
       ], nix.sel(psycopg, "optional-dependencies", "pool")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Very fast valkey/postgres django tasks backend",
         homepage: "https://gitlab.com/glitchtip/django-vtasks",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/django-vtasks/-/releases/${nix.sel(src, "tag")}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(django, "version")))), "6")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

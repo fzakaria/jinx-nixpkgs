@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wizer";
       const version = "11.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bytecodealliance",
           repo: "wizer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const buildFeatures = nix.thunk(() => ["cli"]);
       const preCheck = "export HOME=$(mktemp -d)\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebAssembly pre-initializer",
         mainProgram: "wizer",
         homepage: "https://github.com/bytecodealliance/wizer",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

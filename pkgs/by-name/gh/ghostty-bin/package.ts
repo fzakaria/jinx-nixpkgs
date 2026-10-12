@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ghostty-bin",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://release.files.ghostty.org/${nix.sel(finalAttrs, "version")}/Ghostty.dmg`),
           hash: "sha256-GM/ysKbO6Q7q2cfTBk6AiiUqQLryFKp1LB7LeTuPX2k=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "mkdir -p $man/share\ncp -r $resourceDir/man $man/share/man\n",
       outputs: nix.thunk(() => ["out", "man", "shell_integration", "terminfo", "vim"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, native, feature-rich terminal emulator pushing modern features",
         longDescription: "Ghostty is a terminal emulator that differentiates itself by being\nfast, feature-rich, and native. While there are many excellent terminal\nemulators available, they all force you to choose between speed,\nfeatures, or native UIs. Ghostty provides all three.\n",
         homepage: "https://ghostty.org/",

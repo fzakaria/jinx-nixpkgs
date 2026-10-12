@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.attr(breseq, "pname"));
   const version = nix.thunk(() => nix.attr(breseq, "version"));
   return nix.app(runCommand, "breseq-tests", nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`echo "Testing breseq - breseq executable"
 export TESTBINPREFIX=${breseq}/bin
 cp ${breseq}/tests $PWD/breseqtests -r

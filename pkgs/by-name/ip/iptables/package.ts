@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const iproute2 = nix.arg($, "iproute2");
   const iputils = nix.arg($, "iputils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "iptables",
       version: "1.8.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/iptables/files/iptables-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GvzTPano+ROs5qISZ4gWLiB+JvXV4pxlc8Dlgf/Fi5k=",
         })))),
@@ -66,23 +66,23 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nftablesCompat, "rm $out/sbin/{iptables,iptables-restore,iptables-save,ip6tables,ip6tables-restore,ip6tables-save}\nln -sv xtables-nft-multi $out/bin/iptables\nln -sv xtables-nft-multi $out/bin/iptables-restore\nln -sv xtables-nft-multi $out/bin/iptables-save\nln -sv xtables-nft-multi $out/bin/ip6tables\nln -sv xtables-nft-multi $out/bin/ip6tables-restore\nln -sv xtables-nft-multi $out/bin/ip6tables-save\n")),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lib: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://git.netfilter.org/iptables",
             "rev-prefix": "v",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           withCheck: nix.thunk(() => nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 memSize: 4096n,
                 nativeCheckInputs: nix.thunk(() => [python3, util_linux, nftables, strace, iana_etc, shadow, iproute2, iputils]),
                 doCheck: true,
@@ -122,7 +122,7 @@ patchShebangs xlate-test.py iptables-test.py iptables/tests
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Program to configure the Linux IP packet filtering ruleset",
         homepage: "https://www.netfilter.org/projects/iptables/index.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -135,7 +135,7 @@ patchShebangs xlate-test.py iptables-test.py iptables/tests
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         downloadPage: "https://www.netfilter.org/projects/iptables/files/",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "netfilter", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

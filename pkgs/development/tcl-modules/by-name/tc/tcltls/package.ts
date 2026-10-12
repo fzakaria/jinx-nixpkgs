@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcltls",
       version: "1.7.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://core.tcl-lang.org/tcltls/uv/tcltls-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6E4reideyCxKqp0bH5eG2+Q1jIFekXU5/+f2Z/9Lw7Q=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-ssl-dir=${nix.sel(openssl, "dev")}`)]),
       tclRequiresCheck: nix.thunk(() => ["tls"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://core.tcl-lang.org/tcltls/index",
         description: "OpenSSL / RSA-bsafe Tcl extension",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "agbrooks"))]),

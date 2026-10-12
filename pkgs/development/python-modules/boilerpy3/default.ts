@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pname = "boilerpy3";
   const version = "1.0.7";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmriebold",
           repo: "BoilerPy3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# the version mangling in mautrix_signal/get_version.py interacts badly with pythonRelaxDepsHook\nsubstituteInPlace setup.py \\\n  --replace '>=3.6.*' '>=3.6'\n",
       pythonImportsCheck: nix.thunk(() => ["boilerpy3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jmriebold/BoilerPy3",
         description: "Python port of Boilerpipe library",
         changelog: nix.thunk(() => nix.str`https://github.com/jmriebold/BoilerPy3/releases/tag/v${version}`),

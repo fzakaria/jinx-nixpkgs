@@ -49,44 +49,44 @@ export default nix.lambda((args) => (() => {
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))));
   const isLocallyDistributed = nix.thunk(() => nix.sel(config, "services", "livekit", "ingress", "enable"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "quadradical"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         livekit: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the livekit server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "livekit", nix.thunk(() => ({})))),
           keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "LiveKit key file holding one or multiple application secrets. Use `livekit-server generate-keys` to generate a random key name and secret.\n\nThe file should have the format `<keyname>: <secret>`.\nExample:\n`lk-jwt-service: f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE`\n\nIndividual key/secret pairs need to be passed to clients to connect to this instance.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Opens port range for LiveKit on the firewall.",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: isLocallyDistributed,
                 defaultText: "true if any other Livekit component is enabled locally else false",
                 description: "Whether to set up a local redis instance.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
                 description: "Address to bind local redis instance to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "port")));
@@ -106,22 +106,22 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 7880n,
                         description: "Main TCP port for RoomService and RTC endpoint.",
                       })))),
                     redis: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -133,21 +133,21 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     rtc: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       port_range_start: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 50000n,
                           description: "Start of UDP port range for WebRTC",
                         })))),
                       port_range_end: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 51000n,
                           description: "End of UDP port range for WebRTC",
                         })))),
                       use_external_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "When set to true, attempts to discover the host's public IP via STUN.\nThis is useful for cloud environments such as AWS & Google where hosts have an internal IP that maps to an external one.\n",
@@ -162,22 +162,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "redis", "createLocally")) || nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), null)))),
             message: "When `services.livekit.redis.createLocally` is enabled `services.livekit.redis.port` must be configured.\n",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]),
               allowedUDPPortRanges: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   from: nix.thunk(() => nix.sel(cfg, "settings", "rtc", "port_range_start")),
                   to: nix.thunk(() => nix.sel(cfg, "settings", "rtc", "port_range_end")),
                 })),
@@ -185,13 +185,13 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           redis: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             servers: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               livekit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enable: true,
                   bind: nix.thunk(() => nix.sel(cfg, "redis", "host")),
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
@@ -200,18 +200,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             livekit: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "LiveKit SFU server",
               documentation: nix.thunk(() => ["https://docs.livekit.io"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`livekit-secrets:${nix.sel(cfg, "keyFile")}`)]),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),

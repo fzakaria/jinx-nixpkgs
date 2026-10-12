@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "090qwx3vl729zn3a7sksbviyg04kc71gpbm3nd8dalqp673x1npw",
@@ -39,7 +39,7 @@ substituteInPlace setup.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["bwapy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ACEnglish/bwapy",
         description: "Python bindings to bwa mem aligner",
         mainProgram: "bwamempy",
@@ -50,7 +50,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

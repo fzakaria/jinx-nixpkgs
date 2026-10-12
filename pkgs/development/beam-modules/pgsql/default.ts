@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildRebar3 = nix.arg($, "buildRebar3");
   const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "name")}`),
       buildInputs: nix.thunk(() => [drv]),
     })));
   const pkg = (self) => nix.app(buildRebar3, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "pgsql",
       version: "25+beta.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "semiocast",
           repo: "pgsql",
           rev: "14f632bc89e464d82ce3ef12a67ed8c2adb5b60c",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Erlang PostgreSQL Driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/semiocast/pgsql",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ericbmerritt"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, env: nix.thunk(() => nix.app(shell, self)) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, env: nix.thunk(() => nix.app(shell, self)) })),
     })));
   return nix.app(nix.sel(lib, "fix"), pkg);
 })(), formals$1);

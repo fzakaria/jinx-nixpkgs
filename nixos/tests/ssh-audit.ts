@@ -26,29 +26,29 @@ export default nix.lambda((args) => (() => {
   const clientName = "client";
   const sshAuditPort = 2222n;
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "ssh",
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [nix.str`${serverName}`, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         networking: nix.thunk(() => ({
-          __proto__: pos$2,
-          firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [sshAuditPort]) })),
+          [nix.POS]: pos$2,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [sshAuditPort]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$4,
-          openssh: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$4,
+          openssh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${sshUsername}`, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               isNormalUser: true,
               openssh: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 authorizedKeys: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   keys: nix.thunk(() => [nix.thunk(() => nix.sel(sshKeys, "snakeOilPublicKey"))]),
                 })),
               })),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))],
       [nix.str`${clientName}`, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         programs: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           ssh: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ciphers: nix.thunk(() => [
               "aes128-ctr",
               "aes128-gcm@openssh.com",

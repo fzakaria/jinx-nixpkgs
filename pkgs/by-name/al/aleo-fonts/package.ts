@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aleo-fonts",
       version: "2.0.0-unstable-2023-06-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlessioLaiso",
           repo: "aleo",
           rev: "ce875e48d9983031648e87f38b7a269f4fbf5eb5",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       preInstall: "rm -r fonts/old",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Slab serif typeface designed by Alessio Laiso",
         homepage: "https://github.com/AlessioLaiso/aleo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

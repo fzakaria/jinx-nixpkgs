@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const prelude = nix.arg($, "prelude");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "synchronizer",
       version: "0.3",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "synchronizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [prelude]),
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OCamlPro/synchronizer",
         description: "Synchronizer to make datastructures thread-safe",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/OCamlPro/synchronizer/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.md`),

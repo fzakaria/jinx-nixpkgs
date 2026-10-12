@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   nix.assert_(nix.builtins.elem(guiModule, nix.thunk(() => ["fltk", "ntk", "zest", "off"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/zy/zynaddsubfx/package.nix:49:1");
-  const guiName = nix.thunk(() => nix.sel({ __proto__: pos$1, fltk: "FLTK", ntk: "NTK", zest: "Zyn-Fusion" }, nix.key(nix.force(guiModule))));
+  const guiName = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, fltk: "FLTK", ntk: "NTK", zest: "Zyn-Fusion" }, nix.key(nix.force(guiModule))));
   const mruby_zest = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mruby-zest"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "zynaddsubfx",
       version: "3.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "zynaddsubfx",
           repo: "zynaddsubfx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/zynaddsubfx/zynaddsubfx/commit/853aa03f4f92a180b870fa62a04685d12fca55a7.patch",
             hash: "sha256-4BsRZ9keeqKopr6lCQJznaZ3qWuMgD1/mCrdMiskusg=",
           })))),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(ossSupport)), "-DOssEnable=OFF"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(guiModule, "fltk")), "-DFLTK_SKIP_OPENGL=ON")))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdint"]))),
       })),
       doCheck: true,
@@ -98,9 +98,9 @@ wrapProgram "$out/bin/zynaddsubfx" \\
   --prefix PATH : ${mruby_zest} \\
   --prefix LD_LIBRARY_PATH : ${mruby_zest}
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, "mruby-zest": mruby_zest })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, "mruby-zest": mruby_zest })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: nix.thunk(() => nix.str`High quality software synthesizer (${guiName} GUI)`),
         homepage: nix.thunk(() => (nix.asBool(nix.eq(guiModule, "zest")) ? "https://zynaddsubfx.sourceforge.io/zyn-fusion.html" : "https://zynaddsubfx.sourceforge.io")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

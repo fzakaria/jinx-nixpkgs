@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const libsm = nix.arg($, "libsm");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "discordchatexporter-desktop",
       version: "2.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tyrrrz",
           repo: "discordchatexporter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8t9T5H2ELoduvvHpxhNbVkjlx18T4dG7Vtuj935ysAo=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, XDG_CONFIG_HOME: "$HOME/.config" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, XDG_CONFIG_HOME: "$HOME/.config" })),
       projectFile: "DiscordChatExporter.Gui/DiscordChatExporter.Gui.csproj",
       nugetDeps: nix.path(here, "./deps.json"),
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "ln -sf $out/bin/DiscordChatExporter $out/bin/discordchatexporter\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rm $out/Applications/DiscordChatExporter.app/Contents/MacOS/DiscordChatExporter\nmakeBinaryWrapper $out/bin/DiscordChatExporter $out/Applications/DiscordChatExporter.app/Contents/MacOS/DiscordChatExporter\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "discordchatexporter",
             desktopName: "DiscordChatExporter",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -69,14 +69,14 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.sel(nix.app(gitUpdater, nix.thunk(() => ({}))), "command")),
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "fetch-deps")),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Tyrrrz/DiscordChatExporter/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Tool to export Discord chat logs to a file (GUI version)",
         homepage: "https://github.com/Tyrrrz/DiscordChatExporter",

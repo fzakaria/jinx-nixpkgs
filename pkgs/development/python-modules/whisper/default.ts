@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graphite-project",
           repo: "whisper",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_resize_with_aggregate"]);
       const pythonImportsCheck = nix.thunk(() => ["whisper"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/graphite-project/whisper",
         description: "Fixed size round-robin style database",
         changelog: nix.thunk(() => nix.str`https://graphite.readthedocs.io/en/latest/releases/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.html`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

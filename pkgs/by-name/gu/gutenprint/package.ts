@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gutenprint",
       version: "5.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gimp-print/gutenprint-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-9an0feKFMLGuIGnPvGR6mmQbruq+gJuw7ys+xblmjXA=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cupsSupport, "sed -i \\\n  -e \"s,cups_conf_datadir=.*,cups_conf_datadir=\\\"$out/share/cups\\\",g\" \\\n  -e \"s,cups_conf_serverbin=.*,cups_conf_serverbin=\\\"$out/lib/cups\\\",g\" \\\n  -e \"s,cups_conf_serverroot=.*,cups_conf_serverroot=\\\"$out/etc/cups\\\",g\" \\\n  configure\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ghostscript and cups printer drivers",
         homepage: "https://sourceforge.net/projects/gimp-print/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

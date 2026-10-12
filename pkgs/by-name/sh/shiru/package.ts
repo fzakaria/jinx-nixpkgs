@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const electron = electron_42;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "shiru",
       version: "6.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RockinChaos",
           repo: "shiru",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-Remove-Windows-specific-dep.patch")]),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook, python3, makeBinaryWrapper, copyDesktopItems]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,7 +78,7 @@ makeWrapper '${electron}/bin/electron' "$out/bin/shiru" \\
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\ncp -r dist/mac*/Shiru.app \"$out/Applications/\"\n\nmkdir -p \"$out/bin\"\nmakeWrapper \\\n  \"$out/Applications/Shiru.app/Contents/MacOS/Shiru\" \\\n  \"$out/bin/shiru\" \\\n  --set-default ELECTRON_IS_DEV 0\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "shiru",
             exec: "shiru %U",
             icon: "shiru",
@@ -93,11 +93,11 @@ makeWrapper '${electron}/bin/electron' "$out/bin/shiru" \\
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stream your personal media library in real-time",
         homepage: "https://github.com/RockinChaos/Shiru",
         changelog: nix.thunk(() => nix.str`https://github.com/RockinChaos/Shiru/releases/tag/v${nix.sel(finalAttrs, "version")}`),

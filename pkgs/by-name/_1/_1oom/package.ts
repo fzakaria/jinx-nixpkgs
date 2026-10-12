@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "1oom",
       version: "1.11.9",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git@git.sourcecraft.dev/fork1oom/1oom.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tU396z/7qpnhDEFqj/S55e/zeXa5jZFUi2VG3O6SJdY=",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "install -Dm644 -t $doc/share/doc/1oom \\\n  HACKING NEWS PHILOSOPHY README.md doc/*.txt\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://fork1oom.sourcecraft.site/",
         changelog: nix.thunk(() => nix.str`https://sourcecraft.dev/fork1oom/1oom/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Master of Orion (1993) game engine recreation; a more updated fork",

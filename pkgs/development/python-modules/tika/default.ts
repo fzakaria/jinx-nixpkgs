@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tika",
       version: "3.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TDpATD2EZDfJQtam/Xtx1QKFaQ+uVImqim8A/5zND8c=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tika/tests/test_from_file_service.py::CreateTest::test_remote_endpoint"]),
       pythonImportsCheck: nix.thunk(() => ["tika"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python binding to the Apache Tika™ REST services",
         mainProgram: "tika-python",
         homepage: "https://github.com/chrismattmann/tika-python",

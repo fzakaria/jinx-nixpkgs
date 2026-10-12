@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "keyd",
       version: "2.6.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rvaiya",
           repo: "keyd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ rm -rf $out/etc
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$2, keyd: nix.thunk(() => nix.sel(nixosTests, "keyd")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, keyd: nix.thunk(() => nix.sel(nixosTests, "keyd")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         appMap: nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrsApp) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "keyd-application-mapper",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,11 +66,11 @@ rm -rf $out/etc
             dontBuild: true,
             installPhase: nix.thunk(() => nix.str`install -Dm555 -t $out/bin scripts/${nix.sel(finalAttrsApp, "pname")}
 `),
-            meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "keyd-application-mapper" })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "keyd-application-mapper" })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Key remapping daemon for Linux",
         homepage: "https://github.com/rvaiya/keyd",
         changelog: "https://github.com/rvaiya/keyd/blob/master/docs/CHANGELOG.md",

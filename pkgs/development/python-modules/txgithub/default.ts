@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "15.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "16gbizy8vkxasxylwzj4p66yw8979nvzxdj6csidgmng7gi2k8nx",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "sed -i 's/except usage.UsageError, errortext/except usage.UsageError as errortext/' txgithub/scripts/create_token.py\nsed -i 's/except usage.UsageError, errortext/except usage.UsageError as errortext/' txgithub/scripts/gist.py\nsed -i 's/print response\\[\\x27html_url\\x27\\]/print(response\\[\\x27html_url\\x27\\])/' txgithub/scripts/gist.py\nsed -i '41d' txgithub/scripts/gist.py\nsed -i '41d' txgithub/scripts/gist.py\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GitHub API client implemented using Twisted",
         homepage: "https://github.com/tomprince/txgithub",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

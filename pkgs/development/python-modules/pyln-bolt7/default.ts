@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pyln_proto = nix.arg($, "pyln-proto");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pyln-bolt7",
       version: "1.0.246",
       pyproject: true,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["pyln.spec"]),
       pythonImportsCheck: nix.thunk(() => ["pyln.spec.bolt7"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "BOLT7 Lightning Network node and channel discovery specification",
         homepage: "https://github.com/ElementsProject/lightning/tree/master/contrib/pyln-spec/bolt7",
         license: nix.thunk(() => (() => {

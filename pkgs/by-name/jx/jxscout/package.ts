@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bun = nix.arg($, "bun");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jxscout",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "francisconeves97",
           repo: "jxscout",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/jxscout --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [prettier, bun, nodejs]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "jxscout superpowers JavaScript analysis for security researchers (free version)",
         homepage: "https://jxscout.app/",
         downloadPage: "https://github.com/francisconeves97/jxscout",

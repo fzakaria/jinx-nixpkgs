@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-Nmj9r4OzPJQ9tOdQ4MVU4xwg9jM4SWiV3U1kEGgNnEs=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest, requests, process_tests]);
       const checkPhase = "# Based on its tox.ini\nexport PYTHONUNBUFFERED=yes\nexport PYTHONPATH=.:tests:$PYTHONPATH\n\n# The tests use manhole-cli\nexport PATH=\"$PATH:$out/bin\"\n\n# test_uwsgi fails with:\n# http.client.RemoteDisconnected: Remote end closed connection without response\npy.test -vv -k \"not test_uwsgi\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ionelmc/python-manhole",
         description: "Debugging manhole for Python applications",
         mainProgram: "manhole-cli",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

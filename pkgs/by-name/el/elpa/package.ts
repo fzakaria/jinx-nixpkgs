@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/el/elpa/package.nix:27:1");
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(scalapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/el/elpa/package.nix:28:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "elpa",
       version: "2026.02.002",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isILP64: nix.thunk(() => nix.attr(blas, "isILP64")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isILP64: nix.thunk(() => nix.attr(blas, "isILP64")) })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://elpa.mpcdf.mpg.de/software/tarball-archive/Releases/${nix.sel(finalAttrs, "version")}/elpa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-AuPFn+xTzY62akzBX6T78ZDPllQiciP7itVXE+lCeTI=",
         })))),
@@ -64,14 +64,14 @@ substituteInPlace Makefile.am --replace '#!/bin/bash' '#!${nix.sel(stdenv, "shel
       env: nix.thunk(() => (() => {
         const optFlags = nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-msse3 "), nix.app(nix.sel(lib, "optionalString"), avxSupport, "-mavx ")), nix.app(nix.sel(lib, "optionalString"), avx2Support, "-mavx2 -mfma ")), nix.app(nix.sel(lib, "optionalString"), avx512Support, "-mavx512")));
         return nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           FC: "mpifort",
           CC: "mpicc",
           CXX: "mpicxx",
           CPP: "cpp",
           FCFLAGS: optFlags,
           CFLAGS: optFlags,
-        }, nix.app(nix.sel(lib, "optionalAttrs"), enableCuda, nix.thunk(() => ({ __proto__: pos$4, LDFLAGS: "-lstdc++" }))));
+        }, nix.app(nix.sel(lib, "optionalAttrs"), enableCuda, nix.thunk(() => ({ [nix.POS]: pos$4, LDFLAGS: "-lstdc++" }))));
       })()),
       configureFlags: nix.thunk(() => nix.concat(["--with-mpi", "--without-threading-support-check-during-build"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(blas, "isILP64")), "--enable-64bit-integer-math-support"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(avxSupport)), "--disable-avx"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(avx2Support)), "--disable-avx2"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(avx512Support)), "--disable-avx512"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))), "--disable-sse"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))), "--disable-sse-assembly"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "--enable-sse-assembly"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableCuda)), "--enable-openmp"), nix.app(nix.sel(lib, "optionals"), enableCuda, nix.thunk(() => [
           "--enable-nvidia-gpu",
@@ -82,7 +82,7 @@ substituteInPlace Makefile.am --replace '#!/bin/bash' '#!${nix.sel(stdenv, "shel
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       preCheck: "# Reduce test problem sizes\nexport TEST_FLAGS=\"1500 50 16\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Eigenvalue Solvers for Petaflop-Applications",
         homepage: "https://elpa.mpcdf.mpg.de/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

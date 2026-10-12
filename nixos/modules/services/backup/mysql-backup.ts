@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
   const defaultUser = "mysqlbackup";
   const dumpBinary = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(config, "services", "mysql", "package"))), nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(pkgs, "mariadb"))))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "services", "mysql", "package", "version")), "11.0.0")))) ? nix.str`${nix.sel(config, "services", "mysql", "package")}/bin/mariadb-dump` : nix.str`${nix.sel(config, "services", "mysql", "package")}/bin/mysqldump`));
   const compressionAlgs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     gzip: nix.thunk(() => (() => {
       const pkg = nix.thunk(() => nix.sel(pkgs, "gzip"));
       const ext = ".gz";
       const minLevel = 1n;
       const maxLevel = 9n;
       const cmd = (compressionLevelFlag_1) => nix.str`${pkg}/bin/gzip -c ${nix.sel(cfg, "gzipOptions")} ${compressionLevelFlag_1}`;
-      return { __proto__: pos$1, pkg, ext, minLevel, maxLevel, cmd };
+      return { [nix.POS]: pos$1, pkg, ext, minLevel, maxLevel, cmd };
     })()),
     xz: nix.thunk(() => (() => {
       const pkg = nix.thunk(() => nix.sel(pkgs, "xz"));
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const minLevel = 0n;
       const maxLevel = 9n;
       const cmd = (compressionLevelFlag_1) => nix.str`${pkg}/bin/xz -z -c ${compressionLevelFlag_1} -`;
-      return { __proto__: pos$2, pkg, ext, minLevel, maxLevel, cmd };
+      return { [nix.POS]: pos$2, pkg, ext, minLevel, maxLevel, cmd };
     })()),
     zstd: nix.thunk(() => (() => {
       const pkg = nix.thunk(() => nix.sel(pkgs, "zstd"));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const minLevel = 1n;
       const maxLevel = 19n;
       const cmd = (compressionLevelFlag_1) => nix.str`${pkg}/bin/zstd ${compressionLevelFlag_1} -`;
-      return { __proto__: pos$3, pkg, ext, minLevel, maxLevel, cmd };
+      return { [nix.POS]: pos$3, pkg, ext, minLevel, maxLevel, cmd };
     })()),
   }));
   const compressionLevelFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "compressionLevel"), null)), nix.thunk(() => nix.add("-", nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "compressionLevel")))))));
@@ -96,28 +96,28 @@ else
 fi
 `;
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         mysqlBackup: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MySQL backups")),
           calendar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "01:15:00",
               description: "Configured when to run the backup service systemd unit (DayOfWeek Year-Month-Day Hour:Minute:Second).\n",
             })))),
           compressionAlg: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), compressionAlgs)))),
               default: "gzip",
               description: "Compression algorithm to use for database dumps.\n",
             })))),
           compressionLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: nix.thunk(() => nix.str`Compression level to use for ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "init"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), compressionAlgs)))))} or ${nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), compressionAlgs)))}.
@@ -129,25 +129,25 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
 `),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User to be used to perform backup.\n",
             })))),
           databases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of database names to dump.\n",
             })))),
           location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/backup/mysql",
               description: "Location to put the compressed MySQL database dumps.\n",
             })))),
           singleTransaction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: false,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -156,7 +156,7 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
               description: "Whether to create database dump in a single transaction.\nCan be either a boolean for all databases or a list of database names.\n",
             })))),
           gzipOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: "--no-name --rsyncable",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Command line options to use when invoking `gzip`.\nOnly used when compression is set to \"gzip\".\nIf compression level is specified both here and in compressionLevel, the compressionLevel value will take precedence.\n",
@@ -165,24 +165,24 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "compressionLevel"), null)) || nix.asBool((nix.asBool(nix.le(nix.sel(selectedAlg, "minLevel"), nix.sel(cfg, "compressionLevel"))) && nix.asBool(nix.le(nix.sel(cfg, "compressionLevel"), nix.sel(selectedAlg, "maxLevel"))))))),
             message: nix.thunk(() => nix.str`${nix.sel(cfg, "compressionAlg")} compression level must be between ${nix.builtins.toString(nix.thunk(() => nix.sel(selectedAlg, "minLevel")))} and ${nix.builtins.toString(nix.thunk(() => nix.sel(selectedAlg, "maxLevel")))}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.sel(cfg, "singleTransaction"))))) || nix.asBool(nix.app(nix.sel(lib, "all"), (db) => nix.app(nix.sel(lib, "elem"), db, nix.thunk(() => nix.sel(cfg, "databases"))), nix.thunk(() => nix.sel(cfg, "singleTransaction")))))),
             message: "All databases in singleTransaction must be included in the databases option",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 isSystemUser: true,
                 createHome: false,
                 home: nix.thunk(() => nix.sel(cfg, "location")),
@@ -191,16 +191,16 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
             ])))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(selectedAlg, "pkg"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           mysql: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             ensureUsers: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: nix.thunk(() => nix.sel(cfg, "user")),
                 ensurePermissions: nix.thunk(() => (() => {
                   const privs = "SELECT, SHOW VIEW, TRIGGER, LOCK TABLES";
@@ -212,15 +212,15 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           timers: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "mysql-backup": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Mysql backup timer",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "calendar")),
                 AccuracySec: "5m",
                 Unit: "mysql-backup.service",
@@ -228,13 +228,13 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "mysql-backup": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "MySQL backup service",
               enable: true,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
               })),
@@ -242,7 +242,7 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "location")} 0700 ${nix.sel(cfg, "user")} - - -`),
             ]),
@@ -250,7 +250,7 @@ If compression level is also specified in gzipOptions, the gzipOptions value wil
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_6543"))]),
     })),
   };

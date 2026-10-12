@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "bluemsx",
       version: "0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "bluemsx-libretro",
           rev: "e3086eb5d36d77fa11704cf53dc176686e70127d",
           hash: "sha256-cwyXtawCUyM/ISswY+O3bzGFX0wNayb/VAIv99E9esI=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of BlueMSX to libretro",
         homepage: "https://github.com/libretro/blueMSX-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

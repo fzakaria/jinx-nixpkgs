@@ -32,47 +32,47 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "molly-brown.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "molly-brown": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Molly-Brown Gemini server")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 1965n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "TCP port for molly-brown to bind to.\n",
             })))),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.networking.hostName")),
               description: "The hostname to respond to requests for. Requests for URLs with\nother hosts will result in a status 53 (PROXY REQUEST REFUSED)\nresponse.\n",
             })))),
           certPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               example: "/var/lib/acme/example.com/cert.pem",
               description: "Path to TLS certificate. An ACME certificate and key may be\nshared with an HTTP server, but only if molly-brown has\npermissions allowing it to read such keys.\n\nAs an example:\n```\nsystemd.services.molly-brown.serviceConfig.SupplementaryGroups =\n  [ config.security.acme.certs.\"example.com\".group ];\n```\n",
             })))),
           keyPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               example: "/var/lib/acme/example.com/key.pem",
               description: "Path to TLS key. See {option}`CertPath`.",
             })))),
           docBase: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               example: "/var/lib/molly-brown",
               description: "Base directory for Gemini content.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "molly-brown configuration. Refer to\n<https://tildegit.org/solderpunk/molly-brown/src/branch/master/example.conf>\nfor details on supported values.\n",
@@ -81,15 +81,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "molly-brown": nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             settings: nix.thunk(() => (() => {
               const logDir = "/var/log/molly-brown";
               return {
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Port: nix.thunk(() => nix.sel(cfg, "port")),
                 Hostname: nix.thunk(() => nix.sel(cfg, "hostName")),
                 CertPath: nix.thunk(() => nix.sel(cfg, "certPath")),
@@ -102,16 +102,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "molly-brown": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Molly Brown gemini server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 DynamicUser: true,
                 LogsDirectory: "molly-brown",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "molly-brown")}/bin/molly-brown -c ${configFile}`),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sshfs-fuse",
       version: "3.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libfuse",
           repo: "sshfs",
           tag: nix.thunk(() => nix.str`sshfs-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fuse3, glib]),
       nativeCheckInputs: nix.thunk(() => [which, nix.thunk(() => nix.sel(python3Packages, "pytest"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), "-D_FILE_OFFSET_BITS=64")),
       })),
       postInstall: nix.thunk(() => nix.add("mkdir -p $out/sbin\nln -sf $out/bin/sshfs $out/sbin/mount.sshfs\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`wrapProgram $out/bin/sshfs --prefix PATH : "${openssh}/bin"
@@ -56,7 +56,7 @@ substituteInPlace test/util.py --replace "/dev/fuse" "/dev/null"
 ${nix.sel(python3Packages, "python", "interpreter")} -m pytest test/
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/libfuse/sshfs/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.rst`),
         description: "FUSE-based filesystem that allows remote filesystems to be mounted over SSH",
         longDescription: nix.thunk(() => nix.sel(macfuse_stubs, "warning")),

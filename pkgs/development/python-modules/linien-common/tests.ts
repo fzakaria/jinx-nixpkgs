@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pytest_plt = nix.arg($, "pytest-plt");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "linien-tests",
       version: nix.thunk(() => nix.attr(linien_common, "version")),
       src: nix.thunk(() => nix.attr(linien_common, "src")),

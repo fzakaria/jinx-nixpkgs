@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "iio-utils",
       src: nix.thunk(() => nix.attr(kernel, "src")),
       version: nix.thunk(() => nix.attr(kernel, "version")),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`bindir=${nix.builtins.placeholder("out")}/bin`)]),
       postPatch: "cd tools/iio\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Userspace tool for interacting with Linux IIO",
         homepage: "https://www.kernel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

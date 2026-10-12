@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crystal2nix";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "crystal2nix",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ makeWrapper $out/libexec/${nix.sel(meta, "mainProgram")} $out/bin/${nix.sel(meta
       const doCheck = false;
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to convert Crystal's shard.lock files to a Nix file",
         homepage: "https://github.com/nix-community/crystal2nix",
         mainProgram: "crystal2nix",
@@ -46,7 +46,7 @@ makeWrapper $out/libexec/${nix.sel(meta, "mainProgram")} $out/bin/${nix.sel(meta
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const xen = nix.arg($, "xen");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "oxenstored",
       version: "25.3.0",
       minimalOCamlVersion: "4.13",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xapi-project",
           repo: "oxenstored",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+JXgVO6m63sPzVTwpq/ztDBx/x/g5vtU1Xbcd+t5ons=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./xen-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, xen: xen })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./xen-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, xen: xen })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://xenbits.xenproject.org/xsa/xsa512-oxenstored-1.patch",
             hash: "sha256-+IWQTWIPrSJGGUCoLykYXQgVMBzTxgDpXLz0aTzk1dk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://xenbits.xenproject.org/xsa/xsa512-oxenstored-2.patch",
             hash: "sha256-1u/X7hRA1omTVK5lRKrzyY0eIQC9zcea6XyGE3mEgeE=",
           })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm -rf xsd_glue\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "OCaml implementation of Xenstore",
         longDescription: "Formerly developed in the monolithic Xen repository, `oxenstored` was\nforked during the development cycle of Xen 4.20 and is now built separately.\n\nUses the `xsd_glue` plugin interface from the `xen` package to ensure ABI\ncompatibility with Xen's `domain_getinfo_v1` plugin.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

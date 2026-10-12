@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "20261001_a";
       const pname = "gildas";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.iram.fr/~gildas/dist/gildas-src-${srcVersion}.tar.xz`),
             nix.thunk(() => nix.str`http://www.iram.fr/~gildas/dist/archive/gildas/gildas-src-${srcVersion}.tar.xz`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk3$, cfitsio, python3Env, ncurses]);
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./wrapper.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./clang.patch"), nix.path(here, "./cpp-darwin.patch")]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-unused-command-line-argument")),
         GAG_CPP: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${nix.sel(gfortran, "outPath")}/bin/cpp`))),
       }));
@@ -72,9 +72,9 @@ for i in ${userExec} ; do
   chmod 755 $out/bin/$i
 done
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.py") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Radioastronomy data analysis software",
         longDescription: "GILDAS is a collection of state-of-the-art software\noriented toward (sub-)millimeter radioastronomical\napplications (either single-dish or interferometer).\nIt is daily used to reduce all data acquired with the\nIRAM 30M telescope and Plateau de Bure Interferometer\nPDBI (except VLBI observations). GILDAS is easily\nextensible. GILDAS is written in Fortran-90, with a\nfew parts in C/C++ (mainly keyboard interaction,\nplotting, widgets).",
         homepage: "https://www.iram.fr/IRAMFR/GILDAS/",
@@ -86,7 +86,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         srcVersion,
         version,
         pname,

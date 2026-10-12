@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const dbus_glib = nix.arg($, "dbus-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libaudclient",
       version: "3.5-rc2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://distfiles.audacious-media-player.org/libaudclient-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0nhpgz0kg8r00z54q5i96pjk7s57krq3fvdypq496c7fmlv9kdap",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, dbus_glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Legacy D-Bus client library for Audacious",
         homepage: "https://audacious-media-player.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

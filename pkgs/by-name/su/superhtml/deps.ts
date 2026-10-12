@@ -25,69 +25,69 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "AFLplusplus-4.21.0-aA1y4UtxAABpnSIF7ARSYDMRyqNcI-2Rwa5UeSsuw70v",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/allyourcodebase/AFLplusplus",
             rev: "a52f1376e2d49720c39e4abf4aa4944afbf82191",
             hash: "sha256-AlkULC20/RTGMTPk2xWcdXCQlWn3sY3VrD0NRRoTZqY=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "N-V-__8AAKE4uAAJZgEcPdaXnWqoj-IwYf3G2h9YSm-x92gg",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/AFLplusplus/AFLplusplus/archive/v4.21c.tar.gz",
             hash: "sha256-DKwPRxSO+JEJYWLldnfrAYqzwqukNzrbo4R5FzJqzzg=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "afl_kit-0.1.0-NdJ3cvscAACLEvjZTB017IAks_Uq5ux1qpA-klDe384Y",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/kristoff-it/zig-afl-kit",
             rev: "8ef04d1db48650345dca68da1e1b8f2615125c40",
             hash: "sha256-J0xbmsokjlhOav9KLlH2y4qiSgBit4nS+x6Q10L2OSA=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "known_folders-0.0.0-Fy-PJtTTAADUOhGKM0sxzG4eMkNQxRvx9e5dfHVyaeA3",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/ziglibs/known-folders",
             rev: "ab5cf5feb936fa3b72c95d3ad0c0c67791937ba1",
             hash: "sha256-Pdn/nUclhHBB1COTzNNR5ysE13h6uLOFJjuFrasv/2I=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "lsp_kit-0.1.0-bi_PLzAyCgClDh8_M0U9Q50ysdsQBuRuBTZfwg6rZPd6",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://github.com/zigtools/lsp-kit",
             rev: "fe98e895ca3bd1b39965ab30f0f252f7b7e83ee6",
             hash: "sha256-1HW8kWhfpbBihzE6PiXXxGN03qIW20KCsBoyfSSWgNU=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "scripty-0.1.0-LKK5O7v4AADWWXuFcTJky_5sY12tmw3kRi3k2wkpfxAX",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             url: "https://github.com/kristoff-it/scripty",
             rev: "50dbab8945440089384f26ec165d870c29555247",
             hash: "sha256-r3L4iLpJUH93S0tH6d6w3pHcLzAaKZPSFBAgpnTMdeI=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: "tracy-0.0.0-4Xw-1pwwAABTfMgoDP1unCbZDZhJEfict7XCBGF6IdIn",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             url: "https://github.com/kristoff-it/tracy",
             rev: "67d2d89e351048c76fc6d161e0ac09d8a831dc60",
             hash: "sha256-BKo1bhua/u+f5Z//ailur5aSHZWp3GiC0iwmVLrGZkE=",

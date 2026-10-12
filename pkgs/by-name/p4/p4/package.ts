@@ -25,28 +25,28 @@ export default nix.lambda((args) => (() => {
   const jam = nix.arg($, "jam");
   const openssl = nix.arg($, "openssl");
   const testers = nix.arg($, "testers");
-  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ __proto__: pos$1, static: true }))));
+  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, static: true }))));
   const androidZlibContrib = nix.thunk(() => (() => {
     const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://android.googlesource.com/platform/external/zlib/+archive/61174f4fd262c6075f88768465f308aae95a2f04.tar.gz",
         sha256: "sha256-EMzKAHcEWOUugcHKH2Fj3ZaIHC9UlgO4ULKe3RvgxvI=",
         stripRoot: false,
       }))));
     return nix.app(linkFarm, "android-zlib-contrib", nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "contrib",
           path: nix.thunk(() => nix.str`${src}/contrib`),
         })),
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "p4",
       version: "2024.1/2596294",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://web.archive.org/web/20240526153453id_/https://ftp.perforce.com/perforce/r24.1/bin.tools/p4source.tgz",
           hash: "sha256-6+DOJPeVzP4x0UsN9MlZRAyusapBTICX0BuyvVBQBC8=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-sLIBC++DIR=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/lib`),
         ]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         CCFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [nix.thunk(() => nix.str`-I${androidZlibContrib}`)]))))),
         "C++FLAGS": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["-Wno-narrowing"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) || nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "cc", "version")), "11.0.0")))))), nix.thunk(() => ["-include", "limits", "-include", "thread"])))))),
       })),
@@ -79,18 +79,18 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\njam $jamFlags -j$NIX_BUILD_CORES p4\njam $jamFlags -j$NIX_BUILD_CORES -sPRODUCTION=yes p4api.tar\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $bin/bin $dev $out\ncp bin.unix/p4 $bin/bin\ncp -r bin.unix/p4api-*/include $dev\ncp -r bin.unix/p4api-*/lib $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "p4 -V",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Perforce Helix Core command-line client and APIs",
         homepage: "https://www.perforce.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

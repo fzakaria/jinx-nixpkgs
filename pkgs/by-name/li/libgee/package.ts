@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libgee",
       version: "0.20.8",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgee/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgee-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "GJgVrBQ9iYZxk7DFK33DHzqhCKFfBNa13KK2rfrQsO4=",
         })))),
@@ -36,20 +36,20 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       doCheck: true,
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types")),
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/share/gir-1.0`),
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/girepository-1.0`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         }))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "libgee", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "libgee", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Utility library providing GObject-based interfaces and classes for commonly used data structures",
         homepage: "https://gitlab.gnome.org/GNOME/libgee",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

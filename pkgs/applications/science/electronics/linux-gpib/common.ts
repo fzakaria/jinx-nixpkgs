@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const version = "4.3.7";
     const pname_1 = pname;
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`mirror://sourceforge/project/linux-gpib/linux-gpib%20for%203.x.x%20and%202.6.x%20kernels/${version}/linux-gpib-${version}.tar.gz`),
         hash: "sha256-s/+BJgaGXIW1iwEqQhim/juC0XfIwKvHlcsi20HzrWg=",
       }))));
@@ -25,7 +25,7 @@ tar xf linux-gpib-${version}/${pname_1}-${version}.tar.gz
 `);
     const sourceRoot = nix.thunk(() => nix.str`${pname_1}-${version}`);
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Support package for GPIB (IEEE 488) hardware",
       homepage: "https://linux-gpib.sourceforge.io/",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -36,7 +36,7 @@ tar xf linux-gpib-${version}/${pname_1}-${version}.tar.gz
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     }));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version,
       pname: pname_1,
       src,

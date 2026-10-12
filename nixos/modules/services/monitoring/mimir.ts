@@ -32,29 +32,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mimir"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mimir: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "mimir")),
           configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
               default: nix.thunk(() => ({})),
               description: "Specify the configuration for Mimir in Nix.\n",
             })))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Specify a configuration file that Mimir should use.\n",
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mimir", nix.thunk(() => ({})))),
           extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--config.expand-env=true"]),
@@ -64,30 +64,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(nix.eq(nix.sel(cfg, "configuration"), {})) || nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)))) && nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "configuration"), {})))))),
             message: "Please specify either\n'services.mimir.configuration' or\n'services.mimir.configFile'.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mimir: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "mimir Service Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => (() => {
                 const conf = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "configuration"))) : nix.sel(cfg, "configFile")));
                 return {
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/mimir --config.file=${conf} ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "extraFlags")))}`),
                   DynamicUser: true,
                   Restart: "always",

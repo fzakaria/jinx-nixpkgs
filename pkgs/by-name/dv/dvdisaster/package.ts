@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const withGui = nix.argOr($, "withGui", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvdisaster",
       version: "0.79.10-pl6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "speed47",
           repo: "dvdisaster",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "rm -f $out/bin/dvdisaster-uninstall.sh\nmkdir -pv $out/share/applications\ncp contrib/dvdisaster.desktop $out/share/applications/\n\nfor size in 16 24 32 48 64; do\n  mkdir -pv $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/\n  cp contrib/dvdisaster\"$size\".png \\\n    $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/dvdisaster.png\ndone\n")),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/speed47/dvdisaster",
         changelog: nix.thunk(() => nix.str`https://github.com/speed47/dvdisaster/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),
         description: "Data loss/scratch/aging protection for CD/DVD media (unofficial version)",

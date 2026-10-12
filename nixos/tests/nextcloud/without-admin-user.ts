@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
@@ -29,24 +29,24 @@ export default nix.lambda((args) => (() => {
       return (() => {
         const name_1 = name;
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         }));
         const imports = nix.thunk(() => [testBase]);
         const nodes = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               services: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   config: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     dbtype: "sqlite",
                     adminuser: null,
                     adminpassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
         const adminuser = "root";
         const adminpass = "+CVpTwaOEktxsFc6";
         const test_helpers = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           init: nix.thunk(() => nix.str`nextcloud.succeed("OC_PASS=${adminpass} nextcloud-occ user:add ${adminuser} --password-from-env")
 `),
         }));
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: name_1,
           meta,
           imports,

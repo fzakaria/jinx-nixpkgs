@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "22.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-telegram-bot",
           repo: "python-telegram-bot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         const socks = nix.thunk(() => nix.sel(httpx, "optional-dependencies", "socks"));
         const webhooks = nix.thunk(() => [tornado]);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           all,
           "callback-data": callback_data,
           ext,
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
         "TestWeb",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library to interface with the Telegram Bot API",
         homepage: "https://python-telegram-bot.org",
         changelog: nix.thunk(() => nix.str`https://github.com/python-telegram-bot/python-telegram-bot/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

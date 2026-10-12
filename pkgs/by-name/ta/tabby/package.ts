@@ -57,7 +57,7 @@ supported; falling back to \`${result}\`
   const enableCuda = nix.thunk(() => (nix.asBool((nix.asBool(validAccel) && nix.asBool(nix.eq(featureDevice, "cuda")))) && nix.asBool(nix.app(warnIfNotLinux, "cuda"))));
   const enableMetal = nix.thunk(() => (nix.asBool((nix.asBool(validAccel) && nix.asBool(nix.eq(featureDevice, "metal")))) && nix.asBool(nix.app(warnIfNotDarwinAarch64, "metal"))));
   const llamaccpPackage = nix.thunk(() => nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       rocmSupport: enableRocm,
       cudaSupport: enableCuda,
       metalSupport: enableMetal,
@@ -66,12 +66,12 @@ supported; falling back to \`${result}\`
   const cudaBuildInputs = nix.thunk(() => [llamaccpPackage]);
   const rocmBuildInputs = nix.thunk(() => [llamaccpPackage]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       featureDevice: featureDevice,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "TabbyML",
           repo: "tabby",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -88,17 +88,17 @@ supported; falling back to \`${result}\`
 # But, we already have a derivation for this
 ln -s ${nix.app(nix.sel(lib, "getExe'"), llama_cpp, "llama-server")} $out/bin/llama-server
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/TabbyML/tabby",
         changelog: nix.thunk(() => nix.str`https://github.com/TabbyML/tabby/releases/tag/v${version}`),
         description: "Self-hosted AI coding assistant",

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qlustered",
           repo: "deepdiff",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [orderly_set]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cli: nix.thunk(() => [click, pyyaml]),
         optimize: nix.thunk(() => [orjson]),
       }));
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_cache_deeply_nested_a1", "test_lfu"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_repeated_timer", "test_restricted_unpickler_memory_exhaustion_cve"]))));
       const pythonImportsCheck = nix.thunk(() => ["deepdiff"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Deep Difference and Search of any Python object/data",
         mainProgram: "deep",
         homepage: "https://github.com/qlustered/deepdiff",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

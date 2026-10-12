@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.25";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vanstinator",
           repo: "melnor-bluetooth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest_asyncio, pytestCheckHook, syrupy]);
       const pythonImportsCheck = nix.thunk(() => ["melnor_bluetooth"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with Melnor and Eden bluetooth watering timers",
         homepage: "https://github.com/vanstinator/melnor-bluetooth",
         changelog: nix.thunk(() => nix.str`https://github.com/vanstinator/melnor-bluetooth/releases/tag/v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

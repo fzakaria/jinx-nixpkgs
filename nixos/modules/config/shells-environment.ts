@@ -48,24 +48,24 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "concatStringsSep"), "\n", exportVariables);
   })());
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       environment: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         shell: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             internal: true,
             description: "Whether to enable the shell environment.\n\nThis does NOT necessarily disable all shells on your system. Instead it\njust disables the shell environment that configures user shells (i.e.\nthose in `environment.shells`).\n\nSystem services might still depend on and use shells even if this\noption is set to false.\n\nOnly set this option if you're sure that you can recover from potential\nissues.\n",
           })),
         })),
         variables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$3, EDITOR: "nvim", VISUAL: "nvim" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$3, EDITOR: "nvim", VISUAL: "nvim" })),
             description: "A set of environment variables used in the global environment.\nThese variables will be set on shell initialisation (e.g. in /etc/profile).\n\nThe value of each variable can be either a string or a list of\nstrings.  The latter is concatenated, interspersed with colon\ncharacters.\n\nSetting a variable to `null` does nothing. You can override a\nvariable set by another module to `null` to unset it.\n",
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -86,48 +86,48 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: [],
             description: "A list of profiles used to setup the global environment.\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           })))),
         profileRelativeEnvVars: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             example: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               PATH: nix.thunk(() => ["/bin"]),
               MANPATH: nix.thunk(() => ["/man", "/share/man"]),
             })),
             description: "Attribute set of environment variable.  Each attribute maps to a list\nof relative paths.  Each relative path is appended to the each profile\nof {option}`environment.profiles` to form the content of the\ncorresponding environment variable.\n",
           })))),
         extraInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             default: "",
             description: "Shell script code called during global environment initialisation\nafter all variables and profileVariables have been set.\nThis code is assumed to be shell-independent, which means you should\nstick to pure sh without sh word split.\n",
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
           })))),
         shellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             default: "",
             description: "Shell script code called during shell initialisation.\nThis code is assumed to be shell-independent, which means you should\nstick to pure sh without sh word split.\n",
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
           })))),
         loginShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             default: "",
             description: "Shell script code called during login shell initialisation.\nThis code is assumed to be shell-independent, which means you should\nstick to pure sh without sh word split.\n",
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
           })))),
         interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             default: "",
             description: "Shell script code called during interactive shell initialisation.\nThis code is assumed to be shell-independent, which means you should\nstick to pure sh without sh word split.\n",
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
           })))),
         shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
-            example: nix.thunk(() => ({ __proto__: pos$12, l: null, ll: "ls -l" })),
+            [nix.POS]: pos$13,
+            example: nix.thunk(() => ({ [nix.POS]: pos$12, l: null, ll: "ls -l" })),
             description: "An attribute set that maps aliases (the top level attribute names in\nthis option) to command strings or directly to build outputs. The\naliases are added to all users' shells.\nAliases mapped to `null` are ignored.\n",
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -135,19 +135,19 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         homeBinInPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             description: "Include ~/bin/ in $PATH.\n",
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           })))),
         localBinInPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             description: "Add ~/.local/bin/ to $PATH\n",
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           })))),
         binsh: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             default: null,
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.bashInteractive}/bin/sh\"")),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.dash}/bin/dash\"")),
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
             description: "The shell executable that is linked system-wide to\n`/bin/sh`. Please note that NixOS assumes all\nover the place that shell to be Bash, so override the default\nsetting only if you know exactly what you're doing.\n",
           })))),
         shells: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.bashInteractive pkgs.zsh ]")),
             description: "A list of permissible login shells for user accounts.\nNo need to mention `/bin/sh`\nhere, it is placed into this list implicitly.\n",
@@ -165,31 +165,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "shell", "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           binsh: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "bashInteractive")}/bin/sh`))),
           variables: nix.thunk(() => nix.sel(config, "environment", "sessionVariables")),
           profileRelativeEnvVars: nix.thunk(() => nix.sel(config, "environment", "profileRelativeSessionVariables")),
-          shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$20, ls: "ls --color=tty", ll: "ls -l", l: "ls -alh" })))),
+          shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$20, ls: "ls --color=tty", ll: "ls -l", l: "ls -alh" })))),
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             shells: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(utils, "toShellPath")), nix.thunk(() => nix.sel(cfg, "shells")))))}
 /bin/sh
 `),
             })),
             "set-environment": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               source: nix.thunk(() => nix.sel(config, "system", "build", "setEnvironment")),
             })),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           build: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             setEnvironment: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "set-environment", nix.thunk(() => nix.str`# DO NOT EDIT -- this file has been generated automatically.
 
 # Prevent this file from being sourced by child shells.
@@ -205,7 +205,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "localBin
 `))),
           })),
           activationScripts: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             binsh: nix.thunk(() => nix.app(nix.sel(lib, "stringAfter"), nix.thunk(() => ["stdio"]), nix.thunk(() => nix.str`# Create the required /bin/sh symlink; otherwise lots of things
 # (notably the system() function) won't work.
 mkdir -p /bin

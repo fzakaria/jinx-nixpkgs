@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const qrencode = nix.arg($, "qrencode");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faustlive",
       version: "2.5.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grame-cncm",
           repo: "faustlive",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"]),
       postPatch: "cd Build",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone just-in-time Faust compiler",
         mainProgram: "FaustLive",
         longDescription: "FaustLive is a standalone just-in-time Faust compiler. It tries to bring\ntogether the convenience of a standalone interpreted language with the\nefficiency of a compiled language. It's ideal for fast prototyping.\n",

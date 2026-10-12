@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const elmPackages = nix.arg($, "elmPackages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "elm-verify-examples",
       version: "6.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stoeffel",
           repo: "elm-verify-examples",
           rev: "63b84eca9642f6d0de37d6e35e0d8bc6edca19c6",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       buildPhase: "runHook preBuild\nmake build\nrunHook postBuild\n",
       postConfigure: nix.thunk(() => nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Verify examples in your docs",
         homepage: "https://github.com/stoeffel/elm-verify-examples",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

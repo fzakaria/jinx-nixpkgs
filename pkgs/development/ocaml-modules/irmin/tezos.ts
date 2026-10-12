@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const irmin_test = nix.arg($, "irmin-test");
   const fpath = nix.arg($, "fpath");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-tezos",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, hex, irmin_test, fpath]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Irmin implementation of the Tezos context hash specification",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
       })),

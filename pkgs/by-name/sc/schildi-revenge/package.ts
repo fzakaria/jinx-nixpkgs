@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "schildi-revenge",
       version: "26.10.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SchildiChat",
           repo: "schildi-revenge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "matrix-rust-sdk",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-6v5VqUwiIfkGhByoZN9hVm4zANAgTWHpPBdVHGFmGNc=",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         rustc,
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, VERGEN_GIT_SHA: "0000000000000000000000000000000000000000" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, VERGEN_GIT_SHA: "0000000000000000000000000000000000000000" })),
       gradleBuildTask: "createReleaseDistributable",
       gradleUpdateScript: "runHook preBuild\n\ngradle createReleaseDistributable composeApp:kspCommonMainKotlinMetadata --write-verification-metadata sha256\n",
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
 --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Matrix client for desktop written in Kotlin and using the Matrix Rust SDK",
         mainProgram: "schildichat-revenge",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

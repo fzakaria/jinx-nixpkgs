@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "ttf-indic";
       const version = "0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://laban.lysator.liu.se/pub/void-ppc-sources/indic-otf-${version}/indic-otf-${version}.tar.gz`),
           hash: "sha256-ZFmg1JanAf3eeF7M+yohrXYSUb0zLgNSFldEMzkhXnI=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -m444 -Dt $out/share/fonts/truetype OpenType/*.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.indlinux.org/wiki/index.php/Downloads",
         description: "Indic Opentype Fonts collection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "akssri"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

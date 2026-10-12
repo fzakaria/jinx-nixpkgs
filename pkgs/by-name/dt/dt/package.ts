@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zig_0_14 = nix.arg($, "zig_0_14");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dt",
       version: "1.3.1-unstable-2025-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "so-dang-cool",
           repo: "dt",
           rev: "7b87e3e012439179772617814cb7d001928d6868",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [zig_0_14]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dt.plumbing",
         description: "Duct tape for your unix pipes",
         longDescription: "dt is a utility and programming language. The utility is intended for\nergonomic in-the-shell execution. The language is straightforward (in\nthe most literal sense) with a minimal syntax that allows for\nhigh-level, higher-order programming.\n\nIt's meant to supplement (not replace!) other tools like awk, sed,\nxargs, and shell built-ins. Something like the Perl one-liners popular\nyesteryear, but hopefully easier to read and reason through.\n\nIn short, dt is intended to be generally useful, with zero pretense of\nelegance.\n",

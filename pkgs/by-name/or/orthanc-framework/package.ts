@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orthanc-framework",
       src: nix.thunk(() => nix.attr(orthanc, "src")),
       version: nix.thunk(() => nix.attr(orthanc, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/OrthancFramework/SharedLibrary`),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(orthanc, "buildInputs"), [icu])),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), zlib)}`),
             "-lz",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDK for building Orthanc plugins and related applications",
         homepage: "https://www.orthanc-server.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

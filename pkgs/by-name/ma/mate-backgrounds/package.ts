@@ -19,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mate-backgrounds",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-backgrounds-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "UNGv0CSGvQesIqWmtu+jAxFI8NSKguSI2QmtVwA6aUM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.mate-desktop.org/mate-backgrounds",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Background images and data for MATE",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

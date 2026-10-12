@@ -21,40 +21,40 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "1.1.11",
       pname: "libmatheval",
       nativeBuildInputs: nix.thunk(() => [pkg_config, flex]),
       buildInputs: nix.thunk(() => [guile]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/libmatheval/libmatheval-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "474852d6715ddc3b6969e28de5e1a5fbaff9e8ece6aebb9dc1cc63e9e88e89ab",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/libm/libmatheval/1.1.11%2Bdfsg-5/debian/patches/002-skip-docs.patch",
             hash: "sha256-wjz54FKQq7t9Bz0W3EOu+ZPTt8EcfkMotkZKwlWa09o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/libm/libmatheval/1.1.11%2Bdfsg-5/debian/patches/003-guile3.0.patch",
             hash: "sha256-H3E/2m4MfQAbjpXbVFyNhikVifi3spVThzaVU5srmjI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/libm/libmatheval/1.1.11%2Bdfsg-5/debian/patches/disable_coth_test.patch",
             hash: "sha256-9XeMXWDTzELWTPcsjAqOlIzp4qY9yupU+e6r0rJEUS0=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), guile)}/include/guile/${nix.sel(guile, "effectiveVersion")}`),
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${guile}/lib -lguile-${nix.sel(guile, "effectiveVersion")}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library to parse and evaluate symbolic expressions input as text",
         longDescription: "GNU libmatheval is a library (callable from C and Fortran) to parse and evaluate symbolic\nexpressions input as text. It supports expressions in any number of variables of arbitrary\nnames, decimal and symbolic constants, basic unary and binary operators, and elementary\nmathematical functions. In addition to parsing and evaluation, libmatheval can also compute\nsymbolic derivatives and output expressions to strings.\n",
         homepage: "https://www.gnu.org/software/libmatheval/",

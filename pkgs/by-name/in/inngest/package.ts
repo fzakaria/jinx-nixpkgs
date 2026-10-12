@@ -28,27 +28,27 @@ export default nix.lambda((args) => (() => {
   const version = "1.45.1";
   const websiteRev = "159c0ac611e85ec85ffe0a8c8bf2c4a0330bdb38";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "inngest",
       repo: "inngest",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-HdQHZb1JSPBe4zRbRSj4C2EtH91RUqZZxFHZpk5GRno=",
     }))));
   const website = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "inngest",
       repo: "website",
       rev: websiteRev,
       hash: "sha256-EkTIv8jgcqzurz2M7PC6Kfh6x2Zxu7UmIhpTjlj8o88=",
     }))));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       src: src,
       pname: "inngest-ui",
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm_10, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/dist\ncp -r ui/apps/dev-server-ui/dist/. $out/dist/\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: version,
       src: src,
       pname: "inngest",
@@ -77,24 +77,24 @@ cp -r ${website}/. ./internal/embeddocs/website/
         "-w",
         nix.thunk(() => nix.str`-X github.com/inngest/inngest/pkg/inngest/version.Version=${version}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$5, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ui: ui,
         website: website,
         websiteRev: websiteRev,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "CLI and dev server for Inngest durable workflows",
         homepage: "https://github.com/inngest/inngest",
         changelog: nix.thunk(() => nix.str`https://github.com/inngest/inngest/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

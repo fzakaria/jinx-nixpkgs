@@ -47,37 +47,37 @@ export default nix.lambda((args) => (() => {
   const dbPath = "/var/lib/grafana/data/grafana.db";
   const socketPath = "/run/litestream/litestream.sock";
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: "litestream",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jwygoda"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             litestream: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$5,
-                socket: nix.thunk(() => ({ __proto__: pos$2, enabled: true, path: socketPath })),
+                [nix.POS]: pos$5,
+                socket: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true, path: socketPath })),
                 dbs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     path: dbPath,
                     replicas: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         url: "sftp://foo:bar@127.0.0.1:22/home/foo/grafana",
                         "auto-recover": true,
                       })),
@@ -87,63 +87,63 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             openssh: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               allowSFTP: true,
-              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$7, addr: "127.0.0.1", port: 22n }))]),
+              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, addr: "127.0.0.1", port: 22n }))]),
             })),
             grafana: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 security: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   admin_user: "admin",
                   admin_password: "admin",
                   secret_key: "SW2YcwTIb9zpOOhoPsMm",
                 })),
-                server: nix.thunk(() => ({ __proto__: pos$10, http_addr: "127.0.0.1", http_port: 3000n })),
-                database: nix.thunk(() => ({ __proto__: pos$11, type: "sqlite3", path: dbPath, wal: true })),
+                server: nix.thunk(() => ({ [nix.POS]: pos$10, http_addr: "127.0.0.1", http_port: 3000n })),
+                database: nix.thunk(() => ({ [nix.POS]: pos$11, type: "sqlite3", path: dbPath, wal: true })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               settings: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "10-litestream": nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "/var/lib/grafana": nix.thunk(() => ({
-                    __proto__: pos$16,
-                    d: nix.thunk(() => ({ __proto__: pos$15, mode: "0750", user: "grafana", group: "grafana" })),
+                    [nix.POS]: pos$16,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$15, mode: "0750", user: "grafana", group: "grafana" })),
                   })),
                   "/var/lib/grafana/data": nix.thunk(() => ({
-                    __proto__: pos$18,
-                    d: nix.thunk(() => ({ __proto__: pos$17, mode: "2770", user: "grafana", group: "grafana" })),
+                    [nix.POS]: pos$18,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$17, mode: "2770", user: "grafana", group: "grafana" })),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               grafana: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => nix.str`+${nix.sel(pkgs_1, "sqlite")}/bin/sqlite3 ${dbPath} 'PRAGMA journal_mode=WAL;'`))),
                   UMask: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0007")),
                 })),
               })),
               litestream: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 after: nix.thunk(() => ["grafana.service", "sshd.service"]),
                 requires: nix.thunk(() => ["grafana.service"]),
                 wants: nix.thunk(() => ["sshd.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   RuntimeDirectory: "litestream",
                   ExecStartPre: nix.thunk(() => nix.str`+/bin/sh -c 'chmod g+rw ${dbPath}*'`),
                 })),
@@ -151,15 +151,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             users: nix.thunk(() => ({
-              __proto__: pos$30,
-              foo: nix.thunk(() => ({ __proto__: pos$28, isNormalUser: true, password: "bar" })),
-              litestream: nix.thunk(() => ({ __proto__: pos$29, extraGroups: nix.thunk(() => ["grafana"]) })),
+              [nix.POS]: pos$30,
+              foo: nix.thunk(() => ({ [nix.POS]: pos$28, isNormalUser: true, password: "bar" })),
+              litestream: nix.thunk(() => ({ [nix.POS]: pos$29, extraGroups: nix.thunk(() => ["grafana"]) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "sqlite"))]),
           })),
         };

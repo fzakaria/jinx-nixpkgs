@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const extensions = nix.thunk(() => nix.attr(from, "extensions"));
   const arch = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "ta6le",
     "x86-linux": "ti3le",
     "aarch64-linux": "tarm64le",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
     "aarch64-windows": "tarm64nt",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported host system, try checking https://cisco.github.io/ChezScheme/release_notes/latest/release_notes.html to see if ${nix.sel(stdenv, "hostPlatform", "system")} is supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "chez-scheme",
       version: "10.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cisco",
           repo: "ChezScheme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,17 +80,17 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "echo \"(exit)\" | \"$out/bin/scheme\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Powerful and incredibly fast R6RS Scheme compiler",
         homepage: "https://cisco.github.io/ChezScheme/",
         changelog: nix.thunk(() => nix.str`https://cisco.github.io/ChezScheme/release_notes/v${nix.sel(finalAttrs, "version")}/release_notes.html`),

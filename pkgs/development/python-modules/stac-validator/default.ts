@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "StacLabs",
           repo: "stac-validator",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [click, fastjsonschema, jsonschema, pyyaml, requests, tqdm]);
       const pythonImportsCheck = nix.thunk(() => ["stac_validator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Validator for the SpatioTemporal Asset Catalog (STAC) specification",
         homepage: "https://github.com/StacLabs/stac-validator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

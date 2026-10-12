@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "digibyte",
       version: "7.17.3",
       strictDeps: true,
       __structuredAttrs: true,
       name: nix.thunk(() => nix.add(nix.add(nix.add(nix.sel(finalAttrs, "pname"), nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGui)), "d")))), "-"), nix.sel(finalAttrs, "version"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digibyte-core",
           repo: "digibyte",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           protobuf,
         ])))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-Wno-error -std=c++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-Wno-error -std=c++17" })),
       configureFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "dev")}`),
         nix.thunk(() => nix.str`--with-boost-libdir=${nix.sel(boost, "out")}/lib`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-qt-bindir=${nix.sel(qt5, "qtbase", "dev")}/bin:${nix.sel(qt5, "qttools", "dev")}/bin`),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DigiByte (DGB) is a rapidly growing decentralized, global blockchain",
         homepage: "https://digibyte.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

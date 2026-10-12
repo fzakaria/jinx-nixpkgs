@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qdirstat",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shundhammer",
           repo: "qdirstat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ substituteInPlace src/StdCleanup.cpp \\
   --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makePerlPath"), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "URI"))]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical disk usage analyzer",
         homepage: "https://github.com/shundhammer/qdirstat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

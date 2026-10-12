@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mysql-connector-java",
       version: "9.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RsiF8d7hqq96RLp5+bYvuJ0cZUoz23SE9GVwvC9LPaM=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => [ant]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/mysql/mysql-connector-j.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/mysql/mysql-connector-j.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MySQL Connector/J",
         homepage: "https://dev.mysql.com/doc/connector-j/en/",
         changelog: "https://dev.mysql.com/doc/relnotes/connector-j/en/",

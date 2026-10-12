@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyphen",
       version: "2.8.9",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl]),
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hunspell",
           repo: "hyphen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\nmake install-libLTLIBRARIES\nmake install-binSCRIPTS\nmake install-includeHEADERS\n\n# license\ninstall -D -m644 COPYING \"$out/share/licenses/hyphen/LICENSE\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/hunspell/hyphen/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Text hyphenation library",
         mainProgram: "substrings.pl",

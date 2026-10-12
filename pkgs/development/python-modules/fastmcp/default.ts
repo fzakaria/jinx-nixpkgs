@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fastmcp",
       version: "3.4.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PrefectHQ",
           repo: "fastmcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/PrefectHQ/fastmcp/commit/6be0ac8e15d35ff8f5121266855bc34c1158c9a1.patch",
             includes: nix.thunk(() => ["fastmcp_slim/fastmcp/tools/function_tool.py"]),
             hash: "sha256-7N86b5sslWLgoB2dS2Xh3JfZX3oTHeXfeSJOaWKI5b0=",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => nix.concat([fastmcp_slim], nix.concat(nix.sel(fastmcp_slim, "optional-dependencies", "client"), nix.sel(fastmcp_slim, "optional-dependencies", "server")))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         anthropic: nix.thunk(() => nix.sel(fastmcp_slim, "optional-dependencies", "anthropic")),
         apps: nix.thunk(() => nix.sel(fastmcp_slim, "optional-dependencies", "apps")),
         azure: nix.thunk(() => nix.sel(fastmcp_slim, "optional-dependencies", "azure")),
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast, Pythonic way to build MCP servers and clients",
         changelog: nix.thunk(() => nix.str`https://github.com/PrefectHQ/fastmcp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/PrefectHQ/fastmcp",

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sticky",
       version: "1.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "sticky",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,11 +60,11 @@ gappsWrapperArgs+=(
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "master.*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "master.*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sticky notes app for the Linux desktop",
         mainProgram: "sticky",
         homepage: "https://github.com/linuxmint/sticky",

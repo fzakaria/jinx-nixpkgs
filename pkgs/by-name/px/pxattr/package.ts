@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gcc = nix.arg($, "gcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pxattr",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.lesbonscomptes.com/pxattr/pxattr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1dwcqc5z7gzma1zhis2md49bj2nq7m6jimh4zlx9szw6svisz56z",
         })))),
       buildInputs: nix.thunk(() => [gcc]),
       installPhase: "mkdir -p $out/bin\ncp pxattr $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.lesbonscomptes.com/pxattr/index.html",
         description: "Provides a single interface to extended file attributes",
         maintainers: [],

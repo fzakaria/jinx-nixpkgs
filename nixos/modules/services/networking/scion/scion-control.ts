@@ -33,39 +33,39 @@ export default nix.lambda((args) => (() => {
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const connectionDir = nix.thunk(() => (nix.asBool(nix.sel(globalCfg, "stateless")) ? "/run" : "/var/lib"));
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$7,
-    general: nix.thunk(() => ({ __proto__: pos$1, id: "cs", config_dir: "/etc/scion" })),
+    [nix.POS]: pos$7,
+    general: nix.thunk(() => ({ [nix.POS]: pos$1, id: "cs", config_dir: "/etc/scion" })),
     beacon_db: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       connection: nix.thunk(() => nix.str`${connectionDir}/scion-control/control.beacon.db`),
     })),
     path_db: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       connection: nix.thunk(() => nix.str`${connectionDir}/scion-control/control.path.db`),
     })),
     trust_db: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       connection: nix.thunk(() => nix.str`${connectionDir}/scion-control/control.trust.db`),
     })),
     log: nix.thunk(() => ({
-      __proto__: pos$6,
-      console: nix.thunk(() => ({ __proto__: pos$5, level: "info" })),
+      [nix.POS]: pos$6,
+      console: nix.thunk(() => ({ [nix.POS]: pos$5, level: "info" })),
     })),
   }));
   const configFile = nix.thunk(() => nix.app(nix.sel(toml, "generate"), "scion-control.toml", nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), defaultConfig, nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         scion: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "scion-control": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the scion-control service")),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  path_db = {\n    connection = \"/run/scion-control/control.path.db\";\n  };\n  log.console = {\n    level = \"info\";\n  };\n}\n")),
@@ -76,19 +76,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "scion-control": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "SCION Control Service",
               after: nix.thunk(() => ["network-online.target", "scion-dispatcher.service"]),
               wants: nix.thunk(() => ["network-online.target", "scion-dispatcher.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.attrsDyn({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Type: "simple",
                 Group: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "services", "scion", "scion-dispatcher", "enable"), true)) ? "scion" : null)),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(globalCfg, "package")}/bin/scion-control --config ${configFile}`),

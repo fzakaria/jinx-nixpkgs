@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spectrwm",
       version: "3.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "conformal",
           repo: "spectrwm",
           tag: nix.thunk(() => nix.str`SPECTRWM_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src", "name"), (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "/osx" : "/linux"))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-spectrwm", nix.thunk(() => nix.str`latestVersion=$(${nix.app(nix.sel(lib, "getExe"), curl)} \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --silent --fail --location https://api.github.com/repos/conformal/spectrwm/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output .tag_name | grep -oP '\\d+' | paste -sd.)
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} spectrwm --version=$latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiling window manager",
         homepage: "https://github.com/conformal/spectrwm",
         maintainers: nix.thunk(() => (() => {

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const serialx = nix.arg($, "serialx");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "upb-lib",
       version: "0.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gwww",
           repo: "upb-lib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["upb_lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting with UPB PIM",
         homepage: "https://github.com/gwww/upb-lib",
         changelog: nix.thunk(() => nix.str`https://github.com/gwww/upb-lib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

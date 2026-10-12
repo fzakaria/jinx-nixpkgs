@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yubikey-agent",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiloSottile",
           repo: "yubikey-agent",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/user\nsubstitute contrib/systemd/user/yubikey-agent.service $out/lib/systemd/user/yubikey-agent.service \\\n  --replace 'ExecStart=yubikey-agent' \"ExecStart=$out/bin/yubikey-agent\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Seamless ssh-agent for YubiKeys",
         mainProgram: "yubikey-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

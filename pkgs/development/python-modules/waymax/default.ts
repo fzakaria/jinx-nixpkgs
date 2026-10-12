@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const tensorflow = nix.arg($, "tensorflow");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "waymax",
       version: "0-unstable-2025-05-30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "waymo-research",
           repo: "waymax",
           rev: "48b33d71aac20a22db7d25f2d3220596899d944a",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["waymax/visualization/viz_test.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JAX-based simulator for autonomous driving research",
         homepage: "https://github.com/waymo-research/waymax",
         changelog: "https://github.com/waymo-research/waymax/blob/main/CHANGELOG.md",

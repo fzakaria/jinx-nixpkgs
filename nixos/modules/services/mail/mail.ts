@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mail: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sendmailSetuidWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(options, "security", "wrappers", "type", "nestedTypes", "elemType")))),
               default: null,
               internal: true,
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "services", "mail", "sendmailSetuidWrapper"), null)), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         security: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             sendmail: nix.thunk(() => nix.sel(config, "services", "mail", "sendmailSetuidWrapper")),
           })),
         })),

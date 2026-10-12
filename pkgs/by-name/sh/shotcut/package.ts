@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_8 = nix.arg($, "ffmpeg_8");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "shotcut",
       version: "26.9.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mltframework",
           repo: "shotcut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,8 +55,8 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         SDL2,
         nix.thunk(() => nix.app(nix.sel(frei0r, "override"), nix.thunk(() => ({
-            __proto__: pos$3,
-            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
+            [nix.POS]: pos$3,
+            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
           })))),
         ladspaPlugins,
         gettext,
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtcharts")),
         nix.thunk(() => nix.sel(qt6, "qtwebsockets")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])))),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-DSHOTCUT_NOUPGRADE" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-DSHOTCUT_NOUPGRADE" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DSHOTCUT_VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-mlt-ffmpeg-path.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             ffmpeg: ffmpeg_8,
             mlt: nix.thunk(() => nix.sel(qt6Packages, "mlt")),
           })))),
@@ -82,8 +82,8 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       qtWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--set FREI0R_PATH ${nix.app(nix.sel(frei0r, "override"), nix.thunk(() => ({
-            __proto__: pos$7,
-            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$6, "ffmpeg_8-headless": ffmpeg_8 })))),
+            [nix.POS]: pos$7,
+            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, "ffmpeg_8-headless": ffmpeg_8 })))),
           })))}/lib/frei0r-1`),
         nix.thunk(() => nix.str`--set LADSPA_PATH ${ladspaPlugins}/lib/ladspa`),
         nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([SDL2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [jack1])))))}`),
@@ -91,11 +91,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications $out/bin\nmv $out/Shotcut.app $out/Applications/Shotcut.app\nln -s $out/Applications/Shotcut.app/Contents/MacOS/Shotcut $out/bin/shotcut\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$8, "rev-prefix": "v" })))),
+        [nix.POS]: pos$9,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$8, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Free, open source, cross-platform video editor",
         longDescription: "An official binary for Shotcut, which includes all the\ndependencies pinned to specific versions, is provided on\nhttp://shotcut.org.\n\nIf you encounter problems with this version, please contact the\nnixpkgs maintainer(s). If you wish to report any bugs upstream,\nplease use the official build from shotcut.org instead.\n",
         homepage: "https://shotcut.org",

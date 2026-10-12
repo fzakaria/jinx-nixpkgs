@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchMavenArtifact = nix.arg($, "fetchMavenArtifact");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liquibase-redshift-extension",
       version: "4.8.0",
       src: nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           artifactId: "liquibase-redshift",
           groupId: "org.liquibase.ext",
           sha256: "sha256-jZdDKAC4Cvmkih8VH84Z3Q8BzsqGO55Uefr8vOlbDAk=",
@@ -28,7 +28,7 @@ install -m444 -D $src/share/java/liquibase-redshift-${nix.sel(finalAttrs, "versi
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/liquibase/liquibase-redshift/",
         description: "Amazon Redshift extension for Liquibase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

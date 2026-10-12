@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-I5k3uF5lSLDdCWjBEQC4kl2dWyAKcHEJIYwqnEvJDBI=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "tests", "-v"]);
       const pythonImportsCheck = nix.thunk(() => ["rtp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for decoding/encoding rtp packets",
         homepage: "https://github.com/bbc/rd-apmm-python-lib-rtp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withVelocityNative = nix.argOr($, "withVelocityNative", () => nix.builtins.elem(nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")), nix.thunk(() => ["x86_64-linux", "aarch64-linux"])));
   const velocityNativePlatform = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux_x86_64",
     "aarch64-linux": "linux_aarch64",
   }, () => (nix.asBool(withVelocityNative) ? nix.builtins.throw(nix.thunk(() => nix.str`velocity native is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)) : null), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "velocity",
       version: "4.2.1-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "PaperMC",
           repo: "Velocity",
           rev: "7fc49913145fc6195db95995eb622bf9f5592876",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withVelocityNative, nix.thunk(() => [openssl, libdeflate, jdk25]))),
       strictDeps: true,
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -85,11 +85,11 @@ echo ${nix.app(nix.sel(lib, "getLib"), libdeflate)} >> $out/nix-support/runtime-
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         BUILD_VERSION: nix.thunk(() => nix.str`nixpkgs-${nix.sel(finalAttrs, "version")}`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-velocity", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 
@@ -108,10 +108,10 @@ rm -rf "$tmpdir"
 update-source-version "$UPDATE_NIX_ATTR_PATH" "$main_version-unstable-$commit_date" --rev="$commit_hash"
 $(nix-build -A velocity.mitmCache.updateScript)
 `))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, velocity: nix.thunk(() => nix.sel(nixosTests, "velocity")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, velocity: nix.thunk(() => nix.sel(nixosTests, "velocity")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Modern, next-generation Minecraft server proxy",
         homepage: "https://papermc.io/software/velocity",
         license: nix.thunk(() => (() => {

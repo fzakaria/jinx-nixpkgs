@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "pip-tools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./fix-setup-py-bad-syntax-detection.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pip-26-compat.patch",
             url: "https://github.com/jazzband/pip-tools/commit/cbe3c692f8977270e7ae6061c8159450a73c13fe.patch",
             excludes: nix.thunk(() => ["changelog.d/2379.feature.md", "pyproject.toml", "tox.ini"]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["piptools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Keeps your pinned dependencies fresh",
         homepage: "https://github.com/jazzband/pip-tools/",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/pip-tools/releases/tag/${version}`),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

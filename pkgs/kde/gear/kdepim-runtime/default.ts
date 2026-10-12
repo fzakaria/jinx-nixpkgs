@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libkgapi = nix.arg($, "libkgapi");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kdepim-runtime",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info, libxslt]),
       extraBuildInputs: nix.thunk(() => [qtnetworkauth, qtspeech, qtwebengine, cyrus_sasl, libetebase]),

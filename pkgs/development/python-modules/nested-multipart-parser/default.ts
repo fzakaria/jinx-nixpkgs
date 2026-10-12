@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "remigermain",
           repo: "nested-multipart-parser",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [django, djangorestframework, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nested_multipart_parser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/remigermain/nested-multipart-parser/releases/tag/${nix.sel(src, "tag")}`),
         description: "Parser for nested data for 'multipart/form'",
         homepage: "https://github.com/remigermain/nested-multipart-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uefisettings",
       version: "0-unstable-2026-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxboot",
           repo: "uefisettings",
           rev: "bfd6e9c74719ce26a2f6c8cc5be8913b62dac3cb",
           hash: "sha256-kcVwK8kOlT/9OcL+6BBhn7wDCtrySo42BAIQu5EUP+U=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
       })),
       cargoHash: "sha256-qxWC/OmHwsdLa4CefrJIJD6AEBx19zyQNrSAE+lX6uU=",
       checkFlags: nix.thunk(() => [
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "--skip=ilorest::chif::IloRestChif",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool to read/get/extract and write/change/modify BIOS/UEFI settings",
         homepage: "https://github.com/linuxboot/uefisettings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

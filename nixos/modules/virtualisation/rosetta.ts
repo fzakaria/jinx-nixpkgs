@@ -29,28 +29,28 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "rosetta"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         rosetta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable [Rosetta](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) support.\n\nThis feature requires the system to be a virtualised guest on an Apple silicon host.\n\nThe default settings are suitable for the [UTM](https://docs.getutm.app/) virtualisation [package](https://search.nixos.org/packages?channel=unstable&show=utm&from=0&size=1&sort=relevance&type=packages&query=utm).\nMake sure to select 'Apple Virtualization' as the virtualisation engine and then tick the 'Enable Rosetta' option.\n",
             })))),
           mountPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/run/rosetta",
               internal: true,
               description: "The mount point for the Rosetta runtime inside the guest system.\n\nThe proprietary runtime is exposed through a VirtioFS directory share and then mounted at this directory.\n",
             })))),
           mountTag: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "rosetta",
               description: "The VirtioFS mount tag for the Rosetta runtime, exposed by the host's virtualisation software.\n\nIf supported, your virtualisation software should provide instructions on how register the Rosetta runtime inside Linux guests.\nThese instructions should mention the name of the mount tag used for the VirtioFS directory share that contains the Rosetta runtime.\n",
@@ -59,39 +59,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
             message: "Rosetta is only supported on aarch64 systems",
           })),
         ]),
         fileSystems: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${nix.sel(cfg, "mountPoint")}`, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             device: nix.thunk(() => nix.sel(cfg, "mountTag")),
             fsType: "virtiofs",
           }))],
         ])),
         nix: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "extra-platforms": nix.thunk(() => ["x86_64-linux"]),
             "extra-sandbox-paths": nix.thunk(() => ["/run/binfmt", nix.thunk(() => nix.sel(cfg, "mountPoint"))]),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           binfmt: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             registrations: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               rosetta: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(utils, "binfmtMagics", "x86_64-linux"));
                 return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 interpreter: nix.thunk(() => nix.str`${nix.sel(cfg, "mountPoint")}/rosetta`),
                 magicOrExtension: nix.thunk(() => nix.attr(from, "magicOrExtension")),
                 mask: nix.thunk(() => nix.attr(from, "mask")),

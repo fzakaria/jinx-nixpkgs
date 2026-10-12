@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "the_platinum_searcher",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "monochromegane",
           repo: "the_platinum_searcher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-GIjPgu0e+duN5MeWcRaF5xUFCkqe2aZJCwGbLUMko08=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/monochromegane/the_platinum_searcher/pull/217/commits/69064d11c57d5fd5f66ddd95f0e789786183d3c6.patch",
             hash: "sha256-qQ7kZYb2MWSUV6T1frIPT9nMfb20SI7lbG8YhqyQEi8=",
           })))),
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/monochromegane/the_platinum_searcher",
         description: "Code search tool similar to ack and the_silver_searcher(ag)",
         mainProgram: "pt",

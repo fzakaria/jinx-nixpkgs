@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const version = "1.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unigine-tropics",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Tropics-${version}.run`),
           sha256: "sha256-/eA1i42/PMcoBbUJIGS66j7QpZ13oPkOi1Y6Q27TikU=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "bash $src --target $name\n\ninstall -D -m 0755 $name/bin/libUnigine_x86.so $out/lib/unigine/tropics/bin/libUnigine_x86.so\ninstall -D -m 0755 $name/bin/Tropics $out/lib/unigine/tropics/bin/Tropics\ninstall -D -m 0755 $name/1024x768_windowed.sh $out/bin/Tropics\n\ncp -R $name/data $out/lib/unigine/tropics\n\nwrapProgram $out/bin/Tropics \\\n  --prefix LD_LIBRARY_PATH : $libPath:$out/lib/unigine/tropics/bin \\\n  --run \"cd $out/lib/unigine/tropics\"\n\nconvert -size 256x256 xc:Transparent -fill gradient:'dodgerblue-white' -stroke Transparent -draw \"roundrectangle 0,0 256,256 50,50\"  $name/icon.png\nconvert $name/icon.png -fill white -stroke white -draw \"polygon  69.2564,84.1261 117.9,84.1261 117.9,206.56 138.1,206.56 138.1,84.1261 186.744,84.1261 186.744,65.9877 69.2564,65.9877 69.2564,84.1261\" $name/icon.png\n\nfor RES in 16 24 32 48 64 128 256\ndo\n    mkdir -p $out/share/icons/hicolor/\"$RES\"x\"$RES\"/apps\n    convert $name/icon.png -resize \"$RES\"x\"$RES\" $out/share/icons/hicolor/\"$RES\"x\"$RES\"/apps/Tropics.png\ndone\nconvert $name/icon.png -resize 128x128 $out/share/icons/Tropics.png\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Tropics",
             exec: "Tropics",
             genericName: "A GPU Stress test tool from the UNIGINE",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontUnpack: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unigine Heaven GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/tropics",
         sourceProvenance: nix.thunk(() => (() => {

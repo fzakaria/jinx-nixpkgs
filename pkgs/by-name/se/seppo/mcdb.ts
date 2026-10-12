@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const seppo = nix.arg($, "seppo");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mcdb",
       version: nix.thunk(() => nix.attr(seppo, "version")),
       src: nix.thunk(() => nix.attr(seppo, "src")),

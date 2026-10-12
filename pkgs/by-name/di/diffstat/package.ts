@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "diffstat",
       version: "1.69",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/diffstat/diffstat-${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/diffstat/diffstat-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [zstd]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://invisible-island.net/archives/diffstat/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://invisible-island.net/archives/diffstat/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Read output of diff and display a histogram of the changes",
         mainProgram: "diffstat",
         longDescription: "diffstat reads the output of diff and displays a histogram of the\ninsertions, deletions, and modifications per-file. It is useful for\nreviewing large, complex patch files.\n",

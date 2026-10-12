@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sybil = nix.arg($, "sybil");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "homekit-audio-proxy",
       version: "1.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdraco",
           repo: "homekit-audio-proxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytest_timeout, pytestCheckHook, sybil]),
       pythonImportsCheck: nix.thunk(() => ["homekit_audio_proxy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SRTP audio proxy for HomeKit camera streaming",
         homepage: "https://github.com/bdraco/homekit-audio-proxy",
         changelog: "https://github.com/bdraco/homekit-audio-proxy/blob/main/CHANGELOG.md",

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catgirldownloader",
       version: "0.5",
       __structuredAttrs: true,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NyarchLinux",
           repo: "CatgirlDownloader",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A GTK4 application that downloads images of catgirl and waifus from multiple sources",
         homepage: "https://github.com/NyarchLinux/CatgirlDownloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

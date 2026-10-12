@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = __splicedPackages;
   const qt5 = nix.thunk(() => nix.sel(pkgsHostTarget, "qt5"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "libsForQt5")),
       f: (self) => (() => {
         const libsForQt5 = self;
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const kdeFrameworks = nix.thunk(() => (() => {
           const mkFrameworks = nix.thunk(() => nix.builtins.import(nix.path(here, "../development/libraries/kde-frameworks")));
           const attrs = nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             config: config,
             libsForQt5: libsForQt5,
             lib: nix.thunk(() => nix.attr(pkgs, "lib")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })());
         const noExtraAttrs = (set) => nix.app(nix.sel(lib, "attrsets", "removeAttrs"), set, nix.thunk(() => ["extend", "override", "overrideScope", "overrideDerivation"]));
         return nix.app(noExtraAttrs, nix.thunk(() => nix.update(qt5, nix.update({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             __internalKF5: nix.thunk(() => nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), kdeFrameworks)),
             "accounts-qml-module": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qml-module"), nix.thunk(() => ({})))),
             "accounts-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qt"), nix.thunk(() => ({})))),
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
             libqtdbusmock: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbusmock"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(pkgs, "lomiri"));
                 return {
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
               };
               })()))),
             libqtdbustest: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbustest"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(pkgs, "lomiri"));
                 return {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
               };
               })()))),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
             "maplibre-native-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/maplibre-native-qt"), nix.thunk(() => ({})))),
             "polkit-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/polkit-qt-1"), nix.thunk(() => ({})))),
             poppler: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/poppler"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 lcms: nix.thunk(() => nix.sel(pkgs, "lcms2")),
                 qt5Support: true,
                 suffix: "qt5",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
             qmenumodel: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qmenumodel"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(pkgs, "lomiri"));
                 return {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
               };
               })()))),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
             qtpbfimageplugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qtpbfimageplugin"), nix.thunk(() => ({})))),
             qtstyleplugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qtstyleplugins"), nix.thunk(() => ({})))),
             "qtstyleplugin-kvantum": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qtstyleplugin-kvantum"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 qt6Kvantum: nix.thunk(() => nix.sel(pkgs, "qt6Packages", "qtstyleplugin-kvantum")),
               })))),
             quazip: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/quazip"), nix.thunk(() => ({})))),
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
             signond: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/signond"), nix.thunk(() => ({})))),
             timed: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/system/timed"), nix.thunk(() => ({})))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               qt5: nix.thunk(() => nix.builtins.throw("'libsForQt5.qt5.*' attributes were removed in favor of top-level 'qt5.*' attributes")),
               mlt: nix.thunk(() => nix.builtins.throw("'libsForQt5.mlt' was removed due to lack of upstream support since v7.36.0, use 'qt6Packages.mlt'.")),
               futuresql: nix.thunk(() => nix.builtins.throw("libsForQt5.futuresql has been removed")),

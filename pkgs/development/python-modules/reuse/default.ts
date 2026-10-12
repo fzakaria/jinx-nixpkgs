@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const freezegun = nix.arg($, "freezegun");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "reuse",
       version: "6.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsfe",
           repo: "reuse-tool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       sphinxRoot: "docs",
       pythonImportsCheck: nix.thunk(() => ["reuse"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for compliance with the REUSE Initiative recommendations",
         homepage: "https://github.com/fsfe/reuse-tool",
         changelog: nix.thunk(() => nix.str`https://github.com/fsfe/reuse-tool/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -22,26 +22,26 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.sel(lib, "warnIfNot"), canInstantiate, nix.thunk(() => nix.str`Package ${nix.sel(value, "name")} is unavailable and will not be included in redists-installed`), canInstantiate);
     })(), nix.thunk(() => nix.sel(tests, "redists-unpacked", "passthru", "redistsForPlatform"))));
   const mkOutputs = (name) => (drv) => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => nix.sel(drv, "outputs")), (output) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${name}-${output}`),
       value: nix.thunk(() => nix.sel(drv, nix.key(nix.force(output)))),
     }));
   const linkedWithoutLicenses = nix.thunk(() => nix.app(linkFarm, nix.thunk(() => nix.str`${cudaNamePrefix}-redists-installed`), nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), mkOutputs, availableRedistsForPlatform))));
   return nix.app(nix.sel(linkedWithoutLicenses, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         availableRedistsForPlatform: availableRedistsForPlatform,
         brokenAssertions: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "passthru", "brokenAssertions"), [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: nix.thunk(() => nix.add(nix.str`No redists are available for the current NVIDIA system identifier (${nix.sel(backendStdenv, "hostRedistSystem")});`, " ensure proper licenses are allowed and that the CUDA version in use supports the system")),
             assertion: nix.thunk(() => !nix.eq(availableRedistsForPlatform, {})),
           })),
         ])),
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "_mkMetaBroken"), finalAttrs)),
         license: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (drv) => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(drv, () => [], "meta", "license"))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), availableRedistsForPlatform)))))),
       })),

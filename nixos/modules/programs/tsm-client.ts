@@ -99,50 +99,50 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(either, scalarType, nix.thunk(() => nix.app(listOf, scalarType)))))),
       options: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         servername: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: servernameType,
             default: name,
             example: "mainTsmServer",
             description: "Local name of the IBM TSM server,\nmust not contain space or more than 64 chars.\n",
           })))),
         tcpserveraddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nonEmptyStr,
             example: "tsmserver.company.com",
             description: "Host/domain name or IP address of the IBM TSM server.\n",
           })))),
         tcpport: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(addCheck, port, (p) => nix.le(p, 32767n))),
             default: 1500n,
             description: "TCP port of the IBM TSM server.\nTSM does not support ports above 32767.\n",
           })))),
         nodename: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nonEmptyStr,
             example: "MY-TSM-NODE",
             description: "Target node name on the IBM TSM server.\n",
           })))),
         genPasswd: nix.thunk(() => nix.app(mkEnableOption, "automatic client password generation.\nThis option does *not* cause a line in\n{file}`dsm.sys` by itself, but generates a\ncorresponding `passwordaccess` directive.\nThe password will be stored in the directory\ngiven by the option {option}`passworddir`.\n*Caution*:\nIf this option is enabled and the server forces\nto renew the password (e.g. on first connection),\na random password will be generated and stored\n")),
         passwordaccess: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["generate", "prompt"]))),
             visible: false,
           })))),
         passworddir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nullOr, path)),
             default: null,
             example: "/home/alice/tsm-password",
             description: "Directory that holds the TSM\nnode's password information.\n",
           })))),
         inclexcl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(coercedTo, lines, nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "inclexcl.dsm.sys")), nix.thunk(() => nix.app(nullOr, path)))),
             default: null,
             example: "exclude.dir     /nix/store\ninclude.encrypt /home/.../*\n",
@@ -150,27 +150,27 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         commmethod: nix.thunk(() => nix.app(mkDefault, "v6tcpip")),
         passwordaccess: nix.thunk(() => (nix.asBool(nix.sel(config_1, "genPasswd")) ? "generate" : "prompt")),
       })),
     };
   })(), formals$2);
   const options = nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     programs: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       tsmClient: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         enable: nix.thunk(() => nix.app(mkEnableOption, "IBM Storage Protect (Tivoli Storage Manager, TSM)\nclient command line applications with a\nclient system-options file \"dsm.sys\"\n")),
         servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, serverOptions)))),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               mainTsmServer: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 tcpserveraddress: "tsmserver.company.com",
                 nodename: "MY-TSM-NODE",
                 compression: "yes",
@@ -179,28 +179,28 @@ export default nix.lambda((args) => (() => {
             description: "Server definitions (\"stanzas\")\nfor the client system-options file.\nThe name of each entry will be used for\nthe internal `servername` by default.\nEach attribute will be transformed into a line\nwith a key-value pair within the server's stanza.\nIntegers as values will be\ncanonically turned into strings.\nThe boolean value `true` will be turned\ninto a line with just the attribute's name.\nThe value `null` will not generate a line.\nA list as values generates an entry for\neach value, according to the rules above.\n",
           })))),
         defaultServername: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nullOr, servernameType)),
             default: null,
             example: "mainTsmServer",
             description: "If multiple server stanzas are declared with\n{option}`programs.tsmClient.servers`,\nthis option may be used to name a default\nserver stanza that IBM TSM uses in the absence of\na user-defined {file}`dsm.opt` file.\nThis option translates to a\n`defaultserver` configuration line.\n",
           })))),
         dsmSysText: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: lines,
             readOnly: true,
             description: "This configuration key contains the effective text\nof the client system-options file \"dsm.sys\".\nIt should not be changed, but may be\nused to feed the configuration into other\nTSM-depending packages used on the system.\n",
           })))),
         package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tsm-client", nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             example: "tsm-client-withGui",
             extraDescription: "It will be used with `.override`\nto add paths to the client system-options file.\n",
           })))),
         wrappedPackage: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "tsm-client", nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: null,
             extraDescription: "This option is to provide the effective derivation,\nwrapped with the path to the\nclient system-options file \"dsm.sys\".\nIt should not be changed, but exists\nfor other modules that want to call TSM executables.\n",
-          }))), { __proto__: pos$18, readOnly: true })),
+          }))), { [nix.POS]: pos$18, readOnly: true })),
       })),
     })),
   }));
@@ -208,12 +208,12 @@ export default nix.lambda((args) => (() => {
   const servernames = nix.thunk(() => nix.app(map, (s) => nix.sel(s, "servername"), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "servers"))))));
   const assertions = nix.thunk(() => nix.concat([
     nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       assertion: nix.thunk(() => nix.app(allUnique, nix.thunk(() => nix.app(map, toLower, servernames)))),
       message: "TSM server names\n(option `programs.tsmClient.servers`)\ncontain duplicate name\n(note that server names are case insensitive).\n",
     })),
     nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "defaultServername"), null)) || nix.asBool(nix.app(elem, nix.thunk(() => nix.sel(cfg, "defaultServername")), servernames)))),
       message: nix.thunk(() => nix.str`TSM default server name
 \`programs.tsmClient.defaultServername="${nix.sel(cfg, "defaultServername")}"\`
@@ -222,14 +222,14 @@ not found in server names in
 `),
     })),
   ], nix.concat(nix.app(mapAttrsToList, (name) => (serverCfg) => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       assertion: nix.thunk(() => nix.app(all, (key) => !nix.eq(null, nix.app(match, "[^[:space:]]+", key)), nix.thunk(() => nix.app(attrNames, serverCfg)))),
       message: nix.thunk(() => nix.str`TSM server setting names in
 \`programs.tsmClient.servers.${name}.*\`
 contain spaces, but that's not allowed.
 `),
     }), nix.thunk(() => nix.sel(cfg, "servers"))), nix.app(mapAttrsToList, (name) => (serverCfg) => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       assertion: nix.thunk(() => nix.app(allUnique, nix.thunk(() => nix.app(map, toLower, nix.thunk(() => nix.app(attrNames, serverCfg)))))),
       message: nix.thunk(() => nix.str`TSM server setting names in
 \`programs.tsmClient.servers.${name}.*\`
@@ -259,30 +259,30 @@ ${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "defaultServernam
 ${nix.app(concatLines, nix.thunk(() => nix.app(map, makeDsmSysStanza, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "servers")))))))}
 `);
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: options,
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: assertions,
         programs: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tsmClient: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             dsmSysText: dsmSysText,
             wrappedPackage: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => (() => {
                 const dsmSysCli = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dsm.sys", nix.thunk(() => nix.sel(cfg, "dsmSysText"))));
                 const dsmSysApi = dsmSysCli;
-                return { __proto__: pos$26, dsmSysCli, dsmSysApi };
+                return { [nix.POS]: pos$26, dsmSysCli, dsmSysApi };
               })()))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "wrappedPackage"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

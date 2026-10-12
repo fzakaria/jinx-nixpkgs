@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shelly_exporter",
       version: "0-unstable-2025-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aexel90",
           repo: "shelly_exporter",
           rev: "2e82fb01ec9337f6e2c68267e6d43c0f1677c481",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-BCrge2xLT4b4wpYA+zcsH64a/nfV8+HeZF7L49p2gEw=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, shelly: nix.thunk(() => nix.attr(from, "shelly")) };
+          return { [nix.POS]: pos$2, shelly: nix.thunk(() => nix.attr(from, "shelly")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shelly humidity sensor exporter for prometheus",
         mainProgram: "shelly_exporter",
         homepage: "https://github.com/aexel90/shelly_exporter",

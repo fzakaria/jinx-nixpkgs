@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-tunein",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Mopidy-TuneIn",
           sha256: "01y1asylscr73yqx071imhrzfzlg07wmqqzkdvpgm6r35marc2li",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [mopidy]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_tunein.tunein"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mopidy extension for playing music from tunein",
         homepage: "https://github.com/kingosticks/mopidy-tunein",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

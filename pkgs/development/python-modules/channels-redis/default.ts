@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django",
           repo: "channels_redis",
           tag: version,
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [redis, asgiref, channels, msgpack]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cryptography: nix.thunk(() => [cryptography]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cryptography: nix.thunk(() => [cryptography]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["channels_redis"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Redis-backed ASGI channel layer implementation",
         homepage: "https://github.com/django/channels_redis/",
         changelog: nix.thunk(() => nix.str`https://github.com/django/channels_redis/blob/${nix.sel(src, "tag")}/CHANGELOG.txt`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const popt = nix.arg($, "popt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "icon-slicer",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/icon-slicer/releases/icon-slicer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kdnc08k2rs8llfg7xgvnrsk60x59pv5fqz6kn2ifnn2s1nj3w05",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/hotspotfix.patch?h=icon-slicer",
             sha256: "1l1dc1x5p4hys02arkmq3x6b1xdi510969d25g928zr4gf4an03h",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [popt, pkg_config]),
       buildInputs: nix.thunk(() => [gdk_pixbuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for generating icon themes and libxcursor cursor themes",
         homepage: "https://www.freedesktop.org/wiki/Software/icon-slicer/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

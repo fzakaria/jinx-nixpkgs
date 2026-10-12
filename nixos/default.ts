@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const specialArgs = nix.argOr($, "specialArgs", () => ({}));
   const eval$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/eval-config.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       system: system,
       specialArgs: specialArgs,
       modules: nix.thunk(() => [configuration]),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const from = nix.thunk(() => nix.sel(eval$, "config", "system", "build"));
     return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     pkgs: nix.thunk(() => nix.attr(eval$, "pkgs")),
     config: nix.thunk(() => nix.attr(eval$, "config")),
     options: nix.thunk(() => nix.attr(eval$, "options")),

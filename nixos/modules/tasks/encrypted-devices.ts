@@ -34,33 +34,33 @@ export default nix.lambda((args) => (() => {
   const earlyEncDevs = nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) ? nix.force(encDevs) : nix.app(nix.lookup(w, "filter"), (dev) => nix.eq(nix.sel(dev, "encrypted", "keyFile"), null), encDevs)));
   const anyEncrypted = nix.thunk(() => nix.app(nix.lookup(w, "foldr"), (j) => (v) => (nix.asBool(v) || nix.asBool(nix.sel(j, "encrypted", "enable"))), false, encDevs));
   const encryptedFSOptions = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       encrypted: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             description: "The block device is backed by an encrypted one, adds this device as a initrd luks entry.",
           })))),
         blkDev: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: null,
             example: "/dev/sda1",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "Location of the backing encrypted device.",
           })))),
         label: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: null,
             example: "rootfs",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "Label of the unlocked encrypted device. Set `fileSystems.<name?>.device` to `/dev/mapper/<label>` to mount the unlocked device.",
           })))),
         keyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: null,
             example: "/mnt-root/root/.swapkey",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
@@ -70,18 +70,18 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       fileSystems: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
             return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), encryptedFSOptions)));
           })()),
         })))),
       swapDevices: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), encryptedFSOptions)));
@@ -89,33 +89,33 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), anyEncrypted, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "concatMap"), (dev) => [
             nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               assertion: nix.thunk(() => !nix.eq(nix.sel(dev, "encrypted", "label"), null)),
               message: nix.thunk(() => nix.str`The filesystem for ${nix.sel(dev, "mountPoint")} has encrypted.enable set to true, but no encrypted.label set
 `),
             })),
             nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool((nix.asBool(nix.eq(nix.sel(dev, "encrypted", "keyFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "any"), (x) => nix.app(nix.sel(lib, "hasPrefix"), x, nix.thunk(() => nix.sel(dev, "encrypted", "keyFile"))), nix.thunk(() => ["/mnt-root", "$targetRoot"])))))))),
               message: "Bad use of '/mnt-root' or '$targetRoot` in 'keyFile'.\n\n  When 'boot.initrd.systemd.enable' is enabled, file systems\n  are mounted at '/sysroot' instead of '/mnt-root'.\n",
             })),
           ], encDevs)),
         boot: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           initrd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             luks: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               devices: nix.thunk(() => nix.app(nix.sel(nix.builtins, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (dev) => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     name: nix.thunk(() => nix.sel(dev, "encrypted", "label")),
                     value: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(dev, "encrypted"));
                       return {
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       device: nix.thunk(() => nix.sel(dev, "encrypted", "blkDev")),
                       keyFile: nix.thunk(() => nix.attr(from, "keyFile")),
                     };

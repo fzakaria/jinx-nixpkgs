@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const matio = nix.arg($, "matio");
   const discount = nix.arg($, "discount");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labplot",
       version: "2.12.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/labplot/labplot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-4oFVv930DltvfEeRMTVW0eSBOARPIW8hDVFbn21sEGo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://invent.kde.org/education/labplot/-/commit/c2db2ec28aa8958f7041ae5cd03ddae9f44e5aa3.diff",
             hash: "sha256-0biKZXWMs5y1U9phAivEAbd2N4C/CiOKvk/QRAaPimo=",
           })))),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         discount,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free, open source and cross-platform data visualization and analysis software accessible to everyone",
         homepage: "https://labplot.kde.org",
         license: nix.thunk(() => (() => {

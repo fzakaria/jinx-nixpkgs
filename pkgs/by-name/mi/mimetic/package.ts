@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cutee = nix.arg($, "cutee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mimetic",
       version: "0.9.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.codesink.org/download/mimetic-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "003715lvj4nx23arn1s9ss6hgc2yblkwfy5h94li6pjz2a6xc1rs",
         })))),
       buildInputs: nix.thunk(() => [cutee]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/tat/mimetic/commit/bf84940f9021950c80846e6b1a5f8b0b55991b00.patch",
             sha256: "sha256-1JW9zPg67BgNsdIjK/jp9j7QMg50eRMz5FsDsbbzBlI=",
           })))),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.path(here, "./narrowing.patch")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MIME handling library",
         homepage: "https://www.codesink.org/mimetic_mime_library.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

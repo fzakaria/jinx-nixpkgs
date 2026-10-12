@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.19.1.58600.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "02jqwdfj5zpag4c5nf0707qmwk7sqm98yfgrd19rq6pi58zgl74f",
@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./pure-version.patch")]);
       const buildInputs = nix.thunk(() => [protobuf]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "StarCraft II - client protocol",
         homepage: "https://github.com/Blizzard/s2client-proto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, patches, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, patches, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

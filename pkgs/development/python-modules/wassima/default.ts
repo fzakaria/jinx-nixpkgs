@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wassima",
       version: "2.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jawah",
           repo: "wassima",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jawah/wassima/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Access your OS root certificates with utmost ease",
         homepage: "https://github.com/jawah/wassima",

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const sword = nix.arg($, "sword");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bibletime",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bibletime",
           repo: "bibletime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "http://github.com/bibletime/bibletime/commit/378c83d1fec533a04976b055cf11f2707384f269.patch",
             hash: "sha256-BPqPZqcJSRdCFf/vkqNjD7QvHgtIAeGdtZ+mQtIn71Y=",
           })))),
@@ -72,7 +72,7 @@ export SWORD_HOME=${sword};
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.bibletime.info/",
         description: "Powerful cross platform Bible study tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

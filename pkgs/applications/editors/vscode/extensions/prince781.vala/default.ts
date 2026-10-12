@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vala",
         publisher: "prince781",
         version: "1.1.0",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."vala.languageServerPath".default = "${nix.app(nix.sel(lib, "getExe"), vala_language_server)}"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/prince781.vala/changelog",
         description: "Syntax highlighting and language support for the Vala / Genie languages",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=prince781.vala",

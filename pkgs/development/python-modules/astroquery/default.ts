@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "astroquery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--import-mode=importlib", "-W", "ignore::pytest.PytestRemovedIn10Warning"]);
       const pythonImportsCheck = nix.thunk(() => ["astroquery"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/astroquery/releases/tag/${nix.sel(src, "tag")}`),
         description: "Functions and classes to access online data resources",
         homepage: "https://astroquery.readthedocs.io/",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "smaret"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.37.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adrienverge",
           repo: "yamllint",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_find_files_recursively", "test_codec_built_in_equivalent"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_locale_accents", "test_locale_case", "test_run_with_locale"]))));
       const pythonImportsCheck = nix.thunk(() => ["yamllint"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linter for YAML files",
         homepage: "https://github.com/adrienverge/yamllint",
         changelog: nix.thunk(() => nix.str`https://github.com/adrienverge/yamllint/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yamllint",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
   const from_2 = nix.thunk(() => nix.sel(lib, "lists"));
   const optionals = nix.thunk(() => nix.attr(from_2, "optionals"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "nccl-tests",
       version: "2.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nccl-tests",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,23 +65,23 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\"\ninstall -Dm755 \\\n  $(find build -type f -executable) \\\n  \"$out/bin\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: "mpi is non-null when mpiSupport is true",
             assertion: nix.thunk(() => (!nix.asBool(mpiSupport) || nix.asBool(!nix.eq(mpi, null)))),
           })),
         ]),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tests to check both the performance and the correctness of NVIDIA NCCL operations",
         homepage: "https://github.com/NVIDIA/nccl-tests",
         platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),

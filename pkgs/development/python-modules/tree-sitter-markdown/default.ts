@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter-grammars",
           repo: "tree-sitter-markdown",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-IYqh6JT74deu1UU4Nyls9Eg88BvQeYEta2UXZAbuZek=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, core: nix.thunk(() => [tree_sitter]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, core: nix.thunk(() => [tree_sitter]) }));
       const pythonImportsCheck = nix.thunk(() => ["tree_sitter_markdown"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, tree_sitter]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Markdown grammar for tree-sitter",
         homepage: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
         changelog: nix.thunk(() => nix.str`https://github.com/tree-sitter-grammars/tree-sitter-markdown/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

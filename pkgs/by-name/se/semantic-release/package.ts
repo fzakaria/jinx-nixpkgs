@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "semantic-release";
       const version = "25.0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "semantic-release",
           repo: "semantic-release",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   '"version": "${version}"'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fully automated version management and package publishing",
         mainProgram: "semantic-release",
         homepage: "https://semantic-release.gitbook.io/semantic-release/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

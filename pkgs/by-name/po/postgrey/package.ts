@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const pname = "postgrey";
   const version = "1.37";
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://postgrey.schweikert.ch/pub/${pname}-${version}.tar.gz`),
           sha256: "1xx51xih4711vrvc6d57il9ccallbljj5zhgqdb07jzmz11rakgz",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Postfix policy server to provide greylisting",
         homepage: "https://postgrey.schweikert.ch/",
         platforms: nix.thunk(() => nix.sel(postfix, "meta", "platforms")),

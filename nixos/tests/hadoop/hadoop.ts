@@ -82,12 +82,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const $ = nix.formals(args, formals$1);
     const package$ = nix.arg($, "package");
     return {
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       name: nix.thunk(() => nix.str`hadoop-${nix.sel(package$, "version")}-combined`),
       nodes: nix.thunk(() => (() => {
-        const coreSite = nix.thunk(() => ({ __proto__: pos$1, "fs.defaultFS": "hdfs://ns1" }));
+        const coreSite = nix.thunk(() => ({ [nix.POS]: pos$1, "fs.defaultFS": "hdfs://ns1" }));
         const hdfsSite = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "dfs.nameservices": "ns1",
           "dfs.ha.namenodes.ns1": "nn1,nn2",
           "dfs.namenode.shared.edits.dir.ns1": "qjournal://jn1:8485;jn2:8485;jn3:8485/ns1",
@@ -103,7 +103,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           "ha.zookeeper.quorum": "zk1:2181",
         }));
         const yarnSite = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "yarn.resourcemanager.zk-address": "zk1:2181",
           "yarn.resourcemanager.ha.enabled": "true",
           "yarn.resourcemanager.ha.rm-ids": "rm1,rm2",
@@ -115,36 +115,36 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           "yarn.resourcemanager.webapp.address.rm2": "rm2:8088",
         }));
         return {
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           zk1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               services: nix.thunk(() => ({
-                __proto__: pos$5,
-                zookeeper: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                [nix.POS]: pos$5,
+                zookeeper: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$7,
-                firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+                [nix.POS]: pos$7,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [2181n]) })),
               })),
             };
           })(), formals$2),
           nn1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$11,
-                    namenode: nix.thunk(() => ({ __proto__: pos$9, enable: true, openFirewall: true })),
-                    zkfc: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+                    [nix.POS]: pos$11,
+                    namenode: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, openFirewall: true })),
+                    zkfc: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
                   })),
                 })),
               })),
@@ -153,18 +153,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           nn2: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$4);
             return {
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               services: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    namenode: nix.thunk(() => ({ __proto__: pos$15, enable: true, openFirewall: true })),
-                    zkfc: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+                    [nix.POS]: pos$17,
+                    namenode: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, openFirewall: true })),
+                    zkfc: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
                   })),
                 })),
               })),
@@ -173,17 +173,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           jn1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$5);
             return {
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$22,
-                    journalnode: nix.thunk(() => ({ __proto__: pos$21, enable: true, openFirewall: true })),
+                    [nix.POS]: pos$22,
+                    journalnode: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -192,17 +192,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           jn2: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$6);
             return {
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               services: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$27,
-                    journalnode: nix.thunk(() => ({ __proto__: pos$26, enable: true, openFirewall: true })),
+                    [nix.POS]: pos$27,
+                    journalnode: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -211,17 +211,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           jn3: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$7);
             return {
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               services: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$32,
-                    journalnode: nix.thunk(() => ({ __proto__: pos$31, enable: true, openFirewall: true })),
+                    [nix.POS]: pos$32,
+                    journalnode: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -230,18 +230,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           dn1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$8);
             return {
-              __proto__: pos$41,
-              virtualisation: nix.thunk(() => ({ __proto__: pos$36, diskSize: 4096n })),
+              [nix.POS]: pos$41,
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$36, diskSize: 4096n })),
               services: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$38,
-                    datanode: nix.thunk(() => ({ __proto__: pos$37, enable: true, openFirewall: true })),
+                    [nix.POS]: pos$38,
+                    datanode: nix.thunk(() => ({ [nix.POS]: pos$37, enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -251,18 +251,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$9);
             const options = nix.arg($_1, "options");
             return {
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               services: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   yarnSite: yarnSite,
                   yarn: nix.thunk(() => ({
-                    __proto__: pos$43,
-                    resourcemanager: nix.thunk(() => ({ __proto__: pos$42, enable: true, openFirewall: true })),
+                    [nix.POS]: pos$43,
+                    resourcemanager: nix.thunk(() => ({ [nix.POS]: pos$42, enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -272,18 +272,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$10);
             const options = nix.arg($_1, "options");
             return {
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               services: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   yarnSite: yarnSite,
                   yarn: nix.thunk(() => ({
-                    __proto__: pos$48,
-                    resourcemanager: nix.thunk(() => ({ __proto__: pos$47, enable: true, openFirewall: true })),
+                    [nix.POS]: pos$48,
+                    resourcemanager: nix.thunk(() => ({ [nix.POS]: pos$47, enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -293,19 +293,19 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$11);
             const options = nix.arg($_1, "options");
             return {
-              __proto__: pos$57,
-              virtualisation: nix.thunk(() => ({ __proto__: pos$52, memorySize: 2048n })),
+              [nix.POS]: pos$57,
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$52, memorySize: 2048n })),
               services: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   yarnSite: yarnSite,
                   yarn: nix.thunk(() => ({
-                    __proto__: pos$54,
-                    nodemanager: nix.thunk(() => ({ __proto__: pos$53, enable: true, openFirewall: true, useCGroups: false })),
+                    [nix.POS]: pos$54,
+                    nodemanager: nix.thunk(() => ({ [nix.POS]: pos$53, enable: true, openFirewall: true, useCGroups: false })),
                   })),
                 })),
               })),
@@ -315,12 +315,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$12);
             const options = nix.arg($_1, "options");
             return {
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               services: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$59,
-                  gatewayRole: nix.thunk(() => ({ __proto__: pos$58, enable: true })),
+                  [nix.POS]: pos$59,
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$58, enable: true })),
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,

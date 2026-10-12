@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osinfo-db-tools",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/libosinfo%2Fosinfo-db-tools/packages/generic/release-assets/v${nix.sel(finalAttrs, "version")}/osinfo-db-tools-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8zFfZ10Ydw8l3qjtBLILj8gO+wD2DDfuXoFfnDd25/M=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, gettext, perl, python3]),
       buildInputs: nix.thunk(() => [glib, json_glib, libxml2, libxslt, libarchive, bzip2, xz, libsoup_3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for managing the osinfo database",
         homepage: "https://libosinfo.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libosinfo/osinfo-db-tools/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

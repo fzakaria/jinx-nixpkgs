@@ -34,56 +34,56 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "kiwix-serve"));
   const mkLibrary = (library) => (() => {
-    const libraryEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => ({ __proto__: pos$1, name: nix.thunk(() => nix.str`${name}.zim`), path: path }), library));
+    const libraryEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => ({ [nix.POS]: pos$1, name: nix.thunk(() => nix.str`${name}.zim`), path: path }), library));
     const zimsDrv = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "zims", libraryEntries));
     const files = nix.thunk(() => nix.builtins.map((entry) => nix.str`${zimsDrv}/${nix.sel(entry, "name")}`, libraryEntries));
-    return { __proto__: pos$2, derivation: zimsDrv, files: files };
+    return { [nix.POS]: pos$2, derivation: zimsDrv, files: files };
   })();
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "kiwix-serve": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the kiwix-serve server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kiwix-tools", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "all",
               example: "ipv4",
               description: "Listen only on the specified IP address.\nSpecify \"ipv4\", \"ipv6\" or \"all\" to listen on all IPv4, IPv6, or both types of addresses, respectively.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "The port on which to run kiwix-serve.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for the configured port.",
             })))),
           library: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "\n", "{\n  wikipedia = \"/data/wikipedia_en_all_maxi_2026-02.zim\";\n  nix = pkgs.fetchurl {\n    url = \"https://download.kiwix.org/zim/devdocs/devdocs_en_nix_2026-01.zim\";\n    hash = \"sha256-QxB9qDKSzzEU8t4droI08BXdYn+HMVkgiJMO3SoGTqM=\";\n  };\n}\n")))),
               description: "A set of ZIM files to serve. The key is used as the name for the ZIM files\n(e.g. in the example, the files will be served as `wikipedia.zim` and `nix.zim`).\n\nExclusive with [services.kiwix-serve.libraryPath](#opt-services.kiwix-serve.libraryPath).\n",
             })))),
           libraryPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/data/library.xml",
               description: "An XML library file listing ZIM files to serve.\nFor more information, see <https://wiki.kiwix.org/wiki/Kiwix-manage>.\n\nExclusive with [services.kiwix-serve.library](#opt-services.kiwix-serve.library).\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--verbose", "--skipInvalid"]),
@@ -93,28 +93,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "library"), {}), nix.eq(nix.sel(cfg, "libraryPath"), null))),
             message: "Exactly one of services.kiwix-serve.library or services.kiwix-serve.libraryPath must be provided.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "kiwix-serve": nix.thunk(() => (() => {
               const library = nix.thunk(() => nix.app(mkLibrary, nix.thunk(() => nix.sel(cfg, "library"))));
               return {
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "ZIM file HTTP server",
                 documentation: nix.thunk(() => ["https://kiwix-tools.readthedocs.io/en/latest/kiwix-serve.html"]),
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   Type: "exec",
                   DynamicUser: true,
                   Restart: "on-failure",
@@ -157,15 +157,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "MysteryBlokHed"))];

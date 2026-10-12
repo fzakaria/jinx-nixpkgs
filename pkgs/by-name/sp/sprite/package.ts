@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sprite",
       version: "0.0.1-rc48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://sprites-binaries.t3.storage.dev/client/v${nix.sel(finalAttrs, "version")}/sprite-${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : "darwin")}-${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "amd64" : "arm64")}.tar.gz`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "aarch64-darwin": "sha256-HoYKvupDS4Lak5ce07yZ8VkgafzxlSI0YNb6pg+xRTg=",
             "aarch64-linux": "sha256-taj5QskS1bRgv0QFh9nu/IXUvzJCXGxiDP6lYPaL5tU=",
             "x86_64-linux": "sha256-UlgRQoNfiFTSIgaj67qcNriXEcorM0XPJC1Doy3HnP4=",
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook))),
       installPhase: "mkdir -p $out/bin\ninstall -m 755 sprite $out/bin/\nwrapProgram $out/bin/sprite --set UPGRADE_CHECK false\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckProgramArg: "--version",
       versionCheckKeepEnvironment: "HOME",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command Line Interactive for sprites, stateful sandbox environments with checkpoint & restore",
         homepage: "https://sprites.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

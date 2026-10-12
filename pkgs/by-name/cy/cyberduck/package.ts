@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyberduck",
       version: "9.2.4.43667",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://update.cyberduck.io/Cyberduck-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-fTJoNdgp6EWdloejk7XG2lJh1NErxFRmvx2fZiwvWuc=",
         })))),
@@ -40,7 +40,7 @@ echo $marketing_version.$build_version
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libre file transfer client for Mac and Windows",
         homepage: "https://cyberduck.io",
         changelog: "https://cyberduck.io/changelog/",

@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const version = "1.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "projectfluent",
       repo: "python-fluent",
       rev: nix.thunk(() => nix.str`fluent.pygments@${version}`),
       hash: "sha256-AR2uce3HS1ELzpoHmx7F/5/nrL+7KhYemw/00nmvLik=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fluent-pygments",
       version: version,
       pyproject: true,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["fluent.pygments"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/projectfluent/python-fluent/blob/main/fluent.pygments/CHANGELOG.rst",
         description: "Plugin for pygments to add syntax highlighting of Fluent files in Sphinx",
         homepage: nix.thunk(() => nix.str`https://projectfluent.org/python-fluent/fluent.pygments/${version}`),

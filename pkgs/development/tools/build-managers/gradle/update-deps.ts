@@ -61,7 +61,7 @@ source "$stdenv/setup"
 phases="\${prePhases[*]:-} unpackPhase patchPhase \${preConfigurePhases[*]:-} configurePhase gradleUpdateScript" genericBuild
 `)));
       const source = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             mitmCache: "",
             gradleInitScript: nix.path(here, "./init-deps.gradle"),
             stdenv: nix.thunk(() => nix.selOr(old, () => nix.force(stdenvNoCC), "stdenv")),
@@ -69,15 +69,15 @@ phases="\${prePhases[*]:-} unpackPhase patchPhase \${preConfigurePhases[*]:-} co
       const sourceDrvPath = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(source, "drvPath"))));
       const nixShellKeep = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (x) => nix.str`--keep ${x}`, keep));
       return nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "fetch-deps.sh",
           executable: true,
           derivationArgs: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             passthru: nix.thunk(() => nix.update({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               supportedFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), silent, "silent")),
-            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(attrPath, null)), nix.thunk(() => ({ __proto__: pos$3, attrPath: attrPath }))))),
+            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(attrPath, null)), nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: attrPath }))))),
           })),
           text: nix.thunk(() => nix.str`#!${runtimeShell}
 set -eo pipefail

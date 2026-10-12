@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "foxglove-studio",
       version: "2.56.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://get.foxglove.dev/desktop/v${nix.sel(finalAttrs, "version")}/foxglove-studio-${nix.sel(finalAttrs, "version")}-linux-amd64.deb`),
           hash: "sha256-s9wuCwkq9SRJu7iqpM2ribOOTF5oS42rVUNQXlNWzUU=",
         })))),
@@ -53,10 +53,10 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,opt,share}\n\ncp -r opt/Foxglove $out/opt/\ncp -r usr/share/icons $out/share/\ncp -r usr/share/mime $out/share/\n\nln -s \"$out/opt/Foxglove/foxglove-studio\" $out/bin/foxglove-studio\n\nrunHook postInstall\n",
       preFixup: "patchelf --add-needed libGL.so.1 --add-needed libEGL.so.1 $out/opt/Foxglove/foxglove-studio",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "foxglove-studio",
             desktopName: "Foxglove Studio",
             comment: "Integrated robotics visualization and debugging",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://docs.foxglove.dev/changelog/foxglove/v${nix.sel(finalAttrs, "version")}`),
         description: "Visualization and observability platform for robotics",
         downloadPage: "https://foxglove.dev/download",

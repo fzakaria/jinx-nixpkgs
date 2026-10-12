@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nv-codec-headers",
       version: version,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.videolan.org/git/ffmpeg/nv-codec-headers.git",
           rev: nix.thunk(() => nix.str`n${version}`),
           hash: hash,
@@ -33,29 +33,29 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "nv-codec-headers-8": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "8.2.15.2",
         hash: "sha256-TKYT8vXqnUpq+M0grDeOR37n/ffqSWDYTrXIbl++BG4=",
       })))),
     "nv-codec-headers-9": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "9.1.23.1",
         hash: "sha256-kF5tv8Nh6I9x3hvSAdKLakeBVEcIiXFY6o6bD+tY2/U=",
       })))),
     "nv-codec-headers-10": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "10.0.26.2",
         hash: "sha256-BfW+fmPp8U22+HK0ZZY6fKUjqigWvOBi6DmW7SSnslg=",
       })))),
     "nv-codec-headers-11": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "11.1.5.2",
         hash: "sha256-KzaqwpzISHB7tSTruynEOJmSlJnAFK2h7/cRI/zkNPk=",
       })))),
     "nv-codec-headers-12": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "12.1.14.0",
         hash: "sha256-WJYuFmMGSW+B32LwE7oXv/IeTln6TNEeXSkquHh85Go=",
       })))),

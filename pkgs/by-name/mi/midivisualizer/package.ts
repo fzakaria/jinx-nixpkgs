@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const ffmpeg_full = nix.arg($, "ffmpeg-full");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "midivisualizer",
       version: "7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kosua20",
           repo: "MIDIVisualizer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ wrapProgram $out/bin/MIDIVisualizer \\
   --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${nix.sel(gtk3, "name")}:$XDG_DATA_DIRS"
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small MIDI visualizer tool, using OpenGL",
         mainProgram: "MIDIVisualizer",
         homepage: "https://github.com/kosua20/MIDIVisualizer",

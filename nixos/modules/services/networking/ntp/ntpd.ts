@@ -52,47 +52,47 @@ ${nix.sel(cfg, "extraConfig")}
 `)));
   const ntpFlags = nix.thunk(() => nix.concat(["-c", nix.thunk(() => nix.str`${configFile}`), "-u", "ntp:ntp"], nix.sel(cfg, "extraFlags")));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ntp: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to synchronise your machine's time using ntpd, as a peer in\nthe NTP network.\n\nDisables `systemd.timesyncd` if enabled.\n",
             })))),
           restrictDefault: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The restriction flags to be set by default.\n\nThe default flags prevent external hosts from using ntpd as a DDoS\nreflector, setting system time, and querying OS/ntpd version. As\nrecommended in section 6.5.1.1.3, answer \"No\" of\nhttps://support.ntp.org/Support/AccessRestrictions\n",
               default: nix.thunk(() => ["limited", "kod", "nomodify", "notrap", "noquery", "nopeer"]),
             })))),
           restrictSource: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The restriction flags to be set on source.\n\nThe default flags allow peers to be added by ntpd from configured\npool(s), but not by other means.\n",
               default: nix.thunk(() => ["limited", "kod", "nomodify", "notrap", "noquery"]),
             })))),
           servers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => nix.sel(config, "networking", "timeServers")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.networking.timeServers")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The set of NTP servers from which to synchronise.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "fudge 127.127.1.0 stratum 10\n",
               description: "Additional text appended to {file}`ntp.conf`.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Extra flags passed to the ntpd command.",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"--interface=eth0\" ]")),
@@ -102,41 +102,41 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "thoughtpolice"))];
       })()),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "ntp", "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ntp"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           timesyncd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), false)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "systemd-timedated": nix.thunk(() => ({
-              __proto__: pos$15,
-              environment: nix.thunk(() => ({ __proto__: pos$14, SYSTEMD_TIMEDATED_NTP_SERVICES: "ntpd.service" })),
+              [nix.POS]: pos$15,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$14, SYSTEMD_TIMEDATED_NTP_SERVICES: "ntpd.service" })),
             })),
             ntpd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "NTP Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["time-sync.target"]),
               before: nix.thunk(() => ["time-sync.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => nix.str`@${ntp}/bin/ntpd ntpd -g ${nix.app(nix.builtins.toString, ntpFlags)}`),
                 Type: "forking",
                 PrivateDevices: true,
@@ -163,11 +163,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             ntp: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               isSystemUser: true,
               group: "ntp",
               description: "NTP daemon user",
@@ -175,7 +175,7 @@ ${nix.sel(cfg, "extraConfig")}
               createHome: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$22, ntp: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$22, ntp: nix.thunk(() => ({})) })),
         })),
       })))),
   };

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pueue",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nukesor",
           repo: "pueue",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for shell in bash fish zsh; do\n  $out/bin/pueue completions $shell .\ndone\ninstallShellCompletion pueue.{bash,fish} _pueue\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Nukesor/pueue",
         description: "Daemon for managing long running shell commands",
         longDescription: "Pueue is a command-line task management tool for sequential and parallel\nexecution of long-running tasks.\n\nSimply put, it's a tool that processes a queue of shell commands. On top\nof that, there are a lot of convenient features and abstractions.\n\nSince Pueue is not bound to any terminal, you can control your tasks from\nany terminal on the same machine. The queue will be continuously\nprocessed, even if you no longer have any active ssh sessions.\n",

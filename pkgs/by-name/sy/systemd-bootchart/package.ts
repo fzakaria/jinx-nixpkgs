@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const docbook_xml_dtd_45 = nix.arg($, "docbook_xml_dtd_45");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "systemd-bootchart",
       version: "235",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "systemd-bootchart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [systemdLibs]),
       configureFlags: nix.thunk(() => ["--with-rootprefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Boot performance graphing tool from systemd",
         homepage: "https://github.com/systemd/systemd-bootchart",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const bi = nix.arg($, "bi");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trees",
       version: "2018-03-19",
       idrisDeps: nix.thunk(() => [contrib, bi]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clayrat",
           repo: "idris-trees",
           rev: "dc17f9598bd78ec2b283d91b3c58617960d88c85",
           sha256: "1c3p69875qc4zdk28im9xz45zw46ajgcmxpqmig63y0z4v3gwxww",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Trees in Idris",
         homepage: "https://github.com/clayrat/idris-trees",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

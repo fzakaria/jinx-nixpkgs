@@ -12,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(runCommand, "documentation-highlighter", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "documentation-highlighter",
       version: "11.9.0",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Highlight.js sources for the Nix Ecosystem's documentation",
         homepage: "https://highlightjs.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
       src: nix.thunk(() => nix.app(nix.sel(lib, "sources", "cleanSourceWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.path(here, "./."),
           filter: (path) => (type) => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.builtins.baseNameOf(path)), nix.thunk(() => ["highlight.pack.js", "LICENSE", "loader.js", "mono-blue.css", "README.md"])),
         })))),

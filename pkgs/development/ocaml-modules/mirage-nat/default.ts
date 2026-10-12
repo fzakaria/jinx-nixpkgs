@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const mirage_clock_unix = nix.arg($, "mirage-clock-unix");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-nat",
       version: "3.0.2",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-nat/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-nat-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Z1g3qb26x/S6asYv6roTW77r41SHy7OGN7MoZJ/E8Is=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mirage_clock_unix]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mirage-nat is a library for network address translation to be used with MirageOS",
         homepage: "https://github.com/mirage/mirage-nat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

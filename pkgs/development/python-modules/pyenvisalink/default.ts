@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyserial = nix.arg($, "pyserial");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyenvisalink",
       version: "4.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-V/Sr49e78CO4tBRKkKMQ1Z8bA6/YeEVHdoPx2KY7+mI=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyenvisalink"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface for Envisalink 2DS/3 Alarm API",
         homepage: "https://github.com/Cinntax/pyenvisalink",
         changelog: nix.thunk(() => nix.str`https://github.com/ufodone/pyenvisalink/releases/tag/${nix.sel(finalAttrs, "version")}`),

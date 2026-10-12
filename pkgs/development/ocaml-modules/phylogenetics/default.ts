@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const menhirLib = nix.arg($, "menhirLib");
   const printbox_text = nix.arg($, "printbox-text");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phylogenetics",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/biocaml/phylogenetics/releases/download/v${nix.sel(finalAttrs, "version")}/phylogenetics-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-3oZ9fMAXqOQ02rQ+8W8PZJWXOJLNe2qERrGOeTk3BKg=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\ndune build @app/fulltest\nrunHook postCheck\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Algorithms and datastructures for phylogenetics",
         homepage: "https://github.com/biocaml/phylogenetics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),

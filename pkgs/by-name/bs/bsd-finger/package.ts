@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const buildClient = nix.argOr($, "buildClient", () => null);
   nix.assert_(nix.app(nix.sel(lib, "elem"), buildProduct, nix.thunk(() => ["client", "daemon"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bs/bsd-finger/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: nix.thunk(() => nix.add("bsd-finger", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(buildProduct, "daemon")), "d"))),
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ftp.de.debian.org/debian/pool/main/b/bsd-finger/bsd-finger_${nix.sel(finalAttrs, "version")}.orig.tar.bz2`),
           hash: "sha256-KLNNYF0j6mh9eeD8SMA1q+gPiNnBVH56pGeW0QgcA2M=",
         })))),
@@ -45,74 +45,74 @@ export default nix.lambda((args) => (() => {
         const generateUrl = (patchName) => nix.str`https://sources.debian.org/data/main/b/bsd-finger/${nix.sel(finalAttrs, "version")}-${debianRevision}/debian/patches/${patchName}.patch`;
         return [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.app(generateUrl, "01-legacy")),
               hash: "sha256-84znJLXez4w6WB2nOW+PHK/0srE0iG9nGAjO1/AGczw=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.app(generateUrl, "02-518559-nsswitch-sources")),
               hash: "sha256-oBXJ/kr/czevWk0TcsutGINNwCoHnEStRT8Jfgp/lbM=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.app(generateUrl, "03-468454-fingerd-ipv6")),
               hash: "sha256-a5+qoy2UKa2nCJrwrfJ5VPZoACFXFQ1j/rweoMYW1Z0=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: nix.thunk(() => nix.app(generateUrl, "04-468454-finger-ipv6")),
               hash: "sha256-cg93NL02lJm/5Freegb3EbjDAQVkurLEEJifcyQRRfk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: nix.thunk(() => nix.app(generateUrl, "05-547014-netgroup")),
               hash: "sha256-d+ufp7nPZwW+t+EWASzHrXT/O6zSzt6OOV12cKVo3P0=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: nix.thunk(() => nix.app(generateUrl, "06-572211-decrease-timeout")),
               hash: "sha256-KtNGU5mmX1nnxQc7XnYoUuVW4We2cF81+x6EQrHF7g0=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: nix.thunk(() => nix.app(generateUrl, "use-cmake-as-buildsystem")),
               hash: "sha256-YOmkF6Oxowy15mCE1pCvHKnLEXglijWFG6eydnZJFhM=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: nix.thunk(() => nix.app(generateUrl, "use-cmake-as-buildsystem-debian-extras")),
               hash: "sha256-T3DWpyyz15JCiVJ41RrJEhsmicei8G3OaKpxvzOCcBU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               url: nix.thunk(() => nix.app(generateUrl, "fix-fingerd-man-typo")),
               hash: "sha256-f59osGi0a8Tkm2Vxg2+H2brH8WproCDvbPf4jXwi6ag=",
             })))),
         ];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$11, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$11, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" })),
       preBuild: nix.thunk(() => (() => {
-        const subdir = nix.thunk(() => nix.sel({ __proto__: pos$12, client: "finger", daemon: "fingerd" }, nix.key(nix.force(buildProduct))));
+        const subdir = nix.thunk(() => nix.sel({ [nix.POS]: pos$12, client: "finger", daemon: "fingerd" }, nix.key(nix.force(buildProduct))));
         return nix.str`cd ${subdir}
 `;
       })()),
       preInstall: nix.thunk(() => (() => {
-        const bindir = nix.thunk(() => nix.sel({ __proto__: pos$13, client: "bin", daemon: "sbin" }, nix.key(nix.force(buildProduct))));
-        const mandir = nix.thunk(() => nix.sel({ __proto__: pos$14, client: "man1", daemon: "man8" }, nix.key(nix.force(buildProduct))));
+        const bindir = nix.thunk(() => nix.sel({ [nix.POS]: pos$13, client: "bin", daemon: "sbin" }, nix.key(nix.force(buildProduct))));
+        const mandir = nix.thunk(() => nix.sel({ [nix.POS]: pos$14, client: "man1", daemon: "man8" }, nix.key(nix.force(buildProduct))));
         return nix.str`mkdir -p $out/${bindir} $out/man/${mandir}
 `;
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(buildProduct, "daemon")), "pushd $out/sbin\nln -s in.fingerd fingerd\npopd\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: nix.thunk(() => nix.sel({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           client: "User information lookup program",
           daemon: "Remote user information server",
         }, nix.key(nix.force(buildProduct)))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
-        mainProgram: nix.thunk(() => nix.sel({ __proto__: pos$16, client: "finger", daemon: "fingerd" }, nix.key(nix.force(buildProduct)))),
+        mainProgram: nix.thunk(() => nix.sel({ [nix.POS]: pos$16, client: "finger", daemon: "fingerd" }, nix.key(nix.force(buildProduct)))),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

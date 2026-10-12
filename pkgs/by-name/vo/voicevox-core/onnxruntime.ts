@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "voicevox-onnxruntime",
       version: "1.17.3",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -29,32 +29,32 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp -r ./lib \"$out/lib\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => (() => {
           const fetchArtifact = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const id = nix.arg($_1, "id");
             const hash = nix.arg($_1, "hash");
             return nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.str`https://github.com/VOICEVOX/onnxruntime-builder/releases/download/voicevox_onnxruntime-${nix.sel(finalAttrs, "version")}/voicevox_onnxruntime-${id}-${nix.sel(finalAttrs, "version")}.tgz`),
                 hash: hash,
               })));
           })(), formals$2);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "x86_64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 id: "linux-x64",
                 hash: "sha256-crUof91I3IM6mSn26eOCbnk7VM4SAhgb6T9jgjoiL1g=",
               })))),
             "aarch64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 id: "linux-arm64",
                 hash: "sha256-J27twAe2lDJPWbw1ws+QQXJOt4ZghDemSfCW7eo5Q6k=",
               })))),
             "aarch64-darwin": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 id: "osx-arm64",
                 hash: "sha256-ltfqGSigoVSFSS03YhOH31D0CnkuKmgX1N9z7NGFcfI=",
               })))),
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
             nix.thunk(() => nix.lookup(w, "mit")),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "VOICEVOX ONNX Runtime Terms of Use",
               url: "https://github.com/VOICEVOX/voicevox_resource/blob/main/onnxruntime/README.md",
               free: false,

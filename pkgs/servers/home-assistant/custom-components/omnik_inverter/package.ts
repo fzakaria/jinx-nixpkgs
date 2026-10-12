@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "omnik_inverter";
       const version = "3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robbinjanssen",
           repo: "home-assistant-omnik-inverter",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [omnikinverter]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/robbinjanssen/home-assistant-omnik-inverter/releases/tag/${nix.sel(src, "tag")}`),
         description: "Omnik Inverter integration will scrape data from an Omnik inverter connected to your local network",
         homepage: "https://github.com/robbinjanssen/home-assistant-omnik-inverter",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, doCheck, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

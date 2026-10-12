@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "statusfailed",
           repo: "open-hypergraphs",
           tag: nix.thunk(() => nix.str`pypi-${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, hypothesis]);
       const pythonImportsCheck = nix.thunk(() => ["open_hypergraphs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of open hypergraphs for string diagrams",
         homepage: "https://github.com/statusfailed/open-hypergraphs",
         changelog: nix.thunk(() => nix.str`https://github.com/statusfailed/open-hypergraphs/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

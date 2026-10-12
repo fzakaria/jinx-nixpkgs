@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_good = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good"));
   const gst_libav = nix.thunk(() => nix.attr(gst_all_1, "gst-libav"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdfpc",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "pdfpc",
           owner: "pdfpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => (() => {
         const platformBuildInputs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [librsvg] : [libpthread_stubs, webkitgtk_4_1]));
         return nix.concat([
-          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
           discount,
           gst_libav,
           gst_plugins_base,
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
         ], platformBuildInputs);
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Presenter console with multi-monitor support for PDF files",
         mainProgram: "pdfpc",
         homepage: "https://pdfpc.github.io/",

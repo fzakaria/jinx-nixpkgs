@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const version = "1.4.0";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fediwall",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "defnull",
           repo: "fediwall",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-0VQ/CBqpQNqjg3lug+AQfFVbh0KhEaGwd+cEakBr/Dc=",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Social media wall for the Fediverse",
         homepage: "https://fediwall.social",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

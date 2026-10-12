@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const jaxlib = nix.arg($, "jaxlib");
   const version = nix.thunk(() => nix.attr(jaxlib, "version"));
   const platforms = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "manylinux_2_27_x86_64",
       hash: "sha256-5f9YnUMGSRO7dAJ2gtiWOcfqSPn4HCuub8dRF+kT+T4=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "manylinux_2_27_aarch64",
       hash: "sha256-Y7VeUOXCWDol4Za6BrA0tj0rLYrUwvF5NWUsjTrS3S0=",
     })),
@@ -59,13 +59,13 @@ export default nix.lambda((args) => (() => {
       ];
     })())));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "jax-cuda13-pjrt",
       version: version,
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "jax_cuda13_pjrt",
           version: version,
           format: "wheel",
@@ -86,9 +86,9 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm $OUTPATH/nvvm
 `),
       doCheck: true,
       pythonImportsCheck: nix.thunk(() => ["jax_plugins"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, cudaLibPath: cudaLibPath })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, cudaLibPath: cudaLibPath })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "JAX XLA PJRT Plugin for NVIDIA GPUs",
         homepage: "https://github.com/jax-ml/jax/tree/main/jax_plugins/cuda",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
@@ -100,9 +100,9 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm $OUTPATH/nvvm
         })()),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), platforms)),
         problems: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cudaPackages, "cudaMajorVersion"), "13")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "unsupported-cuda-version": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               message: nix.thunk(() => nix.str`Incompatible cudaPackages version.
   - Expected: 13
   - Got: ${nix.sel(cudaPackages, "cudaMajorVersion")}
@@ -110,9 +110,9 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm $OUTPATH/nvvm
               kind: "broken",
             })),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cudaPackages, "cudnn", "version")), "10.0")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "unsupported-cudnn-version": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               message: nix.thunk(() => nix.str`cudaPackages.cudnn is too new (${nix.sel(cudaPackages, "cudnn", "version")}).
 
 See CUDA compatibility matrix

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const watchdog = nix.arg($, "watchdog");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nbdev",
       version: "3.3.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-D5je848qb6oYy60LwZGAbJAmt1GMiBSnXYsPPquWfaE=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nbdev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/AnswerDotAI/nbdev",
         description: "Create delightful software with Jupyter Notebooks",
         changelog: nix.thunk(() => nix.str`https://github.com/AnswerDotAI/nbdev/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

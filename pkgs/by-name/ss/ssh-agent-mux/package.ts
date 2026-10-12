@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssh-agent-mux",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "overhacked",
           repo: "ssh-agent-mux",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-u5kGYCYDvEhSuGOLnhdt9IpRwzllXbSJDwY1XzpHBCc=",
       nativeCheckInputs: nix.thunk(() => [openssh]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A proxy that multiplexes SSH agent requests to multiple upstream agents",
         homepage: "https://github.com/overhacked/ssh-agent-mux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

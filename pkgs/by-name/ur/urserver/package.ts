@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const sources = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.unifiedremote.com/static/builds/server/linux-x64/${nix.builtins.elemAt(nix.thunk(() => nix.builtins.splitVersion(nix.thunk(() => nix.sel(finalAttrs, "version")))), 3n)}/urserver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4wA2VPb5QN30TWa72pUVTYfvsxlGTO8Vngh7wDHXhDE=",
         })),
         "aarch64-linux": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.unifiedremote.com/static/builds/server/linux-arm64/${nix.builtins.elemAt(nix.thunk(() => nix.builtins.splitVersion(nix.thunk(() => nix.sel(finalAttrs, "version")))), 3n)}/urserver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GmYekCGb64GdFdABEJl9CgqycnsBX95W9/b0xZJntEs=",
         })),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "urserver",
         version: "3.14.0.2574",
         src: nix.thunk(() => (() => {
           const platformSource = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
           return nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.attr(platformSource, "url")),
               hash: nix.thunk(() => nix.attr(platformSource, "hash")),
             })));
@@ -59,7 +59,7 @@ cp -r manager $out/bin/manager
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         doInstallCheck: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://www.unifiedremote.com/",
           description: "One-and-only remote for your computer",
           sourceProvenance: nix.thunk(() => (() => {

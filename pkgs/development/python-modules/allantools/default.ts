@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.06";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aewallin",
           repo: "allantools",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["allantools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allan deviation and related time & frequency statistics library in Python",
         homepage: "https://github.com/aewallin/allantools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "csharprepl",
       nugetName: "CSharpRepl",
       version: "0.6.7",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
       nugetHash: "sha256-a0CiU3D6RZp1FF459NIUUry5TFRDgm4FRhqJZNAGYWs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "C# REPL with syntax highlighting",
         homepage: "https://fuqua.io/CSharpRepl",
         changelog: "https://github.com/waf/CSharpRepl/blob/main/CHANGELOG.md",

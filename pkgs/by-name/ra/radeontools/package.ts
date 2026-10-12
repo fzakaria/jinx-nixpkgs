@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const pname = "radeontool";
       const version = "1.6.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://people.freedesktop.org/~airlied/radeontool/radeontool-${version}.tar.gz`),
           sha256: "0mjk9wr9rsb17yy92j6yi16hfpa6v5r1dbyiy60zp4r125wr63za",
         }))));
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config]);
       const buildInputs = nix.thunk(() => [libpciaccess]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lowlevel tools to tweak register and dump state on radeon GPUs",
         homepage: "https://airlied.livejournal.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

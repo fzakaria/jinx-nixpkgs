@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kontron",
           repo: "python-ipmi",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyipmi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python IPMI Library",
         homepage: "https://github.com/kontron/python-ipmi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ipmitool.py",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

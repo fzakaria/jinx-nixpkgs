@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-generate",
       version: "0.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cargo-generate",
           repo: "cargo-generate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         "--skip=git_over_ssh::it_should_use_a_ssh_key_provided_by_identity_argument",
         "--skip=hooks_and_rhai::it_fails_when_a_system_command_returns_non_zero_exit_code",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=utils::tests::should_canonicalize"])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to generate a new Rust project by leveraging a pre-existing git repository as a template",
         mainProgram: "cargo-generate",
         homepage: "https://github.com/cargo-generate/cargo-generate",

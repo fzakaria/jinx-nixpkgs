@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Project-MONAI",
           repo: "MONAI",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [ninja, which]);
       const buildInputs = nix.thunk(() => [pybind11]);
       const dependencies = nix.thunk(() => [numpy, packaging, torch]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, BUILD_MONAI: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, BUILD_MONAI: 1n }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => [
         "monai",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "monai.visualize",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pytorch framework (based on Ignite) for deep learning in medical imaging",
         homepage: "https://github.com/Project-MONAI/MONAI",
         changelog: nix.thunk(() => nix.str`https://github.com/Project-MONAI/MONAI/releases/tag/${version}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

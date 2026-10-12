@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const datadir = "\"${XDG_DATA_HOME:-$HOME/.local/share}\"/wipeout-rewrite";
   const datadirCheck = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "wipeout-rewrite-check-datadir",
       text: nix.thunk(() => nix.str`datadir=${datadir}
 
@@ -39,11 +39,11 @@ echo "[Wrapper] Check https://github.com/phoboslab/wipeout-rewrite#running for t
     }))));
   const gameControllerDbPath = nix.thunk(() => nix.str`${sdl_gamecontrollerdb}/share/gamecontrollerdb.txt`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wipeout-rewrite",
       version: "0-unstable-2026-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "phoboslab",
           repo: "wipeout-rewrite",
           rev: "d48f01c8f00e7f4820a9c2ead0dedd4fb33427d3",
@@ -64,7 +64,7 @@ substituteInPlace src/platform_sdl.c \\
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [glew, SDL2]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-DPATH_ASSETS=" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DPATH_ASSETS=" })),
       installPhase: nix.thunk(() => nix.add("runHook preInstall\n\ninstall -Dm755 wipegame $out/bin/wipegame\n", nix.str`wrapProgram $out/bin/wipegame \\
   --run '${nix.app(nix.sel(lib, "getExe"), datadirCheck)}' \\
   --run 'cd ${datadir}'
@@ -72,11 +72,11 @@ substituteInPlace src/platform_sdl.c \\
 runHook postInstall
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "wipegame",
         description: "Re-implementation of the 1995 PSX game wipEout",
         homepage: "https://github.com/phoboslab/wipeout-rewrite",

@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
     ])));
   const snakeCaseName = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), name));
   const langIdentOverrides = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     tree_sitter_org_nvim: "tree_sitter_org",
     tree_sitter_go_template_helm: "tree_sitter_helm",
   }));
   const langIdent = nix.thunk(() => nix.selOr(langIdentOverrides, () => nix.force(snakeCaseName), nix.key(nix.force(snakeCaseName))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: name,
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${name}-source`),
           paths: nix.thunk(() => [
             nix.thunk(() => nix.app(writeTextDir, nix.thunk(() => nix.str`${snakeCaseName}/__init__.py`), nix.thunk(() => nix.str`# AUTO-GENERATED DO NOT EDIT
@@ -188,7 +188,7 @@ rm -r ${snakeCaseName}
       nativeCheckInputs: nix.thunk(() => [tree_sitter, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => [snakeCaseName]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`Python bindings for ${name}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

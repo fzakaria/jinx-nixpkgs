@@ -28,30 +28,30 @@ export default nix.lambda((args) => (() => {
   const discord_development = nix.arg($, "discord-development");
   const variants = nix.thunk(() => (() => {
     const x86_64_linux = nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       discord: nix.thunk(() => (() => {
         const branch = "stable";
         const desktopName = "Discord";
         const binaryName = desktopName;
         const self = discord;
-        return { __proto__: pos$1, branch, binaryName, desktopName, self };
+        return { [nix.POS]: pos$1, branch, binaryName, desktopName, self };
       })()),
       "discord-ptb": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         branch: "ptb",
         binaryName: "DiscordPTB",
         desktopName: "Discord PTB",
         self: discord_ptb,
       })),
       "discord-canary": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         branch: "canary",
         binaryName: "DiscordCanary",
         desktopName: "Discord Canary",
         self: discord_canary,
       })),
       "discord-development": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         branch: "development",
         binaryName: "DiscordDevelopment",
         desktopName: "Discord Development",
@@ -59,46 +59,46 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     const aarch64_darwin = nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       discord: nix.thunk(() => (() => {
         const branch = "stable";
         const desktopName = "Discord";
         const binaryName = desktopName;
         const self = discord;
-        return { __proto__: pos$6, branch, binaryName, desktopName, self };
+        return { [nix.POS]: pos$6, branch, binaryName, desktopName, self };
       })()),
       "discord-ptb": nix.thunk(() => (() => {
         const branch = "ptb";
         const desktopName = "Discord PTB";
         const binaryName = desktopName;
         const self = discord_ptb;
-        return { __proto__: pos$7, branch, binaryName, desktopName, self };
+        return { [nix.POS]: pos$7, branch, binaryName, desktopName, self };
       })()),
       "discord-canary": nix.thunk(() => (() => {
         const branch = "canary";
         const desktopName = "Discord Canary";
         const binaryName = desktopName;
         const self = discord_canary;
-        return { __proto__: pos$8, branch, binaryName, desktopName, self };
+        return { [nix.POS]: pos$8, branch, binaryName, desktopName, self };
       })()),
       "discord-development": nix.thunk(() => (() => {
         const branch = "development";
         const desktopName = "Discord Development";
         const binaryName = desktopName;
         const self = discord_development;
-        return { __proto__: pos$9, branch, binaryName, desktopName, self };
+        return { [nix.POS]: pos$9, branch, binaryName, desktopName, self };
       })()),
     }));
     const default$ = x86_64_linux;
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "x86_64-linux": x86_64_linux,
       "aarch64-darwin": aarch64_darwin,
       default: default$,
     };
   })());
   const meta = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     description: "All-in-one cross-platform voice and text chat for gamers",
     downloadPage: "https://discordapp.com/download",
     homepage: "https://discordapp.com/",
@@ -127,10 +127,10 @@ export default nix.lambda((args) => (() => {
       const platformName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
       const source = nix.thunk(() => nix.sel(sources, nix.key(nix.str`${platformName}-${nix.sel(args_1, "branch")}`)));
       return nix.update(args_1, {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         source: source,
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           mainProgram: nix.thunk(() => nix.sel(args_1, "binaryName")),
         })),
       });

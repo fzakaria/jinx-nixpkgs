@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marcusolsson-csv-datasource",
       version: "1.0.1",
       zipHash: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "sha256-J9sk/ypwNo7rHRumJr/PV55PN+kYGC7g02yfBTO9csU=",
         "aarch64-linux": "sha256-FitFHq3P7MDaw0aAosGodfVddkmVGw3Yc8Veno5eY1s=",
         "aarch64-darwin": "sha256-YRFN3lca8r1ZllIIc+6GsNt5Og5R4UVFGvoujHPK3P8=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Load CSV data into Grafana, expanding your capabilities to visualize and analyze data stored in CSV (Comma-Separated Values) format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

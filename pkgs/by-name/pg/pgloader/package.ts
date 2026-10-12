@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pgloader",
       version: "3.6.9",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/dimitri/pgloader/releases/download/v3.6.9/pgloader-bundle-3.6.9.tgz",
             sha256: "sha256-pdCcRmoJnrfVnkhbT0WqLrRbCtOEmRgGRsXK+3uByeA=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "dimitri",
             repo: "pgloader",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [git, makeWrapper, installShellFiles]),
       buildInputs: nix.thunk(() => [sbcl_2_4_6, cacert, sqlite, sphinx, freetds, libzip, curl, openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [sqlite, libzip, curl, git, openssl, freetds]))),
       })),
       buildPhase: nix.thunk(() => nix.str`export PATH=$PATH:$out/bin
@@ -70,7 +70,7 @@ mkdir -p $out/bin $out/man/man1
 installManPage source/docs/_build/man/*.1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pgloader.io/",
         description: "Loads data into PostgreSQL and allows you to implement Continuous Migration from your current database to PostgreSQL",
         mainProgram: "pgloader",

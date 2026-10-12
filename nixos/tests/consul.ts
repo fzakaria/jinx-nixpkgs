@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
   const retry_interval = "1s";
   const raft_multiplier = 1n;
   const defaultExtraConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     retry_interval: retry_interval,
-    performance: nix.thunk(() => ({ __proto__: pos$1, raft_multiplier: raft_multiplier })),
+    performance: nix.thunk(() => ({ [nix.POS]: pos$1, raft_multiplier: raft_multiplier })),
   }));
   const allConsensusServerHosts = nix.thunk(() => ["192.168.1.1", "192.168.1.2", "192.168.1.3"]);
   const allConsensusClientHosts = nix.thunk(() => ["192.168.2.1", "192.168.2.2"]);
   const firewallSettings = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     allowedTCPPorts: nix.thunk(() => [8301n, 8302n, 8600n, 8500n, 8300n]),
     allowedUDPPorts: nix.thunk(() => [8301n, 8302n, 8600n]),
   }));
@@ -55,33 +55,33 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const ip = nix.thunk(() => nix.builtins.elemAt(allConsensusClientHosts, index));
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "consul"))]),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         interfaces: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           eth1: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ipv4: nix.thunk(() => ({
-              __proto__: pos$6,
-              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, address: ip, prefixLength: 16n }))]))),
+              [nix.POS]: pos$6,
+              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, address: ip, prefixLength: 16n }))]))),
             })),
           })),
         })),
         firewall: firewallSettings,
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         consul: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: true,
           webUi: webUi,
           extraConfig: nix.thunk(() => nix.update(defaultExtraConfig, {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             server: false,
             retry_join: allConsensusServerHosts,
             bind_addr: ip,
@@ -97,34 +97,34 @@ export default nix.lambda((args) => (() => {
     const thisConsensusServerHost = nix.thunk(() => nix.builtins.elemAt(allConsensusServerHosts, index));
     const ip = thisConsensusServerHost;
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       networking: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         interfaces: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           eth1: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ipv4: nix.thunk(() => ({
-              __proto__: pos$15,
-              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$14, address: ip, prefixLength: 16n }))]))),
+              [nix.POS]: pos$15,
+              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$14, address: ip, prefixLength: 16n }))]))),
             })),
           })),
         })),
         firewall: firewallSettings,
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         consul: nix.thunk(() => (() => {
           nix.assert_(nix.builtins.elem(thisConsensusServerHost, allConsensusServerHosts), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/consul.nix:89:9");
           return {
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: true,
             webUi: webUi,
             extraConfig: nix.thunk(() => nix.update(defaultExtraConfig, {
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               server: true,
               bootstrap_expect: numConsensusServers,
-              autopilot: nix.thunk(() => ({ __proto__: pos$19, min_quorum: numConsensusServers })),
+              autopilot: nix.thunk(() => ({ [nix.POS]: pos$19, min_quorum: numConsensusServers })),
               retry_join: nix.thunk(() => (nix.asBool(nix.eq(numConsensusServers, 1n)) ? nix.force(allConsensusServerHosts) : nix.builtins.filter((h) => !nix.eq(h, thisConsensusServerHost), allConsensusServerHosts))),
               bind_addr: ip,
             })),
@@ -134,11 +134,11 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "consul",
-    node: nix.thunk(() => ({ __proto__: pos$24, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$24, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       server1: nix.thunk(() => nix.app(server, 0n)),
       server2: nix.thunk(() => nix.app(server, 1n)),
       server3: nix.thunk(() => nix.app(server, 2n)),

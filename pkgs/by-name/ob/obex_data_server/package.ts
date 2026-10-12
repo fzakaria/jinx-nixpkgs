@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openobex = nix.arg($, "openobex");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obex-data-server",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://tadas.dailyda.com/software/obex-data-server-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kq940wqs9j8qjnl58d6l3zhx0jaszci356xprx23l6nvdfld6dk",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 export PKG_CONFIG_PATH="${nix.sel(dbus, "dev")}/lib/pkgconfig:$PKG_CONFIG_PATH"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       })),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-7sRaTzXQPdtYcAGZKSZGw0szS7rThaIWefx6jRgc0nI=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["prosemirror"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of core ProseMirror modules for collaborative editing",
         homepage: "https://pypi.org/project/prosemirror",
         changelog: nix.thunk(() => nix.str`https://github.com/fellowapp/prosemirror-py/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

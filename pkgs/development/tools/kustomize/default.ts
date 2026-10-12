@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const kustomize = nix.arg($, "kustomize");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kustomize",
       version: "5.8.2",
       ldflags: nix.thunk(() => (() => {
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "kustomize",
           rev: nix.thunk(() => nix.str`kustomize/v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kustomize \\\n  --bash <($out/bin/kustomize completion bash) \\\n  --fish <($out/bin/kustomize completion fish) \\\n  --zsh <($out/bin/kustomize completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           versionCheck: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} version`),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               package: kustomize,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Customization of kubernetes YAML configurations",
         mainProgram: "kustomize",
         longDescription: "kustomize lets you customize raw, template-free YAML files for\nmultiple purposes, leaving the original YAML untouched and usable\nas is.\n",

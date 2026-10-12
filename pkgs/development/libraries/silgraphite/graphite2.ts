@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "1.3.15",
       pname: "graphite2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`https://github.com/silnrsi/graphite/releases/download/${nix.lookup(w, "version")}/${nix.lookup(w, "pname")}-${nix.lookup(w, "version")}.tgz`;
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "fonttools"))])),
         cmake,
       ]),
-      buildInputs: nix.thunk(() => nix.concat([freetype], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "compiler-rt", "override"), nix.thunk(() => ({ __proto__: pos$2, doFakeLibgcc: true }))))))),
+      buildInputs: nix.thunk(() => nix.concat([freetype], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "compiler-rt", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, doFakeLibgcc: true }))))))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./macosx.patch")]))),
       postPatch: nix.thunk(() => nix.str`# disable broken 'nametabletest' test, fails on gcc-13:
 #   https://github.com/silnrsi/graphite/pull/74
@@ -60,17 +60,17 @@ substituteInPlace CMakeLists.txt \\
       postConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), static$, "sed -e '/freetype freetype.c/d' -i ../tests/examples/CMakeLists.txt\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Advanced font engine",
         homepage: "https://graphite.sil.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

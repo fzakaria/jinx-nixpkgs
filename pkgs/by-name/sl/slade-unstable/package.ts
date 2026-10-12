@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const lua = lua5_5;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "slade",
       version: "3.2.12-unstable-2026-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sirjuddington",
           repo: "SLADE",
           rev: "351fd983fa986423c1825c87128691c27e0817aa",
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DwxWidgets_LIBRARIES=${wxwidgets_3_2}/lib`),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CL_WX_CONFIG", nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), wxwidgets_3_2)), "wx-config")))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-narrowing" })),
       preFixup: "gappsWrapperArgs+=(\n  --prefix GDK_BACKEND : x11\n)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://github.com/sirjuddington/SLADE.git" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://github.com/sirjuddington/SLADE.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Doom editor",
         homepage: "http://slade.mancubus.net/",
         mainProgram: "slade",

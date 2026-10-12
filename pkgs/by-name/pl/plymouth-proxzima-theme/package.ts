@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plymouth-proxzima-theme",
       version: "0-unstable-2023-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PROxZIMA",
           repo: "proxzima-plymouth",
           rev: "b6e335a631e057942700de5c523198a5b8061d9c",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/plymouth/themes/proxzima\ncp proxzima/* $out/share/plymouth/themes/proxzima\nsubstituteInPlace $out/share/plymouth/themes/proxzima/proxzima.plymouth \\\n  --replace-fail \"/usr/\" \"$out/\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Techno Plymouth theme with crazy animation",
         homepage: "https://github.com/PROxZIMA/proxzima-plymouth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

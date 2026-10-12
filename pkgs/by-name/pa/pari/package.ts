@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pari";
       const version = "2.17.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://pari.math.u-bordeaux.fr/pub/pari/unix/${pname}-${version}.tar.gz`),
             nix.thunk(() => nix.str`https://pari.math.u-bordeaux.fr/pub/pari/OLD/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.gz`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "export LD=$CC\n";
       const makeFlags = nix.thunk(() => ["all"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://pari.math.u-bordeaux.fr",
         description: "Computer algebra system for high-performance number theory computations",
         longDescription: "PARI/GP is a widely used computer algebra system designed for fast\ncomputations in number theory (factorizations, algebraic number theory,\nelliptic curves...), but also contains a large number of other useful\nfunctions to compute with mathematical entities such as matrices,\npolynomials, power series, algebraic numbers etc., and a lot of\ntranscendental functions. PARI is also available as a C library to allow\nfor faster computations.\n\nOriginally developed by Henri Cohen and his co-workers (Université\nBordeaux I, France), PARI is now under the GPL and maintained by Karim\nBelabas with the help of many volunteer contributors.\n\n- PARI is a C library, allowing fast computations.\n- gp is an easy-to-use interactive shell giving access to the PARI\n  functions.\n- GP is the name of gp's scripting language.\n- gp2c, the GP-to-C compiler, combines the best of both worlds by\n  compiling GP scripts to the C language and transparently loading the\n  resulting functions into gp. (gp2c-compiled scripts will typically run\n  3 or 4 times faster.) gp2c currently only understands a subset of the\n  GP language.\n",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gp",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

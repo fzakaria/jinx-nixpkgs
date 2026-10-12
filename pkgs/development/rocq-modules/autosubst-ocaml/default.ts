@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "autosubst-ocaml",
       owner: "uds-psl",
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "1.1+9.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-fCQjmF+0ik2QdKog61VfIv5ERmw+AJO8y5+CWmDGGk0=",
         })),
         "1.1+8.20": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-S3uKkwbGFsvauP9lKc3UsdszHahbZQhlOOK3fCBXlSE=",
         })),
         "1.1+8.19": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-AGbhw/6lg4GpDE6hZBhau9DLW7HVXa0UzGvJfSV8oHE=",
         })),
       })),
@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "9.0")),
               out: "1.1+9.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")),
               out: "1.1+8.20",
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.19")),
               out: "1.1+8.19",
             })),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "dune build\n",
       installPhase: "dune install --prefix $out --libdir $OCAMLFIND_DESTDIR\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "OCaml reimplementation of the Autosubst 2 code generator",
         homepage: "https://github.com/uds-psl/autosubst-ocaml",
         mainProgram: "autosubst",

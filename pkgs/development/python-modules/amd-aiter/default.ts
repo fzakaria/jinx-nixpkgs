@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
       ];
     })(), [pybind11]))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "amd-aiter",
       version: "0.1.11.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "aiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,7 +94,7 @@ substituteInPlace setup.py \\
     'if False:'
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUILD_TARGET: "rocm",
         PREBUILD_KERNELS: "0",
         ROCM_PATH: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}`),
@@ -105,17 +105,17 @@ substituteInPlace setup.py \\
       dependencies: nix.thunk(() => [einops, ninja, numpy, packaging, pandas, psutil, pybind11, torch]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(torch, "rocmSupport")), nix.thunk(() => (() => {
             const mkJitTest = (name) => (moduleName) => nix.app(runCommand, nix.thunk(() => nix.str`amd-aiter-jit-${name}`), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [amd_aiter])),
                   nix.thunk(() => nix.sel(rocmPackages, "clr")),
                   writableTmpDirAsHomeHook,
                 ]),
                 env: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   CXX: "amdclang++",
                   GPU_ARCHS: "gfx942",
                   PYTORCH_ROCM_ARCH: "gfx942",
@@ -136,14 +136,14 @@ print('JIT compile of ${moduleName} finished')
 touch $out
 `));
             return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "jit-module-opus-sort": nix.thunk(() => nix.app(mkJitTest, "opus-sort", "module_moe_sorting_opus")),
               "jit-module-mhc": nix.thunk(() => nix.app(mkJitTest, "mhc", "module_mhc")),
             };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "AI Tensor Engine for ROCm",
         homepage: "https://github.com/ROCm/aiter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

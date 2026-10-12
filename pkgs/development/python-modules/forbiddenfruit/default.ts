@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const pname = "forbiddenfruit";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clarete",
           repo: "forbiddenfruit",
           tag: version,
           hash: "sha256-yHIZsVn2UVmWeBNIzWDE6AOwAXZilPqXo+bVtXqGkJk=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, FFRUIT_EXTENSION: "true" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, FFRUIT_EXTENSION: "true" }));
       const pythonImportsCheck = nix.thunk(() => ["forbiddenfruit"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Patch python built-in objects",
         homepage: "https://github.com/clarete/forbiddenfruit",
         changelog: nix.thunk(() => nix.str`https://github.com/clarete/forbiddenfruit/releases/tag/${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         pyproject,

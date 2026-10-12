@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rkflashtool",
       version: "6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/rkflashtool/rkflashtool-${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           hash: "sha256-K8DsWAyqeQsK7mNDiKkRCkKbr0uT/yxPzj2atYP1Ezk=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\ncp rkunpack rkcrc rkflashtool rkparameters rkparametersblock rkunsign rkmisc $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/rkflashtool/",
         description: "Tools for flashing Rockchip devices",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableFrontend = nix.argOr($, "enableFrontend", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(enableMathematica) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), "Mathematica scalar backend does not yet work on macOS."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/cadabra2/package.nix:39:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cadabra2",
       version: "2.5.14-p1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kpeeters",
           repo: "cadabra2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "microtex-fix-recent-fontconfig-build.patch",
             url: "https://github.com/kpeeters/MicroTeX/commit/7944eb496dec1b7ff8af4c13e0cfee279eea30b8.patch?full_index=1",
             extraPrefix: "submodules/microtex/",
@@ -107,11 +107,11 @@ gappsWrapperArgs+=("\${wrapper_args[@]}")
       versionCheckProgramArg: "--version",
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Field-theory motivated approach to computer algebra",
         changelog: nix.thunk(() => nix.str`https://github.com/kpeeters/cadabra2/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/kpeeters/cadabra2",

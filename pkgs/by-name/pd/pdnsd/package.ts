@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdnsd",
       version: "1.2.9a-par",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://members.home.nl/p.a.rombouts/pdnsd/releases/pdnsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0yragv5zk77a1hfkpnsh17vvsw8b14d6mzfng4bb7i58rb83an5v",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-build-linux-headers-gte-5.13.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/net-dns/pdnsd/files/pdnsd-1.2.9a-linux-5.13_build_fix.patch?id=7ce35657f269c3b7016e8940ad36e59cf06e12a4",
             hash: "sha256-Sh/0ZyiQpDvFZOWE9OCQ9+ocXurjzJvrE4WNWaGwAwk=",
           })))))),
       postPatch: "sed -i 's/.*(cachedir).*/:/' Makefile.in\n",
       configureFlags: nix.thunk(() => ["--enable-ipv6"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CPPFLAGS: "-D__APPLE_USE_RFC_3542" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CPPFLAGS: "-D__APPLE_USE_RFC_3542" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Permanent DNS caching",
         homepage: "http://members.home.nl/p.a.rombouts/pdnsd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

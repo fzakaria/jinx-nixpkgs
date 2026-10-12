@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
     libx11,
     libxcb,
   ]);
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: clangStdenv })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), nix.thunk(() => (() => {
       const pname = "BoilR";
       const version = "1.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "PhilipK",
           repo: "BoilR",
           tag: nix.thunk(() => nix.str`v.${version}`),
@@ -60,7 +60,7 @@ install -Dpm 0644 resources/io.github.philipk.boilr.png -t $out/share/icons/hico
 `);
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatically adds (almost) all your games to your Steam library (including image art)",
         homepage: "https://github.com/PhilipK/BoilR",
         license: nix.thunk(() => (() => {
@@ -78,7 +78,7 @@ install -Dpm 0644 resources/io.github.philipk.boilr.png -t $out/share/icons/hico
         mainProgram: "boilr",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

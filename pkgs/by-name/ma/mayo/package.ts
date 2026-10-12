@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const withAssimp = nix.argOr($, "withAssimp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.9.0",
       pname: "mayo",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fougue",
           repo: "mayo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")), copyDesktopItems, cmake]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "mayo",
             exec: "mayo",
             desktopName: "Mayo",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm755 mayo $out/bin/mayo\ninstall -Dm755 mayo-conv $out/bin/mayo-conv\n\npushd ..\ninstall -Dm444 images/appicon.svg \"$out/share/icons/hicolor/scalable/apps/mayo.svg\"\ninstall -Dm444 images/appicon_256.png \"$out/share/icons/hicolor/256x256/apps/mayo.png\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install -Dm444 images/appicons.icns \"$out/Applications/Mayo.app/Contents/Resources/mayo.icns\"\n")), "popd\n\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3D CAD viewer and converter based on Qt + OpenCascade",
         mainProgram: "mayo",
         changelog: nix.thunk(() => nix.str`https://github.com/fougue/mayo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

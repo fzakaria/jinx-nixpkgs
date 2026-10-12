@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fftw = nix.arg($, "fftw");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libkeyfinder",
       version: "2.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mixxxdj",
           repo: "libkeyfinder",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [catch2_3]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Musical key detection for digital audio (C++ library)",
         homepage: "https://mixxxdj.github.io/libkeyfinder/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

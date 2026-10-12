@@ -43,63 +43,63 @@ export default nix.lambda((args) => (() => {
     const types = nix.thunk(() => nix.attr(lib, "types"));
     const cfg = nix.thunk(() => nix.sel(config, "snid"));
     return {
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       _class: "service",
       options: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         snid: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Package to use for snid.",
               defaultText: "The snid package that provided this module.",
               type: nix.thunk(() => nix.sel(types, "package")),
             })))),
           listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Addresses to listen on, in go-listener syntax.\n\nExamples: `\"tcp:443\"`, `\"tcp:0.0.0.0:443\"`, `\"tcp:192.0.2.4:443\"`.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               example: nix.thunk(() => ["tcp:0.0.0.0:443"]),
             })))),
           mode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Proxy mode. One of `nat46`, `tcp`, or `unix`.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["nat46", "tcp", "unix"]))),
             })))),
           defaultHostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Hostname to use if a client does not include the SNI extension.\nIf null, SNI-less connections will be terminated with a TLS alert.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
             })))),
           nat46Prefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "IPv6 prefix for the source address when connecting to the backend\nin NAT46 mode. The client's IPv4 address is placed in the lower 4\nbytes.\n\nNote: this prefix must be routed to the local host, e.g.\n```\nip route add local 64:ff9b:1::/96 dev lo\n```\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "64:ff9b:1::",
             })))),
           backendCidrs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Subnets to which connections may be forwarded. Connections to\naddresses outside these subnets are rejected. Used in `nat46` and\n`tcp` modes.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["2001:db8::/64", "192.0.2.0/24"]),
             })))),
           backendPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Port number to connect to on the backend in TCP mode. If null,\nsnid uses the same port as the inbound connection.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "port")))),
               default: null,
             })))),
           unixDirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Path to the directory containing UNIX domain sockets, used in\n`unix` mode.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
             })))),
           proxyProto: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Use PROXY protocol v2 to convey the client IP address to the\nbackend. Applicable in `tcp` and `unix` modes.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
@@ -107,41 +107,41 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "mode"), "nat46")) || nix.asBool(!nix.eq(nix.sel(cfg, "nat46Prefix"), null)))),
             message: "snid: `nat46Prefix` must be set when `mode` is `nat46`.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "mode"), "nat46")) || nix.asBool(!nix.eq(nix.sel(cfg, "backendCidrs"), [])))),
             message: "snid: `backendCidrs` must be set when `mode` is `nat46`.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "mode"), "tcp")) || nix.asBool(!nix.eq(nix.sel(cfg, "backendCidrs"), [])))),
             message: "snid: `backendCidrs` must be set when `mode` is `tcp`.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "mode"), "unix")) || nix.asBool(!nix.eq(nix.sel(cfg, "unixDirectory"), null)))),
             message: "snid: `unixDirectory` must be set when `mode` is `unix`.",
           })),
         ]),
         process: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           argv: nix.thunk(() => [nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package"))))]),
           flagFormat: (flag) => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             option: nix.thunk(() => nix.str`-${flag}`),
             explicitBool: false,
             sep: null,
           }),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 mode: nix.thunk(() => nix.sel(cfg, "mode")),
                 "default-hostname": nix.thunk(() => nix.sel(cfg, "defaultHostname")),
                 "nat46-prefix": nix.thunk(() => nix.sel(cfg, "nat46Prefix")),
@@ -149,21 +149,21 @@ export default nix.lambda((args) => (() => {
                 "unix-directory": nix.thunk(() => nix.sel(cfg, "unixDirectory")),
                 "proxy-proto": nix.thunk(() => nix.sel(cfg, "proxyProto")),
               })),
-              nix.thunk(() => nix.builtins.map((v) => ({ __proto__: pos$18, listen: v }), nix.thunk(() => nix.sel(cfg, "listen")))),
-              nix.thunk(() => nix.builtins.map((v) => ({ __proto__: pos$19, "backend-cidr": v }), nix.thunk(() => nix.sel(cfg, "backendCidrs")))),
+              nix.thunk(() => nix.builtins.map((v) => ({ [nix.POS]: pos$18, listen: v }), nix.thunk(() => nix.sel(cfg, "listen")))),
+              nix.thunk(() => nix.builtins.map((v) => ({ [nix.POS]: pos$19, "backend-cidr": v }), nix.thunk(() => nix.sel(cfg, "backendCidrs")))),
             ]))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemd: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             service: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               after: nix.thunk(() => ["network.target"]),
               wants: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Restart: "on-failure",
                 DynamicUser: true,
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),

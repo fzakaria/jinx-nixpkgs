@@ -15,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "nixos-generate-config",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "basvandijk"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         system: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "nixos-generate-config": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             configuration: "# OVERRIDDEN\n{ config, pkgs, ... }: {\n  imports = [ ./hardware-configuration.nix ];\n$bootLoaderConfig\n$desktopConfiguration\n}\n",
             desktopConfiguration: nix.thunk(() => [
               "# DESKTOP\nservices.displayManager.gdm.enable = true;\nservices.desktopManager.gnome.enable = true;\n",
             ]),
           })),
         })),
-        nix: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
       })),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"nixos-generate-config\")\n\nmachine.succeed(\"nix-instantiate --parse /etc/nixos/configuration.nix /etc/nixos/hardware-configuration.nix\")\n\n# Test if the configuration really is overridden\nmachine.succeed(\"grep 'OVERRIDDEN' /etc/nixos/configuration.nix\")\n\n# Test if desktop configuration really is overridden\nmachine.succeed(\"grep 'DESKTOP' /etc/nixos/configuration.nix\")\n\n# Test of if the Perl variable $bootLoaderConfig is spliced correctly:\nmachine.succeed(\n    \"grep 'boot\\\\.loader\\\\.grub\\\\.enable = true;' /etc/nixos/configuration.nix\"\n)\n\n# Test if the Perl variable $desktopConfiguration is spliced correctly\nmachine.succeed(\n    \"grep 'services\\\\.desktopManager\\\\.gnome\\\\.enable = true;' /etc/nixos/configuration.nix\"\n)\n\nmachine.succeed(\"rm -rf /etc/nixos\")\nmachine.succeed(\"nixos-generate-config --flake\")\nmachine.succeed(\"nix-instantiate --parse /etc/nixos/flake.nix /etc/nixos/configuration.nix /etc/nixos/hardware-configuration.nix\")\n\nmachine.succeed(\"mv /etc/nixos /etc/nixos-with-flake-arg\")\nmachine.succeed(\"printf '[Defaults]\\nFlake = 1\\n' > /etc/nixos-generate-config.conf\")\nmachine.succeed(\"nixos-generate-config\")\nmachine.succeed(\"nix-instantiate --parse /etc/nixos/flake.nix /etc/nixos/configuration.nix /etc/nixos/hardware-configuration.nix\")\nmachine.succeed(\"diff -r /etc/nixos /etc/nixos-with-flake-arg\")\n",

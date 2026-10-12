@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       options: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         storePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -81,23 +81,23 @@ export default nix.lambda((args) => (() => {
             default: [],
             description: "The store paths to include in the partition.",
           })))),
-        stripNixStorePrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$2, default: "_mkMergedOptionModule", visible: false })))),
+        stripNixStorePrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, default: "_mkMergedOptionModule", visible: false })))),
         nixStorePrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
             default: "/nix/store",
             description: "The prefix to use for store paths. Defaults to `/nix/store`. This is\nuseful when you want to build a partition that only contains store\npaths and is mounted under `/nix/store` or if you want to create the\nstore paths below a parent path (e.g., `/@nix/nix/store`).\n",
           })))),
         contents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                           description: "Path of the source file.",
                         })))),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
             description: "The contents to end up in the filesystem image.",
           })))),
         repartConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -119,72 +119,72 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   ]))));
             })()),
-            example: nix.thunk(() => ({ __proto__: pos$8, Type: "home", SizeMinBytes: "512M", SizeMaxBytes: "2G" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$8, Type: "home", SizeMinBytes: "512M", SizeMaxBytes: "2G" })),
             description: "Specify the repart options for a partition as a structural setting.\nSee {manpage}`repart.d(5)`\nfor all available options.\n",
           })))),
       })),
-      config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(config_1, "stripNixStorePrefix"), true)), nix.thunk(() => ({ __proto__: pos$11, nixStorePrefix: "/" })))),
+      config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(config_1, "stripNixStorePrefix"), true)), nix.thunk(() => ({ [nix.POS]: pos$11, nixStorePrefix: "/" })))),
     };
   })(), formals$2);
   const mkfsOptionsToEnv = (opts) => nix.app(nix.sel(lib, "mapAttrs'"), (fsType) => (options_1) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: nix.thunk(() => nix.str`SYSTEMD_REPART_MKFS_OPTIONS_${nix.app(nix.sel(lib, "toUpper"), fsType)}`),
       value: nix.thunk(() => nix.builtins.concatStringsSep(" ", options_1)),
     }), opts);
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     imports: nix.thunk(() => [
       nix.path(here, "./repart-verity-store.nix"),
       nix.path(here, "./file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["image", "repart", "imageFileBasename"]),
           to: nix.thunk(() => ["image", "baseName"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["image", "repart", "imageFile"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       image: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         repart: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "systemd-repart boot image")),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "  Name of the image.\n\nIf this option is unset but config.system.image.id is set,\nconfig.system.image.id is used as the default value.\n",
             })))),
           version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(config, "system", "image", "version")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.system.image.version")),
               description: "Version of the image",
             })))),
           compression: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Image compression")),
             algorithm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["zstd", "xz", "zstd-seekable"]))),
                 default: "zstd",
                 description: "Compression algorithm",
               })))),
             level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 description: "Compression level. The available range depends on the used algorithm.\n",
               })))),
           })),
           seed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -193,13 +193,13 @@ export default nix.lambda((args) => (() => {
               description: "A UUID to use as a seed. You can set this to `random` to explicitly\nrandomize the partition UUIDs.\nSee {manpage}`systemd-repart(8)` for more information.\n",
             })))),
           split: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enables generation of split artifacts from partitions. If enabled, for\neach partition with SplitName= set, a separate output file containing\njust the contents of that partition is generated.\n",
             })))),
           sectorSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -209,19 +209,19 @@ export default nix.lambda((args) => (() => {
               description: "The sector size of the disk image produced by systemd-repart. This\nvalue must be a power of 2 between 512 and 4096.\n",
             })))),
           imageSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "^([0-9]+[KMGTP]?|auto)$")),
               default: "auto",
               example: "512G",
               description: "Size of the produced image in bytes with optional K, M, G, T suffix,\n        or 'auto' to determine the minimal size automatically",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "systemd-repart", nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: nix.thunk(() => ["buildPackages", "systemd"]),
               example: "pkgs.buildPackages.systemdMinimal.override { withCryptsetup = true; }",
             })))),
           partitions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), partitionOptions)));
@@ -231,7 +231,7 @@ export default nix.lambda((args) => (() => {
               description: "Specify partitions as a set of the names of the partitions with their\nconfiguration as the key.\n",
             })))),
           mkfsOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -241,21 +241,21 @@ export default nix.lambda((args) => (() => {
               description: "Specify extra options for created file systems. The specified options\nare converted to individual environment variables of the format\n`SYSTEMD_REPART_MKFS_OPTIONS_<FSTYPE>`.\n\nSee [upstream systemd documentation](https://github.com/systemd/systemd/blob/v255/docs/ENVIRONMENT.md?plain=1#L575-L577)\nfor information about the usage of these environment variables.\n\nThe example would produce the following environment variable:\n```\nSYSTEMD_REPART_MKFS_OPTIONS_VFAT=\"-S 512 -c\"\n```\n",
             })))),
           finalPartitions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               internal: true,
               readOnly: true,
               description: "Convenience option to access partitions with added closures.\n",
             })))),
           image: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               internal: true,
               readOnly: true,
               description: "The image built by this module. Used as the default for `system.build.image`.\n",
             })))),
           assertions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(options, "assertions", "type")),
               default: [],
               internal: true,
@@ -263,7 +263,7 @@ export default nix.lambda((args) => (() => {
               description: "Assertions only evaluated by the repart image, not by the system toplevel.\n",
             })))),
           warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(options, "warnings", "type")),
               default: [],
               internal: true,
@@ -274,41 +274,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         image: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           baseName: nix.thunk(() => (() => {
             const version = nix.thunk(() => nix.sel(config, "image", "repart", "version"));
             const versionInfix = nix.thunk(() => (nix.asBool(!nix.eq(version, null)) ? nix.str`_${version}` : ""));
             return nix.add(nix.sel(cfg, "name"), versionInfix);
           })()),
           extension: nix.thunk(() => (() => {
-            const compressionSuffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "compression", "enable")), nix.thunk(() => nix.sel({ __proto__: pos$35, zstd: ".zst", xz: ".xz", "zstd-seekable": ".zst" }, nix.key(nix.str`${nix.sel(cfg, "compression", "algorithm")}`)))));
+            const compressionSuffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "compression", "enable")), nix.thunk(() => nix.sel({ [nix.POS]: pos$35, zstd: ".zst", xz: ".xz", "zstd-seekable": ".zst" }, nix.key(nix.str`${nix.sel(cfg, "compression", "algorithm")}`)))));
             return nix.add("raw", compressionSuffix);
           })()),
           repart: nix.thunk(() => (() => {
-            const makeClosure = (paths) => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ __proto__: pos$36, rootPaths: paths })));
+            const makeClosure = (paths) => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$36, rootPaths: paths })));
             const addClosure = (_name) => (partitionConfig) => nix.update(partitionConfig, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.selOr(partitionConfig, () => [], "storePaths"), [])), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 closure: nix.thunk(() => nix.str`${nix.app(makeClosure, nix.thunk(() => nix.sel(partitionConfig, "storePaths")))}/store-paths`),
               }))));
             return {
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "system", "image", "id"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.sel(config, "system", "image", "id")))))),
               compression: nix.thunk(() => ({
-                __proto__: pos$39,
-                level: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.sel({ __proto__: pos$38, zstd: 3n, xz: 3n, "zstd-seekable": 3n }, nix.key(nix.str`${nix.sel(cfg, "compression", "algorithm")}`))))),
+                [nix.POS]: pos$39,
+                level: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.sel({ [nix.POS]: pos$38, zstd: 3n, xz: 3n, "zstd-seekable": 3n }, nix.key(nix.str`${nix.sel(cfg, "compression", "algorithm")}`))))),
               })),
               finalPartitions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), addClosure, nix.thunk(() => nix.sel(cfg, "partitions")))),
               image: nix.thunk(() => (() => {
                 const fileSystems = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (f) => !nix.eq(f, null), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_n) => (v) => nix.selOr(v, () => null, "repartConfig", "Format"), nix.thunk(() => nix.sel(cfg, "partitions"))))));
-                const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$40, listsAsDuplicateKeys: true }))));
-                const definitionsDirectory = nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "definitions"), "repart.d", format, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_n) => (v) => ({ __proto__: pos$41, Partition: nix.thunk(() => nix.sel(v, "repartConfig")) }), nix.thunk(() => nix.sel(cfg, "finalPartitions"))))));
+                const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$40, listsAsDuplicateKeys: true }))));
+                const definitionsDirectory = nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "definitions"), "repart.d", format, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_n) => (v) => ({ [nix.POS]: pos$41, Partition: nix.thunk(() => nix.sel(v, "repartConfig")) }), nix.thunk(() => nix.sel(cfg, "finalPartitions"))))));
                 const mkfsEnv = nix.thunk(() => nix.app(mkfsOptionsToEnv, nix.thunk(() => nix.sel(cfg, "mkfsOptions"))));
                 const val = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./repart-image.nix"), nix.thunk(() => (() => {
                     const from_1 = nix.thunk(() => nix.sel(config, "image"));
                     return {
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     systemd: nix.thunk(() => nix.sel(cfg, "package")),
                     baseName: nix.thunk(() => nix.attr(from_1, "baseName")),
                     name: nix.thunk(() => nix.attr(cfg, "name")),
@@ -330,7 +330,7 @@ export default nix.lambda((args) => (() => {
                   const repartConfig = nix.thunk(() => nix.attr(partitionConfig, "repartConfig"));
                   const labelLength = nix.thunk(() => nix.builtins.stringLength(nix.thunk(() => nix.sel(repartConfig, "Label"))));
                   return {
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     assertion: nix.thunk(() => (!nix.asBool(nix.has(repartConfig, "Label")) || nix.asBool(nix.ge(GPTMaxLabelLength, labelLength)))),
                     message: nix.thunk(() => nix.str`The partition label '${nix.sel(repartConfig, "Label")}'
 defined for '${fileName}' is ${nix.builtins.toString(labelLength)} characters long,
@@ -361,12 +361,12 @@ achieve the same effect as setting \`stripNixStorePrefix = true\`.
           })()),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$47,
-          build: nix.thunk(() => ({ __proto__: pos$46, image: nix.thunk(() => nix.sel(cfg, "image")) })),
+          [nix.POS]: pos$47,
+          build: nix.thunk(() => ({ [nix.POS]: pos$46, image: nix.thunk(() => nix.sel(cfg, "image")) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

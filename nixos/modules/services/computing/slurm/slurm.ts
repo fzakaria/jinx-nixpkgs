@@ -112,32 +112,32 @@ StorageUser=${nix.sel(cfg, "dbdserver", "storageUser")}
 ${nix.sel(cfg, "dbdserver", "extraConfig")}
 `)));
   const etcSlurm = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "etc-slurm",
       paths: nix.thunk(() => nix.concat([configFile, cgroupConfig, plugStackConfig, mpiConf], nix.sel(cfg, "extraConfigPaths"))),
     }))));
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       services: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         slurm: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           server: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable the slurm control daemon.\nNote that the standard authentication method is \"munge\".\nThe \"munge\" service needs to be provided with a password file in order for\nslurm to work properly (see `services.munge.password`).\n",
               })))),
             flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(lib, "types", "str")),
                       nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -146,7 +146,7 @@ ${nix.sel(cfg, "dbdserver", "extraConfig")}
                     ]))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   i: true,
                   systemd: true,
                   L: "/var/log/file with space.log",
@@ -156,24 +156,24 @@ ${nix.sel(cfg, "dbdserver", "extraConfig")}
               })))),
           })),
           dbdserver: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SlurmDBD service")),
             dbdHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.hostName")),
                 description: "Hostname of the machine where `slurmdbd`\nis running (i.e. name returned by `hostname -s`).\n",
               })))),
             storageUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(cfg, "user")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "user")}`))),
                 description: "Database user name.\n",
               })))),
             storagePassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -182,51 +182,51 @@ ${nix.sel(cfg, "dbdserver", "extraConfig")}
                 description: "Path to file with database password. The content of this will be used to\ncreate the password for the `StoragePass` option.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra configuration for {file}`slurmdbd.conf` See also:\n{manpage}`slurmdbd.conf(8)`.\n",
               })))),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "slurm client daemon")),
           })),
           rest: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "slurm REST daemon")),
             options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Extra command-line options to pass to slurmrestd.",
               })))),
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: nix.thunk(() => ({})),
                 description: "Environment variables to set for the slurmrestd daemon, see slurmrestd(8).",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       SLURM_JWT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "daemon",
                           description: "This variable must be set to use JWT token authentication.",
                         })))),
                       SLURMRESTD_LISTEN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: ":6820",
                           description: "Comma-delimited list of host:port pairs or unix sockets to listen on.",
                         })))),
                       SLURMRESTD_DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "info",
                           description: "Set debug level explicitly. Valid values are 0-9, or the same\nstring values as the debug options such as SlurmctldDebug in\nslurm.conf(5).\n",
@@ -236,27 +236,27 @@ ${nix.sel(cfg, "dbdserver", "extraConfig")}
               })))),
           })),
           enableStools: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to provide a {file}`slurm.conf` file.\nEnable this option if you do not run a slurm daemon on this host\n(i.e. `server.enable` and `client.enable` are `false`)\nbut you still want to run slurm commands from this host.\n",
             })))),
-          package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "slurm", nix.thunk(() => ({ __proto__: pos$22, example: "slurm-full" }))), {
-            __proto__: pos$24,
+          package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "slurm", nix.thunk(() => ({ [nix.POS]: pos$22, example: "slurm-full" }))), {
+            [nix.POS]: pos$24,
             default: nix.thunk(() => nix.app(nix.sel(pkgs, "slurm", "override"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 enableX11: nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableSrunX11"))),
               })))),
           })),
           controlMachine: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: null,
               description: "The short hostname of the machine where SLURM control functions are\nexecuted (i.e. the name returned by the command \"hostname -s\", use \"tux001\"\nrather than \"tux001.my.com\").\n",
             })))),
           controlAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(cfg, "controlMachine")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "controlMachine")}`))),
@@ -264,85 +264,85 @@ ${nix.sel(cfg, "dbdserver", "extraConfig")}
               description: "Name that ControlMachine should be referred to in establishing a\ncommunications path.\n",
             })))),
           clusterName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "default",
               example: "myCluster",
               description: "Necessary to distinguish accounting records in a multi-cluster environment.\n",
             })))),
           nodeName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"linux[1-32] CPUs=1 State=UNKNOWN\" ];")),
               description: "Name that SLURM uses to refer to a node (or base partition for BlueGene\nsystems). Typically this would be the string that \"/bin/hostname -s\"\nreturns. Note that now you have to write node's parameters after the name.\n",
             })))),
           partitionName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"debug Nodes=linux[1-32] Default=YES MaxTime=INFINITE State=UP\" ];")),
               description: "Name by which the partition may be referenced. Note that now you have\nto write the partition's parameters after the name.\n",
             })))),
           enableSrunX11: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If enabled srun will accept the option \"--x11\" to allow for X11 forwarding\nfrom within an interactive session or a batch job. This activates the\nslurm-spank-x11 module. Note that this option also enables\n{option}`services.openssh.forwardX11` on the client.\n\nThis option requires slurm to be compiled without native X11 support.\nThe default behavior is to re-compile the slurm package with native X11\nsupport disabled if this option is set to true.\n\nTo use the native X11 support add `PrologFlags=X11` in {option}`extraConfig`.\nNote that this method will only work RSA SSH host keys.\n",
             })))),
           procTrackType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "proctrack/linuxproc",
               description: "Plugin to be used for process tracking on a job step basis.\nThe slurmd daemon uses this mechanism to identify all processes\nwhich are children of processes it spawns for a user job step.\n",
             })))),
           stateSaveLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/spool/slurmctld",
               description: "Directory into which the Slurm controller, slurmctld, saves its state.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "Set this option when you want to run the slurmctld daemon\nas something else than the default slurm user \"slurm\".\nNote that the UID of this user needs to be the same\non all nodes.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra configuration options that will be added verbatim at\nthe end of the slurm configuration file.\n",
             })))),
           mpi: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             PmixCliTmpDirBase: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 default: "/tmp/pmix",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Base path for PMIx temporary files.\n",
               })))),
             extraMpiConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 description: "Extra configuration for that will be added to {file}`mpi.conf`.\n",
               })))),
           })),
           extraPlugstackConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra configuration that will be added to the end of {file}`plugstack.conf`.\n",
             })))),
           extraCgroupConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra configuration for {file}`cgroup.conf`. This file is\nused when `procTrackType=proctrack/cgroup`.\n",
             })))),
           extraConfigPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -351,7 +351,7 @@ ${nix.sel(cfg, "dbdserver", "extraConfig")}
               description: "Slurm expects config files for plugins in the same path\nas {file}`slurm.conf`. Add extra nix store\npaths that should be merged into same directory as\n{file}`slurm.conf`.\n",
             })))),
           etcSlurm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               internal: true,
               default: etcSlurm,
@@ -389,56 +389,56 @@ mkdir -p $out/share
 ln -s ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/share/man $out/share/man
 `)));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "enableStools")) || nix.asBool(nix.sel(cfg, "client", "enable")))) || nix.asBool(nix.sel(cfg, "server", "enable")))) || nix.asBool(nix.sel(cfg, "dbdserver", "enable")))) || nix.asBool(nix.sel(cfg, "rest", "enable")))), nix.thunk(() => ({
-          __proto__: pos$69,
-          environment: nix.thunk(() => ({ __proto__: pos$45, systemPackages: nix.thunk(() => [wrappedSlurm]) })),
+          [nix.POS]: pos$69,
+          environment: nix.thunk(() => ({ [nix.POS]: pos$45, systemPackages: nix.thunk(() => [wrappedSlurm]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             munge: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
             openssh: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               settings: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 X11Forwarding: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             users: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               slurm: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   name: defaultUser,
                   group: "slurm",
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "slurm")),
                 })))),
               slurmrestd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "rest", "enable")), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   name: "slurmrestd",
                   group: "slurmrestd",
                   isSystemUser: true,
                 })))),
             })),
             groups: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               slurm: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 gid: nix.thunk(() => nix.sel(config, "ids", "uids", "slurm")),
               })),
               slurmrestd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "rest", "enable")), nix.thunk(() => ({})))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             services: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               slurmd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   environment: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "nvidia", "datacenter", "enable")), "/run/opengl-driver/lib")),
                   })),
                   path: nix.thunk(() => (() => {
@@ -454,7 +454,7 @@ ln -s ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package"))
                   ]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     Type: "forking",
                     KillMode: "process",
                     ExecStart: nix.thunk(() => nix.str`${wrappedSlurm}/bin/slurmd`),
@@ -465,7 +465,7 @@ ln -s ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package"))
                   })),
                 })))),
               slurmctld: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   path: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return nix.concat([
@@ -478,12 +478,12 @@ ln -s ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package"))
                   after: nix.thunk(() => ["network.target", "munged.service"]),
                   requires: nix.thunk(() => ["munged.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     Type: "forking",
                     ExecStart: nix.thunk(() => (() => {
                       const isLong = (optionName) => nix.gt(nix.builtins.stringLength(optionName), 1n);
                       const flagFormat = (optionName) => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         option: nix.thunk(() => (nix.asBool(nix.app(isLong, optionName)) ? nix.str`--${optionName}` : nix.str`-${optionName}`)),
                         sep: null,
                         explicitBool: false,
@@ -501,7 +501,7 @@ chown -R ${nix.sel(cfg, "user")}:slurm ${nix.sel(cfg, "stateSaveLocation")}
               slurmdbd: nix.thunk(() => (() => {
                 const configPath = "$RUNTIME_DIRECTORY/slurmdbd.conf";
                 return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dbdserver", "enable")), nix.thunk(() => ({
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     path: nix.thunk(() => (() => {
                       const w = nix.withScope(pkgs, null);
                       return [
@@ -522,7 +522,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 exec ${nix.sel(cfg, "package")}/bin/slurmdbd -D
 `),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       RuntimeDirectory: "slurmdbd",
                       Type: "simple",
                       PIDFile: "/run/slurmdbd.pid",
@@ -531,7 +531,7 @@ exec ${nix.sel(cfg, "package")}/bin/slurmdbd -D
                   })));
               })()),
               slurmrestd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "rest", "enable")), nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   path: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [wrappedSlurm, nix.thunk(() => nix.lookup(w, "coreutils"))];
@@ -545,7 +545,7 @@ exec ${nix.sel(cfg, "package")}/bin/slurmdbd -D
                   ]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     Type: "simple",
                     ExecStart: nix.thunk(() => nix.str`${wrappedSlurm}/bin/slurmrestd ${nix.sel(cfg, "rest", "options")}`),
                     PIDFile: "/run/slurmrestd.pid",
@@ -558,7 +558,7 @@ exec ${nix.sel(cfg, "package")}/bin/slurmdbd -D
                 })))),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               rules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => [
                   "d /var/spool/slurmd 755 root root -",
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "mpi", "PmixCliTmpDirBase")} 755 root root -`),

@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const domain = nix.thunk(() => nix.sel(conf, "domain"));
   const domainSanitized = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "replaceStrings"), nix.thunk(() => ["*"]), nix.thunk(() => ["_"]), domain));
   return nix.app(runCommandCC, "generate-tests-certs", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(minica, "overrideAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             postPatch: "sed -i 's_NotAfter: time.Now().AddDate(2, 0, 30),_NotAfter: time.Now().AddDate(20, 0, 0),_' main.go\n",
           }))),
       ]),

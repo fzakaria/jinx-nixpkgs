@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const xcbuild = nix.arg($, "xcbuild");
   const binutils_version = "2.44";
   const binutils_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/binutils/binutils-${binutils_version}.tar.bz2`),
       sha256: "sha256-9mOQpmH6oRfQD6suec8tydCXtCzClr8/hnfR57RS3Do=",
     }))));
   return nix.app(buildGhidraExtension, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnudisassembler",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ghidra)),
       src: nix.thunk(() => nix.str`${ghidra}/lib/ghidra/Extensions/Ghidra/${nix.sel(ghidra, "distroPrefix")}_GnuDisassembler.zip`),
@@ -43,7 +43,7 @@ substituteInPlace build.gradle \\
       gradleBuildTask: "assemble",
       installPhase: "runHook preInstall\n\nEXTENSIONS_ROOT=$out/lib/ghidra/Ghidra/Extensions\nmkdir -p $EXTENSIONS_ROOT\nunzip -d $EXTENSIONS_ROOT $src\n\nmkdir -p $EXTENSIONS_ROOT/GnuDisassembler/build\ncp -r build/os $EXTENSIONS_ROOT/GnuDisassembler/build/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Leverage the binutils disassembler capabilities for various processors",
         homepage: "https://ghidra-sre.org/",

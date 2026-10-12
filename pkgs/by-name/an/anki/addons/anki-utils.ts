@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nix_update_script = nix.arg($, "nix-update-script");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     buildAnkiAddon: nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           const meta = nix.argOr($_1, "meta", () => ({}));
           const processUserFiles = nix.argOr($_1, "processUserFiles", () => "");
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             configurePhase: configurePhase,
             buildPhase: buildPhase,
             strictDeps: strictDeps,
@@ -49,16 +49,16 @@ export default nix.lambda((args) => (() => {
             installPrefix: nix.thunk(() => nix.str`share/anki/addons/${pname}`),
             installPhase: "runHook preInstall\n\nmkdir -p \"$out/$installPrefix/user_files\"\nfind . -mindepth 1 -maxdepth 1 | xargs -d'\\n' mv -t \"$out/$installPrefix/\"\n\nrunHook postInstall\n",
             passthru: nix.thunk(() => nix.update({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
               withConfig: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 const config = nix.argOr($_2, "config", () => ({}));
                 const userFiles = nix.argOr($_2, "userFiles", () => null);
                 const metaConfigFormat = nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))));
-                const addonMetaConfig = nix.thunk(() => nix.app(nix.sel(metaConfigFormat, "generate"), "meta.json", nix.thunk(() => ({ __proto__: pos$1, config: config }))));
+                const addonMetaConfig = nix.thunk(() => nix.app(nix.sel(metaConfigFormat, "generate"), "meta.json", nix.thunk(() => ({ [nix.POS]: pos$1, config: config }))));
                 return nix.app(symlinkJoin, nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-with-config`),
                     version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                     meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -77,7 +77,7 @@ ${processUserFiles}
               })(), formals$3),
             }, passthru)),
             meta: nix.thunk(() => nix.update({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             }, meta)),
           };

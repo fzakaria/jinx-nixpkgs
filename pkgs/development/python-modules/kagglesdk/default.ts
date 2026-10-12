@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kagglesdk",
       version: "0.1.37",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kaggle",
           repo: "kagglesdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["kagglesdk"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to access Kaggle endpoints",
         homepage: "https://github.com/Kaggle/kagglesdk",
         changelog: nix.thunk(() => nix.str`https://github.com/Kaggle/kagglesdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

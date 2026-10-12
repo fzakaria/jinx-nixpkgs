@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pawamoy",
           repo: "aria2p",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => nix.concat([loguru, platformdirs, requests, setuptools, toml, websocket_client], nix.app(nix.sel(lib, "optionals"), withTui, nix.thunk(() => nix.sel(optional_dependencies, "tui")))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, tui: nix.thunk(() => [asciimatics, pyperclip]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tui: nix.thunk(() => [asciimatics, pyperclip]) }));
       const preCheck = "export HOME=$TMPDIR\n";
       const nativeCheckInputs = nix.thunk(() => nix.concat([aria2, fastapi, pytest_xdist, pytestCheckHook, responses, psutil, uvicorn], nix.sel(optional_dependencies, "tui")));
       const disabledTests = nix.thunk(() => [
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["aria2p"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pawamoy/aria2p",
         changelog: nix.thunk(() => nix.str`https://github.com/pawamoy/aria2p/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Command-line tool and library to interact with an aria2c daemon process with JSON-RPC",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -8,9 +8,9 @@ const pos$3 = nix.positions(here + "/versions.nix", [["version", 19, 5], ["hash"
 const pos$4 = nix.positions(here + "/versions.nix", [["v74", 2, 3], ["v70", 10, 3], ["v60", 18, 3]]);
 
 export default (generic) => ({
-  __proto__: pos$4,
+  [nix.POS]: pos$4,
   v74: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "7.4.15",
       hash: "sha256-Xh2bN0fr+bgdXWLYzgDvmz9/TAgTlK0Rot0YiXok85Q=",
       emberPlusHash: "sha256-/uTOwNFhAvYM1dsB3SblA72B9il0DLiDdk5lZNBwYTs=",
@@ -19,7 +19,7 @@ export default (generic) => ({
       postgresqlHash: "sha256-xofvvAc1Mn3r+KvziF6gWecGz5Ctalgb3THQNpSSMiA=",
     })))),
   v70: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "7.0.31",
       hash: "sha256-nfEGmqHP32e3Ex6T8vX+bQrQBeQWyZAgFv2Mto8zDow=",
       emberPlusHash: "sha256-qPewZCfDbDFkX+So26d91fC41gsdnLidynJQVTSKd9M=",
@@ -28,7 +28,7 @@ export default (generic) => ({
       postgresqlHash: "sha256-FgqUGgRADSlYzlZSuYmE7DUZWXR1lKozwHtVdbRIbyw=",
     })))),
   v60: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "6.0.48",
       hash: "sha256-cIibBi7O1e5YKjznoyli/lq7gX/UhoPEc8K8a1kDZJw=",
       emberPlusHash: "sha256-KtypkgjExw0aajGGr8gFi6VCpofaI/fd+BgBUqdvgBQ=",

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jgmenu",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgmenu",
           repo: "jgmenu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), enableXfcePanelApplet, nix.thunk(() => ["--with-xfce4-panel-applet"])))),
       postFixup: "wrapPythonProgramsIn \"$out/lib/jgmenu\"\nfor f in $out/bin/jgmenu{,_run}; do\n  wrapProgram $f --prefix PATH : $out/bin\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/jgmenu/jgmenu",
         description: "Small X11 menu intended to be used with openbox and tint2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

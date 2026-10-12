@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const raylib = nix.arg($, "raylib");
   const writers = nix.arg($, "writers");
   const src = nix.thunk(() => nix.sel(raylib, "src"));
-  const writeTest = (name) => (path) => nix.app(nix.sel(writers, "writePython3Bin"), name, nix.thunk(() => ({ __proto__: pos$1, libraries: nix.thunk(() => [raylib]), doCheck: false })), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(src, path)))));
+  const writeTest = (name) => (path) => nix.app(nix.sel(writers, "writePython3Bin"), name, nix.thunk(() => ({ [nix.POS]: pos$1, libraries: nix.thunk(() => [raylib]), doCheck: false })), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(src, path)))));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     basic_shapes: nix.thunk(() => nix.app(writeTest, "basic_shapes", "/examples/shapes/shapes_basic_shapes.py")),
     cffi_binding: nix.thunk(() => nix.app(nix.sel(nix.app(writeTest, "cffi_binding", "/tests/test_static_with_only_api_from_dynamic.py"), "overrideAttrs"), (prev) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildCommand: nix.thunk(() => nix.add(nix.sel(prev, "buildCommand"), nix.str`substituteInPlace $out/bin/cffi_binding \\
   --replace-fail "examples/models/resources/heightmap.png" \\
     "${src}/examples/models/resources/heightmap.png"

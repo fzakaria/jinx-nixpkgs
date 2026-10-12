@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const librsync = nix.arg($, "librsync");
   const pypkgs = python3Packages;
   return nix.app(nix.sel(pypkgs, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdiff-backup",
       version: "2.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-0HeDVyZrxlE7t/daRXCymySydgNIu/YHur/DpvCUWM8",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["rdiff_backup"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backup system trying to combine best a mirror and an incremental backup system",
         homepage: "https://rdiff-backup.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

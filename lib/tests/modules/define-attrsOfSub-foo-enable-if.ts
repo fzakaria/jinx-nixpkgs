@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     attrsOfSub: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       foo: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "enable")), true)),
       })),
     })),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     const parse_akku_ = nix.thunk(() => nix.app(writeShellScriptBin, "parse-akku", nix.thunk(() => nix.str`${guile}/bin/guile --no-auto-compile ${nix.path(here, "./parse-akku.scm")} "$@"`)));
     const parse_akku = nix.thunk(() => nix.str`${parse_akku_}/bin/parse-akku`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: version,
         src: src,
         pname: nix.thunk(() => nix.str`akku-${pname}`),
@@ -88,7 +88,7 @@ export CHIBI_MODULE_PATH=$propagated_chibi
         installPhase: "runHook preInstall\n\nmkdir -p $out/lib\n\ncd .akku\n\nrm -f bin/activate*\n\ncp -rL lib $out/lib/scheme-libs\ncp -rL bin $out/bin\n\n[ -d ffi ]    && cp -rL ffi $out/lib\n[ -d libobj ] && cp -rL libobj $out/lib\n\nCHEZSCHEMELIBDIRS=\"$out/lib/scheme-libs:$CHEZSCHEMELIBDIRS\"\n\n# add support for other schemes\nfor f in $out/bin/*\ndo\npatchShebangs $f\nwrapProgram $f \\\n  --prefix CHEZSCHEMELIBDIRS : $CHEZSCHEMELIBDIRS\ndone\n\nrunHook postInstall\n",
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(akku, "meta"));
-          return { __proto__: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+          return { [nix.POS]: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
         })(), nix.selOr(args_2, () => ({}), "meta"))),
         setupHook: nix.path(here, "./setup-hook.sh"),
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name", "buildInputs", "meta", "nativeBuildInputs"])))));

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "whoami",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "traefik",
           repo: "whoami",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-2smvg0b226PSvAEOssCM5NXIqluDBmjzjYd54LWs27A=",
       ldflags: nix.thunk(() => ["-s"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/whoami --help 2> /dev/null\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, whoami: nix.thunk(() => nix.attr(nixosTests, "whoami")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, whoami: nix.thunk(() => nix.attr(nixosTests, "whoami")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tiny Go server that prints os information and HTTP request to output",
         mainProgram: "whoami",
         homepage: "https://github.com/traefik/whoami",

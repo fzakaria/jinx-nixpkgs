@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "semantic-version")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zeek",
       version: "8.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.zeek.org/zeek-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-o7bWDva+w+sSgY/jLK7HB/m21jBT6u7pQuTsmvZNhiw=",
         })))),
@@ -83,9 +83,9 @@ for file in $out/share/zeek/policy/misc/trim-trace-file.zeek $out/share/zeek/bas
   substituteInPlace $file --replace "/bin/rm" "${coreutils}/bin/rm"
 done
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, broker: broker })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, broker: broker })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Network analysis framework much different from a typical IDS",
         homepage: "https://www.zeek.org",
         changelog: nix.thunk(() => nix.str`https://github.com/zeek/zeek/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

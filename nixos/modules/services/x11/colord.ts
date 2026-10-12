@@ -27,54 +27,54 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "colord"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         colord: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "colord, the color management daemon")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "colord"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           dbus: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "colord"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "colord"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "colord"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "colord"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             colord: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               isSystemUser: true,
               home: "/var/lib/colord",
               group: "colord",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$12, colord: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, colord: nix.thunk(() => ({})) })),
         })),
       })))),
   };

@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const emmet_language_server = nix.arg($, "emmet-language-server");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "emmet-language-server",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "olrtg",
           repo: "emmet-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EY/xfrf6sGnZPbkbf9msauOoZ0h0EjLSwQC0aiS/Kco=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
       preInstall: "CI=true pnpm --ignore-scripts --prod prune\nfind -type f \\( -name \"*.ts\" -o -name \"*.map\" \\) -exec rm -rf {} +\n# https://github.com/pnpm/pnpm/issues/3645\nfind node_modules -xtype l -delete\n\nrm node_modules/.modules.yaml\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/emmet-language-server}\nmv {node_modules,dist} $out/lib/emmet-language-server\n\nchmod +x $out/lib/emmet-language-server/dist/index.js\npatchShebangs $out/lib/emmet-language-server/dist/index.js\nln -s $out/lib/emmet-language-server/dist/index.js $out/bin/emmet-language-server\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           smoke: nix.thunk(() => nix.app(runCommand, "emmet-language-server-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
 CONTENT_LENGTH=\${#INIT_REQUEST}
 
@@ -68,7 +68,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language server for emmet.io",
         homepage: "https://github.com/olrtg/emmet-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/olrtg/emmet-language-server/releases/tag/v${nix.sel(finalAttrs, "version")}`),

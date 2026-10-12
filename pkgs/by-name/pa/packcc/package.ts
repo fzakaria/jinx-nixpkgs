@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const uncrustify = nix.arg($, "uncrustify");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "packcc",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arithy",
           repo: "packcc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser generator for C",
         longDescription: "PackCC is a parser generator for C. Its main features are as follows:\n- Generates your parser in C from a grammar described in a PEG,\n- Gives your parser great efficiency by packrat parsing,\n- Supports direct and indirect left-recursive grammar rules.\n",
         homepage: "https://github.com/arithy/packcc",

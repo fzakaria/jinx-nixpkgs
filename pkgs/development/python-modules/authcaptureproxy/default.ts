@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alandtse",
           repo: "auth_capture_proxy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_return_timer_countdown_refresh_html", "test_replace_empty_action_urls"]);
       const pythonImportsCheck = nix.thunk(() => ["authcaptureproxy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/alandtse/auth_capture_proxy/releases/tag/v${version}`),
         description: "Proxy to capture authentication information from a webpage",
         mainProgram: "auth_capture_proxy",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

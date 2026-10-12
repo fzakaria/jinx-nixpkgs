@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "nixpkgs", "flake"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       nixpkgs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         flake: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "path")))))),
               default: null,
               defaultText: "if (using nixpkgsFlake.lib.nixosSystem) then self.outPath else null",
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
               description: "The path to the nixpkgs sources used to build the system. This is automatically set up to be\nthe store path of the nixpkgs flake used to build the system if using\n`nixpkgs.lib.nixosSystem`, and is otherwise null by default.\n\nThis can also be optionally set if the NixOS system is not built with a flake but still uses\npinned sources: set this to the store path for the nixpkgs sources used to build the system,\nas may be obtained by `fetchTarball`, for example.\n\nNote: the name of the store path must be \"source\" due to\n<https://github.com/NixOS/nix/issues/7075>.\n",
             })))),
           setNixPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => !nix.eq(nix.sel(cfg, "source"), null)),
               defaultText: "config.nixpkgs.flake.source != null",
               description: "Whether to set {env}`NIX_PATH` to include `nixpkgs=flake:nixpkgs` such that `<nixpkgs>`\nlookups receive the version of nixpkgs that the system was built with, in concert with\n{option}`nixpkgs.flake.setFlakeRegistry`.\n\nThis is on by default for NixOS configurations built with flakes.\n\nThis makes {command}`nix-build '<nixpkgs>' -A hello` work out of the box on flake systems.\n\nNote that this option makes the NixOS closure depend on the nixpkgs sources, which may add\nundesired closure size if the system will not have any nix commands run on it.\n",
             })))),
           setFlakeRegistry: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => !nix.eq(nix.sel(cfg, "source"), null)),
               defaultText: "config.nixpkgs.flake.source != null",
@@ -62,25 +62,25 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "source"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "setNixPath")) || nix.asBool(nix.sel(cfg, "setFlakeRegistry")))),
                 message: "Setting `nixpkgs.flake.setNixPath` requires that `nixpkgs.flake.setFlakeRegistry` also\nbe set, since it is implemented in terms of indirection through the flake registry.\n",
               })),
             ]),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setFlakeRegistry")), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               nix: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 registry: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   nixpkgs: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     to: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: "path",
                         path: nix.thunk(() => nix.sel(cfg, "source")),
                       })))),
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setNixPath")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               nix: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 nixPath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.concat(["nixpkgs=flake:nixpkgs"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "nix", "channel", "enable")), "/nix/var/nix/profiles/per-user/root/channels"))))),
               })),
             })))),

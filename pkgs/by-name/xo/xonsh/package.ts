@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => nix.concat([nix.thunk(() => nix.sel(ps, "xonsh"))], nix.app(extraPackages, ps))));
   const xonsh = nix.thunk(() => nix.sel(python3, "pkgs", "xonsh"));
   return nix.app(runCommand, nix.thunk(() => nix.str`xonsh-${nix.sel(xonsh, "version")}`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(xonsh, "pname")),
       version: nix.thunk(() => nix.attr(xonsh, "version")),
       meta: nix.thunk(() => nix.attr(xonsh, "meta")),

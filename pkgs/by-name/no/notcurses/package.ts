@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qrcodegenSupport = nix.argOr($, "qrcodegenSupport", () => true);
   const qrcodegen = nix.arg($, "qrcodegen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notcurses",
       version: "3.0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dankamongmen",
           repo: "notcurses",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ncurses, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dankamongmen/notcurses",
         description: "Blingful TUIs and character graphics",
         longDescription: "Notcurses is a library facilitating complex TUIs on modern terminal\nemulators, supporting vivid colors, multimedia, and Unicode to the maximum\ndegree possible. Things can be done with Notcurses that simply can't be\ndone with NCURSES.\n\nIt is not a source-compatible X/Open Curses implementation, nor a\nreplacement for NCURSES on existing systems.\n",

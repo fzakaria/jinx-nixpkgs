@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pygls",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openlawlibrary",
           repo: "pygls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["lsprotocol"]),
       nativeBuildInputs: nix.thunk(() => [poetry_core]),
       propagatedBuildInputs: nix.thunk(() => [lsprotocol, typeguard]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, ws: nix.thunk(() => [websockets]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, ws: nix.thunk(() => [websockets]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       __darwinAllowLocalNetworking: true,
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Darwin issue: OSError: [Errno 24] Too many open files\nulimit -n 1024\n")),
       pythonImportsCheck: nix.thunk(() => ["pygls"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lsprotocol, "version")), "2024")),
         description: "Pythonic generic implementation of the Language Server Protocol",
         homepage: "https://github.com/openlawlibrary/pygls",

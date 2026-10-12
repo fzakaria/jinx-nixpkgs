@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "drive",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "odeke-em",
           repo: "drive",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-F/ikdr7UCVlNv2yiEemyB7eIkYi3mX+rJvSfX488RFc=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/odeke-em/drive/commit/0fb4bb2cf83a7293d9a33b00f8fc07e1c8dd8b7c.patch",
             hash: "sha256-4PxsgfufhTfmy/7N5QahIhmRa0rb2eUDXJ66pYb6jFg=",
           })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/drive"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/odeke-em/drive",
         description: "Google Drive client for the commandline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

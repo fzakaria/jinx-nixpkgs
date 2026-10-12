@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const shapely = nix.arg($, "shapely");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cf-xarray",
       version: "0.11.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xarray-contrib",
           repo: "cf-xarray",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm, xarray]),
       dependencies: nix.thunk(() => [xarray]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [matplotlib, pint, pooch, regex, rich, shapely]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([dask, pytestCheckHook, scipy], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "cf_xarray/tests/test_helpers.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Accessor for xarray objects that interprets CF attributes",
         homepage: "https://github.com/xarray-contrib/cf-xarray",
         changelog: nix.thunk(() => nix.str`https://github.com/xarray-contrib/cf-xarray/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

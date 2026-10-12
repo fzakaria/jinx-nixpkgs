@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const appName = nix.argOr($, "appName", () => "vanillatd");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "appName", appName, nix.thunk(() => ["vanillatd", "vanillara"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/va/vanillatd/package.nix:30:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: appName,
       version: "0-unstable-2026-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheAssemblyArmada",
           repo: "Vanilla-Conquer",
           rev: "ce83b59edd99cccac6cebaae054ca04962c744b7",
@@ -73,11 +73,11 @@ runHook postInstall
 `)),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: appName,
             desktopName: appName,
             comment: nix.thunk(() => nix.sel({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               vanillatd: "Command & Conquer: Tiberian Dawn",
               vanillara: "Command & Conquer: Red Alert",
             }, nix.key(nix.str`${appName}`))),
@@ -89,21 +89,21 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => (() => {
-        const packages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./passthru-packages.nix"), nix.thunk(() => ({ __proto__: pos$4, appName: appName }))));
+        const packages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./passthru-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, appName: appName }))));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           packages: packages,
-          updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$5, hardcodeZeroVersion: true })))),
+          updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, hardcodeZeroVersion: true })))),
           withPackages: (cb) => (() => {
             const dataDerivation = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: nix.thunk(() => nix.str`${appName}-data`),
                 paths: nix.thunk(() => (nix.asBool(nix.builtins.isFunction(cb)) ? nix.app(cb, packages) : nix.force(cb))),
               }))));
             return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
                 return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 pname: nix.thunk(() => nix.str`${appName}-with-packages`),
                 version: nix.thunk(() => nix.attr(from, "version")),
                 meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -128,9 +128,9 @@ chmod 755 $out
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: nix.thunk(() => nix.sel({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           vanillatd: "Vanilla Conquer is a modern, multi-platform source port of Command & Conquer: Tiberian Dawn",
           vanillara: "Vanilla Conquer is a modern, multi-platform source port of Command & Conquer: Red Alert",
         }, nix.key(nix.str`${appName}`))),

@@ -35,31 +35,31 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const version = "3.9.2";
   const models = nix.thunk(() => nix.app(linkFarm, "rapidocr-models", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "PP-OCRv6_det_small.onnx": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v${version}/onnx/PP-OCRv6/det/PP-OCRv6_det_small.onnx`),
           hash: "sha256-CQ8Eq82dmnSYvE6/Z35Mub3OH+QZfdt+Up8e9E4f+U8=",
         })))),
       "ch_ppocr_mobile_v2.0_cls_mobile.onnx": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v${version}/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_mobile.onnx`),
           hash: "sha256-5HrO32YyMPiGP/GrDmTdLYK4OPzrWVcUbasYWonWIVw=",
         })))),
       "PP-OCRv6_rec_small.onnx": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v${version}/onnx/PP-OCRv6/rec/PP-OCRv6_rec_small.onnx`),
           hash: "sha256-bzJyRrUDiPPBdq4wS9lXZ+ptwMmukhU++MviELPBSIQ=",
         })))),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "rapidocr",
       version: version,
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "RapidAI",
           repo: "RapidOCR",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
 `),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       dependencies: nix.thunk(() => [
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["rapidocr"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Cross platform OCR Library based on OnnxRuntime",
         homepage: "https://github.com/RapidAI/RapidOCR",
         changelog: nix.thunk(() => nix.str`https://github.com/RapidAI/RapidOCR/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

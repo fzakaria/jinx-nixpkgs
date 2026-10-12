@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openbabel = nix.arg($, "openbabel");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "molsketch",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/molsketch/Molsketch-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-6wFvl3Aktv8RgEdI2ENsKallKlYy/f8Tsm5C0FB/igI=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [hicolor_icon_theme, openbabel, desktop_file_utils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "2D molecule editor",
         homepage: "https://sourceforge.net/projects/molsketch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

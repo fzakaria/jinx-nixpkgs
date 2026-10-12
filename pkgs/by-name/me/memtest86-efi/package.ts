@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const mtools = nix.arg($, "mtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "memtest86-efi",
       version: "9.3.1000",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20211111004725/https://www.memtest86.com/downloads/memtest86-usb.zip",
           sha256: "sha256-GJdZCUFw1uX4HcaaAy5QqDGNqHTFtrqla13wF7xCAaM=",
           stripRoot: false,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [util_linux, jq, mtools]),
       installPhase: "runHook preInstall\n\n# memtest86 is distributed as a bootable USB image.  It contains the actual\n# memtest86 EFI app.\n#\n# The following uses sfdisk to calculate the offset of the FAT EFI System\n# Partition in the disk image, and mcopy to extract the actual EFI app from\n# the filesystem so that it can be installed directly on the hard drive.\nIMG=$src/memtest86-usb.img\nESP_OFFSET=$(sfdisk --json $IMG | jq -r '\n  # Partition type GUID identifying EFI System Partitions\n  def ESP_GUID: \"C12A7328-F81F-11D2-BA4B-00A0C93EC93B\";\n  .partitiontable |\n  .sectorsize * (.partitions[] | select(.type == ESP_GUID) | .start)\n')\nmkdir $out\nmcopy -vsi $IMG@@$ESP_OFFSET ::'/EFI/BOOT/*' $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.memtest86.com/",
         downloadPage: "https://www.memtest86.com/download.htm",
         changelog: "https://www.memtest86.com/whats-new.html",

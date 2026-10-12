@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const aubio = nix.arg($, "aubio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catclock",
       version: "0-unstable-2021-11-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BarkyTheDog",
           repo: "catclock",
           rev: "b2f277974b5a80667647303cabf8a89d6d6a4290",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["DESTINATION=$(out)/bin/", "CFLAGS=-Wno-incompatible-pointer-types"], nix.app(nix.sel(lib, "optional"), withAudioTracking, "WITH_TEMPO_TRACKER=1"))),
       buildInputs: nix.thunk(() => nix.concat([motif, libx11, libxext, libxt], nix.app(nix.sel(lib, "optionals"), withAudioTracking, nix.thunk(() => [libpulseaudio, aubio])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://codefromabove.com/2014/05/catclock/",
         description: "Analog / Digital / Cat clock for X",
         license: nix.thunk(() => (() => {

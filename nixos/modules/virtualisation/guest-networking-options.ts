@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         options: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: name,
               description: "Interface name\n",
             })))),
           vlan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
               description: "VLAN to which the network interface is connected.\n",
             })))),
           assignIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Automatically assign an IP address to the network interface using the same scheme as\nvirtualisation.vlans.\n",
@@ -61,27 +61,27 @@ export default nix.lambda((args) => (() => {
   const vlansNumbered = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.app(nix.sel(lib, "zipLists"), nix.thunk(() => nix.sel(cfg, "vlans")), nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, 255n)))), (v) => (() => {
         const name = nix.thunk(() => nix.str`eth${nix.builtins.toString(nix.thunk(() => nix.sel(v, "snd")))}`);
         return nix.app(nix.sel(lib, "nameValuePair"), name, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: name,
             vlan: nix.thunk(() => nix.sel(v, "fst")),
             assignIP: true,
           })));
       })()))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       networking: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         primaryIPAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             internal: true,
             description: "Primary IP address used in /etc/hosts.",
           })))),
         primaryIPv6Address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             internal: true,
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         vlans: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "ints", "unsigned")))),
             default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "interfaces"), {})) ? [1n] : [])),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.virtualisation.interfaces == {} then [ 1 ] else [ ]")),
@@ -99,17 +99,17 @@ export default nix.lambda((args) => (() => {
             description: "Virtual networks to which the container or VM is connected. Each number «N» in\nthis list causes the container to have a virtual Ethernet interface\nattached to a separate virtual network on which it will be assigned IP\naddress `192.168.«N».«M»`, where «M» is the index of this container in\nthe list of containers.\n",
           })))),
         interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$12,
-              enp1s0: nix.thunk(() => ({ __proto__: pos$11, vlan: 1n })),
+              [nix.POS]: pos$12,
+              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$11, vlan: 1n })),
             })),
             description: "Extra network interfaces to add to the container or VM in addition to the ones\ncreated by {option}`virtualisation.vlans`.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), interfaceType)),
           })))),
         allInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), interfaceType)),
             readOnly: true,
             description: "All network interfaces for the container or VM. Combines\n{option}`virtualisation.vlans` and {option}`virtualisation.interfaces`.\n",
@@ -118,12 +118,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       assertions: nix.thunk(() => [
         nix.thunk(() => (() => {
           const conflictingKeys = nix.thunk(() => nix.app(nix.sel(lib, "intersectAttrs"), vlansNumbered, nix.thunk(() => nix.sel(cfg, "interfaces"))));
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => nix.eq(conflictingKeys, {})),
             message: nix.thunk(() => nix.str`\`virtualisation.vlans\` and \`virtualisation.interfaces\` have conflicting keys: ${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), conflictingKeys)))}
 `),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const allInterfaceNames = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (i) => nix.sel(i, "name"), vlansNumbered), nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (i) => nix.sel(i, "name"), nix.thunk(() => nix.sel(cfg, "interfaces")))));
           return {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "allUnique"), allInterfaceNames)),
             message: nix.thunk(() => nix.str`\`virtualisation.vlans\` and \`virtualisation.interfaces\` have conflicting interface names: ${nix.app(nix.sel(lib, "concatStringsSep"), ",", allInterfaceNames)}
 `),

@@ -20,43 +20,43 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "freeswitch",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "misuzu"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       node0: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               eth1: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$2, address: "192.168.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.0.1", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             freeswitch: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               enableReload: true,
               configTemplate: nix.thunk(() => nix.str`${nix.sel(config, "services", "freeswitch", "package")}/share/freeswitch/conf/minimal`),

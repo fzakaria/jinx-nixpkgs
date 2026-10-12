@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glslviewer",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patriciogonzalezvivo",
           repo: "glslViewer",
           fetchSubmodules: true,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./patches/0001-fix-miniaudio-device-id-handling.patch")]),
       postInstall: "substituteInPlace $out/share/thumbnailers/glslViewer.thumbnailer \\\n  --replace-fail \"TryExec=glslThumbnailer\" \"TryExec=$out/bin/glslThumbnailer\" \\\n  --replace-fail \"Exec=glslThumbnailer\" \"Exec=$out/bin/glslThumbnailer\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Live GLSL coding renderer",
         homepage: "https://patriciogonzalezvivo.com/2015/glslViewer/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

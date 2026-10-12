@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xorg-server",
       version: "21.1.24",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/xserver/xorg-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Gk6zbKZcw7G5NlZtZ3qXhuE8Ec1YBulRrFXz9c45hK8=",
         })))),
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace hw/xquartz/mach-startup/stub.c \\\n  --subst-var-by XQUARTZ_APP \"$out/Applications/XQuartz.app\"\n")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -sf $out/bin/Xquartz $out/bin/X\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
@@ -143,12 +143,12 @@ version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "X server implementation by X.org",
         longDescription: "The X server accepts requests from client applications to create windows, which are (normally\nrectangular) \"virtual screens\" that the client program can draw into.\nWindows are then composed on the actual screen by the X server (or by a separate composite\nmanager) as directed by the window manager, which usually communicates with the user via\ngraphical controls such as buttons and draggable titlebars and borders.\n\nFor a comprehensive overview of X Server and X Window System, consult the following article:\nhttps://en.wikipedia.org/wiki/X_server\n",
         homepage: "https://x.org/wiki",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "njs",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nginx",
           repo: "njs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,9 +35,9 @@ appendToVar configureFlags "--with-cc-opt=-I${nix.app(nix.sel(lib, "getInclude")
 appendToVar configureFlags "--with-ld-opt=-L${nix.app(nix.sel(lib, "getLib"), quickjs)}/lib/quickjs"
 `),
       buildInputs: nix.thunk(() => [quickjs, which, zlib]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "nginx-njs")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "nginx-njs")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Subset of the JavaScript language that allows extending nginx functionality",
         homepage: "https://nginx.org/en/docs/njs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csound-qt",
       version: "7.0.0-beta1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CsoundQt",
           repo: "CsoundQt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PYTHON_VERSION=3.${nix.sel(python3, "sourceVersion", "minor")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CsoundQt is a frontend for Csound with editor, integrated help, widgets and other features",
         homepage: "https://csoundqt.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

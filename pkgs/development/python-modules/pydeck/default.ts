@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-wQ2QNegerWOFJkysjRlAJHH2hmoVyh998UAPUhQrz4c=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [jinja2, jupyter, setuptools, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [jinja2, numpy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         carto: [],
         jupyter: nix.thunk(() => [ipykernel, ipywidgets, traitlets]),
       }));
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pandas], nix.sel(optional_dependencies, "jupyter")));
       const disabledTests = nix.thunk(() => ["test_nbconvert"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/visgl/deck.gl/tree/master/bindings/pydeck",
         description: "Large-scale interactive data visualization in Python",
         maintainers: nix.thunk(() => (() => {
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

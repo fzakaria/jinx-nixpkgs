@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-YflpMGuV+F+6a2mGt/5F1zEk0dnjAjqAaHENR6Iupmg=",
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [comm, ipython, jupyterlab_widgets, traitlets, widgetsnbextension]);
       const nativeCheckInputs = nix.thunk(() => [ipykernel, jsonschema, pytestCheckHook, pytz]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IPython HTML widgets for Jupyter",
         homepage: "https://github.com/jupyter-widgets/ipywidgets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

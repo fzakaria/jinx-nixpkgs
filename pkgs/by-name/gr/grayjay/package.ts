@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const version = "18";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.futo.org",
       owner: "videostreaming",
       repo: "Grayjay.Desktop",
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
       fetchLFS: true,
     }))));
   const justcefNative = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://static.grayjay.app/justcef/1/JustCefNative-linux-x64.zip",
       hash: "sha256-LXOp+QZZcWBd8eP+BpK++AMBo9303+aIDEEYNVWekhE=",
     }))));
   const getLibrary = (pkg) => (libnm) => nix.str`${nix.app(nix.sel(lib, "getLib"), pkg)}/lib/lib${libnm}${nix.sel(pkg, "drvAttrs", "stdenv", "hostPlatform", "extensions", "sharedLibrary")}`;
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "grayjay",
       version: version,
       src: src,
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Grayjay",
             exec: "Grayjay",
             icon: "grayjay",
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
           ])));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         packages: nix.thunk(() => nix.attr(from, "packages")),
         targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
       };
@@ -186,10 +186,10 @@ ln -s $out/lib/grayjay/grayjay.png $out/share/icons/hicolor/scalable/apps/grayja
         libsecret,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 extraArgs: nix.thunk(() => [
                   "--subpackage",
                   "frontend",
@@ -201,7 +201,7 @@ ln -s $out/lib/grayjay/grayjay.png $out/share/icons/hicolor/scalable/apps/grayja
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Cross-platform application to stream and download content from various sources",
         longDescription: "Grayjay is a cross-platform application that enables users to\nstream and download multimedia content from various online sources,\nmost prominently YouTube.\nIt also offers an extensible plugin API to create and import new\nintegrations.\n",
         homepage: "https://grayjay.app/desktop/",

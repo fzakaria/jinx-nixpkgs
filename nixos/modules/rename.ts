@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkAliasOptionModule = nix.thunk(() => nix.attr(lib, "mkAliasOptionModule"));
   const mkRemovedOptionModule = nix.thunk(() => nix.attr(lib, "mkRemovedOptionModule"));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["environment", "checkConfigurationOptions"]), nix.thunk(() => ["_module", "check"]))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["boot", "loader", "raspberryPi"]), "The raspberryPi boot loader has been removed. See https://github.com/NixOS/nixpkgs/pull/241534 for what to use instead.")),

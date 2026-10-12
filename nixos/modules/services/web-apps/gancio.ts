@@ -81,17 +81,17 @@ export default nix.lambda((args) => (() => {
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         gancio: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Gancio, a shared agenda for local communities")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gancio", nix.thunk(() => ({})))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -101,25 +101,25 @@ export default nix.lambda((args) => (() => {
               description: "Paths of gancio plugins to activate (linked under $WorkingDirectory/plugins/).\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The user (and PostgreSQL database name) used to run the gancio server",
               default: "gancio",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "The domain name under which the server is reachable.",
                       })))),
                     baseurl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.str`${nix.sel(cfg, "settings", "hostname")}`), "enableACME")), "s")}://${nix.sel(cfg, "settings", "hostname")}`),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"https://${config.services.gancio.settings.hostname}\"")),
@@ -127,9 +127,9 @@ export default nix.lambda((args) => (() => {
                         description: "The full URL under which the server is reachable.",
                       })))),
                     server: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           readOnly: true,
                           default: "/run/gancio/socket",
@@ -137,15 +137,15 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     db: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       dialect: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite", "postgres"]))),
                           default: "sqlite",
                           description: "The database dialect to use\n",
                         })))),
                       storage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           description: "Location for the SQLite database.\n",
                           readOnly: true,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
                           defaultText: "if config.services.gancio.settings.db.dialect == \"sqlite\" then \"/var/lib/gancio/db.sqlite\" else null",
                         })))),
                       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           description: "Connection string for the PostgreSQL database\n",
                           readOnly: true,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
                           defaultText: "if config.services.gancio.settings.db.dialect == \"postgres\" then \"/run/postgresql\" else null",
                         })))),
                       database: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           description: "Name of the PostgreSQL database\n",
                           readOnly: true,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
@@ -170,13 +170,13 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         description: "Gancio log level.",
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warning", "error"]))),
                         default: "info",
                       })))),
                     log_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         description: "Directory Gancio logs into",
                         readOnly: true,
                         type: nix.thunk(() => nix.sel(types, "str")),
@@ -187,42 +187,42 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for Gancio, see <https://gancio.org/install/config> for supported values.\n",
             })))),
           userLocale: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))))));
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 en: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  register: nix.thunk(() => ({ __proto__: pos$17, description: "My new registration page description" })),
+                  [nix.POS]: pos$18,
+                  register: nix.thunk(() => ({ [nix.POS]: pos$17, description: "My new registration page description" })),
                 })),
               })),
               description: "Override default locales within gancio.\nSee [default languages and locales](https://framagit.org/les/gancio/tree/master/locales).\n",
             })))),
           nginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$21, config: config, lib: lib })))), nix.thunk(() => ({
-                    __proto__: pos$25,
+              [nix.POS]: pos$27,
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$21, config: config, lib: lib })))), nix.thunk(() => ({
+                    [nix.POS]: pos$25,
                     options: nix.thunk(() => ({
-                      __proto__: pos$24,
-                      forceSSL: nix.thunk(() => ({ __proto__: pos$22, default: true })),
-                      enableACME: nix.thunk(() => ({ __proto__: pos$23, default: true })),
+                      [nix.POS]: pos$24,
+                      forceSSL: nix.thunk(() => ({ [nix.POS]: pos$22, default: true })),
+                      enableACME: nix.thunk(() => ({ [nix.POS]: pos$23, default: true })),
                     })),
                   })))))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$26, enableACME: false, forceSSL: false })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$26, enableACME: false, forceSSL: false })),
               description: "Extra configuration for the nginx virtual host of gancio.",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gancio", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/bin
 echo '#!${nix.sel(pkgs, "runtimeShell")}
@@ -238,60 +238,60 @@ chmod +x $out/bin/gancio
           ]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           users: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             gancio: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gancio")), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "user")),
                 home: "/var/lib/gancio",
               })))),
           }, [
             [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "nginx", "enable")), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 extraGroups: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.sel(cfg, "user")), "group")),
                 ]),
               }))))],
           ])),
           groups: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             gancio: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gancio")), nix.thunk(() => ({})))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             settings: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               "10-gancio": nix.thunk(() => (() => {
                 const rules = nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   mode: "0755",
                   user: nix.thunk(() => nix.sel(cfg, "user")),
                   group: nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.sel(cfg, "user")), "group")),
                 }));
                 return {
-                  __proto__: pos$40,
-                  "/var/lib/gancio/user_locale": nix.thunk(() => ({ __proto__: pos$38, d: rules })),
-                  "/var/lib/gancio/plugins": nix.thunk(() => ({ __proto__: pos$39, d: rules })),
+                  [nix.POS]: pos$40,
+                  "/var/lib/gancio/user_locale": nix.thunk(() => ({ [nix.POS]: pos$38, d: rules })),
+                  "/var/lib/gancio/plugins": nix.thunk(() => ({ [nix.POS]: pos$39, d: rules })),
                 };
               })()),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             gancio: nix.thunk(() => (() => {
               const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "gancio-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
               return {
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 description: "Gancio server",
                 documentation: nix.thunk(() => ["https://gancio.org/"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "db", "dialect"), "postgres")), "postgresql.target"))),
-                environment: nix.thunk(() => ({ __proto__: pos$43, NODE_ENV: "production" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$43, NODE_ENV: "production" })),
                 path: nix.thunk(() => ["/run/wrappers"]),
                 preStart: nix.thunk(() => nix.str`# We need this so the gancio executable run by the user finds the right settings.
 ln -sf ${configFile} config.json
@@ -303,7 +303,7 @@ rm -f plugins/*
 ${nix.app(concatMapStringsSep, "\n", (p) => nix.str`ln -sf ${p} plugins/`, nix.thunk(() => nix.sel(cfg, "plugins")))}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} start ${configFile}`),
                   UMask: "0002",
                   RuntimeDirectory: "gancio",
@@ -329,32 +329,32 @@ ${nix.app(concatMapStringsSep, "\n", (p) => nix.str`ln -sf ${p} plugins/`, nix.t
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "db", "dialect"), "postgres")), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   name: nix.thunk(() => nix.sel(cfg, "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "settings", "hostname")}`, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "nginx")),
                   nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$52,
-                      "/": nix.thunk(() => ({ __proto__: pos$50, index: "index.html", tryFiles: "$uri $uri @proxy" })),
+                      [nix.POS]: pos$52,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$50, index: "index.html", tryFiles: "$uri $uri @proxy" })),
                       "@proxy": nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         proxyWebsockets: true,
                         proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(cfg, "settings", "server", "socket")}`),
                         recommendedProxySettings: true,

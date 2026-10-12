@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const jdk = nix.arg($, "jdk");
   const jre_minimal = nix.arg($, "jre_minimal");
-  const hello = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hello.nix"), nix.thunk(() => ({ __proto__: pos$1, jdk: jdk, jre: jre_minimal }))));
+  const hello = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hello.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: jdk, jre: jre_minimal }))));
   return nix.app(runCommand, "test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${hello}/bin/hello | grep "Hello, world!"
 touch $out
 `));

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const withRemote = nix.argOr($, "withRemote", () => false);
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "libpcap-deps-private-headers",
       nativeBuildInputs: nix.thunk(() => [unifdef]),
       buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/include/net"
@@ -71,7 +71,7 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "libpcap",
       postPatch: "substituteInPlace libpcap/Makefile.in \\\n  --replace-fail '@PLATFORM_C_SRC@' '@PLATFORM_C_SRC@ pcap-darwin.c pcap-util.c pcapng.c'\nsubstituteInPlace libpcap/pcap/pcap.h \\\n  --replace-fail '#if PRIVATE' '#if 1'\n",
       configureFlags: nix.thunk(() => nix.concat([
@@ -80,12 +80,12 @@ EOF
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), false, "universal"))])))),
       preConfigure: "cd libpcap\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DHAVE_PKTAP_API -I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, flex], nix.app(nix.sel(lib, "optionals"), withBluez, nix.thunk(() => [nix.thunk(() => nix.sel(bluez, "dev"))])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Packet Capture Library (with Apple modifications)",
         mainProgram: "pcap-config",
       })),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsharp",
       version: "4.0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsharp",
           repo: "fsharp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ done
 `),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Functional CLI language",
         homepage: "https://fsharp.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

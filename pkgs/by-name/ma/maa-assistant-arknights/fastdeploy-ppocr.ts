@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.argOr($, "cudaPackages", () => ({}));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastdeploy-ppocr",
       version: "0-unstable-2023-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MaaAssistantArknights",
           repo: "FastDeploy",
           rev: "0db6000aaac250824266ac37451f43ce272d80a3",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${nix.sel(finalAttrs, "src")}/cmake/Findonnxruntime.cmake $cmake/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MaaAssistantArknights stripped-down version of FastDeploy",
         homepage: "https://github.com/MaaAssistantArknights/FastDeploy",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

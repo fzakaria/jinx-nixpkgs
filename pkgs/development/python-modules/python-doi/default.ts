@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "papis",
           repo: "python-doi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to work with Document Object Identifiers (doi)",
         homepage: "https://github.com/papis/python-doi",
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, disabled, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, disabled, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

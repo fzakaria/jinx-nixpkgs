@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const openscad = nix.arg($, "openscad");
   return nix.app(buildOpenSCADPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bosl2",
       version: "2.0.755",
       libName: "BOSL2",
       installTargets: nix.thunk(() => ["*.scad"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BelfrySCAD",
           repo: "BOSL2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4LlMyXBXtSoy1FTAE9j7gmApDHYgtZZh/XnkzGUG2DE=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             functionality: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`test-functionality-${nix.sel(finalAttrs, "name")}`), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(openscad, "withPackages"), (ps) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
                 ]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Belfry OpenScad Library, v2.0 (beta) -- an OpenSCAD library of shapes, masks, and manipulators",
         homepage: "https://github.com/BelfrySCAD/BOSL2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

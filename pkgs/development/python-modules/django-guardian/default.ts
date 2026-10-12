@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-guardian",
       version: "3.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-guardian",
           repo: "django-guardian",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [django_environ, pytestCheckHook, pytest_django, pytest_xdist]),
       pythonImportsCheck: nix.thunk(() => ["guardian"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/django-guardian/django-guardian/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Per object permissions for Django",
         homepage: "https://github.com/django-guardian/django-guardian",

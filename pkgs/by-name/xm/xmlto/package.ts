@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const w3m_batch = nix.arg($, "w3m-batch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xmlto",
       version: "0.0.29",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pagure.io/xmlto.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-wttag8J1t9cBPBHNY7me2H0IPOzS8IjfCLIHNWq67Do=",
@@ -64,18 +64,18 @@ wrapProgram "$out/bin/xmlto" \\
    --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libxslt, libxml2, getopt, w3m_batch]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: "https://pagure.io/xmlto/blob/master/f/ChangeLog",
         description: "Front-end to an XSL toolchain",
         homepage: "https://pagure.io/xmlto/",

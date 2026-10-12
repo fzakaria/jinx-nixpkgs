@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.2";
       const outputs = nix.thunk(() => ["out", "doc", "info"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ftp.mutt.org/pub/mutt/${pname}-${version}.tar.gz`),
           hash: "sha256-JwP/GlGpnDFj1P2ZisIumCu9VJPVEqfFvecWqK26A5Q=",
         }))));
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./no-build-only-refs.patch")], nix.app(nix.sel(lib, "optional"), smimeSupport, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/mutt-team/mutt/raw/debian/1.10.1-2/debian/patches/misc/smime.rc.patch",
             sha256: "0b4i00chvx6zj9pcb06x2jysmrcb2znn831lcy32cgfds6gr3nsi",
           })))))));
@@ -81,7 +81,7 @@ sed -i 's#\\(command="\\)gpg #\\1${gnupg}/bin/gpg #' $out/etc/gpg.rc
 echo "source $out/etc/gpg.rc" >> $out/etc/Muttrc
 `))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mutt", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -94,7 +94,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small but very powerful text-based mail client",
         homepage: "http://www.mutt.org",
         mainProgram: "mutt",
@@ -106,7 +106,7 @@ update-source-version ${pname} "$new_version"
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

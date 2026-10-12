@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pdudaemon"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pdudaemon.conf", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         daemon: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hostname: nix.thunk(() => nix.sel(cfg, "bindAddress")),
           port: nix.thunk(() => nix.sel(cfg, "port")),
           logging_level: nix.thunk(() => nix.sel(cfg, "logLevel")),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
         pdus: nix.thunk(() => nix.sel(cfg, "pdus")),
       }))))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -54,45 +54,45 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pdudaemon: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PDUDaemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pdudaemon", nix.thunk(() => ({})))),
           bindAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "0.0.0.0",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Bind address for the PDUDaemon.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 16421n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Port to bind to.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to automatically open the PDUDaemon listen port in the firewall.\n",
             })))),
           listener: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "http",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["http", "tcp"]))),
               description: "Which kind of listener to provide.",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "error",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["debug", "info", "warning", "error"]))),
               description: "PDUDaemon log level.",
             })))),
           pdus: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
@@ -105,24 +105,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         networking: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           firewall: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             pdudaemon: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               after: nix.thunk(() => ["network-online.target"]),
               description: "Control and Queueing daemon for PDUs",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --conf ${configFile}`),
                 Type: "simple",
                 DynamicUser: "yes",

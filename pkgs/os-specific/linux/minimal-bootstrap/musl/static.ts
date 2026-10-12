@@ -27,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const linux_headers = nix.arg($, "linux-headers");
   const libgcc = nix.arg($, "libgcc");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const version = "1.2.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://musl.libc.org/releases/musl-${version}.tar.gz`),
       hash: "sha256-1YX9O2E8ZhUfwySejtRPdwIMtebB5jWmFtP5+CRgUSo=",
     }))));
   const binutilsTargetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(hostPlatform, "config"), nix.sel(buildPlatform, "config"))), nix.thunk(() => nix.str`${nix.sel(hostPlatform, "config")}-`)));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       meta: meta,
       nativeBuildInputs: nix.thunk(() => [gcc, binutils, findutils, gnumake, gnused, gnugrep, gnutar, gzip]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "hello-world": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-simple-program-${version}`), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [gcc, binutils, result]),
             })), "cat <<EOF >> test.c\n#include <stdio.h>\nint main() {\n  printf(\"Hello World!\\n\");\n  return 0;\n}\nEOF\nmusl-gcc -o test test.c\n./test\nmkdir $out\n"),
         })),

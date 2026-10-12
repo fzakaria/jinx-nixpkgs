@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const dune = nix.arg($, "dune");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xdg",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dune, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "XDG Base Directory Specification",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

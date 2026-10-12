@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const schema_salad = nix.arg($, "schema-salad");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cwl-upgrader",
       version: "1.2.15",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "common-workflow-language",
           repo: "cwl-upgrader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["cwlupgrader"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to upgrade CWL syntax to a newer version",
         homepage: "https://github.com/common-workflow-language/cwl-upgrader",
         changelog: nix.thunk(() => nix.str`https://github.com/common-workflow-language/cwl-upgrader/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

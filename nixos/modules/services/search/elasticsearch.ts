@@ -55,105 +55,105 @@ transport.port: ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "t
 ${nix.sel(cfg, "extraConf")}
 `);
   const configDir = nix.thunk(() => nix.add(nix.sel(cfg, "dataDir"), "/config"));
-  const elasticsearchYml = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ __proto__: pos$1, name: "elasticsearch.yml", text: esConfig }))));
+  const elasticsearchYml = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "elasticsearch.yml", text: esConfig }))));
   const loggingConfigFilename = "log4j2.properties";
   const loggingConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: loggingConfigFilename,
       text: nix.thunk(() => nix.sel(cfg, "logging")),
     }))));
   const esPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "elasticsearch-plugins",
       paths: nix.thunk(() => nix.sel(cfg, "plugins")),
       postBuild: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir -p $out/plugins`),
     }))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         elasticsearch: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Whether to enable elasticsearch.",
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "elasticsearch", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Elasticsearch listen address.",
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Elasticsearch port to listen for HTTP traffic.",
               default: 9200n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
             })))),
           tcp_port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Elasticsearch port for the node to node communication.",
               default: 9300n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
             })))),
           cluster_name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Elasticsearch name that identifies your cluster for auto-discovery.",
               default: "elasticsearch",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           single_node: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Start a single-node cluster",
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             })))),
           extraConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Extra configuration for elasticsearch.",
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "node.name: \"elasticsearch\"\nnode.master: true\nnode.data: false\n",
             })))),
           logging: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Elasticsearch logging configuration.",
               default: "logger.action.name = org.elasticsearch.action\nlogger.action.level = info\n\nappender.console.type = Console\nappender.console.name = console\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] %marker%m%n\n\nrootLogger.level = info\nrootLogger.appenderRef.console.ref = console\n",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/elasticsearch",
               description: "Data directory for elasticsearch.\n",
             })))),
           extraCmdLineOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Extra command line options for the elasticsearch launcher.",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             })))),
           extraJavaOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Extra command line options for Java.",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: nix.thunk(() => ["-Djava.net.preferIPv4Stack=true"]),
             })))),
           plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Extra elasticsearch plugins",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.elasticsearchPlugins.discovery-ec2 ]")),
             })))),
           restartIfChanged: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on a server or cluster.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
               default: true,
@@ -162,26 +162,26 @@ ${nix.sel(cfg, "extraConf")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             elasticsearch: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Elasticsearch Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inetutils"))]),
               restartIfChanged: nix.thunk(() => nix.attr(cfg, "restartIfChanged")),
               environment: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ES_HOME: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 ES_JAVA_OPTS: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraJavaOptions")))),
                 ES_PATH_CONF: configDir,
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/elasticsearch ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraCmdLineOptions")))}`),
                 User: "elasticsearch",
                 PermissionsStartOnly: true,
@@ -234,22 +234,22 @@ done
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           groups: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             elasticsearch: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "elasticsearch")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             elasticsearch: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "elasticsearch")),
               description: "Elasticsearch daemon user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),

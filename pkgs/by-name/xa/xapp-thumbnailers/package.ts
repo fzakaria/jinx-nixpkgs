@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const enabledThumbnailers = nix.argOr($, "enabledThumbnailers", () => ["aiff", "appimage", "epub", "gimp", "jxl", "mp3", "ora", "vorbiscomment"]);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xapp-thumbnailers",
       version: "1.2.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "xapp-thumbnailers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,16 +78,16 @@ done
       })()),
       pythonImportsCheck: nix.thunk(() => ["XappThumbnailers"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(xapp, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Thumbnailers for GTK desktop environments",
         homepage: "https://github.com/linuxmint/xapp-thumbnailers",
         changelog: nix.thunk(() => nix.str`https://github.com/linuxmint/xapp-thumbnailers/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

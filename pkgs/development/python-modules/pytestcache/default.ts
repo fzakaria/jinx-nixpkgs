@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1a873fihw4rhshc722j4h6j7g3nj7xpgsna9hhg3zn6ksknnhx5y",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "py.test\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://pypi.org/project/pytest-cache/",
         description: "Pytest plugin with mechanisms for caching across test runs",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

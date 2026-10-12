@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.sql",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dissect.sql"]);
       const disabledTests = nix.thunk(() => ["test_sqlite", "test_empty"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dissect module implementing a parsers for the SQLite database file format",
         homepage: "https://github.com/fox-it/dissect.sql",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.sql/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

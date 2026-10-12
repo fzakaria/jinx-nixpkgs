@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const grpcio_reflection = nix.arg($, "grpcio-reflection");
   const smg_grpc_proto = nix.arg($, "smg-grpc-proto");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smg-grpc-servicer",
       version: "0.5.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           format: "setuptools",
           pname: "smg_grpc_servicer",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [grpcio, grpcio_health_checking, grpcio_reflection, smg_grpc_proto]),
       postInstall: "find $out -name __pycache__ -type d | xargs rm -rv\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, PYTHONDONTWRITEBYTECODE: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PYTHONDONTWRITEBYTECODE: 1n })),
       pythonImportsCheck: nix.thunk(() => ["smg_grpc_servicer"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SMG gRPC servicer implementations for LLM inference engines (vLLM, SGLang, MLX)",
         homepage: "https://github.com/lightseekorg/smg/tree/main/grpc_servicer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
       const pname = "lcms2";
       const version = "2.19.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lcms/lcms2-${version}.tar.gz`),
           hash: "sha256-v8VPe6tZ+8khASAUqAMuTLpKvUbbR9RrdkFqjAsoFcg=",
         }))));
       const outputs = nix.thunk(() => ["bin", "dev", "out"]);
       const buildInputs = nix.thunk(() => [libtiff, libjpeg, zlib]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, LDFLAGS: "-Wl,-w" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, LDFLAGS: "-Wl,-w" }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Color management engine",
         homepage: "http://www.littlecms.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$4, pname, version, src, outputs, buildInputs, env, meta };
+      return { [nix.POS]: pos$4, pname, version, src, outputs, buildInputs, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

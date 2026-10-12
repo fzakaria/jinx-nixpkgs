@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-autocomplete";
       const version = "26.08.04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marlonrichert",
           repo: "zsh-autocomplete",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\nzsh -f -c '\n  fpath=( \"$out/share/zsh-autocomplete/z-async\" )\n  autoload -Uz z-async\n  z-async help >/dev/null\n'\n\nrunHook postInstallCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion",
         homepage: "https://github.com/marlonrichert/zsh-autocomplete/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "leona"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

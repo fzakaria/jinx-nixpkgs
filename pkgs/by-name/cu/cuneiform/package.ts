@@ -21,42 +21,42 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "cuneiform",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://launchpad.net/cuneiform-linux/1.1/1.1/+download/cuneiform-linux-1.1.0.tar.bz2",
           sha256: "1bdvppyfx2184zmzcylskd87cxv56d8f32jf7g1qc8779l2hszjp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/a2ec92f05de006b56d16ac6a6c370d54a554861a/cuneiform/trunk/build-fix.patch",
             sha256: "19cmrlx4khn30qqrpyayn7bicg8yi0wpz1x1bvqqrbvr3kwldxyj",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/cuneiform/files/cuneiform-1.1.0-gcc11.patch?id=fd8e596c6a5eab634656e265c3da5241f5ceee8c",
             sha256: "14bp2f4dvlgxnpdza1rgszhkbxhp6p7lhgnb1s7c1x7vwdrx0ri7",
           })))),
         nix.path(here, "./gcc14-fix.patch"),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
       postPatch: "rm cuneiform_src/Kern/hhh/tigerh/h/strings.h\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 2.6.2)' \\\n  'cmake_minimum_required(VERSION 3.10)'\n",
       postInstall: "if [[ -d ${!outputLib}/lib64 ]]; then\n  mv ${!outputLib}/lib64 ${!outputLib}/lib\n  ln -s lib ${!outputLib}/lib64\nfi\n",
       buildInputs: nix.thunk(() => [imagemagick]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             command: "cuneiform",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Multi-language OCR system",
         homepage: "https://launchpad.net/cuneiform-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const z3 = nix.arg($, "z3");
-  const z3$ = nix.thunk(() => nix.app(nix.sel(z3, "override"), nix.thunk(() => ({ __proto__: pos$1, useCmakeBuild: false }))));
+  const z3$ = nix.thunk(() => nix.app(nix.sel(z3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useCmakeBuild: false }))));
   const fstarNewZ3Version = "4.13.3";
   const fstarNewZ3 = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(z3$, "version"), fstarNewZ3Version)) ? nix.force(z3$) : nix.app(nix.sel(z3$, "overrideAttrs"), (final) => (() => {
       const version = fstarNewZ3Version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Z3Prover",
           repo: "z3",
           rev: nix.thunk(() => nix.str`z3-${version}`),
           hash: "sha256-odwalnF00SI+sJGHdIIv4KapFcfVVKiQ22HFhXYtSvA=",
         }))));
-      return { __proto__: pos$3, version, src };
+      return { [nix.POS]: pos$3, version, src };
     })())));
   const fstarOldZ3Version = "4.8.5";
   const fstarOldZ3 = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(z3$, "version"), fstarOldZ3Version)) ? nix.force(z3$) : nix.app(nix.sel(z3$, "overrideAttrs"), (prev) => (() => {
       const version = fstarOldZ3Version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "Z3Prover",
           repo: "z3",
           rev: nix.thunk(() => nix.str`Z3-${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => (() => {
         const static_matrix_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "gcc-15-fixes.patch",
             url: "https://github.com/Z3Prover/z3/commit/2ce89e5f491fa817d02d8fdce8c62798beab258b.patch",
             includes: nix.thunk(() => ["src/@dir@/lp/static_matrix.h"]),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
             extraPrefix: "src/@dir@/",
             hash: "sha256-+H1/VJPyI0yq4M/61ay8SRCa6OaoJ/5i+I3zVTAPUVo=",
           }))));
-        const fixupPatches = (dir) => nix.app(nix.builtins.map, (patch) => nix.app(replaceVars, patch, nix.thunk(() => ({ __proto__: pos$6, dir: dir }))));
+        const fixupPatches = (dir) => nix.app(nix.builtins.map, (patch) => nix.app(replaceVars, patch, nix.thunk(() => ({ [nix.POS]: pos$6, dir: dir }))));
         return nix.concat(nix.selOr(prev, () => [], "patches"), nix.concat(nix.app(fixupPatches, "util", nix.thunk(() => [
             nix.path(here, "./lower-bound-typo.diff"),
             static_matrix_patch,
@@ -64,17 +64,17 @@ export default nix.lambda((args) => (() => {
           ])), [
           nix.path(here, "./4-8-5-typos.diff"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: "https://github.com/Z3Prover/z3/commit/40183d7b73fcc4020b4d4b2e658b24a8c4b648ee.patch",
               hash: "sha256-+VpPYUBVAVB9BQIp+phmL6IAEc0RC+YoUVCIsIe5TSQ=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: "https://github.com/Z3Prover/z3/commit/03ae6d86cb4db88c71d6b245e29400e9a44cb59f.patch",
               hash: "sha256-nNjkQpaSCyAqnPEZcRtG+cMTPeA+CQfvmNUe5fAK93Q=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: "https://github.com/Z3Prover/z3/commit/f6c9ead10c0cf904925d7495f5c08dae66643b7a.patch",
               hash: "sha256-eUeFayyfdg9Q8s97H6khBXst9nLYWM7NSEoQ2btMHEE=",
             })))),
@@ -85,10 +85,10 @@ export default nix.lambda((args) => (() => {
         nix.assert_(!nix.eq(python, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fs/fstar/z3/default.nix:86:11");
         return nix.add(nix.selOr(prev, () => "", "postPatch"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(python, "version")), "3.12")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.8.14")))), "# See https://github.com/Z3Prover/z3/pull/5729. This is a specialization of this patch for 4.8.5.\nfor file in scripts/mk_util.py src/api/python/CMakeLists.txt; do\n  substituteInPlace \"$file\" \\\n    --replace-fail \"distutils.sysconfig.get_python_lib()\" \"sysconfig.get_path('purelib')\" \\\n    --replace-fail \"distutils.sysconfig\" \"sysconfig\"\ndone\n"));
       })());
-      return { __proto__: pos$10, version, src, patches, postPatch };
+      return { [nix.POS]: pos$10, version, src, patches, postPatch };
     })())));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "fstar-z3",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin

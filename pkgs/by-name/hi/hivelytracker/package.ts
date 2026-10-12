@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hivelytracker",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pete-gordon",
           repo: "hivelytracker",
           rev: nix.thunk(() => nix.str`V${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make -C hvl2wav\n",
       postInstall: "# Also install the hvl2wav tool\ninstall -Dm755 hvl2wav/hvl2wav $out/bin/hvl2wav\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.hivelytracker.co.uk/",
         downloadPage: "http://www.hivelytracker.co.uk/downl.php",
         description: "Chip music tracker based upon the AHX format",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_core = nix.arg($, "llama-index-core");
   const ollama = nix.arg($, "ollama");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-llms-ollama",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_llms_ollama",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5rjKwgCp/2fK6lMf7OCmJyqJ41BrK5ZI7HCaz/5KeYA=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.llms.ollama"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex LLMS Integration for ollama",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/llms/llama-index-llms-ollama",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "metar",
       version: "0-unstable-2017-02-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keesL",
           repo: "metar",
           rev: "20e9ca69faea330f6c2493b6829131c24cb55147",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/keesL/metar",
         description: "Downloads weather reports and optionally decodes them",
         longDescription: "METAR reports are meteorogical weather reports for aviation. Metar is a small\nprogram which downloads weather reports for user-specified stations and\noptionally decodes them into a human-readable format.\n\nCurrently, metar supports decoding date/time, wind, visibility, cloud layers,\ntemperature, air pressure and weather phenomena, such as rain, fog, etc. Also,\nmore work in the area of clouds need to be done, as support for Cumulus or\nCumulunimbus is not yet decoded.\n",

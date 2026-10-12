@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version_name: "1.2.hanami.6",
       version: "1.2.6",
       pname: "oneko",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IreneKnapp",
           repo: "oneko",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version_name")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxext]),
       makeFlags: nix.thunk(() => ["BINDIR=$(out)/bin", "MANPATH=$(out)/share/man"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-implicit-function-declaration",
             "-Wno-endif-labels",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Creates a cute cat chasing around your mouse cursor",
         longDescription: "Oneko changes your mouse cursor into a mouse\nand creates a little cute cat, which starts\nchasing around your mouse cursor.\nWhen the cat is done catching the mouse, it starts sleeping.\n",
         homepage: "https://github.com/IreneKnapp/oneko",

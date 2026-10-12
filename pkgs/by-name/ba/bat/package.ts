@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bat",
       version: "0.26.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sharkdp",
           repo: "bat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IbTvFT37BFo0tKOiApDL9sT+/nMD33MO3TXuho+lF2c=",
         })))),
       cargoHash: "sha256-WRLCs1hrwFT3tya9CzKUuh5g+6fYqKDtv3yvDx8Wws8=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles, makeWrapper]),
       buildInputs: nix.thunk(() => [libgit2, zlib]),
       postInstall: "installManPage $releaseDir/build/bat-*/out/assets/manual/bat.1\ninstallShellCompletion $releaseDir/build/bat-*/out/assets/completions/bat.{bash,fish,zsh}\n",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ntestFile=$(mktemp /tmp/bat-test.XXXX)\necho -ne 'Foobar\\n\\n\\n42' > $testFile\n$out/bin/bat -p $testFile | grep \"Foobar\"\n$out/bin/bat -p $testFile -r 4:4 | grep 42\nrm $testFile\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cat(1) clone with syntax highlighting and Git integration",
         homepage: "https://github.com/sharkdp/bat",
         changelog: nix.thunk(() => nix.str`https://github.com/sharkdp/bat/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

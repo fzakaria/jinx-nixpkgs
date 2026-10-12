@@ -34,31 +34,31 @@ export default nix.lambda((args) => (() => {
           const versionDir = nix.thunk(() => nix.selOr(dep, () => nix.force(version), "unresolved-version"));
           const authenticated = nix.thunk(() => nix.selOr(dep, () => false, "authenticated"));
           const url = nix.thunk(() => nix.selOr(dep, () => "", "url"));
-          const fetch = nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? nix.app((nix.asBool(authenticated) ? nix.force(requireFile) : nix.force(fetchurl)), nix.thunk(() => ({ __proto__: pos$1, url: url, sha1: sha1 }))) : ""));
+          const fetch = nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? nix.app((nix.asBool(authenticated) ? nix.force(requireFile) : nix.force(fetchurl)), nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha1: sha1 }))) : ""));
           const fetchMetadata = nix.thunk(() => nix.app((nix.asBool(authenticated) ? nix.force(requireFile) : nix.force(fetchurl)), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.attr(metadata, "url")),
               sha1: nix.thunk(() => nix.attr(metadata, "sha1")),
             }))));
           const layout = nix.thunk(() => nix.str`${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["/"]), groupId)}/${artifactId}/${versionDir}`);
           return nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(url, "")), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               layout: nix.thunk(() => nix.str`${layout}/${nix.sel(fetch, "name")}`),
               drv: fetch,
             }))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(dep, "metadata")), nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 layout: nix.thunk(() => nix.str`${layout}/maven-metadata-${repository_id}.xml`),
                 drv: fetchMetadata,
               })),
             ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(fetch, "")), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 layout: nix.thunk(() => nix.str`${layout}/${nix.builtins.replaceStrings(nix.thunk(() => [version]), nix.thunk(() => [nix.thunk(() => nix.sel(dep, "unresolved-version"))]), nix.thunk(() => nix.sel(fetch, "name")))}`),
                 drv: fetch,
               })))))));
         })(), nix.thunk(() => nix.sel(info, "dependencies"))))));
     const repo = nix.thunk(() => nix.app(linkFarm, "maven-repository", nix.thunk(() => nix.app(nix.sel(lib, "forEach"), dependencies, (dependency) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.sel(dependency, "layout")),
           path: nix.thunk(() => nix.sel(dependency, "drv")),
         })))));
@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
 `)));
     const src = nix.thunk(() => nix.builtins.dirOf(infoFile));
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       repo: repo,
       settings: settings,
       info: info,
       build: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: nix.thunk(() => nix.str`${nix.sel(info, "project", "artifactId")}-${nix.sel(info, "project", "version")}.jar`),
           src: nix.thunk(() => nix.builtins.filterSource((path) => (type) => (nix.asBool(!nix.eq(nix.builtins.toString(path), nix.builtins.toString(nix.thunk(() => nix.add(src, "/target"))))) && nix.asBool(!nix.eq(nix.builtins.toString(path), nix.builtins.toString(nix.thunk(() => nix.add(src, "/.git")))))), src)),
           buildInputs: nix.thunk(() => [maven]),

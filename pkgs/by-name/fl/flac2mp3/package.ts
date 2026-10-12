@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const lame = nix.arg($, "lame");
   const runtimeDeps = nix.thunk(() => [flac, lame]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flac2mp3",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robinbowes",
           repo: "flac2mp3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sktt/flac2mp3/commit/c81cb6f300445f2383562991b35d8622197635d7.patch",
             hash: "sha256-vLXo+PfRQ97cNQnMoBrxA7K35C1EdedXXSL8wmWpPOs=",
           })))),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
   --prefix PERL5LIB : "$out/lib" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "flac2mp3",
         description: "Tool to convert audio files from flac to mp3 format including the copying of tags",
         homepage: "https://github.com/robinbowes/flac2mp3",

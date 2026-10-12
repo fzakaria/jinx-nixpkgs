@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "coc-diagnostic",
       version: "0-unstable-2025-01-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iamcco",
           repo: "coc-diagnostic",
           rev: "1515cae0c7f8e7e4284d046b6aaad7ba665489e4",
           hash: "sha256-t5hB9lzbyHu0s7m/mYtohF/FW0Ymat9PM9zjdXwKiIM=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-/WBOZKIIE2ERKuGwG+unXyam2JavPOuUeSIwZQ9RiHY=",
         })))),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "unlink $out/lib/node_modules/coc-diagnostic/node_modules/.bin/node-which\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Diagnostic-languageserver extension for coc.nvim",
         homepage: "https://github.com/iamcco/coc-diagnostic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

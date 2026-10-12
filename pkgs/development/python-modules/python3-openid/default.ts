@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1bxf9a3ny1js422j962zfzl4a9dhj192pvai05whn7j0iy9gdyrk",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenID support for modern servers and consumers",
         homepage: "https://github.com/necaris/python3-openid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

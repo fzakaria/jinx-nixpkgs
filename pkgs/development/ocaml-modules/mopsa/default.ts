@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopsa",
       version: "1.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mopsa",
           repo: "mopsa-analyzer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ runHook postInstall
 `),
       outputs: nix.thunk(() => ["bin", "out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         homepage: "https://mopsa.lip6.fr/",
         description: "Modular and Open Platform for Static Analysis using Abstract Interpretation",

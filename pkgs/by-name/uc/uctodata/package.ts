@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const autoconf_archive = nix.arg($, "autoconf-archive");
   const frog = nix.arg($, "frog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "uctodata",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LanguageMachines",
           repo: "uctodata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libtool, autoconf_archive]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ __proto__: pos$3, frog: frog })))),
+          [nix.POS]: pos$4,
+          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, frog: frog })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Rule-based tokenizer for natural language",
         homepage: "https://languagemachines.github.io/ucto/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

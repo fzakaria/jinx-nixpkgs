@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const pcre = nix.arg($, "pcre");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(nix.app(nix.sel(swig, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.0.9-forth",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeraldWodni",
           repo: "swig",
           rev: "d9a1e4f88bdc6f8829438902aebeeea2ce5d2eee",
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--with-forth=yes"])),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PCRE_CONFIG: nix.thunk(() => nix.str`${nix.sel(pcre, "dev")}/bin/pcre-config`),
       })),
-    })), "override"), nix.thunk(() => ({ __proto__: pos$4, pcre2: pcre })));
+    })), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, pcre2: pcre })));
 })(), formals$1);
 //# sourceMappingURL=swig.ts.map

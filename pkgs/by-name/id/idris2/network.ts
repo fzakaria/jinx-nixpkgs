@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const base = nix.arg($, "base");
   const linear = nix.arg($, "linear");
   return nix.app(mkPrelude, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "network",
       dependencies: nix.thunk(() => [prelude, base, linear]),
     })));

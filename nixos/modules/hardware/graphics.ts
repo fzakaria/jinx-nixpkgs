@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "graphics"));
   const driversEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "graphics-drivers",
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
     }))));
   const driversEnv32 = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "graphics-drivers-32bit",
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package32"))], nix.sel(cfg, "extraPackages32"))),
     }))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "vaapiDrivers"]), nix.thunk(() => ["hardware", "graphics", "extraPackages"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["hardware", "opengl", "s3tcSupport"]), "S3TC support is now always enabled in Mesa.")),
@@ -62,42 +62,42 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "opengl", "extraPackages32"]), nix.thunk(() => ["hardware", "graphics", "extraPackages32"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       hardware: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         graphics: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Whether to enable hardware accelerated graphics drivers.\n\nThis is required to allow most graphical applications and\nenvironments to use hardware rendering, video encode/decode\nacceleration, etc.\n\nThis option should be enabled by default by the corresponding modules,\nso you do not usually have to set it yourself.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
           enable32Bit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "On 64-bit systems, whether to also install 32-bit drivers for\n32-bit applications (such as Wine).\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "The package that provides the default driver set.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
             })))),
           package32: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "The package that provides the 32-bit driver set. Used when {option}`enable32Bit` is enabled.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Additional packages to add to the default graphics driver lookup path.\nThis can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.\n\n::: {.note}\nintel-media-driver supports hardware Broadwell (2014) or newer. Older hardware should use the mostly unmaintained intel-vaapi-driver driver.\n:::\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ intel-media-driver intel-ocl intel-vaapi-driver ]")),
             })))),
           extraPackages32: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Additional packages to add to 32-bit graphics driver lookup path on 64-bit systems.\nUsed when {option}`enable32Bit` is set. This can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.\n\n::: {.note}\nintel-media-driver supports hardware Broadwell (2014) or newer. Older hardware should use the mostly unmaintained intel-vaapi-driver driver.\n:::\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
@@ -107,52 +107,52 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enable32Bit")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")))),
             message: "`hardware.graphics.enable32Bit` is only supported on an x86_64 system.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enable32Bit")) || nix.asBool(nix.selOr(config, () => false, "boot", "kernelPackages", "kernel", "features", "ia32Emulation")))),
             message: "`hardware.graphics.enable32Bit` requires a kernel that supports 32-bit emulation",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "graphics-driver": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 "/run/opengl-driver": nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   "L+": nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     argument: nix.thunk(() => nix.builtins.toString(driversEnv)),
                   })),
                 })),
                 "/run/opengl-driver-32": nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isi686")) ? {
-                  __proto__: pos$17,
-                  "L+": nix.thunk(() => ({ __proto__: pos$16, argument: "opengl-driver" })),
+                  [nix.POS]: pos$17,
+                  "L+": nix.thunk(() => ({ [nix.POS]: pos$16, argument: "opengl-driver" })),
                 } : (nix.asBool(nix.sel(cfg, "enable32Bit")) ? {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "L+": nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     argument: nix.thunk(() => nix.builtins.toString(driversEnv32)),
                   })),
-                } : { __proto__: pos$20, r: nix.thunk(() => ({})) }))),
+                } : { [nix.POS]: pos$20, r: nix.thunk(() => ({})) }))),
               })),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           graphics: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mesa")))),
             package32: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "pkgsi686Linux", "mesa")))),
           })),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const unzip = nix.arg($, "unzip");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steam-lancache-prefill",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpill90",
           repo: "steam-lancache-prefill",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [curl, jq, unzip]),
       postInstall: "rm -rf $out/lib/steam-lancache-prefill/update.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically fills a Lancache with games from Steam",
         homepage: "https://github.com/tpill90/steam-lancache-prefill",
         changelog: nix.thunk(() => nix.str`https://github.com/tpill90/steam-lancache-prefill/releases/tag/v${nix.sel(finalAttrs, "version")}`),

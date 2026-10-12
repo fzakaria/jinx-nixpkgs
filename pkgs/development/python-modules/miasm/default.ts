@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const commit = "cbc722eed8dc807955bd46f84886ae74d161dd0c";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "miasm",
       version: "0.1.5-unstable-2024-08-20",
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cea-sec",
           repo: "miasm",
           rev: commit,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gcc]),
       pythonImportsCheck: nix.thunk(() => ["miasm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reverse engineering framework in Python",
         homepage: "https://github.com/cea-sec/miasm",
         changelog: nix.thunk(() => nix.str`https://github.com/cea-sec/miasm/blob/${commit}/CHANGELOG.md`),

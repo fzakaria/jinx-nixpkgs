@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sfm";
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "afify",
           repo: "sfm",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["CC:=$(CC)"]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple file manager",
         homepage: "https://github.com/afify/sfm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sfm",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

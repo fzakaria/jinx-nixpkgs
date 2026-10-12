@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const grubPlatform = nix.argOr($, "grubPlatform", () => "xen_pvh");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "grubPlatform", grubPlatform, nix.thunk(() => ["xen", "xen_pvh"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gr/grub2_pvhgrub_image/package.nix:9:1");
   const targets = nix.thunk(() => ({
-    __proto__: pos$3,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$1, target: "i386" })),
+    [nix.POS]: pos$3,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$1, target: "i386" })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       target: nix.thunk(() => (nix.asBool(nix.eq(grubPlatform, "xen_pvh")) ? "i386" : "x86_64")),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: nix.thunk(() => nix.str`grub2_${grubPlatform}_image`),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         GRUB_CONFIGS: nix.thunk(() => nix.str`${nix.path(here, "./configs")}`),
         GRUB_FORMAT: nix.thunk(() => nix.str`${nix.sel(targets, nix.key(nix.sel(stdenv, "buildPlatform", "system")), "target")}-${grubPlatform}`),
       })),
@@ -50,7 +50,7 @@ cp grub-"$GRUB_FORMAT".bin $out/lib/grub-${grubPlatform}/
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.str`PvGrub2 image for booting ${(nix.asBool(nix.eq(grubPlatform, "xen_pvh")) ? "PVH" : "PV")} Xen guests`),
         longDescription: nix.thunk(() => (nix.asBool(nix.eq(grubPlatform, "xen_pvh")) ? "This package provides a prebuilt PvGrub2 image for booting PVH Xen\nguests (also commonly referred to as PvhGrub2), which searches for\n`grub.cfg` on the guest disk and interprets it to load the kernel,\neliminating the need to copy the guest kernel to the Dom0.\n\nYou will need `pkgs.grub2_xen_pvh` to build a customized PvhGrub2\nimage. See [PvGrub2](https://wiki.xenproject.org/wiki/PvGrub2) for\nmore explanations.\n" : "This package provides a prebuilt PvGrub2 image for booting PV Xen\nguests, which searches for `grub.cfg` on the guest disk and interprets\nit to load the kernel, eliminating the need to copy the guest kernel\nto the Dom0.\n\nYou will need `pkgs.grub2_xen` to build a customized PvGrub2 image.\nSee [PvGrub2](https://wiki.xenproject.org/wiki/PvGrub2) for more\nexplanations.\n")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),

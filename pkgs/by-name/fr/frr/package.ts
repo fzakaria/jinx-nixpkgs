@@ -78,17 +78,17 @@ export default nix.lambda((args) => (() => {
   const bgpVnc = nix.argOr($, "bgpVnc", () => true);
   const ospfApi = nix.argOr($, "ospfApi", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "frr",
       version: "10.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FRRouting",
           repo: "frr",
           rev: nix.thunk(() => nix.str`frr-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TnQLkzh9K3C9HBVORCdFRGgR+zLm+/V0+zwdwpKEUNs=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=gnu++23" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++23" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([
         autoreconfHook,
         bison,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap])), nix.concat(nix.app(nix.sel(lib, "optionals"), snmpSupport, nix.thunk(() => [net_snmp])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils)), nix.thunk(() => [elfutils])), nix.concat(nix.app(nix.sel(lib, "optionals"), grpcSupport, nix.thunk(() => [grpc, protobuf])), nix.app(nix.sel(lib, "optionals"), scriptingSupport, nix.thunk(() => [nix.thunk(() => nix.sel(lua53Packages, "lua"))])))))))),
       depsBuildBuild: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(buildPackages, "python3"))], nix.app(nix.sel(lib, "optionals"), scriptingSupport, nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "lua53Packages", "lua"))])))),
       "clippy-helper": nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./clippy-helper.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           frrVersion: nix.thunk(() => nix.sel(finalAttrs, "version")),
           frrSource: nix.thunk(() => nix.sel(finalAttrs, "src")),
         })))),
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [net_tools, nix.thunk(() => nix.sel(python3, "pkgs", "pytest"))]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://frrouting.org/",
         description: "FRR BGP/OSPF/ISIS/RIP/RIPNG routing daemon suite",
         longDescription: "FRRouting (FRR) is a free and open source Internet routing protocol suite\nfor Linux and Unix platforms. It implements BGP, OSPF, RIP, IS-IS, PIM,\nLDP, BFD, Babel, PBR, OpenFabric and VRRP, with alpha support for EIGRP\nand NHRP.\n\nFRR’s seamless integration with native Linux/Unix IP networking stacks\nmakes it a general purpose routing stack applicable to a wide variety of\nuse cases including connecting hosts/VMs/containers to the network,\nadvertising network services, LAN switching and routing, Internet access\nrouters, and Internet peering.\n\nFRR has its roots in the Quagga project. In fact, it was started by many\nlong-time Quagga developers who combined their efforts to improve on\nQuagga’s well-established foundation in order to create the best routing\nprotocol stack available. We invite you to participate in the FRRouting\ncommunity and help shape the future of networking.\n\nJoin the ranks of network architects using FRR for ISPs, SaaS\ninfrastructure, web 2.0 businesses, hyperscale services, and Fortune 500\nprivate clouds.\n",
@@ -193,8 +193,8 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.concat(nix.sel(lib, "platforms", "freebsd"), nix.concat(nix.sel(lib, "platforms", "netbsd"), nix.sel(lib, "platforms", "openbsd"))))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, frr: nix.thunk(() => nix.attr(nixosTests, "frr")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, frr: nix.thunk(() => nix.attr(nixosTests, "frr")) })),
       })),
     }));
 })(), formals$1);

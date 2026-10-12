@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tydra",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mange",
           repo: "tydra",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage doc/{tydra.1,tydra-actions.5}\n\n$out/bin/tydra --generate-completions bash > tydra.bash\n$out/bin/tydra --generate-completions fish > tydra.fish\n$out/bin/tydra --generate-completions zsh > _tydra\n\ninstallShellCompletion tydra.{bash,fish} _tydra\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shortcut menu-based task runner, inspired by Emacs Hydra",
         homepage: "https://github.com/Mange/tydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

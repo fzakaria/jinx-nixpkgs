@@ -25,8 +25,8 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(nixl, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$3,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(nixl, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(nixl, "pname")),
       version: nix.thunk(() => nix.attr(nixl, "version")),
       src: nix.thunk(() => nix.attr(nixl, "src")),
@@ -63,7 +63,7 @@ install -Dm644 \\
         ])))),
       doCheck: false,
       dontCheckPythonMetadata: true,
-      meta: nix.thunk(() => nix.update(nix.sel(nixl, "meta"), { __proto__: pos$2, description: "Python API for nixl" })),
+      meta: nix.thunk(() => nix.update(nix.sel(nixl, "meta"), { [nix.POS]: pos$2, description: "Python API for nixl" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

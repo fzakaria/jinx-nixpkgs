@@ -97,13 +97,13 @@ export default nix.lambda((args) => (() => {
   ]);
   const gstPluginPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/gstreamer-1.0", gstPackages));
   const fuse3$ = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "fuse3-backwards-compat",
       paths: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), fuse3))]),
       postBuild: "ln -sf $out/lib/libfuse3.so.3.* $out/lib/libfuse3.so.3\n",
     }))));
   const opencv4$ = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "opencv4-compat",
       paths: nix.thunk(() => [opencv4]),
       postBuild: nix.thunk(() => nix.str`for so in ${opencv4}/lib/*.so; do
@@ -112,7 +112,7 @@ done
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "citrix-workspace",
       version: "26.08.0.153",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -131,7 +131,7 @@ installation:
 
 nix-prefetch-url file://$PWD/${name}
 `);
-          return { __proto__: pos$3, name, sha256, message };
+          return { [nix.POS]: pos$3, name, sha256, message };
         })()))),
       dontBuild: true,
       dontConfigure: true,
@@ -140,7 +140,7 @@ nix-prefetch-url file://$PWD/${name}
       sourceRoot: ".",
       preferLocalBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         icaroot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/opt/citrix-icaclient`),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -395,7 +395,7 @@ runHook postInstall
       dontAutoPatchelf: true,
       postFixup: "addAutoPatchelfSearchPath \"$out/opt/citrix-icaclient/lib\"\nautoPatchelf -- \"$out\"\n\n$out/opt/citrix-icaclient/util/ctx_rehash\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         description: "Citrix Workspace",
         sourceProvenance: nix.thunk(() => (() => {

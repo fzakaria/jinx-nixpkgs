@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const poppler_gi = nix.arg($, "poppler_gi");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "metadata-cleaner",
       version: "4.0.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metadatacleaner",
           repo: "metadatacleaner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python GTK application to view and clean metadata in files, using mat2",
         mainProgram: "metadata-cleaner",
         homepage: "https://gitlab.com/metadatacleaner/metadatacleaner",

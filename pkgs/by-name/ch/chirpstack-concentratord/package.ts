@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libloragw_sx1301 = nix.arg($, "libloragw-sx1301");
   const libloragw_sx1302 = nix.arg($, "libloragw-sx1302");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chirpstack-concentratord",
       version: "4.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chirpstack",
           repo: "chirpstack-concentratord",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libloragw_2g4, libloragw_sx1301, libloragw_sx1302]),
       nativeBuildInputs: nix.thunk(() => [protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Concentrator HAL daemon for LoRa gateways",
         homepage: "https://www.chirpstack.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pyftdi = nix.arg($, "pyftdi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyi2cflash",
       version: "0.2.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyi2cflash",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-oVPKm+SNQABZeXnhPjW5ztNwXBPe5VK9PF+qe9z7ato=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["i2cflash"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "I2C eeprom device drivers in Python",
         homepage: "https://github.com/eblot/pyi2cflash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

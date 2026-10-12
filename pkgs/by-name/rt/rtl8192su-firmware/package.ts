@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8192su-firmware",
       version: "0-unstable-2016-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chunkeey",
           repo: "rtl8192su",
           rev: "c00112c9a14133290fe30bd3b44e45196994cb1c",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "for i in rtl8192sfw.bin \\\n         rtl8192sufw-ap.bin \\\n         rtl8192sufw-apple.bin \\\n         rtl8192sufw-windows.bin \\\n         rtl8712u-linux-firmware-bad.bin \\\n         rtl8712u-most-recent-v2.6.6-bad.bin \\\n         rtl8712u-most-recent-v2.6.6-bad.bin \\\n         rtl8712u-oldest-but-good.bin;\ndo\n  install -D -pm644 firmwares/$i $out/lib/firmware/rtlwifi/$i\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for Realtek RTL8188SU/RTL8191SU/RTL8192SU",
         homepage: "https://github.com/chunkeey/rtl8192su",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

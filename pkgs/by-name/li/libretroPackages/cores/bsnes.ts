@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "bsnes",
       version: "0-unstable-2026-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "bsnes-libretro",
           rev: "05439f96121d2b9d7ad7a5fc1f29d7eebdcc8c43",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of bsnes to libretro",
         homepage: "https://github.com/libretro/bsnes-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

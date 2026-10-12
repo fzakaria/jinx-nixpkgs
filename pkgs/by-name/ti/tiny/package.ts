@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const notificationSupport = nix.argOr($, "notificationSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tiny",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osa1",
           repo: "tiny",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), dbusSupport, nix.thunk(() => [dbus])), nix.app(nix.sel(lib, "optionals"), useOpenSSL, nix.thunk(() => [openssl])))),
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), notificationSupport, "desktop-notifications")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console IRC client",
         homepage: "https://github.com/osa1/tiny",
         changelog: nix.thunk(() => nix.str`https://github.com/osa1/tiny/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

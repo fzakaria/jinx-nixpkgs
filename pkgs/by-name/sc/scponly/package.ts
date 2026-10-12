@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const debugLevel = nix.argOr($, "debugLevel", () => 0n);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scponly",
       version: "4.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scponly",
           repo: "scponly",
           rev: "d8ca58257b9905186aa5706f35813d5f80ea07c1",
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.gt(debugLevel, 0n)), nix.thunk(() => nix.str`mkdir -p $out/etc/scponly && echo ${nix.builtins.toString(debugLevel)} > $out/etc/scponly/debuglevel
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, shellPath: "/bin/scponly" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/scponly" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Shell that only permits scp and sftp-server",
         mainProgram: "scponly",
         homepage: "https://github.com/scponly/scponly",

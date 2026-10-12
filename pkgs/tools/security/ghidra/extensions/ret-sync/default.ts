@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildGhidraExtension = nix.arg($, "buildGhidraExtension");
   const ghidra = nix.arg($, "ghidra");
   return nix.app(buildGhidraExtension, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ret-sync-ghidra",
       version: "0-unstable-2024-05-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bootleg",
           repo: "ret-sync",
           rev: "0617c75746ddde7fe2bdbbf880175af8ad27553e",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ghidra-11.2-fix.patch",
             url: "https://github.com/bootleg/ret-sync/commit/d81d953c24b4369b499e90ba64c1c9f78513a008.patch",
             hash: "sha256-t/voPcBfsZtfdYnskgBAPfqMTBw1LRTT0aXyyb5qtr8=",
@@ -41,7 +41,7 @@ rm dist/ghidra*
 mv dist/safe.zip dist/$correct_version
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reverse-Engineering Tools SYNChronization. Allows syncing between a debugging session and Ghidra",
         homepage: "https://github.com/bootleg/ret-sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -40,41 +40,41 @@ ${name}.wait_for_file("/root/.ssh/id_snakeoil")
 `;
   const sshOpts = "-oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oIdentityFile=/root/.ssh/id_snakeoil";
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "tmate-ssh-server",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            "tmate-ssh-server": nix.thunk(() => ({ __proto__: pos$1, enable: true, port: 2223n, openFirewall: true })),
+            [nix.POS]: pos$2,
+            "tmate-ssh-server": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, port: 2223n, openFirewall: true })),
           })),
         };
       })(), formals$2),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tmate"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            openssh: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$6,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             users: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               root: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$7, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$8,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$7, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -84,9 +84,9 @@ ${name}.wait_for_file("/root/.ssh/id_snakeoil")
       client2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssh"))]),
           })),
         };

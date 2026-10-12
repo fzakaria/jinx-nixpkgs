@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "domoticz",
       version: "2026.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "domoticz",
           repo: "domoticz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,11 +83,11 @@ wrapProgram $out/bin/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Home automation system",
         longDescription: "Domoticz is a home automation system that lets you monitor and configure\nvarious devices like: lights, switches, various sensors/meters like\ntemperature, rain, wind, UV, electra, gas, water and much more\n",
         maintainers: nix.thunk(() => (() => {

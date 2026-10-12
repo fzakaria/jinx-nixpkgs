@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const ragel = nix.arg($, "ragel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arpa2common",
       version: "2.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arpa2",
           repo: "arpa2common",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [e2fsprogs, libsodium, lmdb, ragel]),
       buildInputs: nix.thunk(() => [krb5]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/arpa2/arpa2common/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),
         description: "ARPA2 ID and ACL libraries and other core data structures for ARPA2",
         longDescription: "The ARPA2 Common Library package offers elementary services that can\nbenefit many software packages.  They are designed to be easy to\ninclude, with a minimum of dependencies.  At the same time, they were\ndesigned with the InternetWide Architecture in mind, thus helping to\nliberate users.\n",

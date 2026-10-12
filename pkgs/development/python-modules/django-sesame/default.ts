@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aaugustin",
           repo: "django-sesame",
           tag: version,
@@ -37,14 +37,14 @@ ${nix.sel(python, "interpreter")} -m django test --settings=tests.settings
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "URLs with authentication tokens for automatic login",
         homepage: "https://github.com/aaugustin/django-sesame",
         changelog: nix.thunk(() => nix.str`https://github.com/aaugustin/django-sesame/blob/${version}/docs/changelog.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

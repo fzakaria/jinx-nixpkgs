@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const lwtSupport = nix.argOr($, "lwtSupport", () => true);
   const lwt = nix.arg($, "lwt");
   const param = nix.thunk(() => nix.sel({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "0.8.0": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       minimalOCamlVersion: "4.03",
       hash: "sha256-mmFRQJX6QvMBIzJiO2yNYF1Ce+qQS2oNF3+OwziCNtg=",
     })),
     "0.10.0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       minimalOCamlVersion: "4.14",
       hash: "sha256-dg7CkcEo11t0gmCRM3dk+SW1ykFLAuLTNqCze/MN9Oo=",
     })),
@@ -48,15 +48,15 @@ export default nix.lambda((args) => (() => {
   const webpage = nix.thunk(() => nix.str`https://erratique.ch/software/${pname}`);
   const optional_deps = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pkg: js_of_ocaml_compiler,
       enable_flag: "--with-js_of_ocaml-compiler",
       enabled: jsooSupport,
     })),
-    nix.thunk(() => ({ __proto__: pos$5, pkg: fmt, enable_flag: "--with-fmt", enabled: fmtSupport })),
-    nix.thunk(() => ({ __proto__: pos$6, pkg: lwt, enable_flag: "--with-lwt", enabled: lwtSupport })),
+    nix.thunk(() => ({ [nix.POS]: pos$5, pkg: fmt, enable_flag: "--with-fmt", enabled: fmtSupport })),
+    nix.thunk(() => ({ [nix.POS]: pos$6, pkg: lwt, enable_flag: "--with-lwt", enabled: lwtSupport })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pkg: cmdliner,
       enable_flag: "--with-cmdliner",
       enabled: cmdlinerSupport,
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
     ], optional_deps));
   const optional_buildInputs = nix.thunk(() => nix.builtins.map((d) => nix.sel(d, "pkg"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (d) => nix.sel(d, "enabled"), optional_deps))));
   return nix.app(buildTopkgPackage, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       minimalOCamlVersion: nix.thunk(() => nix.attr(param, "minimalOCamlVersion")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: nix.thunk(() => nix.str`${webpage}/releases/${pname}-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Logging infrastructure for OCaml",
         homepage: webpage,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

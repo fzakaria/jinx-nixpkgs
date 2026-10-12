@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-0eJ9uN6eZ1fBh19nKSVUvVTEGHTDb0tcTrtUQtziBPI=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pywebpush"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Webpush Data encryption library for Python",
         homepage: "https://github.com/web-push-libs/pywebpush",
         changelog: nix.thunk(() => nix.str`https://github.com/web-push-libs/pywebpush/releases/tag/${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pywebpush",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

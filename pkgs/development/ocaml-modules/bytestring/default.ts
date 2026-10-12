@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const qcheck = nix.arg($, "qcheck");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bytestring",
       version: "0.0.8",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/riot-ml/riot/releases/download/${nix.sel(finalAttrs, "version")}/riot-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SsiDz53b9bMIT9Q3IwDdB3WKy98WSd9fiieU41qZpeE=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [qcheck]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient, immutable, pattern-matchable, UTF friendly byte strings",
         homepage: "https://github.com/riot-ml/riot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

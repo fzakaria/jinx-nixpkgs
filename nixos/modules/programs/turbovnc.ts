@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "turbovnc"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         turbovnc: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ensureHeadlessSoftwareOpenGL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to set up NixOS such that TurboVNC's built-in software OpenGL\nimplementation works.\n\nThis will enable {option}`hardware.graphics.enable` so that OpenGL\nprograms can find Mesa's llvmpipe drivers.\n\nSetting this option to `false` does not mean that software\nOpenGL won't work; it may still work depending on your system\nconfiguration.\n\nThis option is also intended to generate warnings if you are using some\nconfiguration that's incompatible with using headless software OpenGL\nin TurboVNC.\n",
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ensureHeadlessSoftwareOpenGL")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         hardware: nix.thunk(() => ({
-          __proto__: pos$6,
-          graphics: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          [nix.POS]: pos$6,
+          graphics: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         })),
       })))),
   };

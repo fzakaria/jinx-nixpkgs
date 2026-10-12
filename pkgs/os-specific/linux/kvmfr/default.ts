@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const looking_glass_client = nix.arg($, "looking-glass-client");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kvmfr",
       version: nix.thunk(() => nix.sel(looking_glass_client, "version")),
       src: nix.thunk(() => nix.sel(looking_glass_client, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D kvmfr.ko -t "$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/misc/"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Optional kernel module for LookingGlass",
         longDescription: "This kernel module implements a basic interface to the IVSHMEM device for LookingGlass when using LookingGlass in VM->VM mode\nAdditionally, in VM->host mode, it can be used to generate a shared memory device on the host machine that supports dmabuf\n",
         homepage: "https://github.com/gnif/LookingGlass",

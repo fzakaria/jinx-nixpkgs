@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mboxshell",
       version: "0.9.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dcarrero",
           repo: "mboxshell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast terminal viewer for MBOX files of any size",
         longDescription: "mboxshell opens, searches and exports MBOX mailboxes (Gmail Takeout,\nThunderbird, Apple Mail, Unix servers) from the terminal, streaming the\nfile so even 50 GB+ archives open quickly. It never modifies the source\nmailbox. Includes a TUI with threading and a CLI for indexing, search,\nstatistics, export (EML, CSV, HTML, text, mbox, Maildir), attachment\nextraction and merging.\n",
         homepage: "https://github.com/dcarrero/mboxshell",

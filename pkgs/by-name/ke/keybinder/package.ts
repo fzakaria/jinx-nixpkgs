@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const lua = lua5_1;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keybinder",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kupferlauncher",
           repo: "keybinder",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-python"]),
       preConfigure: "./autogen.sh --prefix=\"$out\" $configureFlags\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for registering global key bindings",
         longDescription: "keybinder is a library for registering global keyboard shortcuts.\nKeybinder works with GTK-based applications using the X Window System.\n\nThe library contains:\n\n* A C library, ``libkeybinder``\n* Gobject-Introspection (gir)  generated bindings\n* Lua bindings, ``lua-keybinder``\n",
         homepage: "https://github.com/kupferlauncher/keybinder/",

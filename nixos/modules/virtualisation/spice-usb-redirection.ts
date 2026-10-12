@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         spiceUSBRedirection: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Install the SPICE USB redirection helper with setuid\nprivileges. This allows unprivileged users to pass USB devices\nconnected to this machine to libvirt VMs, both local and\nremote. Note that this allows users arbitrary access to USB\ndevices.\n",
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "virtualisation", "spiceUSBRedirection", "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "spice-gtk"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "spice-client-glib-usb-acl-helper": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               owner: "root",
               group: "root",
               capabilities: "cap_fowner+ep",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$10, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$10, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=spice-usb-redirection.ts.map

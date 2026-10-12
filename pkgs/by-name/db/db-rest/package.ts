@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.0";
       const nodejs_1 = nodejs;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derhuerst",
           repo: "db-rest",
           rev: version,
@@ -32,15 +32,15 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-ELVVsysNjkXuX4i6i5P3irn6twVDu6YiPYqy2hbIlIs=";
       const preConfigure = "patchShebangs ./build/index.js\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "db-rest": nix.thunk(() => nix.attr(nixosTests, "db-rest")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Clean REST API wrapping around the Deutsche Bahn API",
         homepage: "https://v6.db.transport.rest/",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "db-rest",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         nodejs: nodejs_1,

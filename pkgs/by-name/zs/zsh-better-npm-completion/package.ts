@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-better-npm-completion",
       version: "0-unstable-2019-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lukechilds",
           repo: "zsh-better-npm-completion",
           rev: "0a7cf042415324ec38a186fdcbc9af163f0d7e69",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -Dm 0644 zsh-better-npm-completion.plugin.zsh $out/share/zsh-better-npm-completion\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Better completion for npm",
         homepage: "https://github.com/lukechilds/zsh-better-npm-completion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

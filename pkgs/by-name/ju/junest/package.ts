@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "junest";
       const version = "7.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsquillace",
           repo: "junest",
           tag: version,
@@ -37,7 +37,7 @@ substituteInPlace $out/lib/core/common.sh --replace-fail "wget" ${nix.app(nix.se
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Arch distro that runs on top of another without root",
         homepage: "https://github.com/fsquillace/junest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -48,7 +48,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontBuild, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontBuild, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

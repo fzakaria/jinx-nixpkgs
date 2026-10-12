@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const withShared = nix.argOr($, "withShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qpoases",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coin-or",
           repo: "qpOASES",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "qpoases-fix-cmake-4.patch",
             url: "https://github.com/coin-or/qpOASES/commit/35b762ba3fee2e009d9e99650c68514da05585c5.patch",
             hash: "sha256-I6l+ah1j45VEMokZqX6DYVmE55uWlVi0rx2B+HQv5Ik=",
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", withShared)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "releases/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source C++ implementation of the recently proposed online active set strategy",
         homepage: "https://github.com/coin-or/qpOASES",
         changelog: nix.thunk(() => nix.str`https://github.com/coin-or/qpOASES/blob/${nix.sel(finalAttrs, "src", "tag")}/VERSIONS.txt`),

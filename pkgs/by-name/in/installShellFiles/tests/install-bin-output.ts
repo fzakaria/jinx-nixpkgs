@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-bin-output", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputs: nix.thunk(() => ["out", "bin"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "mkdir -p bin\necho \"echo hello za warudo\" > bin/hello\necho \"echo amigo me gusta mucho\" > bin/amigo\n\ninstallBin bin/*\n\n# assert it didn't go into $out\n[[ ! -f $out/bin/amigo ]]\n[[ ! -f $out/bin/hello ]]\n\ncmp bin/amigo ${!outputBin}/bin/amigo\ncmp bin/hello ${!outputBin}/bin/hello\n\ntouch $out\n");

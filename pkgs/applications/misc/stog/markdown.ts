@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const ocf_ppx = nix.arg($, "ocf_ppx");
   const omd = nix.arg($, "omd");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "stog_markdown",
       version: nix.thunk(() => nix.attr(stog, "version")),
       src: nix.thunk(() => nix.attr(stog, "src")),
       buildInputs: nix.thunk(() => [ocf_ppx]),
       propagatedBuildInputs: nix.thunk(() => [omd, stog]),
-      meta: nix.thunk(() => nix.update(nix.sel(stog, "meta"), { __proto__: pos$1, description: "Stog plugin to use markdown syntax" })),
+      meta: nix.thunk(() => nix.update(nix.sel(stog, "meta"), { [nix.POS]: pos$1, description: "Stog plugin to use markdown syntax" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=markdown.ts.map

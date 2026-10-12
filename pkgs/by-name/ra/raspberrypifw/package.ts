@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "raspberrypi-firmware";
       const version = "1.20260915";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raspberrypi",
           repo: "firmware",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const dontFixup = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for the Raspberry Pi board",
         homepage: "https://github.com/raspberrypi/firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

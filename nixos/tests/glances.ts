@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "glances",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine_default: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            glances: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$2,
+            glances: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
         };
       })(), formals$2),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            glances: nix.thunk(() => ({ __proto__: pos$4, enable: true, port: 5678n })),
+            [nix.POS]: pos$5,
+            glances: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, port: 5678n })),
           })),
         };
       })(), formals$3),
     })),
     testScript: "machine_default.start()\nmachine_default.wait_for_unit(\"glances.service\")\nmachine_default.wait_for_open_port(61208)\n\nmachine_custom_port.start()\nmachine_custom_port.wait_for_unit(\"glances.service\")\nmachine_custom_port.wait_for_open_port(5678)\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "claha"))]),
     })),
   };

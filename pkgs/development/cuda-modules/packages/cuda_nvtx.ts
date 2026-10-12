@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nvtx",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "C-based Application Programming Interface (API) for annotating events, code ranges, and resources in your applications",
         longDescription: "NVTX is a cross-platform API for annotating source code to provide contextual information to developer tools.\n\nThe NVTX API is written in C, with wrappers provided for C++ and Python.\n",
         homepage: "https://github.com/NVIDIA/NVTX",

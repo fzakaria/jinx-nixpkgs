@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "zwave-js-ui"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "zwave-js-ui": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "zwave-js-ui")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "zwave-js-ui", nix.thunk(() => ({})))),
           serialPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Serial port for the Z-Wave controller.\n\nOnly used to grant permissions to the device; must be additionally configured in the application\n",
               example: "/dev/serial/by-id/usb-example",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -62,16 +62,16 @@ export default nix.lambda((args) => (() => {
                           ]))))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     STORE_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "%S/zwave-js-ui",
                         visible: false,
                         readOnly: true,
                       })))),
                     ZWAVEJS_EXTERNAL_CONFIG: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "%S/zwave-js-ui/.config-db",
                         visible: false,
@@ -80,23 +80,23 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               description: "Extra environment variables passed to the zwave-js-ui process.\n\nCheck <https://zwave-js.github.io/zwave-js-ui/#/guide/env-vars> for possible options\n",
-              example: nix.thunk(() => ({ __proto__: pos$6, HOST: "::", PORT: "8091" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$6, HOST: "::", PORT: "8091" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "zwave-js-ui": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               environment: nix.thunk(() => nix.sel(cfg, "settings")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
                 RuntimeDirectory: "zwave-js-ui",
                 StateDirectory: "zwave-js-ui",
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "cdombroski"))];

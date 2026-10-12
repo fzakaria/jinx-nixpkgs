@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.argOr($, "rocmSupport", () => nix.sel(config, "rocmSupport"));
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "triton",
       version: "3.7.1",
       format: "wheel",
@@ -51,7 +51,7 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/bin/ptxas $out/${nix.sel(python, "si
     "return '${nix.sel(rocmPackages, "clr")}/lib/libamdhip64.so'"
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Language and compiler for custom Deep Learning operations",
         homepage: "https://github.com/triton-lang/triton/",
         changelog: nix.thunk(() => nix.str`https://github.com/triton-lang/triton/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "posthog",
       version: "7.62.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PostHog",
           repo: "posthog-python",
           tag: nix.thunk(() => nix.str`posthog-v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["posthog"]),
       disabledTests: nix.thunk(() => ["test_excepthook", "test_request", "test_upload"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interacting with PostHog",
         homepage: "https://github.com/PostHog/posthog-python",
         changelog: nix.thunk(() => nix.str`https://github.com/PostHog/posthog-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

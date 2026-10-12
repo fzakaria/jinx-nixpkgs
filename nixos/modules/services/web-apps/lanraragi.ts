@@ -34,49 +34,49 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "lanraragi"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tomasajt"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         lanraragi: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "LANraragi")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lanraragi", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Port for LANraragi's web interface.",
             })))),
           openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Open ports in the firewall for LANraragi's web interface.",
           })),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/lanraragi-password",
               description: "A file containing the password for LANraragi's admin interface.\n",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 6379n,
                 description: "Port for LANraragi's Redis server.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/redis-lanraragi-password",
@@ -87,15 +87,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           redis: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             servers: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               lanraragi: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: true,
                 port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                 requirePassFile: nix.thunk(() => nix.sel(cfg, "redis", "passwordFile")),
@@ -104,17 +104,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             lanraragi: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "LANraragi main service",
               after: nix.thunk(() => ["network.target", "redis-lanraragi.service"]),
               requires: nix.thunk(() => ["redis-lanraragi.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 DynamicUser: true,
                 StateDirectory: "lanraragi",
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
                 WorkingDirectory: "/var/lib/lanraragi",
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 LRR_TEMP_DIRECTORY: "/run/lanraragi",
                 LRR_LOG_DIRECTORY: "/var/log/lanraragi",
                 LRR_NETWORK: nix.thunk(() => nix.str`http://*:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
@@ -149,9 +149,9 @@ EOF
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

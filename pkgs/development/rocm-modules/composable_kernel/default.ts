@@ -41,29 +41,29 @@ export default nix.lambda((args) => (() => {
   const composable_kernel_base = nix.arg($, "composable_kernel_base");
   const miOpenReqLibsOnly = nix.thunk(() => nix.attr(composable_kernel_base, "miOpenReqLibsOnly"));
   const parts = nix.thunk(() => ({
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     _mha: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_mha_instance"]),
       extraCmakeFlags: nix.thunk(() => ["-DHIP_CLANG_NUM_PARALLEL_JOBS=2"]),
     })),
     gemm_multiply_multiply: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_gemm_multiply_multiply_instance"]),
       extraCmakeFlags: nix.thunk(() => ["-DHIP_CLANG_NUM_PARALLEL_JOBS=2"]),
       onlyFor: nix.thunk(() => ["gfx942", "gfx950"]),
     })),
     gemm_multiply_multiply_wp: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_gemm_multiply_multiply_wp_instance"]),
       extraCmakeFlags: nix.thunk(() => ["-DHIP_CLANG_NUM_PARALLEL_JOBS=2"]),
       onlyFor: nix.thunk(() => ["gfx942", "gfx950"]),
     })),
     grouped_conv_bwd: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       targets: nix.thunk(() => [
         "device_grouped_conv1d_bwd_weight_instance",
         "device_grouped_conv2d_bwd_data_instance",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       targets: nix.thunk(() => [
         "device_grouped_conv1d_fwd_instance",
         "device_grouped_conv2d_fwd_instance",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_bwd_3d1: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       targets: nix.thunk(() => [
         "device_grouped_conv3d_bwd_data_instance",
         "device_grouped_conv3d_bwd_data_bilinear_instance",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_bwd_3d2: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       targets: nix.thunk(() => [
         "device_grouped_conv3d_bwd_weight_instance",
         "device_grouped_conv3d_bwd_weight_bilinear_instance",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd_3d1: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       targets: nix.thunk(() => [
         "device_grouped_conv3d_fwd_instance",
         "device_grouped_conv3d_fwd_clamp_instance",
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd_3d2: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       targets: nix.thunk(() => [
         "device_grouped_conv3d_fwd_convscale_relu_instance",
         "device_grouped_conv3d_fwd_dynamic_op_instance",
@@ -121,11 +121,11 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd_nd: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       targets: nix.thunk(() => ["device_grouped_convnd_bwd_weight_instance"]),
     })),
     batched_gemm1: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_batched_gemm_instance",
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     batched_gemm2: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_batched_gemm_softmax_gemm_permute_instance",
@@ -152,12 +152,12 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     gemm_universal1: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_gemm_universal_instance", "device_gemm_universal_batched_instance"]),
     })),
     gemm_universal2: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_gemm_universal_reduce_instance",
@@ -165,7 +165,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     gemm_other1: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_gemm_instance",
@@ -179,7 +179,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     gemm_other2: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_gemm_add_relu_add_layernorm_instance",
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     conv: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       targets: nix.thunk(() => [
         "device_conv1d_bwd_data_instance",
         "device_conv2d_bwd_data_instance",
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     pool: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_avg_pool2d_bwd_instance",
@@ -217,11 +217,11 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     other0: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       targets: nix.thunk(() => ["device_quantization_instance"]),
     })),
     other1: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_batchnorm_instance",
@@ -232,7 +232,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     other2: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_column_to_image_instance",
@@ -242,7 +242,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     other3: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_normalization_bwd_data_instance",
@@ -263,7 +263,7 @@ export default nix.lambda((args) => (() => {
     const onlyFor = nix.argOr($_1, "onlyFor", () => []);
     const supported = nix.thunk(() => (nix.asBool(enabled) && nix.asBool((nix.asBool(nix.eq(onlyFor, [])) || nix.asBool(!nix.eq(nix.app(nix.sel(lib, "lists", "intersectLists"), nix.thunk(() => nix.sel(composable_kernel_base, "gpuTargets")), onlyFor), []))))));
     return (nix.asBool(supported) ? nix.app(nix.sel(composable_kernel_base, "overrideAttrs"), (old) => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         requiredSystemFeatures: requiredSystemFeatures,
         pname: nix.thunk(() => nix.str`composable_kernel${nix.sel(clr, "gpuArchSuffix")}-${part}`),
         makeTargets: targets,
@@ -275,19 +275,19 @@ substituteInPlace $(find ./ -name "Makefile" -type f) \\
         preConfigure: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preConfigure"), "MEM_GB_TOTAL=$(awk '/MemTotal/ { printf \"%d \\n\", $2/1024/1024 }' /proc/meminfo)\nMEM_GB_AVAILABLE=$(awk '/MemAvailable/ { printf \"%d \\n\", $2/1024/1024 }' /proc/meminfo)\nAPPX_GB=$((MEM_GB_AVAILABLE > MEM_GB_TOTAL ? MEM_GB_TOTAL : MEM_GB_AVAILABLE))\nMAX_CORES=$((1 + APPX_GB/3))\nMAX_CORES=$((MAX_CORES < NIX_BUILD_CORES/3 ? NIX_BUILD_CORES/3 : MAX_CORES))\nexport NIX_BUILD_CORES=\"$((NIX_BUILD_CORES > MAX_CORES ? MAX_CORES : NIX_BUILD_CORES))\"\necho \"Picked new core limit NIX_BUILD_CORES=$NIX_BUILD_CORES based on available mem: $APPX_GB GB\"\ncmakeFlagsArray+=(\n  \"-DCK_PARALLEL_COMPILE_JOBS=$NIX_BUILD_CORES\"\n)\n")),
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), extraCmakeFlags)),
         postBuild: "find . -name \"*.o\" -type f | while read -r file; do\n  mkdir -p \"$out/$(dirname \"$file\")\"\n  cp --reflink=auto \"$file\" \"$out/$file\"\ndone\nexit 0\n",
-        meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$24, broken: false })),
+        meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$24, broken: false })),
       })) : null);
   })(), formals$2);
-  const composable_kernel_parts = nix.thunk(() => nix.builtins.mapAttrs((part) => (targets) => nix.app(tensorOpBuilder, nix.thunk(() => nix.update(targets, { __proto__: pos$26, part: part }))), parts));
+  const composable_kernel_parts = nix.thunk(() => nix.builtins.mapAttrs((part) => (targets) => nix.app(tensorOpBuilder, nix.thunk(() => nix.update(targets, { [nix.POS]: pos$26, part: part }))), parts));
   return nix.app(nix.sel(composable_kernel_base, "overrideAttrs"), (finalAttrs) => (old) => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       pname: nix.thunk(() => nix.str`composable_kernel${nix.sel(clr, "gpuArchSuffix")}`),
       parts_dirs: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.builtins.attrValues(composable_kernel_parts)))),
       disallowedReferences: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.builtins.attrValues(composable_kernel_parts)))),
       preBuild: "for dir in $parts_dirs; do\n  find \"$dir\" -type f -name \"*.o\" | while read -r file; do\n    # Extract the relative path by removing the output directory prefix\n    rel_path=\"${file#\"$dir/\"}\"\n\n    # Create parent directory if it doesn't exist\n    mkdir -p \"$(dirname \"$rel_path\")\"\n\n    # Copy the file back to its original location, give it a future timestamp\n    # so make treats it as up to date\n    cp --reflink=auto --no-preserve=all \"$file\" \"$rel_path\"\n    touch -d \"now +10 hours\" \"$rel_path\"\n  done\ndone\n",
-      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { __proto__: pos$27, parts: composable_kernel_parts })),
+      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: pos$27, parts: composable_kernel_parts })),
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         broken: nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "passthru", "anyGfx9Target"))),
       })),
     }));

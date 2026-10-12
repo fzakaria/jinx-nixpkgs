@@ -43,72 +43,72 @@ export default nix.lambda((args) => (() => {
   })();
   const escapeSystemdExecArgs = nix.thunk(() => nix.app(concatMapStringsSep, " ", escapeSystemdExecArg));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     _class: "service",
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkAliasOptionModule"), nix.thunk(() => ["systemd", "service"]), nix.thunk(() => ["systemd", "services", ""]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkAliasOptionModule"), nix.thunk(() => ["systemd", "socket"]), nix.thunk(() => ["systemd", "sockets", ""]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       systemd: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         lib: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Library functions for working with systemd services.\n\nAvailable functions:\n\n- `escapeSystemdExecArgs`: Escapes a list of arguments for use in ExecStart.\n  Prevents systemd's specifier (%) and variable ($) substitution by escaping\n  them to %% and $$ respectively.\n\n  Example: `escapeSystemdExecArgs [ \"/bin/echo\" \"Unit %n\" ]`\n  produces `\"/bin/echo\" \"Unit %%n\"`\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
             readOnly: true,
           })))),
         mainExecStart: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Main command line for systemd's ExecStart with systemd's specifier and\nenvironment variable substitution enabled.\n\nThis option sets the primary ExecStart entry. Additional ExecStart entries\ncan be added via `systemd.service.serviceConfig.ExecStart` with `lib.mkBefore`\nor `lib.mkAfter`.\n\nThis option allows you to use systemd specifiers like `%n` (unit name),\n`%i` (instance), `%t` (runtime directory), and environment variables using\n`${VAR}` syntax in your command line.\n\nBy default, this is set to the escaped version of {option}`process.argv`\nto prevent systemd substitution. Set this option explicitly to enable\nsystemd's substitution features.\n\nTo extend {option}`process.argv` with systemd specifiers, you can append\nto the escaped arguments:\n\n```nix\nsystemd.mainExecStart =\n  config.systemd.lib.escapeSystemdExecArgs config.process.argv + \" --systemd-unit %n\";\n```\n\nThis pattern allows you to pass the unit name (or other systemd specifiers)\nas additional arguments while keeping the base command from {option}`process.argv`\nproperly escaped.\n\nSee {manpage}`systemd.service(5)` (section \"COMMAND LINES\") for details on\nvariable substitution and {manpage}`systemd.unit(5)` (section \"SPECIFIERS\")\nfor available specifiers like `%n`, `%i`, `%t`.\n",
             type: nix.thunk(() => nix.sel(types, "str")),
             default: nix.thunk(() => nix.app(nix.sel(config, "systemd", "lib", "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(config, "process", "argv")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.systemd.lib.escapeSystemdExecArgs config.process.argv")),
           })))),
         mainExecReload: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Main command line for systemd's ExecReload with systemd's specifier and\nenvironment variable substitution enabled.\n\nThis option sets the primary ExecReload entry, and is the way to extend the\ncommand line derived from {option}`process.reloadCommand`.\n\nThis option allows you to use systemd specifiers like `%n` (unit name),\n`%i` (instance), `%t` (runtime directory), and environment variables using\n`${VAR}` syntax in your command line.\n\nBy default, it is set to {option}`process.reloadCommand`. Because\n{option}`process.reloadCommand` is already a command line (not an argument\nlist), it is used verbatim so that references like `$MAINPID` are preserved.\n\nWhen {option}`process.reloadCommand` is unset, this option is `null` and no\n`ExecReload` is emitted; a service may then set\n`systemd.service.serviceConfig.ExecReload` itself.\n\nTo extend {option}`process.reloadCommand` with systemd specifiers, you can append\nto the command line:\n\n```nix\nsystemd.mainExecReload =\n  config.process.reloadCommand + \" --systemd-unit %n\";\n```\n\nThis pattern allows you to pass the unit name (or other systemd specifiers)\nas additional arguments.\n\nSee {manpage}`systemd.service(5)` (section \"COMMAND LINES\") for details on\nvariable substitution and {manpage}`systemd.unit(5)` (section \"SPECIFIERS\")\nfor available specifiers like `%n`, `%i`, `%t`.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: nix.thunk(() => nix.sel(config, "process", "reloadCommand")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.process.reloadCommand")),
           })))),
         services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "This module configures systemd services, with the notable difference that their unit names will be prefixed with the abstract service name.\n\nThis option's value is not suitable for reading, but you can define a module here that interacts with just the unit configuration in the host system configuration.\n\nNote that this option contains _deferred_ modules.\nThis means that the module has not been combined with the system configuration yet, no values can be read from this option.\nWhat you can do instead is define a module that reads from the module arguments (such as `config`) that are available when the module is merged into the system configuration.\n",
-            type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "deferredModuleWith"), nix.thunk(() => ({ __proto__: pos$4, staticModules: [] })))))),
+            type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "deferredModuleWith"), nix.thunk(() => ({ [nix.POS]: pos$4, staticModules: [] })))))),
             default: nix.thunk(() => ({})),
           })))),
         sockets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Declares systemd socket units. Names will be prefixed by the service name / path.\n\nSee {option}`systemd.services`.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "deferredModule")))),
             default: nix.thunk(() => ({})),
           })))),
       })),
       services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 class: "service",
                 modules: nix.thunk(() => [nix.path(here, "./service.nix")]),
-                specialArgs: nix.thunk(() => ({ __proto__: pos$8, systemdPackage: systemdPackage })),
+                specialArgs: nix.thunk(() => ({ [nix.POS]: pos$8, systemdPackage: systemdPackage })),
               })))))),
           visible: false,
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       systemd: nix.thunk(() => ({
-        __proto__: pos$16,
-        lib: nix.thunk(() => ({ __proto__: pos$12, escapeSystemdExecArgs: escapeSystemdExecArgs })),
+        [nix.POS]: pos$16,
+        lib: nix.thunk(() => ({ [nix.POS]: pos$12, escapeSystemdExecArgs: escapeSystemdExecArgs })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "": nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["multi-user.target"]))),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               ExecReload: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "systemd", "mainExecReload"), null)), nix.thunk(() => nix.sel(config, "systemd", "mainExecReload")))),
               Type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(config, "notificationProtocol", "systemd")) ? "notify" : "simple")))),
               Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "always")),

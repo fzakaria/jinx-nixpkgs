@@ -33,23 +33,23 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-indicator-datetime";
       const version = "2.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "wingpanel-indicator-datetime",
           rev: version,
           sha256: "sha256-iR80pF3KUe0WboFm2/f1ZK9/wER2LfmRBd92e8jGTHs=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, elementary_calendar: elementary_calendar })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, elementary_calendar: elementary_calendar })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [libxml2, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [evolution_data_server, granite, gtk3, libgee, libhandy, libical, wingpanel]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Date & Time Indicator for Wingpanel",
         homepage: "https://github.com/elementary/wingpanel-indicator-datetime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

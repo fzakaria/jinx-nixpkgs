@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benthetechguy",
           repo: "controku",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.concat([requests, ssdpy], nix.app(nix.sel(lib, "optionals"), buildApplication, nix.thunk(() => [gtk3, appdirs, pygobject3]))));
       const pythonImportsCheck = nix.thunk(() => ["controku"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/benthetechguy/controku/releases/tag/${version}`),
         description: "Control Roku devices from the comfort of your own desktop",
         mainProgram: "controku",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

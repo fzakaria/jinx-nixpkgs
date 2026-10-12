@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protoc-gen-doc",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pseudomuto",
           repo: "protoc-gen-doc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-K0rZBERSKob5ubZW28QpbcPhgFKOOASkd9UyC9f8gyQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Documentation generator plugin for Google Protocol Buffers",
         mainProgram: "protoc-gen-doc",
         longDescription: "This is a documentation generator plugin for the Google Protocol Buffers\ncompiler (protoc). The plugin can generate HTML, JSON, DocBook and\nMarkdown documentation from comments in your .proto files.\n\nIt supports proto2 and proto3, and can handle having both in the same\ncontext.\n",

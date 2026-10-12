@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libName = nix.thunk(() => nix.str`libxgboost${libExtension}`);
   const libPath = nix.thunk(() => nix.str`${xgboost}/lib/${libName}`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "xgboost",
       pyproject: true,
       version: nix.thunk(() => nix.attr(xgboost, "version")),

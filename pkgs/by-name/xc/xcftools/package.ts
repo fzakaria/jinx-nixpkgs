@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xcftools",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://henning.makholm.net/xcftools/xcftools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "19i0x7yhlw6hd2gp013884zchg63yzjdj4hpany011il0n26vgqy",
         })))),
       buildInputs: nix.thunk(() => [libpng, perl, gettext]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2019-5086.CVE-2019-5087.patch",
             url: "https://github.com/gladk/xcftools/commit/59c38e3e45b9112c2bcb4392bccf56e297854f8a.patch",
             sha256: "sha256-a1Biv6viXzTSaLDzinOyu0HdDTUPsKITsdKu9B9Y8GE=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# Required if building with libpng-1.6, innocuous otherwise\nsubstituteInPlace xcf2png.c         \\\n  --replace png_voidp_NULL NULL     \\\n  --replace png_error_ptr_NULL NULL\n\n# xcfview needs mailcap and isn't that useful anyway\nsed -i -e '/BINARIES/s/xcfview//' Makefile.in\n\n# add missing header\nsed -e '1i#include <stdlib.h>' -i xcf-general.c\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://henning.makholm.net/software",
         description: "Command-line tools for converting Gimp XCF files",
         longDescription: "A set of fast command-line tools for extracting information from\nthe Gimp's native file format XCF.\n\nThe tools are designed to allow efficient use of layered XCF\nfiles as sources in a build system that use 'make' and similar\ntools to manage automatic processing of the graphics.\n\nThese tools work independently of the Gimp engine and do not\nrequire the Gimp to even be installed.\n",

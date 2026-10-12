@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const twisted = nix.arg($, "twisted");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zfec",
       version: "1.6.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xaGGHCU7USaYwuczrk2D9eLW6myIG32+ETNLaU51WgA=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "trial zfec\n",
       pythonImportsCheck: nix.thunk(() => ["zfec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tahoe-lafs/zfec",
         description: "Fast erasure codec which can be used with the command-line, C, Python, or Haskell",
         longDescription: "Fast, portable, programmable erasure coding a.k.a. \"forward\nerror correction\": the generation of redundant blocks of\ninformation such that if some blocks are lost then the\noriginal data can be recovered from the remaining blocks. The\nzfec package includes command-line tools, C API, Python API,\nand Haskell API.\n",

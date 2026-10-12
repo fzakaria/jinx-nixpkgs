@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   const frontend = (finalAttrs) => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-webapp`),
       src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/webapp/frontend`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir $out\ncp -r dist/* $out\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "scrutiny",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AnalogJ",
           repo: "scrutiny",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,20 +42,20 @@ export default nix.lambda((args) => (() => {
         })))),
       subPackages: "webapp/backend/cmd/scrutiny",
       vendorHash: "sha256-UdQ9O/l32XgRZNR/vQeBJhhAGQ6vNvle/+DY1fi6XaY=",
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-extldflags=-static"]),
       tags: nix.thunk(() => ["static"]),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/scrutiny
 cp -r ${nix.app(frontend, finalAttrs)}/* $out/share/scrutiny
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         frontend: nix.thunk(() => nix.app(frontend, finalAttrs)),
-        tests: nix.thunk(() => ({ __proto__: pos$4, scrutiny: nix.thunk(() => nix.sel(nixosTests, "scrutiny")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage=frontend"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, scrutiny: nix.thunk(() => nix.sel(nixosTests, "scrutiny")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage=frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Hard Drive S.M.A.R.T Monitoring, Historical Trends & Real World Failure Thresholds",
         homepage: "https://github.com/AnalogJ/scrutiny",
         changelog: nix.thunk(() => nix.str`https://github.com/AnalogJ/scrutiny/releases/tag/v${nix.sel(finalAttrs, "version")}`),

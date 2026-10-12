@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "unsloth-zoo",
       version: "2026.4.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "unsloth_zoo",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jJ58d2+5lEALEaASELZtQkY2YxNWaLrfLvOCUGnwrh4=",
@@ -85,14 +85,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontUsePythonImportsCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        gpuCheck: nix.thunk(() => nix.sel(nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({ __proto__: pos$2, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })), nix.thunk(() => ({
-            __proto__: pos$3,
+        [nix.POS]: pos$4,
+        gpuCheck: nix.thunk(() => nix.sel(nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })), nix.thunk(() => ({
+            [nix.POS]: pos$3,
             libraries: (ps) => [nix.thunk(() => nix.sel(ps, "unsloth-zoo"))],
           })), "import torch\n\nassert torch.cuda.is_available(), \"CUDA is not available\"\nassert torch.ones(1, device=\"cuda\").is_cuda\n\nimport unsloth_zoo  # noqa: F401\nfrom unsloth_zoo.device_type import DEVICE_COUNT, DEVICE_TYPE\n\nassert DEVICE_TYPE == \"cuda\", DEVICE_TYPE\nassert DEVICE_COUNT > 0, DEVICE_COUNT\nprint(f\"Unsloth Zoo detected {DEVICE_COUNT} CUDA device(s)\")\n"), "gpuCheck")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Utils for Unsloth",
         homepage: "https://github.com/unslothai/unsloth_zoo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

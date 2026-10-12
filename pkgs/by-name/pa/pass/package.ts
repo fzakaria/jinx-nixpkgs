@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(dmenuSupport) || nix.asBool((nix.asBool(x11Support) || nix.asBool(waylandSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:41:1");
   nix.assert_((!nix.asBool((nix.asBool(dmenuSupport) && nix.asBool(x11Support))) || nix.asBool((nix.asBool(!nix.eq(dmenu, null)) && nix.asBool(!nix.eq(xdotool, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:42:1");
   nix.assert_((!nix.asBool((nix.asBool(dmenuSupport) && nix.asBool(waylandSupport))) || nix.asBool((nix.asBool(!nix.eq(dmenu_wayland, null)) && nix.asBool(!nix.eq(ydotool, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:43:1");
-  const passExtensions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extensions")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs }))));
+  const passExtensions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extensions")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
   const env = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const pass_1 = nix.arg($_1, "pass");
       const brokenExtensions = nix.argOr($_1, "brokenExtensions", () => []);
       return (extensions) => (() => {
         const selected = nix.thunk(() => nix.concat([pass_1], nix.concat(nix.app(extensions, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (extensionName) => (extensionDerivation) => (nix.asBool(nix.app(nix.sel(lib, "lists", "elem"), extensionName, brokenExtensions)) ? nix.app(nix.sel(extensionDerivation, "overrideAttrs"), (prev) => (final) => ({
-                __proto__: pos$3,
-                meta: nix.thunk(() => ({ __proto__: pos$2, broken: true })),
+                [nix.POS]: pos$3,
+                meta: nix.thunk(() => ({ [nix.POS]: pos$2, broken: true })),
               })) : nix.force(extensionDerivation)), passExtensions))), nix.app(nix.sel(lib, "optional"), tombPluginSupport, nix.thunk(() => nix.sel(passExtensions, "tomb"))))));
         return nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: nix.thunk(() => nix.str`${nix.sel(pass_1, "meta", "mainProgram")}-env`),
             paths: selected,
             nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -85,7 +85,7 @@ wrapProgram $out/bin/${nix.sel(pass_1, "meta", "mainProgram")} \\
   --set SYSTEM_EXTENSION_DIR "$out/lib/password-store/extensions"
 `),
             meta: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               mainProgram: nix.thunk(() => nix.sel(pass_1, "meta", "mainProgram")),
             })),
           })));
@@ -95,7 +95,7 @@ wrapProgram $out/bin/${nix.sel(pass_1, "meta", "mainProgram")} \\
       const version = "1.7.4";
       const pname = "password-store";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://git.zx2c4.com/password-store/snapshot/${pname}-${version}.tar.xz`),
           sha256: "1h4k6w7g8pr169p5w9n6mkdhxl3pw51zphx7www6pvgjb7vgmafg",
         }))));
@@ -150,12 +150,12 @@ sed -i -e 's@^PASS=.*$@PASS=$out/bin/pass@' \\
       const nativeInstallCheckInputs = nix.thunk(() => [git]);
       const installCheckTarget = "test";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         extensions: passExtensions,
-        withExtensions: nix.thunk(() => nix.app(env, nix.thunk(() => ({ __proto__: pos$7, pass: pass })))),
+        withExtensions: nix.thunk(() => nix.app(env, nix.thunk(() => ({ [nix.POS]: pos$7, pass: pass })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Stores, retrieves, generates, and synchronizes passwords securely",
         homepage: "https://www.passwordstore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -173,7 +173,7 @@ sed -i -e 's@^PASS=.*$@PASS=$out/bin/pass@' \\
         longDescription: "pass is a very simple password store that keeps passwords inside gpg2\nencrypted files inside a simple directory tree residing at\n~/.password-store. The pass utility provides a series of commands for\nmanipulating the password store, allowing the user to add, remove, edit,\nsynchronize, generate, and manipulate passwords.\n",
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         version,
         pname,
         src,

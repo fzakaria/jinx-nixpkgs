@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const disableTelemetry = nix.argOr($, "disableTelemetry", () => true);
   const disableUpdateNotifier = nix.argOr($, "disableUpdateNotifier", () => true);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "turbo",
       version: nix.thunk(() => nix.attr(turbo_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
   ${nix.app(nix.sel(lib, "optionalString"), disableUpdateNotifier, "--set TURBO_NO_UPDATE_NOTIFIER 1")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: turbo })))),
+          [nix.POS]: pos$2,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: turbo })))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(turbo_unwrapped, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

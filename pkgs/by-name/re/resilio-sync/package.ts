@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "resilio-sync",
       version: "3.1.1.1075",
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://download-cdn.resilio.com/${nix.sel(finalAttrs, "version")}/linux/x64/0/resilio-sync_x64.tar.gz`),
             hash: "sha256-FgRMK5dOxkbaXyi0BPYQZK0tR/ZZuuUGAciwThqICBk=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://download-cdn.resilio.com/${nix.sel(finalAttrs, "version")}/linux/arm64/0/resilio-sync_arm64.tar.gz`),
             hash: "sha256-P3gUwj3Vr9qn9S6iqlgGfZpK7x5u4U96b886JCE3CYY=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc")), libxcrypt_legacy]),
       installPhase: "runHook preInstall\n\ninstallBin rslsync\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Automatically sync files via secure, distributed technology",
         homepage: "https://www.resilio.com/",
         sourceProvenance: nix.thunk(() => (() => {

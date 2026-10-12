@@ -63,70 +63,70 @@ export default nix.lambda((args) => (() => {
   const hasPodman = nix.thunk(() => nix.sel(config, "virtualisation", "podman", "enable"));
   const tokenXorTokenFile = (instance) => (nix.asBool((nix.asBool(nix.eq(nix.sel(instance, "token"), null)) && nix.asBool(!nix.eq(nix.sel(instance, "tokenFile"), null)))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(instance, "token"), null)) && nix.asBool(nix.eq(nix.sel(instance, "tokenFile"), null)))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "gitea-actions-runner", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "gitea-actions-runner": nix.thunk(() => (() => {
           const w = nix.withScope(types, null);
           return {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gitea-actions-runner", nix.thunk(() => ({})))),
             instances: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: nix.thunk(() => ({})),
                 description: "Gitea Actions Runner instances.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       options: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         enable: nix.thunk(() => nix.app(mkEnableOption, "Gitea Actions Runner instance")),
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             example: nix.thunk(() => nix.app(literalExpression, "config.networking.hostName")),
                             description: "The name identifying the runner instance towards the Gitea/Forgejo instance.\n",
                           })))),
                         url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             example: "https://forge.example.com",
                             description: "Base URL of your Gitea/Forgejo instance.\n",
                           })))),
                         token: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                             default: null,
                             description: "Plain token to register at the configured Gitea/Forgejo instance.\n",
                           })))),
                         tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "path")))))),
                             default: null,
                             description: "Path to an environment file, containing the `TOKEN` environment\nvariable, that holds a token to register at the configured\nGitea/Forgejo instance.\n",
                           })))),
                         labels: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                             example: nix.thunk(() => nix.app(literalExpression, "[\n  # provide a debian base with nodejs for actions\n  \"debian-latest:docker://node:18-bullseye\"\n  # fake the ubuntu name, because node provides no ubuntu builds\n  \"ubuntu-latest:docker://node:18-bullseye\"\n  # provide native execution on the host\n  #\"native:host\"\n]\n")),
                             description: "Labels used to map jobs to their runtime environment. Changing these\nlabels currently requires a new registration token.\n\nMany common actions require bash, git and nodejs, as well as a filesystem\nthat follows the filesystem hierarchy standard.\n",
                           })))),
                         settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             description: "Configuration for gitea-runner daemon.\nSee <https://gitea.com/gitea/runner/src/branch/main/internal/pkg/config/config.example.yaml> for an example configuration\n",
                             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                               })))),
                             default: nix.thunk(() => ({})),
                           })))),
                         hostPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")))),
                             default: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(pkgs, w);
@@ -152,21 +152,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "instances"), {})), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => nix.app(any, tokenXorTokenFile, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "instances")))))),
             message: "Instances of gitea-actions-runner can have `token` or `tokenFile`, not both.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (!nix.asBool(wantsContainerRuntime) || nix.asBool((nix.asBool(hasDocker) || nix.asBool(hasPodman))))),
             message: "Label configuration on gitea-actions-runner instance requires either docker or podman.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => (() => {
             const mkRunnerService = (name) => (instance) => (() => {
               const wantsContainerRuntime_1 = nix.thunk(() => nix.app(hasDockerScheme, instance));
@@ -175,17 +175,17 @@ export default nix.lambda((args) => (() => {
               const wantsPodman = nix.thunk(() => (nix.asBool(wantsContainerRuntime_1) && nix.asBool(nix.sel(config, "virtualisation", "podman", "enable"))));
               const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(instance, "settings"))));
               return nix.app(nameValuePair, nix.thunk(() => nix.str`gitea-runner-${nix.app(escapeSystemdPath, name)}`), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   enable: nix.thunk(() => nix.attr(instance, "enable")),
                   description: "Gitea Actions Runner",
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(optionals, wantsDocker, nix.thunk(() => ["docker.service"])), nix.app(optionals, wantsPodman, nix.thunk(() => ["podman.service"]))))),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   environment: nix.thunk(() => nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(instance, "token"), null)), nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       TOKEN: nix.thunk(() => nix.str`${nix.sel(instance, "token")}`),
-                    }))), nix.update(nix.app(optionalAttrs, wantsPodman, nix.thunk(() => ({ __proto__: pos$19, DOCKER_HOST: "unix:///run/podman/podman.sock" }))), {
-                    __proto__: pos$20,
+                    }))), nix.update(nix.app(optionalAttrs, wantsPodman, nix.thunk(() => ({ [nix.POS]: pos$19, DOCKER_HOST: "unix:///run/podman/podman.sock" }))), {
+                    [nix.POS]: pos$20,
                     HOME: nix.thunk(() => nix.str`/var/lib/gitea-runner/${name}`),
                   }))),
                   path: nix.thunk(() => (() => {
@@ -193,7 +193,7 @@ export default nix.lambda((args) => (() => {
                     return nix.concat([nix.thunk(() => nix.lookup(w, "coreutils"))], nix.app(nix.sel(lib, "optionals"), wantsHost, nix.thunk(() => nix.sel(instance, "hostPackages"))));
                   })()),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     DynamicUser: true,
                     User: "gitea-runner",
                     StateDirectory: "gitea-runner",
@@ -235,7 +235,7 @@ fi
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} daemon --config ${configFile}`),
                     SupplementaryGroups: nix.thunk(() => nix.concat(nix.app(optionals, wantsDocker, nix.thunk(() => ["docker"])), nix.app(optionals, wantsPodman, nix.thunk(() => ["podman"])))),
                   }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(instance, "tokenFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       EnvironmentFile: nix.thunk(() => nix.sel(instance, "tokenFile")),
                     }))))),
                 })));

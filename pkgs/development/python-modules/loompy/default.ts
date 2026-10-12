@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const finalAttrs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "loompy",
     version: "3.0.8",
     pyproject: true,
     __structuredAttrs: true,
     src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         hash: "sha256-wfSNC/Iaorve7iGgV3VTy6lgnZQ118MraHaGu7WGnKc=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     disabledTests: nix.thunk(() => ["test_scan_with_default_ordering", "test_get"]),
     pythonImportsCheck: nix.thunk(() => ["loompy"]),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       changelog: nix.thunk(() => nix.str`https://github.com/linnarsson-lab/loompy/releases/tag/${nix.sel(finalAttrs, "version")}`),
       description: "Python implementation of the Loom file format",
       homepage: "https://github.com/linnarsson-lab/loompy",

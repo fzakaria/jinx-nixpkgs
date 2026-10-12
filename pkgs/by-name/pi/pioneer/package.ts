@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const SDL2_image = nix.arg($, "SDL2_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pioneer",
       version: "20260907",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pioneerspacesim",
           repo: "pioneer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["all", "build-data"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Space adventure game set in the Milky Way galaxy at the turn of the 31st century",
         homepage: "https://pioneerspacesim.net",
         license: nix.thunk(() => (() => {

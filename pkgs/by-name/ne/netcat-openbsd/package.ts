@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netcat-openbsd",
       version: "1.238-1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "netcat-openbsd",
@@ -60,7 +60,7 @@ debian/checks/netcat
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TCP/IP swiss army knife. OpenBSD variant",
         homepage: "https://salsa.debian.org/debian/netcat-openbsd",
         maintainers: nix.thunk(() => (() => {

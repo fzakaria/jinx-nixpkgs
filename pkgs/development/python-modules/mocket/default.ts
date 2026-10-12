@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-lDDPfk8a1/HPxIzgCKv4eq+asnJkFsWBCUROnF6g+wg=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [decorator, h11, puremagic, typing_extensions, urllib3]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pook: nix.thunk(() => [pook]),
         speedups: nix.thunk(() => [xxhash]),
       }));
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         requests,
         sure,
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
-      const env = nix.thunk(() => ({ __proto__: pos$3, SKIP_TRUE_HTTP: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, SKIP_TRUE_HTTP: true }));
       const __darwinAllowLocalNetworking = true;
       const disabledTests = nix.thunk(() => nix.concat([
         "test_truesendall_with_dump_from_recording",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_httprettish_httpx_session"]))));
       const pythonImportsCheck = nix.thunk(() => ["mocket"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/mindflayer/python-mocket/releases/tag/${version}`),
         description: "Socket mock framework for all kinds of sockets including web-clients",
         homepage: "https://github.com/mindflayer/python-mocket",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

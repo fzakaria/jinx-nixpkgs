@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "twilio-cli",
       version: "6.2.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://twilio-cli-prod.s3.amazonaws.com/twilio-v${nix.sel(finalAttrs, "version")}/twilio-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ty5KBMXOo8MHF++xTFDC5IK+zAhXKEJ4XRAF/HHjkX0=",
         })))),
       buildInputs: nix.thunk(() => [nodejs_slim]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/libexec/twilio-cli\ncp -R . $out/libexec/twilio-cli\nln -s $out/libexec/twilio-cli/bin/run $out/bin/twilio\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unleash the power of Twilio from your command prompt",
         homepage: "https://github.com/twilio/twilio-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/twilio/twilio-cli/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

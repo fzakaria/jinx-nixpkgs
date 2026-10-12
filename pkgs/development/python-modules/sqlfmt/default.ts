@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sqlfmt",
       version: "0.32.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tconbeer",
           repo: "sqlfmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [click, jinja2, platformdirs, tqdm]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         jinjafmt: nix.thunk(() => [black]),
         sqlfmt_primer: nix.thunk(() => [gitpython]),
       })),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       dontCheckPythonMetadata: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Formatter for dbt SQL files",
         homepage: "https://github.com/tconbeer/sqlfmt",
         changelog: nix.thunk(() => nix.str`https://github.com/tconbeer/sqlfmt/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

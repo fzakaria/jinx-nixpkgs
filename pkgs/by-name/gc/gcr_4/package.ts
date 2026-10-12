@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   const ini = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gcr",
       version: "4.4.0.1",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "bin", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gcr/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gcr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DDw0Hkn59PJTKkiEUJgEGQoMJmPmEgNguymMXRdKgJg=",
         })))),
@@ -73,35 +73,35 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dgpg_path=${nix.app(nix.sel(lib, "getBin"), gnupg)}/bin/gpg`),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "systemd", systemdSupport)),
         nix.thunk(() => nix.str`--cross-file=${nix.app(nix.sel(ini, "generate"), "cross-file.conf", nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             binaries: nix.thunk(() => nix.update({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "ssh-add": nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe'"), openssh, "ssh-add")}'`),
               "ssh-agent": nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe'"), openssh, "ssh-agent")}'`),
             }, nix.app(nix.sel(lib, "optionalAttrs"), systemdSupport, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 systemctl: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe'"), systemd, "systemctl")}'`),
               }))))),
           })))}`),
       ]),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
       })),
       postPatch: "patchShebangs gcr/fixtures/\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             attrPath: "gcr_4",
             packageName: "gcr",
             versionPolicy: "ninety-micro-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         description: "GNOME crypto services (daemon and tools)",

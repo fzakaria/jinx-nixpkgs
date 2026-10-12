@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["mixReleaseName", 3, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const firezone_server = nix.arg($, "firezone-server");
-  return nix.app(nix.sel(firezone_server, "override"), nix.thunk(() => ({ __proto__: pos$1, mixReleaseName: "api" })));
+  return nix.app(nix.sel(firezone_server, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mixReleaseName: "api" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

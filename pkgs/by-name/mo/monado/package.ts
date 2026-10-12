@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
   const serviceSupport = nix.argOr($, "serviceSupport", () => true);
   const tracingSupport = nix.argOr($, "tracingSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "monado",
       version: "25.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "monado",
           repo: "monado",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "monado-cylinder-aspectRatio.patch",
             url: "https://gitlab.freedesktop.org/monado/monado/-/commit/69834fe93b84640170f8efa54b4700e5e0dc03c1.diff",
             hash: "sha256-6lD4j7CMQk52btfxD8hOm0GWZaOxSgc1jel9hyXqktA=",
@@ -143,15 +143,15 @@ export default nix.lambda((args) => (() => {
       ]),
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "export XDG_CONFIG_DIRS=@out@/etc/xdg${XDG_CONFIG_DIRS:+:${XDG_CONFIG_DIRS}}\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "basic-service": nix.thunk(() => nix.sel(nixosTests, "monado")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source XR runtime",
         homepage: "https://monado.freedesktop.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

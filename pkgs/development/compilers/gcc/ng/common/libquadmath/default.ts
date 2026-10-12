@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const monorepoSrc = nix.argOr($, "monorepoSrc", () => null);
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libquadmath",
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libquadmath-src-${version}`), nix.thunk(() => ({ __proto__: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libquadmath \"$out\"\n\n# `printf/gmp-impl.h` includes `longlong.h`, which lives here; the\n# `Makefile` already looks in `../include` for it.\ncp -r include \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libquadmath-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libquadmath \"$out\"\n\n# `printf/gmp-impl.h` includes `longlong.h`, which lives here; the\n# `Makefile` already looks in `../include` for it.\ncp -r include \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/libquadmath`),
       preConfigure: "mkdir ../../build\ncd ../../build\nconfigureScript=../$sourceRoot/configure\n",
       doCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { __proto__: pos$3, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$3, homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

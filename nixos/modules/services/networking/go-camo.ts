@@ -32,50 +32,50 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "go-camo": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "go-camo service")),
           listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "Address:Port to bind to for HTTP (default: 0.0.0.0:8080).",
               apply: (v) => nix.app(optionalString, nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.str`--listen=${v}`)),
             })))),
           sslListen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "Address:Port to bind to for HTTPS.",
               apply: (v) => nix.app(optionalString, nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.str`--ssl-listen=${v}`)),
             })))),
           sslKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Path to TLS private key.",
               apply: (v) => nix.app(optionalString, nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.str`--ssl-key=${v}`)),
             })))),
           sslCert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Path to TLS certificate.",
               apply: (v) => nix.app(optionalString, nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.str`--ssl-cert=${v}`)),
             })))),
           keyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: null,
               description: "A file containing the HMAC key to use for signing URLs.\nThe file can contain any string. Can be generated using \"openssl rand -base64 18 > the_file\".\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -87,17 +87,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "go-camo": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "go-camo service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$10, GOCAMO_HMAC_FILE: "%d/hmac" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$10, GOCAMO_HMAC_FILE: "%d/hmac" })),
               script: nix.thunk(() => nix.str`GOCAMO_HMAC="$(cat "$GOCAMO_HMAC_FILE")"
 export GOCAMO_HMAC
 exec ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "remove"), "", nix.thunk(() => nix.concat([
@@ -109,7 +109,7 @@ exec ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(nix.sel(
                   ], nix.sel(cfg, "extraOptions"))))))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 NoNewPrivileges: true,
                 ProtectSystem: "strict",
                 DynamicUser: true,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "browser-sync",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BrowserSync",
           repo: "browser-sync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       npmDepsHash: "sha256-32IgL7kXCW1KwQhrb402Rqse5+ggo9K/fhxcp8pbwRc=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keep multiple browsers & devices in sync when building websites",
         homepage: "https://github.com/BrowserSync/browser-sync",
         maintainers: nix.thunk(() => (() => {

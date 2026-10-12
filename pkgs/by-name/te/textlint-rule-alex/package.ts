@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "textlint-rule-alex";
       const version = "5.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-rule",
           repo: "textlint-rule-alex",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-ovDDiOZ415ubyDqbLNggzoVuqUWsRlG3zlhRW6xU3SQ=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rule: textlint_rule_alex,
             testFile: nix.path(here, "./test.md"),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Textlint rule for alex",
         homepage: "https://github.com/textlint-rule/textlint-rule-alex",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-rule/textlint-rule-alex/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "natsukium"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

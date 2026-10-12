@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.35.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dictation-toolbox",
           repo: "dragonfly",
           tag: version,
@@ -65,13 +65,13 @@ substituteInPlace dragonfly/windows/x11_window.py \\
         werkzeug,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         kaldi: nix.thunk(() => [kaldi_active_grammar, sounddevice, webrtcvad]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dragonfly"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Speech recognition framework allowing powerful Python-based scripting",
         homepage: "https://github.com/dictation-toolbox/dragonfly",
         changelog: nix.thunk(() => nix.str`https://github.com/dictation-toolbox/dragonfly/blob/${version}/CHANGELOG.rst`),
@@ -80,7 +80,7 @@ substituteInPlace dragonfly/windows/x11_window.py \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

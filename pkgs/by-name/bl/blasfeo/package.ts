@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const withTarget = nix.argOr($, "withTarget", () => "GENERIC");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blasfeo",
       version: "0.1.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "giaf",
           repo: "blasfeo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Basic linear algebra subroutines for embedded optimization",
         homepage: "https://github.com/giaf/blasfeo",
         changelog: nix.thunk(() => nix.str`https://github.com/giaf/blasfeo/blob/${nix.sel(finalAttrs, "version")}/Changelog.txt`),

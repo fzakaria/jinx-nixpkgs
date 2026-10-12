@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const audaciousSupport = nix.argOr($, "audaciousSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(audaciousSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "Only Linux supports building the Audacious plugin."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vg/vgmstream/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "vgmstream",
       version: "2117",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vgmstream",
           repo: "vgmstream",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -57,35 +57,35 @@ chmod -R +w dependencies/celt-0.11.0/
           "-DCELT_0110_PATH=../dependencies/celt-0.11.0",
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             attrPath: "vgmstream",
             extraArgs: nix.thunk(() => ["--version-regex", "r(.*)"]),
           })))),
         sources: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "atrac9-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "Thealexbarney",
               repo: "LibAtrac9",
               rev: "6a9e00f6c7abd74d037fd210b6670d3cdb313049",
               hash: "sha256-n47CzIbh8NxJ4GzKLjZQeS27k2lGx08trC1m4AOzVZc=",
             })))),
           "celt-0_6_1-src": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://downloads.xiph.org/releases/celt/celt-0.6.1.tar.gz",
               hash: "sha256-DI1z10mTDQOn/R1FssaegmOa6ZNx3bXNiWHwLnytJWw=",
             })))),
           "celt-0_11_0-src": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: "https://downloads.xiph.org/releases/celt/celt-0.11.0.tar.gz",
               hash: "sha256-JI3b44iCxQ29bqJGNH/L18pEuWiTFZ2132ceaqe8U0E=",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Library for playback of various streamed audio formats used in video games",
         homepage: "https://vgmstream.org",
         maintainers: nix.thunk(() => (() => {

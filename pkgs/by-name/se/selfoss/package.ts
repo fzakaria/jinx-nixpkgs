@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
       const pname = "selfoss";
       const version = "2.19";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/SSilence/selfoss/releases/download/${version}/selfoss-${version}.zip`),
           sha256: "5JxHUOlyMneWPKaZtgLwn5FI4rnyWPzmsUQpSYrw5Pw=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "runHook preInstall\n\nmkdir \"$out\"\ncp -ra \\\n  .htaccess \\\n  .nginx.conf \\\n  * \\\n  \"$out/\"\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "selfoss")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "selfoss")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web-based news feed (RSS/Atom) aggregator",
         homepage: "https://selfoss.aditu.de",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

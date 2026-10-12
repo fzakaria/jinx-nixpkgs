@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const spdlog = nix.arg($, "spdlog");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gr-difi",
       version: "0-unstable-2025-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DIFI-Consortium",
           repo: "gr-difi",
           rev: "330dd7f245f840903d034603850222a08c5a7c66",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU Radio Digital Intermediate Frequency Interoperability (DIFI) Out of Tree Module",
         homepage: "https://github.com/DIFI-Consortium/gr-difi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

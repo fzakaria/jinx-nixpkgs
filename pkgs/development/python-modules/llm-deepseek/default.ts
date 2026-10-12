@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abrasumente233",
           repo: "llm-deepseek",
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [llm]);
       const pythonImportsCheck = nix.thunk(() => ["llm_deepseek"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_deepseek)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM plugin providing access to Deepseek models.",
         homepage: "https://github.com/abrasumente233/llm-deepseek",
         changelog: nix.thunk(() => nix.str`https://github.com/abrasumente233/llm-deepseek/releases/tag/${version}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

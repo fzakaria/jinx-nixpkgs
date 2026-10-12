@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const faraday_async = nix.arg($, "faraday-async");
   const core = nix.arg($, "core");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gluten-async",
       src: nix.thunk(() => nix.attr(gluten, "src")),
       version: nix.thunk(() => nix.attr(gluten, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten, async$, faraday_async, core]),
-      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { __proto__: pos$1, description: "Async support for gluten" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: pos$1, description: "Async support for gluten" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=async.ts.map

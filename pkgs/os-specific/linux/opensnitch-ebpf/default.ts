@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(opensnitch, "src"));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "fix-kernel-6.19-build.patch",
             stripLen: 1n,
             url: "https://github.com/evilsocket/opensnitch/commit/614537c92ec82f54f76a45fb406ad2fb6e6fa618.patch?full_index=1",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-fno-stack-protector", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "7.2")), " -DCC_USING_FENTRY"))),
         KERNEL_VER: nix.thunk(() => nix.sel(kernel, "modDirVersion")),
         KERNEL_DIR: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/source`),
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nfor file in opensnitch*.o; do\n  install -Dm644 \"$file\" \"$out/etc/opensnitchd/$file\"\ndone\n\nrunHook postInstall\n";
       const postFixup = "# reduces closure size significantly (fixes https://github.com/NixOS/nixpkgs/issues/391351)\nfor file in $out/etc/opensnitchd/*.o; do\n  llvm-strip --strip-debug $file\ndone\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           opensnitch: nix.thunk(() => nix.attr(nixosTests, "opensnitch")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "eBPF process monitor module for OpenSnitch",
         homepage: "https://github.com/evilsocket/opensnitch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

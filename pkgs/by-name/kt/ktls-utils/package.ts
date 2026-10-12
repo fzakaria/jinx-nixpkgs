@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ktls-utils",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oracle",
           repo: "ktls-utils",
           rev: nix.thunk(() => nix.str`ktls-utils-${nix.sel(finalAttrs, "version")}`),
@@ -45,25 +45,25 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["unitdir=$(out)/lib/systemd/system"]))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "tlshd")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "tlshd")) })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           default: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             imports: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({})))),
             ]),
             tlshd: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "TLS handshake utilities for in-kernel TLS consumers",
         homepage: "https://github.com/oracle/ktls-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/oracle/ktls-utils/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "rtf-tokenize",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstenoproject",
           repo: "rtf_tokenize",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: "versionCheckProgram=\"$(which ls)\"\n",
       pythonImportsCheck: nix.thunk(() => ["rtf_tokenize"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple RTF tokenizer package for Python",
         homepage: "https://github.com/openstenoproject/rtf_tokenize",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

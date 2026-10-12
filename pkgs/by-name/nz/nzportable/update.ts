@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nix_prefetch_git = nix.arg($, "nix-prefetch-git");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "nzp-updater",
         runtimeInputs: nix.thunk(() => [jq, curl, nix_prefetch_git, common_updater_scripts]),
         text: "youngest=0\nupdate() {\n  repo=$1\n  tag=$2\n\n  prefetch=$(nix-prefetch-git \"https://github.com/nzp-team/$repo\" --rev \"$tag\")\n\n  timestamp=$(echo \"$prefetch\" | jq -r '.date | strptime(\"%Y-%m-%dT%H:%M:%S%z\") | mktime | strftime(\"%Y-%m-%d-%H-%M-%S\")')\n  rev=$(echo \"$prefetch\" | jq -r \".rev\")\n  hash=$(echo \"$prefetch\" | jq -r \".hash\")\n\n  if [[ $youngest -lt $timestamp ]]; then\n    youngest=$timestamp\n  fi\n\n  update-source-version \"$UPDATE_NIX_ATTR_PATH.$repo\" \"0-unstable-$timestamp\" \"$hash\" --rev=\"$rev\"\n}\n\nupdate fteqw bleeding-edge\nupdate assets newest\nupdate quakec bleeding-edge\n",

@@ -19,29 +19,29 @@ export default nix.lambda((args) => (() => {
   const credsVoc = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), ".monetdb", "user=voc\npassword=voc\n"));
   const transaction = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "transaction", "START TRANSACTION;\nCREATE TABLE test (id int, data varchar(30));\nROLLBACK;\n"));
   const vocData = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://dev.monetdb.org/Assets/VOC/voc_dump.zip",
       hash: "sha256-sQ5acTsSAiXQfOgt2PhN7X7Z9TZGZtLrPPxgQT2pCGQ=",
     }))));
   const onboardPeople = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "onboardPeople", "CREATE VIEW onboard_people AS\nSELECT * FROM (\nSELECT 'craftsmen' AS type, craftsmen.* FROM craftsmen\nUNION ALL\nSELECT 'impotenten' AS type, impotenten.* FROM impotenten\nUNION ALL\nSELECT 'passengers' AS type, passengers.* FROM passengers\nUNION ALL\nSELECT 'seafarers' AS type, seafarers.* FROM seafarers\nUNION ALL\nSELECT 'soldiers' AS type, soldiers.* FROM soldiers\nUNION ALL\nSELECT 'total' AS type, total.* FROM total\n) AS onboard_people_table;\nSELECT type, COUNT(*) AS total\nFROM onboard_people GROUP BY type ORDER BY type;\n"));
   const onboardExpected = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "strings", "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => ["\\n"]), "+------------+-------+\n| type       | total |\n+============+=======+\n| craftsmen  |  2349 |\n| impotenten |   938 |\n| passengers |  2813 |\n| seafarers  |  4468 |\n| soldiers   |  4177 |\n| total      |  2467 |\n+------------+-------+\n"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "monetdb",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "StillerHarpo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
-          monetdb: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$4,
+          monetdb: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
       })),
     })),

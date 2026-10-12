@@ -47,50 +47,50 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "elvishjerricco"))]),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "initrd", "systemd", "enableTpm2"]), nix.thunk(() => ["boot", "initrd", "systemd", "tpm2", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       systemd: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tpm2: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd TPM2 support"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: nix.thunk(() => nix.sel(config, "systemd", "package", "withTpm2Units")),
             defaultText: "systemd.package.withTpm2Units",
           })),
           pcrphases: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "systemd boot phase measurements")),
           })),
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         initrd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             tpm2: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd initrd TPM2 support"), {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package", "withTpm2Units")),
                 defaultText: "boot.initrd.systemd.package.withTpm2Units",
               })),
               pcrphases: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "systemd initrd boot phase measurements")),
               })),
               pcrosseparator: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "systemd initrd boot phase OS userspace separator")),
               })),
             })),
@@ -102,9 +102,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const cfg = nix.thunk(() => nix.sel(config, "systemd"));
           return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tpm2", "enable")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               systemd: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 additionalUpstreamSystemUnits: nix.thunk(() => [
                   "tpm2.target",
                   "systemd-tpm2-setup-early.service",
@@ -119,14 +119,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const cfg = nix.thunk(() => nix.sel(config, "systemd"));
           return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "tpm2", "enable")) && nix.asBool(nix.sel(cfg, "tpm2", "pcrphases", "enable")))), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               systemd: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-pcrphase.service", "systemd-pcrphase-sysinit.service"]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  "systemd-pcrphase": nix.thunk(() => ({ __proto__: pos$16, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
-                  "systemd-pcrphase-sysinit": nix.thunk(() => ({ __proto__: pos$17, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+                  [nix.POS]: pos$18,
+                  "systemd-pcrphase": nix.thunk(() => ({ [nix.POS]: pos$16, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+                  "systemd-pcrphase-sysinit": nix.thunk(() => ({ [nix.POS]: pos$17, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
                 })),
               })),
             })));
@@ -134,13 +134,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd"));
           return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "tpm2", "enable")))), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               boot: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 initrd: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     additionalUpstreamUnits: nix.thunk(() => [
                       "tpm2.target",
                       "systemd-tpm2-setup-early.service",
@@ -162,17 +162,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd"));
           return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "tpm2", "enable")))) && nix.asBool(nix.sel(cfg, "tpm2", "pcrphases", "enable")))), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               boot: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 initrd: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     additionalUpstreamUnits: nix.thunk(() => ["systemd-pcrphase-initrd.service"]),
                     services: nix.thunk(() => ({
-                      __proto__: pos$26,
-                      "systemd-pcrphase-initrd": nix.thunk(() => ({ __proto__: pos$25, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                      [nix.POS]: pos$26,
+                      "systemd-pcrphase-initrd": nix.thunk(() => ({ [nix.POS]: pos$25, wantedBy: nix.thunk(() => ["initrd.target"]) })),
                     })),
                     storePaths: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/systemd/systemd-pcrextend`),
@@ -185,17 +185,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd"));
           return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "tpm2", "enable")))) && nix.asBool(nix.sel(cfg, "tpm2", "pcrosseparator", "enable")))), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               boot: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 initrd: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     additionalUpstreamUnits: nix.thunk(() => ["systemd-pcrosseparator.service"]),
                     services: nix.thunk(() => ({
-                      __proto__: pos$32,
-                      "systemd-pcrosseparator": nix.thunk(() => ({ __proto__: pos$31, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                      [nix.POS]: pos$32,
+                      "systemd-pcrosseparator": nix.thunk(() => ({ [nix.POS]: pos$31, wantedBy: nix.thunk(() => ["initrd.target"]) })),
                     })),
                     storePaths: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/systemd/systemd-pcrextend`),

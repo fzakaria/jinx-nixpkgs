@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "comm";
   const version = "0.2.3";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipython",
           repo: "comm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [traitlets]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter Python Comm implementation, for usage in ipykernel, xeus-python etc",
         homepage: "https://github.com/ipython/comm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

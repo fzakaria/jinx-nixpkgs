@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "compile-daemon",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "githubnemo",
           repo: "CompileDaemon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-UpktrXY6OntOA1sxKq3qI59zrOwwCuM+gfGGxPmUJRo=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/githubnemo/CompileDaemon/commit/39bc1352dc62fea06dff40c5eaef81ab1bdb1f14.patch",
             hash: "sha256-Zftbw2nu8zzaoj0uwEwdq7xlyycdC0xxBu/qE9VHASI=",
           })))),
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Very simple compile daemon for Go",
         homepage: "https://github.com/githubnemo/CompileDaemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

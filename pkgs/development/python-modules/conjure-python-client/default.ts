@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "conjure-python-client";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "palantir",
           repo: "conjure-python-client",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["conjure_python_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client and JSON encoders for use with generated Conjure clients",
         homepage: "https://github.com/palantir/conjure-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/palantir/conjure-python-client/releases/tag/${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

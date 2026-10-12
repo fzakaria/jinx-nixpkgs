@@ -37,44 +37,44 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "crossfire-server"));
   const serverPort = 13327n;
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "crossfire-server": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, the Crossfire game server will be started at boot.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "crossfire-server", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               extraDescription: "::: {.note}\nThis will also be used for map/arch data, if you don't change {option}`dataDir`\n:::\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/crossfire`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.crossfire.package}/share/crossfire\"")),
               description: "Where to load readonly data from -- maps, archetypes, treasure tables,\nand the like. If you plan to edit the data on the live server (rather\nthan overlaying the crossfire-maps and crossfire-arch packages and\nnixos-rebuilding), point this somewhere read-write and copy the data\nthere before starting the server.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/crossfire",
               description: "Where to store runtime data (save files, persistent items, etc).\n\nIf left at the default, this will be automatically created on server\nstartup if it does not already exist. If changed, it is the admin's\nresponsibility to make sure that the directory exists and is writeable\nby the `crossfire` user.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall for the server.\n",
             })))),
           configFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Text to append to the corresponding configuration files. Note that the\nfiles given in the example are *not* the complete set of files available\nto customize; look in /etc/crossfire after enabling the server to see\nthe available files, and read the comments in each file for detailed\ndocumentation on the format and what settings are available.\n\nNote that the motd, rules, and news files, if configured here, will\noverwrite the example files that come with the server, rather than being\nappended to them as the other configuration files are.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  dm_file = ''\n    admin:secret_password:localhost\n    alice:xyzzy:*\n  '';\n  ban_file = ''\n    # Bob is a jerk\n    bob@*\n    # So is everyone on 192.168.86.255/24\n    *@192.168.86.\n  '';\n  metaserver2 = ''\n    metaserver2_notification on\n    localhostname crossfire.example.net\n  '';\n  motd = \"Welcome to CrossFire!\";\n  news = \"No news yet.\";\n  rules = \"Don't be a jerk.\";\n  settings = ''\n    # be nicer to newbies and harsher to experienced players\n    balanced_stat_loss true\n    # don't let players pick up and use admin-created items\n    real_wiz false\n  '';\n}\n")),
@@ -84,13 +84,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             crossfire: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Crossfire server daemon user",
               home: nix.thunk(() => nix.sel(cfg, "stateDir")),
               createHome: false,
@@ -98,17 +98,17 @@ export default nix.lambda((args) => (() => {
               group: "crossfire",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$12, crossfire: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, crossfire: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.str`crossfire/${name}`), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 mode: "0644",
                 text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "elem"), name, nix.thunk(() => ["motd", "news", "rules"])))), nix.thunk(() => nix.app(nix.sel(lib, "fileContents"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/crossfire/${name}`)))), nix.str`
 ${value}`)),
               }))), nix.thunk(() => nix.update({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               ban_file: "",
               dm_file: "",
               exp_table: "",
@@ -122,24 +122,24 @@ ${value}`)),
             }, nix.sel(cfg, "configFiles"))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "crossfire-server": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Crossfire Server Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/crossfire-server -conf /etc/crossfire -local '${nix.sel(cfg, "stateDir")}' -data '${nix.sel(cfg, "dataDir")}'`),
                     Restart: "always",
                     User: "crossfire",
                     Group: "crossfire",
                     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/crossfire")), nix.thunk(() => ({ __proto__: pos$18, StateDirectory: "crossfire" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/crossfire")), nix.thunk(() => ({ [nix.POS]: pos$18, StateDirectory: "crossfire" })))),
                 ]))),
               preStart: nix.thunk(() => nix.str`if [ ! -e "${nix.sel(cfg, "stateDir")}"/bookarch ]; then
   ${nix.sel(pkgs, "rsync")}/bin/rsync -a --chmod=u=rwX,go=rX \\
@@ -150,8 +150,8 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$23,
-          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$22, allowedTCPPorts: nix.thunk(() => [serverPort]) })))),
+          [nix.POS]: pos$23,
+          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [serverPort]) })))),
         })),
       })))),
   };

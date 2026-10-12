@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
       const pname = "zookeeper_mt";
       const version = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), zookeeper));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/zookeeper/${nix.sel(zookeeper, "pname")}-${version}/apache-${nix.sel(zookeeper, "pname")}-${version}.tar.gz`),
           hash: "sha512-Zb6uvLbvf2m4RMLwpZ3E2S9ChFvcOpyp/TH+WSfTe6tOmecAnv/YM6gz4z5PyBulyg0j7jqc3BmQvotvyPt5tw==",
         }))));
       const sourceRoot = nix.thunk(() => nix.str`apache-${nix.sel(zookeeper, "pname")}-${version}/zookeeper-client/zookeeper-client-c`);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }));
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config, jre]);
       const buildInputs = nix.thunk(() => [openssl, zookeeper]);
       const preConfigure = nix.thunk(() => nix.str`mkdir generated
@@ -39,7 +39,7 @@ cd ..
 `);
       const configureFlags = nix.thunk(() => ["--without-cppunit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://zookeeper.apache.org",
         description: "Apache Zookeeper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -53,7 +53,7 @@ cd ..
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ministat",
       version: "20150715-1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.decadent.org.uk/git/ministat.git",
           tag: nix.thunk(() => nix.str`debian/${nix.sel(finalAttrs, "version")}`),
           sha256: "1p4g0yqgsy4hiqhr8gqp8d38zxzrss5qz70s0bw3i2pg4w668k6f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patch -p1 < debian/patches/fix-ctype-usage.patch\npatch -p1 < debian/patches/not-bsd\n",
       installPhase: "mkdir -p $out/bin $out/share/man/man1\ncp ministat $out/bin\ncp ministat.1 $out/share/man/man1/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool for statistical comparison of data sets",
         homepage: "https://git.decadent.org.uk/gitweb/?p=ministat.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "beerware")),

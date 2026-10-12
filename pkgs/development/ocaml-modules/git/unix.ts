@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const happy_eyeballs_lwt = nix.arg($, "happy-eyeballs-lwt");
   const git_mirage = nix.arg($, "git-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "git-unix",
       version: nix.thunk(() => nix.attr(git, "version")),
       src: nix.thunk(() => nix.attr(git, "src")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(git, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Unix backend for the Git protocol(s)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

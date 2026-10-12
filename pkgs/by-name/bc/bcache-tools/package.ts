@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bcache-tools",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/colyli/bcache-tools.git",
           rev: nix.thunk(() => nix.str`bcache-tools-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8BiHC8qxk4otFPyKnvGNk57JSZytEOy51AGertWo2O0=",
@@ -50,11 +50,11 @@ substituteInPlace 69-bcache.rules \\
       makeFlags: nix.thunk(() => ["PREFIX=", "DESTDIR=$(out)"]),
       preInstall: "mkdir -p \"$out/sbin\" \"$out/lib/udev/rules.d\" \"$out/share/man/man8\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, bcache: nix.thunk(() => nix.attr(nixosTests, "bcache")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, bcache: nix.thunk(() => nix.attr(nixosTests, "bcache")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User-space tools required for bcache (Linux block layer cache)",
         longDescription: "Bcache is a Linux kernel block layer cache. It allows one or more fast\ndisk drives such as flash-based solid state drives (SSDs) to act as a\ncache for one or more slower hard disk drives.\n\nThis package contains the required user-space tools.\n\nUser documentation is in Documentation/bcache.txt in the Linux kernel\ntree.\n",
         homepage: "https://www.kernel.org/doc/html/latest/admin-guide/bcache.html",

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "python-xapp",
           rev: version,
@@ -46,12 +46,12 @@ substituteInPlace "xapp/util/__init__.py" \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["xapp"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "^master.*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "^master.*" })))),
         skipBulkUpdate: true,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/linuxmint/python-xapp",
         description: "Cross-desktop libraries and common resources for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -59,7 +59,7 @@ substituteInPlace "xapp/util/__init__.py" \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cinnamon"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

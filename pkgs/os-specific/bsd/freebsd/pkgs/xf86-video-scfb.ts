@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xf86-video-scfb";
       const version = "0.0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rayddteam",
           repo: pname,
           rev: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [xorg_server]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

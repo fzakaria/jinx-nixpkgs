@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-num`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml",
           repo: "num",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ substituteInPlace src/Makefile --replace-fail "cp META.num META" "mv META.num ME
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         const from_1 = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Legacy Num library for arbitrary-precision integer and rational arithmetic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
@@ -47,7 +47,7 @@ substituteInPlace src/Makefile --replace-fail "cp META.num META" "mv META.num ME
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,
@@ -60,8 +60,8 @@ substituteInPlace src/Makefile --replace-fail "cp META.num META" "mv META.num ME
         meta,
       };
     })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "4.06")), nix.thunk(() => ({
-        __proto__: pos$5,
-        env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+        [nix.POS]: pos$5,
+        env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
       }))))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

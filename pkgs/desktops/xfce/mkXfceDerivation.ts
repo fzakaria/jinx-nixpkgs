@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
     const filterAttrNames = (f) => (attrs) => nix.app(filter, (n) => nix.app(f, nix.thunk(() => nix.app(getAttr, n, attrs))), nix.thunk(() => nix.app(attrNames, attrs)));
     const concatAttrLists = (attrsets) => nix.app(zipAttrsWithNames, nix.thunk(() => nix.app(filterAttrNames, isList, nix.thunk(() => nix.app(head, attrsets)))), (_) => nix.force(concatLists), attrsets);
     const template = nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       nativeBuildInputs: nix.thunk(() => [pkg_config, xfce4_dev_tools, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [hicolor_icon_theme]),
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: category,
           repo: pname,
@@ -62,16 +62,16 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_2)),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": rev_prefix,
             "odd-unstable": odd_unstable,
             "patchlevel-unstable": patchlevel_unstable,
           })))),
       }, passthru)),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.str`https://gitlab.xfce.org/${category}/${pname}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

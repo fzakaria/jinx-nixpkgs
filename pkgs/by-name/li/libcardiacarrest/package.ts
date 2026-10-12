@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcardiacarrest";
       const version = "12.2.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxij",
           repo: "libcardiacarrest",
           rev: "d89639f5b2d298cf74af26880f5ebf50e645166d",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const postInstall = "moveToOutput $out/include $dev\nmoveToOutput $out/lib/pkgconfig $dev\nmoveToOutput $out/lib/cmake $dev\n";
       const meta = nix.thunk(() => nix.update(nix.sel(src, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Trivial implementation of libpulse PulseAudio library API",
         longDescription: "libcardiacarrest is a trivial implementation of libpulse\nPulseAudio library API that unconditionally (but gracefully)\nfails to connect to the PulseAudio daemon and does nothing else.\n\napulse and pressureaudio (which uses apulse internally) are an\ninspiration for this but unlike those two projects\nlibcardiacarrest is not an emulation layer, all it does is it\ngracefully fails to provide the requested PulseAudio service\nhoping the application would try something else (e.g. ALSA or\nJACK).\n",
         license: nix.thunk(() => nix.sel(libpulseaudio, "meta", "license")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oxij"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

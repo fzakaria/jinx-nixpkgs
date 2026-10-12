@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const token = "1234";
-  const dummyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ __proto__: pos$1, name: "secrets", text: "dummy=value" }))));
+  const dummyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "secrets", text: "dummy=value" }))));
   const secretFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "secrets",
       text: nix.thunk(() => nix.str`token=${token}`),
     }))));
   const portRange = 6003n;
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     name: "frp",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -72,37 +72,37 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       frps: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         networking: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           network: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             networks: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$6, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           frp: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             instances: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               server: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 enable: true,
                 role: "server",
                 environmentFiles: nix.thunk(() => [
@@ -110,10 +110,10 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.builtins.toPath(secretFile)),
                 ]),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   bindPort: 7000n,
                   vhostHTTPPort: 80n,
-                  auth: nix.thunk(() => ({ __proto__: pos$11, method: "token", token: "{{ .Envs.token }}" })),
+                  auth: nix.thunk(() => ({ [nix.POS]: pos$11, method: "token", token: "{{ .Envs.token }}" })),
                 })),
               })),
             })),
@@ -121,47 +121,47 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       frpc: nix.thunk(() => ({
-        __proto__: pos$40,
-        networking: nix.thunk(() => ({ __proto__: pos$18, useNetworkd: true, useDHCP: false })),
+        [nix.POS]: pos$40,
+        networking: nix.thunk(() => ({ [nix.POS]: pos$18, useNetworkd: true, useDHCP: false })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           network: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             networks: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$19, Address: "10.0.0.2/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Address: "10.0.0.2/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           httpd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: true,
             adminAddr: "admin@example.com",
             virtualHosts: nix.thunk(() => (() => {
               const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "web/index.php", "<?php phpinfo();"));
               return {
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 "test-appication": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   documentRoot: nix.thunk(() => nix.str`${testdir}/web`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$25,
-                    "/": nix.thunk(() => ({ __proto__: pos$24, index: "index.php index.html" })),
+                    [nix.POS]: pos$25,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$24, index: "index.php index.html" })),
                   })),
                 })),
                 "test-range": nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   documentRoot: nix.thunk(() => nix.str`${testdir}/web`),
-                  listen: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$27, port: portRange }))]),
+                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$27, port: portRange }))]),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$29,
-                    "/": nix.thunk(() => ({ __proto__: pos$28, index: "index.php index.html" })),
+                    [nix.POS]: pos$29,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$28, index: "index.php index.html" })),
                   })),
                 })),
               };
@@ -170,21 +170,21 @@ export default nix.lambda((args) => (() => {
             enablePHP: true,
           })),
           frp: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             instances: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               client: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 enable: true,
                 role: "client",
                 settings: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   serverAddr: "10.0.0.1",
                   serverPort: 7000n,
-                  auth: nix.thunk(() => ({ __proto__: pos$33, method: "token", token: token })),
+                  auth: nix.thunk(() => ({ [nix.POS]: pos$33, method: "token", token: token })),
                   proxies: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       name: "web",
                       type: "http",
                       localPort: 80n,

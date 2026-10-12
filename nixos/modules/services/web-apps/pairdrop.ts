@@ -43,38 +43,38 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "pairdrop"));
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pairdrop: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "pairdrop")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "pairdrop", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3000n,
               example: 3010n,
               description: "The port to listen on.",
             })))),
           rtcConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(json, "type")),
               default: null,
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 sdpSemantics: "unified-plan",
-                iceServers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$2, urls: "stun:stun.example.com:19302" }))]),
+                iceServers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, urls: "stun:stun.example.com:19302" }))]),
               })),
               description: "Configuration for STUN/TURN servers.\nThis is converted to JSON and written into a file automatically.\nIf you want to provide a file path instead, set `RTC_CONFIG` in {option}`services.pairdrop.environment`.\n",
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Additional configuration (environment variables) for PairDrop, see\n<https://github.com/schlagmichdoch/PairDrop/blob/master/docs/host-your-own.md#environment-variables>\nfor supported values.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 DEBUG_MODE: true,
                 RATE_LIMIT: 1n,
                 IPV6_LOCALIZE: 4n,
@@ -106,30 +106,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         warnings: nix.thunk(() => nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "rtcConfig"), null)) && nix.asBool(nix.has(nix.sel(cfg, "environment"), "RTC_CONFIG")))), nix.thunk(() => [
             "Both services.pairdrop.rtcConfig and services.pairdrop.environment.RTC_CONFIG are set. The environment variable will take precedence.",
           ]))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             pairdrop: nix.thunk(() => (() => {
               const environment = nix.thunk(() => nix.update({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "rtcConfig"), null)), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   RTC_CONFIG: nix.thunk(() => nix.app(nix.sel(json, "generate"), "rtc-config.json", nix.thunk(() => nix.sel(cfg, "rtcConfig")))),
                 }))), nix.app(mapAttrs, (_) => (v) => (nix.asBool(nix.app(isBool, v)) ? nix.app(boolToString, v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "environment"))))));
               return {
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 environment: environment,
                 description: "PairDrop: Transfer Files Cross-Platform",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
                   Type: "simple",
                   Restart: "on-failure",
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "diogotcorreia"))];

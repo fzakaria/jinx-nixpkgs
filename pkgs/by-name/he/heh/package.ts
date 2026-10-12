@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "heh";
       const version = "0.6.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ndd7xv",
           repo: "heh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-xUhz9tKfqclYL6ztOA45lsQE+0MJAO+LNqy8B9c8MGw=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform terminal UI used for modifying file data in hex or ASCII",
         homepage: "https://github.com/ndd7xv/heh",
         changelog: nix.thunk(() => nix.str`https://github.com/ndd7xv/heh/releases/tag/${nix.sel(src, "rev")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "heh",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

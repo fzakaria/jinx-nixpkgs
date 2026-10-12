@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const opensslSupport = nix.argOr($, "opensslSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "systemd-netlogd",
       version: "1.4.4",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "systemd-netlogd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,15 +59,15 @@ substituteInPlace units/systemd-netlogd.service.in \\
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "aarch64-cross": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "systemd-netlogd")),
           }))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -75,7 +75,7 @@ substituteInPlace units/systemd-netlogd.service.in \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(systemdLibs, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Forwards messages from the journal to other hosts over the network",
         homepage: "https://github.com/systemd/systemd-netlogd",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/systemd-netlogd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

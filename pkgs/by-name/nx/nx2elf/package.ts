@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lz4 = nix.arg($, "lz4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nx2elf",
       version: "0-unstable-2021-11-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shuffle2",
           repo: "nx2elf",
           rev: "735aaa0648a5a6c996b48add9465db86524999f6",
@@ -30,7 +30,7 @@ cp ${nix.sel(lz4, "src")}/lib/lz4.{h,c} .
 `),
       installPhase: "mkdir -p $out/bin\ninstall -D nx2elf $out/bin/nx2elf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/shuffle2/nx2elf",
         description: "Convert Nintendo Switch executable files to ELFs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

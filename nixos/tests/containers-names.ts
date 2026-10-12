@@ -19,39 +19,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "containers-names",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "patryk27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           boot: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           })),
           containers: nix.thunk(() => (() => {
             const container = (subnet) => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               autoStart: true,
               privateNetwork: true,
               hostAddress: nix.thunk(() => nix.str`192.168.${subnet}.1`),
               localAddress: nix.thunk(() => nix.str`192.168.${subnet}.2`),
               config: nix.thunk(() => ({
-                __proto__: pos$4,
-                nix: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+                [nix.POS]: pos$4,
+                nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
               })),
             });
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               first: nix.thunk(() => nix.app(container, "1")),
               second: nix.thunk(() => nix.app(container, "2")),
               "really-long-name": nix.thunk(() => nix.app(container, "3")),

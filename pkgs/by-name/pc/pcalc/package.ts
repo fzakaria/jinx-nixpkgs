@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pcalc",
       version: "20181202",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vapier",
           repo: "pcalc",
           rev: "d93be9e19ecc0b2674cf00ec91cbb79d32ccb01d",
           sha256: "sha256-m4xdsEJGKxLgp/d5ipxQ+cKG3z7rlvpPL6hELnDu6Hk=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       makeFlags: nix.thunk(() => ["DESTDIR= BINDIR=$(out)/bin"]),
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://vapier.github.io/pcalc/",
         description: "Programmer's calculator",
         mainProgram: "pcalc",

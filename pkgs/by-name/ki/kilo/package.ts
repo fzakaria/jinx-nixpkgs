@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "kilo",
       version: "7.3.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kilo-Org",
           repo: "kilocode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Jw2C8C7dFPwOGp8tg6ewcRXdVsJEDDFSe+xuF86Xwfc=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -71,7 +71,7 @@ patchShebangs packages/*/node_modules
 runHook postConfigure
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         KILO_CHANNEL: "latest",
         KILO_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         MODELS_DEV_API_JSON: nix.thunk(() => nix.str`${models_dev}/dist/_api.json`),
@@ -97,19 +97,19 @@ runHook postInstall
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/kilo`),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         jsonschema: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           config: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/kilocode/config.json`),
           tui: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/kilocode/tui.json`),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Terminal User Interface for Kilo Code",
         homepage: "https://github.com/Kilo-Org/kilocode",
         changelog: nix.thunk(() => nix.str`https://github.com/Kilo-Org/kilocode/releases/tag/v${nix.sel(finalAttrs, "version")}`),

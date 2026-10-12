@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "daikhan",
       version: "0.1-alpha5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daikhan",
           repo: "daikhan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "profile", "stable"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Media player for the modern desktop",
         homepage: "https://gitlab.com/daikhan/daikhan",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/daikhan/daikhan/-/blob/${nix.sel(finalAttrs, "version")}/NEWS`),

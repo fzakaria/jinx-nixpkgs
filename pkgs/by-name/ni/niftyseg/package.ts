@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "niftyseg",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KCL-BMEIS",
           repo: "NiftySeg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [eigen, zlib]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0.2)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"cmake_policy(VERSION 2.8)\" \"cmake_policy(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://cmictig.cs.ucl.ac.uk/research/software/software-nifty/niftyseg",
         description: "Software for medical image segmentation, bias field correction, and cortical thickness calculation",
         maintainers: nix.thunk(() => (() => {

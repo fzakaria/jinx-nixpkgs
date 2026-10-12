@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rigetti",
           repo: "qcs-sdk-rust",
           tag: nix.thunk(() => nix.str`lib/v${version}`),
           hash: "sha256-XqsxtFwQnAJHYMaR+uO8wzlxA+GtqfllJUCIt0l1i9o=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const dependencies = nix.thunk(() => [qcs_api_client_common, quil]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "tracing-opentelemetry": nix.thunk(() => [opentelemetry_api]),
       }));
       const nativeCheckInputs = nix.thunk(() => [opentelemetry_sdk, pytest_asyncio, pytestCheckHook, syrupy]);
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
         "test_qvm_tracing",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "lib/v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "lib/v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/qcs-sdk-rust/blob/${nix.sel(src, "tag")}/${buildAndTestSubdir}/CHANGELOG.md`),
         description: "Python interface for the QCS Rust SDK",
         homepage: "https://github.com/rigetti/qcs-sdk-rust/tree/main/crates/python",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

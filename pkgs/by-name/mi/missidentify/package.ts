@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "missidentify",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/missidentify/missidentify/missidentify-${nix.sel(finalAttrs, "version")}/missidentify-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-nnIRN8hpKM0IZCe0HUrrJGrxvBYKeBmdU168rlo8op0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-FTBFS-Hurd.patch",
             url: "https://salsa.debian.org/pkg-security-team/missidentify/-/raw/14b7169c3157dbad65fc80fdd82ec6634df20ffd/debian/patches/fix-FTBFS-Hurd.patch",
             hash: "sha256-wGEzTfT76s5Q7s/5s913c4x9MMn9c0v/4Lhr+QakPQY=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-manpage.patch",
             url: "https://salsa.debian.org/pkg-security-team/missidentify/-/raw/14b7169c3157dbad65fc80fdd82ec6634df20ffd/debian/patches/fix-manpage.patch",
             hash: "sha256-7LzQs6ETRSjdnEhlKOVWC3grevwOmGs0h4Z6AYGysD8=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["--build=arm"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Find Win32 applications",
         longDescription: "Miss Identify is a program to find Win32 applications. In\nits default mode it displays the filename of any executable\nthat does not have an executable extension (i.e. exe, dll,\ncom, sys, cpl, hxs, hxi, olb, rll, or tlb). The program can\nalso be run to display all executables encountered,\nregardless of the extension. This is handy when looking\nfor all of the executables on a drive. Other options allow\nthe user to record the strings found in an executable and\nto work recursively.\n",
         mainProgram: "missidentify",

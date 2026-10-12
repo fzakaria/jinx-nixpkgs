@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-vpc-access",
       version: "1.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_vpc_access",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hBWieTmYkPFrF9j35zhJf118zOkZggN7F7mrE7ZbTtE=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["google.cloud.vpcaccess", "google.cloud.vpcaccess_v1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Client for Virtual Private Cloud",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-vpc-access",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-vpc-access-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-vpc-access/CHANGELOG.md`),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "finalfusion",
           repo: "finalfusion-python",
           rev: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs tests/integration\n\n# `np.float` was a deprecated alias of the builtin `float`\nsubstituteInPlace tests/test_storage.py \\\n  --replace 'dtype=np.float)' 'dtype=float)'\n";
       const checkPhase = "# Regular unit tests.\npytest\n\n# Integration tests for command-line utilities.\nPATH=$PATH:$out/bin tests/integration/all.sh\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for using finalfusion, word2vec, and fastText word embeddings",
         homepage: "https://github.com/finalfusion/finalfusion-python/",
         maintainers: [],
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "blueOak100")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

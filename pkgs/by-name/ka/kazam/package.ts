@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const libgudev = nix.arg($, "libgudev");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kazam",
       version: "1.5.5-unstable-2025-01-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niknah",
           repo: "kazam",
           rev: "b6c1bddc9ac93aad50476f2c87fec9f0cf204f2a",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libcanberra: libcanberra_gtk3,
             libpulseaudio: libpulseaudio,
           })))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["kazam"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Screencasting program created with design in mind",
         homepage: "https://github.com/niknah/kazam",
         changelog: nix.thunk(() => nix.str`https://github.com/niknah/kazam/raw/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

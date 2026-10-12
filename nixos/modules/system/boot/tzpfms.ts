@@ -86,38 +86,38 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (ds) => nix.str`tzpfms_load
     const mountUnits = nix.arg($_1, "mountUnits");
     const script = nix.arg($_1, "script");
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       description: nix.thunk(() => nix.str`Load TPM keys for ZFS pool “${pool}”`),
       after: nix.thunk(() => [nix.thunk(() => nix.str`zfs-import-${pool}.service`)]),
       before: nix.thunk(() => nix.concat(mountUnits, ["zfs-import.target"])),
       requiredBy: nix.thunk(() => nix.concat(mountUnits, ["zfs-import.target"])),
-      unitConfig: nix.thunk(() => ({ __proto__: pos$1, DefaultDependencies: "no" })),
-      serviceConfig: nix.thunk(() => ({ __proto__: pos$2, Type: "oneshot", RemainAfterExit: true })),
+      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$1, DefaultDependencies: "no" })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$2, Type: "oneshot", RemainAfterExit: true })),
       script: script,
     };
   })(), formals$2);
   const backendArgs = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (b) => ["-b", b], nix.thunk(() => nix.sel(cfg, "backends"))))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         zfs: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           tzpfms: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TPM-backed ZFS encryption using tzpfms.\nSupports both TPM 2.0 & TPM 1.x.\n")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tzpfms", nix.thunk(() => ({})))),
             backends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nonEmptyListOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["TPM2", "TPM1.X"]))));
@@ -126,7 +126,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (ds) => nix.str`tzpfms_load
                 description: "TPM backends to include in for tzpfms.\n",
               })))),
             datasets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nonEmptyListOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -139,27 +139,27 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (ds) => nix.str`tzpfms_load
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => nix.selOr(config, () => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "zfs"), "boot", "supportedFilesystems", "zfs")),
             message: "ZFS filesystem support needs to be enabled for boot.tzpfms to work",
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(initrdPools, {})) || nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))),
             message: "boot.zfs.tzpfms requires boot.initrd.systemd.enable = true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.eq(nix.sel(cfgZFS, "requestEncryptionCredentials"), true))) || nix.asBool(nix.eq(nix.sel(cfgZFS, "requestEncryptionCredentials"), [])))),
             message: "boot.zfs.requestEncryptionCredentials = true would prompt for all\nencrypted dataset passphrases at boot, which conflicts with automatic\nTPM unlock via tzpfms. Either set it to false, or explicitly list the\ndatasets that still need passphrase prompting.\n",
           })),
           nix.thunk(() => (() => {
             const intersected = nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(cfg, "datasets")), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.sel(cfgZFS, "requestEncryptionCredentials")))) ? nix.sel(cfgZFS, "requestEncryptionCredentials") : []))));
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               assertion: nix.thunk(() => nix.eq(nix.builtins.length(intersected), 0n)),
               message: nix.thunk(() => nix.str`The following datasets are listed in both boot.zfs.tzpfms.datasets
 & boot.zfs.requestEncryptionCredentials, which would cause a
@@ -175,38 +175,38 @@ automatic TPM unlock.
           })()),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$25,
-          zfs: nix.thunk(() => ({ __proto__: pos$16, extraPools: pools })),
+          [nix.POS]: pos$25,
+          zfs: nix.thunk(() => ({ [nix.POS]: pos$16, extraPools: pools })),
           initrd: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   availableKernelModules: nix.thunk(() => ["tpm_tis", "tpm_crb"]),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), needsInitrd, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         systemd: nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           extraBin: nix.thunk(() => nix.update({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             "zfs-tpm-list": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/zfs-tpm-list`),
                           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "TPM2", nix.thunk(() => nix.sel(cfg, "backends")))), nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               "zfs-tpm2-load-key": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/zfs-tpm2-load-key`),
                             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "TPM1.X", nix.thunk(() => nix.sel(cfg, "backends")))), nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               "zfs-tpm1x-load-key": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/zfs-tpm1x-load-key`),
                             })))))),
                           storePaths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "TPM2", nix.thunk(() => nix.sel(cfg, "backends")))), nix.thunk(() => nix.sel(pkgs, "tpm2-tss"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "TPM1.X", nix.thunk(() => nix.sel(cfg, "backends")))), nix.thunk(() => nix.sel(pkgs, "trousers"))))),
                           services: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), initrdPools, (pool) => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               name: nix.thunk(() => nix.str`tzpfms-load-${pool}`),
                               value: nix.thunk(() => nix.app(mkTzpfmsService, nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   pool: pool,
                                   mountUnits: nix.thunk(() => nix.selOr(initrdMountsByPool, () => [], nix.key(nix.force(pool)))),
                                   script: nix.thunk(() => nix.app(mkTzpfmsScript, nix.thunk(() => nix.selOr(datasetsByPool, () => [], nix.key(nix.force(pool)))))),
@@ -218,14 +218,14 @@ automatic TPM unlock.
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), systemPools, (pool) => (() => {
               const mnts = nix.thunk(() => nix.selOr(systemMountsByPool, () => [], nix.key(nix.force(pool))));
               return {
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 name: nix.thunk(() => nix.str`tzpfms-load-${pool}`),
                 value: nix.thunk(() => nix.app(mkTzpfmsService, nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     pool: pool,
                     mountUnits: mnts,
                     script: nix.thunk(() => nix.app(mkTzpfmsScript, nix.thunk(() => nix.selOr(datasetsByPool, () => [], nix.key(nix.force(pool)))))),

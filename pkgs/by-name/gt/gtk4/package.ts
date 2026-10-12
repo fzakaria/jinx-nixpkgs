@@ -83,28 +83,28 @@ export default nix.lambda((args) => (() => {
   const broadwaySupport = nix.argOr($, "broadwaySupport", () => true);
   const testers = nix.arg($, "testers");
   const darwinMinVersionHook = nix.arg($, "darwinMinVersionHook");
-  const gtkCleanImmodulesCache = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hooks/clean-immodules-cache.sh"), nix.thunk(() => ({ __proto__: pos$1, gtk_module_path: "gtk-4.0", gtk_binary_version: "4.0.0" }))));
+  const gtkCleanImmodulesCache = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hooks/clean-immodules-cache.sh"), nix.thunk(() => ({ [nix.POS]: pos$1, gtk_module_path: "gtk-4.0", gtk_binary_version: "4.0.0" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "gtk4",
       version: "4.22.4",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => ["devdoc"])))),
       outputBin: "dev",
       setupHooks: nix.thunk(() => [nix.path(here, "./hooks/drop-icon-theme-cache.sh"), gtkCleanImmodulesCache]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Ub2fYMfSOmZaVWxzZMIfsuTiglZrPn4JJFXo+RAzCJM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-32bit-VkImage-null.patch",
             url: "https://gitlab.gnome.org/GNOME/gtk/-/commit/10d43de8f4f942cb591ada3103474bd7213425f1.patch",
             hash: "sha256-DJIL6M3XcsjBoMO77OxNi84d1DxAphAfot3N7Nq1QqQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "gtkapplication-wayland-null-check.patch",
             url: "https://gitlab.gnome.org/GNOME/gtk/-/commit/221cd8e1904f2ca35d89dff3c1068616c6ce588c.patch",
             hash: "sha256-SLMmWDZ2mLXW3/GJfFdoszthNg4Hd15yvZO2XOld4Uw=",
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         libpng,
         libtiff,
         libjpeg,
-        nix.thunk(() => nix.app(nix.sel(libepoxy, "override"), nix.thunk(() => ({ __proto__: pos$5, x11Support: x11Support })))),
+        nix.thunk(() => nix.app(nix.sel(libepoxy, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, x11Support: x11Support })))),
         isocodes,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => [vulkan_headers, libdrm])), nix.concat([
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
@@ -158,9 +158,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: "-DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS",
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ __proto__: pos$7, NIX_LDFLAGS: "-lexecinfo" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: pos$7, NIX_LDFLAGS: "-lexecinfo" }))))),
       postPatch: nix.thunk(() => nix.str`# this conditional gates the installation of share/gsettings-schemas/.../glib-2.0/schemas/gschemas.compiled.
 substituteInPlace meson.build \\
   --replace 'if not meson.is_cross_build()' 'if ${nix.app(nix.sel(lib, "boolToString"), compileSchemas)}'
@@ -198,23 +198,23 @@ for program in \${demos[@]}; do
 done
 `)), nix.app(nix.sel(lib, "optionalString"), x11Support, "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packageName: "gtk",
             versionPolicy: "odd-unstable",
             attrPath: "gtk4",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Multi-platform toolkit for creating graphical user interfaces",
         longDescription: "GTK is a highly usable, feature rich toolkit for creating\ngraphical user interfaces which boasts cross platform\ncompatibility and an easy to use API.  GTK it is written in C,\nbut has bindings to many other popular programming languages\nsuch as C++, Python and C# among others.  GTK is licensed\nunder the GNU LGPL 2.1 allowing development of both free and\nproprietary software with GTK without any license fees or\nroyalties.\n",
         homepage: "https://www.gtk.org/",

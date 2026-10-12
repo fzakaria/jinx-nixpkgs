@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mail-tlsa-check-exporter",
       version: "0-unstable-2025-06-12",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ietf-tools",
           repo: "mail-tlsa-check-exporter",
           rev: "9843bf85971fbe130e8cd32e6fcf0dfcee92e929",
@@ -42,11 +42,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/mail-tlsa-check-
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Validate SMTP / IMAP server certificates against a TLSA record as a Prometheus exporter",
         homepage: "https://github.com/ietf-tools/mail-tlsa-check-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-nYR49bDfNUAzPM+FpV/os0FQssKMaFgF3p/6hViYVJ4=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export XDG_RUNTIME_DIR=\"$PWD\"\n";
       const pythonImportsCheck = nix.thunk(() => ["pywayland"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/flacjacket/pywayland",
         description: "Python bindings to wayland using cffi",
         mainProgram: "pywayland-scanner",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -161,7 +161,7 @@ fi
     return nix.app(concatLines, nix.thunk(() => nix.app(forEach, relevantSecrets, (secret) => nix.str`export ${secret}=$(< ${(nix.asBool(nix.eq(nix.sel(cfg, "settingsSecret", nix.key(nix.force(secret))), null)) ? nix.str`secrets/${secret}` : nix.str`"$CREDENTIALS_DIRECTORY/${secret}"`)})`)));
   })();
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     AmbientCapabilities: [],
     CapabilityBoundingSet: [],
     LockPersonality: true,
@@ -198,15 +198,15 @@ fi
     RestartSec: 10n,
   }));
   const componentOptions = (component) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     enable: nix.thunk(() => nix.app(mkEnableOption, nix.thunk(() => nix.str`the Firezone ${component} server`))),
     package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => nix.str`firezone-server-${component}`), nix.thunk(() => ({})))),
     settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Environment variables for this component of the Firezone server. For a\nlist of available variables, please refer to the [upstream definitions](https://github.com/firezone/firezone/blob/main/elixir/apps/domain/lib/domain/config/definitions.ex).\nSome variables like `OUTBOUND_EMAIL_ADAPTER_OPTS` require json values\nfor which you can use `VAR = builtins.toJSON { /* ... */ }`.\n\nThis component will automatically inherit all variables defined via\n{option}`services.firezone.server.settings` and\n{option}`services.firezone.server.settingsSecret`, but which can be\noverwritten by this option.\n",
         default: nix.thunk(() => ({})),
         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(types, "bool")),
                   nix.thunk(() => nix.sel(types, "float")),
@@ -219,32 +219,32 @@ fi
       })))),
   });
   return {
-    __proto__: pos$107,
+    [nix.POS]: pos$107,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "firezone", "server", "provision"]), "Firezone provisioning support has been removed due to outsized maintenance efforts. See https://github.com/NixOS/nixpkgs/pull/529428.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         firezone: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           server: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             enable: nix.thunk(() => nix.app(mkEnableOption, "all Firezone components")),
             enableLocalDB: nix.thunk(() => nix.app(mkEnableOption, "a local postgresql database for Firezone")),
             nginx: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: nix.thunk(() => nix.app(mkEnableOption, "nginx virtualhost definition")),
             })),
             openClusterFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Opens up the erlang distribution port of all enabled components to\nallow reaching the server cluster from the internet. You only need to\nset this if you are actually distributing your cluster across multiple\nmachines.\n",
               })))),
             clusterHosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => [
                   "api@localhost.localdomain",
@@ -254,52 +254,52 @@ fi
                 description: "A list of components and their hosts that are part of this cluster. For\na single-machine setup, the default value will be sufficient. This\nvalue will automatically set `ERLANG_CLUSTER_ADAPTER_CONFIG`.\n\nThe format is `<COMPONENT_NAME>@<HOSTNAME>`.\n",
               })))),
             settingsSecret: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 default: nix.thunk(() => ({})),
                 description: "This is a convenience option which allows you to set secret values for\nenvironment variables by specifying a file which will contain the value\nat runtime. Before starting the server, the content of each file will\nbe loaded into the respective environment variable.\n\nOtherwise, this option is equivalent to\n{option}`services.firezone.server.settings`. Refer to the settings\noption for more information regarding the actual variables and how\nfiltering rules are applied for each component.\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       RELEASE_COOKIE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique secret identifier for the Erlang\ncluster. All Firezone components in your cluster must use the\nsame value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
                         })))),
                       TOKENS_KEY_BASE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique base64 encoded secret for the\n`TOKENS_KEY_BASE`. All Firezone components in your cluster must\nuse the same value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
                         })))),
                       SECRET_KEY_BASE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique base64 encoded secret for the\n`SECRET_KEY_BASE`. All Firezone components in your cluster must\nuse the same value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
                         })))),
                       TOKENS_SALT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique base64 encoded secret for the\n`TOKENS_SALT`. All Firezone components in your cluster must\nuse the same value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
                         })))),
                       LIVE_VIEW_SIGNING_SALT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique base64 encoded secret for the\n`LIVE_VIEW_SIGNING_SALT`. All Firezone components in your cluster must\nuse the same value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
                         })))),
                       COOKIE_SIGNING_SALT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique base64 encoded secret for the\n`COOKIE_SIGNING_SALT`. All Firezone components in your cluster must\nuse the same value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
                         })))),
                       COOKIE_ENCRYPTION_SALT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           default: null,
                           description: "A file containing a unique base64 encoded secret for the\n`COOKIE_ENCRYPTION_SALT`. All Firezone components in your cluster must\nuse the same value.\n\nIf this is `null`, a shared value will automatically be generated\non startup and used for all components on this machine. You do\nnot need to set this except when you spread your cluster over\nmultiple hosts.\n",
@@ -308,11 +308,11 @@ fi
                   })))),
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Environment variables for the Firezone server. For a list of available\nvariables, please refer to the [upstream definitions](https://github.com/firezone/firezone/blob/main/elixir/apps/domain/lib/domain/config/definitions.ex).\nSome variables like `OUTBOUND_EMAIL_ADAPTER_OPTS` require json values\nfor which you can use `VAR = builtins.toJSON { /* ... */ }`.\n\nEach component has an additional `settings` option which allows you to\noverride specific variables passed to that component.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(types, "bool")),
                           nix.thunk(() => nix.sel(types, "float")),
@@ -324,45 +324,45 @@ fi
                   })))),
               })))),
             smtp: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               configureManually: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: false,
                   description: "Outbound email configuration is mandatory for Firezone and supports\nmany different delivery adapters. Yet, most users will only need an\nSMTP relay to send emails, so this configuration enforced by default.\n\nIf you want to utilize an alternative way to send emails (e.g. via a\nsupportd API-based service), enable this option and define\n`OUTBOUND_EMAIL_FROM`, `OUTBOUND_EMAIL_ADAPTER` and\n`OUTBOUND_EMAIL_ADAPTER_OPTS` manually via\n{option}`services.firezone.server.settings` and/or\n{option}`services.firezone.server.settingsSecret`.\n\nThe Firezone documentation holds [a list of supported Swoosh adapters](https://github.com/firezone/firezone/blob/main/website/src/app/docs/reference/env-vars/readme.mdx#outbound-emails).\n",
                 })))),
               from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "firezone@example.com",
                   description: "Outbound SMTP FROM address",
                 })))),
               host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "mail.example.com",
                   description: "Outbound SMTP host",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.sel(types, "port")),
                   example: 465n,
                   description: "Outbound SMTP port",
                 })))),
               implicitTls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: false,
                   description: "Whether to use implicit TLS instead of STARTTLS (usually port 465)",
                 })))),
               username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "firezone@example.com",
                   description: "Username to authenticate against the SMTP relay",
                 })))),
               passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   example: "/run/secrets/smtp-password",
                   description: "File containing the password for the given username. Beware that a file in the nix store will be world readable.",
@@ -370,54 +370,54 @@ fi
             })),
             domain: nix.thunk(() => nix.app(componentOptions, "domain")),
             web: nix.thunk(() => nix.update(nix.app(componentOptions, "web"), {
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               externalUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^https://.+/$")),
                   example: "https://firezone.example.com/",
                   description: "The external URL under which you will serve the web interface. You\nneed to setup a reverse proxy for TLS termination, either with\n{option}`services.firezone.server.nginx.enable` or manually.\n",
                 })))),
               address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "127.0.0.1",
                   description: "The address to listen on",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: nix.thunk(() => nix.sel(types, "port")),
                   default: 8080n,
                   description: "The port under which the web interface will be served locally",
                 })))),
               trustedProxies: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                   default: [],
                   description: "A list of trusted proxies",
                 })))),
             })),
             api: nix.thunk(() => nix.update(nix.app(componentOptions, "api"), {
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               externalUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^https://.+/$")),
                   example: "https://firezone.example.com/api/",
                   description: "The external URL under which you will serve the api. You need to\nsetup a reverse proxy for TLS termination, either with\n{option}`services.firezone.server.nginx.enable` or manually.\n",
                 })))),
               address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "127.0.0.1",
                   description: "The address to listen on",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   type: nix.thunk(() => nix.sel(types, "port")),
                   default: 8081n,
                   description: "The port under which the api will be served locally",
                 })))),
               trustedProxies: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                   default: [],
                   description: "A list of trusted proxies",
@@ -429,44 +429,44 @@ fi
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             services: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               firezone: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 server: nix.thunk(() => ({
-                  __proto__: pos$45,
-                  domain: nix.thunk(() => ({ __proto__: pos$42, enable: true })),
-                  web: nix.thunk(() => ({ __proto__: pos$43, enable: true })),
-                  api: nix.thunk(() => ({ __proto__: pos$44, enable: true })),
+                  [nix.POS]: pos$45,
+                  domain: nix.thunk(() => ({ [nix.POS]: pos$42, enable: true })),
+                  web: nix.thunk(() => ({ [nix.POS]: pos$43, enable: true })),
+                  api: nix.thunk(() => ({ [nix.POS]: pos$44, enable: true })),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableLocalDB")), nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             services: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               postgresql: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 enable: true,
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     name: "firezone",
                     ensureDBOwnership: true,
-                    ensureClauses: nix.thunk(() => ({ __proto__: pos$49, superuser: true })),
+                    ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$49, superuser: true })),
                   })),
                 ]),
                 ensureDatabases: nix.thunk(() => ["firezone"]),
-                settings: nix.thunk(() => ({ __proto__: pos$51, wal_level: "logical" })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$51, wal_level: "logical" })),
               })),
               firezone: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 server: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     DATABASE_SOCKET_DIR: "/run/postgresql",
                     DATABASE_PORT: "5432",
                     DATABASE_NAME: "firezone",
@@ -478,24 +478,24 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             services: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               nginx: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$58, enable: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$58, enable: true })),
                   nix.thunk(() => (() => {
                     const urlComponents = nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.split("https://([^/]*)(/?.*)", nix.thunk(() => nix.sel(cfg, "web", "externalUrl")))), 1n));
                     const domain = nix.thunk(() => nix.builtins.elemAt(urlComponents, 0n));
                     const location = nix.thunk(() => nix.builtins.elemAt(urlComponents, 1n));
                     return {
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.force(domain), nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                           locations: nix.thunk(() => nix.attrsDyn({}, [
                             [nix.force(location), nix.thunk(() => ({
-                              __proto__: pos$59,
+                              [nix.POS]: pos$59,
                               proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "web", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "web", "port")))}/`),
                               proxyWebsockets: true,
                             }))],
@@ -509,14 +509,14 @@ fi
                     const domain = nix.thunk(() => nix.builtins.elemAt(urlComponents, 0n));
                     const location = nix.thunk(() => nix.builtins.elemAt(urlComponents, 1n));
                     return {
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.force(domain), nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                           locations: nix.thunk(() => nix.attrsDyn({}, [
                             [nix.force(location), nix.thunk(() => ({
-                              __proto__: pos$62,
+                              [nix.POS]: pos$62,
                               proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "api", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "api", "port")))}/`),
                               proxyWebsockets: true,
                             }))],
@@ -529,19 +529,19 @@ fi
             })),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           services: nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             firezone: nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               server: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   LOG_LEVEL: nix.thunk(() => nix.app(mkDefault, "info")),
                   RELEASE_HOSTNAME: nix.thunk(() => nix.app(mkDefault, "localhost.localdomain")),
                   ERLANG_CLUSTER_ADAPTER: nix.thunk(() => nix.app(mkDefault, "Elixir.Cluster.Strategy.Epmd")),
-                  ERLANG_CLUSTER_ADAPTER_CONFIG: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$67, hosts: nix.thunk(() => nix.sel(cfg, "clusterHosts")) })))))),
+                  ERLANG_CLUSTER_ADAPTER_CONFIG: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$67, hosts: nix.thunk(() => nix.sel(cfg, "clusterHosts")) })))))),
                   TZDATA_DIR: nix.thunk(() => nix.app(mkDefault, "/var/lib/firezone/tzdata")),
                   TELEMETRY_ENABLED: nix.thunk(() => nix.app(mkDefault, false)),
                   DATABASE_POOL_SIZE: "16",
@@ -559,18 +559,18 @@ fi
                   API_EXTERNAL_URL: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "api", "externalUrl")))),
                 })),
                 domain: nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     ERLANG_DISTRIBUTION_PORT: nix.thunk(() => nix.app(mkDefault, 9000n)),
                     HEALTHZ_PORT: nix.thunk(() => nix.app(mkDefault, 4000n)),
                     BACKGROUND_JOBS_ENABLED: nix.thunk(() => nix.app(mkDefault, true)),
                   })),
                 })),
                 web: nix.thunk(() => ({
-                  __proto__: pos$72,
+                  [nix.POS]: pos$72,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     ERLANG_DISTRIBUTION_PORT: nix.thunk(() => nix.app(mkDefault, 9001n)),
                     HEALTHZ_PORT: nix.thunk(() => nix.app(mkDefault, 4001n)),
                     BACKGROUND_JOBS_ENABLED: nix.thunk(() => nix.app(mkDefault, false)),
@@ -582,9 +582,9 @@ fi
                   })),
                 })),
                 api: nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     ERLANG_DISTRIBUTION_PORT: nix.thunk(() => nix.app(mkDefault, 9002n)),
                     HEALTHZ_PORT: nix.thunk(() => nix.app(mkDefault, 4002n)),
                     BACKGROUND_JOBS_ENABLED: nix.thunk(() => nix.app(mkDefault, false)),
@@ -600,15 +600,15 @@ fi
           })),
         })),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "smtp", "configureManually"))), nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             services: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               firezone: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 server: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$79,
+                    [nix.POS]: pos$79,
                     OUTBOUND_EMAIL_ADAPTER: "Elixir.Swoosh.Adapters.Mua",
                     OUTBOUND_EMAIL_ADAPTER_OPTS: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({})))),
                     OUTBOUND_EMAIL_FROM: nix.thunk(() => nix.sel(cfg, "smtp", "from")),
@@ -618,7 +618,7 @@ fi
                     OUTBOUND_EMAIL_SMTP_USERNAME: nix.thunk(() => nix.sel(cfg, "smtp", "username")),
                   })),
                   settingsSecret: nix.thunk(() => ({
-                    __proto__: pos$80,
+                    [nix.POS]: pos$80,
                     OUTBOUND_EMAIL_SMTP_PASSWORD: nix.thunk(() => nix.sel(cfg, "smtp", "passwordFile")),
                   })),
                 })),
@@ -626,11 +626,11 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "openClusterFirewall")) && nix.asBool(nix.sel(cfg, "domain", "enable")))), nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             networking: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               firewall: nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 allowedTCPPorts: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "domain", "settings", "ERLANG_DISTRIBUTION_PORT")),
                 ]),
@@ -638,45 +638,45 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "openClusterFirewall")) && nix.asBool(nix.sel(cfg, "web", "enable")))), nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             networking: nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               firewall: nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "web", "settings", "ERLANG_DISTRIBUTION_PORT"))]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "openClusterFirewall")) && nix.asBool(nix.sel(cfg, "api", "enable")))), nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             networking: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               firewall: nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "api", "settings", "ERLANG_DISTRIBUTION_PORT"))]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "domain", "enable")) || nix.asBool(nix.sel(cfg, "web", "enable")))) || nix.asBool(nix.sel(cfg, "api", "enable")))), nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             systemd: nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               slices: nix.thunk(() => ({
-                __proto__: pos$95,
-                "system-firezone": nix.thunk(() => ({ __proto__: pos$94, description: "Firezone Slice" })),
+                [nix.POS]: pos$95,
+                "system-firezone": nix.thunk(() => ({ [nix.POS]: pos$94, description: "Firezone Slice" })),
               })),
               targets: nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 firezone: nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   description: "Common target for all Firezone services.",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 "firezone-initialize": nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   description: "Backend initialization service for the Firezone zero-trust access platform",
                   after: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableLocalDB")), nix.thunk(() => ["postgresql.target"]))),
                   requires: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableLocalDB")), nix.thunk(() => ["postgresql.target"]))),
@@ -692,10 +692,10 @@ echo "Running migrations"
 ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "domain", "package")))} eval Domain.Release.migrate
 `),
                   environment: nix.thunk(() => nix.app(collectEnvironment, "domain")),
-                  serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, { __proto__: pos$98, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, { [nix.POS]: pos$98, Type: "oneshot", RemainAfterExit: true })),
                 })),
                 "firezone-server-domain": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "domain", "enable")), nix.thunk(() => ({
-                    __proto__: pos$100,
+                    [nix.POS]: pos$100,
                     description: "Backend domain server for the Firezone zero-trust access platform",
                     after: nix.thunk(() => ["firezone-initialize.service"]),
                     bindsTo: nix.thunk(() => ["firezone-initialize.service"]),
@@ -721,7 +721,7 @@ done
                     serviceConfig: commonServiceConfig,
                   })))),
                 "firezone-server-web": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "web", "enable")), nix.thunk(() => ({
-                    __proto__: pos$101,
+                    [nix.POS]: pos$101,
                     description: "Backend web server for the Firezone zero-trust access platform",
                     after: nix.thunk(() => ["firezone-initialize.service"]),
                     bindsTo: nix.thunk(() => ["firezone-initialize.service"]),
@@ -734,7 +734,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "web", "package")))} start;
                     serviceConfig: commonServiceConfig,
                   })))),
                 "firezone-server-api": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "api", "enable")), nix.thunk(() => ({
-                    __proto__: pos$102,
+                    [nix.POS]: pos$102,
                     description: "Backend api server for the Firezone zero-trust access platform",
                     after: nix.thunk(() => ["firezone-initialize.service"]),
                     bindsTo: nix.thunk(() => ["firezone-initialize.service"]),
@@ -751,7 +751,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "api", "package")))} start;
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$106,
+      [nix.POS]: pos$106,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

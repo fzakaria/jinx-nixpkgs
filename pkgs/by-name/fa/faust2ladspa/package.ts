@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const faust = nix.arg($, "faust");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2ladspa",
       propagatedBuildInputs: nix.thunk(() => [boost, ladspa_header]),
     })));

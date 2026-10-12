@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-nvidia-gpu-exporter",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "utkuozdemir",
           repo: "nvidia_gpu_exporter",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "-X=github.com/prometheus/common/version.BuildDate=1970-01-01T00:00:00Z",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nvidia GPU exporter for prometheus using nvidia-smi binary",
         homepage: "https://github.com/utkuozdemir/nvidia_gpu_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

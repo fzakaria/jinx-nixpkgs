@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const withXcodePath = nix.argOr($, "withXcodePath", () => null);
   const ruby = ruby_3_4;
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "macvim",
       version: "182",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "macvim-dev",
           repo: "macvim",
           tag: nix.thunk(() => (() => {
@@ -77,10 +77,10 @@ substituteInPlace src/Makefile \\
 `),
       postInstall: "mkdir -p $out/Applications\ncp -r src/MacVim/build/Release/MacVim.app $out/Applications\nrm -rf $out/MacVim.app\n\nmkdir -p $out/bin\nfor prog in ex vi {,g,m,r}vi{m,mdiff,ew}; do\n  ln -s $out/Applications/MacVim.app/Contents/bin/mvim $out/bin/$prog\ndone\nfor prog in {,g}vimtutor xxd; do\n  ln -s $out/Applications/MacVim.app/Contents/bin/$prog $out/bin/$prog\ndone\nln -s $out/Applications/MacVim.app/Contents/bin/gvimtutor $out/bin/mvimtutor\n\nmkdir -p $out/share\nln -s $out/Applications/MacVim.app/Contents/man $out/share/man\n\n# Remove manpages from tools we aren't providing\nfind $out/Applications/MacVim.app/Contents/man \\( -name evim.1 -or -name eview.1 \\) -delete\n",
       hardeningDisable: nix.thunk(() => nix.concat(nix.sel(common, "hardeningDisable"), ["format"])),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-DOS_LOG_FORMAT_WARNINGS" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DOS_LOG_FORMAT_WARNINGS" })),
       sandboxProfile: "(allow file-read* file-write* process-exec mach-lookup)\n; block homebrew dependencies\n(deny file-read* file-write* process-exec mach-lookup (subpath \"/usr/local\") (with no-log))\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vim - the text editor - for macOS",
         homepage: "https://macvim.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),

@@ -29,28 +29,28 @@ export default nix.lambda((args) => (() => {
   const helix = nix.arg($, "helix");
   const helix_unwrapped = nix.arg($, "helix-unwrapped");
   const grammarsOverlay = nix.argOr($, "grammarsOverlay", () => (final) => (prev) => ({
-    __proto__: pos$8,
-    "tree-sitter-beancount": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-beancount", "override"), nix.thunk(() => ({ __proto__: pos$1, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-qmljs": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-qmljs", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, dontCheckForBrokenSymlinks: true })))),
-    "tree-sitter-strace": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-strace", "override"), nix.thunk(() => ({ __proto__: pos$3, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-tact": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tact", "override"), nix.thunk(() => ({ __proto__: pos$4, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-tlaplus": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tlaplus", "override"), nix.thunk(() => ({ __proto__: pos$5, dontPatch: true })))),
-    "tree-sitter-vue": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-vue", "override"), nix.thunk(() => ({ __proto__: pos$6, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-wit": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-wit", "override"), nix.thunk(() => ({ __proto__: pos$7, excludeBrokenTreeSitterJson: false })))),
+    [nix.POS]: pos$8,
+    "tree-sitter-beancount": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-beancount", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-qmljs": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-qmljs", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, dontCheckForBrokenSymlinks: true })))),
+    "tree-sitter-strace": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-strace", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-tact": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tact", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-tlaplus": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tlaplus", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, dontPatch: true })))),
+    "tree-sitter-vue": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-vue", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-wit": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-wit", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, excludeBrokenTreeSitterJson: false })))),
   }));
   const steelix_unwrapped = nix.thunk(() => nix.app(nix.sel(helix_unwrapped, "overrideAttrs"), (finalAttrs) => (_) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "steelix-unwrapped",
       version: "0-unstable-2026-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "mattwparas",
           repo: "helix",
           rev: "ee451df4ff6b0f6416a128f26affc2052b0669c6",
           hash: "sha256-pPQFqMoUvDFsCDBjEWzrxb6x+5YXY/ELD5CTl/Tf5N8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--package", "helix-term", "--features", "steel,git"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "revert-dylib-grammar-extension.patch",
             url: "https://github.com/helix-editor/helix/commit/430914b298a32653ab1847fdfdf2177a002be04c.patch",
             revert: true,
@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: false,
     })));
   return nix.app(nix.sel(nix.app(nix.sel(helix, "override"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       "helix-unwrapped": steelix_unwrapped,
       lockedGrammars: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./grammars.json"))),
       grammarsOverlay: grammarsOverlay,
     }))), "overrideAttrs"), (_) => (previousAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "steelix",
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Helix editor with Steel (Scheme) scripting support",
         longDescription: "Steelix is a fork of the Helix editor with Steel (Scheme) scripting support.\n",
         homepage: "https://github.com/mattwparas/helix",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         updateScript: nix.thunk(() => [nix.thunk(() => nix.sel(previousAttrs, "passthru", "updateSh")), "steelix"]),
         unwrapped: steelix_unwrapped,
       })),

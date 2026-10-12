@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "thelounge",
       version: "4.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thelounge",
           repo: "thelounge",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./packages-path.patch")]),
       postPatch: "echo /var/lib/thelounge > .thelounge_home\n",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-dIE6Dqg9npistgmSRQ5vD96YtDtRveTgLXyF+omtH2s=",
         })))),
@@ -65,11 +65,11 @@ runHook postConfigure
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(nodejs_slim, "src"))]),
       dontNpmPrune: true,
       dontStrip: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "thelounge")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "thelounge")) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs_slim, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern, responsive, cross-platform, self-hosted web IRC client",
         homepage: "https://thelounge.chat",
         changelog: nix.thunk(() => nix.str`https://github.com/thelounge/thelounge/releases/tag/v${nix.sel(finalAttrs, "version")}`),

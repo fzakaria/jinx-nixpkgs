@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const supportSharePath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "share", nix.thunk(() => [nix.thunk(() => nix.sel(idris2_unwrapped, "libidris2_support"))])));
   const packagePath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`idris2-${nix.sel(idris2_unwrapped, "version")}`), nix.thunk(() => nix.concat(preludeLibs, extraPackages))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(idris2_unwrapped, "version")),
       pname: "idris2-wrapped",
       paths: nix.thunk(() => [idris2_unwrapped]),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --suffix DYLD_LIBRARY_PATH ':' "${supportLibrariesPath}"
 `),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         prelude: preludeLibs,
         unwrapped: idris2_unwrapped,
         src: nix.thunk(() => nix.sel(idris2_unwrapped, "src")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(idris2_unwrapped, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.attr(from, "description")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

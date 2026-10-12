@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rss-bridge"));
   const cfgEnv = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "config")), nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (value) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.str`RSSBRIDGE_${nix.app(nix.sel(lib, "concatStringsSep"), "_", path)}`))),
             value: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isList"), value)) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", value) : (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : nix.builtins.toString(value)))),
           }))))),
@@ -64,26 +64,26 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(lib, "listToAttrs")),
     ])));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "rss-bridge", "whitelist"]), nix.thunk(() => ["services", "rss-bridge", "config", "system", "enabled_bridges"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "rss-bridge": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(mkEnableOption, "rss-bridge")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "webserver"), null)) ? "rss-bridge" : nix.sel(cfg, "webserver"))),
               defaultText: "{option}`config.services.rss-bridge.webserver` or \"rss-bridge\"",
               description: "The user account under which both the service and the web application run.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "webserver"), null)) ? "rss-bridge" : nix.sel(cfg, "webserver"))),
               defaultText: "{option}`config.services.rss-bridge.webserver` or \"rss-bridge\"",
@@ -91,40 +91,40 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "rss-bridge", nix.thunk(() => ({})))),
           pool: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "rss-bridge",
               description: "Name of phpfpm pool that is used to run web-application.\nIf `null` specified none will be created, otherwise automatically created with default values.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/rss-bridge",
               description: "Location in which cache directory will be created.\nYou can put `config.ini.php` in here.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "rss-bridge",
               description: "Name of the nginx or caddy virtualhost to use and setup. If null, do not setup any virtualhost.\n",
             })))),
           webserver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["nginx", "caddy"]))))),
               default: "nginx",
               description: "Type of virtualhost to use and setup. If null, do not setup any virtualhost.\n",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))), "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     system: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       enabled_bridges: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))))));
@@ -134,9 +134,9 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     FileCache: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Directory where to store cache files (if cache.type = \"file\").",
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/cache/`),
@@ -152,17 +152,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             pools: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "pool"), null)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "pool"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   user: nix.thunk(() => nix.sel(cfg, "user")),
                   settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.force(mkDefault), nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       "listen.owner": nix.thunk(() => nix.sel(cfg, "user")),
                       "listen.group": nix.thunk(() => nix.sel(cfg, "group")),
                       "listen.mode": "0600",
@@ -178,17 +178,17 @@ export default nix.lambda((args) => (() => {
               ])))),
           })),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "virtualHost"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "nginx")))), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$23,
-                    "/": nix.thunk(() => ({ __proto__: pos$21, tryFiles: "$uri /index.php$is_args$args" })),
+                    [nix.POS]: pos$23,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$21, tryFiles: "$uri /index.php$is_args$args" })),
                     "~ ^/index.php(/|$)": nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.sel(cfg, "pool")), "socket")};
@@ -201,11 +201,11 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               ])),
             })))),
           caddy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "virtualHost"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "caddy")))), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   extraConfig: nix.thunk(() => nix.str`root * ${nix.sel(cfg, "package")}
 file_server
 php_fastcgi unix/${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.sel(cfg, "pool")), "socket")} {
@@ -217,16 +217,16 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             settings: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               "rss-bridge": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "config", "FileCache", "path")}`, nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   d: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -238,7 +238,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "quantenzitrone"))];

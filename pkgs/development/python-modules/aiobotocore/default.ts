@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "aiobotocore",
           tag: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         wrapt,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         awscli: nix.thunk(() => [awscli]),
         boto3: nix.thunk(() => [boto3]),
         httpx: nix.thunk(() => [httpx]),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["localonly"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for amazon services",
         homepage: "https://github.com/aio-libs/aiobotocore",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiobotocore/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const attrs = nix.arg($, "attrs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mailbits",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ExQL6Ugl1ECYbe4KbmU9gdO030sAWfvbbXi6jMsMTsA=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [attrs]),
       pythonImportsCheck: nix.thunk(() => ["mailbits"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Assorted e-mail utility functions",
         homepage: "https://pypi.org/project/mailbits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

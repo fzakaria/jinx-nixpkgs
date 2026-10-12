@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "0.6",
     sha256: "18wpyxblz9jh5bfp0hpffnd0q8cq1b0dqp0f36vhqydfknlnpx8y",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0.5",
     sha256: "1j17rhifdjv1z262dma148ywg34x0zjn8vczdrnkwajsm4qg1hw3",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-functory`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://www.lri.fr/~filliatr/functory/download/functory-${nix.sel(param, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.lri.fr/~filliatr/functory/",
         description: "Distributed computing library for Objective Caml which facilitates distributed execution of parallelizable computations in a seamless fashion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

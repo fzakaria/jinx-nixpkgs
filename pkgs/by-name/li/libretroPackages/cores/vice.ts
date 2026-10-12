@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const type = nix.argOr($, "type", () => "x64");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       core: nix.thunk(() => nix.str`vice-${type}`),
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "vice-libretro",
           rev: "9d7983826ea792f6cce7fdfe6c09488129c6f886",
           hash: "sha256-+052OnC/iPMI09vcP5XTTxnQuwBgDmZ6Ua/d9AEQjUY=",
         })))),
       makefile: "Makefile",
-      env: nix.thunk(() => ({ __proto__: pos$2, EMUTYPE: nix.thunk(() => nix.str`${type}`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, EMUTYPE: nix.thunk(() => nix.str`${type}`) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of vice to libretro",
         homepage: "https://github.com/libretro/vice-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

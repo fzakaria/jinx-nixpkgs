@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const collectd = nix.arg($, "collectd");
   return nix.app(nix.sel(collectd, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libcollectdclient",
       buildInputs: [],
       configureFlags: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "configureFlags"), ["--with-perl-bindings=no", "--disable-daemon", "--disable-all-plugins"])),
       postInstall: "rm -rf $out/{bin,etc,sbin,share}",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "C Library for collectd, a daemon which collects system performance statistics periodically",
         homepage: "https://collectd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

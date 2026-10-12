@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const gfortran = nix.arg($, "gfortran");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netcdf-fortran",
       version: "4.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unidata",
           repo: "netcdf-fortran",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [netcdf, hdf5, curl]),
       doCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=legacy"]))),
         FCFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=legacy"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fortran API to manipulate netcdf files",
         mainProgram: "nf-config",
         homepage: "https://www.unidata.ucar.edu/software/netcdf/",

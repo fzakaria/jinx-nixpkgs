@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "clap",
       version: "1.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "free-audio",
           repo: "clap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace clap.pc.in \\\n  --replace '$'\"{prefix}/@CMAKE_INSTALL_INCLUDEDIR@\" '@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Clever Audio Plugin API interface headers",
         homepage: "https://cleveraudio.org/",
         pkgConfigModules: nix.thunk(() => ["clap"]),

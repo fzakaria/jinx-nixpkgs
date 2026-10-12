@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jsonschema-cli",
       version: "0.58.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jsonschema-cli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-QiJK8SDVun44n6eDBERFXH9UMI/NHBXB/6J7pRqH/8E=",
@@ -33,17 +33,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-aAuBbdAgO9AW2TtHyVsR0o0DOZYZ7ixaGQRQS4eeFl4=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [aws_lc]),
-      env: nix.thunk(() => ({ __proto__: pos$2, AWS_LC_SYS_USE_SYSTEM: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AWS_LC_SYS_USE_SYSTEM: true })),
       preCheck: nix.thunk(() => nix.str`export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
 `),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast command-line tool for JSON Schema validation",
         homepage: "https://github.com/Stranger6667/jsonschema",
         changelog: nix.thunk(() => nix.str`https://github.com/Stranger6667/jsonschema/releases/tag/rust-v${nix.sel(finalAttrs, "version")}`),

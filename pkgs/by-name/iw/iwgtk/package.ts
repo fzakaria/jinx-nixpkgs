@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iwgtk",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "j-lentz",
           repo: "iwgtk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, qrencode]),
       postInstall: "substituteInPlace $out/lib/systemd/user/iwgtk.service --subst-var out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight, graphical wifi management utility for Linux",
         homepage: "https://github.com/j-lentz/iwgtk",
         changelog: nix.thunk(() => nix.str`https://github.com/j-lentz/iwgtk/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blockdiag",
           repo: "seqdiag",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["src/seqdiag/tests/"]);
       const pythonImportsCheck = nix.thunk(() => ["seqdiag"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate sequence-diagram image from spec-text file (similar to Graphviz)",
         homepage: "http://blockdiag.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/blockdiag/seqdiag/blob/${version}/CHANGES.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

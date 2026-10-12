@@ -88,16 +88,16 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const needsAnswers = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)))));
   const answers = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-freebsd": nix.path(here, "./answers-x86_64-freebsd"),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Need pre-generated answers file to compile for ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const isCross = nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(stdenv, "buildPlatform")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "samba",
       version: "4.23.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.samba.org/pub/samba/stable/samba-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-50s/SV1+SOZxC1Aas4HIDd88uZxmBHMtNgQCZdnK9FI=",
         })))),
@@ -107,19 +107,19 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./4.x-no-persistent-install-dynconfig.patch"),
         nix.path(here, "./4.x-fix-systemd-detection.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "build-find-pre-built-heimdal-build-tools-in-case-of-.patch",
             url: "https://raw.githubusercontent.com/LibreELEC/LibreELEC.tv/fe5538114371b98c7350e6fffbfc0d1ac063719c/packages/network/samba/patches/samba-200-4.11-fix-ASN1-bso14164.patch",
             hash: "sha256-0/c9TH5FZ4S1OoM04gwDBJoIN+10unjLSv7Hlwt9FEQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "samba-reproducible-builds.patch",
             url: "https://gitlab.com/raboof/samba/-/commit/9995c5c234ece6888544cdbe6578d47e83dea0b5.patch",
             hash: "sha256-TVKK/7wGsfP1pVf8o1NwazobiR8jVJCCMj/FWji3f2A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "cross-compile.patch",
             url: "https://gitlab.com/samba-team/samba/-/merge_requests/3990/diffs.patch?commit_id=52af20db81f24cbfaa6fef8233584fc40fc72d34",
             hash: "sha256-GMPxM6KMtMPRljhRI+dDD2fOp+y5kpRqbjqkj19Du4Q=",
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.add("export PKGCONFIG=\"$PKG_CONFIG\"\nexport PYTHONHASHSEED=1\n", nix.app(nix.sel(lib, "optionalString"), needsAnswers, nix.thunk(() => nix.str`cp ${answers} answers
 chmod +w answers
 `)))),
-      env: nix.thunk(() => nix.update({ __proto__: pos$6, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$7, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$6, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$7, NIX_LDFLAGS: "--undefined-version" }))))),
       wafConfigureFlags: nix.thunk(() => nix.concat([
         "--with-static-modules=NONE",
         "--with-shared-modules=ALL",
@@ -208,24 +208,24 @@ wrapPythonPrograms
           nix.thunk(() => nix.sel(buildPackages, "runtimeShellPackage")),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           samba: nix.thunk(() => nix.sel(nixosTests, "samba")),
           cross: nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "samba")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/smbd -V`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), enableDomainController, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             versionSambaTool: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), "samba-tool")} --version`),
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 version: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -233,7 +233,7 @@ wrapPythonPrograms
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         homepage: "https://www.samba.org",
         changelog: nix.thunk(() => nix.str`https://www.samba.org/samba/history/samba-${nix.sel(finalAttrs, "version")}.html`),
         description: "Standard Windows interoperability suite of programs for Linux and Unix",

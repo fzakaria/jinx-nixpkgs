@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-privacy",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EMPRI-DEVOPS",
           repo: "git-privacy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-pkg_resources-is-deprecated.patch",
             url: "https://github.com/EMPRI-DEVOPS/git-privacy/commit/a54d7a8b9ce6a48db5383e09711059b5025bcb18.patch",
             excludes: nix.thunk(() => [".github/workflows/pytest.yml"]),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["TestGitPrivacy"]),
       pythonImportsCheck: nix.thunk(() => ["gitprivacy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to redact Git author and committer dates",
         homepage: "https://github.com/EMPRI-DEVOPS/git-privacy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

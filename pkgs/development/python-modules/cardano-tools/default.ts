@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "cardano_tools",
           version: version,
           hash: "sha256-RFyKXHafV+XgRJSsTjASCCw9DxvZqertf4NNN616Bp4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [requests, pexpect]);
       const pythonImportsCheck = nix.thunk(() => ["cardano_tools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for interfacing with the Cardano blockchain",
         homepage: "https://gitlab.com/viperscience/cardano-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

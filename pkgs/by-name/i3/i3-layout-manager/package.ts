@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [vim, jq, rofi, xrandr, xdotool, i3, gawk, libnotify])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-layout-manager",
       version: "0-unstable-2020-05-03",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "klaxalk",
           repo: "i3-layout-manager",
           rev: "df54826bba351d8bcd7ebeaf26c07c713af7912c",
@@ -46,7 +46,7 @@ wrapProgram $out/bin/layout_manager \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/klaxalk/i3-layout-manager",
         description: "Saving, loading and managing layouts for i3wm",
         mainProgram: "layout_manager",

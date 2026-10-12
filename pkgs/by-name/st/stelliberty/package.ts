@@ -39,23 +39,23 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   const google_sans_ttf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/hprobotic/Google-Sans-Font/refs/heads/master/GoogleSans-Regular.ttf",
       hash: "sha256-l07oQCrtc5H47TUVXbEpUGl7y7460Bq/uBcYtlyxlg0=",
     }))));
   const noto_sans_sc_ttf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Variable/TTF/Subset/NotoSansSC-VF.ttf",
       hash: "sha256-1ouvy0iicHdJOWqhK7vYM8twQB86mmif0pAsfg0pWWQ=",
     }))));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "stelliberty",
       version: "2.0.36",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Kindness-Kismet",
           repo: "stelliberty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       executables: nix.thunk(() => ["stelliberty"]),
       postPatch: "substituteInPlace Directory.Build.props \\\n  --replace-fail \"<TreatWarningsAsErrors>true</TreatWarningsAsErrors>\" \"\"\n\nsubstituteInPlace native/hub/src/infra/paths.rs \\\n  --replace-fail \"data_core_dir.join\" \"user_data_dir.join\"\n\nsubstituteInPlace native/service/src/core.rs \\\n  --replace-fail \"service_data_root()?.join(\\\"service\\\")\" \"std::env::temp_dir().join(\\\"stelliberty_service\\\")\"\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-p7aLfalSxEEc2qakMXLuW7adWirFPzIjDZbdGP9ilaw=",
         })))),
@@ -121,7 +121,7 @@ done
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "stelliberty",
             desktopName: "Stelliberty",
             exec: "stelliberty",
@@ -135,11 +135,11 @@ done
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Cross-platform desktop proxy client",
         homepage: "https://github.com/Kindness-Kismet/stelliberty",
         changelog: nix.thunk(() => nix.str`https://github.com/Kindness-Kismet/stelliberty/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

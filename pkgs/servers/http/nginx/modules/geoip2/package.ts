@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.arg($, "libmaxminddb");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geoip2",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leev",
           repo: "ngx_http_geoip2_module",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [libmaxminddb]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Creates variables with values from the maxmind geoip2 databases",
         homepage: "https://github.com/leev/ngx_http_geoip2_module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

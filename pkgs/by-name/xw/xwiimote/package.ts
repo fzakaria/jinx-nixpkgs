@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xwiimote",
       version: "2-unstable-2024-02-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xwiimote",
           repo: "xwiimote",
           rev: "4df713d9037d814cc0c64197f69e5c78d55caaf1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       postInstallPhase: "mkdir -p \"$out/etc/X11/xorg.conf.d/\"\ncp \"res/50-xorg-fix-xwiimote.conf\" \"$out/etc/X11/xorg.conf.d/50-fix-xwiimote.conf\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://xwiimote.github.io/xwiimote/",
         description: "Userspace utilities to control connected Nintendo Wii Remotes",
         mainProgram: "xwiishow",

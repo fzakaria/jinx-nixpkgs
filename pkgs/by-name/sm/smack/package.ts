@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smack",
       version: "4.1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.igniterealtime.org/downloadServlet?filename=smack/smack_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           sha256: "009x0qcxd4dkvwcjz2nla470pwbabwvg37wc21pslpw42ldi0bzp",
         })))),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/java\ncp libs/smack-*.jar $out/share/java\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XMPP (Jabber) client library for instant messaging and presence",
         homepage: "http://www.igniterealtime.org/projects/smack/",
         sourceProvenance: nix.thunk(() => (() => {

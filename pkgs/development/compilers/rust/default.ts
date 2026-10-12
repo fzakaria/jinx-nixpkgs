@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
     const makeRustPlatform = nix.arg($_1, "makeRustPlatform");
     const wrapRustcWith = nix.arg($_1, "wrapRustcWith");
     const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../build-support/rust/lib")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         lib: lib,
         stdenv: stdenv,
         pkgsBuildHost: pkgsBuildHost,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const fastCross = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) && nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform")))));
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       lib: lib$,
       toTargetArch: nix.thunk(() => nix.attr(lib$, "toTargetArch")),
       toTargetOs: nix.thunk(() => nix.attr(lib$, "toTargetOs")),
@@ -61,17 +61,17 @@ export default nix.lambda((args) => (() => {
       toRustTargetForUseInEnvVars: nix.thunk(() => nix.attr(lib$, "toRustTargetForUseInEnvVars")),
       envVars: nix.thunk(() => nix.attr(lib$, "envVars")),
       packages: nix.thunk(() => ({
-        __proto__: pos$8,
-        prebuilt: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bootstrap.nix"), nix.thunk(() => ({ __proto__: pos$2, version: bootstrapVersion, hashes: bootstrapHashes })))),
+        [nix.POS]: pos$8,
+        prebuilt: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bootstrap.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, version: bootstrapVersion, hashes: bootstrapHashes })))),
         stable: nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
             const bootstrapRustPackages = nix.thunk(() => (nix.asBool(fastCross) ? nix.sel(pkgsBuildBuild, "rustPackages") : nix.app(nix.sel(self, "buildRustPackages", "overrideScope"), (_) => (__1) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.sel(nix.app(selectRustPackage, pkgsBuildHost), "packages", "prebuilt"))))));
             const bootRustPlatform = nix.thunk(() => nix.app(makeRustPlatform, bootstrapRustPackages));
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               buildRustPackages: nix.thunk(() => nix.sel(nix.app(selectRustPackage, pkgsBuildHost), "packages", "stable")),
               rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => nix.sel(self, "buildRustPackages")))),
               "rustc-unwrapped": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rustc.nix"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   version: rustcVersion,
                   sha256: rustcSha256,
                   enableRustcDev: enableRustcDev,
@@ -87,15 +87,15 @@ export default nix.lambda((args) => (() => {
                   rustfmt: nix.thunk(() => nix.attr(bootstrapRustPackages, "rustfmt")),
                 })))),
               rustc: nix.thunk(() => nix.app(wrapRustcWith, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   "rustc-unwrapped": nix.thunk(() => nix.attr(self, "rustc-unwrapped")),
                   sysroot: nix.thunk(() => (nix.asBool(fastCross) ? nix.sel(self, "rustc-unwrapped") : null)),
                 })))),
               rustfmt: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rustfmt.nix"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(self, "buildRustPackages"));
-                  return { __proto__: pos$5, rustc: nix.thunk(() => nix.attr(from, "rustc")) };
+                  return { [nix.POS]: pos$5, rustc: nix.thunk(() => nix.attr(from, "rustc")) };
                 })()))),
-              cargo: nix.thunk(() => (nix.asBool(!nix.asBool(fastCross)) ? nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cargo.nix"), nix.thunk(() => ({ __proto__: pos$6, rustPlatform: bootRustPlatform }))) : nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cargo_cross.nix"), nix.thunk(() => ({}))))),
+              cargo: nix.thunk(() => (nix.asBool(!nix.asBool(fastCross)) ? nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cargo.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, rustPlatform: bootRustPlatform }))) : nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cargo_cross.nix"), nix.thunk(() => ({}))))),
               "cargo-auditable": cargo_auditable,
               "cargo-auditable-cargo-wrapper": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cargo-auditable-cargo-wrapper.nix"), nix.thunk(() => ({})))),
               "clippy-unwrapped": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./clippy.nix"), nix.thunk(() => ({})))),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cloudquery",
       version: "6.43.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudquery",
           repo: "cloudquery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, versionCheckHook]),
       postInstall: "mv $out/bin/cli $out/bin/cloudquery\n\ninstallShellCompletion --cmd cloudquery \\\n   --bash <($out/bin/cloudquery completion bash) \\\n   --fish <($out/bin/cloudquery completion fish) \\\n   --zsh <($out/bin/cloudquery completion zsh)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data pipelines for cloud config and security data",
         homepage: "https://github.com/cloudquery/cloudquery",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudquery/cloudquery/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

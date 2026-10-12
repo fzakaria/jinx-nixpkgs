@@ -34,32 +34,32 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "auto-epp": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "auto-epp for amd active pstate")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "auto-epp", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     Settings: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       epp_state_for_AC: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "balance_performance",
                           description: "energy_performance_preference when on plugged in\n\n::: {.note}\nSee available epp states by running:\n{command}`cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_available_preferences`\n:::\n",
                         })))),
                       epp_state_for_BAT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "power",
                           description: "`energy_performance_preference` when on battery\n\n::: {.note}\nSee available epp states by running:\n{command}`cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_available_preferences`\n:::\n",
@@ -74,30 +74,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
-        boot: nix.thunk(() => ({ __proto__: pos$10, kernelParams: nix.thunk(() => ["amd_pstate=active"]) })),
+        [nix.POS]: pos$18,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$10, kernelParams: nix.thunk(() => ["amd_pstate=active"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "auto-epp.conf": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "auto-epp.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "auto-epp": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               after: nix.thunk(() => ["multi-user.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "auto-epp - Automatic EPP Changer for amd-pstate-epp",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "simple",
                 User: "root",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lamarios"))];

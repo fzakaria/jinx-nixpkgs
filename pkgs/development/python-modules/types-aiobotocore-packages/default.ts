@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const toUnderscore = (str) => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), str);
   const buildTypesAiobotocorePackage = (serviceName) => (version) => (hash) => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`types-aiobotocore-${serviceName}`),
       version: version,
       pyproject: true,
       oldStylePackages: nix.thunk(() => ["gamesparks", "iot-roborunner", "macie"]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => (nix.asBool(nix.builtins.elem(serviceName, nix.thunk(() => nix.sel(finalAttrs, "oldStylePackages")))) ? nix.str`types-aiobotocore-${serviceName}` : nix.str`types_aiobotocore_${nix.app(toUnderscore, serviceName)}`)),
           version: version,
           hash: hash,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`types_aiobotocore_${nix.app(toUnderscore, serviceName)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Type annotations for aiobotocore ${serviceName}`),
         homepage: "https://github.com/youtype/mypy_boto3_builder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })),
     }));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "types-aiobotocore-accessanalyzer": nix.thunk(() => nix.app(buildTypesAiobotocorePackage, "accessanalyzer", "3.9.2", "sha256-s+as0Y5fIz9o2bQol7dpvDpOfk2OaHiktkw2JCvZsxA=")),
     "types-aiobotocore-account": nix.thunk(() => nix.app(buildTypesAiobotocorePackage, "account", "3.9.2", "sha256-+P1ULpvP7vZJ5c0o5spc/jbazwQQlf5iN8doo5OzRU0=")),
     "types-aiobotocore-acm": nix.thunk(() => nix.app(buildTypesAiobotocorePackage, "acm", "3.9.2", "sha256-lbMflCVCdmlOBgo3bMlPI+7+2SkBMd7MdEyF1/+KWyg=")),

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opendatacube",
           repo: "odc-stac",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         xarray,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, botocore: nix.thunk(() => [botocore]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, botocore: nix.thunk(() => [botocore]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([geopandas, distributed, pystac_client, pytestCheckHook], nix.sel(optional_dependencies, "botocore")));
       const disabledTestMarks = nix.thunk(() => ["network"]);
       const disabledTests = nix.thunk(() => [
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["odc.stac"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Load STAC items into xarray Datasets",
         homepage: "https://github.com/opendatacube/odc-stac/",
         changelog: nix.thunk(() => nix.str`https://github.com/opendatacube/odc-stac/releases/tag/${nix.sel(src, "tag")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const doctest = nix.arg($, "doctest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sycl-info",
       version: "0-unstable-2019-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codeplaysoftware",
           repo: "sycl-info",
           rev: "b47d498ee2d6b77ec21972de5882e8e12efecd6c",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLYRA_INCLUDE_DIRS=${nix.app(nix.sel(lib, "getDev"), lyra)}/include`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUBYOPT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-KU", "-E", "utf-8:utf-8"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/codeplaysoftware/sycl-info",
         description: "Tool to show information about available SYCL implementations",
         mainProgram: "sycl-info",

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxi-tools";
       const version = "2.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxi-tools",
           repo: "lxi-tools",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGui)), "-Dgui=false"));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, "glib-compile-schemas $out/share/glib-2.0/schemas"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for communicating with LXI compatible instruments",
         longDescription: "lxi-tools is a collection of open source software tools\nthat enables control of LXI compatible instruments such\nas modern oscilloscopes, power supplies,\nspectrum analyzers etc.\n",
         homepage: "https://lxi-tools.github.io/",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lxi",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

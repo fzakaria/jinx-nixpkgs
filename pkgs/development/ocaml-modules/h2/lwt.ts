@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const gluten_lwt = nix.arg($, "gluten-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "h2-lwt",
       src: nix.thunk(() => nix.attr(h2, "src")),
       version: nix.thunk(() => nix.attr(h2, "version")),
       propagatedBuildInputs: nix.thunk(() => [lwt, gluten_lwt, h2]),
-      meta: nix.thunk(() => nix.update(nix.sel(h2, "meta"), { __proto__: pos$1, description: "Lwt support for h2" })),
+      meta: nix.thunk(() => nix.update(nix.sel(h2, "meta"), { [nix.POS]: pos$1, description: "Lwt support for h2" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

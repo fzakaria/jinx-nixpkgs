@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       return (f) => nix.app(buildEnv, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(nix.sel(lib, "appendToName"), "with-dicts", hunspell));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.attr(from, "name")),
           paths: nix.thunk(() => nix.app(f, dicts)),
           pathsToLink: nix.thunk(() => ["/share/hunspell"]),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           meta: nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(hunspell, "meta"));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: nix.thunk(() => nix.attr(from_1, "description")),
             longDescription: nix.thunk(() => nix.attr(from_1, "longDescription")),
             homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const audit = nix.arg($, "audit");
   const libsodium = nix.arg($, "libsodium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.1.4",
       pname: "usbguard",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "USBGuard",
           repo: "usbguard",
           tag: nix.thunk(() => nix.str`usbguard-${nix.sel(finalAttrs, "version")}`),
@@ -65,9 +65,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace configure.ac \\\n  --replace-fail '-std=c++17' '-std=c++20'\n",
       enableParallelBuilding: true,
       postInstall: "installShellCompletion --bash --name usbguard.bash scripts/bash_completion/usbguard\ninstallShellCompletion --zsh --name _usbguard scripts/usbguard-zsh-completion\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "usbguard")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "usbguard")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Protect your computer against rogue USB devices (a.k.a. BadUSB)",
         longDescription: "USBGuard is a software framework for implementing USB device authorization\npolicies (what kind of USB devices are authorized) as well as method of\nuse policies (how a USB device may interact with the system). Simply put,\nit is a USB device allowlisting tool.\n",
         homepage: "https://usbguard.github.io/",

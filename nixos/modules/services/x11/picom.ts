@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const pairOf = (x) => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
     return nix.update(nix.app(nix.lookup(w_1, "addCheck"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), x)), (y) => nix.eq(nix.app(nix.lookup(w_1, "length"), y), 2n)), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: nix.thunk(() => nix.str`pair of ${nix.sel(x, "description")}`),
     });
   })();
@@ -71,107 +71,107 @@ ${v}
   const toConf = (attrs) => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(mkAttrsString, true, nix.thunk(() => nix.sel(cfg, "settings")))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "picom.conf", nix.thunk(() => nix.app(toConf, nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkAliasOptionModule"), nix.thunk(() => ["services", "compton"]), nix.thunk(() => ["services", "picom"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "picom", "refreshRate"]), "This option corresponds to `refresh-rate`, which has been unused\nsince picom v6 and was subsequently removed by upstream.\nSee https://github.com/yshui/picom/commit/bcbc410\n")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "picom", "experimentalBackends"]), "This option was removed by upstream since picom v10.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         picom: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether or not to enable Picom as the X.org composite manager.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "picom", nix.thunk(() => ({})))),
           fade: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Fade windows in and out.\n",
             })))),
           fadeDelta: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
               default: 10n,
               example: 5n,
               description: "Time between fade animation step (in ms).\n",
             })))),
           fadeSteps: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(pairOf, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "numbers", "between"), 0.01, 1n)))),
               default: nix.thunk(() => [0.028, 0.03]),
               example: nix.thunk(() => [0.04, 0.04]),
               description: "Opacity change between fade steps (in and out).\n",
             })))),
           fadeExclude: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["window_type *= 'menu'", "name ~= 'Firefox$'", "focused = 1"]),
               description: "List of conditions of windows that should not be faded.\nSee {manpage}`picom(1)` man page for more examples.\n",
             })))),
           shadow: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Draw window shadows.\n",
             })))),
           shadowOffsets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(pairOf, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: nix.thunk(() => [nix.thunk(() => nix.neg(15n)), nix.thunk(() => nix.neg(15n))]),
               example: nix.thunk(() => [nix.thunk(() => nix.neg(10n)), nix.thunk(() => nix.neg(15n))]),
               description: "Left and right offset for shadows (in pixels).\n",
             })))),
           shadowOpacity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "numbers", "between"), 0n, 1n)),
               default: 0.75,
               example: 0.8,
               description: "Window shadows opacity.\n",
             })))),
           shadowExclude: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["window_type *= 'menu'", "name ~= 'Firefox$'", "focused = 1"]),
               description: "List of conditions of windows that should have no shadow.\nSee {manpage}`picom(1)` man page for more examples.\n",
             })))),
           activeOpacity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "numbers", "between"), 0n, 1n)),
               default: 1.0,
               example: 0.8,
               description: "Opacity of active windows.\n",
             })))),
           inactiveOpacity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "numbers", "between"), 0.1, 1n)),
               default: 1.0,
               example: 0.8,
               description: "Opacity of inactive windows.\n",
             })))),
           menuOpacity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "numbers", "between"), 0n, 1n)),
               default: 1.0,
               example: 0.8,
               description: "Opacity of dropdown and popup menu.\n",
             })))),
           wintypes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({
-                __proto__: pos$16,
-                popup_menu: nix.thunk(() => ({ __proto__: pos$14, opacity: nix.thunk(() => nix.sel(cfg, "menuOpacity")) })),
-                dropdown_menu: nix.thunk(() => ({ __proto__: pos$15, opacity: nix.thunk(() => nix.sel(cfg, "menuOpacity")) })),
+                [nix.POS]: pos$16,
+                popup_menu: nix.thunk(() => ({ [nix.POS]: pos$14, opacity: nix.thunk(() => nix.sel(cfg, "menuOpacity")) })),
+                dropdown_menu: nix.thunk(() => ({ [nix.POS]: pos$15, opacity: nix.thunk(() => nix.sel(cfg, "menuOpacity")) })),
               })),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`{
   popup_menu = { opacity = config.${nix.sel(opt, "menuOpacity")}; };
@@ -182,7 +182,7 @@ ${v}
               description: "Rules for specific window types.\n",
             })))),
           opacityRules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => [
@@ -192,13 +192,13 @@ ${v}
               description: "Rules that control the opacity of windows, in format PERCENT:PATTERN.\n",
             })))),
           backend: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["egl", "glx", "xrender", "xr_glx_hybrid"]))),
               default: "xrender",
               description: "Backend to use: `egl`, `glx`, `xrender` or `xr_glx_hybrid`.\n",
             })))),
           vSync: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "bool")), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["none", "drm", "opengl", "opengl-oml", "opengl-swc", "opengl-mswc"]))));
@@ -218,18 +218,18 @@ ${v}
                 nix.thunk(() => nix.lookup(w_1, "int")),
                 nix.thunk(() => nix.lookup(w_1, "float")),
                 nix.thunk(() => nix.lookup(w_1, "str")),
-              ])), { __proto__: pos$21, description: "scalar types" }));
+              ])), { [nix.POS]: pos$21, description: "scalar types" }));
             const libConfig = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
                 scalar,
                 nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), libConfig)),
                 nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), libConfig)),
-              ])), { __proto__: pos$22, description: "libconfig type" }));
+              ])), { [nix.POS]: pos$22, description: "libconfig type" }));
             const topLevel = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "attrsOf"), libConfig), {
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "libconfig configuration. The format consists of an attributes\nset (called a group) of settings. Each setting can be a scalar type\n(boolean, integer, floating point number or string), a list of\nscalars or a group itself\n",
             }));
             return nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: topLevel,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "blur =\n  { method = \"gaussian\";\n    size = 10;\n    deviation = 5.0;\n  };\n")),
@@ -240,13 +240,13 @@ ${v}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           picom: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             settings: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 fading: nix.thunk(() => nix.sel(cfg, "fade")),
                 "fade-delta": nix.thunk(() => nix.sel(cfg, "fadeDelta")),
                 "fade-in-step": nix.thunk(() => nix.app(nix.lookup(w, "elemAt"), nix.thunk(() => nix.sel(cfg, "fadeSteps")), 0n)),
@@ -267,19 +267,19 @@ ${v}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           user: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             services: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               picom: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 description: "Picom composite manager",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
-                environment: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "glx")), nix.thunk(() => ({ __proto__: pos$31, allow_rgb10_configs: "false" })))),
+                environment: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "glx")), nix.thunk(() => ({ [nix.POS]: pos$31, allow_rgb10_configs: "false" })))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${configFile}`),
                   RestartSec: 3n,
                   Restart: "always",
@@ -289,12 +289,12 @@ ${v}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "rnhmjoj"))];

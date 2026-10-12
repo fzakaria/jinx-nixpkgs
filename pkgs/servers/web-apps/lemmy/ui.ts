@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const vips = nix.arg($, "vips");
   const pinData = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lemmy-ui",
       version: nix.thunk(() => nix.sel(pinData, "uiVersion")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LemmyNet",
           repo: "lemmy-ui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       buildInputs: nix.thunk(() => [libsass, vips]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,14 +66,14 @@ runHook postBuild
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.py"),
-        tests: nix.thunk(() => ({ __proto__: pos$3, "lemmy-ui": nix.thunk(() => nix.sel(nixosTests, "lemmy")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "lemmy-ui": nix.thunk(() => nix.sel(nixosTests, "lemmy")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Web frontend for a federated link aggregator",
         homepage: "https://join-lemmy.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

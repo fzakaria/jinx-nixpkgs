@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "meters-lv2",
       version: "0.9.28",
       robtkVersion: "0.8.6",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [lv2, libGLU, libGL, cairo, pango, fftwFloat, libjack2]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "x42",
           repo: "meters.lv2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-vNLo16ZFBrbV5AYDGu9CIb+pXW7fAzc8IDDryuAeeLM=",
         })))),
       robtkSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "x42",
           repo: "robtk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "robtkVersion")}`),
@@ -51,7 +51,7 @@ ln -s ${nix.sel(finalAttrs, "robtkSrc")} $sourceRoot/robtk
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of audio level meters with GUI in LV2 plugin format",
         mainProgram: "x42-meter",
         homepage: "https://x42.github.io/meters.lv2/",

@@ -14,19 +14,19 @@ const pos$7 = nix.positions(here + "/thelounge.nix", [["private", 5, 5], ["publi
 const pos$8 = nix.positions(here + "/thelounge.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 25, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   name: "thelounge",
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     private: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          thelounge: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          thelounge: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       };
     })(), formals$1),
@@ -35,10 +35,10 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
-          thelounge: nix.thunk(() => ({ __proto__: pos$4, enable: true, public: true })),
+          [nix.POS]: pos$5,
+          thelounge: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, public: true })),
         })),
       };
     })(), formals$2),

@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TorchIO-project",
           repo: "torchio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const optional_dependencies = nix.thunk(() => (() => {
         const extras = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           csv: nix.thunk(() => [pandas]),
           monai: nix.thunk(() => [monai]),
           plot: nix.thunk(() => [colorcet, matplotlib]),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           sklearn: nix.thunk(() => [scikit_learn]),
         }));
         return nix.update(extras, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })());
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_load_all"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_queue_multiprocessing"]))));
       const pythonImportsCheck = nix.thunk(() => ["torchio", "torchio.data"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Medical imaging toolkit for deep learning",
         homepage: "https://docs.torchio.org",
         changelog: nix.thunk(() => nix.str`https://github.com/TorchIO-project/torchio/releases/tag/${nix.sel(src, "tag")}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

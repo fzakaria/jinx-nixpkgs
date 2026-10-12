@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.4.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "masklint",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brumhard",
           repo: "masklint",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withShell, shellcheck), nix.concat(nix.app(nix.sel(lib, "optional"), withPython, ruff), nix.app(nix.sel(lib, "optional"), withRuby, rubocop)))))}
 ` : "")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lint your mask targets",
         homepage: "https://github.com/brumhard/masklint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

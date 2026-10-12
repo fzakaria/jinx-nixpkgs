@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "m17n-db",
       version: "1.8.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/m17n/m17n-db-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MQJOBRNTNEi5sx6jKU01pkJuZpDrRGKGgHMaqVXAwWw=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-charmaps=${nix.sel(stdenv, "cc", "libc")}/share/i18n/charmaps`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/m17n/",
         description: "Multilingual text processing library (database)",
         mainProgram: "m17n-db",

@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "annot",
       version: "0.19.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "denolehov",
           repo: "annot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-T9CG5S0H90xYNP5QcbuINNEIEGLVCqR7HRX4XYNrgM4=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapGApp \"$out/bin/annot\"\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out/Applications/annot.app/Contents/MacOS/annot\" \"$out/bin/annot\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Human-in-the-loop annotation tool for AI workflows",
         longDescription: "annot is an annotation tool for human-in-the-loop AI workflows. AI\nagents work fast, but vague feedback is a lossy channel. When an agent\ndrafts a plan, proposes a refactor, or generates code, annot provides a\nmoment of structured review: it opens a native window, you annotate\nspecific lines with located, typed comments, then it closes and returns\nstructured output to the agent.\n\nannot can be used as a standalone CLI (open a file, annotate, get\noutput) or as an MCP server, allowing AI agents to block on human\nreview mid-workflow. It supports reviewing files, diffs, and\nagent-generated content, with optional exit modes so the human can\nsignal approval, rejection, or custom next steps.\n",
         homepage: "https://github.com/denolehov/annot",

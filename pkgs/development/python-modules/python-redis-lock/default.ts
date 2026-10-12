@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ionelmc",
           repo: "python-redis-lock",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./test_signal_expiration_increase_sleep.patch")]);
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [redis]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, django: nix.thunk(() => [django_redis]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, django: nix.thunk(() => [django_redis]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         eventlet,
         gevent,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_reset_signalizes", "test_reset_all_signalizes"])));
       const pythonImportsCheck = nix.thunk(() => ["redis_lock"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ionelmc/python-redis-lock/blob/v${version}/CHANGELOG.rst`),
         description: "Lock context manager implemented via redis SETNX/BLPOP",
         homepage: "https://github.com/ionelmc/python-redis-lock",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

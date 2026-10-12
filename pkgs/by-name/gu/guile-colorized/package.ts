@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const guile = nix.arg($, "guile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-colorized",
       version: "0-unstable-2026-06-24",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.com/NalaGinrut/guile-colorized",
           rev: "f9dfbde0cf0a7c72d29ad9efff22a69af85f0894",
           hash: "sha256-RNQRePn3p2ItxrY9LYFK7sKBPCEOjUU0Ztt418XgA2I=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nsite_dir=\"$out/share/guile/3.0\"\nlib_dir=\"$out/lib/guile/3.0/site-ccache\"\n\nexport GUILE_LOAD_PATH=.:$site_dir:...:$GUILE_LOAD_PATH\nexport GUILE_LOAD_COMPILED_PATH=.:$lib_dir:...:$GUILE_LOAD_COMPILE\n\nmkdir -p $site_dir/ice-9\ncp $src/ice-9/colorized.scm $site_dir/ice-9\nguild compile $site_dir/ice-9/colorized.scm -o $lib_dir/ice-9/colorized.go\n\nrunHook postBuild\n",
       dontInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colorized REPL for GNU Guile",
         homepage: "https://gitlab.com/NalaGinrut/guile-colorized/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

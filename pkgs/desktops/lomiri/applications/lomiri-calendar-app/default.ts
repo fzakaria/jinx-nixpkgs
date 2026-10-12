@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const qtpim = nix.arg($, "qtpim");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "lomiri-calendar-app",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/apps/lomiri-calendar-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,19 +46,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-lomiri-calendar-app-Remove-deprecated-tabs.patch",
             url: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/commit/12c9d3b8a5643790334e664e6b3d2c8f9b600e83.patch",
             hash: "sha256-tvY5inNkNrSvfuD05RpmI3a2tFEOwNPCRgRn0RZB4DA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-lomiri-calendar-app-Ensure-PageStack-is-initialized.patch",
             url: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/commit/deef3605b31c4c41f5c67311f1ff1ee02bd3b39a.patch",
             hash: "sha256-FusFYFnpEEJKchInLZ5vE08SnKbwmlnUYh85cQE+JbM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "0101-lomiri-calendar-app-bindtextdomain.patch",
             url: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/commit/c4c296e7f308af491558f1b7964542e4d638cb47.patch",
             hash: "sha256-GLEJlr4EMY6ugP2UVvpyVIZkBnkArn0XoSB5aqGEpm4=",
@@ -113,15 +113,15 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-calendar-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$6, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Default Calendar application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

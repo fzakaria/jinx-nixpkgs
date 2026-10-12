@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "intel-gpu-tools"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "intel-gpu-tools": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a setcap wrapper for intel-gpu-tools")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         security: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             intel_gpu_top: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               owner: "root",
               group: "root",
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "intel-gpu-tools")}/bin/intel_gpu_top`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];

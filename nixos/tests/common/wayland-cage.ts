@@ -12,15 +12,15 @@ const pos$5 = nix.positions(here + "/wayland-cage.nix", [["imports", 4, 3], ["se
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     imports: nix.thunk(() => [nix.path(here, "./user-account.nix")]),
     services: nix.thunk(() => ({
-      __proto__: pos$2,
-      cage: nix.thunk(() => ({ __proto__: pos$1, enable: true, user: "alice" })),
+      [nix.POS]: pos$2,
+      cage: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, user: "alice" })),
     })),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$4,
-      qemu: nix.thunk(() => ({ __proto__: pos$3, options: nix.thunk(() => ["-vga virtio"]) })),
+      [nix.POS]: pos$4,
+      qemu: nix.thunk(() => ({ [nix.POS]: pos$3, options: nix.thunk(() => ["-vga virtio"]) })),
     })),
   };
 })(), formals$1);

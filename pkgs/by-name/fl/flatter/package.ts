@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flatter",
       version: "0-unstable-2025-08-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keeganryan",
           repo: "flatter",
           rev: "d2b8026f29b4a69e987b15d4b240f8a5053275d3",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([blas, gmp, mpfr, fplll, eigen], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast lattice reduction of integer lattice bases",
         homepage: "https://github.com/keeganryan/flatter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openttd-jgrpp";
       const version = "0.73.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JGRennison",
           repo: "OpenTTD-patches",
           rev: nix.thunk(() => nix.str`jgrpp-${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const patches = [];
       const buildInputs = nix.thunk(() => nix.concat(nix.sel(oldAttrs, "buildInputs"), [zstd]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/JGRennison/OpenTTD-patches",
         changelog: nix.thunk(() => nix.str`https://github.com/JGRennison/OpenTTD-patches/blob/jgrpp-${version}/jgrpp-changelog.md`),
         mainProgram: "openttd",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "artifycz"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patches, buildInputs, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

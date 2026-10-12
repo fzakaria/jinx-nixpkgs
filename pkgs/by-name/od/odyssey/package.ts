@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "odyssey",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yandex",
           repo: "odyssey",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/yandex/odyssey/commit/51c0e777aa45157f4f03fbd036113ce6d11ca41f.patch?full_index=1",
             hash: "sha256-yytyA2K62v7XwJQ+WJnBGh87AVyeOv0cuzlQ7oYnhFg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/yandex/odyssey/commit/1edf6bfd05dc34324162fda1b4ca4bc38b1b581c.patch",
             hash: "sha256-Rd/dqmvpY2gJMqg3hX5rXMu3vRjOG5V3QXV/S1M625Q=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [openssl, libpq, zstd]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -Wno-error=incompatible-pointer-types",
       })),
       cmakeFlags: nix.thunk(() => [
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -Dm755 -t $out/bin sources/odyssey\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Scalable PostgreSQL connection pooler",
         homepage: "https://github.com/yandex/odyssey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

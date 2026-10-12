@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const shocco = nix.arg($, "shocco");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "roundup",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bmizerany",
           repo: "roundup",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install-man"]),
       preInstall: "for i in 1 5; do\n  mkdir -p $out/share/man/man$i\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unit testing tool for running test plans which are written in any POSIX shell",
         homepage: "http://bmizerany.github.io/roundup/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

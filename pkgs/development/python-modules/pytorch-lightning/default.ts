@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pytorch-lightning",
       version: "2.6.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lightning-AI",
           repo: "pytorch-lightning",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-VKEd9Psj4DdOSdIXqwbmLl23FJWrQJEr9b34+t//c9w=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PACKAGE_NAME: "pytorch" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PACKAGE_NAME: "pytorch" })),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([
         fsspec,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pytorch_lightning"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight PyTorch wrapper for machine learning researchers",
         homepage: "https://github.com/Lightning-AI/pytorch-lightning",
         changelog: nix.thunk(() => nix.str`https://github.com/Lightning-AI/pytorch-lightning/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

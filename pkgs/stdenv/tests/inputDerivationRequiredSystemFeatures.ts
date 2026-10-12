@@ -12,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const impossibleToBuildPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "impossible-to-build-package",
       requiredSystemFeatures: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux")) ? "apple-virt" : "kvm")),
       buildCommand: "echo ERROR: It’s supposed to be impossible to start building this package. >&2\nexit 1\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "stdenv-test-inputDerivationRequiredSystemFeatures",
       impossibleToBuildPackageInputDerivation: nix.thunk(() => nix.sel(impossibleToBuildPackage, "inputDerivation")),
       buildCommand: "ln --symbolic \"$impossibleToBuildPackageInputDerivation\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         longDescription: "In previous versions of Nixpkgs,\n`<originalDerivation>.inputDerivation.requiredSystemFeatures` would\nalways be the same as `<originalDerivation>.requiredSystemFeatures`. This\nmeant that if a builder wasn’t able to build `<originalDerivation>` due\nto a lack of system features, then that builder would also not be able to\nbuild `<originalDerivation>.inputDerivation`.\n\nThat was an arbitrary (and probably accidental) limitation. Building\ninput derivations never requires any system features. This test checks to\nmake sure that that limitation no longer exists.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jayman2000"))]),
       })),

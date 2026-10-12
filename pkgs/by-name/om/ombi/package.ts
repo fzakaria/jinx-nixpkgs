@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const nixosTests = nix.arg($, "nixosTests");
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
-  const arch = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x64-linux_hash": "sha256-5pnHuYjT+O/mlGC+arIofwlAwOWOzyYa4/jK+fstkHs=",
     "arm64-linux_hash": "sha256-yBZQuTNPIPCa2LqaRd9rFinJpPvJraAe4xo09mt8RD8=",
     "x64-osx_hash": "sha256-VZTFsjB08/plpwv0ErwHbyIiSBGxsXAz92X2AdACN1E=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ombi";
       const version = "4.47.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/Ombi-app/Ombi/releases/download/v${version}/${os}-${arch}.tar.gz`),
           sha256: hash,
         }))));
@@ -52,12 +52,12 @@ makeWrapper $out/share/${pname}-${version}/Ombi $out/bin/Ombi \\
   --chdir "$out/share/${pname}-${version}"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ __proto__: pos$4, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "ombi")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "ombi")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Self-hosted web application that automatically gives your shared Plex or Emby users the ability to request content by themselves",
         homepage: "https://ombi.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -73,7 +73,7 @@ makeWrapper $out/share/${pname}-${version}/Ombi $out/bin/Ombi \\
         mainProgram: "Ombi",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

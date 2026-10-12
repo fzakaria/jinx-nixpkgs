@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dfl-login1",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desktop-frameworks",
           repo: "login1",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of systemd/elogind for DFL",
         homepage: "https://gitlab.com/desktop-frameworks/login1",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/desktop-frameworks/login1/-/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

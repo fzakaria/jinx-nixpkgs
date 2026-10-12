@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frenck",
           repo: "python-vehicle",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,11 +42,11 @@ substituteInPlace pyproject.toml \\
 `);
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [aiohttp, mashumaro, orjson, yarl]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [rich, typer]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [rich, typer]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["vehicle"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client providing RDW vehicle information",
         homepage: "https://github.com/frenck/python-vehicle",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-vehicle/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

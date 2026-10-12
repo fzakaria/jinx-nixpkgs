@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-shell-extension-systemd-manager";
       const version = "20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hardpixel",
           repo: "systemd-manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +35,12 @@ substitute systemd-policies/$bn $out/share/polkit-1/actions/$bn \\
   --replace-fail /usr/bin/systemctl ${nix.app(nix.sel(lib, "getBin"), systemd)}/bin/systemctl
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(allowPolkitPolicy, "systemctl")), "install -Dm0644 \\\n  systemd-policies/10-service_status.rules \\\n  $out/share/polkit-1/rules.d/10-gnome-extension-systemd-manager.rules\n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionUuid: "systemd-manager@hardpixel.eu",
         extensionPortalSlug: "systemd-manager",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNOME Shell extension to manage systemd services",
         homepage: "https://github.com/hardpixel/systemd-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +53,7 @@ substitute systemd-policies/$bn $out/share/polkit-1/actions/$bn \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

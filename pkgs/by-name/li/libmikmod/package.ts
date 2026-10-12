@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libmikmod",
       version: "3.3.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mikmod/libmikmod-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-n8F5n36mqVx8WILemL6F/H0gugpKb8rK4RyMazgrsgc=",
         })))),
       buildInputs: nix.thunk(() => nix.concat([texinfo], nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib))),
       propagatedBuildInputs: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libpulseaudio)),
       outputs: nix.thunk(() => ["out", "dev", "man"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lasound" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lasound" })))),
       enableParallelBuilding: true,
       postInstall: "moveToOutput bin/libmikmod-config \"$dev\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for playing tracker music module files",
         mainProgram: "libmikmod-config",
         homepage: "https://mikmod.shlomifish.org/",

@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const version = nix.arg($, "version");
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../default.nix")), nix.thunk(() => ({}))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
   const getLatestStableVersion = nix.thunk(() => nix.attr(from, "getLatestStableVersion"));
   const getSha256 = nix.thunk(() => nix.attr(from, "getSha256"));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => (() => {
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "common-updater-scripts"))]);
       const newVersion = getLatestStableVersion;
       const newSha256 = nix.thunk(() => nix.app(getSha256, url, version, newVersion));
-      return { __proto__: pos$2, buildInputs, newVersion, newSha256 };
+      return { [nix.POS]: pos$2, buildInputs, newVersion, newSha256 };
     })()));
 })(), formals$1);
 //# sourceMappingURL=update.ts.map

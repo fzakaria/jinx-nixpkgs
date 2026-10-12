@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.17";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-RFZCnQTDs3vre0qbedIEnng7lGo3Ikp0Bw4+7sbPRJk=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["openwrt_luci_rpc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for interacting with the OpenWrt Luci RPC interface",
         longDescription: "This module allows you to use the Luci RPC interface to fetch connected devices\non your OpenWrt based router. Supports 15.X & 17.X & 18.X or newer releases of\nOpenWrt.\n",
         homepage: "https://github.com/fbradyirl/openwrt-luci-rpc",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

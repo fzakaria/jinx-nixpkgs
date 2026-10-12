@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const buildEnv = nix.arg($, "buildEnv");
   const version = "26.06";
   const commonMeta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Various coreboot-related tools",
     homepage: "https://www.coreboot.org",
     license: nix.thunk(() => (() => {
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const path = nix.argOr($_1, "path", () => nix.str`util/${pname}`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://review.coreboot.org/coreboot",
             rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-rL9txaDXUzjkC2ioYmunoNq2+9rz9wpEJ7z3GZrqOH4=",
@@ -102,12 +102,12 @@ patchShebangs .
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["meta"]))));
   })(), formals$2);
   const utils = nix.thunk(() => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     msrtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "msrtool",
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Dump chipset-specific MSR registers",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
@@ -115,90 +115,90 @@ patchShebangs .
         preConfigure: "export INSTALL=install",
       })))),
     cbmem: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "cbmem",
-        meta: nix.thunk(() => ({ __proto__: pos$6, description: "Coreboot console log reader" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$6, description: "Coreboot console log reader" })),
       })))),
     ifdtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "ifdtool",
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Extract and dump Intel Firmware Descriptor information",
         })),
       })))),
     intelmetool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "intelmetool",
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Dump interesting things about Management Engine",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         buildInputs: nix.thunk(() => [pciutils, zlib]),
       })))),
     cbfstool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "cbfstool",
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "Management utility for CBFS formatted ROM images",
         })),
       })))),
     nvramtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pname: "nvramtool",
         meta: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "Read and write coreboot parameters and display information from the coreboot table in CMOS/NVRAM",
           mainProgram: "nvramtool",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
       })))),
     superiotool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: "superiotool",
         meta: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           description: "User-space utility to detect Super I/O of a mainboard and provide detailed information about the register contents of the Super I/O",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         buildInputs: nix.thunk(() => [pciutils, zlib]),
       })))),
     ectool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pname: "ectool",
         meta: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           description: "Dump the RAM of a laptop's Embedded/Environmental Controller (EC)",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         preInstall: "mkdir -p $out/sbin",
       })))),
     inteltool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         pname: "inteltool",
         meta: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           description: "Provides information about Intel CPU/chipset hardware configuration (register contents, MSRs, etc)",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         buildInputs: nix.thunk(() => [pciutils, zlib]),
       })))),
     amdfwtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         pname: "amdfwtool",
-        meta: nix.thunk(() => ({ __proto__: pos$22, description: "Create AMD firmware combination" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$22, description: "Create AMD firmware combination" })),
         buildInputs: nix.thunk(() => [openssl]),
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         installPhase: "runHook preInstall\n\ninstall -Dm755 amdfwtool $out/bin/amdfwtool\n\nrunHook postInstall\n",
       })))),
     "acpidump-all": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         pname: "acpidump-all",
         path: "util/acpi",
         meta: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           description: "Walk through all ACPI tables with their addresses",
         })),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -209,26 +209,26 @@ patchShebangs .
 `),
       })))),
     intelp2m: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         pname: "intelp2m",
         version: "2.5",
         env: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           VERSION: nix.thunk(() => nix.str`2.5-${version}`),
           GOCACHE: "/tmp/go-cache",
         })),
         nativeBuildInputs: nix.thunk(() => [go]),
         installPhase: "runHook preInstall\n\ninstall -Dm755 intelp2m $out/bin/intelp2m\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           description: "Convert the inteltool register dump to gpio.h with GPIO configuration for porting coreboot",
         })),
       })))),
   }));
   return nix.update(utils, {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     "coreboot-utils": nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         pname: "coreboot-utils",
         version: version,
         meta: commonMeta,

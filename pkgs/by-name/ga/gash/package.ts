@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gash",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/guix/mirror/gash-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yAwY530BGkSPIcQFmkdCfjTuG0zvcs9OvzkLXXGZ5OQ=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [guile, pkg_config]),
       buildInputs: nix.thunk(() => [guile]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POSIX-compatible shell written in Guile Scheme",
         mainProgram: "gash",
         homepage: "https://savannah.nongnu.org/projects/gash/",

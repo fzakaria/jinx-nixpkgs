@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "fabricmanager",
       outputs: nix.thunk(() => ["out", "bin", "dev", "include", "lib"]),
       allowFHSReferences: true,
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://docs.nvidia.com/datacenter/tesla/fabric-manager-user-guide",
       })),
     })));

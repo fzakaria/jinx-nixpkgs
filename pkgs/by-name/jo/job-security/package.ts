@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "job-security",
       version: "0-unstable-2024-04-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yshui",
           repo: "job-security",
           rev: "9b621cb0be437c709e398d31934b864a09d2a1d5",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-g+n0C8tkEuixbRo48cMOYPXcYt+Ur1TP6fFTYlI4fVg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Job control from anywhere",
         homepage: "https://github.com/yshui/job-security",
         license: nix.thunk(() => (() => {

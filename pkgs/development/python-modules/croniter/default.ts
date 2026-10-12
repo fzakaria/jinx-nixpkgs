@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "croniter",
       version: "6.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pallets-eco",
           repo: "croniter",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}`),
       preInstallCheck: "versionCheckProgram=\"$(which ls)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to iterate over datetime object with cron like format",
         homepage: "https://github.com/kiorky/croniter",
         changelog: nix.thunk(() => nix.str`https://github.com/kiorky/croniter/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

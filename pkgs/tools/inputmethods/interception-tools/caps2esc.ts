@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "caps2esc";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           group: "interception",
           owner: "linux/plugins",
           repo: pname,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/interception/linux/plugins/caps2esc/-/commit/47ea8022df47b23d5d9603f9fe71b3715e954e4c.patch",
             sha256: "sha256-lB+pDwmFWW1fpjOPC6GLpxvrs87crDCNk1s9KnfrDD4=",
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/interception/linux/plugins/caps2esc",
         description: "Transforming the most useless key ever into the most useful one",
         mainProgram: "caps2esc",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$4, pname, version, src, patches, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, src, patches, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=caps2esc.ts.map

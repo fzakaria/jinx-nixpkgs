@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libjson",
       version: "7.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libjson/libjson_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0xkk5qc7kjcdwz9l04kmiz1nhmi7iszl3k165phf53h3a4wpl9h7",
         })))),
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11"]))),
       })),
       preInstall: "mkdir -p $out/lib",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://libjson.sourceforge.net/",
         description: "JSON reader and writer",
         longDescription: "A JSON reader and writer which is super-efficient and\nusually runs circles around other JSON libraries.\nIt's highly customizable to optimize for your particular project, and\nvery lightweight. For Windows, OSX, or Linux. Works in any language.\n",

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-otVfs+5HlHYJ9QIRylsLrEEahvPJNfuSyksLirfGaP8=",
         }))));
       const datasrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "hadiasghari",
           repo: "pyasn",
           rev: version,
@@ -38,7 +38,7 @@ cp $datasrc/data/* $out/${nix.sel(python, "sitePackages")}/pyasn/data
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyasn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Offline IP address to Autonomous System Number lookup module",
         homepage: "https://github.com/hadiasghari/pyasn",
         license: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ cp $datasrc/data/* $out/${nix.sel(python, "sitePackages")}/pyasn/data
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

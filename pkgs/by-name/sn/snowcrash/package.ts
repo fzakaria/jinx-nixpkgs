@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snowcrash";
       const version = "0-unstable-2022-08-15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redcode-labs",
           repo: "SNOWCRASH",
           rev: "32e62f9ff7d3dda9fac8acfc56176f1f2a70d066",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`mv $out/bin/SNOWCRASH $out/bin/${pname}
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Polyglot payload generator",
         homepage: "https://github.com/redcode-labs/SNOWCRASH",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "SNOWCRASH",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const slurm = nix.arg($, "slurm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "slurm-spank-stunnel",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stanford-rc",
           repo: "slurm-spank-stunnel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./backward-compat.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "hostlist_t-signature.patch",
             url: "https://github.com/stanford-rc/slurm-spank-stunnel/commit/84d04e4ccfe538a09c3f17a52dde616903b66db8.patch",
             sha256: "sha256-RaUYqeNmFPvYci2yX8Bxps1nDjX/UAG+e3JbjbcwrO0=",
@@ -43,7 +43,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib $out/etc/slurm/plugstack.conf.d\ninstall -m 755 stunnel.so $out/lib\ninstall -m 644 plugstack.conf $out/etc/slurm/plugstack.conf.d/stunnel.conf.example\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/stanford-rc/slurm-spank-stunnel",
         description: "Plugin for SLURM for SSH tunneling and port forwarding support",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

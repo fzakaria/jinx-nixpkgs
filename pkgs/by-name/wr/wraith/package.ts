@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wraith",
       version: "1.4.10-unstable-2024-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wraith",
           repo: "wraith",
           rev: "5e463847f86b5e72554bd895224a79a44091c59d",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./configure.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "openssl-lib": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
             "openssl-include": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), openssl)}/include`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-git-dep.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
             "rev-short": nix.thunk(() => nix.app(nix.sel(lib, "sources", "shortRev"), nix.thunk(() => nix.sel(finalAttrs, "src", "rev")))),
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\ncp -a wraith $out/bin/wraith\nln -s wraith $out/bin/hub\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "IRC channel management bot written purely in C/C++",
         longDescription: "Wraith is an IRC channel management bot written purely in C/C++. It has\nbeen in development since late 2003. It is based on Eggdrop 1.6.12 but has\nsince evolved into something much different at its core. TCL and loadable\nmodules are currently not supported.\n\nMaintainer's Notes:\nCopy the binary out of the store before running it with the -C option to\nconfigure it. See https://github.com/wraith/wraith/wiki/GettingStarted .\n\nThe binary will not run when moved onto non-NixOS systems; use patchelf\nto fix its runtime dependencies.\n",

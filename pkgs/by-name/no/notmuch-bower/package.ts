@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notmuch-bower",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wangp",
           repo: "bower",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ substituteInPlace src/detect_mime_type.m --replace 'shell_quoted("file' 'shell_q
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmv bower $out/bin/\nmkdir -p $out/share/man/man1\nmv bower.1 $out/share/man/man1/\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/wangp/bower",
         description: "Curses terminal client for the Notmuch email system",
         mainProgram: "bower",

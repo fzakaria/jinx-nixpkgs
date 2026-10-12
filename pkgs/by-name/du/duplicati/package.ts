@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const ngclientRev = "374ce0d56d519caa88999989e10dc16ef39c4536";
   const ngclientHash = "sha256-4EGtVo79p7P+L21vnVhl1ameFe1RL+7nsEmickONrYw=";
   const ngclient = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ngclient",
       version: ngclientVersion,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duplicati",
           repo: "ngclient",
           rev: ngclientRev,
@@ -48,19 +48,19 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace package.json \\\n  --replace-fail '\"build:prod\": \"bun run gen:font & ng build' \\\n                 '\"build:prod\": \"npm run gen:font && ng build' \\\n  --replace-fail '\"gen:font\": \"ship-fg' \\\n                 '\"gen:font\": \"node node_modules/.bin/ship-fg'\n",
       npmDepsHash: "sha256-jDHpuGm7juGjlRQ4Sq85lW6lcSwYSczryYxdL8uE9gg=",
       npmBuildScript: "build:prod",
-      env: nix.thunk(() => ({ __proto__: pos$2, NG_CLI_ANALYTICS: "false", CI: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NG_CLI_ANALYTICS: "false", CI: "true" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/ngclient/* $out/\n\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/browser/index.html \\\n    --replace-fail '<base href=\"/\">' '<base href=\"/ngclient/\">'\n",
     }))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "duplicati",
       version: version,
       channel: channel,
       buildDate: buildDate,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "duplicati",
           repo: "duplicati",
           tag: nix.thunk(() => nix.str`v${version}_${channel}_${buildDate}`),
@@ -98,9 +98,9 @@ rm -rf Duplicati/Server/webroot/ngclient
 ln -s ${ngclient}/browser Duplicati/Server/webroot/ngclient
 `),
       postFixup: "for mapping in \\\n  \"Duplicati.Agent:duplicati-agent\" \\\n  \"Duplicati.GUI.TrayIcon:duplicati\" \\\n  \"Duplicati.Server:duplicati-server\" \\\n  \"Duplicati.Service:duplicati-service\" \\\n  \"Duplicati.CommandLine:duplicati-cli\" \\\n  \"Duplicati.CommandLine.SyncTool:duplicati-sync-tool\" \\\n  \"Duplicati.CommandLine.SourceTool:duplicati-source-tool\" \\\n  \"Duplicati.CommandLine.DatabaseTool:duplicati-database-tool\" \\\n  \"Duplicati.CommandLine.SharpAESCrypt:duplicati-aescrypt\" \\\n  \"Duplicati.CommandLine.AutoUpdater:duplicati-autoupdater\" \\\n  \"Duplicati.CommandLine.BackendTester:duplicati-backend-tester\" \\\n  \"Duplicati.CommandLine.BackendTool:duplicati-backend-tool\" \\\n  \"Duplicati.CommandLine.RecoveryTool:duplicati-recovery-tool\" \\\n  \"Duplicati.CommandLine.SecretTool:duplicati-secret-tool\" \\\n  \"Duplicati.CommandLine.ServerUtil:duplicati-server-util\" \\\n  \"Duplicati.CommandLine.Snapshots:duplicati-snapshots\"\ndo\n  IFS=: read -r source target <<< \"$mapping\"\n  mv \"$out/bin/$source\" \"$out/bin/$target\"\ndone\n\ncp \"$out/bin/duplicati-server\" \"$out/lib/duplicati/duplicati-server\"\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free backup client that securely stores encrypted, incremental, compressed backups on cloud storage services and remote file servers",
         homepage: "https://www.duplicati.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

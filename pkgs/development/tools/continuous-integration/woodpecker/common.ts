@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const vendorHash = "sha256-BLqkVqMadojMeL27L3YbRn2rmgtqixZidrpbhmE63lg=";
   const nodeModulesHash = "sha256-1gz7R1bkW4spv8gFWa6uGyGzmCy7LerVMpd7leLQuLw=";
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: version,
     vendorHash: vendorHash,
     nodeModulesHash: nodeModulesHash,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "woodpecker-ci",
         repo: "woodpecker",
         tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`-X go.woodpecker-ci.org/woodpecker/v3/version.Version=${version}`),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://woodpecker-ci.org/",
       changelog: nix.thunk(() => nix.str`https://github.com/woodpecker-ci/woodpecker/blob/v${version}/CHANGELOG.md`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const docker = nix.arg($, "docker");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docker-vackup",
       version: "0-unstable-2025-12-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BretFisher",
           repo: "docker-vackup",
           rev: "c57d5b8155bb65e080bf4c2d8841c8781e68f9ef",
@@ -39,7 +39,7 @@ wrapProgram "$out/bin/vackup" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shell script to backup and restore Docker volumes",
         homepage: "https://github.com/BretFisher/docker-vackup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

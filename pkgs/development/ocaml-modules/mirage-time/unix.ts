@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const duration = nix.arg($, "duration");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-time-unix",
       src: nix.thunk(() => nix.attr(mirage_time, "src")),
       version: nix.thunk(() => nix.attr(mirage_time, "version")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [mirage_time, lwt, duration]),
-      meta: nix.thunk(() => nix.update(nix.sel(mirage_time, "meta"), { __proto__: pos$1, description: "Time operations for MirageOS on Unix" })),
+      meta: nix.thunk(() => nix.update(nix.sel(mirage_time, "meta"), { [nix.POS]: pos$1, description: "Time operations for MirageOS on Unix" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

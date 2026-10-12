@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "meslo-lgs-nf",
       version: "unstable-2023-04-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romkatv",
           repo: "powerlevel10k-media",
           rev: "145eb9fbc2f42ee408dacd9b22d8e6e0e553f83d",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Meslo Nerd Font patched for Powerlevel10k",
         homepage: "https://github.com/romkatv/powerlevel10k-media",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rizin";
       const version = "0.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rizinorg/rizin/releases/download/v${version}/rizin-src-v${version}.tar.xz`),
           hash: "sha256-esHNfaynr92nQuFUeLH3R/wfgT5Jb+5xg50eEJ5UPco=",
         }))));
@@ -114,20 +114,20 @@ substituteInPlace \\
 `);
       const passthru = nix.thunk(() => (() => {
         const plugins = nix.thunk(() => ({
-          __proto__: pos$4,
-          jsdec: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./jsdec.nix"), nix.thunk(() => ({ __proto__: pos$2, rizin: rizin, openssl: openssl })))),
-          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./rz-ghidra.nix"), nix.thunk(() => ({ __proto__: pos$3, rizin: rizin, openssl: openssl, enableCutterPlugin: false })))),
+          [nix.POS]: pos$4,
+          jsdec: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./jsdec.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, rizin: rizin, openssl: openssl })))),
+          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./rz-ghidra.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, rizin: rizin, openssl: openssl, enableCutterPlugin: false })))),
           sigdb: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./sigdb.nix"), nix.thunk(() => ({})))),
         }));
         const withPlugins = (filter) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             rizin: rizin,
             plugins: nix.thunk(() => nix.app(filter, plugins)),
           })));
-        return { __proto__: pos$6, plugins, withPlugins };
+        return { [nix.POS]: pos$6, plugins, withPlugins };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "UNIX-like reverse engineering framework and command-line toolset",
         homepage: "https://rizin.re/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -146,7 +146,7 @@ substituteInPlace \\
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

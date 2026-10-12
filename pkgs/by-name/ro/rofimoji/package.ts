@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofimoji",
       version: "6.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fdw",
           repo: "rofimoji",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm -rf extractors\n",
       postInstall: "installManPage src/picker/docs/rofimoji.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple emoji and character picker for rofi",
         mainProgram: "rofimoji",
         homepage: "https://github.com/fdw/rofimoji",

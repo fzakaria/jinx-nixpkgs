@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "flare",
       version: "1.15",
       paths: nix.thunk(() => [
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "mkdir -p $out/bin\nmakeWrapper $out/games/flare $out/bin/flare --chdir \"$out/share/games/flare\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Fantasy action RPG using the FLARE engine",
         mainProgram: "flare",
         homepage: "https://flarerpg.org/",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const sdl3 = nix.arg($, "sdl3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terraria-server",
       version: "1.4.5.8",
       urlVersion: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://terraria.org/api/download/pc-dedicated-server/terraria-server-${nix.sel(finalAttrs, "urlVersion")}.zip`),
           hash: "sha256-9ROkrJeJ00r3Zika4hfJzX2UcuE3gqDisXUS9w16gzQ=",
         })))),
@@ -41,7 +41,7 @@ ln -s ${nix.app(nix.sel(lib, "getLib"), sdl3)}/lib/libSDL3.so.0 $out/Linux/lib64
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://terraria.org",
         description: "Dedicated server for Terraria, a 2D action-adventure sandbox",
         platforms: nix.thunk(() => ["x86_64-linux"]),

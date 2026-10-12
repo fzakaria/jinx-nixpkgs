@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "hdfview",
       version: "3.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HDFGroup",
           repo: "hdfview",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [ant, jdk, copyDesktopItems, strip_nondeterminism, stripJavaArchivesHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
-        HDFLIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf4, "override"), nix.thunk(() => ({ __proto__: pos$2, javaSupport: true }))), "out")),
-        HDF5LIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ __proto__: pos$3, javaSupport: true }))), "out")),
+        [nix.POS]: pos$4,
+        HDFLIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, javaSupport: true }))), "out")),
+        HDF5LIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, javaSupport: true }))), "out")),
       })),
       buildPhase: nix.thunk(() => (() => {
         const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : "aarch64"));
@@ -63,7 +63,7 @@ runHook postBuild
             const icon = name;
             const comment = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "meta", "description"));
             const categories = nix.thunk(() => ["Science", "DataVisualization"]);
-            return { __proto__: pos$5, name, desktopName, exec, icon, comment, categories };
+            return { [nix.POS]: pos$5, name, desktopName, exec, icon, comment, categories };
           })()))),
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`mkdir -p $out/bin $out/lib
@@ -77,7 +77,7 @@ cp src/HDFView.png $out/share/icons/hicolor/32x32/apps/
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -a build/dist/HDFView.app $out/Applications/\n")), "runHook postInstall\n")),
       preFixup: "# Remove build timestamp from javadoc files\nfind $out/lib/app{,/mods}/doc/javadocs -name \"*.html\" -exec strip-nondeterminism --type javadoc {} +\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Visual tool for browsing and editing HDF4 and HDF5 files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         homepage: "https://www.hdfgroup.org/downloads/hdfview",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "lazr_delegates",
           version: version,
           hash: "sha256-rs6yYW5Rtz8yf78SxOwrfXZwy4IL1eT2hRIV+3lsAtw=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonNamespaces = nix.thunk(() => ["lazr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily write objects that delegate behavior",
         homepage: "https://launchpad.net/lazr.delegates",
         changelog: nix.thunk(() => nix.str`https://git.launchpad.net/lazr.delegates/tree/NEWS.rst?h=${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

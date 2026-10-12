@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "light-entity-card",
       version: "6.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ljmerza",
           repo: "light-entity-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-askNG1clZXaJbRBJH7HG/JGhxejmBq38py+A6sSmM3w=",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -v dist/light-entity-card.js* $out/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, entrypoint: "light-entity-card.js" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "light-entity-card.js" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Control any light or switch entity",
         homepage: "https://github.com/ljmerza/light-entity-card",
         changelog: nix.thunk(() => nix.str`https://github.com/ljmerza/light-entity-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

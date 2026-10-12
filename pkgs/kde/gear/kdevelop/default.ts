@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libllvm = nix.arg($, "libllvm");
   const subversion = nix.arg($, "subversion");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kdevelop",
       extraNativeBuildInputs: nix.thunk(() => [kdevelop_pg_qt, pkg_config, shared_mime_info]),
       extraPropagatedBuildInputs: nix.thunk(() => [qtwebengine]),

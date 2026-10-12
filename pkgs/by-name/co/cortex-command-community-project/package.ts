@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cortex-command-community-project";
       const version = "6.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cortex-command-community",
           repo: "Cortex-Command-Community-Project",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "runner.patch",
             url: "https://github.com/cortex-command-community/Cortex-Command-Community-Project/commit/0aa22156567d48cb12ac39e31aec8aeb0ea7fb83.patch",
             hash: "sha256-2rpJtKjRebjVOjj3wlNfFBQjbn9UdEcIBWCkyZgzd+8=",
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
         onetbb,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cortex Command Community Project",
         longDescription: "The Cortex Command Community Project is Free/Libre and Open Source under GNU AGPL v3.\nThis is a community-driven effort to continue the development of Cortex Command.\n",
         homepage: "https://cortex-command-community.github.io/",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

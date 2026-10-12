@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "protonmail-export",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProtonMail",
           repo: "proton-mail-export",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ZYUqbxT9Aq3iaXdaCag4xstbrm9z9X435zm/Qz8OOyM=",
         })))),
       goModules: nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -62,7 +62,7 @@ rm -f $out/bin/${so}
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/proton-mail-export-cli`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Export your Proton Mail emails as eml files",
         homepage: "https://github.com/ProtonMail/proton-mail-export",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

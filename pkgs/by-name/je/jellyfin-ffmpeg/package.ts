@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "8.1.2-5";
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_8_full, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jellyfin",
           repo: "jellyfin-ffmpeg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       withSdl2: false,
       withWhisper: false,
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jellyfin-ffmpeg",
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--extra-version=Jellyfin"])),
       postPatch: nix.thunk(() => nix.str`for file in $(cat debian/patches/series); do
@@ -44,7 +44,7 @@ ${nix.selOr(old, () => "", "postPatch")}
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.attr(from, "license")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         changelog: nix.thunk(() => nix.str`https://github.com/jellyfin/jellyfin-ffmpeg/releases/tag/v${version}`),

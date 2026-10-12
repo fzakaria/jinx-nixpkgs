@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const mkMigration = (from) => (to) => (version_1) => (hash) => (() => {
     const pname = nix.thunk(() => nix.str`fs-repo-${nix.builtins.toString(from)}-to-${nix.builtins.toString(to)}`);
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "ipfs",
         repo: "fs-repo-migrations",
         rev: nix.thunk(() => nix.str`${pname}/v${version_1}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         sparseCheckout: nix.thunk(() => [pname]),
       }))));
     return nix.app(buildGoModule, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version_1,
         src: src,
@@ -69,7 +69,7 @@ runHook postInstallCheck
         meta: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(kubo_migrator_unwrapped, "meta"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
           license: nix.thunk(() => nix.attr(from_1, "license")),
           platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
@@ -84,7 +84,7 @@ runHook postInstallCheck
   const stubBecauseDisabled = (from) => (to) => (release) => (() => {
     const pname = nix.thunk(() => nix.str`fs-repo-${nix.builtins.toString(from)}-to-${nix.builtins.toString(to)}`);
     return nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: pname,
         text: nix.thunk(() => nix.str`echo 'The kubo-fs-repo-migrations package was not buit with support for ${pname}.'
 echo 'To enable support, set the minRepoVersion argument of this package to a lower value.'
@@ -93,7 +93,7 @@ echo 'The purpose of this stub is to prevent the fs-repo-migrations program from
       })));
   })();
   const stubBecauseBroken = (pname) => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: pname,
       text: nix.thunk(() => nix.str`echo '${pname} is broken with the latest Go version.'
 echo 'The purpose of this stub is to prevent the fs-repo-migrations program from downloading unsigned binaries from the internet.'
@@ -101,112 +101,112 @@ echo 'The purpose of this stub is to prevent the fs-repo-migrations program from
     })));
   const releases = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       from: 0n,
       to: 1n,
       release: "1.0.1",
       hash: "sha256-2mKtr6ZXZdOOY+9GNaC85HKjOMsfeM91oxVuxHIWDO4=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       from: 1n,
       to: 2n,
       release: "1.0.1",
       hash: "sha256-6/BewNcZc/fIBa8G1luNO2wqTdeHi8vL7ojJDjBfWYI=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       from: 2n,
       to: 3n,
       release: "1.0.1",
       hash: "sha256-kESX/R25nb7G/uggwa7GB7I2IrdgeKe0chRzjr70Kuw=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       from: 3n,
       to: 4n,
       release: "1.0.1",
       hash: "sha256-Mv3/7eUS8j7ZzbNR52baekDcXPwcaNpUfqkt0eRpP20=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       from: 4n,
       to: 5n,
       release: "1.0.1",
       hash: "sha256-aEqXFhZGOBU5ql2RRqzwD5IXGySVGroaHxjrkpIGAeU=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       from: 5n,
       to: 6n,
       release: "1.0.1",
       hash: "sha256-EhMe/3gIl3VjSh6KzBPGH4s6B3AWRnbJ+eHSc8GOHMw=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       from: 6n,
       to: 7n,
       release: "1.0.1",
       hash: "sha256-+5kIPQZckloPujLS0QQT+ojIIndfCQaH6grftZdYQ88=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       from: 7n,
       to: 8n,
       release: "1.0.1",
       hash: "sha256-82oSU7qhldPVTdbbol3xSnl8Ko7NUPvGpAnmFxvAceQ=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       from: 8n,
       to: 9n,
       release: "1.0.1",
       hash: "sha256-9knC2CfiTUNJRlrOLRpKy70Hl9p9DQf6rfXnU2a0fig=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       from: 9n,
       to: 10n,
       release: "1.0.1",
       hash: "sha256-732k76Kijs5izu404ES/YSnYfC9V88d9Qq5oHv5Qon0=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       from: 10n,
       to: 11n,
       release: "1.0.1",
       hash: "sha256-WieBZpD8dpFDif7QxTGjRoZtNBbkI3KU4w4av7b+d4Q=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       from: 11n,
       to: 12n,
       release: "1.0.2",
       hash: "sha256-x/4ps705Hnf+/875/tn3AsEHgaHHCc+cGXymXpRt0xA=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       from: 12n,
       to: 13n,
       release: "1.0.0",
       hash: "sha256-HjtZ2izoZ+0BrhzXG/QJHcnwsxi0oY4Q3CHjTi29W9o=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       from: 13n,
       to: 14n,
       release: "1.0.0",
       hash: "sha256-zvNq+AFp7HDHHZCJOh9OW/lalk3bXOl1Pi+rvJtjuSA=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       from: 14n,
       to: 15n,
       release: "1.0.1",
       hash: "sha256-u7PM6kFCQUn07NGpeRYpBDEwc2pP+r5mf44LZU4DV5Y=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       from: 15n,
       to: 16n,
       release: "1.0.1",
@@ -216,7 +216,7 @@ echo 'The purpose of this stub is to prevent the fs-repo-migrations program from
   const maxRepoVersion = nix.thunk(() => nix.builtins.length(releases));
   const minRepoVersionValidated = nix.thunk(() => (nix.asBool(nix.ge(minRepoVersion, 0n)) ? nix.force(minRepoVersion) : nix.builtins.throw("The minimum supported repo version is 0. Set `minRepoVersion` to a non-zero value.")));
   const latestMigration = nix.thunk(() => nix.builtins["foldl'"]((x) => (y) => (nix.asBool(nix.eq(nix.sel(y, "to"), maxRepoVersion)) ? nix.force(y) : nix.force(x)), nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       release: nix.thunk(() => nix.builtins.throw("Could not get the latest Kubo migration")),
     })), releases));
   const version = nix.thunk(() => nix.str`${nix.builtins.toString(maxRepoVersion)}.${nix.sel(latestMigration, "release")}`);
@@ -229,12 +229,12 @@ echo 'The purpose of this stub is to prevent the fs-repo-migrations program from
   const migrationsBrokenRemoved = nix.thunk(() => nix.builtins.filter(packageNotBroken, migrations));
   const migrationsBrokenStubbed = nix.thunk(() => nix.builtins.map((x) => (nix.asBool(nix.app(packageNotBroken, x)) ? nix.force(x) : nix.app(stubBecauseBroken, nix.thunk(() => nix.sel(x, "pname")))), migrations));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       pname: "kubo-fs-repo-migrations",
       version: version,
       paths: nix.thunk(() => (nix.asBool(stubBrokenMigrations) ? nix.force(migrationsBrokenStubbed) : nix.force(migrationsBrokenRemoved))),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(kubo_migrator_unwrapped, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         description: "Several individual migrations for migrating the filesystem repository of Kubo one version at a time",
         longDescription: "This package contains all the individual migrations in the bin directory.\nThis is used by fs-repo-migrations and could also be used by Kubo itself\nwhen starting it like this: `ipfs daemon --migrate`\nor when calling `ipfs repo migrate --to=16`.\n",
       })),

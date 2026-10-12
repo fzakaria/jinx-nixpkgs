@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastavro",
           repo: "fastavro",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "export FASTAVRO_USE_CYTHON=1\n";
       const build_system = nix.thunk(() => [cython, setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         codecs: nix.thunk(() => [cramjam, lz4, zstandard]),
         snappy: nix.thunk(() => [cramjam]),
         zstandard: nix.thunk(() => [zstandard]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_cython_python"]);
       const pythonImportsCheck = nix.thunk(() => ["fastavro"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast read/write of AVRO files",
         mainProgram: "fastavro",
         homepage: "https://github.com/fastavro/fastavro",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

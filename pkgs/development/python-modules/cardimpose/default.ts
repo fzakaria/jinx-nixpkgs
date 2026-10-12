@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pymupdf = nix.arg($, "pymupdf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cardimpose",
       version: "0.2.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fMI2bvsHGYU7nZ9CdaUtWQkNj2MihMEcBCVy8VbE6F0=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pymupdf]),
       pythonImportsCheck: nix.thunk(() => ["cardimpose"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "cardimpose",
         description: "Library for imposing PDF files",
         longDescription: "Cardimpose is a Python library that makes it easy to arrange multiple\ncopies of a PDF on a larger document, perfect for scenarios like printing\nbusiness cards. The library lets you customize your layout while adding\ncrop marks and comes with a handy command line tool.\n",

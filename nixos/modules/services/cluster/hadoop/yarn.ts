@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
-  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ __proto__: pos$1, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
   const restartIfChanged = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
       description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on clusters running critical applications.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
       default: false,
     }))));
   const extraFlags = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       example: nix.thunk(() => ["-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=8010"]),
     }))));
   const extraEnv = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -86,38 +86,38 @@ export default nix.lambda((args) => (() => {
       description: "Extra environment variables",
     }))));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         hadoop: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           yarn: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             resourcemanager: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Hadoop YARN ResourceManager")),
               restartIfChanged: restartIfChanged,
               extraFlags: extraFlags,
               extraEnv: extraEnv,
               openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Open firewall ports for resourcemanager\n",
                 })))),
             })),
             nodemanager: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Hadoop YARN NodeManager")),
               restartIfChanged: restartIfChanged,
               extraFlags: extraFlags,
               extraEnv: extraEnv,
               resource: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 cpuVCores: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     description: "Number of vcores that can be allocated for containers.",
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
                     default: null,
                   })))),
                 maximumAllocationVCores: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     description: "The maximum virtual CPU cores any container can be allocated.",
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
                     default: null,
                   })))),
                 memoryMB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     description: "Amount of physical memory, in MB, that can be allocated for containers.",
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
                     default: null,
                   })))),
                 maximumAllocationMB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     description: "The maximum physical memory any container can be allocated.",
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -154,13 +154,13 @@ export default nix.lambda((args) => (() => {
                   })))),
               })),
               useCGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Use cgroups to enforce resource limits on containers\n",
                 })))),
               localDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: "List of directories to store localized files in.",
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -170,13 +170,13 @@ export default nix.lambda((args) => (() => {
                   default: null,
                 })))),
               addBinBash: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Add /bin/bash. This is needed by the linux container executor's launch script.\n",
                 })))),
               openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Open firewall ports for nodemanager.\nBecause containers can listen on any ephemeral port, TCP ports 1024–65535 will be opened.\n",
@@ -188,13 +188,13 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gatewayRole", "enable")), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             users: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               users: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 yarn: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "Hadoop YARN user",
                   group: "hadoop",
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "yarn")),
@@ -203,21 +203,21 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "yarn", "resourcemanager", "enable")), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             systemd: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               services: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 "yarn-resourcemanager": nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(cfg, "yarn", "resourcemanager"));
                   return {
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   description: "Hadoop YARN ResourceManager",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartIfChanged: nix.thunk(() => nix.attr(from, "restartIfChanged")),
                   environment: nix.thunk(() => nix.sel(cfg, "yarn", "resourcemanager", "extraEnv")),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     User: "yarn",
                     SyslogIdentifier: "yarn-resourcemanager",
                     ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "package")}/bin/yarn --config ${hadoopConf} `, nix.str` resourcemanager ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "yarn", "resourcemanager", "extraFlags")))}`)),
@@ -228,36 +228,36 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               hadoop: nix.thunk(() => ({
-                __proto__: pos$30,
-                gatewayRole: nix.thunk(() => ({ __proto__: pos$29, enable: true })),
+                [nix.POS]: pos$30,
+                gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               firewall: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "yarn", "resourcemanager", "openFirewall")), nix.thunk(() => [8088n, 8030n, 8031n, 8032n, 8033n]))),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "yarn", "nodemanager", "enable")), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             systemd: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "yarn", "nodemanager", "addBinBash")), "L /bin/bash - - - - /run/current-system/sw/bin/bash")),
                 ]),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 "yarn-nodemanager": nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(cfg, "yarn", "nodemanager"));
                   return {
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   description: "Hadoop YARN NodeManager",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartIfChanged: nix.thunk(() => nix.attr(from, "restartIfChanged")),
@@ -276,7 +276,7 @@ chmod 6050 /run/wrappers/yarn-nodemanager/bin/container-executor
 cp ${hadoopConf}/container-executor.cfg /run/wrappers/yarn-nodemanager/etc/hadoop/
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     User: "yarn",
                     SyslogIdentifier: "yarn-nodemanager",
                     PermissionsStartOnly: true,
@@ -288,15 +288,15 @@ cp ${hadoopConf}/container-executor.cfg /run/wrappers/yarn-nodemanager/etc/hadoo
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               hadoop: nix.thunk(() => ({
-                __proto__: pos$43,
-                gatewayRole: nix.thunk(() => ({ __proto__: pos$40, enable: true })),
+                [nix.POS]: pos$43,
+                gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
                 yarnSiteInternal: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "yarn", "nodemanager")), null);
                   return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         "yarn.nodemanager.local-dirs": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.lookup(w, "localDir"), null)), nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.lookup(w, "localDir")))))),
                         "yarn.scheduler.maximum-allocation-vcores": nix.thunk(() => nix.sel(nix.lookup(w, "resource"), "maximumAllocationVCores")),
                         "yarn.scheduler.maximum-allocation-mb": nix.thunk(() => nix.sel(nix.lookup(w, "resource"), "maximumAllocationMB")),
@@ -304,7 +304,7 @@ cp ${hadoopConf}/container-executor.cfg /run/wrappers/yarn-nodemanager/etc/hadoo
                         "yarn.nodemanager.resource.memory-mb": nix.thunk(() => nix.sel(nix.lookup(w, "resource"), "memoryMB")),
                       })),
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.lookup(w, "useCGroups")), nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "3.5.0")), "hadoop < 3.5.0 does not support cgroup v2\nsetting `services.hadoop.yarn.nodemanager.useCGroups = false` is recommended\nsee: https://issues.apache.org/jira/browse/YARN-11669\n", nix.thunk(() => ({
-                            __proto__: pos$42,
+                            [nix.POS]: pos$42,
                             "yarn.nodemanager.linux-container-executor.cgroups.hierarchy": "/hadoop-yarn",
                             "yarn.nodemanager.linux-container-executor.resources-handler.class": "org.apache.hadoop.yarn.server.nodemanager.util.CgroupsLCEResourcesHandler",
                             "yarn.nodemanager.linux-container-executor.cgroups.mount": "true",
@@ -315,11 +315,11 @@ cp ${hadoopConf}/container-executor.cfg /run/wrappers/yarn-nodemanager/etc/hadoo
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               firewall: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 allowedTCPPortRanges: nix.thunk(() => [
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "yarn", "nodemanager", "openFirewall")), nix.thunk(() => ({ __proto__: pos$45, from: 1024n, to: 65535n })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "yarn", "nodemanager", "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$45, from: 1024n, to: 65535n })))),
                 ]),
               })),
             })),

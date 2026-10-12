@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "numad",
       version: "0.5-unstable-2023-09-06",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pagure.io/numad.git",
           rev: "3399d89305b6560e27e70aff4ad9fb403dedf947",
           hash: "sha256-USEffVcakaAbilqijJmpro92ujvxbglcXxyBlntMxaI=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile --replace \"install -m\" \"install -Dm\"\n",
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             tagConverter: nix.thunk(() => nix.app(writeShellScript, "tagConverter", "read tag\ntest \"$tag\" = \"0\" \\\n  && tag=0.5; echo \"$tag\"\n")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User-level daemon that monitors NUMA topology and processes resource consumption to facilitate good NUMA resource access",
         mainProgram: "numad",
         homepage: "https://fedoraproject.org/wiki/Features/numad",

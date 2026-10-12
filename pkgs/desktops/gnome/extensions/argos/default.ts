@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "argos",
       version: "50",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p-e-w",
           repo: "argos",
           tag: "GNOME-50",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p \"$out/share/gnome-shell/extensions\"\ncp -a argos@pew.worldwidemann.com \"$out/share/gnome-shell/extensions\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionUuid: "argos@pew.worldwidemann.com",
         extensionPortalSlug: "argos",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create GNOME Shell extensions in seconds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {

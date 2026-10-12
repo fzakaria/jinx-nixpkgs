@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const a = nix.argOr($, "a", () => false);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$4,
-      _module: nix.thunk(() => ({ __proto__: pos$3, args: nix.thunk(() => ({ __proto__: pos$2, a: true })) })),
+      [nix.POS]: pos$4,
+      _module: nix.thunk(() => ({ [nix.POS]: pos$3, args: nix.thunk(() => ({ [nix.POS]: pos$2, a: true })) })),
       result: a,
     })),
   };

@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
   const fuseSupport = nix.argOr($, "fuseSupport", () => false);
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "bcachefs-tools",
       version: "1.39.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "koverstreet",
           repo: "bcachefs-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-cBYn/g6eLT5rTumo4Y24rWSHS2Sc7gFthPuCg1AQ22k=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-djiIwZie9HjQ/+bCEGniMFkJA66oI0n+9y9Iax4GHOM=",
         })))),
@@ -99,7 +99,7 @@ substituteInPlace src/commands/mount.rs \\
       enableParallelBuilding: true,
       installFlags: nix.thunk(() => ["install", "install_dkms"]),
       env: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMGENERATORDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system-generators`),
       }, [
@@ -114,12 +114,12 @@ substituteInPlace src/commands/mount.rs \\
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd bcachefs \\\n  --bash <($out/sbin/bcachefs completions bash) \\\n  --zsh  <($out/sbin/bcachefs completions zsh) \\\n  --fish <($out/sbin/bcachefs completions fish)\n")),
       outputs: nix.thunk(() => ["out", "dkms"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "installer"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bcachefs")),
           bcachefsSimple: nix.thunk(() => nix.attr(from, "bcachefsSimple")),
           bcachefsEncrypted: nix.thunk(() => nix.attr(from, "bcachefsEncrypted")),
@@ -129,7 +129,7 @@ substituteInPlace src/commands/mount.rs \\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for managing bcachefs filesystems",
         homepage: "https://bcachefs.org/",
         downloadPage: "https://github.com/koverstreet/bcachefs-tools",

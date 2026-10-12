@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "webtorrent-desktop",
       version: "0.25-pre-ac7f16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webtorrent",
           repo: "webtorrent-desktop",
           rev: "ac7f16e71c96c5ad670bfcb8728df5af78ae21a1",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "2389.patch",
             url: "https://github.com/webtorrent/webtorrent-desktop/commit/407046d150ed7ff876a5e1978f68630e9c8f0074.patch",
             hash: "sha256-hBJGLNNjcGRhYOFlLm/RL0po+70tEeJtR6Y/CfacPAI=",
@@ -65,7 +65,7 @@ sed "s#/opt/webtorrent-desktop#$out/bin#" \\
   > $out/share/applications/webtorrent-desktop.desktop
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Streaming torrent app for Mac, Windows, and Linux",
         homepage: "https://webtorrent.io/desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const pname = "backrest";
   const version = "1.14.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "garethgeorge",
       repo: "backrest",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
       postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
     }))));
   const inlang_plugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (remote) => (info) => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.attr(info, "url")),
         hash: nix.thunk(() => nix.attr(info, "hash")),
       }))), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./inlang-plugins.json")))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       src: src,
       pname: "backrest-webui",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,7 +81,7 @@ runHook postBuild
       installPhase: "runHook preInstall\nmv dist $out\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       src: src,
       version: version,
@@ -129,16 +129,16 @@ makeBinaryWrapper $out/bin/backrest $out/bin/backrest-tray \\
       versionCheckProgramArg: "-version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         frontend: frontend,
         "inlang-plugins": inlang_plugins,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
             nix.path(here, "./update-inlang-plugins.sh"),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Web UI and orchestrator for restic backup",
         homepage: "https://github.com/garethgeorge/backrest",
         changelog: nix.thunk(() => nix.str`https://github.com/garethgeorge/backrest/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

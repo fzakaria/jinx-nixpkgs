@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pipeworld",
       version: "0-unstable-2023-02-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letoram",
           repo: "pipeworld",
           rev: "edc3821404b3a1274b8a50d2fb1c6b523fbd4a1c",
@@ -33,7 +33,7 @@ cp -a ./pipeworld ${nix.builtins.placeholder("out")}/share/arcan/appl/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/letoram/pipeworld",
         description: "Dataflow 'spreadsheet' desktop environment",
         longDescription: "Pipeworld is a zooming dataflow tool and desktop heavily inspired by\nuserland. It is built using the arcan desktop engine.\n\nIt combines the programmable processing of shell scripts and pipes, the\ninteractive visual addressing/programming model of spread sheets, the\nscenegraph- and interactive controls-, IPC- and client processing- of\ndisplay servers into one model with zoomable tiling window management.\n\nIt can be used as a standalone desktop of its own, or as a normal\napplication within another desktop as a 'substitute' for your normal\nterminal emulator.\n",

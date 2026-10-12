@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const webdataset = nix.arg($, "webdataset");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "open-clip-torch",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlfoundations",
           repo: "open_clip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "test_training",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source implementation of CLIP",
         homepage: "https://github.com/mlfoundations/open_clip",
         changelog: nix.thunk(() => nix.str`https://github.com/mlfoundations/open_clip/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

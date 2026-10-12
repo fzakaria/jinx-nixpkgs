@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   const desktopItem = nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "makeDesktopItem"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "zsnes",
       exec: "zsnes",
       icon: "zsnes",
@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(nix.sel(pkgsi686Linux, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zsnes",
       version: "1.51",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "emillon",
           repo: "zsnes",
           rev: "fc160b2538738995f600f8405d23a66b070dac02",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgsi686Linux, "libGL")),
       ]),
       prePatch: "for i in $(cat debian/patches/series); do\n  echo \"applying $i\"\n  patch -p1 < \"debian/patches/$i\"\ndone\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon -std=c++14 -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon -std=c++14 -std=gnu17" })),
       preConfigure: "cd src\nsed -i \"/^STRIP/d\" configure\nsed -i \"/\\$STRIP/d\" configure\n",
       configureFlags: nix.thunk(() => ["--enable-release"]),
       enableParallelBuilding: true,
@@ -63,7 +63,7 @@ mkdir -p $out/share/applications
 ln -s ${desktopItem}/share/applications/* $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Super Nintendo Entertainment System Emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://www.zsnes.com",

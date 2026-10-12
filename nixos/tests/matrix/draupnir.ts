@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "draupnir",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -45,33 +45,33 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               log: nix.thunk(() => ({
-                __proto__: pos$3,
-                root: nix.thunk(() => ({ __proto__: pos$2, level: "WARNING" })),
+                [nix.POS]: pos$3,
+                root: nix.thunk(() => ({ [nix.POS]: pos$2, level: "WARNING" })),
               })),
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
-                database: nix.thunk(() => ({ __proto__: pos$4, name: "sqlite3" })),
+                [nix.POS]: pos$8,
+                database: nix.thunk(() => ({ [nix.POS]: pos$4, name: "sqlite3" })),
                 registration_shared_secret: "supersecret-registration",
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     bind_addresses: nix.thunk(() => ["::"]),
                     port: 8008n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$5, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ __proto__: pos$6, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$6, compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -82,37 +82,37 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             draupnir: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 services: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   draupnir: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     enable: true,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       homeserverUrl: "http://localhost:8008",
                       managementRoom: "#moderators:homeserver",
                     })),
-                    secrets: nix.thunk(() => ({ __proto__: pos$12, accessToken: "/tmp/draupnir-access-token" })),
+                    secrets: nix.thunk(() => ({ [nix.POS]: pos$12, accessToken: "/tmp/draupnir-access-token" })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
                 nix.thunk(() => nix.lookup(w, "curl")),
                 nix.thunk(() => nix.lookup(w, "jq")),
                 nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "writers"), "writePython3Bin"), "test_draupnir_in_matrix", nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     libraries: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "python3Packages"), "matrix-nio"))]),
                     flakeIgnore: nix.thunk(() => ["E501"]),
                   })), "import asyncio\nimport time\nfrom nio import AsyncClient, MatrixRoom, RoomMemberEvent, RoomMessageNotice\n\n\nasync def main() -> None:\n    client = AsyncClient(\"http://localhost:8008\", \"moderator\")\n\n    async def member_callback(room: MatrixRoom, event: RoomMemberEvent) -> None:\n        if event.membership == \"join\" and event.sender == \"@draupnir:homeserver\":\n            print(\"Got draupnir join event!\")\n\n    async def message_callback(room: MatrixRoom, event: RoomMessageNotice) -> None:\n        print(f\"{event.sender}:\\n{event.body}\" if \"\\n\" in event.body else f\"{event.sender}: {event.body}\")\n\n        if event.sender == \"@draupnir:homeserver\" and \"Startup complete.\" in event.body:\n            print(\"Draupnir reported ready, sending '!draupnir status'\")\n            await client.room_send(\n                room_id=room.room_id,\n                message_type=\"m.room.message\",\n                content={\n                    \"msgtype\": \"m.text\",\n                    \"body\": \"!draupnir status\"\n                }\n            )\n\n        if event.sender == \"@draupnir:homeserver\" and \"Repository: \" in event.body and \"Version: \" in event.body:\n            print(\"Got status reply, creating policy list\")\n            await client.room_send(\n                room_id=room.room_id,\n                message_type=\"m.room.message\",\n                content={\n                    \"msgtype\": \"m.text\",\n                    \"body\": \"!draupnir list create test test\"\n                }\n            )\n\n            time.sleep(3)\n            print(\"Surely it's done by now (couldnt find a good way to trigger the next step), protecting a room\")\n\n            await client.room_send(\n                room_id=room.room_id,\n                message_type=\"m.room.message\",\n                content={\n                    \"msgtype\": \"m.text\",\n                    \"body\": \"!draupnir rooms add #protected:homeserver\"\n                }\n            )\n            time.sleep(3)\n            print(\"Surely it's done by now (there's no text reply), sending a ban command\")\n\n            await client.room_send(\n                room_id=room.room_id,\n                message_type=\"m.room.message\",\n                content={\n                    \"msgtype\": \"m.text\",\n                    \"body\": \"!draupnir ban @bad:homeserver test spam\"\n                }\n            )\n            time.sleep(3)\n            print(\"Surely it's done by now (there's no text reply), sending a server ban command\")\n\n            await client.room_send(\n                room_id=room.room_id,\n                message_type=\"m.room.message\",\n                content={\n                    \"msgtype\": \"m.text\",\n                    \"body\": \"!draupnir ban meow test spam\"\n                }\n            )\n            time.sleep(3)\n            print(\"Surely it's done by now (there's no text reply), assuming all is good\")\n\n            await client.close()\n            exit(0)\n\n    client.add_event_callback(member_callback, RoomMemberEvent)\n    client.add_event_callback(message_callback, RoomMessageNotice)\n\n    print(await client.login(\"password\"))\n\n    room = await client.room_create(\n        name=\"Moderators\",\n        alias=\"moderators\",\n        invite=[\"@draupnir:homeserver\"],\n        power_level_override={\n            \"users\": {\n                \"@draupnir:homeserver\": 100,\n                \"@moderator:homeserver\": 100,\n            }\n        }\n    )\n    print(room)\n\n    protectedRoom = await client.room_create(\n        name=\"Protected\",\n        alias=\"protected\",\n        invite=[\"@draupnir:homeserver\"],\n        power_level_override={\n            \"users\": {\n                \"@draupnir:homeserver\": 100,\n                \"@moderator:homeserver\": 100,\n            }\n        }\n    )\n    print(protectedRoom)\n\n    print(await client.join(room.room_id))\n\n    await client.sync_forever(timeout=30000)\n\n\nasyncio.run(main())\n")),

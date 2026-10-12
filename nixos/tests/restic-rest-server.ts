@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const backupPrepareCommand = "touch /root/backupPrepareCommand\ntest ! -e /root/backupCleanupCommand\n";
   const backupCleanupCommand = "rm /root/backupPrepareCommand\ntouch /root/backupCleanupCommand\n";
   const testDir = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "test-files-to-backup",
       unpackPhase: "true",
       installPhase: "mkdir $out\necho some_file > $out/some_file\necho some_other_file > $out/some_other_file\nmkdir $out/a_dir\necho a_file > $out/a_dir/a_file\n",
@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
   const exclude = nix.thunk(() => ["/opt/excluded_file_*"]);
   const pruneOpts = nix.thunk(() => ["--keep-daily 2", "--keep-weekly 1", "--keep-monthly 1", "--keep-yearly 99"]);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "restic-rest-server",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       restic_rest_server: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           restic: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             server: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               extraFlags: nix.thunk(() => ["--no-auth"]),
               listenAddress: "8001",
@@ -55,20 +55,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
-          firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [8001n]) })),
+          [nix.POS]: pos$6,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [8001n]) })),
         })),
       })),
       server: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           restic: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             backups: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               remotebackup: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 passwordFile: passwordFile,
                 paths: paths,
                 exclude: exclude,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
                 timerConfig: null,
               })),
               remoteprune: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 passwordFile: passwordFile,
                 repository: remoteRepository,
                 pruneOpts: nix.thunk(() => ["--keep-last 1"]),

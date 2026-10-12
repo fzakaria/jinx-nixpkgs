@@ -50,22 +50,22 @@ export default nix.lambda((args) => (() => {
   const krb5 = nix.arg($, "krb5");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "beekeeper-studio",
       version: "6.1.4",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.sel(attrs, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const asset = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": nix.thunk(() => nix.str`beekeeper-studio_${nix.sel(finalAttrs, "version")}_amd64.deb`),
             "aarch64-linux": nix.thunk(() => nix.str`beekeeper-studio_${nix.sel(finalAttrs, "version")}_arm64.deb`),
             "aarch64-darwin": nix.thunk(() => nix.str`Beekeeper-Studio-${nix.sel(finalAttrs, "version")}-arm64-mac.zip`),
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v${nix.sel(finalAttrs, "version")}/${asset}`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "x86_64-linux": "sha256-8RWqYHAG2OkUPQjNwhSRfxsEbXjxsh0xA/EuUQxg/b4=",
                 "aarch64-linux": "sha256-ivXtgZjlhoQ0hBIbdUx3VZJY/QUloh8War0OlN2gOfM=",
                 "aarch64-darwin": "sha256-jPnGw4iDvfCMlim8ASAv5IdbpNsF6jaW2HsnqLvrCwY=",
@@ -119,9 +119,9 @@ chmod +x "$out/bin/beekeeper-studio"
   --add-needed libEGL.so.1 \\
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))} $out/opt/beekeeper-studio/beekeeper-studio-bin
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more",
         homepage: "https://www.beekeeperstudio.io",
         changelog: nix.thunk(() => nix.str`https://github.com/beekeeper-studio/beekeeper-studio/releases/tag/v${nix.sel(finalAttrs, "version")}`),

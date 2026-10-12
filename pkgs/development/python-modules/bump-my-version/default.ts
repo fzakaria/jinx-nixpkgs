@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "callowayproject",
           repo: "bump-my-version",
           tag: version,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         wcmatch,
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GIT_AUTHOR_NAME: "test",
         GIT_COMMITTER_NAME: "test",
         GIT_AUTHOR_EMAIL: "test@example.com",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["bumpversion"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small command line tool to update version",
         longDescription: "This is a maintained refactor of the bump2version fork of the\nexcellent bumpversion project. This is a small command line tool to\nsimplify releasing software by updating all version strings in your source code\nby the correct increment and optionally commit and tag the changes.\n",
         homepage: "https://github.com/callowayproject/bump-my-version",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bump-my-version",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

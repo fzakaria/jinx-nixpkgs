@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   const configFile = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), nix.thunk(() => nix.builtins.toFile("config.h", conf))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ratox",
       version: "0.4.20180303",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.2f30.org/ratox.git",
           rev: "269f7f97fb374a8f9c0b82195c21de15b81ddbbb",
           sha256: "0bpn37h8jvsqd66fkba8ky42nydc8acawa5x31yxqlxc8mc66k74",
@@ -33,7 +33,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), 
 `),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FIFO based tox client",
         mainProgram: "ratox",
         homepage: "http://ratox.2f30.org/",

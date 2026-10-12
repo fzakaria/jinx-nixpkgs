@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spec-first",
           repo: "connexion",
           tag: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         werkzeug,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         flask: nix.thunk(() => [a2wsgi, flask]),
         "swagger-ui": nix.thunk(() => [swagger_ui_bundle]),
         uvicorn: nix.thunk(() => [uvicorn]),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["connexion"]);
       const disabledTests = nix.thunk(() => nix.concat(["test_build_example", "test_mock_resolver_no_example", "test_remote_api"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_lifespan"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Swagger/OpenAPI First framework on top of Flask",
         homepage: "https://github.com/spec-first/connexion",
         changelog: nix.thunk(() => nix.str`https://github.com/spec-first/connexion/releases/tag/${version}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "connexion",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const xcodebuild = nix.arg($, "xcodebuild");
   const zip = nix.arg($, "zip");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "musicfree-desktop",
       version: "0.0.8",
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maotoumao",
           repo: "MusicFreeDesktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,14 +79,14 @@ rm -r Electron.app
       makeCacheWritable: true,
       npmBuildScript: "package",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SHARP_FORCE_GLOBAL_LIBVIPS: "1",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         DEBUG: "electron-forge:*,electron-packager,@electron/get:*",
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "musicfree-desktop",
             desktopName: "MusicFree",
             exec: "MusicFree %U",
@@ -121,9 +121,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Customizable music player with plugin support",
         homepage: "https://musicfree.catcat.work",
         changelog: nix.thunk(() => nix.str`https://github.com/maotoumao/MusicFreeDesktop/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),

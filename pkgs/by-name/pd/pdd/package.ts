@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jarun",
           repo: "pdd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       })());
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jarun/pdd",
         description: "Tiny date, time diff calculator",
         longDescription: "There are times you want to check how old you are (in years, months, days)\nor how long you need to wait for the next flash sale or the number of days\nleft of your notice period in your current job. pdd (Python3 Date Diff) is\na small cmdline utility to calculate date and time difference. If no\nprogram arguments are specified it shows the current date, time and\ntimezone.\n",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pdd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

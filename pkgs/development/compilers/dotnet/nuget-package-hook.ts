@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nuget-package-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unzip: unzip,
         zip: zip,
         xmlstarlet: xmlstarlet,
         stripNondeterminism: strip_nondeterminism,
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./nuget-package-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=nuget-package-hook.ts.map

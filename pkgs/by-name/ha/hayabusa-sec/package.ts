@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hayabusa-sec",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yamato-Security",
           repo: "hayabusa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-fADma0ssh5t6A1gKd5yyy6DTqjYUvqQNaHT+McKRShU=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       doCheck: false,
       postInstall: "mkdir -p $out/share/hayabusa-sec\ncp -r rules $out/share/hayabusa-sec/\nmv $out/bin/hayabusa $out/share/hayabusa-sec/\nmakeWrapper $out/share/hayabusa-sec/hayabusa $out/bin/hayabusa\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sigma-based threat hunting and fast forensics timeline generator for Windows event logs",
         homepage: "https://github.com/Yamato-Security/hayabusa",
         changelog: nix.thunk(() => nix.str`https://github.com/Yamato-Security/hayabusa/releases/tag/v${nix.sel(finalAttrs, "version")}`),

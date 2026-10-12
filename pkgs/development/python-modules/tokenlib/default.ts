@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla-services",
           repo: "tokenlib",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mozilla-services/tokenlib/pull/9/commits/cb7ef761f82f36e40069bd1b8684eec05af3b8a3.patch",
             hash: "sha256-hc+iydxZu9bFqBD0EQDWMkRs2ibqNAhx6Qxjh6ppKNw=",
           })))),
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [requests, webob]);
       const pythonImportsCheck = nix.thunk(() => ["tokenlib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/mozilla-services/tokenlib",
         description: "Generic support library for signed-token-based auth schemes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

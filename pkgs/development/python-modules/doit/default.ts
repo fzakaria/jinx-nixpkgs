@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-08cuDkao+h3avqj4MHYkAt7gkMrzPDDCKVrHAQ248Jw=",
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [configclass, doit_py, mergedict, mock, pyflakes, pytestCheckHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           check: nix.thunk(() => nix.app(nix.sel(doit, "overridePythonAttrs"), (_) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
             }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["doit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pydoit.org/",
         description: "Task management & automation tool",
         mainProgram: "doit",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

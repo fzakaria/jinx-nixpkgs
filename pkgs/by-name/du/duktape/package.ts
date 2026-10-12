@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "duktape",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://duktape.org/duktape-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-kPjS+otVZ8aJmDDd7ywD88J5YLEayiIvoXqnrGE8KJA=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LDFLAGS: "-lm" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([validatePkgConfig], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [fixDarwinDylibNames])))),
       buildPhase: nix.thunk(() => nix.add("make -f Makefile.cmdline\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "make INSTALL_PREFIX=\"$out\" -f Makefile.sharedlibrary\n"))),
       installPhase: nix.thunk(() => nix.add("install -d $out/bin\ninstall -m755 duk $out/bin/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "install -d $out/lib/pkgconfig\ninstall -d $out/include\n\nmake INSTALL_PREFIX=\"$out\" -f Makefile.sharedlibrary install\n"))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Embeddable Javascript engine, with a focus on portability and compact footprint",
         homepage: "https://duktape.org/",
         downloadPage: "https://duktape.org/download.html",

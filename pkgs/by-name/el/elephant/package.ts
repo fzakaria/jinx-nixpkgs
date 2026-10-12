@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const providerEnabled = (provider) => (nix.asBool(nix.eq(enabledProviders, null)) || nix.asBool(nix.app(nix.sel(lib, "elem"), provider, enabledProviders)));
   const runtimeDeps = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "files")), nix.thunk(() => [fd])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "bluetooth")), nix.thunk(() => [bluez])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "calc")), nix.thunk(() => [libqalculate])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "clipboard")), nix.thunk(() => [wl_clipboard, imagemagick]))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elephant",
       version: "2.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abenz1267",
           repo: "elephant",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   --set ELEPHANT_PROVIDER_DIR "$out/lib/elephant/providers"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data provider service and backend for building custom application launchers",
         changelog: nix.thunk(() => nix.str`https://github.com/abenz1267/elephant/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/abenz1267/elephant",

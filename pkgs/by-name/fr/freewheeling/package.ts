@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const nettle = nix.arg($, "nettle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "freewheeling",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "free-wheeling",
           repo: "freewheeling",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
         nettle,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libxml2)}/include/libxml2`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Live looping instrument with JACK and MIDI support",
         longDescription: "Freewheeling allows us to build repetitive grooves\nby sampling and directing loops from within spirited improvisation.\n\nIt works because, down to the core, it's built around\nimprov. We leave mice and menus, and dive into our own process\nof making sound.\n\nFreewheeling runs under macOS and Linux, and is open source\nsoftware, released under the GNU GPL license.\n",
         homepage: "https://freewheeling.sourceforge.net",

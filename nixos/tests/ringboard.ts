@@ -23,41 +23,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "ringboard",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "ringboard", "meta", "maintainers"), (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })())),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         imports: nix.thunk(() => [
           nix.path(here, "./common/user-account.nix"),
           nix.path(here, "./common/x11.nix"),
         ]),
         "test-support": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$3,
-            auto: nix.thunk(() => ({ __proto__: pos$2, user: "alice" })),
+            [nix.POS]: pos$3,
+            auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           xserver: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               sessionCommands: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gedit")))}' my_document &
 `),
             })),
           })),
-          ringboard: nix.thunk(() => ({ __proto__: pos$8, x11: nix.thunk(() => ({ __proto__: pos$7, enable: true })) })),
+          ringboard: nix.thunk(() => ({ [nix.POS]: pos$8, x11: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })) })),
         })),
       })),
     })),

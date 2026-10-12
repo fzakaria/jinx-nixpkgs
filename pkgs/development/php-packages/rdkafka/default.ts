@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rdkafka = nix.arg($, "rdkafka");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rdkafka",
       version: "6.0.5",
       hash: "sha256-Cva2ZcljyMfREJzsc4A0N42ciGPL9hLAvTI15RmnCPE=",
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'SEARCH_PATH="/usr/local /usr"' 'SEARCH_PATH=${nix.app(nix.sel(lib, "getInclude"), rdkafka)}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Kafka client based on librdkafka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/arnaud-lb/php-rdkafka",

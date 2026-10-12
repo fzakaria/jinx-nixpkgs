@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pymysql = nix.arg($, "pymysql");
   const psycopg2 = nix.arg($, "psycopg2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlalchemy-jsonfield",
       version: "1.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "penguinolog",
           repo: "sqlalchemy_jsonfield",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_sugar, pymysql, psycopg2]),
       pythonImportsCheck: nix.thunk(() => ["sqlalchemy_jsonfield"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SQLALchemy JSONField implementation for storing dicts at SQL independently from JSON type support",
         homepage: "https://github.com/penguinolog/sqlalchemy_jsonfield",
         changelog: nix.thunk(() => nix.str`https://github.com/penguinolog/sqlalchemy_jsonfield/releases/tag/${nix.sel(finalAttrs, "version")}`),

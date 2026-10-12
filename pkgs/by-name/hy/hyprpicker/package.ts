@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("hyprpicker", nix.app(nix.sel(lib, "optionalString"), debug, "-debug"))),
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprpicker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/licenses\ninstall -Dm644 $src/LICENSE -t $out/share/licenses/hyprpicker\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wlroots-compatible Wayland color picker that does not suck",
         homepage: "https://github.com/hyprwm/hyprpicker",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/hyprpicker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

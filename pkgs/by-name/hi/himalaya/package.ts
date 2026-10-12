@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nativeTls = nix.thunk(() => nix.builtins.elem("native-tls", buildFeatures));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       buildFeatures: buildFeatures,
       buildNoDefaultFeatures: buildNoDefaultFeatures,
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       version: "2.2.1",
       cargoHash: "sha256-KDsvF8wHMIEw+rjBJpUTgX6QIhcCMVjLWcPWklpxG3Q=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimalaya",
           repo: "himalaya",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fYspChAGb0PLdsgP5GViAwp4NdmDXDyait0mpqIkGfQ=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nativeTls, openssl)),
       postInstall: nix.thunk(() => (() => {
@@ -50,7 +50,7 @@ ${exe} json-schema -d "$out"/share/schemas
 `, nix.app(nix.sel(lib, "optionalString"), installManPages, "installManPage \"$out\"/share/man/*\n")), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd himalaya \\\n  --bash \"$out\"/share/completions/himalaya.bash \\\n  --fish \"$out\"/share/completions/himalaya.fish \\\n  --zsh \"$out\"/share/completions/_himalaya\n"));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI to manage emails",
         mainProgram: "himalaya",
         homepage: "https://github.com/pimalaya/himalaya",

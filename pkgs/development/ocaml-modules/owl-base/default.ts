@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const applyPatches = nix.arg($, "applyPatches");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "owl-base",
       version: "1.2",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/owlbarn/owl/releases/download/${nix.sel(finalAttrs, "version")}/owl-${nix.sel(finalAttrs, "version")}.tbz`),
               hash: "sha256-OBei5DkZIsiiIltOM8qV2mgJJGmU5r8pGjAMgtjKxsU=",
             })))),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://github.com/owlbarn/owl/commit/3e66ccb0b1d21b73fa703f3d3f416ec0107860a4.patch",
                 hash: "sha256-0bV0ogTvtDoO8kEvE5QcJFRWqOJ1qiXGjXY9Ekp30M0=",
               })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       minimalOCamlVersion: "4.10",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Numerical computing library for Ocaml",
         homepage: "https://ocaml.xyz",
         changelog: "https://github.com/owlbarn/owl/releases",

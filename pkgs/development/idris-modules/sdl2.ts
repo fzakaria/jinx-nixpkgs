@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [SDL2, SDL2_gfx]);
       const prePatch = "patchShebangs .";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steshaw",
           repo: "idris-sdl2",
           rev: version,
           sha256: "1jslnlzyw04dcvcd7xsdjqa7waxzkm5znddv76sv291jc94xhl4a",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDL2 binding for Idris",
         homepage: "https://github.com/steshaw/idris-sdl2",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         idrisDeps,

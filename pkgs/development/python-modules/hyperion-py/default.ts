@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyperion-py",
       version: "0.7.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dermotduffy",
           repo: "hyperion-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [aiohttp]),
       nativeCheckInputs: nix.thunk(() => [
         pytest_asyncio_0,
-        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ __proto__: pos$2, "pytest-asyncio": pytest_asyncio_0 })))),
+        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "pytest-asyncio": pytest_asyncio_0 })))),
         pytest_cov_stub,
         pytest_timeout,
         pytestCheckHook,
       ]),
       pythonImportsCheck: nix.thunk(() => ["hyperion"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python package for Hyperion Ambient Lighting",
         homepage: "https://github.com/dermotduffy/hyperion-py",
         changelog: nix.thunk(() => nix.str`https://github.com/dermotduffy/hyperion-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

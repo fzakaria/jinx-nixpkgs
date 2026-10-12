@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "TextCharWidth"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unscii",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://viznut.fi/unscii/unscii-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "0msvqrq7x36p76a2n5bzkadh95z954ayqa08wxd017g4jpa1a4jd",
         })))),
@@ -43,7 +43,7 @@ done
       installPhase: "# install fonts for use in X11 and GTK applications\ninstall -m444 -Dt \"$out/share/fonts/misc\"     *.pcf.gz\ninstall -m444 -Dt \"$out/share/fonts/opentype\" *.otf\nmkfontdir   \"$out/share/fonts/misc\"\nmkfontscale \"$out/share/fonts/opentype\"\n\n# install other formats in $extra\ninstall -m444 -Dt \"$extra/share/fonts/truetype\" *.ttf\ninstall -m444 -Dt \"$extra/share/fonts/svg\"      *.svg\ninstall -m444 -Dt \"$extra/share/fonts/web\"      *.woff\ninstall -m444 -Dt \"$extra/share/fonts/misc\"     *.hex\nmkfontscale \"$extra\"/share/fonts/*\n",
       outputs: nix.thunk(() => ["out", "extra"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitmapped character-art-friendly Unicode fonts",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

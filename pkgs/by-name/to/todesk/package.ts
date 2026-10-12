@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const version = "4.7.2.0";
   const todesk_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "todesk-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250302114501if_/https://newdl.todesk.com/linux/todesk-v4.7.2.0-amd64.deb",
           hash: "sha256-v7VpXXFVaKI99RpzUWfAc6eE7NHGJeFrNeUTbVuX+yg=",
         })))),
@@ -71,7 +71,7 @@ runHook postInstall
 `),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: "todesk",
       targetPkgs: (pkgs) => [
@@ -129,7 +129,7 @@ substituteInPlace "$out/share/applications/todesk.desktop" \\
   --replace-fail '/opt/todesk/bin' "${todesk_unwrapped}/lib"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Remote Desktop Application",
         homepage: "https://www.todesk.com/linux.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

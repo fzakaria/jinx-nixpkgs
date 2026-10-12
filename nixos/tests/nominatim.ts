@@ -42,67 +42,67 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const osmData = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20250430211212/https://download.geofabrik.de/europe/andorra-latest.osm.pbf",
       hash: "sha256-Ey+ipTOFUm80rxBteirPW5N4KxmUsg/pCE58E/2rcyE=",
     }))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "nominatim",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "teams")), null);
         return nix.concat(nix.sel(nix.lookup(w, "geospatial"), "members"), nix.sel(nix.lookup(w, "ngi"), "members"));
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       nominatim: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             nominatim: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               hostName: "nominatim",
-              settings: nix.thunk(() => ({ __proto__: pos$3, NOMINATIM_IMPORT_STYLE: "admin" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$3, NOMINATIM_IMPORT_STYLE: "admin" })),
               ui: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 config: "Nominatim_Config.Page_Title='Test Nominatim instance';\nNominatim_Config.Nominatim_API_Endpoint='https://localhost/';\n",
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$7,
-                nominatim: nix.thunk(() => ({ __proto__: pos$6, forceSSL: false, enableACME: false })),
+                [nix.POS]: pos$7,
+                nominatim: nix.thunk(() => ({ [nix.POS]: pos$6, forceSSL: false, enableACME: false })),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enableTCPIP: true,
               authentication: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "local all all            trust\nhost  all all 0.0.0.0/0  md5\nhost  all all ::0/0      md5\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "postgresql-setup": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 postStart: "psql --command \"ALTER ROLE \\\"nominatim-api\\\" WITH PASSWORD 'password';\"\n",
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             firewall: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
               ]),
@@ -115,18 +115,18 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               nominatim: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ExecStartPre: nix.thunk(() => (() => {
                     const createPasswordFile = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellApplication"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           name: "nominatim-pre-start",
                           text: nix.thunk(() => (() => {
                             const from = nix.thunk(() => nix.sel(config, "services", "nominatim", "database"));
@@ -149,24 +149,24 @@ chmod 0600 /run/secrets/pgpass
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             nominatim: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               hostName: "nominatim",
-              settings: nix.thunk(() => ({ __proto__: pos$22, NOMINATIM_LOG_DB: "yes" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$22, NOMINATIM_LOG_DB: "yes" })),
               database: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 host: "nominatim",
                 passwordFile: "/run/secrets/pgpass",
                 extraConnectionParams: "application_name=nominatim;connect_timeout=2",
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$26,
-                nominatim: nix.thunk(() => ({ __proto__: pos$25, forceSSL: false, enableACME: false })),
+                [nix.POS]: pos$26,
+                nominatim: nix.thunk(() => ({ [nix.POS]: pos$25, forceSSL: false, enableACME: false })),
               })),
             })),
           })),

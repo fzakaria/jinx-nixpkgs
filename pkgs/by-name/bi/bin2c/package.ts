@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bin2c",
       version: "0-unstable-2020-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adobe",
           repo: "bin2c",
           rev: "4300880a350679a808dc05bdc2840368f5c24d9a",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       checkInputs: nix.thunk(() => [util_linux]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Embed binary & text files inside C binaries",
         mainProgram: "bin2c",
         homepage: "https://github.com/adobe/bin2c",

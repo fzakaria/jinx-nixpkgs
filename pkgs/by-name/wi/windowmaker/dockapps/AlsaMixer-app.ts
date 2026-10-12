@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "AlsaMixer.app",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
@@ -33,7 +33,7 @@ ln -vs AlsaMixer.app AlsaMixer
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Alsa mixer application for Windowmaker",
         homepage: "https://www.dockapps.net/alsamixerapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

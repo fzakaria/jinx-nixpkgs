@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const unwrapped = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rvgl-launcher-unwrapped",
       version: "0.1.23.1030a4-rev1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "re-volt",
           repo: "rvgl-launcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rvgl-launcher",
             desktopName: "RVGL Launcher",
             icon: "rvgl-launcher",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Launcher and package manager for RVGL",
         longDescription: "RVGL Launcher is a cross-platform installer, launcher and package manager for RVGL",
         homepage: "https://re-volt.gitlab.io/rvgl-launcher",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rvgl-launcher",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${unwrapped}/share/applications/rvgl-launcher.desktop $out/share/applications/rvgl-launcher.desktop
 ln -s ${unwrapped}/share/pixmaps/rvgl-launcher.png $out/share/pixmaps/rvgl-launcher.png
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, unwrapped: unwrapped })),
-    }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({ __proto__: pos$7, strictDeps: true, __structuredAttrs: true }));
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: unwrapped })),
+    }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({ [nix.POS]: pos$7, strictDeps: true, __structuredAttrs: true }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

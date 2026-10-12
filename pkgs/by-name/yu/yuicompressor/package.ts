@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yuicompressor",
       version: "2.4.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yui/yuicompressor/releases/download/v${nix.sel(finalAttrs, "version")}/yuicompressor-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "1qjxlak9hbl9zd3dl5ks0w4zx5z64wjsbk7ic73r1r45fasisdrh",
         })))),
@@ -31,7 +31,7 @@ makeWrapper ${jre}/bin/java $out/bin/yuicompressor --add-flags \\
  "-cp $out/lib/yuicompressor.jar com.yahoo.platform.yui.compressor.YUICompressor"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JavaScript and CSS minifier",
         mainProgram: "yuicompressor",
         homepage: "http://yui.github.io/yuicompressor/",

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const deterministic_host_uname = nix.arg($, "deterministic-host-uname");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdkafka",
       version: "2.15.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "confluentinc",
           repo: "librdkafka",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "for pc in rdkafka{,++}; do\n  ln -s $dev/lib/pkgconfig/$pc{-static,}.pc\ndone\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Apache Kafka C/C++ client library",
         homepage: "https://github.com/confluentinc/librdkafka",
         changelog: nix.thunk(() => nix.str`https://github.com/confluentinc/librdkafka/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

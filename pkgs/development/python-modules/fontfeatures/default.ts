@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools_scm]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "fontfeatures",
           version: version,
           hash: "sha256-3PpUgaTXyFcthJrFaQqeUOvDYYFosJeXuRFnFrwp0R8=",
         }))));
       const dependencies = nix.thunk(() => [fonttools, lxml]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, shaper: nix.thunk(() => [babelfont, youseedee]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, shaper: nix.thunk(() => [babelfont, youseedee]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_shaping_generic.py", "tests/test_shaping_harfbuzz.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for compiling OpenType font features",
         homepage: "https://github.com/simoncozens/fontFeatures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

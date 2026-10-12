@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "f95b9a7feaf8e3a6aaa898609f8a2ada55518cf52fc09152775c4c59c99b8ea6",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pycrypto]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Python OTR implementation",
         homepage: "http://python-otr.pentabarf.de/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

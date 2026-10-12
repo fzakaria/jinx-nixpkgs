@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.01.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aewallin",
           repo: "opencamlib",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 `);
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CMAKE_ARGS: nix.thunk(() => nix.str`-DVERSION_STRING=${version} -DBoost_USE_STATIC_LIBS=OFF`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["opencamlib"]);
@@ -54,7 +54,7 @@ popd
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/aewallin/opencamlib",
         description: "Open source computer aided manufacturing algorithms library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -64,7 +64,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

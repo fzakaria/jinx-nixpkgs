@@ -54,26 +54,26 @@ export default nix.lambda((args) => (() => {
     const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
     const extraBuildInputs = nix.argOr($_1, "extraBuildInputs", () => []);
     nix.assert_((!nix.asBool(debugBuild) || nix.asBool(withJcef)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/jetbrains-jdk/common.nix:46:1");
-    const arch = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "aarch64", "x86_64-linux": "x64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+    const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "aarch64", "x86_64-linux": "x64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const cpu = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
     const version = nix.thunk(() => nix.str`${javaVersion}-b${build}`);
     const openjdkTag = nix.thunk(() => nix.str`jbr-release-${javaVersion}b${build}`);
     return nix.app(nix.sel(jdk, "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.add("jetbrains-jdk", nix.app(nix.sel(lib, "optionalString"), withJcef, "-jcef"))),
         javaVersion: javaVersion,
         build: build,
         version: version,
         openjdkTag: openjdkTag,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "JetBrains",
             repo: "JetBrainsRuntime",
             rev: nix.thunk(() => nix.str`jb${version}`),
             hash: srcHash,
           })))),
         env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           BOOT_JDK: nix.thunk(() => nix.sel(jdk, "home")),
           SOURCE_DATE_EPOCH: sourceDateEpoch,
         })),
@@ -178,7 +178,7 @@ done
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(jdk, "meta"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "OpenJDK fork to better support Jetbrains's products",
           longDescription: "JetBrains Runtime is a runtime environment for running IntelliJ Platform\nbased products on Windows, Mac OS X, and Linux. JetBrains Runtime is\nbased on OpenJDK project with some modifications. These modifications\ninclude: Subpixel Anti-Aliasing, enhanced font rendering on Linux, HiDPI\nsupport, ligatures, some fixes for native crashes not presented in\nofficial build, and other small enhancements.\nJetBrains Runtime is not a certified build of OpenJDK. Please, use at\nyour own risk.\n",
           homepage: "https://github.com/JetBrains/JetBrainsRuntime",

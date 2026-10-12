@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cadwyn",
       version: "7.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zmievsa",
           repo: "cadwyn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Production-ready community-driven modern Stripe-like API versioning in FastAPI",
         homepage: "https://github.com/zmievsa/cadwyn",
         changelog: nix.thunk(() => nix.str`https://github.com/zmievsa/cadwyn/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

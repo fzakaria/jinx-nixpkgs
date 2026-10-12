@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const bash = nix.arg($, "bash");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "soft-serve",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "charmbracelet",
           repo: "soft-serve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/soft \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, bash]))}"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "soft-serve")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "soft-serve")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tasty, self-hosted Git server for the command line",
         homepage: "https://github.com/charmbracelet/soft-serve",
         changelog: nix.thunk(() => nix.str`https://github.com/charmbracelet/soft-serve/releases/tag/v${nix.sel(finalAttrs, "version")}`),

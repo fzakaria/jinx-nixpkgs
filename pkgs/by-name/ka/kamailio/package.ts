@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kamailio",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.kamailio.org/pub/kamailio/${nix.sel(finalAttrs, "version")}/src/kamailio-${nix.sel(finalAttrs, "version")}_src.tar.gz`),
           hash: "sha256-49s9IWb0TY892Q2wkGP3C1W77M4pWr1/McNNi53XlyE=",
         })))),
@@ -87,14 +87,14 @@ echo 'EXPR="${gnugrep}/bin/expr"' >> $out/etc/kamailio/kamctlrc
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "kamailio-bin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-kamailio-bin"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast and flexible SIP server, proxy, SBC, and load balancer",
         homepage: "https://www.kamailio.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

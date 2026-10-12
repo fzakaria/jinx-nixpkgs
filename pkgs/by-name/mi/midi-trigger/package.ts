@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "midi-trigger",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unclechu",
           repo: "MIDI-Trigger",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CXX=cc", "BUILD_DIR=."]),
       installPhase: "mkdir -p \"$out/lib/lv2\"\nmv midi-trigger.lv2 \"$out/lib/lv2\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/unclechu/MIDI-Trigger",
         description: "LV2 plugin which generates MIDI notes by detected audio signal peaks",
         maintainers: nix.thunk(() => (() => {

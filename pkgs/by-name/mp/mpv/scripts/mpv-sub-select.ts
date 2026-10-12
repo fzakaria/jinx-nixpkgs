@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildLua, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-sub-select",
       version: "0-unstable-2025-04-04",
       scriptPath: "sub-select.lua",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CogentRedTester",
           repo: "mpv-sub-select",
           rev: "26d24a0fd1d69988eaedda6056a2c87d0a55b6cb",
@@ -34,11 +34,11 @@ substituteInPlace sub-select.lua \\
 cp sub-select.json '${nix.builtins.placeholder("out")}/share/mpv/script-opts'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "An advanced conditional subtitle track selector for mpv player",
         homepage: "https://github.com/CogentRedTester/mpv-sub-select",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const lighttpd = nix.arg($, "lighttpd");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2014-06-29-1",
       pname: "nix-binary-cache",
       dontUnpack: true,
@@ -61,7 +61,7 @@ substitute "${nix.path(here, "./nix-binary-cache-start.in")}" "$out"/bin/nix-bin
 chmod a+x "$out/bin/nix-binary-cache-start"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set of scripts to serve the Nix store as a binary cache",
         longDescription: "This package installs a CGI script that serves Nix store path in the\nbinary cache format. It also installs a launcher called\nnix-binary-cache-start that can be run without any setup to launch\na binary cache and get the example arguments for its usage.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

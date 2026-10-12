@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aisleriot",
       version: "3.22.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/aisleriot/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/aisleriot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-AeYEzXAJo2wMXxVCSpBORvg2LDBrpfa8cfrIpedGO/A=",
         })))),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       prePatch: "patchShebangs cards/meson_svgz.sh\npatchShebangs data/meson_desktopfile.py\npatchShebangs data/icons/meson_updateiconcache.py\npatchShebangs src/lib/meson_compileschemas.py\n",
       mesonFlags: nix.thunk(() => ["-Dtheme_kde=false"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "aisleriot" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "aisleriot" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/aisleriot",
         description: "Collection of patience games written in guile scheme",
         mainProgram: "sol",

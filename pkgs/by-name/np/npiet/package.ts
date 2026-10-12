@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "npiet",
       version: "1.3f",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.bertnase.de/npiet/npiet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Le2FYGKr1zWZ6F4edozmvGC6LbItx9aptidj3KBLhVo=",
         })))),
@@ -40,14 +40,14 @@ substituteInPlace npiet-foogol.c \\
 substituteInPlace npietedit \\
   --replace-fail 'exec wish' 'exec ${tk}/bin/wish'
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const all_tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({}))));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             hello: nix.thunk(() => nix.attr(all_tests, "hello")),
             prime: nix.thunk(() => nix.attr(all_tests, "prime")),
             "no-prime": nix.thunk(() => nix.attr(all_tests, "no-prime")),
@@ -56,7 +56,7 @@ substituteInPlace npietedit \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Interpreter for piet programs. Also includes npietedit and npiet-foogol",
         longDescription: "npiet is an interpreter for the piet programming language.\nInstead of text, piet programs are pictures. Commands are determined based on changes in color.\n",
         homepage: "https://www.bertnase.de/npiet/",

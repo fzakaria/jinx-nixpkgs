@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const runXdgAutostart = nix.thunk(() => nix.sel(config, "services", "xserver", "desktopManager", "runXdgAutostartIfNone"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         xserver: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             runXdgAutostartIfNone: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to run XDG autostart files for sessions without a desktop manager\n(with only a window manager), these sessions usually don't handle XDG\nautostart files by default.\n\nSome services like {option}`i18n.inputMethod` and\n{option}`service.earlyoom` use XDG autostart files to start.\nIf this option is not set to `true` and you are using\na window manager without a desktop manager, you need to manually start\nthem or running `dex` somewhere.\n",
@@ -49,16 +49,16 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             xserver: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 session: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     name: "none",
                     start: nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), runXdgAutostart, "/run/current-system/systemd/bin/systemctl --user start xdg-autostart-if-no-desktop-manager.target\n")),
                   })),
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), runXdgAutostart, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             systemd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               user: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 targets: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "xdg-autostart-if-no-desktop-manager": nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     description: "Run XDG autostart files",
                     requires: nix.thunk(() => ["xdg-desktop-autostart.target", "graphical-session.target"]),
                     before: nix.thunk(() => ["xdg-desktop-autostart.target", "graphical-session.target"]),

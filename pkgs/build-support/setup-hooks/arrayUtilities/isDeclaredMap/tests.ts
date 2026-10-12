@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const shfmt = nix.thunk(() => nix.attr(testers, "shfmt"));
   const testBuildFailure$ = nix.thunk(() => nix.attr(testers, "testBuildFailure'"));
   const commonArgs = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     __structuredAttrs: true,
     strictDeps: true,
     preferLocalBuild: true,
@@ -96,40 +96,40 @@ fi
     })(), formals$2);
   })());
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "isDeclaredMap",
           src: nix.path(here, "./isDeclaredMap.bash"),
         })))),
       shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "isDeclaredMap",
           src: nix.path(here, "./isDeclaredMap.bash"),
         })))),
       undeclaredFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "undeclaredFails",
           drv: nix.thunk(() => nix.app(runCommand, "undeclared", commonArgs, "set -eu\nif isDeclaredMap undeclared; then\n  nixLog \"test passed\"\n  touch \"$out\"\nelse\n  nixErrorLog \"test failed\"\n  exit 1\nfi\n")),
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       arrayFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "arrayFails",
           drv: nix.thunk(() => nix.app(runCommand, "array", commonArgs, "set -eu\nlocal -a array\nif isDeclaredMap array; then\n  nixLog \"test passed\"\n  touch \"$out\"\nelse\n  nixErrorLog \"test failed\"\n  exit 1\nfi\n")),
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       emptyStringNamerefFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "emptyStringNamerefFails",
           drv: nix.thunk(() => nix.app(runCommand, "emptyStringNameref", commonArgs, "set -eu\nif isDeclaredMap \"\"; then\n  nixLog \"test passed\"\n  touch \"$out\"\nelse\n  nixErrorLog \"test failed\"\n  exit 1\nfi\n")),
           expectedBuilderLogEntries: nix.thunk(() => ["local: `': not a valid identifier", "test failed"]),
         })))),
       namerefToEmptyStringFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "namerefToEmptyStringFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "namerefToEmptyString",
               scope: null,
               intro: "local -n",
@@ -138,10 +138,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["local: `': not a valid identifier"]),
         })))),
       sameScopeEmptyStringFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "sameScopeEmptyStringFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "sameScopeEmptyString",
               scope: null,
               intro: null,
@@ -150,10 +150,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       sameScopeEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "sameScopeEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "sameScopeEmptyMap",
               scope: null,
               intro: null,
@@ -162,10 +162,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       sameScopeSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: "sameScopeSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               name: "sameScopeSingletonMap",
               scope: null,
               intro: null,
@@ -174,52 +174,52 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["greeting: unbound variable"]),
         })))),
       sameScopeLocalUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: "sameScopeLocalUnsetMap",
           scope: null,
           intro: "local -A",
           values: null,
         })))),
       sameScopeLocalEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           name: "sameScopeLocalEmptyMap",
           scope: null,
           intro: "local -A",
           values: "()",
         })))),
       sameScopeLocalSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: "sameScopeLocalSingletonMap",
           scope: null,
           intro: "local -A",
           values: "([greeting]=\"hello!\")",
         })))),
       sameScopeDeclareUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "sameScopeDeclareUnsetMap",
           scope: null,
           intro: "declare -A",
           values: null,
         })))),
       sameScopeDeclareEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: "sameScopeDeclareEmptyMap",
           scope: null,
           intro: "declare -A",
           values: "()",
         })))),
       sameScopeDeclareSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           name: "sameScopeDeclareSingletonMap",
           scope: null,
           intro: "declare -A",
           values: "([greeting]=\"hello!\")",
         })))),
       previousScopeEmptyStringFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           name: "previousScopeEmptyStringFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               name: "previousScopeEmptyString",
               scope: "function",
               intro: null,
@@ -228,10 +228,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           name: "previousScopeEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               name: "previousScopeEmptyMap",
               scope: "function",
               intro: null,
@@ -240,10 +240,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           name: "previousScopeSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               name: "previousScopeSingletonMap",
               scope: "function",
               intro: null,
@@ -252,10 +252,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["greeting: unbound variable"]),
         })))),
       previousScopeLocalUnsetMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           name: "previousScopeLocalUnsetMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               name: "previousScopeLocalUnsetMap",
               scope: "function",
               intro: "local -A",
@@ -264,10 +264,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeLocalEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           name: "previousScopeLocalEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               name: "previousScopeLocalEmptyMap",
               scope: "function",
               intro: "local -A",
@@ -276,10 +276,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeLocalSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           name: "previousScopeLocalSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               name: "previousScopeLocalSingletonMap",
               scope: "function",
               intro: "local -A",
@@ -288,31 +288,31 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeLocalGlobalUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           name: "previousScopeLocalGlobalUnsetMap",
           scope: "function",
           intro: "local -Ag",
           values: null,
         })))),
       previousScopeLocalGlobalEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           name: "previousScopeLocalGlobalEmptyMap",
           scope: "function",
           intro: "local -Ag",
           values: "()",
         })))),
       previousScopeLocalGlobalSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           name: "previousScopeLocalGlobalSingletonMap",
           scope: "function",
           intro: "local -Ag",
           values: "([greeting]=\"hello!\")",
         })))),
       previousScopeDeclareUnsetMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           name: "previousScopeDeclareUnsetMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               name: "previousScopeDeclareUnsetMap",
               scope: "function",
               intro: "declare -A",
@@ -321,10 +321,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeDeclareEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           name: "previousScopeDeclareEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               name: "previousScopeDeclareEmptyMap",
               scope: "function",
               intro: "declare -A",
@@ -333,10 +333,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeDeclareSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           name: "previousScopeDeclareSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               name: "previousScopeDeclareSingletonMap",
               scope: "function",
               intro: "declare -A",
@@ -345,21 +345,21 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeDeclareGlobalUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           name: "previousScopeDeclareGlobalUnsetMap",
           scope: "function",
           intro: "declare -Ag",
           values: null,
         })))),
       previousScopeDeclareGlobalEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           name: "previousScopeDeclareGlobalEmptyMap",
           scope: "function",
           intro: "declare -Ag",
           values: "()",
         })))),
       previousScopeDeclareGlobalSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           name: "previousScopeDeclareGlobalSingletonMap",
           scope: "function",
           intro: "declare -Ag",

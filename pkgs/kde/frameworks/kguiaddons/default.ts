@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kguiaddons",
       hasPythonBindings: true,
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtwayland]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kde-geo-uri-handler" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kde-geo-uri-handler" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

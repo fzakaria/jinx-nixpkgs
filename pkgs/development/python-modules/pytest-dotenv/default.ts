@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "LcbDrG2HZMccbSgE6QLQ/4EPoZaS6V/hOK78mxqnNzI=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [python_dotenv]);
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin that parses environment files before running tests",
         homepage: "https://github.com/quiqua/pytest-dotenv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

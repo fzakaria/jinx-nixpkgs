@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         const libName = nix.argOr($_1, "libName", () => nix.force(pname));
         const installTargets = nix.argOr($_1, "installTargets", () => ["."]);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           libName: libName,

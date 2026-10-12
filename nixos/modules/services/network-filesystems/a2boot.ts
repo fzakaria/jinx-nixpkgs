@@ -23,33 +23,33 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "a2boot"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         a2boot: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the a2boot daemon")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            netatalk: nix.thunk(() => ({ __proto__: pos$4, partOf: nix.thunk(() => ["a2boot.service"]) })),
+            [nix.POS]: pos$8,
+            netatalk: nix.thunk(() => ({ [nix.POS]: pos$4, partOf: nix.thunk(() => ["a2boot.service"]) })),
             a2boot: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "a2boot daemon",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$5, Documentation: "man:a2boot(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Documentation: "man:a2boot(8)" })),
               after: nix.thunk(() => ["network.target", "netatalk.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "netatalk"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 Type: "forking",
                 DynamicUser: true,
                 RuntimeDirectory: "a2boot",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "matthewcroughan"))];

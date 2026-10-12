@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nawk",
       version: "20260426",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onetrueawk",
           repo: "awk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmv a.out nawk\ninstallBin nawk\nmv awk.1 nawk.1\ninstallManPage nawk.1\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/onetrueawk/awk",
         description: "One, true implementation of AWK",
         longDescription: "This is the version of awk described in \"The AWK Programming Language\",\nSecond Edition, by Al Aho, Brian Kernighan, and Peter Weinberger\n(Addison-Wesley, 2023, ISBN 0-13-826972-6).\n",

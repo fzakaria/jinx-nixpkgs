@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marxin",
           repo: "cvise",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,14 +64,14 @@ substituteInPlace cvise/utils/testing.py \\
       ]);
       const disabledTests = nix.thunk(() => ["test_simple_reduction"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "help-output": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: cvise, command: "cvise --version" })))),
+          [nix.POS]: pos$3,
+          "help-output": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cvise, command: "cvise --version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/marxin/cvise",
         description: "Super-parallel Python port of C-Reduce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),
@@ -79,7 +79,7 @@ substituteInPlace cvise/utils/testing.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

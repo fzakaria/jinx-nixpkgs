@@ -12,7 +12,7 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const args_1 = args;
     const localSystem = nix.argOr($, "localSystem", () => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       system: nix.thunk(() => nix.selOr(args_1, () => nix.builtins.currentSystem, "system")),
     }));
     const system = nix.argOr($, "system", () => nix.sel(localSystem, "system"));
@@ -27,7 +27,7 @@ export default nix.thunk(() => (() => {
     nix.assert_((!nix.asBool(nix.has(args_1, "localSystem")) || nix.asBool(!nix.asBool(nix.has(args_1, "system")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/impure.nix:52:1");
     nix.assert_((!nix.asBool(nix.has(args_1, "system")) || nix.asBool(!nix.asBool(nix.has(args_1, "localSystem")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/impure.nix:53:1");
     return nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["system"])), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         config: config,
         overlays: overlays,
         localSystem: localSystem,

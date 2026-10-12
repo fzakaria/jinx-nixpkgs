@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.10";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-1CohbIKRTc9NfAAN68mLsza4+D4Ca6XZUszNn4B07/0=",
@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const postBuild = "# Find the build result in order to put it into PYTHONPATH. The doc\n# build needs to import pplpy.\nbuild_result=\"$PWD/$( find build/ -type d -name 'lib.*' | head -n1 )\"\n\necho \"Building documentation\"\nPYTHONPATH=\"$build_result:$PYTHONPATH\" make -C docs html\n";
       const postInstall = "mkdir -p \"$doc/share/doc\"\nmv docs/build/html \"$doc/share/doc/pplpy\"\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python wrapper for ppl",
         homepage: "https://gitlab.com/videlec/pplpy",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

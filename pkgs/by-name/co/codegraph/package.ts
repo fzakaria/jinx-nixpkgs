@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rcodesign = nix.arg($, "rcodesign");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "codegraph",
       version: "1.6.2",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       sourceRoot: nix.thunk(() => nix.selOr({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-darwin": "codegraph-darwin-arm64",
         "aarch64-linux": "codegraph-linux-arm64",
         "x86_64-linux": "codegraph-linux-x64",
@@ -49,21 +49,21 @@ export default nix.lambda((args) => (() => {
 '${nix.app(nix.sel(lib, "getExe"), rcodesign)}' sign --code-signature-flags linker-signed $out/lib/codegraph/node
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/download/v${nix.sel(finalAttrs, "version")}/codegraph-darwin-arm64.tar.gz`),
               hash: "sha256-100b+0Bg22PsPCtyxOF/dsMZeK87rWrOQ3DRUBrAZi4=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/download/v${nix.sel(finalAttrs, "version")}/codegraph-linux-arm64.tar.gz`),
               hash: "sha256-yMa+KSviHQDeomutiyjUNHMc9hL7jMR13BD1swOLW2Q=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/download/v${nix.sel(finalAttrs, "version")}/codegraph-linux-x64.tar.gz`),
               hash: "sha256-7wr0FgkhKPsczHI3hgALft9KaXH+YErNCL+Wbk83uCg=",
             })))),
@@ -81,7 +81,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Pre-indexed code knowledge graph for AI coding agents",
         homepage: "https://github.com/colbymchenry/codegraph",
         changelog: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/tag/v${nix.sel(finalAttrs, "version")}`),

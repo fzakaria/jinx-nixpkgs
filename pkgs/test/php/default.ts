@@ -42,7 +42,7 @@ touch $out
 `));
   const check = (cond) => (nix.asBool(cond) ? "ok" : "nok");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "withExtensions-enables-previously-disabled-extensions": nix.thunk(() => nix.app(runTest, "php-test-withExtensions-enables-previously-disabled-extensions", nix.thunk(() => nix.str`php="${php}"
 
 checking "that imagick is not present by default"
@@ -62,7 +62,7 @@ $phpWithImagick/bin/php -r 'exit(extension_loaded("imagick") ? 0 : 1);' && ok ||
           const all = nix.arg($_1, "all");
           return [nix.thunk(() => nix.sel(all, "imagick"))];
         })(), formals$3)), "overrideAttrs"), (attrs) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "touch \"$out/oApee-was-here\"\n")),
         })));
       return nix.app(runTest, "php-test-overrideAttrs-preserves-enabled-extensions", nix.thunk(() => nix.str`php="${customPhp}"
@@ -82,11 +82,11 @@ $php/bin/php -r 'exit(extension_loaded("imagick") ? 0 : 1);' && ok || nok
     "unwrapped-overrideAttrs-stacks": nix.thunk(() => (() => {
       const customPhp = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(php, "unwrapped")), nix.thunk(() => [
           (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (attrs) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "touch \"$out/oAs-first\"\n")),
             })),
           (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (attrs) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "touch \"$out/oAs-second\"\n")),
             })),
         ])));
@@ -99,7 +99,7 @@ ${nix.app(check, nix.thunk(() => !nix.eq(nix.builtins.match(".*oAs-second.*", ni
     })()),
     "stdenvAdapter-keepDebugInfo-does-not-recurse": nix.thunk(() => (() => {
       const customPhp = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           stdenv: nix.thunk(() => nix.app(nix.sel(stdenvAdapters, "keepDebugInfo"), stdenv)),
         }))));
       return nix.app(runTest, "php-test-stdenvAdapter-keepDebugInfo-does-not-recurse", nix.thunk(() => nix.str`checking "if the override evaluates without infinite recursion"
@@ -112,11 +112,11 @@ ${nix.app(check, nix.thunk(() => nix.selOr(customPhp, () => false, "unwrapped", 
     "wrapped-overrideAttrs-stacks": nix.thunk(() => (() => {
       const customPhp = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), php, nix.thunk(() => [
           (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (attrs) => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "touch \"$out/oAs-first\"\n")),
             })),
           (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (attrs) => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "touch \"$out/oAs-second\"\n")),
             })),
         ])));

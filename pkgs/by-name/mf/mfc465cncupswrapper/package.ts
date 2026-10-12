@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc465cncupswrapper";
       const version = "1.0.1-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006134/${pname}-${version}.i386.deb`),
           sha256: "59a62ed3cf10f1565c08ace55832bd48bd5034f7067662870edf7ff3bf0cb76a",
         }))));
@@ -70,7 +70,7 @@ sed -i "/#! \\/bin\\/sh/a PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(
 chmod 755 $out/lib/cups/filter/brlpdwrappermfc465cn
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-465CN CUPS wrapper driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -85,7 +85,7 @@ chmod 755 $out/lib/cups/filter/brlpdwrappermfc465cn
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

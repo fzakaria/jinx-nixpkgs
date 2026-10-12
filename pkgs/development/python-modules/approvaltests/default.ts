@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "approvals",
           repo: "ApprovalTests.Python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +62,7 @@ patchShebangs internal_documentation/scripts
         "approvaltests.reporters.generic_diff_reporter_factory",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Assertion/verification library to aid testing",
         homepage: "https://github.com/approvals/ApprovalTests.Python",
         changelog: nix.thunk(() => nix.str`https://github.com/approvals/ApprovalTests.Python/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +70,7 @@ patchShebangs internal_documentation/scripts
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bk",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-rSMvx/zUZqRRgj48TVVG7RwQT8e70m0kertRJysDY4Y=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "sed -i '$ a # Source and further info' README.md\nsed -i '$ a https://github.com/aeosynth/bk' README.md\ngo-md2man -in README.md -out bk.1\n",
       postInstall: "installManPage bk.?\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aeosynth/bk",
         description: "Terminal epub reader written in rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const testfixtures = nix.arg($, "testfixtures");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reconplogger",
       version: "5.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omni-us",
           repo: "reconplogger",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [logmatic_python, pyyaml]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, all: nix.thunk(() => [flask, requests]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, all: nix.thunk(() => [flask, requests]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, testfixtures]),
       pythonImportsCheck: nix.thunk(() => ["reconplogger"]),
       enabledTestPaths: nix.thunk(() => ["reconplogger_tests.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to ease the standardization of logging within omni:us",
         homepage: "https://github.com/omni-us/reconplogger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsamplerate",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libsndfile/libsamplerate/releases/download/${nix.sel(finalAttrs, "version")}/libsamplerate-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-MljaKAUR0ktJ1rCGFbvoJNDKzJhCsOTK8RxSzysEOJM=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-fftw"]),
       outputs: nix.thunk(() => ["dev", "out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sample Rate Converter for audio",
         homepage: "https://libsndfile.github.io/libsamplerate/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

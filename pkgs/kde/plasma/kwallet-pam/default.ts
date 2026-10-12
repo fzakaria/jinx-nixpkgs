@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const socat = nix.arg($, "socat");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kwallet-pam",
       postPatch: nix.thunk(() => nix.str`sed -i pam_kwallet_init -e "s|socat|${nix.app(nix.sel(lib, "getBin"), socat)}/bin/socat|"
 `),

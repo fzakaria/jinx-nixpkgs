@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const version = "4.8.0";
   const templatesVersion = "3.1.1648";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Azure",
       repo: "azure-functions-core-tools",
       tag: version,
       hash: "sha256-OY2FPzST1ejU+OPccv7Qvd8cM3gtiiL2CQNj2APDIx0=",
     }))));
   const templates = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://cdn.functions.azure.com/public/TemplatesApi/${templatesVersion}.zip`),
       hash: "sha256-YYKBwd69TIHQKF1r8BzlzIyDLJBcCqtAbK3FhNvA+5s=",
     }))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "azure-functions-core-tools",
       src: src,
       version: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
           ])));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         packages: nix.thunk(() => nix.attr(from, "packages")),
         targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
       };
@@ -62,7 +62,7 @@ substituteInPlace src/Cli/func/Common/CommandChecker.cs \\
   --replace-fail "CheckExitCode(\\"/bin/bash" "CheckExitCode(\\"${nix.sel(stdenv, "shell")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Azure/azure-functions-core-tools",
         description: "Command line tools for Azure Functions",
         mainProgram: "func",

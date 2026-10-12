@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oxker",
       version: "0.13.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-W2swVJd/rygvt/q3YqqI1bVMmuitre4k9Zwl9JYZZbs=",
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
           "--skip=ui::draw_blocks::help::tests::test_draw_blocks_help_one_and_two_definitions",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "oxker",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir --parents $out/share/icons/hicolor/scalable/apps\ncp .github/logo.svg $out/share/icons/hicolor/scalable/apps/oxker.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple TUI to view & control docker containers",
         homepage: "https://github.com/mrjackwills/oxker",
         changelog: nix.thunk(() => nix.str`https://github.com/mrjackwills/oxker/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

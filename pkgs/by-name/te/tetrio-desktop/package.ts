@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const version = "10";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://tetr.io/about/desktop/builds/${version}/TETR.IO%20Setup.deb`),
         hash: "sha256-2FtFCajNEj7O8DGangDecs2yeKbufYLx1aZb3ShnYvw=",
         nativeBuildInputs: nix.thunk(() => [dpkg]),
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://tetr.io/about/desktop/builds/${version}/TETR.IO%20Setup%20arm64.dmg`),
         hash: "sha256-PbK9XEynpii35p6DQYiPbaRM4guPazWd5N4Dr2O4H24=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tetrio-desktop",
       version: version,
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)))),
@@ -80,7 +80,7 @@ runHook postInstall
   --add-flags $out/share/TETR.IO/app.asar
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://tetr.io/about/desktop/history/",
         description: "Desktop client for TETR.IO, an online stacker game",
         downloadPage: "https://tetr.io/about/desktop/",

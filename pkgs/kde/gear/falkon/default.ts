@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "falkon",
       extraNativeBuildInputs: nix.thunk(() => [qttools, qtwebchannel, qtwebengine]),
       extraBuildInputs: nix.thunk(() => [
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         qtwebengine,
         nix.thunk(() => nix.sel(python3Packages, "pyside6")),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "falkon" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "falkon" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

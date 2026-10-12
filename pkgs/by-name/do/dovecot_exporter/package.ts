@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dovecot_exporter",
       version: "0.1.3-unstable-2019-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kumina",
           repo: "dovecot_exporter",
           rev: "7ef79118ba619ff078594837377189477a4d059f",
@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-+B8sROL1h6ElBfAUBT286yJF9m9zoRvMOrf0z2SVCj0=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kumina/dovecot_exporter/commit/b5184dd99cf8c79facf20cea281828d302327665.patch",
             hash: "sha256-OcdI1fJ/wumDI/wk5PQVot9+Gw/PnsiwgJY7dcRyEsc=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$3, dovecot: nix.thunk(() => nix.attr(from, "dovecot")) };
+          return { [nix.POS]: pos$3, dovecot: nix.thunk(() => nix.attr(from, "dovecot")) };
         })()),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Prometheus metrics exporter for Dovecot",
         mainProgram: "dovecot_exporter",

@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ark = nix.arg($, "ark");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     definition: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       displayName: "Ark R Kernel",
       argv: nix.thunk(() => [
         nix.thunk(() => nix.str`${ark}/bin/ark`),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         "notebook",
       ]),
       language: "R",
-      env: nix.thunk(() => ({ __proto__: pos$1, RUST_LOG: "ark=warn,ark::console::console_comm=error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, RUST_LOG: "ark=warn,ark::console::console_comm=error" })),
       logo32: null,
       logo64: null,
     })),

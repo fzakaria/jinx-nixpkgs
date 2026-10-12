@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "vswitch"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         vswitch: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable Open vSwitch. A configuration daemon (ovs-server)\nwill be started.\n",
             })))),
           resetOnStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to reset the Open vSwitch configuration database to a default\nconfiguration on every start of the systemd `ovsdb.service`.\n",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => (() => {
         const runDir = "/run/openvswitch";
         const db = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "vswitch.db",
             dontUnpack: true,
             buildPhase: "true",
@@ -69,27 +69,27 @@ export default nix.lambda((args) => (() => {
             installPhase: "mkdir -p $out",
           }))));
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             kernelModules: nix.thunk(() => ["tun", "openvswitch"]),
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             sockets: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               ovsdb: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Open_vSwitch Database Socket",
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 before: nix.thunk(() => ["ovsdb.service"]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ListenStream: nix.thunk(() => nix.str`${runDir}/db.sock`),
                   Service: "ovsdb.service",
                   SocketMode: "0770",
@@ -97,9 +97,9 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               ovsdb: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "Open_vSwitch Database Server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: nix.thunk(() => ["ovsdb.socket"]),
@@ -126,7 +126,7 @@ else
 fi
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/ovsdb-server \\
   --remote=pfd:3 \\
   --private-key=db:Open_vSwitch,SSL,private_key \\
@@ -147,31 +147,31 @@ fi
 `),
               })),
               "ovs-delete-transient-ports": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Open vSwitch Delete Transient Ports",
                 after: nix.thunk(() => ["ovsdb.service"]),
                 before: nix.thunk(() => ["ovs-vswitchd.service"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   AssertPathExists: nix.thunk(() => nix.str`${runDir}/db.sock`),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/openvswitch/scripts/ovs-ctl delete-transient-ports`),
                 })),
               })),
               "ovs-vswitchd": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "Open_vSwitch Daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: nix.thunk(() => ["ovsdb.socket"]),
                 after: nix.thunk(() => ["ovsdb.socket"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/ovs-vswitchd \\
 --pidfile=/run/openvswitch/ovs-vswitchd.pid \\
 --detach
@@ -191,7 +191,7 @@ fi
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "vswitch", "ipsec"]), "OpenVSwitch IPSec functionality has been removed, because it depended on racoon,\nwhich was removed from nixpkgs, because it was abanoded upstream.\n")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "netixx"))];

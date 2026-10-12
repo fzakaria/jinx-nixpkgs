@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const unshield = nix.arg($, "unshield");
   const ut2004Packages = nix.arg($, "ut2004Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "ut2004-data",
       __structuredAttrs: true,
       strictDeps: true,
@@ -30,7 +30,7 @@ runHook postUnpack
 `),
       installPhase: "runHook preInstall\n\nmv data $out\n\nrunHook preInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Unreal Tournament 2004 CD content provided by OldUnreal",
         homepage: "https://oldunreal.com/downloads/ut2004/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

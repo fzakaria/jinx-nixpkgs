@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pname = "heirloom";
   const version = "070715";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/heirloom/heirloom/${version}/heirloom-${version}.tar.bz2`),
       sha256: "sha256-6zP3C8wBmx0OCkHx11UtRcV6FicuThxIY07D5ESWow8=",
     }))));
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
     "LWCHAR='-L../libwchar -lwchar'",
   ]);
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -73,18 +73,18 @@ export default nix.lambda((args) => (() => {
         heirloom_devtools,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sed: nix.thunk(() => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-sed-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`install -D ${heirloom}/bin/sed $out/bin/sed
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/banner Hello Heirloom
 mkdir $out
 `)),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Heirloom Toolchest is a collection of standard Unix utilities",
         homepage: "https://heirloom.sourceforge.net/tools.html",
         license: nix.thunk(() => (() => {

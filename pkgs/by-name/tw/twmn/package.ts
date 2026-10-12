@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twmn";
       const version = "2025_10_23";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sboli",
           repo: "twmn",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i s/-Werror// twmnd/twmnd.pro\n";
       const installPhase = "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp bin/* \"$out/bin\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Notification system for tiling window managers",
         homepage: "https://github.com/sboli/twmn",
         platforms: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

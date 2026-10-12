@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "igir";
       const version = "5.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emmercm",
           repo: "igir",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const autoPatchelfIgnoreMissingDeps = nix.thunk(() => ["libc.musl-x86_64.so.1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Video game ROM collection manager to help filter, sort, patch, archive, and report on collections on any OS",
         mainProgram: "igir",
         homepage: "https://igir.io",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

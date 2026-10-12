@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(sendEmailSupport) || nix.asBool(perlSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gi/git/package.nix:63:1");
   nix.assert_((!nix.asBool(svnSupport) || nix.asBool(perlSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gi/git/package.nix:64:1");
   const version = "2.55.0";
-  const svn = nix.thunk(() => nix.app(nix.sel(subversionClient, "override"), nix.thunk(() => ({ __proto__: pos$1, perlBindings: perlSupport }))));
+  const svn = nix.thunk(() => nix.app(nix.sel(subversionClient, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, perlBindings: perlSupport }))));
   const gitwebPerlLibs = nix.thunk(() => (() => {
     const w = nix.withScope(perlPackages, null);
     return [
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
   })());
   const gitJumpBinPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => ["$out", nix.thunk(() => nix.sel(perlPackages, "perl")), coreutils])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: nix.thunk(() => nix.add(nix.add("git", nix.app(nix.sel(lib, "optionalString"), svnSupport, "-with-svn")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(svnSupport)) && nix.asBool(!nix.asBool(guiSupport)))) && nix.asBool(!nix.asBool(sendEmailSupport)))) && nix.asBool(!nix.asBool(withManual)))) && nix.asBool(!nix.asBool(pythonSupport)))) && nix.asBool(!nix.asBool(withpcre2)))), "-minimal"))),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "strings", "hasInfix"), "-rc", version)) ? nix.str`https://www.kernel.org/pub/software/scm/git/testing/git-${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["."]), version)}.tar.xz` : nix.str`https://www.kernel.org/pub/software/scm/git/git-${version}.tar.xz`)),
           hash: "sha256-RX/bBNyHKOAH1GiGleaRLm9oByeSDypAvxHqzBdQU1c=",
         })))),
@@ -133,13 +133,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./git-sh-i18n.patch"),
         nix.path(here, "./git-send-email-honor-PATH.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "t7703-ignore-ls-total.patch",
             url: "https://lore.kernel.org/git/20260504101429.340123-1-joerg@thalheim.io/raw",
             hash: "sha256-44EPfEJ39LjPWjqjFb52EKNaJGzYxZzJaJOis8QnazU=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "darwin-unicode-filename-fix.patch",
             url: "https://lore.kernel.org/git/20260704233724.16928-1-ihar.hrachyshka@gmail.com/raw",
             hash: "sha256-lpGz3nFKQvFDtW2TtQLx/684ECJVBLGPGqip0XEtOdU=",
@@ -184,10 +184,10 @@ done
       depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]))),
       strictDeps: true,
       env: nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_LDFLAGS: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")))), "-lgcc_s"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "-lthr"))),
       }, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), nix.thunk(() => (nix.asBool(rustSupport) && nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
         }))))),
       configureFlags: nix.thunk(() => nix.concat([
@@ -346,28 +346,28 @@ disable_test t9902-completion
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(sendEmailSupport)), "# Disable sendmail tests\ndisable_test t9001-send-email\n")), "# Flaky tests:\ndisable_test t0027-auto-crlf\ndisable_test t1451-fsck-buffer\ndisable_test t5319-multi-pack-index\ndisable_test t6421-merge-partial-clone\ndisable_test t7504-commit-msg-hook\ndisable_test t5515-fetch-merge-logic\ndisable_test t4104-apply-boundary\ndisable_test t7002-mv-sparse-checkout\ndisable_test t4122-apply-symlink-inside\ndisable_test t7513-interpret-trailers\ndisable_test t2200-add-update\n\n# Fails when run with GIT_TEST_INSTALLED, that is, when we're testing an\n# installed package rather than the build output prior to installation.\n# This test is fragile when testing an installed package even in Nix's\n# otherwise clean build environment, upstream haven't been keen on patching\n# individual failures when they crop up, and nobody has yet managed to\n# rewrite the test to be less fragile.\n#\n# See in particular the below messages and discussions around them:\n# https://lore.kernel.org/git/xmqqect7fhnp.fsf@gitster.g/\n# https://lore.kernel.org/git/20251201031040.1120091-1-brianmlyles@gmail.com/\ndisable_test t1517-outside-repo\n\n# Fails reproducibly on ZFS on Linux with formD normalization\ndisable_test t0021-conversion\ndisable_test t3910-mac-os-precompose\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# XXX: Some tests added in 2.24.0 fail.\n# Please try to re-enable on the next release.\ndisable_test t7816-grep-binary-pattern\n# fail (as of 2.33.0)\n#===(   18623;1208  8/?  224/?  2/? )= =fatal: Not a valid object name refs/tags/signed-empty\ndisable_test t6300-for-each-ref\n# not ok 1 - populate workdir (with 2.33.1 on x86_64-darwin)\ndisable_test t5003-archive-zip\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "disable_test t7527-builtin-fsmonitor\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")))), "# https://github.com/NixOS/nixpkgs/pull/394957\n# > t2082-parallel-checkout-attributes.sh            (Wstat: 256 (exited 1) Tests: 5 Failed: 1)\ndisable_test t2082-parallel-checkout-attributes\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "# Test fails (as of 2.17.0, musl 1.1.19)\ndisable_test t3900-i18n-commit\n# Fails largely due to assumptions about BOM\n# Tested to fail: 2.18.0\ndisable_test t0028-working-tree-encoding\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "# Time zones are not available in the build sandbox.\n# This can be fixed if/when we decide on how the hardcoded libc paths should look\ndisable_test t0006-date\n# Kernel bug (?) related to confusion over whether ulimit -n should set max fd or num files\ndisable_test t5324-split-commit-graph\n# known breakage vanished?\ndisable_test t7815-grep-binary\n"))),
       stripDebugList: nix.thunk(() => ["lib", "libexec", "bin", "share/git/contrib/credential"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         shellPath: "/bin/git-shell",
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$8,
-          withInstallCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$7, doInstallCheck: true }))),
+          [nix.POS]: pos$8,
+          withInstallCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$7, doInstallCheck: true }))),
           "buildbot-integration": nix.thunk(() => nix.sel(nixosTests, "buildbot")),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), svnSupport, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "git-svn-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 command: "git svn --version",
                 version: nix.thunk(() => nix.str`git-svn version ${version}`),
               })))),
           }))), nix.sel(tests, "fetchgit")))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             extraArgs: nix.thunk(() => ["--url", "https://github.com/git/git"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         homepage: "https://git-scm.com/",
         description: "Distributed version control system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -387,7 +387,7 @@ disable_test t9902-completion
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         mainProgram: "git",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "git-scm", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

@@ -60,38 +60,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "desktopManager", "phosh"));
   const phocConfigType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xwayland: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to enable XWayland support.\n\nTo start XWayland immediately, use `immediate`.\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["true", "false", "immediate"]))),
             default: "false",
           })))),
         cursorTheme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Cursor theme to use in Phosh.\n",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "default",
           })))),
         outputs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "Output configurations.\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), phocOutputType)),
             default: nix.thunk(() => ({
-              __proto__: pos$4,
-              "DSI-1": nix.thunk(() => ({ __proto__: pos$3, scale: 2n })),
+              [nix.POS]: pos$4,
+              "DSI-1": nix.thunk(() => ({ [nix.POS]: pos$3, scale: 2n })),
             })),
           })))),
       })),
     }))));
   const phocOutputType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       options: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         modeline: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "One or more modelines.\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             default: [],
@@ -101,21 +101,21 @@ export default nix.lambda((args) => (() => {
             ]),
           })))),
         mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "Default video mode.\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             example: "768x1024",
           })))),
         scale: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             description: "Display scaling factor.\n",
-            type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "int")), nix.thunk(() => nix.sel(lib, "types", "float")))), (x) => nix.gt(x, 0n)))), { __proto__: pos$10, description: "null or positive integer or float" })),
+            type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "int")), nix.thunk(() => nix.sel(lib, "types", "float")))), (x) => nix.gt(x, 0n)))), { [nix.POS]: pos$10, description: "null or positive integer or float" })),
             default: null,
             example: 2n,
           })))),
         rotate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             description: "Screen transformation.\n",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                 "90",
@@ -152,9 +152,9 @@ theme = ${nix.sel(phoc, "cursorTheme")}
 `;
   })();
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "armelclo"))];
@@ -164,34 +164,34 @@ theme = ${nix.sel(phoc, "cursorTheme")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "desktopManager", "phosh"]), nix.thunk(() => ["services", "desktopManager", "phosh"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           phosh: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable the Phone Shell.",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "phosh", nix.thunk(() => ({})))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "The user to run the Phosh service.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "alice",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "The group to run the Phosh service.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "users",
               })))),
             phocConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Configurations for the Phoc compositor.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "lines")),
@@ -205,32 +205,32 @@ theme = ${nix.sel(phoc, "cursorTheme")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: true,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
-          "graphical-desktop": nix.thunk(() => ({ __proto__: pos$25, enable: true })),
+          "graphical-desktop": nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
           gnome: nix.thunk(() => ({
-            __proto__: pos$28,
-            "core-shell": nix.thunk(() => ({ __proto__: pos$26, enable: true })),
-            "core-os-services": nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+            [nix.POS]: pos$28,
+            "core-shell": nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
+            "core-os-services": nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             phosh: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               wantedBy: nix.thunk(() => ["graphical.target"]),
               after: nix.thunk(() => ["getty@tty1.service"]),
               conflicts: nix.thunk(() => ["getty@tty1.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/phosh-session`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -248,7 +248,7 @@ theme = ${nix.sel(phoc, "cursorTheme")}
                 UtmpMode: "user",
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 XDG_CURRENT_DESKTOP: "Phosh:GNOME",
                 XDG_SESSION_DESKTOP: "phosh",
                 XDG_SESSION_TYPE: "wayland",
@@ -258,9 +258,9 @@ theme = ${nix.sel(phoc, "cursorTheme")}
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           portal: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: true,
             extraPortals: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-phosh")),
@@ -271,37 +271,37 @@ theme = ${nix.sel(phoc, "cursorTheme")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "phoc")),
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.sel(pkgs, "stevia")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "phosh/phoc.ini": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               source: nix.thunk(() => (nix.asBool(nix.builtins.isPath(nix.thunk(() => nix.sel(cfg, "phocConfig")))) ? nix.sel(cfg, "phocConfig") : (nix.asBool(nix.builtins.isString(nix.thunk(() => nix.sel(cfg, "phocConfig")))) ? nix.app(nix.sel(pkgs, "writeText"), "phoc.ini", nix.thunk(() => nix.sel(cfg, "phocConfig"))) : nix.app(nix.sel(pkgs, "writeText"), "phoc.ini", nix.thunk(() => nix.app(renderPhocConfig, nix.thunk(() => nix.sel(cfg, "phocConfig")))))))),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$41,
-          feedbackd: nix.thunk(() => ({ __proto__: pos$40, enable: true })),
+          [nix.POS]: pos$41,
+          feedbackd: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
         })),
         i18n: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           inputMethod: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             type: "ibus",
-            ibus: nix.thunk(() => ({ __proto__: pos$42, waylandFrontend: true })),
+            ibus: nix.thunk(() => ({ [nix.POS]: pos$42, waylandFrontend: true })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           pam: nix.thunk(() => ({
-            __proto__: pos$46,
-            services: nix.thunk(() => ({ __proto__: pos$45, phosh: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$46,
+            services: nix.thunk(() => ({ [nix.POS]: pos$45, phosh: nix.thunk(() => ({})) })),
           })),
         })),
       })))),

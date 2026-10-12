@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const runCommand = nix.arg($_1, "runCommand");
       const jq = nix.arg($_1, "jq");
       return nix.app(runCommand, name, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [jq, nix.thunk(() => nix.sel(cfg, "package"))]),
           value: nix.thunk(() => nix.builtins.toJSON(value)),
           passAsFile: nix.thunk(() => ["value"]),
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
     })(), formals$2), nix.thunk(() => ({})));
   const generateConfig = nix.thunk(() => (nix.asBool(nix.sel(cfg, "validateSettings")) ? generateValidatedConfig : nix.sel(json, "generate")));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -67,15 +67,15 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         renovate: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "renovate")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "renovate", nix.thunk(() => ({})))),
           schedule: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -85,17 +85,17 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           credentials: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")));
               })()),
               description: "Allows configuring environment variable credentials for renovate, read from files.\nThis should always be used for passing confidential data to renovate.\n",
-              example: nix.thunk(() => ({ __proto__: pos$4, RENOVATE_TOKEN: "/etc/renovate/token" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, RENOVATE_TOKEN: "/etc/renovate/token" })),
               default: nix.thunk(() => ({})),
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -105,11 +105,11 @@ export default nix.lambda((args) => (() => {
                       ]))))));
               })()),
               description: "Extra environment variables to export to the Renovate process\nfrom the systemd unit configuration.\n\nSee <https://docs.renovatebot.com/config-overview> for available environment variables.\n",
-              example: nix.thunk(() => ({ __proto__: pos$6, LOG_LEVEL: "debug" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$6, LOG_LEVEL: "debug" })),
               default: nix.thunk(() => ({})),
             })))),
           runtimePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -118,17 +118,17 @@ export default nix.lambda((args) => (() => {
               default: [],
             })))),
           validateSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to run renovate's config validator on the built configuration.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(json, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 platform: "gitea",
                 endpoint: "https://git.example.com",
                 gitAuthor: "Renovate <renovate@example.com>",
@@ -139,29 +139,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           renovate: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               cacheDir: "/var/cache/renovate",
               baseDir: "/var/lib/renovate",
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               RENOVATE_CONFIG_FILE: nix.thunk(() => nix.app(generateConfig, "renovate-config.json", nix.thunk(() => nix.sel(cfg, "settings")))),
               HOME: "/var/lib/renovate",
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             renovate: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Renovate dependency updater",
               documentation: nix.thunk(() => ["https://docs.renovatebot.com/"]),
               after: nix.thunk(() => ["network.target"]),
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
               ], nix.sel(cfg, "runtimePackages"))),
               environment: nix.thunk(() => nix.attr(cfg, "environment")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 User: "renovate",
                 Group: "renovate",
                 DynamicUser: true,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "papermc",
       version: version,
       hash: hash,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 install -D $src $out/share/papermc/papermc.jar
@@ -41,15 +41,15 @@ runHook postInstall
       preferLocalBuild: true,
       allowSubstitutes: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           command: nix.thunk(() => [nix.path(here, "./update.py")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-performance Minecraft Server",
         homepage: "https://papermc.io/",
         sourceProvenance: nix.thunk(() => (() => {

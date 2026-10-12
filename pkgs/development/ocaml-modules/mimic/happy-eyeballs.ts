@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const mimic = nix.arg($, "mimic");
   const happy_eyeballs_mirage = nix.arg($, "happy-eyeballs-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mimic-happy-eyeballs",
       src: nix.thunk(() => nix.attr(mimic, "src")),
       version: nix.thunk(() => nix.attr(mimic, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mimic, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Happy-eyeballs integration into mimic",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
         license: nix.thunk(() => nix.attr(from, "license")),

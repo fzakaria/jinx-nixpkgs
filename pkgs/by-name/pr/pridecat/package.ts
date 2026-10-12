@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pridecat",
       version: "0-unstable-2020-06-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lunasorcery",
           repo: "pridecat",
           rev: "92396b11459e7a4b5e8ff511e99d18d7a1589c96",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix_install.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Like cat, but more colorful",
         homepage: "https://github.com/lunasorcery/pridecat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-40")),

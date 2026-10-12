@@ -86,15 +86,15 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       config: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         podman: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "podman")), nix.thunk(() => ({})))),
       })),
       options: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         image: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.force(nix.lookup(w_1, "str"));
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
             example: "library/hello-world",
           })))),
         imageFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "pathInStore")));
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.dockerTools.buildImage {...};")),
           })))),
         imageStream: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -123,16 +123,16 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.dockerTools.streamLayeredImage {...};")),
           })))),
         serviceName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "backend")}-${name}`),
             defaultText: "<backend>-<name>",
             description: "Systemd service name that manages the container",
           })))),
         login: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
               description: "Username for login.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
               example: "/etc/nixos/dockerhub-password.txt",
             })))),
           registry: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -162,7 +162,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         cmd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["--port=9000"]),
           })))),
         labels: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -180,12 +180,12 @@ export default nix.lambda((args) => (() => {
             default: nix.thunk(() => ({})),
             description: "Labels to attach to the container at runtime.",
             example: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "traefik.https.routers.example.rule": "Host(`example.container`)",
             })),
           })))),
         entrypoint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -195,17 +195,17 @@ export default nix.lambda((args) => (() => {
             example: "/bin/my-app",
           })))),
         environment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
             })()),
             default: nix.thunk(() => ({})),
             description: "Environment variables to set for this container.",
-            example: nix.thunk(() => ({ __proto__: pos$14, DATABASE_HOST: "db.example.com", DATABASE_PORT: "3306" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$14, DATABASE_HOST: "db.example.com", DATABASE_PORT: "3306" })),
           })))),
         environmentFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -215,13 +215,13 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["/path/to/.env", "/path/to/.env.secret"]),
           })))),
         "log-driver": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "journald",
             description: "Logging driver for the container.  The default of\n`\"journald\"` means that the container's logs will be\nhandled as part of the systemd unit.\n\nFor more details and a full list of logging drivers, refer to respective backends documentation.\n\nFor Docker:\n[Docker engine documentation](https://docs.docker.com/engine/logging/configure/)\n\nFor Podman:\nRefer to the {manpage}`docker-run(1)` man page.\n",
           })))),
         ports: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -231,7 +231,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["127.0.0.1:8080:9000"]),
           })))),
         user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -241,7 +241,7 @@ export default nix.lambda((args) => (() => {
             example: "alice:users",
           })))),
         volumes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -251,7 +251,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["volume_name:/path/inside/container", "/path/on/host:/path/inside/container"]),
           })))),
         workdir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -261,7 +261,7 @@ export default nix.lambda((args) => (() => {
             example: "/var/lib/hello_world",
           })))),
         dependsOn: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -271,7 +271,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "virtualisation.oci-containers.containers = {\n  node1 = {};\n  node2.dependsOn = [ \"node1\" ];\n};\n")),
           })))),
         hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -281,7 +281,7 @@ export default nix.lambda((args) => (() => {
             example: "hello-world",
           })))),
         preRunExtraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -291,7 +291,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["--runtime", "runsc"]),
           })))),
         extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -301,7 +301,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["--network=host"]),
           })))),
         autoStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.force(nix.lookup(w_1, "bool"));
@@ -310,19 +310,19 @@ export default nix.lambda((args) => (() => {
             description: "When enabled, the container is automatically started on boot.\nIf this option is set to false, the container has to be started on-demand via its service.\n",
           })))),
         podman: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   options: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     sdnotify: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         default: "conmon",
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["conmon", "healthy", "container"]))),
                         description: "Determines how `podman` should notify systemd that the unit is ready. There are\n[three options](https://docs.podman.io/en/latest/markdown/podman-run.1.html#sdnotify-container-conmon-healthy-ignore):\n\n* `conmon`: marks the unit as ready when the container has started.\n* `healthy`: marks the unit as ready when the [container's healthcheck](https://docs.podman.io/en/stable/markdown/podman-healthcheck-run.1.html) passes.\n* `container`: `NOTIFY_SOCKET` is passed into the container and the process inside the container needs to indicate on its own that it's ready.\n",
                       })))),
                     user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         default: "root",
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         description: "The user under which the container should run.\n",
@@ -333,7 +333,7 @@ export default nix.lambda((args) => (() => {
             description: "Podman-specific settings in OCI containers. These must be null when using\nthe `docker` backend.\n",
           })))),
         pull: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["always", "missing", "never", "newer"]));
@@ -342,17 +342,17 @@ export default nix.lambda((args) => (() => {
             description: "Image pull policy for the container. Must be one of: always, missing, never, newer\n",
           })))),
         capabilities: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "bool")))));
             })()),
             default: nix.thunk(() => ({})),
             description: "Capabilities to configure for the container.\nWhen set to true, capability is added to the container.\nWhen set to false, capability is dropped from the container.\nWhen null, default runtime settings apply.\n",
-            example: nix.thunk(() => ({ __proto__: pos$33, SYS_ADMIN: true, SYS_WRITE: false })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$33, SYS_ADMIN: true, SYS_WRITE: false })),
           })))),
         devices: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -362,7 +362,7 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["/dev/dri:/dev/dri"]),
           })))),
         privileged: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.force(nix.lookup(w_1, "bool"));
@@ -371,13 +371,13 @@ export default nix.lambda((args) => (() => {
             description: "Give extended privileges to the container\n",
           })))),
         autoRemoveOnStop: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "Automatically remove the container when it is stopped or killed\n",
           })))),
         networks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -393,7 +393,7 @@ export default nix.lambda((args) => (() => {
     const dependsOn = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (k) => (v) => nix.str`${nix.sel(v, "serviceName")}.service`, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "getAttrs"), nix.thunk(() => nix.sel(container, "dependsOn")), nix.thunk(() => nix.sel(cfg, "containers"))))));
     const escapedName = nix.thunk(() => nix.app(nix.lookup(w, "escapeShellArg"), name));
     const preStartScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         name: "pre-start",
         runtimeInputs: [],
         text: nix.thunk(() => nix.str`${nix.sel(cfg, "backend")} rm -f ${name} || true
@@ -418,7 +418,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "
     const uid = nix.thunk(() => nix.attr(from, "uid"));
     const dependOnLingerService = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "backend"), "podman")) && nix.asBool(!nix.eq(effectiveUser, "root")))) && nix.asBool(nix.sel(config, "users", "users", nix.key(nix.force(effectiveUser)), "linger"))));
     return {
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       wantedBy: nix.thunk(() => nix.concat([], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(container, "autoStart")), "multi-user.target"))),
       wants: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(container, "imageFile"), null)) && nix.asBool(nix.eq(nix.sel(container, "imageStream"), null)))), "network-online.target"), nix.app(nix.sel(lib, "optionals"), dependOnLingerService, nix.thunk(() => ["linger-users.service"])))),
       after: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "docker")), nix.thunk(() => ["docker.service", "docker.socket"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(container, "imageFile"), null)) && nix.asBool(nix.eq(nix.sel(container, "imageStream"), null)))), nix.thunk(() => ["network-online.target"])), nix.concat(dependsOn, nix.concat(nix.app(nix.sel(lib, "optionals"), dependOnLingerService, nix.thunk(() => ["linger-users.service"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.eq(effectiveUser, "root")) && nix.asBool(nix.eq(nix.sel(container, "podman", "sdnotify"), "healthy")))), nix.thunk(() => [
@@ -430,7 +430,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "
       environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           proxy_env,
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "backend"), "podman")) && nix.asBool(!nix.eq(nix.sel(container, "podman", "user"), "root")))), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               HOME: nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.sel(container, "podman", "user")), "home")),
             })))),
         ]))),
@@ -451,17 +451,17 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "
       preStop: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "backend"), "podman")) ? nix.str`podman stop --ignore --cidfile=/run/${escapedName}/ctr-id` : nix.str`${nix.sel(cfg, "backend")} stop ${name} || true`)),
       postStop: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "backend"), "podman")) ? nix.str`podman rm -f --ignore --cidfile=/run/${escapedName}/ctr-id` : nix.str`${nix.sel(cfg, "backend")} rm -f ${name} || true`)),
       unitConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(effectiveUser, "root")), nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           RequiresMountsFor: nix.thunk(() => nix.str`/run/user/${nix.app(nix.builtins.toString, uid)}/containers`),
         })))),
       serviceConfig: nix.thunk(() => nix.update({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         ExecStartPre: nix.thunk(() => [nix.thunk(() => nix.str`${preStartScript}/bin/pre-start`)]),
         TimeoutStartSec: 0n,
         TimeoutStopSec: 120n,
         Restart: "on-failure",
       }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "podman")), nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           Environment: "PODMAN_SYSTEMD_UNIT=%n",
           Type: "notify",
           NotifyAccess: "all",
@@ -472,31 +472,31 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "
     };
   })();
   return {
-    __proto__: pos$65,
+    [nix.POS]: pos$65,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["docker-containers"]), nix.thunk(() => ["virtualisation", "oci-containers"]), (oldcfg) => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           backend: "docker",
           containers: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(nix.builtins.removeAttrs, nix.thunk(() => nix.update(v, {
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 extraOptions: nix.thunk(() => nix.selOr(v, () => [], "extraDockerOptions")),
               })), nix.thunk(() => ["extraDockerOptions"])), nix.thunk(() => nix.sel(oldcfg, "docker-containers")))),
         }))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         "oci-containers": nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           backend: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["podman", "docker"]))),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "22.05")) ? "podman" : "docker")),
               description: "The underlying Docker implementation to use.",
             })))),
           containers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), containerOptions)))),
               description: "OCI (Docker) containers to run as systemd services.",
@@ -506,9 +506,9 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "containers"), {})), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             systemd: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.sel(v, "serviceName")), nix.thunk(() => nix.app(mkService, n, v))), nix.thunk(() => nix.sel(cfg, "containers")))),
             })),
             assertions: nix.thunk(() => (() => {
@@ -519,17 +519,17 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "
                 const podman = nix.arg($_1, "podman");
                 return [
                   nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     assertion: nix.thunk(() => (nix.asBool(nix.eq(imageFile, null)) || nix.asBool(nix.eq(imageStream, null)))),
                     message: nix.thunk(() => nix.str`virtualisation.oci-containers.containers.${name}: You can only define one of imageFile and imageStream`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "backend"), "docker")) || nix.asBool(nix.eq(podman, null)))),
                     message: nix.thunk(() => nix.str`virtualisation.oci-containers.containers.${name}: Cannot set \`podman\` option if backend is \`docker\`.`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     assertion: nix.thunk(() => (!nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "backend"), "podman")) && nix.asBool(nix.eq(nix.sel(podman, "sdnotify"), "healthy")))) && nix.asBool(!nix.eq(nix.sel(podman, "user"), "root")))) || nix.asBool(!nix.eq(nix.sel(config, "users", "users", nix.key(nix.sel(podman, "user")), "uid"), null)))),
                     message: nix.thunk(() => nix.str`Rootless container ${name} (with podman and sdnotify=healthy)
 requires that its running user ${nix.sel(podman, "user")} has a statically specified uid.
@@ -550,17 +550,17 @@ but lingering for this user is turned off.
                 })(), formals$4), [], nix.thunk(() => nix.sel(cfg, "containers")))))),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "podman")), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               virtualisation: nix.thunk(() => ({
-                __proto__: pos$60,
-                podman: nix.thunk(() => ({ __proto__: pos$59, enable: true })),
+                [nix.POS]: pos$60,
+                podman: nix.thunk(() => ({ [nix.POS]: pos$59, enable: true })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "docker")), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               virtualisation: nix.thunk(() => ({
-                __proto__: pos$63,
-                docker: nix.thunk(() => ({ __proto__: pos$62, enable: true })),
+                [nix.POS]: pos$63,
+                docker: nix.thunk(() => ({ [nix.POS]: pos$62, enable: true })),
               })),
             })))),
         ]))))),

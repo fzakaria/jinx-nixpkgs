@@ -62,11 +62,11 @@ export default nix.thunk(() => (() => {
       "xscale-unknown-linux-gnu",
     ]);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.add(targetPrefix, "binutils")),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://gnu/binutils/binutils-with-gold-${version}.tar.bz2`),
             hash: "sha256-uMmj15bcCw6OqTXcJMXI1vNF6xd62lrGpbESLHfWIVg=",
           })))),
@@ -88,7 +88,7 @@ export default nix.thunk(() => (() => {
         noSysDirs: noSysDirs,
         preConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(buildPlatform, "isDarwin")), "for i in */configure.ac; do\n  pushd \"$(dirname \"$i\")\"\n  echo \"Running autoreconf in $PWD\"\n  # autoreconf doesn't work, don't know why\n  # autoreconf ${autoreconfFlags:---install --force --verbose}\n  autoconf\n  popd\ndone\n"), "# Clear the default library search path.\nif test \"$noSysDirs\" = \"1\"; then\n    echo 'NATIVE_LIB_DIRS=' >> ld/configure.tgt\nfi\n\n# Use symlinks instead of hard links to save space (\"strip\" in the\n# fixup phase strips each hard link separately).\nfor i in binutils/Makefile.in gas/Makefile.in ld/Makefile.in gold/Makefile.in; do\n    sed -i \"$i\" -e 's|ln |ln -s |'\ndone\n\nconfigureScript=\"$PWD/configure\"\nmkdir $NIX_BUILD_TOP/build\ncd $NIX_BUILD_TOP/build\n")),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(hostPlatform, "isDarwin")) || nix.asBool(nix.sel(hostPlatform, "isFreeBSD")))) ? "-Wno-string-plus-int -Wno-deprecated-declarations" : "-static-libgcc")),
         })),
         hardeningDisable: nix.thunk(() => ["format"]),
@@ -135,11 +135,11 @@ done
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withAllTargets) && nix.asBool(targetHasGas))), nix.thunk(() => nix.str`ln -s $out/bin/${nix.sel(stdenv, "targetPlatform", "config")}-as $out/bin/as
 `)))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           targetPrefix: targetPrefix,
           hasGold: enableGold,
           isGNU: true,
-          "plugin-api-header": nix.thunk(() => nix.app(runCommand, "libbfd-plugin-api-header", nix.thunk(() => ({ __proto__: pos$3, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
+          "plugin-api-header": nix.thunk(() => nix.app(runCommand, "libbfd-plugin-api-header", nix.thunk(() => ({ [nix.POS]: pos$3, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
 tar --directory=$out \\
 --extract \\
 --file=${nix.sel(finalAttrs, "src")} \\
@@ -149,7 +149,7 @@ tar --directory=$out \\
         })),
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Tools for manipulating binaries (linker, assembler, etc.)",
           longDescription: "The GNU Binutils are a collection of binary tools.  The main\nones are `ld' (the GNU linker) and `as' (the GNU assembler).\nThey also include the BFD (Binary File Descriptor) library,\n`gprof', `nm', `strip', etc.\n",
           homepage: "https://www.gnu.org/software/binutils/",

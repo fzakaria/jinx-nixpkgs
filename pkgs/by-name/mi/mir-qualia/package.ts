@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mir.qualia",
       version: "2.0.0",
       format: "setuptools",
@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "pytest"))];
       })()),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://pypi/m/mir.qualia/mir.qualia-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1ybq6jb5clh9hw0sp3idp4hjv2gkm9yiaph48gcc208affflc8m9",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamically enable sections of config files",
         mainProgram: "qualia",
         homepage: "https://github.com/darkfeline/mir.qualia",

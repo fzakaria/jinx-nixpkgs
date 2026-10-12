@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libncurses_tinfo = nix.arg($, "libncurses-tinfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libedit",
       extraPaths: nix.thunk(() => ["contrib/libedit"]),
       buildInputs: nix.thunk(() => [libncurses_tinfo]),

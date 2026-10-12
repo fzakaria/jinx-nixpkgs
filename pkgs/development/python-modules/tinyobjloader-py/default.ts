@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const tinyobjloader = nix.arg($, "tinyobjloader");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tinyobjloader-py",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(tinyobjloader, "version")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tinyobjloader"]),
       meta: nix.thunk(() => nix.update(nix.sel(tinyobjloader, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python wrapper for the C++ wavefront .obj loader tinyobjloader",
       })),
     })));

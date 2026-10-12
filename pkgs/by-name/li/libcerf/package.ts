@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libcerf",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "jugit.fz-juelich.de",
           group: "mlz",
           owner: "lib",
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, gnuplot: gnuplot })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gnuplot: gnuplot })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://jugit.fz-juelich.de/mlz/lib/cerf/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),
         description: "Complex error (erf), Dawson, Faddeeva, and Voigt function library",
         homepage: "https://jugit.fz-juelich.de/mlz/lib/cerf",

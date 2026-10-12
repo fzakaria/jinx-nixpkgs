@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const icu = icu63;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fltrdr",
       version: "0.3.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "fltrdr",
           owner: "octobanana",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icu, openssl]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i '/stdc++fs/d' CMakeLists.txt\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://octobanana.com/software/fltrdr",
         description: "TUI text reader for the terminal",
         longDescription: "Fltrdr, or flat-reader, is an interactive text reader for the terminal. It\nis flat in the sense that the reader is word-based. It creates a\nhorizontal stream of words, ignoring all newline characters and reducing\nextra whitespace. Its purpose is to facilitate reading, scanning, and\nsearching text. The program has a play mode that moves the reader forward\none word at a time, along with a configurable words per minute (WPM),\nsetting.\n",

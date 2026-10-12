@@ -7,13 +7,13 @@ const pos$2 = nix.positions(here + "/gemset.nix", [["groups", 3, 5], ["platforms
 const pos$3 = nix.positions(here + "/gemset.nix", [["wayback_machine_downloader", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   wayback_machine_downloader: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "170426sashqc2k2angg8d0bhs7spi1x1isv6cyk2hif0l6xxm3cm",
       type: "gem",

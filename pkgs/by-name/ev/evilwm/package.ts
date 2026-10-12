@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const config = nix.arg($, "config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "evilwm",
       version: "1.5",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.6809.org.uk/evilwm/evilwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YQSFJBPm1QZpNh3K3aWiXTnisrDJWmOEAiyQWVeidA8=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace ./Makefile \\\n  --replace /usr $out \\\n  --replace \"CC = gcc\" \"#CC = gcc\"\n",
       patches: nix.thunk(() => nix.selOr(config, () => [], "evilwm", "patches")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.6809.org.uk/evilwm/",
         description: "Minimalist window manager for the X Window System",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortName: "evilwm",
             fullName: "Custom, inherited from aewm and 9wm",
             url: "https://www.6809.org.uk/evilwm/",

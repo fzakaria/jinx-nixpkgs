@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libtracefs = nix.arg($, "libtracefs");
   const libtraceevent = nix.arg($, "libtraceevent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libndctl",
       version: "83",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pmem",
           repo: "ndctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ substituteInPlace git-version-gen --replace-fail /bin/sh ${nix.sel(stdenv, "shel
 echo "m4_define([GIT_VERSION], [${nix.sel(finalAttrs, "version")}])" > version.m4;
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for managing the Linux Non-Volatile Memory Device sub-system",
         homepage: "https://github.com/pmem/ndctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

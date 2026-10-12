@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qhotkey",
       version: "1.5.0-unstable-2025-07-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Skycoder42",
           repo: "qhotkey",
           rev: "6c0e98492c59206139f8490706aadeb8ed033057",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [qtbase]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Skycoder42/QHotkey",
         description: "Global shortcut/hotkey for Desktop Qt-Applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

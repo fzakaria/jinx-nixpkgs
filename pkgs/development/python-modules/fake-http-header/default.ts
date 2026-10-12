@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fake-http-header",
       version: "0.3.5-unstable-2025-07-09",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MichaelTatarski",
           repo: "fake-http-header",
           rev: "0f110477d3ecae916e88608a123360227bfb6109",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Generates random request fields for a http request header",
           homepage: "https://github.com/MichaelTatarski/fake-http-header",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mit")),

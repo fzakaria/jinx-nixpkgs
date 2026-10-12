@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
   const nodejs_slim_24 = nix.arg($, "nodejs-slim_24");
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs_slim = nodejs_slim_24;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "sable-unwrapped",
       version: "1.22.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SableClient",
           repo: "Sable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RwYKaJ4k2lqXjVSPN/o0Qw8GIGnXfb6acCpva36qQoM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-sI0tE73l+yKS8186tUHrNAJmGD26XEe7828ohvvc+1o=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs_slim, pnpmConfigHook, pnpm]),
-      env: nix.thunk(() => ({ __proto__: pos$4, VITE_IS_RELEASE_TAG: "true", VITE_BUILD_HASH: "nix" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, VITE_IS_RELEASE_TAG: "true", VITE_BUILD_HASH: "nix" })),
       buildPhase: "runHook preBuild\n\npnpm build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "An almost stable Matrix client",
         homepage: "https://github.com/SableClient/Sable",
         changelog: nix.thunk(() => nix.str`https://github.com/SableClient/Sable/releases/tag/v${nix.sel(finalAttrs, "version")}`),

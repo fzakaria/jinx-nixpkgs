@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "requests-http-message-signatures",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "dev.funkwhale.audio",
           owner: "funkwhale",
           repo: "requests-http-message-signatures",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["requests_http_message_signatures"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Request authentication plugin implementing IETF HTTP Message Signatures",
         homepage: "https://dev.funkwhale.audio/funkwhale/requests-http-message-signatures",
         changelog: nix.thunk(() => nix.str`https://dev.funkwhale.audio/funkwhale/requests-http-message-signatures/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

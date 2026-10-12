@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const rev = "12052dec15d0e0948032c7ec11eff2da0d109106";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "streamcontroller",
       version: "1.5.0-beta.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "StreamController",
           owner: "StreamController",
           rev: rev,
@@ -68,7 +68,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "StreamController",
             desktopName: "StreamController",
             exec: "streamcontroller",
@@ -185,7 +185,7 @@ runHook postInstall
       })())),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Elegant Linux app for the Elgato Stream Deck with support for plugins",
         homepage: "https://streamcontroller.core447.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

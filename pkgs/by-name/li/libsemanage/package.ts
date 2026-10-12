@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const swig = nix.argOr($, "swig", () => null);
   const python3 = nix.argOr($, "python3", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libsemanage",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/libsemanage-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-52FgKGu/sIIWAsbAwyIOvPNmrTJG07nQoPvvzTXoYEM=",
         })))),
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
         "DEFAULT_SEMANAGE_CONF_LOCATION=$(out)/etc/selinux/semanage.conf",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["DISABLE_SHARED=y"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=clobbered"]))),
       })),
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => ["install-pywrap"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(libsepol, "meta")), nix.thunk(() => ["outputsToInstall"])), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Policy management tools for SELinux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
       })),

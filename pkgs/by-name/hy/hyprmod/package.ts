@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprmod",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlueManCZ",
           repo: "hyprmod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n# GnomeDesktop.XkbInfo aborts without the org.gnome.desktop.* schemas, which\n# are otherwise only wired up by the wrapper this phase runs before\nexport XDG_DATA_DIRS=\"$GSETTINGS_SCHEMAS_PATH${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}\"\n",
       checkPhase: "runHook preCheck\nxvfb-run -s '-screen 0 1024x768x24' pytest\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native GTK4/libadwaita settings application for Hyprland",
         homepage: "https://github.com/BlueManCZ/hyprmod",
         changelog: nix.thunk(() => nix.str`https://github.com/BlueManCZ/hyprmod/releases/tag/v${nix.sel(finalAttrs, "version")}`),

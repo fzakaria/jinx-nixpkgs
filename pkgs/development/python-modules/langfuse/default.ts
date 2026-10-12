@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "langfuse",
       version: "4.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langfuse",
           repo: "langfuse-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["langfuse"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Instrument your LLM app with decorators or low-level SDK and get detailed tracing/observability",
         homepage: "https://github.com/langfuse/langfuse-python",
         changelog: nix.thunk(() => nix.str`https://github.com/langfuse/langfuse-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

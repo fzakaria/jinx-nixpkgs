@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const additionalLexers = nix.argOr($, "additionalLexers", () => ["Nix"]);
   nix.assert_(nix.builtins.elem(widgetset, nix.thunk(() => ["gtk3", "qt5"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cu/cudatext/package.nix:29:1");
   const deps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (spec) => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         repo: name,
         owner: nix.thunk(() => nix.attr(spec, "owner")),
         rev: nix.thunk(() => nix.attr(spec, "rev")),
         hash: nix.thunk(() => nix.attr(spec, "hash")),
       }))), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./deps.json")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cudatext",
       version: "1.237.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Alexey-T",
           repo: "CudaText",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +63,7 @@ substituteInPlace app/proc_editor_saving.pas \\
       nativeBuildInputs: nix.thunk(() => nix.concat([lazarus, fpc], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(widgetset, "gtk3")), wrapGAppsHook3), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(widgetset, "qt5")), nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")))))),
       buildInputs: nix.thunk(() => nix.concat([libx11], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(widgetset, "gtk3")), nix.thunk(() => [harfbuzz, pango, cairo, glib, atk, gdk_pixbuf, gtk3])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(widgetset, "qt5")), nix.thunk(() => nix.sel(libsForQt5, "libqtpas")))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "--as-needed",
             "-rpath",
@@ -90,9 +90,9 @@ else
   exit 1
 fi
 `, additionalLexers))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform code editor",
         longDescription: "Text/code editor with lite UI. Syntax highlighting for 200+ languages.\nConfig system in JSON files. Multi-carets and multi-selections.\nSearch and replace with RegEx. Extendable by Python plugins and themes.\n",
         homepage: "https://cudatext.github.io/",

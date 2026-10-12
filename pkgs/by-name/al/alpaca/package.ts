@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const bash = nix.arg($, "bash");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       bibtexparser: nix.thunk(() => nix.sel(self, "bibtexparser_2")),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.2.5";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Jeffser",
           repo: "Alpaca",
           tag: version,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(pythonPackages, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "speech-to-text": nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "openai-whisper")),
             nix.thunk(() => nix.lookup(w_1, "pyaudio")),
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils, ollama]))}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ollama client made with GTK4 and Adwaita",
         longDescription: "To run Alpaca with GPU acceleration enabled, simply override it:\n```nix\npkgs.alpaca.override {\n  ollama = pkgs.ollama-cuda;\n}\n```\nOr using `pkgs.ollama-rocm` for AMD GPUs.\nFor a vendor agnostic solution, use: `pkgs.ollama-vulkan`.\n",
         homepage: "https://jeffser.com/alpaca",
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

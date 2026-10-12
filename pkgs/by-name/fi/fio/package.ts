@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withLibnbd = nix.argOr($, "withLibnbd", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const libnbd = nix.arg($, "libnbd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fio",
       version: "3.42",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axboe",
           repo: "fio",
           tag: nix.thunk(() => nix.str`fio-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([cunit, python3, zlib], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), libaio), nix.app(nix.sel(lib, "optional"), withLibnbd, libnbd)))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/axboe/fio/commit/a84eece62edd46c1f4c8047f1052ac6181fc8b3e.patch?full_index=1",
             hash: "sha256-ik/PMlNEJa2mIOIWn4utSNfLG/iV7sjN+XmyOkEX83Q=",
           })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./unittests/unittest\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/axboe/fio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Flexible IO Tester - an IO benchmark tool",
         homepage: "https://github.com/axboe/fio",

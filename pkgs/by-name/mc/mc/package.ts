@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mc",
       version: "4.8.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/midnightcommander/mc-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yuFJ1C+ETlGF2MgdfbOROo+iFMZfhSIAqdiWtGivFkw=",
         })))),
@@ -59,11 +59,11 @@ patchelf \\
   $out/bin/mc
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mc", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of \"Current version is: 4.8.27; ...\".\nnew_version=\"$(curl -s https://midnight-commander.org/ | pcre2grep -o1 'Current version is: (([0-9]+\\.?)+);')\"\nupdate-source-version mc \"$new_version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File Manager and User Shell for the GNU Project, known as Midnight Commander",
         downloadPage: "https://ftp.osuosl.org/pub/midnightcommander/",
         homepage: "https://midnight-commander.org",

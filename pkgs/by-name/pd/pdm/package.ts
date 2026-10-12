@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pdm = nix.arg($, "pdm");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (_) => (super$) => ({
-        __proto__: pos$3,
-        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ __proto__: pos$1, enableTk: false })))),
-        moto: nix.thunk(() => nix.app(nix.sel(super$, "moto", "overridePythonAttrs"), (old) => ({ __proto__: pos$2, doCheck: false }))),
+        [nix.POS]: pos$3,
+        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableTk: false })))),
+        moto: nix.thunk(() => nix.app(nix.sel(super$, "moto", "overridePythonAttrs"), (old) => ({ [nix.POS]: pos$2, doCheck: false }))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.27.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "pdm-project",
           repo: "pdm",
           tag: version,
@@ -113,14 +113,14 @@ substituteInPlace tests/cli/test_run.py \\
       ]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$6, package: pdm })))),
+          [nix.POS]: pos$7,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, package: pdm })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://pdm-project.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pdm-project/pdm/releases/tag/${version}`),
         description: "Modern Python package and dependency manager supporting the latest PEP standards",
@@ -136,7 +136,7 @@ substituteInPlace tests/cli/test_run.py \\
         mainProgram: "pdm",
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

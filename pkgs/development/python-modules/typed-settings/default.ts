@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const version = "25.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "typed_settings",
           version: version,
           hash: "sha256-hl61LDGE9GdwVkWh5Y251xngi515V0SKKtjLvCLtIaY=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [attrs, cattrs, click, click_option_group, jinja2, pydantic]),
         attrs: nix.thunk(() => [attrs]),
         cattrs: nix.thunk(() => [cattrs]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/test_onepassword.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["tests/test_cli_argparse.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["typed_settings"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Typed settings based on attrs classes",
         homepage: "https://gitlab.com/sscherfke/typed-settings",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/sscherfke/typed-settings/-/blob/${version}/CHANGELOG.rst`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

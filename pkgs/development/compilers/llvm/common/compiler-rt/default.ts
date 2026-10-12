@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const isWindows = nix.thunk(() => nix.attr(from, "isWindows"));
   const noSanitizers = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(haveLibc)) || nix.asBool(bareMetal))) || nix.asBool(isMusl))) || nix.asBool(isDarwinStatic))) || nix.asBool(isWindows)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`compiler-rt${nix.app(nix.sel(lib, "optionalString"), haveLibc, "-libc")}`),
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`compiler-rt-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -70,17 +70,17 @@ cp -r ${monorepoSrc}/llvm "$out"
       ], nix.concat([
         nix.thunk(() => nix.app(getVersionFile, "compiler-rt/armv6-scudo-libatomic.patch")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "19")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/llvm/llvm-project/pull/99837/commits/14ae0a660a38e1feb151928a14f35ff0f4487351.patch",
             hash: "sha256-JykABCaNNhYhZQxCvKiBn54DZ5ZguksgCHnpdwWF2no=",
             relative: "compiler-rt",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), release_version)), "20")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/llvm/llvm-project/commit/59978b21ad9c65276ee8e14f26759691b8a65763.patch",
             hash: "sha256-ys5SMLfO3Ay9nCX9GV5yRCQ6pLsseFu/ZY6Xd6OL4p0=",
             relative: "compiler-rt",
           }))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "22.1.5")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/llvm/llvm-project/commit/3dc4fd6dd41100f051a63642f449b16324389c96.patch?full_index=1",
             hash: "sha256-Av6CN95XjdUagIKh3AAjD0UK8r01fDz0cD0BLjZ70dg=",
             relative: "compiler-rt",
@@ -89,7 +89,7 @@ cp -r ${monorepoSrc}/llvm "$out"
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV")))), linuxHeaders), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => nix.sel(freebsd, "include"))))),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-DSCUDO_DEFAULT_OPTIONS=delete_size_mismatch=false:dealloc_type_mismatch=false",
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(haveLibc)), nix.thunk(() => ["-Wno-error=implicit-function-declaration"])))))),
@@ -160,7 +160,7 @@ ln -s $out/lib/*/${atomicLibrary} ${runtimeDirectory}/
         })())))),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://compiler-rt.llvm.org/",
         description: "Compiler runtime libraries",
         longDescription: "The compiler-rt project provides highly tuned implementations of the\nlow-level code generator support routines like \"__fixunsdfdi\" and other\ncalls generated when a target doesn't have a short sequence of native\ninstructions to implement a core IR operation. It also provides\nimplementations of run-time libraries for dynamic testing tools such as\nAddressSanitizer, ThreadSanitizer, MemorySanitizer, and DataFlowSanitizer.\n",

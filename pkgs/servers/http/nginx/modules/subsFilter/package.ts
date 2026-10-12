@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "subsFilter",
       version: "0.6.4-unstable-2022-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yaoweibin",
           repo: "ngx_http_substitutions_filter_module",
           rev: "e12e965ac1837ca709709f9a26f572a54d83430e",
           hash: "sha256-3sWgue6QZYwK69XSi9q8r3WYGVyMCIgfqqLvPBHqJKU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Filter module which can do both regular expression and fixed string substitutions",
         homepage: "https://github.com/yaoweibin/ngx_http_substitutions_filter_module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

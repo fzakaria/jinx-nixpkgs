@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const tree_sitter_grammars = nix.arg($, "tree-sitter-grammars");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.23.0",
       pname: "keymap-drawer",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caksoylar",
           repo: "keymap-drawer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["keymap_drawer"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "keymap-drawer": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Module and CLI tool to help parse and draw keyboard layouts",
         homepage: "https://github.com/caksoylar/keymap-drawer",
         changelog: nix.thunk(() => nix.str`https://github.com/caksoylar/keymap-drawer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

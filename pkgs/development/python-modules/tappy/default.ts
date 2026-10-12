@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const version = "3.2.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tap.py",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "tap_py",
           version: version,
           hash: "sha256-0DyeavClb62ZTxxp8UBB5naBHXPu7vIL9Ad8Q9Yh1gg=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, yaml: nix.thunk(() => [pyyaml, more_itertools]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, yaml: nix.thunk(() => [pyyaml, more_itertools]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["tap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of tools for working with the Test Anything Protocol (TAP) in Python",
         homepage: "https://github.com/python-tap/tappy",
         changelog: "https://tappy.readthedocs.io/en/latest/releases.html",

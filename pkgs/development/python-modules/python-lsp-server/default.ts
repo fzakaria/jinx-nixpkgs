@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-lsp",
           repo: "python-lsp-server",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         ujson,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           autopep8,
           flake8,
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_autoimport_code_actions_and_completions_for_notebook_document"]))));
       const pythonImportsCheck = nix.thunk(() => ["pylsp", "pylsp.python_lsp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation of the Language Server Protocol",
         homepage: "https://github.com/python-lsp/python-lsp-server",
         changelog: nix.thunk(() => nix.str`https://github.com/python-lsp/python-lsp-server/blob/v${version}/CHANGELOG.md`),
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pylsp",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

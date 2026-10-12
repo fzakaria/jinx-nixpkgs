@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const outputHashAlgo = nix.argOr($_1, "outputHashAlgo", () => null);
         const name = nix.argOr($_1, "name", () => "fetchdarcs");
         return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             builder: nix.path(here, "./builder.sh"),
             nativeBuildInputs: nix.thunk(() => [cacert, darcs]),
             strictDeps: true,

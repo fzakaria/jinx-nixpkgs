@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const workspace = "@typespec/compiler...";
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "typespec",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "typespec",
           tag: nix.thunk(() => nix.str`typespec-stable@${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nodejs, pnpmConfigHook, pnpm]),
       pnpmWorkspaces: nix.thunk(() => [workspace]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -88,14 +88,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=typespec-stable@(\\d+\\.\\d+\\.\\d+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language for defining cloud service APIs and shapes",
         longDescription: "TypeSpec is a highly extensible language with primitives that can describe\nAPI shapes common among REST, OpenAPI, gRPC, and other protocols.\n\nTypeSpec is excellent for generating many different API description\nformats, client and service code, documentation, and many other assets.\nAll this while keeping your TypeSpec definition as a single source of truth.\n",
         homepage: "https://typespec.io/",

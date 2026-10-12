@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const version = "6.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-designateclient",
           tag: version,
           hash: "sha256-OBvPdulj2lg2FCyMDOp1iw12MxLre0/jkMdc7syJatc=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook, sphinxcontrib_apidoc]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
       const build_system = nix.thunk(() => [pbr, setuptools]);
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["designateclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://opendev.org/openstack/python-designateclient",
         description: "Client library for OpenStack Designate API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

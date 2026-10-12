@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ovmfvartool",
       version: "unstable-2022-09-04",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baloo",
           repo: "ovmfvartool",
           rev: "6a17190131bf44699ea27815543a65efff880142",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ovmfvartool"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "nixos-test-driver"));
-          return { __proto__: pos$2, efivars: nix.thunk(() => nix.attr(from, "efivars")) };
+          return { [nix.POS]: pos$2, efivars: nix.thunk(() => nix.attr(from, "efivars")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Parse and generate OVMF_VARS.fd from Yaml",
         mainProgram: "ovmfvartool",
         homepage: "https://github.com/hlandau/ovmfvartool",

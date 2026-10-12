@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.app(nix.sel(lib, "isString"), root), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/python/editable.nix:37:1");
     const dependencies$ = nix.thunk(() => nix.concat(dependencies, build_system));
     const pyprojectContents = nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       project: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: pname,
         version: version,
         scripts: scripts,
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
         "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.builtins.map, nix.thunk(() => nix.sel(lib, "getName"))), optional_dependencies)),
       })),
       tool: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         hatch: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           build: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             targets: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               wheel: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "bypass-selection": true,
                 "force-include": nix.thunk(() => nix.attrsDyn({}, [[nix.str`_${pname}.pth`, nix.thunk(() => nix.str`_${pname}.pth`)]])),
               })),
@@ -67,13 +67,13 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       "build-system": nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         requires: nix.thunk(() => ["hatchling"]),
         "build-backend": "hatchling.build",
       })),
     }));
     return nix.app(buildPythonPackage, nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname,
         version: version,
         "optional-dependencies": optional_dependencies,
@@ -86,7 +86,7 @@ echo 'import os.path, sys; sys.path.insert(0, os.path.expandvars("${root}"))' > 
 `),
         "build-system": nix.thunk(() => [hatchling]),
       }, nix.update(derivationArgs, {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(derivationArgs, () => [], "nativeBuildInputs"), [tomli_w])),
         pyprojectContents: pyprojectContents,
         preferLocalBuild: true,

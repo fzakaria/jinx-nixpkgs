@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "influxdb2-provision";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oddlama",
           repo: "influxdb2-provision",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "install -Dm0555 influxdb2-provision.py $out/bin/influxdb2-provision\nwrapProgram $out/bin/influxdb2-provision --prefix PYTHONPATH : \"$PYTHONPATH\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small utility to help provisioning influxdb2",
         homepage: "https://github.com/oddlama/influxdb2-provision",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "influxdb2-provision",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

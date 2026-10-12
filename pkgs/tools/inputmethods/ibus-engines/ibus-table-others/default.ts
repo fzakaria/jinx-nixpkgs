@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-table-others";
       const version = "1.3.22";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/moebiuscurve/ibus-table-others/releases/download/${version}/${pname}-${version}.tar.gz`),
           hash: "sha256-DnBNOj0fqCkoJThJvEej0qxHAsVgLHm6r4qcOLCrMqM=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [ibus, ibus_table]);
       const preBuild = "export HOME=$TMPDIR\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         description: "Various table-based input methods for IBus",
         homepage: "https://github.com/moebiuscurve/ibus-table-others",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ldmtool",
       version: "0.2.5-unstable-2025-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdbooth",
           repo: "libldm",
           rev: "1eafb653ac6347a9d4281848c8295f9daffb1613",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         libuuid,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool and library for managing Microsoft Windows Dynamic Disks",
         homepage: "https://github.com/mdbooth/libldm",
         maintainers: nix.thunk(() => (() => {

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "polkit-stdin-agent",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "r-vdp",
           repo: "polkit-stdin-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-TbvJit+xbT7IIv7/uxXIKGjgEmVUwwdKfb4ptMQEztM=",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nixos-rebuild-target-host": nix.thunk(() => nix.attr(nixosTests, "nixos-rebuild-target-host")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Non-interactive polkit authentication agent that answers PAM prompts from a file descriptor",
         longDescription: "Registers a per-process polkit authentication agent for a wrapped\ncommand and answers the PAM conversation from a file descriptor\ninstead of /dev/tty, giving run0 / systemd-run the same\n\"password on stdin\" ergonomics as `sudo --stdin`.\n\nUsed by `nixos-rebuild --elevate=run0 --ask-elevate-password` to\nauthenticate on a target host over SSH without allocating a TTY.\n",
         homepage: "https://codeberg.org/r-vdp/polkit-stdin-agent",

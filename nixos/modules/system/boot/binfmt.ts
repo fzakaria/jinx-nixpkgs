@@ -84,87 +84,87 @@ exec -- ${interpreter} "$@"
   })(), formals$3);
   const magics = nix.thunk(() => nix.sel(utils, "binfmtMagics"));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "binfmtMiscRegistrations"]), nix.thunk(() => ["boot", "binfmt", "registrations"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       boot: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         binfmt: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           registrations: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => ({})),
               description: "Extra binary formats to register with the kernel.\nSee <https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html> for more details.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$4);
                     const config_1 = nix.arg($_1, "config");
                     return {
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       options: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         recognitionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             default: "magic",
                             description: "Whether to recognize executables by magic number or extension.",
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["magic", "extension"]))),
                           })))),
                         offset: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             default: null,
                             description: "The byte offset of the magic number used for recognition.",
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
                           })))),
                         magicOrExtension: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             description: "The magic number or extension to match on.",
                             type: nix.thunk(() => nix.sel(types, "str")),
                           })))),
                         mask: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             default: null,
                             description: "A mask to be ANDed with the byte sequence of the file before matching",
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           })))),
                         interpreter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             description: "The interpreter to invoke to run the program.\n\nNote that the actual registration will point to\n/run/binfmt/${name}, so the kernel interpreter length\nlimit doesn't apply.\n",
                             type: nix.thunk(() => nix.sel(types, "path")),
                           })))),
                         preserveArgvZero: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             default: false,
                             description: "Whether to pass the original argv[0] to the interpreter.\n\nSee the description of the 'P' flag in the kernel docs\nfor more details;\n",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         openBinary: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             default: nix.thunk(() => nix.sel(config_1, "matchCredentials")),
                             description: "Whether to pass the binary to the interpreter as an open\nfile descriptor, instead of a path.\n",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         matchCredentials: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             default: false,
                             description: "Whether to launch with the credentials and security\ntoken of the binary, not the interpreter (e.g. setuid\nbit).\n\nSee the description of the 'C' flag in the kernel docs\nfor more details.\n\nImplies/requires openBinary = true.\n",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         fixBinary: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             default: false,
                             description: "Whether to open the interpreter file as soon as the\nregistration is loaded, rather than waiting for a\nrelevant file to be invoked.\n\nSee the description of the 'F' flag in the kernel docs\nfor more details.\n",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         wrapInterpreterInShell: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             default: true,
                             description: "Whether to wrap the interpreter in a shell script.\n\nThis allows a shell command to be set as the interpreter.\n",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         interpreterSandboxPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             internal: true,
                             default: null,
                             description: "Path of the interpreter to expose in the build sandbox.\n",
@@ -175,21 +175,21 @@ exec -- ${interpreter} "$@"
                   })(), formals$4))))),
             })))),
           emulatedSystems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: [],
               example: nix.thunk(() => ["wasm32-wasip1", "x86_64-windows", "aarch64-linux"]),
               description: "List of systems to emulate. Will also configure Nix to\nsupport your new systems.\nWarning: the builder can execute all emulated systems within the same build, which introduces impurities in the case of cross compilation.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => nix.builtins.attrNames(magics)))))),
             })))),
           addEmulatedSystemsToNixSandbox: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               example: false,
               description: "Whether to add the {option}`boot.binfmt.emulatedSystems` to {option}`nix.settings.extra-platforms`.\nDisable this to use remote builders for those platforms, while allowing testing binaries locally.\n",
             })))),
           preferStaticEmulators: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: false,
               description: "Whether to use static emulators when available.\n\nThis enables the kernel to preload the emulator binaries when\nthe binfmt registrations are added, obviating the need to make\nthe emulator binaries available inside chroots and chroot-like\nsandboxes.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
@@ -198,25 +198,25 @@ exec -- ${interpreter} "$@"
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       assertions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (reg) => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(reg, "fixBinary")) || nix.asBool(!nix.asBool(nix.sel(reg, "wrapInterpreterInShell"))))),
           message: nix.thunk(() => nix.str`boot.binfmt.registrations."${name}" cannot have fixBinary when the interpreter is invoked through a shell.`),
         }), nix.thunk(() => nix.sel(cfg, "registrations")))),
       boot: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         binfmt: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           registrations: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((system) => (() => {
                 nix.assert_(!nix.eq(system, nix.sel(pkgs, "stdenv", "hostPlatform", "system")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/system/boot/binfmt.nix:238:9");
                 return {
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   name: system,
                   value: nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$5);
                     const config_1 = nix.arg($_1, "config");
-                    const elaborated = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ __proto__: pos$22, system: system }))));
+                    const elaborated = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: pos$22, system: system }))));
                     const useStaticEmulator = nix.thunk(() => (nix.asBool(nix.sel(cfg, "preferStaticEmulators")) && nix.asBool(nix.app(nix.sel(elaborated, "staticEmulatorAvailable"), pkgs))));
                     const interpreter = nix.thunk(() => nix.app(nix.sel(elaborated, "emulator"), nix.thunk(() => (nix.asBool(useStaticEmulator) ? nix.sel(pkgs, "pkgsStatic") : nix.force(pkgs)))));
                     const qemuArch = nix.thunk(() => nix.attr(elaborated, "qemuArch"));
@@ -227,7 +227,7 @@ exec -- ${interpreter} "$@"
                       return (nix.asBool((nix.asBool(isQemu) && nix.asBool(!nix.asBool(useStaticEmulator)))) ? nix.str`${wrapper}/bin/${wrapperName}` : nix.force(interpreter));
                     })());
                     return nix.update({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       preserveArgvZero: nix.thunk(() => nix.app(mkDefault, isQemu)),
                       interpreter: nix.thunk(() => nix.app(mkDefault, interpreterReg)),
                       fixBinary: nix.thunk(() => nix.app(mkDefault, useStaticEmulator)),
@@ -240,9 +240,9 @@ exec -- ${interpreter} "$@"
         })),
       })),
       nix: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "addEmulatedSystemsToNixSandbox")) && nix.asBool(!nix.eq(nix.sel(cfg, "emulatedSystems"), [])))), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "extra-platforms": nix.thunk(() => nix.concat(nix.sel(cfg, "emulatedSystems"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")), "i686-linux"))),
             "extra-sandbox-paths": nix.thunk(() => (() => {
               const ruleFor = (system) => nix.sel(cfg, "registrations", nix.key(nix.force(system)));
@@ -253,34 +253,34 @@ exec -- ${interpreter} "$@"
           })))),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         etc: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           "binfmt.d/nixos.conf": nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             source: nix.thunk(() => nix.builtins.toFile("binfmt_nixos.conf", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), makeBinfmtLine, nix.thunk(() => nix.sel(config, "boot", "binfmt", "registrations")))))))),
           })),
         })),
       })),
       systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               rules: nix.thunk(() => nix.concat(["d /run/binfmt 0755 -"], nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (interpreter) => nix.str`L+ /run/binfmt/${name} - - - - ${interpreter}`, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), mkInterpreter, nix.thunk(() => nix.sel(config, "boot", "binfmt", "registrations"))))))),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "boot", "binfmt", "registrations"), {})), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               additionalUpstreamSystemUnits: nix.thunk(() => [
                 "proc-sys-fs-binfmt_misc.automount",
                 "proc-sys-fs-binfmt_misc.mount",
                 "systemd-binfmt.service",
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 "systemd-binfmt": nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   after: nix.thunk(() => ["systemd-tmpfiles-setup.service"]),
                   restartTriggers: nix.thunk(() => [
                     nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(config, "boot", "binfmt", "registrations")))),

@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
     const stack_1 = nix.argOr($_1, "stack", () => nix.sel(depArgs, "stack"));
     const stackCmd = nix.thunk(() => nix.str`stack --internal-re-exec-version=${nix.sel(stack_1, "version")}`);
     const stackHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "stack-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./stack-hook.sh")));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         __noChroot: true,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), glibcLocales))),
         nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [ghc_1, pkg_config, stack_1, stackHook])),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           STACK_PLATFORM_VARIANT: "nix",
           STACK_IN_NIX_SHELL: 1n,
           STACK_IN_NIX_EXTRA_ARGS: extraArgs,

@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const libcxx = nix.arg($, "libcxx");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aapt",
       version: "8.13.2-14304508",
       src: nix.thunk(() => (() => {
         const urlAndHash = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.google.com/android/maven2/com/android/tools/build/aapt2/${nix.sel(finalAttrs, "version")}/aapt2-${nix.sel(finalAttrs, "version")}-linux.jar`),
           hash: "sha256-eiNY58ueDpcyKvAteRuKFVr3r22kOhwSADkaH3CRwKw=",
         } : (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://dl.google.com/android/maven2/com/android/tools/build/aapt2/${nix.sel(finalAttrs, "version")}/aapt2-${nix.sel(finalAttrs, "version")}-osx.jar`),
           hash: "sha256-RI/S2oXMSvipALRfeRTsiXUh130/b8iP+EO0yltd7x0=",
         } : nix.builtins.throw(nix.thunk(() => nix.str`Unsupport platform: ${nix.sel(stdenvNoCC, "system")}`)))));
-        return nix.app(fetchzip, nix.thunk(() => nix.update(urlAndHash, { __proto__: pos$3, extension: "zip", stripRoot: false })));
+        return nix.app(fetchzip, nix.thunk(() => nix.update(urlAndHash, { [nix.POS]: pos$3, extension: "zip", stripRoot: false })));
       })()),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [libcxx]))),
       installPhase: "runHook preInstall\n\ninstall -D aapt2 $out/bin/aapt2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Build tool that compiles and packages Android app's resources",
         mainProgram: "aapt2",
         homepage: "https://developer.android.com/tools/aapt2",

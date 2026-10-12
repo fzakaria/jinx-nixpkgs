@@ -11,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     xppen_3: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "xppen_3",
         version: "3.4.9-240607",
         url: "https://www.xp-pen.com/download/file.html?id=2901&pid=819&ext=gz",
         hash: "sha256-ZXeTlDjhryXamb7x2LxDdOtf8R9rgKPyUsdx96XchWM=",
       })))),
     xppen_4: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "xppen_4",
         version: "4.0.7-250117",
         url: "https://www.xp-pen.com/download/file.html?id=3652&pid=1211&ext=gz",

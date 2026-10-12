@@ -25,7 +25,7 @@ You can do this by using "nix-prefetch-url file://$PWD/vessel-${version}-bin" in
 directory where you saved it.
 `);
       const src = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: goBuyItNow,
           name: nix.thunk(() => nix.str`vessel-${version}-bin`),
           sha256: "1vpwcrjiln2mx43h7ib3jnccyr3chk7a5x2bw9kb4lw8ycygvg96",
@@ -78,7 +78,7 @@ EOW
 chmod +x $out/bin/Vessel
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fluid physics based puzzle game",
         longDescription: "Living liquid machines have overrun this world of unstoppable progress,\nand it is the role of their inventor, Arkwright, to stop the chaos they are\ncausing. Vessel is a game about a man with the power to bring ordinary matter\nto life, and all the consequences that ensue.\n",
         homepage: "http://www.strangeloopgames.com",
@@ -89,7 +89,7 @@ chmod +x $out/bin/Vessel
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         goBuyItNow,

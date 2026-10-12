@@ -84,29 +84,29 @@ export default nix.lambda((args) => (() => {
 `))}`);
   const solutions = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       scripts: nix.thunk(() => ["bin/xdg-desktop-icon"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [xdg_user_dirs])),
       execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${xdg_user_dirs}/bin/xdg-user-dir`)]),
       fake: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         external: nix.thunk(() => nix.concat(commonFakes, ["gconftool-2"])),
       })),
-      keep: nix.thunk(() => ({ __proto__: pos$2, $KDE_SESSION_VERSION: true })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$2, $KDE_SESSION_VERSION: true })),
       prologue: commonPrologue,
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       scripts: nix.thunk(() => ["bin/xdg-desktop-menu"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [gawk])),
-      fake: nix.thunk(() => ({ __proto__: pos$4, external: commonFakes })),
-      keep: nix.thunk(() => ({ __proto__: pos$5, $KDE_SESSION_VERSION: true })),
+      fake: nix.thunk(() => ({ [nix.POS]: pos$4, external: commonFakes })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$5, $KDE_SESSION_VERSION: true })),
       prologue: commonPrologue,
     })),
     nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       scripts: nix.thunk(() => ["bin/xdg-email"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`cannot:${nix.builtins.placeholder("out")}/bin/xdg-open`),
       ]),
       fake: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         external: nix.thunk(() => nix.concat(commonFakes, [
           "exo-open",
           "gconftool-2",
@@ -130,9 +130,9 @@ export default nix.lambda((args) => (() => {
           "xdg-email-hook.sh",
         ])),
       })),
-      fix: nix.thunk(() => ({ __proto__: pos$8, "/bin/echo": true })),
+      fix: nix.thunk(() => ({ [nix.POS]: pos$8, "/bin/echo": true })),
       keep: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         $command: true,
         $kreadconfig: true,
         $THUNDERBIRD: true,
@@ -140,21 +140,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       scripts: nix.thunk(() => ["bin/xdg-icon-resource"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: commonDeps,
-      fake: nix.thunk(() => ({ __proto__: pos$11, external: commonFakes })),
-      keep: nix.thunk(() => ({ __proto__: pos$12, $KDE_SESSION_VERSION: true })),
+      fake: nix.thunk(() => ({ [nix.POS]: pos$11, external: commonFakes })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$12, $KDE_SESSION_VERSION: true })),
       prologue: commonPrologue,
     })),
     nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       scripts: nix.thunk(() => ["bin/xdg-mime"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [file, gawk])),
       fake: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         external: nix.thunk(() => nix.concat(commonFakes, [
           "gio",
           "gnomevfs-info",
@@ -170,8 +170,8 @@ export default nix.lambda((args) => (() => {
           "qtxdg-mat",
         ])),
       })),
-      fix: nix.thunk(() => ({ __proto__: pos$15, "/usr/bin/file": true })),
-      keep: nix.thunk(() => ({ __proto__: pos$16, $KDE_SESSION_VERSION: true, $KTRADER: true })),
+      fix: nix.thunk(() => ({ [nix.POS]: pos$15, "/usr/bin/file": true })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$16, $KDE_SESSION_VERSION: true, $KTRADER: true })),
       prologue: nix.thunk(() => nix.str`${nix.app(writeText, "xdg-mime-prologue", nix.thunk(() => nix.str`export XDG_DATA_DIRS="$XDG_DATA_DIRS\${XDG_DATA_DIRS:+:}${shared_mime_info}/share"
 export PERL5LIB=${(() => {
           const w = nix.withScope(perlPackages, null);
@@ -181,7 +181,7 @@ export PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreut
 `))}`),
     })),
     nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       scripts: nix.thunk(() => ["bin/xdg-open"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [
@@ -193,7 +193,7 @@ export PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreut
         nix.thunk(() => nix.str`cannot:${nix.builtins.placeholder("out")}/bin/xdg-mime`),
       ]),
       fake: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         external: nix.thunk(() => nix.concat(commonFakes, [
           "cygstart",
           "dde-open",
@@ -214,21 +214,21 @@ export PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreut
           "wslpath",
         ])),
       })),
-      fix: nix.thunk(() => ({ __proto__: pos$19, $printf: nix.thunk(() => ["printf"]) })),
+      fix: nix.thunk(() => ({ [nix.POS]: pos$19, $printf: nix.thunk(() => ["printf"]) })),
       keep: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "env:$command": true,
         $browser: true,
         $KDE_SESSION_VERSION: true,
       })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       scripts: nix.thunk(() => ["bin/xdg-screensaver"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [hostname, perl, procps])),
       fake: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         external: nix.thunk(() => nix.concat(commonFakes, [
           "dcop",
           "lockfile",
@@ -238,7 +238,7 @@ export PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreut
           "xset",
         ])),
       })),
-      keep: nix.thunk(() => ({ __proto__: pos$23, $MV: true, $XPROP: true, $lockfile_command: true })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$23, $MV: true, $XPROP: true, $lockfile_command: true })),
       execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${perl}/bin/perl`)]),
       prologue: nix.thunk(() => nix.str`${nix.app(writeText, "xdg-screensaver-prologue", nix.thunk(() => nix.str`export PERL5LIB=${(() => {
           const w = nix.withScope(perlPackages, null);
@@ -253,7 +253,7 @@ export PATH=$PATH:${coreutils}/bin
 `))}`),
     })),
     nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       scripts: nix.thunk(() => ["bin/xdg-settings"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [jq, nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin`)])),
@@ -261,7 +261,7 @@ export PATH=$PATH:${coreutils}/bin
         nix.thunk(() => nix.str`cannot:${nix.builtins.placeholder("out")}/bin/xdg-mime`),
       ]),
       fake: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         external: nix.thunk(() => nix.concat(commonFakes, [
           "gconftool-2",
           "kreadconfig",
@@ -274,27 +274,27 @@ export PATH=$PATH:${coreutils}/bin
           "qtxdg-mat",
         ])),
       })),
-      keep: nix.thunk(() => ({ __proto__: pos$26, $KDE_SESSION_VERSION: true, $handler: true })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$26, $KDE_SESSION_VERSION: true, $handler: true })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       scripts: nix.thunk(() => ["bin/xdg-terminal"]),
       interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       inputs: nix.thunk(() => nix.concat(commonDeps, [bash, nix.thunk(() => nix.sel(glib, "bin")), which])),
       fake: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         external: nix.thunk(() => nix.concat(commonFakes, ["gconftool-2", "exo-open", "lxterminal", "qterminal", "terminology"])),
       })),
-      keep: nix.thunk(() => ({ __proto__: pos$29, $command: true, $kreadconfig: true, $terminal_exec: true })),
+      keep: nix.thunk(() => ({ [nix.POS]: pos$29, $command: true, $kreadconfig: true, $terminal_exec: true })),
       prologue: commonPrologue,
     })),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       pname: "xdg-utils",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           domain: "gitlab.freedesktop.org",
           owner: "xdg",
           repo: "xdg-utils",
@@ -309,15 +309,15 @@ export PATH=$PATH:${coreutils}/bin
       buildInputs: nix.thunk(() => [bash]),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(resholve, "phraseSolution"), "xdg-utils-resholved")), solutions)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         tests: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           "xdg-mime": nix.thunk(() => nix.app(runCommand, "xdg-mime-test", nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               preferLocalBuild: true,
-              xenias: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (hash) => (urls) => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$32, hash: hash, urls: urls }))), nix.thunk(() => ({
-                  __proto__: pos$33,
+              xenias: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (hash) => (urls) => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$32, hash: hash, urls: urls }))), nix.thunk(() => ({
+                  [nix.POS]: pos$33,
                   "sha256-SL95tM1AjOi7vDnCyT10s0tvQvc+ZSZBbkNOYXfbOy0=": nix.thunk(() => ["https://static1.e621.net/data/0e/76/0e7672980d48e48c2d1373eb2505db5a.png"]),
                   "sha256-Si9AtB7J9o6rK/oftv+saST77CNaeWomWU5ECfbRioM=": nix.thunk(() => ["https://static1.e621.net/data/25/3d/253dc77fbc60d7214bc60e4a647d1c32.jpg"]),
                   "sha256-Z+onQRY5zlDWPp5/y4E6crLz3TaMCNipcxEEMSHuLkM=": nix.thunk(() => [
@@ -329,7 +329,7 @@ export PATH=$PATH:${coreutils}/bin
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         homepage: "https://www.freedesktop.org/wiki/Software/xdg-utils/",
         description: "Set of command line tools that assist applications with a variety of desktop integration tasks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

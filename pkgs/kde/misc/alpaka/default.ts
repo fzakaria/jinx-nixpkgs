@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alpaka",
       version: "0-unstable-2026-07-28",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "utilities",
           repo: "alpaka",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ovKP/yMZPmZ1YCQHwQwNqded0o0z67Ub+1RrPnd99XU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libspl = nix.arg($, "libspl");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "cddl/usr.bin/ctfmerge",
       extraPaths: nix.thunk(() => [
         "cddl/compat/opensolaris",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["STRIP=-s", "MK_WERROR=no", "MK_TESTS=no"]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [zlib, libspl, libelf])),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),

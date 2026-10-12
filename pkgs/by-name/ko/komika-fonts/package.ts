@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const curlOptsList = nix.argOr($_1, "curlOptsList", () => []);
     return nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: url,
         hash: hash,
         curlOptsList: curlOptsList,
@@ -36,30 +36,30 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const fontMap = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     display: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://www.1001fonts.com/download/komika-display.zip",
       hash: "sha256-6oNKuaoV+a/cFCKFXRV8gtWqvFtPGtrqg+vt8hQREMI=",
     })),
     hand: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://www.1001fonts.com/download/komika.zip",
       hash: "sha256-yb5SWQj7BRCLYHL31m25bhCOuo8qAvkRzGH6UIo3Bbs=",
     })),
     poster: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "https://www.1001freefonts.com/d/5010/komika-poster.zip",
       hash: "sha256-k1uUfHSh9kymCJrfuPtKHejFeZGl2PxL4C/3hpoPIc4=",
       curlOptsList: nix.thunk(() => ["-H", "Referer: https://www.1001freefonts.com/komika-poster.font"]),
     })),
     text: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "https://www.1001fonts.com/download/komika-text.zip",
       hash: "sha256-FdeFGw6MlYVTiYdvbfjSlQYq+UlKZTJ79HAdEEjMPQs=",
     })),
     title: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: "https://www.1001freefonts.com/d/5011/komika-title.zip",
       hash: "sha256-M/1NgsHjLR/w/ZxWEb5cebqEI1VKgPvtk75bhAPaw20=",
       curlOptsList: nix.thunk(() => ["-H", "Referer: https://www.1001freefonts.com/komika-title.font"]),
@@ -71,14 +71,14 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(unknown, [])) ? nix.builtins.throw(nix.thunk(() => nix.str`Unknown variant(s): ${nix.app(nix.sel(lib, "concatStringsSep"), " ", unknown)}`)) : nix.force(variants));
   })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "komika-fonts",
       version: "0-unstable-2001-06-16",
       sourceRoot: ".",
       srcs: nix.thunk(() => nix.builtins.map((variant) => nix.app(fetchFont, nix.thunk(() => nix.sel(fontMap, nix.key(nix.force(variant))))), selectedFonts)),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://pedroreina.net/apostrophiclab/",
         description: "First ever comic lettering super family",
         longDescription: "50 fonts, covering everything the comic artist needs when it comes to lettering. 10 text faces, 10 display faces, 10 tiling faces, 10 hand variations, 9 poster faces, and 20 balloons in a font.\n",

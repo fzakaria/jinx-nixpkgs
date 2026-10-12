@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const writeClosure = nix.arg($, "writeClosure");
   const samples = nix.arg($, "samples");
   return nix.app(runCommandLocal, "test-trivial-builders-writeClosure-union", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       __structuredAttrs: true,
       closures: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(writeClosure, nix.thunk(() => [v])), samples)),
       collectiveClosure: nix.thunk(() => nix.app(writeClosure, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), samples)))),
       samples: samples,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ShamrockLee"))];

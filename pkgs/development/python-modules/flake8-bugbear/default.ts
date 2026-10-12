@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.9.30";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "flake8-bugbear",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [flake8, pytestCheckHook, hypothesis, hypothesmith]);
       const pythonImportsCheck = nix.thunk(() => ["bugbear"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for Flake8 to find bugs and design problems",
         homepage: "https://github.com/PyCQA/flake8-bugbear",
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/flake8-bugbear/blob/${nix.sel(src, "tag")}/README.rst#change-log`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

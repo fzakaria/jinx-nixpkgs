@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yabause";
       const version = "0.9.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20250129091147/http://free.downloads.tuxfamily.net/yabause/releases/${version}/yabause-${version}.tar.gz`),
           sha256: "1cn2rjjb7d9pkr4g5bqz55vd4pzyb7hg94cfmixjkzzkw0zw8d23",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "substituteInPlace {./,src/,src/runner/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace src/{c68k,musashi}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source Sega Saturn emulator",
         mainProgram: "yabause",
         homepage: "https://yabause.org/",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

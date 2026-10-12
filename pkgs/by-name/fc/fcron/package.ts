@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sendmailProgram = nix.argOr($, "sendmailProgram", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), busybox)) ? nix.str`${busybox}/sbin/sendmail` : null));
   const editorProgram = nix.argOr($, "editorProgram", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), vim)) ? nix.str`${vim}/bin/vi` : null));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcron",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://fcron.free.fr/archives/fcron-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           sha256: "sha256-dXF+ORbLzvvN5Y57/VFRUNdfdjI4Wy22vdL7wkKJ7NU=",
         })))),
@@ -60,7 +60,7 @@ sed -i '2s@.*@exit 0@' script/boot-install
 find -type f | xargs sed -i -e 's@^\\(\\s\\)*chown@\\1:@' -e 's@^\\(\\s\\)*chgrp@\\1:@'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command scheduler with extended capabilities over cron and anacron",
         homepage: "http://fcron.free.fr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -6,11 +6,11 @@ const pos$1 = nix.positions(here + "/default.nix", [["developer_cmds", 3, 27], [
 const pos$2 = nix.positions(here + "/default.nix", [["percona-server_8_4", 2, 3], ["percona-server", 7, 3]]);
 
 export default (pkgs) => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   "percona-server_8_4": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./8_4.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "darwin"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       developer_cmds: nix.thunk(() => nix.attr(from, "developer_cmds")),
       DarwinTools: nix.thunk(() => nix.attr(from, "DarwinTools")),
       protobuf: nix.thunk(() => nix.sel(pkgs, "protobuf_21")),

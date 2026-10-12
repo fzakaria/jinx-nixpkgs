@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "grafana-discourse-datasource",
       version: "2.0.2",
       zipHash: "sha256-0MTxPe7RJHMA0SwjOcFlbi4VkhlLUFP+5r2DsHAaffc=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Allows users to search and view topics, posts, users, tags, categories, and reports on a given Discourse forum through Grafana",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

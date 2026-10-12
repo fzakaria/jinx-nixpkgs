@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const overrideCC = nix.arg($, "overrideCC");
   const wrapCCWith = nix.arg($, "wrapCCWith");
   const unwrappedCC = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "intel-oneapi-cc-unwrapped",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -32,11 +32,11 @@ exec ${kit}/compiler/latest/bin/icx "$@"
 EOF
 chmod +x $out/bin/clang
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isClang: true, langC: true, langCC: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isClang: true, langC: true, langCC: true })),
       hardeningUnsupportedFlags: nix.thunk(() => ["zerocallusedregs", "pacret", "shadowstack"]),
     }))));
   const wrappedCC = nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       cc: unwrappedCC,
       extraPackages: nix.thunk(() => [kit]),
       extraBuildCommands: nix.thunk(() => nix.str`# Consumers expect the icpx/icx names and might reject clang++/clang.

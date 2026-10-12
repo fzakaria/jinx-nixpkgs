@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const hasVulkanLayers = nix.thunk(() => nix.has(nix.sel(cfg, "package"), "passthru", "vulkanLayers"));
   const layerDir = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/vulkan/implicit_layer.d`);
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         renderdoc: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RenderDoc a frame-capture based graphics debugger")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "renderdoc", nix.thunk(() => ({ __proto__: pos$1, example: "renderdoc" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "renderdoc", nix.thunk(() => ({ [nix.POS]: pos$1, example: "renderdoc" })))),
           installVulkanLayer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Installs the Vulkan layer for RenderDoc,\nwhich is required for Vulkan applications to be captured.\n",
@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "installVulkanLayer")) && nix.asBool(hasVulkanLayers))), nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((name) => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: nix.thunk(() => nix.str`vulkan/implicit_layer.d/${name}`),
-                  value: nix.thunk(() => ({ __proto__: pos$6, source: nix.thunk(() => nix.str`${layerDir}/${name}`) })),
+                  value: nix.thunk(() => ({ [nix.POS]: pos$6, source: nix.thunk(() => nix.str`${layerDir}/${name}`) })),
                 }), nix.thunk(() => nix.sel(cfg, "package", "passthru", "vulkanLayers")))))))),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "installVulkanLayer")) || nix.asBool(hasVulkanLayers))),
             message: nix.thunk(() => nix.str`programs.renderdoc.package (${nix.selOr(cfg, () => "renderdoc", "package", "name")}) does not expose \`passthru.vulkanLayers\`,
 which is required to install the Vulkan implicit layer manifest(s) to /etc/vulkan/implicit_layer.d.
@@ -67,7 +67,7 @@ or set \`programs.renderdoc.installVulkanLayer = false;\`.
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

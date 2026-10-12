@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pig",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/pig/pig-${nix.sel(finalAttrs, "version")}/pig-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-aEWtuTajw7zHFFF2WVPK5BA+QQui9sWkfMm+yt4KQ0o=",
         })))),
@@ -39,7 +39,7 @@ for n in $out/{bin,sbin}"/"*; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pig.apache.org/",
         description: "High-level language for Apache Hadoop",
         mainProgram: "pig",

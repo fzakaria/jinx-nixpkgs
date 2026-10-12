@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const toIoquake3Config = (settings) => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.add(nix.str`seta ${name} "${nix.app(toIoquake3Value, value)}"`, "\n"), settings)));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ioquake3-settings.cfg", nix.thunk(() => nix.app(toIoquake3Config, nix.thunk(() => nix.sel(cfg, "settings"))))));
   const ioquake3Wrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ioquake3-wrapped",
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ioquake3: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ioquake3, an enhanced, cross-platform, open source engine for id Software's Quake 3")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ioquake3", nix.thunk(() => ({})))),
           baseq3: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "package")), nix.thunk(() => nix.lookup(w, "path")));
               })()),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   name: "quake3-demo-content",
                   paths: nix.thunk(() => [
                     nix.thunk(() => nix.sel(pkgs, "quake3demodata")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
               description: "Path to the directory containing the baseq3 files (pak*.pk3).\n\nDefaults to the freely redistributable demo data (pak0) merged\nwith the 1.32 point release files (pak1-pak8), so the game runs\nout of the box without owning a retail copy.\n\nThis value is passed directly as fs_basepath, so pak files are\nsearched for in `${baseq3}/baseq3/`, e.g. a value of\n`/var/lib/quake3` expects `/var/lib/quake3/baseq3/pak0.pk3` and\nso on. To use a full retail install instead, point this at the\ndirectory containing its `baseq3` folder.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -79,18 +79,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [ioquake3Wrapped]),
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
-            "xdg/ioquake3/baseq3/settings.cfg": nix.thunk(() => ({ __proto__: pos$8, source: configFile })),
+            [nix.POS]: pos$9,
+            "xdg/ioquake3/baseq3/settings.cfg": nix.thunk(() => ({ [nix.POS]: pos$8, source: configFile })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

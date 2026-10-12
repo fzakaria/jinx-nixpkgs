@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.46.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "locustio",
           repo: "locust",
           tag: version,
           hash: "sha256-IFKphE/RuGXsCmddXNppnHzayTSETaFLrOm26+6tyBI=",
           postFetch: nix.thunk(() => nix.str`cd $out/locust/webui
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -67,7 +67,7 @@ substituteInPlace locust/test/test_log.py \\
   --replace-fail '"locust"' '"${nix.builtins.placeholder("out")}/bin/locust"'
 `);
       const webui = nix.thunk(() => nix.app(callPackage, nix.path(here, "./webui.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: version,
           "yarn-berry": yarn_berry,
           src: nix.thunk(() => nix.str`${src}/locust/webui`),
@@ -97,7 +97,7 @@ ln -sf ${webui}/dist/* $out/${nix.sel(python, "sitePackages")}/locust/webui/dist
       const nativeCheckInputs = nix.thunk(() => [cryptography, pyquery, pytestCheckHook, retry]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Developer-friendly load testing framework",
         homepage: "https://docs.locust.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/locustio/locust/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -108,7 +108,7 @@ ln -sf ${webui}/dist/* $out/${nix.sel(python, "sitePackages")}/locust/webui/dist
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

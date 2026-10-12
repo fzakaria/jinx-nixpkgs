@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.9.0",
       pname: "scala-bare",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/scala/scala3/releases/download/${nix.sel(finalAttrs, "version")}/scala3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-js3e4z7NpiAlbkt0S5KNOtbeZGU71B5LajCJkrO2uzE=",
         })))),
@@ -33,7 +33,7 @@ for f in $bin_files ; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scala 3 compiler, also known as Dotty",
         homepage: "https://scala-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

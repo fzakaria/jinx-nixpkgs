@@ -61,15 +61,15 @@ export default nix.lambda((args) => (() => {
   const toCommandOptionsString = (options) => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ":", options)}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), options), 0n)), ":")} `;
   const toCommandsString = (commands) => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map((command) => (nix.asBool(nix.app(nix.sel(lib, "isString"), command)) ? nix.force(command) : nix.str`${nix.app(toCommandOptionsString, nix.thunk(() => nix.sel(command, "options")))}${nix.sel(command, "command")}`), commands)));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       security: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "sudo-rs": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           defaultOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -80,35 +80,35 @@ export default nix.lambda((args) => (() => {
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a memory-safe implementation of the {command}`sudo` command,\nwhich allows non-root users to execute commands as root\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sudo-rs", nix.thunk(() => ({})))),
           wheelNeedsPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether users of the `wheel` group must\nprovide a password to run commands as super user via {command}`sudo`.\n",
             })))),
           execWheelOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Only allow members of the `wheel` group to execute sudo by\nsetting the executable's permissions accordingly.\nThis prevents users that are not members of `wheel` from\nexploiting vulnerabilities in sudo such as CVE-2021-3156.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "This string contains the contents of the\n{file}`sudoers` file.\n",
             })))),
           extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Define specific rules to be in the {file}`sudoers` file.\nMore specific rules should come after more general ones in order to\nyield the expected behavior. You can use `lib.mkBefore`/`lib.mkAfter` to ensure\nthis is the case when configuration options are merged.\n",
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  # Allow execution of any command by all users in group sudo,\n  # requiring a password.\n  { groups = [ \"sudo\" ]; commands = [ \"ALL\" ]; }\n\n  # Allow execution of \"/home/root/secret.sh\" by user `backup`, `database`\n  # and the group with GID `1006` without a password.\n  { users = [ \"backup\" \"database\" ]; groups = [ 1006 ];\n    commands = [ { command = \"/home/root/secret.sh\"; options = [ \"SETENV\" \"NOPASSWD\" ]; } ]; }\n\n  # Allow all users of group `bar` to run two executables as user `foo`\n  # with arguments being pre-set.\n  { groups = [ \"bar\" ]; runAs = \"foo\";\n    commands =\n      [ \"/home/baz/cmd1.sh hello-sudo\"\n          { command = ''/home/baz/cmd2.sh \"\"''; options = [ \"SETENV\" ]; } ]; }\n]\n")),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       options: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
                             default: [],
                           })))),
                         groups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -126,13 +126,13 @@ export default nix.lambda((args) => (() => {
                             default: [],
                           })))),
                         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "ALL",
                             description: "For what host this rule should apply.\n",
                           })))),
                         runAs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                               return nix.force(nix.lookup(w_1, "str"));
@@ -141,16 +141,16 @@ export default nix.lambda((args) => (() => {
                             description: "Under which user/group the specified command is allowed to run.\n\nA user can be specified using just the username: `\"foo\"`.\nIt is also possible to specify a user/group combination using `\"foo:bar\"`\nor to only allow running as a specific group with `\":bar\"`.\n",
                           })))),
                         commands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             description: "The commands for which the rule should apply.\n",
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$12,
+                                      [nix.POS]: pos$12,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$11,
+                                        [nix.POS]: pos$11,
                                         command: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$9,
+                                            [nix.POS]: pos$9,
                                             type: nix.thunk(() => (() => {
                                               const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w_1);
                                               return nix.force(nix.lookup(w_2, "str"));
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
                                             description: "A command being either just a path to a binary to allow any arguments,\nthe full command with arguments pre-set or with `\"\"` used as the argument,\nnot allowing arguments to the command at all.\n",
                                           })))),
                                         options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$10,
+                                            [nix.POS]: pos$10,
                                             type: nix.thunk(() => (() => {
                                               const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w_1);
                                               return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "enum"), nix.thunk(() => [
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration text appended to {file}`sudoers`.\n",
@@ -195,29 +195,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "security", "sudo", "enable"))),
             message: "`security.sudo` and `security.sudo-rs` cannot both be enabled",
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           sudo: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
           })),
           shadow: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             su: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "package")))),
             })),
           })),
           "sudo-rs": nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             extraRules: nix.thunk(() => (() => {
               const defaultRule = nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
@@ -226,12 +226,12 @@ export default nix.lambda((args) => (() => {
                 const opts = nix.argOr($_1, "opts", () => []);
                 return [
                   nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     users: users,
                     groups: groups,
                     commands: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         command: "ALL",
                         options: nix.thunk(() => nix.concat(opts, nix.sel(cfg, "defaultOptions"))),
                       })),
@@ -240,9 +240,9 @@ export default nix.lambda((args) => (() => {
                 ];
               })(), formals$2);
               return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 400n, nix.thunk(() => nix.app(defaultRule, nix.thunk(() => ({ __proto__: pos$27, users: nix.thunk(() => ["root"]) })))))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 400n, nix.thunk(() => nix.app(defaultRule, nix.thunk(() => ({ [nix.POS]: pos$27, users: nix.thunk(() => ["root"]) })))))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 600n, nix.thunk(() => nix.app(defaultRule, nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         groups: nix.thunk(() => ["wheel"]),
                         opts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "wheelNeedsPassword"))), "NOPASSWD")),
                       })))))),
@@ -271,9 +271,9 @@ ${nix.sel(cfg, "extraConfig")}
             const setuid = true;
             const permissions = nix.thunk(() => (nix.asBool(nix.sel(cfg, "execWheelOnly")) ? "u+rx,g+x" : "u+rx,g+x,o+x"));
             return {
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               sudo: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 owner: owner,
                 group: group,
@@ -281,7 +281,7 @@ ${nix.sel(cfg, "extraConfig")}
                 permissions: permissions,
               })),
               sudoedit: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "sudoedit")),
                 owner: owner,
                 group: group,
@@ -291,24 +291,24 @@ ${nix.sel(cfg, "extraConfig")}
             };
           })()),
           pam: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             services: nix.thunk(() => ({
-              __proto__: pos$36,
-              "su-l": nix.thunk(() => ({ __proto__: pos$33, rootOK: true, forwardXAuth: true, logFailures: true })),
-              sudo: nix.thunk(() => ({ __proto__: pos$34, sshAgentAuth: true, usshAuth: true })),
-              "sudo-i": nix.thunk(() => ({ __proto__: pos$35, sshAgentAuth: true, usshAuth: true })),
+              [nix.POS]: pos$36,
+              "su-l": nix.thunk(() => ({ [nix.POS]: pos$33, rootOK: true, forwardXAuth: true, logFailures: true })),
+              sudo: nix.thunk(() => ({ [nix.POS]: pos$34, sshAgentAuth: true, usshAuth: true })),
+              "sudo-i": nix.thunk(() => ({ [nix.POS]: pos$35, sshAgentAuth: true, usshAuth: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             sudoers: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "sudoers", nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sudoers-in", nix.thunk(() => nix.sel(cfg, "configFile")))),
                   preferLocalBuild: true,
                 })), nix.thunk(() => nix.str`${nix.sel(pkgs, "buildPackages", "sudo-rs")}/bin/visudo -f $src -c && cp $src $out`))),
@@ -318,7 +318,7 @@ ${nix.sel(cfg, "extraConfig")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nicoo"))]),
     })),
   };

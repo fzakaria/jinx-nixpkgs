@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pysam-developers",
           repo: "pysam",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,11 +54,11 @@ export HTSLIB_INCLUDE_DIR=${htslib}/include
         "pysam.libcsamtools",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for reading, manipulating and writing genome data sets",
         downloadPage: "https://github.com/pysam-developers/pysam",
         changelog: nix.thunk(() => nix.str`https://github.com/pysam-developers/pysam/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +71,7 @@ export HTSLIB_INCLUDE_DIR=${htslib}/include
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

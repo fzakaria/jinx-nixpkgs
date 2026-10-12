@@ -67,13 +67,13 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apache-beam",
       version: "2.75.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "beam",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -276,7 +276,7 @@ export default nix.lambda((args) => (() => {
           "test_deterministic_key",
         ])))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified model for defining both batch and streaming data-parallel processing pipelines",
         homepage: "https://beam.apache.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/beam/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

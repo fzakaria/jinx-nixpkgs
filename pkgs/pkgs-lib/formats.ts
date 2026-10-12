@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   const allowAliases = nix.thunk(() => nix.selOr(pkgs, () => false, "config", "allowAliases"));
   const aliasWarning = (name) => nix.app(warn, nix.thunk(() => nix.str`\`formats.${name}\` is deprecated; use \`lib.types.${name}\` instead.`));
   const aliases = nix.thunk(() => nix.app(mapAttrs, aliasWarning, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       attrsOf: attrsOf,
       bool: bool,
       coercedTo: coercedTo,
@@ -71,31 +71,31 @@ export default nix.lambda((args) => (() => {
     }))));
   const json2x = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "callPackage"), nix.path(here, "./formats/json2x/package.nix"), nix.thunk(() => ({}))));
   return nix.update(nix.app(optionalAttrs, allowAliases, aliases), (() => {
-    const cdn = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/cdn/default.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib, pkgs: pkgs }))), "format"));
-    const configobj = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/configobj/default.nix")), nix.thunk(() => ({ __proto__: pos$3, lib: lib, pkgs: pkgs }))), "format"));
-    const elixirConf = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/elixir-conf/default.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib, pkgs: pkgs }))), "format"));
-    const gitIni = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/git-ini/default.nix")), nix.thunk(() => ({ __proto__: pos$5, lib: lib, pkgs: pkgs }))), "format"));
-    const hcl1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/hcl1/default.nix")), nix.thunk(() => ({ __proto__: pos$6, lib: lib, pkgs: pkgs, json: json }))), "format"));
-    const hocon = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/hocon/default.nix")), nix.thunk(() => ({ __proto__: pos$7, lib: lib, pkgs: pkgs }))), "format"));
-    const ini = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/ini/default.nix")), nix.thunk(() => ({ __proto__: pos$8, lib: lib, pkgs: pkgs }))), "format"));
-    const iniWithGlobalSection = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/ini-with-global-section/default.nix")), nix.thunk(() => ({ __proto__: pos$9, lib: lib, pkgs: pkgs }))), "format"));
-    const javaProperties = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/java-properties/default.nix")), nix.thunk(() => ({ __proto__: pos$10, lib: lib, pkgs: pkgs }))), "format"));
-    const json = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/json/default.nix")), nix.thunk(() => ({ __proto__: pos$11, lib: lib, pkgs: pkgs }))), "format"));
-    const keyValue = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/key-value/default.nix")), nix.thunk(() => ({ __proto__: pos$12, lib: lib, pkgs: pkgs }))), "format"));
-    const libconfig = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/libconfig/default.nix")), nix.thunk(() => ({ __proto__: pos$13, lib: lib, pkgs: pkgs }))), "format"));
-    const lua = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/lua/default.nix")), nix.thunk(() => ({ __proto__: pos$14, lib: lib, pkgs: pkgs }))), "format"));
-    const nixConf = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/nix-conf/default.nix")), nix.thunk(() => ({ __proto__: pos$15, lib: lib, pkgs: pkgs }))), "format"));
-    const php = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/php/default.nix")), nix.thunk(() => ({ __proto__: pos$16, lib: lib, pkgs: pkgs }))), "format"));
-    const plist = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/plist/default.nix")), nix.thunk(() => ({ __proto__: pos$17, lib: lib, pkgs: pkgs }))), "format"));
-    const pythonVars = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/python-vars/default.nix")), nix.thunk(() => ({ __proto__: pos$18, lib: lib, pkgs: pkgs }))), "format"));
-    const systemd = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/systemd/default.nix")), nix.thunk(() => ({ __proto__: pos$19, lib: lib, pkgs: pkgs, ini: ini }))), "format"));
-    const toml = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/toml/default.nix")), nix.thunk(() => ({ __proto__: pos$20, lib: lib, pkgs: pkgs, json2x: json2x }))), "format"));
-    const xml = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/xml/default.nix")), nix.thunk(() => ({ __proto__: pos$21, lib: lib, pkgs: pkgs }))), "format"));
-    const yaml_1_1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/yaml-1-1/default.nix")), nix.thunk(() => ({ __proto__: pos$22, lib: lib, pkgs: pkgs }))), "format"));
+    const cdn = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/cdn/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, pkgs: pkgs }))), "format"));
+    const configobj = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/configobj/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib, pkgs: pkgs }))), "format"));
+    const elixirConf = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/elixir-conf/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib, pkgs: pkgs }))), "format"));
+    const gitIni = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/git-ini/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, lib: lib, pkgs: pkgs }))), "format"));
+    const hcl1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/hcl1/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, lib: lib, pkgs: pkgs, json: json }))), "format"));
+    const hocon = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/hocon/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$7, lib: lib, pkgs: pkgs }))), "format"));
+    const ini = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/ini/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, lib: lib, pkgs: pkgs }))), "format"));
+    const iniWithGlobalSection = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/ini-with-global-section/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$9, lib: lib, pkgs: pkgs }))), "format"));
+    const javaProperties = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/java-properties/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$10, lib: lib, pkgs: pkgs }))), "format"));
+    const json = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/json/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$11, lib: lib, pkgs: pkgs }))), "format"));
+    const keyValue = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/key-value/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$12, lib: lib, pkgs: pkgs }))), "format"));
+    const libconfig = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/libconfig/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$13, lib: lib, pkgs: pkgs }))), "format"));
+    const lua = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/lua/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$14, lib: lib, pkgs: pkgs }))), "format"));
+    const nixConf = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/nix-conf/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$15, lib: lib, pkgs: pkgs }))), "format"));
+    const php = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/php/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$16, lib: lib, pkgs: pkgs }))), "format"));
+    const plist = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/plist/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$17, lib: lib, pkgs: pkgs }))), "format"));
+    const pythonVars = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/python-vars/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$18, lib: lib, pkgs: pkgs }))), "format"));
+    const systemd = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/systemd/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$19, lib: lib, pkgs: pkgs, ini: ini }))), "format"));
+    const toml = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/toml/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$20, lib: lib, pkgs: pkgs, json2x: json2x }))), "format"));
+    const xml = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/xml/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$21, lib: lib, pkgs: pkgs }))), "format"));
+    const yaml_1_1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/yaml-1-1/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$22, lib: lib, pkgs: pkgs }))), "format"));
     const yaml = yaml_1_1;
-    const yaml_1_2 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/yaml-1-2/default.nix")), nix.thunk(() => ({ __proto__: pos$23, lib: lib, pkgs: pkgs }))), "format"));
+    const yaml_1_2 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./formats/yaml-1-2/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$23, lib: lib, pkgs: pkgs }))), "format"));
     return {
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       cdn,
       configobj,
       elixirConf,

@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const mkVMR = nix.thunk(() => nix.app(callPackage, nix.path(here, "./vmr.nix")));
   const stage0 = nix.thunk(() => nix.app(nix.sel(pkgsBuildBuild, "dotnetCorePackages", "callPackage"), nix.path(here, "./stage0.nix"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       releaseManifestFile: nix.thunk(() => nix.attr(args_1, "releaseManifestFile")),
       tarballHash: nix.thunk(() => nix.attr(args_1, "tarballHash")),
       depsFile: nix.thunk(() => nix.attr(args_1, "depsFile")),
       bootstrapSdk: nix.thunk(() => nix.attr(args_1, "bootstrapSdk")),
-    }, { __proto__: pos$2, baseName: "dotnet-stage0" }))));
+    }, { [nix.POS]: pos$2, baseName: "dotnet-stage0" }))));
   return nix.app(nix.sel(nix.app(mkVMR, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       releaseManifestFile: releaseManifestFile,
       tarballHash: tarballHash,
       bootstrapSdk: nix.thunk(() => nix.sel(stage0, "sdk")),
       hasRuntime: true,
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), (() => {
         const from = nix.thunk(() => nix.sel(stage0, "vmr"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         stage0: stage0,
         "fetch-drv": nix.thunk(() => nix.attr(from, "fetch-drv")),
         "fetch-deps": nix.thunk(() => nix.attr(from, "fetch-deps")),

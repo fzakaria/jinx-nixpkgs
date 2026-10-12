@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const dbgVersion = "1.6";
       const version = nix.thunk(() => nix.str`${remakeVersion}+dbg-${dbgVersion}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bashdb/remake/${version}/remake-${remakeVersion}+dbg-${dbgVersion}.tar.gz`),
           sha256: "11vvch8bi0yhjfz7gn92b3xmmm0cgi3qfiyhbnnj89frkhbwd87n",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./glibc-2.27-glob.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc15-tolerance.patch",
             url: "https://github.com/Trepan-Debuggers/remake/commit/15f36a69b1a7798fa836d849c68c0fa5cd1dae6f.patch",
             hash: "sha256-Pau0ho0stPFnJjsHKY6lIag/XV4A0bEKBLPp3XRcxc8=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => nix.concat([readline], nix.app(nix.sel(lib, "optionals"), guileSupport, nix.thunk(() => [guile]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://bashdb.sourceforge.net/remake/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "GNU Make with comprehensible tracing and a debugger",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         remakeVersion,
         dbgVersion,

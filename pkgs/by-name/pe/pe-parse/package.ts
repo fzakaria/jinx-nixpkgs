@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const icu = nix.arg($, "icu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pe-parse",
       version: "2.1.1-unstable-2026-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trailofbits",
           repo: "pe-parse",
           rev: "b0dabd3fdcccd8f53bab500a45e92f37c6fec936",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/dump-pe ../tests/assets/example.exe\n",
       meta: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Principled, lightweight parser for Windows portable executable files",
         homepage: "https://github.com/trailofbits/pe-parse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

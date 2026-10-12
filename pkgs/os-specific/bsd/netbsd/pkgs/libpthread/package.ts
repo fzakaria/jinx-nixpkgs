@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libcMinimal = nix.arg($, "libcMinimal");
   const librt = nix.arg($, "librt");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libpthread",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "dev", "man"]),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         "sys",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

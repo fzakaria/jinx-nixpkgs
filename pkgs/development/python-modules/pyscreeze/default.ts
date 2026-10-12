@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const scrot = nix.arg($, "scrot");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyscreeze",
       version: "0.1.26",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asweigart",
           repo: "pyscreeze",
           rev: "28ab707dceecbdd135a9491c3f8effd3a69680af",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "python -m unittest tests.test_pillow_unavailable\nxvfb-run python -m unittest tests.test_pyscreeze\n")),
       propagatedBuildInputs: nix.thunk(() => [pillow]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyScreeze is a simple, cross-platform screenshot module for Python 2 and 3",
         homepage: "https://github.com/asweigart/pyscreeze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -51,60 +51,60 @@ export default nix.lambda((args) => (() => {
   const flavour = nix.arg($, "flavour");
   const mkXfsFlags = nix.argOr($, "mkXfsFlags", () => "");
   const preparationCode = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     raid: "machine.succeed(\"vgcreate test_vg /dev/vdb /dev/vdc\")\nmachine.succeed(\"lvcreate -L 512M --type raid0 test_vg -n test_lv\")\n",
     thinpool: "machine.succeed(\"vgcreate test_vg /dev/vdb\")\nmachine.succeed(\"lvcreate -L 512M -T test_vg/test_thin_pool\")\nmachine.succeed(\"lvcreate -n test_lv -V 16G --thinpool test_thin_pool test_vg\")\n",
     vdo: "machine.succeed(\"vgcreate test_vg /dev/vdb\")\nmachine.succeed(\"lvcreate --type vdo -n test_lv -L 6G -V 12G test_vg/vdo_pool_lv\")\n",
   }, nix.key(nix.force(flavour))));
   const extraConfig = nix.thunk(() => nix.sel({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     raid: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       boot: nix.thunk(() => ({
-        __proto__: pos$3,
-        initrd: nix.thunk(() => ({ __proto__: pos$2, kernelModules: nix.thunk(() => ["dm-raid", "raid0"]) })),
+        [nix.POS]: pos$3,
+        initrd: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["dm-raid", "raid0"]) })),
       })),
     })),
     thinpool: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         lvm: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           boot: nix.thunk(() => ({
-            __proto__: pos$6,
-            thin: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$6,
+            thin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
-          dmeventd: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          dmeventd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
         })),
       })),
     })),
     vdo: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         lvm: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           boot: nix.thunk(() => ({
-            __proto__: pos$12,
-            vdo: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+            [nix.POS]: pos$12,
+            vdo: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
           })),
-          dmeventd: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+          dmeventd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
         })),
       })),
     })),
   }, nix.key(nix.force(flavour))));
   const extraCheck = nix.thunk(() => nix.sel({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     raid: "\"test_lv\" in machine.succeed(\"lvs --select segtype=raid0\")\n",
     thinpool: "\"test_lv\" in machine.succeed(\"lvs --select segtype=thin-pool\")\n",
     vdo: "\"test_lv\" in machine.succeed(\"lvs --select segtype=vdo\")\n",
   }, nix.key(nix.force(flavour))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     name: nix.thunk(() => nix.str`lvm2-${flavour}-systemd-stage-1`),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -114,57 +114,57 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           imports: nix.thunk(() => [extraConfig]),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             emptyDiskImages: nix.thunk(() => [8192n, 8192n]),
             useBootLoader: true,
             useEFIBoot: true,
             mountHostNixStore: true,
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             loader: nix.thunk(() => ({
-              __proto__: pos$23,
-              "systemd-boot": nix.thunk(() => ({ __proto__: pos$21, enable: true })),
-              efi: nix.thunk(() => ({ __proto__: pos$22, canTouchEfiVariables: true })),
+              [nix.POS]: pos$23,
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: pos$22, canTouchEfiVariables: true })),
             })),
             initrd: nix.thunk(() => ({
-              __proto__: pos$27,
-              systemd: nix.thunk(() => ({ __proto__: pos$24, enable: true, emergencyAccess: true })),
+              [nix.POS]: pos$27,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true, emergencyAccess: true })),
               services: nix.thunk(() => ({
-                __proto__: pos$26,
-                lvm: nix.thunk(() => ({ __proto__: pos$25, enable: true })),
+                [nix.POS]: pos$26,
+                lvm: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
               })),
             })),
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), kernelPackages)),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "boot-lvm": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               configuration: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 virtualisation: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   useDefaultFilesystems: false,
                   fileSystems: nix.thunk(() => ({
-                    __proto__: pos$31,
-                    "/": nix.thunk(() => ({ __proto__: pos$30, device: "/dev/test_vg/test_lv", fsType: "xfs" })),
+                    [nix.POS]: pos$31,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$30, device: "/dev/test_vg/test_lv", fsType: "xfs" })),
                   })),
                   rootDevice: "/dev/test_vg/test_lv",
                 })),

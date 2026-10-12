@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amrwb",
       version: "11.0.0.0",
       strictDeps: true,
       __structuredAttrs: true,
       srcAmr: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.3gpp.org/ftp/Specs/archive/26_series/26.204/26204-b00.zip",
           hash: "sha256-yIXERIP9RQLTVOyWVvLNwEaQUAFQUvjz7MHV4IyGn+w=",
         })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://slackware.uk/sbosrcarch/by-name/audio/amrwb/amrwb-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-XK9ZsUSAsM0qe6u4vkcsSvOf9MfJXxJ4EWVXBJpN1dw=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--cache-file=config.cache", "--with-downloader=true"]),
       postConfigure: "cp $srcAmr 26204-b00.zip\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.penguin.cz/~utx/amr",
         description: "AMR Wide-Band Codec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

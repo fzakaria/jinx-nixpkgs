@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sway-launcher-desktop";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Biont",
           repo: "sway-launcher-desktop",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +37,11 @@ wrapProgram $out/bin/${pname} \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, fzf]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TUI Application launcher with Desktop Entry support",
         mainProgram: "sway-launcher-desktop",
         longDescription: "This is a TUI-based launcher menu made with bash and the amazing fzf.\nDespite its name, it does not (read: no longer) depend on the Sway window manager\nin any way and can be used with just about any WM.\n",
@@ -52,7 +52,7 @@ wrapProgram $out/bin/${pname} \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

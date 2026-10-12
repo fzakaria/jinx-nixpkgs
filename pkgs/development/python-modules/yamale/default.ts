@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "23andMe",
           repo: "yamale",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pyyaml]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ruamel: nix.thunk(() => [ruamel_yaml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ruamel: nix.thunk(() => [ruamel_yaml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "ruamel")));
       const pythonImportsCheck = nix.thunk(() => ["yamale"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Schema and validator for YAML",
         homepage: "https://github.com/23andMe/Yamale",
         changelog: nix.thunk(() => nix.str`https://github.com/23andMe/Yamale/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yamale",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

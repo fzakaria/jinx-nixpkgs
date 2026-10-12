@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jxmorris12",
           repo: "language_tool_python",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, tqdm, psutil, toml, pip]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free python grammar checker",
         homepage: "https://github.com/jxmorris12/language_tool_python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         changelog: nix.thunk(() => nix.str`https://github.com/jxmorris12/language_tool_python/releases/tag/${nix.sel(src, "tag")}`),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

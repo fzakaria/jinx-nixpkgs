@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "beammp-launcher",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BeamMP",
           repo: "BeamMP-Launcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, httplib, nlohmann_json, openssl]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             categories: nix.thunk(() => ["Game"]),
             comment: "Launcher for the BeamMP mod for BeamNG.drive",
             desktopName: "BeamMP-Launcher",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstallBin \"BeamMP-Launcher\"\ncopyDesktopItems\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Launcher for the BeamMP mod for BeamNG.drive",
         homepage: "https://github.com/BeamMP/BeamMP-Launcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

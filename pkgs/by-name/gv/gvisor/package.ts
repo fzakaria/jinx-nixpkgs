@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const glibc = nix.arg($, "glibc");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gvisor",
       version: "20260406.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "gvisor",
           rev: "db8d2c9abca39156c61ee2769d52b8a11accbe16",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       vendorHash: "sha256-8Zkgt5hegYEHnG1lF+wLgdru6t3l+Z/qKRvJHukZbPo=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       subPackages: nix.thunk(() => ["runsc", "shim"]),
       postInstall: nix.thunk(() => nix.str`# Needed for the 'runsc do' subcommand
@@ -47,11 +47,11 @@ mv $out/bin/shim $out/bin/containerd-shim-runsc-v1
 `),
       patches: nix.thunk(() => [nix.path(here, "./fix-go-mod-tidy.diff")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, gvisor: nix.thunk(() => nix.attr(nixosTests, "gvisor")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, gvisor: nix.thunk(() => nix.attr(nixosTests, "gvisor")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Application Kernel for Containers",
         homepage: "https://github.com/google/gvisor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

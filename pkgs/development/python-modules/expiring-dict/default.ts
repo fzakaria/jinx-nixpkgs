@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const sortedcontainers = nix.arg($, "sortedcontainers");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "expiring-dict",
       version: "1.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "expiring_dict",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yoy4AjBOrlszoj7EwZAZthCt/aUMvEyb+jrVws04djE=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["expiring_dict"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python dict with TTL support for auto-expiring caches",
         homepage: "https://github.com/dparker2/py-expiring-dict",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

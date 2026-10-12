@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const openstackdocstheme = nix.arg($, "openstackdocstheme");
   const sphinxcontrib_apidoc = nix.arg($, "sphinxcontrib-apidoc");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-novaclient",
       version: "18.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-novaclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-setup-cfg.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [openstackdocstheme, sphinxcontrib_apidoc, sphinxHook]),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         "novaclient.tests.unit.v2",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client library for OpenStack Compute API",
         mainProgram: "nova",
         homepage: "https://docs.openstack.org/python-novaclient/latest/",

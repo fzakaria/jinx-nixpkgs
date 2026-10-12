@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const pkgsMusl = nix.argOr($, "pkgsMusl", () => ({}));
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "audit",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-audit",
           repo: "audit-userspace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         lib: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
         })),
         bin: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
         })),
       })),
@@ -95,11 +95,11 @@ wrapProgram $scripts/bin/augenrules \\
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         testsuite: nix.thunk(() => nix.app(callPackage, nix.path(here, "./testsuite.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           musl: nix.thunk(() => nix.selOr(pkgsMusl, () => null, "audit")),
           static: nix.thunk(() => nix.selOr(pkgsStatic, () => null, "audit")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
@@ -107,14 +107,14 @@ wrapProgram $scripts/bin/augenrules \\
           "audit-testsuite": nix.thunk(() => nix.attr(nixosTests, "audit-testsuite")),
           utmp: nix.thunk(() => nix.attr(nixosTests, "utmp")),
           package: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: nix.thunk(() => nix.add(nix.sel(previousAttrs, "pname"), "-test")),
               doCheck: true,
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         homepage: "https://people.redhat.com/sgrubb/audit/",
         description: "Audit Library",
         changelog: nix.thunk(() => nix.str`https://github.com/linux-audit/audit-userspace/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
@@ -127,8 +127,8 @@ wrapProgram $scripts/bin/augenrules \\
         pkgConfigModules: nix.thunk(() => ["audit", "auparse"]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$9,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "linux_audit_project", nix.thunk(() => nix.sel(finalAttrs, "version"))), { __proto__: pos$8, product: "linux_audit" })),
+          [nix.POS]: pos$9,
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "linux_audit_project", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$8, product: "linux_audit" })),
         })),
       })),
     }));

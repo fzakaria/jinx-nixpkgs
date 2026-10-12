@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const tre = nix.arg($, "tre");
   const aspellEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "env-ding-aspell",
       paths: nix.thunk(() => [
         aspell,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ding",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://ftp.tu-chemnitz.de/pub/Local/urz/ding/ding-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aabIH894WihsBTo1LzIBzIZxxyhRYVxLcHpDQwmwmOU=",
         })))),
@@ -65,7 +65,7 @@ cp -v ding.desktop $out/share/applications/
 wrapProgram $out/bin/ding --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnugrep, aspellEnv, tk, fortune]))} --prefix ASPELL_CONF : "\\"prefix ${aspellEnv};\\""
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple and fast dictionary lookup tool",
         mainProgram: "ding",
         homepage: "https://www-user.tu-chemnitz.de/~fri/ding/",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.31";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "sphinxcontrib_plantuml",
           hash: "sha256-/XR1L46gcOZBw/ikAvzPodSkBW4JZ7VgM9KnYoLZ+VY=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a Sphinx domain for embedding UML diagram with PlantUML",
         homepage: "https://github.com/sphinx-contrib/plantuml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

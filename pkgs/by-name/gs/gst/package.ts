@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gst";
       const version = "5.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uetchy",
           repo: "gst",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ else
 fi
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Supercharge your ghq workflow",
         homepage: "https://github.com/uetchy/gst",
         maintainers: nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ fi
         mainProgram: "gst",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

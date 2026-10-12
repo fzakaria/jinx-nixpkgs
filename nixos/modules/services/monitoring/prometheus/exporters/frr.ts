@@ -23,31 +23,31 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const concatMapStringsSep = nix.thunk(() => nix.attr(lib, "concatMapStringsSep"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     port: 9342n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "frr",
           description: "User name under which the frr exporter shall be run.\nThe exporter talks to frr using a unix socket, which is owned by frr.\n",
         })))),
       group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "frrvty",
           description: "Group under which the frr exporter shall be run.\nThe exporter talks to frr using a unix socket, which is owned by frrvty group.\n",
         })))),
       enabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["vrrp"]),
           description: "Collectors to enable. The collectors listed here are enabled in addition to the default ones.\n",
         })))),
       disabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["bfd"]),
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         DynamicUser: false,
         RuntimeDirectory: "prometheus-frr-exporter",
         RestrictAddressFamilies: nix.thunk(() => ["AF_UNIX"]),

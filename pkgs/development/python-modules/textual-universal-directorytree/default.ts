@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juftin",
           repo: "textual-universal-directorytree",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatchling]);
       const propagatedBuildInputs = nix.thunk(() => [textual, universal_pathlib]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         remote: nix.thunk(() => [adlfs, aiohttp, gcsfs, paramiko, requests, s3fs]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["textual_universal_directorytree"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Textual plugin for a DirectoryTree compatible with remote filesystems",
         homepage: "https://github.com/juftin/textual-universal-directorytree",
         changelog: nix.thunk(() => nix.str`https://github.com/juftin/textual-universal-directorytree/releases/tag/v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

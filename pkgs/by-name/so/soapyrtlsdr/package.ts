@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rtl_sdr = nix.arg($, "rtl-sdr");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "soapyrtlsdr",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapyRTLSDR",
           rev: nix.thunk(() => nix.str`soapy-rtl-sdr-${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rtl_sdr, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-update.patch",
             url: "https://github.com/pothosware/SoapyRTLSDR/commit/448c9d0d326c2600905b7ce84222ff9d72ba2189.patch?full_index=1",
             hash: "sha256-hWlNowkf9yZM6p+EGh+IiUm2JfG5mLe8Qq8gTVIdIak=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-cmake4-build.patch",
             url: "https://github.com/pothosware/SoapyRTLSDR/commit/bb2d1511b957138051764c9193a3d6971e912b85.patch?full_index=1",
             hash: "sha256-C90B5WMjx1lJKiX0F/cAfGmz2WRc2BA84FTmVmnC+DI=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/pothosware/SoapyRTLSDR",
         description: "SoapySDR plugin for RTL-SDR devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

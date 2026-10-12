@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const stdenv = stdenvNoCC;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "knockoutcitylauncher",
       version: "2.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kocxyz",
           repo: "Launcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       forceGitDeps: true,
       makeCacheWritable: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       patches: nix.thunk(() => [nix.path(here, "./updatecheck-and-devconsole.patch")]),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -77,7 +77,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Knockout City Launcher",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -88,7 +88,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unofficial Knockout City Launcher",
         homepage: "https://kocity.xyz/",
         downloadPage: "https://github.com/kocxyz/Launcher/releases",

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkgsCross = nix.arg($, "pkgsCross");
   const pkgsStatic = nix.arg($, "pkgsStatic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cracklib",
       version: "2.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cracklib",
           repo: "cracklib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--without-python"]),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "PATH=$PATH:util\n"), "cracklib-format $out/share/cracklib/cracklib-small \\\n| cracklib-packer $out/share/cracklib/pw_dict\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cross: nix.thunk(() => (() => {
             const systemString = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isAarch64")) ? "gnu64" : "aarch64-multiplatform"));
             return nix.sel(pkgsCross, nix.key(nix.force(systemString)), "cracklib");
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/cracklib/cracklib",
         description: "Password checking library",
         changelog: nix.thunk(() => nix.str`https://github.com/cracklib/cracklib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

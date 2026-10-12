@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const lxml = nix.arg($, "lxml");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pycrate",
       version: "0.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pycrate-org",
           repo: "pycrate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ find . -name '*.py' -exec ${nix.sel(python, "interpreter")} {} \\;
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software suite to handle various data and protocol formats",
         homepage: "https://github.com/pycrate-org/pycrate",
         changelog: nix.thunk(() => nix.str`https://github.com/pycrate-org/pycrate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

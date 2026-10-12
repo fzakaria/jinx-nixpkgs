@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "moreutils",
       version: "0.70",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.joeyh.name/moreutils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-71ACHzzk258U4q2L7GJ59mrMZG99M7nQkcH4gHafGP0=",
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "git://git.joeyh.name/moreutils" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.joeyh.name/moreutils" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Growing collection of the unix tools that nobody thought to write long ago when unix was young",
         homepage: "https://joeyh.name/code/moreutils/",
         maintainers: nix.thunk(() => (() => {

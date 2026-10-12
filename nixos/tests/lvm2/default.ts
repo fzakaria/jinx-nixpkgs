@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
   const kernelVersionsToTest = nix.argOr($, "kernelVersionsToTest", () => ["5.10", "5.15", "6.1", "6.6", "6.12", "latest"]);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     thinpool: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       test: nix.path(here, "./thinpool.nix"),
       kernelFilter: nix.thunk(() => nix.sel(lib, "id")),
     })),
     vdo: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       test: nix.path(here, "./vdo.nix"),
       kernelFilter: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => nix.eq(v, "latest"))),
     })),
     "raid-sd-stage-1": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       test: nix.path(here, "./systemd-stage-1.nix"),
       kernelFilter: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => !nix.eq(v, "5.15"))),
       flavour: "raid",
     })),
     "thinpool-sd-stage-1": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       test: nix.path(here, "./systemd-stage-1.nix"),
       kernelFilter: nix.thunk(() => nix.sel(lib, "id")),
       flavour: "thinpool",
     })),
     "vdo-sd-stage-1": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       test: nix.path(here, "./systemd-stage-1.nix"),
       kernelFilter: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => nix.eq(v, "latest"))),
       flavour: "vdo",
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
           const v$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
           const mkXfsFlags = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.10")), " -m bigtime=0 -m inobtcount=0 "), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.19")), " -i nrext64=0 ")));
           return nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), tests, (name) => (t) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`lvm-${name}-linux-${v$}`), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(version, nix.thunk(() => nix.app(nix.sel(t, "kernelFilter"), kernelVersionsToTest)))), nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     imports: nix.thunk(() => [nix.thunk(() => nix.sel(t, "test"))]),
                     _module: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       args: nix.thunk(() => nix.update({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         kernelPackages: nix.thunk(() => nix.sel(pkgs, nix.key(nix.str`linuxPackages_${v$}`))),
                         mkXfsFlags: mkXfsFlags,
                       }, nix.builtins.removeAttrs(t, nix.thunk(() => ["test", "kernelFilter"])))),

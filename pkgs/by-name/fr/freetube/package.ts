@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const electron = electron_42;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "freetube",
       version: "0.25.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreeTubeApp",
           repo: "FreeTube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-beta`),
@@ -50,13 +50,13 @@ chmod -R u+w source/electron-dist
 `)),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-build-script.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "electron-version": nix.thunk(() => nix.sel(electron, "version")),
           })))),
         nix.path(here, "./targets.patch"),
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -83,7 +83,7 @@ install -D _icons/icon.svg $out/share/icons/hicolor/scalable/apps/freetube.svg
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications $out/bin\ncp -r build/mac*/FreeTube.app $out/Applications\nln -s \"$out/Applications/FreeTube.app/Contents/MacOS/FreeTube\" $out/bin/freetube\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "freetube",
             desktopName: "FreeTube",
             comment: description,
@@ -96,11 +96,11 @@ install -D _icons/icon.svg $out/share/icons/hicolor/scalable/apps/freetube.svg
             categories: nix.thunk(() => ["Network"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, tests: nix.thunk(() => nix.sel(nixosTests, "freetube")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, tests: nix.thunk(() => nix.sel(nixosTests, "freetube")) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: description,
         homepage: "https://freetubeapp.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

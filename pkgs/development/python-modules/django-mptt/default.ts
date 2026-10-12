@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-mptt",
           repo: "django-mptt",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(django, "version")), "6.1"));
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.settings\nexport PYTHONPATH=$(pwd)/tests:$PYTHONPATH\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for implementing a modified pre-order traversal tree in Django",
         homepage: "https://github.com/django-mptt/django-mptt",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

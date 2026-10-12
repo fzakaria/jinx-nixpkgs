@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const imagemagick = nix.arg($, "imagemagick");
   const python312 = nix.arg($, "python312");
-  const coq_jupyter = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({ __proto__: pos$1, coq: coq, python3: python312 }))));
+  const coq_jupyter = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, coq: coq, python3: python312 }))));
   const python = nix.thunk(() => nix.app(nix.sel(python312, "withPackages"), (ps) => [
       nix.thunk(() => nix.sel(ps, "traitlets")),
       nix.thunk(() => nix.sel(ps, "jupyter-core")),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const isRocq = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(coq, "coq-version")), "9.0"));
   const logos = nix.thunk(() => (() => {
     const dir = nix.thunk(() => (nix.asBool(isRocq) ? "rocqide" : "coqide"));
-    return nix.app(runCommand, "coq-logos", nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [imagemagick]) })), nix.thunk(() => nix.str`mkdir -p $out
+    return nix.app(runCommand, "coq-logos", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [imagemagick]) })), nix.thunk(() => nix.str`mkdir -p $out
 convert ${nix.sel(coq, "src")}/ide/${dir}/coq.png -resize 32x32 $out/logo-32x32.png
 convert ${nix.sel(coq, "src")}/ide/${dir}/coq.png -resize 64x64 $out/logo-64x64.png
 `));
   })());
   const launcher = nix.thunk(() => nix.app(runCommand, "coq-kernel-launcher", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       pname: nix.thunk(() => nix.attr(coq_jupyter, "pname")),
       version: nix.thunk(() => nix.attr(coq_jupyter, "version")),
@@ -48,7 +48,7 @@ makeWrapper ${nix.sel(python, "interpreter")} $out/bin/coq-kernel \\
   --suffix PATH : ${coq}/bin
 `)));
   const definitionWithPackages = (packages) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     displayName: nix.thunk(() => nix.add((nix.asBool(isRocq) ? "Rocq " : "Coq "), nix.sel(coq, "version"))),
     argv: nix.thunk(() => [
       nix.thunk(() => nix.str`${launcher}/bin/coq-kernel`),
@@ -60,21 +60,21 @@ makeWrapper ${nix.sel(python, "interpreter")} $out/bin/coq-kernel \\
     logo64: nix.thunk(() => nix.str`${logos}/logo-64x64.png`),
     env: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => (nix.asBool(isRocq) ? "ROCQPATH" : "COQPATH")),
           value: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((x) => nix.str`${x}/lib/coq/${nix.sel(coq, "coq-version")}/user-contrib/`, packages)))),
         })),
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "OCAMLPATH",
           value: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((x) => nix.str`${x}/lib/ocaml/${nix.sel(coq, "ocaml", "version")}/site-lib/`, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(coq, "ocamlPackages", "findlib"))], packages)))))),
         })),
       ]))),
   });
   return nix.app(nix.sel(launcher, "overrideAttrs"), (_oldAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "coq-jupyter": coq_jupyter,
         definitionWithPackages: definitionWithPackages,
         logos: logos,

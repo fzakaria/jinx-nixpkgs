@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libmikmod = nix.arg($, "libmikmod");
   const tinyxml = nix.arg($, "tinyxml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tecnoballz",
       version: "0.93.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linux.tlk.fr/games/TecnoballZ/download/tecnoballz-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-WRW76e+/eXE/KwuyOjzTPFQnKwNznbIrUrz14fnvgug=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap\n",
       installFlags: nix.thunk(() => ["gamesdir=$(out)/bin", "scoredir=$(TMPDIR)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://linux.tlk.fr/games/TecnoballZ/",
         downloadPage: "https://linux.tlk.fr/games/TecnoballZ/download/",
         description: "Brick breaker game with a sophisticated system of weapons and bonuses",

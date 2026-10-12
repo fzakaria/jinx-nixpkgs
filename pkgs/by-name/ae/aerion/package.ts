@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const withOAuth = nix.argOr($, "withOAuth", () => false);
   const version = "0.3.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "hkdb",
       repo: "aerion",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-LeYOgP1aLWBB2lRkaBOMT3LfqXk0uuQxNnkKfooqWC8=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "aerion-frontend",
       version: version,
       src: src,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -r dist/* $out/\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aerion",
       version: version,
       src: src,
@@ -58,12 +58,12 @@ cp -r ${frontend}/* frontend/dist/
 ln -s ${aerion_creds}/bin/aerion-creds $out/bin/aerion-creds
 `)))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         frontend: frontend,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "An Open Source Lightweight E-Mail Client",
         homepage: "https://github.com/hkdb/aerion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

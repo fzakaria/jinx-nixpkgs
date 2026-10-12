@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sfml_2 = nix.arg($, "sfml_2");
   const taglib = nix.arg($, "taglib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mars",
       version: "0-unstable-2021-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thelaui",
           repo: "M.A.R.S.",
           rev: "84664cda094efe6e49d9b1550e4f4f98c33eefa2",
@@ -48,7 +48,7 @@ chmod +x "$out/bin/mars"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mars-game.sourceforge.net/",
         description: "Game about fighting with ships in a 2D space setting",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

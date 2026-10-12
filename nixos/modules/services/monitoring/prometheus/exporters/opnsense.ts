@@ -28,55 +28,55 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const concatMapStringsSep = nix.thunk(() => nix.attr(lib, "concatMapStringsSep"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     port: 9144n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       opnsenseServerAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "192.168.1.1",
           example: "192.168.100.254",
           description: "Opnsense IP address of the opnsense appliance.\nDefaults to 192.168.1.1\n",
         })))),
       opnsenseServerProtocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["http", "https"]))),
           default: "https",
           example: "http",
           description: "Opnsense metrics scraper protocol to use.\nDefaults to https.\n",
         })))),
       apiKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           description: "File containing the api key.\n",
         })))),
       apiSecretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           description: "File containing the api secret.\n",
         })))),
       user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "opnsense",
           description: "User name under which the opensense exporter shall be run.\n",
         })))),
       group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "opnsense",
           description: "Group under which the opnsense exporter shall be run.\n",
         })))),
       enabledExporter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["disable-openvpn"]),
           description: "Collectors to enable or disable.\nAll collectors are enabled by default.\n",
         })))),
       disabledExporter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["disable-openvpn"]),
@@ -84,9 +84,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         LoadCredential: nix.thunk(() => [

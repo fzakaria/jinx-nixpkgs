@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jo",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpmens",
           repo: "jo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       postInstallCheck: "$out/bin/jo -V > /dev/null\nseq 1 10 | $out/bin/jo -a | grep '^\\[1,2,3,4,5,6,7,8,9,10\\]$' > /dev/null\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small utility to create JSON objects",
         homepage: "https://github.com/jpmens/jo",
         changelog: nix.thunk(() => nix.str`https://github.com/jpmens/jo/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

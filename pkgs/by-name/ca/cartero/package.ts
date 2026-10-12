@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cartero",
       version: "26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danirod",
           repo: "cartero",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EBQqJuIcgpLtRu5DcAaWnCiFyiuuG+DCkdAWsoWwn3E=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libadwaita, gtksourceview5, openssl, pango, libadwaita]),
       postPatch: "patchShebangs --build build-aux/gen-version.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Make HTTP requests and test APIs",
         longDescription: "Cartero is a graphical HTTP client that can be used\nas a developer tool to test web APIs and perform all\nkind of HTTP requests to web servers. It is compatible\nwith any REST, SOAP or XML-RPC API and it supports\nmultiple request methods as well as attaching body\npayloads to compatible requests.\n",
         homepage: "https://cartero.danirod.es",

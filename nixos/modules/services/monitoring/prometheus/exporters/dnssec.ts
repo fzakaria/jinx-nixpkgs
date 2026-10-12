@@ -22,47 +22,47 @@ export default nix.lambda((args) => (() => {
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "dnssec-checks.toml", nix.thunk(() => nix.sel(cfg, "configuration"))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9204n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
           default: null,
           description: "dnssec exporter configuration as nix attribute set.\n\nSee <https://github.com/chrj/prometheus-dnssec-exporter/blob/master/README.md>\nfor the description of the configuration file format.\n",
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  records = [\n    {\n      zone = \"ietf.org\";\n      record = \"@\";\n      type = \"SOA\";\n    }\n    {\n      zone = \"verisigninc.com\";\n      record = \"@\";\n      type = \"SOA\";\n    }\n  ];\n}\n")),
         })))),
       listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: null,
           description: "Listen address as host IP and port definition.\n",
           example: ":9204",
         })))),
       resolvers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: [],
           description: "DNSSEC capable resolver to be used for the check.\n",
           example: nix.thunk(() => ["0.0.0.0:53"]),
         })))),
       timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: null,
           description: "DNS request timeout duration.\n",
           example: "10s",
         })))),
       extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: [],
           description: "Extra commandline options when launching Prometheus.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => (() => {
         const startScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "prometheus-dnssec-exporter-start", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-dnssec-exporter")}/bin/prometheus-dnssec-exporter`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.str`-timeout ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "timeout")))}`),
               ])), nix.sel(cfg, "extraFlags"))))))))}`)));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), startScript)),
         };
       })()),

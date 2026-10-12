@@ -48,7 +48,7 @@ subjectAltName = @alt_names
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (idx) => (domain) => nix.str`DNS.${nix.builtins.toString(idx)} = ${domain}`, domains)))}
 `)));
     return nix.app(nix.sel(pkgs, "runCommand"), "curl-impersonate-test-certs", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       })), nix.thunk(() => nix.str`# create CA certificate and key
 openssl req -newkey rsa:4096 -keyout ca-key.pem -out ca-csr.pem -nodes -subj '/CN=curl-impersonate-ca.nixos.test'
@@ -67,7 +67,7 @@ cp key.pem cert.pem ca.pem $out
   })());
   const curl_impersonate_test = nix.thunk(() => (() => {
     const minicurl = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandCC"), "minicurl", nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
 sed -e 's/opts->local_port_end - opts->local_port_start);/(long)(opts->local_port_end - opts->local_port_start));/' \\
@@ -112,34 +112,34 @@ pytest . --install-dir ../usr --capture-interface eth1 --exitfirst -k 'not test_
 `));
   })());
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "curl-impersonate",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ui-1"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       web: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
-            firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: pos$5,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nginx: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "curl-impersonate.nixos.test": nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   default: true,
                   addSSL: true,
                   sslCertificate: nix.thunk(() => nix.str`${tls_certs}/cert.pem`),
@@ -155,15 +155,15 @@ pytest . --install-dir ../usr --capture-interface eth1 --exitfirst -k 'not test_
         const nodes = nix.arg($_1, "nodes");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             extraHosts: nix.thunk(() => nix.app(nix.sel(lib_1, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((domain) => nix.str`${nix.sel(nodes, "web", "networking", "primaryIPAddress")}  ${domain}`, domains)))),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pki: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_certs}/ca.pem`)]),
             })),
           })),

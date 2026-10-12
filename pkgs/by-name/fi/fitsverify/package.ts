@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cfitsio = nix.arg($, "cfitsio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fitsverify",
       version: "4.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://heasarc.gsfc.nasa.gov/docs/software/ftools/fitsverify/fitsverify-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-bEXoA6fg7by30TkYYVuuY2HSszPCkrhJxQnsm+vbGLQ=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC -o fitsverify ftverify.c fvrf_data.c fvrf_file.c fvrf_head.c \\\n   fvrf_key.c fvrf_misc.c -DSTANDALONE \\\n   $NIX_CFLAGS_COMPILE \\\n   -lcfitsio\n",
       installPhase: "install -D fitsverify $out/bin/fitsverify\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FITS File Format-Verification Tool",
         mainProgram: "fitsverify",
         longDescription: "Fitsverify is a computer program that rigorously checks whether a FITS\n(Flexible Image Transport System) data file conforms to all the\nrequirements defined in Version 3.0 of the FITS Standard document.\n",

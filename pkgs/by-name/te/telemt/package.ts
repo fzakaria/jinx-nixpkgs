@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "telemt";
       const version = "3.5.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "telemt",
           repo: "telemt",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         "--skip=proxy::masking::masking_timing_budget_coupling_security_tests::adversarial_delayed_interface_lookup_does_not_consume_outcome_floor_budget",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "telemt",
         description: "MTProxy for Telegram on Rust + Tokio",
         homepage: "https://github.com/telemt/telemt",
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortName: "telemt-pl3",
             fullName: "Telemt Public License 3",
           })))),
       }));
-      return { __proto__: pos$4, pname, version, src, cargoHash, checkFlags, meta };
+      return { [nix.POS]: pos$4, pname, version, src, cargoHash, checkFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

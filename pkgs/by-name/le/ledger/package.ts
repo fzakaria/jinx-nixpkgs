@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const usePython = nix.argOr($, "usePython", () => false);
   const gpgmeSupport = nix.argOr($, "gpgmeSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ledger",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ledger",
           repo: "ledger",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), usePython, nix.thunk(() => ["py"])))),
       buildInputs: nix.thunk(() => nix.concat([gmp, mpfr, libedit, gnused], nix.concat(nix.app(nix.sel(lib, "optionals"), gpgmeSupport, nix.thunk(() => [gpgme])), (nix.asBool(usePython) ? [
         python3,
-        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$2, enablePython: true, python: python3 })))),
+        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enablePython: true, python: python3 })))),
       ] : [boost])))),
       nativeBuildInputs: nix.thunk(() => [cmake, texinfo, installShellFiles]),
       cmakeFlags: nix.thunk(() => [
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Double-entry accounting system with a command-line reporting interface",
         mainProgram: "ledger",
         homepage: "https://www.ledger-cli.org/",

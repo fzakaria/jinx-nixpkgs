@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mp3gain";
       const version = "1.6.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mp3gain/mp3gain-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}-src.zip`),
           sha256: "0varr6y7k8zarr56b42r0ad9g3brhn5vv3xjg1c0v19jxwr4gh2w",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-fix-security-bugs.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-sound/mp3gain/files/mp3gain-1.6.2-CVE-2019-18359-plus.patch?id=36f8689f7903548f5d89827a6e7bdf70a9882cee",
             sha256: "10n53wm0xynlcxqlnaqfgamjzcpfz41q1jlg0bhw4kq1kzhs4yyw",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["OSTYPE=linux"]);
       const installPhase = "install -vD mp3gain \"$out/bin/mp3gain\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lossless mp3 normalizer with statistical analysis",
         homepage: "https://mp3gain.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mp3gain",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

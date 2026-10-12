@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const portmidi = nix.arg($, "portmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "puredata",
       version: "0.55-2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://msp.ucsd.edu/Software/pd-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-EIKX+NHdGQ346LtKSsNIeSrM9wT5ogUtk8uoybi7Wls=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./expose-error.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pure-data/pure-data/commit/95e4105bc1044cbbcbbbcc369480a77c298d7475.patch",
             hash: "sha256-zFB9m8Nw80X9+a64Uft4tNRA4BHsVr8zxLqAof0jJEI=",
           })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/pd-gui --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tk]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real-time graphical programming environment for audio, video, and graphical processing",
         homepage: "http://puredata.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

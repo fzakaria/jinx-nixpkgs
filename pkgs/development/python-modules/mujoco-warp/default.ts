@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mujoco-warp",
       version: nix.thunk(() => nix.attr(mujoco, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google-deepmind",
           repo: "mujoco_warp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [absl_py, etils, mujoco, numpy, warp_lang]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cpu: nix.thunk(() => [jax]), cuda: nix.thunk(() => [jax]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cpu: nix.thunk(() => [jax]), cuda: nix.thunk(() => [jax]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["mujoco_warp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GPU-optimized version of the MuJoCo physics simulator, designed for NVIDIA hardware",
         homepage: "https://github.com/google-deepmind/mujoco_warp",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/mujoco_warp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

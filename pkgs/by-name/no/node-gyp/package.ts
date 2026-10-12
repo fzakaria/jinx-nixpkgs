@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "node-gyp";
       const version = "13.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nodejs",
           repo: "node-gyp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,9 +33,9 @@ substituteInPlace gyp/pylib/gyp/**.py \\
       const nodejs_1 = nodejs;
       const dontNpmBuild = true;
       const makeWrapperArgs = nix.thunk(() => [nix.thunk(() => nix.str`--set npm_config_nodedir ${nodejs_1}`)]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/nodejs/node-gyp/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Node.js native addon build tool",
         homepage: "https://github.com/nodejs/node-gyp",
@@ -47,7 +47,7 @@ substituteInPlace gyp/pylib/gyp/**.py \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

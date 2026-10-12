@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const domain = "auth_oidc";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "christiaangoossens",
           repo: "hass-oidc-auth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "# Tests import directly from auth_oidc, but the component is installed\n# under custom_components.auth_oidc\nfor f in tests/test_hass_webserver.py tests/test_state_store.py; do\n  substituteInPlace \"$f\" \\\n    --replace-fail \"from auth_oidc\" \"from custom_components.auth_oidc\"\ndone\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${domain}-npm-deps`),
             src: src,
             hash: "sha256-yAm08NVz2Ln6ob9LoPfxuz6U1oBS4AEydIQHhv0WpOg=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "npm run css\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_homeassistant_custom_component, pytest_cov_stub]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/christiaangoossens/hass-oidc-auth/releases/tag/v${version}`),
         description: "OpenID Connect authentication provider for Home Assistant",
         homepage: "https://github.com/christiaangoossens/hass-oidc-auth",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         owner,
         domain,
         version,

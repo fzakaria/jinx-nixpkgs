@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snow",
       version: "20130616",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20200304125913if_/http://darkside.com.au/snow/snow-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0r9q45y55z4i0askkxmxrx0jr1620ypd870vz0hx2a6n9skimdy0",
         })))),
       preBuild: "makeFlagsArray+=(CFLAGS=\"-O2 -std=c89\")\n",
       installPhase: "install -Dm755 snow -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Conceal messages in ASCII text by appending whitespace to the end of lines",
         mainProgram: "snow",
         homepage: "http://www.darkside.com.au/snow/",

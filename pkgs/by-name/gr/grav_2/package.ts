@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "grav",
       version: "2.2.5",
       __structuredAttrs: true,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const v = nix.thunk(() => nix.sel(finalAttrs, "version"));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/getgrav/grav/releases/download/${v}/grav-admin-v${v}.zip`),
             hash: "sha256-s08nboy7aKx/KFc1YpbuKphTWykpNFuhwdDrz4Tt1I8=",
           })));
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./01-nix.patch")]),
       installPhase: "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, grav: nix.thunk(() => nix.sel(nixosTests, "grav")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, grav: nix.thunk(() => nix.sel(nixosTests, "grav")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast, simple, and flexible, file-based web platform",
         homepage: "https://getgrav.com",
         maintainers: nix.thunk(() => (() => {

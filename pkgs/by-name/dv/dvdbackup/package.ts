@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libdvdcss = nix.arg($, "libdvdcss");
   const dvdauthor = nix.arg($, "dvdauthor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.4.2",
       pname: "dvdbackup",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dvdbackup/dvdbackup-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1rl3h7waqja8blmbpmwy01q9fgr5r0c32b8dy3pbf59bp3xmd37g",
         })))),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.slackbuilds.org/slackbuilds/plain/multimedia/dvdbackup/patches/dvdbackup-dvdread-6.1.patch",
             sha256: "1v3xl01bwq1592i5x5dyh95r0mmm1zvvwf92fgjc0smr0k3davfz",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to rip video DVDs from the command line",
         homepage: "https://dvdbackup.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

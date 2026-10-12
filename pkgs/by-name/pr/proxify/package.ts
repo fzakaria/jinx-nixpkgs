@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "proxify",
       version: "0.0.16",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "projectdiscovery",
           repo: "proxify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proxy tool for HTTP/HTTPS traffic capture",
         longDescription: "This tool supports multiple operations such as request/response dump, filtering\nand manipulation via DSL language, upstream HTTP/Socks5 proxy. Additionally a\nreplay utility allows to import the dumped traffic (request/responses with correct\ndomain name) into other tools by simply setting the upstream proxy to proxify.\n",
         homepage: "https://github.com/projectdiscovery/proxify",

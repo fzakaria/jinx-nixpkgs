@@ -88,41 +88,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     name: "containers-physical_interfaces",
     meta: nix.thunk(() => ({})),
     nodes: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$12,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$12,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             server: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     eth1: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$2, address: "10.10.0.1", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: pos$2, address: "10.10.0.1", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
                 })),
-                nix: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
               })),
             })),
           })),
@@ -131,36 +131,36 @@ export default nix.lambda((args) => (() => {
       autoStart: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$26,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$13, vlans: nix.thunk(() => [1n]) })),
-          networking: nix.thunk(() => ({ __proto__: pos$14, useNetworkd: true })),
+          [nix.POS]: pos$26,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [1n]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$14, useNetworkd: true })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             network: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               netdevs: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "20-dummy-test": nix.thunk(() => ({
-                  __proto__: pos$16,
-                  netdevConfig: nix.thunk(() => ({ __proto__: pos$15, Name: "dummy-test", Kind: "dummy" })),
+                  [nix.POS]: pos$16,
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Name: "dummy-test", Kind: "dummy" })),
                 })),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             autoStart: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               autoStart: true,
               privateNetwork: true,
               interfaces: nix.thunk(() => ["dummy-test"]),
               config: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$21,
-                  firewall: nix.thunk(() => ({ __proto__: pos$20, enable: false })),
+                  [nix.POS]: pos$21,
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$20, enable: false })),
                 })),
-                nix: nix.thunk(() => ({ __proto__: pos$22, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$22, enable: false })),
               })),
             })),
           })),
@@ -169,37 +169,37 @@ export default nix.lambda((args) => (() => {
       bridged: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$40,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$27, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$40,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             bridged: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   bridges: nix.thunk(() => ({
-                    __proto__: pos$29,
-                    br0: nix.thunk(() => ({ __proto__: pos$28, interfaces: nix.thunk(() => ["eth1"]) })),
+                    [nix.POS]: pos$29,
+                    br0: nix.thunk(() => ({ [nix.POS]: pos$28, interfaces: nix.thunk(() => ["eth1"]) })),
                   })),
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     br0: nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$30, address: "10.10.0.2", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: pos$30, address: "10.10.0.2", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ __proto__: pos$34, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$34, enable: false })),
                 })),
-                nix: nix.thunk(() => ({ __proto__: pos$36, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$36, enable: false })),
               })),
             })),
           })),
@@ -208,41 +208,41 @@ export default nix.lambda((args) => (() => {
       bonded: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return {
-          __proto__: pos$55,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$41, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$55,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$41, vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             bonded: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   bonds: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     bond0: nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       interfaces: nix.thunk(() => ["eth1"]),
-                      driverOptions: nix.thunk(() => ({ __proto__: pos$42, mode: "active-backup" })),
+                      driverOptions: nix.thunk(() => ({ [nix.POS]: pos$42, mode: "active-backup" })),
                     })),
                   })),
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     bond0: nix.thunk(() => ({
-                      __proto__: pos$47,
+                      [nix.POS]: pos$47,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$45, address: "10.10.0.3", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: pos$45, address: "10.10.0.3", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ __proto__: pos$49, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$49, enable: false })),
                 })),
-                nix: nix.thunk(() => ({ __proto__: pos$51, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$51, enable: false })),
               })),
             })),
           })),
@@ -251,45 +251,45 @@ export default nix.lambda((args) => (() => {
       bridgedbond: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return {
-          __proto__: pos$72,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$56, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$72,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$56, vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             bridgedbond: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   bonds: nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     bond0: nix.thunk(() => ({
-                      __proto__: pos$58,
+                      [nix.POS]: pos$58,
                       interfaces: nix.thunk(() => ["eth1"]),
-                      driverOptions: nix.thunk(() => ({ __proto__: pos$57, mode: "active-backup" })),
+                      driverOptions: nix.thunk(() => ({ [nix.POS]: pos$57, mode: "active-backup" })),
                     })),
                   })),
                   bridges: nix.thunk(() => ({
-                    __proto__: pos$61,
-                    br0: nix.thunk(() => ({ __proto__: pos$60, interfaces: nix.thunk(() => ["bond0"]) })),
+                    [nix.POS]: pos$61,
+                    br0: nix.thunk(() => ({ [nix.POS]: pos$60, interfaces: nix.thunk(() => ["bond0"]) })),
                   })),
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     br0: nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$62, address: "10.10.0.4", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: pos$62, address: "10.10.0.4", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ __proto__: pos$66, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$66, enable: false })),
                 })),
-                nix: nix.thunk(() => ({ __proto__: pos$68, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$68, enable: false })),
               })),
             })),
           })),

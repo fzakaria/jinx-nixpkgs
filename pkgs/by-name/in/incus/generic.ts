@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
       })()));
     const evaluatedPatches = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), patches)) ? nix.app(patches, fetchpatch2) : nix.force(patches)));
     return nix.app(buildGoModule, (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname,
         vendorHash: vendorHash,
         version: version,
         outputs: nix.thunk(() => ["out", "agent_loader", "doc"]),
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ __proto__: pos$1, owner: "lxc", repo: "incus", hash: hash }, (nix.asBool(nix.eq(rev, null)) ? { __proto__: pos$2, tag: nix.thunk(() => nix.str`v${version}`) } : { __proto__: pos$3, rev: rev }))))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: pos$1, owner: "lxc", repo: "incus", hash: hash }, (nix.asBool(nix.eq(rev, null)) ? { [nix.POS]: pos$2, tag: nix.thunk(() => nix.str`v${version}`) } : { [nix.POS]: pos$3, rev: rev }))))),
         patches: nix.thunk(() => nix.concat([nix.path(here, "./docs.patch")], evaluatedPatches)),
         excludedPackages: nix.thunk(() => ["cmd/incus-agent", "cmd/incus-migrate", "test/mini-oidc"]),
         nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config, docsPython, udevCheckHook]),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         ldflags: nix.thunk(() => ["-s", "-w"]),
         tags: nix.thunk(() => ["libsqlite3"]),
         env: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CGO_LDFLAGS_ALLOW: "(-Wl,-wrap,pthread_create)|(-Wl,-z,now)",
         })),
         postPatch: nix.thunk(() => nix.str`substituteInPlace internal/server/device/disk.go \\
@@ -128,9 +128,9 @@ make incus-migrate
         doInstallCheck: true,
         postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")))), "installShellCompletion --cmd incus \\\n  --bash <($out/bin/incus completion bash) \\\n  --fish <($out/bin/incus completion fish) \\\n  --zsh <($out/bin/incus completion zsh)\n"), "mkdir -p $agent_loader/bin $agent_loader/etc/systemd/system $agent_loader/lib/udev/rules.d\n# the agent_loader output is used by virtualisation.incus.agent\ncp internal/server/instance/drivers/agent-loader/incus-agent-linux $agent_loader/bin/incus-agent\ncp internal/server/instance/drivers/agent-loader/incus-agent-setup-linux $agent_loader/bin/incus-agent-setup\nchmod +x $agent_loader/bin/incus-agent{,-setup}\npatchShebangs $agent_loader/bin/incus-agent{,-setup}\ncp internal/server/instance/drivers/agent-loader/systemd/incus-agent.service $agent_loader/etc/systemd/system/\ncp internal/server/instance/drivers/agent-loader/systemd/incus-agent.rules $agent_loader/lib/udev/rules.d/99-incus-agent.rules\nsubstituteInPlace $agent_loader/etc/systemd/system/incus-agent.service --replace-fail 'TARGET/systemd' \"$agent_loader/bin\"\n\nmkdir $doc\ncp -R doc/html $doc/\n")),
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               lts: lts,
               patches: patches,
               vendorHash: vendorHash,
@@ -140,10 +140,10 @@ make incus-migrate
             })))),
           tests: nix.thunk(() => (nix.asBool(lts) ? nix.sel(nixosTests, "incus-lts", "all") : nix.sel(nixosTests, "incus", "all"))),
           ui: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`incus.ui` renamed to `incus-ui-canonical`", incus_ui_canonical)),
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nixUpdateExtraArgs })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nixUpdateExtraArgs })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Powerful system container and virtual machine manager",
           homepage: "https://linuxcontainers.org/incus",
           changelog: nix.thunk(() => nix.str`https://github.com/lxc/incus/releases/tag/v${version}`),

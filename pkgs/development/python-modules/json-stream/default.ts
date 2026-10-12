@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const json_stream_rs_tokenizer = nix.arg($, "json-stream-rs-tokenizer");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "json-stream",
       version: "2.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daggaz",
           repo: "json-stream",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([json_stream_rs_tokenizer], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [iconv])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         httpx: nix.thunk(() => [httpx]),
         requests: nix.thunk(() => [requests]),
       })),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["json_stream"]),
       disabledTests: nix.thunk(() => ["test_writer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Streaming JSON parser",
         homepage: "https://github.com/daggaz/json-stream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

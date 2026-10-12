@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const pname = "vtfedit";
       const version = "1.3.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nemstools.github.io/files/vtfedit${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}.zip`),
           hash: "sha256-6a8YuxgYm7FB+2pFcZAMtE1db4hqpEk0z5gv2wHl9bI=",
           stripRoot: false,
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20230906220249im_/https://valvedev.info/tools/vtfedit/thumb.png",
           hash: "sha256-Jpqo/s1wO2U5Z1DSZvADTfdH+8ycr0KF6otQbAE+jts=",
         }))));
@@ -57,7 +57,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname,
             desktopName: "VTFEdit",
             exec: "vtfedit %f",
@@ -71,7 +71,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wine, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "VTF file viewer/editor",
         homepage: "https://nemstools.github.io/pages/VTFLib.html",
         sourceProvenance: nix.thunk(() => (() => {
@@ -84,7 +84,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

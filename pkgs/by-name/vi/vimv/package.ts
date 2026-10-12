@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vimv",
       version: "0-unstable-2019-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thameera",
           repo: "vimv",
           rev: "4152496c1946f68a13c648fb7e583ef23dac4eb8",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -d $out/bin\ninstall $src/vimv $out/bin/vimv\npatchShebangs $out/bin/vimv\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/thameera/vimv",
         description: "Batch-rename files using Vim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

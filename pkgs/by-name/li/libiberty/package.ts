@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.sel(gcc, "cc"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libiberty",
       version: nix.thunk(() => nix.str`${nix.sel(gcc, "cc", "version")}`),
       src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(staticBuild)), "cp pic/libiberty.a $out/lib*/libiberty.a\n")),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://gcc.gnu.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         description: "Collection of subroutines used by various GNU programs",

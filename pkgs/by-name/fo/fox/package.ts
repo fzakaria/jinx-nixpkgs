@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fox",
       version: "1.7.81",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://fox-toolkit.org/ftp/fox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-bu+IEqNkv9OAf96dPYre3CP759pjalVIbYyc3QSQW2w=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ based class library for building Graphical User Interfaces",
         longDescription: "FOX stands for Free Objects for X.\nIt is a C++ based class library for building Graphical User Interfaces.\nInitially, it was developed for LINUX, but the scope of this project has in the course of time become somewhat more ambitious.\nCurrent aims are to make FOX completely platform independent, and thus programs written against the FOX library will be only a compile away from running on a variety of platforms.\n",
         homepage: "http://fox-toolkit.org",

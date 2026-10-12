@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withGtk", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const snes9x = nix.arg($, "snes9x");
-  return nix.app(nix.sel(snes9x, "override"), nix.thunk(() => ({ __proto__: pos$1, withGtk: true })));
+  return nix.app(nix.sel(snes9x, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGtk: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

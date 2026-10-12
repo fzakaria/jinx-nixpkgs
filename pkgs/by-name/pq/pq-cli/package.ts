@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pq-cli",
       version: "1.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rr-",
           repo: "pq-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonRelaxDeps: nix.thunk(() => ["urwid", "urwid-readline"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Progress Quest: the CLI edition",
         homepage: "https://github.com/rr-/pq-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/rr-/pq-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

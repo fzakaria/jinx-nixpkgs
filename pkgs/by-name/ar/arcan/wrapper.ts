@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const appls = nix.argOr($, "appls", () => []);
   const name = nix.argOr($, "name", () => "arcan-wrapped");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: name,
       version: nix.thunk(() => nix.attr(arcan, "version")),
       paths: nix.thunk(() => nix.concat(appls, [arcan])),

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const path = nix.thunk(() => nix.attr(types, "path"));
   const str = nix.thunk(() => nix.attr(types, "str"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const package$ = nix.arg($_1, "package");
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const isNixAtLeast = nix.thunk(() => nix.app(versionAtLeast, version));
       nix.assert_(nix.app(isNixAtLeast, "2.2"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/nix-conf/default.nix:49:5");
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => (() => {
           const atomType = nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, int, float, str, path, nix.thunk(() => nix.sel(types, "package"))])))));
           return nix.app(attrsOf, atomType);
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           const mkKeyValuePairs = (attrs) => nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, mkKeyValue, attrs)));
           const isExtra = (key) => nix.app(hasPrefix, "extra-", key);
           return (name) => (value) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: name,
               text: nix.thunk(() => nix.str`# WARNING: this file is generated from the nix.* options in
 # your NixOS configuration, typically

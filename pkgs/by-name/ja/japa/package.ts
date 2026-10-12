@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const zita_alsa_pcmi = nix.arg($, "zita-alsa-pcmi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.9.4",
       pname: "japa",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/japa-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-t9wlZr+pE5u6yTpATWDQseC/rf4TFbtG0X9tnTdkB8I=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd ./source/\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SUFFIX=''"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "'perceptual' or 'psychoacoustic' audio spectrum analyser for JACK and ALSA",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -44,8 +44,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const mkKubernetesBaseTest = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -63,14 +63,14 @@ ${nix.app(nix.lookup(w_1, "concatMapStringsSep"), "\n", (machineName) => nix.str
     const wrapKubectl = nix.thunk(() => (() => {
       const w_2 = nix.withScope(pkgs, w_1);
       return nix.app(nix.lookup(w_2, "runCommand"), "wrap-kubectl", nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "makeWrapper"))]),
         })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${nix.sel(pkgs, "kubernetes")}/bin/kubectl $out/bin/kubectl --set KUBECONFIG "/etc/kubernetes/cluster-admin.kubeconfig"
 `));
     })());
     return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: name,
         nodes: nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), (machineName) => (machine) => nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
@@ -80,23 +80,23 @@ makeWrapper ${nix.sel(pkgs, "kubernetes")}/bin/kubectl $out/bin/kubectl --set KU
             const nodes = nix.arg($_2, "nodes");
             return nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   boot: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     postBootCommands: "rm -fr /var/lib/kubernetes/secrets /tmp/shared/*",
                   })),
                   virtualisation: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     memorySize: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), 1536n)),
                     diskSize: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), 4096n)),
                   })),
                   networking: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     domain: domain,
                     extraHosts: extraHosts,
                     primaryIPAddress: nix.thunk(() => nix.app(nix.lookup(w_1, "mkForce"), nix.thunk(() => nix.sel(machine, "ip")))),
                     firewall: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       allowedTCPPorts: nix.thunk(() => [10250n]),
                       trustedInterfaces: nix.thunk(() => ["mynet"]),
                       extraCommands: nix.thunk(() => nix.app(nix.lookup(w_1, "concatMapStrings"), (node) => nix.str`iptables -A INPUT -s ${nix.sel(node, "networking", "primaryIPAddress")} -j ACCEPT
@@ -104,31 +104,31 @@ makeWrapper ${nix.sel(pkgs, "kubernetes")}/bin/kubectl $out/bin/kubectl --set KU
                     })),
                   })),
                   programs: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     bash: nix.thunk(() => ({
-                      __proto__: pos$9,
-                      completion: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+                      [nix.POS]: pos$9,
+                      completion: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
                     })),
                   })),
-                  environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [wrapKubectl]) })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [wrapKubectl]) })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    flannel: nix.thunk(() => ({ __proto__: pos$12, iface: "eth1" })),
+                    [nix.POS]: pos$17,
+                    flannel: nix.thunk(() => ({ [nix.POS]: pos$12, iface: "eth1" })),
                     kubernetes: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       proxy: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         hostname: nix.thunk(() => nix.str`${masterName}.${domain}`),
                       })),
                       easyCerts: true,
                       roles: nix.thunk(() => nix.attr(machine, "roles")),
                       apiserver: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         securePort: 443n,
                         advertiseAddress: nix.thunk(() => nix.sel(master, "ip")),
                       })),
                       featureGates: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         AllowParsingUserUIDFromCertAuth: true,
                         ContextualLogging: false,
                       })),
@@ -137,46 +137,46 @@ makeWrapper ${nix.sel(pkgs, "kubernetes")}/bin/kubectl $out/bin/kubectl --set KU
                   })),
                 })),
                 nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.lookup(w_1, "any"), (role) => nix.eq(role, "master"), nix.thunk(() => nix.sel(machine, "roles")))), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     networking: nix.thunk(() => ({
-                      __proto__: pos$20,
-                      firewall: nix.thunk(() => ({ __proto__: pos$19, allowedTCPPorts: nix.thunk(() => [443n]) })),
+                      [nix.POS]: pos$20,
+                      firewall: nix.thunk(() => ({ [nix.POS]: pos$19, allowedTCPPorts: nix.thunk(() => [443n]) })),
                     })),
                   })))),
-                nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.has(machine, "extraConfiguration")), nix.thunk(() => nix.app(nix.sel(machine, "extraConfiguration"), nix.thunk(() => ({ __proto__: pos$22, config: config_1, pkgs: pkgs_1, lib: lib, nodes: nodes })))))),
-                nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(extraConfiguration, null)), nix.thunk(() => nix.app(extraConfiguration, nix.thunk(() => ({ __proto__: pos$23, config: config_1, pkgs: pkgs_1, lib: lib, nodes: nodes })))))),
+                nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.has(machine, "extraConfiguration")), nix.thunk(() => nix.app(nix.sel(machine, "extraConfiguration"), nix.thunk(() => ({ [nix.POS]: pos$22, config: config_1, pkgs: pkgs_1, lib: lib, nodes: nodes })))))),
+                nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(extraConfiguration, null)), nix.thunk(() => nix.app(extraConfiguration, nix.thunk(() => ({ [nix.POS]: pos$23, config: config_1, pkgs: pkgs_1, lib: lib, nodes: nodes })))))),
               ]));
           })(), formals$3), machines)),
         testScript: nix.thunk(() => nix.add("start_all()\n", test)),
       })));
   })(), formals$2);
   const mkKubernetesMultiNodeTest = (attrs) => nix.app(mkKubernetesBaseTest, nix.thunk(() => nix.update({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       machines: nix.thunk(() => ({
-        __proto__: pos$27,
-        machine1: nix.thunk(() => ({ __proto__: pos$25, roles: nix.thunk(() => ["master"]), ip: "192.168.1.1" })),
-        machine2: nix.thunk(() => ({ __proto__: pos$26, roles: nix.thunk(() => ["node"]), ip: "192.168.1.2" })),
+        [nix.POS]: pos$27,
+        machine1: nix.thunk(() => ({ [nix.POS]: pos$25, roles: nix.thunk(() => ["master"]), ip: "192.168.1.1" })),
+        machine2: nix.thunk(() => ({ [nix.POS]: pos$26, roles: nix.thunk(() => ["node"]), ip: "192.168.1.2" })),
       })),
     }, nix.update(attrs, {
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       name: nix.thunk(() => nix.str`kubernetes-${nix.sel(attrs, "name")}-multinode`),
     }))));
   const mkKubernetesSingleNodeTest = (attrs) => nix.app(mkKubernetesBaseTest, nix.thunk(() => nix.update({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       machines: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         machine1: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           roles: nix.thunk(() => ["master", "node"]),
           ip: "192.168.1.1",
         })),
       })),
     }, nix.update(attrs, {
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       name: nix.thunk(() => nix.str`kubernetes-${nix.sel(attrs, "name")}-singlenode`),
     }))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     mkKubernetesBaseTest: mkKubernetesBaseTest,
     mkKubernetesSingleNodeTest: mkKubernetesSingleNodeTest,
     mkKubernetesMultiNodeTest: mkKubernetesMultiNodeTest,

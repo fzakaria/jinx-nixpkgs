@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const unidic = nix.arg($, "unidic");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "misaki",
       version: "0-unstable-2025-06-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hexgrad",
           repo: "misaki",
           rev: "49ddead831fc1a46beab3f9cb6064d93fd3f6347",
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pr82-remove-pip-dependency.patch",
             url: "https://github.com/hexgrad/misaki/commit/7d2fdff9fe046dd52b638bbb1b243fb789f4cb31.patch?full_index=1",
             hash: "sha256-N796YWrGe51FYVdxbQ8omJxeGdvOAiKEUKhhm10TQO8=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-espeak-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "espeak-library-path": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), espeak_ng)}/lib/libespeak-ng${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             "espeak-data-path": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), espeak_ng)}/share/espeak-ng-data`),
           })))),
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [addict, regex]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           en: nix.thunk(() => [
             num2words,
             spacy,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [phonemizer]),
       pythonImportsCheck: nix.thunk(() => ["misaki", "misaki.espeak"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "G2P engine for TTS",
         homepage: "https://github.com/hexgrad/misaki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

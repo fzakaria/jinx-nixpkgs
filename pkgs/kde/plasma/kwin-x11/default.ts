@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kwin-x11",
       patches: nix.thunk(() => [
         nix.path(here, "./0001-NixOS-Unwrap-executable-name-for-.desktop-search.patch"),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pdm_backend = nix.arg($, "pdm-backend");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocstrings-python",
       version: "2.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkdocstrings",
           repo: "python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mkdocstrings_handlers"]),
       disabledTests: nix.thunk(() => ["test_windows_root_conversion", "test_format_code"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python handler for mkdocstrings",
         homepage: "https://github.com/mkdocstrings/python",
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

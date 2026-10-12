@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const imlib2 = nix.arg($, "imlib2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imlibsetroot",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://robotmonkeys.net/wp-content/uploads/2010/03/imlibsetroot-12.tar.gz",
           sha256: "8c1b3b7c861e4d865883ec13a96b8e4ab22464a87d4e6c67255b17a88e3cfd1c",
         })))),
@@ -35,7 +35,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -D -m 0755 imlibsetroot -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Xinerama Aware Background Changer",
         homepage: "http://robotmonkeys.net/2010/03/30/imlibsetroot/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mitAdvertising")),

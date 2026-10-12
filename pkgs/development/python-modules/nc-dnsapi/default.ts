@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nbuchwitz",
           repo: "nc_dnsapi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["nc_dnsapi"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API wrapper for the netcup DNS api",
         homepage: "https://github.com/nbuchwitz/nc_dnsapi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

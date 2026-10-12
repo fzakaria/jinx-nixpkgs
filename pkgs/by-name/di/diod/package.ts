@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lua = lua5_1;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "diod",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chaos",
           repo: "diod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/chaos/diod/commit/d56db0c55012c8a9ea2d3c72749022292c0f65b8.patch",
             hash: "sha256-wuPok3D3VKiao9NmHYLcccsL+91xVbhUeSDExw17X/E=",
           })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "--sysconfdir=/etc",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "I/O forwarding server that implements a variant of the 9P protocol",
         homepage: "https://github.com/chaos/diod",
         maintainers: nix.thunk(() => (() => {

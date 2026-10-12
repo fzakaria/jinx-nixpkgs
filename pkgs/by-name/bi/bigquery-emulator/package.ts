@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
-  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.sel(pkgs, "clangStdenv")) })), (finalAttrs) => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.sel(pkgs, "clangStdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$4,
       version: "0.8.1",
       pname: "bigquery-emulator",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "goccy",
           repo: "bigquery-emulator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "BigQuery emulator server implemented in Go",
         homepage: "https://github.com/goccy/bigquery-emulator",
         changelog: nix.thunk(() => nix.str`https://github.com/goccy/bigquery-emulator/releases/tag/v${nix.sel(finalAttrs, "version")}`),

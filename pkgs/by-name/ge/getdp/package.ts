@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const mpiSupport = nix.thunk(() => nix.sel(petsc, "passthru", "mpiSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "getdp",
       version: "3.6.0-unstable-2025-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.onelab.info",
           owner: "getdp",
           repo: "getdp",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gfortran, blas, lapack, petsc], nix.app(nix.sel(lib, "optional"), mpiSupport, mpi))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), mpiSupport, "-DENABLE_MPI=1")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General Environment for the Treatment of Discrete Problems",
         mainProgram: "getdp",
         longDescription: "GetDP is a free finite element solver using mixed elements to discretize\nde Rham-type complexes in one, two and three dimensions.  The main\nfeature of GetDP is the closeness between the input data defining\ndiscrete problems (written by the user in ASCII data files) and the\nsymbolic mathematical expressions of these problems.\n",

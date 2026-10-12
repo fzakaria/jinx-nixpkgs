@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.sel(python3Packages, "manim-slides"))), "overridePythonAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dependencies: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), nix.sel(oldAttrs, "optional-dependencies", "pyqt6-full"))),
     }));
 })(), formals$1);

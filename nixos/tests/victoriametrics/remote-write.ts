@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const password = "fsddfy8233rb";
   const passwordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password-file", password));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "victoriametrics-remote-write",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "yorickvp")),
           nix.thunk(() => nix.lookup(w, "ryan4yin")),
@@ -50,24 +50,24 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       vmserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [8428n]) })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [8428n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             victoriametrics: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               basicAuthUsername: username,
               basicAuthPasswordFile: nix.thunk(() => nix.builtins.toString(passwordFile)),
@@ -80,32 +80,32 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             vmagent: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               remoteWrite: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 url: "http://vmserver:8428/api/v1/write",
                 basicAuthUsername: username,
                 basicAuthPasswordFile: nix.thunk(() => nix.builtins.toString(passwordFile)),
               })),
               prometheusConfig: nix.thunk(() => ({
-                __proto__: pos$13,
-                global: nix.thunk(() => ({ __proto__: pos$10, scrape_interval: "2s" })),
+                [nix.POS]: pos$13,
+                global: nix.thunk(() => ({ [nix.POS]: pos$10, scrape_interval: "2s" })),
                 scrape_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     job_name: "node",
                     static_configs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         targets: nix.thunk(() => [
                           nix.thunk(() => nix.str`node:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node", "port")))}`),
                         ]),
@@ -119,14 +119,14 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$3),
       node: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             exporters: nix.thunk(() => ({
-              __proto__: pos$18,
-              node: nix.thunk(() => ({ __proto__: pos$17, enable: true, openFirewall: true })),
+              [nix.POS]: pos$18,
+              node: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, openFirewall: true })),
             })),
           })),
         })),

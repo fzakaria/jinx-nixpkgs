@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wineasio",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wineasio",
           repo: "wineasio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       "wineasio-settings": nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "wineasio-settings",
@@ -69,7 +69,7 @@ ln -s ${nix.sel(finalAttrs, "wineasio-settings")}/bin/wineasio-settings $out/bin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/wineasio/wineasio",
         changelog: nix.thunk(() => nix.str`https://github.com/wineasio/wineasio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "ASIO to JACK driver for WINE",

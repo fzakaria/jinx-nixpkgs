@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const packaging = nix.arg($, "packaging");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "finufft",
       version: nix.thunk(() => nix.attr(finufft, "version")),
       src: nix.thunk(() => nix.attr(finufft, "src")),
@@ -40,7 +40,7 @@ runHook postInstall
       pythonImportsCheck: nix.thunk(() => ["finufft"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "cd python/finufft/test\n",
-      meta: nix.thunk(() => nix.update(nix.sel(finufft, "meta"), { __proto__: pos$1, description: "Python interface to FINUFFT" })),
+      meta: nix.thunk(() => nix.update(nix.sel(finufft, "meta"), { [nix.POS]: pos$1, description: "Python interface to FINUFFT" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

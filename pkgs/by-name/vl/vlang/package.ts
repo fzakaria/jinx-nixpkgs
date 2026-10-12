@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const version = "0.5.2";
   const ptraceSubstitution = "#include <sys/types.h>\n#include <sys/ptrace.h>\n";
   const vc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "v.c",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vlang",
           repo: "vc",
           rev: "7eb8c54a3843e5107d5af06d7a8c3e928f322475",
@@ -48,19 +48,19 @@ export default nix.lambda((args) => (() => {
 `)), "mkdir -p $out\ncp v.c $out/\n")),
     }))));
   const markdown = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "vlang",
       repo: "markdown",
       rev: "ef2f1018c37c1db6e379331b3cd841331b6a6fd2",
       hash: "sha256-drhDQYm7yiL+EDyslkTb0MGA9NQRrDLVg3IElwXAIIY=",
     }))));
-  const boehmgcStatic = nix.thunk(() => nix.app(nix.sel(boehmgc, "override"), nix.thunk(() => ({ __proto__: pos$4, enableStatic: true }))));
+  const boehmgcStatic = nix.thunk(() => nix.app(nix.sel(boehmgc, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vlang",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "vlang",
           repo: "v",
           rev: version,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([binaryen], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11, libxau, libxdmcp, xorgproto])))),
       makeFlags: nix.thunk(() => ["local=1"]),
-      env: nix.thunk(() => ({ __proto__: pos$6, VC: vc })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, VC: vc })),
       preBuild: nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 mkdir -p ./thirdparty/tcc/lib
 cp -r ${boehmgcStatic}/lib/* ./thirdparty/tcc/lib
@@ -102,7 +102,7 @@ $out/lib/v -v $out/lib/cmd/tools/vcreate
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://vlang.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/vlang/v/releases/tag/${version}`),
         description: "Simple, fast, safe, compiled language for developing maintainable software",

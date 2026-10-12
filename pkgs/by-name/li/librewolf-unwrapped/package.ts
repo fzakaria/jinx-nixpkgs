@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const librewolf_src = nix.thunk(() => nix.app(callPackage, nix.path(here, "./librewolf.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(nix.app(buildMozillaMach, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "librewolf",
       applicationName: "LibreWolf",
       binaryName: "librewolf",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       extraPostPatch: nix.thunk(() => nix.attr(librewolf_src, "extraPostPatch")),
       extraPassthru: nix.thunk(() => nix.attr(librewolf_src, "extraPassthru")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Fork of Firefox, focused on privacy, security and freedom",
         homepage: "https://librewolf.net/",
         maintainers: nix.thunk(() => (() => {
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
         mainProgram: "librewolf",
       })),
       tests: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         librewolf: nix.thunk(() => nix.attr(nixosTests, "librewolf")),
       })),
-      updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ __proto__: pos$3, attrPath: "librewolf-unwrapped" })))),
+      updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "librewolf-unwrapped" })))),
     }))), "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       enableAddonSigning: false,
       enableAddonSideload: true,
       enableCrashReporter: false,

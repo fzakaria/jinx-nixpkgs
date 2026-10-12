@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zenpower5",
       version: "0.5.0-unstable-2026-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattkeenan",
           repo: "zenpower5",
           rev: "66871d8e59c3741e00de2eb1f61c3b64263ed10b",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D zenpower.ko -t "$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/hwmon/zenpower/"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux kernel driver for reading temperature, voltage(SVI2), current(SVI2) and power(SVI2) for AMD Zen family CPUs",
         homepage: "https://github.com/mattkeenan/zenpower5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

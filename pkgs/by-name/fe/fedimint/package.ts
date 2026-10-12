@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fedimint";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fedimint",
           repo: "fedimint",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "fedimintCli", "fedimint", "gateway", "gatewayCli", "devimint"]);
       const postInstall = "mkdir -p $fedimint/bin $fedimintCli/bin $gateway/bin $gatewayCli/bin $devimint/bin\n\n# delete fuzzing targets and other binaries no one cares about\nbinsToKeep=(fedimint-cli fedimint-dbtool recoverytool fedimintd gatewayd gateway-cli devimint)\nkeepPattern=$(printf \"|%s\" \"${binsToKeep[@]}\")\nkeepPattern=${keepPattern:1}\nfind \"$out/bin\" -maxdepth 1 -type f | grep -Ev \"(${keepPattern})\" | xargs rm -f\n\ncp -a $releaseDir/fedimint-cli  $fedimintCli/bin/\ncp -a $releaseDir/fedimint-dbtool  $fedimintCli/bin/\ncp -a $releaseDir/fedimint-recoverytool  $fedimintCli/bin/\n\ncp -a $releaseDir/fedimintd  $fedimint/bin/\n\ncp -a $releaseDir/gateway-cli $gatewayCli/bin/\n\ncp -a $releaseDir/gatewayd $gateway/bin/\n\ncp -a $releaseDir/devimint $devimint/bin/\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PROTOC: nix.thunk(() => nix.str`${nix.sel(buildPackages, "protobuf")}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
         OPENSSL_DIR: nix.thunk(() => nix.sel(openssl, "dev")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Federated E-Cash Mint",
         homepage: "https://github.com/fedimint/fedimint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fedimint-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src,

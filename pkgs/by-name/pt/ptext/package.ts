@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ptext",
       version: "0-unstable-2024-08-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "proh14",
           repo: "ptext",
           rev: "86cc1a165f398bd1f08fc45f2db93d4a9701ab0e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "mkdir -p $out/{bin,share/man/man1}",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nano like text editor built with pure C",
         homepage: "https://github.com/proh14/ptext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

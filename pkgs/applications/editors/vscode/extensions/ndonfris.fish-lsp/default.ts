@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "ndonfris",
         name: "fish-lsp",
         version: "0.1.24",
         hash: "sha256-0elBQaO6j7mkex9bBqnXGjOgeMwo7lEQ+DBhJkeOD94=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LSP implementation for the fish shell language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ndonfris.fish-lsp",
         homepage: "https://github.com/ndonfris/fish-lsp",

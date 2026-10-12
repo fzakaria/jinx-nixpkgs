@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libinotify-kqueue";
       const version = "20240724";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libinotify-kqueue",
           repo: "libinotify-kqueue",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-configure-caching.patch",
             url: "https://github.com/libinotify-kqueue/libinotify-kqueue/commit/81a8f05c1ce6df819dc898f3754c9c874ee24b10.patch",
             hash: "sha256-imKS2DuQrHSMnJH1gOYrVSeWTe2nhcl8Gm9IX5B9ZqI=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const checkFlags = nix.thunk(() => ["test"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Inotify shim for macOS and BSD",
         homepage: "https://github.com/libinotify-kqueue/libinotify-kqueue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

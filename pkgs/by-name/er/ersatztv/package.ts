@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ersatztv";
       const version = "26.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ErsatzTV",
           repo: "legacy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, which]))}`),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stream custom live channels using your own media",
         homepage: "https://ersatztv.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(dotnet_runtime, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

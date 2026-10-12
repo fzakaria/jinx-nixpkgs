@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const remctl = nix.arg($, "remctl");
   const TestPod = nix.arg($, "TestPod");
   return nix.app(buildPerlModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "NetRemctl",
       meta: nix.thunk(() => nix.attr(remctl, "meta")),
       src: nix.thunk(() => nix.attr(remctl, "src")),

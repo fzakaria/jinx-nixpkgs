@@ -13,11 +13,11 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 31, 5], ["so
 const pos$9 = nix.positions(here + "/gemset.nix", [["git-version-bump", 2, 3], ["lvmsync", 10, 3], ["polyglot", 22, 3], ["treetop", 30, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   "git-version-bump": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0xcj20gmbpqn2gcpid4pxpnimfdg2ip9jnl1572naz0magcrwl2s",
       type: "gem",
@@ -25,10 +25,10 @@ export default nix.thunk(() => ({
     version: "0.15.1",
   })),
   lvmsync: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["git-version-bump", "treetop"]),
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "02mdrvfibvab4p4yrdzxvndhy8drss3ri7izybcwgpbyc7isk8mv",
       type: "gem",
@@ -36,9 +36,9 @@ export default nix.thunk(() => ({
     version: "3.3.2",
   })),
   polyglot: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1bqnxwyip623d8pr29rg6m8r0hdg08fpr2yb74f46rn1wgsnxmjr",
       type: "gem",
@@ -46,10 +46,10 @@ export default nix.thunk(() => ({
     version: "0.3.5",
   })),
   treetop: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     dependencies: nix.thunk(() => ["polyglot"]),
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0sdkd1v2h8dhj9ncsnpywmqv7w1mdwsyc5jwyxlxwriacv8qz8bd",
       type: "gem",

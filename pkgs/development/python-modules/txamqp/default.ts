@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "txAMQP",
           version: version,
           sha256: "0jd9864k3csc06kipiwzjlk9mq4054s8kzk5q1cfnxj8572s4iv4",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [twisted]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/txamqp/txamqp",
         description: "Library for communicating with AMQP peers and brokers using Twisted",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

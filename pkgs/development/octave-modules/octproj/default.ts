@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "octproj";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgpallero",
           repo: "octproj",
           rev: nix.thunk(() => nix.str`OctPROJ-${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "sed -i s/\"error(errorText)\"/\"error(\\\"%s\\\", errorText)\"/g src/*.cc\nsed -i s/\"warning(errorText)\"/\"warning(\\\"%s\\\", errorText)\"/g src/*.cc\n";
       const propagatedBuildInputs = nix.thunk(() => [proj]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "OctPROJ-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gnu-octave.github.io/packages/octproj/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         description: "GNU Octave bindings to PROJ library for cartographic projections and CRS transformations",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

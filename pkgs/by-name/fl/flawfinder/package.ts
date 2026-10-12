@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flawfinder",
       version: "2.0.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dwheeler.com/flawfinder/flawfinder-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-nXMqTg/vHNTq7v1KAJPxg8WYH2yENxHOrmpjQZQEmWs=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["flawfinder"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to examines C/C++ source code for security flaws",
         mainProgram: "flawfinder",
         homepage: "https://dwheeler.com/flawfinder/",

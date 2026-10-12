@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       tested: nix.thunk(() => nix.sel(pkgs, "ibus")),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         i18n: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           supportedLocales: nix.thunk(() => ["all"]),
-          inputMethod: nix.thunk(() => ({ __proto__: pos$1, enable: true, type: "ibus" })),
+          inputMethod: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, type: "ibus" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           user: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "ibus-daemon": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ibus")}/bin/ibus-daemon --xim --verbose`),
                 })),
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),

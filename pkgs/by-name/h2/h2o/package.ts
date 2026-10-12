@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "h2o",
       version: "2.3.0-rolling-2026-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h2o",
           repo: "h2o",
           rev: "cac7e6568ad98a848f099ecd0a18b881f632479a",
@@ -71,11 +71,11 @@ wrapProgram "$out/bin/h2olog" \\
     --set "PERL5LIB" "$PERL5LIB"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, h2o: nix.thunk(() => nix.attr(nixosTests, "h2o")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, h2o: nix.thunk(() => nix.attr(nixosTests, "h2o")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Optimized HTTP/1.x, HTTP/2, HTTP/3 server",
         homepage: "https://h2o.examp1e.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

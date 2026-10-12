@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const trousers = nix.arg($, "trousers");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tboot",
       version: "1.11.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tboot/tboot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-X7AOOQ3Vyjhv6FlYTlWFf0PCDl/ABMADNIOlQzL+HyE=",
         })))),
@@ -37,7 +37,7 @@ substituteInPlace docs/Makefile --replace /usr/share /share
       postPatch: "# compute the allocated size from the pointed type, to avoid the warning\nsubstituteInPlace lcptools-v2/pconf_legacy.c \\\n  --replace-fail \"digest = malloc(SHA1_DIGEST_SIZE);\" \\\n    \"digest = malloc(sizeof *digest);\"\n",
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pre-kernel/VMM module that uses Intel(R) TXT to perform a measured and verified launch of an OS kernel/VMM",
         homepage: "https://sourceforge.net/projects/tboot/",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/tboot/code/ci/v${nix.sel(finalAttrs, "version")}/tree/CHANGELOG`),

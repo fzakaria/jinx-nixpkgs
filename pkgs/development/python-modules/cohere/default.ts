@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cohere-ai",
           repo: "cohere-python",
           tag: version,
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonRelaxDeps = nix.thunk(() => ["pydantic-core"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]),
         oci: nix.thunk(() => [oci]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["cohere"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simplify interfacing with the Cohere API",
         homepage: "https://docs.cohere.com/docs",
         changelog: nix.thunk(() => nix.str`https://github.com/cohere-ai/cohere-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const name = "rebar3_nix";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erlang-nix",
           repo: name,
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "10ijc06qvv5hqv0qy3w7mbv9pshdb8bvy0f3phr1vd5hksbk731y",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "nix integration for rebar3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/erlang-nix/rebar3_nix",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, name, version, src, meta };
+      return { [nix.POS]: pos$3, name, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const findXMLCatalogs = nix.arg($, "findXMLCatalogs");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tig",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonas",
           repo: "tig",
           rev: nix.thunk(() => nix.str`tig-${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ wrapProgram $out/bin/tig \\
 `),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jonas.github.io/tig/",
         description: "Text-mode interface for git",
         maintainers: nix.thunk(() => (() => {

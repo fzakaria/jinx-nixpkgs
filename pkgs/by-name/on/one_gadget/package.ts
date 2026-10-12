@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "one_gadget",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["one_gadget"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/one_gadget --prefix PATH : ${nix.app(nix.sel(binutils_unwrapped, "override"), nix.thunk(() => ({ __proto__: pos$1, withAllTargets: true })))}/bin
+      postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/one_gadget --prefix PATH : ${nix.app(nix.sel(binutils_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withAllTargets: true })))}/bin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "one_gadget")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Best tool for finding one gadget RCE in libc.so.6",
         homepage: "https://github.com/david942j/one_gadget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

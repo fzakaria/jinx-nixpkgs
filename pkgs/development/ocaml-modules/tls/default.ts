@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tls",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirleft/ocaml-tls/releases/download/v${nix.sel(finalAttrs, "version")}/tls-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kNBOBvogamm10TewF+URwUG5WeXHkp58uKFRVTIkej8=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirleft/ocaml-tls",
         description: "TLS in pure OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

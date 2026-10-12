@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "egauge-async",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neggert",
           repo: "egauge-async",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTestMarks: nix.thunk(() => ["integration"]),
       pythonImportsCheck: nix.thunk(() => ["egauge_async"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async client for eGauge energy monitor",
         homepage: "https://github.com/neggert/egauge-async",
         changelog: nix.thunk(() => nix.str`https://github.com/neggert/egauge-async/releases/tag/v${nix.sel(finalAttrs, "version")}`),

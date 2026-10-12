@@ -48,46 +48,46 @@ export default nix.lambda((args) => (() => {
   const providerFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "opkssh-providers", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (provider) => nix.str`${nix.sel(provider, "issuer")} ${nix.sel(provider, "clientId")} ${nix.sel(provider, "lifetime")}`, nix.thunk(() => nix.sel(cfg, "providers"))))))));
   const authIdFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "opkssh-auth-id", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "map"), (auth) => nix.str`${nix.sel(auth, "user")} ${nix.sel(auth, "principal")} ${nix.sel(auth, "issuer")}`, nix.thunk(() => nix.sel(cfg, "authorizations"))))))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         opkssh: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenID Connect SSH authentication")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "opkssh", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opksshuser",
               description: "System user for running opkssh",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opksshuser",
               description: "System group for opkssh",
             })))),
           providers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     options: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       issuer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Issuer URI",
                           example: "https://accounts.google.com",
                         })))),
                       clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "OAuth client ID",
                         })))),
                       lifetime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["12h", "24h", "48h", "1week", "oidc", "oidc-refreshed"]))),
                           default: "24h",
                           description: "Token lifetime",
@@ -95,21 +95,21 @@ export default nix.lambda((args) => (() => {
                     })),
                   })))))),
               default: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 google: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   issuer: "https://accounts.google.com",
                   clientId: "206584157355-7cbe4s640tvm7naoludob4ut1emii7sf.apps.googleusercontent.com",
                   lifetime: "24h",
                 })),
                 microsoft: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   issuer: "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
                   clientId: "096ce0a3-5e72-4da8-9c86-12924b294a01",
                   lifetime: "24h",
                 })),
                 github: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   issuer: "https://token.actions.githubusercontent.com",
                   clientId: "github",
                   lifetime: "oidc",
@@ -118,23 +118,23 @@ export default nix.lambda((args) => (() => {
               description: "OpenID Connect providers configuration",
             })))),
           authorizations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Linux user to authorize",
                         })))),
                       principal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Principal identifier (email, repo, etc.)",
                         })))),
                       issuer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Issuer URI",
                         })))),
@@ -148,13 +148,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               isSystemUser: true,
               description: "OpenPubkey OpenID Connect SSH User",
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -162,19 +162,19 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           openssh: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             authorizedKeysCommand: "/run/wrappers/bin/opkssh verify %u %k %t",
             authorizedKeysCommandUser: nix.thunk(() => nix.sel(cfg, "user")),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             opkssh: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/opkssh`),
               owner: "root",
               group: "root",
@@ -182,18 +182,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           etc: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "opk/providers": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               mode: "0640",
               user: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
               source: providerFile,
             })),
             "opk/auth_id": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               mode: "0640",
               user: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -203,7 +203,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "datosh"))];

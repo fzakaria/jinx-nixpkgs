@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const rocksdb = nix.arg($, "rocksdb");
   const rust_jemalloc_sys_unprefixed = nix.arg($, "rust-jemalloc-sys-unprefixed");
   return nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enableJemalloc: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       jemalloc: rust_jemalloc_sys_unprefixed,
     }))), "overrideAttrs"), (final) => (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "11.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "forgejo.ellis.link",
           owner: "continuwuation",
           repo: "rocksdb",

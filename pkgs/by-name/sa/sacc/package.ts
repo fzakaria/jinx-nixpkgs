@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libressl = nix.arg($, "libressl");
   const patches = nix.argOr($, "patches", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sacc",
       version: "1.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://bitreich.org/releases/sacc/sacc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LdEeZH+JWb7iEEzikAXaxG0N5GMPxjgTId4THLgdU2w=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["OSCFLAGS=-D_DARWIN_C_SOURCE"]))),
       postPatch: "substituteInPlace config.mk \\\n  --replace curses ncurses \\\n  --replace \"/usr/local\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal gopher client",
         mainProgram: "sacc",
         homepage: "gopher://bitreich.org/1/scm/sacc",

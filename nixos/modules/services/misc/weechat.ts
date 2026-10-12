@@ -36,29 +36,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "weechat"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         weechat: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "weechat")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "weechat", nix.thunk(() => ({})))),
           root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Weechat state directory.",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/weechat",
             })))),
           sessionName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Name of the `screen` session for weechat.",
               default: "weechat-screen",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           binary: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Binary to execute.",
               default: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "headless"))) ? nix.str`${nix.sel(cfg, "package")}/bin/weechat` : nix.str`${nix.sel(cfg, "package")}/bin/weechat-headless`)),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${cfg.package}/bin/weechat-headless\"")),
             })))),
           headless: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allows specifying if weechat should run in TUI or headless mode.\n",
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
-          groups: nix.thunk(() => ({ __proto__: pos$8, weechat: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$11,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$8, weechat: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             weechat: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               createHome: true,
               group: "weechat",
               home: nix.thunk(() => nix.sel(cfg, "root")),
@@ -91,25 +91,25 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               weechat: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "root")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "root"), "/var/lib/weechat")), nix.thunk(() => ({
-                    __proto__: pos$13,
-                    d: nix.thunk(() => ({ __proto__: pos$12, user: "weechat", group: "weechat", mode: "750" })),
+                    [nix.POS]: pos$13,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$12, user: "weechat", group: "weechat", mode: "750" })),
                   }))))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             weechat: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "simple",
                 User: "weechat",
                 Group: "weechat",
@@ -125,11 +125,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             screen: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "headless"))), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 setuid: true,
                 owner: "root",
                 group: "root",
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$24, doc: nix.path(here, "./weechat.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$24, doc: nix.path(here, "./weechat.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=weechat.ts.map

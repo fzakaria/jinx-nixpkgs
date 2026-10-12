@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const stdune = nix.arg($, "stdune");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fiber",
       version: "3.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-dune/fiber/releases/download/${nix.sel(finalAttrs, "version")}/fiber-lwt-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-hkihWuk/5pQpmc42iHQpo5E7YoKcRxTlIMwOehw7loI=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Structured concurrency library",
         homepage: "https://github.com/ocaml-dune/fiber",
         maintainers: [],

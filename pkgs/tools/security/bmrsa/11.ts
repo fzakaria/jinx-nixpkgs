@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bmrsa";
       const version = "11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/bmrsa/bmrsa${version}.zip`),
           sha256: "0ksd9xkvm9lkvj4yl5sl0zmydp1wn3xhc55b28gj70gi4k75kcl4",
         }))));
@@ -30,14 +30,14 @@ mkdir -p $out/bin
 echo -e 'install:\\n\\tcp bmrsa '$out'/bin' >> Makefile
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RSA utility",
         mainProgram: "bmrsa",
         homepage: "http://bmrsa.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, unpackPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, unpackPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=11.ts.map

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fokus",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "divinae",
           repo: "focus-plasmoid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,15 +37,15 @@ substituteInPlace package/contents/ui/Sfx.qml \\
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/plasma/plasmoids/com.dv.fokus\ncp -r package/* $out/share/plasma/plasmoids/com.dv.fokus/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/divinae/focus-plasmoid.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple pomodoro KDE Plasma plasmoid",
         homepage: "https://gitlab.com/divinae/focus-plasmoid",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/divinae/focus-plasmoid/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

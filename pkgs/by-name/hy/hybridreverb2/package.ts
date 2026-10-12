@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const impulseDB = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "HybridReverb2-impulse-response-database",
           rev: nix.thunk(() => nix.str`v${DBversion}`),
           sha256: "sha256-PyGrMNhrL2cRjb2UPPwEaJ6vZBV2sDG1mKFCNdfqjsI=",
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: owner,
           repo: "HybridReverb2",
           rev: rev,
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
 cp  -r ${impulseDB}/* $out/share/HybridReverb2/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jpcima/HybridReverb2",
         description: "Reverb effect using hybrid impulse convolution",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -87,7 +87,7 @@ cp  -r ${impulseDB}/* $out/share/HybridReverb2/
         mainProgram: "HybridReverb2",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         impulseDB,

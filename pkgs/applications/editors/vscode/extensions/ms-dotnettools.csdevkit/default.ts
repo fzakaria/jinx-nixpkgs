@@ -25,27 +25,27 @@ export default nix.lambda((args) => (() => {
   const libkrb5 = nix.arg($, "libkrb5");
   const patchelf = nix.arg($, "patchelf");
   const extInfo = nix.thunk(() => nix.selOr({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       arch: "linux-x64",
       hash: "sha256-N3W/cvqAzf7Z9jMjiHN9zWrHXZjIqD1RnuZbZ/yQx8g=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       arch: "linux-arm64",
       hash: "sha256-1zz9xrMALIOXzMpArWSwO12WmRE+0ldbIwUFH1G2GQI=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       arch: "darwin-arm64",
       hash: "sha256-F4CsyiX46SpjilJNV+qYps1JAw09pVruLmW+muN9/B4=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "csdevkit",
         publisher: "ms-dotnettools",
         version: "3.10.14",
@@ -114,7 +114,7 @@ ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/lib
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: "https://marketplace.visualstudio.com/items/ms-dotnettools.csdevkit/changelog",
         description: "Official Visual Studio Code extension for C# from Microsoft",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit",

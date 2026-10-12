@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zshCompletion = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gist.githubusercontent.com/thoughtpolice/daa9431044883d3896f6/raw/282360677007db9739e5bf229873d3b231eb303a/tarsnap.zsh",
       hash: "sha256-OarbG6Ao/QON/N/jLGC29n/SL0WwHrVzEv9+yCLHXF0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tarsnap",
       version: "1.0.41",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.tarsnap.com/download/tarsnap-autoconf-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-vr2+Hm6RIzdVvrQu8LStvv2Vc0VSWPAJ+zMVVseZs9A=",
         })))),
@@ -50,7 +50,7 @@ installShellCompletion --cmd tarsnap \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Online backups for the truly paranoid",
         homepage: "http://www.tarsnap.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

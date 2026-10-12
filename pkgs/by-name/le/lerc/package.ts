@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lerc",
       version: "4.2.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esri",
           repo: "lerc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/ee9e39ceb1af729ac33854b5f3de652cb5ce0eca/graphics/lerc/files/patch-_assert",
               hash: "sha256-agvGqgIsKS8v43UZdTVxDRDGbZdj2+AzKoQONvQumB4=",
               extraPrefix: "",
@@ -44,17 +44,17 @@ export default nix.lambda((args) => (() => {
         ]))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/Esri/lerc/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "C++ library for Limited Error Raster Compression",
         homepage: "https://github.com/esri/lerc",

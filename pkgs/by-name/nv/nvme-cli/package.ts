@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvme-cli",
       version: "2.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-nvme",
           repo: "nvme-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "NVM-Express user space tooling for Linux",
         longDescription: "NVM-Express is a fast, scalable host controller interface designed to\naddress the needs for not only PCI Express based solid state drives, but\nalso NVMe-oF(over fabrics).\nThis nvme program is a user space utility to provide standards compliant\ntooling for NVM-Express drives. It was made specifically for Linux as it\nrelies on the IOCTLs defined by the mainline kernel driver.\n",

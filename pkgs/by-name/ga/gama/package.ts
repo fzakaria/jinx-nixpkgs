@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gama",
       version: "2.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gama/gama-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Xcc/4JB7hyM+KHeO32+JlQWUBfH8RXuOL3Z2P0imaxo=",
         })))),
       buildInputs: nix.thunk(() => [expat]),
       nativeBuildInputs: nix.thunk(() => [texinfo, zip]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-include sstream")),
       })),
       nativeCheckInputs: nix.thunk(() => [octave, libxml2]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for adjustment of geodetic networks",
         homepage: "https://www.gnu.org/software/gama/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

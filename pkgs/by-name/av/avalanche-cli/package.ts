@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avalanche-cli",
       version: "1.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ava-labs",
           repo: "avalanche-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       vendorHash: "sha256-0+YwlCHjiU46y333RSuaha4pLKFTYlj+M9+TFAALamY=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_CFLAGS: "-O -D__BLST_PORTABLE__",
         CGO_CFLAGS_ALLOW: "-O -D__BLST_PORTABLE__",
       })),
@@ -66,7 +66,7 @@ installShellCompletion --cmd avalanche \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/avalanche`),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool that gives developers access to everything Avalanche",
         homepage: "https://github.com/ava-labs/avalanche-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/ava-labs/avalanche-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

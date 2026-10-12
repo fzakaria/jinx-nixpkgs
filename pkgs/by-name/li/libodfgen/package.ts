@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libodfgen",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libwpd/libodfgen/libodfgen-${nix.sel(finalAttrs, "version")}/libodfgen-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VSAAJ/1GYjub3d040nXnRS0bD/iu3crW+a5twl9hBiU=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-C", "test"]),
       checkTarget: "launch_all",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base library for generating ODF documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

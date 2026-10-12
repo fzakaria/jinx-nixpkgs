@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libnvvm = nix.arg($, "libnvvm");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "cuda",
       pname: "cuda_nvcc",
       outputs: nix.thunk(() => ["out"]),
@@ -69,13 +69,13 @@ wrapProgramBinary \\
       })()),
       brokenAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: "cannot use libc++ on x86_64-linux",
           assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(backendStdenv, "hostNixSystem"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(backendStdenv, "cc", "libcxx"), null)))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUDA compiler driver",
         homepage: "https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc",
         mainProgram: "nvcc",

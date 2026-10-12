@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "types-markdown",
       version: "3.10.2.20260712",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_markdown",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Ja6hcoJJDzWraxeod3Gr0vR5GFqv+Oj0oANQQ/AvLFI=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["markdown-stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for Markdown",
         homepage: "https://pypi.org/project/types-Markdown/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

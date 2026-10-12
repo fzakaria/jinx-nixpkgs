@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tzlocal",
       version: "5.4.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "regebro",
           repo: "tzlocal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "test_assert_tz_offset")),
       pythonImportsCheck: nix.thunk(() => ["tzlocal"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tzinfo object for the local timezone",
         homepage: "https://github.com/regebro/tzlocal",
         changelog: nix.thunk(() => nix.str`https://github.com/regebro/tzlocal/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.txt`),

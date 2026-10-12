@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const repo = "stalmarck";
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")), "8.20.0")),
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "8.20.0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hash: "sha256-jITxQT1jLyZvWCGPnmK8i3IrwsZwMPOV0aBe9r22TIQ=",
     })),
   }));
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
     const propagatedBuildInputs = nix.thunk(() => (nix.asBool(istac) ? [nix.thunk(() => nix.app(stalmarck_, "stalmarck"))] : [stdlib]));
     const description = nix.thunk(() => (nix.asBool(istac) ? "Coq tactic and verified tool for proving tautologies using Stålmarck's algorithm" : "A two-level approach to prove tautologies using Stålmarck's algorithm in Coq."));
     const duneOverride = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(version, "8.20.0")) || nix.asBool(nix.eq(defaultVersion, "8.20.0")))), nix.thunk(() => ({
-        __proto__: pos$5,
-        dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ __proto__: pos$4, version: "3.21.1" })))),
+        [nix.POS]: pos$5,
+        dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, version: "3.21.1" })))),
       }))));
     return nix.app(nix.sel(mkRocqDerivation, "override"), duneOverride, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         useCoq: true,
         namePrefix: nix.thunk(() => ["coq"]),
         version: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mlPlugin: istac,
         useDune: istac,
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: description,
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         })),

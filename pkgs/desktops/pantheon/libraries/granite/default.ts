@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.0";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "granite",
           rev: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [glib, gsettings_desktop_schemas, gtk3, libgee]);
       const postPatch = "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension to GTK used by elementary OS",
         longDescription: "Granite is a companion library for GTK and GLib. Among other things, it provides complex widgets and convenience functions\ndesigned for use in apps built for elementary OS.\n",
         homepage: "https://github.com/elementary/granite",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "granite-demo",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ion",
       version: "1.0.5-unstable-2024-09-20",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.redox-os.org",
           owner: "redox-os",
           repo: "ion",
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Gqa2aA8jr6SZexa6EejYHv/aEYcm51qvEJSUm4m1AVc=",
       patches: nix.thunk(() => [nix.path(here, "./build-script.patch")]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, shellPath: "/bin/ion" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/ion" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern system shell with simple (and powerful) syntax",
         homepage: "https://gitlab.redox-os.org/redox-os/ion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

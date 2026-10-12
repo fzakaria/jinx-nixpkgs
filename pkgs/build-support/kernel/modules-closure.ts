@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const allowMissing = nix.argOr($, "allowMissing", () => false);
   const extraFirmwarePaths = nix.argOr($, "extraFirmwarePaths", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.add(nix.sel(kernel, "name"), "-shrunk")),
       builder: nix.path(here, "./modules-closure.sh"),
       nativeBuildInputs: nix.thunk(() => [nukeReferences, kmod]),

@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "labwc"));
   return {
-    __proto__: pos$14,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$14,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         labwc: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "labwc")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "labwc", nix.thunk(() => ({})))),
         })),
@@ -40,33 +40,33 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             environment: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               portal: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 config: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   wlroots: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     default: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["wlr", "gtk"]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               })),
             })),
           })),
-          nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({ __proto__: pos$13, lib: lib, pkgs: pkgs })))),
+          nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({ [nix.POS]: pos$13, lib: lib, pkgs: pkgs })))),
         ]))))),
   };
 })(), formals$1);

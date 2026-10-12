@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dool",
       version: "1.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scottchiefbaker",
           repo: "dool",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       postPatch: "substituteInPlace dool \\\n  --replace-fail \\\n    \"os.path.dirname(os.path.abspath(__file__)) + '/plugins/'\" \\\n    \"'$out/share/dool/'\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python3 compatible clone of dstat",
         homepage: "https://github.com/scottchiefbaker/dool",
         changelog: nix.thunk(() => nix.str`https://github.com/scottchiefbaker/dool/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

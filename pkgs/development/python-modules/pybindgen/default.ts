@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pygccxml = nix.arg($, "pygccxml");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybindgen",
       version: "0.22.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyBindGen",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jH8iORpJqEUY9aKtBuOlseg50Q402nYxUZyKKPy6N2Q=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pybindgen"]),
       doCheck: nix.thunk(() => !nix.asBool(isPy3k)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Bindings Generator",
         homepage: "https://github.com/gjcarneiro/pybindgen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

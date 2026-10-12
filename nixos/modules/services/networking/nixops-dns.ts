@@ -29,32 +29,32 @@ export default nix.lambda((args) => (() => {
   const pkg = nix.thunk(() => nix.sel(pkgs, "nixops-dns"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "nixops-dns"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "nixops-dns": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the nixops-dns resolution\nof NixOps virtual machines via dnsmasq and fake domain name.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The user the nixops-dns daemon should run as.\nThis should be the user, which is also used for nixops and\nhave the .nixops directory in its home.\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Fake domain name to resolve to NixOps virtual machines.\n\nFor example \"ops\" will resolve \"vm.ops\".\n",
               default: "ops",
             })))),
           dnsmasq: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable dnsmasq forwarding to nixops-dns. This allows to use\nnixops-dns for `services.nixops-dns.domain` resolution\nwhile forwarding the rest of the queries to original resolvers.\n",
@@ -63,17 +63,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "nixops-dns": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "nixops-dns: DNS server for resolving NixOps machines",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/nixops-dns --domain=.${nix.sel(cfg, "domain")}`),
@@ -82,13 +82,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           dnsmasq: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "dnsmasq")), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               resolveLocalQueries: true,
               servers: nix.thunk(() => [nix.thunk(() => nix.str`/${nix.sel(cfg, "domain")}/127.0.0.1#5300`)]),
-              settings: nix.thunk(() => ({ __proto__: pos$12, "bind-interfaces": true, "listen-address": "127.0.0.1" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$12, "bind-interfaces": true, "listen-address": "127.0.0.1" })),
             })))),
         })),
       })))),

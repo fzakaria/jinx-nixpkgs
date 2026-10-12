@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "security", "audit"));
-  const failureModes = nix.thunk(() => ({ __proto__: pos$1, silent: 0n, printk: 1n, panic: 2n }));
+  const failureModes = nix.thunk(() => ({ [nix.POS]: pos$1, silent: 0n, printk: 1n, panic: 2n }));
   const rules = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "audit.rules", nix.thunk(() => nix.str`-D
 -b ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "backlogLimit")))}
 -f ${nix.builtins.toString(nix.thunk(() => nix.sel(failureModes, nix.key(nix.sel(cfg, "failureMode")))))}
@@ -37,40 +37,40 @@ ${nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.sel(cfg, "rules")))}
 -e ${(nix.asBool(nix.eq(nix.sel(cfg, "enable"), "lock")) ? "2" : "1")}
 `)));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       security: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         audit: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [false, true, "lock"]))),
               default: false,
               description: "Whether to enable the Linux audit system. The special `lock` value can be used to\nenable auditing and prevent disabling it until a restart. Be careful about locking\nthis, as it will prevent you from changing your audit configuration until you\nrestart. If possible, test your configuration using build-vm beforehand.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "audit", nix.thunk(() => ({})))),
           failureMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["silent", "printk", "panic"]))),
               default: "printk",
               description: "How to handle critical errors in the auditing system",
             })))),
           backlogLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1024n,
               description: "The maximum number of outstanding audit buffers allowed; exceeding this is\nconsidered a failure and handled in a manner specified by failureMode.\n",
             })))),
           rateLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "The maximum messages per second permitted before triggering a failure as\nspecified by failureMode. Setting it to zero disables the limit.\n",
             })))),
           rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-a exit,always -F arch=b64 -S execve"]),
@@ -80,36 +80,36 @@ ${nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.sel(cfg, "rules")))}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "enable"), "lock")) || nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           kernelParams: nix.thunk(() => [
             "audit=1",
             nix.thunk(() => nix.str`audit_backlog_limit=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "backlogLimit")))}`),
           ]),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "audit-rules-nixos": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Load Audit Rules",
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DefaultDependencies: false,
                 ConditionVirtualization: "!container",
                 ConditionKernelCommandLine: nix.thunk(() => ["!audit=0", "!audit=off"]),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "auditctl")} -R ${rules}/audit.rules`),

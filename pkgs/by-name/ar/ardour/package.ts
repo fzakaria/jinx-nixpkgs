@@ -89,17 +89,17 @@ export default nix.lambda((args) => (() => {
   const videoSupport = nix.argOr($, "videoSupport", () => true);
   const videoInputs = nix.thunk(() => [harvid, xjadeo]);
   const bundledContent = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20221026200824/http://stuff.ardour.org/loops/ArdourBundledMedia.zip",
       hash: "sha256-IbPQWFeyMuvCoghFl1ZwZNNcSvLNsH84rGArXnw+t7A=",
       stripRoot: false,
     }))));
   const generic = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ardour",
       version: "9.8",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "git://git.ardour.org/ardour/ardour.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-h+JS3T2pr/VOtR9E2NMY4gd3IxL0leWATUV52u459iM=",
@@ -178,7 +178,7 @@ substituteInPlace libs/ardour/video_tools_paths.cc \\
       ], nix.app(nix.sel(lib, "optionals"), videoSupport, videoInputs))),
       wafConfigureFlags: nix.thunk(() => nix.concat(["--cxx17", "--docs", "--no-phone-home", "--ptformat"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "--test"), nix.app(nix.sel(lib, "optional"), optimize, "--optimize")))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), serd)}/include/serd-0`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), sratom)}/include/sratom-0`),
@@ -190,7 +190,7 @@ substituteInPlace libs/ardour/video_tools_paths.cc \\
       doCheck: true,
       checkPhase: "runHook preHook\n./waf test\nrunHook postHook\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-track hard disk recording software",
         longDescription: "Ardour is a digital audio workstation (DAW), you can use it to\nrecord, edit and mix multi-track audio and midi. Produce your\nown CDs. Mix video soundtracks. Experiment with new ideas about\nmusic and sound.\n\nPlease consider supporting the ardour project financially:\nhttps://community.ardour.org/donate\n",
         homepage: "https://ardour.org/",
@@ -210,13 +210,13 @@ substituteInPlace libs/ardour/video_tools_paths.cc \\
   const linux = nix.thunk(() => nix.app(nix.sel(generic, "overrideAttrs"), (finalAttrs) => (() => {
       const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         postPatch: nix.thunk(() => nix.add(nix.sel(finalAttrs, "postPatch"), nix.str`sed 's|/usr/include/libintl.h|${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(glibc, "dev")))}/include/libintl.h|' -i wscript
 `)),
         buildInputs: nix.thunk(() => nix.concat(nix.sel(generic, "buildInputs"), [alsa_lib, dbus, libpulseaudio, libxi, libxinerama, libxrandr])),
         wafConfigureFlags: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "wafConfigureFlags"), ["--freedesktop"])),
         env: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.sel(finalAttrs, "env", "NIX_CFLAGS_COMPILE"), "-D_GNU_SOURCE")),
         })),
         postInstall: nix.thunk(() => nix.add(nix.add(nix.sel(finalAttrs, "postInstall"), nix.str`# wscript does not install these for some reason
@@ -240,7 +240,7 @@ wrapProgram "$out/bin/ardour${majorVersion}" \\
   const darwin$ = nix.thunk(() => nix.app(nix.sel(generic, "overrideAttrs"), (finalAttrs) => (() => {
       const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         postPatch: nix.thunk(() => nix.add(nix.sel(finalAttrs, "postPatch"), "substituteInPlace wscript \\\n  --replace-fail '-DMAC_OS_X_VERSION_MAX_ALLOWED=110000' '-DMAC_OS_X_VERSION_MAX_ALLOWED=140000' \\\n  --replace-fail '-mmacosx-version-min=11.0' '-mmacosx-version-min=14'\n\nsubstituteInPlace libs/tk/y{d,t}k/wscript \\\n  --replace-fail \"'-xobjective-c'\" \"'-xobjective-c', '-DDISABLE_VISIBILITY'\"\n\nsubstituteInPlace tools/osx_packaging/osx_build \\\n  --replace-fail 'WITH_HARRISON_LV2=1' 'WITH_HARRISON_LV2=' \\\n  --replace-fail 'WITH_GMSYNTH=1' 'WITH_GMSYNTH=' \\\n  --replace-fail 'WITH_HARVID=1' 'WITH_HARVID=' \\\n  --replace-fail 'WITH_XJADEO=1' 'WITH_XJADEO=' \\\n  --replace-fail '`hostname`' 'localhost' \\\n  --replace-fail '`whoami`' 'nixbld' \\\n  --replace-fail '../../build' \"$PWD/build\" \\\n  --replace-fail 'echo \"Building DMG ...\"' 'exit 0'\n")),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "nativeBuildInputs"), [
           nix.thunk(() => nix.sel(darwin, "DarwinTools")),

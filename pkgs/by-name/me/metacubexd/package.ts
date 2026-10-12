@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "metacubexd",
       version: "1.273.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MetaCubeX",
           repo: "metacubexd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nexport NUXT_TELEMETRY_DISABLED=1\nexport NUXT_APP_BASE_URL='./'\n\npnpm generate\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r ./.output/public $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Clash.Meta Dashboard, The Official One, XD",
         homepage: "https://github.com/MetaCubeX/metacubexd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-auditlog",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["auditlog"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-auditlog/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Django app that keeps a log of changes made to an object",
         homepage: "https://github.com/jazzband/django-auditlog",
@@ -64,7 +64,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

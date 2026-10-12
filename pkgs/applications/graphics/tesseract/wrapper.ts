@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const tessdata = nix.argOr($, "tessdata", () => (nix.asBool(nix.eq(enableLanguages, null)) ? nix.sel(languages, "all") : nix.builtins.map((lang) => nix.sel(languages, nix.key(nix.force(lang))), enableLanguages)));
   const enableLanguagesHash = nix.argOr($, "enableLanguagesHash", () => null);
   const tesseractWithData = nix.thunk(() => nix.app(nix.sel(tesseractBase, "overrideAttrs"), (_) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       tesseractBase: tesseractBase,
       tessdata: tessdata,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildPhase: "makeWrapper {$tesseractBase,$out}/bin/tesseract --set-default TESSDATA_PREFIX $out/share/tessdata\n\n# Recursively link include, share\ncp -rs --no-preserve=mode $tesseractBase/{include,share} $out\n\ncp -r --no-preserve=mode $tesseractBase/lib $out\n# Fixup the store paths in lib so that the tessdata from this derivation is used.\nif (( ${#tesseractBase} != ${#out} )); then\n  echo \"Can't replace store paths due to differing lengths\"\n  exit 1\nfi\nfind $out/lib -type f -exec sed -i \"s|$tesseractBase|$out|g\" {} \\;\n\nif [[ -d \"$tessdata\" ]]; then\n  ln -s $tessdata/* $out/share/tessdata\nelse\n  for lang in $tessdata; do\n    ln -s $lang $out/share/tessdata/${lang#/nix/store*-}\n  done\nfi\n\nif [[ ! -e $out/share/tessdata/eng.traineddata ]]; then\n   # This is a bug in Tesseract's internal tessdata discovery mechanism\n   echo \"eng.traineddata must be present in tessdata for Tesseract to work\"\n   exit 1\nfi\n",
     })));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     tesseractBase: tesseractBase,
     languages: languages,
     tessdata: tessdata,
   }));
   const test = nix.thunk(() => nix.app(runCommand, "tesseract-test-ocr", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildInputs: nix.thunk(() => [tesseractWithData, imagemagick]),
     })), "text=\"hello nix\"\n\nconvert -size 400x40 xc:white -font 'DejaVu-Sans' -pointsize 20 \\\n  -fill black -annotate +5+20 \"$text\" /tmp/test-img.png 2>/dev/null\nocrResult=$(tesseract /tmp/test-img.png - | tr -d \"\\f\")\n\nif [[ $ocrResult != $text ]]; then\n  echo \"OCR test failed\"\n  echo \"expected: '$text'\"\n  echo \"actual: '$ocrResult'\"\n  exit 1\nfi\ntouch $out\n"));
   const tesseract = nix.thunk(() => nix.app(nix.sel((nix.asBool(nix.eq(enableLanguages, [])) ? nix.force(tesseractBase) : nix.force(tesseractWithData)), "overrideAttrs"), (old) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), nix.update(passthru, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(enableLanguages, null)), nix.thunk(() => ({
-          __proto__: pos$5,
-          tests: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru", "tests"), { __proto__: pos$4, default: test })),
+          [nix.POS]: pos$5,
+          tests: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru", "tests"), { [nix.POS]: pos$4, default: test })),
         })))))),
     })));
   return (nix.asBool(nix.eq(enableLanguagesHash, null)) ? nix.force(tesseract) : nix.app(nix.sel(lib, "warn"), "Argument `enableLanguagesHash` is obsolete and can be removed.", tesseract));

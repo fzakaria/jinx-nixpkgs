@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgnurx",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mingw/Other/UserContributed/regex/mingw-regex-${nix.sel(finalAttrs, "version")}/mingw-libgnurx-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-cUe3+AbsPQB4Q7OOGfQqW3xliUpX/8KXp2sNzV9nXXY=",
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "ln -s $out/lib/libgnurx{.dll.a,.a}\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         downloadPage: "https://sourceforge.net/projects/mingw/files/Other/UserContributed/regex/",
         description: "Regex functionality from glibc extracted into a separate library for win32",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

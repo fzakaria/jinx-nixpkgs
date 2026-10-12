@@ -12,6 +12,6 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gen
     ]);
     const sha256 = "sha256-XvxT767xUTAfTn3eOFa2aBLYFT3t4k+rF2c/gByGmPI=";
     const configureFlags = nix.thunk(() => ["--with-gcc-arch=generic"]);
-    return { __proto__: pos$1, version, urls, sha256, configureFlags };
+    return { [nix.POS]: pos$1, version, urls, sha256, configureFlags };
   })())));
 //# sourceMappingURL=0.23.0.ts.map

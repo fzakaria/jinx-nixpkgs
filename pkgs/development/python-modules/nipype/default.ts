@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nipype",
       version: "1.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nipy",
           repo: "nipype",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,7 +91,7 @@ substituteInPlace nipype/pipeline/engine/tests/test_nodes.py \\
         traits,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         data: nix.thunk(() => [datalad]),
         duecredit: nix.thunk(() => [duecredit]),
         profiler: nix.thunk(() => [psutil]),
@@ -114,7 +114,7 @@ substituteInPlace nipype/pipeline/engine/tests/test_nodes.py \\
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       pythonImportsCheck: nix.thunk(() => ["nipype", "nipype.algorithms", "nipype.interfaces"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neuroimaging in Python: Pipelines and Interfaces",
         homepage: "https://nipy.org/nipype",
         downloadPage: "https://github.com/nipy/nipype",

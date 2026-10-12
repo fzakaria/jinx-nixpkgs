@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "transito",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~mil",
           repo: "transito",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 -t $out/share/applications assets/transito.desktop\nfor icon in assets/transito_*.png; do\n  name=$(basename $icon .png)\n  install -Dm644 $icon $out/share/icons/hicolor/${name#transito_}/apps/transito.png\ndone\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data-provider-agnostic (GTFS) public transportation app",
         longDescription: "Transito is a data-provider-agnostic public transportation app\nthat let's you route between locations using openly available\npublic GTFS feeds.  Utilizing the Mobroute library,\nthe Transito app lets you performs routing calculations offline\n(no network calls once data is initially fetched).\n\nOverall, Transito aims to be an opensource alternative\nto proprietary routing apps to get users from point A to point B\nvia public transit without comprising privacy or user freedoms.\nIt works in many well-connected metros which have publicly available\nGTFS data, to name a few: Lisbon, NYC, Brussels, Krakow, and Bourges.\n",
         homepage: "https://git.sr.ht/~mil/transito",

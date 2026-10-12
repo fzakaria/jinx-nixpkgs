@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mtm",
       version: "1.2.1",
       outputs: nix.thunk(() => ["out", "terminfo"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deadpixi",
           repo: "mtm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin/ $out/share/man/man1\n",
       postInstall: "mkdir -p $terminfo/share/terminfo $out/nix-support\ntic -x -o $terminfo/share/terminfo mtm.ti\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perhaps the smallest useful terminal multiplexer in the world",
         homepage: "https://github.com/deadpixi/mtm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

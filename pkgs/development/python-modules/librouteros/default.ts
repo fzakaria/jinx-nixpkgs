@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luqasz",
           repo: "librouteros",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["librouteros"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of the MikroTik RouterOS API",
         homepage: "https://librouteros.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/luqasz/librouteros/blob/${version}/CHANGELOG.rst`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

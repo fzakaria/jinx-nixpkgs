@@ -29,20 +29,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ringboard"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ringboard: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           x11: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "X11 support for Ringboard")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ringboard", nix.thunk(() => ({})))),
           })),
           wayland: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Wayland support for Ringboard")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ringboard-wayland", nix.thunk(() => ({})))),
           })),
@@ -50,21 +50,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "x11", "enable")) || nix.asBool(nix.sel(cfg, "wayland", "enable")))), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           user: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "ringboard-server": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Ringboard server",
                 documentation: nix.thunk(() => ["https://github.com/SUPERCILEX/clipboard-history"]),
                 after: nix.thunk(() => ["multi-user.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   Type: "notify",
                   Environment: "RUST_LOG=trace",
                   ExecStart: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(cfg, "x11", "enable")) ? nix.sel(cfg, "x11", "package") : nix.sel(cfg, "wayland", "package"))}/bin/ringboard-server`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "ringboard-listener": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Ringboard clipboard listener",
                 documentation: nix.thunk(() => ["https://github.com/SUPERCILEX/clipboard-history"]),
                 requires: nix.thunk(() => ["ringboard-server.service"]),
@@ -89,22 +89,22 @@ fi
 ` : nix.str`exec '${nix.sel(cfg, "x11", "package")}'/bin/ringboard-x11
 `))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   Type: "exec",
                   Restart: "on-failure",
                   Slice: "session-ringboard.slice",
                 })),
-                environment: nix.thunk(() => ({ __proto__: pos$9, RUST_LOG: "trace" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$9, RUST_LOG: "trace" })),
               })),
             })),
             slices: nix.thunk(() => ({
-              __proto__: pos$13,
-              "session-ringboard": nix.thunk(() => ({ __proto__: pos$12, description: "Ringboard clipboard services" })),
+              [nix.POS]: pos$13,
+              "session-ringboard": nix.thunk(() => ({ [nix.POS]: pos$12, description: "Ringboard clipboard services" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "x11", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "x11", "package"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "wayland", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "wayland", "package"))])))),
         })),
       })))),

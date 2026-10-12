@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kevin1024",
           repo: "vcrpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestVCRConnection", "test_get_vcr_with_matcher", "test_testcase_playback"]);
       const pythonImportsCheck = nix.thunk(() => ["vcr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically mock your HTTP interactions to simplify and speed up testing",
         homepage: "https://github.com/kevin1024/vcrpy",
         changelog: nix.thunk(() => nix.str`https://github.com/kevin1024/vcrpy/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

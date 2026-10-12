@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const zig_0_14 = nix.arg($, "zig_0_14");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mepo",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~mil",
           repo: "mepo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ for program in $out/bin/* ; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mepo.lrdu.org",
         description: "Fast, simple, and hackable OSM map viewer",
         longDescription: "Mepo is a fast, simple, and hackable OSM map viewer for desktop & mobile\nLinux devices (like the PinePhone, Librem 5, postmarketOS devices etc.)\nand both environment's various user interfaces (Wayland & X\ninclusive). Environments supported include Phosh, Sxmo, Plasma Mobile,\ndesktop X, and desktop Wayland. Mepo works both offline and online,\nfeatures a minimalist both touch/mouse and keyboard compatible interface,\nand offers a UNIX-philosophy inspired underlying design, exposing a\npowerful JSON API to allow the user to change & add functionality\nsuch as adding their own search & routing scripts,\nadd arbitrary buttons/keybindings to the UI, and more.\n",

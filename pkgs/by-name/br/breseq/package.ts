@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "breseq",
       version: "0.40.3",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "barricklab",
           repo: "breseq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,16 +58,16 @@ cp tests/gdtools_compare_1 $out/tests/gdtools_compare_1 -r
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           breseq_works: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/breseq.nix"), nix.thunk(() => ({})))),
           gdtools_works: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/gdtools.nix"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Computational pipeline for finding mutations relative to a reference sequence in short-read DNA re-sequencing data",
         mainProgram: "breseq",
         homepage: "https://github.com/barricklab/breseq",

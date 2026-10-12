@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "lazr.restfulclient",
           version: version,
           hash: "sha256-Q/EqHTlIRjsUYgOMR7Qp3LXkLgun8uFlEbArpdKt/9s=",
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["lazr.restfulclient"]);
       const pythonNamespaces = nix.thunk(() => ["lazr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programmable client library that takes advantage of the commonalities among",
         homepage: "https://pypi.org/project/lazr.restfulclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

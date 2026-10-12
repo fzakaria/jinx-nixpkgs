@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const openssl = nix.arg($, "openssl");
   const python3 = nix.arg($, "python3");
-  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$1, enablePython: true, python: python3 }))));
+  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python3 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libtorrent-rasterbar",
       version: "2.0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "arvidn",
           repo: "libtorrent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$python"
       outputs: nix.thunk(() => ["out", "dev", "python"]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "python-bindings", true))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libtorrent.org/",
         description: "Efficient feature complete C++ bittorrent implementation",
         changelog: nix.thunk(() => nix.str`https://github.com/arvidn/libtorrent/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

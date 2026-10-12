@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const xorg_server = nix.arg($, "xorg-server");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xf86-video-intel",
       version: "unstable-2025-03-21",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--with-default-dri=3", "--enable-tools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source Xorg graphics driver for Intel graphics",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel",
         license: nix.thunk(() => (() => {

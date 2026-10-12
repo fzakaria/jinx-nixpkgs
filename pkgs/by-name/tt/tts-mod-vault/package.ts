@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tts-mod-vault",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markomijic",
           repo: "TTS-Mod-Vault",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tts_mod_vault",
             exec: "tts_mod_vault",
             icon: "tts_mod_vault",
@@ -49,19 +49,19 @@ export default nix.lambda((args) => (() => {
       preBuild: "echo 'SUPABASE_URL=https://pdrmmvvtindfbpxlcdps.supabase.co' > .env\necho 'SUPABASE_PUBLISHABLE_KEY=sb_publishable_CF6qzs1W8zd_hcVWHSCdVw__2SRB60p' >> .env\n",
       postInstall: "install -m 444 -D assets/icon/tts_mod_vault_icon.png $out/share/icons/tts_mod_vault.png\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "tts-mod-vault.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "tts-mod-vault.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$4, supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Download and backup assets for your Tabletop Simulator mods",
         homepage: "https://github.com/markomijic/TTS-Mod-Vault",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

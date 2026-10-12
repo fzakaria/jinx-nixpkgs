@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const secretFile = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "n8n-encryption-key", "test-encryption-key-12345"))));
   const authTokenFile = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "n8n-runner-auth-token", "test-runner-auth-token-12345"))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "n8n",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -45,23 +45,23 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine_simple: nix.thunk(() => ({
-        __proto__: pos$5,
-        services: nix.thunk(() => ({ __proto__: pos$4, n8n: nix.thunk(() => ({ __proto__: pos$3, enable: true })) })),
+        [nix.POS]: pos$5,
+        services: nix.thunk(() => ({ [nix.POS]: pos$4, n8n: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })) })),
       })),
       machine_configured: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           n8n: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: true,
             customNodes: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "n8n-nodes-carbonejs"))]),
             environment: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               WEBHOOK_URL: webhookUrl,
               N8N_TEMPLATES_ENABLED: false,
               DB_PING_INTERVAL_SECONDS: 2n,
@@ -69,20 +69,20 @@ export default nix.lambda((args) => (() => {
               N8N_RUNNERS_AUTH_TOKEN_FILE: authTokenFile,
             })),
             taskRunners: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
-              environment: nix.thunk(() => ({ __proto__: pos$7, N8N_RUNNERS_MAX_CONCURRENCY: 10n })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$7, N8N_RUNNERS_MAX_CONCURRENCY: 10n })),
               runners: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 javascript: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   args: nix.thunk(() => ["--disallow-code-generation-from-strings"]),
-                  environment: nix.thunk(() => ({ __proto__: pos$8, NODE_FUNCTION_ALLOW_BUILTIN: "*" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$8, NODE_FUNCTION_ALLOW_BUILTIN: "*" })),
                 })),
                 python: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   args: nix.thunk(() => ["--test-arg"]),
-                  environment: nix.thunk(() => ({ __proto__: pos$10, N8N_RUNNERS_STDLIB_ALLOW: "*" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$10, N8N_RUNNERS_STDLIB_ALLOW: "*" })),
                 })),
               })),
             })),

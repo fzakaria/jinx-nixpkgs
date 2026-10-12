@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchNupkg = nix.thunk(() => nix.attr(dotnetCorePackages, "fetchNupkg"));
-  const buildInfo = nix.thunk(() => ({ __proto__: pos$1, id: "NixOS", name: "for NixOS" }));
+  const buildInfo = nix.thunk(() => ({ [nix.POS]: pos$1, id: "NixOS", name: "for NixOS" }));
   const appSettings = nix.thunk(() => nix.app(writeText, "appsettings.json", nix.thunk(() => nix.app(nix.sel(lib, "strings", "toJSON"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PixiEditorApiUrl: "https://auth.pixieditor.net",
         PixiEditorApiKey: "waIvElX0fPqaxnyD7Rh1SSEvdq8qfKUs",
         AnalyticsUrl: "https://api.pixieditor.net/analytics/",
       }))))));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pixieditor",
       version: "2.1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "PixiEditor",
           repo: "PixiEditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,7 +99,7 @@ cp src/nuget.config .
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "pixieditor",
             type: "Application",
             desktopName: "PixiEditor",
@@ -113,7 +113,7 @@ cp src/nuget.config .
             categories: nix.thunk(() => ["Graphics", "2DGraphics", "RasterGraphics", "VectorGraphics"]),
             keywords: nix.thunk(() => ["editor", "image", "2d", "graphics", "design", "vector", "raster"]),
             mimeTypes: nix.thunk(() => ["application/x-pixieditor"]),
-            extraConfig: nix.thunk(() => ({ __proto__: pos$4, SingleMainWindow: "true" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$4, SingleMainWindow: "true" })),
           })))),
       ]),
       postInstall: nix.thunk(() => nix.str`install -Dm644 ${appSettings} $out/lib/pixieditor/appsettings.json;
@@ -125,11 +125,11 @@ install -Dm644 src/PixiEditor/Images/PixiEditorLogo.svg \\
 `),
       postFixup: "mv $out/bin/PixiEditor.Desktop $out/bin/pixieditor\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Universal editor for all your 2D needs",
         longDescription: "PixiEditor is a universal 2D platform that aims to provide you with tools and features for all your 2D needs.\nCreate beautiful sprites for your games, animations, edit images, create logos. All packed in an eye-friendly dark theme\n",
         homepage: "https://pixieditor.net/",

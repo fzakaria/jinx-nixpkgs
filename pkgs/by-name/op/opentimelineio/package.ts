@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const imath = nix.arg($, "imath");
   const rapidjson = nix.arg($, "rapidjson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opentimelineio",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AcademySoftwareFoundation",
           repo: "OpenTimelineIO",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rapidjson]),
       cmakeFlags: nix.thunk(() => ["-DOTIO_DEPENDENCIES_INSTALL=0", "-DOTIO_FIND_IMATH=1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open Source API and interchange format for editorial timeline information",
         homepage: "https://github.com/AcademySoftwareFoundation/OpenTimelineIO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

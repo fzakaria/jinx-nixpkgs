@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sc3-plugins";
       const version = "3.14.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/supercollider/sc3-plugins/releases/download/Version-${version}/sc3-plugins-${version}-Source.tar.bz2`),
           sha256: "sha256-Thaj0XjMLnKMYTiA3HK2Lk8xTcIOOhnR2oSUeY0SKvI=",
         }))));
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       ]);
       const stripDebugList = nix.thunk(() => ["lib", "share"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/supercollider/sc3-plugins.git",
             "rev-prefix": "Version-",
             ignoredVersions: "rc|beta",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Community plugins for SuperCollider",
         homepage: "https://supercollider.github.io/sc3-plugins/",
         maintainers: nix.thunk(() => (() => {
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

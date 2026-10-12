@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
       ];
     })())));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "handy",
       version: "0.9.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cjpais",
           repo: "Handy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -107,12 +107,12 @@ export default nix.lambda((args) => (() => {
         ]))))),
       ortLibLocation: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
         ORT_PREFER_DYNAMIC_LINK: "1",
         GST_PLUGIN_SYSTEM_PATH_1_0: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/gstreamer-1.0", gstPlugins)))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_LDFLAGS: "-lclang_rt.osx",
           SWIFTC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), swift, "swiftc")),
         }))))),
@@ -148,9 +148,9 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
         "--skip=helpers::clamshell::tests::test_clamshell_check",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         frontendDeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: "handy-frontend-deps",
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -160,7 +160,7 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
             installPhase: "runHook preInstall\nmkdir -p $out\ncp -R node_modules $out/\nrunHook postInstall\n",
             dontFixup: true,
             outputHash: nix.thunk(() => nix.sel({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "x86_64-linux": "sha256-huOC2smHU0sGIxeyvWmzdewUEpKHfdSGNhf9xWpH9Jk=",
               "aarch64-linux": "sha256-UDn8nIgIx23ampe43Qr0j9h+hlU9g1QzzlIlbRH2CKs=",
               "aarch64-darwin": "sha256-8Rw4iNvqeq/sRvZpbtZo0f0iPAwu1TeB8Y+ut4kb9uw=",
@@ -168,7 +168,7 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
             outputHashMode: "recursive",
           })))),
         alsaPluginDirectory: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "combined-alsaPlugins",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.str`${pipewire}/lib/alsa-lib`),
@@ -177,7 +177,7 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Free, open source, offline speech-to-text application",
         longDescription: "Handy is a cross-platform desktop application providing simple,\nprivacy-focused speech transcription. Press a shortcut, speak, and\nhave your words appear in any text field — entirely on your own\ncomputer, with no audio sent to the cloud.\n",
         homepage: "https://handy.computer",

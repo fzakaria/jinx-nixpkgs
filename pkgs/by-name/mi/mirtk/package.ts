@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const onetbb = nix.arg($, "onetbb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mirtk",
       version: "2.0.0-unstable-2025-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BioMedIA",
           repo: "MIRTK",
           rev: "ef71a176c120447b3f95291901af7af8b4f00544",
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: "# Their old `FindTBB` module conflicts with others.\nrm CMake/Modules/FindTBB.cmake\nsubstituteInPlace CMake/Modules/CMakeLists.txt \\\n  --replace-fail '\"FindTBB.cmake\"' \"\"\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n\nsubstituteInPlace CMake/Basis/{BasisSettings.cmake,ProjectTools.cmake,configure_script.cmake.in} \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n\nsubstituteInPlace {ThirdParty/LBFGS,Packages/Deformable,Packages/Mapping,Packages/Scripting,Packages/Viewer}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "install -Dm644 -t \"$out/share/bash-completion/completions/mirtk\" share/completion/bash/mirtk\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-changes-meaning" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-changes-meaning" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost186, eigen, fltk, libGLU, python3, onetbb, vtk, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/BioMedIA/MIRTK",
         description: "Medical image registration library and tools",
         mainProgram: "mirtk",

@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`abi=${(nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "family"), "arm")) ? "aapcs" : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))) ? "ms" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMips32")) ? "o32" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMips64n64")) ? "n64" : "sysv"))))}`),
       ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(link, "static")), nix.thunk(() => nix.str`runtime-link=${runtime_link}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(variant, "release")), "debug-symbols=off"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(toolset, null)), nix.thunk(() => nix.str`toolset=${toolset}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enablePython)), "--without-python"), nix.concat(nix.app(nix.sel(lib, "optional"), needUserConfig, "--user-config=user-config.jam"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "pch=off"), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ["threadapi=win32"])), extraB2Args)))))))))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       pname: "boost",
       src: src,
       version: version,
@@ -97,56 +97,56 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat(patches, nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.88")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.path(here, "./darwin-no-system-python.patch")), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "1.88")), nix.thunk(() => [
           nix.path(here, "./cmake-paths-173.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: "https://github.com/boostorg/thread/commit/49ccf9c30a0ca556873dbf64b12b0d741d1b3e66.patch",
               relative: "include",
               sha256: "sha256-O1dH8H1kPZvj4ol47TvlW7+MIejy7uggcIOnZ2t8/UI=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.88")), nix.path(here, "./cmake-paths-188.patch")), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(version, "1.77.0")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/boostorg/math/commit/7d482f6ebc356e6ec455ccb5f51a23971bf6ce5b.patch",
             relative: "include",
             sha256: "sha256-KlmIbixcds6GyKYt1fx5BxDIrU7msrgDdYo9Va/KJR4=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(version, "1.83.0")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/boostorg/context/commit/6fa6d5c50d120e69b2d8a1c0d2256ee933e94b3b.patch",
             stripLen: 1n,
             extraPrefix: "libs/context/",
             sha256: "sha256-bCfLL7bD1Rn4Ie/P3X+nIcgTkbXdCX6FW7B9lHsmVW8=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.88.0")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.92.0")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/boostorg/context/commit/0921b9fd5c776aec7748475c6c10807e0d51bc6d.patch",
             relative: "include",
             hash: "sha256-nQYMd3HFsDLxijnGdyas0ZHs3ylQVMGQL14K7F6MkF0=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.88.0")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.92.0")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/boostorg/context/commit/5883212311535a0046031d74d1568ae173c1e35b.patch",
             relative: "include",
             hash: "sha256-CytNLi2d0wjI/lY5lDv98mwwQaEt7qeIs4UkE6QgCBU=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.88.0")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.89.0")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/boostorg/context/commit/c79564d0de69422ed33f2fbc892908ad510e6a19.patch",
             relative: "include",
             hash: "sha256-5iZ+rSdtyOupBUYws6U8whd43XMkTlQlApW5xvE0ZB4=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "1.80")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/boostorg/log/commit/77f1e20bd69c2e7a9e25e6a9818ae6105f7d070c.patch",
             relative: "include",
             hash: "sha256-6qOiGJASm33XzwoxVZfKJd7sTlQ5yd+MMFQzegXm5RI=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "1.81")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: "https://www.boost.org/patches/1_80_0/0005-config-libcpp15.patch",
               hash: "sha256-ULFMzKphv70unvPZ3o4vSP/01/xbSM9a2TlIV67eXDQ=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: "https://github.com/boostorg/numeric_conversion/commit/50a1eae942effb0a9b90724323ef8f2a67e7984a.patch",
               relative: "include",
               hash: "sha256-dq4SVgxkPJSC7Fvr59VGnXkM4Lb09kYDaBksCHo9C0s=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "python311-compatibility.patch",
               url: "https://github.com/boostorg/python/commit/a218babc8daee904a83f550fb66e5cb3f1cb3013.patch",
               hash: "sha256-IHxLtJBx0xSy7QEr8FbCPofsjcPuSYzgtPwDlx1JM+4=",
@@ -154,27 +154,27 @@ export default nix.lambda((args) => (() => {
               extraPrefix: "libs/python/",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.81")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.88")))) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))), nix.path(here, "./fix-clang-target.patch")), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.86")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.87")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "boost-numpy-2-compatibility.patch",
             url: "https://github.com/boostorg/python/commit/0474de0f6cc9c6e7230aeb7164af2f7e4ccf74bf.patch",
             stripLen: 1n,
             extraPrefix: "libs/python/",
             hash: "sha256-0IHK55JSujYcwEVOuLkwOa/iPEkdAKQlwVWR42p/X2U=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.91")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.92")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             url: "https://github.com/boostorg/build/commit/708353cdeb6006757e7c6971283efb53f718ae25.patch",
             stripLen: 1n,
             extraPrefix: "tools/build/",
             hash: "sha256-uFdxuL3DXvr/jmz7jv/q76/S8JaNF//2ogTMwG/D2nY=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(version, "1.87.0")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               url: "https://github.com/boostorg/smart_ptr/commit/e7433ba54596da97cb7859455cd37ca140305a9c.patch",
               relative: "include",
               hash: "sha256-9JvKQOAB19wQpWLNAhuB9eL8qKqXWTQHAJIXdLYMNG8=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               url: "https://github.com/boostorg/context/commit/63996e427b4470c7b99b0f4cafb94839ea3670b6.patch",
               stripLen: 1n,
               extraPrefix: "libs/context/",
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.87")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.88")))), nix.path(here, "./Fix-cygwin-build-187.patch")), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.89")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.90")))), nix.path(here, "./Fix-cygwin-build-189.patch"))))))))))))))))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "http://boost.org/",
         description: "Collection of C++ libraries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -192,7 +192,7 @@ export default nix.lambda((args) => (() => {
         ]),
         broken: nix.thunk(() => (nix.asBool((nix.asBool(enableNumpy) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "1.86")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(python, "pkgs", "numpy", "version")), "2")))),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$16, boostBuildPatches: boostBuildPatches })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$16, boostBuildPatches: boostBuildPatches })),
       preConfigure: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), useMpi, nix.thunk(() => nix.str`cat << EOF >> user-config.jam
 using mpi : ${nix.app(nix.sel(lib, "getDev"), mpi)}/bin/mpiCC ;
 EOF
@@ -223,17 +223,17 @@ EOF
 `)))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(version, "1.87.0")), "substituteInPlace \\\n  boost/outcome/outcome_gdb.h \\\n  boost/outcome/experimental/status-code/status_code.hpp \\\n  boost/json/detail/gdb_printers.hpp \\\n  boost/unordered/unordered_printers.hpp \\\n  boost/interprocess/interprocess_printers.hpp \\\n  libs/json/pretty_printers/generate-gdb-header.py \\\n  --replace-fail \",@progbits,1\" \",%progbits,1\"\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
         libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
       })),
       pkgconfigItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             name: "boost",
             version: version,
-            variables: nix.thunk(() => ({ __proto__: pos$18, includedir: "@includedir@", libdir: "@libdir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$18, includedir: "@includedir@", libdir: "@libdir@" })),
           })))),
       ]),
       enableParallelBuilding: true,

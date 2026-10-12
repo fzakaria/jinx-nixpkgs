@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const pname = "quiet";
   const version = "9.0.2";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Private, p2p alternative to Slack and Discord built on Tor & IPFS",
     homepage: "https://github.com/TryQuiet/quiet",
     changelog: nix.thunk(() => nix.str`https://github.com/TryQuiet/quiet/releases/tag/@quiet/desktop@${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     updateScript: nix.thunk(() => nix.app(writeShellScript, "update-quiet", nix.thunk(() => nix.str`latestVersion=$(${nix.app(nix.sel(lib, "getExe"), curl)} --fail --location --silent https://api.github.com/repos/TryQuiet/quiet/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} '.tag_name | ltrimstr("@quiet/desktop@")' --raw-output)
 currentVersion=$(nix eval --raw --file . quiet.version)
 if [[ "$latestVersion" == "$currentVersion" ]]; then
@@ -50,25 +50,25 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       passthru: passthru,
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "procps"))],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/TryQuiet/quiet/releases/download/@quiet/desktop@${version}/Quiet-${version}.AppImage`),
           hash: "sha256-CRQoTc7BbsWeA+6+X5ZjPYHNT4dqd1xZb6b2P83kC90=",
         })))),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/TryQuiet/quiet/releases/download/@quiet/desktop@${version}/Quiet-${version}-arm64.dmg`),
           hash: "sha256-G4Hj3YTsVX5Q3x4RnpXI6FPovm9fKXrfaUsZJ5EEUl8=",
         })))),
@@ -89,7 +89,7 @@ makeWrapper $out/Applications/Quiet.app/Contents/MacOS/Quiet $out/bin/${pname}
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     }))));

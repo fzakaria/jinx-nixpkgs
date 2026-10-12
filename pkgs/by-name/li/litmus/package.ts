@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const neon = nix.arg($, "neon");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.17",
       pname: "litmus",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notroj",
           repo: "litmus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [expat, libproxy, neon, zlib]),
       autoreconfFlags: nix.thunk(() => ["-I", "neon/macros"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebDAV server protocol compliance test suite",
         homepage: "http://www.webdav.org/neon/litmus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clippy",
       version: nix.thunk(() => nix.attr(rustc, "version")),
       src: nix.thunk(() => nix.attr(rustc, "src")),
@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "src/tools/clippy",
       dontUpdateAutotoolsGnuConfigScripts: true,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustc, "llvm"))]),
-      env: nix.thunk(() => ({ __proto__: pos$1, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, RUSTC_BOOTSTRAP: 1n })),
       doCheck: false,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -add_rpath "${nix.sel(rustc, "unwrapped")}/lib" "$out/bin/clippy-driver"
 install_name_tool -add_rpath "${nix.sel(rustc, "unwrapped")}/lib" "$out/bin/cargo-clippy"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rust-lang.github.io/rust-clippy/",
         description: "Bunch of lints to catch common mistakes and improve your Rust code",
         mainProgram: "cargo-clippy",

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.17.1";
       const subPackages = nix.thunk(() => ["cmd/vale"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vale-cli",
           repo: "vale",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withStyles: (selector) => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`vale-with-styles-${nix.sel(vale, "version")}`),
             paths: nix.thunk(() => nix.concat([vale], nix.app(selector, valeStyles))),
             nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(vale, "meta"));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
             };
             })()),
           }))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Syntax-aware linter for prose built with speed and extensibility in mind",
         longDescription: "Vale in Nixpkgs offers the helper `.withStyles` allow you to install it\npredefined styles:\n\n```nix\nvale.withStyles (s: [ s.alex s.google ])\n```\n",
         homepage: "https://vale.sh/",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         subPackages,

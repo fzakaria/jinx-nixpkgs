@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const botocore = nix.arg($, "botocore");
   const pycognito = nix.arg($, "pycognito");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioaquacell",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jordi1990",
           repo: "aioaquacell",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aioaquacell"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Jordi1990/aioaquacell/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Asynchronous library to retrieve details of your Aquacell water softener device",
         homepage: "https://github.com/Jordi1990/aioaquacell",

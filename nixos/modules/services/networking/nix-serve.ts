@@ -31,41 +31,41 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "nix-serve"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "nix-serve": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "nix-serve, the standalone Nix binary cache server")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 5000n,
               description: "Port number where nix-serve will listen on.\n",
             })))),
           bindAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0.0.0.0",
               description: "IP address where nix-serve will bind its listening socket.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "nix-serve", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for nix-serve.",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "The path to the file used for signing derivation data.\nGenerate with:\n\n```\nnix-store --generate-binary-cache-key key-name secret-key-file public-key-file\n```\n\nFor more details see {manpage}`nix-store(1)`.\n",
             })))),
           extraParams: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "separatedString"), " ")),
               default: "",
               description: "Extra command line parameters for nix-serve.\n",
@@ -74,17 +74,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         nix: nix.thunk(() => ({
-          __proto__: pos$10,
-          settings: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "nix", "package", "version")), "2.4")), nix.thunk(() => ({ __proto__: pos$9, "extra-allowed-users": nix.thunk(() => ["nix-serve"]) })))),
+          [nix.POS]: pos$10,
+          settings: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "nix", "package", "version")), "2.4")), nix.thunk(() => ({ [nix.POS]: pos$9, "extra-allowed-users": nix.thunk(() => ["nix-serve"]) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "nix-serve": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "nix-serve binary cache server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -92,12 +92,12 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "nix", "package", "out")),
                 nix.thunk(() => nix.sel(pkgs, "bzip2", "bin")),
               ]),
-              environment: nix.thunk(() => ({ __proto__: pos$11, NIX_REMOTE: "daemon" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$11, NIX_REMOTE: "daemon" })),
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretKeyFile"), null)), "export NIX_SECRET_KEY_FILE=\"$CREDENTIALS_DIRECTORY/NIX_SECRET_KEY_FILE\"\n")}
 exec ${nix.sel(cfg, "package")}/bin/nix-serve --listen ${nix.sel(cfg, "bindAddress")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))} ${nix.sel(cfg, "extraParams")}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Restart: "always",
                 RestartSec: "5s",
                 User: "nix-serve",
@@ -109,9 +109,9 @@ exec ${nix.sel(cfg, "package")}/bin/nix-serve --listen ${nix.sel(cfg, "bindAddre
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

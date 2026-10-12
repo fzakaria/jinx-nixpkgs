@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "skytemple-files",
       version: "1.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SkyTemple",
           repo: "skytemple-files",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         skytemple_rust,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         spritecollab: nix.thunk(() => nix.concat([aiohttp, gql, graphql_core, lru_dict], nix.sel(gql, "optional-dependencies", "aiohttp"))),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([parameterized, pytestCheckHook, xmldiff], nix.sel(finalAttrs, "passthru", "optional-dependencies", "spritecollab"))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["skytemple_files"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky",
         homepage: "https://github.com/SkyTemple/skytemple-files",
         mainProgram: "skytemple_export_maps",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cryptopp = nix.arg($, "cryptopp");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "signal-backup-deduplicator",
       version: "0-unstable-2024-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gerum",
           repo: "signal-backup-deduplicator",
           rev: "6c09f14b16ff47c2ed0914c68102e45c93ebbfa6",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [protobuf, cryptopp]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generate chunked backups for Signal messages",
         homepage: "https://gitlab.com/gerum/signal-backup-deduplicator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

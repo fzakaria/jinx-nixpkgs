@@ -65,7 +65,7 @@ echo '${commands}' >> "$out/${eventname}"
 chmod a+x "$out/${eventname}"
 `;
   const eventToShellCmds = (event) => (nix.asBool(nix.builtins.hasAttr(event, nix.thunk(() => nix.sel(cfg, "hooks")))) ? nix.app(shellCmdsForEventScript, event, nix.thunk(() => nix.builtins.getAttr(event, nix.thunk(() => nix.sel(cfg, "hooks"))))) : "");
-  const scriptDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "apcupsd-scriptdir", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.add(nix.str`mkdir "$out"
+  const scriptDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "apcupsd-scriptdir", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.add(nix.str`mkdir "$out"
 # Copy SCRIPTDIR from apcupsd package
 cp -r ${nix.sel(pkgs, "apcupsd")}/etc/apcupsd/* "$out"/
 # Make the files writeable (nix will unset the write bits afterwards)
@@ -79,7 +79,7 @@ rm "$out/apcupsd.conf"
 sed -i -e "s|^SCRIPTDIR=.*|SCRIPTDIR=$out|" "$out/apccontrol"
 `, nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(eventToShellCmds, eventList)))))));
   const wrappedBinaries = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "apcupsd-wrapped-binaries", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
     })), nix.thunk(() => nix.str`for p in "${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "apcupsd")))}/bin/"*; do
@@ -88,35 +88,35 @@ sed -i -e "s|^SCRIPTDIR=.*|SCRIPTDIR=$out|" "$out/apccontrol"
 done
 `)));
   const apcupsdWrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "apcupsd-wrapped",
       paths: nix.thunk(() => [wrappedBinaries, nix.thunk(() => nix.sel(pkgs, "apcupsd"))]),
     }))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         apcupsd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable the APC UPS daemon. apcupsd monitors your UPS and\npermits orderly shutdown of your computer in the event of a power\nfailure. User manual: http://www.apcupsd.com/manual/manual.html.\nNote that apcupsd runs as root (to allow shutdown of computer).\nYou can check the status of your UPS with the \"apcaccess\" command.\n",
             })))),
           configText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "UPSTYPE usb\nNISIP 127.0.0.1\nBATTERYLEVEL 50\nMINUTES 5\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Contents of the runtime configuration file, apcupsd.conf. The default\nsettings makes apcupsd autodetect USB UPSes, limit network access to\nlocalhost and shutdown the system when the battery level is below 50\npercent, or when the UPS has calculated that it has 5 minutes or less\nof remaining power-on time. See man apcupsd.conf for details.\n",
             })))),
           hooks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 doshutdown: "# shell commands to notify that the computer is shutting down",
               })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
@@ -126,10 +126,10 @@ done
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (() => {
               const hooknames = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "hooks"))));
               return nix.app(nix.sel(lib, "all"), (x) => nix.app(nix.sel(lib, "elem"), x, eventList), hooknames);
@@ -140,36 +140,36 @@ Valid attribute names  : ${nix.builtins.toString(eventList)}
 `),
           })),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$12, systemPackages: nix.thunk(() => [apcupsdWrapped]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$12, systemPackages: nix.thunk(() => [apcupsdWrapped]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             apcupsd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "APC UPS Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "apcupsd")}/bin/apcupsd -b -f ${configFile} -d1`),
                 TimeoutStopSec: 5n,
                 RuntimeDirectory: "apcupsd",
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$14, Documentation: "man:apcupsd(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$14, Documentation: "man:apcupsd(8)" })),
             })),
             "apcupsd-killpower": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "APC UPS Kill Power",
               after: nix.thunk(() => ["shutdown.target"]),
               before: nix.thunk(() => ["final.target"]),
               wantedBy: nix.thunk(() => ["shutdown.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ConditionPathExists: "/run/apcupsd/powerfail",
                 DefaultDependencies: "no",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "apcupsd")}/bin/apcupsd --killpower -f ${configFile}`),
                 TimeoutSec: "infinity",

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pname = "alda";
   const version = "2.3.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "alda-lang",
       repo: "alda",
       tag: nix.thunk(() => nix.str`release-${version}`),
@@ -34,20 +34,20 @@ export default nix.lambda((args) => (() => {
     }))));
   const license = nix.thunk(() => nix.sel(lib, "licenses", "epl20"));
   const alda_client = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alda-client",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/client`),
       vendorHash: "sha256-h09w6ZLirLNxYv/ibeN5pCnXSvT+1FGiXiYNReZBMXI=",
       preBuild: "go generate main.go\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-w", "-extldflags '-static'"]),
       tags: nix.thunk(() => ["netgo"]),
       subPackages: nix.thunk(() => ["."]),
       postInstall: "mv $out/bin/client $out/bin/alda\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: license,
         homepage: "https://github.com/alda-lang/alda/tree/master/client",
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))),
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const alda_player = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "alda-player",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/player`),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$5, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, data: nix.path(here, "./deps.json") })))),
       __darwinAllowLocalNetworking: true,
       gradleBuildTask: "fatJar",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -76,7 +76,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/alda-player \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         license: license,
         homepage: "https://github.com/alda-lang/alda/tree/master/player",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ericdallo"))]),
@@ -84,12 +84,12 @@ runHook postInstall
       })),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       paths: nix.thunk(() => [alda_client, alda_player]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         license: license,
         description: "Music programming language for musicians",
         homepage: "https://alda.io",

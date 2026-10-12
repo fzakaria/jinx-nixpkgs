@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uriparser",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uriparser",
           repo: "uriparser",
           tag: nix.thunk(() => nix.str`uriparser-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/uriparser/uriparser/blob/uriparser-${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "Strictly RFC 3986 compliant URI parsing library",
         longDescription: "uriparser is a strictly RFC 3986 compliant URI parsing and handling library written in C.\nAPI documentation is available on uriparser website.\n",

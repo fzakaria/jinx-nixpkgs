@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const deprecated = nix.arg($, "deprecated");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gltf_sample_models = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "KhronosGroup",
       repo: "glTF-Sample-Models",
       rev: "d7a3cc8e51d7c573771ae77a57f16b0662a905c6",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dodgyville",
           repo: "pygltflib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["pygltflib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for reading and writing basic glTF files",
         homepage: "https://gitlab.com/dodgyville/pygltflib",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dodgyville/pygltflib/-/blob/v${version}/CHANGELOG.md`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

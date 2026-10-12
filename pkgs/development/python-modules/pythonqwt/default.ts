@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PlotPyStack",
           repo: "PythonQwt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export QT_QPA_PLATFORM=offscreen
 `);
       const pythonImportsCheck = nix.thunk(() => ["qwt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt plotting widgets for Python (pure Python reimplementation of Qwt C++ library)",
         homepage: "https://github.com/PlotPyStack/PythonQwt",
         changelog: nix.thunk(() => nix.str`https://github.com/PlotPyStack/PythonQwt/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -48,7 +48,7 @@ export QT_QPA_PLATFORM=offscreen
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

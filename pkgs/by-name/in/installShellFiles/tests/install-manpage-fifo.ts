@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-manpage-fifo", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "installManPage doc/*\n\ninstallManPage \\\n  --name foo.1 <(echo foo) \\\n  --name=bar.2 <(echo bar) \\\n  --name baz.3 <(echo baz)\n\necho \"foo\" | cmp - $out/share/man/man1/foo.1\necho \"bar\" | cmp - $out/share/man/man2/bar.2\necho \"baz\" | cmp - $out/share/man/man3/baz.3\n");

@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "qemu", "firmware"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         qemu: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           firmware: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "QEMU firmware descriptors in {file}`/etc/qemu/firmware`")),
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "qemu"))]),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.qemu ]")),
@@ -46,16 +46,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "qemu/firmware": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => (() => {
                 const merged = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     name: "qemu-firmware-descriptors",
                     paths: nix.thunk(() => nix.sel(cfg, "packages")),
                     pathsToLink: nix.thunk(() => ["/share/qemu/firmware"]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "katexochen"))]),
     })),
   };

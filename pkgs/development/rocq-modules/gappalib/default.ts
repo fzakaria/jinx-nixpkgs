@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const flocq = nix.arg($, "flocq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "gappalib",
       repo: "coq",
       owner: "gappa",
@@ -39,57 +39,57 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.20")),
               out: "1.7.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.15")),
               out: "1.5.5",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "1.7.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-NHKfX2on0tw2T0AqOLIFDCHlkl9OXkLiRExEwauwGqE=",
         })),
         "1.6.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-GQls31TT4y3h18RUxAX+LpHIKon5UvDfW1GuURRKeKA=",
         })),
         "1.5.5": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-qxi2Kg3N3o6+ncq7aPNEg98dBmQC5WCa86zROPJSDdo=",
         })),
         "1.5.4": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-9PlkXqCu4rbFD7qnMF1GSpPCVmwJ3r593RfAvkJbbdA=",
         })),
         "1.5.3": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-SuMopX5sm4jh2uBuE7zr6vhWhHYZYnab+epjqYJqg+s=",
         })),
         "1.5.2": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-A021Bhqz5r2CZBayfjIiWrCIfUlejcQAfbTmOaf6QTM=",
         })),
         "1.5.1": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:1806bq1z6q5rq2ma7d5kfbqfyfr755hjg0dq7b2llry8fx9cxjsg",
         })),
         "1.5.0": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:1i1c0gakffxqqqqw064cbvc243yl325hxd50jmczr6mk18igk41n",
         })),
         "1.4.5": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:081hib1d9wfm29kis390qsqch8v6fs3q71g2rgbbzx5y5cf48n9k",
         })),
         "1.4.4": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:114q2hgw64j6kqa9mg3qcp1nlf0ia46z2xadq81fnkxqm856ml7l",
         })),
       })),
@@ -97,9 +97,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf]),
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [flocq]),
-      useMelquiondRemake: nix.thunk(() => ({ __proto__: pos$14, logpath: "Gappa" })),
+      useMelquiondRemake: nix.thunk(() => ({ [nix.POS]: pos$14, logpath: "Gappa" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Coq support library for Gappa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

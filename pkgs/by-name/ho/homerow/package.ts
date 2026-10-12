@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "homerow",
       version: "1.5.3",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://builds.homerow.app/v${nix.sel(finalAttrs, "version")}/Homerow.zip`),
           hash: "sha256-zqa1QYq7UF80z0cvMZJMgTQFo3vqGdwzuLVMwgyuMME=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keyboard shortcuts for every button in macOS",
         homepage: "https://www.homerow.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const multimarkdown = nix.arg($, "multimarkdown");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "decker",
       version: "1.71",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JohnEarnest",
           repo: "Decker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./scripts\n",
       buildPhase: "runHook preBuild\nmake lilt\nmake decker\nmake docs\nrunHook postBuild\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-const-int-float-conversion"]))))),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm0755 ./c/build/lilt -t $out/bin\ninstall -Dm0755 ./c/build/decker -t $out/bin\ninstall -Dm0644 ./syntax/vim/ftdetect/lil.vim -t $out/share/vim-plugins/decker/ftdetect\ninstall -Dm0644 ./syntax/vim/syntax/lil.vim -t $out/share/vim-plugins/decker/syntax\n\n# Fixing the permissions of the installed files on the documentation.\nchmod a-x ./docs/images/* \\\n          ./docs/*.md \\\n          ./examples/decks/*.deck \\\n          ./examples/lilt/*.lil\n\n# This example has a shebang so we'll leave it as an executable.\nchmod a+x ./examples/lilt/podcasts.lil\n\nmkdir -p $out/share/doc/decker\ncp -r ./docs/*.html ./docs/images ./examples $out/share/doc/decker\n\nrunHook postInstall\n",
       checkPhase: "runHook preCheck\nmake test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://beyondloom.com/decker",
         description: "Multimedia platform for creating and sharing interactive documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

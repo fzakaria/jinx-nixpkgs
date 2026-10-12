@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const libdrm = nix.arg($, "libdrm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xorg-sys-opengl",
       version: "3",
       builder: nix.path(here, "./builder.sh"),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const gnome_shell = nix.arg($, "gnome-shell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adapta-gtk-theme",
       version: "3.95.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adapta-project",
           repo: "adapta-gtk-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace gtk/Makefile.am \\\n  --replace-fail \"--jobs 100%\" '--jobs ${NIX_BUILD_CORES}'\n\npatchShebangs .\n",
       configureFlags: nix.thunk(() => ["--disable-gtk_next", "--enable-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adaptive GTK theme based on Material Design Guidelines",
         homepage: "https://github.com/adapta-project/adapta-gtk-theme",
         license: nix.thunk(() => (() => {

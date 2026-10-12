@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const pyproject = nix.arg($, "pyproject");
   const preConfigure = nix.arg($, "preConfigure");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "word-count",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyO3",
           repo: "pyo3",
           tag: "v0.28.2",
           hash: "sha256-Jg+eni7I0jVUFViWbgj5F094ksvyuvF4mdgGzh0PMaQ=",
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       buildAndTestSubdir: buildAndTestSubdir,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: preConfigure,
       pythonImportsCheck: nix.thunk(() => ["word_count"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyO3 word count example",
         homepage: "https://github.com/PyO3/pyo3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -36,37 +36,37 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(utils, "systemdUtils", "lib"));
   const mkPathSafeName = nix.thunk(() => nix.attr(from, "mkPathSafeName"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       systemd: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const name = nix.arg($_1, "name");
                   const config_1 = nix.arg($_1, "config");
                   return {
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       confinement: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: false,
                             description: "If set, all the required runtime store paths for this service are\nbind-mounted into a `tmpfs`-based\n{manpage}`chroot(2)`.\n",
                           })))),
                         fullUnit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: false,
                             description: "Whether to include the full closure of the systemd unit file into the\nchroot, instead of just the dependencies for the executables.\n\n::: {.warning}\nWhile it may be tempting to just enable this option to\nmake things work quickly, please be aware that this might add paths\nto the closure of the chroot that you didn't anticipate. It's better\nto use {option}`confinement.packages` to **explicitly** add additional store paths to the\nchroot.\n:::\n",
                           })))),
                         packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "package")))))),
                             default: [],
                             description: nix.thunk(() => (() => {
@@ -87,7 +87,7 @@ above.
                             })()),
                           })))),
                         binSh: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: nix.thunk(() => nix.sel(toplevelConfig, "environment", "binsh")),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.environment.binsh")),
@@ -95,7 +95,7 @@ above.
                             description: "The program to make available as {file}`/bin/sh` inside\nthe chroot. If this is set to `null`, no\n{file}`/bin/sh` is provided at all.\n\nThis is useful for some applications, which for example use the\n{manpage}`system(3)` library function to execute commands.\n",
                           })))),
                         mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["full-apivfs", "chroot-only"]))),
                             default: "full-apivfs",
                             description: "The value `full-apivfs` (the default) sets up\nprivate {file}`/dev`, {file}`/proc`,\n{file}`/sys`, {file}`/tmp` and {file}`/var/tmp` file systems\nin a separate user name space.\n\nIf this is set to `chroot-only`, only the file\nsystem name space is set up along with the call to\n{manpage}`chroot(2)`.\n\nIn all cases, unless `serviceConfig.PrivateTmp=true` is set,\nboth {file}`/tmp` and {file}`/var/tmp` paths are added to `InaccessiblePaths=`.\nThis is to overcome options like `DynamicUser=true`\nimplying `PrivateTmp=true` without letting it being turned off.\nBeware however that giving processes the `CAP_SYS_ADMIN` and `@mount` privileges\ncan let them undo the effects of `InaccessiblePaths=`.\n\n::: {.note}\nThis doesn't cover network namespaces and is solely for\nfile system level isolation.\n:::\n",
@@ -108,9 +108,9 @@ above.
                       const fullUnit = nix.thunk(() => nix.attr(from_1, "fullUnit"));
                       const wantsAPIVFS = nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.eq(nix.sel(config_1, "confinement", "mode"), "full-apivfs"))));
                       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config_1, "confinement", "enable")), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             ReadOnlyPaths: nix.thunk(() => ["+/"]),
                             RuntimeDirectory: nix.thunk(() => ["confinement/%n"]),
                             RootDirectory: "/run/confinement/%n",
@@ -125,7 +125,7 @@ above.
                             ProtectKernelTunables: wantsAPIVFS,
                           })),
                           confinement: nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             packages: nix.thunk(() => (() => {
                               const execOpts = nix.thunk(() => [
                                 "ExecReload",
@@ -153,27 +153,27 @@ above.
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       assertions: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (cfg) => (() => {
             const whatOpt = (optName) => nix.add(nix.add(nix.str`The 'serviceConfig' option '${optName}' for`, nix.str` service '${name}' is enabled in conjunction with`), " 'confinement.enable'");
             return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "confinement", "enable")), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   assertion: nix.thunk(() => !nix.asBool(nix.selOr(cfg, () => false, "serviceConfig", "RootDirectoryStartOnly"))),
                   message: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`${nix.app(whatOpt, "RootDirectoryStartOnly")}, but right now systemd`, " doesn't support restricting bind-mounts to 'ExecStart'."), " Please either define a separate service or find a way to run"), " commands other than ExecStart within the chroot.")),
                 })),
               ]));
           })(), nix.thunk(() => nix.sel(config, "systemd", "services")))))),
       systemd: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         packages: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (cfg) => (() => {
               const rootPaths = nix.thunk(() => (() => {
                 const contents = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "confinement", "packages"))));
                 return nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${nix.app(mkPathSafeName, name)}-string-contexts.txt`), contents);
               })());
               const chrootPaths = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${nix.app(mkPathSafeName, name)}-chroot-paths`), nix.thunk(() => ({
-                  __proto__: pos$17,
-                  closureInfo: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ __proto__: pos$16, rootPaths: rootPaths })))),
+                  [nix.POS]: pos$17,
+                  closureInfo: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$16, rootPaths: rootPaths })))),
                   serviceName: nix.thunk(() => nix.str`${name}.service`),
                   excludedPath: rootPaths,
                 })), nix.thunk(() => nix.str`mkdir -p "$out/lib/systemd/system/$serviceName.d"

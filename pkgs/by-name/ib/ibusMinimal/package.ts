@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["libOnly", 1, 27]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ibus = nix.arg($, "ibus");
-  return nix.app(nix.sel(ibus, "override"), nix.thunk(() => ({ __proto__: pos$1, libOnly: true })));
+  return nix.app(nix.sel(ibus, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libOnly: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

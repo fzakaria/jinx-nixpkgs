@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const withPlugins = (selector) => nix.app(runCommand, "mdformat-wrapped", nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python, "pkgs", "mdformat"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       meta: nix.thunk(() => nix.attr(from, "meta")),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "wrapPython"))]),
       plugins: nix.thunk(() => nix.app(selector, nix.thunk(() => nix.sel(python, "pkgs")))),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, withPlugins: withPlugins })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, withPlugins: withPlugins })),
     };
     })()), nix.thunk(() => nix.str`buildPythonPath "$plugins"
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "pkgs", "mdformat")))} $out/bin/mdformat \\

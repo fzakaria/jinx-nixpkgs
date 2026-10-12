@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sousaw",
           repo: "BoltzTraP2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           "test_fitde3D_saved_noder",
         ])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Band-structure interpolator and transport coefficient calculator",
         mainProgram: "btp2",
         homepage: "http://www.boltztrap.org/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

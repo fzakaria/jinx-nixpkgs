@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-control",
           repo: "python-control",
           tag: version,
@@ -38,24 +38,24 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/python-control/python-control/commit/3b70cb41b5d41ed4aa4da9f2db2eb3d83c3ffdcd.patch",
             hash: "sha256-zJAbgbeiYQlglG/mbtREvs7AFxwGxzlzrr0iuKPHp5I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/python-control/python-control/commit/ae4915c4ece5f417fa514dadeb0d30ab412a28aa.patch",
             hash: "sha256-Z5U9sgtlp35bHYOYC2ag9007fGVXwzhTgBQN7yLsjCI=",
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [numpy, scipy, matplotlib]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$4, cvxopt: nix.thunk(() => [cvxopt]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$4, cvxopt: nix.thunk(() => [cvxopt]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([numpydoc, pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["control"]);
       const disabledTestPaths = nix.thunk(() => ["doc/test_sphinxdocs.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python Control Systems Library",
         changelog: nix.thunk(() => nix.str`https://github.com/python-control/python-control/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/python-control/python-control",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

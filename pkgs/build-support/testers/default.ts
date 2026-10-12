@@ -46,17 +46,17 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./lychee.nix"), nix.thunk(() => ({}))));
     return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     lycheeLinkCheck: nix.thunk(() => nix.attr(from, "lycheeLinkCheck")),
     testBuildFailure: (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (orig) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         builder: nix.thunk(() => nix.sel(buildPackages, "bash")),
         args: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./expect-failure.sh"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               coreutils: nix.thunk(() => nix.sel(buildPackages, "coreutils")),
               vars: nix.thunk(() => nix.app(nix.sel(lib, "toShellVars"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   outputNames: nix.thunk(() => nix.selOr(orig, () => ["out"], "outputs")),
                 })))),
             })))),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const postFailureMessage = nix.argOr($_1, "postFailureMessage", () => null);
       const checkMetadata = nix.argOr($_1, "checkMetadata", () => true);
       return nix.app(runCommand, nix.thunk(() => nix.str`equal-contents-${nix.app(nix.sel(lib, "strings", "toLower"), assertion)}`), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           assertion: assertion,
           actual: actual,
           expected: expected,
@@ -93,9 +93,9 @@ export default nix.lambda((args) => (() => {
       const command = nix.argOr($_1, "command", () => nix.str`${nix.selOr(package$, () => nix.selOr(package$, () => nix.sel(package$, "name"), "pname"), "meta", "mainProgram")} --version`);
       const version = nix.argOr($_1, "version", () => nix.sel(package$, "version"));
       return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(package$, "name")}-test-version`), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nativeBuildInputs: nix.thunk(() => [package$]),
-          meta: nix.thunk(() => ({ __proto__: pos$5, timeout: 60n })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$5, timeout: 60n })),
         })), nix.thunk(() => nix.str`if output=$(${command} 2>&1 | sed -e 's|${nix.builtins.storeDir}/[^/ ]*/|{{storeDir}}/|g'); then
   if grep -Fw -- "${version}" - <<< "$output"; then
     touch $out
@@ -120,16 +120,16 @@ fi
       const salt = nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 12n, nix.thunk(() => nix.builtins.baseNameOf(drvPath))))));
       const saltName = (name) => nix.str`${name}-salted-${salt}`;
       const getSaltedNames = (args_2) => (nix.asBool(!nix.eq(nix.selOr(args_2, () => null, "pname"), null)) ? {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: nix.thunk(() => nix.app(saltName, nix.thunk(() => nix.sel(args_2, "pname")))),
       } : {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: nix.thunk(() => nix.app(saltName, nix.thunk(() => nix.selOr(args_2, () => "source", "name")))),
       });
       const saltedByArgs = nix.thunk(() => nix.app(f, nix.thunk(() => nix.app(optionalFix, nix.thunk(() => nix.app(nix.sel(lib, "extends"), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), getSaltedNames)), nix.thunk(() => nix.app(nix.sel(lib, "toFunction"), args_1))))))));
       const saltedByOverrideAttrs = nix.thunk(() => nix.app(nix.sel(unsalted, "overrideAttrs"), (previousAttrs) => nix.app(getSaltedNames, previousAttrs)));
       const saltedByOverrideAttrsForced = nix.thunk(() => nix.app(nix.sel(unsalted, "overrideAttrs"), (previousAttrs) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.app(saltName, nix.thunk(() => nix.sel(unsalted, "name")))),
         })));
       const checked = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(saltedByArgs, "drvPath"), drvPath)) ? nix.force(saltedByArgs) : (nix.asBool(!nix.eq(nix.sel(saltedByOverrideAttrs, "drvPath"), drvPath)) ? nix.force(saltedByOverrideAttrs) : (nix.asBool(!nix.eq(nix.sel(saltedByOverrideAttrsForced, "drvPath"), drvPath)) ? nix.force(saltedByOverrideAttrsForced) : nix.builtins.throw("invalidateFetcherByDrvHash: Neither adding pname/name to the fetcher args nor overriding with overrideAttrs change the result drvPath.")))));
@@ -143,29 +143,29 @@ fi
         const script = nix.arg($_1, "script");
         const stdenv_1 = nix.argOr($_1, "stdenv", () => nix.force(stdenvNoCC));
         return nix.app(runCommandWith, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: name,
             stdenv: stdenv_1,
-            derivationArgs: nix.thunk(() => nix.update({ __proto__: pos$10, outputHash: hash, outputHashMode: "recursive" }, nix.app(nix.sel(lib, "removeAttrs"), args_2, nix.thunk(() => ["hash", "name", "script", "stdenv"])))),
+            derivationArgs: nix.thunk(() => nix.update({ [nix.POS]: pos$10, outputHash: hash, outputHashMode: "recursive" }, nix.app(nix.sel(lib, "removeAttrs"), args_2, nix.thunk(() => ["hash", "name", "script", "stdenv"])))),
           })), script);
       })(), formals$4))),
     runNixOSTest: nix.thunk(() => (() => {
-      const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")), nix.thunk(() => ({ __proto__: pos$12, lib: lib }))));
+      const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")), nix.thunk(() => ({ [nix.POS]: pos$12, lib: lib }))));
       return (testModule) => nix.app(nix.sel(nixos, "runTest"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           _file: "pkgs.runNixOSTest implementation",
           imports: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "setDefaultModuleLocation"), "the argument that was passed to pkgs.runNixOSTest", testModule)),
           ]),
           hostPkgs: pkgs,
-          node: nix.thunk(() => ({ __proto__: pos$13, pkgs: pkgsLinux })),
+          node: nix.thunk(() => ({ [nix.POS]: pos$13, pkgs: pkgsLinux })),
         })));
     })()),
     nixosTest: nix.thunk(() => (() => {
       const nixosTesting = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/testing-python.nix")), nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
           return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           system: nix.thunk(() => nix.attr(from_1, "system")),
           pkgs: pkgs,
           extraConfigurations: nix.thunk(() => [
@@ -173,11 +173,11 @@ fi
               const $_1 = nix.formals(args_1, formals$5);
               const lib_1 = nix.arg($_1, "lib");
               return {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 config: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   nixpkgs: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     pkgs: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), pkgsLinux)),
                   })),
                 })),
@@ -196,7 +196,7 @@ fi
       const $_1 = nix.formals(args_1, formals$6);
       const args_2 = args_1;
       const moduleName = nix.arg($_1, "moduleName");
-      return nix.app(nix.sel(lib, "warn"), "testers.hasPkgConfigModule has been deprecated in favor of testers.hasPkgConfigModules. It accepts a list of strings via the moduleNames argument instead of a single moduleName.", nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["moduleName"])), { __proto__: pos$19, moduleNames: nix.thunk(() => [moduleName]) })))));
+      return nix.app(nix.sel(lib, "warn"), "testers.hasPkgConfigModule has been deprecated in favor of testers.hasPkgConfigModules. It accepts a list of strings via the moduleNames argument instead of a single moduleName.", nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["moduleName"])), { [nix.POS]: pos$19, moduleNames: nix.thunk(() => [moduleName]) })))));
     })(), formals$6),
     hasPkgConfigModules: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hasPkgConfigModules/tester.nix"), nix.thunk(() => ({})))),
     hasCmakeConfigModules: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hasCmakeConfigModules/tester.nix"), nix.thunk(() => ({})))),

@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const avahi = nix.arg($, "avahi");
   const ndi = nix.arg($, "ndi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "v4l2-to-ndi",
       version: "0-unstable-2022-09-14",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [openssl, curl, avahi, ndi]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lplassman",
           repo: "V4L2-to-NDI",
           rev: "4dd5e9594acc4f154658283ee52718fa58018ac9",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir build\ng++ -std=c++14 -pthread  -Wl,--allow-shlib-undefined -Wl,--as-needed \\\n-I'NDI SDK for Linux'/include/ \\\n-Iinclude/ \\\n-L'NDI SDK for Linux'/lib/x86_64-linux-gnu \\\n-o build/v4l2ndi main.cpp PixelFormatConverter.cpp -lndi -ldl\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir $out\ncp -r build $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Video input (V4L2) to NDI converter",
         homepage: "https://github.com/lplassman/V4L2-to-NDI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

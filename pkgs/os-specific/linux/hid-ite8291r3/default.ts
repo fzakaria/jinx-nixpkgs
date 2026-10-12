@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hid-ite8291r3";
       const version = "0-unstable-2026-07-31";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pobrn",
           repo: "hid-ite8291r3",
           rev: "1e1f01b5d8d0e45d70275a0dc29369002c39eb39",
@@ -37,11 +37,11 @@ install -D hid-ite8291r3.ko -t $out/lib/modules/${nix.sel(kernel, "modDirVersion
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux driver for the ITE 8291 RGB keyboard backlight controller",
         homepage: "https://github.com/pobrn/hid-ite8291r3/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -53,7 +53,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.9")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

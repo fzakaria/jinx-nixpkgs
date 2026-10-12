@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libsysdecode",
       extraPaths: nix.thunk(() => ["sys", "libexec/rtld-elf"]),
       NIX_CFLAGS_COMPILE: nix.thunk(() => ["-Wno-unterminated-string-initialization"]),

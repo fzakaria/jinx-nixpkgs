@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "security", "rtkit"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       security: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         rtkit: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the RealtimeKit system service, which hands\nout realtime scheduling priority to user processes on\ndemand. For example, PulseAudio and PipeWire use this to\nacquire realtime priority.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rtkit", nix.thunk(() => ({})))),
           args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Command-line options for `rtkit-daemon`.\n",
@@ -58,31 +58,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         security: nix.thunk(() => ({
-          __proto__: pos$7,
-          polkit: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+          [nix.POS]: pos$7,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           dbus: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "rtkit-daemon": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/rtkit-daemon ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "args")))}`),
@@ -117,23 +117,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rtkit: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               isSystemUser: true,
               group: "rtkit",
               description: "RealtimeKit daemon",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$17, rtkit: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$17, rtkit: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "rtkit", "meta"));
       return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),

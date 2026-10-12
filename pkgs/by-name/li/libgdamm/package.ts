@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const mysqlSupport = nix.argOr($, "mysqlSupport", () => false);
   const postgresSupport = nix.argOr($, "postgresSupport", () => false);
   const gda = nix.thunk(() => nix.app(nix.sel(libgda5, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mysqlSupport: mysqlSupport,
       postgresSupport: postgresSupport,
     }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.99.11";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgdamm/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgdamm-${version}.tar.xz`),
           sha256: "1fyh15b3f8hmwbswalxk1g4l04yvvybksn5nm7gznn5jl5q010p9",
         }))));
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gda]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "C++ bindings for libgda",
         homepage: "https://www.gnome-db.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

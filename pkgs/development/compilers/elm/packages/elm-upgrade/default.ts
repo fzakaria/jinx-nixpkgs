@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elm-upgrade",
       version: "0.19.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avh4",
           repo: "elm-upgrade",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       postInstall: "rm -rf $out/lib/node_modules/elm-upgrade/node_modules/.bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/avh4/elm-upgrade/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Upgrade your Elm 0.18 projects to Elm 0.19",
         homepage: "https://github.com/avh4/elm-upgrade",

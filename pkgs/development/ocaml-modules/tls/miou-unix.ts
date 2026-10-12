@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const tls = nix.arg($, "tls");
   const x509 = nix.arg($, "x509");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tls-miou-unix",
       src: nix.thunk(() => nix.attr(tls, "src")),
       version: nix.thunk(() => nix.attr(tls, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [crowbar, hxd, mirage_crypto_rng, ohex, ptime, rresult]),
       meta: nix.thunk(() => nix.update(nix.sel(tls, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Transport Layer Security purely in OCaml, Miou+Unix layer",
       })),
     })));

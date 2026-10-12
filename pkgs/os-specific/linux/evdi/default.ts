@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pybind11"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "evdi",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DisplayLink",
           repo: "evdi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-conftest-probes.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error", "-Wno-error=sign-compare"]))),
       })),
       postBuild: "# Don't use makeFlags for userspace stuff\nmake library pyevdi\n",
@@ -53,7 +53,7 @@ runHook postInstall
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "4.19")),
         changelog: nix.thunk(() => nix.str`https://github.com/DisplayLink/evdi/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Extensible Virtual Display Interface",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rust_cbindgen = nix.arg($, "rust-cbindgen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orz",
       version: "1.6.2-unstable-2024-11-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "richox",
           repo: "orz",
           rev: "c828a50f18a309d4715741056db74941e6a98867",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [rust_cbindgen]),
       postInstall: "cbindgen -o $dev/include/orz.h\n\nmkdir -p $lib\nmv $out/lib \"$lib\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High performance, general purpose data compressor written in rust",
         homepage: "https://github.com/richox/orz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

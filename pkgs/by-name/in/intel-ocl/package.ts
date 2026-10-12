@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intel-ocl";
       const version = "5.0-63503";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             "https://registrationcenter-download.intel.com/akdlm/irc_nas/11396/SRB5.0_linux64.zip",
             "http://registrationcenter-download.intel.com/akdlm/irc_nas/11396/SRB5.0_linux64.zip",
@@ -52,7 +52,7 @@ runHook postPatch
       const installPhase = "runHook preInstall\n\ninstall -D -m 0755 opt/intel/opencl/*.so* -t $out/lib/intel-ocl\ninstall -D -m 0644 opt/intel/opencl/*.{o,rtl,bin} -t $out/lib/intel-ocl\ninstall -D -m 0644 opt/intel/opencl/{LICENSE,NOTICES} -t $out/share/doc/intel-ocl\ninstall -D -m 0644 intel.icd -t $out/etc/OpenCL/vendors\n\nrunHook postInstall\n";
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official OpenCL runtime for Intel CPUs",
         homepage: "https://software.intel.com/en-us/articles/opencl-drivers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -61,7 +61,7 @@ runHook postPatch
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "graphqurl";
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hasura",
           repo: "graphqurl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-TfKQWghcsVPPfn/a1A84sh0FT57WSnQt9uuiO1ScoAY=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "graphqurl-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: graphqurl })))),
+          [nix.POS]: pos$3,
+          "graphqurl-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: graphqurl })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI and JS library for making GraphQL queries",
         homepage: "https://github.com/hasura/graphqurl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bkmgit",
           repo: "python-colormath2",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["colormath2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Color math and conversion library (fork)",
         homepage: "https://github.com/bkmgit/python-colormath2",
         changelog: nix.thunk(() => nix.str`https://github.com/bkmgit/python-colormath2/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

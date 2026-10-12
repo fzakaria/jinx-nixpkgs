@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const gtkglext = nix.arg($, "gtkglext");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gwyddion",
       version: "2.71",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gwyddion/gwyddion-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LfchvvzL5NXuK6Vksy5pNB+M4d5jfiBFg4oJotRrXbo=",
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gtk2, fftw], nix.concat(nix.app(nix.sel(lib, "optionals"), openglSupport, nix.thunk(() => [gtkglext, libGL])), nix.concat(nix.app(nix.sel(lib, "optional"), openexrSupport, openexr), nix.concat(nix.app(nix.sel(lib, "optional"), libXmuSupport, libxmu), nix.concat(nix.app(nix.sel(lib, "optional"), fitsSupport, cfitsio), nix.concat(nix.app(nix.sel(lib, "optional"), libpngSupport, libpng), nix.concat(nix.app(nix.sel(lib, "optional"), libxsltSupport, libxslt), nix.concat(nix.app(nix.sel(lib, "optional"), libxml2Support, libxml2), nix.concat(nix.app(nix.sel(lib, "optional"), libwebpSupport, libwebp), nix.concat(nix.app(nix.sel(lib, "optional"), zlibSupport, zlib), nix.app(nix.sel(lib, "optional"), libzipSupport, libzip)))))))))))),
       patches: nix.thunk(() => [nix.path(here, "./codegen.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://gwyddion.net/",
         description: "Scanning probe microscopy data visualization and analysis",
         longDescription: "A modular program for SPM (scanning probe microscopy) data\nvisualization and analysis. Primarily it is intended for the\nanalysis of height fields obtained by scanning probe microscopy\ntechniques (AFM, MFM, STM, SNOM/NSOM) and it supports a lot of\nSPM data formats. However, it can be used for general height\nfield and (greyscale) image processing, for instance for the\nanalysis of profilometry data or thickness maps from imaging\nspectrophotometry.\n",

@@ -11,34 +11,34 @@ const pos$6 = nix.positions(here + "/kdbs.nix", [["url", 24, 5], ["hash", 25, 5]
 const pos$7 = nix.positions(here + "/kdbs.nix", [["gfx1030", 3, 3], ["gfx900", 7, 3], ["gfx906", 11, 3], ["gfx908", 15, 3], ["gfx90a", 19, 3], ["gfx942", 23, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   gfx1030: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://therock-dvc.s3.amazonaws.com/rocm-libraries/files/md5/22/c4bd38cc34d3906add061ee57b099b",
     hash: "sha256-LESExp7sFl7osCM7HdVMpzOE0dU7953e2yzgeHSGgfI=",
   })),
   gfx900: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://therock-dvc.s3.amazonaws.com/rocm-libraries/files/md5/cf/9c12dafe25b15ea1e93088b7b061af",
     hash: "sha256-lFFB5GQFTjUnx3JDx816yH+96OGRt9XvBzfLFFHtUrE=",
   })),
   gfx906: nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://therock-dvc.s3.amazonaws.com/rocm-libraries/files/md5/04/b3be6a15c700ff382e0a5e136010e1",
     hash: "sha256-cn1ODLcUQi+/QJUlWbELukMUj4+b1vjjRhhTseL9tdM=",
   })),
   gfx908: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "https://therock-dvc.s3.amazonaws.com/rocm-libraries/files/md5/35/b9082b72e661dc5e37f14de1d9d4ed",
     hash: "sha256-pI30zpZL3OEP3aeLdVpM00nHeTyD5K+XDH47g0W2A+M=",
   })),
   gfx90a: nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     url: "https://therock-dvc.s3.amazonaws.com/rocm-libraries/files/md5/a1/1615323e06c5774fe19cf34c51baef",
     hash: "sha256-TkzSgY3V/Xs5YXfr69TrL8JjqDr1MZMgeBeQ/e2kEjE=",
   })),
   gfx942: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     url: "https://therock-dvc.s3.amazonaws.com/rocm-libraries/files/md5/6a/fe97d7bd441fe15280b28b6e3b1748",
     hash: "sha256-fyhnR3+xPFkHLN36dI9UYIhqoVstt5RpareGn2S9lMM=",
   })),

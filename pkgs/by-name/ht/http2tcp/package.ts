@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "http2tcp";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.linta.de/~aehlig/http2tcp/${pname}-${version}.tar.gz`),
           sha256: "34fb83c091689dee398ca80db76487e0c39abb17cef390d845ffd888009a5caa",
         }))));
@@ -30,7 +30,7 @@ cp http2tcp* $out/bin
 cp Protocol $out/share/${pname}/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "clkamp"))];
@@ -42,7 +42,7 @@ cp Protocol $out/share/${pname}/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

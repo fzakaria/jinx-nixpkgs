@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const pbrt_services = nix.arg($, "pbrt_services");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocaml-protoc",
       version: nix.thunk(() => nix.attr(pbrt, "version")),
       src: nix.thunk(() => nix.attr(pbrt, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [pbrt]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.1")),
       checkInputs: nix.thunk(() => [pbrt_services]),
-      meta: nix.thunk(() => nix.update(nix.sel(pbrt, "meta"), { __proto__: pos$1, description: "Protobuf Compiler for OCaml" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pbrt, "meta"), { [nix.POS]: pos$1, description: "Protobuf Compiler for OCaml" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

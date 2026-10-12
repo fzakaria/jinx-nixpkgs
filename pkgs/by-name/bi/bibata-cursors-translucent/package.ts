@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bibata-cursors-translucent";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "silica-dev",
           repo: "Bibata_Cursor_Translucent",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./0001-fix-broken-symlinks.patch")]);
       const installPhase = "install -dm 0755 $out/share/icons\ncp -pr Bibata_* $out/share/icons/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Translucent Variant of the Material Based Cursor",
         homepage: "https://github.com/silica-dev/Bibata_Cursor_Translucent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, patches, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patches, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.concat(nix.app(optionals, noSysDirs, nix.thunk(() => nix.concat([nix.path(here, "./gcc-12-no-sys-dirs.patch")], nix.selOr({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "16": nix.thunk(() => [
         nix.path(here, "./13/no-sys-dirs-riscv.patch"),
         nix.path(here, "./13/mangle-NIX_STORE-in-__FILE__.patch"),
@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./13/mangle-NIX_STORE-in-__FILE__.patch"),
       ]),
     }, () => [], nix.key(nix.str`${majorVersion}`))))), nix.concat(nix.app(optional, langAda, nix.path(here, "./gnat-cflags-11.patch")), nix.concat(nix.app(optional, langFortran, nix.path(here, "./gcc-12-gfortran-driving.patch")), nix.concat([nix.path(here, "./ppc-musl.patch")], nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(atLeast14)), nix.path(here, "./cfi_startproc-reorder-label-09-1.diff")), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(atLeast14) && nix.asBool(!nix.asBool(nix.sel(targetPlatform, "isDarwin"))))), nix.path(here, "./cfi_startproc-reorder-label-14-1.diff")), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(is14) || nix.asBool(is15))), nix.path(here, "./c++tools-dont-check-enable-default-pie.patch")), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(is14) && nix.asBool(nix.sel(targetPlatform, "isAarch64")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "aarch64-fix-ice-in-lookup-shared-state-flags.patch",
         url: "https://github.com/gcc-mirror/gcc/commit/1247fa6e95cdf4a6422ec802f733f1f7ecaa3557.patch",
         hash: "sha256-p8fyIcAx8CvLtQboXPevw/J3LsvkSZp36bHtGHjxsiQ=",
       }))))), nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(targetPlatform, "isDarwin")), nix.thunk(() => nix.selOr({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "16": nix.thunk(() => [
         nix.path(here, "./15/libgcc-darwin-fix-reexport.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "gcc-16-darwin-aarch64-support.patch",
             url: "https://raw.githubusercontent.com/Homebrew/homebrew-core/f236c82e26ee095ff098966820e40a8566f1704e/Patches/gcc/gcc-16.2.0.diff",
             hash: "sha256-RqJfcA4mL17Wu+alLSu5SzZuPhfY6n5htufuof7xhKQ=",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       "15": nix.thunk(() => [
         nix.path(here, "./15/libgcc-darwin-fix-reexport.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "gcc-15-darwin-aarch64-support.patch",
             url: "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-15.3.0.diff",
             hash: "sha256-PeAloBdUu+zRJlv86Z4x/FI8I7LiR5CJ3JlAJKs1iKU=",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       ]),
       "14": nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "gcc-14-darwin-aarch64-support.patch",
             url: "https://raw.githubusercontent.com/Homebrew/homebrew-core/d23df58f83aeb2c3f43bdcc277a9fac0bbe3e896/Patches/gcc/gcc-14.4.0.diff",
             hash: "sha256-NU95q0xkP4wEi6XLJRWEhcMcL49gDuIHgZubC05QzRE=",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       ]),
       "13": nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "gcc-13-darwin-aarch64-support.patch",
             url: "https://raw.githubusercontent.com/Homebrew/homebrew-core/d23df58f83aeb2c3f43bdcc277a9fac0bbe3e896/Patches/gcc/gcc-13.4.0.diff",
             excludes: nix.thunk(() => ["gcc/config.gcc"]),
@@ -115,19 +115,19 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./13/gcc-13-darwin-aarch64-support-config-gcc.patch"),
       ]),
     }, () => [], nix.key(nix.force(majorVersion))))), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool(is13_1) && nix.asBool(langAda))) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")))), nix.path(here, "./13/gnat13-aarch64-darwin-trampoline.patch")), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(targetPlatform, "isWindows")) || nix.asBool(nix.sel(targetPlatform, "isCygwin")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "libstdc-fix-compilation-in-freestanding-win32.patch",
         url: "https://inbox.sourceware.org/gcc-patches/20250922182808.2599390-2-corngood@gmail.com/raw",
         hash: "sha256-+EYW9lG8CviVX7RyNHp+iX+8BRHUjt5b07k940khbbY=",
       }))))), nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(targetPlatform, "isCygwin")), nix.thunk(() => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "cygwin-fix-compilation-with-inhibit_libc.patch",
           url: "https://inbox.sourceware.org/gcc-patches/20250926170154.2222977-1-corngood@gmail.com/raw",
           hash: "sha256-mgzMRvgPdhj+Q2VRsFhpE2WQzg0CvWsc5/FRAsSU1Es=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "cygwin-use-builtin_define_std-for-unix.patch",
           url: "https://inbox.sourceware.org/gcc-patches/20250922182808.2599390-3-corngood@gmail.com/raw",
           hash: "sha256-8I2G4430gkYoWgUued4unqhk8ZCajHf1dcivAeuLZ0E=",

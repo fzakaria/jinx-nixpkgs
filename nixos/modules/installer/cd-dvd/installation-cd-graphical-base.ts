@@ -27,50 +27,50 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-base.nix")]),
     security: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       polkit: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         extraConfig: "polkit.addRule(function(action, subject) {\n  if (subject.isInGroup(\"wheel\")) {\n    return polkit.Result.YES;\n  }\n});\n",
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
-      xserver: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
-      "spice-vdagentd": nix.thunk(() => ({ __proto__: pos$4, enable: true })),
-      qemuGuest: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+      [nix.POS]: pos$7,
+      xserver: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+      "spice-vdagentd": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+      qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
       "xe-guest-utilities": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")),
       })),
     })),
-    powerManagement: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+    powerManagement: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       vmware: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         guest: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")),
         })),
       })),
       hypervGuest: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         enable: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")))),
       })),
       virtualbox: nix.thunk(() => ({
-        __proto__: pos$13,
-        guest: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+        [nix.POS]: pos$13,
+        guest: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
       })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$16,
-      plymouth: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+      [nix.POS]: pos$16,
+      plymouth: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       defaultPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [

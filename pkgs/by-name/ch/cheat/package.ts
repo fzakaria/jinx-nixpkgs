@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const git = nix.arg($, "git");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cheat",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cheat",
           repo: "cheat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("installManPage doc/cheat.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cheat \\\n  --bash <($out/bin/cheat --completion bash) \\\n  --fish <($out/bin/cheat --completion fish) \\\n  --zsh <($out/bin/cheat --completion zsh)\n"))),
       vendorHash: null,
       doCheck: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, EDITOR: "cat" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, EDITOR: "cat" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create and view interactive cheatsheets on the command-line",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

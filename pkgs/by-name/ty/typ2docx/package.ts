@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sghng",
           repo: "typ2docx",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-8Jb13qiS+dpyfJS4m2T6STzORs1VzRKwC8GGgEwiVtU=",
         }))));
       const lockFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/sghng/typ2docx/releases/download/v${version}/Cargo.lock`),
           hash: "sha256-irWv7+uqNyyq42JVLSy9WQz78ynYVsYuQ8fk5nardWw=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           src: src,
@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
         ":",
         "$PYTHONPATH",
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Convert Math-Rich Typst Project to Microsoft Word Format",
         homepage: "https://github.com/sghng/typ2docx",
         changelog: nix.thunk(() => nix.str`https://github.com/sghng/typ2docx/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "typ2docx",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

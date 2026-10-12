@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rfc";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bfontaine",
           repo: "rfc",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ installManPage man/rfc.1
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to read RFCs from the command line",
         longDescription: "rfc is a little tool written in Bash to read RFCs from the command-line.\nIt fetches RFCs and drafts from the Web and caches them locally.\n",
         homepage: "https://github.com/bfontaine/rfc",
@@ -52,7 +52,7 @@ runHook postInstall
         mainProgram: "rfc",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

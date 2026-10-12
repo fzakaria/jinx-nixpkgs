@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   const withWebSocket = nix.argOr($, "withWebSocket", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nfd",
       version: "24.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "named-data",
           repo: "NFD",
           rev: nix.thunk(() => nix.str`NFD-${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--boost-libs=${nix.sel(boost186, "out")}/lib`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withWebSocket)), "--without-websocket"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://named-data.net/",
         description: "Named Data Networking (NDN) Forwarding Daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

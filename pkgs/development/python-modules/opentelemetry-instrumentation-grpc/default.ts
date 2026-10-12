@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const grpcio = nix.arg($, "grpcio");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-grpc",
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
         opentelemetry_semantic_conventions,
         wrapt,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, instruments: nix.thunk(() => [grpcio]) })),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, instruments: nix.thunk(() => [grpcio]) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, grpcio, pytestCheckHook]),
       preBuild: "export TMPDIR=$(mktemp -d)\n",
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestOpenTelemetryServerInterceptorUnix"]))),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.grpc"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-grpc",
         description: "OpenTelemetry Instrumentation for grpc",
       })),

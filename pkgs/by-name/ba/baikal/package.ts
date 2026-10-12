@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "baikal",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sabre-io",
           repo: "Baikal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-s4ePm6gH7Xid+qkvVqumJrDFz/7HuoCeaeN5bgdQOMY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight CalDAV+CardDAV server that offers an extensive web interface with easy management of users, address books and calendars",
         homepage: "https://sabre.io/baikal/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

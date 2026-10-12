@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "SDL_gfx",
       version: "2.0.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-37FaxfjOeklS3BLSrtl0dRjF5rM1wOMWNtI/k8Yw9Bk=",
         })))),
       buildInputs: nix.thunk(() => [SDL]),
       propagatedBuildInputs: nix.thunk(() => [SDL]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       })),
       configureFlags: nix.thunk(() => [
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sourceforge.net/projects/sdlgfx/",
         description: "SDL graphics drawing primitives and support functions",
         longDescription: "The SDL_gfx library evolved out of the SDL_gfxPrimitives code which\nprovided basic drawing routines such as lines, circles or polygons and\nSDL_rotozoom which implemented a interpolating rotozoomer for SDL\nsurfaces.\n\nThe current components of the SDL_gfx library are:\n\n- Graphic Primitives (SDL_gfxPrimitives.h)\n- Rotozoomer (SDL_rotozoom.h)\n- Framerate control (SDL_framerate.h)\n- MMX image filters (SDL_imageFilter.h)\n- Custom Blit functions (SDL_gfxBlitFunc.h)\n\nThe library is backwards compatible to the above mentioned code. Its is\nwritten in plain C and can be used in C++ code.\n",

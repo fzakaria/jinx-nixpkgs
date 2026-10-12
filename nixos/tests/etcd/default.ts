@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const testEtcd = (path) => (oPkgs) => nix.app(runTest, nix.thunk(() => (() => {
       const etcdPkgs = nix.thunk(() => nix.update(pkgs, oPkgs));
       return nix.app(nix.sel(pkgs, "lib", "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           meta: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => nix.sel(etcdPkgs, "etcd", "meta", "maintainers")),
             platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
           })),
         })), nix.thunk(() => nix.app(nix.builtins.import(path), etcdPkgs)));
     })()));
-  const testEtcdPkg = (pkg) => (path) => nix.app(testEtcd, path, nix.thunk(() => ({ __proto__: pos$3, etcd: pkg })));
+  const testEtcdPkg = (pkg) => (path) => nix.app(testEtcd, path, nix.thunk(() => ({ [nix.POS]: pos$3, etcd: pkg })));
   const testEtcd_3_5 = nix.thunk(() => nix.app(testEtcdPkg, nix.thunk(() => nix.sel(pkgs, "etcd_3_5"))));
   const testEtcd_3_6 = nix.thunk(() => nix.app(testEtcdPkg, nix.thunk(() => nix.sel(pkgs, "etcd_3_6"))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "3_5": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "multi-node": nix.thunk(() => nix.app(testEtcd_3_5, nix.path(here, "./multi-node.nix"))),
       "single-node": nix.thunk(() => nix.app(testEtcd_3_5, nix.path(here, "./single-node.nix"))),
     })),
     "3_6": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "multi-node": nix.thunk(() => nix.app(testEtcd_3_6, nix.path(here, "./multi-node.nix"))),
       "single-node": nix.thunk(() => nix.app(testEtcd_3_6, nix.path(here, "./single-node.nix"))),
     })),

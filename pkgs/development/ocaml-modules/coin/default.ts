@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coin",
       version: "0.1.5",
       minimalOCamlVersion: "4.06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/coin/releases/download/v${nix.sel(finalAttrs, "version")}/coin-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-z2WzQ7zUFmZJTUqygTHguud6+NAcp36WubHbILXGR9g=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to normalize an KOI8-{U,R} input to Unicode",
         homepage: "https://github.com/mirage/coin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

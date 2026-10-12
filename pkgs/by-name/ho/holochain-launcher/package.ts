@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.5";
       const prerelease = "beta-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/holochain/launcher/releases/download/v${version}/holochain-launcher-${prerelease}_${version}_amd64.deb`),
           sha256: "sha256-MRFQJRfvJ+dLmPDfPQX9wErIwEr07EAUqxic8kbKVdo=",
         }))));
@@ -42,7 +42,7 @@ gappsWrapperArgs+=(
 )
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: true,
         description: "Cross-platform executable that launches a local Holochain conductor, and installs and opens apps",
         homepage: "https://github.com/holochain/launcher",
@@ -55,7 +55,7 @@ gappsWrapperArgs+=(
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         prerelease,

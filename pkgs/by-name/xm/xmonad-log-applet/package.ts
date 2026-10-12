@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const xfce4_panel = nix.arg($, "xfce4-panel");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(desktopSupport, "gnomeflashback")) || nix.asBool(nix.eq(desktopSupport, "mate")))) || nix.asBool(nix.eq(desktopSupport, "xfce4"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xm/xmonad-log-applet/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.1.0-unstable-2017-09-15",
       pname: "xmonad-log-applet",
       name: nix.thunk(() => nix.str`xmonad-log-applet-${desktopSupport}-${nix.sel(finalAttrs, "version")}`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalj",
           repo: "xmonad-log-applet",
           rev: "a1b294cad2f266e4f18d9de34167fa96a0ffdba8",
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-panel=${desktopSupport}`)]),
       patches: nix.thunk(() => [nix.path(here, "./fix-paths.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PKG_CONFIG_LIBXFCE4PANEL_1_0_LIBDIR: "$(out)/lib" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_LIBXFCE4PANEL_1_0_LIBDIR: "$(out)/lib" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kalj/xmonad-log-applet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         broken: nix.thunk(() => (nix.asBool(nix.eq(desktopSupport, "gnomeflashback")) || nix.asBool(nix.eq(desktopSupport, "xfce4")))),

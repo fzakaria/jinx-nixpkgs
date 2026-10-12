@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(toml, "generate"), "garage.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./garage.md"),
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
@@ -52,50 +52,50 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         garage: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Garage Object Storage (S3 compatible)")),
           extraEnvironment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Extra environment variables to pass to the Garage server.",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, RUST_BACKTRACE: "yes" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, RUST_BACKTRACE: "yes" })),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "File containing environment variables to be passed to the Garage server.",
               default: null,
             })))),
           logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["error", "warn", "info", "debug", "trace"]))),
               default: "info",
               example: "debug",
               description: "Garage log level, see <https://garagehq.deuxfleurs.fr/documentation/quick-start/#launching-the-garage-server> for examples.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(toml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     metadata_dir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         default: "/var/lib/garage/meta",
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         description: "The metadata directory, put this on a fast disk (e.g. SSD) if possible.",
                       })))),
                     data_dir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         default: "/var/lib/garage/data",
                         example: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$7, path: "/var/lib/garage/data", capacity: "2T" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$7, path: "/var/lib/garage/data", capacity: "2T" })),
                         ]),
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
               description: "Garage configuration, see <https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/> for reference.",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               description: "Garage package to use, needs to be set explicitly. If you are upgrading from a major version, please read NixOS and Garage release notes for upgrade instructions.",
             })))),
@@ -116,12 +116,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
-            "garage.toml": nix.thunk(() => ({ __proto__: pos$16, source: configFile })),
+            [nix.POS]: pos$17,
+            "garage.toml": nix.thunk(() => ({ [nix.POS]: pos$16, source: configFile })),
           })),
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "garage", nix.thunk(() => nix.str`# make it so all future variables set are automatically exported as environment variables
@@ -136,11 +136,11 @@ exec ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(l
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             garage: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Garage Object Storage (S3 compatible)",
               after: nix.thunk(() => ["network.target", "network-online.target"]),
               wants: nix.thunk(() => ["network.target", "network-online.target"]),
@@ -154,7 +154,7 @@ exec ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(l
                 const isDefault = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/var/lib/garage"));
                 const isDefaultStateDirectory = nix.thunk(() => nix.app(nix.sel(lib, "any"), isDefault, paths));
                 return {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/garage server`),
                   StateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isDefaultStateDirectory, "garage")),
                   DynamicUser: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -166,7 +166,7 @@ exec ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(l
                 };
               })()),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 RUST_LOG: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`garage=${nix.sel(cfg, "logLevel")}`))),
               }, nix.sel(cfg, "extraEnvironment"))),
             })),

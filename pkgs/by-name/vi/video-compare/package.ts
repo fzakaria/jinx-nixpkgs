@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_ttf = nix.arg($, "SDL2_ttf");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "video-compare",
       version: "20260708",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pixop",
           repo: "video-compare",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fix build on Darwin by using $CXX set by setup-hook\nsubstituteInPlace makefile \\\n  --replace-fail 'CXX = g++' \"\"\n",
       buildInputs: nix.thunk(() => [SDL2, SDL2_ttf, ffmpeg]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2)}/include/SDL2`),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin video-compare\n\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pixop/video-compare",
         description: "Split screen video comparison tool",
         maintainers: [],

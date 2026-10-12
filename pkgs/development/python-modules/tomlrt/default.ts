@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const pythonOlder = nix.arg($, "pythonOlder");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tomlrt",
       version: "2.2.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VUTZvyKeum3Ic3wY3iiwayIsbwmS8OXNBCyLLp45fsI=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [typing_extensions]))),
       pythonImportsCheck: nix.thunk(() => ["tomlrt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A format-preserving TOML reader and writer for Python",
         homepage: "https://github.com/dimbleby/tomlrt",
         changelog: nix.thunk(() => nix.str`https://github.com/dimbleby/tomlrt/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

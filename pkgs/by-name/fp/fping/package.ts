@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fping",
       version: "5.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fping.org/dist/fping-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-FcTjK2xV/xBbr+A+jJHHyhsu2jG/mnEnMmu4eIfuGP4=",
         })))),
       configureFlags: nix.thunk(() => ["--enable-ipv6", "--enable-ipv4"]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Send ICMP echo probes to network hosts",
         homepage: "http://fping.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/schweikert/fping/releases/tag/v${nix.sel(finalAttrs, "version")}`),

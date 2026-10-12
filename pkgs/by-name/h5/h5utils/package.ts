@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hdf4 = nix.argOr($, "hdf4", () => null);
   const libmatheval = nix.argOr($, "libmatheval", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.13.3",
       pname: "h5utils",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/stevengj/h5utils/releases/download/${nix.sel(finalAttrs, "version")}/h5utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-rpay8sbReCrlF3Pv1b7UfDzK3HTvRxsaJfkbHZDVOe4=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hdf5, "mpiSupport")), nix.thunk(() => nix.str`export CC=${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(hdf5, "mpi")))}/mpicc`))),
       buildInputs: nix.thunk(() => nix.concat([hdf5, libjpeg, libpng], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(hdf5, "mpiSupport")), nix.thunk(() => nix.sel(hdf5, "mpi"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(hdf4, null)), hdf4), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(libmatheval, null)), libmatheval))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of utilities for visualization and conversion of scientific data in the free, portable HDF5 format",
         homepage: "https://github.com/stevengj/h5utils",
         changelog: nix.thunk(() => nix.str`https://github.com/NanoComp/h5utils/releases/tag/${nix.sel(finalAttrs, "version")}`),

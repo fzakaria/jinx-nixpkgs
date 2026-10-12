@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "cpptrace",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeremy-rifkin",
           repo: "cpptrace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,28 +54,28 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "dsymutil unittest\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const mkIntegrationTest = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const static$_1 = nix.arg($_1, "static");
             return nix.app(callPackage, nix.path(here, "./findpackage-integration.nix"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/test/findpackage-integration`),
                 checkOutput: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
                 static: static$_1,
               })));
           })(), formals$2);
           return {
-            __proto__: pos$5,
-            "findpackage-integration-shared": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ __proto__: pos$3, static: false })))),
-            "findpackage-integration-static": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ __proto__: pos$4, static: true })))),
+            [nix.POS]: pos$5,
+            "findpackage-integration-shared": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ [nix.POS]: pos$3, static: false })))),
+            "findpackage-integration-static": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ [nix.POS]: pos$4, static: true })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/jeremy-rifkin/cpptrace/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple, portable, and self-contained stacktrace library for C++11 and newer",
         homepage: "https://github.com/jeremy-rifkin/cpptrace",

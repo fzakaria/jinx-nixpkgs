@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xld",
       version: "20250302",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xld/xld-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-ADKlRw6k4yoRo1uAd+v0mGECiR+OuCdDCU8sZiGtius=",
         })))),
@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -r *.app \"$out/Applications\"\ncp -r CLI/xld \"$out/bin\"\n\nrunHook postInstall\n",
       postPatch: "substituteInPlace CLI/xld \\\n--replace \"/Applications/XLD.app\" \"$out/Applications/XLD.app\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "xld-update-script",
               runtimeInputs: nix.thunk(() => [curl, xmlstarlet, common_updater_scripts]),
               text: "url=$(curl --silent \"https://svn.code.sf.net/p/xld/code/appcast/xld-appcast_e.xml\")\nversion=$(echo \"$url\" | xmlstarlet sel -t -v \"//enclosure/@sparkle:shortVersionString\")\nupdate-source-version xld \"$version\" --file=./pkgs/by-name/xl/xld/package.nix\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lossless audio decoder",
         homepage: "https://tmkk.undo.jp/xld/index_e.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl3")),

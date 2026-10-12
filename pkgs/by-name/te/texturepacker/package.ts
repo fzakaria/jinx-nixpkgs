@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "texturepacker",
       version: "8.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.codeandweb.com/download/texturepacker/${nix.sel(finalAttrs, "version")}/TexturePacker-${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-Nj07U2FK12mx6YK/zAO+GPVxNKNNOFkHMeFI+E9dtdY=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin $out/lib\ncp usr/lib/texturepacker/{libGrantlee_Templates.so.5,libHQX.so.1.0.0,libPVRTexLib.so} $out/lib\ncp usr/lib/texturepacker/TexturePacker $out/bin\ncp -r usr/share $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://www.codeandweb.com/texturepacker/download",
         description: "Sprite sheet creator and game graphics optimizer",
         homepage: "https://www.codeandweb.com/texturepacker",

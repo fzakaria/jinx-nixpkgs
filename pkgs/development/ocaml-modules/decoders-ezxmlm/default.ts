@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ezxmlm = nix.arg($, "ezxmlm");
   const containers = nix.arg($, "containers");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "decoders-ezxmlm",
       src: nix.thunk(() => nix.attr(decoders, "src")),
       version: nix.thunk(() => nix.attr(decoders, "version")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [containers]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Ezxmlm backend for decoders",
         homepage: "https://github.com/mattjbray/ocaml-decoders",
         changelog: nix.thunk(() => nix.str`https://github.com/mattjbray/ocaml-decoders/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

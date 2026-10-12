@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "syntax-highlight",
       version: "2.1.32",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sbarex/SourceCodeSyntaxHighlight/releases/download/${nix.sel(finalAttrs, "version")}/Syntax.Highlight.zip`),
           hash: "sha256-IZNCkUPSUddgYr+uyDgaAM3BIOTTj9fF1XsCPFXeSW8=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R \"Syntax Highlight.app\" \"$out/Applications/\"\n\nln -s \\\n  \"$out/Applications/Syntax Highlight.app/Contents/Resources/syntax_highlight_cli\" \\\n  \"$out/bin/syntax_highlight_cli\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quick Look extension for syntax-highlighted source file previews on macOS",
         homepage: "https://github.com/sbarex/SourceCodeSyntaxHighlight",
         changelog: nix.thunk(() => nix.str`https://github.com/sbarex/SourceCodeSyntaxHighlight/releases/tag/${nix.sel(finalAttrs, "version")}`),

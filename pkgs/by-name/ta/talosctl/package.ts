@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withQemu = nix.argOr($, "withQemu", () => false);
   const qemu = nix.arg($, "qemu");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "talosctl",
       version: "1.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siderolabs",
           repo: "talos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '/opt/homebrew' '${nix.app(nix.sel(lib, "getLib"), qemu)}'
 `))),
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      overrideModAttrs: (_) => ({ __proto__: pos$2, buildPhase: "go work vendor\n" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, buildPhase: "go work vendor\n" }),
       subPackages: nix.thunk(() => ["cmd/talosctl"]),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), withQemu, nix.thunk(() => [makeWrapper])))),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd talosctl \\\n  --bash <($out/bin/talosctl completion bash) \\\n  --fish <($out/bin/talosctl completion fish) \\\n  --zsh <($out/bin/talosctl completion zsh)\n"), nix.app(nix.sel(lib, "optionalString"), withQemu, nix.thunk(() => nix.str`wrapProgram $out/bin/talosctl \\
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for out-of-band management of Kubernetes nodes created by Talos",
         mainProgram: "talosctl",
         homepage: "https://www.talos.dev/",

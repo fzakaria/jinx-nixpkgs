@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const check_ocaml_version = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ocaml))));
   nix.assert_(nix.app(check_ocaml_version, "4"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/mezzo/default.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mezzo",
       version: "0.0.m8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "protz",
           repo: "mezzo",
           rev: "m8",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       createFindlibDestdir: true,
       postInstall: "mkdir $out/bin\ncp mezzo $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://protz.github.io/mezzo/",
         description: "Programming language in the ML tradition, which places strong emphasis on the control of aliasing and access to mutable memory",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

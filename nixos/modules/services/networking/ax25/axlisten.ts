@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(from_1, "mkPackageOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "ax25", "axlisten"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ax25: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           axlisten: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(mkEnableOption, "AX.25 axlisten daemon")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ax25-apps", nix.thunk(() => ({})))),
             config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "-art",
                 description: "Options that will be passed to the axlisten daemon.\n",
@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             axlisten: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "AX.25 traffic monitor",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["ax25-axports.target"]),
               requires: nix.thunk(() => ["ax25-axports.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 Type: "exec",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/axlisten ${nix.sel(cfg, "config")}`),
               })),

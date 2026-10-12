@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elupus",
           repo: "arcam_fmj",
           tag: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["arcam.fmj", "arcam.fmj.client", "arcam.fmj.state", "arcam.fmj.utils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for speaking to Arcam receivers",
         mainProgram: "arcam-fmj",
         homepage: "https://github.com/elupus/arcam_fmj",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

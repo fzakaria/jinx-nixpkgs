@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nohang",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hakavlad",
           repo: "nohang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ substituteInPlace src/nohang \\
         "SYSTEMDUNITDIR=/lib/systemd/system",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nohang: nix.thunk(() => nix.attr(nixosTests, "nohang")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nohang: nix.thunk(() => nix.attr(nixosTests, "nohang")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/hakavlad/nohang",
         description: "Sophisticated low memory handler for Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

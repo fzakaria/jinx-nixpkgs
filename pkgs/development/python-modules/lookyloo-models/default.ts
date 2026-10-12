@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const ua_parser = nix.arg($, "ua-parser");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lookyloo-models",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lookyloo",
           repo: "lookyloo-models",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lookyloo_models"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of models representing data passed around across the toolchain",
         homepage: "https://github.com/Lookyloo/lookyloo-models",
         changelog: nix.thunk(() => nix.str`https://github.com/Lookyloo/lookyloo-models/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

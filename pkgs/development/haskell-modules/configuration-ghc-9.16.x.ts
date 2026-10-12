@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const haskellLib = nix.arg($, "haskellLib");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return (self) => (super$) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     array: null,
     base: null,
     binary: null,

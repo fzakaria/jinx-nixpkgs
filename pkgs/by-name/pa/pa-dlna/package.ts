@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pa-dlna",
       version: "1.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xdegaye",
           repo: "pa-dlna",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ substituteInPlace systemd/pa-dlna.service \\
       disabledTests: nix.thunk(() => ["test_no_parec"]),
       pythonImportsCheck: nix.thunk(() => ["pa_dlna"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UPnP control point forwarding PulseAudio streams to DLNA devices",
         homepage: "https://gitlab.com/xdegaye/pa-dlna",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const udevRule = nix.thunk(() => nix.app(writeText, "k40-whisperer.rules", nix.thunk(() => nix.str`SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5512", ENV{DEVTYPE}=="usb_device", MODE="0664", GROUP="${udevGroup}"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "k40-whisperer",
       version: "0.71",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.scorchworks.com/K40whisperer/K40_Whisperer-${nix.sel(finalAttrs, "version")}_src.zip`),
           stripRoot: true,
           sha256: "sha256-Xj+o1Mo1e6Sp/DlY3QSo0h8sldn4Rt47JqYHEqzgZAY=",
@@ -59,7 +59,7 @@ makeWrapper '${nix.sel(pythonEnv, "interpreter")}' $out/bin/k40-whisperer \\
   --prefix PYTHONPATH : $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control software for the stock K40 Laser controller\n",
         mainProgram: "k40-whisperer",
         longDescription: "K40 Whisperer is an alternative to the the Laser Draw (LaserDRW) program that comes with the cheap Chinese laser cutters available on E-Bay and Amazon.\nK40 Whisperer reads SVG and DXF files, interprets the data and sends commands to the K40 controller to move the laser head and control the laser accordingly.\nK40 Whisperer does not require a USB key (dongle) to function.\n",

@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const breeze = nix.arg($, "breeze");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-welcome",
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/qml/mock/Mock{Activities,Card,Overview}.qml \\
   --replace-fail 'file:" + Private.App.installPrefix + "/share/wallpapers/Next/contents/images' "file://${breeze}/share/wallpapers/Next/contents/images"
 `),
       extraBuildInputs: nix.thunk(() => [qtsvg]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "plasma-welcome" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "plasma-welcome" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

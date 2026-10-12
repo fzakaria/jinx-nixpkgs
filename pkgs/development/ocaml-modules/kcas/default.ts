@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const domain_shims = nix.arg($, "domain_shims");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kcas",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/kcas/releases/download/${nix.sel(finalAttrs, "version")}/kcas-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-mo/otnkB79QdyVgLw1sZFfkR/Z/l15cRVfEYPPd6H5E=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [alcotest, domain_shims, mdx]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocaml-multicore/kcas",
         description: "STM based on lock-free MCAS",
         longDescription: "A software transactional memory (STM) implementation based on an atomic lock-free multi-word compare-and-set (MCAS) algorithm enhanced with read-only compare operations and ability to block awaiting for changes.\n",

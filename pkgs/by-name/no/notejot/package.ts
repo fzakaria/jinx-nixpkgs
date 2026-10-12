@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "notejot",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lainsce",
           repo: "notejot",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, json_glib, libadwaita, libgee]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/musicinmybrain/notejot/commit/c6a7cfcb792de63fb51eb174f9f3d4e02f6a2ce1.patch",
             hash: "sha256-dexPKIpUaAu/p0K2WQpElhPNt86CS+jD0dPL5+CTl4I=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lainsce/notejot",
         description: "Stupidly-simple notes app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

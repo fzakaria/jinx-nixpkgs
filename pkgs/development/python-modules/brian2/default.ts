@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-wdIdewkhkjYkGddvyHH+q5/wuz0A6SZdjNQIbMLhG08=",
@@ -47,7 +47,7 @@ cd $HOME && ${nix.sel(python, "interpreter")} -c "import brian2;assert brian2.te
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clock-driven simulator for spiking neural networks",
         homepage: "https://briansimulator.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),
@@ -57,7 +57,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

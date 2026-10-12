@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const evalTest = (module) => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => nix.concat(testModules, [module])),
       class: "nixosTest",
     })));
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         imports: nix.thunk(() => [module]),
         result: nix.thunk(() => nix.sel(config, "test")),
       };
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     nix.path(here, "./testScript.nix"),
   ]);
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     evalTest: evalTest,
     runTest: runTest,
     testModules: testModules,

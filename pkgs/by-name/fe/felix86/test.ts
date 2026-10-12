@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "felix86",
       nodes: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             boot: nix.thunk(() => ({
-              __proto__: pos$2,
-              binfmt: nix.thunk(() => ({ __proto__: pos$1, emulatedSystems: nix.thunk(() => ["riscv64-linux"]) })),
+              [nix.POS]: pos$2,
+              binfmt: nix.thunk(() => ({ [nix.POS]: pos$1, emulatedSystems: nix.thunk(() => ["riscv64-linux"]) })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "pkgsCross", "riscv64", "felix86"))]),
             })),
           };
@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
       })),
       testScript: "machine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"felix86 --help\")\n",
       interactive: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         nodes: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           machine: nix.thunk(() => ({
-            __proto__: pos$8,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$6, graphics: false })),
+            [nix.POS]: pos$8,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, graphics: false })),
             environment: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "binutils"))]),
             })),
           })),
         })),
-        sshBackdoor: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+        sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
       })),
     })));
 })(), formals$1);

@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const timidity = nix.arg($, "timidity");
   const wavpack = nix.arg($, "wavpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sdl3-mixer",
       version: "3.2.4",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsdl-org",
           repo: "SDL_mixer",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -76,18 +76,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SDLMIXER_VORBIS_STB", false)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(3\\..*)"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "SDL audio mixer library for SDL3",
         homepage: "https://github.com/libsdl-org/SDL_mixer",
         changelog: nix.thunk(() => nix.str`https://github.com/libsdl-org/SDL_mixer/releases/tag/release-${nix.sel(finalAttrs, "version")}`),

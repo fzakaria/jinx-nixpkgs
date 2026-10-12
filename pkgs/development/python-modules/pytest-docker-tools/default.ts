@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-docker-tools",
       version: "3.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jc2k",
           repo: "pytest-docker-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pytest_docker_tools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Opinionated helpers for creating py.test fixtures for Docker integration and smoke testing environments",
         homepage: "https://github.com/Jc2k/pytest-docker-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/Jc2k/pytest-docker-tools/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

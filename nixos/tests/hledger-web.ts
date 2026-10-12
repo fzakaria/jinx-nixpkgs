@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const journal = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.journal", "2010/01/10 Loan\n    assets:cash                 500$\n    income:loan                -500$\n2010/01/10 NixOS Foundation donation\n    expenses:donation           250$\n    assets:cash                -250$\n"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "hledger-web",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marijanp"))];
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "hledger-web": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               host: "127.0.0.1",
               port: 5000n,
               enable: true,
@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             firewall: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "hledger-web", "port"))]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "hledger-web": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 preStart: nix.thunk(() => nix.str`ln -s ${journal} /var/lib/hledger-web/.hledger.journal
 `),
               })),
@@ -75,15 +75,15 @@ export default nix.lambda((args) => (() => {
       const apiserver = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           imports: nix.thunk(() => [server]),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
-            "hledger-web": nix.thunk(() => ({ __proto__: pos$10, serveApi: true })),
+            [nix.POS]: pos$11,
+            "hledger-web": nix.thunk(() => ({ [nix.POS]: pos$10, serveApi: true })),
           })),
         };
       })(), formals$3);
-      return { __proto__: pos$13, server, apiserver };
+      return { [nix.POS]: pos$13, server, apiserver };
     })()),
     testScript: "start_all()\n\nserver.wait_for_unit(\"hledger-web.service\")\nserver.wait_for_open_port(5000)\nwith subtest(\"Check if web UI is accessible\"):\n    page = server.succeed(\"curl -L http://127.0.0.1:5000\")\n    assert \".hledger.journal\" in page\n\napiserver.wait_for_unit(\"hledger-web.service\")\napiserver.wait_for_open_port(5000)\nwith subtest(\"Check if the JSON API is served\"):\n    transactions = apiserver.succeed(\"curl -L http://127.0.0.1:5000/transactions\")\n    assert \"NixOS Foundation donation\" in transactions\n",
   };

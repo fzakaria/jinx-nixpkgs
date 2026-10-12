@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libilbm",
       version: "0-unstable-2024-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svanderburg",
           repo: "libilbm",
           rev: "586f5822275ef5780509a851cb90c7407b2633d9",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libiff]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, help2man]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for the ILBM: IFF Interleaved BitMap format",
         longDescription: "libilbm is a portable parser library built on top of libiff,\nfor ILBM: IFF Interleaved BitMap format, which is used by programs\nsuch as Deluxe Paint and Graphicraft to read and write images.\n",
         homepage: "https://github.com/svanderburg/libilbm",

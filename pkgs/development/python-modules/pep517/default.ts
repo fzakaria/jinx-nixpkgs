@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Gy+i/9OTi7S+/+XWFGy8sr2plqWk2p8xq//Ysk4Hsxc=",
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_setup_py", "test_issue_104"]);
       const preCheck = "rm pytest.ini # wants flake8\nrm tests/test_meta.py # wants to run pip\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrappers to build Python packages using PEP 517 hooks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/pypa/pep517",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

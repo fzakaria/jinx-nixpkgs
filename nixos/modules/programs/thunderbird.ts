@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const policyFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const policyDoc = "https://github.com/thunderbird/policy-templates";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         thunderbird: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Thunderbird mail client")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "thunderbird", nix.thunk(() => ({})))),
           policies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(policyFormat, "type")),
               default: nix.thunk(() => ({})),
               description: nix.thunk(() => nix.str`Group policies to install.
@@ -54,7 +54,7 @@ documentation of the \`ExtensionSettings\` policy for details.
 `),
             })))),
           preferences: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -67,7 +67,7 @@ documentation of the \`ExtensionSettings\` policy for details.
               description: "Preferences to set from `about:config`.\n\nSome of these might be able to be configured more ergonomically\nusing policies.\n",
             })))),
           preferencesStatus: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["default", "locked", "user", "clear"]))),
               default: "locked",
               description: "The status of `thunderbird.preferences`.\n\n`status` can assume the following values:\n- `\"default\"`: Preferences appear as default.\n- `\"locked\"`: Preferences appear as default and can't be changed.\n- `\"user\"`: Preferences appear as changed.\n- `\"clear\"`: Value has no effect. Resets to factory defaults on each startup.\n",
@@ -76,27 +76,27 @@ documentation of the \`ExtensionSettings\` policy for details.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => (() => {
-            const policiesJSON = nix.thunk(() => nix.app(nix.sel(policyFormat, "generate"), "thunderbird-policies.json", nix.thunk(() => ({ __proto__: pos$7, policies: nix.thunk(() => nix.attr(cfg, "policies")) }))));
+            const policiesJSON = nix.thunk(() => nix.app(nix.sel(policyFormat, "generate"), "thunderbird-policies.json", nix.thunk(() => ({ [nix.POS]: pos$7, policies: nix.thunk(() => nix.attr(cfg, "policies")) }))));
             return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "policies"), {})), nix.thunk(() => ({
-                __proto__: pos$9,
-                "thunderbird/policies/policies.json": nix.thunk(() => ({ __proto__: pos$8, source: policiesJSON })),
+                [nix.POS]: pos$9,
+                "thunderbird/policies/policies.json": nix.thunk(() => ({ [nix.POS]: pos$8, source: policiesJSON })),
               })));
           })()),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           thunderbird: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             policies: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               DisableAppUpdate: true,
               Preferences: nix.thunk(() => nix.builtins.mapAttrs((_) => (value) => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Value: value,
                   Status: nix.thunk(() => nix.sel(cfg, "preferencesStatus")),
                 }), nix.thunk(() => nix.sel(cfg, "preferences")))),
@@ -105,7 +105,7 @@ documentation of the \`ExtensionSettings\` policy for details.
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nydragon"))];

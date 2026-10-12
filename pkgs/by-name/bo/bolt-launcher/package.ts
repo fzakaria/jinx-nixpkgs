@@ -44,22 +44,22 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const enableRS3 = nix.argOr($, "enableRS3", () => false);
   const cef = nix.thunk(() => nix.app(nix.sel(cef_binary, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "141.0.7",
       gitRevision: "a5714cc",
       chromiumVersion: "141.0.7390.108",
       srcHashes: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-linux": "sha256-2A0hVzUVMBemhjnFE/CrKs4CU96Qkxy8S/SieaEJjwE=",
         "x86_64-linux": "sha256-tZzUxeXxbYP8YfIQLbiSyihPcjZM9cd2Ad8gGCSvdGk=",
       })),
     }))));
   const bolt = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bolt-launcher",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "AdamCake",
           repo: "Bolt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +83,7 @@ cp ../icon/256.png $out/share/icons/hicolor/256x256/apps/${nix.sel(finalAttrs, "
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "Application",
             terminal: false,
             name: "Bolt",
@@ -98,7 +98,7 @@ cp ../icon/256.png $out/share/icons/hicolor/256x256/apps/${nix.sel(finalAttrs, "
       ]),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: nix.thunk(() => nix.attr(bolt, "pname")),
       version: nix.thunk(() => nix.attr(bolt, "version")),
       targetPkgs: (pkgs) => nix.concat([bolt], nix.concat((() => {
@@ -134,7 +134,7 @@ ln -s ${bolt}/share/icons/hicolor/256x256/apps/*.png $out/share/icons/hicolor/25
 `),
       runScript: nix.thunk(() => nix.str`${nix.sel(bolt, "name")}`),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://codeberg.org/Adamcake/Bolt",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/Adamcake/Bolt/releases/tag/${nix.sel(bolt, "version")}`),
         description: "Alternative launcher for RuneScape",
@@ -151,11 +151,11 @@ ln -s ${bolt}/share/icons/hicolor/256x256/apps/*.png $out/share/icons/hicolor/25
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "bolt-launcher",
       }, nix.app(nix.sel(lib, "optionalAttrs"), enableRS3, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           problems: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             broken: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               message: "OpenSSL 1.1 has been end of life since 2023 and will be removed soon.",
             })),
           })),

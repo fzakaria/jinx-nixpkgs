@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const bluespec = nix.arg($, "bluespec");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yosys-bluespec",
       version: "2021.09.08",
       plugin: "bluespec",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thoughtpolice",
           repo: "yosys-bluespec",
           rev: "f6f4127a4e96e18080fd5362b6769fa3e24c76b1",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`STATIC_BSC_LIBDIR=${bluespec}/lib`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bluespec plugin for Yosys",
         homepage: "https://github.com/thoughtpolice/yosys-bluespec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const bun = nix.arg($, "bun");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "swagger-typescript-api",
       version: "13.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acacode",
           repo: "swagger-typescript-api",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lV24rJwgmcTODyvb/qkpKWII4EhKd+xGrs1uwjuSVq4=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\nbun install --no-progress --frozen-lockfile\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-darwin": "sha256-BBHQGnSAZ6sgVDX2cTnConqRPjY5umeDHE2lIkvuyo4=",
             "aarch64-linux": "sha256-0S9nKVlzv7WQvUXQZ8ZGU+kWhDYP7ciOIUtpdT8ehCA=",
             "x86_64-linux": "sha256-vGApFxnG7X9XBZu0z4HpyarNnVFUZk7eq+pQKXS+O5E=",
@@ -72,7 +72,7 @@ makeBinaryWrapper ${nodejs}/bin/node $out/bin/${nix.sel(finalAttrs, "pname")} \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "swagger-typescript-api",
         description: "Generate TypeScript API client and definitions for fetch or axios from an OpenAPI specification",
         homepage: "https://github.com/acacode/swagger-typescript-api",

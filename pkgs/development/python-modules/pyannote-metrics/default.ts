@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyannote",
           repo: "pyannote-metrics",
           tag: version,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pyannote.metrics"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, versionCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolkit for reproducible evaluation, diagnostic, and error analysis of speaker diarization systems",
         homepage: "https://github.com/pyannote/pyannote-metrics",
         changelog: "http://pyannote.github.io/pyannote-metrics/changelog.html",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pyannote-metrics",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

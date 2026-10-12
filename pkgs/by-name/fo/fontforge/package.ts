@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "setuptools"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "fontforge",
       version: "20251009",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fontforge",
           repo: "fontforge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,29 +63,29 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-python-sys-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             python: nix.thunk(() => nix.str`${py}/${nix.sel(py, "sitePackages")}`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2025-15279_1.patch",
             url: "https://github.com/fontforge/fontforge/commit/7d67700cf8888e0bb37b453ad54ed932c8587073.patch",
             hash: "sha256-AqixWSgMc75qkgO30nWnI9NKLRtVwCDR+uSEiwMtFKg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "CVE-2025-15279_2.patch",
             url: "https://github.com/fontforge/fontforge/commit/720ea95020c964202928afd2e93b0f5fac11027e.patch",
             hash: "sha256-DsP2fDTZlTtg8MXcnsuGQ4PFPOVp56Jm95gq877PLlE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "CVE-2025-15275.patch",
             url: "https://github.com/fontforge/fontforge/commit/7195402701ace7783753ef9424153eff48c9af44.patch",
             hash: "sha256-NHgKUvHF389z7PRqaDj3IWLSLijlSw0F3UYcMjLxKvE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "CVE-2025-15269.patch",
             url: "https://github.com/fontforge/fontforge/commit/6aea6db5da332d8ac94e3501bb83c1b21f52074d.patch",
             hash: "sha256-3KsWSXVRpPJbytVmzjExCGw6IaCgcrKwqQGRKpQAOiY=",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "find . -type f -name '*.c' -exec sed -r -i 's#\\btime\\(&(.+)\\)#if (getenv(\"SOURCE_DATE_EPOCH\")) \\1=atol(getenv(\"SOURCE_DATE_EPOCH\")); else &#g' {} \\;\nsed -r -i 's#author\\s*!=\\s*NULL#& \\&\\& !getenv(\"SOURCE_DATE_EPOCH\")#g'                            fontforge/cvexport.c fontforge/dumppfa.c fontforge/print.c fontforge/svg.c fontforge/splineutil2.c\nsed -r -i 's#\\bb.st_mtime#getenv(\"SOURCE_DATE_EPOCH\") ? atol(getenv(\"SOURCE_DATE_EPOCH\")) : &#g'  fontforge/parsepfa.c fontforge/sfd.c fontforge/svg.c\nsed -r -i 's#^\\s*ttf_fftm_dump#if (!getenv(\"SOURCE_DATE_EPOCH\")) ttf_fftm_dump#g'                 fontforge/tottf.c\nsed -r -i 's#sprintf\\(.+ author \\);#if (!getenv(\"SOURCE_DATE_EPOCH\")) &#g'                        fontforgeexe/fontinfo.c\n",
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => nix.concat(["-Wno-error=incompatible-pointer-types"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-msse2 -mfpmath=sse"))))),
       })),
       strictDeps: true,
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
 export SOURCE_DATE_EPOCH=$(date -d ${nix.sel(finalAttrs, "version")} +%s)
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Font editor",
         homepage: "https://fontforge.github.io",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

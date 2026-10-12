@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yubihsm-connector",
       version: "3.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubihsm-connector",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ddf8IamX8wC8IG9puFDoSKsVqc9KE/LtsJ0Wk0FFquw=",
         })))),
-      overrideModAttrs: (_) => ({ __proto__: pos$2, preBuild: null }),
+      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, preBuild: null }),
       vendorHash: "sha256-vtIXFOptDbBKjnDUSD9ng5tnfYQ3lklwgcEUvKMdCOM=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       installCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Performs the communication between the YubiHSM 2 and applications that use it",
         homepage: "https://developers.yubico.com/yubihsm-connector/",
         maintainers: nix.thunk(() => (() => {

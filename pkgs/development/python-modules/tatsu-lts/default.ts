@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnicolodi",
           repo: "TatSu-LTS",
           tag: nix.thunk(() => nix.str`v${version}-LTS`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["tatsu"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generates Python parsers from grammars in a variation of EBNF",
         longDescription: "TatSu (the successor to Grako) is a tool that takes grammars in a\nvariation of EBNF as input, and outputs memoizing (Packrat) PEG parsers in\nPython.\n",
         homepage: "https://tatsu.readthedocs.io/",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

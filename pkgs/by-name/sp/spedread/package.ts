@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spedread",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Darazaki",
           repo: "Spedread",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita]),
       postInstall: "gtk4-update-icon-cache -qtf \"$out/share/icons/hicolor\"\nupdate-desktop-database -q \"$out/share/applications\"\nglib-compile-schemas \"$out/share/glib-2.0/schemas\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rapid word display tool for improved reading focus and reduced eye movement",
         homepage: "https://github.com/Darazaki/Spedread",
         changelog: nix.thunk(() => nix.str`https://github.com/Darazaki/Spedread/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intercal";
       const version = "0.35";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://catb.org/esr/intercal/intercal-${version}.tar.gz`),
           hash: "sha256-tV6O3GjiUXoGepAnZuL1e5e1AlU/3LritaskY7pY8OE=",
         }))));
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/ick --suffix PATH ':' ${nix.sel(stdenv, "cc")}/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Original esoteric programming language",
         longDescription: "INTERCAL, an abbreviation for \"Compiler Language With No\nPronounceable Acronym\", is a famously esoterical programming\nlanguage. It was created in 1972, by Donald R. Woods and James\nM. Lyon, with the unusual goal of creating a language with no\nsimilarities whatsoever to any existing programming\nlanguages. The language largely succeeds in this goal, apart\nfrom its use of an assignment statement.\n",
         homepage: "http://www.catb.org/~esr/intercal/",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

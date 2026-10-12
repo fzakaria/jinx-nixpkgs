@@ -22,22 +22,22 @@ export default nix.lambda((args) => (() => {
   const puppet_bolt = nix.arg($, "puppet-bolt");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "bolt",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["bolt"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       gemConfig: nix.thunk(() => nix.update(defaultGemConfig, {
-        __proto__: pos$2,
-        bolt: (attrs) => ({ __proto__: pos$1, dontPatchShebangs: true }),
+        [nix.POS]: pos$2,
+        bolt: (attrs) => ({ [nix.POS]: pos$1, dontPatchShebangs: true }),
       })),
       postBuild: "# Set BOLT_GEM=1 to remove warning\nwrapProgram $out/bin/bolt --set BOLT_GEM 1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: puppet_bolt,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "bolt", "version")),
             })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "puppet-bolt")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Execute commands remotely over SSH and WinRM",
         homepage: "https://github.com/puppetlabs/bolt",
         changelog: "https://github.com/puppetlabs/bolt/blob/main/CHANGELOG.md",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: nix.thunk(() => nix.str`puppet-bolt-${nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "bolt", "version")}`),
     }));
 })(), formals$1);

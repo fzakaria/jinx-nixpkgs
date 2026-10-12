@@ -28,36 +28,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "wireguard-generated",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       peer1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           boot: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedUDPPorts: nix.thunk(() => [12345n]) })),
+            [nix.POS]: pos$7,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedUDPPorts: nix.thunk(() => [12345n]) })),
             wireguard: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 wg0: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   ips: nix.thunk(() => ["10.10.10.1/24"]),
                   listenPort: 12345n,
                   privateKeyFile: "/etc/wireguard/private",
@@ -73,20 +73,20 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           boot: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$10, allowedUDPPorts: nix.thunk(() => [12345n]) })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedUDPPorts: nix.thunk(() => [12345n]) })),
             wireguard: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 wg0: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   ips: nix.thunk(() => ["10.10.10.2/24"]),
                   listenPort: 12345n,
                   privateKeyFile: "/etc/wireguard/private",

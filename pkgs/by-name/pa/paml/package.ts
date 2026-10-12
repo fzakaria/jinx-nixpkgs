@@ -14,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paml",
       version: "4.10.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abacus-gene",
           repo: "paml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-e93ldPcYpxtgei9+qPNxmhHkwwjpbywkQJklx+dsONM=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_POSIX_C_SOURCE")),
       })),
       preBuild: "cd ./src/\n",
       installPhase: "runHook preInstall\n\nmkdir -pv $out/bin\ncp -v codeml $out/bin\ncp -v baseml $out/bin\ncp -v basemlg $out/bin\ncp -v chi2 $out/bin\ncp -v codeml $out/bin\ncp -v evolver $out/bin\ncp -v mcmctree $out/bin\ncp -v pamp $out/bin\ncp -v yn00 $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Phylogenetic Analysis by Maximum Likelihood (PAML)",
         longDescription: "PAML is a package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. It is maintained and distributed for academic use free of charge by Ziheng Yang. ANSI C source codes are distributed for UNIX/Linux/Mac OSX, and executables are provided for MS Windows. PAML is not good for tree making. It may be used to estimate parameters and test hypotheses to study the evolutionary process, when you have reconstructed trees using other programs such as PAUP*, PHYLIP, MOLPHY, PhyML, RaxML, etc.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

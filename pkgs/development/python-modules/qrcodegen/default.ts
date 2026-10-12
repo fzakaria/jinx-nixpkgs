@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qrcodegen",
       pyproject: true,
       version: nix.thunk(() => nix.attr(qrcodegen, "version")),
@@ -31,7 +31,7 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qrcodegen, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

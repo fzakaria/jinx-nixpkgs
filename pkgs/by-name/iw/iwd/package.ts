@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "iwd",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/network/wireless/iwd.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-78Zw/i2dXecvC+DDSunPlUzqJj0FFYf7Sm6iN5VXBbA=",
@@ -41,25 +41,25 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no_netdev_group.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rrm-fix-stack-buffer-overflow-in-rrm_report_beacon_results.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0001-rrm-fix-stack-buffer-overflow-in-rrm_report_beacon_r.patch",
             hash: "sha256-t7f4vrS8Ns0BUt8UxS+62T+xWDZaA/t5A0cnXWm00ZU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ie-fix-off-by-one-in-he-capabilities-channel-width-set.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0002-ie-fix-off-by-one-in-HE-Capabilities-Channel-Width-S.patch",
             hash: "sha256-142lowS9YtOGwfRqryxxGnzcNZrz72tIOhVZhlo3fMY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ft-fix-mde_equal-self-comparison-and-type-mismatch.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0003-ft-fix-mde_equal-self-comparison-and-type-mismatch.patch",
             hash: "sha256-Qdm8eAw3tbH/wDWvmWIkKxMQ2m16o+VvEPYaKXBgAAw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "ie-fix-uint8_t-underflow-in-fte-sub-element-parser.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0004-ie-fix-uint8_t-underflow-in-FTE-sub-element-parser.patch",
             hash: "sha256-6At7PUXoORM++9ndIzxTTRu7V09+D31DrdMNLt1EtOc=",
@@ -104,14 +104,14 @@ substituteInPlace $out/share/dbus-1/system-services/net.connman.iwd.service \\
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://git.kernel.org/pub/scm/network/wireless/iwd.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://git.kernel.org/pub/scm/network/wireless/iwd.git",
         description: "Wireless daemon for Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

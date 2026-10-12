@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "badgemagic-rs",
       version: "0.1.0-unstable-2025-07-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fossasia",
           repo: "badgemagic-rs",
           rev: "5d745ab8fda418204425f3df0e969a98bf479f2d",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus, systemdLibs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Badge Magic in Rust",
         homepage: "https://github.com/fossasia/badgemagic-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

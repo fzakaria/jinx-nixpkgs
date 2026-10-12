@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nixpkgs-hammering",
       version: "0-unstable-2026-10-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jtojnar",
           repo: "nixpkgs-hammering",
           rev: "04d6db9304fb08ffaf3d5780a8bb3da908f5ca69",
@@ -41,11 +41,11 @@ cp -r ./lib "$datadir/lib"
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Set of nit-picky rules that aim to point out and explain common mistakes in nixpkgs package pull requests",
         homepage: "https://github.com/jtojnar/nixpkgs-hammering",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

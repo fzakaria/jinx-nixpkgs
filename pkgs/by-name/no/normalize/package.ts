@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libmad = nix.arg($, "libmad");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "normalize",
       version: "0.7.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/normalize/normalize-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YFWiq8zGQpbhw4+WUvIFbTo8CWU44WS4uVJuELSGs9g=",
         })))),
       postPatch: "sed -e '1i #include <string.h>' -i nid3lib/frame_desc.c\nsubstituteInPlace nid3lib/frame_desc.c \\\n  --replace-fail \"int strcmp();\" \"\"\nsed -e '1i #include <unistd.h>' -i nid3lib/write.c\nsubstituteInPlace nid3lib/write.c \\\n  --replace-fail \"int ftruncate();\" \"\"\n",
       buildInputs: nix.thunk(() => [libmad]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/normalize/",
         description: "Audio file normalizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

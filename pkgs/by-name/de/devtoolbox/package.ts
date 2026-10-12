@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "devtoolbox",
       version: "1.3.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aleiepure",
           repo: "devtoolbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -r $out/devtoolbox\nln -s $out/share/locale/zh_Hant $out/share/locale/zh_TW\nln -s $out/share/locale/zh_Hans $out/share/locale/zh_CN\n",
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Development tools at your fingertips",
         longDescription: "If you're tired of endlessly looking online for the right\ntool, or to find again that website of which you don't\nrecall the name to do a quick conversion, this is the\nright app for you. This is a collection of powerful yet\nsimple-to-use tools and utilities to solve the most common\ndaily development problems:\n- JSON to YAML converter and vice-versa\n- CRON expressions parser\n- Formatters for common languages\n- Hash generators\n- Regex tester\n- Markdown Previewer\n- Image converters\n- Much more...\n",
         homepage: "https://github.com/aleiepure/devtoolbox",

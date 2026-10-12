@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cortex-tools",
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cortexproject",
           repo: "cortex-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       subPackages: nix.thunk(() => ["cmd/benchtool", "cmd/cortextool", "cmd/e2ealerting", "cmd/logtool"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/cortexproject/cortex-tools/pkg/version.Version=${nix.sel(finalAttrs, "src", "tag")}`),
         "-s",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/cortexproject/cortex-tools/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tools used for interacting with Cortex, a Prometheus-compatible server",
         longDescription: "Tools used for interacting with Cortex, a horizontally scalable, highly available, multi-tenant, long term Prometheus server:\n\n- benchtool: A powerful YAML driven tool for benchmarking Cortex write and query API.\n- cortextool: Interacts with user-facing Cortex APIs and backend storage components.\n- chunktool: Interacts with chunks stored and indexed in Cortex storage backends.\n- logtool: Tool which parses Cortex query-frontend logs and formats them for easy analysis.\n- e2ealerting: Tool that helps measure how long an alert takes from scrape of sample to Alertmanager notification delivery.\n",

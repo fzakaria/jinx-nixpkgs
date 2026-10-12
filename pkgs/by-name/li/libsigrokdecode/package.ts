@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsigrokdecode",
       version: "0.5.3-unstable-2024-10-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sigrok.org/libsigrokdecode",
           rev: "71f451443029322d57376214c330b518efd84f88",
           hash: "sha256-aW0llB/rziJxLW3OZU1VhxeM3MDWsaMVVgvDKZzdiIY=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [check]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protocol decoding library for the sigrok signal analysis software suite",
         homepage: "https://sigrok.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

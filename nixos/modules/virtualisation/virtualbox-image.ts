@@ -53,53 +53,53 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualbox"));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualbox", "baseImageSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["virtualisation", "virtualbox", "vmFileName"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       virtualbox: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         baseImageFreeSpace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: nix.thunk(() => nix.mul(30n, 1024n)),
             description: "Free space in the VirtualBox base image in MiB.\n",
           })))),
         memorySize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: 1536n,
             description: "The amount of RAM the VirtualBox appliance can use in MiB.\n",
           })))),
         vmDerivationName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`nixos-ova-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             description: "The name of the derivation for the VirtualBox appliance.\n",
           })))),
         vmName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos", "distroName")} ${nix.sel(config, "system", "nixos", "label")} (${nix.sel(pkgs, "stdenv", "hostPlatform", "system")})`),
             description: "The name of the VirtualBox appliance.\n",
           })))),
         params: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -109,11 +109,11 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   ]))));
             })()),
-            example: nix.thunk(() => ({ __proto__: pos$7, audio: "alsa", rtcuseutc: "on", usb: "off" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$7, audio: "alsa", rtcuseutc: "on", usb: "off" })),
             description: "Parameters passed to the Virtualbox appliance.\n\nRun `VBoxManage modifyvm --help` to see more options.\n",
           })))),
         exportParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -128,32 +128,32 @@ export default nix.lambda((args) => (() => {
             description: "Parameters passed to the Virtualbox export command.\n\nRun `VBoxManage export --help` to see more options.\n",
           })))),
         extraDisk: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             description: "Optional extra disk/hdd configuration.\nThe disk will be an 'ext4' partition on a separate file.\n",
             default: null,
             example: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               label: "storage",
               mountPoint: "/home/demo/storage",
               size: nix.thunk(() => nix.mul(100n, 1024n)),
             })),
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         description: "Size in MiB",
                       })))),
                     label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "vm-extra-storage",
                         description: "Label for the disk partition",
                       })))),
                     mountPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Path where to mount this disk.",
                       })))),
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
                 })))))),
           })))),
         postExportCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: nix.thunk(() => nix.str`${nix.sel(pkgs, "cot")}/bin/cot edit-hardware "$fn" \\
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
             description: "Extra commands to run after exporting the OVA to `$fn`.\n",
           })))),
         storageController: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
                   ]))));
             })()),
             example: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "SCSI",
               add: "scsi",
               portcount: 16n,
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
               hostiocache: "on",
             })),
             default: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: "SATA",
               add: "sata",
               portcount: 4n,
@@ -207,20 +207,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(50n, 1024n)))),
         virtualbox: nix.thunk(() => ({
-          __proto__: pos$24,
-          guest: nix.thunk(() => ({ __proto__: pos$23, enable: true })),
+          [nix.POS]: pos$24,
+          guest: nix.thunk(() => ({ [nix.POS]: pos$23, enable: true })),
         })),
       })),
       virtualbox: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         params: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 acpi: "on",
                 vram: 32n,
                 nictype1: "virtio",
@@ -234,19 +234,19 @@ export default nix.lambda((args) => (() => {
                 usbehci: "on",
                 mouse: "usbtablet",
               })))),
-            nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "i686-linux")), nix.thunk(() => ({ __proto__: pos$27, pae: "on" })))),
+            nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "i686-linux")), nix.thunk(() => ({ [nix.POS]: pos$27, pae: "on" })))),
           ]))),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$32,
-        nixos: nix.thunk(() => ({ __proto__: pos$29, tags: nix.thunk(() => ["virtualbox"]) })),
+        [nix.POS]: pos$32,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$29, tags: nix.thunk(() => ["virtualbox"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           image: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "system", "build", "virtualBoxOVA")))),
           virtualBoxOVA: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               pkgs: pkgs,
@@ -303,32 +303,32 @@ echo "file ova $fn" >> $out/nix-support/hydra-build-products
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ __proto__: pos$33, extension: "ova" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$33, extension: "ova" })),
       fileSystems: nix.thunk(() => nix.update({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         "/": nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraDisk"), null)), nix.thunk(() => nix.attrsDyn({}, [
           [nix.sel(cfg, "extraDisk", "mountPoint"), nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             device: nix.thunk(() => nix.add("/dev/disk/by-label/", nix.sel(cfg, "extraDisk", "label"))),
             autoResize: true,
             fsType: "ext4",
           }))],
         ]))))),
       boot: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         growPartition: true,
         loader: nix.thunk(() => ({
-          __proto__: pos$38,
-          grub: nix.thunk(() => ({ __proto__: pos$37, device: "/dev/sda" })),
+          [nix.POS]: pos$38,
+          grub: nix.thunk(() => ({ [nix.POS]: pos$37, device: "/dev/sda" })),
         })),
       })),
-      swapDevices: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$40, device: "/var/swap", size: 2048n }))]),
+      swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, device: "/var/swap", size: 2048n }))]),
     })),
   };
 })(), formals$1);

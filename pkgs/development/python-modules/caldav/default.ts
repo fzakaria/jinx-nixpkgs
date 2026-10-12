@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const xandikos = nix.arg($, "xandikos");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "caldav",
       version: "3.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-caldav",
           repo: "caldav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,16 +67,16 @@ export default nix.lambda((args) => (() => {
         pyfakefs,
         pytest_asyncio,
         pytest9_0CheckHook,
-        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ __proto__: pos$2, python3: python })))))),
+        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python })))))),
         tzlocal,
         vobject,
         writableTmpDirAsHomeHook,
-        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(xandikos, "override"), nix.thunk(() => ({ __proto__: pos$3, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })))))),
+        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(xandikos, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })))))),
       ]),
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["caldav"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CalDAV (RFC4791) client library",
         homepage: "https://github.com/python-caldav/caldav",
         changelog: nix.thunk(() => nix.str`https://github.com/python-caldav/caldav/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

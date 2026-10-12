@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const swaybg = nix.arg($, "swaybg");
   const redshift = nix.arg($, "redshift");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smart-wallpaper",
       version: "0-unstable-2022-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Baitinq",
           repo: "smart-wallpaper",
           rev: "a23e6ed658342a405544ebe055ec1ac2fd464484",
@@ -35,7 +35,7 @@ wrapProgram $out/bin/smart-wallpaper \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdpyinfo, killall, xwinwrap, swaybg, redshift]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Baitinq/smart-wallpaper",
         description: "Simple bash script that automatically changes your wallpaper depending on if its daytime or nighttime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

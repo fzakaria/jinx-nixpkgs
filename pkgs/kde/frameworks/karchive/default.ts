@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xz = nix.arg($, "xz");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "karchive",
       extraNativeBuildInputs: nix.thunk(() => [qttools, pkg_config]),
       extraBuildInputs: nix.thunk(() => [xz]),

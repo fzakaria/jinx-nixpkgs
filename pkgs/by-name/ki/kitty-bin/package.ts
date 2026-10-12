@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kitty-bin",
       version: "0.49.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kovidgoyal/kitty/releases/download/v${nix.sel(finalAttrs, "version")}/kitty-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-5SS4lBRdict2tYTjqWkRlq5Wv6MdUThKRKp3QlK3zvc=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R kitty.app \"$out/Applications/kitty.app\"\nln -s \"$out/Applications/kitty.app/Contents/MacOS/kitty\" \"$out/bin/kitty\"\nln -s \"$out/Applications/kitty.app/Contents/MacOS/kitten\" \"$out/bin/kitten\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kovidgoyal/kitty",
         description: "Fast, feature-rich, GPU based terminal emulator (prebuilt signed macOS app)",
         changelog: nix.thunk(() => nix.str`https://github.com/kovidgoyal/kitty/blob/v${nix.sel(finalAttrs, "version")}/docs/changelog.rst`),

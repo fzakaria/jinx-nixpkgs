@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "console-timeout",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         systemd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "generate-output": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               script: "echo \"match that\"\nsleep 1\n\nfor i in $(seq 15); do\n  echo \"line $i\"\ndone\n\necho \"match this\"\n",
             })),
           })),

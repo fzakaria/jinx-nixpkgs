@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const trustedprefixes = nix.thunk(() => nix.app(writeText, "kpmcore-trustedprefixes", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), runtimeDeps))))));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kpmcore",
       postPatch: nix.thunk(() => nix.str`cp ${trustedprefixes} src/util/trustedprefixes
 `),

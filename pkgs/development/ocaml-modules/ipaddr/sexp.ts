@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ipaddr-sexp",
       version: nix.thunk(() => nix.attr(ipaddr, "version")),
       src: nix.thunk(() => nix.attr(ipaddr, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ipaddr_cstruct, ounit2, ppx_sexp_conv]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(ipaddr, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library for manipulation of IP address representations using sexp",
       })),
     })));

@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "count"), (x) => nix.force(x), nix.thunk(() => [jackSupport, alsaSupport])), 1n)), "din: exactly one audio backend must be selected (jackSupport or alsaSupport)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/din/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "din",
       version: "65",
       __structuredAttrs: true,
       strictDeps: true,
       allowSubstitutes: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dinisnoise.org/files/din-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Iij8GGbeNVHCkrHc/on5pV5TU20+pQbI+oAnAXFsSmQ=",
         })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]), nix.concat(nix.app(nix.sel(lib, "optional"), jackSupport, "LIBS=-ljack"), nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, "LIBS=-lasound"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["LDFLAGS=-framework OpenGL -framework GLUT -framework Cocoa -lSDLmain"])))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source cross-platform sound synthesizer",
         longDescription: "DIN Is Noise is a program for making sound, music and noise. Use bezier\ncurves to edit waveforms, envelopes, modulators and FX components; use\nthe keyboard (computer and MIDI) to trigger notes (or noise), use the\nmouse to sound like the theremin, create drones on microtones, launch,\norbit and drag them around; bounce balls on walls to trigger notes in a\nmondrian inspired drawing and also make binaural beats. Supports MIDI\ninput and scripting through TCL.\n",
         homepage: "https://dinisnoise.org/",

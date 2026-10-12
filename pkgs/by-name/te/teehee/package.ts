@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "teehee",
       version: "0.2.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gskartwii",
           repo: "teehee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-PebwLIFBA6NdEXCQoEZzPFsSTMz8o2s+yOMyElrR4TM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modal terminal hex editor",
         homepage: "https://github.com/Gskartwii/teehee",
         changelog: nix.thunk(() => nix.str`https://github.com/Gskartwii/teehee/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

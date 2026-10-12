@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libagar-test",
       version: nix.thunk(() => nix.attr(libagar, "version")),
       src: nix.thunk(() => nix.attr(libagar, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-agar=${libagar}`)]),
       buildInputs: nix.thunk(() => [perl, libagar, libjpeg, libpng, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tests for libagar",
         mainProgram: "agartest",
         homepage: "http://libagar.org/index.html",

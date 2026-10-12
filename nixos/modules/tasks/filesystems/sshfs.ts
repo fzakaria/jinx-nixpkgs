@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(config, () => nix.selOr(config, () => false, "boot", "supportedFilesystems", "fuse.sshfs"), "boot", "supportedFilesystems", "sshfs")), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         programs: nix.thunk(() => ({
-          __proto__: pos$2,
-          fuse: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          fuse: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sshfs"))]),
         })),
       })))),

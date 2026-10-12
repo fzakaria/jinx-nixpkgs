@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const validVariants = nix.thunk(() => ["latte", "frappe", "macchiato", "mocha"]);
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), nix.thunk(() => nix.str`${pname}: color variant`), variant, validVariants), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/catppuccin-plymouth/package.nix:18:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "0-unstable-2026-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "plymouth",
           rev: "198eba2071d80e4a23b8f51a5859e8f4acf8de6c",
@@ -39,11 +39,11 @@ cp * $out/share/plymouth/themes/catppuccin-${variant}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soothing pastel theme for Plymouth",
         homepage: "https://github.com/catppuccin/plymouth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

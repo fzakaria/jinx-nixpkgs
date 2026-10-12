@@ -35,45 +35,45 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const layouts = nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "extraLayouts"));
   const layoutOpts = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       description: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "A short description of the layout.",
         })))),
       languages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
           description: "A list of languages provided by the layout.\n(Use ISO 639-2 codes, for example: \"eng\" for english)\n",
         })))),
       compatFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
           default: null,
           description: "The path to the xkb compat file.\nThis file sets the compatibility state, used to preserve\ncompatibility with xkb-unaware programs.\nIt must contain a `xkb_compat \"name\" { ... }` block.\n",
         })))),
       geometryFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
           default: null,
           description: "The path to the xkb geometry file.\nThis (completely optional) file describes the physical layout of\nkeyboard, which maybe be used by programs to depict it.\nIt must contain a `xkb_geometry \"name\" { ... }` block.\n",
         })))),
       keycodesFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
           default: null,
           description: "The path to the xkb keycodes file.\nThis file specifies the range and the interpretation of the raw\nkeycodes sent by the keyboard.\nIt must contain a `xkb_keycodes \"name\" { ... }` block.\n",
         })))),
       symbolsFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
           default: null,
           description: "The path to the xkb symbols file.\nThis is the most important file: it defines which symbol or action\nmaps to each key and must contain a\n`xkb_symbols \"name\" { ... }` block.\n",
         })))),
       typesFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
           default: null,
           description: "The path to the xkb types file.\nThis file specifies the key types that can be associated with\nthe various keyboard keys.\nIt must contain a `xkb_types \"name\" { ... }` block.\n",
@@ -81,29 +81,29 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const xkb_patched = nix.thunk(() => nix.app(nix.sel(pkgs, "xkeyboard-config_custom"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       layouts: nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "extraLayouts")),
     }))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           sinceRelease: 2311n,
           from: nix.thunk(() => ["services", "xserver", "extraLayouts"]),
           to: nix.thunk(() => ["services", "xserver", "xkb", "extraLayouts"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         xserver: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           xkb: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraLayouts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), layoutOpts)))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  mine = {\n    description = \"My custom xkb layout.\";\n    languages = [ \"eng\" ];\n    symbolsFile = /path/to/my/layout;\n  };\n}\n")),
@@ -114,19 +114,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(layouts, {})), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             XKB_CONFIG_ROOT: nix.thunk(() => nix.sel(config, "services", "xserver", "xkb", "dir")),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           xserver: nix.thunk(() => ({
-            __proto__: pos$20,
-            xkb: nix.thunk(() => ({ __proto__: pos$19, dir: nix.thunk(() => nix.str`${xkb_patched}/etc/X11/xkb`) })),
+            [nix.POS]: pos$20,
+            xkb: nix.thunk(() => ({ [nix.POS]: pos$19, dir: nix.thunk(() => nix.str`${xkb_patched}/etc/X11/xkb`) })),
             exportConfiguration: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "xserver", "displayManager", "startx", "enable")) || nix.asBool(nix.sel(config, "services", "xserver", "displayManager", "sx", "enable")))),
           })),
         })),

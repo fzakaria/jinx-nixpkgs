@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libepubgen",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/libepubgen/code",
           rev: nix.thunk(() => nix.str`libepubgen-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wPpU8Sfhx9GIgDmT/otT5yV4iQKm9QPZqgSBTfFcbbg=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [boost, cppunit, librevenge, libxml2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "EPUB generator for librevenge",
         homepage: "https://sourceforge.net/projects/libepubgen/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

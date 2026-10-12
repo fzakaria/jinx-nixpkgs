@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const sslLibrary = nix.argOr($, "sslLibrary", () => "gnutls");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "sslLibrary", sslLibrary, nix.thunk(() => ["gnutls", "openssl", "no"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mp/mpop/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpop",
       version: "1.4.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://marlam.de/mpop/releases/mpop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-Avwv9E9iuPv0J+1tixbg03R1EZglT7HmrTbrbZqTgBc=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-tls=${sslLibrary}`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--with-macosx-keyring"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POP3 mail retrieval agent",
         homepage: "https://marlam.de/mpop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_7_headless = nix.arg($, "ffmpeg_7-headless");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "karlyriceditor",
       version: "4.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gyunaev",
           repo: "karlyriceditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/gyunaev/karlyriceditor/commit/1d5e095cc691d4239c919d78209bdd05e57ed2aa.patch",
             hash: "sha256-G93OfcQzgv8PhRQa8aUNsjaIt0GcGQxZGe4Eo0xP7TM=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ffmpeg_7_headless, nix.thunk(() => nix.sel(qt6, "qtmultimedia"))]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin/karlyriceditor $out/bin/karlyriceditor\ninstall -Dm644 packages/karlyriceditor.desktop $out/share/applications/karlyriceditor.desktop\ninstall -Dm644 packages/karlyriceditor.png $out/share/icons/hicolor/24x24/apps/karlyriceditor.png\ninstall -Dm644 src/images/application_icon.png $out/share/icons/hicolor/128x128/apps/karlyriceditor.png\n\nsubstituteInPlace $out/share/applications/karlyriceditor.desktop \\\n  --replace-fail 'Icon=/usr/share/pixmaps/karlyriceditor.png' 'Icon=karlyriceditor'\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Edit and synchronize lyrics with karaoke songs in various formats",
         homepage: "https://github.com/gyunaev/karlyriceditor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

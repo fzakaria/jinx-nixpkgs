@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const random = nix.arg($, "random");
   const time = nix.arg($, "time");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "bruijn",
       version: "0-unstable-2026-07-16",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/marvinborner/bruijn/archive/9f1ac8856d09666a7444874f80b91b876929eecf.tar.gz",
           sha256: "18mcwp2xn7wgr81mgqr38irvkf24rf0nvwzi8janasq5favim0vy",
         })))),

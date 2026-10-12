@@ -22,37 +22,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "shadps4-openorbis-example",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "shadps4", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             etc: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "openorbis-sample-packages": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 source: nix.thunk(() => (() => {
                   const sample_packages = nix.thunk(() => nix.app(nix.sel(pkgs_1, "fetchurl"), nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       url: "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/download/v0.5.2/sample-packages.zip",
                       hash: "sha256-aWocIVpyMivA1vsUe9w97J3eMFANyXxyVLBxHGXIcEA=",
                     }))));
                   return nix.app(nix.sel(pkgs_1, "runCommand"), "OpenOrbis-PNG-Sample", nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       nativeBuildInputs: nix.thunk(() => (() => {
                         const w = nix.withScope(pkgs_1, null);
                         return [
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
                         ];
                       })()),
                       meta: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
                       })),
                     })), nix.thunk(() => nix.str`unzip ${sample_packages} samples/IV0000-BREW00086_00-IPNGDRAWEX000000.pkg
@@ -79,9 +79,9 @@ pkgtool pkg_extract samples/IV0000-BREW00086_00-IPNGDRAWEX000000.pkg $out/OpenOr
                 nix.thunk(() => nix.lookup(w, "xdotool")),
               ];
             })()),
-            variables: nix.thunk(() => ({ __proto__: pos$7, TRACY_NO_INVARIANT_CHECK: "1" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$7, TRACY_NO_INVARIANT_CHECK: "1" })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$9, memorySize: 2048n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, memorySize: 2048n })),
         };
       })(), formals$2),
     })),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.20251020";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karlicoss",
           repo: "orgparse",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "test_level_0_timestamps",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Emacs org-mode parser in Python",
         homepage: "https://github.com/karlicoss/orgparse",
         changelog: nix.thunk(() => nix.str`https://github.com/karlicoss/orgparse/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

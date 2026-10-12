@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const pulumi_python = nix.thunk(() => nix.attr(pulumiPackages, "pulumi-python"));
   const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/sdk/python`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -85,7 +85,7 @@ runHook postInstallCheck
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pulumi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Modern Infrastructure as Code. Any cloud, any language",
         homepage: "https://www.pulumi.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "gftools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -120,7 +120,7 @@ substituteInPlace \\
   Lib/gftools/builder/operations/rename.py \\
   --replace-fail "'gftools" "'${nix.builtins.placeholder("out")}t/bin/gftools"
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const pythonRelaxDeps = nix.thunk(() => ["protobuf", "pygit2"]);
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => nix.concat([
@@ -162,7 +162,7 @@ substituteInPlace \\
         gitpython,
       ], nix.concat(nix.sel(fonttools, "optional-dependencies", "ufo"), nix.sel(fontmake, "optional-dependencies", "json"))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         qa: nix.thunk(() => [diffenator2, pycairo, freetype_py]),
         test: nix.thunk(() => [black, pytest]),
       }));
@@ -179,11 +179,11 @@ substituteInPlace \\
       ]);
       const pythonImportsCheck = nix.thunk(() => ["gftools"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v", ignoredVersions: "0.9991" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v", ignoredVersions: "0.9991" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Misc tools for working with the Google Fonts library",
         homepage: "https://github.com/googlefonts/gftools",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/gftools/releases/tag/${nix.sel(src, "tag")}`),
@@ -195,7 +195,7 @@ substituteInPlace \\
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

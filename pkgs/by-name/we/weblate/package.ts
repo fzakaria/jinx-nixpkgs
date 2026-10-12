@@ -38,20 +38,20 @@ export default nix.lambda((args) => (() => {
   const mercurial = nix.arg($, "mercurial");
   const openssh = nix.arg($, "openssh");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python,
-      packageOverrides: (_final) => (prev) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6_0")) }),
+      packageOverrides: (_final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6_0")) }),
     }))));
   const python3Packages = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "weblate",
       version: "2026.9.1",
       pyproject: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "static"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "WeblateOrg",
           repo: "weblate",
           tag: nix.thunk(() => nix.str`weblate-${nix.sel(finalAttrs, "version")}`),
@@ -69,13 +69,13 @@ substituteInPlace weblate/vcs/git.py \\
 `),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "typing_improvement",
             url: "https://github.com/WeblateOrg/weblate/commit/df5aa0fd19287feb035eaf02323c72bcce92d1ad.patch",
             hash: "sha256-oOxCD5/g2XPwXtOKHHiiKV9caITxfoiWTzolwgwZobc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "fix_migration",
             url: "https://github.com/WeblateOrg/weblate/commit/7c4235779f89a421c7c6c24ee5bbbaa4f0ab50f1.patch",
             excludes: nix.thunk(() => ["docs/changes.rst"]),
@@ -113,7 +113,7 @@ ${manage} collectstatic --no-input
           nix.thunk(() => nix.lookup(w_1, "altcha")),
           nix.thunk(() => nix.lookup(w_1, "argon2-cffi-bindings")),
           nix.thunk(() => nix.lookup(w_1, "argon2-cffi")),
-          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(borgbackup, "override"), nix.thunk(() => ({ __proto__: pos$6, python3: python })))))),
+          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(borgbackup, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, python3: python })))))),
           nix.thunk(() => nix.lookup(w_1, "celery")),
           nix.thunk(() => nix.lookup(w_1, "certifi")),
           nix.thunk(() => nix.lookup(w_1, "cffi")),
@@ -198,7 +198,7 @@ ${manage} collectstatic --no-input
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           amazon: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "boto3"))]),
           asgi: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "granian"))]),
           google: nix.thunk(() => [
@@ -243,7 +243,7 @@ ${manage} collectstatic --no-input
         ], nix.concat(nix.sel(nix.lookup(w_3, "social-auth-core"), "optional-dependencies", "saml"), nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")))));
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         CI_DATABASE: "postgresql",
         DJANGO_SETTINGS_MODULE: "weblate.settings_test",
         CI_DB_PORT: "",
@@ -301,12 +301,12 @@ ${nix.sel(python, "pythonOnBuildForHost", "interpreter")} manage.py check
         "weblate/trans/tests/test_alert.py::WebsiteAlertSettingTest::test_website_alerts_enabled",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         python: python,
-        tests: nix.thunk(() => ({ __proto__: pos$9, weblate: nix.thunk(() => nix.attr(nixosTests, "weblate")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$9, weblate: nix.thunk(() => nix.attr(nixosTests, "weblate")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Web based translation tool with tight version control integration",
         homepage: "https://weblate.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/WeblateOrg/weblate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

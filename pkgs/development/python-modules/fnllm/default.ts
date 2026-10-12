@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const tiktoken = nix.arg($, "tiktoken");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fnllm",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gKdFBpNpG/CDLhKi1wQgZHv+o1pDy5HEqcteLzkXK1A=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [aiolimiter, httpx, json_repair, pydantic, tenacity]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         azure: nix.thunk(() => [azure_identity, azure_storage_blob]),
         numpy: nix.thunk(() => [numpy]),
         openai: nix.thunk(() => [openai, tiktoken]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "test_children",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_call_batch_raises_if_response_length_mismatch"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Function-based LLM protocol and wrapper",
         homepage: "https://github.com/microsoft/essex-toolkit/tree/main/python/fnllm",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/essex-toolkit/blob/fnllm-v${nix.sel(finalAttrs, "version")}/python/fnllm/CHANGELOG.md`),

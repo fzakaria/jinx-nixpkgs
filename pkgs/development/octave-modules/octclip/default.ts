@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "octclip";
       const version = "2.0.3";
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgpallero",
           repo: pname,
           rev: nix.thunk(() => nix.str`OctCLIP-${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patchPhase = "sed -i s/\"error(errorText)\"/\"error(\\\"%s\\\", errorText)\"/g src/*.cc\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "GNU Octave Clipping Polygons Tool",
         homepage: "https://gnu-octave.github.io/packages/octclip/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Perform boolean operations with polygons using the Greiner-Hormann algorithm",
       }));
-      return { __proto__: pos$3, pname, version, src, patchPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

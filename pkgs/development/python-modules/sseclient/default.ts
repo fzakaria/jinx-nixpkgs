@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sseclient",
       version: "0.0.27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-sv5TTcszsdP6rRPWDFp8cY4o+FmH8qA07PXsJ5kYwRw=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["event_stream"]),
       pythonImportsCheck: nix.thunk(() => ["sseclient"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for reading Server Sent Event streams",
         homepage: "https://github.com/btubbs/sseclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

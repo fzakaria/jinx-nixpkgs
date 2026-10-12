@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const openjfx21 = nix.arg($, "openjfx21");
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
-  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ __proto__: pos$1, withWebKit: true }))));
-  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ __proto__: pos$2, enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
+  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "soapui",
       version: "5.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://dl.eviware.com/soapuios/${nix.sel(finalAttrs, "version")}/SoapUI-${nix.sel(finalAttrs, "version")}-linux-bin.tar.gz`),
           sha256: "sha256-5zwE/snEYApm23wjTnTWfgiEM0ymSNHPcIzKoY6ZK3c=",
         })))),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
 `))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, soapui: nix.thunk(() => nix.attr(nixosTests, "soapui")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, soapui: nix.thunk(() => nix.attr(nixosTests, "soapui")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Most Advanced REST & SOAP Testing Tool in the World",
         homepage: "https://www.soapui.org/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flashlabel-yxwl";
       const version = "1.2.3";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`A4_Linux_Driver_Ver${version}.run`),
           url: "https://flashlabel.net/YXWL-A4driver-linux",
           hash: "sha256-LqVQKkh6B+zGl5swknHefaB0EfHYVXXEEqDb6NUaxqc=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir --parents $out/lib/cups/filter\nmv {A80,A80H} $out/lib/cups/filter\n\nmkdir --parents $out/share/cups/model\nmv *.ppd $out/share/cups/model\n\nrunHook postInstall\n";
       const postFixup = "gzip --best $out/share/cups/model/*.ppd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS driver for FlashLabel A4 thermal printers",
         longDescription: "Supported models:\n\n  - A80\n  - A80H\n  - A81\n  - A81H\n  - C80\n  - C801\n  - C80H\n  - C80S1\n  - C80Y1\n  - D80\n  - D80 Pro\n  - K80\n  - S8\n  - ST80\n  - ST80K\n  - ST81\n  - ST82\n  - ST83\n  - T8810\n  - Y8\n  - Y8 Pro\n  - Y80\n",
         homepage: "https://help.flashlabel.com/support/solutions/articles/150000191214",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

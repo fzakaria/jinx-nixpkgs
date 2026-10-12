@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "goarista",
       version: "0-unstable-2025-12-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aristanetworks",
           repo: "goarista",
           rev: "a373d7c9f0d9de57f4e1fcfe9adc868c7104f9cd",
           hash: "sha256-WxMo2cMYsorJ2aYNc2DAjxXYLh2CHJqbtGjJYtl2r68=",
         })))),
       vendorHash: "sha256-LS99/DKKh+KHtbI5n8/Dw47Le5qowRQYLuCA+Apwi8I=",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       checkFlags: nix.thunk(() => (() => {
         const skippedTests = nix.thunk(() => nix.concat(["TestDeepSizeof"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestDialTCPTimeoutWithTOS"]))));
         return [
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of open-source tools for network management and monitoring mostly based around gNMI",
         homepage: "https://github.com/aristanetworks/goarista",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

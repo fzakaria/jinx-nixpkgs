@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pname = "pyoctoprintapi";
   const version = "0.1.14";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rfleming71",
           repo: "pyoctoprintapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyoctoprintapi"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple async wrapper around the Octoprint API",
         homepage: "https://github.com/rfleming71/pyoctoprintapi",
         changelog: nix.thunk(() => nix.str`https://github.com/rfleming71/pyoctoprintapi/releases/tag/v${version}`),

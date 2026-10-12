@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pcFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/a613e66a54d54251878412b74c1e99defdac4192/devel/libsysinfo/files/libsysinfo.pc.in",
       hash: "sha256-KeCOYLCYeoJm+AwaagygKve2f+jNaIfaO7c/UnMegAg=",
     }))));
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const path = "...";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "bsdimp",
           repo: "libsysinfo",
           rev: "e535d95d1598932a0084a027402104d6e0276479",
           hash: "sha256-HFgaYRR9HQM0iVJBWq1nrPGZIl/Y/5C0JJUunlzCZLI=",
         }))));
       const outputs = nix.thunk(() => ["out", "man", "debug"]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-lkvm" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lkvm" }));
       const postPatch = "substituteInPlace Makefile --replace-fail 'then else' 'then :; else'\nsubstituteInPlace Makefile --replace-fail 'mkdir' 'mkdir -p'\n";
       const postInstall = nix.thunk(() => nix.str`mkdir -p $out/lib/pkgconfig
 substitute ${pcFile} $out/lib/pkgconfig/libsysinfo.pc \\
@@ -44,7 +44,7 @@ mkdir -p $out/include/sys
 ln -s ../sysinfo.h $out/include/sys/sysinfo.h
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU libc's sysinfo port for FreeBSD",
         homepage: "https://github.com/bsdimp/libsysinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -54,7 +54,7 @@ ln -s ../sysinfo.h $out/include/sys/sysinfo.h
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         path,
         version,

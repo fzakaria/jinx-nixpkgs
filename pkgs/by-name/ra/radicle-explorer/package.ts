@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "radicle-explorer",
       version: "0-unstable-2026-10-05",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           seed: "seed.radicle.dev",
           repo: "z4V1sjrXqjvFdnCUbxPFqd5p4DtH5",
           rev: "244c5711df12d21d70eadde4b5a4d425306d7971",
@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
       preBuild: "if [[ $configFile ]]; then\n  cp \"$configFile\" config/local.json\nfi\n",
       installPhase: "runHook preInstall\n\nmv build $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         withConfig: (config) => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             configFile: nix.thunk(() => nix.app(nix.sel(writers, "writeJSON"), "config.json", config)),
           }))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, hardcodeZeroVersion: true })))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Web frontend for Radicle",
         longDescription: "Radicle Explorer is a web-frontend for Radicle which supports browsing\nrepositories, issues and patches on publicly available Radicle seeds.\n\nThis package builds the web interface, ready to be served by any web\nserver.\n",
         homepage: "https://radicle.dev",

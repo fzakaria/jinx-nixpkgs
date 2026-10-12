@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "ms-azuretools",
         name: "vscode-bicep",
         version: "0.47.16",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       })),
       buildInputs: nix.thunk(() => [azure_cli, bicep, bicep_lsp]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual Studio Code extension for Bicep language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep",
         homepage: "https://github.com/Azure/bicep/tree/main/src/vscode-bicep",

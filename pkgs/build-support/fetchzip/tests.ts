@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const url = "https://gist.github.com/glandium/01d54cefdb70561b5f6675e08f2990f2/archive/2f430f0c136a69b0886281d0c76708997d8878af.zip";
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: url,
         sha256: "sha256-0ecwgL8qUavSj1+WkaxpmRBmu7cvj53V5eXQV71fddU=",
       })))),
     postFetch: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: url,
         sha256: "sha256-7sAOzKa+9vYx5XyndHxeY2ffWAjOsgCkXC9anK6cuV0=",
         postFetch: "touch $out/filee",
       })))),
     hiddenDir: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`file://${nix.app(runCommand, "hiddendir.tar", nix.thunk(() => ({})), "mkdir .foo\ntar -cf $out .foo\n")}`),
         sha256: "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=",
       })))),

@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "resonarium",
       version: "0.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gabrielsoule",
           repo: "resonarium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# melatonin_perfetto's CMakeLists fetches CPM.cmake and the Perfetto SDK\n# from the network at configure time, which the Nix sandbox blocks. The\n# PERFETTO compile-time switch is OFF here, so melatonin_perfetto.h\n# compiles every tracing macro to a no-op and never includes <perfetto.h>.\n# Replace the module's CMakeLists with a stub that just registers the\n# JUCE module and exposes the expected target/alias names.\ncat > modules/melatonin_perfetto/CMakeLists.txt <<'EOF'\njuce_add_module(\"${CMAKE_CURRENT_LIST_DIR}/melatonin_perfetto\")\nadd_library(perfetto INTERFACE)\nadd_library(perfetto::perfetto ALIAS perfetto)\ntarget_link_libraries(melatonin_perfetto INTERFACE perfetto::perfetto)\nadd_library(Melatonin::Perfetto ALIAS melatonin_perfetto)\nEOF\n",
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr", "-ljack"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstArt=\"Resonarium_Instrument_artefacts/Release\"\nfxArt=\"Resonarium_Effect_artefacts/Release\"\n\n# VST3 bundles\ninstall -dm755 \"$out/lib/vst3\"\ncp -r \"$instArt/VST3/Resonarium.vst3\"           \"$out/lib/vst3/\"\ncp -r \"$fxArt/VST3/Resonarium Effect.vst3\"      \"$out/lib/vst3/\"\n\n# LV2 bundles\ninstall -dm755 \"$out/lib/lv2\"\ncp -r \"$instArt/LV2/Resonarium.lv2\"             \"$out/lib/lv2/\"\ncp -r \"$fxArt/LV2/Resonarium Effect.lv2\"        \"$out/lib/lv2/\"\n\n# Standalone executables (drop the space in the Effect binary name)\ninstall -Dm755 \"$instArt/Standalone/Resonarium\"        \"$out/bin/Resonarium\"\ninstall -Dm755 \"$fxArt/Standalone/Resonarium Effect\"   \"$out/bin/Resonarium-Effect\"\n\n# Icon for the .desktop entries\ninstall -Dm644 \"$src/plugin/Resources/resonarium_logo.png\" \\\n  \"$out/share/icons/hicolor/512x512/apps/resonarium.png\"\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "resonarium",
             desktopName: "Resonarium",
             genericName: "Physical Modelling Synthesizer",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
             keywords: nix.thunk(() => ["synth", "synthesizer", "audio", "MPE", "waveguide"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "resonarium-effect",
             desktopName: "Resonarium Effect",
             genericName: "Physical Modelling Audio Effect",
@@ -108,11 +108,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "MPE-compatible physical modelling synthesizer based on coupled string waveguides",
         longDescription: "Resonarium is a physical-modelling synthesizer plugin and standalone\napplication designed for abstract sound design, exploration and\nopen-ended play. Its voice is a network of coupled waveguide\nresonators driven by configurable exciters, and it is intended to be\nplayed with MPE-capable controllers such as the Ableton Push 3, the\nExpressive E Osmose or the ROLI Seaboard.\n\nThis package builds the Instrument (synth) and Effect variants and\ninstalls VST3 and LV2 bundles as well as the standalone applications.\n",
         homepage: "https://github.com/gabrielsoule/resonarium",

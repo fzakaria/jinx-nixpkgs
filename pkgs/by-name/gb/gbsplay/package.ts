@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const nas = nix.arg($, "nas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gbsplay",
       version: "0.0.102",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmitch",
           repo: "gbsplay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpulseaudio, nas]),
       postInstall: "installShellCompletion --bash --name gbsplay contrib/gbsplay.bashcompletion\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gameboy sound player",
         homepage: "https://github.com/mmitch/gbsplay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),

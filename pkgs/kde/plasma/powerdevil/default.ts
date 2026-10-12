@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "powerdevil",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://invent.kde.org/plasma/powerdevil/-/commit/54f8a4a848fa02d06fefc5543f35224eef73670c.diff",
             hash: "sha256-YWUyOhFRUwzi+ISM2+TGctNDSUYc851U/b5hKkTmWXY=",
           })))),

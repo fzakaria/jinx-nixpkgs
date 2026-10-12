@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ttf-envy-code-r",
       version: "PR7",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.damieng.com/fonts/original/EnvyCodeR-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-pJqC/sbNjxEwbVf2CVoXMBI5zvT3DqzRlKSqFT8I2sM=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm644 *.txt -t $doc/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://damieng.com/typography/",
         description: "Free scalable coding font by DamienG",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

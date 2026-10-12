@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const version = "6M62";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inform7",
       version: version,
       buildInputs: nix.thunk(() => [perl, coreutils, gnutar, gzip]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://inform7.com/download/content/6M62/I7_6M62_Linux_all.tar.gz",
           sha256: "0bk0pfymvsn1g8ci0pfdw7dgrlzb232a8pc67y2xk6zgpf3m41vj",
         })))),
@@ -38,7 +38,7 @@ substituteInPlace "$out/bin/i7" \\
   --replace "/usr/bin/perl" "${perl}/bin/perl"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Design system for interactive fiction",
         mainProgram: "i7",
         homepage: "http://inform7.com/",

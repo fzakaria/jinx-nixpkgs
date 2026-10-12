@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ip4 = "192.0.2.1";
   const ip6 = "2001:db8::1";
   const precedence = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "::1/128": 50n,
     "::/0": 40n,
     "2002::/16": 30n,
@@ -34,31 +34,31 @@ export default nix.lambda((args) => (() => {
     "::ffff:0:0/96": 100n,
   }));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "getaddrinfo",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       server: (_) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         networking: nix.thunk(() => ({
-          __proto__: pos$4,
-          firewall: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+          [nix.POS]: pos$4,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
           useDHCP: false,
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           dnsmasq: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               address: nix.thunk(() => [
                 nix.thunk(() => nix.str`/nixos.test/${ip4}`),
                 nix.thunk(() => nix.str`/nixos.test/${ip6}`),
@@ -72,17 +72,17 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             nameservers: nix.thunk(() => [
               nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(nodes, "server", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address")),
             ]),
-            getaddrinfo: nix.thunk(() => ({ __proto__: pos$9, reload: true, precedence: precedence })),
+            getaddrinfo: nix.thunk(() => ({ [nix.POS]: pos$9, reload: true, precedence: precedence })),
             useDHCP: false,
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "request-addr", nix.thunk(() => ({})), "import socket\n\nresults = socket.getaddrinfo(\"nixos.test\", None)\nprint(results[0][4][0])\n")),
             ]),

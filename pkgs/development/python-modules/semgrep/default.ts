@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const requests_mock = nix.arg($, "requests-mock");
   const types_freezegun = nix.arg($, "types-freezegun");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "semgrep",
       version: nix.thunk(() => nix.attr(common, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "semgrep",
           repo: "semgrep",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ substituteInPlace src/semgrep/console_scripts/entrypoint.py \\
     'path = shutil.which(core)' \\
     'path = "${nix.app(nix.sel(lib, "getExe"), semgrep_core)}" if not pro else shutil.which(core)'
 `)),
-      env: nix.thunk(() => ({ __proto__: pos$3, SEMGREP_SKIP_BIN: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, SEMGREP_SKIP_BIN: true })),
       pythonRelaxDeps: nix.thunk(() => [
         "boltons",
         "click",
@@ -165,7 +165,7 @@ substituteInPlace src/semgrep/console_scripts/entrypoint.py \\
         "test_run_install_version_check_failure_records_error",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         common: common,
         "semgrep-core": semgrep_core,
         submodulesSubset: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (args_1) => nix.app(fetchFromGitHub, args_1), nix.thunk(() => nix.sel(common, "submodules")))),
@@ -174,7 +174,7 @@ substituteInPlace src/semgrep/console_scripts/entrypoint.py \\
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(semgrep_core, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.add(nix.sel(common, "meta", "description"), " - cli")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };

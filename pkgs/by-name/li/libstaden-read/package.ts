@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libstaden-read",
       version: "1-15-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jkbonfield",
           repo: "io_lib",
           tag: nix.thunk(() => nix.add("io_lib-", nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version"))))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       preAutoreconf: "pushd ./htscodecs\nautoreconf --install --force --verbose\npushd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library for reading/writing various DNA sequence formats",
         homepage: "https://staden.sourceforge.net",
         downloadPage: "https://github.com/jkbonfield/io_lib/releases",

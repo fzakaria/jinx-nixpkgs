@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tt_smi = nix.arg($, "tt-smi");
   const pstree = nix.arg($, "pstree");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tt-system-tools",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "tt-system-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ wrapProgram "$out/bin/tt-oops" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System tools for Tenstorrent cards",
         homepage: "https://github.com/tenstorrent/tt-system-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/tenstorrent/tt-system-tools/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

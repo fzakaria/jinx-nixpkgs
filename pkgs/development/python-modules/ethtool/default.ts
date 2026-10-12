@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fedora-python",
           repo: "python-ethtool",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/fedora-python/python-ethtool/commit/f82dd763bd50affda993b9afe3b141069a1a7466.patch",
             hash: "sha256-mtI7XsoyM43s2DFQdsBNpB8jJff7ZyO2J6SHodBrdrI=",
           })))),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ethtool"]);
       const nativeCheckInputs = nix.thunk(() => [net_tools, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/fedora-python/python-ethtool/blob/${nix.sel(src, "rev")}/CHANGES.rst`),
         description: "Python bindings for the ethtool kernel interface",
         homepage: "https://github.com/fedora-python/python-ethtool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

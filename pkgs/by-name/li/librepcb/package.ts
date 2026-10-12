@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librepcb";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "librepcb",
           repo: "librepcb",
           rev: version,
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]);
       const cargoDeps1 = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           cargoRoot: "libs/librepcb/rust-core",
           hash: "sha256-1wHk8ynP3VnkypwY/C7nikfMSF0qU0L+CbBKoVxjlEc=",
         }))));
       const cargoDeps2 = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: src,
           cargoRoot: "libs/slint",
           hash: "sha256-UX/7a0hzFBmPZKufcDKcICrXEM+rKcvqEq2pg1riBxo=",
@@ -74,7 +74,7 @@ directory = "${cargoDeps2}/source-registry-0"
 EOF
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free EDA software to develop printed circuit boards",
         homepage: "https://librepcb.org/",
         maintainers: nix.thunk(() => (() => {
@@ -88,7 +88,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

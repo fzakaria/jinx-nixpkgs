@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_repeat = nix.arg($, "pytest-repeat");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "affine-gaps",
       version: "0.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gata-bio",
           repo: "affine-gaps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [biopython, pytest_repeat, pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["test.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/gata-bio/affine-gaps/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/gata-bio/affine-gaps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

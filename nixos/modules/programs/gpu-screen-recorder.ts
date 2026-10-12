@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "gpu-screen-recorder"));
   const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(config, "security"));
-      return { __proto__: pos$1, wrapperDir: nix.thunk(() => nix.attr(from, "wrapperDir")) };
+      return { [nix.POS]: pos$1, wrapperDir: nix.thunk(() => nix.attr(from, "wrapperDir")) };
     })())));
   const uiPackage = nix.thunk(() => nix.app(nix.sel(cfg, "ui", "package", "override"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(config, "security"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "gpu-screen-recorder": package$,
       wrapperDir: nix.thunk(() => nix.attr(from, "wrapperDir")),
     };
     })())));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "gpu-screen-recorder": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gpu-screen-recorder", nix.thunk(() => ({})))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to install gpu-screen-recorder and generate setcap\nwrappers for promptless recording.\n",
             })))),
           ui: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the GPU Screen Recorder overlay UI")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gpu-screen-recorder-ui", nix.thunk(() => ({})))),
             notifPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gpu-screen-recorder-notification", nix.thunk(() => ({})))),
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             environment: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wrappers: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "gsr-kms-server": nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   owner: "root",
                   group: "root",
                   capabilities: "cap_sys_admin+ep",
@@ -87,20 +87,20 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "ui", "package")),
                   nix.thunk(() => nix.sel(cfg, "ui", "notifPackage")),
                 ]),
               })),
               security: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 wrappers: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   "gsr-global-hotkeys": nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     owner: "root",
                     group: "root",
                     capabilities: "cap_setuid+ep",
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

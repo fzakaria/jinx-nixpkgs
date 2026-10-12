@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbip-country-lite",
       version: "2026-10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.db-ip.com/free/dbip-country-lite-${nix.sel(finalAttrs, "version")}.mmdb.gz`),
           hash: "sha256-TNRFNt39QP7H7KlKIz99GfONRw5lIuZTy40nAB9f4Xc=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ngzip -c -d \"$src\" > dbip-country-lite.mmdb\ninstall -Dm444 dbip-country-lite.mmdb \"$out/share/dbip/dbip-country-lite.mmdb\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mmdb: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/dbip/dbip-country-lite.mmdb`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free IP to Country Lite database by DB-IP",
         homepage: "https://db-ip.com/db/download/ip-to-country-lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),

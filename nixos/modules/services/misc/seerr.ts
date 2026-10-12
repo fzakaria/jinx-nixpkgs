@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "seerr"));
   const useNewConfigLocation = nix.thunk(() => nix.ge(nix.sel(cfg, "stateRevision"), 1n));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "jellyseerr"]), nix.thunk(() => ["services", "seerr"]))),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -49,37 +49,37 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         seerr: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Seerr, a requests manager for Jellyfin")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "seerr", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open port in the firewall for the Seerr web interface.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5055n,
               description: "The port which the Seerr web UI should listen to.",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => (nix.asBool(useNewConfigLocation) ? "/var/lib/seerr/" : "/var/lib/jellyseerr/config")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "{file}`/var/lib/seerr` (or {file}`/var/lib/jellyseerr/config` if {option}`services.seerr.stateRevision` < 1)")),
               description: "Config data directory",
             })))),
           stateRevision: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               descriptionName: "Seerr",
               migrations: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "26.05": "Move {file}`/var/lib/private/jellyseerr/config` to\n{file}`/var/lib/private/seerr`, if you have not set\n{option}`services.seerr.configDir`. (If you have set\n{option}`services.seerr.configDir`, you should also have forced\n{option}`systemd.services.seerr.serviceConfig.StateDirectory`, and in\nthat case `stateRevision` does not affect your configuration.)\n",
               })),
             })))),
@@ -87,23 +87,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             seerr: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Seerr, a requests manager for Jellyfin",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 CONFIG_DIRECTORY: nix.thunk(() => nix.sel(cfg, "configDir")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "exec",
                 StateDirectory: nix.thunk(() => (nix.asBool(useNewConfigLocation) ? "seerr" : "jellyseerr")),
                 DynamicUser: true,
@@ -126,23 +126,23 @@ export default nix.lambda((args) => (() => {
                 PrivateMounts: true,
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configDir"))]),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           moduleStateRevisions: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "services.seerr.stateRevision": nix.thunk(() => nix.sel(cfg, "stateRevision")),
           })),
         })),

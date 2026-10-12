@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "juicity",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juicity",
           repo: "juicity",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/server", "cmd/client"]),
       postInstall: "mv $out/bin/client $out/bin/juicity-client\nmv $out/bin/server $out/bin/juicity-server\ninstall -Dm444 install/juicity-server.service $out/lib/systemd/system/juicity-server.service\ninstall -Dm444 install/juicity-client.service $out/lib/systemd/system/juicity-client.service\nsubstituteInPlace $out/lib/systemd/system/juicity-server.service \\\n  --replace /usr/bin/juicity-server $out/bin/juicity-server\nsubstituteInPlace $out/lib/systemd/system/juicity-client.service \\\n  --replace /usr/bin/juicity-client $out/bin/juicity-client\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/juicity/juicity",
         description: "Quic-based proxy protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

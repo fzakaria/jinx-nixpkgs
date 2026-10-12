@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wofi-pass";
       const version = "24.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schmidtandreas",
           repo: "wofi-pass",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ wrapProgram $out/bin/wofi-pass \\
   --prefix PATH : "${wrapperPath}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to make wofi work with password-store",
         homepage: "https://github.com/schmidtandreas/wofi-pass",
         maintainers: nix.thunk(() => (() => {
@@ -68,7 +68,7 @@ wrapProgram $out/bin/wofi-pass \\
         mainProgram: "wofi-pass",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

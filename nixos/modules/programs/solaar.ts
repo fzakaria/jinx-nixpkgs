@@ -36,32 +36,32 @@ export default nix.lambda((args) => (() => {
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         solaar: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Solaar, the open source driver for Logitech devices.")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "solaar", nix.thunk(() => ({})))),
           userService: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Enable the solaar systemd service for each user.")),
             window: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["show", "hide", "only"]))),
                 default: "hide",
                 description: "Start with window showing / hidden / only (no tray icon).\n",
               })))),
             batteryIcons: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["regular", "symbolic", "solaar"]))),
                 default: "regular",
                 description: "Prefer regular battery / symbolic battery / solaar icons.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 example: nix.thunk(() => ["--restart-on-wake-up"]),
@@ -72,35 +72,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         hardware: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           logitech: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             wireless: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           user: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               solaar: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "userService", "enable")), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: "Solaar, the open source driver for Logitech devices",
                   wantedBy: nix.thunk(() => ["graphical-session.target"]),
                   partOf: nix.thunk(() => ["graphical-session.target"]),
                   after: nix.thunk(() => ["dbus.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     Type: "simple",
                     ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "Svenum"))]),
     })),
   };

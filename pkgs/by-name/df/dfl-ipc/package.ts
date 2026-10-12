@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dfl-ipc",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desktop-frameworks",
           repo: "ipc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very simple set of IPC classes for inter-process communication",
         homepage: "https://gitlab.com/desktop-frameworks/ipc",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/desktop-frameworks/ipc/-/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

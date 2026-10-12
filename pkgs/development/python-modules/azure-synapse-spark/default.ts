@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-hvopRjokt8NwJf8hUJtw42tNrOKOXZIAG8kgSINQrNU=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [azure_common, azure_core, msrest]);
       const pythonImportsCheck = nix.thunk(() => ["azure.synapse.spark"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure Synapse Spark Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/synapse/azure-synapse-spark",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-synapse-spark_${version}/sdk/synapse/azure-synapse-spark/CHANGELOG.md`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

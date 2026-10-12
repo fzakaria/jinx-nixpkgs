@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rsshub",
       version: "0-unstable-2026-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DIYgod",
           repo: "RSSHub",
           rev: "719cc1994b10bc96fcd17df6cf2046023d0cd9ba",
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-git-hash.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             GIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
           })))),
         nix.path(here, "./0002-fix-network-call.patch"),
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
   --add-flags "$out/lib/rsshub/dist/index.mjs"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "RSS feed generator",
         longDescription: "RSSHub is an open source, easy to use, and extensible RSS feed generator.\nIt's capable of generating RSS feeds from pretty much everything.\n\nRSSHub delivers millions of contents aggregated from all kinds of sources,\nour vibrant open source community is ensuring the deliver of RSSHub's new routes,\nnew features and bug fixes.\n",
         homepage: "https://docs.rsshub.app",

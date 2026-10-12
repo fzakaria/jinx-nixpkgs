@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const restic = nix.arg($, "restic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "restique",
       version: "0-unstable-2024-10-20",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.srcbox.net/stefan/restique",
           rev: "340d8326c2a2221ec155512cc6ffb2c8a866c525",
           hash: "sha256-IBg8hRJ7nugHP+JLg0fTONgZ+oRdkJpeZzflrwSG20w=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [restic]))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Restic GUI for Desktop/Laptop Backups",
         homepage: "https://git.srcbox.net/stefan/restique",
         license: nix.thunk(() => (() => {

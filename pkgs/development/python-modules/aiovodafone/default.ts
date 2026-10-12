@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const segno = nix.arg($, "segno");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiovodafone",
       version: "3.3.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chemelli74",
           repo: "aiovodafone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aiovodafone"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to control Vodafon Station",
         homepage: "https://github.com/chemelli74/aiovodafone",
         changelog: nix.thunk(() => nix.str`https://github.com/chemelli74/aiovodafone/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rename = nix.arg($, "rename");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cinzel",
       version: "0-unstable-2020-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NDISCOVER",
           repo: "Cinzel",
           rev: "dd598495b0fb2ad84270d5cc75d642d2f1e8eabf",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [rename]),
       installPhase: "runHook preInstall\n\nrename 's/\\[wght\\]//g' \"\" fonts/variable/*\ninstall -Dm644 fonts/ttf/*.ttf -t $out/share/fonts/truetype\ninstall -Dm644 fonts/variable/*.ttf -t $variable/share/fonts/truetype\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/NDISCOVER/Cinzel",
         description: "Typeface inspired in First Century Roman Inscriptions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

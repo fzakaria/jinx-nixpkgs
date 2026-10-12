@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "base16-schemes",
       version: "0-unstable-2026-01-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinted-theming",
           repo: "schemes",
           rev: "43dd14f6466a782bd57419fdfb5f398c74d6ac53",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/themes/\ninstall base16/*.yaml $out/share/themes/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "All the color schemes for use in base16 packages",
         homepage: "https://github.com/tinted-theming/schemes",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "DamienCassou"))]),

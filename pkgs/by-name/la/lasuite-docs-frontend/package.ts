@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lasuite-docs-frontend",
       version: "5.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "suitenumerique",
           repo: "docs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/frontend`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/frontend/yarn.lock`),
           hash: "sha256-OM97Y4gCCLcAUngaSW8QSmuu7+Lm8wF+KQP60sjIfHI=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       yarnBuildScript: "app:build",
       installPhase: "runHook preInstall\n\ncp -r apps/impress/out/ $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collaborative note taking, wiki and documentation platform that scales. Built with Django and React. Opensource alternative to Notion or Outline",
         homepage: "https://github.com/suitenumerique/docs",
         changelog: nix.thunk(() => nix.str`https://github.com/suitenumerique/docs/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

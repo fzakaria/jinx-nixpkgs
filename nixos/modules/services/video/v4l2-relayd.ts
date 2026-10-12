@@ -65,23 +65,23 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       options: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         enable: nix.thunk(() => nix.app(mkEnableOption, "this v4l2-relayd instance")),
         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: name,
             description: "The name of the instance.\n",
           })))),
         cardLabel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "The name the camera will show up as.\n",
           })))),
         extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(types, null);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -90,41 +90,41 @@ export default nix.lambda((args) => (() => {
             description: "Extra packages to add to {env}`GST_PLUGIN_PATH` for the instance.\n",
           })))),
         input: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pipeline: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The gstreamer-pipeline to use for the input-stream.\n",
             })))),
           format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "YUY2",
               description: "The video-format to read from input-stream.\n",
             })))),
           width: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "ints", "positive")),
               default: 1280n,
               description: "The width to read from input-stream.\n",
             })))),
           height: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "ints", "positive")),
               default: 720n,
               description: "The height to read from input-stream.\n",
             })))),
           framerate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "ints", "positive")),
               default: 30n,
               description: "The framerate to read from input-stream.\n",
             })))),
         })),
         output: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "YUY2",
               description: "The video-format to write to output-stream.\n",
@@ -134,15 +134,15 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "v4l2-relayd": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           instances: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), instanceOpts)));
@@ -156,12 +156,12 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const mkInstanceService = (instance) => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         description: "Streaming relay for v4l2loopback using GStreamer",
         after: nix.thunk(() => ["modprobe@v4l2loopback.service", "systemd-logind.service"]),
         wantedBy: nix.thunk(() => ["multi-user.target"]),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           Type: "simple",
           Restart: "always",
           PrivateNetwork: true,
@@ -169,7 +169,7 @@ export default nix.lambda((args) => (() => {
           LimitNPROC: 1n,
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           GST_PLUGIN_PATH: nix.thunk(() => nix.app(makeSearchPathOutput, "lib", "lib/gstreamer-1.0", nix.thunk(() => nix.concat(gst, nix.sel(instance, "extraPackages"))))),
           V4L2_DEVICE_FILE: nix.thunk(() => nix.str`/run/v4l2-relayd-${nix.sel(instance, "name")}/device`),
         })),
@@ -201,21 +201,21 @@ rm -rf $(dirname $V4L2_DEVICE_FILE)
       const mkInstanceServices = (instances) => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((instance) => nix.app(nameValuePair, nix.thunk(() => nix.str`v4l2-relayd-${nix.app(escapeSystemdPath, nix.thunk(() => nix.sel(instance, "name")))}`), nix.thunk(() => nix.app(mkInstanceService, instance))), instances)));
       const enabledInstances = nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.app(filterAttrs, (n) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "instances"))))));
       return {
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         boot: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.gt(nix.app(length, enabledInstances), 0n)), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(kernelPackages, "v4l2loopback"))]),
             kernelModules: nix.thunk(() => ["v4l2loopback"]),
             extraModprobeConfig: "options v4l2loopback devices=0",
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => nix.app(mkInstanceServices, enabledInstances)),
         })),
       };
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "betaboon"))];

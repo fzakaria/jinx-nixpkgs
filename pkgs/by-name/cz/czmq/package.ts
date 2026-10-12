@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const zeromq = nix.arg($, "zeromq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "4.2.1",
       pname: "czmq",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/zeromq/czmq/releases/download/v${nix.sel(finalAttrs, "version")}/czmq-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-XXIKIEwqWGRdb3ZDrxXVY6cS2tmMnTLB7ZEzd9qmrDk=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [zeromq]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://czmq.zeromq.org/",
         description: "High-level C Binding for ZeroMQ",
         mainProgram: "zmakecert",

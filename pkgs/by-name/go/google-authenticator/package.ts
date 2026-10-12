@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-authenticator-libpam",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "google-authenticator-libpam",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin $out/lib/security\ncp ./.libs/pam_google_authenticator.so $out/lib/security\ncp google-authenticator $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/google/google-authenticator-libpam",
         description: "Two-step verification, with pam module",
         mainProgram: "google-authenticator",

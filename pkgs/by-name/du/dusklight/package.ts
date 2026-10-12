@@ -58,68 +58,68 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   const auroraSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "encounter",
       repo: "aurora",
       rev: "08122911e8621acb7ded6563813b264bec1494b5",
       hash: "sha256-vdeHq7b+RHEwHN60pGU/FEWW/CqYZMJ2MC86CnF3iMg=",
     }))));
   const borealisSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "encounter",
       repo: "borealis",
       rev: "8a1c87eb89c8448183e8d9054bcb1efac380940c",
       hash: "sha256-dwqUh1fhDAmc1JBv0D6c8TSCNdrsDulmfhUD7GEw8EA=",
     }))));
   const dawnSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.update(nix.sel({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://github.com/encounter/dawn/releases/download/v20260807.225922/dawn-linux-x86_64.tar.gz",
         hash: "sha256-deRtiZ221q6PO9zejJBwa56fCM63KEh6y2p7nM+MOYU=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "https://github.com/encounter/dawn/releases/download/v20260807.225922/dawn-linux-aarch64.tar.gz",
         hash: "sha256-WUs7dDxNbQtt5x8AIDmVuFWhcZVgSyUUuRJvr5yrREo=",
       })),
-    }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), { __proto__: pos$6, stripRoot: false }))));
+    }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), { [nix.POS]: pos$6, stripRoot: false }))));
   const imguiSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "ocornut",
       repo: "imgui",
       tag: "v1.91.9b-docking",
       hash: "sha256-mQOJ6jCN+7VopgZ61yzaCnt4R1QLrW7+47xxMhFRHLQ=",
     }))));
   const sqliteSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       url: "https://sqlite.org/2026/sqlite-amalgamation-3510300.zip",
       hash: "sha256-pNMR8zxaaqfAzQ0AQBOXMct4usdjey1Q0Gnitg06UhM=",
     }))));
   const rmluiSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       url: "https://github.com/encounter/RmlUi/archive/215513c51ee1b3b75fc794518dda0576c462279f.tar.gz",
       hash: "sha256-erJDGImoTfgr6IeZDYTsqK2bOTgVRm3F3iQGXhch5YA=",
     }))));
   const minizSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       url: "https://github.com/richgel999/miniz/releases/download/3.0.2/miniz-3.0.2.zip",
       hash: "sha256-DXysXkQEmoDAMMg1F8KexkwpXNyiHNzLJqXR9SMEkxk=",
       stripRoot: false,
     }))));
   const picosha2Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       owner: "okdshin",
       repo: "PicoSHA2",
       tag: "v1.0.1",
       hash: "sha256-3psCzbrwR+vO9TyTKOx+gEaWuHDx6pSgLOQ3DqrJsnI=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "dusklight",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           owner: "TwilitRealm",
           repo: "dusklight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -196,7 +196,7 @@ sed -i '/add_subdirectory(tests)/d' "$sourceRoot/extern/aurora/CMakeLists.txt"
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libGL, libglvnd, alsa_lib, libpulseaudio]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Reverse-engineered reimplementation of The Legend of Zelda: Twilight Princess",
         homepage: "https://github.com/TwilitRealm/dusklight",
         changelog: nix.thunk(() => nix.str`https://github.com/TwilitRealm/dusklight/releases/tag/v${nix.sel(finalAttrs, "version")}`),

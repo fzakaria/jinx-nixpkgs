@@ -33,25 +33,25 @@ export default nix.lambda((args) => (() => {
       const version = "2021.12.17";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://yt-dl.org/downloads/${version}/${pname}-${version}.tar.gz`),
           sha256: "sha256-nzuZyLd4RVFltFJfIVBehsf/Vl86wxnhlzPYEBlBNd8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-youtube-dl-speed.patch",
             url: "https://github.com/ytdl-org/youtube-dl/compare/57044eacebc6f2f3cd83c345e1b6e659a22e4773...1e677567cd083d43f55daef0cc74e5fa24575ae3.diff",
             sha256: "11s0j3w60r75xx20p0x2j3yc4d3yvz99r0572si8b5qd93lqs4pr",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "avoid-crashing-if-nsig-decode-fails.patch",
             url: "https://github.com/ytdl-org/youtube-dl/commit/41f0043983c831b7c0c3614340d2f66ec153087b.diff",
             sha256: "sha256-a72gWhBXCLjuBBD36PpZ5F/AHBdiBv4W8Wf9g4P/aBY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-n-descrambling.patch",
             url: "https://github.com/ytdl-org/youtube-dl/commit/a0068bd6bec16008bda7a39caecccbf84881c603.diff",
             sha256: "sha256-tSuEns4jputa2nOOo6JsFXpK3hvJ/+z1/ymcLsd3A6w=",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "installShellCompletion youtube-dl.zsh\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://ytdl-org.github.io/youtube-dl/",
         description: "Command-line tool to download videos from YouTube.com and other sites",
         longDescription: "youtube-dl is a small, Python-based command-line program to download\nvideos from YouTube.com and a few more sites.  youtube-dl is released to\nthe public domain, which means you can modify it, redistribute it or use\nit however you like.\n",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         knownVulnerabilities: nix.thunk(() => ["youtube-dl is unmaintained, migrate to yt-dlp, if possible"]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         format,

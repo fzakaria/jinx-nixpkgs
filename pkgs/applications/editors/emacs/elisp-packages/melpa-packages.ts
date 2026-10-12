@@ -117,7 +117,7 @@ export default nix.thunk(() => (() => {
           const melpaDerivation = nix.thunk(() => nix.attr(from_1, "melpaDerivation"));
           const super$ = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.filter((s) => !nix.eq(s, null), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(melpaDerivation, variant)), nix.thunk(() => (nix.asBool(nix.builtins.isList(archiveJson)) ? nix.force(archiveJson) : nix.app(nix.sel(lib, "importJSON"), archiveJson)))))))));
           const overrides = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(variant, "stable")), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "abridge-diff": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(super$, "abridge-diff", "version"), "0.1")) ? nix.app(markBroken, nix.thunk(() => nix.sel(super$, "abridge-diff"))) : nix.sel(super$, "abridge-diff"))),
               bufshow: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "bufshow")))),
               "speech-tagger": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "speech-tagger")))),
@@ -138,23 +138,23 @@ export default nix.thunk(() => (() => {
               elmine: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "elmine")))),
               "ido-complete-space-or-hyphen": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "ido-complete-space-or-hyphen")))),
             }))), {
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             "ac-rtags": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "ac-rtags")))))),
             age: nix.thunk(() => nix.app(nix.sel(super$, "age", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace age.el \\
   --replace-fail 'age-program (executable-find "age")' 'age-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "age")))}"'
 `)),
               }))),
             "airline-themes": nix.thunk(() => nix.app(nix.sel(super$, "airline-themes", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
-                return { __proto__: pos$3, powerline: nix.thunk(() => nix.attr(from_2, "powerline")) };
+                return { [nix.POS]: pos$3, powerline: nix.thunk(() => nix.attr(from_2, "powerline")) };
               })()))),
             "auto-complete-clang-async": nix.thunk(() => nix.app(nix.sel(nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "auto-complete-clang-async")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "auto-complete"))])), "overrideAttrs"), (old) => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "llvmPackages", "llvm"))])),
                 env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   CFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "llvmPackages", "libclang")))}/include`),
                   LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "llvmPackages", "libclang")))}/lib`),
                 })),
@@ -165,13 +165,13 @@ export default nix.thunk(() => (() => {
             "easy-kill-extras": nix.thunk(() => nix.app(nix.sel(super$, "easy-kill-extras", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
                 return {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "easy-kill": nix.thunk(() => nix.attr(from_2, "easy-kill")),
               };
               })()))),
             dune: nix.thunk(() => nix.app(dontConfigure, nix.thunk(() => nix.sel(super$, "dune")))),
             emacsql: nix.thunk(() => nix.app(nix.sel(super$, "emacsql", "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(old, "version")), "20241115.1939")), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "sqlite"))])),
                   postBuild: "pushd sqlite\nmake\npopd\n",
                   postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), nix.str`install -m=755 -D sqlite/emacsql-sqlite \\
@@ -180,7 +180,7 @@ export default nix.thunk(() => (() => {
                   stripDebugList: nix.thunk(() => ["share"]),
                 }))))),
             "emacsql-sqlite": nix.thunk(() => nix.app(nix.sel(super$, "emacsql-sqlite", "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(old, "version")), "20240808.2016")), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "sqlite"))])),
                   postBuild: "pushd sqlite\nmake\npopd\n",
                   postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), nix.str`install -m=755 -D sqlite/emacsql-sqlite \\
@@ -189,18 +189,18 @@ export default nix.thunk(() => (() => {
                   stripDebugList: nix.thunk(() => ["share"]),
                 }))))),
             epkg: nix.thunk(() => nix.app(nix.sel(super$, "epkg", "overrideAttrs"), (old) => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 postPatch: nix.thunk(() => nix.str`substituteInPlace lisp/epkg.el \\
   --replace '(call-process "sqlite3"' '(call-process "${nix.sel(pkgs, "sqlite")}/bin/sqlite3"'
 `),
               }))),
             erlang: nix.thunk(() => nix.app(nix.sel(super$, "erlang", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "perl"))])),
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "ncurses"))])),
               }))),
             "evil-escape": nix.thunk(() => nix.app(nix.sel(super$, "evil-escape", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 postPatch: "substituteInPlace evil-escape.el \\\n  --replace ' ;;; evil' ';;; evil'\n",
                 packageRequires: nix.thunk(() => (() => {
                   const w = nix.withScope(self, null);
@@ -210,7 +210,7 @@ export default nix.thunk(() => (() => {
             "ess-R-data-view": nix.thunk(() => nix.app(nix.sel(super$, "ess-R-data-view", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
                 return {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ess: nix.thunk(() => nix.attr(from_2, "ess")),
                 ctable: nix.thunk(() => nix.attr(from_2, "ctable")),
                 popup: nix.thunk(() => nix.attr(from_2, "popup")),
@@ -218,8 +218,8 @@ export default nix.thunk(() => (() => {
               })()))),
             "flycheck-rtags": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "flycheck-rtags")))))),
             "pdf-tools": nix.thunk(() => nix.app(nix.sel(super$, "pdf-tools", "overrideAttrs"), (old) => ({
-                __proto__: pos$14,
-                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { __proto__: pos$13, CXXFLAGS: "-std=c++17" })),
+                [nix.POS]: pos$14,
+                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: pos$13, CXXFLAGS: "-std=c++17" })),
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [
                   nix.thunk(() => nix.sel(pkgs, "autoconf")),
                   nix.thunk(() => nix.sel(pkgs, "automake")),
@@ -243,21 +243,21 @@ remove-references-to ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(
                 recipe: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "recipe", "(pdf-tools\n:repo \"politza/pdf-tools\" :fetcher github\n:files (\"lisp/pdf-*.el\" \"server/epdfinfo\"))\n")),
               }))),
             hindent: nix.thunk(() => nix.app(nix.sel(nix.app(externalSrc, nix.thunk(() => nix.sel(super$, "hindent")), nix.thunk(() => nix.sel(pkgs, "haskellPackages", "hindent"))), "overrideAttrs"), (attrs) => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 packageRequires: nix.thunk(() => [nix.thunk(() => nix.sel(self, "haskell-mode"))]),
                 propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "haskellPackages", "hindent"))])),
               }))),
             hotfuzz: nix.thunk(() => nix.app(nix.sel(super$, "hotfuzz", "overrideAttrs"), (old) => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "cmake"))])),
                 dontUseCmakeBuildDir: true,
                 preBuild: "make -j$NIX_BUILD_CORES\n",
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "install hotfuzz-module.so $out/share/emacs/site-lisp/elpa/hotfuzz-*\n")),
               }))),
             irony: nix.thunk(() => nix.app(nix.sel(super$, "irony", "overrideAttrs"), (old) => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DCMAKE_INSTALL_BINDIR=bin"])),
-                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { __proto__: pos$17, NIX_CFLAGS_COMPILE: "-UCLANG_RESOURCE_DIR" })),
+                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: pos$17, NIX_CFLAGS_COMPILE: "-UCLANG_RESOURCE_DIR" })),
                 preConfigure: "pushd server\n",
                 preBuild: "make\ninstall -D bin/irony-server $out/bin/irony-server\npopd\n",
                 checkPhase: "pushd server\nmake check\npopd\n",
@@ -275,7 +275,7 @@ remove-references-to ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(
             jinx: nix.thunk(() => nix.app(nix.sel(super$, "jinx", "overrideAttrs"), (old) => (() => {
                 const libExt = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
                 return {
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
                   buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "enchant_2"))])),
                   postBuild: nix.thunk(() => nix.str`NIX_CFLAGS_COMPILE="$($PKG_CONFIG --cflags enchant-2) $NIX_CFLAGS_COMPILE"
@@ -286,29 +286,29 @@ install -m444 --target-directory=$outd jinx-mod${libExt}
 rm $outd/jinx-mod.c $outd/emacs-module.h
 `)),
                   meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "DamienCassou"))]),
                   })),
                 };
               })())),
             sqlite3: nix.thunk(() => nix.app(nix.sel(super$, "sqlite3", "overrideAttrs"), (old) => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "sqlite"))])),
                 postBuild: "make\n",
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "outd=$out/share/emacs/site-lisp/elpa/sqlite3-*\ninstall -m444 -t $outd sqlite3-api.so\nrm $outd/*.c $outd/*.h\n")),
                 meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "DamienCassou"))]),
                 })),
               }))),
             gnuplot: nix.thunk(() => nix.app(nix.sel(super$, "gnuplot", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace gnuplot.el \\
   --replace-fail 'gnuplot-program "gnuplot"' 'gnuplot-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gnuplot")))}"'
 `)),
               }))),
             "gnuplot-mode": nix.thunk(() => nix.app(nix.sel(super$, "gnuplot-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace gnuplot-mode.el \\
   --replace-fail 'gnuplot-program "gnuplot"' 'gnuplot-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gnuplot")))}"'
 `)),
@@ -318,25 +318,25 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
             mandoku: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "mandoku")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "git"))]))),
             "magit-delta": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "magit-delta")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "dash"))]))),
             ormolu: nix.thunk(() => nix.app(nix.sel(super$, "ormolu", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace ormolu.el \\
   --replace-fail 'ormolu-process-path "ormolu"' 'ormolu-process-path "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "ormolu")))}"'
 `)),
               }))),
             "python-isort": nix.thunk(() => nix.app(nix.sel(super$, "python-isort", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace python-isort.el \\
   --replace '-isort-command "isort"' '-isort-command "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "isort")))}"'
 `)),
               }))),
             mhc: nix.thunk(() => nix.app(nix.sel(nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "mhc"))), "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
-                return { __proto__: pos$27, calfw: nix.thunk(() => nix.attr(from_2, "calfw")) };
+                return { [nix.POS]: pos$27, calfw: nix.thunk(() => nix.attr(from_2, "calfw")) };
               })()))),
             nemerle: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "nemerle")))),
             notmuch: nix.thunk(() => nix.app(dontConfigure, nix.thunk(() => nix.sel(super$, "notmuch")))),
             "pikchr-mode": nix.thunk(() => nix.app(nix.sel(super$, "pikchr-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace pikchr-mode.el \\
   --replace '"pikchr")' '"${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pikchr")))}")'
 `)),
@@ -344,7 +344,7 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
             rtags: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "rtags")))))),
             "rtags-xref": nix.thunk(() => nix.app(dontConfigure, nix.thunk(() => nix.sel(super$, "rtags")))),
             rime: nix.thunk(() => nix.app(nix.sel(super$, "rime", "overrideAttrs"), (old) => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "librime"))])),
                 preBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preBuild"), nix.str`make lib CC=$CC MODULE_FILE_SUFFIX=${nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary")}
 `)),
@@ -354,11 +354,11 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
                 nix.thunk(() => nix.sel(self, "haskell-mode")),
                 nix.thunk(() => nix.sel(self, "hindent")),
               ])), "overrideAttrs"), (attrs) => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "haskellPackages", "structured-haskell-mode"))])),
               }))),
             telega: nix.thunk(() => nix.app(nix.sel(nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "telega"))), "overrideAttrs"), (old) => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [
                   nix.thunk(() => nix.sel(pkgs, "tdlib")),
                   nix.thunk(() => nix.sel(pkgs, "zlib")),
@@ -378,45 +378,45 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "mkdir -p $out/bin\ninstall -m755 -Dt $out/bin server/telega-server\n")),
               }))),
             tokei: nix.thunk(() => nix.app(nix.sel(super$, "tokei", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace tokei.el \\
   --replace 'tokei-program "tokei"' 'tokei-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "tokei")))}"'
 `)),
               }))),
             treemacs: nix.thunk(() => nix.app(nix.sel(super$, "treemacs", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace src/elisp/treemacs-customization.el \\
   --replace 'treemacs-python-executable (treemacs--find-python3)' 'treemacs-python-executable "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "python3")))}"'
 `)),
               }))),
             "treemacs-magit": nix.thunk(() => nix.app(nix.sel(super$, "treemacs-magit", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "git"))])),
               }))),
             "typst-mode": nix.thunk(() => nix.app(nix.sel(super$, "typst-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace typst-mode.el \\
   --replace 'typst-executable-location  "typst"' 'typst-executable-location "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "typst")))}"'
 `)),
               }))),
             "units-mode": nix.thunk(() => nix.app(nix.sel(super$, "units-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace units-mode.el \\
   --replace-fail 'units-binary-path "units"' 'units-binary-path "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "units")))}"'
 `)),
               }))),
             "vdiff-magit": nix.thunk(() => nix.app(nix.sel(super$, "vdiff-magit", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "git"))])),
               }))),
             "zig-mode": nix.thunk(() => nix.app(nix.sel(super$, "zig-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace zig-mode.el \\
   --replace-fail 'zig-zig-bin "zig"' 'zig-zig-bin "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "zig")))}"'
 `)),
               }))),
             zmq: nix.thunk(() => nix.app(nix.sel(super$, "zmq", "overrideAttrs"), (old) => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 stripDebugList: nix.thunk(() => ["share"]),
                 preBuild: "export EZMQ_LIBDIR=$(mktemp -d)\nmake\n",
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [
@@ -426,7 +426,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                   nix.thunk(() => nix.sel(pkgs, "libtool")),
                 ])),
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [
-                  nix.thunk(() => nix.app(nix.sel(pkgs, "zeromq", "override"), nix.thunk(() => ({ __proto__: pos$39, enableDrafts: true })))),
+                  nix.thunk(() => nix.app(nix.sel(pkgs, "zeromq", "override"), nix.thunk(() => ({ [nix.POS]: pos$39, enableDrafts: true })))),
                 ])),
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "mv $EZMQ_LIBDIR/emacs-zmq.* $out/share/emacs/site-lisp/elpa/zmq-*\nrm -r $out/share/emacs/site-lisp/elpa/zmq-*/src\nrm $out/share/emacs/site-lisp/elpa/zmq-*/Makefile\n")),
               }))),
@@ -449,11 +449,11 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             qiita: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "qiita")))),
             "sql-presto": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "sql-presto")))),
             editorconfig: nix.thunk(() => nix.app(nix.sel(super$, "editorconfig", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 propagatedUserEnvPkgs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "editorconfig-core-c"))]),
               }))),
             "evil-search-highlight-persist": nix.thunk(() => nix.app(nix.sel(super$, "evil-search-highlight-persist", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 packageRequires: nix.thunk(() => (() => {
                   const w = nix.withScope(self, null);
                   return [
@@ -463,10 +463,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                 })()),
               }))),
             "hamlet-mode": nix.thunk(() => nix.app(nix.sel(super$, "hamlet-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 patches: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       url: "https://github.com/lightquake/hamlet-mode/commit/253495d1330d6ec88d97fac136c78f57c650aae0.patch",
                       sha256: "dSxS5yuXzCW96CUyvJWwjkhf1FMGBfiKKoBxeDVdz9Y=",
                     })))),
@@ -475,17 +475,17 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "helm-rtags": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "helm-rtags")))))),
             "php-auto-yasnippets": nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "php-auto-yasnippets")))),
             racer: nix.thunk(() => nix.app(nix.sel(super$, "racer", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace racer.el \\
   --replace /usr/local/src/rust/src ${nix.sel(pkgs, "rustPlatform", "rustcSrc")}
 `)),
               }))),
             spaceline: nix.thunk(() => nix.app(nix.sel(super$, "spaceline", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
-                return { __proto__: pos$46, powerline: nix.thunk(() => nix.attr(from_2, "powerline")) };
+                return { [nix.POS]: pos$46, powerline: nix.thunk(() => nix.attr(from_2, "powerline")) };
               })()))),
             vterm: nix.thunk(() => nix.app(nix.sel(super$, "vterm", "overrideAttrs"), (old) => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "cmake"))])),
                 buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [
                   nix.thunk(() => nix.sel(self, "emacs")),
@@ -498,9 +498,9 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "make\ninstall -m444 -t $out/share/emacs/site-lisp/elpa/vterm-** ../*.so\nrm -rf $out/share/emacs/site-lisp/elpa/vterm-**/{CMake*,build,*.c,*.h}\n")),
               }))),
             w3m: nix.thunk(() => nix.app(nix.sel(super$, "w3m", "override"), (args_2) => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 melpaBuild: (drv) => nix.app(nix.sel(args_2, "melpaBuild"), nix.thunk(() => nix.update(drv, {
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     prePatch: nix.thunk(() => (() => {
                       const w3m = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "w3m")))}/bin/w3m`);
                       return nix.str`substituteInPlace w3m.el \\
@@ -511,19 +511,19 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                   }))),
               }))),
             wordnut: nix.thunk(() => nix.app(nix.sel(super$, "wordnut", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace wordnut.el \\
   --replace 'wordnut-cmd "wn"' 'wordnut-cmd "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "wordnet")))}"'
 `)),
               }))),
             mozc: nix.thunk(() => nix.app(nix.sel(super$, "mozc", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace src/unix/emacs/mozc.el \\
   --replace '"mozc_emacs_helper"' '"${nix.sel(pkgs, "mozc")}/bin/mozc_emacs_helper"'
 `)),
               }))),
             "osx-dictionary": nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin")) ? nix.app(nix.sel(super$, "osx-dictionary", "overrideAttrs"), (old) => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 postBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postBuild"), "$CXX -O3 -framework CoreServices -framework Foundation osx-dictionary.m -o osx-dictionary-cli\n")),
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "outd=$out/share/emacs/site-lisp/elpa/osx-dictionary-*\nmkdir -p $out/bin\ninstall -m444 -t $out/bin osx-dictionary-cli\nrm $outd/osx-dictionary.m\n")),
               })) : nix.sel(super$, "osx-dictionary"))),
@@ -532,13 +532,13 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             abgaben: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "abgaben")))), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mu4e"))]))),
             "abl-mode": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "abl-mode")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "f"))]))),
             "ac-php-core": nix.thunk(() => nix.app(nix.sel(super$, "ac-php-core", "overrideAttrs"), (old) => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 preBuild: nix.thunk(() => nix.add("rm --verbose ac-php-comm-tags-data.el\n", nix.selOr(old, () => "", "preBuild"))),
               }))),
             "ack-menu": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "ack-menu")))),
             airplay: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "airplay")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "request-deferred"))]))),
             alectryon: nix.thunk(() => nix.app(nix.sel(super$, "alectryon", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241006.1902")) ? nix.add(nix.add(nix.selOr(previousAttrs, () => "", "preBuild"), "\n"), "rm --recursive --verbose etc/elisp/screenshot\n") : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "alert-termux": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "alert-termux")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "alert"))]))),
@@ -557,7 +557,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "boogie-friends": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "boogie-friends")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "lsp-mode"))]))))),
             borg: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "borg")))),
             bpr: nix.thunk(() => nix.app(nix.sel(super$, "bpr", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241013.1803")) ? nix.add(nix.add(nix.selOr(previousAttrs, () => "", "preBuild"), "\n"), "rm --verbose --force test-bpr.el\n") : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "brainfuck-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "brainfuck-mode")))),
@@ -579,14 +579,14 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             cheerilee: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "cheerilee")))),
             chronometrist: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "chronometrist")))),
             "chronometrist-key-values": nix.thunk(() => nix.app(nix.sel(super$, "chronometrist-key-values", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 recipe: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241006.1831")) ? "(chronometrist-key-values :fetcher git :url \"\"\n :files (:defaults \"elisp/chronometrist-key-values.*\"))\n" : nix.sel(previousAttrs, "recipe"))),
               }))),
             "clingo-mode": nix.thunk(() => nix.app(nix.sel(super$, "clingo-mode", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 patches: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       name: "add-missing-end-parenthesis.patch",
                       url: "https://github.com/llaisdy/clingo-mode/pull/3/commits/063445a24afb176c3f16af7a2763771dbdc4ecf6.patch",
                       hash: "sha256-OYP5LaZmCUJFgFk1Pf30e7sml8fC+xI4HSyDz7lck7E=",
@@ -597,10 +597,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "cmake-ide": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "cmake-ide")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "dash"))]))),
             "code-review": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "code-review")))),
             codesearch: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(nix.sel(super$, "codesearch", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   patches: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240827.805")) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         name: "remove-unused-dash.patch",
                         url: "https://github.com/abingham/emacs-codesearch/commit/bd24a152ab6ea9f69443ae8e5b7351bb2f990fb6.patch",
                         hash: "sha256-cCHY8Ak2fHuuhymjSF7w2MLPDJa84mBUdKg27mB9yto=",
@@ -616,7 +616,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             conda: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "conda")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "projectile"))]))),
             consult: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "consult")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "flymake"))]))),
             "consult-gh": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(nix.sel(super$, "consult-gh", "overrideAttrs"), (old) => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "gh"))])),
                 }))))),
             "consult-gh-embark": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "consult-gh-embark")))),
@@ -627,14 +627,14 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             creole: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "creole")))),
             cssh: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "cssh")))),
             "dap-mode": nix.thunk(() => nix.app(nix.sel(super$, "dap-mode", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20250131.1624")) ? nix.add("rm --verbose dapui.el\n", nix.selOr(previousAttrs, () => "", "preBuild")) : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "db-pg": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "db-pg")))),
             "describe-number": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "describe-number")))),
             "dic-lookup-w3m": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "dic-lookup-w3m")))),
             difftastic: nix.thunk(() => nix.app(nix.sel(super$, "difftastic", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace difftastic.el \\
   --replace-fail 'difftastic-executable "difft"' 'difftastic-executable "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "difftastic")))}"'
 `)),
@@ -649,7 +649,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "edit-color-stamp": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "edit-color-stamp")))),
             edts: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "edts")))))),
             eimp: nix.thunk(() => nix.app(nix.sel(super$, "eimp", "overrideAttrs"), (old) => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postPatch"), "\n"), nix.str`substituteInPlace eimp.el --replace-fail \\
   '(defcustom eimp-mogrify-program "mogrify"' \\
   '(defcustom eimp-mogrify-program "${nix.sel(pkgs, "imagemagick")}/bin/mogrify"'
@@ -663,7 +663,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             ekg: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "ekg")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "denote"))]))),
             "el-secretario-mu4e": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "el-secretario-mu4e")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mu4e"))]))),
             elfeed: nix.thunk(() => nix.app(nix.sel(super$, "elfeed", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace elfeed-curl.el \\
   --replace-fail 'elfeed-curl-program-name "curl"' 'elfeed-curl-program-name "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))}"'
 `)),
@@ -671,10 +671,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "elisp-sandbox": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "elisp-sandbox")))),
             elnode: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "elnode")))),
             elscreen: nix.thunk(() => nix.app(nix.sel(super$, "elscreen", "overrideAttrs"), (old) => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       name: "do-not-require-unneeded-wl.patch",
                       url: "https://github.com/knu/elscreen/pull/34/commits/2ffbeb11418d1b98809909c389e7010666d511fd.patch",
                       hash: "sha256-7JoDGtFECZEkB3xmMBXZcx6oStkEV06soiqOkDevWtM=",
@@ -718,7 +718,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "exwm-edit": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "exwm-edit")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "exwm"))]))),
             "flymake-elixir": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "flymake-elixir")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "flymake-easy"))]))),
             "flymake-hadolint": nix.thunk(() => nix.app(nix.sel(super$, "flymake-hadolint", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace flymake-hadolint.el \\
   --replace-fail 'flymake-hadolint-program "hadolint"' 'flymake-hadolint-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "hadolint")))}"'
 `)),
@@ -726,7 +726,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             flyparens: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "flyparens")))),
             "fold-dwim-org": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "fold-dwim-org")))),
             "frontside-javascript": nix.thunk(() => nix.app(nix.sel(super$, "frontside-javascript", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240929.1858")) ? nix.add(nix.add(nix.selOr(previousAttrs, () => "", "preBuild"), "\n"), "rm --verbose packages/javascript/test-suppport.el\n") : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "fxrd-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "fxrd-mode")))),
@@ -747,10 +747,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             guix: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "guix")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "geiser-guile"))]))),
             gumshoe: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "gumshoe")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "perspective"))]))),
             "helm-chrome-control": nix.thunk(() => nix.app(nix.sel(super$, "helm-chrome-control", "overrideAttrs"), (old) => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$70,
+                      [nix.POS]: pos$70,
                       name: "require-helm-core-instead-of-helm.patch",
                       url: "https://github.com/xuchunyang/helm-chrome-control/pull/2/commits/7765cd2483adef5cfa6cf77f52259ad6e1dd0daf.patch",
                       hash: "sha256-tF+IaICbveYJvd3Tjx52YBBztpjifZdCA4O+Z2r1M3s=",
@@ -786,7 +786,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             inlineR: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "inlineR")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "ess"))]))),
             insfactor: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "insfactor")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "cider"))]))),
             iregister: nix.thunk(() => nix.app(nix.sel(super$, "iregister", "overrideAttrs"), (old) => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 recipe: "",
                 files: "(:defaults (:exclude \".bump-version.el\"))",
               }))),
@@ -796,7 +796,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             jdee: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "jdee")))),
             "jekyll-modes": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "jekyll-modes")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "poly-markdown"))]))),
             "jq-mode": nix.thunk(() => nix.app(nix.sel(super$, "jq-mode", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace jq-mode.el \\
   --replace-fail 'jq-interactive-command "jq"' 'jq-interactive-command "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "jq")))}"'
 substituteInPlace ob-jq.el \\
@@ -806,10 +806,10 @@ substituteInPlace ob-jq.el \\
             jss: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "jss")))),
             "julia-snail": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "julia-snail")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "eat"))]))),
             "kanagawa-themes": nix.thunk(() => nix.app(nix.sel(super$, "kanagawa-themes", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 patches: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241015.2237")) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$74,
+                      [nix.POS]: pos$74,
                       name: "fix-compilation-error.patch",
                       url: "https://github.com/Fabiokleis/kanagawa-emacs/commit/83c2b5c292198b46a06ec0ad62619d83fd965433.patch",
                       hash: "sha256-pB1ht03XCh+BWKHhxBAp701qt/KWAMJ2SQQaN3FgMjU=",
@@ -826,7 +826,7 @@ substituteInPlace ob-jq.el \\
             liberime: nix.thunk(() => nix.app(nix.sel(super$, "liberime", "overrideAttrs"), nix.thunk(() => (() => {
                 const libExt = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
                 return (prevAttrs) => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "librime"))])),
                   nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "which"))])),
                   postBuild: nix.thunk(() => nix.add(nix.add(nix.selOr(prevAttrs, () => "", "postBuild"), "\n"), nix.str`make CC=$CC SUFFIX=${libExt}
@@ -870,10 +870,10 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             mykie: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "mykie")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "helm"))]))),
             "myrddin-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "myrddin-mode")))),
             nand2tetris: nix.thunk(() => nix.app(nix.sel(super$, "nand2tetris", "overrideAttrs"), (old) => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$77,
+                      [nix.POS]: pos$77,
                       name: "remove-unneeded-require.patch",
                       url: "https://github.com/CestDiego/nand2tetris.el/pull/16/commits/d06705bf52f3cf41f55498d88fe15a1064bc2cfa.patch",
                       hash: "sha256-8OJXN9MuwBbL0afus53WroIxtIzHY7Bryv5ZGcS/inI=",
@@ -882,10 +882,10 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
               }))),
             navi2ch: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "navi2ch")))),
             navorski: nix.thunk(() => nix.app(nix.sel(super$, "navorski", "overrideAttrs"), (old) => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$79,
+                      [nix.POS]: pos$79,
                       name: "stop-using-assoc.patch",
                       url: "https://github.com/roman/navorski.el/pull/12/commits/b7b6c331898cae239c176346ac87c8551b1e0c72.patch",
                       hash: "sha256-CZxOSGuJXATonHMSLGCzO4kOlQqRAOcNNq0i4Qh21y8=",
@@ -912,10 +912,10 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
                 nix.thunk(() => nix.sel(self, "qrencode")),
               ]))),
             "org-noter": nix.thunk(() => nix.app(nix.sel(super$, "org-noter", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 patches: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240915.344")) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      __proto__: pos$81,
+                      [nix.POS]: pos$81,
                       name: "catch-error-for-optional-dep-org-roam.patch",
                       url: "https://github.com/org-noter/org-noter/commit/761c551ecc88fec57e840d346c6af5f5b94591d5.patch",
                       hash: "sha256-Diw9DgjANDWu6CBMOlRaihQLOzeAr7VcJPZT579dpYU=",
@@ -926,7 +926,7 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             "org-pdftools": nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "org-pdftools")))),
             "org-present-remote": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "org-present-remote")))),
             "org-projectile": nix.thunk(() => nix.app(nix.sel(super$, "org-projectile", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240901.2041")) ? nix.add("rm --verbose org-projectile-helm.el\n", nix.selOr(previousAttrs, () => "", "preBuild")) : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "org-projectile-helm": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "org-projectile-helm")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "helm-org"))]))),
@@ -945,7 +945,7 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             outlook: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "outlook")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mu4e"))]))),
             pastery: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "pastery")))),
             "pdf-meta-edit": nix.thunk(() => nix.app(nix.sel(super$, "pdf-meta-edit", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(attrs, () => "", "postPatch"), "\n"), nix.str`substituteInPlace pdf-meta-edit.el \\
     --replace-fail '(executable-find "pdftk")' '"${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pdftk")))}"'
 `)),
@@ -963,7 +963,7 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             "projmake-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "projmake-mode")))),
             "pyim-basedict": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "pyim-basedict")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "pyim"))]))),
             "realgud-lldb": nix.thunk(() => nix.app(nix.sel(super$, "realgud-lldb", "overrideAttrs"), (old) => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 preBuild: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "preBuild"), "\n"), "rm --verbose cask-install.el\n")),
               }))),
             requirejs: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "requirejs")))),

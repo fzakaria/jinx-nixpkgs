@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "exodus",
       version: "26.1.5",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`exodus-linux-x64-${nix.sel(finalAttrs, "version")}.zip`),
           url: nix.thunk(() => nix.str`https://downloads.exodus.com/releases/exodus-linux-x64-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-BClWuL4dTc1lESyEXuDtpGp1K/AxICbpQIaWYLrme1M=",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.exodus.io/",
         description: "Top-rated cryptocurrency wallet with Trezor integration and built-in Exchange",
         sourceProvenance: nix.thunk(() => (() => {

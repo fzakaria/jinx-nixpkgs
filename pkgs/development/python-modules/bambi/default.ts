@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bambi",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bambinos",
           repo: "bambi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         seaborn,
         sparse,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, jax: [] })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, jax: [] })),
       nativeCheckInputs: nix.thunk(() => [blackjax, numpyro, pytest_mock, pytestCheckHook, writableTmpDirAsHomeHook]),
       disabledTests: nix.thunk(() => nix.concat([
         "test_nuts_parameter_forwarded_to_external_samplers",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_interpret_plots.py"]),
       pythonImportsCheck: nix.thunk(() => ["bambi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-level Bayesian model-building interface",
         homepage: "https://bambinos.github.io/bambi",
         changelog: nix.thunk(() => nix.str`https://github.com/bambinos/bambi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

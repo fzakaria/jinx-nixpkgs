@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gitstats",
       version: "2016-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hoxu",
           repo: "gitstats",
           rev: "55c5c285558c410bb35ebf421245d320ab9ee9fa",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "convert-gitstats-to-use-python3.patch",
             url: "https://github.com/hoxu/gitstats/commit/ca415668ce6b739ca9fefba6acd29c63b89f4211.patch",
             hash: "sha256-sgjoj8eQ5CxQBffmhqymsmXb8peuaSbfFoWciLK3LOo=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["man"]),
       postInstall: "installManPage doc/gitstats.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitstats.sourceforge.net/",
         description: "Git history statistics generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

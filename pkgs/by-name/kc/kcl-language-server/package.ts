@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kcl-language-server",
       version: "0.11.2-unstable-2025-10-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kcl-lang",
           repo: "kcl",
           rev: "68b4062e1f6b818b2fc64cfc69ef0a692b35943d",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/kclvm`),
       cargoHash: "sha256-FulW9qNVVZtOoRfm+NPwQENJU9Ib1GBzcjHxk5QS70g=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       })),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/kcl-lang/kcl/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "High-performance implementation of KCL written in Rust that uses LLVM as the compiler backend",
         downloadPage: nix.thunk(() => nix.str`https://github.com/kcl-lang/kcl/tree/v${nix.sel(finalAttrs, "version")}/kclvm/tools/src/LSP`),

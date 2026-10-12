@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const mbrola = nix.arg($, "mbrola");
   const languages = nix.argOr($, "languages", () => []);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "numediart",
       repo: "MBROLA-voices",
       rev: "fe05a0ccef6a941207fd6aaad0b31294a1f93a51",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mbrola-voices";
   const version = "0-unstable-2020-03-30";
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Speech synthesizer based on the concatenation of diphones (voice files)",
     homepage: "https://github.com/numediart/MBROLA-voices",
     license: nix.thunk(() => nix.sel(mbrola, "meta", "license")),
   }));
   return (nix.asBool(nix.eq(languages, [])) ? nix.force(src) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       postPatch: nix.thunk(() => nix.str`shopt -s extglob
 pushd data

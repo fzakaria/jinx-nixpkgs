@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vericast",
           repo: "nbconflux",
           tag: version,
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./setup-py.patch")]);
       const postPatch = "# remove vendorized versioneer.py\nrm versioneer.py\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         JUPYTER_PATH: nix.thunk(() => nix.str`${nbconvert}/share/jupyter`),
       }));
       const disabledTests = nix.thunk(() => ["test_post_to_confluence", "test_optional_components"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converts Jupyter Notebooks to Atlassian Confluence (R) pages using nbconvert",
         mainProgram: "nbconflux",
         homepage: "https://github.com/Valassis-Digital-Media/nbconflux",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const kirigami = nix.arg($, "kirigami");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "polkit-kde-agent-1",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, kirigami]),
     })));

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_412 = nix.arg($, "docbook_xml_dtd_412");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libieee1284",
       version: "0.2.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twaugh",
           repo: "libieee1284",
           rev: nix.thunk(() => nix.str`V${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-libs/libieee1284/files/libieee1284-0.2.11-don-t-blindly-assume-outb_p-to-be-available.patch?id=dec60bb6900d6ebdaaa6aa1dcb845b30b739f9b5",
             hash: "sha256-sNu0OPBMa9GIwSu754noateF4FZC14f+8YRgYUl13KQ=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--without-python"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["ac_cv_header_sys_io_h=no"])))),
       prePatch: "./bootstrap\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parallel port communication library",
         mainProgram: "libieee1284_test",
         homepage: "http://cyberelk.net/tim/software/libieee1284/",

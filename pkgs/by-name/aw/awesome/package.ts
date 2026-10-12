@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const pname = "awesome";
       const version = "4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awesomewm",
           repo: "awesome",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,19 +72,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common-prerequisite.patch",
             url: "https://github.com/awesomeWM/awesome/commit/c5202a48708585cc33528065af8d1b1d28b1a6e0.patch",
             sha256: "0sv36xf0ibjcm63gn9k3bl039sqavb2b5i6d65il4bdclkc0n08b",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fno-common.patch",
             url: "https://github.com/awesomeWM/awesome/commit/d256d9055095f27a33696e0aeda4ee20ed4fb1a0.patch",
             sha256: "1n3y4wnjra8blss7642jgpxnm9n92zhhjj541bb9i60m4b7bgfzz",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "glib-2.86.0.patch",
             url: "https://github.com/void-linux/void-packages/raw/933b305b313a2c7d971d746835deb9f49b652204/srcpkgs/awesome/patches/glib-2.86.0.patch",
             hash: "sha256-qVzD8O34sULcV6S4daDUBPnxVDd8T6ZyLOE+gYxCmf0=",
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const propagatedUserEnvPkgs = nix.thunk(() => [hicolor_icon_theme]);
       const buildInputs = nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ __proto__: pos$5, xcbSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, xcbSupport: true })))),
         librsvg,
         dbus,
         gdk_pixbuf,
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), gtk3Support, gtk3)));
       const cmakeFlags = nix.thunk(() => nix.concat([nix.thunk(() => nix.str`-DOVERRIDE_VERSION=${version}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(lua, "pkgs", "isLuaJIT")), nix.thunk(() => nix.str`-DLUA_LIBRARY=${lua}/lib/libluajit-5.1.so`))));
       const env = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         FONTCONFIG_FILE: nix.thunk(() => nix.builtins.toString(fontsConf)),
         GI_TYPELIB_PATH: nix.thunk(() => nix.str`${nix.sel(pango, "out")}/lib/girepository-1.0`),
         LUA_CPATH: nix.thunk(() => nix.str`${luaEnv}/lib/lua/${nix.sel(lua, "luaversion")}/?.so`),
@@ -151,9 +151,9 @@ makeWrapper "$out/bin/.awesome-wrapped" "$out/bin/awesome" \\
 wrapProgram $out/bin/awesome-client \\
   --prefix PATH : "${which}/bin"
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$7, lua: lua }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$7, lua: lua }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Highly configurable, dynamic window manager for X",
         homepage: "https://awesomewm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -161,7 +161,7 @@ wrapProgram $out/bin/awesome-client \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

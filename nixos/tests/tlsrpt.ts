@@ -17,35 +17,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "tlsrpt",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "tlsrpt-reporter", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tlsrpt: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             reportd: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               settings: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 organization_name: "NixOS Testers United",
                 contact_info: "smtp-tls-report@localhost",
                 sender_address: "noreply@localhost",
               })),
             })),
           })),
-          postfix: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          postfix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         })),
       })),
     })),

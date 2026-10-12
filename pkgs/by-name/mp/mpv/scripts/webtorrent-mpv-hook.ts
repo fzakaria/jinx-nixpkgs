@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libdatachannel = nix.arg($, "libdatachannel");
   const plog = nix.arg($, "plog");
   const nodeDatachannel = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "node-datachannel",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "murat-dogan",
           repo: "node-datachannel",
           tag: nix.thunk(() => nix.str`v${nix.sel(nodeDatachannel, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, libdatachannel, plog]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nodejs}/include/node`),
       })),
       preBuild: "# don't use static libs and don't use FetchContent\nsubstituteInPlace CMakeLists.txt \\\n    --replace-fail 'OPENSSL_USE_STATIC_LIBS TRUE' 'OPENSSL_USE_STATIC_LIBS FALSE' \\\n    --replace-fail 'if(NOT libdatachannel)' 'if(false)' \\\n    --replace-fail 'datachannel-static' 'datachannel'\nsed -i '2ifind_package(plog)' CMakeLists.txt\n\n# don't fetch node headers\nsubstituteInPlace node_modules/cmake-js/lib/dist.js \\\n    --replace-fail '!this.downloaded' 'false'\n",
@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
       const pname = "webtorrent-mpv-hook";
       const version = "1.4.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "mrxdst",
           repo: "webtorrent-mpv-hook",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-p4Mggt3J8QOok/uj97eCchT7H9HPuDjoyV82MHHkkZM=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
         scriptName: "webtorrent.js",
       }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace src/webtorrent.ts --replace-fail "node_path: 'node'" "node_path: '${nix.app(nix.sel(lib, "getExe"), nodejs)}'"
@@ -76,14 +76,14 @@ ln -s ${nodeDatachannel}/build node_modules/node-datachannel/build
 `);
       const postInstall = "mkdir -p $out/share/mpv/scripts/\nln -s $out/lib/node_modules/webtorrent-mpv-hook/build/webtorrent.js $out/share/mpv/scripts/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Adds a hook that allows mpv to stream torrents",
         homepage: "https://github.com/mrxdst/webtorrent-mpv-hook",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "chuangzhu"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "deadlock-mod-manager",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deadlock-mod-manager",
           repo: "deadlock-mod-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pnpmRoot: ".",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ZxlP6zOwY9Fxa4BCqnUoCmci3lviHn7H3HU5SnmdrSU=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./no-updater-artifacts.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$3, VITE_API_URL: "https://api.deadlockmods.app" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, VITE_API_URL: "https://api.deadlockmods.app" })),
       checkFlags: nix.thunk(() => [
         "--skip=download_manager::downloader::tests::test_download_file",
         "--skip=mod_manager::steam_manager::tests::set_steam_dir_rejects_invalid_directory",
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             desktopName: "deadlock-mod-manager",
             name: "Deadlock Mod Manager",
             exec: "deadlock-mod-manager %u",
@@ -119,11 +119,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mod manager for the Valve game Deadlock",
         homepage: "https://github.com/deadlock-mod-manager/deadlock-mod-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

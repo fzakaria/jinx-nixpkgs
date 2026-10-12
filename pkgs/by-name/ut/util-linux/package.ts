@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withLastlog) || nix.asBool(pamSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ut/util-linux/package.nix:37:1");
   const isMinimal = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.eq(cryptsetupSupport, false)) && nix.asBool(!nix.asBool(nlsSupport)))) && nix.asBool(!nix.asBool(ncursesSupport)))) && nix.asBool(!nix.asBool(systemdSupport))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.add("util-linux", nix.app(nix.sel(lib, "optionalString"), isMinimal, "-minimal"))),
       version: "2.42.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/util-linux/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/util-linux-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Zqx8DnJSeOsrA54xBPLJERk0HZQbQbrHooXGlflAvVc=",
         })))),
@@ -103,16 +103,16 @@ substituteInPlace $lastlog/lib/systemd/system/lastlog2-import.service \\
 `)))),
       doCheck: false,
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         hasCol: nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pam-lastlog": nix.thunk(() => nix.attr(nixosTests, "pam-lastlog")),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isMinimal)), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git",
               "rev-prefix": "v",
               ignoredVersions: "(-rc|-start|-devel).*",
@@ -120,7 +120,7 @@ substituteInPlace $lastlog/lib/systemd/system/lastlog2-import.service \\
         }))))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.kernel.org/pub/linux/utils/util-linux/",
         description: "Set of system utilities for Linux",
         changelog: nix.thunk(() => nix.str`https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/v${nix.sel(finalAttrs, "version")}-ReleaseNotes`),
@@ -148,7 +148,7 @@ substituteInPlace $lastlog/lib/systemd/system/lastlog2-import.service \\
         pkgConfigModules: nix.thunk(() => ["blkid", "fdisk", "mount", "smartcols", "uuid"]),
         priority: 6n,
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "kernel", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

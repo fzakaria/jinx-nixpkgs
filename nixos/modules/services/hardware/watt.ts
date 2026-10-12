@@ -38,56 +38,56 @@ export default nix.lambda((args) => (() => {
   const cfgFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "watt-config.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const conflictingServices = nix.thunk(() => ["power-profiles-daemon", "auto-cpufreq", "tlp", "cpupower-gui", "thermald"]);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         watt: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "automatic CPU speed & power optimizer for Linux")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "watt", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
-              type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({ __proto__: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               description: "Configuration for Watt. Options at https://github.com/notaShelf/watt",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         assertions: nix.thunk(() => nix.builtins.map((service) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", nix.key(nix.force(service)), "enable"))),
             message: nix.thunk(() => nix.str`You have set services.${service}.enable = true; which conflicts with Watt.`),
           }), conflictingServices)),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "watt.toml": nix.thunk(() => ({ __proto__: pos$7, source: cfgFile })),
+            [nix.POS]: pos$8,
+            "watt.toml": nix.thunk(() => ({ [nix.POS]: pos$7, source: cfgFile })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dbus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             watt: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               conflicts: nix.thunk(() => nix.builtins.map((service) => nix.str`${service}.service`, conflictingServices)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 WorkingDirectory: "",
                 ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
                 Restart: "on-failure",

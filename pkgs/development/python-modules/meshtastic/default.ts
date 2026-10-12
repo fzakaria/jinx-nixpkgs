@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const wcwidth = nix.arg($, "wcwidth");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "meshtastic",
       version: "2.7.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meshtastic",
           repo: "python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         tabulate,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         analysis: nix.thunk(() => [dash, dash_bootstrap_components, pandas, pandas_stubs]),
         cli: nix.thunk(() => [argcomplete, dotmap, print_color, pyqrcode, wcwidth]),
         powermon: nix.thunk(() => [parse, platformdirs, ppk2_api, pyarrow, riden]),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         "test_TCPInterface",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python API for talking to Meshtastic devices",
         homepage: "https://github.com/meshtastic/python",
         changelog: nix.thunk(() => nix.str`https://github.com/meshtastic/python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

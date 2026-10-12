@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "facedetect";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wavexx",
           repo: "facedetect",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python3-support.patch",
             url: "https://gitlab.com/wavexx/facedetect/-/commit/8037d4406eb76dd5c106819f72c3562f8b255b5b.patch",
             sha256: "1752k37pbkigiwglx99ba9360ahzzrrb65a8d77k3xs4c3bcmk2p",
@@ -50,7 +50,7 @@ install -v -m755 -D facedetect $out/bin/facedetect
 wrapPythonPrograms
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.thregr.org/~wavexx/software/facedetect/",
         description: "Simple face detector for batch processing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -59,7 +59,7 @@ wrapPythonPrograms
         mainProgram: "facedetect",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

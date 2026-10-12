@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "backoff",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/backoff/releases/download/${nix.sel(finalAttrs, "version")}/backoff-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-AL6jEbInsbwKVYedpNzjix/YRHtOTizxk6aVNzesnwM=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Exponential backoff mechanism for OCaml",
         homepage: "https://github.com/ocaml-multicore/backoff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

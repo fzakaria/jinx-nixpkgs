@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const sm64baserom = nix.arg($, "sm64baserom");
   const region = nix.argOr($, "region", () => "us");
   const _60fps = nix.argOr($, "_60fps", () => true);
-  const baseRom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ __proto__: pos$1, region: region }))), "romPath"));
+  const baseRom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, region: region }))), "romPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sm64ex",
       version: "0-unstable-2024-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sm64pc",
           repo: "sm64ex",
           rev: "d7ca2c04364a6dd0dac58b47151e04e26887e6f0",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), _60fps, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "60fps_ex.patch",
               url: nix.thunk(() => nix.str`file://${nix.sel(finalAttrs, "src")}/enhancements/60fps_ex.patch`),
               hash: "sha256-2V7WcZ8zG8Ef0bHmXVz2iaR48XRRDjTvynC4RPxMkcA=",
@@ -59,7 +59,7 @@ cp build/${region}_pc/sm64.${region}.f3dex2e $out/bin/sm64ex
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/sm64pc/sm64ex",
         description: "Super Mario 64 port based off of decompilation",
         longDescription: "Note that you must supply a baserom yourself to extract assets from.\nIf you are not using an US baserom, you must overwrite the \"region\" attribute with either \"eu\" or \"jp\".\nIf you would like to use patches sm64ex distributes as makeflags, add them to the \"compileFlags\" attribute.\n",

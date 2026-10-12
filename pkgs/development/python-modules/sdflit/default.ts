@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const version = "0.2.8";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "yzx9",
       repo: "sdflit",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-9x/EnFCWhGu1zlLLz6D084PduS9ReQqdeRMblmw0g/s=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sdflit",
       version: version,
       src: src,
       pyproject: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-Bz4HfpC+qNWWV3KgLW8L+4d5odmbYNRvdMjdMBy6qIQ=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["sdflit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and Robust Signed Distance Function Library",
         homepage: "https://github.com/yzx9/sdflit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

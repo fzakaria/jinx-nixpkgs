@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => true);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "texworks",
       version: "0.6.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TeXworks",
           repo: "texworks",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withLua, lua), nix.concat(nix.app(nix.sel(lib, "optional"), withPython, python3), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(qt6, "qtwayland"))))))),
       cmakeFlags: nix.thunk(() => nix.concat(["-DQT_DEFAULT_MAJOR_VERSION=6"], nix.concat(nix.app(nix.sel(lib, "optional"), withLua, "-DWITH_LUA=ON"), nix.app(nix.sel(lib, "optional"), withPython, "-DWITH_PYTHON=ON")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/TeXworks/texworks/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),
         description: "Simple TeX front-end program inspired by TeXShop",
         homepage: "http://www.tug.org/texworks/",

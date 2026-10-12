@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const stat = nix.arg($, "stat");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "netbsd-stat-hook",
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.thunk(() => nix.app(writeText, "netbsd-stat-hook-impl", nix.thunk(() => nix.str`makeFlagsArray+=(TOOL_STAT=${stat}/bin/stat)
 `))));
 })(), formals$1);

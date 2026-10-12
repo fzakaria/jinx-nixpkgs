@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const httpun = nix.arg($, "httpun");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httpun-ws",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/httpun-ws/releases/download/${nix.sel(finalAttrs, "version")}/httpun-ws-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-6uDNLg61tPyctthitxFqbw/IUDsuQ5BGvw5vTLLCl/0=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Websocket implementation for httpun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/anmonteiro/httpun-ws",

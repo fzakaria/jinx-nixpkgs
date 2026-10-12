@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const eqaf = nix.arg($, "eqaf");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "callipyge",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/oklm-wsh/Callipyge/releases/download/v${nix.sel(finalAttrs, "version")}/callipyge-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-T/94a88xvK51TggjXecdKc9kyTE9aIyueIt5T24sZB0=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/oklm-wsh/Callipyge",
         description: "Curve25519 in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

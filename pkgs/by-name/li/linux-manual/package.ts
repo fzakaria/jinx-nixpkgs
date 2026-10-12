@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(linuxPackages_latest, "kernel"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "linux-manual",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/man\"\ncp -r output/man \"$out/share/man/man9\"\n\nrunHook postInstall\n",
       installCheckPhase: "runHook preInstallCheck\n\n# Check for well‐known man page\nman -M \"$out/share/man\" -P cat 9 kmalloc >/dev/null\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://kernel.org/",
         description: "Linux kernel API manual pages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const hunspell = nix.arg($, "hunspell");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtvirtualkeyboard",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtsvg, hunspell]),
     })));

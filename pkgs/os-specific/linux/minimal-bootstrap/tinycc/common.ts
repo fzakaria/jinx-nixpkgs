@@ -69,18 +69,18 @@ cp ${libgetopt} \${out}/lib/libgetopt.a
       const libtccObjects = nix.argOr($_1, "libtccObjects", () => ["libtcc1.o", "va_list.o"]);
       const libtccBuildOptions = nix.arg($_1, "libtccBuildOptions");
       const meta = nix.arg($_1, "meta");
-      const tccTarget = nix.thunk(() => nix.sel({ __proto__: pos$1, "i686-linux": "I386", "x86_64-linux": "X86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
+      const tccTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, "i686-linux": "I386", "x86_64-linux": "X86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
       const options = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), " ", buildOptions));
       const libtccOptions = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-c", "-D", nix.thunk(() => nix.str`TCC_TARGET_${tccTarget}=1`)], libtccBuildOptions))));
       const compiler = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: pname,
           version: version,
           meta: meta,
           passthru: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             tests: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "get-version": (result) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/tcc -version
 mkdir \${out}
 `)),
@@ -119,7 +119,7 @@ ${nix.sel(prev, "compiler")}/bin/tcc \\
   ${src}/tcc.c
 `)));
       const libs = nix.thunk(() => nix.app(recompileLibc, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: pname,
           version: version,
           src: src,
@@ -128,9 +128,9 @@ ${nix.sel(prev, "compiler")}/bin/tcc \\
           libtccObjects: libtccObjects,
           tcc: compiler,
         }))));
-      return { __proto__: pos$6, prev: prev, compiler: compiler, libs: libs };
+      return { [nix.POS]: pos$6, prev: prev, compiler: compiler, libs: libs };
     })(), formals$3);
-    return { __proto__: pos$7, recompileLibc, buildTinyccMes };
+    return { [nix.POS]: pos$7, recompileLibc, buildTinyccMes };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const Prelude = nix.arg($, "Prelude");
   const version = "0.9.64";
   return nix.app(buildDhallGitHubPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "cloudformation",
       owner: "jcouyang",
       repo: "dhall-aws-cloudformation",

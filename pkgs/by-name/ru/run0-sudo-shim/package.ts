@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "run0-sudo-shim",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LordGrimmauld",
           repo: "run0-sudo-shim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, versionCheckHook]),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         POLKIT_STDIN_AGENT: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), polkit_stdin_agent)),
         TRUE: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), coreutils, "true")),
       })),
       postInstall: "ln -s $out/bin/run0-sudo-shim $out/bin/sudo\ninstallManPage target/tmp/run0-sudo-shim/manpage/*\ninstallShellCompletion \\\n  target/tmp/run0-sudo-shim/completion/sudo.{bash,fish} \\\n  --zsh target/tmp/run0-sudo-shim/completion/_sudo\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shim for the sudo command that utilizes run0",
         changelog: nix.thunk(() => nix.str`https://github.com/LordGrimmauld/run0-sudo-shim/releases/tag/${nix.sel(finalAttrs, "version")}`),
         mainProgram: "sudo",

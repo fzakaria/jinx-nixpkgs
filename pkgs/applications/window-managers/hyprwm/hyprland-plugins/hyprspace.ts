@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkHyprlandPlugin = nix.arg($, "mkHyprlandPlugin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkHyprlandPlugin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pluginName: "hyprspace",
       version: "0-unstable-2026-05-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KZDKM",
           repo: "hyprspace",
           rev: "c109256f5a79a8694acd6176971c4a273d32264c",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\nmv Hyprspace.so $out/lib/libhyprspace.so\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/KZDKM/Hyprspace",
         description: "Workspace overview plugin for Hyprland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

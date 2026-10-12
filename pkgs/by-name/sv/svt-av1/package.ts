@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nasm = nix.arg($, "nasm");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "svt-av1",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AOMediaCodec",
           repo: "SVT-AV1",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [nasm])))),
       cmakeFlags: nix.thunk(() => ["-DSVT_AV1_LTO=ON"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$3, withSvtav1: true })))),
+          [nix.POS]: pos$4,
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withSvtav1: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gitlab.com/AOMediaCodec/SVT-AV1",
         description: "AV1-compliant encoder/decoder library core",
         longDescription: "The Scalable Video Technology for AV1 (SVT-AV1 Encoder and Decoder) is an\nAV1-compliant encoder/decoder library core. The SVT-AV1 encoder\ndevelopment is a work-in-progress targeting performance levels applicable\nto both VOD and Live encoding / transcoding video applications. The\nSVT-AV1 decoder implementation is targeting future codec research\nactivities.\n",

@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const pgx = nix.arg($, "pgx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pgx_lwt",
       version: nix.thunk(() => nix.attr(pgx, "version")),
       src: nix.thunk(() => nix.attr(pgx, "src")),
       propagatedBuildInputs: nix.thunk(() => [logs, lwt, pgx]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { __proto__: pos$1, description: "Pgx using Lwt for IO" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: pos$1, description: "Pgx using Lwt for IO" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

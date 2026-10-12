@@ -46,26 +46,26 @@ export default nix.lambda((args) => (() => {
   const radarrApikey = "fedcba9876543210'\"\\cba9876543210";
   const port = 12345n;
   const expected = nix.thunk(() => ({
-    __proto__: pos$9,
-    analytics: nix.thunk(() => ({ __proto__: pos$1, enabled: false })),
-    auth: nix.thunk(() => ({ __proto__: pos$2, apikey: apikey, type: null })),
-    general: nix.thunk(() => ({ __proto__: pos$3, port: port, instance_name: "from-settings" })),
-    plex: nix.thunk(() => ({ __proto__: pos$4, migration_timestamp: 1700000000.1234567 })),
-    radarr: nix.thunk(() => ({ __proto__: pos$5, apikey: radarrApikey })),
-    translator: nix.thunk(() => ({ __proto__: pos$6, gemini_keys: geminiKeys })),
+    [nix.POS]: pos$9,
+    analytics: nix.thunk(() => ({ [nix.POS]: pos$1, enabled: false })),
+    auth: nix.thunk(() => ({ [nix.POS]: pos$2, apikey: apikey, type: null })),
+    general: nix.thunk(() => ({ [nix.POS]: pos$3, port: port, instance_name: "from-settings" })),
+    plex: nix.thunk(() => ({ [nix.POS]: pos$4, migration_timestamp: 1700000000.1234567 })),
+    radarr: nix.thunk(() => ({ [nix.POS]: pos$5, apikey: radarrApikey })),
+    translator: nix.thunk(() => ({ [nix.POS]: pos$6, gemini_keys: geminiKeys })),
     subsync: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       checker: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         blacklisted_providers: nix.thunk(() => ["fake-provider-a", "fake-provider-b"]),
       })),
     })),
   }));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "bazarr",
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -75,56 +75,56 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       configured: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           etc: nix.thunk(() => ({
-            __proto__: pos$15,
-            "bazarr-apikey": nix.thunk(() => ({ __proto__: pos$11, text: apikey })),
+            [nix.POS]: pos$15,
+            "bazarr-apikey": nix.thunk(() => ({ [nix.POS]: pos$11, text: apikey })),
             "bazarr-gemini-key-0": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               text: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), geminiKeys, 0n)),
             })),
             "bazarr-gemini-key-1": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               text: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), geminiKeys, 1n)),
             })),
-            "bazarr-radarr-apikey": nix.thunk(() => ({ __proto__: pos$14, text: radarrApikey })),
+            "bazarr-radarr-apikey": nix.thunk(() => ({ [nix.POS]: pos$14, text: radarrApikey })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           bazarr: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: true,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), expected, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 auth: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  apikey: nix.thunk(() => ({ __proto__: pos$17, _secret: "/etc/bazarr-apikey" })),
+                  [nix.POS]: pos$18,
+                  apikey: nix.thunk(() => ({ [nix.POS]: pos$17, _secret: "/etc/bazarr-apikey" })),
                 })),
                 translator: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   gemini_keys: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     _secret: nix.thunk(() => ["/etc/bazarr-gemini-key-0", "/etc/bazarr-gemini-key-1"]),
                   })),
                 })),
                 radarr: nix.thunk(() => ({
-                  __proto__: pos$22,
-                  apikey: nix.thunk(() => ({ __proto__: pos$21, _secret: "/etc/bazarr-radarr-apikey" })),
+                  [nix.POS]: pos$22,
+                  apikey: nix.thunk(() => ({ [nix.POS]: pos$21, _secret: "/etc/bazarr-radarr-apikey" })),
                 })),
               })))),
           })),
         })),
       })),
       defaults: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$28,
-          bazarr: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+          [nix.POS]: pos$28,
+          bazarr: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
         })),
       })),
     })),

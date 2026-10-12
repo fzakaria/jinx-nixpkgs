@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const newScope = nix.arg($, "newScope");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "dotnetCorePackages")),
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
         const buildDotnetSdk = nix.thunk(() => (() => {
           const buildDotnet = (attrs) => nix.app(callWithUtils, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary/build-dotnet.nix")), attrs)), nix.thunk(() => ({})));
           return (version) => nix.app(nix.builtins.import(version), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               fetchNupkg: fetchNupkg,
-              buildAspNetCore: (attrs) => nix.app(buildDotnet, nix.thunk(() => nix.update(attrs, { __proto__: pos$1, type: "aspnetcore" }))),
-              buildNetRuntime: (attrs) => nix.app(buildDotnet, nix.thunk(() => nix.update(attrs, { __proto__: pos$2, type: "runtime" }))),
-              buildNetSdk: (attrs) => nix.app(buildDotnet, nix.thunk(() => nix.update(attrs, { __proto__: pos$3, type: "sdk" }))),
+              buildAspNetCore: (attrs) => nix.app(buildDotnet, nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$1, type: "aspnetcore" }))),
+              buildNetRuntime: (attrs) => nix.app(buildDotnet, nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$2, type: "runtime" }))),
+              buildNetSdk: (attrs) => nix.app(buildDotnet, nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$3, type: "sdk" }))),
             })));
         })());
         const runtimeIdentifierMap = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": "linux-x64",
           "aarch64-linux": "linux-arm64",
           "riscv64-linux": "linux-riscv64",
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
           "x86_64-windows": "win-x64",
           "i686-windows": "win-x86",
         }));
-        const callWithUtils = nix.thunk(() => nix.app(newScope, nix.thunk(() => nix.update(utils, { __proto__: pos$6, callPackage: callWithUtils }))));
+        const callWithUtils = nix.thunk(() => nix.app(newScope, nix.thunk(() => nix.update(utils, { [nix.POS]: pos$6, callPackage: callWithUtils }))));
         const utils = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           callPackage: callPackage,
           fetchNupkg: fetchNupkg,
           buildDotnetSdk: buildDotnetSdk,
@@ -73,14 +73,14 @@ export default nix.lambda((args) => (() => {
           sigtool: nix.thunk(() => nix.app(callPackage, nix.path(here, "./sigtool.nix"), nix.thunk(() => ({})))),
         }));
         return nix.update(utils, (() => {
-          const dotnet_6 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ __proto__: pos$8, channel: "6.0" }))));
-          const dotnet_7 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ __proto__: pos$9, channel: "7.0" }))));
-          const dotnet_8 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ __proto__: pos$10, channel: "8.0" }))));
-          const dotnet_9 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ __proto__: pos$11, channel: "9.0" }))));
-          const dotnet_10 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ __proto__: pos$12, channel: "10.0" }))));
-          const dotnet_11 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ __proto__: pos$13, channel: "11.0" }))));
+          const dotnet_6 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, channel: "6.0" }))));
+          const dotnet_7 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, channel: "7.0" }))));
+          const dotnet_8 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, channel: "8.0" }))));
+          const dotnet_9 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ [nix.POS]: pos$11, channel: "9.0" }))));
+          const dotnet_10 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ [nix.POS]: pos$12, channel: "10.0" }))));
+          const dotnet_11 = nix.thunk(() => nix.app(callWithUtils, nix.path(here, "./dotnet.nix"), nix.thunk(() => ({ [nix.POS]: pos$13, channel: "11.0" }))));
           return nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               sdk_2_1: nix.thunk(() => nix.builtins.throw("Dotnet SDK 2.1 is EOL, please use 8.0 (LTS) or 9.0 (Current)")),
               sdk_2_2: nix.thunk(() => nix.builtins.throw("Dotnet SDK 2.2 is EOL, please use 8.0 (LTS) or 9.0 (Current)")),
               sdk_3_0: nix.thunk(() => nix.builtins.throw("Dotnet SDK 3.0 is EOL, please use 8.0 (LTS) or 9.0 (Current)")),

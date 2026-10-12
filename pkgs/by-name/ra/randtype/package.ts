@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "randtype",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/randtype/randtype-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "055xs02qwpgbkn2l57bwghbsrsysg1zhm2asp0byvjpz4sc4w1rd",
         })))),
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/man/man1 $out/bin\ninstall -cp randtype.1.gz $out/share/man/man1\ninstall -cps randtype $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Semi-random text typer",
         mainProgram: "randtype",
         homepage: "https://benkibbey.wordpress.com/randtype/",

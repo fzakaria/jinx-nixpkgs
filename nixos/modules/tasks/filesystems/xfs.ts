@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "xfs"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "xfs")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xfsprogs", "bin"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xfsprogs", "out"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             xfs_scrub_all: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "util-linux", "bin"))]),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           initrd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             availableKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => ["xfs", "crc32c"]))),
             extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "xfsprogs", "bin")}/bin/fsck.xfs
 copy_bin_and_libs ${nix.sel(pkgs, "xfsprogs", "bin")}/bin/xfs_repair
 `))),
             extraUtilsCommandsTest: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), "sed -i -e 's,^#!.*,#!'$out/bin/sh, $out/bin/fsck.xfs\n")),
             systemd: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               initrdBin: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xfsprogs", "bin"))]))),
             })),
           })),

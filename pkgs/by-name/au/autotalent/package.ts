@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autotalent",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://tombaran.info/autotalent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "19srnkghsdrxxlv2c7qimvyslxz63r97mkxfq78vbg654l3qz1a6",
         })))),
       makeFlags: nix.thunk(() => ["INSTALL_PLUGINS_DIR=$(out)/lib/ladspa"]),
       preConfigure: "sed -r 's/^CFLAGS.*$/\\0 -fvisibility=hidden/' -i Makefile\n\nsed -r 's/^const LADSPA_Descriptor \\*/__attribute__ ((visibility (\"default\"))) \\0/' -i autotalent.c\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://tombaran.info/autotalent.html",
         description: "Real-time pitch correction LADSPA plugin (no MIDI control)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

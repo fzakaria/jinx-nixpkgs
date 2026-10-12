@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shapely",
           repo: "shapely",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_error_handler_exception", "test_error_handler", "test_info_handler"])));
       const pythonImportsCheck = nix.thunk(() => ["shapely"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/shapely/shapely/blob/${nix.sel(src, "tag")}/CHANGES.txt`),
         description: "Manipulation and analysis of geometric objects",
         homepage: "https://github.com/shapely/shapely",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

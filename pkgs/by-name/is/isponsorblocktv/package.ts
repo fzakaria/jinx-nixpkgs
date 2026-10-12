@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "isponsorblocktv",
       version: "2.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmunozv04",
           repo: "iSponsorBlockTV",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lukegb/iSponsorBlockTV/commit/110ce5de788ccb262a323f743543e37af914f7fa.patch",
             hash: "sha256-AW9VwFBMDKo3pJCNc/r5b8vrqpcL1bV8jUl/z85x+jE=",
           })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonRelaxDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dmunozv04/iSponsorBlockTV",
         changelog: nix.thunk(() => nix.str`https://github.com/dmunozv04/iSponsorBlockTV/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "SponsorBlock client for all YouTube TV clients",

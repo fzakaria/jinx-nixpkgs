@@ -20,30 +20,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const meilisearchKey = "TESTKEY-naXRkVX7nhvLaGOmGGuicDKxZAj0khEaoOZPeEZafv8w9j8V6aKb0NVdXRChL5kR";
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "sharkey",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             sharkey: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               setupMeilisearch: true,
               environmentFiles: nix.thunk(() => ["/run/secrets/sharkey-env"]),
               settings: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "http://exampleurl.invalid",
-                meilisearch: nix.thunk(() => ({ __proto__: pos$1, index: "exampleurl_invalid" })),
+                meilisearch: nix.thunk(() => ({ [nix.POS]: pos$1, index: "exampleurl_invalid" })),
               })),
             })),
             meilisearch: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               masterKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "meilisearch-key", meilisearchKey)),
             })),
           })),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const createIndexPayload = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Sharkey API key",
           actions: nix.thunk(() => ["*"]),
           indexes: nix.thunk(() => ["exampleurl_invalid---notes"]),
@@ -76,7 +76,7 @@ with subtest("Testing Sharkey is running and listening to HTTP requests"):
 `;
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tmarkus"))];

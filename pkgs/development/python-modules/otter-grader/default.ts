@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const rPackages = nix.arg($, "rPackages");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "otter-grader",
       version: "7.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ucbds-infra",
           repo: "otter-grader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         wrapt,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         grading: nix.thunk(() => [ipykernel, jupyter_client, pypdf]),
         plugins: nix.thunk(() => [google_api_python_client, google_auth_oauthlib, gspread, six]),
         r: nix.thunk(() => [rpy2]),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
           "test_pdf_via_html",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python and R autograder",
         homepage: "https://github.com/ucbds-infra/otter-grader",
         changelog: nix.thunk(() => nix.str`https://github.com/ucbds-infra/otter-grader/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

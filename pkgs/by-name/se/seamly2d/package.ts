@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pyqt5"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seamly2d",
       version: "2025.8.4.217",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FashionFreedom",
           repo: "Seamly2D",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ substituteInPlace src/libs/vwidgets/export_format_combobox.cpp \\
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       postInstall: "mv $out/share/seamly2d/* $out/share/.\nrmdir $out/share/seamly2d\n\nmkdir -p $out/share/mime/packages\ncp dist/debian/seamly2d.sharedmimeinfo $out/share/mime/packages/seamly2d.xml\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source patternmaking software",
         homepage: "https://seamly.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   nix.assert_((nix.asBool(nix.eq(appliance, null)) || nix.asBool(nix.app(nix.sel(lib, "isDerivation"), appliance))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libguestfs/package.nix:44:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libguestfs",
       version: "1.56.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libguestfs.org/download/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/libguestfs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-u0SJGnleC3khPO4sSRSVpt1ksh9ydEVZFzDX94kBaJo=",
         })))),
@@ -173,7 +173,7 @@ EOF
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for accessing and modifying virtual machine disk images",
         license: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "untex",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.thp.uni-duisburg.de/pub/source/untex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1jww43pl9qvg6kwh4h8imp966fzd62dk99pb4s93786lmp3kgdjv",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["BINDIR=$(out)/bin", "MANDIR=$(out)/share/man/man1"]),
       preBuild: "sed -i '1i#include <stdlib.h>\\n#include <string.h>' untex.c\nmkdir -p $out/bin $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility which removes LaTeX commands from input",
         mainProgram: "untex",
         homepage: "https://www.ctan.org/pkg/untex",

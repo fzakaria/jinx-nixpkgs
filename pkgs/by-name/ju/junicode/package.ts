@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "junicode";
       const version = "2.222";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/psb1558/Junicode-font/releases/download/v${version}/Junicode_${version}.zip`),
           hash: "sha256-fAhK6IAw1UL0Q2CusNmN+LedySZnBrfUAHMQJoHTRl4=",
         }))));
@@ -39,7 +39,7 @@ install -Dm 444 -t $tex/tex/latex/junicodevf TeX/junicodevf.{sty,lua}
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tlDeps: (ps) => [
           nix.thunk(() => nix.sel(ps, "xkeyval")),
           nix.thunk(() => nix.sel(ps, "fontspec")),
@@ -47,7 +47,7 @@ runHook postInstall
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/psb1558/Junicode-font",
         description: "Unicode font for medievalists",
         maintainers: nix.thunk(() => (() => {
@@ -57,7 +57,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

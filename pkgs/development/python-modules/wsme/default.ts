@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const webtest = nix.arg($, "webtest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wsme",
       version: "0.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "wsme",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-W/MgEO2UPs+z8IeVpGAuJoPfXV6ozHHq8evj9EnzmDM=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [webob, simplegeneric, netaddr, importlib_metadata]),
       nativeCheckInputs: nix.thunk(() => [transaction, pecan, sphinx, flask, flask_restful, webtest, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simplify the writing of REST APIs, and extend them with additional protocols",
         homepage: "https://pythonhosted.org/WSME/",
         changelog: "https://pythonhosted.org/WSME/changes.html",

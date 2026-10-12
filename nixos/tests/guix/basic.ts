@@ -20,29 +20,29 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "guix-basic",
-      meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             environment: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               etc: nix.thunk(() => ({
-                __proto__: pos$3,
-                "guix/scripts": nix.thunk(() => ({ __proto__: pos$2, source: nix.path(here, "./scripts") })),
+                [nix.POS]: pos$3,
+                "guix/scripts": nix.thunk(() => ({ [nix.POS]: pos$2, source: nix.path(here, "./scripts") })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               guix: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: true,
-                gc: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+                gc: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
               })),
             })),
           };

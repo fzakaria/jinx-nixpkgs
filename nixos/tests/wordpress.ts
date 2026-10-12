@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "flokli")),
           nix.thunk(() => nix.lookup(w, "mmilata")),
@@ -60,95 +60,95 @@ export default nix.lambda((args) => (() => {
         const package$ = nix.thunk(() => nix.sel(config, "node", "pkgs", nix.key(nix.str`wordpress_${version}`)));
         return nix.update(a, nix.attrsDyn({}, [
           [nix.str`wp${version}_httpd`, (_) => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
-              httpd: nix.thunk(() => ({ __proto__: pos$2, adminAddr: "webmaster@site.local", logPerVirtualHost: true })),
+              [nix.POS]: pos$9,
+              httpd: nix.thunk(() => ({ [nix.POS]: pos$2, adminAddr: "webmaster@site.local", logPerVirtualHost: true })),
               wordpress: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 webserver: "httpd",
                 sites: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "site1.local": nix.thunk(() => ({
-                    __proto__: pos$4,
-                    database: nix.thunk(() => ({ __proto__: pos$3, tablePrefix: "site1_" })),
+                    [nix.POS]: pos$4,
+                    database: nix.thunk(() => ({ [nix.POS]: pos$3, tablePrefix: "site1_" })),
                     package: package$,
                   })),
                   "site2.local": nix.thunk(() => ({
-                    __proto__: pos$6,
-                    database: nix.thunk(() => ({ __proto__: pos$5, tablePrefix: "site2_" })),
+                    [nix.POS]: pos$6,
+                    database: nix.thunk(() => ({ [nix.POS]: pos$5, tablePrefix: "site2_" })),
                     package: package$,
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$12,
-              firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: pos$12,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
               hosts: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
               })),
             })),
           })],
           [nix.str`wp${version}_nginx`, (_) => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wordpress: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 webserver: "nginx",
                 sites: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   "site1.local": nix.thunk(() => ({
-                    __proto__: pos$15,
-                    database: nix.thunk(() => ({ __proto__: pos$14, tablePrefix: "site1_" })),
+                    [nix.POS]: pos$15,
+                    database: nix.thunk(() => ({ [nix.POS]: pos$14, tablePrefix: "site1_" })),
                     package: package$,
                   })),
                   "site2.local": nix.thunk(() => ({
-                    __proto__: pos$17,
-                    database: nix.thunk(() => ({ __proto__: pos$16, tablePrefix: "site2_" })),
+                    [nix.POS]: pos$17,
+                    database: nix.thunk(() => ({ [nix.POS]: pos$16, tablePrefix: "site2_" })),
                     package: package$,
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$23,
-              firewall: nix.thunk(() => ({ __proto__: pos$21, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: pos$23,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$21, allowedTCPPorts: nix.thunk(() => [80n]) })),
               hosts: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
               })),
             })),
           })],
           [nix.str`wp${version}_caddy`, (_) => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             services: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               wordpress: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 webserver: "caddy",
                 sites: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   "site1.local": nix.thunk(() => ({
-                    __proto__: pos$26,
-                    database: nix.thunk(() => ({ __proto__: pos$25, tablePrefix: "site1_" })),
+                    [nix.POS]: pos$26,
+                    database: nix.thunk(() => ({ [nix.POS]: pos$25, tablePrefix: "site1_" })),
                     package: package$,
                   })),
                   "site2.local": nix.thunk(() => ({
-                    __proto__: pos$28,
-                    database: nix.thunk(() => ({ __proto__: pos$27, tablePrefix: "site2_" })),
+                    [nix.POS]: pos$28,
+                    database: nix.thunk(() => ({ [nix.POS]: pos$27, tablePrefix: "site2_" })),
                     package: package$,
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$34,
-              firewall: nix.thunk(() => ({ __proto__: pos$32, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: pos$34,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$32, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
               hosts: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
               })),
             })),
@@ -181,7 +181,7 @@ for machine in (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() =
                 machine.succeed(f"cat /var/lib/wordpress/{site_name}/secret-keys.php")
             )
 `);
-    return { __proto__: pos$36, name, meta, nodes, testScript };
+    return { [nix.POS]: pos$36, name, meta, nodes, testScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=wordpress.ts.map

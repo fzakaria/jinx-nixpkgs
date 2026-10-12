@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.arg($, "qt5compat");
   const cyrus_sasl = nix.arg($, "cyrus_sasl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ksmtp",
       extraBuildInputs: nix.thunk(() => [qt5compat, cyrus_sasl]),
     })));

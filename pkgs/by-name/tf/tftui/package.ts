@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const enableUsageTracking = nix.argOr($, "enableUsageTracking", () => false);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tftui",
       version: "0.13.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idoavrah",
           repo: "terraform-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tftui"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUsageTracking)), "wrapProgram $out/bin/tftui \\\n  --add-flags \"--disable-usage-tracking\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Textual UI to view and interact with Terraform state",
         homepage: "https://github.com/idoavrah/terraform-tui",
         changelog: nix.thunk(() => nix.str`https://github.com/idoavrah/terraform-tui/releases/tag/v${nix.sel(finalAttrs, "version")}`),

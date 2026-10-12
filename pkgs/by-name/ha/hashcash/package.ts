@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hashcash",
       version: "1.22",
       buildInputs: nix.thunk(() => [openssl]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.hashcash.org/source/hashcash-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "15kqaimwb2y8wvzpn73021bvay9mz1gqqfc40gk4hj6f84nz34h1",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`DOC_INSTALL_PATH=${nix.builtins.placeholder("out")}/share/doc/hashcash-$(version)`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Proof-of-work algorithm used as spam and denial-of-service counter measure",
         homepage: "http://hashcash.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

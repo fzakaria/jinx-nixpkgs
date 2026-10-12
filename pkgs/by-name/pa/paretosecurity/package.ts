@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, webkitgtk_4_1]),
       pname: "paretosecurity",
       version: "0.3.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ParetoSecurity",
           repo: "agent",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,11 +70,11 @@ substituteInPlace $out/share/applications/ParetoSecurityLink.desktop \\
 install -Dm444 ${nix.sel(finalAttrs, "src")}/assets/icon.png $out/share/icons/hicolor/512x512/apps/ParetoSecurity.png
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: paretosecurity,
             })))),
@@ -82,7 +82,7 @@ install -Dm444 ${nix.sel(finalAttrs, "src")}/assets/icon.png $out/share/icons/hi
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "A simple trayicon app that makes sure your laptop is correctly configured for security",
         longDescription: "[Pareto Desktop](https://paretosecurity.com/linux) is a free and open\nsource trayicon app to help you configure your laptop for security. It\nnudges you to take care of 20% of security-related tasks that bring 80% of\nprotection.\n\nIn it's simplest form, it's a CLI command that prints out a report on basic\nsecurity settings such as if you have disk encryption and firewall enabled.\n\nIf you use the `services.paretosecurity` NixOS module, you also get a\nroot helper that allows you to run the checker in userspace. Some checks\nrequire root permissions, and the checker asks the helper to run those.\n\nAdditionally, using the NixOS module gets you a little Vilfredo Pareto\nliving in your systray showing your the current status of checks. The\nNixOS Module also installs a systemd timer to update the status of checks\nonce per hour. If you want to use just the CLI mode, set\n`services.paretosecurity.trayIcon` to `false`.\n\nFinally, if you set `users.users.alice.paretosecurity.inviteId = \"...\"`\nto the `inviteId` you get on [Pareto Cloud](https://cloud.paretosecurity.com/),\nthen Pareto Desktop acts as a read-only and push-only agent that sends the\nstatus of checks to https://cloud.paretosecurity.com which makes\ncompliance people happy and your privacy intact.\n",
         homepage: "https://github.com/ParetoSecurity/agent",

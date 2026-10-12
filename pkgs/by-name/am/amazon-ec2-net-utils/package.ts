@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const util_linuxMinimal = nix.arg($, "util-linuxMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amazon-ec2-net-utils",
       version: "2.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amazonlinux",
           repo: "amazon-ec2-net-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,11 +98,11 @@ runHook postInstall
       doInstallCheck: true,
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Contains a set of utilities for managing elastic network interfaces on Amazon EC2",
         homepage: "https://github.com/amazonlinux/amazon-ec2-net-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

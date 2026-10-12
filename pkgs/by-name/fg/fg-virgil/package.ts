@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const woff2 = nix.arg($, "woff2");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fg-virgil",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "excalidraw",
           repo: "excalidraw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nfor file in packages/excalidraw/fonts/Virgil/*.woff2; do\n  woff2_decompress $file\ndone\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D -m 444 packages/excalidraw/fonts/Virgil/*.ttf -t $out/share/fonts/ttf\ninstall -D -m 444 packages/excalidraw/fonts/Virgil/*.woff2 -t $out/share/fonts/woff2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/excalidraw/virgil",
         description: "Font that powers Excalidraw",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

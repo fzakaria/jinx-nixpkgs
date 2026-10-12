@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libnv = nix.arg($, "libnv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libnvmf",
       extraPaths: nix.thunk(() => ["sys/libkern", "sys/dev/nvmf"]),
       buildInputs: nix.thunk(() => [libnv]),

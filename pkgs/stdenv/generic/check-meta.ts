@@ -73,12 +73,12 @@ export default nix.lambda((args) => (() => {
   const containsLicenses = nix.thunk(() => nix.attr(from_3, "containsLicenses"));
   const isFree = nix.thunk(() => nix.attr(from_3, "isFree"));
   const getEnv = nix.thunk(() => nix.attr(nix.builtins, "getEnv"));
-  const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./problems.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./problems.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const problemsType = nix.thunk(() => nix.attr(from_4, "problemsType"));
   const genCheckProblems = nix.thunk(() => nix.attr(from_4, "genCheckProblems"));
   const completeMetaProblems = nix.thunk(() => nix.attr(from_4, "completeMetaProblems"));
   const checkProblems = nix.thunk(() => nix.app(genCheckProblems, config));
-  const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./remediations.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
+  const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./remediations.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
   const remediateOutputsToInstall = nix.thunk(() => nix.attr(from_5, "remediateOutputsToInstall"));
   const remediate_allowlist = nix.thunk(() => nix.attr(from_5, "remediate_allowlist"));
   const remediate_predicate = nix.thunk(() => nix.attr(from_5, "remediate_predicate"));
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
   const showSourceType = showLicenseOrSourceType;
   const pos_str = (meta) => nix.selOr(meta, () => "«unknown-file»", "position");
   const metaType = nix.thunk(() => (() => {
-    const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")), nix.thunk(() => ({ __proto__: pos$3, lib: lib }))));
+    const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib }))));
     const str = nix.thunk(() => nix.attr(types, "str"));
     const either = nix.thunk(() => nix.attr(types, "either"));
     const int = nix.thunk(() => nix.attr(types, "int"));
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
     const derivation = nix.thunk(() => nix.attr(types, "derivation"));
     const platforms = nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(either, str, attrs))));
     return nix.app(record, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: str,
         mainProgram: str,
         mainDarwinApp: str,
@@ -208,35 +208,35 @@ export default nix.lambda((args) => (() => {
   const checkValidity = (hostPlatform) => (() => {
     const hasUnsupportedPlatform$ = nix.thunk(() => nix.app(hasUnsupportedPlatform, hostPlatform));
     return (attrs) => (nix.asBool(!nix.asBool(nix.has(attrs, "meta"))) ? null : (nix.asBool((nix.asBool(checkMeta) && nix.asBool(!nix.asBool(nix.app(nix.sel(metaType, "verify"), nix.thunk(() => nix.sel(attrs, "meta"))))))) ? {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       reason: "unknown-meta",
       msg: nix.thunk(() => nix.str`has an invalid meta attrset:${nix.app(concatMapStrings, (x) => nix.add("\n  - ", x), nix.thunk(() => nix.app(nix.sel(metaType, "errors"), nix.thunk(() => nix.str`${nix.app(getName, attrs)}.meta`), nix.thunk(() => nix.sel(attrs, "meta")))))}
 `),
       remediation: "",
     } : (nix.asBool((nix.asBool(checkMeta) && nix.asBool(nix.app(checkOutputsToInstall, attrs)))) ? {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       reason: "broken-outputs",
       msg: "has invalid meta.outputsToInstall",
       remediation: nix.thunk(() => nix.app(remediateOutputsToInstall, attrs)),
     } : (nix.asBool((nix.asBool(nix.app(hasDeniedUnfreeLicense, attrs)) && nix.asBool(!nix.asBool((nix.asBool(nonEmptyAllowList) && nix.asBool(nix.app(hasAllowlistedLicense, attrs))))))) ? {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       reason: "unfree",
       msg: nix.thunk(() => nix.str`has an unfree license (‘${nix.app(showLicense, nix.thunk(() => nix.sel(attrs, "meta", "license")))}’)`),
       remediation: nix.thunk(() => nix.app(remediate_allowlist, "Unfree", nix.thunk(() => nix.app(remediate_predicate, "allowUnfreePredicate", attrs)))),
     } : (nix.asBool((nix.asBool(nonEmptyBlocklist) && nix.asBool(nix.app(hasBlocklistedLicense, attrs)))) ? {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       reason: "blocklisted",
       msg: nix.thunk(() => nix.str`has a blocklisted license (‘${nix.app(showLicense, nix.thunk(() => nix.sel(attrs, "meta", "license")))}’)`),
       remediation: "",
     } : (nix.asBool((nix.asBool(!nix.asBool(allowNonSource)) && nix.asBool(nix.app(hasDeniedNonSourceProvenance, attrs)))) ? {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       reason: "non-source",
       msg: nix.thunk(() => nix.str`contains elements not built from source (‘${nix.app(showSourceType, nix.thunk(() => nix.sel(attrs, "meta", "sourceProvenance")))}’)`),
       remediation: nix.thunk(() => nix.app(remediate_allowlist, "NonSource", nix.thunk(() => nix.app(remediate_predicate, "allowNonSourcePredicate", attrs)))),
     } : (nix.asBool(nix.app(hasUnsupportedPlatform$, attrs)) ? (() => {
-      const toPretty$ = nix.thunk(() => nix.app(toPretty, nix.thunk(() => ({ __proto__: pos$10, allowPrettyValues: true, indent: "  " }))));
+      const toPretty$ = nix.thunk(() => nix.app(toPretty, nix.thunk(() => ({ [nix.POS]: pos$10, allowPrettyValues: true, indent: "  " }))));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         reason: "unsupported",
         msg: nix.thunk(() => nix.str`is not available on the requested hostPlatform:
   hostPlatform.system = "${nix.sel(hostPlatform, "system")}"
@@ -246,7 +246,7 @@ export default nix.lambda((args) => (() => {
         remediation: nix.thunk(() => nix.app(remediate_allowlist, "UnsupportedSystem", "")),
       };
     })() : (nix.asBool(nix.app(hasDisallowedInsecure, attrs)) ? {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       reason: "insecure",
       msg: "is marked as insecure",
       remediation: nix.thunk(() => nix.app(remediate_insecure, attrs)),
@@ -273,7 +273,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const possibleCPEPartsFuns = nix.thunk(() => [
     (vendor) => (version) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       success: true,
       value: nix.thunk(() => nix.app(cpeFullVersionWithVendor, vendor, version)),
     }),
@@ -293,11 +293,11 @@ export default nix.lambda((args) => (() => {
         const maintainersPosition = nix.thunk(() => nix.app(unsafeGetAttrPos, "maintainers", nix.thunk(() => nix.selOr(attrs, () => ({}), "meta"))));
         const teamsPosition = nix.thunk(() => nix.app(unsafeGetAttrPos, "teams", nix.thunk(() => nix.selOr(attrs, () => ({}), "meta"))));
         const problems = nix.thunk(() => nix.app(completeMetaProblems$, attrs));
-        const problemsGroupedByKind = nix.thunk(() => nix.app(groupBy, (p) => nix.sel(p, "name"), nix.thunk(() => nix.app(mapAttrsToList, (name) => (problem) => ({ __proto__: pos$14, name: name, problem: problem }), problems))));
+        const problemsGroupedByKind = nix.thunk(() => nix.app(groupBy, (p) => nix.sel(p, "name"), nix.thunk(() => nix.app(mapAttrsToList, (name) => (problem) => ({ [nix.POS]: pos$14, name: name, problem: problem }), problems))));
         const problemsByKind = (kind) => nix.selOr(problemsGroupedByKind, () => [], nix.key(nix.force(kind)));
         const hasProblemKind = (kind) => !nix.eq(nix.app(problemsByKind, kind), []);
         return nix.update(nix.attrsDyn({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: nix.thunk(() => nix.selOr(attrs, () => nix.str`${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`, "name")),
           outputsToInstall: nix.thunk(() => nix.concat([
             nix.thunk(() => (nix.asBool(nix.app(hasOutput, "bin")) ? "bin" : (nix.asBool(nix.app(hasOutput, "out")) ? "out" : nix.app(findFirst, hasOutput, null, outputs)))),
@@ -306,12 +306,12 @@ export default nix.lambda((args) => (() => {
           [(nix.asBool(nix.eq(maintainersPosition, null)) ? null : "maintainersPosition"), maintainersPosition],
           [(nix.asBool(nix.eq(teamsPosition, null)) ? null : "teamsPosition"), teamsPosition],
         ]), nix.update(nix.selOr(attrs, () => ({}), "meta"), nix.attrsDyn({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           maintainers: nix.thunk(() => nix.app(unique, nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "meta", "maintainers"), nix.app(concatMap, (team) => nix.selOr(team, () => [], "members"), nix.thunk(() => nix.selOr(attrs, () => [], "meta", "teams"))))))),
           nonTeamMaintainers: nix.thunk(() => nix.selOr(attrs, () => nix.selOr(attrs, () => [], "meta", "maintainers"), "meta", "nonTeamMaintainers")),
           identifiers: nix.thunk(() => (() => {
             const defaultCPEParts = nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               part: "a",
               edition: "*",
               sw_edition: "*",
@@ -324,11 +324,11 @@ export default nix.lambda((args) => (() => {
             ]));
             const cpeParts = nix.thunk(() => nix.update(defaultCPEParts, nix.selOr(attrs, () => ({}), "meta", "identifiers", "cpeParts")));
             const cpe = nix.thunk(() => (nix.asBool(nix.app(hasAllCPEParts, cpeParts)) ? nix.app(makeCPE, cpeParts) : null));
-            const possibleCPEs = nix.thunk(() => (nix.asBool(!nix.eq(cpe, null)) ? [nix.thunk(() => ({ __proto__: pos$17, cpeParts: cpeParts, cpe: cpe }))] : (nix.asBool((nix.asBool(nix.eq(nix.selOr(attrs, () => null, "meta", "identifiers", "cpeParts", "vendor"), null)) || nix.asBool(nix.eq(nix.selOr(attrs, () => null, "version"), null)))) ? [] : nix.app(concatMap, (f) => (() => {
+            const possibleCPEs = nix.thunk(() => (nix.asBool(!nix.eq(cpe, null)) ? [nix.thunk(() => ({ [nix.POS]: pos$17, cpeParts: cpeParts, cpe: cpe }))] : (nix.asBool((nix.asBool(nix.eq(nix.selOr(attrs, () => null, "meta", "identifiers", "cpeParts", "vendor"), null)) || nix.asBool(nix.eq(nix.selOr(attrs, () => null, "version"), null)))) ? [] : nix.app(concatMap, (f) => (() => {
                 const result = nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(attrs, "meta", "identifiers", "cpeParts", "vendor")), nix.thunk(() => nix.sel(attrs, "version"))));
                 const guessedParts = nix.thunk(() => nix.update(cpeParts, nix.sel(result, "value")));
                 return nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(result, "success")) && nix.asBool(nix.app(hasAllCPEParts, guessedParts)))), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     cpeParts: guessedParts,
                     cpe: nix.thunk(() => nix.app(makeCPE, guessedParts)),
                   })));
@@ -338,7 +338,7 @@ export default nix.lambda((args) => (() => {
             const purl = nix.thunk(() => (nix.asBool(!nix.eq(purlPartsFormatted, null)) ? nix.force(purlPartsFormatted) : null));
             const purls = nix.thunk(() => nix.selOr(attrs, () => (nix.asBool(!nix.eq(purlPartsFormatted, null)) ? [purlPartsFormatted] : []), "meta", "identifiers", "purls"));
             const v1 = nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               cpeParts: cpeParts,
               possibleCPEs: possibleCPEs,
               purls: purls,
@@ -346,7 +346,7 @@ export default nix.lambda((args) => (() => {
               [(nix.asBool(!nix.eq(cpe, null)) ? "cpe" : null), cpe],
               [(nix.asBool(!nix.eq(purl, null)) ? "purl" : null), purl],
             ]));
-            return nix.update(v1, { __proto__: pos$20, v1: v1, purlParts: purlParts });
+            return nix.update(v1, { [nix.POS]: pos$20, v1: v1, purlParts: purlParts });
           })()),
           unfree: nix.thunk(() => nix.app(hasUnfreeLicense, attrs)),
           broken: nix.thunk(() => nix.app(hasProblemKind, "broken")),
@@ -385,23 +385,23 @@ ${nix.sel(error, "remediation")}`))));
       const attrs = nix.arg($_1, "attrs");
       const invalid = nix.thunk(() => nix.app(checkValidity$, attrs));
       const problems = nix.thunk(() => nix.app(checkProblems, attrs));
-      return (nix.asBool(nix.eq(invalid, null)) ? (nix.asBool(nix.eq(problems, null)) ? { __proto__: pos$22, valid: "yes", handled: true } : {
-        __proto__: pos$24,
+      return (nix.asBool(nix.eq(invalid, null)) ? (nix.asBool(nix.eq(problems, null)) ? { [nix.POS]: pos$22, valid: "yes", handled: true } : {
+        [nix.POS]: pos$24,
         valid: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(problems, "error"), null)) ? "warn" : "no")),
         handled: nix.thunk(() => nix.app(handle, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             attrs: attrs,
             meta: meta,
             error: nix.thunk(() => nix.attr(problems, "error")),
             warnings: nix.thunk(() => nix.attr(problems, "warnings")),
           })))),
       }) : {
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         valid: "no",
-        handled: nix.thunk(() => nix.app(handle, nix.thunk(() => ({ __proto__: pos$25, attrs: attrs, meta: meta, error: invalid })))),
+        handled: nix.thunk(() => nix.app(handle, nix.thunk(() => ({ [nix.POS]: pos$25, attrs: attrs, meta: meta, error: invalid })))),
       });
     })(), formals$5);
   })();
-  return { __proto__: pos$27, assertValidity: assertValidity, commonMeta: commonMeta };
+  return { [nix.POS]: pos$27, assertValidity: assertValidity, commonMeta: commonMeta };
 })(), formals$1);
 //# sourceMappingURL=check-meta.ts.map

@@ -233,13 +233,13 @@ export default nix.lambda((args) => (() => {
   const formats = nix.thunk(() => nix.attr(pkgs, "formats"));
   const mergeInput = (name) => (format) => (input) => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         value: nix.thunk(() => nix.app(nix.sel(lib, "throwIfNot"), nix.thunk(() => nix.app(nix.sel(format, "type", "check"), input)), nix.thunk(() => nix.builtins.trace(input, "definition does not pass the type's check function")), input)),
         file: nix.thunk(() => nix.str`format-test-${name}`),
       })),
     ]));
   const runDiff = (name) => (drv) => (expected) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       passAsFile: nix.thunk(() => ["expected"]),
       expected: expected,
       drv: drv,
@@ -250,7 +250,7 @@ export default nix.lambda((args) => (() => {
     const input = nix.arg($_1, "input");
     const expected = nix.arg($_1, "expected");
     return (name) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`pass-${name}`),
       path: nix.thunk(() => nix.app(runDiff, nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => nix.app(mergeInput, name, format, input)))), expected)),
     });
@@ -262,7 +262,7 @@ export default nix.lambda((args) => (() => {
     return (name) => (() => {
       const typeCheck = nix.thunk(() => nix.app(nix.sel(lib, "modules", "mergeDefinitions"), nix.thunk(() => ["tests", name]), nix.thunk(() => nix.sel(format, "type")), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             file: nix.thunk(() => nix.str`format-test-${name}`),
             value: input,
           })),
@@ -270,13 +270,13 @@ export default nix.lambda((args) => (() => {
       const eval$ = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.eq(nix.sel(typeCheck, "mergedValue"), input))));
       const typeFails = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => ({})), "touch $out"));
       const typeSucceeds = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           passAsFile: nix.thunk(() => ["inputText"]),
           testName: name,
           inputText: nix.thunk(() => nix.builtins.toJSON(input)),
         })), "echo \"Type check $testName passed when it shouldn't.\"\necho \"The following data was used as input:\"\necho\ncat \"$inputTextPath\"\nexit 1\n"));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.str`fail-${name}`),
         path: nix.thunk(() => (nix.asBool(nix.sel(eval$, "success")) ? nix.force(typeSucceeds) : nix.force(typeFails))),
       };
@@ -287,19 +287,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "nixpkgs-pkgs-lib-format-tests")),
     ])));
   return nix.app(runBuildTests, nix.thunk(() => ({
-      __proto__: pos$220,
+      [nix.POS]: pos$220,
       jsonAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           format: nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$7, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$7, foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
           })),
@@ -322,22 +322,22 @@ export default nix.lambda((args) => (() => {
 `),
         })))),
       jsonNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           format: nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({})))),
           input: null,
           expected: "null\n",
         })))),
       yaml_1_1Atoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             null: null,
             false: false,
             true: true,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$11, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$11, foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             no: "no",
@@ -361,22 +361,22 @@ time: '22:30:00'
 `),
         })))),
       yaml_1_1Null: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({})))),
           input: null,
           expected: "%YAML 1.1\n---\n  null\n",
         })))),
       yaml_1_2Atoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             null: null,
             false: false,
             true: true,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$15, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$15, foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             no: "no",
@@ -398,7 +398,7 @@ time: 22:30:00
 `),
         })))),
       yaml_1_2Null: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({})))),
           input: null,
           expected: nix.thunk(() => nix.str`
@@ -406,107 +406,107 @@ ${"  "}null
 `),
         })))),
       yaml_1_1Tags: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$24,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({ __proto__: pos$19, tags: true })))),
+          [nix.POS]: pos$24,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({ [nix.POS]: pos$19, tags: true })))),
           input: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             tag1: nix.thunk(() => ({
-              __proto__: pos$21,
-              "!mytag": nix.thunk(() => ({ __proto__: pos$20, k1: "v1" })),
+              [nix.POS]: pos$21,
+              "!mytag": nix.thunk(() => ({ [nix.POS]: pos$20, k1: "v1" })),
             })),
-            tag2: nix.thunk(() => ({ __proto__: pos$22, "!anothertag": true })),
+            tag2: nix.thunk(() => ({ [nix.POS]: pos$22, "!anothertag": true })),
           })),
           expected: "%YAML 1.1\n---\ntag1: !mytag\n  k1: v1\ntag2: !anothertag true\n",
         })))),
       yaml_1_2Tags: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$30,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({ __proto__: pos$25, tags: true })))),
+          [nix.POS]: pos$30,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({ [nix.POS]: pos$25, tags: true })))),
           input: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             tag1: nix.thunk(() => ({
-              __proto__: pos$27,
-              "!mytag": nix.thunk(() => ({ __proto__: pos$26, k1: "v1" })),
+              [nix.POS]: pos$27,
+              "!mytag": nix.thunk(() => ({ [nix.POS]: pos$26, k1: "v1" })),
             })),
-            tag2: nix.thunk(() => ({ __proto__: pos$28, "!anothertag": true })),
+            tag2: nix.thunk(() => ({ [nix.POS]: pos$28, "!anothertag": true })),
           })),
           expected: "tag1: !mytag\n  k1: v1\ntag2: !anothertag true\n",
         })))),
       iniAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$32,
-            foo: nix.thunk(() => ({ __proto__: pos$31, bool: true, int: 10n, float: 3.141, str: "string" })),
+            [nix.POS]: pos$32,
+            foo: nix.thunk(() => ({ [nix.POS]: pos$31, bool: true, int: 10n, float: 3.141, str: "string" })),
           })),
           expected: "[foo]\nbool=true\nfloat=3.141000\nint=10\nstr=string\n",
         })))),
       configobjAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ __proto__: pos$34, bool: true, int: 10n, float: 3.141, str: "string" })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$34, bool: true, int: 10n, float: 3.141, str: "string" })),
           expected: "bool = True\nfloat = 3.141\nint = 10\nstr = string\n",
         })))),
       configobjListWithoutListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ __proto__: pos$36, items: nix.thunk(() => [1n, true, "x"]) })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$36, items: nix.thunk(() => [1n, true, "x"]) })),
           expected: "items = 1, True, x\n",
         })))),
       configobjNestedAttrsets: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             server: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               host: "127.0.0.1",
               port: 8080n,
               enabled: true,
               tags: nix.thunk(() => ["web", "nix", 42n]),
             })),
-            logging: nix.thunk(() => ({ __proto__: pos$39, level: "info", rotate: true })),
+            logging: nix.thunk(() => ({ [nix.POS]: pos$39, level: "info", rotate: true })),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               local: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 address: "123",
-                coin: nix.thunk(() => ({ __proto__: pos$40, foo: "bar" })),
+                coin: nix.thunk(() => ({ [nix.POS]: pos$40, foo: "bar" })),
               })),
-              remote: nix.thunk(() => ({ __proto__: pos$42, address: "456" })),
+              remote: nix.thunk(() => ({ [nix.POS]: pos$42, address: "456" })),
             })),
           })),
           expected: "[interfaces]\n[[local]]\naddress = 123\n[[[coin]]]\nfoo = bar\n[[remote]]\naddress = 456\n[logging]\nlevel = info\nrotate = True\n[server]\nenabled = True\nhost = 127.0.0.1\nport = 8080\ntags = web, nix, 42\n",
         })))),
       configobjNullableValues: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             nullable: null,
-            nested: nix.thunk(() => ({ __proto__: pos$46, keep: "ok", missing: null })),
+            nested: nix.thunk(() => ({ [nix.POS]: pos$46, keep: "ok", missing: null })),
           })),
           expected: "nullable = None\n[nested]\nkeep = ok\nmissing = None\n",
         })))),
       configobjInvalidAtom: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ __proto__: pos$49, function: (_) => 1n })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$49, function: (_) => 1n })),
         })))),
       iniInvalidAtom: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$52,
-            foo: nix.thunk(() => ({ __proto__: pos$51, function: (_) => 1n })),
+            [nix.POS]: pos$52,
+            foo: nix.thunk(() => ({ [nix.POS]: pos$51, function: (_) => 1n })),
           })),
         })))),
       iniDuplicateKeysWithoutList: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             foo: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
@@ -514,12 +514,12 @@ ${"  "}null
           })),
         })))),
       iniDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$60,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ __proto__: pos$57, listsAsDuplicateKeys: true })))),
+          [nix.POS]: pos$60,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$57, listsAsDuplicateKeys: true })))),
           input: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             foo: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
@@ -528,15 +528,15 @@ ${"  "}null
           expected: "[foo]\nbar=null\nbar=true\nbar=test\nbar=1.200000\nbar=10\nbaz=false\nqux=qux\n",
         })))),
       iniListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
             })))),
           input: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             foo: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
@@ -545,113 +545,113 @@ ${"  "}null
           expected: "[foo]\nbar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n",
         })))),
       iniCoercedDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
-          const format = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ __proto__: pos$65, listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
+          const format = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$65, listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 file: "format-test-inner-iniCoercedDuplicateKeys",
-                value: nix.thunk(() => ({ __proto__: pos$67, foo: nix.thunk(() => ({ __proto__: pos$66, bar: 1n })) })),
+                value: nix.thunk(() => ({ [nix.POS]: pos$67, foo: nix.thunk(() => ({ [nix.POS]: pos$66, bar: 1n })) })),
               })),
               nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 file: "format-test-inner-iniCoercedDuplicateKeys",
-                value: nix.thunk(() => ({ __proto__: pos$70, foo: nix.thunk(() => ({ __proto__: pos$69, bar: 2n })) })),
+                value: nix.thunk(() => ({ [nix.POS]: pos$70, foo: nix.thunk(() => ({ [nix.POS]: pos$69, bar: 2n })) })),
               })),
             ])));
           const expected = "[foo]\nbar=1\nbar=2\n";
-          return { __proto__: pos$72, format, input, expected };
+          return { [nix.POS]: pos$72, format, input, expected };
         })()))),
       iniCoercedListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
               atomsCoercedToLists: true,
             }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 file: "format-test-inner-iniCoercedListToValue",
-                value: nix.thunk(() => ({ __proto__: pos$75, foo: nix.thunk(() => ({ __proto__: pos$74, bar: 1n })) })),
+                value: nix.thunk(() => ({ [nix.POS]: pos$75, foo: nix.thunk(() => ({ [nix.POS]: pos$74, bar: 1n })) })),
               })),
               nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 file: "format-test-inner-iniCoercedListToValue",
-                value: nix.thunk(() => ({ __proto__: pos$78, foo: nix.thunk(() => ({ __proto__: pos$77, bar: 2n })) })),
+                value: nix.thunk(() => ({ [nix.POS]: pos$78, foo: nix.thunk(() => ({ [nix.POS]: pos$77, bar: 2n })) })),
               })),
             ])));
           const expected = "[foo]\nbar=1, 2\n";
-          return { __proto__: pos$80, format, input, expected };
+          return { [nix.POS]: pos$80, format, input, expected };
         })()))),
       iniCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$84,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ __proto__: pos$81, atomsCoercedToLists: true })))),
-          input: nix.thunk(() => ({ __proto__: pos$83, foo: nix.thunk(() => ({ __proto__: pos$82, bar: 1n })) })),
+          [nix.POS]: pos$84,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$81, atomsCoercedToLists: true })))),
+          input: nix.thunk(() => ({ [nix.POS]: pos$83, foo: nix.thunk(() => ({ [nix.POS]: pos$82, bar: 1n })) })),
         })))),
       iniNoCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$88,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ __proto__: pos$85, atomsCoercedToLists: false })))),
-          input: nix.thunk(() => ({ __proto__: pos$87, foo: nix.thunk(() => ({ __proto__: pos$86, bar: 1n })) })),
+          [nix.POS]: pos$88,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$85, atomsCoercedToLists: false })))),
+          input: nix.thunk(() => ({ [nix.POS]: pos$87, foo: nix.thunk(() => ({ [nix.POS]: pos$86, bar: 1n })) })),
         })))),
       iniWithGlobalNoSections: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({})),
           expected: "",
         })))),
       iniWithGlobalOnlySections: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$92,
-            sections: nix.thunk(() => ({ __proto__: pos$91, foo: nix.thunk(() => ({ __proto__: pos$90, bar: "baz" })) })),
+            [nix.POS]: pos$92,
+            sections: nix.thunk(() => ({ [nix.POS]: pos$91, foo: nix.thunk(() => ({ [nix.POS]: pos$90, bar: "baz" })) })),
           })),
           expected: "[foo]\nbar=baz\n",
         })))),
       iniWithGlobalOnlyGlobal: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$95,
-            globalSection: nix.thunk(() => ({ __proto__: pos$94, bar: "baz" })),
+            [nix.POS]: pos$95,
+            globalSection: nix.thunk(() => ({ [nix.POS]: pos$94, bar: "baz" })),
           })),
           expected: "bar=baz\n\n",
         })))),
       iniWithGlobalWrongSections: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ __proto__: pos$97, foo: nix.thunk(() => ({})) })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$97, foo: nix.thunk(() => ({})) })),
         })))),
       iniWithGlobalEverything: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$103,
+          [nix.POS]: pos$103,
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$102,
-            globalSection: nix.thunk(() => ({ __proto__: pos$99, bar: true })),
+            [nix.POS]: pos$102,
+            globalSection: nix.thunk(() => ({ [nix.POS]: pos$99, bar: true })),
             sections: nix.thunk(() => ({
-              __proto__: pos$101,
-              foo: nix.thunk(() => ({ __proto__: pos$100, bool: true, int: 10n, float: 3.141, str: "string" })),
+              [nix.POS]: pos$101,
+              foo: nix.thunk(() => ({ [nix.POS]: pos$100, bool: true, int: 10n, float: 3.141, str: "string" })),
             })),
           })),
           expected: "bar=true\n\n[foo]\nbool=true\nfloat=3.141000\nint=10\nstr=string\n",
         })))),
       iniWithGlobalListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$109,
+          [nix.POS]: pos$109,
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
             })))),
           input: nix.thunk(() => ({
-            __proto__: pos$108,
+            [nix.POS]: pos$108,
             globalSection: nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
             })),
             sections: nix.thunk(() => ({
-              __proto__: pos$107,
+              [nix.POS]: pos$107,
               foo: nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
                 baz: false,
                 qux: "qux",
@@ -661,88 +661,88 @@ ${"  "}null
           expected: "bar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n\n[foo]\nbar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n",
         })))),
       iniWithGlobalCoercedDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
-          const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ __proto__: pos$110, listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
+          const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$110, listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 file: "format-test-inner-iniWithGlobalCoercedDuplicateKeys",
                 value: nix.thunk(() => ({
-                  __proto__: pos$114,
-                  globalSection: nix.thunk(() => ({ __proto__: pos$111, baz: 4n })),
-                  sections: nix.thunk(() => ({ __proto__: pos$113, foo: nix.thunk(() => ({ __proto__: pos$112, bar: 1n })) })),
+                  [nix.POS]: pos$114,
+                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$111, baz: 4n })),
+                  sections: nix.thunk(() => ({ [nix.POS]: pos$113, foo: nix.thunk(() => ({ [nix.POS]: pos$112, bar: 1n })) })),
                 })),
               })),
               nix.thunk(() => ({
-                __proto__: pos$120,
+                [nix.POS]: pos$120,
                 file: "format-test-inner-iniWithGlobalCoercedDuplicateKeys",
                 value: nix.thunk(() => ({
-                  __proto__: pos$119,
-                  globalSection: nix.thunk(() => ({ __proto__: pos$116, baz: 3n })),
-                  sections: nix.thunk(() => ({ __proto__: pos$118, foo: nix.thunk(() => ({ __proto__: pos$117, bar: 2n })) })),
+                  [nix.POS]: pos$119,
+                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$116, baz: 3n })),
+                  sections: nix.thunk(() => ({ [nix.POS]: pos$118, foo: nix.thunk(() => ({ [nix.POS]: pos$117, bar: 2n })) })),
                 })),
               })),
             ])));
           const expected = "baz=3\nbaz=4\n\n[foo]\nbar=2\nbar=1\n";
-          return { __proto__: pos$121, format, input, expected };
+          return { [nix.POS]: pos$121, format, input, expected };
         })()))),
       iniWithGlobalCoercedListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({
-              __proto__: pos$122,
+              [nix.POS]: pos$122,
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
               atomsCoercedToLists: true,
             }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$127,
+                [nix.POS]: pos$127,
                 file: "format-test-inner-iniWithGlobalCoercedListToValue",
                 value: nix.thunk(() => ({
-                  __proto__: pos$126,
-                  globalSection: nix.thunk(() => ({ __proto__: pos$123, baz: 4n })),
-                  sections: nix.thunk(() => ({ __proto__: pos$125, foo: nix.thunk(() => ({ __proto__: pos$124, bar: 1n })) })),
+                  [nix.POS]: pos$126,
+                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$123, baz: 4n })),
+                  sections: nix.thunk(() => ({ [nix.POS]: pos$125, foo: nix.thunk(() => ({ [nix.POS]: pos$124, bar: 1n })) })),
                 })),
               })),
               nix.thunk(() => ({
-                __proto__: pos$132,
+                [nix.POS]: pos$132,
                 file: "format-test-inner-iniWithGlobalCoercedListToValue",
                 value: nix.thunk(() => ({
-                  __proto__: pos$131,
-                  globalSection: nix.thunk(() => ({ __proto__: pos$128, baz: 3n })),
-                  sections: nix.thunk(() => ({ __proto__: pos$130, foo: nix.thunk(() => ({ __proto__: pos$129, bar: 2n })) })),
+                  [nix.POS]: pos$131,
+                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$128, baz: 3n })),
+                  sections: nix.thunk(() => ({ [nix.POS]: pos$130, foo: nix.thunk(() => ({ [nix.POS]: pos$129, bar: 2n })) })),
                 })),
               })),
             ])));
           const expected = "baz=3, 4\n\n[foo]\nbar=2, 1\n";
-          return { __proto__: pos$133, format, input, expected };
+          return { [nix.POS]: pos$133, format, input, expected };
         })()))),
       iniWithGlobalCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$138,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ __proto__: pos$134, atomsCoercedToLists: true })))),
+          [nix.POS]: pos$138,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$134, atomsCoercedToLists: true })))),
           input: nix.thunk(() => ({
-            __proto__: pos$137,
-            globalSection: nix.thunk(() => ({ __proto__: pos$135, baz: 4n })),
-            foo: nix.thunk(() => ({ __proto__: pos$136, bar: 1n })),
+            [nix.POS]: pos$137,
+            globalSection: nix.thunk(() => ({ [nix.POS]: pos$135, baz: 4n })),
+            foo: nix.thunk(() => ({ [nix.POS]: pos$136, bar: 1n })),
           })),
         })))),
       iniWithGlobalNoCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$143,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ __proto__: pos$139, atomsCoercedToLists: false })))),
+          [nix.POS]: pos$143,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$139, atomsCoercedToLists: false })))),
           input: nix.thunk(() => ({
-            __proto__: pos$142,
-            globalSection: nix.thunk(() => ({ __proto__: pos$140, baz: 4n })),
-            foo: nix.thunk(() => ({ __proto__: pos$141, bar: 1n })),
+            [nix.POS]: pos$142,
+            globalSection: nix.thunk(() => ({ [nix.POS]: pos$140, baz: 4n })),
+            foo: nix.thunk(() => ({ [nix.POS]: pos$141, bar: 1n })),
           })),
         })))),
       keyValueAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$145,
+          [nix.POS]: pos$145,
           format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ __proto__: pos$144, bool: true, int: 10n, float: 3.141, str: "string" })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$144, bool: true, int: 10n, float: 3.141, str: "string" })),
           expected: "bool=true\nfloat=3.141000\nint=10\nstr=string\n",
         })))),
       keyValueDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$148,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({ __proto__: pos$146, listsAsDuplicateKeys: true })))),
+          [nix.POS]: pos$148,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({ [nix.POS]: pos$146, listsAsDuplicateKeys: true })))),
           input: nix.thunk(() => ({
-            __proto__: pos$147,
+            [nix.POS]: pos$147,
             bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
             baz: false,
             qux: "qux",
@@ -750,13 +750,13 @@ ${"  "}null
           expected: "bar=null\nbar=true\nbar=test\nbar=1.200000\nbar=10\nbaz=false\nqux=qux\n",
         })))),
       keyValueListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({
-              __proto__: pos$149,
+              [nix.POS]: pos$149,
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
             })))),
           input: nix.thunk(() => ({
-            __proto__: pos$150,
+            [nix.POS]: pos$150,
             bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
             baz: false,
             qux: "qux",
@@ -764,36 +764,36 @@ ${"  "}null
           expected: "bar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n",
         })))),
       tomlAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$157,
+          [nix.POS]: pos$157,
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$156,
+            [nix.POS]: pos$156,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$152, foo: "foo" })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$152, foo: "foo" })),
             list: nix.thunk(() => [1n, 2n]),
             level1: nix.thunk(() => ({
-              __proto__: pos$155,
+              [nix.POS]: pos$155,
               level2: nix.thunk(() => ({
-                __proto__: pos$154,
-                level3: nix.thunk(() => ({ __proto__: pos$153, level4: "deep" })),
+                [nix.POS]: pos$154,
+                level3: nix.thunk(() => ({ [nix.POS]: pos$153, level4: "deep" })),
               })),
             })),
           })),
           expected: "false = false\nfloat = 3.141\nint = 10\nlist = [1, 2]\nstr = \"foo\"\ntrue = true\n\n[attrs]\nfoo = \"foo\"\n\n[level1.level2.level3]\nlevel4 = \"deep\"\n",
         })))),
       tomlHeterogeneousArray: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$160,
+          [nix.POS]: pos$160,
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$159,
+            [nix.POS]: pos$159,
             "language-server": nix.thunk(() => [
               "bash-language-server",
               nix.thunk(() => ({
-                __proto__: pos$158,
+                [nix.POS]: pos$158,
                 name: "typescript-language-server",
                 "except-features": nix.thunk(() => ["diagnostics"]),
               })),
@@ -802,28 +802,28 @@ ${"  "}null
           expected: "language-server = [\"bash-language-server\", { except-features = [\"diagnostics\"], name = \"typescript-language-server\" }]\n",
         })))),
       tomlCommaInKey: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$162,
+          [nix.POS]: pos$162,
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ __proto__: pos$161, "stack(x,n)": "foobar" })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$161, "stack(x,n)": "foobar" })),
           expected: "\"stack(x,n)\" = \"foobar\"\n",
         })))),
       tomlNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$163,
+          [nix.POS]: pos$163,
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
           input: null,
         })))),
       cdnAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$166,
+          [nix.POS]: pos$166,
           format: nix.thunk(() => nix.app(nix.sel(formats, "cdn"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$165,
+            [nix.POS]: pos$165,
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$164, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$164, foo: null })),
             list: nix.thunk(() => [1n, null]),
             path: nix.path(here, "./testfile"),
           })),
@@ -844,16 +844,16 @@ list [
 `),
         })))),
       cdnNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$167,
+          [nix.POS]: pos$167,
           format: nix.thunk(() => nix.app(nix.sel(formats, "cdn"), nix.thunk(() => ({})))),
           input: null,
           expected: "null: null\n",
         })))),
       javaProperties: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$169,
+          [nix.POS]: pos$169,
           format: nix.thunk(() => nix.app(nix.sel(formats, "javaProperties"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$168,
+            [nix.POS]: pos$168,
             floaty: 3.1415,
             tautologies: true,
             contradictions: false,
@@ -876,17 +876,17 @@ tautologies = true
 `),
         })))),
       luaTable: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$172,
+          [nix.POS]: pos$172,
           format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$170, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$170, foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             inline: nix.thunk(() => nix.app(nix.sel(lib, "mkLuaInline"), "hello('world')")),
@@ -911,17 +911,17 @@ tautologies = true
 `),
         })))),
       luaBindings: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$176,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({ __proto__: pos$173, asBindings: true })))),
+          [nix.POS]: pos$176,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({ [nix.POS]: pos$173, asBindings: true })))),
           input: nix.thunk(() => ({
-            __proto__: pos$175,
+            [nix.POS]: pos$175,
             null: null,
             _false: false,
             _true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$174, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$174, foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             inline: nix.thunk(() => nix.app(nix.sel(lib, "mkLuaInline"), "hello('world')")),
@@ -944,26 +944,26 @@ str = "foo"
 `),
         })))),
       luaNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$177,
+          [nix.POS]: pos$177,
           format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({})))),
           input: null,
           expected: "return nil\n",
         })))),
       nixConfAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$180,
+          [nix.POS]: pos$180,
           format: nix.thunk(() => nix.app(nix.sel(formats, "nixConf"), nix.thunk(() => ({
-              __proto__: pos$178,
+              [nix.POS]: pos$178,
               package: nix.thunk(() => nix.sel(pkgs, "nix")),
               version: nix.thunk(() => nix.sel(pkgs, "nix", "version")),
               extraOptions: "ignore-try = false",
             })))),
-          input: nix.thunk(() => ({ __proto__: pos$179, "auto-optimise-store": true, cores: 0n, store: "auto" })),
+          input: nix.thunk(() => ({ [nix.POS]: pos$179, "auto-optimise-store": true, cores: 0n, store: "auto" })),
           expected: "# WARNING: this file is generated from the nix.* options in\n# your NixOS configuration, typically\n# /etc/nixos/configuration.nix.  Do not edit it!\nauto-optimise-store = true\ncores = 0\nstore = auto\n\nignore-try = false\n",
         })))),
       nixConfNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$182,
+          [nix.POS]: pos$182,
           format: nix.thunk(() => nix.app(nix.sel(formats, "nixConf"), nix.thunk(() => ({
-              __proto__: pos$181,
+              [nix.POS]: pos$181,
               package: nix.thunk(() => nix.sel(pkgs, "nix")),
               version: nix.thunk(() => nix.sel(pkgs, "nix", "version")),
               extraOptions: "ignore-try = false",
@@ -971,9 +971,9 @@ str = "foo"
           input: null,
         })))),
       phpAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
-          const format = nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ __proto__: pos$183, finalVariable: "config" }))));
+          const format = nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ [nix.POS]: pos$183, finalVariable: "config" }))));
           const input = nix.thunk(() => ({
-            __proto__: pos$187,
+            [nix.POS]: pos$187,
             null: null,
             false: false,
             true: true,
@@ -981,12 +981,12 @@ str = "foo"
             float: 3.141,
             str: "foo",
             str_special: "foo\ntesthello'''",
-            attrs: nix.thunk(() => ({ __proto__: pos$184, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$184, foo: null })),
             list: nix.thunk(() => [null, null]),
             mixed: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkMixedArray"), nix.thunk(() => [10n, 3.141]), nix.thunk(() => ({
-                __proto__: pos$186,
+                [nix.POS]: pos$186,
                 str: "foo",
-                attrs: nix.thunk(() => ({ __proto__: pos$185, foo: null })),
+                attrs: nix.thunk(() => ({ [nix.POS]: pos$185, foo: null })),
               })))),
             raw: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkRaw"), "random_function()")),
           }));
@@ -995,21 +995,21 @@ declare(strict_types=1);
 $config = ['attrs' => ['foo' => null], 'false' => false, 'float' => 3.141000, 'int' => 10, 'list' => [null, null], 'mixed' => [10, 3.141000, 'attrs' => ['foo' => null], 'str' => 'foo'], 'null' => null, 'raw' => random_function(), 'str' => 'foo', 'str_special' => 'foo
 testhello\\'\\'\\'${"'"}, 'true' => true];
 `);
-          return { __proto__: pos$188, format, input, expected };
+          return { [nix.POS]: pos$188, format, input, expected };
         })()))),
       phpNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$190,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ __proto__: pos$189, finalVariable: "config" })))),
+          [nix.POS]: pos$190,
+          format: nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ [nix.POS]: pos$189, finalVariable: "config" })))),
           input: null,
           expected: "<?php\ndeclare(strict_types=1);\n$config = null;\n",
         })))),
       pythonVars: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(formats, "pythonVars"), nix.thunk(() => ({}))));
           return {
-            __proto__: pos$193,
+            [nix.POS]: pos$193,
             format: format,
             input: nix.thunk(() => ({
-              __proto__: pos$192,
+              [nix.POS]: pos$192,
               _imports: nix.thunk(() => ["re", "a.b.c"]),
               int: 10n,
               float: 3.141,
@@ -1025,7 +1025,7 @@ testhello\\'\\'\\'${"'"}, 'true' => true];
                 nix.thunk(() => nix.app(nix.sel(format, "lib", "mkRaw"), "1 if True else 2")),
               ]),
               attrs: nix.thunk(() => ({
-                __proto__: pos$191,
+                [nix.POS]: pos$191,
                 foo: null,
                 conditional: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkRaw"), "1 if True else 2")),
               })),
@@ -1035,20 +1035,20 @@ testhello\\'\\'\\'${"'"}, 'true' => true];
           };
         })()))),
       pythonVarsNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$194,
+          [nix.POS]: pos$194,
           format: nix.thunk(() => nix.app(nix.sel(formats, "pythonVars"), nix.thunk(() => ({})))),
           input: null,
         })))),
       phpReturn: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$197,
+          [nix.POS]: pos$197,
           format: nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$196,
+            [nix.POS]: pos$196,
             int: 10n,
             float: 3.141,
             str: "foo",
             str_special: "foo\ntesthello'''",
-            attrs: nix.thunk(() => ({ __proto__: pos$195, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$195, foo: null })),
           })),
           expected: nix.thunk(() => nix.str`<?php
 declare(strict_types=1);
@@ -1057,47 +1057,47 @@ testhello\\'\\'\\'${"'"}];
 `),
         })))),
       badgerfishToXmlGenerate: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$202,
+          [nix.POS]: pos$202,
           format: nix.thunk(() => nix.app(nix.sel(formats, "xml"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$201,
+            [nix.POS]: pos$201,
             root: nix.thunk(() => ({
-              __proto__: pos$200,
+              [nix.POS]: pos$200,
               "@id": "123",
               "@class": "example",
-              child1: nix.thunk(() => ({ __proto__: pos$198, "@name": "child1Name", "#text": "text node" })),
-              child2: nix.thunk(() => ({ __proto__: pos$199, grandchild: "This is a grandchild text node." })),
+              child1: nix.thunk(() => ({ [nix.POS]: pos$198, "@name": "child1Name", "#text": "text node" })),
+              child2: nix.thunk(() => ({ [nix.POS]: pos$199, grandchild: "This is a grandchild text node." })),
               nulltest: null,
             })),
           })),
           expected: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root class=\"example\" id=\"123\">\n  <child1 name=\"child1Name\">text node</child1>\n  <child2>\n    <grandchild>This is a grandchild text node.</grandchild>\n  </child2>\n  <nulltest></nulltest>\n</root>\n",
         })))),
       xmlNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          __proto__: pos$203,
+          [nix.POS]: pos$203,
           format: nix.thunk(() => nix.app(nix.sel(formats, "xml"), nix.thunk(() => ({})))),
           input: null,
         })))),
       PlistGenerate: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$209,
+          [nix.POS]: pos$209,
           format: nix.thunk(() => nix.app(nix.sel(formats, "plist"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$208,
+            [nix.POS]: pos$208,
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ __proto__: pos$204, foo: 0n })),
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$204, foo: 0n })),
             list: nix.thunk(() => [
               1n,
               "hello",
               nix.thunk(() => ({
-                __proto__: pos$207,
+                [nix.POS]: pos$207,
                 attrs: nix.thunk(() => ({
-                  __proto__: pos$206,
+                  [nix.POS]: pos$206,
                   key: nix.thunk(() => ({
-                    __proto__: pos$205,
+                    [nix.POS]: pos$205,
                     value: nix.thunk(() => [nix.thunk(() => [1n, 2n, 3n]), "test"]),
                   })),
                 })),
@@ -1107,30 +1107,30 @@ testhello\\'\\'\\'${"'"}];
           expected: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>attrs</key>\n\t<dict>\n\t\t<key>foo</key>\n\t\t<integer>0</integer>\n\t</dict>\n\t<key>false</key>\n\t<false/>\n\t<key>float</key>\n\t<real>3.141000</real>\n\t<key>int</key>\n\t<integer>10</integer>\n\t<key>list</key>\n\t<array>\n\t\t<integer>1</integer>\n\t\t<string>hello</string>\n\t\t<dict>\n\t\t\t<key>attrs</key>\n\t\t\t<dict>\n\t\t\t\t<key>key</key>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>value</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<array>\n\t\t\t\t\t\t\t<integer>1</integer>\n\t\t\t\t\t\t\t<integer>2</integer>\n\t\t\t\t\t\t\t<integer>3</integer>\n\t\t\t\t\t\t</array>\n\t\t\t\t\t\t<string>test</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t</dict>\n\t\t</dict>\n\t</array>\n\t<key>str</key>\n\t<string>foo</string>\n\t<key>true</key>\n\t<true/>\n</dict>\n</plist>",
         })))),
       PlistNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$210,
+          [nix.POS]: pos$210,
           format: nix.thunk(() => nix.app(nix.sel(formats, "plist"), nix.thunk(() => ({})))),
           input: null,
           expected: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n\n</plist>",
         })))),
       hcl1Atoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          __proto__: pos$219,
+          [nix.POS]: pos$219,
           format: nix.thunk(() => nix.app(nix.sel(formats, "hcl1"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            __proto__: pos$218,
+            [nix.POS]: pos$218,
             resource: nix.thunk(() => ({
-              __proto__: pos$213,
+              [nix.POS]: pos$213,
               aws_instance: nix.thunk(() => ({
-                __proto__: pos$212,
-                example: nix.thunk(() => ({ __proto__: pos$211, ami: "ami-12345", instance_type: "t2.micro" })),
+                [nix.POS]: pos$212,
+                example: nix.thunk(() => ({ [nix.POS]: pos$211, ami: "ami-12345", instance_type: "t2.micro" })),
               })),
             })),
             variable: nix.thunk(() => ({
-              __proto__: pos$215,
-              region: nix.thunk(() => ({ __proto__: pos$214, default: "us-east-1" })),
+              [nix.POS]: pos$215,
+              region: nix.thunk(() => ({ [nix.POS]: pos$214, default: "us-east-1" })),
             })),
             output: nix.thunk(() => ({
-              __proto__: pos$217,
-              ip: nix.thunk(() => ({ __proto__: pos$216, value: "127.0.0.1" })),
+              [nix.POS]: pos$217,
+              ip: nix.thunk(() => ({ [nix.POS]: pos$216, value: "127.0.0.1" })),
             })),
             primitive: "just a string",
             number: 42n,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opengrok";
       const version = "1.14.17";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/oracle/opengrok/releases/download/${version}/${pname}-${version}.tar.gz`),
           hash: "sha256-ODgGr8/9qTv0Ru69GhhcAmi0adonwJgrnOs/B9rQYxQ=",
         }))));
@@ -33,7 +33,7 @@ makeWrapper ${jre}/bin/java $out/bin/opengrok \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Source code search and cross reference engine",
         mainProgram: "opengrok",
         homepage: "https://opengrok.github.io/OpenGrok/",
@@ -42,7 +42,7 @@ runHook postInstall
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

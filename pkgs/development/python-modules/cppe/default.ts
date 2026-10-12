@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(cppe, "pname")),
       version: nix.thunk(() => nix.attr(cppe, "version")),
       src: nix.thunk(() => nix.attr(cppe, "src")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       format: "setuptools",
       buildInputs: nix.thunk(() => nix.concat([pybind11], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp"))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_LINK: "-lomp" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_LINK: "-lomp" })))),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "strictoverflow")),
       nativeCheckInputs: nix.thunk(() => [pytest, h5py, numba, numpy, pandas, polarizationsolver, scipy]),
       pythonImportsCheck: nix.thunk(() => ["cppe"]),

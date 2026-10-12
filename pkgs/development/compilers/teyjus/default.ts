@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
-  return nix.app(nix.sel(buildDunePackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(buildDunePackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$4,
       pname: "teyjus",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "teyjus",
           repo: "teyjus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Efficient implementation of the Lambda Prolog language",
         homepage: "https://github.com/teyjus/teyjus",
         changelog: nix.thunk(() => nix.str`https://github.com/teyjus/teyjus/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tkrzw",
       version: "1.0.32",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dbmx.net/tkrzw/pkg/tkrzw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-00BN+saJhjK2l4DA8JlMX2upYhkaYcmw9LU7qLsncxw=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of implementations of DBM",
         homepage: "https://dbmx.net/tkrzw/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

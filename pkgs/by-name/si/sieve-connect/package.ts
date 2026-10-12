@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sieve-connect",
       version: "0.90",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "philpennock",
           repo: "sieve-connect",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ wrapProgram $out/bin/sieve-connect \\
       })()}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client for the MANAGESIEVE Protocol",
         longDescription: "This is sieve-connect. A client for the ManageSieve protocol,\nas specified in RFC 5804. Historically, this was MANAGESIEVE as\nimplemented by timsieved in Cyrus IMAP.\n",
         homepage: "https://github.com/philpennock/sieve-connect",

@@ -27,33 +27,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "systemd-bpf",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "veehaitch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       node1: nix.thunk(() => ({
-        __proto__: pos$9,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$9,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             eth1: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$4, address: "192.168.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$4, address: "192.168.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
@@ -61,21 +61,21 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       node2: nix.thunk(() => ({
-        __proto__: pos$17,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$10, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$17,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             eth1: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$12, address: "192.168.1.2", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$12, address: "192.168.1.2", prefixLength: 24n })),
                 ]),
               })),
             })),

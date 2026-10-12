@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
   const gitlabVersionAtLeast = (version) => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(cfg, "packages", "gitlab")))), version);
   const databaseConfig = nix.thunk(() => (() => {
     const val = nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       adapter: "postgresql",
       database: nix.thunk(() => nix.sel(cfg, "databaseName")),
       host: nix.thunk(() => nix.sel(cfg, "databaseHost")),
@@ -221,10 +221,10 @@ export default nix.lambda((args) => (() => {
       pool: nix.thunk(() => nix.sel(cfg, "databasePool")),
     }, nix.sel(cfg, "extraDatabaseConfig")));
     return {
-      __proto__: pos$5,
-      production: nix.thunk(() => nix.update((nix.asBool(nix.app(gitlabVersionAtLeast, "15.0")) ? { __proto__: pos$2, main: val } : nix.force(val)), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(gitlabVersionAtLeast, "15.9")), nix.thunk(() => ({
-          __proto__: pos$4,
-          ci: nix.thunk(() => nix.update(val, { __proto__: pos$3, database_tasks: false })),
+      [nix.POS]: pos$5,
+      production: nix.thunk(() => nix.update((nix.asBool(nix.app(gitlabVersionAtLeast, "15.0")) ? { [nix.POS]: pos$2, main: val } : nix.force(val)), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(gitlabVersionAtLeast, "15.9")), nix.thunk(() => ({
+          [nix.POS]: pos$4,
+          ci: nix.thunk(() => nix.update(val, { [nix.POS]: pos$3, database_tasks: false })),
         }))))),
     };
   })());
@@ -256,22 +256,22 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
 `, nix.thunk(() => nix.sel(gitlabConfig, "production", "repositories", "storages")))))))}
 `)));
   const gitlabShellConfig = nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "recursiveUpdate")), nix.thunk(() => nix.sel(cfg, "extraShellConfig")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       user: nix.thunk(() => nix.sel(cfg, "user")),
       gitlab_url: nix.thunk(() => nix.str`http+unix://${nix.app(pathUrlQuote, gitlabSocket)}`),
-      http_settings: nix.thunk(() => ({ __proto__: pos$6, self_signed_cert: false })),
+      http_settings: nix.thunk(() => ({ [nix.POS]: pos$6, self_signed_cert: false })),
       repos_path: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/repositories`),
       secret_file: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/gitlab_shell_secret`),
       log_file: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/log/gitlab-shell.log`),
     }))));
   const redisConfig = nix.thunk(() => ({
-    __proto__: pos$9,
-    production: nix.thunk(() => ({ __proto__: pos$8, url: nix.thunk(() => nix.sel(cfg, "redisUrl")) })),
+    [nix.POS]: pos$9,
+    production: nix.thunk(() => ({ [nix.POS]: pos$8, url: nix.thunk(() => nix.sel(cfg, "redisUrl")) })),
   }));
   const cableYml = nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "cable.yml", nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       production: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         adapter: "redis",
         url: nix.thunk(() => nix.sel(cfg, "redisUrl")),
         channel_prefix: "gitlab_production",
@@ -279,11 +279,11 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
     }))));
   const resqueYml = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "resque.yml", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), redisConfig))));
   const gitlabConfig = nix.thunk(() => ({
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     production: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "recursiveUpdate")), nix.thunk(() => nix.sel(cfg, "extraConfig")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         gitlab: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           host: nix.thunk(() => nix.sel(cfg, "host")),
           port: nix.thunk(() => nix.sel(cfg, "port")),
           https: nix.thunk(() => nix.sel(cfg, "https")),
@@ -293,7 +293,7 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
           email_reply_to: "noreply@localhost",
           default_theme: 2n,
           default_projects_features: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             issues: true,
             merge_requests: true,
             wiki: true,
@@ -303,45 +303,45 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
           })),
         })),
         repositories: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           storages: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             default: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               path: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/repositories`),
               gitaly_address: nix.thunk(() => nix.str`unix:${gitalySocket}`),
             })),
           })),
         })),
-        artifacts: nix.thunk(() => ({ __proto__: pos$17, enabled: true })),
-        lfs: nix.thunk(() => ({ __proto__: pos$18, enabled: true })),
-        gravatar: nix.thunk(() => ({ __proto__: pos$19, enabled: true })),
+        artifacts: nix.thunk(() => ({ [nix.POS]: pos$17, enabled: true })),
+        lfs: nix.thunk(() => ({ [nix.POS]: pos$18, enabled: true })),
+        gravatar: nix.thunk(() => ({ [nix.POS]: pos$19, enabled: true })),
         cron_jobs: nix.thunk(() => ({})),
         gitlab_ci: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           builds_path: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/builds`),
         })),
-        ldap: nix.thunk(() => ({ __proto__: pos$21, enabled: false })),
-        omniauth: nix.thunk(() => ({ __proto__: pos$22, enabled: false })),
+        ldap: nix.thunk(() => ({ [nix.POS]: pos$21, enabled: false })),
+        omniauth: nix.thunk(() => ({ [nix.POS]: pos$22, enabled: false })),
         shared: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           path: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/shared`),
         })),
         gitaly: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           client_path: nix.thunk(() => nix.str`${nix.sel(cfg, "packages", "gitaly")}/bin`),
         })),
         backup: nix.thunk(() => nix.update({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           gitaly_backup_path: nix.thunk(() => nix.str`${nix.sel(cfg, "packages", "gitaly")}/bin/gitaly-backup`),
           path: nix.thunk(() => nix.sel(cfg, "backup", "path")),
           keep_time: nix.thunk(() => nix.sel(cfg, "backup", "keepTime")),
         }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "backup", "uploadOptions"), {})), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             upload: nix.thunk(() => nix.sel(cfg, "backup", "uploadOptions")),
           }))))),
         gitlab_shell: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           path: nix.thunk(() => nix.str`${nix.sel(cfg, "packages", "gitlab-shell")}`),
           hooks_path: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/shell/hooks`),
           secret_file: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/gitlab_shell_secret`),
@@ -349,21 +349,21 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
           receive_pack: true,
         })),
         workhorse: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           secret_file: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/.gitlab_workhorse_secret`),
         })),
         gitlab_kas: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           secret_file: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/.gitlab_kas_secret`),
         })),
-        git: nix.thunk(() => ({ __proto__: pos$30, bin_path: "git" })),
+        git: nix.thunk(() => ({ [nix.POS]: pos$30, bin_path: "git" })),
         monitoring: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           ip_whitelist: nix.thunk(() => ["127.0.0.0/8", "::1/128"]),
-          sidekiq_exporter: nix.thunk(() => ({ __proto__: pos$31, enable: true, address: "localhost", port: 3807n })),
+          sidekiq_exporter: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true, address: "localhost", port: 3807n })),
         })),
         registry: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "registry", "enable")), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             enabled: true,
             host: nix.thunk(() => nix.sel(cfg, "registry", "externalAddress")),
             port: nix.thunk(() => nix.sel(cfg, "registry", "externalPort")),
@@ -372,13 +372,13 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
             issuer: nix.thunk(() => nix.sel(cfg, "registry", "settings", "auth", "token", "issuer")),
           })))),
         elasticsearch: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           indexer_path: nix.thunk(() => nix.str`${nix.sel(pkgs, "gitlab-elasticsearch-indexer")}/bin/gitlab-elasticsearch-indexer`),
         })),
         extra: nix.thunk(() => ({})),
-        uploads: nix.thunk(() => ({ __proto__: pos$35, storage_path: nix.thunk(() => nix.sel(cfg, "statePath")) })),
+        uploads: nix.thunk(() => ({ [nix.POS]: pos$35, storage_path: nix.thunk(() => nix.sel(cfg, "statePath")) })),
         pages: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "pages", "enable")), nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             enabled: nix.thunk(() => nix.sel(cfg, "pages", "enable")),
             port: 8090n,
             host: nix.thunk(() => nix.sel(cfg, "pages", "settings", "pages-domain")),
@@ -387,7 +387,7 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
       })))),
   }));
   const gitlabEnv = nix.thunk(() => nix.update(nix.sel(cfg, "packages", "gitlab", "gitlabEnv"), nix.update({
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     HOME: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/home`),
     PUMA_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/`),
     GITLAB_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "packages", "gitlab")}/share/gitlab/`),
@@ -412,7 +412,7 @@ path = "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), nix.thunk(() 
     ];
   })()));
   const gitlab_rake = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       name: "gitlab-rake",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
       dontBuild: true,
@@ -426,7 +426,7 @@ makeWrapper ${nix.sel(cfg, "packages", "gitlab", "rubyEnv")}/bin/rake $out/bin/g
 `),
     }))));
   const gitlab_rails = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       name: "gitlab-rails",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
       dontBuild: true,
@@ -458,7 +458,7 @@ makeWrapper ${nix.sel(cfg, "packages", "gitlab", "rubyEnv")}/bin/rails $out/bin/
 end
 `)));
   return {
-    __proto__: pos$188,
+    [nix.POS]: pos$188,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gitlab", "stateDir"]), nix.thunk(() => ["services", "gitlab", "statePath"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gitlab", "backupPath"]), nix.thunk(() => ["services", "gitlab", "backup", "path"]))),
@@ -467,41 +467,41 @@ end
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "gitlab", "pagesExtraArgs"]), "Use services.gitlab.pages.settings instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$122,
+      [nix.POS]: pos$122,
       services: nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         gitlab: nix.thunk(() => ({
-          __proto__: pos$120,
+          [nix.POS]: pos$120,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable the gitlab service.\n",
             })))),
           packages: nix.thunk(() => ({
-            __proto__: pos$44,
-            gitlab: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitlab", nix.thunk(() => ({ __proto__: pos$43, example: "gitlab-ee" })))),
+            [nix.POS]: pos$44,
+            gitlab: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitlab", nix.thunk(() => ({ [nix.POS]: pos$43, example: "gitlab-ee" })))),
             "gitlab-shell": nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitlab-shell", nix.thunk(() => ({})))),
             "gitlab-workhorse": nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitlab-workhorse", nix.thunk(() => ({})))),
             gitaly: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitaly", nix.thunk(() => ({})))),
             pages: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitlab-pages", nix.thunk(() => ({})))),
           })),
           statePath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/gitlab/state",
               description: "GitLab state directory. Configuration, repositories and\nlogs, among other things, are stored here.\n\nThe directory will be created automatically if it doesn't\nexist already. Its parent directories must be owned by\neither `root` or the user set in\n{option}`services.gitlab.user`.\n",
             })))),
           extraEnv: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
               description: "Additional environment variables for the GitLab environment.\n",
             })))),
           backup: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             startAt: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "either"), nix.thunk(() => nix.lookup(w_2, "str")), nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")))));
@@ -511,14 +511,14 @@ end
                 description: "The time(s) to run automatic backup of GitLab\nstate. Specified in systemd's time format; see\n{manpage}`systemd.time(7)`.\n",
               })))),
             path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: nix.thunk(() => nix.add(nix.sel(cfg, "statePath"), "/backup")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "statePath")} + "/backup"`))),
                 description: "GitLab path for backups.",
               })))),
             keepTime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 0n,
                 example: 48n,
@@ -526,7 +526,7 @@ end
                 description: "How long to keep the backups around, in\nhours. `0` means “keep forever”.\n",
               })))),
             skip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   const value = nix.thunk(() => nix.app(nix.lookup(w_2, "enum"), nix.thunk(() => [
@@ -548,7 +548,7 @@ end
                 description: "Directories to exclude from the backup. The example excludes\nCI artifacts and LFS objects from the backups. The\n`tar` option skips the creation of a tar\nfile.\n\nRefer to <https://docs.gitlab.com/ee/raketasks/backup_restore.html#excluding-specific-directories-from-the-backup>\nfor more information.\n",
               })))),
             uploadOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  # Fog storage connection settings, see http://fog.io/storage/\n  connection = {\n    provider = \"AWS\";\n    region = \"eu-north-1\";\n    aws_access_key_id = \"AKIAXXXXXXXXXXXXXXXX\";\n    aws_secret_access_key = { _secret = config.deployment.keys.aws_access_key.path; };\n  };\n\n  # The remote 'directory' to store your backups in.\n  # For S3, this would be the bucket name.\n  remote_directory = \"my-gitlab-backups\";\n\n  # Use multipart uploads when file size reaches 100MB, see\n  # http://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html\n  multipart_chunk_size = 104857600;\n\n  # Turns on AWS Server-Side Encryption with Amazon S3-Managed Keys for backups, this is optional\n  encryption = \"AES256\";\n\n  # Specifies Amazon S3 storage class to use for backups, this is optional\n  storage_class = \"STANDARD\";\n};\n")),
@@ -556,13 +556,13 @@ end
               })))),
           })),
           databaseHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "GitLab database hostname. An empty string means\n“use local unix socket connection”.\n",
             })))),
           databasePasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -571,88 +571,88 @@ end
               description: "File containing the GitLab database user password.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
             })))),
           databaseCreateLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether a database should be automatically created on the\nlocal host. Set this to `false` if you plan\non provisioning a local database yourself. This has no effect\nif {option}`services.gitlab.databaseHost` is customized.\n",
             })))),
           databaseName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitlab",
               description: "GitLab database name.",
             })))),
           databaseUsername: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitlab",
               description: "GitLab database user.",
             })))),
           databasePool: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 5n,
               description: "Database connection pool size.",
             })))),
           extraDatabaseConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({})),
               description: "Extra configuration in config/database.yml.",
             })))),
           redisUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "unix:/run/gitlab/redis.sock",
               example: "redis://localhost:6379/",
               description: "Redis URL for all GitLab services.",
             })))),
           extraGitlabRb: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "if Rails.env.production?\n  Rails.application.config.action_mailer.delivery_method = :sendmail\n  ActionMailer::Base.delivery_method = :sendmail\n  ActionMailer::Base.sendmail_settings = {\n    location: \"/run/wrappers/bin/sendmail\",\n    arguments: \"-i -t\"\n  }\nend\n",
               description: "Extra configuration to be placed in config/extra-gitlab.rb. This can\nbe used to add configuration not otherwise exposed through this module's\noptions.\n",
             })))),
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.networking.hostName")),
               description: "GitLab host name. Used e.g. for copy-paste URLs.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 8080n,
               description: "GitLab server port for copy-paste URLs, e.g. 80 or 443 if you're\nservice over https.\n",
             })))),
           https: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether gitlab prints URLs with https as scheme.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitlab",
               description: "User to run gitlab and all related services.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitlab",
               description: "Group to run gitlab and all related services.",
             })))),
           initialRootEmail: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "admin@local.host",
               description: "Initial email address of the root account if this is a new install.\n",
             })))),
           initialRootPasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -661,27 +661,27 @@ end
               description: "File containing the initial password of the root account if\nthis is a new install.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
             })))),
           smtp: nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable gitlab mail delivery over SMTP.",
               })))),
             address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "Address of the SMTP server for GitLab.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 25n,
                 description: "Port of the SMTP server for GitLab.",
               })))),
             username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -690,19 +690,19 @@ end
                 description: "Username of the SMTP server for GitLab.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 description: "File containing the password of the SMTP server for GitLab.\n\nThis should be a string, not a nix path, since nix paths\nare copied into the world-readable nix store.\n",
               })))),
             domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "HELO domain to use for outgoing mail.",
               })))),
             authentication: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -711,33 +711,33 @@ end
                 description: "Authentication type to use, see <http://api.rubyonrails.org/classes/ActionMailer/Base.html>",
               })))),
             enableStartTLSAuto: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether to try to use StartTLS.",
               })))),
             tls: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to use TLS wrapper-mode.",
               })))),
             opensslVerifyMode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "peer",
                 description: "How OpenSSL checks the certificate, see <http://api.rubyonrails.org/classes/ActionMailer/Base.html>",
               })))),
           })),
           pages: nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the GitLab Pages service")),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  pages-domain = \"example.com\";\n  auth-client-id = \"generated-id-xxxxxxx\";\n  auth-client-secret = { _secret = \"/var/keys/auth-client-secret\"; };\n  auth-redirect-uri = \"https://projects.example.com/auth\";\n  auth-secret = { _secret = \"/var/keys/auth-secret\"; };\n  auth-server = \"https://gitlab.example.com\";\n}\n")),
                 description: "Configuration options to set in the GitLab Pages config\nfile.\n\nOptions containing secret data should be set to an attribute\nset containing the attribute `_secret` - a string pointing\nto a file containing the value the option should be set\nto. See the example to get a better picture of this: in the\nresulting configuration file, the `auth-client-secret` and\n`auth-secret` keys will be set to the contents of the\n{file}`/var/keys/auth-client-secret` and\n{file}`/var/keys/auth-secret` files respectively.\n",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$90,
+                    [nix.POS]: pos$90,
                     freeformType: nix.thunk(() => (() => {
                       const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                       return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -748,9 +748,9 @@ end
                             ]))))));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$89,
+                      [nix.POS]: pos$89,
                       "listen-http": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$80,
+                          [nix.POS]: pos$80,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "listOf"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -760,7 +760,7 @@ end
                           description: "The address(es) to listen on for HTTP requests.\n",
                         })))),
                       "listen-https": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$81,
+                          [nix.POS]: pos$81,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "listOf"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -770,7 +770,7 @@ end
                           description: "The address(es) to listen on for HTTPS requests.\n",
                         })))),
                       "listen-proxy": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "listOf"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -780,7 +780,7 @@ end
                           description: "The address(es) to listen on for proxy requests.\n",
                         })))),
                       "artifacts-server": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$83,
+                          [nix.POS]: pos$83,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -791,7 +791,7 @@ end
                           description: "API URL to proxy artifact requests to.\n",
                         })))),
                       "gitlab-server": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$84,
+                          [nix.POS]: pos$84,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -802,7 +802,7 @@ end
                           description: "Public GitLab server URL.\n",
                         })))),
                       "internal-gitlab-server": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -813,7 +813,7 @@ end
                           description: "Internal GitLab server used for API requests, useful\nif you want to send that traffic over an internal load\nbalancer. By default, the value of\n`services.gitlab.pages.settings.gitlab-server` is\nused.\n",
                         })))),
                       "api-secret-key": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$86,
+                          [nix.POS]: pos$86,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -823,7 +823,7 @@ end
                           description: "File with secret key used to authenticate with the\nGitLab API.\n",
                         })))),
                       "pages-domain": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -832,7 +832,7 @@ end
                           description: "The domain to serve static pages on.\n",
                         })))),
                       "pages-root": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$88,
+                          [nix.POS]: pos$88,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(gitlabConfig, "production", "shared", "path")}/pages`),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "extraConfig")}.production.shared.path + "/pages"`))),
@@ -843,9 +843,9 @@ end
               })))),
           })),
           secrets: nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             secretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -854,7 +854,7 @@ end
                 description: "A file containing the secret used to encrypt variables in\nthe DB. If you change or lose this key you will be unable to\naccess variables stored in database.\n\nMake sure the secret is at least 32 characters and all random,\nno regular words or you'll be exposed to dictionary attacks.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             dbFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -863,7 +863,7 @@ end
                 description: "A file containing the secret used to encrypt variables in\nthe DB. If you change or lose this key you will be unable to\naccess variables stored in database.\n\nMake sure the secret is at least 32 characters and all random,\nno regular words or you'll be exposed to dictionary attacks.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             otpFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -872,7 +872,7 @@ end
                 description: "A file containing the secret used to encrypt secrets for OTP\ntokens. If you change or lose this key, users which have 2FA\nenabled for login won't be able to login anymore.\n\nMake sure the secret is at least 32 characters and all random,\nno regular words or you'll be exposed to dictionary attacks.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             jwsFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$96,
+                [nix.POS]: pos$96,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -881,7 +881,7 @@ end
                 description: "A file containing the secret used to encrypt session\nkeys. If you change or lose this key, users will be\ndisconnected.\n\nMake sure the secret is an RSA private key in PEM format. You can\ngenerate one with\n\nopenssl genrsa 2048\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             activeRecordPrimaryKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -890,7 +890,7 @@ end
                 description: "A file containing the secret used to encrypt some rails data\nin the DB. This should not be the same as `services.gitlab.secrets.activeRecordDeterministicKeyFile`!\n\nMake sure the secret is at ideally 32 characters and all random,\nno regular words or you'll be exposed to dictionary attacks.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             activeRecordDeterministicKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -899,7 +899,7 @@ end
                 description: "A file containing the secret used to encrypt some rails data in a deterministic way\nin the DB. This should not be the same as `services.gitlab.secrets.activeRecordPrimaryKeyFile`!\n\nMake sure the secret is at ideally 32 characters and all random,\nno regular words or you'll be exposed to dictionary attacks.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             activeRecordSaltFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$99,
+                [nix.POS]: pos$99,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -909,29 +909,29 @@ end
               })))),
           })),
           extraShellConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({})),
               description: "Extra configuration to merge into shell-config.yml",
             })))),
           puma: nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             workers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 2n,
                 apply: (x) => nix.app(nix.builtins.toString, x),
                 description: "The number of worker processes Puma should spawn. This\ncontrols the amount of parallel Ruby code can be\nexecuted. GitLab recommends `Number of CPU cores - 1`, but at least two.\n\n::: {.note}\nEach worker consumes quite a bit of memory, so\nbe careful when increasing this.\n:::\n",
               })))),
             threadsMin: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 0n,
                 apply: (x) => nix.app(nix.builtins.toString, x),
                 description: "The minimum number of threads Puma should use per\nworker.\n\n::: {.note}\nEach thread consumes memory and contributes to Global VM\nLock contention, so be careful when increasing this.\n:::\n",
               })))),
             threadsMax: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$104,
+                [nix.POS]: pos$104,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 4n,
                 apply: (x) => nix.app(nix.builtins.toString, x),
@@ -939,9 +939,9 @@ end
               })))),
           })),
           sidekiq: nix.thunk(() => ({
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             concurrency: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "int")));
@@ -950,29 +950,29 @@ end
                 description: "How many processor threads to use for processing sidekiq background job queues. When null, the GitLab default is used.\n\nSee <https://docs.gitlab.com/ee/administration/sidekiq/extra_sidekiq_processes.html#manage-thread-counts-explicitly> for details.\n",
               })))),
             memoryKiller: nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: true,
                   description: "Whether the Sidekiq MemoryKiller should be turned\non. MemoryKiller kills Sidekiq when its memory consumption\nexceeds a certain limit.\n\nSee <https://docs.gitlab.com/ee/administration/operations/sidekiq_memory_killer.html>\nfor details.\n",
                 })))),
               maxMemory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$108,
+                  [nix.POS]: pos$108,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                   default: 2000n,
                   apply: (x) => nix.app(nix.builtins.toString, nix.thunk(() => nix.mul(x, 1024n))),
                   description: "The maximum amount of memory, in MiB, a Sidekiq worker is\nallowed to consume before being killed.\n",
                 })))),
               graceTime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$109,
+                  [nix.POS]: pos$109,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                   default: 900n,
                   apply: (x) => nix.app(nix.builtins.toString, x),
                   description: "The time MemoryKiller waits after noticing excessive memory\nconsumption before killing Sidekiq.\n",
                 })))),
               shutdownWait: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$110,
+                  [nix.POS]: pos$110,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                   default: 30n,
                   apply: (x) => nix.app(nix.builtins.toString, x),
@@ -981,30 +981,30 @@ end
             })),
           })),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$113,
+                [nix.POS]: pos$113,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Enable rotation of log files.\n",
               })))),
             frequency: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$114,
+                [nix.POS]: pos$114,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "daily",
                 description: "How often to rotate the logs.",
               })))),
             keep: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 30n,
                 description: "How many rotations to keep.",
               })))),
           })),
           workhorse: nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$117,
+                [nix.POS]: pos$117,
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  object_storage.provider = \"AWS\";\n  object_storage.s3 = {\n    aws_access_key_id = \"AKIAXXXXXXXXXXXXXXXX\";\n    aws_secret_access_key = { _secret = \"/var/keys/aws_secret_access_key\"; };\n  };\n};\n")),
@@ -1012,7 +1012,7 @@ end
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               type: nix.thunk(() => nix.sel(yaml, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  gitlab = {\n    default_projects_features = {\n      builds = false;\n    };\n  };\n  omniauth = {\n    enabled = true;\n    auto_sign_in_with_provider = \"openid_connect\";\n    allow_single_sign_on = [\"openid_connect\"];\n    block_auto_created_users = false;\n    providers = [\n      {\n        name = \"openid_connect\";\n        label = \"OpenID Connect\";\n        args = {\n          name = \"openid_connect\";\n          scope = [\"openid\" \"profile\"];\n          response_type = \"code\";\n          issuer = \"https://keycloak.example.com/auth/realms/My%20Realm\";\n          discovery = true;\n          client_auth_method = \"query\";\n          uid_field = \"preferred_username\";\n          client_options = {\n            identifier = \"gitlab\";\n            secret = { _secret = \"/var/keys/gitlab_oidc_secret\"; };\n            redirect_uri = \"https://git.example.com/users/auth/openid_connect/callback\";\n          };\n        };\n      }\n    ];\n  };\n};\n")),
@@ -1022,71 +1022,71 @@ end
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$186,
+        [nix.POS]: pos$186,
         warnings: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "versionAtLeast"), nix.thunk(() => nix.app(nix.lookup(w, "getVersion"), nix.thunk(() => nix.sel(cfg, "packages", "gitlab")))), "16.2.0")) && nix.asBool(nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.app(nix.lookup(w, "getVersion"), nix.thunk(() => nix.sel(cfg, "packages", "gitlab")))), "16.5.0")))), "GitLab instances created or updated between versions [15.11.0, 15.11.2] have an incorrect database schema.\nCheck the upstream documentation for a workaround: https://docs.gitlab.com/ee/update/versions/gitlab_16_changes.html#undefined-column-error-upgrading-to-162-or-later")),
         ]),
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$123,
+            [nix.POS]: pos$123,
             assertion: nix.thunk(() => (!nix.asBool(databaseActuallyCreateLocally) || nix.asBool(nix.eq(nix.sel(cfg, "user"), nix.sel(cfg, "databaseUsername"))))),
             message: "For local automatic database provisioning (services.gitlab.databaseCreateLocally == true) with peer authentication (services.gitlab.databaseHost == \"\") to work services.gitlab.user and services.gitlab.databaseUsername must be identical.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "databaseHost"), "")) || nix.asBool(!nix.eq(nix.sel(cfg, "databasePasswordFile"), null)))),
             message: "When services.gitlab.databaseHost is customized, services.gitlab.databasePasswordFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$125,
+            [nix.POS]: pos$125,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "initialRootPasswordFile"), null)),
             message: "services.gitlab.initialRootPasswordFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "secretFile"), null)),
             message: "services.gitlab.secrets.secretFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$127,
+            [nix.POS]: pos$127,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "dbFile"), null)),
             message: "services.gitlab.secrets.dbFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "otpFile"), null)),
             message: "services.gitlab.secrets.otpFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$129,
+            [nix.POS]: pos$129,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "jwsFile"), null)),
             message: "services.gitlab.secrets.jwsFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "activeRecordPrimaryKeyFile"), null)),
             message: "services.gitlab.secrets.activeRecordPrimaryKeyFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$131,
+            [nix.POS]: pos$131,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "activeRecordDeterministicKeyFile"), null)),
             message: "services.gitlab.secrets.activeRecordDeterministicKeyFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "activeRecordSaltFile"), null)),
             message: "services.gitlab.secrets.activeRecordSaltFile must be set!",
           })),
         ], nix.app(nix.builtins.map, (x) => ({
-            __proto__: pos$133,
+            [nix.POS]: pos$133,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(cfg, "packages", "gitlab"))))), nix.sel(x, "gitlabMajorVersion"))) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), postgresqlPackage)), nix.thunk(() => nix.sel(x, "requiresMinimumPostgres")))))),
             message: nix.thunk(() => nix.str`PostgreSQL >= ${nix.sel(x, "requiresMinimumPostgres")} is required to run GitLab ${nix.sel(x, "gitlabMajorVersion")}. Follow the instructions in the manual section for upgrading PostgreSQL here: https://nixos.org/manual/nixos/stable/index.html#module-services-postgres-upgrading`),
           }), nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$134, gitlabMajorVersion: "18", requiresMinimumPostgres: "16" })),
-            nix.thunk(() => ({ __proto__: pos$135, gitlabMajorVersion: "19", requiresMinimumPostgres: "17" })),
+            nix.thunk(() => ({ [nix.POS]: pos$134, gitlabMajorVersion: "18", requiresMinimumPostgres: "16" })),
+            nix.thunk(() => ({ [nix.POS]: pos$135, gitlabMajorVersion: "19", requiresMinimumPostgres: "17" })),
           ])))),
         environment: nix.thunk(() => ({
-          __proto__: pos$136,
+          [nix.POS]: pos$136,
           systemPackages: nix.thunk(() => [
             gitlab_rake,
             gitlab_rails,
@@ -1094,29 +1094,29 @@ end
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$168,
+          [nix.POS]: pos$168,
           slices: nix.thunk(() => ({
-            __proto__: pos$138,
+            [nix.POS]: pos$138,
             "system-gitlab": nix.thunk(() => ({
-              __proto__: pos$137,
+              [nix.POS]: pos$137,
               description: "GitLab DevOps Platform Slice",
               documentation: nix.thunk(() => ["https://docs.gitlab.com/"]),
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             gitlab: nix.thunk(() => ({
-              __proto__: pos$139,
+              [nix.POS]: pos$139,
               description: "Common target for all GitLab services.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$166,
+            [nix.POS]: pos$166,
             "gitlab-postgresql": nix.thunk(() => (() => {
               const pgsql = nix.thunk(() => nix.sel(config, "services", "postgresql"));
               return nix.app(nix.lookup(w, "mkIf"), databaseActuallyCreateLocally, nix.thunk(() => ({
-                  __proto__: pos$142,
+                  [nix.POS]: pos$142,
                   after: nix.thunk(() => ["postgresql.target"]),
                   bindsTo: nix.thunk(() => ["postgresql.target"]),
                   wantedBy: nix.thunk(() => ["gitlab.target"]),
@@ -1147,7 +1147,7 @@ PSQL '${nix.sel(cfg, "databaseName")}' -tAc "CREATE EXTENSION IF NOT EXISTS pg_t
 PSQL '${nix.sel(cfg, "databaseName")}' -tAc "CREATE EXTENSION IF NOT EXISTS btree_gist;"
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$141,
+                    [nix.POS]: pos$141,
                     Slice: "system-gitlab.slice",
                     User: nix.thunk(() => nix.sel(pgsql, "superUser")),
                     Type: "oneshot",
@@ -1156,7 +1156,7 @@ PSQL '${nix.sel(cfg, "databaseName")}' -tAc "CREATE EXTENSION IF NOT EXISTS btre
                 })));
             })()),
             "gitlab-config": nix.thunk(() => ({
-              __proto__: pos$144,
+              [nix.POS]: pos$144,
               wantedBy: nix.thunk(() => ["gitlab.target"]),
               partOf: nix.thunk(() => ["gitlab.target"]),
               path: nix.thunk(() => nix.concat([git], (() => {
@@ -1168,7 +1168,7 @@ PSQL '${nix.sel(cfg, "databaseName")}' -tAc "CREATE EXTENSION IF NOT EXISTS btre
                 ];
               })())),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$143,
+                [nix.POS]: pos$143,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1271,14 +1271,14 @@ git config --global core.autocrlf "input"
               })),
             })),
             "gitlab-db-config": nix.thunk(() => ({
-              __proto__: pos$146,
+              [nix.POS]: pos$146,
               after: nix.thunk(() => ["gitlab-config.service", "gitlab-postgresql.target", "postgresql.target"]),
               wants: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "databaseHost"), "")), "postgresql.target"), nix.app(nix.lookup(w, "optional"), databaseActuallyCreateLocally, "gitlab-postgresql.target"))),
               bindsTo: nix.thunk(() => ["gitlab-config.service"]),
               wantedBy: nix.thunk(() => ["gitlab.target"]),
               partOf: nix.thunk(() => ["gitlab.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$145,
+                [nix.POS]: pos$145,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1298,7 +1298,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
               })),
             })),
             "gitlab-sidekiq": nix.thunk(() => ({
-              __proto__: pos$149,
+              [nix.POS]: pos$149,
               after: nix.thunk(() => [
                 "network.target",
                 "redis-gitlab.service",
@@ -1311,7 +1311,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
               wantedBy: nix.thunk(() => ["gitlab.target"]),
               partOf: nix.thunk(() => ["gitlab.target"]),
               environment: nix.thunk(() => nix.update(gitlabEnv, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "sidekiq", "memoryKiller", "enable")), nix.thunk(() => ({
-                  __proto__: pos$147,
+                  [nix.POS]: pos$147,
                   SIDEKIQ_MEMORY_KILLER_MAX_RSS: nix.thunk(() => nix.sel(cfg, "sidekiq", "memoryKiller", "maxMemory")),
                   SIDEKIQ_MEMORY_KILLER_GRACE_TIME: nix.thunk(() => nix.sel(cfg, "sidekiq", "memoryKiller", "graceTime")),
                   SIDEKIQ_MEMORY_KILLER_SHUTDOWN_WAIT: nix.thunk(() => nix.sel(cfg, "sidekiq", "memoryKiller", "shutdownWait")),
@@ -1331,7 +1331,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
                 ];
               })())),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$148,
+                [nix.POS]: pos$148,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1349,7 +1349,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
               })),
             })),
             gitaly: nix.thunk(() => ({
-              __proto__: pos$151,
+              [nix.POS]: pos$151,
               after: nix.thunk(() => ["network.target", "gitlab-config.service"]),
               bindsTo: nix.thunk(() => ["gitlab-config.service"]),
               wantedBy: nix.thunk(() => ["gitlab.target"]),
@@ -1363,7 +1363,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
                 ];
               })())),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$150,
+                [nix.POS]: pos$150,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1379,9 +1379,9 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
               const filteredConfig = nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "pages", "settings"))));
               const isSecret = (v) => (nix.asBool((nix.asBool(nix.app(nix.lookup(w, "isAttrs"), v)) && nix.asBool(nix.has(v, "_secret")))) && nix.asBool(nix.app(nix.lookup(w, "isString"), nix.thunk(() => nix.sel(v, "_secret")))));
               const mkPagesKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                  __proto__: pos$153,
+                  [nix.POS]: pos$153,
                   mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), "=", nix.thunk(() => ({
-                      __proto__: pos$152,
+                      [nix.POS]: pos$152,
                       mkValueString: (v) => (nix.asBool(nix.app(nix.lookup(w, "isInt"), v)) ? nix.app(nix.builtins.toString, v) : (nix.asBool(nix.app(nix.lookup(w, "isString"), v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.app(isSecret, v)) ? nix.app(nix.sel(nix.builtins, "hashString"), "sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.app(nix.builtins.throw, nix.thunk(() => nix.str`unsupported type ${nix.app(nix.sel(nix.builtins, "typeOf"), v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`))))))),
                     })))),
                 }))));
@@ -1395,7 +1395,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
               const secretReplacements = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), mkSecretReplacement, secretPaths));
               const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gitlab-pages.conf", nix.thunk(() => nix.app(mkPagesKeyValue, filteredConfig))));
               return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "pages", "enable")), nix.thunk(() => ({
-                  __proto__: pos$155,
+                  [nix.POS]: pos$155,
                   description: "GitLab static pages daemon",
                   after: nix.thunk(() => ["network.target", "gitlab-config.service", "gitlab.service"]),
                   bindsTo: nix.thunk(() => ["gitlab-config.service", "gitlab.service"]),
@@ -1409,7 +1409,7 @@ ${gitlab_rake}/bin/gitlab-rake gitlab:db:configure GITLAB_ROOT_PASSWORD="$initia
                     ];
                   })()),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$154,
+                    [nix.POS]: pos$154,
                     Type: "simple",
                     TimeoutSec: "infinity",
                     Restart: "on-failure",
@@ -1430,7 +1430,7 @@ ${secretReplacements}
                 })));
             })()),
             "gitlab-workhorse": nix.thunk(() => ({
-              __proto__: pos$157,
+              [nix.POS]: pos$157,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["gitlab.target"]),
               partOf: nix.thunk(() => ["gitlab.target"]),
@@ -1447,7 +1447,7 @@ ${secretReplacements}
                 ];
               })())),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$156,
+                [nix.POS]: pos$156,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1467,7 +1467,7 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
               })),
             })),
             "gitlab-mailroom": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(gitlabConfig, () => false, "production", "incoming_email", "enabled")), nix.thunk(() => ({
-                __proto__: pos$159,
+                [nix.POS]: pos$159,
                 description: "GitLab incoming mail daemon",
                 after: nix.thunk(() => ["network.target", "redis-gitlab.service", "gitlab-config.service"]),
                 bindsTo: nix.thunk(() => ["gitlab-config.service"]),
@@ -1475,7 +1475,7 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
                 partOf: nix.thunk(() => ["gitlab.target"]),
                 environment: gitlabEnv,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$158,
+                  [nix.POS]: pos$158,
                   Type: "simple",
                   TimeoutSec: "infinity",
                   Restart: "on-failure",
@@ -1487,7 +1487,7 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
                 })),
               })))),
             gitlab: nix.thunk(() => ({
-              __proto__: pos$161,
+              [nix.POS]: pos$161,
               after: nix.thunk(() => [
                 "gitlab-workhorse.service",
                 "network.target",
@@ -1512,7 +1512,7 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
                 ];
               })())),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$160,
+                [nix.POS]: pos$160,
                 Type: "notify",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1532,13 +1532,13 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
               })),
             })),
             "gitlab-backup": nix.thunk(() => ({
-              __proto__: pos$165,
+              [nix.POS]: pos$165,
               after: nix.thunk(() => ["gitlab.service"]),
               bindsTo: nix.thunk(() => ["gitlab.service"]),
               startAt: nix.thunk(() => nix.sel(cfg, "backup", "startAt")),
-              environment: nix.thunk(() => nix.update({ __proto__: pos$162, RAILS_ENV: "production", CRON: "1" }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.gt(nix.app(nix.lookup(w, "stringLength"), nix.thunk(() => nix.sel(cfg, "backup", "skip"))), 0n)), nix.thunk(() => ({ __proto__: pos$163, SKIP: nix.thunk(() => nix.sel(cfg, "backup", "skip")) }))))),
+              environment: nix.thunk(() => nix.update({ [nix.POS]: pos$162, RAILS_ENV: "production", CRON: "1" }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.gt(nix.app(nix.lookup(w, "stringLength"), nix.thunk(() => nix.sel(cfg, "backup", "skip"))), 0n)), nix.thunk(() => ({ [nix.POS]: pos$163, SKIP: nix.thunk(() => nix.sel(cfg, "backup", "skip")) }))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$164,
+                [nix.POS]: pos$164,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Slice: "system-gitlab.slice",
@@ -1548,7 +1548,7 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$167,
+            [nix.POS]: pos$167,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d /run/gitlab 0755 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
               nix.thunk(() => nix.str`d ${nix.sel(gitlabEnv, "HOME")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
@@ -1589,13 +1589,13 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$182,
+          [nix.POS]: pos$182,
           redis: nix.thunk(() => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             servers: nix.thunk(() => ({
-              __proto__: pos$170,
+              [nix.POS]: pos$170,
               gitlab: nix.thunk(() => ({
-                __proto__: pos$169,
+                [nix.POS]: pos$169,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 user: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "user")))),
                 unixSocket: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "/run/gitlab/redis.sock")),
@@ -1604,21 +1604,21 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), databaseActuallyCreateLocally, nix.thunk(() => ({
-              __proto__: pos$174,
+              [nix.POS]: pos$174,
               enable: true,
-              ensureUsers: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({ __proto__: pos$172, name: nix.thunk(() => nix.sel(cfg, "databaseUsername")) })))),
+              ensureUsers: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$172, name: nix.thunk(() => nix.sel(cfg, "databaseUsername")) })))),
               settings: nix.thunk(() => ({
-                __proto__: pos$173,
+                [nix.POS]: pos$173,
                 max_locks_per_transaction: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 128n)),
               })),
             })))),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$177,
+            [nix.POS]: pos$177,
             enable: nix.thunk(() => nix.sel(cfg, "logrotate", "enable")),
             settings: nix.thunk(() => ({
-              __proto__: pos$176,
+              [nix.POS]: pos$176,
               gitlab: nix.thunk(() => ({
-                __proto__: pos$175,
+                [nix.POS]: pos$175,
                 files: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/log/*.log`),
                 su: nix.thunk(() => nix.str`${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                 frequency: nix.thunk(() => nix.sel(cfg, "logrotate", "frequency")),
@@ -1629,25 +1629,25 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
             })),
           })),
           postfix: nix.thunk(() => ({
-            __proto__: pos$178,
+            [nix.POS]: pos$178,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "smtp", "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "smtp", "address"), "localhost")))))),
           })),
           gitlab: nix.thunk(() => ({
-            __proto__: pos$181,
+            [nix.POS]: pos$181,
             pages: nix.thunk(() => ({
-              __proto__: pos$180,
+              [nix.POS]: pos$180,
               settings: nix.thunk(() => ({
-                __proto__: pos$179,
+                [nix.POS]: pos$179,
                 "api-secret-key": nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/gitlab_pages_secret`),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$185,
+          [nix.POS]: pos$185,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$183,
+              [nix.POS]: pos$183,
               group: nix.thunk(() => nix.sel(cfg, "group")),
               home: nix.thunk(() => nix.str`${nix.sel(cfg, "statePath")}/home`),
               shell: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
@@ -1656,14 +1656,14 @@ rm "${nix.sel(cfg, "statePath")}/config/gitlab-workhorse.json"
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "group"), nix.thunk(() => ({
-              __proto__: pos$184,
+              [nix.POS]: pos$184,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "gitlab")),
             }))],
           ])),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$187,
+      [nix.POS]: pos$187,
       doc: nix.path(here, "./default.md"),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "teams"), "gitlab"))]),
     })),

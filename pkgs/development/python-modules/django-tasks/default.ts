@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-tasks",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RealOrangeOne",
           repo: "django-tasks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django, django_stubs_ext, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mysql: nix.thunk(() => [mysqlclient]),
         postgres: nix.thunk(() => [psycopg]),
       })),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "export DJANGO_SETTINGS_MODULE=\"tests.settings\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reference implementation and backport of background workers and tasks in Django",
         homepage: "https://github.com/RealOrangeOne/django-tasks",
         changelog: nix.thunk(() => nix.str`https://github.com/RealOrangeOne/django-tasks/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "modemmanager";
       const version = "1.24.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "ModemManager",
@@ -78,7 +78,7 @@ mesonCheckPhase
 runHook postInstallCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WWAN modem manager, part of NetworkManager",
         homepage: "https://www.freedesktop.org/wiki/Software/ModemManager/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -86,7 +86,7 @@ runHook postInstallCheck
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -20,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "0.0.40";
   const systemMap = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       filename: "open-interpreter-package-x86_64-unknown-linux-musl.tar.gz",
       hash: "sha256-OEDGd/saB0Z/r8bTTQb3IAQQ4fHE8vqBTsTdfkcJczM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       filename: "open-interpreter-package-aarch64-unknown-linux-musl.tar.gz",
       hash: "sha256-eGNkSpm5pwqF07VYdFVntVxe1UAv/EGrLdh2ZnMALug=",
     })),
     "x86_64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       filename: "open-interpreter-package-x86_64-apple-darwin.tar.gz",
       hash: "sha256-d6odpO5Fd4GGVq663wey4fZCfUNn0N9AD5APmSDry8g=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       filename: "open-interpreter-package-aarch64-apple-darwin.tar.gz",
       hash: "sha256-qMKnCaOOR1GSDttsFgo4jXRk4gjNPpVkq9Ph3Wmp+Dc=",
     })),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname = "open-interpreter";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/openinterpreter/openinterpreter/releases/download/rust-v${version_1}/${nix.sel(sysAttrs, "filename")}`),
           hash: nix.thunk(() => nix.sel(sysAttrs, "hash")),
         }))));
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "The open-source terminal agent built for low-cost models",
           homepage: "https://github.com/openinterpreter/openinterpreter",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "asl20")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version: version_1,
         src,

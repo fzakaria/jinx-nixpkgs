@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lua5_4 = nix.arg($, "lua5_4");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cadzinho",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zecruel",
           repo: "CadZinho",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_net, glew, lua5_4]),
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.sel(SDL2_net, "dev")}/include/SDL2`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "runHook preInstall\ninstall -Dm755 cadzinho -t $out/bin\ninstall -Dm644 lang/*.lua -t $out/share/cadzinho/lang\ncp -r linux/CadZinho/share/* $out/share\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimalist computer aided design (CAD) software",
         homepage: "https://github.com/zecruel/CadZinho",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

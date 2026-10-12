@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "linode-metadata";
       const version = "0.3.5";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "linode_metadata",
           version: version,
           hash: "sha256-fYPhZ3FzzEyHAhJsfAzgnWeAF/0k/di4Ce+MNiu7gP4=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [pytest, pytest_asyncio]);
       const pythonImportsCheck = nix.thunk(() => ["linode_metadata"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for interacting with the Linode Metadata Service",
         downloadPage: "https://pypi.org/project/linode-metadata/",
         homepage: "https://github.com/linode/py-metadata",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => nix.sel(linode_cli, "meta", "maintainers")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

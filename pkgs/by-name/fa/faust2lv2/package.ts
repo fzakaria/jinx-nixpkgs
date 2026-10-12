@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2lv2",
       buildInputs: nix.thunk(() => [bash]),
       propagatedBuildInputs: nix.thunk(() => [boost, lv2, nix.thunk(() => nix.sel(qt5, "qtbase"))]),

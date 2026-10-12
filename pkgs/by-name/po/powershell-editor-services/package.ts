@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "powershell-editor-services";
       const version = "4.7.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShellEditorServices/releases/download/v${version}/PowerShellEditorServices.zip`),
           hash: "sha256-dODDDR42VONL3nf5Pg08yfPWHMswCCsgiUMNGSlUz9o=",
           stripRoot: false,
@@ -32,7 +32,7 @@ EOF
 chmod +x $out/bin/powershell-editor-services
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Common platform for PowerShell development support in any editor or application",
         homepage: "https://github.com/PowerShell/PowerShellEditorServices",
         changelog: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShellEditorServices/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ chmod +x $out/bin/powershell-editor-services
           return [nix.thunk(() => nix.lookup(w_1, "binaryBytecode"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

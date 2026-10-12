@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clazy",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KDE",
           repo: "clazy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +51,11 @@ wrapProgram $out/bin/clazy-standalone \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt-oriented static code analyzer based on the Clang framework",
         homepage: "https://github.com/KDE/clazy",
         changelog: nix.thunk(() => nix.str`https://github.com/KDE/clazy/blob/${nix.sel(finalAttrs, "version")}/Changelog`),

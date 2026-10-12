@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fanwood",
       version: "2011-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "fanwood",
           rev: "cbaaed9704e7d37d3dcdbdf0b472e9efd0e39432",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Serif based on the work of a famous Czech-American type designer of yesteryear",
         longDescription: "Based on work of a famous Czech-American type designer of yesteryear. The\npackage includes roman and italic.\n",
         homepage: "https://www.theleagueofmoveabletype.com/fanwood",

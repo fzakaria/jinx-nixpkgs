@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-migrate-parsetree",
       version: "2.4.0",
       minimalOCamlVersion: "4.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/${nix.sel(finalAttrs, "version")}/ocaml-migrate-parsetree-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-7EnEUtwzemIFVqtoK/AZi/UBglULUC2PsjClkSYKpqQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert OCaml parsetrees between different major versions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => (() => {

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const excludedTests = nix.thunk(() => nix.concat(["reimport_from_subinterpreter"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.selOr(stdenv, () => false, "cc", "isClang")), nix.thunk(() => ["cpdef_extern_func", "libcpp_algo"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["numpy_memoryview"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["future_division", "overflow_check_longlong"]))))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cython",
       version: "0.29.37",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonAtLeast, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cython",
           repo: "cython",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, setuptools]),
       nativeCheckInputs: nix.thunk(() => [gdb, numpy, ncurses]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       patches: nix.thunk(() => [
         nix.path(here, "./trashcan.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "disable-trashcan.patch",
             url: "https://github.com/cython/cython/commit/e337825cdcf5e94d38ba06a0cb0188e99ce0cc92.patch",
             hash: "sha256-q0f63eetKrDpmP5Z4v8EuGxg26heSyp/62OYqhRoSso=",
@@ -57,7 +57,7 @@ ${nix.sel(python, "interpreter")} runtests.py -j$NIX_BUILD_CORES \\
       doCheck: false,
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/cython/cython/blob/${nix.sel(finalAttrs, "version")}/CHANGES.rst`),
         description: "Optimising static compiler for both the Python programming language and the extended Cython programming language",
         homepage: "https://cython.org",

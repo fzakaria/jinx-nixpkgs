@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const debpatch = "47.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.jclark.com/pub/jade/jade-${version}.tar.gz`),
           sha256: "84e2f8a2a87aab44f86a46b71405d4f919b219e4c73e03a83ab6c746a674b187",
         }))));
       const patchsrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/j/jade/jade_${version}-${debpatch}.diff.gz`),
           sha256: "8e94486898e3503308805f856a65ba5b499a6f21994151270aa743de48305464",
         }))));
       const patches = nix.thunk(() => [patchsrc]);
       const buildInputs = nix.thunk(() => [gnum4]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-deprecated" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-deprecated" }));
       const enableParallelBuilding = false;
       const preInstall = "install -d -m755 \"$out\"/lib\n";
       const postInstall = "mv \"$out/bin/sx\" \"$out/bin/sgml2xml\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "James Clark's DSSSL Engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "x11")),
         homepage: "http://www.jclark.com/jade/",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         debpatch,

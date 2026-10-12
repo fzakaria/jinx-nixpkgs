@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const cython = nix.thunk(() => nix.attr(from, "cython"));
   const buildPythonApplication = nix.thunk(() => nix.attr(from, "buildPythonApplication"));
   const xf86videodummy = nix.thunk(() => nix.app(nix.sel(xf86_video_dummy, "overrideDerivation"), (p) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       patches: nix.thunk(() => [
         nix.path(here, "./0002-Constant-DPI.patch"),
         nix.path(here, "./0003-fix-pointer-limits.patch"),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
   ModulePath "${xf86videodummy}/lib/xorg/modules/drivers"
 EndSection
 `)));
-  const nvencHeaders = nix.thunk(() => nix.app(runCommand, "nvenc-headers", nix.thunk(() => ({ __proto__: pos$2, nvidia_x11: nvidia_x11 })), nix.thunk(() => nix.str`mkdir -p $out/include $out/lib/pkgconfig
+  const nvencHeaders = nix.thunk(() => nix.app(runCommand, "nvenc-headers", nix.thunk(() => ({ [nix.POS]: pos$2, nvidia_x11: nvidia_x11 })), nix.thunk(() => nix.str`mkdir -p $out/include $out/lib/pkgconfig
 cp ${nv_codec_headers_10}/include/ffnvcodec/nvEncodeAPI.h $out/include
 substituteAll ${nix.path(here, "./nvenc.pc")} $out/lib/pkgconfig/nvenc.pc
 `)));
@@ -100,7 +100,7 @@ substituteAll ${nix.path(here, "./nvenc.pc")} $out/lib/pkgconfig/nvenc.pc
 substituteAll ${nix.sel(cudaPackages, "libnvjpeg", "dev")}/share/pkgconfig/nvjpeg.pc $out/lib/pkgconfig/nvjpeg.pc
 `)));
   const effectiveBuildPythonApplication = nix.thunk(() => nix.app(nix.sel(buildPythonApplication, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       stdenv: nix.thunk(() => (nix.asBool(withNvenc) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv))),
     }))));
   return nix.app(effectiveBuildPythonApplication, nix.thunk(() => (() => {
@@ -108,7 +108,7 @@ substituteAll ${nix.sel(cudaPackages, "libnvjpeg", "dev")}/share/pkgconfig/nvjpe
       const version = "6.5.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "Xpra-org",
           repo: "xpra",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -121,7 +121,7 @@ substituteAll ${nix.sel(cudaPackages, "libnvjpeg", "dev")}/share/pkgconfig/nvjpe
 patchShebangs --build fs/bin/build_cuda_kernels.py
 `)));
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: "-Wno-error=unused-function",
         INCLUDE_DIRS: nix.thunk(() => nix.str`${pam}/include`),
       }));
@@ -242,12 +242,12 @@ ln -sr "$out/share/icons/xpra.png" "$icon_dir"
 `))));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xf86videodummy: xf86videodummy,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/Xpra-org/xpra",
         description: "Persistent remote applications for X",
         changelog: nix.thunk(() => nix.str`https://github.com/Xpra-org/xpra/releases/tag/v${version}`),
@@ -262,7 +262,7 @@ ln -sr "$out/share/icons/xpra.png" "$icon_dir"
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         format,

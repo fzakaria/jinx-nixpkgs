@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const psycopg = nix.arg($, "psycopg");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-plugin-prometheus-sd",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FlxPeters",
           repo: "netbox-plugin-prometheus-sd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`export PYTHONPATH=${netbox}/opt/netbox/netbox:$PYTHONPATH
 `),
       pythonImportsCheck: nix.thunk(() => ["netbox_prometheus_sd"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_prometheus_sd" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_prometheus_sd" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin to provide Netbox entires to Prometheus HTTP service discovery",
         homepage: "https://github.com/FlxPeters/netbox-plugin-prometheus-sd",
         changelog: nix.thunk(() => nix.str`https://github.com/FlxPeters/netbox-plugin-prometheus-sd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const flex = nix.arg($, "flex");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/autofs",
       extraPaths: nix.thunk(() => ["sys/fs/autofs"]),
       outputs: nix.thunk(() => ["out", "debug"]),

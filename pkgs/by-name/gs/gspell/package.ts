@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const outputBin = "dev";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gspell/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gspell-${version}.tar.xz`),
           hash: "sha256-5zqJ1oxw+HSK77aw9c/f7D/xc89ESYN/1ssX0en89IY=",
         }))));
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk3, icu]);
       const propagatedBuildInputs = nix.thunk(() => [enchant]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Spell-checking library for GTK applications",
         mainProgram: "gspell-app1",
         homepage: "https://gitlab.gnome.org/GNOME/gspell",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

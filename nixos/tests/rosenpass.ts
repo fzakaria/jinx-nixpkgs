@@ -74,26 +74,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const deviceName = "rp0";
   const server = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     ip: "fe80::1",
     wg: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       public: "mQufmDFeQQuU/fIaB2hHgluhjjm1ypK4hJr1cW3WqAw=",
       secret: "4N5Y1dldqrpsbaEiY8O0XBUGUFf8vkvtBtm8AoOX7Eo=",
       listen: 10000n,
     })),
   }));
   const client = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     ip: "fe80::2",
     wg: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       public: "Mb3GOlT7oS+F3JntVKiaD7SpHxLxNdtEmWz/9FMnRFU=",
       secret: "uC5dfGMv7Oxf5UDfdPkj6rZiRZT2dRWp5x8IQxrNcUE=",
     })),
   }));
   return {
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     name: "rosenpass",
     nodes: nix.thunk(() => (() => {
       const shared = (peer) => nix.lambda((args_1) => (() => {
@@ -101,17 +101,17 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/services/networking/rosenpass.nix`)]),
-          boot: nix.thunk(() => ({ __proto__: pos$5, kernelModules: nix.thunk(() => ["wireguard"]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["wireguard"]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             rosenpass: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               defaultDevice: deviceName,
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 verbosity: "Verbose",
                 public_key: "/etc/rosenpass/pqpk",
                 secret_key: "/etc/rosenpass/pqsk",
@@ -119,40 +119,40 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             useNetworkd: true,
-            firewall: nix.thunk(() => ({ __proto__: pos$9, allowedUDPPorts: nix.thunk(() => [9999n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedUDPPorts: nix.thunk(() => [9999n]) })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             network: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               networks: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 rosenpass: nix.thunk(() => ({
-                  __proto__: pos$13,
-                  matchConfig: nix.thunk(() => ({ __proto__: pos$11, Name: deviceName })),
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$12, IPv4Forwarding: true, IPv6Forwarding: true })),
+                  [nix.POS]: pos$13,
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Name: deviceName })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$12, IPv4Forwarding: true, IPv6Forwarding: true })),
                   address: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(peer, "ip")}/64`)]),
                 })),
               })),
               netdevs: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 "10-rp0": nix.thunk(() => ({
-                  __proto__: pos$17,
-                  netdevConfig: nix.thunk(() => ({ __proto__: pos$15, Kind: "wireguard", Name: deviceName })),
-                  wireguardConfig: nix.thunk(() => ({ __proto__: pos$16, PrivateKeyFile: "/etc/wireguard/wgsk" })),
+                  [nix.POS]: pos$17,
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Kind: "wireguard", Name: deviceName })),
+                  wireguardConfig: nix.thunk(() => ({ [nix.POS]: pos$16, PrivateKeyFile: "/etc/wireguard/wgsk" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             etc: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "wireguard/wgsk": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 text: nix.thunk(() => nix.sel(peer, "wg", "secret")),
                 user: "systemd-network",
                 group: "systemd-network",
@@ -162,32 +162,32 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2);
       return {
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         server: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           imports: nix.thunk(() => [nix.thunk(() => nix.app(shared, server))]),
           networking: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             useNetworkd: true,
             firewall: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(server, "wg", "listen"))]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             network: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               netdevs: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`10-${deviceName}`, nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   wireguardConfig: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     ListenPort: nix.thunk(() => nix.sel(server, "wg", "listen")),
                   })),
                   wireguardPeers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       AllowedIPs: nix.thunk(() => ["::/0"]),
                       PublicKey: nix.thunk(() => nix.sel(client, "wg", "public")),
                     })),
@@ -197,15 +197,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             rosenpass: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               settings: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 listen: nix.thunk(() => ["0.0.0.0:9999"]),
                 peers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     public_key: "/etc/rosenpass/peers/client/pqpk",
                     peer: nix.thunk(() => nix.sel(client, "wg", "public")),
                   })),
@@ -215,18 +215,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         client: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           imports: nix.thunk(() => [nix.thunk(() => nix.app(shared, client))]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             network: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               netdevs: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`10-${deviceName}`, nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   wireguardPeers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       AllowedIPs: nix.thunk(() => ["::/0"]),
                       PublicKey: nix.thunk(() => nix.sel(server, "wg", "public")),
                       Endpoint: nix.thunk(() => nix.str`server:${nix.builtins.toString(nix.thunk(() => nix.sel(server, "wg", "listen")))}`),
@@ -237,14 +237,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             rosenpass: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               settings: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 peers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     public_key: "/etc/rosenpass/peers/server/pqpk",
                     endpoint: "server:9999",
                     peer: nix.thunk(() => nix.sel(server, "wg", "public")),
@@ -303,35 +303,35 @@ with subtest("preshared-keys"):
 `;
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      __proto__: pos$62,
+      [nix.POS]: pos$62,
       nodes: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const sshAndKeyGeneration = nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           services: nix.thunk(() => ({
-            __proto__: pos$48,
-            openssh: nix.thunk(() => ({ __proto__: pos$47, enable: true })),
+            [nix.POS]: pos$48,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$47, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             users: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               root: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$50,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$49, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$50,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$49, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   name: "gen-keys",
                   runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rosenpass"))]),
                   text: nix.thunk(() => nix.str`HOST="$(hostname)"
@@ -361,16 +361,16 @@ scp /etc/rosenpass/pqpk "$PEER:/etc/rosenpass/peers/$HOST/pqpk"
           })),
         }));
         const niceConsoleAndAutologin = nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           services: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             kmscon: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               enable: true,
               autologinUser: "root",
               fonts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   name: "Fira Code",
                   package: nix.thunk(() => nix.sel(pkgs, "fira-code")),
                 })),
@@ -379,7 +379,7 @@ scp /etc/rosenpass/pqpk "$PEER:/etc/rosenpass/peers/$HOST/pqpk"
           })),
         }));
         return {
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           server: nix.thunk(() => nix.update(sshAndKeyGeneration, niceConsoleAndAutologin)),
           client: nix.thunk(() => nix.update(sshAndKeyGeneration, niceConsoleAndAutologin)),
         };

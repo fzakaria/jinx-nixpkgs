@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const facedetect = nix.arg($, "facedetect");
   const fbida = nix.arg($, "fbida");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fgallery",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.thregr.org/~wavexx/software/fgallery/releases/fgallery-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-FvF0wkRe3wTPUG9/GEBxkaxvZ1B4wEd9kI9rURHKxn0=",
         })))),
@@ -57,7 +57,7 @@ wrapProgram "$out/share/fgallery/fgallery" \\
     --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, zip, imagemagick, pngcrush, lcms2, facedetect, fbida]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static photo gallery generator",
         homepage: "https://www.thregr.org/~wavexx/software/fgallery/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

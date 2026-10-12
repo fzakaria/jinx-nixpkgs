@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jspahrsummers",
           repo: "adt",
           rev: nix.thunk(() => nix.add("v", version)),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_mypy_plugin.py"]);
       const pythonImportsCheck = nix.thunk(() => ["adt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Algebraic data types for Python",
         homepage: "https://github.com/jspahrsummers/adt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

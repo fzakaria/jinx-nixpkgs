@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flashfocus",
       version: "2.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-O6jRQ6e96b8CuumTD6TGELaz26No7WFZgGSnNSlqzuE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bump-marshmallow.patch",
             url: "https://github.com/fennerm/flashfocus/commit/0ed8616ad31c5e281be1a890ad9510323fa1b6c7.patch",
             hash: "sha256-A7PwvqPpi4koKD3d6SRHVV753hGd9wIf3/nT49f6qoY=",
@@ -65,11 +65,11 @@ substituteInPlace src/flashfocus/util.py \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["flashfocus"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/fennerm/flashfocus",
         description: "Simple focus animations for tiling window managers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

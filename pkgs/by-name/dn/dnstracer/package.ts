@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.10",
       pname: "dnstracer",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.mavetju.org/download/dnstracer-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "089bmrjnmsga2n0r4xgw4bwbf41xdqsnmabjxhw8lngg2pns1kb4",
         })))),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       setOutputFlags: false,
       installPhase: "install -Dm755 -t $out/bin dnstracer\ninstall -Dm755 -t $man/share/man/man8 dnstracer.8\n",
       buildInputs: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "libresolv"))])))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lresolv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lresolv" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Determines where a given Domain Name Server (DNS) gets its information from, and follows the chain of DNS servers back to the servers which know the data",
         homepage: "http://www.mavetju.org/unix/general.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "class_group_vdf";
       const version = "0.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomadic-labs/cryptography",
           repo: "ocaml-chia-vdf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, bisect_ppx]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Verifiable Delay Functions bindings to Chia's VDF",
         homepage: "https://gitlab.com/nomadic-labs/tezos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,
@@ -58,6 +58,6 @@ export default nix.lambda((args) => (() => {
         doCheck,
         meta,
       };
-    })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "10.14")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isMacOS")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ __proto__: pos$4, preHook: "export MACOSX_DEPLOYMENT_TARGET=10.14\n" }))))));
+    })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "10.14")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isMacOS")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: pos$4, preHook: "export MACOSX_DEPLOYMENT_TARGET=10.14\n" }))))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

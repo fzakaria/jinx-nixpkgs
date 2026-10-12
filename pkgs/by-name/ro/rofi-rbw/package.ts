@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const xclip = nix.arg($, "xclip");
   const xdotool = nix.arg($, "xdotool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-rbw",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fdw",
           repo: "rofi-rbw",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rofi frontend for Bitwarden",
         homepage: "https://github.com/fdw/rofi-rbw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

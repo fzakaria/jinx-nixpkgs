@@ -29,29 +29,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "leaps"));
   const stateDir = "/var/lib/leaps/";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         leaps: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "leaps, a pair programming service")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "A port where leaps listens for incoming http requests",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "127.0.0.1",
               description: "Hostname or IP-address to listen to. By default it will listen on all interfaces.",
             })))),
           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Subdirectory used for reverse proxy setups",
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             leaps: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "leaps")),
               description: "Leaps server user",
               group: "leaps",
@@ -75,24 +75,24 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             leaps: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "leaps")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             leaps: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "leaps service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 User: "leaps",
                 Group: "leaps",
                 Restart: "on-failure",

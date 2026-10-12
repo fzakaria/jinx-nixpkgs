@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const coverage = nix.arg($, "coverage");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "covdefaults",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asottile",
           repo: "covdefaults",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/asottile/covdefaults/commit/18fbb656ef7e90ccd2af5dbef6f100054d96c866.patch",
             hash: "sha256-/MEZEztJUKuEmFmIKTrEiZYmJ4pOFLphDDl1Q+c5TN0=",
           })))),
       ]),
       pythonImportsCheck: nix.thunk(() => ["covdefaults"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A coverage plugin to provide sensible default settings",
         homepage: "https://github.com/asottile/covdefaults",
         changelog: nix.thunk(() => nix.str`https://github.com/asottile/covdefaults/commits/${nix.sel(finalAttrs, "src", "tag")}`),

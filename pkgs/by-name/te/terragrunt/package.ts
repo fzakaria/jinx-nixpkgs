@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const mockgen = nix.arg($, "mockgen");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terragrunt",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gruntwork-io",
           repo: "terragrunt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://terragrunt.gruntwork.io",
         changelog: nix.thunk(() => nix.str`https://github.com/gruntwork-io/terragrunt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Thin wrapper for Terraform that supports locking for Terraform state and enforces best practices",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`homf-${subcommand}-${pkgName}`),
         script: nix.thunk(() => nix.str`homf ${subcommand} --directory $out ${pkgName} ${version}`),
         nativeBuildInputs: nix.thunk(() => [cacert, homf]),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), Homf, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pypi: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pkgName: "homf",
         version: "1.1.1",
         hash: "sha256-zpdt7+zTaGkLG6xYoTZVw/kUek0/MrCqvljfLxNB94A=",
       })),
       github: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pkgName: "duckinator/homf",
         version: "v1.1.1",
         hash: "sha256-NeEz8wZqDWYUnrgsknXWHzhWdk8cPW8mknKS3+/dngQ=",

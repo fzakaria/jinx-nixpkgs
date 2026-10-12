@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["mixEnv"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
         const erlangCompilerOptions = nix.argOr($_1, "erlangCompilerOptions", () => []);
         const erlangDeterministicBuilds = nix.argOr($_1, "erlangDeterministicBuilds", () => true);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`erlang${nix.sel(erlang, "version")}-${nix.sel(args_2, "name")}-${nix.sel(finalAttrs, "version")}`),
           env: nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             ERL_COMPILER_OPTIONS: nix.thunk(() => (() => {
               const options = nix.thunk(() => nix.concat(erlangCompilerOptions, nix.app(nix.sel(lib, "optionals"), erlangDeterministicBuilds, nix.thunk(() => ["deterministic"]))));
               return nix.str`[${nix.app(nix.sel(lib, "concatStringsSep"), ",", options)}]`;
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
             mixAppConfigPatchHook,
           ])),
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "propagatedBuildInputs"), beamDeps)),
-          passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), { __proto__: pos$2, beamDeps: beamDeps })),
+          passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), { [nix.POS]: pos$2, beamDeps: beamDeps })),
         };
       })(), formals$2),
     })));

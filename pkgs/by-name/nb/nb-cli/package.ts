@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nb_cli = nix.arg($, "nb-cli");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nb-cli",
       version: "1.7.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nonebot",
           repo: "nb-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
         "nb_cli.log",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: nb_cli })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: nb_cli })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI for nonebot2",
         homepage: "https://cli.nonebot.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/nonebot/nb-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

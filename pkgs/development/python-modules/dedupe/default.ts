@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dedupeio",
           repo: "dedupe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf dedupe\n";
       const pythonImportsCheck = nix.thunk(() => ["dedupe"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           benchmarks: nix.thunk(() => nix.app(runCommand, "dedupe-benchmarks-test", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [dedupe]))]),
             })), nix.thunk(() => nix.str`# Copy benchmarks to writable location
 cp -r ${src}/benchmarks benchmarks
@@ -87,7 +87,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for accurate and scalable fuzzy matching, deduplication and entity resolution",
         homepage: "https://github.com/dedupeio/dedupe",
         changelog: nix.thunk(() => nix.str`https://github.com/dedupeio/dedupe/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -98,7 +98,7 @@ touch $out
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

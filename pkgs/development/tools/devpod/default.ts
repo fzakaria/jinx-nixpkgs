@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const version = "0.6.15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "loft-sh",
       repo: "devpod",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-fLUJeEwNDyzMYUEYVQL9XGQv/VAxjH4IZ1SJa6jx4Mw=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker",
     mainProgram: "devpod",
     homepage: "https://devpod.sh",
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
     maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "tomasajt"))]),
   }));
   const devpod = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "devpod",
       version: version,
       src: src,
       meta: meta,
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/loft-sh/devpod/pkg/version.version=v${version}`),
       ]),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "$out/bin/devpod completion bash >devpod.bash\n$out/bin/devpod completion fish >devpod.fish\n$out/bin/devpod completion zsh >devpod.zsh\ninstallShellCompletion devpod.{bash,fish,zsh}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "devpod version",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -82,13 +82,13 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const devpod_desktop = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "devpod-desktop",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/desktop`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           yarnLock: nix.thunk(() => nix.str`${src}/desktop/yarn.lock`),
           hash: "sha256-0Ov+Ik+th2IiuuqJyiO9t8vTyMqxDa9juEwbwHFaoi4=",
         })))),
@@ -142,11 +142,11 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), devpod)} "$out/bin/devpod"
       dontWrapGApps: true,
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapGApp \"$out/bin/DevPod Desktop\"\n")),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mainProgram: "DevPod Desktop",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       })),
     }))));
-  return { __proto__: pos$11, devpod: devpod, "devpod-desktop": devpod_desktop };
+  return { [nix.POS]: pos$11, devpod: devpod, "devpod-desktop": devpod_desktop };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

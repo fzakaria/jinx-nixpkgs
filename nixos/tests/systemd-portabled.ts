@@ -31,16 +31,16 @@ Also=demo.socket
 `)));
   const demo_socket = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "demo.socket", "[Unit]\nDescription=demo socket\n\n[Socket]\nListenStream=/run/demo.sock\nSocketMode=0666\n\n[Install]\nWantedBy=sockets.target\n"));
   const demo_portable = nix.thunk(() => nix.app(nix.sel(pkgs, "portableService"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "demo",
       version: "1.0",
       description: "A demo \"Portable Service\" for a shell program built with nix",
       units: nix.thunk(() => [demo_service, demo_socket]),
     }))));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     name: "systemd-portabled",
-    nodes: nix.thunk(() => ({ __proto__: pos$2, machine: nix.thunk(() => ({})) })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
     testScript: nix.thunk(() => nix.str`machine.succeed("portablectl")
 machine.wait_for_unit("systemd-portabled.service")
 machine.succeed("portablectl attach --now --runtime ${demo_portable}/demo_1.0.raw")

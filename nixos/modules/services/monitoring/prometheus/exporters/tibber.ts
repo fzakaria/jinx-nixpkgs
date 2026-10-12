@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9489n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       apiTokenPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: null,
           description: "Add here the path to your personal Tibber API Token ('Bearer Token') File.\nGet your personal Tibber API Token here: <https://developer.tibber.com>\nDo not share your personal plaintext Tibber API Token via github. (see: ryantm/agenix, mic92/sops)\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       script: nix.thunk(() => nix.str`export TIBBER_TOKEN="$(cat ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "apiTokenPath")))})"
 exec ${nix.sel(pkgs, "prometheus-tibber-exporter")}/bin/tibber-exporter --listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} ${nix.app(concatStringsSep, " \\\n  ", nix.thunk(() => nix.sel(cfg, "extraFlags")))}
 `),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
         MemoryDenyWriteExecute: true,

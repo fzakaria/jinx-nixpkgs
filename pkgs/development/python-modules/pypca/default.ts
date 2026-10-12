@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.13";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0y0p2rm22x21mykipiv42fjc79b0969qsbhk3cqkrdnqwh5psbdl",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pypca"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for interacting with the PCA 301 smart plugs",
         mainProgram: "pypca",
         homepage: "https://github.com/majuss/pypca",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

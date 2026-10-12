@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clfft",
       version: "2.12.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clMathLibraries",
           repo: "clFFT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '/-m64/d;/-m32/d' CMakeLists.txt\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required( VERSION 2.6 )' \\\n  'cmake_minimum_required( VERSION 3.5 ) '\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([fftw, fftwFloat, boost], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [opencl_clhpp, ocl_icd])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Library containing FFT functions written in OpenCL",
         longDescription: "clFFT is a software library containing FFT functions written in OpenCL.\nIn addition to GPU devices, the library also supports running on CPU devices to facilitate debugging and heterogeneous programming.\n",

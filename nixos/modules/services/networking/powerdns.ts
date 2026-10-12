@@ -32,22 +32,22 @@ export default nix.lambda((args) => (() => {
   const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "pdns.conf", nix.thunk(() => nix.str`${nix.sel(cfg, "extraConfig")}`)));
   const finalConfigDir = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "secretFile"), null)) ? nix.force(configDir) : "/run/pdns"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         powerdns: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "PowerDNS domain name server")),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "launch=bind",
               description: "PowerDNS configuration. Refer to\n<https://doc.powerdns.com/authoritative/settings.html>\nfor details on supported values.\n",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/keys/powerdns.env",
@@ -57,25 +57,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
-            pdns: nix.thunk(() => ({ __proto__: pos$6, source: finalConfigDir })),
+            [nix.POS]: pos$7,
+            pdns: nix.thunk(() => ({ [nix.POS]: pos$6, source: finalConfigDir })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pdns"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pdns: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "mysql.service", "postgresql.target", "openldap.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => nix.sel(cfg, "secretFile")))),
                 ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "pdns-pre-start", nix.thunk(() => nix.str`umask 077
 ${nix.sel(pkgs, "envsubst")}/bin/envsubst -i "${configDir}/pdns.conf" > ${finalConfigDir}/pdns.conf
@@ -89,17 +89,17 @@ ${nix.sel(pkgs, "envsubst")}/bin/envsubst -i "${configDir}/pdns.conf" > ${finalC
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             pdns: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               isSystemUser: true,
               group: "pdns",
               description: "PowerDNS",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, pdns: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, pdns: nix.thunk(() => ({})) })),
         })),
       })))),
   };

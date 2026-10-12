@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asciidoctorj",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/org/asciidoctor/asciidoctorj/${nix.sel(finalAttrs, "version")}/asciidoctorj-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-LzmROgzHnUZaK6uKxMUoM9/3q1wmBDlU0THfOOdUgcY=",
         })))),
@@ -30,7 +30,7 @@ wrapProgram $out/bin/asciidoctorj \\
   --prefix JAVA_HOME : ${jdk}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official library for running Asciidoctor on the JVM",
         longDescription: "AsciidoctorJ is the official library for running Asciidoctor on the JVM.\nUsing AsciidoctorJ, you can convert AsciiDoc content or analyze the\nstructure of a parsed AsciiDoc document from Java and other JVM\nlanguages.\n",
         homepage: "https://asciidoctor.org/docs/asciidoctorj/",

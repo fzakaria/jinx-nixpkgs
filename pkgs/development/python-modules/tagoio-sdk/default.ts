@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests_toolbelt = nix.arg($, "requests-toolbelt");
   const sseclient_py = nix.arg($, "sseclient-py");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tagoio-sdk",
       version: "5.1.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tago-io",
           repo: "sdk-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [requests_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["tagoio_sdk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interacting with Tago.io",
         homepage: "https://github.com/tago-io/sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/tago-io/sdk-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "anker-charging",
       domain: "anker_solix_official",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anker-charging",
           repo: "ha-anker-solix-official",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         "test_creates_client_lazily_when_none",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official Home Assistant integration for Anker Solix devices via local Modbus TCP",
         homepage: "https://github.com/anker-charging/ha-anker-solix-official",
         changelog: nix.thunk(() => nix.str`https://github.com/anker-charging/ha-anker-solix-official/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

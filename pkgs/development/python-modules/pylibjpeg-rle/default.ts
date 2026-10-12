@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydicom",
           repo: "pylibjpeg-rle",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hAtseH4akBCKhlWsPGXeQRYUK0BiytFrLFCmeg7nUXY=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "mv rle/tests .\nrm -r rle\n";
       const pythonImportsCheck = nix.thunk(() => ["rle", "rle.rle", "rle.utils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast DICOM RLE plugin for pylibjpeg",
         homepage: "https://github.com/pydicom/pylibjpeg-rle",
         changelog: nix.thunk(() => nix.str`https://github.com/pydicom/pylibjpeg-rle/releases/tag/${nix.sel(src, "tag")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

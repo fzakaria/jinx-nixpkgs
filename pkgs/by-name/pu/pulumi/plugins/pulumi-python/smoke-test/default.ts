@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pulumi_python = nix.arg($, "pulumi-python");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "pulumi-python-smoke-test",
       src: nix.thunk(() => nix.builtins.filterSource((name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name)), nix.path(here, "./."))),
       doCheck: true,

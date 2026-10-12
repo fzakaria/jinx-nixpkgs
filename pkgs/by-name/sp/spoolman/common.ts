@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.23.1";
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "Donkie",
         repo: "Spoolman",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-Oa/cNmpc0hWRf0EQI5aXIE/p9//Sos5Nj3QFEjKgj5o=",
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Keep track of your inventory of 3D-printer filament spools",
       homepage: "https://github.com/Donkie/Spoolman",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

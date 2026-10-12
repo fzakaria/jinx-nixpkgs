@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatthiasValvekens",
           repo: "certomancer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [asn1crypto, click, cryptography, python_dateutil, pyyaml, tzlocal]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "requests-mocker": nix.thunk(() => [requests_mock]),
         "web-api": nix.thunk(() => [jinja2, werkzeug]),
         pkcs11: nix.thunk(() => [python_pkcs11]),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["certomancer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quickly construct, mock & deploy PKI test configurations using simple declarative configuration",
         mainProgram: "certomancer",
         homepage: "https://github.com/MatthiasValvekens/certomancer",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

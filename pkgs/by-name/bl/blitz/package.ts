@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blitz++";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blitzpp",
           repo: "blitz",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-cmake-install-full-dir.patch",
             url: "https://github.com/blitzpp/blitz/commit/020f1d768c7fa3265cec244dc28f3dc8572719c5.patch",
             hash: "sha256-8hYFNyWrejjIWPN/HzIOphD4Aq6Soe0FFUBmwV4tpWQ=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck_1 = doCheck;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast multi-dimensional array library for C++",
         homepage: "https://sourceforge.net/projects/blitz/",
         license: nix.thunk(() => (() => {
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "Blitz++ is a C++ class library for scientific computing which provides\nperformance on par with Fortran 77/90. It uses template techniques to\nachieve high performance. Blitz++ provides dense arrays and vectors,\nrandom number generators, and small vectors (useful for representing\nmulticomponent or vector fields).\n",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

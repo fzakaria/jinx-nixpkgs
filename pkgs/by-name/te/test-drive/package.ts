@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/te/test-drive/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "test-drive",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fortran-lang",
           repo: "test-drive",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([gfortran], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(buildType, "meson")), nix.thunk(() => [meson, ninja])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(buildType, "cmake")), cmake), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), mesonEmulatorHook))))),
       mesonAutoFeatures: "auto",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Procedural Fortran testing framework",
         homepage: "https://github.com/fortran-lang/test-drive",
         license: nix.thunk(() => (() => {

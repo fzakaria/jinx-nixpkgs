@@ -366,12 +366,12 @@ export default nix.lambda((args) => (() => {
   const types_s3transfer = nix.arg($, "types-s3transfer");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "boto3-stubs",
       version: "1.43.109",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "boto3_stubs",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7hkBvSmMWYAMgW9nQRCB37Dl2KVRDYXSK9FIEYD0m6I=",
@@ -379,7 +379,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [botocore_stubs, types_s3transfer, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         accessanalyzer: nix.thunk(() => [mypy_boto3_accessanalyzer]),
         account: nix.thunk(() => [mypy_boto3_account]),
         acm: nix.thunk(() => [mypy_boto3_acm]),
@@ -1088,7 +1088,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["boto3-stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Type annotations for boto3",
         homepage: "https://pypi.org/project/boto3-stubs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

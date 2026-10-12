@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "khmeros";
       const version = "5.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/f/fonts-khmeros/fonts-khmeros_${version}.orig.tar.xz`),
           hash: "sha256-gBcM9YHSuhbxvwfQTvywH/5kN921GOyvGtkROcmcBiw=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts\ncp *.ttf $out/share/fonts\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode fonts for the Khmer language",
         homepage: "http://www.khmeros.info/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

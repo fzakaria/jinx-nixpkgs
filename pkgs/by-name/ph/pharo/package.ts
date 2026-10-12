@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pixman = nix.arg($, "pixman");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pharo",
       version: "10.3.4+3.884643b",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.pharo.org/vm/pharo-spur64-headless/Linux-x86_64/source/PharoVM-v${nix.sel(finalAttrs, "version")}-Linux-x86_64-c-src.zip`),
           hash: "sha256-JBN0gPVMIUFzrdLqrCnCvf4cbZMfpluO2/jCxk3U+M8=",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_BUNDLE=OFF",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types"]))),
       })),
       preBuild: nix.thunk(() => nix.str`mkdir -p /build/source/build/
@@ -59,7 +59,7 @@ wrapProgram "$out/bin/pharo" --argv0 $out/bin/pharo --prefix LD_LIBRARY_PATH ":"
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Clean and innovative Smalltalk-inspired environment",
         homepage: "https://pharo.org",
         changelog: "https://github.com/pharo-project/pharo/releases/",

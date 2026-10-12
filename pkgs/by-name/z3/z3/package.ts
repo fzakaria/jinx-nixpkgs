@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(javaBindings) || nix.asBool((nix.asBool(!nix.eq(jdk, null)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/z3/z3/package.nix:25:1");
   nix.assert_((!nix.asBool(ocamlBindings) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(ocaml, null)) && nix.asBool(!nix.eq(findlib, null)))) && nix.asBool(!nix.eq(zarith, null)))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/z3/z3/package.nix:26:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "z3",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Z3Prover",
           repo: "z3",
           rev: nix.thunk(() => nix.str`z3-${nix.sel(finalAttrs, "version")}`),
@@ -106,18 +106,18 @@ ln -sf $lib/lib $python/${nix.sel(python3Packages, "python", "sitePackages")}/z3
       pythonImportsCheck: nix.thunk(() => ["z3"]),
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), pythonBindings, nix.thunk(() => ["python"])), nix.concat(nix.app(nix.sel(lib, "optionals"), javaBindings, nix.thunk(() => ["java"])), nix.app(nix.sel(lib, "optionals"), ocamlBindings, nix.thunk(() => ["ocaml"])))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^z3-([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useCmakeBuild, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance theorem prover and SMT solver",
         mainProgram: "z3",
         homepage: "https://github.com/Z3Prover/z3",

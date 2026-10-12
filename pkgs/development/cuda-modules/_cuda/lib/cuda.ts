@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     _cudaCapabilityIsDefault: (cudaMajorMinorVersion) => (cudaCapabilityInfo) => (() => {
       const recentCapability = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cudaCapabilityInfo, "dontDefaultAfterCudaMajorMinorVersion"), null)) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cudaCapabilityInfo, "dontDefaultAfterCudaMajorMinorVersion")), cudaMajorMinorVersion))));
       return (nix.asBool((nix.asBool((nix.asBool(recentCapability) && nix.asBool(!nix.asBool(nix.sel(cudaCapabilityInfo, "isJetson"))))) && nix.asBool(!nix.asBool(nix.sel(cudaCapabilityInfo, "isArchitectureSpecific"))))) && nix.asBool(!nix.asBool(nix.sel(cudaCapabilityInfo, "isFamilySpecific"))));

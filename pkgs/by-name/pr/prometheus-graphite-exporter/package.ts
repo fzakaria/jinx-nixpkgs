@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "graphite-exporter";
       const version = "0.16.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus",
           repo: "graphite_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,21 +39,21 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, graphite: nix.thunk(() => nix.attr(from, "graphite")) };
+          return { [nix.POS]: pos$2, graphite: nix.thunk(() => nix.attr(from, "graphite")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Exporter for metrics exported in the Graphite plaintext protocol",
         homepage: "https://github.com/prometheus/graphite_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "misterio77"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

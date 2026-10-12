@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const avahi_compat = nix.arg($, "avahi-compat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "altserver-linux",
       version: "0.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/NyaMisty/AltServer-Linux/releases/download/v${nix.sel(finalAttrs, "version")}/AltServer-x86_64`),
           hash: "sha256-C+fDrcaewRd6FQMrO443xdDk/vtHycQ5zWLCOLPqF/s=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp $src $out/bin/alt-server\nchmod u+x $out/bin/alt-server\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/NyaMisty/AltServer-Linux",
         description: "AltServer for AltStore, but on-device. Requires root privileges as well as running a custom anisette server currently",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cproto",
       version: "4.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://debian/pool/main/c/cproto/cproto_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
             nix.thunk(() => nix.str`https://invisible-island.net/archives/cproto/cproto-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: nix.thunk(() => nix.str`[ "$("$out/bin/cproto" -V 2>&1)" = '${nix.sel(finalAttrs, "version")}' ]
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to generate C function prototypes from C source code",
         mainProgram: "cproto",
         homepage: "https://invisible-island.net/cproto/",

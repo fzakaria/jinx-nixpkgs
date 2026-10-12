@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "remote-cli",
           repo: "remote",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/remote-cli/remote/commit/a2073c30c7f576ad7ceb46e39f996de8d06bf186.patch",
             hash: "sha256-As0j+yY6LamhOCGFzvjUQoXFv46BN/tRBpvIS7r6DaI=",
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })());
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/test_file_changes.py"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Work with remote hosts seamlessly via rsync and ssh",
         homepage: "https://github.com/remote-cli/remote",
         changelog: nix.thunk(() => nix.str`https://github.com/remote-cli/remote/releases/tag/v${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

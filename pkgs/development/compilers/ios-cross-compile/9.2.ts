@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const version = "9.2";
       const sdk = "iPhoneOS9.2.sdk";
       const cctools_port = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpoechtrager",
           repo: "cctools-port",
           rev: "7d405492b09fa27546caaa989b8493829365deab",
           sha256: "0nj1q5bqdx5jm68dispybxc7wnkb6p8p2igpnap9q6qyv2r9p07w",
         }))));
       const ldid = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tpoechtrager",
           repo: "ldid",
           rev: "3064ed628108da4b9a52cfbe5d4c1a5817811400",
@@ -71,14 +71,14 @@ nix-prefetch-url file:///path/to/${name}
 
 and run this installation again.
 `);
-          return { __proto__: pos$3, name, sha256, message };
+          return { [nix.POS]: pos$3, name, sha256, message };
         })())));
       const nativeBuildInputs = nix.thunk(() => [autoconf, automake]);
       const buildInputs = nix.thunk(() => [git, xz, gnutar, openssl, libtool, clang]);
       const alt_wrapper = nix.path(here, "./alt_wrapper.c");
       const builder = nix.path(here, "./9.2_builder.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.str`Provides an iOS cross compiler from 7.1 up to iOS-${version} and ldid`),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         hydraPlatforms: [],
@@ -89,7 +89,7 @@ and run this installation again.
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         sdk,

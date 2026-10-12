@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const abseil_cpp = nix.arg($, "abseil-cpp");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webrtc-noise-gain",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhasspy",
           repo: "webrtc-noise-gain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ substituteInPlace setup.py --replace-fail \\
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "rm -rf webrtc_noise_gain\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny wrapper around webrtc-audio-processing for noise suppression/auto gain only",
         homepage: "https://github.com/rhasspy/webrtc-noise-gain",
         changelog: nix.thunk(() => nix.str`https://github.com/rhasspy/webrtc-noise-gain/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

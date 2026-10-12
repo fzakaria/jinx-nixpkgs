@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rocky",
           repo: "python-xdis",
           tag: version,
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.13.13.patch",
             url: "https://github.com/rocky/python-xdis/commit/f2c46c8c89898157c2345c0a026a2d31f14e7ea9.patch",
             includes: nix.thunk(() => ["xdis/magics.py"]),
             hash: "sha256-+k3mbiAmM69Pl7k0Wogx+qpib5+p3Gn/pSpnDn5e6pE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "python-3.14.4.patch",
             url: "https://github.com/rocky/python-xdis/commit/36a1a2442c224e3bfca776f727a5e262968855a4.patch",
             includes: nix.thunk(() => ["xdis/magics.py"]),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_big_linenos", "test_basic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python cross-version byte-code disassembler and marshal routines",
         homepage: "https://github.com/rocky/python-xdis",
         changelog: nix.thunk(() => nix.str`https://github.com/rocky/python-xdis/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

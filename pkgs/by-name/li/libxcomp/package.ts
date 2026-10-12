@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libxcomp",
       version: "3.5.99.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "1m3z9w3h6qpgk265xf030w7lcs181jgw2cdyzshb7l97mn1f7hh2",
           url: nix.thunk(() => nix.str`https://code.x2go.org/releases/source/nx-libs/nx-libs-${nix.sel(finalAttrs, "version")}-lite.tar.gz`),
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: "cd nxcomp/\nsed -i 's|/src/.libs/libXcomp.a|/src/.libs/libXcomp.la|' test/Makefile.am\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NX compression library",
         homepage: "http://wiki.x2go.org/doku.php/wiki:libs:nx-libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

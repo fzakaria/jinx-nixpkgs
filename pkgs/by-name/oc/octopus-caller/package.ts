@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "octopus",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luntergroup",
           repo: "octopus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost179, gmp, htslib, zlib, xz]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/luntergroup/octopus/commit/17a597d192bcd5192689bf38c5836a98b824867a.patch",
             sha256: "sha256-VaUr63v7mzhh4VBghH7a7qrqOYwl6vucmmKzTi9yAjY=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Disable -Werror to avoid build failure on fresh toolchains like\n# gcc-13.\nsubstituteInPlace lib/date/CMakeLists.txt --replace-fail ' -Werror ' ' '\nsubstituteInPlace lib/ranger/CMakeLists.txt --replace-fail ' -Werror ' ' '\nsubstituteInPlace lib/tandem/CMakeLists.txt --replace-fail ' -Werror ' ' '\nsubstituteInPlace src/CMakeLists.txt --replace-fail ' -Werror ' ' '\n\n# Fix gcc-13 build due to missing <cstdint> header.\nsed -e '1i #include <cstdint>' -i src/core/tools/vargen/utils/assembler.hpp\n",
       postInstall: "mkdir $out/bin\nmv $out/octopus $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bayesian haplotype-based mutation calling",
         mainProgram: "octopus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

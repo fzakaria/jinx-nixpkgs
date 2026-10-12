@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
   const rxcppVersion = "4.0.0";
   const gtestVersion = "1.8.0";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     toolbox: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "shogun-toolbox",
         repo: "shogun",
         rev: nix.thunk(() => nix.str`shogun_${version}`),
@@ -65,41 +65,41 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     rxcpp: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/Reactive-Extensions/RxCpp/archive/v${rxcppVersion}.tar.gz`),
         sha256: "sha256-UOc5WrG8KgAA3xJsaSCjbdPE7gSnFJay9MEK31DWUXg=",
       })))),
     gtest: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/google/googletest/archive/release-${gtestVersion}.tar.gz`),
         sha256: "sha256-WKb0J3yivIVlIis7vVihd2CenEiOinJkk1m6UUUNt9g=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       version: version,
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.sel(srcs, "toolbox")),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/shogun-toolbox/shogun/commit/c8b670be4790e0f06804b048a6f3d77c17c3ee95.patch",
             sha256: "sha256-MxsR3Y2noFQevfqWK3nmX5iK4OVWeKBl5tfeDNgjcXk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/shogun-toolbox/shogun/commit/5aceefd9fb0e2132c354b9a0c0ceb9160cc9b2f7.patch",
             sha256: "sha256-AgJJKQA8vc5oKaTQDqMdwBR4hT4sn9+uW0jLe7GteJw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/shogun-toolbox/shogun/commit/ef0e4dc1cc4a33c9e6b17a108fa38a436de2d7ee.patch",
             sha256: "sha256-a9Rm0ytqkSAgC3dguv8m3SwOSipb+VByBHHdmV0d63w=",
           })))),
         nix.path(here, "./fix-virtual-destruction.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://github.com/shogun-toolbox/shogun/commit/365ce4c4c700736d2eec8ba6c975327a5ac2cd9b.patch",
             sha256: "sha256-OhEWwrHtD/sOcjHmPY/C9zJ8ruww8yXrRcTw38nGEJU=",
           })))),
@@ -169,7 +169,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SVMLIGHT", withSvmLight)),
         ];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$9, CXXFLAGS: "-faligned-new" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$9, CXXFLAGS: "-faligned-new" })),
       doCheck: true,
       postUnpack: nix.thunk(() => nix.str`mkdir -p $sourceRoot/third_party/{rxcpp,GoogleMock}
 ln -s ${nix.sel(srcs, "rxcpp")} $sourceRoot/third_party/rxcpp/v${rxcppVersion}.tar.gz
@@ -215,7 +215,7 @@ substituteInPlace cmake/external/GoogleTestNMock.cmake \\
       postInstall: "mkdir -p $doc/share/doc/shogun/examples\nmv $out/share/shogun/examples/cpp $doc/share/doc/shogun/examples\ncp ../examples/undocumented/libshogun/*.cpp $doc/share/doc/shogun/examples/cpp\nrm -r $out/share\n",
       postFixup: "# CMake incorrectly calculates library path from dev prefix\nsubstituteInPlace $dev/lib/cmake/shogun/ShogunTargets-release.cmake \\\n  --replace-fail \"\\${_IMPORT_PREFIX}/lib/\" \"$out/lib/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Toolbox which offers a wide range of efficient and unified machine learning methods",
         homepage: "http://shogun-toolbox.org/",
         license: nix.thunk(() => (nix.asBool(withSvmLight) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "gpl3Plus"))),

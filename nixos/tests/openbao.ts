@@ -31,53 +31,53 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "openbao",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kranzes"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pki: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             openbao: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ui: true,
                 listener: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   default: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     type: "tcp",
                     tls_cert_file: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                     tls_key_file: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                   })),
-                  unix: nix.thunk(() => ({ __proto__: pos$6, type: "unix" })),
+                  unix: nix.thunk(() => ({ [nix.POS]: pos$6, type: "unix" })),
                   "unix-custom": nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: "unix",
                     address: "/run/openbao/world-accessible.sock",
                     socket_mode: "0222",
@@ -88,17 +88,17 @@ export default nix.lambda((args) => (() => {
                 cluster_addr: "https://127.0.0.1:8201",
                 api_addr: nix.thunk(() => nix.str`https://${domain}:8200`),
                 storage: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  raft: nix.thunk(() => ({ __proto__: pos$9, path: "/var/lib/openbao" })),
+                  [nix.POS]: pos$10,
+                  raft: nix.thunk(() => ({ [nix.POS]: pos$9, path: "/var/lib/openbao" })),
                 })),
               })),
               plugins: nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(pkgs, "openbaoPlugins")))))),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             variables: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               BAO_ADDR: nix.thunk(() => nix.sel(config, "services", "openbao", "settings", "api_addr")),
               BAO_FORMAT: "json",
             })),

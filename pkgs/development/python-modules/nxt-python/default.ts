@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schodet",
           repo: "nxt-python",
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [pyusb, pillow]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, bluetooth: nix.thunk(() => [pybluez]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, bluetooth: nix.thunk(() => [pybluez]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nxt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python driver/interface for Lego Mindstorms NXT robot",
         homepage: "https://github.com/schodet/nxt-python",
         changelog: nix.thunk(() => nix.str`https://github.com/schodet/nxt-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

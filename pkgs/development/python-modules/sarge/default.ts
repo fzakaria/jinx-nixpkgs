@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7.post1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vsajip",
           repo: "sarge",
           rev: version,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_timeout", "test_feeder"]);
       const pythonImportsCheck = nix.thunk(() => ["sarge"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for subprocess which provides command pipeline functionality",
         homepage: "https://sarge.readthedocs.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

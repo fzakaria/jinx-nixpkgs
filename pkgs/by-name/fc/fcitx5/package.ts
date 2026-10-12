@@ -51,16 +51,16 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const enDictVer = "20121020";
   const enDict = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/en_dict-${enDictVer}.tar.gz`),
       hash: "sha256-xEpdeEeSXuqeTS0EdI1ELNKN2SmaC1cu99kerE9abOs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fcitx5",
       version: "5.1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fcitx",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -106,12 +106,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.py"),
-        tests: nix.thunk(() => ({ __proto__: pos$3, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Next generation of fcitx",
         homepage: "https://github.com/fcitx/fcitx5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

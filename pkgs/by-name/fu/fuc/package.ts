@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const clippy = nix.arg($, "clippy");
   const rustfmt = nix.arg($, "rustfmt");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fuc",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SUPERCILEX",
           repo: "fuc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-jn553QosWi7avgSjT72lL8auVVd/n4+5MDCJAquflgs=",
         })))),
       cargoHash: "sha256-kxaB3R9V8JG2EdLfGFrP12wt9TZco7QfpfNbLQZDq30=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
       cargoBuildFlags: nix.thunk(() => ["--workspace", "--bin cpz", "--bin rmz"]),
       nativeCheckInputs: nix.thunk(() => [clippy, rustfmt]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern, performance focused unix commands",
         homepage: "https://github.com/SUPERCILEX/fuc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

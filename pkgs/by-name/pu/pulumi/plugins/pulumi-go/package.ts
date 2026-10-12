@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const pulumi = nix.arg($, "pulumi");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pulumi-go",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           ]))}$`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/go/",
         description: "Language host for Pulumi programs written in Go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

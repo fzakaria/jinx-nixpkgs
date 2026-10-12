@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const pgsql_tools = nix.arg($, "pgsql-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pgsql-tools",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const sources = nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "x86_64-linux": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/download/v${nix.sel(finalAttrs, "version")}/pgsqltoolsservice-linux-x64.tar.gz`),
               hash: "sha256-dN7+LJCUwb39ypuJV4p3jUHNGAPaObN4aZvsOHIpmkQ=",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/download/v${nix.sel(finalAttrs, "version")}/pgsqltoolsservice-linux-arm64.tar.gz`),
               hash: "sha256-rD8jymGdM1RDGDbrKu6E7xoWtSMRNuc2ngCmR+sHgQI=",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/download/v${nix.sel(finalAttrs, "version")}/pgsqltoolsservice-osx-arm64.tar.gz`),
               hash: "sha256-tpabEKB1kqse7D58FsP/9jywk+vgAAvptL9MadwxWg8=",
             })),
@@ -68,9 +68,9 @@ makeBinaryWrapper $out/lib/pgsql-tools/ossdbtoolsservice_main $out/bin/ossdbtool
 runHook postInstall
 `),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/microsoft/pgsql-tools",
         description: "Backend service for PostgreSQL server tools, offering features such as connection management, query execution with result set handling, and language service support via the VS Code protocol",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/tag/v${nix.sel(finalAttrs, "version")}`),

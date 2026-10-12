@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sshpubkeys";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ojarva",
           repo: "python-sshpubkeys",
           tag: "v3.2.0",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cryptography]);
       const pythonImportsCheck = nix.thunk(() => ["sshpubkeys"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ojarva/python-sshpubkeys/releases/tag/${nix.sel(src, "tag")}`),
         description: "OpenSSH Public Key Parser for Python",
         homepage: "https://github.com/ojarva/python-sshpubkeys",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msh";
       const version = "1.0.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carlodefalco",
           repo: "msh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gmsh, gawk, dolfin]);
       const requiredOctavePackages = nix.thunk(() => [splines]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/msh/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "Create and manage triangular and tetrahedral meshes for Finite Element or\nFinite Volume PDE solvers. Use a mesh data structure compatible with\nPDEtool. Rely on gmsh for unstructured mesh generation.\n",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "diffuse",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MightyCreak",
           repo: "diffuse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,16 +49,16 @@ export default nix.lambda((args) => (() => {
       })()),
       preConfigure: "# app bundle for macos\nsubstituteInPlace src/diffuse/meson.build data/icons/meson.build src/diffuse/mac-os-app/diffuse-mac.in --replace-fail \"/Applications\" \"$out/Applications\";\n",
       mesonFlags: nix.thunk(() => ["-Db_ndebug=true"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, DESTDIR: "/" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: "/" })),
       makeWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${hicolor_icon_theme}/share`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/MightyCreak/diffuse",
         description: "Graphical tool for merging and comparing text files",
         mainProgram: "diffuse",

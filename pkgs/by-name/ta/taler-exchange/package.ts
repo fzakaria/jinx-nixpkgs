@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "taler-exchange",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/exchange.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [wget, curl]),
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.sel(nixosTests, "taler", "basic")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Exchange component for the GNU Taler electronic payment system",
         longDescription: "Taler is an electronic payment system providing the ability to pay\nanonymously using digital cash.  Taler consists of a network protocol\ndefinition (using a RESTful API over HTTP), an Exchange (which creates\ndigital coins), a Wallet (which allows customers to manage, store and\nspend digital coins), and a Merchant website which allows customers to\nspend their digital coins.  Naturally, each Merchant is different, but\nTaler includes code examples to help Merchants integrate Taler as a\npayment system.\n",
         homepage: "https://www.taler.net/en/",

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libcapsicum = nix.arg($, "libcapsicum");
   const libcasper = nix.arg($, "libcasper");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/backlight",
       buildInputs: nix.thunk(() => [libcapsicum, libcasper]),
     })));

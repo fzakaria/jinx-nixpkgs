@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openttd-ttf",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenTTD",
           repo: "openttd-ttf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n./build.sh\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OpenTTD/OpenTTD-TTF",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenTTD/OpenTTD-TTF/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "TrueType typefaces for text in a pixel art style, designed for use in OpenTTD",

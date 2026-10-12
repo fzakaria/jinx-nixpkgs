@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const textx_flow_dsl = nix.arg($, "textx-flow-dsl");
   const textx_types_dsl = nix.arg($, "textx-types-dsl");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "textx-tests",
       version: nix.thunk(() => nix.attr(textx, "version")),
       pyproject: false,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "passthru.tests for textx",

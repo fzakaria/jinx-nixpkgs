@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bpftrace";
       const version = "0.27.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bpftrace",
           repo: "bpftrace",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = "ln -sr $out/share/bpftrace/tools/*.bt $out/bin/\n# do not use /usr/bin/env for shipped tools\n# If someone can get patchShebangs to work here please fix.\nsed -i -e \"1s:#!/usr/bin/env bpftrace:#!$out/bin/bpftrace:\" $out/share/bpftrace/tools/*.bt\n";
       const outputs = nix.thunk(() => ["out", "man"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, bpf: nix.thunk(() => nix.attr(nixosTests, "bpf")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, bpf: nix.thunk(() => nix.attr(nixosTests, "bpf")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-level tracing language for Linux eBPF",
         homepage: "https://github.com/bpftrace/bpftrace",
         changelog: nix.thunk(() => nix.str`https://github.com/bpftrace/bpftrace/releases/tag/v${version}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

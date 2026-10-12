@@ -35,24 +35,24 @@ export default nix.lambda((args) => (() => {
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const libxv = nix.arg($, "libxv");
   const dist = nix.thunk(() => nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       urlSuffix: "linux-x86_64.tar.gz",
       hash: "sha256-A8JUYzEMQH1sEKYrKZ84QZAgYbz0OvpHa3t9RIUVE9c=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       urlSuffix: "macos-universal.zip",
       hash: "sha256-LSNvFL1ud/FkzNSGk17ZqN2debnqsjlVDHd4NBjTds0=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`appflowy: No source for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "appflowy",
       version: "0.11.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/AppFlowy-IO/appflowy/releases/download/${nix.sel(finalAttrs, "version")}/AppFlowy-${nix.sel(finalAttrs, "version")}-${nix.sel(dist, "urlSuffix")}`),
           hash: nix.thunk(() => nix.attr(dist, "hash")),
           stripRoot: false,
@@ -84,7 +84,7 @@ makeWrapper $out/opt/AppFlowy $out/bin/appflowy \\
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/AppFlowy.app/Contents/MacOS/AppFlowy $out/bin/appflowy\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "appflowy",
               desktopName: "AppFlowy",
               comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -95,7 +95,7 @@ makeWrapper $out/opt/AppFlowy $out/bin/appflowy \\
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open-source alternative to Notion",
         homepage: "https://www.appflowy.io/",
         sourceProvenance: nix.thunk(() => (() => {

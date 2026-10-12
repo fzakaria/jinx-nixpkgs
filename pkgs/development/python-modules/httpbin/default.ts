@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-YyFIaYJhyGhOotK2JM3qhFtAKx/pFzbonfiGQIxjF6k=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const pythonRelaxDeps = nix.thunk(() => ["greenlet"]);
       const propagatedBuildInputs = nix.thunk(() => [brotlicffi, decorator, flask, flasgger, greenlet, six, werkzeug]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, mainapp: nix.thunk(() => [gunicorn, gevent]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, mainapp: nix.thunk(() => [gunicorn, gevent]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => [
         "test_anything",
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["httpbin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP Request and Response Service",
         homepage: "https://github.com/psf/httpbin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const avahi = nix.arg($, "avahi");
-  const avahi$ = nix.argOr($, "avahi'", () => nix.app(nix.sel(avahi, "override"), nix.thunk(() => ({ __proto__: pos$1, withLibdnssdCompat: true }))));
+  const avahi$ = nix.argOr($, "avahi'", () => nix.app(nix.sel(avahi, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withLibdnssdCompat: true }))));
   const withLibei = nix.argOr($, "withLibei", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "input-leap",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "input-leap",
           repo: "input-leap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source KVM software",
         longDescription: "Input Leap is software that mimics the functionality of a KVM switch, which historically\nwould allow you to use a single keyboard and mouse to control multiple computers by\nphysically turning a dial on the box to switch the machine you're controlling at any\ngiven moment. Input Leap does this in software, allowing you to tell it which machine\nto control by moving your mouse to the edge of the screen, or by using a keypress\nto switch focus to a different system.\n",
         homepage: "https://github.com/input-leap/input-leap",

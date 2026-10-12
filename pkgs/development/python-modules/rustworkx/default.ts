@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rustworkx",
       version: "0.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Qiskit",
           repo: "rustworkx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "networkx-3.6-test-compat.patch",
             url: "https://github.com/Qiskit/rustworkx/commit/04780a59005d0a80bdc3e22427566aea86783eb8.patch",
             hash: "sha256-oUosh1pu/I6Zpg2Di/Gnp5SCwetgs9HDY96Q2bQ7R6M=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "rm -rf .cargo/config.toml\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r rustworkx\n",
       pythonImportsCheck: nix.thunk(() => ["rustworkx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High performance Python graph library implemented in Rust",
         homepage: "https://github.com/Qiskit/rustworkx",
         changelog: nix.thunk(() => nix.str`https://github.com/Qiskit/rustworkx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

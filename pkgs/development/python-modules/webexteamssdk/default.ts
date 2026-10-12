@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CiscoDevNet",
           repo: "webexteamssdk",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-xlkmXl4tVm48drXmkUijv9GNXzJcDnfSKbOMciPIRRo=",
         }))));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const postPatch = "# Remove vendorized versioneer\nrm versioneer.py\n";
       const build_system = nix.thunk(() => [setuptools, versioneer]);
       const dependencies = nix.thunk(() => [future, pyjwt, requests, requests_toolbelt]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["webexteamssdk"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for Webex Teams APIs",
         homepage: "https://github.com/CiscoDevNet/webexteamssdk",
         changelog: nix.thunk(() => nix.str`https://github.com/WebexCommunity/WebexPythonSDK/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

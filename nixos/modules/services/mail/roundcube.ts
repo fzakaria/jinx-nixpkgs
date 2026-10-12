@@ -67,94 +67,94 @@ export default nix.lambda((args) => (() => {
       return nix.concat([nix.thunk(() => nix.sel(all, "pspell"))], enabled);
     })(), formals$2)));
   const env = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     ASPELL_CONF: nix.thunk(() => nix.str`dict-dir ${nix.app(nix.sel(pkgs, "aspellWithDicts"), (_) => nix.sel(cfg, "dicts"))}/lib/aspell`),
   }));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         roundcube: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable roundcube.\n\nAlso enables nginx virtual host management.\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n",
             })))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "webmail.example.com",
               description: "Hostname to use for the nginx vhost",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "roundcube", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               example: "roundcube.withPlugins (plugins: [ plugins.persistent_login ])",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "roundcube",
                 description: "Username for the postgresql connection.\nIf `database.host` is set to `localhost`, a unix user and group of the same name will be created as well.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Host of the postgresql server. If this is not set to\n`localhost`, you have to create the\npostgresql user and database yourself, with appropriate\npermissions.\n",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Password for the postgresql connection. Do not use: the password will be stored world readable in the store; use `passwordFile` instead.",
                 default: "",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"roundcube-postgres-passwd.txt\" ''\n  hostname:port:database:username:password\n''\n")),
                 description: "Password file for the postgresql connection.\nMust be formatted according to PostgreSQL .pgpass standard (see <https://www.postgresql.org/docs/current/libpq-pgpass.html>)\nbut only one line, no comments and readable by user `nginx`.\nIgnored if `database.host` is set to `localhost`, as peer authentication will be used.\n",
               })))),
             dbname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "roundcube",
                 description: "Name of the postgresql database",
               })))),
           })),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of roundcube plugins to enable. Currently, only those directly shipped with Roundcube are supported.\n",
             })))),
           dicts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs.aspellDicts; [ en fr de ]")),
               description: "List of aspell dictionaries for spell checking. If empty, spell checking is disabled.\n",
             })))),
           maxAttachmentSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 18n,
               apply: (configuredMaxAttachmentSize) => nix.str`${nix.builtins.toString(nix.thunk(() => nix.builtins.ceil(nix.thunk(() => nix.mul(configuredMaxAttachmentSize, 1.37)))))}M`,
               description: "The maximum attachment size in MB.\n[upstream issue comment]: https://github.com/roundcube/roundcubemail/issues/7979#issuecomment-808879209\n::: {.note}\nSince there is some overhead in base64 encoding applied to attachments, + 37% will be added\nto the value set in this option in order to offset the overhead. For example, setting\n`maxAttachmentSize` to `100` would result in `137M` being the real value in the configuration.\nSee [upstream issue comment] for more details on the motivations behind this.\n:::\n",
             })))),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Configure nginx as a reverse proxy for roundcube.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration for roundcube webmail instance",
@@ -163,35 +163,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         services: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           roundcube: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             database: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(localDB)) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "password"), "")))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "roundcube-password", nix.thunk(() => nix.sel(cfg, "database", "password")))}`))))),
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "hostName"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   root: nix.thunk(() => nix.add(nix.sel(cfg, "package"), "/public_html")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       index: "index.php",
                       priority: 1100n,
                       extraConfig: "add_header Cache-Control 'public, max-age=604800, must-revalidate';\n",
                     })),
                     "~* \\.php(/|$)": nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       priority: 3130n,
                       extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(fpm, "socket")};
 fastcgi_param PATH_INFO $fastcgi_path_info;
@@ -206,23 +206,23 @@ include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
               ])),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDB, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "dbname"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   name: nix.thunk(() => nix.sel(cfg, "database", "username")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             pools: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               roundcube: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 user: nix.thunk(() => (nix.asBool(localDB) ? nix.force(user) : "nginx")),
                 phpOptions: nix.thunk(() => nix.str`error_log = '/dev/stderr'
 log_errors = on
@@ -230,7 +230,7 @@ post_max_size = ${nix.sel(cfg, "maxAttachmentSize")}
 upload_max_filesize = ${nix.sel(cfg, "maxAttachmentSize")}
 `),
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                     "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                     "listen.mode": "0660",
@@ -250,11 +250,11 @@ upload_max_filesize = ${nix.sel(cfg, "maxAttachmentSize")}
         })),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(localDB)) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "password"), "")))), "services.roundcube.database.password is deprecated and insecure; use services.roundcube.database.passwordFile instead")),
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           etc: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             "roundcube/config.inc.php": nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               text: nix.thunk(() => nix.str`<?php
 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(localDB)), nix.thunk(() => nix.str`$password = file('${nix.sel(cfg, "database", "passwordFile")}')[0];
@@ -288,26 +288,26 @@ ${nix.sel(cfg, "extraConfig")}
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (!nix.asBool(localDB) || nix.asBool(nix.eq(nix.sel(cfg, "database", "username"), nix.sel(cfg, "database", "dbname"))))),
             message: "When setting up a DB and its owner user, the owner and the DB name must be\nequal!\n",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.force(user), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDB, nix.thunk(() => ({ __proto__: pos$37, group: user, isSystemUser: true, createHome: false }))))],
+            [nix.force(user), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDB, nix.thunk(() => ({ [nix.POS]: pos$37, group: user, isSystemUser: true, createHome: false }))))],
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(user), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDB, nix.thunk(() => ({}))))],
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             "phpfpm-roundcube": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               after: nix.thunk(() => ["roundcube-setup.service"]),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "roundcube/config.inc.php", "source")),
@@ -315,12 +315,12 @@ ${nix.sel(cfg, "extraConfig")}
             })),
             "roundcube-setup": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDB, nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     requires: nix.thunk(() => ["postgresql.target"]),
                     after: nix.thunk(() => ["postgresql.target"]),
                   })))),
                 nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -346,7 +346,7 @@ ${phpWithPspell}/bin/php ${nix.sel(cfg, "package")}/bin/update.sh
 `;
                   })()),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     Type: "oneshot",
                     StateDirectory: "roundcube",
                     User: nix.thunk(() => (nix.asBool(localDB) ? nix.force(user) : "nginx")),

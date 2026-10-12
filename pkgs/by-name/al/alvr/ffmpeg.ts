@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_6 = nix.arg($, "ffmpeg_6");
   const alvr = nix.arg($, "alvr");
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_6, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "6.0",
       hash: "sha256-RVbgsafIbeUUNXmUbDQ03ZN42oaUo0njqROo7KOQgv0=",
       withHardcodedTables: false,
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       withTxtDoc: false,
       withDocumentation: false,
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), (p) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "texinfo-7.1.patch", nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(p)))))), nix.thunk(() => nix.sel(old, "patches"))), [
         nix.thunk(() => nix.add(nix.sel(alvr, "src"), "/alvr/xtask/patches/0001-Add-AV_VAAPI_DRIVER_QUIRK_HEVC_ENCODER_ALIGN_64_16-f.patch")),
         nix.thunk(() => nix.add(nix.sel(alvr, "src"), "/alvr/xtask/patches/0001-av1-encode-backport.patch")),

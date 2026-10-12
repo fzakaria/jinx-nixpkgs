@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const fetchElmDeps = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./lib/fetchElmDeps.nix"), nix.thunk(() => ({}))));
   const hs98Pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packages/ghc9_8")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pkgs: pkgs,
       lib: lib,
       makeWrapper: makeWrapper,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => nix.app(assembleScope, self, nix.thunk(() => (() => {
         const w = nix.withScope(self, null);
         return nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fetchElmDeps: fetchElmDeps,
           nodejs: nodejs,
           elmLib: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./lib"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               lib: lib,
               writeScriptBin: nix.thunk(() => nix.attr(pkgs, "writeScriptBin")),
               stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           lamdera: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./packages/lamdera"), nix.thunk(() => ({})))),
           "elm-wrap": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./packages/elm-wrap"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "elm-analyse": nix.thunk(() => nix.app(nix.builtins.throw, "elmPackages.elm-analyse has not be released since May 2019 so it has been removed.")),
             "create-elm-app": nix.thunk(() => nix.app(nix.builtins.throw, "'elmPackages.create-elm-app' has not had a release since December 2020, so it was removed.")),
             "elm-pages": nix.thunk(() => nix.app(nix.builtins.throw, "'elmPackages.elm-pages' has been removed, as it was broken in nixpkgs and was not maintained.")),

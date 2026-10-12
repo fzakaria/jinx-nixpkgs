@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "thumbdrives",
       version: "0.3.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~martijnbraam",
           repo: "thumbdrives",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "USB mass storage emulator for Linux handhelds",
         homepage: "https://sr.ht/~martijnbraam/thumbdrives/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

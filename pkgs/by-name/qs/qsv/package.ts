@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const buildFeatures = nix.argOr($, "buildFeatures", () => nix.concat(["apply", "feature_capable", "fetch", "foreach", "geocode", "luau", "to"], nix.concat(nix.app(nix.sel(lib, "optional"), withPolars, "polars"), nix.concat(nix.app(nix.sel(lib, "optional"), withPython, "python"), nix.app(nix.sel(lib, "optional"), withUi, "ui")))));
   const mainProgram = nix.argOr($, "mainProgram", () => "qsv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qsv",
       version: "23.0.1",
       buildFeatures: buildFeatures,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dathere",
           repo: "qsv",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([file, sqlite, zstd], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "ui", buildFeatures)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), wayland))),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), cmake], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "python", buildFeatures)), python3))),
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CSVs sliced, diced & analyzed",
         homepage: "https://github.com/dathere/qsv",
         changelog: nix.thunk(() => nix.str`https://github.com/dathere/qsv/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

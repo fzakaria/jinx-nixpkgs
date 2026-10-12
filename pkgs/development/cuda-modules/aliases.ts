@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`cudaPackages.${oldName} is deprecated, use ${path} instead`), package$);
   })(), formals$2);
   return (final) => (_) => nix.builtins.mapAttrs(mkRenamed, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cuda_cccl: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         path: "cccl",
         package: nix.thunk(() => nix.sel(final, "cccl")),
       })),

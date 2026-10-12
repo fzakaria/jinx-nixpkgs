@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-stroke-glow-shadow";
       const version = "v1.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiniteSingularity",
           repo: "obs-stroke-glow-shadow",
           rev: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OBS plugin to provide efficient Stroke, Glow, and Shadow effects on masked sources",
         homepage: "https://github.com/FiniteSingularity/obs-stroke-glow-shadow",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

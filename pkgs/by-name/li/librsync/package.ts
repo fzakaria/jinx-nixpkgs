@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const popt = nix.arg($, "popt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "librsync",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "librsync",
           repo: "librsync",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, zlib, bzip2, popt]),
       outputs: nix.thunk(() => nix.concat(["out", "dev", "man"], (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["bin"] : ["lib"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the rsync remote-delta algorithm",
         homepage: "https://librsync.sourceforge.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/librsync/librsync/releases/tag/v${nix.sel(finalAttrs, "version")}`),

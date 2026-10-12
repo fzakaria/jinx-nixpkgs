@@ -35,26 +35,26 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hockeypuck"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hockeypuck: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Hockeypuck OpenPGP Key Server")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 11371n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "HKP port to listen on.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  hockeypuck = {\n    loglevel = \"INFO\";\n    logfile = \"/var/log/hockeypuck/hockeypuck.log\";\n    indexTemplate = \"${pkgs.hockeypuck-web}/share/templates/index.html.tmpl\";\n    vindexTemplate = \"${pkgs.hockeypuck-web}/share/templates/index.html.tmpl\";\n    statsTemplate = \"${pkgs.hockeypuck-web}/share/templates/stats.html.tmpl\";\n    webroot = \"${pkgs.hockeypuck-web}/share/webroot\";\n\n    hkp.bind = \":${toString cfg.port}\";\n\n    openpgp.db = {\n      driver = \"postgres-jsonb\";\n      dsn = \"database=hockeypuck host=/var/run/postgresql sslmode=disable\";\n    };\n  };\n}\n")),
@@ -64,15 +64,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hockeypuck: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               hockeypuck: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 loglevel: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "INFO")),
                 logfile: "/var/log/hockeypuck/hockeypuck.log",
                 indexTemplate: nix.thunk(() => nix.str`${nix.sel(pkgs, "hockeypuck-web")}/share/templates/index.html.tmpl`),
@@ -80,13 +80,13 @@ export default nix.lambda((args) => (() => {
                 statsTemplate: nix.thunk(() => nix.str`${nix.sel(pkgs, "hockeypuck-web")}/share/templates/stats.html.tmpl`),
                 webroot: nix.thunk(() => nix.str`${nix.sel(pkgs, "hockeypuck-web")}/share/webroot`),
                 hkp: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   bind: nix.thunk(() => nix.str`:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 })),
                 openpgp: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   db: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     driver: "postgres-jsonb",
                     dsn: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "database=hockeypuck host=/var/run/postgresql sslmode=disable")),
                   })),
@@ -96,29 +96,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             hockeypuck: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               isSystemUser: true,
               group: "hockeypuck",
               description: "Hockeypuck user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$16, hockeypuck: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$16, hockeypuck: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             hockeypuck: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Hockeypuck OpenPGP Key Server",
               after: nix.thunk(() => ["network.target", "postgresql.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 WorkingDirectory: "/var/lib/hockeypuck",
                 User: "hockeypuck",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hockeypuck")}/bin/hockeypuck -config ${nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings")))}`),

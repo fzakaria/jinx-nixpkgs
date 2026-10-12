@@ -23,37 +23,37 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "qemu-vm-store",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
-    defaults: nix.thunk(() => ({ __proto__: pos$3, nix: nix.thunk(() => ({ __proto__: pos$2, enable: true })) })),
+    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       sharedWritable: nix.thunk(() => ({
-        __proto__: pos$5,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$4, writableStore: true })),
+        [nix.POS]: pos$5,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, writableStore: true })),
       })),
       sharedReadOnly: nix.thunk(() => ({
-        __proto__: pos$7,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$6, writableStore: false })),
+        [nix.POS]: pos$7,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, writableStore: false })),
       })),
       imageWritable: nix.thunk(() => ({
-        __proto__: pos$9,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$8, useNixStoreImage: true, writableStore: true })),
+        [nix.POS]: pos$9,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, useNixStoreImage: true, writableStore: true })),
       })),
       imageReadOnly: nix.thunk(() => ({
-        __proto__: pos$11,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$10, useNixStoreImage: true, writableStore: false })),
+        [nix.POS]: pos$11,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, useNixStoreImage: true, writableStore: false })),
       })),
       fullDisk: nix.thunk(() => ({
-        __proto__: pos$13,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$12, useBootLoader: true })),
+        [nix.POS]: pos$13,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$12, useBootLoader: true })),
       })),
     })),
     testScript: "build_derivation = \"\"\"\n  nix-build --option substitute false -E 'derivation {\n    name = \"t\";\n    builder = \"/bin/sh\";\n    args = [\"-c\" \"echo something > $out\"];\n    system = builtins.currentSystem;\n    preferLocalBuild = true;\n  }'\n\"\"\"\n\nstart_all()\n\nwith subtest(\"Nix Store is writable\"):\n  sharedWritable.succeed(build_derivation)\n  imageWritable.succeed(build_derivation)\n  fullDisk.succeed(build_derivation)\n\nwith subtest(\"Nix Store is read only\"):\n  sharedReadOnly.fail(build_derivation)\n  imageReadOnly.fail(build_derivation)\n\n# Checking whether the fs type is virtiofs is just a proxy to test whether the\n# Nix Store is shared.\n\nwith subtest(\"Nix store is shared from the host via virtiofs\"):\n  sharedWritable.succeed(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n  sharedReadOnly.succeed(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n\nwith subtest(\"Nix store is not shared via virtiofs\"):\n  imageWritable.fail(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n  imageReadOnly.fail(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n\nwith subtest(\"Nix store is not mounted separately\"):\n  rootDevice = fullDisk.succeed(\"stat -c %d /\")\n  nixStoreDevice = fullDisk.succeed(\"stat -c %d /nix/store\")\n  assert rootDevice == nixStoreDevice, \"Nix store is mounted separately from the root fs\"\n",

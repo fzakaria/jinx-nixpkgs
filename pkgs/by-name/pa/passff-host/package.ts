@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pass = nix.arg($, "pass");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "passff-host",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PassFF",
           repo: "passff-host",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +51,11 @@ for manifestDir in "\${nativeMessagingPaths[@]}"; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Host app for the WebExtension PassFF",
         homepage: "https://codeberg.org/PassFF/passff-host",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

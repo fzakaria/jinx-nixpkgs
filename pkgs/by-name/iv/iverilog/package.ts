@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iverilog",
       version: "13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steveicarus",
           repo: "iverilog",
           tag: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, bison, flex, gperf]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CC_FOR_BUILD: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")), "cc")}`),
         CXX_FOR_BUILD: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")), "cc++")}`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         }))))),
       buildInputs: nix.thunk(() => [bzip2, ncurses, readline, zlib]),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installCheckPhase: "runHook preInstallCheck\n\n# PLI1 is not enabled in the build (ENABLE_PLI1=no), so skip PLI1 VPI tests\n# which would fail at runtime with \"Failed - running vvp\".\nsh .github/test.sh no-pli1\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Icarus Verilog compiler",
         homepage: "https://steveicarus.github.io/iverilog",
         downloadPage: "https://github.com/steveicarus/iverilog",

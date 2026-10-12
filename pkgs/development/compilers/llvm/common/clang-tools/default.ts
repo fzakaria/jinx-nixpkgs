@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const llvm_meta = nix.arg($, "llvm_meta");
   const enableLibcxx = nix.argOr($, "enableLibcxx", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clang-tools",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), clang_unwrapped)),
       dontUnpack: true,
@@ -67,11 +67,11 @@ ln -s ${nix.sel(clang_unwrapped, "lib")}/lib $out/lib
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => (() => {
           const src = nix.thunk(() => nix.app(writeText, "main.cpp", "#include <assert.h>\n#include <iostream>\n\nint main() {\n  assert(true);\n  std::cout << \"Hi!\";\n}\n"));
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             smokeOk: nix.thunk(() => nix.app(runCommand, "clang-tools-test-smoke-ok", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/clangd  --check=${src}
 touch $out
 `))),
@@ -92,7 +92,7 @@ touch $out
         })()),
       })),
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standalone command line tools for C++ development",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

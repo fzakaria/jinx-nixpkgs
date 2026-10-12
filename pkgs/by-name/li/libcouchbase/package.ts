@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcouchbase",
       version: "3.3.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "couchbase",
           repo: "libcouchbase",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C client library for Couchbase",
         homepage: "https://github.com/couchbase/libcouchbase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

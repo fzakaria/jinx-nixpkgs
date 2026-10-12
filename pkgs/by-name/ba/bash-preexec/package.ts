@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "0.7.0";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bash-preexec",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rcaloras",
           repo: "bash-preexec",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nbats test\nrunHook postCheck\n",
       installPhase: "runHook preInstall\ninstall -Dm755 bash-preexec.sh $out/share/bash/bash-preexec.sh\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Preexec and precmd functions for Bash just like Zsh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/rcaloras/bash-preexec",

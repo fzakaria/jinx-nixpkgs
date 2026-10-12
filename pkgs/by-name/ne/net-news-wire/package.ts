@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "net-news-wire";
       const version = "7.1.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Ranchero-Software/NetNewsWire/releases/download/mac-${version}/NetNewsWire${version}.zip`),
           hash: "sha256-9QW6/5iq3VNvaTqUkiXJoUxxVylaN+nUUjtz9Uwl0YM=",
         }))));
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [unzip, makeBinaryWrapper]);
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications\ncp -R NetNewsWire.app $out/Applications/\nmkdir -p $out/bin\nmakeWrapper $out/Applications/NetNewsWire.app/Contents/MacOS/NetNewsWire $out/bin/net-news-wire\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^mac-(\\d+\\.\\d+(?:\\.\\d+)?)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "RSS reader for macOS and iOS",
         longDescription: "It's like podcasts — but for reading.\nNetNewsWire shows you articles from your favorite blogs and news sites and keeps track of what you've read.\n",
         homepage: "https://github.com/Ranchero-Software/NetNewsWire",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

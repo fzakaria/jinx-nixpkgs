@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(buildDotnetGlobalTool, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fable",
       version: "5.18.0",
       nugetHash: "sha256-zaa7UJnn5IM7fhGUBmogRUDe/2rpH79UR+k6dym7kmQ=",
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             version: nix.thunk(() => nix.str`[37m${nix.sel(finalAttrs, "version")}`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "F# to JavaScript compiler",
         mainProgram: "fable",
         homepage: "https://github.com/fable-compiler/Fable",

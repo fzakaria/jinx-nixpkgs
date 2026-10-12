@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const isStatic = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const isMusl = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libptytty",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dist.schmorp.de/libptytty/libptytty-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xrikmrsdkxhdy9ggc0ci6kg5b1hn3bz44ag1mk5k1zjmlxfscw0",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), isStatic, "-DBUILD_SHARED_LIBS=OFF"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(isCross) || nix.asBool(isStatic))), "-DTTY_GID_SUPPORT=OFF"), nix.app(nix.sel(lib, "optionals"), isMusl, nix.thunk(() => ["-DUTMP_SUPPORT=OFF", "-DWTMP_SUPPORT=OFF", "-DLASTLOG_SUPPORT=OFF"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OS independent and secure pty/tty and utmp/wtmp/lastlog",
         homepage: "http://dist.schmorp.de/libptytty",
         maintainers: nix.thunk(() => (() => {

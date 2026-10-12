@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mrbayes",
       version: "3.2.7a",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NBISweden",
           repo: "MrBayes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-pkkxZ6YHRn/I1SJpT9A+EK4S5hWGmFdcDBJS0zh5mLA=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bayesian Inference of Phylogeny",
         mainProgram: "mb",
         longDescription: "Bayesian inference of phylogeny is based upon a\nquantity called the posterior probability distribution of trees, which is\nthe probability of a tree conditioned on the observations. The conditioning\nis accomplished using Bayes's theorem. The posterior probability\ndistribution of trees is impossible to calculate analytically; instead,\nMrBayes uses a simulation technique called Markov chain Monte Carlo (or\nMCMC) to approximate the posterior probabilities of trees.\n",

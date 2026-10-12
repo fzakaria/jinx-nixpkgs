@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dee",
       version: "1.2.7-unstable-2017-06-16",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ubuntu/+source/dee",
           rev: "applied/1.2.7+17.10.20170616-8build1",
           hash: "sha256-ttfppqb0t8cOhWaB97uyD9heVZKlBKYF2zD6yRwPyos=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "dee-1.2.7-deprecated-g_type_class_add_private.patch",
             url: "https://src.fedoraproject.org/rpms/dee/raw/1a9a4ce3377074fabfca653ffe0287cd73aef82f/f/dee-1.2.7-deprecated-g_type_class_add_private.patch",
             sha256: "13nyprq7bb7lnzkcb7frcpzidbl836ycn5bvmwa2k0nhmj6ycbx5",
@@ -49,10 +49,10 @@ export default nix.lambda((args) => (() => {
         "--disable-gtk-doc",
         nix.thunk(() => nix.str`--with-pygi-overrides-dir=${nix.builtins.placeholder("py")}/${nix.sel(python3, "sitePackages")}/gi/overrides`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library that uses DBus to provide objects allowing you to create Model-View-Controller type programs across DBus",
         mainProgram: "dee-tool",
         homepage: "https://launchpad.net/dee",

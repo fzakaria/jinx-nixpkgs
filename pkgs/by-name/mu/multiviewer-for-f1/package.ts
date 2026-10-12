@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const id = "518116281";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "multiviewer-for-f1",
       version: "2.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.multiviewer.app/download/${id}/multiviewer_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-CTaFtxoV8XEBhD9b8dPLPqHloc1MoHKuEBYt7EJy9U0=",
         })))),
@@ -90,7 +90,7 @@ makeWrapper "$out/share/multiviewer/multiviewer" $out/bin/multiviewer \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-multiviewer-for-f1", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 set -eu -o pipefail
@@ -115,7 +115,7 @@ fi
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unofficial desktop client for F1 TV",
         homepage: "https://multiviewer.app",
         downloadPage: "https://multiviewer.app/download",

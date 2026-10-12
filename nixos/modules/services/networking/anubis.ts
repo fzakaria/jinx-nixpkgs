@@ -66,8 +66,8 @@ export default nix.lambda((args) => (() => {
   const instanceName = (name) => (nix.asBool(nix.eq(name, "")) ? "anubis" : nix.str`anubis-${name}`);
   const mkPolicyFile = (name) => (instance) => (() => {
     const hasCustomization = nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(instance, "policy", "useDefaultBotRules"))) || nix.asBool(!nix.eq(nix.sel(instance, "policy", "extraBots"), [])))) || nix.asBool(!nix.eq(nix.sel(instance, "policy", "settings"), {}))));
-    const bots = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(instance, "policy", "useDefaultBotRules")), nix.thunk(() => ({ __proto__: pos$1, import: "(data)/meta/default-config.yaml" }))), nix.sel(instance, "policy", "extraBots")));
-    const policyContent = nix.thunk(() => nix.update({ __proto__: pos$2, bots: bots }, nix.sel(instance, "policy", "settings")));
+    const bots = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(instance, "policy", "useDefaultBotRules")), nix.thunk(() => ({ [nix.POS]: pos$1, import: "(data)/meta/default-config.yaml" }))), nix.sel(instance, "policy", "extraBots")));
+    const policyContent = nix.thunk(() => nix.update({ [nix.POS]: pos$2, bots: bots }, nix.sel(instance, "policy", "settings")));
     return (nix.asBool(hasCustomization) ? nix.app(nix.sel(jsonFormat, "generate"), nix.thunk(() => nix.str`${nix.app(instanceName, name)}-policy.json`), policyContent) : null);
   })();
   const unixAddr = (network) => (addr) => nix.app(nix.sel(lib, "strings", "optionalString"), nix.thunk(() => nix.eq(network, "unix")), addr);
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const runtimeDirectoryPrefix = (name) => nix.str`/run/anubis/${nix.app(instanceName, name)}/`;
   const commonSubmodule = (isDefault) => (() => {
     const mkDefaultOption = (path) => (opts) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => nix.update(opts, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(isDefault)) && nix.asBool(nix.has(opts, "default")))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           default: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", path)), nix.thunk(() => nix.builtins.throw("This is a bug in the Anubis module. Please report this as an issue.")), nix.thunk(() => nix.sel(cfg, "defaultOptions")))),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.services.anubis.defaultOptions.${path}`))),
         }))))));
@@ -87,48 +87,48 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         imports: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["botPolicy"]), nix.thunk(() => ["policy", "settings"]))),
         ]),
         options: nix.thunk(() => ({
-          __proto__: pos$24,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this instance of Anubis"), { __proto__: pos$4, default: true })),
+          [nix.POS]: pos$24,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this instance of Anubis"), { [nix.POS]: pos$4, default: true })),
           user: nix.thunk(() => nix.app(mkDefaultOption, "user", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "anubis",
               description: "The user under which Anubis is run.\n\nThis module utilizes systemd's DynamicUser feature. See the corresponding section in\n{manpage}`systemd.exec(5)` for more details.\n",
               type: nix.thunk(() => nix.sel(types, "str")),
             })))),
           group: nix.thunk(() => nix.app(mkDefaultOption, "group", nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "anubis",
               description: "The group under which Anubis is run.\n\nThis module utilizes systemd's DynamicUser feature. See the corresponding section in\n{manpage}`systemd.exec(5)` for more details.\n",
               type: nix.thunk(() => nix.sel(types, "str")),
             })))),
           policy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               description: "Anubis policy configuration.\n\nSee [the documentation](https://anubis.techaro.lol/docs/admin/policies) for details.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     useDefaultBotRules: nix.thunk(() => nix.app(mkDefaultOption, "policy.useDefaultBotRules", nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "Whether to include Anubis's default bot detection rules via the\n`(data)/meta/default-config.yaml` import.\n\nSet to `false` to define your own bot rules from scratch using\n{option}`extraBots`.\n",
                       })))),
                     extraBots: nix.thunk(() => nix.app(mkDefaultOption, "policy.extraBots", nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(jsonFormat, "type")))),
                         default: [],
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  {\n    name = \"my-bot\";\n    user_agent_regex = \"MyBot/.*\";\n    action = \"ALLOW\";\n  }\n]\n")),
                         description: "Additional bot rules appended to the policy.\n\nWhen {option}`useDefaultBotRules` is `true`, these rules are added after\nAnubis's default rules. When `false`, only these rules are used.\n",
                       })))),
                     settings: nix.thunk(() => nix.app(mkDefaultOption, "policy.settings", nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(jsonFormat, "type")),
                         default: nix.thunk(() => ({})),
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  dnsbl = false;\n  store = {\n    backend = \"bbolt\";\n    parameters.path = \"/var/lib/anubis/data.bdb\";\n  };\n}\n")),
@@ -138,19 +138,19 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           extraFlags: nix.thunk(() => nix.app(mkDefaultOption, "extraFlags", nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: [],
               description: "A list of extra flags to be passed to Anubis.",
               example: nix.thunk(() => ["-metrics-bind \"\""]),
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: nix.thunk(() => ({})),
               description: "Freeform configuration via environment variables for Anubis.\n\nSee [the documentation](https://anubis.techaro.lol/docs/admin/installation) for a complete list of\navailable environment variables.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(types, null);
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -160,49 +160,49 @@ export default nix.lambda((args) => (() => {
                             ]))))));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       BIND_NETWORK: nix.thunk(() => nix.app(mkDefaultOption, "settings.BIND_NETWORK", nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           default: "unix",
                           description: "The network family that Anubis should bind to.\n\nAccepts anything supported by Go's [`net.Listen`](https://pkg.go.dev/net#Listen).\n\nCommon values are `tcp` and `unix`.\n",
                           example: "tcp",
                           type: nix.thunk(() => nix.sel(types, "str")),
                         })))),
                       METRICS_BIND_NETWORK: nix.thunk(() => nix.app(mkDefaultOption, "settings.METRICS_BIND_NETWORK", nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           default: "unix",
                           description: "The network family that the metrics server should bind to.\n\nAccepts anything supported by Go's [`net.Listen`](https://pkg.go.dev/net#Listen).\n\nCommon values are `tcp` and `unix`.\n",
                           example: "tcp",
                           type: nix.thunk(() => nix.sel(types, "str")),
                         })))),
                       DIFFICULTY: nix.thunk(() => nix.app(mkDefaultOption, "settings.DIFFICULTY", nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           default: 4n,
                           description: "The difficulty required for clients to solve the challenge.\n\nCurrently, this means the amount of leading zeros in a successful response.\n",
                           type: nix.thunk(() => nix.sel(types, "int")),
                           example: 5n,
                         })))),
                       SERVE_ROBOTS_TXT: nix.thunk(() => nix.app(mkDefaultOption, "settings.SERVE_ROBOTS_TXT", nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           default: false,
                           description: "Whether to serve a default robots.txt that denies access to common AI bots by name and all other\nbots by wildcard.\n",
                           type: nix.thunk(() => nix.sel(types, "bool")),
                         })))),
                       OG_PASSTHROUGH: nix.thunk(() => nix.app(mkDefaultOption, "settings.OG_PASSTHROUGH", nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           default: false,
                           description: "Whether to enable Open Graph tag passthrough.\n\nThis enables social previews of resources protected by\nAnubis without having to exempt each scraper individually.\n",
                           type: nix.thunk(() => nix.sel(types, "bool")),
                         })))),
                       WEBMASTER_EMAIL: nix.thunk(() => nix.app(mkDefaultOption, "settings.WEBMASTER_EMAIL", nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           default: null,
                           description: "If set, shows a contact email address when rendering error pages.\n\nThis email address will be how users can get in contact with administrators.\n",
                           example: "alice@example.com",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         })))),
                       POLICY_FNAME: nix.thunk(() => nix.app(mkDefaultOption, "settings.POLICY_FNAME", nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           default: null,
                           description: "The policy file to use. Leave this as `null` to use the policy generated from\n{option}`services.anubis.instances.<name>.policy`.\n",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
@@ -217,11 +217,11 @@ export default nix.lambda((args) => (() => {
     })(), formals$2);
   })();
   const instanceSpecificOptions = (name) => ({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       BIND: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           default: nix.thunk(() => nix.str`${nix.app(runtimeDirectoryPrefix, name)}anubis.sock`),
           description: nix.thunk(() => nix.str`The address that Anubis listens to. See Go's [\`net.Listen\`](https://pkg.go.dev/net#Listen) for syntax.
 When using unix sockets:
@@ -234,7 +234,7 @@ Defaults to Unix domain sockets. To use TCP sockets, set this to a TCP address a
           type: nix.thunk(() => nix.sel(types, "str")),
         })))),
       METRICS_BIND: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           default: nix.thunk(() => nix.str`${nix.app(runtimeDirectoryPrefix, name)}anubis-metrics.sock`),
           description: nix.thunk(() => nix.str`The address Anubis' metrics server listens to. See Go's [\`net.Listen\`](https://pkg.go.dev/net#Listen) for
 syntax.
@@ -253,7 +253,7 @@ Defaults to Unix domain sockets. To use TCP sockets, set this to a TCP address a
           type: nix.thunk(() => nix.sel(types, "str")),
         })))),
       TARGET: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           description: "The reverse proxy target that Anubis is protecting. This is a required option.\n\nThe usage of Unix domain sockets is supported by the following syntax: `unix:///path/to/socket.sock`.\n",
           example: "http://127.0.0.1:8000",
           type: nix.thunk(() => nix.sel(types, "str")),
@@ -261,22 +261,22 @@ Defaults to Unix domain sockets. To use TCP sockets, set this to a TCP address a
     })),
   });
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         anubis: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "anubis", nix.thunk(() => ({})))),
           defaultOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               default: nix.thunk(() => ({})),
               description: "Default options for all instances of Anubis.",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(commonSubmodule, true)))),
             })))),
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               default: nix.thunk(() => ({})),
               description: "An attribute set of Anubis instances.\n\nThe attribute name may be an empty string, in which case the `-<name>` suffix is not added to the service name\nand socket paths.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(commonSubmodule, false)))))),
@@ -286,12 +286,12 @@ Defaults to Unix domain sockets. To use TCP sockets, set this to a TCP address a
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(enabledInstances, {})), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         assertions: nix.thunk(() => (() => {
           const validInstanceUnixSocketAddrs = (name) => (instance) => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.app(runtimeDirectoryPrefix, name)))), nix.thunk(() => nix.app(unixSocketAddrs, nix.thunk(() => nix.sel(instance, "settings")))));
           return [
             nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (attrs) => nix.app(validInstanceUnixSocketAddrs, nix.thunk(() => nix.sel(attrs, "name")), nix.thunk(() => nix.sel(attrs, "value"))), nix.thunk(() => nix.app(nix.sel(lib, "attrsToList"), enabledInstances)))),
               message: nix.thunk(() => nix.str`When using unix sockets in services.anubis.instances.<name>.settings.BIND and services.anubis.instances.<name>.settings.METRICS_BIND:
   - use the prefix "${nix.app(runtimeDirectoryPrefix, "")}" if the instance name is the empty string,
@@ -301,39 +301,39 @@ Defaults to Unix domain sockets. To use TCP sockets, set this to a TCP address a
           ];
         })()),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "defaultOptions", "user"), "anubis")), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               anubis: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "defaultOptions", "group")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "defaultOptions", "group"), "anubis")), nix.thunk(() => ({ __proto__: pos$39, anubis: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "defaultOptions", "group"), "anubis")), nix.thunk(() => ({ [nix.POS]: pos$39, anubis: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           slices: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "system-anubis": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               description: "Anubis AI Firewall System Slice",
               documentation: nix.thunk(() => ["https://anubis.techaro.lol"]),
             })),
           })),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (instance) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${nix.app(instanceName, name)}`), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 description: nix.thunk(() => nix.str`Anubis (${(nix.asBool(nix.eq(name, "")) ? "default" : nix.force(name))} instance)`),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.update(nix.sel(instance, "settings"), {
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       POLICY_FNAME: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(instance, "settings", "POLICY_FNAME"), null)) ? nix.sel(instance, "settings", "POLICY_FNAME") : nix.app(mkPolicyFile, name, instance))),
                     })))))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   Slice: "system-anubis.slice",
                   User: nix.thunk(() => nix.sel(instance, "user")),
                   Group: nix.thunk(() => nix.sel(instance, "group")),
@@ -370,7 +370,7 @@ Defaults to Unix domain sockets. To use TCP sockets, set this to a TCP address a
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "enlightenment";
       const version = "0.27.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.enlightenment.org/rel/apps/${pname}/${pname}-${version}.tar.xz`),
           sha256: "sha256-tB34dx9g47lqGXOuVm10JcU6gznxjlTjEjAhh4HaL6k=",
         }))));
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
 `);
       const mesonFlags = nix.thunk(() => nix.concat(["-D systemdunitdir=lib/systemd/user"], nix.app(nix.sel(lib, "optional"), waylandSupport, "-Dwl=true")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         providedSessions: nix.thunk(() => ["enlightenment"]),
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compositing Window Manager and Desktop Shell",
         homepage: "https://www.enlightenment.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "enlightenment"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

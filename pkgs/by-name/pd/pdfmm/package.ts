@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const resholve = nix.arg($, "resholve");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pdfmm",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpfleury",
           repo: "pdfmm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm 0755 pdfmm $out/bin/pdfmm\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         default: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           scripts: nix.thunk(() => ["bin/pdfmm"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, ghostscript, locale, zenity, gnused]),
-          fake: nix.thunk(() => ({ __proto__: pos$2, external: nix.thunk(() => ["xmessage"]) })),
+          fake: nix.thunk(() => ({ [nix.POS]: pos$2, external: nix.thunk(() => ["xmessage"]) })),
           execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${zenity}/bin/zenity`)]),
-          keep: nix.thunk(() => ({ __proto__: pos$3, $toutLu: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$3, $toutLu: true })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Graphical assistant to reduce the size of a PDF file",
         homepage: "https://github.com/jpfleury/pdfmm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

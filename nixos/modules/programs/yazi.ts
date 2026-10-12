@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const files = nix.thunk(() => ["yazi", "theme", "keymap", "vfs"]);
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       programs: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         yazi: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "yazi terminal file manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "yazi", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     options: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), files, (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.attr(settingsFormat, "type")),
                           default: nix.thunk(() => ({})),
                           description: nix.thunk(() => nix.str`Configuration included in \`${name}.toml\`.
@@ -57,7 +57,7 @@ See <https://yazi-rs.github.io/docs/configuration/${name}/> for documentation.
               description: "Configuration included in `$YAZI_CONFIG_HOME`.\n",
             })))),
           initLua: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -67,7 +67,7 @@ See <https://yazi-rs.github.io/docs/configuration/${name}/> for documentation.
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "./init.lua")),
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -80,7 +80,7 @@ See <https://yazi-rs.github.io/docs/configuration/${name}/> for documentation.
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  foo = ./foo;\n  inherit (pkgs.yaziPlugins) bar;\n}\n")),
             })))),
           flavors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -96,12 +96,12 @@ See <https://yazi-rs.github.io/docs/configuration/${name}/> for documentation.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 settings: nix.thunk(() => nix.attr(cfg, "settings")),
                 initLua: nix.thunk(() => nix.attr(cfg, "initLua")),
                 plugins: nix.thunk(() => nix.attr(cfg, "plugins")),
@@ -111,7 +111,7 @@ See <https://yazi-rs.github.io/docs/configuration/${name}/> for documentation.
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

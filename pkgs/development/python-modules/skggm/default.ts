@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "skggm",
       version: "0.2.8-unstable-2025-06-14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skggm",
           repo: "skggm",
           rev: "6792fe7d0079bb7c62e701921e37782a209234cb",
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_has_approx_support"]),
       pythonImportsCheck: nix.thunk(() => ["inverse_covariance"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Gaussian graphical models using the scikit-learn API",
         homepage: "https://github.com/skggm/skggm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

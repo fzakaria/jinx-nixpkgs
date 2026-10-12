@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jansson = nix.arg($, "jansson");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cjose",
       version: "0.6.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenIDC",
           repo: "cjose",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/OpenIDC/cjose/commit/63e90cf464d6a470e26886435e8d7d96a66747f6.patch",
             hash: "sha256-+C5AIejb9InOGiOgUNfuP89J18O71rnq1pXyroxEDFQ=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/OpenIDC/cjose",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenIDC/cjose/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "C library for Javascript Object Signing and Encryption. This is a maintained fork of the original project",

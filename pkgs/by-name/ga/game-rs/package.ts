@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const umu_launcher = nix.arg($, "umu-launcher");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "game-rs",
       version: "5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amanse",
           repo: "game-rs",
           rev: nix.thunk(() => nix.str`z${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-X9dWIeDKy3qLmFwUevN8ZUcwNVtt7Wnecbg7M6zUXFU=",
       propagatedBuildInputs: nix.thunk(() => [umu_launcher]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal CLI game launcher for linux",
         homepage: "https://github.com/amanse/game-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/Amanse/game-rs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

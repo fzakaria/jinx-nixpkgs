@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jukeboxSupport = nix.argOr($, "jukeboxSupport", () => true);
   const mpv = nix.arg($, "mpv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gonic",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sentriz",
           repo: "gonic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
     '"${nix.app(nix.sel(lib, "getBin"), mpv)}/bin/mpv"'
 `))), "substituteInPlace server/ctrlsubsonic/testdata/test* \\\n  --replace-quiet \\\n    '\"audio/flac\"' \\\n    '\"audio/x-flac\"'\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, gonic: nix.thunk(() => nix.sel(nixosTests, "gonic")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gonic: nix.thunk(() => nix.sel(nixosTests, "gonic")) })),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/sentriz/gonic",
         description: "Music streaming server / subsonic server API implementation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

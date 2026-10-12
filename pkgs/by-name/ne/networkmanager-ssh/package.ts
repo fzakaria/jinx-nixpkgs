@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const sshpass = nix.arg($, "sshpass");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "NetworkManager-ssh",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danfruehauf",
           repo: "NetworkManager-ssh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [networkmanager, gtk3, gtk4, libsecret, libnma_gtk4]),
       configureFlags: nix.thunk(() => ["--with-gtk4", "--enable-absolute-paths"]),
       strictDeps: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, networkManagerPlugin: "VPN/nm-ssh-service.name" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, networkManagerPlugin: "VPN/nm-ssh-service.name" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SSH VPN integration for NetworkManager",
         homepage: "https://github.com/danfruehauf/NetworkManager-ssh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

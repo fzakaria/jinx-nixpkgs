@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   const expat = nix.arg($, "expat");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dav",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arut",
           repo: "nginx-dav-ext-module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [expat]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebDAV PROPFIND,OPTIONS,LOCK,UNLOCK support",
         homepage: "https://github.com/arut/nginx-dav-ext-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

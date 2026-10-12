@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stable-diffusion-cpp",
       version: "master-874-656a135",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leejet",
           repo: "stable-diffusion.cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(cmakeFeature, "CMAKE_HIP_ARCHITECTURES", nix.thunk(() => nix.builtins.concatStringsSep(";", rocmGpuTargets)))),
         ]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stable Diffusion inference in pure C/C++",
         homepage: "https://github.com/leejet/stable-diffusion.cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

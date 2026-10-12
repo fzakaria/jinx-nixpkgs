@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmaes",
       version: "0.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CyberAgentAILab",
           repo: "cmaes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cmaes"]),
       disabledTests: nix.thunk(() => ["test_cma_tell"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for CMA evolution strategy",
         homepage: "https://github.com/CyberAgentAILab/cmaes",
         changelog: nix.thunk(() => nix.str`https://github.com/CyberAgentAILab/cmaes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

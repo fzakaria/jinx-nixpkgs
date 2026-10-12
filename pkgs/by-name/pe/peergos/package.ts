@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   const tweetnacl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tweetnacl",
       version: "0-unstable-2025-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ianopolous",
           repo: "tweetnacl-java",
           rev: "0cf99e1921b79eb91bc4c27cc15a27e325dbdb75",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "peergos";
       const version = "1.36.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Peergos",
           repo: "web-ui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,11 +67,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/peergos \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Peergos/web-ui/releases/tag/v${version}`),
         description: "P2P, secure file storage, social network and application protocol",
         downloadPage: "https://github.com/Peergos/web-ui",
@@ -91,7 +91,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "miriway",
       version: "26.08.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Miriway",
           repo: "Miriway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,13 +53,13 @@ substituteInPlace $out/libexec/miriway-session-startup \\
   --replace-fail 'dbus-update-activation-environment' '${nix.app(nix.sel(lib, "getExe'"), dbus, "dbus-update-activation-environment")}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         providedSessions: nix.thunk(() => ["miriway"]),
-        tests: nix.thunk(() => ({ __proto__: pos$3, miriway: nix.thunk(() => nix.attr(nixosTests, "miriway")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, miriway: nix.thunk(() => nix.attr(nixosTests, "miriway")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Mir based Wayland compositor",
         longDescription: "Miriway is a starting point for creating a Wayland based desktop environment using Mir.\n\nAt the core of Miriway is miriway-shell, a Mir based Wayland compositor that provides:\n\n- A \"floating windows\" window management policy;\n- Support for Wayland (and via Xwayland) X11 applications;\n- Dynamic workspaces;\n- Additional Wayland support for \"shell components\" such as panels and docs; and,\n- Configurable shortcuts for launching standard apps such as launcher and terminal emulator.\n\nIn addition to miriway-shell, Miriway has:\n\n- A \"terminal emulator finder\" script miriway-terminal, that works with most terminal emulators;\n- A launch script miriway to simplify starting Miriway;\n- A default configuration file miriway-shell.config; and,\n- A greeter configuration miriway.desktop so Miriway can be selected at login\n\nMiriway has been tested with shell components from several desktop environments and there are notes on\nenabling these in miriway-shell.config.\n",
         homepage: "https://github.com/Miriway/Miriway",

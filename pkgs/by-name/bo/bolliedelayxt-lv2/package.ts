@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bolliedelayxt.lv2",
       version: "0-unstable-2017-11-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MrBollie",
           repo: "bolliedelayxt.lv2",
           rev: "49c488523c8fb71cb2222d41f9f66ee0cb6b6d82",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lv2]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible LV2 delay plugin",
         homepage: "https://github.com/MrBollie/bolliedelayxt.lv2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

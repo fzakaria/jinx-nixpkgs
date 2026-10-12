@@ -25,54 +25,54 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const customPkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "appendOverlays"), nix.thunk(() => [
       (self) => (super$) => ({
-        __proto__: pos$2,
-        hello: nix.thunk(() => nix.app(nix.sel(super$, "hello", "overrideAttrs"), (old) => ({ __proto__: pos$1, name: "custom-hello" }))),
+        [nix.POS]: pos$2,
+        hello: nix.thunk(() => nix.app(nix.sel(super$, "hello", "overrideAttrs"), (old) => ({ [nix.POS]: pos$1, name: "custom-hello" }))),
       }),
     ])));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "containers-custom-pkgs",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erikarvstedt"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           assertions: nix.thunk(() => (() => {
             const helloName = nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(config, "containers", "test", "config", "system", "extraDependencies"))), "name"));
             return [
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 assertion: nix.thunk(() => nix.eq(helloName, "custom-hello")),
                 message: nix.thunk(() => nix.str`Unexpected value: ${helloName}`),
               })),
             ];
           })()),
           containers: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             test: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               autoStart: true,
               config: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 const pkgs_1 = nix.arg($_2, "pkgs");
                 const config_1 = nix.arg($_2, "config");
                 return {
-                  __proto__: pos$8,
-                  nixpkgs: nix.thunk(() => ({ __proto__: pos$5, pkgs: customPkgs })),
+                  [nix.POS]: pos$8,
+                  nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: customPkgs })),
                   system: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "hello"))]),
                   })),
-                  nix: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
                 };
               })(), formals$3),
             })),

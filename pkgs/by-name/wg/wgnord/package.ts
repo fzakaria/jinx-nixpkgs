@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const resholve = nix.arg($, "resholve");
   const wireguard_tools = nix.arg($, "wireguard-tools");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wgnord",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phirecc",
           repo: "wgnord",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm 755 wgnord -t $out/bin/\ninstall -Dm 644 countries.txt -t $out/share/\ninstall -Dm 644 countries_iso31662.txt -t $out/share/\ninstall -Dm 644 template.conf -t $out/share/\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         default: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           scripts: nix.thunk(() => ["bin/wgnord"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => [coreutils, curl, gawk, gnugrep, gnused, iproute2, jq, wireguard_tools]),
-          fix: nix.thunk(() => ({ __proto__: pos$2, aliases: true })),
+          fix: nix.thunk(() => ({ [nix.POS]: pos$2, aliases: true })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${iproute2}/bin/ip`),
             nix.thunk(() => nix.str`cannot:${wireguard_tools}/bin/wg-quick`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "NordVPN Wireguard (NordLynx) client in POSIX shell",
         homepage: "https://github.com/phirecc/wgnord",
         maintainers: nix.thunk(() => (() => {

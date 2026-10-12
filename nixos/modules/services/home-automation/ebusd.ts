@@ -37,49 +37,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ebusd"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nathan-gs"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         ebusd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ebusd, a daemon for communication with eBUS heating systems")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ebusd", nix.thunk(() => ({})))),
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "IP:PORT",
               description: "Use DEV as eBUS device [/dev/ttyUSB0].\nThis can be either:\n  enh:DEVICE or enh:IP:PORT for enhanced device (only adapter v3 and newer),\n  ens:DEVICE for enhanced high speed serial device (only adapter v3 and newer with firmware since 20220731),\n  DEVICE for serial device (normal speed, for all other serial adapters like adapter v2 as well as adapter v3 in non-enhanced mode), or\n  [udp:]IP:PORT for network device.\n\nSource: <https://github.com/john30/ebusd/wiki/2.-Run#device-options>\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: 8888n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "The port on which to listen on\n",
             })))),
           readonly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Only read from device, never write to it\n",
             })))),
           configpath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "https://ebus.github.io/",
               description: "Directory to read CSV config files from. This can be a local folder or a URL.\n",
             })))),
           scanconfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "full",
               description: "Pick CSV config files matching initial scan (\"none\" or empty for no initial scan message, \"full\" for full scan, or a single hex address to scan, default is to send a broadcast ident message).\nIf combined with --checkconfig, you can add scan message data as arguments for checking a particular scan configuration, e.g. \"FF08070400/0AB5454850303003277201\". For further details on this option,\nsee [Automatic configuration](https://github.com/john30/ebusd/wiki/4.7.-Automatic-configuration).\n",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
             const areas = nix.thunk(() => ["all", "main", "network", "bus", "device", "update", "other"]);
             const levels = nix.thunk(() => ["none", "error", "notice", "info", "debug"]);
             return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((area) => nix.app(nix.sel(lib, "nameValuePair"), area, nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), levels)),
                       default: "notice",
                       example: "debug",
@@ -97,40 +97,40 @@ export default nix.lambda((args) => (() => {
                     }))))), areas)));
           })()),
           mqtt: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "support for MQTT")),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Connect to MQTT broker on HOST.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: 1883n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "The port on which to connect to MQTT\n",
               })))),
             "home-assistant": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Adds the Home Assistant topics to MQTT, read more at [MQTT Integration](https://github.com/john30/ebusd/wiki/MQTT-integration)\n",
               })))),
             retain: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "set the retain flag on all topics instead of only selected global ones")),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The MQTT user to use\n",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The MQTT password.\n",
               })))),
           })),
           extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra arguments to the ebus daemon\n",
@@ -141,22 +141,22 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const usesDev = nix.thunk(() => nix.app(nix.sel(lib, "any"), (prefix) => nix.app(nix.sel(lib, "hasPrefix"), prefix, nix.thunk(() => nix.sel(cfg, "device"))), nix.thunk(() => ["/", "ens:/", "enh:/"])));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemd: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             services: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               ebusd: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "EBUSd Service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   ExecStart: nix.thunk(() => (() => {
                     const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (a) => (b) => nix.update(a, b), nix.thunk(() => ({})), nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             device: nix.thunk(() => nix.attr(cfg, "device")),
                             port: nix.thunk(() => nix.attr(cfg, "port")),
                             configpath: nix.thunk(() => nix.attr(cfg, "configpath")),
@@ -168,14 +168,14 @@ export default nix.lambda((args) => (() => {
                             mqttretain: nix.thunk(() => nix.sel(cfg, "mqtt", "retain")),
                           })),
                           nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "mqtt", "enable")), nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               mqtthost: nix.thunk(() => nix.sel(cfg, "mqtt", "host")),
                               mqttport: nix.thunk(() => nix.sel(cfg, "mqtt", "port")),
                               mqttuser: nix.thunk(() => nix.sel(cfg, "mqtt", "user")),
                               mqttpass: nix.thunk(() => nix.sel(cfg, "mqtt", "password")),
                             })))),
                           nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "mqtt", "home-assistant")), nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               mqttint: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/ebusd/mqtt-hassio.cfg`),
                               mqttjson: true,
                             })))),

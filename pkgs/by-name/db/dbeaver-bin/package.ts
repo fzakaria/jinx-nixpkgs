@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const override_xmx = nix.argOr($, "override_xmx", () => "1024m");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dbeaver-bin",
       version: "26.2.1",
       src: nix.thunk(() => (() => {
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.attr(from, "system"));
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "linux-x86_64.tar.gz",
             "aarch64-linux": "linux-aarch64.tar.gz",
             "aarch64-darwin": "macos-aarch64.dmg",
           }))));
         const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-Fte9AehPjNj0bWl2rBJ/olZ47AEJU8m03OQZM68gZ+g=",
             "aarch64-linux": "sha256-dvrR2QZNDtra33rIEbM7Z17KeXoQjcRqjjgtoiOZzI4=",
             "aarch64-darwin": "sha256-K/9ehDV8pe4mY/SEI9o52zg9EZbAhvl6oiYYj0qiwKA=",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/dbeaver/dbeaver/releases/download/${nix.sel(finalAttrs, "version")}/dbeaver-ce-${nix.sel(finalAttrs, "version")}-${suffix}`),
             hash: hash,
           })));
@@ -103,9 +103,9 @@ makeWrapper $out/{Applications/dbeaver.app/Contents/MacOS/dbeaver,bin/dbeaver}
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://dbeaver.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/dbeaver/dbeaver/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more",

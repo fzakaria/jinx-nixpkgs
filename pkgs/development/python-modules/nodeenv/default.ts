@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ekalinin",
           repo: "nodeenv",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["nodeenv"]);
       const disabledTests = nix.thunk(() => ["test_smoke"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Node.js virtual environment builder",
         mainProgram: "nodeenv",
         homepage: "https://github.com/ekalinin/nodeenv",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

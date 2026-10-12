@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const binutils_unwrapped_all_targets = nix.arg($, "binutils-unwrapped-all-targets");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopcodes",
       version: nix.thunk(() => nix.attr(binutils_unwrapped_all_targets, "version")),
       dontUnpack: true,
@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(binutils_unwrapped_all_targets, "lib")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dev: nix.thunk(() => nix.attr(binutils_unwrapped_all_targets, "dev")),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library from binutils for manipulating machine code",
         homepage: "https://www.gnu.org/software/binutils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

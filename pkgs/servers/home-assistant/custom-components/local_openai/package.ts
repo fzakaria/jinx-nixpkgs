@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const openai = nix.arg($, "openai");
   const demoji = nix.arg($, "demoji");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "skye-harris",
       domain: "local_openai",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "hass_local_openai_llm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dependencies: nix.thunk(() => [openai, demoji]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/skye-harris/hass_local_openai_llm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Home Assistant LLM integration for local OpenAI-compatible services (llama.cpp, vLLM, etc.)",
         homepage: "https://github.com/skye-harris/hass_local_openai_llm",

@@ -12,7 +12,7 @@ const pos$5 = nix.positions(here + "/mk-packer-plugin.nix", [["constructDrv", 18
 
 export default nix.thunk(() => (() => {
   const platformSuffix = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux_amd64",
     "aarch64-linux": "linux_arm64",
     "aarch64-darwin": "darwin_arm64",
@@ -25,7 +25,7 @@ export default nix.thunk(() => (() => {
     const versionCheckHook = nix.arg($, "versionCheckHook");
     const nix_update_script = nix.arg($, "nix-update-script");
     return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         constructDrv: buildGoModule,
         excludeDrvArgNames: nix.thunk(() => ["apiVersion"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -45,7 +45,7 @@ export default nix.thunk(() => (() => {
           const suffix = nix.thunk(() => nix.selOr(platformSuffix, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
           const binName = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "repo")}_v${nix.sel(finalAttrs, "version")}_${apiVersion}_${suffix}`);
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             subPackages: subPackages,
             doInstallCheck: doInstallCheck,
             versionCheckProgramArg: versionCheckProgramArg,
@@ -65,9 +65,9 @@ export default nix.thunk(() => (() => {
             postFixup: nix.thunk(() => nix.add(postFixup, nix.str`mv "$out/bin/${nix.sel(finalAttrs, "src", "repo")}" "$out/bin/${binName}"
 sha256sum "$out/bin/${binName}" | cut -d' ' -f1 > "$out/bin/${binName}_SHA256SUM"
 `)),
-            meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: binName })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: binName })),
             passthru: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pluginPath: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "githubBase")}/${nix.sel(finalAttrs, "src", "owner")}/${nix.app(nix.sel(lib, "removePrefix"), "packer-plugin-", nix.thunk(() => nix.sel(finalAttrs, "src", "repo")))}/${binName}`),
               updateScript: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(nix_update_script, nix.thunk(() => ({}))), "passthru", "updateScript")),
             })),

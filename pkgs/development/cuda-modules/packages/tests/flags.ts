@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(assertMsg, nix.thunk(() => (nix.asBool(nix.has(cudaCapabilityToInfo, "7.5")) && nix.asBool(nix.has(cudaCapabilityToInfo, "8.6")))), "The following test requires both 7.5 and 8.6 be known CUDA capabilities"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/packages/tests/flags.nix:14:1");
   nix.assert_((() => {
     const expected = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cudaCapabilities: nix.thunk(() => ["7.5", "8.6"]),
       cudaForwardCompat: true,
       archNames: nix.thunk(() => ["Ampere", "Turing"]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       cmakeCudaArchitecturesString: "75;86",
     }));
     const actual = nix.thunk(() => nix.app(formatCapabilities, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cudaCapabilityToInfo: cudaCapabilityToInfo,
         cudaCapabilities: nix.thunk(() => ["7.5", "8.6"]),
         cudaForwardCompat: true,
@@ -51,6 +51,6 @@ export default nix.lambda((args) => (() => {
 Actual: ${nix.app(toJSON, actualWrapped)}
 `));
   })(), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/packages/tests/flags.nix:17:1");
-  return nix.app(runCommand, nix.thunk(() => nix.str`${cudaNamePrefix}-tests-flags`), nix.thunk(() => ({ __proto__: pos$3, __structuredAttrs: true, strictDeps: true })), "touch \"$out\"\n");
+  return nix.app(runCommand, nix.thunk(() => nix.str`${cudaNamePrefix}-tests-flags`), nix.thunk(() => ({ [nix.POS]: pos$3, __structuredAttrs: true, strictDeps: true })), "touch \"$out\"\n");
 })(), formals$1);
 //# sourceMappingURL=flags.ts.map

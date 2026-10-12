@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const meta = nix.arg($, "meta");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       package: package$,
       os: os,
       arch: arch,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(pkgs, "ncurses5")),
         ]))),
       patchInstructions: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(os, "linux")), "autoPatchelf $packageBaseDir/bin\n")),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")) })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=cmake.ts.map

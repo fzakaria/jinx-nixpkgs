@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const bignums = nix.arg($, "bignums");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "color",
       owner: "fblanqui",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.2")), "1.8.6")),
@@ -42,43 +42,43 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "1.8.6": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-EgqJUf82FbPkfL4ZmQIP/73IoFhfQGkeUeaKV3KQ/fA=",
         })),
         "1.8.5": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-zKAyj6rKAasDF+iKExmpVHMe2WwgAwv2j1mmiVAl7ys=",
         })),
         "1.8.4": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-WlRiaLgnFFW5AY0z6EzdP1mevNe1GHsik6wULJLN4k0=",
         })),
         "1.8.3": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-mMUzIorkQ6WWQBJLk1ioUNwAdDdGHJyhenIvkAjALVU=",
         })),
         "1.8.2": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256:1gvx5cxm582793vxzrvsmhxif7px18h9xsb2jljy2gkphdmsnpqj",
         })),
         "1.8.1": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:0knhca9fffmyldn4q16h9265i7ih0h4jhcarq4rkn0wnn7x8w8yw",
         })),
         "1.7.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           rev: "08b5481ed6ea1a5d2c4c068b62156f5be6d82b40",
           hash: "sha256:1w7fmcpf0691gcwq00lm788k4ijlwz3667zj40j5jjc8j8hj7cq3",
         })),
         "1.6.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rev: "328aa06270584b578edc0d2925e773cced4f14c8",
           hash: "sha256:07sy9kw1qlynsqy251adgi8b3hghrc9xxl2rid6c82mxfsp329sd",
         })),
         "1.4.0": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           rev: "168c6b86c7d3f87ee51791f795a8828b1521589a",
           hash: "sha256:1d2whsgs3kcg5wgampd6yaqagcpmzhgb6a0hp6qn4lbimck5dfmm",
         })),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [bignums]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://github.com/fblanqui/color",
         description: "CoLoR is a library of formal mathematical definitions and proofs of theorems on rewriting theory and termination whose correctness has been mechanically checked by the Coq proof assistant",
         maintainers: nix.thunk(() => (() => {

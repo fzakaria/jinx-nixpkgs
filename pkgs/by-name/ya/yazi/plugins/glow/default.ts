@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glow.yazi",
       version: "0-unstable-2025-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Reledia",
           repo: "glow.yazi",
           rev: "bd3eaa58c065eaf216a8d22d64c62d8e0e9277e9",
           hash: "sha256-mzW/ut/LTEriZiWF8YMRXG9hZ70OOC0irl5xObTNO40=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Glow preview plugin for yazi",
         homepage: "https://github.com/Reledia/glow.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

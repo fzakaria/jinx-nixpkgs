@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "grpc-tools",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc",
           repo: "grpc-node",
           tag: nix.thunk(() => nix.str`grpc-tool@${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -Dm755 -t $out/bin grpc_node_plugin\ninstall -Dm755 -t $out/bin deps/protobuf/protoc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/grpc/grpc-node.git",
             "rev-prefix": "grpc-tools@",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Distribution of protoc and the gRPC Node protoc plugin for ease of installation with npm",
         longDescription: "This package distributes the Protocol Buffers compiler protoc along with\nthe plugin for generating client and service objects for use with the Node\ngRPC libraries.\n",
         homepage: "https://github.com/grpc/grpc-node/tree/master/packages/grpc-tools",

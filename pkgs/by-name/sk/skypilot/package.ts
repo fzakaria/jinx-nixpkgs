@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const pname = "skypilot";
   const version = "0.12.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "skypilot-org",
       repo: "skypilot",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-zxkduComvFuSbWnWSw1PYalGdVhiwCIjElXEg7VPw88=",
     }))));
   const dashboard = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -r out/* $out/\n",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return nix.app(nix.sel(lib, "fix"), (self) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             all: nix.thunk(() => (() => {
               const w_3 = nix.withScope(self, w_2);
               return [
@@ -186,7 +186,7 @@ wrapPythonProgramsIn "$out/${nix.sel(python3Packages, "python", "sitePackages")}
 `),
       pythonImportsCheck: nix.thunk(() => ["sky"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Run LLMs and AI on any Cloud",
         longDescription: "SkyPilot is a framework for running LLMs, AI, and batch jobs on any\ncloud, offering maximum cost savings, highest GPU availability, and\nmanaged execution.\n",
         homepage: "https://github.com/skypilot-org/skypilot",

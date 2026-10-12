@@ -19,26 +19,26 @@ export default nix.lambda((args) => (() => {
       const pname = "rambox";
       const version = "2.6.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ramboxapp/download/releases/download/v${version}/Rambox-${version}-linux-x64.AppImage`),
           hash: "sha256-YVLT+6o2Py796LBgN7ZgMiigbjBFGyTNaG/bSwJYAXk=",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           desktopName: "Rambox",
           name: "rambox",
           exec: "rambox",
           icon: "rambox",
           categories: nix.thunk(() => ["Network"]),
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
       const extraInstallCommands = nix.thunk(() => nix.str`mkdir -p $out/share/applications $out/share/icons/hicolor/256x256/apps
 install -Dm644 ${appimageContents}/usr/share/icons/hicolor/256x256/apps/rambox*.png $out/share/icons/hicolor/256x256/apps/rambox.png
 install -Dm644 ${desktopItem}/share/applications/* $out/share/applications
 `);
       const extraPkgs = (pkgs) => [nix.thunk(() => nix.sel(pkgs, "procps"))];
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Workspace Simplifier - a cross-platform application organizing web services into Workspaces similar to browser profiles",
         homepage: "https://rambox.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -53,7 +53,7 @@ install -Dm644 ${desktopItem}/share/applications/* $out/share/applications
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(enableCuda) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "ucc",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openucx",
           repo: "ucc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ done
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, libtool], nix.app(optionals, enableCuda, nix.thunk(() => [cuda_nvcc])))),
       buildInputs: nix.thunk(() => nix.concat([ucx], nix.app(optionals, enableCuda, nix.thunk(() => [cccl, cuda_cudart, cuda_nvml_dev, nccl])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(optionals, enableCuda, nix.thunk(() => [
               nix.thunk(() => nix.str`-L${nix.app(getOutput, "stubs", cuda_cudart)}/lib/stubs`),
               nix.thunk(() => nix.str`-L${nix.app(getOutput, "stubs", cuda_nvml_dev)}/lib/stubs`),
@@ -76,7 +76,7 @@ done
         ])))))),
       postInstall: "find \"$out/lib/\" -name \"*.la\" -exec rm -f \\{} \\;\n\nmoveToOutput bin/ucc_info \"$dev\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collective communication operations API",
         homepage: "https://openucx.github.io/ucc/",
         mainProgram: "ucc_info",

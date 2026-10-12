@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, dpkg, copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`${pname_1}`),
             desktopName: desktopName,
             genericName: "View and edit PDF files",
@@ -64,7 +64,7 @@ ln -s $out/share/${program}${year}/${program}${year} $out/bin/
 runHook postInstall
 `);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname_1,
         src: src_1,
         version: version_1,
@@ -78,7 +78,7 @@ runHook postInstall
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [cups, thisPackage],
@@ -89,7 +89,7 @@ ln -s ${thisPackage}/share/applications/*.desktop "$out/share/applications/"
 ln -s ${thisPackage}/share/pixmaps/*.png "$out/share/pixmaps/"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: broken,
         homepage: nix.thunk(() => nix.str`https://www.qoppa.com/${pname}/`),
         description: "Easy to use, full-featured PDF editing software",

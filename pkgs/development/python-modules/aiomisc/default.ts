@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const setproctitle = nix.arg($, "setproctitle");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aiomisc",
       version: "18.0.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-SA/iJD23E6ze1TuzycDQTcW5/nLoMgTdF9qzhrBVaTQ=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([aiothreads, colorlog], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [logging_journald])))),
       nativeCheckInputs: nix.thunk(() => nix.concat([aiocontextvars, async_timeout, fastapi, pytestCheckHook, setproctitle], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp]),
         cron: nix.thunk(() => [croniter]),
         raven: nix.thunk(() => [aiohttp, raven]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aiomisc"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Miscellaneous utils for asyncio",
         homepage: "https://github.com/aiokitchen/aiomisc",
         changelog: "https://github.com/aiokitchen/aiomisc/blob/master/CHANGELOG.md",

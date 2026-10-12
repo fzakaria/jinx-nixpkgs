@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simgrid";
       const version = "4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "framagit.org",
           owner: "simgrid",
           repo: "simgrid",
@@ -88,7 +88,7 @@ cp ./lib/simgrid.cpython*.so $python/lib/python${nix.app(nix.sel(lib, "versions"
       const hardeningDisable = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), debug, nix.thunk(() => ["fortify"])));
       const dontStrip = debug;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for the simulation of distributed applications",
         longDescription: "SimGrid is a toolkit that provides core functionalities for the\nsimulation of distributed applications in heterogeneous distributed\nenvironments.  The specific goal of the project is to facilitate\nresearch in the area of distributed and parallel application\nscheduling on distributed computing platforms ranging from simple\nnetwork of workstations to Computational Grids.\n",
         homepage: "https://simgrid.org/",
@@ -104,7 +104,7 @@ cp ./lib/simgrid.cpython*.so $python/lib/python${nix.app(nix.sel(lib, "versions"
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const unix = nix.arg($, "unix");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nixfmt",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/nixos/nixfmt/archive/v1.5.0.tar.gz",
           sha256: "0y8kwlfs03c79nxn76ill9zx52vhxpdnibz88lpaq0dzfd2sd2v0",
         })))),

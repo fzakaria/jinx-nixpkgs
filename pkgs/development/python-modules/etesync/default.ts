@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "f20f7e9922ee789c4b71379676ebfe656b675913fe524f2ee722e1b9ef4e5197",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "pytest tests/test_collections.py\npytest tests/test_crypto.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.etesync.com/",
         description: "Python API to interact with an EteSync server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

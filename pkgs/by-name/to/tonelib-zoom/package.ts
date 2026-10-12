@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-zoom";
       const version = "4.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.tonelib.net/download/0129/ToneLib-Zoom-amd64.deb",
           sha256: "sha256-4q2vM0/q7o/FracnO2xxnr27opqfVQoN7fsqTD9Tr/c=",
         }))));
@@ -54,7 +54,7 @@ mkdir -p $out/lib/
 ln -s ${webkitgtk_4_1}/lib/libwebkit2gtk-4.1.so.0 $out/lib/libwebkit2gtk-4.0.so.37
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ToneLib Zoom – change and save all the settings in your Zoom(r) guitar pedal",
         homepage: "https://tonelib.net/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ ln -s ${webkitgtk_4_1}/lib/libwebkit2gtk-4.1.so.0 $out/lib/libwebkit2gtk-4.0.so.
         mainProgram: "ToneLib-Zoom",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

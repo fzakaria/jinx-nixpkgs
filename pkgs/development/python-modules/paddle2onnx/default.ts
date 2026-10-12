@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const format = "wheel";
   const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       format: "wheel",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-RCD6iTvzhGrFjW02lasTwQoM+Xa68Q5b6Ito3KvqdHg=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabled: nix.thunk(() => (nix.asBool(nix.app(pythonOlder, "3.12")) || nix.asBool(nix.app(pythonAtLeast, "3.13")))),
       dependencies: nix.thunk(() => [onnx, paddlepaddle]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ONNX Model Exporter for PaddlePaddle",
         homepage: "https://github.com/PaddlePaddle/Paddle2ONNX",
         changelog: nix.thunk(() => nix.str`https://github.com/PaddlePaddle/Paddle2ONNX/releases/tag/v${version}`),

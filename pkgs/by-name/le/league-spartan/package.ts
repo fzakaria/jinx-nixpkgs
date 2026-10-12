@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "league-spartan",
       version: "2.220",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/theleagueof/league-spartan/releases/download/${nix.sel(finalAttrs, "version")}/LeagueSpartan-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-dkvWRYli8vk+E0DkZ2NWCJKfSfdo4jEcGo0puQpFVVc=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/truetype $src/static/TTF/*.ttf\ninstall -D -m444 -t $out/share/fonts/opentype $src/static/OTF/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fantastic new revival of ATF's classic Spartan, a geometric sans-serif that has no problem kicking its enemies in the chest",
         longDescription: "A new classic, this is a bold, modern, geometric sans-serif that has no\nproblem kicking its enemies in the chest.\n\nTaking a strong influence from ATF's classic Spartan family, we're\nstarting our own family out with a single strong weight. We've put a few\nunique touches into a beautiful, historical typeface, and made sure to\ninclude an extensive characterset – currently totaling over 300 glyphs.\n\nOver time, the open-source license will allow us expand League Spartan\ninto a full family, with multiple weights and styles, and we're starting\nby releasing our first Bold style for this exciting, modern classic now.\n",
         homepage: "https://www.theleagueofmoveabletype.com/league-spartan",

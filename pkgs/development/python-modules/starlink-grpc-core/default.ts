@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sparky8512",
           repo: "starlink-grpc-tools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["starlink_grpc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Core functions for Starlink gRPC communication",
         homepage: "https://github.com/sparky8512/starlink-grpc-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/sparky8512/starlink-grpc-tools/releases/tag/v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

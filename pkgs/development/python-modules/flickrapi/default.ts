@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sybrenstuvel",
           repo: "flickrapi",
           rev: nix.thunk(() => nix.str`version-${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["flickrapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface to the Flickr API",
         homepage: "https://stuvel.eu/flickrapi",
         changelog: nix.thunk(() => nix.str`https://github.com/sybrenstuvel/flickrapi/blob/version-${version}/CHANGELOG.md`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

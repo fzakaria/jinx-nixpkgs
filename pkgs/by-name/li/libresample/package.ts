@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libresample",
       version: "0.1.4-unstable-2024-08-23",
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minorninth",
           repo: "libresample",
           rev: "7cb7f9c3f72d4e6774d964dc324af827192df7c3",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time library for sampling rate conversion library",
         homepage: "https://github.com/minorninth/libresample",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const stix2_patterns = nix.arg($, "stix2-patterns");
   const taxii2_client = nix.arg($, "taxii2-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stix2",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oasis-open",
           repo: "cti-python-stix2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["stix2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Produce and consume STIX 2 JSON content",
         homepage: "https://stix2.readthedocs.io/en/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/oasis-open/cti-python-stix2/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

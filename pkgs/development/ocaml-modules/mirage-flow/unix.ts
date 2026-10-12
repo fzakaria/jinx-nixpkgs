@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const mirage_flow_combinators = nix.arg($, "mirage-flow-combinators");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-flow-unix",
       version: nix.thunk(() => nix.attr(mirage_flow, "version")),
       src: nix.thunk(() => nix.attr(mirage_flow, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mirage_flow_combinators]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_flow, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Flow implementations and combinators for MirageOS on Unix",
       })),
     })));

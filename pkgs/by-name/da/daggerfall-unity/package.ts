@@ -40,30 +40,30 @@ export default nix.lambda((args) => (() => {
   const includeUnfree = nix.argOr($, "includeUnfree", () => false);
   const docFiles = nix.thunk(() => nix.concat([
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://www.dfworkshop.net/static_files/daggerfallunity/Daggerfall%20Unity%20Manual.pdf",
         hash: "sha256-FywlD0K5b4vUWzyzANlF9575XTDLivbsym7F+qe0Dm8=",
         name: "Daggerfall Unity Manual.pdf",
-        meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })))),
   ], nix.app(nix.sel(lib, "optionals"), includeUnfree, nix.thunk(() => [
       nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://cdn.bethsoft.com/bethsoft.com/manuals/Daggerfall/daggerfall-en.pdf",
           hash: "sha256-24KSP/E7+KvSRTMDq63NVlVWTFZnQj1yya8wc36yrC0=",
           meta: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         })))),
     ]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       zipVersion: "1.1.1",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "zipVersion")}-cve-2025`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/Interkarma/daggerfall-unity/releases/download/v${nix.sel(finalAttrs, "version")}/dfu_linux_64bit-v${nix.sel(finalAttrs, "zipVersion")}.zip`),
           hash: "sha256-JuhhVLpREM9e9UtlDttvFUhHWpH7Sh79OEo1OM4ggKA=",
           stripRoot: false,
@@ -101,7 +101,7 @@ runHook postInstall
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "daggerfall-unity",
             desktopName: "Daggerfall Unity",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -111,14 +111,14 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+(\\.\\d+)*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://www.dfworkshop.net/",
         description: "Open source recreation of Daggerfall in the Unity engine",
         longDescription: nix.thunk(() => nix.str`Daggerfall Unity is an open source recreation of Daggerfall in the Unity engine created by Daggerfall Workshop.

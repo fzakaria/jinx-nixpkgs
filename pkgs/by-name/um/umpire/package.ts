@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const rocmPackages = nix.arg($, "rocmPackages");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.eq(cudaPackages, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/um/umpire/package.nix:14:1");
   const rocm_sdk = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rocm-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "umpire",
       version: "2025.12.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "LLNL",
           repo: "umpire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
           "-DENABLE_CUDA=ON",
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CUDA_ARCHITECTURES", nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")))),
         ])), nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => ["-DENABLE_HIP=ON", nix.thunk(() => nix.str`-DROCM_ROOT_DIR=${rocm_sdk}`)])))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, rocmSupport: rocmSupport })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, rocmSupport: rocmSupport })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Application-focused API for memory management on NUMA & GPU architectures",
         homepage: "https://github.com/LLNL/Umpire",
         maintainers: nix.thunk(() => (() => {

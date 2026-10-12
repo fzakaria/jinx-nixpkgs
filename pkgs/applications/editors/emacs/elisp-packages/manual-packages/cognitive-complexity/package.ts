@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cognitive-complexity",
       version: "0-unstable-2026-04-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacs-vs",
           repo: "cognitive-complexity",
           rev: "b45afe9bf65943f985b645cea514212dc734349b",
           hash: "sha256-wPS/2yIQjqFWqlyf1qpd+FrvVH5KBL+kpSCW3bgmDL8=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/emacs-vs/cognitive-complexity",
         description: "Show cognitive complexity of code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

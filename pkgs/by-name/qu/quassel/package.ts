@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.add(nix.add("-D", feature), (nix.asBool(flag) ? "=ON" : "=OFF"))),
   ];
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`quassel${tag}`),
       version: "0.14.0-unstable-2026-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quassel",
           repo: "quassel",
           rev: "15e764d9bb836f13283be80c8135936f6a1cac72",
           sha256: "sha256-Ogf2zv6SKnn+UwQ2meDYTk7axYkWTdnKqUhbJVMUBbo=",
           fetchSubmodules: true,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DQT_NO_VERSION_TAGGING=1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DQT_NO_VERSION_TAGGING=1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, makeWrapper], nix.app(nix.sel(lib, "optionals"), buildClient, nix.thunk(() => [
           nix.thunk(() => nix.sel(qt6, "qttools")),
           nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6, "qtbase", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://quassel-irc.org/",
         description: "Qt/KDE distributed IRC client supporting a remote daemon",
         longDescription: "Quassel IRC is a cross-platform, distributed IRC client,\nmeaning that one (or multiple) client(s) can attach to\nand detach from a central core -- much like the popular\ncombination of screen and a text-based IRC client such\nas WeeChat, but graphical (based on Qt/KF).\n",

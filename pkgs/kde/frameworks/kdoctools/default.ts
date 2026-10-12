@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kdoctools",
       extraNativeBuildInputs: nix.thunk(() => [perl, nix.thunk(() => nix.sel(perlPackages, "URI")), libxml2]),
       extraBuildInputs: nix.thunk(() => [docbook_xml_dtd_45, docbook_xsl_nons]),

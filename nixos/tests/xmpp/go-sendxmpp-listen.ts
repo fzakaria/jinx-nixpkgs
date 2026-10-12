@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     systemd: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "go-sendxmpp-listen": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           after: nix.thunk(() => ["network-online.target"]),
           requires: nix.thunk(() => ["network-online.target"]),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "go-sendxmpp")))} --username azurediamond@example.com --password hunter2 --listen
 `),
             Environment: nix.thunk(() => ["HOME=/var/lib/go-sendxmpp/"]),

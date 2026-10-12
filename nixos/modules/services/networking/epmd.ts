@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(from, "str"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "epmd"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         epmd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable socket activation for Erlang Port Mapper Daemon (epmd),\nwhich acts as a name server on all hosts involved in distributed\nErlang computations.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["beamPackages", "erlang"]), nix.thunk(() => ({})))),
           listenStream: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(oneOf, nix.thunk(() => [str, nix.thunk(() => nix.app(listOf, str))]))),
               default: "[::]:4369",
               description: "the listenStream used by the systemd socket.\nsee <https://www.freedesktop.org/software/systemd/man/systemd.socket.html#ListenStream=> for more information.\nuse this to change the port epmd will run on.\nif not defined, epmd will use \"[::]:4369\"\n",
@@ -55,39 +55,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "listenStream"), "[::]:4369")) || nix.asBool(nix.sel(config, "networking", "enableIPv6")))),
             message: "epmd listens by default on ipv6, enable ipv6 or change config.services.epmd.listenStream",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           sockets: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             epmd: nix.thunk(() => (() => {
               const description = "Erlang Port Mapper Daemon Activation Socket";
               const wantedBy = nix.thunk(() => ["sockets.target"]);
               const before = wantedBy;
               const socketConfig = nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ListenStream: nix.thunk(() => nix.sel(cfg, "listenStream")),
                 Accept: "false",
               }));
-              return { __proto__: pos$8, description, wantedBy, before, socketConfig };
+              return { [nix.POS]: pos$8, description, wantedBy, before, socketConfig };
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             epmd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Erlang Port Mapper Daemon",
               after: nix.thunk(() => ["network.target"]),
               requires: nix.thunk(() => ["epmd.socket"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/epmd -systemd`),
                 Type: "notify",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "beam"))]),
     })),
   };

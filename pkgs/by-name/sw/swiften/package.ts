@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const boost186 = nix.arg($, "boost186");
   const scons = nix.arg($, "scons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swiften",
       version: "4.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://swift.im/git/swift/snapshot/swift-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-aj+T6AevtR8birbsj+83nfzFC6cf72q+7nwSM0jaZrA=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./scons.patch"),
         nix.path(here, "./build-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "3666cbbe30e4d4e25401a5902ae359bc2c24248b.patch",
             url: "https://swift.im/git/swift/patch/Swiften/Base/Platform.h?id=3666cbbe30e4d4e25401a5902ae359bc2c24248b",
             sha256: "Wh8Nnfm0/EppSJ7aH2vTNObHtodE5tM19kV1oDfm70w=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "XMPP library for C++, used by the Swift client",
         mainProgram: "swiften-config",
         homepage: "http://swift.im/swiften.html",

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const sys_headers = nix.arg($, "sys-headers");
   const ld_elf_so = nix.arg($, "ld_elf_so");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       noLibc: true,
       path: "lib/csu",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
       nativeBuildInputs: nix.thunk(() => [

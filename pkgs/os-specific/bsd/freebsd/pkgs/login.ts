@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libbsm = nix.arg($, "libbsm");
   const cap_mkdb = nix.arg($, "cap_mkdb");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/login",
       buildInputs: nix.thunk(() => [libutil, libpam, libbsm]),
       extraNativeBuildInputs: nix.thunk(() => [cap_mkdb]),

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const ndpi_4_14 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ndpi_4_14.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "netcap",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dreadl0ck",
           repo: "netcap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withDpi)), nix.thunk(() => ["nodpi"]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withDpi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-L${ndpi_4_14}/lib`),
               "-lndpi",
@@ -71,11 +71,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/net`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Framework for secure and scalable network traffic analysis",
         homepage: "https://netcap.io",
         downloadPage: "https://github.com/dreadl0ck/netcap",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const libunistring = nix.arg($, "libunistring");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bigloo",
       version: "4.7a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www-sop.inria.fr/mimosa/fp/Bigloo/download/bigloo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-RCXDf0meLfGnvjM0roUg/XYhRzPZ2f6XsvunHRxM9js=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient Scheme compiler",
         homepage: "http://www-sop.inria.fr/indes/fp/Bigloo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

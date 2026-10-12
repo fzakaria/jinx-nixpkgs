@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vapoursynth-editor";
       const version = "R19-mod-6.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YomikoR",
           repo: "vapoursynth-editor",
           tag: version,
@@ -44,15 +44,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qt5compat")),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), vapoursynth)}/include/vapoursynth`),
       }));
       const dontWrapQtApps = true;
       const preConfigure = "cd pro";
       const preFixup = nix.thunk(() => nix.add(nix.add("cd ../build/release*\nmkdir -p $out/bin\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nfor bin in vsedit{,-job-server{,-watcher}}; do\n    mv $bin.app $out/Applications\n    makeQtWrapper $out/Applications/$bin.app/Contents/MacOS/$bin $out/bin/$bin\n    wrapQtApp $out/Applications/$bin.app/Contents/MacOS/$bin\ndone\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "for bin in vsedit{,-job-server{,-watcher}}; do\n    mv $bin $out/bin\n    wrapQtApp $out/bin/$bin\ndone\n")));
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, withPlugins: withPlugins }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, withPlugins: withPlugins }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform editor for VapourSynth scripts",
         homepage: "https://github.com/YomikoR/VapourSynth-Editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,
@@ -78,15 +78,15 @@ export default nix.lambda((args) => (() => {
   const withPlugins = (plugins) => (() => {
     const vapoursynthWithPlugins = nix.thunk(() => nix.app(nix.sel(vapoursynth, "withPlugins"), plugins));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(unwrapped, "name")}-with-plugins`), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: nix.thunk(() => nix.attr(unwrapped, "pname")),
         version: nix.thunk(() => nix.attr(unwrapped, "version")),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           withPlugins: (plugins$) => nix.app(withPlugins, nix.thunk(() => nix.concat(plugins, plugins$))),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
 for bin in vsedit{,-job-server{,-watcher}}; do
     makeWrapper ${unwrapped}/bin/$bin $out/bin/$bin \\

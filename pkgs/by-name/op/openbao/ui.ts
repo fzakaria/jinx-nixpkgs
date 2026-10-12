@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const pnpm_10 = nix.arg($, "pnpm_10");
   const nodejs_slim_22 = nix.arg($, "nodejs-slim_22");
   const nodejs_slim = nodejs_slim_22;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add(nix.sel(openbao, "pname"), "-ui")),
       version: nix.thunk(() => nix.attr(openbao, "version")),
       src: nix.thunk(() => nix.attr(openbao, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui`),
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpmBuildHook, pnpm, nodejs_slim]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "substituteInPlace .ember-cli \\\n  --replace-fail \"../internal/http/web_ui\" \"$out\"\n",
       dontInstall: true,
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(openbao, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add(nix.sel(openbao, "meta", "description"), " - web UI")),
       })),
     }));

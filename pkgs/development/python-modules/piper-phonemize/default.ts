@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(piper_phonemize_native, "pname")),
       version: nix.thunk(() => nix.attr(piper_phonemize_native, "version")),
       src: nix.thunk(() => nix.attr(piper_phonemize_native, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(piper_phonemize_native, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")))),
         description: "Phonemization library used by Piper text to speech system",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

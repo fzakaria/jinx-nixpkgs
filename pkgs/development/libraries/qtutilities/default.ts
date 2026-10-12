@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cpp_utilities = nix.arg($, "cpp-utilities");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qtutilities",
       version: "6.22.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Martchus",
           repo: "qtutilities",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Martchus/qtutilities",
         description: "Common Qt related C++ classes and routines used by @Martchus' applications such as dialogs, widgets and models Topics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

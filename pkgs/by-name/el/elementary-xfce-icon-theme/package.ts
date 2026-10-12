@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elementary-xfce-icon-theme",
       version: "0.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shimmerproject",
           repo: "elementary-xfce",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace svgtopng/Makefile --replace \"-O0\" \"-O\"\n",
       postInstall: "make icon-caches\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elementary icons for Xfce and other GTK desktops like GNOME",
         homepage: "https://github.com/shimmerproject/elementary-xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

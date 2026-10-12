@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libxxf86misc = nix.arg($, "libxxf86misc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xpilot-ng",
       version: "4.7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xpilot/xpilot_ng/xpilot-ng-${nix.sel(finalAttrs, "version")}/xpilot-ng-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8ocJPHV6cSMgAPIQ7kpO3szJ6K8IF9W+QwhOhK69Rwk=",
         })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./xpilot-ng-gcc-15-fix.patch"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiplayer X11 space combat game",
         homepage: "http://xpilot.sf.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

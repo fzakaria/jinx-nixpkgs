@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const gpuBackend = nix.argOr($, "gpuBackend", () => (nix.asBool(nix.sel(config, "cudaSupport")) ? "cuda" : (nix.asBool(nix.sel(config, "rocmSupport")) ? "rocm" : "none")));
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sp/spfft/package.nix:24:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "SpFFT",
       version: "1.1.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eth-cscs",
           repo: "SpFFT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,22 +64,22 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "HIP_ROOT_DIR", nix.thunk(() => nix.sel(rocmPackages, "clr", "outPath")))),
         ]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               moduleNames: nix.thunk(() => ["SpFFT"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support",
         homepage: "https://github.com/eth-cscs/SpFFT",
         changelog: nix.thunk(() => nix.str`https://github.com/eth-cscs/SpFFT/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

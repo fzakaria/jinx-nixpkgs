@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const physfs = nix.arg($, "physfs");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supertux",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/SuperTux/supertux/releases/download/v${nix.sel(finalAttrs, "version")}/SuperTux-v${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           hash: "sha256-MvxbmbmZTtWOWDQdbyHekldks4ElbhCFkRNt5TvDHaU=",
         })))),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DENABLE_BOOST_STATIC_LIBS=OFF"]),
       postInstall: "mkdir $out/bin\nln -s $out/games/supertux2 $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Classic 2D jump'n run sidescroller game",
         homepage: "https://supertux.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

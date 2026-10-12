@@ -41,60 +41,60 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         options: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           assertionsResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
           pathInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$1, inStore: true })))))),
+              [nix.POS]: pos$2,
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$1, inStore: true })))))),
             })))),
           pathNotInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$3, inStore: false })))))),
+              [nix.POS]: pos$4,
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$3, inStore: false })))))),
             })))),
           anyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({})))))),
             })))),
           absolutePathNotInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$6, inStore: false, absolute: true })))))),
+              [nix.POS]: pos$7,
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$6, inStore: false, absolute: true })))))),
             })))),
           absolutePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$8, absolute: true })))))),
+              [nix.POS]: pos$9,
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$8, absolute: true })))))),
             })))),
           conflictingPathOptionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
-              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$10, absolute: true })))),
+              [nix.POS]: pos$11,
+              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$10, absolute: true })))),
             })))),
           impossiblePathOptionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
-              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$12, inStore: true, absolute: false })))),
+              [nix.POS]: pos$13,
+              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$12, inStore: true, absolute: false })))),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         options: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           pathNotInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$16, inStore: false, absolute: null })))))),
+              [nix.POS]: pos$17,
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$16, inStore: false, absolute: null })))))),
             })))),
           conflictingPathOptionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
-              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ __proto__: pos$18, absolute: false })))),
+              [nix.POS]: pos$19,
+              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$18, absolute: false })))),
             })))),
         })),
       })),
     ]),
     pathInStore: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       ok1: nix.thunk(() => nix.str`${storeDir}/0lz9p8xhf89kb1c1kk6jxrzskaiygnlh-bash-5.2-p15.drv`),
       ok2: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15`),
       ok3: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15/bin/bash`),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       bad5: "/foo/bar",
     })),
     pathNotInStore: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       ok1: "/foo/bar",
       ok2: nix.thunk(() => nix.str`${storeDir}`),
       ok3: nix.thunk(() => nix.str`${storeDir}/`),
@@ -120,26 +120,26 @@ export default nix.lambda((args) => (() => {
       bad4: nix.path(here, "./pathWith.nix"),
     })),
     anyPath: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       ok1: "/this/is/absolute",
       ok2: "./this/is/relative",
       bad1: 42n,
     })),
     absolutePathNotInStore: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       ok1: "/this/is/absolute",
       bad1: "./this/is/relative",
       bad2: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15`),
     })),
     absolutePath: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       ok1: "/var/lib/postgresql",
       ok2: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         type: "derivation",
         outPath: nix.thunk(() => nix.builtins.abort("do not instantiate (via outPath)")),
         drvPath: nix.thunk(() => nix.builtins.abort("do not instantiate (via drvPath)")),
-        meta: nix.thunk(() => ({ __proto__: pos$26, description: "just a test fixture" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$26, description: "just a test fixture" })),
       })),
     })),
     conflictingPathOptionType: "/foo/bar",

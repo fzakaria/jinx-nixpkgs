@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const luajit = nix.arg($, "luajit");
   const poppler = nix.arg($, "poppler");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "cantor",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qttools, qtwebengine, libqalculate, libspectre, luajit, poppler]),

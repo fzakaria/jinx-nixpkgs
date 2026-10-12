@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const tzlocal = nix.arg($, "tzlocal");
   const zstd = nix.arg($, "zstd");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clickhouse-driver",
       version: "0.2.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mymarilyn",
           repo: "clickhouse-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["clickhouse_driver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python driver with native interface for ClickHouse",
         homepage: "https://github.com/mymarilyn/clickhouse-driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

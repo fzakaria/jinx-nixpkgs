@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marwaita-icons",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darkomarko42",
           repo: "marwaita-icons",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       dontCheckForBrokenSymlinks: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -a Marwaita* $out/share/icons\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache \"$theme\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icon pack for linux",
         homepage: "https://github.com/darkomarko42/Marwaita-Icons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

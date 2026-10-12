@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const xwayland_satellite = nix.arg($, "xwayland-satellite");
   const withOpenVR = nix.argOr($, "withOpenVR", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wayvr",
       version: "26.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wayvr-org",
           repo: "wayvr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-system-xwayland-satellite.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "xwayland-satellite": nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xwayland_satellite)),
           })))),
       ]),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         vulkan_loader,
       ], nix.app(nix.sel(lib, "optionals"), withOpenVR, nix.thunk(() => [openvr])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SHADERC_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), shaderc)}/lib`),
       })),
       postPatch: nix.thunk(() => nix.str`substituteAllInPlace dash-frontend/src/util/pactl_wrapper.rs \\
@@ -103,15 +103,15 @@ substituteInPlace dash-frontend/src/util/steam_utils.rs \\
       postInstall: "install -D wayvr/wayvr.desktop -t $out/share/applications\ninstall -D wayvr/wayvr.svg -t $out/share/icons/hicolor/scalable/apps\n\nrm $out/bin/prost_build\n",
       preFixup: "patchelf \\\n  --add-needed libwayland-client.so.0 \\\n  --add-needed libwayland-cursor.so.0 \\\n  --add-needed libwayland-egl.so.1 \\\n  --add-needed libX11.so.6 \\\n  --add-needed libxcb.so.1 \\\n  --add-needed libXcursor.so.1 \\\n  --add-needed libXi.so.6 \\\n  --add-needed libvulkan.so.1 \\\n  --add-needed libxkbcommon.so.0 \\\n  $out/bin/uidev\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: wayvr })))),
+          [nix.POS]: pos$5,
+          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: wayvr })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Your way to enjoy VR on Linux! Access your Wayland/X11 desktop from SteamVR/Monado (OpenVR+OpenXR support)",
         homepage: "https://github.com/wayvr-org/wayvr",
         license: nix.thunk(() => (() => {

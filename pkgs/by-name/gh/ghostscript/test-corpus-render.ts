@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ghostscript-test-corpus-render",
       version: "unstable-2023-05-19",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.ghostscript.com/tests.git",
           rev: "f7d5087d3d6c236707842dcd428818c6cb8fb041",
           hash: "sha256-xHOEo1ZJG1GCcEKqaXLDpfRRQxpbSy0bzicKju9hG40=",

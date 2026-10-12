@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const soundfile = nix.arg($, "soundfile");
   const torchaudio = nix.arg($, "torchaudio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mcpadapt",
       version: "0.1.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grll",
           repo: "mcpadapt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [jsonref, mcp, python_dotenv]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         audio: nix.thunk(() => [torchaudio, soundfile]),
         crewai: nix.thunk(() => [crewai]),
         langchain: nix.thunk(() => [langchain, langchain_anthropic, langgraph]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mcpadapt"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MCP servers tool",
         homepage: "https://github.com/grll/mcpadapt",
         changelog: nix.thunk(() => nix.str`https://github.com/grll/mcpadapt/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pathways-into-darkness",
       desktopName: "Pathways-Into-Darkness",
       version: "1.1.1",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://simplici7y.com/version/file/1185/AOPID_v1.1.1.zip",
           hash: "sha256-j/x1Mp2snZAwttaffuaTU8II/zcrm4+4PrrYwpnsA3U=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of the 1993 mac game \"Pathways Into Darkness\" by Bungie to the Aleph One engine",
         homepage: "http://simplici7y.com/items/aleph-one-pathways-into-darkness",
       })),

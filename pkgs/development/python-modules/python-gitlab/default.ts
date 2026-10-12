@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_gitlab",
           version: version,
           hash: "sha256-828g7D8JE487EgiTlJQfTb5aQHAhvtcbcKBLvdN7inQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, requests_toolbelt]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         autocompletion: nix.thunk(() => [argcomplete]),
         graphql: nix.thunk(() => nix.concat([gql], nix.sel(gql, "optional-dependencies", "httpx"))),
         yaml: nix.thunk(() => [pyyaml]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["gitlab"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interact with GitLab API",
         homepage: "https://github.com/python-gitlab/python-gitlab",
         changelog: nix.thunk(() => nix.str`https://github.com/python-gitlab/python-gitlab/blob/v${version}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gitlab",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

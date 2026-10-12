@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const sha256 = nix.arg($, "sha256");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/sindresorhus/caprine/releases/download/v${version}/Caprine-${version}.AppImage`),
       name: nix.thunk(() => nix.str`Caprine-${version}.AppImage`),
       sha256: sha256,
     }))));
-  const extracted = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const extracted = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src })),
       profile: "export LC_ALL=C.UTF-8\n",
       extraInstallCommands: nix.thunk(() => nix.str`mkdir -p $out/share
 "${lndir}/bin/lndir" -silent "${extracted}/usr/share" "$out/share"
@@ -40,7 +40,7 @@ cp ${extracted}/caprine.desktop $out/share/applications/
 substituteInPlace $out/share/applications/caprine.desktop \\
     --replace AppRun caprine
 `),
-      meta: nix.thunk(() => nix.update(metaCommon, { __proto__: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=build-from-appimage.ts.map

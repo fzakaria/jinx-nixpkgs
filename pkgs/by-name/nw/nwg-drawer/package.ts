@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pname = "nwg-drawer";
   const version = "0.7.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nwg-piotr",
       repo: "nwg-drawer",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-8PJnDu00/ef7mBAhHgWy/rkpNV1F9JREDP/VRwfK8ck=";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -46,7 +46,7 @@ gappsWrapperArgs+=(
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application drawer for sway Wayland compositor",
         homepage: "https://github.com/nwg-piotr/nwg-drawer",
         changelog: nix.thunk(() => nix.str`https://github.com/nwg-piotr/nwg-drawer/releases/tag/${nix.sel(src, "rev")}`),

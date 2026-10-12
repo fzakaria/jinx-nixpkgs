@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const withStaticLLVM = nix.argOr($, "withStaticLLVM", () => true);
   const llvm = llvm_22;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "llvmlite",
       version: "0.49.0",
       pyproject: true,
       __structuredAttrs: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numba",
           repo: "llvmlite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       buildInputs: nix.thunk(() => nix.concat([llvm], nix.app(nix.sel(lib, "optionals"), withStaticLLVM, nix.thunk(() => [nix.thunk(() => nix.sel(libxml2, "dev"))])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LLVMLITE_SHARED: nix.thunk(() => !nix.asBool(withStaticLLVM)),
       })),
       pythonImportsCheck: nix.thunk(() => ["llvmlite"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "cd $out\n",
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withStaticLLVM)), nix.thunk(() => ({ __proto__: pos$3, llvm: llvm })))),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withStaticLLVM)), nix.thunk(() => ({ [nix.POS]: pos$3, llvm: llvm })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight LLVM python binding for writing JIT compilers",
         homepage: "https://llvmlite.pydata.org/",
         downloadPage: "https://github.com/numba/llvmlite",

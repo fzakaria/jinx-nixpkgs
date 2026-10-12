@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fumis",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frenck",
           repo: "python-fumis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [aiohttp, awesomeversion, mashumaro, orjson, yarl]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cli: nix.thunk(() => [rich, textual, textual_plotext, typer]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy_6], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["fumis"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous Python client for the Fumis WiRCU API",
         homepage: "https://github.com/frenck/python-fumis",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-fumis/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

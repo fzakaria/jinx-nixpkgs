@@ -37,8 +37,8 @@ export default nix.lambda((args) => (() => {
     })()));
   const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")), nix.thunk(() => ({}))));
   const sources = (system) => nix.selOr(data, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), "googleCloudSdkPkgs", nix.key(nix.force(system)));
-  const components = nix.thunk(() => nix.app(callPackage, nix.path(here, "./components.nix"), nix.thunk(() => ({ __proto__: pos$1, snapshotPath: nix.path(here, "./components.json") }))));
-  const withExtraComponents = nix.thunk(() => nix.app(callPackage, nix.path(here, "./withExtraComponents.nix"), nix.thunk(() => ({ __proto__: pos$2, components: components }))));
+  const components = nix.thunk(() => nix.app(callPackage, nix.path(here, "./components.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, snapshotPath: nix.path(here, "./components.json") }))));
+  const withExtraComponents = nix.thunk(() => nix.app(callPackage, nix.path(here, "./withExtraComponents.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, components: components }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "google-cloud-sdk";
       const version = nix.thunk(() => nix.attr(data, "version"));
@@ -176,17 +176,17 @@ ${pythonEnv}/bin/python -S -B -c 'import importlib.util, os, sys; sys.exit(not o
 done < <(find "$out" '(' -name cacert.pem -o -name cacerts.txt ')' -print0)
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         components: components,
         withExtraComponents: withExtraComponents,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gke-gcloud-auth-plugin": nix.thunk(() => nix.app(withExtraComponents, nix.thunk(() => [nix.thunk(() => nix.sel(components, "gke-gcloud-auth-plugin"))]))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tools for the google cloud platform",
         longDescription: "The Google Cloud SDK for GCE hosts. Used by `google-cloud-sdk` only on GCE guests.",
         sourceProvenance: nix.thunk(() => (() => {
@@ -215,7 +215,7 @@ done < <(find "$out" '(' -name cacert.pem -o -name cacerts.txt ')' -print0)
         mainProgram: "gcloud",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

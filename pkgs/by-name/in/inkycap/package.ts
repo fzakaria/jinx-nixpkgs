@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const version = "26.9.6";
   const src = nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "codefloe.com",
       owner: "InkyCap",
       repo: "app",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   })());
   const requiredTinymistVersion = "0.15.2";
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inkycap-frontend",
       version: version,
       src: src,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "./node_modules/.bin/patch-package\n",
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: changelog,
         homepage: homepage,
         license: license,
@@ -64,14 +64,14 @@ export default nix.lambda((args) => (() => {
     })));
   nix.assert_(nix.le(nix.builtins.compareVersions(requiredTinymistVersion, nix.thunk(() => nix.sel(tinymist, "version"))), 0n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/in/inkycap/package.nix:68:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "inkycap",
       version: version,
       src: src,
       __structuredAttrs: true,
       cargoRoot: "src-tauri",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-NHlLURI2O2W28gAWGZd6Hx7lWOXn8LNeoiubReRA5Bo=",
@@ -108,7 +108,7 @@ substituteInPlace src-tauri/tauri.conf.json \\
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: changelog,
         homepage: homepage,
         license: license,

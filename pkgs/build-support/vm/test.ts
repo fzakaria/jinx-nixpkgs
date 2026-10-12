@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const runInLinuxImage = nix.thunk(() => nix.attr(vmTools, "runInLinuxImage"));
   const runInLinuxVM = nix.thunk(() => nix.attr(vmTools, "runInLinuxVM"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     buildPatchelfInVM: nix.thunk(() => nix.app(runInLinuxVM, patchelf)),
     buildPatchelfInDebian: nix.thunk(() => nix.app(runInLinuxImage, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(patchelf, "pname")),
           version: nix.thunk(() => nix.attr(patchelf, "version")),
           src: nix.thunk(() => nix.attr(patchelf, "src")),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
           memSize: 512n,
         })))))),
     buildHelloInVM: nix.thunk(() => nix.app(runInLinuxVM, hello)),
-    buildStructuredAttrsHelloInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, __structuredAttrs: true })))))),
+    buildStructuredAttrsHelloInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, __structuredAttrs: true })))))),
     buildHelloInFedora: nix.thunk(() => nix.app(runInLinuxImage, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(hello, "pname")),
           version: nix.thunk(() => nix.attr(hello, "version")),
           src: nix.thunk(() => nix.attr(hello, "src")),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
           diskImageFormat: "qcow2",
           memSize: 512n,
         })))))),
-    buildPcmanrmInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(pcmanfm, "overrideAttrs"), (old) => ({ __proto__: pos$4, enableParallelBuilding: false }))))),
+    buildPcmanrmInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(pcmanfm, "overrideAttrs"), (old) => ({ [nix.POS]: pos$4, enableParallelBuilding: false }))))),
     checkPerlInstalledInDebian: nix.thunk(() => nix.app(runInLinuxImage, nix.thunk(() => nix.app(runCommand, "check-perl", nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           diskImage: nix.thunk(() => nix.sel(diskImages, "debian13x86_64")),
           diskImageFormat: "qcow2",
           memSize: 512n,

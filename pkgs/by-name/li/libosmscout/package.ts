@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const marisa = nix.arg($, "marisa");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libosmscout",
       version: "2022.04.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Framstag",
           repo: "libosmscout",
           rev: "4c3b28472864b8e9cdda80a05ec73ef22cb39323",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libxml-2.12-fix.patch",
             url: "https://github.com/Framstag/libosmscout/commit/db7b307de1a1146a6868015a0adfc2e21b7d5e39.patch",
             hash: "sha256-5NDamzb2K18sMVfREnUNksgD2NL7ELzLl83SlGIveO0=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtlocation")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, high-level interfaces for offline location and POI lokup, rendering and routing functionalities based on OpenStreetMap (OSM) data",
         homepage: "https://libosmscout.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libisofs",
       version: "1.5.8.pl02",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "dev.lovelyhq.com",
           owner: "libburnia",
           repo: "libisofs",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dev.lovelyhq.com/libburnia/web/wiki",
         description: "Library to create an ISO-9660 filesystem with extensions like RockRidge or Joliet",
         changelog: nix.thunk(() => nix.str`https://dev.lovelyhq.com/libburnia/libisofs/src/tag/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

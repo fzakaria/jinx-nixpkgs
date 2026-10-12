@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lua-https";
       const version = "0-unstable-2025-02-28";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "love2d",
           repo: "lua-https",
           rev: "e1b77046dd3cf1a9f61ddeb63cb39d47c844c089",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_NSURL_BACKEND", false)),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 
@@ -52,7 +52,7 @@ update-source-version luaPackages.lua-https 0-unstable-$date --rev=$rev
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://love2d.org/wiki/lua-https",
         description: "Simple Lua HTTPS module using native platform backends specifically written for LÖVE 12.0",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -62,7 +62,7 @@ update-source-version luaPackages.lua-https 0-unstable-$date --rev=$rev
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

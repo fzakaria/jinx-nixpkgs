@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gjong",
           repo: "youless-python-bridge",
           tag: version,
           hash: "sha256-BAIwShbIZaX5QOkxajwv6vtL8/EouHA3ELCLAm9ylKA=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUBLISH_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUBLISH_VERSION: version }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["youless_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for YouLess sensors",
         homepage: "https://github.com/gjong/youless-python-bridge",
         changelog: nix.thunk(() => nix.str`https://github.com/gjong/youless-python-bridge/releases/tag/${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

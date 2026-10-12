@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const hmmer = nix.arg($, "hmmer");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1.1",
       pname: "itsx",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://microbiology.se/sw/ITSx_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0lrmy2n3ax7f208k0k8l3yz0j5cpz05hv4hx1nnxzn0c51z1pc31",
         })))),
@@ -31,7 +31,7 @@ mv ITSx bin
 `),
       installPhase: "mkdir -p $out/share/doc && cp -a bin $out/\ncp *pdf $out/share/doc\ncp -r ITSx_db $out/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Improved software detection and extraction of ITS1 and ITS2 from ribosomal ITS sequences of fungi and other eukaryotes for use in environmental sequencing",
         mainProgram: "ITSx",
         homepage: "https://microbiology.se/software/itsx/",

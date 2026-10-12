@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "herwig",
       version: "7.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.hepforge.org/archive/herwig/Herwig-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-JiSBnS3/EFupUuobXPEutvSSbUlRd0pBkHaZ4vVnaGw=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-purpose particle physics event generator",
         homepage: "https://herwig.hepforge.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

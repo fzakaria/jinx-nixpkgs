@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         _file: "the-defs-file.nix",
         config: nix.thunk(() => ({
-          __proto__: pos$2,
-          flags: nix.thunk(() => ({ __proto__: pos$1, "my-flag": 3.14 })),
+          [nix.POS]: pos$2,
+          flags: nix.thunk(() => ({ [nix.POS]: pos$1, "my-flag": 3.14 })),
         })),
       })),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrListWith"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               elemType: nix.thunk(() => nix.sel(types, "anything")),
               asAttrs: true,
               mergeAttrValues: (_name) => (vs) => nix.app(nix.sel(lib, "head"), vs),
             })))),
         })))),
       argv: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       argv: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.sel(options, "flags", "valueMeta", "definitions")))),
     })),
   };

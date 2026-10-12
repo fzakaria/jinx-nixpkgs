@@ -50,62 +50,62 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ergochat"));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         ergochat: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ergo IRC daemon")),
           openFilesLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1024n,
               description: "Maximum number of open files. Limits the clients and server connections.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "generate"), "ergo.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "generated config file from `settings`")),
               description: "Path to configuration file.\nSetting this will skip any configuration done via `settings`\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type")),
               description: "Ergo IRC daemon configuration file.\nhttps://raw.githubusercontent.com/ergochat/ergo/master/default.yaml\n",
               default: nix.thunk(() => ({
-                __proto__: pos$22,
-                network: nix.thunk(() => ({ __proto__: pos$3, name: "testnetwork" })),
+                [nix.POS]: pos$22,
+                network: nix.thunk(() => ({ [nix.POS]: pos$3, name: "testnetwork" })),
                 server: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "example.com",
-                  listeners: nix.thunk(() => ({ __proto__: pos$4, ":6667": nix.thunk(() => ({})) })),
+                  listeners: nix.thunk(() => ({ [nix.POS]: pos$4, ":6667": nix.thunk(() => ({})) })),
                   casemapping: "permissive",
                   "enforce-utf": true,
                   "lookup-hostnames": false,
-                  "ip-cloaking": nix.thunk(() => ({ __proto__: pos$5, enabled: false })),
+                  "ip-cloaking": nix.thunk(() => ({ [nix.POS]: pos$5, enabled: false })),
                   "forward-confirm-hostnames": false,
                   "check-ident": false,
-                  relaymsg: nix.thunk(() => ({ __proto__: pos$6, enabled: false })),
+                  relaymsg: nix.thunk(() => ({ [nix.POS]: pos$6, enabled: false })),
                   "max-sendq": "1M",
-                  "ip-limits": nix.thunk(() => ({ __proto__: pos$7, count: false, throttle: false })),
+                  "ip-limits": nix.thunk(() => ({ [nix.POS]: pos$7, count: false, throttle: false })),
                 })),
-                datastore: nix.thunk(() => ({ __proto__: pos$9, autoupgrade: true, path: "/var/lib/ergo/ircd.db" })),
+                datastore: nix.thunk(() => ({ [nix.POS]: pos$9, autoupgrade: true, path: "/var/lib/ergo/ircd.db" })),
                 accounts: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   "authentication-enabled": true,
                   registration: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     enabled: true,
                     "allow-before-connect": true,
-                    throttling: nix.thunk(() => ({ __proto__: pos$10, enabled: true, duration: "10m", "max-attempts": 30n })),
+                    throttling: nix.thunk(() => ({ [nix.POS]: pos$10, enabled: true, duration: "10m", "max-attempts": 30n })),
                     "bcrypt-cost": 4n,
-                    "email-verification": nix.thunk(() => ({ __proto__: pos$11, enabled: false })),
+                    "email-verification": nix.thunk(() => ({ [nix.POS]: pos$11, enabled: false })),
                   })),
                   multiclient: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     enabled: true,
                     "allowed-by-default": true,
                     "always-on": "opt-out",
@@ -113,12 +113,12 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 channels: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   "default-modes": "+ntC",
-                  registration: nix.thunk(() => ({ __proto__: pos$15, enabled: true })),
+                  registration: nix.thunk(() => ({ [nix.POS]: pos$15, enabled: true })),
                 })),
                 limits: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   nicklen: 32n,
                   identlen: 20n,
                   channellen: 64n,
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
                   topiclen: 390n,
                 })),
                 history: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enabled: true,
                   "channel-length": 2048n,
                   "client-length": 256n,
@@ -136,18 +136,18 @@ export default nix.lambda((args) => (() => {
                   "chathistory-maxmessages": 100n,
                   "znc-maxmessages": 2048n,
                   restrictions: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     "expire-time": "1w",
                     "query-cutoff": "none",
                     "grace-period": "1h",
                   })),
                   retention: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     "allow-individual-delete": false,
                     "enable-account-indexing": false,
                   })),
                   "tagmsg-storage": nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     default: false,
                     whitelist: nix.thunk(() => ["+draft/react", "+react"]),
                   })),
@@ -158,32 +158,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         environment: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           etc: nix.thunk(() => ({
-            __proto__: pos$28,
-            "ergo.yaml": nix.thunk(() => ({ __proto__: pos$27, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
+            [nix.POS]: pos$28,
+            "ergo.yaml": nix.thunk(() => ({ [nix.POS]: pos$27, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           ergochat: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(options, "services", "ergochat", "settings", "default")))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             ergochat: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               description: "Ergo IRC daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               reloadTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configFile"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 Type: "notify-reload",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ergochat")}/bin/ergo run --conf /etc/ergo.yaml`),
                 DynamicUser: true,
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

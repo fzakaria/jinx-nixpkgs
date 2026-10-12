@@ -27,35 +27,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "vector"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         vector: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Vector, a high-performance observability data pipeline")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vector", nix.thunk(() => ({})))),
           journaldAccess: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Vector to access journald.\n",
             })))),
           gracefulShutdownLimitSecs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
               default: 60n,
               description: "Set the duration in seconds to wait for graceful shutdown after SIGINT or SIGTERM are received.\nAfter the duration has passed, Vector will force shutdown.\n",
             })))),
           validateConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable the checking of the vector config during build time. This should be disabled when interpolating environment variables.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
               default: nix.thunk(() => ({})),
               description: "Specify the configuration for Vector in Nix.\n",
@@ -64,17 +64,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             vector: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Vector event and log aggregator",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -83,13 +83,13 @@ export default nix.lambda((args) => (() => {
                 const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
                 const conf = nix.thunk(() => nix.app(nix.sel(format, "generate"), "vector.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
                 const validatedConfig = (file) => nix.app(nix.sel(pkgs, "runCommand"), "validate-vector-conf", nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   })), nix.thunk(() => nix.str`vector validate --no-environment "${file}"
 ln -s "${file}" "$out"
 `));
                 return {
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${(nix.asBool(nix.sel(cfg, "validateConfig")) ? nix.app(validatedConfig, conf) : nix.force(conf))}  --graceful-shutdown-limit-secs ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "gracefulShutdownLimitSecs")))}`),
                   DynamicUser: true,
                   Restart: "always",
@@ -99,7 +99,7 @@ ln -s "${file}" "$out"
                   SupplementaryGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "journaldAccess")), "systemd-journal")),
                 };
               })()),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$11, StartLimitIntervalSec: 10n, StartLimitBurst: 5n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, StartLimitIntervalSec: 10n, StartLimitBurst: 5n })),
             })),
           })),
         })),

@@ -32,7 +32,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Minimalist builder for Rust",
         mainProgram: "minicargo",
         longDescription: "A minimalist builder for Rust, similar to Cargo but written in C++.\nDesigned to work with mrustc to build Rust projects\n(like the Rust compiler itself).\n",
@@ -49,7 +49,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         src,
         version,

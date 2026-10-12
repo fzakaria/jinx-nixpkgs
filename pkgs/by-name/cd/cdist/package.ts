@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdist",
       version: "7.0.0",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "man", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.ungleich.ch",
           owner: "ungleich-public",
           repo: "cdist",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cdist"]),
       postInstall: "mkdir -p $out/share\nmv docs/dist/man $out/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalistic configuration management system",
         homepage: "https://www.sdi.st",
         changelog: nix.thunk(() => nix.str`https://code.ungleich.ch/ungleich-public/cdist/src/tag/${nix.sel(finalAttrs, "version")}/docs/changelog`),

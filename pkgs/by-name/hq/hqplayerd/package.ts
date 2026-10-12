@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hqplayerd";
       const version = "5.13.2-39";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.signalyst.eu/bins/hqplayerd/fc37/hqplayerd-${version}.fc37.x86_64.rpm`),
           hash: "sha256-4wB32xFYpGcBdLqSZFkNXoS7IerPS8f6KIpn13ulqUY=",
         }))));
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       const postInstall = "substituteInPlace $out/lib/systemd/system/hqplayerd.service \\\n  --replace /usr/bin/hqplayerd $out/bin/hqplayerd \\\n  --replace \"NetworkManager-wait-online.service\" \"\"\n";
       const doInstallCheck = true;
       const installCheckPhase = "addDriverRunpath $out/bin/hqplayerd\n$out/bin/hqplayerd --version\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, rygel: rygel_hqplayerd }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, rygel: rygel_hqplayerd }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: true,
         homepage: "https://www.signalyst.com/custom.html",
         description: "High-end upsampling multichannel software embedded HD-audio player",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

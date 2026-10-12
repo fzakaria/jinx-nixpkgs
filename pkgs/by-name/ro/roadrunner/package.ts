@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roadrunner",
       version: "2025.1.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roadrunner-server",
           repo: "roadrunner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-T7JWA/O25s7A/jSrWJJF4oJbQD0hQyCRt6vFiuz8kwE=",
         })))),
       vendorHash: "sha256-OhfqfLYHCoBU8QyrpaHwKXtGZf5eK8ocfTyjtZxsgSg=",
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       subPackages: nix.thunk(() => ["cmd/rr"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/roadrunner-server/roadrunner/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "High-performance PHP application server, process manager written in Go and powered with plugins",
         homepage: "https://roadrunner.dev",

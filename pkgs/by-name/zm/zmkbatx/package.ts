@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const simplebluez$ = nix.thunk(() => nix.app(nix.sel(simplebluez, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "0.7.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenBluetoothToolbox",
           repo: "SimpleBLE",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CPBdPnBeQ0c3VjSX0Op6nCHF3w0MdXGULbk1aavr+LM=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zmkbatx",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mh4x0f",
           repo: "zmkBATx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace zmkBATx.pro --replace-fail "/usr/lib/x86_64-linux-gnu/dbus-1.0/include" "${nix.sel(dbus, "lib")}/lib/dbus-1.0/include"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Battery monitoring for ZMK split keyboards",
         longDescription: "Opensource tool for peripheral battery monitoring zmk split keyboard over BLE for linux.",
         homepage: "https://github.com/mh4x0f/zmkBATx",

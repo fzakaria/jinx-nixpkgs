@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alsa-topology-conf",
       version: "1.2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://alsa/lib/alsa-topology-conf-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-98W64VRavNc4JLyX9OcsNA4Rq+oYi6DxwG9eCtd2sXk=",
         })))),
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/alsa\ncp -r topology $out/share/alsa\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.alsa-project.org/",
         description: "ALSA topology configuration files",
         longDescription: "The Advanced Linux Sound Architecture (ALSA) provides audio and\nMIDI functionality to the Linux-based operating system.\n",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "citruz",
           repo: "beacontools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["ahocorapy"]);
       const dependencies = nix.thunk(() => [ahocorapy, construct]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         scan: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pybluez]))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["beacontools"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/citruz/beacontools/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for working with various types of Bluetooth LE Beacons",
         homepage: "https://github.com/citruz/beacontools",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

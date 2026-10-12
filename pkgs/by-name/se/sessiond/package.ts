@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const withConsoleKit = nix.argOr($, "withConsoleKit", () => true);
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "sessiond",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           did: "did:plc:vj3bxta3i3cp26nn46yideoh",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X2ePs10hjZNOcHAJuN4J5KeBQaW24E2jMRq0biNdY3E=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [linux_pam]),
       postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p $out/lib/security\nmv $out/lib/libpam.so $out/lib/security/pam_sessiond.so\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sessionctl \\\n  --bash <($out/bin/sessionctl completions bash) \\\n  --zsh <($out/bin/sessionctl completions zsh) \\\n  --fish <($out/bin/sessionctl completions fish) \\\n  --nushell <($out/bin/sessionctl completions nushell)\n")), nix.app(nix.sel(lib, "optionalString"), withConsoleKit, "install -Dm644 data/dbus-1/system.d/org.freedesktop.ConsoleKit.conf \\\n  $out/share/dbus-1/system.d/org.freedesktop.ConsoleKit.conf\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Session management daemon",
         homepage: "https://tangled.org/r0chd.pl/sessiond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

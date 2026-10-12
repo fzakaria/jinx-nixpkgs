@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const extraLibs = nix.argOr($, "extraLibs", () => nix.selOr(config, () => [], "slock", "extraLibs"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "slock",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/slock-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3tk55DgIU3HtFkNhM3QfpWRZn/Q0aZtMv/h6r1qdong=",
         })))),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       patches: patches,
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "git://git.suckless.org/slock" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.suckless.org/slock" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://tools.suckless.org/slock",
         description: "Simple X display locker",
         mainProgram: "slock",

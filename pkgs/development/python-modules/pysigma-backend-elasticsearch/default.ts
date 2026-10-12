@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysigma-backend-elasticsearch",
       version: "2.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SigmaHQ",
           repo: "pySigma-backend-elasticsearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook, requests, writableTmpDirAsHomeHook]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to support Elasticsearch for pySigma",
         homepage: "https://github.com/SigmaHQ/pySigma-backend-elasticsearch",
         changelog: nix.thunk(() => nix.str`https://github.com/SigmaHQ/pySigma-backend-elasticsearch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const version = "2.9.9.2";
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       pname: "execline",
       sha256: "sha256-kI7U2zprOiOiBdj9TPKnEIkVbyrq4PVGVgRar60t7jI=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "execline-man-pages",
           version: "2.9.9.1.1",
           sha256: "sha256-SMQLeiS03fW9HGDmk+MMfUbnvRGqTzXc/4CuS5LW18U=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small scripting language, to be used in place of a shell in non-interactive scripts",
       })),
       outputs: nix.thunk(() => ["bin", "lib", "dev", "doc", "out"]),
@@ -71,15 +71,15 @@ $CC \\
   $(pkg-config --libs libskarnet)
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         writeScript: (name) => (options) => (script) => nix.app(writeTextFile, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: name,
             text: nix.thunk(() => nix.str`#!${execline}/bin/execlineb ${nix.builtins.toString(options)}
 ${script}
 `),
             executable: true,
-            derivationArgs: nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [execline]) })),
+            derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [execline]) })),
             checkPhase: "echo redirfd -w 1 /dev/null echo >test.el\ncat <$target >>test.el\nexeclineb -W test.el\n",
           }))),
       })),

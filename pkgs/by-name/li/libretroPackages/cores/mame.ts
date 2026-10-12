@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "mame",
       version: "0-unstable-2026-09-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "mame",
           rev: "9069f39340f2d2b1795df8e71bb1d3d0fbc76598",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       extraBuildInputs: nix.thunk(() => [alsa_lib, libGLU, libGL]),
       makeFlags: nix.thunk(() => ["ARCH="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of MAME to libretro",
         homepage: "https://github.com/libretro/mame",
         license: nix.thunk(() => (() => {

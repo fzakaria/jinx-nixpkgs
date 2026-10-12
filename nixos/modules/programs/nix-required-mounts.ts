@@ -62,16 +62,16 @@ export default nix.lambda((args) => (() => {
   const Mount = nix.thunk(() => (() => {
     const w = nix.withScope(lib, null);
     return nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         options: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Host path to mount",
             })))),
           guest: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Location in the sandbox to mount the host path at",
             })))),
@@ -85,23 +85,23 @@ export default nix.lambda((args) => (() => {
         const config_1 = nix.arg($_1, "config");
         const name = nix.arg($_1, "name");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           options: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             onFeatures: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                 description: "Which requiredSystemFeatures should trigger relaxation of the sandbox",
                 default: nix.thunk(() => [name]),
               })))),
             paths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "path")), Mount]))))),
                 description: "A list of glob patterns, indicating which paths to expose to the sandbox",
               })))),
             unsafeFollowSymlinks: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Instructs the hook to mount the symlink targets as well, when any of\nthe `paths` contain symlinks. This may not work correctly with glob\npatterns.\n")),
             safePrefixes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: nix.thunk(() => [nix.thunk(() => nix.sel(nix.builtins, "storeDir"))]),
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")))),
                 description: "A list of path prefixes that do not need and shall not be searched recursively for further symlink targets. Everything in the nix store does not need to be searched as the derivation already calculcated the full closure of all nix store paths for the drivers package.",
@@ -115,15 +115,15 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(config, "hardware", "graphics", "package")),
   ], nix.sel(config, "hardware", "graphics", "extraPackages")));
   const defaults = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     "nvidia-gpu": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       onFeatures: nix.thunk(() => nix.sel(package$, "allowedPatterns", "nvidia-gpu", "onFeatures")),
       paths: nix.thunk(() => nix.concat(nix.sel(package$, "allowedPatterns", "nvidia-gpu", "paths"), driverPaths)),
       unsafeFollowSymlinks: true,
     })),
     zluda: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       onFeatures: nix.thunk(() => ["amd-gpu", "cuda", "gpu", "opengl"]),
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.sel(pkgs, "addDriverRunpath", "driverLink")),
@@ -136,44 +136,44 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_2, "SomeoneSerge"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       programs: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         "nix-required-mounts": nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Expose extra paths to the sandbox depending on derivations' requiredSystemFeatures")),
           presets: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "nvidia-gpu": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Declare the support for derivations that require an Nvidia GPU to be\navailable, e.g. derivations with `requiredSystemFeatures = [ \"cuda\" ]`.\nThis mounts the corresponding userspace drivers and device nodes in the\nsandbox, but only for derivations that request these special features.\n\nYou may extend or override the exposed paths via the\n`programs.nix-required-mounts.allowedPatterns.nvidia-gpu.paths` option.\n")),
             })),
             zluda: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Same as `programs.nix-required-mounts.presets.nvidia-gpu` but adds paths\nto the sandbox that are needed for running CUDA applications on top of\nthe ZLUDA translation layer combined with AMD GPUs.\n\nYou may extend or override the exposed paths via the\n`programs.nix-required-mounts.allowedPatterns.zluda.paths` option.\n")),
             })),
           })),
           allowedPatterns: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), Pattern)),
                 description: "The hook config, describing which paths to mount for which system features",
                 default: nix.thunk(() => ({})),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  opengl.paths = config.hardware.graphics.extraPackages ++ [\n    config.graphics.opengl.package\n    pkgs.addDriverRunpath.driverLink\n    \"/dev/dri\"\n  ];\n}\n")),
                 example: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   "require-ipfs": nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     paths: nix.thunk(() => ["/ipfs"]),
                     onFeatures: nix.thunk(() => ["ipfs"]),
                   })),
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
               })));
           })()),
           extraWrapperArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_3, "listOf"), nix.thunk(() => nix.lookup(w_3, "str")));
@@ -190,10 +190,10 @@ export default nix.lambda((args) => (() => {
               description: "List of extra arguments (such as `--add-flags -v`) to pass to the hook's wrapper",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.app(nix.sel(package$, "override"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   allowedPatterns: nix.thunk(() => nix.attr(cfg, "allowedPatterns")),
                   extraWrapperArgs: nix.thunk(() => nix.attr(cfg, "extraWrapperArgs")),
                 })))),
@@ -205,70 +205,70 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             nix: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "pre-build-hook": nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "presets", "nvidia-gpu", "enable")), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               hardware: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 graphics: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
               nix: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "system-features": nix.thunk(() => nix.sel(cfg, "allowedPatterns", "nvidia-gpu", "onFeatures")),
                 })),
               })),
               programs: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 "nix-required-mounts": nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   allowedPatterns: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     "nvidia-gpu": nix.thunk(() => nix.attr(defaults, "nvidia-gpu")),
                   })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "presets", "zluda", "enable")), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               hardware: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 graphics: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
                 amdgpu: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   zluda: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   })),
                 })),
               })),
               nix: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   "system-features": nix.thunk(() => nix.sel(cfg, "allowedPatterns", "zluda", "onFeatures")),
                 })),
               })),
               programs: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 "nix-required-mounts": nix.thunk(() => ({
-                  __proto__: pos$44,
-                  allowedPatterns: nix.thunk(() => ({ __proto__: pos$43, zluda: nix.thunk(() => nix.attr(defaults, "zluda")) })),
+                  [nix.POS]: pos$44,
+                  allowedPatterns: nix.thunk(() => ({ [nix.POS]: pos$43, zluda: nix.thunk(() => nix.attr(defaults, "zluda")) })),
                 })),
               })),
             })))),

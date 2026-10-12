@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "knot_exporter",
           version: version,
           hash: "sha256-MFQuB4jZ3+XbOXCRtE30e5jqS2ndh+i9ItReIo7nP1c=",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["knot_exporter"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, knot: nix.thunk(() => nix.attr(from, "knot")) };
+          return { [nix.POS]: pos$2, knot: nix.thunk(() => nix.attr(from, "knot")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for Knot DNS",
         homepage: "https://gitlab.nic.cz/knot/knot-dns/-/tree/master/python/knot_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "knot-exporter",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

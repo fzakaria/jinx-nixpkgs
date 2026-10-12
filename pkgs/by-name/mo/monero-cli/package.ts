@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const protobuf_21 = nix.arg($, "protobuf_21");
   const udev = nix.arg($, "udev");
   const supercop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "monero-project",
       repo: "supercop",
       rev: "633500ad8c8759995049ccd022107d1fa8a1bbc9",
       hash: "sha256-26UmESotSWnQ21VbAYEappLpkEMyl0jiuCaezRYd/sE=",
     }))));
   const trezor_common = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "trezor",
       repo: "trezor-common",
       rev: "bff7fdfe436c727982cc553bdfb29a9021b423b0",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pname = "monero-cli";
       const version = "0.18.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "monero-project",
           repo: "monero",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,7 +72,7 @@ cp -r . $source
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBoost_USE_MULTITHREADED=OFF"), nix.app(nix.sel(lib, "optionals"), trezorSupport, nix.thunk(() => ["-DUSE_DEVICE_TREZOR=ON"])))));
       const outputs = nix.thunk(() => ["out", "source"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Private, secure, untraceable currency",
         homepage: "https://getmonero.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -92,7 +92,7 @@ cp -r . $source
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

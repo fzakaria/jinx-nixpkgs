@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "nix"));
   const flakeRefFormat = "The format of flake references is described in {manpage}`nix3-flake(1)`.\n";
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       nix: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         registry: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => (() => {
                   const referenceAttrs = nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
@@ -63,46 +63,46 @@ export default nix.lambda((args) => (() => {
                     const config_1 = nix.arg($_1, "config");
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       options: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: referenceAttrs,
-                            example: nix.thunk(() => ({ __proto__: pos$1, type: "indirect", id: "nixpkgs" })),
+                            example: nix.thunk(() => ({ [nix.POS]: pos$1, type: "indirect", id: "nixpkgs" })),
                             description: nix.thunk(() => nix.str`The flake reference to be rewritten.
 
 ${flakeRefFormat}
 `),
                           })))),
                         to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: referenceAttrs,
-                            example: nix.thunk(() => ({ __proto__: pos$3, type: "github", owner: "my-org", repo: "my-nixpkgs" })),
+                            example: nix.thunk(() => ({ [nix.POS]: pos$3, type: "github", owner: "my-org", repo: "my-nixpkgs" })),
                             description: nix.thunk(() => nix.str`The flake reference {option}\`from\` is rewritten to.
 
 ${flakeRefFormat}
 `),
                           })))),
                         flake: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
                             default: null,
                             example: nix.thunk(() => nix.app(literalExpression, "nixpkgs")),
                             description: "The flake input {option}`from` is rewritten to.\n",
                           })))),
                         exact: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                             description: "Whether the {option}`from` reference needs to match exactly. If set,\na {option}`from` reference like `nixpkgs` does not\nmatch with a reference like `nixpkgs/nixos-20.03`.\n",
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$10,
-                        from: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({ __proto__: pos$8, type: "indirect", id: name })))),
+                        [nix.POS]: pos$10,
+                        from: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({ [nix.POS]: pos$8, type: "indirect", id: name })))),
                         to: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config_1, "flake"), null)), nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.update({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               type: "path",
                               path: nix.thunk(() => nix.sel(config_1, "flake", "outPath")),
                             }, nix.app(filterAttrs, (n) => (_) => (nix.asBool((nix.asBool(nix.eq(n, "lastModified")) || nix.asBool(nix.eq(n, "rev")))) || nix.asBool(nix.eq(n, "narHash"))), nix.thunk(() => nix.sel(config_1, "flake"))))))))),
@@ -116,18 +116,18 @@ ${flakeRefFormat}
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "nix/registry.json": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   version: 2n,
                   flakes: nix.thunk(() => nix.app(mapAttrsToList, (n) => (v) => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       from: nix.thunk(() => nix.attr(v, "from")),
                       to: nix.thunk(() => nix.attr(v, "to")),
                       exact: nix.thunk(() => nix.attr(v, "exact")),

@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pitivi",
       version: "2023.03",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pitivi/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pitivi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "PX1OFEeavqMPvF613BKgxwErxqW2huw6mQxo8YpBS/M=",
         })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-editing-services")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-ugly")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
 `),
       postPatch: "patchShebangs ./getenvvar.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "pitivi", versionPolicy: "none" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "pitivi", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Non-Linear video editor utilizing the power of GStreamer",
         homepage: "http://pitivi.org/",
         longDescription: "Pitivi is a video editor built upon the GStreamer Editing Services.\nIt aims to be an intuitive and flexible application\nthat can appeal to newbies and professionals alike.\n",

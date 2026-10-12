@@ -28,49 +28,49 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "samsung-unified-linux-driver_1_00_36"));
   const pkg = nix.thunk(() => nix.sel(pkgs, "samsung-unified-linux-driver_1_00_36"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "samsung-unified-linux-driver_1_00_36": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "samsung-unified-linux-driver_1_00_36")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
-          printing: nix.thunk(() => ({ __proto__: pos$4, drivers: nix.thunk(() => [pkg]) })),
+          [nix.POS]: pos$5,
+          printing: nix.thunk(() => ({ [nix.POS]: pos$4, drivers: nix.thunk(() => [pkg]) })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$7,
-          sane: nix.thunk(() => ({ __proto__: pos$6, extraBackends: nix.thunk(() => [pkg]) })),
+          [nix.POS]: pos$7,
+          sane: nix.thunk(() => ({ [nix.POS]: pos$6, extraBackends: nix.thunk(() => [pkg]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "samsung/scanner/share/oem.conf": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.str`${pkg}/etc/samsung/scanner/share/oem.conf`),
             })),
             "smfp-common/scanner/share/libsane-smfp.cfg": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               source: nix.thunk(() => nix.str`${pkg}/etc/smfp-common/scanner/share/libsane-smfp.cfg`),
             })),
             "smfp-common/scanner/share/pagesize.xml": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               source: nix.thunk(() => nix.str`${pkg}/etc/smfp-common/scanner/share/pagesize.xml`),
             })),
             "sane.d/smfp.conf": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.str`${pkg}/etc/sane.d/smfp.conf`),
             })),
             "sane.d/dll.d/smfp-scanner.conf": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.str`${pkg}/etc/sane.d/dll.d/smfp-scanner.conf`),
             })),
           })),

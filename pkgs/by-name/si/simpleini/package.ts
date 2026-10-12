@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "simpleini",
       version: "4.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`simpleini-sources-${nix.sel(finalAttrs, "version")}`),
           owner: "brofield",
           repo: "simpleini",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SIMPLEINI_USE_SYSTEM_GTEST", true)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform C++ library providing a simple API to read and write INI-style configuration files",
         longDescription: "A cross-platform library that provides a simple API to read and write\nINI-style configuration files. It supports data files in ASCII, MBCS and\nUnicode. It is designed explicitly to be portable to any platform and has\nbeen tested on Windows, WinCE and Linux. Released as open-source and free\nusing the MIT licence.\n",
         homepage: "https://github.com/brofield/simpleini",

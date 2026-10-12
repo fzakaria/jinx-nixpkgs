@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bashate = nix.arg($, "bashate");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kolla",
       version: "21.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "kolla",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ sed -e 's/git_info = .*/git_info = "${nix.sel(finalAttrs, "version")}"/' -i koll
 `),
       pythonRelaxDeps: nix.thunk(() => ["hacking"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => (() => {
@@ -68,7 +68,7 @@ sed -e 's/git_info = .*/git_info = "${nix.sel(finalAttrs, "version")}"/' -i koll
       })()),
       checkPhase: "runHook preCheck\nstestr run\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides production-ready containers and deployment tools for operating OpenStack clouds",
         mainProgram: "kolla-build",
         homepage: "https://opendev.org/openstack/kolla",

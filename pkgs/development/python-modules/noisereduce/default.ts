@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timsainb",
           repo: "noisereduce",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [joblib, matplotlib, numpy, scipy, tqdm]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, PyTorch: nix.thunk(() => [torch]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, PyTorch: nix.thunk(() => [torch]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["noisereduce"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Noise reduction using spectral gating (speech, bioacoustics, audio, time-domain signals",
         homepage: "https://github.com/timsainb/noisereduce",
         changelog: nix.thunk(() => nix.str`https://github.com/timsainb/noisereduce/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

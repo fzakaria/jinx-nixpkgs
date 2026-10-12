@@ -31,49 +31,49 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const wine = nix.thunk(() => nix.sel(wineWow64Packages, "yabridge"));
   const asio = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "chriskohlhoff",
       repo: "asio",
       tag: "asio-1-28-2",
       hash: "sha256-8Sw0LuAqZFw+dxlsTstlwz5oaz3+ZnKBuvSdLW6/DKQ=",
     }))));
   const bitsery = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "fraillt",
       repo: "bitsery",
       tag: "v5.2.3",
       hash: "sha256-rmfcIYCrANycFuLtibQ5wOPwpMVhpTMpdGsUfpR3YsM=",
     }))));
   const clap = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "free-audio",
       repo: "clap",
       tag: "1.1.9",
       hash: "sha256-z2P0U2NkDK1/5oDV35jn/pTXCcspuM1y2RgZyYVVO3w=",
     }))));
   const function2 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "Naios",
       repo: "function2",
       tag: "4.2.3",
       hash: "sha256-+fzntJn1fRifOgJhh5yiv+sWR9pyaeeEi2c1+lqX3X8=",
     }))));
   const ghc_filesystem = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "gulrak",
       repo: "filesystem",
       tag: "v1.5.14",
       hash: "sha256-XZ0IxyNIAs2tegktOGQevkLPbWHam/AOFT+M6wAWPFg=",
     }))));
   const tomlplusplus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "marzer",
       repo: "tomlplusplus",
       tag: "v3.4.0",
       hash: "sha256-h5tbO0Rv2tZezY58yUbyRVpsfRjY3i+5TPkkxr6La8M=",
     }))));
   const vst3 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "robbert-vdh",
       repo: "vst3sdk",
       tag: "v3.7.7_build_19-patched",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-LsPHPoAL21XOKmF1Wl/tvLJGzjaCLjaDAcUtDvXdXSU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "yabridge",
       version: "5.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "robbert-vdh",
           repo: "yabridge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
 `),
       patches: nix.thunk(() => [
         nix.path(here, "./libyabridge-drop-32-bit-support.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ __proto__: pos$9, libdbus: nix.thunk(() => nix.sel(dbus, "lib")), wine: wine })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ [nix.POS]: pos$9, libdbus: nix.thunk(() => nix.sel(dbus, "lib")), wine: wine })))),
         nix.path(here, "./libyabridge-from-nix-profiles.patch"),
       ]),
       postPatch: "patchShebangs .\n(\n  cd subprojects\n  cp packagefiles/asio/* asio\n  cp packagefiles/bitsery/* bitsery\n  cp packagefiles/clap/* clap\n  cp packagefiles/function2/* function2\n  cp packagefiles/ghc_filesystem/* ghc_filesystem\n)\n",
@@ -123,11 +123,11 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Modern and transparent way to use Windows VST2 and VST3 plugins on Linux",
         homepage: "https://github.com/robbert-vdh/yabridge",
         changelog: nix.thunk(() => nix.str`https://github.com/robbert-vdh/yabridge/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

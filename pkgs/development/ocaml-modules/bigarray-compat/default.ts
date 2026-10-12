@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bigarray-compat",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/bigarray-compat/releases/download/v${nix.sel(finalAttrs, "version")}/bigarray-compat-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Q0RppI1chOgNYhsT2V6wZ/gTjBZQof1a5gCaGbk3GNU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compatibility library to use Stdlib.Bigarray when possible",
         homepage: "https://github.com/mirage/bigarray-compat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

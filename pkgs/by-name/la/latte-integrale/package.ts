@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const ntl = nix.arg($, "ntl");
   const cddlib = nix.arg($, "cddlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "latte-integrale",
       version: "1.7.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/latte-int/latte/releases/download/version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/latte-int-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-AGwQ6+XVv9ybFZy6YmSkQyhh/nY84F/oIWJKt9P8IXA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/latte-int/latte/commit/6dbf7f07d5c9e1f3afe793f782d191d4465088ae.patch",
             excludes: nix.thunk(() => ["code/latte/sqlite/IntegrationDB.h"]),
             hash: "sha256-i7c11y54OLuJ0m7PBnhEoAzJzxC842JU7A6TOtTz06k=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gmp, ntl, cddlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software for counting lattice points and integration over convex polytopes",
         homepage: "https://www.math.ucdavis.edu/~latte/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

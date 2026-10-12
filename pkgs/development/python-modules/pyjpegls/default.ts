@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydicom",
           repo: "pyjpegls",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ cp -ar ${nix.sel(charls, "src")} lib/charls
       const pythonImportsCheck = nix.thunk(() => ["jpeg_ls"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JPEG-LS for Python via CharLS C++ Library",
         homepage: "https://github.com/pydicom/pyjpegls",
         changelog: nix.thunk(() => nix.str`https://github.com/pydicom/pyjpegls/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ cp -ar ${nix.sel(charls, "src")} lib/charls
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

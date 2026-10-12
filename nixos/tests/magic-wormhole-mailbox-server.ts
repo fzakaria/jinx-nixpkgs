@@ -24,36 +24,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "magic-wormhole-mailbox-server",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mmahut"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       server: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [4000n]) })),
+          [nix.POS]: pos$3,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [4000n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
-          "magic-wormhole-mailbox-server": nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$5,
+          "magic-wormhole-mailbox-server": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
         })),
       })),
       client_alice: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+            [nix.POS]: pos$8,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "magic-wormhole"))]),
           })),
         };
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "magic-wormhole"))]),
           })),
         };

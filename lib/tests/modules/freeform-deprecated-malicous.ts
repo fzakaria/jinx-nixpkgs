@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       either: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "int")))),
             })))),
         })))),
       eitherBehindNullor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "int")))))),
             })))),
         })))),
       oneOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(types, "int")),
                   nix.thunk(() => nix.sel(types, "int")),
@@ -48,8 +48,8 @@ export default nix.lambda((args) => (() => {
             })))),
         })))),
       number: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
-          type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ __proto__: pos$7, freeformType: nix.thunk(() => nix.sel(types, "number")) })))),
+          [nix.POS]: pos$8,
+          type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$7, freeformType: nix.thunk(() => nix.sel(types, "number")) })))),
         })))),
     })),
   };

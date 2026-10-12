@@ -24,10 +24,10 @@ export default nix.lambda((args) => (() => {
   const oidcClientSecret = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "oidc-client-secret", "client-secret"));
   const headscaleApiKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "headscale-api-key", "headscale-api-key"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "headplane",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -37,28 +37,28 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           headscale: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               server_url: "http://127.0.0.1",
               ip_prefixes: nix.thunk(() => ["100.64.0.0/10"]),
-              dns: nix.thunk(() => ({ __proto__: pos$2, base_domain: "tailnet", override_local_dns: false })),
+              dns: nix.thunk(() => ({ [nix.POS]: pos$2, base_domain: "tailnet", override_local_dns: false })),
             })),
           })),
           headplane: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               server: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 cookie_secret_path: cookieSecret,
                 cookie_secure: false,
                 base_url: "http://127.0.0.1:3000",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
                 cookie_domain: "127.0.0.1",
               })),
               oidc: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enabled: false,
                 issuer: "https://provider.example.com/issuer-url",
                 client_id: "your-client-id",

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj6510dwlpr";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006614/mfcj6510dwlpr-${version}.i386.deb`),
           sha256: "1ccvx393pqavsgzd8igrzlin5jrsf01d3acyvwqd1d0yz5jgqy6d",
         }))));
@@ -78,7 +78,7 @@ wrapProgram $out/opt/brother/Printers/mfcj6510dw/lpd/filtermfcj6510dw \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnused, file, ghostscript, a2ps]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-J6510DW LPR driver",
         downloadPage: "http://support.brother.com/g/b/downloadlist.aspx?c=us&lang=en&prod=mfcj6510dw_all&os=128",
         homepage: "http://www.brother.com/",
@@ -100,7 +100,7 @@ wrapProgram $out/opt/brother/Printers/mfcj6510dw/lpd/filtermfcj6510dw \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

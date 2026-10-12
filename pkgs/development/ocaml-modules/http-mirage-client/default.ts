@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "http-mirage-client",
       version: "0.0.11",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/http-mirage-client/releases/download/v${nix.sel(finalAttrs, "version")}/http-mirage-client-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-sNl/GvHATfLKymy5f91GUJkyjOgjpYIouuFntIzE+CM=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest_lwt, mirage_crypto_rng]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP client for MirageOS",
         homepage: "https://github.com/robur-coop/http-mirage-client",
         changelog: nix.thunk(() => nix.str`https://github.com/robur-coop/http-mirage-client/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

@@ -29,47 +29,47 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     port: 9103n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       collectdBinary: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(mkEnableOption, "collectd binary protocol receiver")),
         authFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: null,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             description: "File mapping user names to pre-shared keys (passwords).",
           })))),
         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "port")),
             default: 25826n,
             description: "Network address on which to accept collectd binary network packets.",
           })))),
         listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "0.0.0.0",
             description: "Address to listen on for binary network packets.\n",
           })))),
         securityLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["None", "Sign", "Encrypt"]))),
             default: "None",
             description: "Minimum required security level for accepted packets.\n",
           })))),
       })),
       logFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["logfmt", "json"]))),
           default: "logfmt",
           example: "json",
           description: "Set the log format.\n",
         })))),
       logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warn", "error", "fatal"]))),
           default: "info",
           description: "Only log messages with the given severity or above.\n",
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
 --collectd.security-level ${nix.sel(cfg, "collectdBinary", "securityLevel")}
 `)));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-collectd-exporter")}/bin/collectd_exporter \\
   --log.format ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "logFormat")))} \\
   --log.level ${nix.sel(cfg, "logLevel")} \\

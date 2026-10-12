@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const yq_go = nix.arg($, "yq-go");
   const version = "1.2.6";
   return nix.app(nix.sel(flutter338, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "proxypin",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wanghongenpin",
           repo: "proxypin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       postInstall: "substituteInPlace linux/proxy-pin.desktop \\\n  --replace-fail \"/opt/proxypin/data/flutter_assets/assets/icon.png\" \"proxypin\" \\\n  --replace-fail \"/opt/proxypin/\" \"\"\ninstall -D --mode=0644 linux/proxy-pin.desktop $out/share/applications/proxypin.desktop\ninstall -D --mode=0644 assets/icon.png $out/share/icons/hicolor/256x256/apps/proxypin.png\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-proxypin", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} --use-github-releases proxypin
 export HOME=$(mktemp -d)
 src=$(nix build --no-link --print-out-paths .#proxypin.src)
@@ -50,7 +50,7 @@ $(nix eval --file . dart.fetchGitHashesScript) --input $PACKAGE_DIR/pubspec.lock
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Capture HTTP(S) traffic software",
         homepage: "https://github.com/wanghongenpin/proxypin",
         mainProgram: "ProxyPin",

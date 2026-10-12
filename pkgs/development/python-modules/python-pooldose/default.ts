@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-pooldose",
       version: "0.9.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmaertin",
           repo: "python-pooldose",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pooldose"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/lmaertin/python-pooldose/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Unofficial async Python client for SEKO PoolDose devices",
         homepage: "https://github.com/lmaertin/python-pooldose",

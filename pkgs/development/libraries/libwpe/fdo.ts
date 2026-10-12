@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wpebackend-fdo";
       const version = "1.16.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://wpewebkit.org/releases/wpebackend-fdo-${version}.tar.xz`),
           sha256: "sha256-VErhQBL45+QmuMtSLrCqqsgxrXw1YB0c8x03Zw4Ouzs=",
         }))));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, meson, ninja, wayland_scanner]);
       const buildInputs = nix.thunk(() => [wayland, libepoxy, glib, libwpe, libxkbcommon, libGL, libx11]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Freedesktop.org backend for WPE WebKit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://wpewebkit.org",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

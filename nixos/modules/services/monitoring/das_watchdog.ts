@@ -21,31 +21,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const das_watchdog = nix.thunk(() => nix.attr(pkgs, "das_watchdog"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         das_watchdog: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "realtime watchdog")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "das_watchdog", "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
-        environment: nix.thunk(() => ({ __proto__: pos$4, systemPackages: nix.thunk(() => [das_watchdog]) })),
+        [nix.POS]: pos$9,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$4, systemPackages: nix.thunk(() => [das_watchdog]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             das_watchdog: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Watchdog to ensure a realtime process won't hang the machine",
               after: nix.thunk(() => ["multi-user.target", "sound.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 User: "root",
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${das_watchdog}/bin/das_watchdog`),

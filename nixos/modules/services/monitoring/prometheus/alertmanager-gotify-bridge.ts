@@ -57,137 +57,137 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "juli0604"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           alertmanagerGotify: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: nix.thunk(() => nix.app(mkEnableOption, "alertmagager-gotify")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "alertmanager-gotify-bridge", nix.thunk(() => ({})))),
             bindAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "0.0.0.0",
                 description: "The address the server will listen on (bind address).",
               })))),
             defaultPriority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "int")),
                 default: 5n,
                 description: "The default priority for messages sent to gotify.",
               })))),
             debug: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enables extended logs for debugging purposes. Should be disabled in productive mode.",
               })))),
             dispatchErrors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "When enabled, alerts will be tried to dispatch with an error message regarding faulty templating or missing fields to help debugging.",
               })))),
             extendedDetails: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "When enabled, alerts are presented in HTML format and include colorized status (FIR|RES), alert start time, and a link to the generator of the alert.",
               })))),
             messageAnnotation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "Annotation holding the alert message.",
               })))),
             openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Opens the bridge port in the firewall.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8080n,
                 description: "The local port the bridge is listening on.",
               })))),
             priorityAnnotation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "priority",
                 description: "Annotation holding the priority of the alert.",
               })))),
             timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                 default: 5n,
                 description: "The time between sending a message and the timeout.",
               })))),
             titleAnnotation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "summary",
                 description: "Annotation holding the title of the alert",
               })))),
             webhookPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "/gotify_webhook",
                 description: "The URL path to handle requests on.",
               })))),
             environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "File containing additional config environment variables for alertmanager-gotify-bridge.\nThis is especially for secrets like GOTIFY_TOKEN and AUTH_PASSWORD.\n",
               })))),
             gotifyEndpoint: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "127.0.0.1",
                   description: "The hostname or ip your gotify endpoint is running.",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(types, "port")),
                   default: 443n,
                   description: "The port your gotify endpoint is running.",
                 })))),
               tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: true,
                   description: "If your gotify endpoint uses https, leave this option set to default",
                 })))),
             })),
             metrics: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "The username used to access your metrics.",
                 })))),
               namespace: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "alertmanager-gotify-bridge",
                   description: "The namescape of the metrics.",
                 })))),
               path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "/metrics",
                   description: "The path under which the metrics will be exposed.",
@@ -198,32 +198,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         users: nix.thunk(() => ({
-          __proto__: pos$30,
-          groups: nix.thunk(() => ({ __proto__: pos$27, "alertmanager-gotify": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$30,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$27, "alertmanager-gotify": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$29,
-            "alertmanager-gotify": nix.thunk(() => ({ __proto__: pos$28, group: "alertmanager-gotify", isSystemUser: true })),
+            [nix.POS]: pos$29,
+            "alertmanager-gotify": nix.thunk(() => ({ [nix.POS]: pos$28, group: "alertmanager-gotify", isSystemUser: true })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "alertmanager-gotify-bridge": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "A bridge between Prometheus AlertManager and a Gotify server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), pkg)} ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "debug")), "--debug")}`),
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
                 User: "alertmanager-gotify",
@@ -252,7 +252,7 @@ export default nix.lambda((args) => (() => {
                 RemoveIPC: true,
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 BIND_ADDRESS: nix.thunk(() => nix.sel(cfg, "bindAddress")),
                 DEFAULT_PRIORITY: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "defaultPriority")))),
                 DISPATCH_ERRORS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "dispatchErrors")))),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stringcase = nix.arg($, "stringcase");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "natekspencer",
       domain: "planta",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "ha-planta",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 `),
       dependencies: nix.thunk(() => [stringcase]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant integration for the Planta plant care app",
         homepage: "https://github.com/natekspencer/ha-planta",
         changelog: nix.thunk(() => nix.str`https://github.com/natekspencer/ha-planta/releases/tag/${nix.sel(finalAttrs, "version")}`),

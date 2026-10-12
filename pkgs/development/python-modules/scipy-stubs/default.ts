@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const optype = nix.arg($, "optype");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scipy-stubs",
       version: "1.18.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipy",
           repo: "scipy-stubs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"uv_build>=0.12.5,<0.13\" \"uv_build\"\n",
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [optype]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, scipy: nix.thunk(() => [scipy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, scipy: nix.thunk(() => [scipy]) })),
       nativeCheckInputs: nix.thunk(() => [scipy]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Typing Stubs for SciPy",
         homepage: "https://github.com/scipy/scipy-stubs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

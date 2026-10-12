@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const rust_bindgen = nix.arg($, "rust-bindgen");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "waypipe",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mstoeckl",
           repo: "waypipe",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Tbd/yY90yb2+/ODYVL3SudHaJCGJKatZ9FuGM2uAX+8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib`),
       })),
       depsBuildBuild: nix.thunk(() => [pkg_config]),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgbm, lz4, zstd, ffmpeg_8, vulkan_headers, vulkan_loader]),
       runtimeDependencies: nix.thunk(() => [libgbm, nix.thunk(() => nix.sel(ffmpeg_8, "lib")), vulkan_loader]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Network proxy for Wayland clients (applications)",
         longDescription: "waypipe is a proxy for Wayland clients. It forwards Wayland messages and\nserializes changes to shared memory buffers over a single socket. This\nmakes application forwarding similar to ssh -X feasible.\n",
         homepage: "https://mstoeckl.com/notes/gsoc/blog.html",

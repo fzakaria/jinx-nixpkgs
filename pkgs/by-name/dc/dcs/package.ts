@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zopfli = nix.arg($, "zopfli");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dcs",
       version: "0-unstable-2021-04-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Debian",
           repo: "dcs",
           rev: "da46accc4d55e9bfde1a6852ac5a9e730fcbbb2c",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make -C static -j$NIX_BUILD_CORES\n",
       postInstall: "mkdir -p $out/share/dcs\ncp -r cmd/dcs-web/templates $out/share/dcs\ncp -r static $out/share/dcs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debian Code Search",
         homepage: "https://github.com/Debian/dcs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-raCI9z9+GjvwhSBugeD4PticHQsjp4ns0LoKJQckrug=",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, pyyaml]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Srim Automation of Tasks via Python",
         homepage: "https://gitlab.com/costrouc/pysrim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

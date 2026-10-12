@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const vlc = nix.arg($, "vlc");
   const isStatic = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "live555",
       version: "2026.01.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.live555.com/liveMedia/public/live.${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://src.rrz.uni-hamburg.de/files/src/live555/live.${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0000-cflags-when-darwin.patch",
             url: "https://github.com/rgaufman/live555/commit/16701af5486bb3a2d25a28edaab07789c8a9ce57.patch?full_index=1",
             hash: "sha256-IDSdByBu/EBLsUTBe538rWsDwH61RJfAEhvT68Nb9rU=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "LINK=$(CXX) -o ",
         nix.thunk(() => nix.str`LIBRARY_LINK=${(nix.asBool(isStatic) ? "$(AR) cr " : "$(CC) -o ")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CXXFLAGS: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++20" })),
       strictDeps: true,
       enableParallelBuilding: true,
       __structuredAttrs: true,
@@ -80,11 +80,11 @@ runHook postConfigure
       doInstallCheck: true,
       installCheckPhase: "if ! ($out/bin/openRTSP || :) 2>&1 | grep -q \"Usage: \"; then\n  echo \"Executing example program failed\" >&2\n  exit 1\nelse\n  echo \"Example program executed successfully\"\nfi\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "run-test-prog": nix.thunk(() => nix.app(runCommand, "live555-run-test-prog", nix.thunk(() => ({})), nix.thunk(() => nix.str`if ! (${emulator} ${live555}/bin/openRTSP || :) 2>&1 | grep -q "Usage: "; then
   echo "Executing example program failed" >&2
   exit 1
@@ -99,7 +99,7 @@ fi
         updateScript: nix.thunk(() => nix.app(writeScript, "update-live555", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts\n\n# Expect the text in format of '2025.05.24:'\nnew_version=\"$(curl -s http://www.live555.com/liveMedia/public/changelog.txt |\n  head -n1 | tr -d ':')\"\nupdate-source-version live555 \"$new_version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "http://www.live555.com/liveMedia/",
         description: "Set of C++ libraries for multimedia streaming, using open standard protocols (RTP/RTCP, RTSP, SIP)",
         changelog: "http://www.live555.com/liveMedia/public/changelog.txt",

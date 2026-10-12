@@ -34,20 +34,20 @@ export default (libeufinComponent) => nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         libeufin: nix.thunk(() => nix.attrsDyn({}, [
           [nix.force(libeufinComponent), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "libeufin core banking system and web interface")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "libeufin", nix.thunk(() => ({})))),
             debug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "debug logging")),
             createLocalDatabase: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatic creation of a local postgres database")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to open ports in the firewall",
@@ -66,24 +66,24 @@ export default (libeufinComponent) => nix.lambda((args) => (() => {
       const bankPort = nix.thunk(() => nix.sel(cfg, "settings", nix.key(nix.str`${(nix.asBool(isNexus) ? "nexus-httpd" : "libeufin-bank")}`), "PORT"));
       const bankHost = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", nix.thunk(() => nix.sel(cfg, "settings", "libeufin-bank", "BASE_URL")))), 2n));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            libeufin: nix.thunk(() => ({ __proto__: pos$5, settings: nix.thunk(() => nix.sel(cfg, "settings")) })),
+            [nix.POS]: pos$9,
+            libeufin: nix.thunk(() => ({ [nix.POS]: pos$5, settings: nix.thunk(() => nix.sel(cfg, "settings")) })),
             postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "createLocalDatabase")), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 ensureDatabases: nix.thunk(() => [dbName]),
                 ensureUsers: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$6, name: serviceName })),
-                  nix.thunk(() => ({ __proto__: pos$7, name: dbName, ensureDBOwnership: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$6, name: serviceName })),
+                  nix.thunk(() => ({ [nix.POS]: pos$7, name: dbName, ensureDBOwnership: true })),
                 ]),
               })))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "libeufin-dbinit": nix.thunk(() => (() => {
                 const dbScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeText"), "libeufin-db-permissions.sql", nix.thunk(() => nix.str`GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA libeufin_bank TO "${serviceName}";
 GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA libeufin_nexus TO "${serviceName}";
@@ -92,7 +92,7 @@ GRANT USAGE ON SCHEMA libeufin_nexus TO "${serviceName}";
 `)));
                 const initialAccountRegistration = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (account) => (() => {
                     const args_2 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         c: configFile,
                         username: nix.thunk(() => nix.attr(account, "username")),
                         password: nix.thunk(() => nix.attr(account, "password")),
@@ -103,17 +103,17 @@ GRANT USAGE ON SCHEMA libeufin_nexus TO "${serviceName}";
                     return nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "libeufin-bank")} create-account ${args_2}`;
                   })(), nix.thunk(() => nix.sel(cfg, "initialAccounts"))));
                 const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     c: configFile,
                     L: nix.thunk(() => (nix.asBool(nix.sel(cfg, "debug")) ? "debug" : null)),
                   }))));
                 return {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   path: nix.thunk(() => [
                     nix.thunk(() => (nix.asBool(nix.sel(cfg, "createLocalDatabase")) ? nix.sel(config, "services", "postgresql", "package") : nix.sel(pkgs, "postgresql"))),
                   ]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     Type: "oneshot",
                     DynamicUser: true,
                     StateDirectory: "libeufin-dbinit",
@@ -137,13 +137,13 @@ fi
               })()),
             }, [
               [nix.str`${serviceName}`, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   DynamicUser: true,
                   ExecStart: nix.thunk(() => (() => {
                     const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         c: configFile,
                         L: nix.thunk(() => (nix.asBool(nix.sel(cfg, "debug")) ? "debug" : null)),
                       }))));
@@ -159,16 +159,16 @@ fi
             ])),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$20,
-            firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$19, allowedTCPPorts: nix.thunk(() => [bankPort]) })))),
+            [nix.POS]: pos$20,
+            firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$19, allowedTCPPorts: nix.thunk(() => [bankPort]) })))),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "createLocalDatabase")) || nix.asBool(nix.has(nix.sel(cfg, "settings", nix.key(nix.str`libeufin-${libeufinComponent}db-postgres`)), "CONFIG")))),
               message: nix.thunk(() => nix.str`Libeufin ${libeufinComponent} database is not configured.`),
             })),

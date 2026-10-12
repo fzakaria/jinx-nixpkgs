@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const emacsSupport = nix.argOr($, "emacsSupport", () => true);
   const emacs = nix.arg($, "emacs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cscope",
       version: "15.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cscope/cscope-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ngiv4aj3rr35k3q3wjx0y19gh7i1ydqa0cqip6sjwd8fph5ll65",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), emacsSupport, emacs)),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), emacsSupport, "cd \"contrib/xcscope\"\n\nsed -i \"cscope-indexer\" \\\n    -\"es|^PATH=.*$|PATH=\\\"$out/bin:\\$PATH\\\"|g\"\nsed -i \"xcscope.el\" \\\n    -\"es|\\\"cscope-indexer\\\"|\\\"$out/libexec/cscope/cscope-indexer\\\"|g\";\n\nmkdir -p \"$out/libexec/cscope\"\ncp \"cscope-indexer\" \"$out/libexec/cscope\"\n\nmkdir -p \"$out/share/emacs/site-lisp\"\nemacs --batch --eval '(byte-compile-file \"xcscope.el\")'\ncp xcscope.el{,c} \"$out/share/emacs/site-lisp\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Developer's tool for browsing source code",
         longDescription: "Cscope is a developer's tool for browsing source code.  It has\nan impeccable Unix pedigree, having been originally developed at\nBell Labs back in the days of the PDP-11.  Cscope was part of\nthe official AT&T Unix distribution for many years, and has been\nused to manage projects involving 20 million lines of code!\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

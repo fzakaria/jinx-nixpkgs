@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const qemu_common = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../lib/qemu-common.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       lib: nix.thunk(() => nix.attr(pkgs, "lib")),
       stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
     }))));
@@ -80,34 +80,34 @@ export default nix.lambda((args) => (() => {
     return nix.str`${qemu} ${flagsStr}`;
   })(), formals$2);
   const iso = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../modules/installer/cd-dvd/installation-cd-minimal.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.thunk(() => ({
-          __proto__: pos$5,
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$4, pkgs: pkgs })),
+          [nix.POS]: pos$5,
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$4, pkgs: pkgs })),
         })),
       ]),
     }))), "config", "system", "build", "isoImage"));
   const sd = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../modules/installer/sd-card/sd-image-x86_64.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.thunk(() => ({
-          __proto__: pos$9,
-          sdImage: nix.thunk(() => ({ __proto__: pos$7, compressImage: false })),
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$8, pkgs: pkgs })),
+          [nix.POS]: pos$9,
+          sdImage: nix.thunk(() => ({ [nix.POS]: pos$7, compressImage: false })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$8, pkgs: pkgs })),
         })),
       ]),
     }))), "config", "system", "build", "sdImage"));
   const makeBootTest = (name) => (config_1) => (() => {
     const startCommand = nix.thunk(() => nix.app(mkStartCommand, config_1));
     return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: nix.thunk(() => nix.add("boot-", name)),
         nodes: nix.thunk(() => ({})),
         testScript: nix.thunk(() => nix.str`machine = create_machine("${startCommand}")
@@ -125,27 +125,27 @@ machine.shutdown()
   })();
   const makeNetbootTest = (name) => (extraConfig) => (() => {
     const config_1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         system: null,
         modules: nix.thunk(() => [
           nix.path(here, "../modules/installer/netboot/netboot.nix"),
           nix.path(here, "../modules/testing/test-instrumentation.nix"),
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             boot: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               kernelParams: nix.thunk(() => [
                 "serial",
                 "live.nixos.passwordHash=$6$jnwR50SkbLYEq/Vp$wmggwioAkfmwuYqd5hIfatZWS/bO6hewzNIwIrWcgdh7k/fhUzZT29Vil3ioMo94sdji/nipbzwEpxecLZw0d0",
               ]),
             })),
-            nixpkgs: nix.thunk(() => ({ __proto__: pos$13, pkgs: pkgs })),
+            nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$13, pkgs: pkgs })),
           })),
-          nix.thunk(() => ({ __proto__: pos$15, key: "serial" })),
+          nix.thunk(() => ({ [nix.POS]: pos$15, key: "serial" })),
         ]),
       }))), "config"));
     const ipxeBootDir = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "ipxeBootDir",
         paths: nix.thunk(() => [
           nix.thunk(() => nix.sel(config_1, "system", "build", "netbootRamdisk")),
@@ -153,9 +153,9 @@ machine.shutdown()
           nix.thunk(() => nix.sel(config_1, "system", "build", "netbootIpxeScript")),
         ]),
       }))));
-    const startCommand = nix.thunk(() => nix.app(mkStartCommand, nix.thunk(() => nix.update({ __proto__: pos$18, pxe: ipxeBootDir }, extraConfig))));
+    const startCommand = nix.thunk(() => nix.app(mkStartCommand, nix.thunk(() => nix.update({ [nix.POS]: pos$18, pxe: ipxeBootDir }, extraConfig))));
     return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: nix.thunk(() => nix.add("boot-netboot-", name)),
         nodes: nix.thunk(() => ({})),
         testScript: nix.thunk(() => nix.str`machine = create_machine("${startCommand}")
@@ -169,26 +169,26 @@ machine.shutdown()
       })));
   })();
   return nix.update({
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     uefiCdrom: nix.thunk(() => nix.app(makeBootTest, "uefi-cdrom", nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         uefi: true,
         cdrom: nix.thunk(() => nix.str`${iso}/iso/${nix.sel(iso, "isoName")}`),
       })))),
     uefiUsb: nix.thunk(() => nix.app(makeBootTest, "uefi-usb", nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         uefi: true,
         usb: nix.thunk(() => nix.str`${iso}/iso/${nix.sel(iso, "isoName")}`),
       })))),
-    uefiNetboot: nix.thunk(() => nix.app(makeNetbootTest, "uefi", nix.thunk(() => ({ __proto__: pos$22, uefi: true })))),
+    uefiNetboot: nix.thunk(() => nix.app(makeNetbootTest, "uefi", nix.thunk(() => ({ [nix.POS]: pos$22, uefi: true })))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       biosCdrom: nix.thunk(() => nix.app(makeBootTest, "bios-cdrom", nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           cdrom: nix.thunk(() => nix.str`${iso}/iso/${nix.sel(iso, "isoName")}`),
         })))),
       biosUsb: nix.thunk(() => nix.app(makeBootTest, "bios-usb", nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           usb: nix.thunk(() => nix.str`${iso}/iso/${nix.sel(iso, "isoName")}`),
         })))),
       biosNetboot: nix.thunk(() => nix.app(makeNetbootTest, "bios", nix.thunk(() => ({})))),
@@ -196,7 +196,7 @@ machine.shutdown()
         const sdImage = nix.thunk(() => nix.str`${sd}/sd-image/${nix.sel(sd, "imageName")}`);
         const mutableImage = "/tmp/linked-image.qcow2";
         const startCommand = nix.thunk(() => nix.app(mkStartCommand, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             extraFlags: nix.thunk(() => [
               "-bios",
               nix.thunk(() => nix.str`${nix.sel(pkgs, "ubootQemuX86")}/u-boot.rom`),
@@ -207,7 +207,7 @@ machine.shutdown()
             ]),
           }))));
         return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             name: "boot-uboot-extlinux",
             nodes: nix.thunk(() => ({})),
             testScript: nix.thunk(() => nix.str`import subprocess
@@ -237,7 +237,7 @@ machine.wait_for_unit("multi-user.target")
 machine.succeed("nix store verify -r --no-trust --option experimental-features nix-command /run/current-system")
 machine.shutdown()
 `),
-            meta: nix.thunk(() => ({ __proto__: pos$27, broken: true })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$27, broken: true })),
           })));
       })()),
     }))));

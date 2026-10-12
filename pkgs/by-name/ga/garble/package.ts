@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "garble",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "burrowers",
           repo: "garble",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       ldflags: nix.thunk(() => ["-buildid=00000000000000000000"]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Add-version-info.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Add-version-info.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       checkFlags: nix.thunk(() => (() => {
         const skippedTests = nix.thunk(() => ["TestScript/gotoolchain", "TestScript/atomic", "TestScript/crossbuild"]);
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Obfuscate Go code by wrapping the Go toolchain",
         homepage: "https://github.com/burrowers/garble/",
         maintainers: nix.thunk(() => (() => {

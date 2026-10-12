@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlboiler-crbd",
       version: "0-unstable-2022-06-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glerchundi",
           repo: "sqlboiler-crdb",
           rev: "7b35c4d19c05fdc53d1efdcc074f20ee6b56f340",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-N16GH8ZDyeWWBsaaG4RkJwzAbuQ7E8YjZAgVsfeECo4",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CockroachDB generator for usage with SQLBoiler",
         mainProgram: "sqlboiler-crdb",
         homepage: "https://github.com/glerchundi/sqlboiler-crdb/",

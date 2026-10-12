@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.4.8",
       pname: "zita-njbridge",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-njbridge-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-EBF2oL1AfKt7/9Mm6NaIbBtlshK8M/LvuXsD+SbEeQc=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd ./source/\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=$(out)", "SUFFIX=''"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line Jack clients to transmit full quality multichannel audio over a local IP network",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

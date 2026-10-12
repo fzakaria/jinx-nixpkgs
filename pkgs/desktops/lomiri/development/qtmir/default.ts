@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qtmir-debian-upstream",
       version: "0.8.0-unstable-2026-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/qtmir",
           rev: "57d9e9763933a5d6ca696676ebdde934529a71fe",
@@ -90,14 +90,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "lomiri"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "QPA plugin to make Qt a Mir server",
         homepage: "https://gitlab.com/ubports/development/core/qtmir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

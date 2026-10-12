@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const app_key = "base64:VGVzdFRlc3RUZXN0VGVzdFRlc3RUZXN0VGVzdFRlc3Q=";
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "speedtest-tracker",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "speedtest-tracker", "meta", "maintainers")),
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       sqlite: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           etc: nix.thunk(() => ({
-            __proto__: pos$3,
-            "speedtest-tracker-appkey": nix.thunk(() => ({ __proto__: pos$2, text: app_key })),
+            [nix.POS]: pos$3,
+            "speedtest-tracker-appkey": nix.thunk(() => ({ [nix.POS]: pos$2, text: app_key })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "speedtest-tracker": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             enableNginx: true,
-            settings: nix.thunk(() => ({ __proto__: pos$5, APP_KEY_FILE: "/etc/speedtest-tracker-appkey" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$5, APP_KEY_FILE: "/etc/speedtest-tracker-appkey" })),
           })),
         })),
       })),

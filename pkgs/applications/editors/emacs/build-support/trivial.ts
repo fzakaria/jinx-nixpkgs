@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), envargs)),
       extendDrvArgs: (finalAttrs) => (args_1) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildPhase: nix.thunk(() => nix.selOr(args_1, () => nix.str`runHook preBuild
 
 # This is modified from stdenv buildPhase. foundMakefile is used in stdenv checkPhase.

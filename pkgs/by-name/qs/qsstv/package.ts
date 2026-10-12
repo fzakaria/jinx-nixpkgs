@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "9.5.8",
       pname: "qsstv",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.qsl.net/o/on4qz/qsstv/downloads/qsstv_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0s3sivc0xan6amibdiwfnknrl3248wzgy98w6gyxikl0qsjpygy0",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Install desktop icon\nmkdir -p $out/share/icons/hicolor/32x32/apps\nmagick icons/qsstv.png -resize 32x32 $out/share/icons/hicolor/32x32/apps/qsstv.png\ninstall -D qsstv.desktop $out/share/applications/qsstv.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based slow-scan TV and fax",
         mainProgram: "qsstv",
         homepage: "https://www.qsl.net/on4qz/",

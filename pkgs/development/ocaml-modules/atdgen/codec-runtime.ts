@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atdgen-codec-runtime",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ahrefs/atd/releases/download/${nix.sel(finalAttrs, "version")}/atd-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-QOVMjs3EV5QVUiH0KZwqnUkXD07EFCToyInSNaUtOlU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Runtime for atdgen generated bucklescript converters",
         homepage: "https://github.com/ahrefs/atd",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

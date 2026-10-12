@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "crossmacro"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         crossmacro: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CrossMacro, a cross-platform mouse and keyboard macro application")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "crossmacro", nix.thunk(() => ({})))),
           daemonPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "crossmacro-daemon", nix.thunk(() => ({})))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["alice", "bob"]),
@@ -58,51 +58,51 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "users"), [])),
             message: "CrossMacro: You must specify at least one user. Set `services.crossmacro.users`.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "polkit-1/actions/io.github.alper_han.crossmacro.policy": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "daemonPackage")}/share/polkit-1/actions/io.github.alper_han.crossmacro.policy`),
             })),
             "polkit-1/rules.d/50-crossmacro.rules": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "daemonPackage")}/share/polkit-1/rules.d/50-crossmacro.rules`),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$11,
-          uinput: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+          [nix.POS]: pos$11,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           udev: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             extraRules: "KERNEL==\"uinput\", GROUP=\"input\", MODE=\"0660\", OPTIONS+=\"static_node=uinput\"\nACTION==\"add|change\", KERNEL==\"event*\", ATTRS{name}==\"CrossMacro Virtual Input Device\", ENV{LIBINPUT_ATTR_POINTER_ACCEL}=\"0\"\n",
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
-          groups: nix.thunk(() => ({ __proto__: pos$14, crossmacro: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$19,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$14, crossmacro: nix.thunk(() => ({})) })),
           users: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((user) => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: user,
-                value: nix.thunk(() => ({ __proto__: pos$15, extraGroups: nix.thunk(() => ["crossmacro"]) })),
+                value: nix.thunk(() => ({ [nix.POS]: pos$15, extraGroups: nix.thunk(() => ["crossmacro"]) })),
               }), nix.thunk(() => nix.sel(cfg, "users"))))), {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             crossmacro: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               isSystemUser: true,
               group: "crossmacro",
               extraGroups: nix.thunk(() => ["input", "uinput"]),
@@ -111,11 +111,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             crossmacro: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "CrossMacro Input Daemon Service",
               documentation: nix.thunk(() => ["https://github.com/alper-han/CrossMacro"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
               wants: nix.thunk(() => ["dbus.service", "polkit.service"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "polkit"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Type: "notify",
                 User: "crossmacro",
                 Group: "crossmacro",
@@ -146,7 +146,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "alper-han"))];

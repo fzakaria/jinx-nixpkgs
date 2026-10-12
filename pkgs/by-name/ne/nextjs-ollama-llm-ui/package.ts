@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.2.0";
   const tag = nix.thunk(() => nix.str`v.${version}`);
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nextjs-ollama-llm-ui",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jakobhoeg",
           repo: "nextjs-ollama-llm-ui",
           tag: tag,
@@ -69,14 +69,14 @@ runHook postInstall
 `),
       doDist: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nextjs-ollama-llm-ui": nix.thunk(() => nix.attr(nixosTests, "nextjs-ollama-llm-ui")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple chat web interface for Ollama LLMs",
         changelog: nix.thunk(() => nix.str`https://github.com/jakobhoeg/nextjs-ollama-llm-ui/releases/tag/${tag}`),
         mainProgram: "nextjs-ollama-llm-ui",

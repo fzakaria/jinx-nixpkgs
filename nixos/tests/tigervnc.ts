@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "tigervnc",
-      meta: nix.thunk(() => ({ __proto__: pos$3, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, maintainers: [] })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             environment: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               systemPackages: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(pkgs_1, w);
                 return [
@@ -46,8 +46,8 @@ export default nix.lambda((args) => (() => {
               })()),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$6,
-              firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [5901n]) })),
+              [nix.POS]: pos$6,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [5901n]) })),
             })),
           };
         })(), formals$2),
@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
             environment: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "tigervnc"))]),
             })),
           };

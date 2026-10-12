@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const buildLua = nix.arg($, "buildLua");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-reload",
       version: "0-unstable-2024-03-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "4e6",
           repo: "mpv-reload",
           rev: "1a6a9383ba1774708fddbd976e7a9b72c3eec938",
           hash: "sha256-BshxCjec/UNGyiC0/g1Rai2NvG2qOIHXDDEUYwwdij0=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manual & automatic reloading of videos",
         longDescription: "This script adds reloading of videos, automatically on timers (when stuck\nbuffering etc.) or manually on keybinds, to help with cases where a stream\nis not loading further due to a network or remote issue.\n",
         homepage: "https://github.com/4e6/mpv-reload",

@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cardwire",
       version: "0.12.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opengamingcollective",
           repo: "cardwire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ substituteInPlace crates/cardwire-daemon/src/core/pci/pci_device.rs \\
 substituteInPlace crates/cardwire-daemon/src/core/gpu/device_info.rs \\
   --replace-fail "/usr/share/libdrm/amdgpu.ids" "${libdrm}/share/libdrm/amdgpu.ids"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, bpf_linker, makeBinaryWrapper, installShellFiles]),
       buildInputs: nix.thunk(() => [libxcb, udev]),
       postInstall: nix.thunk(() => nix.add(nix.str`install -Dm444 ./assets/org.opengamingcollective.cardwire.conf \\
@@ -84,12 +84,12 @@ wrapProgram $out/bin/cardwire-gui \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, cardwire: nix.thunk(() => nix.sel(nixosTests, "cardwire")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, cardwire: nix.thunk(() => nix.sel(nixosTests, "cardwire")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GPU manager for laptop and workstation",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
         homepage: "https://opengamingcollective.github.io/cardwire/",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "u001",
       version: "unstable-2016-08-01",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             "https://fontlibrary.org/assets/downloads/u001/3ea00b3c0c8fa6ce4373e5766fafd651/u001.zip",
             "https://web.archive.org/web/20220830085803/https://fontlibrary.org/assets/downloads/u001/3ea00b3c0c8fa6ce4373e5766fafd651/u001.zip",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nTTF_DIR=$out/share/fonts/truetype\n\nmkdir -p $TTF_DIR\n\n# We’ll adjust the nonstandard naming convention here\ncp u001-reg.ttf $TTF_DIR/U001-Regular.ttf\ncp u001-ita.ttf $TTF_DIR/U001-Italic.ttf\ncp u001-bol.ttf $TTF_DIR/U001-Bold.ttf\ncp u001-bolita.ttf $TTF_DIR/U001-BoldItalic.ttf\ncp u001con-reg.ttf $TTF_DIR/U001Condensed-Regular.ttf\ncp u001con-ita.ttf $TTF_DIR/U001Condensed-Italic.ttf\ncp u001con-bol.ttf $TTF_DIR/U001Condensed-Bold.ttf\ncp u001con-bolita.ttf $TTF_DIR/U001Condensed-BoldItalic.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Univers-like typeface that comes with GhostPDL made by URW++",
         homepage: "https://fontlibrary.org/en/font/u001",
         license: nix.thunk(() => nix.sel(lib, "licenses", "aladdin")),

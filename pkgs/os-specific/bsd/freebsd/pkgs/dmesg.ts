@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const lib = nix.arg($, "lib");
-  return nix.app(mkDerivation, nix.thunk(() => ({ __proto__: pos$1, path: "sbin/dmesg" })));
+  return nix.app(mkDerivation, nix.thunk(() => ({ [nix.POS]: pos$1, path: "sbin/dmesg" })));
 })(), formals$1);
 //# sourceMappingURL=dmesg.ts.map

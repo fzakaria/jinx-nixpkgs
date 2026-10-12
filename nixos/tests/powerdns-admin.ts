@@ -54,17 +54,17 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const defaultConfig = "import cachelib\n\nBIND_ADDRESS = '127.0.0.1'\nPORT = 8000\nCAPTCHA_ENABLE = False\nSESSION_TYPE = 'cachelib'\nSESSION_CACHELIB = cachelib.simple.SimpleCache()\n";
   const makeAppTest = (name) => (configs) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: nix.thunk(() => nix.str`powerdns-admin-${name}`),
       meta: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "Flakebi")),
             nix.thunk(() => nix.lookup(w_2, "zhaofengli")),
@@ -72,29 +72,29 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           const config_1 = nix.arg($_1, "config");
           return nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "powerdns-admin": nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     enable: true,
                     secretKeyFile: "/etc/powerdns-admin/secret",
                     saltFile: "/etc/powerdns-admin/salt",
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$8,
-                    "powerdns-admin/secret": nix.thunk(() => ({ __proto__: pos$6, text: "secret key" })),
-                    "powerdns-admin/salt": nix.thunk(() => ({ __proto__: pos$7, text: "salt" })),
+                    [nix.POS]: pos$8,
+                    "powerdns-admin/secret": nix.thunk(() => ({ [nix.POS]: pos$6, text: "secret key" })),
+                    "powerdns-admin/salt": nix.thunk(() => ({ [nix.POS]: pos$7, text: "salt" })),
                   })),
                   systemPackages: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "run-test", nix.thunk(() => nix.sel(config_1, "system", "build", "testScript")))),
@@ -107,106 +107,106 @@ export default nix.lambda((args) => (() => {
       testScript: "server.wait_for_unit(\"powerdns-admin.service\")\nserver.wait_until_succeeds(\"run-test\", timeout=10)\n",
     })));
   const matrix = nix.thunk(() => ({
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     backend: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       mysql: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "powerdns-admin": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             config: nix.thunk(() => nix.str`${defaultConfig}
 SQLALCHEMY_DATABASE_URI = 'mysql://powerdnsadmin@/powerdnsadmin?unix_socket=/run/mysqld/mysqld.sock'
 `),
           })),
           mysql: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
             ensureDatabases: nix.thunk(() => ["powerdnsadmin"]),
             ensureUsers: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 name: "powerdnsadmin",
-                ensurePermissions: nix.thunk(() => ({ __proto__: pos$14, "powerdnsadmin.*": "ALL PRIVILEGES" })),
+                ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$14, "powerdnsadmin.*": "ALL PRIVILEGES" })),
               })),
             ]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "powerdns-admin": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               after: nix.thunk(() => ["mysql.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$18, BindPaths: "/run/mysqld" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, BindPaths: "/run/mysqld" })),
             })),
           })),
         })),
       })),
       postgresql: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           "powerdns-admin": nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             config: nix.thunk(() => nix.str`${defaultConfig}
 SQLALCHEMY_DATABASE_URI = 'postgresql://powerdnsadmin@/powerdnsadmin?host=/run/postgresql'
 `),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: true,
             ensureDatabases: nix.thunk(() => ["powerdnsadmin"]),
             ensureUsers: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$24, name: "powerdnsadmin", ensureDBOwnership: true })),
+              nix.thunk(() => ({ [nix.POS]: pos$24, name: "powerdnsadmin", ensureDBOwnership: true })),
             ]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "powerdns-admin": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               after: nix.thunk(() => ["postgresql.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$27, BindPaths: "/run/postgresql" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$27, BindPaths: "/run/postgresql" })),
             })),
           })),
         })),
       })),
     })),
     listen: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       tcp: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         services: nix.thunk(() => ({
-          __proto__: pos$34,
-          "powerdns-admin": nix.thunk(() => ({ __proto__: pos$33, extraArgs: nix.thunk(() => ["-b", "127.0.0.1:8000"]) })),
+          [nix.POS]: pos$34,
+          "powerdns-admin": nix.thunk(() => ({ [nix.POS]: pos$33, extraArgs: nix.thunk(() => ["-b", "127.0.0.1:8000"]) })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           build: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             testScript: "set -euxo pipefail\ncurl -sSf http://127.0.0.1:8000/\n\n# Create account to check that the database migrations ran\ncsrf_token=\"$(curl -sSfc session http://127.0.0.1:8000/register | grep _csrf_token | cut -d\\\" -f6)\"\n# Outputs 'Redirecting' if successful\ncurl -sSfb session http://127.0.0.1:8000/register \\\n  -F \"_csrf_token=$csrf_token\" \\\n  -F \"firstname=first\" \\\n  -F \"lastname=last\" \\\n  -F \"email=a@example.com\" \\\n  -F \"username=user\" \\\n  -F \"password=password\" \\\n  -F \"rpassword=password\" | grep Redirecting\n\n# Login\n# Outputs 'Redirecting' if successful\ncurl -sSf -b session -c session http://127.0.0.1:8000/login \\\n  -F \"_csrf_token=$csrf_token\" \\\n  -F \"username=user\" \\\n  -F \"password=password\" | grep Redirecting\n\n# Check that we are logged in, this redirects to /admin/setting/pdns if we are\ncurl -sSf -b session -c session http://127.0.0.1:8000/dashboard/ | grep /admin/setting\n",
           })),
         })),
       })),
       unix: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           "powerdns-admin": nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             extraArgs: nix.thunk(() => ["-b", "unix:/run/powerdns-admin/http.sock"]),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           build: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             testScript: "curl -sSf --unix-socket /run/powerdns-admin/http.sock http://somehost/\n",
           })),
         })),
@@ -215,7 +215,7 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://powerdnsadmin@/powerdnsadmin?host=/run/p
   }));
   const w_2 = nix.withScope(matrix, w_1);
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     postgresql: nix.thunk(() => nix.app(makeAppTest, "postgresql", nix.thunk(() => [
         nix.thunk(() => nix.sel(nix.lookup(w_2, "backend"), "postgresql")),
         nix.thunk(() => nix.sel(nix.lookup(w_2, "listen"), "tcp")),

@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const deno = nix.arg($, "deno");
   const canExecute = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "deno",
       version: "2.9.7",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "denort", "libdenort"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "denoland",
           repo: "deno",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["v8"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-unknown-warning-option")),
         RUSTY_V8_ARCHIVE: librusty_v8,
         RUSTY_V8_SRC_BINDING_PATH: nix.thunk(() => nix.sel(librusty_v8, "binding")),
@@ -153,12 +153,12 @@ makeBinaryWrapper $out/bin/deno $out/bin/dx --add-flags "x"
       doInstallCheck: canExecute,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ __proto__: pos$3, deno: deno, runCommand: runCommand, lib: lib }))), {
-          __proto__: pos$5,
+        tests: nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: pos$3, deno: deno, runCommand: runCommand, lib: lib }))), {
+          [nix.POS]: pos$5,
           "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "overrideAttrs"), (fa) => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               dontBuild: false,
               doCheck: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))))))),
             }))),
@@ -167,7 +167,7 @@ makeBinaryWrapper $out/bin/deno $out/bin/dx --add-flags "x"
         librusty_v8: librusty_v8,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://deno.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/denoland/deno/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Secure runtime for JavaScript and TypeScript",

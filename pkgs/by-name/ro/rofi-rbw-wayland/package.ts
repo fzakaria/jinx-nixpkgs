@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["waylandSupport", 3, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rofi_rbw = nix.arg($, "rofi-rbw");
-  return nix.app(nix.sel(rofi_rbw, "override"), nix.thunk(() => ({ __proto__: pos$1, waylandSupport: true })));
+  return nix.app(nix.sel(rofi_rbw, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, waylandSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

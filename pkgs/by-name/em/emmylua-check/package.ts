@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "emmylua_check",
       version: nix.thunk(() => nix.attr(emmylua_ls, "version")),
       src: nix.thunk(() => nix.attr(emmylua_ls, "src")),
@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$1, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, OPENSSL_NO_VENDOR: 1n })),
       buildAndTestSubdir: "crates/emmylua_check",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/emmylua_check`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Comprehensive Lua static analysis tool for code quality assurance",
         homepage: "https://github.com/EmmyLuaLs/emmylua-analyzer-rust",
         changelog: nix.thunk(() => nix.str`https://github.com/EmmyLuaLs/emmylua-analyzer-rust/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-bigquery-logging",
       version: "1.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_bigquery_logging",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TGc9UA6WFQ6lundd0exDOXcszZmMGxng0tBsxVjq8xQ=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytestCheckHook, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["google.cloud.bigquery_logging", "google.cloud.bigquery_logging_v1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bigquery logging client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-bigquery-logging",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-bigquery-logging-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-bigquery-logging/CHANGELOG.md`),

@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(libtool, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "glibtool",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "glibtool" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "glibtool" })),
       configureFlags: nix.thunk(() => ["--program-prefix=g"]),
     })));
 })(), formals$1);

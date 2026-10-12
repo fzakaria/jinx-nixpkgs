@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "montserrat",
       version: "9.000",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JulietaUla",
           repo: "montserrat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/\n\nmv fonts/otf $out/share/fonts/otf\nmv fonts/ttf $out/share/fonts/ttf\nmv fonts/webfonts $out/share/fonts/woff2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Geometric sans serif font with extended latin support (Regular, Alternates, Subrayada)",
         homepage: "https://www.fontspace.com/julieta-ulanovsky/montserrat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

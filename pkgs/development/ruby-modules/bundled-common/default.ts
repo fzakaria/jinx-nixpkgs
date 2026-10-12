@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
     const extraConfigPaths = nix.argOr($_1, "extraConfigPaths", () => []);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     nix.assert_((!nix.asBool(nix.eq(name, null)) || nix.asBool(!nix.eq(pname, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ruby-modules/bundled-common/default.nix:38:1");
-    const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, gemConfig: gemConfig }))));
+    const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, gemConfig: gemConfig }))));
     const applyGemConfigs = nix.thunk(() => nix.attr(functions, "applyGemConfigs"));
     const bundlerFiles = nix.thunk(() => nix.attr(functions, "bundlerFiles"));
     const composeGemAttrs = nix.thunk(() => nix.attr(functions, "composeGemAttrs"));
@@ -64,10 +64,10 @@ export default nix.lambda((args) => (() => {
     const pathDerivation = nix.thunk(() => nix.attr(functions, "pathDerivation"));
     const gemFiles = nix.thunk(() => nix.app(bundlerFiles, args_2));
     const importedGemset = nix.thunk(() => (nix.asBool(!nix.eq(nix.builtins.typeOf(nix.thunk(() => nix.sel(gemFiles, "gemset"))), "set")) ? nix.builtins.import(nix.thunk(() => nix.sel(gemFiles, "gemset"))) : nix.sel(gemFiles, "gemset")));
-    const filteredGemset = nix.thunk(() => nix.app(filterGemset, nix.thunk(() => ({ __proto__: pos$2, ruby: ruby_1, groups: groups })), importedGemset));
-    const configuredGemset = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), filteredGemset, (name_1) => (attrs) => nix.app(applyGemConfigs, nix.thunk(() => nix.update(attrs, { __proto__: pos$3, ruby: ruby_1, document: document, gemName: name_1 })))));
+    const filteredGemset = nix.thunk(() => nix.app(filterGemset, nix.thunk(() => ({ [nix.POS]: pos$2, ruby: ruby_1, groups: groups })), importedGemset));
+    const configuredGemset = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), filteredGemset, (name_1) => (attrs) => nix.app(applyGemConfigs, nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$3, ruby: ruby_1, document: document, gemName: name_1 })))));
     const hasBundler = nix.thunk(() => nix.builtins.hasAttr("bundler", filteredGemset));
-    const bundler_1 = nix.thunk(() => (nix.asBool(hasBundler) ? nix.sel(gems, "bundler") : nix.app(nix.sel(defs, "bundler", "override"), (attrs) => ({ __proto__: pos$4, ruby: ruby_1 }))));
+    const bundler_1 = nix.thunk(() => (nix.asBool(hasBundler) ? nix.sel(gems, "bundler") : nix.app(nix.sel(defs, "bundler", "override"), (attrs) => ({ [nix.POS]: pos$4, ruby: ruby_1 }))));
     const gems = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), configuredGemset, (name_1) => (attrs) => nix.app(buildGem, name_1, attrs)));
     const version$ = nix.thunk(() => (nix.asBool(!nix.eq(version, null)) ? nix.force(version) : (nix.asBool(!nix.eq(pname, null)) ? nix.sel(gems, nix.key(nix.force(pname)), "suffix") : null)));
     const name$ = nix.thunk(() => (nix.asBool(!nix.eq(name, null)) ? nix.force(name) : nix.str`${pname}-${version$}`));
@@ -97,7 +97,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (path) => nix.str`cp -r ${p
     })();
     const envPaths = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrValues"), gems), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(hasBundler)), bundler_1)));
     const basicEnvArgs = nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       nativeBuildInputs: nativeBuildInputs,
       buildInputs: buildInputs,
       ignoreCollisions: ignoreCollisions,
@@ -107,19 +107,19 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (path) => nix.str`cp -r ${p
       paths: envPaths,
       pathsToLink: nix.thunk(() => ["/lib"]),
       postBuild: nix.thunk(() => nix.add(nix.app(genStubsScript, nix.thunk(() => nix.update(defs, nix.update(args_2, {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           confFiles: confFiles,
           bundler: bundler_1,
           groups: groups,
           binPaths: envPaths,
         })))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(postBuild, null)), postBuild))),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         platforms: nix.thunk(() => nix.sel(ruby_1, "meta", "platforms")),
       }, meta)),
       passthru: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(pname, null)), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(gems, nix.key(nix.force(pname))));
-          return { __proto__: pos$7, gemType: nix.thunk(() => nix.attr(from, "gemType")) };
+          return { [nix.POS]: pos$7, gemType: nix.thunk(() => nix.attr(from, "gemType")) };
         })())), nix.update((() => {
         const ruby_2 = ruby_1;
         const bundler_2 = bundler_1;
@@ -127,7 +127,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (path) => nix.str`cp -r ${p
         const confFiles_1 = confFiles;
         const envPaths_1 = envPaths;
         const wrappedRuby = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: nix.thunk(() => nix.str`wrapped-ruby-${pname$}`),
             nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
             dontUnpack: true,
@@ -149,7 +149,7 @@ done
         const env = nix.thunk(() => (() => {
           const irbrc = nix.thunk(() => nix.builtins.toFile("irbrc", "if !(ENV[\"OLD_IRBRC\"].nil? || ENV[\"OLD_IRBRC\"].empty?)\n  require ENV[\"OLD_IRBRC\"]\nend\nrequire 'rubygems'\nrequire 'bundler/setup'\n"));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: nix.thunk(() => nix.str`${pname$}-interactive-environment`),
               nativeBuildInputs: nix.thunk(() => [wrappedRuby, basicEnv]),
               shellHook: nix.thunk(() => nix.str`export OLD_IRBRC=$IRBRC
@@ -159,7 +159,7 @@ export IRBRC=${irbrc}
             })));
         })());
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           ruby: ruby_2,
           bundler: bundler_2,
           gems: gems_1,
@@ -170,7 +170,7 @@ export IRBRC=${irbrc}
         };
       })(), passthru))),
     }));
-    const basicEnv = nix.thunk(() => (nix.asBool(copyGemFiles) ? nix.app(runCommand, name$, nix.thunk(() => nix.update(basicEnvArgs, { __proto__: pos$12, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
+    const basicEnv = nix.thunk(() => (nix.asBool(copyGemFiles) ? nix.app(runCommand, name$, nix.thunk(() => nix.update(basicEnvArgs, { [nix.POS]: pos$12, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
 for i in $paths; do
   ${nix.sel(buildPackages, "rsync")}/bin/rsync -a $i/lib $out/
 done

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "topgit";
       const version = "0.19.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mackyle",
           repo: "topgit",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 install -Dm755 contrib/tg-completion.bash -t "$out/share/bash-completion/completions/"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TopGit manages large amount of interdependent topic branches",
         mainProgram: "tg",
         homepage: "https://github.com/mackyle/topgit",
@@ -39,7 +39,7 @@ install -Dm755 contrib/tg-completion.bash -t "$out/share/bash-completion/complet
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

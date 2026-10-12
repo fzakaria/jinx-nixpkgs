@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "argon",
       version: "2.0.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "argon-rbx",
           repo: "argon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wj+T1XBLVQsDNMT9d/0ybR+L7fDZj4Ijhqv0fH+f7HA=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([zstd], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udev])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full featured tool for Roblox development",
         homepage: "https://github.com/argon-rbx/argon",
         changelog: nix.thunk(() => nix.str`https://github.com/argon-rbx/argon/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

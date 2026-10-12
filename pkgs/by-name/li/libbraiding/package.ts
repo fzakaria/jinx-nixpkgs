@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pname = "libbraiding";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miguelmarco",
           repo: "libbraiding",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/miguelmarco/libbraiding/",
         description: "C++ library for computations on braid groups",
         longDescription: "A library to compute several properties of braids, including centralizer and conjugacy check.\n",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, version, pname, src, nativeBuildInputs, doCheck, meta };
+      return { [nix.POS]: pos$3, version, pname, src, nativeBuildInputs, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

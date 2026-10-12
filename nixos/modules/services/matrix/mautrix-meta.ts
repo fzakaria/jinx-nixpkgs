@@ -88,39 +88,39 @@ export default nix.lambda((args) => (() => {
   const enabledInstances = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (config_1) => nix.sel(config_1, "enable"), nix.thunk(() => nix.sel(config, "services", "mautrix-meta", "instances"))));
   const registerToSynapseInstances = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (config_1) => (nix.asBool(nix.sel(config_1, "enable")) && nix.asBool(nix.sel(config_1, "registerToSynapse"))), nix.thunk(() => nix.sel(config, "services", "mautrix-meta", "instances"))));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         "mautrix-meta": nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mautrix-meta", nix.thunk(() => ({})))),
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const config_1 = nix.arg($_1, "config");
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       options: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mautrix-Meta, a Matrix <-> Facebook and Matrix <-> Instagram hybrid puppeting/relaybot bridge")),
                         dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.app(metaName, name)),
                             description: "Path to the directory with database, registration, and other data for the bridge service.\nThis path is relative to `/var/lib`, it cannot start with `../` (it cannot be outside of `/var/lib`).\n",
                           })))),
                         registrationFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             readOnly: true,
                             description: "Path to the yaml registration file of the appservice.\n",
                           })))),
                         registerToSynapse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Whether to add registration file to `services.matrix-synapse.settings.app_service_config_files` and\nmake Synapse wait for registration service.\n",
@@ -129,29 +129,29 @@ export default nix.lambda((args) => (() => {
                             const apply = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), default$));
                             const type = nix.thunk(() => nix.attr(settingsFormat, "type"));
                             const default$ = nix.thunk(() => ({
-                              __proto__: pos$15,
-                              homeserver: nix.thunk(() => ({ __proto__: pos$4, software: "standard", domain: "", address: "" })),
+                              [nix.POS]: pos$15,
+                              homeserver: nix.thunk(() => ({ [nix.POS]: pos$4, software: "standard", domain: "", address: "" })),
                               appservice: nix.thunk(() => ({
-                                __proto__: pos$6,
+                                [nix.POS]: pos$6,
                                 id: "",
-                                bot: nix.thunk(() => ({ __proto__: pos$5, username: "" })),
+                                bot: nix.thunk(() => ({ [nix.POS]: pos$5, username: "" })),
                                 hostname: "localhost",
                                 port: 29319n,
                                 address: nix.thunk(() => nix.str`http://${nix.sel(config_1, "settings", "appservice", "hostname")}:${nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "settings", "appservice", "port")))}`),
                               })),
-                              bridge: nix.thunk(() => ({ __proto__: pos$7, permissions: nix.thunk(() => ({})) })),
+                              bridge: nix.thunk(() => ({ [nix.POS]: pos$7, permissions: nix.thunk(() => ({})) })),
                               database: nix.thunk(() => ({
-                                __proto__: pos$8,
+                                [nix.POS]: pos$8,
                                 type: "sqlite3-fk-wal",
                                 uri: nix.thunk(() => nix.str`file:${nix.app(fullDataDir, config_1)}/mautrix-meta.db?_txlock=immediate`),
                               })),
                               encryption: nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 allow: true,
                                 default: true,
                                 require: true,
                                 delete_keys: nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   dont_store_outbound: true,
                                   ratchet_on_decrypt: true,
                                   delete_fully_used_on_decrypt: true,
@@ -162,56 +162,56 @@ export default nix.lambda((args) => (() => {
                                 })),
                                 pickle_key: "mautrix.bridge.e2ee",
                                 verification_levels: nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   receive: "cross-signed-tofu",
                                   send: "cross-signed-tofu",
                                   share: "cross-signed-tofu",
                                 })),
                               })),
                               logging: nix.thunk(() => ({
-                                __proto__: pos$13,
+                                [nix.POS]: pos$13,
                                 min_level: "info",
                                 writers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                                    __proto__: pos$12,
+                                    [nix.POS]: pos$12,
                                     type: "stdout",
                                     format: "pretty-colored",
                                     time_format: " ",
                                   })))),
                               })),
-                              network: nix.thunk(() => ({ __proto__: pos$14, mode: "" })),
+                              network: nix.thunk(() => ({ [nix.POS]: pos$14, mode: "" })),
                             }));
                             const defaultText = "{\n  homeserver = {\n    software = \"standard\";\n    address = \"https://${config.settings.homeserver.domain}\";\n  };\n\n  appservice = {\n    database = {\n      type = \"sqlite3-fk-wal\";\n      uri = \"file:${fullDataDir config}/mautrix-meta.db?_txlock=immediate\";\n    };\n\n    hostname = \"localhost\";\n    port = 29319;\n    address = \"http://${config.settings.appservice.hostname}:${toString config.settings.appservice.port}\";\n  };\n\n  bridge = {\n    # Require encryption by default to make the bridge more secure\n    encryption = {\n      allow = true;\n      default = true;\n      require = true;\n\n      # Recommended options from mautrix documentation\n      # for optimal security.\n      delete_keys = {\n        dont_store_outbound = true;\n        ratchet_on_decrypt = true;\n        delete_fully_used_on_decrypt = true;\n        delete_prev_on_new_session = true;\n        delete_on_device_delete = true;\n        periodically_delete_expired = true;\n        delete_outdated_inbound = true;\n      };\n\n      verification_levels = {\n        receive = \"cross-signed-tofu\";\n        send = \"cross-signed-tofu\";\n        share = \"cross-signed-tofu\";\n      };\n    };\n  };\n\n  logging = {\n    min_level = \"info\";\n    writers = lib.singleton {\n      type = \"stdout\";\n      format = \"pretty-colored\";\n      time_format = \" \";\n    };\n  };\n};\n";
                             const description = "{file}`config.yaml` configuration as a Nix attribute set.\nConfiguration options should match those described in the example configuration.\nGet an example configuration by executing one of those commands\n  - `mautrix-meta -c example.yaml --generate-example-config`\n  - `mautrix-instagram -c example.yaml --generate-example-config`\n\nSecret tokens should be specified using {option}`environmentFile`\ninstead\n";
-                            return { __proto__: pos$16, apply, type, default: default$, defaultText, description };
+                            return { [nix.POS]: pos$16, apply, type, default: default$, defaultText, description };
                           })()))),
                         environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
                             description: "File containing environment variables to substitute when copying the configuration\nout of Nix store to the `services.mautrix-meta.dataDir`.\n\nCan be used for storing the secrets without making them available in the Nix store.\n\nFor example, you can set `services.mautrix-meta.settings.appservice.as_token = \"$MAUTRIX_META_APPSERVICE_AS_TOKEN\"`\nand then specify `MAUTRIX_META_APPSERVICE_AS_TOKEN=\"{token}\"` in the environment file.\nThis value will get substituted into the configuration file as as token.\n",
                           })))),
                         serviceDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config_1, "registrationServiceUnit"))], nix.concat(nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.sel(upperConfig, "services", "matrix-synapse", "enable")), nix.thunk(() => nix.sel(upperConfig, "services", "matrix-synapse", "serviceUnit"))), nix.concat(nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.sel(upperConfig, "services", "matrix-conduit", "enable")), "matrix-conduit.service"), nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.sel(upperConfig, "services", "dendrite", "enable")), "dendrite.service"))))),
                             defaultText: "[ config.registrationServiceUnit ] ++\n(lib.lists.optional upperConfig.services.matrix-synapse.enable upperConfig.services.matrix-synapse.serviceUnit) ++\n(lib.lists.optional upperConfig.services.matrix-conduit.enable \"matrix-conduit.service\") ++\n(lib.lists.optional upperConfig.services.dendrite.enable \"dendrite.service\");\n",
                             description: "List of Systemd services to require and wait for when starting the application service.\n",
                           })))),
                         serviceUnit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             readOnly: true,
                             description: "The systemd unit (a service or a target) for other services to depend on if they\nneed to be started after matrix-synapse.\n\nThis option is useful as the actual parent unit for all matrix-synapse processes\nchanges when configuring workers.\n",
                           })))),
                         registrationServiceUnit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             readOnly: true,
                             description: "The registration service that generates the registration file.\n\nSystemd unit (a service or a target) for other services to depend on if they\nneed to be started after mautrix-meta registration service.\n\nThis option is useful as the actual parent unit for all matrix-synapse processes\nchanges when configuring workers.\n",
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         serviceUnit: nix.thunk(() => nix.add(nix.app(metaName, name), ".service")),
                         registrationServiceUnit: nix.thunk(() => nix.add(nix.app(metaName, name), "-registration.service")),
                         registrationFile: nix.thunk(() => nix.add(nix.app(fullDataDir, config_1), "/meta-registration.yaml")),
@@ -226,10 +226,10 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(enabledInstances, {})), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertions: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (cfg_1) => [
                     nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg_1, "settings", "homeserver", "domain"), "")) && nix.asBool(!nix.eq(nix.sel(cfg_1, "settings", "homeserver", "address"), "")))),
                       message: nix.thunk(() => nix.str`The options with information about the homeserver:
 \`services.mautrix-meta.instances.${name}.settings.homeserver.domain\` and
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       assertion: nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(cfg_1, "settings", "network", "mode")), nix.thunk(() => ["facebook", "facebook-tor", "messenger", "instagram"]))),
                       message: nix.thunk(() => nix.str`The option \`services.mautrix-meta.instances.${name}.settings.network.mode\` has to be set
 to one of: facebook, facebook-tor, messenger, instagram.
@@ -245,79 +245,79 @@ This configures the mode of the bridge.
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       assertion: nix.thunk(() => !nix.eq(nix.sel(cfg_1, "settings", "bridge", "permissions"), {})),
                       message: nix.thunk(() => nix.str`The option \`services.mautrix-meta.instances.${name}.settings.bridge.permissions\` has to be set.
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       assertion: nix.thunk(() => !nix.eq(nix.sel(cfg_1, "settings", "appservice", "id"), "")),
                       message: nix.thunk(() => nix.str`The option \`services.mautrix-meta.instances.${name}.settings.appservice.id\` has to be set.
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       assertion: nix.thunk(() => !nix.eq(nix.sel(cfg_1, "settings", "appservice", "bot", "username"), "")),
                       message: nix.thunk(() => nix.str`The option \`services.mautrix-meta.instances.${name}.settings.appservice.bot.username\` has to be set.
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg_1, "settings"), "bridge", "disable_xma"))),
                       message: "The option `bridge.disable_xma` has been moved to `network.disable_xma_always`. Please [migrate your configuration](https://github.com/mautrix/meta/releases/tag/v0.4.0). You may wish to use [the auto-migration code](https://github.com/mautrix/meta/blob/f5440b05aac125b4c95b1af85635a717cbc6dd0e/cmd/mautrix-meta/legacymigrate.go#L23) for reference.\n",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg_1, "settings"), "bridge", "displayname_template"))),
                       message: "The option `bridge.displayname_template` has been moved to `network.displayname_template`. Please [migrate your configuration](https://github.com/mautrix/meta/releases/tag/v0.4.0). You may wish to use [the auto-migration code](https://github.com/mautrix/meta/blob/f5440b05aac125b4c95b1af85635a717cbc6dd0e/cmd/mautrix-meta/legacymigrate.go#L23) for reference.\n",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg_1, "settings"), "meta"))),
                       message: "The options in `meta` have been moved to `network`. Please [migrate your configuration](https://github.com/mautrix/meta/releases/tag/v0.4.0). You may wish to use [the auto-migration code](https://github.com/mautrix/meta/blob/f5440b05aac125b4c95b1af85635a717cbc6dd0e/cmd/mautrix-meta/legacymigrate.go#L23) for reference.\n",
                     })),
                   ], enabledInstances)))))),
             users: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               users: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`mautrix-meta-${name}`), nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     isSystemUser: true,
                     group: "mautrix-meta",
                     extraGroups: nix.thunk(() => ["mautrix-meta-registration"]),
                     description: nix.thunk(() => nix.str`Mautrix-Meta-${name} bridge user`),
                   }))), enabledInstances)),
               groups: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 "mautrix-meta": nix.thunk(() => ({})),
                 "mautrix-meta-registration": nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   members: nix.thunk(() => nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")), "matrix-synapse")),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")), nix.thunk(() => (() => {
                   const registrationFiles = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (cfg_1) => nix.sel(cfg_1, "registrationFile"), registerToSynapseInstances))));
                   return {
-                    __proto__: pos$41,
-                    settings: nix.thunk(() => ({ __proto__: pos$40, app_service_config_files: registrationFiles })),
+                    [nix.POS]: pos$41,
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$40, app_service_config_files: registrationFiles })),
                   };
                 })()))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")), nix.thunk(() => (() => {
                         const registrationServices = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (cfg_1) => nix.sel(cfg_1, "registrationServiceUnit"), registerToSynapseInstances))));
-                        return { __proto__: pos$43, wants: registrationServices, after: registrationServices };
+                        return { [nix.POS]: pos$43, wants: registrationServices, after: registrationServices };
                       })()))),
                   })),
                   nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${nix.app(metaName, name)}-registration`), nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         description: nix.thunk(() => nix.str`Mautrix-Meta registration generation service - ${nix.app(metaName, name)}`),
                         path: nix.thunk(() => [
                           nix.thunk(() => nix.sel(pkgs, "yq")),
@@ -387,7 +387,7 @@ chown :mautrix-meta-registration '${nix.sel(cfg_1, "registrationFile")}'
 chmod 640 '${nix.sel(cfg_1, "registrationFile")}'
 `),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           Type: "oneshot",
                           UMask: 27n,
                           User: nix.thunk(() => nix.str`mautrix-meta-${name}`),
@@ -402,13 +402,13 @@ chmod 640 '${nix.sel(cfg_1, "registrationFile")}'
                         restartTriggers: nix.thunk(() => [nix.thunk(() => nix.app(settingsFileUnsubstituted, cfg_1))]),
                       }))), enabledInstances)),
                   nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${nix.app(metaName, name)}`), nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         description: nix.thunk(() => nix.str`Mautrix-Meta bridge - ${nix.app(metaName, name)}`),
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         wants: nix.thunk(() => nix.concat(["network-online.target"], nix.sel(cfg_1, "serviceDependencies"))),
                         after: nix.thunk(() => nix.concat(["network-online.target"], nix.sel(cfg_1, "serviceDependencies"))),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           Type: "simple",
                           User: nix.thunk(() => nix.str`mautrix-meta-${name}`),
                           Group: "mautrix-meta",
@@ -449,27 +449,27 @@ chmod 640 '${nix.sel(cfg_1, "registrationFile")}'
             })),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           services: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             "mautrix-meta": nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               instances: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(lib, "modules"));
                 const mkDefault = nix.thunk(() => nix.attr(from, "mkDefault"));
                 return {
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   instagram: nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$54,
-                      network: nix.thunk(() => ({ __proto__: pos$51, mode: nix.thunk(() => nix.app(mkDefault, "instagram")) })),
+                      [nix.POS]: pos$54,
+                      network: nix.thunk(() => ({ [nix.POS]: pos$51, mode: nix.thunk(() => nix.app(mkDefault, "instagram")) })),
                       appservice: nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         id: nix.thunk(() => nix.app(mkDefault, "instagram")),
                         port: nix.thunk(() => nix.app(mkDefault, 29320n)),
                         bot: nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           username: nix.thunk(() => nix.app(mkDefault, "instagrambot")),
                           displayname: nix.thunk(() => nix.app(mkDefault, "Instagram bridge bot")),
                           avatar: nix.thunk(() => nix.app(mkDefault, "mxc://maunium.net/JxjlbZUlCPULEeHZSwleUXQv")),
@@ -479,16 +479,16 @@ chmod 640 '${nix.sel(cfg_1, "registrationFile")}'
                     })),
                   })),
                   facebook: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$59,
-                      network: nix.thunk(() => ({ __proto__: pos$56, mode: nix.thunk(() => nix.app(mkDefault, "facebook")) })),
+                      [nix.POS]: pos$59,
+                      network: nix.thunk(() => ({ [nix.POS]: pos$56, mode: nix.thunk(() => nix.app(mkDefault, "facebook")) })),
                       appservice: nix.thunk(() => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         id: nix.thunk(() => nix.app(mkDefault, "facebook")),
                         port: nix.thunk(() => nix.app(mkDefault, 29321n)),
                         bot: nix.thunk(() => ({
-                          __proto__: pos$57,
+                          [nix.POS]: pos$57,
                           username: nix.thunk(() => nix.app(mkDefault, "facebookbot")),
                           displayname: nix.thunk(() => nix.app(mkDefault, "Facebook bridge bot")),
                           avatar: nix.thunk(() => nix.app(mkDefault, "mxc://maunium.net/ygtkteZsXnGJLJHRchUwYWak")),
@@ -503,7 +503,7 @@ chmod 640 '${nix.sel(cfg_1, "registrationFile")}'
           })),
         })),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$65, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$65, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=mautrix-meta.ts.map

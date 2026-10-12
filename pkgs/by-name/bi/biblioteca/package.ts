@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const extraDocsPackage = nix.argOr($, "extraDocsPackage", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "biblioteca",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "workbenchdev",
           repo: "Biblioteca",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         glib_networking,
       ]),
       docPath: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "biblioteca-docs",
           paths: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(gtk4, "devdoc")),
@@ -90,11 +90,11 @@ substituteInPlace src/window.js \\
       postInstall: "mv $out/bin/app.drey.Biblioteca $out/share/app.drey.Biblioteca/app.drey.Biblioteca\nsubstituteInPlace $out/bin/biblioteca \\\n  --replace-fail app.drey.Biblioteca $out/share/app.drey.Biblioteca/app.drey.Biblioteca\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://apps.gnome.org/Biblioteca/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {

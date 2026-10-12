@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "poutine",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boostsecurityio",
           repo: "poutine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --zsh <($out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} completion zsh)
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Security scanner that detects misconfigurations and vulnerabilities in build pipelines of repositories",
         homepage: "https://github.com/boostsecurityio/poutine",
         changelog: nix.thunk(() => nix.str`https://github.com/boostsecurityio/poutine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

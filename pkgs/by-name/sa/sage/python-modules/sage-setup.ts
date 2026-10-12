@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const preBuild = "cd pkgs/sage-setup\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Build system of the Sage library",
         homepage: "https://www.sagemath.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         format,
         pname,

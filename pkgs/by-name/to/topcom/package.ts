@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gmpxx = nix.arg($, "gmpxx");
   const programPrefix = nix.argOr($, "programPrefix", () => "topcom-");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "topcom",
       version: "1.1.2",
       versionUrl: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM-Downloads/TOPCOM-${nix.sel(finalAttrs, "versionUrl")}.tgz`),
           hash: "sha256-r6dA2rQzxMu0Xxq5yl9rBZ5MJTRnmWVLav/F/QpkZ1A=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/topcom/-/raw/67c9a20c8e1597898f3950b486b4287641823363/system-libs.patch",
             hash: "sha256-F+1ZtluGL3i+LKWp0poQnx2ZlV5TSp6WSK5yl2FmOP4",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\nfor prog in $(find \"$out/bin\" -type f); do\n  echo \"Checking $prog\"\n  grep -q '^usage: ' <(echo \"\" | \"$prog\" 2>&1) && continue\n  \"$prog\" --help &>/dev/null && continue\n  echo \"$prog doesn't seem to be working\" >&2\n  exit 1\ndone\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package for computing Triangulations Of Point Configurations and Oriented Matroid",
         longDescription: "TOPCOM is a package for computing Triangulations Of Point Configurations\nand Oriented Matroids. It was very much inspired by the maple program\nPUNTOS, which was written by Jesus de Loera. TOPCOM is entirely written\nin C++, so there is a significant speed up compared to PUNTOS.\n",
         homepage: "https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM/index.html",

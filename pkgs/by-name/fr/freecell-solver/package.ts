@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const rinutils = nix.arg($, "rinutils");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freecell-solver",
       version: "6.16.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fc-solve.shlomifish.org/downloads/fc-solve/freecell-solver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-cbiILmjxvmJSkGkBjQxzK3UHhmkHfJY0gnlXWEnzQxM=",
         })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fc-solve.shlomifish.org/",
         description: "FreeCell automatic solver",
         longDescription: "FreeCell Solver is a program that automatically solves layouts of Freecell\nand similar variants of Card Solitaire such as Eight Off, Forecell, and\nSeahaven Towers, as well as Simple Simon boards.\n",

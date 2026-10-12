@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const scikit_image = nix.arg($, "scikit-image");
   const version = "1.2.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mung",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OMR-Research",
           repo: "mung",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mung"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Music Notation Graph: a data model for optical music recognition",
         homepage: "https://github.com/OMR-Research/mung",
         changelog: nix.thunk(() => nix.str`https://github.com/OMR-Research/mung/blob/${version}/CHANGES.md`),

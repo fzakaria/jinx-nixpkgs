@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
   const monero_cli = nix.arg($, "monero-cli");
   const wownero = nix.arg($, "wownero");
   const secp256k1_basicswap = nix.thunk(() => nix.app(nix.sel(secp256k1, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "basicswap",
           repo: "secp256k1",
           rev: "fd8b63ccf8bcb48358a42c456f34e2488a55a688",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         "--enable-module-ecdsaotves",
       ])),
     })));
-  const coincurve_basicswap = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3Packages, "coincurve", "override"), nix.thunk(() => ({ __proto__: pos$3, secp256k1: secp256k1_basicswap }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$5,
+  const coincurve_basicswap = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3Packages, "coincurve", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, secp256k1: secp256k1_basicswap }))), "overrideAttrs"), nix.thunk(() => ({
+      [nix.POS]: pos$5,
       version: "21.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "basicswap",
           repo: "coincurve",
           tag: "basicswap_v0.3",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       patches: [],
     }))));
   const bindir = nix.thunk(() => nix.app(linkFarm, "bindir", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (p) => nix.str`${nix.app(nix.sel(lib, "getBin"), p)}/bin`, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         particl: particl_core,
         bitcoin: bitcoind,
         namecoin: namecoind,
@@ -64,12 +64,12 @@ export default nix.lambda((args) => (() => {
         wownero: wownero,
       }))))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "basicswap",
       version: "0.17.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "basicswap",
           repo: "basicswap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,9 +99,9 @@ substituteInPlace basicswap/bin/prepare.py \\
       })()),
       postInstall: "install -Dm755 scripts/createoffers.py $out/bin/basicswap-createoffers\n",
       doCheck: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$8, bindir: bindir })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, bindir: bindir })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Basic Atomic Swap Proof of Concept",
         homepage: "https://basicswapdex.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

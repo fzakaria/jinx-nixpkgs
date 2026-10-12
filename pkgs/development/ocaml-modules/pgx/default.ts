@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const uuidm = nix.arg($, "uuidm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgx",
       version: "2.3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pgx-ocaml/pgx/archive/refs/tags/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Rp9PXsWI4cBc1YHD7uqKATrRt5tgNJowbaAFg1aeVKM=",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-OCaml PostgreSQL client library",
         homepage: "https://github.com/pgx-ocaml/pgx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libiconv = nix.arg($, "libiconv");
   return (finalAttrs) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0.996",
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "taku910",
         repo: "mecab",
         rev: "5a7db65493a0b57d5fc31734e65300320aaf94c8",

@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const mozillaPluginPath = "/lib/mozilla/plugins";
   const stdenv$ = stdenv_32bit;
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.2.8.2",
       pname: "pipelight",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/mmueller2012/pipelight/get/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1kyy6knkr42k34rs661r0f5sf6l1s2jdbphdg89n73ynijqmzjhk",
         })))),
       buildInputs: nix.thunk(() => [wine_custom, libx11, libGLU, libGL, curl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       })),
       patches: nix.thunk(() => [
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
   --downloader=${nix.sel(curl, "bin")}/bin/curl
   $configureFlags
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, mozillaPlugin: mozillaPluginPath, wine: wine_custom })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, mozillaPlugin: mozillaPluginPath, wine: wine_custom })),
       postInstall: "$out/bin/pipelight-plugin --create-mozilla-plugins\n",
       preFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/pipelight/install-dependency \\
   --replace cabextract ${cabextract}/bin/cabextract
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://pipelight.net/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

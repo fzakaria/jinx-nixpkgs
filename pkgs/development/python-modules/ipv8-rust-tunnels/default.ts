@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ipv8-rust-tunnels",
       version: "0.1.53",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ipv8_rust_tunnels",
           hash: "sha256-A95LhuZoLHCW9IcDVnL/QyHursaUKC3GCIXkYHVdwIU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aPLwXECgEumulnCc9dw/18EE+UUgw4uQ7FZAbe0IKAI=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true,
         RUSTFLAGS: "--cfg tokio_unstable",
       })),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ipv8_rust_tunnels"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Set of performance enhancements to the TunnelCommunity, the anonymization layer used in IPv8 and Tribler",
         homepage: "https://github.com/Tribler/ipv8-rust-tunnels",
         changelog: nix.thunk(() => nix.str`https://github.com/Tribler/ipv8-rust-tunnels/releases/tag/${nix.sel(finalAttrs, "version")}`),

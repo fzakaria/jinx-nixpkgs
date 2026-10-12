@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csv2latex",
       version: "0.23.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://brouits.free.fr/csv2latex/csv2latex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-k1vQyrVJmfaJ7jVaoW2dkPD7GO8EoDqJY5m8O2U/kYw=",
         })))),
       installPhase: "mkdir -p $out/bin\nmake PREFIX=$out install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line CSV to LaTeX file converter",
         homepage: "http://brouits.free.fr/csv2latex/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

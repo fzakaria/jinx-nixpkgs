@@ -57,65 +57,65 @@ endorsement_cred = ${nix.sel(cfg, "endorsementCred")}
 #all_platform_classes = pc_11,pc_12,mobile_12
 `)));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tcsd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable tcsd, a Trusted Computing management service\nthat provides TCG Software Stack (TSS).  The tcsd daemon is\nthe only portal to the Trusted Platform Module (TPM), a hardware\nchip on the motherboard.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "tss",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User account under which tcsd runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "tss",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Group account under which tcsd runs.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/lib/tpm",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The location of the system persistent storage file.\nThe system persistent storage file holds keys and data across\nrestarts of the TCSD and system reboots.\n",
             })))),
           firmwarePCRs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "0,1,2,3,4,5,6,7",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "PCR indices used in the TPM for firmware measurements.",
             })))),
           kernelPCRs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "8,9,10,11,12",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "PCR indices used in the TPM for kernel measurements.",
             })))),
           platformCred: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/platform.cert`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/platform.cert"`))),
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to the platform credential for your TPM. Your TPM\nmanufacturer may have provided you with a set of credentials\n(certificates) that should be used when creating identities\nusing your TPM. When a user of your TPM makes an identity,\nthis credential will be encrypted as part of that process.\nSee the 1.1b TPM Main specification section 9.3 for information\non this process. ",
             })))),
           conformanceCred: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/conformance.cert`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/conformance.cert"`))),
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to the conformance credential for your TPM.\nSee also the platformCred option",
             })))),
           endorsementCred: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/endorsement.cert`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/endorsement.cert"`))),
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
@@ -125,15 +125,15 @@ endorsement_cred = ${nix.sel(cfg, "endorsementCred")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "trousers"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           udev: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             extraRules: nix.thunk(() => nix.str`# Give tcsd ownership of all TPM devices
 KERNEL=="tpm[0-9]*", MODE="0660", OWNER="${nix.sel(cfg, "user")}", GROUP="${nix.sel(cfg, "group")}"
 # Tag TPM devices to create a .device unit for tcsd to depend on
@@ -142,24 +142,24 @@ ACTION=="add", KERNEL=="tpm[0-9]*", TAG+="systemd"
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "stateDir")} 0770 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             tcsd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Manager for Trusted Computing resources",
               documentation: nix.thunk(() => ["man:tcsd(8)"]),
               requires: nix.thunk(() => ["dev-tpm0.device"]),
               after: nix.thunk(() => ["dev-tpm0.device"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "trousers")}/sbin/tcsd -f -c ${tcsdConf}`),
@@ -168,12 +168,12 @@ ACTION=="add", KERNEL=="tpm[0-9]*", TAG+="systemd"
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "tss")), nix.thunk(() => ({
-              __proto__: pos$22,
-              tss: nix.thunk(() => ({ __proto__: pos$21, group: "tss", isSystemUser: true })),
+              [nix.POS]: pos$22,
+              tss: nix.thunk(() => ({ [nix.POS]: pos$21, group: "tss", isSystemUser: true })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tss")), nix.thunk(() => ({ __proto__: pos$23, tss: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tss")), nix.thunk(() => ({ [nix.POS]: pos$23, tss: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

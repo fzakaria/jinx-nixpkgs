@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
     "cmd/kube-scheduler",
   ]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kubernetes",
       version: "1.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes",
           repo: "kubernetes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, which, rsync, installShellFiles]),
       outputs: nix.thunk(() => ["out", "man", "pause"]),
       patches: nix.thunk(() => [nix.path(here, "./fixup-addonmanager-lib-path.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, WHAT: nix.thunk(() => nix.builtins.toString(components)) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, WHAT: nix.thunk(() => nix.builtins.toString(components)) })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 substituteInPlace "hack/update-generated-docs.sh" --replace "make" "make SHELL=${runtimeShell}"
 patchShebangs ./hack ./cluster/addons/addon-manager
@@ -84,12 +84,12 @@ installShellCompletion --cmd kubeadm \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "kubernetes"), { __proto__: pos$3, kubectl: kubectl })),
+        tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "kubernetes"), { [nix.POS]: pos$3, kubectl: kubectl })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Production-Grade Container Scheduling and Management",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://kubernetes.io",

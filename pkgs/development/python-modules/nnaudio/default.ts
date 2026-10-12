@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const choice = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://librosa.org/data/audio/admiralbob77_-_Choice_-_Drum-bass.ogg",
       hash: "sha256-rGRPlkXnwVF05KT4Vh5NFEjX9uWf9rBVazEOu87Yebw=",
     }))));
   const vibeace = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.ogg",
       hash: "sha256-bCOu091apX8rFlLsq2jRXZuCrSV/VOY56yiAygm8EYo=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nnaudio",
       version: "0.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "KinWaiCheuk",
           repo: "nnAudio",
           rev: "e77d9f874cf37b273f44f68aefbd32fb0b979912",
@@ -59,7 +59,7 @@ export NUMBA_CACHE_DIR=$(mktemp -d)
       disabledTests: nix.thunk(() => nix.concat(["test_cfp_original[cpu]", "test_cfp_new[cpu]", "test_vqt_gamma_zero[cpu]"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_cqt_1992_v2_linear[cpu]", "test_cqt_1992_v2_log[cpu]"])))),
       pythonImportsCheck: nix.thunk(() => ["nnAudio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast GPU audio processing toolbox with 1D convolutional neural network",
         homepage: "https://github.com/KinWaiCheuk/nnAudio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

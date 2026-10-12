@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wikipedia2vec",
           repo: "wikipedia2vec",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "bash cythonize.sh\n";
       const pythonImportsCheck = nix.thunk(() => ["wikipedia2vec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for learning vector representations of words and entities from Wikipedia",
         mainProgram: "wikipedia2vec",
         homepage: "https://wikipedia2vec.github.io/wikipedia2vec/",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

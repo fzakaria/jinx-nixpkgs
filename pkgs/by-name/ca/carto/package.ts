@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "carto";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mapbox",
           repo: "carto",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const postInstall = "# Remove broken symlinks\nfind \"$out/lib/node_modules\" -xtype l -delete\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mapbox/carto/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Mapnik stylesheet compiler",
         homepage: "https://github.com/mapbox/carto",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

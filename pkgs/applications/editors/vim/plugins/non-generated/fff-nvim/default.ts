@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "0.10.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "dmtrKovalenko",
       repo: "fff",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-pE4DsaCvlvgTKJtyV8uGhAQvbJpxpgXlIkoVh8I15qw=",
     }))));
   const fff_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fff-nvim-lib",
       version: version,
       src: src,
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
         "--skip=drop_during_post_scan_does_not_crash",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: true,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fff.nvim",
       version: version,
       src: src,
@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
 `),
       nvimSkipModules: nix.thunk(() => ["empty_config"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.fff-nvim.fff-nvim-lib" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.fff-nvim.fff-nvim-lib" })))),
         "fff-nvim-lib": fff_nvim_lib,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast Fuzzy File Finder for Neovim",
         homepage: "https://github.com/dmtrKovalenko/fff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

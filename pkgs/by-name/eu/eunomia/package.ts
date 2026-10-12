@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "0";
   const minorVersion = "200";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eunomia",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/eunomia_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-Rd2EakaTWjzoEV00tHTgg/bXgJUFfPjCyQUWi7QhFG4=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/opentype $src/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dotcolon.net/font/eunomia/",
         description: "Futuristic decorative font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

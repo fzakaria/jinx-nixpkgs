@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "lsprotocol",
           tag: version,
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_notebook_sync_options"]);
       const preCheck = "cd ../../\n";
       const pythonImportsCheck = nix.thunk(() => ["lsprotocol"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation of the Language Server Protocol",
         homepage: "https://github.com/microsoft/lsprotocol",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/lsprotocol/releases/tag/${nix.sel(src, "tag")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

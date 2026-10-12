@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libnetfilter_queue = nix.arg($, "libnetfilter_queue");
   const libnfnetlink = nix.arg($, "libnfnetlink");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freebind",
       version: "2017-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blechschmidt",
           repo: "freebind",
           rev: "9a13d6f9c12aeea4f6d3513ba2461d34f841f278",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace preloader.c --replace /usr/local/ $out/\nsubstituteInPlace Makefile    --replace /usr/local/ $out/\n",
       preInstall: "mkdir -p $out/bin $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IPv4 and IPv6 address rate limiting evasion tool",
         homepage: "https://github.com/blechschmidt/freebind",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

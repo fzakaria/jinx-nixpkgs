@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gptfdisk",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gptfdisk/gptfdisk-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Kr7WG8bSuexJiXPARAuLgEt6ctcUQGm1qSCbKtaTooI=",
         })))),
@@ -48,14 +48,14 @@ substituteInPlace Makefile.mac --replace \\
       installPhase: "for prog in gdisk sgdisk fixparts cgdisk\ndo\n    installBin $prog\n    installManPage $prog.8\ndone\n",
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "installer-simpleLabels": nix.thunk(() => nix.sel(nixosTests, "installer", "simpleLabels")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Set of text-mode partitioning tools for Globally Unique Identifier (GUID) Partition Table (GPT) disks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://www.rodsbooks.com/gdisk/",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mosml",
       version: "2.10.1",
       buildInputs: nix.thunk(() => [gmp, perl]),
@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
         "PREFIX=$(out)",
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-fpermissive -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-fpermissive -std=gnu17" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "kfl",
           repo: "mosml",
           rev: nix.thunk(() => nix.str`ver-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "export sourceRoot=\"$(echo */src)\"",
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Light-weight implementation of Standard ML",
         longDescription: "Moscow ML is a light-weight implementation of Standard ML (SML), a strict\nfunctional language used in teaching and research.\n",

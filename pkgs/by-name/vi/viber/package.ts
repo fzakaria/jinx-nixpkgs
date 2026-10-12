@@ -102,11 +102,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const zvbi = nix.arg($, "zvbi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "viber",
       version: "27.3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260518041738/https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb",
           hash: "sha256-lhU03Ay5IABux66BCLDhugmkdu7x4TtLNwp5zVLdIPM=",
         })))),
@@ -231,7 +231,7 @@ runHook postInstall
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.viber.com",
         description: "Instant messaging and Voice over IP (VoIP) app",
         sourceProvenance: nix.thunk(() => (() => {

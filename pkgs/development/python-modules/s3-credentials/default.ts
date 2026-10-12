@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "s3-credentials",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["s3_credentials"]);
       const disabledTests = nix.thunk(() => ["test_put_objects"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python CLI utility for creating credentials for accessing S3 buckets",
         homepage: "https://github.com/simonw/s3-credentials",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/s3-credentials/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "s3-credentials",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

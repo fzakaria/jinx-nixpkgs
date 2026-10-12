@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const sassc = nix.arg($, "sassc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libsass",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sass",
           repo: "libsass",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           gtk3: gtk3,
           gtk4: gtk4,
           sassc: sassc,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C/C++ implementation of a Sass compiler",
         homepage: "https://github.com/sass/libsass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

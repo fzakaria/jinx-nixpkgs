@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const module = nix.arg($, "module");
   const description = nix.arg($, "description");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "26.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netzbegruenung",
           repo: "keycloak-mfa-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       mvnHash: nix.thunk(() => (() => {
         const mvnHashes = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "aarch64-darwin": "sha256-D7inbJCs8r2RWY4TJMmxpiDPxy+o3xvdklzWNd5uZXk=",
           "aarch64-linux": "sha256-DS8LfIneN05OG201CK2bIUSV0fSUdku78Vt3FIZFmwQ=",
           "x86_64-linux": "sha256-k60cKLwN/VyWrErjIpgOvC+uYNbF2hkmCwO8MFVxvrI=",
@@ -44,7 +44,7 @@ install -Dm644 ${module}/target/netzbegruenung.${module}-v${nix.sel(finalAttrs, 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/netzbegruenung/keycloak-mfa-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/netzbegruenung/keycloak-mfa-plugins/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: description,

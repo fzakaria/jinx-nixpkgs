@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gotop",
       version: "4.2.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xxxserxxx",
           repo: "gotop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       postInstall: "$out/bin/gotop --create-manpage > gotop.1\ninstallManPage gotop.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal based graphical activity monitor inspired by gtop and vtop",
         homepage: "https://github.com/xxxserxxx/gotop",
         changelog: nix.thunk(() => nix.str`https://github.com/xxxserxxx/gotop/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

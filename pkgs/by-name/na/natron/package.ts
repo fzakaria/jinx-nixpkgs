@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const minorVersion = "2.5";
   const version = nix.thunk(() => nix.str`${minorVersion}.0`);
   const OpenColorIO_Configs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "NatronGitHub",
       repo: "OpenColorIO-Configs",
       rev: nix.thunk(() => nix.str`Natron-v${minorVersion}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const python3 = python312;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       pname: "natron",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NatronGitHub",
           repo: "Natron",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "gcc-13.patch",
             url: "https://github.com/NatronGitHub/Natron/commit/4b44fb18293035873b35c3a2d2aa29da78cb8740.patch",
             includes: nix.thunk(() => ["Global/GlobalDefines.h"]),
             hash: "sha256-9E1tJCvO7zA1iQAhrlL3GaBFIGpkjxNOr31behQXdhQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "gcc-13.patch",
             url: "https://github.com/NatronGitHub/Natron/commit/f21f58622e32c1684567c82e2ab361f33030bda7.patch",
             includes: nix.thunk(() => ["Engine/Noise.cpp"]),
@@ -96,7 +96,7 @@ cp -r ${OpenColorIO_Configs} $out/share/OpenColorIO-Configs
   --set-default OCIO "$out/share/OpenColorIO-Configs/blender/config.ocio"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Node-graph based, open-source compositing software",
         longDescription: "Node-graph based, open-source compositing software. Similar in\nfunctionalities to Adobe After Effects and Nuke by The Foundry.\n",
         homepage: "https://natron.fr/",

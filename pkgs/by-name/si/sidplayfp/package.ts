@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const miniaudioPkgconfigs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, "alsa"), nix.concat(nix.app(nix.sel(lib, "optional"), jackSupport, "jack"), nix.app(nix.sel(lib, "optional"), pulseSupport, "libpulse"))));
   const miniaudioNeedsPkgconfigs = nix.thunk(() => nix.gt(nix.builtins.length(miniaudioPkgconfigs), 0n));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "sidplayfp",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsidplayfp",
           repo: "sidplayfp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,15 +69,15 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.app(runCommand, "sidplayfp-print-version", nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
                   return {
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   pname: nix.thunk(() => nix.attr(from, "pname")),
                   version: nix.thunk(() => nix.attr(from, "version")),
                   meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -88,10 +88,10 @@ export default nix.lambda((args) => (() => {
 `))),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "SID player using libsidplayfp",
         homepage: "https://github.com/libsidplayfp/sidplayfp",
         changelog: nix.thunk(() => nix.str`https://github.com/libsidplayfp/sidplayfp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

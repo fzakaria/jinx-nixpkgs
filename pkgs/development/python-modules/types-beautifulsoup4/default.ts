@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.12.0.20250516";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_beautifulsoup4",
           version: version,
           hash: "sha256-qhndc7M7cNYpat+S2oq4oMlFxQfm+31dtVNBXMd7QX4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["bs4-stubs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for beautifulsoup4",
         homepage: "https://pypi.org/project/types-beautifulsoup4/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

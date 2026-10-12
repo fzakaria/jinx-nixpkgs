@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tere",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mgunyho",
           repo: "tere",
           rev: "5adf1176e8c12c073ad244cac7773a7808ed2021",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         return nix.str`${python_with_toml}/bin/python3 ${script}`;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Faster alternative to cd + ls",
         homepage: "https://github.com/mgunyho/tere",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

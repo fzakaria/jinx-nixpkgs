@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trackpy",
       version: "0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "soft-matter",
           repo: "trackpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# specifically needed for darwin\nexport HOME=$(mktemp -d)\nmkdir -p $HOME/.matplotlib\necho \"backend: ps\" > $HOME/.matplotlib/matplotlibrc\n")),
       pythonImportsCheck: nix.thunk(() => ["trackpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Particle-tracking toolkit",
         homepage: "https://github.com/soft-matter/trackpy",
         changelog: nix.thunk(() => nix.str`https://github.com/soft-matter/trackpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

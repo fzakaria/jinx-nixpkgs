@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "matrix-alertmanager";
       const version = "0.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaywink",
           repo: "matrix-alertmanager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ mv package.json.tmp package.json
       const npmDepsHash = "sha256-r1OvxCk6dgVAb3NKxveTr/1PTRFYQVDhQmBHbikzALE=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jaywink/matrix-alertmanager/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Bot to receive Alertmanager webhook events and forward them to chosen rooms",
         mainProgram: "matrix-alertmanager",
@@ -47,7 +47,7 @@ mv package.json.tmp package.json
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

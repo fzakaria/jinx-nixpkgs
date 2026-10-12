@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
     const endianFlag = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLittleEndian")) ? "--little-endian" : "--big-endian"));
     const bloodFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(hostPlatform, "is64bit")), "--64"));
     const run = (pname) => (builder) => (args_1) => nix.app(derivationWithMeta, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version,
         builder: builder,
         args: args_1,
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "Collection of tools written for use in bootstrapping",
           homepage: "https://github.com/oriansj/stage0-posix",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -412,7 +412,7 @@ export default nix.lambda((args) => (() => {
         out,
       ])));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       out,
       endianFlag,
       bloodFlags,

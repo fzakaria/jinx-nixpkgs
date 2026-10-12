@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_ttf = nix.arg($, "SDL2_ttf");
   const SDL2_image = nix.arg($, "SDL2_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libwtk-sdl2",
       version: "0-unstable-2023-02-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muesli4",
           repo: "libwtk-sdl2",
           rev: "0504f8342c8c97d0c8b43d33751427c564ad8d44",
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [boost, SDL2, SDL2_ttf, SDL2_image]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
       })),
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simplistic SDL2 GUI framework in early development",
         mainProgram: "libwtk-sdl2-test",
         homepage: "https://github.com/muesli4/libwtk-sdl2",

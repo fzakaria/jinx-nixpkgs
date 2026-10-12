@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "eigenlayer";
       const version = "0.13.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Layr-Labs",
           repo: "eigenlayer-cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const subPackages = nix.thunk(() => ["cmd/eigenlayer"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.eigenlayer.xyz/",
         changelog: nix.thunk(() => nix.str`https://github.com/Layr-Labs/eigenlayer-cli/releases/tag/${nix.sel(src, "rev")}`),
         description: "Utility that manages core operator functionalities like local keys, operator registration and updates",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

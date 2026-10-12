@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const sane_backends = nix.arg($, "sane-backends");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ksanecore",
       extraBuildInputs: nix.thunk(() => [sane_backends]),
     })));

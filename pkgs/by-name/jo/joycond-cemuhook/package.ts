@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "joycond-cemuhook",
       version: "0-unstable-2024-12-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joaorb64",
           repo: "joycond-cemuhook",
           rev: "fc2f29e22640b6615a32941cbdc03d41e3ee6f26",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/joaorb64/joycond-cemuhook",
         description: "Support for cemuhook's UDP protocol for joycond devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

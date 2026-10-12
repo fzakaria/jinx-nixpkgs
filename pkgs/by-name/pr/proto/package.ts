@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "proto",
       version: "0.63.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moonrepo",
           repo: "proto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin proto", "--bin proto-shim"]),
       postInstall: "# proto looks up a proto-shim executable file in $PROTO_LOOKUP_DIR\nwrapProgram $out/bin/proto \\\n  --set PROTO_LOOKUP_DIR $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pluggable multi-language version manager",
         longDescription: "proto is a pluggable next-generation version manager for multiple programming languages. A unified toolchain.\n",
         homepage: "https://moonrepo.dev/proto",

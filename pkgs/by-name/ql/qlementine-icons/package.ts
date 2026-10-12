@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qlementine-icons",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oclero",
           repo: "qlementine-icons",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Vector icon set for modern desktop Qt5/Qt6 applications",
         longDescription: "An icon set aimed to be used in conjunction with the Qlementine Qt library.\n\nThis icon set provides icons as requested by the Freedesktop\nstandard, and vastly expands it, in 16×16 pixels.\n\nThe icons are in SVG format, so can be scaled to any size without\nlosing any quality. However, they've been designed to be used in\n`16×16` pixels, to be pixel-perfect.\n",
         homepage: "https://github.com/oclero/qlementine-icons",

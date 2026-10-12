@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libiberty = nix.arg($, "libiberty");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prelink",
       version: "20151030-unstable-2024-07-02",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.yoctoproject.org/prelink-cross",
           branchName: "cross_prelink",
           rev: "ff2561c02ade96c5d4d56ddd4e27ff064840a176",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ELF prelinking utility to speed up dynamic linking",
         homepage: "https://wiki.yoctoproject.org/wiki/Cross-Prelink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const dataDirFlag = "--set SYZYGY_DATA_DIR $out/share/syzygy";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "system-syzygy",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdsteele",
           repo: "syzygy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-H/iG6vsmtpBGYBBqNQG5EpyZaUtfXfVaHv4fkxwqrD0=",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "system-syzygy",
             exec: "syzygy",
             icon: "syzygy",
@@ -68,7 +68,7 @@ makeBinaryWrapper "$app/MacOS/System Syzygy" "$out/bin/syzygy" \\
 ln -s "$out/share/syzygy" "$app/Resources/data"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Narrative meta-puzzle game in the style of The Fool's Errand",
         longDescription: "System Syzygy is a story and a puzzle game, in the style of Cliff\nJohnson's The Fool's Errand and 3 in Three, and of Andrew Plotkin's\nSystem's Twilight.  By the end of the game, all the different puzzles and\npieces of the story come together into a single meta-puzzle.\n",
         mainProgram: "syzygy",

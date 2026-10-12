@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-bandcamp",
       version: "1.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Mopidy-Bandcamp",
           hash: "sha256-wg9zcOKfZQRhpyA1Cu5wvdwKpmrlcr2m9mrqBHgUXAQ=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [mopidy, nix.thunk(() => nix.sel(pythonPackages, "pykka"))]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_bandcamp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mopidy extension for playing music from bandcamp",
         homepage: "https://github.com/impliedchaos/mopidy-bandcamp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

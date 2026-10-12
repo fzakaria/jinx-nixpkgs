@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const cargo = nix.arg($, "cargo");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clamav",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.clamav.net/downloads/production/clamav-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GvEReiKPG1vH+pGg2rw3hIqZ59JRiOm+gEMzLOch39M=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pytest"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.clamav.net",
         description: "Antivirus engine designed for detecting Trojans, viruses, malware and other malicious threats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

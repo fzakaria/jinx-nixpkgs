@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const withTeXLive = nix.argOr($, "withTeXLive", () => true);
   const texliveSmall = nix.arg($, "texliveSmall");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cgt-calc",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KapJI",
           repo: "capital-gains-calculator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update uv-build requirement.patch",
             url: "https://github.com/KapJI/capital-gains-calculator/commit/0222eafdcf1911f3e2fd781697dc53311f529f62.patch",
             hash: "sha256-L8jgrdA9t3x8mdaLmAuW6vFhHCLGA+0gQ/8j9EcYKhE=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), texliveSmall)}/bin`),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "UK capital gains tax calculator",
         homepage: "https://github.com/KapJI/capital-gains-calculator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

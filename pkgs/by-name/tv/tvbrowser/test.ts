@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const xwininfo = nix.arg($, "xwininfo");
   const testScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tvbrowser-test-script",
       runtimeInputs: nix.thunk(() => [xwininfo, tvbrowser]),
       text: "function find_tvbrowser_windows {\n  for window_name in java tvbrowser-TVBrowser 'Setup assistant' ; do\n    grep -q \"$window_name\" \"$1\"  ||  return 1\n  done\n}\ntvbrowser &\nfor _ in {0..900} ; do\n  xwininfo -root -tree  \\\n      | sed 's/.*0x[0-9a-f]* \\\"\\([^\\\"]*\\)\\\".*/\\1/; t; d'  \\\n      | tee window-names\n  echo\n  if find_tvbrowser_windows window-names ; then\n    break\n  fi\n  sleep 1\ndone\nfind_tvbrowser_windows window-names\n",
     }))));
-  return nix.app(runCommand, "tvbrowser-test", nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [xvfb_run]) })), nix.thunk(() => nix.str`HOME=$PWD xvfb-run ${nix.app(nix.sel(lib, "getExe"), testScript)}
+  return nix.app(runCommand, "tvbrowser-test", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [xvfb_run]) })), nix.thunk(() => nix.str`HOME=$PWD xvfb-run ${nix.app(nix.sel(lib, "getExe"), testScript)}
 touch ${nix.builtins.placeholder("out")}
 `));
 })(), formals$1);

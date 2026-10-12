@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jam-mode",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev.gentoo.org/~ulm/distfiles/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.el.xz`),
           hash: "sha256-0IlYqbPa4AAwOpjdd20k8hqtvDhZmcz1WHa/LHx8kMk=",
         })))),
       unpackPhase: "runHook preUnpack\n\nxz -cd $src > jam-mode.el\n\nrunHook postUnpack\n",
       postPatch: "echo \";;; jam-mode.el ---\" > tmp.el\ncat jam-mode.el >> tmp.el\nmv tmp.el jam-mode.el\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Emacs major mode for editing Jam files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const fixup_yarn_lock = nix.arg($, "fixup-yarn-lock");
   const yarn = nix.arg($, "yarn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pkg",
       version: "5.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vercel",
           repo: "pkg",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-h3rHR3JE9hVcd3oiE7VL2daYXGTQo7NcOHGC6pmE/xs=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-KesP3X7LwZ7KSIxcCPXdn/sWcX9TJlwT9z/SdotS2ZQ=",
         })))),
@@ -50,7 +50,7 @@ makeWrapper "${nodejs}/bin/node" "$out/bin/pkg" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package your Node.js project into an executable",
         homepage: "https://github.com/vercel/pkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pvl",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "planetarypy",
           repo: "pvl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dateutil: nix.thunk(() => [python_dateutil]),
         quantities: nix.thunk(() => [astropy, pint]),
       })),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_loadu", "test_loadu_args"]),
       pythonImportsCheck: nix.thunk(() => ["pvl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python implementation of the Parameter Value Language (PVL) used in PDS3 and ISIS labels",
         homepage: "https://github.com/planetarypy/pvl",
         changelog: nix.thunk(() => nix.str`https://github.com/planetarypy/pvl/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.rst`),

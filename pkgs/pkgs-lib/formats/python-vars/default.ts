@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        __proto__: pos$5,
-        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ __proto__: pos$1, typeName: "Python" })))))),
+        [nix.POS]: pos$5,
+        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: pos$1, typeName: "Python" })))))),
         lib: nix.thunk(() => ({
-          __proto__: pos$3,
-          mkRaw: (value) => ({ __proto__: pos$2, value: value, _type: "raw" }),
+          [nix.POS]: pos$3,
+          mkRaw: (value) => ({ [nix.POS]: pos$2, value: value, _type: "raw" }),
         })),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
             const python3 = nix.arg($_2, "python3");
             const black = nix.arg($_2, "black");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 nativeBuildInputs: nix.thunk(() => [python3, black]),
                 imports: nix.thunk(() => nix.selOr(value, () => [], "_imports")),
                 value: nix.thunk(() => nix.builtins.removeAttrs(value, nix.thunk(() => ["_imports"]))),

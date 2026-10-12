@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "rexml")),
     ]));
   const ableton_link = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Ableton",
       repo: "link",
       tag: "Link-4.0",
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sonic-pi",
       version: "5.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sonic-pi-net",
           repo: "sonic-pi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "app/external/supersonic/rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -154,7 +154,7 @@ cd app
       stripDebugList: nix.thunk(() => ["app", "bin"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "sonic-pi",
             exec: "sonic-pi",
             icon: "sonic-pi",
@@ -163,9 +163,9 @@ cd app
             categories: nix.thunk(() => ["Audio", "AudioVideo", "Education"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://sonic-pi.net/",
         description: "Free live coding synth for everyone originally designed to support computing and music lessons within schools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

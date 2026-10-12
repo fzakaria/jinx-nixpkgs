@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`czkawka-wrapped-${nix.sel(czkawka, "version")}`),
       pname: nix.thunk(() => nix.attr(czkawka, "pname")),
       version: nix.thunk(() => nix.attr(czkawka, "version")),

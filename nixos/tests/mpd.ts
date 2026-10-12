@@ -46,17 +46,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const track = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "Blue bossa - Jazz at Miadost Club.mp3",
       url: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Jazz_at_Mladost_Club/Jazz_Night/Jazz_at_Mladost_Club_-_07_-_Blue_bossa.mp3?download=1&name=Jazz%20at%20Mladost%20Club%20-%20Blue%20bossa.mp3",
       hash: "sha256-cAG4nBuc97J3ZJc9cm/6vWTgnPL/Hfkar7cA3+89rto=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       })),
     }))));
   const defaultMpdCfg = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     user: "mpd",
     group: "mpd",
     dataDir: "/var/lib/mpd",
@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
     const group = nix.arg($_1, "group");
     const dataDir = nix.arg($_1, "dataDir");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       description: "Sets up the music file(s) for MPD to use.",
       requires: nix.thunk(() => ["mpd.service"]),
       after: nix.thunk(() => ["mpd.service"]),
       wantedBy: nix.thunk(() => ["default.target"]),
       script: nix.thunk(() => nix.str`cp ${track} ${dataDir}/music
 `),
-      serviceConfig: nix.thunk(() => ({ __proto__: pos$4, User: user, Group: group })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$4, User: user, Group: group })),
     };
   })(), formals$2);
   const mkServer = nix.lambda((args_1) => (() => {
@@ -83,20 +83,20 @@ export default nix.lambda((args) => (() => {
     const mpd = nix.arg($_1, "mpd");
     const musicService_1 = nix.arg($_1, "musicService");
     return {
-      __proto__: pos$10,
-      boot: nix.thunk(() => ({ __proto__: pos$6, kernelModules: nix.thunk(() => ["snd-dummy"]) })),
-      services: nix.thunk(() => ({ __proto__: pos$7, mpd: mpd })),
+      [nix.POS]: pos$10,
+      boot: nix.thunk(() => ({ [nix.POS]: pos$6, kernelModules: nix.thunk(() => ["snd-dummy"]) })),
+      services: nix.thunk(() => ({ [nix.POS]: pos$7, mpd: mpd })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$9,
-        services: nix.thunk(() => ({ __proto__: pos$8, musicService: musicService_1 })),
+        [nix.POS]: pos$9,
+        services: nix.thunk(() => ({ [nix.POS]: pos$8, musicService: musicService_1 })),
       })),
     };
   })(), formals$3);
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     name: "mpd",
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {};
@@ -115,20 +115,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(mkServer, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 mpd: nix.thunk(() => nix.update(defaultMpdCfg, {
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     bind_to_address: "any",
                     audio_output: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$12, type: "alsa", name: "ALSA", mixer_type: "null" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$12, type: "alsa", name: "ALSA", mixer_type: "null" })),
                     ]),
                   })),
                   openFirewall: true,
                 })),
                 musicService: nix.thunk(() => nix.app(musicService, nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     user: nix.thunk(() => nix.attr(defaultMpdCfg, "user")),
                     group: nix.thunk(() => nix.attr(defaultMpdCfg, "group")),
                     dataDir: nix.thunk(() => nix.attr(defaultMpdCfg, "dataDir")),
@@ -140,43 +140,43 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(mkServer, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 mpd: nix.thunk(() => nix.update(defaultMpdCfg, {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$18,
-                    audio_output: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$17, type: "pulse", name: "The Pulse" }))]),
+                    [nix.POS]: pos$18,
+                    audio_output: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, type: "pulse", name: "The Pulse" }))]),
                   })),
                 })),
                 musicService: nix.thunk(() => nix.app(musicService, nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     user: nix.thunk(() => nix.attr(defaultMpdCfg, "user")),
                     group: nix.thunk(() => nix.attr(defaultMpdCfg, "group")),
                     dataDir: nix.thunk(() => nix.attr(defaultMpdCfg, "dataDir")),
                   })))),
               })))),
             nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               services: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 pulseaudio: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   enable: true,
                   systemWide: true,
                   tcp: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     enable: true,
-                    anonymousClients: nix.thunk(() => ({ __proto__: pos$22, allowAll: true })),
+                    anonymousClients: nix.thunk(() => ({ [nix.POS]: pos$22, allowAll: true })),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 services: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   mpd: nix.thunk(() => ({
-                    __proto__: pos$27,
-                    environment: nix.thunk(() => ({ __proto__: pos$26, PULSE_SERVER: "localhost" })),
+                    [nix.POS]: pos$27,
+                    environment: nix.thunk(() => ({ [nix.POS]: pos$26, PULSE_SERVER: "localhost" })),
                   })),
                 })),
               })),

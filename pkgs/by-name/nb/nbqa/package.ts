@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nbQA-dev",
           repo: "nbQA",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })());
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         toolchain: nix.thunk(() => nix.concat((() => {
           const w_1 = nix.withScope(python3Packages, null);
           return [
@@ -87,12 +87,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_include_exclude.py"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withTools: (selector) => nix.app(nix.sel(nbqa, "overridePythonAttrs"), nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const dependencies_1 = nix.arg($_1, "dependencies");
             return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               dependencies: nix.thunk(() => nix.concat(dependencies_1, nix.app(selector, python3Packages))),
               doCheck: false,
             };
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/nbQA-dev/nbQA",
         changelog: "https://nbqa.readthedocs.io/en/latest/history.html",
         description: "Run ruff, isort, pyupgrade, mypy, pylint, flake8, black, blacken-docs, and more on Jupyter Notebooks",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nbqa",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

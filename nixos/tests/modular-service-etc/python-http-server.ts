@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     _class: "service",
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "python-http-server": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "package")),
             description: "Python package to use for the web server",
           })))),
         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "port")),
             default: 8000n,
             description: "Port to listen on",
           })))),
         directory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: nix.thunk(() => nix.sel(config, "configData", "webroot", "path")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.configData.\"webroot\".path")),
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       process: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         argv: nix.thunk(() => [
           nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config, "python-http-server", "package")))}`),
           "-m",
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       configData: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         webroot: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.eq(nix.sel(config, "python-http-server", "directory"), nix.sel(config, "configData", "webroot", "path"))))),
         })),
       })),

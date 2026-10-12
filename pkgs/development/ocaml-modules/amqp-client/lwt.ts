@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const ezxmlm = nix.arg($, "ezxmlm");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "amqp-client-lwt",
       version: nix.thunk(() => nix.attr(amqp_client, "version")),
       src: nix.thunk(() => nix.attr(amqp_client, "src")),
       buildInputs: nix.thunk(() => [ezxmlm]),
       propagatedBuildInputs: nix.thunk(() => [lwt, lwt_log, amqp_client, uri]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(amqp_client, "meta"), { __proto__: pos$1, description: "Amqp client library, lwt version" })),
+      meta: nix.thunk(() => nix.update(nix.sel(amqp_client, "meta"), { [nix.POS]: pos$1, description: "Amqp client library, lwt version" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

@@ -119,11 +119,11 @@ sudo launchctl load -w /Library/LaunchDaemons/$daemonName
       font_bh_100dpi,
     ])), extraFontDirs)));
   const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fontDirectories: nix.thunk(() => nix.concat(fontDirs, ["/Library/Fonts", "~/Library/Fonts"])),
     }))));
   const fonts = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./system-fonts.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       stdenv: stdenv,
       "font-alias": font_alias,
       mkfontscale: mkfontscale,
@@ -184,7 +184,7 @@ sudo launchctl load -w /Library/LaunchDaemons/$daemonName
     xwud,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xquartz",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), xorg_server)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -256,9 +256,9 @@ substituteInPlace $out/bin/font_cache \\
   --subst-var-by "FC_CACHE"        "${nix.sel(fontconfig, "bin")}/bin/fc-cache" \\
   --subst-var-by "FONTCONFIG_FILE" "$fontsConfPath"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, pkgs: pkgs })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

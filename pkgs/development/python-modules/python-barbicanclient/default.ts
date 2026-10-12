@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-barbicanclient",
           tag: version,
           hash: "sha256-SFAldyA/M0rkKb2o6ePp+9ITWrUszyTz5jvCnUadufo=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const postPatch = "# Disable rsvgconverter not needed to build manpage\nsubstituteInPlace doc/source/conf.py \\\n  --replace-fail \"'sphinxcontrib.rsvgconverter',\" \"#'sphinxcontrib.rsvgconverter',\"\n";
       const build_system = nix.thunk(() => [openstackdocstheme, pbr, setuptools, sphinxHook, sphinxcontrib_apidoc]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["barbicanclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://opendev.org/openstack/python-barbicanclient",
         description: "Client library for OpenStack Barbican API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const sfcgal = nix.arg($, "sfcgal");
   const gdal = gdalMinimal;
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "postgis",
       version: "3.6.4",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postgis",
           repo: "postgis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [postgresql, postgresqlTestHook, libxslt]),
       postgresqlTestUserOptions: "LOGIN SUPERUSER",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), json_c)}/lib`),
       })),
       setOutputFlags: false,
@@ -93,22 +93,22 @@ mkdir -p $doc/share/doc/postgis
 mv doc/* $doc/share/doc/postgis/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: nix.thunk(() => nix.add("CREATE EXTENSION postgis;\nCREATE EXTENSION postgis_raster;\nCREATE EXTENSION postgis_topology;\n-- st_makepoint goes through c code\nselect st_makepoint(1, 1);\n", nix.app(nix.sel(lib, "optionalString"), withSfcgal, "CREATE EXTENSION postgis_sfcgal;\nCREATE TABLE geometries (\n  name varchar,\n  geom geometry(PolygonZ) NOT NULL\n);\n\nINSERT INTO geometries(name, geom) VALUES\n  ('planar geom', 'PolygonZ((1 1 0, 1 2 0, 2 2 0, 2 1 0, 1 1 0))'),\n  ('nonplanar geom', 'PolygonZ((1 1 1, 1 2 -1, 2 2 2, 2 1 0, 1 1 1))');\n\nSELECT name from geometries where cg_isplanar(geom);\n"))),
               asserts: nix.thunk(() => nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   query: "postgis_version()",
                   expected: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))} USE_GEOS=1 USE_PROJ=1 USE_STATS=1'`),
                   description: "postgis_version() returns correct values.",
                 })),
               ], nix.app(nix.sel(lib, "optional"), withSfcgal, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   query: "postgis_sfcgal_version()",
                   expected: nix.thunk(() => nix.str`'${nix.sel(sfcgal, "version")}'`),
                   description: "postgis_sfcgal_version() returns correct value.",
@@ -119,7 +119,7 @@ mv doc/* $doc/share/doc/postgis/
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Geographic Objects for PostgreSQL",
         homepage: "https://postgis.net/",
         changelog: nix.thunk(() => nix.str`https://git.osgeo.org/postgis/postgis/raw/tag/${nix.sel(finalAttrs, "version")}/NEWS`),

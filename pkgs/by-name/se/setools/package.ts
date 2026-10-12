@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const checkpolicy = nix.arg($, "checkpolicy");
   const withGraphics = nix.argOr($, "withGraphics", () => false);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "setools",
       version: "4.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SELinuxProject",
           repo: "setools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([libselinux, nix.thunk(() => nix.lookup(w_1, "setuptools"))], nix.app(nix.sel(lib, "optionals"), withGraphics, nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "pyqt5"))])));
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         analysis: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
           return [
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsepol, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SELinux Policy Analysis Tools",
         homepage: "https://github.com/SELinuxProject/setools",
         changelog: nix.thunk(() => nix.str`https://github.com/SELinuxProject/setools/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

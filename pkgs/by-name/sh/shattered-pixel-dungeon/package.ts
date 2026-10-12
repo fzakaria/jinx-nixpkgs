@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shattered-pixel-dungeon";
       const version = "4.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "00-Evan",
           repo: "shattered-pixel-dungeon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
       const patches = [];
       const depsPath = nix.path(here, "./deps.json");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "shattered-pixel-dungeon-starts": nix.thunk(() => nix.sel(nixosTests, "shattered-pixel-dungeon")),
         })),
       }));
       const desktopName = "Shattered Pixel Dungeon";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://shatteredpixel.com/",
         downloadPage: "https://github.com/00-Evan/shattered-pixel-dungeon/releases",
         description: "Traditional roguelike game with pixel-art graphics and simple interface",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

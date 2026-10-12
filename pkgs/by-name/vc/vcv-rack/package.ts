@@ -56,81 +56,81 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const filesystem_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "gulrak",
       repo: "filesystem",
       rev: "7e37433f318488ae4bc80f80e12df12a01579874",
       hash: "sha256-dHwNsuuFkhd9Y24KRzGV9Z9UZolNtOtxyA1AEVG7uMU=",
     }))));
   const fuzzysearchdatabase_source = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "j_norberg",
       repo: "fuzzysearchdatabase",
       rev: "23122d1ff60d936fd766361a30210c954e0c5449",
       hash: "sha256-f+ed6zZGfEuYILXQcUoQ+1Qf4ASvWLQqU1nYHDpdCOk=",
     }))));
   const nanosvg_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "memononen",
       repo: "nanosvg",
       rev: "25241c5a8f8451d41ab1b02ab2d865b01600d949",
       hash: "sha256-b/aBmvuvKScF8zSkyF1tuqL9hov4XVLzKLTpr6p7mIQ=",
     }))));
   const nanovg_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "VCVRack",
       repo: "nanovg",
       rev: "0bebdb314aff9cfa28fde4744bcb037a2b3fd756",
       hash: "sha256-HmQhCE/zIKc3f+Zld229s5i5MWzRrBMF9gYrn8JVQzg=",
     }))));
   const osdialog_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "AndrewBelt",
       repo: "osdialog",
       rev: "64482bde25a8e19cc38342ed21aa0e38c2751f6c",
       hash: "sha256-FiejDeZkLoyS7BBwPYBfdOCLxBV8hAFzJAFeTz80tH0=",
     }))));
   const oui_blendish_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "VCVRack",
       repo: "oui-blendish",
       rev: "2fc6405883f8451944ed080547d073c8f9f31898",
       hash: "sha256-/QZFZuI5kSsEvSfMJlcqB1HiZ9Vcf3vqLqWIMEgxQK8=",
     }))));
   const pffft_source = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "jpommier",
       repo: "pffft",
       rev: "74d7261be17cf659d5930d4830609406bd7553e3",
       hash: "sha256-gYaumUeXYf3axAexGqWI/tYBs1dyebjAESo4o/DTjCA=",
     }))));
   const simde_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       owner: "simd-everywhere",
       repo: "simde",
       rev: "dd0b662fd8cf4b1617dbbb4d08aa053e512b08e4",
       hash: "sha256-21YBpP7jwFqNiOu5Ilu8t9nt+AZmLc3PVEwHAWn7vM8=",
     }))));
   const tinyexpr_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       owner: "codeplea",
       repo: "tinyexpr",
       rev: "4e8cc0067a1e2378faae23eb2dfdd21e9e9907c2",
       hash: "sha256-jYC0kSmYdzJsEaH9gres/NOcfsh+2ymqZAGxNbjus/s=",
     }))));
   const fundamental_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       owner: "VCVRack",
       repo: "Fundamental",
       rev: "v2.6.4",
       hash: "sha256-rpOIMFO17ixgJZDRRg6RdLKorN/XKCUXkapsxN1pmQ4=",
     }))));
   const vcv_rtaudio = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "vcv-rtaudio",
       version: "5.1.0-unstable-2022-11-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           owner: "VCVRack",
           repo: "rtaudio",
           rev: "22d64cdcb151e388791caceee8aa0011a6aa46e0",
@@ -146,12 +146,12 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "vcv-rack",
       version: "2.6.6",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: "Application",
             name: "vcv-rack",
             desktopName: "VCV Rack",
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           owner: "VCVRack",
           repo: "Rack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -249,7 +249,7 @@ cp -r res cacert.pem Core.json template.vcv LICENSE-GPLv3.txt \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Open-source virtual modular synthesizer",
         homepage: "https://vcvrack.com/",
         license: nix.thunk(() => (() => {

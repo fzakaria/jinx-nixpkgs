@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "llhttp",
       version: "9.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nodejs",
           repo: "llhttp",
           tag: nix.thunk(() => nix.str`release/v${nix.sel(finalAttrs, "version")}`),
@@ -39,25 +39,25 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LLHTTP_BUILD_STATIC_LIBS", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=release/v(.+)"]),
           })))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           aiohttp: nix.thunk(() => nix.attr(from, "aiohttp")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Port of http_parser to llparse",
         homepage: "https://llhttp.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/nodejs/llhttp/releases/tag/release/v${nix.sel(finalAttrs, "version")}`),

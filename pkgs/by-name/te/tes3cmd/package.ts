@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tes3cmd",
       version: "0.40-pre-release-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "john-moonsugar",
           repo: "tes3cmd",
           rev: "f72e9ed9dd18e8545dd0dc2a4056c250cf505790",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "perl"))]),
       installPhase: "mkdir -p $out/bin\ncp tes3cmd $out/bin/tes3cmd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool for examining and modifying plugins for the Elder Scrolls game Morrowind by Bethesda Softworks",
         mainProgram: "tes3cmd",
         homepage: "https://github.com/john-moonsugar/tes3cmd",

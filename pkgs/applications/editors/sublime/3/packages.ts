@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "sublime3-dev": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildVersion: "3210",
         dev: true,
         x32sha256: "1ngr4c8h2mafy96mi8dd3g8mg5r9ha1cpcd8p3gz7jwpbypvkkbv",
         x64sha256: "0j65a4ylgga1qzc74wf3k5craghahma8hwqg3zs1rgzz601nl693",
       })), nix.thunk(() => ({})))),
     sublime3: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildVersion: "3211",
         x32sha256: "0w9hba1nl2hv1mri418n7v0m321b6wqphb1knll23ldv5fb0j1j8",
         x64sha256: "1vkldmimyjhbgplcd6r27gvk64rr7cparfd44hy6qdyzwsjqqg0b",

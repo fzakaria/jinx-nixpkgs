@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "navilu-font";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aravindavk",
           repo: "Navilu",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const preBuild = "patchShebangs generate.pe";
       const installPhase = "install -Dm444 -t $out/share/fonts/truetype/ Navilu.ttf";
       const meta = nix.thunk(() => nix.update(nix.sel(src, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kannada handwriting font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

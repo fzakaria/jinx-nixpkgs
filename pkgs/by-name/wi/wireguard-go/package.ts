@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wireguard-go",
       version: "0.0.20250522",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.zx2c4.com/wireguard-go",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GRr8NKKb4SHd0WxmNL84eiofFHcauDDmSyNNrXermcA=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace Go implementation of WireGuard",
         homepage: "https://git.zx2c4.com/wireguard-go/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

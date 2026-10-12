@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const isFree = (p) => (nix.asBool(nix.builtins.all(licenseFree, nix.thunk(() => nix.concat(nix.selOr(p, () => [], "buildInputs"), nix.selOr(p, () => [], "propagatedBuildInputs"))))) && nix.asBool(nix.app(licenseFree, p)));
   const drivers = nix.thunk(() => nix.builtins.filter((attrs) => (nix.asBool(nix.app(isFree, attrs)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), attrs))), nix.thunk(() => nix.builtins.attrValues(indi_3rdparty))));
   return nix.app(nix.sel(indi_with_drivers, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "indi-full",
       version: nix.thunk(() => nix.attr(indilib, "version")),
       extraDrivers: drivers,

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const i3ipc_glib = nix.arg($, "i3ipc-glib");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3easyfocus",
       version: "20190411",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cornerman",
           repo: "i3-easyfocus",
           rev: "fffb468f7274f9d7c9b92867c8cb9314ec6cf81a",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\ncp i3-easyfocus $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Focus and select windows in i3",
         mainProgram: "i3-easyfocus",
         homepage: "https://github.com/cornerman/i3-easyfocus",

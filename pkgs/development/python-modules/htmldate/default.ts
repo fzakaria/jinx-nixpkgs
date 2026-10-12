@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adbar",
           repo: "htmldate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [charset_normalizer, dateparser, lxml, python_dateutil, urllib3]);
       const pythonRelaxDeps = nix.thunk(() => ["charset_normalizer", "lxml", "urllib3"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         speed: nix.thunk(() => nix.concat([faust_cchardet, urllib3], nix.sel(urllib3, "optional-dependencies", "brotli"))),
         all: nix.thunk(() => nix.concat([faust_cchardet, urllib3], nix.sel(urllib3, "optional-dependencies", "brotli"))),
       }));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_input", "test_cli", "test_download", "test_readme_examples"]);
       const pythonImportsCheck = nix.thunk(() => ["htmldate"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for the extraction of original and updated publication dates from URLs and web pages",
         homepage: "https://htmldate.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/adbar/htmldate/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "htmldate",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

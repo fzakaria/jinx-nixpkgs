@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
   const version = nix.thunk(() => nix.sel(sources, "version"));
-  const jdk = nix.thunk(() => nix.app(nix.sel(zulu21, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(zulu21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   const bisqJvmArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
       "-XX:MaxRAM=8g",
       "-Xss1280k",
@@ -72,19 +72,19 @@ export default nix.lambda((args) => (() => {
   ${args_1} bisq.desktop.app.BisqAppMain "$@"
 `));
   const publicKey = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     E222AA02: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/E222AA02.asc`),
         hash: nix.thunk(() => nix.sel(sources, "key-E222AA02-hash")),
       })))),
     "4A133008": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/4A133008.asc`),
         hash: nix.thunk(() => nix.sel(sources, "key-4A133008-hash")),
       })))),
     "387C8307": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/387C8307.asc`),
         hash: nix.thunk(() => nix.sel(sources, "key-387C8307-hash")),
       })))),
@@ -108,13 +108,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       version: version,
       pname: "bisq1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/Bisq-64bit-${version}.deb`),
           hash: nix.thunk(() => nix.sel(sources, "deb-hash")),
           nativeBuildInputs: nix.thunk(() => [gnupg]),
@@ -133,14 +133,14 @@ mv $downloadedFile $out
 `),
         })))),
       signature: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/Bisq-64bit-${version}.deb.asc`),
           hash: nix.thunk(() => nix.sel(sources, "sig-hash")),
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, dpkg, imagemagick, makeBinaryWrapper, zip, xz, gnupg]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "bisq",
             exec: "bisq",
             icon: "bisq",
@@ -149,7 +149,7 @@ mv $downloadedFile $out
             categories: nix.thunk(() => ["Network", "P2P"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "bisq-hidpi",
             exec: "bisq-hidpi",
             icon: "bisq",
@@ -193,9 +193,9 @@ done
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$10, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$10, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Decentralized bitcoin exchange network (Bisq 1)",
         homepage: "https://bisq.network",
         mainProgram: "bisq",

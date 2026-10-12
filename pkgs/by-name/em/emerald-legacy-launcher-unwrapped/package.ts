@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "emerald-legacy-launcher-unwrapped",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LCE-Hub",
           repo: "LCE-Emerald-Launcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-GfDuleIaeq6dpSzg4wWlClY2iYM5izbGv1febKuCh7I=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
 )
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/LCE-Hub/LCE-Emerald-Launcher",
         description: "FOSS cross-platform launcher for Minecraft Legacy Console Edition",
         longDescription: "LCE Emerald Launcher is the easiest way to play Minecraft Legacy Console Edition on PC. Install community builds, manage versions, customize skins, and launch instantly from one lightweight hub.\nWhy Emerald? Traditional launchers often rely on bloated frameworks, consuming excessive resources. Emerald utilizes a modern Tauri architecture, using only a low amount of RAM, leaving your PC's resources dedicated to the game itself.\n",

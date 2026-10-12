@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cmocka = nix.arg($, "cmocka");
   const mbedtls = nix.arg($, "mbedtls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "librist",
       version: "0.2.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.videolan.org",
           owner: "rist",
           repo: "librist",
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./no-brew-darwin.diff")]))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })))),
       buildInputs: nix.thunk(() => [cjson, cmocka, mbedtls]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library that can be used to easily add the RIST protocol to your application",
         homepage: "https://code.videolan.org/rist/librist",
         license: nix.thunk(() => (() => {

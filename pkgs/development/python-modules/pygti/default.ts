@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pygti",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vigonotion",
           repo: "pygti",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pygti.auth", "pygti.exceptions", "pygti.gti"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/vigonotion/pygti/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Access public transport information in Hamburg, Germany",
         homepage: "https://github.com/vigonotion/pygti",

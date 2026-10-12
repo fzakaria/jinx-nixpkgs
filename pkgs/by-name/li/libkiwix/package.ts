@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const mustache_hpp = nix.arg($, "mustache-hpp");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libkiwix",
       version: "14.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kiwix",
           repo: "libkiwix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       postPatch: "patchShebangs scripts\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Common code base for all Kiwix ports",
         homepage: "https://kiwix.org",
         changelog: nix.thunk(() => nix.str`https://github.com/kiwix/libkiwix/releases/tag/${nix.sel(finalAttrs, "version")}`),

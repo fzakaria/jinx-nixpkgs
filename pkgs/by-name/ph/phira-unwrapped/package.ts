@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "phira-unwrapped",
       version: "0.8.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TeamFlos",
           repo: "phira",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=test_parse_chart"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "phira",
             desktopName: "Phira",
             exec: "phira-main",
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       postInstall: "install -Dm644 assets/icon.png $out/share/icons/hicolor/128x128/apps/phira.png\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rhythm game with custom charts and multiplayer",
         homepage: "https://github.com/TeamFlos/phira",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const updateScript = nix.arg($, "updateScript");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "6.14.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ProxymanApp/Proxyman/releases/download/${nix.sel(finalAttrs, "version")}/Proxyman_${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-bdIitfbr5Pr0glJcVDMfE/1ehpbRy5/pwXmUz0ivuvo=",
         })))),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz, makeWrapper]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R Proxyman.app $out/Applications\nmakeWrapper $out/Applications/Proxyman.app/Contents/MacOS/Proxyman $out/bin/proxyman\n\nrunHook postInstall\n",
       dontFixup: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: updateScript })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://proxyman.com/changelog",
         platforms: nix.thunk(() => ["aarch64-darwin"]),
       })),

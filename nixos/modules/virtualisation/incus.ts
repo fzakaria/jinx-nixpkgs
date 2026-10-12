@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       "/run/wrappers",
       nix.thunk(() => nix.app(nix.lookup(w, "linkFarm"), "incus-qemu-libexec", nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "bin",
             path: nix.thunk(() => nix.str`${nix.lookup(w, "qemu_kvm")}/libexec`),
           })),
@@ -154,56 +154,56 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(config, "boot", "zfs", "package")),
         nix.thunk(() => nix.app(nix.lookup(w, "linkFarm"), "incus-zfs-udev", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "bin",
               path: nix.thunk(() => nix.str`${nix.sel(config, "boot", "zfs", "package")}/lib/udev`),
             })),
           ]))),
       ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nvidiaEnabled, nix.thunk(() => [nix.thunk(() => nix.lookup(w, "libnvidia-container"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "storage", "truenas", "enable")), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "truenas-incus-ctl"))]))))))));
   })());
-  const OVMF2MB = nix.thunk(() => nix.app(nix.sel(pkgs, "OVMF", "override"), nix.thunk(() => ({ __proto__: pos$3, secureBoot: true, fdSize2MB: true }))));
+  const OVMF2MB = nix.thunk(() => nix.app(nix.sel(pkgs, "OVMF", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, secureBoot: true, fdSize2MB: true }))));
   const ovmf_prefix = nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")) ? "AAVMF" : "OVMF"));
   const ovmf = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "incus-ovmf", nix.thunk(() => nix.concat([
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "OVMF_CODE.fd",
         path: nix.thunk(() => nix.str`${nix.sel(OVMF2MB, "fd")}/FV/${ovmf_prefix}_CODE.fd`),
       })),
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "OVMF_VARS.fd",
         path: nix.thunk(() => nix.str`${nix.sel(OVMF2MB, "fd")}/FV/${ovmf_prefix}_VARS.fd`),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "OVMF_VARS.ms.fd",
         path: nix.thunk(() => nix.str`${nix.sel(OVMF2MB, "fd")}/FV/${ovmf_prefix}_VARS.fd`),
       })),
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "OVMF_CODE.4MB.fd",
         path: nix.thunk(() => nix.str`${nix.sel(pkgs, "OVMFFull", "fd")}/FV/${ovmf_prefix}_CODE.fd`),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "OVMF_VARS.4MB.fd",
         path: nix.thunk(() => nix.str`${nix.sel(pkgs, "OVMFFull", "fd")}/FV/${ovmf_prefix}_VARS.fd`),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "OVMF_VARS.4MB.ms.fd",
         path: nix.thunk(() => nix.str`${nix.sel(pkgs, "OVMFFull", "fd")}/FV/${ovmf_prefix}_VARS.fd`),
       })),
     ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "seabios.bin",
           path: nix.thunk(() => nix.str`${nix.sel(pkgs, "seabios-qemu")}/share/seabios/bios.bin`),
         })),
       ]))))));
   const environment = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         INCUS_DOCUMENTATION: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "doc")}/html`),
         INCUS_EDK2_PATH: ovmf,
         INCUS_LXC_HOOK: nix.thunk(() => nix.str`${nix.sel(cfg, "lxcPackage")}/share/lxc/hooks`),
@@ -211,104 +211,104 @@ export default nix.lambda((args) => (() => {
         INCUS_USBIDS_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "hwdata")}/share/hwdata/usb.ids`),
         INCUS_AGENT_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/agent`),
       })),
-      nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => ({ __proto__: pos$12, INCUS_UI: nix.thunk(() => nix.sel(cfg, "ui", "package")) })))),
+      nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => ({ [nix.POS]: pos$12, INCUS_UI: nix.thunk(() => nix.sel(cfg, "ui", "package")) })))),
     ])));
   const incus_startup = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "incus-startup", "case \"$1\" in\n    start)\n      systemctl is-active incus.service -q && exit 0\n      exec incusd activateifneeded\n    ;;\n\n    stop)\n      systemctl is-active incus.service -q || exit 0\n      exec incusd shutdown\n    ;;\n\n    *)\n      echo \"unknown argument \\`$1'\" >&2\n      exit 1\n    ;;\nesac\n\nexit 0\n"));
   return {
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         incus: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "incusd, a daemon that manages containers and virtual machines.\n\nUsers in the \"incus-admin\" group can interact with\nthe daemon (e.g. to start or stop containers) using the\n{command}`incus` command line tool, among others.\nUsers in the \"incus\" group can also interact with\nthe daemon, but with lower permissions\n(i.e. administrative operations are forbidden).\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "incus-lts", nix.thunk(() => ({})))),
           lxcPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(config, "virtualisation", "lxc", "package")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.virtualisation.lxc.package")),
               description: "The lxc package to use.",
             })))),
           clientPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(cfg, "package", "client")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.virtualisation.incus.package.client")),
               description: "The incus client package to use. This package is added to PATH.",
             })))),
           softDaemonRestart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Allow for incus.service to be stopped without affecting running instances.\n",
             })))),
           preseed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     freeformType: nix.thunk(() => nix.sel(preseedFormat, "type")),
                   })))))),
               default: null,
               description: "Configuration for Incus preseed, see\n<https://linuxcontainers.org/incus/docs/main/howto/initialize/#non-interactive-configuration>\nfor supported values.\n\nChanges to this will be re-applied to Incus which will overwrite existing entities or create missing ones,\nbut entities will *not* be removed by preseed.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 networks: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     name: "incusbr0",
                     type: "bridge",
-                    config: nix.thunk(() => ({ __proto__: pos$18, "ipv4.address": "10.0.100.1/24", "ipv4.nat": "true" })),
+                    config: nix.thunk(() => ({ [nix.POS]: pos$18, "ipv4.address": "10.0.100.1/24", "ipv4.nat": "true" })),
                   })),
                 ]),
                 profiles: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     name: "default",
                     devices: nix.thunk(() => ({
-                      __proto__: pos$22,
-                      eth0: nix.thunk(() => ({ __proto__: pos$20, name: "eth0", network: "incusbr0", type: "nic" })),
-                      root: nix.thunk(() => ({ __proto__: pos$21, path: "/", pool: "default", size: "35GiB", type: "disk" })),
+                      [nix.POS]: pos$22,
+                      eth0: nix.thunk(() => ({ [nix.POS]: pos$20, name: "eth0", network: "incusbr0", type: "nic" })),
+                      root: nix.thunk(() => ({ [nix.POS]: pos$21, path: "/", pool: "default", size: "35GiB", type: "disk" })),
                     })),
                   })),
                 ]),
                 storage_pools: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     name: "default",
                     driver: "dir",
-                    config: nix.thunk(() => ({ __proto__: pos$24, source: "/var/lib/incus/storage-pools/default" })),
+                    config: nix.thunk(() => ({ [nix.POS]: pos$24, source: "/var/lib/incus/storage-pools/default" })),
                   })),
                 ]),
               })),
             })))),
           socketActivation: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "socket-activation for starting incus.service. Enabling this option\nwill stop incus.service from starting automatically on boot.\n")),
           startTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 600n,
               apply: nix.builtins.toString,
               description: "Time to wait (in seconds) for incusd to become ready to process requests.\nIf incusd does not reply within the configured time, `incus.service` will be\nconsidered failed and systemd will attempt to restart it.\n",
             })))),
           storage: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             truenas: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TrueNAS storage driver support")),
             })),
           })),
           ui: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Incus Web UI")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["incus-ui-canonical"]), nix.thunk(() => ({})))),
           })),
           useACMEHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "incus.example.com",
@@ -318,25 +318,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(nix.sel(config, "networking", "firewall", "enable")) && nix.asBool(!nix.asBool((nix.asBool(nix.sel(config, "networking", "nftables", "enable")) || nix.asBool(nix.eq(nix.sel(config, "networking", "firewall", "backend"), "nftables"))))))) && nix.asBool(nix.sel(config, "virtualisation", "incus", "enable"))))),
             message: "Incus on NixOS is unsupported using iptables. Set `networking.nftables.enable = true;`",
           })),
           nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "storage", "truenas", "enable")) || nix.asBool(nix.sel(config, "services", "openiscsi", "enable")))),
             messages: "`virtualisation.incus.storage.truenas.enable` requires `services.openiscsi.enable`",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           kernel: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               "fs.aio-max-nr": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 524288n)),
               "fs.inotify.max_queued_events": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1048576n)),
               "fs.inotify.max_user_instances": nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1050n, 1048576n)),
@@ -359,22 +359,22 @@ export default nix.lambda((args) => (() => {
           ], nix.app(nix.sel(lib, "optionals"), nvidiaEnabled, nix.thunk(() => ["nvidia_uvm"])))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           systemPackages: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(cfg, "clientPackage")),
             nix.thunk(() => nix.sel(pkgs, "spice-gtk")),
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "storage", "truenas", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "truenas-incus-ctl"))])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             rules: nix.thunk(() => ["d /var/lib/lxc/rootfs 0755 root root -"]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             incus: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "Incus Container and Virtual Machine Management Daemon",
               environment: environment,
               path: path,
@@ -384,7 +384,7 @@ export default nix.lambda((args) => (() => {
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => [nix.thunk(() => nix.str`acme-${nix.sel(cfg, "useACMEHost")}.service`)])))),
               stopIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "softDaemonRestart")), false)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/incusd --group incus-admin`),
                 ExecStartPost: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/incusd waitready --timeout=${nix.sel(cfg, "startTimeout")}`),
                 ExecStop: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "softDaemonRestart"))), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/incus admin shutdown`))),
@@ -404,20 +404,20 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "incus-user": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "Incus Container and Virtual Machine Management User Daemon",
               environment: environment,
               path: path,
               after: nix.thunk(() => ["incus.service", "incus-user.socket"]),
               requires: nix.thunk(() => ["incus-user.socket"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/incus-user --group incus`),
                 Restart: "on-failure",
               })),
             })),
             "incus-startup": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "softDaemonRestart")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 description: "Incus Instances Startup/Shutdown",
                 environment: environment,
                 path: path,
@@ -427,7 +427,7 @@ export default nix.lambda((args) => (() => {
                 restartIfChanged: false,
                 stopIfChanged: false,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   ExecStart: nix.thunk(() => nix.str`${incus_startup} start`),
                   ExecStop: nix.thunk(() => nix.str`${incus_startup} stop`),
                   RemainAfterExit: true,
@@ -437,7 +437,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             "incus-preseed": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "preseed"), null)), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 description: "Incus initialization with preseed file",
                 wantedBy: nix.thunk(() => ["incus.service"]),
                 after: nix.thunk(() => ["incus.service"]),
@@ -445,28 +445,28 @@ export default nix.lambda((args) => (() => {
                 partOf: nix.thunk(() => ["incus.service"]),
                 script: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/incus admin init --preseed <${nix.app(nix.sel(preseedFormat, "generate"), "incus-preseed.yaml", nix.thunk(() => nix.sel(cfg, "preseed")))}
 `),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$49, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$49, Type: "oneshot", RemainAfterExit: true })),
               })))),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             incus: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               description: "Incus UNIX socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 ListenStream: "/var/lib/incus/unix.socket",
                 SocketMode: "0660",
                 SocketGroup: "incus-admin",
               })),
             })),
             "incus-user": nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               description: "Incus user UNIX socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 ListenStream: "/var/lib/incus/unix.socket.user",
                 SocketMode: "0660",
                 SocketGroup: "incus",
@@ -475,29 +475,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           apparmor: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "lxcPackage"))]),
             policies: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               "bin.lxc-start": nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 profile: nix.thunk(() => nix.str`include ${nix.sel(cfg, "lxcPackage")}/etc/apparmor.d/usr.bin.lxc-start
 `),
               })),
               "lxc-containers": nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 profile: nix.thunk(() => nix.str`include ${nix.sel(cfg, "lxcPackage")}/etc/apparmor.d/lxc-containers
 `),
               })),
               incusd: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 profile: "# incusd is deliberatly left unconfined, with NO named profile attached to the binary.\n# Incus checks its own confinement at startup by reading /proc/self/attr/current\n# (https://github.com/lxc/incus/blob/92b0cbbc5728ed45578fdeeec634606af8826404/internal/server/sys/apparmor.go).\n# Anything other than \"unconfined\" makes Incus believe that the host process is\n# itself confined, which sends every container down the \"reuse my own profile\" branch in\n# https://github.com/lxc/incus/blob/92b0cbbc5728ed45578fdeeec634606af8826404/internal/server/instance/drivers/driver_lxc.go\n# instead of generating a \"proper\" per-container profile. Furthermore,\n# that branch only strips \" (enforce)\" suffix before handing the string to lxc.apparmor.profile\n# (https://github.com/lxc/incus/blob/92b0cbbc5728ed45578fdeeec634606af8826404/internal/server/instance/drivers/driver_lxc.go#L96),\n# so the named profile with flags=(unconfined) produces a literal string\n# \"incusd (unconfined)\", which the kernel rejects at change_profile() time\n# with \"label not found\", failing every `incus start` when AppArmor is enabled.\n# This was not caught before as AppArmor was stifled by bpf.\n\n# We keep this policy to pull in the per-container /\n# per-archive profiles incusd generates at runtime so\n# apparmor_parser loads them.\n\nabi <abi/4.0>,\ninclude <tunables/global>\n\ninclude if exists \"/var/lib/incus/security/apparmor/profiles\"\n",
               })),
             })),
             includes: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               "abstractions/base": nix.thunk(() => nix.add(nix.str`# Allow incusd's various AA profiles to load dynamic libraries from Nix store
 # https://discuss.linuxcontainers.org/t/creating-new-containers-vms-blocked-by-apparmor-on-nixos/21908/6
 mr /nix/store/*/lib/*.so*,
@@ -514,37 +514,37 @@ k ${nix.sel(pkgs, "OVMFFull", "fd")}/FV/*.fd,
             })),
           })),
           acme: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             certs: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`${nix.sel(cfg, "useACMEHost")}`, nix.thunk(() => ({ __proto__: pos$64, reloadServices: nix.thunk(() => ["incus.service"]) }))],
+                [nix.str`${nix.sel(cfg, "useACMEHost")}`, nix.thunk(() => ({ [nix.POS]: pos$64, reloadServices: nix.thunk(() => ["incus.service"]) }))],
               ])))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           groups: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             incus: nix.thunk(() => ({})),
             "incus-admin": nix.thunk(() => ({})),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             root: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               subUidRanges: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$68, startUid: 1000000n, count: 1000000000n })),
+                nix.thunk(() => ({ [nix.POS]: pos$68, startUid: 1000000n, count: 1000000000n })),
               ]),
               subGidRanges: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$69, startGid: 1000000n, count: 1000000000n })),
+                nix.thunk(() => ({ [nix.POS]: pos$69, startGid: 1000000n, count: 1000000000n })),
               ]),
             })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           lxc: nix.thunk(() => ({
-            __proto__: pos$74,
-            lxcfs: nix.thunk(() => ({ __proto__: pos$73, enable: true })),
+            [nix.POS]: pos$74,
+            lxcfs: nix.thunk(() => ({ [nix.POS]: pos$73, enable: true })),
           })),
         })),
       })))),

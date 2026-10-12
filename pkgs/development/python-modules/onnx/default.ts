@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(onnx, "pname")),
       src: nix.thunk(() => nix.attr(onnx, "src")),
       version: nix.thunk(() => nix.attr(onnx, "version")),
@@ -40,7 +40,7 @@ chmod +w "$sourceRoot/dist"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(onnx, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

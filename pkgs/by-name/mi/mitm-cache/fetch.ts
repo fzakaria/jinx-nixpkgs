@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
           const path = nix.thunk(() => nix.app(urlToPath, url));
           const name_1 = nix.thunk(() => nix.builtins.baseNameOf(path));
           const source = nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             redirect: nix.thunk(() => nix.str`$out/${nix.app(urlToPath, val)}`),
-            hash: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: val })))),
+            hash: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: val })))),
             text: nix.thunk(() => nix.app(writeText, name_1, val)),
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unknown key: ${url}`)), nix.key(nix.force(key))));
           return nix.str`mkdir -p "${nix.builtins.dirOf(path)}"
@@ -42,9 +42,9 @@ ln -s "${source}" "${path}"
 `;
         })(), data$)))));
     return nix.app(runCommand, name, nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["name", "data"])), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         passthru: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "passthru"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           data: nix.thunk(() => nix.app(writeText, "deps.json", nix.thunk(() => nix.builtins.toJSON(data)))),
         })),
       })), code);

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "getoptions";
       const version = "3.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ko1nksm",
           repo: "getoptions",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.add("sed -i '/shellspec -s posh/d' Makefile\nsed -i '/shellspec -s yash/d' Makefile\n", nix.app(nix.sel(lib, "strings", "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "sed -i \"/shellspec -s 'busybox ash'/d\" Makefile\n")));
       const checkTarget = "test_in_various_shells";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elegant option/argument parser for shell scripts (full support for bash and all POSIX shells)",
         homepage: "https://github.com/ko1nksm/getoptions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

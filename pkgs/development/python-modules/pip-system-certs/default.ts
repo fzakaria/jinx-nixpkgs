@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "pip_system_certs",
           hash: "sha256-Gci/mVe8zn1pxNvC0LLvE94ZhNU/UKWQEubbutCvZ8Y=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pip]);
       const pythonImportsCheck = nix.thunk(() => ["pip_system_certs.wrapt_requests", "pip_system_certs.bootstrap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Live patches pip and requests to use system certs by default",
         homepage: "https://gitlab.com/alelec/pip-system-certs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

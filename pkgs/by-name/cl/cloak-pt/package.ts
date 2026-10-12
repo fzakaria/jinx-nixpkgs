@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.12.0";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "Cloak",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cbeuw",
           repo: "Cloak",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.version=${version}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cbeuw/Cloak/",
         description: "Pluggable transport that enhances traditional proxy tools like OpenVPN to evade sophisticated censorship and data discrimination",
         longDescription: "Cloak is not a standalone proxy program. Rather, it works by masquerading proxied traffic as normal web browsing activities.\n\nTo any third party observer, a host running Cloak server is indistinguishable from an innocent web server.\n",

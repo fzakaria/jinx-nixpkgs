@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "meson_python",
           hash: "sha256-bZcmrmzTfiLyEMdLNkswGApowgRC6X/wnzxWakFK9zg=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const setupHooks = nix.thunk(() => [nix.path(here, "./add-build-flags.sh")]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mesonbuild/meson-python/blob/${version}/CHANGELOG.rst`),
         description: "Meson Python build backend (PEP 517)",
         homepage: "https://github.com/mesonbuild/meson-python",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "python"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

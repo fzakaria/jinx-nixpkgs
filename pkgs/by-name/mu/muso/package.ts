@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "muso",
       version: "2.0.0-unstable-2021-09-02",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quebin31",
           repo: "muso",
           rev: "6dd1c6d3a82b21d4fb2606accf2f26179eb6eaf9",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/muso\ncp share/* $out/share/muso/\n",
       cargoHash: "sha256-L0ZQoz9J5Hxg98puk1RbKuybLboIoOsy5qqGnvEPi1U=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Automatic music sorter (based on ID3 tags)",
         mainProgram: "muso",

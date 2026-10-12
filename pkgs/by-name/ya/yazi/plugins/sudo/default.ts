@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sudo.yazi",
       version: "0-unstable-2026-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TD-Sky",
           repo: "sudo.yazi",
           rev: "e70796a3961a55ae0cfaa056a563fb931e8b96db",
           hash: "sha256-gJgEVHJYjTOBUkUEyIMqmfuY4FP803cOU2VSHlM2+I4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Call `sudo` in yazi",
         homepage: "https://github.com/TD-Sky/sudo.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

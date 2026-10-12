@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terminal-colors",
       version: "3.0.2",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eikenb",
           repo: "terminal-colors",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nhelp2man -n 'display terminal colors' -N ./$pname > $pname.1\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D -m755 ./$pname -t $out/bin\ninstall -D -m644 ./$pname.1 -t $man/share/man/man1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script displaying terminal colors in various formats",
         homepage: "https://github.com/eikenb/terminal-colors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

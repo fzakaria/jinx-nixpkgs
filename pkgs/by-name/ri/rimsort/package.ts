@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const pname = "rimsort";
   const version = "1.14.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "RimSort",
       repo: "RimSort",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const steamworksSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://web.archive.org/web/20250527013243/https://partner.steamgames.com/downloads/steamworks_sdk_162.zip",
       hash: "sha256-yDA92nGj3AKTNI4vnoLaa+7mDqupQv0E4YKRRUWqyZw=",
     }))));
   const steamfiles = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steamfiles",
       version: version,
       format: "setuptools",
@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }))));
-  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ __proto__: pos$4, privateTmp: false }))), "run"));
+  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, privateTmp: false }))), "run"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       __structuredAttrs: true,
       pname: pname,
       version: version,
@@ -77,8 +77,8 @@ runHook postUnpack
 `),
       sourceRoot: "source",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./todds-path.patch"), nix.thunk(() => ({ __proto__: pos$5, todds: todds })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({ __proto__: pos$6, "steam-run": steam_run })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./todds-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, todds: todds })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, "steam-run": steam_run })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         makeBinaryWrapper,
@@ -91,7 +91,7 @@ runHook postUnpack
         nix.thunk(() => nix.sel(qt6, "qtbase")),
         nix.thunk(() => nix.sel(qt6, "qtwayland")),
       ], nix.builtins.attrValues(nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           beautifulsoup4: nix.thunk(() => nix.attr(python3Packages, "beautifulsoup4")),
           certifi: nix.thunk(() => nix.attr(python3Packages, "certifi")),
           chardet: nix.thunk(() => nix.attr(python3Packages, "chardet")),
@@ -145,7 +145,7 @@ runHook postUnpack
       pytestFlags: nix.thunk(() => ["--doctest-modules"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "io.github.rimsort.RimSort",
             desktopName: "RimSort",
             exec: "rimsort",
@@ -166,14 +166,14 @@ runHook postUnpack
   "\${qtWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Open source mod manager for the video game RimWorld",
         homepage: "https://github.com/RimSort/RimSort",
         license: nix.thunk(() => (() => {

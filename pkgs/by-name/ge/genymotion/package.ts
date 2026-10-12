@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), packages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "genymotion",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.genymotion.com/releases/genymotion-${nix.sel(finalAttrs, "version")}/genymotion-${nix.sel(finalAttrs, "version")}-linux_x64.run`),
           name: nix.thunk(() => nix.str`genymotion-${nix.sel(finalAttrs, "version")}-linux_x64.run`),
           hash: "sha256-jNcnr0C0N6UGdN9qZqRnFZnJhuo/Ft5j/CG7s5TKBS8=",
@@ -108,9 +108,9 @@ patchTool glewinfo
 
 rm $out/libexec/genymotion/libxkbcommon*
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and easy Android emulation",
         longDescription: "Genymotion is a relatively fast Android emulator which comes with\npre-configured Android (x86 with OpenGL hardware acceleration) images,\nsuitable for application testing.\n",
         homepage: "https://www.genymotion.com/",

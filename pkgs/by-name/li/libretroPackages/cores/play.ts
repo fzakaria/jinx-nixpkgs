@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       core: "play",
       version: "0-unstable-2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpd002",
           repo: "Play-",
           rev: "83700b2c31e593bc94e845b4b31b797be84dda59",
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       cmakeFlags: nix.thunk(() => ["-DBUILD_PLAY=OFF", "-DBUILD_LIBRETRO_CORE=ON"]),
       postBuild: "cd Source/ui_libretro",
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-include cstdio" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-include cstdio" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of Play! to libretro",
         homepage: "https://github.com/jpd002/Play-",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

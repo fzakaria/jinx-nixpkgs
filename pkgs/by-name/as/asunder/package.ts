@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const monkeys_audio = nix.arg($, "monkeys-audio");
   const runtimeDeps = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mp3Support, lame), nix.concat(nix.app(nix.sel(lib, "optional"), oggSupport, vorbis_tools), nix.concat(nix.app(nix.sel(lib, "optional"), flacSupport, flac), nix.concat(nix.app(nix.sel(lib, "optional"), opusSupport, opus_tools), nix.concat(nix.app(nix.sel(lib, "optional"), wavpackSupport, wavpack), nix.concat(nix.app(nix.sel(lib, "optional"), monkeysAudioSupport, monkeys_audio), [cdparanoia])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asunder",
       version: "3.1.0-unstable-2025-03-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rizalmart",
           repo: "asunder-gtk3",
           rev: "e3676704f7c7912e61ad7d78fe19015c102a27e1",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical Audio CD ripper and encoder for Linux",
         mainProgram: "asunder",
         homepage: "https://github.com/rizalmart/asunder-gtk3",

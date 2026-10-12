@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "systemd-wait",
       version: "0.1+2018-10-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stebalien",
           repo: "systemd-wait",
           rev: "bbb58dd4584cc08ad20c3888edb7628f28aee3c7",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Stebalien/systemd-wait",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         description: "Wait for a systemd unit to enter a specific state",

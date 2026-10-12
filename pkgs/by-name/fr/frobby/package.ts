@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frobby",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Macaulay2",
           repo: "frobby",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "frobby",
         description: "Software system and project for computations with monomial ideals",
         longDescription: "Current functionality includes Euler characteristic, Hilbert series,\nmaximal standard monomials, combinatorial optimization on monomial\nideals, primary decomposition, irreducible decomposition, Alexander dual,\nassociated primes, minimization and intersection of monomial ideals as\nwell as the computation of Frobenius problems (using 4ti2) with very\nlarge numbers. Frobby is also able to translate between formats that can\nbe used with several different computer systems, such as Macaulay2,\nMonos, 4ti2, CoCoA4 and Singular. Thus Frobby can be used with any of\nthose systems.\n",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const releaseType = "escript";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WhatsApp",
           repo: "erlfmt",
           hash: "sha256-0guZxRStVHnUCh9+tmP+/FzgZF+TUgB2oCZu+P4FJBs=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [erlang]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/WhatsApp/erlfmt",
         description: "Automated code formatter for Erlang",
         mainProgram: "erlfmt",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dlesl"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, releaseType, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, releaseType, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

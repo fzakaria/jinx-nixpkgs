@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const avahi_compat = nix.arg($, "avahi-compat");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "synergy",
       version: "1.14.6.19-stable",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "symless",
           repo: "synergy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ substituteInPlace CMakeLists.txt cmake/Version.cmake src/gui/CMakeLists.txt \\
           libnotify,
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-inconsistent-missing-override")),
       })),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGUI)), "-DSYNERGY_BUILD_LEGACY_GUI=OFF"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-DCMAKE_OSX_DEPLOYMENT_TARGET=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "10.13" : nix.sel(stdenv, "hostPlatform", "darwinSdkVersion"))}`)))),
@@ -86,7 +86,7 @@ substituteInPlace CMakeLists.txt cmake/Version.cmake src/gui/CMakeLists.txt \\
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.add("runHook preInstall\n\nmkdir -p $out/bin\ncp bin/{synergyc,synergys,synergyd,syntool} $out/bin/\n", nix.app(nix.sel(lib, "optionalString"), withGUI, "cp bin/synergy $out/bin/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/share/{applications,icons/hicolor/scalable/apps}\ncp ../res/synergy.svg $out/share/icons/hicolor/scalable/apps/\nsubstitute ../res/synergy.desktop $out/share/applications/synergy.desktop \\\n  --replace \"/usr/bin\" \"$out/bin\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withGUI))), "mkdir -p $out/Applications\ncp -r bundle/Synergy.app $out/Applications\nln -s $out/bin $out/Applications/Synergy.app/Contents/MacOS\n")), "runHook postInstall\n")),
       dontWrapQtApps: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGUI)), true)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Share one mouse and keyboard between multiple computers",
         homepage: "https://symless.com/synergy",
         changelog: nix.thunk(() => nix.str`https://github.com/symless/synergy/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cmake-modules-webos";
       const version = "19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openwebos",
           repo: "cmake-modules-webos",
           rev: nix.thunk(() => nix.str`submissions/${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const setupHook = nix.path(here, "./cmake-setup-hook.sh");
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.7)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace webOS/webOS.cmake \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.7)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CMake modules needed to build Open WebOS components",
         homepage: "https://github.com/openwebos/cmake-modules-webos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const universal_ctags = nix.arg($, "universal-ctags");
   const pygments = nix.thunk(() => nix.sel(python3Packages, "pygments"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "global",
       version: "6.6.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/global/global-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9uf9C2iu0pLoW7aGYWuvZVHVyUJK3N3KEdgIujGMsyA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/global/raw/5a1ababa270e571f3133c03edcdb0e65f95e763f/f/libdb-dbpanic-function-pointers.patch",
             hash: "sha256-o8u90h8ufF0Yr049fR9iMba+xq1tHXeiPdrHFSZMir0=",
           })))),
@@ -61,7 +61,7 @@ wrapProgram $out/bin/global \\
   --prefix PYTHONPATH : "$(toPythonPath ${pygments})"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Source code tag system",
         longDescription: "GNU GLOBAL is a source code tagging system that works the same way\nacross diverse environments (Emacs, vi, less, Bash, web browser, etc).\nYou can locate specified objects in source files and move there easily.\nIt is useful for hacking a large project containing many\nsubdirectories, many #ifdef and many main() functions.  It is similar\nto ctags or etags but is different from them at the point of\nindependence of any editor.  It runs on a UNIX (POSIX) compatible\noperating system like GNU and BSD.\n",
         homepage: "https://www.gnu.org/software/global/",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wrapWithMono = nix.argOr($, "wrapWithMono", () => true);
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "owmods-cli",
       version: "0.15.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ow-mods",
           repo: "ow-mod-man",
           rev: nix.thunk(() => nix.str`cli_v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-oYTz7Dzdv9prHzDSSjX9PozzKToMXRW6qs8Y2dfYQ8A=",
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, installShellFiles], nix.app(nix.sel(lib, "optional"), wrapWithMono, makeWrapper))),
       buildInputs: nix.thunk(() => nix.concat([zstd, libsoup_3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       buildAndTestSubdir: "owmods_cli",
       postInstall: nix.thunk(() => nix.add("cargo xtask dist_cli\ninstallManPage dist/cli/man/*\ninstallShellCompletion --cmd owmods \\\ndist/cli/completions/owmods.{bash,fish,zsh}\n", nix.app(nix.sel(lib, "optionalString"), wrapWithMono, nix.thunk(() => nix.str`wrapProgram $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} --prefix PATH : '${mono}/bin'
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI version of the mod manager for Outer Wilds Mod Loader",
         homepage: "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_cli",
         downloadPage: nix.thunk(() => nix.str`https://github.com/ow-mods/ow-mod-man/releases/tag/cli_v${nix.sel(finalAttrs, "version")}`),

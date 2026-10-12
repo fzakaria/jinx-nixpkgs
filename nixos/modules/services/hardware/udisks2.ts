@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "udisks2"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ",", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
     }))));
   const configFiles = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(settingsFormat, "generate"), name, value), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), name, value), nix.thunk(() => nix.sel(config, "services", "udisks2", "settings"))))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         udisks2: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "udisks2, a DBus service that allows applications to query and manipulate storage devices")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "udisks", nix.thunk(() => ({})))),
           mountOnMedia: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "When enabled, instructs udisks2 to mount removable drives under `/media/` directory, instead of the\ndefault, ACL-controlled `/run/media/$USER/`. Since `/media/` is not mounted as tmpfs by default, it\nrequires cleanup to get rid of stale mountpoints; enabling this option will take care of this at boot.\n",
@@ -58,64 +58,64 @@ export default nix.lambda((args) => (() => {
               const type = nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type"))));
               const apply = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), default$));
               const default$ = nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "udisks2.conf": nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   udisks2: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     modules: nix.thunk(() => ["*"]),
                     modules_load_preference: "ondemand",
                   })),
-                  defaults: nix.thunk(() => ({ __proto__: pos$4, encryption: "luks2" })),
+                  defaults: nix.thunk(() => ({ [nix.POS]: pos$4, encryption: "luks2" })),
                 })),
               }));
               const example = nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"WDC-WD10EZEX-60M2NA0-WD-WCC3F3SJ0698.conf\" = {\n    ATA = {\n      StandbyTimeout = 50;\n    };\n  };\n};\n"));
               const description = "Options passed to udisksd.\nSee [here](http://manpages.ubuntu.com/manpages/latest/en/man5/udisks2.conf.5.html) and\ndrive configuration in [here](http://manpages.ubuntu.com/manpages/latest/en/man8/udisks.8.html) for supported options.\n";
-              return { __proto__: pos$7, type, apply, default: default$, example, description };
+              return { [nix.POS]: pos$7, type, apply, default: default$, example, description };
             })()))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "udisks2", "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-          etc: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`udisks2/${name}`), nix.thunk(() => ({ __proto__: pos$11, source: value }))), configFiles), (() => {
+          etc: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`udisks2/${name}`), nix.thunk(() => ({ [nix.POS]: pos$11, source: value }))), configFiles), (() => {
             const libblockdev = nix.thunk(() => nix.sel(cfg, "package", "libblockdev"));
             const majorVer = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(libblockdev, "version"))));
             return nix.attrsDyn({}, [
               [nix.str`libblockdev/${majorVer}/conf.d/00-default.cfg`, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 source: nix.thunk(() => nix.str`${libblockdev}/etc/libblockdev/${majorVer}/conf.d/00-default.cfg`),
               }))],
               [nix.str`libblockdev/${majorVer}/conf.d/10-lvm-dbus.cfg`, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 source: nix.thunk(() => nix.str`${libblockdev}/etc/libblockdev/${majorVer}/conf.d/10-lvm-dbus.cfg`),
               }))],
             ]);
           })())),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$16,
-          polkit: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+          [nix.POS]: pos$16,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           dbus: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             extraRules: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "mountOnMedia")), "ENV{ID_FS_USAGE}==\"filesystem\", ENV{UDISKS_FILESYSTEM_SHARED}=\"1\"\n")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             rules: nix.thunk(() => nix.concat(["d /var/lib/udisks2 0755 root root -"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "mountOnMedia")), "D! /media 0755 root root -"))),
           })),
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),

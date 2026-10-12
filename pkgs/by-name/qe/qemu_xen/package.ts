@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["xenSupport", 1, 27]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const qemu = nix.arg($, "qemu");
-  return nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ __proto__: pos$1, xenSupport: true })));
+  return nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, xenSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

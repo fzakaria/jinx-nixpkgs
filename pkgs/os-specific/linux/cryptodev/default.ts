@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.argOr($, "kernel", () => false);
   const kernelModuleMakeFlags = nix.argOr($, "kernelModuleMakeFlags", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cryptodev-linux",
       version: "1.14-unstable-2025-11-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cryptodev-linux",
           repo: "cryptodev-linux",
           rev: "08644db02d43478f802755903212f5ee506af73b",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "prefix=$(out)",
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Device that allows access to Linux kernel cryptographic drivers",
         homepage: "http://cryptodev-linux.org/",
         maintainers: nix.thunk(() => (() => {

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       return nix.force(x);
     })();
     const fix$ = (f) => (() => {
-      const x = nix.thunk(() => nix.update(nix.app(f, x), { __proto__: pos$1, __unfix__: f }));
+      const x = nix.thunk(() => nix.update(nix.app(f, x), { [nix.POS]: pos$1, __unfix__: f }));
       return nix.force(x);
     })();
     const converge = (f) => (x) => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })() : (final) => (prev) => nix.force(f));
     })());
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       fix,
       "fix'": fix$,
       converge,

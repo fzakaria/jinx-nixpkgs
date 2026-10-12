@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       allowPkgsInPermittedInsecurePackages: nix.thunk(() => (() => {
         const pkgs$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             system: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
             config: nix.thunk(() => nix.update(config, {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               permittedInsecurePackages: nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(pkgs$, "glibc", "version")), [])),
             })),
           }))));

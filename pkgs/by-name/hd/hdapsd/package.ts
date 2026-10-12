@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hdapsd",
       version: "20250908",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/linux-thinkpad/hdapsd/releases/download/${nix.sel(finalAttrs, "version")}/hdapsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qENcOFJ9x5CkN72ZkTx/OL+gpwAYJlJomKvAjTklDYQ=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./postInstall.sh"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hard Drive Active Protection System Daemon",
         mainProgram: "hdapsd",
         homepage: "https://github.com/linux-thinkpad/hdapsd",

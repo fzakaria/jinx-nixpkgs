@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const unstrctrd = nix.arg($, "unstrctrd");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multipart_form",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/multipart_form/releases/download/v${nix.sel(finalAttrs, "version")}/multipart_form-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-lQdAZ5vmBOhkH1V3MuqYi+UGpyJPsSkoU6kEGYvchWA=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [angstrom, base64, bigstringaf, fmt, ke, logs, pecu, prettym, unstrctrd, uutf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of RFC7578 in OCaml",
         homepage: "https://github.com/dinosaure/multipart_form",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

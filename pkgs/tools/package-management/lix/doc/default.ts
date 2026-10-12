@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const cargoDeps = nix.arg($, "cargoDeps");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "lix-doc",
       sourceRoot: nix.thunk(() => nix.str`${nix.selOr(src, () => nix.force(src), "name")}/lix-doc`),
       version: version,

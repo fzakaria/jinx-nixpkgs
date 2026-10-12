@@ -24,59 +24,59 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const runCommand = nix.arg($, "runCommand");
   const substituteSilent = nix.thunk(() => nix.app(nix.sel(substitute, "override"), (prevArgs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       lib: nix.thunk(() => nix.app(nix.sel(prevArgs, "lib", "extend"), (finalLib) => (prevLib) => ({
-          __proto__: pos$2,
-          trivial: nix.thunk(() => nix.update(nix.sel(prevLib, "trivial"), { __proto__: pos$1, warn: (msg) => (value) => nix.force(value) })),
+          [nix.POS]: pos$2,
+          trivial: nix.thunk(() => nix.update(nix.sel(prevLib, "trivial"), { [nix.POS]: pos$1, warn: (msg) => (value) => nix.force(value) })),
         }))),
     })));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     substitutions: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         assertion: "substitutions-spaces",
         actual: nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             substitutions: nix.thunk(() => ["--replace-fail", "Hello world!", "Yo peter!"]),
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Yo peter!\n")),
       })))),
     legacySingleReplace: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         assertion: "substitute-single-replace",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             replacements: nix.thunk(() => ["--replace-fail", "world", "paul"]),
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Hello paul!\n")),
       })))),
     legacyString: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         assertion: "substitute-string",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             replacements: "--replace-fail world string",
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Hello string!\n")),
       })))),
     legacySingleArg: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         assertion: "substitute-single-arg",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             replacements: nix.thunk(() => ["--replace-fail world list"]),
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Hello list!\n")),
       })))),
     legacyVar: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertion: "substitute-var",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             src: nix.thunk(() => nix.builtins.toFile("source", "@greeting@ @name@!\n")),
             replacements: nix.thunk(() => ["--subst-var name", "--subst-var-by greeting Yo"]),
             name: "peter",

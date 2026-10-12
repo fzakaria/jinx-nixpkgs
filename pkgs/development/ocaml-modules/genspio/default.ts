@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const base = nix.arg($, "base");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "genspio",
       version: "0.0.3",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hammerlab",
           repo: "genspio",
           rev: nix.thunk(() => nix.str`genspio.${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./genspio.patch")]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://smondet.gitlab.io/genspio-doc/",
         description: "Typed EDSL to generate POSIX Shell scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

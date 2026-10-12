@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const python_mpd2 = nix.thunk(() => nix.attr(python3Packages, "python-mpd2"));
   const setuptools = nix.thunk(() => nix.attr(python3Packages, "setuptools"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sonata",
       version: "1.7.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "multani",
           repo: "sonata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [dbus_python, python_mpd2, pygobject3, setuptools]),
       postPatch: "# Remove \"Local MPD\" tab which is not suitable for NixOS.\nsed -i '/localmpd/d' sonata/consts.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elegant client for the Music Player Daemon",
         mainProgram: "sonata",
         longDescription: "Sonata is an elegant client for the Music Player Daemon.\n\nWritten in Python and using the GTK 3 widget set, its features\ninclude:\n\n - Expanded and collapsed views\n - Automatic remote and local album art\n - Library browsing by folders, or by genre/artist/album\n - User-configurable columns\n - Automatic fetching of lyrics\n - Playlist and stream support\n - Support for editing song tags (not in NixOS version)\n - Drag and drop to copy files\n - Popup notification\n - Library and playlist searching, filter as you type\n - Audioscrobbler (last.fm) 1.2 support\n - Multiple MPD profiles\n - Keyboard friendly\n - Support for multimedia keys\n - Commandline control\n - Available in 24 languages\n",

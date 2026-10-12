@@ -113,28 +113,28 @@ export default nix.lambda((args) => (() => {
   const direnvCfg = nix.thunk(() => nix.sel(config, "programs", "direnv", "angrr"));
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const exampleSettings = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "temporary-root-policies": nix.thunk(() => ({
-      __proto__: pos$3,
-      direnv: nix.thunk(() => ({ __proto__: pos$1, "path-regex": "/\\.direnv/", period: "14d" })),
-      result: nix.thunk(() => ({ __proto__: pos$2, "path-regex": "/result[^/]*$", period: "3d" })),
+      [nix.POS]: pos$3,
+      direnv: nix.thunk(() => ({ [nix.POS]: pos$1, "path-regex": "/\\.direnv/", period: "14d" })),
+      result: nix.thunk(() => ({ [nix.POS]: pos$2, "path-regex": "/result[^/]*$", period: "3d" })),
     })),
     "profile-policies": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       system: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "profile-paths": nix.thunk(() => ["/nix/var/nix/profiles/system"]),
         "keep-since": "14d",
         "keep-latest-n": 5n,
         "keep-booted-system": true,
         "keep-current-system": true,
         "keep-n-per-bucket": nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$4, "bucket-window": "1 day", "bucket-amount": 7n })),
-          nix.thunk(() => ({ __proto__: pos$5, "bucket-window": "1 week", "bucket-amount": 4n })),
+          nix.thunk(() => ({ [nix.POS]: pos$4, "bucket-window": "1 day", "bucket-amount": 7n })),
+          nix.thunk(() => ({ [nix.POS]: pos$5, "bucket-window": "1 week", "bucket-amount": 4n })),
         ]),
       })),
       user: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         enable: false,
         "profile-paths": nix.thunk(() => [
           "~/.local/state/nix/profiles/profile",
@@ -148,12 +148,12 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const settingsOptions = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     freeformType: nix.thunk(() => nix.sel(toml, "type")),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       "owned-only": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["auto", "true", "false"]));
@@ -162,7 +162,7 @@ export default nix.lambda((args) => (() => {
           description: "Only monitors owned symbolic link target of GC roots.\n\n- \"auto\": behaves like true for normal users, false for root.\n- \"true\": only monitor GC roots owned by the current user.\n- \"false\": monitor all GC roots.\n",
         })))),
       "temporary-root-policies": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), temporaryRootPolicyOptions)));
@@ -171,7 +171,7 @@ export default nix.lambda((args) => (() => {
           description: "Policies for temporary GC roots(e.g. result and direnv).\n",
         })))),
       "profile-policies": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), profilePolicyOptions)));
@@ -180,9 +180,9 @@ export default nix.lambda((args) => (() => {
           description: "Profile GC root policies.\n",
         })))),
       touch: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "project-globs": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -194,25 +194,25 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const commonPolicyOptions = nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
-      enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this angrr policy"), { __proto__: pos$17, default: true, example: false })),
+      [nix.POS]: pos$18,
+      enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this angrr policy"), { [nix.POS]: pos$17, default: true, example: false })),
     })),
   }));
   const temporaryRootPolicyOptions = nix.thunk(() => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     freeformType: nix.thunk(() => nix.sel(toml, "type")),
     imports: nix.thunk(() => [commonPolicyOptions]),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       "path-regex": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Regex pattern to match the GC root path.\n",
         })))),
       period: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -221,13 +221,13 @@ export default nix.lambda((args) => (() => {
           description: "Retention period for the GC roots matched by this policy.\n",
         })))),
       priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 100n,
           description: "Priority of this policy.\n\nLower number means higher priority, if multiple policies monitor the\nsame path, the one with higher priority will be applied.\n",
         })))),
       filter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), filterOptions)));
@@ -236,7 +236,7 @@ export default nix.lambda((args) => (() => {
           description: "External filter program to further filter GC roots matched by this policy.\n",
         })))),
       "ignore-prefixes": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -245,7 +245,7 @@ export default nix.lambda((args) => (() => {
           description: "List of path prefixes to ignore.\n\nIf null is specified, angrr builtin settings will be used.\n",
         })))),
       "ignore-prefixes-in-home": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -256,13 +256,13 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const profilePolicyOptions = nix.thunk(() => ({
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     freeformType: nix.thunk(() => nix.sel(toml, "type")),
     imports: nix.thunk(() => [commonPolicyOptions]),
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       "profile-paths": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -270,7 +270,7 @@ export default nix.lambda((args) => (() => {
           description: "Paths to the Nix profile.\n\nWhen angrr runs in owned-only mode, and the option begins with `~`,\nit will be expanded to the home directory of the current user.\n\nWhen angrr does not run in owned-only mode, and the option begins with `~`,\nit will be expanded to the home of all users discovered respectively.\n",
         })))),
       "keep-since": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -279,7 +279,7 @@ export default nix.lambda((args) => (() => {
           description: "Retention period for the GC roots in this profile.\n",
         })))),
       "keep-latest-n": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -288,19 +288,19 @@ export default nix.lambda((args) => (() => {
           description: "Keep the latest N GC roots in this profile.\n",
         })))),
       "keep-current-system": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Whether to keep the current system generation. Only useful for system profiles.\n",
         })))),
       "keep-booted-system": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Whether to keep the last booted system generation. Only useful for system profiles.\n",
         })))),
       "keep-n-per-bucket": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), keepNPerBucketOptions)));
@@ -311,17 +311,17 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const filterOptions = nix.thunk(() => ({
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     freeformType: nix.thunk(() => nix.sel(toml, "type")),
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       program: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Path to the external filter program.\n",
         })))),
       arguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -332,23 +332,23 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const keepNPerBucketOptions = nix.thunk(() => ({
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     freeformType: nix.thunk(() => nix.sel(toml, "type")),
     options: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       n: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 1n,
           description: "Retain n generations every bucket-window duration for bucket-amount buckets.\n",
         })))),
       "bucket-window": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "The duration of the bucket window.\n",
         })))),
       "bucket-amount": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 1n,
           description: "The number of buckets to keep.\n",
@@ -361,9 +361,9 @@ export default nix.lambda((args) => (() => {
 `)));
   const configFileMigrationMsg = "This option has been removed since angrr 0.2.0.\nPlease use `services.angrr.settings` to configure retention policies through configuration file.\n\nSee <https://github.com/linyinfeng/angrr/tree/main?tab=readme-ov-file#nixos-module-usage> for a configuration example.\n";
   return {
-    __proto__: pos$100,
+    [nix.POS]: pos$100,
     meta: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       maintainers: nix.thunk(() => nix.sel(pkgs, "angrr", "meta", "maintainers")),
     })),
     imports: nix.thunk(() => [
@@ -371,15 +371,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "angrr", "ownedOnly"]), configFileMigrationMsg)),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       services: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         angrr: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "angrr")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "angrr", nix.thunk(() => ({})))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["off", "error", "warn", "info", "debug", "trace"]));
@@ -388,7 +388,7 @@ export default nix.lambda((args) => (() => {
               description: "Set the log level of angrr.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -397,7 +397,7 @@ export default nix.lambda((args) => (() => {
               description: "Extra command-line arguments pass to angrr.\n",
             })))),
           period: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -406,13 +406,13 @@ export default nix.lambda((args) => (() => {
               description: "If set, it configures {option}`services.angrr.settings` to a preset that\nmonitor .direnv, results, system, and user profiles,\nretaining GC roots that are younger than the specified period.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), settingsOptions)),
               example: exampleSettings,
               description: "Global configuration for angrr in TOML format.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -422,15 +422,15 @@ export default nix.lambda((args) => (() => {
               description: "Path to the angrr configuration file in TOML format.\n\nIf not set, the configuration generated from {option}`services.angrr.settings` will be used.\nIf specified, {option}`services.angrr.settings` will be ignored.\n",
             })))),
           enableNixGcIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable nix-gc.service integration.\n",
             })))),
           timer: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "angrr timer")),
             dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "03:00",
                 description: "How often or when the retention policy is performed.\n",
@@ -439,14 +439,14 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       programs: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         direnv: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           angrr: nix.thunk(() => ({
-            __proto__: pos$58,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "angrr direnv integration"), { __proto__: pos$56, default: true, example: false })),
+            [nix.POS]: pos$58,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "angrr direnv integration"), { [nix.POS]: pos$56, default: true, example: false })),
             autoUse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
@@ -458,60 +458,60 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enableNixGcIntegration")) || nix.asBool(nix.sel(config, "nix", "gc", "automatic")))),
                 message: "angrr nix-gc.service integration requires `nix.gc.automatic = true`",
               })),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               angrr: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 enableNixGcIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "nix", "gc", "automatic")))),
               })),
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             environment: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               etc: nix.thunk(() => ({
-                __proto__: pos$67,
-                "angrr/config.toml": nix.thunk(() => ({ __proto__: pos$66, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
+                [nix.POS]: pos$67,
+                "angrr/config.toml": nix.thunk(() => ({ [nix.POS]: pos$66, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               services: nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 angrr: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   description: "Auto Nix GC Roots Retention",
                   script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} run \\
   --log-level "${nix.sel(cfg, "logLevel")}" \\
   --no-prompt \\
   ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}
 `),
-                  environment: nix.thunk(() => ({ __proto__: pos$69, ANGRR_LOG_STYLE: "systemd" })),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$70, Type: "oneshot" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$69, ANGRR_LOG_STYLE: "systemd" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$70, Type: "oneshot" })),
                 })),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "timer", "enable")), nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               systemd: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 timers: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   angrr: nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     timerConfig: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       OnCalendar: nix.thunk(() => nix.sel(cfg, "timer", "dates")),
                     })),
                     wantedBy: nix.thunk(() => ["timers.target"]),
@@ -520,13 +520,13 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNixGcIntegration")), nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               systemd: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 services: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   angrr: nix.thunk(() => ({
-                    __proto__: pos$80,
+                    [nix.POS]: pos$80,
                     wantedBy: nix.thunk(() => ["nix-gc.service"]),
                     before: nix.thunk(() => ["nix-gc.service"]),
                   })),
@@ -534,57 +534,57 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "programs", "direnv", "enable")) && nix.asBool(nix.sel(direnvCfg, "enable")))), nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               environment: nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   "direnv/lib/angrr.sh": nix.thunk(() => ({
-                    __proto__: pos$84,
+                    [nix.POS]: pos$84,
                     source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/direnv/lib/angrr.sh`),
                   })),
                 })),
               })),
               programs: nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 direnv: nix.thunk(() => ({
-                  __proto__: pos$87,
+                  [nix.POS]: pos$87,
                   direnvrcExtra: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(direnvCfg, "autoUse")), "_angrr_auto_use \"$@\"\n")),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "period"), null)), nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               services: nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 angrr: nix.thunk(() => ({
-                  __proto__: pos$97,
+                  [nix.POS]: pos$97,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$96,
+                    [nix.POS]: pos$96,
                     "temporary-root-policies": nix.thunk(() => ({
-                      __proto__: pos$92,
+                      [nix.POS]: pos$92,
                       direnv: nix.thunk(() => ({
-                        __proto__: pos$90,
+                        [nix.POS]: pos$90,
                         "path-regex": "/\\.direnv/",
                         period: nix.thunk(() => nix.sel(cfg, "period")),
                       })),
                       result: nix.thunk(() => ({
-                        __proto__: pos$91,
+                        [nix.POS]: pos$91,
                         "path-regex": "/result[^/]*$",
                         period: nix.thunk(() => nix.sel(cfg, "period")),
                       })),
                     })),
                     "profile-policies": nix.thunk(() => ({
-                      __proto__: pos$95,
+                      [nix.POS]: pos$95,
                       system: nix.thunk(() => ({
-                        __proto__: pos$93,
+                        [nix.POS]: pos$93,
                         "profile-paths": nix.thunk(() => ["/nix/var/nix/profiles/system"]),
                         "keep-since": nix.thunk(() => nix.sel(cfg, "period")),
                         "keep-booted-system": true,
                         "keep-current-system": true,
                       })),
                       user: nix.thunk(() => ({
-                        __proto__: pos$94,
+                        [nix.POS]: pos$94,
                         "profile-paths": nix.thunk(() => [
                           "~/.local/state/nix/profiles/profile",
                           "/nix/var/nix/profiles/per-user/root/profile",

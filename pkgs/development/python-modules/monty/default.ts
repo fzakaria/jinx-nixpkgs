@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "monty",
       version: "2026.7.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "materialyzeai",
           repo: "monty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
         const multiprocessing = nix.thunk(() => [tqdm]);
         const optional = nix.thunk(() => nix.concat(dev, nix.concat(json, nix.concat(multiprocessing, serialization))));
         const serialization = nix.thunk(() => [msgpack]);
-        return { __proto__: pos$2, dev, docs, json, multiprocessing, optional, serialization };
+        return { [nix.POS]: pos$2, dev, docs, json, multiprocessing, optional, serialization };
       })()),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_benchmark], nix.sel(finalAttrs, "passthru", "optional-dependencies", "optional"))),
       pythonImportsCheck: nix.thunk(() => ["monty"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Serves as a complement to the Python standard library by providing a suite of tools to solve many common problems",
         longDescription: "\n      Monty implements supplementary useful functions for Python that are not part of the\n      standard library. Examples include useful utilities like transparent support for zipped files, useful design\n      patterns such as singleton and cached_class, and many more.\n    ",
         homepage: "https://github.com/materialyzeai/monty",

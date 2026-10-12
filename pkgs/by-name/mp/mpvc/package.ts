@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpvc",
       version: "1.4-unstable-2024-07-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gmt4",
           repo: "mpvc",
           rev: "966156dacd026cde220951d41c4ac5915cd6ad64",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "rm -r $out/share/licenses\nrmdir $out/share || true\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gmt4/mpvc",
         description: "Mpc-like control interface for mpv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

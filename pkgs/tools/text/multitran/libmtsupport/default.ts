@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
       const pname = "libmtsupport";
       const version = "0.0.1alpha2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/libmtsupport-${version}.tar.bz2`),
           sha256: "481f0f1ec15d7274f1e4eb93e7d060df10a181efd037eeff5e8056d283a9298b",
         }))));
       const patchPhase = "sed -i -e 's@\\$(DESTDIR)/usr@'$out'@' src/Makefile;\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran lib: basic useful functions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, patchPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

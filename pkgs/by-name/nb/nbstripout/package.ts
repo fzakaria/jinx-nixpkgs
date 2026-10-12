@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const pname = "nbstripout";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-MTu7QhfI44mYVn5deQtr1sOheow5BzsgW4Ta38XXVtw=",
         }))));
       const testAssets = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "kynan",
           repo: "nbstripout",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -57,7 +57,7 @@ substituteInPlace tests/test_end_to_end.py --replace "tests/e2e_notebooks" "$TMP
 `);
       const pythonImportsCheck = nix.thunk(() => ["nbstripout"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Strip output from Jupyter and IPython notebooks",
         homepage: "https://github.com/kynan/nbstripout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +68,7 @@ substituteInPlace tests/test_end_to_end.py --replace "tests/e2e_notebooks" "$TMP
         mainProgram: "nbstripout",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pyproject,
         pname,

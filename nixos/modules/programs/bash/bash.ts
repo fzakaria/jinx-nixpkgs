@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "bash"));
   const bashAliases = nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`alias -- ${k}=${nix.app(nix.sel(lib, "escapeShellArg"), v)}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "shellAliases"))))))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       programs: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         bash: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: true,
               description: "Whenever to configure Bash as an interactive shell.\nNote that this tries to make Bash the default\n{option}`users.defaultUserShell`,\nwhich in turn means that you might need to explicitly\nset this variable if you have another shell configured\nwith NixOS.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               description: "Set of aliases for bash shell, which overrides {option}`environment.shellAliases`.\nSee {option}`environment.shellAliases` for an option format description.\n",
               type: nix.thunk(() => (() => {
@@ -58,38 +58,38 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           shellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "",
               description: "Shell script code called during bash shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           loginShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "",
               description: "Shell script code called during login bash shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               description: "Shell script code called during interactive bash shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           promptInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "# Provide a nice prompt if the terminal supports it.\nif [ \"$TERM\" != \"dumb\" ] || [ -n \"$INSIDE_EMACS\" ]; then\n  PROMPT_COLOR=\"1;31m\"\n  ((UID)) && PROMPT_COLOR=\"1;32m\"\n  if [ -n \"$INSIDE_EMACS\" ]; then\n    # Emacs term mode doesn't support xterm title escape sequence (\\e]0;)\n    PS1=\"\\n\\[\\033[$PROMPT_COLOR\\][\\u@\\h:\\w]\\\\$\\[\\033[0m\\] \"\n  else\n    PS1=\"\\n\\[\\033[$PROMPT_COLOR\\][\\[\\e]0;\\u@\\h: \\w\\a\\]\\u@\\h:\\w]\\\\$\\[\\033[0m\\] \"\n  fi\n  if test \"$TERM\" = \"xterm\"; then\n    PS1=\"\\[\\033]2;\\h:\\u:\\w\\007\\]$PS1\"\n  fi\nfi\n",
               description: "Shell script code used to initialise the bash prompt.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           promptPluginInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "",
               description: "Shell script code used to initialise bash prompt plugins.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               internal: true,
             })))),
           logout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "printf '\\e]0;\\a'\n",
               description: "Shell script code called during login bash shell logout.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         programs: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           bash: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             shellAliases: nix.thunk(() => nix.builtins.mapAttrs((name) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfge, "shellAliases")))),
             shellInit: nix.thunk(() => nix.str`if [ -z "$__NIXOS_SET_ENVIRONMENT_DONE" ]; then
     . ${nix.sel(config, "system", "build", "setEnvironment")}
@@ -123,11 +123,11 @@ ${nix.sel(cfge, "interactiveShellInit")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             profile: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               text: nix.thunk(() => nix.str`# /etc/profile: DO NOT EDIT -- this file has been generated automatically.
 # This file is read for login shells.
 
@@ -152,7 +152,7 @@ fi
 `),
             })),
             bashrc: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               text: nix.thunk(() => nix.str`# /etc/bashrc: DO NOT EDIT -- this file has been generated automatically.
 
 # Only execute this file once per shell.
@@ -178,7 +178,7 @@ fi
 `),
             })),
             bash_logout: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               text: nix.thunk(() => nix.str`# /etc/bash_logout: DO NOT EDIT -- this file has been generated automatically.
 
 # Only execute this file once per shell.
@@ -194,7 +194,7 @@ fi
 `),
             })),
             inputrc: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               source: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.path(here, "./inputrc"))),
             })),
           })),
@@ -207,7 +207,7 @@ fi
           ]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           defaultUserShell: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "bashInteractive")))),
         })),
       })))),

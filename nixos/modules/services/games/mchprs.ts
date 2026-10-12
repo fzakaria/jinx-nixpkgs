@@ -51,48 +51,48 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "mchprs"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
-  const whitelistFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "whitelist.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => ({ __proto__: pos$1, name: n, uuid: v }), nix.thunk(() => nix.sel(cfg, "whitelist", "list"))))))));
+  const whitelistFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "whitelist.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => ({ [nix.POS]: pos$1, name: n, uuid: v }), nix.thunk(() => nix.sel(cfg, "whitelist", "list"))))))));
   const configToml = nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["address", "port"])), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     bind_address: nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "settings", "address"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port"))))),
     whitelist: nix.thunk(() => nix.sel(cfg, "whitelist", "enable")),
   }));
   const configTomlFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "Config.toml", configToml));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         mchprs: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MCHPRS, a Minecraft server")),
           declarativeSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use a declarative configuration for MCHPRS.\n",
             })))),
           declarativeWhitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use a declarative whitelist.\nThe options {option}`services.mchprs.whitelist.list`\nwill be applied if and only if set to `true`.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/mchprs",
               description: "Directory to store MCHPRS database and other state/data files.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall for the server.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
             })))),
           maxRuntime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "infinity",
               example: "7d",
@@ -100,68 +100,68 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mchprs", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 25565n,
                         description: "Port for the server.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "0.0.0.0",
                         description: "Address for the server.\nPlease use enclosing square brackets when using ipv6.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     motd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "Minecraft High Performance Redstone Server",
                         description: "Message of the day.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     chat_format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "<{username}> {message}",
                         description: "How to format chat message interpolating `username`\nand `message` with curly braces.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     max_players: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         default: 99999n,
                         description: "Maximum number of simultaneous players.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     view_distance: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         default: 8n,
                         description: "Maximal distance (in chunks) between players and loaded chunks.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     bungeecord: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Enable compatibility with\n[BungeeCord](https://github.com/SpigotMC/BungeeCord).\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     schemati: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Mimic the verification and directory layout used by the\nOpen Redstone Engineers\n[Schemati plugin](https://github.com/OpenRedstoneEngineers/Schemati).\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     block_in_hitbox: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Allow placing blocks inside of players\n(hitbox logic is simplified).\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
                       })))),
                     auto_redpiler: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Use redpiler automatically.\nOnly has effect when\n{option}`services.mchprs.declarativeSettings` is `true`.\n",
@@ -172,17 +172,17 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for MCHPRS via {file}`Config.toml`.\nSee <https://github.com/MCHPR/MCHPRS/blob/master/README.md> for documentation.\n",
             })))),
           whitelist: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether or not the whitelist (in {file}`whitelist.json`) shoud be enabled.\nOnly has effect when {option}`services.mchprs.declarativeSettings` is `true`.\n",
               })))),
             list: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => (() => {
-                  const minecraftUUID = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"), { __proto__: pos$22, description: "Minecraft UUID" }));
+                  const minecraftUUID = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"), { [nix.POS]: pos$22, description: "Minecraft UUID" }));
                   return nix.app(nix.sel(lib, "types", "attrsOf"), minecraftUUID);
                 })()),
                 default: nix.thunk(() => ({})),
@@ -194,13 +194,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         users: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           users: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             mchprs: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "MCHPRS service user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: true,
@@ -208,19 +208,19 @@ export default nix.lambda((args) => (() => {
               group: "mchprs",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$30, mchprs: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$30, mchprs: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             mchprs: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               description: "MCHPRS Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`),
                 Restart: "always",
                 RuntimeMaxSec: nix.thunk(() => nix.sel(cfg, "maxRuntime")),
@@ -283,16 +283,16 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "declarativeSettings")) && nix.asBool(nix.sel(cfg, "openFirewall")))), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]),
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gdd"))];

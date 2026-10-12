@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
       libxinerama,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kega-fusion",
       version: "3.63x",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.carpeludum.com/download/Fusion363x.tar.gz",
           sha256: "14s6czy20h5khyy7q95hd7k77v17ssafv9l6lafkiysvj2nmw94g",
         })))),
       plugins: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://www.carpeludum.com/download/PluginsLinux.tar.gz",
           sha256: "0d623cvh6n5ijj3wb64g93mxx2xbichsn7hj7brbb0ndw5cs70qj",
         })))),
@@ -100,7 +100,7 @@ substitute "$runner" "$out/bin/kega-fusion" --subst-var out
 chmod +x "$out/bin/kega-fusion"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sega SG1000, SC3000, SF7000, Master System, Game Gear, Genesis/Megadrive, SVP, Pico, SegaCD/MegaCD and 32X emulator",
         homepage: "https://www.carpeludum.com/kega-fusion/",
         maintainers: [],

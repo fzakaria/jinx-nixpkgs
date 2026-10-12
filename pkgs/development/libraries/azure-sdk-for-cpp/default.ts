@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         stdenv: stdenv,
         cmake: cmake,
         ninja: ninja,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "storage-files-shares": nix.thunk(() => nix.app(callPackage, nix.path(here, "./storage-files-shares.nix"), nix.thunk(() => ({})))),
         "storage-queues": nix.thunk(() => nix.app(callPackage, nix.path(here, "./storage-queues.nix"), nix.thunk(() => ({})))),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: "https://azure.github.io/azure-sdk-for-cpp",
           description: "Azure SDK for C++",
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

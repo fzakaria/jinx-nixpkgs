@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pyserial = nix.arg($, "pyserial");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyspinel",
       version: "unstable-2021-08-19",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openthread",
           repo: "pyspinel",
           rev: "50d104e29eacd92d229f0b7179ec1067f5851c17",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["spinel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to the OpenThread Network Co-Processor (NCP)",
         homepage: "https://github.com/openthread/pyspinel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

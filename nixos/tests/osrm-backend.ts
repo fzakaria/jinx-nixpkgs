@@ -20,34 +20,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = 5000n;
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "osrm-backend",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "erictapen"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             osrm: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               port: port,
               dataFile: nix.thunk(() => (() => {
                 const filename = "monaco";
                 const osrm_data = nix.thunk(() => nix.app(nix.sel(pkgs_1, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     name: "osrm-data",
                     buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "osrm-backend"))]),
                     src: nix.thunk(() => nix.app(nix.sel(pkgs_1, "fetchgit"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         url: "https://gist.github.com/erictapen/01e39f73a6c856eac53ba809a94cdb83",
                         rev: "9b1ff0f24deb40e5cf7df51f843dbe860637b8ce",
                         sha256: "1scqhmrfnpwsy5i2a9jpggqnvfgj4hv9p4qyvc79321pzkbv59nx",
@@ -65,7 +65,7 @@ cp ${filename}* $out/
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
         };

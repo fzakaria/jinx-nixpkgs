@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rom1504",
           repo: "CLIP",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "setuptools-comp.patch",
             url: "https://github.com/rom1504/CLIP/pull/10/commits/8137d899035d889623f6b0a0a0faae88c549dc50.patch",
             hash: "sha256-CIcuDk4QH+0g8YEa6TbKGjIcKJQqFviymVH68sKmsyk=",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["clip"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Contrastive Language-Image Pretraining",
         homepage: "https://github.com/rom1504/CLIP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jsvc",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/daemon/source/commons-daemon-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-FeqThrdgunTykm+8CmhTwQiKTA3VxG0NGGb5/wkaY2Q=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`export JAVA_HOME=${jre}
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17")),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -43,7 +43,7 @@ wrapProgram $out/bin/jsvc --set JAVA_HOME "${jre}"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://commons.apache.org/proper/commons-daemon",
         description: "Part of the Apache Commons Daemon software, a set of utilities and Java support classes for running Java applications as server processes",
         maintainers: nix.thunk(() => (() => {

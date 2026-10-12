@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const phpactor = nix.arg($, "phpactor");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(phpactor, "pname")),
       src: nix.thunk(() => nix.attr(phpactor, "src")),
       meta: nix.thunk(() => nix.attr(phpactor, "meta")),

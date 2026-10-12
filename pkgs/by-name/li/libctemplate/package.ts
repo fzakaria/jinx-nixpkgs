@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ctemplate",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OlafvdSpek",
           repo: "ctemplate",
           rev: nix.thunk(() => nix.str`ctemplate-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "c++20-std-allocator-const-pointer-typedef.patch",
             url: "https://github.com/OlafvdSpek/ctemplate/commit/5aa5a00e74ea8a1ea22d6a9760b4b420687fa4e5.patch",
             hash: "sha256-Yqp7MOOdH/W09OQ2JkyAlert1UMoA/GS+6PT9WKVVEo=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs .\n",
       preConfigure: "./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple but powerful template language for C++",
         longDescription: "CTemplate is a simple but powerful template language for C++. It\nemphasizes separating logic from presentation: it is impossible to\nembed application logic in this template language.\n",
         homepage: "https://github.com/OlafvdSpek/ctemplate",

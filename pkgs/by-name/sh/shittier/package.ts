@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shittier",
       version: "0-unstable-2023-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rohitdhas",
           repo: "shittier",
           rev: "c61b443c06dbaa8085a88b16360941cc4ba6baa2",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-oC9eOpoMZLZbyx9XnC4m5zzqORQWP62uRDNVZjyVnBs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unconventional code formatting tool for JavaScript",
         mainProgram: "shittier",
         homepage: "https://github.com/rohitdhas/shittier",

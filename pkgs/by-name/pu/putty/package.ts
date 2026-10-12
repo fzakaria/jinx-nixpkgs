@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const gtk3$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(gtk3_x11) : nix.force(gtk3)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.84",
       pname: "putty",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://the.earth.li/~sgtatham/putty/${nix.sel(finalAttrs, "version")}/putty-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`ftp://ftp.wayne.edu/putty/putty-website-mirror/${nix.sel(finalAttrs, "version")}/putty-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "PuTTY SSH Client",
             exec: "putty",
             icon: "putty",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["GTK", "Network"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "PuTTY Terminal Emulator",
             exec: "pterm",
             icon: "pterm",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aprl"))];

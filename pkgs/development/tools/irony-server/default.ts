@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const llvm = nix.arg($, "llvm");
   const irony = nix.arg($, "irony");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irony-server",
       src: nix.thunk(() => nix.attr(irony, "src")),
       version: nix.thunk(() => nix.attr(irony, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeBuildDir: true,
       cmakeDir: "server",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Server part of irony",
         mainProgram: "irony-server",
         homepage: "https://melpa.org/#/irony",

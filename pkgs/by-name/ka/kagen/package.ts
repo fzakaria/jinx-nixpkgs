@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withExamples = nix.argOr($, "withExamples", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kagen",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KarlsruheGraphGeneration",
           repo: "kagen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,18 +59,18 @@ export default nix.lambda((args) => (() => {
           "test_permutation.4cores",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               moduleNames: nix.thunk(() => ["KaGen"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Communication-free Massively Distributed Graph Generators",
         homepage: "https://github.com/KarlsruheGraphGeneration/KaGen",
         changelog: nix.thunk(() => nix.str`https://github.com/KarlsruheGraphGeneration/KaGen/releases/tag/v${nix.sel(finalAttrs, "version")}`),

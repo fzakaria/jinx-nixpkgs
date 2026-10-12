@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libuv = nix.arg($, "libuv");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mruby-zest",
       version: "3.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mruby-zest",
           repo: "mruby-zest-build",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./force-cxx-as-linker.patch")]),
       nativeBuildInputs: nix.thunk(() => [bison, pkg_config, rake, ruby]),
       buildInputs: nix.thunk(() => [libGL, libuv, libx11]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-O3" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O3" })),
       preBuild: "rm mruby/mrbgems/mruby-compiler/core/y.tab.c\n",
       installTargets: nix.thunk(() => ["pack"]),
       postInstall: "ln -s \"$out/zest\" \"$out/zyn-fusion\"\ncp -a package/{font,libzest.so,schema,zest} \"$out\"\n\n# mruby-widget-lib/src/api.c requires MainWindow.qml as part of a\n# sanity check, even though qml files are compiled into the binary\n# https://github.com/mruby-zest/mruby-zest-build/blob/3.0.6/src/mruby-widget-lib/src/api.c#L107-L124\n# https://github.com/mruby-zest/mruby-zest-build/blob/3.0.6/linux-pack.sh#L17-L18\nmkdir -p \"$out/qml\"\ntouch \"$out/qml/MainWindow.qml\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zest Framework used in ZynAddSubFX's UI",
         homepage: "https://github.com/mruby-zest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

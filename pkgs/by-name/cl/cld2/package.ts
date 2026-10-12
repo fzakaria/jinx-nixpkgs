@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cld2",
       version: "0-unstable-2015-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CLD2Owners",
           repo: "cld2",
           rev: "b56fa78a2fe44ac2851bae5bf4f4693a0644da7b",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "cld2",
             version: "0.0.0-git20150806",
             debianRevision: "10",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-iLacWD4jQxid76pzGpDW3ZJ8Dyaksfj1pNTrU7qSBQM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-narrowing-errors.txt",
             url: "https://github.com/ripjar/cld2/pull/1/commits/79be1adea78f0d376cb793f4dae8e70b100dadcc.patch",
             hash: "sha256-i4WWYBx16kYXZ5IQPACWbS/HGsQysXre1SngYlAfNaM=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/CLD2Owners/cld2",
         description: "Compact Language Detector 2",
         longDescription: "CLD2 probabilistically detects over 80 languages in Unicode UTF-8 text,\neither plain text or HTML/XML. Legacy encodings must be converted to valid\nUTF-8 by the caller. For mixed-language input, CLD2 returns the top three\nlanguages found and their approximate percentages of the total text bytes\n(e.g. 80% English and 20% French out of 1000 bytes of text means about 800\nbytes of English and 200 bytes of French). Optionally, it also returns a\nvector of text spans with the language of each identified. This may be\nuseful for applying different spelling-correction dictionaries or\ndifferent machine translation requests to each span. The design target is\nweb pages of at least 200 characters (about two sentences); CLD2 is not\ndesigned to do well on very short text, lists of proper names, part\nnumbers, etc.\n",

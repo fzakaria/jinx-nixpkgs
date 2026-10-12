@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), withNgshared, "lib")}ngspice`),
       version: "45",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ngspice/ngspice-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8arYq6woKKe3HaZkEd6OQGUk518wZuRnVUOcSQRC1zQ=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withNgshared, nix.thunk(() => ["--with-ngshared"])), ["--enable-xspice", "--enable-cider", "--enable-osdi"])),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next Generation Spice (Electronic Circuit Simulator)",
         mainProgram: "ngspice",
         homepage: "http://ngspice.sourceforge.net",

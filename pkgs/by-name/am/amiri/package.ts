@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amiri",
       version: "1.003",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/aliftype/amiri/releases/download/${nix.sel(finalAttrs, "version")}/Amiri-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-BsYPMBlRdzlkvyleZIxGDuGjmqhDlEJ4udj8zoKUSzA=",
         })))),
@@ -31,7 +31,7 @@ mv {*.html,*.txt,*.md} $out/share/doc/amiri-${nix.sel(finalAttrs, "version")}/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Classical Arabic typeface in Naskh style",
         homepage: "https://www.amirifont.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

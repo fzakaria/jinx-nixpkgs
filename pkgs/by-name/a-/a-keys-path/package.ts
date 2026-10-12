@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libglvnd = nix.arg($, "libglvnd");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "a-keys-path",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geegaz",
           repo: "A-Key-s-Path",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         libglvnd,
       ]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "a-keys-path",
           exec: "a-keys-path",
           icon: "a-keys-path",
@@ -103,7 +103,7 @@ runHook postInstall
 `),
       runtimeDependencies: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://geegaz.itch.io/out-of-controls",
         description: "Short puzzle-platformer game made with Godot, running on GLES 2.0",
         mainProgram: "a-keys-path",

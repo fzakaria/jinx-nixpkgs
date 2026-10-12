@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sakura",
       version: "3.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dabisu",
           repo: "sakura",
           rev: nix.thunk(() => nix.str`SAKURA_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
   --suffix XDG_DATA_DIRS : ${gtk3}/share/gsettings-schemas/${nix.sel(gtk3, "name")}/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "sakura")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.pleyades.net/david/projects/sakura",
         description: "Terminal emulator based on GTK and VTE",
         longDescription: "sakura is a terminal emulator based on GTK and VTE. It's a terminal\nemulator with few dependencies, so you don't need a full GNOME desktop\ninstalled to have a decent terminal emulator. Current terminal emulators\nbased on VTE are gnome-terminal, XFCE Terminal, TermIt and a small\nsample program included in the vte sources. The differences between\nsakura and the last one are that it uses a notebook to provide several\nterminals in one window and adds a contextual menu with some basic\noptions. No more no less.\n",

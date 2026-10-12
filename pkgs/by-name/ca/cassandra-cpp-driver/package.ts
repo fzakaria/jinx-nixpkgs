@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const examples = nix.argOr($, "examples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cassandra-cpp-driver",
       version: "2.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "cassandra-cpp-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-cmake-version.patch",
             url: "https://github.com/apache/cassandra-cpp-driver/commit/a4061051bcdfa0a67117b546897552c38493d545.patch?full_index=1",
             hash: "sha256-hQhm2SYLd8uPC85/iOH3sEM2KvoIGwV+9NGIJFnZJhc=",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [zlib, libuv, nix.thunk(() => nix.sel(openssl, "dev"))]),
-      cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (value) => nix.str`-DCASS_BUILD_${name}:BOOL=${(nix.asBool(value) ? "ON" : "OFF")}`, nix.thunk(() => ({ __proto__: pos$3, EXAMPLES: examples }))), [
+      cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (value) => nix.str`-DCASS_BUILD_${name}:BOOL=${(nix.asBool(value) ? "ON" : "OFF")}`, nix.thunk(() => ({ [nix.POS]: pos$3, EXAMPLES: examples }))), [
         nix.thunk(() => nix.str`-DLIBUV_INCLUDE_DIR=${nix.app(nix.sel(lib, "getDev"), libuv)}/include`),
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "DataStax CPP cassandra driver",
         longDescription: "A modern, feature-rich and highly tunable C/C++ client\nlibrary for Apache Cassandra 2.1+ using exclusively Cassandra’s\nbinary protocol and Cassandra Query Language v3.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

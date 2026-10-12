@@ -41,49 +41,49 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.thunk(() => nix.attr(pkgs, "coreutils"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "exim"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         exim: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable the Exim mail transfer agent.",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Verbatim Exim configuration.  This should not contain exim_user,\nexim_group, exim_path, or spool_directory.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "exim",
               description: "User to use when no root privileges are required.\nIn particular, this applies when receiving messages and when doing\nremote deliveries.  (Local deliveries run as various non-root users,\ntypically as the owner of a local mailbox.) Specifying this value\nas root is not supported.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "exim",
               description: "Group to use when no root privileges are required.\n",
             })))),
           spoolDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/spool/exim",
               description: "Location of the spool directory of exim.\n",
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "exim", nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               extraDescription: "This can be used to enable features such as LDAP or PAM support.\n",
             })))),
           queueRunnerInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "5m",
               description: "How often to spawn a new queue runner.\n",
@@ -92,13 +92,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "exim.conf": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               text: nix.thunk(() => nix.str`exim_user = ${nix.sel(cfg, "user")}
 exim_group = ${nix.sel(cfg, "group")}
 exim_path = /run/wrappers/bin/exim
@@ -110,10 +110,10 @@ ${nix.sel(cfg, "config")}
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Exim mail transfer agent user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "exim")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -121,17 +121,17 @@ ${nix.sel(cfg, "config")}
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "group"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "exim")),
             }))],
           ])),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             exim: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               setuid: true,
               owner: "root",
               group: "root",
@@ -140,18 +140,18 @@ ${nix.sel(cfg, "config")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             exim: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Exim Mail Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "exim.conf", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStartPre: nix.thunk(() => nix.str`+${coreutils}/bin/install --group=${nix.sel(cfg, "group")} --owner=${nix.sel(cfg, "user")} --mode=0700 --directory ${nix.sel(cfg, "spoolDir")}`),
                 ExecStart: nix.thunk(() => nix.str`!${nix.sel(cfg, "package")}/bin/exim -bdf -q${nix.sel(cfg, "queueRunnerInterval")}`),
                 ExecReload: nix.thunk(() => nix.str`!${coreutils}/bin/kill -HUP $MAINPID`),

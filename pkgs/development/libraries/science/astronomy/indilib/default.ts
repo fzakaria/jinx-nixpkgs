@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const indi_full = nix.arg($, "indi-full");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "indilib",
       version: "2.2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "indilib",
           repo: "indi",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,17 +80,17 @@ do
 done
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "indi-full": nix.thunk(() => nix.app(nix.sel(indi_full, "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               indilib: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.indilib.org/",
         description: "Implementation of the INDI protocol for POSIX operating systems",
         changelog: nix.thunk(() => nix.str`https://github.com/indilib/indi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

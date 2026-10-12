@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CERT-Polska",
           repo: "malduck",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["malduck"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper for malware analysis",
         homepage: "https://github.com/CERT-Polska/malduck",
         changelog: nix.thunk(() => nix.str`https://github.com/CERT-Polska/malduck/releases/tag/v${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "malduck",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

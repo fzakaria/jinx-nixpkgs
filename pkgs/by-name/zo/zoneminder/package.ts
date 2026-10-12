@@ -47,10 +47,10 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const addons = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "scripts/ZoneMinder/lib/ZoneMinder/Control/Xiaomi.pm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gist.githubusercontent.com/joshstrange/73a2f24dfaf5cd5b470024096ce2680f/raw/e964270c5cdbf95e5b7f214f7f0fc6113791530e/Xiaomi.pm",
           sha256: "04n1ap8fx66xfl9q9rypj48pzbgzikq0gisfsfm8wdsmflarz43v",
         })))),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zoneminder";
       const version = "1.38.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ZoneMinder",
           repo: "zoneminder",
           tag: version,
@@ -187,10 +187,10 @@ substituteInPlace web/includes/functions.php \\
         nix.thunk(() => nix.str`-DZM_WEB_GROUP=${user}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         dirName: dirName,
         tests: nix.thunk(() => nix.sel(nixosTests, "zoneminder")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       }));
       const postInstall = nix.thunk(() => nix.str`PERL5LIB="$PERL5LIB\${PERL5LIB:+:}$out/${nix.sel(perl, "libPrefix")}"
 
@@ -218,7 +218,7 @@ for f in $out/etc/zoneminder/conf.d/*.conf; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Video surveillance software system",
         homepage: "https://zoneminder.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -229,7 +229,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

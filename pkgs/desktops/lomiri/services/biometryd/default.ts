@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const listToQtVar = (suffix) => nix.app(nix.sel(lib, "makeSearchPathOutput"), "bin", suffix);
   const qtQmlPaths = nix.thunk(() => nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qtQmlPrefix")), nix.thunk(() => [qtdeclarative])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "biometryd",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/biometryd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-biometryd-Fix-compatibility-with-Boost-1.87.patch",
             url: "https://gitlab.com/ubports/development/core/biometryd/-/commit/8def6dfb18ee56971f0f64e3622af2a5a39ab0f6.patch",
             hash: "sha256-PddZRML4Gc+s4aNeOyZwJJjmPSixMGFVFNcrO9dNDSI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-biometryd-Fix-compatibility-with-gtest-1.18.patch",
             url: "https://gitlab.com/ubports/development/core/biometryd/-/commit/1445ea904b192fbdd9f2aa20c8ee1eeb61f2ad1d.patch",
             hash: "sha256-yKcbvJ9BTudOuN+R4eWmltH/fnjRV+4H2deIiNlVS8A=",
@@ -110,15 +110,15 @@ export QT_PLUGIN_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qt
 `),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mediates/multiplexes access to biometric devices",
         longDescription: "biometryd mediates and multiplexes access to biometric devices present\non the system, enabling applications and system components to leverage\nthem for identification and verification of users.\n",
         homepage: "https://gitlab.com/ubports/development/core/biometryd",

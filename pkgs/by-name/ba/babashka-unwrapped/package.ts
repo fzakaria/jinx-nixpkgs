@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const zip = nix.arg($, "zip");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "babashka-unwrapped",
       version: "1.13.225",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/babashka/babashka/releases/download/v${nix.sel(finalAttrs, "version")}/babashka-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           sha256: "sha256-jK10RKvEdP6R72Xqs3DdmbUtmCJG984iABIq5ikGiPk=",
         })))),
@@ -55,7 +55,7 @@ installShellCompletion --cmd bb --zsh ${nix.path(here, "./completions/bb.zsh")}
 installShellCompletion --cmd bb --fish ${nix.path(here, "./completions/bb.fish")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-babashka", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl common-updater-scripts jq libarchive
 
@@ -83,7 +83,7 @@ update-source-version babashka.clojure-tools "$clojure_tools_version" \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Clojure babushka for the grey areas of Bash",
         longDescription: "The main idea behind babashka is to leverage Clojure in places where you\nwould be using bash otherwise.\n\nAs one user described it:\n\n    I’m quite at home in Bash most of the time, but there’s a substantial\n    grey area of things that are too complicated to be simple in bash, but\n    too simple to be worth writing a clj/s script for. Babashka really\n    seems to hit the sweet spot for those cases.\n\nGoals:\n\n- Low latency Clojure scripting alternative to JVM Clojure.\n- Easy installation: grab the self-contained binary and run. No JVM needed.\n- Familiarity and portability:\n  - Scripts should be compatible with JVM Clojure as much as possible\n  - Scripts should be platform-independent as much as possible. Babashka\n    offers support for linux, macOS and Windows.\n- Allow interop with commonly used classes like java.io.File and System\n- Multi-threading support (pmap, future, core.async)\n- Batteries included (tools.cli, cheshire, ...)\n- Library support via popular tools like the clojure CLI\n",
         homepage: "https://github.com/babashka/babashka",

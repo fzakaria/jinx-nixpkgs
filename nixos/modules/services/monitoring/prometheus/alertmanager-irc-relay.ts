@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "alertmanager-irc-relay.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           alertmanagerIrcRelay: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Alertmanager IRC Relay")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "alertmanager-irc-relay", nix.thunk(() => ({})))),
             extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra command line options to pass to alertmanager-irc-relay.",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(configFormat, "type")),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  http_host = \"localhost\";\n  http_port = 8000;\n\n  irc_host = \"irc.example.com\";\n  irc_port = 7000;\n  irc_nickname = \"myalertbot\";\n\n  irc_channels = [\n    { name = \"#mychannel\"; }\n  ];\n}\n")),
                 description: "Configuration for Alertmanager IRC Relay as a Nix attribute set.\nFor a reference, check out the\n[example configuration](https://github.com/google/alertmanager-irc-relay#configuring-and-running-the-bot)\nand the\n[source code](https://github.com/google/alertmanager-irc-relay/blob/master/config.go).\n\nNote: The webhook's URL MUST point to the IRC channel where the message\nshould be posted. For `#mychannel` from the example, this would be\n`http://localhost:8080/mychannel`.\n",
@@ -54,19 +54,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "alertmanager-irc-relay": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Alertmanager IRC Relay",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/alertmanager-irc-relay \\
 -config ${configFile} \\
 ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFlags")))}
@@ -101,7 +101,7 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraFl
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$12, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$12, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=alertmanager-irc-relay.ts.map

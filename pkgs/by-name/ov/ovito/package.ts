@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ovito",
       version: "3.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stuko",
           repo: "ovito",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ovito",
             comment: "Open Visualization Tool",
             exec: "ovito",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => (() => {
         const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://www.ovito.org/wp-content/uploads/logo_rgb-768x737.png",
             hash: "sha256-FOmIUeXem+4MjavQNag0UIlcR2wa2emJjivwxoJh6fI=",
           }))));
@@ -95,11 +95,11 @@ magick ${icon} -resize 512x512 $out/share/icons/hicolor/512x512/apps/ovito.png
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Scientific visualization and analysis software for atomistic and particle simulation data",
         mainProgram: "ovito",
         homepage: "https://ovito.org",

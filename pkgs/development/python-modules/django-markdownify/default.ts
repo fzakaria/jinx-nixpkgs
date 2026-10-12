@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const bleach = nix.arg($, "bleach");
   const tinycss2 = nix.arg($, "tinycss2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-markdownify",
       version: "0.9.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erwinmatijsen",
           repo: "django-markdownify",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["markdownify"]),
       disabledTests: nix.thunk(() => ["test_markdownify_nodelist"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Markdown template filter for Django",
         homepage: "https://github.com/erwinmatijsen/django-markdownify",
         changelog: nix.thunk(() => nix.str`https://github.com/erwinmatijsen/django-markdownify/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

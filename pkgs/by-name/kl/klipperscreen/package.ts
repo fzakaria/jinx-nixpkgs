@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "KlipperScreen",
       version: "0.4.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KlipperScreen",
           repo: "KlipperScreen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "mkdir -p $out/bin\ncp -r . $out/dist\ngappsWrapperArgs+=(--set PYTHONPATH \"$PYTHONPATH\")\nwrapGApp $out/dist/screen.py\nln -s $out/dist/screen.py $out/bin/KlipperScreen\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.sel(finalAttrs, "meta", "homepage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Touchscreen GUI for the Klipper 3D printer firmware",
         homepage: "https://github.com/jordanruthe/KlipperScreen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

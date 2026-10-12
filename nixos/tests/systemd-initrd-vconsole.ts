@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "systemd-initrd-vconsole",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           boot: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => [
                 "rd.systemd.unit=rescue.target",
                 "loglevel=3",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
                 "systemd.log_level=warning",
               ]))),
             initrd: nix.thunk(() => ({
-              __proto__: pos$2,
-              systemd: nix.thunk(() => ({ __proto__: pos$1, enable: true, emergencyAccess: true })),
+              [nix.POS]: pos$2,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, emergencyAccess: true })),
             })),
           })),
-          console: nix.thunk(() => ({ __proto__: pos$4, earlySetup: true, keyMap: "colemak" })),
+          console: nix.thunk(() => ({ [nix.POS]: pos$4, earlySetup: true, keyMap: "colemak" })),
         };
       })(), formals$2),
     })),

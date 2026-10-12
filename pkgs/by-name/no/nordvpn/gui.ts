@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const yq_go = nix.arg($, "yq-go");
   return nix.app(nix.sel(flutter, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nordvpn-gui",
       src: src,
       version: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./linux-cmake.patch")]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => nix.update(desktopItemArgs, {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             comment: "NordVPN's GUI to manage vpn connection, settings, etc.",
             desktopName: "NordVPN GUI",
             exec: "nordvpn-gui",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/gui/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$3,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/gui/pubspec.lock > \"$out\"\n")),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NordVPN graphical interface",
         mainProgram: "nordvpn-gui",
       })),

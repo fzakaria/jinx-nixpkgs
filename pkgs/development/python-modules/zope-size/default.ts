@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.size",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [zope_i18nmessageid, zope_interface]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         zcml: nix.thunk(() => nix.concat([zope_component, zope_configuration, zope_security], nix.concat(nix.sel(zope_component, "optional-dependencies", "zcml"), nix.sel(zope_security, "optional-dependencies", "zcml")))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["zope.size"]);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["src/zope/size"]);
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/zopefoundation/zope.size",
         description: "Interfaces and simple adapter that give the size of an object",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.size/blob/${version}/CHANGES.rst`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)), nix.thunk(() => ({})));
   const urlFor = (version) => nix.str`mirror://openbsd/OpenSSH/portable/openssh-${version}.tar.gz`;
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     openssh: nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "openssh";
         const version = "10.5p1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.app(urlFor, version)),
             hash: "sha256-1E0oqDnqna+WnMaRUP3lmRCys5Nh2tgaO9bL0ZIY2xE=",
           }))));
         const extraPatches = nix.thunk(() => [nix.path(here, "./ssh-keysign-8.5.patch")]);
         const extraMeta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         }));
-        return { __proto__: pos$3, pname, version, src, extraPatches, extraMeta };
+        return { [nix.POS]: pos$3, pname, version, src, extraPatches, extraMeta };
       })()))),
     openssh_hpn: nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "openssh-with-hpn";
         const version = "10.5p1";
         const extraDesc = " with high performance networking patches";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.app(urlFor, version)),
             hash: "sha256-1E0oqDnqna+WnMaRUP3lmRCys5Nh2tgaO9bL0ZIY2xE=",
           }))));
@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
           return [
             nix.path(here, "./ssh-keysign-8.5.patch"),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "ssh-no-blocklistd-hpn-glue.patch",
                 url: noBlocklistdHpnGluePatch,
                 extraPrefix: "",
                 hash: "sha256-+AeJ9fLmmT/P07JZvGaXpNft+2F9PoFsbzr+s9wfdro=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "ssh-hpn-wo-channels.patch",
                 url: hpnPatch,
                 stripLen: 1n,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
                 hash: "sha256-Hq30DZ5i32aHalliyjdELe91aMDTT7/vAANY8RVn6B4=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "ssh-hpn-channels.patch",
                 url: hpnPatch,
                 extraPrefix: "",
@@ -95,14 +95,14 @@ export default nix.lambda((args) => (() => {
         const extraNativeBuildInputs = nix.thunk(() => [autoreconfHook]);
         const extraConfigureFlags = nix.thunk(() => ["--with-hpn"]);
         const extraMeta = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "abbe"))];
           })()),
         }));
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname,
           version,
           extraDesc,
@@ -118,20 +118,20 @@ export default nix.lambda((args) => (() => {
         const version = "10.4p1";
         const extraDesc = " with GSSAPI support";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: nix.thunk(() => nix.app(urlFor, version)),
             hash: "sha256-72Am3SrqjVYFljjV0yYpAsiSzrqfiDlYNeDQbT+2Mjg=",
           }))));
         const extraPatches = nix.thunk(() => [
           nix.path(here, "./ssh-keysign-8.5.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "servconf-fix-gssapi.patch",
               url: "https://salsa.debian.org/ssh-team/openssh/raw/debian/1%2510.4p1-1/debian/patches/servconf-fix-gssapi.patch",
               hash: "sha256-ypyaoEhwxo7SYVpjMkCQnrcFgY2ouWJQlrbJy50Lidk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               name: "gssapi.patch",
               url: "https://salsa.debian.org/ssh-team/openssh/raw/debian/1%2510.4p1-1/debian/patches/gssapi.patch",
               hash: "sha256-K12AE4C0zMdRdMsRMQCMRIFvN+NhNvCgyt0NDZp7n24=",
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const extraNativeBuildInputs = nix.thunk(() => [autoreconfHook]);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pname,
           version,
           extraDesc,

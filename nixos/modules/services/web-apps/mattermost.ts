@@ -161,29 +161,29 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.sel(cfg, "database", "peerAuth")) ? nix.app(mkDatabaseUri, nix.thunk(() => (() => {
         const from_7 = nix.thunk(() => nix.sel(cfg, "database"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         user: nix.thunk(() => nix.attr(from_7, "user")),
         path: nix.thunk(() => nix.app(escapeURL, nix.thunk(() => nix.sel(cfg, "database", "name")))),
         query: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           host: nix.thunk(() => nix.sel(cfg, "database", "socketPath")),
         }, nix.sel(cfg, "database", "extraConnectionOptions"))),
       };
       })())) : nix.app(mkDatabaseUri, nix.thunk(() => (() => {
         const from_7 = nix.thunk(() => nix.sel(cfg, "database"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         user: nix.thunk(() => nix.attr(from_7, "user")),
         password: nix.thunk(() => nix.attr(from_7, "password")),
         host: nix.thunk(() => (nix.asBool(hostIsPath) ? null : nix.sel(cfg, "database", "host"))),
         port: nix.thunk(() => (nix.asBool(hostIsPath) ? null : nix.sel(cfg, "database", "port"))),
         path: nix.thunk(() => nix.app(escapeURL, nix.thunk(() => nix.sel(cfg, "database", "name")))),
-        query: nix.thunk(() => nix.update(nix.app(optionalAttrs, hostIsPath, nix.thunk(() => ({ __proto__: pos$3, host: nix.thunk(() => nix.sel(cfg, "database", "host")) }))), nix.sel(cfg, "database", "extraConnectionOptions"))),
+        query: nix.thunk(() => nix.update(nix.app(optionalAttrs, hostIsPath, nix.thunk(() => ({ [nix.POS]: pos$3, host: nix.thunk(() => nix.sel(cfg, "database", "host")) }))), nix.sel(cfg, "database", "extraConnectionOptions"))),
       };
       })())));
   })());
   const mattermostPluginDerivations = nix.thunk(() => nix.builtins.map((plugin) => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "name")}-plugin`),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/share
@@ -197,7 +197,7 @@ runHook postInstall
         preferLocalBuild: true,
       }))), nix.thunk(() => nix.sel(cfg, "plugins"))));
   const mattermostPlugins = nix.thunk(() => (nix.asBool(nix.eq(mattermostPluginDerivations, [])) ? null : nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "name")}-plugins`),
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "autoPatchelfHook"))], mattermostPluginDerivations)),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
@@ -221,18 +221,18 @@ runHook postInstall
       preferLocalBuild: true,
     })))));
   const mattermostConfWithoutPlugins = nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       ServiceSettings: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         SiteURL: nix.thunk(() => nix.sel(cfg, "siteUrl")),
         ListenAddress: nix.thunk(() => nix.str`${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
         LocalModeSocketLocation: nix.thunk(() => nix.sel(cfg, "socket", "path")),
         EnableLocalMode: nix.thunk(() => nix.sel(cfg, "socket", "enable")),
         EnableSecurityFixAlert: nix.thunk(() => nix.sel(cfg, "telemetry", "enableSecurityAlerts")),
       })),
-      TeamSettings: nix.thunk(() => ({ __proto__: pos$8, SiteName: nix.thunk(() => nix.sel(cfg, "siteName")) })),
+      TeamSettings: nix.thunk(() => ({ [nix.POS]: pos$8, SiteName: nix.thunk(() => nix.sel(cfg, "siteName")) })),
       SqlSettings: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         DriverName: databaseDriverName,
         DataSource: nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "fromEnvironment")) ? null : nix.app(warnIf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "database", "peerAuth"))) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "password"), null)))), nix.thunk(() => nix.str`Database password is set in Mattermost config! This password will end up in the Nix store.
 
@@ -253,26 +253,26 @@ services.mattermost.environmentFile = "<your environment file>";
 services.mattermost.database.fromEnvironment = true;
 `), database))),
       })),
-      FileSettings: nix.thunk(() => ({ __proto__: pos$10, Directory: mutableDataDir })),
+      FileSettings: nix.thunk(() => ({ [nix.POS]: pos$10, Directory: mutableDataDir })),
       PluginSettings: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         Directory: nix.thunk(() => nix.str`${pluginUnpackDir}/server`),
         ClientDirectory: nix.thunk(() => nix.str`${pluginUnpackDir}/client`),
       })),
       LogSettings: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         FileLocation: nix.thunk(() => nix.sel(cfg, "logDir")),
         EnableDiagnostics: nix.thunk(() => nix.sel(cfg, "telemetry", "enableDiagnostics")),
       })),
     })), nix.thunk(() => nix.sel(cfg, "settings"))));
   const mattermostConf = nix.thunk(() => nix.app(recursiveUpdate, mattermostConfWithoutPlugins, nix.thunk(() => (nix.asBool(nix.eq(mattermostPlugins, null)) ? {} : {
-      __proto__: pos$15,
-      PluginSettings: nix.thunk(() => ({ __proto__: pos$14, Enable: true })),
+      [nix.POS]: pos$15,
+      PluginSettings: nix.thunk(() => ({ [nix.POS]: pos$14, Enable: true })),
     }))));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const finalConfig = nix.thunk(() => nix.app(nix.sel(format, "generate"), "mattermost-config.json", mattermostConf));
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "mattermost", "listenAddress"]), nix.thunk(() => ["services", "mattermost", "host"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "mattermost", "localDatabaseCreate"]), nix.thunk(() => ["services", "mattermost", "database", "create"]))),
@@ -287,49 +287,49 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
 `))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       services: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         mattermost: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Mattermost chat server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mattermost", nix.thunk(() => ({})))),
           siteUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "https://chat.example.com",
               description: "URL this Mattermost instance is reachable under, without trailing slash.\n",
             })))),
           siteName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "Mattermost",
               description: "Name of this Mattermost site.",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "Host or address that this Mattermost instance listens on.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8065n,
               description: "Port for Mattermost server to listen on.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/mattermost",
               description: "Mattermost working directory.\n",
             })))),
           socket: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Mattermost control socket")),
             path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/mattermost.sock`),
                 defaultText: "${config.mattermost.dataDir}/mattermost.sock",
@@ -338,34 +338,34 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
             export: nix.thunk(() => nix.app(mkEnableOption, "Export socket control to system environment variables")),
           })),
           logDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: nix.thunk(() => (nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.05")) ? "/var/log/mattermost" : nix.str`${nix.sel(cfg, "dataDir")}/logs`)),
               defaultText: "if versionAtLeast config.system.stateVersion \"25.05\" then \"/var/log/mattermost\"\nelse \"${config.services.mattermost.dataDir}/logs\";\n",
               description: "Mattermost log directory.\n",
             })))),
           configDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: nix.thunk(() => (nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.05")) ? "/etc/mattermost" : nix.str`${nix.sel(cfg, "dataDir")}/config`)),
               defaultText: "if versionAtLeast config.system.stateVersion \"25.05\" then\n  \"/etc/mattermost\"\nelse\n  \"${config.services.mattermost.dataDir}/config\";\n",
               description: "Mattermost config directory.\n",
             })))),
           mutableConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether the Mattermost config.json is writeable by Mattermost.\n\nMost of the settings can be edited in the system console of\nMattermost if this option is enabled. A template config using\nthe options specified in services.mattermost will be generated\nbut won't be overwritten on changes or rebuilds.\n\nIf this option is disabled, persistent changes in the system\nconsole won't be possible (the default). If a config.json is\npresent, it will be overwritten at service start!\n",
             })))),
           preferNixConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: nix.thunk(() => nix.app(versionAtLeast, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.05")),
               defaultText: "versionAtLeast config.system.stateVersion \"25.05\";\n",
               description: "If both mutableConfig and this option are set, the Nix configuration\nwill take precedence over any settings configured in the server\nconsole.\n",
             })))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "package")))));
@@ -375,7 +375,7 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
               description: "Plugins to add to the configuration. Overrides any installed if non-null.\nThis is a list of paths to .tar.gz files or derivations evaluating to\n.tar.gz files. You can use `mattermost.buildPlugin` to build plugins;\nsee the NixOS documentation for more details.\n",
             })))),
           pluginsBundle: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "package")));
@@ -385,32 +385,32 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
               description: "Derivation building to a directory of plugin tarballs.\nThis overrides {option}`services.mattermost.plugins` if provided.\n",
             })))),
           telemetry: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enableSecurityAlerts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "True if we should enable security update checking. This reaches out to Mattermost's servers:\nhttps://docs.mattermost.com/manage/telemetry.html#security-update-check-feature\n",
               })))),
             enableDiagnostics: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "True if we should enable sending diagnostic data. This reaches out to Mattermost's servers:\nhttps://docs.mattermost.com/manage/telemetry.html#error-and-diagnostics-reporting-feature\n",
               })))),
           })),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))));
               })()),
               default: nix.thunk(() => ({})),
               description: "Extra environment variables to export to the Mattermost process\nfrom the systemd unit configuration.\n",
-              example: nix.thunk(() => ({ __proto__: pos$32, MM_SERVICESETTINGS_SITEURL: "http://example.com" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$32, MM_SERVICESETTINGS_SITEURL: "http://example.com" })),
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -419,99 +419,99 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
               description: "Environment file (see {manpage}`systemd.exec(5)`\n\"EnvironmentFile=\" section for the syntax) which sets config options\nfor mattermost (see [the Mattermost documentation](https://docs.mattermost.com/configure/configuration-settings.html#environment-variables)).\n\nSettings defined in the environment file will overwrite settings\nset via Nix or via the {option}`services.mattermost.extraConfig`\noption.\n\nUseful for setting config options without their value ending up in the\n(world-readable) Nix store, e.g. for a database password.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             create: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Create a local PostgreSQL database for Mattermost automatically.\n",
               })))),
             peerAuth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: nix.thunk(() => (nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.05")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "localhost")))),
                 defaultText: "versionAtLeast config.system.stateVersion \"25.05\" && config.services.mattermost.database.host == \"localhost\"\n",
                 description: "If set, will use peer auth instead of connecting to a Postgres server.\nUse services.mattermost.database.socketPath to configure the socket path.\n",
               })))),
             socketPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 default: "/run/postgresql",
                 description: "The database socket path.\n",
               })))),
             fromEnvironment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Use services.mattermost.environmentFile to configure the database instead of writing the database URI\nto the Nix store. Useful if you use password authentication with peerAuth set to false.\n",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "mattermost",
                 description: "Local Mattermost database name.\n",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 example: "127.0.0.1",
                 description: "Host to use for the database. Can also be set to a path if you'd like to connect\nto a socket using a username and password.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 5432n,
                 example: 1234n,
                 description: "Port to use for the database.\n",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "mattermost",
                 description: "Local Mattermost database username.\n",
               })))),
             password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "mmpgsecret",
                 description: "Password for local Mattermost database user. If set and peerAuth is not true,\nwill cause a warning nagging you to use environmentFile instead since it will\nend up in the Nix store.\n",
               })))),
             extraConnectionOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))));
                 })()),
-                default: nix.thunk(() => ({ __proto__: pos$44, sslmode: "disable", connect_timeout: 60n })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$44, sslmode: "disable", connect_timeout: 60n })),
                 defaultText: "{\n  sslmode = \"disable\";\n  connect_timeout = 60;\n}\n",
                 description: "Extra options that are placed in the connection URI's query parameters.\n",
               })))),
           })),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "mattermost",
               description: "User which runs the Mattermost service.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "mattermost",
               description: "Group which runs the Mattermost service.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.attr(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Additional configuration options as Nix attribute set in config.json schema.\n",
             })))),
           matterircd: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Mattermost IRC bridge")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "matterircd", nix.thunk(() => ({})))),
             parameters: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 example: nix.thunk(() => ["-mmserver chat.example.com", "-bind [::]:6667"]),
@@ -523,12 +523,12 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             users: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "user"), nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   uid: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "mattermost")), nix.thunk(() => nix.sel(config, "ids", "uids", "mattermost")))),
                   home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -538,36 +538,36 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
               ])),
               groups: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "group"), nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   gid: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "mattermost")), nix.thunk(() => nix.sel(config, "ids", "gids", "mattermost")))),
                 }))],
               ])),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "create")), nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   enable: true,
                   ensureDatabases: nix.thunk(() => nix.app(singleton, nix.thunk(() => nix.sel(cfg, "database", "name")))),
                   ensureUsers: nix.thunk(() => nix.app(singleton, nix.thunk(() => ({
-                      __proto__: pos$58,
+                      [nix.POS]: pos$58,
                       name: nix.thunk(() => nix.app(throwIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "peerAuth")) && nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "name"), nix.sel(cfg, "database", "user"))))))), "Mattermost database peer auth is enabled and the user, database user, or database name mismatch.\nPeer authentication will not work.\n", nix.thunk(() => nix.sel(cfg, "database", "user")))),
                       ensureDBOwnership: true,
                     })))),
                 })))),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               variables: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "socket", "export")), nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   MMCTL_LOCAL: "true",
                   MMCTL_LOCAL_SOCKET_PATH: nix.thunk(() => nix.sel(cfg, "socket", "path")),
                 })))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 rules: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "logDir")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -590,7 +590,7 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
                 ]))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 mattermost: nix.thunk(() => (() => {
                   const description = "Mattermost chat service";
                   const wantedBy = nix.thunk(() => ["multi-user.target"]);
@@ -600,7 +600,7 @@ https://docs.mattermost.com/deployment-guide/manual-postgres-migration.html
                     ])));
                   const requires = after;
                   const environment = nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$64, TMPDIR: tempDir })),
+                      nix.thunk(() => ({ [nix.POS]: pos$64, TMPDIR: tempDir })),
                       nix.thunk(() => nix.sel(cfg, "environment")),
                     ])));
                   const preStart = nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`dataDir=${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "dataDir")))}
@@ -617,7 +617,7 @@ fi
 `))));
                   const serviceConfig = nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         User: nix.thunk(() => nix.sel(cfg, "user")),
                         Group: nix.thunk(() => nix.sel(cfg, "group")),
                         ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} --config ${nix.sel(cfg, "configDir")}/config.json`),
@@ -650,29 +650,29 @@ fi
                         WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
                       })),
                       nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/mattermost")), nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           StateDirectory: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(cfg, "dataDir")))),
                           StateDirectoryMode: "0750",
                         })))),
                       nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "logDir"), "/var/log/mattermost")), nix.thunk(() => ({
-                          __proto__: pos$67,
+                          [nix.POS]: pos$67,
                           LogsDirectory: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(cfg, "logDir")))),
                           LogsDirectoryMode: "0750",
                         })))),
                       nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "configDir"), "/etc/mattermost")), nix.thunk(() => ({
-                          __proto__: pos$68,
+                          [nix.POS]: pos$68,
                           ConfigurationDirectory: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(cfg, "configDir")))),
                           ConfigurationDirectoryMode: "0750",
                         })))),
                     ])));
                   const unitConfig = nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     JoinsNamespaceOf: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "create")), nix.thunk(() => ["postgresql.target"]))),
                       ]))),
                   }));
                   return {
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     description,
                     wantedBy,
                     after,
@@ -687,29 +687,29 @@ fi
             })),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 assertion: nix.thunk(() => !nix.asBool(nix.app(hasSuffix, "/", nix.thunk(() => nix.sel(cfg, "siteUrl"))))),
                 message: "services.mattermost.siteUrl should not have a trailing \"/\".\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 assertion: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(nix.app(hasInfix, ":", nix.thunk(() => nix.sel(cfg, "host")))) && nix.asBool(!nix.asBool(nix.app(hasInfix, "[", nix.thunk(() => nix.sel(cfg, "host"))))))) && nix.asBool(!nix.asBool(nix.app(hasInfix, "]", nix.thunk(() => nix.sel(cfg, "host")))))))),
                 message: "services.mattermost.host should not include a port. Use services.mattermost.host for the address\nor hostname, and services.mattermost.port to specify the port separately.\n",
               })),
             ]),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "matterircd", "enable")), nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             systemd: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               services: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 matterircd: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   description: "Mattermost IRC bridge service",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     User: "nobody",
                     Group: "nogroup",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "matterircd", "package")))} ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "matterircd", "parameters")))}`),
@@ -724,7 +724,7 @@ fi
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$81,
+      [nix.POS]: pos$81,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "numinit"))];

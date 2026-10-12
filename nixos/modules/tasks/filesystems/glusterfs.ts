@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "glusterfs")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glusterfs"))]),
         })),
       })))),

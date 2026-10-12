@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AbstractUmbra",
           repo: "audioop",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf audioop\n";
       const pythonImportsCheck = nix.thunk(() => ["audioop"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/AbstractUmbra/audioop/releases/tag/${version}`),
         description: "LTS port of Python's `audioop` module",
         homepage: "https://github.com/AbstractUmbra/audioop",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

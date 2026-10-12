@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const podofo = nix.arg($, "podofo");
   const libidn = nix.arg($, "libidn");
   return nix.app(nix.sel(podofo, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "0.10.6",
       src: nix.thunk(() => nix.app(nix.sel(prevAttrs, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-DlCKQYlsgTfnZACk6yTeoIiaOL5AtICcHjRd8jl0RkI=",
         })))),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "buildInputs"), [libidn])),

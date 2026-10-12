@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const extraLibraries = nix.argOr($, "extraLibraries", () => (pkgs) => []);
   const extraEnv = nix.argOr($, "extraEnv", () => ({}));
   return nix.app(nix.sel(steam, "buildRuntimeEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "heroic",
       version: nix.thunk(() => nix.attr(heroic_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(heroic_unwrapped, "meta")),

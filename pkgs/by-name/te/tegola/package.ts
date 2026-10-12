@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.21.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "go-spatial",
       repo: "tegola",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-aJCxxeewOm7DOHmehnsDKoQPwPnUMsjVit41ccY6tLg=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tegola-ui",
       version: version,
       src: nix.thunk(() => nix.str`${src}/ui`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r dist $out\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tegola",
       version: version,
       src: src,
@@ -47,7 +47,7 @@ cp -r ${frontend} ui/dist
 go generate ./server
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.tegola.io/",
         description: "Mapbox Vector Tile server",
         mainProgram: "tegola",

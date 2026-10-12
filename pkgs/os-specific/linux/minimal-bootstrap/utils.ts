@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const commonMeta = nix.thunk(() => nix.app(nix.sel(checkMeta, "commonMeta"), hostPlatform));
   return (() => {
     const maybeContentAddressed = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "contentAddressedByDefault")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         __contentAddressed: true,
         outputHashAlgo: "sha256",
         outputHashMode: "recursive",
@@ -38,24 +38,24 @@ export default nix.lambda((args) => (() => {
       const removedAttributeNames = nix.thunk(() => ["meta", "passthru"]);
       return (attrs) => (() => {
         const passthru = nix.thunk(() => nix.selOr(attrs, () => ({}), "passthru"));
-        const validity = nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({ __proto__: pos$2, meta: meta, attrs: attrs }))));
-        const meta = nix.thunk(() => nix.app(commonMeta, nix.thunk(() => ({ __proto__: pos$3, validity: validity, attrs: attrs }))));
+        const validity = nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({ [nix.POS]: pos$2, meta: meta, attrs: attrs }))));
+        const meta = nix.thunk(() => nix.app(commonMeta, nix.thunk(() => ({ [nix.POS]: pos$3, validity: validity, attrs: attrs }))));
         const baseDrv = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             system: nix.thunk(() => nix.attr(buildPlatform, "system")),
             name: nix.thunk(() => nix.selOr(attrs, () => nix.str`${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`, "name")),
           }, nix.update(maybeContentAddressed, nix.builtins.removeAttrs(attrs, removedAttributeNames))))));
         const passthru$ = nix.thunk(() => (nix.asBool(nix.has(passthru, "tests")) ? nix.update(passthru, {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           tests: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (f) => nix.app(f, baseDrv), nix.thunk(() => nix.sel(passthru, "tests")))),
         }) : nix.force(passthru)));
-        return nix.app(nix.sel(lib, "extendDerivation"), nix.thunk(() => nix.sel(validity, "handled")), nix.thunk(() => nix.update({ __proto__: pos$6, meta: meta, passthru: passthru$ }, passthru$)), baseDrv);
+        return nix.app(nix.sel(lib, "extendDerivation"), nix.thunk(() => nix.sel(validity, "handled")), nix.thunk(() => nix.update({ [nix.POS]: pos$6, meta: meta, passthru: passthru$ }, passthru$)), baseDrv);
       })();
     })());
     const writeTextFile = nix.thunk(() => (() => {
       const PATH = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mescc_tools_extra])));
       const builders = nix.thunk(() => nix.builtins.mapAttrs((_) => nix.app(nix.builtins.toFile, "write-text-file.kaem"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           emptyDestinationExecutable: "target=${out}${destination}\nmkdir -p ${out}${destinationDir}\ncp ${textPath} ${target}\nchmod 555 ${target}\n",
           emptyDestinationNonExecutable: "target=${out}${destination}\nmkdir -p ${out}${destinationDir}\ncp ${textPath} ${target}\n",
           nonEmptyDestinationExecutable: "target=${out}${destination}\ncp ${textPath} ${target}\nchmod 555 ${target}\n",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         const executable = nix.argOr($_1, "executable", () => false);
         const destination = nix.argOr($_1, "destination", () => "");
         return nix.app(derivationWithMeta, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: name,
             text: text,
             passAsFile: nix.thunk(() => ["text"]),
@@ -86,9 +86,9 @@ export default nix.lambda((args) => (() => {
           })));
       })(), formals$2);
     })());
-    const writeText = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({ __proto__: pos$9, name: name, text: text })));
+    const writeText = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$9, name: name, text: text })));
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maybeContentAddressed,
       derivationWithMeta,
       writeTextFile,

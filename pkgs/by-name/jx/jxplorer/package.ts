@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jxplorer",
       version: "3.3.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pegacat/jxplorer/releases/download/v${nix.sel(finalAttrs, "version")}/jxplorer-${nix.sel(finalAttrs, "version")}-project.tar.bz2`),
           hash: "sha256-/lWkavH51OqNFSLpgT+4WcQcfW3WvnnOkB03jB7bE/s=",
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "JXplorer",
             exec: "jxplorer",
             comment: "A Java Ldap Browser",
@@ -45,7 +45,7 @@ makeWrapper $out/opt/jxplorer/jxplorer.sh $out/bin/jxplorer \\
   --set JAVA_HOME ${jdk8}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java Ldap Browser",
         homepage: "https://sourceforge.net/projects/jxplorer/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl11")),

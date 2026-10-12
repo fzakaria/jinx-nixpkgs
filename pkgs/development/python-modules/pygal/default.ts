@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-3RGcFM3rVr64UoLj4mh+zjBWEiXUEKgi5rtoaZqm57E=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [importlib_metadata]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lxml: nix.thunk(() => [lxml]),
         png: nix.thunk(() => [cairosvg]),
       }));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const postCheck = nix.thunk(() => nix.str`export LANG=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8")}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for dynamic SVG charting",
         homepage: "http://www.pygal.org",
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/pygal/blob/${version}/docs/changelog.rst`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pygal_gen.py",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

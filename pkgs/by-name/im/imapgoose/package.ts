@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "imapgoose";
       const version = "0.5.3";
       const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~whynothugo",
           repo: "ImapGoose",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "installManPage imapgoose.1\ninstallManPage imapgoose.conf.5\n\ninstallShellCompletion --zsh contrib/_imapgoose\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IMAP to Maildir synchronization tool",
         longDescription: "ImapGoose is a daemon that continuously keeps local mailboxes in sync\nwith an IMAP server. It monitors both the IMAP server and local\nfilesystem, immediately synchronizing changes within seconds. Unlike\ntraditional sync tools, ImapGoose is highly optimized to reduce network\ntraffic by leveraging modern IMAP extensions (CONDSTORE, QRESYNC, and\nNOTIFY) to perform efficient incremental syncs. It can monitor multiple\nmailboxes per connection and automatically reconnects with exponential\nback-off when network issues occur.\n",
         homepage: "https://git.sr.ht/~whynothugo/ImapGoose",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const snakemake = nix.arg($, "snakemake");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snakemake-executor-plugin-cluster-generic",
       version: "1.0.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakemake",
           repo: "snakemake-executor-plugin-cluster-generic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "tests/tests.py::TestWorkflowsSubmitCmdOnly::test_simple_workflow",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic cluster executor for Snakemake",
         homepage: "https://github.com/snakemake/snakemake-executor-plugin-cluster-generic",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-executor-plugin-cluster-generic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

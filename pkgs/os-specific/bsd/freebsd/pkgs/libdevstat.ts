@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libdevstat",
       extraPaths: nix.thunk(() => [
         "lib/libc/Versions.def",

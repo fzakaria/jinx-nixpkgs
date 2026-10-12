@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const guile_sdl2 = nix.arg($, "guile-sdl2");
   const guile_chickadee = nix.arg($, "guile-chickadee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "guile-chickadee",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.dthompson.us/chickadee/chickadee-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Ey9TtuWaGlHG2cYYwqJIt2RX7XNUW28OGl/kuPUCD3U=",
         })))),
@@ -51,15 +51,15 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "strings", "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: guile_chickadee, command: "chickadee -v" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: guile_chickadee, command: "chickadee -v" })))),
         })),
       })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Game development toolkit for Guile Scheme with SDL2 and OpenGL",
         homepage: "https://dthompson.us/projects/chickadee.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-websocket";
       const version = "4.9.1-compat";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obsproject",
           repo: "obs-websocket",
           rev: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Legacy websocket 4.9.1 protocol support for OBS Studio 28 or above",
         homepage: "https://github.com/obsproject/obs-websocket",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

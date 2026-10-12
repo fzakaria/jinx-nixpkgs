@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pciutils",
       version: "3.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pciutils",
           repo: "pciutils",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,15 +55,15 @@ rm $out/sbin/update-pciids $out/man/man8/update-pciids.8
 cp --reflink=auto ${hwdata}/share/hwdata/pci.ids $out/share/pci.ids
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pciutils/pciutils.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://mj.ucw.cz/sw/pciutils/",
         description: "Collection of programs for inspecting and manipulating configuration of PCI devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libkvmi",
       version: "1.1.0-unstable-2023-12-13",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitdefender",
           repo: "libkvmi",
           rev: "bc80de986bda1b891a1106badf87587bb92dbbb3",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf_archive, pkg_config]),
       buildInputs: nix.thunk(() => [glib, libuuid]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "KVM virtual machine introspection library",
         homepage: "https://github.com/bitdefender/libkvmi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

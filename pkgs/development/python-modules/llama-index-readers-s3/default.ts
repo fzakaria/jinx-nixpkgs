@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const s3fs = nix.arg($, "s3fs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-readers-s3",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_readers_s3",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-CC3cO+/ns2USy2fif9gXzHYqoFRNa8RxH29gXFhktO8=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.readers.s3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Readers Integration for S3",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-s3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bitlbee-discord",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "sm00th",
           repo: "bitlbee-discord",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bitlbee]),
       preConfigure: "export BITLBEE_PLUGINDIR=$out/lib/bitlbee\nexport BITLBEE_DATADIR=$out/share/bitlbee\n./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitlbee plugin for Discord",
         homepage: "https://github.com/sm00th/bitlbee-discord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tensor",
       version: "0.3-unstable-2017-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davidar",
           repo: "tensor",
           rev: "f3f3056d770d7fb4a21c610cee7936ee900569f5",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtquickcontrols")),
       ]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "tensor",
           exec: "@bin@",
           icon: "tensor.png",
@@ -60,7 +60,7 @@ substituteInPlace $out/share/applications/tensor.desktop \\
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/davidar/tensor",
         description: "Cross-platform Qt5/QML-based Matrix client",
         mainProgram: "tensor",

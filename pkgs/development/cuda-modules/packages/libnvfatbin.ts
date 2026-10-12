@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libnvfatbin",
       outputs: nix.thunk(() => ["out"]),
       includeRemoveStubsFromRunpathHook: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "APIs which can be used at runtime to combine multiple CUDA objects into one CUDA fat binary (fatbin)",
         homepage: "https://docs.nvidia.com/cuda/nvfatbin",
       })),

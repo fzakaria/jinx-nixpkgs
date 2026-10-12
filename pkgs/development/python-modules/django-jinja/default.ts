@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niwinz",
           repo: "django-jinja",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5.2")), nix.thunk(() => ["test_autoscape_with_form_errors"])));
       const postCheck = "popd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and nonobstructive jinja2 integration with Django",
         homepage: "https://github.com/niwinz/django-jinja",
         changelog: nix.thunk(() => nix.str`https://github.com/niwinz/django-jinja/blob/${nix.sel(src, "rev")}/CHANGES.adoc`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

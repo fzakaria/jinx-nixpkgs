@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "dc643526b97838ffe421b833dd8b9c95e71702e8",
       hash: "sha256-SLtrNU5uEt8rRJDUdV/IaI37CujsTHLlE31l2zYoRss=",
     }))));
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "perf_data_converter",
       version: "0-unstable-2026-03-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "google",
           repo: "perf_data_converter",
           rev: "e2c2da7494e1c6cb8bb343c1bb3023ee3f37ab38",
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
       bazel: bazel_7,
       bazelFlags: nix.thunk(() => ["--registry", nix.thunk(() => nix.str`file://${registry}`)]),
       fetchAttrs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         preInstall: "rm -rf $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n",
         hash: nix.thunk(() => nix.selOr({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "aarch64-linux": "sha256-BlNTjS78QNuoiyIUFDmY5HeqIRJRVZQfrk5Y7+Q2DGo=",
           "x86_64-linux": "sha256-jOepM+Lor5RRIQEmdkwf3IJ1AAfbVq2VjMuwqjyfOio=",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`No hash for system: ${system}`)), nix.key(nix.force(system)))),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       bazelTestTargets: nix.thunk(() => ["src:all"]),
       buildAttrs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         installPhase: "runHook preInstall\ninstall -Dm555 -t \"$out/bin\" bazel-bin/src/perf_to_profile\nrunHook postInstall\n",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool to convert Linux perf files to the profile.proto format used by pprof",
         homepage: "https://github.com/google/perf_data_converter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

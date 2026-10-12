@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.sel(python3, "pkgs"));
   return {
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     amixer: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "alsa-utils"))]),
     })),
     arandr: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "tkinter")),
         nix.thunk(() => nix.sel(pkgs, "arandr")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
     "battery-upower": nix.thunk(() => ({})),
     battery_upower: nix.thunk(() => ({})),
     bluetooth: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "bluez")),
         nix.thunk(() => nix.sel(pkgs, "blueman")),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     bluetooth2: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "bluez")),
         nix.thunk(() => nix.sel(pkgs, "blueman")),
@@ -115,12 +115,12 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     blugon: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "blugon"))]),
     })),
-    brightness: nix.thunk(() => ({ __proto__: pos$6, propagatedBuildInputs: [] })),
+    brightness: nix.thunk(() => ({ [nix.POS]: pos$6, propagatedBuildInputs: [] })),
     caffeine: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "xdg-utils")),
         nix.thunk(() => nix.sel(pkgs, "xdotool")),
@@ -129,38 +129,38 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     cmus: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cmus"))]),
     })),
     cpu: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "psutil")),
         nix.thunk(() => nix.sel(pkgs, "gnome-system-monitor")),
       ]),
     })),
     cpu2: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "psutil")),
         nix.thunk(() => nix.sel(pkgs, "lm_sensors")),
       ]),
     })),
     cpu3: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "psutil")),
         nix.thunk(() => nix.sel(pkgs, "lm_sensors")),
       ]),
     })),
     currency: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     date: nix.thunk(() => ({})),
     datetime: nix.thunk(() => ({})),
     datetimetz: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "tzlocal")),
         nix.thunk(() => nix.sel(py, "pytz")),
@@ -168,30 +168,30 @@ export default nix.lambda((args) => (() => {
     })),
     datetz: nix.thunk(() => ({})),
     deadbeef: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "deadbeef"))]),
     })),
     debug: nix.thunk(() => ({})),
     deezer: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "dbus-python"))]),
     })),
     disk: nix.thunk(() => ({})),
     docker_ps: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "docker"))]),
     })),
     dunst: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dunst"))]),
     })),
     dunstctl: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dunst"))]),
     })),
     error: nix.thunk(() => ({})),
     gcalendar: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "google-api-python-client")),
         nix.thunk(() => nix.sel(py, "google-auth-httplib2")),
@@ -199,188 +199,188 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     getcrypto: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     git: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "xcwd")),
         nix.thunk(() => nix.sel(pkgs, "pygit2")),
       ]),
     })),
     github: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     gitlab: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     hddtemp: nix.thunk(() => ({})),
     hostname: nix.thunk(() => ({})),
     http_status: nix.thunk(() => ({})),
     indicator: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xset"))]),
     })),
     kernel: nix.thunk(() => ({})),
     keys: nix.thunk(() => ({})),
     layout: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libx11"))]),
     })),
     "layout-xkb": nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libx11"))]),
     })),
     "layout-xkbswitch": nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xkb-switch"))]),
     })),
     layout_xkb: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libx11"))]),
     })),
     layout_xkbswitch: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xkb-switch"))]),
     })),
     libvirtvms: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "libvirt-python"))]),
     })),
     load: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-system-monitor"))]),
     })),
     memory: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-system-monitor"))]),
     })),
     messagereceiver: nix.thunk(() => ({})),
     mocp: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "moc"))]),
     })),
     mpd: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mpc"))]),
     })),
     network: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "netifaces")),
         nix.thunk(() => nix.sel(pkgs, "iw")),
       ]),
     })),
     network_traffic: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "netifaces"))]),
     })),
     nic: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "netifaces")),
         nix.thunk(() => nix.sel(pkgs, "iw")),
       ]),
     })),
     notmuch_count: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "notmuch"))]),
     })),
     octoprint: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "tkinter"))]),
     })),
     pacman: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "fakeroot")),
         nix.thunk(() => nix.sel(pkgs, "pacman")),
       ]),
     })),
     pamixer: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pamixer"))]),
     })),
     persian_date: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "jdatetime"))]),
     })),
     pihole: nix.thunk(() => ({})),
     ping: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iputils"))]),
     })),
     pipewire: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wireplumber"))]),
     })),
     playerctl: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "playerctl"))]),
     })),
     pomodoro: nix.thunk(() => ({})),
     progress: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "progress"))]),
     })),
     publicip: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "netifaces"))]),
     })),
     pulsectl: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pulsectl"))]),
     })),
     redshift: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "redshift"))]),
     })),
     rotation: nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xrandr"))]),
     })),
     rss: nix.thunk(() => ({})),
     sensors: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lm_sensors"))]),
     })),
     sensors2: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lm_sensors"))]),
     })),
     shell: nix.thunk(() => ({})),
     shortcut: nix.thunk(() => ({})),
     smartstatus: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "smartmontools"))]),
     })),
     solaar: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "solaar"))]),
     })),
     spaceapi: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     spacer: nix.thunk(() => ({})),
     speedtest: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "speedtest-cli"))]),
     })),
     spotify: nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "dbus-python"))]),
     })),
     stock: nix.thunk(() => ({})),
     system: nix.thunk(() => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "tkinter"))]),
     })),
     taskwarrior: nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "taskw"))]),
     })),
     test: nix.thunk(() => ({})),
@@ -388,55 +388,55 @@ export default nix.lambda((args) => (() => {
     time: nix.thunk(() => ({})),
     timetz: nix.thunk(() => ({})),
     title: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "i3ipc"))]),
     })),
     todo: nix.thunk(() => ({})),
     todo_org: nix.thunk(() => ({})),
     todoist: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     traffic: nix.thunk(() => ({})),
-    twmn: nix.thunk(() => ({ __proto__: pos$62, propagatedBuildInputs: [] })),
+    twmn: nix.thunk(() => ({ [nix.POS]: pos$62, propagatedBuildInputs: [] })),
     uptime: nix.thunk(() => ({})),
     usage: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "sqlite")),
         nix.thunk(() => nix.sel(pkgs, "activitywatch")),
       ]),
     })),
     vault: nix.thunk(() => ({
-      __proto__: pos$64,
+      [nix.POS]: pos$64,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pass"))]),
     })),
     vpn: nix.thunk(() => ({
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "tkinter")),
         nix.thunk(() => nix.sel(pkgs, "networkmanager")),
       ]),
     })),
     wakatime: nix.thunk(() => ({
-      __proto__: pos$66,
+      [nix.POS]: pos$66,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     watson: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "watson"))]),
     })),
     weather: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     xkcd: nix.thunk(() => ({})),
     xrandr: nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xrandr"))]),
     })),
     yubikey: nix.thunk(() => ({
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yubico"))]),
     })),
     zpool: nix.thunk(() => ({})),

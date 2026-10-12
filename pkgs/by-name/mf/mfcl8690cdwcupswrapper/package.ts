@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl8690cdwcupswrapper";
       const version = "1.5.0-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103250/mfcl8690cdwcupswrapper-${version}.i386.deb`),
           hash: "sha256-CREQRr4nhw1pD+8AfD5p/EHpx3R6vQIO8h6VtnHxXls=",
         }))));
@@ -49,7 +49,7 @@ ln $dir/cupswrapper/brother_lpdwrapper_mfcl8690cdw $out/lib/cups/filter
 ln $dir/cupswrapper/brother_mfcl8690cdw_printer_en.ppd $out/share/cups/model
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L8690CDW CUPS wrapper driver",
         homepage: "https://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -60,7 +60,7 @@ ln $dir/cupswrapper/brother_mfcl8690cdw_printer_en.ppd $out/share/cups/model
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

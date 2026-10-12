@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-cms",
           repo: "django-cms",
           tag: version,
@@ -58,15 +58,15 @@ runHook postCheck
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          runTests: nix.thunk(() => nix.app(nix.sel(django_cms, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          runTests: nix.thunk(() => nix.app(nix.sel(django_cms, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["cms"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lean enterprise content management powered by Django",
         homepage: "https://django-cms.org",
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/django-cms/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +74,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

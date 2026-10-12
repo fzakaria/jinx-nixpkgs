@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/default.nix", [["swift-argument-parser", 5,
 const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "swift-argument-parser": "1fpdgivmwdszggvx0ligs3vidv9kpp9777v649hs8w7vpcifc2ji",
   })),
 }));

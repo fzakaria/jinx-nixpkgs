@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const libxcursor = nix.arg($, "libxcursor");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plasma-integration",
       patches: nix.thunk(() => [nix.path(here, "./qml-path.patch")]),
       outputs: nix.thunk(() => ["out", "dev", "qt5"]),

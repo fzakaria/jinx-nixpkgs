@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pname = "types-click";
   const version = "7.1.8";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-tmBJaL5kAdxRYxHKUHCKCii6p6DLhA79dBLw27/04JI=",
         })))),
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of library stubs for Python, with static types",
         homepage: "https://github.com/python/typeshed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

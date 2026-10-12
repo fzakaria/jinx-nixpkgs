@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sirius/package.nix:47:1");
   nix.assert_((!nix.asBool(enablePython) || nix.asBool(!nix.eq(pythonPackages, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sirius/package.nix:52:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "SIRIUS",
       version: "7.10.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "electronic-structure",
           repo: "SIRIUS",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
           ];
         })())))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdint"]))),
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--label-exclude", "integration_test"]),
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook, ctestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Domain specific library for electronic structure calculations",
         homepage: "https://github.com/electronic-structure/SIRIUS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

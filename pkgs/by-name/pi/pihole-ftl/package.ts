@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pihole-ftl",
       version: "6.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pi-hole",
           repo: "FTL",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "STATIC", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-stringop-overread\n-Wno-unused-but-set-variable\n",
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/version.c.in \\
@@ -61,7 +61,7 @@ substituteInPlace src/api/action.c \\
   --replace-fail "execv" "execvp"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         settingsTemplate: nix.path(here, "./pihole.toml"),
         tests: nix.thunk(() => nix.sel(nixosTests, "pihole-ftl")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -69,7 +69,7 @@ substituteInPlace src/api/action.c \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pi-hole FTL engine",
         homepage: "https://github.com/pi-hole/FTL",
         changelog: nix.thunk(() => nix.str`https://github.com/pi-hole/FTL/releases/tag/v${nix.sel(finalAttrs, "version")}`),

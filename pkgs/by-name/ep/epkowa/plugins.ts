@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const common_meta = nix.arg($, "common_meta");
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     v330: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const name = "iscan-v330-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/perfection-v330/rpm/x64/iscan-perfection-v330-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/perfection-v330/rpm/x64/iscan-perfection-v330-bundle-${version}.x64.rpm.tar.gz`),
@@ -89,16 +89,16 @@ cp -r ./usr/share/{iscan-data,esci}/ $out/share/
 cp -r ./usr/lib64/esci $out/lib
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0142 \"$plugin/lib/esci/libesci-interpreter-perfection-v330 $plugin/share/esci/esfwad.bin\"\n",
           hw: "Perfection V330 Photo",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.add(nix.add("Plugin to support ", nix.sel(passthru, "hw")), " scanner in sane")),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name,
           version,
           src,
@@ -112,7 +112,7 @@ cp -r ./usr/lib64/esci $out/lib
         const name = "iscan-v370-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/perfection-v370/rpm/x64/iscan-perfection-v370-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/perfection-v370/rpm/x64/iscan-perfection-v370-bundle-${version}.x64.rpm.tar.gz`),
@@ -132,16 +132,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x014a \"$plugin/lib/esci/libiscan-plugin-perfection-v370 $plugin/share/esci/esfwdd.bin\"\n",
           hw: "Perfection V37/V370",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: nix.thunk(() => nix.add(nix.add("Plugin to support ", nix.sel(passthru, "hw")), " scanner in sane")),
         }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name,
           version,
           src,
@@ -156,7 +156,7 @@ mv $out/lib/iscan $out/lib/esci
         const version = "2.30.4";
         const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, rpm]);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/perfection-v550/rpm/x64/iscan-perfection-v550-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/perfection-v550/rpm/x64/iscan-perfection-v550-bundle-${version}.x64.rpm.tar.gz`),
@@ -173,16 +173,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x013b \"$plugin/lib/esci/libiscan-plugin-perfection-v550 $plugin/share/esci/esfweb.bin\"\n",
           hw: "Perfection V550 Photo",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: nix.thunk(() => nix.add(nix.add("Plugin to support ", nix.sel(passthru, "hw")), " scanner in sane")),
         }));
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname,
           version,
           nativeBuildInputs,
@@ -197,7 +197,7 @@ mv $out/lib/iscan $out/lib/esci
         const version = "2.30.4";
         const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, rpm]);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-x820/rpm/x64/iscan-gt-x820-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-x820/rpm/x64/iscan-gt-x820-bundle-${version}.x64.rpm.tar.gz`),
@@ -214,16 +214,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x013a \"$plugin/lib/esci/libesintA1 $plugin/share/esci/esfwA1.bin\"\n",
           hw: "Perfection V600 Photo",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           description: nix.thunk(() => nix.add("iscan esci x820 plugin for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pname,
           version,
           nativeBuildInputs,
@@ -238,7 +238,7 @@ mv $out/lib/iscan $out/lib/esci
         const version = "2.30.4";
         const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, rpm]);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-x770/rpm/x64/iscan-gt-x770-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-x770/rpm/x64/iscan-gt-x770-bundle-${version}.x64.rpm.tar.gz`),
@@ -255,16 +255,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0130 \"$plugin/lib/esci/libesint7C $plugin/share/esci/esfw7C.bin\"\n",
           hw: "Perfection V500 Photo",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           description: nix.thunk(() => nix.add("iscan esci x770 plugin for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           pname,
           version,
           nativeBuildInputs,
@@ -280,7 +280,7 @@ mv $out/lib/iscan $out/lib/esci
         const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(gcc, "cc", "lib"))]);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-f720/rpm/x64/iscan-gt-f720-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-f720/rpm/x64/iscan-gt-f720-bundle-${version}.x64.rpm.tar.gz`),
@@ -295,16 +295,16 @@ cp -r usr/share $out
 cp -r usr/lib64 $out/lib
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0131 \"$plugin/lib/esci/libesci-interpreter-gt-f720 $plugin/share/esci/esfw8b.bin\"\n",
           hw: "GT-F720, GT-S620, Perfection V30, Perfection V300 Photo",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           description: nix.thunk(() => nix.add("iscan esci f720 plugin for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           pname,
           version,
           nativeBuildInputs,
@@ -321,7 +321,7 @@ cp -r usr/lib64 $out/lib
         const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(gcc, "cc", "lib")), libtool]);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-s80/rpm/x64/iscan-gt-s80-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-s80/rpm/x64/iscan-gt-s80-bundle-${version}.x64.rpm.tar.gz`),
@@ -338,16 +338,16 @@ cp -r usr/lib64 $out/lib
 mkdir $out/share/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0136 \"$plugin/lib/esci/libesci-interpreter-gt-s80.so\"\n$registry --add interpreter usb 0x04b8 0x0137 \"$plugin/lib/esci/libesci-interpreter-gt-s50.so\"\n$registry --add interpreter usb 0x04b8 0x0143 \"$plugin/lib/esci/libesci-interpreter-gt-s50.so\"\n$registry --add interpreter usb 0x04b8 0x0144 \"$plugin/lib/esci/libesci-interpreter-gt-s80.so\"\n",
           hw: "ES-D200, ED-D350, ES-D400, GT-S50, GT-S55, GT-S80, GT-S85",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           description: nix.thunk(() => nix.add("iscan esci s80 plugin for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           pname,
           version,
           nativeBuildInputs,
@@ -362,7 +362,7 @@ mkdir $out/share/esci
         const name = "iscan-gt-s600-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-s600/rpm/x64/iscan-gt-s600-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/20240614120113/https://download2.ebz.epson.net/iscan/plugin/gt-s600/rpm/x64/iscan-gt-s600-bundle-${version}.x64.rpm.tar.gz`),
@@ -380,16 +380,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x012d \"$plugin/lib/esci/libesint66 $plugin/share/esci/esfw66.bin\"\n",
           hw: "GT-F650, GT-S600, Perfection V10, Perfection V100 Photo",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           description: nix.thunk(() => nix.add("iscan gt-s600 plugin for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           name,
           version,
           src,
@@ -403,7 +403,7 @@ mv $out/lib/iscan $out/lib/esci
         const name = "iscan-gt-s650-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-s650/rpm/x64/iscan-gt-s650-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-s650/rpm/x64/iscan-gt-s650-bundle-${version}.x64.rpm.tar.gz`),
@@ -421,16 +421,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x013c \"$plugin/lib/esci/libiscan-plugin-gt-s650 $plugin/share/esci/esfw010c.bin\"\n$registry --add interpreter usb 0x04b8 0x013d \"$plugin/lib/esci/libiscan-plugin-gt-s650 $plugin/share/esci/esfw010c.bin\"\n",
           hw: "GT-S650, Perfection V19, Perfection V39",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           description: nix.thunk(() => nix.add("iscan GT-S650 for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           name,
           version,
           src,
@@ -444,7 +444,7 @@ mv $out/lib/iscan $out/lib/esci
         const name = "iscan-gt-x750-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-x750/rpm/x64/iscan-gt-x750-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-x750/rpm/x64/iscan-gt-x750-bundle-${version}.x64.rpm.tar.gz`),
@@ -462,16 +462,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0119 \"$plugin/lib/esci/libesint54 $plugin/share/esci/esfw54.bin\"\n",
           hw: "GT-X750, Perfection 4490",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           description: nix.thunk(() => nix.add("iscan GT-X750 for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           name,
           version,
           src,
@@ -485,7 +485,7 @@ mv $out/lib/iscan $out/lib/esci
         const name = "iscan-gt-1500-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/gt-1500/rpm/x64/iscan-gt-1500-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/gt-1500/rpm/x64/iscan-gt-1500-bundle-${version}.x64.rpm.tar.gz`),
@@ -503,16 +503,16 @@ mv $out/share/iscan $out/share/esci
 mv $out/lib/iscan $out/lib/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0133 \"$plugin/lib/esci/libesint86 $plugin/share/esci/esfw86.bin\"\n",
           hw: "GT-1500",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           description: nix.thunk(() => nix.add("iscan GT-1500 for ", nix.sel(passthru, "hw"))),
         }));
         return {
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           name,
           version,
           src,
@@ -526,7 +526,7 @@ mv $out/lib/iscan $out/lib/esci
         const name = "iscan-ds-30-bundle";
         const version = "2.30.4";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/plugin/ds-30/rpm/x64/iscan-ds-30-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/plugin/ds-30/rpm/x64/iscan-ds-30-bundle-${version}.x64.rpm.tar.gz`),
@@ -543,16 +543,16 @@ mv $out/lib/iscan $out/lib/esci
 mkdir $out/share/esci
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           registrationCommand: "$registry --add interpreter usb 0x04b8 0x0147 \"$plugin/lib/esci/libiscan-plugin-ds-30.so\"\n",
           hw: "DS-30",
         }));
         const meta = nix.thunk(() => nix.update(common_meta, {
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           description: nix.thunk(() => nix.add(nix.add("Plugin to support ", nix.sel(passthru, "hw")), " scanner in sane")),
         }));
         return {
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           name,
           version,
           src,
@@ -570,7 +570,7 @@ mkdir $out/share/esci
         ]);
         const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://download2.ebz.epson.net/iscan/general/rpm/x64/iscan-bundle-${version}.x64.rpm.tar.gz`),
               nix.thunk(() => nix.str`https://web.archive.org/web/https://download2.ebz.epson.net/iscan/general/rpm/x64/iscan-bundle-${version}.x64.rpm.tar.gz`),
@@ -586,10 +586,10 @@ cp -r usr/share $out
 cp -r usr/lib64 $out/lib
 mkdir $out/share/esci
 `);
-        const passthru = nix.thunk(() => ({ __proto__: pos$50, registrationCommand: "", hw: "network" }));
-        const meta = nix.thunk(() => nix.update(common_meta, { __proto__: pos$51, description: "iscan network plugin" }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: pos$50, registrationCommand: "", hw: "network" }));
+        const meta = nix.thunk(() => nix.update(common_meta, { [nix.POS]: pos$51, description: "iscan network plugin" }));
         return {
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           pname,
           version,
           buildInputs,

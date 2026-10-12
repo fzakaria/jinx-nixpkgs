@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "znc"));
   const defaultUser = "znc";
   const modules = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "znc-modules",
       paths: nix.thunk(() => nix.sel(cfg, "modulePackages")),
     }))));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   const semanticString = nix.thunk(() => (() => {
     const sortedAttrs = (set) => nix.app(nix.lookup(w, "sort"), (l) => (r) => (nix.asBool(nix.eq(l, "extraConfig")) ? false : (nix.asBool(nix.eq(nix.app(nix.lookup(w, "isAttrs"), nix.thunk(() => nix.sel(set, nix.key(nix.force(l))))), nix.app(nix.lookup(w, "isAttrs"), nix.thunk(() => nix.sel(set, nix.key(nix.force(r))))))) ? nix.lt(l, r) : nix.app(nix.lookup(w, "isAttrs"), nix.thunk(() => nix.sel(set, nix.key(nix.force(r))))))), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), set)));
     const encode = (name) => (value) => nix.sel({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       null: [],
       bool: nix.thunk(() => [
         nix.thunk(() => nix.str`${name} = ${nix.app(nix.lookup(w, "boolToString"), value)}`),
@@ -83,77 +83,77 @@ export default nix.lambda((args) => (() => {
           zncAttr,
         ])));
       const zncConf = nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.update(zncAll, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "znc values (null, atoms (str, int, bool), list of atoms, or attrsets of znc values)",
         }))));
-      return { __proto__: pos$4, zncAtom, zncAttr, zncAll, zncConf };
+      return { [nix.POS]: pos$4, zncAtom, zncAttr, zncAll, zncConf };
     })();
   })());
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [nix.path(here, "./options.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         znc: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ZNC")),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "znc",
               example: "john",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The name of an existing user account to use to own the ZNC server\nprocess. If not specified, a default user will be created.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: defaultUser,
               example: "users",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Group to own the ZNC process.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "/var/lib/znc",
               example: "/home/john/.znc",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "The state directory for ZNC. The config and the modules will be linked\nto from this directory as well.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to open ports in the firewall for ZNC. Does work with\nports for listeners specified in\n{option}`services.znc.config.Listener`.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(semanticTypes, "zncConf")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  LoadModule = [ \"webadmin\" \"adminlog\" ];\n  User.paul = {\n    Admin = true;\n    Nick = \"paul\";\n    AltNick = \"paul1\";\n    LoadModule = [ \"chansaver\" \"controlpanel\" ];\n    Network.libera = {\n      Server = \"irc.libera.chat +6697\";\n      LoadModule = [ \"simple_away\" ];\n      Chan = {\n        \"#nixos\" = { Detached = false; };\n        \"##linux\" = { Disabled = true; };\n      };\n    };\n    Pass.password = {\n      Method = \"sha256\";\n      Hash = \"e2ce303c7ea75c571d80d8540a8699b46535be6a085be3414947d638e48d9e93\";\n      Salt = \"l5Xryew4g*!oa(ECfX2o\";\n    };\n  };\n}\n")),
               description: "Configuration for ZNC, see\n<https://wiki.znc.in/Configuration> for details. The\nNix value declared here will be translated directly to the xml-like\nformat ZNC expects. This is much more flexible than the legacy options\nunder {option}`services.znc.confOptions.*`, but also can't do\nany type checking.\n\nYou can use {command}`nix-instantiate --eval --strict '<nixpkgs/nixos>' -A config.services.znc.config`\nto view the current value. By default it contains a listener for port\n5000 with SSL enabled.\n\nNix attributes called `extraConfig` will be inserted\nverbatim into the resulting config file.\n\nIf {option}`services.znc.useLegacyConfig` is turned on, the\noption values in {option}`services.znc.confOptions.*` will be\ngracefully be applied to this option.\n\nIf you intend to update the configuration through this option, be sure\nto disable {option}`services.znc.mutable`, otherwise none of the\nchanges here will be applied after the initial deploy.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "~/.znc/configs/znc.conf")),
               description: "Configuration file for ZNC. It is recommended to use the\n{option}`config` option instead.\n\nSetting this option will override any auto-generated config file\nthrough the {option}`confOptions` or {option}`config`\noptions.\n",
             })))),
           modulePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.zncModules.fish pkgs.zncModules.push ]")),
               description: "A list of global znc module packages to add to znc.\n",
             })))),
           mutable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Indicates whether to allow the contents of the\n`dataDir` directory to be changed by the user at\nrun-time.\n\nIf enabled, modifications to the ZNC configuration after its initial\ncreation are not overwritten by a NixOS rebuild. If disabled, the\nZNC configuration is rebuilt on every NixOS rebuild.\n\nIf the user wants to manage the ZNC service using the web admin\ninterface, this option should be enabled.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: [],
               example: nix.thunk(() => ["--debug"]),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
@@ -163,19 +163,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           znc: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "znc-generated.conf", semanticString)))),
             config: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               Version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(pkgs, "znc")))),
               Listener: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 l: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   Port: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), 5000n)),
                   SSL: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 })),
@@ -184,24 +184,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           firewall: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), listenerPorts)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             znc: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "ZNC Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Restart: "always",
@@ -263,10 +263,10 @@ ln -fs ${modules}/lib/znc ${nix.sel(cfg, "dataDir")}/modules
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 description: "ZNC server daemon owner",
                 group: defaultUser,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "znc")),
@@ -276,7 +276,7 @@ ln -fs ${modules}/lib/znc ${nix.sel(cfg, "dataDir")}/modules
             ])))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "znc")),
                 members: nix.thunk(() => [defaultUser]),
               }))],

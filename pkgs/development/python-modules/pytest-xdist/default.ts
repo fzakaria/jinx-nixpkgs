@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-xdist",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pytest9-compat-1.patch",
             url: "https://github.com/pytest-dev/pytest-xdist/commit/44f4bea2652e06e7cd5d4a063aa2673b5ef701ee.patch",
             hash: "sha256-BQfcr5f4S+e8xZP2UQwr65hp+iVzmbXYAzO/7iE9lmw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "pytest9-compat-2.patch",
             url: "https://github.com/pytest-dev/pytest-xdist/commit/0c984478f39d7a01aa24c061f2581bdfd071cb6a.patch",
             hash: "sha256-zxdKy7Z0m5UB4qwmdrolSYeBUTgMe2bQkkeX+M0RRHs=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [execnet]);
       const nativeCheckInputs = nix.thunk(() => [filelock, pytestCheckHook]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         psutil: nix.thunk(() => [psutil]),
         setproctitle: nix.thunk(() => [setproctitle]),
       }));
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-xdist/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Pytest plugin for distributed testing",
         homepage: "https://github.com/pytest-dev/pytest-xdist",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

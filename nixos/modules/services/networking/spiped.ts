@@ -45,90 +45,90 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "spiped"));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         spiped: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable the spiped service module.",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       encrypt: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Take unencrypted connections from the\n`source` socket and send encrypted\nconnections to the `target` socket.\n",
                         })))),
                       decrypt: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Take encrypted connections from the\n`source` socket and send unencrypted\nconnections to the `target` socket.\n",
                         })))),
                       source: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Address on which spiped should listen for incoming\nconnections.  Must be in one of the following formats:\n`/absolute/path/to/unix/socket`,\n`host.name:port`,\n`[ip.v4.ad.dr]:port` or\n`[ipv6::addr]:port` - note that\nhostnames are resolved when spiped is launched and are\nnot re-resolved later; thus if DNS entries change\nspiped will continue to connect to the expired\naddress.\n",
                         })))),
                       target: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Address to which spiped should connect.",
                         })))),
                       keyfile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                           description: "Name of a file containing the spiped key.\nAs the daemon runs as the `spiped` user,\nthe key file must be readable by that user.\nTo securely manage the file within your configuration\nconsider a tool such as agenix or sops-nix.\n",
                         })))),
                       timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                           default: 5n,
                           description: "Timeout, in seconds, after which an attempt to connect to\nthe target or a protocol handshake will be aborted (and the\nconnection dropped) if not completed\n",
                         })))),
                       maxConns: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                           default: 100n,
                           description: "Limit on the number of simultaneous connections allowed.\n",
                         })))),
                       waitForDNS: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Wait for DNS. Normally when `spiped` is\nlaunched it resolves addresses and binds to its source\nsocket before the parent process returns; with this option\nit will daemonize first and retry failed DNS lookups until\nthey succeed. This allows `spiped` to\nlaunch even if DNS isn't set up yet, but at the expense of\nlosing the guarantee that once `spiped` has\nfinished launching it will be ready to create pipes.\n",
                         })))),
                       disableKeepalives: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Disable transport layer keep-alives.",
                         })))),
                       weakHandshake: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Use fast/weak handshaking: This reduces the CPU time spent\nin the initial connection setup, at the expense of losing\nperfect forward secrecy.\n",
                         })))),
                       resolveRefresh: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                           default: 60n,
                           description: "Resolution refresh time for the target socket, in seconds.\n",
                         })))),
                       disableReresolution: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Disable target address re-resolution.",
@@ -143,25 +143,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (c) => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(nix.sel(c, "encrypt")) || nix.asBool(!nix.asBool(nix.sel(c, "decrypt"))))) || nix.asBool((!nix.asBool(nix.sel(c, "decrypt")) || nix.asBool(nix.sel(c, "encrypt")))))),
             message: "A pipe must either encrypt or decrypt",
           }), nix.thunk(() => nix.sel(cfg, "config")))),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           groups: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             spiped: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "spiped")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             spiped: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Secure Pipe Service user",
               group: "spiped",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "spiped")),
@@ -169,14 +169,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "spiped@": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Secure pipe '%i'",
               after: nix.thunk(() => ["network.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$26, Restart: "always", User: "spiped" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, Restart: "always", User: "spiped" })),
               stopIfChanged: false,
               scriptArgs: "%i",
               script: nix.thunk(() => nix.str`exec ${nix.sel(pkgs, "spiped")}/bin/spiped -F \`cat /etc/spiped/$1.spec\``),
@@ -184,9 +184,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           etc: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`spiped/${name}.spec`), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 text: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => [
                     nix.thunk(() => (nix.asBool(nix.sel(cfg_1, "encrypt")) ? "-e" : "-d")),
                     nix.thunk(() => nix.str`-s ${nix.sel(cfg_1, "source")}`),

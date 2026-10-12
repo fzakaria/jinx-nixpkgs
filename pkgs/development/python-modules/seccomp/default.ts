@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.sel(libseccomp, "version"));
       const format = "setuptools";
       const src = nix.thunk(() => nix.sel(libseccomp, "pythonsrc"));
-      const env = nix.thunk(() => ({ __proto__: pos$1, VERSION_RELEASE: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, VERSION_RELEASE: version }));
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const buildInputs = nix.thunk(() => [libseccomp]);
       const unpackCmd = "tar xf $curSrc";
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace ./setup.py \\\n  --replace 'extra_objects=[\"../.libs/libseccomp.a\"]' \\\n            'libraries=[\"seccomp\"]'\n";
       const pythonImportsCheck = nix.thunk(() => ["seccomp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for libseccomp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

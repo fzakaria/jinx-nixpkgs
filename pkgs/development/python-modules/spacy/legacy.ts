@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.12";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-s31uDJtuHXyhz1vHFSq2SkxGcfWcha2vej/LhwNXp3Q=",
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["spacy_legacy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Legacy registered functions for spaCy backwards compatibility",
         homepage: "https://github.com/explosion/spacy-legacy",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spacy-legacy/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

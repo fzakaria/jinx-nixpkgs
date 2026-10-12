@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_412 = nix.arg($, "docbook_xml_dtd_412");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lxrandr",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxde",
           repo: "lxrandr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./respect-xml-catalog-files-var.patch")]),
       buildInputs: nix.thunk(() => [libx11, xrandr, gtk3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard screen manager of LXDE",
         mainProgram: "lxrandr",
         homepage: "https://lxde.org/",

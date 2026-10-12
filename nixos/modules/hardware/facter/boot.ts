@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       hardware: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         facter: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           detected: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             uefi: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               supported: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the facter uefi module"), {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: nix.thunk(() => nix.selOr(config, () => false, "hardware", "facter", "report", "uefi", "supported")),
                 defaultText: "hardware dependent",
               })),
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         loader: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           grub: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             efiSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "uefi", "supported")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
           })),
         })),

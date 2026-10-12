@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyinfra",
       version: "3.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyinfra-dev",
           repo: "pyinfra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["paramiko", "types-paramiko"]),
       disabledTests: nix.thunk(() => ["test_load_ssh_config"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python-based infrastructure automation",
         longDescription: "pyinfra automates/provisions/manages/deploys infrastructure. It can be used for\nad-hoc command execution, service deployment, configuration management and more.\n",
         homepage: "https://pyinfra.com",

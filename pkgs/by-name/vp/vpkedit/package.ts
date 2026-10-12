@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vpkedit",
       version: "4.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "craftablescience",
           repo: "VPKEdit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,31 +42,31 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-bxY190G12djkyfprrNt83+qzya44fnYV6Ij7D8SWelQ=",
         })))),
       "cryptopp-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/weidai11/cryptopp.git",
           tag: "CRYPTOPP_8_9_0",
           hash: "sha256-HV+afSFkiXdy840JbHBTR8lLL0GMwsN3QdwaoQmicpQ=",
         })))),
       "zlib-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://github.com/zlib-ng/zlib-ng.git",
           tag: "2.2.4",
           hash: "sha256-NZgnctJ6nA8Pp+wQ70p6m01LwY3wyl4G5bnLhQZYfps=",
         })))),
       "bzip2-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "git://sourceware.org/git/bzip2.git",
           rev: "fbc4b11da543753b3b803e5546f56e26ec90c2a7",
           hash: "sha256-kg/y9ZGbvaQd86tXxekxcv+h8nbNk3UvWad50fm5FtA=",
         })))),
       "xz-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://github.com/tukaani-project/xz.git",
           tag: "v5.8.0",
           hash: "sha256-oH9aI5norOBIzyybYU3SnHJL8PXJ9lmZRX/RN0e+NXs=",
         })))),
       "zstd-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "https://github.com/facebook/zstd.git",
           tag: "v1.5.7",
           hash: "sha256-tNFWIT9ydfozB8dWcmTMuZLCQmQudTFJIkSr0aG7S44=",
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/vpkeditcli`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "CLI/GUI tool to create, read, and write several pack file formats",
         homepage: "https://github.com/craftablescience/VPKEdit",
         mainProgram: "vpkeditcli",

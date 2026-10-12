@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const enableOpenMP = nix.argOr($, "enableOpenMP", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shark",
       version: "4.0-unstable-2024-05-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Shark-ML",
           repo: "Shark",
           rev: "16a7cecf1c012ceaa406e3a5af54d1a6a47d5cda",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, openssl]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, modular, general open-source C++ machine learning library",
         homepage: "https://shark-ml.github.io/Shark/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

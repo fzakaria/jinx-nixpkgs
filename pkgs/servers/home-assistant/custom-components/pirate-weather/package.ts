@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const domain = "pirateweather";
       const version = "1.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "pirate-weather-ha",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_homeassistant_custom_component, pytest_asyncio]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Pirate-Weather/pirate-weather-ha/releases/tag/${nix.sel(src, "tag")}`),
         description: "Replacement for the default Dark Sky Home Assistant integration using Pirate Weather",
         homepage: "https://github.com/Pirate-Weather/pirate-weather-ha",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner,
         domain,
         version,

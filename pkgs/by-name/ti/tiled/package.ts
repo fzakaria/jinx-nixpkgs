@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(libsForQt5, "qtwayland")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tiled",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mapeditor",
           repo: "tiled",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ runHook postConfigure
       installPhase: "runHook preInstall\n\nqbs install --settings-dir . --install-root $out config:release\n\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/share/thumbnailers/tiled.thumbnailer \\\n  --replace-fail \"TryExec=tmxrasterizer\" \"TryExec=$out/bin/tmxrasterizer\" \\\n  --replace-fail \"Exec=tmxrasterizer\" \"Exec=$out/bin/tmxrasterizer\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, easy to use and flexible tile map editor",
         homepage: "https://www.mapeditor.org/",
         license: nix.thunk(() => (() => {

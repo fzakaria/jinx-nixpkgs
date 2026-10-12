@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(from, "version"));
   const library_deps = nix.thunk(() => nix.attr(from, "library_deps"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocamlformat",
       src: src,
       version: version,
       nativeBuildInputs: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "0.25.1")) ? [] : [menhir])),
       buildInputs: nix.thunk(() => nix.concat([re], nix.concat(library_deps, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "0.25.1")), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(ocamlformat_lib, "override"), nix.thunk(() => ({ __proto__: pos$1, version: version })))),
+          nix.thunk(() => nix.app(nix.sel(ocamlformat_lib, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version })))),
         ]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocaml-ppx/ocamlformat",
         description: "Auto-formatter for OCaml code",
         maintainers: nix.thunk(() => (() => {

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wcslib = nix.arg($, "wcslib");
   const withTester = nix.argOr($, "withTester", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stellarsolver",
       version: "2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rlancaste",
           repo: "stellarsolver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeBool"), "USE_QT5", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rlancaste/stellarsolver",
         description: "Astrometric plate solving library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const jre8 = nix.arg($, "jre8");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "jmol",
       exec: "jmol",
       desktopName: "JMol",
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Graphics", "Education", "Science", "Chemistry"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "16.4.21",
       pname: "jmol",
       src: nix.thunk(() => (() => {
         const baseVersion = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`);
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`mirror://sourceforge/jmol/Jmol/Version%20${baseVersion}/Jmol%20${nix.sel(finalAttrs, "version")}/Jmol-${nix.sel(finalAttrs, "version")}-binary.tar.gz`),
             hash: "sha256-eZuRhI8r2I1kud6EG9aakWiFI6R40VDTfdQ7z/n5sJ8=",
           })));
@@ -57,7 +57,7 @@ cp jmol $out/bin
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java 3D viewer for chemical structures",
         mainProgram: "jmol",
         homepage: "https://sourceforge.net/projects/jmol",

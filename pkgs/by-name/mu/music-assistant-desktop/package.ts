@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "music-assistant-desktop",
       version: "0.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "music-assistant",
           repo: "desktop-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ jq '.plugins.updater.endpoints = [ ] | .bundle.createUpdaterArtifacts = false' s
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-4gyxKLg+8OACYzRt1pM3COMGeyTx8gyihdjnxZzIIk8=",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-dOJ5ETRodpnuaI+L2wckNU0XANUcjqzvdqw/cd5sJC4=",
         })))),
@@ -92,12 +92,12 @@ jq '.plugins.updater.endpoints = [ ] | .bundle.createUpdaterArtifacts = false' s
 )
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBCLANG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official companion desktop app for Music Assistant",
         changelog: nix.thunk(() => nix.str`https://github.com/music-assistant/desktop-app/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/music-assistant/desktop-app",

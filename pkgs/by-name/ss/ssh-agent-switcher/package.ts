@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const shtk = nix.arg($, "shtk");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssh-agent-switcher",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmmv",
           repo: "ssh-agent-switcher",
           tag: nix.thunk(() => nix.str`ssh-agent-switcher-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ runHook postCheck
 `),
       postInstall: "installManPage ssh-agent-switcher.1\n\ninstall -Dm644 README.md -t $out/share/doc/ssh-agent-switcher/\ninstall -Dm644 NEWS.md -t $out/share/doc/ssh-agent-switcher/\ninstall -Dm644 COPYING -t $out/share/doc/ssh-agent-switcher/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SSH agent forwarding and tmux done right",
         longDescription: "ssh-agent-switcher is a daemon that proxies SSH agent connections to any\nvalid forwarded agent provided by sshd. This allows long-lived processes\nsuch as terminal multiplexers like tmux or screen to access the\nconnection-specific forwarded agents.\n",
         homepage: "https://github.com/jmmv/ssh-agent-switcher",

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const scikit_image = nix.arg($, "scikit-image");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lime",
       version: "0.2.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-dpYOTwVf61Pom1AiODuvyHtj8lusYmWYSwozPRpX94E=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "lime.lime_text",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local Interpretable Model-Agnostic Explanations for machine learning classifiers",
         homepage: "https://github.com/marcotcr/lime",
         changelog: nix.thunk(() => nix.str`https://github.com/marcotcr/lime/releases/tag/${nix.sel(finalAttrs, "version")}`),

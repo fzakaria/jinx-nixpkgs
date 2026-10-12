@@ -40,18 +40,18 @@ export default nix.lambda((args) => (() => {
     "pass-file",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "passage",
       version: "1.7.4a2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiloSottile",
           repo: "passage",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tGHJFzDc2K117r5EMFdKsfw/+EpdZ0qzaExt+RGI4qo=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-getopt-path.patch"), nix.thunk(() => ({ __proto__: pos$2, getopt: nix.thunk(() => nix.sel(unixtools, "getopt")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-getopt-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, getopt: nix.thunk(() => nix.sel(unixtools, "getopt")) })))),
         nix.path(here, "./set-correct-program-name-for-sleep.patch"),
       ]),
       postPatch: nix.thunk(() => nix.str`# Since we reuse the pass wrapper the extension will also live in its directory not the passage specific one
@@ -80,15 +80,15 @@ wrapProgram $out/bin/passage --prefix PATH : $extraPath --argv0 $pname
 `),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "WITH_ALLCOMP=yes"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withExtensions: nix.thunk(() => nix.app(nix.sel(pass, "withExtensions", "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pass: passage,
             brokenExtensions: extensionsNotSupportinPassage,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stores, retrieves, generates, and synchronizes passwords securely",
         homepage: "https://github.com/FiloSottile/passage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

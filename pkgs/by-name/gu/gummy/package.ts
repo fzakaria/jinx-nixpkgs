@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gummy",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fusco",
           repo: "gummy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
         libxext,
         nlohmann_json,
         sdbus_cpp,
-        nix.thunk(() => nix.app(nix.sel(spdlog, "override"), nix.thunk(() => ({ __proto__: pos$2, fmt: fmt_11 })))),
+        nix.thunk(() => nix.app(nix.sel(spdlog, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, fmt: fmt_11 })))),
         udev,
         libxcb_image,
       ]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             UDEV_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
             UDEV_RULES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev/rules.d`),
           })))),
@@ -73,18 +73,18 @@ ln -s $out/libexec/gummyd $out/bin/gummyd
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://codeberg.org/fusco/gummy",
         description: "Brightness and temperature manager for X11",
         longDescription: "CLI screen manager for X11 that allows automatic and manual brightness/temperature adjustments,\nvia backlight (currently only for embedded displays) and gamma. Multiple monitors are supported.\n",

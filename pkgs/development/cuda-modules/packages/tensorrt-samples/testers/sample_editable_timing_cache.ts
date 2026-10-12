@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkTester = nix.arg($, "mkTester");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(atLeast, "10.8")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default: nix.thunk(() => nix.app(mkTester, "sample_editable_timing_cache", nix.thunk(() => ["sample_editable_timing_cache"]))),
     })));
 })(), formals$1);

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zigimports",
       version: "0.1.0-unstable-2026-07-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tusharsadhwani",
           repo: "zigimports",
           rev: "bcfbb03a85553638f8a80e6596bdfaa93a0cc266",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [zig_0_16]),
       postInstall: "mv $out/bin/zigimports{*,}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig_0_16, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatically remove unused imports and globals from Zig files",
         homepage: "https://github.com/tusharsadhwani/zigimports",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

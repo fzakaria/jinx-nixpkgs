@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const glibmm_2_4 = nix.arg($, "glibmm_2_4");
   const libappindicator = nix.arg($, "libappindicator");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powermode-indicator",
       version: "0-unstable-2024-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PiyushXCoder",
           repo: "powermode-indicator",
           rev: "0a67f63290b087f1eeff2c6c6869c2122ac78e6f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libappindicator, gtkmm3, glibmm_2_4]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/PiyushXCoder/powermode-indicator",
         description: "Tray tool for power profiles management",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

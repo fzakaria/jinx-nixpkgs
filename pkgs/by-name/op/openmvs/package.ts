@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
   const vcg = nix.arg($, "vcg");
   const zstd = nix.arg($, "zstd");
   const boostWithZstd = nix.thunk(() => nix.app(nix.sel(boost, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [zstd])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2.4.0",
       pname: "openmvs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cdcseacave",
           repo: "openmvs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,11 +82,11 @@ ctest --output-on-failure
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open Multi-View Stereo reconstruction library",
         homepage: "https://github.com/cdcseacave/openMVS",
         changelog: nix.thunk(() => nix.str`https://github.com/cdcseacave/openMVS/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

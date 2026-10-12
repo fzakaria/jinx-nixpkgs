@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sc2-smurf-detector",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.kittycloud.eu",
           owner: "mizule",
           repo: "sc2-smurf-detector",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to detect smurfs in StarCraft II by analyzing opponent match history via SC2 Pulse",
         homepage: "https://git.kittycloud.eu/mizule/sc2-smurf-detector",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

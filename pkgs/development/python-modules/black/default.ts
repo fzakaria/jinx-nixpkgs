@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const tokenize_rt = nix.arg($, "tokenize-rt");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "black",
       version: "26.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psf",
           repo: "black",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_fancy_pypi_readme, hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [click, mypy_extensions, packaging, pathspec, platformdirs, pytokens]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         colorama: nix.thunk(() => [colorama]),
         d: nix.thunk(() => [aiohttp]),
         uvloop: nix.thunk(() => [uvloop]),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Uncompromising Python code formatter",
         homepage: "https://github.com/psf/black",
         changelog: nix.thunk(() => nix.str`https://github.com/psf/black/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

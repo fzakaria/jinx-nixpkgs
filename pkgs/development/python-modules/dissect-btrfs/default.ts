@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.btrfs",
           tag: version,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [dissect_cstruct, dissect_util]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         full: nix.thunk(() => [python_lzo, zstandard]),
         gcrc32: nix.thunk(() => [google_crc32c]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dissect.btrfs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dissect module implementing a parser for the BTRFS file system",
         homepage: "https://github.com/fox-it/dissect.btrfs",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.btrfs/releases/tag/${nix.sel(src, "tag")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

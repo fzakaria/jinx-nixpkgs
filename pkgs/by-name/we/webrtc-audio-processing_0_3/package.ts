@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "webrtc-audio-processing",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/pulseaudio/webrtc-audio-processing/webrtc-audio-processing-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1gsx7k77blfy171b6g3m0k0s0072v6jcawhmx1kjs9w5zlwdkzd0",
         })))),
@@ -33,25 +33,25 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./enable-riscv.patch"),
         nix.path(here, "./enable-powerpc.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-webrtc-audio-processing-big-endian.patch",
             url: "https://gitlab.freedesktop.org/pulseaudio/pulseaudio/uploads/2994c0512aaa76ebf41ce11c7b9ba23e/webrtc-audio-processing-0.2-big-endian.patch",
             hash: "sha256-zVAj9H8SJureQd0t5O5v1je4ia8/gHJOXYxuEBEB6gg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/2f3c3b1d9dadc25356da4b612130bf4dea27b817/audio/webrtc-audio-processing0/files/patch-configure.ac",
             hash: "sha256-IOSW3ZLIuRXY/M+MU813M9o0Vu4mcGoAtdNRlJwESHw=",
             extraPrefix: "",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/27f26f19a34755fe4b939a7210d8ba7ee9358a0d/audio/webrtc-audio-processing0/files/patch-webrtc_base_stringutils.h",
             hash: "sha256-j85CdFpDIPhhEquwA3P0r5djnMEGVnvfsPM2bYbURt8=",
             extraPrefix: "",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/0d316feccaf89c1bd804d6001274426a7135c93a/audio/webrtc-audio-processing0/files/patch-webrtc_base_platform__thread.cc",
             hash: "sha256-MsZtNWv3bwxJLxpQaMqj34XIBhqAaO2NkBHjlFWZreA=",
             extraPrefix: "",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "substituteInPlace webrtc/base/checks.cc --replace 'defined(__UCLIBC__)' 1\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.freedesktop.org/software/pulseaudio/webrtc-audio-processing",
         description: "More Linux packaging friendly copy of the AudioProcessing module from the WebRTC project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

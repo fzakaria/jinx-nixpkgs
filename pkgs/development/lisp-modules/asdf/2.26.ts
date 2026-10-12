@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "asdf";
       const version = "2.26";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://common-lisp.net/project/asdf/archives/asdf-${version}.tar.gz`),
           sha256: "sha256-tuUuIlZcS+a0izXeJl3Ckp+/PYAWkZ0+Cw7blwkh9+M=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make asdf.lisp\nmkdir build\nln -s ../asdf.lisp build\n";
       const installPhase = "mkdir -p \"$out\"/lib/common-lisp/asdf/\nmkdir -p \"$out\"/share/doc/asdf/\ncp -r ./* \"$out\"/lib/common-lisp/asdf/\ncp -r doc/* \"$out\"/share/doc/asdf/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard software-system definition library for Common Lisp",
         homepage: "https://asdf.common-lisp.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

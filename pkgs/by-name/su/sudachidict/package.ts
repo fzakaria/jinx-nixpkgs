@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const pname = "sudachidict";
   const version = "20260428";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     core: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/download/v${version}/sudachi-dictionary-${version}-core.zip`),
         hash: "sha256-CTsSxUa+daLpoNDr4kIVhzAM6E1k3ZwvAhE7Lccm4YM=",
       })))),
     small: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/download/v${version}/sudachi-dictionary-${version}-small.zip`),
         hash: "sha256-okLmQST77Iz/MkdcuhZ+Q+SDlgcM0bXTR4KNKqPHIlg=",
       })))),
     full: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/download/v${version}/sudachi-dictionary-${version}-full.zip`),
         hash: "sha256-XG7zusuqDYl5q6OERDLwd9M7N7iZEvIgIuCkEhVMZiw=",
       })))),
   }));
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: dict-type`), nix.thunk(() => ["core", "full", "small"]), nix.thunk(() => [dict_type]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.sel(srcs, nix.key(nix.force(dict_type)))),
@@ -51,12 +51,12 @@ install -Dm644 system_${dict_type}.dic $out/share/system.dic
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "dict-type": dict_type,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lexicon for Sudachi",
         homepage: "https://github.com/WorksApplications/SudachiDict",
         changelog: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/tag/v${version}`),

@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "CSS, SCSS, Sass and Less formatter",
       hash: "sha256-6ioZNF6j8y0ObHbPdNrjz3eH+WMQdry4s624eTDLnX8=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: nix.thunk(() => ["**/node_modules"]),
         configKey: "malva",
         fileExtensions: nix.thunk(() => ["css", "scss", "sass", "less"]),

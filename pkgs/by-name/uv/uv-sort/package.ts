@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uv-sort",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "uv_sort",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-GXR9aN2s0ryFl2KMED9ggUPt3ddXfOrzsdUNkyhsT6E=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]),
       disabledTests: nix.thunk(() => ["test_sort_array"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sort uv's dependencies alphabetically",
         homepage: "https://github.com/ninoseki/uv-sort",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

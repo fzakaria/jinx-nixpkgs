@@ -31,68 +31,68 @@ export default nix.lambda((args) => (() => {
   const coq_elpi = nix.arg($, "coq-elpi");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "corn",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.18", "8.20")),
               out: "8.20.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.17", "8.20")),
               out: "8.19.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "8.18")),
               out: "8.18.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.17")),
               out: "8.16.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.15")),
               out: "8.13.0",
             })),
-            nix.thunk(() => ({ __proto__: pos$6, case: "8.6", out: "8.8.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$6, case: "8.6", out: "8.8.1" })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "8.8.1": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:0gh32j0f18vv5lmf6nb87nr5450w6ai06rhrnvlx2wwi79gv10wp",
         })),
         "8.12.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256:0b92vhyzn1j6cs84z2182fn82hxxj0bqq7hk6cs4awwb3vc7dkhi",
         })),
         "8.13.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:1wzr7mdsnf1rq7q0dvmv55vxzysy85b00ahwbs868bl7m8fk8x5b",
         })),
         "8.16.0": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-ZE/EEIndxHfo/9Me5NX4ZfcH0ZAQ4sRfZY7LRZfLXBQ=",
         })),
         "8.18.0": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256-ow3mfarZ1PvBGf5WLnI8LdF3E+8A6fN7cOcXHrZJLo0=",
         })),
         "8.19.0": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-h5MlfRuv2hTbxGmpLUEGQO1YqQTwUNEHZzCfvdOU1TA=",
         })),
         "8.20.0": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256-tl68REU6xTbSOzhPucQPd9A3YnnaMNbSY8gl4Seyp10=",
         })),
       })),
@@ -101,14 +101,14 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [bignums, math_classes]),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "http://c-corn.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         description: "Coq library for constructive analysis",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       })),
     }))), "overrideAttrs"), (o) => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGt"), "8.19.0", nix.thunk(() => nix.sel(o, "version")))) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))), coq_elpi))),
     }));
 })(), formals$1);

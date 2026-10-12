@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const xsettingsd = nix.arg($, "xsettingsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-config-info",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derat",
           repo: "font-config-info",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\ninstall -D -t $out/bin font-config-info\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prints a Linux system's font configuration",
         homepage: "https://github.com/derat/font-config-info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

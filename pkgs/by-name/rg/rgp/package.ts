@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const buildNum = "2026-05-28-1806";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rgp",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gpuopen.com/download/RadeonDeveloperToolSuite-${buildNum}.tgz`),
           hash: "sha256-hMUAo72JVfDEv8Rp0/0YZDXX7p8ioVH40WtK/PQnRb8=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/opt/rgp $out/bin\ncp -r . $out/opt/rgp/\n\nchmod +x $out/opt/rgp/scripts/*\npatchShebangs $out/opt/rgp/scripts\n\nfor prog in RadeonDeveloperPanel RadeonDeveloperService RadeonDeveloperServiceCLI RadeonGPUAnalyzer RadeonGPUProfiler RadeonMemoryVisualizer RadeonRaytracingAnalyzer rga rtda; do\n  # makeWrapper is needed so that executables are started from the opt\n  # directory, where qt.conf and other tools are.\n  # Unset Qt theme, it does not work if the nixos Qt version is different from the packaged one.\n  makeWrapper \\\n    $out/opt/rgp/$prog \\\n    $out/bin/$prog \\\n    --unset QT_QPA_PLATFORMTHEME \\\n    --unset QT_STYLE_OVERRIDE \\\n    --prefix LD_LIBRARY_PATH : $out/opt/rgp/lib\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool from AMD that allows for deep inspection of GPU workloads",
         homepage: "https://gpuopen.com/rgp/",
         sourceProvenance: nix.thunk(() => (() => {

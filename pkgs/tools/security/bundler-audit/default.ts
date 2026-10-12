@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "bundler-audit")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Patch-level verification for Bundler",
         longDescription: "Features:\n- Checks for vulnerable versions of gems in Gemfile.lock.\n- Checks for insecure gem sources (http://).\n- Allows ignoring certain advisories that have been manually worked around.\n- Prints advisory information.\n- Does not require a network connection.\n",
         homepage: "https://github.com/rubysec/bundler-audit",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, ruby: ruby_1, gemdir, passthru, meta };
+      return { [nix.POS]: pos$3, pname, version, ruby: ruby_1, gemdir, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

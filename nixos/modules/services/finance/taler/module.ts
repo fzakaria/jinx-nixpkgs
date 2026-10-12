@@ -33,37 +33,37 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "taler"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         taler: nix.thunk(() => ({
-          __proto__: pos$10,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the GNU Taler system"), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, internal: true }))))),
+          [nix.POS]: pos$10,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the GNU Taler system"), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, internal: true }))))),
           includes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Files to include into the config file using Taler's `@inline@` directive.\n\nThis allows including arbitrary INI files, including imperatively managed ones.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Global configuration options for the taler config file.\n\nFor a list of all possible options, please see the man page [`taler.conf(5)`](https://docs.taler.net/manpages/taler.conf.5.html)\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     taler: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       CURRENCY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                           description: "The currency which taler services will operate with. This cannot be changed later.\n",
                         })))),
                       CURRENCY_ROUND_UNIT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "taler", "CURRENCY")}:0.01`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.taler.settings.taler.CURRENCY}:0.01\"\n")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
             })))),
           runtimeDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/run/taler-system-runtime/",
               description: "Runtime directory shared between the taler services.\n\nCrypto helpers put their sockets here for instance and the httpd\nconnects to them.\n",
@@ -84,15 +84,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           taler: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               PATHS: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 TALER_DATA_HOME: "${STATE_DIRECTORY}/",
                 TALER_CACHE_HOME: "${CACHE_DIRECTORY}/",
                 TALER_RUNTIME_DIR: nix.thunk(() => nix.sel(cfg, "runtimeDir")),
@@ -101,11 +101,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "taler/taler.conf": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               source: nix.thunk(() => (() => {
                 const includes = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeText"), "includes.conf", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((include) => nix.str`@inline@ ${include}`, nix.thunk(() => nix.sel(cfg, "includes"))))))));
                 const generatedConfig = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "generated-taler.conf", nix.thunk(() => nix.sel(cfg, "settings"))));

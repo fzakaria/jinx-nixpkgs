@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "haveged",
       version: "1.9.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jirka-h",
           repo: "haveged",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["sbindir=$(out)/bin"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple entropy daemon",
         mainProgram: "haveged",
         longDescription: "The haveged project is an attempt to provide an easy-to-use, unpredictable\nrandom number generator based upon an adaptation of the HAVEGE algorithm.\nHaveged was created to remedy low-entropy conditions in the Linux random device\nthat can occur under some workloads, especially on headless servers. Current development\nof haveged is directed towards improving overall reliability and adaptability while minimizing\nthe barriers to using haveged for other tasks.\n",

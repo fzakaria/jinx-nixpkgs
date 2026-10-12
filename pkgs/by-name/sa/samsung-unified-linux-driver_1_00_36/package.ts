@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "x86_64-linux")) ? "x86_64" : "i386"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samsung-unified-linux-driver",
       version: "1.00.36",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "1a7ngd03x0bkdl7pszy5zqqic0plxvdxqm5w7klr6hbdskx1lir9",
           url: nix.thunk(() => nix.str`https://www.bchemnet.com/suldr/driver/UnifiedLinuxDriver-${nix.sel(finalAttrs, "version")}.tar.gz`),
         })))),
@@ -103,7 +103,7 @@ ln -s ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "c
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified Linux Driver for Samsung printers and scanners",
         homepage: "http://www.bchemnet.com/suldr",
         downloadPage: "http://www.bchemnet.com/suldr/driver/",

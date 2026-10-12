@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const qtutilities = nix.arg($, "qtutilities");
   const qtbase = nix.arg($, "qtbase");
   const fork_awesome_release = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ForkAwesome",
       repo: "Fork-Awesome",
       tag: "1.2.0",
       hash: "sha256-zG6/0dWjU7/y/oDZuSEv+54Mchng64LVyV8bluskYzc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qtforkawesome",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Martchus",
           repo: "qtforkawesome",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Martchus/qtforkawesome",
         description: "Library that bundles ForkAwesome for use within Qt applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

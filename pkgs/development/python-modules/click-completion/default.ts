@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const shellingham = nix.arg($, "shellingham");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "click-completion",
       version: "0.5.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "click-completion",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-W/gWuBNn5jihkLbpG1B3kAfRQwGz+fMUXWjjyt57zoY=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["click_completion"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add or enhance bash, fish, zsh and powershell completion in Click",
         homepage: "https://github.com/click-contrib/click-completion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

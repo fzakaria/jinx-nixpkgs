@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const tlp = nix.arg($, "tlp");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tlp-pd",
       version: nix.thunk(() => nix.attr(tlp, "version")),
       src: nix.thunk(() => nix.attr(tlp, "src")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tlp, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

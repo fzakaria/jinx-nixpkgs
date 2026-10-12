@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "utterly-nord-plasma",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HimDek",
           repo: "utterly-nord-plasma",
           rev: "ae0de9d555b518226627b2d10ee5df4a18073c60",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/{color-schemes,Kvantum,plasma/look-and-feel,sddm/themes,wallpapers,konsole}\n\ncp -a look-and-feel $out/share/plasma/look-and-feel/Utterly-Nord\ncp -a look-and-feel-solid $out/share/plasma/look-and-feel/Utterly-Nord-Solid\ncp -a look-and-feel-light $out/share/plasma/look-and-feel/Utterly-Nord-Light\ncp -a look-and-feel-light-solid $out/share/plasma/look-and-feel/Utterly-Nord-Light-Solid\n\ncp -a *.colors $out/share/color-schemes/\n\ncp -a wallpaper $out/share/wallpapers/Utterly-Nord\n\ncp -a kvantum $out/share/Kvantum/Utterly-Nord\ncp -a kvantum-solid $out/share/Kvantum/Utterly-Nord-Solid\ncp -a kvantum-light $out/share/Kvantum/Utterly-Nord-Light\ncp -a kvantum-light-solid $out/share/Kvantum/Utterly-Nord-Light-Solid\n\ncp -a *.colorscheme $out/share/konsole/\n\ncp -a sddm $out/share/sddm/themes/Utterly-Nord\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plasma theme with Nordic Colors, transparency, blur and round edges for UI elements",
         homepage: "https://himdek.com/Utterly-Nord-Plasma/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "HTML, Vue, Svelte, Astro, Angular, Jinja, Twig, Nunjucks, and Vento formatter",
       hash: "sha256-bw7cMRYmqzWYqkp7RjT+HtL5jO6+GW9h/yOGQmw+bbU=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "markup",
         fileExtensions: nix.thunk(() => ["html", "vue", "svelte", "astro", "jinja", "jinja2", "twig", "njk", "vto"]),

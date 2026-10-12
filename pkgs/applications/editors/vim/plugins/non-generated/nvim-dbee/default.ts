@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "0.1.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kndndrj",
       repo: "nvim-dbee",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-AOime4vG0NFcUvsd9Iw5SxR7WaeCsoCRU6h5+vSkt4M=",
     }))));
   const dbee_bin = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbee-bin",
       version: version,
       src: src,
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-U/3WZJ/+Bm0ghjeNUILsnlZnjIwk3ySaX3Rd4L9Z62A=",
       buildInputs: nix.thunk(() => [arrow_cpp, duckdb]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "dbee" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "dbee" })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nvim-dbee",
       version: version,
       src: src,
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.app(nix.sel(lib, "getExe"), dbee_bin)} $target/bin/dbee
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.nvim-dbee.dbee-bin" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.nvim-dbee.dbee-bin" })))),
         "dbee-bin": dbee_bin,
       })),
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(vimPlugins, "nui-nvim"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Interactive database client for neovim",
         homepage: "https://github.com/kndndrj/nvim-dbee",
         changelog: nix.thunk(() => nix.str`https://github.com/kndndrj/nvim-dbee/releases/tag/v${version}`),

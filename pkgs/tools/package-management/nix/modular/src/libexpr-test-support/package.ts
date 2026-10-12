@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const rapidcheck = nix.arg($, "rapidcheck");
   const version = nix.arg($, "version");
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-util-test-support",
       version: version,
       workDir: nix.path(here, "./."),
       propagatedBuildInputs: nix.thunk(() => [nix_store_test_support, nix_expr, nix_expr_c, rapidcheck]),
       mesonFlags: [],
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

@@ -27,26 +27,26 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "fprintd"));
   const fprintdPkg = nix.thunk(() => (nix.asBool(nix.sel(cfg, "tod", "enable")) ? nix.sel(pkgs, "fprintd-tod") : nix.sel(pkgs, "fprintd")));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fprintd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "fprintd daemon and PAM module for fingerprint readers handling")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: fprintdPkg,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.fprintd.tod.enable then pkgs.fprintd-tod else pkgs.fprintd")),
               description: "fprintd package to use.\n",
             })))),
           tod: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Touch OEM Drivers library support")),
             driver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.libfprint-2-tod1-goodix")),
                 description: "Touch OEM Drivers (TOD) package to use.\n",
@@ -56,27 +56,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           dbus: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             fprintd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tod", "enable")), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   FP_TOD_DRIVERS_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "tod", "driver")}${nix.sel(cfg, "tod", "driver", "driverPath")}`),
                 })))),
             })),

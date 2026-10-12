@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "bzip2",
         version: "1.0.8",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://sourceware.org/pub/bzip2/bzip2-${version}.tar.gz`),
             hash: "sha256-q1oDF27hBtPw+pDjgdpHjdrkBZGBU8yiSOaCzQxKImk=",
           })))),
@@ -59,15 +59,15 @@ EOF
         enableParallelBuilding: true,
         postInstall: "ln -s $out/lib/libbz2.so.1.0.* $out/lib/libbz2.so.1.0\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tests: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })),
         })),
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "High-quality data compression program",
           homepage: "https://www.sourceware.org/bzip2",
           changelog: "https://sourceware.org/git/?p=bzip2.git;a=blob;f=CHANGES;hb=HEAD",

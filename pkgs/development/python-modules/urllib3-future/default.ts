@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const wsproto = nix.arg($, "wsproto");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "urllib3-future",
       version: "2.25.902",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jawah",
           repo: "urllib3.future",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,10 +47,10 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"'''ignore:.*but not measured.*:coverage.exceptions.CoverageWarning''',\" \"\" \\\n  --replace-fail \"'''ignore:.*No data was collected.*:coverage.exceptions.CoverageWarning''',\" \"\"\n",
       "build-system": nix.thunk(() => [hatchling]),
-      env: nix.thunk(() => ({ __proto__: pos$2, URLLIB3_NO_OVERRIDE: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, URLLIB3_NO_OVERRIDE: "true" })),
       dependencies: nix.thunk(() => [h11, jh2, qh3]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         brotli: nix.thunk(() => [
           nix.thunk(() => (nix.asBool(isPyPy) ? nix.force(brotlicffi) : nix.force(brotli))),
         ]),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn10Warning"]),
       disabledTestPaths: nix.thunk(() => ["test/contrib/test_resolver.py::test_url_resolver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/jawah/urllib3.future/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),
         description: "Powerful HTTP 1.1, 2, and 3 client with both sync and async interfaces",
         homepage: "https://github.com/jawah/urllib3.future",

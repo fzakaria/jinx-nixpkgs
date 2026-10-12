@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
         const enableParallelBuilding = nix.argOr($_1, "enableParallelBuilding", () => true);
         const meta = nix.argOr($_1, "meta", () => ({}));
         return nix.update(args_2, {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.str`emscripten-${nix.app(nix.sel(lib, "getName"), args_2)}`),
           version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), args_2)),
           buildInputs: nix.thunk(() => nix.concat([emscripten, python3], buildInputs)),
           nativeBuildInputs: nix.thunk(() => nix.concat([emscripten, python3], nativeBuildInputs)),
-          env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { __proto__: pos$1, EMCONFIGURE_JS: 2n })),
+          env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: pos$1, EMCONFIGURE_JS: 2n })),
           dontStrip: nix.thunk(() => nix.selOr(args_2, () => true, "dontStrip")),
           configurePhase: nix.thunk(() => nix.selOr(args_2, () => "# FIXME: Some tests require writing at $HOME\nHOME=$TMPDIR\nrunHook preConfigure\n\nemconfigure ./configure --prefix=$out\n\nmkdir -p .emscriptencache\nexport EM_CACHE=$(pwd)/.emscriptencache\n\nrunHook postConfigure\n", "configurePhase")),
           buildPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preBuild\n\nHOME=$TMPDIR\n\nemmake make\n\nrunHook postBuild\n", "buildPhase")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
           checkPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preCheck\n\necho \"Please provide a test for your emscripten based library/tool, see libxml2 as an exmple on how to use emcc/node to verify your build\"\necho \"\"\necho \"In normal C 'unresolved symbols' would yield an error and a breake of execution. In contrast, in emscripten they are only a warning which is ok given that emscripten assumptions about shared libraries.\"\necho \"  -> https://github.com/kripken/emscripten/wiki/Linking\"\necho \"So just assume the dependencies were built using hydra, then YOU WILL NEVER see the warning and your code depending on a library will always fail!\"\nexit 1\n\nrunHook postCheck\n", "checkPhase")),
           enableParallelBuilding: nix.thunk(() => nix.selOr(args_2, () => true, "enableParallelBuilding")),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             hydraPlatforms: [],
           }, nix.update(meta, {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             maintainers: nix.thunk(() => nix.concat(nix.selOr(meta, () => [], "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "qknight"))])),
           }))),
         });

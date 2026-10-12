@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sblast";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ugjka",
           repo: "sblast",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
 `);
       const subPackages = ".";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: self,
               version: nix.thunk(() => nix.str`v${version}`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Blast your Linux audio to DLNA receivers",
         homepage: "https://github.com/ugjka/sblast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

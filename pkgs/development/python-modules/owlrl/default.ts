@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rdflib = nix.arg($, "rdflib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "owlrl",
       version: "7.6.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RDFLib",
           repo: "OWL-RL",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [rdflib]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, oxigraph: nix.thunk(() => [pyoxigraph]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, oxigraph: nix.thunk(() => [pyoxigraph]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["owlrl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Implementation of the OWL2 RL Profile",
         homepage: "https://github.com/RDFLib/OWL-RL",
         changelog: nix.thunk(() => nix.str`https://github.com/RDFLib/OWL-RL/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

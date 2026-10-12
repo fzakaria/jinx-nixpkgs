@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "catch2",
       version: "3.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catchorg",
           repo: "Catch2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCATCH_BUILD_TESTING=${(nix.asBool(nix.sel(finalAttrs, "doCheck")) ? "ON" : "OFF")}`),
         "-DCATCH_ENABLE_WERROR=OFF",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.sel(finalAttrs, "doCheck")))), nix.thunk(() => ["-DCMAKE_CTEST_ARGUMENTS=-E;ApprovalTests"])))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_32")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-msse2 -mfpmath=sse" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")))), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=cast-align" }))))),
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_32")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-msse2 -mfpmath=sse" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=cast-align" }))))),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [python3]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, spdlog: spdlog })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, spdlog: spdlog })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modern, C++-native, test framework for unit-tests",
         homepage: "https://github.com/catchorg/Catch2",
         changelog: nix.thunk(() => nix.str`https://github.com/catchorg/Catch2/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/release-notes.md`),

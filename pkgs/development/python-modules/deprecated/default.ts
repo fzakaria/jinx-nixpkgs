@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sphinxHook = nix.arg($, "sphinxHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deprecated",
       version: "1.3.1",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tantale",
           repo: "deprecated",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       pythonImportsCheck: nix.thunk(() => ["deprecated"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/laurent-laporte-pro/deprecated/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/tantale/deprecated",
         description: "Python @deprecated decorator to deprecate old python classes, functions or methods",

@@ -40,35 +40,35 @@ const pos$32 = nix.positions(here + "/opensmtpd.nix", [["timeout", 177, 8]]);
 const pos$33 = nix.positions(here + "/opensmtpd.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 151, 3], ["meta", 177, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "opensmtpd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       smtp1: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [25n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [25n]) })),
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               eth1: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$2, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.1.1", prefixLength: 24n })),
                     ]))),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => (() => {
               const testSendmail = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "test-sendmail", nix.thunk(() => nix.str`#!/bin/sh
 set -euxo pipefail
@@ -86,9 +86,9 @@ echo "=========== FINISHED SENDING" >&2
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             opensmtpd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               extraServerArgs: nix.thunk(() => ["-v"]),
               serverConfiguration: "listen on 0.0.0.0\naction relay_smtp2 relay host \"smtp://192.168.1.2\"\nmatch from any for any action relay_smtp2\n",
@@ -101,33 +101,33 @@ echo "=========== FINISHED SENDING" >&2
         const config = nix.arg($, "config");
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$16,
-            firewall: nix.thunk(() => ({ __proto__: pos$11, allowedTCPPorts: nix.thunk(() => [25n, 143n]) })),
+            [nix.POS]: pos$16,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [25n, 143n]) })),
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               eth1: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$12, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$12, address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "opensmtpd"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             opensmtpd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               extraServerArgs: nix.thunk(() => ["-v"]),
               serverConfiguration: nix.thunk(() => nix.str`listen on 0.0.0.0
@@ -137,16 +137,16 @@ match from any for local action dovecot_deliver
 `),
             })),
             dovecot2: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: true,
               enablePAM: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 dovecot_config_version: "2.4.3",
                 dovecot_storage_version: nix.thunk(() => nix.sel(config, "services", "dovecot2", "package", "version")),
                 mail_driver: "maildir",
                 mail_path: "~/mail",
-                protocols: nix.thunk(() => ({ __proto__: pos$19, imap: true })),
+                protocols: nix.thunk(() => ({ [nix.POS]: pos$19, imap: true })),
                 auth_allow_cleartext: true,
               })),
             })),
@@ -157,25 +157,25 @@ match from any for local action dovecot_deliver
         const $ = nix.formals(args, formals$3);
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           networking: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               eth1: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$24, address: "192.168.1.3", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$24, address: "192.168.1.3", prefixLength: 24n })),
                     ]))),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             systemPackages: nix.thunk(() => (() => {
               const sendTestMail = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "send-a-test-mail", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "python3", "interpreter")}
 import smtplib, sys
@@ -218,6 +218,6 @@ with imaplib.IMAP4('192.168.1.2', 143) as imap:
       })(), formals$3),
     })),
     testScript: "start_all()\n\nclient.systemctl(\"start network-online.target\")\nclient.wait_for_unit(\"network-online.target\")\nsmtp1.wait_for_unit(\"opensmtpd\")\nsmtp2.wait_for_unit(\"opensmtpd\")\nsmtp2.wait_for_unit(\"dovecot\")\n\n# To prevent sporadic failures during daemon startup, make sure\n# services are listening on their ports before sending requests\nsmtp1.wait_for_open_port(25)\nsmtp2.wait_for_open_port(25)\nsmtp2.wait_for_open_port(143)\n\nclient.succeed(\"send-a-test-mail\")\nsmtp1.wait_until_fails(\"smtpctl show queue | egrep .\")\nsmtp2.wait_until_fails(\"smtpctl show queue | egrep .\")\nclient.succeed(\"check-mail-landed >&2\")\n\nsmtp1.succeed(\"test-sendmail\")\nsmtp1.wait_until_fails(\"smtpctl show queue | egrep .\")\nsmtp2.wait_until_fails(\"smtpctl show queue | egrep .\")\nclient.succeed(\"check-mail-landed >&2\")\n",
-    meta: nix.thunk(() => ({ __proto__: pos$32, timeout: 1800n })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$32, timeout: 1800n })),
   }))));
 //# sourceMappingURL=opensmtpd.ts.map

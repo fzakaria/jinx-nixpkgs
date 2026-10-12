@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "e2b",
       version: "2.51.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "e2b-dev",
           repo: "E2B",
           tag: nix.thunk(() => nix.str`@e2b/python-sdk@${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r e2b\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud environments for AI agents",
         homepage: "https://github.com/e2b-dev/E2B/blob/main/packages/python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/e2b-dev/E2B/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

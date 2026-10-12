@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const libiberty_static = nix.arg($, "libiberty_static");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oprofile",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/oprofile/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "04m46ni0ryk4sqmzd6mahwzp7iwhwqzfbmfi42fki261sycnz83v",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libbfd, zlib, popt, linuxHeaders, libiberty_static]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-kernel=${linuxHeaders}`), "--disable-shared"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System-wide profiler for Linux",
         longDescription: "OProfile is a system-wide profiler for Linux systems, capable of\nprofiling all running code at low overhead.  It consists of a\nkernel driver and a daemon for collecting sample data, and\nseveral post-profiling tools for turning data into information.\n\nOProfile leverages the hardware performance counters of the CPU\nto enable profiling of a wide variety of interesting statistics,\nwhich can also be used for basic time-spent profiling. All code\nis profiled: hardware and software interrupt handlers, kernel\nmodules, the kernel, shared libraries, and applications.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

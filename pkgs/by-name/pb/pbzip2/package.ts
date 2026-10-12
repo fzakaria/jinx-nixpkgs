@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const major = "1.1";
   const version = nix.thunk(() => nix.str`${major}.13`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pbzip2",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/pbzip2/${major}/${nix.sel(finalAttrs, "version")}/+download/pbzip2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1rnvgcdixjzbrmcr1nv9b6ccrjfrhryaj7jwz28yxxv6lam3xlcg",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/freebsd/freebsd-ports/raw/974d3ff054965d2bd2ab884a0579ed06c5a08b07/archivers/pbzip2/files/patch-BZ2StreamScanner.cpp",
             extraPrefix: "",
             hash: "sha256-dvXdp+5S41akavy+mvPGHpUxHxenXS7bbTVBVkIJj0s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/freebsd/freebsd-ports/raw/974d3ff054965d2bd2ab884a0579ed06c5a08b07/archivers/pbzip2/files/patch-BZ2StreamScanner.h",
             extraPrefix: "",
             hash: "sha256-/twP8HyHP4cAVgb5cUPq0CgDxUgDYPdd9haH9wDOrz8=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://launchpad.net/pbzip2",
         description: "Parallel implementation of bzip2 for multi-core machines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

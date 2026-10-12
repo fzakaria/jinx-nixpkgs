@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ansible",
           repo: "ansible-runner",
           tag: version,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(["test/integration/test_runner.py", "test/unit/test_runner.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/integration", "test/unit/config/test__base.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["ansible_runner"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helps when interfacing with Ansible",
         homepage: "https://github.com/ansible/ansible-runner",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/ansible-runner/releases/tag/${version}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ansible-runner",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

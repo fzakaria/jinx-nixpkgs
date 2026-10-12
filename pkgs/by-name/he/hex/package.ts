@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const hex = nix.arg($, "hex");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hex",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sitkevij",
           repo: "hex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-faZTjori9MXzH4jC73G498WI7THFkGdh31fFb/F6fvA=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: hex,
               version: nix.thunk(() => nix.str`hx ${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Futuristic take on hexdump, made in Rust",
         homepage: "https://github.com/sitkevij/hex",
         changelog: nix.thunk(() => nix.str`https://github.com/sitkevij/hex/releases/tag/v${nix.sel(finalAttrs, "version")}`),

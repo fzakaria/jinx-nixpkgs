@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const autoconf = nix.arg($, "autoconf");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avr-libc",
       version: "2.2.1",
       tag_version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/avrdudes/avr-libc/releases/download/avr-libc-${nix.sel(finalAttrs, "tag_version")}-release/avr-libc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-AGpjBsu8k4w721g6xU+T/n18jPl/nN6R+RxvsCc6tGU=",
         })))),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       stripDebugList: nix.thunk(() => ["bin"]),
       dontPatchELF: true,
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, incdir: "/avr/include" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, incdir: "/avr/include" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C runtime library for AVR microcontrollers",
         homepage: "https://github.com/avrdudes/avr-libc",
         changelog: nix.thunk(() => nix.str`https://github.com/avrdudes/avr-libc/blob/avr-libc-${nix.sel(finalAttrs, "tag_version")}-release/NEWS`),

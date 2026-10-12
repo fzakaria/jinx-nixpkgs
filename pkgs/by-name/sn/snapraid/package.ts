@@ -17,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const smartmontools = nix.arg($, "smartmontools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snapraid",
       version: "14.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amadvance",
           repo: "snapraid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-vM1qPNrMbMaiMTRtpIJr2WdpIDXH5EydmgPeiZ4FrwQ=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/snapraid \\
  --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [smartmontools]))}
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.snapraid.it/",
         downloadPage: "https://github.com/amadvance/snapraid/releases",
         changelog: nix.thunk(() => nix.str`https://github.com/amadvance/snapraid/blob/v${nix.sel(finalAttrs, "version")}/HISTORY`),

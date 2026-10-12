@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-hangul";
       const version = "5.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [fcitx5, libhangul]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hangul wrapper for Fcitx5",
         homepage: "https://github.com/fcitx/fcitx5-hangul",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

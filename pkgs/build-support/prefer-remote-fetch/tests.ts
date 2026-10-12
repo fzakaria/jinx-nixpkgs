@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
       const fetchurl = nix.arg($_1, "fetchurl");
       const fetchzip = nix.arg($_1, "fetchzip");
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fetchgit: nix.thunk(() => nix.app(check, fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "simple-nix-source",
             url: "https://github.com/NixOS/nix",
             rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
             sha256: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
           })))),
         fetchFromGitHub: nix.thunk(() => nix.app(check, fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "simple-nix-source",
             owner: "NixOS",
             repo: "nix",
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
           })))),
         fetchurl: nix.thunk(() => nix.app(check, fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gist.github.com/glandium/01d54cefdb70561b5f6675e08f2990f2/archive/2f430f0c136a69b0886281d0c76708997d8878af.zip",
             sha256: "sha256-J/ZWC23GmFfew/56NQvPqKzqkWgjOaPvbMicFJnuJxI=",
           })))),
         fetchzip: nix.thunk(() => nix.app(check, fetchzip, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gist.github.com/glandium/01d54cefdb70561b5f6675e08f2990f2/archive/2f430f0c136a69b0886281d0c76708997d8878af.zip",
             sha256: "sha256-0ecwgL8qUavSj1+WkaxpmRBmu7cvj53V5eXQV71fddU=",
           })))),

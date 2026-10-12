@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const termcap = nix.arg($, "termcap");
   const curses_library = nix.argOr($, "curses-library", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? nix.force(termcap) : nix.force(ncurses)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "readline",
       version: nix.thunk(() => nix.str`8.3p${nix.builtins.toString(nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.sel(finalAttrs, "upstreamPatches")))))}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}.tar.gz`),
           hash: "sha256-/lODIERngozUle6NHTwDen66E4nCK8agQfYnl2+QYcw=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       upstreamPatches: nix.thunk(() => (() => {
         const patch = (nr) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}-patches/readline83-${nr}`),
             sha256: sha256,
           })));
@@ -47,28 +47,28 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(curses_library, "pname"), "ncurses")), nix.thunk(() => [nix.path(here, "./link-against-ncurses.patch")])), nix.concat([nix.path(here, "./no-arch_only-8.2.patch")], nix.concat(nix.sel(finalAttrs, "upstreamPatches"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "0001-sigwinch.patch",
               url: "https://github.com/msys2/MINGW-packages/raw/90e7536e3b9c3af55c336d929cfcc32468b2f135/mingw-w64-readline/0001-sigwinch.patch",
               stripLen: 1n,
               hash: "sha256-sFK6EJrSNl0KLWqFv5zBXaQRuiQoYIZVoZfa8BZqfKA=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "0002-event-hook.patch",
               url: "https://github.com/msys2/MINGW-packages/raw/13d7fe6618496d509bce96e1852e943096cba6fb/mingw-w64-readline/0002-event-hook.patch",
               stripLen: 1n,
               hash: "sha256-KXI85yKedS/eQ3W0a9rhG9zzN/IQT58qhPdWC2kU0Kw=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "0003-no-winsize.patch",
               url: "https://github.com/msys2/MINGW-packages/raw/13d7fe6618496d509bce96e1852e943096cba6fb/mingw-w64-readline/0003-no-winsize.patch",
               stripLen: 1n,
               hash: "sha256-+z2ak32RnDIlGbz1RwQAf4r9Scn/C3lNyEpFB5rQ5s8=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "0004-locale.patch",
               url: "https://github.com/msys2/MINGW-packages/raw/f768c4b74708bb397a77e3374cc1e9e6ef647f20/mingw-w64-readline/0004-locale.patch",
               stripLen: 1n,
@@ -76,13 +76,13 @@ export default nix.lambda((args) => (() => {
             })))),
         ])))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D__USE_MINGW_ALARM", "-D_POSIX"]))),
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isOpenBSD")), "ln -s $out/lib/libhistory.so* $out/lib/libhistory.so\nln -s $out/lib/libreadline.so* $out/lib/libreadline.so\n")),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Library for interactive line editing",
         longDescription: "The GNU Readline library provides a set of functions for use by\napplications that allow users to edit command lines as they are\ntyped in.  Both Emacs and vi editing modes are available.  The\nReadline library includes additional functions to maintain a\nlist of previously-entered command lines, to recall and perhaps\nreedit those lines, and perform csh-like history expansion on\nprevious commands.\n\nThe history facilities are also placed into a separate library,\nthe History library, as part of the build process.  The History\nlibrary may be used without Readline in applications which\ndesire its capabilities.\n",
         homepage: "https://savannah.gnu.org/projects/readline/",

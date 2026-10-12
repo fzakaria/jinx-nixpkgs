@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const maintainer = nix.arg($, "maintainer");
   const localSystem = nix.argOr($, "localSystem", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     system: nix.thunk(() => nix.selOr(args_1, () => nix.builtins.currentSystem, "system")),
   }));
   const system = nix.argOr($, "system", () => nix.sel(localSystem, "system"));
   const crossSystem = nix.argOr($, "crossSystem", () => nix.force(localSystem));
   const overlay = (self) => (super$) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     _internalCallByNamePackageFile: (file) => (nix.asBool(nix.builtins.pathExists(file)) ? nix.app(nix.sel(super$, "_internalCallByNamePackageFile"), file) : null),
   });
   const nixpkgsArgs = nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["maintainer", "overlays"])), {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     overlays: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "overlays"), [overlay])),
   }));
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nixpkgsArgs));

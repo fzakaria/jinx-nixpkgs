@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libargs = nix.arg($, "libargs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zsync2",
       version: "2.0.0-alpha-1-20250926",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AppImageCommunity",
           repo: "zsync2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_ARGS", true)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-lz -Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rewrite of the advanced file download/sync tool zsync",
         homepage: "https://github.com/AppImageCommunity/zsync2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

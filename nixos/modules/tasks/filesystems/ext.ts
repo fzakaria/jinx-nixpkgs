@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const inInitrd = nix.thunk(() => nix.app(hasExtX, nix.thunk(() => nix.sel(config, "boot", "initrd", "supportedFilesystems"))));
   const inSystem = nix.thunk(() => nix.app(hasExtX, nix.thunk(() => nix.sel(config, "boot", "supportedFilesystems"))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fsPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool((nix.asBool(inInitrd) || nix.asBool(inSystem))))), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "e2fsprogs"))]))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         initrd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(inInitrd))), nix.thunk(() => ["ext2", "ext4"]))),
           extraUtilsCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`# Copy e2fsck and friends.
 copy_bin_and_libs ${nix.sel(pkgs, "e2fsprogs")}/sbin/e2fsck
@@ -39,7 +39,7 @@ ln -sv e2fsck $out/bin/fsck.ext3
 ln -sv e2fsck $out/bin/fsck.ext4
 `))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             initrdBin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), inInitrd, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "e2fsprogs"))]))),
           })),
         })),

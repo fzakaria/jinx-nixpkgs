@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => false);
   const withMpi = nix.argOr($, "withMpi", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nest",
       version: "3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nest",
           repo: "nest-simulator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Alternative to autoPatchElf, moves libraries where\n# Nest expects them to be\nfind $out/lib/nest -exec ln -s {} $out/lib \\;\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: nest, command: "nest --version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: nest, command: "nest --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line tool for simulating neural networks",
         homepage: "https://www.nest-simulator.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/nest/nest-simulator/releases/tag/v${nix.sel(finalAttrs, "version")}`),

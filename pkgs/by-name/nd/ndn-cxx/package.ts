@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ndn-cxx",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "named-data",
           repo: "ndn-cxx",
           rev: nix.thunk(() => nix.str`ndn-cxx-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-gcc15.patch",
             url: "https://github.com/named-data/ndn-cxx/commit/0ba3d3a9d9701be4baa3969fe50e97e89d11249b.patch",
             hash: "sha256-ikVIJ8Jza17k/sa/wtu2EUGLEhUMloMOkBrMN9W9BPY=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: "runHook preCheck\nLD_PRELOAD=build/libndn-cxx.so build/unit-tests\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://named-data.net/",
         description: "Named Data Networking (NDN) or Content Centric Networking (CCN) abstraction",
         longDescription: "ndn-cxx is a C++ library, implementing Named Data Networking (NDN)\nprimitives that can be used to implement various NDN applications.\nNDN operates by addressing and delivering Content Objects directly\nby Name instead of merely addressing network end-points. In addition,\nthe NDN security model explicitly secures individual Content Objects\nrather than securing the connection or “pipe”. Named and secured\ncontent resides in distributed caches automatically populated on\ndemand or selectively pre-populated. When requested by name, NDN\ndelivers named content to the user from the nearest cache, thereby\ntraversing fewer network hops, eliminating redundant requests,\nand consuming less resources overall.\n",

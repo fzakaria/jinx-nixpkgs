@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const testers = nix.arg($, "testers");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zprint",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kkinnear/zprint/releases/download/${nix.sel(finalAttrs, "version")}/zprint-filter-${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-0ogZkC8j+ja0aWvFgNhygof4GZ78aqQA75lRxYfu6do=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         "--no-fallback",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "zprint --version",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Clojure/EDN source code formatter and pretty printer",
         longDescription: "Library and command line tool providing a variety of pretty printing capabilities\nfor both Clojure code and Clojure/EDN structures. It can meet almost anyone's needs.\nAs such, it supports a number of major source code formatting approaches\n",
         homepage: "https://github.com/kkinnear/zprint",

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digital-asset",
           repo: "dazl-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pygments: nix.thunk(() => [pygments]),
         "tls-testing": nix.thunk(() => [pyopenssl]),
       }));
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pyyaml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-level Ledger API client for Daml ledgers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/digital-asset/dazl-client",
         changelog: nix.thunk(() => nix.str`https://github.com/digital-asset/dazl-client/releases/tag/${nix.sel(src, "tag")}`),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

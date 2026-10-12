@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bitbox-bridge",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BitBoxSwiss",
           repo: "bitbox-bridge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/user\nsubstitute bitbox-bridge/release/linux/bitbox-bridge.service $out/lib/systemd/user/bitbox-bridge.service \\\n  --replace-fail /opt/bitbox-bridge/bin/bitbox-bridge $out/bin/bitbox-bridge\ninstall -Dm644 bitbox-bridge/release/linux/hid-digitalbitbox.rules $out/etc/udev/rules.d/50-hid-digitalbitbox.rules\n")),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           basic: nix.thunk(() => nix.sel(nixosTests, "bitbox-bridge")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bridge service that connects web wallets like Rabby to BitBox02",
         homepage: "https://github.com/BitBoxSwiss/bitbox-bridge",
         downloadPage: "https://bitbox.swiss/download/",

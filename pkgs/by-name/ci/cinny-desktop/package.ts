@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "cinny-desktop",
       version: "4.12.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cinnyapp",
           repo: "cinny-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,10 +46,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-14PevMGb0nI89uma0dK7JScn8xkefv2VDb/Sh1rt/qI=",
       postPatch: nix.thunk(() => (() => {
         const cinny$ = nix.thunk(() => nix.app(nix.sel(cinny, "override"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             conf: nix.thunk(() => ({
-              __proto__: pos$3,
-              hashRouter: nix.thunk(() => ({ __proto__: pos$2, enabled: true })),
+              [nix.POS]: pos$3,
+              hashRouter: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true })),
             })),
           }))));
         return nix.str`${nix.app(nix.sel(lib, "getExe"), jq)} \\
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["custom-protocol"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, attrPath: "cinny-unwrapped" })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "cinny-unwrapped" })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Yet another matrix client for desktop",
         homepage: "https://github.com/cinnyapp/cinny-desktop",
         maintainers: nix.thunk(() => (() => {

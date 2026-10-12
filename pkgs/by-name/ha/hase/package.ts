@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sparrow3d = nix.arg($, "sparrow3d");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hase",
       version: "0-unstable-2020-10-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theZiz",
           repo: "hase",
           rev: "31d6840cdf0c72fc459f10402dae7726096b2974",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "NIX_CFLAGS_COMPILE=$(pkg-config --cflags sparrow3d zlib)\n\n# build and install are one step, and inseparable without patching\nmkdir -p $out/{bin,share/applications,share/pixmaps}\n./install.sh $out\n",
       postFixup: "substituteInPlace \"$out/share/applications/hase.desktop\" \\\n  --replace \"Exec=hase\" \"Exec=$out/bin/hase\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source artillery shooter",
         mainProgram: "hase",
         longDescription: "Hase is an open source gravity based artillery shooter. It is similar to\nWorms, Hedgewars or artillery, but the gravity force and direction\ndepends on the mass nearby. It is optimized for mobile game consoles like\nthe GP2X, Open Pandora or GCW Zero.\n",

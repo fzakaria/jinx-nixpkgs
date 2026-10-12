@@ -43,20 +43,20 @@ export default nix.lambda((args) => (() => {
   const baseConfigFile = nix.thunk(() => (nix.asBool(nix.eq(extraConfig, null)) ? null : (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), extraConfig)) || nix.asBool(nix.app(nix.sel(lib, "isPath"), extraConfig)))) ? nix.force(extraConfig) : nix.app(writeText, "extraConfig", extraConfig))));
   const hostMachineBsd = nix.thunk(() => nix.app(nix.sel(freebsd_lib, "mkBsdMachine"), stdenv));
   const filteredSource = nix.thunk(() => nix.app(filterSource, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "sys",
       path: "sys",
       extraPaths: nix.thunk(() => ["include"]),
     }))));
   const patchedSource = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: filteredSource,
       patches: nix.thunk(() => nix.app(nix.sel(freebsd_lib, "filterPatches"), patchesRoot, nix.thunk(() => ["sys", "include"]))),
       postPatch: nix.thunk(() => nix.add("for f in sys/contrib/dev/acpica/acpica_prep.sh; do\n  substituteInPlace \"$f\" --replace-warn 'xargs -J' 'xargs-j '\ndone\n\nfor f in sys/conf/*.mk; do\n  substituteInPlace \"$f\" --replace-quiet 'KERN_DEBUGDIR}${' 'KERN_DEBUGDIR_'\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(baseConfigFile, null)), nix.thunk(() => nix.str`cat ${baseConfigFile} >>sys/${hostMachineBsd}/conf/${baseConfig}
 `)))),
     }))));
   const env = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), extraFlags, (name) => (value) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`MK_${nix.app(nix.sel(lib, "toUpper"), name)}`),
       value: nix.thunk(() => nix.app(nix.sel(lib, "boolToYesNo"), value)),
     })));
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         "-Wno-unused-function",
       ]);
       const env_1 = env;
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, env: env_1 }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, env: env_1 }));
       const makeFlags = nix.thunk(() => ["XARGS_J=xargs-j"]);
       const KODIR = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/kernel`);
       const KMODDIR = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/kernel`);
@@ -116,9 +116,9 @@ runHook postConfigure
       const preBuild = nix.thunk(() => nix.str`cd ../compile/${baseConfig}
 `);
       const outputs = nix.thunk(() => ["out", "debug"]);
-      const meta = nix.thunk(() => ({ __proto__: pos$5, description: "FreeBSD kernel and modules" }));
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$5, description: "FreeBSD kernel and modules" }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         src,
         path,

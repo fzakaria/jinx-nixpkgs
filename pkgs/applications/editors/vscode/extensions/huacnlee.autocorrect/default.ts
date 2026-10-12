@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "autocorrect",
         publisher: "huacnlee",
         version: "2.6.4",
         hash: "sha256-1cN36FnslttmH66J4Xah1KohM2nEQckNUXHZD+ps2uY=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AutoCorrect is a linter and formatter to help you to improve copywriting, correct spaces, words, and punctuations between CJK (Chinese, Japanese, Korean)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=huacnlee.autocorrect",
         homepage: "https://github.com/huacnlee/autocorrect",

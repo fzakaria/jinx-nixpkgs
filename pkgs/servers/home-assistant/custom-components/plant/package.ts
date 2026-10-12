@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "plant";
       const version = "2026.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "homeassistant-plant",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [async_timeout]);
       const nativeCheckInputs = nix.thunk(() => [pytest_freezer, pytest_homeassistant_custom_component, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative Plant component of home assistant",
         homepage: "https://github.com/Olen/homeassistant-plant",
         changelog: nix.thunk(() => nix.str`https://github.com/Olen/homeassistant-plant/releases/tag/${nix.sel(src, "tag")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

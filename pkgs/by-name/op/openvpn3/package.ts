@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const enableSystemdResolved = nix.argOr($, "enableSystemdResolved", () => true);
   const libfmt_meson_patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://wrapdb.mesonbuild.com/v2/fmt_11.2.0-1/get_patch",
       hash: "sha256-ZFvxwzWiRgi0s08W7RC5I3u7ATFIhmj7hkVCAiOeCGw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "openvpn3",
       version: "27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "OpenVPN",
           repo: "openvpn3-linux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,19 +64,19 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-handle-result-from-DcoKeyConfig_ParseFromString.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/OpenVPN/openvpn3-linux/commit/f6b84daf83ef507a78ca4af32bf4a55470ba0043.patch?full_index=1",
             hash: "sha256-nzlZvOOt1T84mZ9odmdIsBsioxvakzKzmRw6+nlwPzs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/OpenVPN/openvpn3/commit/f3e7d10dfb787de592a3b50bbe47b8a421c8d185.patch?full_index=1",
             hash: "sha256-17jBA3lWFklxVbu/JoH6VBlBT9BpP4wAlKncGmjLqkc=",
             extraPrefix: "openvpn3-core/",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/OpenVPN/openvpn3/commit/11ab894befb781a3c255e64a53571f2fd697bdfe.patch?full_index=1",
             hash: "sha256-BNR+n0g6Xkb2iAWloZy6gobxvu/KRhRkCGZJbtZXg4A=",
             extraPrefix: "openvpn3-core/",
@@ -152,13 +152,13 @@ patchShebangs \\
       postFixup: nix.thunk(() => nix.str`wrapPythonPrograms
 wrapPythonProgramsIn "$out/libexec/openvpn3-linux" "$out ${nix.sel(finalAttrs, "pythonPath")}"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$6, NIX_LDFLAGS: "-lpthread" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_LDFLAGS: "-lpthread" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "OpenVPN 3 Linux client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         homepage: "https://github.com/OpenVPN/openvpn3-linux/",

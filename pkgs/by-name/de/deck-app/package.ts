@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deck-app",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuzeguitarist/Deck/releases/download/v${nix.sel(finalAttrs, "version")}/Deck.dmg`),
           hash: "sha256-U5iMoQZGycwiiehxKUB3iohvzAh42gkC1sk3AJ62Ujs=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Deck is a modern, native, privacy-first clipboard manager for macOS.",
         homepage: "https://deckclip.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/yuzeguitarist/Deck/releases/tag/v${nix.sel(finalAttrs, "version")}`),

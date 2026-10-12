@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spotlight-downloader",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ORelio",
           repo: "Spotlight-Downloader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), mono)} $out/bin/SpotlightDownloade
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Retrieve Windows Spotlight images from the Microsoft Spotlight API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")),
         maintainers: nix.thunk(() => (() => {

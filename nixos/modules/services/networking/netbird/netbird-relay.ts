@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "netbird", "relay"));
   const cmd = nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "netbird-relay"));
-  const derivedLEDataDir = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "settings"), "letsencrypt-domain")) && nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "letsencrypt-data-dir"))))), nix.thunk(() => ({ __proto__: pos$1, "letsencrypt-data-dir": "/var/lib/netbird-relay" }))));
+  const derivedLEDataDir = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "settings"), "letsencrypt-domain")) && nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "letsencrypt-data-dir"))))), nix.thunk(() => ({ [nix.POS]: pos$1, "letsencrypt-data-dir": "/var/lib/netbird-relay" }))));
   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update(nix.sel(cfg, "settings"), derivedLEDataDir))));
   const listenPortMatch = nix.thunk(() => nix.builtins.match(".*:([0-9]+)$", nix.thunk(() => nix.sel(cfg, "settings", "listen-address"))));
   const listenPort = nix.thunk(() => (nix.asBool(nix.eq(listenPortMatch, null)) ? null : nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.builtins.head(listenPortMatch)))));
@@ -53,21 +53,21 @@ export default nix.lambda((args) => (() => {
   const needsPrivPort = nix.thunk(() => (nix.asBool(!nix.eq(listenPort, null)) && nix.asBool(nix.lt(listenPort, 1024n))));
   const letsencryptEnabled = nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "letsencrypt-domain"));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         netbird: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           relay: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Netbird's Relay Service")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "netbird-relay", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -77,45 +77,45 @@ export default nix.lambda((args) => (() => {
                           ]))));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       "listen-address": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "The host address and port separated by colon where the relay will listen\n",
                           default: ":33080",
                         })))),
                       "exposed-address": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Exposed address for peers. Address told to the peers to connect to\n",
                           example: "rels://relay.example.com:443",
                         })))),
                       "enable-stun": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Enable embedded STUN server",
                         })))),
                       "stun-ports": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "port")))),
                           default: nix.thunk(() => [3478n]),
                           description: "STUN server UDP ports",
                         })))),
                       "log-level": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["panic", "fatal", "error", "warn", "info", "debug", "trace"]))),
                           default: "info",
                           description: "Log level of the netbird relay service",
                         })))),
                       "metrics-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 9092n,
                           description: "Metrics endpoint http port. Metrics are accessible under host:metrics-port/metrics",
                         })))),
                       "health-listen-address": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Listen address of healthcheck server\n",
                           default: ":9000",
@@ -126,20 +126,20 @@ export default nix.lambda((args) => (() => {
                 description: "Settings to configure the netbird relay.\nConverted automatically into cli args, check all the options with `netbird-relay --help`\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "externalPath")))),
                 default: null,
                 description: "Path (as string) to an environmentFile with the netbird relay environment variables.\nYou can find all the variables under [Relay runtime env variables](https://docs.netbird.io/selfhosted/environment-variables#runtime-variables-2).\n\nWARNING: You must manually open any port configured via environmentFile.\nIf you use an Internet domain privileged port (e.g 443), add CAP_NET_BIND_SERVICE to systemd's CapabilityBoundingSet and AmbientCapabilities\n",
                 example: "/run/netbird-relay.env",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Open STUN ports in the firewall for the netbird relay.\n\nWARNING: You must manually open listen-address port/tcp and port 80/tcp,\nif you are exposing the relay directly to the internet.\nReview [set-up-external-relays](https://docs.netbird.io/selfhosted/maintenance/scaling/set-up-external-relays)\n",
               })))),
             authSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "externalPath")))),
                 default: null,
                 description: "Path (as string) to a file containing the auth-secret used by netbird to connect to the relay server.\nIt will populate `NB_AUTH_SECRET`\n",
@@ -150,35 +150,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (nix.asBool(authSecretSet) || nix.asBool(!nix.eq(nix.sel(cfg, "environmentFile"), null)))),
             message: "services.netbird.relay requires NB_AUTH_SECRET, either set authSecretFile or configure it in environmentFile",
           })),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => !nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "auth-secret"), null))),
             message: "settings.auth-secret puts the secret into the nix store and the cli args. Use relay.authSecretFile instead",
           })),
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(letsencryptEnabled)) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/var/lib/", nix.thunk(() => nix.selOr(cfg, () => "", "settings", "letsencrypt-data-dir")))))),
             message: "settings.letsencrypt-data-dir must be under /var/lib, the only writable location when using DynamidcUser in systemd",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "settings", "enable-stun")) && nix.asBool(nix.eq(nix.sel(cfg, "settings", "stun-ports"), []))))),
             message: "Missing stun ports while enable-stun = true",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "netbird-relay": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Relay for Netbird, a wireguard VPN",
               documentation: nix.thunk(() => ["https://netbird.io/docs/"]),
               after: nix.thunk(() => ["network.target"]),
@@ -186,9 +186,9 @@ export default nix.lambda((args) => (() => {
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), authSecretSet, "export NB_AUTH_SECRET=\"$(< \"$CREDENTIALS_DIRECTORY/auth_secret\")\"\n")}
 exec ${cmd} ${args_1}
 `),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$23, StartLimitIntervalSec: 60n, StartLimitBurst: 10n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, StartLimitIntervalSec: 60n, StartLimitBurst: 10n })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
                 LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), authSecretSet, nix.thunk(() => nix.str`auth_secret:${nix.sel(cfg, "authSecretFile")}`))),
                 Restart: "always",
@@ -221,15 +221,15 @@ exec ${cmd} ${args_1}
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           firewall: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.sel(cfg, "settings", "enable-stun")))), nix.thunk(() => nix.sel(cfg, "settings", "stun-ports")))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       doc: nix.path(here, "./netbird-relay.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "woile"))]),
     })),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const ocaml_migrate_parsetree = nix.arg($, "ocaml-migrate-parsetree");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "6.1.1" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.32")) ? "6.0.3" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.20")) ? "5.2.1" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.15")) ? "5.1" : "5.0")))));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "6.1.1": "sha256-yR0epeFeaSii+JR9vRNbn3ZcwOLXK+JxQnmBr801DCQ=",
     "6.0.3": "sha256-N0qpezLF4BwJqXgQpIv6IYwhO1tknkRSEBRVrBnJSm0=",
     "5.2.1": "sha256:11h75dsbv3rs03pl67hdd3lbim7wjzh257ij9c75fcknbfr5ysz9",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
     "5.0": "sha256:0fkzrn4pdyvf1kl0nwvhqidq01pnq3ql8zk1jd56hb0cxaw851w3",
   }, nix.key(nix.str`${version}`)));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ppx_deriving",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ppx_deriving/releases/download/v${nix.sel(finalAttrs, "version")}/ppx_deriving-${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "6.0")), "v")}${nix.sel(finalAttrs, "version")}.${(nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "6.1.1")) ? "tar.gz" : "tbz")}`),
           hash: hash,
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "5.2")) ? nix.force(ounit2) : nix.force(ounit))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library simplifying type-driven code generation on OCaml >=4.02",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "maurer"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

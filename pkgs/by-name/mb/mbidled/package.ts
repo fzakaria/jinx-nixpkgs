@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libev = nix.arg($, "libev");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mbidled",
       version: "0-unstable-2023-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsugabubus",
           repo: "mbidled",
           rev: "c724a34cc01b829b19a60655fc1652a378db7f27",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       buildInputs: nix.thunk(() => [libev, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run command on mailbox change",
         homepage: "https://github.com/zsugabubus/mbidled",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

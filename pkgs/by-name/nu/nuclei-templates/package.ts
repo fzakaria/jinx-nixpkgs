@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nuclei-templates",
       version: "10.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "projectdiscovery",
           repo: "nuclei-templates",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/nuclei-templates\ncp -R cloud code dast dns file headless helpers http javascript network profiles ssl \\\n  $out/share/nuclei-templates/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Templates for the nuclei engine to find security vulnerabilities",
         homepage: "https://github.com/projectdiscovery/nuclei-templates",
         changelog: nix.thunk(() => nix.str`https://github.com/projectdiscovery/nuclei-templates/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

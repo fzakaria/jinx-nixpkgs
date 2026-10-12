@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hygg",
       version: "0.1.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kruseio",
           repo: "hygg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimalistic Vim-like TUI document reader",
         longDescription: "Hygg provides universal document support for PDF,EPUB DOCX amongst others\nIt also comes with:\n* keyboard based navigation - Vim-inspired keybindings\n* Powerful search - Find anything instantly, highlight important passages, add bookmarks\n* Never lose your place - Automatic progress saving\n* Extensible workflows - Execute commands directly from copied text\n* Respects your privacy - Run locally without server, or selfhost the sync server\n",
         homepage: "https://terminaltrove.com/hygg",

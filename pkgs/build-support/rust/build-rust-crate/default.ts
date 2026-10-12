@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const mkRustcDepArgs = (dependencies) => (crateRenames) => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (dep) => (() => {
       const normalizeName = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"])));
       const extern = nix.thunk(() => nix.app(normalizeName, nix.thunk(() => nix.sel(dep, "libName"))));
-      const findMatchOrUseExtern = (choices) => nix.app(nix.sel(lib, "findFirst"), (choice) => (nix.asBool(!nix.asBool(nix.has(choice, "version"))) || nix.asBool(nix.eq(nix.sel(choice, "version"), nix.selOr(dep, () => "", "version")))), nix.thunk(() => ({ __proto__: pos$1, rename: extern })), choices);
+      const findMatchOrUseExtern = (choices) => nix.app(nix.sel(lib, "findFirst"), (choice) => (nix.asBool(!nix.asBool(nix.has(choice, "version"))) || nix.asBool(nix.eq(nix.sel(choice, "version"), nix.selOr(dep, () => "", "version")))), nix.thunk(() => ({ [nix.POS]: pos$1, rename: extern })), choices);
       const name = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(dep, "crateName")), crateRenames)) ? (() => {
         const choices = nix.thunk(() => nix.sel(crateRenames, nix.key(nix.sel(dep, "crateName"))));
         return nix.app(normalizeName, nix.thunk(() => (nix.asBool(nix.builtins.isList(choices)) ? nix.sel(nix.app(findMatchOrUseExtern, choices), "rename") : nix.force(choices))));
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const mkRustcFeatureArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (f) => nix.str`--cfg feature=\\"${f}\\"`));
   const lintsToRustcFlags = (lints) => (() => {
     const levelFlag = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       allow: "-A",
       warn: "-W",
       "force-warn": "--force-warn",
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       forbid: "-F",
     }));
     const toolPrefix = (tool) => (nix.asBool(nix.eq(tool, "rust")) ? "" : nix.str`${tool}::`);
-    const normalize = (val) => (nix.asBool(nix.builtins.isString(val)) ? { __proto__: pos$3, level: val, priority: 0n } : nix.update({ __proto__: pos$4, priority: 0n }, val));
+    const normalize = (val) => (nix.asBool(nix.builtins.isString(val)) ? { [nix.POS]: pos$3, level: val, priority: 0n } : nix.update({ [nix.POS]: pos$4, priority: 0n }, val));
     const entries = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (tool) => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (val) => (() => {
           const e = nix.thunk(() => nix.app(normalize, val));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             priority: nix.thunk(() => nix.attr(e, "priority")),
             flag: nix.thunk(() => nix.str`${nix.sel(levelFlag, nix.key(nix.sel(e, "level")))} ${nix.app(toolPrefix, tool)}${name}`),
           };
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
     return nix.builtins.map((e) => nix.sel(e, "flag"), sorted);
   })();
   const needUnstableCLI = (dependencies) => nix.app(nix.sel(lib, "any"), (dep) => nix.selOr(dep, () => false, "stdlib"), dependencies);
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./log.nix")), nix.thunk(() => ({ __proto__: pos$6, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./log.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, lib: lib }))));
   const noisily = nix.thunk(() => nix.attr(from, "noisily"));
   const echo_colored = nix.thunk(() => nix.attr(from, "echo_colored"));
   const configureCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./configure-crate.nix")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       lib: lib,
       stdenv: stdenv,
       echo_colored: echo_colored,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       mkRustcDepArgs: mkRustcDepArgs,
       mkRustcFeatureArgs: mkRustcFeatureArgs,
     }))));
-  const installCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./install-crate.nix")), nix.thunk(() => ({ __proto__: pos$8, stdenv: stdenv }))));
+  const installCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./install-crate.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, stdenv: stdenv }))));
   return (crate_) => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const rust = nix.argOr($_1, "rust", () => nix.force(rustc));
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
       const crateBin = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (bin) => !nix.asBool((nix.asBool(nix.has(bin, "name")) && nix.asBool(nix.eq(nix.sel(bin, "name"), ",")))), nix.thunk(() => nix.selOr(crate, () => [], "crateBin"))));
       const hasCrateBin = nix.thunk(() => nix.has(crate, "crateBin"));
       const buildCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-crate.nix")), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           lib: lib,
           stdenv: stdenv,
           mkRustcDepArgs: mkRustcDepArgs,
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
           const postInstall_1 = postInstall;
           const buildTests_1 = buildTests;
           const src = nix.thunk(() => nix.selOr(crate, () => nix.app(fetchCrate, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 crateName: nix.thunk(() => nix.attr(crate, "crateName")),
                 version: nix.thunk(() => nix.attr(crate, "version")),
                 sha256: nix.thunk(() => nix.attr(crate, "sha256")),
@@ -231,7 +231,7 @@ export default nix.lambda((args) => (() => {
           const extraRustcOptsForBuildRs_1 = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(crate, "extraRustcOptsForBuildRs")), nix.thunk(() => nix.sel(crate, "extraRustcOptsForBuildRs"))), nix.concat(extraRustcOptsForBuildRs_, nix.concat(lintFlags, nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(edition, null)), nix.thunk(() => nix.str`--edition ${edition}`))))));
           const capLints_1 = resolvedCapLints;
           const configurePhase = nix.thunk(() => nix.app(configureCrate, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               crateName: crateName,
               crateType: crateType,
               buildDependencies: buildDependencies_1,
@@ -262,7 +262,7 @@ export default nix.lambda((args) => (() => {
               codegenUnits: codegenUnits,
             }))));
           const buildPhase = nix.thunk(() => nix.app(buildCrate, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               crateName: crateName,
               version: version,
               dependencies: dependencies_1,
@@ -289,14 +289,14 @@ export default nix.lambda((args) => (() => {
           const outputs = nix.thunk(() => (nix.asBool(buildTests_1) ? ["out"] : ["out", "lib"]));
           const outputDev = nix.thunk(() => (nix.asBool(buildTests_1) ? ["out"] : ["lib"]));
           const meta = nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             mainProgram: crateName,
             badPlatforms: nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isMips64n32")),
             ]),
           }));
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             crateName,
             preUnpack: preUnpack_1,
             postUnpack: postUnpack_1,
@@ -356,7 +356,7 @@ export default nix.lambda((args) => (() => {
           };
         })(), extraDerivationAttrs)));
     })(), formals$2), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       rust: nix.thunk(() => nix.selOr(crate_, () => nix.force(rustc), "rust")),
       cargo: nix.thunk(() => nix.selOr(crate_, () => nix.force(cargo), "cargo")),
       useClippy: nix.thunk(() => nix.selOr(crate_, () => false, "useClippy")),

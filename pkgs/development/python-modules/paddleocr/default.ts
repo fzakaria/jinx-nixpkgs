@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PaddlePaddle",
           repo: "PaddleOCR",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/PaddlePaddle/PaddleOCR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Multilingual OCR toolkits based on PaddlePaddle",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

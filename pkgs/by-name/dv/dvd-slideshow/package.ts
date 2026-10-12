@@ -55,11 +55,11 @@ case "$exe" in
 esac
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvd-slideshow",
       version: "0.8.4-2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dvd-slideshow/files/dvd-slideshow-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "17c09aqvippiji2sd0pcxjg3nb1mnh9k5nia4gn5lhcvngjcp1q5",
         })))),
@@ -82,7 +82,7 @@ ln -s dvd-slideshow.sh "$out/bin/jigl2slideshow"
 cp -a man "$out/"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Suite of command line programs that creates a slideshow-style video from groups of pictures",
         homepage: "https://dvd-slideshow.sourceforge.net/wiki/Main_Page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

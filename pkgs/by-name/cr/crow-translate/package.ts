@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const withPiper = nix.argOr($, "withPiper", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "crow-translate",
       version: "4.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "office",
           repo: "crow-translate",
@@ -60,17 +60,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace $out/share/applications/org.kde.CrowTranslate.desktop \\\n  --replace-fail 'Exec=crow' \"Exec=$out/bin/crow\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing",
         homepage: "https://invent.kde.org/office/crow-translate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

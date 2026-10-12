@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
   const ocamlformat_rpc_lib = nix.arg($, "ocamlformat-rpc-lib");
   const ocaml = nix.arg($, "ocaml");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5")) ? "1.27.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) ? "1.26.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")) ? "1.23.1" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")) ? "1.21.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "1.18.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "1.10.5" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) ? "1.9.0" : "1.4.1"))))))));
-  const jsonrpc_v = nix.thunk(() => nix.app(nix.sel(jsonrpc, "override"), nix.thunk(() => ({ __proto__: pos$1, version: version }))));
-  const ppx_yojson_conv_lib_v = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.17.0")) ? nix.force(ppx_yojson_conv_lib) : nix.app(nix.sel(ppx_yojson_conv_lib, "override"), nix.thunk(() => ({ __proto__: pos$2, yojson: yojson_2 })))));
+  const jsonrpc_v = nix.thunk(() => nix.app(nix.sel(jsonrpc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version }))));
+  const ppx_yojson_conv_lib_v = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.17.0")) ? nix.force(ppx_yojson_conv_lib) : nix.app(nix.sel(ppx_yojson_conv_lib, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, yojson: yojson_2 })))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lsp",
       version: nix.thunk(() => nix.attr(jsonrpc_v, "version")),
       src: nix.thunk(() => nix.attr(jsonrpc_v, "src")),
@@ -94,19 +94,19 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.23.1")) ? [jsonrpc, ppx_yojson_conv_lib, uutf] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.14.0")) ? [jsonrpc, ppx_yojson_conv_lib_v, uutf] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.10.0")) ? [dyn, jsonrpc, ordering, ppx_yojson_conv_lib_v, stdune, uutf] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.9.0")) ? [
         csexp,
         jsonrpc,
-        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ __proto__: pos$3, version: "1.2.0" })))),
+        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "1.2.0" })))),
         ppx_yojson_conv_lib_v,
         result,
         uutf,
       ] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.7.0")) ? [
         csexp,
         jsonrpc,
-        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ __proto__: pos$4, version: "1.2.0" })))),
+        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, version: "1.2.0" })))),
         ppx_yojson_conv_lib,
         result,
         uutf,
       ] : [csexp, jsonrpc, ppx_yojson_conv_lib, stdlib_shims, uutf])))))),
-      meta: nix.thunk(() => nix.update(nix.sel(jsonrpc, "meta"), { __proto__: pos$5, description: "LSP protocol implementation in OCaml" })),
+      meta: nix.thunk(() => nix.update(nix.sel(jsonrpc, "meta"), { [nix.POS]: pos$5, description: "LSP protocol implementation in OCaml" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lsp.ts.map

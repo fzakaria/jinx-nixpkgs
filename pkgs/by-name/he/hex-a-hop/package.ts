@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
       const pname = "hex-a-hop";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/hexahop/${version}/hex-a-hop-${version}.tar.gz`),
           sha256: "sha256-fBSvNtgNR0aNofbvoYpM1e8ww4ARlXIvrQUvJqVGLlY=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://sourceforge.net/p/hexahop/code/ci/dfa365a90be5c52ef21235a9e90a865b04da3ad4/tree/data/hex-a-hop.png?format=raw",
           sha256: "sha256-Vh/1wwRmC2eSD/+mk1Oqt7EX4a4k++nUAbWQD2P2hNA=",
         }))));
       const desktop = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://sourceforge.net/p/hexahop/code/ci/e67385078e4f248a3877ee1066613d231c0d0eee/tree/data/hex-a-hop.desktop?format=raw",
           sha256: "sha256-j6gKRq+8b1NDwP1WcCaScfmwNxAl78CfK6pemROrRak=",
         }))));
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${desktop} $out/share/applications/${pname}.desktop
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Puzzle game based on hexagonal tiles",
         mainProgram: "hex-a-hop",
         homepage: "https://hexahop.sourceforge.net",
@@ -62,7 +62,7 @@ install -Dm644 ${desktop} $out/share/applications/${pname}.desktop
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

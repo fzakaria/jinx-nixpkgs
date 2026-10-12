@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mediamtx"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml_1_2"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mediamtx: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MediaMTX")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mediamtx", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Settings for MediaMTX. Refer to the defaults at\n<https://github.com/bluenviron/mediamtx/blob/main/mediamtx.yml>.\n",
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 paths: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   cam: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     runOnInit: "${lib.getExe pkgs.ffmpeg} -f v4l2 -i /dev/video0 -f rtsp rtsp://localhost:$RTSP_PORT/$RTSP_PATH",
                     runOnInitRestart: true,
                   })),
@@ -65,42 +65,42 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
               })()),
               description: "Extra environment variables for MediaMTX",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$6, MTX_CONFKEY: "mykey" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$6, MTX_CONFKEY: "mykey" })),
             })))),
           allowVideoAccess: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "access to video devices like cameras on the system\n")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "mediamtx.yaml": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "mediamtx.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             mediamtx: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.sel(cfg, "env")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 DynamicUser: true,
                 User: "mediamtx",
                 Group: "mediamtx",

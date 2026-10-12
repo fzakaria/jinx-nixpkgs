@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const easycrypt = nix.arg($, "easycrypt");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(easycrypt, "src")),
       version: nix.thunk(() => nix.attr(easycrypt, "version")),
       pyproject: false,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp scripts/testing/runtest $out/bin/ec-runtest\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(easycrypt, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Testing program for EasyCrypt formalizations",
         mainProgram: "ec-runtest",
       })),

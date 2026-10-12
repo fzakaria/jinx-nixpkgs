@@ -35,41 +35,41 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "hedgedoc",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     containers: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       sqlite: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            hedgedoc: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            hedgedoc: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         };
       })(), formals$2),
       pgsqltcp: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             services: nix.thunk(() => ({
-              __proto__: pos$6,
-              hedgedoc: nix.thunk(() => ({ __proto__: pos$5, after: nix.thunk(() => ["postgresql.target"]) })),
+              [nix.POS]: pos$6,
+              hedgedoc: nix.thunk(() => ({ [nix.POS]: pos$5, after: nix.thunk(() => ["postgresql.target"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             hedgedoc: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 db: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   dialect: "postgres",
                   user: "hedgedoc",
                   password: "$DB_PASSWORD",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hedgedoc-env", "DB_PASSWORD=snakeoilpassword\n")),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pg-init-script.sql", "CREATE ROLE hedgedoc LOGIN PASSWORD 'snakeoilpassword';\nCREATE DATABASE hedgedocdb OWNER hedgedoc;\n")),
             })),
@@ -91,23 +91,23 @@ export default nix.lambda((args) => (() => {
       pgsqluds: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
-              hedgedoc: nix.thunk(() => ({ __proto__: pos$14, after: nix.thunk(() => ["postgresql.target"]) })),
+              [nix.POS]: pos$15,
+              hedgedoc: nix.thunk(() => ({ [nix.POS]: pos$14, after: nix.thunk(() => ["postgresql.target"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             hedgedoc: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 db: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   dialect: "postgres",
                   user: "hedgedoc",
                   password: "$DB_PASSWORD",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hedgedoc-env", "DB_PASSWORD=snakeoilpassword\n")),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pg-init-script.sql", "CREATE ROLE hedgedoc LOGIN PASSWORD 'snakeoilpassword';\nCREATE DATABASE hedgedocdb OWNER hedgedoc;\n")),
             })),

@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const z3$ = nix.argOr($, "z3'", () => nix.app(nix.sel(z3, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Z3Prover",
           repo: "z3",
           rev: nix.thunk(() => nix.str`z3-${version}`),
           hash: "sha256-Bv7+0J7ilJNFM5feYJqDpYsOjj7h7t1Bx/4OIar43EI=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())));
   const enableZ3 = nix.argOr($, "enableZ3", () => !nix.eq(z3$, null));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vampire",
       version: "5.1.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "vprover",
           repo: "vampire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,16 +58,16 @@ export default nix.lambda((args) => (() => {
       prePatch: "rm -rf z3\n",
       doCheck: nix.thunk(() => nix.eq(nix.sel(finalAttrs, "cmakeBuildType"), "Debug")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         z3: z3$,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          "debug-build-with-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$4, cmakeBuildType: "Debug" })))),
+          [nix.POS]: pos$5,
+          "debug-build-with-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, cmakeBuildType: "Debug" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://vprover.github.io/",
         description: "Vampire Theorem Prover",
         mainProgram: "vampire",

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const rev = nix.arg($_1, "rev");
       const versionedName = nix.thunk(() => nix.str`${name}-${rev}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${versionedName}-source`),
           owner: owner,
           repo: repo,
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
           ]))))));
       const prefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(directory, "")), nix.thunk(() => nix.str`/${directory}`)));
       return nix.app(buildDhallPackage, nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           dependencies: dependencies,
           source: source,
           name: versionedName,
           code: nix.thunk(() => nix.str`${src}${prefix}/${file}`),
         }, nix.app(nix.sel(lib, "optionalAttrs"), document, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             documentationRoot: nix.thunk(() => nix.str`${src}/${prefix}`),
             baseImportUrl: nix.thunk(() => nix.str`https://raw.githubusercontent.com/${owner}/${repo}/${rev}${prefix}`),
           }))))));

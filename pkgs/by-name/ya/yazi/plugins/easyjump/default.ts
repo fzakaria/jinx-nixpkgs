@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "easyjump.yazi",
       version: "5.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikavilpas",
           repo: "easyjump.yazi",
           tag: "v5.0.0",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: "source/easyjump.yazi",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin for quickly jumping to the visible files",
         homepage: "https://github.com/mikavilpas/easyjump.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

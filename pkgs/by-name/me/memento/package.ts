@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withOcr = nix.argOr($, "withOcr", () => false);
   const python3 = nix.arg($, "python3");
   const libmocr = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmocr",
       version: "0-unstable-2023-11-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ripose-jp",
           repo: "libmocr",
           rev: "24ec081102208d0ff6954c3003df2fb691713bd5",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "qtbase")), python3]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A library for Manga OCR",
         homepage: "https://github.com/ripose-jp/libmocr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "memento",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "ripose-jp",
           repo: "Memento",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,9 +92,9 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${yt_dlp}/bin" ${nix.app(nix.sel(lib, "optionalString"), withOcr, nix.thunk(() => nix.str`--suffix PYTHONPATH : "${pyEnv}/${nix.sel(python3, "sitePackages")}"`))}
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, libmocr: libmocr })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, libmocr: libmocr })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mpv-based video player for studying Japanese",
         homepage: "https://ripose-jp.github.io/Memento/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

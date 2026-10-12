@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const domain = "octopus_energy";
       const version = "19.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "HomeAssistant-OctopusEnergy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
         "tests/unit/utils/test_dict_to_typed_dict.py::test_when_utc_datetime_is_present_during_bst_then_converted_to_correct_datetime",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9]+\\.[0-9]+\\.[0-9])$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/BottlecapDave/HomeAssistant-OctopusEnergy/releases/tag/v${version}`),
         description: "Unofficial Home Assistant integration for interacting with Octopus Energy",
         homepage: "https://github.com/BottlecapDave/HomeAssistant-OctopusEnergy",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         owner,
         domain,
         version,

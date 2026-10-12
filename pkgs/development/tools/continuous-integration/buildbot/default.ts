@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(lib, "makeScope"), (self) => nix.app(newScope, nix.thunk(() => nix.update(nix.sel(self, "python", "pkgs"), self))), (self) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       python: python3,
       "buildbot-pkg": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkg.nix"), nix.thunk(() => ({})))),
       "buildbot-worker": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./worker.nix"), nix.thunk(() => ({})))),

@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const caf = nix.arg($, "caf");
   const openssl = nix.arg($, "openssl");
   const src_cmake = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "zeek",
       repo: "cmake",
       rev: "a1482b8f9829cea870b4db75c085de1249e11bcb",
       hash: "sha256-kFkLig0g/sBKRg8EnfUldj9R7qX6V+c8Ap98p0YBsIw=",
     }))));
   const prometheus_cpp$ = nix.thunk(() => nix.app(nix.sel(prometheus_cpp, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cmakeFlags: nix.thunk(() => nix.concat(nix.builtins.filter((flag) => !nix.eq(flag, "-DBUILD_SHARED_LIBS=ON"), nix.thunk(() => nix.sel(old, "cmakeFlags"))), ["-DBUILD_SHARED_LIBS=OFF"])),
     })));
   const caf$ = nix.thunk(() => nix.app(nix.sel(caf, "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "unstable-2025-07-23-zeek",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "zeek",
           repo: "actor-framework",
           rev: "4aa660d003d8bbb922a33fb7a31f80d9d3271262",
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "zeek-broker",
       version: "2.8.0-unstable-2026-08-11",
       outputs: nix.thunk(() => ["out", "py"]),
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "zeek",
           repo: "broker",
           rev: "fdca6b8ef4b95ec6518a32db46503c28cc812be4",
@@ -81,7 +81,7 @@ touch $sourceRoot/bindings/python/3rdparty/pybind11/CMakeLists.txt
         nix.thunk(() => nix.str`-Dprometheus-cpp_ROOT=${nix.app(nix.sel(lib, "getDev"), prometheus_cpp$)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Zeek's Messaging Library",
         homepage: "https://github.com/zeek/broker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

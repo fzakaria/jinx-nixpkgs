@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "TOML code formatter",
       hash: "sha256-ASbIESaRVC0wtSpjkHbsyD4Hus6HdjjO58aRX9Nrhik=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "toml",
         fileExtensions: nix.thunk(() => ["toml"]),

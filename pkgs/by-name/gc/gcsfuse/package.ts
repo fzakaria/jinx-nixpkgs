@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gcsfuse",
       version: "3.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlecloudplatform",
           repo: "gcsfuse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "ln -s $out/bin/mount_gcsfuse $out/bin/mount.gcsfuse\nln -s $out/bin/mount_gcsfuse $out/bin/mount.fuse.gcsfuse\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-space file system for interacting with Google Cloud Storage",
         homepage: "https://cloud.google.com/storage/docs/gcs-fuse",
         changelog: nix.thunk(() => nix.str`https://github.com/GoogleCloudPlatform/gcsfuse/releases/tag/v${nix.sel(finalAttrs, "version")}`),

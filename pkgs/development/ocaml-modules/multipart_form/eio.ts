@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const ke = nix.arg($, "ke");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "multipart_form-eio",
       version: nix.thunk(() => nix.attr(multipart_form, "version")),
       src: nix.thunk(() => nix.attr(multipart_form, "src")),

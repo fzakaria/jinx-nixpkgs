@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const menhirLib = nix.arg($, "menhirLib");
   const menhirSdk = nix.arg($, "menhirSdk");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lrgrep",
       version: "0.9",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/let-def/lrgrep/releases/download/v${nix.sel(finalAttrs, "version")}/lrgrep-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-5T3hLkxcvmvKAGQ1kyZrT5+i4/ahOBle7/ekMp9cHHU=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [cmon, menhirLib, menhirSdk]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Detailed error messages for Menhir-generated parsers",
         homepage: "https://github.com/let-def/lrgrep",

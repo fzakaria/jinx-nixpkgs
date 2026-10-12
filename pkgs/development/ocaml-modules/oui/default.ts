@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oui",
       version: "0-unstable-2025-12-02",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "ocaml-universal-installer",
           rev: "202dae889c4850674f7b40ca8d541f98afa2ba0f",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [ppx_expect]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OCamlPro/ocaml-universal-installer",
         description: "A tool that builds standalone installers for your OCaml applications",
         longDescription: "oui is a command-line tool that generates standalone installers for\nLinux, Windows and macOS from your OCaml and non OCaml binaries.\n",

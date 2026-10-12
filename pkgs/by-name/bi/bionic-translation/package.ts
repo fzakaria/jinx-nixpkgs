@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bionic-translation",
       version: "0-unstable-2026-08-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "android_translation_layer",
           repo: "bionic_translation",
           rev: "484b1b05795784a5a57dbd4ffad21a3e680a33b2",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [libbsd, libelf, libglvnd, libunwind, wayland]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of libraries for loading bionic-linked .so files on musl/glibc",
         homepage: "https://gitlab.com/android_translation_layer/bionic_translation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const graphviz = nix.arg($, "graphviz");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "route-graph",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "audius",
           repo: "route-graph",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["route_graph"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for creating graphs of routes",
         homepage: "https://github.com/audius/route-graph",
         changelog: nix.thunk(() => nix.str`https://github.com/audius/route-graph/releases/tag/${nix.sel(finalAttrs, "version")}`),

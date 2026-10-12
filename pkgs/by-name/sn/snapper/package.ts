@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "snapper",
       version: "0.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openSUSE",
           repo: "snapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "rm -r $out/etc/cron.*\npatchShebangs $out/lib/zypp/plugins/commit/*\nfor file in \\\n  $out/lib/pam_snapper/* \\\n  $out/lib/systemd/system/* \\\n  $out/share/dbus-1/system-services/* \\\n; do\n  substituteInPlace $file --replace-warn \"/usr\" \"$out\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, snapper: nix.thunk(() => nix.sel(nixosTests, "snapper")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, snapper: nix.thunk(() => nix.sel(nixosTests, "snapper")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for Linux filesystem snapshot management",
         homepage: "http://snapper.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

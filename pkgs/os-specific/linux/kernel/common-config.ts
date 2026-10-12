@@ -81,9 +81,9 @@ export default nix.lambda((args) => (() => {
   const rustByDefault = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "6.12")) && nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "cc", "isGNU")))))))));
   const withRust = nix.thunk(() => nix.app(nix.sel(lib, "warnIfNot"), nix.thunk(() => (!nix.asBool(forceRust) || nix.asBool(rustAvailable))), "force-enabling Rust for Linux without an available rustc", nix.thunk(() => nix.sel(lib, "warnIfNot")), nix.thunk(() => (!nix.asBool(forceRust) || nix.asBool(rustByDefault))), "force-enabling Rust for Linux on an unsupported kernel version, host platform or compiler", nix.thunk(() => (nix.asBool(forceRust) || nix.asBool((nix.asBool(rustAvailable) && nix.asBool(rustByDefault)))))));
   const options = nix.thunk(() => ({
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     debug: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       DEBUG_INFO: nix.thunk(() => nix.lookup(w_1, "yes")),
       DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.18", nix.thunk(() => nix.lookup(w_1, "yes")))),
       DEBUG_INFO_REDUCED: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.13", nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))))),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
       MEM_ALLOC_PROFILING_ENABLED_BY_DEFAULT: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.10", nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     "power-management": nix.thunk(() => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       CPU_FREQ_DEFAULT_GOV_SCHEDUTIL: nix.thunk(() => nix.lookup(w_1, "yes")),
       CPU_FREQ_GOV_SCHEDUTIL: nix.thunk(() => nix.lookup(w_1, "yes")),
       PM_DEBUG: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       POWER_RESET_GPIO_RESTART: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       PWM: nix.thunk(() => nix.lookup(w_1, "yes")),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         INTEL_IDLE: nix.thunk(() => nix.lookup(w_1, "yes")),
         INTEL_RAPL: nix.thunk(() => nix.lookup(w_1, "module")),
         X86_INTEL_LPSS: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -165,19 +165,19 @@ export default nix.lambda((args) => (() => {
         TPS68470_PMIC_OPREGION: nix.thunk(() => nix.lookup(w_1, "yes")),
         INTEL_HFI_THERMAL: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.18", nix.thunk(() => nix.lookup(w_1, "yes")))),
       }))))),
-    "external-firmware": nix.thunk(() => ({ __proto__: pos$4, STANDALONE: nix.thunk(() => nix.lookup(w_1, "no")) })),
+    "external-firmware": nix.thunk(() => ({ [nix.POS]: pos$4, STANDALONE: nix.thunk(() => nix.lookup(w_1, "no")) })),
     "proc-config-gz": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       IKCONFIG: nix.thunk(() => nix.lookup(w_1, "yes")),
       IKCONFIG_PROC: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     optimization: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       X86_GENERIC: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), nix.thunk(() => nix.lookup(w_1, "yes")))),
       CC_OPTIMIZE_FOR_SIZE: nix.thunk(() => nix.lookup(w_1, "no")),
     })),
     memory: nix.thunk(() => nix.update({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       DAMON: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.15", nix.thunk(() => nix.lookup(w_1, "yes")))),
       DAMON_VADDR: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.15", nix.thunk(() => nix.lookup(w_1, "yes")))),
       DAMON_PADDR: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.16", nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -190,17 +190,17 @@ export default nix.lambda((args) => (() => {
       MEMORY_FAILURE: nix.thunk(() => nix.lookup(w_1, "yes")),
       RAS_CEC: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => nix.lookup(w_1, "yes")))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         HIGHMEM: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
         BOUNCE: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       }))))),
     iommu: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         ARM_SMMU_V3_SVA: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.9", nix.thunk(() => nix.lookup(w_1, "yes")))),
       })))),
-    memtest: nix.thunk(() => ({ __proto__: pos$10, MEMTEST: nix.thunk(() => nix.lookup(w_1, "yes")) })),
+    memtest: nix.thunk(() => ({ [nix.POS]: pos$10, MEMTEST: nix.thunk(() => nix.lookup(w_1, "yes")) })),
     scheduler: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       BLK_CGROUP: nix.thunk(() => nix.lookup(w_1, "yes")),
       BLK_CGROUP_IOLATENCY: nix.thunk(() => nix.lookup(w_1, "yes")),
       BLK_CGROUP_IOCOST: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -212,16 +212,16 @@ export default nix.lambda((args) => (() => {
       UCLAMP_TASK_GROUP: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     timer: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       NO_HZ_FULL: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     numa: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       NUMA: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       NUMA_BALANCING: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     networking: nix.thunk(() => nix.update({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       NET: nix.thunk(() => nix.lookup(w_1, "yes")),
       IP_ADVANCED_ROUTER: nix.thunk(() => nix.lookup(w_1, "yes")),
       IP_PNP: nix.thunk(() => nix.lookup(w_1, "no")),
@@ -318,13 +318,13 @@ export default nix.lambda((args) => (() => {
       AX25: nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "7.1", nix.thunk(() => nix.lookup(w_1, "module")))),
       DINGHAI: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "7.3", nix.thunk(() => nix.lookup(w_1, "yes")))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         NET_VENDOR_MEDIATEK: nix.thunk(() => nix.lookup(w_1, "yes")),
         MT7986_WMAC: nix.thunk(() => nix.app(nix.lookup(w_1, "whenBetween"), "5.18", "6.6", nix.thunk(() => nix.lookup(w_1, "yes")))),
         MT798X_WMAC: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.6", nix.thunk(() => nix.lookup(w_1, "yes")))),
       }))))),
     wireless: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       CFG80211_WEXT: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       IPW2100_MONITOR: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       IPW2200_MONITOR: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -346,7 +346,7 @@ export default nix.lambda((args) => (() => {
       RTW88_8822CE: nix.thunk(() => nix.lookup(w_1, "module")),
     })),
     fb: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       FB: nix.thunk(() => nix.lookup(w_1, "yes")),
       FB_EFI: nix.thunk(() => nix.lookup(w_1, "yes")),
       FB_NVIDIA_I2C: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -368,7 +368,7 @@ export default nix.lambda((args) => (() => {
       DRM_FBDEV_EMULATION: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     fonts: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       FONTS: nix.thunk(() => nix.lookup(w_1, "yes")),
       FONT_8x8: nix.thunk(() => nix.lookup(w_1, "yes")),
       FONT_8x16: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -380,7 +380,7 @@ export default nix.lambda((args) => (() => {
           return (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.lookup(w_2, "isLoongArch64")) || nix.asBool(nix.lookup(w_2, "isPower64")))) || nix.asBool(nix.lookup(w_2, "isS390x")))) || nix.asBool(nix.lookup(w_2, "isx86_64")))) || nix.asBool(nix.lookup(w_2, "isAarch64")))) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "6.11")) && nix.asBool(nix.lookup(w_2, "isRiscV64")))));
         })())));
       return nix.update({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         AGP: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (() => {
             const w_3 = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), w_1);
             return (nix.asBool(nix.lookup(w_3, "isPower")) || nix.asBool(nix.lookup(w_3, "isx86")));
@@ -427,23 +427,23 @@ export default nix.lambda((args) => (() => {
         DRM_DISPLAY_DP_AUX_CEC: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.10", nix.thunk(() => nix.lookup(w_1, "yes")))),
         DRM_RAS: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "7.1", nix.thunk(() => nix.lookup(w_1, "yes")))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")))), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           HYPERV: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.18", nix.thunk(() => nix.lookup(w_1, "yes")))),
           DRM_HYPERV: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.14", nix.thunk(() => nix.lookup(w_1, "module")))),
           FB_HYPERV: nix.thunk(() => nix.app(nix.lookup(w_1, "whenBetween"), "5.14", "7.0", nix.thunk(() => nix.lookup(w_1, "no")))),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           DRM_I915_GVT: nix.thunk(() => nix.lookup(w_1, "yes")),
           DRM_I915_GVT_KVMGT: nix.thunk(() => nix.lookup(w_1, "module")),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           DRM_VC4_HDMI_CEC: nix.thunk(() => nix.lookup(w_1, "yes")),
           ROCKCHIP_DW_HDMI_QP: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.13", nix.thunk(() => nix.lookup(w_1, "yes")))),
           ROCKCHIP_DW_MIPI_DSI2: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.16", nix.thunk(() => nix.lookup(w_1, "yes")))),
         }))))));
     })()),
     rust: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withRust, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         RUST: nix.thunk(() => nix.lookup(w_1, "yes")),
         DRM_PANIC: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.12", nix.thunk(() => nix.lookup(w_1, "yes")))),
         DRM_PANIC_SCREEN: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.12", nix.thunk(() => nix.app(nix.lookup(w_1, "freeform"), "kmsg")))),
@@ -452,7 +452,7 @@ export default nix.lambda((args) => (() => {
         DRM_NOVA: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.16", nix.thunk(() => nix.lookup(w_1, "no")))),
       })))),
     sound: nix.thunk(() => nix.update({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       SND_DYNAMIC_MINORS: nix.thunk(() => nix.lookup(w_1, "yes")),
       SND_AC97_POWER_SAVE: nix.thunk(() => nix.lookup(w_1, "yes")),
       SND_AC97_POWER_SAVE_DEFAULT: nix.thunk(() => nix.app(nix.lookup(w_1, "freeform"), "10")),
@@ -465,7 +465,7 @@ export default nix.lambda((args) => (() => {
       SND_USB_CAIAQ_INPUT: nix.thunk(() => nix.lookup(w_1, "yes")),
       SND_USB_AUDIO_MIDI_V2: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.5", nix.thunk(() => nix.lookup(w_1, "yes")))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         SND_SOC_INTEL_SOUNDWIRE_SOF_MACH: nix.thunk(() => nix.lookup(w_1, "module")),
         SND_SOC_INTEL_USER_FRIENDLY_LONG_NAMES: nix.thunk(() => nix.lookup(w_1, "yes")),
         SND_SOC_SOF_INTEL_SOUNDWIRE_LINK: nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "5.11", nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -497,7 +497,7 @@ export default nix.lambda((args) => (() => {
         SND_SOC_SOF_TIGERLAKE_SUPPORT: nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "5.12", nix.thunk(() => nix.lookup(w_1, "yes")))),
       }))))),
     usb: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       USB: nix.thunk(() => nix.lookup(w_1, "yes")),
       USB_EHCI_ROOT_HUB_TT: nix.thunk(() => nix.lookup(w_1, "yes")),
       USB_EHCI_TT_NEWSCHED: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -508,14 +508,14 @@ export default nix.lambda((args) => (() => {
       USB_XHCI_TEGRA: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => nix.lookup(w_1, "module")))),
     })),
     "usb-serial": nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       USB_SERIAL: nix.thunk(() => nix.lookup(w_1, "yes")),
       USB_SERIAL_GENERIC: nix.thunk(() => nix.lookup(w_1, "yes")),
       USB_SERIAL_CONSOLE: nix.thunk(() => nix.lookup(w_1, "yes")),
       U_SERIAL_CONSOLE: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     filesystem: nix.thunk(() => nix.update({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       FANOTIFY: nix.thunk(() => nix.lookup(w_1, "yes")),
       FANOTIFY_ACCESS_PERMISSIONS: nix.thunk(() => nix.lookup(w_1, "yes")),
       FS_DAX: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -591,9 +591,9 @@ export default nix.lambda((args) => (() => {
       ISO9660_FS: nix.thunk(() => nix.lookup(w_1, "module")),
       DEVTMPFS: nix.thunk(() => nix.lookup(w_1, "yes")),
       UNICODE: nix.thunk(() => nix.lookup(w_1, "yes")),
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isPower")), nix.thunk(() => ({ __proto__: pos$29, HFSPLUS_FS: nix.thunk(() => nix.lookup(w_1, "yes")) }))))),
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isPower")), nix.thunk(() => ({ [nix.POS]: pos$29, HFSPLUS_FS: nix.thunk(() => nix.lookup(w_1, "yes")) }))))),
     security: nix.thunk(() => nix.update({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       BUG: nix.thunk(() => nix.lookup(w_1, "yes")),
       BUG_ON_DATA_CORRUPTION: nix.thunk(() => nix.lookup(w_1, "yes")),
       FORTIFY_SOURCE: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -639,7 +639,7 @@ export default nix.lambda((args) => (() => {
       SCHED_STACK_END_CHECK: nix.thunk(() => nix.lookup(w_1, "yes")),
       SLAB_BUCKETS: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.11", nix.thunk(() => nix.lookup(w_1, "yes")))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         X86_SGX: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.11", nix.thunk(() => nix.lookup(w_1, "yes")))),
         X86_SGX_KVM: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.13", nix.thunk(() => nix.lookup(w_1, "yes")))),
         CRYPTO_DEV_CCP: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -653,11 +653,11 @@ export default nix.lambda((args) => (() => {
         MITIGATION_SLS: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.9", nix.thunk(() => nix.lookup(w_1, "yes")))),
         DEFAULT_MMAP_MIN_ADDR: nix.thunk(() => nix.app(nix.lookup(w_1, "freeform"), "65536")),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         DEFAULT_MMAP_MIN_ADDR: nix.thunk(() => nix.app(nix.lookup(w_1, "freeform"), "32768")),
       })))))),
     microcode: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       MICROCODE: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => nix.lookup(w_1, "yes")))),
       MICROCODE_INTEL: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "6.6", nix.thunk(() => nix.lookup(w_1, "yes")))))),
       MICROCODE_AMD: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "6.6", nix.thunk(() => nix.lookup(w_1, "yes")))))),
@@ -666,7 +666,7 @@ export default nix.lambda((args) => (() => {
       BLK_WBT_MQ: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     container: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       NAMESPACES: nix.thunk(() => nix.lookup(w_1, "yes")),
       RT_GROUP_SCHED: nix.thunk(() => nix.lookup(w_1, "no")),
       CGROUP_DEVICE: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -681,17 +681,17 @@ export default nix.lambda((args) => (() => {
       CGROUP_PIDS: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     staging: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       STAGING: nix.thunk(() => nix.lookup(w_1, "yes")),
       STAGING_MEDIA: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     "proc-events": nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       CONNECTOR: nix.thunk(() => nix.lookup(w_1, "yes")),
       PROC_EVENTS: nix.thunk(() => nix.lookup(w_1, "yes")),
     })),
     tracing: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       FTRACE: nix.thunk(() => nix.lookup(w_1, "yes")),
       KPROBES: nix.thunk(() => nix.lookup(w_1, "yes")),
       FUNCTION_TRACER: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -707,11 +707,11 @@ export default nix.lambda((args) => (() => {
       FUNCTION_GRAPH_RETVAL: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.5", nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     perf: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       PERF_EVENTS_AMD_BRS: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.19", nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))))),
     })),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       PARAVIRT: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       HYPERVISOR_GUEST: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => nix.lookup(w_1, "yes")))),
       PARAVIRT_SPINLOCKS: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -729,7 +729,7 @@ export default nix.lambda((args) => (() => {
       KSM: nix.thunk(() => nix.lookup(w_1, "yes")),
       VIRT_DRIVERS: nix.thunk(() => nix.lookup(w_1, "yes")),
       HIGHMEM64G: nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "6.15", nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           optional: true,
           tristate: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit"))), "y")),
         })))),
@@ -758,7 +758,7 @@ export default nix.lambda((args) => (() => {
       CPU_HAS_LBT: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLoongArch64")), nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))))),
     })),
     media: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       MEDIA_DIGITAL_TV_SUPPORT: nix.thunk(() => nix.lookup(w_1, "yes")),
       MEDIA_CAMERA_SUPPORT: nix.thunk(() => nix.lookup(w_1, "yes")),
       MEDIA_CONTROLLER: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -768,18 +768,18 @@ export default nix.lambda((args) => (() => {
       VIDEO_STK1160_COMMON: nix.thunk(() => nix.app(nix.lookup(w_1, "whenOlder"), "6.5", nix.thunk(() => nix.lookup(w_1, "module")))),
     })),
     "9p": nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       "9P_FSCACHE": nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       "9P_FS_POSIX_ACL": nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     "huge-page": nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       TRANSPARENT_HUGEPAGE: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       TRANSPARENT_HUGEPAGE_ALWAYS: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))),
       TRANSPARENT_HUGEPAGE_MADVISE: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     zram: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       ZRAM: nix.thunk(() => nix.lookup(w_1, "module")),
       ZRAM_WRITEBACK: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       ZRAM_MULTI_COMP: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.2", nix.thunk(() => nix.lookup(w_1, "yes")))),
@@ -796,20 +796,20 @@ export default nix.lambda((args) => (() => {
       ZSMALLOC: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     brcmfmac: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       BRCMFMAC_USB: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
       BRCMFMAC_PCIE: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
     x2apic: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         X86_X2APIC: nix.thunk(() => nix.lookup(w_1, "yes")),
         IRQ_REMAP: nix.thunk(() => nix.lookup(w_1, "yes")),
       })))),
     tests: nix.thunk(() => nix.update({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       RUNTIME_TESTING_MENU: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))),
     }, {
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       CRC32_SELFTEST: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))),
       CRYPTO_TEST: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))),
       EFI_TEST: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))),
@@ -823,7 +823,7 @@ export default nix.lambda((args) => (() => {
       XZ_DEC_TEST: nix.thunk(() => nix.app(nix.lookup(w_1, "option"), nix.thunk(() => nix.lookup(w_1, "no")))),
     })),
     criu: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       CHECKPOINT_RESTORE: nix.thunk(() => nix.lookup(w_1, "yes")),
       MEM_SOFT_DIRTY: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), w_1);
@@ -833,7 +833,7 @@ export default nix.lambda((args) => (() => {
     misc: nix.thunk(() => (() => {
       const useZstd = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "is64bit"));
       return nix.update({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         KERNEL_UNCOMPRESSED: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV")), nix.thunk(() => nix.lookup(w_1, "yes")))),
         KERNEL_XZ: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), w_1);
@@ -1034,18 +1034,18 @@ export default nix.lambda((args) => (() => {
         LRU_GEN_ENABLED: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.1", nix.thunk(() => nix.lookup(w_1, "yes")))),
         FSL_MC_UAPI_SUPPORT: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "5.12", nix.thunk(() => nix.lookup(w_1, "yes")))))),
         ASHMEM: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           optional: true,
           tristate: nix.thunk(() => nix.app(nix.lookup(w_1, "whenBetween"), "5.0", "5.18", "y")),
         })),
         ANDROID: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           optional: true,
           tristate: nix.thunk(() => nix.app(nix.lookup(w_1, "whenBetween"), "5.0", "5.19", "y")),
         })),
-        ANDROID_BINDER_IPC: nix.thunk(() => ({ __proto__: pos$52, optional: true, tristate: "y" })),
-        ANDROID_BINDERFS: nix.thunk(() => ({ __proto__: pos$53, optional: true, tristate: "y" })),
-        ANDROID_BINDER_DEVICES: nix.thunk(() => ({ __proto__: pos$54, optional: true, freeform: "binder,hwbinder,vndbinder" })),
+        ANDROID_BINDER_IPC: nix.thunk(() => ({ [nix.POS]: pos$52, optional: true, tristate: "y" })),
+        ANDROID_BINDERFS: nix.thunk(() => ({ [nix.POS]: pos$53, optional: true, tristate: "y" })),
+        ANDROID_BINDER_DEVICES: nix.thunk(() => ({ [nix.POS]: pos$54, optional: true, freeform: "binder,hwbinder,vndbinder" })),
         TASKSTATS: nix.thunk(() => nix.lookup(w_1, "yes")),
         TASK_DELAY_ACCT: nix.thunk(() => nix.lookup(w_1, "yes")),
         TASK_XACCT: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -1060,7 +1060,7 @@ export default nix.lambda((args) => (() => {
         ATA_BMDMA: nix.thunk(() => nix.lookup(w_1, "yes")),
         ATA_SFF: nix.thunk(() => nix.lookup(w_1, "yes")),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")))), nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           ACPI_HOTPLUG_CPU: nix.thunk(() => nix.lookup(w_1, "yes")),
           ACPI_HOTPLUG_MEMORY: nix.thunk(() => nix.lookup(w_1, "yes")),
           MEMORY_HOTPLUG: nix.thunk(() => nix.lookup(w_1, "yes")),
@@ -1083,7 +1083,7 @@ export default nix.lambda((args) => (() => {
           CROS_KBD_LED_BACKLIGHT: nix.thunk(() => nix.lookup(w_1, "module")),
           TCG_TIS_SPI_CR50: nix.thunk(() => nix.lookup(w_1, "yes")),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "armv7l-linux")) || nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")))), nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           SUN8I_DE2_CCU: nix.thunk(() => nix.lookup(w_1, "yes")),
           CRYPTO_AEGIS128_SIMD: nix.thunk(() => nix.lookup(w_1, "no")),
           CMA_SIZE_MBYTES: nix.thunk(() => nix.app(nix.lookup(w_1, "freeform"), "32")),
@@ -1094,7 +1094,7 @@ export default nix.lambda((args) => (() => {
           ARMV8_DEPRECATED: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => nix.lookup(w_1, "yes")))),
           CP15_BARRIER_EMULATION: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => nix.lookup(w_1, "yes")))),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           CROS_EC_LPC: nix.thunk(() => nix.lookup(w_1, "module")),
           CROS_EC_ISHTP: nix.thunk(() => nix.lookup(w_1, "module")),
           CHROMEOS_LAPTOP: nix.thunk(() => nix.lookup(w_1, "module")),
@@ -1105,18 +1105,18 @@ export default nix.lambda((args) => (() => {
           AMD_HFI: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.17", nix.thunk(() => nix.lookup(w_1, "yes")))),
           INTEL_TURBO_MAX_3: nix.thunk(() => nix.lookup(w_1, "yes")),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isPower64")), nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           PPC_64K_PAGES: nix.thunk(() => nix.lookup(w_1, "no")),
           PPC_4K_PAGES: nix.thunk(() => nix.lookup(w_1, "yes")),
           I2C_POWERMAC: nix.thunk(() => nix.lookup(w_1, "yes")),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isPower")), nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           ATA: nix.thunk(() => nix.lookup(w_1, "yes")),
           PATA_MACIO: nix.thunk(() => nix.lookup(w_1, "yes")),
         }))))))));
     })()),
     accel: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       DRM_ACCEL: nix.thunk(() => nix.app(nix.lookup(w_1, "whenAtLeast"), "6.2", nix.thunk(() => nix.lookup(w_1, "yes")))),
     })),
   }));

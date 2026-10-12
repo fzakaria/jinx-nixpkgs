@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const p4 = nix.arg($, "p4");
   const less = nix.arg($, "less");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ydiff",
       version: "1.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ymattw",
           repo: "ydiff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ patchShebangs tests/*.sh
       checkPhase: "runHook preCheck\nmake reg # We don't want the linter or coverage check.\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["ydiff"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "View colored, incremental diff in workspace or from stdin with side by side and auto pager support (Was \"cdiff\")",
         mainProgram: "ydiff",
         longDescription: "Term based tool to view colored, incremental diff in a version\ncontrolled workspace (supports Git, Mercurial, Perforce and Svn\nso far) or from stdin, with side by side (similar to diff -y)\nand auto pager support.\n",

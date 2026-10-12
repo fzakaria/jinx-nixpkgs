@@ -15,28 +15,28 @@ const pos$8 = nix.positions(here + "/release.nix", [["name", 29, 3], ["paths", 3
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.update(nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system }))), {
-    __proto__: pos$2,
+  const pkgs = nix.argOr($, "pkgs", () => nix.update(nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))), {
+    [nix.POS]: pos$2,
     lib: nix.thunk(() => nix.builtins.throw("pkgs.lib accessed, but the lib tests should use nixpkgs' lib path directly!")),
   }));
   const pkgsBB = nix.argOr($, "pkgsBB", () => nix.sel(pkgs, "pkgsBuildBuild"));
   const nix$ = nix.argOr($, "nix", () => nix.sel(pkgs_nixVersions, "stable"));
   const nixVersions = nix.argOr($, "nixVersions", () => [nix$, nix.thunk(() => nix.sel(pkgs_nixVersions, "latest"))]);
-  const pkgs_nixVersions = nix.argOr($, "pkgs-nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "./nix-for-tests.nix")), nix.thunk(() => ({ __proto__: pos$3, pkgs: pkgsBB }))));
+  const pkgs_nixVersions = nix.argOr($, "pkgs-nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "./nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgsBB }))));
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../.")));
-  const testWithNix = (nix$_1) => nix.app(nix.builtins.import(nix.path(here, "./test-with-nix.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib, nix: nix$_1, pkgs: pkgsBB })));
+  const testWithNix = (nix$_1) => nix.app(nix.builtins.import(nix.path(here, "./test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib, nix: nix$_1, pkgs: pkgsBB })));
   return nix.app(nix.sel(pkgsBB, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "nixpkgs-lib-tests",
       paths: nix.thunk(() => nix.concat(nix.builtins.map(testWithNix, nixVersions), [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix-unit.nix")), nix.thunk(() => ({ __proto__: pos$5, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix-unit.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs })))),
         nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maintainers.nix")), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pkgs: pkgs,
             lib: nix.thunk(() => nix.builtins.import(nix.path(here, "../."))),
           })))),
         nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./teams.nix")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pkgs: pkgs,
             lib: nix.thunk(() => nix.builtins.import(nix.path(here, "../."))),
           })))),

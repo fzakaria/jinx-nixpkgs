@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2025-08-21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "Fluent-icon-theme",
           tag: version,
@@ -60,7 +60,7 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fluent icon theme for linux desktops",
         homepage: "https://github.com/vinceliuice/Fluent-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +71,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version,
         src,

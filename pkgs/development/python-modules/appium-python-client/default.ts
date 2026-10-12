@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const selenium = nix.arg($, "selenium");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "appium-python-client",
       version: "6.0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "appium",
           repo: "python-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [selenium]),
       pythonImportsCheck: nix.thunk(() => ["appium"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform automation framework for all kinds of apps, built on top of the W3C WebDriver protocol",
         homepage: "https://appium.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/appium/python-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

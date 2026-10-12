@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const voxtype = nix.arg($, "voxtype");
-  return nix.app(nix.sel(voxtype, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, vulkanSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["voxtype"])))));
+  return nix.app(nix.sel(voxtype, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, vulkanSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["voxtype"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

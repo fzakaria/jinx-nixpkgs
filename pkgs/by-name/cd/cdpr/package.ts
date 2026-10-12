@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cdpr",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdpr/cdpr/${nix.sel(finalAttrs, "version")}/cdpr-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1idyvyafkk0ifcbi7mc65b60qia6hpsdb6s66j4ggqp7if6vblrj",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common",
             url: "https://sourceforge.net/p/cdpr/bugs/3/attachment/0001-cdpr-fix-build-on-gcc-10-fno-common.patch",
             sha256: "023cvkpc4ry1pbjd91kkwj4af3hia0layk3fp8q40vh6mbr14pnp",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpcap]),
       installPhase: "install -Dm755 cdpr $out/bin/cdpr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cisco Discovery Protocol Reporter",
         homepage: "https://cdpr.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w_1, "json"))];
     })()));
   return nix.app(nix.lookup(w, "mkShell"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       packages: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "nurl")),
         nix.thunk(() => nix.lookup(w, "python3")),
         luaWithPackages,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NVIM_TREESITTER: nix.thunk(() => nix.sel(nix.lookup(w, "vimPlugins"), "nvim-treesitter")),
       })),
     })));

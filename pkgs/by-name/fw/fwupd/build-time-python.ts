@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "pygobject3")),
       nix.thunk(() => nix.sel(p, "setuptools")),
     ]), "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       makeWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set GI_TYPELIB_PATH ${giTypelibPath}`)]),
     })));
 })(), formals$1);

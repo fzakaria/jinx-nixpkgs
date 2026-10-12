@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const utf8_string = nix.arg($, "utf8-string");
   const vector = nix.arg($, "vector");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gren",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/gren-lang/compiler.git",
           sha256: "02hin22kyh2zgxn2fklnfa60iw3ppfr3xnv4z7r39vkf6c2q7fhq",
           rev: "03c52374f82036e7a3276a94e345a4aa98738b9b",

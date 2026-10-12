@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const pname = "urweb";
       const version = "20200209";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/urweb/urweb/releases/download/${version}/${pname}-${version}.tar.gz`),
           sha256: "0qh6wcxfk5kf735i5gqwnkdirnnmqhnnpkfz96gz144dgz2i0c5c",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/urweb/urweb/commit/f7a38a95bee9d1aaf7ed83a651cfbce8da96ed44.patch",
             sha256: "TQFD9Y8OEOSFv6cqpHQ4WSNAPzl82MmVCAxLR4F4Uxc=",
           })))),
@@ -54,12 +54,12 @@ export CCARGS="-I$out/include \\
                -L${nix.sel(sqlite, "out")}/lib";
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# unresolved reference when linking liburweb.1.dylib\nexport LDFLAGS=\"-Wl,-undefined,dynamic_lookup\";\n")));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=use-after-free", "-Wno-error=discarded-qualifiers"]))),
       }));
       const dontDisableStatic = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced purely-functional web programming language",
         mainProgram: "urweb",
         homepage: "http://www.impredicative.com/ur/",
@@ -72,7 +72,7 @@ export CCARGS="-I$out/include \\
         ]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

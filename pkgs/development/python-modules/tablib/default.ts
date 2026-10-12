@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-eBz6mkLejzPFKv+Ff9CgTkg95P0cU+qqmmrqxiutEd4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [markuppy, odfpy, openpyxl, pandas, pyyaml, tabulate, xlrd, xlwt]),
         cli: nix.thunk(() => [tabulate]),
         html: nix.thunk(() => [markuppy]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_tablib.py"]);
       const pythonImportsCheck = nix.thunk(() => ["tablib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Format-agnostic tabular dataset library",
         homepage: "https://tablib.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/tablib/raw/v${version}/HISTORY.md`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

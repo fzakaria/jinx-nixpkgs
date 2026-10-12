@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.arg($, "pythonPackages");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-notify",
       version: "0.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phijor",
           repo: "mopidy-notify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "pytestCheckHook"))]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_notify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/phijor/mopidy-notify",
         description: "Mopidy extension for showing desktop notifications on track change",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "randomfiletree",
       version: "1.2.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "RandomFileTree",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-OpLhLsvwk9xrP8FAXGkDDtMts6ikpx8ockvTR/TEmvw=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["randomfiletree"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create a random file/directory tree/structure in python fortesting purposes",
         homepage: "https://pypi.org/project/RandomFileTree/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

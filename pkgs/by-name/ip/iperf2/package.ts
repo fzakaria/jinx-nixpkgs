@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iperf",
       version: "2.2.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/iperf2/files/iperf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-dUqwp+KAM9vqgTCO9CS8ffTW4v4xtgzFNrYbUf772Ps=",
         })))),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["AR:=$(AR)"]),
       postInstall: "mv $out/bin/iperf $out/bin/iperf2\nln -s $out/bin/iperf2 $out/bin/iperf\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cross-aarch64": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "iperf2")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://sourceforge.net/projects/iperf/",
         description: "Tool to measure IP bandwidth using UDP or TCP",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

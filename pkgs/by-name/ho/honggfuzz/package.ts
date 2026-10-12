@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libblocksruntime = nix.arg($, "libblocksruntime");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "honggfuzz",
       version: "2.6-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "honggfuzz",
           rev: "940b958dfeb6f9131fd846cae31fcc0fe996ae98",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "INC_PATH=$(PREFIX)/includes", "HFUZZ_INC=$(out)"]),
       postInstall: "mkdir -p $out/lib\ncp libhfuzz/libhfuzz.a $out/lib\ncp libhfuzz/libhfuzz.so $out/lib\ncp libhfcommon/libhfcommon.a $out/lib\ncp libhfnetdriver/libhfnetdriver.a $out/lib\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagFormat: "[0-9]*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagFormat: "[0-9]*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Security oriented, feedback-driven, evolutionary, easy-to-use fuzzer",
         longDescription: "Honggfuzz is a security oriented, feedback-driven, evolutionary,\neasy-to-use fuzzer with interesting analysis options. It is\nmulti-process and multi-threaded, blazingly fast when the persistent\nfuzzing mode is used and has a solid track record of uncovered security\nbugs.\n\nHonggfuzz uses low-level interfaces to monitor processes and it will\ndiscover and report hijacked/ignored signals from crashes. Feed it\na simple corpus directory (can even be empty for the feedback-driven\nfuzzing), and it will work its way up, expanding it by utilizing\nfeedback-based coverage metrics.\n",
         homepage: "https://honggfuzz.dev/",

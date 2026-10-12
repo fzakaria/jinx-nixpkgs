@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "incomfort-client",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zxdavb",
           repo: "incomfort-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_aiohttp, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["incomfortclient"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to poll Intergas boilers via a Lan2RF gateway",
         homepage: "https://github.com/zxdavb/incomfort-client",
         changelog: nix.thunk(() => nix.str`https://github.com/jbouwh/incomfort-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

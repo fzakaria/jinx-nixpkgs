@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bigcat88",
           repo: "pillow_heif",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [libaom, libde265, libheif, x265]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, RELEASE_FULL_FLAG: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, RELEASE_FULL_FLAG: 1n }));
       const dependencies = nix.thunk(() => [pillow]);
       const pythonImportsCheck = nix.thunk(() => ["pillow_heif"]);
       const nativeCheckInputs = nix.thunk(() => [opencv4, numpy, pytestCheckHook]);
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           "test_I_color_modes_to_10_12_bit",
         ])))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/bigcat88/pillow_heif/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for working with HEIF images and plugin for Pillow",
         homepage: "https://github.com/bigcat88/pillow_heif",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tailscale-systray",
       version: "2022-10-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattn",
           repo: "tailscale-systray",
           rev: "e7f8893684e7b8779f34045ca90e5abe6df6056d",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, libayatana_appindicator]),
       proxyVendor: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tailscale systray",
         homepage: "https://github.com/mattn/tailscale-systray",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

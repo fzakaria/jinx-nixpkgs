@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fortitude",
       version: "0.7.5-unstable-2025-10-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PlasmaFAIR",
           repo: "fortitude",
           rev: "ca65546d69947500eeb37a2bbc58151012ab40d9",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-hNAONXSy1uxm7AHvMHWNboL9NpQfvEOfTQivushp7S4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fortran linter written in Rust inspired by Ruff",
         homepage: "https://fortitude.readthedocs.io/en/stable/",
         downloadPage: "https://github.com/PlasmaFAIR/fortitude",

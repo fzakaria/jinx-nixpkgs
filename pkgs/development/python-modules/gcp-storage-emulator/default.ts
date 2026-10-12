@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.08.03";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oittaa",
           repo: "gcp-storage-emulator",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_invalid_crc32c_hash"]);
       const pythonImportsCheck = nix.thunk(() => ["gcp_storage_emulator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local emulator for Google Cloud Storage",
         homepage: "https://github.com/oittaa/gcp-storage-emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gcp-storage-emulator",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

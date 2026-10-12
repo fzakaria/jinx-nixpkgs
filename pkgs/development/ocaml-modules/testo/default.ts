@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const testo_util = nix.arg($, "testo-util");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "testo",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mjambon/testo/releases/download/${nix.sel(finalAttrs, "version")}/testo-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-cPm+FSS1fCj3PCyEk37p93lHjpH6NZ3GNkKJjdExaXs=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cmdliner, testo_util]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mjambon/testo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Test framework for OCaml",

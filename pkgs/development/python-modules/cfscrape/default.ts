@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cfscrape",
       version: "2.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Anorov",
           repo: "cloudflare-scrape",
           rev: "9692fe7ff3c17b76ddf0f4d50d3dba7d1791c9c6",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [requests]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Anorov/cloudflare-scrape",
         description: "Python module to bypass Cloudflare's anti-bot page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

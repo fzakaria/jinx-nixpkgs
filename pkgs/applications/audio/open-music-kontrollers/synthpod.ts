@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const robodoc = nix.arg($, "robodoc");
   const cmake = nix.arg($, "cmake");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "synthpod",
       version: "unstable-2021-10-22",
       url: "https://git.open-music-kontrollers.ch/lv2/synthpod/snapshot/synthpod-6f284bdad882037a522c120af92b96d8abf2de60.tar.xz",

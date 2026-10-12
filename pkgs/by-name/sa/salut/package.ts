@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "salut",
       version: "3.0.1-unstable-2022-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakedye",
           repo: "salut",
           rev: "aa57c4d190812908a9c32cd49cff14390c6dfdcb",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [fontconfig, libxkbcommon, wayland]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sleek notification daemon for Wayland",
         homepage: "https://gitlab.com/snakedye/salut/-/wikis/Home",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

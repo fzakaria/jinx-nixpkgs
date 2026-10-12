@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aaaaxy",
       version: "1.6.301",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "divVerent",
           repo: "aaaaxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ substituteInPlace Makefile --replace-fail \\
   'CPPFLAGS ?= -DNDEBUG -D_GLFW_GLX_LIBRARY=\\"${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libGL.so\\" -D_GLFW_EGL_LIBRARY=\\"${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libEGL.so\\"'
 `),
       overrideModAttrs: (_) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postBuild: "substituteInPlace 'vendor/github.com/hajimehoshi/ebiten/v2/internal/graphicsdriver/opengl/gl/procaddr_linbsd.go' \\\n  --replace-fail \\\n  'import (' \\\n  'import (\"os\"' \\\n  --replace-fail \\\n  '{\"libGL.so\", \"libGL.so.2\", \"libGL.so.1\", \"libGL.so.0\"}' \\\n  '{os.Getenv(\"EBITENGINE_LIBGL\")}' \\\n  --replace-fail \\\n  '{\"libGLESv2.so\", \"libGLESv2.so.2\", \"libGLESv2.so.1\", \"libGLESv2.so.0\"}' \\\n  '{os.Getenv(\"EBITENGINE_LIBGLESv2\")}'\n",
       }),
       makeFlags: nix.thunk(() => ["BUILDTYPE=release"]),
@@ -91,11 +91,11 @@ install -Dm755 'scripts/regression-test-demo.sh' -t "$testing_infra/scripts/"
 install -Dm644 'assets/demos/benchmark.dem' -t "$testing_infra/assets/demos/"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, aaaaxy: nix.thunk(() => nix.sel(nixosTests, "aaaaxy")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, aaaaxy: nix.thunk(() => nix.sel(nixosTests, "aaaaxy")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Nonlinear 2D puzzle platformer taking place in impossible spaces",
         mainProgram: "aaaaxy",
         homepage: "https://divverent.github.io/aaaaxy/",

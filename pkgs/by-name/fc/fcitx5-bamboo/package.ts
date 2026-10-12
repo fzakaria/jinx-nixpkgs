@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const go = nix.arg($, "go");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcitx5-bamboo",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: "fcitx5-bamboo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(kdePackages, "extra-cmake-modules")), fcitx5]),
       preConfigure: "export GOCACHE=$TMPDIR/go-cache\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vietnamese input method engine support for Fcitx",
         homepage: "https://github.com/fcitx/fcitx5-bamboo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

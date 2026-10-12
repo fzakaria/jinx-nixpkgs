@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AustinBrunkhorst",
           repo: "pysnooz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest_asyncio_0, pytest_cov_stub, pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pysnooz"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to control SNOOZ white noise machines",
         homepage: "https://github.com/AustinBrunkhorst/pysnooz",
         changelog: nix.thunk(() => nix.str`https://github.com/AustinBrunkhorst/pysnooz/blob/v${version}/CHANGELOG.md`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

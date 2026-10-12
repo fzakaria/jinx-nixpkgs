@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const withDashboard = nix.argOr($, "withDashboard", () => true);
   const version = "8.1.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "matter-js",
       repo: "python-matter-server",
       tag: version,
@@ -46,10 +46,10 @@ export default nix.lambda((args) => (() => {
   const matterServerDashboard = nix.thunk(() => (() => {
     const pythonWithChip = nix.thunk(() => nix.app(nix.sel(python, "pythonOnBuildForHost", "withPackages"), (ps) => [
         nix.thunk(() => nix.sel(ps, "home-assistant-chip-clusters")),
-        nix.thunk(() => nix.app(nix.sel(ps, "python-matter-server", "override"), nix.thunk(() => ({ __proto__: pos$2, withDashboard: false })))),
+        nix.thunk(() => nix.app(nix.sel(ps, "python-matter-server", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withDashboard: false })))),
       ]));
     return nix.app(buildNpmPackage, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "python-matter-server-dashboard",
         src: src,
         version: version,
@@ -87,7 +87,7 @@ cd "dashboard"
         home_assistant_chip_clusters,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         server: nix.thunk(() => [cryptography, home_assistant_chip_core, zeroconf]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([aioresponses, pytest_aiohttp, pytest_cov_stub, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
@@ -97,9 +97,9 @@ cd "dashboard"
 `;
       })());
       const disabledTestPaths = nix.thunk(() => ["tests/server/ota/test_dcl.py"]);
-      const env = nix.thunk(() => ({ __proto__: pos$5, dontCheckPythonMetadata: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, dontCheckPythonMetadata: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/matter-js/python-matter-server/releases/tag/${nix.sel(src_1, "tag")}`),
         description: "Python server to interact with Matter",
         mainProgram: "matter-server",
@@ -108,7 +108,7 @@ cd "dashboard"
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         src: src_1,
         version: version_1,

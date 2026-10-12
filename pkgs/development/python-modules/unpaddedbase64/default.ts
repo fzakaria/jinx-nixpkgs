@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-org",
           repo: nix.thunk(() => nix.str`python-${pname}`),
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/matrix-org/python-unpaddedbase64",
         description: "Unpadded Base64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

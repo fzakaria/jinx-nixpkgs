@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const folks = nix.arg($, "folks");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bubblemail",
       version: "1.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "framagit.org",
           owner: "razer",
           repo: "bubblemail",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible mail notification service",
         homepage: "http://bubblemail.free.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

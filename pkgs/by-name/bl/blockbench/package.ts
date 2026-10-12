@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blockbench";
       const version = "5.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JannisX11",
           repo: "blockbench",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [imagemagick, copyDesktopItems]))));
       const npmDepsHash = "sha256-EYtpxi9sTpn5Xpvf84UGAFkqJS+/p9vHwNUu/Vve4pg=";
       const makeCacheWritable = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
       const postConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i \"/afterSign/d\" package.json\n"));
       const npmBuildScript = "build-electron";
       const postBuild = nix.thunk(() => nix.str`# electronDist needs to be modifiable on Darwin
@@ -62,7 +62,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/blockbench \\
 `))), "runHook postInstall\n"));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "blockbench",
             exec: "blockbench %U",
             icon: "blockbench",
@@ -74,7 +74,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/blockbench \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/JannisX11/blockbench/releases/tag/v${version}`),
         description: "Low-poly 3D modeling and animation software",
         homepage: "https://blockbench.net/",
@@ -86,7 +86,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/blockbench \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

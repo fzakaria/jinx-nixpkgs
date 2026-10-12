@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netbird-dashboard";
       const version = "2.94.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netbirdio",
           repo: "dashboard",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
       const npmFlags = nix.thunk(() => ["--legacy-peer-deps"]);
       const installPhase = "cp -R out $out\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CYPRESS_INSTALL_BINARY: 0n,
         NEXT_PUBLIC_DASHBOARD_VERSION: version,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBird Management Service Web UI Panel",
         homepage: "https://github.com/netbirdio/dashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "20.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "glean_parser",
           version: version,
           hash: "sha256-e6d4QMqOR8/7F/Tstk7cH/aj1s4AZyI+BS5AnewePKk=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_validate_ping", "test_logging", "test_yaml_lint"]);
       const pythonImportsCheck = nix.thunk(() => ["glean_parser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for parsing the metadata for Mozilla's glean telemetry SDK",
         mainProgram: "glean_parser",
         homepage: "https://github.com/mozilla/glean_parser",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

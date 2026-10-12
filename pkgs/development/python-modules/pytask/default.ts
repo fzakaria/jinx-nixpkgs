@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytask-dev",
           repo: "pytask",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         sqlalchemy,
         universal_pathlib,
       ], nix.sel(msgspec, "optional-dependencies", "toml")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, dag: nix.thunk(() => [networkx]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, dag: nix.thunk(() => [networkx]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([cloudpickle, git, nbmake, pexpect, pytest_xdist, pytestCheckHook, syrupy], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pytestFlags = nix.thunk(() => ["--snapshot-warn-unused"]);
       const preCheck = "export PATH=\"$PATH:$out/bin\";\n";
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pytask"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Workflow management system that facilitates reproducible data analyses",
         homepage: "https://github.com/pytask-dev/pytask",
         changelog: nix.thunk(() => nix.str`https://github.com/pytask-dev/pytask/releases/tag/${nix.sel(src, "tag")}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

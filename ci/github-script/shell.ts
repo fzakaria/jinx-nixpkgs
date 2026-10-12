@@ -11,7 +11,7 @@ const pos$3 = nix.positions(here + "/shell.nix", [["packages", 14, 5], ["npmDeps
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../.")), nix.thunk(() => ({ __proto__: pos$1, system: system }))), "pkgs"));
+  const pkgs = nix.argOr($, "pkgs", () => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../.")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))), "pkgs"));
   return nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const gh = nix.arg($_1, "gh");
@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const mkShell = nix.arg($_1, "mkShell");
       const nodejs = nix.arg($_1, "nodejs");
       return nix.app(mkShell, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           packages: nix.thunk(() => [
             gh,
             nix.thunk(() => nix.sel(importNpmLock, "hooks", "linkNodeModulesHook")),
             nodejs,
           ]),
-          npmDeps: nix.thunk(() => nix.app(nix.sel(importNpmLock, "buildNodeModules"), nix.thunk(() => ({ __proto__: pos$2, npmRoot: nix.path(here, "./."), nodejs: nodejs })))),
+          npmDeps: nix.thunk(() => nix.app(nix.sel(importNpmLock, "buildNodeModules"), nix.thunk(() => ({ [nix.POS]: pos$2, npmRoot: nix.path(here, "./."), nodejs: nodejs })))),
         })));
     })(), formals$2), nix.thunk(() => ({})));
 })(), formals$1);

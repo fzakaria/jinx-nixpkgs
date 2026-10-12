@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wget2",
       version: "2.2.1",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnuwget",
           repo: "wget2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ chmod -R u+w gnulib/{build-aux,lib}
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Successor of GNU Wget, a file and recursive website downloader",
         longDescription: "Designed and written from scratch it wraps around libwget, that provides the basic\nfunctions needed by a web client.\nWget2 works multi-threaded and uses many features to allow fast operation.\nIn many cases Wget2 downloads much faster than Wget1.x due to HTTP2, HTTP compression,\nparallel connections and use of If-Modified-Since HTTP header.\n",
         homepage: "https://gitlab.com/gnuwget/wget2",

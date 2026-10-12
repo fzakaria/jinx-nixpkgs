@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SkyTemple",
           repo: "skytemple-ssb-debugger",
           rev: version,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["skytemple_ssb_debugger"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SkyTemple/skytemple-ssb-debugger",
         description: "Script Engine Debugger for Pokémon Mystery Dungeon Explorers of Sky",
         mainProgram: "skytemple-ssb-debugger",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

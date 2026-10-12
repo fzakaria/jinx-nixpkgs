@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const SDL_image = nix.arg($, "SDL_image");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.9.3",
       pname: "meterbridge",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://plugin.org.uk/meterbridge/meterbridge-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0s7n3czfpil94vsd7iblv4xrck9c7zvsz4r3yfbkqcv85pjz1viz",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libGL, SDL, SDL_image, libjack2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Various meters (VU, PPM, DPM, JF, SCO) for Jack Audio Connection Kit",
         homepage: "http://plugin.org.uk/meterbridge/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

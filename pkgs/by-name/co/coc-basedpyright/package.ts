@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coc-basedpyright",
       version: "1.19.0-unstable-2025-04-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fannheyward",
           repo: "coc-basedpyright",
           rev: "7d944083c7d4843b1dfa9e05014873b0b5bbb85b",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-hn+Y1f7o/Oz37XXJUPF2CJbrPzZYOY0njrJv+T3ve6w=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Basedpyright extension for coc.nvim",
         homepage: "https://github.com/fannheyward/coc-basedpyright",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

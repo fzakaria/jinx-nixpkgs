@@ -14,7 +14,7 @@ const pos$8 = nix.positions(here + "/test.nix", [["key", 49, 7], ["file", 50, 7]
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")));
   const evaluation = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [
         nix.thunk(() => ({})),
         (args) => ({}),
@@ -25,31 +25,31 @@ export default nix.thunk(() => (() => {
   const actual = nix.thunk(() => nix.sel(evaluation, "graph"));
   const expected = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       key: ":anon-1",
       file: "<unknown-file>",
       imports: [],
       disabled: false,
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       key: ":anon-2",
       file: "<unknown-file>",
       imports: [],
       disabled: false,
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       key: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
       file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           key: nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./a.nix"))}:anon-1`),
           file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
           imports: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               key: nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./a.nix"))}:anon-1:anon-1`),
               file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
               imports: [],
@@ -62,12 +62,12 @@ export default nix.thunk(() => (() => {
       disabled: false,
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       key: nix.thunk(() => nix.builtins.toString(nix.path(here, "./b.nix"))),
       file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./b.nix"))),
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           key: "explicit-key",
           file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./b.nix"))),
           imports: [],

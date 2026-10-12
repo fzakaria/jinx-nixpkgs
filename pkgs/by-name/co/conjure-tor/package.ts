@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "conjure-tor",
       version: "0-unstable-2026-01-13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.torproject.org",
           owner: "tpo",
           repo: "anti-censorship/pluggable-transports/conjure",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-6m/qNRrbWMREdDK/VpDAILynplyzbicdplxDrcTipSc=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/conjure",
         description: "Refraction networking system that routes traffic to endpoints in an ISP's unused IP address space",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

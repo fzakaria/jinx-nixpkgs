@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const installComponents = nix.thunk(() => nix.add(nix.str`rustc,rust-std-${platform}`, nix.app(optionalString, bootstrapping, ",cargo")));
   return (() => {
     const rustc_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`rustc-${versionType}`),
         version: version,
         src: src,
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: "https://www.rust-lang.org/",
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -132,7 +132,7 @@ fi
             nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isMips64n32")),
           ]);
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             targetPlatformsWithHostTools,
             targetPlatforms,
             badTargetPlatforms,
@@ -141,12 +141,12 @@ fi
       }))));
     const rustc = nix.thunk(() => nix.app(wrapRustc, rustc_unwrapped));
     const cargo = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`cargo-${versionType}`),
         version: version,
         src: src,
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://doc.rust-lang.org/cargo/",
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -173,7 +173,7 @@ fi
   --suffix PATH : "${rustc}/bin"
 `)),
       }))));
-    return { __proto__: pos$6, "rustc-unwrapped": rustc_unwrapped, rustc, cargo };
+    return { [nix.POS]: pos$6, "rustc-unwrapped": rustc_unwrapped, rustc, cargo };
   })();
 })(), formals$1);
 //# sourceMappingURL=binary.ts.map

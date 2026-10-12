@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "microsoft-identity-broker";
       const version = "3.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker/microsoft-identity-broker_${version}-noble_amd64.deb`),
           hash: "sha256-A+YNfbcZflkDllxd97YBrhvbcvzphsz7zb7y/abyx/k=",
         }))));
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp -a opt/microsoft/identity-broker/bin/* $out/bin/\ncp -a usr/* $out/\n\nrunHook postInstall\n";
       const postInstall = "substituteInPlace $out/lib/systemd/system/microsoft-identity-device-broker.service \\\n  --replace-fail \\\n    /opt/microsoft/identity-broker/bin/microsoft-identity-device-broker \\\n    $out/bin/microsoft-identity-device-broker\n\nsubstituteInPlace $out/share/dbus-1/services/com.microsoft.identity.broker1.service \\\n  --replace-fail \\\n    /opt/microsoft/identity-broker/bin/microsoft-identity-broker \\\n    $out/bin/microsoft-identity-broker\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ __proto__: pos$2, intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Microsoft Authentication Broker for Linux",
         homepage: "https://www.microsoft.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
 rm -rf $out/grammars $out/queries
 `)));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "helix-unwrapped",
         version: "25.07.1",
         outputs: nix.thunk(() => ["out", "doc"]),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "helix-editor",
             repo: "helix",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ rm -rf $out/grammars $out/queries
         postPatch: "# mdbook 0.5 uses asset hashing for CSS/JS files\n# Remove custom theme to use default mdbook theme with correct asset references\nrm -f book/theme/index.hbs\n",
         nativeBuildInputs: nix.thunk(() => [installShellFiles, mdbook]),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           HELIX_DISABLE_AUTO_GRAMMAR_BUILD: "1",
           HELIX_DEFAULT_RUNTIME: defaultRuntimeDir,
         })),
@@ -48,7 +48,7 @@ rm -rf $out/grammars $out/queries
         versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/hx`),
         doInstallCheck: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Post-modern modal text editor",
           homepage: "https://helix-editor.com",
           changelog: nix.thunk(() => nix.str`https://github.com/helix-editor/helix/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -20,38 +20,38 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "amazon-init",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "urbas"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       unnamed: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         imports: nix.thunk(() => [
           nix.path(here, "../modules/profiles/headless.nix"),
           nix.path(here, "../modules/virtualisation/amazon-init.nix"),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          openssh: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$5,
-          switch: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$5,
+          switch: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
         })),
-        networking: nix.thunk(() => ({ __proto__: pos$6, hostName: "" })),
+        networking: nix.thunk(() => ({ [nix.POS]: pos$6, hostName: "" })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "ec2-metadata/user-data": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               text: "#!/usr/bin/bash\n\necho successful > /tmp/evidence\n\n# Emulate running nixos-rebuild switch, just without any building.\n# https://github.com/nixos/nixpkgs/blob/4c62505847d88f16df11eff3c81bf9a453a4979e/nixos/modules/virtualisation/amazon-init.nix#L55\n/run/current-system/bin/switch-to-configuration test\n",
             })),
           })),

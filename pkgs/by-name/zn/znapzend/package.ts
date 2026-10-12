@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Mojo-Log-Clearable";
       const version = "1.001";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/D/DB/DBOOK/Mojo-Log-Clearable-${version}.tar.gz`),
           hash: "sha256-guBqKdWemc4mC/xp77Wd7qeV2iRqY4wrQ5NRsHtsCnI=",
         }))));
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "ClassMethodModifiers")),
         ];
       })());
-      return { __proto__: pos$2, pname, version, src, buildInputs, propagatedBuildInputs };
+      return { [nix.POS]: pos$2, pname, version, src, buildInputs, propagatedBuildInputs };
     })())));
   const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => (() => {
       const w = nix.withScope(p, null);
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "znapzend",
       version: "0.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "oetiker",
           repo: "znapzend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/znapzend --version\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High performance open source ZFS backup with mbuffer and ssh support",
         homepage: "https://www.znapzend.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0yb73c2clv581sgak5jvlvkj4wy3jav6ms5ia8jx3rw969w40n0j",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/reingart/pyfpdf",
         description: "Simple PDF generation for Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

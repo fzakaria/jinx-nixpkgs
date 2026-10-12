@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "version"), "version"));
     const src = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "src"), "src"));
     return nix.app(mkDerivation, nix.thunk(() => nix.update(args_1, nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         version: version,
         src: src,
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), nix.concat([perl, qmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(pkgsHostTarget, "qt5", "qtbase", "dev"))]))))),
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(args_1, "qtInputs")), "qt5.qtModule's qtInputs argument is deprecated", nix.thunk(() => nix.selOr(args_1, () => [], "qtInputs"))), nix.selOr(args_1, () => [], "propagatedBuildInputs"))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           depsBuildBuild: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))], nix.selOr(args_1, () => [], "depsBuildBuild"))),
         }))), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         outputs: nix.thunk(() => nix.selOr(args_1, () => ["out", "dev"], "outputs")),
         setOutputFlags: nix.thunk(() => nix.selOr(args_1, () => false, "setOutputFlags")),
         preHook: nix.thunk(() => nix.str`. ${nix.path(here, "./hooks/move-qt-dev-tools.sh")}
@@ -66,7 +66,7 @@ ${nix.selOr(args_1, () => "", "postFixup")}
 `),
         __structuredAttrs: true,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://www.qt.io",
           description: "Cross-platform application framework for C++",
           license: nix.thunk(() => (() => {

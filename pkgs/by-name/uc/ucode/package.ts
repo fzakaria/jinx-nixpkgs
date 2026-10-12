@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const json_c = nix.arg($, "json_c");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ucode",
       version: "0.0.20250529",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jow-",
           repo: "ucode",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jow-/ucode/commit/4d81e6c13506599261208786cfe4ee068f346dcd.patch",
             hash: "sha256-RZhD422ue00bqam4n7jAynPDJdOzOFJnf34YbT2wH/s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/jow-/ucode/commit/a7ead3169ebf355e66b399aca1dd3a5ce29e1e5b.patch",
             hash: "sha256-sc+jSAlix1jE9Cb4MMuqI7VHG6h+zpCL7UZ84awOL6M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/jow-/ucode/commit/beafcff845fcdbb46308ee54422661e80300079d.patch",
             hash: "sha256-JcBk8kJHDlHLRuVR2fmsSfWqVmbFZMPF16+nPp6QFf4=",
           })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [json_c]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "JavaScript-like language with optional templating",
         homepage: "https://github.com/jow-/ucode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

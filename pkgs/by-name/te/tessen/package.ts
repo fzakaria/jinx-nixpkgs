@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tessen";
       const version = "2.2.3";
       const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ayushnix",
           repo: "tessen",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ runHook postInstall
 `);
       const postInstall = "scdoc < man/tessen.1.scd > man/tessen.1\nscdoc < man/tessen.5.scd > man/tessen.5\ninstallManPage man/*.{1,5}\ninstallShellCompletion --cmd tessen \\\n  --bash completion/tessen.bash-completion \\\n  --fish completion/tessen.fish-completion\ninstall -Dm644 config $out/share/tessen/config\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~ayushnix/tessen",
         description: "Interactive menu to autotype and copy Pass and GoPass data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -50,7 +50,7 @@ runHook postInstall
         mainProgram: "tessen",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

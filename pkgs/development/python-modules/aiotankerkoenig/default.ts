@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiotankerkoenig",
       version: "0.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpbede",
           repo: "aiotankerkoenig",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy]),
       pythonImportsCheck: nix.thunk(() => ["aiotankerkoenig"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for interacting with tankerkoenig.de",
         homepage: "https://github.com/jpbede/aiotankerkoenig",
         changelog: nix.thunk(() => nix.str`https://github.com/jpbede/aiotankerkoenig/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const hyprlandSupport = nix.argOr($, "hyprlandSupport", () => true);
   const wlr_randr = nix.arg($, "wlr-randr");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nwg-displays",
       version: "0.4.4",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-displays",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\");\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nwg-piotr/nwg-displays",
         description: "Output management utility for Sway, Hyprland and Niri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

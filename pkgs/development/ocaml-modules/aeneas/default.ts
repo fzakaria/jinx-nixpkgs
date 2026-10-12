@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const visitors = nix.arg($, "visitors");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aeneas",
       version: nix.thunk(() => nix.str`${nix.sel(charon, "version")}-daa85d7`),
       __structuredAttrs: true,
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AeneasVerif",
           repo: "aeneas",
           tag: nix.thunk(() => nix.str`nightly-${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Verification toolchain for Rust programs",
         homepage: "https://github.com/AeneasVerif/aeneas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

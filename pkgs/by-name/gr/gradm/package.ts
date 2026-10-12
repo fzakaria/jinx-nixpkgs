@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gradm",
       version: "3.1-202111052217",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://grsecurity.net/stable/gradm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JFkpDzZ6R8ihzk6i7Ag1l5nqM9wV7UQ2Q5WWzogoT7k=",
         })))),
@@ -50,7 +50,7 @@ mkdir -p "$out/etc/udev/rules.d"
       doInstallCheck: true,
       postInstall: "rmdir $out/dev",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "grsecurity RBAC administration and policy analysis utility",
         homepage: "https://grsecurity.net",

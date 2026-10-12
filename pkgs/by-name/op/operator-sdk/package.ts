@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "operator-sdk",
       version: "1.42.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "operator-framework",
           repo: "operator-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/operator-sdk --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDK for building Kubernetes applications. Provides high level APIs, useful abstractions, and project scaffolding",
         homepage: "https://github.com/operator-framework/operator-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/operator-framework/operator-sdk/releases/tag/v${nix.sel(finalAttrs, "version")}`),

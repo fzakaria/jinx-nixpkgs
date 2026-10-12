@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PaulGilmartin",
           repo: "django-pgpubsub",
           tag: version,
           hash: "sha256-Gl6NfBaoj3WKLHwJElbb27CYVQ83s3f86NUOZE7lHCk=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const postPatch = "substituteInPlace pyproject.toml \\\n--replace 'poetry.masonry.api' 'poetry.core.masonry.api' \\\n--replace 'poetry>=1.1.13' 'poetry-core>=1.0.0'\n";
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django, django_pgtrigger]);
       const pythonImportsCheck = nix.thunk(() => ["pgpubsub"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight background tasks using Django Channels and PostgreSQL NOTIFY/LISTEN",
         homepage: "https://github.com/PaulGilmartin/django-pgpubsub",
         changelog: nix.thunk(() => nix.str`https://github.com/PaulGilmartin/django-pgpubsub/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

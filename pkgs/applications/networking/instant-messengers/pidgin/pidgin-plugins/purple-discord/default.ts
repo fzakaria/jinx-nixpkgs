@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pidgin = nix.arg($, "pidgin");
   const json_glib = nix.arg($, "json-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "purple-discord",
       version: "unstable-2021-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EionRobb",
           repo: "purple-discord",
           rev: "b7ac72399218d2ce011ac84bb171b572560aa2d2",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [imagemagick, gettext]),
       buildInputs: nix.thunk(() => [pidgin, json_glib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_PURPLE_PLUGINDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/purple-2`),
         PKG_CONFIG_PURPLE_DATADIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/EionRobb/purple-discord",
         description: "Discord plugin for Pidgin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

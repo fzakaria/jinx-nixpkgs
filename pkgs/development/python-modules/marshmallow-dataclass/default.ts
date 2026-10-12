@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const typing_inspect = nix.arg($, "typing-inspect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "marshmallow-dataclass",
       version: "8.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lovasoa",
           repo: "marshmallow_dataclass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-test.patch",
             url: "https://github.com/lovasoa/marshmallow_dataclass/commit/9a2ea19924a3cd5fadeb41663bfca64b9c0f75e4.patch",
             hash: "sha256-T2UbZdCj4+HRglMp8w3kU20sUcN6WoSyKiLNr1kSius=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_newtype"]),
       pythonImportsCheck: nix.thunk(() => ["marshmallow_dataclass"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatic generation of marshmallow schemas from dataclasses",
         homepage: "https://github.com/lovasoa/marshmallow_dataclass",
         changelog: nix.thunk(() => nix.str`https://github.com/lovasoa/marshmallow_dataclass/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

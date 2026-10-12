@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const kxmlgui = nix.arg($, "kxmlgui");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kbookmarks",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, qttools]),
       buildInputs: nix.thunk(() => [kcodecs, kconfig, kconfigwidgets, kcoreaddons, kiconthemes, kxmlgui]),

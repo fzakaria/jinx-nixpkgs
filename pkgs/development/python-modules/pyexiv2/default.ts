@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyexiv2",
       version: "2.16.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LeoHsiao1",
           repo: "pyexiv2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pyexiv2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for reading and writing image metadata, including EXIF, IPTC, XMP, ICC Profile",
         homepage: "https://github.com/LeoHsiao1/pyexiv2",
         changelog: nix.thunk(() => nix.str`https://github.com/LeoHsiao1/pyexiv2/releases/tag/v${nix.sel(finalAttrs, "version")}`),

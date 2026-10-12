@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nsplist",
       version: "0-unstable-2017-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthewbauer",
           repo: "NSPlist",
           rev: "713decf06c1ef6c39a707bc99eb45ac9925f2b8a",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# Regenerate the lexer for improved compatibility with clang 16.\nflex -o src/NSPlistLexer.cpp <(tail --lines=+17 src/NSPlistLexer.l)\n",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: [],
         description: "Parses .plist files",
         homepage: "https://github.com/matthewbauer/NSPlist",

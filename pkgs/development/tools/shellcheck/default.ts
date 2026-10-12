@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const haskell = nix.arg($, "haskell");
   const pandoc = nix.arg($, "pandoc");
   const overrideMeta = (drv) => (overrideFn) => (() => {
-    const drv$ = nix.thunk(() => (nix.asBool(nix.has(drv, "meta")) ? nix.force(drv) : nix.update(drv, { __proto__: pos$1, meta: nix.thunk(() => ({})) })));
+    const drv$ = nix.thunk(() => (nix.asBool(nix.has(drv, "meta")) ? nix.force(drv) : nix.update(drv, { [nix.POS]: pos$1, meta: nix.thunk(() => ({})) })));
     const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", drv$));
     const meta$ = nix.thunk(() => nix.update(nix.sel(drv$, "meta"), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       position: nix.thunk(() => nix.add(nix.add(nix.sel(pos, "file"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line"))))),
     }));
     return nix.update(drv$, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       meta: nix.thunk(() => nix.update(meta$, nix.app(overrideFn, meta$))),
     });
   })();
   const bin = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "justStaticExecutables"), ShellCheck));
   const shellcheck = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shellcheck",
       version: nix.thunk(() => nix.sel(bin, "version")),
       meta: nix.thunk(() => nix.attr(ShellCheck, "meta")),
@@ -44,10 +44,10 @@ install -Dm644 README.md $doc/share/shellcheck/README.md
 install -Dm644 shellcheck.1 $man/share/man/man1/shellcheck.1
 mkdir $out
 `),
-      passthru: nix.thunk(() => nix.update(nix.selOr(ShellCheck, () => ({}), "passthru"), { __proto__: pos$4, unwrapped: ShellCheck })),
+      passthru: nix.thunk(() => nix.update(nix.selOr(ShellCheck, () => ({}), "passthru"), { [nix.POS]: pos$4, unwrapped: ShellCheck })),
     }))));
   return nix.app(overrideMeta, shellcheck, (old) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zowoq"))];

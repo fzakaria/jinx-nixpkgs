@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(doxygen, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         format,
         version,
         src,

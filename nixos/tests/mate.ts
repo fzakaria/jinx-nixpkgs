@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "mate",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "mate", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             xserver: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$4,
-                lightdm: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
-                autoLogin: nix.thunk(() => ({ __proto__: pos$3, enable: true, user: "alice" })),
+                [nix.POS]: pos$4,
+                lightdm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                autoLogin: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, user: "alice" })),
               })),
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$6,
-                mate: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+                [nix.POS]: pos$6,
+                mate: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
               })),
             })),
           })),

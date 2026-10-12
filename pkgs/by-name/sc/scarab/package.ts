@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scarab";
       const version = "2.7.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fifty-six",
           repo: "scarab",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-test-missing-shasum.patch",
             url: "https://github.com/fifty-six/Scarab/commit/581e86fefb457772d2d067f094b6dafcc49a4075.patch?full_index=1",
             hash: "sha256-N5a0QeJFQzvxX8RavwPILuLg10pWLVQhvodWpeUtItE=",
@@ -63,7 +63,7 @@ wrapProgram "$out/bin/Scarab" --run '. ${nix.path(here, "./scaling-settings.bash
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             desktopName: "Scarab",
             name: "scarab",
             exec: "Scarab",
@@ -73,9 +73,9 @@ wrapProgram "$out/bin/Scarab" --run '. ${nix.path(here, "./scaling-settings.bash
             categories: nix.thunk(() => ["Game"]),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Hollow Knight mod installer and manager",
         homepage: "https://github.com/fifty-six/Scarab",
         downloadPage: "https://github.com/fifty-six/Scarab/releases",
@@ -92,7 +92,7 @@ wrapProgram "$out/bin/Scarab" --run '. ${nix.path(here, "./scaling-settings.bash
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

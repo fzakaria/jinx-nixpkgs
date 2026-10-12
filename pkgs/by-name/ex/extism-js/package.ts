@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(pkgsCross, "wasm32-wasip1"));
   const extism_js_core = nix.thunk(() => nix.attr(from, "extism-js-core"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "extism-js",
       version: nix.thunk(() => nix.attr(extism_js_core, "version")),
       src: nix.thunk(() => nix.attr(extism_js_core, "src")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [zstd]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         EXTISM_ENGINE_PATH: nix.thunk(() => nix.str`${nix.sel(pkgsCross, "wasm32-wasip1", "extism-js-core")}/bin/js_pdk_core.wasm`),
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "simple-js": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-simple-js-test`),
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(extism_js_core, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/extism/js-pdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Write Extism plugins in JavaScript & TypeScript (CLI)",
         mainProgram: "extism-js",

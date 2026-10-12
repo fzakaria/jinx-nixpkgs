@@ -31,20 +31,20 @@ export default nix.lambda((args) => (() => {
   const unsupportedVersion = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(dwarf_therapist, "maxDfVersion")), nix.thunk(() => nix.sel(dwarf_fortress, "dfVersion"))));
   const dfHackExpectScript = nix.thunk(() => nix.app(writeText, "dfhack.exp", "spawn xvfb-run dfhack +devel/export-dt-ini\nexpect \"DFHack is ready. Have a nice day!\"\nsend \"die\\r\"\n"));
   const dfHackWrapper = nix.thunk(() => nix.app(mkDfWrapper, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "dwarf-fortress": dwarf_fortress,
       dfhack: dfhack,
       enableDFHack: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dwarf-therapist",
       version: nix.thunk(() => nix.attr(dwarf_therapist, "version")),
       meta: nix.thunk(() => nix.attr(dwarf_therapist, "meta")),
       maxDfVersion: nix.thunk(() => nix.attr(dwarf_therapist, "maxDfVersion")),
       dfVersion: nix.thunk(() => nix.attr(dwarf_fortress, "dfVersion")),
       wrapper: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dwarf-therapist.in"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           stdenv_shell: nix.thunk(() => nix.str`${nix.sel(stdenv, "shell")}`),
           rm: nix.thunk(() => nix.str`${coreutils}/bin/rm`),
           ln: nix.thunk(() => nix.str`${coreutils}/bin/ln`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       paths: nix.thunk(() => [dwarf_therapist]),
       nativeBuildInputs: nix.thunk(() => nix.concat([wrapQtAppsHook], nix.app(nix.sel(lib, "optionals"), unsupportedVersion, nix.thunk(() => [expect, xvfb_run, dfHackWrapper])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "dwarf-fortress": dwarf_fortress,
         "dwarf-therapist": dwarf_therapist,
       })),

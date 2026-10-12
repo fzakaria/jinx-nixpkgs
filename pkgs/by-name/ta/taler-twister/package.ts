@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   const libsodium = nix.arg($, "libsodium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taler-twister",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/twister.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ir+kU9bCWwhqR88hmNHB5cm1DXOQowI5y6GdhWpX/L0=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, gnunet, jansson, libgcrypt, libmicrohttpd, libsodium]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git-www.taler.net/twister.git",
         description: "Fault injector for HTTP traffic",
         teams: nix.thunk(() => (() => {

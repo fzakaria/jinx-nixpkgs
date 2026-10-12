@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.gt(nix.app(nix.sel(lib, "count"), (x) => nix.force(x), nix.thunk(() => [gnutlsSupport, opensslSupport, rustlsSupport])), 1n)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cu/curlMinimal/package.nix:76:1");
   const isCross = nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "curl",
       version: "8.22.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://curl.haxx.se/download/curl-${nix.sel(finalAttrs, "version")}.tar.xz`),
             nix.thunk(() => nix.str`https://github.com/curl/curl/releases/download/curl-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/curl-${nix.sel(finalAttrs, "version")}.tar.xz`),
@@ -97,10 +97,10 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXX: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
         CXXCPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}c++ -E`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-liconv" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-liconv" }))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, perl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isOpenBSD")), nix.thunk(() => [autoreconfHook])))),
       nativeCheckInputs: nix.thunk(() => [openssl]),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), brotliSupport, brotli), nix.concat(nix.app(nix.sel(lib, "optional"), c_aresSupport, c_aresMinimal), nix.concat(nix.app(nix.sel(lib, "optional"), gnutlsSupport, gnutls), nix.concat(nix.app(nix.sel(lib, "optional"), gsaslSupport, gsasl), nix.concat(nix.app(nix.sel(lib, "optional"), gssSupport, libkrb5), nix.concat(nix.app(nix.sel(lib, "optional"), http2Support, nghttp2), nix.concat(nix.app(nix.sel(lib, "optionals"), http3Support, nix.thunk(() => [nghttp3, ngtcp2])), nix.concat(nix.app(nix.sel(lib, "optional"), idnSupport, libidn2), nix.concat(nix.app(nix.sel(lib, "optional"), ldapSupport, openldap), nix.concat(nix.app(nix.sel(lib, "optional"), opensslSupport, openssl), nix.concat(nix.app(nix.sel(lib, "optional"), pslSupport, libpsl), nix.concat(nix.app(nix.sel(lib, "optional"), scpSupport, libssh2), nix.concat(nix.app(nix.sel(lib, "optional"), rustlsSupport, rustls_ffi), nix.concat(nix.app(nix.sel(lib, "optional"), zlibSupport, zlib), nix.app(nix.sel(lib, "optional"), zstdSupport, zstd)))))))))))))))),
@@ -133,29 +133,29 @@ ln $out/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrar
 ln $out/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/libcurl-gnutls${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}.4.4.0
 `))), nix.app(nix.sel(lib, "optionalString"), isCross, "patchShebangs --host \"${!outputBin}/bin\"\n"))),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         bin: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), isCross, nix.thunk(() => nix.sel(buildPackages, "runtimeShellPackage")))),
         })),
         out: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), isCross, nix.thunk(() => nix.sel(buildPackages, "runtimeShellPackage")))),
         })),
       })),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), runtimeShellPackage)), runtimeShellPackage)),
       passthru: nix.thunk(() => (() => {
-        const useThisCurl = (attr) => nix.app(nix.sel(attr, "override"), nix.thunk(() => ({ __proto__: pos$7, curl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })));
+        const useThisCurl = (attr) => nix.app(nix.sel(attr, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, curl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })));
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           opensslSupport: opensslSupport,
           openssl: openssl,
           tests: nix.thunk(() => ({
-            __proto__: pos$12,
-            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$8, doCheck: true }))),
+            [nix.POS]: pos$12,
+            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$8, doCheck: true }))),
             fetchpatch: nix.thunk(() => nix.app(nix.sel(tests, "fetchpatch", "simple", "override"), nix.thunk(() => ({
-                __proto__: pos$11,
-                fetchpatch: nix.thunk(() => nix.update(nix.app(nix.sel(fetchpatch, "override"), nix.thunk(() => ({ __proto__: pos$9, fetchurl: nix.thunk(() => nix.app(useThisCurl, fetchurl)) }))), { __proto__: pos$10, version: 1n })),
+                [nix.POS]: pos$11,
+                fetchpatch: nix.thunk(() => nix.update(nix.app(nix.sel(fetchpatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, fetchurl: nix.thunk(() => nix.app(useThisCurl, fetchurl)) }))), { [nix.POS]: pos$10, version: 1n })),
               })))),
             curlpp: nix.thunk(() => nix.app(useThisCurl, curlpp)),
             coeurl: nix.thunk(() => nix.app(useThisCurl, coeurl)),
@@ -170,7 +170,7 @@ ln $out/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrar
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         changelog: nix.thunk(() => nix.str`https://curl.se/ch/${nix.sel(finalAttrs, "version")}.html`),
         description: "Command line tool for transferring files with URL syntax",
         homepage: "https://curl.se/",
@@ -189,7 +189,7 @@ ln $out/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrar
         pkgConfigModules: nix.thunk(() => ["libcurl"]),
         mainProgram: "curl",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "haxx", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

@@ -22,29 +22,29 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-statuses",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bircni",
           repo: "git-statuses",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-hZ0/lC7Xjv+CDi2uucRa009nTCrKIrBFj3BbZsciJ2o=",
         })))),
       cargoHash: "sha256-RMRATVe6NILxNiNVkcdv5x5BYVL5UUphtrrGRWN18KU=",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       nativeInstallCheckInputs: nix.thunk(() => [git, versionCheckHook]),
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd git-statuses \\\n  --bash <($out/bin/git-statuses --completions bash) \\\n  --fish <($out/bin/git-statuses --completions fish) \\\n  --zsh <($out/bin/git-statuses --completions zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line tool to display the status of multiple Git repositories in a clear, tabular format",
         homepage: "https://github.com/bircni/git-statuses",
         changelog: nix.thunk(() => nix.str`https://github.com/bircni/git-statuses/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

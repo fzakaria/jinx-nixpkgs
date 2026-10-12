@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const libxmlxx3 = nix.arg($, "libxmlxx3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deadbeef-lyricbar-plugin",
       version: "0.1-unstable-2019-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "C0rn3j",
           repo: "deadbeef-lyricbar",
           rev: "8f99b92ef827c451c43fc7dff38ae4f15c355e8e",
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [deadbeef, gtkmm3, libxmlxx3]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
       buildFlags: nix.thunk(() => ["gtk3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugin for DeaDBeeF audio player that fetches and shows the song’s lyrics",
         homepage: "https://github.com/C0rn3j/deadbeef-lyricbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

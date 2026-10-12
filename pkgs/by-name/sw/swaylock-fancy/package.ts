@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const depsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, grim, gawk, jq, swaylock, imagemagick, getopt, fontconfig, wmctrl])));
   const mainProgram = "swaylock-fancy";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swaylock-fancy",
       version: "unstable-2023-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Big-B",
           repo: "swaylock-fancy",
           rev: "0b93740e1dfc39883c125c212a1adc16b01c14f1",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${depsPath}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "swaylock bash script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text",
         homepage: "https://github.com/Big-B/swaylock-fancy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

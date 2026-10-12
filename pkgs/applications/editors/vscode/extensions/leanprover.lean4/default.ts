@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "lean4",
         publisher: "leanprover",
         version: "0.0.240",
         hash: "sha256-ixkQoXTHsHRB6wf5vmkJ0p8i1NrNyM6U595NY1CvbBE=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This extension provides VS Code support for the Lean 4 theorem prover and programming language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=leanprover.lean4",
         homepage: "https://github.com/leanprover/vscode-lean4",

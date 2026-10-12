@@ -73,21 +73,21 @@ export default nix.lambda((args) => (() => {
   const autoDb = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "databaseSetup", "enable"))) ? false : nix.sel(cfg, "databaseSetup", "kind")));
   const dbService = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(autoDb, false)), nix.thunk(() => (nix.asBool(nix.eq(autoDb, "mysql")) ? "mysql.service" : "postgresql.service"))));
   const db_config = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(autoDb, false)), nix.thunk(() => (nix.asBool(nix.eq(autoDb, "mysql")) ? {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       DB_CONNECTION: "mysql",
       DB_HOST: "",
       DB_SOCKET: "/run/mysqld/mysqld.sock",
       DB_USERNAME: user,
       DB_DATABASE: user,
     } : {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       DB_CONNECTION: "pgsql",
       DB_HOST: "/run/postgresql",
       DB_DATABASE: user,
       DB_USERNAME: user,
     }))));
   const raw_config = nix.thunk(() => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     APP_ENV: "production",
     APP_FORCE_HTTPS: true,
     APP_URL: nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}`),
@@ -96,13 +96,13 @@ export default nix.lambda((args) => (() => {
   }, nix.update(nix.sel(cfg, "settings"), db_config)));
   const app_config = nix.thunk(() => nix.app(dropNull, raw_config));
   const baseService = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ps")), artisanWrapped]),
     requires: nix.thunk(() => nix.concat(["freescout-setup.service"], dbService)),
-    serviceConfig: nix.thunk(() => ({ __proto__: pos$4, User: user, Group: group })),
+    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$4, User: user, Group: group })),
   }));
   const phpPackage = nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       extensions: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const all = nix.arg($_1, "all");
@@ -112,13 +112,13 @@ export default nix.lambda((args) => (() => {
       extraConfig: "error_reporting = 0\n",
     }))));
   const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "overrideAttrs"), (prev) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`${nix.sel(prev, "pname")}-${nix.sel(cfg, "domain")}`),
       postInstall: nix.thunk(() => nix.add(nix.selOr(prev, () => "", "postInstall"), nix.str`ln -s ${datadir} $out/share/freescout/data
 `)),
     })));
   const artisanWrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "artisan-wrapped",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -176,7 +176,7 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
   const hashSecret = (p) => nix.builtins.hashString("sha256", nix.thunk(() => nix.builtins.toString(p)));
   const dropNull = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.asBool(nix.app(nix.sel(lib, "elem"), v, nix.thunk(() => [null, [], nix.thunk(() => ({}))])))));
   const mkEnvVars = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       mkKeyValue: (k) => (v) => (() => {
         const value = nix.thunk(() => (() => {
           const w = nix.withScope(nix.builtins, null);
@@ -188,38 +188,38 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
   const mkEnvFile = (fname) => (values) => nix.app(nix.sel(pkgs, "writeText"), fname, nix.thunk(() => nix.app(mkEnvVars, values)));
   const mkSecretsReplacement = (filePath) => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (sp) => nix.str`replace-secret ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => [nix.thunk(() => nix.app(hashSecret, sp)), sp]))} ${filePath}`);
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         freescout: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "FreeScout helpdesk application")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "freescout", nix.thunk(() => ({})))),
             phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                 default: nix.thunk(() => nix.sel(pkgs, "php")),
                 description: "The php package to use",
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.php")),
               })))),
             domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Domain the freescout installation will run under",
                 example: "support.mydomain.net",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "anything")));
                 })()),
                 apply: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (k) => (v) => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     name: nix.thunk(() => nix.app(nix.lookup(w, "toUpper"), k)),
                     value: v,
                   }))),
@@ -229,7 +229,7 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  # NOTE: MUST be 256 bits (32 bytes) in length, the form of base64:<base64 encoded key> is recommended.\n  # You can generate a valid one using `echo \"base64:$(openssl rand -base64 32)\"`\n  APP_KEY_FILE = \"/run/secret/freescout/app_key\";\n  DB_CONNECTION = \"mysql\";\n  DB_HOST = \"localhost\";\n  DB_PORT = 3306;\n  DB_DATABASE = \"freescout\";\n  DB_USERNAME = \"freescout\";\n  DB_PASSWORD._secret = \"/run/secret/freescout/db_pass\";\n}\n")),
               })))),
             poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -239,7 +239,7 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
                       ]))));
                 })()),
                 default: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   pm: "ondemand",
                   "pm.max_children": 32n,
                   "pm.process_idle_timeout": "120s",
@@ -248,15 +248,15 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
                 description: "Options for the freescout PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
               })))),
             databaseSetup: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Whether to enable automatic database setup and configuration",
                   default: true,
                 })))),
               kind: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["mysql", "pgsql"]))),
                   default: "pgsql",
                   example: "mysql",
@@ -268,47 +268,47 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (nix.asBool(nix.has(app_config, "APP_KEY")) || nix.asBool(nix.has(app_config, "APP_KEY_FILE")))),
             message: "`services.freescout.settings.APP_KEY_FILE` is required!",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.has(app_config, "APP_KEY")) && nix.asBool(nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(app_config, "APP_KEY")))))), "`services.freescout.settings.APP_KEY` will be stored in the world readable nix store. Use `APP_KEY._secret` or `APP_KEY_FILE` instead!")),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               group: group,
               isSystemUser: true,
               createHome: true,
               home: datadir,
               homeMode: "750",
             }))],
-            [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => ({ __proto__: pos$24, extraGroups: nix.thunk(() => [group]) }))],
+            [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => ({ [nix.POS]: pos$24, extraGroups: nix.thunk(() => [group]) }))],
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.force(group), nix.thunk(() => ({}))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(autoDb, "pgsql")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$26, name: user, ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$26, name: user, ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(app_config, "DB_DATABASE"))]),
             })))),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(autoDb, "mysql")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   name: user,
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(app_config, "DB_DATABASE")}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -316,16 +316,16 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(app_config, "DB_DATABASE"))]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             pools: nix.thunk(() => nix.attrsDyn({}, [
               [user, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 phpPackage: phpPackage,
                 user: user,
                 group: group,
                 phpOptions: "display_errors = On\ndisplay_startup_errors = On\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   "listen.owner": user,
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                   catch_workers_output: true,
@@ -334,25 +334,25 @@ ${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} freescout:after-app-update
             ])),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "domain"), nix.thunk(() => (() => {
                 const vhostCfg = nix.thunk(() => nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "domain"))));
                 const optSsl = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(vhostCfg, "forceSSL")) || nix.asBool(nix.sel(vhostCfg, "onlySSL")))), "fastcgi_param HTTPS on;"));
                 return {
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${package$}/share/freescout/public`))),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       index: "index.php",
                       tryFiles: "$uri $uri/ /index.php$is_args$args",
                       extraConfig: "# Defeats E-Mail open tracking or possibly \"real\" exploits\nadd_header X-XSS-Protection \"1; mode=block\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\nadd_header Referrer-Policy \"no-referrer-when-downgrade\" always;\nadd_header Content-Security-Policy \"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'\";\n",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       tryFiles: "$uri $uri/ =404",
                       extraConfig: nix.thunk(() => nix.str`fastcgi_index index.php;
 include ${nix.sel(pkgs, "nginx")}/conf/fastcgi_params;
@@ -368,22 +368,22 @@ add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe
 `),
                     })),
                     "~* ^/storage/attachment/": nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       tryFiles: "$uri $uri/ /index.php?$query_string",
                       extraConfig: "expires 1M;\naccess_log off;\n",
                     })),
                     "~* ^/(?:css|js)/.*\\.(?:css|js)$": nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       extraConfig: "expires 2d;\naccess_log off;\nadd_header Cache-Control \"public, must-revalidate\";\n# Defeats E-Mail open tracking or possibly \"real\" exploits\nadd_header X-XSS-Protection \"1; mode=block\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\nadd_header Referrer-Policy \"no-referrer-when-downgrade\" always;\nadd_header Content-Security-Policy \"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'\";\n",
                     })),
                     "~* ^/(?:css|fonts|img|installer|js|modules)$": nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       extraConfig: "expires 1M;\naccess_log off;\nadd_header Cache-Control \"public, must-revalidate\";\n",
                     })),
-                    "~ /\\.": nix.thunk(() => ({ __proto__: pos$38, extraConfig: "deny all;\n" })),
-                    "^~ /(css|js)/builds/": nix.thunk(() => ({ __proto__: pos$39, root: nix.thunk(() => nix.str`${cachedir}/public/`) })),
+                    "~ /\\.": nix.thunk(() => ({ [nix.POS]: pos$38, extraConfig: "deny all;\n" })),
+                    "^~ /(css|js)/builds/": nix.thunk(() => ({ [nix.POS]: pos$39, root: nix.thunk(() => nix.str`${cachedir}/public/`) })),
                     "^~ /storage/app/attachment/": nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       alias: nix.thunk(() => nix.str`${datadir}/storage/app/attachment/`),
                       extraConfig: "internal;\n",
                     })),
@@ -394,18 +394,18 @@ add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             "freescout-setup": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), baseService, nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 description: "Preparational tasks for freescout",
                 requires: dbService,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: dbService,
                 script: freescoutSetupScript,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   PrivateTmp: true,
                   Type: "oneshot",
                   RemainAfterExit: true,
@@ -413,12 +413,12 @@ add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe
                 })),
               })))),
             "freescout-schedule-run": nix.thunk(() => nix.update(baseService, {
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               startAt: "minutely",
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} schedule:run --no-interaction`),
             })),
             "freescout-queue": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), baseService, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), artisanWrapped)} \\
   queue:work \\
   --queue emails,default \\
@@ -427,12 +427,12 @@ add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe
   --tries=20 \\
   | tee -a ${datadir}/storage/logs/queue-jobs.log
 `),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$48, RestartSec: "15s", RuntimeMaxSec: "1h", Restart: "always" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$48, RestartSec: "15s", RuntimeMaxSec: "1h", Restart: "always" })),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => nix.concat(["freescout-setup.service"], dbService)),
               })))),
           }, [
-            [nix.force(fpmService), nix.thunk(() => ({ __proto__: pos$50, path: nix.thunk(() => nix.attr(baseService, "path")) }))],
+            [nix.force(fpmService), nix.thunk(() => ({ [nix.POS]: pos$50, path: nix.thunk(() => nix.attr(baseService, "path")) }))],
           ])),
         })),
       })))),

@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const enableRegex = nix.argOr($, "enableRegex", () => true);
   const useAirpcap = nix.argOr($, "useAirpcap", () => nix.sel(stdenv, "hostPlatform", "isCygwin"));
   const airpcap_sdk = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "airpcap-sdk",
       version: "4.1.1",
       url: "https://support.riverbed.com/bin/support/download?sid=l3vk3eu649usgu3rj60uncjqqu",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       extension: "zip",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aircrack-ng",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "aircrack-ng",
           repo: "aircrack-ng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       installCheckTarget: "integration",
       nativeInstallCheckInputs: nix.thunk(() => nix.concat([cmocka, expect], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [tcpdump, hostapd, wpa_supplicant, screen])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WiFi security auditing tools suite",
         homepage: "https://www.aircrack-ng.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

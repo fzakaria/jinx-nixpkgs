@@ -24,37 +24,37 @@ export default nix.lambda((args) => (() => {
   const ocrContent = "Feed";
   const videoFile = "test.webm";
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "lomiri-mediaplayer-app-standalone",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             etc: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${videoFile}`, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), videoFile, nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     nativeBuildInputs: nix.thunk(() => (() => {
                       const w = nix.withScope(pkgs, null);
                       return [
                         nix.thunk(() => nix.lookup(w, "ffmpeg")),
-                        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ __proto__: pos$4, ghostscriptSupport: true })))),
+                        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, ghostscriptSupport: true })))),
                       ];
                     })()),
                   })), nix.thunk(() => nix.str`magick -size 600x600 canvas:black -pointsize 32 -fill white -annotate +100+100 '${ocrContent}' output.png
@@ -69,11 +69,11 @@ ffmpeg -re -loop 1 -i output.png -c:v libvpx -b:v 200K -t 120 $out -loglevel fat
                 nix.thunk(() => nix.lookup(w, "lomiri-mediaplayer-app")),
               ];
             })()),
-            variables: nix.thunk(() => ({ __proto__: pos$7, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$7, UITK_ICON_THEME: "suru" })),
           })),
-          i18n: nix.thunk(() => ({ __proto__: pos$9, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: pos$9, supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];

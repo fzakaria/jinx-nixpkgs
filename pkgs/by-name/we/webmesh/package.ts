@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const webmesh = nix.arg($, "webmesh");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "webmesh",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webmeshproj",
           repo: "webmesh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Inh7j01/xBJgGYmX1tGBRNYjn1N4AO2sywBwZ8yXlsY=",
         })))),
       vendorHash: "sha256-xoc7NSdg5bn3aXgcrolJwv8jyrv2HEXFmiCtRXBVwVg=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/webmesh-node", "cmd/webmeshd", "cmd/wmctl"]),
       ldflags: nix.thunk(() => [
         "-w",
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/webmeshproj/webmesh/pkg/version.GitCommit=v${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          "webmesh-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: webmesh })))),
+          [nix.POS]: pos$5,
+          "webmesh-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: webmesh })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Simple, distributed, zero-configuration WireGuard mesh provider",
         mainProgram: "webmesh-node",
         homepage: "https://webmeshproj.github.io",

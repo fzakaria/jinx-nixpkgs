@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cmux",
       version: "0.64.22",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/manaflow-ai/cmux/releases/download/v${nix.sel(finalAttrs, "version")}/cmux-macos.dmg`),
           hash: "sha256-/RSNujUZ/n0wiEQInOTQYrF3ObpkViPwWPZ6ZHmM6iU=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R cmux.app $out/Applications/\n\nmkdir -p $out/bin\nmakeBinaryWrapper \\\n  \"$out/Applications/cmux.app/Contents/MacOS/cmux\" \\\n  \"$out/bin/cmux\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native macOS terminal built on Ghostty, designed for AI coding agents",
         longDescription: "cmux is a macOS-native terminal application built on Ghostty that\nprovides vertical tabs, notification rings, an in-app browser, and\nfirst-class support for AI coding agents such as Claude Code.\nIt exposes scriptable CLI and socket APIs.\n",
         homepage: "https://cmux.com",

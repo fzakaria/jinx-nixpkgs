@@ -26,31 +26,31 @@ export default nix.lambda((args) => (() => {
   const mkForce = nix.thunk(() => nix.attr(lib, "mkForce"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9187n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       dataSourceName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "user=postgres database=postgres host=/run/postgresql sslmode=disable",
           example: "postgresql://username:password@localhost:5432/postgres?sslmode=disable",
           description: "Accepts PostgreSQL URI form and key=value form arguments.\n",
         })))),
       runAsLocalSuperUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to run the exporter as the local 'postgres' super user.\n",
         })))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/root/prometheus-postgres-exporter.env",
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       environment: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         DATA_SOURCE_NAME: nix.thunk(() => nix.sel(cfg, "dataSourceName")),
       })),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         DynamicUser: false,
         User: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "runAsLocalSuperUser")), nix.thunk(() => nix.app(mkForce, "postgres")))),
         EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),

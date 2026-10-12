@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libx86 = nix.arg($, "libx86");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "read-edid",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.polypux.org/projects/read-edid/read-edid-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0vqqmwsgh2gchw7qmpqk6idgzcm5rqf2fab84y7gk42v1x2diin7",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCLASSICBUILD=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "ON" : "OFF")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for reading and parsing EDID data from monitors",
         homepage: "http://www.polypux.org/projects/read-edid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

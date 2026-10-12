@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const util_linuxMinimal = nix.arg($, "util-linuxMinimal");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eudev",
       version: "3.2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eudev-project",
           repo: "eudev",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
         "udevrulesdir=$(out)/var/lib/udev/rules.d",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kmod, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/eudev-project/eudev",
         description: "Fork of udev with the aim of isolating it from init",
         longDescription: "eudev is a standalone dynamic and persistent device naming support (aka\nuserspace devfs) daemon that runs independently from the init\nsystem. eudev strives to remain init system and linux distribution\nneutral. It is currently used as the devfs manager for more than a dozen\ndifferent linux distributions.\n\nThis git repo is a fork of systemd repository with the aim of isolating\nudev from any particular flavor of system initialization. In this case,\nthe isolation is from systemd.\n\nThis is a project started by Gentoo developers and testing was initially\nbeing done mostly on OpenRC. We welcome contribution from others using a\nvariety of system initializations to ensure eudev remains system\ninitialization and distribution neutral. On 2021-08-20 Gentoo decided to\nabandon eudev and a new project was established on 2021-09-14 by Alpine,\nDevuan and Gentoo contributors.\n",

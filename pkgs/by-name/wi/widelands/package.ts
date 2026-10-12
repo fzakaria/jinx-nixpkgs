@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "widelands";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "widelands",
           repo: "widelands",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libxext)));
       const postInstall = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm444 -t $out/share/applications ../xdg/org.widelands.Widelands.desktop\n\nfor s in 16 32 48 64 128; do\n  install -Dm444 ../data/images/logos/wl-ico-${s}.png $out/share/icons/hicolor/${s}x${s}/org.widelands.Widelands.png\ndone\n"), "installManPage ../xdg/widelands.6\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RTS with multiple-goods economy",
         homepage: "https://widelands.org/",
         longDescription: "Widelands is a real time strategy game based on \"The Settlers\" and \"The\nSettlers II\". It has a single player campaign mode, as well as a networked\nmultiplayer mode.\n",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         hydraPlatforms: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

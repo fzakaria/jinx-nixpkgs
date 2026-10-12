@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildNavidromeGoPlugin = nix.arg($, "buildNavidromeGoPlugin");
   return nix.app(buildNavidromeGoPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apple-music-plugin",
       bundleName: "apple-music",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "navidrome",
           repo: "apple-music-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-G1B6W8ZKoLuNwvOt3z5vSKcQmF2574j41A0lC+u39uI=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/navidrome/apple-music-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fetches artist metadata from Apple Music using free iTunes/Apple Music endpoints",
         homepage: "https://github.com/navidrome/apple-music-plugin",

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Backblaze",
           repo: "b2-sdk-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_dir_without_exec_permission"])));
       const pythonImportsCheck = nix.thunk(() => ["b2sdk"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library and utilities for access to B2 Cloud Storage (backblaze)",
         homepage: "https://github.com/Backblaze/b2-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Backblaze/b2-sdk-python/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

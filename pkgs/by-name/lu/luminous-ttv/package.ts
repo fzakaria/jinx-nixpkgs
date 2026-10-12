@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "luminous-ttv",
       version: "0.5.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlyoshaVasilieva",
           repo: "luminous-ttv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-EIvPQNPWH2IH2Ll5tSsS3cj592jxWljXc1z4LGGZC6I=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust server to retrieve and relay a playlist for Twitch livestreams/VODs",
         homepage: "https://github.com/AlyoshaVasilieva/luminous-ttv",
         downloadPage: "https://github.com/AlyoshaVasilieva/luminous-ttv/releases/latest",

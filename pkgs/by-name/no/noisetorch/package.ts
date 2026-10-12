@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "NoiseTorch",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noisetorch",
           repo: "NoiseTorch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C c/ladspa/\ngo generate\nrm  ./scripts/*\n",
       postInstall: "install -D ./assets/icon/noisetorch.png $out/share/icons/hicolor/256x256/apps/noisetorch.png\ninstall -Dm444 ./assets/noisetorch.desktop $out/share/applications/noisetorch.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual microphone device with noise suppression for PulseAudio",
         homepage: "https://github.com/noisetorch/NoiseTorch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

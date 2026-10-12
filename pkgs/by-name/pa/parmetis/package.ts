@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const metis = nix.arg($, "metis");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parmetis",
       version: "4.0.3-unstable-2023-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KarypisLab",
           repo: "ParMETIS",
           rev: "8ee6a372ca703836f593e3c450ca903f04be14df",
@@ -39,7 +39,7 @@ make config metis_path=${metis} gklib_path=${gklib} prefix=$out \\
 runHook postConfigure
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel Graph Partitioning and Fill-reducing Matrix Ordering",
         longDescription: "MPI-based parallel library that implements a variety of algorithms for\npartitioning unstructured graphs, meshes, and for computing fill-reducing\norderings of sparse matrices.\nThe algorithms implemented in ParMETIS are based on the multilevel\nrecursive-bisection, multilevel k-way, and multi-constraint partitioning\nschemes\n",
         homepage: "https://github.com/KarypisLab/ParMETIS",

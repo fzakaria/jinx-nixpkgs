@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const backend = nix.arg($, "backend");
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: nix.thunk(() => nix.str`firewall-${backend}`),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "prince213")),
           nix.thunk(() => nix.lookup(w, "rvfg")),
@@ -54,55 +54,55 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       walled: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           networking: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             firewall: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               backend: backend,
               logRefusedPackets: true,
               allowedTCPPorts: nix.thunk(() => [25n, 993n, 8005n]),
               allowedTCPPortRanges: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$2, from: 980n, to: 1000n })),
-                nix.thunk(() => ({ __proto__: pos$3, from: 990n, to: 1010n })),
-                nix.thunk(() => ({ __proto__: pos$4, from: 8000n, to: 8010n })),
+                nix.thunk(() => ({ [nix.POS]: pos$2, from: 980n, to: 1000n })),
+                nix.thunk(() => ({ [nix.POS]: pos$3, from: 990n, to: 1010n })),
+                nix.thunk(() => ({ [nix.POS]: pos$4, from: 8000n, to: 8010n })),
               ]),
               interfaces: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(backend, "firewalld")), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   eth0: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     allowedTCPPorts: nix.thunk(() => [10003n]),
-                    allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, from: 10000n, to: 10005n }))]),
+                    allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, from: 10000n, to: 10005n }))]),
                   })),
                   eth3: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     allowedUDPPorts: nix.thunk(() => [10003n]),
-                    allowedUDPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$7, from: 10000n, to: 10005n }))]),
+                    allowedUDPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, from: 10000n, to: 10005n }))]),
                   })),
                 })))),
             })),
-            nftables: nix.thunk(() => ({ __proto__: pos$11, enable: nix.thunk(() => !nix.eq(backend, "iptables")) })),
+            nftables: nix.thunk(() => ({ [nix.POS]: pos$11, enable: nix.thunk(() => !nix.eq(backend, "iptables")) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewalld: nix.thunk(() => ({ __proto__: pos$13, enable: nix.thunk(() => nix.eq(backend, "firewalld")) })),
-            httpd: nix.thunk(() => ({ __proto__: pos$14, enable: true, adminAddr: "foo@example.org" })),
+            [nix.POS]: pos$15,
+            firewalld: nix.thunk(() => ({ [nix.POS]: pos$13, enable: nix.thunk(() => nix.eq(backend, "firewalld")) })),
+            httpd: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, adminAddr: "foo@example.org" })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "different-config": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               configuration: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$17,
-                  firewall: nix.thunk(() => ({ __proto__: pos$16, rejectPackets: true })),
+                  [nix.POS]: pos$17,
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$16, rejectPackets: true })),
                 })),
               })),
             })),
@@ -112,14 +112,14 @@ export default nix.lambda((args) => (() => {
       attacker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
-            httpd: nix.thunk(() => ({ __proto__: pos$22, enable: true, adminAddr: "foo@example.org" })),
+            [nix.POS]: pos$23,
+            httpd: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true, adminAddr: "foo@example.org" })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$25,
-            firewall: nix.thunk(() => ({ __proto__: pos$24, enable: false })),
+            [nix.POS]: pos$25,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$24, enable: false })),
           })),
         };
       })(), formals$3),

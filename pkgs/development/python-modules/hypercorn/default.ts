@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgjones",
           repo: "Hypercorn",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => [h11, h2, priority, wsproto]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         h3: nix.thunk(() => [aioquic]),
         trio: nix.thunk(() => [trio]),
         uvloop: nix.thunk(() => [uvloop]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["hypercorn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pgjones/hypercorn/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         homepage: "https://github.com/pgjones/hypercorn",
         description: "ASGI web server inspired by Gunicorn",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

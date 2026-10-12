@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "luasandbox";
       const version = "4.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wikimedia",
           repo: "mediawiki-php-luasandbox",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(lua51Packages, "lua"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for PHP 7 and PHP 8 to allow safely running untrusted Lua 5.1 code from within PHP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://www.mediawiki.org/wiki/LuaSandbox",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const vips = nix.arg($, "vips");
   const test_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "uclouvain",
       repo: "openjpeg-data",
       rev: "39524bd3a601d90ed8e0177559400d23945f96a9",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openjpeg";
       const version = "2.5.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "uclouvain",
           repo: "openjpeg",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -76,12 +76,12 @@ ctest -j $NIX_BUILD_CORES \\
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         incDir: nix.thunk(() => nix.str`openjpeg-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$3, withOpenjpeg: true })))),
-          imagemagick: nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ __proto__: pos$4, openjpegSupport: true })))),
+          [nix.POS]: pos$5,
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withOpenjpeg: true })))),
+          imagemagick: nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, openjpegSupport: true })))),
           pillow: nix.thunk(() => nix.sel(python3, "pkgs", "pillow")),
           gdal: gdal,
           gdcm: gdcm,
@@ -93,7 +93,7 @@ runHook postCheck
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open-source JPEG 2000 codec written in C language",
         homepage: "https://www.openjpeg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -102,7 +102,7 @@ runHook postCheck
         changelog: nix.thunk(() => nix.str`https://github.com/uclouvain/openjpeg/blob/v${version}/CHANGELOG.md`),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

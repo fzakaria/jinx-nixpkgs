@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libjaylink",
       version: "0.5.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.zapb.de",
           owner: "libjaylink",
           repo: "libjaylink",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace contrib/60-libjaylink.rules \\\n  --replace-fail 'GROUP=\"plugdev\"' 'GROUP=\"jlink\"'\n",
       postInstall: "install -Dm644 ../contrib/60-libjaylink.rules $out/lib/udev/rules.d/60-libjaylink.rules\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.zapb.de/libjaylink/libjaylink",
         description: "Shared library written in C to access SEGGER J-Link and compatible devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

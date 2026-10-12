@@ -30,36 +30,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const v2rayUser = nix.thunk(() => ({ __proto__: pos$1, id: "a6a46834-2150-45f8-8364-0f6f6ab32384", alterId: 0n }));
+  const v2rayUser = nix.thunk(() => ({ [nix.POS]: pos$1, id: "a6a46834-2150-45f8-8364-0f6f6ab32384", alterId: 0n }));
   const v2rayConfig = nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     inbounds: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tag: "http_in",
         port: 1080n,
         listen: "127.0.0.1",
         protocol: "http",
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tag: "vmess_in",
         port: 1081n,
         listen: "127.0.0.1",
         protocol: "vmess",
-        settings: nix.thunk(() => ({ __proto__: pos$3, clients: nix.thunk(() => [v2rayUser]) })),
+        settings: nix.thunk(() => ({ [nix.POS]: pos$3, clients: nix.thunk(() => [v2rayUser]) })),
       })),
     ]),
     outbounds: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tag: "vmess_out",
         protocol: "vmess",
         settings: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           vnext: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               address: "127.0.0.1",
               port: 1081n,
               users: nix.thunk(() => [v2rayUser]),
@@ -67,25 +67,25 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
       })),
-      nix.thunk(() => ({ __proto__: pos$8, tag: "direct", protocol: "freedom" })),
+      nix.thunk(() => ({ [nix.POS]: pos$8, tag: "direct", protocol: "freedom" })),
     ]),
     routing: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       rules: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: "field",
           inboundTag: "http_in",
           outboundTag: "vmess_out",
         })),
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: "field",
           inboundTag: "vmess_in",
           outboundTag: "direct",
         })),
         nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: "field",
           ip: nix.thunk(() => ["geoip:private"]),
           domain: nix.thunk(() => ["geosite:category-ads"]),
@@ -95,30 +95,30 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "v2ray",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "servalcatty"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           environment: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
-            v2ray: nix.thunk(() => ({ __proto__: pos$16, enable: true, config: v2rayConfig })),
-            httpd: nix.thunk(() => ({ __proto__: pos$17, enable: true, adminAddr: "foo@example.org" })),
+            [nix.POS]: pos$18,
+            v2ray: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, config: v2rayConfig })),
+            httpd: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, adminAddr: "foo@example.org" })),
           })),
         };
       })(), formals$2),

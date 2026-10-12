@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const gtksourceview3 = nix.arg($, "gtksourceview3");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gtksourceviewmm",
       version: "3.21.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtksourceviewmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtksourceviewmm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1danc9mp5mnb65j01qxkwj92z8jf1gns41wbgp17qh7050f0pc6v",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "gtksourceviewmm",
             versionPolicy: "none",
             freeze: true,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glibmm_2_4, gtkmm3, gtksourceview3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         homepage: "https://gitlab.gnome.org/GNOME/gtksourceviewmm",
         description: "C++ wrapper for gtksourceview",

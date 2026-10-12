@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wl-clipboard.yazi",
       version: "0-unstable-2026-04-07",
       installPhase: "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grappas",
           repo: "wl-clipboard.yazi",
           rev: "8cc55242dbbc0b60fde27ab0d17bf11d91a14e14",
           hash: "sha256-pIKxWhaVDUOUKvVL4hGXn5zT4K7AvDi/VM+zBCX+19c=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wayland implementation of a simple system clipboard for yazi file manager",
         homepage: "https://github.com/grappas/wl-clipboard.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

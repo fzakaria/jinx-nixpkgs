@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(pkgs, "openresolv")}/bin/resolvconf -u
 `)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         rdnssd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the RDNSS daemon\n({command}`rdnssd`), which configures DNS servers in\n{file}`/etc/resolv.conf` from RDNSS\nadvertisements sent by IPv6 routers.\n",
@@ -46,20 +46,20 @@ ${nix.sel(pkgs, "openresolv")}/bin/resolvconf -u
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "rdnssd", "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => nix.sel(config, "networking", "resolvconf", "enable")),
             message: "rdnssd needs resolvconf to work (probably something sets up a static resolv.conf)",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             rdnssd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "RDNSS daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -77,7 +77,7 @@ ${mergeHook}
 ${mergeHook}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(pkgs, "ndisc6")}/bin/rdnssd rdnssd -p /run/rdnssd/rdnssd.pid -r /run/rdnssd/resolv.conf -u rdnssd -H ${mergeHook}`),
                 Type: "forking",
                 PIDFile: "/run/rdnssd/rdnssd.pid",
@@ -86,17 +86,17 @@ ${mergeHook}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             rdnssd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "RDNSSD Daemon User",
               isSystemUser: true,
               group: "rdnssd",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$12, rdnssd: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, rdnssd: nix.thunk(() => ({})) })),
         })),
       })))),
   };

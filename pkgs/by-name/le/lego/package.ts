@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lego",
       version: "5.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "go-acme",
           repo: "lego",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Let's Encrypt client and ACME library written in Go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://go-acme.github.io/lego/",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lego",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "lego-http": nix.thunk(() => nix.sel(nixosTests, "acme", "http01-builtin")),
           "lego-dns": nix.thunk(() => nix.sel(nixosTests, "acme", "dns01")),
         })),

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const time_machine = nix.arg($, "time-machine");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avwx-engine",
       version: "1.9.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avwx-rest",
           repo: "avwx-engine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [geopy, httpx, python_dateutil, xmltodict]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [numpy, rapidfuzz, scipy, shapely]),
         fuzz: nix.thunk(() => [rapidfuzz]),
         scipy: nix.thunk(() => [numpy, scipy]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["avwx"]),
       disabledTests: nix.thunk(() => ["fetch", "test_nbm_all", "test_station_nearest_ip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Aviation Weather parsing engine",
         homepage: "https://github.com/avwx-rest/avwx-engine",
         changelog: nix.thunk(() => nix.str`https://github.com/avwx-rest/avwx-engine/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),

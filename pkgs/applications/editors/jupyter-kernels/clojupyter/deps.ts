@@ -221,14 +221,14 @@ export default nix.lambda((args) => (() => {
     const makeClasspaths = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const extraClasspaths = nix.argOr($_1, "extraClasspaths", () => []);
-      return nix.builtins.concatStringsSep(":", nix.thunk(() => nix.app(makePaths, nix.thunk(() => ({ __proto__: pos$1, extraClasspaths: extraClasspaths })))));
+      return nix.builtins.concatStringsSep(":", nix.thunk(() => nix.app(makePaths, nix.thunk(() => ({ [nix.POS]: pos$1, extraClasspaths: extraClasspaths })))));
     })(), formals$3);
     const packages = nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "javax.inject/javax.inject",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             repos: repos,
             artifactId: "javax.inject",
             groupId: "javax.inject",
@@ -237,10 +237,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "org.clojure/data.json",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             repos: repos,
             artifactId: "data.json",
             groupId: "org.clojure",
@@ -249,10 +249,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "org.clojure/clojure",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             repos: repos,
             artifactId: "clojure",
             groupId: "org.clojure",
@@ -261,10 +261,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "net.cgrand/sjacket",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             repos: repos,
             artifactId: "sjacket",
             groupId: "net.cgrand",
@@ -273,10 +273,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "clojupyter/clojupyter",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             repos: repos,
             artifactId: "clojupyter",
             groupId: "clojupyter",
@@ -285,10 +285,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "commons-codec/commons-codec",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             repos: repos,
             artifactId: "commons-codec",
             groupId: "commons-codec",
@@ -297,10 +297,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: "org.clojure/tools.analyzer",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             repos: repos,
             artifactId: "tools.analyzer",
             groupId: "org.clojure",
@@ -309,10 +309,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "org.codehaus.plexus/plexus-component-annotations",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             repos: repos,
             artifactId: "plexus-component-annotations",
             groupId: "org.codehaus.plexus",
@@ -321,10 +321,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "org.apache.commons/commons-compress",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             repos: repos,
             artifactId: "commons-compress",
             groupId: "org.apache.commons",
@@ -333,10 +333,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: "org.apache.commons/commons-lang3",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             repos: repos,
             artifactId: "commons-lang3",
             groupId: "org.apache.commons",
@@ -345,10 +345,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         name: "org.clojure/core.specs.alpha",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             repos: repos,
             artifactId: "core.specs.alpha",
             groupId: "org.clojure",
@@ -357,10 +357,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "org.tukaani/xz",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             repos: repos,
             artifactId: "xz",
             groupId: "org.tukaani",
@@ -369,10 +369,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         name: "org.zeromq/jeromq",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             repos: repos,
             artifactId: "jeromq",
             groupId: "org.zeromq",
@@ -381,10 +381,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: "org.clojure/spec.alpha",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             repos: repos,
             artifactId: "spec.alpha",
             groupId: "org.clojure",
@@ -393,10 +393,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         name: "pandect/pandect",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             repos: repos,
             artifactId: "pandect",
             groupId: "pandect",
@@ -405,10 +405,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         name: "org.clojure/tools.cli",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             repos: repos,
             artifactId: "tools.cli",
             groupId: "org.clojure",
@@ -417,10 +417,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         name: "com.taoensso/encore",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             repos: repos,
             artifactId: "encore",
             groupId: "com.taoensso",
@@ -429,10 +429,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         name: "org.apache.maven.resolver/maven-resolver-transport-wagon",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             repos: repos,
             artifactId: "maven-resolver-transport-wagon",
             groupId: "org.apache.maven.resolver",
@@ -441,10 +441,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         name: "org.slf4j/jcl-over-slf4j",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             repos: repos,
             artifactId: "jcl-over-slf4j",
             groupId: "org.slf4j",
@@ -453,10 +453,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         name: "org.clojure/tools.analyzer.jvm",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             repos: repos,
             artifactId: "tools.analyzer.jvm",
             groupId: "org.clojure",
@@ -465,10 +465,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         name: "org.apache.maven.wagon/wagon-provider-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             repos: repos,
             artifactId: "wagon-provider-api",
             groupId: "org.apache.maven.wagon",
@@ -477,10 +477,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         name: "io.pedestal/pedestal.log",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             repos: repos,
             artifactId: "pedestal.log",
             groupId: "io.pedestal",
@@ -489,10 +489,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         name: "com.fasterxml.jackson.dataformat/jackson-dataformat-cbor",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             repos: repos,
             artifactId: "jackson-dataformat-cbor",
             groupId: "com.fasterxml.jackson.dataformat",
@@ -501,10 +501,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         name: "org.apache.maven.resolver/maven-resolver-transport-http",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             repos: repos,
             artifactId: "maven-resolver-transport-http",
             groupId: "org.apache.maven.resolver",
@@ -513,10 +513,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         name: "net.cgrand/parsley",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             repos: repos,
             artifactId: "parsley",
             groupId: "net.cgrand",
@@ -525,10 +525,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         name: "funcool/cats",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             repos: repos,
             artifactId: "cats",
             groupId: "funcool",
@@ -537,10 +537,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         name: "org.apache.maven/maven-model-builder",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             repos: repos,
             artifactId: "maven-model-builder",
             groupId: "org.apache.maven",
@@ -549,10 +549,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         name: "io.aviso/pretty",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             repos: repos,
             artifactId: "pretty",
             groupId: "io.aviso",
@@ -561,10 +561,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         name: "rewrite-clj/rewrite-clj",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             repos: repos,
             artifactId: "rewrite-clj",
             groupId: "rewrite-clj",
@@ -573,10 +573,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         name: "org.codehaus.plexus/plexus-utils",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             repos: repos,
             artifactId: "plexus-utils",
             groupId: "org.codehaus.plexus",
@@ -585,10 +585,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         name: "org.apache.maven.resolver/maven-resolver-transport-file",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             repos: repos,
             artifactId: "maven-resolver-transport-file",
             groupId: "org.apache.maven.resolver",
@@ -597,10 +597,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         name: "slingshot/slingshot",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             repos: repos,
             artifactId: "slingshot",
             groupId: "slingshot",
@@ -609,10 +609,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         name: "org.flatland/ordered",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             repos: repos,
             artifactId: "ordered",
             groupId: "org.flatland",
@@ -621,10 +621,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         name: "commons-io/commons-io",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             repos: repos,
             artifactId: "commons-io",
             groupId: "commons-io",
@@ -633,10 +633,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         name: "org.apache.maven.wagon/wagon-http-shared",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             repos: repos,
             artifactId: "wagon-http-shared",
             groupId: "org.apache.maven.wagon",
@@ -645,10 +645,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         name: "com.fasterxml.jackson.core/jackson-core",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             repos: repos,
             artifactId: "jackson-core",
             groupId: "com.fasterxml.jackson.core",
@@ -657,10 +657,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         name: "org.yaml/snakeyaml",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             repos: repos,
             artifactId: "snakeyaml",
             groupId: "org.yaml",
@@ -669,10 +669,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         name: "org.ow2.asm/asm",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             repos: repos,
             artifactId: "asm",
             groupId: "org.ow2.asm",
@@ -681,10 +681,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         name: "org.slf4j/jul-to-slf4j",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             repos: repos,
             artifactId: "jul-to-slf4j",
             groupId: "org.slf4j",
@@ -693,10 +693,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         name: "org.apache.httpcomponents/httpcore",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             repos: repos,
             artifactId: "httpcore",
             groupId: "org.apache.httpcomponents",
@@ -705,10 +705,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         name: "io.pedestal/pedestal.interceptor",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             repos: repos,
             artifactId: "pedestal.interceptor",
             groupId: "io.pedestal",
@@ -717,10 +717,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         name: "io.dropwizard.metrics/metrics-core",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             repos: repos,
             artifactId: "metrics-core",
             groupId: "io.dropwizard.metrics",
@@ -729,10 +729,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         name: "com.grammarly/omniconf",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             repos: repos,
             artifactId: "omniconf",
             groupId: "com.grammarly",
@@ -741,10 +741,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         name: "eu.neilalexander/jnacl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             repos: repos,
             artifactId: "jnacl",
             groupId: "eu.neilalexander",
@@ -753,10 +753,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$91,
+        [nix.POS]: pos$91,
         name: "zprint/zprint",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             repos: repos,
             artifactId: "zprint",
             groupId: "zprint",
@@ -765,10 +765,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         name: "com.taoensso/truss",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             repos: repos,
             artifactId: "truss",
             groupId: "com.taoensso",
@@ -777,10 +777,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         name: "org.apache.maven.resolver/maven-resolver-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             repos: repos,
             artifactId: "maven-resolver-api",
             groupId: "org.apache.maven.resolver",
@@ -789,10 +789,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         name: "hiccup/hiccup",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             repos: repos,
             artifactId: "hiccup",
             groupId: "hiccup",
@@ -801,10 +801,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         name: "io.opentracing/opentracing-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             repos: repos,
             artifactId: "opentracing-api",
             groupId: "io.opentracing",
@@ -813,10 +813,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         name: "org.apache.maven/maven-resolver-provider",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             repos: repos,
             artifactId: "maven-resolver-provider",
             groupId: "org.apache.maven",
@@ -825,10 +825,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         name: "commons-logging/commons-logging",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             repos: repos,
             artifactId: "commons-logging",
             groupId: "commons-logging",
@@ -837,10 +837,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         name: "com.google.guava/guava",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             repos: repos,
             artifactId: "guava",
             groupId: "com.google.guava",
@@ -849,10 +849,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         name: "com.fzakaria/slf4j-timbre",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             repos: repos,
             artifactId: "slf4j-timbre",
             groupId: "com.fzakaria",
@@ -861,10 +861,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         name: "clojure.java-time/clojure.java-time",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$108,
+            [nix.POS]: pos$108,
             repos: repos,
             artifactId: "clojure.java-time",
             groupId: "clojure.java-time",
@@ -873,10 +873,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$111,
+        [nix.POS]: pos$111,
         name: "org.apache.maven.resolver/maven-resolver-spi",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$110,
+            [nix.POS]: pos$110,
             repos: repos,
             artifactId: "maven-resolver-spi",
             groupId: "org.apache.maven.resolver",
@@ -885,10 +885,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         name: "org.clojure/algo.generic",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             repos: repos,
             artifactId: "algo.generic",
             groupId: "org.clojure",
@@ -897,10 +897,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$115,
+        [nix.POS]: pos$115,
         name: "borkdude/edamame",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             repos: repos,
             artifactId: "edamame",
             groupId: "borkdude",
@@ -909,10 +909,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         name: "com.taoensso/timbre",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             repos: repos,
             artifactId: "timbre",
             groupId: "com.taoensso",
@@ -921,10 +921,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         name: "org.clojure/java.jdbc",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             repos: repos,
             artifactId: "java.jdbc",
             groupId: "org.clojure",
@@ -933,10 +933,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         name: "org.apache.maven.wagon/wagon-http",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             repos: repos,
             artifactId: "wagon-http",
             groupId: "org.apache.maven.wagon",
@@ -945,10 +945,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         name: "io.opentracing/opentracing-noop",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$122,
+            [nix.POS]: pos$122,
             repos: repos,
             artifactId: "opentracing-noop",
             groupId: "io.opentracing",
@@ -957,10 +957,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$125,
+        [nix.POS]: pos$125,
         name: "net.cgrand/regex",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             repos: repos,
             artifactId: "regex",
             groupId: "net.cgrand",
@@ -969,10 +969,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$127,
+        [nix.POS]: pos$127,
         name: "cider/cider-nrepl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             repos: repos,
             artifactId: "cider-nrepl",
             groupId: "cider",
@@ -981,10 +981,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$129,
+        [nix.POS]: pos$129,
         name: "com.cemerick/pomegranate",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             repos: repos,
             artifactId: "pomegranate",
             groupId: "com.cemerick",
@@ -993,10 +993,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$131,
+        [nix.POS]: pos$131,
         name: "org.codehaus.plexus/plexus-interpolation",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             repos: repos,
             artifactId: "plexus-interpolation",
             groupId: "org.codehaus.plexus",
@@ -1005,10 +1005,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$133,
+        [nix.POS]: pos$133,
         name: "org.apache.httpcomponents/httpclient",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             repos: repos,
             artifactId: "httpclient",
             groupId: "org.apache.httpcomponents",
@@ -1017,10 +1017,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$135,
+        [nix.POS]: pos$135,
         name: "cheshire/cheshire",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             repos: repos,
             artifactId: "cheshire",
             groupId: "cheshire",
@@ -1029,10 +1029,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$137,
+        [nix.POS]: pos$137,
         name: "tigris/tigris",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             repos: repos,
             artifactId: "tigris",
             groupId: "tigris",
@@ -1041,10 +1041,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$139,
+        [nix.POS]: pos$139,
         name: "org.clojure/core.match",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$138,
+            [nix.POS]: pos$138,
             repos: repos,
             artifactId: "core.match",
             groupId: "org.clojure",
@@ -1053,10 +1053,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         name: "org.clojure/tools.reader",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             repos: repos,
             artifactId: "tools.reader",
             groupId: "org.clojure",
@@ -1065,10 +1065,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$143,
+        [nix.POS]: pos$143,
         name: "org.tcrawley/dynapath",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             repos: repos,
             artifactId: "dynapath",
             groupId: "org.tcrawley",
@@ -1077,10 +1077,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$145,
+        [nix.POS]: pos$145,
         name: "org.babashka/sci",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$144,
+            [nix.POS]: pos$144,
             repos: repos,
             artifactId: "sci",
             groupId: "org.babashka",
@@ -1089,10 +1089,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$147,
+        [nix.POS]: pos$147,
         name: "io.opentracing/opentracing-util",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$146,
+            [nix.POS]: pos$146,
             repos: repos,
             artifactId: "opentracing-util",
             groupId: "io.opentracing",
@@ -1101,10 +1101,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$149,
+        [nix.POS]: pos$149,
         name: "org.jsoup/jsoup",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$148,
+            [nix.POS]: pos$148,
             repos: repos,
             artifactId: "jsoup",
             groupId: "org.jsoup",
@@ -1113,10 +1113,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$151,
+        [nix.POS]: pos$151,
         name: "nrepl/nrepl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$150,
+            [nix.POS]: pos$150,
             repos: repos,
             artifactId: "nrepl",
             groupId: "nrepl",
@@ -1125,10 +1125,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$153,
+        [nix.POS]: pos$153,
         name: "org.apache.maven.resolver/maven-resolver-connector-basic",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$152,
+            [nix.POS]: pos$152,
             repos: repos,
             artifactId: "maven-resolver-connector-basic",
             groupId: "org.apache.maven.resolver",
@@ -1137,10 +1137,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$155,
+        [nix.POS]: pos$155,
         name: "org.xerial/sqlite-jdbc",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$154,
+            [nix.POS]: pos$154,
             repos: repos,
             artifactId: "sqlite-jdbc",
             groupId: "org.xerial",
@@ -1149,10 +1149,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$157,
+        [nix.POS]: pos$157,
         name: "org.apache.maven.resolver/maven-resolver-impl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$156,
+            [nix.POS]: pos$156,
             repos: repos,
             artifactId: "maven-resolver-impl",
             groupId: "org.apache.maven.resolver",
@@ -1161,10 +1161,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$159,
+        [nix.POS]: pos$159,
         name: "org.slf4j/slf4j-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$158,
+            [nix.POS]: pos$158,
             repos: repos,
             artifactId: "slf4j-api",
             groupId: "org.slf4j",
@@ -1173,10 +1173,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$161,
+        [nix.POS]: pos$161,
         name: "org.apache.maven/maven-model",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$160,
+            [nix.POS]: pos$160,
             repos: repos,
             artifactId: "maven-model",
             groupId: "org.apache.maven",
@@ -1185,10 +1185,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$163,
+        [nix.POS]: pos$163,
         name: "org.clojure/test.check",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$162,
+            [nix.POS]: pos$162,
             repos: repos,
             artifactId: "test.check",
             groupId: "org.clojure",
@@ -1197,10 +1197,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$165,
+        [nix.POS]: pos$165,
         name: "org.apache.maven.resolver/maven-resolver-util",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$164,
+            [nix.POS]: pos$164,
             repos: repos,
             artifactId: "maven-resolver-util",
             groupId: "org.apache.maven.resolver",
@@ -1209,10 +1209,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$167,
+        [nix.POS]: pos$167,
         name: "io.dropwizard.metrics/metrics-jmx",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$166,
+            [nix.POS]: pos$166,
             repos: repos,
             artifactId: "metrics-jmx",
             groupId: "io.dropwizard.metrics",
@@ -1221,10 +1221,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$169,
+        [nix.POS]: pos$169,
         name: "io.forward/yaml",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$168,
+            [nix.POS]: pos$168,
             repos: repos,
             artifactId: "yaml",
             groupId: "io.forward",
@@ -1233,10 +1233,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$171,
+        [nix.POS]: pos$171,
         name: "me.raynes/fs",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$170,
+            [nix.POS]: pos$170,
             repos: repos,
             artifactId: "fs",
             groupId: "me.raynes",
@@ -1245,10 +1245,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$173,
+        [nix.POS]: pos$173,
         name: "org.clojure/core.memoize",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$172,
+            [nix.POS]: pos$172,
             repos: repos,
             artifactId: "core.memoize",
             groupId: "org.clojure",
@@ -1257,10 +1257,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$175,
+        [nix.POS]: pos$175,
         name: "org.apache.maven/maven-repository-metadata",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$174,
+            [nix.POS]: pos$174,
             repos: repos,
             artifactId: "maven-repository-metadata",
             groupId: "org.apache.maven",
@@ -1269,10 +1269,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$177,
+        [nix.POS]: pos$177,
         name: "io.simplect/compose",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$176,
+            [nix.POS]: pos$176,
             repos: repos,
             artifactId: "compose",
             groupId: "io.simplect",
@@ -1281,10 +1281,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$179,
+        [nix.POS]: pos$179,
         name: "org.clojure/data.priority-map",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$178,
+            [nix.POS]: pos$178,
             repos: repos,
             artifactId: "data.priority-map",
             groupId: "org.clojure",
@@ -1293,10 +1293,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$181,
+        [nix.POS]: pos$181,
         name: "borkdude/sci.impl.reflector",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$180,
+            [nix.POS]: pos$180,
             repos: repos,
             artifactId: "sci.impl.reflector",
             groupId: "borkdude",
@@ -1305,10 +1305,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$183,
+        [nix.POS]: pos$183,
         name: "org.apache.maven/maven-builder-support",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$182,
+            [nix.POS]: pos$182,
             repos: repos,
             artifactId: "maven-builder-support",
             groupId: "org.apache.maven",
@@ -1317,10 +1317,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$185,
+        [nix.POS]: pos$185,
         name: "org.slf4j/log4j-over-slf4j",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$184,
+            [nix.POS]: pos$184,
             repos: repos,
             artifactId: "log4j-over-slf4j",
             groupId: "org.slf4j",
@@ -1329,10 +1329,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$187,
+        [nix.POS]: pos$187,
         name: "org.clojure/core.cache",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$186,
+            [nix.POS]: pos$186,
             repos: repos,
             artifactId: "core.cache",
             groupId: "org.clojure",
@@ -1341,10 +1341,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$189,
+        [nix.POS]: pos$189,
         name: "org.clojure/core.async",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$188,
+            [nix.POS]: pos$188,
             repos: repos,
             artifactId: "core.async",
             groupId: "org.clojure",
@@ -1353,10 +1353,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$191,
+        [nix.POS]: pos$191,
         name: "com.fasterxml.jackson.dataformat/jackson-dataformat-smile",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$190,
+            [nix.POS]: pos$190,
             repos: repos,
             artifactId: "jackson-dataformat-smile",
             groupId: "com.fasterxml.jackson.dataformat",
@@ -1365,10 +1365,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$193,
+        [nix.POS]: pos$193,
         name: "org.apache.maven/maven-artifact",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$192,
+            [nix.POS]: pos$192,
             repos: repos,
             artifactId: "maven-artifact",
             groupId: "org.apache.maven",
@@ -1377,10 +1377,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$195,
+        [nix.POS]: pos$195,
         name: "org.clojure/data.codec",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            __proto__: pos$194,
+            [nix.POS]: pos$194,
             repos: repos,
             artifactId: "data.codec",
             groupId: "org.clojure",
@@ -1389,7 +1389,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
     ]);
-    return { __proto__: pos$196, makePaths, makeClasspaths, packages };
+    return { [nix.POS]: pos$196, makePaths, makeClasspaths, packages };
   })();
 })(), formals$1);
 //# sourceMappingURL=deps.ts.map

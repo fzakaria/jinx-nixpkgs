@@ -13,10 +13,10 @@ export default nix.thunk(() => (() => {
   const trace = nix.thunk(() => (nix.asBool(nix.eq(nix.builtins.getEnv("VERBOSE"), "1")) ? nix.builtins.trace : (x) => (y) => nix.force(y)));
   const rel = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")), nix.thunk(() => ({})))), nix.thunk(() => ["tarball", "unstable"])));
   const recurse = (path) => (attrs) => (nix.asBool(nix.sel(nix.builtins.tryEval(attrs), "success")) ? (nix.asBool(nix.app(isDerivation, attrs)) ? (nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(attrs, "drvPath"))), "success")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     name: nix.thunk(() => nix.attr(attrs, "name")),
     drvPath: nix.thunk(() => nix.attr(attrs, "drvPath")),
-  } : { __proto__: pos$2, failed: true }) : (nix.asBool(nix.eq(attrs, null)) ? {} : nix.update({ __proto__: pos$3, recurseForDerivations: true }, nix.app(mapAttrs, (n) => (v) => (() => {
+  } : { [nix.POS]: pos$2, failed: true }) : (nix.asBool(nix.eq(attrs, null)) ? {} : nix.update({ [nix.POS]: pos$3, recurseForDerivations: true }, nix.app(mapAttrs, (n) => (v) => (() => {
       const path$ = nix.thunk(() => nix.concat(path, [n]));
       return nix.app(trace, path$, nix.thunk(() => nix.app(recurse, path$, v)));
     })(), attrs)))) : {});

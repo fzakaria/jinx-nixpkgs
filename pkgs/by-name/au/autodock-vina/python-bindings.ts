@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const boost = nix.thunk(() => nix.attr(autodock_vina, "boost"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(autodock_vina, "pname")),
       version: nix.thunk(() => nix.attr(autodock_vina, "version")),
       src: nix.thunk(() => nix.attr(autodock_vina, "src")),

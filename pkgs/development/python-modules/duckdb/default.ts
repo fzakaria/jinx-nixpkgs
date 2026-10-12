@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(duckdb, "version"));
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duckdb",
           repo: "duckdb-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,11 +65,11 @@ substituteInPlace pyproject.toml \\
       const buildInputs = nix.thunk(() => [duckdb, openssl]);
       const dependencies = nix.thunk(() => [typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [ipython, fsspec, numpy, pandas, pyarrow]),
       }));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DUCKDB_BUILD_UNITY: 1n,
         CMAKE_DEFINE_DUCKDB_EXTENSION_AUTOLOAD_DEFAULT: "0",
         CMAKE_DEFINE_DUCKDB_EXTENSION_AUTOINSTALL_DEFAULT: "0",
@@ -95,7 +95,7 @@ substituteInPlace pyproject.toml \\
       const preCheck = "export HOME=\"$(mktemp -d)\"\nrm -rf duckdb\n";
       const pythonImportsCheck = nix.thunk(() => ["duckdb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python binding for DuckDB",
         homepage: "https://duckdb.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -108,7 +108,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

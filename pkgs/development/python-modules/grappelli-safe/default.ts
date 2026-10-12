@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grappelli-safe";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grappelli_safe",
           version: version,
           hash: "sha256-7jSz4qNxFJix+No9naqKEjnv3yVaISGBdCtqWJD6wDk=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["grappelli_safe"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snapshot of django-grappelli for the Mezzanine CMS",
         longDescription: "grappelli_safe was created to provide a snapshot of the\nGrappelli admin skin for Django, to be referenced as a\ndependency for the Mezzanine CMS for Django.\n\nAt the time of grappelli_safe's creation, Grappelli was\nincorrectly packaged on PyPI, and had also dropped compatibility\nwith Django 1.1 - grappelli_safe was therefore created to\naddress these specific issues.\n",
         homepage: "https://github.com/stephenmcd/grappelli-safe",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

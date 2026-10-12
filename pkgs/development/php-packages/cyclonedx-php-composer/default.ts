@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "5.2.0";
   return nix.app(nix.sel(php, "buildComposerWithPlugin"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyclonedx/cyclonedx-php-composer",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CycloneDX",
           repo: "cyclonedx-php-composer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-QPlHWXXksetNSsv3olmCtPA/VsFVPV09rYQEsPezZoE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/CycloneDX/cyclonedx-php-composer/releases/tag/v${version}`),
         description: "Composer plugin that facilitates the creation of a CycloneDX Software Bill of Materials (SBOM) from PHP Composer projects",
         homepage: "https://github.com/CycloneDX/cyclonedx-php-composer",

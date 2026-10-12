@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kaitai-struct-cpp-stl-runtime",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaitai-io",
           repo: "kaitai_struct_cpp_stl_runtime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,24 +49,24 @@ export default nix.lambda((args) => (() => {
               "-lkaitai_struct_cpp_stl_runtime",
             ]);
             const variables = nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
               libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
             }));
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
-            return { __proto__: pos$3, name, version, cflags, libs, variables, description };
+            return { [nix.POS]: pos$3, name, version, cflags, libs, variables, description };
           })()))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pkgConfigModules: nix.thunk(() => ["kaitai-struct-cpp-stl-runtime"]),
         description: "Kaitai Struct C++ STL Runtime Library",
         homepage: "https://github.com/kaitai-io/kaitai_struct_cpp_stl_runtime",

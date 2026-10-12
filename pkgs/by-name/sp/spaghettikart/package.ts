@@ -56,16 +56,16 @@ export default nix.lambda((args) => (() => {
   const spaghettikart = nix.arg($, "spaghettikart");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const dr_libs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "mackron",
       repo: "dr_libs",
       rev: "da35f9d6c7374a95353fd1df1d394d44ab66cf01",
       hash: "sha256-ydFhQ8LTYDBnRTuETtfWwIHZpRciWfqGsZC6SuViEn0=",
     }))));
   const imgui$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocornut",
           repo: "imgui",
           tag: "v1.91.9b-docking",
@@ -76,34 +76,34 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const libgfxd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "glankk",
       repo: "libgfxd",
       rev: "008f73dca8ebc9151b205959b17773a19c5bd0da",
       hash: "sha256-AmHAa3/cQdh7KAMFOtz5TQpcM6FqO9SppmDpKPTjTt8=",
     }))));
   const prism = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "KiritoDv",
       repo: "prism-processor",
       rev: "bbcbc7e3f890a5806b579361e7aa0336acd547e7",
       hash: "sha256-jRPwO1Vub0cH12YMlME6kd8zGzKmcfIrIJZYpQJeOks=",
     }))));
   const semver = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "semver.hpp",
       url: "https://raw.githubusercontent.com/Neargye/semver/refs/tags/v1.0.0-rc/include/semver.hpp",
       hash: "sha256-rywMUxJNx/UsWKcgXkWK0++6wvYc5Vrd+cj5QzigQYI=",
     }))));
   const stb_impl = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "stb_impl.c",
       text: "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"\n",
     }))));
   const stormlib$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "ladislav-zezula",
           repo: "StormLib",
           tag: "v9.25",
@@ -114,18 +114,18 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const thread_pool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       owner: "bshoshany",
       repo: "thread-pool",
       tag: "v4.1.0",
       hash: "sha256-zhRFEmPYNFLqQCfvdAaG5VBNle9Qm8FepIIIrT9sh88=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: "spaghettikart",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           owner: "HarbourMasters",
           repo: "SpaghettiKart",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -137,16 +137,16 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./dont-fetch-stb.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./git-deps.patch"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             libgfxd_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 owner: "glankk",
                 repo: "libgfxd",
                 rev: "96fd3b849f38b3a7c7b7f3ff03c5921d328e6cdf",
                 hash: "sha256-dedZuV0BxU6goT+rPvrofYqTz9pTA/f6eQcsvpDWdvQ=",
               })))),
             spdlog_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 owner: "gabime",
                 repo: "spdlog",
                 rev: "7e635fca68d014934b4af8a1cf874f63989352b7",
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
           })))),
         nix.path(here, "./semver.patch"),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$15, NIX_CFLAGS_COMPILE: "-fno-lto" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$15, NIX_CFLAGS_COMPILE: "-fno-lto" })),
       nativeBuildInputs: nix.thunk(() => [
         cmake,
         copyDesktopItems,
@@ -232,7 +232,7 @@ install -Dm644 -t $out/share/licenses/spaghettikart/thread_pool ${thread_pool}/L
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: "spaghettikart",
             icon: "spaghettikart",
             exec: "Spaghettify",
@@ -242,7 +242,7 @@ install -Dm644 -t $out/share/licenses/spaghettikart/thread_pool ${thread_pool}/L
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         homepage: "https://github.com/HarbourMasters/SpaghettiKart",
         description: "Mario Kart 64 PC Port",
         mainProgram: "Spaghettify",

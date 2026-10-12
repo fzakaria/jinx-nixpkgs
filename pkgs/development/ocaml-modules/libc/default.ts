@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const config = nix.arg($, "config");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libc",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-sys/libc.ml/releases/download/${nix.sel(finalAttrs, "version")}/libc-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-e5x5Yae7V6qOpq+aLZaV+6L9ldy9qDqd9Kc8nkAsENg=",
         })))),
       buildInputs: nix.thunk(() => [config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Raw definitions and bindings to platforms system libraries",
         homepage: "https://github.com/ocaml-sys/libc.ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

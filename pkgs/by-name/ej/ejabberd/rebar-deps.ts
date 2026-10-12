@@ -73,13 +73,13 @@ export default nix.thunk(() => (() => {
     const packages = nix.thunk(() => (() => {
       const w = nix.withScope(self, null);
       return {
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         yconf: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "yconf",
             version: "1.0.23",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pkg: "yconf",
                 version: "1.0.23",
                 sha256: "sha256-JbTft1MoAmrKp3TPXG+4fUi1XuvOYw3aozYkQdrDFDc=",
@@ -87,11 +87,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fast_yaml"))]),
           })))),
         xmpp: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "xmpp",
             version: "1.13.5",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 pkg: "xmpp",
                 version: "1.13.5",
                 sha256: "sha256-qpYyd7qpa3dZ4JUt2TfxC8LUT+EEPKAz3oATFMr6vF0=",
@@ -106,11 +106,11 @@ export default nix.thunk(() => (() => {
             ]),
           })))),
         stun: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "stun",
             version: "1.2.23",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 pkg: "stun",
                 version: "1.2.23",
                 sha256: "sha256-2KGp8/ZUvFEwRoQDtmyqXcJJ6oWEiB3FQELrwib84kk=",
@@ -121,11 +121,11 @@ export default nix.thunk(() => (() => {
             ]),
           })))),
         stringprep: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "stringprep",
             version: "1.0.34",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 pkg: "stringprep",
                 version: "1.0.34",
                 sha256: "sha256-J+eOo3GIF2TgVvvoRdOtMEdA/14xMbwfOKZvC6qMm0c=",
@@ -133,11 +133,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         sqlite3: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "sqlite3",
             version: "1.1.15",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 pkg: "sqlite3",
                 version: "1.1.15",
                 sha256: "sha256-PAuk4TMiwq1J3k4t3SgxE2at3lS+ro26nZ44iPadKFc=",
@@ -145,11 +145,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         pkix: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: "pkix",
             version: "1.0.10",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 pkg: "pkix",
                 version: "1.0.10",
                 sha256: "sha256-4CFk+DCUyxJMQbGrKJiKYV1Uua3DhXXwDxmll6OsXQ4=",
@@ -157,11 +157,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         p1_utils: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: "p1_utils",
             version: "1.0.29",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 pkg: "p1_utils",
                 version: "1.0.29",
                 sha256: "sha256-IHFCHK21uP/xFOkdTZRPFIUcMyOR9uk/xQEarWSr4bk=",
@@ -169,11 +169,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         p1_pgsql: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: "p1_pgsql",
             version: "1.1.41",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 pkg: "p1_pgsql",
                 version: "1.1.41",
                 sha256: "sha256-Ju4quj1FBGTt1LP/nassalP8ILv9Mwppc5grkGUEoXI=",
@@ -181,11 +181,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "stringprep"))]),
           })))),
         p1_oauth2: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             name: "p1_oauth2",
             version: "0.6.14",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 pkg: "p1_oauth2",
                 version: "0.6.14",
                 sha256: "sha256-H9OsR05Dci2dWofG34029pjth697uBy7tmNhRR2Zro8=",
@@ -193,11 +193,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         p1_mysql: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             name: "p1_mysql",
             version: "1.0.28",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 pkg: "p1_mysql",
                 version: "1.0.28",
                 sha256: "sha256-bk0A6OzlBbpQkcjas67+QVzy2Db/OVCDRMNSezZtmRk=",
@@ -205,11 +205,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         p1_acme: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             name: "p1_acme",
             version: "1.0.31",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 pkg: "p1_acme",
                 version: "1.0.31",
                 sha256: "sha256-m1kiqQq5TaWInmTeXMrTrcbmim08P7cI3VA3V7Iy2xw=",
@@ -221,11 +221,11 @@ export default nix.thunk(() => (() => {
             ]),
           })))),
         mqtree: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             name: "mqtree",
             version: "1.0.20",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 pkg: "mqtree",
                 version: "1.0.20",
                 sha256: "sha256-XsDge5xIp4QGSWAL+W4UC0++nlAX4d3T6JjhXAo4PtA=",
@@ -233,11 +233,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         luerl: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             name: "luerl",
             version: "1.2.3",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 pkg: "luerl",
                 version: "1.2.3",
                 sha256: "sha256-G0udDKXX0oDR0nh6al7p9aISZBtiv/kVVrqlOAXfOu0=",
@@ -245,11 +245,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         jose: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             name: "jose",
             version: "1.11.12",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 pkg: "jose",
                 version: "1.11.12",
                 sha256: "sha256-MekrZT6SELaWdlzdiFQ3RX3hrdKpAR2S+M9j5GQbq3s=",
@@ -257,11 +257,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         idna: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             name: "idna",
             version: "7.1.0",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 pkg: "idna",
                 version: "7.1.0",
                 sha256: "sha256-aulZoCW/Nt9hqMq4UI2WVIkbVCaoTETYLer/1t34xx8=",
@@ -269,11 +269,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         fast_yaml: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             name: "fast_yaml",
             version: "1.0.40",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 pkg: "fast_yaml",
                 version: "1.0.40",
                 sha256: "sha256-J3BcKZAsHG8yaLqb84fV+pKLLmVbUxEPpHuOR20ys4Y=",
@@ -281,11 +281,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         fast_xml: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             name: "fast_xml",
             version: "1.1.61",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 pkg: "fast_xml",
                 version: "1.1.61",
                 sha256: "sha256-C9GFUP0dJRYFlkJNnAHAM6znSVviWZZ5ELxTNiIrVJk=",
@@ -293,11 +293,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         fast_tls: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             name: "fast_tls",
             version: "1.1.26",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 pkg: "fast_tls",
                 version: "1.1.26",
                 sha256: "sha256-aw1N0jCQN1Zeuqms858CgI9fghWjkQGh2jPCpbG1mz8=",
@@ -305,11 +305,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         ezlib: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             name: "ezlib",
             version: "1.0.16",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 pkg: "ezlib",
                 version: "1.0.16",
                 sha256: "sha256-tIGVQEA9Hst+rmRf3/FCqNsrR22JMojTm6u5KSIlBAU=",
@@ -317,11 +317,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         esip: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             name: "esip",
             version: "1.0.61",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 pkg: "esip",
                 version: "1.0.61",
                 sha256: "sha256-9SBZWihyCUNDYQGL9DBED6FAMY0o2aC7JVol2NJr87k=",
@@ -333,11 +333,11 @@ export default nix.thunk(() => (() => {
             ]),
           })))),
         erlydtl: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             name: "erlydtl",
             version: "0.14.0",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 pkg: "erlydtl",
                 version: "0.14.0",
                 sha256: "sha256-2A7ARM2PWICcGdKaxWBb4J6VUECRG2RFBeMendgUNDE=",
@@ -345,11 +345,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         eredis: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             name: "eredis",
             version: "1.7.1",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 pkg: "eredis",
                 version: "1.7.1",
                 sha256: "sha256-fCtUxWb+1V/u8zQcp5sBAKY0j9PxYhhLftURjSWMPME=",
@@ -357,11 +357,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         epam: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             name: "epam",
             version: "1.0.14",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 pkg: "epam",
                 version: "1.0.14",
                 sha256: "sha256-LzRJ5yiFpypsKoQ/VhrdD8L3DXoh9hRWkwpUdHPU2Yk=",
@@ -369,11 +369,11 @@ export default nix.thunk(() => (() => {
             beamDeps: [],
           })))),
         eimp: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             name: "eimp",
             version: "1.0.27",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 pkg: "eimp",
                 version: "1.0.27",
                 sha256: "sha256-PH6D4pO8+vUKG/BU/Etit7jEhKbkIY45dwmk0NhX8/w=",
@@ -381,11 +381,11 @@ export default nix.thunk(() => (() => {
             beamDeps: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "p1_utils"))]),
           })))),
         cache_tab: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             name: "cache_tab",
             version: "1.0.34",
             src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 pkg: "cache_tab",
                 version: "1.0.34",
                 sha256: "sha256-DbnzF/OUHBfJ+OqBJeJe+ie77Uy/JKQsQm+tp0yCtpI=",

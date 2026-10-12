@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "heatshrink",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atomicobject",
           repo: "heatshrink",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/atomicobject/heatshrink/commit/0886e9ca76552b8e325841e2b820b4563e5d5aba.patch",
             hash: "sha256-13hy4+/RDaaKgQcdaSbACvMfElUIskvJ+owXqm40feY=",
           })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\necho \"Hello world\" | \\\n  $out/bin/heatshrink -e - | \\\n  $out/bin/heatshrink -d - | \\\n  grep \"Hello world\"\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data compression/decompression library for embedded/real-time systems",
         homepage: "https://github.com/atomicobject/heatshrink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const macaulay2 = nix.arg($, "macaulay2");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "m2",
       ename: "M2",
       version: "1.26.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Macaulay2",
           repo: "M2-emacs",
           rev: "ae882ab04da19f62c62462ef9604251a0b30a9f5",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(macaulay2, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Major mode for editing Macaulay2 source code",

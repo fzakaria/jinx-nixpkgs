@@ -49,68 +49,68 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         memorySize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
             default: 1024n,
             description: "The memory size in megabytes of the virtual machine.\n",
           })))),
         cores: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
             default: 1n,
             description: "Specify the number of cores the guest is permitted to use.\nThe number can be higher than the available cores on the\nhost system.\n",
           })))),
         additionalPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             default: [],
             description: "A list of paths whose closure should be made available to the VM.\n\nThe closure is copied into the VM's Nix store image and registered in\nthe guest's Nix database.\n",
           })))),
         writableStore: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "If enabled, the Nix store in the VM is made writable by layering an\noverlay filesystem on top of the (read-only) store image.\n",
           })))),
         writableStoreUseTmpfs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Use a tmpfs for the writable store instead of writing to a disk image.\n\nTurning this off makes store writes survive a reboot, at the cost of\nneeding a disk to put them on.\n",
           })))),
         useHostCerts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "If enabled, when `NIX_SSL_CERT_FILE` is set on the host,\npass the CA certificates from the host to the VM.\n",
           })))),
         sharedDirectories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const name = nix.arg($_1, "name");
                   return {
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "The path of the directory to share, can be a shell variable",
                         })))),
                       target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           description: "The mount point of the directory inside the virtual machine",
                         })))),
                       tag: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: name,
                           description: "The tag the guest mounts this share by. Defaults to the attribute\nname. Backends impose their own length limits on tags.\n",
@@ -120,15 +120,15 @@ export default nix.lambda((args) => (() => {
                 })(), formals$2))))),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$13,
-              "my-share": nix.thunk(() => ({ __proto__: pos$12, source: "/path/to/be/shared", target: "/mnt/shared" })),
+              [nix.POS]: pos$13,
+              "my-share": nix.thunk(() => ({ [nix.POS]: pos$12, source: "/path/to/be/shared", target: "/mnt/shared" })),
             })),
             description: "An attribute set of directories that will be shared with the virtual\nmachine. The attribute name is used as the mount tag.\n",
           })))),
         host: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "pkgs")),
               default: pkgs,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs")),
@@ -139,14 +139,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       systemd: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           "register-nix-paths": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "nix", "enable")), nix.thunk(() => ({
-              __proto__: pos$21,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$19, DefaultDependencies: false })),
+              [nix.POS]: pos$21,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$19, DefaultDependencies: false })),
               requiredBy: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => [
                 "sysinit.target",
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
               conflicts: nix.thunk(() => ["shutdown.target"]),
               restartIfChanged: false,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "nix", "daemonUser"), "root")), nix.thunk(() => nix.sel(config, "nix", "daemonUser")))),
@@ -173,34 +173,34 @@ fi
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         "/nix/.ro-store": nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             device: "/dev/disk/by-label/nix-store",
             fsType: "erofs",
             neededForBoot: true,
             options: nix.thunk(() => ["ro"]),
           })))),
         "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "writableStore")) ? {
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             overlay: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               lowerdir: nix.thunk(() => ["/nix/.ro-store"]),
               upperdir: "/nix/.rw-store/upper",
               workdir: "/nix/.rw-store/work",
             })),
           } : {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             device: "/nix/.ro-store",
             fsType: "none",
             options: nix.thunk(() => ["bind"]),
           })))),
         "/nix/.rw-store": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "writableStore")) && nix.asBool(nix.sel(cfg, "writableStoreUseTmpfs")))), nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               fsType: "tmpfs",
               options: nix.thunk(() => ["mode=0755"]),
               neededForBoot: true,
@@ -208,18 +208,18 @@ fi
       })),
       swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
       boot: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         initrd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           luks: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({})))),
           })),
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$35,
-        timesyncd: nix.thunk(() => ({ __proto__: pos$34, enable: false })),
+        [nix.POS]: pos$35,
+        timesyncd: nix.thunk(() => ({ [nix.POS]: pos$34, enable: false })),
       })),
     })),
   };

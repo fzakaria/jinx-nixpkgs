@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smb3-foundry",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mchlnix",
           repo: "SMB3-Foundry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/smb3-foundry $out/bin\ncp -r smb3parse foundry scribe data doc VERSION smb3-foundry.py smb3-scribe.py $out/share/smb3-foundry\n\nln -s $out/share/smb3-foundry/smb3-foundry.py $out/bin/smb3-foundry\nln -s $out/share/smb3-foundry/smb3-scribe.py $out/bin/smb3-scribe\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mchlnix/SMB3-Foundry/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Modern Super Mario Bros. 3 Level Editor",
         homepage: "https://github.com/mchlnix/SMB3-Foundry",

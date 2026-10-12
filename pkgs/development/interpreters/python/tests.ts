@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           const w = nix.withScope(ps, null);
           return [nix.thunk(() => nix.lookup(w, "virtualenv"))];
         })()) : nix.app(nix.sel(python_1, "buildEnv", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           extraLibs: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(python_1, "pkgs")), null);
             return [nix.thunk(() => nix.lookup(w, "virtualenv"))];
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           ignoreCollisions: true,
         })))));
       return nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         plain: nix.thunk(() => (() => {
           const environment = python_1;
           const interpreter = nix.thunk(() => nix.sel(environment, "interpreter"));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           const is_nixenv = "False";
           const is_virtualenv = "False";
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             environment,
             interpreter,
             is_venv,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           };
         })()),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(python_1, "isPyPy"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "nixenv-virtualenv": nix.thunk(() => (() => {
             const environment = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python_1, "name")}-virtualenv`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pythonVirtualEnv, "interpreter")} -m virtualenv venv
 mv venv $out
@@ -89,7 +89,7 @@ mv venv $out
             const is_nixenv = "True";
             const is_virtualenv = "True";
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               environment,
               interpreter,
               is_venv,
@@ -98,7 +98,7 @@ mv venv $out
             };
           })()),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(python_1, "implementation"), "graal")), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nixenv: nix.thunk(() => (() => {
             const environment = pythonEnv;
             const interpreter = nix.thunk(() => nix.sel(environment, "interpreter"));
@@ -106,7 +106,7 @@ mv venv $out
             const is_nixenv = "True";
             const is_virtualenv = "False";
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               environment,
               interpreter,
               is_venv,
@@ -115,7 +115,7 @@ mv venv $out
             };
           })()),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(python_1, "isPy3k")) && nix.asBool(!nix.asBool(nix.sel(python_1, "isPyPy"))))), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "plain-venv": nix.thunk(() => (() => {
             const environment = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python_1, "name")}-venv`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(python_1, "interpreter")} -m venv $out
 `)));
@@ -124,7 +124,7 @@ mv venv $out
             const is_nixenv = "False";
             const is_virtualenv = "False";
             return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               environment,
               interpreter,
               is_venv,
@@ -133,7 +133,7 @@ mv venv $out
             };
           })()),
         }))), {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "nixenv-venv": nix.thunk(() => (() => {
           const environment = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python_1, "name")}-venv`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pythonEnv, "interpreter")} -m venv $out
 `)));
@@ -142,7 +142,7 @@ mv venv $out
           const is_nixenv = "True";
           const is_virtualenv = "False";
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             environment,
             interpreter,
             is_venv,
@@ -153,7 +153,7 @@ mv venv $out
       }))));
     })());
     const testfun = (name) => (attrs) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python, "name")}-tests-${name}`), nix.thunk(() => nix.update({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pythonVersion: nix.thunk(() => nix.attr(python, "pythonVersion")),
       }, attrs)), nix.thunk(() => nix.str`cp -r ${nix.path(here, "./tests/test_environments")} tests
 chmod -R +w tests
@@ -165,34 +165,34 @@ touch $out/success
     return nix.app(nix.sel(lib, "mapAttrs"), testfun, environments);
   })());
   const integrationTests = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(python, "isPyPy"))), nix.thunk(() => nix.update({
-      __proto__: pos$14,
-      tkinter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_tkinter"), nix.thunk(() => ({ __proto__: pos$13, interpreter: python })))),
+      [nix.POS]: pos$14,
+      tkinter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_tkinter"), nix.thunk(() => ({ [nix.POS]: pos$13, interpreter: python })))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(nix.app(nix.sel(python, "pythonOlder"), "3.13")))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({
-        __proto__: pos$16,
-        "cpython-gdb": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_cpython_gdb"), nix.thunk(() => ({ __proto__: pos$15, interpreter: python })))),
+        [nix.POS]: pos$16,
+        "cpython-gdb": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_cpython_gdb"), nix.thunk(() => ({ [nix.POS]: pos$15, interpreter: python })))),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(nix.app(nix.sel(python, "pythonOlder"), "3.13")))), nix.thunk(() => ({
-        __proto__: pos$18,
-        "nix-pythonprefix-mypy": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_nix_pythonprefix"), nix.thunk(() => ({ __proto__: pos$17, interpreter: python })))),
+        [nix.POS]: pos$18,
+        "nix-pythonprefix-mypy": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_nix_pythonprefix"), nix.thunk(() => ({ [nix.POS]: pos$17, interpreter: python })))),
       }))))))));
   const editableTests = nix.thunk(() => (() => {
     const testPython = nix.thunk(() => nix.app(nix.sel(python, "override"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         self: testPython,
         packageOverrides: (pyfinal) => (pyprev) => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "my-editable": nix.thunk(() => nix.app(nix.sel(pyfinal, "mkPythonEditablePackage"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               pname: "my-editable",
               version: "0.1.0",
               root: "$NIX_BUILD_TOP/src",
-              scripts: nix.thunk(() => ({ __proto__: pos$19, "my-script": "my_editable.main:main" })),
+              scripts: nix.thunk(() => ({ [nix.POS]: pos$19, "my-script": "my_editable.main:main" })),
             })))),
         }),
       }))));
     return {
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       "editable-script": nix.thunk(() => nix.app(runCommand, "editable-test", nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           nativeBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(testPython, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "my-editable"))])),
           ]),
@@ -200,13 +200,13 @@ touch $out/success
     };
   })());
   const overrideTests = nix.thunk(() => (() => {
-    const extension = (self) => (super$) => ({ __proto__: pos$25, foobar: nix.thunk(() => nix.sel(super$, "numpy")) });
+    const extension = (self) => (super$) => ({ [nix.POS]: pos$25, foobar: nix.thunk(() => nix.sel(super$, "numpy")) });
     const is_prebuilt = (python_1) => nix.eq(nix.sel(python_1, "pythonAttr"), null);
     return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(python, "isPy3k")), nix.thunk(() => nix.update({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         "test-packageOverrides": nix.thunk(() => (() => {
           const myPython = nix.thunk(() => (() => {
-            const self = nix.thunk(() => nix.app(nix.sel(python, "override"), nix.thunk(() => ({ __proto__: pos$26, packageOverrides: extension, self: self }))));
+            const self = nix.thunk(() => nix.app(nix.sel(python, "override"), nix.thunk(() => ({ [nix.POS]: pos$26, packageOverrides: extension, self: self }))));
             return nix.force(self);
           })());
           nix.assert_(nix.eq(nix.sel(myPython, "pkgs", "foobar"), nix.sel(myPython, "pkgs", "numpy")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/python/tests.nix:212:11");
@@ -216,12 +216,12 @@ touch $out/success
             })());
         })()),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(python, "pythonAttr")) && nix.asBool(!nix.asBool(nix.app(is_prebuilt, python))))), nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           "test-pythonPackagesExtensions": nix.thunk(() => (() => {
             const pkgs_ = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (final) => (prev) => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 pythonPackagesExtensions: nix.thunk(() => nix.concat(nix.sel(prev, "pythonPackagesExtensions"), [
-                  (python_final) => (python_prev) => ({ __proto__: pos$28, foo: nix.thunk(() => nix.sel(python_prev, "setuptools")) }),
+                  (python_final) => (python_prev) => ({ [nix.POS]: pos$28, foo: nix.thunk(() => nix.sel(python_prev, "setuptools")) }),
                 ])),
               })));
             return nix.sel(pkgs_, nix.key(nix.sel(python, "pythonAttr")), "pkgs", "foo");
@@ -235,12 +235,12 @@ touch $out/success
           const fetchurl = nix.arg($_1, "fetchurl");
           const pythonCondaPackages = nix.arg($_1, "pythonCondaPackages");
           return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               pname: "requests",
               version: "2.24.0",
               pyproject: false,
               src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   url: "https://repo.anaconda.com/pkgs/main/noarch/requests-2.24.0-py_0.tar.bz2",
                   sha256: "02qzaf6gwsqbcs69pix1fnjxzgnngwzvrsy65h1d521g750mjvvp",
                 })))),
@@ -265,7 +265,7 @@ touch $out/success
         })(), formals$2), nix.thunk(() => ({}))));
       const pythonWithRequests = nix.thunk(() => nix.app(nix.sel(requests, "pythonModule", "withPackages"), (ps) => [requests]));
       return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           condaExamplePackage: nix.thunk(() => nix.app(runCommand, "import-requests", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pythonWithRequests, "interpreter")} -c "import requests" > $out
 `))),
         })));

@@ -19,34 +19,34 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const modulesPath = nix.arg($, "modulesPath");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.str`${modulesPath}/virtualisation/incus-virtual-machine.nix`),
       nix.path(here, "./incus.nix"),
     ]),
     networking: nix.thunk(() => ({
-      __proto__: pos$2,
-      dhcpcd: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+      [nix.POS]: pos$2,
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
       useDHCP: false,
       useHostResolvConf: false,
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       network: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enable: true,
         networks: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "50-enp5s0": nix.thunk(() => ({
-            __proto__: pos$6,
-            matchConfig: nix.thunk(() => ({ __proto__: pos$3, Name: "enp5s0" })),
-            networkConfig: nix.thunk(() => ({ __proto__: pos$4, DHCP: "ipv4", IPv6AcceptRA: true })),
-            linkConfig: nix.thunk(() => ({ __proto__: pos$5, RequiredForOnline: "routable" })),
+            [nix.POS]: pos$6,
+            matchConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Name: "enp5s0" })),
+            networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, DHCP: "ipv4", IPv6AcceptRA: true })),
+            linkConfig: nix.thunk(() => ({ [nix.POS]: pos$5, RequiredForOnline: "routable" })),
           })),
         })),
       })),
     })),
-    system: nix.thunk(() => ({ __proto__: pos$10, stateVersion: "@stateVersion@" })),
+    system: nix.thunk(() => ({ [nix.POS]: pos$10, stateVersion: "@stateVersion@" })),
   };
 })(), formals$1);
 //# sourceMappingURL=incus-virtual-machine-image-inner.ts.map

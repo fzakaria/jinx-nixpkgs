@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const llvm_20 = nix.arg($, "llvm_20");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wamrc",
       version: "2.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wasm-micro-runtime",
           repo: "wasm-micro-runtime",
           tag: nix.thunk(() => nix.str`WAMR-${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ])),
       preConfigure: "cd wamr-compiler",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex=WAMR-(.*)"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=WAMR-(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "WebAssembly Micro Runtime AOT compiler",
         homepage: "https://github.com/wasm-micro-runtime/wasm-micro-runtime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

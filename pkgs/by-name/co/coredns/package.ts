@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       return nix.str`${repo}@${version}`;
     })(), formals$2), attrs);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "coredns",
       version: "1.14.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coredns",
           repo: "coredns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       outputs: nix.thunk(() => ["out", "man"]),
       overrideModAttrs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         preBuild: nix.thunk(() => nix.str`cp plugin.cfg plugin.cfg.orig
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (plugin) => (() => {
             const position = nix.thunk(() => nix.selOr(plugin, () => "end-of-file", "position"));
@@ -84,16 +84,16 @@ go mod tidy
       __darwinAllowLocalNetworking: true,
       postInstall: "installManPage man/*\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "coredns-external-plugins": nix.thunk(() => nix.sel(nixosTests, "coredns")),
           "kubernetes-single-node": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-single-node")),
           "kubernetes-multi-node": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-multi-node")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://coredns.io",
         description: "DNS server that runs middleware",
         mainProgram: "coredns",

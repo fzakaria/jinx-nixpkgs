@@ -23,38 +23,38 @@ export default nix.lambda((args) => (() => {
   const yq_go = nix.arg($, "yq-go");
   const testers = nix.arg($, "testers");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "jaspr_cli",
       version: "0.23.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schultek",
           repo: "jaspr",
           tag: nix.thunk(() => nix.str`jaspr_cli-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-V+cmnO4I4hZEdxzjnycPCTQbWpBmjESJSG9cIoMIwjo=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/jaspr_cli`),
-      dartEntryPoints: nix.thunk(() => ({ __proto__: pos$2, "bin/jaspr": "bin/jaspr.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/jaspr": "bin/jaspr.dart" })),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       nativeBuildInputs: nix.thunk(() => [yq_go]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       preBuild: "yq -i 'del(.resolution)' pubspec.yaml\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "help-text": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "jaspr-cli-help-test",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "jaspr --help | grep \"Usage: jaspr\"\ntouch $out\n",
             })))),
           "create-project": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "jaspr-cli-create-test",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "export HOME=$TMPDIR\njaspr create -t docs my_test_project --no-pub-get\ntest -f my_test_project/pubspec.yaml\ntouch $out\n",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mainProgram: "jaspr",
         homepage: "https://jaspr.site",
         description: "Command line tools for Jaspr",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "schultek", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         maintainers: nix.thunk(() => (() => {

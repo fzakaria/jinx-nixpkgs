@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cnsprcy",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~xaos",
           repo: "cnsprcy",
           rev: nix.thunk(() => nix.str`cnspr/v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/v${nix.sel(finalAttrs, "version")}`),
       cargoHash: "sha256-8hNuF5tD1PwdIJB0q3wxDOGDcppo0ac+zol3AHWGv0s=",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
-      env: nix.thunk(() => ({ __proto__: pos$3, RUSTC_BOOTSTRAP: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: true })),
       buildInputs: nix.thunk(() => [sqlite]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "End to end encrypted connections between trusted devices",
         homepage: "https://git.sr.ht/~xaos/cnsprcy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

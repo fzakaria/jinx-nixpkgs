@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "countryguess",
       version: "0-unstable-2025-05-03",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sbird",
           repo: "countryguess",
           rev: "36d840cbd27d3f0103f2786b7f64796965d23a9a",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "echo '#!/usr/bin/env python3' | cat - countryguess.py > temp && mv temp countryguess.py\n",
       installPhase: "runHook preInstall\n\ninstall -Dm744 countryguess.py $out/bin/countryguess\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Guess the 193 U.N. recognised countries",
         homepage: "https://codeberg.org/sbird/countryguess",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "accountsservice",
       version: "26.27.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "accountsservice",
           repo: "accountsservice",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-/n0YCPZaf1SsTScidFUZcxfJkpv/+Bnb6Z7oKL+clgE=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, shadow: shadow })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, shadow: shadow })))),
         nix.path(here, "./no-create-dirs.patch"),
         nix.path(here, "./Disable-methods-that-change-files-in-etc.patch"),
         nix.path(here, "./drop-prefix-check-extensions.patch"),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([gettext, gobject_introspection, meson, ninja, pkg_config, python3, vala], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       buildInputs: nix.thunk(() => [dbus, gettext, glib, json_c, polkit, systemdLibs, libxcrypt]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))), "14")))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-error=deprecated-declarations",
               "-Wno-error=implicit-function-declaration",
@@ -75,14 +75,14 @@ substituteInPlace meson.build \\
   --replace-fail "run_command(['./generate-version.sh'], check: true).stdout().strip()" "'${nix.sel(finalAttrs, "version")}'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           accountsservice: nix.thunk(() => nix.attr(nixosTests, "accountsservice")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/accountsservice/accountsservice/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "D-Bus interface for user account query and manipulation",
         homepage: "https://www.freedesktop.org/wiki/Software/AccountsService",

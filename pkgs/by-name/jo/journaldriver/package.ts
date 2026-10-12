@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "journaldriver",
       version: "5656.0.0",
       cargoHash: "sha256-ycnmLHKWRwKbdY1LZJ+BSwGfXfYJCWbbbFcqfBj3y/Y=",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.tvl.fyi/depot.git:/ops/journaldriver.git",
           sha256: "0bnf67k6pkw4rngn58b5zm19danr4sh2g6rfd4k5w2sa1lzqai04",
           rev: "4e191353228197ce548d63cb9955e53661244f9c",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, systemdLibs]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Log forwarder from journald to Stackdriver Logging",
         homepage: "https://code.tvl.fyi/about/ops/journaldriver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

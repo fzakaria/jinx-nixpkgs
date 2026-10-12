@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArniDagur",
           repo: "python-adblock",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pep-621-compat.patch",
             url: "https://github.com/ArniDagur/python-adblock/commit/2a8716e0723b60390f0aefd0e05f40ba598ac73f.patch",
             hash: "sha256-n9+LDs0no66OdNZxw3aU57ngWrAbmm6hx4qIuxXoatM=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   --replace "0.0.0" "${version}"
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           src: src,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       })()));
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         PSL_PATH: nix.thunk(() => nix.str`${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat`),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, toml]);
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_typestubs.py"]);
       const pythonImportsCheck = nix.thunk(() => ["adblock", "adblock.adblock"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python wrapper for Brave's adblocking library",
         homepage: "https://github.com/ArniDagur/python-adblock/",
         changelog: nix.thunk(() => nix.str`https://github.com/ArniDagur/python-adblock/blob/${version}/CHANGELOG.md`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bergercookie",
           repo: "taskw-ng",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core, poetry_dynamic_versioning]);
       const propagatedBuildInputs = nix.thunk(() => [kitchen, packaging, python_dateutil, pytz]);
       const checkInputs = nix.thunk(() => [taskwarrior2]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to interact with the Taskwarrior API",
         homepage: "https://github.com/bergercookie/taskw-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/bergercookie/taskw-ng/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

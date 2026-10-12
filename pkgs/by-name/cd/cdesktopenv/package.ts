@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lmdb = nix.arg($, "lmdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cde",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdesktopenv/cde-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-K1jAjr8Ka7nUoyGRzSXiBPXYy6gbzKo2/HL1xKqXmFQ=",
         })))),
@@ -116,13 +116,13 @@ patchShebangs autogen.sh config.rpath contrib programs
       ]),
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["fortify"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preConfigure: nix.thunk(() => nix.str`export LOCALE_ARCHIVE="${glibcLocales}/lib/locale/locale-archive"
 `),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-tcl=${tcl}/lib`)]),
       preInstall: "mkdir -p $out/opt/dt/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Common Desktop Environment",
         homepage: "https://sourceforge.net/projects/cdesktopenv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

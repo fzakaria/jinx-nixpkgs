@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libiberty = nix.arg($, "libiberty");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wimboot",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipxe",
           repo: "wimboot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["wimboot.x86_64.efi"]),
       installPhase: "mkdir -p $out/share/wimboot/\ncp wimboot.x86_64.efi $out/share/wimboot\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ipxe.org/wimboot",
         description: "Windows Imaging Format bootloader",
         changelog: nix.thunk(() => nix.str`https://github.com/ipxe/wimboot/releases/tag/v${nix.sel(finalAttrs, "version")}`),

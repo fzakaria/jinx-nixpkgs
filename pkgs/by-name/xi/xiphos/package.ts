@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xiphos",
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crosswire",
           repo: "xiphos",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +76,7 @@ echo "${nix.sel(finalAttrs, "version")}" > cmake/source_version.txt
 export SWORD_HOME=${sword};
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK Bible study tool",
         longDescription: "Xiphos (formerly known as GnomeSword) is a Bible study tool\nwritten for Linux, UNIX, and Windows using GTK, offering a rich\nand featureful environment for reading, study, and research using\nmodules from The SWORD Project and elsewhere.\n",
         homepage: "https://www.xiphos.org/",

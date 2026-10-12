@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const getent = nix.arg($, "getent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "basu",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~emersion",
           repo: "basu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [audit, libcap]))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, python3, getent, gperf]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Daudit=disabled", "-Dlibcap=disabled"]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "useLLVM")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "--undefined-version" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "--undefined-version" })))),
       preConfigure: "pushd src/basic\npatchShebangs \\\n  generate-cap-list.sh generate-errno-list.sh generate-gperfs.py\npopd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sr.ht/~emersion/basu",
         description: "Sd-bus library, extracted from systemd",
         mainProgram: "basuctl",

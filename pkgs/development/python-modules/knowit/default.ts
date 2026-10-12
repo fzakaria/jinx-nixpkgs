@@ -28,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const mkvtoolnix = nix.arg($, "mkvtoolnix");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "knowit",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ratoaq2",
           repo: "knowit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-krrAeroM1eQZXi2onV4FdrKIQdPLkZS+/ypyY0Kc+Pw=",
         })))),
       matroska_test_zip: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://downloads.sourceforge.net/project/matroska/test_files/matroska_test_w1_1.zip",
           hash: "sha256-X8gIfDj2iP043kjO3yqxuIgn8mZMX7XaqzhQ7CTLUhc=",
           stripRoot: false,
@@ -50,11 +50,11 @@ cp ${nix.sel(finalAttrs, "matroska_test_zip")}/*.mkv tests/data/videos/
 `),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [babelfish, enzyme, pymediainfo, pyyaml, trakit]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, pint: nix.thunk(() => [pint]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, pint: nix.thunk(() => [pint]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, ffmpeg, mediainfo, mkvtoolnix, requests]),
       pythonImportsCheck: nix.thunk(() => ["knowit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extract metadata from media files",
         homepage: "https://github.com/ratoaq2/knowit",
         changelog: nix.thunk(() => nix.str`https://github.com/ratoaq2/knowit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

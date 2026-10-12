@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "et-book",
       version: "0-unstable-2015-10-05",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edwardtufte",
           repo: "et-book",
           rev: "7e8f02dadcc23ba42b491b39e5bdf16e7b383031",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typeface used in Edward Tufte’s books",
         homepage: "https://edwardtufte.github.io/et-book/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -46,20 +46,20 @@ export default nix.lambda((args) => (() => {
   const version = "25.08";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const srcs = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/verifast/verifast/releases/download/${nix.sel(finalAttrs, "version")}/${pname}-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
             hash: "sha256-HkABnWrdkb9yFByG9AB/L+Hu9n9FPLf7jx9at9MdUJ8=",
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/verifast/verifast/releases/download/${nix.sel(finalAttrs, "version")}/${pname}-${nix.sel(finalAttrs, "version")}-macos-aarch.tar.gz`),
             hash: "sha256-/UicTlA4lFRk3OBgcsiS8YtDGmb7R7d6zeVLZo49HV8=",
           })))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -71,7 +71,7 @@ ${nix.app(patchExe, "$out/libexec/vfide")}
 ${nix.app(patchLib, "$out/libexec/libz3.so")}
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp -R lib $out/lib\ninstall_name_tool -change '@executable_path/../lib/libz3.dylib' $out/lib/libz3.dylib $out/libexec/verifast\n\ninstall_name_tool -change libz3.dylib $out/lib/libz3.dylib $out/libexec/vfide-core\nln -s $out/libexec/vfide-core $out/bin/vfide-core\n\nfor f in $out/libexec/vfide-core $out/lib/*.dylib; do\n    for old in `otool -L $f | fgrep homebrew | sed -E 's|^[[:space:]]+([^ ]+).*$|\\1|g'`; do\n        new=`echo $old | sed -E 's|/opt/homebrew/.+/lib/([^ ]+)|\\1|'`\n        install_name_tool -change $old $out/lib/$new $f\n        codesign --force -s - $f\n    done\ndone\n# include path points to $out/bin\nln -s $out/libexec/*.{h,gh,cfmanifest,c} $out/bin/\n")), "ln -s $out/libexec/verifast $out/bin/verifast\nln -s $out/libexec/vfide    $out/bin/vfide\n")),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Verification for C and Java programs via separation logic",
           homepage: "https://people.cs.kuleuven.be/~bart.jacobs/verifast/",
           sourceProvenance: nix.thunk(() => (() => {

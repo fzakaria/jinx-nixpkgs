@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const wl_clipboard = nix.arg($, "wl-clipboard");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emote",
       version: "4.1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tom-james-watson",
           repo: "Emote",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern emoji picker for Linux",
         mainProgram: "emote",
         homepage: "https://github.com/tom-james-watson/emote",

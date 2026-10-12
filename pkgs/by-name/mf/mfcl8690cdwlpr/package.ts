@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl8690cdwlpr";
       const version = "1.5.0-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103241/mfcl8690cdwlpr-${version}.i386.deb`),
           hash: "sha256-CXYo6ISUr0hFiHRVRnXbJ/21dK/2NUrCt2bnzQuHOXI=",
         }))));
@@ -54,7 +54,7 @@ for file in $dir/lpd/x86_64/brmfcl8690cdwfilter $dir/lpd/x86_64/brprintconf_mfcl
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L8690CDW LPR printer driver",
         homepage: "https://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -69,7 +69,7 @@ done
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

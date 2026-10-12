@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const podman = nix.arg($, "podman");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "out-of-tree",
       version: "2.1.1",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           url: "https://code.dumpstack.io/tools/out-of-tree.git",
           hash: "sha256-XzO8NU7A5m631PjAm0F/K7qLrD+ZDSdHXaNowGaZAPo=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [qemu, podman]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel {module, exploit} development tool",
         mainProgram: "out-of-tree",
         homepage: "https://out-of-tree.io",

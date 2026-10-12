@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glowing-bear",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "glowing-bear",
           repo: "glowing-bear",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir $out\ncp index.html serviceworker.js webapp.manifest.json $out\ncp -R 3rdparty assets css directives js $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web client for Weechat",
         homepage: "https://github.com/glowing-bear/glowing-bear",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

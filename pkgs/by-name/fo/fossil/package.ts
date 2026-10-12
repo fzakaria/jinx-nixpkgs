@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const withJson = nix.argOr($, "withJson", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fossil",
       version: "2.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fossil-scm.org/home/tarball/version-${nix.sel(finalAttrs, "version")}/fossil-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-y5joXR+QZAyYniRSHpD+vJjtjuPyZj2Lg6RFsVvMg9M=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALLDIR=$(out)/bin"]),
       postInstall: "installManPage fossil.1\ninstallShellCompletion --cmd fossil tools/fossil-autocomplete.{bash,zsh}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, high-reliability, distributed software configuration management",
         longDescription: "Fossil is a software configuration management system.  Fossil is\nsoftware that is designed to control and track the development of a\nsoftware project and to record the history of the project. There are\nmany such systems in use today. Fossil strives to distinguish itself\nfrom the others by being extremely simple to setup and operate.\n",
         homepage: "https://www.fossil-scm.org/",

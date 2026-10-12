@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toruseo",
           repo: "UXsim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '$NIX_QT_PLUGIN_PATH' '${nix.sel(qt5, "qtbase", "bin")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/toruseo/UXsim/releases/tag/${nix.sel(src, "tag")}`),
         description: "Vehicular traffic flow simulator in road network, written in pure Python",
         homepage: "https://github.com/toruseo/UXsim",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

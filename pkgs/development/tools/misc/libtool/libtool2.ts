@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libtool",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/libtool/libtool-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JK2zqprgNccPq6NEr1fXMhXriSgQRa9sfM0wd1H4sL8=",
         })))),
       outputs: nix.thunk(() => ["out", "lib"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, FILECMD: nix.thunk(() => nix.str`${file}/bin/file`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, FILECMD: nix.thunk(() => nix.str`${file}/bin/file`) })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace libtoolize.in       --replace '#! /usr/bin/env sh' '#!${runtimeShell}'
 # avoid help2man run after 'libtoolize.in' update
 touch doc/libtoolize.1
@@ -42,7 +42,7 @@ touch doc/libtoolize.1
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNU Libtool, a generic library support script",
         longDescription: "GNU libtool is a generic library support script.  Libtool hides\nthe complexity of using shared libraries behind a consistent,\nportable interface.\n\nTo use libtool, add the new generic library building commands to\nyour Makefile, Makefile.in, or Makefile.am.  See the\ndocumentation for details.\n",
         homepage: "https://www.gnu.org/software/libtool/",

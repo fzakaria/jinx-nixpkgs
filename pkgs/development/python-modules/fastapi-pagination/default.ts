@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastapi-pagination",
       version: "0.15.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uriyyo",
           repo: "fastapi-pagination",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["fastapi_pagination"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FastAPI pagination",
         homepage: "https://github.com/uriyyo/fastapi-pagination",
         changelog: nix.thunk(() => nix.str`https://github.com/uriyyo/fastapi-pagination/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

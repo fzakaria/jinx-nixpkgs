@@ -45,19 +45,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ak9McvXl7Nz5toUaPaRaJek9lurxiQiIW209GnZEjX0=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/google-deepmind/bsuite/pull/48/commits/f8d81b2f1c27ef2c8c71ae286001ed879ea306ab.patch",
             hash: "sha256-FXtvVS+U8brulq8Z27+yWIimB+kigGiUOIv1SHb1TA8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "replace-imp.patch",
             url: "https://github.com/google-deepmind/bsuite/commit/d08b63655c7efa5b5bb0f35e825e17549d23e812.patch",
             hash: "sha256-V5p/6edNXTpEckuSuxJ/mvfJng5yE/pfeMoYbvlNpEo=",
@@ -109,14 +109,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          check: nix.thunk(() => nix.app(nix.sel(bsuite, "overridePythonAttrs"), (_) => ({ __proto__: pos$4, doCheck: true }))),
+          [nix.POS]: pos$5,
+          check: nix.thunk(() => nix.app(nix.sel(bsuite, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$4, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Collection of experiments that investigate core capabilities of a reinforcement learning (RL) agent",
         homepage: "https://github.com/deepmind/bsuite",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/bsuite/releases/tag/${version}`),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

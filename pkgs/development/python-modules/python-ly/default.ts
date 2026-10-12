@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-ly",
       version: "0.9.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frescobaldi",
           repo: "python-ly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/frescobaldi/python-ly/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Tool and library for manipulating LilyPond files",
         longDescription: "This package provides a Python library ly containing various\nPython modules to parse, manipulate or create documents in\nLilyPond format.  A command line program ly is also provided\nthat can be used to do various manipulations with LilyPond\nfiles.\n\nThe LilyPond format is a plain text input format that is used by\nthe GNU music typesetter [LilyPond](https://lilypond.org).\n",

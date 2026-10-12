@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cups-brother-hll3230cdw";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103925/hll3230cdwpdrv-${version}-0.i386.deb`),
           sha256: "9d49abc584bf22bc381510618a34107ead6ab14562b51831fefd6009947aa5a9",
         }))));
@@ -50,7 +50,7 @@ substituteInPlace $out/bin/brprintconf_hll3230cdw \\
   --replace \\"\\$"@"\\" \\"\\$"@\\" | LD_PRELOAD= ${gnused}/bin/sed -E '/^(function list :|resource file :).*/{s#/opt#$out/opt#}'"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother HL-L3230CDW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {
@@ -66,7 +66,7 @@ substituteInPlace $out/bin/brprintconf_hll3230cdw \\
         downloadPage: "https://support.brother.com/g/b/downloadend.aspx?c=us&lang=en&prod=hll3230cdw_us_eu_as&os=128&dlid=dlf103925_000&flang=4&type3=10283",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

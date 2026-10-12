@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const dlib = nix.arg($, "dlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(dlib, "stdenv")) })), nix.thunk(() => ({
-      __proto__: pos$2,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(dlib, "stdenv")) })), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(dlib, "pname")),
       version: nix.thunk(() => nix.attr(dlib, "version")),
       src: nix.thunk(() => nix.attr(dlib, "src")),

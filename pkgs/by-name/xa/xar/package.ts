@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const xar = nix.arg($, "xar");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: nix.thunk(() => nix.str`xar${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(e2fsprogs, null)), "-minimal")}`),
       version: "503",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apple-oss-distributions",
           repo: "xar",
           rev: nix.thunk(() => nix.str`xar-${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-isystem ${nix.sel(libxml2, "dev")}/include/libxml2`),
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => [
@@ -70,17 +70,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl, zlib, libxml2, bzip2, xz, e2fsprogs], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), acl), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), musl_fts)))),
       passthru: nix.thunk(() => (() => {
         const patchedSource = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           }))));
         const pythonForTests = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "xattr"))]));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           impureTests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             integrationTest: nix.thunk(() => nix.app(runCommand, "xar-impure-tests-integration-test", nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 src: patchedSource,
                 xar: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 xsltproc: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), libxslt)),
@@ -89,14 +89,14 @@ export default nix.lambda((args) => (() => {
               })), "makeWrapper \"$pythonInterpreter\" \"$out/bin/$name\" \\\n  --prefix PATH : \"$xar/bin\" \\\n  --suffix PATH : \"$xsltproc/bin\" \\\n  --add-flags -- \\\n  --add-flags \"$src/xar/test/run-all.py\"\n")),
           })),
           tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   version: "1.8dev",
                 })))),
               integrationTest: nix.thunk(() => nix.app(runCommand, "xar-tests-integration-test", nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   src: patchedSource,
                   strictDeps: true,
                   pythonExecutable: nix.thunk(() => nix.sel(pythonForTests, "executable")),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })), "\"$pythonExecutable\" \"$src\"/xar/test/run-all.py\ntouch \"$out\"\n")),
               smokeTest: nix.thunk(() => nix.app(runCommandCC, "xar-tests-smoke-test", nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   src: patchedSource,
                   strictDeps: true,
                   nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
@@ -115,19 +115,19 @@ export default nix.lambda((args) => (() => {
                 })), "cp \"$src\"/xar/test/{buffer.c,validate.c} .\n\"$CC\" -lxar -o buffer buffer.c\n\"$CC\" -lxar -lcrypto -o validate validate.c\n./buffer validate.c\nxar -x -f test.xar\ndiff validate.c mydir/secondfile\n./validate test.xar\ntouch \"$out\"\n")),
             })))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               extraArgs: nix.thunk(() => ["--version-regex", "xar-(.*)"]),
             })))),
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         homepage: "https://github.com/apple-oss-distributions/xar",
         description: "Easily extensible archive format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(lib, "maintainers"));
-            return { __proto__: pos$12, tie: nix.thunk(() => nix.attr(from, "tie")) };
+            return { [nix.POS]: pos$12, tie: nix.thunk(() => nix.attr(from, "tie")) };
           })()))),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

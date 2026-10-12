@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const toggle = (bool) => (nix.asBool(bool) ? "ON" : "OFF");
   const test_model_weights = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel",
       sha256: "472d4a06035497b180636d8a82667129960371375bd10fcb6df5c6c7631f25e0",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "caffe",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "BVLC",
           repo: "caffe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./random-shuffle.patch"),
         nix.path(here, "./random-shuffle-includes.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "support-opencv4",
             url: "https://github.com/BVLC/caffe/pull/6638/commits/0a04cc2ccd37ba36843c18fea2d5cbae6e7dd2b5.patch",
             hash: "sha256-ZegTvp0tTHlopQv+UzHDigs6XLkP2VfqLCWXl6aKJSI=",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./python.patch"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(python, "sourceVersion"));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             major: nix.thunk(() => nix.attr(from, "major")),
             minor: nix.thunk(() => nix.attr(from, "minor")),
           };
@@ -118,7 +118,7 @@ $bin/bin/caffe test \\
   -weights "${test_model_weights}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Deep learning framework",
         longDescription: "Caffe is a deep learning framework made with expression, speed, and\nmodularity in mind. It is developed by the Berkeley Vision and Learning\nCenter (BVLC) and by community contributors.\n",
         homepage: "http://caffe.berkeleyvision.org/",

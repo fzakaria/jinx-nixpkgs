@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "k8sgpt",
       version: "0.4.39",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k8sgpt-ai",
           repo: "k8sgpt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wWkk6Qu385DRjdDVW143MfhRVc+KGKb20/9iFs1F0eM=",
         })))),
       vendorHash: "sha256-osPj6FfAbUI1/NpvbxiSAbFKf01D6o9IWylIFdW9ihQ=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       preCheck: "export HOME=$TMPDIR\n",
       ldflags: nix.thunk(() => [
         "-s",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd k8sgpt \\\n  --bash <($out/bin/k8sgpt completion bash) \\\n  --zsh <($out/bin/k8sgpt completion zsh) \\\n  --fish <($out/bin/k8sgpt completion fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Giving Kubernetes Superpowers to everyone",
         mainProgram: "k8sgpt",
         homepage: "https://k8sgpt.ai",

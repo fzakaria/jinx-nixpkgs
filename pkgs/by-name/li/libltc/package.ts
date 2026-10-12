@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libltc",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/x42/libltc/releases/download/v${nix.sel(finalAttrs, "version")}/libltc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Cm1CzWwh6SWif6Vg3EWsgAV9J18jNCECglkJwC07Ekk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://x42.github.io/libltc/",
         description: "POSIX-C Library for handling Linear/Logitudinal Time Code (LTC)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

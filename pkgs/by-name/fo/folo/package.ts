@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "folo",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RSSNext",
           repo: "Folo",
           tag: nix.thunk(() => nix.str`desktop/v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11, makeWrapper, imagemagick]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         VITE_WEB_URL: "https://app.follow.is",
         VITE_API_URL: "https://api.follow.is",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         VITE_OPENPANEL_CLIENT_ID: "0e477ab4-d92d-4d6e-b889-b09d86ab908e",
         VITE_OPENPANEL_API_URL: "https://openpanel.follow.is/api",
         VITE_FIREBASE_CONFIG: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             apiKey: "AIzaSyDuM93019tp8VI7wsszJv8ChOs7b1EE5Hk",
             authDomain: "follow-428106.firebaseapp.com",
             projectId: "follow-428106",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./runtime-jsdom.patch")]),
       postPatch: "# pnpm 11 verifies node_modules before every `pnpm run` which conflicts\n# with --shamefully-hoist\necho 'verifyDepsBeforeRun: false' >> pnpm-workspace.yaml\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "folo",
           desktopName: "Folo",
           comment: "Next generation information browser",
@@ -108,14 +108,14 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "^desktop/v([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Next generation information browser",
         homepage: "https://github.com/RSSNext/Folo",
         changelog: nix.thunk(() => nix.str`https://github.com/RSSNext/Folo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

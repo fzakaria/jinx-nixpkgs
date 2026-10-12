@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const prisma_engines_7 = nix.arg($, "prisma-engines_7");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ghostfolio",
       version: "3.79.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghostfolio",
           repo: "ghostfolio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-UzYEVKWfPpVp7HvI0b+hjEB6J0VOzjn4b/ijoQ/3BTo=",
       postPatch: "substituteInPlace replace.build.mjs \\\n  --replace-fail 'new Date()' \"new Date($(<SOURCE_DATE_EPOCH))\"\n# SyntaxError: Named export 'PrismaClient' not found\nsubstituteInPlace prisma/seed.mts \\\n  --replace-fail \"import { PrismaClient } from '@prisma/client';\" \\\n    \"import prismaClientPkg from '@prisma/client'; const { PrismaClient } = prismaClientPkg;\"\n# storybook output is not used, skip it\nsubstituteInPlace package.json --replace-fail \"nx run ui:build-storybook\" \"true\"\n",
       nativeBuildInputs: nix.thunk(() => [prisma_7, faketty]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CYPRESS_INSTALL_BINARY: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CYPRESS_INSTALL_BINARY: "0" })),
       buildPhase: "runHook preBuild\n\nprisma generate\n\n# Workaround for https://github.com/nrwl/nx/issues/22445\nfaketty npm run build:production\n\nnpm prune --omit=dev --no-save\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -55,7 +55,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/ghostfolio" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssl]))} \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [openssl]))} \\
   ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`--set ${name} ${nix.app(nix.sel(lib, "escapeShellArg"), value)}`, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             PRISMA_SCHEMA_ENGINE_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), prisma_engines_7, "schema-engine")),
             PRISMA_QUERY_ENGINE_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), prisma_engines_7, "query-engine")),
             PRISMA_QUERY_ENGINE_LIBRARY: nix.thunk(() => nix.str`${prisma_engines_7}/lib/libquery_engine.node`),
@@ -79,7 +79,7 @@ runHook postInstall
 `),
       preFixup: "find $out/lib -name \"*.py\" -delete\napiModules=\"$out/lib/ghostfolio/api/node_modules\"\nrm -rf \\\n  \"$out/lib/ghostfolio/client/development\" \\\n  \"$apiModules\"/sass-embedded* \\\n  \"$apiModules\"/{@,}esbuild \\\n  \"$apiModules\"/{@,}rollup \\\n  \"$apiModules\"/@rolldown \\\n  \"$apiModules\"/@parcel/watcher-* \\\n  \"$apiModules\"/typescript \\\n  \"$apiModules\"/.{bin,cache} \\\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open Source Wealth Management Software",
         homepage: "https://github.com/ghostfolio/ghostfolio",
         changelog: nix.thunk(() => nix.str`https://github.com/ghostfolio/ghostfolio/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gliner",
       version: "0.2.29",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "urchade",
           repo: "GLiNER",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => ["gliner"]))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generalist and Lightweight Model for Named Entity Recognition",
         homepage: "https://github.com/urchade/GLiNER",
         changelog: nix.thunk(() => nix.str`https://github.com/urchade/GLiNER/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

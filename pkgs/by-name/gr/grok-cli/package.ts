@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grok-cli";
       const version = "0.0.33";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "superagent-ai",
           repo: "grok-cli",
           tag: nix.thunk(() => nix.str`@vibe-kit/grok-cli@${version}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-Yl51fCnI3soQ4sGBg4dr+kVak8zYEkMTgyUKDaRK6N0=";
       const nativeBuildInputs = nix.thunk(() => [nodejs_latest]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "help-command": nix.thunk(() => nix.app(runCommand, "grok-help-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`output="$(${grok_cli}/bin/grok --help)"
 echo "$output" > $out
 
@@ -41,7 +41,7 @@ echo "$output" | grep -Eq "Usage: grok.+"
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "AI agent CLI powered by Grok",
         homepage: "https://github.com/superagent-ai/grok-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +53,7 @@ echo "$output" | grep -Eq "Usage: grok.+"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

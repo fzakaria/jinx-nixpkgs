@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const defusedxml = nix.arg($, "defusedxml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sphinx-autodoc2",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sphinx-extensions2",
           repo: "sphinx-autodoc2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "python-sphinx-autodoc2",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "9",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_sphinx_build_directives"]),
       pythonImportsCheck: nix.thunk(() => ["autodoc2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-extensions2/sphinx-autodoc2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/sphinx-extensions2/sphinx-autodoc2",
         description: "Sphinx extension that automatically generates API documentation for your Python packages",

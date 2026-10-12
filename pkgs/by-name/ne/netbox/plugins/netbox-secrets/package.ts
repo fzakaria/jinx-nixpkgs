@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const pycryptodome = nix.arg($, "pycryptodome");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-secrets",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Onemind-Services-LLC",
           repo: "netbox-secrets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_secrets"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_secrets" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_secrets" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin to enhance secret management with encrypted storage and flexible, user-friendly features",
         homepage: "https://github.com/Onemind-Services-LLC/netbox-secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/Onemind-Services-LLC/netbox-secrets/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

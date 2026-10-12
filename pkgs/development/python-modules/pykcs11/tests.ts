@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const softhsm = nix.arg($, "softhsm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pykcs11-tests",
       version: nix.thunk(() => nix.attr(pykcs11, "version")),
       pyproject: false,

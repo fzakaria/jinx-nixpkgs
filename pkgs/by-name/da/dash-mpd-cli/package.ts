@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.app(nix.sel(lib, "getExe"), shaka_packager)} $out/bin/shaka-packager
 `)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dash-mpd-cli",
       version: "0.2.35",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emarsden",
           repo: "dash-mpd-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), shaka_packager)} $out/bin/shaka-packager
         })))),
       cargoHash: "sha256-KzBJwmFWd8ztOcWOqCnHuztnnM764aDKz92whVJ3W4E=",
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cfg reqwest_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg reqwest_unstable" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, protobuf]),
       doCheck: false,
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/dash-mpd-cli \\
@@ -50,11 +50,11 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), shaka_packager)} $out/bin/shaka-packager
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Download media content from a DASH-MPEG or DASH-WebM MPD manifest",
         longDescription: "A commandline application for downloading media content from a DASH MPD\nfile, as used for on-demand replay of TV content and video streaming\nservices.\n",
         homepage: "https://emarsden.github.io/dash-mpd-cli/",

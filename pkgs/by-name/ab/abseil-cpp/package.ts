@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const abseil_cpp_202608 = nix.arg($, "abseil-cpp_202608");
   const cxxStandard = nix.argOr($, "cxxStandard", () => null);
-  return nix.app(nix.sel(abseil_cpp_202608, "override"), nix.thunk(() => ({ __proto__: pos$1, cxxStandard: cxxStandard })));
+  return nix.app(nix.sel(abseil_cpp_202608, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cxxStandard: cxxStandard })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

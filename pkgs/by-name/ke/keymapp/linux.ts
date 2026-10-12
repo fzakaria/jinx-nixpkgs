@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "gappsWrapperArgs+=(--set-default '__NV_PRIME_RENDER_OFFLOAD' 1)\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "keymapp",
             icon: "keymapp",
             desktopName: "Keymapp",

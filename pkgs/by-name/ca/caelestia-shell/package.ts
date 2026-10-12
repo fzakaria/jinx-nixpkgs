@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const version = "2.5.0";
   const rev = "d999d4878ee4cec134168e60d913714566a8cfa6";
   const m3shapes_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "soramanew",
       repo: "m3shapes",
       rev: "32ad9ce328bb77ed349b40a3be10ee9ea610b8ab",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
     hyprland,
   ], nix.app(nix.sel(lib, "optional"), withCli, caelestia_cli)));
   const fontconfig = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       fontDirectories: nix.thunk(() => [
         material_symbols,
         rubik,
@@ -83,12 +83,12 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "DISTRIBUTOR", "nixpkgs")),
   ]);
   const shellSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/caelestia-dots/shell/releases/download/v${version}/caelestia-shell-v${version}.tar.gz`),
       hash: "sha256-a++f7/n5xq/rb98Lm7HPw8/X3/TCoCDoB51nIJdfO2o=",
     }))));
   const extras = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       cmakeBuildType: cmakeBuildType,
       name: "caelestia-extras",
       src: shellSrc,
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       ], cmakeVersionFlags)),
     }))));
   const plugin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       cmakeBuildType: cmakeBuildType,
       name: "caelestia-qml-plugin",
       src: shellSrc,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
       ], cmakeVersionFlags)),
     }))));
   const m3shapesModule = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       cmakeBuildType: cmakeBuildType,
       name: "caelestia-m3shapes",
       src: m3shapes_src,
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: version,
       cmakeBuildType: cmakeBuildType,
       pname: "caelestia-shell",
@@ -172,14 +172,14 @@ mkdir -p $out/lib
 ln -s ${extras}/lib/* $out/lib/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         plugin: plugin,
         extras: extras,
         m3shapesModule: m3shapesModule,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Fluid, morphing shell for your Linux desktop",
         homepage: "https://github.com/caelestia-dots/shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

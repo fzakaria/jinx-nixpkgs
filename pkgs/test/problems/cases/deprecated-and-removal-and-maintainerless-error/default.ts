@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         problems: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           handlers: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             a: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               deprecated: "error",
               removal: "error",
               maintainerless: "error",
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Some package",
         problems: nix.thunk(() => ({
-          __proto__: pos$8,
-          deprecated: nix.thunk(() => ({ __proto__: pos$6, message: "Package is deprecated and replaced by b." })),
-          removal: nix.thunk(() => ({ __proto__: pos$7, message: "Package will be removed." })),
+          [nix.POS]: pos$8,
+          deprecated: nix.thunk(() => ({ [nix.POS]: pos$6, message: "Package is deprecated and replaced by b." })),
+          removal: nix.thunk(() => ({ [nix.POS]: pos$7, message: "Package will be removed." })),
         })),
         maintainers: [],
       })),

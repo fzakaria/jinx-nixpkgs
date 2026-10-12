@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "materialyoucolor",
       version: "3.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "T-Dynamos",
           repo: "materialyoucolor-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n# test script taken from .github/workflows/cibuildwheel.yml\npython -c \"from PIL import Image; Image.new('RGB', (128, 128), (70, 120, 180)).save('test_image.jpg')\"\npython tests/test_all.py --image test_image.jpg --quality 1 --method pillow --tonal-spot\npython tests/test_all.py --image test_image.jpg --quality 1 --method cpp --tonal-spot\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["materialyoucolor", "materialyoucolor.quantize"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Material You color generation algorithms in python",
         homepage: "https://github.com/T-Dynamos/materialyoucolor-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dask",
       version: "2026.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dask",
           repo: "dask",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         toolz,
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           array: nix.thunk(() => [numpy]),
           complete: nix.thunk(() => nix.concat([pyarrow, lz4], nix.concat(nix.sel(self, "array"), nix.concat(nix.sel(self, "dataframe"), nix.concat(nix.sel(self, "distributed"), nix.sel(self, "diagnostics")))))),
           dataframe: nix.thunk(() => nix.concat([pandas, pyarrow], nix.sel(self, "array"))),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         "dask.dataframe.tseries",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal task scheduling abstraction",
         mainProgram: "dask",
         homepage: "https://dask.org/",

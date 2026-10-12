@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const pam = nix.arg($, "pam");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "auth",
       buildInputs: nix.thunk(() => [pam]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for authentication using pam" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for authentication using pam" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=auth.ts.map

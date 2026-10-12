@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const outputs = nix.thunk(() => ["out", "bin", "dev", "benchmark"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libjxl",
           repo: "libjxl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -79,7 +79,7 @@ GDK_PIXBUF_MODULE_FILE="$out/${loadersPath}" \\
 makeWrapper ${gdk_pixbuf}/bin/gdk-pixbuf-thumbnailer "$out/libexec/gdk-pixbuf-thumbnailer-jxl" \\
   --set GDK_PIXBUF_MODULE_FILE "$out/${loadersPath}"
 `))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-mfp16-format=ieee" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-mfp16-format=ieee" }))));
       const doCheck = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
         return !nix.asBool((nix.asBool(nix.lookup(w, "isi686")) || nix.asBool((nix.asBool(nix.lookup(w, "isDarwin")) && nix.asBool(nix.lookup(w, "isx86_64"))))));
@@ -101,7 +101,7 @@ makeWrapper ${gdk_pixbuf}/bin/gdk-pixbuf-thumbnailer "$out/libexec/gdk-pixbuf-th
         ])));
       const ctestFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isBigEndian")), nix.thunk(() => ["--exclude-regex", ".*bitSqueeze.*"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/libjxl/libjxl",
         description: "JPEG XL image format reference implementation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -112,7 +112,7 @@ makeWrapper ${gdk_pixbuf}/bin/gdk-pixbuf-thumbnailer "$out/libexec/gdk-pixbuf-th
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const snuggs = nix.arg($, "snuggs");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fiona",
       version: "1.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Toblerity",
           repo: "Fiona",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdal]),
       dependencies: nix.thunk(() => [attrs, certifi, click, click_plugins, cligj]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         calc: nix.thunk(() => [pyparsing, shapely]),
         s3: nix.thunk(() => [boto3]),
       })),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "test_append_memoryfile_drivers",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OGR's neat, nimble, no-nonsense API for Python",
         changelog: nix.thunk(() => nix.str`https://github.com/Toblerity/Fiona/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.txt`),
         mainProgram: "fio",

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "data-smoothing";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "0q0vqdmp8ygyfhk296xbxcpsh5wvpa2kfgv4v0rys68nd2lxfaq1",
         }))));
       const requiredOctavePackages = nix.thunk(() => [optim]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/data-smoothing/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         description: "Algorithms for smoothing noisy data",
         broken: true,
       }));
-      return { __proto__: pos$3, pname, version, src, requiredOctavePackages, meta };
+      return { [nix.POS]: pos$3, pname, version, src, requiredOctavePackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

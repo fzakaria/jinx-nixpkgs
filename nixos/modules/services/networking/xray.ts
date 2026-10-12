@@ -28,37 +28,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         xray: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to run xray server.\n\nEither `settingsFile` or `settings` must be specified.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "xray", nix.thunk(() => ({})))),
           settingsFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/etc/xray/config.json",
               description: "The absolute path to the configuration file.\n\nEither `settingsFile` or `settings` must be specified.\n\nSee <https://www.v2fly.org/en_US/config/overview.html>.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "unspecified")))))),
               default: null,
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 inbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$3, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$3, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
                 ]),
-                outbounds: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, protocol: "freedom" }))]),
+                outbounds: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, protocol: "freedom" }))]),
               })),
               description: "The configuration object.\n\nEither `settingsFile` or `settings` must be specified.\n\nSee <https://www.v2fly.org/en_US/config/overview.html>.\n",
             })))),
@@ -68,32 +68,32 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "services", "xray"));
       const settingsFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settingsFile"), null)) ? nix.sel(cfg, "settingsFile") : nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "xray.json",
           text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.sel(cfg, "settings")))),
           checkPhase: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/xray -test -config $out
 `),
         })))));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "settingsFile"), null), nix.eq(nix.sel(cfg, "settings"), null))),
               message: "Either but not both `settingsFile` and `settings` should be specified for xray.",
             })),
           ]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               xray: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "xray Daemon",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/xray -config "\${CREDENTIALS_DIRECTORY}"/config.json`),
                   DynamicUser: true,
                   LoadCredential: nix.thunk(() => nix.str`config.json:${settingsFile}`),

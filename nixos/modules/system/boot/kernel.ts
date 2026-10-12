@@ -72,26 +72,26 @@ export default nix.lambda((args) => (() => {
 `)));
   const attrNamesToTrue = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "coercedTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))), (enabledList) => nix.app(nix.sel(lib, "genAttrs"), enabledList, (_attrName) => true), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool"))))));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "vesa"]), "The `boot.vesa` option has been removed. It was deprecated in 2020\nbecause Xorg now works better with kernel modesetting. If you still\nneed the legacy VESA 800x600 fallback, set\n`boot.kernelParams = [ \"vga=0x317\" \"nomodeset\" ];` directly.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       boot: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         kernel: nix.thunk(() => ({
-          __proto__: pos$4,
-          enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "the Linux kernel. This is useful for systemd-like containers which do not require a kernel"), { __proto__: pos$1, default: true })),
+          [nix.POS]: pos$4,
+          enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "the Linux kernel. This is useful for systemd-like containers which do not require a kernel"), { [nix.POS]: pos$1, default: true })),
           features: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ debug = true; }")),
               internal: true,
               description: "This option allows to enable or disable certain kernel features.\nIt's not API, because it's about kernel feature sets, that\nmake sense for specific use cases. Mostly along with programs,\nwhich would have separate nixos options.\n`grep features pkgs/os-specific/linux/kernel/common-config.nix`\n",
             })))),
           randstructSeed: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "my secret seed",
@@ -99,13 +99,13 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         kernelPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             default: nix.thunk(() => nix.sel(pkgs, "linuxPackages")),
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "raw")),
             apply: (kernelPackages) => nix.app(nix.sel(kernelPackages, "extend"), (self) => (super$) => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 kernel: nix.thunk(() => nix.app(nix.sel(super$, "kernel", "override"), (originalArgs) => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     randstructSeed: randstructSeed,
                     kernelPatches: nix.thunk(() => nix.concat(nix.selOr(originalArgs, () => [], "kernelPatches"), kernelPatches)),
                     features: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(super$, "kernel", "features")), features)),
@@ -116,16 +116,16 @@ export default nix.lambda((args) => (() => {
             description: "This option allows you to override the Linux kernel used by\nNixOS.  Since things like external kernel module packages are\ntied to the kernel you're using, it also overrides those.\nThis option is a function that takes Nixpkgs as an argument\n(as a convenience), and returns an attribute set containing at\nthe very least an attribute {var}`kernel`.\nAdditional attributes may be needed depending on your\nconfiguration.  For instance, if you use the NVIDIA X driver,\nthen it also needs to contain an attribute\n{var}`nvidia_x11`.\n\nPlease note that we strictly support kernel versions that are\nmaintained by the Linux developers only. More information on the\navailability of kernel versions is documented\n[in the Linux section of the manual](https://nixos.org/manual/nixos/unstable/index.html#sec-kernel-config).\n",
           })))),
         kernelPatches: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
             default: [],
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  {\n    name = \"foo\";\n    patch = ./foo.patch;\n    structuredExtraConfig.FOO = lib.kernel.yes;\n    features.foo = true;\n  }\n  {\n    name = \"foo-ml-mbox\";\n    patch = (fetchurl {\n      url = \"https://lore.kernel.org/lkml/19700205182810.58382-1-email@domain/t.mbox.gz\";\n      hash = \"sha256-...\";\n    });\n  }\n]\n")),
             description: "A list of additional patches to apply to the kernel.\n\nEvery item should be an attribute set with the following attributes:\n\n```nix\n{\n  name = \"foo\";                 # descriptive name, required\n\n  patch = ./foo.patch;          # path or derivation that contains the patch source\n                                # (required, but can be null if only config changes\n                                # are needed)\n\n  structuredExtraConfig = {     # attrset of extra configuration parameters without the CONFIG_ prefix\n    FOO = lib.kernel.yes;       # (optional)\n  };                            # values should generally be lib.kernel.yes,\n                                # lib.kernel.no or lib.kernel.module\n\n  features = {                  # attrset of extra \"features\" the kernel is considered to have\n    foo = true;                 # (may be checked by other NixOS modules, optional)\n  };\n\n  extraConfig = \"FOO y\";        # extra configuration options in string form without the CONFIG_ prefix\n                                # (optional, multiple lines allowed to specify multiple options)\n                                # (deprecated, use structuredExtraConfig instead)\n}\n```\n\nThere's a small set of existing kernel patches in Nixpkgs, available as `pkgs.kernelPatches`,\nthat follow this format and can be used directly.\n",
           })))),
         kernelParams: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.update(nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "([^\"[:space:]]|\"[^\"]*\")+"), {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 name: "kernelParam",
                 description: "string, with spaces inside double quotes",
               })))),
@@ -133,20 +133,20 @@ export default nix.lambda((args) => (() => {
             description: "Parameters added to the kernel command line.",
           })))),
         consoleLogLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             default: 4n,
             description: "The kernel console `loglevel`. All Kernel Messages with a log level smaller\nthan this setting will be printed to the console.\n",
           })))),
         extraModulePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
             default: [],
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ config.boot.kernelPackages.nvidia_x11 ]")),
             description: "A list of additional packages supplying kernel modules.",
           })))),
         kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: attrNamesToTrue,
             default: nix.thunk(() => ({})),
             description: nix.thunk(() => nix.str`The set of kernel modules to be loaded in the second stage of
@@ -160,9 +160,9 @@ ${modulesTypeDesc}
             apply: (mods) => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.force(v), mods))),
           })))),
         initrd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           availableKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: attrNamesToTrue,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ["sata_nv", "ext3"]),
@@ -185,7 +185,7 @@ ${modulesTypeDesc}
               apply: (mods) => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.force(v), mods))),
             })))),
           kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: attrNamesToTrue,
               default: nix.thunk(() => ({})),
               description: nix.thunk(() => nix.str`Set of modules that are always loaded by the initrd.
@@ -195,13 +195,13 @@ ${modulesTypeDesc}
               apply: (mods) => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.force(v), mods))),
             })))),
           includeDefaultModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "This option, if set, adds a collection of default kernel modules\nto {option}`boot.initrd.availableKernelModules` and\n{option}`boot.initrd.kernelModules`.\n",
             })))),
           allowMissingModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether the initrd can be built even though modules listed in\n{option}`boot.initrd.kernelModules` or\n{option}`boot.initrd.availableKernelModules` are missing from\nthe kernel. This is useful when combining configurations that\ninclude a lot of modules, such as\n{option}`hardware.enableAllHardware`, with kernels that don't\nprovide as many modules as typical NixOS kernels.\n\nNote that enabling this is discouraged. Instead, try disabling\nindividual modules by setting e.g.\n`boot.initrd.availableKernelModules.foo = lib.mkForce false;`\n",
@@ -209,20 +209,20 @@ ${modulesTypeDesc}
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         modulesTree: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             internal: true,
             default: [],
             description: "Tree of kernel modules.  This includes the kernel, plus modules\nbuilt outside of the kernel.  Combine these into a single tree of\nsymlinks because modprobe only supports one directory.\n",
             apply: nix.thunk(() => (() => {
               const kernel_name = nix.thunk(() => nix.selOr(config, () => "kernel", "boot", "kernelPackages", "kernel", "name"));
-              return (modules) => nix.app(nix.sel(nix.app(nix.sel(pkgs, "aggregateModules"), modules), "override"), nix.thunk(() => ({ __proto__: pos$20, name: nix.thunk(() => nix.add(kernel_name, "-modules")) })));
+              return (modules) => nix.app(nix.sel(nix.app(nix.sel(pkgs, "aggregateModules"), modules), "override"), nix.thunk(() => ({ [nix.POS]: pos$20, name: nix.thunk(() => nix.add(kernel_name, "-modules")) })));
             })()),
           })))),
         requiredKernelConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             default: [],
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with config.lib.kernelConfig; [\n  (isYes \"MODULES\")\n  (isEnabled \"FB_CON_DECOR\")\n  (isEnabled \"BLK_DEV_INITRD\")\n]\n")),
             internal: true,
@@ -233,11 +233,11 @@ ${modulesTypeDesc}
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "enable")), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             boot: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               initrd: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 availableKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(config, "boot", "initrd", "includeDefaultModules")), nix.thunk(() => nix.concat([
                     "ahci",
                     "sata_nv",
@@ -273,13 +273,13 @@ ${modulesTypeDesc}
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "kernel", "enable")), nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             system: nix.thunk(() => ({
-              __proto__: pos$30,
-              build: nix.thunk(() => ({ __proto__: pos$28, kernel: kernel })),
+              [nix.POS]: pos$30,
+              build: nix.thunk(() => ({ [nix.POS]: pos$28, kernel: kernel })),
               modulesTree: nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "modules", kernel))], nix.sel(config, "boot", "extraModulePackages"))),
               systemBuilderArgs: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 kernelParams: nix.thunk(() => nix.sel(config, "boot", "kernelParams")),
               })),
               systemBuilderCommands: nix.thunk(() => (() => {
@@ -313,68 +313,68 @@ ln -s ${nix.sel(config, "hardware", "firmware")}/lib/firmware $out/firmware
               })()),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               kernelParams: nix.thunk(() => [
                 nix.thunk(() => nix.str`loglevel=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config, "boot", "consoleLogLevel")))}`),
               ]),
               kernel: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "kernel.printk": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(config, "boot", "consoleLogLevel")))),
                 })),
               })),
               kernelModules: nix.thunk(() => ["loop", "atkbd"]),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               etc: nix.thunk(() => ({
-                __proto__: pos$35,
-                "modules-load.d/nixos.conf": nix.thunk(() => ({ __proto__: pos$34, source: kernelModulesConf })),
+                [nix.POS]: pos$35,
+                "modules-load.d/nixos.conf": nix.thunk(() => ({ [nix.POS]: pos$34, source: kernelModulesConf })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               services: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 "systemd-modules-load": nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartTriggers: nix.thunk(() => [kernelModulesConf]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$37, SuccessExitStatus: "0 1" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$37, SuccessExitStatus: "0 1" })),
                 })),
               })),
             })),
             lib: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               kernelConfig: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 isYes: (option) => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   assertion: (config_1) => nix.app(nix.sel(config_1, "isYes"), option),
                   message: nix.thunk(() => nix.str`CONFIG_${option} is not yes!`),
                   configLine: nix.thunk(() => nix.str`CONFIG_${option}=y`),
                 }),
                 isNo: (option) => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   assertion: (config_1) => nix.app(nix.sel(config_1, "isNo"), option),
                   message: nix.thunk(() => nix.str`CONFIG_${option} is not no!`),
                   configLine: nix.thunk(() => nix.str`CONFIG_${option}=n`),
                 }),
                 isModule: (option) => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   assertion: (config_1) => nix.app(nix.sel(config_1, "isModule"), option),
                   message: nix.thunk(() => nix.str`CONFIG_${option} is not built as a module!`),
                   configLine: nix.thunk(() => nix.str`CONFIG_${option}=m`),
                 }),
                 isEnabled: (option) => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   assertion: (config_1) => nix.app(nix.sel(config_1, "isEnabled"), option),
                   message: nix.thunk(() => nix.str`CONFIG_${option} is not enabled!`),
                   configLine: nix.thunk(() => nix.str`CONFIG_${option}=y`),
                 }),
                 isDisabled: (option) => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   assertion: (config_1) => nix.app(nix.sel(config_1, "isDisabled"), option),
                   message: nix.thunk(() => nix.str`CONFIG_${option} is not disabled!`),
                   configLine: nix.thunk(() => nix.str`CONFIG_${option}=n`),
@@ -384,7 +384,7 @@ ln -s ${nix.sel(config, "hardware", "firmware")}/lib/firmware $out/firmware
             assertions: nix.thunk(() => (nix.asBool(nix.has(nix.sel(config, "boot", "kernelPackages", "kernel"), "features")) ? [] : (() => {
               const cfg = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "config"));
               return nix.app(nix.builtins.map, (attrs) => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   assertion: nix.thunk(() => nix.app(nix.sel(attrs, "assertion"), cfg)),
                   message: nix.thunk(() => nix.attr(attrs, "message")),
                 }), nix.thunk(() => nix.sel(config, "system", "requiredKernelConfig")));

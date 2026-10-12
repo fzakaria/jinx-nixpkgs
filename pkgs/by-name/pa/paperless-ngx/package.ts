@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const extraPythonPackageOverrides = nix.argOr($, "extraPythonPackageOverrides", () => (_final) => (_prev) => ({}));
   const defaultPythonPackageOverrides = (final) => (prev) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     django: nix.thunk(() => nix.sel(prev, "django_5")),
-    ocrmypdf: nix.thunk(() => nix.app(nix.sel(prev, "ocrmypdf", "override"), nix.thunk(() => ({ __proto__: pos$1, tesseract: tesseract5 })))),
+    ocrmypdf: nix.thunk(() => nix.app(nix.sel(prev, "ocrmypdf", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, tesseract: tesseract5 })))),
   });
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (prev) => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => [defaultPythonPackageOverrides, extraPythonPackageOverrides]), final, prev)));
   const path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
       ghostscript_headless,
-      nix.thunk(() => nix.app(nix.sel(imagemagickBig, "override"), nix.thunk(() => ({ __proto__: pos$3, ghostscript: ghostscript_headless })))),
+      nix.thunk(() => nix.app(nix.sel(imagemagickBig, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, ghostscript: ghostscript_headless })))),
       jbig2enc,
       optipng,
       pngquant,
@@ -57,22 +57,22 @@ export default nix.lambda((args) => (() => {
     ])));
   const tiktokenCacheDir = nix.thunk(() => nix.app(linkFarm, "paperless-ngx-tiktoken-cache", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "9b5ad71b2ce5302211f9c61530b329a4922fc6a4",
         path: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://web.archive.org/web/20260723164258/https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken",
             hash: "sha256-Ijkht27pm96ZW3/3OFE+7xAPtR0YyTWXoRO8/+hlsqc=",
           })))),
       })),
     ])));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "paperless-ngx",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "paperless-ngx",
           repo: "paperless-ngx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -240,9 +240,9 @@ rm -r build/lib
       ]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(finalAttrs, "meta")), nix.thunk(() => ["mainProgram"]))),
@@ -252,13 +252,13 @@ rm -r build/lib
         tiktokenCacheDir: tiktokenCacheDir,
         python: nix.thunk(() => nix.attr(pythonPackages, "python")),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           paperless: nix.thunk(() => nix.attr(nixosTests, "paperless")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$9, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$9, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Tool to scan, index, and archive all of your physical documents",
         homepage: "https://docs.paperless-ngx.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/paperless-ngx/paperless-ngx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

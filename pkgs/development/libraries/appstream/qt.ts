@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "appstream-qt",
       version: nix.thunk(() => nix.attr(appstream, "version")),
       src: nix.thunk(() => nix.attr(appstream, "src")),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postFixup: "sed -i \"$dev/lib/cmake/AppStreamQt/AppStreamQtConfig.cmake\" \\\n  -e \"/INTERFACE_INCLUDE_DIRECTORIES/ s@\\${PACKAGE_PREFIX_DIR}@$dev@\"\nsed -i \"$dev/lib/cmake/AppStreamQt/AppStreamQtConfig.cmake\" \\\n  -e \"/IMPORTED_LOCATION/ s@\\${PACKAGE_PREFIX_DIR}@$out@\"\n",
       passthru: nix.thunk(() => nix.update(nix.sel(appstream, "passthru"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "appstream-qt")),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(appstream, "meta"), { __proto__: pos$3, description: "Software metadata handling library - Qt" })),
+      meta: nix.thunk(() => nix.update(nix.sel(appstream, "meta"), { [nix.POS]: pos$3, description: "Software metadata handling library - Qt" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=qt.ts.map

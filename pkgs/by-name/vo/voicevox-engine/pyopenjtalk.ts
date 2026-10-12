@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const dic_dirname = "open_jtalk_dic_utf_8-1.11";
   const dic_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/r9y9/open_jtalk/releases/download/v1.11.1/${dic_dirname}.tar.gz`),
       hash: "sha256-+6cHKujNEzmJbpN9Uan6kZKsPdwxRRzT3ZazDnCNi3s=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyopenjtalk",
       version: "0-unstable-2025-04-23",
       pyproject: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "0.0.1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "0.0.1" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "VOICEVOX",
           repo: "pyopenjtalk",
           rev: "74703b034dd90a1f199f49bb70bf3b66b1728a86",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s ${dic_src} $out/${nix.sel(python, "sitePackages")}/pyopenjtalk/${dic_dirname}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "VOICEVOX's fork of the pyopenjtalk text-to-speech library",
         homepage: "https://github.com/VOICEVOX/pyopenjtalk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

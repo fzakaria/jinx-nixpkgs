@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const patchcil = nix.arg($, "patchcil");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "auto-patchcil-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         shell: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
         patchcil: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), patchcil)),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./auto-patchcil.sh"));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

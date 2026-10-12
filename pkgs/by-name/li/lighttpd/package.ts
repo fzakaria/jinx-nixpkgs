@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lighttpd",
       version: "1.4.85",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.lighttpd.net/lighttpd/releases-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.x/lighttpd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-GN5Rs5O6xKaCeHnhp/83fBaeQUuuks0kUJHYD8JgHRM=",
         })))),
@@ -73,14 +73,14 @@ sed -i "s:/usr/bin/file:${file}/bin/file:g" configure
       doCheck: true,
       postInstall: "mkdir -p \"$out/share/lighttpd/doc/config\"\ncp -vr doc/config \"$out/share/lighttpd/doc/\"\n# Remove files that references needless store paths (dependency bloat)\nrm \"$out/share/lighttpd/doc/config/Makefile\"*\nrm \"$out/share/lighttpd/doc/config/conf.d/Makefile\"*\nrm \"$out/share/lighttpd/doc/config/vhosts.d/Makefile\"*\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           lighttpd: nix.thunk(() => nix.attr(nixosTests, "lighttpd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight high-performance web server",
         homepage: "http://www.lighttpd.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

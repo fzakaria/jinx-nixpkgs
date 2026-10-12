@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const docker = nix.arg($, "docker");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tarsum",
       version: nix.thunk(() => nix.attr(docker, "version")),
       nativeBuildInputs: nix.thunk(() => [go]),
       disallowedReferences: nix.thunk(() => [go]),
       dontUnpack: true,
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n, GOFLAGS: "-trimpath", GO111MODULE: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n, GOFLAGS: "-trimpath", GO111MODULE: "off" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 mkdir tarsum
 cd tarsum
@@ -37,14 +37,14 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tarsum $out/bin/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           dockerTools: nix.thunk(() => nix.sel(nixosTests, "docker-tools")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(go, "meta", "platforms")),
         mainProgram: "tarsum",
       })),

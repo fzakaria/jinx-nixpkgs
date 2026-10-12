@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xnlinkfinder",
       version: "8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xnl-h4ck3r",
           repo: "xnLinkFinder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["xnLinkFinder"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to discover endpoints, potential parameters, and a target specific wordlist for a given target",
         homepage: "https://github.com/xnl-h4ck3r/xnLinkFinder",
         changelog: nix.thunk(() => nix.str`https://github.com/xnl-h4ck3r/xnLinkFinder/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pipes",
       version: "2017-12-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QuentinDuval",
           repo: "IdrisPipes",
           rev: "888abe405afce42015014899682c736028759d42",
           sha256: "1dxbqzg0qy7lkabmkj0qypywdjz5751g7h2ql8b2253dy3v0ndbs",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composable and effectful production, transformation and consumption of streams of data",
         homepage: "https://github.com/QuentinDuval/IdrisPipes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

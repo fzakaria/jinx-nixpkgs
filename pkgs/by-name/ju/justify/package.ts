@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "justify",
       version: "0-unstable-2022-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "tildegit.org",
           owner: "jns",
           repo: "justify",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "install -D justify $out/bin/justify\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tildegit.org/jns/justify",
         description: "Simple text alignment tool that supports left/right/center/fill justify alignment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

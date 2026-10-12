@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ealbiter",
           repo: "qnotero",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir $out/share\nmv $out/usr/share/applications $out/share/applications\n\nsubstituteInPlace $out/share/applications/qnotero.desktop \\\n  --replace \"Icon=/usr/share/qnotero/resources/light/qnotero.png\" \"Icon=qnotero\"\n\nmkdir -p $out/share/icons/hicolor/64x64/apps\nln -s $out/usr/share/qnotero/resources/light/qnotero.png \\\n  $out/share/icons/hicolor/64x64/apps/qnotero.png\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quick access to Zotero references",
         mainProgram: "qnotero",
         homepage: "https://www.cogsci.nl/software/qnotero",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nico202"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

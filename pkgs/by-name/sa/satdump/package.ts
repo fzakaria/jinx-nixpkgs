@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const withSourceBladeRF = nix.argOr($, "withSourceBladeRF", () => true);
   const libbladeRF = nix.arg($, "libbladeRF");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "satdump",
       version: "2.0.0-unstable-2026-08-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SatDump",
           repo: "SatDump",
           rev: "19b73529f16f30776f190cba2abe4ded478f5c8e",
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([fftwFloat, libpng, libtiff, jemalloc, volk, nng, sqlite, curl], nix.concat(nix.app(nix.sel(lib, "optionals"), withZIQRecordingCompression, nix.thunk(() => [zstd])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => [dbus, glfw, libx11, libxrandr, zenity])), nix.concat(nix.app(nix.sel(lib, "optionals"), withAudio, nix.thunk(() => [portaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), withOfficialProductSupport, nix.thunk(() => [hdf5])), nix.concat(nix.app(nix.sel(lib, "optionals"), withOpenCL, nix.thunk(() => [opencl_headers, ocl_icd])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceRtlsdr, nix.thunk(() => [rtl_sdr_librtlsdr])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceHackRF, nix.thunk(() => [hackrf])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceAirspy, nix.thunk(() => [airspy])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceAirspyHF, nix.thunk(() => [airspyhf])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceAD9361, nix.thunk(() => [libad9361, libiio])), nix.app(nix.sel(lib, "optionals"), withSourceBladeRF, nix.thunk(() => [libbladeRF])))))))))))))),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_GUI", withGUI))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generic satellite data processing software",
         homepage: "https://www.satdump.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/SatDump/SatDump/releases/tag/${nix.sel(finalAttrs, "version")}`),

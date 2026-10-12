@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "checkra1n";
       const version = "0.12.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://assets.checkra.in/downloads/linux/cli/x86_64/dac9968939ea6e6bfbdedeb41d7e2579c4711dc2c5083f91dced66ca397dc51d/checkra1n",
           sha256: "07f5glwwlrpdvj8ky265q8fp3i3r4mz1vd6yvvxnnvpa764rdjfs",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
 install -m755 $src $out/bin/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jailbreak for iPhone 5s though iPhone X, iOS 12.0 and up",
         homepage: "https://checkra.in/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -39,7 +39,7 @@ install -m755 $src $out/bin/${pname}
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

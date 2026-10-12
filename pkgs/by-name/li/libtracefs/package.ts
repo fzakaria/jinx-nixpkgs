@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libtracefs",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/snapshot/libtracefs-libtracefs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uN4alsOmj7IFUL2IJSHbgBiztv2Sq0+MktQiRByvhK0=",
         })))),
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
       ninjaFlags: nix.thunk(() => ["all", "docs"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git",
             "rev-prefix": "libtracefs-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux kernel trace file system library",
         mainProgram: "sqlhist",
         homepage: "https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/",

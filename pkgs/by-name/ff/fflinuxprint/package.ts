@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fflinuxprint",
       version: "1.1.4-3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://support-fb.fujifilm.com/driver_downloads/fflinuxprint_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-oi6p4e9Uigz0TbEcmloDhv3qU98Ou1qqdorGY3942uM=",
           curlOpts: "--user-agent Mozilla/5.0",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/cups/model\nmv usr/lib $out\nmv usr/share/ppd/fujifilm/* $out/share/cups/model\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FujiFILM Linux Printer Driver",
         homepage: "https://support-fb.fujifilm.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

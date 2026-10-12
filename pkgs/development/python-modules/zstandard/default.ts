@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-dxPhF50WLPXHkG2oduwsy5w6ncvf/vDMf3DDZnogXws=",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -r zstandard\n";
       const pythonImportsCheck = nix.thunk(() => ["zstandard"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zstandard bindings for Python",
         homepage: "https://github.com/indygreg/python-zstandard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

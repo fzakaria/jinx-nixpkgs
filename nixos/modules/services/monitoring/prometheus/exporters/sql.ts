@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const cfgOptions = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     options: nix.thunk(() => (() => {
       const w = nix.withScope(types, null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         jobs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), jobOptions)))),
             default: nix.thunk(() => ({})),
             description: "An attrset of metrics scraping jobs to run.",
@@ -57,29 +57,29 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const jobOptions = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => (() => {
       const w = nix.withScope(types, null);
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         interval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.lookup(w, "str")),
             description: "How often to run this job, specified in\n[Go duration](https://golang.org/pkg/time/#ParseDuration) format.\n",
           })))),
         connections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
             description: "A list of connection strings of the SQL servers to scrape metrics from",
           })))),
         startupSql: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
             default: [],
             description: "A list of SQL statements to execute once after making a connection.",
           })))),
         queries: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), queryOptions)))),
             description: "SQL queries to run.",
           })))),
@@ -87,30 +87,30 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const queryOptions = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => (() => {
       const w = nix.withScope(types, null);
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         help: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
             default: null,
             description: "A human-readable description of this metric.",
           })))),
         labels: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
             default: [],
             description: "A set of columns that will be used as Prometheus labels.",
           })))),
         query: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.lookup(w, "str")),
             description: "The SQL query to run.",
           })))),
         values: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
             description: "A set of columns that will be used as values of this metric.",
           })))),
@@ -118,23 +118,23 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : (() => {
-    const nameInline = nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => nix.update(v, { __proto__: pos$16, name: k })));
-    const renameStartupSql = (j) => nix.builtins.removeAttrs(nix.thunk(() => nix.update(j, { __proto__: pos$17, startup_sql: nix.thunk(() => nix.sel(j, "startupSql")) })), nix.thunk(() => ["startupSql"]));
+    const nameInline = nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => nix.update(v, { [nix.POS]: pos$16, name: k })));
+    const renameStartupSql = (j) => nix.builtins.removeAttrs(nix.thunk(() => nix.update(j, { [nix.POS]: pos$17, startup_sql: nix.thunk(() => nix.sel(j, "startupSql")) })), nix.thunk(() => ["startupSql"]));
     const configuration = nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       jobs: nix.thunk(() => nix.builtins.map(renameStartupSql, nix.thunk(() => nix.app(nameInline, nix.thunk(() => nix.app(mapAttrs, (k) => (v) => nix.update(v, {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               queries: nix.thunk(() => nix.app(nameInline, nix.thunk(() => nix.sel(v, "queries")))),
             }), nix.thunk(() => nix.sel(cfg, "configuration", "jobs")))))))),
     }));
     return nix.builtins.toFile("config.yaml", nix.thunk(() => nix.builtins.toJSON(configuration)));
   })()));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
           description: "Path to configuration file.\n",
         })))),
       configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), cfgOptions)));
@@ -154,9 +154,9 @@ export default nix.lambda((args) => (() => {
     })),
     port: 9237n,
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-sql-exporter")}/bin/sql_exporter \\
   -web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   -config.file ${configFile} \\

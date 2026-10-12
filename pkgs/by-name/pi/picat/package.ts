@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "picat",
       version: "3.9#4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://picat-lang.org/download/picat394_src.tar.gz",
           hash: "sha256-dAYiV2zG2Z01qBshsqORL9oR2NvNnRavvGSDaOEJdDk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/picat-lang/Picat/commit/c50265dc565f1637e3d22c92b4bf9c4c79d57a03.patch",
             hash: "sha256-21F35CVNgX4Zj0pK0zUyJaVpK0e399lQXD7vQf7GXgQ=",
           })))),
       ]),
       buildInputs: nix.thunk(() => [zlib]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ARCH: nix.thunk(() => nix.selOr({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": "linux64",
           "aarch64-linux": "linux64",
           "x86_64-cygwin": "cygwin64",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ncd emu\nmake -j $NIX_BUILD_CORES -f Makefile.$ARCH\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share\ncp picat $out/bin/\ncp -r ../doc $out/share/doc\ncp -r ../exs $out/share/examples\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Logic-based programming language",
         mainProgram: "picat",
         homepage: "http://picat-lang.org/",

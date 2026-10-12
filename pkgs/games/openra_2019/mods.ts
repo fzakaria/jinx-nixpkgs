@@ -77,30 +77,30 @@ export default nix.lambda((args) => (() => {
   const buildOpenRAMod = nix.arg($, "buildOpenRAMod");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const postFetch = nix.arg($, "postFetch");
-  const unsafeBuildOpenRAMod = (attrs) => (name) => nix.app(nix.sel(nix.app(buildOpenRAMod, attrs, name), "overrideAttrs"), (_) => ({ __proto__: pos$1, doCheck: false }));
+  const unsafeBuildOpenRAMod = (attrs) => (name) => nix.app(nix.sel(nix.app(buildOpenRAMod, attrs, name), "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, doCheck: false }));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     ca: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "96.git.fc3cf0b",
         title: "Combined Arms",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "A game that combines units from the official OpenRA Red Alert and Tiberian Dawn mods",
           homepage: "https://github.com/Inq8/CAmod",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "Inq8",
             repo: "CAmod",
             rev: "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9",
             sha256: "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m",
           })))),
         engine: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: "b8a7dd5",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               owner: "Inq8",
               repo: "CAengine",
               rev: "b8a7dd52ff893ed8225726d4ed4e14ecad748404",
@@ -114,12 +114,12 @@ export default nix.lambda((args) => (() => {
         const version = "134.git.69a4aa7";
         const title = "Dune II";
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: nix.thunk(() => nix.str`A modernization of the original ${title} game`),
           homepage: "https://github.com/OpenRA/d2",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "OpenRA",
             repo: "d2",
             rev: "69a4aa708e2c26376469c0048fac13592aa452ca",
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
           const version_1 = "release-20181215";
           const mods = nix.thunk(() => ["cnc", "d2k", "ra"]);
           const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version_1,
@@ -137,33 +137,33 @@ export default nix.lambda((args) => (() => {
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { __proto__: pos$10, version: version_1, mods, src: src_1 };
+          return { [nix.POS]: pos$10, version: version_1, mods, src: src_1 };
         })());
         const assetsError = nix.thunk(() => nix.str`The mod expects the original ${title} game assets in place:
 https://github.com/OpenRA/d2/wiki
 `);
-        return { __proto__: pos$11, version, title, meta, src, engine, assetsError };
+        return { [nix.POS]: pos$11, version, title, meta, src, engine, assetsError };
       })()))),
     dr: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => (() => {
         const version = "324.git.ffcd6ba";
         const title = "Dark Reign";
         const meta = nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: nix.thunk(() => nix.str`A re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/drogoganor/DarkReign",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             owner: "drogoganor",
             repo: "DarkReign",
             rev: "ffcd6ba72979e5f77508136ed7b0efc13e4b100e",
             sha256: "07g4qw909649s3i1yhw75613mpwfka05jana5mpp5smhnf0pkack",
           }))));
         const engine = nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           version: "DarkReign",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               owner: "drogoganor",
               repo: "OpenRA",
               rev: "f91d3f2603bbf51afaa89357e4defcdc36138102",
@@ -172,19 +172,19 @@ https://github.com/OpenRA/d2/wiki
               postFetch: postFetch,
             })))),
         }));
-        return { __proto__: pos$16, version, title, meta, src, engine };
+        return { [nix.POS]: pos$16, version, title, meta, src, engine };
       })()))),
     gen: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         version: "1157.git.4f5e11d",
         title: "Generals Alpha",
         meta: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           description: "Re-imagination of the original Command & Conquer: Generals game",
           homepage: "https://github.com/MustaphaTR/Generals-Alpha",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             owner: "MustaphaTR",
             repo: "Generals-Alpha",
             rev: "4f5e11d916e4a03d8cf1c97eef484ce2d77d7df2",
@@ -193,7 +193,7 @@ https://github.com/OpenRA/d2/wiki
         engine: nix.thunk(() => (() => {
           const version = "gen-20190128_3";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               owner: "MustaphaTR",
               repo: "OpenRA",
               rev: version,
@@ -201,7 +201,7 @@ https://github.com/OpenRA/d2/wiki
               name: "generals-alpha-engine",
               postFetch: postFetch,
             }))));
-          return { __proto__: pos$20, version, src };
+          return { [nix.POS]: pos$20, version, src };
         })()),
       })))),
     kknd: nix.thunk(() => (() => {
@@ -210,22 +210,22 @@ https://github.com/OpenRA/d2/wiki
           const version_1 = version;
           const title = "Krush, Kill 'n' Destroy";
           const meta = nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             description: nix.thunk(() => nix.str`Re-imagination of the original ${title} game`),
             homepage: "https://kknd-game.com/",
           }));
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               owner: "IceReaper",
               repo: "KKnD",
               rev: "5530babcb05170e0959e4cf2b079161e9fedde4f",
               sha256: "07jczrarmgm6zdk0myzwgq200x19yvpjyxrnhdac08mjgyz75zk1",
             }))));
           const engine = nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             version: "4e8eab4ca00d1910203c8a103dfd2c002714daa8",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 owner: "IceReaper",
                 repo: "OpenRA",
                 rev: "4e8eab4ca00d1910203c8a103dfd2c002714daa8",
@@ -234,9 +234,9 @@ https://github.com/OpenRA/d2/wiki
                 postFetch: postFetch,
               })))),
           }));
-          return { __proto__: pos$26, version: version_1, title, meta, src, engine };
+          return { [nix.POS]: pos$26, version: version_1, title, meta, src, engine };
         })()), name), "overrideAttrs"), (origAttrs) => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           postPatch: nix.thunk(() => nix.str`${nix.sel(origAttrs, "postPatch")}
 sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
 `),
@@ -246,22 +246,22 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
         const version = "257.git.c9be8f2";
         const title = "Medieval Warfare";
         const meta = nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           description: nix.thunk(() => nix.str`A re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/CombinE88/Medieval-Warfare",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             owner: "CombinE88",
             repo: "Medieval-Warfare",
             rev: "c9be8f2a6f1dd710b1aedd9d5b00b4cf5020e2fe",
             sha256: "09fp7k95jd6hjqdasbspbd43z5670wkyzbbgqkll9dfsrv0sky0v",
           }))));
         const engine = nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           version: "MedievalWarfareEngine",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               owner: "CombinE88",
               repo: "OpenRA",
               rev: "52109c0910f479753704c46fb19e8afaab353c83",
@@ -270,18 +270,18 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
               postFetch: postFetch,
             })))),
         }));
-        return { __proto__: pos$32, version, title, meta, src, engine };
+        return { [nix.POS]: pos$32, version, title, meta, src, engine };
       })()))),
     ra2: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => (() => {
         const version = "903.git.2f7c700";
         const title = "Red Alert 2";
         const meta = nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           description: nix.thunk(() => nix.str`Re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/OpenRA/ra2",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             owner: "OpenRA",
             repo: "ra2",
             rev: "2f7c700d6d63c0625e7158ef3098221fa6741569",
@@ -290,7 +290,7 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
         const engine = nix.thunk(() => (() => {
           const version_1 = "release-20180923";
           const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version_1,
@@ -298,24 +298,24 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { __proto__: pos$36, version: version_1, src: src_1 };
+          return { [nix.POS]: pos$36, version: version_1, src: src_1 };
         })());
         const assetsError = nix.thunk(() => nix.str`The mod expects the original ${title} game assets in place:
 https://github.com/OpenRA/ra2/wiki
 `);
-        return { __proto__: pos$37, version, title, meta, src, engine, assetsError };
+        return { [nix.POS]: pos$37, version, title, meta, src, engine, assetsError };
       })()))),
     raclassic: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         version: "183.git.c76c13e",
         title: "Red Alert Classic",
         meta: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           description: "A modernization of the original Command & Conquer: Red Alert game",
           homepage: "https://github.com/OpenRA/raclassic",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             owner: "OpenRA",
             repo: "raclassic",
             rev: "c76c13e9f0912a66ddebae8d05573632b19736b2",
@@ -324,7 +324,7 @@ https://github.com/OpenRA/ra2/wiki
         engine: nix.thunk(() => (() => {
           const version = "release-20190314";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version,
@@ -332,31 +332,31 @@ https://github.com/OpenRA/ra2/wiki
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { __proto__: pos$41, version, src };
+          return { [nix.POS]: pos$41, version, src };
         })()),
       })))),
     rv: nix.thunk(() => nix.app(unsafeBuildOpenRAMod, nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         version: "1330.git.9230e6f",
         title: "Romanov's Vengeance",
         meta: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           description: "Re-imagination of the original Command & Conquer: Red Alert 2 game",
           homepage: "https://github.com/MustaphaTR/Romanovs-Vengeance",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             owner: "MustaphaTR",
             repo: "Romanovs-Vengeance",
             rev: "9230e6f1dd9758467832aee4eda115e18f0e635f",
             sha256: "0bwbmmlhp1kh8rgk2nx1ca9vqssj849amndacf318d61gksc1w9n",
           })))),
         engine: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           version: "f3873ae",
           mods: nix.thunk(() => ["as"]),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               owner: "AttacqueSuperior",
               repo: "Engine",
               rev: "f3873ae242803051285994d77eb26f4b951594b5",
@@ -368,27 +368,27 @@ https://github.com/OpenRA/ra2/wiki
         assetsError: "The mod expects the Command & Conquer: The Ultimate Collection assets in place:\nhttps://github.com/OpenRA/ra2/wiki\n",
       })))),
     sp: nix.thunk(() => nix.app(unsafeBuildOpenRAMod, nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         version: "221.git.ac000cc",
         title: "Shattered Paradise",
         meta: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           description: "Re-imagination of the original Command & Conquer: Tiberian Sun game",
           homepage: "https://github.com/ABrandau/OpenRAModSDK",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             owner: "ABrandau",
             repo: "OpenRAModSDK",
             rev: "ac000cc15377cdf6d3c2b72c737d692aa0ed8bcd",
             sha256: "16mzs5wcxj9nlpcyx2c87idsqpbm40lx0rznsccclnlb3hiwqas9",
           })))),
         engine: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           version: "SP-22-04-19",
           mods: nix.thunk(() => ["as", "ts"]),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               owner: "ABrandau",
               repo: "OpenRA",
               rev: "bb0930008a57c07f3002421023f6b446e3e3af69",
@@ -402,22 +402,22 @@ https://github.com/OpenRA/ra2/wiki
         const version = "77.git.23e1f3e";
         const title = "Sole Survivor";
         const meta = nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           description: nix.thunk(() => nix.str`A re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/MustaphaTR/sole-survivor",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             owner: "MustaphaTR",
             repo: "sole-survivor",
             rev: "23e1f3e5d8b98c936797b6680d95d56a69a9e2ab",
             sha256: "104clmxphchs7r8y7hpmw103bychayz80bqj98bp89i64nv9d89x",
           }))));
         const engine = nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           version: "6de92de",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               owner: "OpenRA",
               repo: "OpenRA",
               rev: "6de92de8d982094a766eab97a92225c240d85493",
@@ -426,19 +426,19 @@ https://github.com/OpenRA/ra2/wiki
               postFetch: postFetch,
             })))),
         }));
-        return { __proto__: pos$57, version, title, meta, src, engine };
+        return { [nix.POS]: pos$57, version, title, meta, src, engine };
       })()))),
     ura: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         version: "431.git.128dc53",
         title: "Red Alert Unplugged",
         meta: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           description: "Re-imagination of the original Command & Conquer: Red Alert game",
           homepage: "http://redalertunplugged.com/",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             owner: "RAunplugged",
             repo: "uRA",
             rev: "128dc53741fae923f4af556f2293ceaa0cf571f0",
@@ -447,7 +447,7 @@ https://github.com/OpenRA/ra2/wiki
         engine: nix.thunk(() => (() => {
           const version = "unplugged-cd82382";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               owner: "RAunplugged",
               repo: "OpenRA",
               rev: version,
@@ -455,19 +455,19 @@ https://github.com/OpenRA/ra2/wiki
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { __proto__: pos$61, version, src };
+          return { [nix.POS]: pos$61, version, src };
         })()),
       })))),
     yr: nix.thunk(() => nix.app(unsafeBuildOpenRAMod, nix.thunk(() => (() => {
         const version = "199.git.5b8b952";
         const title = "Yuri's Revenge";
         const meta = nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           description: nix.thunk(() => nix.str`Re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/cookgreen/yr",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             owner: "cookgreen",
             repo: "yr",
             rev: "5b8b952dbe21f194a6d00485f20e215ce8362712",
@@ -476,7 +476,7 @@ https://github.com/OpenRA/ra2/wiki
         const engine = nix.thunk(() => (() => {
           const version_1 = "release-20190314";
           const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version_1,
@@ -484,10 +484,10 @@ https://github.com/OpenRA/ra2/wiki
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { __proto__: pos$66, version: version_1, src: src_1 };
+          return { [nix.POS]: pos$66, version: version_1, src: src_1 };
         })());
         const assetsError = "The mod expects the Command & Conquer: The Ultimate Collection assets in place:\nhttps://github.com/OpenRA/ra2/wiki\n";
-        return { __proto__: pos$67, version, title, meta, src, engine, assetsError };
+        return { [nix.POS]: pos$67, version, title, meta, src, engine, assetsError };
       })()))),
   };
 })(), formals$1);

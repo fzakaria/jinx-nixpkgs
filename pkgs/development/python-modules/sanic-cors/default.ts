@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const sanic_testing = nix.arg($, "sanic-testing");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sanic-cors",
       version: "2.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ashleysommer",
           repo: "sanic-cors",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["sanic_cors"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sanic extension for handling Cross Origin Resource Sharing (CORS)",
         homepage: "https://github.com/ashleysommer/sanic-cors",
         changelog: nix.thunk(() => nix.str`https://github.com/ashleysommer/sanic-cors/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

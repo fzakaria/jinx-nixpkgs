@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const grub2_pvhgrub_image = nix.arg($, "grub2_pvhgrub_image");
-  return nix.app(nix.sel(grub2_pvhgrub_image, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, grubPlatform: "xen" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["grub2_pvhgrub_image"])))));
+  return nix.app(nix.sel(grub2_pvhgrub_image, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, grubPlatform: "xen" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["grub2_pvhgrub_image"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

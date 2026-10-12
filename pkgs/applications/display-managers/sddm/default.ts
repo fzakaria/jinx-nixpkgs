@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const sddm_unwrapped = nix.arg($, "sddm-unwrapped");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return nix.app(runCommand, "sddm-wrapped", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sddm",
       version: nix.thunk(() => nix.attr(sddm_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(sddm_unwrapped, "outputs")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sddm_unwrapped, "passthru"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: sddm_unwrapped,
         tests: nix.thunk(() => nix.attr(from, "tests")),
       };

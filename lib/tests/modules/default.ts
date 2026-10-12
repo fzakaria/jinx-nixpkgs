@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const modules = nix.argOr($, "modules", () => []);
   return (() => {
     const from = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         modules: modules,
-        specialArgs: nix.thunk(() => ({ __proto__: pos$1, modulesPath: nix.path(here, "./.") })),
+        specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, modulesPath: nix.path(here, "./.") })),
       }))));
     return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     config: nix.thunk(() => nix.attr(from, "config")),
     options: nix.thunk(() => nix.attr(from, "options")),
   };

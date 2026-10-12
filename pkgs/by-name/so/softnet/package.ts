@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "softnet",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/cirruslabs/softnet/releases/download/${nix.sel(finalAttrs, "version")}/softnet.tar.gz`),
           sha256: "1g274x524xc85hfzxi3vb4xp720bjgk740bp6hc92d1ikmp0b664",
         })))),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\ninstall -D softnet $out/bin/softnet\ninstall -Dm444 -t $out/share/softnet README.md LICENSE\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software networking with isolation for Tart",
         homepage: "https://github.com/cirruslabs/softnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

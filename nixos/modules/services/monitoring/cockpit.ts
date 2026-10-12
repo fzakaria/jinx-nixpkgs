@@ -59,67 +59,67 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const pathPkgs = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "plugins")));
   const resourcesEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "cockpit-plugins",
       paths: pathPkgs,
       pathsToLink: nix.thunk(() => ["/share/cockpit"]),
     }))));
   const depsEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cockpit-plugins-env",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (p) => nix.selOr(p, () => [], "passthru", "cockpitPath"), pathPkgs)),
       pathsToLink: nix.thunk(() => ["/bin", "/share", "/lib"]),
     }))));
   const share = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "cockpit-share",
       paths: nix.thunk(() => [resourcesEnv, depsEnv]),
       pathsToLink: nix.thunk(() => ["/share"]),
     }))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         cockpit: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Cockpit")),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "Cockpit", nix.thunk(() => ({ __proto__: pos$4, default: nix.thunk(() => ["cockpit"]) })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "Cockpit", nix.thunk(() => ({ [nix.POS]: pos$4, default: nix.thunk(() => ["cockpit"]) })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               description: "List of cockpit plugins.\n\nThis add the passthru.cockpitPath of the packages to the systemd cockpit service.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  pkgs.cockpit-zfs\n]\n")),
             })))),
           "allowed-origins": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "List of allowed origins.\n\nMaps to the WebService.Origins setting and allows merging from multiple modules.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Settings for cockpit that will be saved in /etc/cockpit/cockpit.conf.\n\nSee the [documentation](https://cockpit-project.org/guide/latest/cockpit.conf.5.html), that is also available with `man cockpit.conf.5` for details.\n",
             })))),
           showBanner: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Whether to add the Cockpit banner to the issue and motd files.",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               example: false,
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Port where cockpit will listen.",
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 9090n,
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Open port for cockpit.",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
@@ -128,55 +128,55 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "360")) && nix.asBool(nix.selOr(cfg, () => true, "settings", "WebService", "LoginTo")))), "The current Cockpit version is older than 360, and logging into other\nhosts is enabled. This makes the system vulnerable to CVE-2026-4631,\nwhich allows unauthenticated users on the network that can reach Cockpit\nto gain code execution on the machine. Please upgrade your Cockpit\npackage or disable logging into other hosts by setting the option:\n\n  services.cockpit.settings.WebService.LoginTo = false;\n")),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           etc: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "cockpit/cockpit.conf": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "cockpit.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
             "issue.d/cockpit.issue": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: nix.thunk(() => nix.sel(cfg, "showBanner")),
               source: "/run/cockpit/issue",
             })),
             "motd.d/cockpit": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.sel(cfg, "showBanner")),
               source: "/run/cockpit/issue",
             })),
-            "cockpit/share": nix.thunk(() => ({ __proto__: pos$17, source: nix.thunk(() => nix.str`${share}/share`) })),
-            "cockpit/bin": nix.thunk(() => ({ __proto__: pos$18, source: nix.thunk(() => nix.str`${depsEnv}/bin`) })),
-            "cockpit/lib": nix.thunk(() => ({ __proto__: pos$19, source: nix.thunk(() => nix.str`${depsEnv}/lib`) })),
+            "cockpit/share": nix.thunk(() => ({ [nix.POS]: pos$17, source: nix.thunk(() => nix.str`${share}/share`) })),
+            "cockpit/bin": nix.thunk(() => ({ [nix.POS]: pos$18, source: nix.thunk(() => nix.str`${depsEnv}/bin`) })),
+            "cockpit/lib": nix.thunk(() => ({ [nix.POS]: pos$19, source: nix.thunk(() => nix.str`${depsEnv}/lib`) })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           pam: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             services: nix.thunk(() => ({
-              __proto__: pos$23,
-              cockpit: nix.thunk(() => ({ __proto__: pos$22, startSession: true })),
+              [nix.POS]: pos$23,
+              cockpit: nix.thunk(() => ({ [nix.POS]: pos$22, startSession: true })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           firewall: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             cockpit: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               listenStreams: nix.thunk(() => [
                 "",
@@ -185,16 +185,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.selOr(cfg, () => false, "settings", "WebService", "LoginTo")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "cockpit-wsinstance-http": nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 path: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "programs", "ssh", "package")),
                   nix.thunk(() => nix.sel(cfg, "package")),
                 ]),
               })),
               "cockpit-wsinstance-https@": nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 path: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "programs", "ssh", "package")),
                   nix.thunk(() => nix.sel(cfg, "package")),
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`C /run/cockpit/inactive.motd 0640 root root - ${nix.sel(cfg, "package")}/share/cockpit/motd/inactive.motd`),
               "f /run/cockpit/active.motd   0640 root root -",
@@ -212,16 +212,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           cockpit: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "allowed-origins": nix.thunk(() => [
               nix.thunk(() => nix.str`https://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "cockpit", "port")))}`),
             ]),
             settings: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               WebService: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 Origins: nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.sel(config, "services", "cockpit", "allowed-origins")))),
                 LoginTo: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               })),
@@ -230,7 +230,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       maintainers: nix.thunk(() => nix.sel(pkgs, "cockpit", "meta", "maintainers")),
     })),
   };

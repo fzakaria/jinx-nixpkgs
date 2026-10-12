@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const clang = nix.arg($, "clang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alglib3",
       version: "4.08.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.alglib.net/translator/re/alglib-${nix.sel(finalAttrs, "version")}.cpp.gpl.tgz`),
           sha256: "sha256-mKPtCE+wLFagvBVDida8oQCyO7N0klWkyHFjkip3aoY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, clang]),
       patches: nix.thunk(() => [nix.path(here, "./patch-alglib-CMakeLists.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Numerical analysis and data processing library",
         homepage: "https://www.alglib.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

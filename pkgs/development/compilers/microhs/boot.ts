@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const microhs_src = nix.arg($, "microhs-src");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "microhs",
       version: nix.thunk(() => nix.str`${nix.sel(microhs_src, "version")}-hugs`),
       src: nix.thunk(() => nix.attr(microhs_src, "src")),
@@ -33,7 +33,7 @@ makeWrapper ${hugs}/bin/runhugs "$out/bin/mhs" \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isMhs: true, usesHugs: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isMhs: true, usesHugs: true })),
     })));
 })(), formals$1);
 //# sourceMappingURL=boot.ts.map

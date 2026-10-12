@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sybil = nix.arg($, "sybil");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flufl-bounce",
       version: "5.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flufl",
           repo: "flufl.bounce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flufl.bounce"]),
       pythonNamespaces: nix.thunk(() => ["flufl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Email bounce detectors",
         homepage: "https://gitlab.com/warsaw/flufl.bounce",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/warsaw/flufl.bounce/-/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/NEWS.rst`),

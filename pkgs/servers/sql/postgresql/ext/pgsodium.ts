@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgsodium",
       version: "3.1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michelp",
           repo: "pgsodium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, libsodium]),
       postInstall: "install -D -t $out/share/pgsodium/getkey_scripts getkey_scripts/*\nln -s $out/share/pgsodium/getkey_scripts/pgsodium_getkey_urandom.sh $out/share/postgresql/extension/pgsodium_getkey\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "shared_preload_libraries=pgsodium\n",
               sql: "CREATE EXTENSION pgsodium;\n\nSELECT pgsodium.version();\nSELECT pgsodium.crypto_auth_keygen();\nSELECT pgsodium.randombytes_random() FROM generate_series(0, 5);\nSELECT * FROM pgsodium.crypto_box_new_keypair();\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern cryptography for PostgreSQL using libsodium",
         homepage: "https://github.com/michelp/pgsodium",
         changelog: nix.thunk(() => nix.str`https://github.com/michelp/pgsodium/releases/tag/v${nix.sel(finalAttrs, "version")}`),

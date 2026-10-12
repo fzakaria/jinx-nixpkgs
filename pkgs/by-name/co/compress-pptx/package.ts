@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "compress-pptx",
       version: "1.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slhck",
           repo: "compress-pptx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-dependency-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
             magick: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), imagemagick)),
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compress PPTX files",
         longDescription: "Compress a PPTX or POTX file, converting all PNG/TIFF images to lossy\nJPEGs.\n",
         homepage: "https://github.com/slhck/compress-pptx",

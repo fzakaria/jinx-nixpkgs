@@ -33,61 +33,61 @@ export default nix.lambda((args) => (() => {
   const lrzsz = nix.arg($, "lrzsz");
   const joinOverrides = (overrides) => (pkg) => (old) => nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), nix.thunk(() => nix.builtins.map((o) => nix.app(o, pkg, old), overrides)));
   const addToBuildInputs = (extras) => (pkg) => (old) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), extras)),
   });
-  const broken = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ __proto__: pos$2, broken: true }))));
-  const skipTests = (pkg) => (old) => ({ __proto__: pos$3, doCheck: false });
-  const showLibs = (pkg) => (old) => ({ __proto__: pos$4, preCheck: "echo $CHEZSCHEMELIBDIRS" });
-  const runTests = (pkg) => (old) => ({ __proto__: pos$5, doCheck: true });
+  const broken = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, broken: true }))));
+  const skipTests = (pkg) => (old) => ({ [nix.POS]: pos$3, doCheck: false });
+  const showLibs = (pkg) => (old) => ({ [nix.POS]: pos$4, preCheck: "echo $CHEZSCHEMELIBDIRS" });
+  const runTests = (pkg) => (old) => ({ [nix.POS]: pos$5, doCheck: true });
   const brokenOnAarch64 = (_) => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
     })));
   const brokenOnx86_64Darwin = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
     }))));
   const brokenOnDarwin = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     "chez-srfi": nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         (pkg) => (old) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           preCheck: "SKIP='\nmulti-dimensional-arrays.sps\ntime.sps\ntables-test.ikarus.sps\nlazy.sps\npipeline-operators.sps\nos-environment-variables.sps\n'\n",
         }),
       ]))),
     "akku-r7rs": (pkg) => (old) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       preBuild: "# tests aren't exported modules\nrm -rf tests\n",
     }),
     akku: nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => [curl, git]))),
-        (pkg) => (old) => ({ __proto__: pos$11, src: nix.thunk(() => nix.sel(akku, "src")) }),
-        (pkg) => (old) => ({ __proto__: pos$12, unpackPhase: null }),
+        (pkg) => (old) => ({ [nix.POS]: pos$11, src: nix.thunk(() => nix.sel(akku, "src")) }),
+        (pkg) => (old) => ({ [nix.POS]: pos$12, unpackPhase: null }),
       ]))),
-    "machine-code": (pkg) => (old) => ({ __proto__: pos$13, postPatch: "rm tests/all-a64.sps\n" }),
+    "machine-code": (pkg) => (old) => ({ [nix.POS]: pos$13, postPatch: "rm tests/all-a64.sps\n" }),
     "wak-foof-loop": skipTests,
     "scheme-langserver": nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         (pkg) => (old) => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           preInstall: "# add the lsp executable to be installed\necho \"#!/usr/bin/env scheme-script\" > .akku/bin/scheme-langserver\ncat run.ss >> .akku/bin/scheme-langserver\nchmod +x .akku/bin/scheme-langserver\n",
         }),
         skipTests,
         (pkg) => (old) => ({
-          __proto__: pos$16,
-          meta: nix.thunk(() => ({ __proto__: pos$15, mainProgram: "scheme-langserver" })),
+          [nix.POS]: pos$16,
+          meta: nix.thunk(() => ({ [nix.POS]: pos$15, mainProgram: "scheme-langserver" })),
         }),
       ]))),
     "xyz-modem": nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         (pkg) => (old) => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           postPatch: "substituteInPlace tests/test-xmodem.sps \\\n  --replace-fail \"which\" \"command -v\"\n",
         }),
-        (pkg) => (old) => ({ __proto__: pos$18, nativeCheckInputs: nix.thunk(() => [lrzsz]) }),
+        (pkg) => (old) => ({ [nix.POS]: pos$18, nativeCheckInputs: nix.thunk(() => [lrzsz]) }),
       ]))),
     xitomatl: skipTests,
     "ufo-threaded-function": skipTests,

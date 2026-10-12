@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caps",
       version: "0.9.26",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.quitte.de/dsp/caps_${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1jcq9y51vdnk93q27r566y9qmddvadhr4ddnvkiypaq5rrdnqjg7",
         })))),
       configurePhase: "runHook preConfigure\n\necho \"PREFIX = $out\" > defines.make\n\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Selection of LADSPA plugins implementing classic effects",
         longDescription: "The C* Audio Plugin Suite is a selection of classic effects,\nunique filters and signal generators.  The digital guitarist\nfinds in CAPS a range of processors recreating key aspects of\nthe formation of tone in traditional electronic instrument\namplification.  Beyond sound quality, central design\nconsiderations are latency-free realtime operation, modesty of\nresource demands and meaningful control interfaces.\n",
         homepage: "http://www.quitte.de/dsp/caps.html",

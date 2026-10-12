@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const themeName = "Dracula";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dracula-theme",
       version: "4.0.0-unstable-2026-08-24",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dracula",
           repo: "gtk",
           rev: "71640b9456110f3bac2130d0b387a3154a9fb4d2",
@@ -47,11 +47,11 @@ mv kde/cursors/Dracula-cursors/cursors $out/share/icons/Dracula-cursors/cursors
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dracula variant of the Ant theme",
         homepage: "https://github.com/dracula/gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

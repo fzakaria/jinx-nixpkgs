@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/jdk-linux-base.nix", [["name-prefix", 4, 5], ["brand-name", 5, 5]]);
 
 export default (args) => nix.app(nix.builtins.import(nix.path(here, "../temurin-bin/jdk-linux-base.nix")), nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "name-prefix": "semeru",
     "brand-name": "IBM Semeru Runtime",
   }, args)));

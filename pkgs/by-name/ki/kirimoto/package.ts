@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const version = "4.7.3";
   const pname = "kirimoto";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/GridSpace/grid-apps/releases/download/${version}/KiriMoto-linux-x86_64.AppImage`),
       hash: "sha256-XPF9JbBM2Hoxyed+2tYyb4FU6/a8bCoKnyTuTG7/iXE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -32,7 +32,7 @@ substituteInPlace $out/share/applications/grid-apps.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${nix.sel(meta, "mainProgram")} --no-sandbox --ozone-platform=x11 --disable-gpu-sandbox --in-process-gpu'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source Slicer for CAM, Laser and 3D-printer",
         homepage: "https://grid.space/",
         downloadPage: "https://grid.space/downloads.html",
@@ -50,7 +50,7 @@ substituteInPlace $out/share/applications/grid-apps.desktop \\
         mainProgram: "kirimoto",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src: src_1,

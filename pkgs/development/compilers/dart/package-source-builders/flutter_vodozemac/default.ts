@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "flutter_vodozemac-rs",
         version: version,
         src: src,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rust`),
         cargoHash: nix.thunk(() => nix.selOr({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           _0_2_2: "sha256-Iw0AkHVjR1YmPe+C0YYBTDu5FsRk/ZpaRyBilcvqm6M=",
           _0_3_0: "sha256-eKKrcroV2yl/FV2WmgZWFPO5MPAGz0xCvpr0fgIuGZ4=",
           _0_4_1: "sha256-eKKrcroV2yl/FV2WmgZWFPO5MPAGz0xCvpr0fgIuGZ4=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 Please add cargoHash here. If the cargoHash
 is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, libraryPath: "lib/libvodozemac_bindings_dart.so" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/libvodozemac_bindings_dart.so" })),
       }))));
     const fakeCargokitCmake = nix.thunk(() => nix.app(writeText, "FakeCargokit.cmake", nix.thunk(() => nix.str`function(apply_cargokit target manifest_dir lib_name any_symbol_name)
   set("\${target}_cargokit_lib" ${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")} PARENT_SCOPE)
@@ -45,11 +45,11 @@ endfunction()
 `)));
     const getLibraryPath = "String _getLibraryPath() {\n  if (kIsWeb) {\n    return './';\n  }\n  try {\n    return Platform.resolvedExecutable + '/../lib/libvodozemac_bindings_dart.so';\n  } catch (_) {\n    return './';\n  }\n}\n";
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "flutter_vodozemac",
         version: version,
         src: src,
-        passthru: nix.thunk(() => nix.update(nix.sel(src, "passthru"), { __proto__: pos$4, cargoDeps: nix.thunk(() => nix.attr(rustDep, "cargoDeps")) })),
+        passthru: nix.thunk(() => nix.update(nix.sel(src, "passthru"), { [nix.POS]: pos$4, cargoDeps: nix.thunk(() => nix.attr(rustDep, "cargoDeps")) })),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 cp -r "$src" "$out"

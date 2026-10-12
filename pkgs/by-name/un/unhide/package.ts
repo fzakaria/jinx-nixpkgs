@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const psmisc = nix.arg($, "psmisc");
   const makefile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gitlab.archlinux.org/archlinux/packaging/packages/unhide/-/raw/27c25ad5e1c6123e89f1f35423a0d50742ae69e9/Makefile",
       hash: "sha256-bSo3EzpcsFmVvwyPgjCCDOJLbzNpxJ6Eptp2hNK7ZXk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unhide",
       version: "20240510",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "YJesus",
           repo: "Unhide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [iproute2, lsof, net_tools, procps, psmisc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Forensic tool to find hidden processes and TCP/UDP ports by rootkits/LKMs",
         homepage: "https://github.com/YJesus/Unhide",
         changelog: nix.thunk(() => nix.str`https://github.com/YJesus/Unhide/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

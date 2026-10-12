@@ -128,27 +128,27 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w_2, "assertValueOneOf"), "VirtualEthernet", nix.thunk(() => nix.lookup(w_2, "boolValues")))),
     ])));
   const instanceOptions = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => nix.update(nix.app(nix.lookup(w_2, "getAttrs"), nix.thunk(() => ["enable"]), nix.thunk(() => nix.lookup(w_2, "sharedOptions"))), {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       execConfig: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: nix.thunk(() => ({})),
-          example: nix.thunk(() => ({ __proto__: pos$1, Parameters: "/bin/sh" })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$1, Parameters: "/bin/sh" })),
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_2, "unitOption")))), checkExec)),
           description: "Each attribute in this set specifies an option in the\n`[Exec]` section of this unit. See\n{manpage}`systemd.nspawn(5)` for details.\n",
         })))),
       filesConfig: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           default: nix.thunk(() => ({})),
-          example: nix.thunk(() => ({ __proto__: pos$3, Bind: nix.thunk(() => ["/home/alice"]) })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$3, Bind: nix.thunk(() => ["/home/alice"]) })),
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_2, "unitOption")))), checkFiles)),
           description: "Each attribute in this set specifies an option in the\n`[Files]` section of this unit. See\n{manpage}`systemd.nspawn(5)` for details.\n",
         })))),
       networkConfig: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           default: nix.thunk(() => ({})),
-          example: nix.thunk(() => ({ __proto__: pos$5, Private: false })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$5, Private: false })),
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_2, "unitOption")))), checkNetwork)),
           description: "Each attribute in this set specifies an option in the\n`[Network]` section of this unit. See\n{manpage}`systemd.nspawn(5)` for details.\n",
         })))),
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
   }));
   const instanceToUnit = (name) => (def) => (() => {
     const base = nix.thunk(() => nix.update({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       text: nix.thunk(() => nix.str`[Exec]
 ${nix.app(nix.lookup(w_2, "attrsToSection"), nix.thunk(() => nix.sel(def, "execConfig")))}
 
@@ -168,18 +168,18 @@ ${nix.app(nix.lookup(w_2, "attrsToSection"), nix.thunk(() => nix.sel(def, "netwo
 `),
     }, def));
     return nix.update(base, {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       unit: nix.thunk(() => nix.app(nix.lookup(w_2, "makeUnit"), name, base)),
     });
   })();
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       systemd: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         nspawn: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             default: nix.thunk(() => ({})),
             type: nix.thunk(() => (() => {
               const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w_2, "types")), w_2);
@@ -196,15 +196,15 @@ ${nix.app(nix.lookup(w_2, "attrsToSection"), nix.thunk(() => nix.sel(def, "netwo
         })(), cfg));
       return nix.app(nix.lookup(w_2, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.lookup(w_2, "mkIf"), nix.thunk(() => !nix.eq(cfg, {})), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   "systemd/nspawn": nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     source: nix.thunk(() => nix.app(nix.lookup(w_2, "mkIf"), nix.thunk(() => !nix.eq(cfg, {})), nix.thunk(() => nix.app(nix.lookup(w_2, "generateUnits"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           allowCollisions: false,
                           type: "nspawn",
                           units: units,
@@ -216,19 +216,19 @@ ${nix.app(nix.lookup(w_2, "attrsToSection"), nix.thunk(() => nix.sel(def, "netwo
               })),
             })))),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             systemd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               targets: nix.thunk(() => ({
-                __proto__: pos$20,
-                "multi-user": nix.thunk(() => ({ __proto__: pos$19, wants: nix.thunk(() => ["machines.target"]) })),
+                [nix.POS]: pos$20,
+                "multi-user": nix.thunk(() => ({ [nix.POS]: pos$19, wants: nix.thunk(() => ["machines.target"]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "systemd-nspawn@": nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   environment: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     SYSTEMD_NSPAWN_UNIFIED_HIERARCHY: nix.thunk(() => nix.app(nix.lookup(w_2, "mkDefault"), "1")),
                   })),
                 })),

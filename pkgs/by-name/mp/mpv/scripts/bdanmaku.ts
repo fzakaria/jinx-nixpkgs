@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const biliass = nix.arg($, "biliass");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bdanmaku",
       version: "0-unstable-2025-01-15",
       scriptPath: "bdanmaku.lua",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UlyssesZh",
           repo: "bdanmaku",
           rev: "c9f2dca413a7148a662f006b8c524ccbd7a1945b",
           hash: "sha256-XbkKXZoC+Rqn0gSyyw8sn2VJO73MlatOS0lm2tcwcfY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraWrapperArgs: nix.thunk(() => [
           "--prefix",
           "PATH",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mpv plugin to correctly display Bilibili danmaku, powered by biliass",
         homepage: "https://github.com/UlyssesZh/bdanmaku",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

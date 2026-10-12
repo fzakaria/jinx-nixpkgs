@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trailofbits",
           repo: "graphtage",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["graphtage"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to diff tree-like files such as JSON and XML",
         homepage: "https://github.com/trailofbits/graphtage",
         changelog: nix.thunk(() => nix.str`https://github.com/trailofbits/graphtage/releases/tag/v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "graphtage",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

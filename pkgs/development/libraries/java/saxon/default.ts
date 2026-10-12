@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         const mainProgram = nix.thunk(() => (nix.asBool(nix.eq(prog, null)) ? nix.force(pname) : nix.force(prog)));
         const jar$ = nix.thunk(() => (nix.asBool(nix.eq(jar, null)) ? nix.force(pname) : nix.force(jar)));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           src: src,
@@ -82,9 +82,9 @@ ln -s $out/bin/${mainProgram} $out/bin/${mainProgram}-xslt
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/query \\
   --add-flags "-cp $out/share/java/${jar$}.jar net.sf.saxon.Query"
 `))), "runHook postInstall")),
-          passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(updateScript, null)), nix.thunk(() => ({ __proto__: pos$1, updateScript: updateScript })))),
+          passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(updateScript, null)), nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: updateScript })))),
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: description,
             license: license,
             mainProgram: mainProgram,
@@ -104,9 +104,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/query \\
   })(), formals$2);
   const dashify = (version) => nix.app(concatStringsSep, "-", nix.thunk(() => nix.app(splitVersion, version)));
   const github = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     updateScript: (version) => nix.app(genericUpdater, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         versionLister: nix.thunk(() => nix.app(writeShellScript, "saxon-he-versionLister", nix.thunk(() => nix.str`export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, gnused]))}:$PATH"
 major_ver="${nix.app(major, version)}"
 list-git-tags --url="https://github.com/Saxonica/Saxon-HE.git" \\
@@ -122,82 +122,82 @@ list-git-tags --url="https://github.com/Saxonica/Saxon-HE.git" \\
     })(),
   }));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     saxon: nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "saxon";
         const version = "6.5.3";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: nix.thunk(() => nix.str`mirror://sourceforge/saxon/OldFiles/${version}/saxon${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
             hash: "sha256-Q28wzqyUCPBJ2C3a8acdG2lmeee8GeEAgg9z8oUfvlA=",
           }))));
         const description = "XSLT 1.0 processor";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "mpl10"));
         const java = jre8;
-        return { __proto__: pos$7, pname, version, src, description, license, java };
+        return { [nix.POS]: pos$7, pname, version, src, description, license, java };
       })()))),
     saxonb_8_8: nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "saxonb";
         const version = "8.8";
         const jar = "saxon8";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: nix.thunk(() => nix.str`mirror://sourceforge/saxon/saxonb${nix.app(dashify, version)}j.zip`),
             hash: "sha256-aOk+BB5kAbZElAifVG+AP1bo7Se3patzISA40bzLf5U=",
           }))));
         const description = "Complete and conformant processor of XSLT 2.0, XQuery 1.0, and XPath 2.0";
         const java = jre8;
-        return { __proto__: pos$9, pname, version, jar, src, description, java };
+        return { [nix.POS]: pos$9, pname, version, jar, src, description, java };
       })()))),
     saxonb_9_1: nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "saxonb";
         const version = "9.1.0.8";
         const jar = "saxon9";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: nix.thunk(() => nix.str`mirror://sourceforge/saxon/Saxon-B/${version}/saxonb${nix.app(dashify, version)}j.zip`),
             sha256: "1d39jdnwr3v3pzswm81zry6yikqlqy9dp2l2wmpqdiw00r5drg4j",
           }))));
         const description = "Complete and conformant processor of XSLT 2.0, XQuery 1.0, and XPath 2.0";
-        return { __proto__: pos$11, pname, version, jar, src, description };
+        return { [nix.POS]: pos$11, pname, version, jar, src, description };
       })()))),
     "saxon_9-he": nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "saxon-he";
         const version = "9.9.0.1";
         const jar = "saxon9he";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             url: nix.thunk(() => nix.str`mirror://sourceforge/saxon/Saxon-HE/${nix.app(majorMinor, version)}/SaxonHE${nix.app(dashify, version)}J.zip`),
             sha256: "1inxd7ia7rl9fxfrw8dy9sb7rqv76ipblaki5262688wf2dscs60",
           }))));
         const description = "Processor for XSLT 3.0, XPath 2.0 and 3.1, and XQuery 3.1";
-        return { __proto__: pos$13, pname, version, jar, src, description };
+        return { [nix.POS]: pos$13, pname, version, jar, src, description };
       })()))),
     "saxon_11-he": nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "saxon-he";
         const version = "11.7";
         const jar = nix.thunk(() => nix.str`saxon-he-${version}`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             url: nix.thunk(() => nix.app(nix.sel(github, "downloadUrl"), version)),
             sha256: "MGzhUW9ZLVvTSqEdpAZWAiwTYxCZxbn26zESDmIe4Vo=",
           }))));
         const updateScript = nix.thunk(() => nix.app(nix.sel(github, "updateScript"), version));
         const description = "Processor for XSLT 3.0, XPath 2.0 and 3.1, and XQuery 3.1";
-        return { __proto__: pos$15, pname, version, jar, src, updateScript, description };
+        return { [nix.POS]: pos$15, pname, version, jar, src, updateScript, description };
       })()))),
     "saxon_12-he": nix.thunk(() => nix.app(common, nix.thunk(() => (() => {
         const pname = "saxon-he";
         const version = "12.10";
         const jar = nix.thunk(() => nix.str`saxon-he-${version}`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             url: nix.thunk(() => nix.app(nix.sel(github, "downloadUrl"), version)),
             hash: "sha256-HH259ybfg1NJxk7dYx3gMQ7KMSkRACMAZOuhU/YHsL4=",
           }))));
         const updateScript = nix.thunk(() => nix.app(nix.sel(github, "updateScript"), version));
         const description = "Processor for XSLT 3.0, XPath 3.1, and XQuery 3.1";
-        return { __proto__: pos$17, pname, version, jar, src, updateScript, description };
+        return { [nix.POS]: pos$17, pname, version, jar, src, updateScript, description };
       })()))),
   };
 })(), formals$1);

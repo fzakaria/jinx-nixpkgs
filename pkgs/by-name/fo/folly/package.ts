@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const watchman = nix.arg($, "watchman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "folly",
       version: "2026.07.27.00",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "folly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_PREFIX", nix.thunk(() => nix.builtins.placeholder("dev")))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-DFOLLY_MOBILE=${(nix.asBool(follyMobile) ? "1" : "0")}`),
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["-flax-vector-conversions"])))))),
@@ -128,14 +128,14 @@ export default nix.lambda((args) => (() => {
           "futures_future_test.Future.makeFutureFromMoveOnlyException",
         ]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         boost: boost,
         fmt: fmt,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           watchman: watchman,
           django: nix.thunk(() => nix.attr(from, "django")),
           pywatchman: nix.thunk(() => nix.attr(from, "pywatchman")),
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source C++ library developed and used at Facebook",
         homepage: "https://github.com/facebook/folly",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

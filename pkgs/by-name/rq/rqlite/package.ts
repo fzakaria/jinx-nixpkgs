@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildGoModule, (finalAttrs) => (() => {
       const cmdPackage = nix.thunk(() => nix.str`github.com/rqlite/rqlite/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/cmd`);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "rqlite",
         version: "10.5.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "rqlite",
             repo: "rqlite",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ]),
         doCheck: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Lightweight, fault-tolerant, distributed relational database built on SQLite",
           homepage: "https://github.com/rqlite/rqlite",
           changelog: nix.thunk(() => nix.str`https://github.com/rqlite/rqlite/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

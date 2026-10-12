@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "readeck",
       version: "0.23.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "readeck",
           repo: "readeck",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         templ,
       ]),
       npmRoot: "web",
-      env: nix.thunk(() => ({ __proto__: pos$2, NODE_PATH: "$npmDeps" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_PATH: "$npmDeps" })),
       postPatch: "templ generate\n",
       preBuild: "make TEMPL=templ generate\n",
       subPackages: nix.thunk(() => ["."]),
@@ -65,23 +65,23 @@ export default nix.lambda((args) => (() => {
         "codeberg.org/readeck/readeck/configs.buildTimeStr=1970-01-01T08:00:00Z",
       ]),
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
           hash: "sha256-H8l9cpGYbLhbaU4PsU6KBhr8QZGh5sihE+3XdFwQRTg=",
         })))),
       vendorHash: "sha256-9BTNWePXmmKUMWM1evhgIMYipHX+pxozONZCbcCt8lo=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, readeck: nix.thunk(() => nix.attr(nixosTests, "readeck")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, readeck: nix.thunk(() => nix.attr(nixosTests, "readeck")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Web application that lets you save the readable content of web pages you want to keep forever",
         mainProgram: "readeck",
         homepage: "https://readeck.org/",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const rev = "7bcf43f8dbd5c4a67ec573a1248114caa75fa3c2";
   return nix.app(callPackage, nix.path(here, "./dvtm.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvtm-unstable",
       version: "0.15-unstable-2021-03-09",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/martanne/dvtm/archive/${rev}.tar.gz`),
             nix.thunk(() => nix.str`https://git.sr.ht/~martanne/dvtm/archive/${rev}.tar.gz`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-self-pipe-fix-darwin",
             url: "https://github.com/martanne/dvtm/commit/1f1ed664d64603f3f1ce1388571227dc723901b2.patch",
             sha256: "14j3kks7b1v6qq12442v1da3h7khp02rp0vi0qrz0rfgkg1zilpb",

@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "luau-lsp",
       version: "1.69.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JohnnyMorganz",
           repo: "luau-lsp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-fVmc/Ky1fbS4hnh2pOw1idaZFCq0KFHE2hTVQQmYmfM=",
           fetchSubmodules: true,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_OSX_ARCHITECTURES", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")))),
         ]))),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Language Server Implementation for Luau",
         homepage: "https://github.com/JohnnyMorganz/luau-lsp",
         downloadPage: nix.thunk(() => nix.str`https://github.com/JohnnyMorganz/luau-lsp/releases/tag/${nix.sel(finalAttrs, "version")}`),

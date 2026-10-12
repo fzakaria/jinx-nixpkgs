@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "radicale",
       version: "3.8.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kozea",
           repo: "Radicale",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTests: nix.thunk(() => ["delay"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           radicale: nix.thunk(() => nix.attr(nixosTests, "radicale")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://radicale.org/v3.html",
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/Radicale/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "CalDAV and CardDAV server",

@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const qt6Packages = nix.arg($, "qt6Packages");
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://web.archive.org/web/20260414052921/https://filehost.perforce.com/perforce/r26.1/bin.linux26x86_64/p4v.tgz",
         sha256: "sha256-89Xz9dxAeLGOOr90K0CdlxjrfIf9vUmyZV3tzWspWdQ=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://web.archive.org/web/20260414052748/https://filehost.perforce.com/perforce/r26.1/bin.macosx12u/P4V.dmg",
         sha256: "sha256-8MBLS6EQOVenxZ1Uv75kPzU8aO2AldmxkwOz+JcBRpY=",
       })))),
   }));
   const mkDerivation = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({}))) : nix.app(nix.sel(qt6Packages, "callPackage"), nix.path(here, "./linux.nix"), nix.thunk(() => ({})))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "p4v",
       version: "2026.1/2933292",
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Perforce Helix Visual Client",
         homepage: "https://www.perforce.com",
         sourceProvenance: nix.thunk(() => (() => {

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const yad = nix.arg($, "yad");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mixing-station",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mixingstation.app/backend/api/web/download/archive/mixing-station-pc/update/${nix.sel(finalAttrs, "version")}`),
           name: nix.thunk(() => nix.str`mixing-station-${nix.sel(finalAttrs, "version")}.zip`),
           extension: "zip",
@@ -71,7 +71,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remote control app for digital audio mixers (XAir, X32, dLive, etc.)",
         homepage: "https://mixingstation.app",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

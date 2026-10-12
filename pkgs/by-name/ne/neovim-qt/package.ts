@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const neovim_qt_unwrapped = nix.arg($, "neovim-qt-unwrapped");
   const unwrapped = neovim_qt_unwrapped;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "neovim-qt",
       version: nix.thunk(() => nix.sel(unwrapped, "version")),
       buildCommand: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.str`mkdir -p $out/Applications
@@ -33,7 +33,7 @@ ln -s ${unwrapped}/share/icons $out/share/icons
 `)),
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
     })));
 })(), formals$1);

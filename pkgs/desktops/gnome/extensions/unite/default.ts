@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const xprop = nix.arg($, "xprop");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-shell-extension-unite",
       version: "85",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hardpixel",
           repo: "unite-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SN5DYyyZux3jeGgrOc/fd9QcjPRReb2rVZk987saXmQ=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionUuid: "unite@hardpixel.eu",
         extensionPortalSlug: "unite",
       })),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nglib-compile-schemas --strict --targetdir=\"unite@hardpixel.eu/schemas/\" \"unite@hardpixel.eu/schemas\"\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/gnome-shell/extensions\ncp -r \"unite@hardpixel.eu\" $out/share/gnome-shell/extensions\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unite is a GNOME Shell extension which makes a few layout tweaks to the top panel and removes window decorations to make it look like Ubuntu Unity Shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => (() => {

@@ -34,24 +34,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "sonarr"));
-  const servarr = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings-options.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, pkgs: pkgs }))));
+  const servarr = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: pkgs }))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         sonarr: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sonarr")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/sonarr/.config/NzbDrone",
               description: "The Sonarr home directory used to store all data. If left as the default value\nthis directory will automatically be created before the Sonarr server starts, otherwise\nyou are responsible for ensuring the directory exists with appropriate ownership\nand permissions.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the Sonarr web interface\n",
@@ -59,13 +59,13 @@ export default nix.lambda((args) => (() => {
           environmentFiles: nix.thunk(() => nix.app(nix.sel(servarr, "mkServarrEnvironmentFiles"), "sonarr")),
           settings: nix.thunk(() => nix.app(nix.sel(servarr, "mkServarrSettingsOptions"), "sonarr", 8989n)),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "sonarr",
               description: "User account under which Sonarr runs.\";\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the Sonarr service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "sonarr",
               description: "Group account under which Sonarr runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the group exists before the Sonarr service starts.\n:::\n",
@@ -75,19 +75,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             sonarr: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Sonarr",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(servarr, "mkServarrSettingsEnvVars"), "SONARR", nix.thunk(() => nix.sel(cfg, "settings")))),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -120,36 +120,36 @@ export default nix.lambda((args) => (() => {
                 LockPersonality: true,
                 SystemCallArchitectures: "native",
                 SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged", "~@debug", "~@mount", "@chown"]),
-              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/sonarr/.config/NzbDrone")), nix.thunk(() => ({ __proto__: pos$10, StateDirectory: "sonarr" }))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/sonarr/.config/NzbDrone")), nix.thunk(() => ({ [nix.POS]: pos$10, StateDirectory: "sonarr" }))))),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "sonarr")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               sonarr: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "sonarr")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "sonarr")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               sonarr: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "sonarr")),
               })),
             })))),

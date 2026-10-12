@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => true);
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "conntrack-tools",
       version: "1.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/conntrack-tools/files/conntrack-tools-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wVr+SIqNQIydbWHpfb0Z88WRlC9iwT32RTqWHKQjHK4=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), systemdSupport, "systemd")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://conntrack-tools.netfilter.org/",
         description: "Connection tracking userspace tools",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fpletz"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "netfilter", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

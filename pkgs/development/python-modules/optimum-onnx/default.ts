@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "optimum-onnx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonRelaxDeps = nix.thunk(() => ["transformers"]);
       const dependencies = nix.thunk(() => [onnx, optimum, transformers]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, onnxruntime: nix.thunk(() => [onnxruntime]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, onnxruntime: nix.thunk(() => [onnxruntime]) }));
       const pythonImportsCheck = nix.thunk(() => ["optimum.onnxruntime"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Export your model to ONNX and run inference with ONNX Runtime",
         homepage: "https://github.com/huggingface/optimum-onnx",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/optimum-onnx/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

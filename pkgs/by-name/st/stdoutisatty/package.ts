@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stdoutisatty",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lilydjwg",
           repo: "stdoutisatty",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.10",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "ls-color": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-ls-color`), nix.thunk(() => ({})), nix.thunk(() => nix.str`set -x
 mkdir somedir
 ln -s somedir somelink
@@ -56,7 +56,7 @@ set +x
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Make programs think their stdout is a tty / terminal",
         longDescription: "`stdoutisatty command` makes `command` think their stdout is a terminal,\neven if it is actually being piped into another program (e.g. `less`).\nThis is most useful for preserving user-friendly, colored outputs.\n\nFor example, `stdoutisatty ls --color=auto | less` will always show\ncolored output, despite being piped into a pager.\n",
         homepage: "https://github.com/lilydjwg/stdoutisatty",

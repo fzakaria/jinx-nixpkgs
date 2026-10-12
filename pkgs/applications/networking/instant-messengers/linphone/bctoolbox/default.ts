@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(mkLinphoneDerivation, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bctoolbox",
       propagatedBuildInputs: nix.thunk(() => [bcunit, bc_decaf, bc_mbedtls]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_STRICT=NO", "-DENABLE_MBEDTLS=YES", "-DENABLE_OPENSSL=NO"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["BCToolbox"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utilities library for Linphone",
         mainProgram: "bctoolbox_tester",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

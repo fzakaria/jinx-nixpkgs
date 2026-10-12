@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const description = "Cross-platform desktop app for managing periodic breaks";
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "breaktimer",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tom-james-watson",
           repo: "breaktimer-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [nix.path(here, "./disable-auto-update.patch")]),
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmDepsHash: "sha256-UL8e0UKZKhHHC+JvRpmcdBvFHlCdn3YknceVJ+knMgg=",
       nativeBuildInputs: nix.thunk(() => [jq, nodejs, makeWrapper, copyDesktopItems]),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -79,7 +79,7 @@ install -Dm644 resources/icon.png \\
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\ncp -R release/mac-*/BreakTimer.app \"$out/Applications/\"\n\nmkdir -p \"$out/bin\"\nmakeWrapper \\\n  \"$out/Applications/BreakTimer.app/Contents/MacOS/BreakTimer\" \\\n  \"$out/bin/breaktimer\" \\\n  --set-default ELECTRON_IS_DEV 0\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "breaktimer",
             exec: "breaktimer",
             icon: "breaktimer",
@@ -90,11 +90,11 @@ install -Dm644 resources/icon.png \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: description,
         homepage: "https://github.com/tom-james-watson/breaktimer-app",
         changelog: nix.thunk(() => nix.str`https://github.com/tom-james-watson/breaktimer-app/releases/tag/v${nix.sel(finalAttrs, "version")}`),

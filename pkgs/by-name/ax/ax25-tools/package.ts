@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libax25 = nix.arg($, "libax25");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ax25-tools",
       version: "0.0.10-rc5",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libax25]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radiocatalog",
           repo: "ax25-tools",
           tag: nix.thunk(() => nix.str`ax25-tools-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc", "--localstatedir=/var/lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Non-GUI tools used to configure an AX.25 enabled computer",
         homepage: "https://linux-ax25.in-berlin.de/wiki/Main_Page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

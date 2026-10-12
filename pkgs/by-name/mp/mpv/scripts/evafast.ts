@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "evafast",
       version: "0-unstable-2024-02-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "po5",
           repo: "evafast",
           rev: "92af3e2e1c756ce83f9d0129c780caeef1131a0b",
           hash: "sha256-BGWD2XwVu8zOSiDJ+9oWi8aPN2Wkw0Y0gF58X4f+tdI=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, branch: "rewrite" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "rewrite" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Seeking and hybrid fastforwarding like VHS",
         homepage: "https://github.com/po5/evafast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

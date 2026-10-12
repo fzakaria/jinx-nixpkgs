@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.36.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_bigquery_storage",
           version: version,
           hash: "sha256-08HOnS06TXEWJZiJ3L48fHBQb3H2zmu+VKoKaLu6j48=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
       const dependencies = nix.thunk(() => nix.concat([google_api_core, protobuf], nix.sel(google_api_core, "optional-dependencies", "grpc")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fastavro: nix.thunk(() => [fastavro]),
         pandas: nix.thunk(() => [pandas]),
         pyarrow: nix.thunk(() => [pyarrow]),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.bigquery_storage_v1beta2",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "BigQuery Storage API API client library",
         homepage: "https://docs.cloud.google.com/bigquery/docs/reference/storage",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-bigquery-storage-v${version}/packages/google-cloud-bigquery-storage/CHANGELOG.md`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fixup_bigquery_storage_v1_keywords.py",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

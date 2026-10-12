@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getting-things-gnome",
           repo: "liblarch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ ${xvfb_run}/bin/xvfb-run -s '-screen 0 800x600x24' pytest
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library built to easily handle data structure such are lists, trees and acyclic graphs",
         homepage: "https://github.com/getting-things-gnome/liblarch",
         downloadPage: "https://github.com/getting-things-gnome/liblarch/releases",
@@ -50,7 +50,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

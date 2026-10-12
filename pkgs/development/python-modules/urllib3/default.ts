@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const trustme = nix.arg($, "trustme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "urllib3",
       version: "2.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "urllib3",
           repo: "urllib3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         brotli: nix.thunk(() => (nix.asBool(isPyPy) ? [brotlicffi] : [brotli])),
         h2: nix.thunk(() => [h2]),
         socks: nix.thunk(() => [pysocks]),
@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
       disabledTestMarks: nix.thunk(() => ["requires_network"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$3, doInstallCheck: true }))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$3, doInstallCheck: true }))),
         })),
       })),
       preCheck: "export CI # Increases LONG_TIMEOUT\n",
       pythonImportsCheck: nix.thunk(() => ["urllib3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Powerful, user-friendly HTTP client for Python",
         homepage: "https://github.com/urllib3/urllib3",
         changelog: nix.thunk(() => nix.str`https://github.com/urllib3/urllib3/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

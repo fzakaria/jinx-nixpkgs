@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bayescan",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://cmpg.unibe.ch/software/BayeScan/files/BayeScan${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0ismima8j8z0zj9yc267rpf7z90w57b2pbqzjnayhc3ab8mcbfy6",
         })))),
@@ -37,11 +37,11 @@ cp bayescan_${nix.sel(finalAttrs, "version")} $out/bin
 cp -r ../*pdf ../input_examples ../"R functions" $out/share/doc/bayescan
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Detecting natural selection from population-based genetic data",
         homepage: "http://cmpg.unibe.ch/software/BayeScan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

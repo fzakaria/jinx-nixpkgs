@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
       const pname = "duckmarines";
       const version = "1.0c";
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://tangramgames.dk/img/thumb/duckmarines.png",
           sha256: "07ypbwqcgqc5f117yxy9icix76wlybp1cmykc8f3ivdps66hl0k5",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "duckmarines",
           exec: "duckmarines",
           icon: icon,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           categories: nix.thunk(() => ["Game"]),
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "SimonLarsen",
           repo: "duckmarines",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +62,7 @@ mkdir -p $out/share/applications
 ln -s ${desktopItem}/share/applications/* $out/share/applications/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Duck-themed action puzzle video game",
         homepage: "https://github.com/SimonLarsen/duckmarines",
         platforms: nix.thunk(() => nix.sel(love, "meta", "platforms")),
@@ -80,7 +80,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications/
         downloadPage: "http://tangramgames.dk/games/duckmarines",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         icon,

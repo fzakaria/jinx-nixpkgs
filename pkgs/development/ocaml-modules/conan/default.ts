@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conan",
       version: "0.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/conan/releases/download/v${nix.sel(finalAttrs, "version")}/conan-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-4ZbyGLnPRImRQ8vO71i+jlEWYB/FJCSelY7uBuH4dBU=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, crowbar, fmt, rresult]),
       minimalOCamlVersion: "4.12",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Identify type of your file (such as the MIME type)",
         homepage: "https://github.com/mirage/conan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

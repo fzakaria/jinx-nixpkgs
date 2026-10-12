@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin-osd";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edanaher",
           repo: "pidgin-osd",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook]);
       const buildInputs = nix.thunk(() => [xosd, pidgin]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mbroemme/pidgin-osd",
         description: "Plugin for Pidgin which implements on-screen display via libxosd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

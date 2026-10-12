@@ -84,141 +84,141 @@ ${nix.lookup(w, "extraConfig")}
 `));
   })());
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         monero: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Monero node daemon")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/monero",
               description: "The directory where Monero stores its data files.\n",
             })))),
           banlist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a text file containing IPs to block.\nUseful to prevent DDoS/deanonymization attacks.\n\n<https://github.com/monero-project/meta/issues/1124>\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "builtins.fetchurl {\n  url = \"https://raw.githubusercontent.com/rblaine95/monero-banlist/c6eb9413ddc777e7072d822f49923df0b2a94d88/block.txt\";\n  hash = \"\";\n};\n")),
             })))),
           mining: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to mine monero.\n",
               })))),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Monero address where to send mining rewards.\n",
               })))),
             threads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 0n,
                 description: "Number of threads used for mining.\nSet to `0` to use all available.\n",
               })))),
           })),
           rpc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "User name for RPC connections.\n",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Password for RPC connections.\n\n::: {.warning}\nA literal value is written to `monero.conf` in the Nix store, which is\nworld-readable. To keep the password out of the store, set this to a\nplaceholder such as `\"$MONERO_RPC_PASSWORD\"` and provide the value\nthrough {option}`services.monero.environmentFile`.\n:::\n",
               })))),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "IP address the RPC server will bind to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 18081n,
                 description: "Port the RPC server will bind to.\n",
               })))),
             restricted: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to restrict RPC to view only commands.\n",
               })))),
           })),
           limits: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             upload: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "int")), (x) => nix.ge(x, nix.neg(1n)))),
                 default: nix.thunk(() => nix.neg(1n)),
                 description: "Limit of the upload rate in kB/s.\nSet to `-1` to leave unlimited.\n",
               })))),
             download: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "int")), (x) => nix.ge(x, nix.neg(1n)))),
                 default: nix.thunk(() => nix.neg(1n)),
                 description: "Limit of the download rate in kB/s.\nSet to `-1` to leave unlimited.\n",
               })))),
             threads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 0n,
                 description: "Maximum number of threads used for a parallel job.\nSet to `0` to leave unlimited.\n",
               })))),
             syncSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 0n,
                 description: "Maximum number of blocks to sync at once.\nSet to `0` for adaptive.\n",
               })))),
           })),
           extraNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of additional peer IP addresses to add to the local list.\n",
             })))),
           priorityNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of peer IP addresses to connect to and\nattempt to keep the connection open.\n",
             })))),
           exclusiveNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of peer IP addresses to connect to *only*.\nIf given the other peer options will be ignored.\n",
             })))),
           prune: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to prune the blockchain.\n<https://www.getmonero.org/resources/moneropedia/pruning.html>\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/monero/monerod.env",
               description: "Path to an EnvironmentFile for the monero service as defined in {manpage}`systemd.exec(5)`.\n\nSecrets may be passed to the service by specifying placeholder variables in the Nix config\nand setting values in the environment file.\n\nExample:\n\n```\n# In environment file:\nMINING_ADDRESS=888tNkZrPN6JsEgekjMnABU4TBzc2Dt29EPAvkRxbANsAnjyPbb3iQ1YBRk1UXcdRsiKc9dhwMVgN5S9cQUiyoogDavup3H\nMONERO_RPC_PASSWORD=correct-horse-battery-staple\n```\n\n```\n# Service config\nservices.monero.mining.address = \"$MINING_ADDRESS\";\nservices.monero.rpc.password = \"$MONERO_RPC_PASSWORD\";\n```\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to be added verbatim to monerod configuration.\n",
@@ -227,13 +227,13 @@ ${nix.lookup(w, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             monero: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               isSystemUser: true,
               group: "monero",
               description: "Monero daemon user",
@@ -241,14 +241,14 @@ ${nix.lookup(w, "extraConfig")}
               createHome: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "/var/lib/", nix.thunk(() => nix.sel(cfg, "dataDir"))))),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$29, monero: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$29, monero: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             monero: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "monero daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -258,7 +258,7 @@ ${nix.sel(pkgs, "envsubst")}/bin/envsubst \\
   -o ${nix.sel(cfg, "dataDir")}/monerod.conf
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 User: "monero",
                 Group: "monero",
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
@@ -298,13 +298,13 @@ ${nix.sel(pkgs, "envsubst")}/bin/envsubst \\
           })),
         })),
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "mining", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "mining", "address"), "")))),
             message: "You need a Monero address to receive mining rewards:\nspecify one using option monero.mining.address.\n",
           })))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "rnhmjoj"))];

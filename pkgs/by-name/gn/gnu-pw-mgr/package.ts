@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gnulib = nix.arg($, "gnulib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnu-pw-mgr",
       version: "2.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/gnu-pw-mgr/gnu-pw-mgr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0fhwvsmsqpw0vnivarfg63l8pgwqfv7d5wi6l80jpb41dj6qpjz8",
         })))),
       buildInputs: nix.thunk(() => [gnulib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/gnu-pw-mgr/",
         description: "Password manager designed to make it easy to reconstruct difficult passwords",
         license: nix.thunk(() => (() => {

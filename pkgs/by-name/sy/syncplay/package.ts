@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const enableGUI = nix.argOr($, "enableGUI", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "syncplay",
       version: "1.7.6",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Syncplay",
           repo: "syncplay",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=", "PREFIX=$(out)"]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableGUI, "wrapQtApp $out/bin/syncplay\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://syncplay.pl/",
         description: "Free software that synchronises media players",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

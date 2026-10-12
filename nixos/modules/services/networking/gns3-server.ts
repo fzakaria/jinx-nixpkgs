@@ -62,32 +62,32 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "gns3-server.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./gns3-server.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "gns3-server": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GNS3 Server daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gns3-server", nix.thunk(() => ({})))),
           auth: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "password based HTTP authentication to access the GNS3 Server")),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "gns3",
                 description: "Username used to access the GNS3 Server.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/secrets/gns3-server-password",
@@ -95,19 +95,19 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$6, host: "127.0.0.1", port: 3080n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$6, host: "127.0.0.1", port: 3080n })),
               description: "The global options in `config` file in ini format.\n\nRefer to <https://docs.gns3.com/docs/using-gns3/administration/gns3-server-configuration-file/>\nfor all available options.\n",
             })))),
           log: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: "/var/log/gns3/server.log",
                 description: "Path of the file GNS3 Server should log to.",
@@ -115,17 +115,17 @@ export default nix.lambda((args) => (() => {
             debug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "debug logging")),
           })),
           ssl: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SSL encryption")),
             certFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/var/lib/gns3/ssl/server.pem",
                 description: "Path to the SSL certificate file. This certificate will\nbe offered to, and may be verified by, clients.\n",
               })))),
             keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/var/lib/gns3/ssl/server.key",
@@ -133,17 +133,17 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           dynamips: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dynamips support")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dynamips", nix.thunk(() => ({})))),
           })),
           ubridge: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "uBridge support")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ubridge", nix.thunk(() => ({})))),
           })),
           vpcs: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "VPCS support")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vpcs", nix.thunk(() => ({})))),
           })),
@@ -152,52 +152,52 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const flags = nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         enableDocker: nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enable")),
         enableLibvirtd: nix.thunk(() => nix.sel(config, "virtualisation", "libvirtd", "enable")),
       }));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "ssl", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "ssl", "certFile"), null)))),
               message: "Please provide a certificate to use for SSL encryption.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "ssl", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "ssl", "keyFile"), null)))),
               message: "Please provide a private key to use for SSL encryption.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "auth", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "auth", "user"), null)))),
               message: "Please provide a username to use for HTTP authentication.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "auth", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "auth", "passwordFile"), null)))),
               message: "Please provide a password file to use for HTTP authentication.",
             })),
           ]),
           users: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             groups: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               gns3: nix.thunk(() => ({})),
               ubridge: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ubridge", "enable")), nix.thunk(() => ({})))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$26,
-              gns3: nix.thunk(() => ({ __proto__: pos$25, group: "gns3", isSystemUser: true })),
+              [nix.POS]: pos$26,
+              gns3: nix.thunk(() => ({ [nix.POS]: pos$25, group: "gns3", isSystemUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             wrappers: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               ubridge: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ubridge", "enable")), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   capabilities: "cap_net_raw,cap_net_admin=eip",
                   group: "ubridge",
                   owner: "root",
@@ -207,14 +207,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "gns3-server": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     Server: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       appliances_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/gns3/appliances")),
                       configs_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/gns3/configs")),
                       images_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/gns3/images")),
@@ -223,32 +223,32 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ubridge", "enable")), nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       Server: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         ubridge_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/wrappers/bin/ubridge")),
                       })),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "auth", "enable")), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       Server: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         auth: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "auth", "enable")))))),
                         user: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "auth", "user")))),
                         password: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@AUTH_PASSWORD@")),
                       })),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "vpcs", "enable")), nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       VPCS: nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         vpcs_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "vpcs", "package")))))),
                       })),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dynamips", "enable")), nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       Dynamips: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         dynamips_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "dynamips", "package")))))),
                       })),
                     })))),
@@ -256,12 +256,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               "gns3-server": nix.thunk(() => (() => {
                 const commandArgs = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     config: "/etc/gns3/gns3_server.conf",
                     pid: "/run/gns3/server.pid",
                     log: nix.thunk(() => nix.sel(cfg, "log", "file")),
@@ -270,7 +270,7 @@ export default nix.lambda((args) => (() => {
                     certkey: nix.thunk(() => nix.sel(cfg, "ssl", "keyFile")),
                   }))));
                 return {
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   description: "GNS3 Server",
                   after: nix.thunk(() => ["network.target", "network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -286,7 +286,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "auth", "
                   path: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(flags, "enableLibvirtd")), nix.thunk(() => nix.sel(pkgs, "qemu")))),
                   reloadTriggers: nix.thunk(() => [configFile]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     ConfigurationDirectory: "gns3",
                     ConfigurationDirectoryMode: "0750",
                     Environment: "HOME=%S/gns3",

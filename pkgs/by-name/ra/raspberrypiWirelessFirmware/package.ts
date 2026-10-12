@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "raspberrypi-wireless-firmware",
       version: "0-unstable-2025-04-08",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "bluez-firmware",
             owner: "RPi-Distro",
             repo: "bluez-firmware",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-t+D4VUfEIov83KV4wiKp6TqXTHXGkxg/mANi4GW7QHs=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "firmware-nonfree",
             owner: "RPi-Distro",
             repo: "firmware-nonfree",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/lib/firmware/brcm\"\n\n# Wifi firmware\ncp -rv \"$NIX_BUILD_TOP/firmware-nonfree/debian/config/brcm80211/.\" \"$out/lib/firmware/\"\n\n# Bluetooth firmware\ncp -rv \"$NIX_BUILD_TOP/bluez-firmware/debian/firmware/broadcom/.\" \"$out/lib/firmware/brcm\"\n\n# brcmfmac43455-sdio.bin is a symlink to the non-existent path: ../cypress/cyfmac43455-sdio.bin.\n# See https://github.com/RPi-Distro/firmware-nonfree/issues/26\nln -s \"./cyfmac43455-sdio-standard.bin\" \"$out/lib/firmware/cypress/cyfmac43455-sdio.bin\"\n\npushd $out/lib/firmware/brcm &>/dev/null\n# Symlinks for Zero 2W\nln -s \"./brcmfmac43436-sdio.clm_blob\" \"$out/lib/firmware/brcm/brcmfmac43430b0-sdio.clm_blob\"\npopd &>/dev/null\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Firmware for builtin Wifi/Bluetooth devices in the Raspberry Pi 3+ and Zero W",
         homepage: "https://github.com/RPi-Distro/firmware-nonfree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

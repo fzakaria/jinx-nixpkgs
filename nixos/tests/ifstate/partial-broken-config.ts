@@ -18,35 +18,35 @@ const pos$13 = nix.positions(here + "/partial-broken-config.nix", [["machine", 4
 const pos$14 = nix.positions(here + "/partial-broken-config.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 31, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$14,
+  [nix.POS]: pos$14,
   name: "ifstate-partial-broken-config",
   nodes: nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     machine: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
-        interfaces: nix.thunk(() => ({ __proto__: pos$2, eth1: nix.thunk(() => ({ __proto__: pos$1, vlan: 1n })) })),
+        [nix.POS]: pos$3,
+        interfaces: nix.thunk(() => ({ [nix.POS]: pos$2, eth1: nix.thunk(() => ({ [nix.POS]: pos$1, vlan: 1n })) })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         ifstate: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               eth1: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 addresses: nix.thunk(() => ["2001:0db8:a::1/64"]),
-                link: nix.thunk(() => ({ __proto__: pos$4, state: "up", kind: "physical" })),
+                link: nix.thunk(() => ({ [nix.POS]: pos$4, state: "up", kind: "physical" })),
               })),
               eth2: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 addresses: nix.thunk(() => ["2001:0db8:b::1/64"]),
-                link: nix.thunk(() => ({ __proto__: pos$6, state: "up", kind: "physical" })),
+                link: nix.thunk(() => ({ [nix.POS]: pos$6, state: "up", kind: "physical" })),
               })),
             })),
           })),

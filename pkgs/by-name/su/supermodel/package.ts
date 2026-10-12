@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "supermodel",
       version: "0-unstable-2026-03-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trzy",
           repo: "supermodel",
           rev: "d6dec3dcf0922459801907950d966e5767c674de",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "sed -i '/^#include <memory>/a #include <cstdint>' Src/Game.h\n",
       buildInputs: nix.thunk(() => [libGLU, SDL2, SDL2_net, libx11, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       makefile: "Makefiles/Makefile.UNIX",
       makeFlags: nix.thunk(() => ["NET_BOARD=1"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/supermodel\ncp bin/* $out/bin\ncp -r Config Assets $out/share/supermodel\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sega Model 3 Arcade Emulator",
         homepage: "https://github.com/trzy/supermodel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonashaag",
           repo: "klaus",
           rev: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const prePatch = "substituteInPlace runtests.sh \\\n  --replace \"mkdir -p \\$builddir\" \"mkdir -p \\$builddir && pwd\"\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "distutils.patch",
             url: "https://github.com/jonashaag/klaus/commit/d50d2aab97fd86c11f3b5a4c1ecbcf1e085f395f.patch",
             hash: "sha256-gJ/ksm96VRNgqIBp+PX/ljzdfQJYbwTBmZaF2Ctu7Fc=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "./runtests.sh\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "First Git web viewer that Just Works",
         mainProgram: "klaus",
         homepage: "https://github.com/jonashaag/klaus",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

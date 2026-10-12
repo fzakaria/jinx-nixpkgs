@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const version = "2026.9.2";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       system: "amd64",
       hash: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "8.1": "sha256-Rh26CehFWvZbri+wE+NOit6Mc6LB55IVZ0FT63/GBew=",
         "8.2": "sha256-HoaC8XAGxqPvQPkpsqTjBxd6Z8FnB/cjk5uC9ogNMAs=",
         "8.3": "sha256-nRwvQYootheK0qEWbEJoC82butcJRFz65zhxey56/Bk=",
@@ -54,10 +54,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "i686-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       system: "i386",
       hash: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "8.1": "sha256-BgOAsLqMqsyXfEIgx/Buaz4jjU1TN8lxVPTSvQzCn7M=",
         "8.2": "sha256-D1FiwfYF8tRM1uMEWPauY+SzQNyL9kszVb5pD5vOBwA=",
         "8.3": "sha256-SZ9KFC+ISp5LgElLeQTOInlgoSqWV9+oRdC6yJ5P3WA=",
@@ -66,10 +66,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       system: "arm64",
       hash: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "8.1": "sha256-QGe/XJt2N7UFpW0ahKo+hCZO7X80L31hAp0D6oreGt4=",
         "8.2": "sha256-QyhbXXlhBdoNUYJcPOt4w4sA45ELtY4IERD8GUS3I4c=",
         "8.3": "sha256-+l9RGCmhQsdtqntfUk22d1zVIcAxuLw4mHpe4WcfGr8=",
@@ -78,10 +78,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       system: "arm64",
       hash: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "8.1": "sha256-oG7Doie9hoieBM649S1XlagBaYAWAjJu2PrzYSDLKL0=",
         "8.2": "sha256-MJi0cve8+eItBcC6UkuxYTzclB3OMC+Hhlmd++xD1MU=",
         "8.3": "sha256-3oJtMuVKGUgpduMp7snSdGE/BH764EA7yz+N70+qFNg=",
@@ -96,18 +96,18 @@ export default nix.lambda((args) => (() => {
     const phpMajor_1 = nix.arg($_1, "phpMajor");
     const isLinux = nix.thunk(() => !nix.eq(nix.builtins.match(".+-linux", system_1), null));
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         url: nix.thunk(() => nix.str`https://packages.blackfire.io/binaries/blackfire-php/${version}/blackfire-php-${(nix.asBool(isLinux) ? "linux" : "darwin")}_${nix.sel(hashes, nix.key(nix.force(system_1)), "system")}-php-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), phpMajor_1)}.so`),
         hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(system_1)), "hash", nix.key(nix.force(phpMajor_1)))),
       })));
   })(), formals$2);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.has(hashes, nix.key(nix.force(system)), "hash", nix.key(nix.force(phpMajor)))), nix.thunk(() => nix.str`blackfire does not support PHP version ${phpMajor} on ${system}.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bl/blackfire/php-probe.nix:77:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "php-blackfire",
       extensionName: "blackfire",
       version: version,
-      src: nix.thunk(() => nix.app(makeSource, nix.thunk(() => ({ __proto__: pos$11, system: system, phpMajor: phpMajor })))),
+      src: nix.thunk(() => nix.app(makeSource, nix.thunk(() => ({ [nix.POS]: pos$11, system: system, phpMajor: phpMajor })))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       sourceRoot: ".",
       dontUnpack: true,
@@ -118,7 +118,7 @@ install -D ${nix.sel(finalAttrs, "src")} $out/lib/php/extensions/blackfire.so
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         updateScript: nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`set -o errexit
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}"
 NEW_VERSION=$(curl --silent https://blackfire.io/api/v1/releases | jq .probe.php --raw-output)
@@ -139,16 +139,16 @@ done
             const system_1 = nix.arg($_1, "system");
             return nix.str`php${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), phpMajor_1)}_${system_1}`;
           })(), formals$3);
-          const createUpdateable = (sourceParams) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(createName, sourceParams)), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({ __proto__: pos$12, src: nix.thunk(() => nix.app(makeSource, sourceParams)) }))));
+          const createUpdateable = (sourceParams) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(createName, sourceParams)), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$12, src: nix.thunk(() => nix.app(makeSource, sourceParams)) }))));
           return nix.app(nix.sel(lib, "concatMapAttrs"), (system_1) => nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$4);
               const hash = nix.arg($_1, "hash");
-              return nix.app(nix.sel(lib, "mapAttrs'"), (phpMajor_1) => (_hash) => nix.app(createUpdateable, nix.thunk(() => ({ __proto__: pos$13, phpMajor: phpMajor_1, system: system_1 }))), hash);
+              return nix.app(nix.sel(lib, "mapAttrs'"), (phpMajor_1) => (_hash) => nix.app(createUpdateable, nix.thunk(() => ({ [nix.POS]: pos$13, phpMajor: phpMajor_1, system: system_1 }))), hash);
             })(), formals$4), hashes);
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Blackfire Profiler PHP module",
         homepage: "https://blackfire.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

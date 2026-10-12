@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "racket",
       version: nix.thunk(() => nix.attr(manifest, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(manifest, "minimal"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirror.racket-lang.org/installers/${nix.sel(manifest, "version")}/${nix.sel(manifest, "minimal", "filename")}`),
           sha256: nix.thunk(() => nix.attr(from_1, "sha256")),
         };
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: isDarwin,
       postFixup: nix.thunk(() => (() => {
         const configureInstallation = nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "configure-installation.rkt",
             path: nix.path(here, "./configure-installation.rkt"),
           }))));
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           command: nix.path(here, "./update.py"),
           attrPath: "racket",
           supportedFeatures: nix.thunk(() => ["commit"]),
@@ -79,16 +79,16 @@ export default nix.lambda((args) => (() => {
           const libraries = nix.argOr($_1, "libraries", () => []);
           nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(libraries, [])), "library integration for Racket has not been implemented"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ra/racket/minimal.nix:108:7");
           return nix.app(nix.sel(writers, "makeScriptWriter"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(config, nix.thunk(() => ["libraries"])), {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}`),
             })), nameOrPath);
         })(), formals$2),
         writeScriptBin: (name) => nix.app(nix.sel(finalAttrs, "passthru", "writeScript"), nix.thunk(() => nix.str`/bin/${name}`)),
         tests: nix.thunk(() => nix.builtins.mapAttrs((name) => (path) => nix.app(callPackage, path, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               racket: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             }))), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "write-greeting": nix.path(here, "./tests/write-greeting.nix"),
             "get-version-and-variant": nix.path(here, "./tests/get-version-and-variant.nix"),
             "load-openssl": nix.path(here, "./tests/load-openssl.nix"),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Programmable programming language (minimal distribution)",
         longDescription: "Racket is a full-spectrum programming language. It goes beyond\nLisp and Scheme with dialects that support objects, types,\nlaziness, and more. Racket enables programmers to link\ncomponents written in different dialects, and it empowers\nprogrammers to create new, project-specific dialects. Racket's\nlibraries support applications from web servers and databases to\nGUIs and charts.\n\nThis minimal distribution includes just enough of Racket that you can\nuse `raco pkg` to install more.\n",
         homepage: "https://racket-lang.org/",

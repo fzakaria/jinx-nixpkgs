@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const dirName = nix.thunk(() => nix.sel(pkg, "dirName"));
   const user = "zoneminder";
   const group = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     nginx: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
     none: user,
   }, nix.key(nix.sel(cfg, "webserver"))));
@@ -106,81 +106,81 @@ ZM_WEB_GROUP=${group}
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         zoneminder: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ZoneMinder.\n\nIf you intend to run the database locally, you should set\n`config.services.zoneminder.database.createLocally` to true. Otherwise,\nwhen set to `false` (the default), you will have to create the database\nand database user as well as populate the database yourself.\nAdditionally, you will need to run `zmupdate.pl` yourself when\nupgrading to a newer version\n")),
             webserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["nginx", "none"]))),
                 default: "nginx",
                 description: "The webserver to configure for the PHP frontend.\n\nSet it to `none` if you want to configure it yourself. PRs are welcome\nfor support for other web servers.\n",
               })))),
             hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "The hostname on which to listen.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 8095n,
                 description: "The port on which to listen.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Open the firewall port(s).\n",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Create the database and database user locally.\n",
                 })))),
               host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "localhost",
                   description: "Hostname hosting the database.\n",
                 })))),
               name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "zm",
                   description: "Name of database.\n",
                 })))),
               username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "zmuser",
                   description: "Username for accessing the database.\n",
                 })))),
               password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "zmpass",
                   description: "Username for accessing the database.\nNot used if `createLocally` is set.\n",
                 })))),
             })),
             cameras: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 1n,
                 description: "Set this to the number of cameras you expect to support.\n",
               })))),
             storageDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 example: "/storage/tank",
@@ -189,7 +189,7 @@ to use the default ${defaultDir}, you can override the path here.
 `),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 default: "",
                 description: "Additional configuration added verbatim to the configuration file.\n",
@@ -199,39 +199,39 @@ to use the default ${defaultDir}, you can override the path here.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "username"), user)))),
             message: nix.thunk(() => nix.str`services.zoneminder.database.username must be set to ${user} if services.zoneminder.database.createLocally is set true`),
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
-            "zoneminder/60-defaults.conf": nix.thunk(() => ({ __proto__: pos$19, source: defaultsFile })),
-            "zoneminder/80-nixos.conf": nix.thunk(() => ({ __proto__: pos$20, source: configFile })),
+            [nix.POS]: pos$21,
+            "zoneminder/60-defaults.conf": nix.thunk(() => ({ [nix.POS]: pos$19, source: defaultsFile })),
+            "zoneminder/80-nixos.conf": nix.thunk(() => ({ [nix.POS]: pos$20, source: configFile })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port")), 6802n]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           fcgiwrap: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             instances: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               zoneminder: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), useNginx, nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   process: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     prefork: nix.thunk(() => nix.sel(cfg, "cameras")),
                     user: user,
                     group: group,
@@ -239,7 +239,7 @@ to use the default ${defaultDir}, you can override the path here.
                   socket: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config, "services", "nginx"));
                     return {
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     user: nix.thunk(() => nix.attr(from, "user")),
                     group: nix.thunk(() => nix.attr(from, "group")),
                   };
@@ -248,29 +248,29 @@ to use the default ${defaultDir}, you can override the path here.
             })),
           })),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   name: nix.thunk(() => nix.sel(cfg, "database", "username")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), useNginx, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "hostname"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   default: true,
                   root: nix.thunk(() => nix.str`${pkg}/share/zoneminder/www`),
                   listen: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       addr: "0.0.0.0",
                       port: nix.thunk(() => nix.attr(cfg, "port")),
                     })),
@@ -327,11 +327,11 @@ location / {
               ])),
             })))),
           phpfpm: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), useNginx, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               pools: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 zoneminder: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   user: user,
                   group: group,
                   phpPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "php", "withExtensions"), nix.lambda((args_1) => (() => {
@@ -346,7 +346,7 @@ location / {
                   phpOptions: nix.thunk(() => nix.str`date.timezone = "${nix.sel(config, "time", "timeZone")}"
 `),
                   settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       "listen.owner": user,
                       "listen.group": group,
                       "listen.mode": "0660",
@@ -364,15 +364,15 @@ location / {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             zoneminder: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return (() => {
                 const from = nix.thunk(() => nix.sel(nix.lookup(w, "zoneminder"), "meta"));
                 return {
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: nix.thunk(() => nix.attr(from, "description")),
                 documentation: nix.thunk(() => ["https://zoneminder.readthedocs.org/en/latest/"]),
                 path: nix.thunk(() => [
@@ -401,7 +401,7 @@ ${nix.sel(config, "services", "mysql", "package")}/bin/mysql -u zoneminder zm <<
 EOF
 `)))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   User: user,
                   Group: group,
                   SupplementaryGroups: nix.thunk(() => ["video"]),
@@ -429,10 +429,10 @@ EOF
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "zoneminder")),
             }))],
           ])),
@@ -440,7 +440,7 @@ EOF
             [user, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "zoneminder", "meta"));
               return {
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "zoneminder")),
               group: user,
               home: home,
@@ -450,7 +450,7 @@ EOF
           ])),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$48, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$48, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=zoneminder.ts.map

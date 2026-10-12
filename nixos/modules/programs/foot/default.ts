@@ -41,43 +41,43 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "foot"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       listsAsDuplicateKeys: true,
       mkKeyValue: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "generators")), null);
         return nix.app(nix.lookup(w, "mkKeyValueDefault"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             mkValueString: (v) => nix.app(nix.lookup(w, "mkValueStringDefault"), nix.thunk(() => ({})), nix.thunk(() => (nix.asBool(nix.eq(v, true)) ? "yes" : (nix.asBool(nix.eq(v, false)) ? "no" : (nix.asBool(nix.eq(v, null)) ? "none" : nix.force(v)))))),
           })), "=");
       })()),
     }))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         foot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "foot terminal emulator")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "foot", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for foot terminal emulator. Further information can be found in {command}`man 5 foot.ini`.\n\nGlobal configuration has to be written under the [main] section.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$5,
-                main: nix.thunk(() => ({ __proto__: pos$3, font: "FreeMono:size=12" })),
-                scrollback: nix.thunk(() => ({ __proto__: pos$4, lines: 100000n })),
+                [nix.POS]: pos$5,
+                main: nix.thunk(() => ({ [nix.POS]: pos$3, font: "FreeMono:size=12" })),
+                scrollback: nix.thunk(() => ({ [nix.POS]: pos$4, lines: 100000n })),
               })),
             })))),
           xdg: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             serverAutostart: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "starting the foot server via xdg-autostart")),
           })),
           theme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -86,45 +86,45 @@ export default nix.lambda((args) => (() => {
               description: "Theme name. Check <https://codeberg.org/dnkl/foot/src/branch/master/themes> for available themes.\n",
               example: "aeroroot",
             })))),
-          enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "foot bash integration"), { __proto__: pos$9, default: true })),
-          enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "foot fish integration"), { __proto__: pos$10, default: true })),
-          enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "foot zsh integration"), { __proto__: pos$11, default: true })),
+          enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "foot bash integration"), { [nix.POS]: pos$9, default: true })),
+          enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "foot fish integration"), { [nix.POS]: pos$10, default: true })),
+          enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "foot zsh integration"), { [nix.POS]: pos$11, default: true })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 "xdg/foot/foot.ini": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "foot.ini", nix.thunk(() => nix.sel(cfg, "settings")))),
                   })))),
               })),
             })),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "xdg", "serverAutostart")), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "xdg/autostart/foot-server.desktop": nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/applications/foot-server.desktop`),
                   })),
                 })),
               })))),
           ]))),
         programs: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           foot: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               main: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "theme"), null)), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   include: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(cfg, "package", "themes")}/share/foot/themes/${nix.sel(cfg, "theme")}`),
                   ]),
@@ -132,21 +132,21 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           bash: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.str`. ${nix.path(here, "./bashrc")} # enable shell integration for foot terminal`))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableFishIntegration")), nix.thunk(() => nix.str`source ${nix.path(here, "./config.fish")} # enable shell integration for foot terminal`))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableZshIntegration")), nix.thunk(() => nix.str`. ${nix.path(here, "./zshrc")} # enable shell integration for foot terminal`))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "linsui"))];

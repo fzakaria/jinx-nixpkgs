@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bookmarks.yazi",
       version: "0.2.5-unstable-2025-07-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dedukun",
           repo: "bookmarks.yazi",
           rev: "9ef1254d8afe88aba21cd56a186f4485dd532ab8",
           hash: "sha256-GQFBRB2aQqmmuKZ0BpcCAC4r0JFKqIANZNhUC98SlwY=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin that adds the basic functionality of vi-like marks",
         homepage: "https://github.com/dedukun/bookmarks.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "em",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://pgas.freeshell.org/C/em/em-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ijMBkl7U1f9MTXgli9kUFB8ttMG6TMQnxfDMP9AblTQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://pgas.freeshell.org/C/em/",
         description: "Editor for Mortals",
         longDescription: "Em is a QMC variant of the standard Unix text editor - ed. It includes all\nof ed, so the documentation for ed is fully applicable to em. Em also has\na number of new commands and facilities designed to improve its\ninteraction and increase its usefulness to users at fast vdu terminals\n(such as the ITT's at QMC).\n",

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libkcompactdisc",
       extraBuildInputs: nix.thunk(() => [alsa_lib]),
     })));

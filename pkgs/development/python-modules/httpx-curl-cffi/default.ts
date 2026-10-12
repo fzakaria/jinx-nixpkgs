@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httpx-curl-cffi",
       version: "0.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "httpx_curl_cffi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-F37plo6doUJAcBeBbMP7CKsoGxNPdzqTWbakZQpsgfM=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [curl_cffi, httpx, typing_extensions]),
       pythonImportsCheck: nix.thunk(() => ["httpx_curl_cffi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Httpx transport for curl_cffi (python bindings for curl-impersonate",
         homepage: "https://pypi.org/project/httpx-curl-cffi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

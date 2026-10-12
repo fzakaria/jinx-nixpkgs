@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.24.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rasbt",
           repo: "mlxtend",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "mlxtend/evaluate/tests/test_bootstrap_point632.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of Python tools and extensions for data science",
         homepage: "https://github.com/rasbt/mlxtend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

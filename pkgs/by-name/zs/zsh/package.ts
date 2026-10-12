@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zsh",
       version: "5.9.2",
       outputs: nix.thunk(() => ["out", "doc", "info", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/zsh/zsh-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-NvpzQ3S0R4NYLOwJvNZ4IuL5ksd57BYkq1WW3weNL4E=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([autoreconfHook, perl, groff, texinfo, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linuxMinimal, yodl])))),
       buildInputs: nix.thunk(() => [ncurses, pcre2]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PCRE_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), pcre2)), "pcre2-config")),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -98,7 +98,7 @@ EOF
 `),
       postFixup: "HOST_PATH=$out/bin:$HOST_PATH patchShebangs --host $out/share/zsh/*/functions\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Z shell",
         longDescription: "Zsh is a UNIX command interpreter (shell) usable as an interactive login\nshell and as a shell script command processor.  Of the standard shells,\nzsh most closely resembles ksh but includes many enhancements.  Zsh has\ncommand line editing, builtin spelling correction, programmable command\ncompletion, shell functions (with autoloading), a history mechanism, and\na host of other features.\n",
         license: nix.thunk(() => [
@@ -119,10 +119,10 @@ EOF
         mainProgram: "zsh",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shellPath: "/bin/zsh",
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "oh-my-zsh": nix.thunk(() => nix.attr(nixosTests, "oh-my-zsh")),
         })),
       })),

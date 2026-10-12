@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.2.6";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "excimer",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wikimedia",
           repo: "mediawiki-php-excimer",
           tag: version,
           hash: "sha256-LnmhItq7OpxXXE6EnTOXZVdfo+MTa2Ud9j16rs8dTBo=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://pecl.php.net/package-changelog.php?package=excimer&release=${version}`),
         description: "PHP extension that provides an interrupting timer and a low-overhead sampling profiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

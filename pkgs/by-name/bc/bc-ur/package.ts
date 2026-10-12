@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bc-ur",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlockchainCommons",
           repo: "bc-ur",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/feather-wallet/feather/632963a9e22bf4c8bbe6b5b4d895e31bda17bafd/contrib/depends/patches/bc-ur/build-fix.patch",
             hash: "sha256-F53/z0maUGfdzJ7qjcLjTzn6+80oxu4sqfQPsDo4HZ0=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/BlockchainCommons/bc-ur",
         description: "UR reference library in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2Patent")),

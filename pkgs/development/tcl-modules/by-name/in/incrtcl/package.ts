@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "incrtcl",
       version: "4.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/incrtcl/%5BIncr%20Tcl_Tk%5D-source/3.4/itcl${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-idOs2GXP3ZY7ECtF+K9hg5REyK6sQ0qk+666gUQPjCY=",
         })))),
@@ -36,7 +36,7 @@ rmdir $out/lib/itcl${nix.sel(finalAttrs, "version")}
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook.sh", "export ITCL_LIBRARY=@out@/lib\n")),
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://incrtcl.sourceforge.net/",
         description: "Object Oriented Enhancements for Tcl/Tk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

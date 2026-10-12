@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "async-prompt";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acomagu",
           repo: "fish-async-prompt",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-HWW9191RP//48HkAHOZ7kAAAPSBKZ+BW2FfCZB36Y+g=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make your prompt asynchronous to improve the reactivity",
         homepage: "https://github.com/acomagu/fish-async-prompt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=async-prompt.ts.map

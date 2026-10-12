@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tellico",
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "office",
           repo: "tellico",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         taglib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection management software, free and simple",
         mainProgram: "tellico",
         homepage: "https://tellico-project.org/",

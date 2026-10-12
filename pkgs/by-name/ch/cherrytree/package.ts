@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const fribidi = nix.arg($, "fribidi");
   const vte = nix.arg($, "vte");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cherrytree",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "giuspen",
           repo: "cherrytree",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         vte,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hierarchical note taking application",
         mainProgram: "cherrytree",
         longDescription: "Cherrytree is an hierarchical note taking application, featuring rich\ntext, syntax highlighting and powerful search capabilities. It organizes\nall information in units called \"nodes\", as in a tree, and can be very\nuseful to store any piece of information, from tables and links to\npictures and even entire documents. All those little bits of information\nyou have scattered around your hard drive can be conveniently placed into\na Cherrytree document where you can easily find it.\n",

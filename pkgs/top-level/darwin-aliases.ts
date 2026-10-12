@@ -15,7 +15,7 @@ export default (lib) => (self) => (super$) => (pkgs) => (() => {
   const apple_sdk_12_3 = nix.thunk(() => nix.app(mkThrow, "apple_sdk_12_3"));
   const apple_sdk = apple_sdk_11_0;
   const stubs = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     apple_sdk: apple_sdk,
     apple_sdk_11_0: apple_sdk_11_0,
     apple_sdk_12_3: apple_sdk_12_3,
@@ -55,7 +55,7 @@ export default (lib) => (self) => (super$) => (pkgs) => (() => {
       "xnu",
     ]), mkThrow)));
   return nix.update(stubs, nix.app(mapAliases, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       apple_sdk_10_12: nix.thunk(() => nix.builtins.throw("darwin.apple_sdk_10_12 was removed as Nixpkgs no longer supports macOS 10.12; see the 25.05 release notes")),
       binutilsDualAs: nix.thunk(() => nix.builtins.throw("binutilsDualAs has been removed because it was only useful on `x86_64-darwin` and also only useful for the GNAT bootstrap and also not even used for that any more and actually what on earth were you using this thing for anyway?")),
       "binutilsDualAs-unwrapped": nix.thunk(() => nix.builtins.throw("binutilsDualAs has been removed because it was only useful on `x86_64-darwin` and also only useful for the GNAT bootstrap and also not even used for that any more and actually what on earth were you using this thing for anyway?")),

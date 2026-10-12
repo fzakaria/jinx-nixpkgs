@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const nccl = nix.arg($, "nccl");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "cudss",
       pname: "libcudss",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(nccl, "meta", "available"))), nix.thunk(() => ["libmpi.so.40", "libnccl.so.2"]))),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.add("cuDSS supports CUDA compute capabilities 6.0 and newer", nix.str` (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "6.0")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))),
         })),
@@ -58,7 +58,7 @@ substituteInPlace "$PWD/cudss-static-targets-release.cmake" \\
 popd >/dev/null
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of GPU-accelerated linear solvers with sparse matrices",
         longDescription: "NVIDIA cuDSS (Preview) is a library of GPU-accelerated linear solvers with sparse matrices.\n",
         homepage: "https://developer.nvidia.com/cudss",

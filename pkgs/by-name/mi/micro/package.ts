@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const withWlClipboard = nix.argOr($, "withWlClipboard", () => null);
   const withWlclip = nix.argOr($, "withWlclip", () => null);
   const self = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "micro",
       version: "2.0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "micro-editor",
           repo: "micro",
           rev: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
       preBuild: "GOOS= GOARCH= go generate ./runtime\n",
       postInstall: "installManPage assets/packaging/micro.1\ninstall -Dm444 assets/packaging/micro.desktop $out/share/applications/micro.desktop\ninstall -Dm644 assets/micro-logo-mark.svg $out/share/icons/hicolor/scalable/apps/micro.svg\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
-        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ __proto__: pos$3, micro: self })))),
+        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, micro: self })))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://micro-editor.github.io",
         changelog: "https://github.com/micro-editor/micro/releases/",
         description: "Modern and intuitive terminal-based text editor",

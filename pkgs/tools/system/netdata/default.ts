@@ -84,11 +84,11 @@ export default nix.lambda((args) => (() => {
   const withSystemdJournal = nix.argOr($, "withSystemdJournal", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const withSystemdUnits = nix.argOr($, "withSystemdUnits", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "netdata",
       version: "2.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netdata",
           repo: "netdata",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -110,9 +110,9 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./use-local-libbacktrace.patch"),
         nix.path(here, "./use-local-sqlite.patch"),
       ], nix.app(nix.sel(lib, "optional"), withCloudUi, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dashboard-v3-add.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             dashboardPath: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://web.archive.org/web/20251210212517if_/https://app.netdata.cloud/agent.tar.gz",
                 hash: "sha256-8ovYkvt324l6f0YT6wTG+Y2u7VaVqotAdssnNTtHIEk=",
               })))),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withDebug)), nix.thunk(() => nix.sel(zlib, "dev")))),
       dontStrip: nix.thunk(() => (nix.asBool(withDebug) || nix.asBool(withLibbacktrace))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDebug, "-O1 -ggdb -DNETDATA_INTERNAL_CHECKS=1")),
       })),
       postInstall: nix.thunk(() => nix.add("# Relocate one folder above.\nmv $out/usr/* $out/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`# rename this plugin so netdata will look for setuid wrapper
@@ -213,9 +213,9 @@ rm -rf $out/{var,usr,etc}
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "nd-mcp": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-nd-mcp`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -226,13 +226,13 @@ rm -rf $out/{var,usr,etc}
             subPackages: nix.thunk(() => ["."]),
             ldflags: nix.thunk(() => ["-s", "-w"]),
             meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Netdata Model Context Protocol (MCP) Integration",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))), "goModules")),
         "netdata-go-modules": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-go-plugins`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -246,7 +246,7 @@ rm -rf $out/{var,usr,etc}
               nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Netdata orchestrator for data collection modules written in Go",
               mainProgram: "godplugin",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -257,10 +257,10 @@ rm -rf $out/{var,usr,etc}
         withNetworkViewer: withNetworkViewer,
         withOtel: withOtel,
         withSystemdJournal: withSystemdJournal,
-        tests: nix.thunk(() => ({ __proto__: pos$9, netdata: nix.thunk(() => nix.sel(nixosTests, "netdata")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$9, netdata: nix.thunk(() => nix.sel(nixosTests, "netdata")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         broken: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) || nix.asBool(withEbpf))),
         description: "Real-time performance monitoring tool",
         homepage: "https://www.netdata.cloud/",
@@ -277,13 +277,13 @@ rm -rf $out/{var,usr,etc}
         })()),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(withNetflow) || nix.asBool(withOtel))) || nix.asBool(withSystemdJournal))), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         cargoDeps: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             name: "cargo-vendor-dir",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
                   version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                   src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -291,7 +291,7 @@ rm -rf $out/{var,usr,etc}
                   hash: "sha256-u8x2vYIStJQvHokHmgL0fl6kCamM2dpl81re1BxSi0Y=",
                 })))),
               nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-nd-jf`),
                   version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                   src: nix.thunk(() => nix.attr(finalAttrs, "src")),

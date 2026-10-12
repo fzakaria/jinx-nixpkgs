@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "20190124";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "compute-image-packages",
           rev: version,
@@ -48,7 +48,7 @@ substituteInPlace google_config/udev/64-gce-disk-removal.rules \\
       const postInstall = "# allows to install the package in `services.udev.packages` in NixOS\nmkdir -p $out/lib/udev/rules.d\ncp -r google_config/udev/*.rules $out/lib/udev/rules.d\n\n# sysctl snippets will be used by google-compute-config.nix\nmkdir -p $out/sysctl.d\ncp google_config/sysctl/*.conf $out/sysctl.d\n\npatchShebangs $out/bin/*\n";
       const pythonImportsCheck = nix.thunk(() => ["google_compute_engine"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Compute Engine tools and services",
         homepage: "https://github.com/GoogleCloudPlatform/compute-image-packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -59,7 +59,7 @@ substituteInPlace google_config/udev/64-gce-disk-removal.rules \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

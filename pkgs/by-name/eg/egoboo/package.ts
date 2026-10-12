@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const SDL_ttf = nix.arg($, "SDL_ttf");
   const physfs = nix.arg($, "physfs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "egoboo",
       version: "2.8.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/egoboo/egoboo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-omlBh9KKeq30yjubemxtzTuwPsjxRUNcdEu3evtfTCY=",
         })))),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [SDL]),
       buildInputs: nix.thunk(() => nix.concat([SDL, SDL_mixer, SDL_image, SDL_ttf, physfs], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGLU, libGL])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-fcommon",
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-lm")),
       })),
       buildPhase: "runHook preBuild\nmake -C src PREFIX=$out\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm755 src/game/egoboo-2.x $out/bin/egoboo\n\nmkdir -p $out/share/egoboo\ncp -r controls.txt setup.txt basicdat modules \\\n  $out/share/egoboo/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/Egoboo.app/Contents/{MacOS,Resources}\n\ninstall -Dm755 src/game/egoboo-2.x \\\n  $out/Applications/Egoboo.app/Contents/MacOS/egoboo\n\ninstall -Dm644 src/OSX/Info.plist \\\n  $out/Applications/Egoboo.app/Contents/Info.plist\n\ninstall -Dm644 src/OSX/skull.icns \\\n  $out/Applications/Egoboo.app/Contents/Resources/skull.icns\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3D dungeon crawling adventure",
         homepage: "https://egoboo.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

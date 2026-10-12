@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "django_csp",
           hash: "sha256-snAQu3Ausgo9rTKReN8rYaK4LTOLcPvcE8OjvShxKDM=",
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django]);
       const nativeCheckInputs = nix.thunk(() => [jinja2, pytest_django, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds Content-Security-Policy headers to Django",
         homepage: "https://github.com/mozilla/django-csp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

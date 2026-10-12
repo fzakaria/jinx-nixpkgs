@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "piotrbulinski",
           repo: "flexit_bacnet",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flexit_bacnet"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/piotrbulinski/flexit_bacnet/releases/tag/${version}`),
         description: "Client BACnet library for Flexit Nordic series of air handling units",
         homepage: "https://github.com/piotrbulinski/flexit_bacnet",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

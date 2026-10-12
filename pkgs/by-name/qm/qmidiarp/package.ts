@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qmidiarp",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/qmidiarp/code",
           sha256: "sha256-xTDI1QtgOOMexzFKvYWhlfpXv8uXaoD4o+G6XF8/Cw8=",
           rev: nix.thunk(() => nix.str`qmidiarp-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "qttools"))];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced MIDI arpeggiator",
         mainProgram: "qmidiarp",
         longDescription: "An advanced MIDI arpeggiator, programmable step sequencer and LFO for Linux.\nIt can hold any number of arpeggiator, sequencer, or LFO modules running in\nparallel.\n",

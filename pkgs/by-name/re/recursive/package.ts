@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "recursive";
       const version = "1.085";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/arrowtype/recursive/releases/download/v${version}/ArrowType-Recursive-${version}.zip`),
           sha256: "sha256-hnGnKnRoQN8vFStW8TjLrrTL1dWsthUEWxfaGF0b0vM=",
         }))));
       const installPhase = "install -D -t $out/share/fonts/opentype/ $(find $src -type f -name '*.otf')\ninstall -D -t $out/share/fonts/truetype/ $(find $src -type f -name '*.ttf')\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://recursive.design/",
         description: "Variable font family for code & UI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "eadwu"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

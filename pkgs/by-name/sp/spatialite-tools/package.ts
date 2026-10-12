@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spatialite-tools";
       const version = "5.1.0a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/spatialite-tools-sources/spatialite-tools-${version}.tar.gz`),
           hash: "sha256-EZ40dY6AiM27Q+2BtKbq6ojHZLC32hkAGlUUslRVAc4=",
         }))));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lm",
             "-lxml2",
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       }));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: spatialite_tools,
               command: "! spatialite_tool --version",
               version: nix.thunk(() => nix.str`${nix.sel(libspatialite, "version")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Complete sqlite3-compatible CLI front-end for libspatialite",
         homepage: "https://www.gaia-gis.it/fossil/spatialite-tools",
         license: nix.thunk(() => (() => {
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "spatialite_tool",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

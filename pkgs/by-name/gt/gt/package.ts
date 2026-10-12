@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const asciidoc = nix.arg($, "asciidoc");
   const libusbgx = nix.arg($, "libusbgx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gt",
       version: "0-unstable-2022-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-usb-gadgets",
           repo: "gt",
           rev: "7f9c45d98425a27444e49606ce3cf375e6164e8e",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, asciidoc]),
       buildInputs: nix.thunk(() => [bash_completion, libconfig, libusbgx]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux command line tool for setting up USB gadgets using configfs",
         homepage: "https://github.com/linux-usb-gadgets/gt",
         mainProgram: "gt",

@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const checkPhaseThreadLimitHook = nix.arg($, "checkPhaseThreadLimitHook");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(ompdGdbSupport) || nix.asBool(ompdSupport))), "OMPD GDB support requires OMPD support!"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/llvm/common/openmp/default.nix:25:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openmp",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`openmp-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -64,7 +64,7 @@ cp -r ${monorepoSrc}/openmp "$out"
       preCheck: "patchShebangs ../tools/archer/tests/deflake.bash\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://openmp.llvm.org/",
         description: "Support for the OpenMP language",
         longDescription: "The OpenMP subproject of LLVM contains the components required to build an\nexecutable OpenMP program that are outside the compiler itself.\nContains the code for the runtime library against which code compiled by\n\"clang -fopenmp\" must be linked before it can run and the library that\nsupports offload to target devices.\n",

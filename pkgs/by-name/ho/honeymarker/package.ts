@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "honeymarker",
       version: "0.2.12",
       vendorHash: "sha256-jtDjy8Y2S5/Ujtv+dtoRZ4SP66sSP7yer97fwdNZEpg=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "honeycombio",
           repo: "honeymarker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-28NCAtx3MHlwm44IUlI0DzUaycH9cPN8ZdEhhQtdciU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple CRUD interface for dealing with per-dataset markers on honeycomb.io",
         homepage: "https://honeycomb.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

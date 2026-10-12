@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fst",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: "fst-bin",
           hash: "sha256-x2rvLMOhatMWU2u5GAdpYy2uuwZLi3apoE6aaTF+M1g=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "csv=\"$(mktemp)\"\nfst=\"$(mktemp)\"\nprintf \"abc,1\\nabcd,1\" > \"$csv\"\n$out/bin/fst map \"$csv\" \"$fst\" --force\n$out/bin/fst fuzzy \"$fst\" 'abc'\n$out/bin/fst --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Represent large sets and maps compactly with finite state transducers",
         mainProgram: "fst",
         homepage: "https://github.com/BurntSushi/fst",

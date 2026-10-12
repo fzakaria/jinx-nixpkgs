@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "throne"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "nekoray"]), nix.thunk(() => ["programs", "throne"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         throne: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Throne, a GUI proxy configuration manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "throne", nix.thunk(() => ({})))),
           tunMode: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TUN mode of Throne")),
             setuid: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "setting suid bit for ThroneCore to run as root, which is less\nsecure than default setcap method but closer to upstream assumptions.\nEnable this if you find the default setcap method configured in\nthis module doesn't work for you\n")),
           })),
@@ -44,17 +44,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ThroneCore: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tunMode", "enable")), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/throne/ThroneCore`),
                 owner: "root",
                 group: "root",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           polkit: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "tunMode", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "tunMode", "setuid"))))) && nix.asBool(nix.sel(config, "services", "resolved", "enable")))), nix.thunk(() => nix.str`polkit.addRule(function(action, subject) {
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aleksana"))];

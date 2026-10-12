@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "redis-app",
       version: "2.3.2",
       zipHash: "sha256-HncZBj0FCku7DRTCDigY2aH2oBScDg7d9XL7ixm7DOM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Redis Application plugin for Grafana",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],

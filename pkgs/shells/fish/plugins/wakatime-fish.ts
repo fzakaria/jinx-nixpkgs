@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wakatime-fish";
       const version = "0.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ik11235",
           repo: "wakatime.fish",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "(type -p wakatime)" "${nix.app(nix.sel(lib, "getExe"), wakatime_cli)}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish plugin for wakatime",
         homepage: "https://github.com/ik11235/wakatime.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ocfox"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, preFixup, meta };
+      return { [nix.POS]: pos$3, pname, version, src, preFixup, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=wakatime-fish.ts.map

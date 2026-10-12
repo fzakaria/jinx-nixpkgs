@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   })());
   const flashBinaries = nix.thunk(() => nix.concat(["lib/hidflash/hid-flash", "lib/rp2040_flash/rp2040_flash"], nix.app(nix.sel(lib, "optional"), needsBossac, "lib/bossac/bin/bossac")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`klipper-firmware-${mcu}`),
       version: nix.thunk(() => nix.sel(klipper, "version")),
       src: nix.thunk(() => nix.sel(klipper, "src")),
@@ -87,14 +87,14 @@ rmdir $out/lib 2>/dev/null || echo "Flash binaries exist, not cleaning up lib/"
 `),
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         makeFlasher: nix.lambda((args_2) => (() => {
           const $_1 = nix.formals(args_2, formals$2);
           const flashDevice = nix.argOr($_1, "flashDevice", () => null);
           const canbusNetwork = nix.argOr($_1, "canbusNetwork", () => null);
           const canbusDevice = nix.argOr($_1, "canbusDevice", () => null);
           return nix.app(nix.sel(klipper_flash, "override"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "klipper-firmware": nix.thunk(() => nix.app(nix.sel(klipper_firmware, "override"), args_1)),
               klipper: klipper,
               firmwareConfig: firmwareConfig,
@@ -108,7 +108,7 @@ rmdir $out/lib 2>/dev/null || echo "Flash binaries exist, not cleaning up lib/"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(klipper, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Firmware part of Klipper",

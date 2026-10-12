@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keepkey",
           repo: "python-keepkey",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postPatch = "sed -i -e 's|hidapi==|hidapi>=|' setup.py";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KeepKey Python client",
         mainProgram: "keepkeyctl",
         homepage: "https://github.com/keepkey/python-keepkey",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

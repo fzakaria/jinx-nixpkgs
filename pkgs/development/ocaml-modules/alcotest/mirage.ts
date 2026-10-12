@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mirage_clock = nix.arg($, "mirage-clock");
   const duration = nix.arg($, "duration");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "alcotest-mirage",
       version: nix.thunk(() => nix.attr(alcotest, "version")),
       src: nix.thunk(() => nix.attr(alcotest, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [alcotest, lwt, logs, mirage_clock, duration]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(alcotest, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mirage implementation for Alcotest",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

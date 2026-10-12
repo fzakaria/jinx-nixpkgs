@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "btrbk",
       version: "0.32.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://digint.ch/download/btrbk/releases/btrbk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "f1PPVaAHVwyd5aHE+UbKc3L61eBXyLHJ16/CF2zDLNM=",
         })))),
@@ -63,22 +63,22 @@ substituteInPlace ssh_filter_btrbk.sh --replace logger ${util_linux}/bin/logger
   --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [btrfs_progs, bash, mbuffer, openssh]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           btrbk: nix.thunk(() => nix.attr(nixosTests, "btrbk")),
           "btrbk-no-timer": nix.thunk(() => nix.attr(nixosTests, "btrbk-no-timer")),
           "btrbk-section-order": nix.thunk(() => nix.attr(nixosTests, "btrbk-section-order")),
           "btrbk-doas": nix.thunk(() => nix.attr(nixosTests, "btrbk-doas")),
         })),
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             versionLister: nix.thunk(() => nix.app(writeShellScript, "btrbk-versionLister", nix.thunk(() => nix.str`${curl}/bin/curl -s https://digint.ch/download/btrbk/releases/ | ${perl}/bin/perl -lne 'print $1 if /btrbk-([0-9.]*)\\.tar/'
 `))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Backup tool for btrfs subvolumes",
         homepage: "https://digint.ch/btrbk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

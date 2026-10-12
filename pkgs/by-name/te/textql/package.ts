@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "textql",
       version: "unstable-2021-07-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dinedal",
           repo: "textql",
           rev: "fca00ecc76c8d9891b195ad2c1359d39f0213604",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jawn-smith/textql/commit/a0d7038c8c30671dfd618f47322814ab492c11a1.patch",
             sha256: "1yjdbwipjxxhfcqlj1z6ngsm7dr8gfp4l61jynn2iw7f02cn1yck",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [sqlite]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Execute SQL against structured text like CSV or TSV",
         mainProgram: "textql",
         homepage: "https://github.com/dinedal/textql",

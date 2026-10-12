@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spmd-types",
       version: "0.2.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meta-pytorch",
           repo: "spmd_types",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "test_strict_unknown_group_output_raises",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_context_form_rejects_types"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type system for distributed training code, based off of JAX's sharding in types, but adapted for the PyTorch ecosystem",
         homepage: "https://github.com/meta-pytorch/spmd_types",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/spmd_types/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

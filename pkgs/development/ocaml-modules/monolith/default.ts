@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pprint = nix.arg($, "pprint");
   const version = nix.argOr($, "version", () => "20250922");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "monolith",
       version: version,
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "fpottier",
           repo: "monolith",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [afl_persistent, pprint]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Facilities for testing an OCaml library",
         homepage: "https://cambium.inria.fr/~fpottier/monolith/doc/monolith/Monolith/index.html",
         changelog: nix.thunk(() => nix.str`https://gitlab.inria.fr/fpottier/monolith/-/raw/${version}/CHANGES.md`),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nodejs_22 = nix.arg($, "nodejs_22");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "legends-viewer-frontend",
       version: version,
       src: src,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd \"./LegendsViewer.Frontend/legends-viewer-frontend\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r ./dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Recreates Dwarf Fortress' Legends Mode from exported files",
         homepage: "https://github.com/Kromtec/LegendsViewer-Next",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

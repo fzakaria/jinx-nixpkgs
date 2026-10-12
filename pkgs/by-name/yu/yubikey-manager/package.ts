@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubikey-manager",
           tag: version,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://developers.yubico.com/yubikey-manager",
         changelog: nix.thunk(() => nix.str`https://github.com/Yubico/yubikey-manager/releases/tag/${nix.sel(src, "tag")}`),
         description: "Command line tool for configuring any YubiKey over all USB transports",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ykman",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0-unstable-2025-12-28";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NixOS",
           repo: "nixops",
           rev: "fd4b8031dbaf753545188b7c380194e47604dbac",
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
       const postInstall = "doc_cache=$(mktemp -d)\nsphinx-build -b man -d $doc_cache doc/ $out/share/man/man1\n\nhtml=$(mktemp -d)\nsphinx-build -b html -d $doc_cache doc/ $out/share/nixops/doc\n";
       const pythonImportsCheck = nix.thunk(() => ["nixops"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nixos: nix.thunk(() => nix.sel(nixosTests, "nixops", "unstable")),
         })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "v" })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for deploying to NixOS machines in a network or cloud",
         homepage: "https://github.com/NixOS/nixops",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nixops",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

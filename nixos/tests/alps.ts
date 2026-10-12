@@ -40,10 +40,10 @@ export default nix.lambda((args) => (() => {
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   const port = 1323n;
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     name: "alps",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -53,37 +53,37 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           security: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pki: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${domain}
 `),
-            firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [25n, 465n, 993n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [25n, 465n, 993n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             postfix: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               enableSubmission: true,
               enableSubmissions: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 main: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   smtp_tls_CAfile: nix.thunk(() => nix.str`${nix.sel(certs, "ca", "cert")}`),
                   smtpd_tls_chain_files: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "key")}`),
@@ -93,16 +93,16 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dovecot2: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               enablePAM: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 dovecot_config_version: "2.4.3",
                 dovecot_storage_version: nix.thunk(() => nix.sel(config, "services", "dovecot2", "package", "version")),
                 mail_driver: "maildir",
                 mail_path: "~/mail",
-                protocols: nix.thunk(() => ({ __proto__: pos$9, imap: true })),
+                protocols: nix.thunk(() => ({ [nix.POS]: pos$9, imap: true })),
                 ssl_server_ca_file: nix.thunk(() => nix.str`${nix.sel(certs, "ca", "cert")}`),
                 ssl_server_cert_file: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "cert")}`),
                 ssl_server_key_file: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "key")}`),
@@ -116,41 +116,41 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           security: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             pki: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             alps: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 server: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   addr: nix.thunk(() => nix.str`:${nix.builtins.toString(port)}`),
                 })),
                 provider: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: "imap",
-                  imap: nix.thunk(() => ({ __proto__: pos$18, server: nix.thunk(() => nix.str`imaps://${domain}:993`) })),
+                  imap: nix.thunk(() => ({ [nix.POS]: pos$18, server: nix.thunk(() => nix.str`imaps://${domain}:993`) })),
                 })),
-                smtp: nix.thunk(() => ({ __proto__: pos$20, server: nix.thunk(() => nix.str`smtps://${domain}:465`) })),
+                smtp: nix.thunk(() => ({ [nix.POS]: pos$20, server: nix.thunk(() => nix.str`smtps://${domain}:465`) })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-alps-login", nix.thunk(() => ({})), nix.thunk(() => nix.str`from urllib.request import build_opener, HTTPCookieProcessor, Request
 from urllib.parse import urljoin

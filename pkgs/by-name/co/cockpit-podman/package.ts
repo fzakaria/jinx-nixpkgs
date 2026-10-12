@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const podman = nix.arg($, "podman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cockpit-podman",
       version: "131",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cockpit-project",
           repo: "cockpit-podman",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
       cockpitSrc: nix.thunk(() => nix.sel(cockpit, "src")),
       postPatch: "mkdir -p pkg; cp -r $cockpitSrc/pkg/lib pkg\nmkdir -p test; cp -r $cockpitSrc/test/common test\n\nsubstituteInPlace Makefile \\\n  --replace-fail '$(MAKE) package-lock.json' 'true' \\\n  --replace-fail '$(COCKPIT_REPO_FILES) | tar x' \"\" \\\n  --replace-fail '/usr/local' \"$out\"\n\nsubstituteInPlace src/manifest.json \\\n  --replace-fail '\"/lib/systemd' '\"/run/current-system/sw/lib/systemd'\n\npatchShebangs build.js\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         cockpitPath: nix.thunk(() => [podman]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cockpit UI for podman containers",
         homepage: "https://github.com/cockpit-project/cockpit-podman",
         changelog: nix.thunk(() => nix.str`https://github.com/cockpit-project/cockpit-podman/releases/tag/${nix.sel(finalAttrs, "version")}`),

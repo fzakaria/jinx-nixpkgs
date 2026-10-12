@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const sqlite = nix.arg($, "sqlite");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
-  const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ __proto__: pos$1, doInstallCheck: false })));
+  const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, doInstallCheck: false })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kyua",
       version: "0.13-unstable-2024-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "freebsd",
           repo: "kyua",
           rev: "c85354e09ad93a902c9e8a701c042c045ec2a5b7",
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [sqlite]),
       installCheckPhase: "runHook preInstallCheck\nHOME=$TMPDIR PATH=$out/bin:$PATH kyua test\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "kyua-" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "kyua-" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Testing framework for infrastructure software",
         homepage: "https://github.com/freebsd/kyua/",
         changelog: "https://github.com/freebsd/kyua/blob/master/NEWS.md",

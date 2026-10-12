@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const pnpm = pnpm_11;
   const matrix_js_sdk = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "matrix-js-sdk",
       version: "42.3.0-rc.0-unstable-2026-08-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-org",
           repo: "matrix-js-sdk",
           rev: "24929be0e741be6a5d0a7226f1c682e245263b8a",
           hash: "sha256-RCGrdF6S+b0uRYFIt2YJ5FjXoyh6zvQyIHovL8SXySE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r src $out/\ncp -r lib $out/\ncp package.json $out/\n\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "element-call",
       version: "0.26.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "element-hq",
           repo: "element-call",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-S47A3l5IEKia06iUqgVo6gWkBLR8ncckNHKvlf591g4=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,9 +78,9 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r dist/* $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           build: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`test -f ${nix.sel(finalAttrs, "finalPackage")}/index.html
 test -d ${nix.sel(finalAttrs, "finalPackage")}/assets
 touch $out
@@ -89,7 +89,7 @@ touch $out
         "matrix-js-sdk": nix.thunk(() => nix.attr(finalAttrs, "matrix-js-sdk")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/element-hq/element-call/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/element-hq/element-call",
         description: "Matrix client for group calls on the web",

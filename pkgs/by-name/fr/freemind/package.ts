@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "freemind",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/freemind/freemind-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-AYKFEmsn6uc5K4w7+1E/Jb1wuZB0QOXrggnyC0+9hhk=",
         })))),
       nativeBuildInputs: nix.thunk(() => [ant, jdk8, makeWrapper, stripJavaArchivesHook]),
       postPatch: "# disable the <buildnumer> task because it would edit version.properties\n# and add a \"last edited\" header to it, which is non-deterministic\nsed -i  '/<buildnumber/d' build.xml\n\n# replace dependency on `which`\nsubstituteInPlace freemind.sh \\\n    --replace-fail \"which\" \"type -p\"\n",
       preConfigure: "chmod +x *.sh\npatchShebangs *.sh\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, JAVA_TOOL_OPTIONS: "-Dfile.encoding=UTF8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JAVA_TOOL_OPTIONS: "-Dfile.encoding=UTF8" })),
       buildPhase: "runHook preBuild\nant build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nant dist -Ddist=$out/share/freemind\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`makeWrapper $out/share/freemind/freemind.sh $out/bin/freemind \\
     --set JAVA_HOME ${jre8}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mind-mapping software",
         homepage: "https://freemind.sourceforge.net/wiki/index.php/Main_Page",
         mainProgram: "freemind",

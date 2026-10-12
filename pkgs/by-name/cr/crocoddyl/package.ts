@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const withMultithread = nix.argOr($, "withMultithread", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "crocoddyl",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "loco-3d",
           repo: "crocoddyl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_PYTHON_INTERFACE", false)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_WITH_MULTITHREADS", withMultithread)),
       ])),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, withMultithread: withMultithread })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, withMultithread: withMultithread })),
       prePatch: nix.thunk(() => nix.str`substituteInPlace \\
   examples/CMakeLists.txt \\
   examples/log/check_logfiles.sh \\
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Crocoddyl optimal control library",
         homepage: "https://github.com/loco-3d/crocoddyl",
         changelog: "https://github.com/loco-3d/crocoddyl/blob/devel/CHANGELOG.md",

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xwallpaper",
       version: "0.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stoeckmann",
           repo: "xwallpaper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pixman, libxcb_image, libxcb_util, libseccomp, libjpeg, libpng, libxpm]),
       postInstall: "installShellCompletion --zsh _xwallpaper\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/stoeckmann/xwallpaper",
         description: "Utility for setting wallpapers in X",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

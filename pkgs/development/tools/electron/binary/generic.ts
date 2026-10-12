@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
   return (version) => (hashes) => (() => {
     const pname = "electron";
     const meta = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "Cross platform desktop application shell",
       homepage: "https://github.com/electron/electron",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -74,18 +74,18 @@ export default nix.lambda((args) => (() => {
       knownVulnerabilities: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "42.0.0")), nix.thunk(() => nix.str`Electron version ${version} is EOL`))),
     }));
     const fetcher = (vers) => (tag) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/electron/electron/releases/download/v${vers}/electron-v${vers}-${tag}.zip`),
         sha256: hash,
       })));
     const headersFetcher = (vers) => (hash) => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`electron-${vers}-headers`),
         url: nix.thunk(() => nix.str`https://artifacts.electronjs.org/headers/dist/v${vers}/node-v${vers}-headers.tar.gz`),
         sha256: hash,
       })));
     const tags = nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "x86_64-linux": "linux-x64",
       "armv7l-linux": "linux-armv7l",
       "aarch64-linux": "linux-arm64",
@@ -93,13 +93,13 @@ export default nix.lambda((args) => (() => {
     }));
     const get = (as) => (platform) => nix.selOr(as, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(platform, "system")}`)), nix.key(nix.sel(platform, "system")));
     const common = (platform) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetcher, version, nix.thunk(() => nix.app(get, tags, platform)), nix.thunk(() => nix.app(get, hashes, platform)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         headers: nix.thunk(() => nix.app(headersFetcher, version, nix.thunk(() => nix.sel(hashes, "headers")))),
       })),
     });
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
         vulkan_loader,
       ])));
     const linux = (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       buildInputs: nix.thunk(() => [glib, gtk3, gtk4]),
       nativeBuildInputs: nix.thunk(() => [unzip, makeWrapper, wrapGAppsHook3]),
       dontUnpack: true,
@@ -165,18 +165,18 @@ patchelf \\
   $out/libexec/electron/lib*GL*
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         dist: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/libexec/electron")),
       })),
       __structuredAttrs: true,
       strictDeps: true,
     });
     const darwin = (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       buildCommand: "mkdir -p $out/Applications\nunzip $src\nmv Electron.app $out/Applications\nmkdir -p $out/bin\nmakeWrapper $out/Applications/Electron.app/Contents/MacOS/Electron $out/bin/electron\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         dist: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/Applications")),
       })),
     });

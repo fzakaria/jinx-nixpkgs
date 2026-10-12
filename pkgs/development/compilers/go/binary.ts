@@ -20,10 +20,10 @@ export default nix.lambda((args) => (() => {
     return nix.str`${nix.lookup(w, "GOOS")}-${(nix.asBool(nix.eq(nix.lookup(w, "GOARCH"), "arm")) ? "armv6l" : nix.force(nix.lookup(w, "GOARCH")))}`;
   })());
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`go-${version}-${platform}-bootstrap`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://go.dev/dl/go${version}.${platform}.tar.gz`),
           sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Missing Go bootstrap hash for platform ${platform}`)), nix.key(nix.force(platform)))),
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/share/go $out/bin\ncp -r . $out/share/go\nln -s $out/share/go/bin/go $out/bin/go\nrunHook postInstall\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sourceProvenance: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w_1, "binaryNativeCode"))];

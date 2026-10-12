@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   nix.assert_((!nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) || nix.asBool(!nix.eq(zlib, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libpng12/package.nix:9:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libpng",
       version: "1.2.59",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libpng/libpng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tGNfFbitzMitCTTupIXvWcxMriTQ8DAKmpQeUZdP/Mc=",
         })))),
@@ -32,15 +32,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-static"]),
       postInstall: "mv \"$out/bin\" \"$dev/bin\"",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         zlib: zlib,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official reference implementation for the PNG file format",
         homepage: "http://www.libpng.org/pub/png/libpng.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "libpng")),

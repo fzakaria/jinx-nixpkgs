@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wikidiff2";
       const version = "1.14.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wikimedia",
           repo: "mediawiki-php-wikidiff2",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [libthai]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP extension which formats changes between two input texts, producing HTML or JSON",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://www.mediawiki.org/wiki/Wikidiff2",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "georgyo"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

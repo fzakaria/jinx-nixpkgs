@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elm-language-server",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elm-tooling",
           repo: "elm-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "compile",
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/elm-tooling/elm-language-server/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Language server implementation for Elm",
         mainProgram: "elm-language-server",

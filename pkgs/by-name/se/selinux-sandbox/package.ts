@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const libselinux = nix.arg($, "libselinux");
   const setools = nix.arg($, "setools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "selinux-sandbox",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(policycoreutils, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/selinux-sandbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MnxiXev62tCi1Ek6PP7ZhS9GA5AhQrLLWHV1Z/LeOt8=",
         })))),
@@ -81,7 +81,7 @@ patchShebangs --host sandboxX.sh sandbox start sandbox.init
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(selinux_python, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "sandbox",
         description: "SELinux sandbox utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

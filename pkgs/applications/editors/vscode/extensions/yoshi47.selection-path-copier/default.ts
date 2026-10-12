@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "yoshi47",
         name: "selection-path-copier",
         version: "1.6.0",
         hash: "sha256-KnV9WariqK3GMjoQARtamxriBkL0Pi9y7+fhfwObCWE=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Copy file paths with line numbers, code snippets, and GitHub permalinks in multiple formats",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=yoshi47.selection-path-copier",
         homepage: "https://github.com/yoshi47/selection-path-copier",

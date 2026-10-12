@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const premake4 = nix.arg($, "premake4");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bootil",
       version: "0-unstable-2019-11-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garrynewman",
           repo: "bootil",
           rev: "beb4cec8ad29533965491b767b177dc549e62d23",
@@ -39,7 +39,7 @@ cp -r ${nix.sel(zlib, "dev")}/include/z{conf,lib}.h src/3rdParty/zlib
       premakefile: "projects/premake4.lua",
       installPhase: "install -D libbootil_static.a $out/lib/libbootil_static.a\ncp -r include $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Garry Newman's personal utility library",
         homepage: "https://github.com/garrynewman/bootil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

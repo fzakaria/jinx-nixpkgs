@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ansicolors",
       version: "1.1.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "zip",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "py.test\n",
       pythonImportsCheck: nix.thunk(() => ["colors"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/verigak/colors/",
         changelog: nix.thunk(() => nix.str`https://pypi.org/project/ansicolors/${nix.sel(finalAttrs, "version")}/`),
         description: "ANSI colors for Python",

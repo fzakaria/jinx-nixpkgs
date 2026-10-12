@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libkvm = nix.arg($, "libkvm");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libmemstat",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       noLibc: true,

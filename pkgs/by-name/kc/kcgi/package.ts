@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.8";
       const underscoreVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kristapsdz",
           repo: "kcgi",
           rev: nix.thunk(() => nix.str`VERSION_${underscoreVersion}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dontAddPrefix = true;
       const installFlags = nix.thunk(() => ["DESTDIR=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://kristaps.bsd.lv/kcgi",
         description: "Minimal CGI and FastCGI library for C/C++",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kfcgi",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         underscoreVersion,

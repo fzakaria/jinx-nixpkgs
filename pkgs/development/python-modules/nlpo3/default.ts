@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyThaiNLP",
           repo: "nlpo3",
           tag: nix.thunk(() => nix.str`nlpo3-python-v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace tests/test_tokenize.py \\\n  --replace-fail \"data/test_dict.txt\" \"$src/nlpo3-python/tests/data/test_dict.txt\"\n";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/nlpo3-python`);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           sourceRoot: sourceRoot,
           hash: "sha256-Kp2FL6GXb5g5jqvFWZxZUy7OuGaavN9DZkp9kdI4d/4=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "tests", "-v"]);
       const pythonImportsCheck = nix.thunk(() => ["nlpo3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Thai Natural Language Processing library in Rust, with Python and Node bindings",
         homepage: "https://github.com/PyThaiNLP/nlpo3",
         changelog: nix.thunk(() => nix.str`https://github.com/PyThaiNLP/nlpo3/releases/tag/${nix.sel(src, "tag")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

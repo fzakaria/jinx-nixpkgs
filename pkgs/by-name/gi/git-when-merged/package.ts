@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-when-merged",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhagger",
           repo: "git-when-merged",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "install -D --target-directory $out/bin/ bin/git-when-merged\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helps you figure out when and why a commit was merged into a branch",
         longDescription: "If you use standard Git workflows, then you create a feature\nbranch for each feature that you are working on. When the feature\nis complete, you merge it into your master branch. You might even\nhave sub-feature branches that are merged into a feature branch\nbefore the latter is merged.\n\nIn such a workflow, the first-parent history of master consists\nmainly of merges of feature branches into the mainline. git\nwhen-merged can be used to ask, \"When (and why) was commit C\nmerged into the current branch?\"\n",
         homepage: "https://github.com/mhagger/git-when-merged",

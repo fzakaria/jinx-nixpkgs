@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
   })();
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kresd.conf", nix.thunk(() => nix.add(nix.add(nix.add(nix.add("", nix.app(nix.sel(lib, "concatMapStrings"), nix.thunk(() => nix.app(mkListen, "dns")), nix.thunk(() => nix.sel(cfg, "listenPlain")))), nix.app(nix.sel(lib, "concatMapStrings"), nix.thunk(() => nix.app(mkListen, "tls")), nix.thunk(() => nix.sel(cfg, "listenTLS")))), nix.app(nix.sel(lib, "concatMapStrings"), nix.thunk(() => nix.app(mkListen, "doh2")), nix.thunk(() => nix.sel(cfg, "listenDoH")))), nix.sel(cfg, "extraConfig")))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vcunat"))]),
     })),
     imports: nix.thunk(() => [
@@ -64,29 +64,29 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kresd", "cacheDir"]), "Please use (bind-)mounting instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         kresd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable knot-resolver (version 5) domain name server.\nDNSSEC validation is turned on by default.\nYou can run `kresd-cli 1` and give commands interactively to kresd@1.service.\nIf you want to user knot-resolver 6, please use services.knot-resolver.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "knot-resolver_5", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               example: "knot-resolver_5.override { extraFeatures = true; }",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to be added verbatim to the generated configuration file.\nSee upstream documentation <https://www.knot-resolver.cz/documentation/stable/config-overview.html> for more details.\n",
             })))),
           listenPlain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
               description: "What addresses and ports the server should listen on.\nFor detailed syntax see ListenStream in {manpage}`systemd.socket(5)`.\n",
             })))),
           listenTLS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
               description: "Addresses and ports on which kresd should provide DNS over TLS (see RFC 7858).\nFor detailed syntax see ListenStream in {manpage}`systemd.socket(5)`.\n",
             })))),
           listenDoH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
               description: "Addresses and ports on which kresd should provide DNS over HTTPS/2 (see RFC 8484).\nFor detailed syntax see ListenStream in {manpage}`systemd.socket(5)`.\n",
             })))),
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 1n,
               description: "The number of instances to start.  They will be called kresd@{1,2,...}.service.\nKnot Resolver uses no threads, so this is the way to scale.\nYou can dynamically start/stop them at will, so this is just system default.\n",
@@ -125,19 +125,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "6.0.0")),
             message: "services.kresd only works with knot-resolver 5.\nPlease use services.knot-resolver for knot-resolver 6 and newer.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
-            "knot-resolver/kresd.conf": nix.thunk(() => ({ __proto__: pos$13, source: configFile })),
+            [nix.POS]: pos$14,
+            "knot-resolver/kresd.conf": nix.thunk(() => ({ [nix.POS]: pos$13, source: configFile })),
           })),
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "kresd-cli", nix.thunk(() => nix.str`if [[ \${1:-} == -h || \${1:-} == --help ]]; then
@@ -156,42 +156,42 @@ $exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "socat")))
           ]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           resolvconf: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             useLocalResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "knot-resolver": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               isSystemUser: true,
               group: "knot-resolver",
               description: "Knot-resolver daemon user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$20, "knot-resolver": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$20, "knot-resolver": nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           targets: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             kresd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.concat(["kres-cache-gc.service"], nix.builtins.map((i) => nix.str`kresd@${nix.builtins.toString(i)}.service`, nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.sel(cfg, "instances"))))))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "kresd@": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "package")}/bin/kresd --noninteractive `, nix.str`-c ${nix.sel(cfg, "package")}/lib/knot-resolver/distro-preconfig.lua -c ${configFile}`)),
                 RuntimeDirectory: "knot-resolver",
                 RuntimeDirectoryMode: "0770",

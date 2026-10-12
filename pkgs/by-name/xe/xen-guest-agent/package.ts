@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xen = nix.arg($, "xen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xen-guest-agent",
       version: "0.4.0-unstable-2024-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xen-project",
           repo: "xen-guest-agent",
           rev: "03aaadbe030f303b1503e172ee2abb6d0cab7ac6",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir --parents $out/lib/systemd/system\ncp $src/startup/xen-guest-agent.service $out/lib/systemd/system\nsubstituteInPlace $out/lib/systemd/system/xen-guest-agent.service \\\n  --replace-fail \"/usr/sbin/xen-guest-agent\" \"$out/bin/xen-guest-agent\"\n",
       postFixup: nix.thunk(() => nix.str`patchelf $out/bin/xen-guest-agent --add-rpath ${xen}/lib`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Xen agent running in Linux/BSDs (POSIX) VMs",
         homepage: "https://gitlab.com/xen-project/xen-guest-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

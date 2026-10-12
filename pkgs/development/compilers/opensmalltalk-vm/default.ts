@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
     const configureFlagsArray = nix.arg($_1, "configureFlagsArray");
     const configureFlags = nix.arg($_1, "configureFlags");
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "OpenSmalltalk",
         repo: "opensmalltalk-vm",
         tag: "202206021410",
         hash: "sha256-QqElPiJuqD5svFjWrLz1zL0Tf+pHxQ2fPvkVRn2lyBI=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => (() => {
           const vmNameNoDots = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), vmName));
           return nix.str`opensmalltalk-vm-${platformDir}-${vmNameNoDots}`;
@@ -96,7 +96,7 @@ configureFlagsArray=${configureFlagsArray}
         ]),
         postInstall: "rm \"$out/squeak\"\ncd \"$out/bin\"\nBIN=\"$(find ../lib -type f -name squeak)\"\nfor f in $(find . -type f); do\n  rm \"$f\"\n  ln -s \"$BIN\" \"$f\"\ndone\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Cross-platform virtual machine for Squeak, Pharo, Cuis, and Newspeak",
           mainProgram: scriptName,
           homepage: "https://opensmalltalk.org/",
@@ -110,11 +110,11 @@ configureFlagsArray=${configureFlagsArray}
       })));
   })(), formals$2);
   const vmsByPlatform = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "squeak-cog-spur": nix.thunk(() => nix.app(buildVM, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           platformDir: "linux64ARMv8",
           vmName: "squeak.cog.spur",
           scriptName: "squeak",
@@ -127,7 +127,7 @@ configureFlagsArray=${configureFlagsArray}
           ]),
         })))),
       "squeak-stack-spur": nix.thunk(() => nix.app(buildVM, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           platformDir: "linux64ARMv8",
           vmName: "squeak.stack.spur",
           scriptName: "squeak",
@@ -141,9 +141,9 @@ configureFlagsArray=${configureFlagsArray}
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       "newspeak-cog-spur": nix.thunk(() => nix.app(buildVM, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           platformDir: "linux64x64",
           vmName: "newspeak.cog.spur",
           scriptName: "newspeak",
@@ -156,7 +156,7 @@ configureFlagsArray=${configureFlagsArray}
           ]),
         })))),
       "squeak-cog-spur": nix.thunk(() => nix.app(buildVM, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           platformDir: "linux64x64",
           vmName: "squeak.cog.spur",
           scriptName: "squeak",

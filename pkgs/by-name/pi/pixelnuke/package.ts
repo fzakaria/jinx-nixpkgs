@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glew = nix.arg($, "glew");
   const glfw = nix.arg($, "glfw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pixelnuke",
       version: "0-unstable-2019-05-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "defnull",
           repo: "pixelflut",
           rev: "3458157a242ba1789de7ce308480f4e1cbacc916",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libevent, glew, glfw]),
       installPhase: "install -Dm755 ./pixelnuke $out/bin/pixelnuke\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiplayer canvas (C implementation)",
         homepage: "https://cccgoe.de/wiki/Pixelflut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

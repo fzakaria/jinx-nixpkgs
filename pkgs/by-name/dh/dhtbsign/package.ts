@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dhtbsign",
       version: "0-unstable-2022-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osm0sis",
           repo: "dhtbsign",
           rev: "2b2711dff153485c549240423d9c908a2912f4b2",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=stringop-overflow"]))))),
       })),
       makeFlags: nix.thunk(() => [
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -Dm555 dhtbsign -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/osm0sis/dhtbsign",
         description: "Tool to write the DHTB header for Samsung Spreadtrum devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

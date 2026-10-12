@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const clang_unwrapped = nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "scan-build-py",
       version: nix.thunk(() => nix.attr(clang_unwrapped, "version")),
       pyproject: false,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [clang_unwrapped]))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "intercepts the build process to generate a compilation database",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${nix.sel(finalAttrs, "version")}/clang/tools/scan-build-py/`),
         mainProgram: "scan-build-py",

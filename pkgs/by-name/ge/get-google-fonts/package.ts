@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "get-google-fonts",
       version: "1.2.2-unstable-2020-06-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MrMaxie",
           repo: "get-google-fonts",
           rev: "2f8b15f6d7072533ca2ad5e0b74ccf28a313e8c8",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/MrMaxie/get-google-fonts/commit/f2c818fc7c9ee228db020305f432fd08eda7dc5f.patch",
             hash: "sha256-BszZdAZWpnkNETKYvSElg0lCjgcP7BNeXfMvePKAio4=",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-VUphB0Qq94rlcGrrsO2Nat/bD2IZTtdevGKsXFu/YdQ=",
       dontBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Downloads and adapts Google fonts to working offline",
         mainProgram: "get-google-fonts",
         homepage: "https://github.com/MrMaxie/get-google-fonts",

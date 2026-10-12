@@ -46,37 +46,37 @@ export default nix.lambda((args) => (() => {
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "settings.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const configsArg = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat([settingsFile], nix.app(nix.sel(lib, "imap0"), (i) => (_) => nix.str`%d/config-${nix.builtins.toString(i)}.yml`, nix.thunk(() => nix.sel(cfg, "extraConfigFiles")))))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           "alertmanager-ntfy": nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "alertmanager-ntfy")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "alertmanager-ntfy", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "Configuration of alertmanager-ntfy.\nSee <https://github.com/alexbakker/alertmanager-ntfy> for more information.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       http: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The address to listen on.",
                             default: "127.0.0.1:8000",
@@ -84,41 +84,41 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       ntfy: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         baseurl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The base URL of the ntfy.sh instance.",
                             example: "https://ntfy.sh",
                           })))),
                         notification: nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           topic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "__Note:__ when using ntfy.sh and other public instances\nit is recommended to set this option to an empty string and set the actual topic via\n[](#opt-services.prometheus.alertmanager-ntfy.extraConfigFiles) since\nthe `topic` in `ntfy.sh` is essentially a password.\n\nThe topic to which alerts should be published.\nCan either be a hardcoded string or a gval expression that evaluates to a string.\n",
                               example: "alertmanager",
                             })))),
                           priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The ntfy.sh message priority (see <https://docs.ntfy.sh/publish/#message-priority> for more information).\nCan either be a hardcoded string or a gval expression that evaluates to a string.\n",
                               default: "status == \"firing\" ? \"high\" : \"default\"",
                             })))),
                           tags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                    __proto__: pos$10,
+                                    [nix.POS]: pos$10,
                                     options: nix.thunk(() => ({
-                                      __proto__: pos$9,
+                                      [nix.POS]: pos$9,
                                       tag: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                          __proto__: pos$7,
+                                          [nix.POS]: pos$7,
                                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                           description: "The tag to add.\nSee <https://docs.ntfy.sh/emojis> for a list of all supported emojis.\n",
                                           example: "rotating_light",
                                         })))),
                                       condition: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                          __proto__: pos$8,
+                                          [nix.POS]: pos$8,
                                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                           description: "The condition under which this tag should be added.\nTags with no condition are always included.\n",
                                           default: null,
@@ -128,20 +128,20 @@ export default nix.lambda((args) => (() => {
                                   })))))),
                               description: "Tags to add to ntfy.sh messages.\nSee <https://docs.ntfy.sh/publish/#tags-emojis> for more information.\n",
                               default: nix.thunk(() => [
-                                nix.thunk(() => ({ __proto__: pos$11, tag: "green_circle", condition: "status == \"resolved\"" })),
-                                nix.thunk(() => ({ __proto__: pos$12, tag: "red_circle", condition: "status == \"firing\"" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$11, tag: "green_circle", condition: "status == \"resolved\"" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$12, tag: "red_circle", condition: "status == \"firing\"" })),
                               ]),
                             })))),
                           templates: nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             title: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 description: "The ntfy.sh message title template.",
                                 default: "{{ if eq .Status \"resolved\" }}Resolved: {{ end }}{{ index .Annotations \"summary\" }}\n",
                               })))),
                             description: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$15,
+                                [nix.POS]: pos$15,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 description: "The ntfy.sh message description template.",
                                 default: "{{ index .Annotations \"description\" }}\n",
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
                   })))),
               })))),
             extraConfigFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: [],
                 example: nix.thunk(() => ["/run/secrets/alertmanager-ntfy.yml"]),
@@ -164,18 +164,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "alertmanager-ntfy": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 User: "alertmanager-ntfy",
                 Group: "alertmanager-ntfy",
                 DynamicUser: true,

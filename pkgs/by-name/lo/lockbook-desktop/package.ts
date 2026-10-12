@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const desc = "Private, polished note-taking platform";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lockbook-desktop",
       version: "26.9.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lockbook",
           repo: "lockbook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       cargoBuildFlags: nix.thunk(() => ["--package", "lockbook-desktop"]),
       desktopItems: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           desktopName: "Lockbook",
           name: "lockbook-desktop",
           comment: desc,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "install -D docs/graphics/logo.svg $out/share/icons/hicolor/scalable/apps/lockbook.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: desc,
         longDescription: "Write notes, sketch ideas, and store files in one secure place.\nShare seamlessly, keep data synced, and access it on any\nplatform—even offline. Lockbook encrypts files so even we\ncan’t see them, but don’t take our word for it:\nLockbook is 100% open-source.\n",
         homepage: "https://lockbook.net",

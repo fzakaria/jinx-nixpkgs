@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "confluent-platform",
       version: "7.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://packages.confluent.io/archive/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/confluent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-w5dazjSZTv/zqNcOcmyUUu8z5wftsJtBeU3bO1WhQ6k=",
         })))),
@@ -52,7 +52,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Confluent event streaming platform based on Apache Kafka",
         homepage: "https://www.confluent.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

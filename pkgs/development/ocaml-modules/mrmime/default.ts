@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const unstrctrd = nix.arg($, "unstrctrd");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mrmime",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mrmime/releases/download/v${nix.sel(finalAttrs, "version")}/mrmime-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-w23xtro9WgyLLwqdwfqLMN/ZDqwpvFcEvurbsqnsJLc=",
         })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [afl_persistent, alcotest, cmdliner, fpath, hxd, jsonm, mirage_crypto_rng]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser and generator of mail in OCaml",
         homepage: "https://github.com/mirage/mrmime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

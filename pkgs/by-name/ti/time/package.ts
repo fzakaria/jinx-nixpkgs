@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "time",
       version: "1.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/time/time-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-cGv3uERMqeuQN+ntoY4dDrfCMnrn2MLOOkgjxfgMexE=",
         })))),
       outputs: nix.thunk(() => ["out", "info"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that runs programs and summarizes the system resources they use",
         longDescription: "The `time' command runs another program, then displays\ninformation about the resources used by that program, collected\nby the system while the program was running.  You can select\nwhich information is reported and the format in which it is\nshown, or have `time' save the information in a file instead of\ndisplaying it on the screen.\n\nThe resources that `time' can report on fall into the general\ncategories of time, memory, and I/O and IPC calls.  Some systems\ndo not provide much information about program resource use;\n`time' reports unavailable information as zero values.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

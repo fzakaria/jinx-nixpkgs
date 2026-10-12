@@ -32,41 +32,41 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "open-webui"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "open-webui": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Open-WebUI server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "open-webui", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/open-webui",
               example: "/home/foo",
               description: "State directory of Open-WebUI.",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The host address which the Open-WebUI server HTTP interface listens to.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               example: 11111n,
               description: "Which port the Open-WebUI server listens to.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 SCARF_NO_ANALYTICS: "True",
                 DO_NOT_TRACK: "True",
                 ANONYMIZED_TELEMETRY: "False",
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
               description: "Extra environment variables for Open-WebUI.\nFor more details see <https://docs.openwebui.com/reference/env-configuration>\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Environment file to be passed to the systemd service.\nUseful for passing secrets to the service to prevent them from being\nworld-readable in the Nix store.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/secrets/openWebuiSecrets",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for Open-WebUI.\nThis adds `services.open-webui.port` to `networking.firewall.allowedTCPPorts`.\n",
@@ -91,18 +91,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "open-webui": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "User-friendly WebUI for LLMs",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 STATIC_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/static`),
                 DATA_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/data`),
                 HOME: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -125,7 +125,7 @@ done
 exit 0
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} serve --host "${nix.sel(cfg, "host")}" --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -170,15 +170,15 @@ exit 0
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "shivaraj-bh"))];

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const zoxide = nix.arg($, "zoxide");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smux",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aietes",
           repo: "smux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tmux, fzf, zoxide]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tmux session manager with fzf-powered project and template selection",
         homepage: "https://github.com/Aietes/smux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

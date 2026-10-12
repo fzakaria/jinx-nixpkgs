@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const ida_hcli = nix.arg($, "ida-hcli");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ida-settings",
       version: "3.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "williballenthin",
           repo: "ida-settings",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ida_settings"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fetch and set configuration values for IDA Plugins",
         homepage: "https://github.com/williballenthin/ida-settings",
         changelog: nix.thunk(() => nix.str`https://github.com/williballenthin/ida-settings/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

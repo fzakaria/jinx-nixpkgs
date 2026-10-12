@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "buildkite-agent",
       version: "3.137.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buildkite",
           repo: "agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,14 +48,14 @@ wrapProgram $out/bin/buildkite-agent \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh, git, coreutils, gnused, gnugrep]))}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "buildkite-agents")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Build runner for buildkite.com",
         longDescription: "The buildkite-agent is a small, reliable, and cross-platform build runner\nthat makes it easy to run automated builds on your own infrastructure.\nIt’s main responsibilities are polling buildkite.com for work, running\nbuild jobs, reporting back the status code and output log of the job,\nand uploading the job's artifacts.\n",
         homepage: "https://buildkite.com/docs/agent",

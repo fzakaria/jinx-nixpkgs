@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2026-08-08";
       const rev = "d06078952878afaf40df8696be3199ecc85e4837";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "kubernetes-sigs",
           repo: "prow",
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [gitMinimal]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Kubernetes based CI/CD system developed to serve the Kubernetes community",
         longDescription: "Prow is a Kubernetes based CI/CD system. Jobs can be triggered by various\ntypes of events and report their status to many different services. In\naddition to job execution, Prow provides GitHub automation in the form of\npolicy enforcement, chat-ops via /foo style commands, and automatic PR\nmerging.\n",
         homepage: "https://github.com/kubernetes-sigs/prow",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

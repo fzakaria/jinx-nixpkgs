@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "match"), ".*\\.post[0-9]+", version), null)), "rel"));
   const tag = nix.thunk(() => nix.str`v${version}${suffix}`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "netcdf4",
       version: version,
       pyproject: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unidata",
           repo: "netcdf4-python",
           tag: tag,
@@ -58,16 +58,16 @@ NO_NET=1 NO_CDL=1 ${nix.sel(python, "interpreter")} run_all.py
 runHook postCheck
 `),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         USE_NCCONFIG: "0",
         HDF5_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), hdf5)),
         NETCDF4_DIR: netcdf,
         CURL_DIR: nix.thunk(() => nix.sel(curl, "dev")),
         JPEG_DIR: nix.thunk(() => nix.sel(libjpeg, "dev")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" }))))),
       pythonImportsCheck: nix.thunk(() => ["netCDF4"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interface to netCDF library (versions 3 and 4)",
         homepage: "https://github.com/Unidata/netcdf4-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Unidata/netcdf4-python/raw/${tag}/Changelog`),

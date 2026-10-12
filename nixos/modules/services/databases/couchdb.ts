@@ -49,22 +49,22 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "couchdb"));
   const opt = nix.thunk(() => nix.sel(options, "services", "couchdb"));
   const baseConfig = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     couchdb: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       database_dir: nix.thunk(() => nix.sel(cfg, "databaseDir")),
       uri_file: nix.thunk(() => nix.sel(cfg, "uriFile")),
       view_index_dir: nix.thunk(() => nix.sel(cfg, "viewIndexDir")),
     })),
     chttpd: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       port: nix.thunk(() => nix.sel(cfg, "port")),
       bind_address: nix.thunk(() => nix.sel(cfg, "bindAddress")),
     })),
-    log: nix.thunk(() => ({ __proto__: pos$3, file: nix.thunk(() => nix.sel(cfg, "logFile")) })),
+    log: nix.thunk(() => ({ [nix.POS]: pos$3, file: nix.thunk(() => nix.sel(cfg, "logFile")) })),
   }));
   const adminConfig = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "adminPass"), null)), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       admins: nix.thunk(() => nix.attrsDyn({}, [
         [nix.str`${nix.sel(cfg, "adminUser")}`, nix.thunk(() => nix.sel(cfg, "adminPass"))],
       ])),
@@ -77,96 +77,96 @@ export default nix.lambda((args) => (() => {
   ], nix.concat(nix.sel(cfg, "extraConfigFiles"), [nix.thunk(() => nix.sel(cfg, "configFile"))])));
   const executable = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/couchdb`);
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         couchdb: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CouchDB Server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "couchdb3", nix.thunk(() => ({})))),
           adminUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "admin",
               description: "Couchdb (i.e. fauxton) account with permission for all dbs and\ntasks.\n",
             })))),
           adminPass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Couchdb (i.e. fauxton) account with permission for all dbs and\ntasks.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "couchdb",
               description: "User account under which couchdb runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "couchdb",
               description: "Group account under which couchdb runs.\n",
             })))),
           databaseDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/couchdb",
               description: "Specifies location of CouchDB database files (*.couch named). This\nlocation should be writable and readable for the user the CouchDB\nservice runs as (couchdb by default).\n",
             })))),
           uriFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/run/couchdb/couchdb.uri",
               description: "This file contains the full URI that can be used to access this\ninstance of CouchDB. It is used to help discover the port CouchDB is\nrunning on (if it was set to 0 (e.g. automatically assigned any free\none). This file should be writable and readable for the user that\nruns the CouchDB service (couchdb by default).\n",
             })))),
           viewIndexDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/couchdb",
               description: "Specifies location of CouchDB view index files. This location should\nbe writable and readable for the user that runs the CouchDB service\n(couchdb by default).\n",
             })))),
           bindAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Defines the IP address by which CouchDB will be accessible.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5984n,
               description: "Defined the port number to listen.\n",
             })))),
           logFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/log/couchdb.log",
               description: "Specifies the location of file for logging output.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Extra configuration options for CouchDB",
             })))),
           extraConfigFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Extra configuration files. Overrides any other configuration. You can use this to setup the Admin user without putting the password in your nix store.\n",
             })))),
           argsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/vm.args`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"config.${nix.sel(opt, "package")}/etc/vm.args"`))),
               description: "vm.args configuration. Overrides Couchdb's Erlang VM parameters file.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/couchdb/local.ini",
               description: "Configuration file for persisting runtime changes. File\nneeds to be readable and writable from couchdb user/group.\n",
@@ -175,15 +175,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.builtins.dirOf(nix.thunk(() => nix.sel(cfg, "uriFile")))}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`f '${nix.sel(cfg, "logFile")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -192,9 +192,9 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             couchdb: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "CouchDB Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.str`touch ${nix.sel(cfg, "configFile")}
@@ -205,13 +205,13 @@ if ! test -e ${nix.sel(cfg, "databaseDir")}/.erlang.cookie; then
 fi
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ERL_FLAGS: nix.thunk(() => nix.str`-couch_ini ${nix.app(nix.sel(lib, "concatStringsSep"), " ", configFiles)}`),
                 COUCHDB_ARGS_FILE: nix.thunk(() => nix.str`${nix.sel(cfg, "argsFile")}`),
                 HOME: nix.thunk(() => nix.str`${nix.sel(cfg, "databaseDir")}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: executable,
@@ -220,20 +220,20 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             couchdb: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "CouchDB Server user",
               group: "couchdb",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "couchdb")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             couchdb: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "couchdb")),
             })),
           })),

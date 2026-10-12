@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3MajorMinorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(python3, "version"))));
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "cuda",
       pname: "cuda_gdb",
       outputs: nix.thunk(() => ["out", "bin"]),
@@ -39,10 +39,10 @@ unset -v pygdb
 popd >/dev/null
 `))),
       brokenAssertions: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$1, message: "python 3 version is supported", assertion: true })),
+        nix.thunk(() => ({ [nix.POS]: pos$1, message: "python 3 version is supported", assertion: true })),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NVIDIA tool for debugging CUDA applications on Linux and QNX systems",
         longDescription: "CUDA-GDB is the NVIDIA tool for debugging CUDA applications running on Linux and QNX. CUDA-GDB is an extension\nto GDB, the GNU Project debugger. The tool provides developers with a mechanism for debugging CUDA\napplications running on actual hardware.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-gdb",

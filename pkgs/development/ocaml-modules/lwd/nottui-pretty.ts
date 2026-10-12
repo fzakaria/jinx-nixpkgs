@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lwd = nix.arg($, "lwd");
   const nottui = nix.arg($, "nottui");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nottui-pretty",
       version: nix.thunk(() => nix.attr(lwd, "version")),
       src: nix.thunk(() => nix.attr(lwd, "src")),
       propagatedBuildInputs: nix.thunk(() => [nottui]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pretty-printer based on PPrint rendering UIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alizter"))]),

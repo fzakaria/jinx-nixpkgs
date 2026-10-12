@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libxl";
       const version = "3.9.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.libxl.com/download/${pname}-lin-${version}.tar.gz`),
           sha256: "sha256-U8hXoqBzjSGigOXc29LZQk3KrGiYvBPBJPg5qihcAsY=",
         }))));
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "mkdir $out\ncp -rva include_c include_cpp license.txt $out/\ncp -rva lib64 $out/lib\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for parsing Excel files",
         homepage: "https://www.libxl.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

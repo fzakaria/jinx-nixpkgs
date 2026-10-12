@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "x11-ssh-askpass",
       version: "1.2.4.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkgs.fedoraproject.org/repo/pkgs/openssh/x11-ssh-askpass-${nix.sel(finalAttrs, "version")}.tar.gz/8f2e41f3f7eaa8543a2440454637f3c3/x11-ssh-askpass-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "620de3c32ae72185a2c9aeaec03af24242b9621964e38eb625afb6cdb30b8c88",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "ssh-askpass",
             version: "1:1.2.4.1",
             debianRevision: "16",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libx11, libxt, libice, libsm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sigmavirus24/x11-ssh-askpass",
         description: "Lightweight passphrase dialog for OpenSSH or other open variants of SSH",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

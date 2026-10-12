@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const xterm = nix.arg($, "xterm");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tagtime",
       version: "2018-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tagtime",
           repo: "TagTime",
           rev: "59343e2cbe451eb16109e782c194ccbd0ee4196d",
@@ -72,7 +72,7 @@ $logf = "$ENV{HOME}/.local/share/tagtime/pings.log";' \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stochastic Time Tracking for Space Cadets",
         longDescription: "To determine how you spend your time, TagTime literally randomly samples\nyou. At random times it pops up and asks what you're doing right at that\nmoment. You answer with tags.\n\nSee https://messymatters.com/tagtime for the whole story.\n\n[maintainer’s note]: This is the original perl script implementation.\n",
         homepage: "https://messymatters.com/tagtime/",

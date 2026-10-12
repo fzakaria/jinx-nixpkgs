@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sourcekit-lsp",
       version: swift_release,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "sourcekit-lsp"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swiftlang",
           repo: "sourcekit-lsp",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./patches/0001-Fix-for-using-swift-corelibs-xctest-on-Darwin.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0002-Load-IndexStore-from-the-store.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
       ]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "sourcekit-lsp", "swiftpmDeps"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Language Server Protocol implementation for Swift and C-based languages",
         mainProgram: "sourcekit-lsp",
         homepage: "https://github.com/apple/sourcekit-lsp",

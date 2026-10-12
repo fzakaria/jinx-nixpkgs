@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const xbitmaps = nix.arg($, "xbitmaps");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wallutils",
       version: "5.14.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xyproto",
           repo: "wallutils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         const from_1 = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for handling monitors, resolutions, and (timed) wallpapers",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

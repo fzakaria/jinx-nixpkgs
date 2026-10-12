@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const sanic_testing = nix.arg($, "sanic-testing");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "sanic-testing-tests",
       version: nix.thunk(() => nix.attr(sanic_testing, "version")),
       src: nix.thunk(() => nix.sel(sanic_testing, "testsout")),

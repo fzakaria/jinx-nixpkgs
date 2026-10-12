@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`watson-ruby-gems-${version}`),
             ruby: ruby,
             gemdir: nix.path(here, "./."),
@@ -31,11 +31,11 @@ ln -s ${env}/bin/watson $out/bin/watson
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "watson-ruby")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Inline issue manager",
         homepage: "https://goosecode.com/watson/",
         license: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ ln -s ${env}/bin/watson $out/bin/watson
         mainProgram: "watson",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$4, pname, version, dontUnpack, installPhase, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, dontUnpack, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lunatone-public",
           repo: "lunatone-rest-api-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["lunatone_rest_api_client"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_aioresponses, pytest_asyncio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/lunatone-public/lunatone-rest-api-client/-/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Client library for accessing the Lunatone REST API",
         homepage: "https://gitlab.com/lunatone-public/lunatone-rest-api-client",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whistle";
       const version = "2.10.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avwo",
           repo: "whistle",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-uY6a4suEPSwWtZTs4gutd38gwm+9Tef6LX+GPoqUQrA=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP, HTTP2, HTTPS, Websocket debugging proxy",
         homepage: "https://github.com/avwo/whistle",
         changelog: nix.thunk(() => nix.str`https://github.com/avwo/whistle/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "whistle",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

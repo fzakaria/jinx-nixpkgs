@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       rsync,
       umount,
     ])), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.sel(oldAttrs, "meta", "description")),
         longDescription: nix.thunk(() => nix.add(nix.sel(oldAttrs, "meta", "longDescription"), "This package comes with runtime dependencies of command utilities provided by rsync, coreutils, mount, umount, psmisc, cron and btrfs.\nIf you want to use the commands provided by the system, use timeshift-minimal instead.\n")),
       })),

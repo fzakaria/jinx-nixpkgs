@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const coreaudioSupport = nix.argOr($, "coreaudioSupport", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtaudio",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thestk",
           repo: "rtaudio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DRTAUDIO_API_CORE=${(nix.asBool(coreaudioSupport) ? "ON" : "OFF")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of C++ classes that provide a cross platform API for realtime audio input/output",
         homepage: "https://www.music.mcgill.ca/~gary/rtaudio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2024.2.0",
       pname: "fsnotifier",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JetBrains",
           repo: "intellij-community",
           rev: "0f6d9ccb67b8fcad0d802cd76209d503c4ed66a6",
@@ -33,7 +33,7 @@ $CC -O2 -Wall -Wextra -Wpedantic -D "VERSION=\\"${nix.sel(finalAttrs, "version")
 cp fsnotifier $out/bin/fsnotifier
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/JetBrains/intellij-community/tree/master/native/fsNotifier/linux",
         description: "IntelliJ Platform companion program for watching and reporting file and directory structure modification",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

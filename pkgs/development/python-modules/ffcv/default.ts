@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libffcv",
           repo: pname,
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "test_traversal_random_distributed_with_indices",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FFCV: Fast Forward Computer Vision",
         homepage: "https://ffcv.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

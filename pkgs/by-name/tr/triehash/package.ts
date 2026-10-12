@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "triehash",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "julian-klode",
           repo: "triehash",
           rev: "debian/0.3-3",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -d $out/bin $out/share/doc/triehash/ $out/share/triehash/\ninstall triehash.pl $out/bin/triehash\ninstall README.md $out/share/doc/triehash/\ncp -r tests/ $out/share/triehash/tests/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/julian-klode/triehash",
         description: "Order-preserving minimal perfect hash function generator",
         license: nix.thunk(() => (() => {

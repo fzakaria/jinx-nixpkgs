@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nemo = nix.arg($, "nemo");
   const xreader = nix.arg($, "xreader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nemo-preview",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "nemo-extensions",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         xreader,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-preview",
         description: "Quick previewer for Nemo, the Cinnamon desktop file manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

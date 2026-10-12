@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libbytesize",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "storaged-project",
           repo: "libbytesize",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +59,11 @@ ${nix.sel(python3Packages, "python", "pythonOnBuildForHost", "interpreter")} -m 
 `),
       pythonImportsCheck: nix.thunk(() => ["bytesize"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/storaged-project/libbytesize",
         description: "Tiny library providing a C 'class' for working with arbitrary big sizes in bytes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

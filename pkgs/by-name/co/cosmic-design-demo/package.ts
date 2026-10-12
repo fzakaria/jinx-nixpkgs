@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cosmic-design-demo",
       version: "0-unstable-2024-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "cosmic-design-demo",
           rev: "d58cfad46f2982982494fce27fb00ad834dc8992",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release/cosmic-design-demo`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pop-os/cosmic-design-demo",
         description: "Design Demo for the COSMIC Desktop Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

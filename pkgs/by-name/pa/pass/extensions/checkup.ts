@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pname = "pass-checkup";
   const version = "0.2.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etu",
           repo: pname,
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstall -D -m755 checkup.bash $out/lib/password-store/extensions/checkup.bash\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pass extension to check against the Have I been pwned API to see if your passwords are publicly leaked or not",
         homepage: "https://github.com/etu/pass-checkup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

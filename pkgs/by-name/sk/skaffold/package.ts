@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "skaffold",
       version: "2.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleContainerTools",
           repo: "skaffold",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "wrapProgram $out/bin/skaffold --set SKAFFOLD_UPDATE_CHECK false\n\ninstallShellCompletion --cmd skaffold \\\n  --bash <($out/bin/skaffold completion bash) \\\n  --zsh <($out/bin/skaffold completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://skaffold.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/GoogleContainerTools/skaffold/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Easy and Repeatable Kubernetes Development",

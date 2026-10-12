@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mpv = nix.arg($, "mpv");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mov-cli",
       version: "4.4.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mov-cli",
           repo: "mov-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.str`--prefix PATH : ${binPath}`)];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mov-cli/mov-cli",
         description: "Cli tool to browse and watch movies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

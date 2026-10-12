@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const sphinxygen = nix.arg($, "sphinxygen");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pugl",
       version: "0-unstable-2024-10-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lv2",
           repo: "pugl",
           rev: "edd13c1b952b16633861855fcdbdd164e87b3c0a",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         cairo,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lv2/pugl",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

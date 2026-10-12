@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openbao-plugin-secrets-oauthapp",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openbao",
           repo: "openbao-plugin-secrets-oauthapp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/openbao-plugin-secrets-oauthapp"]),
       ldflags: nix.thunk(() => ["-s"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pluginType: "secret",
         pluginName: "oauthapp",
-        tests: nix.thunk(() => ({ __proto__: pos$2, openbao: nix.thunk(() => nix.attr(nixosTests, "openbao")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, openbao: nix.thunk(() => nix.attr(nixosTests, "openbao")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OpenBao secrets plugin for OAuth 2.0 supporting a variety of grant types",
         homepage: "https://github.com/openbao/openbao-plugin-secrets-oauthapp",
         changelog: nix.thunk(() => nix.str`https://github.com/openbao/openbao-plugin-secrets-oauthapp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

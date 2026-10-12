@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const neovim = nix.arg($, "neovim");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gnvim",
       version: nix.thunk(() => nix.sel(gnvim_unwrapped, "version")),
       buildCommand: nix.thunk(() => nix.add(nix.str`makeWrapper '${gnvim_unwrapped}/bin/gnvim' "$out/bin/gnvim" \\
@@ -31,7 +31,7 @@ sed -e "s|Exec=.\\\\+gnvim\\\\>|Exec=gnvim|" -i $out/share/applications/*.deskto
 `)))),
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: gnvim_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: gnvim_unwrapped })),
       meta: nix.thunk(() => nix.attr(gnvim_unwrapped, "meta")),
     })));
 })(), formals$1);

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const django = nix.arg($, "django");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mock-django",
       version: "0.6.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dcramer",
           repo: "mock-django",
           rev: "1168d3255e0d67fbf74a9c71feaccbdafef59d21",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [django, mock]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple library for mocking certain Django behavior, such as the ORM",
         homepage: "https://github.com/dcramer/mock-django",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

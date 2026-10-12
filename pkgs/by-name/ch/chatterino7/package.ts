@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const chatterino2 = nix.arg($, "chatterino2");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
-  return nix.app(nix.sel(nix.app(nix.sel(chatterino2, "buildChatterino"), nix.thunk(() => ({ __proto__: pos$1, enableAvifSupport: true }))), "overrideAttrs"), (finalAttrs) => (_) => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(nix.app(nix.sel(chatterino2, "buildChatterino"), nix.thunk(() => ({ [nix.POS]: pos$1, enableAvifSupport: true }))), "overrideAttrs"), (finalAttrs) => (_) => ({
+      [nix.POS]: pos$6,
       pname: "chatterino7",
       version: "7.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SevenTV",
           repo: "chatterino7",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
           postFetch: "git -C $out rev-parse --short HEAD > $out/GIT_HASH\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v", ignoredVersions: "beta" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "beta" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Chat client for Twitch chat",
         mainProgram: "chatterino",
         longDescription: "Chatterino is a chat client for Twitch chat. It aims to be an\nimproved/extended version of the Twitch web chat. Chatterino 7 is\na fork of Chatterino 2, which contains additional 7TV features\nnot found in Chatterino 2.\n",

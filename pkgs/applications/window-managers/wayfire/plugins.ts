@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   return nix.update(nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "wayfire-plugins-extra": nix.thunk(() => nix.app(callPackage, nix.path(here, "./wayfire-plugins-extra.nix"), nix.thunk(() => ({})))),
         wcm: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wcm.nix"), nix.thunk(() => ({})))),
         "wf-shell": nix.thunk(() => nix.app(callPackage, nix.path(here, "./wf-shell.nix"), nix.thunk(() => ({})))),
       };
     })()), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       firedecor: nix.thunk(() => nix.builtins.throw("wayfirePlugins.firedecor has been removed as it is unmaintained and no longer used by mate-wayland-session.")),
       "focus-request": nix.thunk(() => nix.builtins.throw("wayfirePlugins.focus-request is now included with wayfirePlugins.wayfire-plugins-extra")),
       "wayfire-shadows": nix.thunk(() => nix.builtins.throw("wayfirePlugins.wayfire-shadows is now included with wayfirePlugins.wayfire-plugins-extra")),

@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const yarnMissingHashes = nix.argOr($, "yarnMissingHashes", () => nix.path(here, "./missing-hashes.json"));
   const yarnHash = nix.argOr($, "yarnHash", () => "sha256-1kdslAHO6goCo6GwU3zPpaN6Zx9nXEXuxF3E35Xzcac=");
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheEssem",
           repo: "mastodon",
           rev: "a7610aa2b86ffdcabc86008cca4234f135f642bd",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: patches,
     }))));
   return nix.app(nix.sel(nix.app(nix.sel(mastodon, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chuckya",
       version: "0-unstable-2026-09-25",
       srcOverride: src,
@@ -40,10 +40,10 @@ export default nix.lambda((args) => (() => {
       yarnMissingHashes: yarnMissingHashes,
       yarnHash: yarnHash,
     }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$6,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh"), src: src })),
+      [nix.POS]: pos$6,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh"), src: src })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Close-to-upstream soft fork of Mastodon Glitch Edition",
         homepage: "https://github.com/TheEssem/mastodon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libfido2 = nix.arg($, "libfido2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gocryptfs",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rfjakob",
           repo: "gocryptfs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       postBuild: "pushd Documentation/\nmkdir -p $out/share/man/man1\n# taken from Documentation/MANPAGE-render.bash\npandoc MANPAGE.md -s -t man -o $out/share/man/man1/gocryptfs.1\npandoc MANPAGE-XRAY.md -s -t man -o $out/share/man/man1/gocryptfs-xray.1\npandoc MANPAGE-STATFS.md -s -t man -o $out/share/man/man1/statfs.1\npopd\n",
       postInstall: "ln -s $out/bin/gocryptfs $out/bin/mount.fuse.gocryptfs\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           gocryptfs: nix.thunk(() => nix.sel(nixosTests, "gocryptfs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Encrypted overlay filesystem written in Go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://nuetzlich.net/gocryptfs/",

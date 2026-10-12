@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.16.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "exaloop",
       repo: "codon",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const depsDir = "deps";
   const codon_llvm = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "codon-llvm",
       version: "unstable-2022-09-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "exaloop",
           repo: "llvm-project",
           rev: "55b0b8fa1c9f9082b535628fc9fa6313280c0b9a",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const codon_deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`codon-deps-${version}.tar.gz`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [cacert, cmake, git, perl, python3]),
@@ -80,7 +80,7 @@ tar --owner=0 --group=0 --numeric-owner --format=gnu \\
       outputHashAlgo: "sha256",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "codon",
       src: src,
       version: version,
@@ -96,11 +96,11 @@ tar -xf ${codon_deps} -C $sourceRoot/build
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/codon/*.dylib $out/lib/\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "High-performance, zero-overhead, extensible Python compiler using LLVM",
         homepage: "https://docs.exaloop.io/codon",
         maintainers: [],

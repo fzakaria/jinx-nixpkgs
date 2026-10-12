@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jre8 = nix.arg($, "jre8");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "galen",
       version: "2.4.4",
       jre8: jre8,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/galenframework/galen/releases/download/galen-${nix.sel(finalAttrs, "version")}/galen-bin-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "13dq8cf0yy24vym6z7p8hb0mybgpcl4j5crsaq8a6pjfxz6d17mq",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdir -p $out/bin\n",
       installPhase: "cat galen | sed -e \"s,java,$jre8/bin/java,\" > $out/bin/galen\nchmod +x $out/bin/galen\ncp galen.jar $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://galenframework.com",
         description: "Automated layout testing for websites",
         mainProgram: "galen",

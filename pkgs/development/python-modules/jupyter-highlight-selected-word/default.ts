@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcb91",
           repo: "jupyter_highlight_selected_word",
           tag: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const doChecks = false;
       const pythonImportsCheck = nix.thunk(() => ["jupyter_highlight_selected_word"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter notebook extension that enables highlighting every instance of the current word in the notebook",
         homepage: "https://github.com/jcb91/jupyter_highlight_selected_word",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

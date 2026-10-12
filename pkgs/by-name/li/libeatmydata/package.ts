@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const strace = nix.arg($, "strace");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libeatmydata",
       version: "131",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stewartsmith",
           repo: "libeatmydata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small LD_PRELOAD library to disable fsync and friends",
         homepage: "https://www.flamingspork.com/projects/libeatmydata/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

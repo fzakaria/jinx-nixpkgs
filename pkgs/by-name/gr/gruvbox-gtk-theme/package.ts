@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const tweakVariantList = nix.thunk(() => ["medium", "soft", "black", "float", "outline", "macos"]);
   const iconVariantList = nix.thunk(() => ["Dark", "Light"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: colorVariants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: sizeVariants`), sizeVariantList, sizeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: themeVariants`), themeVariantList, themeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: tweakVariants`), tweakVariantList, tweakVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: iconVariants`), iconVariantList, iconVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "0-unstable-2025-10-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fausto-Korpsvart",
           repo: "Gruvbox-GTK-Theme",
           rev: "578cd220b5ff6e86b078a6111d26bb20ec8c733f",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: "patchShebangs themes/install.sh\n",
@@ -78,7 +78,7 @@ cp -a ${nix.builtins.toString(nix.thunk(() => nix.builtins.map((v) => nix.str`Gr
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK theme based on the Gruvbox colour palette",
         homepage: "https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

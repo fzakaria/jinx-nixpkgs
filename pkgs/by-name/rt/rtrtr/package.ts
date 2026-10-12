@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtrtr",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NLnetLabs",
           repo: "rtrtr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildNoDefaultFeatures: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RPKI data proxy",
         longDescription: "TRTR is an RPKI data proxy, designed to collect Validated ROA Payloads\nfrom one or more sources in multiple formats and dispatch it onwards. It\nprovides the means to implement multiple distribution architectures for RPKI\nsuch as centralised RPKI validators that dispatch data to local caching RTR\nservers. RTRTR can read RPKI data from multiple RPKI Relying Party packages via\nRTR and JSON and, in turn, provide an RTR service for routers to connect to.\n",
         homepage: "https://github.com/NLnetLabs/rtrtr",

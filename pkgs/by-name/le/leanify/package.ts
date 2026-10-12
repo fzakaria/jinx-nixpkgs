@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "leanify",
       version: "0.4.3-unstable-2026-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JayXon",
           repo: "Leanify",
           rev: "dc557c4027fc8a7479c4a71506c75c98ea8829f9",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n./leanify /dev/null\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp leanify $out/bin/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight lossless file minifier/optimizer",
         longDescription: "Leanify is a lightweight lossless file minifier/optimizer.\nIt removes unnecessary data (debug information, comments, metadata, etc.) and recompress the file to reduce file size.\nIt will not reduce image quality at all.\n",
         homepage: "https://github.com/JayXon/Leanify",

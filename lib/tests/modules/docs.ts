@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const traceListSeq = (l) => (v) => nix.app(nix.sel(lib, "foldl'"), (a) => (b) => nix.app(nix.sel(lib, "traceSeq"), b, a), v, l);
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       docs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
           description: "All options to be rendered, without any visibility filtering applied.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       docs: nix.thunk(() => nix.app(nix.sel(lib, "zipAttrsWith"), (name) => (values) => (nix.asBool(nix.gt(nix.app(length, values), 1n)) ? nix.app(traceListSeq, values, nix.builtins.abort, nix.thunk(() => nix.str`Multiple options with the same name: ${name}`)) : (() => {
           nix.assert_(nix.eq(nix.app(length, values), 1n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/docs.nix:32:7");
           return nix.app(head, values);

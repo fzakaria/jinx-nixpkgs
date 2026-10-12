@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fsatrace";
       const version = "0.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jacereda",
           repo: "fsatrace",
           rev: "5af79511828ca6cea4e5dd9f28e1676fb0b705e9",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "mkdir -p $out/$installDir\n";
       const postInstall = "mkdir -p $out/bin\nln -s $out/$installDir/fsatrace $out/bin/fsatrace\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jacereda/fsatrace",
         description: "Filesystem access tracer",
         mainProgram: "fsatrace",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

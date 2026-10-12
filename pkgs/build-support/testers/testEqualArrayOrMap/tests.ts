@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
   const concatValuesArrayToActualArray = "nixLog \"appending all values in valuesArray to actualArray\"\nfor value in \"${valuesArray[@]}\"; do\n  actualArray+=( \"$value\" )\ndone\n";
   const concatValuesMapToActualMap = "nixLog \"adding all values in valuesMap to actualMap\"\nfor key in \"${!valuesMap[@]}\"; do\n  actualMap[\"$key\"]=\"${valuesMap[\"$key\"]}\"\ndone\n";
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       "docs-test-function-add-cowbell": nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "test-function-add-cowbell",
           valuesArray: nix.thunk(() => ["cowbell", "cowbell"]),
           expectedArray: nix.thunk(() => ["cowbell", "cowbell", "cowbell"]),
           script: "addCowbell() {\n  local -rn arrayNameRef=\"$1\"\n  arrayNameRef+=( \"cowbell\" )\n}\n\nnixLog \"appending all values in valuesArray to actualArray\"\nfor value in \"${valuesArray[@]}\"; do\n  actualArray+=( \"$value\" )\ndone\n\nnixLog \"applying addCowbell\"\naddCowbell actualArray\n",
         })))),
       "array-append": nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "testEqualArrayOrMap-array-append",
           valuesArray: nix.thunk(() => ["apple", "bee", "cat"]),
           expectedArray: nix.thunk(() => ["apple", "bee", "cat", "dog"]),
@@ -57,7 +57,7 @@ actualArray+=( "dog" )
 `),
         })))),
       "array-prepend": nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "testEqualArrayOrMap-array-prepend",
           valuesArray: nix.thunk(() => ["apple", "bee", "cat"]),
           expectedArray: nix.thunk(() => ["dog", "apple", "bee", "cat"]),
@@ -66,16 +66,16 @@ ${concatValuesArrayToActualArray}
 `),
         })))),
       "array-empty": nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "testEqualArrayOrMap-array-empty",
           valuesArray: nix.thunk(() => ["apple", "bee", "cat"]),
           expectedArray: [],
           script: "# doing nothing\n",
         })))),
       "array-missing-value": nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           drv: nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "testEqualArrayOrMap-array-missing-value",
               valuesArray: nix.thunk(() => ["apple"]),
               expectedArray: [],
@@ -87,30 +87,30 @@ ${concatValuesArrayToActualArray}
           ]),
         })))),
       "map-insert": nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "testEqualArrayOrMap-map-insert",
-          valuesMap: nix.thunk(() => ({ __proto__: pos$7, apple: "0", bee: "1", cat: "2" })),
-          expectedMap: nix.thunk(() => ({ __proto__: pos$8, apple: "0", bee: "1", cat: "2", dog: "3" })),
+          valuesMap: nix.thunk(() => ({ [nix.POS]: pos$7, apple: "0", bee: "1", cat: "2" })),
+          expectedMap: nix.thunk(() => ({ [nix.POS]: pos$8, apple: "0", bee: "1", cat: "2", dog: "3" })),
           script: nix.thunk(() => nix.str`${concatValuesMapToActualMap}
 actualMap["dog"]="3"
 `),
         })))),
       "map-remove": nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "testEqualArrayOrMap-map-remove",
-          valuesMap: nix.thunk(() => ({ __proto__: pos$10, apple: "0", bee: "1", cat: "2", dog: "3" })),
-          expectedMap: nix.thunk(() => ({ __proto__: pos$11, apple: "0", cat: "2", dog: "3" })),
+          valuesMap: nix.thunk(() => ({ [nix.POS]: pos$10, apple: "0", bee: "1", cat: "2", dog: "3" })),
+          expectedMap: nix.thunk(() => ({ [nix.POS]: pos$11, apple: "0", cat: "2", dog: "3" })),
           script: nix.thunk(() => nix.str`${concatValuesMapToActualMap}
 unset 'actualMap[bee]'
 `),
         })))),
       "map-missing-key": nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           drv: nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               name: "testEqualArrayOrMap-map-missing-key",
-              valuesMap: nix.thunk(() => ({ __proto__: pos$13, bee: "1", cat: "2", dog: "3" })),
-              expectedMap: nix.thunk(() => ({ __proto__: pos$14, apple: "0", bee: "1", cat: "2", dog: "3" })),
+              valuesMap: nix.thunk(() => ({ [nix.POS]: pos$13, bee: "1", cat: "2", dog: "3" })),
+              expectedMap: nix.thunk(() => ({ [nix.POS]: pos$14, apple: "0", bee: "1", cat: "2", dog: "3" })),
               script: concatValuesMapToActualMap,
             })))),
           expectedBuilderLogEntries: nix.thunk(() => [
@@ -119,12 +119,12 @@ unset 'actualMap[bee]'
           ]),
         })))),
       "map-missing-key-with-empty": nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           drv: nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "testEqualArrayOrMap-map-missing-key-with-empty",
               valuesArray: [],
-              expectedMap: nix.thunk(() => ({ __proto__: pos$17, apple: 1n })),
+              expectedMap: nix.thunk(() => ({ [nix.POS]: pos$17, apple: 1n })),
               script: "",
             })))),
           expectedBuilderLogEntries: nix.thunk(() => [
@@ -133,12 +133,12 @@ unset 'actualMap[bee]'
           ]),
         })))),
       "map-extra-key": nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           drv: nix.thunk(() => nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               name: "testEqualArrayOrMap-map-extra-key",
-              valuesMap: nix.thunk(() => ({ __proto__: pos$20, apple: "0", bee: "1", cat: "2", dog: "3" })),
-              expectedMap: nix.thunk(() => ({ __proto__: pos$21, apple: "0", bee: "1", dog: "3" })),
+              valuesMap: nix.thunk(() => ({ [nix.POS]: pos$20, apple: "0", bee: "1", cat: "2", dog: "3" })),
+              expectedMap: nix.thunk(() => ({ [nix.POS]: pos$21, apple: "0", bee: "1", dog: "3" })),
               script: concatValuesMapToActualMap,
             })))),
           expectedBuilderLogEntries: nix.thunk(() => [

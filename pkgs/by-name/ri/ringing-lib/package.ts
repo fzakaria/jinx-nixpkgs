@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ringing-lib",
       version: "0-unstable-2026-05-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ringing-lib",
           repo: "ringing-lib",
           rev: "6d7533186fb89497ab059b91d0e7bd7911cd3f71",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library of C++ classes and utilities for change ringing",
         homepage: "https://ringing-lib.github.io/",
         license: nix.thunk(() => (() => {

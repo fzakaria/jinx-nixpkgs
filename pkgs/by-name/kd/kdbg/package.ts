@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kdbg",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/kdbg/${nix.sel(finalAttrs, "version")}/kdbg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GoWLKWD/nWXBTiTbDLxeNArDMyPI/gSzADqyOgxrNHE=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.kdbg.org/",
         description: "A graphical user interface to gdb, the GNU debugger. It provides an\nintuitive interface for setting breakpoints, inspecting variables, and\nstepping through code.\n",
         mainProgram: "kdbg",

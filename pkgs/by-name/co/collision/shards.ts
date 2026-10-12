@@ -12,45 +12,45 @@ const pos$7 = nix.positions(here + "/shards.nix", [["url", 33, 5], ["rev", 34, 5
 const pos$8 = nix.positions(here + "/shards.nix", [["blake3", 2, 3], ["gettext", 7, 3], ["gi-crystal", 12, 3], ["gtk4", 17, 3], ["harfbuzz", 22, 3], ["libadwaita", 27, 3], ["pango", 32, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   blake3: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://github.com/geopjr/blake3.cr.git",
     rev: "v1.4.0",
     sha256: "1kp3rqddcsjj15syfnfvsx694nmpjzxmgawnf7y7dxdakk3przlw",
   })),
   gettext: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://github.com/geopjr/gettext.cr.git",
     rev: "v1.0.0",
     sha256: "1y27m4170rr4532j56grzhwbz8hj6z7j3zfkd0jnfwnsxclks1kc",
   })),
   "gi-crystal": nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://github.com/hugopl/gi-crystal.git",
     rev: "v0.25.1",
     sha256: "0283isgrann4r3ily8c7fip0x6h947g9s3hgmrja0m6si3lkgizs",
   })),
   gtk4: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "https://github.com/hugopl/gtk4.cr.git",
     rev: "v0.18.0",
     sha256: "03kab6nbkgxnnrp7g0gr4cv7rjsp7y8m7kz2rzb1ci63qzkzqlqi",
   })),
   harfbuzz: nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     url: "https://github.com/hugopl/harfbuzz.cr.git",
     rev: "v0.2.1",
     sha256: "08zx5q1mm1h4lzfr38dk8nk7mx1y955zdjl6n48rl619bc1ywdpg",
   })),
   libadwaita: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     url: "https://github.com/hugopl/libadwaita.cr.git",
     rev: "v0.1.0",
     sha256: "13iqij1rwqdlsd9gls3gz4i4frlsda3yasdbbmrzpa8d3qm3p8yq",
   })),
   pango: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     url: "https://github.com/hugopl/pango.cr.git",
     rev: "v0.3.1",
     sha256: "0xlf127flimnll875mcq92q7xsi975rrgdpcpmnrwllhdhfx9qmv",

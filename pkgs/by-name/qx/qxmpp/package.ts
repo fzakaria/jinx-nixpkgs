@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libomemo_c = nix.arg($, "libomemo-c");
   const withEncryption = nix.argOr($, "withEncryption", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qxmpp",
       version: "1.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "libraries",
           repo: "qxmpp",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       disabledTests: nix.thunk(() => ["tst_QXmppIceConnection", "tst_QXmppTransferManager"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform C++ XMPP client and server library",
         changelog: nix.thunk(() => nix.str`https://invent.kde.org/libraries/qxmpp/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         homepage: "https://invent.kde.org/libraries/qxmpp",

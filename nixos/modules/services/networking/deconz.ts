@@ -33,35 +33,35 @@ export default nix.lambda((args) => (() => {
   const stateDir = nix.thunk(() => nix.str`/var/lib/${name}`);
   const capabilities = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.lt(nix.sel(cfg, "httpPort"), 1024n)) || nix.asBool(nix.lt(nix.sel(cfg, "wsPort"), 1024n)))), nix.thunk(() => ["CAP_NET_BIND_SERVICE"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "allowRebootSystem")), nix.thunk(() => ["CAP_SYS_BOOT"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "allowRestartService")), nix.thunk(() => ["CAP_KILL"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "allowSetSystemTime")), nix.thunk(() => ["CAP_SYS_TIME"]))))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         deconz: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "deCONZ, a Zigbee gateway for use with ConBee/RaspBee hardware (https://phoscon.de/)")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "deconz", nix.thunk(() => ({})))),
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Force deCONZ to use a specific USB device (e.g. /dev/ttyACM0). By\ndefault it does a search.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Pin deCONZ to the network interface specified through the provided IP\naddress. This applies for the webserver as well as the websocket\nnotifications.\n",
             })))),
           httpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 80n,
               description: "TCP port for the web server.",
             })))),
           wsPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 443n,
               description: "TCP port for the WebSocket.",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           allowRestartService: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "killing/restarting processes")),
           allowSetSystemTime: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "setting the system time")),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--dbg-info=1", "--dbg-err=2"]),
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           firewall: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "httpPort")),
                 nix.thunk(() => nix.sel(cfg, "wsPort")),
@@ -93,18 +93,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           udev: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             deconz: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "deCONZ Zigbee gateway",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.str`# The service puts a nix store path reference in here, and that path can
@@ -118,12 +118,12 @@ while ! "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")
 done
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 HOME: stateDir,
                 XDG_RUNTIME_DIR: nix.thunk(() => nix.str`/run/${name}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`, " -platform minimal"), nix.str` --http-listen=${nix.sel(cfg, "listenAddress")}`), nix.str` --http-port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "httpPort")))}`), nix.str` --ws-port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "wsPort")))}`), " --auto-connect=1"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "device"), null)), nix.thunk(() => nix.str` --dev=${nix.sel(cfg, "device")}`))), " "), nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs"))))),
                 Restart: "on-failure",
                 AmbientCapabilities: capabilities,

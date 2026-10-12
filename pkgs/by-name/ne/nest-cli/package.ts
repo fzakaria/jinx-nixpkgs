@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nest-cli",
       version: "12.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nestjs",
           repo: "nest-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-4N0crjsb53XAP1ssmMa2y5x6FdX88fzpB9ZdERZp6dc=",
       npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, npm_config_build_from_source: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, npm_config_build_from_source: true })),
       nativeBuildInputs: nix.thunk(() => nix.concat([python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [clang_20])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/nestjs/nest-cli/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool for Nest applications",
         downloadPage: "https://github.com/nestjs/nest-cli",

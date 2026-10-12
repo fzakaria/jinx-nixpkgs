@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-autosub",
       version: "0-unstable-2021-06-29",
       scriptPath: "autosub.lua",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davidde",
           repo: "mpv-autosub",
           rev: "35115355bd339681f97d067538356c29e5b14afa",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   "local subliminal = '${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(python3Packages, "subliminal")), "subliminal")}'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully automatic subtitle downloading for the MPV media player",
         homepage: "https://github.com/davidde/mpv-autosub",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

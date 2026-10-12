@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shorter-pixel-dungeon";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrashboxBobylev",
           repo: "Shorter-Pixel-Dungeon",
           rev: nix.thunk(() => nix.str`Short-${version}`),
@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopName = "Shorter Pixel Dungeon";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/TrashboxBobylev/Shorter-Pixel-Dungeon",
         downloadPage: "https://github.com/TrashboxBobylev/Shorter-Pixel-Dungeon/releases",
         description: "Shorter fork of the Shattered Pixel Dungeon roguelike",
       }));
-      return { __proto__: pos$3, pname, version, src, desktopName, meta };
+      return { [nix.POS]: pos$3, pname, version, src, desktopName, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

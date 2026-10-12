@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "worldpainter";
       const version = "2.27.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.worldpainter.net/files/worldpainter_${version}.tar.gz`),
           hash: "sha256-w+sT1C4eeidVTNyS5q8tnHQgQ+frJSL0+A//XbbYNcY=",
         }))));
@@ -36,7 +36,7 @@ wrapProgram $out/bin/wpscript --prefix PATH : "${jre}/bin"
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             desktopName: pname,
             exec: pname,
@@ -49,7 +49,7 @@ wrapProgram $out/bin/wpscript --prefix PATH : "${jre}/bin"
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.worldpainter.net/",
         description: "Interactive map generator for Minecraft",
         longDescription: "WorldPainter is an interactive map generator for Minecraft. It allows you to \"paint\" landscapes using similar tools as a regular paint program. Sculpt and mould the terrain, paint materials, trees, snow and ice, etc. onto it, and much more",
@@ -62,7 +62,7 @@ wrapProgram $out/bin/wpscript --prefix PATH : "${jre}/bin"
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tang",
       version: "15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latchset",
           repo: "tang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,12 +47,12 @@ wrapProgram $out/libexec/tangd-keygen --prefix PATH ":" ${nix.app(nix.sel(lib, "
 wrapProgram $out/libexec/tangd-rotate-keys --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jose]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tang: nix.thunk(() => nix.attr(nixosTests, "tang")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: tang,
               command: nix.thunk(() => nix.str`${tang}/libexec/tangd --version`),
               version: nix.thunk(() => nix.str`tangd ${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ wrapProgram $out/libexec/tangd-rotate-keys --prefix PATH ":" ${nix.app(nix.sel(l
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Server for binding data to network presence",
         homepage: "https://github.com/latchset/tang",
         changelog: nix.thunk(() => nix.str`https://github.com/latchset/tang/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const gnused = nix.arg($, "gnused");
-  const tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test")), nix.thunk(() => ({ __proto__: pos$1, callPackage: callPackage }))));
+  const tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test")), nix.thunk(() => ({ [nix.POS]: pos$1, callPackage: callPackage }))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     patchRcPathBash: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "patch-rc-path-bash",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Setup-hook to inject source-time PATH prefix to a Bash/Ksh/Zsh script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -46,16 +46,16 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
-          tests: nix.thunk(() => ({ __proto__: pos$3, "test-bash": nix.thunk(() => nix.attr(tests, "test-bash")) })),
+          [nix.POS]: pos$4,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$3, "test-bash": nix.thunk(() => nix.attr(tests, "test-bash")) })),
         })),
       })), nix.path(here, "./patch-rc-path-bash.sh"))),
     patchRcPathCsh: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "patch-rc-path-csh",
-        substitutions: nix.thunk(() => ({ __proto__: pos$6, sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: pos$6, sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Setup-hook to inject source-time PATH prefix to a Csh script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -64,15 +64,15 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
-          tests: nix.thunk(() => ({ __proto__: pos$8, "test-csh": nix.thunk(() => nix.attr(tests, "test-csh")) })),
+          [nix.POS]: pos$9,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$8, "test-csh": nix.thunk(() => nix.attr(tests, "test-csh")) })),
         })),
       })), nix.path(here, "./patch-rc-path-csh.sh"))),
     patchRcPathFish: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: "patch-rc-path-fish",
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "Setup-hook to inject source-time PATH prefix to a Fish script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -81,19 +81,19 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tests: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "test-fish": nix.thunk(() => nix.attr(tests, "test-fish")),
           })),
         })),
       })), nix.path(here, "./patch-rc-path-fish.sh"))),
     patchRcPathPosix: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "patch-rc-path-posix",
-        substitutions: nix.thunk(() => ({ __proto__: pos$15, sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: pos$15, sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
         meta: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           description: "Setup-hook to inject source-time PATH prefix to a POSIX shell script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -102,9 +102,9 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           tests: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "test-posix": nix.thunk(() => nix.attr(tests, "test-posix")),
           })),
         })),

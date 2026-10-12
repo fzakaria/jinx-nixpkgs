@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const preInstall = "rm -r static_ttf_woff2/";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/stipub/stixfonts/raw/v${version}/zipfiles/STIX${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}-all.zip`),
           stripRoot: false,
           hash: "sha256-hfQmrw7HjlhQSA0rVTs84i3j3iMVR0k7tCRBcB6hEpU=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.stixfonts.org/",
         description: "Fonts for Scientific and Technical Information eXchange",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

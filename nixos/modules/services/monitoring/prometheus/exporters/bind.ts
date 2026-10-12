@@ -23,39 +23,39 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     port: 9119n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       bindURI: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http://localhost:8053/",
           description: "HTTP API address of a BIND server.\n",
         })))),
       bindTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "10s",
           description: "Timeout for trying to get stats from Bind.\n",
         })))),
       bindVersion: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["json", "xml", "xml.v3", "auto"]))),
           default: "json",
           description: "BIND statistics version. Defaults to JSON.\n",
         })))),
       bindGroups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["server", "view", "tasks"]))))),
           default: nix.thunk(() => ["server", "view"]),
           description: "List of statistics to collect. Available: [server, view, tasks]\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-bind-exporter")}/bin/bind_exporter \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   --bind.pid-file /var/run/named/named.pid \\

@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "0.108.0";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keepass-keetraytotp",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/KeeTrayTOTP/KeeTrayTOTP/releases/download/v${version}/KeeTrayTOTP.plgx`),
           sha256: "4f7251a9bbb79cad04aee96d1809c6b36d43285a9f3834fef5330fc97ae8bc09",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $src $out/lib/dotnet/keepass/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Augments KeePass with TOTP user interface",
         longDescription: "This KeePass2 plugin adds advanced support for generating Time-based One-Time Passwords (TOTPs)\nfrom the KeePass tray icon. It also provides a column in the main entry list to display and/or use TOTPs.\nTOTPs can also be sent by auto-type. The plugin is compatible with Google, Dropbox, Steam, and many more services.\n",
         homepage: "https://github.com/KeeTrayTOTP/KeeTrayTOTP",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

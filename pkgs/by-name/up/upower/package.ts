@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   nix.assert_((!nix.asBool(withDocs) || nix.asBool(withIntrospection)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/up/upower/package.nix:34:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "upower",
       version: "1.91.4",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["devdoc"])), nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["installedTests"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "upower",
           repo: "upower",
@@ -123,16 +123,16 @@ rmdir --parents --ignore-fail-on-non-empty "$DESTDIR${nix.builtins.storeDir}"
   --prefix GI_TYPELIB_PATH : "${nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => ["$out", nix.thunk(() => nix.sel(umockdev, "out"))]))}" \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [umockdev]))}"
 `))),
-      env: nix.thunk(() => ({ __proto__: pos$2, DESTDIR: "dest" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: "dest" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "upower")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://upower.freedesktop.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/upower/upower/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "D-Bus service for power management",

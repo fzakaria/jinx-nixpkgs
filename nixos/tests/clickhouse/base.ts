@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const package$ = nix.arg($, "package");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: nix.thunk(() => nix.str`clickhouse-${nix.sel(package$, "version")}`),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          clickhouse: nix.thunk(() => ({ __proto__: pos$2, enable: true, package: package$ })),
+          [nix.POS]: pos$3,
+          clickhouse: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, package: package$ })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$4, memorySize: 4096n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, memorySize: 4096n })),
       })),
     })),
     testScript: nix.thunk(() => (() => {

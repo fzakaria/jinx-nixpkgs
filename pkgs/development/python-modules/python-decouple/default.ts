@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-decouple",
       version: "3.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HBNetwork",
           repo: "python-decouple",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["decouple"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to handle code and configuration",
         homepage: "https://github.com/HBNetwork/python-decouple",
         changelog: nix.thunk(() => nix.str`https://github.com/HBNetwork/python-decouple/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

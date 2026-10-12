@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const tornado = nix.arg($, "tornado");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srsly",
       version: "2.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "srsly",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, numpy, psutil, pytest, ruamel_yaml, tornado]),
       pythonImportsCheck: nix.thunk(() => ["srsly"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern high-performance serialization utilities for Python",
         homepage: "https://github.com/explosion/srsly",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/srsly/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

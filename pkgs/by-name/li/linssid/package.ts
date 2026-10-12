@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "linssid";
       const version = "2.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/linssid/LinSSID_${version}/linssid_${version}.orig.tar.gz`),
           sha256: "13d35rlcjncd8lx3khkgn9x8is2xjd5fp6ns5xsn3w6l4xj9b4gl",
         }))));
@@ -51,7 +51,7 @@ rm -fr qwt-lib
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wirelesstools, iw]))}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical wireless scanning for Linux",
         homepage: "https://sourceforge.net/projects/linssid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -60,7 +60,7 @@ rm -fr qwt-lib
         mainProgram: "linssid",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

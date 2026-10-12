@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "bcg"));
   const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "generate"), "bcg.conf.yaml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         device: nix.thunk(() => nix.attr(cfg, "device")),
         name: nix.thunk(() => nix.attr(cfg, "name")),
         mqtt: nix.thunk(() => nix.attr(cfg, "mqtt")),
@@ -55,35 +55,35 @@ export default nix.lambda((args) => (() => {
         automatic_rename_nodes: nix.thunk(() => nix.sel(cfg, "automaticRenameNodes")),
       }))))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         bcg: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "BigClown gateway")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["python3Packages", "bcg"]), nix.thunk(() => ({})))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/keys/bcg.env"]),
               description: "File to load as environment file. Environment variables from this file\nwill be interpolated into the config file using envsubst with this\nsyntax: `$ENVIRONMENT` or `${VARIABLE}`.\nThis is useful to avoid putting secrets into the nix store.\n",
             })))),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"]))),
               default: "WARNING",
               description: "Verbosity level.",
             })))),
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Device name to configure gateway to use.",
             })))),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -92,21 +92,21 @@ export default nix.lambda((args) => (() => {
               description: "Name for the device.\n\nSupported variables:\n* `{ip}` IP address\n* `{id}` The ID of the connected usb-dongle or core-module\n\n`null` can be used for automatic detection from gateway firmware.\n",
             })))),
           mqtt: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "Host where MQTT server is running.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 1883n,
                 description: "Port of MQTT server.",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
                 description: "MQTT server access username.",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
                 description: "MQTT server access password.",
               })))),
             cafile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
                 description: "Certificate Authority file for MQTT server access.",
               })))),
             certfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
                 description: "Certificate file for MQTT server access.",
               })))),
             keyfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -152,49 +152,49 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           retainNodeMessages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Specify that node messages should be retaied in MQTT broker.",
             })))),
           qosNodeMessages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "Set the guarantee of MQTT message delivery.",
             })))),
           baseTopicPrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Topic prefix added to all MQTT messages.",
             })))),
           automaticRemoveKitFromNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Automatically remove kits.",
             })))),
           automaticRenameKitNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Automatically rename kit's nodes.",
             })))),
           automaticRenameGenericNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Automatically rename generic nodes.",
             })))),
           automaticRenameNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Automatically rename all nodes.",
             })))),
           rename: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -206,9 +206,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -218,14 +218,14 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             bcg: nix.thunk(() => (() => {
               const envConfig = nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFiles"), []));
               const finalConfig = nix.thunk(() => (nix.asBool(envConfig) ? "${RUNTIME_DIRECTORY}/bcg.config.yaml" : nix.force(configFile)));
               return {
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "BigClown Gateway",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "mosquitto", "enable")), "mosquitto.service"))),
@@ -234,7 +234,7 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(pkgs, "envsubst")}/bin/envsubst -i "${configFile}" -o "${finalConfig}"
 `))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/bcg -c ${finalConfig} -v ${nix.sel(cfg, "verbose")}`),
                   RuntimeDirectory: "bcg",

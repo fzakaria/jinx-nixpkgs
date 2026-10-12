@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const uthash = nix.arg($, "uthash");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logtop",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`logtop-${nix.sel(finalAttrs, "version")}`),
           owner: "JulienPalard",
           repo: "logtop",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       postConfigure: "substituteInPlace Makefile --replace /usr \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Displays a real-time count of strings received from stdin",
         longDescription: "logtop displays a real-time count of strings received from stdin.\nIt can be useful in some cases, like getting the IP flooding your\nserver or the top buzzing article of your blog\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

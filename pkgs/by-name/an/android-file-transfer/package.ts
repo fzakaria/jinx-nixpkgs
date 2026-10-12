@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "android-file-transfer",
       version: "4.5-unstable-2026-04-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "whoozle",
           repo: "android-file-transfer-linux",
           rev: "88926930db41238c7b4d7237fc5849b9586cc7b8",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications\nmv $out/*.app $out/Applications\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reliable MTP client with minimalistic UI",
         homepage: "https://whoozle.github.io/android-file-transfer-linux/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -49,70 +49,70 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "rustus"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "happysalada"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         rustus: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "TUS protocol implementation in Rust")),
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The host that rustus will connect to.\n",
               default: "127.0.0.1",
               example: "127.0.0.1",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "The port that rustus will connect to.\n",
               default: 1081n,
               example: 1081n,
             })))),
           log_level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["DEBUG", "INFO", "ERROR"]))),
               description: "Desired log level\n",
               default: "INFO",
               example: "ERROR",
             })))),
           max_body_size: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Maximum body size in bytes\n",
               default: "10000000",
               example: "100000000",
             })))),
           url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "url path for uploads\n",
               default: "/files",
             })))),
           disable_health_access_logs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "disable access log for /health endpoint\n",
               default: false,
             })))),
           cors: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "list of origins allowed to upload\n",
               default: nix.thunk(() => ["*"]),
               example: nix.thunk(() => ["*.staging.domain", "*.prod.domain"]),
             })))),
           tus_extensions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                     "getting",
                     "creation",
@@ -134,66 +134,66 @@ export default nix.lambda((args) => (() => {
               ]),
             })))),
           remove_parts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "remove parts files after successful concatenation\n",
               default: true,
               example: false,
             })))),
           storage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Storages are used to actually store your files. You can configure where you want to store files.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  type = \"hybrid-s3\"\n  s3_access_key_file = konfig.age.secrets.R2_ACCESS_KEY.path;\n  s3_secret_key_file = konfig.age.secrets.R2_SECRET_KEY.path;\n  s3_bucket = \"my_bucket\";\n  s3_url = \"https://s3.example.com\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   options: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["file-storage", "hybrid-s3"]))),
                         description: "Type of storage to use",
                       })))),
                     s3_access_key_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "File path that contains the S3 access key.",
                       })))),
                     s3_secret_key_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "File path that contains the S3 secret key.",
                       })))),
                     s3_region: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "us-east-1",
                         description: "S3 region name.",
                       })))),
                     s3_bucket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "S3 bucket.",
                       })))),
                     s3_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "S3 url.",
                       })))),
                     force_sync: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "calls fsync system call after every write to disk in local storage",
                         default: true,
                       })))),
                     data_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "path to the local directory where all files are stored",
                         default: "/var/lib/rustus",
                       })))),
                     dir_structure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "pattern of a directory structure locally and on s3",
                         default: "{year}/{month}/{day}",
@@ -202,21 +202,21 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           info_storage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Info storages are used to store information about file uploads. These storages must be persistent, because every time chunk is uploaded rustus updates information about upload. And when someone wants to download file, information about it requested from storage to get actual path of an upload.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   options: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["file-info-storage"]))),
                         description: "Type of info storage to use",
                         default: "file-info-storage",
                       })))),
                     dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "directory to store info about uploads",
                         default: "/var/lib/rustus",
@@ -228,21 +228,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             rustus: nix.thunk(() => (() => {
               const isHybridS3 = nix.thunk(() => nix.eq(nix.sel(cfg, "storage", "type"), "hybrid-s3"));
               return {
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 description: "Rustus server",
                 documentation: nix.thunk(() => ["https://s3rius.github.io/rustus/"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   RUSTUS_SERVER_HOST: nix.thunk(() => nix.sel(cfg, "host")),
                   RUSTUS_SERVER_PORT: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))),
                   RUSTUS_LOG_LEVEL: nix.thunk(() => nix.sel(cfg, "log_level")),
@@ -265,7 +265,7 @@ export default nix.lambda((args) => (() => {
                   RUSTUS_INFO_DIR: nix.thunk(() => nix.sel(cfg, "info_storage", "dir")),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "rustus")}/bin/rustus`),
                   StateDirectory: "rustus",
                   User: "rustus",

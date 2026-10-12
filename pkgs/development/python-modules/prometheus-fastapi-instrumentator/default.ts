@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-fastapi-instrumentator",
       version: "8.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trallnag",
           repo: "prometheus-fastapi-instrumentator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(fastapi, "version")), "0.137")), nix.thunk(() => ["test_mount_inside_included_router_resolves_path"]))),
       pythonImportsCheck: nix.thunk(() => ["prometheus_fastapi_instrumentator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Instrument FastAPI with Prometheus metrics",
         homepage: "https://github.com/trallnag/prometheus-fastapi-instrumentator",
         changelog: nix.thunk(() => nix.str`https://github.com/trallnag/prometheus-fastapi-instrumentator/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

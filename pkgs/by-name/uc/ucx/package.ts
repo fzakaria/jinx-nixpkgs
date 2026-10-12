@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "clr")),
     ];
   })());
-  const rocm = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$1, name: "rocm", paths: rocmList }))));
+  const rocm = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "rocm", paths: rocmList }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "ucx",
       version: "1.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openucx",
           repo: "ucx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cudaPackages, "cuda_nvml_dev")),
         ])), nix.app(nix.sel(lib, "optionals"), enableRocm, rocmList)))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableCuda, nix.thunk(() => [
               nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
               nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_nvml_dev")))}/lib/stubs`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "find $out/lib/ -name \"*.la\" -exec rm -f \\{} \\;\n\nmoveToOutput bin/ucx_info $dev\n\nmoveToOutput share/ucx/examples $doc\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unified Communication X library",
         homepage: "https://www.openucx.org",
         downloadPage: "https://github.com/openucx/ucx",

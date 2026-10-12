@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aws",
       version: "0-unstable-2023-08-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oh-my-fish",
           repo: "plugin-aws",
           rev: "e53a1de3f826916cb83f6ebd34a7356af8f754d1",
           hash: "sha256-l17v/aJ4PkjYM8kJDA0zUo87UTsfFqq+Prei/Qq0DRA=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Completions and integrations with the AWS CLI",
         homepage: "https://github.com/oh-my-fish/plugin-aws",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

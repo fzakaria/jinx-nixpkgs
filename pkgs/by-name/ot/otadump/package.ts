@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "otadump",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crazystylus",
           repo: "otadump",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       cargoHash: "sha256-6L1FJWEaDBqpJvj9uGjYuAqqDoQlkVwOWfbG46Amkkw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool to extract partitions from Android OTA files",
         homepage: "https://github.com/crazystylus/otadump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

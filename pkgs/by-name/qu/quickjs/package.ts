@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quickjs",
       version: "2026-06-04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bellard.org/quickjs/quickjs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-s3boObMil4MT2Sn9IGY7EbpYt131pGwSbdGeovpwrSo=",
         })))),
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
           "runHook postInstallCheck\n",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "qjs --help || true",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://bellard.org/quickjs/",
         description: "Small and embeddable JavaScript engine",
         longDescription: "QuickJS is a small and embeddable JavaScript engine. It supports the\nES2023 specification including modules, asynchronous generators, proxies\nand BigInt.\n\nMain Features:\n\n- Small and easily embeddable: just a few C files, no external\n  dependency, 210 KiB of x86 code for a simple hello world program.\n- Fast interpreter with very low startup time: runs the 76000 tests of\n  the ECMAScript Test Suite in less than 2 minutes on a single core of a\n  desktop PC. The complete life cycle of a runtime instance completes in\n  less than 300 microseconds.\n- Almost complete ES2023 support including modules, asynchronous\n  generators and full Annex B support (legacy web compatibility).\n- Passes nearly 100% of the ECMAScript Test Suite tests when selecting\n  the ES2023 features. A summary is available at Test262 Report.\n- Can compile JavaScript sources to executables with no external dependency.\n- Garbage collection using reference counting (to reduce memory usage and\n  have deterministic behavior) with cycle removal.\n- Command line interpreter with contextual colorization implemented in\n  JavaScript.\n- Small built-in standard library with C library wrappers.\n\n",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const skawarePackages = nix.arg($, "skawarePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fdtools",
       version: "2024.12.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.dogmap.org/fdtools/releases/fdtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-URK5FBpCbhcp2haug0lWtc9wOvwJHPTWZe4u8HDeaYc=",
         })))),
@@ -35,7 +35,7 @@ substituteInPlace conf-compile/defaults/host_link.sh \\
 echo "${nix.sel(skawarePackages, "skalibs", "lib")}/lib/skalibs/sysdeps" > conf-compile/defaults/depend_skalibs_sysdeps
 `),
       buildPhase: "bash package/build\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       installPhase: nix.thunk(() => nix.str`mkdir -p $bin/bin
 tools=( grabconsole multitee pipecycle recvfd seek0 sendfd setblock setstate statfile vc-get vc-lock vc-switch )
 
@@ -56,7 +56,7 @@ mv man/man1/* $man/share/man/man1/
 mv man/man8/* $man/share/man/man8/
 
 ${nix.app(nix.sel(skawarePackages, "cleanPackaging", "commonFileActions"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           noiseFiles: nix.thunk(() => [
             "conf-compile/**/*",
             "src/**/*",
@@ -73,7 +73,7 @@ ${nix.sel(skawarePackages, "cleanPackaging", "checkForRemainingFiles")}
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://code.dogmap.org/fdtools/",
         description: "Set of utilities for working with file descriptors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

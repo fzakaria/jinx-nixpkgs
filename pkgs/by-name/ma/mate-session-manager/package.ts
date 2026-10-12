@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mate-session-manager",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-session-manager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0yzkWVuh2mUpB3cgPyvIK9lzshSjoECAoe9caJkKLXs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mate-desktop/mate-session-manager/commit/3ab6fbfc811d00100d7a2959f8bbb157b536690d.patch",
             sha256: "0yjaklq0mp44clymyhy240kxlw95z3azmravh4f5pfm9dys33sg0",
           })))),
@@ -64,22 +64,22 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       postFixup: "substituteInPlace $out/share/xsessions/mate.desktop \\\n  --replace-fail \"Exec=mate-session\" \"Exec=$out/bin/mate-session\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         providedSessions: nix.thunk(() => ["mate"]),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://git.mate-desktop.org/mate-session-manager",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "MATE Desktop session manager",
         homepage: "https://github.com/mate-desktop/mate-session-manager",
         license: nix.thunk(() => (() => {

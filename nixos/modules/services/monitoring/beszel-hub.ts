@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "beszel", "hub"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -40,47 +40,47 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         beszel: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hub: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "beszel hub")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "beszel", nix.thunk(() => ({})))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "127.0.0.1",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "0.0.0.0",
                 description: "Host or address this beszel hub listens on.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: 8090n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 example: 3002n,
                 description: "Port for this beszel hub to listen on.",
               })))),
             dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: "/var/lib/beszel-hub",
                 description: "Data directory of beszel-hub.",
               })))),
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
                 })()),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$5, DISABLE_PASSWORD_AUTH: "true" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$5, DISABLE_PASSWORD_AUTH: "true" })),
                 description: "Environment variables passed to the systemd service.\nSee <https://www.beszel.dev/guide/environment-variables#hub> for available options.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Environment file to be passed to the systemd service.\nUseful for passing secrets to the service to prevent them from being\nworld-readable in the Nix store. See {manpage}`systemd.exec(5)`.\n",
@@ -90,20 +90,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "beszel-hub": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Beszel Server Monitoring Web App",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => nix.sel(cfg, "environment")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStartPre: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/beszel-hub migrate up`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/beszel-hub migrate history-sync`),

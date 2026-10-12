@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nvi",
       version: "1.81.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://deb.debian.org/debian/pool/main/n/nvi/nvi_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-i8NIiJFZo0zyaPgHILJvRZ29cjtWFhB9NnOdAH5Ml40=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       configureScript: "../dist/configure",
       configureFlags: nix.thunk(() => ["vi_cv_path_preserve=/tmp", "--enable-widechar"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Berkeley Vi Editor",
         longDescription: "nvi (\"new vi\") is a re-implementation of the\nclassic Berkeley text editor vi, written by\nKeith Bostic at UC Berkeley for 4BSD. Created\nto replace Unix-derived code in BSD, it provides\na clean, unencumbered version of the original\neditor and is the default vi on all major BSD\nsystems as well as MINIX.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

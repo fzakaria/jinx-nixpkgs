@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const bash_completion = nix.arg($, "bash-completion");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "umr",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "tomstdenis",
           repo: "umr",
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
         bash_completion,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Userspace debugging and diagnostic tool for AMD GPUs",
         homepage: "https://gitlab.freedesktop.org/tomstdenis/umr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

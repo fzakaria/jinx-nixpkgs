@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cfclient",
       version: "2025.12.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitcraze",
           repo: "crazyflie-clients-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postFixup: "wrapQtApp \"$out/bin/cfclient\" \\\n  --set QT_QPA_PLATFORM \"wayland\" \\\n  --set XDG_CURRENT_DESKTOP \"Wayland\" \\\n  ${qtWrapperArgs[@]}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Host applications and library for Crazyflie drones written in Python",
         homepage: "https://github.com/bitcraze/crazyflie-clients-python",
         changelog: nix.thunk(() => nix.str`https://github.com/bitcraze/crazyflie-clients-python/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsigcxx_2_0 = nix.arg($, "libsigcxx_2_0");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jstest-gtk",
       version: "0.1.1-unstable-2025-04-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Grumbel",
           repo: "jstest-gtk",
           rev: "92bdf8e945a6d14fdd0aa6fa961f6da34f5ac810",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [gtkmm3, libsigcxx_2_0, libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple joystick tester based on Gtk+",
         longDescription: "It provides you with a list of attached joysticks, a way to display which\nbuttons and axis are pressed, a way to remap axis and buttons and a way\nto calibrate your joystick.\n",
         homepage: "https://github.com/Grumbel/jstest-gtk",

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.arg($, "findlib");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ounit`),
       version: nix.thunk(() => nix.attr(ounit2, "version")),
       src: nix.thunk(() => nix.attr(ounit2, "src")),

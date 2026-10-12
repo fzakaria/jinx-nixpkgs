@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const sdkVersion = nix.arg($, "sdkVersion");
   return (self) => (super$) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       privateFrameworksHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "apple-sdk-private-frameworks-hook",
-          meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
         })), nix.path(here, "../setup-hooks/add-private-frameworks.sh"))),
     })),
   });

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gbenchmark = nix.arg($, "gbenchmark");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "json-tui",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArthurSonzogni",
           repo: "json-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       checkInputs: nix.thunk(() => [gbenchmark]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fexceptions" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fexceptions" })),
       cmakeFlags: nix.thunk(() => [
         "-Wno-dev",
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "JSON_TUI_BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ArthurSonzogni/json-tui",
         changelog: nix.thunk(() => nix.str`https://github.com/ArthurSonzogni/json-tui/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "JSON terminal UI made in C++",

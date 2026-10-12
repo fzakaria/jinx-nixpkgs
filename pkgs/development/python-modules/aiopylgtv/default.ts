@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sqlitedict = nix.arg($, "sqlitedict");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiopylgtv",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bendavid",
           repo: "aiopylgtv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["aiopylgtv"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to control webOS based LG TV units",
         mainProgram: "aiopylgtvcommand",
         homepage: "https://github.com/bendavid/aiopylgtv",

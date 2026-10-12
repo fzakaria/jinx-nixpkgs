@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const types_toml = nix.arg($, "types-toml");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cyclonedx-python-lib",
       version: "11.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CycloneDX",
           repo: "cyclonedx-python-lib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         types_toml,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         validation: nix.thunk(() => [jsonschema, lxml]),
         "json-validation": nix.thunk(() => [jsonschema]),
         "xml-validation": nix.thunk(() => [lxml]),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_output_xml.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for generating CycloneDX SBOMs",
         homepage: "https://github.com/CycloneDX/cyclonedx-python-lib",
         changelog: nix.thunk(() => nix.str`https://github.com/CycloneDX/cyclonedx-python-lib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

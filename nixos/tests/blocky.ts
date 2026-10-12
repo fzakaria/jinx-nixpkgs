@@ -18,39 +18,39 @@ const pos$12 = nix.positions(here + "/blocky.nix", [["server", 5, 5]]);
 const pos$13 = nix.positions(here + "/blocky.nix", [["name", 2, 3], ["containers", 4, 3], ["testScript", 34, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$13,
+  [nix.POS]: pos$13,
   name: "blocky",
   containers: nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     server: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dnsutils"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           blocky: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               customDNS: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 mapping: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   "printer.lan": "192.168.178.3,2001:0db8:85a3:08d3:1319:8a2e:0370:7344",
                 })),
               })),
               upstreams: nix.thunk(() => ({
-                __proto__: pos$5,
-                groups: nix.thunk(() => ({ __proto__: pos$4, default: nix.thunk(() => ["8.8.8.8", "1.1.1.1"]) })),
+                [nix.POS]: pos$5,
+                groups: nix.thunk(() => ({ [nix.POS]: pos$4, default: nix.thunk(() => ["8.8.8.8", "1.1.1.1"]) })),
               })),
-              ports: nix.thunk(() => ({ __proto__: pos$6, dns: 53n, http: 5000n })),
-              log: nix.thunk(() => ({ __proto__: pos$7, level: "info" })),
+              ports: nix.thunk(() => ({ [nix.POS]: pos$6, dns: 53n, http: 5000n })),
+              log: nix.thunk(() => ({ [nix.POS]: pos$7, level: "info" })),
             })),
           })),
         })),

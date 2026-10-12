@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bdftopcf = nix.arg($, "bdftopcf");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terminus-font",
       version: "4.49.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/terminus-font/terminus-font-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/terminus-font-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2WHBt4Fie/QX+bNAaT1k/CGeAROtOjrxo0JMeqNz73k=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install-otb", "fontdir"]),
       enableParallelInstalling: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clean fixed width font",
         longDescription: "Terminus Font is designed for long (8 and more hours per day) work\nwith computers. Version 4.30 contains 850 characters, covers about\n120 language sets and supports ISO8859-1/2/5/7/9/13/15/16,\nParatype-PT154/PT254, KOI8-R/U/E/F, Esperanto, many IBM, Windows and\nMacintosh code pages, as well as the IBM VGA, vt100 and xterm\npseudographic characters.\n\nThe sizes present are 6x12, 8x14, 8x16, 10x20, 11x22, 12x24, 14x28 and\n16x32. The styles are normal and bold (except for 6x12), plus\nEGA/VGA-bold for 8x14 and 8x16.\n",
         homepage: "https://terminus-font.sourceforge.net/",

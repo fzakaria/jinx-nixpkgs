@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`gccarch-${nix.sel(pkgs, "stdenv", "hostPlatform", "gcc", "arch")}`),
     ], nix.builtins.map((x) => nix.str`gccarch-${x}`, nix.thunk(() => nix.selOr(systems, () => [], "architectures", "inferiors", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "gcc", "arch"))))))))));
   const legacyConfMappings = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     useSandbox: "sandbox",
     buildCores: "cores",
     maxJobs: "max-jobs",
@@ -92,13 +92,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "path")),
           nix.thunk(() => nix.lookup(w, "package")),
         ])))), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Nix config atom (null, bool, int, float, str, path or package)",
     }));
     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), confAtom, nix.thunk(() => nix.app(nix.lookup(w, "listOf"), confAtom)))));
   })());
   const nixConf = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "nixConf"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       package: nix.thunk(() => nix.attr(cfg, "package")),
       checkAllErrors: nix.thunk(() => nix.attr(cfg, "checkAllErrors")),
       checkConfig: nix.thunk(() => nix.attr(cfg, "checkConfig")),
@@ -106,10 +106,10 @@ export default nix.lambda((args) => (() => {
       version: nix.thunk(() => nix.attr(nixPackage, "version")),
     }))), "generate"), "nix.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   const makeNixBuildUser = (nr) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: nix.thunk(() => nix.str`nixbld${nix.builtins.toString(nr)}`),
     value: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       description: nix.thunk(() => nix.str`Nix build user ${nix.builtins.toString(nr)}`),
       uid: nix.thunk(() => nix.builtins.add(nix.thunk(() => nix.sel(config, "ids", "uids", "nixbld")), nr)),
       isSystemUser: true,
@@ -119,97 +119,97 @@ export default nix.lambda((args) => (() => {
   });
   const nixbldUsers = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(makeNixBuildUser, nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.sel(cfg, "nrBuildUsers"))))))));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     imports: nix.thunk(() => nix.concat([
       nix.thunk(() => nix.app(mkRenamedOptionModuleWith, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           sinceRelease: 2003n,
           from: nix.thunk(() => ["nix", "useChroot"]),
           to: nix.thunk(() => ["nix", "useSandbox"]),
         })))),
       nix.thunk(() => nix.app(mkRenamedOptionModuleWith, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           sinceRelease: 2003n,
           from: nix.thunk(() => ["nix", "chrootDirs"]),
           to: nix.thunk(() => ["nix", "sandboxPaths"]),
         })))),
     ], nix.app(mapAttrsToList, (oldConf) => (newConf) => nix.app(mkRenamedOptionModuleWith, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           sinceRelease: 2205n,
           from: nix.thunk(() => ["nix", oldConf]),
           to: nix.thunk(() => ["nix", "settings", newConf]),
         }))), legacyConfMappings))),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       nix: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Whether to enable Nix.\nDisabling Nix makes the system hard to modify and the Nix programs and configuration will not be made available by NixOS itself.\n",
           })))),
         package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(lib, "types", "package")),
             default: nix.thunk(() => nix.sel(pkgs, "nix")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.nix")),
             description: "This option specifies the Nix package instance to use throughout the system.\n",
           })))),
         checkConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "If enabled, checks that Nix can parse the generated nix.conf.\n",
           })))),
         checkAllErrors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "If enabled, checks the nix.conf parsing for any kind of error. When disabled, checks only for unknown settings.\n",
           })))),
         extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.sel(types, "lines")),
             default: "",
             example: "keep-outputs = true\nkeep-derivations = true\n",
             description: "Additional text appended to {file}`nix.conf`.",
           })))),
         nrBuildUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             description: "Number of `nixbld` user accounts created to\nperform secure concurrent builds.  If you receive an error\nmessage saying that “all build users are currently in use”,\nyou should increase this value.\n",
           })))),
         settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 freeformType: semanticConfType,
                 options: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   "max-jobs": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["auto"]))))),
                       default: "auto",
                       example: 64n,
                       description: "This option defines the maximum number of jobs that Nix will try to\nbuild in parallel. The default is auto, which means it will use all\navailable logical cores. It is recommend to set it to the total\nnumber of logical cores in your system (e.g., 16 for two CPUs with 4\ncores each and hyper-threading).\n",
                     })))),
                   "auto-optimise-store": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       type: nix.thunk(() => nix.sel(types, "bool")),
                       default: false,
                       example: true,
                       description: "If set to true, Nix automatically detects files in the store that have\nidentical contents, and replaces them with hard links to a single copy.\nThis saves disk space. If set to false (the default), you can still run\nnix-store --optimise to get rid of duplicate files.\n",
                     })))),
                   cores: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       type: nix.thunk(() => nix.sel(types, "int")),
                       default: 0n,
                       example: 64n,
                       description: "This option defines the maximum number of concurrent tasks during\none build. It affects, e.g., -j option for make.\nThe special value 0 means that the builder should use all\navailable CPU cores in the system. Some builds may become\nnon-deterministic with this option; use with care! Packages will\nonly be affected if enableParallelBuilding is set for them.\n",
                     })))),
                   "experimental-features": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       type: nix.thunk(() => (() => {
                         const w_1 = nix.withScope(types, null);
                         return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -219,57 +219,57 @@ export default nix.lambda((args) => (() => {
                       description: "List of experimental features to enable in Nix.\nSee <https://nixos.org/manual/nix/stable/development/experimental-features> for available features.\n",
                     })))),
                   sandbox: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "bool")), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["relaxed"]))))),
                       default: true,
                       description: "If set, Nix will perform builds in a sandboxed environment that it\nwill set up automatically for each build. This prevents impurities\nin builds by disallowing access to dependencies outside of the Nix\nstore by using network and mount namespaces in a chroot environment.\n\nThis is enabled by default even though it has a possible performance\nimpact due to the initial setup time of a sandbox for each build. It\ndoesn't affect derivation hashes, so changing this option will not\ntrigger a rebuild of packages.\n\nWhen set to \"relaxed\", this option permits derivations that set\n`__noChroot = true;` to run outside of the sandboxed environment.\nExercise caution when using this mode of operation! It is intended to\nbe a quick hack when building with packages that are not easily setup\nto be built reproducibly.\n",
                     })))),
                   "extra-sandbox-paths": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       default: [],
                       example: nix.thunk(() => ["/dev", "/proc"]),
                       description: "Directories from the host filesystem to be included\nin the sandbox.\n",
                     })))),
                   substituters: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       description: "List of binary cache URLs used to obtain pre-built binaries\nof Nix packages.\n\nBy default https://cache.nixos.org/ is added.\n",
                     })))),
                   "trusted-substituters": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       default: [],
                       example: nix.thunk(() => ["https://hydra.nixos.org/"]),
                       description: "List of binary cache URLs that non-root users can use (in\naddition to those specified using\n{option}`nix.settings.substituters`) by passing\n`--option binary-caches` to Nix commands.\n",
                     })))),
                   "require-sigs": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       type: nix.thunk(() => nix.sel(types, "bool")),
                       default: true,
                       description: "If enabled (the default), Nix will only download binaries from binary caches if\nthey are cryptographically signed with any of the keys listed in\n{option}`nix.settings.trusted-public-keys`. If disabled, signatures are neither\nrequired nor checked, so it's strongly recommended that you use only\ntrustworthy caches and https to prevent man-in-the-middle attacks.\n",
                     })))),
                   "trusted-public-keys": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       example: nix.thunk(() => ["hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="]),
                       description: "List of public keys used to sign binary caches. If\n{option}`nix.settings.trusted-public-keys` is enabled,\nthen Nix will use a binary from a binary cache if and only\nif it is signed by *any* of the keys\nlisted here. By default, only the key for\n`cache.nixos.org` is included.\n",
                     })))),
                   "trusted-users": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       example: nix.thunk(() => ["root", "alice", "@wheel"]),
                       description: "A list of names of users that have additional rights when\nconnecting to the Nix daemon, such as the ability to specify\nadditional binary caches, or to import unsigned NARs. You\ncan also specify groups by prefixing them with\n`@`; for instance,\n`@wheel` means all users in the wheel\ngroup.\n",
                     })))),
                   "system-features": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       default: defaultSystemFeatures,
                       defaultText: nix.thunk(() => nix.app(literalExpression, "[ \"nixos-test\" \"benchmark\" \"big-parallel\" \"kvm\" \"gccarch-<arch>\" ]")),
                       description: "The set of features supported by the machine. Derivations\ncan express dependencies on system features through the\n`requiredSystemFeatures` attribute.\n",
                     })))),
                   "allowed-users": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       default: nix.thunk(() => ["*"]),
                       example: nix.thunk(() => ["@wheel", "@builders", "alice", "bob"]),
@@ -284,19 +284,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           systemPackages: nix.thunk(() => nix.concat([nixPackage, nix.thunk(() => nix.sel(pkgs, "nix-info"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "programs", "bash", "completion", "enable")), nix.thunk(() => nix.sel(pkgs, "nix-bash-completions"))))),
           etc: nix.thunk(() => ({
-            __proto__: pos$34,
-            "nix/nix.conf": nix.thunk(() => ({ __proto__: pos$33, source: nixConf })),
+            [nix.POS]: pos$34,
+            "nix/nix.conf": nix.thunk(() => ({ [nix.POS]: pos$33, source: nixConf })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             rules: nix.thunk(() => [
               "d  /nix/var                           0755 root root - -",
               "L+ /nix/var/nix/gcroots/booted-system 0755 root root - /run/booted-system",
@@ -306,9 +306,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           settings: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "trusted-public-keys": nix.thunk(() => ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="]),
             "trusted-users": nix.thunk(() => ["root"]),
             substituters: nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ["https://cache.nixos.org/"]))),
@@ -317,11 +317,11 @@ export default nix.lambda((args) => (() => {
           })),
           nrBuildUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.selOr(cfg, () => false, "settings", "auto-allocate-uids")) ? 0n : nix.app(nix.sel(lib, "max"), 32n, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "max-jobs"), "auto")) ? 0n : nix.sel(cfg, "settings", "max-jobs")))))))),
         })),
-        users: nix.thunk(() => ({ __proto__: pos$40, users: nixbldUsers })),
+        users: nix.thunk(() => ({ [nix.POS]: pos$40, users: nixbldUsers })),
         services: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             hiddenUsers: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nixbldUsers)),
           })),
         })),

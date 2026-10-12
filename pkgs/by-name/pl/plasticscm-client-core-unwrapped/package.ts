@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const jc = nix.arg($, "jc");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plasticscm-client-core-unwrapped",
       version: "11.0.16.10371",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.plasticscm.com/plasticrepo/stable/debian/amd64/plasticscm-client-core_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-iDfepwChkVewk0l+znR13AOBIIOzCHTgmNAytAgr+tQ=",
           nativeBuildInputs: nix.thunk(() => [dpkg]),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r opt usr/{share,bin} $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "update-plasticscm-client-core-unwrapped",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, dpkg, jc, jq]),
               text: "version=\"$(curl -sSL https://www.plasticscm.com/plasticrepo/stable/debian/Packages |\n  jc --pkg-index-deb |\n  jq -r '[.[] | select(.package == \"plasticscm-client-core\")] | sort_by(.version) | last | .version')\"\n\nupdate-source-version --ignore-same-hash plasticscm-client-core-unwrapped \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.plasticscm.com",
         description: "SCM by Unity for game development",
         platforms: nix.thunk(() => ["x86_64-linux"]),

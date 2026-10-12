@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "postgres_exporter";
       const version = "0.20.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus-community",
           repo: "postgres_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
       })());
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, postgres: nix.thunk(() => nix.attr(from, "postgres")) };
+          return { [nix.POS]: pos$2, postgres: nix.thunk(() => nix.attr(from, "postgres")) };
         })()),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Prometheus exporter for PostgreSQL",
         mainProgram: "postgres_exporter",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

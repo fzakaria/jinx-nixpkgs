@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = "poly";
       const regular = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://googlefontdirectory.googlecode.com/hg-history/d7441308e589c9fa577f920fc4152fa32477a267/poly/src/Poly-Regular.otf",
           sha256: "1mxp2lvki6b1h7r9xcj1ld0g4z5y3dmsal85xam4yr764zpjzaiw",
         }))));
       const italic = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://googlefontdirectory.googlecode.com/hg-history/d7441308e589c9fa577f920fc4152fa32477a267/poly/src/Poly-Italic.otf",
           sha256: "1chzcy3kyi7wpr4iq4aj1v24fq1wwph1v5z96dimlqcrnvm66h2l",
         }))));
@@ -37,7 +37,7 @@ cp ${italic} $out/share/fonts/opentype/Poly-Italic.otf
       const outputHashMode = "recursive";
       const outputHash = "11d7ldryfxi0wzfrg1bhw23a668a44vdb8gggxryvahmp5ahmq2h";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Medium contrast serif font",
         longDescription: "With short ascenders and a very high x-height, Poly is efficient in small\nsizes. Thanks to its careful balance between the x-height and glyph widths,\nit allows more economy and legibility than standard web serifs, even in\nsmall sizes. The aglutinative language for which it was designed contains\nvery long words. The goal was to develop a typeface that would tolerate\ncramped tracking and that would increase the number of letters on a single\nline. Poly is a Unicode typeface family that supports Open Type features\nand languages that use the Latin script and its variants.\n",
         homepage: "http://www.fontsquirrel.com/fonts/poly",
@@ -48,7 +48,7 @@ cp ${italic} $out/share/fonts/opentype/Poly-Italic.otf
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name,
         regular,
         italic,

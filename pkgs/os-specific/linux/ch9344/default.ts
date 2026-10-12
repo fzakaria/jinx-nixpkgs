@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ch9344";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WCHSoftGroup",
           repo: "ch9344ser_linux",
           rev: "e0a38c4f4f9d4c1f5e2e3a352b7b1010b33aa322",
@@ -41,7 +41,7 @@ install -D ch9344.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/usb/se
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.wch-ic.com/",
         downloadPage: "https://github.com/WCHSoftGroup/ch9344ser_linux",
         description: "WCH CH9344/CH348 UART driver",
@@ -54,7 +54,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

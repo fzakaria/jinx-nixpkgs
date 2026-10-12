@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const containers = nix.arg($, "containers");
   const qcheck = nix.arg($, "qcheck");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.5.1",
       pname: "oseq",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c-cube",
           repo: "oseq",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [containers, qcheck]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://c-cube.github.io/oseq/",
         description: "Purely functional iterators compatible with standard `seq`",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fishtape_3 = nix.arg($, "fishtape_3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildFishPlugin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pure",
       version: "4.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pure-fish",
           repo: "pure",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       checkPlugins: nix.thunk(() => [fishtape_3]),
       checkPhase: "rm tests/pure_tools_installer.test.fish\nrm tests/_pure_uninstall.test.fish\n\nfishtape tests/*.test.fish\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pretty, minimal and fast Fish prompt, ported from zsh",
         homepage: "https://github.com/pure-fish/pure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

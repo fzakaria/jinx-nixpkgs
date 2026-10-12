@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mutagen-compose",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mutagen-io",
           repo: "mutagen-compose",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/mutagen-compose"]),
       tags: nix.thunk(() => ["mutagencompose"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compose with Mutagen integration",
         homepage: "https://mutagen.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/mutagen-io/mutagen-compose/releases/tag/v${nix.sel(finalAttrs, "version")}`),

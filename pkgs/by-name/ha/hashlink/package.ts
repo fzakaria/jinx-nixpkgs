@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hashlink";
       const version = "1.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HaxeFoundation",
           repo: "hashlink",
           rev: version,
@@ -56,7 +56,7 @@ cp -r ../other/haxelib/* "${haxelibPath}"
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual machine for Haxe",
         mainProgram: "hl",
         homepage: "https://hashlink.haxe.org/",
@@ -72,7 +72,7 @@ cp -r ../other/haxelib/* "${haxelibPath}"
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "timed",
       version: "3.6.24",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sailfishos",
           repo: "timed",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,25 +70,25 @@ substituteInPlace \\
       buildInputs: nix.thunk(() => [libiodata, sailfish_access_control]),
       postConfigure: "make qmake_all\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TIMED_VERSION: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-isystem ${nix.builtins.placeholder("dev")}/include`),
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.builtins.placeholder("out")}/lib`),
       })),
       preBuild: "pushd src/lib\nmake ${enableParallelBuilding:+-j$NIX_BUILD_CORES}\nmake install\npopd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Time daemon managing system time, time zone and settings",
         homepage: "https://github.com/sailfishos/timed",
         changelog: nix.thunk(() => nix.str`https://github.com/sailfishos/timed/releases/tag/${nix.sel(finalAttrs, "version")}`),

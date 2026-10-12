@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const banFor = (name) => (duration) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     ban: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: "ipset",
       options: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         set: nix.thunk(() => nix.str`reaction-${name}`),
         action: "add",
       })),
     })),
     unban: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       after: duration,
       type: "ipset",
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         set: nix.thunk(() => nix.str`reaction-${name}`),
         action: "del",
       })),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   });
   const journalctl = nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/journalctl`);
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     patterns: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       ip: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: "ip",
         ipv6mask: 64n,
         ignore: nix.thunk(() => ["127.0.0.1", "::1"]),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     streams: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       ssh: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         cmd: nix.thunk(() => [journalctl, "-fn0", "-o", "cat", "-u", "sshd.service"]),
         filters: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           failedlogin: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             regex: nix.thunk(() => [
               "authentication failure;.*rhost=<ip>(?: |$)",
               "Failed password for .* from <ip> port",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
             actions: nix.thunk(() => nix.app(banFor, "ssh", "48h")),
           })),
           connectionreset: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             regex: nix.thunk(() => [
               "Connection (?:reset|closed) by(?: authenticating user .*)? <ip> port",
               "Received disconnect from <ip> port .*[preauth]",

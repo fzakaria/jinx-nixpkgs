@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const electron = nix.arg($, "electron");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "headset",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/headsetapp/headset-electron/releases/download/v${nix.sel(finalAttrs, "version")}/headset_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-81gsIq74sggauE6g8pM6z05KTmsbe49CZa9aRQEDwMo=",
         })))),
@@ -39,7 +39,7 @@ makeWrapper ${electron}/bin/electron $out/bin/headset \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple music player for YouTube and Reddit",
         homepage: "https://headsetapp.co/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

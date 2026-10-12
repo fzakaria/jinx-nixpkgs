@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "2Fake",
           repo: "devolo_home_control_api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test__on_pong", "TestMprm"]);
       const pythonImportsCheck = nix.thunk(() => ["devolo_home_control_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to work with devolo Home Control",
         homepage: "https://github.com/2Fake/devolo_home_control_api",
         changelog: nix.thunk(() => nix.str`https://github.com/2Fake/devolo_home_control_api/blob/${nix.sel(src, "tag")}/docs/CHANGELOG.md`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

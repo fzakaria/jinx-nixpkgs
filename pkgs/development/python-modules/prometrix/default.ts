@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometrix",
       version: "0.2.12-unstable-2026-06-08",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robusta-dev",
           repo: "prometrix",
           rev: "4830ebd9726075ac3e12a5644a9e4668c0bba419",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["prometrix"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified Prometheus client",
         longDescription: "This Python package provides a unified Prometheus client that can be used\nto connect to and query various types of Prometheus instances.\n",
         homepage: "https://github.com/robusta-dev/prometrix",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   const graalvmPackages = nix.arg($, "graalvmPackages");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "executable",
@@ -48,8 +48,8 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          __proto__: pos$4,
-          env: nix.thunk(() => nix.update({ __proto__: pos$1, LC_ALL: "en_US.UTF-8" }, env)),
+          [nix.POS]: pos$4,
+          env: nix.thunk(() => nix.update({ [nix.POS]: pos$1, LC_ALL: "en_US.UTF-8" }, env)),
           dontUnpack: dontUnpack,
           strictDeps: strictDeps,
           __structuredAttrs: __structuredAttrs,
@@ -67,10 +67,10 @@ runHook postInstall
 ${nix.selOr(args_2, () => "", "postInstall")}
 `),
           disallowedReferences: nix.thunk(() => [graalvmDrv]),
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$2, graalvmDrv: graalvmDrv }, passthru)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, graalvmDrv: graalvmDrv }, passthru)),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(graalvmDrv, "meta"));
-            return { __proto__: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+            return { [nix.POS]: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
           })(), meta)),
         };
       })(), formals$2),

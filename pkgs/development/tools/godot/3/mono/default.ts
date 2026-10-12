@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const scons = nix.arg($, "scons");
   const python311Packages = nix.arg($, "python311Packages");
   return nix.app(nix.sel(nix.app(nix.sel(godot3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ __proto__: pos$1, python3Packages: python311Packages })))),
+      [nix.POS]: pos$2,
+      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3Packages: python311Packages })))),
     }))), "overrideAttrs"), (self) => (base) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "godot3-mono",
       godotBuildDescription: "mono build",
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [mono, dotnet_sdk])),
       glue: nix.thunk(() => nix.app(callPackage, nix.path(here, "./glue.nix"), nix.thunk(() => ({})))),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [
-        nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({ __proto__: pos$3, name: "deps", sourceFile: nix.path(here, "./deps.json") })))),
+        nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({ [nix.POS]: pos$3, name: "deps", sourceFile: nix.path(here, "./deps.json") })))),
       ])),
       sconsFlags: nix.thunk(() => nix.concat(nix.sel(base, "sconsFlags"), ["module_mono_enabled=true", nix.thunk(() => nix.str`mono_prefix=${mono}`)])),
       postConfigure: "echo \"Setting up buildhome.\"\nmkdir buildhome\nexport HOME=\"$PWD\"/buildhome\n\necho \"Overlaying godot glue.\"\ncp -R --no-preserve=mode \"$glue\"/. .\n",
       installedGodotShortcutFileName: "org.godotengine.GodotMono3.desktop",
       installedGodotShortcutDisplayName: "Godot Engine (Mono) 3",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "make-deps": nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-deps.nix"), nix.thunk(() => ({})))),
       })),
     }));

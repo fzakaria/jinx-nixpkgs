@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const lua5_1 = nix.arg($, "lua5_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0.93",
       pname: "toluapp",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LuaDist",
           repo: "toluapp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required ( VERSION 2.8 )' \\\n  'cmake_minimum_required ( VERSION 4.0 )'\n",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to integrate C/Cpp code with Lua",
         homepage: "https://github.com/LuaDist/toluapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

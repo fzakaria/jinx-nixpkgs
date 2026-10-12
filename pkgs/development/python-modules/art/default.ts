@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sepandhaghighi",
           repo: "art",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["art"]);
       const checkPhase = "runHook preCheck\n\n$out/bin/art\n$out/bin/art test\n$out/bin/art test2\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ASCII art library for Python",
         mainProgram: "art",
         homepage: "https://github.com/sepandhaghighi/art",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

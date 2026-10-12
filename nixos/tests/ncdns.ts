@@ -28,28 +28,28 @@ export default nix.lambda((args) => (() => {
   const fakeReply = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "namecoin-reply.json", "{ \"error\": null,\n  \"id\": 1,\n  \"result\": {\n    \"address\": \"T31q8ucJ4dI1xzhxQ5QispfECld5c7Xw\",\n    \"expired\": false,\n    \"expires_in\": 2248,\n    \"height\": 438155,\n    \"name\": \"d/test\",\n    \"txid\": \"db61c0b2540ba0c1a2c8cc92af703a37002e7566ecea4dbf8727c7191421edfb\",\n    \"value\": \"{\\\"ip\\\": \\\"1.2.3.4\\\", \\\"email\\\": \\\"root@test.bit\\\",\\\"info\\\": \\\"Fake record\\\"}\",\n    \"vout\": 0\n  }\n}\n"));
   const dnssec = false;
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "ncdns",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$14,
-          networking: nix.thunk(() => ({ __proto__: pos$2, nameservers: nix.thunk(() => ["::1"]) })),
+          [nix.POS]: pos$14,
+          networking: nix.thunk(() => ({ [nix.POS]: pos$2, nameservers: nix.thunk(() => ["::1"]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             namecoind: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               rpc: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 address: "::1",
                 user: "namecoin",
                 password: "secret",
@@ -57,24 +57,24 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             ncdns: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
-              dnssec: nix.thunk(() => ({ __proto__: pos$5, enable: dnssec })),
+              dnssec: nix.thunk(() => ({ [nix.POS]: pos$5, enable: dnssec })),
               identity: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 hostname: "example.com",
                 hostmaster: "root@example.com",
                 address: "1.0.0.1",
               })),
             })),
-            "pdns-recursor": nix.thunk(() => ({ __proto__: pos$8, enable: true, resolveNamecoin: true })),
+            "pdns-recursor": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, resolveNamecoin: true })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               namecoind: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 script: nix.thunk(() => nix.str`while true; do
   echo -e "HTTP/1.1 200 OK\\n\\n $(<${fakeReply})\\n" \\
@@ -85,7 +85,7 @@ done
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dnsutils"))]),
           })),
         };

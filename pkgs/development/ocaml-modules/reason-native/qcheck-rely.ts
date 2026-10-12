@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const rely = nix.arg($, "rely");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "qcheck-rely",
       version: "1.0.2-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [qcheck_core, console, rely]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library containing custom Rely matchers allowing for easily using QCheck with Rely. QCheck is a 'QuickCheck inspired property-based testing for OCaml, and combinators to generate random values to run tests on'",
         homepage: "https://github.com/reasonml/reason-native",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/qcheck-rely",

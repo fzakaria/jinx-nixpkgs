@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.61";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/xflr5`);
       const src = nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://svn.code.sf.net/p/xflr5/code/trunk",
           rev: "1480",
           sha256: "sha256-Uj6R15OT5i5tAJEYWqyFyN5Z51Wz5RjO26mWC3Y6QAI=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Analysis tool for airfoils, wings and planes",
         mainProgram: "xflr5",
         homepage: "https://sourceforge.net/projects/xflr5/",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "esclear"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, sourceRoot, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, sourceRoot, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xmlto = nix.arg($, "xmlto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "roxterm",
       version: "3.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "realh",
           repo: "roxterm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,14 +74,14 @@ export default nix.lambda((args) => (() => {
         xmlto,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "roxterm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/realh/roxterm",
         description: "Highly configurable terminal emulator",
         longDescription: "ROXTerm is a terminal emulator intended to provide similar features to\ngnome-terminal, based on the same VTE library. It was originally designed\nto have a smaller footprint and quicker start-up time by not using the\nGnome libraries and by using a separate applet to provide the\nconfiguration GUI, but thanks to all the features it's acquired over the\nyears ROXTerm can probably now be accused of bloat. However, it is more\nconfigurable than gnome-terminal and aimed more at \"power\" users who make\nheavy use of terminals.\n\nIt still supports the ROX desktop application layout it was named after,\nbut can also be installed in a more conventional manner for use in other\ndesktop environments.\n",

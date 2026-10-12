@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl2700dncupswrapper";
       const version = "3.2.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102086/mfcl2700dncupswrapper-${version}.i386.deb`),
           sha256: "07w48mah0xbv4h8vsh1qd5cd4b463bx8y6gc5x9pfgsxsy6h6da1",
         }))));
@@ -49,7 +49,7 @@ ln $dir/cupswrapper/brother_lpdwrapper_MFCL2700DN $out/lib/cups/filter
 ln $dir/cupswrapper/brother-MFCL2700DN-cups-en.ppd $out/share/cups/model
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L2700DN CUPS wrapper driver",
         homepage: "http://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -57,7 +57,7 @@ ln $dir/cupswrapper/brother-MFCL2700DN-cups-en.ppd $out/share/cups/model
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

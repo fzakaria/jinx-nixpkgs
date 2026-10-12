@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "locust-ui",
       version: version,
       src: src,
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-fjvgnXKenRxML1JkpxYIOnVuNZ7BpU9L/XgblcQV0vA=",

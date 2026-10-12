@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const enableQt = nix.argOr($, "enableQt", () => false);
   const bext = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "BRL-CAD",
       repo: "bext",
       rev: "12f7d5669eec143eb882a367fa2d2a56127d1942",
@@ -106,13 +106,13 @@ done
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "brlcad",
       version: "7.44.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "BRL-CAD",
           repo: "brlcad",
           tag: nix.thunk(() => nix.str`rel-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -177,7 +177,7 @@ cp -r --no-preserve=mode ${bext}/. build/bext/
       ]),
       preConfigure: "cmakeFlagsArray+=(\"-DBRLCAD_EXT_SOURCE_DIR=$(pwd)/build/bext\")\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-template-body", "-Wno-error=template-id-cdtor"]))),
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types", "-std=gnu17"]))),
       })),
@@ -186,7 +186,7 @@ cp -r --no-preserve=mode ${bext}/. build/bext/
       dontWrapQtApps: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableQt, "wrapQtApp $out/bin/brlman\nwrapQtApp $out/bin/qged\nwrapQtApp $out/bin/qgmodel\nwrapQtApp $out/bin/qgview\nwrapQtApp $out/bin/qisst\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://brlcad.org",
         description: "BRL-CAD is a powerful cross-platform open source combinatorial solid modeling system",
         changelog: nix.thunk(() => nix.str`https://github.com/BRL-CAD/brlcad/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

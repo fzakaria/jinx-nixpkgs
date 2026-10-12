@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const apr = nix.arg($, "apr");
   const aprutil = nix.arg($, "aprutil");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redwax-tool",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.redwax.eu/dist/rt/redwax-tool-${nix.sel(finalAttrs, "version")}/redwax-tool-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KIVr0FnCmZUuxenXCvAlLxQVQJ5XndAidVaiGevENoM=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "--with-bash-completion-dir=yes",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://redwax.eu/rt/",
         description: "Universal certificate conversion tool",
         mainProgram: "redwax-tool",

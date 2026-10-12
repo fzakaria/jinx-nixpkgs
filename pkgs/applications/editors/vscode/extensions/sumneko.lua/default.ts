@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const lua_language_server = nix.arg($, "lua-language-server");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "lua",
         publisher: "sumneko",
         version: "3.19.1",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   $out/$installPrefix/server/bin/lua-language-server
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lua language server provides various language features for Lua to make development easier and faster",
         homepage: "https://marketplace.visualstudio.com/items?itemName=sumneko.lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

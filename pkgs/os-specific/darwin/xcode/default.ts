@@ -38,10 +38,10 @@ ${unxip}
 nix-store --add-fixed --recursive sha256 Xcode.app
 rm -rf Xcode.app
 `);
-        return { __proto__: pos$1, name, url, hashMode, sha256: sha256_1, message };
+        return { [nix.POS]: pos$1, name, url, hashMode, sha256: sha256_1, message };
       })())));
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://developer.apple.com/xcode/",
       description: "Apple's Xcode developer tools",
       maintainers: nix.thunk(() => (() => {
@@ -53,10 +53,10 @@ rm -rf Xcode.app
       hydraPlatforms: [],
       sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
     }));
-    return nix.app(nix.sel(app, "overrideAttrs"), (oldAttrs) => nix.update(oldAttrs, { __proto__: pos$3, pname: "xcode", version: version, meta: meta }));
+    return nix.app(nix.sel(app, "overrideAttrs"), (oldAttrs) => nix.update(oldAttrs, { [nix.POS]: pos$3, pname: "xcode", version: version, meta: meta }));
   })();
   return nix.app(nix.sel(lib, "makeExtensible"), (self) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       requireXcode: requireXcode,
       xcode_8_1: nix.thunk(() => nix.app(requireXcode, "8.1", "sha256-VuAovU/b4rcLh+xMtcsZmbTWwTk35VGfMSp+fqPbsqM=")),
       xcode_8_2: nix.thunk(() => nix.app(requireXcode, "8.2", "sha256-ohqgGD7JEEmXEvmfn/N9Ga2lM8jNwhIuh+ky7PQPzY4=")),

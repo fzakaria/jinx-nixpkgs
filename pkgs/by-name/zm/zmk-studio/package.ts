@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zmk-studio",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zmkfirmware",
           repo: "zmk-studio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ ${nix.app(nix.sel(lib, "getExe"), npm_lockfile_fix)} $out/package-lock.json
       buildAndTestSubdir: "src-tauri",
       cargoHash: "sha256-BNX2vhsHaSk3eiadVPH6To0CgbOEGJ1JVKkW3Hw7QH0=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`zmk-studio-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -59,7 +59,7 @@ ${nix.app(nix.sel(lib, "getExe"), npm_lockfile_fix)} $out/package-lock.json
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, udev, webkitgtk_4_1]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out/Applications/ZMK Studio.app/Contents/MacOS/zmk-studio\" \"$out/bin/zmk-studio\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for runtime keymap updates on ZMK-powered devices without reflashing firmware",
         homepage: "https://github.com/zmkfirmware/zmk-studio",
         changelog: nix.thunk(() => nix.str`https://github.com/zmkfirmware/zmk-studio/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

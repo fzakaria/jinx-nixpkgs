@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cosmic-reader",
       version: "0-unstable-2026-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "cosmic-reader",
           rev: "9a34cc93c817f07be9b3540faa5d146c2a891e64",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace $out/share/thumbnailers/com.system76.CosmicReader.thumbnailer \\\n  --replace-fail \"TryExec=cosmic-reader\" \"TryExec=$out/bin/cosmic-reader\" \\\n  --replace-fail \"Exec=cosmic-reader\" \"Exec=$out/bin/cosmic-reader\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version", "branch=HEAD"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version", "branch=HEAD"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PDF reader for the COSMIC Desktop Environment",
         homepage: "https://github.com/pop-os/cosmic-reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

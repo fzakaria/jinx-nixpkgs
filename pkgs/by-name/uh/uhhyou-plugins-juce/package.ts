@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uhhyou-plugins-juce",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryukau",
           repo: "UhhyouPluginsJuce",
           tag: nix.thunk(() => nix.str`UhhyouPluginsJuce${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         libjack2,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-lto"]))),
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/vst3\ncp -r *_artefacts/Release/VST3/*.vst3 $out/lib/vst3/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ryukau/UhhyouPluginsJuce",
         description: "A collection of VST3 effect plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

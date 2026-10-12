@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const cppo = nix.arg($, "cppo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "malfunction",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/stedolan/malfunction/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Cpe5rSBvsr3pqbucGZelutPoI+bcQPFCbdcKsE/HieY=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [findlib, zarith]),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://github.com/stedolan/malfunction",
         description: "Malfunction is a high-performance, low-level untyped program representation, designed as a target for compilers of functional programming languages.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

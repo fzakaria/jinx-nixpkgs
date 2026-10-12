@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csernazs",
           repo: "pytest-httpserver",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_wait_raise_assertion_false"]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_httpserver"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP server for pytest to test HTTP clients",
         homepage: "https://www.github.com/csernazs/pytest-httpserver",
         changelog: nix.thunk(() => nix.str`https://github.com/csernazs/pytest-httpserver/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

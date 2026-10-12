@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "restic-rest-server",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "restic",
           repo: "rest-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-Fg8dDqehART535LYEOLazQntUAKxv9nmBN1RByW4OYE=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           restic: nix.thunk(() => nix.sel(nixosTests, "restic-rest-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/restic/rest-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "High performance HTTP server that implements restic's REST backend API",
         mainProgram: "rest-server",

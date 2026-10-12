@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tagutil",
       version: "3.1-unstable-2025-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaworu",
           repo: "tagutil",
           rev: "c8b20ef350b1a8a67a747590e2e88b41f802cce4",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libvorbis, libyaml, jansson, taglib, zlib]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace \"-o aslr\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scriptable music files tags tool and editor",
         homepage: "https://github.com/kaworu/tagutil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "script_exporter";
       const version = "3.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ricoberger",
           repo: "script_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Patch out failing test assertion in handler_test.go\n# Insert t.Skip at the start of TestHandler to skip it cleanly\nsed -i '/func TestHandler/a\\\\    t.Skip(\"skipped in Nix build\")' prober/handler_test.go\n";
       const vendorHash = "sha256-9skBLU4btdKpboJ1Y/qs2BZ9RPKrKijJWVb+qOy2RlU=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, script: nix.thunk(() => nix.attr(from, "script")) };
+          return { [nix.POS]: pos$2, script: nix.thunk(() => nix.attr(from, "script")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shell script prometheus exporter",
         mainProgram: "script_exporter",
         homepage: "https://github.com/ricoberger/script_exporter",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         subPackages,
         postInstall,
         pname,

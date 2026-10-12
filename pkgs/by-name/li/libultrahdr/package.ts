@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: "1.4.0",
       pname: "libultrahdr",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "libultrahdr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,24 +42,24 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/google/libultrahdr/commit/5fa99b5271a3c80a13c78062d7adc6310222dd8e.patch",
             hash: "sha256-o6lbDOdx+ZrCy/Iq02WjM9Tas8C5P/FMwUtXMUCoZGY=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gtest.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             GTEST_INCLUDE_DIRS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gtest)}/include`),
           })))),
         nix.path(here, "./remove-platform-and-detection-logic.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/google/libultrahdr/commit/13a058f452d846e43d4691f6885eeeaa8b0ea8d0.patch",
             hash: "sha256-2ZVvBMz8wQLEThuXdRJbbx5m2ouRZpxVWoH88RLmit4=",
           })))),
       ]),
       postPatch: "substituteInPlace cmake/libuhdr.pc.in \\\n  --replace-fail \\\n    'libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@' \\\n    'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n  --replace-fail \\\n    'includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@' \\\n    'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           CFLAGS: "-mfpmath=sse -msse2",
           CXXFLAGS: "-mfpmath=sse -msse2",
         })))),
@@ -74,14 +74,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Reference codec for the Ultra HDR format",
         longDescription: "Ultra HDR is a true HDR image format, and is backcompatible. libultrahdr\nis the reference codec for the Ultra HDR format. The codecs that support\nthe format can render the HDR intent of the image on HDR displays; other\ncodecs can still decode and display the SDR intent of the image.\n",
         homepage: "https://developer.android.com/media/platform/hdr-image-format",

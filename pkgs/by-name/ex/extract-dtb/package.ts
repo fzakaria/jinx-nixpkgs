@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extract-dtb",
       version: "1.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-g8Dadd0YwE5c/z6Bh/hIGtHsbmoGsgvAQjE/Hfl2+ag=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract device tree blobs (dtb) from kernel images",
         homepage: "https://github.com/PabloCastellano/extract-dtb",
         changelog: nix.thunk(() => nix.str`https://github.com/PabloCastellano/extract-dtb/releases/tag/${nix.sel(finalAttrs, "version")}`),

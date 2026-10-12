@@ -64,55 +64,55 @@ ${nix.sel(cfg, "extraConfig")}
   const allConfigPaths = nix.thunk(() => nix.concat([configFile], nix.sel(cfg, "extraSettingsPaths")));
   const configOptions = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "dev")), "-dev"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "dev")) && nix.asBool(!nix.eq(nix.sel(cfg, "devRootTokenID"), null)))), nix.thunk(() => nix.str`-dev-root-token-id=${nix.sel(cfg, "devRootTokenID")}`)), nix.app(nix.sel(lib, "concatMap"), (p) => ["-config", p], allConfigPaths))))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         vault: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Vault daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vault", nix.thunk(() => ({})))),
           dev: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "In this mode, Vault runs in-memory and starts unsealed. This option is not meant production but for development and testing i.e. for nixos tests.\n",
             })))),
           devRootTokenID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Initial root token. This only applies when {option}`services.vault.dev` is true\n",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1:8200",
               description: "The name of the ip interface to listen to",
             })))),
           tlsCertFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "/path/to/your/cert.pem",
               description: "TLS certificate file. TLS will be disabled unless this option is set",
             })))),
           tlsKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "/path/to/your/key.pem",
               description: "TLS private key file. TLS will be disabled unless this option is set",
             })))),
           listenerExtraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "tls_min_version = \"tls12\"\n",
               description: "Extra text appended to the listener section.",
             })))),
           storageBackend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                   "inmem",
                   "file",
@@ -133,7 +133,7 @@ ${nix.sel(cfg, "extraConfig")}
               description: "The name of the type of storage backend",
             })))),
           storagePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "file")) || nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "raft")))) ? "/var/lib/vault" : null)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "storageBackend")} == "file" || cfg.storageBackend == "raft"
@@ -143,25 +143,25 @@ else null
               description: "Data directory for file backend",
             })))),
           storageConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               description: "HCL configuration to insert in the storageBackend section.\n\nConfidential values should not be specified here because this option's\nvalue is written to the Nix store, which is publicly readable.\nProvide credentials and such in a separate file using\n[](#opt-services.vault.extraSettingsPaths).\n",
             })))),
           telemetryConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Telemetry configuration",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra text appended to {file}`vault.hcl`.",
             })))),
           extraSettingsPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: nix.thunk(() => nix.str`Configuration files to load besides the immutable one defined by the NixOS module.
@@ -193,25 +193,25 @@ users.users.vault.extraGroups = ["keys"];
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "inmem")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "storagePath"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "storageConfig"), null)))))),
             message: "The \"inmem\" storage expects no services.vault.storagePath nor services.vault.storageConfig",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool((!nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "file")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "storagePath"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "storageConfig"), null)))))) && nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "storagePath"), null)) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "file")) || nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "raft")))))))),
             message: "You must set services.vault.storagePath only when using the \"file\" or \"raft\" backend",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             vault: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "vault",
               group: "vault",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "vault")),
@@ -219,23 +219,23 @@ users.users.vault.extraGroups = ["keys"];
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             vault: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "vault")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storagePath"), null)), nix.thunk(() => nix.str`d '${nix.sel(cfg, "storagePath")}' 0700 vault vault - -`))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             vault: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Vault server daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "consul", "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "storageBackend"), "consul")))), "consul.service"))),
@@ -243,7 +243,7 @@ users.users.vault.extraGroups = ["keys"];
               startLimitIntervalSec: 60n,
               startLimitBurst: 3n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: "vault",
                 Group: "vault",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vault server ${configOptions}`),
@@ -262,7 +262,7 @@ users.users.vault.extraGroups = ["keys"];
                 Restart: "on-failure",
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 RequiresMountsFor: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storagePath"), null)), nix.thunk(() => nix.sel(cfg, "storagePath")))),
               })),
             })),

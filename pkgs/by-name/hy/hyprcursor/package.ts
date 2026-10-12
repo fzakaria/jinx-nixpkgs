@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const tomlplusplus = nix.arg($, "tomlplusplus");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyprcursor",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprcursor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hyprwm/hyprcursor",
         description: "Hyprland cursor format, library and utilities",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/hyprcursor/releases/tag/v${nix.sel(finalAttrs, "version")}`),

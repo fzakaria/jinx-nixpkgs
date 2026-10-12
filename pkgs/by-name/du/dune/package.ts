@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(buildPackages, "buildPackages"));
   const ocamlPackages = nix.thunk(() => nix.attr(from, "ocamlPackages"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dune",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => (() => {
             const sfx = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "2")), "site-"));
             return nix.str`https://github.com/ocaml/dune/releases/download/${version}/dune-${sfx}${version}.tbz`;
           })()),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "3.23.1": "sha256-k7TnFX9rqP62HPxfhgCO/SxZA3unigF9krSr8wYyNI8=",
             "3.22.2": "sha256-wsz4vGsXr6R8RQKXNXSWMDqnyGgOMpt52Yxo41AToRg=",
             "3.21.1": "sha256-hPeoLG2ApxJPOEfppInoDPvq+3vtNXOsAShu9W/QjZQ=",
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
         "LIBDIR=$(OCAMLFIND_DESTDIR)",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "ocaml-lsp": nix.thunk(() => nix.attr(ocamlPackages, "ocaml-lsp")),
           "dune-release": nix.thunk(() => nix.attr(ocamlPackages, "dune-release")),
         })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://dune.build/",
         description: "Composable build system",
         mainProgram: "dune",

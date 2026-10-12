@@ -26,65 +26,65 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "gonic"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " ")),
       listsAsDuplicateKeys: true,
     }))));
   const assertKey = (key) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     assertion: nix.thunk(() => nix.has(nix.sel(cfg, "settings"), nix.key(nix.force(key)))),
     message: nix.thunk(() => nix.str`Please set services.gonic.settings.${key}. See https://github.com/sentriz/gonic#configuration-options for supported values.`),
   });
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gonic: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Gonic music server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gonic", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
               const type = nix.thunk(() => nix.sel(settingsFormat, "type"));
               const apply = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), default$));
               const default$ = nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "listen-addr": "127.0.0.1:4747",
                 "cache-path": "/var/cache/gonic",
                 "tls-cert": null,
                 "tls-key": null,
               }));
               const example = nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "music-path": nix.thunk(() => ["/mnt/music"]),
                 "podcast-path": "/mnt/podcasts",
                 "playlists-path": "/mnt/playlists",
               }));
               const description = "Configuration for Gonic, see <https://github.com/sentriz/gonic#configuration-options> for supported values.\n";
-              return { __proto__: pos$5, type, apply, default: default$, example, description };
+              return { [nix.POS]: pos$5, type, apply, default: default$, example, description };
             })()))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => [
           nix.thunk(() => nix.app(assertKey, "music-path")),
           nix.thunk(() => nix.app(assertKey, "podcast-path")),
           nix.thunk(() => nix.app(assertKey, "playlists-path")),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             gonic: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Gonic Media Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => (() => {
                   const filteredSettings = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => !nix.asBool((nix.asBool((nix.asBool(nix.eq(n, "tls-cert")) || nix.asBool(nix.eq(n, "tls-key")))) && nix.asBool(nix.eq(v, null)))), nix.thunk(() => nix.sel(cfg, "settings"))));
                   return nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -config-path ${nix.app(nix.sel(settingsFormat, "generate"), "gonic", filteredSettings)}`;
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "autrimpo"))]),
     })),
   };

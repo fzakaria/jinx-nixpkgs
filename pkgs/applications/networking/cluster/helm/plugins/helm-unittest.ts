@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "1.2.1";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "helm-unittest",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helm-unittest",
           repo: "helm-unittest",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/helm-unittest"]),
       installPhase: "runHook preInstall\n\ninstall -dm755 \"$out/helm-unittest\"\ninstall -m755 -Dt \"$out/helm-unittest\" \"$GOPATH/bin/helm-unittest\"\ninstall -m644 -Dt \"$out/helm-unittest\" ./plugin.yaml\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           smoke: nix.thunk(() => (() => {
             const helm = nix.thunk(() => nix.app(wrapHelm, kubernetes_helm, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 plugins: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               }))));
             return nix.app(runCommand, "helm-unittest-plugin-smoke", nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 nativeBuildInputs: nix.thunk(() => [helm, writableTmpDirAsHomeHook]),
               })), nix.thunk(() => nix.str`cp -r ${nix.path(here, "./tests/helm-unittest/smoke")} chart
 chmod -R u+w chart
@@ -59,7 +59,7 @@ touch $out
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "BDD styled unit test framework for Kubernetes Helm charts as a Helm plugin",
         homepage: "https://github.com/helm-unittest/helm-unittest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

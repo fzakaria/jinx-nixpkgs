@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const cxx_standard = nix.argOr($, "cxx_standard", () => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "11.0")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "16.0")))))) ? "17" : null));
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtest",
       version: "1.18.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "googletest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optional"), withAbseil, nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GTEST_HAS_ABSL", true)))))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google's framework for writing C++ tests",
         homepage: "https://github.com/google/googletest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

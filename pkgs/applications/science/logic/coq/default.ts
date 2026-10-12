@@ -91,186 +91,186 @@ export default nix.lambda((args) => (() => {
   const csdp = nix.argOr($, "csdp", () => null);
   const version = nix.arg($, "version");
   const coq_version = nix.argOr($, "coq-version", () => null);
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/coq/extra-lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/coq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const release = nix.thunk(() => ({
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     "8.7.0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       sha256: "1h18b7xpnx3ix9vsi5fx4zdcbxy7bhra7gd5c5yzxmk53cgf1p9m",
     })),
     "8.7.1": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       sha256: "0gjn59jkbxwrihk8fx9d823wjyjh5m9gvj9l31nv6z6bcqhgdqi8",
     })),
     "8.7.2": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       sha256: "0a0657xby8wdq4aqb2xsxp3n7pmc2w4yxjmrb2l4kccs1aqvaj4w",
     })),
     "8.8.0": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       sha256: "13a4fka22hdxsjk11mgjb9ffzplfxyxp1sg5v1c8nk1grxlscgw8",
     })),
     "8.8.1": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       sha256: "1hlf58gwazywbmfa48219amid38vqdl94yz21i11b4map6jfwhbk",
     })),
     "8.8.2": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       sha256: "1lip3xja924dm6qblisk1bk0x8ai24s5xxqxphbdxj6djglj68fd",
     })),
     "8.9.0": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       sha256: "1dkgdjc4n1m15m1p724hhi5cyxpqbjw6rxc5na6fl3v4qjjfnizh",
     })),
     "8.9.1": nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       sha256: "1xrq6mkhpq994bncmnijf8jwmwn961kkpl4mwwlv7j3dgnysrcv2",
     })),
     "8.10.0": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       sha256: "138jw94wp4mg5dgjc2asn8ng09ayz1mxdznq342n0m469j803gzg",
     })),
     "8.10.1": nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       sha256: "072v2zkjzf7gj48137wpr3c9j0hg9pdhlr5l8jrgrwynld8fp7i4",
     })),
     "8.10.2": nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       sha256: "0znxmpy71bfw0p6x47i82jf5k7v41zbz9bdpn901ysn3ir8l3wrz",
     })),
     "8.11.0": nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       sha256: "1rfdic6mp7acx2zfwz7ziqk12g95bl9nyj68z4n20a5bcjv2pxpn",
     })),
     "8.11.1": nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       sha256: "0qriy9dy36dajsv5qmli8gd6v55mah02ya334nw49ky19v7518m0",
     })),
     "8.11.2": nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       sha256: "0f77ccyxdgbf1nrj5fa8qvrk1cyfy06fv8gj9kzfvlcgn0cf48sa",
     })),
     "8.12.0": nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       sha256: "18dc7k0piv6v064zgdadpw6mkkxk7j663hb3svgj5236fihjr0cz",
     })),
     "8.12.1": nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       sha256: "1rkcyjjrzcqw9xk93hsq0vvji4f8r5iq0f739mghk60bghkpnb7q",
     })),
     "8.12.2": nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       sha256: "18gscfm039pqhq4msq01nraig5dm9ab98bjca94zldf8jvdv0x2n",
     })),
     "8.13.0": nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       sha256: "1l2c63vskp8kiyxiyi5rpgbmnv67ysn3y4lybd6nj0li5llibifi",
     })),
     "8.13.1": nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       sha256: "15drjcqhsgwqnv02bbidyhk316ypyhz1pxfz2gwsalci9svhkz0v",
     })),
     "8.13.2": nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       sha256: "14d4alp35hngvga9m7cfp5d1nl62xdj0nm4811f2jjblk86gxxk4",
     })),
     "8.14.0": nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       sha256: "0yxjx9kq9bfpk31dc1c6a0pz0827fz7jmrcwwd4n7dc07yi0arq8",
     })),
     "8.14.1": nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       sha256: "0xdqiabgm4lrm6d7lw544zd8xwb1cdcavsxvwwlqq6yid2rl2yli",
     })),
     "8.15.0": nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       sha256: "sha256:0q7jl3bn0d1v9cwdkxykw4frccww6wbh1p8hdrfqw489mkxmh5jh",
     })),
     "8.15.1": nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       sha256: "sha256:1janvmnk3czimp0j5qmnfwx6509vhpjc2q7lcza1bc6dm6kn8n42",
     })),
     "8.15.2": nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       sha256: "sha256:0qibbvzrhsvs6w3zpkhyclndp29jnr6bs9i5skjlpp431jdjjfqd",
     })),
     "8.16.0": nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       sha256: "sha256-3V6kL9j2rn5FHBxq1mtmWWTZS9X5cAyvtUsS6DaM+is=",
     })),
     "8.16.1": nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       sha256: "sha256-n7830+zfZeyYHEOGdUo57bH6bb2/SZs8zv8xJhV+iAc=",
     })),
     "8.17.0": nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       sha256: "sha256-TGwm7S6+vkeZ8cidvp8pkiAd9tk008jvvPvYgfEOXhM=",
     })),
     "8.17.1": nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       sha256: "sha256-x+RwkbxMg9aR0L3WSCtpIz8jwA5cJA4tXAtHMZb20y4=",
     })),
     "8.18.0": nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       sha256: "sha256-WhiBs4nzPHQ0R24xAdM49kmxSCPOxiOVMA1iiMYunz4=",
     })),
     "8.19.0": nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       sha256: "sha256-ixsYCvCXpBHqJ71hLQklphlwoOO3i/6w2PJjllKqf9k=",
     })),
     "8.19.1": nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       sha256: "sha256-kmZ8Uk8jpzjOd67aAPp3C+vU2oNaBw9pr7+Uixcgg94=",
     })),
     "8.19.2": nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       sha256: "sha256-q+i07JsMZp83Gqav6v1jxsgPLN7sPvp5/oszVnavmz0=",
     })),
     "8.20.0": nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       sha256: "sha256-WFpZlA6CzFVAruPhWcHQI7VOBVhrGLdFzWrHW0DTSl0=",
     })),
     "8.20.1": nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       sha256: "sha256-nRaLODPG4E3gUDzGrCK40vhl4+VhPyd+/fXFK/HC3Ig=",
     })),
     "9.0.0": nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       sha256: "sha256-GRwYSvrJGiPD+I82gLOgotb+8Ra5xHZUJGcNwxWqZkU=",
     })),
     "9.0.1": nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       sha256: "sha256-gRgQhFiYvGR/Z46TmTl1bgN9O32nifxQGdrzfw0WHrk=",
     })),
     "9.1.0": nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       sha256: "sha256-+QL7I1/0BfT87n7lSaOmpHj2jJuDB4idWhAxwzvVQOE=",
     })),
     "9.1.1": nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       sha256: "sha256-aFsGsFzexyDnOVarHPKs35HjiV8uUCpeOKSl15wXZ4s=",
     })),
     "9.2.0": nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       sha256: "sha256-rVhv2GLImdVPgRwwTQ+wiWNtRUflMrES0ElIrdTIN1s=",
     })),
     "9.3.0": nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       sha256: "sha256-Wr9+5Mq3/hS3gnyZDnzBo9aJCjeqQDGi4eaU1LinwaE=",
     })),
   }));
   const releaseRev = (v) => nix.str`V${v}`;
   const fetched = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/rocq/meta-fetch/default.nix")), nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       lib: lib_1,
       stdenv: stdenv,
       fetchzip: fetchzip,
       fetchurl: fetchurl,
     })), nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       release: release,
       releaseRev: releaseRev,
-      location: nix.thunk(() => ({ __proto__: pos$45, owner: "coq", repo: "coq" })),
+      location: nix.thunk(() => ({ [nix.POS]: pos$45, owner: "coq", repo: "coq" })),
     })), nix.thunk(() => nix.sel(args_1, "version"))));
   const version_1 = nix.thunk(() => nix.sel(fetched, "version"));
   const coq_version_1 = nix.thunk(() => nix.selOr(args_1, () => (nix.asBool(!nix.eq(version_1, "dev")) ? nix.app(nix.sel(lib_1, "versions", "majorMinor"), version_1) : "dev"), "coq-version"));
@@ -280,30 +280,30 @@ export default nix.lambda((args) => (() => {
   const csdpPatch = nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => !nix.eq(csdp, null)), nix.thunk(() => nix.str`substituteInPlace plugins/micromega/sos.ml --replace "; csdp" "; ${csdp}/bin/csdp"
 substituteInPlace plugins/micromega/coq_micromega.ml --replace "System.is_in_system_path \\"csdp\\"" "true"
 `)));
-  const dune_1 = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib_1, "versions", "isEq"), coq_version_1, "8.20")) ? nix.app(nix.sel(args_1, "dune", "override"), nix.thunk(() => ({ __proto__: pos$47, version: "3.21.1" }))) : nix.sel(args_1, "dune")));
+  const dune_1 = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib_1, "versions", "isEq"), coq_version_1, "8.20")) ? nix.app(nix.sel(args_1, "dune", "override"), nix.thunk(() => ({ [nix.POS]: pos$47, version: "3.21.1" }))) : nix.sel(args_1, "dune")));
   const ocamlPackages = nix.thunk(() => (nix.asBool(!nix.eq(customOCamlPackages, null)) ? nix.force(customOCamlPackages) : nix.app(nix.sel(lib_1, "switch"), coq_version_1, nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         case: nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "isEq"), "8.20")),
-        out: nix.thunk(() => nix.app(nix.sel(ocamlPackages_4_14, "overrideScope"), (self_1) => (super$) => ({ __proto__: pos$48, dune: dune_1, dune_3: dune_1 }))),
+        out: nix.thunk(() => nix.app(nix.sel(ocamlPackages_4_14, "overrideScope"), (self_1) => (super$) => ({ [nix.POS]: pos$48, dune: dune_1, dune_3: dune_1 }))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         case: nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.16", "9.1")),
         out: ocamlPackages_4_14,
       })),
       nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         case: nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.14", "8.15")),
         out: ocamlPackages_4_12,
       })),
       nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         case: nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.11", "8.13")),
         out: ocamlPackages_4_10,
       })),
       nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         case: nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.7", "8.10")),
         out: ocamlPackages_4_09,
       })),
@@ -315,12 +315,12 @@ substituteInPlace plugins/micromega/coq_micromega.ml --replace "System.is_in_sys
   const ocamlBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "findlib"))]);
   const ocamlPropagatedBuildInputs = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => !nix.asBool(nix.app(coqAtLeast, "8.10"))), nix.thunk(() => nix.sel(ocamlPackages, "camlp5"))), nix.concat(nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => !nix.asBool(nix.app(coqAtLeast, "8.13"))), nix.thunk(() => nix.sel(ocamlPackages, "num"))), nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => nix.app(coqAtLeast, "8.13")), nix.thunk(() => nix.sel(ocamlPackages, "zarith")))))));
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       pname: "coq",
       version: nix.thunk(() => nix.attr(fetched, "version")),
       src: nix.thunk(() => nix.attr(fetched, "src")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         "coq-version": coq_version_1,
         "rocq-version": rocq_version,
         ocamlPackages: ocamlPackages,
@@ -402,7 +402,7 @@ addEnvHooks "$targetOffset" addCoqPath
       enableParallelBuilding: nix.thunk(() => nix.app(coqAtLeast, "8.14")),
       createFindlibDestdir: true,
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib_1, "optional"), buildIde_1, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             name: "coqide",
             exec: "coqide",
             icon: "coq",
@@ -416,7 +416,7 @@ addEnvHooks "$targetOffset" addCoqPath
 `), nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => nix.app(coqAtLeast, "9.4")), "ln -s $out/lib/rocqide-server $OCAMLFIND_DESTDIR/rocqide-server\n")), nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(coqAtLeast, "8.14")) && nix.asBool(!nix.asBool(nix.app(coqAtLeast, "9.4"))))), "ln -s $out/lib/coqide-server $OCAMLFIND_DESTDIR/coqide-server\n")), nix.app(nix.sel(lib_1, "optionalString"), buildIde_1, "mkdir -p \"$out/share/pixmaps\"\nln -s \"$out/share/coq/coq.png\" \"$out/share/pixmaps/\"\n"));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         description: "Coq proof assistant",
         longDescription: "Coq is a formal proof management system.  It provides a formal language\nto write mathematical definitions, executable algorithms and theorems\ntogether with an environment for semi-interactive development of\nmachine-checked proofs.\n",
         homepage: "https://coq.inria.fr",
@@ -439,7 +439,7 @@ addEnvHooks "$targetOffset" addCoqPath
     }))));
   const coqrocqide_server = nix.thunk(() => (nix.asBool(nix.app(coqAtLeast, "9.4")) ? "rocqide-server" : "coqide-server"));
   return (nix.asBool(nix.app(coqAtLeast, "8.21")) ? nix.app(nix.sel(self, "overrideAttrs"), (o) => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "nativeBuildInputs"), [nix.thunk(() => nix.sel(rocqPackages, "rocq-core"))])),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(rocqPackages, "rocq-core"))])),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -458,7 +458,7 @@ done
 runHook postInstall
 `),
     })) : (nix.asBool(nix.app(coqAtLeast, "8.17")) ? nix.app(nix.sel(self, "overrideAttrs"), (_) => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 make dunestrap
 dune build -p coq-core,coq-stdlib,coqide-server${nix.app(nix.sel(lib_1, "optionalString"), buildIde_1, ",coqide")} -j $NIX_BUILD_CORES

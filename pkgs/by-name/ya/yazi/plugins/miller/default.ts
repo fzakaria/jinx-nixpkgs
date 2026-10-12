@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "miller.yazi",
       version: "0-unstable-2025-04-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Reledia",
           repo: "miller.yazi",
           rev: "0a3d1316e38132ae9a6b91fbd69bab295cbbf2fe",
           hash: "sha256-pZpx7V5ud5JhEkgkfVBSuM0CFIIUXZZ+pOX0xVlHf+0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Miller, now in yazi",
         homepage: "https://github.com/Reledia/miller.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

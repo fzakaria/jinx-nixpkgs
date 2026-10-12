@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shaderbg",
       version: "0-unstable-2024-11-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mr-Pine",
           repo: "shaderbg",
           rev: "cf9b135069550f8d7c8411d8a53285882034331c",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, cmake, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland, libGL]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shader-based live wallpaper program for compositors that support wlr-layer-shell (Sway and others)",
         homepage: "https://github.com/Mr-Pine/shaderbg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const plat = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const archive_fmt = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "zip" : "tar.gz"));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-rfNUjfBV0Y5HbN7oh0iLp0hrh5rZmjGlRsa1xf8pbCQ=",
     "aarch64-linux": "sha256-c9h9RtTcII/hLASX3GB6qwpuK/My9UoLaCajoaoyvDQ=",
     "aarch64-darwin": "sha256-8h7lJinrXjnAVdrqcBGLemBVxjmuzz2tBeGZeprYOsA=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const longName = "VSCodium";
       const shortName = "vscodium";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/VSCodium/vscodium/releases/download/${version}/VSCodium-${plat}-${version}.${archive_fmt}`),
           hash: hash,
         }))));
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const updateScript = nix.path(here, "./update-vscodium.sh");
       const dontFixup = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source source code editor developed by Microsoft for Windows,\nLinux and macOS (VS Code without MS branding/telemetry/licensing)\n",
         longDescription: "Open source source code editor developed by Microsoft for Windows,\nLinux and macOS. It includes support for debugging, embedded Git\ncontrol, syntax highlighting, intelligent code completion, snippets,\nand code refactoring. It is also customizable, so users can change the\neditor's theme, keyboard shortcuts, and preferences\n",
         homepage: "https://github.com/VSCodium/vscodium",
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sourceRoot: sourceRoot_1,
         commandLineArgs: commandLineArgs_1,
         useVSCodeRipgrep: useVSCodeRipgrep_1,

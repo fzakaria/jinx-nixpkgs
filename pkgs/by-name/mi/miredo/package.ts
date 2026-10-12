@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const iproute2 = nix.arg($, "iproute2");
   const judy = nix.arg($, "judy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2.6",
       pname: "miredo",
       buildInputs: nix.thunk(() => [judy]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.remlab.net/files/miredo/miredo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0j9ilig570snbmj48230hf7ms8kvcwi2wblycqrmhh85lksd49ps",
         })))),
@@ -33,7 +33,7 @@ substituteInPlace misc/client-hook.iproute --replace '/sbin/ip' '${iproute2}/bin
       configureFlags: nix.thunk(() => ["--with-Judy"]),
       postInstall: "rm -rf $out/lib/systemd $out/var $out/etc/miredo/miredo.conf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Teredo IPv6 Tunneling Daemon",
         homepage: "https://www.remlab.net/miredo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

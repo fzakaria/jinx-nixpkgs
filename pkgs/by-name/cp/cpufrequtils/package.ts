@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpufrequtils",
       version: "008",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ftp.be.debian.org/pub/linux/utils/kernel/cpufreq/cpufrequtils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-AFOgcYPQaUg70GJhS8YcuAgMV32mHN9+ExsGThoa8Yg=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to display or change the CPU governor settings",
         homepage: "http://ftp.be.debian.org/pub/linux/utils/kernel/cpufreq/cpufrequtils.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

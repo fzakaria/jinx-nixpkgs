@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dropbox",
       version: "12.2.0",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dropbox",
           repo: "dropbox-sdk-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_upload_auto_content_hash",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Dropbox's HTTP-based Core and Datastore APIs",
         homepage: "https://github.com/dropbox/dropbox-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/dropbox/dropbox-sdk-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

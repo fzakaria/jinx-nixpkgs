@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "tinkerpop",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-async_timeout.pach",
             url: "https://github.com/apache/tinkerpop/commit/aa327ace6feaf6ccd3eca411f3b5f6f86f8571f6.patch",
             excludes: nix.thunk(() => ["gremlin-python/src/main/python/setup.py"]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         "TestFunctionalGraphSONIO and test_uuid",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/apache/tinkerpop/blob/${nix.sel(src, "tag")}/CHANGELOG.asciidoc`),
         description: "Gremlin-Python implements Gremlin, the graph traversal language of Apache TinkerPop, within the Python language",
         homepage: "https://tinkerpop.apache.org/",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         __structuredAttrs,
         pname,
         version,

@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const mirage_clock = nix.arg($, "mirage-clock");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-clock-solo5",
       version: nix.thunk(() => nix.attr(mirage_clock, "version")),
       src: nix.thunk(() => nix.attr(mirage_clock, "src")),
       propagatedBuildInputs: nix.thunk(() => [mirage_clock]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_clock, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Paravirtual implementation of the MirageOS Clock interface",
       })),
     })));

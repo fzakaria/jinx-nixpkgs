@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const boringssl = nix.arg($, "boringssl");
   const withShared = nix.argOr($, "withShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libsignal-ffi",
       version: "0.102.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fetchSubmodules: true,
           owner: "signalapp",
           repo: "libsignal",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), withShared, "substituteInPlace rust/bridge/ffi/Cargo.toml \\\n  --replace-fail 'crate-type = [\"staticlib\"]' 'crate-type = [\"cdylib\"]'\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(boringssl, "passthru", "isShared")), "substituteInPlace $cargoDepsCopy/*/boring-sys-*/build/main.rs \\\n  --replace-fail \"cargo:rustc-link-lib=static=crypto\" \"cargo:rustc-link-lib=dylib=crypto\" \\\n  --replace-fail \"cargo:rustc-link-lib=static=ssl\" \"cargo:rustc-link-lib=dylib=ssl\"\n"))),
       nativeBuildInputs: nix.thunk(() => nix.concat([protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcodebuild])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BORING_BSSL_INCLUDE_PATH: nix.thunk(() => nix.add(nix.sel(boringssl, "dev"), "/include")),
         BORING_BSSL_PATH: boringssl,
         NIX_LDFLAGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "-lc++" : "-lstdc++")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "libsignal-ffi"]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withShared) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "dylib=\"$out/lib/libsignal_ffi.dylib\"\ninstall_name_tool -id \"$dylib\" \"$dylib\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C ABI library which exposes Signal protocol logic",
         homepage: "https://github.com/signalapp/libsignal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

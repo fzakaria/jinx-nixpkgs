@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libx11, libxtst, libxkbcommon, libxcb, libxt, libxinerama])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "keyspersecond",
       version: "8.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RoanH",
           repo: "KeysPerSecond",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/KeysPerSecond`),
       nativeBuildInputs: nix.thunk(() => [gradle, copyDesktopItems, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -64,7 +64,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "keyspersecond",
             desktopName: "KeysPerSecond",
             exec: "KeysPerSecond",
@@ -74,7 +74,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/RoanH/KeysPerSecond/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Keys-per-second meter and counter for rhythm games",
         homepage: "https://github.com/RoanH/KeysPerSecond",

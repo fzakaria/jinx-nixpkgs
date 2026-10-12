@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const custom = nix.thunk(() => nix.app(runCommand, "custom", nix.thunk(() => ({})), "mkdir -p $out/bin\ntouch $out/bin/{'foo$','foo\"`'}\nchmod +x $out/bin/{'foo$','foo\"`'}\n"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patsh",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "patsh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool for patching shell scripts inspired by resholve",
         mainProgram: "patsh",
         homepage: "https://github.com/nix-community/patsh",

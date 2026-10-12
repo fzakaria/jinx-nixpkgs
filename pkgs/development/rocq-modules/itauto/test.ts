@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const itauto = nix.arg($, "itauto");
   const excluded = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.16", nix.thunk(() => nix.sel(itauto, "version")))), nix.thunk(() => ["arith.v", "refl_bool.v"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`coq${nix.sel(coq, "coq-version")}-itauto-test`),
       src: nix.thunk(() => nix.attr(itauto, "src")),
       version: nix.thunk(() => nix.attr(itauto, "version")),

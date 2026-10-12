@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mihomo";
       const version = "1.19.32";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MetaCubeX",
           repo: "mihomo",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const tags = nix.thunk(() => ["with_gvisor"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, mihomo: nix.thunk(() => nix.sel(nixosTests, "mihomo")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mihomo: nix.thunk(() => nix.sel(nixosTests, "mihomo")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rule-based tunnel in Go",
         homepage: "https://github.com/MetaCubeX/mihomo/tree/Alpha",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mihomo",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

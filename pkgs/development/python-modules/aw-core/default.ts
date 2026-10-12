@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ActivityWatch",
           repo: "aw-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Fake home folder for tests that write to $HOME\nexport HOME=\"$TMPDIR\"\n";
       const pythonImportsCheck = nix.thunk(() => ["aw_core"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Core library for ActivityWatch",
         mainProgram: "aw-cli",
         homepage: "https://github.com/ActivityWatch/aw-core",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

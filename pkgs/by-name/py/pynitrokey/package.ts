@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pynitrokey"), "overridePythonAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), nix.sel(nix.lookup(w, "pynitrokey"), "passthru", "optional-dependencies", "pcsc"))),
       }))));
 })(), formals$1);

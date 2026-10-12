@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AmbitionEng",
           repo: "django-pglock",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django, django_pgactivity]);
       const pythonImportsCheck = nix.thunk(() => ["pglock"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Postgres advisory locks, table locks, and blocking lock management",
         homepage: "https://github.com/AmbitionEng/django-pglock",
         changelog: nix.thunk(() => nix.str`https://github.com/AmbitionEng/django-pglock/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

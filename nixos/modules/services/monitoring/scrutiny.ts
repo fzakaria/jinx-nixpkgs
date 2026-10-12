@@ -89,52 +89,52 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "scrutiny"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         scrutiny: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Scrutiny, a web application for drive monitoring")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "scrutiny", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(mkEnableOption, "opening the default ports in the firewall for Scrutiny")),
           influxdb: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: bool,
                 default: true,
                 description: "Enables InfluxDB on the host system using the `services.influxdb2` NixOS module\nwith default options.\n\nIf you already have InfluxDB configured, or wish to connect to an external InfluxDB\ninstance, disable this option.\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Scrutiny settings to be rendered into the configuration file.\n\nSee <https://github.com/AnalogJ/scrutiny/blob/master/example.scrutiny.yaml>.\n\nOptions containing secret data should be set to an attribute set\ncontaining the attribute `_secret`. This attribute should be a string\nor structured JSON with `quote = false;`, pointing to a file that\ncontains the value the option should be set to.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     web: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       listen: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: port,
                             default: 8080n,
                             description: "Port for web application to listen on.",
                           })))),
                         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: str,
                             default: "0.0.0.0",
                             description: "Interface address for web application to bind to.",
                           })))),
                         basepath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: str,
                             default: "",
                             example: "/scrutiny",
@@ -142,43 +142,43 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       influxdb: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         scheme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: str,
                             default: "http",
                             description: "URL scheme to use when connecting to InfluxDB.",
                           })))),
                         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: str,
                             default: "0.0.0.0",
                             description: "IP or hostname of the InfluxDB instance.",
                           })))),
                         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: port,
                             default: 8086n,
                             description: "The port of the InfluxDB instance.",
                           })))),
                         tls: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           insecure_skip_verify: nix.thunk(() => nix.app(mkEnableOption, "skipping TLS verification when connecting to InfluxDB")),
                         })),
                         token: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nullOr, str)),
                             default: null,
                             description: "Authentication token for connecting to InfluxDB.",
                           })))),
                         org: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nullOr, str)),
                             default: null,
                             description: "InfluxDB organisation under which to store data.",
                           })))),
                         bucket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.app(nullOr, str)),
                             default: null,
                             description: "InfluxDB bucket in which to store data.",
@@ -186,9 +186,9 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     log: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["INFO", "DEBUG"]))),
                           default: "INFO",
                           description: "Log level for Scrutiny.",
@@ -198,41 +198,41 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           collector: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the Scrutiny metrics collector"), {
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: nix.thunk(() => nix.sel(cfg, "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.scrutiny.enable")),
             })),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "scrutiny-collector", nix.thunk(() => ({})))),
             schedule: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: str,
                 default: "daily",
                 description: "How often to run the collector in systemd calendar format.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: "Collector settings to be rendered into the collector configuration file.\n\nSee <https://github.com/AnalogJ/scrutiny/blob/master/example.collector.yaml>.\n\nOptions containing secret data should be set to an attribute set\ncontaining the attribute `_secret`. This attribute should be a string\nor structured JSON with `quote = false;`, pointing to a file that\ncontains the value the option should be set to.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       host: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nullOr, str)),
                             default: null,
                             description: "Host ID for identifying/labelling groups of disks",
                           })))),
                       })),
                       api: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: str,
                             default: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "web", "listen", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "web", "listen", "port")))}${nix.sel(cfg, "settings", "web", "listen", "basepath")}`),
                             defaultText: nix.thunk(() => nix.app(literalExpression, "\"http://${config.services.scrutiny.settings.web.listen.host}:${config.services.scrutiny.settings.web.listen.port}${config.services.scrutiny.settings.web.listen.basepath}\"")),
@@ -240,9 +240,9 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       log: nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["INFO", "DEBUG"]))),
                             default: "INFO",
                             description: "Log level for Scrutiny collector.",
@@ -257,34 +257,34 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             services: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               influxdb2: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 enable: nix.thunk(() => nix.sel(cfg, "influxdb", "enable")),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "web", "listen", "port"))]),
                 })))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 scrutiny: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   description: "Hard Drive S.M.A.R.T Monitoring, Historical Trends & Real World Failure Thresholds",
                   enableStrictShellChecks: true,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "influxdb", "enable")), "influxdb2.service"))),
                   wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "influxdb", "enable")), "influxdb2.service")),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     SCRUTINY_VERSION: "1",
                     SCRUTINY_WEB_DATABASE_LOCATION: "/var/lib/scrutiny/scrutiny.db",
                     SCRUTINY_WEB_SRC_FRONTEND_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/scrutiny`),
@@ -303,7 +303,7 @@ echo "Timeout waiting for Scrutiny to open port" >&2
 exit 1
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     DynamicUser: true,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} start --config /run/scrutiny/config.yaml`),
                     Restart: "always",
@@ -345,34 +345,34 @@ exit 1
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "collector", "enable")), nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             services: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               smartd: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 enable: true,
                 extraOptions: nix.thunk(() => ["-A /var/log/smartd/", "--interval=600"]),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               services: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 "scrutiny-collector": nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   description: "Scrutiny Collector Service",
                   enableStrictShellChecks: true,
                   after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enable")), "scrutiny.service")),
                   wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enable")), "scrutiny.service")),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     COLLECTOR_VERSION: "1",
                     COLLECTOR_API_ENDPOINT: nix.thunk(() => nix.sel(cfg, "collector", "settings", "api", "endpoint")),
                   })),
                   preStart: nix.thunk(() => nix.str`${nix.app(genJqSecretsReplacementSnippet, nix.thunk(() => nix.sel(cfg, "collector", "settings")), "/run/scrutiny-collector/config.yaml")}
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "collector", "package")))} run --config /run/scrutiny-collector/config.yaml`),
                     RuntimeDirectory: "scrutiny-collector",
@@ -382,16 +382,16 @@ exit 1
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 "scrutiny-collector": nix.thunk(() => ({
-                  __proto__: pos$53,
-                  timerConfig: nix.thunk(() => ({ __proto__: pos$52, Persistent: true })),
+                  [nix.POS]: pos$53,
+                  timerConfig: nix.thunk(() => ({ [nix.POS]: pos$52, Persistent: true })),
                 })),
               })),
             })),
           })))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$57, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$57, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=scrutiny.ts.map

@@ -527,17 +527,17 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const lib = nix.arg($, "lib");
   const exporterTests = nix.thunk(() => ({
-    __proto__: pos$438,
+    [nix.POS]: pos$438,
     apcupsd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        __proto__: pos$5,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$5,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            apcupsd: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            apcupsd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"apcupsd.service\")\nwait_for_open_port(3551)\nwait_for_unit(\"prometheus-apcupsd-exporter.service\")\nwait_for_open_port(9162)\nsucceed(\"curl -sSf http://localhost:9162/metrics | grep 'apcupsd_info'\")\n",
@@ -546,9 +546,9 @@ export default nix.lambda((args) => (() => {
     artifactory: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: true,
           artiUsername: "artifactory-username",
           artiPassword: "artifactory-password",
@@ -559,14 +559,14 @@ export default nix.lambda((args) => (() => {
     bind: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       return {
-        __proto__: pos$12,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        [nix.POS]: pos$12,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             bind: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               extraConfig: "statistics-channels {\n  inet 127.0.0.1 port 8053 allow { localhost; };\n};\n",
             })),
@@ -578,14 +578,14 @@ export default nix.lambda((args) => (() => {
     bird: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$5);
       return {
-        __proto__: pos$17,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+        [nix.POS]: pos$17,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             bird: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               config: "router id 127.0.0.1;\n\nprotocol kernel MyObviousTestString {\n  ipv4 {\n    import all;\n    export none;\n  };\n}\n\nprotocol device {\n}\n",
             })),
@@ -598,28 +598,28 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$6);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: true,
           rpcUser: "bitcoinrpc",
           rpcPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "hunter2")),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             bitcoind: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 enable: true,
                 rpc: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   users: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     bitcoinrpc: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       passwordHMAC: "e8fe33f797e698ac258c16c8d7aadfbe$872bdb8f4d787367c26bcfd75e6c23c4f19d44a69f5d1ad329e5adf3f82710f7",
                     })),
                   })),
@@ -635,19 +635,19 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$7);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         testBackend: "nodes",
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 modules: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   icmp_v6: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     prober: "icmp",
-                    icmp: nix.thunk(() => ({ __proto__: pos$27, preferred_ip_protocol: "ip6" })),
+                    icmp: nix.thunk(() => ({ [nix.POS]: pos$27, preferred_ip_protocol: "ip6" })),
                   })),
                 })),
               })))))),
@@ -658,20 +658,20 @@ export default nix.lambda((args) => (() => {
     borgmatic: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$8);
       return {
-        __proto__: pos$39,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$33, enable: true, user: "root" })),
+        [nix.POS]: pos$39,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true, user: "root" })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             borgmatic: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 source_directories: nix.thunk(() => ["/home"]),
                 repositories: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$34, label: "local", path: "/var/backup" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$34, label: "local", path: "/var/backup" })),
                 ]),
                 keep_daily: 10n,
               })),
@@ -685,9 +685,9 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$9);
       const lib_1 = nix.arg($_1, "lib");
       return {
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: true,
           extraFlags: nix.thunk(() => ["--web.collectd-push-path /collectd"]),
         })),
@@ -713,9 +713,9 @@ succeed(
       const $_1 = nix.formals(args_1, formals$10);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           enable: true,
           port: 1234n,
           listenAddress: "127.0.0.1",
@@ -724,14 +724,14 @@ succeed(
           delugePasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "weak_password")),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             deluge: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: true,
               declarative: true,
-              config: nix.thunk(() => ({ __proto__: pos$43, daemon_port: 2345n })),
+              config: nix.thunk(() => ({ [nix.POS]: pos$43, daemon_port: 2345n })),
               authFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "authFile", "localclient:abcdef:10\nuser:weak_password:10\n")),
             })),
           })),
@@ -742,17 +742,17 @@ succeed(
     dnsmasq: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$11);
       return {
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           enable: true,
           leasesPath: "/var/lib/dnsmasq/dnsmasq.leases",
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           services: nix.thunk(() => ({
-            __proto__: pos$50,
-            dnsmasq: nix.thunk(() => ({ __proto__: pos$49, enable: true })),
+            [nix.POS]: pos$50,
+            dnsmasq: nix.thunk(() => ({ [nix.POS]: pos$49, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"dnsmasq.service\")\nwait_for_open_port(53)\nwait_for_file(\"/var/lib/dnsmasq/dnsmasq.leases\")\nwait_for_unit(\"prometheus-dnsmasq-exporter.service\")\nwait_for_open_port(9153)\nsucceed(\"curl -sSf http://localhost:9153/metrics | grep 'dnsmasq_leases 0'\")\n",
@@ -762,31 +762,31 @@ succeed(
       const $_1 = nix.formals(args_1, formals$12);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           enable: true,
           configuration: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             records: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$53, zone: "example.com", record: "@", type: "SOA" })),
+              nix.thunk(() => ({ [nix.POS]: pos$53, zone: "example.com", record: "@", type: "SOA" })),
             ]),
           })),
           resolvers: nix.thunk(() => ["127.0.0.1:53"]),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           services: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             knot: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               enable: true,
               settingsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "knot.conf", nix.thunk(() => nix.str`server:
   listen: 127.0.0.1@53
 template:
   - id: default
     storage: ${nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     name: "zones",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "example.com.zone", "@ SOA ns1.example.com. noc.example.com. 2024032401 86400 7200 3600000 172800\n@       NS      ns1\nns1     A       192.168.0.1\n")),
@@ -808,8 +808,8 @@ zone:
     domain: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$13);
       return {
-        __proto__: pos$62,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$61, enable: true })),
+        [nix.POS]: pos$62,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$61, enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-domain-exporter.service\")\nwait_for_open_port(9222)\nsucceed(\"curl -sSf 'http://localhost:9222/probe?target=nixos.org'\")\n",
       };
     })(), formals$13),
@@ -817,24 +817,24 @@ zone:
       const $_1 = nix.formals(args_1, formals$14);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         testBackend: "nodes",
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           enable: true,
           scopes: nix.thunk(() => ["global"]),
           socketPath: "/var/run/dovecot2/stats-reader",
           user: "root",
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           services: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             dovecot2: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 dovecot_config_version: nix.thunk(() => nix.sel(pkgs, "dovecot", "version")),
                 dovecot_storage_version: nix.thunk(() => nix.sel(pkgs, "dovecot", "version")),
               })),
@@ -849,20 +849,20 @@ zone:
       const pkgs = nix.arg($_1, "pkgs");
       const apikey = "eccff6a992bc2e4b88e46d064b26bb4e";
       return {
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         nodeName: "exportarr_sonarr",
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           enable: true,
           url: "http://127.0.0.1:8989",
           apiKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dummy-api-key", apikey)),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           services: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             sonarr: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               enable: true,
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sonarr-env", nix.thunk(() => nix.str`SONARR__AUTH__APIKEY=${apikey}`))),
@@ -876,22 +876,22 @@ zone:
     ebpf: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$16);
       return {
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         testBackend: "nodes",
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$74, enable: true, names: nix.thunk(() => ["timers"]) })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$74, enable: true, names: nix.thunk(() => ["timers"]) })),
         exporterTest: "wait_for_unit(\"prometheus-ebpf-exporter.service\")\nwait_for_open_port(9435)\nsucceed(\n    \"curl -sSf http://localhost:9435/metrics | grep 'ebpf_exporter_enabled_configs{name=\\\"timers\\\"} 1'\"\n)\n",
       };
     })(), formals$16),
     elasticsearch: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$17);
       return {
-        __proto__: pos$80,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$76, enable: true, url: "http://localhost:9200" })),
+        [nix.POS]: pos$80,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$76, enable: true, url: "http://localhost:9200" })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           services: nix.thunk(() => ({
-            __proto__: pos$78,
-            opensearch: nix.thunk(() => ({ __proto__: pos$77, enable: true })),
+            [nix.POS]: pos$78,
+            opensearch: nix.thunk(() => ({ [nix.POS]: pos$77, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"opensearch.service\")\nwait_for_open_port(9200)\nwait_for_unit(\"prometheus-elasticsearch-exporter.service\")\nwait_for_open_port(9114)\nsucceed(\n    \"curl -sSf localhost:9114/metrics | grep 'elasticsearch_cluster_health_status'\"\n)\n",
@@ -901,19 +901,19 @@ zone:
       const $_1 = nix.formals(args_1, formals$18);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           enable: true,
           exitOnError: true,
           username: "fail2ban-web",
           passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fail2ban-password", "hunter2")),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           services: nix.thunk(() => ({
-            __proto__: pos$83,
-            fail2ban: nix.thunk(() => ({ __proto__: pos$82, enable: true })),
+            [nix.POS]: pos$83,
+            fail2ban: nix.thunk(() => ({ [nix.POS]: pos$82, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"fail2ban.service\")\nwait_for_unit(\"prometheus-fail2ban-exporter.service\")\nwait_for_open_port(9191)\n\nfail(\"curl -sSf http://localhost:9191/metrics\")\nsucceed(\"curl -sSf --user fail2ban-web:hunter2 http://localhost:9191/metrics | grep 'f2b_errors'\")\n",
@@ -923,9 +923,9 @@ zone:
       const $_1 = nix.formals(args_1, formals$19);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$86,
+          [nix.POS]: pos$86,
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fastly-exporter-env", "FASTLY_API_TOKEN=abc123")),
         })),
@@ -935,28 +935,28 @@ zone:
     fritzbox: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$20);
       return {
-        __proto__: pos$89,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$88, enable: true })),
+        [nix.POS]: pos$89,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$88, enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-fritzbox-exporter.service\")\nwait_for_open_port(9133)\nsucceed(\n    \"curl -sSf http://localhost:9133/metrics | grep 'fritzbox_exporter_collect_errors 0'\"\n)\n",
       };
     })(), formals$20),
     graphite: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$21);
       return {
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           enable: true,
           port: 9108n,
           graphitePort: 9109n,
           mappingSettings: nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             mappings: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 match: "test.*.*",
                 name: "testing",
-                labels: nix.thunk(() => ({ __proto__: pos$90, protocol: "$1", author: "$2" })),
+                labels: nix.thunk(() => ({ [nix.POS]: pos$90, protocol: "$1", author: "$2" })),
               })),
             ]),
           })),
@@ -967,16 +967,16 @@ zone:
     idrac: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$22);
       return {
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           enable: true,
           port: 9348n,
           configuration: nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             hosts: nix.thunk(() => ({
-              __proto__: pos$96,
-              default: nix.thunk(() => ({ __proto__: pos$95, username: "username", password: "password" })),
+              [nix.POS]: pos$96,
+              default: nix.thunk(() => ({ [nix.POS]: pos$95, username: "username", password: "password" })),
             })),
           })),
         })),
@@ -986,8 +986,8 @@ zone:
     influxdb: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$23);
       return {
-        __proto__: pos$101,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$100, enable: true, sampleExpiry: "3s" })),
+        [nix.POS]: pos$101,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$100, enable: true, sampleExpiry: "3s" })),
         exporterTest: "wait_for_unit(\"prometheus-influxdb-exporter.service\")\nwait_for_open_port(9122)\nsucceed(\n  \"curl -XPOST http://localhost:9122/write --data-binary 'influxdb_exporter,distro=nixos,added_in=21.09 value=1'\"\n)\nsucceed(\n  \"curl -sSf http://localhost:9122/metrics | grep 'nixos'\"\n)\nexecute(\"sleep 5\")\nfail(\n  \"curl -sSf http://localhost:9122/metrics | grep 'nixos'\"\n)\n",
       };
     })(), formals$23),
@@ -995,29 +995,29 @@ zone:
       const $_1 = nix.formals(args_1, formals$24);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         maintainers: nix.thunk(() => nix.sel(pkgs, "freeipmi", "meta", "maintainers")),
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$102, enable: true })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$102, enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-ipmi-exporter.service\")\nwait_for_open_port(9290)\nsucceed(\n  \"curl -sSf http://localhost:9290/metrics | grep 'ipmi_scrape_duration_seconds'\"\n)\n",
       };
     })(), formals$24),
     jitsi: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$25);
       return {
-        __proto__: pos$111,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$104, enable: true })),
+        [nix.POS]: pos$111,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$104, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           systemd: nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             services: nix.thunk(() => ({
-              __proto__: pos$106,
-              "prometheus-jitsi-exporter": nix.thunk(() => ({ __proto__: pos$105, after: nix.thunk(() => ["jitsi-videobridge2.service"]) })),
+              [nix.POS]: pos$106,
+              "prometheus-jitsi-exporter": nix.thunk(() => ({ [nix.POS]: pos$105, after: nix.thunk(() => ["jitsi-videobridge2.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$109,
-            "jitsi-videobridge": nix.thunk(() => ({ __proto__: pos$108, enable: true, colibriRestApi: true })),
+            [nix.POS]: pos$109,
+            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: pos$108, enable: true, colibriRestApi: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"jitsi-videobridge2.service\")\nwait_for_open_port(8080)\nwait_for_unit(\"prometheus-jitsi-exporter.service\")\nwait_for_open_port(9700)\nwait_until_succeeds(\n    'journalctl -eu prometheus-jitsi-exporter.service -o cat | grep \"key=participants\"'\n)\nsucceed(\"curl -sSf 'localhost:9700/metrics' | grep 'jitsi_participants 0'\")\n",
@@ -1027,44 +1027,44 @@ zone:
       const $_1 = nix.formals(args_1, formals$26);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$127,
+        [nix.POS]: pos$127,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$116,
+          [nix.POS]: pos$116,
           enable: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "json-exporter-conf.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 modules: nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   default: nix.thunk(() => ({
-                    __proto__: pos$113,
+                    [nix.POS]: pos$113,
                     metrics: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$112, name: "json_test_metric", path: "{ .test }" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$112, name: "json_test_metric", path: "{ .test }" })),
                     ]),
                   })),
                 })),
               })))))),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           systemd: nix.thunk(() => ({
-            __proto__: pos$119,
+            [nix.POS]: pos$119,
             services: nix.thunk(() => ({
-              __proto__: pos$118,
-              "prometheus-json-exporter": nix.thunk(() => ({ __proto__: pos$117, after: nix.thunk(() => ["nginx.service"]) })),
+              [nix.POS]: pos$118,
+              "prometheus-json-exporter": nix.thunk(() => ({ [nix.POS]: pos$117, after: nix.thunk(() => ["nginx.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$125,
+            [nix.POS]: pos$125,
             nginx: nix.thunk(() => ({
-              __proto__: pos$124,
+              [nix.POS]: pos$124,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$123,
+                [nix.POS]: pos$123,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$122,
+                  [nix.POS]: pos$122,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$121,
-                    "/": nix.thunk(() => ({ __proto__: pos$120, extraConfig: "return 200 \"{\\\"test\\\":1}\";\n" })),
+                    [nix.POS]: pos$121,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$120, extraConfig: "return 200 \"{\\\"test\\\":1}\";\n" })),
                   })),
                 })),
               })),
@@ -1078,27 +1078,27 @@ zone:
       const $_1 = nix.formals(args_1, formals$27);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$129,
+          [nix.POS]: pos$129,
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               name: "/tmp/prometheus-kafka-exporter.env",
               text: "KAFKA_BROKERS=\"localhost:9092\"\n",
             })))),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           services: nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             "apache-kafka": nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               enable: true,
               clusterId: "pHG8aWuXSfWAibHFDCnsCQ",
               formatLogDirs: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$130,
+                [nix.POS]: pos$130,
                 "node.id": 1n,
                 "process.roles": nix.thunk(() => ["broker", "controller"]),
                 listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
@@ -1110,12 +1110,12 @@ zone:
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             services: nix.thunk(() => ({
-              __proto__: pos$135,
+              [nix.POS]: pos$135,
               "apache-kafka": nix.thunk(() => ({
-                __proto__: pos$134,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$133, StateDirectory: "apache-kafka" })),
+                [nix.POS]: pos$134,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$133, StateDirectory: "apache-kafka" })),
               })),
             })),
           })),
@@ -1138,14 +1138,14 @@ succeed(
       const $_1 = nix.formals(args_1, formals$28);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$144,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$139, enable: true })),
+        [nix.POS]: pos$144,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$139, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           services: nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             knot: nix.thunk(() => ({
-              __proto__: pos$141,
+              [nix.POS]: pos$141,
               enable: true,
               extraArgs: nix.thunk(() => ["-v"]),
               settingsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "knot.conf", nix.thunk(() => nix.str`server:
@@ -1158,7 +1158,7 @@ template:
     zonefile-sync: -1
     zonefile-load: difference
     storage: ${nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    __proto__: pos$140,
+                    [nix.POS]: pos$140,
                     name: "foo",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "test.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1\n@       NS      ns2\nns1     A       192.168.0.1\n")),
@@ -1184,21 +1184,21 @@ zone:
     keylight: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$29);
       return {
-        __proto__: pos$146,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$145, enable: true })),
+        [nix.POS]: pos$146,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$145, enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-keylight-exporter.service\")\nwait_for_open_port(9288)\nsucceed(\n    \"curl -sS --write-out '%{http_code}' -o /dev/null http://localhost:9288/metrics | grep '400'\"\n)\nsucceed(\n    \"curl -sS --write-out '%{http_code}' -o /dev/null http://localhost:9288/metrics?target=nosuchdevice | grep '500'\"\n)\n",
       };
     })(), formals$29),
     kvrocks: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$30);
       return {
-        __proto__: pos$151,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$147, enable: true })),
+        [nix.POS]: pos$151,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$147, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$150,
+          [nix.POS]: pos$150,
           services: nix.thunk(() => ({
-            __proto__: pos$149,
-            kvrocks: nix.thunk(() => ({ __proto__: pos$148, enable: true })),
+            [nix.POS]: pos$149,
+            kvrocks: nix.thunk(() => ({ [nix.POS]: pos$148, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"kvrocks.service\")\nwait_for_unit(\"prometheus-kvrocks-exporter.service\")\nwait_for_open_port(6666)\nwait_for_open_port(9121)\nwait_until_succeeds(\"curl -sSf localhost:9121/metrics | grep 'kvrocks_up 1'\")\n",
@@ -1208,29 +1208,29 @@ zone:
       const $_1 = nix.formals(args_1, formals$31);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$163,
+        [nix.POS]: pos$163,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$152,
+          [nix.POS]: pos$152,
           enable: true,
           lndTlsPath: "/var/lib/lnd/tls.cert",
           lndMacaroonDir: "/var/lib/lnd",
           extraFlags: nix.thunk(() => ["--lnd.network=regtest"]),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$162,
+          [nix.POS]: pos$162,
           systemd: nix.thunk(() => ({
-            __proto__: pos$158,
+            [nix.POS]: pos$158,
             services: nix.thunk(() => ({
-              __proto__: pos$157,
+              [nix.POS]: pos$157,
               "prometheus-lnd-exporter": nix.thunk(() => ({
-                __proto__: pos$154,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$153, RestartSec: 15n })),
+                [nix.POS]: pos$154,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$153, RestartSec: 15n })),
                 after: nix.thunk(() => ["lnd.service"]),
               })),
               lnd: nix.thunk(() => ({
-                __proto__: pos$156,
+                [nix.POS]: pos$156,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$155,
+                  [nix.POS]: pos$155,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "lnd")}/bin/lnd \\
   --datadir=/var/lib/lnd \\
   --tlscertpath=/var/lib/lnd/tls.cert \\
@@ -1270,11 +1270,11 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$161,
+            [nix.POS]: pos$161,
             bitcoind: nix.thunk(() => ({
-              __proto__: pos$160,
+              [nix.POS]: pos$160,
               regtest: nix.thunk(() => ({
-                __proto__: pos$159,
+                [nix.POS]: pos$159,
                 enable: true,
                 extraConfig: "rpcauth=bitcoinrpc:e8fe33f797e698ac258c16c8d7aadfbe$872bdb8f4d787367c26bcfd75e6c23c4f19d44a69f5d1ad329e5adf3f82710f7\nzmqpubrawblock=tcp://127.0.0.1:28332\nzmqpubrawtx=tcp://127.0.0.1:28333\n# https://github.com/lightningnetwork/lnd/issues/9163\ndeprecatedrpc=warnings\n",
                 extraCmdlineOptions: nix.thunk(() => ["-regtest"]),
@@ -1289,17 +1289,17 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$32);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$178,
+        [nix.POS]: pos$178,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$166,
+          [nix.POS]: pos$166,
           enable: true,
           configuration: nix.thunk(() => ({
-            __proto__: pos$165,
+            [nix.POS]: pos$165,
             monitoringInterval: "2s",
             mailCheckTimeout: "10s",
             servers: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$164,
+                [nix.POS]: pos$164,
                 name: "testserver",
                 server: "localhost",
                 port: 25n,
@@ -1311,21 +1311,21 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
           })),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$177,
+          [nix.POS]: pos$177,
           services: nix.thunk(() => ({
-            __proto__: pos$168,
-            postfix: nix.thunk(() => ({ __proto__: pos$167, enable: true })),
+            [nix.POS]: pos$168,
+            postfix: nix.thunk(() => ({ [nix.POS]: pos$167, enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$172,
+            [nix.POS]: pos$172,
             services: nix.thunk(() => ({
-              __proto__: pos$171,
+              [nix.POS]: pos$171,
               "prometheus-mail-exporter": nix.thunk(() => ({
-                __proto__: pos$170,
+                [nix.POS]: pos$170,
                 after: nix.thunk(() => ["postfix.service"]),
                 requires: nix.thunk(() => ["postfix.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$169,
+                  [nix.POS]: pos$169,
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "create-maildir", "mkdir -p -m 0700 mail-exporter/new\n")}`),
                   ]),
@@ -1338,12 +1338,12 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$176,
+            [nix.POS]: pos$176,
             users: nix.thunk(() => ({
-              __proto__: pos$174,
-              mailexporter: nix.thunk(() => ({ __proto__: pos$173, isSystemUser: true, group: "mailexporter" })),
+              [nix.POS]: pos$174,
+              mailexporter: nix.thunk(() => ({ [nix.POS]: pos$173, isSystemUser: true, group: "mailexporter" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$175, mailexporter: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$175, mailexporter: nix.thunk(() => ({})) })),
           })),
         })),
         exporterTest: "wait_for_unit(\"postfix.service\")\nwait_for_unit(\"prometheus-mail-exporter.service\")\nwait_for_open_port(9225)\nwait_until_succeeds(\n    \"curl -sSf http://localhost:9225/metrics | grep 'mail_deliver_success{configname=\\\"testserver\\\"} 1'\"\n)\n",
@@ -1352,16 +1352,16 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     mikrotik: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$33);
       return {
-        __proto__: pos$183,
+        [nix.POS]: pos$183,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$182,
+          [nix.POS]: pos$182,
           enable: true,
           extraFlags: nix.thunk(() => ["-timeout=1s"]),
           configuration: nix.thunk(() => ({
-            __proto__: pos$181,
+            [nix.POS]: pos$181,
             devices: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$179,
+                [nix.POS]: pos$179,
                 name: "router",
                 address: "192.168.42.48",
                 user: "prometheus",
@@ -1369,7 +1369,7 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
               })),
             ]),
             features: nix.thunk(() => ({
-              __proto__: pos$180,
+              [nix.POS]: pos$180,
               bgp: true,
               dhcp: true,
               dhcpl: true,
@@ -1393,21 +1393,21 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     modemmanager: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$34);
       return {
-        __proto__: pos$191,
+        [nix.POS]: pos$191,
         testBackend: "nodes",
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$184, enable: true, refreshRate: "10s" })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$184, enable: true, refreshRate: "10s" })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$190,
+          [nix.POS]: pos$190,
           networking: nix.thunk(() => ({
-            __proto__: pos$186,
-            networkmanager: nix.thunk(() => ({ __proto__: pos$185, enable: true })),
+            [nix.POS]: pos$186,
+            networkmanager: nix.thunk(() => ({ [nix.POS]: pos$185, enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$189,
+            [nix.POS]: pos$189,
             services: nix.thunk(() => ({
-              __proto__: pos$188,
+              [nix.POS]: pos$188,
               ModemManager: nix.thunk(() => ({
-                __proto__: pos$187,
+                [nix.POS]: pos$187,
                 enable: true,
                 wantedBy: nix.thunk(() => ["NetworkManager.service", "prometheus-modemmanager-exporter.service"]),
               })),
@@ -1421,26 +1421,26 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$35);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$202,
+        [nix.POS]: pos$202,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$192,
+          [nix.POS]: pos$192,
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mqtt-exporter-envfile", "MQTT_PASSWORD=testpassword\n")),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$201,
+          [nix.POS]: pos$201,
           services: nix.thunk(() => ({
-            __proto__: pos$197,
+            [nix.POS]: pos$197,
             mosquitto: nix.thunk(() => ({
-              __proto__: pos$196,
+              [nix.POS]: pos$196,
               enable: true,
               listeners: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$195,
+                  [nix.POS]: pos$195,
                   users: nix.thunk(() => ({
-                    __proto__: pos$194,
+                    [nix.POS]: pos$194,
                     exporter: nix.thunk(() => ({
-                      __proto__: pos$193,
+                      [nix.POS]: pos$193,
                       acl: nix.thunk(() => ["read #"]),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mosquitto-password", "testpassword")),
                     })),
@@ -1450,11 +1450,11 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$200,
+            [nix.POS]: pos$200,
             services: nix.thunk(() => ({
-              __proto__: pos$199,
+              [nix.POS]: pos$199,
               "prometheus-mqtt-exporter": nix.thunk(() => ({
-                __proto__: pos$198,
+                [nix.POS]: pos$198,
                 wants: nix.thunk(() => ["mosquitto.service"]),
                 after: nix.thunk(() => ["mosquitto.service"]),
               })),
@@ -1468,19 +1468,19 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$36);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$207,
+        [nix.POS]: pos$207,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$203,
+          [nix.POS]: pos$203,
           enable: true,
           runAsLocalSuperUser: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test-prometheus-exporter-mysqld-config.my-cnf", "[client]\nuser = exporter\npassword = snakeoilpassword\n")),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$206,
+          [nix.POS]: pos$206,
           services: nix.thunk(() => ({
-            __proto__: pos$205,
+            [nix.POS]: pos$205,
             mysql: nix.thunk(() => ({
-              __proto__: pos$204,
+              [nix.POS]: pos$204,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mysql-init-script.sql", "CREATE USER 'exporter'@'localhost'\nIDENTIFIED BY 'snakeoilpassword'\nWITH MAX_USER_CONNECTIONS 3;\nGRANT PROCESS, REPLICATION CLIENT, SLAVE MONITOR, SELECT ON *.* TO 'exporter'@'localhost';\n")),
@@ -1494,27 +1494,27 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$37);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$221,
+        [nix.POS]: pos$221,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$208,
+          [nix.POS]: pos$208,
           enable: true,
           passwordFile: "/var/nextcloud-pwfile",
           url: "http://localhost",
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$220,
+          [nix.POS]: pos$220,
           systemd: nix.thunk(() => ({
-            __proto__: pos$212,
+            [nix.POS]: pos$212,
             services: nix.thunk(() => ({
-              __proto__: pos$211,
+              [nix.POS]: pos$211,
               "nc-pwfile": nix.thunk(() => (() => {
                 const passfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pwfile", "snakeoilpw"));
                 return {
-                  __proto__: pos$210,
+                  [nix.POS]: pos$210,
                   requiredBy: nix.thunk(() => ["prometheus-nextcloud-exporter.service"]),
                   before: nix.thunk(() => ["prometheus-nextcloud-exporter.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$209,
+                    [nix.POS]: pos$209,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/install -o nextcloud-exporter -m 0400 ${passfile} /var/nextcloud-pwfile
 `),
                   })),
@@ -1523,19 +1523,19 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$219,
+            [nix.POS]: pos$219,
             nginx: nix.thunk(() => ({
-              __proto__: pos$218,
+              [nix.POS]: pos$218,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$217,
+                [nix.POS]: pos$217,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$216,
-                  basicAuth: nix.thunk(() => ({ __proto__: pos$213, "nextcloud-exporter": "snakeoilpw" })),
+                  [nix.POS]: pos$216,
+                  basicAuth: nix.thunk(() => ({ [nix.POS]: pos$213, "nextcloud-exporter": "snakeoilpw" })),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$215,
+                    [nix.POS]: pos$215,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$214,
+                      [nix.POS]: pos$214,
                       root: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-nextcloud-exporter", "src")}/serverinfo/testdata`),
                       tryFiles: "/negative-space.json =404",
                     })),
@@ -1551,19 +1551,19 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     nginx: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$38);
       return {
-        __proto__: pos$228,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$222, enable: true, constLabels: nix.thunk(() => ["foo=bar"]) })),
+        [nix.POS]: pos$228,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$222, enable: true, constLabels: nix.thunk(() => ["foo=bar"]) })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$227,
+          [nix.POS]: pos$227,
           services: nix.thunk(() => ({
-            __proto__: pos$226,
+            [nix.POS]: pos$226,
             nginx: nix.thunk(() => ({
-              __proto__: pos$225,
+              [nix.POS]: pos$225,
               enable: true,
               statusPage: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$224,
-                test: nix.thunk(() => ({ __proto__: pos$223, extraConfig: "return 204;" })),
+                [nix.POS]: pos$224,
+                test: nix.thunk(() => ({ [nix.POS]: pos$223, extraConfig: "return 204;" })),
               })),
             })),
           })),
@@ -1574,29 +1574,29 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     nginxlog: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$39);
       return {
-        __proto__: pos$239,
+        [nix.POS]: pos$239,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$235,
+          [nix.POS]: pos$235,
           enable: true,
           group: "nginx",
           settings: nix.thunk(() => ({
-            __proto__: pos$234,
+            [nix.POS]: pos$234,
             namespaces: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$230,
+                [nix.POS]: pos$230,
                 name: "filelogger",
                 source: nix.thunk(() => ({
-                  __proto__: pos$229,
+                  [nix.POS]: pos$229,
                   files: nix.thunk(() => ["/var/log/nginx/filelogger.access.log"]),
                 })),
               })),
               nix.thunk(() => ({
-                __proto__: pos$233,
+                [nix.POS]: pos$233,
                 name: "syslogger",
                 source: nix.thunk(() => ({
-                  __proto__: pos$232,
+                  [nix.POS]: pos$232,
                   syslog: nix.thunk(() => ({
-                    __proto__: pos$231,
+                    [nix.POS]: pos$231,
                     listen_address: "udp://127.0.0.1:10000",
                     format: "rfc3164",
                     tags: nix.thunk(() => ["nginx"]),
@@ -1607,11 +1607,11 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
           })),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$238,
+          [nix.POS]: pos$238,
           services: nix.thunk(() => ({
-            __proto__: pos$237,
+            [nix.POS]: pos$237,
             nginx: nix.thunk(() => ({
-              __proto__: pos$236,
+              [nix.POS]: pos$236,
               enable: true,
               httpConfig: "server {\n  listen 80;\n  server_name filelogger.local;\n  access_log /var/log/nginx/filelogger.access.log;\n}\nserver {\n  listen 81;\n  server_name syslogger.local;\n  access_log syslog:server=127.0.0.1:10000,tag=nginx,severity=info;\n}\n",
             })),
@@ -1623,8 +1623,8 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     node: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$40);
       return {
-        __proto__: pos$241,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$240, enable: true })),
+        [nix.POS]: pos$241,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$240, enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-node-exporter.service\")\nwait_for_open_port(9100)\nsucceed(\n    \"curl -sSf http://localhost:9100/metrics | grep 'node_exporter_build_info{.\\\\+} 1'\"\n)\n",
       };
     })(), formals$40),
@@ -1632,26 +1632,26 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$41);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$250,
+        [nix.POS]: pos$250,
         nodeName: "node_cert",
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$242, enable: true, paths: nix.thunk(() => ["/run/certs"]) })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$242, enable: true, paths: nix.thunk(() => ["/run/certs"]) })),
         exporterTest: "wait_for_unit(\"prometheus-node-cert-exporter.service\")\nwait_for_open_port(9141)\nsucceed(\"test -f /run/certs/node-cert.cert\")\nwait_until_succeeds(\n    \"curl -sSf http://localhost:9141/metrics | grep 'ssl_certificate_expiry_seconds{.\\\\+path=\\\"/run/certs/node-cert\\\\.cert\\\".\\\\+}'\"\n)\n",
         metricProvider: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$42);
           const config = nix.arg($_2, "config");
           return {
-            __proto__: pos$249,
+            [nix.POS]: pos$249,
             systemd: nix.thunk(() => ({
-              __proto__: pos$248,
+              [nix.POS]: pos$248,
               services: nix.thunk(() => ({
-                __proto__: pos$247,
+                [nix.POS]: pos$247,
                 "prometheus-node-cert-exporter": nix.thunk(() => ({
-                  __proto__: pos$246,
+                  [nix.POS]: pos$246,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$245,
+                    [nix.POS]: pos$245,
                     ExecStartPre: nix.thunk(() => (() => {
                       const createDir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                          __proto__: pos$243,
+                          [nix.POS]: pos$243,
                           name: "create-dir",
                           text: nix.thunk(() => (() => {
                             const from = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node-cert"));
@@ -1663,7 +1663,7 @@ chmod ug+rwx /run/certs
                           })()),
                         }))));
                       const createCerts = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                          __proto__: pos$244,
+                          [nix.POS]: pos$244,
                           name: "create-certs",
                           text: nix.thunk(() => nix.str`cd /run/certs
 
@@ -1707,31 +1707,31 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const pkgs = nix.arg($_1, "pkgs");
       const lib_1 = nix.arg($_1, "lib");
       return {
-        __proto__: pos$259,
+        [nix.POS]: pos$259,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$251,
+          [nix.POS]: pos$251,
           enable: true,
           connectionEnvFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "connstr-env", "PGBOUNCER_EXPORTER_CONNECTION_STRING=postgres://admin@localhost:6432/pgbouncer?sslmode=disable\n")}`),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$258,
+          [nix.POS]: pos$258,
           services: nix.thunk(() => ({
-            __proto__: pos$257,
-            postgresql: nix.thunk(() => ({ __proto__: pos$252, enable: true })),
+            [nix.POS]: pos$257,
+            postgresql: nix.thunk(() => ({ [nix.POS]: pos$252, enable: true })),
             pgbouncer: nix.thunk(() => ({
-              __proto__: pos$256,
+              [nix.POS]: pos$256,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$255,
+                [nix.POS]: pos$255,
                 pgbouncer: nix.thunk(() => ({
-                  __proto__: pos$253,
+                  [nix.POS]: pos$253,
                   listen_addr: "*",
                   auth_type: "any",
                   max_client_conn: 99n,
                   ignore_startup_parameters: "extra_float_digits",
                 })),
                 databases: nix.thunk(() => ({
-                  __proto__: pos$254,
+                  [nix.POS]: pos$254,
                   postgres: nix.thunk(() => nix.app(nix.sel(lib_1, "concatStringsSep"), " ", nix.thunk(() => ["host=/run/postgresql", "port=5432", "auth_user=postgres", "dbname=postgres"]))),
                 })),
               })),
@@ -1746,39 +1746,39 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const pkgs = nix.arg($_1, "pkgs");
       const lib_1 = nix.arg($_1, "lib");
       return {
-        __proto__: pos$273,
+        [nix.POS]: pos$273,
         nodeName: "php_fpm",
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$261,
+          [nix.POS]: pos$261,
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-              __proto__: pos$260,
+              [nix.POS]: pos$260,
               name: "/tmp/prometheus-php-fpm-exporter.env",
               text: "PHP_FPM_SCRAPE_URI=\"tcp://127.0.0.1:9000/status\"\n",
             })))),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$272,
+          [nix.POS]: pos$272,
           users: nix.thunk(() => ({
-            __proto__: pos$265,
+            [nix.POS]: pos$265,
             users: nix.thunk(() => ({
-              __proto__: pos$263,
-              "php-fpm-exporter": nix.thunk(() => ({ __proto__: pos$262, isSystemUser: true, group: "php-fpm-exporter" })),
+              [nix.POS]: pos$263,
+              "php-fpm-exporter": nix.thunk(() => ({ [nix.POS]: pos$262, isSystemUser: true, group: "php-fpm-exporter" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$264, "php-fpm-exporter": nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$264, "php-fpm-exporter": nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$271,
+            [nix.POS]: pos$271,
             phpfpm: nix.thunk(() => ({
-              __proto__: pos$270,
+              [nix.POS]: pos$270,
               pools: nix.thunk(() => ({
-                __proto__: pos$269,
+                [nix.POS]: pos$269,
                 "php-fpm-exporter": nix.thunk(() => ({
-                  __proto__: pos$268,
+                  [nix.POS]: pos$268,
                   user: "php-fpm-exporter",
                   group: "php-fpm-exporter",
                   settings: nix.thunk(() => ({
-                    __proto__: pos$266,
+                    [nix.POS]: pos$266,
                     pm: "dynamic",
                     "pm.max_children": 32n,
                     "pm.max_requests": 500n,
@@ -1790,7 +1790,7 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
                     "listen.allowed_clients": "127.0.0.1",
                   })),
                   phpEnv: nix.thunk(() => ({
-                    __proto__: pos$267,
+                    [nix.POS]: pos$267,
                     PATH: nix.thunk(() => nix.app(nix.sel(lib_1, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "php"))]))),
                   })),
                 })),
@@ -1804,33 +1804,33 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     ping: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$45);
       return {
-        __proto__: pos$282,
+        [nix.POS]: pos$282,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$281,
+          [nix.POS]: pos$281,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$280,
+            [nix.POS]: pos$280,
             targets: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$274,
+                [nix.POS]: pos$274,
                 host: "localhost",
                 alias: "local machine",
                 env: "prod",
                 type: "domain",
               })),
-              nix.thunk(() => ({ __proto__: pos$275, host: "127.0.0.1", alias: "local machine", type: "v4" })),
-              nix.thunk(() => ({ __proto__: pos$276, host: "::1", alias: "local machine", type: "v6" })),
-              nix.thunk(() => ({ __proto__: pos$277, host: "google.com" })),
+              nix.thunk(() => ({ [nix.POS]: pos$275, host: "127.0.0.1", alias: "local machine", type: "v4" })),
+              nix.thunk(() => ({ [nix.POS]: pos$276, host: "::1", alias: "local machine", type: "v6" })),
+              nix.thunk(() => ({ [nix.POS]: pos$277, host: "google.com" })),
             ]),
             dns: nix.thunk(() => ({})),
             ping: nix.thunk(() => ({
-              __proto__: pos$278,
+              [nix.POS]: pos$278,
               interval: "2s",
               timeout: "3s",
               "history-size": 42n,
               "payload-size": 56n,
             })),
-            log: nix.thunk(() => ({ __proto__: pos$279, level: "warn" })),
+            log: nix.thunk(() => ({ [nix.POS]: pos$279, level: "warn" })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-ping-exporter.service\")\nwait_for_open_port(9427)\nsucceed(\"curl -sSf http://localhost:9427/metrics | grep 'ping_up{.*} 1'\")\n",
@@ -1839,13 +1839,13 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     postfix: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$46);
       return {
-        __proto__: pos$287,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$283, enable: true })),
+        [nix.POS]: pos$287,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$283, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$286,
+          [nix.POS]: pos$286,
           services: nix.thunk(() => ({
-            __proto__: pos$285,
-            postfix: nix.thunk(() => ({ __proto__: pos$284, enable: true })),
+            [nix.POS]: pos$285,
+            postfix: nix.thunk(() => ({ [nix.POS]: pos$284, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-postfix-exporter.service\")\nwait_for_file(\"/var/lib/postfix/queue/public/showq\")\nwait_for_open_port(9154)\nwait_until_succeeds(\n    \"curl -sSf http://localhost:9154/metrics | grep 'postfix_up{path=\\\"unix:///var/lib/postfix/queue/public/showq\\\"} 1'\"\n)\nsucceed(\n    \"curl -sSf http://localhost:9154/metrics | grep 'postfix_smtpd_connects_total 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9154/metrics | grep 'postfix_up{.*} 1'\")\n",
@@ -1854,13 +1854,13 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     postgres: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$47);
       return {
-        __proto__: pos$292,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$288, enable: true, runAsLocalSuperUser: true })),
+        [nix.POS]: pos$292,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$288, enable: true, runAsLocalSuperUser: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$291,
+          [nix.POS]: pos$291,
           services: nix.thunk(() => ({
-            __proto__: pos$290,
-            postgresql: nix.thunk(() => ({ __proto__: pos$289, enable: true })),
+            [nix.POS]: pos$290,
+            postgresql: nix.thunk(() => ({ [nix.POS]: pos$289, enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-postgres-exporter.service\")\nwait_for_open_port(9187)\nwait_for_unit(\"postgresql.target\")\nsucceed(\n    \"curl -sSf http://localhost:9187/metrics | grep 'pg_exporter_last_scrape_error 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9187/metrics | grep 'pg_up 1'\")\nsystemctl(\"stop postgresql\")\nsucceed(\n    \"curl -sSf http://localhost:9187/metrics | grep -v 'pg_exporter_last_scrape_error 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9187/metrics | grep 'pg_up 0'\")\nsystemctl(\"start postgresql\")\nwait_for_unit(\"postgresql.target\")\nsucceed(\n    \"curl -sSf http://localhost:9187/metrics | grep 'pg_exporter_last_scrape_error 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9187/metrics | grep 'pg_up 1'\")\n",
@@ -1869,15 +1869,15 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     process: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$48);
       return {
-        __proto__: pos$296,
+        [nix.POS]: pos$296,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$295,
+          [nix.POS]: pos$295,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$294,
+            [nix.POS]: pos$294,
             process_names: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$293,
+                [nix.POS]: pos$293,
                 name: "{{.Matches.Wrapped}} {{ .Matches.Args }}",
                 cmdline: nix.thunk(() => ["^/nix/store[^ ]*/(?P<Wrapped>[^ /]*) (?P<Args>.*)"]),
               })),
@@ -1891,39 +1891,39 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const $_1 = nix.formals(args_1, formals$49);
       const pkgs = nix.arg($_1, "pkgs");
       const pveExporterEnvFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-          __proto__: pos$297,
+          [nix.POS]: pos$297,
           name: "pve.env",
           text: "PVE_USER=\"test_user@pam\"\nPVE_PASSWORD=\"hunter3\"\nPVE_VERIFY_SSL=\"false\"\n",
         }))));
       return {
-        __proto__: pos$299,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$298, enable: true, environmentFile: pveExporterEnvFile })),
+        [nix.POS]: pos$299,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$298, enable: true, environmentFile: pveExporterEnvFile })),
         exporterTest: "wait_for_unit(\"prometheus-pve-exporter.service\")\nwait_for_open_port(9221)\nwait_until_succeeds(\"curl localhost:9221\")\n",
       };
     })(), formals$49),
     "py-air-control": nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$50);
       return {
-        __proto__: pos$301,
+        [nix.POS]: pos$301,
         nodeName: "py_air_control",
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$300, enable: true, deviceHostname: "127.0.0.1" })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$300, enable: true, deviceHostname: "127.0.0.1" })),
         exporterTest: "wait_for_unit(\"prometheus-py-air-control-exporter.service\")\nwait_for_open_port(9896)\nsucceed(\n    \"curl -sSf http://localhost:9896/metrics | grep 'py_air_control_sampling_error_total'\"\n)\n",
       };
     })(), formals$50),
     redis: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$51);
       return {
-        __proto__: pos$308,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$302, enable: true })),
+        [nix.POS]: pos$308,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$302, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$307,
+          [nix.POS]: pos$307,
           services: nix.thunk(() => ({
-            __proto__: pos$306,
+            [nix.POS]: pos$306,
             redis: nix.thunk(() => ({
-              __proto__: pos$305,
+              [nix.POS]: pos$305,
               servers: nix.thunk(() => ({
-                __proto__: pos$304,
-                "": nix.thunk(() => ({ __proto__: pos$303, enable: true })),
+                [nix.POS]: pos$304,
+                "": nix.thunk(() => ({ [nix.POS]: pos$303, enable: true })),
               })),
             })),
           })),
@@ -1937,24 +1937,24 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const repository = "rest:http://127.0.0.1:8000";
       const passwordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "restic-test-password", "test-password"));
       return {
-        __proto__: pos$315,
+        [nix.POS]: pos$315,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$309,
+          [nix.POS]: pos$309,
           enable: true,
           repository: repository,
           passwordFile: passwordFile,
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$314,
+          [nix.POS]: pos$314,
           services: nix.thunk(() => ({
-            __proto__: pos$312,
+            [nix.POS]: pos$312,
             restic: nix.thunk(() => ({
-              __proto__: pos$311,
-              server: nix.thunk(() => ({ __proto__: pos$310, enable: true, extraFlags: nix.thunk(() => ["--no-auth"]) })),
+              [nix.POS]: pos$311,
+              server: nix.thunk(() => ({ [nix.POS]: pos$310, enable: true, extraFlags: nix.thunk(() => ["--no-auth"]) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$313,
+            [nix.POS]: pos$313,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "restic"))]),
           })),
         })),
@@ -1976,16 +1976,16 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     rtl_433: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$53);
       return {
-        __proto__: pos$320,
+        [nix.POS]: pos$320,
         pkgsReadOnly: false,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$316, enable: true })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$316, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$319,
+          [nix.POS]: pos$319,
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$318,
+            [nix.POS]: pos$318,
             overlays: nix.thunk(() => [
               (self) => (super$) => ({
-                __proto__: pos$317,
+                [nix.POS]: pos$317,
                 rtl_433: nix.thunk(() => nix.app(nix.sel(self, "runCommand"), "rtl_433", nix.thunk(() => ({})), "mkdir -p \"$out/bin\"\ncat <<EOF > \"$out/bin/rtl_433\"\n#!/bin/sh\nwhile true; do\n  printf '{\"time\" : \"2020-04-26 13:37:42\", \"model\" : \"zopieux\", \"id\" : 55, \"channel\" : 3, \"temperature_C\" : 18.000}\\n'\n  sleep 4\ndone\nEOF\nchmod +x \"$out/bin/rtl_433\"\n")),
               }),
             ]),
@@ -1997,30 +1997,30 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     sabnzbd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$54);
       return {
-        __proto__: pos$329,
+        [nix.POS]: pos$329,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$322,
+          [nix.POS]: pos$322,
           enable: true,
           servers: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$321,
+              [nix.POS]: pos$321,
               baseUrl: "http://localhost:8080",
               apiKeyFile: "/var/sabnzbd-apikey",
             })),
           ]),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$328,
+          [nix.POS]: pos$328,
           services: nix.thunk(() => ({
-            __proto__: pos$324,
-            sabnzbd: nix.thunk(() => ({ __proto__: pos$323, enable: true })),
+            [nix.POS]: pos$324,
+            sabnzbd: nix.thunk(() => ({ [nix.POS]: pos$323, enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$327,
+            [nix.POS]: pos$327,
             services: nix.thunk(() => ({
-              __proto__: pos$326,
+              [nix.POS]: pos$326,
               "sabnzbd-apikey": nix.thunk(() => ({
-                __proto__: pos$325,
+                [nix.POS]: pos$325,
                 requires: nix.thunk(() => ["sabnzbd.service"]),
                 after: nix.thunk(() => ["sabnzbd.service"]),
                 requiredBy: nix.thunk(() => ["prometheus-sabnzbd-exporter.service"]),
@@ -2037,9 +2037,9 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$55);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$331,
+        [nix.POS]: pos$331,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$330,
+          [nix.POS]: pos$330,
           enable: true,
           "metrics-file": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "test.json", "{}")}`),
         })),
@@ -2049,15 +2049,15 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     script: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$56);
       return {
-        __proto__: pos$335,
+        [nix.POS]: pos$335,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$334,
+          [nix.POS]: pos$334,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$333,
+            [nix.POS]: pos$333,
             scripts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$332,
+                [nix.POS]: pos$332,
                 name: "success",
                 command: nix.thunk(() => ["sleep"]),
                 args: nix.thunk(() => ["1"]),
@@ -2071,41 +2071,41 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     smartctl: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$57);
       return {
-        __proto__: pos$337,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$336, enable: true, devices: nix.thunk(() => ["/dev/vda"]) })),
+        [nix.POS]: pos$337,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$336, enable: true, devices: nix.thunk(() => ["/dev/vda"]) })),
         exporterTest: "wait_until_succeeds(\n    'journalctl -eu prometheus-smartctl-exporter.service -o cat | grep -q \"devices=/dev/vda\"'\n)\n",
       };
     })(), formals$57),
     smokeping: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$58);
       return {
-        __proto__: pos$339,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$338, enable: true, hosts: nix.thunk(() => ["127.0.0.1"]) })),
+        [nix.POS]: pos$339,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$338, enable: true, hosts: nix.thunk(() => ["127.0.0.1"]) })),
         exporterTest: "wait_for_unit(\"prometheus-smokeping-exporter.service\")\nwait_for_open_port(9374)\nwait_until_succeeds(\n    \"curl -sSf localhost:9374/metrics | grep '{}' | grep -v ' 0$'\".format(\n        'smokeping_requests_total{host=\"127.0.0.1\",ip=\"127.0.0.1\",source=\"\",tos=\"0\"} '\n    )\n)\nwait_until_succeeds(\n    \"curl -sSf localhost:9374/metrics | grep '{}'\".format(\n        'smokeping_response_ttl{host=\"127.0.0.1\",ip=\"127.0.0.1\",source=\"\",tos=\"0\"}'\n    )\n)\n",
       };
     })(), formals$58),
     storagebox: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$59);
       return {
-        __proto__: pos$341,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$340, enable: true, tokenFile: "/tmp/faketoken" })),
+        [nix.POS]: pos$341,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$340, enable: true, tokenFile: "/tmp/faketoken" })),
         exporterTest: "succeed(\n  'echo faketoken > /tmp/faketoken'\n)\nwait_for_unit(\"prometheus-storagebox-exporter.service\")\nwait_for_open_port(9509)\nsucceed(\"curl -sSf localhost:9509/metrics | grep 'process_open_fds'\")\n",
       };
     })(), formals$59),
     snmp: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$60);
       return {
-        __proto__: pos$347,
+        [nix.POS]: pos$347,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$346,
+          [nix.POS]: pos$346,
           enable: true,
           configuration: nix.thunk(() => ({
-            __proto__: pos$345,
+            [nix.POS]: pos$345,
             auths: nix.thunk(() => ({
-              __proto__: pos$343,
-              public_v2: nix.thunk(() => ({ __proto__: pos$342, community: "public", version: 2n })),
+              [nix.POS]: pos$343,
+              public_v2: nix.thunk(() => ({ [nix.POS]: pos$342, community: "public", version: 2n })),
             })),
-            modules: nix.thunk(() => ({ __proto__: pos$344, test: nix.thunk(() => ({})) })),
+            modules: nix.thunk(() => ({ [nix.POS]: pos$344, test: nix.thunk(() => ({})) })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-snmp-exporter.service\")\nwait_for_open_port(9116)\nsucceed(\"curl -sSf localhost:9116/metrics | grep 'snmp_request_errors_total 0'\")\n",
@@ -2115,9 +2115,9 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$61);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$349,
+        [nix.POS]: pos$349,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$348,
+          [nix.POS]: pos$348,
           enable: true,
           account: "dummy",
           username: "dummy",
@@ -2131,23 +2131,23 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     sql: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$62);
       return {
-        __proto__: pos$362,
+        [nix.POS]: pos$362,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$355,
+          [nix.POS]: pos$355,
           configuration: nix.thunk(() => ({
-            __proto__: pos$354,
+            [nix.POS]: pos$354,
             jobs: nix.thunk(() => ({
-              __proto__: pos$353,
+              [nix.POS]: pos$353,
               points: nix.thunk(() => ({
-                __proto__: pos$352,
+                [nix.POS]: pos$352,
                 interval: "1m",
                 connections: nix.thunk(() => [
                   "postgres://prometheus-sql-exporter@/data?host=/run/postgresql&sslmode=disable",
                 ]),
                 queries: nix.thunk(() => ({
-                  __proto__: pos$351,
+                  [nix.POS]: pos$351,
                   points: nix.thunk(() => ({
-                    __proto__: pos$350,
+                    [nix.POS]: pos$350,
                     labels: nix.thunk(() => ["name"]),
                     help: "Amount of points accumulated per person",
                     values: nix.thunk(() => ["amount"]),
@@ -2161,20 +2161,20 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
           user: "prometheus-sql-exporter",
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$361,
+          [nix.POS]: pos$361,
           services: nix.thunk(() => ({
-            __proto__: pos$357,
+            [nix.POS]: pos$357,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$356,
+              [nix.POS]: pos$356,
               enable: true,
               initialScript: nix.thunk(() => nix.builtins.toFile("init.sql", "CREATE DATABASE data;\n\\c data;\nCREATE TABLE points (amount INT, name TEXT);\nINSERT INTO points(amount, name) VALUES (1, 'jack');\nINSERT INTO points(amount, name) VALUES (2, 'jill');\nINSERT INTO points(amount, name) VALUES (3, 'jack');\n\nCREATE USER \"prometheus-sql-exporter\";\nGRANT ALL PRIVILEGES ON DATABASE data TO \"prometheus-sql-exporter\";\nGRANT SELECT ON points TO \"prometheus-sql-exporter\";\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$360,
+            [nix.POS]: pos$360,
             services: nix.thunk(() => ({
-              __proto__: pos$359,
-              "prometheus-sql-exporter": nix.thunk(() => ({ __proto__: pos$358, after: nix.thunk(() => ["postgresql.target"]) })),
+              [nix.POS]: pos$359,
+              "prometheus-sql-exporter": nix.thunk(() => ({ [nix.POS]: pos$358, after: nix.thunk(() => ["postgresql.target"]) })),
             })),
           })),
         })),
@@ -2184,37 +2184,37 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     statsd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$63);
       return {
-        __proto__: pos$364,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$363, enable: true })),
+        [nix.POS]: pos$364,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$363, enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-statsd-exporter.service\")\nwait_for_open_port(9102)\nsucceed(\"curl http://localhost:9102/metrics | grep 'statsd_exporter_build_info{'\")\nwait_until_succeeds(\n  \"echo 'test.udp:1|c' > /dev/udp/localhost/9125 && \\\n  curl http://localhost:9102/metrics | grep 'test_udp 1'\",\n  timeout=10\n)\nwait_until_succeeds(\n  \"echo 'test.tcp:1|c' > /dev/tcp/localhost/9125 && \\\n  curl http://localhost:9102/metrics | grep 'test_tcp 1'\",\n  timeout=10\n)\n",
       };
     })(), formals$63),
     surfboard: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$64);
       return {
-        __proto__: pos$376,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$365, enable: true, modemAddress: "localhost" })),
+        [nix.POS]: pos$376,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$365, enable: true, modemAddress: "localhost" })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$375,
+          [nix.POS]: pos$375,
           systemd: nix.thunk(() => ({
-            __proto__: pos$368,
+            [nix.POS]: pos$368,
             services: nix.thunk(() => ({
-              __proto__: pos$367,
-              "prometheus-surfboard-exporter": nix.thunk(() => ({ __proto__: pos$366, after: nix.thunk(() => ["nginx.service"]) })),
+              [nix.POS]: pos$367,
+              "prometheus-surfboard-exporter": nix.thunk(() => ({ [nix.POS]: pos$366, after: nix.thunk(() => ["nginx.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$374,
+            [nix.POS]: pos$374,
             nginx: nix.thunk(() => ({
-              __proto__: pos$373,
+              [nix.POS]: pos$373,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$372,
+                [nix.POS]: pos$372,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$371,
+                  [nix.POS]: pos$371,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$370,
-                    "/cgi-bin/status": nix.thunk(() => ({ __proto__: pos$369, extraConfig: "return 204;\n" })),
+                    [nix.POS]: pos$370,
+                    "/cgi-bin/status": nix.thunk(() => ({ [nix.POS]: pos$369, extraConfig: "return 204;\n" })),
                   })),
                 })),
               })),
@@ -2227,9 +2227,9 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     systemd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$65);
       return {
-        __proto__: pos$378,
+        [nix.POS]: pos$378,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$377,
+          [nix.POS]: pos$377,
           enable: true,
           extraFlags: nix.thunk(() => ["--systemd.collector.enable-restart-count"]),
         })),
@@ -2241,11 +2241,11 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$66);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$381,
+        [nix.POS]: pos$381,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$380,
+          [nix.POS]: pos$380,
           package: nix.thunk(() => nix.app(nix.sel(pkgs, "prometheus-tailscale-exporter", "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$379,
+              [nix.POS]: pos$379,
               patches: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "allow-running-without-credentials", "diff --git a/cmd/tailscale-exporter/root.go b/cmd/tailscale-exporter/root.go\nindex 14089f9..2bb9a25 100644\n--- a/cmd/tailscale-exporter/root.go\n+++ b/cmd/tailscale-exporter/root.go\n@@ -162,13 +162,6 @@ func runExporter(cmd *cobra.Command, args []string) error {\n\t\t}\n\n\t\thttpClient := oauthConfig.Client(context.Background())\n-\t\ttoken, err := oauthConfig.Token(context.Background())\n-\t\tif err != nil {\n-\t\t\treturn fmt.Errorf(\"failed to obtain OAuth token: %w\", err)\n-\t\t}\n-\t\tlogger.Info(\"OAuth token obtained\", \"token_type\", token.TokenType)\n-\t\tlogger.Info(\"Successfully obtained OAuth token\", \"expires\", token.Expiry)\n-\n\t\ttsCollector, err := tailscale.NewTailscaleCollector(\n\t\t\tlogger,\n\t\t\thttpClient,\n")),
               ]),
@@ -2259,10 +2259,10 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     unpoller: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$67);
       return {
-        __proto__: pos$383,
+        [nix.POS]: pos$383,
         nodeName: "unpoller",
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$382,
+          [nix.POS]: pos$382,
           enable: true,
           controllers: nix.thunk(() => [nix.thunk(() => ({}))]),
         })),
@@ -2272,29 +2272,29 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     unbound: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$68);
       return {
-        __proto__: pos$393,
+        [nix.POS]: pos$393,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$385,
+          [nix.POS]: pos$385,
           enable: true,
-          unbound: nix.thunk(() => ({ __proto__: pos$384, host: "unix:///run/unbound/unbound.ctl" })),
+          unbound: nix.thunk(() => ({ [nix.POS]: pos$384, host: "unix:///run/unbound/unbound.ctl" })),
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$392,
+          [nix.POS]: pos$392,
           services: nix.thunk(() => ({
-            __proto__: pos$387,
+            [nix.POS]: pos$387,
             unbound: nix.thunk(() => ({
-              __proto__: pos$386,
+              [nix.POS]: pos$386,
               enable: true,
               localControlSocketPath: "/run/unbound/unbound.ctl",
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$391,
+            [nix.POS]: pos$391,
             services: nix.thunk(() => ({
-              __proto__: pos$390,
+              [nix.POS]: pos$390,
               "prometheus-unbound-exporter": nix.thunk(() => ({
-                __proto__: pos$389,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$388, SupplementaryGroups: nix.thunk(() => ["unbound"]) })),
+                [nix.POS]: pos$389,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$388, SupplementaryGroups: nix.thunk(() => ["unbound"]) })),
               })),
             })),
           })),
@@ -2305,54 +2305,54 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     v2ray: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$69);
       return {
-        __proto__: pos$411,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$394, enable: true })),
+        [nix.POS]: pos$411,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$394, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$410,
+          [nix.POS]: pos$410,
           systemd: nix.thunk(() => ({
-            __proto__: pos$397,
+            [nix.POS]: pos$397,
             services: nix.thunk(() => ({
-              __proto__: pos$396,
-              "prometheus-nginx-exporter": nix.thunk(() => ({ __proto__: pos$395, after: nix.thunk(() => ["v2ray.service"]) })),
+              [nix.POS]: pos$396,
+              "prometheus-nginx-exporter": nix.thunk(() => ({ [nix.POS]: pos$395, after: nix.thunk(() => ["v2ray.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$409,
+            [nix.POS]: pos$409,
             v2ray: nix.thunk(() => ({
-              __proto__: pos$408,
+              [nix.POS]: pos$408,
               enable: true,
               config: nix.thunk(() => ({
-                __proto__: pos$407,
+                [nix.POS]: pos$407,
                 stats: nix.thunk(() => ({})),
-                api: nix.thunk(() => ({ __proto__: pos$398, tag: "api", services: nix.thunk(() => ["StatsService"]) })),
+                api: nix.thunk(() => ({ [nix.POS]: pos$398, tag: "api", services: nix.thunk(() => ["StatsService"]) })),
                 inbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$399, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$399, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
                   nix.thunk(() => ({
-                    __proto__: pos$401,
+                    [nix.POS]: pos$401,
                     listen: "127.0.0.1",
                     port: 54321n,
                     protocol: "dokodemo-door",
-                    settings: nix.thunk(() => ({ __proto__: pos$400, address: "127.0.0.1" })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$400, address: "127.0.0.1" })),
                     tag: "api",
                   })),
                 ]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$402, protocol: "freedom" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$402, protocol: "freedom" })),
                   nix.thunk(() => ({
-                    __proto__: pos$403,
+                    [nix.POS]: pos$403,
                     protocol: "freedom",
                     settings: nix.thunk(() => ({})),
                     tag: "api",
                   })),
                 ]),
                 routing: nix.thunk(() => ({
-                  __proto__: pos$406,
+                  [nix.POS]: pos$406,
                   strategy: "rules",
                   settings: nix.thunk(() => ({
-                    __proto__: pos$405,
+                    [nix.POS]: pos$405,
                     rules: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$404,
+                        [nix.POS]: pos$404,
                         inboundTag: nix.thunk(() => ["api"]),
                         outboundTag: "api",
                         type: "field",
@@ -2370,26 +2370,26 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     varnish: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$70);
       return {
-        __proto__: pos$419,
+        [nix.POS]: pos$419,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$412,
+          [nix.POS]: pos$412,
           enable: true,
           instance: "/var/run/varnishd",
           group: "varnish",
         })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$418,
+          [nix.POS]: pos$418,
           systemd: nix.thunk(() => ({
-            __proto__: pos$415,
+            [nix.POS]: pos$415,
             services: nix.thunk(() => ({
-              __proto__: pos$414,
-              "prometheus-varnish-exporter": nix.thunk(() => ({ __proto__: pos$413, after: nix.thunk(() => ["varnish.service"]) })),
+              [nix.POS]: pos$414,
+              "prometheus-varnish-exporter": nix.thunk(() => ({ [nix.POS]: pos$413, after: nix.thunk(() => ["varnish.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$417,
+            [nix.POS]: pos$417,
             varnish: nix.thunk(() => ({
-              __proto__: pos$416,
+              [nix.POS]: pos$416,
               enable: true,
               config: "vcl 4.0;\nbackend default {\n  .host = \"127.0.0.1\";\n  .port = \"80\";\n}\n",
             })),
@@ -2405,27 +2405,27 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const snakeoil = nix.thunk(() => nix.builtins.import(nix.path(here, "./wireguard/snakeoil-keys.nix")));
       const publicKeyWithoutNewlines = nix.thunk(() => nix.app(nix.sel(lib_1, "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(snakeoil, "peer1", "publicKey"))));
       return {
-        __proto__: pos$430,
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$420, enable: true })),
+        [nix.POS]: pos$430,
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$420, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$429,
+          [nix.POS]: pos$429,
           networking: nix.thunk(() => ({
-            __proto__: pos$425,
+            [nix.POS]: pos$425,
             wireguard: nix.thunk(() => ({
-              __proto__: pos$424,
+              [nix.POS]: pos$424,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$423,
+                [nix.POS]: pos$423,
                 wg0: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(snakeoil, "peer0"));
                   return {
-                  __proto__: pos$422,
+                  [nix.POS]: pos$422,
                   ips: nix.thunk(() => ["10.23.42.1/32", "fc00::1/128"]),
                   listenPort: 23542n,
                   privateKey: nix.thunk(() => nix.attr(from, "privateKey")),
                   peers: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => (() => {
                       const from_1 = nix.thunk(() => nix.sel(snakeoil, "peer1"));
                       return {
-                      __proto__: pos$421,
+                      [nix.POS]: pos$421,
                       allowedIPs: nix.thunk(() => ["10.23.42.2/32", "fc00::2/128"]),
                       publicKey: nix.thunk(() => nix.attr(from_1, "publicKey")),
                     };
@@ -2436,10 +2436,10 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$428,
+            [nix.POS]: pos$428,
             services: nix.thunk(() => ({
-              __proto__: pos$427,
-              "prometheus-wireguard-exporter": nix.thunk(() => ({ __proto__: pos$426, after: nix.thunk(() => ["wireguard-wg0.service"]) })),
+              [nix.POS]: pos$427,
+              "prometheus-wireguard-exporter": nix.thunk(() => ({ [nix.POS]: pos$426, after: nix.thunk(() => ["wireguard-wg0.service"]) })),
             })),
           })),
         })),
@@ -2455,9 +2455,9 @@ wait_until_succeeds(
       const $_1 = nix.formals(args_1, formals$72);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$432,
+        [nix.POS]: pos$432,
         exporterConfig: nix.thunk(() => ({
-          __proto__: pos$431,
+          [nix.POS]: pos$431,
           enable: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "yace-config.yml", "apiVersion: v1alpha1\nsts-region: us-east-1\ndiscovery:\n  jobs:\n    - type: AWS/EC2\n      regions: [us-east-1]\n      metrics:\n        - name: CPUUtilization\n          statistics: [Average]\n")),
         })),
@@ -2467,13 +2467,13 @@ wait_until_succeeds(
     zfs: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$73);
       return {
-        __proto__: pos$437,
+        [nix.POS]: pos$437,
         testBackend: "nodes",
-        exporterConfig: nix.thunk(() => ({ __proto__: pos$433, enable: true })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$433, enable: true })),
         metricProvider: nix.thunk(() => ({
-          __proto__: pos$436,
-          boot: nix.thunk(() => ({ __proto__: pos$434, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ __proto__: pos$435, hostId: "7327ded7" })),
+          [nix.POS]: pos$436,
+          boot: nix.thunk(() => ({ [nix.POS]: pos$434, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$435, hostId: "7327ded7" })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-zfs-exporter.service\")\nwait_for_unit(\"zfs.target\")\nwait_for_open_port(9134)\nwait_until_succeeds(\"curl -f localhost:9134/metrics | grep 'zfs_scrape_collector_success{.*} 1'\")\n",
       };
@@ -2483,14 +2483,14 @@ wait_until_succeeds(
         const $_1 = nix.formals(args_1, formals$74);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
-        const testConfig = nix.thunk(() => nix.app(testConfigFun, nix.thunk(() => ({ __proto__: pos$439, pkgs: pkgs, lib: lib_1 }))));
+        const testConfig = nix.thunk(() => nix.app(testConfigFun, nix.thunk(() => ({ [nix.POS]: pos$439, pkgs: pkgs, lib: lib_1 }))));
         const testBackend = nix.thunk(() => nix.selOr(testConfig, () => "containers", "testBackend"));
         const nodeName = "machine";
         return nix.attrsDyn({
-          __proto__: pos$445,
+          [nix.POS]: pos$445,
           name: nix.thunk(() => nix.str`prometheus-${exporter}-exporter`),
           node: nix.thunk(() => ({
-            __proto__: pos$440,
+            [nix.POS]: pos$440,
             pkgsReadOnly: nix.thunk(() => nix.selOr(testConfig, () => true, "pkgsReadOnly")),
           })),
           testScript: nix.thunk(() => nix.str`${nodeName}.start()
@@ -2502,18 +2502,18 @@ ${nix.app(nix.sel(lib_1, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins
                 ]))) ? nix.force(line) : nix.str`${nodeName}.${line}`), nix.thunk(() => nix.app(nix.sel(lib_1, "splitString"), "\n", nix.thunk(() => nix.app(nix.sel(lib_1, "removeSuffix"), "\n", nix.thunk(() => nix.sel(testConfig, "exporterTest")))))))))}
 `),
           meta: nix.thunk(() => ({
-            __proto__: pos$441,
+            [nix.POS]: pos$441,
             maintainers: nix.thunk(() => nix.selOr(testConfig, () => [], "maintainers")),
           })),
         }, [
           [nix.force(testBackend), nix.thunk(() => nix.attrsDyn({}, [
             [nodeName, nix.thunk(() => nix.app(nix.sel(lib_1, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$444,
+                  [nix.POS]: pos$444,
                   services: nix.thunk(() => ({
-                    __proto__: pos$443,
+                    [nix.POS]: pos$443,
                     prometheus: nix.thunk(() => ({
-                      __proto__: pos$442,
+                      [nix.POS]: pos$442,
                       exporters: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.force(exporter), nix.thunk(() => nix.sel(testConfig, "exporterConfig"))],
                       ])),

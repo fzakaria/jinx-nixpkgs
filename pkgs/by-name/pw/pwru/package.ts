@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const clang = nix.arg($, "clang");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pwru",
       version: "1.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cilium",
           repo: "pwru",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       preBuild: "TARGET_GOARCH=\"$GOARCH\" GOOS= GOARCH= go generate\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "eBPF-based Linux kernel networking debugger",
         homepage: "https://github.com/cilium/pwru",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

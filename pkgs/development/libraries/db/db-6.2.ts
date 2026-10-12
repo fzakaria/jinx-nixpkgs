@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const autoconf269 = nix.arg($, "autoconf269");
   return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "6.2.32",
       sha256: "1yx8wzhch5wwh016nh0kfxvknjkafv6ybkqh6nh7lxx50jqf5id9",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bakelite",
       version: "0.4.2-unstable-2024-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "richfelker",
           repo: "bakelite",
           rev: "bc79a16b4414702c579143154d94a86666e99b78",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "# pipe2() is only exposed with _GNU_SOURCE\n# Upstream makefile explicitly uses -O3 to improve SHA-3 performance\nmakeFlagsArray+=( CFLAGS=\"-D_GNU_SOURCE -g -O3\" )\n",
       installPhase: "mkdir -p $out/bin\ncp bakelite $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/richfelker/bakelite",
         description: "Incremental backup with strong cryptographic confidentality",
         mainProgram: "bakelite",

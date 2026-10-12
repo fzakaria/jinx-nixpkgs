@@ -41,23 +41,23 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   const graphics_cmds = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "graphics_cmds",
       version: "1",
-      buildCommand: nix.thunk(() => nix.str`install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/copypng"), nix.thunk(() => ({ __proto__: pos$1, coreutils: coreutils })))} "$out/bin/copypng"
+      buildCommand: nix.thunk(() => nix.str`install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/copypng"), nix.thunk(() => ({ [nix.POS]: pos$1, coreutils: coreutils })))} "$out/bin/copypng"
 install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/tiffutil"), nix.thunk(() => ({})))} "$out/bin/tiffutil"
 `),
     }))));
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "swift-build",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-build"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "swiftlang",
           repo: "swift-build",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -66,7 +66,7 @@ install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/tiffutil"),
         })()))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0001-replace-impure-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             xcrun: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(xcbuild, "xcrun") : "/not-supported")),
             graphics_cmds: graphics_cmds,
             coreutils: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), coreutils)),
@@ -78,7 +78,7 @@ install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/tiffutil"),
             shell_cmds: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(darwin, "shell_cmds"))) : "/not-supported")),
             sigtool: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(darwin, "sigtool")))),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0002-treat-nixpkgs-sdk-as-xcode.patch"), nix.thunk(() => ({ __proto__: pos$5, "store-dir": nix.thunk(() => nix.builtins.storeDir) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0002-treat-nixpkgs-sdk-as-xcode.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, "store-dir": nix.thunk(() => nix.builtins.storeDir) })))),
         nix.path(here, "./patches/0003-find-bundles-in-store.patch"),
       ]),
       postPatch: nix.thunk(() => nix.str`# Allow Swift Build to find \`SWBBuildServiceBundle\` in \`$out/libexec\`.
@@ -108,7 +108,7 @@ appendToVar cmakeFlags -DCMAKE_Swift_FLAGS=-module-cache-path\\ "$NIX_BUILD_TOP/
         swift_tools_support_core,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       postInstall: nix.thunk(() => nix.str`mkdir -p "\${!outputLib}/libexec"
@@ -137,7 +137,7 @@ substitute ${nix.path(here, "./files/SwiftBuildConfig.cmake")} "\${!outputDev}/l
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/swiftlang/swift-build",
         description: "High-level build system based on llbuild",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

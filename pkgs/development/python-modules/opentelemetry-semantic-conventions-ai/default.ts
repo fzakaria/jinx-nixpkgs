@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const version = "0.5.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opentelemetry-semantic-conventions-ai",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "opentelemetry_semantic_conventions_ai",
           version: version,
           hash: "sha256-FTkGIA2MHS+OCb142+9SaRYCPehaw9qzWRK/r7af8Ew=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.semconv_ai"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source observability for your GenAI or LLM application, based on OpenTelemetry",
         homepage: "https://github.com/traceloop/openllmetry/tree/main/packages/opentelemetry-semantic-conventions-ai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

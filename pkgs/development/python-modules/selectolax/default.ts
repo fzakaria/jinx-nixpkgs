@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const lexbor = nix.arg($, "lexbor");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "selectolax",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rushter",
           repo: "selectolax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-setup.py-devendor-lexbor.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             lexbor: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), lexbor)),
           })))),
       ]),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf selectolax\n",
       pythonImportsCheck: nix.thunk(() => ["selectolax"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python binding to Lexbor engine. Fast HTML5 parser with CSS selectors for Python",
         homepage: "https://github.com/rushter/selectolax",
         changelog: nix.thunk(() => nix.str`https://github.com/rushter/selectolax/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

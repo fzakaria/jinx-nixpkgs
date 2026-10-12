@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const optimize = nix.argOr($, "optimize", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gf2x",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "gf2x",
           repo: "gf2x",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gf2x-1.3.0-configure-clang16.patch",
             url: "https://gitlab.inria.fr/gf2x/gf2x/-/commit/a2f0fd388c12ca0b9f4525c6cfbc515418dcbaf8.diff",
             hash: "sha256-Aj2KzWZMR24S04IbPOBPwacCU4rEiB+FFWxtRuF50LA=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(optimize)), nix.thunk(() => ["--disable-hardware-specific-code"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Routines for fast arithmetic in GF(2)[x]",
         homepage: "https://gitlab.inria.fr/gf2x/gf2x/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

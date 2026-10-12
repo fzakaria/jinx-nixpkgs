@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const talloc = nix.arg($, "talloc");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cifs-utils",
       version: "7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.samba.org/pub/linux-cifs/cifs-utils/cifs-utils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-f6zoXj0tXrXnrb0YGt7mdZCX8TWxDW+zC+jgcK9+cFQ=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["ROOTSBINDIR=$(bin)/sbin"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["ac_cv_func_malloc_0_nonnull=yes", "ac_cv_func_realloc_0_nonnull=yes"])))),
       outputs: nix.thunk(() => ["out", "bin", "man", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wiki.samba.org/index.php/LinuxCIFS_utils",
         description: "Tools for managing Linux CIFS client filesystems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

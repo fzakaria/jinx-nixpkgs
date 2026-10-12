@@ -55,17 +55,17 @@ export default nix.lambda((args) => (() => {
   const mysqlShellVersion = "8.4.10";
   const mysqlServerVersion = "8.4.10";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mysql-shell",
       version: mysqlShellVersion,
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/MySQL-${nix.app(nix.sel(lib, "versions", "majorMinor"), mysqlServerVersion)}/mysql-${mysqlServerVersion}.tar.gz`),
             hash: "sha256-1XpnMLrvFK4Rj39KbgKEW1tQkzdY32H7BuEE8nzMj5Y=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/MySQL-Shell/mysql-shell-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
             hash: "sha256-2pOMjkr8y1lCuh5EC34kI9V8vcQpAotJPHWHkMbgET4=",
           })))),
@@ -76,16 +76,16 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no-openssl-bundling.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/mysql/mysql-shell/commit/4ce8746d8a7eecf9ae66d4d500c84d57cc4fbdbb.patch",
             hash: "sha256-LUGC7gnNQ3zhmWUm2xogsOAmx8QSngQBHVJMWHFtWz0=",
           })))),
       ]),
       postPatch: "substituteInPlace ../mysql/cmake/libutils.cmake --replace-fail /usr/bin/libtool libtool\nsubstituteInPlace ../mysql/cmake/os/Darwin.cmake --replace-fail /usr/bin/libtool libtool\n\nsubstituteInPlace cmake/libutils.cmake --replace-fail /usr/bin/libtool libtool\n",
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-literal-operator -Wno-error=nonnull",
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error=array-bounds" }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error=array-bounds" }))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, cmake, git, bison, makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [rpcsvc_proto])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, nix.thunk(() => nix.sel(darwin, "DarwinTools"))]))))),
       buildInputs: nix.thunk(() => nix.concat([
         curl,
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/mysqlsh --set PYTHONPATH "${nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.sel(python3, "sitePackages")), pythonDeps)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: nix.thunk(() => nix.str`https://dev.mysql.com/doc/mysql-shell/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/en/`),
         description: "New command line scriptable shell for MySQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

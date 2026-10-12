@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lan-mouse";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "feschber",
           repo: "lan-mouse",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-Lxs0qWvNAv4KCeJ+cDBYBzwlbJfQJshcxPRdg9w0szc=";
       const postInstall = "install -Dm444 de.feschber.LanMouse.desktop -t $out/share/applications\ninstall -Dm444 lan-mouse-gtk/resources/de.feschber.LanMouse.svg -t $out/share/icons/hicolor/scalable/apps\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software KVM switch for sharing a mouse and keyboard with multiple hosts through the network",
         homepage: "https://github.com/feschber/lan-mouse",
         changelog: nix.thunk(() => nix.str`https://github.com/feschber/lan-mouse/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

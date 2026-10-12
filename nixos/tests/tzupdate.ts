@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const clientNodeName = "client";
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "tzupdate",
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [clientNodeName, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          tzupdate: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          tzupdate: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       }))],
     ])),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
 ${clientNodeName}.wait_for_unit("multi-user.target")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "l0b0"))]),
     })),
   };

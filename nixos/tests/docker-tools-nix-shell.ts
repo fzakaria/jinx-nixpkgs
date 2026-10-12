@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "node", "pkgs", "dockerTools"));
   const examples = nix.thunk(() => nix.attr(from, "examples"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "docker-tools-nix-shell",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "infinisil")),
           nix.thunk(() => nix.lookup(w, "roberth")),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             diskSize: 8000n,
-            docker: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         };
       })(), formals$2),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-jam";
       const version = "4.8.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tonelib.vip/download/24-10-24/ToneLib-Jam-amd64.deb",
           hash: "sha256-qBCEaV9uw6HHJYK+8AK+JYQK375cY0Ae3gxiQ0+sAg4=",
         }))));
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDependencies = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [curl, libxcursor, libxinerama, libxrandr, libxrender, libjack2])));
       const installPhase = "runHook preInstall\n\ncp -r usr $out\nsubstituteInPlace $out/share/applications/ToneLib-Jam.desktop \\\n  --replace-fail \"/usr/\" \"$out/\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ToneLib Jam – the learning and practice software for guitar players",
         homepage: "https://tonelib.net/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ToneLib-Jam",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

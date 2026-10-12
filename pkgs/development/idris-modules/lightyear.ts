@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lightyear",
       version: "2017-09-10",
       idrisDeps: nix.thunk(() => [effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ziman",
           repo: "lightyear",
           rev: "f737e25a09c1fe7c5fff063c53bd7458be232cc8",
           sha256: "05x66abhpbdm6yr0afbwfk6w04ysdk78gylj5alhgwhy4jqakv29",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser combinators for Idris",
         homepage: "https://github.com/ziman/lightyear",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

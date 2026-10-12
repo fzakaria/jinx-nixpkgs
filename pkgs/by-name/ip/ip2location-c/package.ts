@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ip2location-c",
       version: "8.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ip2location",
           repo: "IP2Location-C-Library",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to look up locations of host names and IP addresses",
         mainProgram: "ip2location",
         longDescription: "A C library to find the country, region, city,coordinates,\nzip code, time zone, ISP, domain name, connection type, area code,\nweather, MCC, MNC, mobile brand name, elevation and usage type of\nany IP address or host name in the IP2Location databases.\n",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kxstitch",
       version: "2.2.0-unstable-2025-08-16",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://invent.kde.org/graphics/kxstitch.git",
           rev: "bfe934ffc2c2dfa1cc554bc4483a3285b027b00c",
           hash: "sha256-B81nwInFWcQVDJU6VINII8crVPtV5zYBXADVVe+wCu4=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })())),
       postInstall: "install -D $src/org.kde.kxstitch.desktop $out/share/applications/org.kde.kxstitch.desktop\n\nfor size in 16 22 32 48 64 128 256; do\n  install -D $src/icons/app/$size-apps-kxstitch.png $out/share/icons/hicolor/$size\\x$size/kxstitch.png\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://invent.kde.org/graphics/kxstitch",
         description: "Cross stitch pattern and chart creation",
         maintainers: nix.thunk(() => (() => {

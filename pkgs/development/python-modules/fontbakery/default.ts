@@ -61,18 +61,18 @@ export default nix.lambda((args) => (() => {
   const pylint = nix.arg($, "pylint");
   const black = nix.arg($, "black");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fontbakery",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fonttools",
           repo: "fontbakery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IkGcaRW8RjwR/foACR38HtCuETyXTyCjpIUaY+awMQo=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       pythonRelaxDeps: nix.thunk(() => ["collidoscope", "freetype-py", "protobuf", "vharfbuzz"]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         black,
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "all"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         beautifulsoup4: nix.thunk(() => [beautifulsoup4]),
         shaperglot: nix.thunk(() => [shaperglot]),
         googlefontsalwayslatest: nix.thunk(() => [axisregistry, gflanguages, gfsubsets, glyphsets, shaperglot]),
@@ -127,14 +127,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_check_axes_match", "test_check_vertical_metrics_regressions"]),
       postInstall: "installShellCompletion --bash --name fontbakery \\\n  snippets/fontbakery.bash-completion\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for checking the quality of font projects",
         homepage: "https://github.com/googlefonts/fontbakery",
         changelog: nix.thunk(() => nix.str`https://github.com/fonttools/fontbakery/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

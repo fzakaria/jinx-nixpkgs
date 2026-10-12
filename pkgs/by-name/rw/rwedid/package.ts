@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rwedid",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ral",
           repo: "rwedid",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "mkdir -p $out/etc/udev/rules.d\necho 'SUBSYSTEM==\"i2c-dev\",KERNEL==\"i2c-[0-9]*\", ATTRS{class}==\"0x030000\", TAG+=\"uaccess\"' > $out/etc/udev/rules.d/60-rwedid.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read and write EDID data over an I2C bus",
         longDescription: "To install udev rules, you also have to add `services.udev.packages = [ pkgs.rwedid ]` into your configuration.\nAdditionally you will also have to create the i2c group, on NixOS this can be done using `users.groups.i2c = {};`.\nAnd you will have to load i2c-dev kernel module, for that add `boot.initrd.availableKernelModules = [ i2c-dev ] to your config.\n",
         homepage: "https://codeberg.org/ral/rwedid",

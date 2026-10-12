@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "test-thisroot": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-thisroot.nix"), nix.thunk(() => ({})))),
   };
 })(), formals$1);

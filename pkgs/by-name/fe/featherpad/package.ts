@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const hunspell = nix.arg($, "hunspell");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "featherpad",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tsujan",
           repo: "FeatherPad",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtsvg")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Qt5 Plain-Text Editor for Linux",
         homepage: "https://github.com/tsujan/FeatherPad",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

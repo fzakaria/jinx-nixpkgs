@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Project-MONAI",
           repo: "monai-deploy-app-sdk",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_packager"]);
       const pythonImportsCheck = nix.thunk(() => ["monai.deploy", "monai.deploy.core"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework and tools to design, develop and verify AI applications in healthcare imaging",
         mainProgram: "monai-deploy",
         homepage: "https://monai.io/deploy.html",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "zmb3",
           repo: "gogetdoc",
           sha256: "1v74zd0x2xh10603p8raazssacv3y0x0lr9apkpsdk0bfp5jj0lr",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gets documentation for items in Go source code",
         mainProgram: "gogetdoc",
         homepage: "https://github.com/zmb3/gogetdoc",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
-      return { __proto__: pos$3, pname, version, rev, vendorHash, doCheck, src, meta };
+      return { [nix.POS]: pos$3, pname, version, rev, vendorHash, doCheck, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

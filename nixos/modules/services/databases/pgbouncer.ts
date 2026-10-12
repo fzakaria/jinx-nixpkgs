@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "pgbouncer.ini", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))))));
   const configPath = "pgbouncer/pgbouncer.ini";
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "pgbouncer", "logFile"]), "`services.pgbouncer.logFile` has been removed, use `services.pgbouncer.settings.pgbouncer.logfile`\ninstead.\nPlease note that the new option expects an absolute path\nwhereas the old option accepted paths relative to pgbouncer's home dir.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "pgbouncer", "listenAddress"]), nix.thunk(() => ["services", "pgbouncer", "settings", "pgbouncer", "listen_addr"]))),
@@ -104,73 +104,73 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "pgbouncer", "extraConfig"]), "Use services.pgbouncer.settings instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         pgbouncer: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PostgreSQL connection pooler")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pgbouncer", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to automatically open the specified TCP port in the firewall.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     pgbouncer: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       listen_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 6432n,
                           description: "Which port to listen on. Applies to both TCP and Unix sockets.\n",
                         })))),
                       listen_addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "commas")))),
                           example: "*",
                           default: null,
                           description: "Specifies a list (comma-separated) of addresses where to listen for TCP connections.\nYou may also use * meaning “listen on all addresses”.\nWhen not set, only Unix socket connections are accepted.\n\nAddresses can be specified numerically (IPv4/IPv6) or by name.\n",
                         })))),
                       pool_mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["session", "transaction", "statement"]))),
                           default: "session",
                           description: "Specifies when a server connection can be reused by other clients.\n\nsession\n    Server is released back to pool after client disconnects. Default.\ntransaction\n    Server is released back to pool after transaction finishes.\nstatement\n    Server is released back to pool after query finishes.\n    Transactions spanning multiple statements are disallowed in this mode.\n",
                         })))),
                       max_client_conn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 100n,
                           description: "Maximum number of client connections allowed.\n\nWhen this setting is increased, then the file descriptor limits in the operating system\nmight also have to be increased. Note that the number of file descriptors potentially\nused is more than maxClientConn. If each user connects under its own user name to the server,\nthe theoretical maximum used is:\nmaxClientConn + (max pool_size * total databases * total users)\n\nIf a database user is specified in the connection string (all users connect under the same user name),\nthe theoretical maximum is:\nmaxClientConn + (max pool_size * total databases)\n\nThe theoretical maximum should never be reached, unless somebody deliberately crafts a special load for it.\nStill, it means you should set the number of file descriptors to a safely high number.\n",
                         })))),
                       default_pool_size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 20n,
                           description: "How many server connections to allow per user/database pair.\nCan be overridden in the per-database configuration.\n",
                         })))),
                       max_db_connections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 0n,
                           description: "Do not allow more than this many server connections per database (regardless of user).\nThis considers the PgBouncer database that the client has connected to,\nnot the PostgreSQL database of the outgoing connection.\n\nThis can also be set per database in the [databases] section.\n\nNote that when you hit the limit, closing a client connection to one pool will\nnot immediately allow a server connection to be established for another pool,\nbecause the server connection for the first pool is still open.\nOnce the server connection closes (due to idle timeout),\na new server connection will immediately be opened for the waiting pool.\n\n0 = unlimited\n",
                         })))),
                       max_user_connections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 0n,
                           description: "Do not allow more than this many server connections per user (regardless of database).\nThis considers the PgBouncer user that is associated with a pool,\nwhich is either the user specified for the server connection\nor in absence of that the user the client has connected as.\n\nThis can also be set per user in the [users] section.\n\nNote that when you hit the limit, closing a client connection to one pool\nwill not immediately allow a server connection to be established for another pool,\nbecause the server connection for the first pool is still open.\nOnce the server connection closes (due to idle timeout), a new server connection\nwill immediately be opened for the waiting pool.\n\n0 = unlimited\n",
                         })))),
                       ignore_startup_parameters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "commas")))),
                           example: "extra_float_digits",
                           default: null,
@@ -178,11 +178,11 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     databases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ({})),
                         example: nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           exampledb: "host=/run/postgresql/ port=5432 auth_user=exampleuser dbname=exampledb sslmode=require",
                           bardb: "host=localhost dbname=bazdb",
                           foodb: "host=host1.example.com port=5432",
@@ -190,18 +190,18 @@ export default nix.lambda((args) => (() => {
                         description: "Detailed information about PostgreSQL database definitions:\n<https://www.pgbouncer.org/config.html#section-databases>\n",
                       })))),
                     users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ({})),
-                        example: nix.thunk(() => ({ __proto__: pos$13, user1: "pool_mode=session" })),
+                        example: nix.thunk(() => ({ [nix.POS]: pos$13, user1: "pool_mode=session" })),
                         description: "Optional.\n\nDetailed information about PostgreSQL user definitions:\n<https://www.pgbouncer.org/config.html#section-users>\n",
                       })))),
                     peers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ({})),
                         example: nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           "1": "host=host1.example.com",
                           "2": "host=/tmp/pgbouncer-2 port=5555",
                         })),
@@ -213,25 +213,25 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for PgBouncer, see <https://www.pgbouncer.org/config.html>\nfor supported values.\n",
             })))),
           openFilesLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 65536n,
               description: "Maximum number of open files.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "pgbouncer",
               description: "The user pgbouncer is run as.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "pgbouncer",
               description: "The group pgbouncer is run as.\n",
             })))),
           homeDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/pgbouncer",
               description: "Specifies the home directory.\n",
@@ -240,13 +240,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "PgBouncer service user",
               group: nix.thunk(() => nix.sel(cfg, "group")),
               home: nix.thunk(() => nix.sel(cfg, "homeDir")),
@@ -256,35 +256,35 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
-          etc: nix.thunk(() => nix.attrsDyn({}, [[configPath, nix.thunk(() => ({ __proto__: pos$29, source: configFile }))]])),
+          [nix.POS]: pos$30,
+          etc: nix.thunk(() => nix.attrsDyn({}, [[configPath, nix.thunk(() => ({ [nix.POS]: pos$29, source: configFile }))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           pgbouncer: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             settings: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               pgbouncer: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 unix_socket_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/pgbouncer")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             pgbouncer: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "PgBouncer - PostgreSQL connection pooler",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               reloadTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 Type: "notify-reload",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -299,9 +299,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.selOr(cfg, () => 6432n, "settings", "pgbouncer", "listen_port")),
               ]),
@@ -309,7 +309,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_1000101"))]),
     })),
   };

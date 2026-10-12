@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   return (() => {
     const packageMapping = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ExcelFiles: nix.thunk(() => ["xlrd"]),
       PyPlot: nix.thunk(() => ["matplotlib"]),
       PythonPlot: nix.thunk(() => ["matplotlib"]),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const allCandidates = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), name, packageMapping)) ? nix.app(nix.sel(lib, "getAttr"), name, packageMapping) : []));
         return nix.app(nix.sel(lib, "filter"), (x) => nix.app(nix.sel(lib, "hasAttr"), x, nix.thunk(() => nix.sel(python3, "pkgs"))), allCandidates);
       })(), names);
-    return { __proto__: pos$2, packageMapping, getExtraPythonPackages };
+    return { [nix.POS]: pos$2, packageMapping, getExtraPythonPackages };
   })();
 })(), formals$1);
 //# sourceMappingURL=extra-python-packages.ts.map

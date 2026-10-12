@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
     const fetchurl = nix.arg($_1, "fetchurl");
     const unzip = nix.arg($_1, "unzip");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "docbook-sgml",
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://archive.docbook.org/sgml/${nix.sel(finalAttrs, "version")}/${(nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "4.2")) ? nix.str`docbook-${nix.sel(finalAttrs, "version")}` : nix.str`docbk${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`)}.zip`),
             hash: hash,
           })))),
         isoents: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://web.archive.org/web/20250220122223/http://xml.coverpages.org/ISOEnts.zip",
             hash: "sha256-3OQ1mjmW7S/TOtXqoRqbz8JLWwaZLiQpUTKwbbGambI=",
           })))),
@@ -50,7 +50,7 @@ runHook postInstall
         strictDeps: true,
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.str`DocBook ${nix.sel(finalAttrs, "version")} SGML Schemas`),
           homepage: "https://docbook.org/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "docBookDtd")),

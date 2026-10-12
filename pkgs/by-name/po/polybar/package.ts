@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const nlSupport = nix.argOr($, "nlSupport", () => true);
   const i3Support = nix.argOr($, "i3Support", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "polybar",
       version: "3.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polybar",
           repo: "polybar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, alsa_lib), nix.concat(nix.app(nix.sel(lib, "optional"), githubSupport, curl), nix.concat(nix.app(nix.sel(lib, "optional"), mpdSupport, libmpdclient), nix.concat(nix.app(nix.sel(lib, "optional"), pulseSupport, libpulseaudio), nix.concat(nix.app(nix.sel(lib, "optional"), iwSupport, wirelesstools), nix.concat(nix.app(nix.sel(lib, "optional"), nlSupport, libnl), nix.app(nix.sel(lib, "optionals"), i3Support, nix.thunk(() => [jsoncpp, i3])))))))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc15-cstdint-fix.patch",
             url: "https://github.com/polybar/polybar/commit/f99e0b1c7a5b094f5a04b14101899d0cb4ece69d.patch",
             sha256: "sha256-Mf9R4u1Kq4yqLqTFD5ZoLjrK+GmlvtSsEyRFRCiQ72U=",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${i3}/bin"
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://polybar.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/polybar/polybar/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fast and easy-to-use tool for creating status bars",

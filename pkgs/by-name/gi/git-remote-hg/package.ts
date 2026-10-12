@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-remote-hg",
       version: "1.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mnauw",
           repo: "git-remote-hg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "make install-doc prefix=$out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mnauw/git-remote-hg",
         description: "Semi-official Mercurial bridge from Git project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

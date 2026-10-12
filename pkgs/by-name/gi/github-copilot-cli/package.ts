@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported arch: ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`darwin-${arch}` : nix.str`linux-${arch}`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "github-copilot-cli",
       version: "1.0.91",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/github/copilot-cli/releases/download/v${nix.sel(finalAttrs, "version")}/github-copilot-${nix.sel(finalAttrs, "version")}-${platform}.tgz`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "aarch64-darwin": "sha256-7eqWUaRON3dXEwZ5pjf36zWRdJf+OKDPULaG2GnEDzE=",
             "x86_64-linux": "sha256-j682m6rqqJXLQLyN6WC2SreM44OTWBGdtEX2/MGTZ3k=",
             "aarch64-linux": "sha256-+Zpd0Xt7DfuAD51v379ahCZaw+vkr/qDfnnK7LqbZrM=",
@@ -69,9 +69,9 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash]))}"
 `),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal",
         homepage: "https://github.com/github/copilot-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/github/copilot-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

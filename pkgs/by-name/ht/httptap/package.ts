@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "httptap",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "monasticacademy",
           repo: "httptap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Cn5u6q0r06SJp4uhF7j5K6yNZv8Q3WNxlDd5Vxmshhw=",
         })))),
       vendorHash: "sha256-yTtUt+kfDwN6W4caHCAYFjpYzhaqZUbLe+Nz7JKAXu8=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "View HTTP/HTTPS requests made by any Linux program",
         homepage: "https://github.com/monasticacademy/httptap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const mosek_major_minor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const python_major_version = nix.thunk(() => nix.sel(python, "sourceVersion", "major"));
       const mosek_libs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "mosek-libs",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -35,14 +35,14 @@ ln -snf ${onetbb}/lib/libtbb.so.12 $out/lib/libtbb.so.12
 `),
         }))));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "mosek",
         version: "11.2.2",
         pyproject: true,
         "build-system": nix.thunk(() => [setuptools]),
         disabled: nix.thunk(() => nix.app(pythonOlder, "3.9")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://download.mosek.com/stable/${nix.sel(finalAttrs, "version")}/mosektoolslinux64x86.tar.bz2`),
             sha256: "sha256-DVSZ+8ggmK7EyiaHYCUjxQ/3mY5GcUlgXVRfReiBkiw=",
           })))),
@@ -56,7 +56,7 @@ ln -snf ${onetbb}/lib/libtbb.so.12 $out/lib/libtbb.so.12
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Python interface for MOSEK - the package for large scale convex, conic and mixed-integer optimization.",
             homepage: "https://www.mosek.com/",
             changelog: nix.thunk(() => nix.str`https://docs.mosek.com/${mosek_major_minor}/releasenotes/changes.html`),

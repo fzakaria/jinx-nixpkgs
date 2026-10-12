@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.90.11";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goocanvasmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/goocanvasmm-${version}.tar.xz`),
           sha256: "0vpdfrj59nwzwj8bk4s0h05iyql62pxjzsxh72g3vry07s3i3zw0",
         }))));
@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gtkmm3, goocanvas_2]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: pname,
             attrPath: "goocanvasmm2",
             versionPolicy: "none",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ bindings for GooCanvas",
         homepage: "https://gitlab.gnome.org/Archive/goocanvasmm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

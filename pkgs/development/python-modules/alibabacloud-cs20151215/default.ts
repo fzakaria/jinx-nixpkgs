@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-cs20151215",
       version: "7.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_cs20151215",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-faic3DP7Med6DUW7x3r+FYiqCdP36FgnnQrBpIfnpOY=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_cs20151215"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alibaba Cloud CS (20151215) SDK Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-cs20151215/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

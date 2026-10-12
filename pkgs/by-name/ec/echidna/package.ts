@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "echidna";
       const version = "2.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crytic",
           repo: "echidna",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -116,7 +116,7 @@ remove-references-to -t ${nix.sel(nix.lookup(w_2, "wreq"), "out")} "$out/bin/ech
       const platforms = nix.thunk(() => nix.sel(lib, "platforms", "unix"));
       const mainProgram = "echidna";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

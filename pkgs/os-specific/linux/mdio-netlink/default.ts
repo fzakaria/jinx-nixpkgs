@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const mdio_tools = nix.arg($, "mdio-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mdio-netlink",
       version: nix.thunk(() => nix.str`${nix.sel(mdio_tools, "version")}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.attr(mdio_tools, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_MOD_PATH=${nix.builtins.placeholder("out")}`),
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Netlink support for MDIO devices",
         homepage: "https://github.com/wkz/mdio-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -33,25 +33,25 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.jetbrains.com/rider/JetBrains.Rider-2026.2.0.1.tar.gz",
       hash: "sha256-fpc9aJufO2Qiw7dyr1uOsMHsvBruFuX4D0KY1erpmwo=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.jetbrains.com/rider/JetBrains.Rider-2026.2.0.1-aarch64.tar.gz",
       hash: "sha256-MuK1dvi3fnPdSyETPeEkW4k7hNFPkHYtaKjp/IZzdIU=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.jetbrains.com/rider/JetBrains.Rider-2026.2.0.1-aarch64.dmg",
       hash: "sha256-q0UXuh2RuH0sC1kqbjv0QcxmLtml9v3qeLRVcjCCVuw=",
     })),
   }));
   return nix.app(nix.sel(nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "rider",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcb_keysyms, libxcrypt, lttng_ust_2_12, musl, openssl])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")))), nix.thunk(() => [expat, libxml2, xz])))),
       extraLdPath: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libice, libsm, libx11]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jetbrains.com/rider/",
         description: ".NET IDE from JetBrains",
         longDescription: "JetBrains Rider is a new .NET IDE based on the IntelliJ platform and ReSharper.\nRider supports .NET Core, .NET Framework and Mono based projects.\nThis lets you develop a wide array of applications including .NET desktop apps, services and libraries, Unity games, ASP.NET and ASP.NET Core web applications.\n",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))] : [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))])),
       })),
     }))), "overrideAttrs"), (attrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`for dir in $out/rider/lib/ReSharperHost/linux-*; do
   rm -rf $dir/dotnet
   ln -s ${nix.sel(dotnetCorePackages, "sdk_10_0-source")}/share/dotnet $dir/dotnet

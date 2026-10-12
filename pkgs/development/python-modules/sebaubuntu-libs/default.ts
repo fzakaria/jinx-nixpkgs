@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pyelftools = nix.arg($, "pyelftools");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sebaubuntu-libs",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sebaubuntu-python",
           repo: "sebaubuntu_libs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +54,11 @@ substituteInPlace sebaubuntu_libs/libaik/__init__.py \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sebaubuntu_libs"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SebaUbuntu's shared libs",
         homepage: "https://github.com/sebaubuntu-python/sebaubuntu_libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

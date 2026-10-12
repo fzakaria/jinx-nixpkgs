@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libsamplerate = nix.arg($, "libsamplerate");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "klick",
       version: "0.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Allfifthstuning",
           repo: "klick",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       prefixKey: "PREFIX=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://das.nasophon.de/klick/",
         description: "Advanced command-line metronome for JACK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ijs",
       version: nix.thunk(() => nix.attr(ghostscript, "version")),
       src: nix.thunk(() => nix.attr(ghostscript, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       configureFlags: nix.thunk(() => ["--enable-shared"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://www.openprinting.org/download/ijs/",
         description: "Raster printer driver architecture",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

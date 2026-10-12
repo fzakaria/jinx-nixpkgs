@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const nix_prefetch_git = nix.arg($, "nix-prefetch-git");
   return nix.app(runCommand, "update-python-libraries", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const version = "3.4.6";
   const pname = "sunsama";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.todesktop.com/2003096gmmnl0g1/sunsama-${version}-build-260521zej1bgvs1-x86_64.AppImage`),
       hash: "sha512-Stb0Mcap4KmRkj/s5jf1uZLm8sR5KNKGpZKXa2VtBIFxKofS1CxQJDWiJiPSNGsqtezLxmvsC4VSI45isYQSpQ==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -32,7 +32,7 @@ substituteInPlace $out/share/applications/sunsama.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=sunsama'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Digital daily planner that helps you feel calm and stay focused",
         homepage: "https://sunsama.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

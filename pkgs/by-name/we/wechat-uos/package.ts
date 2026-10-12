@@ -77,8 +77,8 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const writeShellScript = nix.arg($, "writeShellScript");
   const wechat_uos_env = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, priority: 1n })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, priority: 1n })),
       name: "wechat-uos-env",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/etc
 mkdir -p $out/usr/bin
@@ -156,11 +156,11 @@ ln -s ${wechat}/opt/* $out/opt/
     const pname = "wechat-uos";
     const version = nix.thunk(() => nix.sel(sources, "version"));
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         curlOptsList: nix.thunk(() => ["-H", "User-Agent: Debian APT-HTTP/1.3 (2.2.4)"]),
       }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         src: src,
         version: version,
@@ -168,7 +168,7 @@ ln -s ${wechat}/opt/* $out/opt/
         unpackPhase: "runHook preUnpack\n\ndpkg -x $src ./wechat-uos\n\nrunHook postUnpack\n",
         installPhase: "runHook preInstall\nmkdir -p $out\n\ncp -r wechat-uos/* $out\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Messaging app",
           homepage: "https://weixin.qq.com/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -189,7 +189,7 @@ ln -s ${wechat}/opt/* $out/opt/
       })));
   })());
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.attr(wechat, "pname")),
       version: nix.thunk(() => nix.attr(wechat, "version")),
       meta: nix.thunk(() => nix.attr(wechat, "meta")),
@@ -223,7 +223,7 @@ sed -i \\
   $out/share/applications/com.tencent.wechat.desktop
 `),
       targetPkgs: (pkgs) => [wechat_uos_env],
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       extraOutputsToInstall: nix.thunk(() => ["usr", "var/lib/uos", "var/uos", "etc"]),
     })));
 })(), formals$1);

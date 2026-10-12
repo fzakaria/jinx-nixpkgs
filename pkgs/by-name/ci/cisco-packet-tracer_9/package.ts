@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const version = nix.argOr($, "version", () => "9.0.1");
   const appimage = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cisco-packet-tracer-appimage",
       version: version,
       src: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "9.0.1": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "CiscoPacketTracer_901_Ubuntu_64bit.deb",
             hash: "sha256-NoPdh+d5iFNyrpo1wabllNEvST5knnxpdAhynBRZR5s=",
           })),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(requireFile, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(sources, nix.key(nix.str`${version}`)));
             return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.attr(from, "name")),
             hash: nix.thunk(() => nix.attr(from, "hash")),
             url: "https://www.netacad.com/resources/lab-downloads",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const extraPkgs = (_) => [libpng, libxkbfile];
       const extraBwrapArgs = nix.thunk(() => ["--setenv QT_QPA_PLATFORM xcb"]);
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$5, pname: pname, version: version_1, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version_1, src: src }))));
         return nix.str`mv $out/bin/${pname} $out/bin/packettracer9
 
 install -Dm444 ${contents}/CiscoPacketTracer-9.0.1.desktop $out/share/applications/cisco-packet-tracer-9.desktop
@@ -74,7 +74,7 @@ done
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Network simulation tool from Cisco",
         homepage: "https://www.netacad.com/courses/packet-tracer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -90,7 +90,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version: version_1,
         src,

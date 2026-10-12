@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cbconvert-gui",
       patches: nix.thunk(() => nix.attr(cbconvert, "patches")),
       src: nix.thunk(() => nix.attr(cbconvert, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       version: nix.thunk(() => nix.attr(cbconvert, "version")),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(cbconvert, "buildInputs"), [gtk3])),
-      env: nix.thunk(() => ({ __proto__: pos$1, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, GOWORK: "off" })),
       proxyVendor: true,
       vendorHash: "sha256-jG8pQdY01MMCumNLBiHdgZ1pvp653WWaUCXD/gEuSpk=",
       modRoot: "cmd/cbconvert-gui",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
-      meta: nix.thunk(() => nix.update(nix.sel(cbconvert, "meta"), { __proto__: pos$2, mainProgram: "cbconvert-gui" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cbconvert, "meta"), { [nix.POS]: pos$2, mainProgram: "cbconvert-gui" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=gui.ts.map

@@ -28,56 +28,56 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "glibLocales-custom-builds",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       nonUTF8Charset: nix.thunk(() => ({
-        __proto__: pos$3,
-        i18n: nix.thunk(() => ({ __proto__: pos$2, defaultLocale: "en_US", defaultCharset: "ISO-8859-1" })),
+        [nix.POS]: pos$3,
+        i18n: nix.thunk(() => ({ [nix.POS]: pos$2, defaultLocale: "en_US", defaultCharset: "ISO-8859-1" })),
       })),
       extraLocales1: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         i18n: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           defaultLocale: "en_US.UTF-8",
           extraLocales: nix.thunk(() => ["nl_NL.UTF-8/UTF-8"]),
         })),
       })),
       extraLocaleSettings: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         i18n: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           defaultLocale: "en_US.UTF-8",
-          extraLocaleSettings: nix.thunk(() => ({ __proto__: pos$6, LC_MESSAGES: "en_US.UTF-8", LC_TIME: "de_DE.UTF-8" })),
+          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: pos$6, LC_MESSAGES: "en_US.UTF-8", LC_TIME: "de_DE.UTF-8" })),
         })),
       })),
       localeCharsets: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         i18n: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           defaultLocale: "en_US.UTF-8",
-          extraLocaleSettings: nix.thunk(() => ({ __proto__: pos$9, LC_TIME: "de_DE" })),
-          localeCharsets: nix.thunk(() => ({ __proto__: pos$10, LC_TIME: "ISO-8859-1" })),
+          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: pos$9, LC_TIME: "de_DE" })),
+          localeCharsets: nix.thunk(() => ({ [nix.POS]: pos$10, LC_TIME: "ISO-8859-1" })),
         })),
       })),
       Csimple: nix.thunk(() => ({
-        __proto__: pos$14,
-        i18n: nix.thunk(() => ({ __proto__: pos$13, defaultLocale: "C" })),
+        [nix.POS]: pos$14,
+        i18n: nix.thunk(() => ({ [nix.POS]: pos$13, defaultLocale: "C" })),
       })),
       CnonDefault: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         i18n: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           defaultLocale: "en_US.UTF-8",
-          extraLocaleSettings: nix.thunk(() => ({ __proto__: pos$15, LC_COLLATE: "C", LC_MESSAGES: "C", LC_TIME: "C" })),
+          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: pos$15, LC_COLLATE: "C", LC_MESSAGES: "C", LC_TIME: "C" })),
         })),
       })),
     })),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.5.4",
       pname: "checkseum",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/checkseum/releases/download/v${nix.sel(finalAttrs, "version")}/checkseum-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CfltUNvXTofKRqC+XvvlP1+I2rAFTz0P+QQPgOkWp/A=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, bos, astring, fmt, fpath, rresult]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ADLER-32 and CRC32C Cyclic Redundancy Check",
         homepage: "https://github.com/mirage/checkseum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

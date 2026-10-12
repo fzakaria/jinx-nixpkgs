@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     name: "victoriametrics-vmalert",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "yorickvp")),
           nix.thunk(() => nix.lookup(w, "ryan4yin")),
@@ -57,36 +57,36 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       vmserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [8428n]) })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [8428n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             victoriametrics: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               prometheusConfig: nix.thunk(() => ({
-                __proto__: pos$10,
-                global: nix.thunk(() => ({ __proto__: pos$5, scrape_interval: "2s" })),
+                [nix.POS]: pos$10,
+                global: nix.thunk(() => ({ [nix.POS]: pos$5, scrape_interval: "2s" })),
                 scrape_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     job_name: "alertmanager",
                     static_configs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         targets: nix.thunk(() => [
                           nix.thunk(() => nix.str`alert:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "alertmanager", "port")))}`),
                         ]),
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
                     ]),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     job_name: "node",
                     static_configs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         targets: nix.thunk(() => [
                           nix.thunk(() => nix.str`node:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node", "port")))}`),
                         ]),
@@ -109,14 +109,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             vmalert: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               instances: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 "": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     "datasource.url": "http://localhost:8428",
                     "notifier.url": nix.thunk(() => [
                       nix.thunk(() => nix.str`http://alert:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "alertmanager", "port")))}`),
@@ -132,20 +132,20 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       alert: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             alertmanager: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               openFirewall: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$22,
-                global: nix.thunk(() => ({ __proto__: pos$18, resolve_timeout: "1m" })),
+                [nix.POS]: pos$22,
+                global: nix.thunk(() => ({ [nix.POS]: pos$18, resolve_timeout: "1m" })),
                 route: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   receiver: "test",
                   group_by: nix.thunk(() => ["..."]),
                   continue: false,
@@ -155,11 +155,11 @@ export default nix.lambda((args) => (() => {
                 })),
                 receivers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     name: "test",
                     webhook_configs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         url: "http://logger:6725",
                         send_resolved: true,
                         max_alerts: 0n,
@@ -173,16 +173,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       logger: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
-          firewall: nix.thunk(() => ({ __proto__: pos$27, allowedTCPPorts: nix.thunk(() => [6725n]) })),
+          [nix.POS]: pos$28,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$27, allowedTCPPorts: nix.thunk(() => [6725n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$30,
-            alertmanagerWebhookLogger: nix.thunk(() => ({ __proto__: pos$29, enable: true })),
+            [nix.POS]: pos$30,
+            alertmanagerWebhookLogger: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
           })),
         })),
       })),

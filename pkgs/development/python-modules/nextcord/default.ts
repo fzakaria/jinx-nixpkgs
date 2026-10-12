@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nextcord",
           repo: "nextcord",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ffmpeg: nix.thunk(() => nix.str`${ffmpeg}/bin/ffmpeg`),
             libopus: nix.thunk(() => nix.str`${libopus}/lib/libopus${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
@@ -57,7 +57,7 @@ substituteInPlace pyproject.toml \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nextcord", "nextcord.ext.commands", "nextcord.ext.tasks"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/nextcord/nextcord/blob/${nix.sel(src, "tag")}/docs/whats_new.rst`),
         description: "Python wrapper for the Discord API forked from discord.py",
         homepage: "https://github.com/nextcord/nextcord",
@@ -68,7 +68,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

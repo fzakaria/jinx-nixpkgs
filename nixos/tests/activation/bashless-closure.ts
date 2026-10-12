@@ -25,27 +25,27 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const modulesPath = nix.arg($_1, "modulesPath");
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/bashless.nix`)]),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$2,
-          "/": nix.thunk(() => ({ __proto__: pos$1, device: "/dev/disk/by-partlabel/root", fsType: "ext4" })),
+          [nix.POS]: pos$2,
+          "/": nix.thunk(() => ({ [nix.POS]: pos$1, device: "/dev/disk/by-partlabel/root", fsType: "ext4" })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         })),
       };
     })(), formals$2)));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     toplevel: nix.thunk(() => nix.attr(machine, "toplevel")),
     machine: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "bashless-closure-machine",
         __structuredAttrs: true,
         exportReferencesGraph: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           closure: nix.thunk(() => [nix.thunk(() => nix.sel(machine, "toplevel"))]),
         })),
         preferLocalBuild: true,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         buildCommand: "set +e\njq -r '.closure[].path' < \"$NIX_ATTRS_JSON_FILE\" | grep bash\n\nexit_code=$?\nif [ $exit_code -eq 0 ]; then\n    echo \"Error: toplevel contains bash\"\n    exit 1\nfi\n\ntouch $out\n",
       })))),
     initrd: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "bashless-closure-initrd",
         preferLocalBuild: true,
         nativeBuildInputs: nix.thunk(() => [zstd, cpio]),

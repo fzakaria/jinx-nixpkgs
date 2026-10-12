@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const version = "1.9.24";
   const versionSnakeCase = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aspectj",
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/eclipse/org.aspectj/releases/download/V${versionSnakeCase}/aspectj-${version}.jar`),
           hash: "sha256-p+UOtuP8hNymfvmL/SPg99YrhU7m5GDudtLISqL5TWQ=",
         })))),
@@ -48,7 +48,7 @@ chmod u+x $out/bin/aj-runtime-env
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.eclipse.org/aspectj/",
         description: "Seamless aspect-oriented extension to the Java programming language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

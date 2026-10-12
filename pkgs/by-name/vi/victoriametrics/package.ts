@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const withBackupTools = nix.argOr($, "withBackupTools", () => true);
   const withVmctl = nix.argOr($, "withVmctl", () => true);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "VictoriaMetrics",
       version: "1.153.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VictoriaMetrics",
           repo: "VictoriaMetrics",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mp6BEoTsG0MJMOEUOVX0NcNlQRYNBKdGADTIlkWfexw=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       subPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withServer, nix.thunk(() => [
           "app/victoria-metrics",
           "app/vminsert",
@@ -54,15 +54,15 @@ export ldflags=\${ldflags//=${nix.sel(finalAttrs, "version")}/=}
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(nixosTests, "victoriametrics")))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9\\.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://victoriametrics.com/",
         description: "Fast, cost-effective and scalable time series database, long-term remote storage for Prometheus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

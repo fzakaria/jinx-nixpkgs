@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const tinysparql = nix.arg($, "tinysparql");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "valent",
       version: "1.0.0.alpha.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andyholmes",
           repo: "valent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
         tinysparql,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of the KDE Connect protocol, built on GNOME platform libraries",
         mainProgram: "valent",
         longDescription: "Note that you have to open firewall ports for other devices\nto connect to it. Use either:\n```nix\nprograms.kdeconnect = {\n  enable = true;\n  package = pkgs.valent;\n}\n```\nor open corresponding firewall ports directly:\n```nix\nnetworking.firewall = rec {\n  allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];\n  allowedUDPPortRanges = allowedTCPPortRanges;\n}\n```\n",

@@ -52,28 +52,28 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const coq2html = nix.arg($, "coq2html");
   const dune = nix.arg($, "dune");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/coq/extra-lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/coq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const mkCoqPackages$ = (self) => (coq) => (() => {
     const callPackage_1 = nix.thunk(() => nix.sel(self, "callPackage"));
-    const rocqPackages_1 = nix.thunk(() => nix.update(self, { __proto__: pos$2, recurseForDerivations: false }));
+    const rocqPackages_1 = nix.thunk(() => nix.update(self, { [nix.POS]: pos$2, recurseForDerivations: false }));
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       rocqPackages: rocqPackages_1,
       lib: lib_1,
       metaFetch: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/rocq/meta-fetch/default.nix")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           lib: lib_1,
           stdenv: stdenv,
           fetchzip: fetchzip,
           fetchurl: fetchurl,
         })))),
       mkRocqDerivation: nix.thunk(() => nix.app(nix.sel(lib_1, "makeOverridable"), nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../build-support/rocq"), nix.thunk(() => ({})))))),
-      mkCoqDerivation: (args_2) => nix.app(nix.sel(self, "mkRocqDerivation"), nix.thunk(() => nix.update({ __proto__: pos$4, useCoq: true, namePrefix: nix.thunk(() => ["coq"]) }, args_2))),
+      mkCoqDerivation: (args_2) => nix.app(nix.sel(self, "mkRocqDerivation"), nix.thunk(() => nix.update({ [nix.POS]: pos$4, useCoq: true, namePrefix: nix.thunk(() => ["coq"]) }, args_2))),
       coq: nix.thunk(() => nix.app(nix.sel(coq, "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-            __proto__: pos$6,
-            withPackages: (f) => nix.app(callPackage_1, nix.path(here, "../applications/science/logic/coq/with-packages.nix"), nix.thunk(() => ({ __proto__: pos$5, coq: nix.thunk(() => nix.attr(self, "coq")) })), nix.thunk(() => nix.app(f, self))),
+            [nix.POS]: pos$6,
+            withPackages: (f) => nix.app(callPackage_1, nix.path(here, "../applications/science/logic/coq/with-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, coq: nix.thunk(() => nix.attr(self, "coq")) })), nix.thunk(() => nix.app(f, self))),
           })),
         }))),
       "rocq-core": nix.thunk(() => nix.sel(self, "coq")),
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
       Cheerios: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/Cheerios"), nix.thunk(() => ({})))),
       coinduction: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coinduction"), nix.thunk(() => ({})))),
       CoLoR: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/CoLoR"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "isEq"), nix.thunk(() => nix.sel(self, "coq", "coq-version")), "8.13")), nix.thunk(() => ({
-            __proto__: pos$9,
-            bignums: nix.thunk(() => nix.app(nix.sel(self, "bignums", "override"), nix.thunk(() => ({ __proto__: pos$8, version: "8.13.0" })))),
+            [nix.POS]: pos$9,
+            bignums: nix.thunk(() => nix.app(nix.sel(self, "bignums", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, version: "8.13.0" })))),
           })))))),
       compcert: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/compcert"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           fetchpatch: fetchpatch,
           makeWrapper: makeWrapper,
           coq2html: coq2html,
@@ -117,9 +117,9 @@ export default nix.lambda((args) => (() => {
       "coq-record-update": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coq-record-update"), nix.thunk(() => ({})))),
       "coq-tactical": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coq-tactical"), nix.thunk(() => ({})))),
       coqeal: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coqeal"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.13", "8.14", nix.thunk(() => nix.sel(self, "coq", "coq-version")))), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             bignums: nix.thunk(() => nix.app(nix.sel(self, "bignums", "override"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 version: nix.thunk(() => nix.str`${nix.sel(self, "coq", "coq-version")}.0`),
               })))),
           })))))),
@@ -255,8 +255,8 @@ export default nix.lambda((args) => (() => {
       unicoq: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/unicoq"), nix.thunk(() => ({})))),
       validsdp: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/validsdp"), nix.thunk(() => ({})))),
       vcfloat: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/vcfloat"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.16", "8.18", nix.thunk(() => nix.sel(self, "coq", "version")))), nix.thunk(() => ({
-            __proto__: pos$14,
-            interval: nix.thunk(() => nix.app(nix.sel(self, "interval", "override"), nix.thunk(() => ({ __proto__: pos$13, version: "4.9.0" })))),
+            [nix.POS]: pos$14,
+            interval: nix.thunk(() => nix.app(nix.sel(self, "interval", "override"), nix.thunk(() => ({ [nix.POS]: pos$13, version: "4.9.0" })))),
           })))))),
       Velisarios: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/Velisarios"), nix.thunk(() => ({})))),
       Verdi: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/Verdi"), nix.thunk(() => ({})))),
@@ -266,24 +266,24 @@ export default nix.lambda((args) => (() => {
       "vscoq-language-server": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/vscoq-language-server"), nix.thunk(() => ({})))),
       "vsrocq-language-server": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/vsrocq-language-server"), nix.thunk(() => ({})))),
       VST: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/VST"), nix.thunk(() => nix.update(nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), nix.thunk(() => nix.sel(self, "coq", "version")), "8.14")), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             compcert: nix.thunk(() => nix.app(nix.sel(self, "compcert", "override"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 version: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "versions")), null);
                   return nix.app(nix.sel(lib_1, "switch"), nix.thunk(() => nix.sel(self, "coq", "version")), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.19", "9.0")),
                         out: "3.17",
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.15", "8.18")),
                         out: "3.13.1",
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.14")),
                         out: "3.11",
                       })),
@@ -291,11 +291,11 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
           }))), nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "isEq"), nix.thunk(() => nix.sel(self, "coq", "coq-version")), "8.13")), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             ITree: nix.thunk(() => nix.app(nix.sel(self, "ITree", "override"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 version: "4.0.0",
-                paco: nix.thunk(() => nix.app(nix.sel(self, "paco", "override"), nix.thunk(() => ({ __proto__: pos$20, version: "4.1.2" })))),
+                paco: nix.thunk(() => nix.app(nix.sel(self, "paco", "override"), nix.thunk(() => ({ [nix.POS]: pos$20, version: "4.1.2" })))),
               })))),
           }))))))),
       wasmcert: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/wasmcert"), nix.thunk(() => ({})))),
@@ -309,7 +309,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => !nix.asBool(nix.selOr(v, () => false, "meta", "rocqFilter"))), nix.thunk(() => nix.app(nix.sel(lib_1, "nameValuePair"), name, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib_1, "isAttrs"), v)) && nix.asBool(nix.selOr(v, () => false, "recurseForDerivations")))) ? nix.app(filterCoqPackages, v) : nix.force(v))))));
       })(), nix.thunk(() => nix.app(nix.sel(lib_1, "attrNames"), set)))));
   const mkCoq = (version) => (rp) => nix.app(callPackage, nix.path(here, "../applications/science/logic/coq"), nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       version: version,
       ocamlPackages_4_09: ocamlPackages_4_09,
       ocamlPackages_4_10: ocamlPackages_4_10,
@@ -352,7 +352,7 @@ export default nix.lambda((args) => (() => {
     const coq_8_19 = nix.thunk(() => nix.sel(coqPackages_8_19, "coq"));
     const coq_8_20 = nix.thunk(() => nix.sel(coqPackages_8_20, "coq"));
     return {
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       mkCoqPackages,
       coqPackages_8_7,
       coqPackages_8_8,

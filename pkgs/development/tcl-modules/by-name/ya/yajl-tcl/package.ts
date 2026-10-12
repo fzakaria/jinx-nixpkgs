@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const yajl = nix.arg($, "yajl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yajl-tcl",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightaware",
           repo: "yajl-tcl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [yajl]),
       buildFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tcl bindings for Yet Another JSON Library",
         homepage: "https://github.com/flightaware/yajl-tcl",
         changelog: nix.thunk(() => nix.str`https://github.com/flightaware/yajl-tcl/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.selOr(attrs, () => (nix.asBool(nix.eq(type, "gem")) ? nix.app(fetchurl, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(attrs, "source"));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             urls: nix.thunk(() => nix.builtins.map((remote) => nix.str`${remote}/gems/${gemName}-${suffix}.gem`, nix.thunk(() => nix.selOr(attrs, () => ["https://rubygems.org"], "source", "remotes")))),
             sha256: nix.thunk(() => nix.attr(from, "sha256")),
             meta: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               identifiers: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 purlParts: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: "gem",
                   spec: nix.thunk(() => nix.str`${gemName}@${version}?platform=${platform}`),
                 })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           })())) : (nix.asBool(nix.eq(type, "git")) ? nix.app(fetchgit, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(attrs, "source"));
             return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.attr(from, "url")),
             rev: nix.thunk(() => nix.attr(from, "rev")),
             sha256: nix.thunk(() => nix.attr(from, "sha256")),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       const suffix = nix.thunk(() => (nix.asBool(nix.eq(type, "git")) ? nix.builtins.substring(0n, 12n, nix.thunk(() => nix.sel(attrs, "source", "rev"))) : (nix.asBool(!nix.eq(platform, "ruby")) ? nix.str`${version}-${platform}` : nix.force(version))));
       const documentFlag = nix.thunk(() => (nix.asBool(nix.eq(document, [])) ? "-N" : nix.str`--document ${nix.app(nix.sel(lib, "concatStringsSep"), ",", document)}`));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["source"])), {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           ruby: ruby_1,
           dontBuild: dontBuild,
           dontStrip: dontStrip,
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
           src: src,
           unpackPhase: nix.thunk(() => nix.selOr(attrs, () => "runHook preUnpack\n\nif [[ -f $src && $src == *.gem ]]; then\n  if [[ -z \"${dontBuild-}\" ]]; then\n    # we won't know the name of the directory that RubyGems creates,\n    # so we'll just use a glob to find it and move it over.\n    gempkg=\"$src\"\n    sourceRoot=source\n    gem unpack $gempkg --target=container\n    cp -r container/* $sourceRoot\n    rm -r container\n\n    # copy out the original gemspec, for convenience during patching /\n    # overrides.\n    gem specification $gempkg  --ruby > original.gemspec\n    gemspec=$(readlink -f .)/original.gemspec\n  else\n    gempkg=\"$src\"\n  fi\nelse\n  # Fall back to the original thing for everything else.\n  dontBuild=\"\"\n  preUnpack=\"\" postUnpack=\"\" unpackPhase\nfi\n\nrunHook postUnpack\n", "unpackPhase")),
           env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(attrs, "env")), nix.thunk(() => nix.sel(attrs, "env"))), {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(ruby_1, "rubyEngine"), "ruby")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ruby_1, "version", "major")), "3")))), nix.thunk(() => ["-fdeclspec"])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), "")), nix.thunk(() => nix.sel(attrs, "env", "NIX_CFLAGS_COMPILE"))))))),
           })),
           buildPhase: nix.thunk(() => nix.selOr(attrs, () => "runHook preBuild\n\nif [[ \"$gemType\" == \"gem\" ]]; then\n  if [[ -z \"$gemspec\" ]]; then\n    gemspec=\"$(find . -name '*.gemspec')\"\n    echo \"found the following gemspecs:\"\n    echo \"$gemspec\"\n    gemspec=\"$(echo \"$gemspec\" | head -n1)\"\n  fi\n\n  exec 3>&1\n  output=\"$(gem build $gemspec | tee >(cat - >&3))\"\n  exec 3>&-\n\n  gempkg=$(echo \"$output\" | grep -oP 'File: \\K(.*)')\n\n  echo \"gem package built: $gempkg\"\nelif [[ \"$gemType\" == \"git\" ]]; then\n  git init\n  # remove variations to improve the likelihood of a bit-reproducible output\n  rm -rf .git/logs/ .git/hooks/ .git/index .git/FETCH_HEAD .git/ORIG_HEAD .git/refs/remotes/origin/HEAD .git/config\n  # support `git ls-files`\n  git add .\nfi\n\nrunHook postBuild\n", "buildPhase")),
@@ -174,9 +174,9 @@ runHook postInstall
 `, "installPhase")),
           propagatedBuildInputs: nix.thunk(() => nix.concat(gemPath, propagatedBuildInputs)),
           propagatedUserEnvPkgs: nix.thunk(() => nix.concat(gemPath, propagatedUserEnvPkgs)),
-          passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$7, isRubyGem: true })),
+          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$7, isRubyGem: true })),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             platforms: nix.thunk(() => nix.sel(ruby_1, "meta", "platforms")),
             mainProgram: gemName,
           }, meta)),

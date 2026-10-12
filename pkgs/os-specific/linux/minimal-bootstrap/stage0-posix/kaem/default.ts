@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const platforms = nix.arg($, "platforms");
   return nix.app(derivationWithMeta, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       "kaem-unwrapped": kaem_unwrapped,
       pname: "kaem",
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       ]),
       PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mescc_tools_extra]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         runCommand: nix.thunk(() => (() => {
           const defaultBuildInputs = nix.thunk(() => [kaem, mescc_tools, mescc_tools_extra]);
           const defaultBinPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultBuildInputs));
           const removedAttributeNames = nix.thunk(() => ["nativeBuildInputs"]);
           return (name) => (env) => (buildCommand) => nix.app(derivationWithMeta, nix.thunk(() => nix.update({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: name,
               builder: nix.thunk(() => nix.str`${kaem}/bin/kaem`),
               args: nix.thunk(() => [
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal build tool for running scripts on systems that lack any shell",
         homepage: "https://github.com/oriansj/mescc-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libcanberra = nix.arg($, "libcanberra");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plasma-pa",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [libcanberra, pulseaudio]),

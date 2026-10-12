@@ -53,46 +53,46 @@ export default nix.lambda((args) => (() => {
   const submodule = nix.thunk(() => nix.attr(from, "submodule"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "komga", "port"]), nix.thunk(() => ["services", "komga", "settings", "server", "port"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         komga: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Komga, a free and open source comics/mangas media server")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: str,
               default: "komga",
               description: "User account under which Komga runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: str,
               default: "komga",
               description: "Group under which Komga runs.",
             })))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "/var/lib/komga",
               description: "State and configuration directory Komga will use.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     server: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: port,
                           description: "The port that Komga will listen on.",
                           default: 8080n,
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
               description: "Komga configuration.\n\nSee [documentation](https://komga.org/docs/installation/configuration).\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: bool,
               default: false,
               description: "Whether to open the firewall for the port in {option}`services.komga.settings.server.port`.",
@@ -115,28 +115,28 @@ export default nix.lambda((args) => (() => {
       const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
       const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               assertion: nix.thunk(() => nix.eq(nix.selOr(cfg, () => nix.sel(cfg, "stateDir"), "settings", "komga", "config-dir"), nix.sel(cfg, "stateDir"))),
               message: "You must use the `services.komga.stateDir` option to properly configure `komga.config-dir`.",
             })),
           ]),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             firewall: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]))),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$19,
-            groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "komga")), nix.thunk(() => ({ __proto__: pos$16, komga: nix.thunk(() => ({})) })))),
+            [nix.POS]: pos$19,
+            groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "komga")), nix.thunk(() => ({ [nix.POS]: pos$16, komga: nix.thunk(() => ({})) })))),
             users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "komga")), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 komga: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                   description: "Komga Daemon user",
@@ -145,24 +145,24 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               settings: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "10-komga": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "stateDir"), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     d: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                     })),
                   }))],
                   [nix.str`${nix.sel(cfg, "stateDir")}/application.yml`, nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       argument: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "application.yml", nix.thunk(() => nix.sel(cfg, "settings")))))),
                     })),
                   }))],
@@ -170,11 +170,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               komga: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   KOMGA_CONFIGDIR: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 })),
                 description: "Komga is a free and open source comics/mangas media server",
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   Type: "simple",
@@ -218,7 +218,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

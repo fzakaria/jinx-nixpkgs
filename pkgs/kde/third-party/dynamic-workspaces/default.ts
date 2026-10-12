@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kpackage = nix.arg($, "kpackage");
   const kwin = nix.arg($, "kwin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dynamic-workspaces",
       version: "3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d86leader",
           repo: "dynamic_workspaces",
           rev: "a06e723804398d672be74eba0cd4ccee062e1410",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "runHook preInstall\n\nkpackagetool6 --type KWin/Script --install $src --packageroot $out/share/kwin/scripts\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KWin script that automatically adds/removes virtual desktops",
         homepage: "https://github.com/maurges/dynamic_workspaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

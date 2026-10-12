@@ -13,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   return nix.builtins.mapAttrs((_) => nix.app(callPackage, nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
       const wordpress_7_1 = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: "7.1.2",
         hash: "sha256-wMZmaJ1muHDYglUAu45ALtBN5SYCxhpvUWxiNrjJrGc=",
       }));
       const wordpress = wordpress_7_1;
       const wordpress_6_9 = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "6.9.9",
         hash: "sha256-MiMbmsvnY6hhOOi7t7XE8/EjvsnWX8OJi8s7ZFBqc1g=",
       }));
       const wordpress_7_0 = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "7.0.6",
         hash: "sha256-W+/iSslL8f8YKSoaHzD9DHEbAJ+Rz9ytqo/rbgr6dc0=",
       }));
-      return { __proto__: pos$4, wordpress, wordpress_6_9, wordpress_7_0, wordpress_7_1 };
+      return { [nix.POS]: pos$4, wordpress, wordpress_6_9, wordpress_7_0, wordpress_7_1 };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

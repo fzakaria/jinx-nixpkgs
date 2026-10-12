@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nethogs",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raboof",
           repo: "nethogs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "sbin=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small 'net top' tool, grouping bandwidth by process",
         longDescription: "NetHogs is a small 'net top' tool. Instead of breaking the traffic down\nper protocol or per subnet, like most tools do, it groups bandwidth by\nprocess. NetHogs does not rely on a special kernel module to be loaded.\nIf there's suddenly a lot of network traffic, you can fire up NetHogs\nand immediately see which PID is causing this. This makes it easy to\nidentify programs that have gone wild and are suddenly taking up your\nbandwidth.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

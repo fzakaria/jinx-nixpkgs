@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpy2";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: pname,
           hash: "sha256-8ftGSc59FOk1EzCI3sl82ifrN858xxA4X4HcpVb+jJ8=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [rpy2_rinterface, rpy2_robjects]);
       const pythonImportsCheck = nix.thunk(() => ["rpy2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rpy2.github.io/",
         description: "Python interface to R",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pyproject,
         pname,

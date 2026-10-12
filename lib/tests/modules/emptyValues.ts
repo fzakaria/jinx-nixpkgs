@@ -24,58 +24,58 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       int: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int")))),
         })))),
       list: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       nonEmptyList: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nonEmptyListOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       attrs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       null: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({})))))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       int: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         a: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null)),
       })),
       list: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         a: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null)),
       })),
       nonEmptyList: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         a: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null)),
       })),
       attrs: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         a: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null)),
       })),
       null: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         a: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null)),
       })),
       submodule: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         a: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null)),
       })),
     })),

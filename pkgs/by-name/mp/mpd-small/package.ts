@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const mpd = nix.arg($, "mpd");
   return nix.app(nix.sel(mpd, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       features: nix.thunk(() => nix.concat([
         "webdav",
         "curl",

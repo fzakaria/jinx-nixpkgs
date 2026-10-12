@@ -29,42 +29,42 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const seatd_test = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "seatd-client-pid",
       text: "journalctl -u seatd --no-pager -b | while read -r line; do\n    case \"$line\" in\n    *\"New client connected\"*)\n        line=\"${line##*pid: }\"\n        pid=\"${line%%,*}\"\n        ;;\n    *\"Opened client\"*)\n        echo \"$pid\"\n        exit\n    esac\ndone;\n",
     }))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "seatd",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sinanmohd"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            getty: nix.thunk(() => ({ __proto__: pos$3, autologinUser: "alice" })),
-            seatd: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$3, autologinUser: "alice" })),
+            seatd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             users: nix.thunk(() => ({
-              __proto__: pos$7,
-              alice: nix.thunk(() => ({ __proto__: pos$6, extraGroups: nix.thunk(() => ["seat", "wheel"]) })),
+              [nix.POS]: pos$7,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$6, extraGroups: nix.thunk(() => ["seat", "wheel"]) })),
             })),
           })),
-          fonts: nix.thunk(() => ({ __proto__: pos$9, enableDefaultPackages: true })),
+          fonts: nix.thunk(() => ({ [nix.POS]: pos$9, enableDefaultPackages: true })),
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -75,20 +75,20 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             bash: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               loginShellInit: "[ \"$(tty)\" = \"/dev/tty1\" ] &&\n    dwl -s 'foot touch /tmp/foot_started'\n",
             })),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$14,
-            graphics: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            graphics: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             qemu: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

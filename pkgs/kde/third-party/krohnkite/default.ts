@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kpackage = nix.arg($, "kpackage");
   const zip = nix.arg($, "zip");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "krohnkite",
       version: "0.9.9.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anametologin",
           repo: "Krohnkite",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +48,11 @@ kpackagetool6 --type=KWin/Script --install=krohnkite.kwinscript --packageroot=$o
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dynamic Tiling Extension for KWin 6",
         homepage: "https://codeberg.org/anametologin/Krohnkite",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/anametologin/Krohnkite/releases/tag/${nix.sel(finalAttrs, "version")}`),

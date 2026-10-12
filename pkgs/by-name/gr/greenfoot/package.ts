@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       enableJavaFX: true,
-      openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ __proto__: pos$1, withWebKit: true })))),
+      openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "greenfoot",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://www.greenfoot.org/download/files/Greenfoot-linux-arm64-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.deb`),
           hash: "sha256-d5bkK+teTA4fxFb46ovbZE28l8WILGStv3Vg3nJZfv0=",
         })))),
@@ -56,7 +56,7 @@ makeWrapper ${openjdk}/bin/java $out/bin/greenfoot \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple integrated development environment for Java",
         homepage: "https://www.greenfoot.org/",
         sourceProvenance: nix.thunk(() => (() => {

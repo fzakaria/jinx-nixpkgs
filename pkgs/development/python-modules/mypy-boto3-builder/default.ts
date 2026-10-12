@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "youtype",
           repo: "mypy_boto3_builder",
           tag: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["mypy_boto3_builder"]);
       const disabledTests = nix.thunk(() => ["TestBotocoreChangelogChangelog"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type annotations builder for boto3",
         homepage: "https://github.com/youtype/mypy_boto3_builder",
         changelog: nix.thunk(() => nix.str`https://github.com/youtype/mypy_boto3_builder/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mypy_boto3_builder",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

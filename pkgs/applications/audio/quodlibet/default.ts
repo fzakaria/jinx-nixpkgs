@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`quodlibet${tag}`),
       version: "4.7.1",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quodlibet",
           repo: "quodlibet",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_3, "pytest-xdist")),
         ];
       })())),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       preCheck: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE=${librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
 export XDG_DATA_DIRS="$out/share:${gtk3}/share/gsettings-schemas/${nix.sel(gtk3, "name")}:$XDG_ICON_DIRS:$XDG_DATA_DIRS"
 `),
@@ -141,7 +141,7 @@ runHook postCheck
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(kakasi, null)), nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "getBin"), kakasi)})
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK-based audio player written in Python, using the Mutagen tagging library",
         longDescription: "Quod Libet is a GTK-based audio player written in Python, using\nthe Mutagen tagging library. It's designed around the idea that\nyou know how to organize your music better than we do. It lets\nyou make playlists based on regular expressions (don't worry,\nregular searches work too). It lets you display and edit any\ntags you want in the file. And it lets you do this for all the\nfile formats it supports. Quod Libet easily scales to libraries\nof thousands (or even tens of thousands) of songs. It also\nsupports most of the features you expect from a modern media\nplayer, like Unicode support, tag editing, Replay Gain, podcasts\n& internet radio, and all major audio formats.\n",
         homepage: "https://quodlibet.readthedocs.io/en/latest",

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const compyte = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./compyte.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkDerivation: mkDerivation,
       fetchFromGitHub: fetchFromGitHub,
     }))));
   const cudaRoot = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "pycuda-cuda-root",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           hash: "sha256-dZUWFgYougbzLOflY+P1uSFGkdyVKKA+qZ6hBz9OFLo=",
@@ -88,14 +88,14 @@ export default nix.lambda((args) => (() => {
         mako,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/inducer/pycuda/",
         description: "CUDA integration for Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

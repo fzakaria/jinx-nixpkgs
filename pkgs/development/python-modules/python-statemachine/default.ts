@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const jsonschema = nix.arg($, "jsonschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-statemachine",
       version: "3.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_statemachine",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-3/NmgsqwC6f3l+AevdkMTbssLgD+fPzJ+Sb2PFAmZQc=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["statemachine"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Expressive statecharts and FSMs for modern Python",
         homepage: "https://github.com/fgmacedo/python-statemachine",
         changelog: nix.thunk(() => nix.str`https://github.com/fgmacedo/python-statemachine/releases/tag/v${nix.sel(finalAttrs, "version")}`),

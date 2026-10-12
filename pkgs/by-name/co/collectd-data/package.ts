@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const collectd = nix.arg($, "collectd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "collectd-data",
       meta: nix.thunk(() => nix.attr(collectd, "meta")),
       src: nix.thunk(() => nix.attr(collectd, "src")),

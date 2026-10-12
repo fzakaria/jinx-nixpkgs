@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const version = "0.10.1";
   const targets = nix.thunk(() => ["genode", "hvt", "muen", "spt", "virtio", "xen"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "solo5",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libseccomp)),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Solo5/solo5/releases/download/v${version}/solo5-v${version}.tar.gz`),
           hash: "sha256-UfYkyE1k5S57kRLaYk7hRE4lOCuzjzcTv4SNtlqk9DU=",
         })))),
@@ -58,7 +58,7 @@ runHook postInstall
       nativeCheckInputs: nix.thunk(() => [util_linux, qemu_test]),
       checkPhase: "runHook preCheck\npatchShebangs tests\nsubstituteInPlace scripts/virtio-run/solo5-virtio-run.sh \\\n  --replace \" -no-acpi\" \"\"\n./tests/bats-core/bats ./tests/tests.bats\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sandboxed execution environment",
         homepage: "https://github.com/solo5/solo5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -68,7 +68,7 @@ runHook postInstall
             const os = nix.arg($_1, "os");
             return nix.str`${arch}-${os}`;
           })(), formals$2), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: nix.thunk(() => ["aarch64", "x86_64"]),
             os: nix.thunk(() => ["freebsd", "genode", "linux", "openbsd"]),
           })))),

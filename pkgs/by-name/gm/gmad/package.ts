@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gmad";
       const version = "0-unstable-2020-02-24";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Garry's Mod Addon Creator and Extractor",
         homepage: "https://github.com/Facepunch/gmad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Facepunch",
           repo: "gmad",
           rev: "5236973a2fcbb3043bdd3d4529ce68b6d938ad93",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 cp ${targetName} $out/bin/gmad
 `);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         meta,

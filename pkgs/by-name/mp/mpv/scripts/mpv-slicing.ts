@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-slicing",
       version: "0-unstable-2017-11-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kagami",
           repo: "mpv_slicing",
           rev: "d09c11227704c8d5bdaa2c799ef64dce881c63a7",
           hash: "sha256-MKoM0f74/XoctiHQVOB3LzFWtJXpsREfQh5icaebCJo=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         scriptName: "slicing.lua",
       })),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     --replace-fail ffmpeg ${nix.app(nix.sel(lib, "getExe"), ffmpeg)}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lua script to cut fragments of the video in uncompressed RGB format",
         homepage: "https://github.com/Kagami/mpv_slicing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

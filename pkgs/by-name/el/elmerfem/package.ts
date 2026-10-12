@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const vtkWithQt6 = nix.arg($, "vtkWithQt6");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elmerfem",
       version: "9.0-unstable-2025-05-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elmercsc",
           repo: "elmerfem",
           rev: "2f7360ddf491c34f19fea9a723f340cca0fbe1d4",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp"))))),
       preConfigure: "patchShebangs ./\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "QWT_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.sel(qt6Packages, "qwt")}/lib/qwt.framework/Headers`))),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://elmerfem.org",
         description: "Finite element software for multiphysical problems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

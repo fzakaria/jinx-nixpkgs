@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(config, "services", "xserver"));
   const videoDrivers = nix.thunk(() => nix.attr(from_1, "videoDrivers"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "virtualbox", videoDrivers)), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernelPackages, "kernel", "version")), "7.0")),
             message: "The `virtualbox` video driver provided by VirtualBox Guest Additions has been deprecated upstream for Linux kernel 7.0+.\n",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extraModulePackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "virtualisation", "virtualbox", "guest", "package")),
           ]),

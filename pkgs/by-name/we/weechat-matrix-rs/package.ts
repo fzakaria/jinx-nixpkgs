@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "weechat-matrix-rs",
       version: "0-unstable-2026-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poljar",
           repo: "weechat-matrix-rs",
           rev: "f987e71a46827b8e69112cfb8e5977cf59fc313a",
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
 mv $out/lib/libmatrix${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/weechat/plugins/matrix${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "load-plugin": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-load`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [weechat]) })), nix.thunk(() => nix.str`weechat -t -d "$(mktemp -d)" \\
+          [nix.POS]: pos$3,
+          "load-plugin": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-load`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [weechat]) })), nix.thunk(() => nix.str`weechat -t -d "$(mktemp -d)" \\
  --run-command "/plugin load ${nix.sel(finalAttrs, "finalPackage")}/lib/weechat/plugins/matrix${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} ; /quit" \\
  2>&1 | tee log
 if grep -q 'Plugin "matrix" loaded' log; then
@@ -56,7 +56,7 @@ fi
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rust plugin for WeeChat to communicate over Matrix",
         homepage: "https://github.com/poljar/weechat-matrix-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

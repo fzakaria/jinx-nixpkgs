@@ -21,44 +21,44 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fonts = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "azuki",
       downloadVersion: "121",
       hash: "sha256-AMpEJDD8lN0qWJ5C0y4V+/2JE/pKQrUHGfKHcnV+dhA=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "azuki-b",
       downloadVersion: "B120",
       hash: "sha256-GoXnDX9H6D1X0QEgrD2jmQp7ek081PpO+xR3OdIY8Ck=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "azuki-l",
       downloadVersion: "L120",
       hash: "sha256-rvWvSuvLnK3m2+iyKPQyIB1UGjg8dAW5oygjsLCQZ48=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "azuki-lb",
       downloadVersion: "LB100",
       hash: "sha256-zpGomVshCe2W2Z2C5UGtVrJ2k7F//MftndSHPHmG290=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "azuki-lp",
       downloadVersion: "LP100",
       hash: "sha256-Q/ND3dv8q7WTQx4oYVY5pTiGl4Ht89oA+tuCyfPOLUk=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "azuki-p",
       downloadVersion: "P100",
       hash: "sha256-s4uodxyXP5R7jwkzjmg6qJZCllJ/MtgkkVOeELI8hLI=",
     })),
   ]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "azuki",
       version: "0-unstable-2021-07-02",
       sourceRoot: "azuki",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           const downloadVersion = nix.arg($_1, "downloadVersion");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: nix.thunk(() => nix.str`https://azukifont.com/font/azukifont${downloadVersion}.zip`),
               stripRoot: false,
               name: name,
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2), fonts)),
       installPhase: "runHook preInstall\n\nfor font in $srcs; do\n  install -Dm644 $font/azukifont*/*.ttf -t $out/share/fonts/truetype\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "http://azukifont.com/font/azuki.html",
         description: "Azuki Font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

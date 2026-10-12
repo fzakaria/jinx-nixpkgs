@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lomiri-app-launch",
       version: "0.2.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["doc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-app-launch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -88,15 +88,15 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocumentation, "mkdir -p $doc/share/doc/lomiri-app-launch\nmv ../docs/_build/html $doc/share/doc/lomiri-app-launch/\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "System and associated utilities to launch applications in a standard and confined way",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-app-launch",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-app-launch/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

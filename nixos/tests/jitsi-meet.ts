@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "jitsi-meet",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "lib", "teams", "jitsi", "members")),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
@@ -58,61 +58,61 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             config: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               permittedInsecurePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jitsi-meet", "name"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "jitsi-meet": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               hostName: "server",
-              jigasi: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              jigasi: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
-            "jitsi-videobridge": nix.thunk(() => ({ __proto__: pos$7, openFirewall: true })),
+            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: pos$7, openFirewall: true })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$9,
-                server: nix.thunk(() => ({ __proto__: pos$8, enableACME: true, forceSSL: true })),
+                [nix.POS]: pos$9,
+                server: nix.thunk(() => ({ [nix.POS]: pos$8, enableACME: true, forceSSL: true })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$13,
-            firewall: nix.thunk(() => ({ __proto__: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: pos$13,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             acme: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               acceptTerms: true,
-              defaults: nix.thunk(() => ({ __proto__: pos$14, email: "me@example.org", server: "https://example.com" })),
+              defaults: nix.thunk(() => ({ [nix.POS]: pos$14, email: "me@example.org", server: "https://example.com" })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             caddy: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 services: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "jitsi-meet": nix.thunk(() => ({
-                    __proto__: pos$19,
-                    caddy: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
-                    nginx: nix.thunk(() => ({ __proto__: pos$18, enable: false })),
+                    [nix.POS]: pos$19,
+                    caddy: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+                    nginx: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
                   })),
                   caddy: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.sel(config, "services", "jitsi-meet", "hostName"), nix.thunk(() => ({ __proto__: pos$20, extraConfig: "tls internal\n" }))],
+                      [nix.sel(config, "services", "jitsi-meet", "hostName"), nix.thunk(() => ({ [nix.POS]: pos$20, extraConfig: "tls internal\n" }))],
                     ])),
                   })),
                 })),

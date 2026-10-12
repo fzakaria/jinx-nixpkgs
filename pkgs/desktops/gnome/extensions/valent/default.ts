@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-shell-extension-valent";
       const version = "1.0.0.alpha.49";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andyholmes",
           repo: "gnome-shell-extension-valent",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         extensionUuid: "valent@andyholmes.ca",
         extensionPortalSlug: "valent",
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNOME Shell integration for Valent",
         homepage: "https://valent.andyholmes.ca/",
         changelog: nix.thunk(() => nix.str`https://github.com/andyholmes/gnome-shell-extension-valent/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$5, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

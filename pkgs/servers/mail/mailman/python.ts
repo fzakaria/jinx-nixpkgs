@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const overlay = nix.argOr($, "overlay", () => (_) => (__1) => ({}));
   return nix.app(nix.sel(lib, "fix"), (self) => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         self: self,
-        packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), (self_1) => (super$) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(super$, "django_5")) }), overlay)),
+        packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), (self_1) => (super$) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(super$, "django_5")) }), overlay)),
       }))));
 })(), formals$1);
 //# sourceMappingURL=python.ts.map

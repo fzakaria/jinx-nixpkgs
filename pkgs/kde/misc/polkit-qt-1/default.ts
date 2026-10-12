@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "polkit-qt-1";
       const version = "0.201.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/polkit-qt-1/polkit-qt-1-${version}.tar.xz`),
           sha256: "sha256-ldjiyuUwxUbZQ3RZ3rihvqONVy8Pl3LMKGDcFDY38lY=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [glib, polkit]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

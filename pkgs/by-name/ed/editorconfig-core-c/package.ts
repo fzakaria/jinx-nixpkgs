@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "editorconfig-core-c",
       version: "0.12.11",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "editorconfig",
           repo: "editorconfig-core-c",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pcre2]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://editorconfig.org/",
         description: "EditorConfig core library written in C",
         longDescription: "EditorConfig makes it easy to maintain the correct coding style when\nswitching between different text editors and between different\nprojects. The EditorConfig project maintains a file format and plugins\nfor various text editors which allow this file format to be read and used\nby those editors. For information on the file format and supported text\neditors, see the EditorConfig website.\n",

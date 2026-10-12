@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-6eYtP9MH75xS5Dsz/ZJ1n8lMBNi1F4+F9kGxg5BtQ1M=",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_public_servers", "test_real_ftp", "test_set_parser", "test_upload"]);
       const pythonImportsCheck = nix.thunk(() => ["ftputil"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-level FTP client library (virtual file system and more)",
         homepage: "https://ftputil.sschwarzer.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

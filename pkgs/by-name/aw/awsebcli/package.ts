@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cement: nix.thunk(() => nix.app(nix.sel(super$, "cement", "overridePythonAttrs"), (old) => (() => {
             const pname = "cement";
             const version = "2.10.14";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pname: pname,
                 version: version,
                 hash: "sha256-NC4n21SmYW3RiS7QuzWXoifO4z3C2FVgQm3xf8qQcFg=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
             })()));
             const doCheck = false;
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname,
               version,
               src,
@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "awsebcli",
       version: "3.27.3",
       pyproject: true,
       doInstallCheck: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "aws",
           repo: "aws-elastic-beanstalk-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "rm $out/nix-support/propagated-build-inputs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command line interface for Elastic Beanstalk",
         homepage: "https://aws.amazon.com/elasticbeanstalk/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-elastic-beanstalk-cli/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

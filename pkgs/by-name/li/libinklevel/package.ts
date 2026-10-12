@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libinklevel",
       version: "0.9.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libinklevel/libinklevel-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-gZ07tMJXhyLBBXyfPamZoaPrRmKPD+ka61K/zNOIRnU=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1, libxml2]),
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for checking the ink level of your printer",
         longDescription: "Libinklevel is a library for checking the ink level of your printer on a\nsystem which runs Linux or FreeBSD. It supports printers attached via\nUSB. Currently printers of the following brands are supported: HP, Epson\nand Canon. Canon BJNP network printers are supported too. This is not\nofficial software from the printer manufacturers. The goal of this\nproject is to create a vendor independent API for retrieving the ink\nlevel of a printer connected to a Linux or FreeBSD box.\n",
         homepage: "https://libinklevel.sourceforge.net/",

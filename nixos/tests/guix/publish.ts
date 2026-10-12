@@ -31,43 +31,43 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const publishPort = 8181n;
     const toString = nix.thunk(() => nix.attr(nix.builtins, "toString"));
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: "guix-publish",
-      meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
       nodes: nix.thunk(() => (() => {
         const commonConfig = nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             services: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               avahi: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 nssmdns4: true,
-                publish: nix.thunk(() => ({ __proto__: pos$2, enable: true, userServices: true })),
+                publish: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, userServices: true })),
               })),
             })),
           };
         })(), formals$2);
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           server: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const config = nix.arg($_1, "config");
             const lib_1 = nix.arg($_1, "lib");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               imports: nix.thunk(() => [commonConfig]),
               services: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 guix: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   enable: true,
                   publish: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     enable: true,
                     port: publishPort,
                     generateKeyPair: true,
@@ -76,8 +76,8 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$10,
-                firewall: nix.thunk(() => ({ __proto__: pos$9, allowedTCPPorts: nix.thunk(() => [publishPort]) })),
+                [nix.POS]: pos$10,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [publishPort]) })),
               })),
             };
           })(), formals$3),
@@ -87,15 +87,15 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const lib_1 = nix.arg($_1, "lib");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               imports: nix.thunk(() => [commonConfig]),
               services: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 guix: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   enable: true,
                   substituters: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     urls: nix.thunk(() => [
                       nix.thunk(() => nix.str`http://server.local:${nix.app(toString, publishPort)}`),
                     ]),

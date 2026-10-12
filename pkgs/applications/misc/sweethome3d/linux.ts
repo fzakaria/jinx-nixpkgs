@@ -37,20 +37,20 @@ export default nix.lambda((args) => (() => {
 ln -s -T "${iconFile}" "$out/share/icons/hicolor/${size}/apps/${iconName}.${nix.app(extensionOf, iconFile)}"
 `, icons_1)));
   const icons = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "32x32": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "http://sweethome3d.cvs.sourceforge.net/viewvc/sweethome3d/SweetHome3D/deploy/SweetHome3DIcon32x32.png",
         sha256: "1r2fhfg27mx00nfv0qj66rhf719s2g1vhdis7bdc9mqk9x0mb0ir",
       })))),
     "48x48": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "http://sweethome3d.cvs.sourceforge.net/viewvc/sweethome3d/SweetHome3D/deploy/SweetHome3DIcon48x48.png",
         sha256: "1ap6d75dyqqvx21wddvn8vw2apq3v803vmbxdriwd0dw9rq3zn4g",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -58,7 +58,7 @@ ln -s -T "${iconFile}" "$out/share/icons/hicolor/${size}/apps/${iconName}.${nix.
       patches: patches,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "sweethome3d",
             desktopName: "Sweet Home 3D",
             icon: "sweethome3d",
@@ -79,7 +79,7 @@ find . -name '*.so' | xargs strings | { grep '/nix/store' || :; } >> ./.jar-path
       nativeBuildInputs: nix.thunk(() => [makeWrapper, autoPatchelfHook, stripJavaArchivesHook, copyDesktopItems]),
       buildInputs: nix.thunk(() => [ant, jdk, p7zip, gtk3, gsettings_desktop_schemas, libxxf86vm]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ANT_ARGS: "-DappletClassSource=8 -DappletClassTarget=8 -DclassSource=8 -DclassTarget=8",
       })),
       buildPhase: "runHook preBuild\n\nant furniture textures help\nmkdir -p $out/share/{java,applications}\nmv \"build/\"*.jar $out/share/java/.\nant\n\nrunHook postBuild\n",

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const requireFile = nix.arg($, "requireFile");
   const gogUnpackHook = nix.arg($, "gogUnpackHook");
   const generic = (ver) => (source) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`descent${nix.builtins.toString(ver)}-assets`),
       version: "2.0.0.7",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -30,7 +30,7 @@ installation:
 
 nix-prefetch-url file://$PWD/${name}
 `);
-          return { __proto__: pos$1, name, sha256, message };
+          return { [nix.POS]: pos$1, name, sha256, message };
         })()))),
       nativeBuildInputs: nix.thunk(() => [gogUnpackHook]),
       dontBuild: true,
@@ -47,7 +47,7 @@ popd
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Descent ${nix.builtins.toString(ver)} assets from GOG`),
         homepage: "https://www.dxx-rebirth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -59,7 +59,7 @@ runHook postInstall
       })),
     }));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "descent1-assets": nix.thunk(() => nix.app(generic, 1n, "descent")),
     "descent2-assets": nix.thunk(() => nix.app(generic, 2n, "descent 2")),
   };

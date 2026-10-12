@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libevdev = nix.arg($, "libevdev");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mouse-actions",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jersou",
           repo: "mouse-actions",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, udevCheckHook]),
       postInstall: "mkdir -p $out/etc/udev/rules.d/\necho 'KERNEL==\"uinput\", SUBSYSTEM==\"misc\", TAG+=\"uaccess\", OPTIONS+=\"static_node=uinput\"' >> $out/etc/udev/rules.d/80-mouse-actions.rules\necho 'KERNEL==\"/dev/input/event*\", SUBSYSTEM==\"misc\", TAG+=\"uaccess\", OPTIONS+=\"static_node=uinput\"' >> $out/etc/udev/rules.d/80-mouse-actions.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Execute commands from mouse events such as clicks/wheel on the side/corners of the screen, or drawing shapes",
         homepage: "https://github.com/jersou/mouse-actions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "editorconfig",
           repo: "editorconfig-core-py",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\ncmake .\nctest .\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["editorconfig"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "EditorConfig File Locator and Interpreter for Python",
         mainProgram: "editorconfig",
         homepage: "https://github.com/editorconfig/editorconfig-core-py",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "lightning",
       pyproject: true,
       __structuredAttrs: true,

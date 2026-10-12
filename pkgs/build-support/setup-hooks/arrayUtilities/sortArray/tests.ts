@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
     const valuesArray = nix.arg($_1, "valuesArray");
     const expectedArray = nix.arg($_1, "expectedArray");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         valuesArray: valuesArray,
         expectedArray: expectedArray,
         script: "set -eu\nnixLog \"running sortArray with valuesArray to populate actualArray\"\nsortArray valuesArray actualArray\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [sortArray])),
       }));
   })(), formals$2);
@@ -51,41 +51,41 @@ export default nix.lambda((args) => (() => {
     const valuesArray = nix.arg($_1, "valuesArray");
     const expectedArray = nix.arg($_1, "expectedArray");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: name,
         valuesArray: valuesArray,
         expectedArray: expectedArray,
         script: "set -eu\nnixLog \"running sortArray with valuesArray as input and output\"\nsortArray valuesArray valuesArray\nnixLog \"copying valuesArray to actualArray\"\nactualArray=(\"${valuesArray[@]}\")\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [sortArray])),
       }));
   })(), formals$3);
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      __proto__: pos$13,
-      shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({ __proto__: pos$5, name: "sortArray", src: nix.path(here, "./sortArray.bash") })))),
-      shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({ __proto__: pos$6, name: "sortArray", src: nix.path(here, "./sortArray.bash") })))),
-      empty: nix.thunk(() => nix.app(check, nix.thunk(() => ({ __proto__: pos$7, name: "empty", valuesArray: [], expectedArray: [] })))),
+      [nix.POS]: pos$13,
+      shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({ [nix.POS]: pos$5, name: "sortArray", src: nix.path(here, "./sortArray.bash") })))),
+      shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({ [nix.POS]: pos$6, name: "sortArray", src: nix.path(here, "./sortArray.bash") })))),
+      empty: nix.thunk(() => nix.app(check, nix.thunk(() => ({ [nix.POS]: pos$7, name: "empty", valuesArray: [], expectedArray: [] })))),
       singleton: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "singleton",
           valuesArray: nix.thunk(() => ["apple"]),
           expectedArray: nix.thunk(() => ["apple"]),
         })))),
       oneDuplicate: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "oneDuplicate",
           valuesArray: nix.thunk(() => ["apple", "apple"]),
           expectedArray: nix.thunk(() => ["apple", "apple"]),
         })))),
       oneUnique: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "oneUnique",
           valuesArray: nix.thunk(() => ["bee", "apple", "bee"]),
           expectedArray: nix.thunk(() => ["apple", "bee", "bee"]),
         })))),
       duplicatesWithSpacesAndLineBreaks: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: "duplicatesWithSpacesAndLineBreaks",
           valuesArray: nix.thunk(() => [
             "dog",
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       duplicatesWithSpacesAndLineBreaksInPlace: nix.thunk(() => nix.app(checkInPlace, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "duplicatesWithSpacesAndLineBreaksInPlace",
           valuesArray: nix.thunk(() => [
             "dog",

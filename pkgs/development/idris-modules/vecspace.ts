@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vecspace",
       version: "2018-01-12",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clayrat",
           repo: "idris-vecspace",
           rev: "6830fa13232f25e9874b3f857b79508b5f82cb99",
           sha256: "1dwz69cmzblyh7lnyqq2gp0a042z7h02sh5q5wf4xb500vizwkq2",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Abstract vector spaces in Idris",
         homepage: "https://github.com/clayrat/idris-vecspace",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const nnueBigFile = "nn-c288c895ea92.nnue";
   const nnueBigHash = "sha256-wojIleqSRCnqkJLj82srPB8A8qOkx1n/flfnnjtD5Kc=";
   const nnueBig = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nnueBigFile,
       url: nix.thunk(() => nix.str`https://tests.stockfishchess.org/api/nn/${nnueBigFile}`),
       hash: nnueBigHash,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const nnueSmallFile = "nn-37f18f62d772.nnue";
   const nnueSmallHash = "sha256-N/GPYtdy8xB+HWqso4mMEww8hvKrY+ZVX7vKIGNaiZ0=";
   const nnueSmall = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nnueSmallFile,
       url: nix.thunk(() => nix.str`https://tests.stockfishchess.org/api/nn/${nnueSmallFile}`),
       hash: nnueSmallHash,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stockfish";
       const version = "18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "official-stockfish",
           repo: "Stockfish",
           tag: nix.thunk(() => nix.str`sf_${version}`),
@@ -70,18 +70,18 @@ cp "${nnueSmall}" "$sourceRoot/${nnueSmallFile}"
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/stockfish`);
       const versionCheckProgramArg = "--help";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 extraArgs: nix.thunk(() => ["--version-regex=^sf_([\\d.]+)$"]),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: nix.thunk(() => nix.str`${pname}-nnue-updater`),
                   runtimeInputs: nix.thunk(() => [nix$, gnugrep]),
                   runtimeEnv: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     PNAME: pname,
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                     NNUE_BIG_FILE: nnueBigFile,
@@ -94,7 +94,7 @@ cp "${nnueSmall}" "$sourceRoot/${nnueSmallFile}"
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://stockfishchess.org/",
         description: "Strong open source chess engine",
         mainProgram: "stockfish",
@@ -117,7 +117,7 @@ cp "${nnueSmall}" "$sourceRoot/${nnueSmallFile}"
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

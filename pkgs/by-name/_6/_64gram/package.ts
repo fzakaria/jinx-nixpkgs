@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const telegram_desktop = nix.arg($, "telegram-desktop");
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "64gram",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (old) => (() => {
           const pname = "64gram-unwrapped";
           const version = "1.2.10";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "TDesktop-x64",
               repo: "tdesktop",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Unofficial Telegram Desktop providing Windows 64bit build and extra features",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
             })()),
             mainProgram: "Telegram",
           }));
-          return { __proto__: pos$3, pname, version, src, meta };
+          return { [nix.POS]: pos$3, pname, version, src, meta };
         })())),
     })));
 })(), formals$1);

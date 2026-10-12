@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tesla_auth",
       version: "0.15.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adriankumpf",
           repo: "tesla_auth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
         glib_networking,
         nss,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, STATIC_VCRUNTIME_NO_BUILD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, STATIC_VCRUNTIME_NO_BUILD: "1" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Securely generate API tokens for third-party access to your Tesla",
         homepage: "https://github.com/adriankumpf/tesla_auth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

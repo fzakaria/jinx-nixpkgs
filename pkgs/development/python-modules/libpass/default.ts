@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThirVondukr",
           repo: "passlib",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         argon2: nix.thunk(() => [argon2_cffi]),
         bcrypt: nix.thunk(() => [bcrypt]),
         totp: nix.thunk(() => [cryptography]),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_dummy_verify", "test_encrypt_cost_timing"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ThirVondukr/passlib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Comprehensive password hashing framework supporting over 30 schemes",
         homepage: "https://github.com/ThirVondukr/passlib",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const resholve = nix.arg($, "resholve");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dgoss",
       version: nix.thunk(() => nix.sel(goss, "version")),
       src: nix.thunk(() => nix.sel(goss, "src")),
@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
 install -D extras/dgoss/dgoss $out/bin/dgoss
 `),
       solutions: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         default: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           scripts: nix.thunk(() => ["bin/dgoss"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, gnused, which]),
-          keep: nix.thunk(() => ({ __proto__: pos$1, $CONTAINER_RUNTIME: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$1, $CONTAINER_RUNTIME: true })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.str`https://github.com/goss-org/goss/blob/v${nix.sel(finalAttrs, "version")}/extras/dgoss/README.md`),
         changelog: nix.thunk(() => nix.str`https://github.com/goss-org/goss/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Convenience wrapper around goss that aims to bring the simplicity of goss to docker containers",

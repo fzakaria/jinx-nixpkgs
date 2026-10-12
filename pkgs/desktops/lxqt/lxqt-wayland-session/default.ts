@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-wayland-session";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "lxqt-wayland-session",
           rev: version,
@@ -57,12 +57,12 @@ substituteInPlace configurations/{labwc/autostart,lxqt-hyprland.conf,lxqt-wayfir
 `);
       const dontWrapQtApps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         providedSessions: nix.thunk(() => ["lxqt-wayland"]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lxqt/lxqt-wayland-session",
         description: "Files needed for the LXQt Wayland Session",
         license: nix.thunk(() => (() => {
@@ -80,7 +80,7 @@ substituteInPlace configurations/{labwc/autostart,lxqt-hyprland.conf,lxqt-wayfir
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

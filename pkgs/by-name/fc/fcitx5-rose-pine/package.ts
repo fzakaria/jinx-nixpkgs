@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcitx5-rose-pine",
       version: "0-unstable-2024-03-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rose-pine",
           repo: "fcitx5",
           rev: "148de09929c2e2f948376bb23bc25d72006403bc",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -pv $out/share/fcitx5/themes/\ncp -rv rose-pine* $out/share/fcitx5/themes/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fcitx5 themes based on Rosé Pine",
         homepage: "https://github.com/rose-pine/fcitx5",
         maintainers: nix.thunk(() => (() => {

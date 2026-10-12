@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "xpadneo",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         config: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hardware: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             xpadneo: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
-              rumbleAttenuation: nix.thunk(() => ({ __proto__: pos$2, overall: 50n, triggers: 25n })),
-              settings: nix.thunk(() => ({ __proto__: pos$3, disable_deadzones: 1n, trigger_rumble_mode: 2n })),
+              rumbleAttenuation: nix.thunk(() => ({ [nix.POS]: pos$2, overall: 50n, triggers: 25n })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$3, disable_deadzones: 1n, trigger_rumble_mode: 2n })),
             })),
           })),
         })),

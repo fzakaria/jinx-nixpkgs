@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const version = "6.0.5707";
   const subsurfaceSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Subsurface",
       repo: "subsurface",
       rev: "bb47bfa2834dea073e5a709051dbda8405e3de16",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const libdc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdivecomputer-ssrf",
       version: version,
       src: subsurfaceSrc,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, libusb1, bluez, hidapi]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.libdivecomputer.org",
         description: "Cross-platform and open source library for communication with dive computers from various manufacturers",
         maintainers: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const pname = "googlemaps";
       const version_1 = "0.0.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "vladest",
           repo: "googlemaps",
           rev: nix.thunk(() => nix.str`v.${version_1}`),
@@ -92,7 +92,7 @@ mv lib $out/
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "QtLocation plugin for Google maps tile API",
         maintainers: [],
@@ -101,7 +101,7 @@ mv lib $out/
       };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src,
@@ -116,7 +116,7 @@ mv lib $out/
   const get_version = nix.thunk(() => nix.app(writeShellScriptBin, "get-version", nix.thunk(() => nix.str`echo -n ${version}
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "subsurface",
       version: version,
       src: subsurfaceSrc,
@@ -142,14 +142,14 @@ mv lib $out/
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")), pkg_config]),
       cmakeFlags: nix.thunk(() => ["-DLIBDC_FROM_PKGCONFIG=ON", "-DNO_PRINTING=OFF"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: version,
         libdc: libdc,
         googlemaps: googlemaps,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-subsurface", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p git common-updater-scripts\n\nset -eu -o pipefail\ntmpdir=$(mktemp -d)\npushd $tmpdir\ngit clone -b current https://github.com/subsurface/subsurface.git\ncd subsurface\nsed -i '1s/#!\\/bin\\/bash/#!\\/usr\\/bin\\/env bash/' ./scripts/get-version.sh\n# this returns 6.0.????-local\nnew_version=$(./scripts/get-version.sh | cut -d '-' -f 1)\nnew_rev=$(git rev-list -1 HEAD)\npopd\nupdate-source-version subsurface \"$new_version\" --rev=\"$new_rev\"\nrm -rf $tmpdir\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Divelog program",
         mainProgram: "subsurface",
         longDescription: "Subsurface can track single- and multi-tank dives using air, Nitrox or TriMix.\nIt allows tracking of dive locations including GPS coordinates (which can also\nconveniently be entered using a map interface), logging of equipment used and\nnames of other divers, and lets users rate dives and provide additional notes.\n",

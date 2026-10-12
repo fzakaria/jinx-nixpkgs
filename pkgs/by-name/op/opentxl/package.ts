@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const crossCompiling = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform")));
   const targetOpentxl = nix.thunk(() => (nix.asBool(!nix.asBool(crossCompiling)) ? nix.force(opentxl_unwrapped) : nix.sel(targetPackages, "opentxl-unwrapped")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${targetPrefix}opentxl-wrapper`),
       version: nix.thunk(() => nix.attr(opentxl_unwrapped, "version")),
       preferLocalBuild: true,
@@ -62,13 +62,13 @@ runHook postInstall
       passthru: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(opentxl_unwrapped, "passthru"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: opentxl_unwrapped,
         tests: nix.thunk(() => nix.attr(from_1, "tests")),
       };
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(opentxl_unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }));

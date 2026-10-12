@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isDarwin")) ? "macosx" : (nix.asBool(nix.lookup(w, "isCygwin")) ? "cygwin" : (nix.asBool((nix.asBool(nix.lookup(w, "isFreeBSD")) || nix.asBool(nix.lookup(w, "isOpenBSD")))) ? "bsd" : (nix.asBool(nix.lookup(w, "isSunOS")) ? "solaris" : "linux"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chicken",
       version: version,
       binaryVersion: 8n,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.call-cc.org/releases/${version}/chicken-${version}.tar.gz`),
           sha256: "0hvckhi5gfny3mlva6d7y9pmx7cbwvq0r7mk11k3sdiik9hlkmdd",
         })))),
@@ -53,7 +53,7 @@ do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.call-cc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

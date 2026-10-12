@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.3";
       const pname = "2bwm";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "venam",
           repo: "2bwm",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1xwib612ahv4rg9yl5injck89dlpyp5475xqgag0ydfd0r4sfld7",
         }))));
       const patches_1 = patches;
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const buildInputs = nix.thunk(() => [libxcb, libxcb_keysyms, libxcb_wm, libx11, libxcb_util, xcbutilxrm]);
       const installPhase = "make install DESTDIR=$out PREFIX=\"\"";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/venam/2bwm",
         description: "Fast floating WM written over the XCB library and derived from mcwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         src,

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26";
       const pname = "mspdebug";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlbeer",
           repo: "mspdebug",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ substituteInPlace Makefile --replace brew true
       const makeFlags = nix.thunk(() => nix.concat(["UNAME_S=$(unameS)"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableReadline)), "WITHOUT_READLINE=1")));
       const unameS = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Darwin"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free programmer, debugger, and gdb proxy for MSP430 MCUs",
         mainProgram: "mspdebug",
         homepage: "https://dlbeer.co.nz/mspdebug/",
@@ -60,7 +60,7 @@ substituteInPlace Makefile --replace brew true
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "posy-cursors";
       const version = "1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simtrami",
           repo: "posy-improved-cursor-linux",
           tag: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\nmkdir -p $out/share/icons\ncp -r Posy_Cursor* $out/share/icons\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Posy's Improved Cursors for Linux",
         homepage: "https://github.com/simtrami/posy-improved-cursor-linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mkez"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

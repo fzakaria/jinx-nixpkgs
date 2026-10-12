@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kmod-debian-aliases.conf",
       version: "30+20230601-2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://snapshot.debian.org/archive/debian/20231117T085632Z/pool/main/k/kmod/kmod_${nix.sel(finalAttrs, "version")}.debian.tar.xz`),
           hash: "sha256-xJMGKht8hu0aQjN9TER87Rv5EYkVMeDfX/jJ8+UjAqM=",
         })))),
       installPhase: "cp extra/aliases.conf $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://packages.debian.org/source/sid/kmod",
         description: "Linux configuration file for modprobe",
         maintainers: nix.thunk(() => (() => {

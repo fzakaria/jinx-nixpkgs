@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inter-nerdfont",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rsms/inter/releases/download/v${nix.sel(finalAttrs, "version")}/Inter-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-5vdKKvHAeZi6igrfpbOdhZlDX2/5+UvzlnCQV6DdqoQ=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nnerd-font-patcher Inter.ttc\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm444 'Inter Nerd Font.ttc' $out/share/fonts/truetype/InterNerdFont.ttc\ncp *.ttf $out/share/fonts/truetype\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/mid_os/inter-nerdfont",
         description: "NerdFont patch of the Inter font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

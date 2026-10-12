@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const getEquivAttrs = (drv) => (() => {
     const drv$ = nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), (_finalAttrs) => (prevAttrs) => ({
-        __proto__: pos$2,
-        passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { __proto__: pos$1, passedAttrs: prevAttrs })),
+        [nix.POS]: pos$2,
+        passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { [nix.POS]: pos$1, passedAttrs: prevAttrs })),
       })));
-    return nix.update(nix.sel(drv$, "passedAttrs"), { __proto__: pos$3, stdenv: nix.thunk(() => nix.attr(drv$, "stdenv")) });
+    return nix.update(nix.sel(drv$, "passedAttrs"), { [nix.POS]: pos$3, stdenv: nix.thunk(() => nix.attr(drv$, "stdenv")) });
   })();
   const canEvalDrv = (drv) => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(drv, "drvPath"))), "success");
   const emptySrc = nix.thunk(() => nix.app(srcOnly, emptyDirectory));
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const gitSrc = nix.thunk(() => nix.app(srcOnly, git));
   const gitSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.app(getEquivAttrs, git))));
   const helloDrvSimple = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.attr(hello, "name")),
       pname: nix.thunk(() => nix.attr(hello, "pname")),
       version: nix.thunk(() => nix.attr(hello, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const helloDrvSimpleSrc = nix.thunk(() => nix.app(srcOnly, helloDrvSimple));
   const helloDrvSimpleSrcFreeform = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.attr(helloDrvSimple, "name")),
       pname: nix.thunk(() => nix.attr(helloDrvSimple, "pname")),
       version: nix.thunk(() => nix.attr(helloDrvSimple, "version")),
@@ -60,18 +60,18 @@ export default nix.lambda((args) => (() => {
       stdenv: nix.thunk(() => nix.attr(helloDrvSimple, "stdenv")),
     }))));
   const stdenvAdapterDrv = nix.thunk(() => (() => {
-    const drv = nix.thunk(() => nix.app(nix.sel(nix.app(withCFlags, nix.thunk(() => ["-Werror", "-Wall"]), stdenv), "mkDerivation"), nix.thunk(() => ({ __proto__: pos$6, name: "drv-using-stdenv-adapter" }))));
+    const drv = nix.thunk(() => nix.app(nix.sel(nix.app(withCFlags, nix.thunk(() => ["-Werror", "-Wall"]), stdenv), "mkDerivation"), nix.thunk(() => ({ [nix.POS]: pos$6, name: "drv-using-stdenv-adapter" }))));
     nix.assert_(!nix.asBool(nix.app(canEvalDrv, nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.sel(drv, "drvAttrs")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/src-only/tests.nix:79:5");
     return nix.force(drv);
   })());
   const stdenvAdapterDrvSrc = nix.thunk(() => nix.app(srcOnly, stdenvAdapterDrv));
-  const stdenvAdapterDrvSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.update(nix.app(getEquivAttrs, stdenvAdapterDrv), { __proto__: pos$7, stdenv: stdenv }))));
+  const stdenvAdapterDrvSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.update(nix.app(getEquivAttrs, stdenvAdapterDrv), { [nix.POS]: pos$7, stdenv: stdenv }))));
   const structuredAttrsDrv = nix.thunk(() => (() => {
     const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "drv-using-structured-attrs",
         src: emptyDirectory,
-        env: nix.thunk(() => ({ __proto__: pos$8, NIX_DEBUG: true })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$8, NIX_DEBUG: true })),
         __structuredAttrs: true,
       }))));
     nix.assert_(!nix.asBool(nix.app(canEvalDrv, nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.sel(drv, "drvAttrs")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/src-only/tests.nix:105:5");
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
   const structuredAttrsDrvSrc = nix.thunk(() => nix.app(srcOnly, structuredAttrsDrv));
   const structuredAttrsDrvSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.app(getEquivAttrs, structuredAttrsDrv))));
   return nix.app(runCommand, "srcOnly-tests", nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       moreTests: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(testers, "testEqualDerivation"), "zlibSrcEquiv == zlibSrc", zlibSrcEquiv, zlibSrc)),
         nix.thunk(() => nix.app(nix.sel(testers, "testEqualDerivation"), "helloSrcEquiv == helloSrc", helloSrcEquiv, helloSrc)),

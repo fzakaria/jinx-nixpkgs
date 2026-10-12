@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-sound-recorder",
       version: "43.beta",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-sound-recorder/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-sound-recorder-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-bbbbmjsbUv0KtU+aW/Tymctx5SoTrF/fw+dOtGmFpOY=",
         })))),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       })())),
       postPatch: "chmod +x build-aux/meson_post_install.py\nsubstituteInPlace build-aux/meson_post_install.py \\\n  --replace-fail 'gtk-update-icon-cache' 'gtk4-update-icon-cache'\npatchShebangs build-aux/meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-sound-recorder" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-sound-recorder" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple and modern sound recorder",
         mainProgram: "gnome-sound-recorder",
         homepage: "https://gitlab.gnome.org/World/vocalis",

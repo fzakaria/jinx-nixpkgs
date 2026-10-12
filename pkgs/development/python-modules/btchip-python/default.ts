@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.32";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-NPXgwWHAj2XcDQcLov9MMV7SHEt+D6oypGhi0Nwbj1U=",
         }))));
       const postPatch = "# fix extra_requires validation\nsubstituteInPlace setup.py \\\n  --replace \"python-pyscard>=1.6.12-4build1\" \"python-pyscard>=1.6.12\"\n";
       const propagatedBuildInputs = nix.thunk(() => [hidapi, ecdsa]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, smartcard: nix.thunk(() => [pyscard]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, smartcard: nix.thunk(() => [pyscard]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["btchip.btchip"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python communication library for Ledger Hardware Wallet products",
         homepage: "https://github.com/LedgerHQ/btchip-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

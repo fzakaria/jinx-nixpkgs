@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnu-cim",
       version: "5.1",
       outputs: nix.thunk(() => ["out", "lib", "man", "info"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/cim/cim-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uQcXtm7EAFA73WnlN+i38+ip0QbDupoIoErlc2mgaak=",
         })))),
       postPatch: "for fname in lib/{simulation,simset}.c; do\n  substituteInPlace \"$fname\" \\\n    --replace-fail \\\n      '#include \"../../lib/cim.h\"' \\\n      '#include \"../lib/cim.h\"'\ndone\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu89" })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNU compiler for the programming language Simula",
         longDescription: "GNU Cim is a compiler for the programming language Simula.\nIt offers a class concept, separate compilation with full type checking,\ninterface to external C routines, an application package for process\nsimulation and a coroutine concept. Commonly used with the Demos for\ndiscrete event modelling.\n",
         homepage: "https://www.gnu.org/software/cim/",

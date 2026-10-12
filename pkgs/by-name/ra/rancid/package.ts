@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const replaceStrings = nix.thunk(() => nix.attr(lib, "replaceStrings"));
   const wrappedPing = nix.thunk(() => nix.app(writeShellScriptBin, "ping", "for b in /run/wrappers/bin/ping /usr/bin/ping /usr/local/bin/ping; do\n  if [ -x \"$b\" ]; then\n    exec \"$b\" \"$@\"\n  fi\ndone\n\n# we are inside the installer. Pretend everything is OK so the installer will set the path to\n# this wrapper as the ping program\nexit 0\n"));
   const needsBin = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     hlogin: nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out"))]),
     ulogin: nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out"))]),
     "rancid-cvs": nix.thunk(() => [git]),
   }));
   const telnet$ = inetutils;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rancid",
       version: "3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "haussli",
           repo: "rancid",
           rev: nix.thunk(() => nix.add("v", nix.app(replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))))),
@@ -97,7 +97,7 @@ makeWrapper $out/libexec/${n} $out/bin/${n} \\
   --prefix PATH : ${nix.app(makeBinPath, v)}
 `, needsBin)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Really Awesome New Cisco confIg Differ",
         longDescription: "RANCID monitors a device's configuration, including software and hardware\nand uses a VCS to maintain history of changes.\n",
         homepage: "https://shrubbery.net/rancid/",

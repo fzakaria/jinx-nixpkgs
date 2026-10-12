@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "micromamba",
       version: nix.thunk(() => nix.sel(mamba_cpp, "version")),
       dontUnpack: true,
@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
 cp ${mamba_cpp}/bin/mamba $out/bin/micromamba
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "micromamba --version",
             })))),
           "shell-init": nix.thunk(() => nix.app(runCommand, "test-micromamba-shell-hook", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "# The shell hook includes 'complete' commands for bash completion,\n# which fail in non-interactive bash. We temporarily ignore errors\n# during eval since we only care about the function definition.\nset +e\neval \"$(micromamba shell hook --shell bash)\" 2>/dev/null\nset -e\n\n# Test that the micromamba function works (not mamba).\n# If shell initialization fails above, then we expect to see an\n# error beginning with something like:\n#     'mamba' is running as a subprocess and can't modify the parent shell.\nmicromamba activate\n\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(mamba_cpp, "meta"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "mausch"))];

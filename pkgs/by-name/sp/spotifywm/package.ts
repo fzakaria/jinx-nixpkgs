@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const spotify = nix.arg($, "spotify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spotifywm",
       version: "0-unstable-2022-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dasJ",
           repo: "spotifywm",
           rev: "8624f539549973c124ed18753881045968881745",
@@ -44,7 +44,7 @@ wrapProgram $out/bin/spotify \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dasJ/spotifywm",
         description: "Wrapper around Spotify that correctly sets class name before opening the window",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

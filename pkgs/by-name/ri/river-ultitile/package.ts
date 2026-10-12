@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_14 = nix.arg($, "zig_0_14");
   const zig = zig_0_14;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "river-ultitile",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~midgard",
           repo: "river-ultitile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build.zig.zon.nix"), nix.thunk(() => ({})))),
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configurable layout generator for the River compositor",
         longDescription: "A layout generator for **river**. Features include:\n- **configurable** layouts employing nested tiles (no juggling with coordinates),\n- **widescreen** support by default,\n- default layouts, switchable at run time with a command or key binding:\n    - dwm-like main/stack layout,\n        - main on the left on normal screens,\n        - **main in the center and stacks on both sides** on widescreens,\n    - a vertical stack,\n    - a horizontal stack, and\n    - a monocle layout,\n- optional per-tag-per-output state.\n",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~midgard/river-ultitile/tree/v${nix.sel(finalAttrs, "version")}/item/CHANGELOG.md`),

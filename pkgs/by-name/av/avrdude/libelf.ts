@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libelf",
       version: "0.8.13-unstable-2023-01-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avrdudes",
           repo: "libelf",
           rev: "0c55bfe1d3020a20bddf6ce57c0d9d98ccb12586",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\nmkdir -p $out/lib\ncp liblibelf.a $out/lib/libelf.a\ncp -r $src/include $out/include\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ELF object file access library (vendored by avrdudes)",
         homepage: "https://github.com/avrdudes/libelf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

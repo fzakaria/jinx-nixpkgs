@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mkp224o";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cathugger",
           repo: "mkp224o",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,29 +37,29 @@ export default nix.lambda((args) => (() => {
       const buildCommand = nix.thunk(() => (() => {
         const variants = nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             suffix: "ref10",
             configureFlags: nix.thunk(() => ["--enable-ref10"]),
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             suffix: "donna",
             configureFlags: nix.thunk(() => ["--enable-donna"]),
           })),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               suffix: "donna-sse2",
               configureFlags: nix.thunk(() => ["--enable-donna-sse2"]),
             })),
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               suffix: "amd64-51-30k",
               configureFlags: nix.thunk(() => ["--enable-amd64-51-30k"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               suffix: "amd64-64-24k",
               configureFlags: nix.thunk(() => ["--enable-amd64-64-24k"]),
             })),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
             const suffix = nix.arg($_1, "suffix");
             const configureFlags = nix.arg($_1, "configureFlags");
             return nix.str`install -D ${nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 pname: nix.thunk(() => nix.str`mkp224o-${suffix}`),
                 version: version,
                 src: src,
@@ -84,14 +84,14 @@ export default nix.lambda((args) => (() => {
           })(), formals$2), variants);
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Vanity address generator for tor onion v3 (ed25519) hidden services",
         homepage: "https://github.com/cathugger/mkp224o",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: [],
       }));
-      return { __proto__: pos$9, pname, version, src, buildCommand, meta };
+      return { [nix.POS]: pos$9, pname, version, src, buildCommand, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const trustme = nix.arg($, "trustme");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "requests-hardened",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saleor",
           repo: "requests-hardened",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pproxy, pytest_socket, pysocks, trustme, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["requests_hardened"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library that adds hardened behavior to python requests",
         homepage: "https://github.com/saleor/requests-hardened",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

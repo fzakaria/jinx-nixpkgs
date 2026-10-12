@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "litestar",
       version: "2.21.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "litestar-org",
           repo: "litestar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "annotated-types": nix.thunk(() => [annotated_types]),
         attrs: nix.thunk(() => [attrs]),
         brotli: nix.thunk(() => [brotli]),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["-Wignore::UserWarning"]))),
       disabledTests: nix.thunk(() => ["test_subprocess_async_client"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Production-ready, Light, Flexible and Extensible ASGI API framework",
         homepage: "https://litestar.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/litestar-org/litestar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

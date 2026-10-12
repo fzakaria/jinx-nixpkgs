@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dfmt",
       version: "1.2.0",
       pyproject: true,
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "poetry-core"))]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-evY2DKjVVvHP6CuX8DuNHqWp1t4fowGCkMhEtlZtnW4=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'poetry.masonry.api' 'poetry.core.masonry.api' \\\n  --replace-fail 'poetry>=' 'poetry-core>=' \\\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Format paragraphs, comments and doc strings",
         mainProgram: "dfmt",
         homepage: "https://github.com/dmerejkowsky/dfmt",

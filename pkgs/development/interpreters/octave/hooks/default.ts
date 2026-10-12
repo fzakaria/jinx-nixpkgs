@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     writeRequiredOctavePackagesHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "write-required-octave-packages-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./write-required-octave-packages-hook.sh"))),
   };
 })(), formals$1);

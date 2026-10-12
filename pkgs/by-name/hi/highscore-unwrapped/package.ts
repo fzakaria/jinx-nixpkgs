@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
   const feedbackd = nix.arg($, "feedbackd");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const libmanette_1_alpha = nix.thunk(() => nix.app(nix.sel(libmanette, "overrideAttrs"), (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "0.2.13-unstable-2025-10-10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libmanette",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.sel(prev, "buildInputs"), [libadwaita])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "highscore-unwrapped",
       version: "0-unstable-2026-02-01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "highscore",
@@ -106,13 +106,13 @@ export default nix.lambda((args) => (() => {
         feedbackd,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libhighscore, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Rewrite of Highscore, formerly gnome-games",
         homepage: "https://gitlab.gnome.org/World/highscore/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

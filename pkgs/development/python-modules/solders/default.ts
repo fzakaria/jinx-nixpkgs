@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "solders",
       version: "0.27.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kevinheavey",
           repo: "solders",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-a3G3mMJvnO24w6WEJnEkYUNinXWHR26KupIlq5eik8A=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, nix.thunk(() => nix.sel(pkgs, "zstd"))]),
       dependencies: nix.thunk(() => [jsonalias, typing_extensions]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         OPENSSL_NO_VENDOR: true,
         ZSTD_SYS_USE_PKG_CONFIG: true,
         PKG_CONFIG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "lib/pkgconfig", nix.thunk(() => [openssl, nix.thunk(() => nix.sel(pkgs, "zstd"))]))),
       })),
       pythonImportsCheck: nix.thunk(() => ["solders"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python toolkit for Solana",
         homepage: "https://github.com/kevinheavey/solders",
         changelog: nix.thunk(() => nix.str`https://github.com/kevinheavey/solders/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

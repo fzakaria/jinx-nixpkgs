@@ -44,32 +44,32 @@ export default nix.lambda((args) => (() => {
   const rubyBindings = nix.argOr($, "rubyBindings", () => false);
   const luaBindings = nix.argOr($, "luaBindings", () => false);
   const binaryninja = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Vector35",
       repo: "binaryninja-api",
       rev: "ba13f6ec7d0ce9a18a03a1c895fb72d18e03014a",
       hash: "sha256-ApBDmrepz27ioEjtqgdGzGF0tPkDghp7dA8L9eHHW6w=",
     }))));
   const sdb = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "radareorg",
       repo: "sdb",
       tag: "2.5.0",
       hash: "sha256-TSZGAzryZcVHJPnCx7zrP1+nschsOm1zmkCJyqA4kbk=",
     }))));
   const qjs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "quickjs-ng",
       repo: "quickjs",
       rev: "9d15fb60b67c45fd0de413bb49e48f8dacebac16",
       hash: "sha256-TH139/44X2FPUTqEdqB09QSUE+QJhudnA+dQF8f8BN0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "radare2",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "radareorg",
           repo: "radare2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -124,9 +124,9 @@ popd
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "UNIX-like reverse engineering framework and command-line toolset",
         longDescription: "r2 is a complete rewrite of radare. It provides a set of libraries, tools\nand plugins to ease reverse engineering tasks. Distributed mostly under\nLGPLv3, each plugin can have different licenses.\n\nThe radare project started as a simple command-line hexadecimal editor\nfocused on forensics. Today, r2 is a featureful low-level command-line\ntool with support for scripting with the embedded JavaScript interpreter\nor via r2pipe.\n\nr2 can edit files on local hard drives, view kernel memory, and debug\nprograms locally or via a remote gdb/windbg servers. r2's wide\narchitecture support allows you to analyze, emulate, debug, modify, and\ndisassemble any binary.\n",
         homepage: "https://radare.org",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "headset-charge-indicator";
       const version = "2021-08-15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "centic9",
           repo: "headset-charge-indicator",
           rev: "6e20f81a4d6118c7385b831044c468af83103193",
@@ -63,7 +63,7 @@ cp ${pname}.desktop $out/share/applications/${pname}.desktop
 cp ${pname}.desktop $out/etc/xdg/autostart/${pname}.desktop
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/centic9/headset-charge-indicator",
         description: "App-indicator for GNOME desktops for controlling some features of various wireless headsets",
         longDescription: "A simple app-indicator for GNOME desktops to display the battery charge of some wireless headsets which also allows to control some functions like LEDs, sidetone and others.",
@@ -76,7 +76,7 @@ cp ${pname}.desktop $out/etc/xdg/autostart/${pname}.desktop
         mainProgram: "headset-charge-indicator.py",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

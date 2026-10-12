@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "goldencheetah",
       exec: "GoldenCheetah",
       icon: "goldencheetah",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Utility"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "golden-cheetah",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "GoldenCheetah",
           repo: "GoldenCheetah",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       })())),
       patches: nix.thunk(() => [nix.path(here, "./0001-Fix-building-with-bison-3.7.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lz", "-lgsl", "-lblas"]))),
       })),
       qtWrapperArgs: nix.thunk(() => [
@@ -95,14 +95,14 @@ install -Dm644 src/Resources/images/gc.png $out/share/icons/hicolor/512x512/apps
 runHook postInstall
 ` : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "runHook preInstall\nmkdir -p $out/Applications\ncp -r src/GoldenCheetah.app $out/Applications\nrunHook postInstall\n" : nix.builtins.abort("unsupported platform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=v([0-9\\.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Performance software for cyclists, runners and triathletes. Built from source and without API tokens",
         changelog: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/GoldenCheetah/GoldenCheetah",

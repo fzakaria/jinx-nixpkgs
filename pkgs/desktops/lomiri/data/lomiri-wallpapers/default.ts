@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lomiri-wallpapers",
       version: "20.04.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-wallpapers",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n\nmkdir -p $out/share\n", nix.str`cp -r ${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))} $out/share/wallpapers
 `), "install -Dm644 {.,$out/share/wallpapers}/lomiri-default-background.png\n"), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wallpapers for the Lomiri Operating Environment, gathered from people of the Ubuntu Touch / UBports community",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-wallpapers",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-wallpapers/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

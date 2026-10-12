@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docbook2mdoc",
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mdocml.bsd.lv/docbook2mdoc/snapshots/docbook2mdoc-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "07il80sg89xf6ym4bry6hxdacfzqgbwkxzyf7bjaihmw5jj0lclk",
         })))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(expat, "dev"))]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://mdocml.bsd.lv/",
         description: "Converter from DocBook V4.x and v5.x XML into mdoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

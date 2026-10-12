@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const gpsd = nix.arg($, "gpsd");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "viking",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/viking/viking-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-/iHVwRHvIId9HNlbGkvDT6rp3ToXuskj9BjhJxo8/JE=",
         })))),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPS data editor and analyzer",
         mainProgram: "viking",
         longDescription: "Viking is a free/open source program to manage GPS data.  You\ncan import and plot tracks and waypoints, show Openstreetmaps\nand/or Terraserver maps under it, download geocaches for an area\non the map, make new tracks and waypoints, see real-time GPS\nposition, etc.\n",

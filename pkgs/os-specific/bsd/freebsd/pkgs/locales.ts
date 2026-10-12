@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const allLocales = nix.argOr($, "allLocales", () => true);
   const locales = nix.argOr($, "locales", () => ["en_US.UTF-8"]);
   const build = (name) => (needsLocaledef) => nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: nix.thunk(() => nix.str`share/${name}`),
       extraPaths: nix.thunk(() => nix.app(nix.sel(lib, "optional"), needsLocaledef, "tools/tools/locale/etc/final-maps")),
       nativeBuildInputs: nix.thunk(() => nix.concat([
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), needsLocaledef, localedef))),
     })));
   const directories = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     colldef: true,
     colldef_unicode: true,
     ctypedef: true,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     timedef: false,
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "freebsd-locales",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), build, directories)),
     })));

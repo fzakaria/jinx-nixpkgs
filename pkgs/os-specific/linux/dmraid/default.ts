@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dmraid";
       const version = "1.0.0.rc16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://people.redhat.com/~heinzm/sw/dmraid/src/old/dmraid-${version}.tar.bz2`),
           sha256: "0m92971gyqp61darxbiri6a48jz3wq3gkp8r2k39320z0i6w8jgq",
         }))));
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dmraid-fix-build-with-gcc15.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://raw.githubusercontent.com/void-linux/void-packages/fceed4b8e96b3c1da07babf6f67b6ed1588a28b2/srcpkgs/dmraid/patches/006-musl-libc.patch",
               sha256: "1j8xda0fpz8lxjxnqdidy7qb866qrzwpbca56yjdg6vf4x21hx6w",
               stripLen: 2n,
               extraPrefix: "1.0.0.rc16/",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://raw.githubusercontent.com/void-linux/void-packages/fceed4b8e96b3c1da07babf6f67b6ed1588a28b2/srcpkgs/dmraid/patches/007-fix-loff_t-musl.patch",
               sha256: "0msnq39qnzg3b1pdksnz1dgqwa3ak03g41pqh0lw3h7w5rjc016k",
               stripLen: 2n,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [lvm2]);
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Old-style RAID configuration utility",
         longDescription: "Old RAID configuration utility (still under development, though).\nIt is fully compatible with modern kernels and mdadm recognizes\nits volumes. May be needed for rescuing an older system or nuking\nthe metadata when reformatting.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

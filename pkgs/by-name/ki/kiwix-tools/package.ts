@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kiwix-tools",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kiwix",
           repo: "kiwix-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [docopt_cpp, icu, libkiwix]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "kiwix-serve": nix.thunk(() => nix.sel(nixosTests, "kiwix-serve")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line Kiwix tools",
         homepage: "https://kiwix.org",
         changelog: nix.thunk(() => nix.str`https://github.com/kiwix/kiwix-tools/releases/tag/${nix.sel(finalAttrs, "version")}`),

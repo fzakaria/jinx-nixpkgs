@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mew",
       version: "1.0-unstable-2026-03-18",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sewn",
           repo: "mew",
           rev: "98dea211e634ccc2f75b4dae09fc2705666c6322",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     'path | ${nix.builtins.placeholder("out")}/bin/mew -e "$@"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient dynamic menu for Wayland, an effective port of dmenu to Wayland",
         homepage: "https://codeberg.org/sewn/mew",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

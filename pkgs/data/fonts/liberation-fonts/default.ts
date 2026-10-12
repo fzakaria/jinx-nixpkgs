@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const pname = "liberation-fonts";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "liberationfonts",
             rev: version_1,
             repo: repo,
@@ -52,7 +52,7 @@ done
 runHook postInstall
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Liberation Fonts, replacements for Times New Roman, Arial, and Courier New",
           longDescription: "The Liberation Fonts are intended to be replacements for the three most\ncommonly used fonts on Microsoft systems: Times New Roman, Arial, and\nCourier New. Since 2012 they are based on croscore fonts.\n\nThere are three sets: Sans (a substitute for Arial, Albany, Helvetica,\nNimbus Sans L, and Bitstream Vera Sans), Serif (a substitute for Times\nNew Roman, Thorndale, Nimbus Roman, and Bitstream Vera Serif) and Mono\n(a substitute for Courier New, Cumberland, Courier, Nimbus Mono L, and\nBitstream Vera Sans Mono).\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -63,7 +63,7 @@ runHook postInstall
           })()),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version: version_1,
           src,
@@ -75,9 +75,9 @@ runHook postInstall
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     liberation_ttf_v1: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         repo: "liberation-1.7-fonts",
         version: "1.07.5",
         docsToInstall: nix.thunk(() => ["AUTHORS", "ChangeLog", "COPYING", "License.txt", "README"]),
@@ -85,7 +85,7 @@ runHook postInstall
         sha256: "1ffl10mf78hx598sy9qr5m6q2b8n3mpnsj73bwixnd4985gsz56v",
       })))),
     liberation_ttf_v2: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         repo: "liberation-fonts",
         version: "2.1.5",
         docsToInstall: nix.thunk(() => ["AUTHORS", "ChangeLog", "LICENSE", "README.md"]),

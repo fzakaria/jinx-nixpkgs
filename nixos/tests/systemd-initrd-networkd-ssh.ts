@@ -27,38 +27,38 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "systemd-initrd-network-ssh",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "elvishjerricco"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
-          testing: nix.thunk(() => ({ __proto__: pos$2, initrdBackdoor: true })),
+          [nix.POS]: pos$10,
+          testing: nix.thunk(() => ({ [nix.POS]: pos$2, initrdBackdoor: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             initrd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               systemd: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
                 contents: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  "/etc/msg": nix.thunk(() => ({ __proto__: pos$3, text: "foo" })),
+                  [nix.POS]: pos$4,
+                  "/etc/msg": nix.thunk(() => ({ [nix.POS]: pos$3, text: "foo" })),
                 })),
               })),
               network: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enable: true,
                 ssh: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   enable: true,
                   authorizedKeys: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "readFile"), nix.path(here, "./initrd-network-ssh/id_ed25519.pub"))),
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             etc: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               knownHosts: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => [
                     "server,",
                     nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), " ", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "\n", nix.thunk(() => nix.sel(config, "networking", "extraHosts")))), 2n)))))))))} `),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
                   ]))),
               })),
               sshKey: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 source: nix.path(here, "./initrd-network-ssh/id_ed25519"),
                 mode: "0600",
               })),

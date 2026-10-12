@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scalp";
       const version = "0-unstable-2026-06-29";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://digidev.digi.e-technik.uni-kassel.de/git/scalp.git",
           rev: "91b4e52db746b0d25f6866143ee7a4a0defdeec5",
           hash: "sha256-0VKBdz/XU2Pd9fsKBga/2KBexCqs/DyUpih1Qx2JLeA=",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
         ]))))));
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scalable Linear Programming Library",
         mainProgram: "scalp",
         homepage: "https://digidev.digi.e-technik.uni-kassel.de/scalp/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-autocomplete-light",
       version: "3.12.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yourlabs",
           repo: "django-autocomplete-light",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, tags: nix.thunk(() => [django_taggit]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tags: nix.thunk(() => [django_taggit]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dal"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fresh approach to autocomplete implementations, specially for Django",
         homepage: "https://django-autocomplete-light.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/yourlabs/django-autocomplete-light/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

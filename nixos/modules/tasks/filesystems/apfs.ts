@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "apfs"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "apfs")), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "apfsprogs"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "apfs"))]),
           initrd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => ["apfs"]))),
           })),
         })),

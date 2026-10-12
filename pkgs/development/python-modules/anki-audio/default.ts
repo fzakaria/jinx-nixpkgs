@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const lame = nix.arg($, "lame");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "anki-audio",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ankitects",
           repo: "anki-bundle-extras",
           rev: "e83c6e64dcb110ed579fc78afbb4e72bed8fb9e9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ANKI_AUDIO_TARGET_OS: "darwin",
         ANKI_AUDIO_TARGET_ARCH: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")),
       })),
@@ -43,7 +43,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), mpv_unwrapped)} ${nix.app(nix.sel(lib, "
       })()),
       pythonImportsCheck: nix.thunk(() => ["anki_audio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Audio binaries (mpv, lame) for Anki",
         homepage: "https://github.com/ankitects/anki-bundle-extras",
         sourceProvenance: nix.thunk(() => (() => {

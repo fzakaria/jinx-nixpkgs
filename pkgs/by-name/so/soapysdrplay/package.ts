@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const soapysdr = nix.arg($, "soapysdr");
   const sdrplay = nix.arg($, "sdrplay");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "soapysdr-sdrplay3",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapySDRPlay3",
           rev: nix.thunk(() => nix.str`soapy-sdrplay3-${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [soapysdr, sdrplay]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Soapy SDR module for SDRplay",
         homepage: "https://github.com/pothosware/SoapySDRPlay3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

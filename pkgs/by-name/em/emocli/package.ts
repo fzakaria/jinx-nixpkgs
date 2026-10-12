@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const unicode_emoji = nix.arg($, "unicode-emoji");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "emocli",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AsbjornOlling",
           repo: "emocli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nimFlags: nix.thunk(() => ["--maxLoopIterationsVM:1000000000"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         EMOCLI_DATAFILE: nix.thunk(() => nix.str`${unicode_emoji}/share/unicode/emoji/emoji-test.txt`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/AsbjornOlling/emocli",
         description: "Emoji picker for your command line",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

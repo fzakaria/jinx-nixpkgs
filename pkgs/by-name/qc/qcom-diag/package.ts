@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qcom-diag",
       version: "unstable-2026-04-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-msm",
           repo: "diag",
           rev: "23c12c167e93215853af4e59c021551767f6fec8",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ssid-null-deref.patch",
             url: "https://github.com/linux-msm/diag/commit/809dcac76b534f5908437bc096e3712be4cf26a8.patch",
             hash: "sha256-NCiUlwP5/SJ1Zp17+nADccSysAof5MfqEe1MRTuNB/c=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [qrtr, systemdLibs]),
       installFlags: nix.thunk(() => ["prefix=/", "DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "matthewcroughan"))];

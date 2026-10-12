@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const compose = nix.thunk(() => nix.attr(from, "compose"));
   return nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(haskellPackages, "cachix")), nix.thunk(() => [
       nix.thunk(() => nix.sel(compose, "justStaticExecutables")),
-      nix.thunk(() => nix.app(nix.sel(compose, "overrideCabal"), nix.thunk(() => ({ __proto__: pos$1, mainProgram: "cachix" })))),
+      nix.thunk(() => nix.app(nix.sel(compose, "overrideCabal"), nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "cachix" })))),
       nix.thunk(() => nix.sel(lib, "getBin")),
     ]));
 })(), formals$1);

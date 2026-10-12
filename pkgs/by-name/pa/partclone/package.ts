@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "partclone",
       version: "0.3.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Thomas-Tsai",
           repo: "partclone",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +80,7 @@ substituteInPlace docs/*.xml \\
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities to save and restore used blocks on a partition",
         longDescription: "Partclone provides utilities to save and restore used blocks on a\npartition and is designed for higher compatibility of the file system by\nusing existing libraries, e.g. e2fslibs is used to read and write the\next2 partition.\n",
         homepage: "https://partclone.org",

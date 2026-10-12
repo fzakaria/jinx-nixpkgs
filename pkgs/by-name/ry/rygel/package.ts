@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const rygel = nix.arg($, "rygel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rygel",
       version: "45.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/rygel/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/rygel-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IOV7cLFahl133Dj594arxSxksRH+X5OKYsKNcS3xMx0=",
         })))),
@@ -108,12 +108,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs data/xml/process-xml.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "rygel", versionPolicy: "odd-unstable" })))),
-        noGtk: nix.thunk(() => nix.app(nix.sel(rygel, "override"), nix.thunk(() => ({ __proto__: pos$3, withGtk: false })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "rygel", versionPolicy: "odd-unstable" })))),
+        noGtk: nix.thunk(() => nix.app(nix.sel(rygel, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withGtk: false })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Home media solution (UPnP AV MediaServer) that allows you to easily share audio, video and pictures to other devices",
         homepage: "https://gitlab.gnome.org/GNOME/rygel",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/rygel/-/blob/rygel-${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

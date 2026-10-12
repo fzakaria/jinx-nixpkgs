@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const craftos_pc = nix.arg($, "craftos-pc");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "craftos-pc-test-eval-periphemu",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
       nativeBuildInputs: nix.thunk(() => [craftos_pc, gnugrep]),
       buildCommand: nix.thunk(() => nix.str`export HOME=$(pwd)
 mkdir $HOME/.local $HOME/.config

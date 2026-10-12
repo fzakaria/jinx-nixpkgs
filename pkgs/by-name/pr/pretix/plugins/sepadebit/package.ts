@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pretix",
           repo: "pretix-sepadebit",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DJANGO_SETTINGS_MODULE=pretix.testutils.settings\n";
       const disabledTests = nix.thunk(() => ["test_mail_context", "test_call_mail_context"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin to receive payments via SEPA direct debit",
         homepage: "https://github.com/pretix/pretix-sepadebit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

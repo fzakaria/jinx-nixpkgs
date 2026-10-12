@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "soapyplutosdr",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapyPlutoSDR",
           rev: nix.thunk(() => nix.str`soapy-plutosdr-${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libad9361, libiio, libusb1, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pothosware/SoapyPlutoSDR/commit/6ab50457c378e19fa53038cadb131313cde23916.patch",
             hash: "sha256-ExrcziyDmytaVosQ+em177Unh6er/2+2nLjEXg6f0vU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/pothosware/SoapyPlutoSDR/commit/4a01ddf1ae2fd0de86c6774ff35aa51f9b4f0b5a.patch",
             hash: "sha256-XgyCWSAlKqCXxH5vtijYqub6656xYkWaY6+B0dkfsGA=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/pothosware/SoapyPlutoSDR",
         changelog: nix.thunk(() => nix.str`https://github.com/pothosware/SoapyPlutoSDR/blob/soapy-plutosdr-${nix.sel(finalAttrs, "version")}/Changelog.txt`),
         description: "SoapySDR plugin for Pluto SDR devices",

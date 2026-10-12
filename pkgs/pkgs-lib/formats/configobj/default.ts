@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "types"));
   const serializableValueWith = nix.thunk(() => nix.attr(from, "serializableValueWith"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        __proto__: pos$3,
-        type: nix.thunk(() => nix.app(serializableValueWith, nix.thunk(() => ({ __proto__: pos$1, typeName: "ConfigObj mapping" })))),
+        [nix.POS]: pos$3,
+        type: nix.thunk(() => nix.app(serializableValueWith, nix.thunk(() => ({ [nix.POS]: pos$1, typeName: "ConfigObj mapping" })))),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nativeBuildInputs: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "configobj"))])),
             ]),

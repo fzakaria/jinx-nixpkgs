@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iortcw-sp",
       version: "1.51c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iortcw",
           repo: "iortcw",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [opusfile, libogg, SDL2, freetype, libjpeg, openal, curl]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.sel(opusfile, "dev")}/include/opus`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })),
       postInstall: "for i in `find $out/opt/iortcw -maxdepth 1 -type f -executable`; do\n  makeWrapper $i $out/bin/`basename $i` --chdir \"$out/opt/iortcw\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Single player version of game engine for Return to Castle Wolfenstein",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -31,72 +31,72 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "real-closed",
       owner: "math-comp",
       version: version,
       release: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "2.0.6": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "sha256-c+0nlNTjTf115vjvnpLrgXye5YdjsWlsCBpGZj+hU9E=",
         })),
         "2.0.5": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sha256: "sha256-nns1TF3isv8FpWqtXilfMEVKvR50fvS6MXnYVzbCzVs=",
         })),
         "2.0.3": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-heZ7aZ7TO9YNAESIvbAc1qqzO91xMyLAox8VKueIk/s=",
         })),
         "2.0.2": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-hBo9JMtmXDYBmf5ihKGksQLHv3c0+zDBnd8/aI2V/ao=",
         })),
         "2.0.1": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-tQTI3PCl0q1vWpps28oATlzOI8TpVQh1jhTwVmhaZic=",
         })),
         "2.0.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-sZvfiC5+5Lg4nRhfKKqyFzovCj2foAhqaq/w9F2bdU8=",
         })),
         "1.1.4": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-8Hs6XfowbpeRD8RhMRf4ZJe2xf8kE0e8m7bPUzR/IM4=",
         })),
         "1.1.3": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256:1vwmmnzy8i4f203i2s60dn9i0kr27lsmwlqlyyzdpsghvbr8h5b7",
         })),
         "1.1.2": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:0907x4nf7nnvn764q3x9lx41g74rilvq5cki5ziwgpsdgb98pppn",
         })),
         "1.1.1": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:0ksjscrgq1i79vys4zrmgvzy2y4ylxa8wdsf4kih63apw6v5ws6b",
         })),
         "1.0.5": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:0q8nkxr9fba4naylr5xk7hfxsqzq2pvwlg1j0xxlhlgr3fmlavg2",
         })),
         "1.0.4": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:058v9dj973h9kfhqmvcy9a6xhhxzljr90cf99hdfcdx68fi2ha1b",
         })),
         "1.0.3": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256:1xbzkzqgw5p42dx1liy6wy8lzdk39zwd6j14fwvv5735k660z7yb",
         })),
         "1.0.1": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256:0j81gkjbza5vg89v4n9z598mfdbql416963rj4b8fzm7dp2r4rxg",
         })),
       })),
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (rocq) => (mc) => (out) => ({ __proto__: pos$16, cases: nix.thunk(() => [rocq, mc]), out: out });
+        const case$ = (rocq) => (mc) => (out) => ({ [nix.POS]: pos$16, cases: nix.thunk(() => [rocq, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(rocq_core, "version")),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mathcomp, "field")), mathcomp_bigenough]),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.0.3", v))),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: "Mathematical Components Library on real closed fields",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),

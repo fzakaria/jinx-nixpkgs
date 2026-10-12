@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mlkit = nix.arg($, "mlkit");
   const futhark = nix.arg($, "futhark");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smlfut",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "diku-dk",
           repo: "smlfut",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [mlton]),
-      env: nix.thunk(() => ({ __proto__: pos$2, MLCOMP: "mlton" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MLCOMP: "mlton" })),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [futhark, mlkit]),
       checkTarget: "run_test",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allow SML programs to call Futhark programs",
         homepage: "https://github.com/diku-dk/smlfut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

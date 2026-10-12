@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const libnotify = nix.arg($, "libnotify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "toxic",
       version: "0.16.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TokTok",
           repo: "toxic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libtoxcore, libsodium, ncurses, curl, gdk_pixbuf, libnotify], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))), nix.thunk(() => [openal, libopus, libvpx, freealut, qrencode])))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, libconfig]),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reference CLI for Tox",
         mainProgram: "toxic",
         homepage: "https://github.com/TokTok/toxic",

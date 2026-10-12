@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mailcommon",
       extraNativeBuildInputs: nix.thunk(() => [libxslt]),
       extraBuildInputs: nix.thunk(() => [qtmultimedia, qttools, qtwebengine]),

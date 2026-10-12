@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libtpms",
       version: "0.10.2-unstable-2026-05-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stefanberger",
           repo: "libtpms",
           rev: "521c51073fe6f7c56023db78e56961fcaf7906e8",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/stefanberger/libtpms/commit/2d9b00c4e42677cd0a9b67344f4d873ddc409a21.patch?full_index=1",
             hash: "sha256-MVHy0sdg8ywKzu9M4ueRjH786uXQK8al21k8f+mAdR0=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => ["--with-openssl", "--with-tpm2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for software emulation of a Trusted Platform Module (TPM 1.2 and TPM 2.0)",
         homepage: "https://github.com/stefanberger/libtpms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

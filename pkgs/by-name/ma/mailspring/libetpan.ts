@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mailspring-libetpan",
       src: src,
       version: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17", "-Wno-error=incompatible-pointer-types"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modified fork of the libetpan mail framework",
         homepage: "https://github.com/Foundry376/Mailspring-Sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

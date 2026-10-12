@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bpkg",
       version: "0.18.0",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/bpkg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-EcDxvQ3P182gkZWkE3qI586vIlJXlDrYC2DoU0Out18=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -add_rpath '${nix.app(nix.sel(lib, "getLib"), build2)}/lib' "\${!outputBin}/bin/bpkg"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build2 package dependency manager",
         mainProgram: "bpkg",
         longDescription: "The build2 package dependency manager is used to manipulate build\nconfigurations, packages, and repositories.\n",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const packaging = nix.arg($, "packaging");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wapiti-arsenic",
       version: "28.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "wapiti_arsenic",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-snIKEdrBOIfPeHkVLv0X5lsBzDbOtDrbOj4m8UNCj60=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["wapiti_arsenic"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous WebDriver client",
         homepage: "https://github.com/wapiti-scanner/arsenic",
         changelog: nix.thunk(() => nix.str`https://github.com/wapiti-scanner/arsenic/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

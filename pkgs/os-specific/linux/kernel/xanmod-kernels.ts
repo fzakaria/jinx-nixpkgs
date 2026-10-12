@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const buildLinux = nix.arg($, "buildLinux");
   const variant = nix.arg($, "variant");
   const variants = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     lts: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "6.18.55",
       hash: "sha256-iaXQh/16QepauEYqDTrDpb2nR/pYpXVFbjAh4PFbf4Q=",
       isLTS: true,
     })),
     main: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "7.2.9",
       hash: "sha256-BQU4U4YdDVxUGasAiCgoZ7jWMkPcTfkHDiimyKIhwQ4=",
     })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         const pname = "linux-xanmod";
         const modDirVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, nix.thunk(() => nix.str`${version_1}-${suffix}`)));
         const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "xanmod",
             repo: "linux",
             rev: modDirVersion,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         const structuredExtraConfig = nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "kernel")), null);
           return nix.update({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             CPU_FREQ_DEFAULT_GOV_PERFORMANCE: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "yes")))),
             CPU_FREQ_DEFAULT_GOV_SCHEDUTIL: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "no")))),
             PREEMPT: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "yes")))),
@@ -83,25 +83,25 @@ export default nix.lambda((args) => (() => {
             X86_FRED: nix.thunk(() => nix.lookup(w, "yes")),
             X86_POSTED_MSI: nix.thunk(() => nix.lookup(w, "yes")),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)), "7.0")), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               PREEMPT_VOLUNTARY: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "no")))),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)), "6.13")), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               PREEMPT: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 70n, nix.thunk(() => nix.lookup(w, "no")))),
               PREEMPT_LAZY: nix.thunk(() => nix.lookup(w, "yes")),
             })))));
         })());
         const extraPassthru = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           updateScript: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             command: nix.thunk(() => [nix.path(here, "./update-xanmod.sh"), variant]),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
         }));
         const isLTS_1 = isLTS;
         const extraMeta = nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           branch: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)),
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
         }));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           version: version_1,
           pname,
           modDirVersion,

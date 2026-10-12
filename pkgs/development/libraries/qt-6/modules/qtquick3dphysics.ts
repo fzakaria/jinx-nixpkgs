@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtquick3d = nix.arg($, "qtquick3d");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtquick3dphysics",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtquick3d]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "cooker" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "cooker" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtquick3dphysics.ts.map

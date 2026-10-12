@@ -30,33 +30,33 @@ export default nix.lambda((args) => (() => {
   const concatMapStringsSep = nix.thunk(() => nix.attr(lib, "concatMapStringsSep"));
   const escapeShellArgs = nix.thunk(() => nix.attr(lib, "escapeShellArgs"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     port: 9216n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "mongodb://localhost:27017/test",
           example: "mongodb://localhost:27017/test",
           description: "MongoDB URI to connect to.",
         })))),
       collStats: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["db1.coll1", "db2"]),
           description: "List of comma separared databases.collections to get $collStats\n",
         })))),
       indexStats: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["db1.coll1", "db2"]),
           description: "List of comma separared databases.collections to get $indexStats\n",
         })))),
       collector: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => [
@@ -72,13 +72,13 @@ export default nix.lambda((args) => (() => {
           description: "Enabled collectors",
         })))),
       collectAll: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Enable all collectors. Same as specifying all --collector.<name>\n",
         })))),
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           example: "/metrics",
@@ -86,9 +86,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         RuntimeDirectory: "prometheus-mongodb-exporter",
         ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "prometheus-mongodb-exporter")))} \\
   --mongodb.uri="${nix.sel(cfg, "uri")}" \\

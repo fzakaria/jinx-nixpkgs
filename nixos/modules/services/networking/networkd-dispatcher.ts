@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "networkd-dispatcher"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "networkd-dispatcher": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Networkd-dispatcher service for systemd-networkd connection status\nchange. See [upstream instructions](https://gitlab.com/craftyguy/networkd-dispatcher)\nfor usage\n")),
           rules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ \"restart-tor\" = {\n    onState = [\"routable\" \"off\"];\n    script = ''\n      #!${pkgs.runtimeShell}\n      if [[ $IFACE == \"wlan0\" && $AdministrativeState == \"configured\" ]]; then\n        echo \"Restarting Tor ...\"\n        systemctl restart tor\n      fi\n      exit 0\n    '';\n  };\n};\n")),
               description: "Declarative configuration of networkd-dispatcher rules. See\n[upstream instructions](https://gitlab.com/craftyguy/networkd-dispatcher)\nfor an introduction and example scripts.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     options: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       onState: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                                 "routable",
                                 "dormant",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
                           description: "List of names of the systemd-networkd operational states which\nshould trigger the script. See {manpage}`networkctl(1)`\nfor a description of the specific state type.\n",
                         })))),
                       script: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                           description: "Shell commands executed on specified operational states.\n",
                         })))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Extra arguments to pass to the networkd-dispatcher command.\n",
@@ -82,33 +82,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         warnings: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "systemd", "network", "enable"))), nix.thunk(() => [
             "services.networkd-dispatcher will not execute any scripts unless networkd is enabled, either via `systemd.network.enable` or via `networking.useNetworkd`.",
           ]))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "networkd-dispatcher"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "networkd-dispatcher": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 networkd_dispatcher_args: nix.thunk(() => nix.sel(cfg, "extraArgs")),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "networkd-dispatcher": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             extraArgs: nix.thunk(() => (() => {
               const scriptDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "networkd-dispatcher-script-dir", nix.thunk(() => ({})), nix.thunk(() => nix.add("mkdir $out\n", nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (cfg_1) => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.builtins.map, (state) => nix.str`mkdir -p $out/${state}.d
 ln -s ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               name: name,
                               text: nix.thunk(() => nix.sel(cfg_1, "script")),
                             })))))} $out/${state}.d/${name}

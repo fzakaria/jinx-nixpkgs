@@ -26,31 +26,31 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vteInitSnippet = nix.thunk(() => nix.str`# Show current working directory in VTE terminals window title.
 # Supports both bash and zsh, requires interactive shell.
-. ${nix.app(nix.sel(pkgs, "vte", "override"), nix.thunk(() => ({ __proto__: pos$1, withApp: false, gtkVersion: null })))}/etc/profile.d/vte.sh
+. ${nix.app(nix.sel(pkgs, "vte", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withApp: false, gtkVersion: null })))}/etc/profile.d/vte.sh
 `);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         bash: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           vteIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable Bash integration for VTE terminals.\nThis allows it to preserve the current directory of the shell\nacross terminals.\n",
             })))),
         })),
         zsh: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           vteIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable Zsh integration for VTE terminals.\nThis allows it to preserve the current directory of the shell\nacross terminals.\n",
@@ -60,20 +60,20 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "bash", "vteIntegration")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             programs: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               bash: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), vteInitSnippet)),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "zsh", "vteIntegration")), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             programs: nix.thunk(() => ({
-              __proto__: pos$13,
-              zsh: nix.thunk(() => ({ __proto__: pos$12, interactiveShellInit: vteInitSnippet })),
+              [nix.POS]: pos$13,
+              zsh: nix.thunk(() => ({ [nix.POS]: pos$12, interactiveShellInit: vteInitSnippet })),
             })),
           })))),
       ]))),

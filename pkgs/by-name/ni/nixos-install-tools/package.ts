@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.thunk(() => nix.attr(from, "config"));
   const version = nix.thunk(() => nix.sel(config, "system", "nixos", "version"));
   return nix.app(nix.sel(nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: nix.thunk(() => nix.str`nixos-install-tools-${version}`),
       paths: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(config, "system", "build"));
           const from_2 = nix.thunk(() => nix.sel(config, "system", "build", "manual"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "nixos-generate-config": nix.thunk(() => nix.attr(from_1, "nixos-generate-config")),
           "nixos-install": nixos_install,
           "nixos-enter": nixos_enter,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()))),
       extraOutputsToInstall: nix.thunk(() => ["man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Essential commands from the NixOS installer as a package",
         longDescription: "With this package, you get the commands like nixos-generate-config and\nnixos-install that you would otherwise only find on a NixOS system, such\nas an installer image.\n\nThis way, you can install NixOS using a machine that only has Nix.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -52,24 +52,24 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "nixos-tests": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(nixosTests, "installer")))),
           "nixos-install-help": nix.thunk(() => nix.app(runCommand, "test-nixos-install-help", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [man, nixos_install_tools]),
               meta: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Make sure that --help works. It's somewhat non-trivial because it\nrequires man.\n",
               })),
             })), "nixos-install --help | grep -F \"System Manager's Manual\"\nnixos-install --help | grep -F 'configuration.nix'\nnixos-generate-config --help | grep -F \"System Manager's Manual\"\nnixos-generate-config --help | grep -F 'hardware-configuration.nix'\n\n# FIXME: Tries to call unshare, which it must not do for --help\n# nixos-enter --help | grep -F 'NixOS Reference Pages'\n\ntouch $out\n")),
         })),
         binlore: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nixos_install_tools, "execer cannot bin/nixos-generate-config\n")),
         })),
       })),
-    }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$9, version: version, pname: "nixos-install-tools" })));
+    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$9, version: version, pname: "nixos-install-tools" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graphviz",
       version: "2017-01-16",
       idrisDeps: nix.thunk(() => [lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mgttlinger",
           repo: "idris-graphviz",
           rev: "805da92ac888530134c3b4090fae0d025d86bb05",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "sed -i \"/^author /cauthor = Merlin Goettlinger\" source/graphviz.ipkg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser and library for graphviz dot files",
         homepage: "https://gitlab.com/mgttlinger/idris-graphviz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.thunk(() => nix.attr(llvmPackages, "stdenv"));
   const llvmPackages = llvmPackages_20;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "adaptivecpp",
       version: "25.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdaptiveCpp",
           repo: "AdaptiveCpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm cmake/FindCUDA.cmake\n",
       rocmMerged: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "rocm-merged",
           paths: nix.thunk(() => (() => {
             const w = nix.withScope(rocmPackages, null);
@@ -93,9 +93,9 @@ export default nix.lambda((args) => (() => {
         ])))),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => (() => {
-          const runner = (targets) => (enablePstlTests) => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$3, enablePstlTests: enablePstlTests })));
+          const runner = (targets) => (enablePstlTests) => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, enablePstlTests: enablePstlTests })));
           const run = (runner_1) => (cmd) => (mask) => nix.app(runCommand, cmd, nix.thunk(() => ({})), nix.thunk(() => nix.str`# the test runner wants to write to $HOME/.acpp, so we need to have it point to a real directory
 mkdir home
 export HOME=\`pwd\`/home
@@ -107,7 +107,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
           const runner_omp = nix.thunk(() => nix.app(runner, "omp", false));
           const runner_sscp = nix.thunk(() => nix.app(runner, "generic", true));
           return nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "runner-omp": runner_omp,
             "runner-sscp": runner_sscp,
             "sycl-omp": nix.thunk(() => nix.app(runSycl, runner_omp, "omp")),
@@ -118,7 +118,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
               const runner_rocm_integrated_multipass = nix.thunk(() => nix.app(runner, "omp;hip:gfx906", false));
               const runner_rocm_explicit_multipass = nix.thunk(() => nix.app(runner, "omp;hip.explicit-multipass:gfx906;cuda:sm_61", false));
               return {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "runner-rocm": runner_rocm,
                 "runner-rocm-integrated-multipass": runner_rocm_integrated_multipass,
                 "runner-rocm-explicit-multipass": runner_rocm_explicit_multipass,
@@ -133,7 +133,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
               const runner_cuda_integrated_multipass = nix.thunk(() => nix.app(runner, "omp;cuda_61", true));
               const runner_cuda_explicit_multipass = nix.thunk(() => nix.app(runner, "omp;cuda.explicit-multipass:sm_61;hip:gfx906", false));
               return {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "runner-cuda": runner_cuda,
                 "runner-cuda-integrated-multipass": runner_cuda_integrated_multipass,
                 "runner-cuda-explicit-multipass": runner_cuda_explicit_multipass,
@@ -149,7 +149,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/AdaptiveCpp/AdaptiveCpp",
         description: "Multi-backend implementation of SYCL for CPUs and GPUs",
         mainProgram: "acpp",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gorm = nix.arg($, "gorm");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "projectcenter",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnustep",
           repo: "apps-projectcenter",
           rev: nix.thunk(() => nix.str`projectcenter-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [wrapGNUstepAppsHook]),
       propagatedBuildInputs: nix.thunk(() => [gdb, gnumake, gnustep_back, gorm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNUstep's integrated development environment",
         homepage: "https://gnustep.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

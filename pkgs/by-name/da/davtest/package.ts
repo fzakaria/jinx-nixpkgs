@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "davtest",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/davtest/davtest-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0kigcgv1bbnan9yr5481s4b9islmvzl2arpg1ig1i39sxrna06y7",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 davtest.pl $out/bin/davtest.pl\nmkdir -p $out/share/davtest\ncp -r backdoors/ tests/ $out/share/davtest/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tests WebDAV servers by uploading test files, and then optionally testing for command execution or other actions directly on the target",
         homepage: "https://code.google.com/p/davtest/",
         mainProgram: "davtest.pl",

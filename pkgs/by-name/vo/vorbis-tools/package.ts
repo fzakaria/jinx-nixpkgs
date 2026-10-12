@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vorbis-tools",
       version: "1.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/vorbis/vorbis-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-of493Gd3vc6/a3l+ft/gQ3lUskdW/8yMa4FrY+BGDd4=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libogg, libvorbis, libao, curl, speex, flac], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extra tools for Ogg-Vorbis audio codec",
         longDescription: "A set of command-line tools to manipulate Ogg Vorbis audio\nfiles, notably the `ogg123' player and the `oggenc' encoder.\n",
         homepage: "https://xiph.org/vorbis/",

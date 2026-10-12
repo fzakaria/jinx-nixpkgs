@@ -76,94 +76,94 @@ s = Worker(buildmaster_host, port, workername, passwd, basedir,
 s.setServiceParent(application)
 `)));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "buildbot-worker": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Buildbot Worker.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "bbworker",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User the buildbot Worker should execute under.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "bbworker",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Primary group of buildbot Worker user.",
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of extra groups that the Buildbot Worker user should be a part of.",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "/home/bbworker",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Buildbot home directory.",
             })))),
           buildbotDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/worker`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "home")}}/worker"`))),
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Specifies the Buildbot directory.",
             })))),
           workerUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "example-worker",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the Buildbot Worker user.",
             })))),
           workerPass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "pass",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the Buildbot Worker password.",
             })))),
           workerPassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "File used to store the Buildbot Worker password",
             })))),
           hostMessage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Description of this worker",
             })))),
           adminMessage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Name of the administrator of this worker",
             })))),
           masterUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: "localhost:9989",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the Buildbot Worker connection string.",
             })))),
           keepalive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: 600n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "This is a number that indicates how frequently keepalive messages should be sent\nfrom the worker to the buildmaster, expressed in seconds.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "buildbot-worker", nix.thunk(() => ({})))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "git"))];
@@ -176,21 +176,21 @@ s.setServiceParent(application)
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           "buildbot-worker": nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             workerPassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "buildbot-worker-password", nix.thunk(() => nix.sel(cfg, "workerPass")))))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bbworker")), nix.thunk(() => ({ __proto__: pos$20, bbworker: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$23,
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bbworker")), nix.thunk(() => ({ [nix.POS]: pos$20, bbworker: nix.thunk(() => ({})) })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "bbworker")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               bbworker: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "Buildbot Worker User.",
                 isNormalUser: true,
                 createHome: true,
@@ -202,17 +202,17 @@ s.setServiceParent(application)
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "buildbot-worker": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Buildbot Worker.",
               after: nix.thunk(() => ["network.target", "buildbot-master.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.sel(cfg, "packages")),
               environment: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 PYTHONPATH: nix.thunk(() => nix.str`${nix.app(nix.sel(python, "withPackages"), (p) => [package$])}/${nix.sel(python, "sitePackages")}`),
               })),
               preStart: nix.thunk(() => nix.str`mkdir -vp "${nix.sel(cfg, "buildbotDir")}/info"
@@ -222,7 +222,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 `))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -234,7 +234,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
     })),
   };

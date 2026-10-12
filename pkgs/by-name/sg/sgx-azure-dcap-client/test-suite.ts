@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(sgx_azure_dcap_client, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [makeWrapper, gtest])),
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.path(here, "./tests-missing-includes.patch"),

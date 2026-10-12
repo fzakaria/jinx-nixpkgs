@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pysal",
           repo: "momepy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["momepy"]);
       const disabledTestPaths = nix.thunk(() => ["momepy/tests/test_continuity.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Urban Morphology Measuring Toolkit",
         homepage: "https://github.com/pysal/momepy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

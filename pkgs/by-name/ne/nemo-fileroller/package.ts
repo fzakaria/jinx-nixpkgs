@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const file_roller = nix.arg($, "file-roller");
   const cinnamon_translations = nix.arg($, "cinnamon-translations");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nemo-fileroller",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "nemo-extensions",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   --replace "GNOMELOCALEDIR" "${cinnamon_translations}/share/locale"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(nemo, "extensiondir")}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-fileroller",
         description: "Nemo file roller extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

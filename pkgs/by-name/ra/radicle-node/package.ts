@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const cargoHash = nix.argOr($, "cargoHash", () => "sha256-zQ6XnDJt3pek0WzC0J8PY111LGuzZeSCZ1QxwYAhPWw=");
   const updateScript = nix.argOr($, "updateScript", () => nix.path(here, "./update.sh"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       version: version,
       cargoHash: cargoHash,
       pname: "radicle-node",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           seed: "seed.radicle.dev",
           repo: "z3gqcJUoA1n9HaHKufZs5FCSGazv5",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RADICLE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [asciidoctor, installShellFiles, makeBinaryWrapper]),
@@ -97,12 +97,12 @@ do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         updateScript: updateScript,
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           basic: nix.thunk(() => nix.app(runCommand, "radicle-node-basic-test", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [jq, openssh, nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`set -e
 export RAD_HOME="$PWD/.radicle"
@@ -120,26 +120,26 @@ rad debug | jq -e '
 touch $out
 `))),
           "nixos-run": nix.thunk(() => nix.app(nix.sel(nixosTests, "radicle", "extendNixOS"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               module: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   radicle: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
               })),
             })))),
           "ci-broker": nix.thunk(() => nix.app(nix.sel(nixosTests, "radicle-ci-broker", "extendNixOS"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               module: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 services: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   radicle: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
@@ -148,7 +148,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Radicle node and CLI for decentralized code collaboration",
         longDescription: "Radicle is an open source, peer-to-peer code collaboration stack built on Git.\nUnlike centralized code hosting platforms, there is no single entity controlling the network.\nRepositories are replicated across peers in a decentralized manner, and users are in full control of their data and workflow.\n",
         homepage: "https://radicle.dev",

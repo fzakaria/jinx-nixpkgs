@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/pulumi/${repo}/provider/pkg/version.Version=${version}`),
       ]);
       const pythonArgs = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dependencies: nix.thunk(() => (() => {
           const w = nix.withScope(python3Packages, null);
           return [nix.thunk(() => nix.lookup(w, "requests"))];
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kubernetes resource package, for the Pulumi infrastructure-as-code toolchain",
         mainProgram: "pulumi-resource-kubernetes",
         homepage: "https://www.pulumi.com/docs/reference/clouds/kubernetes/",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         repo,
         version,

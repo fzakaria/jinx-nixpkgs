@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const vips = nix.arg($, "vips");
   const libimagequant = nix.arg($, "libimagequant");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libimagequant",
       version: "4.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ImageOptim",
           repo: "libimagequant",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-A7idjAAJ+syqIahyU+LPZBF+MLxVDymY+M3HM7d/qk0=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       nativeBuildInputs: nix.thunk(() => [cargo_c]),
@@ -47,15 +47,15 @@ ${nix.sel(buildPackages, "rust", "envVars", "setEnv")} cargo cinstall --release 
 popd
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           vips: vips,
           pillow: nix.thunk(() => nix.attr(from, "pillow")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: libimagequant,
               moduleNames: nix.thunk(() => ["imagequant"]),
             })))),
@@ -63,7 +63,7 @@ popd
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://pngquant.org/lib/",
         description: "Image quantization library",
         longDescription: "Small, portable C library for high-quality conversion of RGBA images to 8-bit indexed-color (palette) images.",

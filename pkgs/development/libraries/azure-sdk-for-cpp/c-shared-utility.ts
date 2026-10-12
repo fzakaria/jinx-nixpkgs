@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "azure-c-shared-utility",
       version: "LTS_07_2022_Ref02-unstable-2025-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azure",
           repo: "azure-c-shared-utility",
           rev: "772a4f8bc338140b4a0f404cf9c344283c5c937f",
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
         "-Duse_default_uuid=ON",
         "-Duse_installed_dependencies=ON",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       postInstall: "mkdir $out/include/azureiot\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Azure/azure-c-shared-utility",
         description: "Azure C SDKs common code",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

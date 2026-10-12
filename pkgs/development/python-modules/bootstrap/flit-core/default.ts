@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const flit_core = nix.arg($, "flit-core");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(python, "libPrefix")}-bootstrap-${nix.sel(flit_core, "pname")}`),
       version: nix.thunk(() => nix.attr(flit_core, "version")),
       src: nix.thunk(() => nix.attr(flit_core, "src")),

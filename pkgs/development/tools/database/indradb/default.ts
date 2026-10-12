@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const rustfmt = nix.arg($, "rustfmt");
   const protobuf = nix.arg($, "protobuf");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "indradb",
       repo: "indradb",
       rev: "06134dde5bb53eb1d2aaa52afdaf9ff3bf1aa674",
       sha256: "sha256-g4Jam7yxMc+piYQzgMvVsNTF+ce1U3thzYl/M9rKG4o=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     broken: true,
     description: "Graph database written in rust",
     homepage: "https://github.com/indradb/indradb",
@@ -39,27 +39,27 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
   }));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "indradb-server": nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "indradb-server",
         version: "3.0.0-unstable-2021-01-05",
         src: src,
         meta: meta,
         cargoHash: "sha256-wehQU0EOSkxQatoViqBJwgu4LG7NsbKjVZvKE6SoOFs=",
         buildAndTestSubdir: "server",
-        env: nix.thunk(() => ({ __proto__: pos$3, PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`) })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$3, PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`) })),
         nativeBuildInputs: nix.thunk(() => [rustfmt, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
         doCheck: false,
       })))),
     "indradb-client": nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "indradb-client",
         version: "3.0.0-unstable-2021-01-05",
         src: src,
         meta: meta,
         cargoHash: "sha256-wehQU0EOSkxQatoViqBJwgu4LG7NsbKjVZvKE6SoOFs=",
-        env: nix.thunk(() => ({ __proto__: pos$5, PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`) })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$5, PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`) })),
         nativeBuildInputs: nix.thunk(() => [rustfmt, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
         buildAndTestSubdir: "client",
       })))),

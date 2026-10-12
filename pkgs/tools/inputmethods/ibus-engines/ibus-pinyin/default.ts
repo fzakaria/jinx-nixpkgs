@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-pinyin";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ibus",
           repo: "ibus-pinyin",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/libpinyin/ibus-libpinyin/commit/9264c2fdb731516f803ca66e84c6ec17ab1cfbf7.patch",
             hash: "sha256-3UufD+4n4yrPOQx5YHPdNURmrup8WDyL7bwJTnq3wOI=",
           })))),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, intltool, pkg_config, python3, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [glib, gtk3, ibus, lua5_5, pyzy, sqlite]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         isIbusEngine: true,
         description: "PinYin engine for IBus (deprecated, new users should switch to ibus-engines.libpinyin)",
         homepage: "https://github.com/ibus/ibus-pinyin",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

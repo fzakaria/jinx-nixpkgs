@@ -26,24 +26,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "weylus"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         weylus: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "weylus, which turns your smart phone into a graphic tablet/touch screen for your computer")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 default: false,
                 description: "Open ports needed for the functionality of the program.\n",
               })))),
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 default: [],
                 description: "To enable stylus and multi-touch support, the user you're going to use must be added to this list.\nThese users can synthesize input events system-wide, even when another user is logged in - untrusted users should not be added.\n",
@@ -54,24 +54,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
-          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [1701n, 9001n]) })))),
+          [nix.POS]: pos$7,
+          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [1701n, 9001n]) })))),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$9,
-          uinput: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          [nix.POS]: pos$9,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           groups: nix.thunk(() => ({
-            __proto__: pos$11,
-            uinput: nix.thunk(() => ({ __proto__: pos$10, members: nix.thunk(() => nix.sel(cfg, "users")) })),
+            [nix.POS]: pos$11,
+            uinput: nix.thunk(() => ({ [nix.POS]: pos$10, members: nix.thunk(() => nix.sel(cfg, "users")) })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

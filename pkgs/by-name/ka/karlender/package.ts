@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const cargo_gra = nix.arg($, "cargo-gra");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "karlender",
       version: "0.10.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "floers",
           repo: "karlender",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "substituteInPlace target/gra-gen/data/codes.loers.Karlender.desktop \\\n  --replace-fail \"Exec=codes.loers.Karlender\" \"Exec=karlender\"\nsubstituteInPlace target/gra-gen/data/codes.loers.Karlender.appdata.xml \\\n  --replace-fail \"<binary>codes.loers.Karlender</binary>\" \"<binary>karlender</binary>\"\ninstall -Dm444 target/gra-gen/codes.loers.Karlender.gschema.xml -t $out/share/gsettings-schemas/$name/glib-2.0/schemas/\nglib-compile-schemas $out/share/gsettings-schemas/$name/glib-2.0/schemas/\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.64.png -T $out/share/icons/hicolor/64x64/apps/codes.loers.Karlender.png\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.128.png -T $out/share/icons/hicolor/128x128/apps/codes.loers.Karlender.png\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.desktop -t $out/share/applications/\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.appdata.xml -t $out/share/metainfo/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mobile-friendly GTK calendar application",
         homepage: "https://gitlab.com/floers/karlender",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

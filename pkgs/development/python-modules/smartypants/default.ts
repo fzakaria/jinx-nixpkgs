@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leohemsted",
           repo: "smartypants.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [docutils, pygments, pytestCheckHook]);
       const preCheck = "patchShebangs smartypants\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Translate plain ASCII quotation marks and other characters into “smart” typographic HTML entities",
         homepage: "https://github.com/leohemsted/smartypants.py",
         changelog: nix.thunk(() => nix.str`https://github.com/leohemsted/smartypants.py/blob/v${version}/CHANGES.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "smartypants",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

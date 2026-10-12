@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "anki-connect",
       version: "25.11.9.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~foosoft",
           repo: "anki-connect",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/plugin`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Enable external applications such as Yomichan to communicate\nwith Anki over a simple HTTP API\n",
         homepage: "https://git.sr.ht/~foosoft/anki-connect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

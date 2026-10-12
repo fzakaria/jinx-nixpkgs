@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gcr",
       version: "3.41.2",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gcr/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gcr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "utEPPFU6DhhUZJq1nFskNNoiyhpUrmE48fU5YVZ+Grc=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(systemdSupport)), nix.thunk(() => ["-Dsystemd=disabled"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Dc_args=-D_GNU_SOURCE"]))))),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
       })),
       postPatch: nix.thunk(() => nix.str`patchShebangs gcr/fixtures/
@@ -82,11 +82,11 @@ substituteInPlace meson_post_install.py --replace ".so" "${nix.sel(stdenv, "host
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, attrPath: "gcr_3", packageName: "gcr", freeze: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "gcr_3", packageName: "gcr", freeze: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         description: "GNOME crypto services (daemon and tools)",

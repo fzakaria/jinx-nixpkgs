@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const mpiSupport = nix.thunk(() => nix.attr(hdf5, "mpiSupport"));
   const mpi = nix.thunk(() => nix.attr(hdf5, "mpi"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add("netcdf", nix.app(nix.sel(lib, "optionalString"), mpiSupport, "-mpi"))),
       version: "4.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.unidata.ucar.edu/netcdf-c/${nix.sel(finalAttrs, "version")}/netcdf-c-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2ztp/0pe4afXmlw2Zk0hKLdSwmbpZjafz3MR7F+SdWQ=",
         })))),
@@ -50,9 +50,9 @@ substituteInPlace nczarr_test/Makefile.in \\
       nativeBuildInputs: nix.thunk(() => [m4, removeReferencesTo, libxml2]),
       buildInputs: nix.thunk(() => nix.concat([curl, hdf5, libxml2, bzip2, libzip, zstd], nix.concat(nix.app(nix.sel(lib, "optional"), szipSupport, libaec), nix.app(nix.sel(lib, "optional"), mpiSupport, mpi)))),
       strictDeps: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, mpiSupport: mpiSupport, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, mpiSupport: mpiSupport, mpi: mpi })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types")),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -73,7 +73,7 @@ substituteInPlace nczarr_test/Makefile.in \\
       nativeCheckInputs: nix.thunk(() => [unzip]),
       preCheck: "export HOME=$TEMP\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Libraries for the Unidata network Common Data Format",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         homepage: "https://www.unidata.ucar.edu/software/netcdf/",

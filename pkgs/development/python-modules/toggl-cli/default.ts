@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AuHau",
           repo: "toggl-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-f3s0XlhQZH9xC5xyM+e2VG9j1GK0qqWFm4Xy08Iwj/Q=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools, twine]);
       const pythonRelaxDeps = true;
       const dependencies = nix.thunk(() => [
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/unit/cli/test_types.py"])));
       const pythonImportsCheck = nix.thunk(() => ["toggl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool and set of Python wrapper classes for interacting with toggl's API",
         homepage: "https://toggl.uhlir.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/AuHau/toggl-cli/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "toggl",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "manubulon-snmp-plugins";
       const version = "2.1.0-unstable-2024-03-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SteScho",
           repo: "manubulon-snmp",
           rev: "1a5afb2486802034146277010d956eba9c2ad54b",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       const preVersionCheck = nix.thunk(() => nix.str`version=${nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/SteScho/manubulon-snmp/releases/tag/v${version}`),
         description: "Set of Icinga/Nagios plugins to check hosts and hardware with the SNMP protocol",
         homepage: "https://github.com/SteScho/manubulon-snmp",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

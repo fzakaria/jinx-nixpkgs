@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const kubectl = nix.arg($, "kubectl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gefyra",
       version: "2.5.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gefyrahq/gefyra/releases/download/${nix.sel(finalAttrs, "version")}/gefyra-${nix.sel(finalAttrs, "version")}-linux-amd64.zip`),
           hash: "sha256-NiW9itATfVZ+3/M9HNWrszPE0yoctMvfZZDKwYMfft4=",
           stripRoot: false,
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [docker, kubectl]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to connect local containers to kubernetes clusters",
         homepage: "https://gefyra.dev",
         downloadPage: "https://github.com/gefyrahq/gefyra",

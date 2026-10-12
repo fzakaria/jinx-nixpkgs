@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const pkgsHostTarget = nix.arg($, "pkgsHostTarget");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaml-merge",
       version: "0-unstable-2022-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abbradar",
           repo: "yaml-merge",
           rev: "2f0174fe92fc283dd38063a3a14f7fe71db4d9ec",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgsHostTarget, "python3Packages", "wrapPython"))]),
       installPhase: "install -Dm755 yaml-merge.py $out/bin/yaml-merge\nwrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Merge YAML data files",
         mainProgram: "yaml-merge",
         homepage: "https://github.com/abbradar/yaml-merge",

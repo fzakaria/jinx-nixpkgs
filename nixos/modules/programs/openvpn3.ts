@@ -61,34 +61,34 @@ export default nix.lambda((args) => (() => {
   const ints = nix.thunk(() => nix.attr(from, "ints"));
   const attrsOf = nix.thunk(() => nix.attr(from, "attrsOf"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       programs: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         openvpn3: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the openvpn3 client")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "openvpn3", nix.thunk(() => ({})))),
           netcfg: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Network configuration",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         description: "Options stored in {file}`/etc/openvpn3/netcfg.json` configuration file",
                         default: nix.thunk(() => ({})),
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))),
                             options: nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               systemd_resolved: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$1,
+                                  [nix.POS]: pos$1,
                                   type: bool,
                                   description: "Whether to use systemd-resolved integration",
                                   default: nix.thunk(() => nix.sel(config, "services", "resolved", "enable")),
@@ -102,48 +102,48 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           "log-service": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Log service configuration",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         description: "Options stored in {file}`/etc/openvpn3/log-service.json` configuration file",
                         default: nix.thunk(() => ({})),
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))),
                             options: nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               journald: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   description: "Use systemd-journald",
                                   type: bool,
                                   default: true,
                                   example: false,
                                 })))),
                               log_dbus_details: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   description: "Add D-Bus details in log file/syslog",
                                   type: bool,
                                   default: true,
                                   example: false,
                                 })))),
                               log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$11,
+                                  [nix.POS]: pos$11,
                                   description: "How verbose should the logging be",
                                   type: nix.thunk(() => nix.update(nix.app(nix.sel(ints, "between"), 0n, 7n), {
-                                    __proto__: pos$10,
+                                    [nix.POS]: pos$10,
                                     merge: (_loc) => (defs) => nix.app(nix.sel(lists, "foldl"), max, 0n, nix.thunk(() => nix.app(nix.sel(options, "getValues"), defs))),
                                   })),
                                   default: 3n,
                                   example: 6n,
                                 })))),
                               timestamp: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$12,
+                                  [nix.POS]: pos$12,
                                   description: "Add timestamp log file",
                                   type: bool,
                                   default: false,
@@ -159,59 +159,59 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           dbus: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           users: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             openvpn: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               isSystemUser: true,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "openvpn")),
               group: "openvpn",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             openvpn: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "openvpn")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "openvpn3/netcfg.json": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               source: nix.thunk(() => nix.app(nix.sel(json, "generate"), "netcfg.json", nix.thunk(() => nix.sel(cfg, "netcfg", "settings")))),
             })),
             "openvpn3/log-service.json": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               source: nix.thunk(() => nix.app(nix.sel(json, "generate"), "log-service.json", nix.thunk(() => nix.sel(cfg, "log-service", "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             rules: nix.thunk(() => ["d /etc/openvpn3/configs 0750 openvpn openvpn - -"]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "progrm_jarvis"))];

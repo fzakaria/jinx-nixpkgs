@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sdlSupport = nix.argOr($, "sdlSupport", () => true);
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "8086tiny",
       version: "1.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adriancable",
           repo: "8086tiny",
           rev: "c79ca2a34d96931d55ef724c815b289d0767ae3a",
@@ -49,7 +49,7 @@ install -m 644 ${nix.app(nix.sel(lib, "optionalString"), localBios, "bios_source
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/adriancable/8086tiny",
         description: "Open-source small 8086 emulator",
         longDescription: "8086tiny is a tiny, open-source (MIT), portable (little-endian hosts)\nIntel PC emulator, powerful enough to run DOS, Windows 3.0, Excel, MS\nFlight Simulator, AutoCAD, Lotus 1-2-3, and similar applications. 8086tiny\nemulates a \"late 80's era\" PC XT-type machine.\n\n8086tiny is based on an IOCCC 2013 winning entry. In fact that is the\n\"unobfuscated\" version :)\n",

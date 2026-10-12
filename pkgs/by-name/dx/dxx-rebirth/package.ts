@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const physfs = nix.arg($, "physfs");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const music = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa",
       sha256: "05mz77vml396mff43dbs50524rlm4fyds6widypagfbh5hc55qdc",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dxx-rebirth",
       version: "0.60.0-beta2-unstable-2025-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dxx-rebirth",
           repo: "dxx-rebirth",
           rev: "7a84b3f307ac6f72fd440e55b149d7c2c942dfaf",
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       sconsFlags: nix.thunk(() => ["sdl2=1"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-format-nonliteral", "-Wno-format-truncation"]))),
       })),
       postInstall: nix.thunk(() => nix.str`install -Dm644 ${music} $out/share/games/dxx-rebirth/${nix.sel(music, "name")}
 install -Dm644 -t $out/share/doc/dxx-rebirth *.txt
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Source Port of the Descent 1 and 2 engines",
         homepage: "https://www.dxx-rebirth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

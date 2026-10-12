@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "protoc-gen-elixir";
       const version = "0.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elixir-protobuf",
           repo: "protobuf",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hxtG7w+cL02yM2pZ4aL8/nse8qFULP8IhkpX6cCXwwA=",
         }))));
       const mixFodDeps = nix.thunk(() => nix.app(fetchMixDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version,
           src: src,
           pname: "protoc-gen-elixir-deps",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const escriptBinName = "protoc-gen-elixir";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Protoc plugin to generate Elixir code",
         mainProgram: "protoc-gen-elixir",
         homepage: "https://github.com/elixir-protobuf/protobuf",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

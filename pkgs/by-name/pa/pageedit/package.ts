@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pageedit",
       version: "2.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sigil-Ebook",
           repo: "pageedit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DINSTALL_BUNDLED_DICTS=0"]),
       installPhase: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r bin/PageEdit.app $out/Applications\nmakeWrapper $out/Applications/PageEdit.app/Contents/MacOS/PageEdit $out/bin/pageedit\n\nrunHook postInstall\n" : null)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "EPUB XHTML Visual Editor",
         mainProgram: "pageedit",
         homepage: "https://sigil-ebook.com/pageedit/",

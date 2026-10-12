@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "ksm"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "enableKSM"]), nix.thunk(() => ["hardware", "ksm", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ksm: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Linux kernel Same-Page Merging")),
           sleep: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "How many milliseconds ksmd should sleep between scans.\nSetting it to `null` uses the kernel's default time.\n",
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "enable-ksm": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Enable Kernel Same-Page Merging",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.add("echo 1 > /sys/kernel/mm/ksm/run\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "sleep"), null)), nix.thunk(() => nix.str`echo ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "sleep")))} > /sys/kernel/mm/ksm/sleep_millisecs

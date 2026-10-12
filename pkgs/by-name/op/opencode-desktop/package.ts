@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const electron = electron_42;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opencode-desktop",
       version: nix.thunk(() => nix.attr(opencode, "version")),
       src: nix.thunk(() => nix.attr(opencode, "src")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         ]))),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NODE_OPTIONS: "--max-old-space-size=4096",
         OPENCODE_CHANNEL: "prod",
@@ -89,7 +89,7 @@ cd ../..
 runHook postBuild
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ai.opencode.desktop",
             desktopName: "OpenCode",
             exec: "opencode-desktop %U",
@@ -132,7 +132,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/opencode-deskt
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(opencode, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI coding agent desktop client",
         homepage: "https://opencode.ai",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

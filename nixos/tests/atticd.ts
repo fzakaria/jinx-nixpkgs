@@ -32,59 +32,59 @@ export default nix.lambda((args) => (() => {
   const environmentFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "atticd-env", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64="$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openssl")))} genrsa -traditional 4096 | ${nix.sel(pkgs, "coreutils")}/bin/base64 -w0)" > $out
 `)));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "atticd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       local: nix.thunk(() => ({
-        __proto__: pos$5,
-        nix: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$5,
+        nix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          atticd: nix.thunk(() => ({ __proto__: pos$2, enable: true, environmentFile: environmentFile })),
+          [nix.POS]: pos$3,
+          atticd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, environmentFile: environmentFile })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "attic-client"))]),
         })),
       })),
       s3: nix.thunk(() => ({
-        __proto__: pos$16,
-        nix: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+        [nix.POS]: pos$16,
+        nix: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           atticd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               storage: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: "s3",
                 bucket: "attic",
                 region: "garage",
                 endpoint: nix.thunk(() => nix.str`http://${s3Addr}`),
-                credentials: nix.thunk(() => ({ __proto__: pos$7, access_key_id: accessKey, secret_access_key: secretKey })),
+                credentials: nix.thunk(() => ({ [nix.POS]: pos$7, access_key_id: accessKey, secret_access_key: secretKey })),
               })),
             })),
             environmentFile: environmentFile,
           })),
           garage: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               rpc_bind_addr: "127.0.0.1:3901",
               rpc_public_addr: "127.0.0.1:3901",
               rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
               replication_factor: 1n,
-              s3_api: nix.thunk(() => ({ __proto__: pos$11, s3_region: "garage", api_bind_addr: s3Addr })),
+              s3_api: nix.thunk(() => ({ [nix.POS]: pos$11, s3_region: "garage", api_bind_addr: s3Addr })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "attic-client"))]),
         })),
       })),

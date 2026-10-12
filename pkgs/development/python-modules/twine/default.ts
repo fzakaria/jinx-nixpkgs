@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-5e0NL9cMmVl3Dc5RyPOciUXFdOGBc6e4GALatRtLdc8=",
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_fails_rst_syntax_error"]);
       const pythonImportsCheck = nix.thunk(() => ["twine"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of utilities for interacting with PyPI",
         mainProgram: "twine",
         homepage: "https://github.com/pypa/twine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

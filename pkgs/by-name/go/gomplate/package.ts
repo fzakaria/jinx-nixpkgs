@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gomplate",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hairyhenderson",
           repo: "gomplate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# some tests require network access\nrm net/net_test.go \\\n  internal/tests/integration/datasources_blob_test.go \\\n  internal/tests/integration/datasources_git_test.go \\\n  internal/tests/integration/test_ec2_utils_test.go \\\n  render_test.go\n# some tests rely on external tools we'd rather not depend on\nrm internal/tests/integration/datasources_consul_test.go \\\n  internal/tests/integration/datasources_vault*_test.go\n",
       postInstall: "rm $out/bin/gen\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible commandline tool for template rendering",
         mainProgram: "gomplate",
         homepage: "https://gomplate.ca/",

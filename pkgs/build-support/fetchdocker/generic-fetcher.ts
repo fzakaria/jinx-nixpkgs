@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const gawk = nix.arg($, "gawk");
   const awk = nix.thunk(() => nix.str`${gawk}/bin/awk`);
-  const dockerCredentialsFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./credentials.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const dockerCredentialsFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./credentials.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   return nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const fetcher = nix.arg($_1, "fetcher");
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((nix.asBool(!nix.eq(layerDigest, "")) ? !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "sha256:", layerDigest)) : true), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchdocker/generic-fetcher.nix:38:1");
     const layerDigestFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(layerDigest, "")), nix.thunk(() => nix.str`--layer ${layerDigest}`)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         builder: nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${fetcher}-builder.sh`), nix.thunk(() => nix.str`echo "${fetcher} exporting to $out"
 

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const sourceList = nix.thunk(() => nix.update(nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "raw"))), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     merge: (loc) => (defs) => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const file = nix.arg($_1, "file");
@@ -29,27 +29,27 @@ export default nix.lambda((args) => (() => {
         })(), formals$2), defs))),
   }));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     _class: null,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => (() => {
               const allMaintainers = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(lib, "maintainers"))));
-              return nix.update(nix.app(nix.sel(lib, "types", "addCheck"), sourceList, nix.thunk(() => nix.app(nix.sel(lib, "all"), (v) => nix.app(nix.sel(lib, "elem"), v, allMaintainers)))), { __proto__: pos$2, description: "list of lib.maintainers" });
+              return nix.update(nix.app(nix.sel(lib, "types", "addCheck"), sourceList, nix.thunk(() => nix.app(nix.sel(lib, "all"), (v) => nix.app(nix.sel(lib, "elem"), v, allMaintainers)))), { [nix.POS]: pos$2, description: "list of lib.maintainers" });
             })()),
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ lib.maintainers.alice lib.maintainers.bob ]")),
             description: "List of maintainers of each module.\nThis option should be defined at most once per module.\n\nThe option value is not a list of maintainers, but an attribute set that maps module file names to lists of maintainers.\n",
           })))),
         teams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const allTeams = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(lib, "teams"))));
-              return nix.update(nix.app(nix.sel(lib, "types", "addCheck"), sourceList, nix.thunk(() => nix.app(nix.sel(lib, "all"), (v) => nix.app(nix.sel(lib, "elem"), v, allTeams)))), { __proto__: pos$4, description: "list of lib.teams" });
+              return nix.update(nix.app(nix.sel(lib, "types", "addCheck"), sourceList, nix.thunk(() => nix.app(nix.sel(lib, "all"), (v) => nix.app(nix.sel(lib, "elem"), v, allTeams)))), { [nix.POS]: pos$4, description: "list of lib.teams" });
             })()),
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ lib.teams.acme lib.teams.haskell ]")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

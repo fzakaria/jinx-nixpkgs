@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_describe = nix.arg($, "pytest-describe");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-spec",
       version: "6.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pchomik",
           repo: "pytest-spec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_describe]),
       pythonImportsCheck: nix.thunk(() => ["pytest_spec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pchomik/pytest-spec/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.txt`),
         description: "Pytest plugin to display test execution output like a SPECIFICATION",
         homepage: "https://github.com/pchomik/pytest-spec",

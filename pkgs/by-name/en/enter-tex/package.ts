@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "enter-tex",
       version: "3.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Workaround the use case of C code mixed with Vala code.\n# https://gitlab.gnome.org/World/gedit/enter-tex/-/blob/3.48.0/docs/more-information.md#install-procedure\nninja src/gtex/Gtex-1.gir\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.gnome.org/World/gedit/enter-tex",
         description: "LaTeX editor for the GNOME desktop",
         maintainers: nix.thunk(() => (() => {

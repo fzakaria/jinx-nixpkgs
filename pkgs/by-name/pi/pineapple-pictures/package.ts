@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const exiv2 = nix.arg($, "exiv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pineapple-pictures",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BLumia",
           repo: "pineapple-pictures",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtsvg")), exiv2]),
       cmakeFlags: nix.thunk(() => ["-DPREFER_QT_5=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Homebrew lightweight image viewer",
         homepage: "https://github.com/BLumia/pineapple-pictures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

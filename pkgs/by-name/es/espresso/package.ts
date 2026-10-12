@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "espresso";
       const version = "2.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chipsalliance",
           repo: "espresso",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const outputs = nix.thunk(() => ["out", "man"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi-valued PLA minimization",
         longDescription: "Espresso takes as input a two-level representation of a\ntwo-valued (or multiple-valued) Boolean function, and produces a\nminimal equivalent representation.  The algorithms used are new and\nrepresent an advance in both speed and optimality of solution in\nheuristic Boolean minimization.\n",
         homepage: "https://github.com/chipsalliance/espresso",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

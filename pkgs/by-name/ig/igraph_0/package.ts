@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const xmlto = nix.arg($, "xmlto");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64"))) && nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(arpack, "isILP64"))))) && nix.asBool(!nix.asBool(nix.sel(blas, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ig/igraph_0/package.nix:25:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "igraph",
       version: "0.10.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igraph",
           repo: "igraph",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hal_hardware_analyzer, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library for complex network analysis and graph theory",
         homepage: "https://igraph.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/igraph/igraph/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

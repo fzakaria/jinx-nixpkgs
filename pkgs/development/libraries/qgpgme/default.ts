@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qgpgme",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/qgpgme/qgpgme-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-PGKQ/1v+q5gbtIspUXA3YfHb6mQMtje+s1YNX++w4LM=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gpgmepp]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpgmeqt/browse/master/NEWS;gpgmeqt-${nix.sel(finalAttrs, "version")}?as=remarkup`),
         description: "Qt API bindings/wrapper for GPGME",
         homepage: "https://dev.gnupg.org/source/gpgmeqt/",

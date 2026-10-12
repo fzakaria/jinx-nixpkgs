@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => nix.sel(libxml2, "pythonSupport"));
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libxslt",
       version: "1.1.45",
       outputs: nix.thunk(() => nix.concat(["bin", "dev", "out", "doc", "devdoc"], nix.app(nix.sel(lib, "optional"), pythonSupport, "py"))),
       outputMan: "bin",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libxslt/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libxslt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ms/mhBnE0GpFxVAyGzISdi2S9BRlBiyk6hnmMu5dIW4=",
         })))),
@@ -55,13 +55,13 @@ echo ${nix.sel(libxml2, "py")} >> $py/nix-support/propagated-build-inputs
 moveToOutput ${nix.sel(python3, "sitePackages")} "$py"
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pythonSupport: pythonSupport,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "libxslt", versionPolicy: "none" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libxslt", versionPolicy: "none" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/libxslt",
         description: "C library and tools to do XSL transformations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -72,7 +72,7 @@ moveToOutput ${nix.sel(python3, "sitePackages")} "$py"
         })()),
         broken: nix.thunk(() => (nix.asBool(pythonSupport) && nix.asBool(!nix.asBool(nix.sel(libxml2, "pythonSupport"))))),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "xmlsoft", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

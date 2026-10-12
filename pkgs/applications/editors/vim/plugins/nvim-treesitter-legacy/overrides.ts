@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
     const withPlugins = (f) => (() => {
       const from_main = nix.thunk(() => nix.app(nix.sel(self, "nvim-treesitter", "withPlugins"), f));
       return nix.app(nix.sel(self, "nvim-treesitter-legacy", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           passthru: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             dependencies: nix.thunk(() => nix.attr(from_main, "dependencies")),
           })),
         })));
     })();
     const withAllGrammars = nix.thunk(() => nix.app(withPlugins, (_) => nix.sel(nvim_treesitter, "allGrammars")));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       postPatch: "rm -r parser\n",
       passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "nvim-treesitter-legacy", "passthru"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         builtGrammars: nix.thunk(() => nix.attr(nvim_treesitter, "builtGrammars")),
         allGrammars: nix.thunk(() => nix.attr(nvim_treesitter, "allGrammars")),
         grammarToPlugin: nix.thunk(() => nix.attr(nvim_treesitter, "grammarToPlugin")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         withAllGrammars: withAllGrammars,
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "nvim-treesitter-legacy", "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       })),

@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uif2iso",
       version: "0.1.7c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://aluigi.altervista.org/mytoolz/uif2iso.zip",
           sha256: "1v18fmlzhkkhv8xdc9dyvl8vamwg3ka4dsrg7vvmk1f2iczdx3dp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-cdr/uif2iso/files/uif2iso-0.1.7c-fix_c23.patch?id=80ed6e7c6b7b628e80f9f76d614c49f583ed5152",
             hash: "sha256-8b18Q6gGVd2pjQzRf17jhrYuaz86crHH26gOJy/krqk=",
             stripLen: 2n,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for converting single/multi part UIF image files to ISO",
         homepage: "http://aluigi.org/mytoolz.htm#uif2iso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),

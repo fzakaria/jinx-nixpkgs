@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       image: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./image.nix"), nix.thunk(() => ({})))),
       data: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./data.nix"), nix.thunk(() => ({})))),
       game: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./game.nix"), nix.thunk(() => ({})))),

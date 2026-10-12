@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sezanzeb",
           repo: "input-remapper",
           tag: version,
@@ -119,11 +119,11 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([dbus, pr
 )
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.sel(nixosTests, "input-remapper")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy to use tool to change the mapping of your input device buttons",
         homepage: "https://github.com/sezanzeb/input-remapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -135,7 +135,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([dbus, pr
         mainProgram: "input-remapper-gtk",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,
@@ -156,7 +156,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([dbus, pr
         meta,
       };
     })())), "overrideAttrs"), (final) => (prev) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       postPatch: nix.thunk(() => nix.add(nix.selOr(prev, () => "", "postPatch"), nix.str`# set revision for --version output
 substituteInPlace inputremapper/installation_info.py \\
   --replace-fail 'COMMIT_HASH = "unknown"' 'COMMIT_HASH = "${nix.sel(final, "src", "rev")}"'

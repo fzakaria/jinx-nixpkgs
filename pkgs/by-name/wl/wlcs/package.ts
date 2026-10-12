@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wlcs",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canonical",
           repo: "wlcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,19 +39,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => [boost, gtest, wayland, wayland_scanner]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-Wno-error=deprecated-declarations ", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), " -Wno-error=maybe-uninitialized"))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Wayland Conformance Test Suite",
         longDescription: "wlcs aspires to be a protocol-conformance-verifying test suite usable by Wayland\ncompositor implementors.\n\nIt is growing out of porting the existing Weston test suite to be run in Mir's\ntest suite, but it is designed to be usable by any compositor.\n\nwlcs relies on compositors providing an integration module, providing wlcs with\nAPI hooks to start a compositor, connect a client, move a window, and so on.\nThis makes both writing and debugging tests easier - the tests are (generally)\nin the same address space as the compositor, so there is a consistent global\nclock available, it's easier to poke around in compositor internals, and\nstandard debugging tools can follow control flow from the test client to the\ncompositor and back again.\n",
         homepage: "https://github.com/canonical/wlcs",

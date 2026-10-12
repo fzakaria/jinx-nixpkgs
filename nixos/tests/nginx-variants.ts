@@ -19,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((packageName) => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: packageName,
         value: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: nix.thunk(() => nix.str`nginx-variant-${packageName}`),
             nodes: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               machine: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const pkgs = nix.arg($_1, "pkgs");
                 return {
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   services: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     nginx: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       enable: true,
                       virtualHosts: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         localhost: nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           locations: nix.thunk(() => ({
-                            __proto__: pos$2,
-                            "/": nix.thunk(() => ({ __proto__: pos$1, return: "200 'foo'" })),
+                            [nix.POS]: pos$2,
+                            "/": nix.thunk(() => ({ [nix.POS]: pos$1, return: "200 'foo'" })),
                           })),
                         })),
                       })),

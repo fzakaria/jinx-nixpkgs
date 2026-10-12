@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const gmp = nix.arg($, "gmp");
   const cadical = nix.arg($, "cadical");
-  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ __proto__: pos$1, version: "2.1.3" }))));
+  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "2.1.3" }))));
   const leangz = nix.arg($, "leangz");
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const testers = nix.arg($, "testers");
   const lean4 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "lean4",
       version: "4.34.1",
       "mimalloc-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "microsoft",
           repo: "mimalloc",
           tag: "v3.4.5",
           hash: "sha256-vNVZw2YsDkf0GcdFTNb/fXMQLQYvoc8P425LupPShpo=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "leanprover",
           repo: "lean4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,18 +81,18 @@ substituteInPlace src/lake/Lake/Load/Lean/Elab.lean \\
         nix.thunk(() => nix.str`-DFETCHCONTENT_SOURCE_DIR_MIMALLOC=${nix.sel(finalAttrs, "mimalloc-src")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Automatic and interactive theorem prover",
         homepage: "https://leanprover.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/leanprover/lean4/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),
@@ -107,7 +107,7 @@ substituteInPlace src/lake/Lake/Load/Lean/Elab.lean \\
     })));
   const oldStorePath = nix.thunk(() => nix.builtins.substring(0n, 43n, nix.thunk(() => nix.builtins.toString(lean4))));
   const wrapped = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: nix.thunk(() => nix.attr(lean4, "name")),
       pname: nix.thunk(() => nix.attr(lean4, "pname")),
       paths: nix.thunk(() => [lean4, cadical$, leangz]),
@@ -124,15 +124,15 @@ done
       src: nix.thunk(() => nix.attr(lean4, "src")),
       meta: nix.thunk(() => nix.attr(lean4, "meta")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         version: nix.thunk(() => nix.attr(lean4, "version")),
         src: nix.thunk(() => nix.attr(lean4, "src")),
         tests: nix.thunk(() => (() => {
           const src = nix.thunk(() => nix.app(writeText, "smoke.lean", "import Std\nexample : 1 + 1 = 2 := by decide\nexample : ∀ (x y : BitVec 8), x &&& y = y &&& x := by bv_decide\n"));
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 package: wrapped,
                 version: nix.thunk(() => nix.str`v${nix.sel(lean4, "version")}`),
               })))),

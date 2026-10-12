@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opcr-policy",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opcr-io",
           repo: "policy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/opcr-io/policy/pkg/version.ver=${nix.sel(finalAttrs, "version")}`),
       ]),
       subPackages: nix.thunk(() => ["cmd/policy"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       doCheck: false,
       doInstallCheck: true,
       installCheckPhase: nix.thunk(() => nix.str`runHook preInstallCheck
@@ -42,7 +42,7 @@ $out/bin/policy version | grep "version: ${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "policy",
         homepage: "https://openpolicycontainers.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/opcr-io/policy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

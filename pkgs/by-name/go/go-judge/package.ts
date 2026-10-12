@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "go-judge",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "criyle",
           repo: "go-judge",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/go-judge"]),
       preBuild: nix.thunk(() => nix.str`echo v${nix.sel(finalAttrs, "version")} > ./cmd/go-judge/version/version.txt
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High performance sandbox service based on container technologies",
         homepage: "https://docs.goj.ac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

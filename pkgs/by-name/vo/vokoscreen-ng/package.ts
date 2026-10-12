@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vokoscreen-ng",
       version: "4.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vkohaupt",
           repo: "vokoscreenNG",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "lrelease src/language/*.ts\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin vokoscreenNG\ninstall -Dm644 -t $out/share/applications src/applications/vokoscreenNG.desktop\ninstall -Dm644 -t $out/share/icons src/applications/vokoscreenNG.png\n\nqtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User friendly Open Source screencaster for Linux and Windows",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/vkohaupt/vokoscreenNG",

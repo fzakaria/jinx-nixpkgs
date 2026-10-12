@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   const mkOpenbaoPlugin = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: buildGo127Module,
       excludeDrvArgNames: nix.thunk(() => ["plugin", "pluginType", "pluginName"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const path = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["/"]), plugin));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.str`openbao-plugin-${plugin}`),
           proxyVendor: true,
           subPackages: nix.thunk(() => [nix.thunk(() => nix.str`${path}/cmd`)]),
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
           postInstall: nix.thunk(() => nix.add(postInstall, nix.str`mv $out/bin/cmd $out/bin/${nix.sel(finalAttrs, "pname")}
 `)),
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pluginType: pluginType,
             pluginName: pluginName,
-            tests: nix.thunk(() => ({ __proto__: pos$1, openbao: nix.thunk(() => nix.attr(nixosTests, "openbao")) })),
+            tests: nix.thunk(() => ({ [nix.POS]: pos$1, openbao: nix.thunk(() => nix.attr(nixosTests, "openbao")) })),
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 extraArgs: nix.thunk(() => [
                   "--use-github-releases",
                   "--version-regex",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
               })))),
           }, passthru)),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             homepage: "https://github.com/openbao/openbao-plugins",
             changelog: nix.thunk(() => nix.str`https://github.com/openbao/openbao-plugins/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
             license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
       })(), formals$2),
     }))));
   return nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       callPackage: callPackage,
-      newScope: (scope) => nix.app(newScope, nix.thunk(() => nix.update({ __proto__: pos$7, mkOpenbaoPlugin: mkOpenbaoPlugin }, scope))),
+      newScope: (scope) => nix.app(newScope, nix.thunk(() => nix.update({ [nix.POS]: pos$7, mkOpenbaoPlugin: mkOpenbaoPlugin }, scope))),
       directory: nix.path(here, "./plugins"),
     })));
 })(), formals$1);

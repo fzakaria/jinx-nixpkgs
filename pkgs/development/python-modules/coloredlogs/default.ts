@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "15.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xolox",
           repo: "python-coloredlogs",
           rev: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python313-compat.patch",
             url: "https://github.com/xolox/python-coloredlogs/commit/9d4f4020897fcf48d381de8e099dc29b53fc9531.patch?full_index=1",
             hash: "sha256-Z7MYzyoQBMLBS7c0r5zITuHpl5yn4Vg7Xf/CiG7jTSs=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_plain_text_output_format", "test_auto_install"]);
       const pythonImportsCheck = nix.thunk(() => ["coloredlogs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Colored stream handler for Python's logging module",
         mainProgram: "coloredlogs",
         homepage: "https://github.com/xolox/python-coloredlogs",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

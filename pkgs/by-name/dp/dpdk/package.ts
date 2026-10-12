@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const shared = nix.argOr($, "shared", () => false);
   const machine = nix.argOr($, "machine", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "nehalem" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "generic" : null)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dpdk",
       version: "26.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fast.dpdk.org/rel/dpdk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hJiSArvg+67rYvj9xj9pGICsC2bNDcZMFnhDxZ2ynSw=",
         })))),
@@ -82,7 +82,7 @@ wrapProgram $out/bin/dpdk-devbind.py \\
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(withExamples, [])), "mkdir -p $examples/bin\nfind examples -type f -executable -exec install {} $examples/bin \\;\n"))),
       outputs: nix.thunk(() => nix.concat(["out", "doc"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(withExamples, [])), "examples"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of libraries and drivers for fast packet processing",
         homepage: "http://dpdk.org/",
         license: nix.thunk(() => (() => {

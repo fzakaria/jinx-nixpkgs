@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const oakctl = nix.arg($, "oakctl");
   const version = "0.16.5";
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://oakctl-releases.luxonis.com/data/${version}/linux_x86_64/oakctl`),
         hash: "sha256-bTa/0jwYuRNLNYjqHlAjIbbIAdY7Qyq3m0I6GFnEW0s=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://oakctl-releases.luxonis.com/data/${version}/linux_aarch64/oakctl`),
         hash: "sha256-RiZXHOxYJZHhIdIGGwO5BTDaoj4NYl0nZZbK3ULUhLI=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://oakctl-releases.luxonis.com/data/${version}/darwin_arm64/oakctl`),
         hash: "sha256-tJl9OKhaY9dIxkN+tsbQ3isyAfFPSDOqkgLgDDaRaSg=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "oakctl",
       version: version,
       src: src,
@@ -51,17 +51,17 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$5, command: "HOME=$TMPDIR oakctl version", package: oakctl })))),
+          [nix.POS]: pos$6,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, command: "HOME=$TMPDIR oakctl version", package: oakctl })))),
         })),
       })),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libgcc, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -D -m 0755 $src $out/bin/oakctl\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Tool to interact with Luxonis OAK4 cameras",
         homepage: "https://docs.luxonis.com/software-v3/oak-apps/oakctl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

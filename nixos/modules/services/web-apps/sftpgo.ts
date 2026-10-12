@@ -90,22 +90,22 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "sftpgo.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   const hasPrivilegedPorts = nix.thunk(() => nix.app(nix.lookup(w, "any"), (port) => (nix.asBool(nix.gt(port, 0n)) && nix.asBool(nix.lt(port, 1024n))), nix.thunk(() => nix.app(nix.lookup(w, "catAttrs"), "port", nix.thunk(() => nix.concat(nix.sel(cfg, "settings", "httpd", "bindings"), nix.concat(nix.sel(cfg, "settings", "ftpd", "bindings"), nix.concat(nix.sel(cfg, "settings", "sftpd", "bindings"), nix.sel(cfg, "settings", "webdavd", "bindings")))))))));
   return {
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       services: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         sftpgo: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "sftpgo",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "sftpgo", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -115,31 +115,31 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => ["--log-level", "info"]),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/sftpgo",
               description: "The directory where SFTPGo stores its data files.\n",
             })))),
           extraReadWriteDirs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               description: "Extra directories where SFTPGo is allowed to write to.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: defaultUser,
               description: "User account name under which SFTPGo runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: defaultUser,
               description: "Group name under which SFTPGo runs.\n",
             })))),
           loadDataFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: null,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -148,47 +148,47 @@ export default nix.lambda((args) => (() => {
               description: "Path to a json file containing users and folders to load (or update) on startup.\nCheck the [documentation](https://sftpgo.github.io/latest/config-file/)\nfor the `--loaddata-from` command line argument for more info.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               default: nix.thunk(() => ({})),
               description: "The primary sftpgo configuration. See the\n[configuration reference](https://sftpgo.github.io/latest/config-file/)\nfor possible values.\n",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       httpd: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         bindings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             default: [],
                             description: "Configure listen addresses and ports for httpd.\n",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$13,
+                                  [nix.POS]: pos$13,
                                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$12,
+                                    [nix.POS]: pos$12,
                                     address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$8,
+                                        [nix.POS]: pos$8,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                         default: "127.0.0.1",
                                         description: "Network listen address. Leave blank to listen on all available network interfaces.\nOn *NIX you can specify an absolute path to listen on a Unix-domain socket.\n",
                                       })))),
                                     port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$9,
+                                        [nix.POS]: pos$9,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                                         default: 8080n,
                                         description: "The port for serving HTTP(S) requests.\n\nSetting the port to `0` disables listening on this interface binding.\n",
                                       })))),
                                     enable_web_admin: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$10,
+                                        [nix.POS]: pos$10,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                         default: true,
                                         description: "Enable the built-in web admin for this interface binding.\n",
                                       })))),
                                     enable_web_client: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$11,
+                                        [nix.POS]: pos$11,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                         default: true,
                                         description: "Enable the built-in web client for this interface binding.\n",
@@ -198,24 +198,24 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       ftpd: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         bindings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             default: [],
                             description: "Configure listen addresses and ports for ftpd.\n",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$19,
+                                  [nix.POS]: pos$19,
                                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$18,
+                                    [nix.POS]: pos$18,
                                     address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$16,
+                                        [nix.POS]: pos$16,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                         default: "127.0.0.1",
                                         description: "Network listen address. Leave blank to listen on all available network interfaces.\nOn *NIX you can specify an absolute path to listen on a Unix-domain socket.\n",
                                       })))),
                                     port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$17,
+                                        [nix.POS]: pos$17,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                                         default: 0n,
                                         description: "The port for serving FTP requests.\n\nSetting the port to `0` disables listening on this interface binding.\n",
@@ -225,24 +225,24 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       sftpd: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         bindings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             default: [],
                             description: "Configure listen addresses and ports for sftpd.\n",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$25,
+                                  [nix.POS]: pos$25,
                                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$24,
+                                    [nix.POS]: pos$24,
                                     address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$22,
+                                        [nix.POS]: pos$22,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                         default: "127.0.0.1",
                                         description: "Network listen address. Leave blank to listen on all available network interfaces.\nOn *NIX you can specify an absolute path to listen on a Unix-domain socket.\n",
                                       })))),
                                     port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$23,
+                                        [nix.POS]: pos$23,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                                         default: 0n,
                                         description: "The port for serving SFTP requests.\n\nSetting the port to `0` disables listening on this interface binding.\n",
@@ -252,24 +252,24 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       webdavd: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         bindings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             default: [],
                             description: "Configure listen addresses and ports for webdavd.\n",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$31,
+                                  [nix.POS]: pos$31,
                                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$30,
+                                    [nix.POS]: pos$30,
                                     address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$28,
+                                        [nix.POS]: pos$28,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                         default: "127.0.0.1",
                                         description: "Network listen address. Leave blank to listen on all available network interfaces.\nOn *NIX you can specify an absolute path to listen on a Unix-domain socket.\n",
                                       })))),
                                     port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$29,
+                                        [nix.POS]: pos$29,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                                         default: 0n,
                                         description: "The port for serving WebDAV requests.\n\nSetting the port to `0` disables listening on this interface binding.\n",
@@ -279,46 +279,46 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       smtp: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           default: nix.thunk(() => ({})),
                           description: "SMTP configuration section.\n",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                              __proto__: pos$41,
+                              [nix.POS]: pos$41,
                               freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$40,
+                                [nix.POS]: pos$40,
                                 host: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$34,
+                                    [nix.POS]: pos$34,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                     default: "",
                                     description: "Location of SMTP email server. Leave empty to disable email sending capabilities.\n",
                                   })))),
                                 port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$35,
+                                    [nix.POS]: pos$35,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                                     default: 465n,
                                     description: "Port of the SMTP Server.",
                                   })))),
                                 encryption: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$36,
+                                    [nix.POS]: pos$36,
                                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => [0n, 1n, 2n]))),
                                     default: 1n,
                                     description: "Encryption scheme:\n- `0`: No encryption\n- `1`: TLS\n- `2`: STARTTLS\n",
                                   })))),
                                 auth_type: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$37,
+                                    [nix.POS]: pos$37,
                                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => [0n, 1n, 2n]))),
                                     default: 0n,
                                     description: "- `0`: Plain\n- `1`: Login\n- `2`: CRAM-MD5\n",
                                   })))),
                                 user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$38,
+                                    [nix.POS]: pos$38,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                     default: "sftpgo",
                                     description: "SMTP username.",
                                   })))),
                                 from: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$39,
+                                    [nix.POS]: pos$39,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                     default: "SFTPGo <sftpgo@example.com>",
                                     description: "From address.\n",
@@ -334,44 +334,44 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         services: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           sftpgo: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (name) => nix.force(nix.lookup(w, "mkDefault")), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 ftpd: nix.thunk(() => ({
-                  __proto__: pos$50,
-                  bindings: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$49, port: 0n }))]),
+                  [nix.POS]: pos$50,
+                  bindings: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$49, port: 0n }))]),
                 })),
                 httpd: nix.thunk(() => ({
-                  __proto__: pos$52,
-                  bindings: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$51, port: 0n }))]),
+                  [nix.POS]: pos$52,
+                  bindings: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$51, port: 0n }))]),
                   openapi_path: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/sftpgo/openapi`),
                   templates_path: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/sftpgo/templates`),
                   static_files_path: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/sftpgo/static`),
                 })),
                 sftpd: nix.thunk(() => ({
-                  __proto__: pos$54,
-                  bindings: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$53, port: 0n }))]),
+                  [nix.POS]: pos$54,
+                  bindings: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$53, port: 0n }))]),
                 })),
                 webdavd: nix.thunk(() => ({
-                  __proto__: pos$56,
-                  bindings: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$55, port: 0n }))]),
+                  [nix.POS]: pos$56,
+                  bindings: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$55, port: 0n }))]),
                 })),
                 smtp: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   templates_path: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/sftpgo/templates`),
                 })),
               })))),
           })),
         })),
         users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 description: "SFTPGo system user",
                 isSystemUser: true,
                 group: defaultUser,
@@ -379,27 +379,27 @@ export default nix.lambda((args) => (() => {
               }))],
             ])),
             groups: nix.thunk(() => nix.attrsDyn({}, [
-              [defaultUser, nix.thunk(() => ({ __proto__: pos$62, members: nix.thunk(() => [defaultUser]) }))],
+              [defaultUser, nix.thunk(() => ({ [nix.POS]: pos$62, members: nix.thunk(() => [defaultUser]) }))],
             ])),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           services: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             sftpgo: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               description: "SFTPGo daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 SFTPGO_CONFIG_FILE: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), configFile)),
                 SFTPGO_LOG_FILE_PATH: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "")),
                 SFTPGO_LOADDATA_FROM: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "loadDataFile"), null)), nix.thunk(() => nix.sel(cfg, "loadDataFile")))),
               })),
               serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     Type: "simple",
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -436,9 +436,9 @@ export default nix.lambda((args) => (() => {
                     SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged"]),
                     UMask: "0077",
                   })),
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), hasPrivilegedPorts, nix.thunk(() => ({ __proto__: pos$66, AmbientCapabilities: "CAP_NET_BIND_SERVICE" })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), hasPrivilegedPorts, nix.thunk(() => ({ [nix.POS]: pos$66, AmbientCapabilities: "CAP_NET_BIND_SERVICE" })))),
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), nix.sel(options, "services", "sftpgo", "dataDir", "default"))), nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       StateDirectory: nix.thunk(() => nix.app(nix.builtins.baseNameOf, nix.thunk(() => nix.sel(cfg, "dataDir")))),
                     })))),
                 ]))),

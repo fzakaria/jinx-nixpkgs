@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdatovka",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.nic.cz/datovka/libdatovka/-/archive/v${nix.sel(finalAttrs, "version")}/libdatovka-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-pct+COy7ibyNtwB8l/vDnEHBUEihlo5OaoXWXVRJBrQ=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [expat, gpgme, libgcrypt, libxml2, libxslt, gnutls, curl, docbook_xsl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for accessing SOAP services of Czech government-provided Databox information system",
         homepage: "https://gitlab.nic.cz/datovka/libdatovka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

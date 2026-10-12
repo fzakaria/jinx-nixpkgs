@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ayatana-indicators"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "ayatana-indicators": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ayatana Indicators, a continuation of Canonical's Application Indicators\n")),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ ayatana-indicator-messages ]")),
@@ -42,27 +42,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => nix.sel(cfg, "packages")),
           pathsToLink: nix.thunk(() => ["/share/ayatana"]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           user: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             targets: nix.thunk(() => (() => {
               const namesToServices = nix.thunk(() => nix.app(nix.builtins.map, (indicator) => nix.str`${indicator}.service`));
               const indicatorServices = (target) => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.builtins.map((pkg) => (nix.asBool(nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.sel(pkg, "passthru", "ayatana-indicators")))) ? nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`${nix.sel(pkg, "name")} is using the old passthru.ayatana-indicators format, please update it!`), nix.thunk(() => nix.app(namesToServices, nix.thunk(() => nix.sel(pkg, "passthru", "ayatana-indicators"))))) : nix.app(namesToServices, nix.thunk(() => nix.builtins.filter((service) => nix.builtins.any((targetPrefix) => nix.eq(nix.str`${targetPrefix}-indicators`, target), nix.thunk(() => nix.sel(pkg, "passthru", "ayatana-indicators", nix.key(nix.force(service))))), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(pkg, "passthru", "ayatana-indicators")))))))), nix.thunk(() => nix.sel(cfg, "packages")))));
               return nix.app(nix.sel(lib, "attrsets", "mapAttrs"), (name) => (desc) => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: nix.thunk(() => nix.str`Target representing the lifecycle of the ${desc}. Each indicator should be bound to it in its individual service file`),
                   partOf: nix.thunk(() => ["graphical-session.target"]),
                   wants: nix.thunk(() => nix.app(indicatorServices, name)),
                   before: nix.thunk(() => nix.app(indicatorServices, name)),
                 }), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "ayatana-indicators": "Ayatana Indicators",
                   "lomiri-indicators": "Ayatana/Lomiri Indicators that shall be run in Lomiri",
                 })));
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];

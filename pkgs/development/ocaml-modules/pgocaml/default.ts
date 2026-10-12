@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const sexplib = nix.arg($, "sexplib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgocaml",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darioteixeira",
           repo: "pgocaml",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         camlp_streams,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to PostgreSQL databases for OCaml applications",
         homepage: "https://github.com/darioteixeira/pgocaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

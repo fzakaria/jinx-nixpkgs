@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([aiohttp, attrs, yarl], nix.app(nix.sel(lib, "optionals"), withOlm, nix.thunk(() => nix.sel(optional_dependencies, "encryption")))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         detect_mimetype: nix.thunk(() => [python_magic]),
         encryption: nix.thunk(() => [base58, python_olm, unpaddedbase64, pycryptodome]),
       }));
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withOlm)), nix.thunk(() => ["mautrix/crypto/"])));
       const pythonImportsCheck = nix.thunk(() => ["mautrix"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asyncio Matrix framework",
         homepage: "https://github.com/tulir/mautrix-python",
         changelog: nix.thunk(() => nix.str`https://github.com/mautrix/python/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

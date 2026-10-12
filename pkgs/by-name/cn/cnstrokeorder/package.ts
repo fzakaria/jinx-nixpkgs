@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cnstrokeorder";
       const version = "0.0.4.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://rtega.be/chmn/CNstrokeorder-${version}.ttf`),
           hash: "sha256-YYtOcUvt1V0DwAs/vf9KltcmYCFJNirvwjGyOK4JpIY=",
         }))));
@@ -28,7 +28,7 @@ install -D $src $out/share/fonts/truetype/CNstrokeorder-${version}.ttf
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chinese font that shows stroke order for HSK 1-4",
         homepage: "http://rtega.be/chmn/index.php?subpage=68",
         license: nix.thunk(() => nix.sel(lib, "licenses", "arphicpl")),
@@ -38,7 +38,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   const glib_networking = nix.arg($, "glib-networking");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quick-lookup",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnfactotum",
           repo: "quick-lookup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libadwaita, gjs, webkitgtk_6_0, glib_networking]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple GTK dictionary application powered by Wiktionary",
         homepage: "https://github.com/johnfactotum/quick-lookup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

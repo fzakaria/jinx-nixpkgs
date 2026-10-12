@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const isStatic = nix.argOr($, "isStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protoc-gen-grpc-web",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc",
           repo: "grpc-web",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [protobuf]),
       checkPhase: "runHook preCheck\n\nCHECK_TMPDIR=\"$TMPDIR/proto\"\nmkdir -p \"$CHECK_TMPDIR\"\n\nprotoc \\\n  --proto_path=\"$src/packages/grpc-web/test/protos\" \\\n  --plugin=\"./protoc-gen-grpc-web\" \\\n  --grpc-web_out=\"import_style=commonjs,mode=grpcwebtext:$CHECK_TMPDIR\" \\\n  echo.proto\n\n# check for grpc-web generated file\n[ -f \"$CHECK_TMPDIR/echo_grpc_web_pb.js\" ]\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/grpc/grpc-web",
         changelog: nix.thunk(() => nix.str`https://github.com/grpc/grpc-web/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "gRPC web support for Google's protocol buffers",

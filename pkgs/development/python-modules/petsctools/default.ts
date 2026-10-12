@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const slepc4py = nix.arg($, "slepc4py");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "petsctools",
       version: "2026.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firedrakeproject",
           repo: "petsctools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [packaging]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         petsc4py: nix.thunk(() => [petsc4py]),
         slepc4py: nix.thunk(() => [slepc4py]),
       })),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "petsc4py"))),
       disabledTests: nix.thunk(() => ["test_get_petsc_dirs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/firedrakeproject/petsctools",
         description: "Pythonic extensions for petsc4py and slepc4py",
         changelog: nix.thunk(() => nix.str`https://github.com/firedrakeproject/petsctools/releases/tag/${nix.sel(finalAttrs, "version")}`),

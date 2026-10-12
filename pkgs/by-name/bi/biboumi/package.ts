@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const udns = nix.arg($, "udns");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(withPostgreSQL) || nix.asBool(withSQLite))), "At least one Biboumi database provider required"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bi/biboumi/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "biboumi",
       version: "9.0-unstable-2025-10-27",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poezio",
           repo: "biboumi",
           rev: "61242c35bc825d58c9db4301b5696bc17428bf98",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace CMakeLists.txt --replace /etc/biboumi $out/etc/biboumi\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern XMPP IRC gateway",
         mainProgram: "biboumi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

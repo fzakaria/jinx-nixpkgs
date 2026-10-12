@@ -29,20 +29,20 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "spoolman"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         spoolman: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Spoolman, a filament spool inventory management system.")),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 SPOOLMAN_DB_TYPE: "sqlite",
                 SPOOLMAN_LOGGING_LEVEL: "DEBUG",
                 SPOOLMAN_AUTOMATIC_BACKUP: "TRUE",
@@ -53,20 +53,20 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables to be passed to the spoolman service.\nRefer to https://github.com/Donkie/Spoolman/blob/master/.env.example for details on supported variables.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open the appropriate ports in the firewall for spoolman.\n",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The IP address to bind the spoolman server to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 7912n,
               description: "TCP port where spoolman web-gui listens.\n",
@@ -75,19 +75,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             spoolman: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "A self-hosted filament spool inventory management system",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => nix.update({ __proto__: pos$9, SPOOLMAN_DIR_DATA: "/var/lib/spoolman" }, nix.sel(cfg, "environment"))),
+              environment: nix.thunk(() => nix.update({ [nix.POS]: pos$9, SPOOLMAN_DIR_DATA: "/var/lib/spoolman" }, nix.sel(cfg, "environment"))),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     DynamicUser: true,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "spoolman")}/bin/spoolman --host ${nix.sel(cfg, "listen")} --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                     StateDirectory: "spoolman",
@@ -97,15 +97,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "listen"), "127.0.0.1")), nix.thunk(() => nix.sel(cfg, "port")))),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "MayNiklas"))];

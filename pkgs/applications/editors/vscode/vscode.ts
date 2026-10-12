@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const plat = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const archive_fmt = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "zip" : "tar.gz"));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-0yAx6eIT1ZUyrzzzL8uLNXoc3RBBeWe09bW6MENtwNw=",
     "aarch64-linux": "sha256-lgmnZVxLwqEBs0P/IqqR9meLRtlWW5FMBgi9fy5Xf6Y=",
     "aarch64-darwin": "sha256-hqZPHMn04LX8RJaVMJlHQvS9Yee5jZY3I4xeJLJlk7A=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const downloadVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, version));
   const rev = "07f806f999227108933c2e30515b26eecc1fda74";
   return nix.app(buildVscode, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.add("vscode", nix.app(nix.sel(lib, "optionalString"), isInsiders, "-insiders"))),
       executableName: nix.thunk(() => nix.add("code", nix.app(nix.sel(lib, "optionalString"), isInsiders, "-insiders"))),
       longName: nix.thunk(() => nix.add("Visual Studio Code", nix.app(nix.sel(lib, "optionalString"), isInsiders, " - Insiders"))),
@@ -58,21 +58,21 @@ export default nix.lambda((args) => (() => {
       useVSCodeRipgrep: useVSCodeRipgrep,
       sourceExecutableName: sourceExecutableName,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`VSCode_${downloadVersion}_${plat}.${archive_fmt}`),
           url: nix.thunk(() => nix.str`https://update.code.visualstudio.com/${downloadVersion}/${plat}/stable`),
           hash: hash,
         })))),
       tests: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "vscode-remote-ssh": nix.thunk(() => nix.attr(nixosTests, "vscode-remote-ssh")),
       })),
       sourceRoot: "",
       vscodeServer: nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.str`vscode-server-${rev}.tar.gz`),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: nix.thunk(() => nix.str`vscode-server-${rev}.tar.gz`),
               url: nix.thunk(() => nix.str`https://update.code.visualstudio.com/commit:${rev}/server-linux-x64/stable`),
               hash: "sha256-H2XuevLt4hUrTxvt94HqKCM0OBc+uYMaDz9yHF191qw=",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       hasVsceSign: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Code editor developed by Microsoft",
         mainProgram: "code",
         longDescription: "Code editor developed by Microsoft. It includes support for debugging,\nembedded Git control, syntax highlighting, intelligent code completion,\nsnippets, and code refactoring. It is also customizable, so users can\nchange the editor's theme, keyboard shortcuts, and preferences\n",

@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const texlivePackages = nix.arg($, "texlivePackages");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "latex-utilities",
         publisher: "tecosaur",
         version: "0.4.14",
@@ -30,7 +30,7 @@ echo -n ${nix.sel(finalAttrs, "version")} > VERSION
 jq '.contributes.configuration.properties."latex-utilities.countWord.path".default = "${nix.sel(texlivePackages, "texcount")}/bin/texcount"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add-on to the Visual Studio Code extension LaTeX Workshop",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities",
         homepage: "https://github.com/tecosaur/LaTeX-Utilities",

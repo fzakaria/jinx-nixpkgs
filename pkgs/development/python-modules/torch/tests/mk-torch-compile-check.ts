@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const deviceStr = nix.thunk(() => (nix.asBool(nix.eq(feature, null)) ? "" : ", device=\"cuda\""));
   return nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: name,
       feature: feature,
       libraries: libraries,
       gpuCheckArgs: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       })),
       makeWrapperArgs: nix.thunk(() => nix.concat([

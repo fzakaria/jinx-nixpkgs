@@ -72,22 +72,22 @@ export default nix.lambda((args) => (() => {
     const interfaces = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "virtualisation", "allInterfaces"))));
     const assignIPs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (i) => nix.sel(i, "assignIP"), interfaces));
     const ipInterfaces = nix.thunk(() => nix.app(forEach, assignIPs, (i) => nix.app(nameValuePair, nix.thunk(() => nix.sel(i, "name")), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             addresses: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 address: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(nix.thunk(() => nix.sel(i, "vlan")))}.${nix.builtins.toString(nix.thunk(() => nix.sel(config, "virtualisation", "test", "nodeNumber")))}`),
                 prefixLength: 24n,
               })),
             ]),
           })),
           ipv6: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             addresses: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 address: nix.thunk(() => nix.str`2001:db8:${nix.builtins.toString(nix.thunk(() => nix.sel(i, "vlan")))}::${nix.builtins.toString(nix.thunk(() => nix.sel(config, "virtualisation", "test", "nodeNumber")))}`),
                 prefixLength: 64n,
               })),
@@ -95,9 +95,9 @@ export default nix.lambda((args) => (() => {
           })),
         })))));
     const networkConfig = nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       networking: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         hostName: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(config, "virtualisation", "test", "nodeName")))),
         interfaces: nix.thunk(() => nix.app(listToAttrs, ipInterfaces)),
         primaryIPAddress: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(ipInterfaces, [])), nix.thunk(() => nix.sel(nix.app(head, nix.thunk(() => nix.sel(nix.app(head, ipInterfaces), "value", "ipv4", "addresses"))), "address")))),
@@ -124,13 +124,13 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       key: "network-interfaces",
       config: nix.thunk(() => nix.update(networkConfig, {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         system: nix.thunk(() => ({
-          __proto__: pos$9,
-          build: nix.thunk(() => ({ __proto__: pos$8, networkConfig: networkConfig })),
+          [nix.POS]: pos$9,
+          build: nix.thunk(() => ({ [nix.POS]: pos$8, networkConfig: networkConfig })),
         })),
       })),
     };
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     const pkgs = nix.arg($_1, "pkgs");
     const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../qemu-common.nix")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
         stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
       }))));
@@ -159,19 +159,19 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`NAME="${nix.sel(interface$, "name")}"`),
         ])), interfaces));
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$14,
-        qemu: nix.thunk(() => ({ __proto__: pos$13, options: qemuOptions })),
+        [nix.POS]: pos$14,
+        qemu: nix.thunk(() => ({ [nix.POS]: pos$13, options: qemuOptions })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         initrd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             udev: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               rules: nix.thunk(() => nix.app(concatMapStrings, (x) => nix.add(x, "\n"), udevRules)),
             })),
           })),
@@ -185,21 +185,21 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       options: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           test: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             nodeName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 internal: true,
                 default: name,
                 description: "The `name` in `nodes.<name>` and `containers.<name>`; stable across `specialisations`.\n",
               })))),
             nodeNumber: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 internal: true,
                 type: nix.thunk(() => nix.sel(types, "int")),
                 readOnly: true,
@@ -209,24 +209,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         specialisation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   options: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             modules: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$27,
+                                [nix.POS]: pos$27,
                                 config: nix.thunk(() => ({
-                                  __proto__: pos$26,
+                                  [nix.POS]: pos$26,
                                   virtualisation: nix.thunk(() => ({
-                                    __proto__: pos$25,
+                                    [nix.POS]: pos$25,
                                     test: nix.thunk(() => ({
-                                      __proto__: pos$24,
+                                      [nix.POS]: pos$24,
                                       nodeName: nix.thunk(() => nix.sel(regular, "config", "virtualisation", "test", "nodeName")),
                                     })),
                                   })),
@@ -242,14 +242,14 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$5);
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     config: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       extraBaseModules: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         imports: nix.thunk(() => [networkModule, nodeNumberModule]),
       })),
-      extraBaseNodeModules: nix.thunk(() => ({ __proto__: pos$36, imports: nix.thunk(() => [qemuNetworkModule]) })),
+      extraBaseNodeModules: nix.thunk(() => ({ [nix.POS]: pos$36, imports: nix.thunk(() => [qemuNetworkModule]) })),
     })),
   };
 })(), formals$1);

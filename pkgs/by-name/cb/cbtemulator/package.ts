@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const cbtemulator = nix.arg($, "cbtemulator");
   const google_cloud_bigtable_tool = nix.arg($, "google-cloud-bigtable-tool");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cbtemulator",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-cloud-go",
           rev: nix.thunk(() => nix.str`bigtable/v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-prDwy65pxWDrIJOURe2JHo4sY4yP8IE1Rp1pLUL/IAA=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bigtable`),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       vendorHash: "sha256-EDfxT56LKEu/iXPp5RJXb4UIRV2jFFNxh3ZINPbwKTM=",
       subPackages: nix.thunk(() => ["cmd/emulator"]),
       postInstall: "mv $out/bin/emulator $out/bin/cbtemulator\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           smoketest: nix.thunk(() => nix.app(runCommand, "cbtemulator-smoketest", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [google_cloud_bigtable_tool]),
             })), nix.thunk(() => nix.str`# Start the emulator
 ${nix.app(nix.sel(lib, "getExe"), cbtemulator)} &
@@ -66,7 +66,7 @@ touch $out;
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "In-memory Google Cloud Bigtable server",
         homepage: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-go/blob/bigtable/v${nix.sel(finalAttrs, "version")}/bigtable/cmd/emulator/cbtemulator.go`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

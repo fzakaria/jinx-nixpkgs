@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-simple-diff`);
       const version = "0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gjaldon",
           repo: "simple_diff",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = nix.thunk(() => nix.attr(topkg, "buildPhase"));
       const installPhase = nix.thunk(() => nix.attr(topkg, "installPhase"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gjaldon/simple_diff",
         description: "Simple_diff is a pure OCaml diffing algorithm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

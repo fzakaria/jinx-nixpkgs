@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inriafonts";
       const version = "1.200";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlackFoundryCom",
           repo: "InriaFonts",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\ninstall -m444 -Dt $out/share/fonts/truetype fonts/*/TTF/*.ttf\ninstall -m444 -Dt $out/share/fonts/opentype fonts/*/OTF/*.otf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://black-foundry.com/work/inria",
         description: "Inria Sans and Inria Serif",
         longDescription: "Inria Sans and Inria Serif are the two members of a type family\ndesign for the communication of Inria, the French national institute\ndedicated to numeric research. The Institut needed a font\nshowing its values at the crossroad of humanity, technology,\nexcellence and creativity. Black[Foudry] created a humanist\ntypeface with a unapologetically contemporary design as the\nSans-serif part and a more rational axis and drawing for the\nserif. Both members comes in 3 weights with matching italics.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

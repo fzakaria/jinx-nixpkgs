@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "office-code-pro";
       const version = "1.004";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phooky",
           repo: "Office-Code-Pro",
           rev: version,
@@ -30,14 +30,14 @@ install -m444 -Dt $out/share/fonts/opentype 'Fonts/Office Code Pro/OTF/'*.otf 'F
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Customized version of Source Code Pro",
         longDescription: "Office Code Pro is a customized version of Source Code Pro, the monospaced\nsans serif originally created by Paul D. Hunt for Adobe Systems\nIncorporated. The customizations were made specifically for text editors\nand coding environments, but are still very usable in other applications.\n",
         homepage: "https://github.com/phooky/Office-Code-Pro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

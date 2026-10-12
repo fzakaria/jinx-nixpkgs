@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const withStrictCaller = nix.argOr($, "withStrictCaller", () => false);
   const withAll = nix.argOr($, "withAll", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-credential-keepassxc",
       version: "0.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Frederick888",
           repo: "git-credential-keepassxc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-zHSMbfP9ge3JYGyUI2XMGtQwQnsDPkWDnm0F3WWwfNc=",
       buildFeatures: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), withNotification, "notification"), nix.concat(nix.app(nix.sel(lib, "optional"), withYubikey, "yubikey"), nix.concat(nix.app(nix.sel(lib, "optional"), withStrictCaller, "strict-caller"), nix.app(nix.sel(lib, "optional"), withAll, "all")))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper that allows Git (and shell scripts) to use KeePassXC as credential store",
         longDescription: "git-credential-keepassxc is a Git credential helper that allows Git\n(and shell scripts) to get/store logins from/to KeePassXC.\nIt communicates with KeePassXC using keepassxc-protocol which is\noriginally designed for browser extensions.\n",
         homepage: "https://github.com/Frederick888/git-credential-keepassxc",

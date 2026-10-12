@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "advanced-browser",
       version: "4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AnKing-VIP",
           repo: "advanced-browser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oVL+Y96/d+uD8s6yjz6L7zWV2G6PgP7ZfIiEAAZR2T4=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Adds more sorting options to the browser",
         longDescription: nix.thunk(() => nix.str`A general overview of the functionality can be found [here](https://ankiweb.net/shared/info/874215009).
 The options to configure this add-on can be found [here](https://github.com/AnKing-VIP/advanced-browser/blob/v${nix.sel(finalAttrs, "version")}/advancedbrowser/config.md).

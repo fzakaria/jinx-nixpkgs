@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const reactivedata = nix.arg($, "reactivedata");
   const tyxml = nix.arg($, "tyxml");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "js_of_ocaml-tyxml",
       version: nix.thunk(() => nix.attr(js_of_ocaml, "version")),
       src: nix.thunk(() => nix.attr(js_of_ocaml, "src")),

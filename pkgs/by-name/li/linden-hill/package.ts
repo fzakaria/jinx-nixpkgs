@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linden-hill",
       version: "2011-05-25",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "linden-hill",
           rev: "a3f7ae6c4cac1b7e5ce5269e1fcc6a2fbb9e31ee",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital version of Frederic Goudy’s Deepdene",
         longDescription: "Linden Hill is a digital version of Frederic Goudy’s Deepdene. The\npackage includes roman and italic.\n",
         homepage: "https://www.theleagueofmoveabletype.com/linden-hill",

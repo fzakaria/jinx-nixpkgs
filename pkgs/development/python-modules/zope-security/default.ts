@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.security",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         zope_schema,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pytz: nix.thunk(() => [pytz]),
         zcml: nix.thunk(() => [zope_configuration]),
       }));
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["src/zope/security/tests"]);
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zope Security Framework",
         homepage: "https://github.com/zopefoundation/zope.security",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.security/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

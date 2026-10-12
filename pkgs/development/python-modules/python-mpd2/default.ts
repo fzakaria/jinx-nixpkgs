@@ -17,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const twisted = nix.arg($, "twisted");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-mpd2",
       version: "3.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mic92",
           repo: "python-mpd2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-3isX3e4Fu1orxuRsC3u8RxoFDQcE4XxQhf8PIHdo/e4=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, twisted: nix.thunk(() => [twisted]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, twisted: nix.thunk(() => [twisted]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([unittestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "twisted"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Mic92/python-mpd2/blob/${nix.sel(finalAttrs, "src", "tag")}/doc/changes.rst`),
         description: "Python client module for the Music Player Daemon",
         homepage: "https://github.com/Mic92/python-mpd2",

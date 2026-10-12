@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xee",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Paligo",
           repo: "xee",
           tag: nix.thunk(() => nix.str`xee-v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XML Execution Engine written in Rust",
         longDescription: "Load XML documents, issue XPath expressions against them, including in\na REPL, and pretty-print XML documents. A Swiss Army knife CLI for XML.\n",
         homepage: "https://github.com/Paligo/xee",

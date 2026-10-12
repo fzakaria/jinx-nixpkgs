@@ -53,24 +53,24 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             example: "alice",
             description: "Username for JSON-RPC connections.\n",
           })))),
         passwordHMAC: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "uniq"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "[0-9a-f]+\\$[0-9a-f]{64}")))),
             example: "f7efda5c189b999524f151318c0c86$d5b51b3beffbc02b724e5d095828e0bc8b2456e9ac8757ae3211a5d9b16a22ae",
             description: "Password HMAC-SHA-256 for JSON-RPC connections. Must be a string of the\nformat \\<SALT-HEX\\>$\\<HMAC-HEX\\>.\n\nTool (Python script) for HMAC generation is available here:\n<https://github.com/bitcoin/bitcoin/blob/master/share/rpcauth/rpcauth.py>\n",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), name)),
       })),
     };
@@ -81,53 +81,53 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       options: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Bitcoin daemon")),
         package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "bitcoind", nix.thunk(() => ({})))),
         configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: null,
             example: nix.thunk(() => nix.str`/var/lib/${name}/bitcoin.conf`),
             description: "The configuration file path to supply bitcoind.",
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             default: "",
             example: "par=16\nrpcthreads=16\nlogips=1\n",
             description: "Additional configurations to be appended to {file}`bitcoin.conf`.",
           })))),
         dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`/var/lib/bitcoind-${name}`),
             description: "The data directory for bitcoind.",
           })))),
         user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`bitcoind-${name}`),
             description: "The user as which to run bitcoind.",
           })))),
         group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.sel(config_1, "user")),
             description: "The group as which to run bitcoind.",
           })))),
         rpc: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
               default: null,
               description: "Override the default port on which to listen for JSON-RPC connections.",
             })))),
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  alice.passwordHMAC = \"f7efda5c189b999524f151318c0c86$d5b51b3beffbc02b724e5d095828e0bc8b2456e9ac8757ae3211a5d9b16a22ae\";\n  bob.passwordHMAC = \"b2dd077cb54591a2f3139e69a897ac$4e71f08d48b4347cf8eff3815c0e25ae2e9a4340474079f55705f40574f4ec99\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), rpcUserOpts)))),
@@ -135,39 +135,39 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         pidFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`${nix.sel(config_1, "dataDir")}/bitcoind.pid`),
             description: "Location of bitcoind pid file.",
           })))),
         testnet: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Whether to use the testnet instead of mainnet.",
           })))),
         port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
             default: null,
             description: "Override the default port on which to listen for connections.",
           })))),
         dbCache: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 4n, 16384n)))),
             default: null,
             example: 4000n,
             description: "Override the default database cache size in MiB.",
           })))),
         prune: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "coercedTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["disable", "manual"]))), (x) => (nix.asBool(nix.eq(x, "disable")) ? 0n : 1n), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")))))),
             default: null,
             example: 10000n,
             description: "Reduce storage requirements by enabling pruning (deleting) of old\nblocks. This allows the pruneblockchain RPC to be called to delete\nspecific blocks, and enables automatic pruning of old blocks if a\ntarget size in MiB is provided. This mode is incompatible with -txindex\nand -rescan. Warning: Reverting this setting requires re-downloading\nthe entire blockchain. (\"disable\" = disable pruning blocks, \"manual\"\n= allow manual pruning via RPC, >=550 = automatically prune block files\nto stay under the specified target size in MiB).\n",
           })))),
         extraCmdlineOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: [],
             description: "Extra command line options to pass to bitcoind.\nRun bitcoind --help to list all available options.\n",
@@ -176,13 +176,13 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         bitcoind: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), bitcoindOpts)))),
             default: nix.thunk(() => ({})),
             description: "Specification of one or more bitcoind instances.",
@@ -190,16 +190,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(eachBitcoind, {})), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (bitcoindName) => (cfg) => [
               nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "prune"), null)) || nix.asBool((nix.asBool(nix.app(nix.sel(nix.builtins, "elem"), nix.thunk(() => nix.sel(cfg, "prune")), nix.thunk(() => ["disable", "manual", 0n, 1n]))) || nix.asBool((nix.asBool(nix.app(nix.sel(nix.builtins, "isInt"), nix.thunk(() => nix.sel(cfg, "prune")))) && nix.asBool(nix.ge(nix.sel(cfg, "prune"), 550n)))))))),
                 message: nix.thunk(() => nix.str`If set, services.bitcoind.${bitcoindName}.prune has to be "disable", "manual", 0 , 1 or >= 550.
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "rpc", "users"), {})) || nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)))),
                 message: nix.thunk(() => nix.str`You cannot set both services.bitcoind.${bitcoindName}.rpc.users and services.bitcoind.${bitcoindName}.configFile
 as they are exclusive. RPC user setting would have no effect if custom configFile would be used.
@@ -207,11 +207,11 @@ as they are exclusive. RPC user setting would have no effect if custom configFil
               })),
             ], eachBitcoind)))),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (bitcoindName) => (cfg) => [nix.thunk(() => nix.sel(cfg, "package"))], eachBitcoind)))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (bitcoindName) => (cfg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`bitcoind-${bitcoindName}`), nix.thunk(() => (() => {
                 const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "bitcoin.conf", nix.thunk(() => nix.str`# If Testnet is enabled, we need to add [test] section
 # otherwise, some options (e.g.: custom RPC port) will not work
@@ -222,13 +222,13 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (rpcUser) => nix.str`rpcau
 ${nix.sel(cfg, "extraConfig")}
 `)));
                 return {
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   description: "Bitcoin daemon",
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/bitcoind \\
@@ -252,16 +252,16 @@ ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraCmdlineOptio
                 };
               })())), eachBitcoind)),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             rules: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (bitcoindName) => (cfg) => [
                   nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0770 '${nix.sel(cfg, "user")}' '${nix.sel(cfg, "group")}' - -`),
                 ], eachBitcoind)))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (bitcoindName) => (cfg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`bitcoind-${bitcoindName}`), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 name: nix.thunk(() => nix.sel(cfg, "user")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Bitcoin daemon user",
@@ -272,7 +272,7 @@ ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraCmdlineOptio
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "_1000101"))];

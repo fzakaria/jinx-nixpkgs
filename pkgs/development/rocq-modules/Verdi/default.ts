@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ssreflect = nix.arg($, "ssreflect");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "verdi",
       owner: "uwplse",
       version: version,
@@ -34,52 +34,52 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.9", "8.18")),
               out: "20230503",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.16")),
               out: "20211026",
             })),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.14")),
               out: "20210524",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.13")),
               out: "20200131",
             })),
-            nix.thunk(() => ({ __proto__: pos$5, case: "8.6", out: "20181102" })),
+            nix.thunk(() => ({ [nix.POS]: pos$5, case: "8.6", out: "20181102" })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "20230503": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rev: "76833a7b2188e99e358b8439ea6b4f38401c962a",
           hash: "sha256-g59adl/FLMlk9vZciz2I1ZX4PDCElNOgVPCwML8E4DU=",
         })),
         "20211026": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           rev: "064cc4fb2347453bf695776ed820ffb5fbc1d804",
           hash: "sha256:13xrcyzay5sjszf5lg4s44wl9nrcz22n6gi4h95pkpj0ni5clinx",
         })),
         "20210524": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           rev: "54597d8ac7ab7dd4dae683f651237644bf77701e",
           hash: "sha256:05wb0km2jkhvi8807glxk9fi1kll4lwisiyzkxhqvymz4x6v8xqv",
         })),
         "20200131": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rev: "fdb4ede19d2150c254f0ebcfbed4fb9547a734b0",
           hash: "sha256:1a2k19f9q5k5djbxplqmmpwck49kw3lrm3aax920h4yb40czkd8m",
         })),
         "20181102": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           rev: "25b79cf1be5527ab8dc1b8314fcee93e76a2e564",
           hash: "sha256:1vw47c37k5vaa8vbr6ryqy8riagngwcrfmb3rai37yi9xhdqg55z",
         })),

@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(fenics_ufl, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "2025.3.0";
       const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: version,
           hash: "sha256-BFeVwurTsFNirpjZlgaABzw/cLzWxXwbCHJQBHrLuOY=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })());
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

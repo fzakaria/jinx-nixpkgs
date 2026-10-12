@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fira_mono = nix.arg($, "fira-mono");
   const fira_sans = nix.arg($, "fira-sans");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "fira",
       version: nix.thunk(() => nix.attr(fira_sans, "version")),
       paths: nix.thunk(() => [fira_mono, fira_sans]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Font family including Fira Sans and Fira Mono",
         homepage: "https://carrois.com/fira/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

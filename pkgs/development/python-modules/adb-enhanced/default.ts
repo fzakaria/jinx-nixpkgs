@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const jdk11 = nix.arg($, "jdk11");
   const psutil = nix.arg($, "psutil");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adb-enhanced",
       version: "2.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ashishb",
           repo: "adb-enhanced",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ashishb/adb-enhanced/pull/337.patch",
             hash: "sha256-BRpdgLS6CNkmyj+OwnIaqfkmz1jzZg/qtoiN32jUIog=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["adbe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for Android testing and development",
         homepage: "https://github.com/ashishb/adb-enhanced",
         sourceProvenance: nix.thunk(() => (() => {

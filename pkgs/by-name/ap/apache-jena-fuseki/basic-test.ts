@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const apache_jena_fuseki = nix.arg($, "apache-jena-fuseki");
   const curl = nix.arg($, "curl");
   return nix.app(runCommand, nix.thunk(() => nix.str`fuseki-test-${nix.sel(apache_jena_fuseki, "name")}`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [curl, apache_jena_fuseki]),
     })), "export FUSEKI_BASE=\"$PWD/fuseki-base\"\nmkdir -p \"$FUSEKI_BASE/db\"\nFUSEKI_ARGS=\"--update --loc=$FUSEKI_BASE/db /dataset\" fuseki start\nfuseki status\nfor i in $(seq 120); do\n    if  curl http://127.0.0.1:3030/dataset/data; then\n        break;\n    fi\n    sleep 1\ndone\ncurl -d 'update=insert+data+{+<test://subject>+<test://predicate>+<test://object>+}' http://127.0.0.1:3030/dataset/update > /dev/null\ncurl http://127.0.0.1:3030/dataset/data | grep -C999 'test://predicate'\ncurl -d 'query=select+?s+?p+?o+where+{+?s+?p+?o+.+}' http://127.0.0.1:3030/dataset/query | grep -C999 'test://predicate'\ntouch $out\n");
 })(), formals$1);

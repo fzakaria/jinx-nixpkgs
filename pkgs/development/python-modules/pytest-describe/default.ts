@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "pytest-describe";
   const version = "3.2.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-describe",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pytest]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Describe-style plugin for the pytest framework",
         homepage: "https://github.com/pytest-dev/pytest-describe",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-describe/releases/tag/${version}`),

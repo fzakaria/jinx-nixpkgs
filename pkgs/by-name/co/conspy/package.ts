@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conspy",
       version: "1.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/conspy/conspy-${nix.sel(finalAttrs, "version")}-1/conspy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YSMO9sWJjc+zqMtg0hjIRYWI2XNnqQ2VOLZvHZSZC2Q=",
           curlOpts: " -A application/octet-stream ",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       preConfigure: "touch NEWS\necho \"EPL 1.0\" > COPYING\naclocal\nautomake --add-missing\nautoconf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux text console viewer",
         mainProgram: "conspy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

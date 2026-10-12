@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const mirage_clock = nix.arg($, "mirage-clock");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "irmin-mirage-git",
       version: nix.thunk(() => nix.attr(irmin_mirage, "version")),
       src: nix.thunk(() => nix.attr(irmin_mirage, "src")),

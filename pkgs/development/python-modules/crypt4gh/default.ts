@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EGA-archive",
           repo: "crypt4gh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [bats, openssh]);
       const installCheckPhase = "PATH=$PATH:$out/bin\nbats tests\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "crypt4gh",
         description: "Tool to encrypt, decrypt or re-encrypt files, according to the GA4GH encryption file format",
         homepage: "https://github.com/EGA-archive/crypt4gh",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "richardjacton"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

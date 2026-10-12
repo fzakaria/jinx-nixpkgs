@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-cache",
       version: "2018-06-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Seb35",
           repo: "git-cache",
           rev: "354f661e40b358c5916c06957bd6b2c65426f452",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm555 git-cache $out/bin/git-cache\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Seb35/git-cache",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
         description: "Program to add and manage a system-wide or user-wide cache for remote git repositories",

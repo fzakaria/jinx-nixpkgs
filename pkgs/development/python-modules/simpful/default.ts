@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aresio",
           repo: "simpful",
           tag: version,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [numpy, scipy, requests]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, plotting: nix.thunk(() => [matplotlib, seaborn]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, plotting: nix.thunk(() => [matplotlib, seaborn]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["simpful"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for fuzzy logic",
         homepage: "https://github.com/aresio/simpful",
         changelog: nix.thunk(() => nix.str`https://github.com/aresio/simpful/releases/tag/${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

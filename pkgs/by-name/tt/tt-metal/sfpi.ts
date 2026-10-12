@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const version = "7.78.0";
   return nix.app(runCommand, nix.thunk(() => nix.str`sfpi-${version}`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [ncurses, mpfr, libmpc, xz, zstd, expat]),
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/tenstorrent/sfpi/releases/download/${version}/sfpi_${version}_aarch64_debian.txz`),
             hash: "sha256-ATcNRyNZ6c3DOb+s5k7ATpMafr6k3+DoZJYTgd0rdHI=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/tenstorrent/sfpi/releases/download/${version}/sfpi_${version}_x86_64_debian.txz`),
             hash: "sha256-RkxkdZ5EG4Qda8BiFtvUcNeg8Yjg/6msjrsuQEzyRNs=",
           })))),

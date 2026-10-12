@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const db = nix.arg($, "db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bruteforce-wallet",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glv2",
           repo: "bruteforce-wallet",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, db]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Try to find password of encrypted cryptocurrency wallet",
         homepage: "https://github.com/glv2/bruteforce-wallet",
         changelog: nix.thunk(() => nix.str`https://github.com/glv2/bruteforce-wallet/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

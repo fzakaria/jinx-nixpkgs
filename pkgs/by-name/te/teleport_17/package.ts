@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const withRdpClient = nix.argOr($, "withRdpClient", () => true);
   const extPatches = nix.argOr($, "extPatches", () => []);
   return nix.app(buildTeleport, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "17.7.26",
       hash: "sha256-JwPW+w2ZS4jGWxf0GZgf3UMUrxKcIthnvZT8nImtE2c=",
       vendorHash: "sha256-YX0HC+cU3YpAdToALJa/FeCc8ANEq7E+zExzX42lk9c=",

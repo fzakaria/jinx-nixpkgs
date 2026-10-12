@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`1.1.1+g${nix.sel(src, "rev")}`);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypdfium2-team",
           repo: "ctypesgen",
           rev: "3961621c3e057015362db82471e07f3a57822b15",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools_scm]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         pyproject,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "pypdfium2-team",
           repo: "pypdfium2",
           tag: version,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [removeReferencesTo]);
       const propagatedBuildInputs = nix.thunk(() => [pdfium]);
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         GIVEN_FULLVER: nix.thunk(() => nix.sel(pdfium, "fullVersion")),
         PDFIUM_PLATFORM: nix.thunk(() => nix.str`system-search:${nix.sel(pdfium, "version")}`),
         PDFIUM_HEADERS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), pdfium)}/include/public`),
@@ -77,15 +77,15 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_opener.py::test_open_garbled_filename"]);
       const pythonImportsCheck = nix.thunk(() => ["pypdfium2"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, allowedVersions: "^[.0-9]+$" })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, allowedVersions: "^[.0-9]+$" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cross: nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "python3Packages", "pypdfium2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/pypdfium2-team/pypdfium2/releases/tag/${version}`),
         description: "Python bindings to PDFium",
         homepage: "https://pypdfium2.readthedocs.io/",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

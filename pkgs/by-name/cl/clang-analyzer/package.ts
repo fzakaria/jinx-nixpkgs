@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "clang-analyzer",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
@@ -39,7 +39,7 @@ wrapProgram $out/bin/scan-build \\
   --add-flags "--use-analyzer='${nix.sel(llvmPackages, "clang")}/bin/clang'"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Clang Static Analyzer",
         longDescription: "The Clang Static Analyzer is a source code analysis tool that finds bugs\nin C, C++, and Objective-C programs.\n",
         homepage: "https://clang-analyzer.llvm.org/",

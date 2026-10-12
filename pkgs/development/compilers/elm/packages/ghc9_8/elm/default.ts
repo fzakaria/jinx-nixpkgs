@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const vector = nix.arg($, "vector");
   const zip_archive = nix.arg($, "zip-archive");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "elm",
       version: "0.19.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/elm/compiler",
           sha256: "0npadfvk5gyiifq4095yg7k8cr3hb28drdh07b77nxzwsqanp4s5",
           rev: "48befde196cbcbdf459114e36c02b52c49b58050",

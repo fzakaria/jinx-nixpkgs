@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const libusbsio = nix.arg($, "libusbsio");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libusbsio",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZccYDX93F2cNjDwyDxo/RdXHO7E8ZXZ5D8GngY44AlQ=",
@@ -36,7 +36,7 @@ substituteInPlace libusbsio/libusbsio.py \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["libusbsio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LIBUSBSIO Host Library for USB Enabled MCUs",
         homepage: "https://www.nxp.com/design/design-center/software/development-software/libusbsio-host-library-for-usb-enabled-mcus:LIBUSBSIO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withGlyr) || nix.asBool(withLastfm)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/pragha/package.nix:44:1");
   nix.assert_((!nix.asBool(withLastfm) || nix.asBool(withCD)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/pragha/package.nix:45:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pragha",
       version: "1.3.99.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pragha-music-player",
           repo: "pragha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCD, nix.thunk(() => [libcddb, libcdio, libcdio_paranoia])), nix.concat(nix.app(nix.sel(lib, "optional"), withGudev, libgudev), nix.concat(nix.app(nix.sel(lib, "optional"), withKeybinder, keybinder3), nix.concat(nix.app(nix.sel(lib, "optional"), withLibnotify, libnotify), nix.concat(nix.app(nix.sel(lib, "optional"), withLastfm, liblastfm_vambrose), nix.concat(nix.app(nix.sel(lib, "optional"), withGlyr, glyr), nix.concat(nix.app(nix.sel(lib, "optional"), withMtp, libmtp), nix.concat(nix.app(nix.sel(lib, "optional"), withXfce4ui, libxfce4ui), nix.app(nix.sel(lib, "optional"), withTotemPlParser, totem_pl_parser)))))))))));
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_PARANOIA_NEW_INCLUDES"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")))}/include/gstreamer-1.0`),
       })),
       postInstall: "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n\ninstall -m 444 data/pragha.desktop $out/share/applications\ninstall -d $out/share/pixmaps\ninstallManPage data/pragha.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight GTK+ music manager - fork of Consonance Music Manager",
         mainProgram: "pragha",
         homepage: "https://pragha-music-player.github.io/",

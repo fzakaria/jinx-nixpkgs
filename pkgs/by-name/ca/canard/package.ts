@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "canard",
       version: "0.0.2-unstable-2024-04-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrusme",
           repo: "canard",
           rev: "d3c37d11078574ca16b75475b3d08ffe351bc3c2",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/mrusme/canard/main.VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line TUI client for the journalist RSS aggregator",
         homepage: "https://github.com/mrusme/canard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

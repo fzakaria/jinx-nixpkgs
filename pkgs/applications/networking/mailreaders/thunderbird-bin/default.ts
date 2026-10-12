@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(generated, "version"));
   const sources = nix.thunk(() => nix.attr(generated, "sources"));
   const pname = "thunderbird-bin";
-  const mozillaPlatforms = nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "linux-x86_64", "aarch64-darwin": "mac" }));
+  const mozillaPlatforms = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "linux-x86_64", "aarch64-darwin": "mac" }));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const arch = nix.thunk(() => nix.selOr(mozillaPlatforms, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const sourceMatches = (locale) => (source_1) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.sel(source_1, "locale")), locale)) && nix.asBool(nix.eq(nix.sel(source_1, "arch"), arch)));
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const mozLocale = nix.thunk(() => (nix.asBool(nix.eq(systemLocale, "ca_ES@valencia")) ? "ca-valencia" : nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), systemLocale)));
   const source = nix.thunk(() => nix.app(nix.sel(lib, "findFirst"), nix.thunk(() => nix.app(sourceMatches, mozLocale)), defaultSource, sources));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.attr(source, "url")),
       sha256: nix.thunk(() => nix.attr(source, "sha256")),
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     changelog: nix.thunk(() => nix.str`https://www.thunderbird.net/en-US/thunderbird/${version}/releasenotes/`),
     description: "Mozilla Thunderbird, a full-featured email client (binary package)",
     homepage: "https://www.thunderbird.net/",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
     hydraPlatforms: [],
   }));
   const updateScript = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../browsers/firefox-bin/update.nix")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       writeScript: writeScript,
       xidel: xidel,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const nativeBuildInputs = nix.thunk(() => [wrapGAppsHook3]);
   const passthru = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     applicationName: applicationName,
     updateScript: updateScript,
     gtk3: gtk3,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
     withGSSAPI: true,
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       stdenv: stdenv,
       undmg: undmg,
     }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,

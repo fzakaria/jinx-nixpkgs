@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const jre = jre8;
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "elasticmq-server",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-pA39A/2OLxdBjzxhpGDB2uqQIRkUW9zpfQmoHwOqBCg=",
         })))),
@@ -43,11 +43,11 @@ makeWrapper ${jre}/bin/java $out/bin/elasticmq-server \\
   --add-flags "-jar $out/share/elasticmq-server/elasticmq-server.jar"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           elasticmqTest: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elasticmq-test.nix")), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               runCommand: runCommand,
               python3Packages: python3Packages,
               writeText: writeText,
@@ -56,7 +56,7 @@ makeWrapper ${jre}/bin/java $out/bin/elasticmq-server \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Message queueing system with Java, Scala and Amazon SQS-compatible interfaces",
         homepage: "https://github.com/softwaremill/elasticmq",
         changelog: nix.thunk(() => nix.str`https://github.com/softwaremill/elasticmq/releases/tag/v${nix.sel(finalAttrs, "version")}`),

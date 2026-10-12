@@ -62,32 +62,32 @@ ${nix.sel(pkgs, "yq")}/bin/yq \\
 chown schleuder: /etc/schleuder/schleuder.yml
 `)));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         schleuder: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Schleuder secure remailer")),
-          enablePostfix: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "automatic postfix integration"), { __proto__: pos$1, default: true })),
+          enablePostfix: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "automatic postfix integration"), { [nix.POS]: pos$1, default: true })),
           lists: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "List of list addresses that should be handled by Schleuder.\n\nNote that this is only handled by the postfix integration, and\nthe setup of the lists, their members and their keys has to be\nperformed separately via schleuder's API, using a tool such as\nschleuder-cli.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["widget-team@example.com", "security@example.com"]),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Settings for schleuder.yml.\n\nCheck the [example configuration](https://0xacab.org/schleuder/schleuder/blob/master/etc/schleuder.yml) for possible values.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     keyserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Key server from which to fetch and update keys.\n\nNote that NixOS uses a different default from upstream, since the upstream default sks-keyservers.net is deprecated.\n",
                         default: "keys.openpgp.org",
@@ -97,13 +97,13 @@ chown schleuder: /etc/schleuder/schleuder.yml
               default: nix.thunk(() => ({})),
             })))),
           extraSettingsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "YAML file to merge into the schleuder config at runtime. This can be used for secrets such as API keys.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
             })))),
           listDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Default settings for lists (list-defaults.yml).\n\nCheck the [example configuration](https://0xacab.org/schleuder/schleuder/-/blob/master/etc/list-defaults.yml) for possible values.\n",
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
@@ -112,80 +112,80 @@ chown schleuder: /etc/schleuder/schleuder.yml
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings", "api"), "valid_api_keys"))),
             message: "services.schleuder.settings.api.valid_api_keys is set. Defining API keys via NixOS config results in them being copied to the world-readable Nix store. Please use the extraSettingsFile option to store API keys in a non-public location.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "any"), (db) => nix.has(db, "password"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.selOr(cfg, () => ({}), "settings", "database"))))))),
             message: "A password is defined for at least one database in services.schleuder.settings.database. Defining passwords via NixOS config results in them being copied to the world-readable Nix store. Please use the extraSettingsFile option to store database passwords in a non-public location.\n",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => ({
-            __proto__: pos$15,
-            schleuder: nix.thunk(() => ({ __proto__: pos$14, isSystemUser: true, group: "schleuder" })),
+            [nix.POS]: pos$15,
+            schleuder: nix.thunk(() => ({ [nix.POS]: pos$14, isSystemUser: true, group: "schleuder" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$16, schleuder: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$16, schleuder: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "schleuder-cli"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "schleuder/schleuder.yml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "extraSettingsFile"), null)), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "schleuder.yml", nix.thunk(() => nix.sel(cfg, "settings")))),
               })))),
             "schleuder/list-defaults.yml": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "list-defaults.yml", nix.thunk(() => nix.sel(cfg, "listDefaults")))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enablePostfix")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               extraMasterConf: nix.thunk(() => nix.str`schleuder  unix  -       n       n       -       -       pipe
   flags=DRhu user=schleuder argv=/${nix.sel(pkgs, "schleuder")}/bin/schleuder work \${recipient}
 `),
               transport: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lists"), [])), nix.thunk(() => nix.app(postfixMap, nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(cfg, "lists")), (_) => "schleuder:")))))),
               settings: nix.thunk(() => ({
-                __proto__: pos$23,
-                main: nix.thunk(() => ({ __proto__: pos$22, schleuder_destination_recipient_limit: 1n })),
+                [nix.POS]: pos$23,
+                main: nix.thunk(() => ({ [nix.POS]: pos$22, schleuder_destination_recipient_limit: 1n })),
               })),
               localRecipients: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lists"), [])), nix.thunk(() => nix.sel(cfg, "lists")))),
             })))),
           schleuder: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             settings: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               filters_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/schleuder/filters")),
               keyword_handlers_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/schleuder/keyword_handlers")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => (() => {
             const commonServiceConfig = nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               User: "schleuder",
               StateDirectory: "schleuder",
               StateDirectoryMode: "0700",
             }));
             return {
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               "schleuder-init": nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraSettingsFile"), null)), nix.thunk(() => [nix.thunk(() => nix.str`+${configScript}`)]))),
                   ExecStart: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "schleuder")}/bin/schleuder install`),
@@ -194,23 +194,23 @@ chown schleuder: /etc/schleuder/schleuder.yml
                 })),
               })),
               "schleuder-api-daemon": nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 after: nix.thunk(() => ["local-fs.target", "network.target", "schleuder-init.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: nix.thunk(() => ["schleuder-init.service"]),
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   ExecStart: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "schleuder")}/bin/schleuder-api-daemon`),
                   ]),
                 })),
               })),
               "schleuder-weekly-key-maintenance": nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 after: nix.thunk(() => ["local-fs.target", "network.target"]),
                 startAt: "weekly",
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   ExecStart: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "schleuder")}/bin/schleuder refresh_keys`),
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "schleuder")}/bin/schleuder check_keys`),

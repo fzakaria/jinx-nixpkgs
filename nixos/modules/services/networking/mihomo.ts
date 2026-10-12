@@ -27,29 +27,29 @@ export default nix.lambda((args) => (() => {
   const AmbientCapabilities = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "tunMode")), "CAP_NET_ADMIN"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "processesInfo")), nix.thunk(() => ["CAP_DAC_READ_SEARCH", "CAP_SYS_PTRACE"]))));
   const CapabilityBoundingSet = AmbientCapabilities;
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mihomo: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mihomo, A rule-based proxy in Go")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mihomo", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Configuration file to use.",
             })))),
           webui: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.metacubexd")),
               description: "Local web interface to use.\n\nYou can also use the following website:\n- metacubexd:\n  - <https://d.metacubex.one>\n  - <https://metacubex.github.io/metacubexd>\n  - <https://metacubexd.pages.dev>\n- yacd:\n  - <https://yacd.haishan.me>\n- clash-dashboard:\n  - <https://clash.razord.top>\n",
             })))),
           extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra command line options to use.",
@@ -60,20 +60,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             mihomo: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Mihomo daemon, A rule-based proxy in Go.",
               documentation: nix.thunk(() => ["https://wiki.metacubex.one/"]),
               requires: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                     "-d /var/lib/private/mihomo",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
                 SystemCallFilter: "@system-service bpf",
                 UMask: "0077",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "tunMode")), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   PrivateDevices: false,
                   PrivateUsers: false,
                   RestrictAddressFamilies: "AF_INET AF_INET6 AF_NETLINK",
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Guanran928"))];

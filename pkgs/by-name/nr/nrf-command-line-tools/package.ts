@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const segger_jlink = nix.arg($, "segger-jlink");
   const supported = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "linux-amd64",
       hash: "sha256-zL9tXl2HsO8JZXEGsjg4+lDJJz30StOMH96rU7neDsg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "linux-arm64",
       hash: "sha256-ACy3rXsvBZNVXdVkpP2AqrsoqKPliw6m9UUWrFOCBzs=",
     })),
     "armv7l-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "linux-armhf",
       hash: "sha256-nD1pHL/SQqC7OlxuovWwvtnXKMmhfx5qFaF4ti8gh8g=",
     })),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
     return nix.str`https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-${nix.app(nix.sel(lib, "versions", "major"), version)}-x-x/${versionWithDashes}/nrf-command-line-tools-${version}_${nix.sel(platform, "name")}.tar.gz`;
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nrf-command-line-tools",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: url,
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nrm -rf ./python\nmkdir -p $out\ncp -r * $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Nordic Semiconductor nRF Command Line Tools",
         homepage: "https://www.nordicsemi.com/Products/Development-tools/nRF-Command-Line-Tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

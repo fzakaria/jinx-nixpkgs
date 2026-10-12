@@ -30,65 +30,65 @@ export default nix.lambda((args) => (() => {
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     port: 9131n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       noExit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Do not exit server on Varnish scrape errors.\n",
         })))),
       withGoMetrics: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Export go runtime and http handler metrics.\n",
         })))),
       verbose: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Enable verbose logging.\n",
         })))),
       raw: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Enable raw stdout logging without timestamps.\n",
         })))),
       varnishStatPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "varnishstat",
           description: "Path to varnishstat.\n",
         })))),
       instance: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: nix.thunk(() => nix.sel(config, "services", "varnish", "stateDir")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.varnish.stateDir")),
           description: "varnishstat -n value.\n",
         })))),
       healthPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           description: "Path under which to expose healthcheck. Disabled unless configured.\n",
         })))),
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "varnish", "package"))]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         RestartSec: nix.thunk(() => nix.app(mkDefault, 1n)),
         DynamicUser: false,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-varnish-exporter")}/bin/prometheus_varnish_exporter \\

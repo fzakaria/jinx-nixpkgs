@@ -26,30 +26,30 @@ export default nix.lambda((args) => (() => {
   const rapidjson = nix.arg($, "rapidjson");
   const pandoc = nix.arg($, "pandoc");
   const js = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     vue: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js",
         sha256: "1hm5kci2g6n5ikrvp1kpkkdzimjgylv1xicg2vnkbvd9rb56qa99",
       })))),
     ansi_up: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://raw.githubusercontent.com/drudru/ansi_up/v5.2.1/ansi_up.js",
         hash: "sha256-n+tjM7z62ovMht6Zud3jfyQvgrO6cL9zdyEBakKuuRs=",
       })))),
     Chart: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js",
         hash: "sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "laminar",
       version: "1.4",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ohwgiles",
           repo: "laminar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +68,7 @@ cp  ${nix.sel(js, "Chart")}       js/Chart.min.js
 `),
       postInstall: "mv $out/usr/share/* $out/share/\nrmdir $out/usr/share $out/usr\n\nmkdir -p $out/share/doc/laminar\npandoc -s ../UserManual.md -o $out/share/doc/laminar/UserManual.html\nrm -rf $out/lib # remove upstream systemd units\nrm -rf $out/etc # remove upstream config file\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lightweight and modular continuous integration service",
         homepage: "https://laminar.ohwg.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

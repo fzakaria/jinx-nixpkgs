@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "reaction",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "framagit.org",
           owner: "ppom",
           repo: "reaction",
@@ -52,18 +52,18 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({}))));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mkReactionPlugin: nix.thunk(() => nix.attr(from, "mkReactionPlugin")),
         plugins: nix.thunk(() => nix.attr(from, "plugins")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           reaction: nix.thunk(() => nix.attr(nixosTests, "reaction")),
         }, nix.sel(finalAttrs, "passthru", "plugins"))),
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://framagit.org/ppom/reaction/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Scan logs and take action: an alternative to fail2ban",
         homepage: "https://framagit.org/ppom/reaction",

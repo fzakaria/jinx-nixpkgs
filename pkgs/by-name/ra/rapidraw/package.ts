@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rapidraw",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CyberTimon",
           repo: "RapidRAW",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-DaBEONa4mTxWNErPXfgtsr7l/uUncYqfrXCx3SNlooc=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-MbecY5iU1Swc1gCPsIaiiOJ2/BZx7j5+qSW9tH5tyKs=",
         })))),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export PATH=\"$PWD/node_modules/.bin:$PATH\"\n\n# Configure Tauri to use lowercase binary name\nsubstituteInPlace src-tauri/tauri.conf.json \\\n  --replace-fail '  \"identifier\": \"io.github.CyberTimon.RapidRAW\",' '  \"identifier\": \"io.github.CyberTimon.RapidRAW\", \"mainBinaryName\": \"rapidraw\",'\n\n# Disable downloading of ONNX runtime library this is correctly linked during postInstall\nsubstituteInPlace src-tauri/build.rs \\\n  --replace-fail 'if !is_valid' 'if false'\n",
       tauriBuildFlags: nix.thunk(() => ["--features", "tethering"]),
       dontWrapGApps: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, ORT_STRATEGY: "system" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ORT_STRATEGY: "system" })),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`# Patch the .desktop file to set the Categories field
 sed -i '/^Categories=/c\\Categories=Graphics;Photography' "$out/share/applications/RapidRAW.desktop"
 
@@ -132,11 +132,11 @@ ln -sf ${onnxruntime}/lib/libonnxruntime.dylib "$out/Applications/RapidRAW.app/C
   --set ORT_STRATEGY "system"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "wrapGApp \"$out/Applications/RapidRAW.app/Contents/MacOS/rapidraw\" \\\n  --set ORT_STRATEGY \"system\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Blazingly-fast, non-destructive, and GPU-accelerated RAW image editor built with performance in mind",
         homepage: "https://github.com/CyberTimon/RapidRAW",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "guile-reader",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/guile-reader/guile-reader-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OMK0ROrbuMDKt42QpE7D6/9CvUEMW4SpEBjO5+tk0rs=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gperf, guile, guile_lib, libffi]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GUILE_SITE: nix.thunk(() => nix.str`${guile_lib}/${nix.sel(guile, "siteDir")}`),
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-guilemoduledir=$(out)/${nix.sel(guile, "siteDir")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.nongnu.org/guile-reader/",
         description: "Simple framework for building readers for GNU Guile",
         longDescription: "Guile-Reader is a simple framework for building readers for GNU Guile.\n\nThe idea is to make it easy to build procedures that extend Guile's read\nprocedure. Readers supporting various syntax variants can easily be\nwritten, possibly by re-using existing \"token readers\" of a standard\nScheme readers. For example, it is used to implement Skribilo's\nR5RS-derived document syntax.\n",

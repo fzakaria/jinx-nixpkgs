@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.08.01";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyDMD",
           repo: "PyDMD",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pydmd"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_mock, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Dynamic Mode Decomposition",
         homepage: "https://pydmd.github.io/PyDMD/",
         changelog: nix.thunk(() => nix.str`https://github.com/PyDMD/PyDMD/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

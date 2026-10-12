@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logboth",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zehkira",
           repo: "logboth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preInstallCheck\n\npython3 source/tests/tests.py\n\nrunHook postInstallCheck\n",
       pythonImportsCheck: nix.thunk(() => ["logboth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily write logs to standard output and a file at the same time",
         homepage: "https://gitlab.com/zehkira/logboth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

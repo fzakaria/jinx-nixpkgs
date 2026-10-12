@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const vcdimager = nix.arg($, "vcdimager");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xine-lib",
       version: "1.2.13-unstable-2025-11-03",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://hg.code.sf.net/p/xine/xine-lib-1.2",
           rev: "405a16a848927ed9861d6ac177c7e9624ecf58d1",
           hash: "sha256-Q+PcpVMgV2b+htEhTlUK63ZpuJ9Vz+dlmBhNiO8PC2A=",
@@ -82,11 +82,11 @@ export default nix.lambda((args) => (() => {
         vcdimager,
         zlib,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lxcb-shm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lxcb-shm" })),
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://xine.sourceforge.net/",
         description: "High-performance, portable and reusable multimedia playback engine",
         license: nix.thunk(() => (() => {

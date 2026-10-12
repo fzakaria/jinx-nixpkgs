@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const website_path = nix.argOr($_1, "website-path", () => nix.force(name));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(cleanArgs, args_2), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.str`astal-${name}`),
         version: nix.thunk(() => nix.attr(source, "version")),
         __structuredAttrs: true,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         ])),
         buildInputs: nix.thunk(() => nix.concat([glib], buildInputs)),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: nix.thunk(() => nix.str`https://aylur.github.io/astal/guide/libraries/${website_path}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
           platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),

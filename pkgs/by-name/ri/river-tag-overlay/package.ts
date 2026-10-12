@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "river-tag-overlay",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~leon_plickat",
           repo: "river-tag-overlay",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.sr.ht/~leon_plickat/river-tag-overlay/commit/791eaadf46482121a4c811ffba13d03168d74d8f.patch",
             sha256: "CxSDcweHGup1EF3oD/2vhP6RFoeYorj0BwmlgA3tbPE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.sr.ht/~leon_plickat/river-tag-overlay/commit/b7d9232f9106c6d2c3ecce802495f14069ce3406.patch",
             hash: "sha256-/fNpVPY09zwwymS/VNaonqX7jtdflC3Iot5R26VsTTw=",
           })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "PREFIX=",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pop-up showing tag status",
         homepage: "https://sr.ht/~leon_plickat/river-tag-overlay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

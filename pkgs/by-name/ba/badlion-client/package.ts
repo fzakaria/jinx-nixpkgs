@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const pname = "badlion-client";
       const version = "4.5.4";
       const src = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "badlion-client-linux",
               url: "https://web.archive.org/web/20250416011033/https://client-updates.badlion.net/BadlionClient",
               hash: "sha256-M2aG3vb1EBpvx8ODs67Ua1R7lBXSe2oIcSwFzSz91n4=",
@@ -38,7 +38,7 @@ wrapProgram $out/bin/badlion-client \\
 `);
       const extraPkgs = (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libxshmfence"))];
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Most Complete All-In-One Mod Library for Minecraft with 100+ Mods, FPS Improvements, and more",
         homepage: "https://client.badlion.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -47,7 +47,7 @@ wrapProgram $out/bin/badlion-client \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

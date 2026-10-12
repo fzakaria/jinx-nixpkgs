@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const gnome_session_ctl = nix.arg($, "gnome-session-ctl");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-session",
       version: "50.1",
       outputs: nix.thunk(() => ["out", "sessions"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-session/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-session-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Yom2r6RNPkyZnOV2H/iywQujCfVflCXysT+YIIyB9vs=",
         })))),
@@ -81,12 +81,12 @@ find data/ -type f -name "*.service.in" -exec sed -i \\
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-session" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-session" })))),
         providedSessions: nix.thunk(() => ["gnome"]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNOME session manager",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-session",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-session/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

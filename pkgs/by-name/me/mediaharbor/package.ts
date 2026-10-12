@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mediaharbor",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MediaHarbor",
           repo: "mediaharbor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-XGND7sT099xg9lObtYiv4MTLsgZxoiUC1r9V7crxrt8=",
         })))),
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: true })),
       cargoHash: "sha256-GoyY4dSeDO3ue0c/5QdRGFFHegJID4DWGGbcuCAZeOc=",
       cargoBuildFlags: nix.thunk(() => ["-p", "mediaharbor"]),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           hash: "sha256-66Z42cZQ/bW5Dn0Wfz6MWbIgrI9NF3XsNj4j5KhIzBY=",
         })))),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       dontUseCargoInstall: true,
       installPhase: "mkdir -p $out/bin $out/share\ninstall -Dm755 target/x86_64-unknown-linux-gnu/release/mediaharbor $out/bin/\ncp -r target/x86_64-unknown-linux-gnu/release/bundle/deb/MediaHarbor_*/data/usr/share/* $out/share/ || true\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform Media Ripping and Browsing GUI",
         homepage: "https://mediaharbor.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

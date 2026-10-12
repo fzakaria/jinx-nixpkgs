@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const svgcleaner = nix.arg($, "svgcleaner");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libkmahjongg",
       extraNativeBuildInputs: nix.thunk(() => [_7zz, svgcleaner]),
       extraBuildInputs: nix.thunk(() => [qtsvg]),

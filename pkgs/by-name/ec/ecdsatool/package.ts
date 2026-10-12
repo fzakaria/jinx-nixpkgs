@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.0.1",
       pname: "ecdsatool",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaniini",
           repo: "ecdsatool",
           rev: "7c0b2c51e2e64d1986ab1dc2c57c2d895cc00ed1",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "libuecc"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create and manipulate ECC NISTP256 keypairs",
         mainProgram: "ecdsatool",
         homepage: "https://github.com/kaniini/ecdsatool/",

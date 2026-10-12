@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "calva",
         publisher: "betterthantomorrow",
         version: "2.0.599",
@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration[0].properties."calva.clojureLspPath".default = "${clojure_lsp}/bin/clojure-lsp"' package.json | sponge package.json
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => [
               "--override-filename",
               "pkgs/applications/editors/vscode/extensions/betterthantomorrow.calva/default.nix",
             ]),
           })))),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -44,25 +44,25 @@ export default nix.lambda((args) => (() => {
   const withWebKit = nix.argOr($, "withWebKit", () => true);
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const catch$ = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "wxWidgets",
       repo: "Catch",
       rev: "5f5e4cecd1cafc85e109471356dec29e778d2160",
       hash: "sha256-fB/E17tiAicAkq88Je/YFYohJ6EHJOO54oQaqiR/OzY=",
     }))));
   const nanosvg = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "wxWidgets",
       repo: "nanosvg",
       rev: "ccdb1995134d340a93fb20e3a3d323ccb3838dd0",
       hash: "sha256-ymziU0NgGqxPOKHwGm0QyEdK/8jL/QYk5UdIQ3Tn8jw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wxwidgets",
       version: "3.2.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "wxWidgets",
           repo: "wxWidgets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
           "--with-urlsession",
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["--with-libcurl"])), nix.app(nix.sel(lib, "optionals"), withWebKit, nix.thunk(() => ["--enable-webview", "--enable-webviewwebkit"])))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           SEARCH_LIB: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`${nix.sel(libGLU, "out")}/lib`),
               nix.thunk(() => nix.str`${nix.sel(libGL, "out")}/lib`),
@@ -118,9 +118,9 @@ cp -r ${nanosvg}/* 3rdparty/nanosvg/
 `),
       postInstall: "\n    pushd $out/include\n    ln -s wx-*/* .\n    popd\n  ",
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, compat28: compat28, compat30: compat30, unicode: unicode })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, compat28: compat28, compat30: compat30, unicode: unicode })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.wxwidgets.org/",
         description: "Cross-Platform C++ GUI Library",
         longDescription: "wxWidgets gives you a single, easy-to-use API for writing GUI applications\non multiple platforms that still utilize the native platform's controls\nand utilities. Link with the appropriate library for your platform and\ncompiler, and your application will adopt the look and feel appropriate to\nthat platform. On top of great GUI functionality, wxWidgets gives you:\nonline help, network programming, streams, clipboard and drag and drop,\nmultithreading, image loading and saving in a variety of popular formats,\ndatabase support, HTML viewing and printing, and much more.\n",

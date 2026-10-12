@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const trivy = nix.arg($, "trivy");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lazytrivy",
       version: "1.4.1",
-      env: nix.thunk(() => ({ __proto__: pos$1, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, GOEXPERIMENT: "jsonv2" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "owenrumney",
           repo: "lazytrivy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [trivy]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "TUI to do vulnerability scanning using trivy",
         homepage: "https://github.com/owenrumney/lazytrivy",
         changelog: nix.thunk(() => nix.str`https://github.com/owenrumney/lazytrivy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

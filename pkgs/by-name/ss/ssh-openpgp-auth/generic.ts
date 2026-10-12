@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const cargoHash = nix.arg($, "cargoHash");
   const metaDescription = nix.arg($, "metaDescription");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wiktor",
           repo: "ssh-openpgp-auth",
           rev: nix.thunk(() => nix.str`${pname}/${version}`),
@@ -60,7 +60,7 @@ installShellCompletion --cmd ${pname} \\
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [openssh]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: metaDescription,
         homepage: "https://codeberg.org/wiktor/ssh-openpgp-auth",
         license: nix.thunk(() => (() => {

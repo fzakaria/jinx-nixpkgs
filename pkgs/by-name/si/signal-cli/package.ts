@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update = nix.arg($, "nix-update");
   const gradle = gradle_9;
-  const libsignal_jni = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsignal-jni.nix"), nix.thunk(() => ({ __proto__: pos$1, jdk: openjdk25_headless }))));
+  const libsignal_jni = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsignal-jni.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: openjdk25_headless }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "signal-cli",
       version: "0.14.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AsamK",
           repo: "signal-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libmatthew_java, dbus, dbus_java]))),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pkg: signal_cli, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pkg: signal_cli, data: nix.path(here, "./deps.json") })))),
       __darwinAllowLocalNetworking: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$4, JAVA_TOOL_OPTIONS: "-Djava.net.preferIPv4Stack=true" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$4, JAVA_TOOL_OPTIONS: "-Djava.net.preferIPv4Stack=true" })))),
       gradleFlags: nix.thunk(() => [
         "-Dfile.encoding=utf-8",
         nix.thunk(() => nix.str`-Dorg.gradle.java.home=${openjdk25_headless}`),
@@ -76,9 +76,9 @@ cp ${libsignal_jni}/lib/* $out/lib/
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "signal-cli-update",
               runtimeInputs: nix.thunk(() => [curl, nix_update]),
               text: "nix-update signal-cli\nnix-update signal-cli.passthru.libsignal-jni --version \"$(curl --silent --location https://github.com/AsamK/signal-cli/raw/v\"$(nix-instantiate --raw --eval -A signal-cli.version)\"/libsignal-version)\"\n",
@@ -86,7 +86,7 @@ cp ${libsignal_jni}/lib/* $out/lib/
         "libsignal-jni": libsignal_jni,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/AsamK/signal-cli",
         description: "Command-line and dbus interface for communicating with the Signal messaging service",
         mainProgram: "signal-cli",

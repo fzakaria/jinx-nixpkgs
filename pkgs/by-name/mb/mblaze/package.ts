@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mblaze",
       version: "1.4",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper]),
       buildInputs: nix.thunk(() => [libiconv, ruby]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leahneukirchen",
           repo: "mblaze",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ for x in mcom mbnc mfwd mrep; do
 done
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/leahneukirchen/mblaze",
         description: "Unix utilities for processing and interacting with mail messages which are stored in maildir folders",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

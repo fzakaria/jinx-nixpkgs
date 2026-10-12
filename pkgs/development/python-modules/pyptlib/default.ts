@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(isPy3k)));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "01y6vbwncqb0hxlnin6whd9wrrm5my4qzjhk76fnix78v7ip515r",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pypi.org/project/pyptlib/",
         description: "Python implementation of the Pluggable Transports for Circumvention specification for Tor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
-      return { __proto__: pos$3, pname, version, format, disabled, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, disabled, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

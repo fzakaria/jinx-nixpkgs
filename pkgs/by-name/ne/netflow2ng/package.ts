@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zeromq = nix.arg($, "zeromq");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netflow2ng",
       version: "0.2.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "synfinatic",
           repo: "netflow2ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv $out/bin/cmd $out/bin/${nix.sel(finalAttrs, "pname")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetFlow v9 collector for ntopng",
         homepage: "https://github.com/synfinatic/netflow2ng",
         changelog: nix.thunk(() => nix.str`https://github.com/synfinatic/netflow2ng/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "tsm-client",
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           programs: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             tsmClient: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "tsm-client-withGui")),
               defaultServername: "testserver",
               servers: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 testserver: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   tcpserveraddress: "192.0.0.8",
                   nodename: "SOME-NODE",
                   passworddir: "/tmp",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.succeed(\"which dsmj\")  # fail early if this is missing\nmachine.wait_for_x()\nmachine.execute(\"DSM_LOG=/tmp dsmj -optfile=/dev/null >&2 &\")\n\n# does it report the \"TCP/IP connection failure\" error code?\nmachine.wait_for_window(\"IBM Storage Protect\")\nmachine.wait_for_text(\"ANS2610S\")\nmachine.send_key(\"esc\")\n\n# it asks to continue to restore a local backupset now;\n# \"yes\" (return) leads to the main application window\nmachine.wait_for_text(\"backupset\")\nmachine.send_key(\"ret\")\n\n# main window: navigate to \"Connection Information\"\nmachine.wait_for_text(\"Welcome\")\nmachine.send_key(\"alt-f\")  # \"File\" menu\nmachine.send_key(\"c\")  # \"Connection Information\"\n\n# \"Connection Information\" dialog box\nmachine.wait_for_window(\"Connection Information\")\nmachine.wait_for_text(\"SOME-NODE\")\n\nmachine.shutdown()\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

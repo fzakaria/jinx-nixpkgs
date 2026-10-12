@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sloth-app",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sveinbjornt/Sloth/releases/download/${nix.sel(finalAttrs, "version")}/sloth-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-K8DweBFAILEQyqri6NO+p5qRam+BHjIk1tl43gcseNs=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip, makeBinaryWrapper]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\nunzip -d $out/Applications $src\nmakeWrapper $out/Applications/Sloth.app/Contents/MacOS/Sloth $out/bin/Sloth\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mac app that shows all open files, directories, sockets, pipes and devices",
         homepage: "https://sveinbjorn.org/sloth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

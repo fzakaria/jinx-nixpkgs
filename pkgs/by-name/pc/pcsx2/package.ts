@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const plutosvg = nix.arg($, "plutosvg");
   const kddockwidgets = nix.arg($, "kddockwidgets");
   const pcsx2_patches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "PCSX2",
       repo: "pcsx2_patches",
       rev: "57e7089511430020ad9a8b22c6d27a593057d50a",
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.thunk(() => nix.attr(qt6, "qtwayland"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6, "wrapQtAppsHook"));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pcsx2",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "pcsx2-source",
           owner: "PCSX2",
           repo: "pcsx2",
@@ -126,12 +126,12 @@ strip-nondeterminism $out/share/PCSX2/resources/patches.zip
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pcsx2_patches: pcsx2_patches,
-        updateScript: nix.thunk(() => ({ __proto__: pos$3, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
+        updateScript: nix.thunk(() => ({ [nix.POS]: pos$3, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pcsx2.net",
         description: "Playstation 2 emulator",
         longDescription: "PCSX2 is an open-source PlayStation 2 (AKA PS2) emulator. Its purpose is\nto emulate the PS2 hardware, using a combination of MIPS CPU Interpreters,\nRecompilers and a Virtual Machine which manages hardware states and PS2\nsystem memory. This allows you to play PS2 games on your PC, with many\nadditional features and benefits.\n",

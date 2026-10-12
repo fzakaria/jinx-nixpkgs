@@ -46,16 +46,16 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(from_3, "optionalString"));
   const versionAtLeast = nix.thunk(() => nix.attr(from_3, "versionAtLeast"));
   const cmake$ = nix.thunk(() => nix.app(nix.sel(cmake, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       patches: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "find-cuda-toolkit-check-for-language-enablement.patch",
             url: "https://gitlab.kitware.com/cmake/cmake/-/commit/c5d81a246852e1ad81a3d55fcaff7e6feb779db7.patch",
             hash: "sha256-oGxzbp+x88+79V+Cyx0l7+nMxX+n3ixzAFKPK26NMI8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-arch-supported-by-cuda-12_8.patch",
             url: "https://gitlab.kitware.com/cmake/cmake/-/commit/a745b6869ee3681e39544d96d936c95c196c7398.patch",
             hash: "sha256-B6ny6AZFIcyFhsEnzNk7+vJTb36HeguM53sk/LCnjS4=",
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   const isBroken = (_) => (prevAttrs) => ({
-    __proto__: pos$5,
-    meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), { __proto__: pos$4, broken: true })),
+    [nix.POS]: pos$5,
+    meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), { [nix.POS]: pos$4, broken: true })),
   });
   const cmakeSrc = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "cmake-unpacked",
       src: nix.thunk(() => nix.attr(cmake, "src")),
       version: nix.thunk(() => nix.attr(cmake, "version")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const mkTest = nix.thunk(() => (() => {
     const generic = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         __structuredAttrs: true,
         strictDeps: true,
         testSuiteName: nix.thunk(() => nix.builtins.throw("testSuiteName must be set")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [cmake$, cuda_nvcc]),
         requireCxxStandard14: nix.thunk(() => (nix.asBool(nix.sel(cc, "isGNU")) && nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(cc, "version")), "14")))),
         cmakeListsReplacements: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.sel(finalAttrs, "requireCxxStandard14")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             cuda_std_11: "cuda_std_14",
             cxx_std_11: "cxx_std_14",
             "set(CMAKE_CUDA_STANDARD 11)": "set(CMAKE_CUDA_STANDARD 14)",
@@ -108,19 +108,19 @@ export default nix.lambda((args) => (() => {
         installPhase: "runHook preInstall\ntouch \"$out\"\nrunHook postInstall\n",
         dontFixup: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Generic builder for running CMake tests",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "cuda", "members")),
           platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
         })),
       })));
-    return (testSuiteName) => (testName) => (overrideAttrsArg) => nix.app(nix.sel(generic, "overrideAttrs"), nix.thunk(() => nix.app(composeExtensions, nix.thunk(() => nix.app(toExtension, nix.thunk(() => ({ __proto__: pos$10, testSuiteName: testSuiteName, testName: testName })))), nix.thunk(() => nix.app(toExtension, overrideAttrsArg)))));
+    return (testSuiteName) => (testName) => (overrideAttrsArg) => nix.app(nix.sel(generic, "overrideAttrs"), nix.thunk(() => nix.app(composeExtensions, nix.thunk(() => nix.app(toExtension, nix.thunk(() => ({ [nix.POS]: pos$10, testSuiteName: testSuiteName, testName: testName })))), nix.thunk(() => nix.app(toExtension, overrideAttrsArg)))));
   })());
   return nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(mapAttrs, (testSuiteName) => (testSuite) => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(mkTest, testSuiteName)), testSuite))), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         Cuda: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           Complex: nix.thunk(() => ({})),
           CXXStandardSetTwice: nix.thunk(() => ({})),
           IncludePathNoToolkit: nix.thunk(() => ({})),
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
           WithC: nix.thunk(() => ({})),
         })),
         CudaOnly: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           Architecture: nix.thunk(() => ({})),
           ArchSpecial: isBroken,
           CircularLinkLine: nix.thunk(() => ({})),

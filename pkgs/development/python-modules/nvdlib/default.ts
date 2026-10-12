@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvdlib",
       version: "0.8.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vehemont",
           repo: "nvdlib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, responses]),
       pythonImportsCheck: nix.thunk(() => ["nvdlib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with the National Vulnerability CVE/CPE API",
         homepage: "https://github.com/Vehemont/nvdlib/",
         changelog: nix.thunk(() => nix.str`https://github.com/vehemont/nvdlib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

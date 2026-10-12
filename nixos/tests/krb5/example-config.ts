@@ -28,12 +28,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       name: "krb5-with-example-config",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "eqyiel")),
             nix.thunk(() => nix.lookup(w, "dblsaiko")),
@@ -41,45 +41,45 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             security: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               krb5: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "krb5")),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   includedir: nix.thunk(() => ["/etc/krb5.conf.d"]),
                   include: nix.thunk(() => ["/etc/krb5-extra.conf"]),
-                  libdefaults: nix.thunk(() => ({ __proto__: pos$2, default_realm: "ATHENA.MIT.EDU" })),
+                  libdefaults: nix.thunk(() => ({ [nix.POS]: pos$2, default_realm: "ATHENA.MIT.EDU" })),
                   realms: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     "ATHENA.MIT.EDU": nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       admin_server: "athena.mit.edu",
                       kdc: nix.thunk(() => ["athena01.mit.edu", "athena02.mit.edu"]),
                     })),
                   })),
                   domain_realm: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     "example.com": "EXAMPLE.COM",
                     ".example.com": "EXAMPLE.COM",
                   })),
                   capaths: nix.thunk(() => ({
-                    __proto__: pos$8,
-                    "ATHENA.MIT.EDU": nix.thunk(() => ({ __proto__: pos$6, "EXAMPLE.COM": "." })),
-                    "EXAMPLE.COM": nix.thunk(() => ({ __proto__: pos$7, "ATHENA.MIT.EDU": "." })),
+                    [nix.POS]: pos$8,
+                    "ATHENA.MIT.EDU": nix.thunk(() => ({ [nix.POS]: pos$6, "EXAMPLE.COM": "." })),
+                    "EXAMPLE.COM": nix.thunk(() => ({ [nix.POS]: pos$7, "ATHENA.MIT.EDU": "." })),
                   })),
                   appdefaults: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     pam: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       debug: false,
                       ticket_lifetime: 36000n,
                       renew_lifetime: 36000n,
@@ -89,11 +89,11 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
                     })),
                   })),
                   plugins: nix.thunk(() => ({
-                    __proto__: pos$12,
-                    ccselect: nix.thunk(() => ({ __proto__: pos$11, disable: "k5identity" })),
+                    [nix.POS]: pos$12,
+                    ccselect: nix.thunk(() => ({ [nix.POS]: pos$11, disable: "k5identity" })),
                   })),
                   logging: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     kdc: "SYSLOG:NOTICE",
                     admin_server: "SYSLOG:NOTICE",
                     default: "SYSLOG:NOTICE",

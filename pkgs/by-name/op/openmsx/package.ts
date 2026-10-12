@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openmsx",
       version: "20_0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openMSX",
           repo: "openMSX",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_view_operator.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_view_operator.patch?h=openmsx&id=aa63ce478c7f528d60b79bcf4c9427101caa3b94",
             hash: "sha256-3wmUJQrM5P3zfFJt+HF32AchNSqCgFTnQ508Bztg4uA=",
@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./custom-nix.mk")} build/custom.mk
 `),
       dontAddPrefix: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, TCL_CONFIG: nix.thunk(() => nix.str`${tcl}/lib/`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, TCL_CONFIG: nix.thunk(() => nix.str`${tcl}/lib/`) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://openmsx.org",
         description: "MSX emulator that aims for perfection",
         longDescription: "OpenMSX is an emulator for the MSX home computer system. Its goal is\nto emulate all aspects of the MSX with 100% accuracy.\n",

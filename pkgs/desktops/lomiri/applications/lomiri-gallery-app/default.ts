@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lomiri-gallery-app",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/apps/lomiri-gallery-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,11 +75,11 @@ export XDG_RUNTIME_DIR=$TMP
       })()),
       postInstall: "# Link splash to splash dir\nmkdir -p $out/share/lomiri-app-launch/splash\nln -s $out/share/{lomiri-gallery-app/lomiri-gallery-app-splash.svg,lomiri-app-launch/splash/lomiri-gallery-app.svg}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "lomiri-gallery-app"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           basic: nix.thunk(() => nix.attr(from, "basic")),
           "format-mp4": nix.thunk(() => nix.attr(from, "format-mp4")),
           "format-gif": nix.thunk(() => nix.attr(from, "format-gif")),
@@ -88,10 +88,10 @@ export XDG_RUNTIME_DIR=$TMP
           "format-png": nix.thunk(() => nix.attr(from, "format-png")),
         };
         })()),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Photo gallery application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-gallery-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-gallery-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

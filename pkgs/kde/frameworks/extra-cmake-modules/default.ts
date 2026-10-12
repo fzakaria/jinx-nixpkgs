@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "extra-cmake-modules",
       outputs: nix.thunk(() => ["out"]),
       patches: nix.thunk(() => [nix.path(here, "./search-qml.patch")]),
       propagatedNativeBuildInputs: nix.thunk(() => [python3]),
       setupHook: nix.path(here, "./ecm-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

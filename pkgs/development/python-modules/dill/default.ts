@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const apache_beam = nix.arg($, "apache-beam");
   const datasets = nix.arg($, "datasets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dill",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uqfoundation",
           repo: "dill",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,12 +36,12 @@ ${nix.sel(python, "interpreter")} dill/tests/__main__.py
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "apache-beam": apache_beam, datasets: datasets })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "apache-beam": apache_beam, datasets: datasets })),
       })),
       pythonImportsCheck: nix.thunk(() => ["dill"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Serialize all of python (almost)",
         homepage: "https://github.com/uqfoundation/dill/",
         changelog: nix.thunk(() => nix.str`https://github.com/uqfoundation/dill/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

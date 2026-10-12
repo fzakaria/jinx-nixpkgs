@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neatvnc",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "any1",
           repo: "neatvnc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VNC server library",
         longDescription: "This is a liberally licensed VNC server library that's intended to be\nfast and neat. Goals:\n- Speed\n- Clean interface\n- Interoperability with the Freedesktop.org ecosystem\n",
         homepage: "https://github.com/any1/neatvnc",

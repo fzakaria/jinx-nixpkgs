@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       return (f) => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3Packages, "nltk"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           meta: nix.thunk(() => nix.attr(from, "meta")),
           name: "nltk-data-dir",
           paths: nix.thunk(() => nix.app(f, nltkDataPkgs)),

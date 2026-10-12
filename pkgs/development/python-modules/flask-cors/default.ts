@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const aiobotocore = nix.arg($, "aiobotocore");
   const moto = nix.arg($, "moto");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flask-cors",
       version: "6.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corydolphin",
           repo: "flask-cors",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flask_cors"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, aiobotocore: aiobotocore, moto: moto })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, aiobotocore: aiobotocore, moto: moto })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Flask extension adding a decorator for CORS support",
         homepage: "https://github.com/corydolphin/flask-cors",
         changelog: nix.thunk(() => nix.str`https://github.com/corydolphin/flask-cors/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const ip6 = nix.arg($, "ip6");
   const extraConfig = nix.arg($, "extraConfig");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           kernel: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "net.ipv6.conf.all.forwarding": "1",
               "net.ipv6.conf.default.forwarding": "1",
               "net.ipv4.ip_forward": "1",
@@ -39,19 +39,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             eth1: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$5,
-                addresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, address: ip4, prefixLength: 24n }))]),
+                [nix.POS]: pos$5,
+                addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, address: ip4, prefixLength: 24n }))]),
               })),
               ipv6: nix.thunk(() => ({
-                __proto__: pos$7,
-                addresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, address: ip6, prefixLength: 64n }))]),
+                [nix.POS]: pos$7,
+                addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, address: ip6, prefixLength: 64n }))]),
               })),
             })),
           })),

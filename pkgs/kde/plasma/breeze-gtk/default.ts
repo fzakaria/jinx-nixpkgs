@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "breeze-gtk",
       patches: nix.thunk(() => [nix.path(here, "./0001-fix-add-executable-bit.patch")]),
       extraNativeBuildInputs: nix.thunk(() => [sass, python3, nix.thunk(() => nix.sel(python3Packages, "pycairo"))]),

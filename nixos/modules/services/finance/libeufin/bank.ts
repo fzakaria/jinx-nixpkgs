@@ -32,58 +32,58 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), "bank")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         libeufin: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           bank: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             initialAccounts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                 description: "Accounts to enable before the bank service starts.\n\nThis is mainly needed for the nexus currency conversion\nsince the exchange's bank account is expected to be already\nregistered.\n\nDon't forget to change the account passwords afterwards.\n",
                 default: [],
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Configuration options for the libeufin bank system config file.\n\nFor a list of all possible options, please see the man page [`libeufin-bank.conf(5)`](https://docs.taler.net/manpages/libeufin-bank.conf.5.html)\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(options, "services", "libeufin", "settings", "type", "nestedTypes"));
                     return {
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     freeformType: nix.thunk(() => nix.attr(from, "freeformType")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       "libeufin-bank": nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         CURRENCY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The currency under which the libeufin-bank should operate.\n\nThis defaults to the GNU taler module's currency for convenience\nbut if you run libeufin-bank separately from taler, you must set\nthis yourself.\n",
                           })))),
                         PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 8082n,
                             description: "The port on which libeufin-bank should listen.\n",
                           })))),
                         SUGGESTED_WITHDRAWAL_EXCHANGE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "https://exchange.demo.taler.net/",
                             description: "Exchange that is suggested to wallets when withdrawing.\n\nNote that, in order for withdrawals to work, your libeufin-bank\nmust be able to communicate with and send money etc. to the bank\nat which the exchange used for withdrawals has its bank account.\n\nIf you also have your own bank and taler exchange network, you\nprobably want to set one of your exchange's url here instead of\nthe demo exchange.\n\nThis setting must always be set in order for the Android app to\nnot crash during the withdrawal process but the exchange to be\nused can always be changed in the app.\n",
                           })))),
                       })),
                       "libeufin-bankdb-postgres": nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The database connection string for the libeufin-bank database.\n",
                           })))),
@@ -97,21 +97,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         libeufin: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           bank: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "libeufin-bank": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 CURRENCY: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "taler", "enable")) && nix.asBool(nix.has(nix.sel(config, "services", "taler", "settings", "taler"), "CURRENCY")))), nix.thunk(() => nix.sel(config, "services", "taler", "settings", "taler", "CURRENCY")))),
               })),
               "libeufin-bankdb-postgres": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "libeufin", "bank", "createLocalDatabase")), "postgresql:///libeufin-bank")),
               })),
             })),

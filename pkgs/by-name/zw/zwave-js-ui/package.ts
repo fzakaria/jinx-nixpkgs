@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zwave-js-ui";
       const version = "11.24.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zwave-js",
           repo: "zwave-js-ui",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-vFRRZxzKWoqNvrvXD1LKGs5oBqsF12yB4YoxdjPZQoI=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "zwave-js-ui": nix.thunk(() => nix.sel(nixosTests, "zwave-js-ui")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full featured Z-Wave Control Panel and MQTT Gateway",
         homepage: "https://zwave-js.github.io/zwave-js-ui/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "cdombroski"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

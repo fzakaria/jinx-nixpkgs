@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const cocoapods = nix.arg($, "cocoapods");
-  return nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(cocoapods, "override"), nix.thunk(() => ({ __proto__: pos$1, beta: true })))));
+  return nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(cocoapods, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, beta: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

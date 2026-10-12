@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const firefox_esr_unwrapped = nix.arg($, "firefox-esr-unwrapped");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rust-cbindgen",
       version: "0.29.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "cbindgen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
         "--skip=lib_explicit_release_build",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=test_body"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "firefox-unwrapped": firefox_unwrapped,
           "firefox-esr-unwrapped": firefox_esr_unwrapped,
           mesa: mesa,
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla/cbindgen/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),
         description: "Project for generating C bindings from Rust code",
         mainProgram: "cbindgen",

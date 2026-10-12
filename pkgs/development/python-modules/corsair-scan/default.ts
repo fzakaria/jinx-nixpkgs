@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const validators = nix.arg($, "validators");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "corsair-scan",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Santandersecurityresearch",
           repo: "corsair_scan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["corsair_scan"]),
       disabledTests: nix.thunk(() => ["test_corsair_scan_401", "test_corsair_scan_origin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to check for Cross-Origin Resource Sharing (CORS) misconfigurations",
         mainProgram: "corsair",
         homepage: "https://github.com/Santandersecurityresearch/corsair_scan",

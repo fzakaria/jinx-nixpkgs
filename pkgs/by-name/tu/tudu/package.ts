@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tudu",
       version: "0.10.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.meskio.net/tudu/tudu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14srqn968ii3sr4v6xc5zzs50dmm9am22lrm57j7n0rhjclwbssy",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "substituteInPlace configure \\\n  --replace 'echo \"main()' 'echo \"int main()'\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ncurses-based hierarchical todo list manager with vim-like keybindings",
         homepage: "https://code.meskio.net/tudu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

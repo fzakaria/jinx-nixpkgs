@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
-      runCommandBasic: nix.thunk(() => nix.app(runCommand, "hi", nix.thunk(() => ({ __proto__: pos$1, greeting: "hello" })), "[[ $greeting == hello ]] || { echo wtf; exit 1; }\ntouch $out\n")),
+      [nix.POS]: pos$3,
+      runCommandBasic: nix.thunk(() => nix.app(runCommand, "hi", nix.thunk(() => ({ [nix.POS]: pos$1, greeting: "hello" })), "[[ $greeting == hello ]] || { echo wtf; exit 1; }\ntouch $out\n")),
       runCommandFinalAttrs: nix.thunk(() => nix.app(runCommand, "hi-finalAttrs", (finalAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           message: nix.thunk(() => nix.sel(finalAttrs, "greeting")),
           greeting: "hello",
         }), (finalAttrs) => (() => {

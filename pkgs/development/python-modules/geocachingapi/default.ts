@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sholofly",
           repo: "geocachingapi-python",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/Sholofly/geocachingapi-python/commit/2ba042bc2a6ebb4a494f71821502df4534eeb1a1.patch",
             hash: "sha256-AtjZJ9tnBeOv76fVIiqY45MeYTzcWvXCtbc6DevH8aM=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["geocachingapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python API to control the Geocaching API",
         homepage: "https://github.com/Sholofly/geocachingapi-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Sholofly/geocachingapi-python/releases/tag/${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

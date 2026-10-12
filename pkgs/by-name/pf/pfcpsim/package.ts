@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pfcpsim",
       version: "1.5.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omec-project",
           repo: "pfcpsim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Qm/Ca/EskbJfQdgxxSGk0TL2pgKU60ueiFjMQEAqCJ0=",
       checkFlags: nix.thunk(() => ["-skip=^Fuzz$"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PFCP client simulator used for UPF testing",
         homepage: "https://github.com/omec-project/pfcpsim",
         changelog: nix.thunk(() => nix.str`https://github.com/omec-project/pfcpsim/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

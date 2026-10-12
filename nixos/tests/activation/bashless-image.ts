@@ -33,80 +33,80 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const storePartitionLabel = "root";
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "activation-bashless-image",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           imports: nix.thunk(() => [
             nix.thunk(() => nix.str`${modulesPath}/image/repart.nix`),
             nix.thunk(() => nix.str`${modulesPath}/profiles/bashless.nix`),
           ]),
-          testing: nix.thunk(() => ({ __proto__: pos$2, backdoor: false })),
+          testing: nix.thunk(() => ({ [nix.POS]: pos$2, backdoor: false })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$7,
-            directBoot: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+            [nix.POS]: pos$7,
+            directBoot: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
             mountHostNixStore: false,
             useEFIBoot: true,
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                __proto__: pos$6,
-                "/": nix.thunk(() => ({ __proto__: pos$4, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })),
+                [nix.POS]: pos$6,
+                "/": nix.thunk(() => ({ [nix.POS]: pos$4, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })),
                 "/nix/store": nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   device: nix.thunk(() => nix.str`/dev/disk/by-partlabel/${storePartitionLabel}`),
                   fsType: "erofs",
                 })),
               })))),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             loader: nix.thunk(() => ({
-              __proto__: pos$9,
-              grub: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+              [nix.POS]: pos$9,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
             })),
           })),
           image: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             repart: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "bashless-image",
-              mkfsOptions: nix.thunk(() => ({ __proto__: pos$11, erofs: nix.thunk(() => ["-z lz4"]) })),
+              mkfsOptions: nix.thunk(() => ({ [nix.POS]: pos$11, erofs: nix.thunk(() => ["-z lz4"]) })),
               partitions: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 esp: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   contents: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform", "efiArch")))}.EFI`, nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                     }))],
                   ])),
                   repartConfig: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     Type: "esp",
                     Format: "vfat",
                     SizeMinBytes: nix.thunk(() => (nix.asBool(nix.sel(config, "nixpkgs", "hostPlatform", "isx86_64")) ? "64M" : "96M")),
                   })),
                 })),
                 root: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
                   nixStorePrefix: "/",
                   repartConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     Type: "linux-generic",
                     Format: nix.thunk(() => nix.sel(config, "fileSystems", "/nix/store", "fsType")),
                     Label: storePartitionLabel,

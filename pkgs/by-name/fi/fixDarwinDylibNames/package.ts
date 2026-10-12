@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const targetPackages = nix.arg($, "targetPackages");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "fix-darwin-dylib-names-hook",
       substitutions: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(targetPackages, "stdenv", "cc"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         targetPrefix: nix.thunk(() => nix.attr(from, "targetPrefix")),
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

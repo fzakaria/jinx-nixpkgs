@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const libsepol = nix.arg($, "libsepol");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "checkpolicy",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/checkpolicy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-m4G/zu9/qdAvmHLlanhvND3FjvS1cT3ODVxBbluEzvo=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBSEPOLA=${nix.app(nix.sel(lib, "getLib"), libsepol)}/lib/libsepol.a`),
       ]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(libsepol, "meta")), nix.thunk(() => ["outputsToInstall", "name"])), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SELinux policy compiler",
         mainProgram: "checkpolicy",
       })),

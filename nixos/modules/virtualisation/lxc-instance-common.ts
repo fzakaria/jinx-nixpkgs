@@ -19,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     imports: nix.thunk(() => [
@@ -31,30 +31,30 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../profiles/minimal.nix"),
     ]),
     users: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       users: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         root: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           initialHashedPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 150n, "")),
         })),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$8,
-      getty: nix.thunk(() => ({ __proto__: pos$5, helpLine: "\nLog in as \"root\" with an empty password.\n" })),
+      [nix.POS]: pos$8,
+      getty: nix.thunk(() => ({ [nix.POS]: pos$5, helpLine: "\nLog in as \"root\" with an empty password.\n" })),
       openssh: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         startWhenNeeded: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
-      logrotate: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+      logrotate: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
     })),
     documentation: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 890n, true)),
       nixos: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 890n, true)),
       })),
     })),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rsibreak";
       const version = "0.13.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/rsibreak/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/rsibreak-${version}.tar.xz`),
           hash: "sha256-arLOCcV9D+UXgwjqlfh9675VrpjPs3QkkireJZO60SA=",
         }))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(kdePackages, "kcrash")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Takes care of your health and regularly breaks your work to avoid repetitive strain injury (RSI)",
         mainProgram: "rsibreak",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

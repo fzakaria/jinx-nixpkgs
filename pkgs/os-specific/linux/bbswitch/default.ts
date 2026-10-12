@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "bbswitch",
       version: "unstable-2021-11-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bumblebee-Project",
           repo: "bbswitch",
           rev: "23891174a80ea79c7720bcc7048a5c2bfcde5cd9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/0bd986055ba52887b81048de5c61e618eec06eb0/trunk/0003-kernel-5.18.patch",
             sha256: "sha256-va62/bR1qyBBMPg0lUwCH7slGG0XijxVCsFa4FCoHEQ=",
           })))),
@@ -59,7 +59,7 @@ EOF
 chmod +x $out/bin/discrete_vga_poweroff $out/bin/discrete_vga_poweron
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for powering off hybrid GPUs",
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         homepage: "https://github.com/Bumblebee-Project/bbswitch",

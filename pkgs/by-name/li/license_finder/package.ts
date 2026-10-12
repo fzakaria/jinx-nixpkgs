@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const ruby = nix.arg($, "ruby");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "license_finder",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "license_finder")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find licenses for your project's dependencies",
         homepage: "https://github.com/pivotal/licensefinder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

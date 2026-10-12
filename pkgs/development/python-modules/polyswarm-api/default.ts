@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const vcrpy = nix.arg($, "vcrpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polyswarm-api",
       version: "3.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polyswarm",
           repo: "polyswarm-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, responses, vcrpy]),
       pythonImportsCheck: nix.thunk(() => ["polyswarm_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to interface with the PolySwarm consumer APIs",
         homepage: "https://github.com/polyswarm/polyswarm-api",
         changelog: nix.thunk(() => nix.str`https://github.com/polyswarm/polyswarm-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

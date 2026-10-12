@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.8";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "zpix-pixel-font.bdf",
             url: nix.thunk(() => nix.str`https://github.com/SolidZORO/zpix-pixel-font/releases/download/v${version}/zpix.bdf`),
             hash: "sha256-qE6YPKuk1FRRrTvmy4YIDuxRfslma264piUDj1FWtk4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "zpix-pixel-font.ttf",
             url: nix.thunk(() => nix.str`https://github.com/SolidZORO/zpix-pixel-font/releases/download/v${version}/zpix.ttf`),
             hash: "sha256-UIgLGsVTbyhYMKfTYiA+MZmV4dFT9HX3sxTdrcc4vE0=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const installPhase = "runHook preInstall\ninstall -Dm444 ${srcs[0]} $out/share/fonts/misc/zpix.bdf\ninstall -Dm444 ${srcs[1]} $out/share/fonts/truetype/zpix.ttf\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pixel font supporting multiple languages like English, Chinese and Japanese",
         homepage: "https://github.com/SolidZORO/zpix-pixel-font/",
         changelog: "https://github.com/SolidZORO/zpix-pixel-font/blob/master/CHANGELOG.md",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         srcs,

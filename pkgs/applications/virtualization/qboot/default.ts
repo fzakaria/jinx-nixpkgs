@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qboot",
       version: "unstable-2022-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bonzini",
           repo: "qboot",
           rev: "8ca302e86d685fa05b16e2b208888243da319941",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp bios.bin bios.bin.elf $out/.\n",
       hardeningDisable: nix.thunk(() => ["stackprotector", "pic"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, qboot: nix.thunk(() => nix.sel(nixosTests, "qboot")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, qboot: nix.thunk(() => nix.sel(nixosTests, "qboot")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple x86 firmware for booting Linux",
         homepage: "https://github.com/bonzini/qboot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

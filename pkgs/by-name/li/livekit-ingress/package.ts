@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "livekit-ingress",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "livekit",
           repo: "ingress",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ingest streams (RTMP/WHIP) or files (HLS, MP4) to LiveKit WebRTC",
         changelog: nix.thunk(() => nix.str`https://github.com/livekit/ingress/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/livekit/ingress",

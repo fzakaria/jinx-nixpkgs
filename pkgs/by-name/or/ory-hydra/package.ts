@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hydra",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ory",
           repo: "hydra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd hydra \\\n  --bash <($out/bin/hydra completion bash) \\\n  --fish <($out/bin/hydra completion fish) \\\n  --zsh <($out/bin/hydra completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenID Certified™ OAuth 2.0 Server and OpenID Connect Provider",
         longDescription: "Server implementation of the OAuth 2.0 authorization framework and the OpenID Connect Core 1.0. It follows\n[cloud architecture best practices](https://www.ory.com/docs/ecosystem/software-architecture-philosophy) and focuses on:\n\n- OAuth 2.0 and OpenID Connect flows\n- Token issuance and validation\n- Client management\n- Consent and login flow orchestration\n- JWKS management\n- Low latency and high throughput\n",
         homepage: "https://github.com/ory/hydra",

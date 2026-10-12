@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmsdos",
       version: "0.9.2.3-unstable-2021-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sandsmark",
           repo: "dmsdos",
           rev: "c9044d509969d3d1467b781c08233e15c1da7a13",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-4.patch",
             url: "https://github.com/sandsmark/dmsdos/commit/94076ab27800e9cba41ab05e6bb2edbb421154d9.patch",
             hash: "sha256-olpnzPg/kbveUl0muwHKwI+DMGqXzxLrruFomf/SXjE=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux utilities to handle dos/win95 doublespace/drivespace/stacker",
         homepage: "https://github.com/sandsmark/dmsdos.git",
         changelog: nix.thunk(() => nix.str`https://github.com/sandsmark/dmsdos/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

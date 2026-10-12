@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const libva = nix.arg($, "libva");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cctv-viewer",
       version: "0.1.9-unstable-2025-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iEvgeny",
           repo: "cctv-viewer",
           rev: "8a8fff2612ae2123b8be156c954a29706383b480",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -D cctv-viewer --target-directory=$out/bin\ninstall -Dm644 $src/cctv-viewer.desktop --target-directory=$out/share/applications\ninstall -Dm644 $src/images/cctv-viewer.svg --target-directory=$out/share/icons/hicolor/scalable/apps\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Viewer and mounter for video streams",
         homepage: "https://cctv-viewer.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

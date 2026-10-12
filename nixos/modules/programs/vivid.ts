@@ -26,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "vivid"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         vivid: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               description: "Whether to configure LS_COLORS with vivid.",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vivid", nix.thunk(() => ({ __proto__: pos$2, example: "vivid" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vivid", nix.thunk(() => ({ [nix.POS]: pos$2, example: "vivid" })))),
           theme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "gruvbox-dark-soft",
               description: "Theme to be used (see `vivid themes`)",
               example: "solarized-dark",
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => (() => {
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
 `)));
           const enableLsColors = nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 999n, false));
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             bash: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               interactiveShellInit: interactiveShellInit,
               enableLsColors: enableLsColors,
             })),
             zsh: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               interactiveShellInit: interactiveShellInit,
               enableLsColors: enableLsColors,
             })),
@@ -76,19 +76,19 @@ export default nix.lambda((args) => (() => {
         })()),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "programs", "bash", "enableLsColors"))),
             message: "`programs.vivid.enable` is incompatible with `programs.bash.enableLsColors`.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "programs", "zsh", "enableLsColors"))),
             message: "`programs.vivid.enable` is incompatible with `programs.zsh.enableLsColors`.",
           })),
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gdifolco"))];

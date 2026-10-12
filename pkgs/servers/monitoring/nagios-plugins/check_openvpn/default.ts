@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liquidat",
           repo: "nagios-icinga-openvpn",
           rev: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nagios/icinga/sensu check plugin for OpenVPN",
         homepage: "https://github.com/liquidat/nagios-icinga-openvpn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "peterhoeg"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

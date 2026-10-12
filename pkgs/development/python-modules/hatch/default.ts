@@ -50,19 +50,19 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hatch",
       version: "1.16.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "hatch",
           tag: nix.thunk(() => nix.str`hatch-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pUlRy8ar0zXsGGSA1VTZyPiU4LruYp/maU2C5T4E5WI=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-uv-path.patch"), nix.thunk(() => ({ __proto__: pos$2, uv: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), uv)) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-uv-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, uv: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), uv)) })))),
       ]),
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       pythonRemoveDeps: nix.thunk(() => ["uv"]),
@@ -172,14 +172,14 @@ export default nix.lambda((args) => (() => {
           "tests/cli/version/test_version.py::test_no_compatibility_check_if_exists",
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "hatch-v([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern, extensible Python project manager",
         homepage: "https://hatch.pypa.io/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/hatch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

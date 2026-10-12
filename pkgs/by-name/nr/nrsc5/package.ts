@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libao = nix.arg($, "libao");
   const fftwFloat = nix.arg($, "fftwFloat");
   const src_faad2 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "knik0",
       repo: "faad2",
       tag: "2.11.2",
       hash: "sha256-JvmblrmE3doUMUwObBN2b+Ej+CDBWNemBsyYSCXGwo8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nrsc5",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "theori-io",
           repo: "nrsc5",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ chmod -R u+w $faadSrc
       buildInputs: nix.thunk(() => [rtl_sdr, libao, fftwFloat]),
       cmakeFlags: nix.thunk(() => ["-DUSE_COLOR=ON", "-DUSE_FAAD2=ON"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/theori-io/nrsc5",
         description: "HD-Radio decoder for RTL-SDR",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const plover = nix.arg($, "plover");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plover-modal-dictionary",
       version: "0.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kaoffie",
           repo: "plover_modal_dictionary",
           rev: "086f9784377454ace45c333d21ea8ca2666b0a06",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [plover]),
       pythonImportsCheck: nix.thunk(() => ["plover_modal_dictionary"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modal Dictionaries for Plover",
         homepage: "https://github.com/Kaoffie/plover_modal_dictionary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "mednafen-wswan",
       version: "0-unstable-2026-07-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "beetle-wswan-libretro",
           rev: "4b01295838ea89e3f1355bbe4cb5cf98aa6108cd",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Mednafen's WonderSwan core to libretro",
         homepage: "https://github.com/libretro/beetle-wswan-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

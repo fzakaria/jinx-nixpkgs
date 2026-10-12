@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const xcursorgen = nix.arg($, "xcursorgen");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "material-cursors",
       version: "0-unstable-2023-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "varlesh",
           repo: "material-cursors",
           rev: "2a5f302fefe04678c421473bed636b4d87774b4a",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n# Silences the inkscape warning spam.\nHOME=$(pwd) bash build.sh 2> /dev/null\n\nrunHook postBuild\n",
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Material cursors for Linux",
         homepage: "https://github.com/varlesh/material-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

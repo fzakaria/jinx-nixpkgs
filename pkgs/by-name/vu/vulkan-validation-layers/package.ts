@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const robin_hood_hashing = nix.thunk(() => nix.app(callPackage, nix.path(here, "./robin-hood-hashing.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vulkan-validation-layers",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "Vulkan-ValidationLayers",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       preFixup: "for f in \"$out\"/share/vulkan/explicit_layer.d/*.json \"$out\"/share/vulkan/implicit_layer.d/*.json; do\n  jq <\"$f\" >tmp.json \".layer.library_path = \\\"$out/lib/\\\" + .layer.library_path\"\n  mv tmp.json \"$f\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official Khronos Vulkan validation layers",
         homepage: "https://github.com/KhronosGroup/Vulkan-ValidationLayers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

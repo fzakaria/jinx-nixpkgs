@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const check = nix.arg($, "check");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ezstream",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/xiph/releases/ezstream/ezstream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Ed6Jf0ValbpYVGvc1AqV072mmGbsX3h5qDsCQSbFTCo=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [check]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line source client for Icecast media streaming servers",
         longDescription: "Ezstream is a command line source client for Icecast media\nstreaming servers. It began as the successor of the old \"shout\"\nutility, and has since gained a lot of useful features.\n\nIn its basic mode of operation, it streams media files or data\nfrom standard input without reencoding and thus requires only\nvery little CPU resources.\n",
         homepage: "https://icecast.org/ezstream/",

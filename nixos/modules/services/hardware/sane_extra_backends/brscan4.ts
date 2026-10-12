@@ -37,28 +37,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "sane", "brscan4"));
   const netDeviceList = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "netDevices"))));
-  const etcFiles = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./brscan4_etc_files.nix"), nix.thunk(() => ({ __proto__: pos$1, netDevices: netDeviceList }))));
+  const etcFiles = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./brscan4_etc_files.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, netDevices: netDeviceList }))));
   const netDeviceOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "The friendly name you give to the network device. If undefined,\nthe name of attribute will be used.\n",
             example: "office1",
           })))),
         model: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "The model of the network device.\n",
             example: "MFC-7860DW",
           })))),
         ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
             example: "192.168.1.2",
           })))),
         nodename: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -79,32 +79,32 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       hardware: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         sane: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           brscan4: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Brother's brscan4 scan backend"), {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "When enabled, will automatically register the \"brscan4\" sane\nbackend and bring configuration files to their expected location.\n",
             })),
             netDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  office1: nix.thunk(() => ({ __proto__: pos$10, model: "MFC-7860DW", ip: "192.168.1.2" })),
-                  office2: nix.thunk(() => ({ __proto__: pos$11, model: "MFC-7860DW", nodename: "BRW0080927AFBCE" })),
+                  [nix.POS]: pos$12,
+                  office1: nix.thunk(() => ({ [nix.POS]: pos$10, model: "MFC-7860DW", ip: "192.168.1.2" })),
+                  office2: nix.thunk(() => ({ [nix.POS]: pos$11, model: "MFC-7860DW", nodename: "BRW0080927AFBCE" })),
                 })),
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -117,27 +117,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "sane", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         hardware: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           sane: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             extraBackends: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "brscan4"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "opt/brother/scanner/brscan4": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               source: nix.thunk(() => nix.str`${etcFiles}/etc/opt/brother/scanner/brscan4`),
             })),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (x) => !nix.asBool((nix.asBool(!nix.eq(null, nix.sel(x, "ip"))) && nix.asBool(!nix.eq(null, nix.sel(x, "nodename"))))), netDeviceList)),
             message: "When describing a network device as part of the attribute list\n`hardware.sane.brscan4.netDevices`, only one of its `ip` or `nodename`\nattribute should be specified, not both!\n",
           })),

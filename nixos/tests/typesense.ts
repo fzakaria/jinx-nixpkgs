@@ -18,30 +18,30 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testPort = 8108n;
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "typesense",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oddlama"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             typesense: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               apiKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "typesense-api-key", "dummy")),
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                server: nix.thunk(() => ({ __proto__: pos$2, "api-port": testPort, "api-address": "0.0.0.0" })),
+                [nix.POS]: pos$3,
+                server: nix.thunk(() => ({ [nix.POS]: pos$2, "api-port": testPort, "api-address": "0.0.0.0" })),
               })),
             })),
           })),

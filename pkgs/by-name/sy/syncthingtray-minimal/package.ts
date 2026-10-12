@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const syncthingtray = nix.arg($, "syncthingtray");
   return nix.app(nix.sel(syncthingtray, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       webviewSupport: false,
       jsSupport: false,
       kioPluginSupport: false,

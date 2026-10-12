@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const elfutils = nix.arg($, "elfutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "ndiswrapper",
       version: "1.63",
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   `),
       installPhase: "make install KBUILD=$(cat kbuild_path) DESTDIR=$out\nmv $out/usr/sbin/* $out/sbin/\nmv $out/usr/share $out/\nrm -r $out/usr\n\npatchShebangs $out/sbin\n",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ndiswrapper/files/stable/ndiswrapper-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1v6b66jhisl110jfl00hm43lmnrav32vs39d85gcbxrjqnmcx08g",
         })))),
       buildInputs: nix.thunk(() => [perl, elfutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ndis driver wrapper for the Linux kernel",
         homepage: "https://sourceforge.net/projects/ndiswrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

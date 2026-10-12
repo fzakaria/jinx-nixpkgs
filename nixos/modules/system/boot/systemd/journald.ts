@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "journald"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "journald", "storage"]), nix.thunk(() => ["services", "journald", "settings", "Journal", "Storage"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "journald", "rateLimitInterval"]), nix.thunk(() => ["services", "journald", "settings", "Journal", "RateLimitIntervalSec"]))),
@@ -48,25 +48,25 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "journald", "extraConfig"]), "Use services.journald.settings.Journal instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         journald: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           settings: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             Journal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   Storage: "volatile",
                   ForwardToConsole: true,
                   TTYPath: "/dev/tty12",
                 })),
                 description: "Options for the systemd journal service. See {manpage}`journald.conf(5)`\nman page for available options.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                   })))),
               })))),
@@ -75,22 +75,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         journald: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             Journal: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               Audit: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), "keep")),
             })),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         additionalUpstreamSystemUnits: nix.thunk(() => [
           "systemd-journald.socket",
           "systemd-journald@.socket",
@@ -107,24 +107,24 @@ export default nix.lambda((args) => (() => {
           "syslog.socket",
         ]),
         sockets: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           "systemd-journald-audit": nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             wantedBy: nix.thunk(() => ["systemd-journald.service", "sockets.target"]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
-          "systemd-journal-flush": nix.thunk(() => ({ __proto__: pos$14, restartIfChanged: false })),
+          [nix.POS]: pos$17,
+          "systemd-journal-flush": nix.thunk(() => ({ [nix.POS]: pos$14, restartIfChanged: false })),
           "systemd-journald": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             restartTriggers: nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "environment", "etc", "systemd/journald.conf", "source")),
             ]),
             stopIfChanged: false,
           })),
           "systemd-journald@": nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             restartTriggers: nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "environment", "etc", "systemd/journald.conf", "source")),
             ]),
@@ -133,21 +133,21 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         etc: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           "systemd/journald.conf": nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             text: nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "settingsToSections"), nix.thunk(() => nix.sel(cfg, "settings")))),
           })),
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         groups: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           "systemd-journal": nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             gid: nix.thunk(() => nix.sel(config, "ids", "gids", "systemd-journal")),
           })),
         })),

@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lucida-downloader",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jelni",
           repo: "lucida-downloader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7mq6xoafXqhqhe9vLdc67aGzlUrD8hTyCGkIyqndfPA=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       cargoHash: "sha256-lUxPPykO/U7bVgtw3yGxqD0PbqHng5bIW0krvYW7+Kw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multithreaded client for downloading music for free with lucida",
         homepage: "https://github.com/jelni/lucida-downloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

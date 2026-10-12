@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopenglrecorder",
       version: "0.1.0-unstable-2025-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Benau",
           repo: "libopenglrecorder",
           rev: "6101627e9952ec1a835dad38475f281878526052",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libjpeg, libvpx, openh264], nix.app(nix.sel(lib, "optionals"), withPulse, nix.thunk(() => [libpulseaudio, libvorbis])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library allowing Optional async readback OpenGL frame buffer with optional audio recording",
         homepage: "https://github.com/Benau/libopenglrecorder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

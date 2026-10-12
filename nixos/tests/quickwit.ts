@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const index_yaml = "version: 0.7\nindex_id: example_server_logs\ndoc_mapping:\n  mode: dynamic\n  field_mappings:\n    - name: datetime\n      type: datetime\n      fast: true\n      input_formats:\n        - iso8601\n      output_format: iso8601\n      fast_precision: seconds\n      fast: true\n    - name: git\n      type: text\n      tokenizer: raw\n    - name: hostname\n      type: text\n      tokenizer: raw\n    - name: level\n      type: text\n      tokenizer: raw\n    - name: message\n      type: text\n    - name: location\n      type: text\n    - name: source\n      type: text\n  timestamp_field: datetime\n\nsearch_settings:\n  default_search_fields: [message]\n\nindexing_settings:\n  commit_timeout_secs: 10\n";
   const exampleDocs = "{\"datetime\":\"2024-05-03T02:36:41.017674444Z\",\"git\":\"e6e1f087ce12065e44ed3b87b50784e6f9bcc2f9\",\"hostname\":\"machine-1\",\"level\":\"Info\",\"message\":\"Processing request done\",\"location\":\"path/to/server.c:6442:32\",\"source\":\"\"}\n{\"datetime\":\"2024-05-04T02:36:41.017674444Z\",\"git\":\"e6e1f087ce12065e44ed3b87b50784e6f9bcc2f9\",\"hostname\":\"machine-1\",\"level\":\"Info\",\"message\":\"Got exception processing request: HTTP 404\",\"location\":\"path/to/server.c:6444:32\",\"source\":\"\"}\n{\"datetime\":\"2024-05-05T02:36:41.017674444Z\",\"git\":\"e6e1f087ce12065e44ed3b87b50784e6f9bcc2f9\",\"hostname\":\"machine-1\",\"level\":\"Info\",\"message\":\"Got exception processing request: HTTP 404\",\"location\":\"path/to/server.c:6444:32\",\"source\":\"\"}\n{\"datetime\":\"2024-05-06T02:36:41.017674444Z\",\"git\":\"e6e1f087ce12065e44ed3b87b50784e6f9bcc2f9\",\"hostname\":\"machine-2\",\"level\":\"Info\",\"message\":\"Got exception processing request: HTTP 404\",\"location\":\"path/to/server.c:6444:32\",\"source\":\"\"}\n";
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "quickwit",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       quickwit: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            quickwit: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            quickwit: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         };
       })(), formals$2),

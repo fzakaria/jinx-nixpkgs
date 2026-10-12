@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mitm-cache",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chayleaf",
           repo: "mitm-cache",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-DTPlPCumkVI2naYoNdO8T3pQNSawBA0FZ9LxVpqKqN0=",
       setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           openssl: openssl,
           ephemeral_port_reserve: nix.thunk(() => nix.sel(python3Packages, "ephemeral-port-reserve")),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         fetch: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetch.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MITM caching proxy for use in nixpkgs",
         homepage: "https://github.com/chayleaf/mitm-cache#readme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

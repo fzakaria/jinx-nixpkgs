@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-debug-toolbar",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, sqlparse]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DB_BACKEND: "sqlite3",
         DB_NAME: ":memory:",
         DJANGO_SETTINGS_MODULE: "tests.settings",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\npython -m django test tests\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["debug_toolbar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configurable set of panels that display debug information about the current request/response",
         homepage: "https://github.com/jazzband/django-debug-toolbar",
         changelog: "https://django-debug-toolbar.readthedocs.io/en/latest/changes.html",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

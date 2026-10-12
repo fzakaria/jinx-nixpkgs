@@ -23,32 +23,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const msg = "Shutting down NixOS";
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "systemd-shutdown",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "das_j"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           shutdown: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "pre-exitrd": nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "pre-exitrd", "echo pre-exitrd > /run/initramfs/test.txt\n")),
           })),
           shutdownRamfs: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             contents: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "/etc/systemd/system-shutdown/shutdown-message": nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "shutdown-message", nix.thunk(() => nix.str`if test -e /test.txt; then
   # Test should only pass if both scripts run.
   echo "${msg}" > /dev/kmsg
@@ -59,10 +59,10 @@ fi
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           initrd: nix.thunk(() => ({
-            __proto__: pos$8,
-            systemd: nix.thunk(() => ({ __proto__: pos$7, enable: systemdStage1 })),
+            [nix.POS]: pos$8,
+            systemd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: systemdStage1 })),
           })),
         })),
       })),

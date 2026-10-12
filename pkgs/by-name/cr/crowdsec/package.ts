@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crowdsec",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crowdsecurity",
           repo: "crowdsec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ if [ "$version" != "v${nix.sel(finalAttrs, "version")}" ]; then
 fi
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "crowdsec",
         homepage: "https://crowdsec.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/crowdsecurity/crowdsec/releases/tag/v${nix.sel(finalAttrs, "version")}`),

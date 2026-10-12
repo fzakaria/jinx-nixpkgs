@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyinstaller_hooks_contrib",
           version: version,
           hash: "sha256-TYJXhq16m328xS1hJ0ijRWL+JzRhvP2I9NVJxZS7+Pk=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Community maintained hooks for PyInstaller",
         longDescription: "A \"hook\" file extends PyInstaller to adapt it to the special needs and methods used by a Python package.\nThe word \"hook\" is used for two kinds of files. A runtime hook helps the bootloader to launch an app,\nsetting up the environment. A package hook (there are several types of those) tells PyInstaller\nwhat to include in the final app - such as the data files and (hidden) imports mentioned above.\nThis repository is a collection of hooks for many packages, and allows PyInstaller to work with these packages seamlessly.\n",
         homepage: "https://github.com/pyinstaller/pyinstaller-hooks-contrib",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

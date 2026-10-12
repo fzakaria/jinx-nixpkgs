@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mysqltuner",
       version: "2.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "major",
           repo: "MySQLTuner-perl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm0555 mysqltuner.pl $out/bin/mysqltuner\ninstall -Dm0444 -t $out/share/mysqltuner basic_passwords.txt vulnerabilities.csv\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make recommendations for increased performance and stability of MariaDB/MySQL",
         homepage: "https://github.com/major/MySQLTuner-perl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

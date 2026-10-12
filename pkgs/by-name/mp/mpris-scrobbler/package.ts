@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const json_c = nix.arg($, "json_c");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mpris-scrobbler",
       version: "0.5.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mariusor",
           repo: "mpris-scrobbler",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,15 +43,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, dbus, json_c, libevent]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.str`-Dversion=${nix.sel(finalAttrs, "version")}`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=address"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-sometimes-uninitialized", "-Wno-tautological-pointer-compare"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-Wno-array-bounds", "-Wno-free-nonheap-object", "-Wno-stringop-truncation"]))))))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Minimalistic scrobbler for ListenBrainz, libre.fm, & last.fm",
         homepage: "https://github.com/mariusor/mpris-scrobbler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const pnpm = pnpm_11;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "feishin",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeffvli",
           repo: "feishin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: nix.thunk(() => (nix.asBool(webVersion) ? "build:web" : "build")),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pnpm: pnpm,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-ltpz4e5Vv2vxt/93M4+vHUFJZjwTRwb2zrwvl1Lqjo8=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([pnpm], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(webVersion)))), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool(webVersion)))), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")), actool]))))),
       postPatch: "# release/app dependencies are installed on preConfigure\nsubstituteInPlace package.json \\\n  --replace-fail '\"postinstall\": \"install-electron && electron-builder install-app-deps\",' \"\"\n",
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => nix.str`cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -103,7 +103,7 @@ done
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "feishin",
               desktopName: "Feishin",
               comment: "Full-featured Jellyfin, Navidrome, and OpenSubsonic Compatible Music Player",
@@ -114,19 +114,19 @@ done
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "feishin"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           caddy: nix.thunk(() => nix.attr(from, "caddy")),
           nginx: nix.thunk(() => nix.attr(from, "nginx")),
         };
         })()),
       })),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Full-featured Jellyfin, Navidrome, and OpenSubsonic Compatible Music Player",
         homepage: "https://github.com/jeffvli/feishin",
         changelog: nix.thunk(() => nix.str`https://github.com/jeffvli/feishin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -144,7 +144,7 @@ done
             nix.thunk(() => nix.lookup(w_1, "jlbribeiro")),
           ];
         })()),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => ({ __proto__: pos$8, mainProgram: "feishin" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => ({ [nix.POS]: pos$8, mainProgram: "feishin" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

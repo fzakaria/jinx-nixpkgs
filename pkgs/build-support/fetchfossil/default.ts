@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const outputHash = nix.argOr($_1, "outputHash", () => nix.sel(lib, "fakeHash"));
       const outputHashAlgo = nix.argOr($_1, "outputHashAlgo", () => null);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add("fossil-archive", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => nix.str`-${name}`)))),
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [fossil, cacert]),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zipperposition",
       version: "2.1-unstable-2024-02-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sneeuwballen",
           repo: "zipperposition",
           rev: "050072e01d8539f9126993482b595e09f921f66a",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Superposition prover for full first order logic",
         homepage: "https://github.com/sneeuwballen/zipperposition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nix_update = nix.arg($, "nix-update");
   const icon = nix.thunk(() => nix.app(runCommand, "xnviewmp-icon.png", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.xnview.com/img/app-xnsoft-360.webp",
           hash: "sha256-wIzF/WOsPcrYFYC/kGZi6FSJFuErci5EMONjrx1VCdQ=",
         })))),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const pname = "xnviewmp";
       const version = "1.12.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://download.xnview.com/old_versions/XnView_MP/XnView_MP-${version}.glibc2.34-x86_64.AppImage`),
           hash: "sha256-3iAi6/+GEaFiobk1n1aciHidOmdyDkmGKAgXvbqddQc=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "xnviewmp",
             desktopName: "XnView MP",
             exec: "xnviewmp %F",
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       const extraInstallCommands = nix.thunk(() => nix.str`install -m 444 -D ${icon} $out/share/icons/hicolor/512x512/apps/xnviewmp.png
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         src: src,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-xnviewmp", nix.thunk(() => nix.str`latestVersion=$(curl --fail --silent "http://www.xnview.com/update.txt" | awk -F= '/\\[XnViewMP\\]/{getline; if($1=="version") print $2}')
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} xnviewmp --version $latestVersion
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Efficient multimedia viewer, browser and converter",
         changelog: "https://www.xnview.com/mantisbt/changelog_page.php",
         homepage: "https://www.xnview.com/en/xnviewmp/",
@@ -77,7 +77,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} xnviewmp --version $latestVersion
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

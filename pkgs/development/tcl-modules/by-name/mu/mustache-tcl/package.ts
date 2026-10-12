@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const tcllib = nix.arg($, "tcllib");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mustache-tcl",
       version: "1.1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ianka",
           repo: "mustache.tcl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tcllib]),
       unpackPhase: "mkdir -p $out/lib/mustache-tcl\ncp $src/mustache.tcl $out/lib/mustache-tcl/mustache.tcl\ncp $src/pkgIndex.tcl $out/lib/mustache-tcl/pkgIndex.tcl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ianka/mustache.tcl",
         description: "Tcl implementation of the mustache templating language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

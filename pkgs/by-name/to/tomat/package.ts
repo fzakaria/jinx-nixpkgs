@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tomat",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jolars",
           repo: "tomat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installShellCompletion --cmd tomat \\\n  --bash target/completions/tomat.bash \\\n  --fish target/completions/tomat.fish \\\n  --zsh target/completions/_tomat\n\ninstallManPage target/man/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pomodoro timer for status bars",
         homepage: "https://github.com/jolars/tomat",
         changelog: nix.thunk(() => nix.str`https://github.com/jolars/tomat/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

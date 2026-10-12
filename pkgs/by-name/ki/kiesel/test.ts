@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const kiesel = nix.arg($, "kiesel");
-  return nix.app(runCommand, "kiesel-test-run", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [kiesel]) })), "export NO_COLOR=1\nGOT=$(kiesel -p -c 'Array(16).join(\"wat\" - 1) + \" Batman!\"')\nEXPECT='\"NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!\"'\ntest \"$EXPECT\" = \"$GOT\"\ntouch $out\n");
+  return nix.app(runCommand, "kiesel-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [kiesel]) })), "export NO_COLOR=1\nGOT=$(kiesel -p -c 'Array(16).join(\"wat\" - 1) + \" Batman!\"')\nEXPECT='\"NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!\"'\ntest \"$EXPECT\" = \"$GOT\"\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

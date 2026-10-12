@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "math-preview",
       version: "5.1.2-unstable-2024-08-01",
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matsievskiysv",
           repo: "math-preview",
           rev: "a2ca3c175468ceaf02bab6cdfd8ef016bda2b98d",
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-IzJszTaa8NMGRadRdBetfQXJfyjVKKYveTzbPOr07Sw=",
       dontNpmBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Emacs preview math inline",
         mainProgram: "math-preview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

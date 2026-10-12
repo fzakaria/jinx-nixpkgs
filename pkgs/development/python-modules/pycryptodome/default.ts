@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.23.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Legrandin",
           repo: "pycryptodome",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [test_vectors]);
       const pythonImportsCheck = nix.thunk(() => ["Crypto"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Self-contained cryptographic library",
         homepage: "https://github.com/Legrandin/pycryptodome",
         changelog: nix.thunk(() => nix.str`https://github.com/Legrandin/pycryptodome/blob/${nix.sel(src, "tag")}/Changelog.rst`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

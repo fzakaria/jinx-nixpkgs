@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const signingKey = nix.arg($_1, "signingKey");
     const message = nix.thunk(() => nix.app(writeText, "autopen-test-message", "squeamish ossifrage\n"));
-    const signature = nix.thunk(() => nix.app(nix.sel(autopen, "sign"), nix.thunk(() => ({ __proto__: pos$1, signingKey: signingKey, message: message }))));
-    const signedPackages = nix.thunk(() => nix.app(nix.sel(testSignedPackages, "override"), nix.thunk(() => ({ __proto__: pos$2, uefiSigningKey: signingKey }))));
+    const signature = nix.thunk(() => nix.app(nix.sel(autopen, "sign"), nix.thunk(() => ({ [nix.POS]: pos$1, signingKey: signingKey, message: message }))));
+    const signedPackages = nix.thunk(() => nix.app(nix.sel(testSignedPackages, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, uefiSigningKey: signingKey }))));
     return nix.app(linkFarm, "autopen-test", nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         signingKey: signingKey,
         verificationKey: nix.thunk(() => nix.attr(signingKey, "verificationKey")),
         message: message,
         signature: signature,
         "signature-check": nix.thunk(() => nix.app(runCommand, "autopen-test-signature-check", nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nativeBuildInputs: nix.thunk(() => [autopen]),
             verificationKey: nix.thunk(() => nix.attr(signingKey, "verificationKey")),
             signature: signature,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
             __structuredAttrs: true,
           })), "autopen verify \\\n  --verification-key=\"$verificationKey\" \\\n  --signature=\"$signature\" \\\n  -- \"$message\"\ntouch -- \"$out\"\n")),
         "certificate-check": nix.thunk(() => nix.app(runCommand, "autopen-test-certificate-check", nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nativeBuildInputs: nix.thunk(() => [openssl_4_0]),
             uefiCertificate: nix.thunk(() => nix.attr(signedPackages, "uefiCertificate")),
             strictDeps: true,

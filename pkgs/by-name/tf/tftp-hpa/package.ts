@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tftp-hpa",
       version: "5.2-unstable-2024-06-10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.kernel.org/pub/scm/network/tftp/tftp-hpa.git",
           hash: "sha256-lTMldYO/cZdLj0UjOPPBHfYf2GBG0O+5lhP9ikqn3tY=",
           rev: "2c86ff58dcc003107b47f2d35aa0fdc4a3fd95e1",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       preConfigure: "./autogen.sh\n",
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TFTP tools - a lot of fixes on top of BSD TFTP",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
         homepage: "https://www.kernel.org/pub/software/network/tftp/",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateInfo: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           downloadPage: "https://www.kernel.org/pub/software/network/tftp/",
         })),
       })),

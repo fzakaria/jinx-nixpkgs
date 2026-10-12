@@ -40,28 +40,28 @@ export default nix.lambda((args) => (() => {
 echo "${name}" >"$out/${name}"
 `));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "angrr",
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       machine: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           angrr: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "temporary-root-policies": nix.thunk(() => ({
-                __proto__: pos$3,
-                result: nix.thunk(() => ({ __proto__: pos$1, "path-regex": "/result[^/]*$", period: "7d" })),
-                direnv: nix.thunk(() => ({ __proto__: pos$2, "path-regex": "/\\.direnv/", period: "14d" })),
+                [nix.POS]: pos$3,
+                result: nix.thunk(() => ({ [nix.POS]: pos$1, "path-regex": "/result[^/]*$", period: "7d" })),
+                direnv: nix.thunk(() => ({ [nix.POS]: pos$2, "path-regex": "/\\.direnv/", period: "14d" })),
               })),
               "profile-policies": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 system: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   "profile-paths": nix.thunk(() => ["/nix/var/nix/profiles/system"]),
                   "keep-since": "7d",
                   "keep-latest-n": 2n,
@@ -69,7 +69,7 @@ echo "${name}" >"$out/${name}"
                   "keep-booted-system": true,
                 })),
                 user: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "profile-paths": nix.thunk(() => [
                     "~/.local/state/nix/profiles/profile",
                     "/nix/var/nix/profiles/per-user/root/profile",
@@ -77,33 +77,33 @@ echo "${name}" >"$out/${name}"
                   "keep-latest-n": 2n,
                 })),
               })),
-              touch: nix.thunk(() => ({ __proto__: pos$7, "project-globs": nix.thunk(() => ["!result-glob-ignored"]) })),
+              touch: nix.thunk(() => ({ [nix.POS]: pos$7, "project-globs": nix.thunk(() => ["!result-glob-ignored"]) })),
             })),
           })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$13,
-          gc: nix.thunk(() => ({ __proto__: pos$11, automatic: true })),
-          settings: nix.thunk(() => ({ __proto__: pos$12, "experimental-features": nix.thunk(() => ["nix-command"]) })),
+          [nix.POS]: pos$13,
+          gc: nix.thunk(() => ({ [nix.POS]: pos$11, automatic: true })),
+          settings: nix.thunk(() => ({ [nix.POS]: pos$12, "experimental-features": nix.thunk(() => ["nix-command"]) })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$15,
-            normal: nix.thunk(() => ({ __proto__: pos$14, isNormalUser: true })),
+            [nix.POS]: pos$15,
+            normal: nix.thunk(() => ({ [nix.POS]: pos$14, isNormalUser: true })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$18,
-          direnv: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          [nix.POS]: pos$18,
+          direnv: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
-          variables: nix.thunk(() => ({ __proto__: pos$19, ANGRR_DIRENV_LOG: "debug" })),
+          [nix.POS]: pos$22,
+          variables: nix.thunk(() => ({ [nix.POS]: pos$19, ANGRR_DIRENV_LOG: "debug" })),
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "drvs-for-test": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               text: nix.thunk(() => nix.str`${nix.app(drvForTest, "drv1")}
 ${nix.app(drvForTest, "drv2")}
 ${nix.app(drvForTest, "drv3")}
@@ -118,12 +118,12 @@ ${nix.app(drvForTest, "fake-booted-system")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             angrr: nix.thunk(() => ({
-              __proto__: pos$24,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$23, StartLimitBurst: 10n })),
+              [nix.POS]: pos$24,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, StartLimitBurst: 10n })),
             })),
           })),
         })),

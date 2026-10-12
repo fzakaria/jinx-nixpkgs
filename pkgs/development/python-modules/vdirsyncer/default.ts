@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vdirsyncer",
       version: "0.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/rGlM1AKlcFP0VVzOhBW/jWRklU9gsB8a6BPy/xAsS0=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [click, click_log, requests, aiostream, aiohttp]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, google: nix.thunk(() => [aiohttp_oauthlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, google: nix.thunk(() => [aiohttp_oauthlib]) })),
       nativeCheckInputs: nix.thunk(() => [
         hypothesis,
         pytestCheckHook,
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_create_collections", "test_request_ssl", "test_verbosity"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           vdirsyncer: nix.thunk(() => nix.attr(nixosTests, "vdirsyncer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Synchronize calendars and contacts",
         homepage: "https://github.com/pimutils/vdirsyncer",
         changelog: nix.thunk(() => nix.str`https://github.com/pimutils/vdirsyncer/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

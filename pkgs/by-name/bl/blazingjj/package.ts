@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jujutsu = nix.arg($, "jujutsu");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blazingjj",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blazingjj",
           repo: "blazingjj",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=commander::files::tests::get_file_diff"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TUI for Jujutsu/jj",
         homepage: "https://github.com/blazingjj/blazingjj",
         changelog: nix.thunk(() => nix.str`https://github.com/blazingjj/blazingjj/releases/tag/v${nix.sel(finalAttrs, "version")}`),

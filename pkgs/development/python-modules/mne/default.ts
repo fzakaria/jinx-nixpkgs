@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mne-tools",
           repo: "mne-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ substituteInPlace mne/utils/config.py \\
         jinja2,
         lazy_loader,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, hdf5: nix.thunk(() => [h5io, pymatreader]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, hdf5: nix.thunk(() => [h5io, pymatreader]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         flaky,
         pandas,
@@ -85,7 +85,7 @@ substituteInPlace mne/utils/config.py \\
       const disabledTestMarks = nix.thunk(() => ["slowtest", "ultraslowtest", "pgtest"]);
       const pythonImportsCheck = nix.thunk(() => ["mne"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Magnetoencephelography and electroencephalography in Python",
         mainProgram: "mne",
         homepage: "https://mne.tools",
@@ -97,7 +97,7 @@ substituteInPlace mne/utils/config.py \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

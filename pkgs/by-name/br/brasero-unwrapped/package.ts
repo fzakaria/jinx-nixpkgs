@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const minor = "3";
   const binpath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dvdauthor, vcdimager])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.str`${major}.${minor}`),
       pname: "brasero",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/brasero/${major}/brasero-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-h3SerjOhQSB9GwC+IzttgEWYLtMkntS5ja4fOpdf6hU=",
         })))),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : "${binpath}")
 `),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gnome CD/DVD Burner",
         homepage: "https://gitlab.gnome.org/GNOME/brasero",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bdimcheff"))]),

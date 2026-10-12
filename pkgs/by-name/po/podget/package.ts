@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "podget";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvehrs",
           repo: "podget",
           tag: nix.thunk(() => nix.str`V${version}`),
@@ -36,7 +36,7 @@ install -m 755 -D podget $out/bin/podget
 wrapProgram $out/bin/podget --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, findutils, gawk, iconv, wget]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Podcast aggregator optimized for running as a scheduled job (i.e. cron) on Linux",
         homepage: "https://github.com/dvehrs/podget",
         changelog: "https://github.com/dvehrs/podget/blob/dev/Changelog",
@@ -49,7 +49,7 @@ wrapProgram $out/bin/podget --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"
         mainProgram: "podget",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "teensy-loader-cli",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PaulStoffregen",
           repo: "teensy_loader_cli",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb_compat_0_1]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 teensy_loader_cli $out/bin/teensy-loader-cli\ninstall -Dm444 -t $out/share/doc/teensy-loader-cli *.md *.txt\ngo-md2man -in README.md -out teensy-loader-cli.1\ninstallManPage *.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware uploader for the Teensy microcontroller boards",
         mainProgram: "teensy-loader-cli",
         homepage: "https://www.pjrc.com/teensy/",

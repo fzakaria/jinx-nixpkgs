@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const telegraf = nix.arg($, "telegraf");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "telegraf",
       version: "1.40.1",
       subPackages: nix.thunk(() => ["cmd/telegraf"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "influxdata",
           repo: "telegraf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/influxdata/telegraf/internal.Version=${nix.sel(finalAttrs, "version")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ["-extldflags", "-Wl,--long-plt"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: telegraf })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: telegraf })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             telegraf: nix.thunk(() => nix.attr(nixosTests, "telegraf")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Plugin-driven server agent for collecting & reporting metrics",
         mainProgram: "telegraf",
         homepage: "https://www.influxdata.com/time-series-platform/telegraf/",

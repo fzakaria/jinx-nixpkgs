@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "datafolklabs",
           repo: "cement",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.14.patch",
             url: "https://github.com/datafolklabs/cement/commit/8b038170d82be7dbd283d72b9c5db3cceec7163b.patch",
             includes: nix.thunk(() => ["tests/*"]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [pdm_backend]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         colorlog: nix.thunk(() => [colorlog]),
         jinja2: nix.thunk(() => [jinja2]),
         mustache: nix.thunk(() => [pystache]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         "tests/ext/test_ext_smtp.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI Application Framework for Python",
         homepage: "https://builtoncement.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/datafolklabs/cement/blob/${version}/CHANGELOG.md`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cement",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

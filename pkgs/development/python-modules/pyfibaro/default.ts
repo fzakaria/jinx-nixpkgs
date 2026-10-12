@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyfibaro",
       version: "0.8.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rappenze",
           repo: "pyfibaro",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["pyfibaro"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to access FIBARO Home center",
         homepage: "https://github.com/rappenze/pyfibaro",
         changelog: nix.thunk(() => nix.str`https://github.com/rappenze/pyfibaro/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

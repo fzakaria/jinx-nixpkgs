@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const createManyLinuxPackage = (name) => (libs) => (() => {
     const drvs = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), libs))));
     const names = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), libs));
-    return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({ __proto__: pos$1, buildInputs: drvs })), nix.thunk(() => nix.str`mkdir -p $out/lib
+    return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({ [nix.POS]: pos$1, buildInputs: drvs })), nix.thunk(() => nix.str`mkdir -p $out/lib
 num_found=0
 
 IFS=:
@@ -44,7 +44,7 @@ fi
   const manylinux2014Libs = nix.thunk(() => nix.app(getLibOutputs, nix.thunk(() => (() => {
       const w = nix.withScope(pkgs, null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "libgcc_s.so.1": nix.thunk(() => nix.lookup(w, "glibc")),
         "libstdc++.so.6": nix.thunk(() => nix.sel(nix.lookup(w, "stdenv"), "cc", "cc")),
         "libm.so.6": nix.thunk(() => nix.lookup(w, "glibc")),
@@ -72,14 +72,14 @@ fi
   const manylinux1Libs = nix.thunk(() => nix.app(getLibOutputs, nix.thunk(() => nix.update(manylinux2010Libs, (() => {
       const w_1 = nix.withScope(pkgs, null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "libpanelw.so.5": nix.thunk(() => nix.lookup(w_1, "ncurses5")),
         "libncursesw.so.5": nix.thunk(() => nix.lookup(w_1, "ncurses5")),
         "libcrypt.so.1": nix.thunk(() => nix.lookup(w_1, "libxcrypt")),
       };
     })()))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     manylinux1: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), manylinux1Libs)))),
     manylinux2010: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), manylinux2010Libs)))),
     manylinux2014: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), manylinux2014Libs)))),

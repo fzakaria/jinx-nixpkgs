@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.argOr($, "mkDerivation", () => nix.sel(pkgs, "stdenv", "mkDerivation"));
   const domain = nix.argOr($, "domain", () => nix.sel(nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")), "domain"));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "test-certs",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(minica, "overrideAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             prePatch: "sed -i 's_NotAfter: time.Now().AddDate(2, 0, 30),_NotAfter: time.Now().AddDate(20, 0, 0),_' main.go\n",
           }))),
       ]),

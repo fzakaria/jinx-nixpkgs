@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const coreutils = nix.argOr($, "coreutils", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diffutils",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/diffutils/diffutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fIt/n8hgkUH96pzs6FJJ0whiQ5H/Yd7a9Sj8szdyff0=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isRiscV64"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/diffutils/diffutils.html",
         description: "Commands for showing the differences between files (diff, cmp, etc.)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -32,15 +32,15 @@ export default nix.lambda((args) => (() => {
   const ssse3Support = nix.argOr($, "ssse3Support", () => nix.sel(stdenv, "hostPlatform", "ssse3Support"));
   const avx2Support = nix.argOr($, "avx2Support", () => nix.sel(stdenv, "hostPlatform", "avx2Support"));
   const avx512Support = nix.argOr($, "avx512Support", () => nix.sel(stdenv, "hostPlatform", "avx512Support"));
-  const c_blosc$ = nix.thunk(() => nix.app(nix.sel(c_blosc, "override"), nix.thunk(() => ({ __proto__: pos$1, snappySupport: true }))));
-  const zfp$ = nix.thunk(() => nix.app(nix.sel(zfp, "override"), nix.thunk(() => ({ __proto__: pos$2, bitStreamWordSize: 8n }))));
+  const c_blosc$ = nix.thunk(() => nix.app(nix.sel(c_blosc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, snappySupport: true }))));
+  const zfp$ = nix.thunk(() => nix.app(nix.sel(zfp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, bitStreamWordSize: 8n }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hdf5plugin",
       version: "7.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "silx-kit",
           repo: "hdf5plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [c_blosc$, c_blosc2, bzip2, charls, lz4, zfp$, zlib, zstd]),
       postPatch: "rm -rf lib/c-blosc\nrm -rf lib/c-blosc2\nrm -rf lib/bzip2\nrm -rf lib/charls\nrm -rf lib/zfp\nrm -rf lib/zstd\n",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         HDF5PLUGIN_SYSTEM_LIBRARIES: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => ["blosc", "blosc2", "bzip2", "charls", "lz4", "zfp", "zlib", "zstd"]))),
         HDF5PLUGIN_NATIVE: "False",
         HDF5PLUGIN_SSE2: nix.thunk(() => (nix.asBool(sse2Support) ? "True" : "False")),
@@ -77,7 +77,7 @@ Cflags: -I${nix.app(nix.sel(lib, "getDev"), zfp$)}/include
 EOF
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Additional compression filters for h5py",
         longDescription: "hdf5plugin provides HDF5 compression filters and makes them usable from h5py.\nSupported encodings: Blosc, Blosc2, BitShuffle, BZip2, FciDecomp, LZ4, SZ, SZ3, Zfp, ZStd\n",
         homepage: "http://www.silx.org/doc/hdf5plugin/latest/",

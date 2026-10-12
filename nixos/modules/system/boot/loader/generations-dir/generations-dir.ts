@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const generationsDirBuilder = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.path(here, "./generations-dir-builder.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(config, "boot", "loader", "generationsDir"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         bash: nix.thunk(() => nix.attr(pkgs, "bash")),
         path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "coreutils")),
@@ -43,23 +43,23 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       boot: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         loader: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           generationsDir: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to create symlinks to the system generations under\n`/boot`.  When enabled,\n`/boot/default/kernel`,\n`/boot/default/initrd`, etc., are updated to\npoint to the current generation's kernel image, initial RAM\ndisk, and other bootstrap files.\n\nThis optional is not necessary with boot loaders such as GNU GRUB\nfor which the menu is updated to point to the latest bootstrap\nfiles.  However, it is needed for U-Boot on platforms where the\nboot command line is stored in flash memory rather than in a\nmenu file.\n",
               })))),
             copyKernels: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to copy the necessary boot files into /boot, so\n/nix/store is not needed by the boot loader.\n",
@@ -69,13 +69,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "loader", "generationsDir", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         system: nix.thunk(() => ({
-          __proto__: pos$12,
-          build: nix.thunk(() => ({ __proto__: pos$9, installBootLoader: generationsDirBuilder })),
+          [nix.POS]: pos$12,
+          build: nix.thunk(() => ({ [nix.POS]: pos$9, installBootLoader: generationsDirBuilder })),
           boot: nix.thunk(() => ({
-            __proto__: pos$11,
-            loader: nix.thunk(() => ({ __proto__: pos$10, id: "generationsDir" })),
+            [nix.POS]: pos$11,
+            loader: nix.thunk(() => ({ [nix.POS]: pos$10, id: "generationsDir" })),
           })),
         })),
       })))),

@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["ec2", "metadata"]), "")),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       systemd: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "apply-ec2-data": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Apply EC2 Data",
             wantedBy: nix.thunk(() => ["multi-user.target", "sshd-keygen.service"]),
             before: nix.thunk(() => ["sshd-keygen.service"]),
@@ -77,10 +77,10 @@ if [ -s "$userData" ]; then
   fi
 fi
 `),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$1, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, Type: "oneshot", RemainAfterExit: true })),
           })),
           "print-host-key": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Print SSH Host Key",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             after: nix.thunk(() => ["sshd-keygen.service"]),
@@ -107,13 +107,13 @@ for i in /etc/ssh/ssh_host_*_key.pub; do
 done
 echo "-----END SSH HOST KEY KEYS-----" > /dev/console
 `),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot", RemainAfterExit: true })),
           })),
         })),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "arianvp"))];

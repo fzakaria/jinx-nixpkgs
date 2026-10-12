@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(darwin, "bootstrapStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "atf",
       version: "0.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freebsd",
           repo: "atf",
           tag: nix.thunk(() => nix.str`atf-${nix.sel(finalAttrs, "version")}`),
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -r $out/tests\n",
       installCheckPhase: "runHook preInstallCheck\nHOME=$TMPDIR PATH=$out/bin:$PATH kyua test\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "atf-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "atf-" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Libraries to write tests in C, C++, and shell",
         homepage: "https://github.com/freebsd/atf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

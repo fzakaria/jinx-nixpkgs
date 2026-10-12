@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cucumber-expressions",
       version: "20.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cucumber",
           repo: "cucumber-expressions",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cucumber_expressions"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyyaml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/cucumber/cucumber-expressions/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Human friendly alternative to Regular Expressions",
         homepage: "https://github.com/cucumber/cucumber-expressions/tree/main/python",

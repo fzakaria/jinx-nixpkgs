@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "test",
       version: "2017-03-30",
       idrisDeps: nix.thunk(() => [effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfdm",
           repo: "idris-testing",
           rev: "604d56f77054931b21975198be669e22427b1f52",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing Utilities for Idris programs",
         homepage: "https://github.com/jfdm/idris-testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

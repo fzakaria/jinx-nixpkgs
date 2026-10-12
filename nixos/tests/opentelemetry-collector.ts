@@ -32,55 +32,55 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const port = 4318n;
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "opentelemetry-collector",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "tylerjl"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "opentelemetry-collector": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 exporters: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  debug: nix.thunk(() => ({ __proto__: pos$4, verbosity: "detailed" })),
+                  [nix.POS]: pos$5,
+                  debug: nix.thunk(() => ({ [nix.POS]: pos$4, verbosity: "detailed" })),
                 })),
                 receivers: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   otlp: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     protocols: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       http: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         endpoint: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(port)}`),
                       })),
                     })),
                   })),
                 })),
                 service: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   pipelines: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     logs: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       receivers: nix.thunk(() => ["otlp"]),
                       exporters: nix.thunk(() => ["debug"]),
                     })),
@@ -90,12 +90,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$18,
-                host: nix.thunk(() => ({ __proto__: pos$16, port: port })),
-                guest: nix.thunk(() => ({ __proto__: pos$17, port: port })),
+                [nix.POS]: pos$18,
+                host: nix.thunk(() => ({ [nix.POS]: pos$16, port: port })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$17, port: port })),
               })),
             ]),
           })),

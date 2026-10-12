@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protoc-gen-es";
       const version = "2.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bufbuild",
           repo: "protobuf-es",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const npmWorkspace = "packages/protoc-gen-es";
       const preBuild = "npm run --workspace=packages/protobuf build\nnpm run --workspace=packages/protoplugin build\n";
       const postInstall = "rm -rf $out/lib/node_modules/protobuf-es/node_modules/ts4.*\ncp -rL node_modules/ts4.* $out/lib/node_modules/protobuf-es/node_modules/\n\nrm -rf $out/lib/node_modules/protobuf-es/node_modules/ts5.*\ncp -rL node_modules/ts5.* $out/lib/node_modules/protobuf-es/node_modules/\n\nrm -rf $out/lib/node_modules/protobuf-es/node_modules/upstream-protobuf\ncp -rL node_modules/upstream-protobuf $out/lib/node_modules/protobuf-es/node_modules/\n\nrm -rf $out/lib/node_modules/protobuf-es/node_modules/@bufbuild\ncp -rL node_modules/@bufbuild $out/lib/node_modules/protobuf-es/node_modules/\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Protobuf plugin for generating ECMAScript code",
         homepage: "https://github.com/bufbuild/protobuf-es",
         changelog: nix.thunk(() => nix.str`https://github.com/bufbuild/protobuf-es/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "protoc-gen-es",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

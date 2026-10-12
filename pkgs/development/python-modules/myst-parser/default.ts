@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sphinx_pytest = nix.arg($, "sphinx-pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myst-parser",
       version: "5.1.0-unstable-2026-07-12",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.11")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "myst-parser",
           rev: "e843b5ff61d9834b4864a95bf6a668909c2de3a6",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_renderers/test_fixtures_sphinx.py"]),
       pythonImportsCheck: nix.thunk(() => ["myst_parser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx and Docutils extension to parse MyST",
         homepage: "https://myst-parser.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

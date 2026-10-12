@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "router";
       const version = "1.56.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apollographql",
           repo: "router",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, protobuf]);
       const buildInputs = nix.thunk(() => [elfutils]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTY_V8_ARCHIVE: nix.thunk(() => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => ({})))),
       }));
       const cargoTestFlags = nix.thunk(() => [
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
         "--skip=query_planner::tests::missing_typename_and_fragments_in_requires",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: router })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: router })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Configurable, high-performance routing runtime for Apollo Federation",
         homepage: "https://www.apollographql.com/docs/router/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bbigras"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

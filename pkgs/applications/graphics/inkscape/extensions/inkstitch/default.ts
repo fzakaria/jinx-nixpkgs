@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   })());
   const pyEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (_) => nix.force(dependencies)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "inkstitch",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inkstitch",
           repo: "inkstitch",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gettext, pyEnv]),
       dependencies: dependencies,
-      env: nix.thunk(() => ({ __proto__: pos$2, GITHUB_REF: version, BUILD: "nixpkgs" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GITHUB_REF: version, BUILD: "nixpkgs" })),
       makeFlags: nix.thunk(() => ["manual"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/inkscape/extensions\ncp -a . $out/share/inkscape/extensions/inkstitch\n\nrunHook postInstall\n",
       patches: nix.thunk(() => [
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0003-lazy-load-module-to-access-global_settings.patch"),
         nix.path(here, "./0004-enable-force-insertion-of-python-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/inkstitch/inkstitch/commit/454b5ee1a00e9d4b96f5f057a8611da68a6cc796.patch",
             hash: "sha256-nAs1rAr3lvN5Qwhj0I+7puM3R2X1NoHpB0ltvlwHDXA=",
           })))),
@@ -84,7 +84,7 @@ wrapProgram $out/share/inkscape/extensions/inkstitch/inkstitch.py \\
         return [nix.thunk(() => nix.lookup(w_1, "pytestCheckHook"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Inkscape extension for machine embroidery design",
         homepage: "https://inkstitch.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

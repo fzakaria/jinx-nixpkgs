@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = "osmium";
       const version = "0.0.42-alpha";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://updater.osmium.chat/Osmium-${version}-x64.tar.gz`),
           hash: "sha256-AI9hrCHa0gfI/m7zGUzAagyypgfKSgm2cVnn9LH1I0g=",
         }))));
@@ -95,7 +95,7 @@ ln -s "$desktopItem/share/applications" $out/share
 runHook postInstall
 `);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "osmium",
           exec: "osmium",
           icon: "osmium",
@@ -105,9 +105,9 @@ runHook postInstall
           mimeTypes: nix.thunk(() => ["x-scheme-handler/osmium"]),
           startupWMClass: "Osmium",
         }))));
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Globally distributed community messaging and voice/video platform",
         homepage: "https://osmium.chat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -123,7 +123,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "c0959a121ef94542e807a674142606f7e90214a2b3d1eb17300244bbb5cc2bfc",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["jsmin/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["jsmin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JavaScript minifier",
         homepage: "https://github.com/tikitu/jsmin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

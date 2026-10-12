@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     })(), formals$2), nix.thunk(() => ({})));
   const binCase = (case$) => nix.app(writeShellScriptBin, nix.thunk(() => nix.str`test-trivial-overriding-bin-${case$}`), extglobScript);
   const textFileCase = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "test-trivial-overriding-text-file",
       checkPhase: "false",
       text: nix.thunk(() => nix.str`#!${runtimeShell}
@@ -40,12 +40,12 @@ echo success
       executable: true,
     }))));
   const disallowExtglob = (x) => nix.app(nix.sel(x, "overrideAttrs"), (_) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       checkPhase: nix.thunk(() => nix.str`${nix.sel(stdenv, "shell")} -n "$target"
 `),
     }));
   const assertFail = (x) => nix.app(nix.sel(x, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       checkPhase: nix.thunk(() => nix.str`if
   ${nix.sel(old, "checkPhase")}
 then exit 1; fi
@@ -56,14 +56,14 @@ then exit 1; fi
     return (nix.asBool(isBin) ? nix.str`${drv}/bin/${nix.sel(drv, "name")}` : nix.force(drv));
   })();
   const writeTextOverrides = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     simpleSucc: nix.thunk(() => nix.app(mkCase, simpleCase, "succ", false)),
     simpleFail: nix.thunk(() => nix.app(mkCase, simpleCase, "fail", false)),
     callpSucc: nix.thunk(() => nix.app(mkCase, callPackageCase, "succ", false)),
     callpFail: nix.thunk(() => nix.app(mkCase, callPackageCase, "fail", false)),
     binSucc: nix.thunk(() => nix.app(mkCase, binCase, "succ", true)),
     binFail: nix.thunk(() => nix.app(mkCase, binCase, "fail", true)),
-    textFileSuccess: nix.thunk(() => nix.app(nix.sel(textFileCase, "overrideAttrs"), (_) => ({ __proto__: pos$4, checkPhase: "true" }))),
+    textFileSuccess: nix.thunk(() => nix.app(nix.sel(textFileCase, "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, checkPhase: "true" }))),
   }));
   const runTest = (script) => (() => {
     const name = nix.thunk(() => nix.selOr(script, () => nix.builtins.baseNameOf(script), "name"));
@@ -74,8 +74,8 @@ fi
 `));
   })();
   return nix.app(runCommand, "test-writeShellScript-overriding", nix.thunk(() => ({
-      __proto__: pos$7,
-      passthru: nix.thunk(() => ({ __proto__: pos$6, writeTextOverrides: writeTextOverrides })),
+      [nix.POS]: pos$7,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, writeTextOverrides: writeTextOverrides })),
     })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStrings"), (test) => nix.str`${nix.app(runTest, test)}
 `, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), writeTextOverrides)))}
 touch "$out"

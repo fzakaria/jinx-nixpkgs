@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "istioctl",
       version: "1.31.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "istio",
           repo: "istio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "$out/bin/istioctl collateral --man --bash --zsh\ninstallManPage *.1\ninstallShellCompletion istioctl.bash\ninstallShellCompletion --zsh _istioctl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Istio configuration command line utility for service operators to debug and diagnose their Istio mesh",
         mainProgram: "istioctl",
         homepage: "https://istio.io/latest/docs/reference/commands/istioctl",

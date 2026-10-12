@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "quivira",
       version: "4.1",
       url: "http://www.quivira-font.com/files/Quivira.otf",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       postFetch: "install -D $downloadedFile $out/share/fonts/opentype/Quivira.otf\n",
       sha256: "Hhl+0Oc5DDohOpBbEARMunMYCpr6nn4X6RgpQeEksNo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Free Unicode font in the OpenType format which is supported by every usual office program or printer",
         homepage: "http://www.quivira-font.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

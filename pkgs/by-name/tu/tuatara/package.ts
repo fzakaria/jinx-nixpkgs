@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_13 = nix.arg($, "zig_0_13");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tuatara",
       version: "1631040452-unstable-2025-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "q60",
           repo: "tuatara",
           rev: "bc093e5fe1cb8dec667806f1b41c8e4e913368e8",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [zig_0_13]),
       preBuild: "export ZIG_LOCAL_CACHE_DIR=$TMPDIR/zig-cache\nexport ZIG_GLOBAL_CACHE_DIR=$TMPDIR/zig-global-cache\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ziggidy *nix system info fetcher",
         longDescription: "tuatara is a ziggidy *nix system info fetcher. WIP. It is\ndescendant of disfetch. Although sharing some common concepts\nand principles, they are different.\n\nThe main difference of tuatara from disfetch is that tuatara\nwill be highly customizable, while disfetch won't, because it\ncovers minimalism and simplicity. Though, they will share some\nother principles regarding showing only needed information,\nbeing fast and reliable and sharing the same handmade logos with\nthe principle of not-more-or-less-than 8 rows.\n",
         homepage: "https://github.com/q60/tuatara",

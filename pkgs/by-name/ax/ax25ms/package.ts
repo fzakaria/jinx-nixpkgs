@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libax25 = nix.arg($, "libax25");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ax25ms",
       version: "0-unstable-2024-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThomasHabets",
           repo: "ax25ms",
           rev: "c7d7213bb182e4b60f655c3f9f1bcb2b2440406b",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs scripts\n./bootstrap.sh\n",
       postInstall: "set +e\nfor binary_path in \"$out/bin\"/*; do\n  filename=$(basename \"$binary_path\")\n  mv \"$binary_path\" \"$out/bin/ax25ms-$filename\"\ndone\nset -e\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of AX.25 microservices, designed to be pluggable for any implementation",
         homepage: "https://github.com/ThomasHabets/ax25ms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

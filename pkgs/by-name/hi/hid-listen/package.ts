@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hid-listen",
       version: "1.01",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`hid_listen_${nix.sel(finalAttrs, "version")}`),
           url: nix.thunk(() => nix.str`https://www.pjrc.com/teensy/hid_listen_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0sd4dvi39fl4vy880mg531ryks5zglfz5mdyyqr7x6qv056ffx9w",
         })))),
       installPhase: "mkdir -p $out/bin\nmv ./hid_listen $out/bin/hid_listen\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool thats prints debugging information from usb HID devices",
         homepage: "https://www.pjrc.com/teensy/hid_listen.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

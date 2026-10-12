@@ -54,10 +54,10 @@ export default nix.lambda((args) => (() => {
   const port = 8080n;
   const server = nix.thunk(() => nix.str`http://server:${nix.builtins.toString(port)}`);
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     name: "stirling-pdf",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -69,21 +69,21 @@ export default nix.lambda((args) => (() => {
     enableOCR: true,
     globalTimeout: 600n,
     nodes: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "stirling-pdf": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "stirling-pdf")),
               environment: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 SERVER_PORT: port,
                 DISABLE_ADDITIONAL_FEATURES: false,
                 SECURITY_ENABLELOGIN: true,
@@ -91,8 +91,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [port]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [port]) })),
           })),
         };
       })(), formals$2),
@@ -101,36 +101,36 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             memorySize: 4096n,
             cores: 4n,
             qemu: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci,xres=640,yres=480"]),
             })),
           })),
           imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             cage: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               program: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stirling-pdf-desktop")))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               settings: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 "stirling-provisioning.json": nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   "/etc/stirling-pdf/stirling-provisioning.json": nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       argument: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "stirling-provisioning.json", nix.thunk(() => nix.str`{
   "serverUrl": "${server}",
   "lockConnectionMode": true
@@ -143,14 +143,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$19,
-            ydotool: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+            [nix.POS]: pos$19,
+            ydotool: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             users: nix.thunk(() => ({
-              __proto__: pos$21,
-              alice: nix.thunk(() => ({ __proto__: pos$20, extraGroups: nix.thunk(() => ["ydotool"]) })),
+              [nix.POS]: pos$21,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$20, extraGroups: nix.thunk(() => ["ydotool"]) })),
             })),
           })),
         };
@@ -158,20 +158,20 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "server.start()\nserver.wait_for_unit(\"stirling-pdf.service\")\nserver.wait_for_console_text(\"Stirling-PDF Started\")\n\n# initial login\nclient.start()\nclient.wait_for_text(\"Sign in to Server\")\nclient.send_chars(\"admin\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_chars(\"stirling\\n\", 0.1)\n\n# skip telemetry prompt\nclient.wait_for_text(\"analytics\")\nclient.send_key(\"shift-tab\", 1)\nclient.send_key(\"tab\", 1)\nclient.send_key(\"tab\", 1)\nclient.send_key(\"kp_enter\", 1)\n\n# update password\nclient.wait_for_text(\"password\")\nclient.send_key(\"tab\", 1)\nclient.send_key(\"shift-tab\", 1)\nclient.send_key(\"shift-tab\", 1)\nclient.send_key(\"shift-tab\", 1)\nclient.send_chars(\"stirling2\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_chars(\"stirling2\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_key(\"kp_enter\", 1)\n\n# final login\nclient.wait_for_text(\"Sign in to Server\")\nclient.send_chars(\"admin\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_chars(\"stirling2\\n\", 0.1)\nclient.wait_for_text(\"Welcome to Stirling\")\nclient.send_key(\"kp_enter\", 1)\n\n# version prompt\nclient.wait_for_text(\"Config\")\nclient.execute(\"ydotool mousemove -a -- 290 220\") # Config button\nclient.execute(\"ydotool click 0xC0\")\nclient.wait_for_text(\"Current Frontend Version\")\nclient.screenshot(\"stirling-pdf-version\")\n",
     interactive: nix.thunk(() => ({
-      __proto__: pos$38,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$25, enable: true })),
+      [nix.POS]: pos$38,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             services: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               cage: nix.thunk(() => ({
-                __proto__: pos$27,
-                environment: nix.thunk(() => ({ __proto__: pos$26, WLR_NO_HARDWARE_CURSORS: "1" })),
+                [nix.POS]: pos$27,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$26, WLR_NO_HARDWARE_CURSORS: "1" })),
               })),
             })),
           };
@@ -179,21 +179,21 @@ export default nix.lambda((args) => (() => {
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return {
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               forwardPorts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   from: "host",
-                  host: nix.thunk(() => ({ __proto__: pos$30, port: port })),
-                  guest: nix.thunk(() => ({ __proto__: pos$31, port: port })),
+                  host: nix.thunk(() => ({ [nix.POS]: pos$30, port: port })),
+                  guest: nix.thunk(() => ({ [nix.POS]: pos$31, port: port })),
                 })),
               ]),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$35,
-              firewall: nix.thunk(() => ({ __proto__: pos$34, allowedTCPPorts: nix.thunk(() => [port]) })),
+              [nix.POS]: pos$35,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$34, allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
           };
         })(), formals$5),

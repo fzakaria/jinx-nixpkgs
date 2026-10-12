@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
   const defaultFontPath = nix.argOr($, "defaultFontPath", () => "");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xwayland",
       version: "24.1.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/xserver/xwayland-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Tra5jWeCmaS5YTjYhjRbKUEwaVdgNF74RZYiWoIkB4o=",
         })))),
@@ -123,15 +123,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "libunwind", withLibunwind)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/xorg/xserver.git",
             "rev-prefix": "xwayland-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "X server for interfacing X11 apps with the Wayland protocol",
         homepage: "https://gitlab.freedesktop.org/xorg/xserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

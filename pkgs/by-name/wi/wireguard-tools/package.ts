@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const wireguard_go = nix.arg($, "wireguard-go");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wireguard-tools",
       version: "1.0.20260223",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-jOFEE9CcCjU52nPO/+ib72rqki7H1qkIinv7Z8yWQBA=",
         })))),
@@ -54,12 +54,12 @@ done
 done
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => nix.sel(nixosTests, "wireguard")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for the WireGuard secure network tunnel",
         longDescription: "Supplies the main userspace tooling for using and configuring WireGuard tunnels, including the wg(8) and wg-quick(8) utilities.\n- wg : the configuration utility for getting and setting the configuration of WireGuard tunnel interfaces. The interfaces\n  themselves can be added and removed using ip-link(8) and their IP addresses and routing tables can be set using ip-address(8)\n  and ip-route(8). The wg utility provides a series of sub-commands for changing WireGuard-specific aspects of WireGuard interfaces.\n- wg-quick : an extremely simple script for easily bringing up a WireGuard interface, suitable for a few common use cases.\n",
         downloadPage: "https://git.zx2c4.com/wireguard-tools/refs/",

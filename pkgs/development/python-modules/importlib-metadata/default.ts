@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "importlib_metadata",
           version: version,
           hash: "sha256-pPV6tZnmouMBbXWVz9cutGYaUQbnh6lbzJDHEFuDHvw=",
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [toml, zipp]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["importlib_metadata"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Read metadata from Python packages",
         homepage: "https://importlib-metadata.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

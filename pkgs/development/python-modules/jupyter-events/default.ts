@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter",
           repo: "jupyter_events",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         rfc3986_validator,
         traitlets,
       ], nix.sel(jsonschema, "optional-dependencies", "format-nongpl")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click, rich]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, rich]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytest_console_scripts, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const preCheck = "export PATH=\"$out/bin:$PATH\"\n";
       const pythonImportsCheck = nix.thunk(() => ["jupyter_events"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/jupyter_events/releases/tag/v${version}`),
         description: "Configurable event system for Jupyter applications and extensions",
         mainProgram: "jupyter-events",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

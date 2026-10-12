@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bingo",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bwplotka",
           repo: "bingo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-7Si2TyH9RKnD5+TvcLSbgZ95ZyEvs7BfadIsnxuEY1U=",
       postPatch: "rm get_e2e_test.go get_e2e_utils_test.go\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Like `go get` but for Go tools! CI Automating versioning of Go binaries in a nested, isolated Go modules",
         mainProgram: "bingo",
         homepage: "https://github.com/bwplotka/bingo",

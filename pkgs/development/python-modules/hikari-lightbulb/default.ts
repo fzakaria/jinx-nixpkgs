@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tandemdude",
           repo: "hikari-lightbulb",
           tag: version,
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [hikari, typing_extensions]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, crontrigger: nix.thunk(() => [croniter]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, crontrigger: nix.thunk(() => [croniter]) }));
       const pythonImportsCheck = nix.thunk(() => ["lightbulb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: true,
         description: "Command handler for Hikari, the Python Discord API wrapper library",
         longDescription: "Lightbulb is designed to be an easy to use command handler library that integrates with the Discord API wrapper library for Python, Hikari.\n\nThis library aims to make it simple for you to make your own Discord bots and provide all the utilities and functions you need to help make this job easier.\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

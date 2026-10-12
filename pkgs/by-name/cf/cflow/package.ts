@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const emacs = nix.arg($, "emacs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cflow",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/cflow/cflow-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-gyFie1W2x4d/akP8xvn4RqlLFHaggaA1Rl96eNNJmrg=",
         })))),
@@ -31,7 +31,7 @@ substituteInPlace "src/cflow.h" \\
       buildInputs: nix.thunk(() => nix.concat([gettext], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "lists", "any"), (x) => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), x), nix.thunk(() => ["i686-cygwin"])))), emacs))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to analyze the control flow of C programs",
         mainProgram: "cflow",
         longDescription: "GNU cflow analyzes a collection of C source files and prints a\ngraph, charting control flow within the program.\n\nGNU cflow is able to produce both direct and inverted flowgraphs\nfor C sources.  Optionally a cross-reference listing can be\ngenerated.  Two output formats are implemented: POSIX and GNU\n(extended).\n\nThe package also provides Emacs major mode for examining the\nproduced flowcharts in Emacs.\n",

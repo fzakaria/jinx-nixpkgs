@@ -106,19 +106,19 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "settings.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "transmission", "port"]), nix.thunk(() => ["services", "transmission", "settings", "rpc-port"]))),
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["services", "transmission", "openFirewall"]), nix.thunk(() => ["services", "transmission", "openPeerPorts"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         transmission: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "transmission"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: nix.thunk(() => nix.str`Whether to enable the headless Transmission BitTorrent daemon.
 
 Transmission daemon can be controlled via the RPC interface using
@@ -130,116 +130,116 @@ accessible to users in the "transmission" group.
 `),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Settings whose options overwrite fields in\n`.config/transmission-daemon/settings.json`\n(each time the service starts).\n\nSee [Transmission's documentation](https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md#options)\nfor documentation of settings not explicitly covered by this module.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     "download-dir": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/${downloadsDir}`),
                         defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "home")}}/${downloadsDir}"`))),
                         description: "Directory where to download torrents.",
                       })))),
                     "incomplete-dir": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/${incompleteDir}`),
                         defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "home")}}/${incompleteDir}"`))),
                         description: "When enabled with\nservices.transmission.home\n[](#opt-services.transmission.settings.incomplete-dir-enabled),\nnew torrents will download the files to this directory.\nWhen complete, the files will be moved to download-dir\n[](#opt-services.transmission.settings.download-dir).\n",
                       })))),
                     "incomplete-dir-enabled": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "",
                       })))),
                     "message-level": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 6n)),
                         default: 2n,
                         description: "Set verbosity of transmission messages.",
                       })))),
                     "peer-port": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 51413n,
                         description: "The peer port to listen for incoming connections.",
                       })))),
                     "peer-port-random-high": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 65535n,
                         description: "The maximum peer port to listen to for incoming connections\nwhen [](#opt-services.transmission.settings.peer-port-random-on-start) is enabled.\n",
                       })))),
                     "peer-port-random-low": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 65535n,
                         description: "The minimal peer port to listen to for incoming connections\nwhen [](#opt-services.transmission.settings.peer-port-random-on-start) is enabled.\n",
                       })))),
                     "peer-port-random-on-start": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Randomize the peer port.",
                       })))),
                     "rpc-bind-address": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "127.0.0.1",
                         example: "0.0.0.0",
                         description: "Where to listen for RPC connections.\nUse `0.0.0.0` to listen on all interfaces.\n",
                       })))),
                     "rpc-port": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 9091n,
                         description: "The RPC port to listen to.",
                       })))),
                     "script-torrent-done-enabled": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Whether to run\n[](#opt-services.transmission.settings.script-torrent-done-filename)\nat torrent completion.\n",
                       })))),
                     "script-torrent-done-filename": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                         default: null,
                         description: "Executable to be run at torrent completion.",
                       })))),
                     umask: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "str")))),
                         default: "022",
                         description: "Sets transmission's file mode creation mask.\nSee the {manpage}`umask(2)` manpage for more information.\nUsers who want their saved torrents to be world-writable\nmay want to set this value to 0/`\"000\"`.\n",
                       })))),
                     "utp-enabled": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "Whether to enable [Micro Transport Protocol (µTP)](https://en.wikipedia.org/wiki/Micro_Transport_Protocol).\n",
                       })))),
                     "watch-dir": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/${watchDir}`),
                         defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "home")}}/${watchDir}"`))),
                         description: "Watch a directory for torrent files and add them to transmission.",
                       })))),
                     "watch-dir-enabled": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Whether to enable the\n                [](#opt-services.transmission.settings.watch-dir).\n",
                       })))),
                     "trash-original-torrent-files": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Whether to delete torrents added from the\n                [](#opt-services.transmission.settings.watch-dir).\n",
@@ -247,12 +247,12 @@ accessible to users in the "transmission" group.
                   })),
                 })))),
             })))),
-          package: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "transmission", nix.thunk(() => ({ __proto__: pos$22, default: "transmission_4", example: "pkgs.transmission_4" }))), {
-            __proto__: pos$23,
+          package: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "transmission", nix.thunk(() => ({ [nix.POS]: pos$22, default: "transmission_4", example: "pkgs.transmission_4" }))), {
+            [nix.POS]: pos$23,
             defaultText: "if lib.versionAtLeast config.system.stateVersion \"25.11\" then\n  pkgs.transmission_4\nelse\n  «error message»\n",
           })),
           downloadDirPermissions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -262,7 +262,7 @@ accessible to users in the "transmission" group.
               description: "If not `null`, is used as the permissions set by\n`transmission-setup.service` on the directories\n[](#opt-services.transmission.settings.download-dir),\n[](#opt-services.transmission.settings.incomplete-dir)\nand [](#opt-services.transmission.settings.watch-dir).\nNote that you may also want to change\n[](#opt-services.transmission.settings.umask).\n\nKeep in mind, that if the default user is used, the `home` directory\nis locked behind a `750` permission, which affects all subdirectories\nas well. There are 3 ways to get around this:\n\n1. (Recommended) add the users that should have access to the group\n   set by [](#opt-services.transmission.group)\n2. Change [](#opt-services.transmission.settings.download-dir) to be\n   under a directory that has the right permissions\n3. Change `systemd.services.transmission.serviceConfig.StateDirectoryMode`\n   to the same value as this option\n",
             })))),
           home: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/transmission",
               description: nix.thunk(() => nix.str`The directory where Transmission will create \`${settingsDir}\`.
@@ -273,26 +273,26 @@ and \`${incompleteDir}/\` unless
 `),
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "transmission",
               description: "User account under which Transmission runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "transmission",
               description: "Group account under which Transmission runs.",
             })))),
           credentialsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Path to a JSON file to be merged with the settings.\nUseful to merge a file which is better kept out of the Nix store\nto set secret config parameters like `rpc-password`.\n",
               default: "/dev/null",
               example: "/var/lib/secrets/transmission/settings.json",
             })))),
           extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--log-debug"]),
@@ -301,11 +301,11 @@ and \`${incompleteDir}/\` unless
           openPeerPorts: nix.thunk(() => nix.app(mkEnableOption, "opening of the peer port(s) in the firewall")),
           openRPCPort: nix.thunk(() => nix.app(mkEnableOption, "opening of the RPC port in the firewall")),
           performanceNetParameters: nix.thunk(() => nix.update(nix.app(mkEnableOption, "performance tweaks"), {
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             description: "Whether to enable tweaking of kernel parameters\nto open many more connections at the same time.\n\nNote that you may also want to increase\n`peer-limit-global`.\nAnd be aware that these settings are quite aggressive\nand might not suite your regular desktop use.\nFor instance, SSH sessions may time out more easily.\n",
           })),
           webHome: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "pkgs.flood-for-transmission",
@@ -315,23 +315,23 @@ and \`${incompleteDir}/\` unless
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           transmission: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             package: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.11")), nix.thunk(() => nix.app(mkOptionDefault, nix.thunk(() => nix.builtins.throw("`services.transmission.package` previously defaulted to\n`pkgs.transmission_3`, which has been removed in favour\nof `pkgs.transmission_4`.\n\nPlease set `services.transmission.package` to\n`pkgs.transmission_4` explicitly. Note that upgrade\ncaused data loss for some users so backup is recommended\n(see NixOS 24.11 release notes for details)\n")))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "transmission-setup": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               before: nix.thunk(() => ["transmission.service"]),
               partOf: nix.thunk(() => ["transmission.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$37, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$37, Type: "oneshot", RemainAfterExit: true })),
               script: nix.thunk(() => nix.add(nix.str`install -d -m 700 -o '${nix.sel(cfg, "user")}' -g '${nix.sel(cfg, "group")}' '${nix.sel(cfg, "home")}/${settingsDir}'
 `, nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "downloadDirPermissions"), null)), nix.thunk(() => nix.str`install -d -m '${nix.sel(cfg, "downloadDirPermissions")}' -o '${nix.sel(cfg, "user")}' -g '${nix.sel(cfg, "group")}' '${nix.sel(cfg, "settings", "download-dir")}'
 
@@ -342,19 +342,19 @@ ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "settings", "watch-dir-en
 `)))),
             })),
             transmission: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               description: "Transmission BitTorrent Service",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(optional, nix.thunk(() => nix.sel(apparmor, "enable")), "apparmor.service"))),
               requires: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(apparmor, "enable")), "apparmor.service")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 CURL_CA_BUNDLE: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                 TRANSMISSION_WEB_HOME: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "webHome"), null)), nix.thunk(() => nix.sel(cfg, "webHome")))),
               })),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 ExecStartPre: nix.thunk(() => [
                   nix.thunk(() => nix.add("+", nix.app(nix.sel(pkgs, "writeShellScript"), "transmission-prestart", nix.thunk(() => nix.str`set -eu${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.ge(nix.sel(cfg, "settings", "message-level"), 3n)), "x")}
 ${nix.sel(pkgs, "jq")}/bin/jq --slurp add ${settingsFile} '${nix.sel(cfg, "credentialsFile")}' |
@@ -421,8 +421,8 @@ install -D -m 600 -o '${nix.sel(cfg, "user")}' -g '${nix.sel(cfg, "group")}' /de
                   "quotactl",
                 ]),
                 SystemCallArchitectures: "native",
-              }, (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "4.1.1")) ? { __proto__: pos$41, Type: "notify-reload" } : {
-                __proto__: pos$42,
+              }, (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "4.1.1")) ? { [nix.POS]: pos$41, Type: "notify-reload" } : {
+                [nix.POS]: pos$42,
                 Type: "notify",
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
               }))),
@@ -430,15 +430,15 @@ install -D -m 600 -o '${nix.sel(cfg, "user")}' -g '${nix.sel(cfg, "group")}' /de
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "transmission")), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               transmission: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "transmission")),
                 description: "Transmission BitTorrent user",
@@ -446,55 +446,55 @@ install -D -m 600 -o '${nix.sel(cfg, "user")}' -g '${nix.sel(cfg, "group")}' /de
               })),
             })))),
           groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "transmission")), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               transmission: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "transmission")),
               })),
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           firewall: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openPeerPorts")), nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "peer-port-random-on-start")) ? {
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   allowedTCPPortRanges: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       from: nix.thunk(() => nix.sel(cfg, "settings", "peer-port-random-low")),
                       to: nix.thunk(() => nix.sel(cfg, "settings", "peer-port-random-high")),
                     })),
                   ]),
                   allowedUDPPortRanges: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       from: nix.thunk(() => nix.sel(cfg, "settings", "peer-port-random-low")),
                       to: nix.thunk(() => nix.sel(cfg, "settings", "peer-port-random-high")),
                     })),
                   ]),
                 } : {
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "peer-port"))]),
                   allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "peer-port"))]),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openRPCPort")), nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "rpc-port"))]),
                 })))),
             ]))),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           kernel: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             sysctl: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "settings", "utp-enabled")), nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     "net.core.rmem_max": nix.thunk(() => nix.app(mkDefault, 4194304n)),
                     "net.core.wmem_max": nix.thunk(() => nix.app(mkDefault, 1048576n)),
                   })))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "performanceNetParameters")), nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     "net.ipv4.ip_local_port_range": nix.thunk(() => nix.app(mkDefault, "16384 65535")),
                     "net.netfilter.nf_conntrack_generic_timeout": nix.thunk(() => nix.app(mkDefault, 60n)),
                     "net.netfilter.nf_conntrack_tcp_timeout_established": nix.thunk(() => nix.app(mkDefault, 600n)),
@@ -505,19 +505,19 @@ install -D -m 600 -o '${nix.sel(cfg, "user")}' -g '${nix.sel(cfg, "group")}' /de
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           apparmor: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             policies: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               "bin.transmission-daemon": nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 profile: nix.thunk(() => nix.str`include "${nix.sel(cfg, "package", "apparmor")}/bin.transmission-daemon"
 `),
               })),
             })),
             includes: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               "local/bin.transmission-daemon": nix.thunk(() => nix.str`${nix.sel(config, "systemd", "services", "transmission", "environment", "CURL_CA_BUNDLE")} r,
 
 owner ${nix.sel(cfg, "home")}/${settingsDir}/** rw,
@@ -549,7 +549,7 @@ ${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "webHome"), null)
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "julm"))];

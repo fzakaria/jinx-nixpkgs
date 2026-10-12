@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "pretalx.cfg", nix.thunk(() => nix.sel(cfg, "settings"))));
   const finalPackage = nix.thunk(() => nix.attr(cfg, "finalPackage"));
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(finalPackage, "python", "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraLibs: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(finalPackage, "python", "pkgs")), null);
         return nix.concat([
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const pretalxManageWrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "pretalx-manage",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -123,7 +123,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (file) => nix.str`. ${nix.a
 set +a
 export PRETALX_CONFIG_FILE=${configFile}
 exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           user: nix.thunk(() => nix.attr(cfg, "user")),
           "preserve-environment": true,
         })))} -- ${nix.app(nix.sel(lib, "getExe'"), pythonEnv, "pretalx-manage")} "$@"
@@ -131,51 +131,51 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
       excludeShellChecks: nix.thunk(() => ["SC1091"]),
     }))));
   return {
-    __proto__: pos$85,
+    [nix.POS]: pos$85,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => nix.sel(pkgs, "pretalx", "meta", "maintainers")),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "pretalx", "celery", "enable"]), "Celery is now always required.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       services: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         pretalx: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "pretalx")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pretalx", nix.thunk(() => ({})))),
           finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
-              default: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$5, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) })))),
+              default: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) })))),
               defaultText: "config.services.package.override {\n  inherit (config.services.pretalx) plugins;\n}\n",
               readOnly: true,
               description: "The effective pretalx package used. This is the base package with the selected plugins applied.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Environment files that allow passing secret configuration values.\n\nEach line must follow the `PRETALX_SECTION_KEY=value` pattern.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/secrets/pretalx/env"]),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "pretalx",
               description: "Group under which pretalx should run.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "pretalx",
               description: "User under which pretalx should run.",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -185,9 +185,9 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               description: "Pretalx plugins to install into the Python environment.\n",
             })))),
           gunicorn: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -205,9 +205,9 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               })))),
           })),
           celery: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -218,25 +218,25 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
                 description: "Whether to set up an nginx virtual host.\n",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "talks.example.com",
                 description: "The domain name under which to set up the virtual host.\n",
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
@@ -244,23 +244,23 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     database: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["postgresql"]))),
                           default: "postgresql",
                           description: "Database backend to use.\n\nCurrently only PostgreSQL gets tested, and as such we don't support any other DBMS.\n",
                           readOnly: true,
                         })))),
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")));
@@ -270,22 +270,22 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                           description: "Database host or socket path.\n",
                         })))),
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "pretalx",
                           description: "Database name.\n",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "pretalx",
                           description: "Database username.\n",
                         })))),
                     })),
                     files: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       upload_limit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 10n,
                           example: 50n,
@@ -293,21 +293,21 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                         })))),
                     })),
                     filesystem: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       data: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/var/lib/pretalx",
                           description: "Base path for all other storage paths.\n",
                         })))),
                       logs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/var/log/pretalx",
                           description: "Path to the log directory, that pretalx logs message to.\n",
                         })))),
                       static: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(finalPackage, "static")}/`),
                           defaultText: "${config.services.pretalx.finalPackage.static}/",
@@ -316,9 +316,9 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                         })))),
                     })),
                     celery: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -328,7 +328,7 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                           description: "URI to the celery backend used for the asynchronous job queue.\n",
                         })))),
                       broker: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -339,9 +339,9 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                         })))),
                     })),
                     redis: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -351,7 +351,7 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                           description: "URI to the redis server, used to speed up locking, caching and session storage.\n",
                         })))),
                       session: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           example: false,
@@ -359,9 +359,9 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
                         })))),
                     })),
                     site: nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`https://${nix.sel(cfg, "nginx", "domain")}`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "https://${config.services.pretalx.nginx.domain}")),
@@ -378,16 +378,16 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$84,
-        environment: nix.thunk(() => ({ __proto__: pos$45, systemPackages: nix.thunk(() => [pretalxManageWrapper]) })),
+        [nix.POS]: pos$84,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$45, systemPackages: nix.thunk(() => [pretalxManageWrapper]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           logrotate: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             settings: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               pretalx: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 files: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "filesystem", "logs")}/*.log`),
                 su: nix.thunk(() => nix.str`${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                 frequency: "weekly",
@@ -398,33 +398,33 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               enable: true,
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               upstreams: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 pretalx: nix.thunk(() => ({
-                  __proto__: pos$50,
-                  servers: nix.thunk(() => ({ __proto__: pos$49, "unix:/run/pretalx/pretalx.sock": nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$50,
+                  servers: nix.thunk(() => ({ [nix.POS]: pos$49, "unix:/run/pretalx/pretalx.sock": nix.thunk(() => ({})) })),
                 })),
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "nginx", "domain"), nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   extraConfig: "more_set_headers \"Referrer-Policy: same-origin\";\nmore_set_headers \"X-Content-Type-Options: nosniff\";\n",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$55,
-                    "/": nix.thunk(() => ({ __proto__: pos$52, proxyPass: "http://pretalx" })),
+                    [nix.POS]: pos$55,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$52, proxyPass: "http://pretalx" })),
                     "/media/": nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "filesystem", "data")}/media/`),
                       extraConfig: "access_log off;\nmore_set_headers 'Content-Disposition: attachment; filename=\"$1\"';\nexpires 7d;\ntypes {\n  # prevent xss through file uploads\n  text/plain html;\n  text/plain htm;\n  text/plain svg;\n  text/plain svgz;\n  text/plain js;\n  text/plain mjs;\n}\n",
                     })),
                     "/static/": nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       alias: nix.thunk(() => nix.sel(cfg, "settings", "filesystem", "static")),
                       extraConfig: "access_log off;\nmore_set_headers Cache-Control \"public\";\nexpires 365d;\n",
                     })),
@@ -433,11 +433,11 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               ])),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "settings", "database", "backend"), "postgresql")))), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               enable: true,
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   name: nix.thunk(() => nix.sel(cfg, "settings", "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -445,21 +445,21 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "database", "name"))]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             servers: nix.thunk(() => ({
-              __proto__: pos$61,
-              pretalx: nix.thunk(() => ({ __proto__: pos$60, enable: true })),
+              [nix.POS]: pos$61,
+              pretalx: nix.thunk(() => ({ [nix.POS]: pos$60, enable: true })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           services: nix.thunk(() => (() => {
             const commonUnitConfig = nix.thunk(() => ({
-              __proto__: pos$66,
-              environment: nix.thunk(() => ({ __proto__: pos$64, PRETALX_CONFIG_FILE: configFile })),
+              [nix.POS]: pos$66,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$64, PRETALX_CONFIG_FILE: configFile })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 User: "pretalx",
                 Group: "pretalx",
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
@@ -496,9 +496,9 @@ exec runuser ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk((
               })),
             }));
             return {
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               "pretalx-web": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), commonUnitConfig, nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   description: "pretalx web service",
                   after: nix.thunk(() => nix.concat(["network.target", "redis-pretalx.service"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "backend"), "postgresql")), nix.thunk(() => ["postgresql.target"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "backend"), "mysql")), nix.thunk(() => ["mysql.service"]))))),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -515,56 +515,56 @@ fi
 `;
                   })()),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pythonEnv, "gunicorn")} --bind unix:/run/pretalx/pretalx.sock ${nix.sel(cfg, "gunicorn", "extraArgs")} pretalx.wsgi`),
                     RuntimeDirectory: "pretalx",
                   })),
                 })))),
               "pretalx-periodic": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), commonUnitConfig, nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   description: "pretalx periodic task runner",
                   startAt: nix.thunk(() => ["*:3,18,33,48"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pythonEnv, "pretalx-manage")} runperiodic`),
                   })),
                 })))),
               "pretalx-clear-sessions": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), commonUnitConfig, nix.thunk(() => ({
-                  __proto__: pos$72,
+                  [nix.POS]: pos$72,
                   description: "pretalx session pruning",
                   startAt: nix.thunk(() => ["monthly"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pythonEnv, "pretalx-manage")} clearsessions`),
                   })),
                 })))),
               "pretalx-worker": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), commonUnitConfig, nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   description: "pretalx asynchronous job runner",
                   after: nix.thunk(() => nix.concat(["network.target", "redis-pretalx.service"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "backend"), "postgresql")), nix.thunk(() => ["postgresql.target"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "backend"), "mysql")), nix.thunk(() => ["mysql.service"]))))),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pythonEnv, "celery")} -A pretalx.celery_app worker ${nix.sel(cfg, "celery", "extraArgs")}`),
                   })),
                 })))),
               nginx: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   SupplementaryGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ["pretalx"]))),
                 })),
               })),
             };
           })()),
           sockets: nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             "pretalx-web": nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 ListenStream: "/run/pretalx/pretalx.sock",
                 SocketUser: "nginx",
               })),
@@ -572,11 +572,11 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               isSystemUser: true,
               group: nix.thunk(() => nix.attr(cfg, "group")),
             }))],

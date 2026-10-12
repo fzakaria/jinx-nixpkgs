@@ -20,44 +20,44 @@ export default nix.thunk(() => (() => {
     const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
     const fetchurl = nix.arg($, "fetchurl");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       blcVersion: blcVersion,
       lambdaLispVersion: lambdaLispVersion,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woodrush",
           repo: "lambdalisp",
           rev: "2119cffed1ab2005f08ab3cfca92028270f08725",
           hash: "sha256-ml2xQ8s8sux+6GwTw8mID3PEOcH6hn8tyc/UI5tFaO0=",
         })))),
       uniCSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tromp",
           repo: "tromp.github.io",
           rev: "b4de12e566c1fb0fa3f3babe89bac885f4c966a4",
           hash: "sha256-JmbqQp2kkkkkkkkSWQmG3uBxdgyIu4r2Ch8bBGyQ4H4=",
         })))),
       clambSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "irori",
           repo: "clamb",
           rev: "44c1208697f394e22857195be5ea73bfdd48ebd1",
           hash: "sha256-1lGg2NBoxAKDCSnnPn19r/hwBC5paAKUnlcsUv3dpNY=",
         })))),
       lazykSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "irori",
           repo: "lazyk",
           rev: "5edb0b834d0af5f7413c484eb3795d47ec2e3894",
           hash: "sha256-1lGg2NBoxAKDCSnnPn19r/hwBC5paAKUnlcsUv3dpNY=",
         })))),
       blcSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`${justineLolArchive}Blc.S?v=${blcVersion}`),
           hash: "sha256-qt7vDtn9WvDoBaLESCyyscA0u74914e8ZKhLiUAN52A=",
         })))),
       flatSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`${justineLolArchive}flat.lds`),
           hash: "sha256-HxX+10rV86zPv+UtF+n72obtz3DosWLMIab+uskxIjA=",
         })))),

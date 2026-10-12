@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libconfuse = nix.arg($, "libconfuse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libite",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "troglobit",
           repo: "libite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libconfuse]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight library of frog DNA",
         longDescription: "Libite is a lightweight library of frog DNA. It can be used to fill\nthe gaps in any dinosaur project. It holds useful functions and macros\ndeveloped by both Finit and the OpenBSD project. Most notably the\nstring functions: strlcpy(3), strlcat(3) and the highly useful *BSD\nsys/queue.h and sys/tree.h API's.\n\nLibite is the frog DNA missing in GNU libc. However, -lite does not\naim to become another GLIB! One noticeable gap in GLIBC is the missing\n_SAFE macros in the BSD sys/queue.h API — highly recommended when\ntraversing lists to delete/free nodes.\n",
         homepage: "https://github.com/troglobit/libite",

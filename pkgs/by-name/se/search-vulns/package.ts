@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "search-vulns",
       version: "1.2.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ra1nb0rn",
           repo: "search_vulns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           all: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "aiohttp")),
             nix.thunk(() => nix.lookup(w_2, "aiolimiter")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["search_vulns"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Search for known vulnerabilities in software using software titles or a CPE 2.3 string",
         homepage: "https://github.com/ra1nb0rn/search_vulns",
         changelog: nix.thunk(() => nix.str`https://github.com/ra1nb0rn/search_vulns/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

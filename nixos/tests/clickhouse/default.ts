@@ -25,45 +25,45 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const package$ = nix.arg($, "package");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     base: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         imports: nix.thunk(() => [nix.path(here, "./base.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$2,
-          args: nix.thunk(() => ({ __proto__: pos$1, package: package$ })),
+          [nix.POS]: pos$2,
+          args: nix.thunk(() => ({ [nix.POS]: pos$1, package: package$ })),
         })),
       })))),
     kafka: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         imports: nix.thunk(() => [nix.path(here, "./kafka.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$5,
-          args: nix.thunk(() => ({ __proto__: pos$4, package: package$ })),
+          [nix.POS]: pos$5,
+          args: nix.thunk(() => ({ [nix.POS]: pos$4, package: package$ })),
         })),
       })))),
     keeper: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         imports: nix.thunk(() => [nix.path(here, "./keeper.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$8,
-          args: nix.thunk(() => ({ __proto__: pos$7, package: package$ })),
+          [nix.POS]: pos$8,
+          args: nix.thunk(() => ({ [nix.POS]: pos$7, package: package$ })),
         })),
       })))),
     s3: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         imports: nix.thunk(() => [nix.path(here, "./s3.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$11,
-          args: nix.thunk(() => ({ __proto__: pos$10, package: package$ })),
+          [nix.POS]: pos$11,
+          args: nix.thunk(() => ({ [nix.POS]: pos$10, package: package$ })),
         })),
       })))),
     ui: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         imports: nix.thunk(() => [nix.path(here, "./ui.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$14,
-          args: nix.thunk(() => ({ __proto__: pos$13, package: package$ })),
+          [nix.POS]: pos$14,
+          args: nix.thunk(() => ({ [nix.POS]: pos$13, package: package$ })),
         })),
       })))),
   };

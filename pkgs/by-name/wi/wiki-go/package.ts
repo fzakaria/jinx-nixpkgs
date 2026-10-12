@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wiki-go";
       const version = "1.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leomoon-studios",
           repo: "wiki-go",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A modern, feature-rich, databaseless flat-file wiki platform built with Go",
         homepage: "https://github.com/leomoon-studios/wiki-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "wiki-go",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

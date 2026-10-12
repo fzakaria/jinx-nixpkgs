@@ -39,40 +39,40 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "memos"));
   const envFileFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         memos: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Memos note-taking")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Memos", nix.thunk(() => ({ __proto__: pos$1, default: "memos" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Memos", nix.thunk(() => ({ [nix.POS]: pos$1, default: "memos" })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening the ports in the firewall")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The user to run Memos as.\n\n::: {.note}\nIf changing the default value, **you** are responsible of creating the corresponding user with [{option}`users.users`](#opt-users.users).\n:::\n",
               default: "memos",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The group to run Memos as.\n\n::: {.note}\nIf changing the default value, **you** are responsible of creating the corresponding group with [{option}`users.groups`](#opt-users.groups).\n:::\n",
               default: "memos",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/lib/memos/",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Specifies the directory where Memos will store its data.\n\n::: {.note}\nIt will be automatically created with the permissions of [{option}`services.memos.user`](#opt-services.memos.user) and [{option}`services.memos.group`](#opt-services.memos.group).\n:::\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(envFileFormat, "type")),
               description: "The environment variables to configure Memos.\n\n::: {.note}\nAt time of writing, there is no clear documentation about possible values.\nIt's possible to convert CLI flags into these variables.\nExample : CLI flag \"--unix-sock\" converts to {env}`MEMOS_UNIX_SOCK`.\n:::\n",
               default: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 MEMOS_MODE: "prod",
                 MEMOS_ADDR: "127.0.0.1",
                 MEMOS_PORT: "5230",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
 `))),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: nix.thunk(() => nix.str`The environment file to use when starting Memos.
 
@@ -108,12 +108,12 @@ By default, generated from [](opt-${nix.sel(opt, "settings")}).
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "memos")), nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "Memos service user")),
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -122,23 +122,23 @@ By default, generated from [](opt-${nix.sel(opt, "settings")}).
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "memos")), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           firewall: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "10-memos": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   d: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -148,15 +148,15 @@ By default, generated from [](opt-${nix.sel(opt, "settings")}).
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             memos: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               wants: nix.thunk(() => ["network.target"]),
               description: "Memos, a privacy-first, lightweight note-taking solution",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Type: "simple",
@@ -208,7 +208,7 @@ By default, generated from [](opt-${nix.sel(opt, "settings")}).
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "M0ustach3"))]),
     })),
   };

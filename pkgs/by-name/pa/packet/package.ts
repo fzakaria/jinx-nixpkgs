@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "packet",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nozwock",
           repo: "packet",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-zR2WZER49xsxaiZbFGFOukHE3w0odxVi9WJTI4FSWJ0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,7 +80,7 @@ mkdir -p $out/share/nautilus-python
 ln -s $out/share/packet/plugins $out/share/nautilus-python/extensions
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quick Share client for Linux",
         homepage: "https://github.com/nozwock/packet",
         changelog: nix.thunk(() => nix.str`https://github.com/nozwock/packet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

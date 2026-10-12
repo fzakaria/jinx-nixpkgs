@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pydriller = nix.arg($, "pydriller");
   const netbox_napalm_plugin = nix.thunk(() => nix.attr(netboxPlugins, "netbox-napalm-plugin"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-config-backup",
       version: "2.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanSheps",
           repo: "netbox-config-backup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_config_backup"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_config_backup" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_config_backup" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin for configuration backups using napalm",
         homepage: "https://github.com/DanSheps/netbox-config-backup",
         changelog: nix.thunk(() => nix.str`https://github.com/DanSheps/netbox-config-backup/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

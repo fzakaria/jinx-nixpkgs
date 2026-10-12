@@ -56,54 +56,54 @@ export default nix.lambda((args) => (() => {
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "db-rest"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "db-rest": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(mkEnableOption, "db-rest service")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "db-rest",
               description: "User account under which db-rest runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "db-rest",
               description: "Group under which db-rest runs.",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "The host address the db-rest server should listen on.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3000n,
               description: "The port the db-rest server should listen on.",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable caching with redis for db-rest.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Configure a local redis server for db-rest.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
                 description: "Redis host.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "port")));
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
                 description: "Redis port.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
                 description: "Optional username used for authentication with redis.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
                 description: "Path to a file containing the redis password.",
               })))),
             useSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Use SSL if using a redis network connection.",
@@ -151,32 +151,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "redis", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "createLocally"))))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "redis", "host"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), null)))))),
             message: "{option}`services.db-rest.redis.createLocally` and redis network connection ({option}`services.db-rest.redis.host` or {option}`services.db-rest.redis.port`) enabled. Disable either of them.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "redis", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "createLocally"))))) || nix.asBool(!nix.eq(nix.sel(cfg, "redis", "passwordFile"), null)))),
             message: "{option}`services.db-rest.redis.createLocally` is disabled, but {option}`services.db-rest.redis.passwordFile` is not set.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "db-rest": nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   description: "db-rest service",
                   after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-db-rest.service"))),
                   requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-db-rest.service")),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     Type: "simple",
                     Restart: "always",
                     RestartSec: 5n,
@@ -211,7 +211,7 @@ export default nix.lambda((args) => (() => {
                     CapabilityBoundingSet: "",
                   })),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     NODE_ENV: "production",
                     NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                     HOSTNAME: nix.thunk(() => nix.sel(cfg, "host")),
@@ -219,13 +219,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "redis", "enable")), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? {
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     environment: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       REDIS_URL: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "db-rest", "unixSocket")),
                     })),
                   } : {
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     script: nix.thunk(() => (() => {
                       const username = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "user"), null)), nix.thunk(() => nix.sel(cfg, "redis", "user"))));
                       const host = nix.thunk(() => nix.sel(cfg, "redis", "host"));
@@ -240,30 +240,30 @@ exec ${nix.sel(cfg, "package")}/bin/db-rest
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "db-rest")), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   "db-rest": nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     isSystemUser: true,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.sel(cfg, "user"), nix.thunk(() => ({ __proto__: pos$28, extraGroups: nix.thunk(() => ["redis-db-rest"]) }))],
+                  [nix.sel(cfg, "user"), nix.thunk(() => ({ [nix.POS]: pos$28, extraGroups: nix.thunk(() => ["redis-db-rest"]) }))],
                 ])))),
             ]))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "db-rest")), nix.thunk(() => ({ __proto__: pos$29, "db-rest": nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "db-rest")), nix.thunk(() => ({ [nix.POS]: pos$29, "db-rest": nix.thunk(() => ({})) })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           redis: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             servers: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "db-rest": nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "enable")) && nix.asBool(nix.sel(cfg, "redis", "createLocally")))),
               })),
             })),
@@ -271,7 +271,7 @@ exec ${nix.sel(cfg, "package")}/bin/db-rest
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "marie"))];

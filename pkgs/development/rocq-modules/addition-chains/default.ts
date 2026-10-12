@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const paramcoq = nix.arg($, "paramcoq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "addition-chains",
       repo: "hydra-battles",
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "0.4": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256:1f7pc4w3kir4c9p0fjx5l77401bx12y72nmqxrqs3qqd3iynvqlp",
         })),
         "0.5": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:121pcbn6v59l0c165ha9n00whbddpy11npx2y9cn7g879sfk2nqk",
         })),
         "0.6": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:1dri4sisa7mhclf8w4kw7ixs5zxm8xyjr034r1377p96rdk3jj0j",
         })),
       })),
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.18")),
               out: "0.6",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.12")),
               out: "0.4",
             })),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mathcomp_ssreflect, mathcomp_algebra, mathcomp_fingroup, paramcoq]),
       useDune: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Exponentiation algorithms following addition chains",
         longDescription: "Addition chains are algorithms for computations of the p-th\npower of some x, with the least number of multiplication as\npossible. We present a few implementations of addition chains,\nwith proofs of their correctness.\n",
         maintainers: nix.thunk(() => (() => {

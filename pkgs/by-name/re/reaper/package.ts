@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const url_for_platform = (version) => (arch) => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`https://www.reaper.fm/files/${nix.app(nix.sel(lib, "versions", "major"), version)}.x/reaper${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}_universal.dmg` : nix.str`https://www.reaper.fm/files/${nix.app(nix.sel(lib, "versions", "major"), version)}.x/reaper${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}_linux_${arch}.tar.xz`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "reaper",
       version: "7.81",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.app(url_for_platform, nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "qemuArch")))),
           hash: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "sha256-z3ym5rqsymPBNbKdfifrqC2KSuRnwOR/VpGBSKc91iQ=" : nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "sha256-1WVIaKD08xowslG1T//DLKmsV42ZgV6HwAkD1Ln3iLk=",
             "aarch64-linux": "sha256-Bb/IVY1uundgUBytGvl9MtUZ5l7TWCbaw0MUIwYvBb4=",
           }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
@@ -93,9 +93,9 @@ substituteInPlace $out/share/applications/cockos-reaper.desktop \\
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./updater.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./updater.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Digital audio workstation",
         homepage: "https://www.reaper.fm/",
         sourceProvenance: nix.thunk(() => (() => {

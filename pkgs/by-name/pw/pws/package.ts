@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`${pname}-gems`),
             ruby: ruby,
             gemdir: nix.path(here, "./."),
@@ -35,11 +35,11 @@ makeWrapper ${env}/bin/pws $out/bin/pws \\
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "pws")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line password safe",
         homepage: "https://github.com/janlelis/pws",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ makeWrapper ${env}/bin/pws $out/bin/pws \\
         mainProgram: "pws",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         nativeBuildInputs,

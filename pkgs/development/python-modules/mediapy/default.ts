@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_8_headless = nix.arg($, "ffmpeg_8-headless");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mediapy",
       version: "1.2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "mediapy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_video_read_write_10bit"]),
       pythonImportsCheck: nix.thunk(() => ["mediapy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read/write/show images and videos in an IPython notebook",
         homepage: "https://github.com/google/mediapy",
         changelog: nix.thunk(() => nix.str`https://github.com/google/mediapy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

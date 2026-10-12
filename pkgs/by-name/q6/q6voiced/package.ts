@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "q6voiced",
       version: "0.3.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "q6voiced",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [systemd, dbus, alsa_lib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace daemon for the QDSP6 voice call audio driver",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/q6voiced",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

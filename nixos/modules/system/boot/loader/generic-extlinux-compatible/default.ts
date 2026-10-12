@@ -41,57 +41,57 @@ export default nix.lambda((args) => (() => {
   const dtCfg = nix.thunk(() => nix.sel(config, "hardware", "deviceTree"));
   const cfg = nix.thunk(() => nix.sel(blCfg, "generic-extlinux-compatible"));
   const timeoutStr = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(blCfg, "timeout"), null)) ? "-1" : nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(blCfg, "timeout")))));
-  const builder = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./extlinux-conf-builder.nix"), nix.thunk(() => ({ __proto__: pos$1, lib: lib, pkgs: pkgs }))));
+  const builder = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./extlinux-conf-builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: pkgs }))));
   const populateBuilder = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./extlinux-conf-builder.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       lib: lib,
       pkgs: nix.thunk(() => nix.sel(pkgs, "buildPackages")),
     }))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       boot: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         loader: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "generic-extlinux-compatible": nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to generate an extlinux-compatible configuration file\nunder `/boot/extlinux.conf`.  For instance,\nU-Boot's generic distro boot support uses this file format.\n\nSee [U-boot's documentation](https://u-boot.readthedocs.io/en/latest/develop/distro.html)\nfor more information.\n",
               })))),
             useGenerationDeviceTree: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: true,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to generate Device Tree-related directives in the\nextlinux configuration.\n\nWhen enabled, the bootloader will attempt to load the device\ntree binaries from the generation's kernel.\n\nNote that this affects all generations, regardless of the\nsetting value used in their configurations.\n",
               })))),
             configurationLimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: 20n,
                 example: 10n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 description: "Maximum number of configurations in the boot menu.\n",
               })))),
             mirroredBoots: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
-                default: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, path: "/boot" }))]),
+                [nix.POS]: pos$12,
+                default: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, path: "/boot" }))]),
                 example: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$7, path: "/boot1" })),
-                  nix.thunk(() => ({ __proto__: pos$8, path: "/boot2" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$7, path: "/boot1" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$8, path: "/boot2" })),
                 ]),
                 description: "Mirror the boot configuration to multiple paths.\n",
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         options: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               example: "/boot1",
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                               description: "The path to the boot directory where the extlinux-compatible\nconfiguration files will be written.\n",
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
             populateCmd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 readOnly: true,
                 description: "Contains the builder command used to populate an image,\nhonoring all options except the `-c <path-to-default-configuration>`\nargument.\nUseful to have for sdImage.populateRootCommands\n",
@@ -117,28 +117,28 @@ set -e
 `, nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "concatMapStrings")), nix.thunk(() => nix.sel(cfg, "mirroredBoots")), (args_1) => nix.str`${builder} ${builderArgs} -d '${nix.sel(args_1, "path")}' -c "$@"
 `)))));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           system: nix.thunk(() => ({
-            __proto__: pos$21,
-            build: nix.thunk(() => ({ __proto__: pos$18, installBootLoader: installBootLoader })),
+            [nix.POS]: pos$21,
+            build: nix.thunk(() => ({ [nix.POS]: pos$18, installBootLoader: installBootLoader })),
             boot: nix.thunk(() => ({
-              __proto__: pos$20,
-              loader: nix.thunk(() => ({ __proto__: pos$19, id: "generic-extlinux-compatible" })),
+              [nix.POS]: pos$20,
+              loader: nix.thunk(() => ({ [nix.POS]: pos$19, id: "generic-extlinux-compatible" })),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             loader: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               "generic-extlinux-compatible": nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 populateCmd: nix.thunk(() => nix.str`${populateBuilder} ${builderArgs}`),
               })),
             })),
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "mirroredBoots"), [])),
               message: "You must not remove all elements from option 'boot.loader.generic-extlinux-compatible.mirroredBoots',\notherwise the system will not be bootable.\n",
             })),

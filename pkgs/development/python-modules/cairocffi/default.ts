@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-LkjuhkiE7Eo6NL+oyauZmfaIKG63FKFaQ+ydBow2VXs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dlopen-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ext: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
             cairo: nix.thunk(() => nix.sel(cairo, "out")),
             glib: nix.thunk(() => nix.sel(glib, "out")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["cairocffi"]);
       const __impureHostDeps = nix.thunk(() => ["/System/Library/Fonts"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/cairocffi/blob/v${version}/NEWS.rst`),
         homepage: "https://github.com/SimonSapin/cairocffi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         description: "cffi-based cairo bindings for Python",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

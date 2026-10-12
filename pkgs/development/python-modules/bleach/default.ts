@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tinycss2 = nix.arg($, "tinycss2");
   const webencodings = nix.arg($, "webencodings");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bleach",
       version: "6.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "bleach",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["tinycss2"]),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [webencodings]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, css: nix.thunk(() => [tinycss2]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, css: nix.thunk(() => [tinycss2]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["protocols"]),
       pythonImportsCheck: nix.thunk(() => ["bleach"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy, HTML5, whitelisting HTML sanitizer",
         longDescription: "Bleach is an HTML sanitizing library that escapes or strips markup and\nattributes based on a white list. Bleach can also linkify text safely,\napplying filters that Django's urlize filter cannot, and optionally\nsetting rel attributes, even on links already in the text.\n\nBleach is intended for sanitizing text from untrusted sources. If you\nfind yourself jumping through hoops to allow your site administrators\nto do lots of things, you're probably outside the use cases. Either\ntrust those users, or don't.\n",
         homepage: "https://github.com/mozilla/bleach",

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const timbl = nix.arg($, "timbl");
   const frog = nix.arg($, "frog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mbt",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LanguageMachines",
           repo: "mbt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,15 +43,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2, libtar, libtool, autoconf_archive, libxml2, icu, ticcutils, timbl]),
       patches: nix.thunk(() => [nix.path(here, "./mbt-add-libxml2-dep.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ __proto__: pos$3, frog: frog })))),
+          [nix.POS]: pos$4,
+          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, frog: frog })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Memory Based Tagger",
         homepage: "https://languagemachines.github.io/mbt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

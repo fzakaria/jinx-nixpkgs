@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-psp",
       version: "0.2.9",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-zifaXT7Yzo1tG11PrwIIopOul83jBR2Nbdb02l6M0rk=",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       postInstall: "wrapProgram \"$out/bin/cargo-psp\" \\\n  --prefix PATH : \"$out/bin\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cargo build wrapper for creating Sony PSP executables",
         homepage: "https://github.com/overdrivenpotato/rust-psp/tree/master/cargo-psp",
         changelog: nix.thunk(() => nix.str`https://github.com/overdrivenpotato/rust-psp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const mitmproxy_rs = nix.arg($, "mitmproxy-rs");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mitmproxy-linux",
       version: nix.thunk(() => nix.attr(mitmproxy_rs, "version")),
       src: nix.thunk(() => nix.attr(mitmproxy_rs, "src")),
@@ -32,7 +32,7 @@ substituteInPlace tmp.diff \\
   --replace-fail @mitmproxy-linux-redirector@ $out/bin/mitmproxy-linux-redirector
 patch -p1 < tmp.diff
 `),
-      env: nix.thunk(() => ({ __proto__: pos$1, RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
       buildAndTestSubdir: "mitmproxy-linux",
       nativeBuildInputs: nix.thunk(() => [
         bpf_linker,
@@ -44,7 +44,7 @@ patch -p1 < tmp.diff
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mitmproxy_rs, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

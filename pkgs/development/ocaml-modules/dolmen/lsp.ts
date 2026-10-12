@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const lsp = nix.arg($, "lsp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dolmen_lsp",
       src: nix.thunk(() => nix.attr(dolmen, "src")),
       version: nix.thunk(() => nix.attr(dolmen, "version")),
       patches: nix.thunk(() => [nix.path(here, "./linol-common-migration.patch")]),
       buildInputs: nix.thunk(() => [dolmen, dolmen_loop, dolmen_type, linol, linol_lwt, logs, lsp]),
       meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "LSP server for automated deduction languages",
         mainProgram: "dolmenls",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),

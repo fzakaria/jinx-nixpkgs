@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zfs = nix.arg($, "zfs");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "zxfer",
       version: "1.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allanjude",
           repo: "zxfer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstallManPage zxfer.1m zxfer.8\ninstall -Dm755 zxfer -t $out/bin/\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         default: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           scripts: nix.thunk(() => ["bin/zxfer"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => [coreutils, gawk, gnugrep, gnused, openssh, rsync, which]),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             external: nix.thunk(() => ["kldload", "kldstat", "svcadm"]),
           })),
           keep: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             $LCAT: true,
             $LZFS: true,
             $PROGRESS_DIALOG: true,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
             $option_T: true,
           })),
           fix: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             $AWK: nix.thunk(() => ["awk"]),
             $RSYNC: nix.thunk(() => ["rsync"]),
           })),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Popular script for managing ZFS snapshot replication",
         homepage: "https://github.com/allanjude/zxfer",
         changelog: nix.thunk(() => nix.str`https://github.com/allanjude/zxfer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

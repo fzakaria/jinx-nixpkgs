@@ -30,28 +30,28 @@ export default nix.lambda((args) => (() => {
   const warnConfig = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "config"), "")) ? nix.app(nix.sel(lib, "trace"), "Using the stringly typed .config attribute is discouraged. Use the TOML typed .settings attribute instead.") : nix.sel(lib, "id")));
   const spotifydConf = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) ? nix.app(nix.sel(toml, "generate"), "spotify.conf", nix.thunk(() => nix.sel(cfg, "settings"))) : nix.app(warnConfig, nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "spotifyd.conf", nix.thunk(() => nix.sel(cfg, "config")))))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         spotifyd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "spotifyd, a Spotify playing daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "spotifyd", nix.thunk(() => ({})))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "(Deprecated) Configuration for Spotifyd. For syntax and directives, see\n<https://docs.spotifyd.rs/configuration/index.html#config-file>.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(toml, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
-                global: nix.thunk(() => ({ __proto__: pos$2, bitrate: 320n })),
+                [nix.POS]: pos$3,
+                global: nix.thunk(() => ({ [nix.POS]: pos$2, bitrate: 320n })),
               })),
               description: "Configuration for Spotifyd. For syntax and directives, see\n<https://docs.spotifyd.rs/configuration/index.html#config-file>.\n",
             })))),
@@ -59,27 +59,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config"), "")) || nix.asBool(nix.eq(nix.sel(cfg, "settings"), {})))),
             message: "At most one of the .config attribute and the .settings attribute may be set",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             spotifyd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "sound.target"]),
               description: "spotifyd, a Spotify playing daemon",
-              environment: nix.thunk(() => ({ __proto__: pos$9, SHELL: "/bin/sh" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$9, SHELL: "/bin/sh" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/spotifyd --no-daemon --cache-path /var/cache/spotifyd --config-path ${spotifydConf}`),
                 Restart: "always",
                 RestartSec: 12n,
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anderslundstedt"))]),
     })),
   };

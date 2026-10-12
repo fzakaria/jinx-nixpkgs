@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mate-indicator-applet",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-indicator-applet-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "zrPXA5cKPlWNfNffCxwhceOvdSolSVrO0uIiwemtSc0=",
         })))),
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-ayatana-indicators"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.mate-desktop.org/mate-indicator-applet",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/mate-desktop/mate-indicator-applet",
         description: "MATE panel indicator applet",
         longDescription: "A small applet to display information from various applications\nconsistently in the panel.\n\nThe indicator applet exposes Ayatana Indicators in the MATE Panel.\nAyatana Indicators are an initiative by Canonical to provide crisp and\nclean system and application status indication. They take the form of\nan icon and associated menu, displayed (usually) in the desktop panel.\nExisting indicators include the Message Menu, Battery Menu and Sound\nmenu.\n",

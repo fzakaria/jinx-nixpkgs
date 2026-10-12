@@ -23,32 +23,32 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "MAR1D",
       version: "unstable-2023-02-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-kZERhwnTpBhjx6MLdf1bYCWMjtTiId/5a69kRt+/6oY=",
           rev: "fa5dc36e1819a15539ced339ad01672e5a498c5c",
           repo: "MAR1D",
           owner: "Radvendii",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIXPKGS_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-parameter"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [SDL2, SDL2_mixer, libconfig, libGLU]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/Radvendii/MAR1D/commit/baf3269e90eca69f154a43c4c1ef14677a6300fd.patch",
             hash: "sha256-ybdLA2sO8e0J7w4roSdMWn72OkttD3y+cJ3ScuGiHCI=",
           })))),
         nix.path(here, "./fix-aarch64.patch"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "First person Super Mario Bros",
         mainProgram: "MAR1D",
         longDescription: "The original Super Mario Bros as you've never seen it. Step into Mario's\nshoes in this first person clone of the classic Mario game. True to the\noriginal, however, the game still takes place in a two dimensional world.\nYou must view the world as mario does, as a one dimensional line.\n",

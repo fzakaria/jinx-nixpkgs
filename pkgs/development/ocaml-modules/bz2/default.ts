@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-bz2`);
       const version = "0.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irill",
           repo: "camlbz2",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const preInstall = "mkdir -p $OCAMLFIND_DESTDIR/stublibs";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for the libbz2 (AKA, bzip2) (de)compression library",
         homepage: "https://gitlab.com/irill/camlbz2",
         downloadPage: "https://gitlab.com/irill/camlbz2",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

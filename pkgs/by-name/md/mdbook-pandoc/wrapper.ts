@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`mdbook-pandoc-wrapped-${nix.sel(mdbook_pandoc, "version")}`),
       paths: nix.thunk(() => [mdbook_pandoc, pandoc]),
     })));

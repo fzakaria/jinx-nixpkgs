@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const p7zip = nix.arg($, "p7zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snap7",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/snap7/${nix.sel(finalAttrs, "version")}/snap7-full-${nix.sel(finalAttrs, "version")}.7z`),
           sha256: "1n5gs8bwb6g9vfllf3x12r5yzqzapmlq1bmc6hl854b8vkg30y8c",
           postFetch: nix.thunk(() => nix.str`${p7zip}/bin/7z x $downloadedFile
@@ -32,7 +32,7 @@ cp -r snap7-full-${nix.sel(finalAttrs, "version")}/* $out/
       preBuild: "cd build/unix",
       preInstall: "mkdir -p $out/lib\nmkdir -p $dev/include\nmkdir -p $doc/share\ncp $src/examples/cpp/snap7.h $dev/include\ncp -r $src/doc $doc/share/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://snap7.sourceforge.net/",
         description: "Step7 Open Source Ethernet Communication Suite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

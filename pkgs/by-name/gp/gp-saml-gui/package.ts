@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const openconnect = nix.arg($, "openconnect");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gp-saml-gui",
       version: "0.1-unstable-2024-07-31",
       pyproject: true,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlenski",
           repo: "gp-saml-gui",
           rev: "c46af04b3a6325b0ecc982840d7cfbd1629b6d43",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preFixup: "gappsWrapperArgs+=(\n  --set WEBKIT_DISABLE_COMPOSITING_MODE \"1\"\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactively authenticate to GlobalProtect VPNs that require SAML",
         mainProgram: "gp-saml-gui",
         homepage: "https://github.com/dlenski/gp-saml-gui",

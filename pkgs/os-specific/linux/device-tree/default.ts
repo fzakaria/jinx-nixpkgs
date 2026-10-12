@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const python3 = nix.arg($, "python3");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     compileDTS: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const includePaths = nix.argOr($_1, "includePaths", () => []);
       const extraPreprocessorFlags = nix.argOr($_1, "extraPreprocessorFlags", () => []);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           nativeBuildInputs: nix.thunk(() => [dtc]),
           buildCommand: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ dtc -I dts -O dtb -@ -o $out
         })));
     })(), formals$2),
     applyOverlays: (base) => (overlays$) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "device-tree-overlays",
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "pythonOnBuildForHost", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "libfdt"))])),

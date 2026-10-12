@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dyff",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "homeport",
           repo: "dyff",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd dyff \\\n  --bash <($out/bin/dyff completion bash) \\\n  --fish <($out/bin/dyff completion fish) \\\n  --zsh <($out/bin/dyff completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Diff tool for YAML files, and sometimes JSON",
         mainProgram: "dyff",
         longDescription: "dyff is inspired by the way the old BOSH v1 deployment output reported\nchanges from one version to another by only showing the parts of a YAML\nfile that change.\n\nEach difference is referenced by its location in the YAML document by\nusing either the Spruce or go-patch path syntax.\n",

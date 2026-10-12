@@ -40,42 +40,42 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "openbao"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         openbao: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenBao daemon")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openbao", nix.thunk(() => ({ __proto__: pos$1, example: "pkgs.openbao.override { withUi = false; }" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openbao", nix.thunk(() => ({ [nix.POS]: pos$1, example: "pkgs.openbao.override { withUi = false; }" })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Settings of OpenBao.\n\nSee [documentation](https://openbao.org/docs/configuration) for more details.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  ui = true;\n\n  listener.default = {\n    type = \"tcp\";\n    tls_acme_email = config.security.acme.defaults.email;\n    tls_acme_domains = [ \"example.com\" ];\n    tls_acme_disable_http_challenge = true;\n  };\n\n  cluster_addr = \"http://127.0.0.1:8201\";\n  api_addr = \"https://example.com\";\n\n  storage.raft.path = \"/var/lib/openbao\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     ui: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the OpenBao web UI")),
                     listener: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                               const $_1 = nix.formals(args_1, formals$2);
                               const config_1 = nix.arg($_1, "config");
                               return {
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$2,
+                                      [nix.POS]: pos$2,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["tcp", "unix"]))),
                                       description: "The listener type to enable.\n",
                                     })))),
                                   address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$3,
+                                      [nix.POS]: pos$3,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config_1, "type"), "unix")) ? "/run/openbao/openbao.sock" : "127.0.0.1:8200")),
                                       defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.openbao.settings.listener.<name>.type == \"unix\" then \"/run/openbao/openbao.sock\" else \"127.0.0.1:8200\"")),
@@ -90,13 +90,13 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional arguments given to OpenBao.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.openbaoPlugins.secrets-oauthapp ]")),
@@ -106,34 +106,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (plugin) => (nix.asBool(nix.has(plugin, "pluginType")) && nix.asBool(nix.has(plugin, "pluginName"))), nix.thunk(() => nix.sel(cfg, "plugins")))),
             message: "Every package in services.openbao.plugins must set passthru.pluginType and passthru.pluginName.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "allUnique"), nix.thunk(() => nix.builtins.map((plugin) => nix.str`${nix.sel(plugin, "pluginType")}/${nix.sel(plugin, "pluginName")}`, nix.thunk(() => nix.sel(cfg, "plugins")))))),
             message: "services.openbao.plugins contains more than one plugin with the same type and name.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           openbao: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "plugins"), [])), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 plugin_directory: "/run/openbao/plugins",
                 plugin: nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), nix.thunk(() => nix.sel(lib, "recursiveUpdate")), nix.thunk(() => ({})), nix.thunk(() => nix.builtins.map((plugin) => nix.attrsDyn({}, [
                       [nix.sel(plugin, "pluginType"), nix.thunk(() => nix.attrsDyn({}, [
                         [nix.sel(plugin, "pluginName"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           command: nix.thunk(() => nix.sel(plugin, "meta", "mainProgram")),
                           version: nix.thunk(() => nix.str`v${nix.sel(plugin, "version")}`),
                         }))],
@@ -143,17 +143,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             openbao: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "OpenBao - A tool for managing secrets",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               restartIfChanged: false,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),

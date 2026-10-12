@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "srt-xtransmit";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxsharabayko",
           repo: "srt-xtransmit",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DENABLE_CXX17=OFF", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const installPhase = "runHook preInstall\n\ninstall -Dm755 bin/srt-xtransmit -t $out/bin\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SRT xtransmit application for generating and receiving test traffic",
         homepage: "https://github.com/maxsharabayko/srt-xtransmit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "srt-xtransmit",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

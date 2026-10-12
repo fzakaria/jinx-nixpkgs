@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tiles = nix.argOr($, "tiles", () => true);
   const debug = nix.argOr($, "debug", () => false);
   const useXdgDir = nix.argOr($, "useXdgDir", () => false);
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, tiles: tiles, debug: debug, useXdgDir: useXdgDir }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, tiles: tiles, debug: debug, useXdgDir: useXdgDir }))));
   const self = nix.thunk(() => nix.app(nix.sel(common, "overrideAttrs"), (common_1) => (() => {
       const version = "0.I-2026-06-11-1250";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "CleverRaven",
           repo: "Cataclysm-DDA",
           tag: nix.thunk(() => nix.str`cdda-${version}`),
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./locale-path.patch")]);
       const meta = nix.thunk(() => nix.update(nix.sel(common_1, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/CleverRaven/Cataclysm-DDA/blob/${version}/data/changelog.txt`),
       }));
-      return { __proto__: pos$4, version, src, patches, meta };
+      return { [nix.POS]: pos$4, version, src, patches, meta };
     })()));
   return nix.app(attachPkgs, pkgs, self);
 })(), formals$1);

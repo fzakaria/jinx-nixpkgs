@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-noise";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiniteSingularity",
           repo: "obs-noise",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ rm -rf $out/data $out/obs-plugins
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plug-in for noise generation and noise effects for OBS",
         homepage: "https://github.com/FiniteSingularity/obs-noise",
         maintainers: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ rm -rf $out/data $out/obs-plugins
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

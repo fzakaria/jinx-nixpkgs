@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const version = "1.26.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "clutter",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/clutter/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/clutter-${version}.tar.xz`),
           sha256: "1rn4cd1an6a9dfda884aqpcwcgq8dgydpqvb19nmagw4b70zlj4b",
         })))),
@@ -64,15 +64,15 @@ export default nix.lambda((args) => (() => {
         ])))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-introspection"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--without-x", "--enable-x11-backend=no", "--enable-quartz-backend=yes"])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "clutter", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "clutter", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for creating fast, dynamic graphical user interfaces",
         longDescription: "Clutter is free software library for creating fast, compelling,\nportable, and dynamic graphical user interfaces.  It is a core part\nof MeeGo, and is supported by the open source community.  Its\ndevelopment is sponsored by Intel.\n\nClutter uses OpenGL for rendering (and optionally OpenGL|ES for use\non mobile and embedded platforms), but wraps an easy to use,\nefficient, flexible API around GL's complexity.\n\nClutter enforces no particular user interface style, but provides a\nrich, generic foundation for higher-level toolkits tailored to\nspecific needs.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

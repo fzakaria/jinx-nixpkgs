@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const watchdog = nix.arg($, "watchdog");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "streamlit",
       version: "1.62.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-nSVx2m5nmcuvD1lUj1dzkmJgqHppgHzz4vD2j59eTUU=",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["streamlit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://streamlit.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/streamlit/streamlit/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fastest way to build custom ML tools",

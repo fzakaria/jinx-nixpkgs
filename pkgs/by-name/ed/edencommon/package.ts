@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "edencommon",
       version: "2026.07.27.00",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookexperimental",
           repo: "edencommon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,11 +57,11 @@ runHook postCheck
 `),
       postPatch: "# The CMake build requires the FBThrift Python support even though\n# it’s not used, presumably because of the relevant code having\n# been moved in from another repository.\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'find_package(FBThrift CONFIG REQUIRED COMPONENTS cpp2 py)' \\\n    'find_package(FBThrift CONFIG REQUIRED COMPONENTS cpp2)'\n\n# this header was missing. this is likely a consequence of fmt v12.2.0\n# changing the definition of its fmt/core.h header, which is included in\n# the same file.\nsed -e '1i #include <string>' -i eden/common/utils/String.h\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Shared library for Meta's source control filesystem tools (EdenFS and Watchman)",
         homepage: "https://github.com/facebookexperimental/edencommon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

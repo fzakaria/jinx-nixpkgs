@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const pythonOnBuildForHost = nix.arg($, "pythonOnBuildForHost");
   const runCommand = nix.arg($, "runCommand");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "dont-propagate-conflicting-deps": nix.thunk(() => (() => {
-      const mkConflict = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$1, some_modification: true })));
+      const mkConflict = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, some_modification: true })));
       const pyprojectToml = nix.thunk(() => nix.builtins.toFile("pyproject.toml", "[project]\nname = \"my-project\"\nversion = \"1.0.0\"\n"));
       const projectSource = nix.thunk(() => nix.app(runCommand, "my-project-source", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/src/my_project
 cp ${pyprojectToml} $out/pyproject.toml
 touch $out/src/my_project/__init__.py
 `)));
       return nix.app(nix.sel(pythonOnBuildForHost, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "dont-propagate-conflicting-deps",
           version: "0.0.0",
           src: projectSource,

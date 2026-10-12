@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const version = nix.argOr($, "version", () => "4.4.0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libqtxdg",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "lxqt",
           repo: "libqtxdg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "3.12.0": "sha256-y+3noaHubZnwUUs8vbMVvZPk+6Fhv37QXUb//reedCU=",
             "4.4.0": "sha256-9Hj5RnPWtqRkzhrAuXoHnMAQloFbnF/8koPT8ExfSAs=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cmakeFlagsArray+=(\n  \"-DQTXDGX_ICONENGINEPLUGIN_INSTALL_PATH=$out/$qtPluginPrefix/iconengines\"\n  \"-DCMAKE_INSTALL_INCLUDEDIR=include\"\n  \"-DCMAKE_INSTALL_LIBDIR=lib\"\n)\n",
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(version, "3.12.0")), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lxqt/libqtxdg",
         description: "Qt implementation of freedesktop.org xdg specs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

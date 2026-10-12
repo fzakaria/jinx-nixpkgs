@@ -31,20 +31,20 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const pnpm = pnpm_11;
   const console = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rustfs-console",
       version: "0.1.34",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rustfs",
           repo: "console",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YAgdW8X3ioChFuGvP0zwwy3oHacWEcK85URu4TMBznM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -r out/. $out/\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "rustfs",
       version: "1.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "rustfs",
           repo: "rustfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,21 +74,21 @@ cp -rL ${nix.sel(finalAttrs, "console")} ./rustfs/static
       cargoHash: "sha256-yWCc5UUbkKI6+HC1qu0rGdw8VLLfm4kwNY9lzOKnKMk=",
       nativeBuildInputs: nix.thunk(() => [protobuf, cacert]),
       console: console,
-      env: nix.thunk(() => ({ __proto__: pos$5, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, RUSTFLAGS: "--cfg tokio_unstable" })),
       cargoBuildFlags: "-p rustfs",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        tests: nix.thunk(() => ({ __proto__: pos$6, rustfs: nix.thunk(() => nix.attr(nixosTests, "rustfs")) })),
+        [nix.POS]: pos$8,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, rustfs: nix.thunk(() => nix.attr(nixosTests, "rustfs")) })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "rustfs-update-script",
               runtimeInputs: nix.thunk(() => [nix_update]),
               text: "nix-update rustfs\nnix-update rustfs.console\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "S3-compatible high-performance object storage system supporting migration and coexistence with other S3-compatible platforms such as MinIO and Ceph",
         homepage: "https://github.com/rustfs/rustfs",
         changelog: nix.thunk(() => nix.str`https://github.com/rustfs/rustfs/releases/tag/${nix.sel(finalAttrs, "version")}`),

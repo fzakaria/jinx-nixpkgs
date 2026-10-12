@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const libgee = nix.arg($, "libgee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cryptor",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moson-mo",
           repo: "cryptor",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ substituteInPlace $out/share/applications/cryptor.desktop \\
   --replace-warn '/usr/bin/cryptor' 'cryptor'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple gocryptfs GUI",
         homepage: "https://github.com/moson-mo/cryptor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

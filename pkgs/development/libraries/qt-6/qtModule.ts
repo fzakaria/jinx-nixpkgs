@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "version"), "version"));
     const src = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "src"), "src"));
     return nix.update(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_1, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         version: version,
         src: src,
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
         separateDebugInfo: nix.thunk(() => nix.selOr(args_1, () => true, "separateDebugInfo")),
         dontWrapQtApps: nix.thunk(() => nix.selOr(args_1, () => true, "dontWrapQtApps")),
       }))), {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       meta: nix.thunk(() => (() => {
         const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_1));
         return nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://www.qt.io/",
           description: "Cross-platform application framework for C++",
           license: nix.thunk(() => (() => {

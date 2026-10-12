@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const sensor_state_data = nix.arg($, "sensor-state-data");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bthome-ble",
       version: "3.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "bthome-ble",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["bthome_ble"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for BThome BLE devices",
         homepage: "https://github.com/Bluetooth-Devices/bthome-ble",
         changelog: nix.thunk(() => nix.str`https://github.com/bluetooth-devices/bthome-ble/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

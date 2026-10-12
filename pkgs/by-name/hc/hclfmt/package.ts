@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hclfmt",
       version: "2.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "hcl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-cGadewSXa5fP2cOl1FUT94Gh+f+Wxnbz8j0QQs0FLBI=",
       subPackages: nix.thunk(() => ["cmd/hclfmt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code formatter for the Hashicorp Configuration Language (HCL) format",
         homepage: "https://github.com/hashicorp/hcl/tree/main/cmd/hclfmt",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/hcl/releases/tag/v${nix.sel(finalAttrs, "version")}`),

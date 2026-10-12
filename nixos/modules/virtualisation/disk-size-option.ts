@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const t = nix.thunk(() => nix.sel(lib, "types"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         diskSizeAutoSupported: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(t, "bool")),
             default: true,
             description: "Whether the current image builder or vm runner supports `virtualisation.diskSize = \"auto\".`\n",
             internal: true,
           })))),
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(t, "either"), nix.thunk(() => nix.app(nix.sel(t, "enum"), nix.thunk(() => ["auto"]))), nix.thunk(() => nix.sel(t, "ints", "positive")))),
             default: nix.thunk(() => (nix.asBool(nix.sel(config, "virtualisation", "diskSizeAutoSupported")) ? "auto" : 1024n)),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if virtualisation.diskSizeAutoSupported then \"auto\" else 1024")),
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
       const diskSize = nix.thunk(() => nix.attr(from, "diskSize"));
       const diskSizeAutoSupported = nix.thunk(() => nix.attr(from, "diskSizeAutoSupported"));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(diskSize, "auto")) || nix.asBool(diskSizeAutoSupported))),
             message: "Setting virtualisation.diskSize to `auto` is not supported by the current image build or vm runner; use an explicit size.",
           })),

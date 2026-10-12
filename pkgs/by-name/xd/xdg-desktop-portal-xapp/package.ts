@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xapp = nix.arg($, "xapp");
   const xdg_desktop_portal = nix.arg($, "xdg-desktop-portal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xdg-desktop-portal-xapp",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "xdg-desktop-portal-xapp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xapp]))}")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backend implementation for xdg-desktop-portal for Cinnamon, MATE, Xfce",
         homepage: "https://github.com/linuxmint/xdg-desktop-portal-xapp",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cinnamon"))]),

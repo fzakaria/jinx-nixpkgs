@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ayatana-indicator-messages",
       version: "24.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-messages",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,20 +79,20 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocumentation, "# installing regenerates docs, generated files are created without write permissions, errors out while trying to overwrite them\nchmod +w doc/reference/html/*\n")),
       preFixup: "gappsWrapperArgs+=(\n  --suffix PATH : '/run/current-system/sw/bin'\n)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "ayatana-indicators": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "ayatana-indicator-messages": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           vm: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ayatana Indicator Messages Applet",
         longDescription: "The -messages Ayatana System Indicator is the messages menu indicator for Unity7, MATE and Lomiri (optionally for\nothers, e.g. XFCE, LXDE).\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-messages",

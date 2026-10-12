@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const extraFlags = "-static-libgcc ";
   const dynamicLinkerGlob = nix.thunk(() => nix.str`${libc}/lib/libc.so`);
   return nix.app(nix.sel(bash_build, "runCommand"), nix.thunk(() => nix.str`${pname}-${nix.sel(gcc_unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: nix.thunk(() => nix.sel(gcc_unwrapped, "version")),
       meta: nix.thunk(() => nix.sel(gcc_unwrapped, "meta")),
       nativeBuildInputs: nix.thunk(() => [gnused]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: gcc_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: gcc_unwrapped })),
     })), nix.thunk(() => nix.str`if [[ -z '${dynamicLinkerGlob}' ]]; then
   echo "Don't know the name of the dynamic linker for platform '${nix.sel(targetPlatform, "config")}', so guessing instead."
   dynamicLinker="${libc}/lib/ld*.so.?"

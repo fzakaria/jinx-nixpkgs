@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pomerium: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Pomerium authenticating reverse proxy")),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
               description: "Path to Pomerium config YAML. If set, overrides services.pomerium.settings.",
             })))),
           useACMEHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
               description: "If set, use a NixOS-generated ACME certificate with the specified name.\n\nNote that this will require you to use a non-HTTP-based challenge, or\ndisable Pomerium's in-built HTTP redirect server by setting\nhttp_redirect_addr to null and use a different HTTP server for serving\nthe challenge response.\n\nIf you're using an HTTP-based challenge, you should use the\nPomerium-native autocert option instead.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "The contents of Pomerium's config.yaml, in Nix expressions.\n\nSpecifying configFile will override this in its entirety.\n\nSee [the Pomerium\nconfiguration reference](https://pomerium.io/reference/) for more information about what to put\nhere.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(format, "type")),
             })))),
           secretsFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -77,19 +77,19 @@ export default nix.lambda((args) => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "services", "pomerium"));
       const cfgFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(format, "generate"), "pomerium.yaml", nix.thunk(() => nix.sel(cfg, "settings")))));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               pomerium: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Pomerium authenticating reverse proxy",
                 wants: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => nix.str`acme-${nix.sel(cfg, "useACMEHost")}.service`)))),
                 after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => nix.str`acme-${nix.sel(cfg, "useACMEHost")}.service`)))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     CERTIFICATE_FILE: "fullchain.pem",
                     CERTIFICATE_KEY_FILE: "key.pem",
                   })))),
@@ -100,7 +100,7 @@ fi
 exec "${nix.sel(pkgs, "pomerium")}/bin/pomerium" -config "${cfgFile}"
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   DynamicUser: true,
                   StateDirectory: nix.thunk(() => ["pomerium"]),
                   PrivateUsers: false,
@@ -131,7 +131,7 @@ exec "${nix.sel(pkgs, "pomerium")}/bin/pomerium" -config "${cfgFile}"
                 })),
               })),
               "pomerium-config-reload": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   wantedBy: nix.thunk(() => [
                     nix.thunk(() => nix.str`acme-order-renew-${nix.sel(cfg, "useACMEHost")}.service`),
                     "multi-user.target",
@@ -140,13 +140,13 @@ exec "${nix.sel(pkgs, "pomerium")}/bin/pomerium" -config "${cfgFile}"
                     nix.thunk(() => nix.str`acme-order-renew-${nix.sel(cfg, "useACMEHost")}.service`),
                   ]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     ConditionPathExists: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(config, "security", "acme", "certs", nix.key(nix.sel(cfg, "useACMEHost")), "directory")}/fullchain.pem`),
                     ]),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     Type: "oneshot",
                     TimeoutSec: 60n,
                     ExecCondition: "/run/current-system/systemd/bin/systemctl -q is-active pomerium.service",

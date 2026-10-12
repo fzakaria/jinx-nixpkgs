@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "renovate",
       version: "44.126.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "renovatebot",
           repo: "renovate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, pnpmConfigHook, pnpm, python3, yq_go], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, cctools])))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-ty0lMoQOtfUWy1mXN9Vk0E59qaqQV4RrHEI2Lus9tnk=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, COREPACK_ENABLE_STRICT: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, COREPACK_ENABLE_STRICT: 0n })),
       buildPhase: nix.thunk(() => nix.add(nix.str`runHook preBuild
 
 # relax nodejs version
@@ -77,22 +77,22 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/renovate-conf
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "vm-test": nix.thunk(() => nix.sel(nixosTests, "renovate")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Cross-platform Dependency Automation by Mend.io",
         homepage: "https://github.com/renovatebot/renovate",
         changelog: nix.thunk(() => nix.str`https://github.com/renovatebot/renovate/releases/tag/${nix.sel(finalAttrs, "version")}`),

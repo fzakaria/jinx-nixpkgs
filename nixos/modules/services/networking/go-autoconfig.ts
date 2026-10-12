@@ -25,37 +25,37 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "go-autoconfig": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "IMAP/SMTP autodiscover feature for mail clients")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               description: "Configuration for go-autoconfig. See\n<https://github.com/L11R/go-autoconfig/blob/master/config.yml>\nfor more information.\n",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  service_addr = \":1323\";\n  domain = \"autoconfig.example.org\";\n  imap = {\n    server = \"example.org\";\n    port = 993;\n  };\n  smtp = {\n    server = \"example.org\";\n    port = 465;\n  };\n}\n")),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "go-autoconfig": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "IMAP/SMTP autodiscover server",
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "go-autoconfig")}/bin/go-autoconfig -config ${configFile}`),
                 Restart: "on-failure",
                 WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(pkgs, "go-autoconfig")}/`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

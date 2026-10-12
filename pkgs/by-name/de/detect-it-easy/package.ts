@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "detect-it-easy",
       version: "3.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "horsicq",
           repo: "DIE-engine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/applications\nmkdir -p $out/share/icons\n",
       postInstall: "cp -r $src/XYara/yara_rules $out/lib/die/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program for determining types of files for Windows, Linux and MacOS",
         mainProgram: "die",
         homepage: "https://github.com/horsicq/Detect-It-Easy",

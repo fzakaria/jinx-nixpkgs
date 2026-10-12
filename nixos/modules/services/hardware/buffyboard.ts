@@ -39,80 +39,80 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "buffyboard"));
   const ini = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "colinsane"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         buffyboard: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "buffyboard framebuffer keyboard (on-screen keyboard)")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "buffybox", nix.thunk(() => ({})))),
             extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 description: "Extra CLI arguments to pass to buffyboard.\n",
                 example: nix.thunk(() => ["--geometry=1920x1080@640,0", "--dpi=192", "--rotate=2", "--verbose"]),
               })))),
             configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.app(nix.sel(ini, "generate"), "buffyboard.conf", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "ini.generate \"buffyboard.conf\" cfg.settings")),
                 description: "Path to an INI format configuration file to provide Buffyboard.\nBy default, this is generated from whatever you've set in `settings`.\nIf specified manually, then `settings` is ignored.\n\nFor an example config file see [here](https://gitlab.postmarketos.org/postmarketOS/buffybox/-/blob/master/buffyboard/buffyboard.conf)\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Settings to include in /etc/buffyboard.conf.\nEvery option here is strictly optional:\nBuffyboard will use its own baked-in defaults for those options left unset.\n",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     freeformType: nix.thunk(() => nix.sel(ini, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       keyboard: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         haptic_feedback: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "Enable or disable vibrations when pressing keys.\n",
                           })))),
                         sticky_shift: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "Changes shift key behavior. When true, the keyboard remains in uppercase mode until\nthe shift key is pressed again (sticky). When false, the keyboard switches back to\nlowercase mode and the shift key deactivates after a non-modifier key is pressed.\n",
                           })))),
                       })),
                       input: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         pointer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "Enable or disable the use of a hardware mouse or other pointing device.\n",
                           })))),
                         touchscreen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "Enable or disable the use of the touchscreen.\n",
                           })))),
                       })),
                       theme: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         default: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                                   null,
                                   "adwaita-dark",
@@ -128,15 +128,15 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       quirks: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         fbdev_force_refresh: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "If true and using the framebuffer backend, this triggers a display refresh after every draw operation.\nThis has a negative performance impact.\n",
                           })))),
                         ignore_unused_terminals: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "If true, buffyboard won't automatically update the layout of a new terminal and\ndraw the keyboard, if the terminal is not opened by any process. In this case\nSIGUSR1 should be sent to buffyboard to update the layout. This quirk was introduced\nto resolve a race between buffyboard and systemd-logind according to the following scenario:\n- A user switches to a new virtual terminal\n- Buffyboard opens the terminal and changes the number of rows\n- systemd-logind sees that the terminal is opened by some other process and don't start getty@.service\n\nThe race is resolved by enabling this option and installing a drop-in file\nfor getty@.service that sends SIGUSR1 to buffyboard.\n",
@@ -151,16 +151,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             buffyboard: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([

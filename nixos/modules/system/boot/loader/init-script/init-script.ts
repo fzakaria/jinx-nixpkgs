@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const initScriptBuilder = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.path(here, "./init-script-builder.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(config, "system", "nixos"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         bash: nix.thunk(() => nix.attr(pkgs, "bash")),
         distroName: nix.thunk(() => nix.attr(from, "distroName")),
         path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         loader: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           initScript: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Some systems require a /sbin/init script which is started.\nOr having it makes starting NixOS easier.\nThis applies to some kind of hosting services and user mode linux.\n\nAdditionally this script will create\n/boot/init-other-configurations-contents.txt containing\ncontents of remaining configurations. You can copy paste them into\n/sbin/init manually running a rescue system or such.\n",
@@ -60,10 +60,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "loader", "initScript", "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         system: nix.thunk(() => ({
-          __proto__: pos$9,
-          build: nix.thunk(() => ({ __proto__: pos$8, installBootLoader: initScriptBuilder })),
+          [nix.POS]: pos$9,
+          build: nix.thunk(() => ({ [nix.POS]: pos$8, installBootLoader: initScriptBuilder })),
         })),
       })))),
   };

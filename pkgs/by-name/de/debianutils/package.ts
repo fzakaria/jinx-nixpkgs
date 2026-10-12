@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const po4a = nix.arg($, "po4a");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "debianutils",
       version: "5.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "debianutils",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://packages.debian.org/sid/debianutils",
         description: "Miscellaneous utilities specific to Debian",
         longDescription: "This package provides a number of small utilities which are used primarily\nby the installation scripts of Debian packages, although you may use them\ndirectly.\n\nThe specific utilities included are: add-shell installkernel ischroot\nremove-shell run-parts savelog tempfile which\n",

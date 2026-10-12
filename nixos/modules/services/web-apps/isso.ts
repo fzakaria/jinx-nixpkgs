@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "isso.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         isso: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "isso, a commenting server similar to Disqus.\n\nNote: The application's author suppose to run isso behind a reverse proxy.\nThe embedded solution offered by NixOS is also only suitable for small installations\nbelow 20 requests per second\n")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Configuration for `isso`.\n\nSee [Isso Server Configuration](https://posativ.org/isso/docs/configuration/server/)\nfor supported values.\nYou can set secrets using the secretFile option with environment variables following\n[the documentation](https://isso-comments.de/docs/reference/server-config/#environment-variables).\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  general = {\n    host = \"http://localhost\";\n  };\n}\n")),
             })))),
           secretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "A file containing secrets as environment variables that will be used in the configuration.\nSee [the documentation](https://isso-comments.de/docs/reference/server-config/#environment-variables) for details.\n",
@@ -62,30 +62,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           isso: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               general: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 dbpath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/isso/comments.db")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             isso: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "isso, a commenting server similar to Disqus",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 User: "isso",
                 Group: "isso",
                 EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "secretFile"))]))),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const woff2 = nix.arg($, "woff2");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pixel-code",
       version: "2.2",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qwerasd205",
           repo: "PixelCode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "    substituteInPlace src/build.sh \\\n      --replace-fail \\\n'# Activate python virtual environment.\n../activate.sh\nsource ../.venv/bin/activate' \"\"\n",
       buildPhase: "runHook preBuild\nsrc/build.sh\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/qwerasd205/PixelCode",
         description: "Pixel font designed to actually be good for programming",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

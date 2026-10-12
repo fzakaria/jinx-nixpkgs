@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/whtsky/pixelmatch-py.git",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-tl1y8SASS8XR3ix4DLvwi5OoIs73oxYOF9Z90jPIU4o=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pillow, pytest_benchmark, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pixelmatch"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A pixel-level image comparison library",
         homepage: "https://github.com/whtsky/pixelmatch-py",
         changelog: nix.thunk(() => nix.str`https://github.com/whtsky/pixelmatch-py/tree/v${version}#changelog`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

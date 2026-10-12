@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const check_dosbox_conf = nix.thunk(() => nix.app(nix.sel(writers, "writeText"), "check-dosbox.conf", "[autoexec]\nMOUNT C .\n\nVER > C:\\BLUB\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "dosbox-x",
       version: "2026.08.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joncampbell123",
           repo: "dosbox-x",
           rev: nix.thunk(() => nix.str`dosbox-x-v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libGL, libxkbfile, libxrandr])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_net)}/include/SDL2`),
       })),
       configureFlags: nix.thunk(() => [
@@ -98,19 +98,19 @@ grep -q 'Reported DOS version' BLUB
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} -version 2>&1 || true`),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "dosbox-x-v", ignoredVersions: "-osfree$" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "dosbox-x-v", ignoredVersions: "-osfree$" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://dosbox-x.com",
         description: "Cross-platform DOS emulator based on the DOSBox project",
         longDescription: "DOSBox-X is an expanded fork of DOSBox with specific focus on running\nWindows 3.x/9x/Me, PC-98 and 3D support via 3dfx.\n\nThe full expanded feature list is available here:\nhttps://dosbox-x.com/wiki/DOSBox%E2%80%90X%E2%80%99s-Feature-Highlights\n",

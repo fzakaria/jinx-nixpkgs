@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linja-pi-pu-lukin",
       version: "unstable-2021-10-29",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20211029000000/https://jansa-tp.github.io/linja-pi-pu-lukin/PuLukin.otf",
           hash: "sha256-Mf7P9fLGiG7L555Q3wRaI/PRv/TIs0njLq2IzIbc5Wo=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -D $src $out/share/fonts/opentype/linja-pi-pu-lukin.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sitelen pona font resembling the style found in Toki Pona: The Language of Good (lipu pu), by jan Sa",
         homepage: "https://jansa-tp.github.io/linja-pi-pu-lukin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

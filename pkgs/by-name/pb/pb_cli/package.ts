@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pb_cli-unstable";
       const version = "2019-03-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ptpb",
           repo: "pb_cli",
           rev: "6b9ce1ee45fe651d06d7c479a20026a173dd328b",
@@ -43,7 +43,7 @@ wrapProgram $out/bin/pb \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), liveDeps)}'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "No bullshit 0x0.st client",
         homepage: "https://github.com/ptpb/pb_cli",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ar1a"))]),
@@ -51,7 +51,7 @@ wrapProgram $out/bin/pb \\
         mainProgram: "pb",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

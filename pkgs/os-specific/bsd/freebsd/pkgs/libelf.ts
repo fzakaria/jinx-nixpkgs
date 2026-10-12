@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libelf",
       extraPaths: nix.thunk(() => ["lib/libc", "contrib/elftoolchain", "sys/sys"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

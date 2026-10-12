@@ -116,60 +116,60 @@ ln -s ${nix.sel(cfg, "dataDir")}/templates_c $out/WEB-INF/templates_c
 # Remove unsafe dbinstall.php
 rm -f $out/dbinstall.php
 `);
-      return { __proto__: pos$1, pname, version, src, installPhase };
+      return { [nix.POS]: pos$1, pname, version, src, installPhase };
     })())));
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     options: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       services: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         "anuko-time-tracker": nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Anuko Time Tracker")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "anuko-time-tracker", nix.thunk(() => ({})))),
           database: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Database host.",
                 default: "localhost",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Database name.",
                 default: "anuko_time_tracker",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Database username.",
                 default: "anuko_time_tracker",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "Database user password file.",
                 default: null,
               })))),
           })),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
                     nix.thunk(() => nix.sel(lib, "types", "bool")),
                   ]))))),
               default: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -180,7 +180,7 @@ rm -f $out/dbinstall.php
               description: "Options for Anuko Time Tracker's PHP-FPM pool.\n",
             })))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "networking", "domain"), null)) ? nix.sel(config, "networking", "fqdn") : nix.sel(config, "networking", "hostName"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.fqdn")),
@@ -188,131 +188,131 @@ rm -f $out/dbinstall.php
               description: "The hostname to serve Anuko Time Tracker on.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$11, config: config, lib: lib })))), nix.thunk(() => ({})))))),
+              [nix.POS]: pos$12,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$11, config: config, lib: lib })))), nix.thunk(() => ({})))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"anuko.${config.networking.domain}\"\n  ];\n\n  # To enable encryption and let let's encrypt take care of certificate\n  forceSSL = true;\n  enableACME = true;\n}\n")),
               description: "With this option, you can customize the Nginx virtualHost settings.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/anuko-time-tracker",
               description: "Default data folder for Anuko Time Tracker.",
               example: "/mnt/anuko-time-tracker",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "anuko_time_tracker",
               description: "User under which Anuko Time Tracker runs.",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             multiorgMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Defines whether users see the Register option in the menu of Time Tracker that allows them\nto self-register and create new organizations (top groups).\n",
               })))),
             emailRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Defines whether an email is required for new registrations.",
               })))),
             weekendStartDay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 6n,
                 description: "This option defines which days are highlighted with weekend color.\n6 means Saturday. For Saudi Arabia, etc. set it to 4 for Thursday and Friday to be\nweekend days.\n",
               })))),
             forumLink: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Forum link from the main menu.",
                 default: "https://www.anuko.com/forum/viewforum.php?f=4",
               })))),
             helpLink: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Help link from the main menu.",
                 default: "https://www.anuko.com/time-tracker/user-guide/index.htm",
               })))),
             email: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               sender: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "Default sender for mail.",
                   default: "Anuko Time Tracker <bounces@example.com>",
                 })))),
               mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "Mail sending mode. Can be 'mail' or 'smtp'.",
                   default: "smtp",
                 })))),
               smtpHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "MTA hostname.",
                   default: "localhost",
                 })))),
               smtpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   description: "MTA port.",
                   default: 25n,
                 })))),
               smtpUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "MTA authentication username.",
                   default: "",
                 })))),
               smtpAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "MTA requires authentication.",
                 })))),
               smtpPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: null,
                   example: "/var/lib/anuko-time-tracker/secrets/smtp-password",
                   description: "Path to file containing the MTA authentication password.\n",
                 })))),
               smtpDebug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Debug mail sending.",
                 })))),
             })),
             defaultLanguage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Defines Anuko Time Tracker default language. It is used on Time Tracker login page.\nAfter login, a language set for user group is used.\nEmpty string means the language is defined by user browser.\n",
                 default: "",
                 example: "nl",
               })))),
             defaultCurrency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Defines a default currency symbol for new groups.\nUse €, £, a more specific dollar like US$, CAD, etc.\n",
                 default: "$",
                 example: "€",
               })))),
             exportDecimalDuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Defines whether time duration values are decimal in CSV and XML data\nexports (1.25 vs 1:15).\n",
               })))),
             reportFooter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Defines whether to use a footer on reports.",
@@ -322,31 +322,31 @@ rm -f $out/dbinstall.php
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "<option>services.anuko-time-tracker.database.passwordFile</option> cannot be specified if\n<option>services.anuko-time-tracker.database.createLocally</option> is set to true.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "settings", "email", "smtpAuth")) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "email", "smtpPasswordFile"), null)))),
             message: "<option>services.anuko-time-tracker.settings.email.smtpPasswordFile</option> needs to be set if\n<option>services.anuko-time-tracker.settings.email.smtpAuth</option> is enabled.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             pools: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               "anuko-time-tracker": nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 user: nix.thunk(() => nix.attr(cfg, "user")),
                 group: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                 }, nix.sel(cfg, "poolConfig"))),
@@ -354,7 +354,7 @@ rm -f $out/dbinstall.php
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             recommendedTlsSettings: true,
             recommendedOptimisation: true,
@@ -363,13 +363,13 @@ rm -f $out/dbinstall.php
               [nix.str`${nix.sel(cfg, "hostname")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "nginx")),
                   nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${package$}`))),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$45,
-                      "/": nix.thunk(() => ({ __proto__: pos$43, index: "index.php" })),
+                      [nix.POS]: pos$45,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$43, index: "index.php" })),
                       "~ [^/]\\.php(/|$)": nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+?\\.php)(/.*)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "anuko-time-tracker", "socket")};
 `),
@@ -380,13 +380,13 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "anuko-time-t
             ])),
           })),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -394,13 +394,13 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "anuko-time-t
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           services: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             "anuko-time-tracker-setup-database": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 description: "Set up Anuko Time Tracker database",
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$51, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$51, Type: "oneshot", RemainAfterExit: true })),
                 wantedBy: nix.thunk(() => ["phpfpm-anuko-time-tracker.service"]),
                 after: nix.thunk(() => ["mysql.service"]),
                 script: nix.thunk(() => (() => {
@@ -416,7 +416,7 @@ fi
               })))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(config, "services", "nginx", "group")} -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/templates_c 0750 ${nix.sel(cfg, "user")} ${nix.sel(config, "services", "nginx", "group")} -`),
@@ -424,17 +424,17 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
             }))],
           ])),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$59, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$59, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=anuko-time-tracker.ts.map

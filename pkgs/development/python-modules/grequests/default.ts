@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const gevent = nix.arg($, "gevent");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grequests",
       version: "0.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grequests",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XDPxQmjfW4+hEH2FN4Fb5v67rW7FYFJNakBLd3jPa6Y=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [requests, gevent]),
       pythonImportsCheck: nix.thunk(() => ["grequests"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous HTTP requests",
         homepage: "https://github.com/kennethreitz/grequests",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

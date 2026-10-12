@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lumina-pdf";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lumina-desktop",
           repo: "lumina-pdf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF viewer for the Lumina Desktop",
         mainProgram: "lumina-pdf",
         homepage: "https://github.com/lumina-desktop/lumina-pdf",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lumina"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

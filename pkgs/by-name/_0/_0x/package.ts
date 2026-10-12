@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "0x",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ohx",
           hash: "sha256-im9F0MQYddCcBthSldeQ6T0BIswhBSGc/LKUlJg/754=",
         })))),
       cargoHash: "sha256-TCpJz/ZIOFiEvjQzrSnUASPOHbqD8GYy3IpozFGat/g=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mcy/0x",
         description: "Colorful, configurable xxd",
         mainProgram: "0x",

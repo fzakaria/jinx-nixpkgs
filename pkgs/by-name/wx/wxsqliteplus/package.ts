@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wxsqlite3 = nix.arg($, "wxsqlite3");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wxsqliteplus",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guanlisheng",
           repo: "wxsqliteplus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DWXSQLITE3_HAVE_CODEC=1"]),
       installPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv wxSQLitePlus.app $out/Applications\nmakeWrapper $out/{Applications/wxSQLitePlus.app/Contents/MacOS,bin}/wxSQLitePlus\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "install -Dm755 wxSQLitePlus $out/bin/wxSQLitePlus\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple SQLite database browser built with wxWidgets",
         mainProgram: "wxSQLitePlus",
         homepage: "https://github.com/guanlisheng/wxsqliteplus",

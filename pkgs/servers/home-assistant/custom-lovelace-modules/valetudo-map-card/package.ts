@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lovelace-valetudo-map-card";
       const version = "2023.04.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hypfer",
           repo: "lovelace-valetudo-map-card",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./remove-git-dependency.patch")]);
       const npmDepsHash = "sha256-xHHbOt9HW+zJAhHEDy2V5eYyLv4e3OrUbnzqeJasSng=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/valetudo-map-card.js $out\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "valetudo-map-card.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "valetudo-map-card.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display the map from a valetudo-enabled robot in a home assistant dashboard card",
         homepage: "https://github.com/Hypfer/lovelace-valetudo-map-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

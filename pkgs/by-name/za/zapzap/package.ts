@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(hunspellDictsChromium, "fr-fr")),
     nix.thunk(() => nix.sel(hunspellDictsChromium, "sv-se")),
   ]);
-  const qtwebengineDictionaries = nix.thunk(() => nix.app(linkFarm, "zapzap-qtwebengine-dictionaries", nix.thunk(() => nix.builtins.map((d) => ({ __proto__: pos$1, name: nix.thunk(() => nix.sel(d, "dictFileName")), path: d }), dictionaries))));
+  const qtwebengineDictionaries = nix.thunk(() => nix.app(linkFarm, "zapzap-qtwebengine-dictionaries", nix.thunk(() => nix.builtins.map((d) => ({ [nix.POS]: pos$1, name: nix.thunk(() => nix.sel(d, "dictFileName")), path: d }), dictionaries))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zapzap",
       version: "7.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "rafatosta",
           repo: "zapzap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["zapzap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine",
         homepage: "https://rtosta.com/zapzap/",
         mainProgram: "zapzap",

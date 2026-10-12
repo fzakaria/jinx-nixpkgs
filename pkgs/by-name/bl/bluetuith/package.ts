@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bluetuith",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bluetuith-org",
           repo: "bluetuith",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-38yPy0dhZ99smFQK0tvQLHah+Sn6DsXvNrh8nQaR5qk=",
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/darkhz/bluetuith/cmd.Version=${nix.sel(finalAttrs, "version")}@nixpkgs`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "TUI-based Bluetooth connection manager",
         longDescription: "Bluetuith can transfer files via OBEX, perform authenticated pairing,\nand (dis)connect different Bluetooth devices. It interacts with Bluetooth\nadapters and can toggle their power and discovery state. Bluetuith can also\nmanage Bluetooth-based networking/tethering (PANU/DUN) and remote control\ndevices. The TUI has mouse support.\n",
         homepage: "https://github.com/bluetuith-org/bluetuith",

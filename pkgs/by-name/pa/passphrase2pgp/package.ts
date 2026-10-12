@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "passphrase2pgp",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skeeto",
           repo: "passphrase2pgp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/doc/$name\ncp README.md $out/share/doc/$name\n",
       checkPhase: "output=$(echo NONE | ../go/bin/passphrase2pgp -a -u NONE -i /dev/stdin | sha256sum)\nif [[ \"$output\" != \"23f59f4346f35e2feca6ef703ea64973524dec365ea672f23e7afe79be1049dd  -\" ]] ; then\n  echo \"passphrase2pgp introduced backward-incompatible change\"\n  exit 1\nfi\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Predictable, passphrase-based PGP key generator",
         mainProgram: "passphrase2pgp",
         homepage: "https://github.com/skeeto/passphrase2pgp",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "printrun",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kliment",
           repo: "Printrun",
           tag: nix.thunk(() => nix.str`printrun-${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pronterface, Pronsole, and Printcore - Pure Python 3d printing host software",
         homepage: "https://github.com/kliment/Printrun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

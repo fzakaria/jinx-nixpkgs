@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testdata = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "google-research",
       repo: "google-research",
       sparseCheckout: nix.thunk(() => ["rouge/testdata"]),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-ojqk6U2caS7Xz4iGUC9aQVHrKb2QNvMlPuQAL/jJat0=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rouge-score",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "rouge_score",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "tar.gz",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["testRougeLSumSentenceSplitting", "testRougeLsumLarge"]),
       pythonImportsCheck: nix.thunk(() => ["rouge_score"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python ROUGE Implementation",
         homepage: "https://github.com/google-research/google-research/tree/master/rouge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

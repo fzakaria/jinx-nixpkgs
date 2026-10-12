@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-RwkiFZZTKYZRBcSMFSTp0mF6o88INaxiXDeUBPbL298=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([zope_interface, zope_deferredimport], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [cffi]))));
       const pythonImportsCheck = nix.thunk(() => ["persistent"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic persistence for Python objects",
         homepage: "https://github.com/zopefoundation/persistent/",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/persistent/blob/${version}/CHANGES.rst`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

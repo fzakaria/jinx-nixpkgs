@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k}=${v}`)),
       nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ")),
     ])));
-  const configFile = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.update(nix.sel(cfg, "settings"), { __proto__: pos$1, "db-uri": db_uri })), nix.thunk(() => [
+  const configFile = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.update(nix.sel(cfg, "settings"), { [nix.POS]: pos$1, "db-uri": db_uri })), nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null))),
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? nix.builtins.toString(v) : nix.str`"${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\""]), v)}"`))))),
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k} = ${v}`)),
@@ -54,23 +54,23 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postgrest.conf")),
     ])));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wolfgangwalther"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         postgrest: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PostgREST")),
           pgpassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "externalPath")));
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
               description: "The password to authenticate to PostgreSQL with.\nNot needed for peer or trust based authentication.\n\nThe file must be a valid `.pgpass` file as described in:\n<https://www.postgresql.org/docs/current/libpq-pgpass.html>\n\nIn most cases, the following will be enough:\n```\n*:*:*:*:<password>\n```\n",
             })))),
           jwtSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "externalPath")));
@@ -90,9 +90,9 @@ export default nix.lambda((args) => (() => {
               description: "The secret or JSON Web Key (JWK) (or set) used to decode JWT tokens clients provide for authentication.\nFor security the key must be at least 32 characters long.\nIf this parameter is not specified then PostgREST refuses authentication requests.\n\n<https://docs.postgrest.org/en/stable/references/configuration.html#jwt-secret>\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -102,9 +102,9 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     "admin-server-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -113,33 +113,33 @@ export default nix.lambda((args) => (() => {
                         description: "Specifies the port for the admin server, which can be used for healthchecks.\n\n<https://docs.postgrest.org/en/stable/references/admin_server.html#admin-server>\n",
                       })))),
                     "db-config": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         example: true,
                         description: "Enables the in-database configuration.\n\n<https://docs.postgrest.org/en/stable/references/configuration.html#in-database-configuration>\n\n::: {.note}\nThis is enabled by default upstream, but disabled by default in this module.\n:::\n",
                       })))),
                     "db-uri": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             freeformType: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
                             })()),
                             options: nix.thunk(() => ({
-                              __proto__: pos$9,
-                              password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$7, default: null, readOnly: true, internal: true })))),
-                              passfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$8, default: null, readOnly: true, internal: true })))),
+                              [nix.POS]: pos$9,
+                              password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, default: null, readOnly: true, internal: true })))),
+                              passfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$8, default: null, readOnly: true, internal: true })))),
                             })),
                           })))),
                         default: nix.thunk(() => ({})),
                         description: "libpq connection parameters as documented in:\n\n<https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS>\n\n::: {.note}\nThe `settings.db-uri.password` and `settings.db-uri.passfile` options are blocked.\nUse [`pgpassFile`](#opt-services.postgrest.pgpassFile) instead.\n:::\n",
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  host = \"localhost\";\n  dbname = \"postgres\";\n}\n")),
                       })))),
-                    "jwt-secret": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$12, default: null, readOnly: true, internal: true })))),
+                    "jwt-secret": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$12, default: null, readOnly: true, internal: true })))),
                     "server-host": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
                         description: "Where to bind the PostgREST web server.\n\n::: {.note}\nThe admin server will also bind here, but potentially exposes sensitive information.\nMake sure you turn off the admin server, when opening this to the public.\n\n<https://github.com/PostgREST/postgrest/issues/3956>\n:::\n",
                       })))),
                     "server-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
                         description: "The TCP port to bind the web server.\n",
                       })))),
                     "server-unix-socket": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -176,34 +176,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "settings", "server-port"), null), nix.eq(nix.sel(cfg, "settings", "server-unix-socket"), null))),
             message: "PostgREST can listen either on a TCP port or on a unix socket, but not both.\nPlease set one of `settings.server-port`](#opt-services.postgrest.jwtSecretFile) or `settings.server-unix-socket` to `null`.\n\n<https://docs.postgrest.org/en/stable/references/configuration.html#server-unix-socket>\n",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "admin-server-port"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "server-host"), "127.0.0.1")))), "The PostgREST admin server is potentially listening on a public host. This may expose sensitive information via the `/config` endpoint.")),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           postgrest: nix.thunk(() => ({
-            __proto__: pos$24,
-            settings: nix.thunk(() => ({ __proto__: pos$23, "server-unix-socket-mode": "666" })),
+            [nix.POS]: pos$24,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$23, "server-unix-socket-mode": "666" })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             postgrest: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "PostgREST",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "postgresql.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 CacheDirectory: "postgrest",
                 CacheDirectoryMode: "0700",
                 Environment: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pgpassFile"), null)), "PGPASSFILE=%C/postgrest/pgpass"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "jwtSecretFile"), null)), "PGRST_JWT_SECRET=@%d/jwt_secret"))),

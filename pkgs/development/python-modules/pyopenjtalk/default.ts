@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const dic_dirname = "open_jtalk_dic_utf_8-1.11";
   const dic_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: dic_dirname,
       url: nix.thunk(() => nix.str`https://github.com/r9y9/open_jtalk/releases/download/v1.11.1/${dic_dirname}.tar.gz`),
       hash: "sha256-+6cHKujNEzmJbpN9Uan6kZKsPdwxRRzT3ZazDnCNi3s=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyopenjtalk",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "r9y9",
           repo: "pyopenjtalk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ ln -s ${dic_src} $out/${nix.sel(python, "sitePackages")}/pyopenjtalk/${dic_dirna
       preCheck: "# the built extension modules are only present in $out\n# so we make sure to resolve pyopenjtalk from $out\nrm -r pyopenjtalk\n",
       pythonImportsCheck: nix.thunk(() => ["pyopenjtalk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/r9y9/pyopenjtalk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python wrapper for OpenJTalk",
         homepage: "https://github.com/r9y9/pyopenjtalk",

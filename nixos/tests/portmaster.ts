@@ -109,7 +109,7 @@ class Handler(BaseHTTPRequestHandler):
 ThreadingHTTPServer(("127.0.0.1", 817), Handler).serve_forever()
 `)));
   const fakeCore = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "portmaster-core",
       text: nix.thunk(() => nix.str`if [ "\${1:-}" = "recover-iptables" ]; then
   exit 0
@@ -117,8 +117,8 @@ fi
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "python3")))} ${fakeApi}
 `),
     }))));
-  const fakeDesktop = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ __proto__: pos$2, name: "portmaster", text: "exit 0" }))));
-  const contextPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ __proto__: pos$3, name: "portmaster-context-test", text: "exit 0" }))));
+  const fakeDesktop = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$2, name: "portmaster", text: "exit 0" }))));
+  const contextPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$3, name: "portmaster-context-test", text: "exit 0" }))));
   const fakePortmaster = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "fake-portmaster", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/bin $out/lib/portmaster
 ln -s ${fakeCore}/bin/portmaster-core $out/bin/portmaster-core
 ln -s ${fakeCore}/bin/portmaster-core $out/lib/portmaster/portmaster-core
@@ -127,10 +127,10 @@ touch $out/lib/portmaster/portmaster.zip
 touch $out/lib/portmaster/assets.zip
 `)));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     name: "portmaster",
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -140,58 +140,58 @@ touch $out/lib/portmaster/assets.zip
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             portmaster: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: true,
               package: fakePortmaster,
               stateDir: stateDir,
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 devmode: true,
                 "core/devMode": false,
                 "core/log/level": "warning",
-                nested: nix.thunk(() => ({ __proto__: pos$6, fromSettings: true, shared: "settings" })),
+                nested: nix.thunk(() => ({ [nix.POS]: pos$6, fromSettings: true, shared: "settings" })),
               })),
               settingsFile: "/run/portmaster-settings.json",
               secretsFile: "/run/portmaster-secrets.json",
               profilePrefix: "[NixOS] ",
               profiles: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Hello: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$9,
-                    filter: nix.thunk(() => ({ __proto__: pos$8, defaultAction: "permit" })),
+                    [nix.POS]: pos$9,
+                    filter: nix.thunk(() => ({ [nix.POS]: pos$8, defaultAction: "permit" })),
                   })),
                 })),
                 Go: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   packages: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       package: nix.thunk(() => nix.sel(pkgs, "go")),
                       directory: "share/go/bin",
                     })),
                   ]),
                 })),
                 Extcap: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   packages: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       package: nix.thunk(() => nix.sel(pkgs, "wireshark")),
                       directory: "libexec/wireshark/extcap",
                       name: null,
@@ -200,18 +200,18 @@ touch $out/lib/portmaster/assets.zip
                   ]),
                 })),
                 Combined: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   packages: nix.thunk(() => [
                     nix.thunk(() => nix.sel(pkgs, "hello")),
                     nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       package: nix.thunk(() => nix.sel(pkgs, "go")),
                       directory: "share/go/bin",
                     })),
                   ]),
                   fingerprints: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       type: "env",
                       key: "COMBINED_TEST",
                       operation: "equals",
@@ -220,16 +220,16 @@ touch $out/lib/portmaster/assets.zip
                   ]),
                 })),
                 Context: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   fingerprints: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       type: "path",
                       operation: "equals",
                       value: nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.str`${contextPackage}/bin/portmaster-context-test`))),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       type: "path",
                       operation: "equals",
                       value: nix.thunk(() => nix.str`${contextPackage}/bin/portmaster-context-test`),
@@ -237,10 +237,10 @@ touch $out/lib/portmaster/assets.zip
                   ]),
                 })),
                 StoreRegex: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   packages: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       package: nix.thunk(() => nix.sel(pkgs, "hello")),
                       type: "cmdline",
                       storeNameRegex: "hello-[0-9.]+",
@@ -249,10 +249,10 @@ touch $out/lib/portmaster/assets.zip
                   ]),
                 })),
                 Vesktop: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   fingerprints: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       type: "env",
                       key: "CHROME_DESKTOP",
                       operation: "equals",
@@ -261,10 +261,10 @@ touch $out/lib/portmaster/assets.zip
                   ]),
                 })),
                 Tagged: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   fingerprints: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       type: "tag",
                       key: "vendor",
                       operation: "prefix",
@@ -276,21 +276,21 @@ touch $out/lib/portmaster/assets.zip
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             rejected: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               configuration: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 services: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   portmaster: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     profiles: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         Rejected: nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           fingerprints: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$30, type: "path", operation: "equals", value: "/bin/rejected" })),
+                            nix.thunk(() => ({ [nix.POS]: pos$30, type: "path", operation: "equals", value: "/bin/rejected" })),
                           ]),
                         })),
                       })))),
@@ -299,13 +299,13 @@ touch $out/lib/portmaster/assets.zip
               })),
             })),
             unmanaged: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               configuration: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 services: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   portmaster: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     settings: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
                     settingsFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), null)),
                     secretsFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), null)),
@@ -315,14 +315,14 @@ touch $out/lib/portmaster/assets.zip
               })),
             })),
             development: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               configuration: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 services: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   portmaster: nix.thunk(() => ({
-                    __proto__: pos$42,
-                    settings: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ __proto__: pos$41, devmode: true })))),
+                    [nix.POS]: pos$42,
+                    settings: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$41, devmode: true })))),
                     settingsFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), null)),
                     secretsFile: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), null)),
                     profiles: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
@@ -332,15 +332,15 @@ touch $out/lib/portmaster/assets.zip
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             services: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               "portmaster-test-inputs": nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 wantedBy: nix.thunk(() => ["portmaster.service"]),
                 before: nix.thunk(() => ["portmaster.service"]),
                 requiredBy: nix.thunk(() => ["portmaster.service"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$47, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$47, Type: "oneshot", RemainAfterExit: true })),
                 script: "cat > /run/portmaster-settings.json <<'EOF'\n{\n  \"core/log/level\": \"error\",\n  \"nested\": {\n    \"fromFile\": true,\n    \"shared\": \"settings-file\"\n  }\n}\nEOF\n\ncat > /run/portmaster-secrets.json <<'EOF'\n{\n  \"nested\": {\n    \"shared\": \"secrets-file\"\n  },\n  \"secret/value\": \"kept-out-of-store\"\n}\nEOF\n\nchmod 0600 /run/portmaster-settings.json /run/portmaster-secrets.json\n",
               })),
             })),

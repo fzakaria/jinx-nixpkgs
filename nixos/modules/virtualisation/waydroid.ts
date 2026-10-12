@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const kCfg = nix.thunk(() => nix.sel(config, "lib", "kernelConfig"));
   const waydroidGbinderConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "waydroid.conf", "[Protocol]\n/dev/binder = aidl2\n/dev/vndbinder = aidl2\n/dev/hwbinder = hidl\n\n[ServiceManager]\n/dev/binder = aidl2\n/dev/vndbinder = aidl2\n/dev/hwbinder = hidl\n"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         waydroid: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Waydroid")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "waydroid", nix.thunk(() => ({}))), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? nix.sel(pkgs, "waydroid-nftables") : nix.sel(pkgs, "waydroid"))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.networking.nftables.enable then pkgs.waydroid-nftables else pkgs.waydroid")),
           })),
@@ -53,47 +53,47 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel")))), "4.18")),
             message: "Waydroid needs user namespace support to work properly",
           })))),
         system: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           requiredKernelConfig: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(kCfg, "isEnabled"), "ANDROID_BINDER_IPC")),
             nix.thunk(() => nix.app(nix.sel(kCfg, "isEnabled"), "ANDROID_BINDERFS")),
             nix.thunk(() => nix.app(nix.sel(kCfg, "isEnabled"), "MEMFD_CREATE")),
           ]),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$7, kernelParams: nix.thunk(() => ["psi=1"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$7, kernelParams: nix.thunk(() => ["psi=1"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
-            "gbinder.d/waydroid.conf": nix.thunk(() => ({ __proto__: pos$8, source: waydroidGbinderConf })),
+            [nix.POS]: pos$9,
+            "gbinder.d/waydroid.conf": nix.thunk(() => ({ [nix.POS]: pos$8, source: waydroidGbinderConf })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$12,
-          firewall: nix.thunk(() => ({ __proto__: pos$11, trustedInterfaces: nix.thunk(() => ["waydroid0"]) })),
+          [nix.POS]: pos$12,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$11, trustedInterfaces: nix.thunk(() => ["waydroid0"]) })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$14,
-          lxc: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+          [nix.POS]: pos$14,
+          lxc: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "waydroid-container": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Waydroid Container",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Type: "dbus",
                 UMask: "0022",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/waydroid container start`),
@@ -102,14 +102,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             rules: nix.thunk(() => ["d /var/lib/misc 0755 root root -"]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           dbus: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),

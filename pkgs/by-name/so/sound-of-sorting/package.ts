@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sound-of-sorting",
       version: "0.6.5-unstable-2022-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bingmann",
           repo: "sound-of-sorting",
           rev: "5cfcaf752593c8cbcf52555dd22745599a7d8b1b",
@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/freebsd/freebsd-ports/raw/31ec0266e31910c16b0f69e16a2a693aae20abdf/math/sound-of-sorting/files/patch-src_SortAlgo.cpp",
             extraPrefix: "",
             hash: "sha256-mOo3GsEZ8r8p9ROoel2TO9Z4yF5SmCN0/fUn/2qUKAo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/freebsd/freebsd-ports/raw/31ec0266e31910c16b0f69e16a2a693aae20abdf/math/sound-of-sorting/files/patch-src_SortAlgo.h",
             extraPrefix: "",
             hash: "sha256-NNSPs0gT6ndeMQWHLHAwLR5nMQGP880Qd6kulDYJYF0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/freebsd/freebsd-ports/raw/31ec0266e31910c16b0f69e16a2a693aae20abdf/math/sound-of-sorting/files/patch-src_SortArray.cpp",
             extraPrefix: "",
             hash: "sha256-WxqwcZ2L9HPG4QNf1Xi624aKTM3cRBWN+W00htcIJ5k=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Audibilization and Visualization of Sorting Algorithms",
         homepage: "https://panthema.net/2013/sound-of-sorting/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

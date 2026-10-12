@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "searx",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "SuperSandro2000")),
           nix.thunk(() => nix.lookup(w, "_999eagle")),
@@ -42,23 +42,23 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       base: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           searx: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets", "SEARX_SECRET_KEY = somesecret\n")),
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               engines: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$2, name: "startpage", shortcut: "start" })),
+                nix.thunk(() => ({ [nix.POS]: pos$2, name: "startpage", shortcut: "start" })),
               ]),
               plugins: nix.thunk(() => ({})),
               server: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 port: "8080",
                 bind_address: "0.0.0.0",
                 secret_key: "$SEARX_SECRET_KEY",
@@ -72,36 +72,36 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             searx: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 plugins: nix.thunk(() => ({})),
-                server: nix.thunk(() => ({ __proto__: pos$8, secret_key: "somesecret" })),
+                server: nix.thunk(() => ({ [nix.POS]: pos$8, secret_key: "somesecret" })),
               })),
               configureNginx: true,
               domain: "localhost",
               uwsgiConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 mount: "/searx=searx.webapp:application",
                 module: "",
                 "manage-script-name": true,
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(config, "services", "searx", "domain"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     "/static/": nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
                     "/searx/static/": nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       alias: nix.thunk(() => nix.str`${nix.sel(config, "services", "searx", "package")}/share/static/`),
                     })),
                   })),

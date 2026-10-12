@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "py-stringmatching";
       const version = "0.4.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anhaidgroup",
           repo: "py_stringmatching",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "cd $out\n";
       const pythonImportsCheck = nix.thunk(() => ["py_stringmatching"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(numpy, "version")), "2")),
         description: "Python string matching library including string tokenizers and string similarity measures",
         homepage: "https://github.com/anhaidgroup/py_stringmatching",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

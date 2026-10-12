@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
       const pname = "kdsoap-ws-discovery-client";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kdsoap-ws-discovery-client/kdsoap-ws-discovery-client-${version}.tar.xz`),
           hash: "sha256-LNJHwBPnX0EGWbrDcq/5PSLXHFpUwFnhN7lESvizQno=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [doxygen]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
-      return { __proto__: pos$3, pname, version, src, extraNativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, extraNativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

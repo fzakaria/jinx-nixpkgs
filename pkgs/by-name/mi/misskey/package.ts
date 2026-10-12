@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "misskey",
       version: "2026.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "misskey-dev",
           repo: "misskey",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace packages/backend/src/config.ts \\\n  --replace-fail \\\n    \"resolve(projectBuiltDir, '.config.json')\" \\\n    \"resolve('/run/misskey/default.json')\"\nsubstituteInPlace {.,packages/backend}/package.json \\\n  --replace-fail \"pnpm compile-config && \" \"\"\n",
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, makeWrapper, python3, dart_sass]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -108,15 +108,15 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$3, misskey: nix.thunk(() => nix.sel(nixosTests, "misskey")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, misskey: nix.thunk(() => nix.sel(nixosTests, "misskey")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open source, federated social media platform",
         homepage: "https://misskey-hub.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

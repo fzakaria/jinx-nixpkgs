@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const quantiphy = nix.arg($, "quantiphy");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nestedtext",
       version: "3.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KenKundert",
           repo: "nestedtext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       disabledTestPaths: nix.thunk(() => ["build", "examples/"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          runTests: nix.thunk(() => nix.app(nix.sel(nestedtext, "overrideAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          runTests: nix.thunk(() => nix.app(nix.sel(nestedtext, "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["nestedtext"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Human friendly data format",
         longDescription: "NestedText is a file format for holding data that is to be entered,\nedited, or viewed by people. It allows data to be organized into a nested\ncollection of dictionaries, lists, and strings. In this way it is similar\nto JSON, YAML and TOML, but without the complexity and risk of YAML and\nwithout the syntactic clutter of JSON and TOML. NestedText is both simple\nand natural. Only a small number of concepts and rules must be kept in\nmind when creating it. It is easily created, modified, or viewed with a\ntext editor and easily understood and used by both programmers and\nnon-programmers.\n",
         homepage: "https://nestedtext.org",

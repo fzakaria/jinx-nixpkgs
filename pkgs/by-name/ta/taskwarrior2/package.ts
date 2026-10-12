@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "taskwarrior",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GothenburgBitFactory",
           repo: "taskwarrior",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/GothenburgBitFactory/libshared/commit/bde76fb717c8e56e5859472ba1e890abc5b94e63.patch",
             sha256: "sha256-6esIya9VATtDbL3jOpXZtvMoIJ8ztznqUju4d4lE49w=",
             stripLen: 1n,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       postInstall: "# ZSH is installed automatically from some reason, only bash and fish need\n# manual installation\ninstallShellCompletion --cmd task \\\n  --bash $out/share/doc/task/scripts/bash/task.sh \\\n  --fish $out/share/doc/task/scripts/fish/task.fish\nrm -r $out/share/doc/task/scripts/bash\nrm -r $out/share/doc/task/scripts/fish\n# Install vim and neovim plugin\nmkdir -p $out/share/vim-plugins\nmv $out/share/doc/task/scripts/vim $out/share/vim-plugins/task\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/task $out/share/nvim/site\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Highly flexible command-line tool to manage TODO lists",
         homepage: "https://taskwarrior.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

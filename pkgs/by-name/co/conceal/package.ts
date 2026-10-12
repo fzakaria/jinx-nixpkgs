@@ -20,32 +20,32 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const conceal = nix.arg($, "conceal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "conceal",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TD-Sky",
           repo: "conceal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kPK00DjBHhyZVwCTuL3VSazS5pYY8lgLBn9bHTkaQ5s=",
         })))),
       cargoHash: "sha256-6MPYgReVYkEQhmifzT7sAMRuMIink8k9nWOnSUCOGG0=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CONCEAL_GEN_COMPLETIONS: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CONCEAL_GEN_COMPLETIONS: "true" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installShellCompletion \\\n  completions/{cnc/cnc,conceal/conceal}.{bash,fish} \\\n  --zsh completions/{cnc/_cnc,conceal/_conceal}\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: conceal,
             command: "conceal --version",
             version: nix.thunk(() => nix.str`conceal ${nix.sel(finalAttrs, "version")}`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Trash collector written in Rust",
         homepage: "https://github.com/TD-Sky/conceal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

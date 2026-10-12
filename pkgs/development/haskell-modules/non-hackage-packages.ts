@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
         [nix.app(removeSuffix, ".nix", name), nix.thunk(() => nix.add(nix.path(here, "./replacements-by-name"), nix.str`/${name}`))],
       ]))), nix.thunk(() => nix.builtins.readDir(nix.path(here, "./replacements-by-name")))));
   return (self) => (super$) => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "changelog-d": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../misc/haskell/changelog-d"), nix.thunk(() => ({})))),
     dconf2nix: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../tools/haskell/dconf2nix/dconf2nix.nix"), nix.thunk(() => ({})))),
     "cabal2nix-unstable": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cabal2nix-unstable/cabal2nix.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "distribution-nixpkgs": nix.thunk(() => nix.sel(self, "distribution-nixpkgs-unstable")),
         "hackage-db": nix.thunk(() => nix.sel(self, "hackage-db-unstable")),
         "language-nix": nix.thunk(() => nix.sel(self, "language-nix-unstable")),
       })))),
     "distribution-nixpkgs-unstable": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cabal2nix-unstable/distribution-nixpkgs.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "language-nix": nix.thunk(() => nix.sel(self, "language-nix-unstable")),
       })))),
     "hackage-db-unstable": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cabal2nix-unstable/hackage-db.nix"), nix.thunk(() => ({})))),

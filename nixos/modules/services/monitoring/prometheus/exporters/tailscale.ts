@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "tailscale"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9250n,
     extraOpts: nix.thunk(() => (() => {
       const w = nix.withScope(types, null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "prometheus-tailscale-exporter", nix.thunk(() => ({})))),
         environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.lookup(w, "path")),
             description: "Environment file containg at least the TAILSCALE_TAILNET,\nTAILSCALE_OAUTH_CLIENT_ID, and TAILSCALE_OAUTH_CLIENT_SECRET\nenvironment variables.\n",
           })))),
       };
     })()),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
         ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),

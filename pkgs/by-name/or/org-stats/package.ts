@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const org_stats = nix.arg($, "org-stats");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "org-stats",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caarlos0",
           repo: "org-stats",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,20 +33,20 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-0biuv94wGXiME181nlkvozhB+x4waGMgwXD9ColQWPw=",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: "$out/bin/org-stats man > org-stats.1\ninstallManPage org-stats.1\n\ninstallShellCompletion --cmd org-stats \\\n  --bash <($out/bin/org-stats completion bash) \\\n  --fish <($out/bin/org-stats completion fish) \\\n  --zsh <($out/bin/org-stats completion zsh)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: org_stats, command: "org-stats version" })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: org_stats, command: "org-stats version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Get the contributor stats summary from all repos of any given organization",
         homepage: "https://github.com/caarlos0/org-stats",
         changelog: nix.thunk(() => nix.str`https://github.com/caarlos0/org-stats/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

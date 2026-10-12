@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Breakthrough",
           repo: "DVR-Scan",
           tag: nix.thunk(() => nix.str`v${version}-release`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_config_file",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find and extract motion events in videos",
         longDescription: "Command-line application that automatically detects motion events in video files (e.g. security camera footage). DVR-Scan looks for areas in footage containing motion, and saves each event to a separate video clip. DVR-Scan is free and open-source software, and works on Windows, Linux, and Mac.\n",
         homepage: "https://www.dvr-scan.com",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

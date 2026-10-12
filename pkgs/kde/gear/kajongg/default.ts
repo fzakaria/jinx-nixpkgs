@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kajongg",
       extraBuildInputs: nix.thunk(() => [qtsvg, python3, nix.thunk(() => nix.sel(python3, "pkgs", "twisted"))]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, broken: true })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, broken: true })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

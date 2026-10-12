@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pulsectl",
       version: "24.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-KI1nFSMqxvPc2xI/vsqiwLmlDqQIfm6Hw/hBqwqKB/w=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./library-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libpulse: nix.thunk(() => nix.str`${nix.sel(libpulseaudio, "out")}/lib/libpulse${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             librt: nix.thunk(() => nix.str`${nix.sel(glibc, "out")}/lib/librt${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pulsectl"]),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, unittestCheckHook, pulseaudio]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python high-level interface and ctypes-based bindings for PulseAudio (libpulse)",
         homepage: "https://github.com/mk-fg/python-pulse-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

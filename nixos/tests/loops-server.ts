@@ -18,32 +18,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "loops-server",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       server: nix.thunk(() => ({
-        __proto__: pos$7,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 4096n })),
+        [nix.POS]: pos$7,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
         environment: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "loops-server": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             domain: "localhost",
             nginx: nix.thunk(() => ({})),
             secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets.env", "# Snakeoil secret, can be any random 32-chars secret via CSPRNG.\nAPP_KEY=adKK9EcY8Hcj3PLU7rzG9rJ6KKTOtYfA\n")),
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               FORCE_HTTPS_URLS: false,
               FORCE_HTTPS: false,
               AWS_DRIVER: "local",

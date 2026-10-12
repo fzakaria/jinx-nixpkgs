@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colcon-ros-domain-id-coordinator",
       version: "0.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-ros-domain-id-coordinator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/test_flake8.py"]),
       pythonImportsCheck: nix.thunk(() => ["colcon_ros_domain_id_coordinator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for colcon-core to coordinate ROS_DOMAIN_ID values across multiple terminals",
         homepage: "https://github.com/colcon/colcon-ros-domain-id-coordinator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

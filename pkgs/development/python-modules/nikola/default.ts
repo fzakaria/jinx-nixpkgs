@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Y219b/wqsk9MJknoaV+LtWBOMJFT6ktgt4b6yuA6scc=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.14.patch",
             url: "https://github.com/getnikola/nikola/commit/635366b64149055844f2d2ef6070b456bd4ba245.patch",
             hash: "sha256-TmrYHEIvC8ZKngBJnnKcyU5S4kjzIjLk7KKm72hXx1A=",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["nikola"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Static website and blog generator",
         homepage: "https://getnikola.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/getnikola/nikola/blob/v${version}/CHANGES.txt`),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nikola",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(nix.app(pythonAtLeast, "3.11"))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aleaxit",
           repo: "gmpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gmp]);
       const pythonImportsCheck = nix.thunk(() => ["gmpy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GMP or MPIR interface to Python 2.4+ and 3.x",
         homepage: "https://github.com/aleaxit/gmpy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

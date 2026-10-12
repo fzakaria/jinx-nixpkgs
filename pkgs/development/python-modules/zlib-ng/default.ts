@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pycompression",
           repo: "python-zlib-ng",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [cmake, setuptools, setuptools_scm]);
       const dontUseCmakeConfigure = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, PYTHON_ZLIB_NG_LINK_DYNAMIC: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PYTHON_ZLIB_NG_LINK_DYNAMIC: true }));
       const buildInputs = nix.thunk(() => [zlib_ng]);
       const pythonImportsCheck = nix.thunk(() => ["zlib_ng"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "test_decompress_infile_outfile_error",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drop-in replacement for Python's zlib and gzip modules using zlib-ng",
         homepage: "https://github.com/pycompression/python-zlib-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/pycompression/python-zlib-ng/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

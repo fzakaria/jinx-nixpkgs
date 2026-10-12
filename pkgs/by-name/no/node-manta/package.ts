@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "manta";
       const version = "5.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TritonDataCenter",
           repo: "node-manta",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const postInstall = "ln -s ./lib/node_modules/manta/bin $out/bin\n";
       const postFixup = "# create completions, following upstream procedure https://github.com/joyent/node-manta/blob/v5.4.1/Makefile#L85-L91\ncmds=$(find ./bin/ -type f -printf \"%f\\n\")\n\nnode $out/lib/node_modules/manta/lib/create_client.js\n\nfor cmd in $cmds; do\n  installShellCompletion --cmd $cmd --bash <($out/bin/$cmd --completion)\n\n  # Strip timestamp from generated bash completion\n  sed -i '/Bash completion generated.*/d' $out/share/bash-completion/completions/$cmd.bash\ndone\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: node_manta })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: node_manta })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Manta Object-Storage Client CLIs and Node.js SDK",
         homepage: "https://github.com/TritonDataCenter/node-manta",
         changelog: nix.thunk(() => nix.str`https://github.com/TritonDataCenter/node-manta/blob/v${version}/CHANGES.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mls",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

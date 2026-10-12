@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxt = nix.arg($, "libxt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nedit",
       version: "5.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/nedit/nedit-source/nedit-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "sha256-WFGqclLa2VIIRSkXNkAjJWLexKfEQCCfGW1T1KWoB00=",
         })))),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [motif, libxpm, libxt]),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "linux")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DBUILD_UNTESTED_NEDIT -L${motif}/lib`),
       })),
       installPhase: "mkdir -p $out/bin\ncp -p source/nedit source/nc $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sourceforge.net/projects/nedit",
         description: "Fast, compact Motif/X11 plain text editor",
         platforms: nix.thunk(() => (() => {

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.5.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.mpcdf.mpg.de",
           owner: "ift",
           repo: "nifty",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 `)));
       const pythonImportsCheck = nix.thunk(() => ["nifty8"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.mpcdf.mpg.de/ift/nifty",
         changelog: nix.thunk(() => nix.str`https://gitlab.mpcdf.mpg.de/ift/nifty/-/blob/v${version}/ChangeLog.md`),
         description: "Bayesian Imaging library for high-dimensional posteriors",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librsb";
       const version = "1.3.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}.tar.gz`),
           sha256: "sha256-GMb8RD+hz9KoEQ99S4jVu8tJO56Fs6YgFLi7V6hI4E8=",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-memhinfo=${memHierarchy}`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fPIC", "-Ofast"]))),
         FCFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fPIC", "-Ofast"]))),
       }));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [octave]);
       const checkTarget = "tests";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://librsb.sourceforge.net/",
         description: "Shared memory parallel sparse matrix and sparse BLAS library",
         longDescription: "Library for sparse matrix computations featuring the Recursive Sparse\nBlocks (RSB) matrix format. This format allows cache efficient and\nmulti-threaded (that is, shared memory parallel) operations on large\nsparse matrices.\nlibrsb implements the Sparse BLAS standard, as specified in the BLAS\nForum documents.\nContains libraries and header files for developing applications that\nwant to make use of librsb.\n",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

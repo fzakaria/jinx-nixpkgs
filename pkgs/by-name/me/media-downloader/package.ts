@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "media-downloader",
       version: "5.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhogomchungu",
           repo: "media-downloader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), extraPackages)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt/C++ GUI front end for yt-dlp and others",
         longDescription: "Media Downloader is a GUI front end to yt-dlp, youtube-dl, gallery-dl,\nlux, you-get, svtplay-dl, aria2c, wget and safari books.\n\nRead https://github.com/mhogomchungu/media-downloader/wiki/Extensions\nfor further information. Note that adding these packages to extraPackages\ndoesn't work, because the author doesn't intend to support custom\ninstallation of them. These packages will be downloaded from original\nsource when executing the application for the first time.\n",
         homepage: "https://github.com/mhogomchungu/media-downloader",

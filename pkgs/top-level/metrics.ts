@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.thunk(() => nix.attr(pkgs, "stdenvNoCC"));
   const evalSystem = "x86_64-linux";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "nixpkgs-metrics",
       __structuredAttrs: true,
       evalSystem: evalSystem,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nrelease=\"$nixpkgs/nixos/release.nix\"\n\nrun() {\n  local name=\"$1\"\n  shift\n\n  echo \"running $@\"\n\n  mkdir -p \"metrics/$name\"\n  local output=\"metrics/$name/output\"\n  local nix_stats=\"metrics/$name/nix-stats.json\"\n  local time_stats=\"metrics/$name/time-stats.json\"\n\n  NIX_SHOW_STATS=1 NIX_SHOW_STATS_PATH=\"$nix_stats\" command time -o \"$time_stats\" -- \"$@\" > \"$output\"\n\n  # Show the Nix statistics and the `time` statistics.\n  echo \"Nix statistics for $@\"\n  jq . \"$nix_stats\"\n  echo\n  echo \"Time statistics for $@\"\n  jq . \"$time_stats\"\n  echo\n\n  cpuTime=\"$(jq '.cpuTime' < \"$nix_stats\")\"\n  [[ -n $cpuTime ]] || exit 1\n  echo \"$name.time $cpuTime s\" >> hydra-metrics\n\n  maxresident=\"$(jq '.max_resident_set_kb' < \"$time_stats\")\"\n  [[ -n $maxresident ]] || exit 1\n  echo \"$name.maxresident $maxresident KiB\" >> hydra-metrics\n\n  # Nix also outputs `.symbols.bytes` but since that wasn't summed originally, we don't count it here.\n  allocations=\"$(jq '[.envs,.list,.values,.sets] | map(.bytes) | add' < \"$nix_stats\")\"\n  [[ -n $allocations ]] || exit 1\n  echo \"$name.allocations $allocations B\" >> hydra-metrics\n\n  values=\"$(jq '.values.number' < \"$nix_stats\")\"\n  [[ -n $values ]] || exit 1\n  echo \"$name.values $values\" >> hydra-metrics\n}\n\nrun nixos.smallContainer nix-instantiate --option eval-system \"$evalSystem\" --dry-run \"$release\" -A closures.smallContainer.x86_64-linux --show-trace --no-gc-warning\nrun nixos.kde nix-instantiate --option eval-system \"$evalSystem\" --dry-run \"$release\" -A closures.kde.x86_64-linux --show-trace --no-gc-warning\nrun nixos.lapp nix-instantiate --option eval-system \"$evalSystem\" --dry-run \"$release\" -A closures.lapp.x86_64-linux --show-trace --no-gc-warning\nrun nix-env.qa nix-env --option eval-system \"$evalSystem\" -f \"$nixpkgs\" -qa\nrun nix-env.qaDrv nix-env --option eval-system \"$evalSystem\" -f \"$nixpkgs\" -qa --drv-path --meta --json\n\n# It's slightly unclear which of the set to track: qaCount, qaCountDrv, qaCountBroken.\nnum=\"$(wc -l < metrics/nix-env.qa/output)\"\necho \"nix-env.qaCount $num\" >> hydra-metrics\nqaCountDrv=\"$(jq -r 'reduce (.[].drvPath? // empty) as $d (0; .+1)' metrics/nix-env.qaDrv/output)\"\nnumBroken=\"$((num - $qaCountDrv))\"\necho \"nix-env.qaCountBroken $numBroken\" >> hydra-metrics\n\nlines=\"$(find \"$nixpkgs\" -name \"*.nix\" -type f -print0 | xargs -0 cat | wc -l)\"\necho \"loc $lines\" >> hydra-metrics\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/nix-support\ntouch $out/nix-support/hydra-build-products\nmv hydra-metrics $out/nix-support/hydra-metrics\n\n# Save and compress the raw output\nmv metrics $raw\nxz -v $raw/*/output\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Metrics tracked by Hydra about Nixpkgs",
         homepage: "https://hydra.nixos.org/job/nixpkgs/trunk/metrics",
         longDescription: nix.thunk(() => nix.str`View the metrics for Nixpkgs evaluation over time at these URLs.
@@ -102,9 +102,9 @@ This counts the total number of values allocated in Nix (see \`EvalState::allocV
 `),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         TIME: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             real_time: "%e",
             user_time: "%U",
             sys_time: "%S",

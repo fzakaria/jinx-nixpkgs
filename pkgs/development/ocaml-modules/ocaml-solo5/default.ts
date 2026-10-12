@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const entry = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(ocaml, "version")), allowlisted)) ? nix.sel(ocaml, "version") : nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version")))));
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "ocaml-solo5's ocaml version", entry, allowlisted), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ocaml-modules/ocaml-solo5/default.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ocaml-solo5",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mirage",
           repo: "ocaml-solo5",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,11 +62,11 @@ done
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/lib/ocaml-solo5/bin/ocamlopt.opt -config | grep \"^c_compiler: .*-solo5-ocaml-\"\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         target: target,
         tests: nix.thunk(() => (() => {
           const example = (mode) => (attrs) => nix.app(buildDunePackage, nix.thunk(() => nix.update({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => nix.str`ocaml-solo5-example-${mode}`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,7 +74,7 @@ done
               __structuredAttrs: true,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               buildInputs: nix.thunk(() => [fmt]),
-              env: nix.thunk(() => ({ __proto__: pos$2, MODE: mode })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$2, MODE: mode })),
               buildPhase: "runHook preBuild\ndune build @default\nrunHook postBuild\n",
               doCheck: true,
               checkPhase: "runHook preCheck\ndune build @runtest --display short\nrunHook postCheck\n",
@@ -84,14 +84,14 @@ runHook postInstall
 `),
             }, attrs)));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "example-spt": nix.thunk(() => nix.app(example, "spt", nix.thunk(() => ({})))),
-            "example-hvt": nix.thunk(() => nix.app(example, "hvt", nix.thunk(() => ({ __proto__: pos$4, requiredSystemFeatures: nix.thunk(() => ["kvm"]) })))),
+            "example-hvt": nix.thunk(() => nix.app(example, "hvt", nix.thunk(() => ({ [nix.POS]: pos$4, requiredSystemFeatures: nix.thunk(() => ["kvm"]) })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OCaml cross-compiler to the freestanding Solo5 backend",
         homepage: "https://github.com/mirage/ocaml-solo5",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/ocaml-solo5/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

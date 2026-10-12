@@ -13,26 +13,26 @@ const pos$7 = nix.positions(here + "/systemd-timesyncd.nix", [["machine", 7, 9]]
 const pos$8 = nix.positions(here + "/systemd-timesyncd.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 21, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   name: "systemd-timesyncd",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const lib = nix.arg($, "lib");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           timesyncd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
             servers: nix.thunk(() => ["ntp.example.com"]),
             fallbackServers: nix.thunk(() => ["fallback.example.com"]),
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
-              Time: nix.thunk(() => ({ __proto__: pos$2, PollIntervalMaxSec: "180", RootDistanceMaxSec: "5" })),
+              [nix.POS]: pos$3,
+              Time: nix.thunk(() => ({ [nix.POS]: pos$2, PollIntervalMaxSec: "180", RootDistanceMaxSec: "5" })),
             })),
           })),
         })),

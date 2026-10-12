@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.44.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "motioneye-project",
           repo: "motioneye",
           tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/meyectl`);
       const versionCheckProgramArg = "-v";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web frontend for the motion daemon",
         homepage: "https://github.com/motioneye-project/motioneye",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

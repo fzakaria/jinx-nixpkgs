@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "isearch-plus",
       ename: "isearch+",
       version: "3434-unstable-2024-10-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacsmirror",
           repo: "isearch-plus",
           rev: "48f8d57a51448dd3b81c93b5f55f5eaaeee1c3f7",
           hash: "sha256-jbzar5Sj7WtHOjoSe+inU6+8q7LyvYJS2DqTfzD70AQ=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.emacswiki.org/emacs/IsearchPlus",
         description: "Extensions to isearch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

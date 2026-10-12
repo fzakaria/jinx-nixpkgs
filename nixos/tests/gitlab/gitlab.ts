@@ -82,145 +82,145 @@ export default nix.lambda((args) => (() => {
   const bobProjectId = "2";
   const bobPAT = "bob-PAT-012345678901";
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     name: "gitlab",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yayayayaka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       gitlab: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "git"))];
             })()),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             hosts: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "127.0.0.1": nix.thunk(() => ["registry.localhost", "pages.localhost"]),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             memorySize: 6144n,
             cores: 4n,
             useNixStoreImage: true,
             writableStore: false,
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               gitlab: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-workhorse": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               gitaly: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-sidekiq": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-backup": nix.thunk(() => ({
-                __proto__: pos$15,
-                environment: nix.thunk(() => ({ __proto__: pos$14, BACKUP: "dump" })),
+                [nix.POS]: pos$15,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$14, BACKUP: "dump" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             nginx: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: true,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       proxyPass: "http://unix:/run/gitlab/gitlab-workhorse.socket",
                     })),
                   })),
                 })),
                 "pages.localhost": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$22,
-                    "/": nix.thunk(() => ({ __proto__: pos$21, proxyPass: "http://localhost:8090" })),
+                    [nix.POS]: pos$22,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$21, proxyPass: "http://localhost:8090" })),
                   })),
                 })),
                 "registry.localhost": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$25,
-                    "/": nix.thunk(() => ({ __proto__: pos$24, proxyPass: "http://localhost:4567" })),
+                    [nix.POS]: pos$25,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$24, proxyPass: "http://localhost:4567" })),
                   })),
                 })),
               })),
             })),
-            openssh: nix.thunk(() => ({ __proto__: pos$29, enable: true })),
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
             dovecot2: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               enablePAM: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 dovecot_config_version: "2.4.3",
                 dovecot_storage_version: nix.thunk(() => nix.sel(config, "services", "dovecot2", "package", "version")),
-                protocols: nix.thunk(() => ({ __proto__: pos$30, imap: true })),
+                protocols: nix.thunk(() => ({ [nix.POS]: pos$30, imap: true })),
                 mail_driver: "maildir",
                 mail_path: "~/mail",
               })),
             })),
             gitlab: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: true,
               databasePasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dbPassword", "xo0daiF4")),
               initialRootPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rootPassword", initialRootPassword)),
-              smtp: nix.thunk(() => ({ __proto__: pos$33, enable: true })),
+              smtp: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
               pages: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 enable: true,
-                settings: nix.thunk(() => ({ __proto__: pos$34, "pages-domain": "pages.localhost" })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$34, "pages-domain": "pages.localhost" })),
               })),
               extraConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 incoming_email: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   enabled: true,
                   mailbox: "inbox",
                   address: "alice@localhost",
@@ -231,7 +231,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               secrets: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "Aig5zaic")),
                 otpFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "otpsecret", "Riew9mue")),
                 dbFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dbsecret", "we2quaeZ")),
@@ -241,15 +241,15 @@ export default nix.lambda((args) => (() => {
                 activeRecordSaltFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "arsalt", "QkgR9CfFU3MXEWGqa7LbP24AntK5ZeYw")),
               })),
               registry: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 enable: true,
                 certFile: "/var/lib/gitlab/registry_auth_cert",
                 keyFile: "/var/lib/gitlab/registry_auth_key",
                 externalAddress: "registry.localhost",
                 externalPort: 443n,
               })),
-              sidekiq: nix.thunk(() => ({ __proto__: pos$40, concurrency: 1n })),
-              puma: nix.thunk(() => ({ __proto__: pos$41, workers: 2n })),
+              sidekiq: nix.thunk(() => ({ [nix.POS]: pos$40, concurrency: 1n })),
+              puma: nix.thunk(() => ({ [nix.POS]: pos$41, workers: 2n })),
             })),
           })),
         };
@@ -264,7 +264,7 @@ export default nix.lambda((args) => (() => {
             const email = "alice@localhost";
             const password = alicePassword;
             const skip_confirmation = true;
-            return { __proto__: pos$46, username, name, email, password, skip_confirmation };
+            return { [nix.POS]: pos$46, username, name, email, password, skip_confirmation };
           })())))));
       const createUserBob = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-user-bob.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
             const username = bobUsername;
@@ -272,17 +272,17 @@ export default nix.lambda((args) => (() => {
             const email = "bob@localhost";
             const password = bobPassword;
             const skip_confirmation = true;
-            return { __proto__: pos$47, username, name, email, password, skip_confirmation };
+            return { [nix.POS]: pos$47, username, name, email, password, skip_confirmation };
           })())))));
       const aliceAddSSHKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "alice-add-ssh-key.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             id: aliceUserId,
             title: "snakeoil@nixos",
             key: snakeOilPublicKey,
           }))))));
-      const createProjectAlice = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-project-alice.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$49, name: aliceProjectName, visibility: "public" }))))));
+      const createProjectAlice = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-project-alice.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$49, name: aliceProjectName, visibility: "public" }))))));
       const putFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "put-file.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             branch: "master",
             author_email: "author@example.com",
             author_name: "Firstname Lastname",
@@ -290,15 +290,15 @@ export default nix.lambda((args) => (() => {
             commit_message: "create a new file",
           }))))));
       const mergeRequest = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "merge-request.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             id: bobProjectId,
             target_project_id: aliceProjectId,
             source_branch: "master",
             target_branch: "master",
             title: "Add some other file",
           }))))));
-      const newIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "new-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$52, title: "useful issue title" }))))));
-      const closeIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "close-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$53, issue_iid: 1n, state_event: "close" }))))));
+      const newIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "new-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$52, title: "useful issue title" }))))));
+      const closeIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "close-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$53, issue_iid: 1n, state_event: "close" }))))));
       const waitForServices = nix.thunk(() => nix.str`gitlab.wait_for_unit("gitaly.service")
 gitlab.wait_for_unit("gitlab-workhorse.service")
 gitlab.wait_for_unit("gitlab-mailroom.service")

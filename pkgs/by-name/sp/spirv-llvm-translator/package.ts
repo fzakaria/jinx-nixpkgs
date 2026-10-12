@@ -31,50 +31,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const llvmMajor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvm, "version"))));
   const versions = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "22": nix.thunk(() => (() => {
       const version = "22.1.3";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-u/OytBH9LgAyGF9PX+5lmAbGPQ7iVv52w8mwQ+6fi/s=";
-      return { __proto__: pos$1, version, rev, hash };
+      return { [nix.POS]: pos$1, version, rev, hash };
     })()),
     "21": nix.thunk(() => (() => {
       const version = "21.1.0";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-kk8BbPl/UBW1gaO/cuOQ9OsiNTEk0TkvRDLKUAh6exk=";
-      return { __proto__: pos$2, version, rev, hash };
+      return { [nix.POS]: pos$2, version, rev, hash };
     })()),
     "20": nix.thunk(() => (() => {
       const version = "20.1.5";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-GdlC/Vl61nTNdua2s+CW2YOvkSKK6MNOvBc/393iths=";
-      return { __proto__: pos$3, version, rev, hash };
+      return { [nix.POS]: pos$3, version, rev, hash };
     })()),
     "19": nix.thunk(() => (() => {
       const version = "19.1.10";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-VgA47AGMnOKYNeW95nxJZzmKnYK8D/9okgssPnPqXXI=";
-      return { __proto__: pos$4, version, rev, hash };
+      return { [nix.POS]: pos$4, version, rev, hash };
     })()),
     "18": nix.thunk(() => (() => {
       const version = "18.1.15";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-rt3RTZut41uDEh0YmpOzH3sOezeEVWtAIGMKCHLSJBw=";
-      return { __proto__: pos$5, version, rev, hash };
+      return { [nix.POS]: pos$5, version, rev, hash };
     })()),
   }));
   const branch = nix.thunk(() => nix.selOr(versions, () => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: nix.thunk(() => nix.str`${llvmMajor}.x.x`),
       rev: "",
       hash: "",
     }), nix.key(nix.str`${llvmMajor}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "SPIRV-LLVM-Translator",
       version: nix.thunk(() => nix.attr(branch, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "KhronosGroup",
           repo: "SPIRV-LLVM-Translator",
           rev: nix.thunk(() => nix.attr(branch, "rev")),
@@ -96,14 +96,14 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["all", "llvm-spirv"]),
       postInstall: nix.thunk(() => nix.add("install -D tools/llvm-spirv/llvm-spirv $out/bin/llvm-spirv\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool $out/bin/llvm-spirv \\\n  -change @rpath/libLLVMSPIRVLib.dylib $out/lib/libLLVMSPIRVLib.dylib\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), versions)), (version) => nix.app(nix.sel(pkgs, "spirv-llvm-translator", "override"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               llvm: nix.thunk(() => nix.sel(pkgs, nix.key(nix.str`llvm_${version}`))),
             }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://github.com/KhronosGroup/SPIRV-LLVM-Translator",
         description: "Tool and a library for bi-directional translation between SPIR-V and LLVM IR",
         mainProgram: "llvm-spirv",

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qpoases = nix.arg($, "qpoases");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "toppra",
       version: "0.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hungpham2511",
           repo: "toppra",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Robotic motion planning library",
         homepage: "https://github.com/hungpham2511/toppra",
         changelog: nix.thunk(() => nix.str`https://github.com/hungpham2511/toppra/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),

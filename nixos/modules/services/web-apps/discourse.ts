@@ -138,27 +138,27 @@ export default nix.lambda((args) => (() => {
   const databaseActuallyCreateLocally = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), null))));
   const tlsEnabled = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enableACME")) || nix.asBool(!nix.eq(nix.sel(cfg, "sslCertificate"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "sslCertificateKey"), null))));
   return {
-    __proto__: pos$117,
+    [nix.POS]: pos$117,
     options: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       services: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         discourse: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Discourse, an open source discussion platform")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "discourse")),
               apply: (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   plugins: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(p, "enabledPlugins"), nix.sel(cfg, "plugins"))))),
                 }))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.discourse")),
               description: "The discourse package to use.\n",
             })))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.fqdnOrHostName")),
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
               description: "The hostname to serve Discourse on.\n",
             })))),
           secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
               description: "The path to a file containing the\n`secret_key_base` secret.\n\nDiscourse uses `secret_key_base` to encrypt\nthe cookie store, which contains session data, and to digest\nuser auth tokens.\n\nNeeds to be a 64 byte long string of hexadecimal\ncharacters. You can generate one by running\n\n```\nopenssl rand -hex 64 >/path/to/secret_key_base_file\n```\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
             })))),
           sslCertificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
               description: "The path to the server SSL certificate. Set this to enable\nSSL.\n",
             })))),
           sslCertificateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -196,14 +196,14 @@ export default nix.lambda((args) => (() => {
               description: "The path to the server SSL certificate key. Set this to\nenable SSL.\n",
             })))),
           enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "sslCertificate"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "sslCertificateKey"), null)))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true`, unless {option}`services.discourse.sslCertificate`\nand {option}`services.discourse.sslCertificateKey` are set.\n")),
               description: "Whether an ACME certificate should be used to secure\nconnections to the server.\n",
             })))),
           backendSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -218,62 +218,62 @@ export default nix.lambda((args) => (() => {
               description: "Additional settings to put in the\n{file}`discourse.conf` file.\n\nLook in the\n[discourse_defaults.conf](https://github.com/discourse/discourse/blob/master/config/discourse_defaults.conf)\nfile in the upstream distribution to find available options.\n\nSetting an option to `null` means\n“define variable, but leave right-hand side empty”.\n",
             })))),
           siteSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(json, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  required = {\n    title = \"My Cats\";\n    site_description = \"Discuss My Cats (and be nice plz)\";\n  };\n  login = {\n    enable_github_logins = true;\n    github_client_id = \"a2f6dfe838cb3206ce20\";\n    github_client_secret._secret = /run/keys/discourse_github_client_secret;\n  };\n};\n")),
               description: "Discourse site settings. These are the settings that can be\nchanged from the UI. This only defines their default values:\nthey can still be overridden from the UI.\n\nAvailable settings can be found by looking in the\n[site_settings.yml](https://github.com/discourse/discourse/blob/master/config/site_settings.yml)\nfile of the upstream distribution. To find a setting's path,\nyou only need to care about the first two levels; i.e. its\ncategory and name. See the example.\n\nSettings containing secret data should be set to an\nattribute set containing the attribute\n`_secret` - a string pointing to a file\ncontaining the value the option should be set to. See the\nexample to get a better picture of this: in the resulting\n{file}`config/nixos_site_settings.json` file,\nthe `login.github_client_secret` key will\nbe set to the contents of the\n{file}`/run/keys/discourse_github_client_secret`\nfile.\n",
             })))),
           admin: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             skipCreate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Do not create the admin account, instead rely on other\nexisting admin accounts.\n",
               })))),
             email: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "admin@example.com",
                 description: "The admin user email address.\n",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "admin",
                 description: "The admin user username.\n",
               })))),
             fullName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The admin user's full name.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "A path to a file containing the admin user's password.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether an `nginx` virtual host should be\nset up to serve Discourse. Only disable if you're planning\nto use a different web server, which is not recommended.\n",
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             pool: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 8n,
                 description: "Database connection pool size.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -282,7 +282,7 @@ export default nix.lambda((args) => (() => {
                 description: "Discourse database hostname. `null` means\n“prefer local unix socket connection”.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -291,40 +291,40 @@ export default nix.lambda((args) => (() => {
                 description: "File containing the Discourse database user password.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether a database should be automatically created on the\nlocal host. Set this to `false` if you plan\non provisioning a local database yourself. This has no effect\nif {option}`services.discourse.database.host` is customized.\n",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "discourse",
                 description: "Discourse database name.\n",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "discourse",
                 description: "Discourse database user.\n",
               })))),
             ignorePostgresqlVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to allow other versions of PostgreSQL than the\nrecommended one. Only effective when\n{option}`services.discourse.database.createLocally`\nis enabled.\n",
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Redis server hostname.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -333,13 +333,13 @@ export default nix.lambda((args) => (() => {
                 description: "File containing the Redis password.\n\nThis should be a string, not a nix path, since nix paths are\ncopied into the world-readable nix store.\n",
               })))),
             dbNumber: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 0n,
                 description: "Redis database number.\n",
               })))),
             useSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "host"), "localhost")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "redis", "host")} != "localhost"`))),
@@ -347,36 +347,36 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           mail: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             notificationEmailAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(cfg, "mail", "incoming", "enable")) ? "notifications" : "noreply")}@${nix.sel(cfg, "hostname")}`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${if config.services.discourse.mail.incoming.enable then \"notifications\" else \"noreply\"}@${config.services.discourse.hostname}\"\n")),
                 description: "The `from:` email address used when\nsending all essential system emails. The domain specified\nhere must have SPF, DKIM and reverse PTR records set\ncorrectly for email to arrive.\n",
               })))),
             contactEmailAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Email address of key contact responsible for this\nsite. Used for critical notifications, as well as on the\n`/about` contact form for urgent matters.\n",
               })))),
             outgoing: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               serverAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "localhost",
                   description: "The address of the SMTP server Discourse should use to\nsend email.\n",
                 })))),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: 25n,
                   description: "The port of the SMTP server Discourse should use to\nsend email.\n",
                 })))),
               username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -385,20 +385,20 @@ export default nix.lambda((args) => (() => {
                   description: "The username of the SMTP server.\n",
                 })))),
               passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: null,
                   description: "A file containing the password of the SMTP server account.\n\nThis should be a string, not a nix path, since nix paths\nare copied into the world-readable nix store.\n",
                 })))),
               domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: nix.thunk(() => nix.sel(cfg, "hostname")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "hostname")}`))),
                   description: "HELO domain to use for outgoing mail.\n",
                 })))),
               authentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["plain", "login", "cram_md5"]))));
@@ -407,48 +407,48 @@ export default nix.lambda((args) => (() => {
                   description: "Authentication type to use, see <https://api.rubyonrails.org/classes/ActionMailer/Base.html>\n",
                 })))),
               enableStartTLSAuto: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Whether to try to use StartTLS.\n",
                 })))),
               opensslVerifyMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "peer",
                   description: "How OpenSSL checks the certificate, see <https://api.rubyonrails.org/classes/ActionMailer/Base.html>\n",
                 })))),
               forceTLS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Force implicit TLS as per RFC 8314 3.3.\n",
                 })))),
             })),
             incoming: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Whether to set up Postfix to receive incoming mail.\n",
                 })))),
               replyEmailAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: nix.thunk(() => nix.str`%{reply_key}@${nix.sel(cfg, "hostname")}`),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"%{reply_key}@${config.services.discourse.hostname}\"")),
                   description: "Template for reply by email incoming email address, for\nexample: %{reply_key}@reply.example.com or\nreplies+%{reply_key}@example.com\n",
                 })))),
               mailReceiverPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   type: nix.thunk(() => nix.sel(lib, "types", "package")),
                   default: nix.thunk(() => nix.sel(pkgs, "discourse-mail-receiver")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.discourse-mail-receiver")),
                   description: "The discourse-mail-receiver package to use.\n",
                 })))),
               apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: null,
                   description: "A file containing the Discourse API key used to add\nposts and messages from mail. If left at its default\nvalue `null`, one will be automatically\ngenerated.\n\nThis should be a string, not a nix path, since nix paths\nare copied into the world-readable nix store.\n",
@@ -456,20 +456,20 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with config.services.discourse.package.plugins; [\n  discourse-canned-replies\n  discourse-github\n];\n")),
               description: "Plugins to install as part of Discourse, expressed as a list of derivations.\n",
             })))),
           sidekiqProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "How many Sidekiq processes should be spawned.\n",
             })))),
           unicornTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 30n,
               description: "Time in seconds before a request to Unicorn times out.\n\nThis can be raised if the system Discourse is running on is\ntoo slow to handle many requests within 30 seconds.\n",
@@ -478,30 +478,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$115,
+        [nix.POS]: pos$115,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "When services.discourse.database.host is customized, services.discourse.database.passwordFile must be set!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "hostname"), "")),
             message: "Could not automatically determine hostname, set service.discourse.hostname manually.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "ignorePostgresqlVersion")) || nix.asBool((!nix.asBool(databaseActuallyCreateLocally) || nix.asBool(nix.eq(upstreamPostgresqlVersion, postgresqlVersion)))))),
             message: nix.thunk(() => nix.add(nix.add(nix.str`The PostgreSQL version recommended for use with Discourse is ${upstreamPostgresqlVersion}, you're using ${postgresqlVersion}. `, "Either update your PostgreSQL package to the correct version or set services.discourse.database.ignorePostgresqlVersion. "), "See https://nixos.org/manual/nixos/stable/index.html#module-postgresql for details on how to upgrade PostgreSQL.")),
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           discourse: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             backendSettings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 db_pool: nix.thunk(() => nix.sel(cfg, "database", "pool")),
                 db_timeout: 5000n,
                 db_connect_timeout: 5n,
@@ -615,15 +615,15 @@ export default nix.lambda((args) => (() => {
                 mini_racer_single_threaded: false,
               })))),
             siteSettings: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               required: nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 notification_email: nix.thunk(() => nix.sel(cfg, "mail", "notificationEmailAddress")),
                 contact_email: nix.thunk(() => nix.sel(cfg, "mail", "contactEmailAddress")),
               })),
-              security: nix.thunk(() => ({ __proto__: pos$60, force_https: tlsEnabled })),
+              security: nix.thunk(() => ({ [nix.POS]: pos$60, force_https: tlsEnabled })),
               email: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 manual_polling_enabled: nix.thunk(() => nix.sel(cfg, "mail", "incoming", "enable")),
                 reply_by_email_enabled: nix.thunk(() => nix.sel(cfg, "mail", "incoming", "enable")),
                 reply_by_email_address: nix.thunk(() => nix.sel(cfg, "mail", "incoming", "replyEmailAddress")),
@@ -631,11 +631,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             servers: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               discourse: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "redis", "host")), nix.thunk(() => ["localhost", "127.0.0.1"]))), nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   enable: true,
                   bind: nix.thunk(() => nix.sel(cfg, "redis", "host")),
                   port: nix.thunk(() => nix.sel(cfg, "backendSettings", "redis_port")),
@@ -643,13 +643,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), databaseActuallyCreateLocally, nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               enable: true,
               extensions: (ps) => [nix.thunk(() => nix.sel(ps, "pgvector"))],
-              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$67, name: "discourse" }))]),
+              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$67, name: "discourse" }))]),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               enable: true,
               recommendedTlsSettings: true,
               recommendedOptimisation: true,
@@ -657,11 +657,11 @@ export default nix.lambda((args) => (() => {
               recommendedGzipSettings: true,
               recommendedProxySettings: true,
               upstreams: nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 discourse: nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   servers: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     "unix:/run/discourse/sockets/unicorn.sock": nix.thunk(() => ({})),
                   })),
                 })),
@@ -669,7 +669,7 @@ export default nix.lambda((args) => (() => {
               appendHttpConfig: "# inactive means we keep stuff around for 1440m minutes regardless of last access (1 week)\n# levels means it is a 2 deep hierarchy cause we can have lots of files\n# max_size limits the size of the cache\nproxy_cache_path /var/cache/nginx inactive=1440m levels=1:2 keys_zone=discourse:10m max_size=600m;\n\n# see: https://meta.discourse.org/t/x/74060\nproxy_buffer_size 8k;\n",
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "hostname"), nix.thunk(() => ({
-                  __proto__: pos$88,
+                  [nix.POS]: pos$88,
                   sslCertificate: nix.thunk(() => nix.attr(cfg, "sslCertificate")),
                   sslCertificateKey: nix.thunk(() => nix.attr(cfg, "sslCertificateKey")),
                   enableACME: nix.thunk(() => nix.attr(cfg, "enableACME")),
@@ -680,7 +680,7 @@ export default nix.lambda((args) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const extraConfig = nix.argOr($_1, "extraConfig", () => "");
                       return {
-                        __proto__: pos$72,
+                        [nix.POS]: pos$72,
                         proxyPass: "http://discourse",
                         extraConfig: nix.thunk(() => nix.add(extraConfig, "proxy_set_header X-Request-Start \"t=${msec}\";\nproxy_set_header X-Sendfile-Type \"\";\nproxy_set_header X-Accel-Mapping \"\";\nproxy_set_header Client-Ip \"\";\n")),
                       };
@@ -691,31 +691,31 @@ add_header Cache-Control public,immutable;
                     const cache_1y = nix.thunk(() => nix.app(cache, "1y"));
                     const cache_1d = nix.thunk(() => nix.app(cache, "1d"));
                     return {
-                      __proto__: pos$87,
-                      "/": nix.thunk(() => ({ __proto__: pos$73, tryFiles: "$uri @discourse" })),
+                      [nix.POS]: pos$87,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$73, tryFiles: "$uri @discourse" })),
                       "@discourse": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({})))),
-                      "^~ /backups/": nix.thunk(() => ({ __proto__: pos$74, extraConfig: "internal;\n" })),
+                      "^~ /backups/": nix.thunk(() => ({ [nix.POS]: pos$74, extraConfig: "internal;\n" })),
                       "/favicon.ico": nix.thunk(() => ({
-                        __proto__: pos$75,
+                        [nix.POS]: pos$75,
                         return: "204",
                         extraConfig: "access_log off;\nlog_not_found off;\n",
                       })),
                       "~ ^/uploads/short-url/": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({})))),
                       "~ ^/secure-media-uploads/": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({})))),
                       "~* (fonts|assets|plugins|uploads)/.*\\.(eot|ttf|woff|woff2|ico|otf)$": nix.thunk(() => ({
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         extraConfig: nix.thunk(() => nix.add(cache_1y, "add_header Access-Control-Allow-Origin *;\n")),
                       })),
-                      "/srv/status": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({ __proto__: pos$77, extraConfig: "access_log off;\nlog_not_found off;\n" })))),
-                      "~ ^/javascripts/": nix.thunk(() => ({ __proto__: pos$78, extraConfig: cache_1d })),
+                      "/srv/status": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({ [nix.POS]: pos$77, extraConfig: "access_log off;\nlog_not_found off;\n" })))),
+                      "~ ^/javascripts/": nix.thunk(() => ({ [nix.POS]: pos$78, extraConfig: cache_1d })),
                       "~ ^/assets/(?<asset_path>.+)$": nix.thunk(() => ({
-                        __proto__: pos$79,
+                        [nix.POS]: pos$79,
                         extraConfig: nix.thunk(() => nix.add(cache_1y, "# asset pipeline enables this\nbrotli_static on;\ngzip_static on;\nadd_header Access-Control-Allow-Origin *;\n")),
                       })),
-                      "~ ^/plugins/": nix.thunk(() => ({ __proto__: pos$80, extraConfig: cache_1y })),
-                      "~ /images/emoji/": nix.thunk(() => ({ __proto__: pos$81, extraConfig: cache_1y })),
+                      "~ ^/plugins/": nix.thunk(() => ({ [nix.POS]: pos$80, extraConfig: cache_1y })),
+                      "~ /images/emoji/": nix.thunk(() => ({ [nix.POS]: pos$81, extraConfig: cache_1y })),
                       "~ ^/uploads/": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           extraConfig: nix.thunk(() => nix.str`proxy_set_header X-Sendfile-Type X-Accel-Redirect;
 proxy_set_header X-Accel-Mapping ${nix.sel(cfg, "package")}/share/discourse/public/=/downloads/;
 
@@ -744,21 +744,21 @@ location ~ /_?optimized/ {
 `),
                         })))),
                       "~ ^/admin/backups/": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({
-                          __proto__: pos$83,
+                          [nix.POS]: pos$83,
                           extraConfig: nix.thunk(() => nix.str`proxy_set_header X-Sendfile-Type X-Accel-Redirect;
 proxy_set_header X-Accel-Mapping ${nix.sel(cfg, "package")}/share/discourse/public/=/downloads/;
 `),
                         })))),
                       "~ ^/(svg-sprite/|letter_avatar/|letter_avatar_proxy/|user_avatar|highlight-js|stylesheets|theme-javascripts|favicon/proxied|service-worker)": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({
-                          __proto__: pos$84,
+                          [nix.POS]: pos$84,
                           extraConfig: "# if Set-Cookie is in the response nothing gets cached\n# this is double bad cause we are not passing last modified in\nproxy_ignore_headers \"Set-Cookie\";\nproxy_hide_header \"Set-Cookie\";\nproxy_hide_header \"X-Discourse-Username\";\nproxy_hide_header \"X-Runtime\";\n\n# note x-accel-redirect can not be used with proxy_cache\nproxy_cache discourse;\nproxy_cache_key \"$scheme,$host,$request_uri\";\nproxy_cache_valid 200 301 302 7d;\n",
                         })))),
                       "/message-bus/": nix.thunk(() => nix.app(proxy, nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           extraConfig: "proxy_http_version 1.1;\nproxy_buffering off;\n",
                         })))),
                       "/downloads/": nix.thunk(() => ({
-                        __proto__: pos$86,
+                        [nix.POS]: pos$86,
                         extraConfig: nix.thunk(() => nix.str`internal;
 alias ${nix.sel(cfg, "package")}/share/discourse/public/;
 `),
@@ -769,12 +769,12 @@ alias ${nix.sel(cfg, "package")}/share/discourse/public/;
               ])),
             })))),
           postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "mail", "incoming", "enable")), nix.thunk(() => ({
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 main: nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   smtpd_recipient_restrictions: "check_policy_service unix:private/discourse-policy",
                   append_dot_mydomain: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                   compatibility_level: "2",
@@ -790,9 +790,9 @@ alias ${nix.sel(cfg, "package")}/share/discourse/public/;
                   relay_domains: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "hostname"))]),
                 })),
                 master: nix.thunk(() => ({
-                  __proto__: pos$93,
+                  [nix.POS]: pos$93,
                   "discourse-mail-receiver": nix.thunk(() => ({
-                    __proto__: pos$91,
+                    [nix.POS]: pos$91,
                     type: "unix",
                     privileged: true,
                     chroot: false,
@@ -804,7 +804,7 @@ alias ${nix.sel(cfg, "package")}/share/discourse/public/;
                     ]),
                   })),
                   "discourse-policy": nix.thunk(() => ({
-                    __proto__: pos$92,
+                    [nix.POS]: pos$92,
                     type: "unix",
                     privileged: true,
                     chroot: false,
@@ -821,13 +821,13 @@ alias ${nix.sel(cfg, "package")}/share/discourse/public/;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$108,
+          [nix.POS]: pos$108,
           services: nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             "discourse-postgresql": nix.thunk(() => (() => {
               const pgsql = nix.thunk(() => nix.sel(config, "services", "postgresql"));
               return nix.app(nix.sel(lib, "mkIf"), databaseActuallyCreateLocally, nix.thunk(() => ({
-                  __proto__: pos$98,
+                  [nix.POS]: pos$98,
                   after: nix.thunk(() => ["postgresql.target"]),
                   bindsTo: nix.thunk(() => ["postgresql.target"]),
                   wantedBy: nix.thunk(() => ["discourse.service"]),
@@ -842,7 +842,7 @@ psql '${nix.sel(cfg, "database", "name")}' -tAc "CREATE EXTENSION IF NOT EXISTS 
 psql '${nix.sel(cfg, "database", "name")}' -tAc "CREATE EXTENSION IF NOT EXISTS vector"
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$97,
+                    [nix.POS]: pos$97,
                     User: nix.thunk(() => nix.sel(pgsql, "superUser")),
                     Type: "oneshot",
                     RemainAfterExit: true,
@@ -850,7 +850,7 @@ psql '${nix.sel(cfg, "database", "name")}' -tAc "CREATE EXTENSION IF NOT EXISTS 
                 })));
             })()),
             discourse: nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => [
                 "redis-discourse.service",
@@ -864,16 +864,16 @@ psql '${nix.sel(cfg, "database", "name")}' -tAc "CREATE EXTENSION IF NOT EXISTS 
                 nix.thunk(() => nix.sel(cfg, "package", "rake")),
               ])),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "package", "runtimeEnv"), {
-                __proto__: pos$99,
+                [nix.POS]: pos$99,
                 UNICORN_TIMEOUT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "unicornTimeout")))),
                 UNICORN_SIDEKIQS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "sidekiqProcesses")))),
                 MALLOC_ARENA_MAX: "2",
               })),
               preStart: nix.thunk(() => (() => {
                 const discourseKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                    __proto__: pos$101,
+                    [nix.POS]: pos$101,
                     mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), " = ", nix.thunk(() => ({
-                        __proto__: pos$100,
+                        [nix.POS]: pos$100,
                         mkValueString: (v) => (() => {
                           const w = nix.withScope(nix.builtins, null);
                           return (nix.asBool(nix.app(nix.lookup(w, "isInt"), v)) ? nix.app(nix.builtins.toString, v) : (nix.asBool(nix.app(nix.lookup(w, "isString"), v)) ? nix.str`"${v}"` : (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.eq(null, v)) ? "" : (nix.asBool(nix.app(nix.lookup(w, "isFloat"), v)) ? nix.app(nix.sel(lib, "strings", "floatToString"), v) : nix.app(nix.builtins.throw, nix.thunk(() => nix.str`unsupported type ${nix.app(nix.lookup(w, "typeOf"), v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`))))))));
@@ -927,7 +927,7 @@ discourse-rake uploads:regenerate_missing_optimized
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 Type: "simple",
                 User: "discourse",
                 Group: "discourse",
@@ -950,7 +950,7 @@ discourse-rake uploads:regenerate_missing_optimized
             })),
             "discourse-mail-receiver-setup": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "mail", "incoming", "enable")), nix.thunk(() => (() => {
                 const mail_receiver_environment = nix.thunk(() => ({
-                  __proto__: pos$104,
+                  [nix.POS]: pos$104,
                   MAIL_DOMAIN: nix.thunk(() => nix.sel(cfg, "hostname")),
                   DISCOURSE_BASE_URL: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), tlsEnabled, "s")}://${nix.sel(cfg, "hostname")}`),
                   DISCOURSE_API_KEY: "@api-key@",
@@ -958,7 +958,7 @@ discourse-rake uploads:regenerate_missing_optimized
                 }));
                 const mail_receiver_json = nix.thunk(() => nix.app(nix.sel(json, "generate"), "mail-receiver.json", mail_receiver_environment));
                 return {
-                  __proto__: pos$106,
+                  [nix.POS]: pos$106,
                   before: nix.thunk(() => ["postfix.service"]),
                   after: nix.thunk(() => ["discourse.service"]),
                   wantedBy: nix.thunk(() => ["discourse.service"]),
@@ -982,7 +982,7 @@ jq <${mail_receiver_json} \\
 `;
                   })()),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$105,
+                    [nix.POS]: pos$105,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     RuntimeDirectory: "discourse-mail-receiver",
@@ -996,22 +996,22 @@ jq <${mail_receiver_json} \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$113,
+          [nix.POS]: pos$113,
           users: nix.thunk(() => nix.update({
-            __proto__: pos$110,
-            discourse: nix.thunk(() => ({ __proto__: pos$109, group: "discourse", isSystemUser: true })),
+            [nix.POS]: pos$110,
+            discourse: nix.thunk(() => ({ [nix.POS]: pos$109, group: "discourse", isSystemUser: true })),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => nix.attrsDyn({}, [
-              [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => ({ __proto__: pos$111, extraGroups: nix.thunk(() => ["discourse"]) }))],
+              [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => ({ [nix.POS]: pos$111, extraGroups: nix.thunk(() => ["discourse"]) }))],
             ]))))),
-          groups: nix.thunk(() => ({ __proto__: pos$112, discourse: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$112, discourse: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$114,
+          [nix.POS]: pos$114,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "rake"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$116,
+      [nix.POS]: pos$116,
       doc: nix.path(here, "./discourse.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "talyz"))]),
     })),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "picodrive",
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "picodrive",
           rev: "ab021146b70eef7ec0ac2afe06a94e9b4c16ef74",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast MegaDrive/MegaCD/32X emulator",
         homepage: "https://github.com/libretro/picodrive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

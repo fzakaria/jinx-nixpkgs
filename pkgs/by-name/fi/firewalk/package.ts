@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const libdnet = nix.arg($, "libdnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "firewalk",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://salsa.debian.org/pkg-security-team/firewalk/-/archive/upstream/${nix.sel(finalAttrs, "version")}/firewalk-upstream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-f0sHzcH3faeg7epfpWXbgaHrRWaWBKMEqLdy38+svGo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/f/firewalk/5.0-6/debian/patches/060_fix-ftbfs-gcc-15.patch",
             hash: "sha256-KEYHTSnUtNIGqm/uE2ZLV79KIWmofHeKVYdfTkpm4rI=",
           })))),
       ]),
       buildInputs: nix.thunk(() => [libnet, libpcap, libdnet]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gateway ACL scanner",
         mainProgram: "firewalk",
         homepage: "http://packetfactory.openwall.net/projects/firewalk/",

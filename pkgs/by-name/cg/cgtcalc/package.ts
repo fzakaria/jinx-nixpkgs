@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const swiftpm = nix.arg($, "swiftpm");
   const fetchSwiftPMDeps = nix.arg($, "fetchSwiftPMDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cgtcalc",
       version: "0.1.0-unstable-2026-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattjgalloway",
           repo: "cgtcalc",
           rev: "29adf5bf39f870d4098bc828f356864190e41969",
@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [swift, swiftpm]),
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-FBoYVbVMdSZ2q89h7Mcn6vlPNScTJqzoSJKS6wgUGwY=",
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp $(swiftpmBinPath)/cgtcalc $out/bin/\nrunHook postInstall\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "UK capital gains tax calculator written in Swift",
         homepage: "https://github.com/mattjgalloway/cgtcalc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

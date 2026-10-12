@@ -74,14 +74,14 @@ export default nix.lambda((args) => (() => {
   const vzCfg = nix.thunk(() => nix.sel(cfg, "vz"));
   const hostPkgs = nix.thunk(() => nix.sel(cfg, "host", "pkgs"));
   const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/store-registration-info.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       hostPkgs: hostPkgs,
       rootPaths: nix.thunk(() => nix.sel(cfg, "additionalPaths")),
     }))));
   const regInfo = nix.thunk(() => nix.attr(from, "regInfo"));
   const regInfoPath = nix.thunk(() => nix.attr(from, "regInfoPath"));
   const storeClosureInfo = nix.thunk(() => nix.app(nix.sel(hostPkgs, "closureInfo"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       rootPaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel")), regInfo]),
     }))));
   const storeImageName = nix.thunk(() => nix.str`store-${nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(storeClosureInfo)))))))}.img`);
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`regInfo=${regInfoPath}`),
   ], nix.sel(config, "boot", "kernelParams")));
   const forwards = nix.thunk(() => nix.builtins.map((forward) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       listen: nix.thunk(() => nix.str`${nix.sel(forward, "host", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(forward, "host", "port")))}`),
       vsockPort: nix.thunk(() => nix.sel(forward, "guest", "port")),
     }), nix.thunk(() => nix.sel(vzCfg, "forwardPorts"))));
@@ -101,71 +101,71 @@ export default nix.lambda((args) => (() => {
   '$shares + [{tag: $tag, path: $path}]')
 `, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "sharedDirectories"))))));
   const staticConfig = nix.thunk(() => nix.update({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     cpuCount: nix.thunk(() => nix.sel(cfg, "cores")),
     memorySizeMiB: nix.thunk(() => nix.sel(cfg, "memorySize")),
     kernel: nix.thunk(() => nix.str`${toplevel}/kernel`),
     initrd: nix.thunk(() => nix.str`${toplevel}/initrd`),
     cmdline: nix.thunk(() => nix.builtins.toString(kernelParams)),
-    vsock: nix.thunk(() => ({ __proto__: pos$4, forwards: forwards })),
+    vsock: nix.thunk(() => ({ [nix.POS]: pos$4, forwards: forwards })),
     rosetta: nix.thunk(() => nix.sel(vzCfg, "rosetta", "enable")),
     nestedVirtualization: nix.thunk(() => nix.attr(vzCfg, "nestedVirtualization")),
     console: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(vzCfg, "console"), "file")) ? {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mode: "file",
       path: nix.thunk(() => nix.sel(vzCfg, "consoleLog")),
-    } : { __proto__: pos$6, mode: nix.thunk(() => nix.sel(vzCfg, "console")) })),
+    } : { [nix.POS]: pos$6, mode: nix.thunk(() => nix.sel(vzCfg, "console")) })),
   }, nix.sel(vzCfg, "extraConfig")));
   const staticConfigFile = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeText"), "vzvm-config.json", nix.thunk(() => nix.builtins.toJSON(staticConfig))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     imports: nix.thunk(() => [nix.path(here, "./vm-base.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         vz: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), hostPkgs, "vzvm", nix.thunk(() => ({})))),
           rosetta: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Expose Rosetta to the guest, so that it can execute x86_64 binaries.\n\nRosetta must be installed on the host; the VM refuses to start\notherwise rather than quietly losing the ability to build for\nx86_64-linux. Install it with:\n\n```\nsoftwareupdate --install-rosetta --agree-to-license\n```\n",
               })))),
           })),
           nestedVirtualization: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Boot the guest at EL2 so it gets a working `/dev/kvm`, which the Nix\ndaemon inside then advertises as the `kvm` system feature — required\nfor running NixOS integration tests on the builder.\n\nNeeds macOS 15+ and an M3 or newer chip; the VM refuses to start\notherwise rather than quietly advertising a `kvm` it does not have.\n",
             })))),
           forwardPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       host: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "127.0.0.1",
                             description: "Host address to listen on.",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             description: "Host port to listen on.",
                           })))),
                       })),
                       guest: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             description: "Guest *vsock* port that connections are forwarded to.",
                           })))),
@@ -177,26 +177,26 @@ export default nix.lambda((args) => (() => {
               description: "Forward host TCP ports into guest over vsock.\n\nGoing via vsock relieves us from having to find a stable inbound address\nin the NAT network setup.\n",
             })))),
           console: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["stdio", "file", "log"]))),
               default: "stdio",
               description: "Where the guest console goes.\n\n- `stdio`: standard output, which is interactive but goes nowhere under launchd.\n- `file`: the path in {option}`virtualisation.vz.consoleLog`. The only complete\n  record: the unified log rate-limits chatty sources and drops under bursts.\n- `log`: macOS unified logging, alongside vzvm's own diagnostics. Read it with\n  `log show --predicate 'subsystem == \"systems.applicative.vzvm\"'`, and narrow to\n  the guest with `AND category == \"guest\"`.\n",
             })))),
           consoleLog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "./console.log",
               description: "Console log file, used when {option}`virtualisation.vz.console` is `file`.\nRelative paths are resolved against working directory.\n",
             })))),
           diskImage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.str`./${nix.sel(config, "system", "name")}.img`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"./${config.system.name}.img\"")),
               description: "Path to the raw data disk backing the writable store, created on first\nstart. Set to `null` to run without one, which requires\n{option}`virtualisation.writableStoreUseTmpfs`.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Additional attributes merged into the generated `vzvm` JSON configuration.\n",
@@ -206,17 +206,17 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               assertion: nix.thunk(() => nix.eq(nix.sel(hostPkgs, "stdenv", "hostPlatform", "system"), "aarch64-darwin")),
               message: nix.thunk(() => nix.str`virtualisation.vz only runs on aarch64-darwin hosts, but
 \`virtualisation.host.pkgs\` is ${nix.sel(hostPkgs, "stdenv", "hostPlatform", "system")}.
 `),
             })),
             nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               assertion: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
               message: nix.thunk(() => nix.str`virtualisation.vz cannot emulate a foreign architecture: the guest
 (${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}) must be aarch64. x86_64 guest
@@ -224,29 +224,29 @@ binaries run through Rosetta instead, not through emulation.
 `),
             })),
             nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vzCfg, "diskImage"), null)) || nix.asBool(nix.sel(cfg, "writableStoreUseTmpfs")))),
               message: "virtualisation.vz.diskImage is null, so there is nowhere to put the\nwritable store. Enable virtualisation.writableStoreUseTmpfs.\n",
             })),
           ]),
           boot: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             loader: nix.thunk(() => ({
-              __proto__: pos$30,
-              grub: nix.thunk(() => ({ __proto__: pos$29, enable: false })),
+              [nix.POS]: pos$30,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
             })),
             initrd: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               availableKernelModules: nix.thunk(() => ["virtio_pci", "virtio_blk", "virtio_console", "virtiofs", "erofs", "overlay"]),
               kernelModules: nix.thunk(() => ["vmw_vsock_virtio_transport"]),
               systemd: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             requiredKernelConfig: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), null);
               return [
@@ -264,12 +264,12 @@ binaries run through Rosetta instead, not through emulation.
               ];
             })()),
             build: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               vm: nix.thunk(() => nix.app(nix.sel(hostPkgs, "runCommand"), "nixos-vm", nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   preferLocalBuild: true,
                   meta: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     mainProgram: nix.thunk(() => nix.str`run-${nix.sel(config, "system", "name")}-vm`),
                   })),
                 })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -307,7 +307,7 @@ if [ ! -f "$storeImage" ]; then
   trap "rm -f '$storeImageTmp'" EXIT
 
   ${nix.app(nix.builtins.import(nix.path(here, "../../lib/erofs-store-image.nix")), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       hostPkgs: hostPkgs,
                       storePaths: nix.thunk(() => nix.str`${storeClosureInfo}/store-paths`),
                       label: "nix-store",
@@ -352,54 +352,54 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(vzCfg, "package")
             })),
           })),
           fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vz-vm-file-systems.nix")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               lib: lib,
               sharedDirectories: nix.thunk(() => nix.attr(cfg, "sharedDirectories")),
               writableStoreUseTmpfs: nix.thunk(() => nix.attr(cfg, "writableStoreUseTmpfs")),
               diskImage: nix.thunk(() => nix.sel(vzCfg, "diskImage")),
             })))),
           networking: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             useDHCP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             rosetta: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(vzCfg, "rosetta", "enable")), true)),
               mountTag: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(vzCfg, "rosetta", "enable")), "rosetta")),
             })),
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "openssh", "enable")), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             systemd: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               sockets: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 "sshd-vsock": nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   overrideStrategy: "asDropin",
-                  socketConfig: nix.thunk(() => ({ __proto__: pos$44, MaxConnections: 512n, TriggerLimitIntervalSec: 0n })),
+                  socketConfig: nix.thunk(() => ({ [nix.POS]: pos$44, MaxConnections: 512n, TriggerLimitIntervalSec: 0n })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 "sshd-vsock@": nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   overrideStrategy: "asDropin",
                   wants: nix.thunk(() => ["sshd-keygen.service"]),
                   after: nix.thunk(() => ["sshd-keygen.service"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$47, TimeoutStopSec: 10n })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$47, TimeoutStopSec: 10n })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               openssh: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   ClientAliveInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 60n)),
                   ClientAliveCountMax: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 3n)),
                 })),
@@ -407,17 +407,17 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(vzCfg, "package")
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useHostCerts")), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               sharedDirectories: nix.thunk(() => ({
-                __proto__: pos$56,
-                certs: nix.thunk(() => ({ __proto__: pos$55, source: "$TMPDIR/certs", target: "/etc/ssl/certs" })),
+                [nix.POS]: pos$56,
+                certs: nix.thunk(() => ({ [nix.POS]: pos$55, source: "$TMPDIR/certs", target: "/etc/ssl/certs" })),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$59,
-              pki: nix.thunk(() => ({ __proto__: pos$58, installCACerts: false })),
+              [nix.POS]: pos$59,
+              pki: nix.thunk(() => ({ [nix.POS]: pos$58, installCACerts: false })),
             })),
           })))),
       ]))),

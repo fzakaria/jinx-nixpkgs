@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xjobs",
       version: "20250529",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge//xjobs/files/xjobs-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-HR7kqx9N5fn8JMKFK0ierAwrCFlkqKo2S/mxQW9UE44=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n./xjobs -V\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,etc}\ninstall -m755 xjobs $out/bin/xjobs\ninstall -m644 xjobs.rc $out/etc/xjobs.rc\ninstallManPage xjobs.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program which reads job descriptions line by line and executes them in parallel",
         homepage: "https://www.maier-komor.de/xjobs.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       tested: nix.thunk(() => nix.sel(pkgs, "ostree")),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       path: "share/mk",
       noCC: true,
       buildInputs: [],
@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "use-ar-variable.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171575284906018&q=raw",
             hash: "sha256-bigxJGbaf9mCmFXxLVzQpnUUaEMMDfF3eZkTXVzd6B8=",
           })))),
         nix.path(here, "./netbsd-make-sinclude.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "nolibstatic-support.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171972639411562&q=raw",
             hash: "sha256-p4izV6ZXkfgJud+ZZU1Wqr5qFuHUzE6qVXM7QnXvV3k=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i -E \\\n  -e 's|/usr/lib|\\$\\{LIBDIR\\}|' \\\n  share/mk/bsd.prog.mk\n\nsubstituteInPlace share/mk/bsd.obj.mk --replace-fail /bin/pwd pwd\n",
       installPhase: "cp -r share/mk $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

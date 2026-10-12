@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const patchPpdFilesHook = nix.arg($, "patchPpdFilesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "foomatic-db",
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenPrinting",
           repo: "foomatic-db",
           rev: "76dd1e31354c189b2edd9ae8201285d622c89395",
@@ -56,7 +56,7 @@ ln -s "${nix.builtins.placeholder("out")}/share/foomatic/db/source/PPD"  \\
   "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ppdFileCommands: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => ["cat", "date", "printf", "rastertohp", "foomatic-rip", "gs", "sed", "perl"]))),
       })),
       postFixup: nix.thunk(() => nix.str`echo 'compressing ppd files'
@@ -64,7 +64,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db" -type 
   | xargs -0r -n 64 -P "$NIX_BUILD_CORES" gzip -9n
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPrinting/foomatic-db/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "OpenPrinting printer support database (free content)",
         downloadPage: "https://www.openprinting.org/download/foomatic/",

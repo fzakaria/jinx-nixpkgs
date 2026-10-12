@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const uuid = nix.arg($, "uuid");
   const vector = nix.arg($, "vector");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "codd",
       version: "0.1.8",
       src: nix.path(here, "./."),

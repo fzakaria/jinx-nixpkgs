@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const gengetopt = nix.arg($, "gengetopt");
   const vsmartcard_vpcd = nix.arg($, "vsmartcard-vpcd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "vsmartcard-pcsc-relay",
       version: nix.thunk(() => nix.attr(vsmartcard_vpcd, "version")),
       src: nix.thunk(() => nix.attr(vsmartcard_vpcd, "src")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Relays a smart card using an contact-less interface",
         homepage: "https://frankmorgner.github.io/vsmartcard/pcsc-relay/README.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

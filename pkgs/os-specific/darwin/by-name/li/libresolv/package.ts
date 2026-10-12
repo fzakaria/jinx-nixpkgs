@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const Libnotify = nix.thunk(() => nix.app(sourceRelease, "Libnotify"));
   const Libc = nix.thunk(() => nix.app(sourceRelease, "Libc"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "libresolv-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/mach-o" \\
   '${dyld}/include/mach-o/dyld_priv.h'
@@ -35,7 +35,7 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "libresolv",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       postPatch: nix.thunk(() => nix.str`cp ${Libc}/include/arpa/nameser_compat.h arpa/nameser_compat.h
@@ -46,12 +46,12 @@ substituteInPlace hmac_link.c \\
 `),
       xcodeHash: "sha256-pQ1eFMPnSy8M3pfvv+sPyale9xDlVCMif0EWO8PO7zg=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include -I${configd}/dnsinfo -I${Libinfo}/lookup.subproj -I${Libnotify}`),
       })),
       postInstall: "ln -s ../nameser.h \"${!outputDev}/include/arpa\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Libresolv implementation for Darwin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl10")),
       })),

@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "2.4.0";
   const flameSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pawelmalak",
       repo: "flame",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Slnft/tDtogjuTnQXus0Mp7y6AlOYjCV1riQ2M9cIc8=",
     }))));
   const clientDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "flame-client-deps",
       version: version,
       src: nix.thunk(() => nix.add(flameSrc, "/client")),
       hash: "sha256-IitL0qxu6/3y9x8XkW0dZLjsHTkNeQMHYsaq/LOwvrg=",
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "flame",
       version: version,
       __structuredAttrs: true,
@@ -73,11 +73,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe'"), nodejs, "node")} $out/bin/flame \
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "flame")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "flame")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Self-hosted startpage for your server",
         homepage: "https://github.com/pawelmalak/flame",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

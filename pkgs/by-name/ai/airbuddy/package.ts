@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airbuddy",
       version: "2.8.1-660",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "AirBuddy.dmg",
           url: nix.thunk(() => nix.str`https://su.airbuddy.app/kCRSAmcjBc/AirBuddy_v${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-YeO1zmPRNF46EmuRp142J9SRvWzHraWr1+VuqthJzsQ=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "AirBuddy.app",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/AirBuddy.app\ncp -R . $out/Applications/AirBuddy.app\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Take Control of Your Wireless Devices on macOS",
         longDescription: "Open your AirPods case next to your Mac to see the status right away, just like it works on your iPhone or iPad.\nAirBuddy lives in your Menu Bar and can also show battery information for your iPhone, iPad, Apple Watch, Mouse, Keyboard, and more.\n",
         homepage: "https://v2.airbuddy.app",

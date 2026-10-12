@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const version = "10.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-cYK69+4WylaeKAQCi2q5vL9r5cRvwogIQPM7UTuctPg=",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./linux-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               x11: nix.thunk(() => nix.str`${libx11}/lib/libX11.so`),
               xfixes: nix.thunk(() => nix.str`${libxfixes}/lib/libXfixes.so`),
               xrandr: nix.thunk(() => nix.str`${libxrandr}/lib/libXrandr.so`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nxvfb-run pytest -v -k \"not test_grab_with_tuple and not test_grab_with_tuple_percents and not test_resource_leaks\"\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["mss"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform multiple screenshots module",
         mainProgram: "mss",
         homepage: "https://github.com/BoboTiG/python-mss",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

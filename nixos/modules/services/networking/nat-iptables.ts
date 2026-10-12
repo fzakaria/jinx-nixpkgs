@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const dest = nix.thunk(() => nix.app(mkDest, nix.thunk(() => nix.sel(cfg, "externalIP"))));
   const destIPv6 = nix.thunk(() => nix.app(mkDest, nix.thunk(() => nix.sel(cfg, "externalIPv6"))));
   const isIPv6 = (ip) => nix.gt(nix.app(nix.sel(nix.builtins, "length"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", ip))), 2n);
-  const helpers = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./helpers.nix"), nix.thunk(() => ({ __proto__: pos$1, config: config, lib: lib }))));
+  const helpers = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./helpers.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, config: config, lib: lib }))));
   const flushNat = nix.thunk(() => nix.str`${helpers}
 ip46tables -w -t nat -D PREROUTING -j nixos-nat-pre 2>/dev/null|| true
 ip46tables -w -t nat -F nixos-nat-pre 2>/dev/null || true
@@ -142,7 +142,7 @@ ip46tables -w -t nat -N nixos-nat-out
 ip46tables -w -t filter -N nixos-filter-forward
 
 ${nix.app(mkSetupNat, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       iptables: "iptables",
       dest: dest,
       internalIPs: nix.thunk(() => nix.attr(cfg, "internalIPs")),
@@ -151,7 +151,7 @@ ${nix.app(mkSetupNat, nix.thunk(() => ({
     })))}
 
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableIPv6")), nix.thunk(() => nix.app(mkSetupNat, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         iptables: "ip6tables",
         dest: destIPv6,
         internalIPs: nix.thunk(() => nix.sel(cfg, "internalIPv6s")),
@@ -173,22 +173,22 @@ ip46tables -w -t nat -A OUTPUT -j nixos-nat-out
 ip46tables -w -t filter -A FORWARD -j nixos-filter-forward
 `);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       networking: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nat: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           extraCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "iptables -A INPUT -p icmp -j ACCEPT",
               description: "Additional shell commands executed as part of the nat\ninitialisation script.\n\nThis option is incompatible with the nftables based nat module.\n",
             })))),
           extraStopCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "iptables -D INPUT -p icmp -j ACCEPT || true",
@@ -199,33 +199,33 @@ ip46tables -w -t filter -A FORWARD -j nixos-filter-forward
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "nftables", "enable"))), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             networking: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               firewall: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 extraCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkBefore"), flushNat)),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "nat", "enable")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               networking: nix.thunk(() => ({
-                __proto__: pos$13,
-                firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "firewall", "enable")), nix.thunk(() => ({ __proto__: pos$12, extraCommands: setupNat, extraStopCommands: flushNat })))),
+                [nix.POS]: pos$13,
+                firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "firewall", "enable")), nix.thunk(() => ({ [nix.POS]: pos$12, extraCommands: setupNat, extraStopCommands: flushNat })))),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 services: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "firewall", "enable"))), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     nat: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       description: "Network Address Translation",
                       wantedBy: nix.thunk(() => ["network.target"]),
                       after: nix.thunk(() => ["network-pre.target", "systemd-modules-load.service"]),
                       path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "networking", "firewall", "package"))]),
-                      unitConfig: nix.thunk(() => ({ __proto__: pos$14, ConditionCapability: "CAP_NET_ADMIN" })),
-                      serviceConfig: nix.thunk(() => ({ __proto__: pos$15, Type: "oneshot", RemainAfterExit: true })),
+                      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$14, ConditionCapability: "CAP_NET_ADMIN" })),
+                      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Type: "oneshot", RemainAfterExit: true })),
                       script: nix.thunk(() => nix.add(flushNat, setupNat)),
                       postStop: flushNat,
                     })),

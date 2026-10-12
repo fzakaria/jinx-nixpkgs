@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "PicoLisp",
       version: "24.3.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.software-lab.de/picoLisp-24.3.tgz",
           sha256: "sha256-FB43DAjHBFgxdysoLzBXLxii52a2CCh1skZP/RTzfdc=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.add("cd src\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Flags taken from instructions at: https://picolisp.com/wiki/?alternativeMacOSRepository\nmakeFlagsArray+=(\n  SHARED='-dynamiclib -undefined dynamic_lookup'\n)\n"))),
       installPhase: "cd ..\nmkdir -p \"$out/lib\" \"$out/bin\" \"$out/man\"\ncp -r . \"$out/lib/picolisp/\"\nln -s \"$out/lib/picolisp/bin/picolisp\" \"$out/bin/picolisp\"\nln -s \"$out/lib/picolisp/bin/pil\" \"$out/bin/pil\"\nln -s \"$out/lib/picolisp/man/man1/pil.1\" \"$out/man/pil.1\"\nln -s \"$out/lib/picolisp/man/man1/picolisp.1\" \"$out/man/picolisp.1\"\nsubstituteInPlace $out/bin/pil --replace-fail /usr $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pragmatic programming language",
         homepage: "https://picolisp.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "hf_transfer",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-mcU3YuJVfuwBvtLfqceV3glcJcpjSX7M3VjvbvLCxZg=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const pythonImportsCheck = nix.thunk(() => ["hf_transfer"]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High speed download python library",
         homepage: "https://github.com/huggingface/hf_transfer",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/hf_transfer/releases/tag/v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

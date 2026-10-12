@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ansible-vault",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomoh1r",
           repo: "ansible-vault",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["TestCannotLoadWithInvalidPassword"]),
       pythonImportsCheck: nix.thunk(() => ["ansible_vault"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "R/W an ansible-vault yaml file",
         homepage: "https://github.com/tomoh1r/ansible-vault",
         changelog: "https://github.com/tomoh1r/ansible-vault/blob/master/CHANGES.txt",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxp = nix.arg($, "libxp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vncrec",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://ronja.twibright.com/utils/vncrec-twibright.tgz",
           sha256: "1yp6r55fqpdhc8cgrgh9i0mzxmkls16pgf8vfcpng1axr7cigyhc",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VNC recorder",
         homepage: "http://ronja.twibright.com/utils/vncrec/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

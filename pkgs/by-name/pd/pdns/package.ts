@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const lmdb = nix.arg($, "lmdb");
   const tinycdb = nix.arg($, "tinycdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdns",
       version: "5.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.powerdns.com/releases/pdns-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-+KEO2/YOSdjBYOkxIZidXrza2DjQ4LdH8m736J/SIMA=",
         })))),
@@ -95,12 +95,12 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "powerdns")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "powerdns")) })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://doc.powerdns.com/authoritative/changelog/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html#change-${nix.sel(finalAttrs, "version")}`),
         description: "Authoritative DNS server",
         homepage: "https://www.powerdns.com",

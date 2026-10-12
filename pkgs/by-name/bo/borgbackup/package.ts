@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "borgbackup",
       version: "1.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "borgbackup",
           repo: "borg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,19 +98,19 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_extract_restores_append_flag", "test_file_status_excluded"])))),
       preCheck: "export HOME=$TEMP\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           borgbackup: nix.thunk(() => nix.attr(nixosTests, "borgbackup")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/borgbackup/borg/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/changes.rst`),
         description: "Deduplicating archiver with compression and encryption",
         homepage: "https://www.borgbackup.org",

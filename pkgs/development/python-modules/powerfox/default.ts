@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const syrupy_6 = nix.arg($, "syrupy_6");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powerfox",
       version: "2.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "klaasnicolaas",
           repo: "python-powerfox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy_6]),
       pythonImportsCheck: nix.thunk(() => ["powerfox"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous Python client for the Powerfox devices",
         homepage: "https://github.com/klaasnicolaas/python-powerfox",
         changelog: nix.thunk(() => nix.str`https://github.com/klaasnicolaas/python-powerfox/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

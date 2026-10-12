@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mini-pqc",
       version: "0.1.5-unstable-2025-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oferzinger",
           repo: "mini-pqc-scanner",
           rev: "c9c730397109f8a5a73201b4ba958aa437571279",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/cmd $out/bin/$pname\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool that helps to assess quantum readiness",
         homepage: "https://github.com/oferzinger/mini-pqc-scanner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

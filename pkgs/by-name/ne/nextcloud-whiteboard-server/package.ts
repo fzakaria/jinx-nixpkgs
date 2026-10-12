@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nextcloud-whiteboard-server";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nextcloud",
           repo: "whiteboard",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --add-flags "$out/lib/node_modules/whiteboard/websocket_server/main.js"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backend server for the Nextcloud Whiteboard app",
         homepage: "https://apps.nextcloud.com/apps/whiteboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nextcloud-whiteboard-server",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

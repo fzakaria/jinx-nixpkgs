@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-fast-export",
       version: "260405",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frej",
           repo: "fast-export",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ done
       nativeCheckInputs: nix.thunk(() => [gitMinimal, mercurial]),
       installCheckPhase: "mkdir repo-hg\npushd repo-hg\nhg init\necho foo > bar\nhg add bar\nhg commit --message \"baz\"\npopd\n\nmkdir repo-git\npushd repo-git\ngit init\ngit config core.ignoreCase false  # for darwin\n$out/bin/hg-fast-export.sh -r ../repo-hg/ --hg-hash\nfor s in \"foo\" \"bar\" \"baz\" ; do\n  (git show | grep $s > /dev/null) && echo $s found\ndone\npopd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Import mercurial into git",
         homepage: "https://repo.or.cz/w/fast-export.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

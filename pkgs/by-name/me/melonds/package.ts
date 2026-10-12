@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.thunk(() => nix.attr(qt6, "qtwayland"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "melonds",
       version: "1.1-unstable-2026-08-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "melonDS-emu",
           repo: "melonDS",
           rev: "906e9ebb27da8c6a715cd7abab4abfe8a8d29427",
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--prefix DYLD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libpcap]))}`),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://melonds.kuribo64.net/",
         description: "Work in progress Nintendo DS emulator",
         longDescription: "melonDS aims at providing fast and accurate Nintendo DS emulation. While\nit is still a work in progress, it has a pretty solid set of features:\n\n- Nearly complete core (CPU, video, audio, ...)\n- JIT recompiler for fast emulation\n- OpenGL renderer, 3D upscaling\n- RTC, microphone, lid close/open\n- Joystick support\n- Savestates\n- Various display position/sizing/rotation modes\n- (WIP) Wifi: local multiplayer, online connectivity\n- (WIP) DSi emulation\n- DLDI\n- (WIP) GBA slot add-ons\n- and more are planned!\n",

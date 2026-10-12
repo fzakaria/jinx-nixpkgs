@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const withQemu = nix.argOr($, "withQemu", () => false);
   const qemu = nix.arg($, "qemu");
   const systemdForMkosi = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(systemd, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withRepart: true,
       withBootloader: true,
       withSysusers: true,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       withUkify: true,
       withKernelInstall: true,
     }))), "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       postPatch: nix.thunk(() => nix.add(nix.selOr(prevAttrs, () => "", "postPatch"), "substituteInPlace src/basic/path-util.h \\\n  --replace-fail \"\\\"$out/bin/\\\"\" \\\n  '\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"'\n")),
       mesonFlags: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "mesonFlags"), [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "nologin-path", "/usr/sbin/nologin")),
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
     util_linux,
   ], nix.app(nix.sel(lib, "optionals"), withQemu, nix.thunk(() => [qemu]))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "mkosi",
       version: "27",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "systemd",
           repo: "mkosi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,19 +74,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Use-wrapped-binaries-instead-of-Python-interpreter.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             UKIFY: nix.thunk(() => nix.str`${systemdForMkosi}/lib/systemd/ukify`),
             PYTHON_PEFILE: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pythonWithPefile)),
             NIX_PATH: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), deps)))),
             MKOSI_SANDBOX: null,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-Fix-library-resolving.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             LIBC: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib/libc.so.6`),
             LIBSECCOMP: nix.thunk(() => nix.str`${nix.sel(libseccomp, "lib")}/lib/libseccomp.so.2`),
           })))),
       ], nix.app(nix.sel(lib, "optional"), withQemu, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-Fix-QEMU-firmware-path.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             QEMU_FIRMWARE: nix.thunk(() => nix.str`${qemu}/share/qemu/firmware`),
           }))))))),
       postPatch: "# As we need the $out reference, we can't use `replaceVars` here.\nsubstituteInPlace mkosi/{run,__init__}.py \\\n  --replace-fail '@MKOSI_SANDBOX@' \"$out/bin/mkosi-sandbox\"\n",
@@ -108,7 +108,7 @@ sed "1i#!${nix.sel(python3Packages, "python", "interpreter")} -SI" \\
 chmod +x "$out/bin/mkosi-sandbox"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Build legacy-free OS images",
         homepage: "https://github.com/systemd/mkosi",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/mkosi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1.3",
       pname: "popfile",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://getpopfile.org/downloads/popfile-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0gcib9j7zxk8r2vb5dbdz836djnyfza36vi8215nxcdfx1xc7l63",
           stripRoot: false,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p $out/bin\n# I user `cd` rather than `cp $out/* ...` b/c the * breaks syntax\n# highlighting in emacs for me.\ncd $src\ncp -r * $out/bin\ncd $out/bin\nchmod +x *.pl\n\nfind $out -name '*.pl' -executable | while read path; do\n  wrapProgram \"$path\" \\\n    --prefix PERL5LIB : $PERL5LIB:$out/bin \\\n    --set POPFILE_ROOT $out/bin \\\n    --run 'export POPFILE_USER=${POPFILE_USER:-$HOME/.popfile}' \\\n    --run 'test -d \"$POPFILE_USER\" || mkdir -m 0700 -p \"$POPFILE_USER\"'\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Email classification system that automatically sorts messages and fights spam",
         homepage: "https://getpopfile.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

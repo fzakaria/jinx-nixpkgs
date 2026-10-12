@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const systemdStage1 = nix.arg($, "systemdStage1");
   return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         name: "initrd-network-openvpn",
         nodes: nix.thunk(() => (() => {
           const secretblock = nix.thunk(() => nix.str`secret [inline]
@@ -60,21 +60,21 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
 </secret>
 `);
           return {
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             minimalboot: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 boot: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   initrd: nix.thunk(() => ({
-                    __proto__: pos$5,
-                    systemd: nix.thunk(() => ({ __proto__: pos$2, enable: systemdStage1 })),
+                    [nix.POS]: pos$5,
+                    systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: systemdStage1 })),
                     network: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       enable: true,
                       openvpn: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         enable: true,
                         configuration: nix.thunk(() => nix.builtins.toFile("initrd.ovpn", "")),
                       })),
@@ -86,27 +86,27 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
             ovpnclient: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               return {
-                __proto__: pos$18,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$8, useBootLoader: true, vlans: nix.thunk(() => [1n]) })),
+                [nix.POS]: pos$18,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, useBootLoader: true, vlans: nix.thunk(() => [1n]) })),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   initrd: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     systemd: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       enable: systemdStage1,
                       extraBin: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         nc: nix.thunk(() => nix.str`${nix.sel(pkgs, "busybox")}/bin/nc`),
                       })),
                       services: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         nc: nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           requiredBy: nix.thunk(() => ["initrd.target"]),
                           after: nix.thunk(() => ["network.target"]),
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             ExecStart: "/bin/nc -p 1234 -lke /bin/echo TESTVALUE",
                             Type: "oneshot",
                           })),
@@ -115,11 +115,11 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
                     })),
                     preLVMCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdStage1)), "/bin/nc -p 1234 -lke /bin/echo TESTVALUE\n")),
                     network: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       enable: true,
                       postCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdStage1)), "/bin/ip addr add 192.168.1.2/24 dev eth1\n")),
                       openvpn: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         enable: true,
                         configuration: nix.thunk(() => nix.str`${nix.path(here, "./initrd.ovpn")}`),
                       })),
@@ -131,33 +131,33 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
             ovpnserver: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               return {
-                __proto__: pos$28,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$19, vlans: nix.thunk(() => [1n, 2n]) })),
+                [nix.POS]: pos$28,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$19, vlans: nix.thunk(() => [1n, 2n]) })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   nat: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     enable: true,
                     internalInterfaces: nix.thunk(() => ["tun0"]),
                     externalInterface: "eth2",
                     forwardPorts: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$20, destination: "10.8.0.2:1234", sourcePort: 12345n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$20, destination: "10.8.0.2:1234", sourcePort: 12345n })),
                     ]),
                   })),
                   firewall: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     trustedInterfaces: nix.thunk(() => ["tun0"]),
                     allowedUDPPorts: nix.thunk(() => [1194n]),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   openvpn: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     servers: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       testserver: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         config: nix.thunk(() => nix.str`dev tun0
 ifconfig 10.8.0.1 10.8.0.2
 cipher AES-256-CBC
@@ -172,8 +172,8 @@ ${secretblock}
             testclient: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$6);
               return {
-                __proto__: pos$30,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$29, vlans: nix.thunk(() => [2n]) })),
+                [nix.POS]: pos$30,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$29, vlans: nix.thunk(() => [2n]) })),
               };
             })(), formals$6),
           };

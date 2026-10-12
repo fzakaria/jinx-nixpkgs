@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sseclient_py = nix.arg($, "sseclient-py");
   return nix.app(buildPythonPackage, (finalattrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyarlo",
       version: "0.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tchellomello",
           repo: "python-arlo",
           tag: nix.thunk(() => nix.sel(finalattrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, mock, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["pyarlo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to work with Netgear Arlo cameras",
         homepage: "https://github.com/tchellomello/python-arlo",
         changelog: nix.thunk(() => nix.str`https://github.com/tchellomello/python-arlo/releases/tag/${nix.sel(finalattrs, "src", "tag")}`),

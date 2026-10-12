@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gorm-gentool";
       const version = "0.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "go-gorm",
           repo: "gen",
           rev: nix.thunk(() => nix.str`tools/gentool/v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const proxyVendor = true;
       const vendorHash = "sha256-0VU+zGQb6Ob9V2zOsUO5+ObUFdQO26236Ei2/TqjTBs=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/go-gorm/gen",
         description: "Gen: Friendly & Safer GORM powered by Code Generation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

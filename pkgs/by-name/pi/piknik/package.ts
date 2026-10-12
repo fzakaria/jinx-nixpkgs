@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const piknik = nix.arg($, "piknik");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "piknik",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jedisct1",
           repo: "piknik",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-t7w8uKYda6gT08ymAJqS38JgY70kuKNkQvjHFK91j8s=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: piknik,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Copy/paste anything over the network",
         homepage: "https://github.com/jedisct1/piknik",
         changelog: nix.thunk(() => nix.str`https://github.com/jedisct1/piknik/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

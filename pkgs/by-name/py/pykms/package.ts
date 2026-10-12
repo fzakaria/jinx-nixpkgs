@@ -29,11 +29,11 @@ if [ ! -e $db ] ; then
 fi
 `)));
   return nix.app(nix.sel(pypkgs, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pykms",
       version: "0-unstable-2024-07-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Py-KMS-Organization",
           repo: "py-kms",
           rev: "465f4d14c728819d4eb00e3419bd1cb98af7f81c",
@@ -79,11 +79,11 @@ ${nix.sel(python3, "interpreter")} -m compileall $siteDir
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pykms: nix.thunk(() => nix.attr(nixosTests, "pykms")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pykms: nix.thunk(() => nix.attr(nixosTests, "pykms")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Windows KMS (Key Management Service) server written in Python",
         homepage: "https://github.com/Py-KMS-Organization/py-kms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -27,15 +27,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "lorri"));
   const socketPath = "lorri/daemon.socket";
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lorri: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enables the daemon for `lorri`, a nix-shell replacement for project\ndevelopment. The socket-activated daemon starts on the first request\nissued by the `lorri` command.\n",
@@ -45,28 +45,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           user: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             sockets: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               lorri: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Socket for Lorri Daemon",
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   ListenStream: nix.thunk(() => nix.str`%t/${socketPath}`),
                   RuntimeDirectory: "lorri",
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               lorri: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Lorri Daemon",
                 requires: nix.thunk(() => ["lorri.socket"]),
                 after: nix.thunk(() => ["lorri.socket"]),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
                   ];
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/lorri daemon`),
                   PrivateTmp: true,
                   ProtectSystem: "full",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.sel(pkgs, "direnv")),

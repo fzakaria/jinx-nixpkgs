@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-build-tools";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "lxqt",
           repo: "lxqt-build-tools",
           rev: version_1,
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.13.0": "sha256-4/hVlEdqqqd6CNitCRkIzsS1R941vPJdirIklp4acXA=",
             "2.4.0": "sha256-PvDXL4hHaHeHt7CXeNCj8L2bv3YYY78ZDTxsctc73fo=",
           }, nix.key(nix.str`${version_1}`))),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`cp ${nix.path(here, "./LXQtConfigVars.cmake")} $out/share/cmake/lxqt${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "2.0.0")), "2")}-build-tools/modules/LXQtConfigVars.cmake
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lxqt/lxqt-build-tools",
         description: "Various packaging tools and scripts for LXQt applications",
         mainProgram: "lxqt-transupdate",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

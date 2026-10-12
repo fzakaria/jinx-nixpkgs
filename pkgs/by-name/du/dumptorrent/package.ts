@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dumptorrent",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dumptorrent/dumptorrent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "073h03bmpfdy15qh37lvppayld2747i4acpyk0pm5nf2raiak0zm",
         })))),
       postPatch: "substituteInPlace Makefile \\\n  --replace \"gcc\" \"$CC\"\n",
       installPhase: "mkdir -p $out/bin\ncp ./dumptorrent $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dump .torrent file information",
         homepage: "https://sourceforge.net/projects/dumptorrent/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

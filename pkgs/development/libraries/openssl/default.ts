@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
     const withDocs = nix.argOr($_1, "withDocs", () => false);
     const extraMeta = nix.argOr($_1, "extraMeta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "openssl",
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/openssl/openssl/releases/download/openssl-${version}/openssl-${version}.tar.gz`),
             hash: hash,
           })))),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withCryptodev, cryptodev), nix.app(nix.sel(lib, "optional"), withZlib, zlib))),
         configurePlatforms: [],
         configureScript: nix.thunk(() => nix.selOr({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "armv5tel-linux": "./Configure linux-armv4 -march=armv5te",
           "armv6l-linux": "./Configure linux-armv4 -march=armv6",
           "armv7l-linux": "./Configure linux-armv4 -march=armv7-a",
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
             const config_provider_attrset = nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), (acc) => (elem) => nix.update(acc, elem), nix.thunk(() => ({})), nix.thunk(() => nix.builtins.map((provider) => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(provider, "name")}`, nix.thunk(() => nix.str`${nix.sel(provider, "name")}_sect`)],
                 ]), providers))));
-            return nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\n"]), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$3, provider_sect: config_provider_attrset })))));
+            return nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\n"]), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$3, provider_sect: config_provider_attrset })))));
           })()}|' $etc/etc/ssl/openssl.cnf
 
 # Activate the default provider
@@ -113,7 +113,7 @@ sed -i '/^[[:space:]]*#/!s/\\[default_sect\\]/[default_sect]\\nactivate = 1/g' $
 `))), nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((provider) => nix.str`cp ${nix.sel(provider, "package")}/lib/ossl-modules/* "$out/lib/ossl-modules"
 
 ${nix.app(nix.sel(lib, "optionalString"), autoloadProviders, nix.thunk(() => nix.str`echo '${nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.str`${nix.sel(provider, "name")}_sect`, nix.thunk(() => ({ __proto__: pos$4, activate: 1n }))],
+                  [nix.str`${nix.sel(provider, "name")}_sect`, nix.thunk(() => ({ [nix.POS]: pos$4, activate: 1n }))],
                 ])))}' >> $etc/etc/ssl/openssl.cnf
 `))}
 `, providers)))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(extraINIConfig, null)), nix.thunk(() => nix.str`echo '${nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), extraINIConfig)}' >> $etc/etc/ssl/openssl.cnf
@@ -127,16 +127,16 @@ if grep -r '${nix.sel(buildPackages, "perl")}' $out $etc; then
 fi
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.3.0")), "# cleanup cmake helpers for now (for OpenSSL >= 3.3), only rely on pkg-config.\n# pkg-config gets its paths fixed correctly\nrm -rf $dev/lib/cmake\n"))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })),
         })),
         strictDeps: true,
         __structuredAttrs: true,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           homepage: "https://www.openssl.org/",
           changelog: nix.thunk(() => nix.str`https://github.com/openssl/openssl/blob/openssl-${version}/CHANGES.md`),
           donationPage: "https://openssl.foundation/donate/ways-to-give",
@@ -151,16 +151,16 @@ fi
           pkgConfigModules: nix.thunk(() => ["libcrypto", "libssl", "openssl"]),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           identifiers: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "openssl", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           })),
         }, extraMeta)),
       }));
   })(), formals$2);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     openssl_3_5: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         version: "3.5.8",
         hash: "sha256-qPhKOZGOxkFc52XZtCnTE7qXuBQxacFy5zS5UURk9bI=",
         patches: nix.thunk(() => nix.concat([
@@ -170,12 +170,12 @@ fi
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => [nix.path(here, "./3.5/fix-mingw-linking.patch")])))),
         withDocs: true,
         extraMeta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         })),
       })))),
     openssl_3_6: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         version: "3.6.5",
         hash: "sha256-ohV8KDDv3sN4iTmwDJsGODBtPwu7dtxIMu5QO7OX35g=",
         patches: nix.thunk(() => [
@@ -185,12 +185,12 @@ fi
         ]),
         withDocs: true,
         extraMeta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         })),
       })))),
     openssl_4_0: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         version: "4.0.3",
         hash: "sha256-MltcgGFnwTtAsf/q3+AkgZfADszEzxI+weKNLS/SFtk=",
         patches: nix.thunk(() => [
@@ -200,7 +200,7 @@ fi
         ]),
         withDocs: true,
         extraMeta: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         })),
       })))),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const qtwebengine = nix.arg($, "qtwebengine");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "grantlee-editor",
       extraBuildInputs: nix.thunk(() => [qtwebengine]),
     })));

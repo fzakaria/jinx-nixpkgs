@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const installShellFiles = nix.arg($, "installShellFiles");
   const pname = "timetrap";
-  const ttBundlerApp = nix.thunk(() => nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ __proto__: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
-      __proto__: pos$3,
+  const ttBundlerApp = nix.thunk(() => nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       pname: pname,
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["t", "timetrap"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "timetrap")),
       })),
     }))));
-  const ttGem = nix.thunk(() => nix.app(nix.sel(bundlerEnv, "override"), nix.thunk(() => ({ __proto__: pos$4, ruby: ruby_3_4 })), nix.thunk(() => ({ __proto__: pos$5, pname: pname, gemdir: nix.path(here, "./.") }))));
+  const ttGem = nix.thunk(() => nix.app(nix.sel(bundlerEnv, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, ruby: ruby_3_4 })), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: nix.thunk(() => nix.attr(ttBundlerApp, "version")),
       dontUnpack: true,
@@ -53,7 +53,7 @@ for c in t timetrap; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple command line time tracker written in ruby",
         homepage: "https://github.com/samg/timetrap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +67,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.sel(ttBundlerApp, "passthru", "updateScript")),
       })),
     })));

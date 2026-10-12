@@ -39,31 +39,31 @@ link_dest	1
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         rsnapshot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "rsnapshot backups")),
           enableManualRsnapshot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to enable manual usage of the rsnapshot command with this module.",
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               example: "retains\thourly\t24\nretain\tdaily\t365\nbackup\t/home/\tlocalhost/\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "rsnapshot configuration option in addition to the defaults from\nrsnapshot and this module.\n\nNote that tabs are required to separate option arguments, and\ndirectory names require trailing slashes.\n\nThe \"extra\" in the option name might be a little misleading right\nnow, as it is required to get a functional configuration.\n",
             })))),
           cronIntervals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$3, hourly: "0 * * * *", daily: "50 21 * * *" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$3, hourly: "0 * * * *", daily: "50 21 * * *" })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Periodicity at which intervals should be run by cron.\nNote that the intervals also have to exist in configuration\nas retain options.\n",
             })))),
@@ -72,23 +72,23 @@ ${nix.sel(cfg, "extraConfig")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               cron: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 systemCronJobs: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (interval) => (time) => nix.str`${time} root ${nix.sel(pkgs, "rsnapshot")}/bin/rsnapshot -c ${cfgfile} ${interval}`, nix.thunk(() => nix.sel(cfg, "cronIntervals")))),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableManualRsnapshot")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rsnapshot"))]),
                 etc: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  "rsnapshot.conf": nix.thunk(() => ({ __proto__: pos$11, source: cfgfile })),
+                  [nix.POS]: pos$12,
+                  "rsnapshot.conf": nix.thunk(() => ({ [nix.POS]: pos$11, source: cfgfile })),
                 })),
               })),
             })))),

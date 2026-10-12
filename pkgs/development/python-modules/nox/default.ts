@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const uv = nix.arg($, "uv");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nox",
       version: "2026.08.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wntrblm",
           repo: "nox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         virtualenv,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "tox-to-nox": nix.thunk(() => [jinja2, tox]),
         uv: nix.thunk(() => [uv]),
       })),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_uv", "test_noxfile_script_mode_url_req", "test_noxfile_script_mode"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_tox_to_nox.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flexible test automation for Python",
         homepage: "https://nox.thea.codes/",
         changelog: nix.thunk(() => nix.str`https://github.com/wntrblm/nox/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

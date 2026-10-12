@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pwalarmd",
       version: "0.1.0",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amyipdev",
           repo: "pwalarmd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-wD6djP2FQgJNL9EryRrv6NrEex0bnqDJmfYw+S2x508=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Background CLI-based alarm system for *nix",
         longDescription: "pwalarmd is a command-line (daemon-based) alarm system.\nIt has extensive configuration and personalization, PulseAudio\nand PipeWire support, and supports live configuration changes.\n",
         homepage: "https://github.com/amyipdev/pwalarmd",

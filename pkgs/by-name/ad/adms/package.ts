@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const gd = nix.arg($, "gd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.3.7",
       pname: "adms",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Qucs",
           repo: "adms",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/science-team/adms/-/raw/01ef4a94a48736c49c67d90da506b34f6114f0b0/debian/patches/0002-fix-ftbfs-gcc-15.patch",
             hash: "sha256-rSNBqdpuXA9ViyygRGn4KVknLCu0Q+UoOGLfoNAgccc=",
           })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatic device model synthesizer",
         homepage: "https://github.com/Qucs/adms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

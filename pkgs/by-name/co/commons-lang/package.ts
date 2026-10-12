@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.20.0",
       pname: "commons-lang",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/lang/binaries/commons-lang3-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-p3h128i3tofknZFM8Az3I3pUj0FjwqZFZbPamZ2LAk8=",
         })))),
@@ -28,7 +28,7 @@ cp *.jar $out/share/java/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides additional methods to manipulate standard Java library classes",
         homepage: "https://commons.apache.org/proper/commons-lang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

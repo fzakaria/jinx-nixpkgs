@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const linuxHash = "sha256-yB5eKXhW9bmGxHsjOKZlNI2JfN8CXFz1Pz2+77DPYog=";
   const darwinHash = "sha256-NDgCvgM0CM6RNklo2VuMRZb/oT5yaiW7QqyJVAr6hHo=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "protonmail-desktop",
       version: version,
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://proton.me/download/mail/linux/${version}/ProtonMail-desktop-beta.deb`),
             hash: linuxHash,
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://proton.me/download/mail/macos/${version}/ProtonMail-desktop.dmg`),
             hash: darwinHash,
           })))),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
   --set-default ELECTRON_IS_DEV 0 \\
   --inherit-argv0
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Desktop application for Mail and Calendar, made with Electron",
         homepage: "https://github.com/ProtonMail/WebClients",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

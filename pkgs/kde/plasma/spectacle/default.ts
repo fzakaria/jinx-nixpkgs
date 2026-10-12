@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const tesseractLanguages = nix.argOr($, "tesseractLanguages", () => []);
   const tesseract5 = nix.arg($, "tesseract5");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spectacle",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(tesseract5, "override"), nix.thunk(() => ({ __proto__: pos$1, enableLanguages: tesseractLanguages })))),
+        nix.thunk(() => nix.app(nix.sel(tesseract5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableLanguages: tesseractLanguages })))),
         qtwayland,
         qtmultimedia,
         nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enableCuda: false,
             enabledModules: nix.thunk(() => ["core", "imgproc"]),
             runAccuracyTests: false,
           })))),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "spectacle" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "spectacle" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

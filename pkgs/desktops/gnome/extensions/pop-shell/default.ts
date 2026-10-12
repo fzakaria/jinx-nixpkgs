@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const typescript_7 = nix.arg($, "typescript_7");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-shell-extension-pop-shell",
       version: "1.2.0-unstable-2026-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "shell",
           rev: "7898b65c20735057faf0797f8ed056704ca55f0d",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-gjs.patch")]),
       makeFlags: nix.thunk(() => ["XDG_DATA_HOME=$(out)/share"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionUuid: "pop-shell@system76.com",
         extensionPortalSlug: "pop-shell",
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
@@ -44,7 +44,7 @@ done
 `),
       preFixup: "chmod +x $out/share/gnome-shell/extensions/pop-shell@system76.com/*/main.js\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Keyboard-driven layer for GNOME Shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

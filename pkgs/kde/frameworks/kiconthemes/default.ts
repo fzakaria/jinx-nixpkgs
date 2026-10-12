@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kiconthemes",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtsvg, qttools]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kiconfinder6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kiconfinder6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

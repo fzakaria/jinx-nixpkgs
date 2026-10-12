@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const ufo2ft = nix.arg($, "ufo2ft");
   const ufolib2 = nix.arg($, "ufolib2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fontmake",
       version: "3.12.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "fontmake",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => nix.concat([fontmath, fonttools, glyphslib, ufo2ft, ufolib2], nix.concat(nix.sel(fonttools, "optional-dependencies", "ufo"), nix.concat(nix.sel(fonttools, "optional-dependencies", "lxml"), nix.concat(nix.sel(fonttools, "optional-dependencies", "unicode"), nix.sel(ufo2ft, "optional-dependencies", "compreffor")))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pathops: nix.thunk(() => [skia_pathops]),
         lxml: [],
         mutatormath: [],
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, cattrs], nix.sel(finalAttrs, "passthru", "optional-dependencies", "autohint"))),
       pythonImportsCheck: nix.thunk(() => ["fontmake"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compiles fonts from various sources (.glyphs, .ufo, designspace) into binaries formats (.otf, .ttf)",
         homepage: "https://github.com/googlefonts/fontmake",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/fontmake/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

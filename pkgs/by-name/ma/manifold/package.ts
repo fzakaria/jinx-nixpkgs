@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "manifold",
       version: "3.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elalish",
           repo: "manifold",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`test/manifold_test --gtest_filter=-${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.builtins.concatStringsSep(":", nix.thunk(() => nix.sel(finalAttrs, "excludedTestPatterns")))))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           python: nix.thunk(() => nix.sel(python3Packages, "manifold3d")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Geometry library for topological robustness",
         homepage: "https://github.com/elalish/manifold",
         changelog: nix.thunk(() => nix.str`https://github.com/elalish/manifold/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

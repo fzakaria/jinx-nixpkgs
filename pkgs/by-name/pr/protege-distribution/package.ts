@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "protege-distribution",
       version: "5.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/protegeproject/protege-distribution/releases/download/protege-${nix.sel(finalAttrs, "version")}/Protege-${nix.sel(finalAttrs, "version")}-platform-independent.zip`),
           sha256: "08pr0rn76wcc9bczdf93nlshxbid4z4nyvmaz198hhlq96aqpc3i",
         })))),
@@ -55,7 +55,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Protege",
             desktopName: "Protege Desktop",
             icon: "protege",
@@ -65,7 +65,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OWL2 ontology editor from Stanford, with third-party plugins included",
         homepage: "https://protege.stanford.edu/",
         downloadPage: "https://protege.stanford.edu/products.php#desktop-protege",

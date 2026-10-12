@@ -19,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "storagebox"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9509n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "prometheus-storagebox-exporter", nix.thunk(() => ({})))),
       tokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "externalPath")),
           description: "File that contains the Hetzner API token to use.",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       after: nix.thunk(() => ["network.target"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       script: nix.thunk(() => nix.str`export HETZNER_TOKEN=$(< "\${CREDENTIALS_DIRECTORY}/token")
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
       environment: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LISTEN_ADDR: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenAddress")))}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
       })),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         DynamicUser: true,
         Restart: "always",
         RestartSec: "10s",

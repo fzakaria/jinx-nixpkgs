@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "digitemp",
       version: "3.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcl",
           repo: "digitemp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bcl/digitemp/commit/fa56b0f78d12f97ac44e0a367d413a9e88611d1c.patch?full_index=1",
             hash: "sha256-1xyVcZKVPtQDPw48i+4Jv9fQCOq46IQZA2wCa5ukr00=",
           })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["LOCK=no", "ds9097", "ds9097u"]),
       installPhase: "runHook preInstall\ninstall -D -m555 -t $out/bin digitemp_*\ninstall -D -m444 -t $out/share/doc/digitemp FAQ README\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Temperature logging and reporting using Maxim's iButtons and 1-Wire protocol",
         longDescription: "DigiTemp is a command line application used for reading 1-wire sensors like\nthe DS18S20 temperature sensor, or DS2438 battery monitor. DigiTemp supports\nthe following devices:\n\n  DS18S20 (and older DS1820) Temperature Sensor\n  DS18B20 Temperature Sensor\n  DS1822 Temperature Sensor\n  DS2438 Battery monitor\n  DS2409 1-wire coupler (used in 1-wire hubs)\n  DS2422 Counter\n  DS2423 Counter\n\nThe output format can be customized and all settings are stored in a\nconfiguration file (.digitemprc) in the current directory. DigiTemp can\nrepeatedly read the sensors and output to stdout and/or to a logfile.\n",
         homepage: "https://www.digitemp.com",

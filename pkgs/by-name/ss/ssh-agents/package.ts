@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ssh-agents";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalbasit",
           repo: "ssh-agents",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spawn and maintain multiple ssh-agents across terminals",
         longDescription: "The SSH agent is usually spawned by running eval $(ssh-agent), however this\nspawns a new SSH agent at every invocation. This project provides an\nssh-agent wrapper called ssh-agents that is capable of spawning an SSH\nagent and caching the environment variables for later invocation.\n\nFeatures\n- One SSH agent across all terminals\n- Add all un-encrypted SSH keys to the agent upon spawning. Please note\n  that encrypted SSH keys can only be added via ssh-add after having\n  started the agent.\n- Ability to have different keys in different agents for security purposes.\n- Multiple SSH agents\n- To use multi-SSH agents, start ssh agent with the --name flag. The\n  given name is expected to be a folder under ~/.ssh/name containing the\n  keys to include in the agent.\n",
         homepage: "https://github.com/kalbasit/ssh-agents",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "ssh-agents",
       }));
-      return { __proto__: pos$3, pname, version, src, installFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

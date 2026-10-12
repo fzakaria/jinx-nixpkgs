@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webwormhole",
       version: "0-unstable-2025-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saljam",
           repo: "webwormhole",
           rev: "abf852af0458ba79772d9c26ef01434165f217d8",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-ULlaicl4o/YyHSS64Q2hsl5l5Mm3C6cBG8zaxrEijOU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Send files using peer authenticated WebRTC",
         homepage: "https://github.com/saljam/webwormhole",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

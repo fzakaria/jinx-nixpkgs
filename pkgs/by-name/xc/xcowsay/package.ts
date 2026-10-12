@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const fortune = nix.arg($, "fortune");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xcowsay",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nickg.me.uk/files/xcowsay-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-RqzoZP8o0tIfS3BY8CleGNAEGhIMEHipUfpDxOD1yMU=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.doof.me.uk/xcowsay",
         description: "Tool to display a cute cow and messages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

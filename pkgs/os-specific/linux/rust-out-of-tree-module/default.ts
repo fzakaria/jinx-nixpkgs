@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(kernel, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rust-out-of-tree-module",
       version: "0-unstable-2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rust-for-linux",
           repo: "rust-out-of-tree-module",
           rev: "00b5a8ee2bf53532d115004d7636b61a54f49802",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["modules_install"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(kernel, "kernelOlder"), "6.17")) || nix.asBool(!nix.asBool(nix.sel(kernel, "withRust"))))),
         description: "Basic template for an out-of-tree Linux kernel module written in Rust",
         homepage: "https://github.com/Rust-for-Linux/rust-out-of-tree-module",

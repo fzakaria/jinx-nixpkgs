@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xdg-desktop-portal-generic",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lamco-admin",
           repo: "xdg-desktop-portal-generic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ substituteInPlace data/xdg-desktop-portal-generic.service \\
       buildInputs: nix.thunk(() => [pipewire, wayland, libxkbcommon]),
       postInstall: "install -Dm644 data/generic.portal -t $out/share/xdg-desktop-portal/portals\ninstall -Dm644 data/org.freedesktop.impl.portal.desktop.generic.service -t $out/share/dbus-1/services\ninstall -Dm644 data/xdg-desktop-portal-generic.service -t $out/share/systemd/user\n\nmkdir -p $out/libexec\nmv $out/bin/xdg-desktop-portal-generic $out/libexec/\nrmdir $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generic XDG Desktop Portal backend for Wayland compositors",
         homepage: "https://github.com/lamco-admin/xdg-desktop-portal-generic",
         license: nix.thunk(() => (() => {

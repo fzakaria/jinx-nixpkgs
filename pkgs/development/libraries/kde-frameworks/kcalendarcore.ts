@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const extra_cmake_modules = nix.arg($, "extra-cmake-modules");
   const libical = nix.arg($, "libical");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kcalendarcore",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       propagatedBuildInputs: nix.thunk(() => [libical]),

@@ -41,42 +41,42 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     name: "jellyfin",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "minijackson"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          jellyfin: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          jellyfin: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$5, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
       machineWithTranscoding: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           jellyfin: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: true,
-            hardwareAcceleration: nix.thunk(() => ({ __proto__: pos$7, enable: true, type: "vaapi", device: "/dev/dri/renderD128" })),
+            hardwareAcceleration: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, type: "vaapi", device: "/dev/dri/renderD128" })),
             transcoding: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enableToneMapping: false,
               threadCount: 4n,
               enableHardwareEncoding: true,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
               throttleTranscoding: false,
               enableIntelLowPowerEncoding: true,
               hardwareDecodingCodecs: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 h264: true,
                 hevc: true,
                 hevc10bit: true,
@@ -95,69 +95,69 @@ export default nix.lambda((args) => (() => {
                 hevcRExt10bit: true,
                 hevcRExt12bit: true,
               })),
-              hardwareEncodingCodecs: nix.thunk(() => ({ __proto__: pos$9, hevc: true, av1: true })),
+              hardwareEncodingCodecs: nix.thunk(() => ({ [nix.POS]: pos$9, hevc: true, av1: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$14, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
       machineWithQsvTranscoding: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           jellyfin: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
-            hardwareAcceleration: nix.thunk(() => ({ __proto__: pos$16, enable: true, type: "qsv", device: "/dev/dri/renderD128" })),
+            hardwareAcceleration: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, type: "qsv", device: "/dev/dri/renderD128" })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$20, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$20, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
       machineWithForceConfig: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           jellyfin: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: true,
             forceEncodingConfig: true,
             hardwareAcceleration: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: true,
               type: "vaapi",
               device: "/dev/dri/renderD128",
             })),
-            transcoding: nix.thunk(() => ({ __proto__: pos$23, threadCount: 2n })),
+            transcoding: nix.thunk(() => ({ [nix.POS]: pos$23, threadCount: 2n })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$27, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
     })),
     testScript: nix.thunk(() => (() => {
       const payloads = nix.thunk(() => ({
-        __proto__: pos$31,
-        auth: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auth.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$30, Username: "jellyfin" })))))),
+        [nix.POS]: pos$31,
+        auth: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auth.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$30, Username: "jellyfin" })))))),
         empty: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "empty.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({})))))),
       }));
       return nix.str`import json

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rev = "1d452d3852321cb55c07307cb506b25759134b76";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mbedtls",
       version: "3.6.1-unstable-2025-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           domain: "gitlab.linphone.org",
           group: "BC",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "linphone-mbedtls-fix-unterminated-string-initialization.patch",
             url: "https://github.com/Mbed-TLS/mbedtls/commit/d593c54b3cbfc3c806476a725e7d82763da0da9e.patch",
             hash: "sha256-hh2cGzL75fEqlFNhEyL2fI9qsBW2Eq43DdWFD9qLsKE=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelChecking: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.linphone.org/BC/public/external/mbedtls",
         changelog: nix.thunk(() => nix.str`https://gitlab.linphone.org/BC/public/external/mbedtls/-/blob/${rev}/ChangeLog`),
         description: "Portable cryptographic and TLS library, formerly known as PolarSSL (Linphone fork)",

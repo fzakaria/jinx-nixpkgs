@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dedupeio",
           repo: "pylbfgs",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf lbfgs\n";
       const pythonImportsCheck = nix.thunk(() => ["lbfgs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for L-BFGS and OWL-QN optimization algorithms",
         homepage: "https://github.com/dedupeio/pylbfgs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

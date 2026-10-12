@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
     const stdenv = nix.arg($_1, "stdenv");
     const skip_tests = nix.thunk(() => nix.concat(["channels", "read"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "1.10")), nix.thunk(() => ["LinearAlgebra/blas"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.10")), nix.thunk(() => ["REPL", "ccall", "loading"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.11")), nix.thunk(() => ["cmdlineargs"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.12")), nix.thunk(() => ["Compiler/codegen", "precompile", "compileall", "Profile"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "1.12")), nix.thunk(() => ["compiler/codegen"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["FileWatching", "InteractiveUtils", "Sockets", "Distributed"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["LinearAlgebra/blas", "misc"]))))))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "julia-bin",
         version: version,
         patches: patches,
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.selOr({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://julialang-s3.julialang.org/bin/linux/x64/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/julia-${version}-linux-x86_64.tar.gz`),
               sha256: nix.thunk(() => nix.sel(sha256, "x86_64-linux")),
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://julialang-s3.julialang.org/bin/linux/aarch64/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/julia-${version}-linux-aarch64.tar.gz`),
               sha256: nix.thunk(() => nix.sel(sha256, "aarch64-linux")),
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://julialang-s3.julialang.org/bin/mac/aarch64/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/julia-${version}-macaarch64.tar.gz`),
               sha256: nix.thunk(() => nix.sel(sha256, "aarch64-darwin")),
             })))),
@@ -72,7 +72,7 @@ $out/bin/julia \\
 runHook postInstallCheck
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "High-level, high-performance, dynamic language for technical computing",
           homepage: "https://julialang.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

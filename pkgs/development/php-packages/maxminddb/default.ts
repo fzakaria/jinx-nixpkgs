@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pname = "maxminddb";
   const version = "1.14.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxmind",
           repo: "MaxMind-DB-Reader-php",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "cd ext\n",
       buildInputs: nix.thunk(() => [libmaxminddb]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C extension that is a drop-in replacement for MaxMind\\Db\\Reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/maxmind/MaxMind-DB-Reader-php",

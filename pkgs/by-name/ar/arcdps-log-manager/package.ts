@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "arcdps-log-manager",
       version: "1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gw2scratch",
           repo: "evtc",
           tag: nix.thunk(() => nix.str`manager-v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/icons/hicolor/128x128/apps\nicotool -x $src/ArcdpsLogManager/Images/program_icon.ico\ncp program_icon_1_128x128x32.png $out/share/icons/hicolor/128x128/apps/arcdps-log-manager.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desktopName: "arcdps Log Manager",
             genericName: "arcdps Log Manager",
             exec: "GW2Scratch.ArcdpsLogManager.Gtk",
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=manager-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Manager for Guild Wars 2 log files",
         longDescription: "Manager for all your recorded logs. Filter logs, upload them with one click, find interesting statistics.\n",
         homepage: "https://gw2scratch.com/tools/manager",

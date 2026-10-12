@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-anymail",
       version: "15.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anymail",
           repo: "django-anymail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [django, idna, requests, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "amazon-ses": nix.thunk(() => [boto3]),
         postal: nix.thunk(() => [cryptography]),
         sendgrid: nix.thunk(() => [cryptography]),
@@ -55,7 +55,7 @@ export DJANGO_SETTINGS_MODULE=tests.test_settings.settings_${nix.app(nix.sel(lib
 `),
       pythonImportsCheck: nix.thunk(() => ["anymail"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django email backends and webhooks for Mailgun",
         homepage: "https://github.com/anymail/django-anymail",
         changelog: nix.thunk(() => nix.str`https://github.com/anymail/django-anymail/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const withAppleSpell = nix.argOr($, "withAppleSpell", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   nix.assert_((!nix.asBool(withAppleSpell) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/en/enchant_2/package.nix:24:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "enchant",
       version: "2.6.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rrthomas/enchant/releases/download/v${nix.sel(finalAttrs, "version")}/enchant-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2aWhDcmzikOzoPoix27W67fgnrU1r/YpVK/NvUDv/2s=",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeature"), withAppleSpell, "applespell")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic spell checking library",
         homepage: "https://rrthomas.github.io/enchant/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

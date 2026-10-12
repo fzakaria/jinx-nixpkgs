@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const version = "41.3.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rucio",
       repo: "rucio",
       tag: version,
       hash: "sha256-POVV0conRsDBbvK2tmy8USv2WpgPKhNvGB3aXAGcuMc=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rucio",
       version: version,
       src: src,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["rucio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for Scientific Data Management",
         homepage: "http://rucio.cern.ch/",
         changelog: nix.thunk(() => nix.str`https://github.com/rucio/rucio/releases/tag/${nix.sel(src, "tag")}`),

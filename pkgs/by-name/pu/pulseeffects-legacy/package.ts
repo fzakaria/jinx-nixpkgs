@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const lv2Plugins = nix.thunk(() => [calf, lsp_plugins]);
   const ladspaPlugins = nix.thunk(() => [rubberband, zam_plugins]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pulseeffects",
       version: "4.8.7-unstable-2024-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wwmm",
           repo: "easyeffects",
           rev: "fbe0a724c1405cee624802f381476cf003dfcfa",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Limiter, compressor, reverberation, equalizer and auto volume effects for Pulseaudio applications",
         mainProgram: "pulseeffects",
         homepage: "https://github.com/wwmm/easyeffects",

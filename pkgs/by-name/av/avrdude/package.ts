@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const useElfutils = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avrdude",
       version: "8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avrdudes",
           repo: "avrdude",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(useElfutils)), "# vendored libelf is a static library\nsed -i \"s/PREFERRED_LIBELF elf/PREFERRED_LIBELF libelf.a elf/\" CMakeLists.txt\n")),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), docSupport, nix.thunk(() => ["-DBUILD_DOC=ON"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DHAVE_LINUXSPI=ON", "-DHAVE_PARPORT=ON"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libelf: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libelf.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool for programming Atmel AVR microcontrollers",
         mainProgram: "avrdude",
         longDescription: "AVRDUDE (AVR Downloader/UploaDEr) is an utility to\ndownload/upload/manipulate the ROM and EEPROM contents of AVR\nmicrocontrollers using the in-system programming technique (ISP).\n",

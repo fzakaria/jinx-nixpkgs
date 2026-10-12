@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pasco",
       version: "20040505_1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/fast/Pasco/Pasco%20v${nix.sel(finalAttrs, "version")}/pasco_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-o7jue+lgVxQQvFZOzJMGd1WihlD7Nb+1WaSutq9vaGg=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/Makefile \\\n  --replace gcc cc\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp bin/pasco $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Examine the contents of Internet Explorer's cache files for forensic purposes",
         mainProgram: "pasco",
         homepage: "https://sourceforge.net/projects/fast/files/Pasco/",

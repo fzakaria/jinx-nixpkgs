@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const haskellPackages = nix.arg($, "haskellPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libpcap",
       version: "1.10.7",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.tcpdump.org/release/libpcap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-CzlKyQ28Cpg4/5dGjgXJyaPoc97CUUzVjbZdhZ0pbjE=",
         })))),
@@ -56,18 +56,18 @@ export default nix.lambda((args) => (() => {
       postInstall: "if [ \"$dontDisableStatic\" -ne \"1\" ]; then\n  rm -f $out/lib/libpcap.a\nfi\n",
       enableParallelBuilding: true,
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lib: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           ettercap: ettercap,
           nmap: nmap,
           ostinato: ostinato,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.tcpdump.org",
         description: "Packet Capture Library",
         mainProgram: "pcap-config",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "atool",
       version: "0.39.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/atool/atool-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "aaf60095884abb872e25f8e919a8a63d0dabaeca46faeba87d12812d6efc703b",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureScript: nix.thunk(() => nix.str`${bash}/bin/bash configure`),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "aunpack",
             desktopName: "Aunpack",
             exec: "atool -x %f",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.nongnu.org/atool",
         description: "Archive command line helper",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

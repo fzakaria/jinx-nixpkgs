@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const libintl = nix.arg($, "libintl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbfd",
       version: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "version")),
       src: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat(nix.sel(binutils_unwrapped_2_38, "patches"), [
         nix.path(here, "./build-components-separately.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://raw.githubusercontent.com/mxe/mxe/e1d4c144ee1994f70f86cf7fd8168fe69bd629c6/src/bfd-1-disable-subdir-doc.patch",
             sha256: "0pzb3i74d1r7lhjan376h59a7kirw15j7swwm8pz3zy9lkdqkj6q",
           })))),
@@ -51,7 +51,7 @@ cp -f ${gnu_config}/config.{guess,sub} ../
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for manipulating containers of machine code",
         longDescription: "BFD is a library which provides a single interface to read and write\nobject files, executables, archive files, and core files in any format.\nIt is associated with GNU Binutils, and elsewhere often distributed with\nit.\n",
         homepage: "https://www.gnu.org/software/binutils/",

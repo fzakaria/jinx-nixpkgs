@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 8080n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kminion", nix.thunk(() => ({})))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
     })),
     serviceOpts: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
             EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })),
       ], [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "apache-kafka", "enable")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             after: nix.thunk(() => ["apache-kafka.service"]),
             requires: nix.thunk(() => ["apache-kafka.service"]),
           })))),

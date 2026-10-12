@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "0";
   const minorVersion = "110";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "f5_6",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/f5_6_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-FeCU+mzR0iO5tixI72XUnhvpGj+WRfKyT3mhBtud3uE=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/opentype $src/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dotcolon.net/font/f5_6/",
         description: "Weighted decorative font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

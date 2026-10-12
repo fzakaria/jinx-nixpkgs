@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tzdata",
       version: "2026d",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://data.iana.org/time-zones/releases/tzdata${nix.sel(finalAttrs, "version")}.tar.gz`),
             hash: "sha256-DLKqjjM8PcBJutxCoMYfIZh7jNROEH+pALrXZKrMd2c=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://data.iana.org/time-zones/releases/tzcode${nix.sel(finalAttrs, "version")}.tar.gz`),
             hash: "sha256-L1yff+Kea4y4Y1g2Z4hLjOF7CkhTVaBUtZHGvfzYF5E=",
           })))),
@@ -86,10 +86,10 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: "rm $out/share/zoneinfo-posix\nrm $out/share/zoneinfo/tzdefault-to-remove\nmkdir $out/share/zoneinfo/posix\n( cd $out/share/zoneinfo/posix; ln -s ../* .; rm posix )\nmv $out/share/zoneinfo-leaps $out/share/zoneinfo/right\n\ncp leap-seconds.list $out/share/zoneinfo\n\nmkdir -p \"$dev/include\"\ncp tzfile.h \"$dev/include/tzfile.h\"\n",
       setupHook: nix.path(here, "./tzdata-setup-hook.sh"),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: postgresql })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: postgresql })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.iana.org/time-zones",
         description: "Database of current and historical time zones",
         changelog: nix.thunk(() => nix.str`https://github.com/eggert/tz/blob/${nix.sel(finalAttrs, "version")}/NEWS`),

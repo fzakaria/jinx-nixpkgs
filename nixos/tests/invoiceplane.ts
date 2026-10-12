@@ -39,54 +39,54 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "invoiceplane",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "onny"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       invoiceplane_caddy: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             invoiceplane: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               webserver: "caddy",
               sites: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "site1.local": nix.thunk(() => ({
-                  __proto__: pos$3,
-                  database: nix.thunk(() => ({ __proto__: pos$2, name: "invoiceplane1", createLocally: true })),
+                  [nix.POS]: pos$3,
+                  database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "invoiceplane1", createLocally: true })),
                   enable: true,
                 })),
                 "site2.local": nix.thunk(() => ({
-                  __proto__: pos$5,
-                  database: nix.thunk(() => ({ __proto__: pos$4, name: "invoiceplane2", createLocally: true })),
+                  [nix.POS]: pos$5,
+                  database: nix.thunk(() => ({ [nix.POS]: pos$4, name: "invoiceplane2", createLocally: true })),
                   enable: true,
                 })),
               })),
             })),
             caddy: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$10,
-                "site1.local": nix.thunk(() => ({ __proto__: pos$8, extraConfig: "tls internal\n" })),
-                "site2.local": nix.thunk(() => ({ __proto__: pos$9, extraConfig: "tls internal\n" })),
+                [nix.POS]: pos$10,
+                "site1.local": nix.thunk(() => ({ [nix.POS]: pos$8, extraConfig: "tls internal\n" })),
+                "site2.local": nix.thunk(() => ({ [nix.POS]: pos$9, extraConfig: "tls internal\n" })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
             hosts: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
             })),
           })),
@@ -95,32 +95,32 @@ export default nix.lambda((args) => (() => {
       invoiceplane_nginx: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             invoiceplane: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               webserver: "nginx",
               sites: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 "site1.local": nix.thunk(() => ({
-                  __proto__: pos$18,
-                  database: nix.thunk(() => ({ __proto__: pos$17, name: "invoiceplane1", createLocally: true })),
+                  [nix.POS]: pos$18,
+                  database: nix.thunk(() => ({ [nix.POS]: pos$17, name: "invoiceplane1", createLocally: true })),
                   enable: true,
                 })),
                 "site2.local": nix.thunk(() => ({
-                  __proto__: pos$20,
-                  database: nix.thunk(() => ({ __proto__: pos$19, name: "invoiceplane2", createLocally: true })),
+                  [nix.POS]: pos$20,
+                  database: nix.thunk(() => ({ [nix.POS]: pos$19, name: "invoiceplane2", createLocally: true })),
                   enable: true,
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$26,
-            firewall: nix.thunk(() => ({ __proto__: pos$24, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$26,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [80n]) })),
             hosts: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
             })),
           })),

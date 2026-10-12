@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mednafen",
       version: "1.32.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mednafen.github.io/releases/files/mednafen-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3n65SrZiEq53WDdlJDaKirIII0szeWYlymMFR9vIODI=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: "mkdir -p $doc/share/doc\nmv Documentation $doc/share/doc/mednafen\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mednafen.github.io/",
         description: "Portable, CLI-driven, SDL+OpenGL-based, multi-system emulator",
         longDescription: "Mednafen is a portable, utilizing OpenGL and SDL,\nargument(command-line)-driven multi-system emulator. Mednafen has the\nability to remap hotkey functions and virtual system inputs to a keyboard,\na joystick, or both simultaneously. Save states are supported, as is\nreal-time game rewinding. Screen snapshots may be taken, in the PNG file\nformat, at the press of a button. Mednafen can record audiovisual movies\nin the QuickTime file format, with several different lossless codecs\nsupported.\n\nThe following systems are supported (refer to the emulation module\ndocumentation for more details):\n\n- Apple II/II+\n- Atari Lynx\n- Neo Geo Pocket (Color)\n- WonderSwan\n- GameBoy (Color)\n- GameBoy Advance\n- Nintendo Entertainment System\n- Super Nintendo Entertainment System/Super Famicom\n- Virtual Boy\n- PC Engine/TurboGrafx 16 (CD)\n- SuperGrafx\n- PC-FX\n- Sega Game Gear\n- Sega Genesis/Megadrive\n- Sega Master System\n- Sega Saturn (experimental, x86_64 only)\n- Sony PlayStation\n",

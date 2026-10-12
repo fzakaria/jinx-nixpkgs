@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qosmic",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitsed",
           repo: "qosmic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "allow-overriding-PREFIX.patch",
             url: "https://github.com/bitsed/qosmic/commit/77fb3a577b0710efae2a1d9ed97c26ae16f3a5ba.patch",
             sha256: "0v9hj9s78cb6bg8ca0wjkbr3c7ml1n51n8h4a70zpzzgzz7rli5b",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-class-QButtonGroup-include-errors-with-Qt-5.11.patch",
             url: "https://github.com/bitsed/qosmic/commit/3f6e1ea8d384a124dbc2d568171a4da798480752.patch",
             sha256: "0bp6b759plkqs32nvfpkfvf3qqzc9716k3ycwnjvwabbvpg1xwbl",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => ["CONFIG+=link_pkgconfig"]),
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv qosmic.app $out/Applications\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cosmic recursive flame fractal editor",
         mainProgram: "qosmic",
         homepage: "https://github.com/bitsed/qosmic",

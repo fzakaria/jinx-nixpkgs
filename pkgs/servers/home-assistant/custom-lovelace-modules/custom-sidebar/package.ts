@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "custom-sidebar",
       version: "17.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elchininet",
           repo: "custom-sidebar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8KTO0Y6GPJc+EGlilZGWP301NPUo+5K9Vf8CMllTe6c=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm, nodejs]),
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp dist/* \"$out\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, entrypoint: "custom-sidebar-yaml.js" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, entrypoint: "custom-sidebar-yaml.js" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Custom plugin that allows you to personalise the Home Assistant's sidebar per user or device basis",
         homepage: "https://elchininet.github.io/custom-sidebar",
         downloadPage: "https://github.com/elchininet/custom-sidebar",

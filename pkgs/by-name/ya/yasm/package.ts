@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yasm",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.tortall.net/projects/yasm/releases/yasm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0gv0slmm0qpq91za3v2v9glff3il594x5xsrbgab7xcmnh0ndkix",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./gcc-15.patch")]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.tortall.net/projects/yasm/",
         description: "Complete rewrite of the NASM assembler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

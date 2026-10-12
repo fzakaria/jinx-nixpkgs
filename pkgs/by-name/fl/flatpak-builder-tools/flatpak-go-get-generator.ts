@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       src: src,
       version: version,
       pname: "flatpak-go-get-generator",

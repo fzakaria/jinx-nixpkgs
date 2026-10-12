@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(python3Packages, "optiland"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "optiland-python-env",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       dontConfigure: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pythonPaths: nix.thunk(() => nix.app(nix.sel(python3Packages, "requiredPythonModules"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(python3Packages, "optiland")),
             nix.thunk(() => nix.sel(python3Packages, "python")),
@@ -50,7 +50,7 @@ done
 `),
       dontInstall: true,
       meta: nix.thunk(() => nix.update(nix.sel(python3Packages, "optiland", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add(nix.sel(python3Packages, "optiland", "meta", "description"), "; The GUI")),
         mainProgram: "optiland",
       })),

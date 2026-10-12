@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pypdf",
       version: "6.19.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "py-pdf",
           repo: "pypdf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,17 +49,17 @@ export default nix.lambda((args) => (() => {
         const fonts = nix.thunk(() => [fonttools]);
         const image = nix.thunk(() => [pillow]);
         const rtl_text = nix.thunk(() => [arabic_reshaper, python_bidi]);
-        return { __proto__: pos$2, full, crypto, fonts, image, rtl_text };
+        return { [nix.POS]: pos$2, full, crypto, fonts, image, rtl_text };
       })()),
       pythonImportsCheck: nix.thunk(() => ["pypdf"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(fpdf2, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(fpdf2, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
         pytestCheckHook,
         pytest_timeout,
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "full"))),
       disabledTestMarks: nix.thunk(() => ["enable_socket"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pure-python PDF library capable of splitting, merging, cropping, and transforming the pages of PDF files",
         homepage: "https://github.com/py-pdf/pypdf",
         changelog: nix.thunk(() => nix.str`https://github.com/py-pdf/pypdf/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

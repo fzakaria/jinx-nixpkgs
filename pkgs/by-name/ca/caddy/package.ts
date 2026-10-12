@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "caddy",
       version: "2.11.7",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caddyserver",
           repo: "caddy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,28 +67,28 @@ installShellCompletion --cmd caddy \\
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         withPlugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             caddy: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         dist: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "caddyserver",
             repo: "dist",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-KvdaqiX06I1ft+p67J1ISgP512SoZ4syDzfe888ZqGI=",
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--custom-dep", "dist"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--custom-dep", "dist"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           caddy: nix.thunk(() => nix.attr(nixosTests, "caddy")),
           plugins: nix.thunk(() => nix.app(nix.sel(testers, "runNixOSTest"), nix.path(here, "./plugins.test.nix"))),
           "acme-integration": nix.thunk(() => nix.sel(nixosTests, "acme", "caddy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://caddyserver.com",
         description: "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
         changelog: nix.thunk(() => nix.str`https://github.com/caddyserver/caddy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

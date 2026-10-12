@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-m3w7QS6eadFyz7JL4Oat3MnxvQGijbi+vmbXXMxTPYg=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["astral"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Calculations for the position of the sun and the moon",
         homepage: "https://github.com/sffjunkie/astral/",
         changelog: nix.thunk(() => nix.str`https://github.com/sffjunkie/astral/releases/tag/${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

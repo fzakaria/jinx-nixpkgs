@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const puredata = nix.arg($, "puredata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cyclone",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "porres",
           repo: "pd-cyclone",
           tag: nix.thunk(() => nix.str`cyclone_${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         "prefix=$(out)",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       postInstall: "mv \"$out/lib/pd-externals/cyclone\" \"$out/\"\nrm -rf $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library of PureData classes, bringing some level of compatibility between Max/MSP and Pd environments",
         homepage: "http://puredata.info/downloads/cyclone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

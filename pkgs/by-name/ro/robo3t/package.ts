@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.3";
       const rev = "48f7dfd";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Studio3T/robomongo/releases/download/v${version}/robo3t-${version}-linux-x86_64-${rev}.tar.gz`),
           sha256: "sha256-pH4q/O3bq45ZZn+s/12iScd0WbfkcLjK4MBdVCMXK00=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/Studio3T/robomongo/raw/${rev}/install/macosx/robomongo.iconset/icon_128x128.png`),
           sha256: "sha256-2PkUxBq2ow0wl09k8B6LJJUQ+y4GpnmoAeumKN1u5xg=",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "robo3t",
           exec: "robo3t",
           icon: icon,
@@ -100,7 +100,7 @@ makeWrapper $BASEDIR/bin/robo3t $out/bin/robo3t \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://robomongo.org/",
         description: "Query GUI for mongodb. Formerly called Robomongo",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -116,7 +116,7 @@ runHook postInstall
         mainProgram: "robo3t",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

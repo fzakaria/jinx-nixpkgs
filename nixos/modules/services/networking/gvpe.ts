@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "gvpe"));
   const finalConfig = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : (nix.asBool(!nix.eq(nix.sel(cfg, "configText"), null)) ? nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "gvpe.conf",
       text: nix.thunk(() => nix.sel(cfg, "configText")),
     }))) : nix.builtins.throw("You must either specify contents of the config file or the config file itself for GVPE"))));
   const ifupScript = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "ipAddress"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "subnet"), null)))) ? nix.builtins.throw("Specify IP address and subnet (with mask) for GVPE") : (nix.asBool(nix.eq(nix.sel(cfg, "nodename"), null)) ? nix.builtins.throw("You must set node name for GVPE") : nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "gvpe-if-up",
       text: nix.thunk(() => nix.str`#! /bin/sh
 
@@ -51,49 +51,49 @@ ${nix.sel(cfg, "customIFSetup")}
       executable: true,
     }))))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         gvpe: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gvpe")),
           nodename: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               description: "GVPE node name\n",
             })))),
           configText: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "lines")))),
               example: "tcp-port = 655\nudp-port = 655\nmtu = 1480\nifname = vpn0\n\nnode = alpha\nhostname = alpha.example.org\nconnect = always\nenable-udp = true\nenable-tcp = true\non alpha if-up = if-up-0\non alpha pid-file = /var/gvpe/gvpe.pid\n",
               description: "GVPE config contents\n",
             })))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               example: "/root/my-gvpe-conf",
               description: "GVPE config file, if already present\n",
             })))),
           ipAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               description: "IP address to assign to GVPE interface\n",
             })))),
           subnet: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               example: "10.0.0.0/8",
               description: "IP subnet assigned to GVPE network\n",
             })))),
           customIFSetup: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Additional commands to apply in ifup script\n",
@@ -102,13 +102,13 @@ ${nix.sel(cfg, "customIFSetup")}
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             gvpe: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "GNU Virtual Private Ethernet node",
               documentation: nix.thunk(() => ["info:gvpe", "man:gvpe(8)"]),
               after: nix.thunk(() => ["network.target"]),
@@ -121,7 +121,7 @@ cp ${finalConfig} /var/gvpe/gvpe.conf
 cp ${ifupScript} /var/gvpe/if-up
 `),
               script: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`${nix.sel(pkgs, "gvpe")}/sbin/gvpe -c /var/gvpe -D ${nix.sel(cfg, "nodename")} `, nix.str` ${nix.sel(cfg, "nodename")}.pid-file=/var/gvpe/gvpe.pid`), nix.str` ${nix.sel(cfg, "nodename")}.if-up=if-up`), " &> /var/log/gvpe")),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Restart: "always" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Restart: "always" })),
             })),
           })),
         })),

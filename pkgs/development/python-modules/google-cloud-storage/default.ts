@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-storage-v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         grpc: nix.thunk(() => nix.concat([
           google_api_core,
           grpc_google_iam_v1,
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# prevent google directory from shadowing google imports\nrm -r google\n\n# requires docker and network\nrm tests/conformance/test_conformance.py\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.storage"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Cloud Storage API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-storage",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/google-cloud-storage/CHANGELOG.md`),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

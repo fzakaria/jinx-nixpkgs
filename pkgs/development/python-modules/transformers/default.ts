@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_exporter_otlp = nix.arg($, "opentelemetry-exporter-otlp");
   const opentelemetry_sdk = nix.arg($, "opentelemetry-sdk");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "transformers",
       version: "5.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "transformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         typer,
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ja: nix.thunk(() => [fugashi, ipadic, unidic, sudachipy]),
           sklearn: nix.thunk(() => [scikit_learn]),
           torch: nix.thunk(() => [torch, accelerate]),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["transformers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/huggingface/transformers",
         description: "Natural Language Processing for TensorFlow 2.0 and PyTorch",
         mainProgram: "transformers-cli",

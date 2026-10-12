@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "courier-prime",
       version: "0-unstable-2019-11-20",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quotunquoteapps",
           repo: "CourierPrime",
           rev: "7f6d46a766acd9391d899090de467c53fd9c9cb0",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       postInstall: "installFonts ttf $out/share/fonts/truetype\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced font designed specifically for screenplays",
         homepage: "https://github.com/quoteunquoteapps/CourierPrime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -30,56 +30,56 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "common/ec2.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       makeTest: nix.thunk(() => nix.lookup(w_1, "makeTest")),
       pkgs: pkgs,
     })))), w_1);
   const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../maintainers/scripts/ec2/amazon-image.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             initrd: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               services: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 udev: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   rules: "KERNEL==vda, SYMLINK+=xvda\nKERNEL==vda1, SYMLINK+=xvda1\n",
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             udev: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               extraRules: "KERNEL==vda, SYMLINK+=xvda\nKERNEL==vda1, SYMLINK+=xvda1\n",
             })),
           })),
-          amazonImage: nix.thunk(() => ({ __proto__: pos$10, format: "qcow2" })),
+          amazonImage: nix.thunk(() => ({ [nix.POS]: pos$10, format: "qcow2" })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "serial-getty@ttyS0": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_2, "mkForce"), false)),
               })),
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             extraDependencies: nix.thunk(() => (() => {
               const w_3 = nix.withScope(pkgs, w_2);
               return [
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })),
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$15, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$15, pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
@@ -110,11 +110,11 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKeyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "private-key", snakeOilPrivateKey));
   const snakeOilPublicKey = nix.thunk(() => nix.sel(sshKeys, "snakeOilPublicKey"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     "boot-ec2-nixops": nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "nixops-userdata",
-        meta: nix.thunk(() => ({ __proto__: pos$18, timeout: 600n })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$18, timeout: 600n })),
         image: image,
         sshPublicKey: snakeOilPublicKey,
         userData: nix.thunk(() => nix.str`SSH_HOST_ED25519_KEY_PUB:${snakeOilPublicKey}
@@ -158,9 +158,9 @@ machine.wait_for_file("/etc/ec2-metadata/user-data")
 `),
       })))),
     "boot-ec2-config": nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: "config-userdata",
-        meta: nix.thunk(() => ({ __proto__: pos$20, broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$20, broken: true })),
         image: image,
         sshPublicKey: snakeOilPublicKey,
         userData: "{ pkgs, ... }:\n\n{\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/amazon-image.nix>\n    <nixpkgs/nixos/modules/testing/test-instrumentation.nix>\n    <nixpkgs/nixos/modules/profiles/qemu-guest.nix>\n  ];\n  environment.etc.testFile = {\n    text = \"whoa\";\n  };\n\n  networking.hostName = \"ec2-test-vm\"; # required by services.httpd\n\n  services.httpd = {\n    enable = true;\n    adminAddr = \"test@example.org\";\n    virtualHosts.localhost.documentRoot = \"${pkgs.valgrind.doc}/share/doc/valgrind/html\";\n  };\n  networking.firewall.allowedTCPPorts = [ 80 ];\n}\n",

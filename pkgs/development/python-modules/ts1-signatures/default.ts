@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ts1-signatures",
       version: "0-unstable-2024-08-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yifeikong",
           repo: "th1",
           rev: "efa682bd37c668ae00d2225deb753e01f6cd1406",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_nghttpd_log_parsing"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TLS and HTTP signature and fingerprint library",
         homepage: "https://github.com/yifeikong/th1",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

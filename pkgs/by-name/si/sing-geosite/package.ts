@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const v2ray_domain_list_community = nix.arg($, "v2ray-domain-list-community");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sing-geosite",
       version: nix.thunk(() => nix.attr(v2ray_domain_list_community, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SagerNet",
           repo: "sing-geosite",
           tag: "20250326132209",
@@ -42,7 +42,7 @@ EOF
       buildPhase: "runHook preBuild\ngo run -v .\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm644 rule-set/* -t $out/share/sing-box/rule-set\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Community managed domain list",
         homepage: "https://github.com/SagerNet/sing-geosite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

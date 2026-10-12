@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pure-ftpd",
       version: "1.0.54",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3JFAQg7ET3gpV5WR/zeKpjlrRgS5xq6uhHNo4PNb17I=",
         })))),
       buildInputs: nix.thunk(() => [openssl, pam, libxcrypt]),
       configureFlags: nix.thunk(() => ["--with-tls"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, secure, production-quality and standard-conformant FTP server",
         homepage: "https://www.pureftpd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

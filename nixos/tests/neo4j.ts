@@ -12,20 +12,20 @@ const pos$7 = nix.positions(here + "/neo4j.nix", [["server", 4, 9]]);
 const pos$8 = nix.positions(here + "/neo4j.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 14, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   name: "neo4j",
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     server: nix.thunk(() => ({
-      __proto__: pos$6,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 4096n, diskSize: 1024n })),
+      [nix.POS]: pos$6,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 4096n, diskSize: 1024n })),
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         neo4j: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: true,
-          https: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
-          bolt: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+          https: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+          bolt: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
         })),
       })),
     })),

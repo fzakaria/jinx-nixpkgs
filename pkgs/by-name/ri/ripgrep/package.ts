@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const canRunRg = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const rg = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/rg${nix.sel(stdenv, "hostPlatform", "extensions", "executable")}`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ripgrep",
       version: "15.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BurntSushi",
           repo: "ripgrep",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ ${rg} -N 'cd' "$file"
 `, nix.app(nix.sel(lib, "optionalString"), withPCRE2, nix.thunk(() => nix.str`echo '(a(aa)aa)' | ${rg} -P '\\((a*|(?R))*\\)'
 `)))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
         homepage: "https://github.com/BurntSushi/ripgrep",
         changelog: nix.thunk(() => nix.str`https://github.com/BurntSushi/ripgrep/releases/tag/${nix.sel(finalAttrs, "version")}`),

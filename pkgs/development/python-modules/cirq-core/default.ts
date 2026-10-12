@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const withContribRequires = nix.argOr($, "withContribRequires", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cirq-core",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quantumlib",
           repo: "cirq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withContribRequires)), nix.thunk(() => ["cirq/contrib/", "cirq/_version_test.py"]))),
       disabledTests: nix.thunk(() => nix.concat(["test_parameterized_cphase"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_prepare_two_qubit_state_using_sqrt_iswap"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_scalar_division"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for creating, editing, and invoking Noisy Intermediate Scale Quantum (NISQ) circuits",
         homepage: "https://github.com/quantumlib/cirq",
         changelog: nix.thunk(() => nix.str`https://github.com/quantumlib/Cirq/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

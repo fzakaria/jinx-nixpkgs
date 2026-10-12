@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(sources, nix.key(pname)));
       const version = nix.thunk(() => nix.attr(from, "version"));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.sel(sources, nix.key(pname))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const extraNativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), cargo, rustc]);
       const extraBuildInputs = nix.thunk(() => [qtsvg, qtwebengine, corrosion, qcoro]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         cargoDeps,

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "singroup",
           repo: "dscribe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "dscribe-numpy-compatibility",
             url: "https://github.com/SINGROUP/dscribe/pull/162.patch",
             hash: "sha256-mSKIerAIqdRp6b/ylqcYr8VwLCGxw5fz/5foo0ZQqgk=",
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
         "tests/test_valle_oganov.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Machine learning descriptors for atomistic systems",
         homepage: "https://github.com/SINGROUP/dscribe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmagnify",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amiloradovsky",
           repo: "magnify",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "substituteInPlace Makefile --replace-fail /usr $out\n# gcc15\nsubstituteInPlace main.c --replace-fail 'handler ()' 'handler (int sig)'\n",
       buildInputs: nix.thunk(() => [libx11, xorgproto]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny screen magnifier for X11",
         homepage: "https://gitlab.com/amiloradovsky/magnify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

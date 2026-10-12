@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ecwolf",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ECWolfEngine",
           repo: "ECWolf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeWrapper])))),
       buildInputs: nix.thunk(() => [zlib, bzip2, libjpeg, SDL2, SDL2_net, SDL2_mixer, gtk3]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-framework", "AppKit"]))),
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\ncp -R ecwolf.app $out/Applications\nmakeWrapper $out/{Applications/ecwolf.app/Contents/MacOS,bin}/ecwolf\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => (() => {
           const updateScriptPkg = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "ecwolf_update_script", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               libraries: nix.thunk(() => (() => {
                 const w = nix.withScope(python3Packages, null);
                 return [
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Advanced source port for Wolfenstein 3D, Spear of Destiny, and Super 3D Noah's Ark",
         mainProgram: "ecwolf",
         homepage: "https://maniacsvault.net/ecwolf/",

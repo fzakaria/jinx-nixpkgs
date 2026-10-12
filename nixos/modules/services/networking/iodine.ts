@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const iodinedUser = "iodined";
   const isProtected = (x) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/root", x)) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/home", x)));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "iodined", "enable"]), nix.thunk(() => ["services", "iodine", "server", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "iodined", "domain"]), nix.thunk(() => ["services", "iodine", "server", "domain"]))),
@@ -52,43 +52,43 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "iodined", "client"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         iodine: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           clients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               description: "Each attribute of this option defines a systemd service that\nruns iodine. Many or none may be defined.\nThe name of each service is\n`iodine-«name»`\nwhere «name» is the name of the\ncorresponding attribute name.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  foo = {\n    server = \"tunnel.mdomain.com\";\n    relay = \"8.8.8.8\";\n    extraConfig = \"-v\";\n  }\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Hostname of server running iodined",
                           example: "tunnel.mydomain.com",
                         })))),
                       relay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "DNS server to use as an intermediate relay to the iodined server",
                           example: "8.8.8.8",
                         })))),
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Additional command line parameters",
                           example: "-l 192.168.1.10 -p 23",
                         })))),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Path to a file containing the password.",
@@ -97,36 +97,36 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           server: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "enable iodined server",
               })))),
             ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "The assigned ip address or ip range",
                 example: "172.16.10.1/24",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Domain or subdomain of which nameservers point to us",
                 example: "tunnel.mydomain.com",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Additional command line parameters",
                 example: "-l 192.168.1.10 -p 23",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "File that contains password",
@@ -136,23 +136,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "server", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "clients"), {})))), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iodine"))]),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$18, kernelModules: nix.thunk(() => ["tun"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$18, kernelModules: nix.thunk(() => ["tun"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => (() => {
             const createIodineClientService = (name) => (cfg_1) => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: nix.thunk(() => nix.str`iodine client - ${name}`),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.str`exec ${nix.sel(pkgs, "iodine")}/bin/iodine -f -u ${iodinedUser} ${nix.sel(cfg_1, "extraConfig")} ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg_1, "passwordFile"), "")), nix.thunk(() => nix.str`< "${nix.builtins.toString(nix.thunk(() => nix.sel(cfg_1, "passwordFile")))}"`))} ${nix.sel(cfg_1, "relay")} ${nix.sel(cfg_1, "server")}`),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 RestartSec: "30s",
                 Restart: "always",
                 ProtectSystem: "strict",
@@ -171,15 +171,15 @@ export default nix.lambda((args) => (() => {
               })),
             });
             return nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`iodine-${name}`), nix.thunk(() => nix.app(createIodineClientService, name, value))), nix.thunk(() => nix.sel(cfg, "clients"))))), {
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               iodined: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   description: "iodine, ip over dns server daemon",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   script: nix.thunk(() => nix.str`exec ${nix.sel(pkgs, "iodine")}/bin/iodined -f -u ${iodinedUser} ${nix.sel(cfg, "server", "extraConfig")} ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "passwordFile"), "")), nix.thunk(() => nix.str`< "${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "passwordFile")))}"`))} ${nix.sel(cfg, "server", "ip")} ${nix.sel(cfg, "server", "domain")}`),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     ProtectSystem: "strict",
                     ProtectHome: nix.thunk(() => (nix.asBool(nix.app(isProtected, nix.thunk(() => nix.sel(cfg, "server", "passwordFile")))) ? "read-only" : "true")),
                     PrivateTmp: true,
@@ -199,19 +199,19 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [iodinedUser, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "iodined")),
               group: "iodined",
               description: "Iodine daemon user",
             }))],
           ])),
           groups: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             iodined: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "iodined")),
             })),
           })),

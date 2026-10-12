@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const toolhive = nix.arg($, "toolhive");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "toolhive",
       version: "0.43.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stacklok",
           repo: "toolhive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/thv", "cmd/thv-operator"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: toolhive,
               command: "thv version",
               version: "ToolHive build-unknown",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Run any MCP server — securely, instantly, anywhere",
         longDescription: "ToolHive is an open-source tool for deploying Model Context Protocol (MCP)\nservers with a focus on security and ease of use. It provides a CLI to\ndiscover and deploy MCP servers, run servers in isolated containers,\nmanage server configurations, and auto-configure clients like GitHub Copilot.\n",
         homepage: "https://github.com/stacklok/toolhive",

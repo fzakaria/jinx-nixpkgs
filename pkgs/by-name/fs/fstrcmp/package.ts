@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fstrcmp",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/fstrcmp/files/fstrcmp/${nix.sel(finalAttrs, "version")}/fstrcmp-${nix.sel(finalAttrs, "version")}.D001.tar.gz`),
           sha256: "0yg3y3k0wz50gmhgigfi2dx725w1gc8snb95ih7vpcnj6kabgz9a",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libtool, ghostscript, groff, autoreconfHook]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make fuzzy comparisons of strings and byte arrays",
         mainProgram: "fstrcmp",
         longDescription: "The fstrcmp project provides a library that is used to make fuzzy\ncomparisons of strings and byte arrays, including multi-byte character\nstrings.\n",

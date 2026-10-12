@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
   const defaultGroup = "speedtest-tracker";
   const artisan = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/artisan`);
   const env_file_values = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "_FILE", n)),
       value: v,
     }), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(nix.app(nix.sel(lib, "match"), ".+_FILE", n), null))), nix.thunk(() => nix.sel(cfg, "settings"))))));
@@ -96,7 +96,7 @@ set +a
 exec ${artisan} ${command}
 `));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     Type: "oneshot",
     User: user,
     Group: group,
@@ -130,51 +130,51 @@ exec ${artisan} ${command}
     PrivateUsers: true,
   }));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "speedtest-tracker": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Speedtest Tracker: A self-hosted internet performance tracking application")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "speedtest-tracker", nix.thunk(() => ({}))), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
-              apply: (speedtest_tracker) => nix.app(nix.sel(speedtest_tracker, "override"), (prev) => ({ __proto__: pos$3, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              [nix.POS]: pos$4,
+              apply: (speedtest_tracker) => nix.app(nix.sel(speedtest_tracker, "override"), (prev) => ({ [nix.POS]: pos$3, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
             }))))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User account under which Speedtest Tracker runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? "nginx" : defaultGroup)),
               defaultText: nix.thunk(() => nix.str`If \`services.speedtest-tracker.enableNginx\` is true then \`nginx\` else ${defaultGroup}`),
               description: "Group under which Speedtest Tracker runs. It is best to set this to the group\nof whatever webserver is being used as the frontend.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/speedtest-tracker",
               description: "The place where Speedtest Tracker stores its state.\n",
             })))),
           enableNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nginx or not. If enabled, an nginx virtual host will\nbe created for access to Speedtest Tracker. If not enabled, then you may use\n`${config.services.speedtest-tracker.package}` as your document root in\nwhichever webserver you wish to setup.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "The hostname at which you wish Speedtest Tracker to be served. If you have\nenabled nginx using `services.speedtest-tracker.enableNginx` then this will\nbe used.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -185,53 +185,53 @@ exec ${artisan} ${command}
               description: "Options for the Speedtest Tracker PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: nix.thunk(() => ({})),
               description: "Options for Speedtest Tracker configuration. Refer to\n<https://github.com/alexjustesen/speedtest-tracker> for\ndetails on supported values. All `_FILE` values are supported:\nappend `_FILE` to the setting name to provide a path to a file\ncontaining the secret value.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  APP_KEY_FILE = \"/var/secrets/speedtest-tracker-app-key.txt\";\n  DB_CONNECTION = \"mysql\";\n  DB_HOST = \"db\";\n  DB_PORT = 3306;\n  DB_DATABASE = \"speedtest-tracker\";\n  DB_USERNAME = \"speedtest-tracker\";\n  DB_PASSWORD_FILE = \"/var/secrets/speedtest-tracker-mysql-password.txt\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "str")),
                         nix.thunk(() => nix.sel(lib, "types", "int")),
                         nix.thunk(() => nix.sel(lib, "types", "bool")),
                       ]))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     APP_KEY_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "The path to your appkey. The file should contain a 32 character\nrandom app key. This may be set using `echo \"base64:$(head -c 32\n/dev/urandom | base64)\" > /path/to/key-file`.\n",
                       })))),
                     APP_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "virtualHost"), "localhost")) ? nix.str`http://${nix.sel(cfg, "virtualHost")}` : nix.str`https://${nix.sel(cfg, "virtualHost")}`)),
                         defaultText: "http(s)://${config.services.speedtest-tracker.virtualHost}\n",
                         description: "The APP_URL used by Speedtest Tracker internally. Please make sure this\nURL matches the external URL of your installation. It is used to\nvalidate specific requests and to generate URLs in notifications.\n",
                       })))),
                     DB_CONNECTION: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "mysql", "mariadb", "pgsql"]))),
                         default: "sqlite",
                         example: "pgsql",
                         description: "The type of database you wish to use. Can be one of \"sqlite\",\n\"mysql\", \"mariadb\" or \"pgsql\".\n",
                       })))),
                     DB_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "localhost",
                         description: "The IP or hostname which hosts your database.\n",
                       })))),
                     DB_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "pgsql")) ? 5432n : (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "mysql")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "mariadb")))) ? 3306n : null))),
                         defaultText: "`null` if DB_CONNECTION is \"sqlite\", `3306` if \"mysql\" or \"mariadb\", `5432` if \"pgsql\"\n",
                         description: "The port your database is listening at. sqlite does not require\nthis value to be filled.\n",
                       })))),
                     DB_DATABASE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "sqlite")) ? nix.str`${nix.sel(cfg, "dataDir")}/storage/database/database.sqlite` : "speedtest-tracker")),
                         defaultText: "\"${config.services.speedtest-tracker.dataDir}/storage/database/database.sqlite\" if DB_CONNECTION is \"sqlite\", \"speedtest-tracker\" otherwise\n",
@@ -244,21 +244,21 @@ exec ${artisan} ${command}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             pools: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "speedtest-tracker": nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 user: user,
                 group: group,
                 phpPackage: nix.thunk(() => nix.sel(cfg, "package", "phpPackage")),
                 phpOptions: "log_errors = on\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   "listen.mode": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0660")),
                   "listen.owner": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), user)),
                   "listen.group": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), group)),
@@ -273,75 +273,75 @@ exec ${artisan} ${command}
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       tryFiles: "$uri $uri/ /index.php?$query_string",
                       index: "index.php",
                       extraConfig: "sendfile off;\n",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_param SCRIPT_FILENAME $request_filename;
 fastcgi_param modHeadersAvailable true;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "speedtest-tracker", "socket")};
 `),
                     })),
-                    "~ \\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ __proto__: pos$29, extraConfig: "expires 365d;" })),
+                    "~ \\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ [nix.POS]: pos$29, extraConfig: "expires 365d;" })),
                   })),
                 }))],
               ])),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             "speedtest-tracker-setup": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               after: nix.thunk(() => ["postgresql.target", "mysql.service"]),
               requiredBy: nix.thunk(() => ["phpfpm-speedtest-tracker.service"]),
               before: nix.thunk(() => ["phpfpm-speedtest-tracker.service"]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 ExecStart: speedtest_tracker_maintenance,
                 RemainAfterExit: true,
               }, commonServiceConfig)),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$35, JoinsNamespaceOf: "phpfpm-speedtest-tracker.service" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$35, JoinsNamespaceOf: "phpfpm-speedtest-tracker.service" })),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               partOf: nix.thunk(() => ["phpfpm-speedtest-tracker.service"]),
             })),
             "speedtest-tracker-scheduler": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               after: nix.thunk(() => ["speedtest-tracker-setup.service"]),
               wants: nix.thunk(() => ["speedtest-tracker-setup.service"]),
               description: "Speedtest Tracker scheduler",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ookla-speedtest"))]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 ExecStart: nix.thunk(() => nix.app(speedtest_tracker_env_script, "schedule:run")),
               }, commonServiceConfig)),
             })),
             "speedtest-tracker-queue-worker": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               after: nix.thunk(() => ["speedtest-tracker-setup.service"]),
               wants: nix.thunk(() => ["speedtest-tracker-setup.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Speedtest Tracker queue worker",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ookla-speedtest"))]),
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 Type: "simple",
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.app(speedtest_tracker_env_script, "queue:work --sleep=3 --tries=3")),
@@ -349,19 +349,19 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "speedtest-tr
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "speedtest-tracker-scheduler": nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               description: "Speedtest Tracker scheduler timer",
-              timerConfig: nix.thunk(() => ({ __proto__: pos$42, OnCalendar: "minutely", Persistent: true })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$42, OnCalendar: "minutely", Persistent: true })),
               wantedBy: nix.thunk(() => ["timers.target"]),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             settings: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               "10-speedtest-tracker": nix.thunk(() => nix.update(nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage/app`),
@@ -373,22 +373,22 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "speedtest-tr
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage/logs`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/cache`),
                 ]), (n) => ({
-                  __proto__: pos$46,
-                  d: nix.thunk(() => ({ __proto__: pos$45, group: group, mode: "0700", user: user })),
+                  [nix.POS]: pos$46,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$45, group: group, mode: "0700", user: user })),
                 })), nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$48,
-                  d: nix.thunk(() => ({ __proto__: pos$47, group: group, mode: "0710", user: user })),
+                  [nix.POS]: pos$48,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$47, group: group, mode: "0710", user: user })),
                 }))],
               ]))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(user, defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 group: group,
                 isSystemUser: true,
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -398,7 +398,7 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "speedtest-tr
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => nix.sel(pkgs, "speedtest-tracker", "meta", "maintainers")),
     })),
   };

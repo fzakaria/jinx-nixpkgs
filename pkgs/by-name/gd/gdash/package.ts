@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const SDL2_image = nix.arg($, "SDL2_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gdash",
       version: "0-unstable-2023-06-24",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "czirkoszoltan",
           repo: "gdash",
           rev: "f980da7f4318f5296424720416911876bdb8d6bf",
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, gtk3, SDL2_mixer, SDL2_image]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str` -I${nix.app(nix.sel(lib, "getInclude"), SDL2_image)}/include/SDL2`),
       })),
       doCheck: true,
       checkTarget: "check",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Maze-based puzzle video game, a clone of the original Boulder Dash",
         homepage: "https://bitbucket.org/czirkoszoltan/gdash",
         changelog: "https://bitbucket.org/czirkoszoltan/gdash/src/master/ChangeLog",

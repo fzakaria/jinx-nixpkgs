@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const notmuch = nix.arg($, "notmuch");
   const version = "10";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notmuch-addrlookup",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aperezdc",
           repo: "notmuch-addrlookup-c",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, notmuch]),
       installPhase: "install -D notmuch-addrlookup $out/bin/notmuch-addrlookup",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Address lookup tool for Notmuch in C",
         homepage: "https://github.com/aperezdc/notmuch-addrlookup-c",
         maintainers: nix.thunk(() => (() => {

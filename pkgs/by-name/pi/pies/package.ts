@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pies",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/pies/pies-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ZSi00WmC6il4+aSohqFKrKjtp6xFXYE7IIRGVwFmHWw=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program invocation and execution supervisor",
         longDescription: "The name Pies (pronounced \"p-yes\") stands for Program Invocation and\nExecution Supervisor.  This utility starts and controls execution of\nexternal programs, called components.  Each component is a\nstand-alone program, which is executed in the foreground.  Upon\nstartup, pies reads the list of components from its configuration\nfile, starts them, and remains in the background, controlling their\nexecution.  If any of the components terminates, the default action\nof Pies is to restart it.  However, it can also be programmed to\nperform a variety of another actions such as, e.g., sending mail\nnotifications to the system administrator, invoking another external\nprogram, etc.\n\nPies can be used for a wide variety of tasks.  Its most obvious use\nis to put in background a program which normally cannot detach itself\nfrom the controlling terminal, such as, e.g., minicom.  It can\nlaunch and control components of some complex system, such as\nJabberd or MeTA1 (and it offers much more control over them than the\nnative utilities).  Finally, it can replace the inetd utility!\n",
         homepage: "https://www.gnu.org/software/pies/",

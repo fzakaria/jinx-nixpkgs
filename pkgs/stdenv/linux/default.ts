@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
   const overlays = nix.arg($, "overlays");
   const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => (() => {
     const table = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       glibc: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "armv5tel-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv5tel-unknown-linux-gnueabi.nix"))),
         "armv6l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv6l-unknown-linux-gnueabihf.nix"))),
         "armv7l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv7l-unknown-linux-gnueabihf.nix"))),
@@ -87,31 +87,31 @@ export default nix.lambda((args) => (() => {
         "loongarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/loongarch64-unknown-linux-gnu.nix"))),
       })),
       musl: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "aarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-unknown-linux-musl.nix"))),
         "armv6l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv6l-unknown-linux-musleabihf.nix"))),
       })),
     }));
-    const getCompatibleTools = nix.thunk(() => nix.app(nix.sel(lib, "foldl"), (v) => (system) => (nix.asBool(!nix.eq(v, null)) ? nix.force(v) : (nix.asBool(nix.app(nix.sel(localSystem, "canExecute"), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ __proto__: pos$4, system: system })))))) ? nix.sel(archLookupTable, nix.key(nix.force(system))) : null)), null, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), archLookupTable))));
+    const getCompatibleTools = nix.thunk(() => nix.app(nix.sel(lib, "foldl"), (v) => (system) => (nix.asBool(!nix.eq(v, null)) ? nix.force(v) : (nix.asBool(nix.app(nix.sel(localSystem, "canExecute"), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: pos$4, system: system })))))) ? nix.sel(archLookupTable, nix.key(nix.force(system))) : null)), null, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), archLookupTable))));
     const archLookupTable = nix.thunk(() => nix.selOr(table, () => nix.builtins.throw("unsupported libc for the pure Linux stdenv"), nix.key(nix.sel(localSystem, "libc"))));
     const files = nix.thunk(() => nix.selOr(archLookupTable, () => (nix.asBool(!nix.eq(getCompatibleTools, null)) ? nix.force(getCompatibleTools) : nix.builtins.throw("unsupported platform for the pure Linux stdenv")), nix.key(nix.sel(localSystem, "system"))));
     return nix.app(nix.selOr(config, () => nix.sel(lib, "id"), "replaceBootstrapFiles"), files);
   })());
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ __proto__: pos$5, defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: pos$5, defaultConfig: config }))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
   const isFromNixpkgs = (pkg) => !nix.asBool(nix.app(isFromBootstrapFiles, pkg));
   const isFromBootstrapFiles = (pkg) => nix.selOr(pkg, () => nix.selOr(pkg, () => false, "passthru", "isFromMinBootstrap"), "passthru", "isFromBootstrapFiles");
   const isBuiltByNixpkgsCompiler = (pkg) => (nix.asBool(nix.app(isFromNixpkgs, pkg)) && nix.asBool(nix.app(isFromNixpkgs, nix.thunk(() => nix.sel(pkg, "stdenv", "cc", "cc")))));
   const isBuiltByBootstrapFilesCompiler = (pkg) => (nix.asBool(nix.app(isFromNixpkgs, pkg)) && nix.asBool(nix.app(isFromBootstrapFiles, nix.thunk(() => nix.sel(pkg, "stdenv", "cc", "cc")))));
   const commonGccOverrides = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     reproducibleBuild: true,
     profiledCompiler: false,
     disableGdbPlugin: true,
   }));
   const commonPreHook = "export NIX_ENFORCE_PURITY=\"${NIX_ENFORCE_PURITY-1}\"\nexport NIX_ENFORCE_NO_NATIVE=\"${NIX_ENFORCE_NO_NATIVE-1}\"\n";
   const stage0 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stage0.nix")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       lib: lib,
       config: config,
       localSystem: localSystem,
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
     const overrides = nix.argOr($_1, "overrides", () => (self) => (super$) => ({}));
     const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
     const thisStdenv = nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.str`${name}-stdenv-linux`),
         buildPlatform: localSystem,
         hostPlatform: localSystem,
@@ -137,12 +137,12 @@ ${commonPreHook}
 `),
         shell: nix.thunk(() => nix.str`${nix.sel(stage0, "bash")}/bin/bash`),
         fetchurlBoot: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl/boot.nix")), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             system: system,
             rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
           })))),
         cc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(prevStage, "gcc-unwrapped"), null)) ? null : nix.app(nix.sel(nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper"))), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: nix.thunk(() => nix.str`${name}-gcc-wrapper`),
             nativeTools: false,
             nativeLibc: false,
@@ -158,22 +158,22 @@ ${commonPreHook}
             "fortify-headers": nix.thunk(() => nix.sel(prevStage, "fortify-headers")),
             runtimeShell: nix.thunk(() => nix.sel(prevStage, "ccWrapperStdenv", "shell")),
           }))), "overrideAttrs"), (a) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(prevStage, () => false, "gcc-unwrapped", "passthru", "isXgcc")), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               postFixup: nix.thunk(() => nix.add(nix.selOr(a, () => "", "postFixup"), nix.str`echo "--sysroot=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(prevStage, "libc")))}" >> $out/nix-support/cc-cflags
 `)),
             })))))),
         overrides: (self) => (super$) => nix.update(nix.app(overrides, self, super$), {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           fetchurl: nix.thunk(() => nix.sel(thisStdenv, "fetchurlBoot")),
         }),
       }))));
-    return { __proto__: pos$13, config: config, overlays: overlays, stdenv: thisStdenv };
+    return { [nix.POS]: pos$13, config: config, overlays: overlays, stdenv: thisStdenv };
   })(), formals$2);
   return [
     nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         __raw: true,
         "gcc-unwrapped": null,
         binutils: null,
@@ -190,19 +190,19 @@ ${commonPreHook}
       nix.assert_(nix.app(isFromBootstrapFiles, nix.thunk(() => nix.sel(prevStage, "coreutils"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:276:5");
       nix.assert_(nix.app(isFromBootstrapFiles, nix.thunk(() => nix.sel(prevStage, "gnugrep"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:277:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: "bootstrap-stage1",
           overrides: (self) => (super$) => nix.attrsDyn({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
             "gcc-unwrapped": nix.thunk(() => nix.attr(prevStage, "gcc-unwrapped")),
             coreutils: nix.thunk(() => nix.attr(prevStage, "coreutils")),
             gnugrep: nix.thunk(() => nix.attr(prevStage, "gnugrep")),
             binutils: nix.thunk(() => nix.attr(prevStage, "binutils")),
-            perl: nix.thunk(() => nix.app(nix.sel(super$, "perl", "override"), nix.thunk(() => ({ __proto__: pos$15, enableThreading: false, enableCrypt: false })))),
+            perl: nix.thunk(() => nix.app(nix.sel(super$, "perl", "override"), nix.thunk(() => ({ [nix.POS]: pos$15, enableThreading: false, enableCrypt: false })))),
             gettext: nix.thunk(() => nix.app(nix.sel(super$, "gettext", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$17,
-                env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$16, am_cv_func_iconv_works: "yes" })),
+                [nix.POS]: pos$17,
+                env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$16, am_cv_func_iconv_works: "yes" })),
               }))),
           }, [
             [nix.sel(localSystem, "libc"), nix.thunk(() => nix.sel(prevStage, nix.key(nix.sel(localSystem, "libc"))))],
@@ -218,10 +218,10 @@ ${commonPreHook}
       nix.assert_(nix.app(isFromBootstrapFiles, nix.thunk(() => nix.sel(prevStage, "gnugrep"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:325:5");
       nix.assert_(nix.app(isBuiltByBootstrapFilesCompiler, nix.thunk(() => nix.sel(prevStage, "patchelf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:326:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           name: "bootstrap-stage-xgcc",
           overrides: (self) => (super$) => nix.attrsDyn({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
             coreutils: nix.thunk(() => nix.attr(prevStage, "coreutils")),
             gnugrep: nix.thunk(() => nix.attr(prevStage, "gnugrep")),
@@ -234,14 +234,14 @@ ${commonPreHook}
             patchelf: nix.thunk(() => nix.attr(prevStage, "patchelf")),
             nukeReferences: nix.thunk(() => nix.attr(prevStage, "nukeReferences")),
             libxcrypt: nix.thunk(() => nix.attr(prevStage, "libxcrypt")),
-            gmp: nix.thunk(() => nix.app(nix.sel(super$, "gmp", "override"), nix.thunk(() => ({ __proto__: pos$20, cxx: false })))),
+            gmp: nix.thunk(() => nix.app(nix.sel(super$, "gmp", "override"), nix.thunk(() => ({ [nix.POS]: pos$20, cxx: false })))),
             binutils: nix.thunk(() => nix.app(nix.sel(super$, "binutils", "override"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 runtimeShell: nix.thunk(() => nix.str`${nix.sel(stage0, "bash")}/bin/bash`),
               })))),
-            "gcc-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(super$, "gcc-unwrapped", "override"), nix.thunk(() => nix.update(commonGccOverrides, { __proto__: pos$22, name: "xgcc", enableLTO: false, enableDefaultPie: false }))), "overrideAttrs"), (a) => ({
-                __proto__: pos$24,
-                passthru: nix.thunk(() => nix.update(nix.sel(a, "passthru"), { __proto__: pos$23, isXgcc: true })),
+            "gcc-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(super$, "gcc-unwrapped", "override"), nix.thunk(() => nix.update(commonGccOverrides, { [nix.POS]: pos$22, name: "xgcc", enableLTO: false, enableDefaultPie: false }))), "overrideAttrs"), (a) => ({
+                [nix.POS]: pos$24,
+                passthru: nix.thunk(() => nix.update(nix.sel(a, "passthru"), { [nix.POS]: pos$23, isXgcc: true })),
                 configureFlags: nix.thunk(() => nix.concat(nix.selOr(a, () => [], "configureFlags"), [
                   "--with-native-system-header-dir=/include",
                   nix.thunk(() => nix.str`--with-build-sysroot=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(self, "stdenv", "cc", "libc")))}`),
@@ -264,10 +264,10 @@ ${commonPreHook}
       nix.assert_(nix.app(isFromBootstrapFiles, nix.thunk(() => nix.sel(prevStage, "gnugrep"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:440:5");
       nix.assert_(nix.app(isBuiltByBootstrapFilesCompiler, nix.thunk(() => nix.sel(prevStage, "patchelf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:441:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           name: "bootstrap-stage2",
           overrides: (self) => (super$) => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
             gettext: nix.thunk(() => nix.attr(prevStage, "gettext")),
             "gcc-unwrapped": nix.thunk(() => nix.attr(prevStage, "gcc-unwrapped")),
@@ -283,30 +283,30 @@ ${commonPreHook}
             libxcrypt: nix.thunk(() => nix.attr(prevStage, "libxcrypt")),
             libiconv: nix.thunk(() => nix.app(nix.sel(self, "libcIconv"), nix.thunk(() => nix.sel(prevStage, "libc")))),
             libunistring: nix.thunk(() => nix.app(nix.sel(super$, "libunistring", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 postFixup: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postFixup"), nix.str`${nix.sel(self, "nukeReferences")}/bin/nuke-refs "$out"/lib/lib*.so.*.*
 `)),
-                env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$27, am_cv_func_iconv_works: "yes" })),
+                env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$27, am_cv_func_iconv_works: "yes" })),
               }))),
             libidn2: nix.thunk(() => nix.app(nix.sel(super$, "libidn2", "overrideAttrs"), (attrs) => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 postFixup: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postFixup"), nix.str`${nix.sel(self, "nukeReferences")}/bin/nuke-refs -e '${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(self, "libunistring")))}' \\
   "$out"/lib/lib*.so.*.*
 `)),
               }))),
             binutils: nix.thunk(() => nix.app(nix.sel(prevStage, "binutils", "override"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 libc: nix.thunk(() => nix.attr(self, "libc")),
                 bintools: nix.thunk(() => nix.app(nix.sel(self, "stdenvNoCC", "mkDerivation"), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(prevStage, "bintools", "bintools"));
                     return {
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     pname: nix.thunk(() => nix.add(nix.sel(prevStage, "bintools", "bintools", "pname"), "-patchelfed-ld")),
                     version: nix.thunk(() => nix.attr(from, "version")),
                     passthru: nix.thunk(() => (() => {
                       const from_1 = nix.thunk(() => nix.sel(prevStage, "bintools", "passthru"));
                       return {
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       isFromBootstrapFiles: nix.thunk(() => nix.attr(from_1, "isFromBootstrapFiles")),
                     };
                     })()),
@@ -326,9 +326,9 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
                   })()))),
               })))),
             patchelf: nix.thunk(() => nix.app(nix.sel(super$, "patchelf", "overrideAttrs"), (previousAttrs) => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 env: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "env"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(super$, "stdenv", "hostPlatform", "isMusl")), nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -static-libstdc++")),
                   }))))),
               }))),
@@ -350,10 +350,10 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
           nix.thunk(() => nix.sel(prevStage, "mpfr")),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:545:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           name: "bootstrap-stage3",
           overrides: (self) => (super$) => nix.update({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
             binutils: nix.thunk(() => nix.attr(prevStage, "binutils")),
             coreutils: nix.thunk(() => nix.attr(prevStage, "coreutils")),
@@ -369,13 +369,13 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
             nukeReferences: nix.thunk(() => nix.attr(prevStage, "nukeReferences")),
             autoconf269: nix.thunk(() => nix.attr(prevStage, "autoconf269")),
             python3Minimal: nix.thunk(() => nix.attr(prevStage, "python3Minimal")),
-            gmp: nix.thunk(() => nix.app(nix.sel(super$, "gmp", "override"), nix.thunk(() => ({ __proto__: pos$37, cxx: false })))),
+            gmp: nix.thunk(() => nix.app(nix.sel(super$, "gmp", "override"), nix.thunk(() => ({ [nix.POS]: pos$37, cxx: false })))),
           }, nix.attrsDyn({
-            __proto__: pos$42,
-            "gcc-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(super$, "gcc-unwrapped", "override"), nix.thunk(() => nix.update(commonGccOverrides, { __proto__: pos$39, which: nix.thunk(() => nix.attr(prevStage, "which")) }))), "overrideAttrs"), (a) => ({
-                __proto__: pos$41,
+            [nix.POS]: pos$42,
+            "gcc-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(super$, "gcc-unwrapped", "override"), nix.thunk(() => nix.update(commonGccOverrides, { [nix.POS]: pos$39, which: nix.thunk(() => nix.attr(prevStage, "which")) }))), "overrideAttrs"), (a) => ({
+                [nix.POS]: pos$41,
                 passthru: nix.thunk(() => nix.update(nix.sel(a, "passthru"), {
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   gmp: nix.thunk(() => nix.attr(self, "gmp")),
                   mpfr: nix.thunk(() => nix.attr(self, "mpfr")),
                   libmpc: nix.thunk(() => nix.attr(self, "libmpc")),
@@ -397,10 +397,10 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
       nix.assert_(nix.app(isFromBootstrapFiles, nix.thunk(() => nix.sel(prevStage, "gnugrep"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:617:5");
       nix.assert_(nix.app(isBuiltByNixpkgsCompiler, nix.thunk(() => nix.sel(prevStage, "patchelf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:618:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           name: "bootstrap-stage4",
           overrides: (self) => (super$) => nix.attrsDyn({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             gettext: nix.thunk(() => nix.attr(prevStage, "gettext")),
             gnum4: nix.thunk(() => nix.attr(prevStage, "gnum4")),
             bison: nix.thunk(() => nix.attr(prevStage, "bison")),
@@ -412,11 +412,11 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
             libunistring: nix.thunk(() => nix.attr(prevStage, "libunistring")),
             python3Minimal: nix.thunk(() => nix.attr(prevStage, "python3Minimal")),
             binutils: nix.thunk(() => nix.app(nix.sel(super$, "binutils", "override"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 "expand-response-params": nix.thunk(() => nix.attr(prevStage, "expand-response-params")),
               })))),
             gcc: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper"))), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 nativeTools: false,
                 nativeLibc: false,
                 isGNU: true,
@@ -449,7 +449,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
       nix.assert_(nix.app(isBuiltByNixpkgsCompiler, nix.thunk(() => nix.sel(prevStage, "gnugrep"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:688:5");
       nix.assert_(nix.app(isBuiltByNixpkgsCompiler, nix.thunk(() => nix.sel(prevStage, "patchelf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:689:5");
       return {
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         config: config,
         overlays: overlays,
         stdenv: nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => (() => {
@@ -458,7 +458,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
             const hostPlatform = localSystem;
             const targetPlatform = localSystem;
             const preHook = commonPreHook;
-            const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ __proto__: pos$48, pkgs: prevStage }))));
+            const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: pos$48, pkgs: prevStage }))));
             const extraNativeBuildInputs = nix.thunk(() => [
               nix.thunk(() => nix.sel(prevStage, "patchelf")),
               nix.thunk(() => nix.sel(prevStage, "updateAutotoolsGnuConfigScriptsHook")),
@@ -468,14 +468,14 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
             const from = nix.thunk(() => nix.sel(prevStage, "stdenv"));
             const fetchurlBoot = nix.thunk(() => nix.attr(from, "fetchurlBoot"));
             const extraAttrs = nix.thunk(() => nix.update({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               stage0: stage0,
               shellPackage: nix.thunk(() => nix.sel(prevStage, "bash")),
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stage0, "isMinimalBootstrap")), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 "minimal-bootstrap": nix.thunk(() => nix.attr(stage0, "minimal-bootstrap")),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stage0, "isMinimalBootstrap"))), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 bootstrapTools: nix.thunk(() => nix.attr(stage0, "bootstrapTools")),
               }))))));
             const disallowedRequisites = nix.thunk(() => nix.sel(stage0, "disallowedInFinalStdenv"));
@@ -559,7 +559,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
             const overrides = (self) => (super$) => nix.update((() => {
               const from_1 = nix.thunk(() => nix.sel(prevStage, "gnugrep"));
               return nix.attrsDyn({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               gzip: nix.thunk(() => nix.attr(prevStage, "gzip")),
               bzip2: nix.thunk(() => nix.attr(prevStage, "bzip2")),
               xz: nix.thunk(() => nix.attr(prevStage, "xz")),
@@ -577,7 +577,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
               libunistring: nix.thunk(() => nix.attr(prevStage, "libunistring")),
               pcre2: nix.thunk(() => nix.attr(from_1, "pcre2")),
               libidn2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../development/libraries/libidn2/no-bootstrap-reference.nix")), nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   lib: lib,
                   libidn2: nix.thunk(() => nix.attr(prevStage, "libidn2")),
                   stdenv: nix.thunk(() => nix.attr(self, "stdenv")),
@@ -588,13 +588,13 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
               [nix.sel(localSystem, "libc"), nix.thunk(() => nix.sel(prevStage, nix.key(nix.sel(localSystem, "libc"))))],
             ]);
             })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(super$, "stdenv", "targetPlatform"), localSystem)), nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 binutils: nix.thunk(() => nix.attr(prevStage, "binutils")),
                 "binutils-unwrapped": nix.thunk(() => nix.attr(prevStage, "binutils-unwrapped")),
                 gcc: cc,
               }))));
             return {
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               name,
               buildPlatform,
               hostPlatform,
@@ -623,7 +623,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
       nix.assert_(nix.app(isBuiltByNixpkgsCompiler, nix.thunk(() => nix.sel(prevStage, "patchelf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:879:5");
       nix.assert_(nix.app(nix.sel(stage0, "checkBootstrapPackages"), prevStage), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/default.nix:880:5");
       return {
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         config: nix.thunk(() => nix.attr(prevStage, "config")),
         overlays: nix.thunk(() => nix.attr(prevStage, "overlays")),
         stdenv: nix.thunk(() => nix.attr(prevStage, "stdenv")),

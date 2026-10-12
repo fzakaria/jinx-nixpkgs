@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const qtcreator = nix.arg($, "qtcreator");
   const vulkan_headers = nix.arg($, "vulkan-headers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qodeassist-plugin",
       version: "0.9.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Palm1r",
           repo: "QodeAssist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,23 +43,23 @@ export default nix.lambda((args) => (() => {
         cmake,
         pkg_config,
         ninja,
-        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ __proto__: pos$2, withClang: true })))),
+        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withClang: true })))),
       ]),
       buildInputs: nix.thunk(() => [cups, curl, libGL, qtbase, qt5compat, qtcreator, vulkan_headers]),
       outputs: nix.thunk(() => ["out"]),
       cmakeFlags: [],
       installPhase: "mkdir -p $out; cp -R lib $out/",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "test-version": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`QT_QPA_PLATFORM="offscreen" ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(qtcreator, "withPackages"), nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]))))} --version > $out
 cat $out | grep 'qodeassist ${nix.sel(finalAttrs, "version")}'
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "AI-powered coding assistant plugin for Qt Creator",
         longDescription: "QodeAssist is an AI-powered coding assistant plugin for Qt Creator.\nIt provides intelligent code completion and suggestions for C++ and QML,\nleveraging large language models through local providers like Ollama.\nEnhance your coding productivity with context-aware AI assistance directly\nin your Qt development environment.\n",
         homepage: "https://github.com/Palm1r/QodeAssist",

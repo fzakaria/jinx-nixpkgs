@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
     const dictFileName = nix.arg($_1, "dictFileName");
     const shortDescription = nix.arg($_1, "shortDescription");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => nix.str`hunspell-dict-${shortName}-chromium`),
         version: "145.0.7632.45",
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://chromium.googlesource.com/chromium/deps/hunspell_dictionaries",
             rev: "cccf64a8acc951afe3f47fee023908e55699bc58",
             hash: "sha256-mYDPXa64IOKLMNiBiMqDrQMR7gDPI+vdyVc+M7E+ddc=",
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         installPhase: nix.thunk(() => nix.str`cp ${dictFileName} $out
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           dictFileName: dictFileName,
           updateScript: nix.path(here, "./update-chromium-dictionaries.py"),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://chromium.googlesource.com/chromium/deps/hunspell_dictionaries/",
           description: nix.thunk(() => nix.str`Chromium compatible hunspell dictionary for ${shortDescription}`),
           longDescription: "Humspell directories in Chromium's custom bdic format\n\nSee https://www.chromium.org/developers/how-tos/editing-the-spell-checking-dictionaries/\n",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const mkDictFromChromium_1 = mkDictFromChromium;
     const en_us = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shortName: "en-us",
         dictFileName: "en-US-10-1.bdic",
         shortDescription: "English (United States)",
@@ -76,34 +76,34 @@ export default nix.lambda((args) => (() => {
     const en_US = en_us;
     const en_GB = en_us;
     const en_gb = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         shortName: "en-gb",
         dictFileName: "en-GB-10-1.bdic",
         shortDescription: "English (United Kingdom)",
       }))));
     const de_de = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         shortName: "de-de",
         dictFileName: "de-DE-3-0.bdic",
         shortDescription: "German (Germany)",
       }))));
     const de_DE = de_de;
     const fr_fr = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         shortName: "fr-fr",
         dictFileName: "fr-FR-3-0.bdic",
         shortDescription: "French (France)",
       }))));
     const fr_FR = fr_fr;
     const sv_se = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         shortName: "sv-se",
         dictFileName: "sv-SE-3-0.bdic",
         shortDescription: "Swedish (Sweden)",
       }))));
     const sv_SE = sv_se;
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       mkDictFromChromium: mkDictFromChromium_1,
       en_US,
       "en-us": en_us,

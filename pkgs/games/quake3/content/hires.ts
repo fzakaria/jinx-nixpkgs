@@ -19,29 +19,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quake3hires",
       version: "unstable-2020-01-20",
       nativeBuildInputs: nix.thunk(() => [libarchive]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20200120024216/http://ioquake3.org/files/xcsv_hires.zip",
           sha256: "09vhrray8mh1ic2qgcwv0zlmsnz789y32dkkvrz1vdki4yqkf717",
           stripRoot: false,
         })))),
       "extra-pack-resolution": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20250310093216/https://fmt3.dl.dbolical.com/dl/2018/11/06/q3a-hqq-v37.zip?st=0XzNnNvOYWrJAi_6AB3mKw==&e=1741602736",
           hash: "sha256-0nAXkrf4ahlct75TgO18PjuT9IkH8fpDhtTflJfPpPM=",
         })))),
       "hd-weapons": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "czq3hdweaprem_v10.zip",
           url: "https://web.archive.org/web/20250310101737/https://fmt1.dl.dbolical.com/dl/2023/08/13/czq3hdweaprem_v10.zip?st=XBoRCpVmvTYtc60xxi36VQ==&e=1741605457",
           hash: "sha256-pL7MsEFsKJV+a+z45Ns16SPdQB3i2D6T3x7tBqWtm1s=",
         })))),
       ioquake3_mac: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "diegoulloao",
           repo: "ioquake3-mac-install",
           rev: "3a767ff0131742ec517fd5f13ddca16dee91927d",
@@ -62,7 +62,7 @@ install -Dm444 ${nix.sel(finalAttrs, "ioquake3_mac")}/extras/zpack-weapons.pk3 $
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Quake 3 high-resolution textures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const stdenv = nix.arg($, "stdenv");
   const installShellFiles = nix.arg($, "installShellFiles");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => (() => {
       const pname = "feedgnuplot";
       const version = "1.61";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dkogan",
           repo: "feedgnuplot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "StringShellQuote")),
         ];
       })()));
-      const env = nix.thunk(() => ({ __proto__: pos$3, FONTCONFIG_FILE: fontsConf }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, FONTCONFIG_FILE: fontsConf }));
       const postPatch = "patchShebangs .\n";
       const doCheck = false;
       const postInstall = "wrapProgram $out/bin/feedgnuplot \\\n    --prefix \"PATH\" \":\" \"$PATH\" \\\n    --prefix \"PERL5LIB\" \":\" \"$PERL5LIB\"\n\ninstallShellCompletion --bash --name feedgnuplot.bash completions/bash/feedgnuplot\ninstallShellCompletion --zsh completions/zsh/_feedgnuplot\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General purpose pipe-oriented plotting tool",
         homepage: "https://github.com/dkogan/feedgnuplot/",
         license: nix.thunk(() => (() => {
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "feedgnuplot",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

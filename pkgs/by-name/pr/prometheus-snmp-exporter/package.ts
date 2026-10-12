@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snmp_exporter";
       const version = "0.30.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus",
           repo: "snmp_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [net_snmp]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, snmp: nix.thunk(() => nix.attr(from, "snmp")) };
+          return { [nix.POS]: pos$2, snmp: nix.thunk(() => nix.attr(from, "snmp")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SNMP Exporter for Prometheus",
         homepage: "https://github.com/prometheus/snmp_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nmon",
       version: "16s",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/nmon/lmon${nix.sel(finalAttrs, "version")}.c`),
           hash: "sha256-BzbOD3KeSMEkp7pWbAacWiNFEcycasknfakvi7RPKxE=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })()}`),
       installPhase: "mkdir -p $out/bin\ncp nmon $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AIX & Linux Performance Monitoring tool",
         mainProgram: "nmon",
         homepage: "https://nmon.sourceforge.net",

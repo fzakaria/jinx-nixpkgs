@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_snapshot = nix.arg($, "pytest-snapshot");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mdformat-mkdocs",
       version: "5.2.0b0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KyleKing",
           repo: "mdformat-mkdocs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [mdformat, mdformat_gfm, mdit_py_plugins, more_itertools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         recommended: nix.thunk(() => [
           mdformat_beautysh,
           mdformat_footnote,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/format/test_parsed_result.py"]),
       pythonImportsCheck: nix.thunk(() => ["mdformat_mkdocs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mdformat plugin for MkDocs",
         homepage: "https://github.com/KyleKing/mdformat-mkdocs",
         changelog: nix.thunk(() => nix.str`https://github.com/KyleKing/mdformat-mkdocs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

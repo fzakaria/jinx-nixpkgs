@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bip",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://projects.duckcorp.org/attachments/download/146/bip-0.9.3.tar.gz",
           hash: "sha256-K+6AC8mg0aLQsCgiDoFBM5w2XrR+V2tfWnI8ByeRmOI=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IRC proxy (bouncer)",
         homepage: "http://bip.milkypond.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

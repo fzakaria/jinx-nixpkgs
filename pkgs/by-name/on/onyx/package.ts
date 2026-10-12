@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "onyx";
       const version = "2.0.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onyx-lyon1",
           repo: "onyx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libsecret]);
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         drag_and_drop_lists: "sha256-moyKVIaqCCLeR5dvvd+DW7cpgPG4NCBp3+ohMEwT3FE=",
         geolocator_android: "sha256-qXk7Tg/e2oc8/0eGcTCJ4Po+wCzUqfqWZMaHXflgyrE=",
         dart_mappable: "sha256-i4KJXxZCV5L+er1pOkknh3hmZ/y+HcBKly29hG3+lDc=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       }));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "onyx",
             exec: "Onyx",
             icon: "onyx",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -Dm644 assets/icon_transparent.png $out/share/icons/hicolor/512x512/apps/onyx.png\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "App for Claude Bernard University",
         homepage: "https://onyx-lyon1.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

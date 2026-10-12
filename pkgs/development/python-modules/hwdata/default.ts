@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3-1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xsuchy",
           repo: "python-hwdata",
           tag: nix.thunk(() => nix.str`python-hwdata-${version}`),
@@ -34,7 +34,7 @@ substituteInPlace hwdata.py \\
       const pythonImportsCheck = nix.thunk(() => ["hwdata"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings to hwdata",
         homepage: "https://github.com/xsuchy/python-hwdata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -44,7 +44,7 @@ substituteInPlace hwdata.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

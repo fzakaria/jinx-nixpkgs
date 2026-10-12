@@ -55,74 +55,74 @@ export default nix.lambda((args) => (() => {
   const defaultStaticDir = nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "repo", "scanPath")}/static`);
   const defaultTemplatesDir = nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "repo", "scanPath")}/templates`);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         legit: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(mkEnableOption, "legit git web frontend")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "legit-web", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "legit",
               description: "User account under which legit runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "legit",
               description: "Group account under which legit runs.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ({})),
               description: "The primary legit configuration. See the\n[sample configuration](https://github.com/icyphox/legit/blob/master/config.yaml)\nfor possible values.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     repo: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       scanPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: defaultStateDir,
                           description: "Directory where legit will scan for repositories.",
                         })))),
                       readme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: nix.thunk(() => ["readme", "README", "readme.md", "README.md"]),
                           description: "Readme files to look for.",
                         })))),
                       mainBranch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: nix.thunk(() => ["main", "master"]),
                           description: "Main branch to look for.",
                         })))),
                       ignore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: [],
                           description: "Repositories to ignore.",
                         })))),
                     })),
                     dirs: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       templates: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/legit/templates`),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "\"${config.services.legit.package}/lib/legit/templates\"")),
                           description: "Directories where template files are located.",
                         })))),
                       static: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/legit/static`),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "\"${config.services.legit.package}/lib/legit/static\"")),
@@ -130,36 +130,36 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     meta: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       title: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "legit",
                           description: "Website title.",
                         })))),
                       description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "git frontend",
                           description: "Website description.",
                         })))),
                     })),
                     server: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "localhost",
                           description: "Server name.",
                         })))),
                       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "127.0.0.1",
                           description: "Host address.",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 5555n,
                           description: "Legit port.",
@@ -172,30 +172,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "legit")), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])))),
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "legit")), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               }))],
             ])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             legit: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "legit git frontend",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),

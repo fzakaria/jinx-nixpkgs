@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const solarus_quest_editor = nix.arg($, "solarus-quest-editor");
   const solarus_launcher = nix.arg($, "solarus-launcher");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "solarus",
       version: "2.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "solarus-games",
           repo: "solarus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,16 +58,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_DATADIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/share`))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "solarus-quest-editor": solarus_quest_editor,
           "solarus-launcher": solarus_launcher,
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Zelda-like ARPG game engine",
         longDescription: "Solarus is a game engine for Zelda-like ARPG games written in lua.\nMany full-fledged games have been written for the engine.\n",
         homepage: "https://www.solarus-games.org",

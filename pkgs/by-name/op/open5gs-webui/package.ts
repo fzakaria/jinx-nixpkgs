@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const open5gs = nix.arg($, "open5gs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(open5gs, "pname")}-webui`),
       src: nix.thunk(() => nix.attr(open5gs, "src")),
       version: nix.thunk(() => nix.attr(open5gs, "version")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       pname: "cargo-group-imports",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpg314",
           repo: "cargo-group-imports",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "adjust-tests.patch",
             url: "https://github.com/cpg314/cargo-group-imports/commit/5816db94f9b36c4157d71f8dfa22392e718a084a.patch?full_index=1",
             hash: "sha256-gHre9i+k7sIUwNgZqNNstybeabE2+HqAPkom9mkd67Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fixup-warning.patch",
             url: "https://github.com/cpg314/cargo-group-imports/commit/64a90b6b308950062eafcfffa975e70c2d9a6201.patch?full_index=1",
             hash: "sha256-S4QUmHPm2bDJA1GzCUaAFVJKtR0FO6ZDESiH8Xe+cMg=",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-r9/Lhf3vJLC+F6a4alVtdCiodV/uLLMXUjh2xx58kPg=",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Group imports in Rust workspaces",
         homepage: "https://github.com/cpg314/cargo-group-imports",
         changelog: nix.thunk(() => nix.str`https://github.com/cpg314/cargo-group-imports/releases/tag/${nix.sel(finalAttrs, "version")}`),

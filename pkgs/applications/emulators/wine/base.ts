@@ -82,20 +82,20 @@ export default nix.lambda((args) => (() => {
   const prevConfigFlags = configureFlags;
   const toBuildInputs = (pkgArches_1) => (archPkgs) => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.map(archPkgs, pkgArches_1)));
   const setupHookDarwin = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "darwin-mingw-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         darwinSuffixSalt: nix.thunk(() => nix.sel(stdenv, "cc", "suffixSalt")),
         mingwGccsSuffixSalts: nix.thunk(() => nix.builtins.map((gcc) => nix.sel(gcc, "suffixSalt"), mingwGccs)),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./setup-hook-darwin.sh")));
   const badPlatforms = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(mingwSupport)) || nix.asBool(alsaSupport))) || nix.asBool(cairoSupport))) || nix.asBool(dbusSupport))) || nix.asBool(fontconfigSupport))) || nix.asBool(gtkSupport))) || nix.asBool(netapiSupport))) || nix.asBool(pulseaudioSupport))) || nix.asBool(udevSupport))) || nix.asBool(v4lSupport))) || nix.asBool(vaSupport))) || nix.asBool(waylandSupport))) || nix.asBool(x11Support))) || nix.asBool(xineramaSupport))), "x86_64-darwin"));
   const stagingPatches = nix.thunk(() => nix.selOr(src, () => null, "staging"));
   nix.assert_((!nix.asBool(useStaging) || nix.asBool((nix.asBool(!nix.eq(stagingPatches, null)) && nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(stagingPatches, "version")))))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/emulators/wine/base.nix:107:1");
-  return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(buildScript, null)), nix.thunk(() => ({ __proto__: pos$4, builder: buildScript }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        __proto__: pos$5,
+  return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(buildScript, null)), nix.thunk(() => ({ [nix.POS]: pos$4, builder: buildScript }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+        [nix.POS]: pos$5,
         postBuild: nix.thunk(() => nix.str`# The Wine preloader must _not_ be linked to any system libraries, but \`NIX_LDFLAGS\` will link
 # to libintl, libiconv, and CoreFoundation no matter what. Delete the one that was built and
 # rebuild it with empty NIX_LDFLAGS.
@@ -106,7 +106,7 @@ for preloader in wine-preloader wine64-preloader; do
 done
 `),
       }))), {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: version,
       src: src,
       pname: nix.thunk(() => nix.add(prevName, pnameSuffix)),
@@ -177,7 +177,7 @@ python3 ./staging/patchinstall.py DESTDIR="$PWD" --all ${nix.app(nix.sel(lib, "c
 `)),
       configureFlags: nix.thunk(() => nix.concat(prevConfigFlags, nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => ["--with-wayland"])), nix.concat(nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => ["--with-vulkan"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool(xineramaSupport)))) || nix.asBool(!nix.asBool(x11Support)))), nix.thunk(() => ["--without-x"])), nix.app(nix.sel(lib, "optionals"), smartcardSupport, nix.thunk(() => ["--with-pcsclite"]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((path) => nix.add("-rpath ", path), nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/lib`, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(stdenv, "cc", "cc"))], nix.sel(finalAttrs, "buildInputs")))), nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/lib/pulseaudio`, nix.thunk(() => nix.app(toBuildInputs, pkgArches, (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libpulseaudio"))]))))), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/share/wayland-protocols`, nix.thunk(() => nix.app(toBuildInputs, pkgArches, (pkgs) => [nix.thunk(() => nix.sel(pkgs, "wayland-protocols"))])))))))))))),
         NIX_CFLAGS_COMPILE: "",
       })),
@@ -214,13 +214,13 @@ done
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => nix.concat(["bindnow", "stackclashprotection"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "fortify"), nix.app(nix.sel(lib, "optional"), mingwSupport, "format")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pkgArches: pkgArches,
-        tests: nix.thunk(() => ({ __proto__: pos$7, wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$7, wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
         updateScript: nix.thunk(() => nix.selOr(src, () => null, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         version: version,
         homepage: "https://www.winehq.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

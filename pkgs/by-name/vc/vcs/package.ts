@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gopt = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(util_linux) : nix.force(getopt)));
   const runtimeDeps = nix.thunk(() => [coreutils, ffmpeg, gawk, gnugrep, gnused, imagemagick, mplayer, gopt]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vcs",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://p.outlyer.net/files/vcs/vcs-${version}.bash`),
           sha256: "0nhwcpffp3skz24kdfg4445i6j37ks6a0qsbpfd3dbi4vnpa60a0",
         })))),
@@ -46,7 +46,7 @@ chmod +x $out/bin/vcs
 wrapProgram $out/bin/vcs --argv0 vcs --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generates contact sheets from video files",
         homepage: "http://p.outlyer.net/vcs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

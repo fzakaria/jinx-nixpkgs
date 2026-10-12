@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gyre-fonts",
       version: "2.501",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gust.org.pl/projects/e-foundry/tex-gyre/whole/tg${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}otf.zip`),
           hash: "sha256-mRPI/rDsx1vDVItG7h29I7VNPYqgSPqChXS6/gVgfNc=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D --mode=444 --target-directory=$out/share/fonts/opentype *.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenType fonts from the Gyre project, suitable for use with (La)TeX",
         longDescription: "The Gyre project started in 2006, and will\neventually include enhanced releases of all 35 freely available\nPostScript fonts distributed with Ghostscript v4.00.  These are\nbeing converted to OpenType and extended with diacritical marks\ncovering all modern European languages and then some\n",
         homepage: "https://www.gust.org.pl/projects/e-foundry/tex-gyre/index_html#Readings",

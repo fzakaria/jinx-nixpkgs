@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-serialization-text-v${version}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["kiota_serialization_text"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "microsoft-kiota-serialization-text-v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-serialization-text-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Text serialization implementation for Kiota generated clients in Python",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/serialization/text",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/microsoft-kiota-serialization-text-${nix.sel(src, "tag")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

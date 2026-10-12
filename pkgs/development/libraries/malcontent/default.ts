@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.1";
       const outputs = nix.thunk(() => ["bin", "out", "lib", "pam", "dev", "man", "installedTests"]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "pwithnall",
           repo: "malcontent",
@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
 `);
       const postInstall = "# `giDiscoverSelf` only picks up paths in `out` output.\n# This needs to be in `postInstall` so that it runs before\n# `gappsWrapperArgsHook` that runs as one of `preFixupPhases`.\naddToSearchPath GI_TYPELIB_PATH \"$lib/lib/girepository-1.0\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "malcontent")),
           "malcontent-ui": malcontent_ui,
         })),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(polkit, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         outputsToInstall: nix.thunk(() => ["bin", "out", "man"]),
         description: "Parental controls library",
         mainProgram: "malcontent-client",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

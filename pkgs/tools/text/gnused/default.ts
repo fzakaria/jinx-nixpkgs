@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnused",
       version: "4.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/sed/sed-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uOchgrLslqNXTimYxHt6qmTMIM4ADY6awxPMB87PKMc=",
         })))),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       preConfigure: "patchShebangs ./build-aux/help2man",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({ __proto__: pos$2, PERL: "missing" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({ [nix.POS]: pos$2, PERL: "missing" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/sed/",
         description: "GNU sed, a batch stream editor",
         longDescription: "Sed (stream editor) isn't really a true text editor or text\nprocessor.  Instead, it is used to filter text, i.e., it takes\ntext input and performs some operation (or set of operations) on\nit and outputs the modified text.  Sed is typically used for\nextracting part of a file using pattern matching or substituting\nmultiple occurrences of a string within a file.\n",

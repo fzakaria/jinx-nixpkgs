@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const glfw3 = nix.arg($, "glfw3");
   const useGlfw3 = nix.argOr($, "useGlfw3", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pax-britannica",
       version: "1.0.0-5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "games-team",
           repo: "pax-britannica",
@@ -43,27 +43,27 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/compile_for_linux.patch",
             hash: "sha256-XncjmJrBakz5/w90O6rDif2rWSoAVKzuPEj9wN2VNvQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/add_manpage.patch",
             hash: "sha256-c8O6t0Zv/ln7WiPdbN3sYGsb7SL9Rmeo+94DsjpfgvY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/load_resources_from_usr_share.patch",
             hash: "sha256-61Yt4Rq1I/Ofu640XsDDo0il275B+ozqH0Z6P18XT6Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/add_desktop_entry.patch",
             hash: "sha256-QSQEBoCw7KTOLgy7TaFvQRpR17HoggTOCxhfTG+kIOA=",
           })))),
       ], nix.app(nix.sel(lib, "optional"), useGlfw3, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/glfw3.patch",
             hash: "sha256-hj00vnW/i7lxFc4CGlRz6Havkg45gGgIg6MmCXcMsSg=",
           }))))))),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       desktopItems: nix.thunk(() => ["pax-britannica.desktop"]),
       installPhase: "mkdir -p $out/{bin,share/pax-britannica,share/pixmaps}\ncp -ar *.lua audio components dokidoki scripts sprites $out/share/pax-britannica/\ncp pax-britannica.png $out/share/pixmaps/\ncp pax-britannica $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "One-button multi-player real-time strategy game",
         homepage: "http://gangles.ca/games/pax-britannica/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

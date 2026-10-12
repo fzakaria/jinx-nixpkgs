@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const mirage_mtime = nix.arg($, "mirage-mtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "awa-mirage",
       version: nix.thunk(() => nix.attr(awa, "version")),
       src: nix.thunk(() => nix.attr(awa, "src")),

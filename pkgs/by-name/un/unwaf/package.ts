@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unwaf",
       version: "0-unstable-2025-07-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmarting",
           repo: "unwaf",
           rev: "06f19a49d048be1f92f395d04c43c9a2a36d2ab5",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-jCL0mEGuiUeruQq6u7wOczqNwT343xtMYkit6QKbZuk=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool designed to help identify WAF bypasses using passive techniques",
         homepage: "https://github.com/mmarting/unwaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

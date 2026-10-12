@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "revolver",
       version: "0.2.4-unstable-2020-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "molovo",
           repo: "revolver",
           rev: "6424e6cb14da38dc5d7760573eb6ecb2438e9661",
@@ -47,25 +47,25 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd revolver --zsh revolver.zsh-completion\n",
       installCheckPhase: "runHook preInstallCheck\n\nPATH=$PATH:$out/bin revolver --help\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           demo: nix.thunk(() => nix.app(runCommand, "revolver-demo", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "export HOME=\"$TEMPDIR\"\n\n# Drop stdout, redirect stderr to stdout and check if it's not empty\nexec 9>&1\necho \"Running revolver demo...\"\nif [[ $(revolver demo 2>&1 1>/dev/null | tee >(cat - >&9)) ]]; then\n  exit 1\nfi\necho \"Demo done!\"\n\nmkdir $out\n")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: "0.2.0",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$5, tagPrefix: "v" })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zsh, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Progress spinner for ZSH scripts",
         homepage: "https://github.com/molovo/revolver",
         downloadPage: "https://github.com/molovo/revolver/releases",

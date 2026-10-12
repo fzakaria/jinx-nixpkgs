@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ventura-psychrometric-panel",
       version: "5.2.0",
       zipHash: "sha256-qhx7ySUsl7a3Vnq2C5jtU2+aTPlVO1U/xHZDmZn+Ii8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Grafana plugin to display air conditions on a psychrometric chart",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3Lbnl")),
         maintainers: nix.thunk(() => (() => {

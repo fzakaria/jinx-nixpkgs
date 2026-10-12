@@ -25,40 +25,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const homeserverUrl = "http://homeserver:8008";
   const private_key = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "matrix_key.pem", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dendrite"))]),
     })), "generate-keys --private-key $out"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "dendrite",
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             dendrite: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               loadCredential: nix.thunk(() => [nix.thunk(() => nix.str`test_private_key:${private_key}`)]),
               openRegistration: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 global: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   server_name: "test-dendrite-server.com",
                   private_key: "$CREDENTIALS_DIRECTORY/test_private_key",
                 })),
-                client_api: nix.thunk(() => ({ __proto__: pos$3, registration_disabled: false })),
+                client_api: nix.thunk(() => ({ [nix.POS]: pos$3, registration_disabled: false })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, allowedTCPPorts: nix.thunk(() => [8008n]) })),
+            [nix.POS]: pos$8,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8008n]) })),
           })),
         };
       })(), formals$2),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                 })), "import asyncio\n\nfrom nio import AsyncClient\n\n\nasync def main() -> None:\n    # Connect to dendrite\n    client = AsyncClient(\"http://homeserver:8008\", \"alice\")\n\n    # Register as user alice\n    response = await client.register(\"alice\", \"my-secret-password\")\n\n    # Log in as user alice\n    response = await client.login(\"my-secret-password\")\n\n    # Create a new room\n    response = await client.room_create(federate=False)\n    room_id = response.room_id\n\n    # Join the room\n    response = await client.join(room_id)\n\n    # Send a message to the room\n    response = await client.room_send(\n        room_id=room_id,\n        message_type=\"m.room.message\",\n        content={\n            \"msgtype\": \"m.text\",\n            \"body\": \"Hello world!\"\n        }\n    )\n\n    # Sync responses\n    response = await client.sync(timeout=30000)\n\n    # Check the message was received by dendrite\n    last_message = response.rooms.join[room_id].timeline.events[-1].body\n    assert last_message == \"Hello world!\"\n\n    # Leave the room\n    response = await client.room_leave(room_id)\n\n    # Close the client\n    await client.close()\n\nasyncio.run(main())\n")),
             ]),

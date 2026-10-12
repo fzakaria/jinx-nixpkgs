@@ -27,24 +27,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "uptime-kuma"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "julienmalka"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "uptime-kuma": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Uptime Kuma, this assumes a reverse proxy to be set")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "uptime-kuma", nix.thunk(() => ({})))),
           appriseSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "apprise support for notifications")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 PORT: "4000",
                 NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pki.caBundle")),
                 UPTIME_KUMA_DB_TYPE: "mariadb",
@@ -67,13 +67,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "uptime-kuma": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               DATA_DIR: "/var/lib/uptime-kuma/",
               NODE_ENV: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "production")),
               HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "uptime-kuma": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Uptime Kuma",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
                 return nix.concat([nix.thunk(() => nix.sel(nix.lookup(w, "unixtools"), "ping"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "appriseSupport")), nix.thunk(() => nix.lookup(w, "apprise"))));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "simple",
                 StateDirectory: "uptime-kuma",
                 StateDirectoryMode: "750",

@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
   const cacheDir = "/var/cache/mediawiki";
   const stateDir = "/var/lib/mediawiki";
   const toolsPath = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "mediawiki-path",
       paths: nix.thunk(() => nix.sel(cfg, "path")),
     }))));
@@ -135,10 +135,10 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
 ln -s ${(nix.asBool(!nix.eq(v, null)) ? nix.force(v) : nix.str`$src/share/mediawiki/extensions/${k}`)} $out/share/mediawiki/extensions/${k}
 `, nix.thunk(() => nix.sel(cfg, "extensions")))))}
 `);
-      return { __proto__: pos$2, pname, version, src, installPhase };
+      return { [nix.POS]: pos$2, pname, version, src, installPhase };
     })())));
   const mediawikiScripts = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "mediawiki-scripts", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
       preferLocalBuild: true,
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -166,7 +166,7 @@ done
 `)));
   const dbAddr = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")) ? (nix.asBool(nix.eq(nix.sel(cfg, "database", "socket"), null)) ? nix.sel(cfg, "database", "host") : nix.sel(cfg, "database", "socket")) : (nix.asBool(nix.eq(nix.sel(cfg, "database", "socket"), null)) ? nix.str`${nix.sel(cfg, "database", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}` : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? nix.str`${nix.sel(cfg, "database", "host")}:${nix.sel(cfg, "database", "socket")}` : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported database type: ${nix.sel(cfg, "database", "type")} for socket: ${nix.sel(cfg, "database", "socket")}`))))));
   const mediawikiConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "LocalSettings.php",
       checkPhase: nix.thunk(() => nix.str`${nix.sel(cfg, "phpPackage")}/bin/php --syntax-check "$target"
 `),
@@ -290,19 +290,19 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
     }))));
   const withTrailingSlash = (str) => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "/", str)) ? nix.force(str) : nix.str`${str}/`);
   return {
-    __proto__: pos$80,
+    [nix.POS]: pos$80,
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         mediawiki: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(mkEnableOption, "MediaWiki")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mediawiki", nix.thunk(() => ({})))),
           phpPackage: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "php", nix.thunk(() => ({}))), {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             default: nix.thunk(() => nix.app(nix.sel(pkgs, "php83", "buildEnv"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 extensions: nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const all = nix.arg($_1, "all");
@@ -315,7 +315,7 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               })))),
           })),
           finalPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "package")),
               readOnly: true,
               default: pkg,
@@ -323,14 +323,14 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               description: "The final package used by the module. This is the package that will have extensions and skins installed.\n",
             })))),
           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "MediaWiki",
               example: "Foobar Wiki",
               description: "Name of the wiki.",
             })))),
           url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "apache")) ? nix.str`${(nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "httpd", "virtualHost", "addSSL")) || nix.asBool(nix.sel(cfg, "httpd", "virtualHost", "forceSSL")))) || nix.asBool(nix.sel(cfg, "httpd", "virtualHost", "onlySSL")))) ? "https" : "http")}://${nix.sel(cfg, "httpd", "virtualHost", "hostName")}` : (nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "nginx")) ? (() => {
                 const hasSSL = (host) => (nix.asBool(nix.sel(host, "forceSSL")) || nix.asBool(nix.sel(host, "addSSL")));
@@ -341,114 +341,114 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               description: "URL of the wiki.",
             })))),
           uploadsDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: nix.thunk(() => nix.str`${stateDir}/uploads`),
               description: "This directory is used for uploads of pictures. The directory passed here is automatically\ncreated and permissions adjusted as required.\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "A file containing the initial password for the administrator account \"admin\".\n",
               example: "/run/keys/mediawiki-password",
             })))),
           passwordSender: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "apache")) ? (nix.asBool(!nix.eq(nix.sel(cfg, "httpd", "virtualHost", "adminAddr"), null)) ? nix.sel(cfg, "httpd", "virtualHost", "adminAddr") : nix.sel(config, "services", "httpd", "adminAddr")) : "root@localhost")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "if cfg.webserver == \"apache\" then\n  if cfg.httpd.virtualHost.adminAddr != null then\n    cfg.httpd.virtualHost.adminAddr\n  else\n    config.services.httpd.adminAddr else \"root@localhost\"\n")),
               description: "Contact address for password reset.",
             })))),
           path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ diffutils imagemagick ]")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ librsvg ]")),
               description: "Extra packages to add to the PATH of phpfpm-pool.",
             })))),
           skins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
               description: "Attribute set of paths whose content is copied to the {file}`skins`\nsubdirectory of the MediaWiki installation in addition to the default skins.\n",
             })))),
           extensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))))),
               description: "Attribute set of paths whose content is copied to the {file}`extensions`\nsubdirectory of the MediaWiki installation and enabled in configuration.\n\nUse `null` instead of path to enable extensions that are part of MediaWiki.\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  Matomo = pkgs.fetchzip {\n    url = \"https://github.com/DaSchTour/matomo-mediawiki-extension/archive/v4.0.1.tar.gz\";\n    sha256 = \"0g5rd3zp0avwlmqagc59cg9bbkn3r7wx7p6yr80s644mj6dlvs1b\";\n  };\n  ParserFunctions = null;\n}\n")),
             })))),
           webserver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["apache", "none", "nginx"]))),
               default: "apache",
               description: "Webserver to use.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mysql", "postgres", "mssql", "oracle", "sqlite"]))),
                 default: "mysql",
                 description: "Database engine to use. MySQL/MariaDB is the database of choice by MediaWiki developers.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) ? null : "localhost")),
                 defaultText: "\"localhost\"",
                 description: "Database host address. Used only if database type is not SQLite.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "port")))),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? 3306n : (nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) ? 5432n : null))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "3306")),
                 description: "Database host port. Used only if database type is not SQLite.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "mediawiki",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) ? "mediawiki" : null)),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "\"mediawiki\"")),
                 description: "Database user. Used only if database type is not SQLite.",
               })))),
             path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) ? nix.str`${stateDir}/data` : null)),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"${stateDir}/data"`))),
                 description: "Path to store the MediaWiki database in if using SQLite.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/keys/mediawiki-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`. Used only if database type is not SQLite.\n",
               })))),
             tablePrefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "If you only have access to a single database and wish to install more than\none version of MediaWiki, or have other applications that also use the\ndatabase, you can give the table names a unique prefix to stop any naming\nconflicts or confusion. Only used if database type is MySQL.\nSee <https://www.mediawiki.org/wiki/Manual:$wgDBprefix>.\n",
               })))),
             socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))) ? "/run/mysqld/mysqld.sock" : (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))) ? "/run/postgresql" : null))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "/run/mysqld/mysqld.sock")),
                 description: "Path to the unix socket file to use for authentication. Used only if database type is not SQLite.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "true")),
@@ -456,9 +456,9 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 example: nix.thunk(() => nix.app(literalExpression, "wiki.example.com")),
                 default: "localhost",
@@ -466,16 +466,16 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               })))),
           })),
           httpd: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  hostName = \"mediawiki.example.org\";\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
               })))),
           })),
           poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -485,7 +485,7 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -496,7 +496,7 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               description: "Options for the MediaWiki PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Any additional text to be appended to MediaWiki's\nLocalSettings.php configuration file. For configuration\nsettings, see <https://www.mediawiki.org/wiki/Manual:Configuration_settings>.\n",
               default: "",
@@ -509,34 +509,34 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "mediawiki", "virtualHost"]), nix.thunk(() => ["services", "mediawiki", "httpd", "virtualHost"]))),
     ]),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")))))),
             message: "services.mediawiki.createLocally is currently only supported for database type 'mysql' and 'postgres'",
           })),
           nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), user)) && nix.asBool(nix.eq(nix.sel(cfg, "database", "name"), nix.sel(cfg, "database", "user"))))))),
             message: nix.thunk(() => nix.str`services.mediawiki.database.user must be set to ${user} if services.mediawiki.database.createLocally is set true`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))),
             message: "services.mediawiki.database.socket must be set if services.mediawiki.database.createLocally is set to true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "a password cannot be specified if services.mediawiki.database.createLocally is set to true",
           })),
         ]),
         warnings: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) && nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "port"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "user"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))))), "The services.mediawiki.database options host, port, user, passwordFile, and socket will be ignored because services.mediawiki.database.type is \"sqlite\".\n"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "path"), null)))), "The services.mediawiki.database.path option will be ignored because services.mediawiki.database.type is not \"sqlite\".\n"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "type"), "mysql")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "tablePrefix"), null)))), "The services.mediawiki.database.tablePrefix option has no effect when the services.mediawiki.database.type is not \"mysql\".\n")))),
         services: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           mediawiki: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             path: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -545,71 +545,71 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               ];
             })()),
             skins: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               MonoBook: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/mediawiki/skins/MonoBook`),
               Timeless: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/mediawiki/skins/Timeless`),
               Vector: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/mediawiki/skins/Vector`),
             })),
           })),
           mysql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               enable: true,
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             pools: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               mediawiki: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 user: user,
                 group: group,
                 phpEnv: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   MEDIAWIKI_CONFIG: nix.thunk(() => nix.str`${mediawikiConfig}`),
                 })),
                 phpPackage: nix.thunk(() => nix.sel(cfg, "phpPackage")),
                 settings: nix.thunk(() => nix.update((nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "apache")) ? {
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "httpd", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "httpd", "group")),
                 } : (nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "nginx")) ? {
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
-                } : { __proto__: pos$51, "listen.owner": user, "listen.group": group })), nix.sel(cfg, "poolConfig"))),
+                } : { [nix.POS]: pos$51, "listen.owner": user, "listen.group": group })), nix.sel(cfg, "poolConfig"))),
               })),
             })),
           })),
           httpd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "apache")), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               enable: true,
               extraModules: nix.thunk(() => ["proxy_fcgi"]),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "httpd", "virtualHost", "hostName"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "httpd", "virtualHost")),
                     nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       documentRoot: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`${pkg}/share/mediawiki`))),
                       extraConfig: nix.thunk(() => nix.add(nix.str`<Directory "${pkg}/share/mediawiki">
   <FilesMatch "\\.php$">
@@ -632,16 +632,16 @@ $wgUploadDirectory = "${nix.sel(cfg, "uploadsDir")}";
               ])),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(config, "services", "mediawiki", "nginx", "hostName"), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   root: nix.thunk(() => nix.str`${pkg}/share/mediawiki`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     "~ ^/w/(index|load|api|thumb|opensearch_desc|rest|img_auth)\\.php$": nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       extraConfig: nix.thunk(() => nix.str`rewrite ^/w/(.*) /$1 break;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
 fastcgi_index index.php;
@@ -649,34 +649,34 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "mediawiki", 
 `),
                     })),
                     "/w/images/": nix.thunk(() => ({
-                      __proto__: pos$58,
+                      [nix.POS]: pos$58,
                       alias: nix.thunk(() => nix.app(withTrailingSlash, nix.thunk(() => nix.sel(cfg, "uploadsDir")))),
                     })),
-                    "/w/images/deleted": nix.thunk(() => ({ __proto__: pos$59, extraConfig: "deny all;\n" })),
+                    "/w/images/deleted": nix.thunk(() => ({ [nix.POS]: pos$59, extraConfig: "deny all;\n" })),
                     "~ ^/w/resources/(assets|lib|src)": nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       extraConfig: "rewrite ^/w(/.*) $1 break;\nadd_header Cache-Control \"public\";\nexpires 7d;\n",
                     })),
                     "~ ^/w/(skins|extensions)/.+\\.(css|js|gif|jpg|jpeg|png|svg|wasm|ttf|woff|woff2)$": nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       extraConfig: "rewrite ^/w(/.*) $1 break;\nadd_header Cache-Control \"public\";\nexpires 7d;\n",
                     })),
-                    "/w/rest.php/": nix.thunk(() => ({ __proto__: pos$62, tryFiles: "$uri $uri/ /w/rest.php?$query_string" })),
+                    "/w/rest.php/": nix.thunk(() => ({ [nix.POS]: pos$62, tryFiles: "$uri $uri/ /w/rest.php?$query_string" })),
                     "/wiki/": nix.thunk(() => ({
-                      __proto__: pos$63,
+                      [nix.POS]: pos$63,
                       extraConfig: "rewrite ^/wiki/(?<pagename>.*)$ /w/index.php;\n",
                     })),
-                    "= /": nix.thunk(() => ({ __proto__: pos$64, extraConfig: "return 301 /wiki/;\n" })),
-                    "/": nix.thunk(() => ({ __proto__: pos$65, extraConfig: "return 404;\n" })),
+                    "= /": nix.thunk(() => ({ [nix.POS]: pos$64, extraConfig: "return 301 /wiki/;\n" })),
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$65, extraConfig: "return 404;\n" })),
                   })),
                 }))],
               ])),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d '${stateDir}' 0750 ${user} ${group} - -`),
               nix.thunk(() => nix.str`d '${cacheDir}' 0750 ${user} ${group} - -`),
@@ -686,9 +686,9 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "mediawiki", 
               ])))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             "mediawiki-init": nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["phpfpm-mediawiki.service"]),
               after: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), "mysql.service"), nix.app(optional, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), "postgresql.target"))),
@@ -723,7 +723,7 @@ ${nix.sel(cfg, "phpPackage")}/bin/php ${pkg}/share/mediawiki/maintenance/update.
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 Type: "oneshot",
                 User: user,
                 Group: group,
@@ -731,19 +731,19 @@ ${nix.sel(cfg, "phpPackage")}/bin/php ${pkg}/share/mediawiki/maintenance/update.
               })),
             })),
             httpd: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               after: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "apache")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")))), "mysql.service"), nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "webserver"), "apache")) && nix.asBool(nix.sel(cfg, "database", "createLocally")))) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgres")))), "postgresql.target"))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [user, nix.thunk(() => ({ __proto__: pos$76, group: group, isSystemUser: true }))],
+            [user, nix.thunk(() => ({ [nix.POS]: pos$76, group: group, isSystemUser: true }))],
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.force(group), nix.thunk(() => ({}))]])),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$78, systemPackages: nix.thunk(() => [mediawikiScripts]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$78, systemPackages: nix.thunk(() => [mediawikiScripts]) })),
       })))),
   };
 })(), formals$1);

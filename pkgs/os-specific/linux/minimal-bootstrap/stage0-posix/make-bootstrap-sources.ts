@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.arg($, "hostPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
-  const expected = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-sources.nix")), nix.thunk(() => ({ __proto__: pos$1, hostPlatform: hostPlatform }))));
+  const expected = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, hostPlatform: hostPlatform }))));
   return nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.attr(expected, "name")),
       rev: nix.thunk(() => nix.attr(expected, "rev")),
       owner: "oriansj",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
       postFetch: "# Seed binaries will be fetched separately\necho \"Removing seed binaries\"\nrm -rf $out/bootstrap-seeds/*\n\n# Remove vendored/duplicate M2libc's\necho \"Removing duplicate M2libc\"\nrm -rf \\\n  $out/M2-Mesoplanet/M2libc \\\n  $out/M2-Planet/M2libc \\\n  $out/mescc-tools/M2libc \\\n  $out/mescc-tools-extra/M2libc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Packaged sources for the first bootstrapping stage",
         homepage: "https://github.com/oriansj/stage0-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

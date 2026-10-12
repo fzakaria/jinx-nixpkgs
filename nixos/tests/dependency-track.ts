@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const dependencyTrackPort = 8081n;
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "dependency-track",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -36,45 +36,45 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             cores: 2n,
             diskSize: 4096n,
             memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "curl"))];
             })()),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "dependency-track": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 preStart: "set -euo pipefail\n\nNIST_DIR=\"$HOME/.dependency-track/nist\"\n\nrm -rf \"$NIST_DIR\"\nmkdir -p \"$NIST_DIR\"\n\nfor feed in $(seq \"2024\" \"2002\"); do\n  touch \"$NIST_DIR/nvdcve-1.1-$feed.json.gz\"\n  echo \"9999999999999\" > \"$NIST_DIR/nvdcve-1.1-$feed.json.gz.ts\"\ndone\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "dependency-track": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               javaArgs: nix.thunk(() => ["-Xmx4G"]),
               port: dependencyTrackPort,
-              nginx: nix.thunk(() => ({ __proto__: pos$7, domain: "localhost" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: pos$7, domain: "localhost" })),
               database: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 passwordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeText"), "dbPassword", "hunter2'THE''H'''E")}`),
               })),
             })),

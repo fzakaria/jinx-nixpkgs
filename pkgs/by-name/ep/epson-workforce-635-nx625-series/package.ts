@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const srcdirs = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     filter: "epson-inkjet-printer-filter-1.0.0",
     driver: "epson-inkjet-printer-workforce-635-nx625-series-1.0.1",
   }));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "epson-inkjet-printer-workforce-635-nx625-series";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.ebz.epson.net/dsc/op/stable/SRPMS/${pname}-${version}-1lsb3.2.src.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/https://download.ebz.epson.net/dsc/op/stable/SRPMS/${pname}-${version}-1lsb3.2.src.rpm`),
@@ -64,7 +64,7 @@ cp -r resource watermark ${libdir} "$out"
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proprietary CUPS drivers for Epson inkjet printers",
         longDescription: nix.thunk(() => nix.str`This software is a filter program used with Common UNIX Printing
 System (CUPS) from the Linux. This can supply the high quality print
@@ -111,7 +111,7 @@ To use the driver adjust your configuration.nix file:
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

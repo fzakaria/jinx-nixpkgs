@@ -32,23 +32,23 @@ export default nix.lambda((args) => (() => {
 `));
   })());
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       networking: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         stevenblack: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the stevenblack hosts file blocklist")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "stevenblack-blocklist", nix.thunk(() => ({})))),
           block: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["fakenews", "gambling", "porn", "social"]))))),
               default: [],
               description: "Additional blocklist extensions.",
             })))),
           whitelist: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^[a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)+$")))),
               default: [],
               description: "Domains to exclude from blocking.",
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hostFiles: nix.thunk(() => nix.builtins.map((x) => nix.app(filterHostsFile, nix.thunk(() => nix.str`${nix.app(getOutput, x, nix.thunk(() => nix.sel(cfg, "package")))}/hosts`)), nix.thunk(() => nix.concat(["ads"], nix.sel(cfg, "block"))))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

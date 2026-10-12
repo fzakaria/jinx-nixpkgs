@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cv",
       version: "0.3.72",
       __structuredAttrs: true,
       strictDeps: true,
       dontUnpack: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "civicrm",
           repo: "cv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-gL0mleLCSDvR93oQW+O//j/ANs7oYYKfKgGOGQkCFJI=",
       installPhase: "runHook preInstall\ncp -ra $src $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://civicrm.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/civicrm/cv/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "CiviCRM CLI Utility",

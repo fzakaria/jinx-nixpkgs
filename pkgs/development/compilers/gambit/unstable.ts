@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const stampHms = 191450n;
       const rev = "2c1acceed6ccf1895d9aaf9b03c7a836ce2cc59d";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gambit",
           repo: "gambit",
           rev: rev,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const gambit_params = nix.thunk(() => nix.sel(gambit_support, "unstable-params"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         "git-version": git_version,
         stampYmd,

@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-jza6VQ3PZAQPku2hyo0KeO59r64Q9TpqLCI0dIX/URU=",
         }))));
       const postPatch = "substituteInPlace setup.py \\\n  --replace-fail \"setuptools_scm>=8.1.0,<8.2\" setuptools_scm\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [
         defcon,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PATH=\"$out/bin:$PATH\"\n";
       const disabledTests = nix.thunk(() => ["test_dependencies", "test_definitions"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Fonts glyph set metadata",
         homepage: "https://github.com/googlefonts/glyphsets",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/glyphsets/blob/v${version}/CHANGELOG.md`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "glyphsets",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

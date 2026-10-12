@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgactive",
       version: "2.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "pgactive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "touch .distgitrev\n",
       buildInputs: nix.thunk(() => nix.sel(postgresql, "buildInputs")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "shared_preload_libraries = 'pgactive'\ntrack_commit_timestamp = 'on'\nwal_level = 'logical'\n",
               sql: "CREATE EXTENSION pgactive;\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Active-active Replication Extension for PostgreSQL",
         homepage: "https://github.com/aws/pgactive",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/pgactive/releases/tag/v${nix.sel(finalAttrs, "version")}`),

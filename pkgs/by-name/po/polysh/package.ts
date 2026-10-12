@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polysh",
       version: "1.0.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "innogames",
           repo: "polysh",
           tag: nix.thunk(() => nix.str`polysh-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "hatchling"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remote shell multiplexer for executing commands on multiple hosts",
         homepage: "https://github.com/innogames/polysh",
         changelog: nix.thunk(() => nix.str`https://github.com/innogames/polysh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

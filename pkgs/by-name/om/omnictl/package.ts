@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "omnictl";
       const version = "1.12.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siderolabs",
           repo: "omni",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-MLzxZqEf44zreG64NTac/IX1O9sfRurMjn4fluptHGo=";
       const ldflags = nix.thunk(() => ["-s", "-w"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" }));
       const subPackages = nix.thunk(() => ["cmd/omnictl"]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd omnictl \\\n  --bash <($out/bin/omnictl completion bash) \\\n  --fish <($out/bin/omnictl completion fish) \\\n  --zsh <($out/bin/omnictl completion zsh)\n"));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for the Sidero Omni Kubernetes management platform",
         mainProgram: "omnictl",
         homepage: "https://omni.siderolabs.com/",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

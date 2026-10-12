@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprdynamicmonitors",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fiffeek",
           repo: "hyprdynamicmonitors",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd hyprdynamicmonitors \\\n  --bash <($out/bin/hyprdynamicmonitors completion bash) \\\n  --fish <($out/bin/hyprdynamicmonitors completion fish) \\\n  --zsh <($out/bin/hyprdynamicmonitors completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic monitor configuration for Hyprland",
         homepage: "https://github.com/fiffeek/hyprdynamicmonitors",
         changelog: nix.thunk(() => nix.str`https://github.com/fiffeek/hyprdynamicmonitors/releases/tag/v${nix.sel(finalAttrs, "version")}`),

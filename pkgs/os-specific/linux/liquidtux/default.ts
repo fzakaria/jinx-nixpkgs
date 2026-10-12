@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liquidtux";
       const version = "0.1.0-unstable-2025-01-16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liquidctl",
           repo: "liquidtux",
           rev: "4613127ac6a7f1f0a98009045ea8c16f6b960533",
@@ -37,7 +37,7 @@ install nzxt-grid3.ko nzxt-kraken2.ko nzxt-kraken3.ko nzxt-smart2.ko -Dm444 -t $
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux kernel hwmon drivers for AIO liquid coolers and other devices",
         homepage: "https://github.com/liquidctl/liquidtux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +49,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), "5.10")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

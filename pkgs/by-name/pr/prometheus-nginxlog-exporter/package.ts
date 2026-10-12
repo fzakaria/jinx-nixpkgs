@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nginxlog_exporter";
       const version = "1.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martin-helmich",
           repo: "prometheus-nginxlog-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-RzqfmP1d3zqageiGSr+CxSJQxAXmOKRCwj/7KO2f3EE=";
       const subPackages = nix.thunk(() => ["."]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, nginxlog: nix.thunk(() => nix.attr(from, "nginxlog")) };
+          return { [nix.POS]: pos$2, nginxlog: nix.thunk(() => nix.attr(from, "nginxlog")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Export metrics from Nginx access log files to Prometheus",
         mainProgram: "prometheus-nginxlog-exporter",
         homepage: "https://github.com/martin-helmich/prometheus-nginxlog-exporter",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

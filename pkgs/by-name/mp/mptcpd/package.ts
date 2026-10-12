@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mptcpd",
       version: "0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "multipath-tcp",
           repo: "mptcpd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => ["pkgsysconfdir=$out/etc/mptcpd"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       buildInputs: nix.thunk(() => [ell, systemdLibs]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv doc $doc",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Daemon for Linux that performs Multipath TCP path management related operations in the user space",
         homepage: "https://github.com/multipath-tcp/mptcpd",
         changelog: nix.thunk(() => nix.str`https://github.com/multipath-tcp/mptcpd/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

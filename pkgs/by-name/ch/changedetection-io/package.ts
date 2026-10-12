@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.53.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dgtlmoon",
           repo: "changedetection.io",
           tag: version,
@@ -89,11 +89,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["changedetectionio"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Self-hosted free open source website change detection tracking, monitoring and notification service",
         homepage: "https://github.com/dgtlmoon/changedetection.io",
         changelog: nix.thunk(() => nix.str`https://github.com/dgtlmoon/changedetection.io/releases/tag/${nix.sel(src, "tag")}`),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "changedetection.io",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

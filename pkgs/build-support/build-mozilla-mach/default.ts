@@ -152,10 +152,10 @@ export default nix.lambda((args) => (() => {
     const enableFeature = nix.thunk(() => nix.attr(lib, "enableFeature"));
     const llvmPackages0 = nix.thunk(() => nix.sel(rustc, "llvmPackages"));
     const llvmPackagesBuildBuild0 = nix.thunk(() => nix.sel(pkgsBuildBuild, "rustc", "llvmPackages"));
-    const llvmPackages = nix.thunk(() => nix.app(nix.sel(llvmPackages0, "override"), nix.thunk(() => ({ __proto__: pos$1, bootBintoolsNoLibc: null, bootBintools: null }))));
-    const llvmPackagesBuildBuild = nix.thunk(() => nix.app(nix.sel(llvmPackagesBuildBuild0, "override"), nix.thunk(() => ({ __proto__: pos$2, bootBintoolsNoLibc: null, bootBintools: null }))));
+    const llvmPackages = nix.thunk(() => nix.app(nix.sel(llvmPackages0, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bootBintoolsNoLibc: null, bootBintools: null }))));
+    const llvmPackagesBuildBuild = nix.thunk(() => nix.app(nix.sel(llvmPackagesBuildBuild0, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, bootBintoolsNoLibc: null, bootBintools: null }))));
     const buildStdenv = nix.thunk(() => nix.app(overrideCC, nix.thunk(() => nix.sel(llvmPackages, "stdenv")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "stdenv", "cc", "override"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bintools: nix.thunk(() => (nix.asBool(enableLTO) ? nix.sel(buildPackages, "rustc", "llvmPackages", "bintools") : nix.sel(stdenv, "cc", "bintools"))),
         }))))));
     const wasiSysRoot = nix.thunk(() => nix.app(runCommand, "wasi-sysroot", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/lib/wasm32-wasip1
@@ -166,31 +166,31 @@ done
     const distributionIni = nix.thunk(() => (() => {
       const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Nix on MacOS" : "NixOS"));
       return nix.app(nix.sel(pkgs, "writeText"), "distribution.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             Global: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               id: "nixos",
               version: "1.0",
               about: nix.thunk(() => nix.str`${applicationName} for ${platform}`),
             })),
             Preferences: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "app.distributor": "nixos",
               "app.distributor.channel": "nixpkgs",
             })),
           })))));
     })());
     const defaultPrefs = nix.thunk(() => (nix.asBool(enableLocation) ? {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       "geo.provider.network.url": nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         value: "https://api.beacondb.net/v1/geolocate",
         reason: "We have no Google API keys and Mozilla Location Services were retired.",
       })),
     } : {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       "geo.provider.use_geoclue": nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         value: false,
         reason: "Geolocation support has been disabled through the `enableLocation` package attribute.",
       })),
@@ -200,7 +200,7 @@ pref("${key}", ${nix.builtins.toJSON(nix.thunk(() => nix.sel(value, "value")))})
 `, defaultPrefs))))));
     const toolkit = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "cairo-cocoa" : nix.str`cairo-gtk3${nix.app(nix.sel(lib, "optionalString"), withWayland, "-wayland")}`));
     return nix.app(nix.sel(buildStdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: packageVersion,
         src: src,
@@ -208,7 +208,7 @@ pref("${key}", ${nix.builtins.toJSON(nix.thunk(() => nix.sel(value, "value")))})
         __structuredAttrs: true,
         strictDeps: true,
         meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             timeout: nix.thunk(() => nix.app(nix.sel(lib, "max"), nix.thunk(() => nix.mul(nix.mul(24n, 60n), 60n)), nix.thunk(() => nix.selOr(meta, () => 0n, "timeout")))),
           }))))),
         outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), enableCrashReporter, nix.thunk(() => ["symbols"])))),
@@ -361,11 +361,11 @@ export LD_PRELOAD=${mimalloc}/lib/libmimalloc.so
         separateDebugInfo: enableDebugSymbols,
         enableParallelBuilding: true,
         env: nix.thunk(() => nix.update({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           HOST_CC: nix.thunk(() => nix.str`${nix.sel(llvmPackagesBuildBuild, "stdenv", "cc")}/bin/cc`),
           HOST_CXX: nix.thunk(() => nix.str`${nix.sel(llvmPackagesBuildBuild, "stdenv", "cc")}/bin/c++`),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             LDFLAGS: nix.thunk(() => nix.str`-Wl,-rpath,${nix.builtins.placeholder("out")}/lib/${binaryName}`),
           }))))),
         doCheck: false,
@@ -393,7 +393,7 @@ cd ..
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(buildStdenv, "hostPlatform", "isDarwin"))), "bindir=$out/bin\n")), nix.str`"$bindir/${binaryName}" --version
 `)),
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           application: application,
           applicationName: applicationName,
           binaryName: binaryName,

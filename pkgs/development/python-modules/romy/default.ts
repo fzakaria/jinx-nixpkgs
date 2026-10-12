@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xeniter",
           repo: "romy",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["romy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to control Wi-Fi enabled ROMY vacuum cleaners",
         homepage: "https://github.com/xeniter/romy",
         changelog: nix.thunk(() => nix.str`https://github.com/xeniter/romy/releases/tag/${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "satisfactorymodmanager";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "satisfactorymodding",
           repo: "SatisfactoryModManager",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pnpmConfigHook, pnpm, wails, wrapGAppsHook3, copyDesktopItems]);
       const buildInputs = nix.thunk(() => [glib_networking]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: pname,
             version: version,
             src: src,
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
           })))),
         pnpmRoot: "frontend",
       }));
-      const overrideModAttrs = nix.thunk(() => ({ __proto__: pos$4, preBuild: "wails build -tags webkit2_41 # 4.0 EOL\n" }));
+      const overrideModAttrs = nix.thunk(() => ({ [nix.POS]: pos$4, preBuild: "wails build -tags webkit2_41 # 4.0 EOL\n" }));
       const proxyVendor = true;
       const vendorHash = "sha256-a8o69vrW6TfrYmBRlSNE4NqemJUBFQilsVj+qwLYcbo=";
       const buildPhase = "runHook preBuild\nwails build -tags webkit2_41 # 4.0 EOL\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\ninstall -Dm755 build/bin/SatisfactoryModManager -t \"$out/bin\"\n\nfor i in 16 32 64 128 256 512; do\n  install -D ./icons/\"$i\"x\"$i\".png \"$out\"/share/icons/hicolor/\"$i\"x\"$i\"/apps/SatisfactoryModManager.png\ndone\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "SatisfactoryModManager",
             desktopName: "Satisfactory Mod Manager",
             exec: "SatisfactoryModManager %u",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Mod manager and modloader for Satisfactory",
         homepage: "https://github.com/satisfactorymodding/SatisfactoryModManager",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

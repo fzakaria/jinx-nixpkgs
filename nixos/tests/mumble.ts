@@ -25,40 +25,40 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
       environment: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "mumble"))]),
       })),
     };
   })(), formals$2);
   const envFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nixos-test-mumble-murmurd.env", "MURMURD_PASSWORD=testpassword\n"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "mumble",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "thoughtpolice"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           security: nix.thunk(() => ({
-            __proto__: pos$5,
-            apparmor: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             murmur: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               registerName: "NixOS tests",
               password: "$MURMURD_PASSWORD",
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             firewall: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "murmur", "port"))]),
             })),
           })),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.925";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "iOSbackup",
           hash: "sha256-M1Rakknls/qq3x7ngv5r3823D64N77oazuM2pl+T0co=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pycrypto, nskeyedunarchiver]);
       const pythonImportsCheck = nix.thunk(() => ["iOSbackup"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reads and extracts files from password-encrypted iOS backups",
         homepage: "https://github.com/avibrazil/iOSbackup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

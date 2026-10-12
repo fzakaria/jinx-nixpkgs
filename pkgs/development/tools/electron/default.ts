@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const versions = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./info.json")));
   return nix.app(nix.sel(lib, "mapAttrs'"), (version) => (info) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`electron_${version}`), nix.thunk(() => (() => {
-        const electron_unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, info: info }))));
-        return nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ __proto__: pos$2, "electron-unwrapped": electron_unwrapped })));
+        const electron_unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, info: info }))));
+        return nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "electron-unwrapped": electron_unwrapped })));
       })())), versions);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

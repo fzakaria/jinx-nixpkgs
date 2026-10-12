@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smtml",
       version: "0.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "formalsec",
           repo: "smtml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       doCheck: nix.thunk(() => (nix.asBool(false) && nix.asBool(!nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.4")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SMT solver frontend for OCaml",
         homepage: "https://formalsec.github.io/smtml/smtml/",
         downloadPage: "https://github.com/formalsec/smtml",

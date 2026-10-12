@@ -76,15 +76,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "ifaddr")),
     ];
   })());
-  const kerberos = nix.thunk(() => nix.app(nix.sel(krb5, "override"), nix.thunk(() => ({ __proto__: pos$1, withVerto: true }))));
+  const kerberos = nix.thunk(() => nix.app(nix.sel(krb5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withVerto: true }))));
   const sasl = cyrus_sasl;
-  const samba = nix.thunk(() => nix.app(nix.sel(samba4, "override"), nix.thunk(() => ({ __proto__: pos$2, enableLDAP: true }))));
+  const samba = nix.thunk(() => nix.app(nix.sel(samba4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableLDAP: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "freeipa",
       version: "4.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/freeipa/freeipa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-U1MSfXxWynK8LUWDdtRX+LDMRRzb0x3Hk5qIBY6RUnw=",
         })))),
@@ -137,7 +137,7 @@ substituteInPlace ipaplatform/nixos/paths.py \\
   --subst-var-by kerberos ${kerberos}
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${_389_ds_base}/include/dirsrv`),
       })),
       pythonPath: pythonInputs,
@@ -157,7 +157,7 @@ substituteInPlace ipaplatform/nixos/paths.py \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/ipa`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Identity, Policy and Audit system",
         longDescription: "IPA is an integrated solution to provide centrally managed Identity (users,\nhosts, services), Authentication (SSO, 2FA), and Authorization\n(host access control, SELinux user roles, services). The solution provides\nfeatures for further integration with Linux based clients (SUDO, automount)\nand integration with Active Directory based infrastructures (Trusts).\n",
         homepage: "https://www.freeipa.org/",

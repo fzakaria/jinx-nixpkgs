@@ -34,35 +34,35 @@ export default nix.lambda((args) => (() => {
   const withOpenssl = nix.argOr($, "withOpenssl", () => true);
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wget",
       version: "1.25.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/wget/wget-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-GSJcx1awoIj8gRSNxqQKDI8ymvf9hIPxx7L+UPTgih8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-cve-2026-58471",
             url: "https://gitlab.com/gnuwget/wget/-/commit/c2640fe5171c59f87c58dc9fcb195b2d18b010ee.patch",
             hash: "sha256-ZnCLK9ILpHMqpmI39sBl3Q3NRNc/H8jukvBrECqJ6OI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-cve-2026-58470",
             url: "https://gitlab.com/gnuwget/wget/-/commit/43d3ba9336bc94937e6fae2365c6ffd30c34ffcf.patch",
             hash: "sha256-aR5lW8t6ME2Os/NPXjFaUbNr3QuiUSQKsa2Zk292mrk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-cve-2026-58469",
             url: "https://gitlab.com/gnuwget/wget/-/commit/37a40fcb450153f69537c7cbc2a7a4fb0b6f7826.patch",
             hash: "sha256-lkHQufl8XFZ1Ig8EoRUw3JuCgDPQod9PKAIsTBWzvm4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "fix-cve-2026-58472",
             url: "https://gitlab.com/gnuwget/wget/-/commit/dd692d9cea5335b181d877ae917fe6e75587a812.patch",
             hash: "sha256-FAlglKTZili9Y4ivSRLOEaOgektFmq4u6yyH+8WzQao=",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.add("patchShebangs tests fuzz\n\n# Work around lack of DNS resolution in chroots.\nfor i in \"tests/\"*.pm \"tests/\"*.px\ndo\n  sed -i \"$i\" -e's/localhost/127.0.0.1/g'\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# depending on the underlying filesystem, some tests\n# creating exotic file names fail\nfor f in tests/Test-ftp-iri.px \\\n  tests/Test-ftp-iri-fallback.px \\\n  tests/Test-ftp-iri-recursive.px \\\n  tests/Test-ftp-iri-disabled.px \\\n  tests/Test-iri-disabled.px \\\n  tests/Test-iri-list.px ;\ndo\n  # just return magic \"skip\" exit code 77\n  sed -i 's/^exit/exit 77 #/' $f\ndone\n"))),
       nativeCheckInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(perlPackages, "HTTPDaemon")), python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "IOSocketSSL"))])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for retrieving files using HTTP, HTTPS, and FTP",
         homepage: "https://www.gnu.org/software/wget/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

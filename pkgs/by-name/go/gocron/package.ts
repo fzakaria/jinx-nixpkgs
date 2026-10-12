@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gocron",
       version: "0.11.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flohoss",
           repo: "gocron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-NyL//yrKqYiwwQBdJHwQcPvjKssX4o9XrymI/6Hvbhc=",
         })))),
       "gocron-web": nix.thunk(() => nix.app(buildNpmPackage, (finalAttrsWebassets) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -64,12 +64,12 @@ substituteInPlace main.go \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "gocron-web"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "gocron-web"]) })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "gocron")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Task scheduler built with Go and Vue.js.",
         homepage: "https://github.com/flohoss/gocron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

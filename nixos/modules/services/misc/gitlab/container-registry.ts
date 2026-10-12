@@ -96,138 +96,138 @@ export default nix.lambda((args) => (() => {
   const enableDatabaseLocally = nix.thunk(() => (nix.asBool(enableDatabase) && nix.asBool(nix.eq(nix.sel(cfg, "settings", "database", "host"), ""))));
   const configFile = nix.thunk(() => nix.app(nix.sel(jsonFmt, "generate"), "gitlab-container-registry-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$80,
+    [nix.POS]: pos$80,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gitlab", "registry", "issuer"]), nix.thunk(() => ["services", "gitlab", "registry", "settings", "auth", "token", "issuer"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gitlab", "registry", "serviceName"]), nix.thunk(() => ["services", "gitlab", "registry", "settings", "auth", "token", "service"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "gitlab", "registry", "port"]), "Use services.gitlab.registry.settings.http.addr instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       services: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         gitlab: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           registry: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GitLab container registry")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gitlab-container-registry", nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 extraDescription: "External container registries such as `pkgs.distribution` are not supported\nanymore since GitLab 16.0.0.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(config, "services", "gitlab", "host")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.gitlab.host")),
                 description: "Address of the GitLab instance, Gitlab Contianer Registry connects to.",
               })))),
             certFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Path to GitLab container registry certificate.",
               })))),
             keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Path to GitLab container registry certificate key.",
               })))),
             defaultForProjects: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => nix.sel(cfg, "enable")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.gitlab.registry.enable")),
                 description: "If GitLab container registry should be enabled by default for projects.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "gitlab-container-registry",
                 description: "User the registry runs as",
               })))),
             externalAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "External address used to access registry from the internet",
               })))),
             externalPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "External port used to access registry from the internet",
               })))),
             databaseCreateLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether a database should be automatically created on the\nlocal host. Set this to `false` if you plan\nto provision a local database yourself. This has no effect\nif {option}`services.gitlab.registry.settings.database.host` is customized.\n",
               })))),
             storagePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "27.05")) ? "/var/lib/gitlab-container-registry" : "/var/lib/docker-registry")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if lib.versionAtLeast config.system.stateVersion \"27.05\" then\n\"/var/lib/gitlab-container-registry\"\nelse\n\"/var/lib/docker-registry\"\n")),
                 description: "GitLab container registry storage path for the filesystem storage backend. Set to\nnull to configure another backend via settings.\n",
               })))),
             enableDelete: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable delete for manifests and blobs.",
               })))),
             enableRedisCache: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "redis as blob cache")),
             redisUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost:6379",
                 description: "Set redis host and port.",
               })))),
             redisPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Set redis password.",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: "GitLab container registry configuration.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     freeformType: nix.thunk(() => nix.sel(jsonFmt, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "0.1",
                           description: "Version of the configuration file",
                         })))),
                       auth: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         token: nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           realm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The realm in which the registry server authenticates.",
                               default: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(config, "services", "gitlab", "https"), true)), "s")}://${nix.sel(cfg, "host")}/jwt/auth`),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"http${\n  lib.optionalString (config.services.gitlab.https == true) \"s\"\n}://${cfg.host}/jwt/auth\"\n")),
                             })))),
                           service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$16,
+                              [nix.POS]: pos$16,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The service being authenticated",
                               default: "container_registry",
                             })))),
                           issuer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The name of the token issuer. The issuer inserts this into the token so it must match the value configured for the issuer.",
                               default: "gitlab-issuer",
                             })))),
                           rootcertbundle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: nix.thunk(() => nix.sel(lib, "types", "path")),
                               default: nix.thunk(() => nix.sel(cfg, "certFile")),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.gitlab.registry.certFile")),
@@ -237,9 +237,9 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       database: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                                 nix.thunk(() => nix.sel(lib, "types", "bool")),
                                 nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["prefer"]))),
@@ -248,25 +248,25 @@ export default nix.lambda((args) => (() => {
                             description: "Whether to enable the database metadata store.\n\n\"prefer\" is a mode that uses the database as metadata store, but falls back to the filesystem store when it has not been imported yet into the database.\n",
                           })))),
                         dbname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "gitlab-container-registry",
                             description: "The database name that is used.",
                           })))),
                         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "",
                             description: "The database host GitLab container registry connects to. An empty string means 'use local unix socket connection'",
                           })))),
                       })),
                       health: nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         storagedriver: nix.thunk(() => ({
-                          __proto__: pos$27,
-                          enabled: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "storage driver health checks"), { __proto__: pos$25, default: true })),
+                          [nix.POS]: pos$27,
+                          enabled: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "storage driver health checks"), { [nix.POS]: pos$25, default: true })),
                           threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                               default: 3n,
                               description: "The number of times the check must fail before the state is marked as unhealthy",
@@ -274,17 +274,17 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       http: nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "127.0.0.1:4567",
                             description: "Address the contianer registry listens on.",
                           })))),
                         headers: nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           "X-Content-Type-Options": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: nix.thunk(() => ["nosniff"]),
                               description: "Value the X-Content-Type-Options HTTP header should be set to. 'nosniff' is recommended by GitLab.",
@@ -292,11 +292,11 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       log: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         fields: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               default: "gitlab-container-registry",
                               description: "The service name added to log messages",
@@ -304,11 +304,11 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       storage: nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         cache: nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           blobdescriptor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$36,
+                              [nix.POS]: pos$36,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableRedisCache")) ? "redis" : "inmemory")),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.gitlab.registry.enableRedisCache then \"redis\" else \"inmemory\"")),
@@ -320,10 +320,10 @@ export default nix.lambda((args) => (() => {
                   })))),
               })))),
             garbageCollection: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "garbage collection")),
               dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   default: "daily",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "Specification (in the format described by\n{manpage}`systemd.time(7)`) of the time at\nwhich the garbage collection will occur.\n",
@@ -334,46 +334,46 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "databaseCreateLocally")) || nix.asBool(databaseActuallyCreateLocally))),
             message: "'services.gitlab.registry.databaseCreateLocally' has no effect when services.gitlab.registry.database.host is customized. Please set 'services.gitlab.registry.databaseCreateLocally' to 'false' and setup the database manually or remove your custom value for 'services.gitlab.registry.database.host'",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           etc: nix.thunk(() => ({
-            __proto__: pos$50,
-            "gitlab-container-registry-config.json": nix.thunk(() => ({ __proto__: pos$49, source: configFile })),
+            [nix.POS]: pos$50,
+            "gitlab-container-registry-config.json": nix.thunk(() => ({ [nix.POS]: pos$49, source: configFile })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           gitlab: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             registry: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               settings: nix.thunk(() => ({
-                __proto__: pos$58,
-                delete: nix.thunk(() => ({ __proto__: pos$52, enabled: true })),
+                [nix.POS]: pos$58,
+                delete: nix.thunk(() => ({ [nix.POS]: pos$52, enabled: true })),
                 redis: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRedisCache")), nix.thunk(() => nix.update({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     addr: nix.thunk(() => nix.str`${nix.sel(cfg, "redisUrl")}`),
                     password: nix.thunk(() => nix.str`${nix.sel(cfg, "redisPassword")}`),
                   }, nix.builtins.mapAttrs((_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       db: 0n,
                       dialtimeout: "10ms",
                       readtimeout: "10ms",
                       writetimeout: "10ms",
-                      pool: nix.thunk(() => ({ __proto__: pos$54, maxidle: 16n, maxactive: 64n, idletimeout: "300s" })),
+                      pool: nix.thunk(() => ({ [nix.POS]: pos$54, maxidle: 16n, maxactive: 64n, idletimeout: "300s" })),
                     }))))))),
                 storage: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   filesystem: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     rootdirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storagePath"), null)), nix.thunk(() => nix.sel(cfg, "storagePath")))),
                   })),
                 })),
@@ -381,11 +381,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), databaseActuallyCreateLocally, nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               ensureDatabases: nix.thunk(() => ["gitlab-container-registry"]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   name: "gitlab-container-registry",
                   ensureDBOwnership: true,
                 })),
@@ -393,11 +393,11 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           services: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             "gitlab-registry-cert": nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "openssl"))];
@@ -412,13 +412,13 @@ chown ${user}:${group} $(dirname ${nix.sel(cfg, "keyFile")}) $(dirname ${nix.sel
 `;
               })()),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 ConditionPathExists: nix.thunk(() => nix.str`!${nix.sel(cfg, "certFile")}`),
               })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$65, Type: "oneshot", Slice: "system-gitlab.slice" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$65, Type: "oneshot", Slice: "system-gitlab.slice" })),
             })),
             "gitlab-container-registry": nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               description: "GitLab Container Registry",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["gitlab-registry-cert.service"]),
@@ -427,7 +427,7 @@ chown ${user}:${group} $(dirname ${nix.sel(cfg, "keyFile")}) $(dirname ${nix.sel
               preStart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableDatabaseLocally, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} database migrate up --skip-post-deployment ${configFile}`))),
               postStart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableDatabaseLocally, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} database migrate up ${configFile}`))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} serve ${configFile}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "storagePath")),
@@ -435,11 +435,11 @@ chown ${user}:${group} $(dirname ${nix.sel(cfg, "keyFile")}) $(dirname ${nix.sel
               })),
             })),
             "gitlab-container-registry-garbage-collect": nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               description: "Run Garbage Collection for GitLab container registry",
               restartIfChanged: false,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$69, "X-StopOnRemoval": false })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$70, Type: "oneshot" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$69, "X-StopOnRemoval": false })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$70, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} garbage-collect ${configFile}
 /run/current-system/systemd/bin/systemctl restart gitlab-container-registry.service
 `),
@@ -448,17 +448,17 @@ chown ${user}:${group} $(dirname ${nix.sel(cfg, "keyFile")}) $(dirname ${nix.sel
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           users: nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             "gitlab-container-registry": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gitlab-container-registry")), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storagePath"), null)), nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   createHome: true,
                   home: nix.thunk(() => nix.sel(cfg, "storagePath")),
-                }))), { __proto__: pos$75, group: "gitlab-container-registry", isSystemUser: true })))),
+                }))), { [nix.POS]: pos$75, group: "gitlab-container-registry", isSystemUser: true })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             "gitlab-container-registry": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gitlab-container-registry")), nix.thunk(() => ({})))),
           })),
         })),

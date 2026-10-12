@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
     ];
   })();
   const py = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), python_deps));
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ __proto__: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "syslog-ng",
       version: "4.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "syslog-ng",
           repo: "syslog-ng",
           tag: nix.thunk(() => nix.str`syslog-ng-${nix.sel(finalAttrs, "version")}`),
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.syslog-ng.com",
         description: "Next-generation syslogd with advanced networking and filtering capabilities",
         license: nix.thunk(() => (() => {

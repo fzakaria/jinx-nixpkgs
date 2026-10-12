@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_codon_tables",
           version: version,
           hash: "sha256-c/VSmArSkq+46LzW3r+CQEG1mwp87ACbZ7EWkMOGOQc=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["python_codon_tables"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Edinburgh-Genome-Foundry/codon-usage-tables",
         description: "Codon Usage Tables for Python, from kazusa.or.jp",
         changelog: nix.thunk(() => nix.str`https://github.com/Edinburgh-Genome-Foundry/python_codon_tables/releases/tag/${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

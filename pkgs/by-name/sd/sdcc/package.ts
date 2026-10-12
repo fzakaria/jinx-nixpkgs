@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       "z80n",
     ]), excludePorts), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sd/sdcc/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sdcc",
       version: "4.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sdcc/sdcc-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-X9apPlmXzgF1aGj+NeRBCVz7Y3iUqAwmJRSmNAlJc7Y=",
         })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preConfigure: "if test -n \"${dontStrip-}\"; then\n  export STRIP=none\nfi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sdcc.sourceforge.net/",
         description: "Small Device C Compiler",
         longDescription: "SDCC is a free open source, retargettable, optimizing ISO C compiler suite\nthat targets a growing list of processors including the Intel MCS-51 based\nmicroprocessors (8031, 8032, 8051, 8052, etc.), Maxim (formerly Dallas)\nDS80C390 variants, Freescale (formerly Motorola) HC08 based (hc08, s08),\nZilog Z80 based MCUs (Z80, Z80N, Z180, SM83 (e.g. Game Boy), Rabbit 2000,\nRabbit 2000A/3000, Rabbit 3000A, TLCS-90, R800), STMicroelectronics STM8,\nPadauk PDK14 and PDK15 and MOS 6502. Work is in progress on supporting the\nPadauk PDK13 target. There are unmaintained Microchip PIC16 and PIC18\ntargets. It can be retargeted for other microprocessors.\n",

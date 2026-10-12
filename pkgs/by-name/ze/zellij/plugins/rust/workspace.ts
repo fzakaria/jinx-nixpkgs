@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zellij-workspace",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vdbulcke",
           repo: "zellij-workspace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-EkPwtJ134yfzVDVXp4uXjzyhFetp6TC10DSePua/g1k=",
       depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgsBuildBuild, "stdenv", "cc")), libiconv]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zellij plugin for applying layouts to current zellij session",
         homepage: "https://github.com/vdbulcke/zellij-workspace",
         changelog: nix.thunk(() => nix.str`https://github.com/vdbulcke/zellij-workspace/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

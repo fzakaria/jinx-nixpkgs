@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-workstations",
       version: "0.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_workstations",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-X1szyp4YP1Odu3wO8L3LmrInRAnxDSyROwn/eHPVHjY=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.workstations_v1beta",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Client for Cloud Workstations",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-workstations",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-workstations-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-workstations/CHANGELOG.md`),

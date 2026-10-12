@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sitelen-seli-kiwen",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kreativekorp/sitelen-seli-kiwen/releases/download/${nix.sel(finalAttrs, "version")}/sitelenselikiwen.zip`),
           stripRoot: false,
           hash: "sha256-2qxnHjUcfdJG6o/JI4YJP6YVr4/if/0AkMTvco4HWPc=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/{opentype,truetype}\nmv *.eot $out/share/fonts/opentype/\nmv *.ttf $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Handwritten sitelen pona font supporting UCSUR",
         homepage: "https://www.kreativekorp.com/software/fonts/sitelenselikiwen/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

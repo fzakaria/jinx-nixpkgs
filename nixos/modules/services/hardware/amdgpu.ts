@@ -31,26 +31,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "amdgpu"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         amdgpu: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           legacySupport: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "using `amdgpu` kernel driver instead of `radeon` for Southern Islands\n(Radeon HD 7000) series and Sea Islands (Radeon HD 8000)\nseries cards. Note: this removes support for analog video outputs,\nwhich is only available in the `radeon` driver\n")),
           })),
           initrd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "loading `amdgpu` kernelModule in stage 1.\nCan fix lower resolution in boot screen during initramfs phase\n")),
           })),
           overdrive: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "`amdgpu` overdrive mode for overclocking")),
             ppfeaturemask: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "0xfffd7fff",
                 example: "0xffffffff",
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           opencl: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenCL support using ROCM runtime library")),
           })),
           zluda: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CUDA support using ZLUDA runtime library")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zluda", nix.thunk(() => ({})))),
           })),
@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           boot: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             kernelParams: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "legacySupport", "enable")), nix.thunk(() => [
                 "amdgpu.si_support=1",
                 "amdgpu.cik_support=1",
@@ -83,17 +83,17 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.str`amdgpu.ppfeaturemask=${nix.sel(cfg, "overdrive", "ppfeaturemask")}`),
               ])))),
             initrd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "initrd", "enable")), nix.thunk(() => ["amdgpu"]))),
             })),
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "opencl", "enable")), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             hardware: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               graphics: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 extraPackages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "rocmPackages", "clr")),
@@ -103,11 +103,11 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "zluda", "enable")), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             hardware: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               graphics: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "zluda", "package"))]),
               })),
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "johnrtitor"))];

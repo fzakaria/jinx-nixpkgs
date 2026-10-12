@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
   const meta = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "oddlama")),
         nix.thunk(() => nix.lookup(w, "rnhmjoj")),
@@ -96,37 +96,37 @@ export default nix.lambda((args) => (() => {
 `));
   const runConnectionTest = (name) => (extraConfig) => nix.app(runSimulatorTest, name, extraConfig, "with subtest(\"Daemon can connect to the access point\"):\n    machine.wait_for_unit(\"wpa_supplicant-wlan1.service\")\n    machine.wait_until_succeeds(\n      \"wpa_cli -i wlan1 status | grep -q wpa_state=COMPLETED\"\n    )\n");
   const runSimulatorTest = (name) => (extraConfig) => (extraTestScript) => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       name: nix.thunk(() => nix.str`wpa_supplicant-${name}`),
       meta: meta,
       nodes: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         machine: nix.thunk(() => ({
-          __proto__: pos$23,
-          boot: nix.thunk(() => ({ __proto__: pos$2, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
+          [nix.POS]: pos$23,
+          boot: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             hostapd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
               radios: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 wlan0: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   band: "2g",
                   channel: 6n,
                   countryCode: "US",
                   networks: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     wlan0: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       ssid: "nixos-test-sae",
                       authentication: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         mode: "wpa3-sae",
                         saePasswords: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", naughtyPassphrase)),
                           })),
                         ]),
@@ -134,10 +134,10 @@ export default nix.lambda((args) => (() => {
                       bssid: "02:00:00:00:00:00",
                     })),
                     "wlan0-1": nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       ssid: "nixos-test-mixed",
                       authentication: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         mode: "wpa3-sae-transition",
                         transitionDisable: true,
                         saeAddToMacAllow: true,
@@ -147,10 +147,10 @@ export default nix.lambda((args) => (() => {
                       bssid: "02:00:00:00:00:01",
                     })),
                     "wlan0-2": nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       ssid: "nixos-test-mixed",
                       authentication: nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         mode: "wpa3-sae-transition",
                         transitionDisable: true,
                         saeAddToMacAllow: true,
@@ -160,9 +160,9 @@ export default nix.lambda((args) => (() => {
                       bssid: "02:00:00:00:00:02",
                     })),
                     "wlan0-3": nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       ssid: "nixos-test-wpa2",
-                      authentication: nix.thunk(() => ({ __proto__: pos$10, mode: "wpa2-sha256", wpaPassword: naughtyPassphrase })),
+                      authentication: nix.thunk(() => ({ [nix.POS]: pos$10, mode: "wpa2-sha256", wpaPassword: naughtyPassphrase })),
                       bssid: "02:00:00:00:00:03",
                     })),
                   })),
@@ -171,14 +171,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "wpa-secrets": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 wantedBy: nix.thunk(() => ["network.target", "multi-user.target"]),
                 before: nix.thunk(() => ["network.target", "multi-user.target"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$17, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "oneshot" })),
                 script: nix.thunk(() => (() => {
                   const secretFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "wpa", nix.thunk(() => nix.str`psk_nixos_test=${naughtyPassphrase}
 `)));
@@ -189,10 +189,10 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             wireless: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
                   userControlled: true,
                   interfaces: nix.thunk(() => ["wlan1"]),
@@ -212,40 +212,40 @@ ${extraTestScript}
 `),
     })));
   return {
-    __proto__: pos$65,
+    [nix.POS]: pos$65,
     basic: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         name: "wpa_supplicant-basic",
         meta: meta,
         nodes: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           machine: nix.thunk(() => ({
-            __proto__: pos$34,
-            boot: nix.thunk(() => ({ __proto__: pos$26, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
+            [nix.POS]: pos$34,
+            boot: nix.thunk(() => ({ [nix.POS]: pos$26, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               wireless: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
                 userControlled: true,
                 dbusControlled: true,
                 fallbackToWPA2: true,
                 networks: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "mixed-wpa": nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     psk: "password",
                     authProtocols: nix.thunk(() => ["WPA-PSK", "SAE"]),
                   })),
-                  "sae-only": nix.thunk(() => ({ __proto__: pos$28, psk: "password", authProtocols: nix.thunk(() => ["SAE"]) })),
+                  "sae-only": nix.thunk(() => ({ [nix.POS]: pos$28, psk: "password", authProtocols: nix.thunk(() => ["SAE"]) })),
                   duplicate1: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     ssid: "duplicate",
                     bssid: "00:00:00:00:00:01",
                     psk: "password",
                   })),
                   duplicate2: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     ssid: "duplicate",
                     bssid: "00:00:00:00:00:02",
                     psk: "password",
@@ -262,25 +262,25 @@ ${extraTestScript}
         testScript: "with subtest(\"Daemon is running and accepting connections\"):\n    machine.wait_for_unit(\"wpa_supplicant.service\")\n    status = machine.wait_until_succeeds(\"wpa_cli status\")\n    assert \"Failed to connect\" not in status, \\\n           \"Failed to connect to the daemon\"\n\nwith subtest(\"D-Bus interface is working\"):\n    dbus_command = \"dbus-send --system --print-reply --dest=fi.w1.wpa_supplicant1 \" \\\n                   \"/fi/w1/wpa_supplicant1 fi.w1.wpa_supplicant1.GetInterface string:wlan0\"\n    machine.succeed(dbus_command)  # as root\n    machine.succeed(f\"sudo -g wpa_supplicant {dbus_command}\")  # as wpa_supplicant group\n\nwith subtest(\"D-Bus auto-starting is working\"):\n    # stop service\n    machine.systemctl(\"stop wpa_supplicant.service\")\n    machine.require_unit_state(\"wpa_supplicant.service\", \"inactive\")\n\n    # send wake up\n    dbus_command = \"dbus-send --system --print-reply --dest=fi.w1.wpa_supplicant1 \" \\\n                   \"/fi/w1/wpa_supplicant1 fi.w1.wpa_supplicant1.GetInterface string:wlan0\"\n    machine.succeed(dbus_command)\n\n    # should be up again\n    machine.require_unit_state(\"wpa_supplicant.service\", \"active\")\n\n# generated configuration file\nconfig_file = \"/etc/static/wpa_supplicant/nixos.conf\"\n\nwith subtest(\"WPA2 fallbacks have been generated\"):\n    assert int(machine.succeed(f\"grep -c sae-only {config_file}\")) == 1\n    assert int(machine.succeed(f\"grep -c mixed-wpa {config_file}\")) == 2\n\nwith subtest(\"Duplicate SSID network blocks have been generated\"):\n    # more duplication due to fallbacks\n    assert int(machine.succeed(f\"grep -c duplicate {config_file}\")) == 4\n    assert int(machine.succeed(f\"grep -c bssid=00:00:00:00:00:01 {config_file}\")) == 2\n    assert int(machine.succeed(f\"grep -c bssid=00:00:00:00:00:02 {config_file}\")) == 2\n\nwith subtest(\"Extra config files have been loaded\"):\n    machine.wait_until_succeeds(\"wpa_cli -i wlan0 list_networks | grep -q test1\")\n    machine.succeed(\"wpa_cli -i wlan0 list_networks | grep -q test2\")\n\n# save file for manual inspection\nmachine.copy_from_machine(config_file)\n\n# check hardening options\nmachine.succeed(\"systemd-analyze security wpa_supplicant >&2\")\n",
       })))),
     imperative: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         name: "wpa_supplicant-imperative",
         meta: meta,
         nodes: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           machine: nix.thunk(() => ({
-            __proto__: pos$43,
-            boot: nix.thunk(() => ({ __proto__: pos$37, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
+            [nix.POS]: pos$43,
+            boot: nix.thunk(() => ({ [nix.POS]: pos$37, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
             users: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               users: nix.thunk(() => ({
-                __proto__: pos$39,
-                alice: nix.thunk(() => ({ __proto__: pos$38, isNormalUser: true, group: "users" })),
+                [nix.POS]: pos$39,
+                alice: nix.thunk(() => ({ [nix.POS]: pos$38, isNormalUser: true, group: "users" })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               wireless: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
                 userControlled: true,
                 allowAuxiliaryImperativeNetworks: true,
@@ -292,77 +292,77 @@ ${extraTestScript}
         testScript: "wpa_cli = \"sudo -u alice -g wpa_supplicant wpa_cli\"\n\nwith subtest(\"Daemons are running and accepting connections\"):\n    for iface in [\"wlan0\", \"wlan1\"]:\n      machine.wait_for_unit(f\"wpa_supplicant-{iface}.service\")\n      status = machine.wait_until_succeeds(f\"{wpa_cli} -i {iface} status\")\n      assert \"Failed to connect\" not in status, \\\n             f\"Failed to connect to the daemon for {iface}\"\n\nwith subtest(\"Daemon can be configured imperatively\"):\n    machine.succeed(f\"{wpa_cli} -i wlan1 add_network\")\n    machine.succeed(f\"{wpa_cli} -i wlan1 set_network 0 ssid '\\\"nixos-test\\\"'\")\n    machine.succeed(f\"{wpa_cli} -i wlan1 set_network 0 psk '\\\"reproducibility\\\"'\")\n    machine.succeed(f\"{wpa_cli} -i wlan1 save_config\")\n    machine.succeed(\"grep -q nixos-test /etc/wpa_supplicant/imperative.conf\")\n",
       })))),
     saeOnly: nix.thunk(() => nix.app(runConnectionTest, "sae-only", nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         fallbackToWPA2: false,
         networks: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           "nixos-test-sae": nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             pskRaw: "ext:psk_nixos_test",
             authProtocols: nix.thunk(() => ["SAE"]),
           })),
         })),
       })))),
     mixedUsingSae: nix.thunk(() => nix.app(runConnectionTest, "mixed-using-sae", nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         fallbackToWPA2: false,
         networks: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           "nixos-test-mixed": nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             pskRaw: "ext:psk_nixos_test",
             authProtocols: nix.thunk(() => ["SAE"]),
           })),
         })),
       })))),
     mixedUsingWpa2Psk: nix.thunk(() => nix.app(runConnectionTest, "mixed-using-wpa2-psk", nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         fallbackToWPA2: true,
         networks: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           "nixos-test-mixed": nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             pskRaw: "ext:psk_nixos_test",
             authProtocols: nix.thunk(() => ["WPA-PSK"]),
           })),
         })),
       })))),
     mixedUsingWpa2: nix.thunk(() => nix.app(runConnectionTest, "mixed-using-wpa2", nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         fallbackToWPA2: true,
         networks: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           "nixos-test-mixed": nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             pskRaw: "ext:psk_nixos_test",
             authProtocols: nix.thunk(() => ["WPA-PSK-SHA256"]),
           })),
         })),
       })))),
     legacy: nix.thunk(() => nix.app(runConnectionTest, "legacy", nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         fallbackToWPA2: true,
         networks: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           "nixos-test-wpa2": nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             pskRaw: "ext:psk_nixos_test",
             authProtocols: nix.thunk(() => ["WPA-PSK-SHA256"]),
           })),
         })),
       })))),
     bssidGuard: nix.thunk(() => nix.app(runBssidTest, "bssid-guard", "02:00:00:00:00:02", nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         networks: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           "1_first": nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             ssid: "nixos-test-mixed",
             bssid: "02:00:00:00:00:01",
             pskRaw: "ext:psk_nixos_test",
           })),
           "2_second": nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             ssid: "nixos-test-mixed",
             bssid: "02:00:00:00:00:02",
             pskRaw: "ext:psk_nixos_test",

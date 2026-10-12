@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spaceship-prompt";
       const version = "4.22.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spaceship-prompt",
           repo: "spaceship-prompt",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "install -Dm644 LICENSE.md \"$out/share/licenses/spaceship-prompt/LICENSE\"\ninstall -Dm644 README.md \"$out/share/doc/spaceship-prompt/README.md\"\nfind docs -type f -exec install -Dm644 {} \"$out/share/doc/spaceship-prompt/{}\" \\;\nfind lib -type f -exec install -Dm644 {} \"$out/lib/spaceship-prompt/{}\" \\;\nfind scripts -type f -exec install -Dm644 {} \"$out/lib/spaceship-prompt/{}\" \\;\nfind sections -type f -exec install -Dm644 {} \"$out/lib/spaceship-prompt/{}\" \\;\ninstall -Dm644 spaceship.zsh \"$out/lib/spaceship-prompt/spaceship.zsh\"\ninstall -Dm644 async.zsh \"$out/lib/spaceship-prompt/async.zsh\"\ninstall -d \"$out/share/zsh/themes/\"\nln -s \"$out/lib/spaceship-prompt/spaceship.zsh\" \"$out/share/zsh/themes/spaceship.zsh-theme\"\ninstall -d \"$out/share/zsh/site-functions/\"\nln -s \"$out/lib/spaceship-prompt/spaceship.zsh\" \"$out/share/zsh/site-functions/prompt_spaceship_setup\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zsh prompt for Astronauts",
         homepage: "https://github.com/spaceship-prompt/spaceship-prompt/",
         changelog: nix.thunk(() => nix.str`https://github.com/spaceship-prompt/spaceship-prompt/releases/tag/v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

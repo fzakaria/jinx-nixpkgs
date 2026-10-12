@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-epgsearch";
       const version = "2.4.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "vdr-plugin-epgsearch",
           owner: "vdr-projects",
           sha256: "sha256-+csxlLBSIKiYIjgEPj0IUP8wZX9zuOM26cgA99uZ3EA=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Searchtimer and replacement of the VDR program menu",
         mainProgram: "createcats",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daanzu",
           repo: "kaldi-active-grammar",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-VyVshIEVp/ep4Ih7Kj66GF02JEZ4nwgJOtgR2DarzdY=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, KALDI_BRANCH: "foo", KALDIAG_SETUP_RAW: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, KALDI_BRANCH: "foo", KALDIAG_SETUP_RAW: "1" }));
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-stub.patch"),
         nix.path(here, "./0002-exec-path.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-ffi-path.patch"), nix.thunk(() => ({ __proto__: pos$3, kaldiFork: nix.thunk(() => nix.str`${kaldi}/lib`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-ffi-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, kaldiFork: nix.thunk(() => nix.str`${kaldi}/lib`) })))),
       ]);
       const preBuild = "cd ..\n";
       const buildInputs = nix.thunk(() => [openfst, kaldi]);
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [ush, requests, numpy, cffi, six]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python Kaldi speech recognition",
         homepage: "https://github.com/daanzu/kaldi-active-grammar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

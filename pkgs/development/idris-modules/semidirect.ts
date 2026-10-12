@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const patricia = nix.arg($, "patricia");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "semidirect",
       version: "2018-07-02",
       idrisDeps: nix.thunk(() => [contrib, patricia]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clayrat",
           repo: "idris-semidirect",
           rev: "e19c58f7a25c53bba2ab058821e038bae3c093d2",
           sha256: "0182r9z34kbv3l78pw4qf48ng3hqj4sqzy53074mb0b2c3pikcrl",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Semidirect products in Idris",
         homepage: "https://github.com/clayrat/idris-semidirect",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

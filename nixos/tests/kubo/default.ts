@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runTest = nix.arg($, "runTest");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       kubo: nix.thunk(() => nix.app(runTest, nix.path(here, "./kubo.nix"))),
       "kubo-fuse": nix.thunk(() => nix.app(runTest, nix.path(here, "./kubo-fuse.nix"))),
     })));

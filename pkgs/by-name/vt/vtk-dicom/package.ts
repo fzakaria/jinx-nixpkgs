@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const vtk_dicom = nix.arg($, "vtk-dicom");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vtk-dicom",
       version: "0.8.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dgobbi",
           repo: "vtk-dicom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,22 +47,22 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           python: nix.thunk(() => nix.app(nix.sel(vtk_dicom, "override"), nix.thunk(() => ({
-              __proto__: pos$3,
-              vtk: nix.thunk(() => nix.app(nix.sel(vtk, "override"), nix.thunk(() => ({ __proto__: pos$2, pythonSupport: true })))),
+              [nix.POS]: pos$3,
+              vtk: nix.thunk(() => nix.app(nix.sel(vtk, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pythonSupport: true })))),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               moduleNames: nix.thunk(() => ["DICOM"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "DICOM for VTK",
         homepage: "https://github.com/dgobbi/vtk-dicom",
         changelog: nix.thunk(() => nix.str`https://github.com/dgobbi/vtk-dicom/releases/tag/v${nix.sel(finalAttrs, "version")}`),

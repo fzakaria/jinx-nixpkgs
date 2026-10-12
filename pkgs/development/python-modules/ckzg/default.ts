@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "c-kzg-4844",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["ckzg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal implementation of the Polynomial Commitments API for EIP-4844 and EIP-7594",
         homepage: "https://github.com/ethereum/c-kzg-4844",
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/c-kzg-4844/releases/tag/${nix.sel(src, "tag")}`),
@@ -52,7 +52,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

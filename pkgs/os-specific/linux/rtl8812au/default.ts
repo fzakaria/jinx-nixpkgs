@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8812au",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2024-06-13`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "morrownr",
           repo: "8812au-20210820",
           rev: "c0efee9cd121d9f0c815d9771475f76339a8f7d3",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for Realtek 802.11ac, rtl8812au, provides the 8812au mod",
         homepage: "https://github.com/morrownr/8812au-20210820",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

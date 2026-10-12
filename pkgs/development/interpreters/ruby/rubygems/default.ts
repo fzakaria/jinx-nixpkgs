@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rubygems";
       const version = "3.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://rubygems.org/rubygems/rubygems-${version}.tgz`),
           hash: "sha256-7+zgEiWlMvS1LPh2TSCgDg0p7W+Fsz2TAt9IlqkPpas=",
         }))));
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\ncp -r . $out\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rubygems/rubygems.git",
             "rev-prefix": "v",
             ignoredVersions: "(pre|alpha|beta|rc|bundler).*",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Package management framework for Ruby",
         changelog: nix.thunk(() => nix.str`https://github.com/rubygems/rubygems/blob/v${version}/CHANGELOG.md`),
         homepage: "https://rubygems.org/",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "zimbatm"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, patches, installPhase, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, patches, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

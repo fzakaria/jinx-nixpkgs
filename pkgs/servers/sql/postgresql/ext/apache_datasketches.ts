@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const version = "1.7.0";
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "datasketches-postgresql",
       owner: "apache",
       repo: "datasketches-postgresql",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-W41uAs3W4V7c9O/wBw3rut65bcmY8EdQS1/tPszMGqA=",
     }))));
   const cpp_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "datasketches-cpp",
       owner: "apache",
       repo: "datasketches-cpp",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-h4+cln01jqLV0EpIqScpCyw8jxZgoVtdfBEjdvyUuVk=",
     }))));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "apache_datasketches",
       version: version,
       srcs: nix.thunk(() => [main_src, cpp_src]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost186]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/apache/datasketches-cpp/commit/639134f6e88483bd1bfca451cf09d243ade9bdd4.patch",
             hash: "sha256-6SYKy3NycYABnUCuLUXQz+mTx4VaeWMlHnJ6aM+sNt4=",
             stripLen: 1n,
@@ -58,18 +58,18 @@ export default nix.lambda((args) => (() => {
 `),
       enableUpdateScript: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION datasketches;\nSELECT hll_sketch_to_string(hll_sketch_build(1));\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "PostgreSQL extension providing approximate algorithms for distinct item counts, quantile estimation and frequent items detection",
         longDescription: "apache_datasketches is an extension to support approximate algorithms on PostgreSQL. The implementation\nis based on the Apache Datasketches CPP library, and provides support for HyperLogLog,\nCompressed Probabilistic Counting, KLL, Frequent strings, and Theta sketches.\n",
         homepage: "https://datasketches.apache.org/",

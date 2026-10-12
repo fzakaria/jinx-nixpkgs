@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zxcalc",
           repo: "pyzx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "pyzx.scripts",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for quantum circuit rewriting and optimisation using the ZX-calculus",
         homepage: "https://github.com/zxcalc/pyzx",
         changelog: nix.thunk(() => nix.str`https://github.com/zxcalc/pyzx/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

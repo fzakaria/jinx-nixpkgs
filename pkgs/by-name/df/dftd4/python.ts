@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const cffi = nix.arg($, "cffi");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(dftd4, "pname")),
       version: nix.thunk(() => nix.attr(dftd4, "version")),
       src: nix.thunk(() => nix.attr(dftd4, "src")),

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtshadertools",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [
           nix.thunk(() => nix.str`-DQt6ShaderToolsTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtshadertools")}/lib/cmake/Qt6ShaderToolsTools`),
         ]))),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "qsb" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "qsb" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtshadertools.ts.map

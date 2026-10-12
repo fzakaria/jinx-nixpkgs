@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hdparm",
       version: "9.65",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/hdparm/hdparm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-0Ukp+RDQYJMucX6TgkJdR8LnFEI1pTcT1VqU995TWks=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`manprefix=${nix.builtins.placeholder("out")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to get/set ATA/SATA drive parameters under Linux",
         homepage: "https://sourceforge.net/projects/hdparm/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

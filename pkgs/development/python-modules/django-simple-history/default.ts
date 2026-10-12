@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-simple-history",
           tag: version,
@@ -36,7 +36,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["simple_history"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to store Django model state on every create/update/delete",
         homepage: "https://github.com/jazzband/django-simple-history/",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-simple-history/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

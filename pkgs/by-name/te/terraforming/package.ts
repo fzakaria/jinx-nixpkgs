@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["terraforming"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "terraforming")),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ruby_1, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Export existing AWS resources to Terraform style (tf, tfstate)",
         homepage: "https://github.com/dtan4/terraforming",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       };
       })());
-      return { __proto__: pos$3, ruby: ruby_1, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: pos$3, ruby: ruby_1, pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qttools = nix.arg($, "qttools");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtdoc",
       postPatch: nix.thunk(() => nix.str`for file in $(grep -rl '$QT_INSTALL_DOCS'); do
   substituteInPlace $file \\
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       nativeBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ __proto__: pos$1, withClang: true })))),
+        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withClang: true })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [qtdeclarative]),
       ninjaFlags: nix.thunk(() => ["docs"]),

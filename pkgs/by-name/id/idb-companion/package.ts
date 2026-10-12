@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "idb-companion",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/facebook/idb/releases/download/v${nix.sel(finalAttrs, "version")}/idb-companion.universal.tar.gz`),
           hash: "sha256-O3LMappbGiKhiCBahAkNOilDR6hGGA79dVzxo8hI4+c=",
         })))),
       sourceRoot: "idb-companion.universal",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful command line tool for automating iOS simulators and devices",
         homepage: "https://github.com/facebook/idb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

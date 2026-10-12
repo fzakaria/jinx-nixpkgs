@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ubports-pdk",
       version: "0-unstable-2026-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "ubports-pdk",
           rev: "c9a85c691589029ba4b256dd78b430301facc7ba",
@@ -50,11 +50,11 @@ makeWrapper $out/share/ubuntu-touch-pdk/ubuntu-touch-pdk $out/bin/ubuntu-touch-p
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform Development Kit for Ubuntu Touch",
         homepage: "https://github.com/ubports/ubports-pdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

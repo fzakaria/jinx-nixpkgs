@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const processor = nix.thunk(() => nix.attr(from, "processor"));
   const version = "6.7.1";
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-Linux.tar.gz`),
       hash: "sha256-Ddypd9622dtL2GZIX5QI5y4oadDeoHN7GNS/5HKFis4=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-LinuxARMPreview.tar.gz`),
       hash: "sha256-blmsuD5t6jZx4uKVNl/DfED90oDNvd1QrPJIkQ4UoOM=",
     })),
     "riscv64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-LinuxRISCVPreview.tar.gz`),
       hash: "sha256-TByNeLqqHrnrLcX/meXNy6Evvebf0/xWnUohd/TwiAk=",
     })),
   }));
   const geekbench_avx2 = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "geekbench_avx2"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       pname: "geekbench",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "system")))))),
@@ -70,7 +70,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform benchmark",
         homepage: "https://geekbench.com/",
         sourceProvenance: nix.thunk(() => (() => {

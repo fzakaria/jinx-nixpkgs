@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
       const w = nix.withScope(ps, null);
       return [nix.thunk(() => nix.lookup(w, "click"))];
     })()));
-  const kikit_module = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "toPythonModule"), nix.thunk(() => nix.app(nix.sel(kikit, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python3 }))))));
+  const kikit_module = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "toPythonModule"), nix.thunk(() => nix.app(nix.sel(kikit, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python3 }))))));
   const targetSpecs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     kikit: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       makeTarget: "pcm-kikit",
       resultZip: "pcm-kikit.zip",
       description: "KiCad plugin and a CLI tool to automate several tasks in a standard KiCad workflow",
     })),
     "kikit-library": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       makeTarget: "pcm-lib",
       resultZip: "pcm-kikit-lib.zip",
       description: "KiKit uses these symbols and footprints to annotate your boards (e.g., to place a tab in a panel)",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   }));
   const targetSpec = nix.thunk(() => nix.sel(targetSpecs, nix.key(nix.force(addonName))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`kicadaddon-${addonName}`),
       src: nix.thunk(() => nix.attr(kikit_module, "src")),
       version: nix.thunk(() => nix.attr(kikit_module, "version")),
@@ -56,7 +56,7 @@ strip-nondeterminism --type zip build/${nix.sel(targetSpec, "resultZip")}
 mv build/${nix.sel(targetSpec, "resultZip")} $out/${addonPath}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(kikit_module, "meta"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.sel(targetSpec, "description")),
       })),
     })));

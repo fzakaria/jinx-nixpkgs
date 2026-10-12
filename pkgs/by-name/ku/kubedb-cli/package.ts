@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kubedb-cli";
       const version = "0.66.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubedb",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const subPackages = nix.thunk(() => ["cmd/kubectl-dba"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "kubectl plugin for KubeDB by AppsCode",
         homepage: "https://github.com/kubedb/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "starcraft66"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, subPackages, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, subPackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "qbittorrent",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "fsnkty")),
           nix.thunk(() => nix.lookup(w, "undefined-landmark")),
@@ -59,33 +59,33 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       simple: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          qbittorrent: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          qbittorrent: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           portChange: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             configuration: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               services: nix.thunk(() => ({
-                __proto__: pos$5,
-                qbittorrent: nix.thunk(() => ({ __proto__: pos$4, enable: true, webuiPort: 5555n, torrentingPort: 44444n })),
+                [nix.POS]: pos$5,
+                qbittorrent: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, webuiPort: 5555n, torrentingPort: 44444n })),
               })),
             })),
           })),
           openPorts: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             configuration: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               services: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 qbittorrent: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: true,
                   openFirewall: true,
                   webuiPort: 8080n,
@@ -95,20 +95,20 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           serverConfig: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             configuration: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               services: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 qbittorrent: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   enable: true,
                   webuiPort: null,
                   serverConfig: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     Preferences: nix.thunk(() => ({
-                      __proto__: pos$13,
-                      WebUI: nix.thunk(() => ({ __proto__: pos$12, Port: "8181" })),
+                      [nix.POS]: pos$13,
+                      WebUI: nix.thunk(() => ({ [nix.POS]: pos$12, Port: "8181" })),
                     })),
                   })),
                 })),
@@ -118,19 +118,19 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       declarative: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           qbittorrent: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: true,
             webuiPort: null,
             serverConfig: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               Preferences: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 WebUI: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   Username: "user",
                   Password_PBKDF2: "@ByteArray(6DIf26VOpTCYbgNiO6DAFQ==:e6241eaAWGzRotQZvVA5/up9fj5wwSAThLgXI2lVMsYTu1StUgX9MgmElU3Sa/M8fs+zqwZv9URiUOObjqJGNw==)",
                   Port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "8181")),
@@ -140,22 +140,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           serverConfigChange: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             configuration: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               services: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 qbittorrent: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   enable: true,
                   webuiPort: null,
                   serverConfig: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     Preferences: nix.thunk(() => ({
-                      __proto__: pos$27,
-                      WebUI: nix.thunk(() => ({ __proto__: pos$26, Port: "7171" })),
+                      [nix.POS]: pos$27,
+                      WebUI: nix.thunk(() => ({ [nix.POS]: pos$26, Port: "7171" })),
                     })),
                   })),
                 })),

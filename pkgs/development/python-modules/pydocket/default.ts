@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const uncalled_for = nix.arg($, "uncalled-for");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pydocket",
       version: "0.25.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrisguidry",
           repo: "docket",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         uncalled_for,
       ], nix.concat(nix.sel(py_key_value_aio, "optional-dependencies", "memory"), nix.sel(py_key_value_aio, "optional-dependencies", "redis")))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, metrics: nix.thunk(() => [opentelemetry_sdk]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, metrics: nix.thunk(() => [opentelemetry_sdk]) })),
       pythonImportsCheck: nix.thunk(() => ["docket"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed background task system for Python",
         homepage: "https://github.com/chrisguidry/docket",
         changelog: nix.thunk(() => nix.str`https://github.com/chrisguidry/docket/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

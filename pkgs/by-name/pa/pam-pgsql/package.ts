@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pam-pgsql",
       version: "0-unstable-2025-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pam-pgsql",
           repo: "pam-pgsql",
           rev: "7834ce21c4f633e3eadc9abe86fa02991efc43ed",
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, nix.thunk(() => nix.sel(libpq, "pg_config"))]),
       buildInputs: nix.thunk(() => [libgcrypt, pam, libpq, libxcrypt]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pam-pgsql": nix.thunk(() => nix.attr(nixosTests, "pam-pgsql")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Support to authenticate against PostgreSQL for PAM-enabled applications",
         homepage: "https://github.com/pam-pgsql/pam-pgsql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -30,31 +30,31 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rethinkdb"));
   const rethinkdb = nix.thunk(() => nix.sel(cfg, "package"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         rethinkdb: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RethinkDB server")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "rethinkdb",
               description: "User account under which RethinkDB runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "rethinkdb",
               description: "Group which rethinkdb user belongs to.",
             })))),
           dbpath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/var/db/rethinkdb",
               description: "Location where RethinkDB stores its data, 1 data directory per instance.",
             })))),
           pidpath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/run/rethinkdb",
               description: "Location where each instance's pid file is located.",
             })))),
@@ -62,19 +62,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "rethinkdb", "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
-        environment: nix.thunk(() => ({ __proto__: pos$8, systemPackages: nix.thunk(() => [rethinkdb]) })),
+        [nix.POS]: pos$17,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$8, systemPackages: nix.thunk(() => [rethinkdb]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             rethinkdb: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "RethinkDB server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.str`${rethinkdb}/bin/rethinkdb -d ${nix.sel(cfg, "dbpath")}/default`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -95,17 +95,17 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             rethinkdb: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "rethinkdb")), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 name: "rethinkdb",
                 description: "RethinkDB server user",
                 isSystemUser: true,
               })))),
           })),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "rethinkdb")), nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ __proto__: pos$15, name: "rethinkdb" })))))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "rethinkdb")), nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$15, name: "rethinkdb" })))))),
         })),
       })))),
   };

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.86";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-k6ULWGpNLOxoqy+Z0D71g8V2HY+6VTXLjoHaeB0Nkv8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/biopython/biopython/pull/5161.patch",
             hash: "sha256-oN0nNlhvshIgNrmm+tIeCAJx1U/OqhdL4tj51DV2CHU=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["Bio"]);
       const checkPhase = "runHook preCheck\n\nexport HOME=$(mktemp -d)\ncd Tests\npython run_tests.py --offline\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for bioinformatics",
         longDescription: "Biopython is a set of freely available tools for biological computation\nwritten in Python by an international team of developers. It is a\ndistributed collaborative effort to develop Python libraries and\napplications which address the needs of current and future work in\nbioinformatics.\n",
         homepage: "https://biopython.org/wiki/Documentation",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

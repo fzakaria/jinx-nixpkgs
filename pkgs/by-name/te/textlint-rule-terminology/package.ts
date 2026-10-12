@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_terminology = nix.arg($, "textlint-rule-terminology");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "textlint-rule-terminology",
       version: "5.2.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sapegin",
           repo: "textlint-rule-terminology",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-ZUM+zNl9kgEu0KHIVmnLDZ+1PJPE2e2wP6Hofe/9zPQ=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rule: textlint_rule_terminology,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Textlint rule to check correct terms spelling",
         homepage: "https://github.com/sapegin/textlint-rule-terminology",
         changelog: nix.thunk(() => nix.str`https://github.com/sapegin/textlint-rule-terminology/releases/tag/v${nix.sel(finalAttrs, "version")}`),

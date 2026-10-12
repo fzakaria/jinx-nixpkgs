@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
       const version = "1.43.4.10903-e5521bd8c";
       const pname = "plexmediaserver";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_arm64.deb`),
           sha256: "1az511cpn0gc5diphpc9yqvb74hqx73fmfv9a4mljqaga788cpll",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb`),
           sha256: "1nry7dffb5lv30mqmcb6d9pssjw8951r79ji07rf2yfp6s1iqskg",
         })))));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dontPatchELF = true;
       const dontAutoPatchelf = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-updater`), nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eu -o pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}:$PATH
@@ -58,7 +58,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://plex.tv/",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -80,7 +80,7 @@ done
         longDescription: "Plex is a media server which allows you to store your media and play it\nback across many different devices.\n",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         src,

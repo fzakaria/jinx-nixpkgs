@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libnotifySupport = nix.argOr($, "libnotifySupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmusfm",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arkq",
           repo: "cmusfm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([curl, gdk_pixbuf], nix.app(nix.sel(lib, "optional"), libnotifySupport, libnotify))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Last.fm and Libre.fm standalone scrobbler for the cmus music player",
         longDescription: "Features:\n+ Listening now notification support\n+ Off-line played track cache for later submission\n+ POSIX ERE-based file name parser\n+ Desktop notification support (optionally)\n+ Customizable scrobbling service\n+ Small memory footprint\nConfiguration:\n+ run `cmusfm init` to generate configuration file under ~/.config/cmus/cmusfm.conf\n+ Inside cmus run `:set status_display_program=cmusfm` to set up cmusfm\n",
         homepage: "https://github.com/Arkq/cmusfm/",

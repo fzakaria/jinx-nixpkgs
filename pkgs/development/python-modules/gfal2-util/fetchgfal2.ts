@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const extraGfalCopyFlags = nix.argOr($_1, "extraGfalCopyFlags", () => []);
     const allowSubstitutes = nix.argOr($_1, "allowSubstitutes", () => true);
     return nix.app(nix.sel(nix.app(runCommandLocal, name, nix.thunk(() => ({})), "for u in \"${urls[@]}\"; do\n  gfal-copy \"${gfalCopyFlags[@]}\" \"$u\" \"${intermediateDestUrls[@]}\" \"$out\"\n  ret=\"$?\"\n  (( ret )) && break\ndone\nif (( ret )); then\n  echo \"gfal-copy failed trying to download from any of the urls\" >&2\n  exit \"$ret\"\nfi\n"), "overrideAttrs"), (finalAttrs) => (previousAttrs) => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         __structuredAttrs: true,
         allowSubstitutes: allowSubstitutes,
         nativeBuildInputs: nix.thunk(() => [gfal2_util]),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         recursive: recursive,
         intermediateDestUrls: intermediateDestUrls,
       }, (nix.asBool((nix.asBool(!nix.eq(pname, "")) && nix.asBool(!nix.eq(version, "")))) ? {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version,
         name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       } : {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.builtins.baseNameOf(url))),
       })));
   })(), formals$2);

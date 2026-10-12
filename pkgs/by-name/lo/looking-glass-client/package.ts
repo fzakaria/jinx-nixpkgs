@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const pipewireSupport = nix.argOr($, "pipewireSupport", () => true);
   const pulseSupport = nix.argOr($, "pulseSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "looking-glass-client",
       version: "B7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnif",
           repo: "LookingGlass",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +86,7 @@ export sourceRoot="source/client"
 `),
       postInstall: "mkdir -p $out/share/pixmaps\ncp $src/resources/lg-logo.png $out/share/pixmaps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KVM Frame Relay (KVMFR) implementation",
         longDescription: "Looking Glass is an open source application that allows the use of a KVM\n(Kernel-based Virtual Machine) configured for VGA PCI Pass-through\nwithout an attached physical monitor, keyboard or mouse. This is the final\nstep required to move away from dual booting with other operating systems\nfor legacy programs that require high performance graphics.\n",
         homepage: "https://looking-glass.io/",

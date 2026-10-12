@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zstxtns-utils";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ytrizja.de/distfiles/zstxtns-utils-${version}.tar.gz`),
           sha256: "I/Gm7vHUr29NClYWQ1kwu8HrNZpdLXfE/nutTNoqcdU=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/zstxtns-unmerge --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnugrep]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities to deal with text based name service databases",
         homepage: "https://ytrizja.de/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -38,7 +38,7 @@ wrapProgram $out/bin/zstxtns-unmerge --set PATH "${nix.app(nix.sel(lib, "makeBin
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

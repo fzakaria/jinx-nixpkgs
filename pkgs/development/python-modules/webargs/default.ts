@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const webtest_aiohttp = nix.arg($, "webtest-aiohttp");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webargs",
       version: "8.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-eZv5A5x2wj/Y3BlREHp1qeVhIDwV1q6PicHkbiNGNsE=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["webargs"]),
       disabledTests: nix.thunk(() => ["test_it_should_handle_type_error_on_load_json"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative parsing and validation of HTTP request objects, with built-in support for popular web frameworks",
         homepage: "https://github.com/marshmallow-code/webargs",
         changelog: nix.thunk(() => nix.str`https://github.com/marshmallow-code/webargs/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

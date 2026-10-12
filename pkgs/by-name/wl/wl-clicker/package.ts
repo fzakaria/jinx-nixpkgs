@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wl-clicker",
       version: "0.5.2",
       nativeBuildInputs: nix.thunk(() => [wayland_scanner]),
       buildInputs: nix.thunk(() => [wlr_protocols, wayland]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phoneticalb",
           repo: "wl-clicker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\n\ninstall -D build/wl-clicker --target-directory=\"$out\"/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wayland autoclicker",
         longDescription: "Script for auto clicking at incredibly high speeds - user must\nbe a part of `input` group to run.\n",
         homepage: "https://github.com/phoneticalb/wl-clicker",

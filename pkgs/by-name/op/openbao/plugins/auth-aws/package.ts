@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkOpenbaoPlugin = nix.arg($, "mkOpenbaoPlugin");
   return nix.app(mkOpenbaoPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       plugin: "auth-aws",
       pluginType: "auth",
       pluginName: "aws",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openbao",
           repo: "openbao-plugins",
           tag: nix.thunk(() => nix.str`auth-aws-v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-0ekXPHzwzvTjp9Wpb7SfjDF69Vgi7HVaW0boXCAYrWM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenBao auth plugin to authenticate using AWS IAM credentials",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

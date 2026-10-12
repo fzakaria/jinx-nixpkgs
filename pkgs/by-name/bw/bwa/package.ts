@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bwa",
       version: "0.7.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lh3",
           repo: "bwa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`))),
       installPhase: "runHook preInstall\n\ninstall -vD -t $out/bin bwa\ninstall -vD -t $out/lib libbwa.a\ninstall -vD -t $out/include bntseq.h\ninstall -vD -t $out/include bwa.h\ninstall -vD -t $out/include bwamem.h\ninstall -vD -t $out/include bwt.h\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software package for mapping low-divergent sequences against a large reference genome, such as the human genome",
         mainProgram: "bwa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

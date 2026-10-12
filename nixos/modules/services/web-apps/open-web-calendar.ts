@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "open-web-calendar"));
   const nixosSpec = nix.thunk(() => nix.app(nix.sel(calendarSettingsFormat, "generate"), "nixos_specification.json", nix.thunk(() => nix.sel(cfg, "calendarSettings"))));
   const finalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       defaultSpecificationFile: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "custom-default_specification.yml", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs, "yq")}/bin/yq -s '.[0] * .[1]' ${nix.sel(cfg, "package")}/${nix.sel(cfg, "package", "defaultSpecificationPath")} ${nixosSpec} > $out
 `))),
     }))));
   const python = nix.thunk(() => nix.attr(finalPackage, "python"));
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraLibs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(python, "pkgs", "toPythonModule"), finalPackage)),
         nix.thunk(() => nix.sel(python, "pkgs", "gunicorn", "optional-dependencies", "setproctitle")),
@@ -67,30 +67,30 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   const calendarSettingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "open-web-calendar": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "OpenWebCalendar service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "open-web-calendar", nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The domain under which open-web-calendar is made available",
               example: "open-web-calendar.example.org",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     ALLOWED_HOSTS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         readOnly: true,
                         description: "The hosts that the Open Web Calendar permits. This is required to\nmitigate the Host Header Injection vulnerability.\n\nWe always set this to the empty list, as Nginx already checks the Host header.\n",
@@ -102,9 +102,9 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for the server. These are set as environment variables to the gunicorn/flask service.\n\nSee the documentation options in <https://open-web-calendar.quelltext.eu/host/configure/#configuring-the-server>.\n",
             })))),
           calendarSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(calendarSettingsFormat, "type")),
                   options: nix.thunk(() => ({})),
                 })))),
@@ -115,24 +115,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "PORT"))),
             message: "services.open-web-calendar.settings.PORT can't be set, as the service uses a unix socket.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           sockets: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "open-web-calendar": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               before: nix.thunk(() => ["nginx.service"]),
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ListenStream: "/run/open-web-calendar/socket",
                 SocketUser: "open-web-calendar",
                 SocketGroup: "open-web-calendar",
@@ -141,17 +141,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "open-web-calendar": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Open Web Calendar",
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 PYTHONPATH: nix.thunk(() => nix.str`${pythonEnv}/${nix.sel(python, "sitePackages")}/`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Type: "notify",
                 NotifyAccess: "all",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pythonEnv, "pkgs", "gunicorn")}/bin/gunicorn \\
@@ -171,32 +171,32 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => ({
-            __proto__: pos$23,
-            "open-web-calendar": nix.thunk(() => ({ __proto__: pos$22, isSystemUser: true, group: "open-web-calendar" })),
+            [nix.POS]: pos$23,
+            "open-web-calendar": nix.thunk(() => ({ [nix.POS]: pos$22, isSystemUser: true, group: "open-web-calendar" })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "open-web-calendar": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               members: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "nginx", "user"))]),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           nginx: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                 enableACME: nix.thunk(() => nix.app(mkDefault, true)),
                 locations: nix.thunk(() => ({
-                  __proto__: pos$28,
-                  "/": nix.thunk(() => ({ __proto__: pos$27, proxyPass: "http://unix:///run/open-web-calendar/socket" })),
+                  [nix.POS]: pos$28,
+                  "/": nix.thunk(() => ({ [nix.POS]: pos$27, proxyPass: "http://unix:///run/open-web-calendar/socket" })),
                 })),
               }))],
             ])),
@@ -204,7 +204,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];

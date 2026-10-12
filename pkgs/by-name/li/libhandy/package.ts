@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const libhandy = nix.arg($, "libhandy");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libhandy",
       version: "1.8.3",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "devdoc"], nix.app(nix.sel(lib, "optionals"), enableGlade, nix.thunk(() => ["glade"])))),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libhandy/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libhandy-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BbSXIpBz/1V/ELMm4HTFBm+HQ6MC1IIKuXvLXNLasIc=",
         })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dglade_catalog=${(nix.asBool(enableGlade) ? "enabled" : "disabled")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_GLADEUI_2_0_MODULEDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("glade")}/lib/glade/modules`),
         PKG_CONFIG_GLADEUI_2_0_CATALOGDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("glade")}/share/glade/catalogs`),
       })),
@@ -83,12 +83,12 @@ runHook postCheck
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "libhandy", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "libhandy", versionPolicy: "odd-unstable" })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(enableGlade)), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           glade: nix.thunk(() => (() => {
-            const libhandyWithGlade = nix.thunk(() => nix.app(nix.sel(libhandy, "override"), nix.thunk(() => ({ __proto__: pos$5, enableGlade: true }))));
+            const libhandyWithGlade = nix.thunk(() => nix.app(nix.sel(libhandy, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableGlade: true }))));
             return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(libhandy, "name")}-glade`), nix.thunk(() => ({})), nix.thunk(() => nix.str`cp -r "${nix.sel(libhandyWithGlade, "glade")}" "$out"
 chmod -R +w "$out"
 sed -e "s#${nix.sel(libhandyWithGlade, "out")}#${nix.sel(libhandy, "out")}#g" -e "s#${nix.sel(libhandyWithGlade, "glade")}#$out#g" -i $(find "$out" -type f)
@@ -96,7 +96,7 @@ sed -e "s#${nix.sel(libhandyWithGlade, "out")}#${nix.sel(libhandy, "out")}#g" -e
           })()),
         }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/libhandy/-/tags/${nix.sel(finalAttrs, "version")}`),
         description: "Building blocks for modern adaptive GNOME apps",
         mainProgram: "handy-1-demo",

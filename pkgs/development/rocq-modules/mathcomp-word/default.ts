@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
     const hash = nix.argOr($_1, "hash", () => null);
     const prefix = nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/`);
     return (nix.asBool((nix.asBool(!nix.eq(hash, null)) || nix.asBool(!nix.eq(sha256, null)))) ? nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`${prefix}releases/download/${rev}/${nix.app(nix.sel(lib, "concatStringsSep"), "-", nix.thunk(() => nix.concat(namePrefix, [pname])))}-${rev}.tbz`),
         hash: nix.thunk(() => (nix.asBool(!nix.eq(hash, null)) ? nix.force(hash) : nix.force(sha256))),
       }))) : nix.builtins.fetchTarball(nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`${prefix}archive/refs/heads/${rev}.tar.gz`),
       }))));
   })(), formals$2);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       namePrefix: namePrefix,
       pname: pname,
       fetcher: fetcher,
@@ -61,55 +61,55 @@ export default nix.lambda((args) => (() => {
       useDune: true,
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "3.5": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-ur6XGhTUQ1XdcyC6RERYaTwyzL58mWwdihY/yemjfQg=",
         })),
         "3.4": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-AnyiM5B7JJZI5LR0vSi6baVIx9SibYRiho7UBg1uV5w=",
         })),
         "3.3": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-Zn9245fr0OhgaXjWlIO1QwSxrQYetj7qPHwZAXTdqNc=",
         })),
         "3.2": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-4HOFFQzKbHIq+ktjJaS5b2Qr8WL1eQ26YxF4vt1FdWM=",
         })),
         "3.1": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-qQHis6554sG7NpCpWhT2wvelnxsrbEPVNv3fpxwxHMU=",
         })),
         "3.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-xEgx5HHDOimOJbNMtIVf/KG3XBemOS9XwoCoW6btyJ4=",
         })),
         "2.4": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-OG99PfjhtKikxM9aBKRsej1gTo1O/llAdXdiiyjZf2Q=",
         })),
         "2.3": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-whU1yvFFuxpwQutW41B/WBg5DrVZJW/Do/GuHtzuI3U=",
         })),
         "2.2": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256-8BB6SToCrMZTtU78t2K+aExuxk9O1lCqVQaa8wabSm8=",
         })),
         "2.1": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-895gZzwwX8hN9UUQRhcgRlphHANka9R0PRotfmSEelA=",
         })),
         "2.0": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256-ySg3AviGGY5jXqqn1cP6lTw3aS5DhawXEwNUgj7pIjA=",
         })),
       })),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$15, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$15, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
         stdlib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: "Yet Another Coq Library on Machine Words",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

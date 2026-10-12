@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pwsafe",
       version: "1.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwsafe",
           repo: "pwsafe",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,15 +70,15 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/ui/cli/CMakeLists.txt --replace \"uuid\" \"\"\n"))),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             allowedVersions: "^1\\.",
             url: nix.thunk(() => nix.sel(finalAttrs, "src", "gitRepoUrl")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Password database utility",
         longDescription: "Password Safe is a password database utility. Like many other\nsuch products, commercial and otherwise, it stores your\npasswords in an encrypted file, allowing you to remember only\none password (the \"safe combination\"), instead of all the\nusername/password combinations that you use.\n",
         homepage: "https://pwsafe.org/",

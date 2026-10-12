@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vsliveshare",
         publisher: "ms-vsliveshare",
         version: "1.1.122",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '"xsel"' '"${xsel}/bin/xsel"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real-time collaborative development for VS Code",
         homepage: "https://aka.ms/vsls-docs",
         changelog: "https://marketplace.visualstudio.com/items/MS-vsliveshare.vsliveshare/changelog",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(lib, "maintainers"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             jraygauthier: nix.thunk(() => nix.attr(from, "jraygauthier")),
             V: nix.thunk(() => nix.attr(from, "V")),
           };

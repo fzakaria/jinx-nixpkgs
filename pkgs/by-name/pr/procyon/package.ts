@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jre_minimal = nix.arg($, "jre_minimal");
   const gradle = nix.arg($, "gradle");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.base", "java.compiler", "java.logging"]),
     }))));
   const jcommander_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "cbeust",
       repo: "jcommander",
       tag: "1.78",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "procyon";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mstrobel",
           repo: "procyon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +59,7 @@ makeWrapper ${jre}/bin/java $out/bin/procyon \\
   --add-flags "-jar $out/share/procyon/procyon-decompiler.jar"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Suite of Java metaprogramming tools including a Java decompiler",
         homepage: "https://github.com/mstrobel/procyon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +70,7 @@ makeWrapper ${jre}/bin/java $out/bin/procyon \\
         mainProgram: "procyon",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

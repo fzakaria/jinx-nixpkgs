@@ -28,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "chisel-server"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "chisel-server": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Chisel Tunnel Server")),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Address to listen on, falls back to 0.0.0.0",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
               example: "[::1]",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Port to listen on, falls back to 8080",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           authfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Path to auth.json file",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           keepalive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Keepalive interval, falls back to 25s",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
               example: "5s",
             })))),
           backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "HTTP server to proxy normal requests to",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -85,13 +85,13 @@ export default nix.lambda((args) => (() => {
               example: "http://127.0.0.1:8888",
             })))),
           socks5: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Allow clients access to internal SOCKS5 proxy",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
           reverse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Allow clients reverse port forwarding",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
@@ -100,17 +100,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "chisel-server": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Chisel Tunnel Server",
               wantedBy: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "chisel")}/bin/chisel server `, nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "host"), null)), nix.thunk(() => nix.str`--host ${nix.sel(cfg, "host")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "port"), null)), nix.thunk(() => nix.str`--port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "authfile"), null)), nix.thunk(() => nix.str`--authfile ${nix.sel(cfg, "authfile")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "keepalive"), null)), nix.thunk(() => nix.str`--keepalive ${nix.sel(cfg, "keepalive")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "backend"), null)), nix.thunk(() => nix.str`--backend ${nix.sel(cfg, "backend")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "socks5")), "--socks5"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "reverse")), "--reverse"))))))))))),
                 CapabilityBoundingSet: "",
                 DynamicUser: true,
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "clerie"))];

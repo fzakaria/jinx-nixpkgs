@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gawk = nix.arg($, "gawk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "txt2man",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mvertes",
           repo: "txt2man",
           rev: nix.thunk(() => nix.str`txt2man-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ done
       doCheck: true,
       checkPhase: "# gawk and coreutils are part of stdenv but will not\n# necessarily be in PATH at runtime.\nsh -c 'unset PATH; printf hello | ./txt2man'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert flat ASCII text to man page format",
         homepage: "http://mvertes.free.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

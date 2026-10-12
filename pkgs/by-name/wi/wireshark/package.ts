@@ -62,18 +62,18 @@ export default nix.lambda((args) => (() => {
   const withQt = nix.argOr($, "withQt", () => true);
   const qt6 = nix.arg($, "qt6");
   const libpcap$ = nix.argOr($, "libpcap'", () => nix.app(nix.sel(libpcap, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withBluez: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
     }))));
   const withExtras = nix.argOr($, "withExtras", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const isAppBundle = nix.thunk(() => (nix.asBool(withQt) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`wireshark-${(nix.asBool(withQt) ? "qt" : "cli")}`),
       version: "4.6.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           repo: "wireshark",
           owner: "wireshark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
           "-DHAVE_C99_VSNPRINTF_EXITCODE=0",
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DQT_NO_DEBUG"]))),
       })),
       dontWrapGApps: true,
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isAppBundle, "rm -rf $out/Applications/Wireshark.app/Contents/MacOS/extcap $out/Applications/Wireshark.app/Contents/PlugIns\nmkdir -p $out/Applications/Wireshark.app/Contents/PlugIns\ncp -r $out/lib/wireshark/plugins $out/Applications/Wireshark.app/Contents/PlugIns/wireshark\ncp -r $out/libexec/wireshark/extcap $out/Applications/Wireshark.app/Contents/MacOS/extcap\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Powerful network protocol analyzer",
         longDescription: "Wireshark (formerly known as \"Ethereal\") is a powerful network\nprotocol analyzer developed by an international team of networking\nexperts. It runs on UNIX, macOS and Windows.\n",
         homepage: "https://www.wireshark.org",

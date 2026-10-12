@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "weechat-notify-send";
       const version = "0.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s3rvac",
           repo: "weechat-notify-send",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-7uw0IdRSxhPrLqdgECKB9eOrtFj+2HTILBhakKiRuNQ=",
         }))));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["notify_send.py"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["notify_send.py"]) }));
       const dontBuild = true;
       const doCheck = false;
       const installPhase = nix.thunk(() => nix.str`install -D notify_send.py $out/share/notify_send.py
@@ -32,7 +32,7 @@ substituteInPlace $out/share/notify_send.py \\
   --replace "'notify-send'" "'${libnotify}/bin/notify-send'"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WeeChat script that sends highlight and message notifications through notify-send",
         homepage: "https://github.com/s3rvac/weechat-notify-send",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ substituteInPlace $out/share/notify_send.py \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

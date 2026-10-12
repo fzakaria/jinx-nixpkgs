@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const writeScriptBin = nix.arg($, "writeScriptBin");
   const nodejs = nodejs_slim;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "corepack",
       version: "0.36.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nodejs",
           repo: "corepack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nodejs]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nodejs: nodejs,
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/nodejs/corepack/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Package manager version manager for Node.js projects",
         homepage: "https://github.com/nodejs/corepack",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opensearch",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://artifacts.opensearch.org/releases/bundle/opensearch/${nix.sel(finalAttrs, "version")}/opensearch-${nix.sel(finalAttrs, "version")}-linux-x64.tar.gz`),
           hash: "sha256-0d6TQU1LTE983CsYbaK4fNuC86VAx23XD2xR6y2NuHw=",
         })))),
@@ -49,9 +49,9 @@ rm $out/bin/opensearch-cli
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "opensearch")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "opensearch")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open Source, Distributed, RESTful Search Engine",
         homepage: "https://github.com/opensearch-project/OpenSearch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

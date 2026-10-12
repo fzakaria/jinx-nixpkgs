@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pablodraw";
       const version = "3.1.14-beta";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cwensley",
           repo: "pablodraw",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [gtk3, libnotify]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "PabloDraw",
             exec: "PabloDraw",
             comment: "An Ansi/Ascii text and RIPscrip vector graphic art editor/viewer",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -Dm644 Assets/PabloDraw-512.png $out/share/icons/hicolor/512x512/apps/pablodraw.png\ninstall -Dm644 Assets/PabloDraw-64.png $out/share/icons/hicolor/64x64/apps/pablodraw.png\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ansi/Ascii text and RIPscrip vector graphic art editor/viewer with multi-user capabilities",
         homepage: "https://picoe.ca/products/pablodraw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

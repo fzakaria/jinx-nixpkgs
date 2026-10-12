@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const version = "0.4.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ekzhang",
       repo: "sshx",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const cargoBuildFlags = nix.thunk(() => ["--package", pname_1]);
         const cargoTestFlags = cargoBuildFlags;
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Fast, collaborative live terminal sharing over the web",
           homepage: "https://github.com/ekzhang/sshx",
           changelog: nix.thunk(() => nix.str`https://github.com/ekzhang/sshx/releases/tag/v${version_1}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
           mainProgram: pname_1,
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname_1,
           version: version_1,
           src: src_1,
@@ -68,9 +68,9 @@ export default nix.lambda((args) => (() => {
       })(), args_2)));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     sshx: nix.thunk(() => nix.app(mkSshxPackage, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "sshx",
         cargoHash: "sha256-QftBUGDQvCSHoOBLnEzNOe1dMTpVTvMDXNp5qZr0C2M=",
       })))),
@@ -82,9 +82,9 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'ServeFile::new("build/spa.html")' 'ServeFile::new("${nix.sel(passthru, "web", "outPath")}/spa.html")'
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           web: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "sshx-web",
               version: version,
               src: src,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
               installPhase: "cp -r build $out\n",
             })))),
         }));
-        return { __proto__: pos$7, pname, cargoHash, postPatch, passthru };
+        return { [nix.POS]: pos$7, pname, cargoHash, postPatch, passthru };
       })()))),
   };
 })(), formals$1);

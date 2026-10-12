@@ -20,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "xwayland"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         xwayland: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Xwayland (an X server for interfacing X11 apps with the Wayland protocol)")),
           defaultFontPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "fonts", "fontDir", "enable")), "/run/current-system/sw/share/X11/fonts")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "optionalString config.fonts.fontDir.enable \"/run/current-system/sw/share/X11/fonts\"\n")),
               description: "Default font path. Setting this option causes Xwayland to be rebuilt.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "xwayland", "override"), (oldArgs) => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   defaultFontPath: nix.thunk(() => nix.attr(cfg, "defaultFontPath")),
                 }))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.xwayland.override (oldArgs: {\n  inherit (config.programs.xwayland) defaultFontPath;\n})\n")),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pathsToLink: nix.thunk(() => ["/share/X11"]),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),

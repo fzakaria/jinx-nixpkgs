@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dao-AILab",
           repo: "causal-conv1d",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
         })()))));
       const dependencies = nix.thunk(() => [torch]);
       const pythonImportsCheck = nix.thunk(() => ["causal_conv1d"]);
-      const env = nix.thunk(() => nix.update({ __proto__: pos$2, CAUSAL_CONV1D_FORCE_BUILD: "TRUE" }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$3,
+      const env = nix.thunk(() => nix.update({ [nix.POS]: pos$2, CAUSAL_CONV1D_FORCE_BUILD: "TRUE" }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: pos$3,
           CUDA_HOME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))}`),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           ROCM_PATH: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}`),
           HIP_ARCHITECTURES: nix.thunk(() => nix.builtins.concatStringsSep(",", rocmGpuTargets)),
           CPLUS_INCLUDE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "include", nix.thunk(() => [
@@ -76,14 +76,14 @@ export default nix.lambda((args) => (() => {
             ]))),
         }))))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Causal depthwise conv1d in CUDA with a PyTorch interface",
         homepage: "https://github.com/Dao-AILab/causal-conv1d",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         broken: nix.thunk(() => nix.eq(cudaSupport, rocmSupport)),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

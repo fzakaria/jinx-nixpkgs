@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sleep-on-lan",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SR-G",
           repo: "sleep-on-lan",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "-X main.BuildVersionLabel=nixpkgs",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SR-G/sleep-on-lan",
         description: "Multi-platform process allowing to sleep on LAN a Linux or Windows computer, through wake-on-lan (reversed) magic packets or through HTTP REST requests",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

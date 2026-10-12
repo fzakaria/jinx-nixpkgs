@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const version = "0.40.0";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       platform: "darwin-arm64",
       hash: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "8.1": "sha256-pwqus2P17DirEGqwbe5CqlIZ+InPrIHbUUbcgLli8rc=",
         "8.2": "sha256-IeoOYVnp0sWD+Ww/d8DwDemqXv/6neEWE3g2txHEuEg=",
         "8.3": "OQAErtNtCIpNmz2YbfhLJ9ueH7mhZa6j1YtcuH00Ob8=",
@@ -52,10 +52,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       platform: "debian-aarch64+libssl3",
       hash: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "8.1": "sha256-r6rV05ZLsi2SvFqONtYk2IIrkdbTZqsClruTMpcOOas=",
         "8.2": "sha256-SsHqRS3Bq4N10c06zEoVZXTv5+bfkcDgCRdntcoyD/k=",
         "8.3": "sha256-yQunez9xOyhGYqFKHKWtdK8BiGPz3JIyDnsfqGthIYs=",
@@ -64,10 +64,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       platform: "debian-x86-64+libssl3",
       hash: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "8.1": "sha256-KgyAPCLLtmeMa5X3Akuf0nR51aSQS6+RpNYO3U4Zdp0=",
         "8.2": "sha256-zSl141iQ3Vfb5JmeRacFZhBcfEKQuW9rld9O2c8HRvU=",
         "8.3": "sha256-kdd4k6xdbbNuIk/DBTufxqH8j+4Z2xgzG4Z/c7PfKFs=",
@@ -81,18 +81,18 @@ export default nix.lambda((args) => (() => {
     const system = nix.arg($_1, "system");
     const phpMajor = nix.arg($_1, "phpMajor");
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         url: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`https://builds.r2.relay.so/v${version}/relay-v${version}-php`, phpMajor), "-"), nix.sel(hashes, nix.key(nix.force(system)), "platform")), ".tar.gz")),
         sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported PHP version for relay ${phpMajor} on ${system}`)), nix.key(nix.force(system)), "hash", nix.key(nix.force(phpMajor)))),
       })));
   })(), formals$2);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       version: version,
       pname: "relay",
       extensionName: "relay",
       src: nix.thunk(() => nix.app(makeSource, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           system: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
           phpMajor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(php, "version")))),
         })))),
@@ -118,9 +118,9 @@ export default nix.lambda((args) => (() => {
 done
 ` : "")), "# Random UUID that's required by the extension. Can be anything, but must be different from default.\nsed -i \"s/00000000-0000-0000-0000-000000000000/aced680f-30e9-40cc-a868-390ead14ba0c/\" $out/lib/php/extensions/relay.so\nchmod -w $out/lib/php/extensions/relay.so\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           smokeTest: nix.thunk(() => nix.app(runCommand, "php-relay-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), php)} \\
   -d extension=${nix.sel(finalAttrs, "finalPackage")}/lib/php/extensions/relay.so \\
   -r 'exit(extension_loaded("relay") ? 0 : 1);'
@@ -141,16 +141,16 @@ for source in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => n
 done
 `))),
         updateables: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.app(nix.sel(lib, "collect"), (attrs) => nix.has(attrs, "name"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (_value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "_", path)))), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     src: nix.thunk(() => nix.app(makeSource, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         system: nix.thunk(() => nix.builtins.head(path)),
                         phpMajor: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.tail(nix.thunk(() => nix.builtins.tail(path)))))),
                       })))),
                   })))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (name) => (_value) => !nix.eq(name, "platform"), hashes)))))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Next-generation Redis extension for PHP",
         changelog: nix.thunk(() => nix.str`https://github.com/cachewerk/relay/releases/tag/v${version}`),
         homepage: "https://relay.so/",

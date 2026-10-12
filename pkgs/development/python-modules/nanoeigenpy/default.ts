@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nanoeigenpy",
       version: "0.5.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Simple-Robotics",
           repo: "nanoeigenpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: "make test",
       pythonImportsCheck: nix.thunk(() => ["nanoeigenpy"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postFixup: "substituteInPlace $dev/lib/cmake/nanoeigenpy/nanoeigenpyConfig.cmake \\\n  --replace-fail $out $dev\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Support library for bindings between Eigen in C++ and Python, based on nanobind",
         homepage: "https://github.com/Simple-Robotics/nanoeigenpy",
         changelog: nix.thunk(() => nix.str`https://github.com/Simple-Robotics/nanoeigenpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

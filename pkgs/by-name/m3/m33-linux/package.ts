@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "M33-Linux",
       version: "0-unstable-2016-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "donovan6000",
           repo: "M33-Linux",
           rev: "5c1b90c13d260771dac970b49fdc9f840fee5f4a",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://github.com/donovan6000/M33-Linux/commit/272e4488ef05cfd95fcc952becfc0ac982306d0c.patch",
             hash: "sha256-ubdCwXFVljvOCzYrWVJgU6PY1j6Ei6aaclhXaGwZT2w=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "install -Dm755 m33-linux $out/bin/m33-linux\ninstall -Dm755 90-micro-3d-local.rules $out/lib/udev/rules.d/90-micro-3d-local.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/donovan6000/M33-Linux",
         description: "Linux program that can communicate with the Micro 3D printer",
         mainProgram: "m33-linux",

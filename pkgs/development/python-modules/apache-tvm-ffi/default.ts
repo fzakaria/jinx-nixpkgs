@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apache-tvm-ffi",
       version: "0.1.14-post1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "tvm-ffi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cmake, cython, ninja, scikit_build_core, setuptools_scm]),
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cpp: nix.thunk(() => [ninja]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cpp: nix.thunk(() => [ninja]) })),
       pythonImportsCheck: nix.thunk(() => ["tvm_ffi"]),
       nativeCheckInputs: nix.thunk(() => [numpy, pytest_xdist, pytestCheckHook, writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open ABI and FFI for Machine Learning Systems",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/tvm-ffi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/apache/tvm-ffi",

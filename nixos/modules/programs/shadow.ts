@@ -73,117 +73,117 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "security", "loginDefs"));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       security: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         shadow: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             description: "Enable the shadow authentication suite, which provides critical programs such as su, login, passwd.\n\nNote: This is currently experimental. Only disable this if you're\nconfident that you can recover your system if it breaks.\n",
           })),
           su: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["shadow", "su"]), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 extraDescription: "This can be overridden by other modules (e.g. sudo-rs) to provide\nan alternative `su` implementation.\n",
               })))),
           })),
         })),
         loginDefs: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "shadow", nix.thunk(() => ({})))),
           chfnRestrict: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Use chfn SUID to allow non-root users to change their account GECOS information.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Config options for the /etc/login.defs file, that defines\nthe site-specific configuration for the shadow password suite.\nSee {manpage}`login.defs(5)` man page for available options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))), "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     DEFAULT_HOME: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         description: "Indicate if login is allowed if we can't cd to the home directory.",
                         default: "yes",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["yes", "no"]))),
                       })))),
                     ENCRYPT_METHOD: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         description: "This defines the system default encryption algorithm for encrypting passwords.",
                         default: "YESCRYPT",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["YESCRYPT", "SHA512", "SHA256", "MD5", "DES"]))),
                       })))),
                     SYS_UID_MIN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         description: "Range of user IDs used for the creation of system users by useradd or newusers.",
                         default: 400n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     SYS_UID_MAX: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         description: "Range of user IDs used for the creation of system users by useradd or newusers.",
                         default: 999n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     UID_MIN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         description: "Range of user IDs used for the creation of regular users by useradd or newusers.",
                         default: 1000n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     UID_MAX: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         description: "Range of user IDs used for the creation of regular users by useradd or newusers.",
                         default: 29999n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     SYS_GID_MIN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         description: "Range of group IDs used for the creation of system groups by useradd, groupadd, or newusers",
                         default: 400n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     SYS_GID_MAX: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         description: "Range of group IDs used for the creation of system groups by useradd, groupadd, or newusers",
                         default: 999n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     GID_MIN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         description: "Range of group IDs used for the creation of regular groups by useradd, groupadd, or newusers.",
                         default: 1000n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     GID_MAX: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         description: "Range of group IDs used for the creation of regular groups by useradd, groupadd, or newusers.",
                         default: 29999n,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                       })))),
                     TTYGROUP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         description: "The terminal permissions: the login tty will be owned by the TTYGROUP group,\nand the permissions will be set to TTYPERM",
                         default: "tty",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                       })))),
                     TTYPERM: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         description: "The terminal permissions: the login tty will be owned by the TTYGROUP group,\nand the permissions will be set to TTYPERM",
                         default: "0620",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                       })))),
                     UMASK: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         description: "The file mode creation mask is initialized to this value.",
                         default: "077",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -195,9 +195,9 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         defaultUserShell: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             description: "This option defines the default shell assigned to user\naccounts. This can be either a full system path or a shell package.\n\nThis must not be a store path, since the path is\nused outside the store (in particular in /etc/passwd).\n",
             default: "/bin/sh",
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.zsh")),
@@ -207,118 +207,118 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               assertion: nix.thunk(() => (nix.asBool(nix.sel(config, "security", "shadow", "enable")) || nix.asBool(nix.sel(config, "services", "greetd", "enable")))),
               message: "You must enable at least one VT login method, either security.shadow.enable or services.greetd.enable",
             })),
           ]),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "shadow", "enable")), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 assertion: nix.thunk(() => nix.le(nix.sel(cfg, "settings", "SYS_UID_MIN"), nix.sel(cfg, "settings", "SYS_UID_MAX"))),
                 message: "SYS_UID_MIN must be less than or equal to SYS_UID_MAX",
               })),
               nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 assertion: nix.thunk(() => nix.le(nix.sel(cfg, "settings", "UID_MIN"), nix.sel(cfg, "settings", "UID_MAX"))),
                 message: "UID_MIN must be less than or equal to UID_MAX",
               })),
               nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 assertion: nix.thunk(() => nix.le(nix.sel(cfg, "settings", "SYS_GID_MIN"), nix.sel(cfg, "settings", "SYS_GID_MAX"))),
                 message: "SYS_GID_MIN must be less than or equal to SYS_GID_MAX",
               })),
               nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 assertion: nix.thunk(() => nix.le(nix.sel(cfg, "settings", "GID_MIN"), nix.sel(cfg, "settings", "GID_MAX"))),
                 message: "GID_MIN must be less than or equal to GID_MAX",
               })),
             ]),
             security: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               loginDefs: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   CHFN_RESTRICT: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "chfnRestrict"), null)), nix.thunk(() => nix.sel(cfg, "chfnRestrict")))),
                 })),
               })),
               pam: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 services: nix.thunk(() => ({
-                  __proto__: pos$48,
-                  chsh: nix.thunk(() => ({ __proto__: pos$35, rootOK: true })),
-                  chfn: nix.thunk(() => ({ __proto__: pos$36, rootOK: true })),
-                  su: nix.thunk(() => ({ __proto__: pos$37, rootOK: true, forwardXAuth: true, logFailures: true })),
+                  [nix.POS]: pos$48,
+                  chsh: nix.thunk(() => ({ [nix.POS]: pos$35, rootOK: true })),
+                  chfn: nix.thunk(() => ({ [nix.POS]: pos$36, rootOK: true })),
+                  su: nix.thunk(() => ({ [nix.POS]: pos$37, rootOK: true, forwardXAuth: true, logFailures: true })),
                   passwd: nix.thunk(() => ({})),
-                  useradd: nix.thunk(() => ({ __proto__: pos$38, rootOK: true })),
-                  usermod: nix.thunk(() => ({ __proto__: pos$39, rootOK: true })),
-                  userdel: nix.thunk(() => ({ __proto__: pos$40, rootOK: true })),
-                  groupadd: nix.thunk(() => ({ __proto__: pos$41, rootOK: true })),
-                  groupmod: nix.thunk(() => ({ __proto__: pos$42, rootOK: true })),
-                  groupmems: nix.thunk(() => ({ __proto__: pos$43, rootOK: true })),
-                  groupdel: nix.thunk(() => ({ __proto__: pos$44, rootOK: true })),
+                  useradd: nix.thunk(() => ({ [nix.POS]: pos$38, rootOK: true })),
+                  usermod: nix.thunk(() => ({ [nix.POS]: pos$39, rootOK: true })),
+                  userdel: nix.thunk(() => ({ [nix.POS]: pos$40, rootOK: true })),
+                  groupadd: nix.thunk(() => ({ [nix.POS]: pos$41, rootOK: true })),
+                  groupmod: nix.thunk(() => ({ [nix.POS]: pos$42, rootOK: true })),
+                  groupmems: nix.thunk(() => ({ [nix.POS]: pos$43, rootOK: true })),
+                  groupdel: nix.thunk(() => ({ [nix.POS]: pos$44, rootOK: true })),
                   login: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     startSession: true,
                     allowNullPassword: true,
                     showMotd: true,
-                    lastlog: nix.thunk(() => ({ __proto__: pos$45, enable: true })),
+                    lastlog: nix.thunk(() => ({ [nix.POS]: pos$45, enable: true })),
                   })),
-                  chpasswd: nix.thunk(() => ({ __proto__: pos$47, rootOK: true })),
+                  chpasswd: nix.thunk(() => ({ [nix.POS]: pos$47, rootOK: true })),
                 })),
               })),
               wrappers: nix.thunk(() => (() => {
                 const mkSetuidRoot = (source) => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   setuid: true,
                   owner: "root",
                   group: "root",
                   source: source,
                 });
                 const mkCapRoot = (capabilities) => (source) => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   capabilities: capabilities,
                   source: source,
                   owner: "root",
                   group: "root",
                 });
                 return nix.update({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   su: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.sel(config, "security", "shadow", "su", "package")}/bin/su`))),
                   sg: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.sel(cfg, "package", "out")}/bin/sg`))),
                   newgrp: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.sel(cfg, "package", "out")}/bin/newgrp`))),
                   newuidmap: nix.thunk(() => nix.app(mkCapRoot, "cap_setuid+ep", nix.thunk(() => nix.str`${nix.sel(cfg, "package", "out")}/bin/newuidmap`))),
                   newgidmap: nix.thunk(() => nix.app(mkCapRoot, "cap_setgid+ep", nix.thunk(() => nix.str`${nix.sel(cfg, "package", "out")}/bin/newgidmap`))),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "users", "mutableUsers")), nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     chsh: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.sel(cfg, "package", "out")}/bin/chsh`))),
                     passwd: nix.thunk(() => nix.app(mkSetuidRoot, nix.thunk(() => nix.str`${nix.sel(cfg, "package", "out")}/bin/passwd`))),
                   }))));
               })()),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "users", "mutableUsers")), nix.thunk(() => nix.sel(cfg, "package"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "types", "shellPackage", "check"), nix.thunk(() => nix.sel(config, "users", "defaultUserShell")))), nix.thunk(() => nix.sel(config, "users", "defaultUserShell"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "chfnRestrict"), null)), nix.thunk(() => nix.sel(pkgs, "util-linux")))))),
               etc: nix.thunk(() => (() => {
                 const toKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " ")),
                   }))));
                 return {
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   "login.defs": nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "login.defs", nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => nix.sel(cfg, "settings")))))),
                   })),
                   "default/useradd": nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "useradd", nix.thunk(() => nix.str`GROUP=100
 HOME=${nix.sel(config, "users", "defaultUserHome")}
 SHELL=${nix.app(nix.sel(utils, "toShellPath"), nix.thunk(() => nix.sel(config, "users", "defaultUserShell")))}

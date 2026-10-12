@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zathura",
       version: "2026.05.20",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwmt",
           repo: "zathura",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(texlive, "bin", "core")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libseccomp), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gtk_mac_integration)))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GDK_PIXBUF_MODULE_FILE: nix.thunk(() => nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraLoaders: nix.thunk(() => [
               nix.thunk(() => nix.sel(libheif, "lib")),
               libjxl,
@@ -104,11 +104,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pwmt.org/projects/zathura",
         description: "Core component for zathura PDF viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (f) => (() => {
     const dicts = nix.thunk(() => nix.app(f, aspellDicts));
     return nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "aspell-env",
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         paths: nix.thunk(() => nix.concat([aspell], dicts)),

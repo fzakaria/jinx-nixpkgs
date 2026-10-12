@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const sitePkg = nix.thunk(() => nix.app(runCommand, "site", nix.thunk(() => ({})), "dist=$out/dist\nmkdir -p $dist\necho \"<html><body><a href=\\\"https://example.com/foo\\\">foo</a></body></html>\" > $dist/index.html\necho \"<html><body></body></html>\" > $dist/foo.html\n"));
   const check = nix.thunk(() => nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       site: nix.thunk(() => nix.add(sitePkg, "/dist")),
-      remap: nix.thunk(() => ({ __proto__: pos$1, "https://example.com": emptyDirectory })),
+      remap: nix.thunk(() => ({ [nix.POS]: pos$1, "https://example.com": emptyDirectory })),
       extraArgs: nix.thunk(() => [
         "--format",
         "json",
@@ -26,6 +26,6 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const failure = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), check));
-  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [jq]), failure: failure })), "# The details of the message might change, but we have to make sure the\n# correct error is reported, so that we know it's not something else that\n# went wrong.\njq -e '.error_map | to_entries[] | .value[] | select(.url | test(\"empty-directory/foo\")) | .status.text | test(\"File not found\")' $failure/result > /dev/null || {\n  echo Lychee output:\n  jq . $failure/result\n  echo 'Did not find expected error in JSON output. Adjust test if behavior is acceptable. It should find the broken link to non-existent `foo`.'\n  exit 1\n}\ntouch $out\n");
+  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [jq]), failure: failure })), "# The details of the message might change, but we have to make sure the\n# correct error is reported, so that we know it's not something else that\n# went wrong.\njq -e '.error_map | to_entries[] | .value[] | select(.url | test(\"empty-directory/foo\")) | .status.text | test(\"File not found\")' $failure/result > /dev/null || {\n  echo Lychee output:\n  jq . $failure/result\n  echo 'Did not find expected error in JSON output. Adjust test if behavior is acceptable. It should find the broken link to non-existent `foo`.'\n  exit 1\n}\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=fail-emptyDirectory.ts.map

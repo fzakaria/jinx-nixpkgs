@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "dex"));
-  const fixClient = (client) => (nix.asBool(nix.has(client, "secretFile")) ? nix.update(nix.app(nix.builtins.removeAttrs, client, nix.thunk(() => ["secretFile"])), { __proto__: pos$1, secret: nix.thunk(() => nix.sel(client, "secretFile")) }) : nix.force(client));
+  const fixClient = (client) => (nix.asBool(nix.has(client, "secretFile")) ? nix.update(nix.app(nix.builtins.removeAttrs, client, nix.thunk(() => ["secretFile"])), { [nix.POS]: pos$1, secret: nix.thunk(() => nix.sel(client, "secretFile")) }) : nix.force(client));
   const filteredSettings = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (n) => (v) => (nix.asBool(nix.eq(n, "staticClients")) ? nix.app(nix.builtins.map, fixClient, v) : nix.force(v)), nix.thunk(() => nix.sel(cfg, "settings"))));
   const secretFiles = nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.builtins.map, (c) => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.has(c, "secretFile")), nix.thunk(() => nix.sel(c, "secretFile"))), nix.thunk(() => nix.selOr(cfg, () => [], "settings", "staticClients"))))));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
 `, secretFiles))))));
   const restartTriggers = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))])), nix.app(nix.lookup(w, "filter"), (file) => nix.eq(nix.app(nix.sel(nix.builtins, "typeOf"), file), "path"), secretFiles))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         dex: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the OpenID Connect and OAuth2 identity provider")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "dex-oidc", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "Environment file (see {manpage}`systemd.exec(5)`\n\"EnvironmentFile=\" section for the syntax) to define variables for dex.\nThis option can be used to safely include secret keys into the dex configuration.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  # External url\n  issuer = \"http://127.0.0.1:5556/dex\";\n  storage = {\n    type = \"postgres\";\n    config.host = \"/var/run/postgres\";\n  };\n  web = {\n    http = \"127.0.0.1:5556\";\n  };\n  enablePasswordDB = true;\n  staticClients = [\n    {\n      id = \"oidcclient\";\n      name = \"Client\";\n      redirectURIs = [ \"https://example.com/callback\" ];\n      secretFile = \"/etc/dex/oidcclient\"; # The content of `secretFile` will be written into to the config as `secret`.\n    }\n  ];\n}\n")),
@@ -65,13 +65,13 @@ using the syntax \`$VARIABLE_NAME\`.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             dex: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "dex identity provider",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "storage", "type"), "postgres")), "postgresql.target"))),
@@ -81,7 +81,7 @@ using the syntax \`$VARIABLE_NAME\`.
               })()),
               restartTriggers: restartTriggers,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/dex serve /run/dex/config.yaml`),
                 ExecStartPre: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/install -m 600 ${configFile} /run/dex/config.yaml`),
@@ -125,14 +125,14 @@ using the syntax \`$VARIABLE_NAME\`.
                 SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged @setuid @keyring"]),
                 UMask: "0066",
               }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                 }))))),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$13, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$13, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=dex.ts.map

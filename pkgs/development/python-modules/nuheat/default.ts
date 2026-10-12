@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "broox",
           repo: "python-nuheat",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, parameterized, pytestCheckHook, responses]);
       const pythonImportsCheck = nix.thunk(() => ["nuheat"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to interact with NuHeat Signature and Mapei Mapeheat radiant floor thermostats",
         homepage: "https://github.com/broox/python-nuheat",
         changelog: nix.thunk(() => nix.str`https://github.com/broox/python-nuheat/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

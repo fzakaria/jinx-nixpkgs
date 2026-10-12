@@ -34,62 +34,62 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "uni-sync"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "yunfachi"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       hardware: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "uni-sync": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "udev rules and software for Lian Li Uni Controllers")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "uni-sync", nix.thunk(() => ({})))),
           devices: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  {\n    device_id = \"VID:1111/PID:11111/SN:1111111111\";\n    sync_rgb = true;\n    channels = [\n      {\n        mode = \"PWM\";\n      }\n      {\n        mode = \"Manual\";\n        speed = 100;\n      }\n      {\n        mode = \"Manual\";\n        speed = 54;\n      }\n      {\n        mode = \"Manual\";\n        speed = 0;\n      }\n    ];\n  }\n  {\n    device_id = \"VID:1010/PID:10101/SN:1010101010\";\n    sync_rgb = false;\n    channels = [\n      {\n        mode = \"Manual\";\n        speed = 0;\n      }\n    ];\n  }\n]\n")),
               description: "List of controllers with their configurations.",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       device_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           example: "VID:1111/PID:11111/SN:1111111111",
                           description: "Unique device ID displayed at each startup.",
                         })))),
                       sync_rgb: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           example: true,
                           description: "Enable ARGB header sync.",
                         })))),
                       channels: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           default: [],
                           example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  {\n    mode = \"PWM\";\n  }\n  {\n    mode = \"Manual\";\n    speed = 100;\n  }\n  {\n    mode = \"Manual\";\n    speed = 54;\n  }\n  {\n    mode = \"Manual\";\n    speed = 0;\n  }\n]\n")),
                           description: "List of channels connected to the controller.",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$4,
+                                      [nix.POS]: pos$4,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["Manual", "PWM"]))),
                                       default: "Manual",
                                       example: "PWM",
                                       description: "\"PWM\" to enable PWM sync. \"Manual\" to set speed.",
                                     })))),
                                   speed: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$5,
+                                      [nix.POS]: pos$5,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                       default: "50",
                                       example: "100",
@@ -105,22 +105,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "uni-sync/uni-sync.json": nix.thunk(() => ({
-              __proto__: pos$16,
-              text: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "devices"), [])), nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({ __proto__: pos$15, configs: nix.thunk(() => nix.sel(cfg, "devices")) })))))),
+              [nix.POS]: pos$16,
+              text: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "devices"), [])), nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({ [nix.POS]: pos$15, configs: nix.thunk(() => nix.sel(cfg, "devices")) })))))),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           udev: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),

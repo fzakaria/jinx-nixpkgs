@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kerberos_server"));
   const package$ = nix.thunk(() => nix.sel(config, "security", "krb5", "package"));
   const PIDFile = "/run/kdc.pid";
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs, lib: lib })), nix.thunk(() => ({ __proto__: pos$2, enableKdcACLEntries: true }))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: pos$2, enableKdcACLEntries: true }))));
   const aclMap = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     add: "a",
     cpw: "c",
     delete: "d",
@@ -61,40 +61,40 @@ export default nix.lambda((args) => (() => {
         })(), formals$2))),
       nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (text) => nix.attrsDyn({}, [
           [nix.force(name), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             acl_file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${name}.acl`), text)),
           }))],
         ]))),
     ])));
   const finalConfig = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     realms: nix.thunk(() => nix.app(mapAttrs, (n) => (v) => nix.update(nix.builtins.removeAttrs(v, nix.thunk(() => ["acl"])), nix.sel(aclConfigs, nix.key(nix.force(n)))), nix.thunk(() => nix.selOr(cfg, () => ({}), "settings", "realms")))),
   }));
   const kdcConfFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "kdc.conf", finalConfig));
-  const env = nix.thunk(() => ({ __proto__: pos$6, KRB5_KDC_PROFILE: "/etc/krb5kdc/kdc.conf" }));
+  const env = nix.thunk(() => ({ [nix.POS]: pos$6, KRB5_KDC_PROFILE: "/etc/krb5kdc/kdc.conf" }));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(package$, "passthru", "implementation"), "krb5")))), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "krb5kdc/kdc.conf": nix.thunk(() => ({ __proto__: pos$7, source: kdcConfFile })),
+            [nix.POS]: pos$8,
+            "krb5kdc/kdc.conf": nix.thunk(() => ({ [nix.POS]: pos$7, source: kdcConfFile })),
           })),
           variables: env,
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             kadmind: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Kerberos Administration Daemon",
               partOf: nix.thunk(() => ["kerberos-server.target"]),
               wantedBy: nix.thunk(() => ["kerberos-server.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${package$}/bin/kadmind -nofork`),
                 Slice: "system-kerberos-server.slice",
                 StateDirectory: "krb5kdc",
@@ -103,12 +103,12 @@ export default nix.lambda((args) => (() => {
               environment: env,
             })),
             kdc: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Key Distribution Center daemon",
               partOf: nix.thunk(() => ["kerberos-server.target"]),
               wantedBy: nix.thunk(() => ["kerberos-server.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "forking",
                 PIDFile: PIDFile,
                 ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([

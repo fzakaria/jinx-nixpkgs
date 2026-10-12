@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nflz",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-c9+79zrIU/M1Rh+DiaLJzbrNSa4IKrYk1gP0dsabUiw=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-aw3p0Lr/gWC1yDpVCXVibj4eU7ZFCQDy8kHtE6d6Yjg=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Numbered Files Leading Zeros helps you to manage ascending numbered file names",
         longDescription: "CLI to add leading zeros to ascending numbered file names.\nNFLZ stands for Numbered Files Leading Zeros.\n\nThis library helps you to manage files inside your file system that\nbelong to a set of ordered files. An example are photos from a camera.\n",
         homepage: "https://github.com/phip1611/nflz",

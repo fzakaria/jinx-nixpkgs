@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
   const pythonFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "pythonVars"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(pythonFmt, "generate"), "extra_settings.py", nix.thunk(() => nix.sel(cfg, "settings"))));
   const pkg = nix.thunk(() => nix.app(nix.sel(cfg, "package", "overridePythonAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       postInstall: nix.thunk(() => nix.add(nix.sel(old, "postInstall"), nix.str`ln -s ${settingsFile} $out/${nix.sel(pkg, "python", "sitePackages")}/froide_govplan/project/extra_settings.py
 `)),
     })));
   const froide_govplan = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "froide-govplan",
       runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
       text: nix.thunk(() => nix.str`SUDO="exec"
@@ -71,7 +71,7 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
 `),
     }))));
   const defaultServiceConfig = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
     CacheDirectory: "froide-govplan",
     CapabilityBoundingSet: "",
@@ -102,44 +102,44 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
     UMask: "0066",
   }));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "froide-govplan": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Gouvernment planer web app Govplan")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "froide-govplan", nix.thunk(() => ({})))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "FQDN for the froide-govplan instance.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/froide-govplan",
               description: "Directory to store the Froide-Govplan server data.",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a file containing the secret key.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Configuration options to set in `extra_settings.py`.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.sel(pythonFmt, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     ALLOWED_HOSTS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -154,19 +154,19 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           "froide-govplan": nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               STATIC_ROOT: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/static`),
               DEBUG: false,
               DATABASES: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   ENGINE: "django.contrib.gis.db.backends.postgis",
                   NAME: "govplan",
                   USER: "govplan",
@@ -176,11 +176,11 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
             })),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
             ensureDatabases: nix.thunk(() => ["govplan"]),
             ensureUsers: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$18, name: "govplan", ensureDBOwnership: true })),
+              nix.thunk(() => ({ [nix.POS]: pos$18, name: "govplan", ensureDBOwnership: true })),
             ]),
             extensions: (ps) => (() => {
               const w = nix.withScope(ps, null);
@@ -188,19 +188,19 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
             })(),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     extraConfig: "proxy_pass http://unix:/run/froide-govplan/froide-govplan.socket;",
                   })),
                   "/static/": nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     alias: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/static/`),
                   })),
                 })),
@@ -210,13 +210,13 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "postgresql-setup": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ExecStartPost: nix.thunk(() => (() => {
                   const sqlFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "froide-govplan-postgis-setup.sql", "CREATE EXTENSION IF NOT EXISTS postgis;\n"));
                   return [
@@ -227,10 +227,10 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
               })),
             })),
             "froide-govplan": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Gouvernment planer Govplan",
               serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 StateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/froide-govplan")), "froide-govplan")),
                 User: "govplan",
@@ -240,12 +240,12 @@ $SUDO env ${nix.app(nix.sel(lib, "getExe"), pkg)} "$@"
               after: nix.thunk(() => ["postgresql.target", "network.target", "systemd-tmpfiles-setup.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 PYTHONPATH: nix.thunk(() => nix.str`${nix.sel(pkg, "pythonPath")}:${pkg}/${nix.sel(pkg, "python", "sitePackages")}`),
                 GDAL_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "gdal")}/lib/libgdal.so`),
                 GEOS_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "geos")}/lib/libgeos_c.so`),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretKeyFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   SECRET_KEY_FILE: nix.thunk(() => nix.sel(cfg, "secretKeyFile")),
                 }))))),
               preStart: nix.thunk(() => nix.str`# Auto-migrate on first run or if the package has changed
@@ -265,27 +265,27 @@ fi
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             rules: nix.thunk(() => ["d /run/froide-govplan - govplan govplan - -"]),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$35, systemPackages: nix.thunk(() => [froide_govplan]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$35, systemPackages: nix.thunk(() => [froide_govplan]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           users: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             govplan: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               home: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
               isSystemUser: true,
               group: "govplan",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$38, govplan: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$38, govplan: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
   const notify2 = nix.arg($, "notify2");
   const glib = nix.arg($, "glib");
   const libnotify = nix.arg($, "libnotify");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(buildPythonPackage, nix.thunk(() => nix.update(common, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openrazer-daemon",
       outputs: nix.thunk(() => ["out", "man"]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/daemon`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Entirely open source user-space daemon that allows you to manage your Razer peripherals on GNU/Linux",
         mainProgram: "openrazer-daemon",
       })),

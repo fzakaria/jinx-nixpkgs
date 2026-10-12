@@ -37,70 +37,70 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "subsonic"));
   const opt = nix.thunk(() => nix.sel(options, "services", "subsonic"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         subsonic: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Subsonic daemon")),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/subsonic",
               description: "The directory where Subsonic will create files.\nMake sure it is writable.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "The host name or IP address on which to bind Subsonic.\nOnly relevant if you have multiple network interfaces and want\nto make Subsonic available on only one of them. The default value\nwill bind Subsonic to all available network interfaces.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4040n,
               description: "The port on which Subsonic will listen for\nincoming HTTP traffic. Set to 0 to disable.\n",
             })))),
           httpsPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 0n,
               description: "The port on which Subsonic will listen for\nincoming HTTPS traffic. Set to 0 to disable.\n",
             })))),
           contextPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/",
               description: "The context path, i.e., the last part of the Subsonic\nURL. Typically '/' or '/subsonic'. Default '/'\n",
             })))),
           maxMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 100n,
               description: "The memory limit (max Java heap size) in megabytes.\nDefault: 100\n",
             })))),
           defaultMusicFolder: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/music",
               description: "Configure Subsonic to use this folder for music.  This option\nonly has effect the first time Subsonic is started.\n",
             })))),
           defaultPodcastFolder: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/music/Podcast",
               description: "Configure Subsonic to use this folder for Podcasts.  This option\nonly has effect the first time Subsonic is started.\n",
             })))),
           defaultPlaylistFolder: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/playlists",
               description: "Configure Subsonic to use this folder for playlists.  This option\nonly has effect the first time Subsonic is started.\n",
             })))),
           transcoders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "ffmpeg", "bin")}/bin/ffmpeg`)]),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"${pkgs.ffmpeg.bin}/bin/ffmpeg\" ]")),
@@ -113,13 +113,13 @@ from Subsonic. Symlinks will be created to each executable inside
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             subsonic: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Personal media streamer",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -157,7 +157,7 @@ ${nix.sel(pkgs, "bash")}/bin/bash -c ' \\
   done' IGNORED_FIRST_ARG ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "transcoders")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(pkgs, "subsonic")}`),
                 Restart: "always",
                 User: "subsonic",
@@ -167,11 +167,11 @@ ${nix.sel(pkgs, "bash")}/bin/bash -c ' \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             subsonic: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Subsonic daemon user",
               home: nix.thunk(() => nix.sel(cfg, "home")),
               createHome: true,
@@ -180,9 +180,9 @@ ${nix.sel(pkgs, "bash")}/bin/bash -c ' \\
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             subsonic: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "subsonic")),
             })),
           })),

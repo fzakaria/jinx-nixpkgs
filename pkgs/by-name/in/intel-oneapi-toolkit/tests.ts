@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const writeText = nix.arg($, "writeText");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "mkl-libs": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "intel-oneapi-test-mkl-libs",
         src: nix.thunk(() => nix.app(writeText, "test.c", "#include <assert.h>\n#include <mkl_cblas.h>\nint main() {\n  float u[] = {1., 2., 3.};\n  float v[] = {4., 5., 6.};\n  float dp = cblas_sdot(3, u, 1, v, 1);\n  assert(dp == 32.);\n}\n")),
         dontUnpack: true,
@@ -52,7 +52,7 @@ done
 touch "$out"
 `))),
     "sycl-compile": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "intel-oneapi-test-sycl-compile",
         src: nix.thunk(() => nix.app(writeText, "test.cpp", "#include <sycl/sycl.hpp>\n#include <iostream>\nint main() {\n  // We likely won't have a SYCL device available,\n  // due to the nix sandbox, but this test only\n  // verifies that SYCL compiles, so we don't need a device\n  try {\n      sycl::queue q;\n      std::cout << q.get_device().get_info<sycl::info::device::name>() << std::endl;\n  } catch (const sycl::exception& e) {\n      std::cerr << \"No SYCL device found: \" << e.what() << std::endl;\n  }\n  return 0;\n}\n")),
         dontUnpack: true,
@@ -62,14 +62,14 @@ touch "$out"
         installPhase: "touch \"$out\"",
       })))),
     "headers-available": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "intel-oneapi-test-headers-available",
         dontUnpack: true,
         buildPhase: "echo '#include <sycl/sycl.hpp>' | icpx -fsycl -x c++ -E - > /dev/null\necho '#include <CL/sycl.hpp>'   | icpx -fsycl -x c++ -E - > /dev/null\necho '#include <iostream>'      | icpx -x c++ -E - > /dev/null\n",
         installPhase: "touch \"$out\"",
       })))),
     "c-compile": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "intel-oneapi-test-c-compile",
         src: nix.thunk(() => nix.app(writeText, "test.c", "#include <stdio.h>\nint main() { printf(\"Hello from Intel C compiler!\\n\"); return 0; }\n")),
         dontUnpack: true,
@@ -79,7 +79,7 @@ touch "$out"
         installPhase: "touch \"$out\"",
       })))),
     "openmp-compile": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "intel-oneapi-test-openmp-compile",
         src: nix.thunk(() => nix.app(writeText, "test.c", "#include <omp.h>\n#include <stdio.h>\nint main() {\n  #pragma omp parallel\n  { printf(\"Hello from thread %d\\n\", omp_get_thread_num()); }\n  return 0;\n}\n")),
         dontUnpack: true,

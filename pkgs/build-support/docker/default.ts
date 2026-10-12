@@ -116,7 +116,7 @@ export NIX_REMOTE=local?root=$PWD
 # A user is required by nix
 # https://github.com/NixOS/nix/blob/9348f9291e5d9e4ba3c4347ea1b235640f54fd79/src/libutil/util.cc#L478
 export USER=nobody
-nix-store --load-db < ${nix.app(closureInfo, nix.thunk(() => ({ __proto__: pos$1, rootPaths: contentsList })))}/registration
+nix-store --load-db < ${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$1, rootPaths: contentsList })))}/registration
 # Reset registration times to make the image reproducible
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "sqlite")))} nix/var/nix/db/db.sqlite "UPDATE ValidPaths SET registrationTime = \${SOURCE_DATE_EPOCH}"
 
@@ -128,23 +128,23 @@ done;
   })();
   const defaultArchitecture = nix.thunk(() => nix.sel(go, "GOARCH"));
   const compressors = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     none: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       ext: "",
       nativeInputs: [],
       compress: "cat",
       decompress: "cat",
     })),
     gz: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       ext: ".gz",
       nativeInputs: nix.thunk(() => [pigz]),
       compress: "pigz -p$NIX_BUILD_CORES -nTR",
       decompress: "pigz -d -p$NIX_BUILD_CORES",
     })),
     zstd: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       ext: ".zst",
       nativeInputs: nix.thunk(() => [zstd]),
       compress: "zstd -T$NIX_BUILD_CORES",
@@ -154,7 +154,7 @@ done;
   const compressorForImage = (compressor) => (imageName) => nix.selOr(compressors, () => nix.builtins.throw(nix.thunk(() => nix.str`in docker image ${imageName}: compressor must be one of: [${nix.builtins.toString(nix.thunk(() => nix.builtins.attrNames(compressors)))}]`)), nix.key(nix.force(compressor)));
   return (() => {
     const examples = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples.nix"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         buildImage: buildImage,
         buildLayeredImage: buildLayeredImage,
         pullImage: pullImage,
@@ -163,7 +163,7 @@ done;
         streamNixShellImage: streamNixShellImage,
       }))));
     const tests = nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "docker-tools": nix.thunk(() => nix.attr(nixosTests, "docker-tools")),
       "docker-tools-overlay": nix.thunk(() => nix.attr(nixosTests, "docker-tools-overlay")),
     }));
@@ -182,7 +182,7 @@ done;
           const tlsVerify = nix.argOr($_1, "tlsVerify", () => true);
           const name = nix.argOr($_1, "name", () => nix.app(fixName, nix.thunk(() => nix.str`docker-image-${finalImageName}-${finalImageTag}.tar`)));
           return nix.app(runCommand, name, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               imageDigest: imageDigest,
               imageName: finalImageName,
               imageTag: finalImageTag,
@@ -211,7 +211,7 @@ done;
       const $_1 = nix.formals(args_1, formals$3);
       const derivations = nix.arg($_1, "derivations");
       const onlyDeps = nix.argOr($_1, "onlyDeps", () => false);
-      return nix.app(runCommand, "merge-drvs", nix.thunk(() => ({ __proto__: pos$9, derivations: derivations, onlyDeps: onlyDeps })), "if [[ -n \"$onlyDeps\" ]]; then\n  echo $derivations > $out\n  exit 0\nfi\n\nmkdir $out\nfor derivation in $derivations; do\n  echo \"Merging $derivation...\"\n  if [[ -d \"$derivation\" ]]; then\n    # If it's a directory, copy all of its contents into $out.\n    cp -drf --preserve=mode -f $derivation/* $out/\n  else\n    # Otherwise treat the derivation as a tarball and extract it\n    # into $out.\n    tar -C $out -xpf $drv || true\n  fi\ndone\n");
+      return nix.app(runCommand, "merge-drvs", nix.thunk(() => ({ [nix.POS]: pos$9, derivations: derivations, onlyDeps: onlyDeps })), "if [[ -n \"$onlyDeps\" ]]; then\n  echo $derivations > $out\n  exit 0\nfi\n\nmkdir $out\nfor derivation in $derivations; do\n  echo \"Merging $derivation...\"\n  if [[ -d \"$derivation\" ]]; then\n    # If it's a directory, copy all of its contents into $out.\n    cp -drf --preserve=mode -f $derivation/* $out/\n  else\n    # Otherwise treat the derivation as a tarball and extract it\n    # into $out.\n    tar -C $out -xpf $drv || true\n  fi\ndone\n");
     })(), formals$3);
     const shadowSetup = nix.thunk(() => nix.str`export PATH=${shadow}/bin:$PATH
 mkdir -p /etc/pam.d
@@ -247,9 +247,9 @@ fi
       const postMount = nix.argOr($_1, "postMount", () => "");
       const postUmount = nix.argOr($_1, "postUmount", () => "");
       return nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(runCommand, name, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             preVM: nix.thunk(() => nix.app(nix.sel(vmTools, "createEmptyImage"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 size: diskSize,
                 fullName: "docker-run-disk",
                 destination: "./image",
@@ -351,7 +351,7 @@ ${postUmount}
       const fromImageTag = nix.argOr($_1, "fromImageTag", () => null);
       const diskSize = nix.argOr($_1, "diskSize", () => 1024n);
       return nix.app(runWithOverlay, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: name,
           fromImage: fromImage,
           fromImageName: fromImageName,
@@ -377,7 +377,7 @@ ${text}
       const uid = nix.argOr($_1, "uid", () => 0n);
       const gid = nix.argOr($_1, "gid", () => 0n);
       return nix.app(runCommand, nix.thunk(() => nix.str`docker-layer-${name}`), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           baseJson: baseJson,
           extraCommands: extraCommands,
           contents: copyToRoot,
@@ -430,7 +430,7 @@ echo "Finished building layer '${name}'"
       const runAsRootScript = nix.thunk(() => nix.app(shellScript, "run-as-root.sh", runAsRoot));
       const extraCommandsScript = nix.thunk(() => nix.app(shellScript, "extra-commands.sh", extraCommands));
       return nix.app(runWithOverlay, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: nix.thunk(() => nix.str`docker-layer-${name}`),
           fromImage: fromImage,
           fromImageName: fromImageName,
@@ -493,10 +493,10 @@ echo "Finished building layer '${name}'"
         const stream = nix.thunk(() => nix.app(streamLayeredImage, nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => ["compressor", "meta"])))));
         const compress = nix.thunk(() => nix.app(compressorForImage, compressor, name));
         return nix.app(runCommand, nix.thunk(() => nix.str`${nix.builtins.baseNameOf(name)}.tar${nix.sel(compress, "ext")}`), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             imageName: nix.thunk(() => nix.attr(stream, "imageName")),
             passthru: nix.thunk(() => nix.update(nix.sel(stream, "passthru"), {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               imageTag: nix.thunk(() => nix.attr(stream, "imageTag")),
               stream: stream,
             })),
@@ -532,7 +532,7 @@ echo "Finished building layer '${name}'"
         const baseName = nix.thunk(() => nix.builtins.baseNameOf(name));
         const baseJson = nix.thunk(() => (() => {
           const pure = nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${baseName}-config.json`), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 created: created,
                 config: config,
                 architecture: architecture,
@@ -540,7 +540,7 @@ echo "Finished building layer '${name}'"
                 os: "linux",
               }))))));
           const impure = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${baseName}-config.json`), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               nativeBuildInputs: nix.thunk(() => [jq]),
               preferLocalBuild: true,
             })), nix.thunk(() => nix.str`jq ".created = \\"$(TZ=utc date --iso-8601="seconds")\\"" ${pure} > $out
@@ -550,7 +550,7 @@ echo "Finished building layer '${name}'"
         const compress = nix.thunk(() => nix.app(compressorForImage, compressor, name));
         const extraCommandsWithDB = nix.thunk(() => (nix.asBool(includeNixDB) ? nix.add(nix.app(mkDbExtraCommand, rootContents), extraCommands) : nix.force(extraCommands)));
         const layer = nix.thunk(() => (nix.asBool(nix.eq(runAsRoot, null)) ? nix.app(mkPureLayer, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             name: baseName,
             baseJson: baseJson,
             keepContentsDirlinks: keepContentsDirlinks,
@@ -560,7 +560,7 @@ echo "Finished building layer '${name}'"
             extraCommands: extraCommandsWithDB,
             copyToRoot: rootContents,
           }))) : nix.app(mkRootLayer, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             name: baseName,
             baseJson: baseJson,
             fromImage: fromImage,
@@ -574,7 +574,7 @@ echo "Finished building layer '${name}'"
             copyToRoot: rootContents,
           })))));
         const result = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`docker-image-${baseName}.tar${nix.sel(compress, "ext")}`), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             nativeBuildInputs: nix.thunk(() => nix.concat([jshon, jq, moreutils], nix.sel(compress, "nativeInputs"))),
             imageName: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), name)),
             imageTag: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(tag, null)), tag)),
@@ -582,7 +582,7 @@ echo "Finished building layer '${name}'"
             baseJson: baseJson,
             layerClosure: nix.thunk(() => nix.app(writeClosure, nix.thunk(() => [layer]))),
             passthru: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               buildArgs: args_2,
               layer: layer,
               imageTag: nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.force(tag) : nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.sel(result, "outPath"))))))))))),
@@ -730,7 +730,7 @@ echo "Finished."
         return nix.app(checked, result);
       })(), formals$9)));
     const mergeImages = (images) => nix.app(runCommand, "merge-docker-images", nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         images: images,
         nativeBuildInputs: nix.thunk(() => nix.concat([file, jq], nix.concat(nix.sel(compressors, "none", "nativeInputs"), nix.concat(nix.sel(compressors, "gz", "nativeInputs"), nix.sel(compressors, "zstd", "nativeInputs"))))),
       })), nix.thunk(() => nix.str`mkdir image inputs
@@ -790,8 +790,8 @@ ln -s ${cacert}/etc/ssl/certs/ca-bundle.crt $out/etc/ssl/certs/ca-certificates.c
 # CentOS/Fedora compatibility.
 ln -s ${cacert}/etc/ssl/certs/ca-bundle.crt $out/etc/pki/tls/certs/ca-bundle.crt
 `)));
-    const buildImageWithNixDb = (args_1) => nix.app(buildImage, nix.thunk(() => nix.update(args_1, { __proto__: pos$24, includeNixDB: true })));
-    const buildLayeredImageWithNixDb = (args_1) => nix.app(buildLayeredImage, nix.thunk(() => nix.update(args_1, { __proto__: pos$25, includeNixDB: true })));
+    const buildImageWithNixDb = (args_1) => nix.app(buildImage, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$24, includeNixDB: true })));
+    const buildLayeredImageWithNixDb = (args_1) => nix.app(buildLayeredImage, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$25, includeNixDB: true })));
     const streamLayeredImage = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$10);
         const name = nix.arg($_1, "name");
@@ -820,7 +820,7 @@ ln -s ${cacert}/etc/ssl/certs/ca-bundle.crt $out/etc/pki/tls/certs/ca-bundle.crt
         nix.assert_((nix.asBool((!nix.asBool(enableFakechroot) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) || nix.asBool(nix.builtins.throw("cannot use `enableFakechroot` because `proot` is not portable to Darwin. Workarounds:\n      - use `fakeRootCommands` with the restricted `fakeroot` environment\n      - cross-compile your packages\n      - run your packages in a virtual machine\n      Discussion: https://github.com/NixOS/nixpkgs/issues/327311"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/docker/default.nix:1041:5");
         const baseName = nix.thunk(() => nix.builtins.baseNameOf(name));
         const streamScript = nix.thunk(() => nix.app(writePython3, "stream", nix.thunk(() => ({})), nix.path(here, "./stream_layered_image.py")));
-        const baseJson = nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${baseName}-base.json`), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$26, config: config, architecture: architecture, os: "linux" }))))));
+        const baseJson = nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${baseName}-base.json`), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$26, config: config, architecture: architecture, os: "linux" }))))));
         const contentsList = nix.thunk(() => (nix.asBool(nix.builtins.isList(contents)) ? nix.force(contents) : [contents]));
         const bind_paths = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((path) => nix.str`--bind=${path}:${path}!`, nix.thunk(() => [
               "/dev/",
@@ -831,7 +831,7 @@ ln -s ${cacert}/etc/ssl/certs/ca-bundle.crt $out/etc/pki/tls/certs/ca-bundle.crt
               "$out/layer.tar",
             ])))));
         const customisationLayer = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             name: nix.thunk(() => nix.str`${baseName}-customisation-layer`),
             paths: contentsList,
             extraCommands: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), includeNixDB, nix.thunk(() => nix.app(mkDbExtraCommand, contents))), extraCommands)),
@@ -865,21 +865,21 @@ sha256sum $out/layer.tar \\
         const closureRoots = nix.thunk(() => nix.app(optionals, includeStorePaths, nix.thunk(() => [baseJson, customisationLayer])));
         const excludePaths = nix.thunk(() => [baseJson, customisationLayer]);
         const layersJsonFile = nix.thunk(() => (nix.asBool(nix.eq(layeringPipeline, null)) ? nix.app(nix.sel(buildPackages, "dockerAutoLayer"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             closureRoots: closureRoots,
             debug: debug,
             excludePaths: excludePaths,
             fromImage: fromImage,
             maxLayers: maxLayers,
           }))) : nix.app(nix.sel(buildPackages, "dockerMakeLayers"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             closureRoots: closureRoots,
             debug: debug,
             excludePaths: excludePaths,
             pipeline: layeringPipeline,
           })))));
         const conf = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${baseName}-conf.json`), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             fromImage: fromImage,
             created: created,
             mtime: mtime,
@@ -891,7 +891,7 @@ sha256sum $out/layer.tar \\
             imageName: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), name)),
             preferLocalBuild: true,
             passthru: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               imageTag: nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.force(tag) : nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.sel(conf, "outPath"))))))))))),
             })),
             nativeBuildInputs: nix.thunk(() => [jq]),
@@ -935,13 +935,13 @@ jq '
       | tee $out
 `)));
         const result = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`stream-${baseName}`), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             conf: conf,
             imageName: nix.thunk(() => nix.attr(conf, "imageName")),
             streamScript: streamScript,
             preferLocalBuild: true,
             passthru: nix.thunk(() => nix.update(passthru, {
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               imageTag: nix.thunk(() => nix.attr(conf, "imageTag")),
               conf: conf,
               streamScript: streamScript,
@@ -989,13 +989,13 @@ exit
 `))}
 `)));
       const sandboxBuildDir = "/build";
-      const drvEnv = nix.thunk(() => nix.update(nix.app(nix.sel(devShellTools, "unstructuredDerivationInputEnv"), nix.thunk(() => ({ __proto__: pos$34, drvAttrs: nix.thunk(() => nix.attr(drv, "drvAttrs")) }))), nix.app(nix.sel(devShellTools, "derivationOutputEnv"), nix.thunk(() => ({
-          __proto__: pos$35,
+      const drvEnv = nix.thunk(() => nix.update(nix.app(nix.sel(devShellTools, "unstructuredDerivationInputEnv"), nix.thunk(() => ({ [nix.POS]: pos$34, drvAttrs: nix.thunk(() => nix.attr(drv, "drvAttrs")) }))), nix.app(nix.sel(devShellTools, "derivationOutputEnv"), nix.thunk(() => ({
+          [nix.POS]: pos$35,
           outputList: nix.thunk(() => nix.sel(drv, "outputs")),
           outputMap: drv,
         })))));
       const envVars = nix.thunk(() => nix.update({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         NIX_SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         PATH: staticPath,
@@ -1003,7 +1003,7 @@ exit
         NIX_STORE: storeDir,
         NIX_BUILD_CORES: "1",
       }, nix.update(drvEnv, {
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         NIX_BUILD_TOP: sandboxBuildDir,
         TMPDIR: sandboxBuildDir,
         TEMPDIR: sandboxBuildDir,
@@ -1013,14 +1013,14 @@ exit
         TERM: "xterm-256color",
       })));
       return nix.app(streamLayeredImage, nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           name: name,
           tag: tag,
           contents: nix.thunk(() => [
             binSh,
             usrBinEnv,
             nix.thunk(() => nix.app(nix.sel(fakeNss_1, "override"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 extraPasswdLines: nix.thunk(() => [
                   nix.thunk(() => nix.str`nixbld:x:${nix.builtins.toString(uid)}:${nix.builtins.toString(gid)}:Build user:${homeDirectory}:/noshell`),
                 ]),
@@ -1038,7 +1038,7 @@ mkdir -p .${sandboxBuildDir}
 chown -R ${nix.builtins.toString(uid)}:${nix.builtins.toString(gid)} .${sandboxBuildDir}
 `),
           config: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             User: nix.thunk(() => nix.str`${nix.builtins.toString(uid)}:${nix.builtins.toString(gid)}`),
             Cmd: nix.thunk(() => (nix.asBool(nix.eq(run, null)) ? [shell, "--rcfile", rcfile] : [shell, rcfile])),
             WorkingDir: sandboxBuildDir,
@@ -1054,14 +1054,14 @@ chown -R ${nix.builtins.toString(uid)}:${nix.builtins.toString(gid)} .${sandboxB
       const stream = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => ["compressor"])))));
       const compress = nix.thunk(() => nix.app(compressorForImage, compressor, nix.thunk(() => nix.sel(drv, "name"))));
       return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-env.tar${nix.sel(compress, "ext")}`), nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           imageName: nix.thunk(() => nix.attr(stream, "imageName")),
-          passthru: nix.thunk(() => ({ __proto__: pos$41, imageTag: nix.thunk(() => nix.attr(stream, "imageTag")) })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$41, imageTag: nix.thunk(() => nix.attr(stream, "imageTag")) })),
           nativeBuildInputs: nix.thunk(() => nix.sel(compress, "nativeInputs")),
         })), nix.thunk(() => nix.str`${stream} | ${nix.sel(compress, "compress")} > $out`));
     })(), formals$12);
     return {
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       examples,
       tests,
       pullImage,

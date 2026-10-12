@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const unpaper = nix.arg($, "unpaper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.1.7",
       pname: "pdfsandwich",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.code.sf.net/p/pdfsandwich/code/trunk/src",
           rev: "75",
           sha256: "1420c33divch087xrr61lvyf975bapqkgjqaighl581i69nlzsm6",
@@ -40,7 +40,7 @@ mkdir -p $out/man/man1
 cp -p pdfsandwich.1.gz $out/man/man1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCR tool for scanned PDFs",
         homepage: "http://www.tobias-elze.de/pdfsandwich/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

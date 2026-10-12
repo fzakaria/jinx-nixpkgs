@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const libusbmuxd = nix.arg($, "libusbmuxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "idevicerestore",
       version: "1.0.0-unstable-2026-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "idevicerestore",
           rev: "60192e97f87d1bbab5c493684e0a245b0966363f",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: nix.thunk(() => nix.str`export RELEASE_VERSION=${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libimobiledevice/idevicerestore",
         description: "Restore/upgrade firmware of iOS devices",
         longDescription: "The idevicerestore tool allows to restore firmware files to iOS devices.\n\nIt is a full reimplementation of all granular steps which are performed during\nrestore of a firmware to a device.\n\nIn general, upgrades and downgrades are possible, however subject to\navailability of SHSH blobs from Apple for signing the firmware files.\n\nTo restore a device to some firmware, simply run the following:\n$ sudo idevicerestore -l\n\nThis will download and restore a device to the latest firmware available.\n",

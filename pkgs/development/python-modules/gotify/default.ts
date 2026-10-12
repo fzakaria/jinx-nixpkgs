@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d-k-bo",
           repo: "python-gotify",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,11 +46,11 @@ ln -s "${gotify_server}/bin/server" ./tests/test-server/gotify-linux-arm64
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio, typeguard, gotify_server]);
       const pythonImportsCheck = nix.thunk(() => ["gotify"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/d-k-bo/python-gotify/releases/tag/v${version}`),
         description: "Python library to access your gotify server",
         homepage: "https://github.com/d-k-bo/python-gotify",
@@ -59,7 +59,7 @@ ln -s "${gotify_server}/bin/server" ./tests/test-server/gotify-linux-arm64
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(gotify_server, "version")), "2.9.0")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

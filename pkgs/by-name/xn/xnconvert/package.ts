@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const runCommand = nix.arg($, "runCommand");
   const icon = nix.thunk(() => nix.app(runCommand, "xnconvert-icon.png", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.xnview.com/img/app-xnconvert-512.webp",
           hash: "sha256-le+rvthQndY3KbkPYuMGZDDcvdpvH9CIS2REP1vmDXg=",
         })))),
     })), "convert $src $out\n"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "xnconvert",
       desktopName: "XnConvert",
       exec: "xnconvert",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = "1.116.0";
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xnconvert",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://download.xnview.com/versions/XnConvert/XnConvert-${version}.glibc2.34-x86_64.AppImage`),
           hash: "sha256-CYAo208cOKz67IVlyPlf9KH90WNX1jsK2sYI+0J1C8A=",
         })))),
@@ -53,7 +53,7 @@ mkdir -p $out/share/applications/
 cp ${desktopItem}/share/applications/*.desktop $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.xnview.com/en/xnconvert",
         description: "Fast, powerful and free cross-platform batch image converter",
         longDescription: "XnConvert is a fast, powerful and free cross-platform batch image converter.\nIt allows to automate editing of your photo collections: you can rotate,\nconvert and compress your images, photos and pictures easily, and apply over\n80 actions (like resize, crop, color adjustments, filter, ...).\nAll common picture and graphics formats are supported (JPEG, TIFF, PNG, GIF,\nWebP, PSD, JPEG2000, JPEG-XL, OpenEXR, camera RAW, HEIC, PDF, DNG, CR2).\nYou can save and re-use your presets for another batch image conversion.\n",

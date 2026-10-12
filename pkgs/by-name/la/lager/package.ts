@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const catch2 = nix.arg($, "catch2");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lager",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arximboldi",
           repo: "lager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/arximboldi/lager/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "C++ library for value-oriented design using the unidirectional data-flow architecture — Redux for C++",
         homepage: "https://sinusoid.es/lager/",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libdivsufsort = nix.arg($, "libdivsufsort");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "andi",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evolbioinf",
           repo: "andi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preCheck: "patchShebangs ./test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient Estimation of Evolutionary Distances",
         homepage: "https://github.com/evolbioinf/andi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

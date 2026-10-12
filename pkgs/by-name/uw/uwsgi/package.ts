@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const makeWrapper = nix.arg($, "makeWrapper");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
-  const php_embed = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({ __proto__: pos$1, embedSupport: true, apxs2Support: false }))));
+  const php_embed = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, embedSupport: true, apxs2Support: false }))));
   const available = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "python3", nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           interpreter: nix.thunk(() => nix.sel(python3, "pythonOnBuildForHost", "interpreter")),
           path: "plugins/python",
           inputs: nix.thunk(() => [python3, ncurses]),
@@ -55,10 +55,10 @@ ${nix.sel(python3, "pythonOnBuildForHost", "executable")} -m compileall $out/${n
 ${nix.sel(python3, "pythonOnBuildForHost", "executable")} -O -m compileall $out/${nix.sel(python3, "sitePackages")}/
 `),
         })))),
-      nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "rack", nix.thunk(() => ({ __proto__: pos$3, path: "plugins/rack", inputs: nix.thunk(() => [ruby]) })))),
-      nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "cgi", nix.thunk(() => ({ __proto__: pos$4, path: "plugins/cgi", inputs: [] })))),
+      nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "rack", nix.thunk(() => ({ [nix.POS]: pos$3, path: "plugins/rack", inputs: nix.thunk(() => [ruby]) })))),
+      nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "cgi", nix.thunk(() => ({ [nix.POS]: pos$4, path: "plugins/cgi", inputs: [] })))),
       nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "php", nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           path: "plugins/php",
           inputs: nix.thunk(() => nix.concat([
             php_embed,
@@ -68,22 +68,22 @@ ${nix.sel(python3, "pythonOnBuildForHost", "executable")} -O -m compileall $out/
           ], nix.sel(php_embed, "unwrapped", "buildInputs"))),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), "http", nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           path: "plugins/http",
           inputs: nix.thunk(() => [nix.thunk(() => nix.sel(openssl, "dev"))]),
         })))),
     ])));
   const getPlugin = (name) => (() => {
     const all = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), available))));
-    return (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), name, available)) ? nix.update(nix.app(nix.sel(lib, "getAttr"), name, available), { __proto__: pos$7, name: name }) : nix.builtins.throw(nix.thunk(() => nix.str`Unknown UWSGI plugin ${name}, available : ${all}`)));
+    return (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), name, available)) ? nix.update(nix.app(nix.sel(lib, "getAttr"), name, available), { [nix.POS]: pos$7, name: name }) : nix.builtins.throw(nix.thunk(() => nix.str`Unknown UWSGI plugin ${name}, available : ${all}`)));
   })();
   const needed = nix.thunk(() => nix.builtins.map(getPlugin, plugins));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "uwsgi",
       version: "2.0.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "unbit",
           repo: "uwsgi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -97,10 +97,10 @@ ${nix.sel(python3, "pythonOnBuildForHost", "executable")} -O -m compileall $out/
       buildInputs: nix.thunk(() => nix.concat([jansson, pcre2, libxcrypt], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [expat, zlib])), nix.concat(nix.app(nix.sel(lib, "optional"), withPAM, pam), nix.concat(nix.app(nix.sel(lib, "optional"), withSystemd, systemdLibs), nix.concat(nix.app(nix.sel(lib, "optional"), withCap, libcap), nix.app(nix.sel(lib, "concatMap"), (x) => nix.sel(x, "inputs"), needed))))))),
       basePlugins: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withPAM, "pam"), nix.app(nix.sel(lib, "optional"), withSystemd, "systemd_logger"))))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         UWSGI_INCLUDES: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.builtins.map((p) => nix.str`${nix.app(nix.sel(lib, "getDev"), p)}/include`, nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (x) => nix.eq(nix.sel(x, "name"), "php"), needed)), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           UWSGICONFIG_PHP_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => [
               "-Wl",
               nix.thunk(() => nix.str`-rpath=${nix.sel(php_embed, "extensions", "session")}/lib/php/extensions/`),
@@ -109,9 +109,9 @@ ${nix.sel(python3, "pythonOnBuildForHost", "executable")} -O -m compileall $out/
             ]))),
         }))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         python3: python3,
-        tests: nix.thunk(() => ({ __proto__: pos$11, uwsgi: nix.thunk(() => nix.sel(nixosTests, "uwsgi")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$11, uwsgi: nix.thunk(() => nix.sel(nixosTests, "uwsgi")) })),
       })),
       postPatch: "for f in uwsgiconfig.py plugins/*/uwsgiplugin.py; do\n  substituteInPlace \"$f\" \\\n    --replace pkg-config \"$PKG_CONFIG\"\ndone\nsed -e \"s/ + php_version//\" -i plugins/php/uwsgiplugin.py\n",
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
@@ -140,7 +140,7 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (x) => nix.eq(nix.sel(x, "name"), "php"), needed)), nix.thunk(() => nix.str`wrapProgram $out/bin/uwsgi --set PHP_INI_SCAN_DIR ${php_embed}/lib
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Fast, self-healing and developer/sysadmin-friendly application container server coded in pure C",
         homepage: "https://uwsgi-docs.readthedocs.org/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

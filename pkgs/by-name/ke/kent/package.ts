@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kent",
       version: "498",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ucscGenomeBrowser",
           repo: "kent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}_base`),
@@ -84,13 +84,13 @@ cp -r $HOME/inc/* $out/inc/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-kent", nix.thunk(() => nix.str`latestVersion=$(curl \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --fail --silent https://api.github.com/repos/ucscGenomeBrowser/kent/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output .tag_name | grep -oP '(?<=v)\\d+')
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} kent --version $latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "UCSC Genome Bioinformatics Group's suite of biological analysis tools, i.e. the kent utilities",
         homepage: "http://genome.ucsc.edu",
         changelog: nix.thunk(() => nix.str`https://github.com/ucscGenomeBrowser/kent/releases/tag/v${nix.sel(finalAttrs, "version")}_base`),

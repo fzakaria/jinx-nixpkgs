@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-CoiFVc1KpftxdgQb4VaEFU/YlhBV4WcucDq/c36HYb8=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         marshmallow: nix.thunk(() => [marshmallow]),
         yaml: nix.thunk(() => [pyyaml]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([openapi_spec_validator, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["apispec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/marshmallow-code/apispec/blob/${version}/CHANGELOG.rst`),
         description: "Pluggable API specification generator with support for the OpenAPI Specification",
         homepage: "https://github.com/marshmallow-code/apispec",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

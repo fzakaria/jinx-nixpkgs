@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "cli_helpers",
           version: version,
           hash: "sha256-eY4HMfL01CV2fLEqOtlmvyi13nelZRZiBhu0pmvujzU=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([configobj, tabulate], nix.sel(tabulate, "optional-dependencies", "widechars")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, styles: nix.thunk(() => [pygments]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, styles: nix.thunk(() => [pygments]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, mock], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python helpers for common CLI tasks",
         longDescription: "CLI Helpers is a Python package that makes it easy to perform common\ntasks when building command-line apps. It's a helper library for\ncommand-line interfaces.\n\nLibraries like Click and Python Prompt Toolkit are amazing tools that\nhelp you create quality apps. CLI Helpers complements these libraries by\nwrapping up common tasks in simple interfaces.\n\nCLI Helpers is not focused on your app's design pattern or framework --\nyou can use it on its own or in combination with other libraries. It's\nlightweight and easy to extend.\n\nWhat's included in CLI Helpers?\n\n- Prettyprinting of tabular data with custom pre-processing\n- [in progress] config file reading/writing\n\nRead the documentation at http://cli-helpers.rtfd.io\n",
         homepage: "https://cli-helpers.readthedocs.io/en/stable/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kalbasit"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

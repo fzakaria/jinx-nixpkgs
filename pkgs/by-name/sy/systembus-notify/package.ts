@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const ini = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))));
   const unit = nix.thunk(() => nix.app(nix.sel(ini, "generate"), "systembus-notify.service", nix.thunk(() => ({
-      __proto__: pos$3,
-      Unit: nix.thunk(() => ({ __proto__: pos$1, Description: "system bus notification daemon" })),
+      [nix.POS]: pos$3,
+      Unit: nix.thunk(() => ({ [nix.POS]: pos$1, Description: "system bus notification daemon" })),
       Service: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         Type: "exec",
         ExecStart: "@out@/bin/systembus-notify",
         PrivateTmp: true,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "systembus-notify",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "rfjakob",
           repo: "systembus-notify",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ runHook postInstall
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "System bus notification daemon",
         homepage: "https://github.com/rfjakob/systembus-notify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

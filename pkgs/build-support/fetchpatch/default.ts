@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
     const postFetch = nix.argOr($_1, "postFetch", () => "");
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const args$ = nix.thunk(() => (nix.asBool(!nix.eq(relative, null)) ? {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stripLen: nix.thunk(() => nix.add(nix.add(1n, nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", relative)))), stripLen)),
       extraPrefix: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(extraPrefix, null)), extraPrefix)),
-    } : { __proto__: pos$2, stripLen: stripLen, extraPrefix: extraPrefix }));
+    } : { [nix.POS]: pos$2, stripLen: stripLen, extraPrefix: extraPrefix }));
     const stripLen_1 = nix.thunk(() => nix.attr(args$, "stripLen"));
     const extraPrefix_1 = nix.thunk(() => nix.attr(args$, "extraPrefix"));
     return (nix.asBool((nix.asBool(!nix.eq(excludes, [])) && nix.asBool(!nix.eq(includes, [])))) ? nix.builtins.throw("fetchpatch: cannot use excludes and includes simultaneously") : nix.app(fetchurl, nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.concat([patchutils], nativeBuildInputs)),
         postFetch: nix.thunk(() => nix.add(nix.add(nix.str`tmpfile="$TMPDIR/patch"
 

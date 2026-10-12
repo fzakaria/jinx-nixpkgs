@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "boolector",
       version: "3.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boolector",
           repo: "boolector",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ patchShebangs ..
       postCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rm -rf bin\nmv bin.back bin\n")),
       postInstall: "cp $out/include/boolector/boolector.h $out/include/boolector.h\ncp $out/include/boolector/btortypes.h $out/include/btortypes.h\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extremely fast SMT solver for bit-vectors and arrays",
         homepage: "https://boolector.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         const pname = "nss";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "mozilla",
             repo: "nss",
             rev: nix.thunk(() => nix.str`NSS_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version_1)}_RTM`),
@@ -107,7 +107,7 @@ runHook postBuild
 `;
         })());
         const env = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
               "-Wno-error",
               nix.thunk(() => nix.str`-DNIX_NSS_LIBDIR="${nix.builtins.placeholder("out")}/lib/"`),
@@ -128,9 +128,9 @@ done
 `))), "moveToOutput bin \"$tools\"\nmoveToOutput bin/nss-config \"$dev\"\nmoveToOutput lib/libcrmf.a \"$dev\" # needed by firefox, for example\nrm -f \"$out\"/lib/*.a\n\nrunHook postInstall\n");
         })());
         const passthru = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               extraArgs: nix.thunk(() => [
                 "--override-filename",
                 nix.thunk(() => nix.str`pkgs/development/libraries/nss/${filename}`),
@@ -139,12 +139,12 @@ done
               ]),
             })))),
           tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version_1, nix.thunk(() => nix.sel(nss_latest, "version")))), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "firefox-esr": nix.thunk(() => nix.attr(nixosTests, "firefox-esr")),
-            }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, nix.thunk(() => nix.sel(nss_latest, "version")))), nix.thunk(() => ({ __proto__: pos$5, firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")) }))))),
+            }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, nix.thunk(() => nix.sel(nss_latest, "version")))), nix.thunk(() => ({ [nix.POS]: pos$5, firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")) }))))),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           homepage: "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS",
           description: "Set of libraries for development of security-enabled client and server applications",
           changelog: nix.thunk(() => nix.str`https://github.com/mozilla/nss/blob/master/doc/src/releases/nss_${underscoreVersion}.md`),
@@ -159,7 +159,7 @@ done
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version: version_1,
           src,

@@ -33,42 +33,42 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "rspamd-trainer",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "onny"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const options = nix.arg($_1, "options");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pki: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "rspamd-trainer": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 HOST: domain,
                 USERNAME: nix.thunk(() => nix.str`spam@${domain}`),
                 INBOXPREFIX: "INBOX/",
@@ -78,23 +78,23 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             maddy: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               hostname: domain,
               primaryDomain: domain,
               ensureAccounts: nix.thunk(() => [nix.thunk(() => nix.str`spam@${domain}`)]),
               ensureCredentials: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`spam@${domain}`, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   passwordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "postmaster", "test123")}`),
                 }))],
               ])),
               tls: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 loader: "file",
                 certificates: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     certPath: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "cert")}`),
                     keyPath: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "key")}`),
                   })),
@@ -106,24 +106,24 @@ export default nix.lambda((args) => (() => {
                 ]), nix.thunk(() => nix.sel(options, "services", "maddy", "config", "default")))),
             })),
             rspamd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               locals: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "redis.conf": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   text: nix.thunk(() => nix.str`servers = "${nix.sel(config, "services", "redis", "servers", "rspamd", "unixSocket")}";
 `),
                 })),
-                "classifier-bayes.conf": nix.thunk(() => ({ __proto__: pos$12, text: "backend = \"redis\";\nautolearn = true;\n" })),
+                "classifier-bayes.conf": nix.thunk(() => ({ [nix.POS]: pos$12, text: "backend = \"redis\";\nautolearn = true;\n" })),
               })),
             })),
             redis: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               servers: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 rspamd: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   enable: true,
                   port: 0n,
                   unixSocket: "/run/redis-rspamd/redis.sock",
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "send-testmail", nix.thunk(() => ({})), nix.thunk(() => nix.str`import smtplib
 import ssl

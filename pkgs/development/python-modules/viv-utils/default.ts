@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const vivisect = nix.arg($, "vivisect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "viv-utils",
       version: "0.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "williballenthin",
           repo: "viv-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [funcy, intervaltree, pefile, typing_extensions, vivisect]),
       nativeCheckInputs: nix.thunk(() => [pytest_sugar, pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, flirt: nix.thunk(() => [python_flirt]) })),
+        [nix.POS]: pos$3,
+        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, flirt: nix.thunk(() => [python_flirt]) })),
       })),
       pythonImportsCheck: nix.thunk(() => ["viv_utils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utilities for working with vivisect",
         homepage: "https://github.com/williballenthin/viv-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/williballenthin/viv-utils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

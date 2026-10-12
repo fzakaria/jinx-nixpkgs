@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const oracle_instantclient = nix.arg($, "oracle-instantclient");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "1.2.0",
       pname: "pdo_oci",
       hash: "sha256-xV5ZvOtowkPntuqQ0dSyhpC5l+MDkvEKHoRi8S0/k34=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`sed -i -e 's|OCISDKMANINC=\`.*$|OCISDKMANINC="${nix.sel(oracle_instantclient, "dev")}/include"|' config.m4
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: "https://pecl.php.net/package-changelog.php?package=PDO_OCI",
         description: "PHP PDO_OCI extension lets you access Oracle Database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

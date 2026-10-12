@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const liblockfile = nix.arg($, "liblockfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lockfile-progs",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/l/lockfile-progs/lockfile-progs_${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-KYj7WotAflLiqmKCzkVJf0Zckh1ZETjBAPSJghWETJA=",
         })))),
       buildInputs: nix.thunk(() => [liblockfile]),
       preBuild: "patchShebangs .\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=format-overflow"])))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=c23-extensions"])))))),
       })),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/man/man1\ninstall bin/* $out/bin\ninstall man/*.1 $out/man/man1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programs for locking and unlocking files and mailboxes",
         homepage: "http://packages.debian.org/sid/lockfile-progs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const wavpack = nix.arg($, "wavpack");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const zlib = nix.arg($, "zlib");
-  const wxwidgets = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_2, "override"), nix.thunk(() => ({ __proto__: pos$1, withWebKit: false }))));
+  const wxwidgets = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_2, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "audacity",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/audacity/audacity/releases/download/Audacity-${nix.sel(finalAttrs, "version")}/audacity-sources-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-spB2+Z+l0vUi0AHbRyqJbbgfnv/v0VlIyUBXF1OFgFg=",
         })))),
@@ -137,7 +137,7 @@ makeWrapper "$out/Applications/audacity.app/Contents/MacOS/audacity" "$out/bin/a
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sound editor with graphical UI",
         mainProgram: "audacity",
         homepage: "https://www.audacityteam.org",

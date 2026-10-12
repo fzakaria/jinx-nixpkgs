@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
-  const faustDefaults = nix.thunk(() => nix.app(nix.sel(faust, "faust2ApplBase"), nix.thunk(() => nix.update(args_1, { __proto__: pos$1, baseName: nix.thunk(() => nix.str`${baseName}.py`) }))));
+  const faustDefaults = nix.thunk(() => nix.app(nix.sel(faust, "faust2ApplBase"), nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$1, baseName: nix.thunk(() => nix.str`${baseName}.py`) }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(faustDefaults, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       propagatedBuildInputs: nix.thunk(() => [python3, faust, supercollider]),
       postInstall: nix.thunk(() => nix.str`mv "$out/bin/${baseName}.py" "$out"/bin/${baseName}

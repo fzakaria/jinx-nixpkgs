@@ -25,30 +25,30 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "convos"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         convos: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Convos")),
           listenPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 3000n,
               example: 8080n,
               description: "Port the web interface should listen on",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "*",
               example: "127.0.0.1",
               description: "Address or host the web interface should listen on",
             })))),
           reverseProxy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enables reverse proxy support. This will allow Convos to automatically\npick up the `X-Forwarded-For` and\n`X-Request-Base` HTTP headers set in your reverse proxy\nweb server. Note that enabling this option without a reverse proxy in\nfront will be a security issue.\n",
@@ -57,24 +57,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             convos: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Convos Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 CONVOS_HOME: "%S/convos",
                 CONVOS_REVERSE_PROXY: nix.thunk(() => (nix.asBool(nix.sel(cfg, "reverseProxy")) ? "1" : "0")),
                 MOJO_LISTEN: nix.thunk(() => nix.str`http://${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "listenAddress")))}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "listenPort")))}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "convos")}/bin/convos daemon`),
                 Restart: "on-failure",
                 StateDirectory: "convos",

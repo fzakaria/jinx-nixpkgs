@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const resholve_utils = nix.arg($, "resholve-utils");
   const python27 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./python27.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(python27, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "resholve",
       version: version,
       src: rSrc,
@@ -47,16 +47,16 @@ done
       postInstall: "installManPage resholve.1\n",
       postFixup: "rm $out/nix-support/propagated-build-inputs\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mkDerivation: nix.thunk(() => nix.attr(resholve_utils, "mkDerivation")),
         phraseSolution: nix.thunk(() => nix.attr(resholve_utils, "phraseSolution")),
         writeScript: nix.thunk(() => nix.attr(resholve_utils, "writeScript")),
         writeScriptBin: nix.thunk(() => nix.attr(resholve_utils, "writeScriptBin")),
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({ __proto__: pos$1, rSrc: rSrc, binlore: binlore, resholve: resholve })))),
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, rSrc: rSrc, binlore: binlore, resholve: resholve })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Resolve external shell-script dependencies",
         homepage: "https://github.com/abathur/resholve",
         changelog: nix.thunk(() => nix.str`https://github.com/abathur/resholve/blob/v${version}/CHANGELOG.md`),

@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.jetbrains.com/datagrip/datagrip-2026.2.2.tar.gz",
       hash: "sha256-RyzXihbj7vmROdfByTmwkljqSHxdFcd+aa2GAA+Rrjs=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.jetbrains.com/datagrip/datagrip-2026.2.2-aarch64.tar.gz",
       hash: "sha256-wVkVg0SeB0cf5ad2mt5nsPPg98tbMbCXQPEoFWQdK6U=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.jetbrains.com/datagrip/datagrip-2026.2.2-aarch64.dmg",
       hash: "sha256-EdZcvRD7rU7hfR4tYZrmUCC/tLfdC1eX+UZ/5wFwqqE=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "datagrip",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(urls, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)))))),
       jdk: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(jetbrains, "jdk-no-jcef")))) ? nix.sel(jetbrains, "jdk-no-jcef") : null)),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jetbrains.com/datagrip/",
         description: "Database IDE from JetBrains",
         longDescription: "DataGrip is an IDE from JetBrains built for database admins.\nIt allows you to quickly migrate and refactor relational databases, construct efficient, statically checked SQL queries and much more.\n",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hashpump",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20201018005212/https://github.com/bwall/HashPump/archive/v1.20.tar.gz",
           hash: "sha256-xL/1os17agwFtdq0snS3ZJzwJhk22ujxfWLH65IMMEM=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n./hashpump --test\nrunHook postCheck\n",
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to exploit the hash length extension attack in various hashing algorithms",
         homepage: "https://github.com/bwall/HashPump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

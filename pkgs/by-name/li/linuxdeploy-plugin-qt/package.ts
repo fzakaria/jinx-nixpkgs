@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const excludelist = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/probonopd/AppImages/15a64c20dc23a0154622ba25829364323903b6b5/excludelist",
       sha256: "sha256-UNsPiU80sWnEely8DBfbq2Hp7evKW8gmmh5qwb9L2tk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linuxdeploy-plugin-qt",
       version: "0-unstable-2026-03-07",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "linuxdeploy",
           repo: "linuxdeploy-plugin-qt",
           rev: "511d51d066f632dfdfbcf0bf7284ec38090812d2",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cimg, libjpeg, libpng, nlohmann_json]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt plugin for linuxdeploy to bundle Qt applications into AppImage format",
         homepage: "https://github.com/linuxdeploy/linuxdeploy-plugin-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

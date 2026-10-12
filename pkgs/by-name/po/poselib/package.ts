@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "poselib",
       version: "2.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PoseLib",
           repo: "PoseLib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [eigen]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A collection of minimal solvers for camera pose estimation",
         homepage: "https://github.com/PoseLib/PoseLib",
         changelog: nix.thunk(() => nix.str`https://github.com/PoseLib/PoseLib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

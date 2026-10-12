@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/28.nix", [["version", 4, 3], ["hash", 5, 3]]);
 
 export default (genericBuilder) => nix.app(genericBuilder, nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "28.5.0.7",
     hash: "sha256-1XnZspWzU8gCaeJz6kFMonrY51EKL4r/6jBI6UdNu0g=",
   })));

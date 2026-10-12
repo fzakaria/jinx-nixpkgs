@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "resilio"));
   const sharedFoldersRecord = nix.thunk(() => nix.app(nix.builtins.map, (entry) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dir: nix.thunk(() => nix.sel(entry, "directory")),
       use_relay_server: nix.thunk(() => nix.sel(entry, "useRelayServer")),
       use_tracker: nix.thunk(() => nix.sel(entry, "useTracker")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       known_hosts: nix.thunk(() => nix.sel(entry, "knownHosts")),
     }), nix.thunk(() => nix.sel(cfg, "sharedFolders"))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         device_name: nix.thunk(() => nix.sel(cfg, "deviceName")),
         storage_path: nix.thunk(() => nix.sel(cfg, "storagePath")),
         listening_port: nix.thunk(() => nix.sel(cfg, "listeningPort")),
@@ -80,20 +80,20 @@ export default nix.lambda((args) => (() => {
         upload_limit: nix.thunk(() => nix.sel(cfg, "uploadLimit")),
         lan_encrypt_data: nix.thunk(() => nix.sel(cfg, "encryptLAN")),
       }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "directoryRoot"), "")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           directory_root: nix.thunk(() => nix.sel(cfg, "directoryRoot")),
         }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableWebUI")), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           webui: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             listen: nix.thunk(() => nix.str`${nix.sel(cfg, "httpListenAddr")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "httpListenPort")))}`),
-          }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpLogin"), "")), nix.thunk(() => ({ __proto__: pos$5, login: nix.thunk(() => nix.sel(cfg, "httpLogin")) }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpPass"), "")), nix.thunk(() => ({ __proto__: pos$6, password: nix.thunk(() => nix.sel(cfg, "httpPass")) }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKey"), "")), nix.thunk(() => ({ __proto__: pos$7, api_key: nix.thunk(() => nix.sel(cfg, "apiKey")) }))))))),
-        }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(sharedFoldersRecord, [])), nix.thunk(() => ({ __proto__: pos$9, shared_folders: sharedFoldersRecord })))))))))));
+          }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpLogin"), "")), nix.thunk(() => ({ [nix.POS]: pos$5, login: nix.thunk(() => nix.sel(cfg, "httpLogin")) }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpPass"), "")), nix.thunk(() => ({ [nix.POS]: pos$6, password: nix.thunk(() => nix.sel(cfg, "httpPass")) }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKey"), "")), nix.thunk(() => ({ [nix.POS]: pos$7, api_key: nix.thunk(() => nix.sel(cfg, "apiKey")) }))))))),
+        }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(sharedFoldersRecord, [])), nix.thunk(() => ({ [nix.POS]: pos$9, shared_folders: sharedFoldersRecord })))))))))));
   const sharedFoldersSecretFiles = nix.thunk(() => nix.app(nix.builtins.map, (entry) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       dir: nix.thunk(() => nix.sel(entry, "directory")),
       secretFile: nix.thunk(() => (nix.asBool(nix.app(nix.sel(nix.builtins, "hasAttr"), "secret", entry)) ? nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "secret-file",
             text: nix.thunk(() => nix.sel(entry, "secret")),
           }))))) : nix.sel(entry, "secretFile"))),
@@ -108,22 +108,22 @@ export default nix.lambda((args) => (() => {
 cp ${configFile} ${runConfigPath};
 `))));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         resilio: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If enabled, start the Resilio Sync daemon. Once enabled, you can\ninteract with the service through the Web UI, or configure it in your\nNixOS configuration.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "resilio-sync", nix.thunk(() => ({})))),
           deviceName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "Voltron",
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
@@ -131,103 +131,103 @@ cp ${configFile} ${runConfigPath};
               description: "Name of the Resilio Sync device.\n",
             })))),
           listeningPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 0n,
               example: 44444n,
               description: "Listening port. Defaults to 0 which randomizes the port.\n",
             })))),
           checkForUpdates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Determines whether to check for updates and alert the user\nabout them in the UI.\n",
             })))),
           useUpnp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Use Universal Plug-n-Play (UPnP)\n",
             })))),
           downloadLimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               default: 0n,
               example: 1024n,
               description: "Download speed limit. 0 is unlimited (default).\n",
             })))),
           uploadLimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               default: 0n,
               example: 1024n,
               description: "Upload speed limit. 0 is unlimited (default).\n",
             })))),
           httpListenAddr: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "[::1]",
               example: "0.0.0.0",
               description: "HTTP address to bind to.\n",
             })))),
           httpListenPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 9000n,
               description: "HTTP port to bind on.\n",
             })))),
           httpLogin: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "allyourbase",
               default: "",
               description: "HTTP web login username.\n",
             })))),
           httpPass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "arebelongtous",
               default: "",
               description: "HTTP web login password.\n",
             })))),
           encryptLAN: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Encrypt LAN data.",
             })))),
           enableWebUI: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable Web UI for administration. Bound to the specified\n`httpListenAddress` and\n`httpListenPort`.\n",
             })))),
           storagePath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/resilio-sync/",
               description: "Where BitTorrent Sync will store it's database files (containing\nthings like username info and licenses). Generally, you should not\nneed to ever change this.\n",
             })))),
           apiKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "API key, which enables the developer API.",
             })))),
           directoryRoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "/media",
               description: "Default directory to add folders in the web UI.",
             })))),
           sharedFolders: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))))),
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   secretFile: "/run/resilio-secret",
                   directory: "/home/user/sync_test",
                   useRelayServer: true,
@@ -244,30 +244,30 @@ cp ${configFile} ${runConfigPath};
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "deviceName"), "")),
             message: "Device name cannot be empty.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enableWebUI")) || nix.asBool(nix.eq(nix.sel(cfg, "sharedFolders"), [])))),
             message: "If using shared folders, the web UI cannot be enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "apiKey"), "")) || nix.asBool(nix.sel(cfg, "enableWebUI")))),
             message: "If you're using an API key, you must enable the web server.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           users: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             rslsync: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Resilio Sync Service user",
               home: nix.thunk(() => nix.sel(cfg, "storagePath")),
               createHome: true,
@@ -276,24 +276,24 @@ cp ${configFile} ${runConfigPath};
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             rslsync: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "rslsync")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             resilio: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "Resilio Sync Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 Restart: "on-abort",
                 UMask: "0002",
                 User: "rslsync",
@@ -306,7 +306,7 @@ cp ${configFile} ${runConfigPath};
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$46, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$46, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=resilio.ts.map

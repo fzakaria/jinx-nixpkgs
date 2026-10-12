@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-join-api",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nkgilley",
           repo: "python-join-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyjoin"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nkgilley/python-join-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python API for interacting with Join by joaoapps",
         homepage: "https://github.com/nkgilley/python-join-api",

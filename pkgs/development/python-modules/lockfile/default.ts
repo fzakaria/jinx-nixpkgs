@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-au0C3gPLok76vNYAswVAFAY0/AbPpgOCLVCNU2Hp95k=",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pbr, setuptools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/pylockfile",
         description: "Platform-independent advisory file locking capability for Python applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zim",
       version: "0.76.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://zim-wiki.org/downloads/zim-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-St8J6z8HcTj+Vb8m8T5sTZk2Fv5CSnmdG6a+CYzk6wU=",
         })))),
@@ -58,7 +58,7 @@ makeWrapperArgs+=(--argv0 $out/bin/.zim-wrapped)
 makeWrapperArgs+=("\${gappsWrapperArgs[@]}")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop wiki",
         homepage: "https://zim-wiki.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/zim-desktop-wiki/zim-desktop-wiki/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

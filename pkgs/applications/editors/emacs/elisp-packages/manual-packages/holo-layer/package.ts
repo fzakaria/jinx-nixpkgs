@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   })();
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), pythonPkgs));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "holo-layer",
       version: "0-unstable-2025-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "manateelazycat",
           repo: "holo-layer",
           rev: "6584d8057a264f199e0cf6e90095fa63d36e6049",
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
 `),
       files: "(\"*.el\"\n \"*.py\"\n \"icon_cache\"\n \"plugin\"\n \"resources\"\n \"swaymsg-treefetch\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display and animation extension for Emacs",
         homepage: "https://github.com/manateelazycat/holo-layer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

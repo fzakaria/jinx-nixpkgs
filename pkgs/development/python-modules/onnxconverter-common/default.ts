@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const version = "1.16.0";
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onnxconverter-common",
       version: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/onnxconverter-common/default.nix:23:5");
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "onnxconverter-common",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       unittestFlagsArray: nix.thunk(() => ["-s", "tests"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ONNX Converter and Optimization Tools",
         homepage: "https://github.com/microsoft/onnxconverter-common",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/onnxconverter-common/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

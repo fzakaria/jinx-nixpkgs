@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "1.21.1" : "1.20.1"));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cryptokit",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "xavierleroy",
           repo: "cryptokit",
           tag: nix.thunk(() => nix.str`release${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.21.1": "sha256-9JU9grZpTTrYYO9gai2UPq119HfenI1JAY+EyoR6x7Q=",
             "1.20.1": "sha256-VFY10jGctQfIUVv7dK06KP8zLZHLXTxvLyTCObS+W+E=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zarith, zlib]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://pauillac.inria.fr/~xleroy/software.html",
         description: "Library of cryptographic primitives for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

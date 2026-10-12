@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const withMetis = nix.argOr($, "withMetis", () => true);
   const mpiSupport = nix.argOr($, "mpiSupport", () => true);
   const testers = nix.arg($, "testers");
-  const p4est_sc$ = nix.thunk(() => nix.app(nix.sel(p4est_sc, "override"), nix.thunk(() => ({ __proto__: pos$1, mpi: mpi, mpiSupport: mpiSupport, debug: debug }))));
+  const p4est_sc$ = nix.thunk(() => nix.app(nix.sel(p4est_sc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpi: mpi, mpiSupport: mpiSupport, debug: debug }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "p4est",
       version: "2.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cburstedde",
           repo: "p4est",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +56,14 @@ substituteInPlace Makefile.am \\
       __darwinAllowLocalNetworking: mpiSupport,
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), mpiSupport, nix.thunk(() => [mpiCheckPhaseHook]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Parallel AMR on Forests of Octrees",
         longDescription: "The p4est software library provides algorithms for parallel AMR.\nAMR refers to Adaptive Mesh Refinement, a technique in scientific\ncomputing to cover the domain of a simulation with an adaptive mesh.\n",
         homepage: "https://www.p4est.org/",

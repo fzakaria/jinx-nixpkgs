@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blugon",
       version: "1.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jumper149",
           repo: "blugon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i 's,CC = gcc,CC ?= gcc,g' backends/scg/Makefile\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and configurable Blue Light Filter for X",
         longDescription: "blugon is a simple and fast Blue Light Filter, that is highly configurable and provides a command line interface.\nThe program can be run just once or as a daemon (manually or via systemd).\nThere are several different backends available.\nblugon calculates the screen color from your local time and configuration.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

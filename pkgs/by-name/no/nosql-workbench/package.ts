@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const pname = "nosql-workbench";
   const version = "3.20.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "aarch64-darwin": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://s3.amazonaws.com/nosql-workbench/NoSQL%20Workbench-mac-arm64-${version}.dmg`),
         hash: "sha256-U6Gea89/cXY9Fd6JAWrUtf7Q4VfEXDPzbjCQcHMRjiE=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://s3.amazonaws.com/nosql-workbench/NoSQL%20Workbench-linux-${version}.AppImage`),
         hash: "sha256-O62JsVHJ5OE6HLt3Pg9XVrd3j1eoY3O+bjqroowGEOE=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Visual tool that provides data modeling, data visualization, and query development features to help you design, create, query, and manage DynamoDB tables",
     homepage: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html",
     changelog: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkbenchDocumentHistory.html",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jdk21]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\nmv NoSQL\\ Workbench.app $out/Applications/\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "jdk21"))],
       extraInstallCommands: nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$6, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, src: src }))));
         const internal_filename = "@amznnosql-workbench";
         return nix.str`# Install XDG Desktop file and its icon
 install -Dm444 ${appimageContents}/${internal_filename}.desktop -t $out/share/applications

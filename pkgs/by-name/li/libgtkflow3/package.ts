@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libgflow = nix.arg($, "libgflow");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgtkflow3",
       version: "1.0.6",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "notabug.org",
           owner: "grindhold",
           repo: "libgtkflow",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Denable_valadoc=true", "-Denable_gtk4=false", "-Denable_gflow=false"]),
       postPatch: "rm -r libgflow\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flow graph widget for GTK 3",
         homepage: "https://notabug.org/grindhold/libgtkflow",
         maintainers: nix.thunk(() => (() => {

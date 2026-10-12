@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "systemd-lock-handler",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~whynothugo",
           repo: "systemd-lock-handler",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-dWzojV3tDA5lLdpAQNC9NaADGyvV7dNOS3x8mfgNNtA=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.sel(nixosTests, "systemd-lock-handler")),
       })),
       postBuild: "cp -a $GOPATH/bin/* .\n",
       installPhase: "runHook preInstall\n\nsubstituteInPlace systemd-lock-handler.service \\\n  --replace /usr/lib/ $out/lib/\n\nmake install DESTDIR= PREFIX=$out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://git.sr.ht/~whynothugo/systemd-lock-handler",
         description: "Translates systemd-system lock/sleep signals into systemd-user target activations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

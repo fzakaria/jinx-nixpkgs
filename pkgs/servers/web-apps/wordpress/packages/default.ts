@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const languages = nix.arg($, "languages");
   const callPackage = nix.arg($, "callPackage");
   const packages = (self) => (() => {
-    const generatedJson = nix.thunk(() => ({ __proto__: pos$1, plugins: plugins, themes: themes, languages: languages }));
+    const generatedJson = nix.thunk(() => ({ [nix.POS]: pos$1, plugins: plugins, themes: themes, languages: languages }));
     const sourceJson = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       plugins: nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./wordpress-plugins.json"))))),
       themes: nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./wordpress-themes.json"))))),
       languages: nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./wordpress-languages.json"))))),
     }));
     return nix.update({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       mkWordpressDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const stdenvNoCC = nix.arg($_1, "stdenvNoCC");
@@ -53,19 +53,19 @@ export default nix.lambda((args) => (() => {
             const license = nix.arg($_2, "license");
             nix.assert_(nix.app(nix.sel(lib_1, "elem"), type, nix.thunk(() => ["plugin", "theme", "language"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/servers/web-apps/wordpress/packages/default.nix:46:9");
             return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 pname: nix.thunk(() => nix.str`wordpress-${type}-${pname}`),
                 version: nix.thunk(() => nix.app(filterWPString, version)),
                 dontConfigure: true,
                 dontBuild: true,
                 installPhase: "runHook preInstall\ncp -R ./. $out\nrunHook postInstall\n",
-                passthru: nix.thunk(() => ({ __proto__: pos$3, wpName: pname })),
+                passthru: nix.thunk(() => ({ [nix.POS]: pos$3, wpName: pname })),
                 meta: nix.thunk(() => nix.update({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   license: nix.thunk(() => nix.sel(lib_1, "licenses", nix.key(nix.force(license)))),
                 }, nix.selOr(args_3, () => ({}), "passthru"))),
               }, nix.update(nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.eq(type, "language")), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   nativeBuildInputs: nix.thunk(() => [gettext, wp_cli]),
                   dontBuild: false,
                   buildPhase: "runHook preBuild\n\nfind -name '*.po' -print0 | while IFS= read -d \"\" -r po; do\n  msgfmt -o $(basename \"$po\" .po).mo \"$po\"\ndone\nwp i18n make-json .\nrm *.po\n\nrunHook postBuild\n",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
             const data = nix.arg($_2, "data");
             const license = nix.arg($_2, "license");
             return nix.app(mkWordpressDerivation, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: type,
                 pname: pname,
                 license: license,
@@ -116,14 +116,14 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           const fetchsvn = nix.arg($_1, "fetchsvn");
           return (type) => (data) => nix.app(fetchsvn, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               rev: nix.thunk(() => nix.attr(data, "rev")),
               sha256: nix.thunk(() => nix.attr(data, "sha256")),
               url: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(type, "plugin")) || nix.asBool(nix.eq(type, "theme")))) ? nix.add(nix.add(nix.add("https://", type), "s.svn.wordpress.org/"), nix.sel(data, "path")) : (nix.asBool(nix.eq(type, "language")) ? nix.add(nix.add(nix.add("https://i18n.svn.wordpress.org/core/", nix.sel(data, "version")), "/"), nix.sel(data, "path")) : (nix.asBool(nix.eq(type, "pluginLanguage")) ? nix.add("https://i18n.svn.wordpress.org/plugins/", nix.sel(data, "path")) : (nix.asBool(nix.eq(type, "themeLanguage")) ? nix.add("https://i18n.svn.wordpress.org/themes/", nix.sel(data, "path")) : nix.builtins.throw(nix.thunk(() => nix.str`fetchWordpress: invalid package type ${type}`))))))),
             })));
         })(), formals$6), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "mapAttrs"), (type) => (pkgs) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "mapAttrs"), (pname) => (data) => nix.app(nix.sel(self, "mkOfficialWordpressDerivation"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "s", type)),
                 pname: pname,
                 data: data,

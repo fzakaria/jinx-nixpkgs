@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
   const pygobject3 = nix.thunk(() => nix.attr(python3Packages, "pygobject3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnumeric",
       version: "1.12.62",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gnumeric",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-97222.patch",
             url: "https://gitlab.gnome.org/GNOME/gnumeric/-/commit/bc1dee29525933994181fb2307d6ad584de6040d.diff",
             hash: "sha256-8A56BLNgekDOYZnA6WqQiyoC0iJTPJQ8jEPnoKv0OPM=",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       })())),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gnumeric", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnumeric", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnumeric/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "GNOME Office Spreadsheet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

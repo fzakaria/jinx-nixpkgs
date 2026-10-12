@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const unprefixed = nix.argOr($, "unprefixed", () => false);
   const unprefixed$ = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(unprefixed) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAndroid")))));
   return nix.app(nix.sel(jemalloc, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       configureFlags: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "configureFlags"), nix.concat(["--with-private-namespace=_rjem_"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(unprefixed$)), nix.thunk(() => ["--with-jemalloc-prefix=_rjem_"]))))),
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook.sh", nix.thunk(() => nix.str`export JEMALLOC_OVERRIDE="@out@/lib/libjemalloc${nix.sel(stdenv, "hostPlatform", "extensions", "library")}"
 `))),

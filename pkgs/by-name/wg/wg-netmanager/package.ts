@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wg-netmanager",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gin66",
           repo: "wg_netmanager",
           rev: nix.thunk(() => nix.str`wg_netmanager-v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkFlags: nix.thunk(() => ["--skip", "device"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wireguard network manager",
         longDescription: "Wireguard network manager, written in rust, simplifies the setup of wireguard nodes,\nidentifies short connections between nodes residing in the same subnet,\nidentifies unreachable aka dead nodes and maintains the routes between all nodes automatically.\nTo achieve this, wireguard network manager needs to be running on each node.\n",
         homepage: "https://github.com/gin66/wg_netmanager",

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const curlMinimal = nix.arg($, "curlMinimal");
   return nix.app(nix.sel(curlMinimal, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       brotliSupport: true,
       http3Support: true,
       idnSupport: true,

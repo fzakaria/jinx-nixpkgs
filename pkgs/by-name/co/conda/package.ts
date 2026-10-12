@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
   const version = "26.7.1-1";
   const src = nix.thunk(() => (() => {
     const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`conda: ${nix.sel(stdenv, "hostPlatform", "system")} is not supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-    const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }))));
+    const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }))));
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://repo.anaconda.com/miniconda/Miniconda3-py314_${version}-Linux-${arch}.sh`),
         hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-6LJbkrJiSZFBxb1XqY08AIAkGF+pUUlLnNm22U5yM4s=",
             "aarch64-linux": "sha256-4xVFr9dGLTycM7FUx6EBxay14BtpOAtplGUa6taUKJM=",
           })))),
       })));
   })());
-  const conda = nix.thunk(() => nix.app(runCommand, "install-conda", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir --parents $out/bin
+  const conda = nix.thunk(() => nix.app(runCommand, "install-conda", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir --parents $out/bin
 
 sed 's/unset LD_LIBRARY_PATH/#nset LD_LIBRARY_PATH/' ${src} > $out/bin/miniconda-installer.sh
 chmod +x $out/bin/miniconda-installer.sh
@@ -69,7 +69,7 @@ makeWrapper $out/bin/miniconda-installer.sh $out/bin/install-conda \\
   --prefix "LD_LIBRARY_PATH" : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [zlib]))}"
 `)));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "conda-shell",
       version: version,
       runScript: runScript,
@@ -92,9 +92,9 @@ fi
 source ${condaSh}
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, src: src })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, src: src })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Package manager for Python",
         mainProgram: "conda-shell",
         homepage: "https://conda.io",

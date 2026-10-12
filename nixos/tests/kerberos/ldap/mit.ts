@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const DITRoot = "dc=example,dc=com";
   const realm = "EXAMPLE.COM";
-  const krb5Package = nix.thunk(() => nix.app(nix.sel(pkgs, "krb5", "override"), nix.thunk(() => ({ __proto__: pos$1, withLdap: true }))));
+  const krb5Package = nix.thunk(() => nix.app(nix.sel(pkgs, "krb5", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withLdap: true }))));
   const krbSrvPwd = "kerberos_service_password";
   const krbPwdStash = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "krb-pwd-stash", nix.thunk(() => ({})), nix.thunk(() => nix.str`for srv in cn=kadmin,${DITRoot} cn=kdc,${DITRoot}
 do
@@ -69,28 +69,28 @@ userPassword: ${krbSrvPwd}
 `);
   const rootDnPwd = "ldap_root_password";
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "kerberos_server-mit-ldap",
     nodes: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             openldap: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               urlList: nix.thunk(() => ["ldapi:///", "ldap://"]),
               declarativeContents: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${DITRoot}`, ldapDIT]])),
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 children: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "cn=schema": nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     includes: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(pkgs_1, "openldap")}/etc/schema/core.ldif`),
                       nix.thunk(() => nix.str`${nix.sel(pkgs_1, "openldap")}/etc/schema/cosine.ldif`),
@@ -100,17 +100,17 @@ userPassword: ${krbSrvPwd}
                     ]),
                   })),
                   "olcDatabase={0}config": nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     attrs: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       objectClass: nix.thunk(() => ["olcDatabaseConfig"]),
                       olcDatabase: "{0}config",
                     })),
                   })),
                   "olcDatabase={1}mdb": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     attrs: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       objectClass: nix.thunk(() => ["olcDatabaseConfig", "olcMdbConfig"]),
                       olcDatabase: "{1}mdb",
                       olcDbDirectory: "/var/lib/openldap/db",
@@ -131,20 +131,20 @@ userPassword: ${krbSrvPwd}
               })),
             })),
             kerberos_server: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$14,
-                libdefaults: nix.thunk(() => ({ __proto__: pos$10, default_realm: realm })),
+                [nix.POS]: pos$14,
+                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$10, default_realm: realm })),
                 realms: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${realm}`, nix.thunk(() => ({
-                    __proto__: pos$12,
-                    acl: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$11, principal: "admin", access: "all" }))]),
+                    [nix.POS]: pos$12,
+                    acl: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$11, principal: "admin", access: "all" }))]),
                   }))],
                 ])),
                 dbmodules: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${realm}`, nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     db_library: "kldap",
                     ldap_kerberos_container_dn: nix.thunk(() => nix.str`cn=realms,${DITRoot}`),
                     ldap_kdc_dn: nix.thunk(() => nix.str`cn=kdc,${DITRoot}`),
@@ -157,25 +157,25 @@ userPassword: ${krbSrvPwd}
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             krb5: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               package: krb5Package,
               settings: nix.thunk(() => ({
-                __proto__: pos$19,
-                libdefaults: nix.thunk(() => ({ __proto__: pos$17, default_realm: realm })),
+                [nix.POS]: pos$19,
+                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$17, default_realm: realm })),
                 realms: nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.str`${realm}`, nix.thunk(() => ({ __proto__: pos$18, admin_server: "machine", kdc: "machine" }))],
+                  [nix.str`${realm}`, nix.thunk(() => ({ [nix.POS]: pos$18, admin_server: "machine", kdc: "machine" }))],
                 ])),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             extraUsers: nix.thunk(() => ({
-              __proto__: pos$23,
-              alice: nix.thunk(() => ({ __proto__: pos$22, isNormalUser: true })),
+              [nix.POS]: pos$23,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$22, isNormalUser: true })),
             })),
           })),
         };
@@ -211,7 +211,7 @@ with subtest("user principal creation and kinit"):
      )
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "nessdoor"))]),
     })),
   };

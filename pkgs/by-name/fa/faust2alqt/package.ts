@@ -24,7 +24,7 @@ for p in $FILES; do
 done
 `)));
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2alqt",
       propagatedBuildInputs: nix.thunk(() => [alsa_lib, nix.thunk(() => nix.sel(qt5, "qtbase"))]),
       dontWrapQtApps: true,

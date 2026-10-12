@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tammoippen",
           repo: "plotille",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-build-information",
             url: "https://github.com/tammoippen/plotille/commit/db744e1fa9c141290966476ddf22a5e7d9a00c0a.patch",
             hash: "sha256-8vBVKrcH7R1d9ol3D7RLVtAzZbpMsB9rA1KHD7t3Ydc=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["plotille"]);
       const nativeCheckInputs = nix.thunk(() => [mock, pendulum, pytestCheckHook, pytest_cov_stub, pytest_mock]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/tammoippen/plotille/releases/tag/v${version}`),
         description: "Plot in the terminal using braille dots",
         homepage: "https://github.com/tammoippen/plotille",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

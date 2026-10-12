@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       fontconfig,
     ])), extraLibraries$)))))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swi-prolog",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SWI-Prolog",
           repo: "swipl",
           tag: nix.thunk(() => nix.str`V${version}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/lib/swipl/extra-pack\n",
       postInstall: nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(packInstall, "$out")), extraPacks)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.swi-prolog.org",
         description: "Prolog compiler and interpreter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

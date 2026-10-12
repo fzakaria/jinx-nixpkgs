@@ -23,37 +23,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const siteName = "NixOS Snipe-IT Test Instance";
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "snipe-it",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yayayayaka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       snipeit: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "snipe-it": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               appKeyFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snipe-it-app-key", "uTqGUN5GUmUrh/zSAYmhyzRk62pnpXICyXv9eeITI8k=")))),
               hostName: "localhost",
-              database: nix.thunk(() => ({ __proto__: pos$2, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true })),
               mail: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 driver: "smtp",
                 encryption: "tls",
                 host: "localhost",
                 port: 1025n,
-                from: nix.thunk(() => ({ __proto__: pos$3, name: "Snipe-IT NixOS test", address: "snipe-it@localhost" })),
-                replyTo: nix.thunk(() => ({ __proto__: pos$4, address: "snipe-it@localhost" })),
+                from: nix.thunk(() => ({ [nix.POS]: pos$3, name: "Snipe-IT NixOS test", address: "snipe-it@localhost" })),
+                replyTo: nix.thunk(() => ({ [nix.POS]: pos$4, address: "snipe-it@localhost" })),
                 user: "snipe-it@localhost",
                 passwordFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snipe-it-mail-pass", "a-secure-mail-password")))),
               })),
@@ -115,7 +115,7 @@ with subtest("Test Backup and restore"):
     snipeit.succeed("snipe-it migrate:fresh --force")
 
     # Login page should disappear
-    ${nix.app(checkLoginPage, nix.thunk(() => ({ __proto__: pos$10, shouldSucceed: false })))}
+    ${nix.app(checkLoginPage, nix.thunk(() => ({ [nix.POS]: pos$10, shouldSucceed: false })))}
 
     # Restore the state
     snipeit.succeed(

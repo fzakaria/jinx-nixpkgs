@@ -58,21 +58,21 @@ export default nix.lambda((args) => (() => {
   const vmalertName = (name) => nix.add("vmalert", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, "")), nix.thunk(() => nix.add("-", name))));
   const enabledInstances = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (conf) => nix.sel(conf, "enable"), nix.thunk(() => nix.sel(config, "services", "vmalert", "instances"))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "vmalert", "enable"]), nix.thunk(() => ["services", "vmalert", "instances", "", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "vmalert", "rules"]), nix.thunk(() => ["services", "vmalert", "instances", "", "rules"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "vmalert", "settings"]), nix.thunk(() => ["services", "vmalert", "instances", "", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         vmalert: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "victoriametrics", nix.thunk(() => ({})))),
           instances: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: nix.thunk(() => ({})),
               description: "Define multiple instances of vmalert.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
@@ -80,30 +80,30 @@ export default nix.lambda((args) => (() => {
                     const name = nix.arg($_1, "name");
                     const config_1 = nix.arg($_1, "config");
                     return {
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       options: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Wether to enable VictoriaMetrics's `vmalert`.\n\n`vmalert` evaluates alerting and recording rules against a data source, sends notifications via Alertmanager.\n",
                           })))),
                         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$6,
+                                [nix.POS]: pos$6,
                                 freeformType: confType,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$5,
+                                  [nix.POS]: pos$5,
                                   "datasource.url": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$2,
+                                      [nix.POS]: pos$2,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "nonEmptyStr")),
                                       example: "http://localhost:8428",
                                       description: "Datasource compatible with Prometheus HTTP API.\n",
                                     })))),
                                   "notifier.url": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$3,
+                                      [nix.POS]: pos$3,
                                       type: nix.thunk(() => (() => {
                                         const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                         return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "nonEmptyStr")));
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
                                       description: "Prometheus Alertmanager URL. List all Alertmanager URLs if it runs in the cluster mode to ensure high availability.\n",
                                     })))),
                                   rule: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$4,
+                                      [nix.POS]: pos$4,
                                       type: nix.thunk(() => (() => {
                                         const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                         return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "path")));
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
                               })))),
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               "datasource.url": "http://localhost:8428",
                               "datasource.disableKeepAlive": true,
                               "datasource.showURL": false,
@@ -133,18 +133,18 @@ export default nix.lambda((args) => (() => {
                             description: "`vmalert` configuration, passed via command line flags. Refer to\n<https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/app/vmalert/README.md#configuration>\nfor details on supported values.\n",
                           })))),
                         rules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(format, "type")),
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               group: nix.thunk(() => [
                                 nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   name: "TestGroup",
                                   rules: nix.thunk(() => [
                                     nix.thunk(() => ({
-                                      __proto__: pos$9,
+                                      [nix.POS]: pos$9,
                                       alert: "ExampleAlertAlwaysFiring",
                                       expr: "sum by(job)\n(up == 1)\n",
                                     })),
@@ -156,9 +156,9 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         settings: nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           rule: nix.thunk(() => [nix.thunk(() => nix.str`/etc/${nix.app(vmalertName, name)}/rules.yml`)]),
                         })),
                       })),
@@ -169,26 +169,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(enabledInstances, {})), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$3);
               const rules = nix.arg($_1, "rules");
               return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${nix.app(vmalertName, name)}/rules.yml`), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "rules.yml", rules)),
                 })));
             })(), formals$3), enabledInstances)),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$4);
               const settings = nix.arg($_1, "settings");
               const name$ = nix.thunk(() => nix.app(vmalertName, name));
               return nix.app(nix.sel(lib, "nameValuePair"), name$, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   description: "vmalert service",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
@@ -196,7 +196,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(config, "environment", "etc", nix.key(nix.str`${name$}/rules.yml`), "source")),
                   ]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     DynamicUser: true,
                     Restart: "on-failure",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vmalert ${nix.app(mkConfOpts, settings)}`),

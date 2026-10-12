@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "0.317.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "evcc-io",
       repo: "evcc",
       tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-0u3qIry84kZoj/pqL20uaVn2p+vRfmT5lYY43G0q9RI=";
   const commonMeta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
     maintainers: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       const src_1 = src;
       const vendorHash_1 = vendorHash;
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: src_1,
           hash: "sha256-WmUMaLPjEmP3bMLjohsMSRk7SLBVRBGX0M1l7ALgdKY=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]);
       const overrideModAttrs = (_) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nativeBuildInputs: nix.thunk(() => [enumer, go_1_27, gokrazy, git, cacert, mockgen]),
         preBuild: "GOFLAGS=\"-mod=mod\" make assets\n",
       });
@@ -88,19 +88,19 @@ make ui
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, evcc: nix.thunk(() => nix.attr(nixosTests, "evcc")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, evcc: nix.thunk(() => nix.attr(nixosTests, "evcc")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => nix.update(commonMeta, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "EV Charge Controller",
         homepage: "https://evcc.io",
         changelog: nix.thunk(() => nix.str`https://github.com/evcc-io/evcc/releases/tag/${version_1}`),
         mainProgram: "evcc",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version: version_1,
         src: src_1,

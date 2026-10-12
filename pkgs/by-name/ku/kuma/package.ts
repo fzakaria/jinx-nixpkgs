@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.5";
       const tags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableGateway, nix.thunk(() => ["gateway"])));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kumahq",
           repo: "kuma",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Service mesh controller",
         homepage: "https://kuma.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/kumahq/kuma/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version,
         tags,

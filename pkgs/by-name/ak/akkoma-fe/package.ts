@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const svgo = nix.arg($, "svgo");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "akkoma-fe",
       version: "3.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "akkoma.dev",
           owner: "AkkomaGang",
           repo: "akkoma-fe",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           forceFetchGit: true,
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-oGmO2AVa6tGYIvs3K7bJ+5db6NxTjO1ZR40aZ/yJQ2M=",
         })))),
@@ -67,11 +67,11 @@ cp -R -v dist $out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch=stable"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch=stable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Frontend for Akkoma",
         homepage: "https://akkoma.dev/AkkomaGang/akkoma-fe/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

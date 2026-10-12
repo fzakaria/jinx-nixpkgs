@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const replaceVars = nix.arg($, "replaceVars");
   return (sitePackages) => (() => {
-    const hook = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({ __proto__: pos$1, sitePackages: sitePackages }))));
-    return nix.app(runCommand, "python-setup-hook.sh", nix.thunk(() => ({ __proto__: pos$2, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.str`cp ${hook} $out
+    const hook = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({ [nix.POS]: pos$1, sitePackages: sitePackages }))));
+    return nix.app(runCommand, "python-setup-hook.sh", nix.thunk(() => ({ [nix.POS]: pos$2, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.str`cp ${hook} $out
 `));
   })();
 })(), formals$1);

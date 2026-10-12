@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const gcc_unwrapped = nix.arg($, "gcc-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.2",
       pname: "messer-slim",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MesserLab",
           repo: "SLiM",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCMAKE_RANLIB=${gcc_unwrapped}/bin/gcc-ranlib`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Evolutionary simulation framework",
         homepage: "https://messerlab.org/slim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

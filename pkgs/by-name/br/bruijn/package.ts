@@ -16,8 +16,8 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const generated = nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated.nix"), nix.thunk(() => ({}))));
   const overrides = nix.thunk(() => ({
-    __proto__: pos$2,
-    passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    [nix.POS]: pos$2,
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
     description: "Purely functional programming language based on lambda calculus and de Bruijn indices",
     homepage: "https://bruijn.marvinborner.de/",
   }));

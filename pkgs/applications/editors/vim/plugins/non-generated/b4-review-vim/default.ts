@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const b4 = nix.arg($, "b4");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "b4-review-vim",
       version: nix.thunk(() => nix.attr(b4, "version")),
       src: nix.thunk(() => nix.sel(b4, "src-misc")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(b4, "src-misc", "name")}/misc/vim`),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Vim syntax highlighting for the b4 review reply editor",
         homepage: "https://git.kernel.org/pub/scm/utils/b4/b4.git/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

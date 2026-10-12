@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "sabnzbd"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     port: 9387n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "List of sabnzbd servers to connect to.",
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 options: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   baseUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       type: nix.thunk(() => nix.sel(types, "str")),
                       description: "Base URL of the sabnzbd server.",
                       example: "http://localhost:8080/sabnzbd",
                     })))),
                   apiKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.sel(types, "str")),
                       description: "The path to a file containing the API key.\nThe file is securely passed to the service by leveraging systemd credentials.\nNo special permissions need to be set on this file.\n",
                       example: "/run/secrets/sabnzbd_apikey",
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
     serviceOpts: nix.thunk(() => (() => {
       const servers = nix.thunk(() => nix.app(nix.sel(lib, "zipAttrs"), nix.thunk(() => nix.sel(cfg, "servers"))));
       const credentials = nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (v) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: nix.thunk(() => nix.str`apikey-${nix.builtins.toString(i)}`),
           path: v,
         }), nix.thunk(() => nix.sel(servers, "apiKeyFile"))));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           LoadCredential: nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const name = nix.arg($_1, "name");
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
             })(), formals$2), credentials)),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           METRICS_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
           METRICS_ADDR: nix.thunk(() => nix.sel(cfg, "listenAddress")),
           SABNZBD_BASEURLS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(servers, "baseUrl")))),

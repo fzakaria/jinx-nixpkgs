@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "irssi",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irssi",
           repo: "irssi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libgcrypt, libintl, libotr, ncurses, openssl]),
       configureFlags: nix.thunk(() => ["-Dwith-proxy=yes", "-Dwith-bot=yes", "-Dwith-perl=yes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal based IRC client",
         mainProgram: "irssi",
         homepage: "https://irssi.org",

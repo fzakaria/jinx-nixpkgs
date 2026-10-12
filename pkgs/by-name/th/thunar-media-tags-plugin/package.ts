@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "thunar-media-tags-plugin",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "thunar-plugins",
           repo: "thunar-media-tags-plugin",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xfce.org/thunar-plugins/thunar-media-tags-plugin/-/commit/4e19a56deeeefa6d913f7b15a12b30a5d99119d4.patch",
             hash: "sha256-ASVknxEiGOWbE82hVlgEAOqE+8TknAh/ULQg55mfs9o=",
           })))),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [thunar, glib, gtk3, libxfce4util, taglib]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "thunar-media-tags-plugin-" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "thunar-media-tags-plugin-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Thunar plugin providing tagging and renaming features for media files",
         homepage: "https://gitlab.xfce.org/thunar-plugins/thunar-media-tags-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

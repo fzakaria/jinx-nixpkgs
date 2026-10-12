@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "docker-compose-language-service";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "compose-language-service",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-G1X9WrnwN6wM9S76PsGrPTmmiMBUKu4T2Al3HH3Wo+w=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language service for Docker Compose documents",
         homepage: "https://github.com/microsoft/compose-language-service",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/compose-language-service/releases/tag/v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "docker-compose-langserver",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

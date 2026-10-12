@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const name = nix.argOr($_1, "name", () => nix.app(repoRevToNameMaybe, repo, rev, "repoorcz"));
     return nix.update(nix.app(fetchzip, nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         url: nix.thunk(() => nix.str`https://repo.or.cz/${repo}.git/snapshot/${rev}.tar.gz`),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: nix.thunk(() => nix.str`https://repo.or.cz/${repo}.git/`),
         })),
-      }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { __proto__: pos$3, rev: rev });
+      }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { [nix.POS]: pos$3, rev: rev });
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

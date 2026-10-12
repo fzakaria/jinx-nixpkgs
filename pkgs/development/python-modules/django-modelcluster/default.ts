@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wagtail",
           repo: "django-modelcluster",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, pytz]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, taggit: nix.thunk(() => [django_taggit]) }));
-      const env = nix.thunk(() => ({ __proto__: pos$3, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, taggit: nix.thunk(() => [django_taggit]) }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_django, pytestCheckHook], nix.sel(optional_dependencies, "taggit")));
       const pythonImportsCheck = nix.thunk(() => ["modelcluster"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Django extension to allow working with 'clusters' of models as a single unit, independently of the database",
         homepage: "https://github.com/torchbox/django-modelcluster/",
         changelog: nix.thunk(() => nix.str`https://github.com/wagtail/django-modelcluster/blob/${nix.sel(src, "tag")}/CHANGELOG.txt`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

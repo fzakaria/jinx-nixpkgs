@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libcompiler_rt = nix.arg($, "libcompiler_rt");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "libexec/rtld-elf",
       extraPaths: nix.thunk(() => nix.concat([
         "lib/csu",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["contrib/arm-optimized-routines"])), extraSrc))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "freebsd-rtld-use-nonstring-attribute.patch",
             url: "https://github.com/freebsd/freebsd-src/pull/1882/commits/650800993deb513dc31e99ef5cdecd50ee70bb04.diff",
             hash: "sha256-V9jDE/5Fu6hLIzlG1e6AqLnGwlzW2OjonyUgvSVtm58=",
@@ -63,7 +63,7 @@ make -C $BSDSRCDIR/lib/libc $makeFlags libc_nossp_pic.a
 `),
       postInstall: "ln -sf $out/bin/ld-elf.so.1 $out/libexec/ld-elf.so.1\n",
       hardeningDisable: nix.thunk(() => ["stackprotector", "fortify"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=rtld-elf.ts.map

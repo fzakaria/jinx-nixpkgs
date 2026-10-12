@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const patches_1 = patches;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/JuliaLang/julia/releases/download/v${version_1}/julia-${version_1}-full.tar.gz`),
             hash: hash,
           }))));
@@ -94,14 +94,14 @@ runHook postInstallCheck
         const dontStrip = true;
         const enableParallelBuilding = true;
         const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "1.11")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                 "-Wno-error=implicit-function-declaration",
                 "-Wno-error=incompatible-pointer-types",
               ]))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "High-level performance-oriented dynamical language for technical computing",
           mainProgram: "julia",
           homepage: "https://julialang.org/",
@@ -118,7 +118,7 @@ runHook postInstallCheck
           platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           patches: patches_1,

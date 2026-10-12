@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const esbuild = nix.arg($, "esbuild");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spicetify-cli",
       version: "2.45.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spicetify",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       postBuild: "esbuild ./src/jsHelper/spicetifyWrapper/index.js \\\n  --bundle --minify --target=chrome108 --format=iife \\\n  --outfile=spicetifyWrapper.js\n",
       postInstall: "mkdir -p $out/share/spicetify\n\ncp -r $src/jsHelper $out/share/spicetify/jsHelper\nchmod -R u+w $out/share/spicetify/jsHelper\ncp $src/css-map.json $out/share/spicetify/css-map.json\ncp spicetifyWrapper.js $out/share/spicetify/jsHelper/spicetifyWrapper.js\n\nmv $out/bin/cli $out/share/spicetify/spicetify\n\nln -s $out/share/spicetify/spicetify $out/bin/spicetify\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: spicetify_cli })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: spicetify_cli })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line tool to customize Spotify client",
         homepage: "https://github.com/spicetify/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zfs_data = nix.arg($, "zfs-data");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "cddl/sbin/zfs",
       extraPaths: nix.thunk(() => [
         "cddl/compat/opensolaris",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C $BSDSRCDIR/cddl/sbin/zpool $makeFlags\nmake -C $BSDSRCDIR/cddl/sbin/zpool $makeFlags install\n",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

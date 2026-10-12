@@ -26,43 +26,43 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "hypervGuest"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "hypervGuest", "videoMode"]), "The video mode can now be configured via standard tools, or in Hyper-V VM settings.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hypervGuest: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Hyper-V Guest Support")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           initrd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             kernelModules: nix.thunk(() => ["hv_balloon", "hv_netvsc", "hv_storvsc", "hv_utils", "hv_vmbus"]),
             availableKernelModules: nix.thunk(() => ["hyperv_keyboard"]),
           })),
           kernelParams: nix.thunk(() => ["elevator=noop"]),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "hyperv-daemons", "bin")),
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "hyperv-cpu-and-memory-hotadd-udev-rules",
                   destination: "/etc/udev/rules.d/99-hyperv-cpu-and-memory-hotadd.rules",
                   text: "# Memory hotadd\nSUBSYSTEM==\"memory\", ACTION==\"add\", DEVPATH==\"/devices/system/memory/memory[0-9]*\", TEST==\"state\", ATTR{state}=\"online\"\n\n# CPU hotadd\nSUBSYSTEM==\"cpu\", ACTION==\"add\", DEVPATH==\"/devices/system/cpu/cpu[0-9]*\", TEST==\"online\", ATTR{online}=\"1\"\n",
@@ -70,13 +70,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           packages: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "hyperv-daemons", "lib")),
           ]),
           targets: nix.thunk(() => ({
-            __proto__: pos$11,
-            "hyperv-daemons": nix.thunk(() => ({ __proto__: pos$10, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: pos$11,
+            "hyperv-daemons": nix.thunk(() => ({ [nix.POS]: pos$10, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
         })),
       })))),

@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
   })());
   const packages = nix.argOr($, "packages", () => []);
   return nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(arf, "name"), "-wrapper")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       strictDeps: true,
       __structuredAttrs: true,
       preferLocalBuild: true,
       allowSubstitutes: false,
       buildInputs: nix.thunk(() => nix.concat([arf], nix.concat(recommendedPackages, packages))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, R]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, recommendedPackages: recommendedPackages })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, recommendedPackages: recommendedPackages })),
       meta: nix.thunk(() => nix.update(nix.sel(arf, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(arf, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "elk",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elk-zone",
           repo: "elk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pnpm-workspace.yaml --replace-fail \\\n  \"verifyDepsBeforeRun: install\" \\\n  \"verifyDepsBeforeRun: false\"\n",
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmBuildHook, pnpmConfigHook, pnpm, makeWrapper]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           fetcherVersion: 4n,
           hash: "sha256-+5hbR1nBInUKTalF7ZHMqPfi/etplR5aNsEE/a/ZASs=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NUXT_TELEMETRY_DISABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NUXT_TELEMETRY_DISABLED: "1" })),
       doCheck: true,
       checkPhase: "runHook preCheck\n\n# Runs the 'test:unit:ci' script, which does not need network access.\npnpm run test:unit:ci\n\nrunHook postCheck\n",
       preBuild: "pnpm run prepare\n",
@@ -65,15 +65,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/elk \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "elk-zone": nix.thunk(() => nix.attr(nixosTests, "elk-zone")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Nimble Mastodon web client",
         homepage: "https://github.com/elk-zone/elk",
         changelog: nix.thunk(() => nix.str`https://github.com/elk-zone/elk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

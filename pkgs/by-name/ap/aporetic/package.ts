@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const pname = "aporetic";
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "protesilaos",
       repo: "aporetic",
       tag: version,
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
   const makeIosevkaFont = (set) => (() => {
     const superBuildNpmPackage = buildNpmPackage;
     return nix.app(nix.sel(iosevka, "override"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         set: set,
         privateBuildPlan: privateBuildPlan,
         buildNpmPackage: (args_1) => nix.app(superBuildNpmPackage, nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.str`aporetic-${set}`),
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "be5invis",
                 repo: "iosevka",
                 tag: "v33.2.2",
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
       })));
   })();
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       paths: nix.thunk(() => nix.builtins.map(makeIosevkaFont, sets)),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Custom build of Iosevka with different style and metrics than the default, successor to my \"Iosevka Comfy\" fonts\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

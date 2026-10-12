@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   })());
   const python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pkgs) => nix.force(pydeps)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "makehuman",
       version: "1.3.0",
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "makehumancommunity",
           repo: "makehuman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           name: "makehuman-source",
         })))),
       assets: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "makehumancommunity",
           repo: "makehuman-assets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir -p $out/opt $out/bin\ncp -r * $out/opt\npython -m compileall -o 0 -o 2 $out/opt\nln -s $out/opt/makehuman/makehuman.py $out/bin/makehuman\nchmod +x $out/bin/makehuman\nrunHook postBuild\n",
       preFixup: "wrapQtApp $out/bin/makehuman\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software to create realistic humans",
         homepage: "http://www.makehumancommunity.org/",
         license: nix.thunk(() => (() => {

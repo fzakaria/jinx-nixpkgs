@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return (unwrapped) => (pkgsSpec) => (() => {
     const mods = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), pkgsSpec)) ? nix.app(pkgsSpec, nix.thunk(() => nix.sel(unwrapped, "pkgs"))) : nix.force(pkgsSpec)));
     return (nix.asBool(nix.eq(nix.builtins.length(mods), 0n)) ? nix.force(unwrapped) : nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.add(nix.sel(unwrapped, "name"), "-with-mods")),
         paths: nix.thunk(() => nix.concat([unwrapped], mods)),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),

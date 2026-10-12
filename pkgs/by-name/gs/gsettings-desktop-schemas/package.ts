@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gsettings-desktop-schemas";
       const version = "50.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gsettings-desktop-schemas/${nix.app(nix.sel(lib, "versions", "major"), version)}/gsettings-desktop-schemas-${version}.tar.xz`),
           hash: "sha256-CiqiUIJnJYXRb82rYcew4z8DX7h0dlBceU8pVlr6SFs=",
         }))));
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
       ]);
       const preInstall = "# Meson installs the schemas to share/glib-2.0/schemas\n# We add the override file there too so it will be compiled and later moved by\n# glib's setup hook.\nmkdir -p $out/share/glib-2.0/schemas\ncat - > $out/share/glib-2.0/schemas/remove-backgrounds.gschema.override <<- EOF\n  # These paths are supposed to refer to gnome-backgrounds\n  # but since we do not use FHS, they are broken.\n  # And we do not want to hardcode the correct paths\n  # since then every GTK app would pull in gnome-backgrounds.\n  # Let’s just override the broken paths so that people are not confused.\n  [org.gnome.desktop.background]\n  picture-uri=''\n  picture-uri-dark=''\n\n  [org.gnome.desktop.screensaver]\n  picture-uri=''\nEOF\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas",
         description: "Collection of GSettings schemas for settings shared by various components of a desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

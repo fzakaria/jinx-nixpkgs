@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cc-tool",
       version: "0.27-unstable-2025-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dashesy",
           repo: "cc-tool",
           rev: "0d84df329e343e2ea5a960c04a3d4478ee039aa0",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "install -D udev/90-cc-debugger.rules $out/lib/udev/rules.d/90-cc-debugger.rules\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line tool for the Texas Instruments CC Debugger",
         mainProgram: "cc-tool",
         longDescription: "cc-tool provides support for Texas Instruments CC Debugger\n",

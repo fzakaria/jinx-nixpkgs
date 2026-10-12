@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qpdfview";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/qpdfview/trunk/${version}/+download/qpdfview-0.5.tar.gz`),
           hash: "sha256-RO/EQKRhy911eps5bxRh7novQ2ToHfVb0CIfkQIZvpk=",
         }))));
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LAUNCHER_INSTALL_PATH=${nix.builtins.placeholder("out")}/share/applications`),
         nix.thunk(() => nix.str`APPDATA_INSTALL_PATH=${nix.builtins.placeholder("out")}/share/appdata`),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c++17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++17" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tabbed document viewer",
         mainProgram: "qpdfview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://launchpad.net/qpdfview",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

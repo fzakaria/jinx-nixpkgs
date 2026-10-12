@@ -77,21 +77,21 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/pdfding";
   const usePostgres = nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgres"));
   const envVars = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     HOST_IP: nix.thunk(() => nix.sel(cfg, "hostName")),
     HOST_NAME: nix.thunk(() => nix.app(concatStringsSep, ",", nix.thunk(() => nix.sel(cfg, "allowedHosts")))),
     HOST_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
     DATABASE_TYPE: "",
     DATA_DIR: stateDir,
   }, nix.update(nix.app(optionalAttrs, usePostgres, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       DATABASE_TYPE: "POSTGRES",
       POSTGRES_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))),
       POSTGRES_HOST: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "database", "createLocally"))), nix.thunk(() => nix.sel(cfg, "database", "host")))),
       POSTGRES_NAME: nix.thunk(() => nix.sel(cfg, "database", "name")),
       POSTGRES_USER: nix.thunk(() => nix.sel(cfg, "database", "user")),
     }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "consume", "enable")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       CONSUME_ENABLE: "TRUE",
       CONSUME_SCHEDULE: nix.thunk(() => nix.sel(cfg, "consume", "schedule")),
     }))), nix.sel(cfg, "extraEnvironment")))));
@@ -104,147 +104,147 @@ export default nix.lambda((args) => (() => {
 `));
   const secretRecommendation = "Consider using a secret managing scheme such as `agenix` or `sops-nix` to generate this file.";
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "pdfding", "backup"]), "The automated backup functionality has been removed by upstream in 1.14.0.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         pdfding: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "PdfDing service"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Whether to enable PdfDing service.\n\nTo use the pdfding-manage CLI, add your user to the pdfding group:\n  users.users.<youruser>.extraGroups = [ \"pdfding\" ];\n",
           })),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "pdfding", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "pdfding",
               description: "User account under which PdfDing runs",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "pdfding",
               description: "Group under which PdfDing runs",
             })))),
           hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "0.0.0.0",
               example: "pdfding.example.com",
               description: "Listen address for PdfDing",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8000n,
               description: "Port on which PdfDing listens",
             })))),
           allowedHosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ["127.0.0.1", "localhost"]),
               description: "Domains where PdfDing is allowed to run",
             })))),
           gunicorn: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "Command line arguments passed to Gunicorn server.",
                 default: [],
               })))),
           })),
           extraEnvironment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
               description: "Additional environment variables",
             })))),
           envFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               description: "Environment variable files",
               default: [],
             })))),
           secretKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: null,
               description: nix.thunk(() => nix.str`File containing the Django SECRET_KEY. ${secretRecommendation}`),
               example: "/run/secrets/pdfding-secret-key",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite", "postgres"]))),
                 default: "sqlite",
                 description: "Database type to use",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "",
                 description: "PostgreSQL host",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 5432n,
                 description: "PostgreSQL port",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "pdfding",
                 description: "PostgreSQL database name",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "pdfding",
                 description: "PostgreSQL user",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: nix.thunk(() => nix.str`File containing POSTGRES_PASSWORD. ${secretRecommendation}`),
                 example: "/run/secrets/pdfding-db-password",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to create a local PostgreSQL database automatically",
               })))),
           })),
           consume: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Consume functionality"), {
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Bulk PDF import from consume directory.\n\nWhen enabled, administrators can create per-user directories like /var/lib/pdfding/consume/<user_id>\nwith permissions allowing the pdfding user to read and write.\nPDFs placed in these directories are automatically imported into user accounts.\n\nPDFs are imported periodically via cronjob and successfully imported files\nare automatically deleted from the consume directory.\n",
             })),
             schedule: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "*/5 * * * *",
                 description: "The cron schedule for the consume task to trigger.\nThe format is \"minute hour day month day_of_week\"\nRead\n  - https://github.com/mrmn2/PdfDing/blob/d0f21ec2f9fbee4b1a2f6b7e0e6c7ea7784ab1bc/pdfding/base/task_helpers.py#L5\n  - https://huey.readthedocs.io/en/latest/api.html#crontab\n",
               })))),
           })),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the PdfDing web interface.",
             })))),
           installTestHelpers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               internal: true,
@@ -254,43 +254,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secretKeyFile"), null)),
             message: "services.pdfding.secretKeyFile must be set when using PdfDing",
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(usePostgres))),
             message: "services.pdfding.database.createLocally is enabled but not database.type is not postgres",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "")))),
             message: "services.pdfding.database.host must be empty when services.pdfding.database.createLocally is enabled",
           })),
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "specifying services.pdfding.database.passwordFile is not supported when used along with a local db setup",
           })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))) && nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))))),
             message: "services.pdfding.database.user should be the same as services.pdfding.user as well as services.pdfding.database.name when running a local db setup",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           systemPackages: nix.thunk(() => (() => {
             const genWrapper = (name) => (cmd) => nix.app(nix.sel(pkgs, "writeShellScriptBin"), name, nix.thunk(() => nix.str`set -eou pipefail
 set -a
@@ -305,7 +305,7 @@ fi
 ${cmd}
 `));
             const commands = nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               "pdfding-manage": nix.thunk(() => nix.str`$sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} "$@"
 `),
               "consume-immediate": nix.thunk(() => nix.str`echo "from pdf.tasks import consume_function; consume_function(True)" | \\
@@ -320,10 +320,10 @@ ${cmd}
           })()),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "group")),
             }))],
@@ -331,13 +331,13 @@ ${cmd}
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           pdfding: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             envFiles: nix.thunk(() => [envFile]),
-            extraEnvironment: nix.thunk(() => ({ __proto__: pos$42, DEFAULT_THEME: "dark", DEFAULT_THEME_COLOR: "green" })),
+            extraEnvironment: nix.thunk(() => ({ [nix.POS]: pos$42, DEFAULT_THEME: "dark", DEFAULT_THEME_COLOR: "green" })),
             gunicorn: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               extraArgs: nix.thunk(() => [
                 "--workers=4",
                 "--max-requests=1200",
@@ -347,12 +347,12 @@ ${cmd}
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -360,11 +360,11 @@ ${cmd}
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           services: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             pdfding: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               description: "PdfDing Web Service",
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(usePostgres) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), nix.thunk(() => ["postgresql.target"])))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -389,7 +389,7 @@ ${nix.sel(cfg, "package")}/bin/pdfding-manage clean_up
 exec ${nix.sel(cfg, "package")}/bin/pdfding-start ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "gunicorn", "extraArgs")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 Type: "exec",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -405,7 +405,7 @@ exec ${nix.sel(cfg, "package")}/bin/pdfding-start ${nix.builtins.toString(nix.th
               })),
             })),
             "pdfding-background": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "consume", "enable")), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 description: "PdfDing Background Tasks (Huey)",
                 after: nix.thunk(() => ["pdfding.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -413,7 +413,7 @@ exec ${nix.sel(cfg, "package")}/bin/pdfding-start ${nix.builtins.toString(nix.th
 exec ${nix.sel(cfg, "package")}/bin/pdfding-manage run_huey
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   Type: "exec",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -434,7 +434,7 @@ exec ${nix.sel(cfg, "package")}/bin/pdfding-manage run_huey
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

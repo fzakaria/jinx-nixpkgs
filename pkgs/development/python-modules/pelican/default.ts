@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getpelican",
           repo: "pelican",
           tag: version,
@@ -67,19 +67,19 @@ export default nix.lambda((args) => (() => {
         unidecode,
         watchfiles,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, markdown: nix.thunk(() => [markdown]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, markdown: nix.thunk(() => [markdown]) }));
       const nativeCheckInputs = nix.thunk(() => [beautifulsoup4, git, lxml, mock, pandoc, pytest_xdist, pytestCheckHook]);
       const disabledTests = nix.thunk(() => [
         "test_basic_generation_works",
         "test_custom_generation_works",
         "test_custom_locale_generation_works",
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" }));
       const dontPatchShebangs = true;
       const postFixup = "patchShebangs $out/bin\n";
       const pythonImportsCheck = nix.thunk(() => ["pelican"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Static site generator that requires no database or server-side logic",
         homepage: "https://getpelican.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/getpelican/pelican/blob/${nix.sel(src, "tag")}/docs/changelog.rst`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

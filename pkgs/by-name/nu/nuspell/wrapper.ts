@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeOverridable"), (dicts) => (f) => nix.app(buildEnv, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.sel(lib, "appendToName"), "with-dicts", nuspell));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.attr(from, "name")),
         version: nix.thunk(() => nix.attr(from, "version")),
         paths: nix.thunk(() => nix.app(f, dicts)),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(nuspell, "meta"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: nix.thunk(() => nix.attr(from_1, "description")),
           longDescription: nix.thunk(() => nix.attr(from_1, "longDescription")),
           homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

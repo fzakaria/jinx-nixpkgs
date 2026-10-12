@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const jackSupport = nix.argOr($, "jackSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lingot",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/lingot/lingot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-xPl+SWo2ZscHhtE25vLMxeijgT6wjNo1ys1+sNFvTVY=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gtk3, alsa_lib, libpulseaudio, fftw, fftwFloat, json_c], nix.app(nix.sel(lib, "optional"), jackSupport, libjack2))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(jackSupport)), "--disable-jack")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Not a Guitar-Only tuner",
         mainProgram: "lingot",
         homepage: "https://www.nongnu.org/lingot/",

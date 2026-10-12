@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(mkDerivation, nix.thunk(() => (() => {
       const commonDeps = nix.thunk(() => [zlib]);
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         path: "tools/compat",
         outputs: nix.thunk(() => ["out", "dev"]),
         setupHooks: nix.thunk(() => [
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
           "TSORT=cat",
           "MKSHARE=no",
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.str`OBJCOPY=${cctools}/bin/strip`)]))))),
-        env: nix.thunk(() => ({ __proto__: pos$1, RENAME: "-D" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$1, RENAME: "-D" })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
-          tests: nix.thunk(() => ({ __proto__: pos$2, "netbsd-install": install })),
+          [nix.POS]: pos$3,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$2, "netbsd-install": install })),
         })),
         patches: nix.thunk(() => [
           nix.path(here, "./compat-cxx-safe-header.patch"),

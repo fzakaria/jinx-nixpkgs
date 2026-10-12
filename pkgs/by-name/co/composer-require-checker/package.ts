@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "composer-require-checker",
       version: "4.24.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/maglnet/ComposerRequireChecker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4oTS2WqaKULyZWLUo+NjhktTGaPq1CFwrfpqPavoyEo=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to check whether a specific composer package uses imported symbols that aren't part of its direct composer dependencies",
         homepage: "https://github.com/maglnet/ComposerRequireChecker/",
         changelog: nix.thunk(() => nix.str`https://github.com/maglnet/ComposerRequireChecker/releases/tag/${nix.sel(finalAttrs, "version")}`),

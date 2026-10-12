@@ -33,12 +33,12 @@ ln -s "${inetutils}"/bin/telnet "$out/bin"
 `)));
   const generatedPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "bin", nix.thunk(() => [iperf, ethtool, iproute2, socat, net_tools, telnet])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mininet",
       version: "2.3.1b4",
       outputs: nix.thunk(() => ["out", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mininet",
           repo: "mininet",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ wrapProgram "$out/bin/mn" \\
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Emulator for rapid prototyping of Software Defined Networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

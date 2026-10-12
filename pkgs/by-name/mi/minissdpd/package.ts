@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "minissdpd";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "sha256-9MLepqRy4KXMncotxMH8NrpVOOrPjXk4JSkyUXJVRr0=",
           url: nix.thunk(() => nix.str`http://miniupnp.free.fr/files/download.php?file=${pname}-${version}.tar.gz`),
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small daemon to speed up UPnP device discoveries",
         longDescription: "MiniSSDPd receives NOTIFY packets and stores (caches) that information\nfor later use by UPnP Control Points on the machine. MiniSSDPd receives\nM-SEARCH packets and answers on behalf of the UPnP devices running on\nthe machine. Software must be patched in order to take advantage of\nMiniSSDPd, and MiniSSDPd must be started before any other UPnP program.\n",
         homepage: "http://miniupnp.free.fr/minissdpd.html",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "minissdpd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

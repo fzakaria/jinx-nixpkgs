@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ff_sig = nix.arg($, "ff-sig");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ff-pbt",
       version: nix.thunk(() => nix.attr(ff_sig, "version")),
       src: nix.thunk(() => nix.attr(ff_sig, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       propagatedBuildInputs: nix.thunk(() => [zarith, ff_sig]),
       meta: nix.thunk(() => nix.update(nix.sel(ff_sig, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Property based testing library for finite fields over the package ff-sig",
       })),
     })));

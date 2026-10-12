@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const jp_zip_codes = nix.arg($, "jp-zip-codes");
   const dictionaries = nix.argOr($, "dictionaries", () => []);
   const merge_ut_dictionaries = nix.arg($, "merge-ut-dictionaries");
-  const ut_dictionary = nix.thunk(() => nix.app(nix.sel(merge_ut_dictionaries, "override"), nix.thunk(() => ({ __proto__: pos$1, dictionaries: dictionaries }))));
+  const ut_dictionary = nix.thunk(() => nix.app(nix.sel(merge_ut_dictionaries, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, dictionaries: dictionaries }))));
   return nix.app(buildBazelPackage, nix.thunk(() => (() => {
       const pname = "mozc";
       const version = "2.30.5544.102";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "google",
           repo: "mozc",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const removeRulesCC = false;
       const bazel = bazel_7;
       const fetchAttrs = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         hash: "sha256-G05vlHiOJp4rvQBUj2ffRBuWBA/lpJju8CLiopYJckE=",
         preInstall: "# Remove zip code data. It will be replaced with jp-zip-codes from nixpkgs\nrm -rv \"$bazelOut\"/external/zip_code_{jigyosyo,ken_all}\n# Remove references to buildInputs\nrm -rv \"$bazelOut\"/external/{ibus,qt_linux}\n# Remove reference to the host platform\nrm -rv \"$bazelOut\"/external/host_platform\n",
       }));
@@ -70,7 +70,7 @@ substituteInPlace src/WORKSPACE.bazel \\
       const preConfigure = nix.thunk(() => nix.add("cd src\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(dictionaries, [])), nix.thunk(() => nix.str`cat ${ut_dictionary}/mozcdic-ut.txt >> data/dictionary_oss/dictionary00.txt
 `))));
       const buildAttrs = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm555 \"bazel-bin/server/mozc_server\"           \"$out/lib/mozc/mozc_server\"\ninstall -Dm555 \"bazel-bin/renderer/qt/mozc_renderer\"    \"$out/lib/mozc/mozc_renderer\"\ninstall -Dm555 \"bazel-bin/gui/tool/mozc_tool\"           \"$out/lib/mozc/mozc_tool\"\ninstall -Dm555 \"bazel-bin/unix/emacs/mozc_emacs_helper\" \"$out/bin/mozc_emacs_helper\"\ninstall -Dm444 \"unix/emacs/mozc.el\"                     \"$out/share/emacs/site-lisp/emacs-mozc/mozc.el\"\ninstall -d \"$out/share/icons/mozc/\"\nunzip bazel-bin/unix/icons.zip -d \"$out/share/icons/mozc/\"\n", nix.app(nix.sel(lib, "optionalString"), withIbus, "install -Dm555 \"bazel-bin/unix/ibus/ibus_mozc\"          \"$out/lib/ibus-mozc/ibus-engine-mozc\"\ninstall -Dm555 \"bazel-bin/unix/ibus/mozc.xml\"           \"$out/share/ibus/component/mozc.xml\"\ninstall -d \"$out/share/ibus-mozc/\"\nfor icon in $out/share/icons/mozc/*.png\ndo\n  cp $icon $out/share/ibus-mozc/\ndone\nmv $out/share/ibus-mozc/{mozc,product_icon}.png\n")), nix.str`# create a desktop file for gnome-control-center
 # copied from ubuntu
 mkdir -p $out/share/applications
@@ -82,7 +82,7 @@ runHook postInstall
 `)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         isIbusEngine: withIbus,
         description: "Japanese input method from Google",
         mainProgram: "mozc_emacs_helper",
@@ -96,7 +96,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
       const mkExtension = nix.thunk(() => nix.attr(self, "mkExtension"));
       const php = nix.thunk(() => nix.attr(self, "php"));
       const builders = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/php/builders")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           callPackages: callPackages,
           callPackage: callPackage,
           buildPecl: buildPecl,
@@ -141,8 +141,8 @@ export default nix.lambda((args) => (() => {
       return (() => {
         const from = nix.thunk(() => nix.sel(builders, "v1"));
         return {
-        __proto__: pos$78,
-        buildPecl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/php/build-pecl.nix"), nix.thunk(() => ({ __proto__: pos$2, php: nix.thunk(() => nix.sel(php, "unwrapped")) })))),
+        [nix.POS]: pos$78,
+        buildPecl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/php/build-pecl.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, php: nix.thunk(() => nix.sel(php, "unwrapped")) })))),
         buildComposerProject: nix.thunk(() => nix.attr(from, "buildComposerProject")),
         buildComposerWithPlugin: nix.thunk(() => nix.attr(from, "buildComposerWithPlugin")),
         composerHooks: nix.thunk(() => nix.attr(from, "composerHooks")),
@@ -152,14 +152,14 @@ export default nix.lambda((args) => (() => {
         mkComposerVendor: nix.thunk(() => nix.sel(builders, "v2", "mkComposerVendor")),
         mkDerivation: (origArgs) => (() => {
           const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "fix"), nix.thunk(() => nix.app(nix.sel(lib, "extends"), (_) => (previousAttrs) => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 pname: nix.thunk(() => nix.str`php-${nix.sel(previousAttrs, "pname")}`),
                 passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
                 })),
                 meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), {
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   mainProgram: nix.thunk(() => nix.selOr(previousAttrs, () => nix.sel(previousAttrs, "pname"), "meta", "mainProgram")),
                 })),
               }), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), origArgs)) ? nix.force(origArgs) : (_) => nix.force(origArgs)))))));
@@ -179,7 +179,7 @@ export default nix.lambda((args) => (() => {
             return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name"])), (() => {
                 const from_1 = nix.thunk(() => nix.sel(php, "unwrapped"));
                 return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 pname: nix.thunk(() => nix.str`php-${name}`),
                 extensionName: extName,
                 outputs: nix.thunk(() => ["out", "dev"]),
@@ -235,7 +235,7 @@ runHook postInstall
                 meta: nix.thunk(() => nix.update((() => {
                   const from_2 = nix.thunk(() => nix.sel(php, "meta"));
                   return {
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: nix.thunk(() => nix.str`PHP upstream extension: ${name}`),
                   teams: nix.thunk(() => nix.attr(from_2, "teams")),
                   homepage: nix.thunk(() => nix.attr(from_2, "homepage")),
@@ -248,7 +248,7 @@ runHook postInstall
           })(), formals$2))),
         php: phpPackage,
         tools: nix.thunk(() => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           box: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/box"), nix.thunk(() => ({})))),
           castor: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/castor"), nix.thunk(() => ({})))),
           composer: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/composer"), nix.thunk(() => ({})))),
@@ -266,7 +266,7 @@ runHook postInstall
           phpspy: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/phpspy"), nix.thunk(() => ({})))),
           psalm: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/psalm"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             deployer: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`\`php8${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(php, "version")))}Packages.deployer\` has been removed, use \`deployer\``))),
             phpcbf: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`\`php8${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(php, "version")))}Packages.phpcbf\` has been removed, use \`php-codesniffer\` instead which contains both \`phpcs\` and \`phpcbf\`.`))),
             phpcs: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`\`php8${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(php, "version")))}Packages.phpcs\` has been removed, use \`php-codesniffer\` instead which contains both \`phpcs\` and \`phpcbf\`.`))),
@@ -274,7 +274,7 @@ runHook postInstall
             psysh: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`\`php8${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(php, "version")))}Packages.psysh\` has been removed, use \`psysh\``))),
           }))))),
         extensions: nix.thunk(() => nix.update({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           amqp: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/amqp"), nix.thunk(() => ({})))),
           apcu: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/apcu"), nix.thunk(() => ({})))),
           ast: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/ast"), nix.thunk(() => ({})))),
@@ -321,11 +321,11 @@ runHook postInstall
               const postPatch = nix.thunk(() => nix.str`sed -i -e 's|OCISDKMANINC=\`.*$|OCISDKMANINC="${nix.sel(pkgs, "oracle-instantclient", "dev")}/include"|' config.m4
 `);
               const meta = nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
               }));
               return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 src,
                 version,
                 pname,
@@ -362,60 +362,60 @@ runHook postInstall
           yaml: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/yaml"), nix.thunk(() => ({})))),
           zstd: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/php-packages/zstd"), nix.thunk(() => ({})))),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "php-spx": nix.thunk(() => nix.builtins.throw("php-spx is deprecated, use spx instead")),
             "openssl-legacy": nix.thunk(() => nix.builtins.throw("openssl-legacy has been removed")),
           }))), (() => {
           const extensionData = nix.thunk(() => nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               name: "bcmath",
-              env: nix.thunk(() => ({ __proto__: pos$14, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$14, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: "bz2",
               buildInputs: nix.thunk(() => [bzip2]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-bz2=${nix.sel(bzip2, "dev")}`)]),
             })),
-            nix.thunk(() => ({ __proto__: pos$17, name: "calendar" })),
+            nix.thunk(() => ({ [nix.POS]: pos$17, name: "calendar" })),
             nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "ctype",
               postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(php, "version")), "8.2")))), "rm ext/ctype/tests/lc_ctype_inheritance.phpt\n")),
             })),
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: "curl",
               buildInputs: nix.thunk(() => [curl]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-curl=${nix.sel(curl, "dev")}`)]),
               doCheck: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$20, name: "dba" })),
+            nix.thunk(() => ({ [nix.POS]: pos$20, name: "dba" })),
             nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               name: "dom",
               buildInputs: nix.thunk(() => [libxml2]),
               configureFlags: nix.thunk(() => ["--enable-dom"]),
               env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(php, "version")), "8.5")), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(php, "unwrapped", "dev")}/include/php/ext/lexbor`),
                 })))),
             })),
             nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               name: "enchant",
               buildInputs: nix.thunk(() => [enchant]),
               configureFlags: nix.thunk(() => ["--with-enchant"]),
               doCheck: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$24, name: "exif", doCheck: false })),
-            nix.thunk(() => ({ __proto__: pos$25, name: "ffi", buildInputs: nix.thunk(() => [libffi]) })),
-            nix.thunk(() => ({ __proto__: pos$26, name: "fileinfo", buildInputs: nix.thunk(() => [pcre2]) })),
-            nix.thunk(() => ({ __proto__: pos$27, name: "filter", buildInputs: nix.thunk(() => [pcre2]) })),
-            nix.thunk(() => ({ __proto__: pos$28, name: "ftp", buildInputs: nix.thunk(() => [openssl]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$24, name: "exif", doCheck: false })),
+            nix.thunk(() => ({ [nix.POS]: pos$25, name: "ffi", buildInputs: nix.thunk(() => [libffi]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$26, name: "fileinfo", buildInputs: nix.thunk(() => [pcre2]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$27, name: "filter", buildInputs: nix.thunk(() => [pcre2]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$28, name: "ftp", buildInputs: nix.thunk(() => [openssl]) })),
             nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               name: "gd",
               buildInputs: nix.thunk(() => [zlib, gd]),
               configureFlags: nix.thunk(() => [
@@ -426,29 +426,29 @@ runHook postInstall
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               name: "gettext",
               buildInputs: nix.thunk(() => [gettext]),
               postPhpize: "substituteInPlace configure --replace-fail 'as_fn_error $? \"Cannot locate header file libintl.h\" \"$LINENO\" 5' ':' ",
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-gettext=${gettext}`)]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               name: "gmp",
               buildInputs: nix.thunk(() => [gmp]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-gmp=${nix.sel(gmp, "dev")}`)]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               name: "iconv",
               buildInputs: nix.thunk(() => [libiconv]),
               configureFlags: nix.thunk(() => ["--with-iconv"]),
-              env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$32, NIX_LDFLAGS: "-liconv" })))),
+              env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$32, NIX_LDFLAGS: "-liconv" })))),
               doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
             })),
-            nix.thunk(() => ({ __proto__: pos$34, name: "intl", buildInputs: nix.thunk(() => [icu73]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$34, name: "intl", buildInputs: nix.thunk(() => [icu73]) })),
             nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               name: "ldap",
               buildInputs: nix.thunk(() => [openldap, cyrus_sasl]),
               configureFlags: nix.thunk(() => nix.concat([
@@ -460,50 +460,50 @@ runHook postInstall
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               name: "mbstring",
               buildInputs: nix.thunk(() => [oniguruma, pcre2]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               name: "mysqli",
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "mysqlnd"))]),
               configureFlags: nix.thunk(() => ["--with-mysqli=mysqlnd", "--with-mysql-sock=/run/mysqld/mysqld.sock"]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               name: "mysqlnd",
               buildInputs: nix.thunk(() => [zlib, openssl]),
               configureFlags: nix.thunk(() => ["--with-mysqlnd-ssl"]),
-              env: nix.thunk(() => ({ __proto__: pos$38, MYSQLND_SHARED_LIBADD: "-lz -lssl -lcrypto" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$38, MYSQLND_SHARED_LIBADD: "-lz -lssl -lcrypto" })),
               patches: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mysqlnd_config.patch", "--- a/ext/mysqlnd/mysqlnd.h\n+++ b/ext/mysqlnd/mysqlnd.h\n@@ -1,3 +1,6 @@\n+#ifdef HAVE_CONFIG_H\n+#include \"config.h\"\n+#endif\n /*\n   +----------------------------------------------------------------------+\n   | Copyright (c) The PHP Group                                          |\n")),
               ]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               name: "openssl",
               buildInputs: nix.thunk(() => [openssl]),
               configureFlags: nix.thunk(() => ["--with-openssl"]),
               doCheck: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$41, name: "pcntl" })),
-            nix.thunk(() => ({ __proto__: pos$42, name: "pdo", doCheck: false })),
+            nix.thunk(() => ({ [nix.POS]: pos$41, name: "pcntl" })),
+            nix.thunk(() => ({ [nix.POS]: pos$42, name: "pdo", doCheck: false })),
             nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               name: "pdo_dblib",
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "pdo"))]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-pdo-dblib=${freetds}`)]),
               meta: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
               })),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               name: "pdo_mysql",
               internalDeps: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(php, "extensions")), null);
@@ -516,7 +516,7 @@ runHook postInstall
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               name: "pdo_odbc",
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "pdo"))]),
               buildInputs: nix.thunk(() => [unixodbc]),
@@ -524,14 +524,14 @@ runHook postInstall
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               name: "pdo_pgsql",
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "pdo"))]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-pdo-pgsql=${nix.sel(libpq, "pg_config")}`)]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               name: "pdo_sqlite",
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "pdo"))]),
               buildInputs: nix.thunk(() => [sqlite]),
@@ -539,134 +539,134 @@ runHook postInstall
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               name: "pgsql",
               buildInputs: nix.thunk(() => [pcre2]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-pgsql=${nix.sel(libpq, "pg_config")}`)]),
               doCheck: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$50, name: "posix", doCheck: false })),
+            nix.thunk(() => ({ [nix.POS]: pos$50, name: "posix", doCheck: false })),
             nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               name: "readline",
               buildInputs: nix.thunk(() => [readline]),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-readline=${nix.sel(readline, "dev")}`)]),
               postPatch: "# Fix `--with-readline` option not being available.\n# `PHP_ALWAYS_SHARED` generated by phpize enables all options\n# without the possibility to override them. But when `--with-libedit`\n# is enabled, `--with-readline` is not registered.\necho '\nAC_DEFUN([PHP_ALWAYS_SHARED],[\n  test \"[$]$1\" != \"no\" && ext_shared=yes\n])dnl\n' | cat - ext/readline/config.m4 > ext/readline/config.m4.tmp\nmv ext/readline/config.m4{.tmp,}\n",
               doCheck: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$52, name: "session", doCheck: false })),
-            nix.thunk(() => ({ __proto__: pos$53, name: "shmop" })),
+            nix.thunk(() => ({ [nix.POS]: pos$52, name: "session", doCheck: false })),
+            nix.thunk(() => ({ [nix.POS]: pos$53, name: "shmop" })),
             nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               name: "simplexml",
               buildInputs: nix.thunk(() => [libxml2, pcre2]),
               configureFlags: nix.thunk(() => ["--enable-simplexml"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               name: "snmp",
               buildInputs: nix.thunk(() => [net_snmp, openssl]),
               configureFlags: nix.thunk(() => ["--with-snmp"]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               name: "soap",
               buildInputs: nix.thunk(() => [libxml2]),
               configureFlags: nix.thunk(() => ["--enable-soap"]),
               doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.4")))),
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "session"))]),
             })),
-            nix.thunk(() => ({ __proto__: pos$57, name: "sockets", doCheck: false })),
-            nix.thunk(() => ({ __proto__: pos$58, name: "sodium", buildInputs: nix.thunk(() => [libsodium]) })),
+            nix.thunk(() => ({ [nix.POS]: pos$57, name: "sockets", doCheck: false })),
+            nix.thunk(() => ({ [nix.POS]: pos$58, name: "sodium", buildInputs: nix.thunk(() => [libsodium]) })),
             nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               name: "sqlite3",
               buildInputs: nix.thunk(() => [sqlite]),
               patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [
                   nix.path(here, "../development/interpreters/php/skip-sqlite3_bind_bug68849.phpt.patch"),
                 ]))),
             })),
-            nix.thunk(() => ({ __proto__: pos$60, name: "sysvmsg" })),
-            nix.thunk(() => ({ __proto__: pos$61, name: "sysvsem" })),
+            nix.thunk(() => ({ [nix.POS]: pos$60, name: "sysvmsg" })),
+            nix.thunk(() => ({ [nix.POS]: pos$61, name: "sysvsem" })),
             nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               name: "sysvshm",
               configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               name: "tidy",
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-tidy=${html_tidy}`)]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               name: "tokenizer",
               patches: nix.thunk(() => [nix.path(here, "../development/interpreters/php/fix-tokenizer-php81.patch")]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               name: "xml",
               buildInputs: nix.thunk(() => [libxml2]),
               configureFlags: nix.thunk(() => ["--enable-xml"]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               name: "xmlreader",
               buildInputs: nix.thunk(() => [libxml2]),
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "dom"))]),
               env: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-I../..", "-DHAVE_DOM"]))),
               })),
               doCheck: false,
               configureFlags: nix.thunk(() => ["--enable-xmlreader"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               name: "xmlwriter",
               buildInputs: nix.thunk(() => [libxml2]),
               configureFlags: nix.thunk(() => ["--enable-xmlwriter"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               name: "xsl",
               buildInputs: nix.thunk(() => [libxslt, libxml2]),
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "dom"))]),
               doCheck: false,
               env: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-I../..", "-DHAVE_DOM"]))),
               })),
               configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-xsl=${nix.sel(libxslt, "dev")}`)]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               name: "zend_test",
               internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "dom"))]),
               env: nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`),
               })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               name: "zip",
               buildInputs: nix.thunk(() => [libzip, pcre2]),
               configureFlags: nix.thunk(() => ["--with-zip"]),
               doCheck: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               name: "zlib",
               buildInputs: nix.thunk(() => [zlib]),
               configureFlags: nix.thunk(() => ["--with-zlib"]),
             })),
           ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.3")), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 name: "imap",
                 buildInputs: nix.thunk(() => [uwimap, openssl, pam, pcre2, libkrb5]),
                 configureFlags: nix.thunk(() => [
@@ -677,7 +677,7 @@ runHook postInstall
               })),
             ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.5")), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 name: "opcache",
                 buildInputs: nix.thunk(() => nix.concat([pcre2], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), valgrind)))), nix.thunk(() => nix.sel(valgrind, "dev"))))),
                 configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(php, "ztsSupport")), "--disable-opcache-jit")),
@@ -687,7 +687,7 @@ runHook postInstall
               })),
             ])))));
           const namedExtensions = nix.thunk(() => nix.builtins.map((drv) => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               name: nix.thunk(() => nix.sel(drv, "name")),
               value: nix.thunk(() => nix.app(mkExtension, drv)),
             }), extensionData));

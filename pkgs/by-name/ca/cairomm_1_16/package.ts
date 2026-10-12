@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const libsigcxx_3_0 = nix.arg($, "libsigcxx_3_0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cairomm",
       version: "1.18.0",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cairographics.org/releases/cairomm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "uBJVOU4+qOiqiHJ20ir6iYX8ja72BpLrJAfSMEnwPPs=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dbuild-tests=true"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ bindings for the Cairo vector graphics library",
         homepage: "https://www.cairographics.org/",
         license: nix.thunk(() => (() => {

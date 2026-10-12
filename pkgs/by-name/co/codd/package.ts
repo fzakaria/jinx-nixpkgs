@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const haskell = nix.arg($, "haskell");
   const haskellPackages = nix.arg($, "haskellPackages");
   const haxlJailbroken = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "markUnbroken"), nix.thunk(() => nix.app(nix.sel(haskell, "lib", "doJailbreak"), nix.thunk(() => nix.sel(haskellPackages, "haxl"))))));
-  const generated = nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated.nix"), nix.thunk(() => ({ __proto__: pos$1, haxl: haxlJailbroken }))));
+  const generated = nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, haxl: haxlJailbroken }))));
   const derivationWithVersion = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), nix.thunk(() => (() => {
       const version = "0.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mzabani",
           repo: "codd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "mzabani"))];
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         src,
         testFlags,

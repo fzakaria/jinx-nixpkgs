@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gns3-server",
       version: "2.2.56.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GNS3",
           repo: "gns3-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,12 +90,12 @@ export default nix.lambda((args) => (() => {
         "tests/controller/test_project.py",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gns3-server": nix.thunk(() => nix.attr(nixosTests, "gns3-server")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: gns3_server,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), gns3_server)} --version`),
             })))),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(writeScript, "update-gns3", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\n\nnix-update gns3-gui --version-regex '^v(2\\.[\\d\\.]+)$' --commit\nnix-update gns3-server --version-regex '^v(2\\.[\\d\\.]+)$' --commit\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Graphical Network Simulator 3 server",
         longDescription: "The GNS3 server manages emulators such as Dynamips, VirtualBox or\nQemu/KVM. Clients like the GNS3 GUI control the server using a HTTP REST\nAPI.\n",
         homepage: "https://www.gns3.com/",

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "kitops",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kitops-ml",
           repo: "kitops",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["KITOPS_HOME"]),
       preVersionCheck: "export KITOPS_HOME=\"$TMPDIR\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source DevOps tool for packaging and versioning AI/ML models, datasets, code, and configuration into an OCI Artifact",
         homepage: "https://github.com/kitops-ml/kitops",
         changelog: nix.thunk(() => nix.str`https://github.com/kitops-ml/kitops/releases/tag/v${nix.sel(finalAttrs, "version")}`),

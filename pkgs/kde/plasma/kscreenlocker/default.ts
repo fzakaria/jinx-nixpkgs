@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const qqc2_breeze_style = nix.arg($, "qqc2-breeze-style");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kscreenlocker",
       extraNativeBuildInputs: nix.thunk(() => [wayland_scanner]),
       extraBuildInputs: nix.thunk(() => [pam, qqc2_breeze_style]),

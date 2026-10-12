@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const enableMimalloc = nix.argOr($, "enableMimalloc", () => true);
   const perl = nix.arg($, "perl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
-  const cadical$ = nix.thunk(() => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ __proto__: pos$1, version: "2.1.3" }))));
+  const cadical$ = nix.thunk(() => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "2.1.3" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lean4",
       version: "4.34.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "leanprover",
           repo: "lean4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeCheckInputs: nix.thunk(() => [gitMinimal, perl]),
       "mimalloc-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "microsoft",
           repo: "mimalloc",
           tag: "v3.4.5",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Automatic and interactive theorem prover",
         homepage: "https://leanprover.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/leanprover/lean4/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),

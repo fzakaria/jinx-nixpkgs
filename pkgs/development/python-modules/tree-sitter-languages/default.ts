@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grantjenks",
           repo: "py-tree-sitter-languages",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ cd $out
 `);
       const pythonImportsCheck = nix.thunk(() => ["tree_sitter_languages"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binary Python wheels for all tree sitter languages",
         homepage: "https://github.com/grantjenks/py-tree-sitter-languages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -57,7 +57,7 @@ cd $out
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(tree_sitter, "version")), "0.22")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

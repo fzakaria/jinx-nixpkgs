@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const tor = nix.arg($, "tor");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onionshare",
       src: nix.thunk(() => nix.attr(onionshare, "src")),
       version: nix.thunk(() => nix.attr(onionshare, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/desktop`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths-gui.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             meek: meek,
             obfs4: obfs4,
             snowflake: snowflake,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["onionshare"]),
-      meta: nix.thunk(() => nix.update(nix.sel(onionshare, "meta"), { __proto__: pos$2, mainProgram: "onionshare" })),
+      meta: nix.thunk(() => nix.update(nix.sel(onionshare, "meta"), { [nix.POS]: pos$2, mainProgram: "onionshare" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

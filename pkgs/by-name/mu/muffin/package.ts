@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.arg($, "xwayland");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "muffin",
       version: "6.6.3",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "muffin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-PNL6PAZinds+kqCUCesJkTS+93juhm35sPE7RFUdxeU=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, zenity: zenity })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, zenity: zenity })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         desktop_file_utils,
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs src/backends/native/gen-default-modes.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/linuxmint/muffin",
         description: "Window management library for the Cinnamon desktop (libmuffin) and its sample WM binary (muffin)",
         mainProgram: "muffin",

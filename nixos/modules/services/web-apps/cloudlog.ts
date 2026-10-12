@@ -160,79 +160,79 @@ for directory in updates uploads backup logbook assets/qslcard images/eqsl_card_
   ln -s ${nix.sel(cfg, "dataDir")}/$directory $out/$directory
 done
 `);
-      return { __proto__: pos$1, pname, version, src, installPhase };
+      return { [nix.POS]: pos$1, pname, version, src, installPhase };
     })())));
   return {
-    __proto__: pos$95,
+    [nix.POS]: pos$95,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         cloudlog: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "Cloudlog")),
             dataDir: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "/var/lib/cloudlog",
                 description: "Cloudlog data directory.",
               })))),
             baseUrl: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "http://localhost",
                 description: "Cloudlog base URL",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "cloudlog",
                 description: "User account under which Cloudlog runs.",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               createLocally: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                   default: true,
                   description: "Create the database and database user locally.",
                 })))),
               host: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   description: "MySQL database host",
                   default: "localhost",
                 })))),
               name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   description: "MySQL database name.",
                   default: "cloudlog",
                 })))),
               user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   description: "MySQL user name.",
                   default: "cloudlog",
                 })))),
               passwordFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                   description: "MySQL user password file.",
                   default: null,
                 })))),
             })),
             poolConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
                       nix.thunk(() => nix.lookup(w_1, "str")),
                       nix.thunk(() => nix.lookup(w_1, "int")),
                       nix.thunk(() => nix.lookup(w_1, "bool")),
                     ]))))),
                 default: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   pm: "dynamic",
                   "pm.max_children": 32n,
                   "pm.start_servers": 2n,
@@ -243,133 +243,133 @@ done
                 description: "Options for Cloudlog's PHP-FPM pool.\n",
               })))),
             virtualHost: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: "localhost",
                 description: "Name of the nginx virtualhost to use and setup. If null, do not setup\n any virtualhost.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "Any additional text to be appended to the config.php\nconfiguration file. This is a PHP script. For configuration\nsettings, see <https://github.com/magicbug/Cloudlog/wiki/Cloudlog.php-Configuration-File>.\n",
                 default: "",
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 example: "$config['show_time'] = TRUE;\n",
               })))),
             "upload-lotw": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically upload logs to LoTW. If enabled, a systemd\ntimer will run the log upload task as specified by the interval\n option.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "daily",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the\ntime at which the LoTW upload will occur.\n",
                 })))),
             })),
             "upload-clublog": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically upload logs to Clublog. If enabled, a systemd\ntimer will run the log upload task as specified by the interval option.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "daily",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the time\nat which the Clublog upload will occur.\n",
                 })))),
             })),
             "update-lotw-users": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically update the list of LoTW users. If enabled, a\nsystemd timer will run the update task as specified by the interval\noption.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "weekly",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the\ntime at which the LoTW user update will occur.\n",
                 })))),
             })),
             "update-dok": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically update the DOK resource file. If enabled, a\nsystemd timer will run the update task as specified by the interval option.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "monthly",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the\ntime at which the DOK update will occur.\n",
                 })))),
             })),
             "update-clublog-scp": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically update the Clublog SCP database. If enabled,\na systemd timer will run the update task as specified by the interval\noption.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "monthly",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the time\nat which the Clublog SCP update will occur.\n",
                 })))),
             })),
             "update-wwff": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically update the WWFF database. If enabled, a\nsystemd timer will run the update task as specified by the interval\noption.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "monthly",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the time\nat which the WWFF update will occur.\n",
                 })))),
             })),
             "upload-qrz": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically upload logs to QRZ. If enabled, a systemd\ntimer will run the update task as specified by the interval option.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "daily",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the\ntime at which the QRZ upload will occur.\n",
                 })))),
             })),
             "update-sota": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to periodically update the SOTA database. If enabled, a\nsystemd timer will run the update task as specified by the interval option.\n",
                 })))),
               interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "monthly",
                   description: "Specification (in the format described by {manpage}`systemd.time(7)`) of the time\nat which the SOTA update will occur.\n",
@@ -380,26 +380,26 @@ done
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "services.cloudlog.database.passwordFile cannot be specified if services.cloudlog.database.createLocally is set to true.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             pools: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               cloudlog: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 user: nix.thunk(() => nix.attr(cfg, "user")),
                 group: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                 }, nix.sel(cfg, "poolConfig"))),
@@ -407,17 +407,17 @@ done
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHost"), null)), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "virtualHost")}`, nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   root: nix.thunk(() => nix.str`${package$}`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$49,
-                    "/": nix.thunk(() => ({ __proto__: pos$47, tryFiles: "$uri /index.php$is_args$args" })),
+                    [nix.POS]: pos$49,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$47, tryFiles: "$uri /index.php$is_args$args" })),
                     "~ ^/index.php(/|$)": nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
 fastcgi_split_path_info ^(.+\\.php)(.+)$;
@@ -430,12 +430,12 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
               ])),
             })))),
           mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -443,13 +443,13 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           services: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             "cloudlog-setup-database": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 description: "Set up cloudlog database",
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$55, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$55, Type: "oneshot", RemainAfterExit: true })),
                 wantedBy: nix.thunk(() => ["phpfpm-cloudlog.service"]),
                 after: nix.thunk(() => ["mysql.service"]),
                 script: nix.thunk(() => (() => {
@@ -462,177 +462,177 @@ fi
                 })()),
               })))),
             "cloudlog-upload-lotw": nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               description: "Upload QSOs to LoTW if certs have been provided",
               enable: nix.thunk(() => nix.sel(cfg, "upload-lotw", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/lotw/lotw_upload`),
                 Type: "oneshot",
               })),
             })),
             "cloudlog-update-lotw-users": nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               description: "Update LOTW Users Database",
               enable: nix.thunk(() => nix.sel(cfg, "update-lotw-users", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/lotw/load_users`),
                 Type: "oneshot",
               })),
             })),
             "cloudlog-update-dok": nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               description: "Update DOK File for autocomplete",
               enable: nix.thunk(() => nix.sel(cfg, "update-dok", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/update/update_dok`),
                 Type: "oneshot",
               })),
             })),
             "cloudlog-update-clublog-scp": nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               description: "Update Clublog SCP Database File",
               enable: nix.thunk(() => nix.sel(cfg, "update-clublog-scp", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/update/update_clublog_scp`),
                 Type: "oneshot",
               })),
             })),
             "cloudlog-update-wwff": nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               description: "Update WWFF File for autocomplete",
               enable: nix.thunk(() => nix.sel(cfg, "update-wwff", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/update/update_wwff`),
                 Type: "oneshot",
               })),
             })),
             "cloudlog-upload-qrz": nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               description: "Upload QSOs to QRZ Logbook",
               enable: nix.thunk(() => nix.sel(cfg, "upload-qrz", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/qrz/upload`),
                 Type: "oneshot",
               })),
             })),
             "cloudlog-update-sota": nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               description: "Update SOTA File for autocomplete",
               enable: nix.thunk(() => nix.sel(cfg, "update-sota", "enable")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -s ${nix.sel(cfg, "baseUrl")}/update/update_sota`),
                 Type: "oneshot",
               })),
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             "cloudlog-upload-lotw": nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               enable: nix.thunk(() => nix.sel(cfg, "upload-lotw", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-upload-lotw.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "upload-lotw", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-upload-clublog": nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               enable: nix.thunk(() => nix.sel(cfg, "upload-clublog", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-upload-clublog.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "upload-clublog", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-update-lotw-users": nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               enable: nix.thunk(() => nix.sel(cfg, "update-lotw-users", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-update-lotw-users.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "update-lotw-users", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-update-dok": nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               enable: nix.thunk(() => nix.sel(cfg, "update-dok", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-update-dok.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "update-dok", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-update-clublog-scp": nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               enable: nix.thunk(() => nix.sel(cfg, "update-clublog-scp", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-update-clublog-scp.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "update-clublog-scp", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-update-wwff": nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               enable: nix.thunk(() => nix.sel(cfg, "update-wwff", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-update-wwff.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "update-wwff", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-upload-qrz": nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               enable: nix.thunk(() => nix.sel(cfg, "upload-qrz", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-upload-qrz.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "upload-qrz", "interval")),
                 Persistent: true,
               })),
             })),
             "cloudlog-update-sota": nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               enable: nix.thunk(() => nix.sel(cfg, "update-sota", "enable")),
               wantedBy: nix.thunk(() => ["timers.target"]),
               partOf: nix.thunk(() => ["cloudlog-update-sota.service"]),
               after: nix.thunk(() => ["phpfpm-cloudlog.service"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "update-sota", "interval")),
                 Persistent: true,
               })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             rules: nix.thunk(() => (() => {
               const group = nix.thunk(() => nix.sel(config, "services", "nginx", "group"));
               return [
@@ -661,10 +661,10 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
             }))],
@@ -672,7 +672,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$94,
+      [nix.POS]: pos$94,
       maintainers: nix.thunk(() => nix.sel(pkgs, "cloudlog", "meta", "maintainers")),
     })),
   };

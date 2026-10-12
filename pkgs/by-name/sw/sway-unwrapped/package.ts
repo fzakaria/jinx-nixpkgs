@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const trayEnabled = nix.argOr($, "trayEnabled", () => nix.force(systemdSupport));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sway-unwrapped",
       version: "1.12",
       enableXWayland: enableXWayland,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       systemdSupport: systemdSupport,
       trayEnabled: trayEnabled,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swaywm",
           repo: "sway",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./load-configuration-from-etc.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, swaybg: swaybg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, swaybg: swaybg })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "isNixOS"))), nix.thunk(() => [nix.path(here, "./sway-config-no-nix-store-references.patch")])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "isNixOS")), nix.thunk(() => [nix.path(here, "./sway-config-nixos-paths.patch")]))))),
       strictDeps: true,
       depsBuildBuild: nix.thunk(() => [pkg_config]),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         wayland_protocols,
         libdrm,
         nix.thunk(() => nix.app(nix.sel(wlroots_0_20, "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enableXWayland: nix.thunk(() => nix.attr(finalAttrs, "enableXWayland")),
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => [evdev_proto])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "enableXWayland")), nix.thunk(() => [libxcb_wm]))))),
@@ -97,11 +97,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, basic: nix.thunk(() => nix.sel(nixosTests, "sway")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, basic: nix.thunk(() => nix.sel(nixosTests, "sway")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "I3-compatible tiling Wayland compositor",
         longDescription: "Sway is a tiling Wayland compositor and a drop-in replacement for the i3\nwindow manager for X11. It works with your existing i3 configuration and\nsupports most of i3's features, plus a few extras.\nSway allows you to arrange your application windows logically, rather\nthan spatially. Windows are arranged into a grid by default which\nmaximizes the efficiency of your screen and can be quickly manipulated\nusing only the keyboard.\n",
         homepage: "https://swaywm.org",

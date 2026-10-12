@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amaranth-lang",
           repo: "amaranth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["verilog", "test_reversible", "test_distance"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_examples.py", "tests/test_lib_fifo.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern hardware definition language and toolchain based on Python",
         homepage: "https://amaranth-lang.org/docs/amaranth",
         changelog: nix.thunk(() => nix.str`https://github.com/amaranth-lang/amaranth/blob/${nix.sel(src, "tag")}/docs/changes.rst`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "amaranth-rpc",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

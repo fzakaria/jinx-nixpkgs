@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xapian-omega";
       const version = nix.thunk(() => nix.attr(xapian, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://oligarchy.co.uk/xapian/${version}/xapian-omega-${version}.tar.xz`),
           hash: "sha256-p9+2CN2LPqU93oUjbUdXloJgacTRJhieozp5M0myMXo=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const postInstall = "mkdir -p $out/share/omega\ncp -r templates $out/share/omega\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Indexer and CGI search front-end built on Xapian library",
         homepage: "https://xapian.org/",
         changelog: nix.thunk(() => nix.str`https://xapian.org/docs/xapian-omega-${version}/NEWS`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

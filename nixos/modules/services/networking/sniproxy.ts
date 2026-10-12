@@ -33,31 +33,31 @@ pidfile /run/sniproxy.pid
 ${nix.sel(cfg, "config")}
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "sniproxy", "logDir"]), "Now done by LogsDirectory=. Set to a custom path if you log to a different folder in your config.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sniproxy: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "sniproxy server")),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "sniproxy",
               description: "User account under which sniproxy runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "sniproxy",
               description: "Group under which sniproxy runs.",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "sniproxy.conf configuration excluding the daemon username and pid file.",
@@ -67,18 +67,18 @@ ${nix.sel(cfg, "config")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             sniproxy: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "sniproxy server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sniproxy")}/bin/sniproxy -c ${configFile}`),
                 LogsDirectory: "sniproxy",
@@ -89,19 +89,19 @@ ${nix.sel(cfg, "config")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "sniproxy")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               sniproxy: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "sniproxy")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "sniproxy")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               sniproxy: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "sniproxy")),
               })),
             })))),

@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const kpmcore = nix.arg($, "kpmcore");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "partitionmanager",
       propagatedUserEnvPkgs: nix.thunk(() => [kpmcore]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, kpmcore: kpmcore })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "partitionmanager" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, kpmcore: kpmcore })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "partitionmanager" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

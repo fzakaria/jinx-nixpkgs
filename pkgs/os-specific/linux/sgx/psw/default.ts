@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "sgx-psw",
       version: "2.29.100.1",
       versionTag: "2.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "confidential-computing.sgx",
           rev: nix.thunk(() => nix.str`sgx_${nix.sel(finalAttrs, "versionTag")}`),
@@ -49,17 +49,17 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: nix.thunk(() => (() => {
         const ae = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           prebuilt: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://download.01.org/intel-sgx/sgx-linux/${nix.sel(finalAttrs, "versionTag")}/prebuilt_ae_${nix.sel(finalAttrs, "versionTag")}.tar.gz`),
               hash: "sha256-Hlh96rYOyml2y50d8ASKz6U97Fl0hbGYECeZiG9nMSQ=",
             })))),
         }));
         const optlib = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           prebuilt: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://download.01.org/intel-sgx/sgx-linux/${nix.sel(finalAttrs, "versionTag")}/optimized_libs_${nix.sel(finalAttrs, "versionTag")}.tar.gz`),
               hash: "sha256-7mDTaLtpOQLHQ6Fv+FWJ2k/veJZPXIcuj7kOdRtRqhg=",
             })))),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
           const version = "1.26";
           const filename = nix.thunk(() => nix.str`prebuilt_dcap_${version}.tar.gz`);
           const prebuilt = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: nix.thunk(() => nix.str`https://download.01.org/intel-sgx/sgx-dcap/${version}/linux/${filename}`),
               hash: "sha256-TXQ8xh0q9RKPyKqjMvxoQtIH2lxbhCiwpV+HvQxACaw=",
             }))));
-          return { __proto__: pos$7, version, filename, prebuilt };
+          return { [nix.POS]: pos$7, version, filename, prebuilt };
         })());
         return nix.str`# Make sure this is the right version of linux-sgx
 grep -q '"${nix.sel(finalAttrs, "version")}"' "$src/common/inc/internal/se_version.h" \\
@@ -221,11 +221,11 @@ substituteInPlace $out/lib/systemd/system/aesmd.service \\
                  "${coreutils}/bin/kill"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        tests: nix.thunk(() => ({ __proto__: pos$8, service: nix.thunk(() => nix.sel(nixosTests, "aesmd")) })),
+        [nix.POS]: pos$9,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$8, service: nix.thunk(() => nix.sel(nixosTests, "aesmd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Intel SGX Architectural Enclave Service Manager",
         homepage: "https://github.com/intel/confidential-computing.sgx",
         maintainers: nix.thunk(() => (() => {

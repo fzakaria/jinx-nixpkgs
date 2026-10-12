@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtspell";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "manisandro",
           repo: "qtspell",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DQT_VER=6"]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides spell-checking to Qt's text widgets, using the enchant spell-checking library",
         homepage: "https://github.com/manisandro/qtspell",
         changelog: nix.thunk(() => nix.str`https://github.com/manisandro/qtspell/blob/${version}/NEWS`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

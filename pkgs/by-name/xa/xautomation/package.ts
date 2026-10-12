@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xautomation",
       version: "1.09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.hoopajoo.net/static/projects/xautomation-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "03azv5wpg65h40ip2kk1kdh58vix4vy1r9bihgsq59jx2rhjr3zf",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpng, libx11, libxext, libxi, libxtst]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.hoopajoo.net/projects/xautomation.html",
         description: "Control X from the command line for scripts, and do \"visual scraping\" to find things on the screen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

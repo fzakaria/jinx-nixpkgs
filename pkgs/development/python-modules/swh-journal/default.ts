@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-journal",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           "swh/journal/tests/test_pytest_plugin.py",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Persistent logger of changes to the archive, with publish-subscribe support",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-journal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

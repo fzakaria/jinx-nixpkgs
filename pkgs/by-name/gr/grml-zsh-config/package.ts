@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const txt2tags = nix.arg($, "txt2tags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grml-zsh-config",
       version: "0.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grml",
           repo: "grml-etc-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd doc\nmake\ncd ..\n",
       installPhase: "install -D -m644 etc/zsh/keephack $out/etc/zsh/keephack\ninstall -D -m644 etc/zsh/zshrc $out/etc/zsh/zshrc\n\ninstall -D -m644 doc/grmlzshrc.5 $out/share/man/man5/grmlzshrc.5\nln -s grmlzshrc.5.gz $out/share/man/man5/grml-zsh-config.5.gz\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "grml's zsh setup",
         homepage: "https://grml.org/zsh/",
         license: nix.thunk(() => (() => {

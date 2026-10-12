@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pvizeli",
           repo: "pycognito",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_srp_requests_http_auth"]);
       const pythonImportsCheck = nix.thunk(() => ["pycognito"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python class to integrate Boto3's Cognito client so it is easy to login users. With SRP support",
         homepage: "https://github.com/pvizeli/pycognito",
         changelog: nix.thunk(() => nix.str`https://github.com/NabuCasa/pycognito/releases/tag/${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

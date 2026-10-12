@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const include_what_you_use = nix.arg($, "include-what-you-use");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lincity-ng",
       version: "2.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lincity-ng",
           repo: "lincity-ng",
           tag: nix.thunk(() => nix.str`lincity-ng-${nix.sel(finalAttrs, "version")}`),
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLIBXML2_XMLLINT_EXECUTABLE=${nix.app(nix.sel(lib, "getBin"), libxml2)}/bin/xmllint`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`
     -I${nix.app(nix.sel(lib, "getDev"), sdl3_image)}/include/SDL3
     -I${nix.app(nix.sel(lib, "getDev"), sdl3_mixer)}/include/SDL3
   `),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lincity-ng/lincity-ng",
         description: "City building game",
         mainProgram: "lincity-ng",

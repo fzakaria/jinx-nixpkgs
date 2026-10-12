@@ -64,37 +64,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tahoe"));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     options: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       services: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         tahoe: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           introducers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       options: nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         nickname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The nickname of this Tahoe introducer.\n",
                           })))),
                         tub: nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               default: 3458n,
                               type: nix.thunk(() => nix.sel(lib, "types", "port")),
                               description: "The port on which the introducer will listen.\n",
                             })))),
                           location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               description: "The external location that the introducer should listen on.\n\nIf specified, the port should be included.\n",
@@ -107,73 +107,73 @@ export default nix.lambda((args) => (() => {
               description: "The Tahoe introducers.\n",
             })))),
           nodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       options: nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         nickname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The nickname of this Tahoe node.\n",
                           })))),
                         tub: nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               default: 3457n,
                               type: nix.thunk(() => nix.sel(lib, "types", "port")),
                               description: "The port on which the tub will listen.\n\nThis is the correct setting to tweak if you want Tahoe's storage\nsystem to listen on a different port.\n",
                             })))),
                           location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               description: "The external location that the node should listen on.\n\nThis is the setting to tweak if there are multiple interfaces\nand you want to alter which interface Tahoe is advertising.\n\nIf specified, the port should be included.\n",
                             })))),
                         })),
                         web: nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               default: 3456n,
                               type: nix.thunk(() => nix.sel(lib, "types", "port")),
                               description: "The port on which the Web server will listen.\n\nThis is the correct setting to tweak if you want Tahoe's WUI to\nlisten on a different port.\n",
                             })))),
                         })),
                         client: nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           introducer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               description: "The furl for a Tahoe introducer node.\n\nLike all furls, keep this safe and don't share it.\n",
                             })))),
                           helper: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               description: "The furl for a Tahoe helper node.\n\nLike all furls, keep this safe and don't share it.\n",
                             })))),
                           shares: nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             needed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$16,
+                                [nix.POS]: pos$16,
                                 default: 3n,
                                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                 description: "The number of shares required to reconstitute a file.\n",
                               })))),
                             happy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$17,
+                                [nix.POS]: pos$17,
                                 default: 7n,
                                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                 description: "The number of distinct storage nodes required to store\na file.\n",
                               })))),
                             total: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 default: 10n,
                                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                 description: "The number of shares required to store a file.\n",
@@ -181,50 +181,50 @@ export default nix.lambda((args) => (() => {
                           })),
                         })),
                         storage: nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "storage service")),
                           reservedSpace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               default: "1G",
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The amount of filesystem space to not use for storage.\n",
                             })))),
                         })),
                         helper: nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "helper service")),
                         })),
                         sftpd: nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SFTP service")),
                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                               description: "The port on which the SFTP server will listen.\n\nThis is the correct setting to tweak if you want Tahoe's SFTP\ndaemon to listen on a different port.\n",
                             })))),
                           hostPublicKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                               description: "Path to the SSH host public key.\n",
                             })))),
                           hostPrivateKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                               description: "Path to the SSH host private key.\n",
                             })))),
                           accounts: nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$27,
+                                [nix.POS]: pos$27,
                                 default: null,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                                 description: "Path to the accounts file.\n",
                               })))),
                             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$28,
+                                [nix.POS]: pos$28,
                                 default: null,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                 description: "URL of the accounts server.\n",
@@ -242,11 +242,11 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "introducers"), {})), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             environment: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               etc: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "introducers")), (node) => (settings) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tahoe-lafs/introducer-${node}.cfg`), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     mode: "0444",
                     text: nix.thunk(() => nix.str`# This configuration is generated by Nix. Edit at your own
 # peril; here be dragons.
@@ -260,12 +260,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(settin
               systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "introducers")), (node) => (settings) => nix.sel(settings, "package"))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               services: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "introducers")), (node) => (settings) => (() => {
                   const pidfile = nix.thunk(() => nix.str`/run/tahoe.introducer-${node}.pid`);
                   const nodedir = nix.thunk(() => nix.str`/var/db/tahoe-lafs/introducer-${node}`);
                   return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tahoe.introducer-${node}`), nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       description: nix.thunk(() => nix.str`Tahoe LAFS node ${node}`),
                       documentation: nix.thunk(() => ["info:tahoe-lafs"]),
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -274,7 +274,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(settin
                         nix.thunk(() => nix.sel(config, "environment", "etc", nix.key(nix.str`tahoe-lafs/introducer-${node}.cfg`), "source")),
                       ]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         Type: "simple",
                         PIDFile: pidfile,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(settings, "package")}/bin/tahoe run ${nix.app(nix.sel(lib, "escapeShellArg"), nodedir)} --pidfile=${nix.app(nix.sel(lib, "escapeShellArg"), pidfile)}
@@ -300,20 +300,20 @@ cp /etc/tahoe-lafs/introducer-"${node}".cfg ${nix.app(nix.sel(lib, "escapeShellA
                 })())),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               users: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "introducers")), (node) => (_) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tahoe.introducer-${node}`), nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     description: nix.thunk(() => nix.str`Tahoe node user for introducer ${node}`),
                     isSystemUser: true,
                   }))))),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nodes"), {})), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             environment: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               etc: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "nodes")), (node) => (settings) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tahoe-lafs/${node}.cfg`), nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     mode: "0444",
                     text: nix.thunk(() => nix.str`# This configuration is generated by Nix. Edit at your own
 # peril; here be dragons.
@@ -353,12 +353,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(settin
               systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "nodes")), (node) => (settings) => nix.sel(settings, "package"))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               services: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "nodes")), (node) => (settings) => (() => {
                   const pidfile = nix.thunk(() => nix.str`/run/tahoe.${node}.pid`);
                   const nodedir = nix.thunk(() => nix.str`/var/db/tahoe-lafs/${node}`);
                   return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tahoe.${node}`), nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       description: nix.thunk(() => nix.str`Tahoe LAFS node ${node}`),
                       documentation: nix.thunk(() => ["info:tahoe-lafs"]),
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -367,7 +367,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(settin
                         nix.thunk(() => nix.sel(config, "environment", "etc", nix.key(nix.str`tahoe-lafs/${node}.cfg`), "source")),
                       ]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         Type: "simple",
                         PIDFile: pidfile,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(settings, "package")}/bin/tahoe run ${nix.app(nix.sel(lib, "escapeShellArg"), nodedir)} --pidfile=${nix.app(nix.sel(lib, "escapeShellArg"), pidfile)}
@@ -390,9 +390,9 @@ cp /etc/tahoe-lafs/${nix.app(nix.sel(lib, "escapeShellArg"), node)}.cfg ${nix.ap
                 })())),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               users: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "nodes")), (node) => (_) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tahoe.${node}`), nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     description: nix.thunk(() => nix.str`Tahoe node user for node ${node}`),
                     isSystemUser: true,
                   }))))),

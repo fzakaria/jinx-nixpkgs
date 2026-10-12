@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stfl",
       version: "0.24-unstable-2021-11-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "newsboat",
           repo: "stfl",
           rev: "c2c10b8a50fef613c0aacdc5d06a0fa610bf79e9",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       buildInputs: nix.thunk(() => [ncurses]),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=implicit-int"]))),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-liconv" }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-liconv" }))))),
       preBuild: nix.thunk(() => nix.add(nix.add("sed -i s/gcc/cc/g Makefile\nsed -i s%ncursesw/ncurses.h%ncurses.h% stfl_internals.h\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i s/-soname/-install_name/ Makefile\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.str`sed -i 's/all:.*/all: libstfl.a stfl.pc/' Makefile
 sed -i 's/\\tar /\\t${nix.sel(stdenv, "cc", "targetPrefix")}ar /' Makefile
 sed -i 's/\\tranlib /\\t${nix.sel(stdenv, "cc", "targetPrefix")}ranlib /' Makefile
@@ -40,7 +40,7 @@ sed -i '/ln -fs libstfl.so./d' Makefile
 `)))),
       installPhase: nix.thunk(() => nix.add("DESTDIR=$out prefix=\\\"\\\" make install\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "ln -s $out/lib/libstfl.so.0.24 $out/lib/libstfl.so.0\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://web.archive.org/web/20211113222004/http://www.clifford.at/stfl/",
         description: "Library which implements a curses-based widget set for text terminals",
         maintainers: [],

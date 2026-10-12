@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const icon = "bitwarden";
   const electron = electron_43;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "bitwarden-desktop",
       version: "2026.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitwarden",
           repo: "clients",
           tag: nix.thunk(() => nix.str`desktop-v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       npmDepsFetcherVersion: 2n,
       npmDepsHash: "sha256-JI5U4Q7zrF7UZXxVtsaJRJK6QAuLQuievd0z1/3GJfE=",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-m0b8HxCAh/Xk0rsQXtmJRX0Lq6tiu2SZTxHDTXgy/uA=",
         })))),
       cargoRoot: "apps/desktop/desktop_native",
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([
         cargo,
         dart_sass,
@@ -116,7 +116,7 @@ popd
 `),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(gnome_keyring, "override"), nix.thunk(() => ({ __proto__: pos$4, useWrappedDaemon: false })))),
+          nix.thunk(() => nix.app(nix.sel(gnome_keyring, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, useWrappedDaemon: false })))),
         ]))),
       checkFlags: nix.thunk(() => nix.concat([
         "--skip=password::password::tests::test",
@@ -155,7 +155,7 @@ popd
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "bitwarden",
             exec: "bitwarden %U",
             icon: icon,
@@ -166,14 +166,14 @@ popd
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version=stable", "--version-regex=^desktop-v(.*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/bitwarden/clients/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Secure and free password manager for all of your devices",
         homepage: "https://bitwarden.com",

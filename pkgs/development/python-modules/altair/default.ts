@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const vl_convert_python = nix.arg($, "vl-convert-python");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "altair",
       version: "6.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "altair-viz",
           repo: "altair",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_toplevel.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative statistical visualization library for Python",
         homepage: "https://altair-viz.github.io",
         downloadPage: "https://github.com/altair-viz/altair",

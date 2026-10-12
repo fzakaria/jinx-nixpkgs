@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const version = "9.14";
   const yarnHash = "sha256-uixmtWC588JD6DfM9INeh6LV5L2S9lc+GFNW62FVm+4=";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "pgadmin-org",
       repo: "pgadmin4",
       rev: nix.thunk(() => nix.str`REL-${nix.app(nix.sel(lib, "versions", "major"), version)}_${nix.app(nix.sel(lib, "versions", "minor"), version)}`),
       hash: "sha256-ZUJEwTRKG23ztLKAp+hDHKeKxPc6VmC8gnJe4x85R44=",
       postFetch: nix.thunk(() => nix.str`cd $out/web
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.path(here, "./yarn-fix.patch"),
           substitutions: nix.thunk(() => [
             "--replace-fail",
@@ -60,13 +60,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       const src_1 = src;
       const missingHashes = nix.path(here, "./missing-hashes.json");
       const offlineCache = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           missingHashes: missingHashes,
           src: nix.thunk(() => nix.add(src_1, "/web")),
           hash: yarnHash,
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CPPFLAGS: "-DPNG_ARM_NEON_OPT=0",
         postgresqlExtraSettings: "wal_level = logical",
       }));
@@ -160,9 +160,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(server_mod
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pgadmin4: nix.thunk(() => nix.attr(nixosTests, "pgadmin4")),
         })),
       }));
@@ -210,7 +210,7 @@ python regression/runtests.py --pkg resql
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: nix.thunk(() => nix.str`Administration and development platform for PostgreSQL${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(server_mode)), ". Desktop Mode")}`),
         longDescription: nix.thunk(() => nix.str`pgAdmin 4 is designed to meet the needs of both novice and experienced Postgres users alike,
 providing a powerful graphical interface that simplifies the creation, maintenance and use of database objects.
@@ -227,7 +227,7 @@ ${(nix.asBool(server_mode) ? "This version is build with SERVER_MODE set to True
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname_1,
         version: version_1,
         src: src_1,

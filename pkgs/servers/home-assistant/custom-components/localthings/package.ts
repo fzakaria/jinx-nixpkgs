@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const smartthings_local = nix.arg($, "smartthings-local");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "mbillow",
       domain: "localthings",
       version: "0.32.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mbillow",
           repo: "localthings",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [cbor2, pyopenssl, smartthings_local]),
       nativeCheckInputs: nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mbillow/localthings/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Local-control Home Assistant component that authenticates to newer-firmware Samsung devices and talks over CoAP-DTLS",
         homepage: "https://github.com/mbillow/localthings",

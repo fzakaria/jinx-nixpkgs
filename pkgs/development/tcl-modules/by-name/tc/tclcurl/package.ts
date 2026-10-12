@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tclcurl",
       version: "7.22.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightaware",
           repo: "tclcurl-fa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl]),
       makeFlags: nix.thunk(() => ["LDFLAGS=-lcurl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Curl support in Tcl",
         homepage: "https://github.com/flightaware/tclcurl-fa",
         changelog: "https://github.com/flightaware/tclcurl-fa/blob/master/ChangeLog.txt",

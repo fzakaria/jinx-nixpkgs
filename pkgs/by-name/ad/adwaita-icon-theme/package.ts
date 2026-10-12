@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "adwaita-icon-theme",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/adwaita-icon-theme/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/adwaita-icon-theme-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+sbgQB/KcUeAVhoIG49+J8O8HbNOvaTaF1CB8msk1GA=",
         })))),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Postpone these changes for now, please discuss in https://github.com/NixOS/nixpkgs/pull/316416\nsubstituteInPlace index.theme \\\n  --replace-fail \"Hidden=true\" \"\" \\\n  --replace-fail \"Inherits=AdwaitaLegacy,hicolor\" \"Inherits=hicolor\"\n",
       dontDropIconThemeCache: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "adwaita-icon-theme" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "adwaita-icon-theme" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/adwaita-icon-theme",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/adwaita-icon-theme/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         platforms: nix.thunk(() => (() => {

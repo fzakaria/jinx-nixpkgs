@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const go_md2man = nix.arg($, "go-md2man");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "angrr",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linyinfeng",
           repo: "angrr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
       postBuild: "mkdir --parents build/{man-pages,shell-completions}\ncargo xtask man-pages --out build/man-pages\ncargo xtask shell-completions --out build/shell-completions\n",
       postInstall: "install -m400 -D ./direnv/angrr.sh $out/share/direnv/lib/angrr.sh\ninstallManPage build/man-pages/*\ninstallShellCompletion --cmd angrr \\\n  --bash build/shell-completions/angrr.bash \\\n  --fish build/shell-completions/angrr.fish \\\n  --zsh  build/shell-completions/_angrr\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           module: nix.thunk(() => nix.sel(nixosTests, "angrr")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Auto Nix GC Root Retention",
         homepage: "https://github.com/linyinfeng/angrr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

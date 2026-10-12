@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const pname = "functiontrace-server";
       const version = "0.8.6";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-f/DpT5IYhUA/+w+QK3Itk4bBaYRFhGOWQbN51YYrmxA=",
         }))));
       const cargoHash = "sha256-rDCIzJUFA+2iEpITg3MuKFfgiyQ6GtMvIigiHkX70M8=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Server for FunctionTrace, a graphical Python profiler",
         homepage: "https://functiontrace.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "prosperity30")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "tehmatt"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, cargoHash, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, cargoHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

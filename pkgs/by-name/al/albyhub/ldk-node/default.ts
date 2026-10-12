@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ldk-node",
       version: "0-unstable-2026-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getAlby",
           repo: "ldk-node",
           rev: "549107b4d731bc9af06b81fbcd65463e3055df16",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overflow",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Embeds the LDK node implementation compiled as shared library objects",
         homepage: "https://github.com/getAlby/ldk-node",
         changelog: nix.thunk(() => nix.str`https://github.com/getAlby/ldk-node/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

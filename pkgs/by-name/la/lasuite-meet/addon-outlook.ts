@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsecret = nix.arg($, "libsecret");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lasuite-meet-addon-outlook",
       src: src,
       version: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libsecret]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.attr(finalAttrs, "sourceRoot")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "build",
       installPhase: "runHook preInstall\n\ncp -r dist $out\ncp manifest.xml $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Outlook add-in support for LaSuite Meet",
       })),
     }));

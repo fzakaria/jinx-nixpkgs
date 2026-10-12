@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "remarkable-toolchain",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/remarkable-codex-toolchain/codex-x86_64-cortexa9hf-neon-rm10x-toolchain-${nix.sel(finalAttrs, "version")}.sh`),
           sha256: "sha256-ocODUUx2pgmqxMk8J+D+OvqlSHBSay6YzcqnxC9n59w=",
           executable: true,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p $out\nENVCLEANED=1 $src -y -d $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolchain for cross-compiling to reMarkable tablets",
         homepage: "https://remarkable.engineering/",
         sourceProvenance: nix.thunk(() => (() => {

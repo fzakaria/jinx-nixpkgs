@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildLV2, "LV2")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "socalabs-piano",
       version: "1.0.14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FigBug",
           repo: "piano",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_EXE_LINKER_FLAGS", nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), curl)}/lib`))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXcursor", "-lXext", "-lXi", "-lXinerama", "-lXrandr"]))),
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
@@ -98,11 +98,11 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), buildStandalone, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "Application",
             name: "socalabs-piano",
             desktopName: "Socalabs Piano",
@@ -111,7 +111,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Audio", "AudioVideo"]),
           })))))),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Digital waveguide piano physical model as a VST3, LV2 and CLAP plugin",
         homepage: "https://socalabs.com/synths/piano/",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -129,7 +129,7 @@ runHook postInstall
             nix.thunk(() => nix.lookup(w_1, "magnetophon")),
           ];
         })()),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ __proto__: pos$6, mainProgram: "Piano" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "Piano" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

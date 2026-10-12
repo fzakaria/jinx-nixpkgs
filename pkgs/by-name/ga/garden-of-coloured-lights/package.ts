@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const allegro4 = nix.arg($, "allegro4");
   const allegro = allegro4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "garden-of-coloured-lights",
       version: "1.0.9",
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       buildInputs: nix.thunk(() => [allegro]),
       prePatch: "noInline='s/inline //'\nsed -e \"$noInline\" -i src/stuff.c\nsed -e \"$noInline\" -i src/stuff.h\n",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/garden/${nix.sel(finalAttrs, "version")}/garden-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2vhzLCKaTMBPRgUUv/G6BRcfqtqeGVdccqUKkU8jUuM=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Old-school vertical shoot-em-up / bullet hell",
         mainProgram: "garden",
         homepage: "https://sourceforge.net/projects/garden/",

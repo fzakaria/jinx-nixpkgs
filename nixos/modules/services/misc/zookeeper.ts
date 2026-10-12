@@ -43,7 +43,7 @@ ${nix.sel(cfg, "extraConf")}
 ${nix.sel(cfg, "servers")}
 `);
   const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "zookeeper-conf",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "zoo.cfg", zookeeperConfig)),
@@ -51,59 +51,59 @@ ${nix.sel(cfg, "servers")}
       ]),
     }))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         zookeeper: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Zookeeper")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Zookeeper Client port.",
               default: 2181n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Zookeeper ID.",
               default: 0n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           purgeInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "The time interval in hours for which the purge task has to be triggered. Set to a positive integer (1 and above) to enable the auto purging.\n",
               default: 1n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           extraConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Extra configuration for Zookeeper.",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "initLimit=5\nsyncLimit=2\ntickTime=2000\n",
             })))),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "All Zookeeper Servers.",
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               example: "server.0=host0:2888:3888\nserver.1=host1:2888:3888\nserver.2=host2:2888:3888\n",
             })))),
           logging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Zookeeper logging configuration, logback.xml.",
               default: "<configuration>\n  <property name=\"zookeeper.console.threshold\" value=\"INFO\" />\n  <property name=\"zookeeper.log.dir\" value=\".\" />\n  <property name=\"zookeeper.log.file\" value=\"zookeeper.log\" />\n  <property name=\"zookeeper.log.threshold\" value=\"INFO\" />\n  <property name=\"zookeeper.log.maxfilesize\" value=\"256MB\" />\n  <property name=\"zookeeper.log.maxbackupindex\" value=\"20\" />\n  <appender name=\"CONSOLE\" class=\"ch.qos.logback.core.ConsoleAppender\">\n    <encoder>\n      <pattern>%d{ISO8601} [myid:%X{myid}] - %-5p [%t:%C{1}@%L] - %m%n</pattern>\n    </encoder>\n    <filter class=\"ch.qos.logback.classic.filter.ThresholdFilter\">\n      <level>${zookeeper.console.threshold}</level>\n    </filter>\n  </appender>\n  <root level=\"INFO\">\n    <appender-ref ref=\"CONSOLE\" />\n  </root>\n</configuration>\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/zookeeper",
               description: "Data directory for Zookeeper\n",
             })))),
           extraCmdLineOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Extra command line options for the Zookeeper launcher.",
               default: nix.thunk(() => [
                 "-Dcom.sun.management.jmxremote",
@@ -117,14 +117,14 @@ ${nix.sel(cfg, "servers")}
               ]),
             })))),
           preferIPv4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Add the -Djava.net.preferIPv4Stack=true flag to the Zookeeper server.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zookeeper", nix.thunk(() => ({})))),
           jre: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "The JRE with which to run Zookeeper",
               default: nix.thunk(() => nix.sel(cfg, "package", "jre")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.zookeeper.jre")),
@@ -135,29 +135,29 @@ ${nix.sel(cfg, "servers")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0700 zookeeper - - -`),
               nix.thunk(() => nix.str`Z '${nix.sel(cfg, "dataDir")}' 0700 zookeeper - - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             zookeeper: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Zookeeper Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "jre")}/bin/java \\
   -cp "${nix.sel(cfg, "package")}/lib/*:${configDir}" \\
   ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraCmdLineOptions")))} \\
@@ -175,18 +175,18 @@ mkdir -p ${nix.sel(cfg, "dataDir")}/version-2
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             zookeeper: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               isSystemUser: true,
               group: "zookeeper",
               description: "Zookeeper daemon user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$23, zookeeper: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$23, zookeeper: nix.thunk(() => ({})) })),
         })),
       })))),
   };

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const prevo_tools = nix.arg($, "prevo-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prevo-data",
       version: "2020-03-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bpeel",
           repo: "revo",
           rev: "1e8d7197c0bc831e2127909e77e64dfc26906bdd",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "prevodb -s -i $src -o prevo.db\n",
       installPhase: "mkdir -p $out/share/prevo\ncp prevo.db $out/share/prevo/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data for offline version of the Esperanto dictionary Reta Vortaro",
         longDescription: "PReVo is the \"portable\" ReVo, i.e., the offline version\nof the Esperanto dictionary Reta Vortaro.\n\nThis package provides the ReVo database for the prevo command line application.\n",
         homepage: "https://github.com/bpeel/revo",

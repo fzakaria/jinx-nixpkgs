@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "braa",
       version: "0.82",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://s-tech.elsat.net.pl/braa/braa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GS3kk432BdGx/sLzzjXvotD9Qn4S3U4XtMmM0fWMhGA=",
         })))),
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: "runHook preInstall\ninstall -Dm755 braa $out/bin/braa\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mass snmp scanner",
         homepage: "http://s-tech.elsat.net.pl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

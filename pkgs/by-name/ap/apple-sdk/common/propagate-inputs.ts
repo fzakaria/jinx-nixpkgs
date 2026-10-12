@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xcbuild = nix.arg($, "xcbuild");
   const cupsHeaders = nix.thunk(() => nix.app(nix.sel(darwin, "bootstrapStdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), cups)}-headers`),
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), cups)),
       src: nix.thunk(() => nix.attr(cups, "src")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cups, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return (self) => (super$) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "propagatedBuildInputs"), [
       libiconv,
       nix.thunk(() => nix.sel(darwin, "libresolv")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
   ln -s "$header" "usr/include/$(basename "$header")"
 done
 `)),
-    passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), { __proto__: pos$3, "cups-headers": cupsHeaders })),
+    passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), { [nix.POS]: pos$3, "cups-headers": cupsHeaders })),
   });
 })(), formals$1);
 //# sourceMappingURL=propagate-inputs.ts.map

@@ -78,34 +78,34 @@ export default nix.lambda((args) => (() => {
   const recommendFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "iniWithGlobalSection"), nix.thunk(() => ({}))));
   const ppdSettingsSubmodule = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     freeformType: nix.thunk(() => nix.sel(ppdSettingsFormat, "type")),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       main: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               options: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     default: "balanced",
                     description: "Default PPD profile.",
                     example: "performance",
                   })))),
-                battery_detection: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "battery detection"), { __proto__: pos$2, default: true })),
+                battery_detection: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "battery detection"), { [nix.POS]: pos$2, default: true })),
               })),
             })))),
           default: nix.thunk(() => ({})),
           description: "Core configuration for power-profiles-daemon support.",
         })))),
       profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "power-saver": "powersave",
             balanced: "balanced",
             performance: "throughput-performance",
@@ -113,42 +113,42 @@ export default nix.lambda((args) => (() => {
           description: "Map of PPD profiles to native TuneD profiles.",
         })))),
       battery: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
-          default: nix.thunk(() => ({ __proto__: pos$8, balanced: "balanced-battery" })),
+          default: nix.thunk(() => ({ [nix.POS]: pos$8, balanced: "balanced-battery" })),
           description: "Map of PPD battery states to TuneD profiles.",
         })))),
     })),
   }));
   const settingsSubmodule = nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
-      daemon: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the use of a daemon for TuneD"), { __proto__: pos$12, default: true })),
+      [nix.POS]: pos$19,
+      daemon: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the use of a daemon for TuneD"), { [nix.POS]: pos$12, default: true })),
       dynamic_tuning: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dynamic tuning")),
       sleep_interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 1n,
           description: "Interval in which the TuneD daemon is waken up and checks for events (in seconds).",
         })))),
       update_interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 10n,
           description: "Update interval for dynamic tuning (in seconds).",
         })))),
-      recommend_command: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "recommend functionality"), { __proto__: pos$15, default: true })),
-      reapply_sysctl: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the reapplying of global sysctls after TuneD sysctls are applied"), { __proto__: pos$16, default: true })),
+      recommend_command: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "recommend functionality"), { [nix.POS]: pos$15, default: true })),
+      reapply_sysctl: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the reapplying of global sysctls after TuneD sysctls are applied"), { [nix.POS]: pos$16, default: true })),
       default_instance_priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.sel(lib, "types", "int")),
           default: 0n,
           description: "Default instance (unit) priority.",
         })))),
       profile_dirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "/etc/tuned/profiles",
           apply: (dirs) => nix.add(nix.str`${nix.sel(cfg, "package")}/lib/tuned/profiles,`, dirs),
@@ -157,37 +157,37 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         tuned: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TuneD")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tuned", nix.thunk(() => ({})))),
           ppdSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), ppdSettingsSubmodule)),
               default: nix.thunk(() => ({})),
               description: "Settings for TuneD's power-profiles-daemon compatibility service.\n",
             })))),
-          ppdSupport: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "translation of power-profiles-daemon API calls to TuneD"), { __proto__: pos$22, default: true })),
+          ppdSupport: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "translation of power-profiles-daemon API calls to TuneD"), { [nix.POS]: pos$22, default: true })),
           profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     freeformType: nix.thunk(() => nix.sel(profileFormat, "type")),
                   })))))),
               default: nix.thunk(() => ({})),
               description: "Profiles for TuneD.\nSee {manpage}`tuned.conf(5)` for details.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 "my-cool-profile": nix.thunk(() => ({
-                  __proto__: pos$26,
-                  main: nix.thunk(() => ({ __proto__: pos$24, include: "my-other-cool-profile" })),
+                  [nix.POS]: pos$26,
+                  main: nix.thunk(() => ({ [nix.POS]: pos$24, include: "my-other-cool-profile" })),
                   my_sysctl: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     type: "sysctl",
                     replace: true,
                     "net.core.rmem_default": 262144n,
@@ -197,14 +197,14 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           recommend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(recommendFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "TuneD rules for `recommend_profile`, written to\n`/etc/tuned/recommend.conf`.\n\nAt startup, the daemon evaluates the file in alphabetical order.\nThe first matching entry is applied. Empty profile rules always match.\n\nIf `services.tuned.ppdSupport` is `true`, settings in\n`services.tuned.ppdSettings` take precedence over both the default\nbehaviour and `services.tuned.recommend`. For example:\n`services.tuned.ppdSettings.main.default = \"performance\";` ensures\nthe corresponding PPD profile is applied regardless of\n`services.tuned.recommend` setting.\n\nIf `ppdSupport` is `false`, only `services.tuned.recommend` is used;\nif `recommend` is empty, TuneD's default behaviour applies.\n\nSee {manpage}`tuned-main.conf(5)` for more details.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Enable `virtual-guest` profile for VM guests\nvirtual-guest = {\n  virt = \".+\";\n};\n\n# Default to the `desktop` profile for all other systems\ndesktop = { };\n")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), settingsSubmodule)),
               default: nix.thunk(() => ({})),
               description: "Configuration for TuneD.\nSee {manpage}`tuned-main.conf(5)` for details.\n",
@@ -213,25 +213,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => nix.sel(config, "security", "polkit", "enable")),
             message: "`services.tuned` requires `security.polkit` to be enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "settings", "dynamic_tuning")) || nix.asBool(nix.sel(cfg, "settings", "daemon")))),
             message: "`services.tuned.settings.dynamic_tuning` requires `services.tuned.settings.daemon` to be `true`.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "ppdSupport")) || nix.asBool(nix.sel(config, "services", "upower", "enable")))),
             message: "`services.tuned.ppdSupport` requires `services.upower` to be enabled.",
           })),
         ], nix.builtins.map((name) => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(nix.app(moduleFromName, name), "enable"))),
             message: nix.thunk(() => nix.str`\`services.tuned\` conflicts with \`${name}\`.`),
           }), nix.thunk(() => [
@@ -241,76 +241,76 @@ export default nix.lambda((args) => (() => {
             "services.tlp",
           ])))),
         environment: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "tuned/tuned-main.conf": nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "tuned-main.conf", nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       sections: nix.thunk(() => ({})),
                       globalSection: nix.thunk(() => nix.sel(cfg, "settings")),
                     })))),
                 })),
               })),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ppdSupport")), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   "tuned/ppd.conf": nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     source: nix.thunk(() => nix.app(nix.sel(ppdSettingsFormat, "generate"), "ppd.conf", nix.thunk(() => nix.sel(cfg, "ppdSettings")))),
                   })),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "recommend_command")) && nix.asBool(!nix.eq(nix.sel(cfg, "recommend"), {})))), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   "tuned/recommend.conf": nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     source: nix.thunk(() => nix.app(nix.sel(recommendFormat, "generate"), "recommend.conf", nix.thunk(() => nix.sel(cfg, "recommend")))),
                   })),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tuned/profiles/${name}/tuned.conf`), nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     source: nix.thunk(() => nix.app(nix.sel(profileFormat, "generate"), "tuned.conf", value)),
                   }))), nix.thunk(() => nix.sel(cfg, "profiles")))),
             ]))),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           polkit: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           dbus: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
-          "power-profiles-daemon": nix.thunk(() => ({ __proto__: pos$50, enable: false })),
+          "power-profiles-daemon": nix.thunk(() => ({ [nix.POS]: pos$50, enable: false })),
           upower: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ppdSupport")), true)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$55,
-            tuned: nix.thunk(() => ({ __proto__: pos$53, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-            "tuned-ppd": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ppdSupport")), nix.thunk(() => ({ __proto__: pos$54, wantedBy: nix.thunk(() => ["graphical.target"]) })))),
+            [nix.POS]: pos$55,
+            tuned: nix.thunk(() => ({ [nix.POS]: pos$53, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            "tuned-ppd": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ppdSupport")), nix.thunk(() => ({ [nix.POS]: pos$54, wantedBy: nix.thunk(() => ["graphical.target"]) })))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             settings: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               "tuned-profiles": nix.thunk(() => ({
-                __proto__: pos$57,
-                "/etc/tuned/profiles": nix.thunk(() => ({ __proto__: pos$56, d: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$57,
+                "/etc/tuned/profiles": nix.thunk(() => ({ [nix.POS]: pos$56, d: nix.thunk(() => ({})) })),
               })),
             })),
           })),

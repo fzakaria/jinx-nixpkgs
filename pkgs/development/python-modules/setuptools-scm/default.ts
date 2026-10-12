@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "setuptools_scm",
           version: version,
           hash: "sha256-u7qP51RRbN79AX9EVnIXdebvlmK9eIf7Uq4mgT1IOMM=",
@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
       const postPatch = null;
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [setuptools, vcs_versioning]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, rich: nix.thunk(() => [rich]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, rich: nix.thunk(() => [rich]) }));
       const pythonImportsCheck = nix.thunk(() => ["setuptools_scm"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/setuptools_scm/blob/${version}/CHANGELOG.md`),
         homepage: "https://github.com/pypa/setuptools_scm/",
         description: "Handles managing your python package versions in scm metadata",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

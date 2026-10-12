@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "mkdir -p $out/Applications\ncp -r *.app $out/Applications\n",
       dontFixup: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=darwin.ts.map

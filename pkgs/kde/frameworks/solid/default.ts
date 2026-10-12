@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const libimobiledevice = nix.arg($, "libimobiledevice");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "solid",
       extraNativeBuildInputs: nix.thunk(() => [qttools, bison, flex]),
       extraBuildInputs: nix.thunk(() => [libimobiledevice]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "solid-hardware6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "solid-hardware6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

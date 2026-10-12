@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KevinMusgrave",
           repo: "pytorch-metric-learning",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, torch, scikit_learn, tqdm]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "with-hooks": nix.thunk(() => [faiss, tensorboard]),
         "with-hooks-cpu": nix.thunk(() => [faiss, tensorboard]),
       }));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/testers/", "tests/utils/"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Metric learning library for PyTorch",
         homepage: "https://github.com/KevinMusgrave/pytorch-metric-learning",
         changelog: nix.thunk(() => nix.str`https://github.com/KevinMusgrave/pytorch-metric-learning/releases/tag/${nix.sel(src, "tag")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

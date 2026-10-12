@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "softhsm",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "softhsm",
           repo: "SoftHSMv2",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: "rm -rf $out/var",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.softhsm.org/",
         description: "Cryptographic store accessible through a PKCS #11 interface",
         longDescription: "\n      SoftHSM provides a software implementation of a generic\n      cryptographic device with a PKCS#11 interface, which is of\n      course especially useful in environments where a dedicated hardware\n      implementation of such a device - for instance a Hardware\n      Security Module (HSM) or smartcard - is not available.\n\n      SoftHSM follows the OASIS PKCS#11 standard, meaning it should be\n      able to work with many cryptographic products. SoftHSM is a\n      programme of The Commons Conservancy.\n    ",

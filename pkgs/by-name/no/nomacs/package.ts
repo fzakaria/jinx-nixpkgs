@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nomacs",
       version: "3.23.3",
       hash: "sha256-Liv09fgwQs6c0mA/35I+fAQV32SrG4gnFTewftfn/h8=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomacs",
           repo: "nomacs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6, "qtbase", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nomacs.org",
         description: "Qt-based image viewer",
         longDescription: "nomacs is a free, open source image viewer, which supports multiple\nplatforms. You can use it for viewing all common image formats including\nRAW and psd images.\n\nnomacs features semi-transparent widgets that display additional\ninformation such as thumbnails, metadata or histogram. It is able to\nbrowse images in zip or MS Office files which can be extracted to a\ndirectory. Metadata stored with the image can be displayed and you can add\nnotes to images. A thumbnail preview of the current folder is included as\nwell as a file explorer panel which allows switching between\nfolders. Within a directory you can apply a file filter, so that only\nimages are displayed whose filenames have a certain string or match a\nregular expression. Activating the cache allows for instantly switching\nbetween images.\n",

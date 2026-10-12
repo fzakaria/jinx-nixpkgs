@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const mkDefault = nix.thunk(() => nix.attr(lib, "mkDefault"));
   const mkForce = nix.thunk(() => nix.attr(lib, "mkForce"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     imports: nix.thunk(() => [
       nix.path(here, "../../modules/testing/test-instrumentation.nix"),
       nix.path(here, "../../modules/virtualisation/guest-networking-options.nix"),
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         key: "no-manual",
         documentation: nix.thunk(() => ({
-          __proto__: pos$2,
-          nixos: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+          [nix.POS]: pos$2,
+          nixos: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         key: "no-revision",
         config: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           system: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             nixos: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               revision: nix.thunk(() => nix.app(mkForce, "constant-nixos-revision")),
               versionSuffix: nix.thunk(() => nix.app(mkForce, "test")),
               label: nix.thunk(() => nix.app(mkForce, "test")),
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           key: "no-switch-to-configuration",
           system: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             switch: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "isSpecialisation")) || nix.asBool(!nix.eq(nix.sel(config, "specialisation"), {})))) || nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "boot", "isContainer"))) && nix.asBool(nix.sel(config, "virtualisation", "installBootLoader")))))))),
             })),
           })),

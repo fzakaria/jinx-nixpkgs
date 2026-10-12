@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rkvm",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "htrefil",
           repo: "rkvm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,11 +44,11 @@ install -Dm444 example/client.toml "$out/etc/rkvm/client.example.toml"
 wrapProgram $out/bin/rkvm-certificate-gen --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssl]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, rkvm: nix.thunk(() => nix.attr(nixosTests, "rkvm")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, rkvm: nix.thunk(() => nix.attr(nixosTests, "rkvm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Virtual KVM switch for Linux machines",
         homepage: "https://github.com/htrefil/rkvm",
         changelog: nix.thunk(() => nix.str`https://github.com/htrefil/rkvm/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pupdate";
       const version = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattpannella",
           repo: "pupdate",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0"));
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/mattpannella/pupdate",
         description: "Update utility for the openFPGA cores, firmware, and other stuff on your Analogue Pocket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pupdate",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

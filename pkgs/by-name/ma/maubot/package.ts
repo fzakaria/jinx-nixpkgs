@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const encryptionSupport = nix.argOr($, "encryptionSupport", () => true);
   const python = python3;
   const maubot = nix.thunk(() => nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "maubot",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZXwyctTjKg1ssYE6Ehc1s1DPhWyc08dIQ4MQz6EQXGg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/maubot/maubot/commit/ef6e23eccb530187dd3447b6aac2047d4a32fb83.patch",
             hash: "sha256-d5fu47F93aXZmk6MiSsxTE8pHjMKNL0FUdU+ynUqY2o=",
           })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return nix.concat([
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ __proto__: pos$3, withOlm: encryptionSupport })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withOlm: encryptionSupport })))),
           nix.thunk(() => nix.lookup(w_1, "aiohttp")),
           nix.thunk(() => nix.lookup(w_1, "yarl")),
           nix.thunk(() => nix.lookup(w_1, "asyncpg")),
@@ -82,23 +82,23 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["bcrypt", "ruamel.yaml"]),
       pythonImportsCheck: nix.thunk(() => ["maubot"]),
       passthru: nix.thunk(() => (() => {
-        const wrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ __proto__: pos$4, unwrapped: maubot, python3: python }))));
+        const wrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, unwrapped: maubot, python3: python }))));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-tests`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${maubot}/bin/mbc --help > $out
 `))),
           })),
           python: python,
-          plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({ __proto__: pos$6, maubot: maubot, python3: python })))),
-          withPythonPackages: (pythonPackages) => nix.app(wrapper, nix.thunk(() => ({ __proto__: pos$7, pythonPackages: pythonPackages }))),
-          withPlugins: (plugins) => nix.app(wrapper, nix.thunk(() => ({ __proto__: pos$8, plugins: plugins }))),
-          withBaseConfig: (baseConfig) => nix.app(wrapper, nix.thunk(() => ({ __proto__: pos$9, baseConfig: baseConfig }))),
+          plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({ [nix.POS]: pos$6, maubot: maubot, python3: python })))),
+          withPythonPackages: (pythonPackages) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: pos$7, pythonPackages: pythonPackages }))),
+          withPlugins: (plugins) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: pos$8, plugins: plugins }))),
+          withBaseConfig: (baseConfig) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: pos$9, baseConfig: baseConfig }))),
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Plugin-based Matrix bot system written in Python",
         homepage: "https://maubot.xyz/",
         changelog: nix.thunk(() => nix.str`https://github.com/maubot/maubot/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

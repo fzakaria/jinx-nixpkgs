@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dejagnu",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/dejagnu/dejagnu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-h9rvrNeVi0pp+IxoVtvRY0JhljxBQHnQw3H1ic1mouM=",
         })))),
@@ -43,7 +43,7 @@ ln -s ${expect}/bin/expect $out/bin/expect
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for testing other programs",
         longDescription: "DejaGnu is a framework for testing other programs.  Its purpose\nis to provide a single front end for all tests.  Think of it as a\ncustom library of Tcl procedures crafted to support writing a\ntest harness.  A test harness is the testing infrastructure that\nis created to support a specific program or tool.  Each program\ncan have multiple testsuites, all supported by a single test\nharness.  DejaGnu is written in Expect, which in turn uses Tcl --\nTool command language.\n",
         homepage: "https://www.gnu.org/software/dejagnu/",

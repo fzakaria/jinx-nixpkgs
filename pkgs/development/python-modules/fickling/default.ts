@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fickling",
       version: "0.1.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trailofbits",
           repo: "fickling",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [stdlib_list]),
       pythonRelaxDeps: nix.thunk(() => ["stdlib-list"]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, torch: nix.thunk(() => [numpy, torch, torchvision]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, torch: nix.thunk(() => [numpy, torch, torchvision]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([py7zr, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       doCheck: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       pythonImportsCheck: nix.thunk(() => ["fickling"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python pickling decompiler and static analyzer",
         homepage: "https://github.com/trailofbits/fickling",
         changelog: nix.thunk(() => nix.str`https://github.com/trailofbits/fickling/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

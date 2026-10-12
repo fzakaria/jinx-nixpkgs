@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.18.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "SmilyOrg",
       repo: "photofield",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ZPEkvh+wVudDz7h+5V8I90myyi4ksTU5B5ffI7DrCL0=",
     }))));
   const webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       version: version,
       pname: "photofield-ui",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/share\nmv dist $out/share/photofield-ui\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "photofield",
       version: version,
       src: src,
@@ -61,15 +61,15 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [exiftool, ffmpeg]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: photofield, command: "photofield -version" })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: photofield, command: "photofield -version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Experimental fast photo viewer",
         homepage: "https://github.com/SmilyOrg/photofield",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

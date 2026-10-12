@@ -40,35 +40,35 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "gocd-agent"));
   const opt = nix.thunk(() => nix.sel(options, "services", "gocd-agent"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "gocd-agent": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gocd-agent")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "gocd-agent",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User the Go.CD agent should execute under.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "gocd-agent",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "If the default user \"gocd-agent\" is configured then this is the primary\ngroup of that user.\n",
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["wheel", "docker"]),
               description: "List of extra groups that the \"gocd-agent\" user should be a part of.\n",
             })))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "stdenv")),
                 nix.thunk(() => nix.sel(pkgs, "jre")),
@@ -81,38 +81,38 @@ export default nix.lambda((args) => (() => {
               description: "Packages to add to PATH for the Go.CD agent process.\n",
             })))),
           agentConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "agent.auto.register.resources=ant,java\nagent.auto.register.environments=QA,Performance\nagent.auto.register.hostname=Agent01\n",
               description: "Agent registration configuration.\n",
             })))),
           goServer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "https://127.0.0.1:8154/go",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "URL of the GoCD Server to attach the Go.CD Agent to.\n",
             })))),
           workDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "/var/lib/go-agent",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the working directory in which the Go.CD agent java archive resides.\n",
             })))),
           initialJavaHeapSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "128m",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the initial java heap memory size for the Go.CD agent java process.\n",
             })))),
           maxJavaHeapMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "256m",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the java maximum heap memory size for the Go.CD agent java process.\n",
             })))),
           startupOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => [
                 nix.thunk(() => nix.str`-Xms${nix.sel(cfg, "initialJavaHeapSize")}`),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
               description: "Specifies startup command line arguments to pass to Go.CD agent\njava process.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => [
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
               description: "Specifies additional command line arguments to pass to Go.CD agent\njava process.  Example contains debug and gcLog arguments.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -160,20 +160,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "gocd-agent")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "gocd-agent": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "gocd-agent")),
               })),
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gocd-agent")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "gocd-agent": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "gocd-agent user",
                 createHome: true,
                 home: nix.thunk(() => nix.sel(cfg, "workDir")),
@@ -185,18 +185,18 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "gocd-agent": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "GoCD Agent",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => (() => {
                 const selectedSessionVars = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.builtins.elem(n, nix.thunk(() => ["NIX_PATH"])), nix.thunk(() => nix.sel(config, "environment", "sessionVariables"))));
                 return nix.update(selectedSessionVars, nix.update({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   NIX_REMOTE: "daemon",
                   AGENT_WORK_DIR: nix.thunk(() => nix.sel(cfg, "workDir")),
                   AGENT_STARTUP_ARGS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "startupOptions")))}`),
@@ -225,7 +225,7 @@ ${nix.sel(pkgs, "jre")}/bin/java ${nix.app(nix.sel(lib, "concatStringsSep"), " "
                       -serverUrl ${nix.sel(cfg, "goServer")}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "workDir")),
                 RestartSec: 30n,

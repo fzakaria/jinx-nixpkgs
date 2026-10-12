@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openfst",
       version: "1.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qOu7bz2S0H5nFQBYdHJRjPyHy3m5plSlqKuy0OspgBY=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for working with finite-state transducers",
         longDescription: "Library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs).\nFSTs have key applications in speech recognition and synthesis, machine translation, optical character recognition,\npattern matching, string processing, machine learning, information extraction and retrieval among others\n",
         homepage: "https://www.openfst.org/twiki/bin/view/FST/WebHome",

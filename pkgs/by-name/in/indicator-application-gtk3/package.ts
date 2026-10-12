@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.10.1";
       const name = nix.thunk(() => nix.str`${pname}-gtk3-${version}`);
       const src = nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.launchpad.net/~indicator-applet-developers/${pname}/trunk.17.04`),
           rev: "260",
           sha256: "1f0jdyqqb5g86zdpbcyn16x94yjigsfiv2kf73dvni5rp1vafbq1",
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["CFLAGS=-Wno-error", "--sysconfdir=/etc", "--localstatedir=/var"]);
       const installFlags = nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: "$(out)/lib/systemd/user",
         PKG_CONFIG_INDICATOR3_0_4_INDICATORDIR: "$(out)/lib/indicators3/7/",
       }));
       const postFixup = "rm -rf $out/share/indicator-application/upstart\nrm -rf $out/share/upstart\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Indicator to take menus from applications and place them in the panel",
         homepage: "https://launchpad.net/indicator-application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "msteen"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         name,

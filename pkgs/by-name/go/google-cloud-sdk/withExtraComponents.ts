@@ -60,7 +60,7 @@ done
 `;
     })());
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`google-cloud-sdk-${nix.sel(google_cloud_sdk, "version")}`),
         meta: nix.thunk(() => nix.attr(google_cloud_sdk, "meta")),
         paths: nix.thunk(() => nix.concat([google_cloud_sdk], comps)),

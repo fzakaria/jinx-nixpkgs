@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
   const dnsmasqResolve = nix.thunk(() => (nix.asBool(nix.sel(config, "services", "dnsmasq", "enable")) && nix.asBool(nix.sel(config, "services", "dnsmasq", "resolveLocalQueries"))));
   const transformSettings = (settings) => nix.app(nix.sel(lib, "mapAttrs"), (key) => (value) => (nix.asBool((nix.asBool(nix.app(elem, key, nix.thunk(() => ["DNS", "Domains", "FallbackDNS"]))) && nix.asBool(nix.app(isList, value)))) ? nix.app(concatStringsSep, " ", value) : nix.force(value)), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (value) => !nix.eq(value, null), settings)));
   const resolvedConf = nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       Resolve: nix.thunk(() => nix.app(transformSettings, nix.thunk(() => nix.sel(cfg, "settings", "Resolve")))),
     }))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "resolved", "fallbackDns"]), nix.thunk(() => ["services", "resolved", "settings", "Resolve", "FallbackDNS"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "resolved", "domains"]), nix.thunk(() => ["services", "resolved", "settings", "Resolve", "Domains"]))),
@@ -107,44 +107,44 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "resolved", "extraConfig"]), "Use services.resolved.settings instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         resolved: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Systemd DNS resolver daemon (systemd-resolved)")),
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             Resolve: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Settings option for systemd-resolved.\nSee {manpage}`resolved.conf(5)` for all available options.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
                     options: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       DNS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: unitOption,
                           default: nix.thunk(() => nix.sel(config, "networking", "nameservers")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "config.networking.nameservers")),
                           description: "List of IP addresses to query as recursive DNS resolvers.\n",
                         })))),
                       DNSOverTLS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: unitOption,
                           default: false,
                           description: "Whether to use TLS encryption for DNS queries. Requires\nnameservers that support DNS-over-TLS.\n",
                         })))),
                       DNSSEC: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: unitOption,
                           default: false,
                           description: "Whether to validate DNSSEC for DNS lookups.\n",
                         })))),
                       Domains: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: unitOption,
                           default: nix.thunk(() => nix.sel(config, "networking", "search")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "config.networking.search")),
@@ -156,18 +156,18 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           dnsDelegates: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "dns-delegate files to be created.\nSee {manpage}`systemd.dns-delegate(5)` for more info.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     options: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       Delegate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           description: "Settings option for systemd dns-delegate files.\nSee {manpage}`systemd.dns-delegate(5)` for all available options.\n",
                           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
                             })))),
                         })))),
@@ -177,15 +177,15 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         initrd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             resolved: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   default: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "network", "enable")),
                   defaultText: "config.boot.initrd.systemd.network.enable",
                   description: "Whether to enable resolved for stage 1 networking.\nUses the toplevel 'services.resolved' options for 'resolved.conf'\n",
@@ -197,39 +197,39 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "useHostResolvConf"))),
                 message: "Using host resolv.conf is not supported with systemd-resolved",
               })),
             ]),
             users: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               users: nix.thunk(() => ({
-                __proto__: pos$25,
-                "systemd-resolve": nix.thunk(() => ({ __proto__: pos$24, group: "systemd-resolve" })),
+                [nix.POS]: pos$25,
+                "systemd-resolve": nix.thunk(() => ({ [nix.POS]: pos$24, group: "systemd-resolve" })),
               })),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               nssDatabases: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 hosts: nix.thunk(() => nix.app(mkOrder, 501n, nix.thunk(() => ["resolve [!UNAVAIL=return]"]))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               additionalUpstreamSystemUnits: nix.thunk(() => [
                 "systemd-resolved.service",
                 "systemd-resolved-monitor.socket",
                 "systemd-resolved-varlink.socket",
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 "systemd-resolved": nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   wantedBy: nix.thunk(() => ["sysinit.target"]),
                   aliases: nix.thunk(() => ["dbus-org.freedesktop.resolve1.service"]),
                   reloadTriggers: nix.thunk(() => nix.concat([
@@ -240,32 +240,32 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               etc: nix.thunk(() => nix.update({
-                __proto__: pos$34,
-                "systemd/resolved.conf": nix.thunk(() => ({ __proto__: pos$32, text: resolvedConf })),
-                "resolv.conf": nix.thunk(() => ({ __proto__: pos$33, source: "/run/systemd/resolve/stub-resolv.conf" })),
+                [nix.POS]: pos$34,
+                "systemd/resolved.conf": nix.thunk(() => ({ [nix.POS]: pos$32, text: resolvedConf })),
+                "resolv.conf": nix.thunk(() => ({ [nix.POS]: pos$33, source: "/run/systemd/resolve/stub-resolv.conf" })),
               }, nix.update(nix.app(optionalAttrs, dnsmasqResolve, nix.thunk(() => ({
-                  __proto__: pos$36,
-                  "dnsmasq-resolv.conf": nix.thunk(() => ({ __proto__: pos$35, source: "/run/systemd/resolve/resolv.conf" })),
+                  [nix.POS]: pos$36,
+                  "dnsmasq-resolv.conf": nix.thunk(() => ({ [nix.POS]: pos$35, source: "/run/systemd/resolve/resolv.conf" })),
                 }))), nix.app(mapAttrs$, (name) => (value) => nix.app(nameValuePair, nix.thunk(() => nix.str`systemd/dns-delegate.d/${name}.dns-delegate`), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     text: nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => nix.app(transformSettings, value)))),
                   }))), nix.thunk(() => nix.sel(cfg, "dnsDelegates")))))),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$41,
-              networkmanager: nix.thunk(() => ({ __proto__: pos$39, dns: "systemd-resolved" })),
+              [nix.POS]: pos$41,
+              networkmanager: nix.thunk(() => ({ [nix.POS]: pos$39, dns: "systemd-resolved" })),
               resolvconf: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 enable: false,
                 package: nix.thunk(() => nix.sel(config, "systemd", "package")),
               })),
             })),
             nix: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               firewall: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 extraNftablesRules: nix.thunk(() => [
                   "ip daddr { 127.0.0.53, 127.0.0.54 } udp dport 53 accept comment \"systemd-resolved listening IPs\"",
                 ]),
@@ -273,33 +273,33 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "resolved", "enable")), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
                 message: "'boot.initrd.services.resolved.enable' can only be enabled with systemd stage 1.",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               initrd: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   contents: nix.thunk(() => ({
-                    __proto__: pos$47,
-                    "/etc/systemd/resolved.conf": nix.thunk(() => ({ __proto__: pos$46, text: resolvedConf })),
+                    [nix.POS]: pos$47,
+                    "/etc/systemd/resolved.conf": nix.thunk(() => ({ [nix.POS]: pos$46, text: resolvedConf })),
                   })),
                   tmpfiles: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       "systemd-resolved-stub": nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         "/etc/resolv.conf": nix.thunk(() => ({
-                          __proto__: pos$49,
-                          L: nix.thunk(() => ({ __proto__: pos$48, argument: "/run/systemd/resolve/stub-resolv.conf" })),
+                          [nix.POS]: pos$49,
+                          L: nix.thunk(() => ({ [nix.POS]: pos$48, argument: "/run/systemd/resolve/stub-resolv.conf" })),
                         })),
                       })),
                     })),
@@ -309,15 +309,15 @@ export default nix.lambda((args) => (() => {
                     "systemd-resolved-monitor.socket",
                     "systemd-resolved-varlink.socket",
                   ]),
-                  users: nix.thunk(() => ({ __proto__: pos$53, "systemd-resolve": nix.thunk(() => ({})) })),
-                  groups: nix.thunk(() => ({ __proto__: pos$54, "systemd-resolve": nix.thunk(() => ({})) })),
+                  users: nix.thunk(() => ({ [nix.POS]: pos$53, "systemd-resolve": nix.thunk(() => ({})) })),
+                  groups: nix.thunk(() => ({ [nix.POS]: pos$54, "systemd-resolve": nix.thunk(() => ({})) })),
                   storePaths: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/lib/systemd/systemd-resolved`),
                   ]),
                   services: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     "systemd-resolved": nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       wantedBy: nix.thunk(() => ["sysinit.target"]),
                       aliases: nix.thunk(() => ["dbus-org.freedesktop.resolve1.service"]),
                     })),

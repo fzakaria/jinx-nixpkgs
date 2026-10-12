@@ -25,31 +25,31 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.path(here, "./iso-image.nix"),
       nix.path(here, "../../profiles/base.nix"),
       nix.path(here, "../../profiles/installation-device.nix"),
     ]),
-    hardware: nix.thunk(() => ({ __proto__: pos$1, enableAllHardware: true })),
+    hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableAllHardware: true })),
     console: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       packages: nix.thunk(() => nix.concat(nix.sel(options, "console", "packages", "default"), [nix.thunk(() => nix.sel(pkgs, "terminus_font"))])),
     })),
-    isoImage: nix.thunk(() => ({ __proto__: pos$3, makeEfiBootable: true, makeUsbBootable: true })),
+    isoImage: nix.thunk(() => ({ [nix.POS]: pos$3, makeEfiBootable: true, makeUsbBootable: true })),
     boot: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       loader: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         grub: nix.thunk(() => ({
-          __proto__: pos$5,
-          memtest86: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$5,
+          memtest86: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
         })),
       })),
       initrd: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         luks: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           devices: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({})))),
         })),
       })),
@@ -66,21 +66,21 @@ done
     swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), [])),
     fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => nix.sel(config, "lib", "isoFileSystems")))),
     environment: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       defaultPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "rsync"))];
       })()),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       git: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
     })),
     system: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(lib, "trivial", "release")))),
     })),
   };

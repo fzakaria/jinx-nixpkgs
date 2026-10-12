@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nufmt",
       version: "0-unstable-2026-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nushell",
           repo: "nufmt",
           rev: "f279091abd66c5d20838f1c5601f5be758b122e1",
@@ -37,11 +37,11 @@ substituteInPlace tests/ground_truth.rs --replace-fail \\
   '    let default_path = PathBuf::from("target").join("${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/release").join(exe_name);'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Nushell formatter",
         homepage: "https://github.com/nushell/nufmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

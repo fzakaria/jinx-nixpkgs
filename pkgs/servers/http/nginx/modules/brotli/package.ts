@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brotli",
       version: "1.0.0rc-unstable-2023-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "ngx_brotli",
           rev: "a71f9312c2deb28875acc7bacfdd5695a111aa53",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   --replace-fail '$ngx_addon_dir/deps/brotli/c' ${nix.app(nix.sel(lib, "getDev"), brotli)}
 `),
       buildInputs: nix.thunk(() => [brotli]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, dynamic: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, dynamic: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Brotli compression",
         homepage: "https://github.com/google/ngx_brotli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

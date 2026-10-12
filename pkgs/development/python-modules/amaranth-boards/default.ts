@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         return nix.str`${tag}1.dev1+g${rev}`;
       })());
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amaranth-lang",
           repo: "amaranth-boards",
           rev: "7e24efe2f6e95afddd0c1b56f1a9423c48caa472",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Board definitions for Amaranth HDL",
         homepage: "https://github.com/amaranth-lang/amaranth-boards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

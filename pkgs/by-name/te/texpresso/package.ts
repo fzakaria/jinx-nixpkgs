@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const mupdf = nix.arg($, "mupdf");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "texpresso",
       version: "0.1-unstable-2026-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "let-def",
           repo: "texpresso",
           rev: "e8df7709077b2f86f6e16e6c86ceefb86de06f8d",
@@ -56,18 +56,18 @@ substituteInPlace src/engine/Makefile \\
       buildInputs: nix.thunk(() => [fontconfig, freetype, harfbuzz, icu, jbig2dec, libjpeg, mupdf, SDL2]),
       buildFlags: nix.thunk(() => ["texpresso", "texpresso-xetex"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
       })),
       installPhase: "runHook preInstall\ninstall -D -t \"$out/bin/\" \"build/texpresso\"\ninstall -D -t \"$out/bin/\" \"build/texpresso-xetex\"\nrunHook postInstall\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Live rendering and error reporting for LaTeX",
         changelog: "https://github.com/let-def/texpresso/blob/main/CHANGELOG.md",

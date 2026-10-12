@@ -32,47 +32,47 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "memcached"));
   const memcached = nix.thunk(() => nix.sel(pkgs, "memcached"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         memcached: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Memcached")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "memcached",
               description: "The user to run Memcached as",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "The IP address to bind to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 11211n,
               description: "The port to bind to.",
             })))),
           enableUnixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Unix Domain Socket at /run/memcached/memcached.sock instead of listening on an IP address and port. The `listen` and `port` options are ignored")),
           maxMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 64n,
               description: "The maximum amount of memory to use for storage, in MiB (1024×1024 bytes).",
             })))),
           maxConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 1024n,
               description: "The maximum number of simultaneous connections.",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "A list of extra options that will be added as a suffix when running memcached.",
@@ -81,32 +81,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "memcached", "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "memcached")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               memcached: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Memcached server user",
                 isSystemUser: true,
                 group: "memcached",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "memcached")), nix.thunk(() => ({ __proto__: pos$12, memcached: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "memcached")), nix.thunk(() => ({ [nix.POS]: pos$12, memcached: nix.thunk(() => ({})) })))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$14, systemPackages: nix.thunk(() => [memcached]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$14, systemPackages: nix.thunk(() => [memcached]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             memcached: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Memcached server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => (() => {
                   const networking = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableUnixSocket")) ? "-s /run/memcached/memcached.sock" : nix.str`-l ${nix.sel(cfg, "listen")} -p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`));
                   return nix.str`${memcached}/bin/memcached ${networking} -m ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxMemory")))} -c ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxConnections")))} ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraOptions")))}`;

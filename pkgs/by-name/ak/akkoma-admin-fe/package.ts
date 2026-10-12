@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const yarn_berry = yarn_berry_3;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "admin-fe",
       version: "2.3.0-2-unstable-2025-12-07",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "akkoma.dev",
           owner: "AkkomaGang",
           repo: "admin-fe",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           forceFetchGit: true,
         })))),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-YZlvIr27bHBgsQcBiayqEX07kjX6iH2Kh5wt+PQFq04=",
         })))),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nyarn run build:prod --offline\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ncp -R -v dist $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch=stable"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch=stable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Admin interface for Akkoma",
         homepage: "https://akkoma.dev/AkkomaGang/akkoma-fe/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

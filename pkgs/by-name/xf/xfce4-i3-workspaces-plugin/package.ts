@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xfce4_panel = nix.arg($, "xfce4-panel");
   const i3ipc_glib = nix.arg($, "i3ipc-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xfce4-i3-workspaces-plugin",
       version: "1.4.2-unstable-2025-05-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "denesb",
           repo: "xfce4-i3-workspaces-plugin",
           rev: "d7c2d978e736a5e07f96142a31fac3bb7d0806b4",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gettext-0.25.patch")]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/denesb/xfce4-i3-workspaces-plugin",
         description: "Workspace switcher plugin for xfce4-panel which can be used for the i3 window manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -96,9 +96,9 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "parsedmarc"));
   const isSecret = (v) => (nix.asBool((nix.asBool(nix.app(isAttrs, v)) && nix.asBool(nix.has(v, "_secret")))) && nix.asBool(nix.app(isString, nix.thunk(() => nix.sel(v, "_secret")))));
   const ini = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), "=", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (v) => (nix.asBool(nix.app(isInt, v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(isString, v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "True" : (nix.asBool(nix.eq(false, v)) ? "False" : (nix.asBool(nix.app(isSecret, v)) ? nix.app(hashString, "sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.builtins.throw(nix.thunk(() => nix.str`unsupported type ${nix.app(typeOf, v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`))))))),
         })))),
     }))));
@@ -109,32 +109,32 @@ export default nix.lambda((args) => (() => {
   const typeOf = nix.thunk(() => nix.attr(nix.builtins, "typeOf"));
   const hashString = nix.thunk(() => nix.attr(nix.builtins, "hashString"));
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     options: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       services: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         parsedmarc: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "parsedmarc, a DMARC report monitoring service\n")),
           provision: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             localMail: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Whether Postfix and Dovecot should be set up to receive\nmail locally. parsedmarc will be configured to watch the\nlocal inbox as the automatically created user specified in\n[](#opt-services.parsedmarc.provision.localMail.recipientName)\n",
                 })))),
               recipientName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "dmarc",
                   description: "The DMARC mail recipient name, i.e. the name part of the\nemail address which receives DMARC reports.\n\nA local user with this name will be set up and assigned a\nrandomized password on service start.\n",
                 })))),
               hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: nix.thunk(() => nix.sel(config, "networking", "fqdn")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.fqdn")),
@@ -143,21 +143,21 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             geoIp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable and configure the [geoipupdate](#opt-services.geoipupdate.enable)\nservice to automatically fetch GeoIP databases. Not crucial,\nbut recommended for full functionality.\n\nTo finish the setup, you need to manually set the [](#opt-services.geoipupdate.settings.AccountID) and\n[](#opt-services.geoipupdate.settings.LicenseKey)\noptions.\n",
               })))),
             elasticsearch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to set up and use a local instance of Elasticsearch.\n",
               })))),
             grafana: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               datasource: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "provision", "elasticsearch")) && nix.asBool(nix.sel(config, "services", "grafana", "enable")))),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "provision", "elasticsearch")} && config.${nix.sel(options, "services", "grafana", "enable")}
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
                   description: "Whether the automatically provisioned Elasticsearch\ninstance should be added as a grafana datasource. Has no\neffect unless\n[](#opt-services.parsedmarc.provision.elasticsearch)\nis also enabled.\n",
                 })))),
               dashboard: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: nix.thunk(() => nix.sel(config, "services", "grafana", "enable")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.grafana.enable")),
@@ -175,66 +175,66 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  imap = {\n    host = \"imap.example.com\";\n    user = \"alice@example.com\";\n    password = { _secret = \"/run/keys/imap_password\" };\n  };\n  mailbox = {\n    watch = true;\n    batch_size = 30;\n  };\n  splunk_hec = {\n    url = \"https://splunkhec.example.com\";\n    token = { _secret = \"/run/keys/splunk_token\" };\n    index = \"email\";\n  };\n}\n")),
               description: "Configuration parameters to set in\n{file}`parsedmarc.ini`. For a full list of\navailable parameters, see\n<https://domainaware.github.io/parsedmarc/#configuration-file>.\n\nSettings containing secret data should be set to an attribute\nset containing the attribute `_secret` - a\nstring pointing to a file containing the value the option\nshould be set to. See the example to get a better picture of\nthis: in the resulting {file}`parsedmarc.ini`\nfile, the `splunk_hec.token` key will be set\nto the contents of the\n{file}`/run/keys/splunk_token` file.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   freeformType: nix.thunk(() => nix.sel(ini, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     general: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       save_aggregate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Save aggregate report data to Elasticsearch and/or Splunk.\n",
                         })))),
                       save_forensic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Save forensic report data to Elasticsearch and/or Splunk.\n",
                         })))),
                     })),
                     mailbox: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       watch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Use the IMAP IDLE command to process messages as they arrive.\n",
                         })))),
                       delete: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Delete messages after processing them, instead of archiving them.\n",
                         })))),
                     })),
                     imap: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "localhost",
                           description: "The IMAP server hostname or IP address.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 993n,
                           description: "The IMAP server port.\n",
                         })))),
                       ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Use an encrypted SSL/TLS connection.\n",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -243,20 +243,20 @@ export default nix.lambda((args) => (() => {
                           description: "The IMAP server username.\n",
                         })))),
                       password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")))))));
                           })()),
                           default: null,
                           description: "The IMAP server password.\n\nAlways handled as a secret whether the value is\nwrapped in a `{ _secret = ...; }`\nattrset or not (refer to [](#opt-services.parsedmarc.settings) for\ndetails).\n",
-                          apply: (x) => (nix.asBool((nix.asBool(nix.app(isAttrs, x)) || nix.asBool(nix.eq(x, null)))) ? nix.force(x) : { __proto__: pos$23, _secret: x }),
+                          apply: (x) => (nix.asBool((nix.asBool(nix.app(isAttrs, x)) || nix.asBool(nix.eq(x, null)))) ? nix.force(x) : { [nix.POS]: pos$23, _secret: x }),
                         })))),
                     })),
                     smtp: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -265,7 +265,7 @@ export default nix.lambda((args) => (() => {
                           description: "The SMTP server hostname or IP address.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "port")));
@@ -274,7 +274,7 @@ export default nix.lambda((args) => (() => {
                           description: "The SMTP server port.\n",
                         })))),
                       ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -283,7 +283,7 @@ export default nix.lambda((args) => (() => {
                           description: "Use an encrypted SSL/TLS connection.\n",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -292,17 +292,17 @@ export default nix.lambda((args) => (() => {
                           description: "The SMTP server username.\n",
                         })))),
                       password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")))))));
                           })()),
                           default: null,
                           description: "The SMTP server password.\n\nAlways handled as a secret whether the value is\nwrapped in a `{ _secret = ...; }`\nattrset or not (refer to [](#opt-services.parsedmarc.settings) for\ndetails).\n",
-                          apply: (x) => (nix.asBool((nix.asBool(nix.app(isAttrs, x)) || nix.asBool(nix.eq(x, null)))) ? nix.force(x) : { __proto__: pos$30, _secret: x }),
+                          apply: (x) => (nix.asBool((nix.asBool(nix.app(isAttrs, x)) || nix.asBool(nix.eq(x, null)))) ? nix.force(x) : { [nix.POS]: pos$30, _secret: x }),
                         })))),
                       from: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -311,7 +311,7 @@ export default nix.lambda((args) => (() => {
                           description: "The `From` address to use for the\noutgoing mail.\n",
                         })))),
                       to: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -322,9 +322,9 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     elasticsearch: nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           default: [],
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -334,7 +334,7 @@ export default nix.lambda((args) => (() => {
                           description: "A list of Elasticsearch hosts to push parsed reports\nto.\n",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -343,23 +343,23 @@ export default nix.lambda((args) => (() => {
                           description: "Username to use when connecting to Elasticsearch, if\nrequired.\n",
                         })))),
                       password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")))))));
                           })()),
                           default: null,
                           description: "The password to use when connecting to Elasticsearch,\nif required.\n\nAlways handled as a secret whether the value is\nwrapped in a `{ _secret = ...; }`\nattrset or not (refer to [](#opt-services.parsedmarc.settings) for\ndetails).\n",
-                          apply: (x) => (nix.asBool((nix.asBool(nix.app(isAttrs, x)) || nix.asBool(nix.eq(x, null)))) ? nix.force(x) : { __proto__: pos$37, _secret: x }),
+                          apply: (x) => (nix.asBool((nix.asBool(nix.app(isAttrs, x)) || nix.asBool(nix.eq(x, null)))) ? nix.force(x) : { [nix.POS]: pos$37, _secret: x }),
                         })))),
                       ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to use an encrypted SSL/TLS connection.\n",
                         })))),
                       cert_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pki.caBundle")),
@@ -373,7 +373,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         warnings: nix.thunk(() => (() => {
           const deprecationWarning = (optname) => nix.add(nix.str`Starting in 8.0.0, the \`${optname}\` option has been moved from the \`services.parsedmarc.settings.imap\``, "configuration section to the `services.parsedmarc.settings.mailbox` configuration section.");
           const hasImapOpt = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.builtins.hasAttr), nix.thunk(() => nix.sel(cfg, "settings", "imap"))));
@@ -381,28 +381,28 @@ export default nix.lambda((args) => (() => {
           return nix.builtins.map(deprecationWarning, nix.thunk(() => nix.builtins.filter(hasImapOpt, movedOptions)));
         })()),
         services: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           elasticsearch: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "provision", "elasticsearch")))),
           })),
           geoipupdate: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "geoIp")), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 EditionIDs: nix.thunk(() => ["GeoLite2-ASN", "GeoLite2-City", "GeoLite2-Country"]),
                 DatabaseDirectory: "/var/lib/GeoIP",
               })),
             })))),
-          dovecot2: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "localMail", "enable")), nix.thunk(() => ({ __proto__: pos$51, enable: true, protocols: nix.thunk(() => ["imap"]) })))),
+          dovecot2: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "localMail", "enable")), nix.thunk(() => ({ [nix.POS]: pos$51, enable: true, protocols: nix.thunk(() => ["imap"]) })))),
           postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "localMail", "enable")), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 main: nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   myhostname: nix.thunk(() => nix.sel(cfg, "provision", "localMail", "hostname")),
                   myorigin: nix.thunk(() => nix.sel(cfg, "provision", "localMail", "hostname")),
                   mydestination: nix.thunk(() => nix.sel(cfg, "provision", "localMail", "hostname")),
@@ -410,7 +410,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           grafana: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             declarativePlugins: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "grafanaPlugins")), null);
               return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "grafana", "dashboard")), nix.thunk(() => [
@@ -419,45 +419,45 @@ export default nix.lambda((args) => (() => {
                 ]));
             })()),
             provision: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "provision", "grafana", "datasource")) || nix.asBool(nix.sel(cfg, "provision", "grafana", "dashboard")))),
               datasources: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   datasources: nix.thunk(() => (() => {
                     const esVersion = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(config, "services", "elasticsearch", "package"))));
                     return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "grafana", "datasource")), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           name: "dmarc-ag",
                           type: "elasticsearch",
                           access: "proxy",
                           url: "http://localhost:9200",
-                          jsonData: nix.thunk(() => ({ __proto__: pos$55, timeField: "date_range", esVersion: esVersion })),
+                          jsonData: nix.thunk(() => ({ [nix.POS]: pos$55, timeField: "date_range", esVersion: esVersion })),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           name: "dmarc-fo",
                           type: "elasticsearch",
                           access: "proxy",
                           url: "http://localhost:9200",
-                          jsonData: nix.thunk(() => ({ __proto__: pos$57, timeField: "date_range", esVersion: esVersion })),
+                          jsonData: nix.thunk(() => ({ [nix.POS]: pos$57, timeField: "date_range", esVersion: esVersion })),
                         })),
                       ]));
                   })()),
                 })),
               })),
               dashboards: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   providers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "grafana", "dashboard")), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$62,
+                        [nix.POS]: pos$62,
                         name: "parsedmarc",
                         options: nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           path: nix.thunk(() => nix.str`${nix.sel(pkgs, "parsedmarc", "dashboard")}`),
                         })),
                       })),
@@ -467,35 +467,35 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           parsedmarc: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "elasticsearch")), nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     elasticsearch: nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       hosts: nix.thunk(() => ["http://localhost:9200"]),
                       ssl: false,
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "localMail", "enable")), nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     imap: nix.thunk(() => ({
-                      __proto__: pos$69,
+                      [nix.POS]: pos$69,
                       host: "localhost",
                       port: 143n,
                       ssl: false,
                       user: nix.thunk(() => nix.sel(cfg, "provision", "localMail", "recipientName")),
                       password: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "imap-password", "@imap-password@")}`),
                     })),
-                    mailbox: nix.thunk(() => ({ __proto__: pos$70, watch: true })),
+                    mailbox: nix.thunk(() => ({ [nix.POS]: pos$70, watch: true })),
                   })))),
               ]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           services: nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             parsedmarc: nix.thunk(() => (() => {
               const filteredConfig = nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.asBool(nix.app(elem, v, nix.thunk(() => [null, [], nix.thunk(() => ({}))]))))), nix.thunk(() => nix.sel(cfg, "settings"))));
               const secretPaths = nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "_secret", nix.thunk(() => nix.app(nix.sel(lib, "collect"), isSecret, filteredConfig))));
@@ -508,7 +508,7 @@ export default nix.lambda((args) => (() => {
 `;
               const secretReplacements = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), mkSecretReplacement, secretPaths));
               return {
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["postfix.service", "dovecot2.service", "elasticsearch.service"]),
                 path: nix.thunk(() => (() => {
@@ -520,7 +520,7 @@ export default nix.lambda((args) => (() => {
                   ];
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   ExecStartPre: nix.thunk(() => (() => {
                     const startPreFullPrivileges = nix.thunk(() => nix.add(nix.str`set -o errexit -o pipefail -o nounset -o errtrace
 shopt -s inherit_errexit
@@ -569,14 +569,14 @@ cat <(echo -n "${nix.sel(cfg, "provision", "localMail", "recipientName")}:") /ru
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.sel(cfg, "provision", "localMail", "recipientName"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "localMail", "enable")), nix.thunk(() => ({ __proto__: pos$78, isNormalUser: true, description: "DMARC mail recipient" }))))],
+            [nix.sel(cfg, "provision", "localMail", "recipientName"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provision", "localMail", "enable")), nix.thunk(() => ({ [nix.POS]: pos$78, isNormalUser: true, description: "DMARC mail recipient" }))))],
           ])),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$81,
+      [nix.POS]: pos$81,
       doc: nix.path(here, "./parsedmarc.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "talyz"))]),
     })),

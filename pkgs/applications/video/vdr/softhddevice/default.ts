@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-softhddevice";
       const version = "2.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ua0lnj",
           repo: "vdr-plugin-softhddevice",
           sha256: "sha256-vicHneEZZHTraffUek77QDZdv/xZGzN102nbr1Bkfzo=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "VDR SoftHDDevice Plug-in",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

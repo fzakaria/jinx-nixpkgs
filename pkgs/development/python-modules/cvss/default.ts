@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedHatProductSecurity",
           repo: "cvss",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["cvss"]);
       const preCheck = "cd tests\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for CVSS2/3/4",
         homepage: "https://github.com/RedHatProductSecurity/cvss",
         changelog: nix.thunk(() => nix.str`https://github.com/RedHatProductSecurity/cvss/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cvss_calculator",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const domain = nix.arg($_1, "domain");
     return nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/download/${repo}-${rev}.zip`),
         hash: hash,
       })));
   })(), formals$2);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "heq",
       repo: "Heq",
       owner: "gil.hur",
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       fetcher: fetcher,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isLt"), "8.8", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "0.92" : null)),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "0.92": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:0cf8y6728n81wwlbpq3vi7l2dbzi7759klypld4gpsjjp1y1fj74",
         })),
       })),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`COQLIB=$(out)/lib/coq/${nix.sel(coq, "coq-version")}/`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://ropas.snu.ac.kr/~gil.hur/Heq/",
         description: "Heq : a Coq library for Heterogeneous Equality",
         maintainers: nix.thunk(() => (() => {

@@ -42,58 +42,58 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "journald", "remote"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "systemd"), nix.thunk(() => ({}))));
   const cliArgs = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       output: nix.thunk(() => nix.attr(cfg, "output")),
       "listen-http": "-3",
     }))));
   const tlsOptionRemovedMessage = "systemd in Nixpkgs is built without GnuTLS, so systemd-journal-remote\ncannot accept HTTPS connections or validate client certificates. Use a\nreverse proxy (such as nginx) to terminate TLS in front of journal-remote\nif you need encrypted ingestion.\n";
   return {
-    __proto__: pos$30,
-    meta: nix.thunk(() => ({ __proto__: pos$2, maintainers: [] })),
+    [nix.POS]: pos$30,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$2, maintainers: [] })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "journald", "remote", "listen"]), tlsOptionRemovedMessage)),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         journald: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           remote: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "receiving systemd journals from the network")),
             output: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: "/var/log/journal/remote/",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The location of the output journal.\n\nIn case the output file is not specified, journal files will be created\nunderneath the selected directory. Files will be called\n{file}`remote-hostname.journal`, where the `hostname` part is the\nescaped hostname of the source endpoint of the connection, or the\nnumerical address if the hostname cannot be determined.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: 19532n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "The port to listen to.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: nix.thunk(() => ({})),
                 description: "Configuration in the journal-remote configuration file. See\n{manpage}`journal-remote.conf(5)` for available options.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       Remote: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         Seal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             default: false,
                             example: true,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             description: "Periodically sign the data in the journal using Forward Secure\nSealing.\n",
                           })))),
                         SplitMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             default: "host",
                             example: "none",
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["host", "none"]))),
@@ -108,9 +108,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => nix.builtins.map((key) => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "Remote", nix.key(nix.force(key))))),
             message: nix.thunk(() => nix.str`The option definition \`services.journald.remote.settings.Remote.${key}'
 no longer has any effect; please remove it.
@@ -118,14 +118,14 @@ ${tlsOptionRemovedMessage}
 `),
           }), nix.thunk(() => ["ServerKeyFile", "ServerCertificateFile", "TrustedCertificateFile"]))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-journal-remote.service", "systemd-journal-remote.socket"]),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "systemd-journal-remote": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/systemd-journal-remote ${cliArgs}`),
@@ -134,9 +134,9 @@ ${tlsOptionRemovedMessage}
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "systemd-journal-remote": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [
                 "",
@@ -146,19 +146,19 @@ ${tlsOptionRemovedMessage}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
-          groups: nix.thunk(() => ({ __proto__: pos$22, "systemd-journal-remote": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$25,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$22, "systemd-journal-remote": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$24,
-            "systemd-journal-remote": nix.thunk(() => ({ __proto__: pos$23, isSystemUser: true, group: "systemd-journal-remote" })),
+            [nix.POS]: pos$24,
+            "systemd-journal-remote": nix.thunk(() => ({ [nix.POS]: pos$23, isSystemUser: true, group: "systemd-journal-remote" })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           etc: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "systemd/journal-remote.conf": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "journal-remote.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "prometheus-client",
       version: "0.25.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus",
           repo: "client_python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [asgiref]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, twisted: nix.thunk(() => [twisted]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, twisted: nix.thunk(() => [twisted]) })),
       __darwinAllowLocalNetworking: true,
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_benchmark, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["prometheus_client"]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_instance_ip_grouping_key"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus instrumentation library for Python applications",
         homepage: "https://github.com/prometheus/client_python",
         changelog: nix.thunk(() => nix.str`https://github.com/prometheus/client_python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

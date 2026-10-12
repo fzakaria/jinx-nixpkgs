@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "waylandpp",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NilsBrause",
           repo: "waylandpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "WAYLAND_SCANNERPP", nix.thunk(() => nix.str`${nix.sel(buildPackages, "waylandpp")}/bin/wayland-scanner++`))),
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), docSupport, nix.thunk(() => ({
-          __proto__: pos$3,
-          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+          [nix.POS]: pos$3,
+          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), docSupport, nix.thunk(() => [doxygen, graphviz])))),
       buildInputs: nix.thunk(() => [pugixml, wayland, libGL, libffi]),
       outputs: nix.thunk(() => nix.concat(["bin", "dev", "lib", "out"], nix.app(nix.sel(lib, "optionals"), docSupport, nix.thunk(() => ["doc", "devman"])))),
       preBuild: "export XDG_CACHE_HOME=\"$(mktemp -d)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wayland C++ binding",
         mainProgram: "wayland-scanner++",
         homepage: "https://github.com/NilsBrause/waylandpp/",

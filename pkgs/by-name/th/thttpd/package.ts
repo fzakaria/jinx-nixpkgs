@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thttpd",
       version: "2.29",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://acme.com/software/thttpd/thttpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "15x3h4b49wgfywn82i3wwbf38mdns94mbi4ma9xiwsrjv93rzh4r",
         })))),
       prePatch: "sed -i -e 's/getline/getlineX/' extras/htpasswd.c\nsed -i -e 's/chmod 2755/chmod 755/' extras/Makefile.in\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=implicit-function-declaration"]))),
       })),
       buildInputs: nix.thunk(() => [libxcrypt]),
       preInstall: "mkdir -p \"$out/man/man1\"\nsed -i -e 's/-o bin -g bin *//' Makefile\nsed -i -e '/chgrp/d' extras/Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiny/turbo/throttling HTTP server",
         homepage: "http://www.acme.com/software/thttpd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

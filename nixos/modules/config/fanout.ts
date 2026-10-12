@@ -24,22 +24,22 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "fanout"));
   const mknodCmds = (n) => nix.app(nix.sel(lib, "lists", "imap0"), (i) => (s) => nix.str`mknod /dev/fanout${nix.builtins.toString(i)} c $MAJOR ${nix.builtins.toString(i)}`, nix.thunk(() => nix.app(nix.sel(lib, "lists", "replicate"), n, "")));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fanout: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "fanout")),
           fanoutDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "Number of /dev/fanout devices",
             })))),
           bufferSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 16384n,
               description: "Size of /dev/fanout buffer in bytes",
@@ -48,27 +48,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "fanout", "out"))]),
           kernelModules: nix.thunk(() => ["fanout"]),
           extraModprobeConfig: nix.thunk(() => nix.str`options fanout buffersize=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "bufferSize")))}
 `),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             fanout: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Bring up /dev/fanout devices",
               script: nix.thunk(() => nix.str`MAJOR=$(${nix.sel(pkgs, "gnugrep")}/bin/grep fanout /proc/devices | ${nix.sel(pkgs, "gawk")}/bin/awk '{print $1}')
 ${nix.app(nix.sel(lib, "strings", "concatLines"), nix.thunk(() => nix.app(mknodCmds, nix.thunk(() => nix.sel(cfg, "fanoutDevices")))))}
 `),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "oneshot",
                 User: "root",
                 RemainAfterExit: "yes",

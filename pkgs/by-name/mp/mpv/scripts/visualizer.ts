@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "visualizer",
       version: "0-unstable-2025-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfcc64",
           repo: "mpv-scripts",
           rev: "fd73f95c6b642366adf1df8dd4ff998d89d2e13e",
           sha256: "+4QV1f+8YffevXNYETHDl4Rwb5cDx+YBbaDk7MscHEU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Various audio visualization",
         homepage: "https://github.com/mfcc64/mpv-scripts",
         maintainers: nix.thunk(() => (() => {

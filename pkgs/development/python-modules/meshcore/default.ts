@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "meshcore",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meshcore-dev",
           repo: "meshcore_py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/meshcore-dev/meshcore_py/commit/9294e574739844e0e291b972b40e1a0a40149e47.patch",
             hash: "sha256-Ufr+5rDDO32W6dtD7wEU34iLJai3H0dBCEtLS5j4u/0=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["meshcore"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for communicating with meshcore companion radios",
         homepage: "https://github.com/meshcore-dev/meshcore_py",
         changelog: nix.thunk(() => nix.str`https://github.com/meshcore-dev/meshcore_py/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libodb-sqlite",
       version: "2.5.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/stable/odb/libodb-sqlite-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-soq3OpAlVLum65um9MkJnR4Vgm3nofpPumRRpBCFb70=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SQLite ODB runtime library",
         longDescription: "ODB is an object-relational mapping (ORM) system for C++. It provides\ntools, APIs, and library support that allow you to persist C++ objects\nto a relational database (RDBMS) without having to deal with tables,\ncolumns, or SQL and without manually writing any of the mapping code.\nFor more information see:\n\nhttp://www.codesynthesis.com/products/odb/\n\nThis package contains the SQLite ODB runtime library. Every application\nthat includes code generated for the SQLite database will need to link\nto this library.\n",
         homepage: "https://www.codesynthesis.com/products/odb/",

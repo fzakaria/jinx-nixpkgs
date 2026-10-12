@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "5.0";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocsigen/js_of_ocaml-ocamlbuild/releases/download/${version}/js_of_ocaml-ocamlbuild-${version}.tbz`),
           sha256: "sha256-qlm8vxzie8sqPrd6iiwf8X6d2+DyQOOhmMoc67ChwHs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [ocamlbuild]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ocamlbuild plugin to compile to JavaScript",
         homepage: "https://github.com/ocsigen/js_of_ocaml-ocamlbuild",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "gk-cli",
       version: "3.0.9",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`gk-cli ${nix.sel(finalAttrs, "version")} unsupported system: ${nix.sel(stdenv, "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "system")))),
@@ -57,49 +57,49 @@ echo "$OUTPUT" | grep --quiet '^Git binary found: ✓$'
 echo "$OUTPUT" | grep --quiet '^CLI version: ${nix.sel(finalAttrs, "version")}$'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         sources: nix.thunk(() => (() => {
           const base_url = nix.thunk(() => nix.str`https://github.com/gitkraken/gk-cli/releases/download/v${nix.sel(finalAttrs, "version")}/gk_${nix.sel(finalAttrs, "version")}_`);
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "aarch64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.str`${base_url}linux_arm64.zip`),
                 hash: "sha256-aYgHLpG4nX3Op0+j733jYbK4ZwVKkctMkDPweNTJWso=",
                 stripRoot: false,
               })))),
             "x86_32-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: nix.thunk(() => nix.str`${base_url}linux_386.zip`),
                 hash: "sha256-lVu25S7e6a/kHmiD5dxGAlHMQ5yN46+SdFpt8lghejM=",
                 stripRoot: false,
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: nix.thunk(() => nix.str`${base_url}linux_amd64.zip`),
                 hash: "sha256-/z2G//Zh8lTHkeJPahyld1EEXXhd/cgIvCojUmzFX8E=",
                 stripRoot: false,
               })))),
             "aarch64-darwin": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 url: nix.thunk(() => nix.str`${base_url}darwin_arm64.zip`),
                 hash: "sha256-nDVehD0TTNTvhuDU8RB4lZiVcEJpB+l6EGkzckC7JuU=",
                 stripRoot: false,
               })))),
             "aarch64-windows": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 url: nix.thunk(() => nix.str`${base_url}windows_arm64.zip`),
                 hash: "sha256-sXHeqR4AW/sRPp74PieXI1n4VGV94CnrcMF1ovAek8E=",
                 stripRoot: false,
               })))),
             "i686-windows": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 url: nix.thunk(() => nix.str`${base_url}windows_386.zip`),
                 hash: "sha256-u6DyHoYIaExS2CHu20odDVJxzI4k9PpdFQf6UDPAzz0=",
                 stripRoot: false,
               })))),
             "x86_64-windows": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 url: nix.thunk(() => nix.str`${base_url}windows_amd64.zip`),
                 hash: "sha256-nh+JPR95IWLm7CTrS8qK2dP3c4SH/zm1oIS5GNgxcyo=",
                 stripRoot: false,
@@ -119,7 +119,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "CLI for Git collaboration across multiple repos and services",
         homepage: "https://www.gitkraken.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

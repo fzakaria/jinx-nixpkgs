@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-calculator";
       const version = "8.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "calculator",
           rev: version,
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/elementary/calculator",
         description: "Calculator app designed for elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.calculator",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

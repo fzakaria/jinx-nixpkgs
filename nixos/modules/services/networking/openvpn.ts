@@ -70,7 +70,7 @@ ${nix.sel(cfg_1, "authUserPass", "password")}
 `))}` : nix.str`auth-user-pass ${nix.sel(cfg_1, "authUserPass")}`)))}
 `)));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: nix.thunk(() => nix.str`OpenVPN instance ‘${name}’`),
       wantedBy: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg_1, "autoStart")), "multi-user.target")),
       after: nix.thunk(() => ["network.target"]),
@@ -80,7 +80,7 @@ ${nix.sel(cfg_1, "authUserPass", "password")}
         nix.thunk(() => nix.sel(pkgs, "net-tools")),
       ]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ExecStart: nix.thunk(() => nix.str`@${nix.sel(config, "services", "openvpn", "package")}/sbin/openvpn openvpn --suppress-timestamps --config ${configFile}`),
         Restart: "always",
         Type: "notify",
@@ -88,12 +88,12 @@ ${nix.sel(cfg_1, "authUserPass", "password")}
     };
   })();
   const restartService = nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "restartAfterSleep")), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "openvpn-restart": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         wantedBy: nix.thunk(() => ["sleep.target"]),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           Type: "oneshot",
           ExecStart: nix.thunk(() => (() => {
             const unitNames = nix.thunk(() => nix.app(nix.builtins.map, (n) => nix.str`openvpn-${n}.service`, nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "servers"))))));
@@ -104,74 +104,74 @@ ${nix.sel(cfg_1, "authUserPass", "password")}
       })),
     }))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "openvpn", "enable"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         openvpn: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openvpn", nix.thunk(() => ({})))),
           servers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  server = {\n    config = ''\n      # Simplest server configuration: https://community.openvpn.net/openvpn/wiki/StaticKeyMiniHowto\n      # server :\n      dev tun\n      ifconfig 10.8.0.1 10.8.0.2\n      secret /root/static.key\n    '';\n    up = \"ip route add ...\";\n    down = \"ip route del ...\";\n  };\n\n  client = {\n    config = ''\n      client\n      remote vpn.example.org\n      dev tun\n      proto tcp-client\n      port 8080\n      ca /root/.vpn/ca.crt\n      cert /root/.vpn/alice.crt\n      key /root/.vpn/alice.key\n    '';\n    up = \"echo nameserver $nameserver | ${pkgs.openresolv}/sbin/resolvconf -m 0 -a $dev\";\n    down = \"${pkgs.openresolv}/sbin/resolvconf -d $dev\";\n  };\n}\n")),
               description: "Each attribute of this option defines a systemd service that\nruns an OpenVPN instance.  These can be OpenVPN servers or\nclients.  The name of each systemd service is\n`openvpn-«name».service`,\nwhere «name» is the corresponding\nattribute name.\n",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       options: nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                             description: "Configuration of this OpenVPN instance.  See\n{manpage}`openvpn(8)`\nfor details.\n\nTo import an external config file, use the following definition:\n`config = \"config /path/to/config.ovpn\"`\n",
                           })))),
                         up: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             default: "",
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                             description: "Shell commands executed when the instance is starting.\n",
                           })))),
                         down: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             default: "",
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                             description: "Shell commands executed when the instance is shutting down.\n",
                           })))),
                         autoStart: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             default: true,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             description: "Whether this OpenVPN instance should be started automatically.",
                           })))),
                         updateResolvConf: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             default: false,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             description: "Use the script from the update-resolv-conf package to automatically\nupdate resolv.conf with the DNS information provided by openvpn. The\nscript will be run after the \"up\" commands and before the \"down\" commands.\n",
                           })))),
                         authUserPass: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             default: null,
                             description: "This option can be used to store the username / password credentials\nwith the \"auth-user-pass\" authentication method.\n\nYou can either provide an attribute set of `username` and `password`,\nor the path to a file containing the credentials on two lines.\n\nWARNING: If you use an attribute set, this option will put the credentials WORLD-READABLE into the Nix store!\n",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "oneOf"), nix.thunk(() => [
                                   nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "singleLineStr")),
                                   nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$14,
+                                      [nix.POS]: pos$14,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$13,
+                                        [nix.POS]: pos$13,
                                         username: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$11,
+                                            [nix.POS]: pos$11,
                                             description: "The username to store inside the credentials file.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                           })))),
                                         password: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$12,
+                                            [nix.POS]: pos$12,
                                             description: "The password to store inside the credentials file.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                           })))),
@@ -184,7 +184,7 @@ ${nix.sel(cfg_1, "authUserPass", "password")}
               })()),
             })))),
           restartAfterSleep: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether OpenVPN client should be restarted after sleep.",
@@ -193,16 +193,16 @@ ${nix.sel(cfg_1, "authUserPass", "password")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "servers"), {})), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (value) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`openvpn-${name}`), nix.thunk(() => nix.app(makeOpenVPNJob, value, name))), nix.thunk(() => nix.sel(cfg, "servers"))))), restartService)),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$25, kernelModules: nix.thunk(() => ["tun"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$25, kernelModules: nix.thunk(() => ["tun"]) })),
       })))),
   };
 })(), formals$1);

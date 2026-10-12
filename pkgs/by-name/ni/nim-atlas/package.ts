@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openssl = nix.arg($, "openssl");
   const sat = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nim-lang",
       repo: "sat",
       rev: "9d52513b3c68bfb929dbd687d4fb2836cfee6936",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "atlas";
       const version = "0.16.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nim-lang",
           repo: "atlas",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -39,17 +39,17 @@ cp -r ${sat} deps/sat
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => nix.update(nix.sel(final, "src", "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Nim package cloner",
         mainProgram: "atlas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -71,11 +71,11 @@ export default nix.lambda((args) => (() => {
       pulseaudio,
     ])));
   const derivation = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "euro-office-desktopeditors",
       version: "9.3.1-dev.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://archive.org/download/euro-office-desktopeditors-9.3.1-dev.1-linux-amd64/linux-packages-amd64.zip",
           hash: "sha256-OV3abn9nYq/FeBkpft+27iGt34Rqi2VkJkAZwBHu1lM=",
         })))),
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
 `),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(derivation, "pname")),
       version: nix.thunk(() => nix.attr(derivation, "version")),
       targetPkgs: (pkgs$) => [curl, derivation, noto_fonts_cjk_sans, libGL],
@@ -149,7 +149,7 @@ substituteInPlace $out/share/applications/euro-office-desktopeditors.desktop \\
     --replace-fail "/usr/bin/euro-office-desktopeditors" "$out/bin/euro-office-desktopeditors"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit local documents",
         homepage: "https://github.com/Euro-Office/DesktopEditors",
         downloadPage: "https://github.com/Euro-Office/DesktopEditors/releases",

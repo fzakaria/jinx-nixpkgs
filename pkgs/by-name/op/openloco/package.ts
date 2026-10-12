@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const fmt_11 = nix.arg($, "fmt_11");
   const libx11 = nix.arg($, "libx11");
   const sfl_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "slavenf",
       repo: "sfl-library",
       tag: "2.2.0",
       hash: "sha256-U1InclhSF3pte2AhKUVYBYOXZagksDMkUWgFn5ZB/tk=",
     }))));
   const openloco_objects = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/OpenLoco/OpenGraphics/releases/download/v0.1.8/objects.zip",
       sha256: "sha256-ZYiR2UpGBAt79x39fwG7wd2mRwcSyz3AdIKTH+tQE8c=",
     }))));
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openloco";
       const version = "26.04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "OpenLoco",
           repo: "OpenLoco",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,12 +63,12 @@ sed -i 's#GIT_REPOSITORY \\+https://github.com/slavenf/sfl-library#SOURCE_DIR ${
 # prefetch openloco-objects
 sed -i 's#URL \\+${nix.sel(openloco_objects, "url")}#URL ${openloco_objects}#' CMakeLists.txt
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error=null-dereference" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error=null-dereference" }));
       const cmakeFlags = nix.thunk(() => ["-DOPENLOCO_BUILD_TESTS=NO"]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const buildInputs = nix.thunk(() => [sdl3, libpng, libzip, openal, yaml_cpp, fmt_11, libx11]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source re-implementation of Chris Sawyer's Locomotion",
         homepage: "https://github.com/OpenLoco/OpenLoco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -80,7 +80,7 @@ sed -i 's#URL \\+${nix.sel(openloco_objects, "url")}#URL ${openloco_objects}#' C
         mainProgram: "OpenLoco",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

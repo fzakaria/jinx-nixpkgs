@@ -27,10 +27,10 @@ export default nix.thunk(() => (() => {
           const withSigningKey = (fn) => (() => {
             const f = nix.thunk(() => (nix.asBool(nix.app(isFunction, fn)) ? nix.force(fn) : nix.builtins.import(fn)));
             const fArgs = nix.thunk(() => nix.app(functionArgs, f));
-            return (nix.asBool(nix.has(fArgs, "uefiSigningKey")) ? nix.app(setFunctionArgs, (args_2) => nix.app(f, nix.thunk(() => nix.update(args_2, { __proto__: pos$1, uefiSigningKey: uefiSigningKey }))), nix.thunk(() => nix.builtins.removeAttrs(fArgs, nix.thunk(() => ["uefiSigningKey"])))) : nix.force(f));
+            return (nix.asBool(nix.has(fArgs, "uefiSigningKey")) ? nix.app(setFunctionArgs, (args_2) => nix.app(f, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, uefiSigningKey: uefiSigningKey }))), nix.thunk(() => nix.builtins.removeAttrs(fArgs, nix.thunk(() => ["uefiSigningKey"])))) : nix.force(f));
           })();
-          const private$ = nix.thunk(() => nix.app(extends$, autoCalledPackages, (_self) => ({ __proto__: pos$2, uefiCertificate: uefiCertificate }), nix.thunk(() => nix.update(private$, nix.update(self, {
-              __proto__: pos$3,
+          const private$ = nix.thunk(() => nix.app(extends$, autoCalledPackages, (_self) => ({ [nix.POS]: pos$2, uefiCertificate: uefiCertificate }), nix.thunk(() => nix.update(private$, nix.update(self, {
+              [nix.POS]: pos$3,
               callPackage: nix.thunk(() => (() => {
                 nix.assert_(nix.eq(nix.sel(self, "uefiCertificate", "verificationKey"), nix.sel(uefiSigningKey, "verificationKey")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/misc/signed-packages/default.nix:53:15");
                 return (fn) => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(withSigningKey, fn)));

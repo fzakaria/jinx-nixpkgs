@@ -38,45 +38,45 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "networking", "openconnect"));
   const openconnect = nix.thunk(() => nix.sel(cfg, "package"));
-  const pkcs11 = nix.thunk(() => nix.update(nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "pkcs11:.+"), { __proto__: pos$1, name: "pkcs11", description: "PKCS#11 URI" }));
+  const pkcs11 = nix.thunk(() => nix.update(nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "pkcs11:.+"), { [nix.POS]: pos$1, name: "pkcs11", description: "PKCS#11 URI" }));
   const interfaceOptions = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       autoStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: true,
           description: "Whether this VPN connection should be started automatically.",
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         })))),
       gateway: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Gateway server to connect to.",
           example: "gateway.example.com",
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
         })))),
       protocol: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Protocol to use.",
           example: "anyconnect",
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["anyconnect", "array", "nc", "pulse", "gp", "f5", "fortinet"]))),
         })))),
       user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Username to authenticate with.",
           example: "example-user",
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
           default: null,
         })))),
       passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "File containing the password to authenticate with. This\nis passed to `openconnect` via the\n`--passwd-on-stdin` option.\n",
           default: null,
           example: "/var/lib/secrets/openconnect-passwd",
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
         })))),
       certificate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Certificate to authenticate with.",
           default: null,
           example: "/var/lib/secrets/openconnect_certificate.pem",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
           })()),
         })))),
       privateKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Private key to authenticate with.",
           example: "/var/lib/secrets/openconnect_private_key.pem",
           default: null,
@@ -96,11 +96,11 @@ export default nix.lambda((args) => (() => {
           })()),
         })))),
       extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Extra config to be appended to the interface config. It should\ncontain long-format options as would be accepted on the command\nline by `openconnect`\n(see <https://www.infradead.org/openconnect/manual.html>).\nNon-key-value options like `deflate` can be used by\ndeclaring them as booleans, i. e. `deflate = true;`.\n",
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             compression: "stateless",
             "no-http-keepalive": true,
             "no-dtls": true,
@@ -123,13 +123,13 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(icfg,
 ${nix.app(generateExtraConfig, nix.thunk(() => nix.sel(icfg, "extraOptions")))}
 `));
   const generateUnit = (name) => (icfg) => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     description: nix.thunk(() => nix.str`OpenConnect Interface - ${name}`),
     requires: nix.thunk(() => ["network-online.target"]),
     after: nix.thunk(() => ["network.target", "network-online.target"]),
     wantedBy: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(icfg, "autoStart")), "multi-user.target")),
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       Type: "simple",
       ExecStart: nix.thunk(() => nix.str`${openconnect}/bin/openconnect --config=${nix.app(generateConfig, name, icfg)} ${nix.sel(icfg, "gateway")}`),
       StandardInput: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(icfg, "passwordFile"), null)), nix.thunk(() => nix.str`file:${nix.sel(icfg, "passwordFile")}`))),
@@ -137,22 +137,22 @@ ${nix.app(generateExtraConfig, nix.thunk(() => nix.sel(icfg, "extraOptions")))}
     })),
   });
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       networking: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         openconnect: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "openconnect", nix.thunk(() => ({})))),
           interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "OpenConnect interfaces.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 openconnect0: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   gateway: "gateway.example.com",
                   protocol: "anyconnect",
                   user: "example-user",
@@ -168,18 +168,18 @@ ${nix.app(generateExtraConfig, nix.thunk(() => nix.sel(icfg, "extraOptions")))}
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       systemd: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (value) => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             name: nix.thunk(() => nix.str`openconnect-${name}`),
             value: nix.thunk(() => nix.app(generateUnit, name, value)),
           }), nix.thunk(() => nix.sel(cfg, "interfaces")))),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "pentane"))];

@@ -56,36 +56,36 @@ export default nix.lambda((args) => (() => {
   const galeneTestGroupAdminName = "admin";
   const galeneTestGroupAdminPassword = "1234";
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     basic: nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: "galene-works",
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgs, "galene", "meta"));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           };
           })()),
           nodes: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+                  [nix.POS]: pos$4,
+                  xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
                   galene: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     enable: true,
                     insecure: true,
                     httpPort: galenePort,
@@ -93,15 +93,15 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [galeneTestGroupFile, nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs_1, "formats", "json"), nix.thunk(() => ({}))), "generate"), galeneTestGroupFile, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           op: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               username: galeneTestGroupAdminName,
                               password: galeneTestGroupAdminPassword,
                             })),
@@ -162,30 +162,30 @@ with subtest("galene can join group"):
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           name: "galene-file-transfer-works",
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgs, "galene-file-transfer", "meta"));
             return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           };
           })()),
           nodes: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  xserver: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+                  [nix.POS]: pos$15,
+                  xserver: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
                   galene: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     enable: true,
                     insecure: true,
                     httpPort: galenePort,
@@ -193,15 +193,15 @@ with subtest("galene can join group"):
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [galeneTestGroupFile, nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs_1, "formats", "json"), nix.thunk(() => ({}))), "generate"), galeneTestGroupFile, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           op: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$16,
+                              [nix.POS]: pos$16,
                               username: galeneTestGroupAdminName,
                               password: galeneTestGroupAdminPassword,
                             })),
@@ -299,30 +299,30 @@ with subtest("galene-file-transfer works"):
         const galeneStreamFeedImage = "galene-stream-feed.png";
         const galeneStreamFeedLabel = "Example";
         return {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           name: "galene-stream-works",
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgs, "galene", "meta"));
             return {
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           };
           })()),
           nodes: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$7);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$26,
-                  xserver: nix.thunk(() => ({ __proto__: pos$24, enable: true })),
+                  [nix.POS]: pos$26,
+                  xserver: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
                   galene: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     enable: true,
                     insecure: true,
                     httpPort: galenePort,
@@ -330,15 +330,15 @@ with subtest("galene-file-transfer works"):
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [galeneTestGroupFile, nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs_1, "formats", "json"), nix.thunk(() => ({}))), "generate"), galeneTestGroupFile, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           presenter: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               username: galeneTestGroupBotName,
                               password: galeneTestGroupBotPassword,
                             })),
@@ -347,13 +347,13 @@ with subtest("galene-file-transfer works"):
                         })))),
                     }))],
                     [galeneStreamFeedImage, nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       source: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), galeneStreamFeedImage, nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           nativeBuildInputs: nix.thunk(() => (() => {
                             const w = nix.withScope(pkgs_1, null);
                             return [
-                              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ __proto__: pos$30, ghostscriptSupport: true })))),
+                              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$30, ghostscriptSupport: true })))),
                             ];
                           })()),
                         })), nix.thunk(() => nix.str`magick -size 400x400 -background white -fill black canvas:white -pointsize 70 -annotate +100+200 '${galeneStreamFeedLabel}' $out

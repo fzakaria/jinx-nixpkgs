@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmypaint",
       version: "1.6.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mypaint",
           repo: "libmypaint",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preConfigure: "export AUTOMAKE=automake\nexport ACLOCAL=aclocal\n./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://mypaint.org/",
         description: "Library for making brushstrokes which is used by MyPaint and other projects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

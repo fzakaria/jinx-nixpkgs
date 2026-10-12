@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YannickJadoul",
           repo: "Parselmouth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--run-praat-tests", "-v"]);
       const pythonImportsCheck = nix.thunk(() => ["parselmouth"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Praat in Python, the Pythonic way",
         homepage: "https://github.com/YannickJadoul/Parselmouth",
         changelog: nix.thunk(() => nix.str`https://github.com/YannickJadoul/Parselmouth/releases/tag/${nix.sel(src, "tag")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

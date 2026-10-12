@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nanoarrow",
       version: "0.8.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "arrow-nanoarrow",
           tag: nix.thunk(() => nix.str`apache-arrow-nanoarrow-${nix.sel(finalAttrs, "version")}`),
@@ -46,9 +46,9 @@ cp subprojects/packagefiles/flatcc/meson.build ${nix.sel(finalAttrs, "finalPacka
 `),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "metal", "disabled"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "flatcc-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "dvidelabs",
             repo: "flatcc",
             rev: "fd3c4ae5cd39f0651eda6a3a1a374278070135d6",
@@ -58,7 +58,7 @@ cp subprojects/packagefiles/flatcc/meson.build ${nix.sel(finalAttrs, "finalPacka
       })),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Helpers for Arrow C Data & Arrow C Stream interfaces",
         homepage: "https://github.com/apache/arrow-nanoarrow",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/arrow-nanoarrow/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

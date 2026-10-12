@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const offlineimap = nix.arg($, "offlineimap");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "offlineimap",
       version: "8.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OfflineIMAP",
           repo: "offlineimap3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,14 +61,14 @@ sed -i offlineimap/utils/distro_utils.py -e '/def get_os_sslcertfile():/a\\ \\ \
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["offlineimap"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: offlineimap })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: offlineimap })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Synchronize emails between two repositories, so that you can read the same mailbox from multiple computers",
         homepage: "http://offlineimap.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

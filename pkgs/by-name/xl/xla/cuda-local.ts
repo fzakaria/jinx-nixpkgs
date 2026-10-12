@@ -39,21 +39,21 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_nvml_dev")))),
     ]))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     cudaRoots: cudaRoots,
     cuda: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "xla-local-cuda",
         paths: cudaRoots,
         postBuild: "for entry in include/cuda/std include/thrust include/cub include/nv/target; do\n  if test -e \"$out/$entry\"; then\n    echo \"unexpected CCCL header in local CUDA view: $entry\" >&2\n    exit 1\n  fi\ndone\n",
       })))),
     cudnn: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "xla-local-cudnn",
         paths: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(outputs, nix.thunk(() => ["include", "lib"]), nix.thunk(() => nix.sel(cudaPackages, "cudnn")))))),
       })))),
     nccl: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "xla-local-nccl",
         paths: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(outputs, nix.thunk(() => ["dev", "lib"]), nix.thunk(() => nix.sel(cudaPackages, "nccl")))))),
       })))),

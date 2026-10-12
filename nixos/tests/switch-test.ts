@@ -561,12 +561,12 @@ printf hello >&3
 exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "cat")} <&3 >/dev/null
 `)));
   return {
-    __proto__: pos$501,
+    [nix.POS]: pos$501,
     name: nix.thunk(() => nix.str`switch-test-${part}`),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "gleber")),
           nix.thunk(() => nix.lookup(w, "das_j")),
@@ -574,97 +574,97 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$499,
+      [nix.POS]: pos$499,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$481,
+          [nix.POS]: pos$481,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "socat"))]),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             mutableUsers: false,
             users: nix.thunk(() => ({
-              __proto__: pos$4,
-              usertest: nix.thunk(() => ({ __proto__: pos$3, isNormalUser: true, uid: 1001n, linger: true })),
+              [nix.POS]: pos$4,
+              usertest: nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true, uid: 1001n, linger: true })),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             loader: nix.thunk(() => ({
-              __proto__: pos$7,
-              grub: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+              [nix.POS]: pos$7,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
             })),
           })),
           specialisation: nix.thunk(() => nix.update(nix.app(forPart, "basics", nix.thunk(() => (() => {
               const brokenInitInterface = nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   config: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     system: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       systemBuilderCommands: "echo \"systemd 0\" > $out/init-interface-version\n",
                     })),
                   })),
                 })),
               }));
               const modifiedSystemConf = nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$14,
-                      Manager: nix.thunk(() => ({ __proto__: pos$13, DefaultEnvironment: "XXX_SYSTEM=foo" })),
+                      [nix.POS]: pos$14,
+                      Manager: nix.thunk(() => ({ [nix.POS]: pos$13, DefaultEnvironment: "XXX_SYSTEM=foo" })),
                     })),
                   })),
                 })),
               }));
               const addedMount = nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   virtualisation: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     fileSystems: nix.thunk(() => ({
-                      __proto__: pos$19,
-                      "/test": nix.thunk(() => ({ __proto__: pos$18, device: "tmpfs", fsType: "tmpfs" })),
+                      [nix.POS]: pos$19,
+                      "/test": nix.thunk(() => ({ [nix.POS]: pos$18, device: "tmpfs", fsType: "tmpfs" })),
                     })),
                   })),
                 })),
               }));
               const addedMountOptsModified = nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(addedMount, "configuration"))]),
                   virtualisation: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     fileSystems: nix.thunk(() => ({
-                      __proto__: pos$24,
-                      "/test": nix.thunk(() => ({ __proto__: pos$23, options: nix.thunk(() => ["x-test"]) })),
+                      [nix.POS]: pos$24,
+                      "/test": nix.thunk(() => ({ [nix.POS]: pos$23, options: nix.thunk(() => ["x-test"]) })),
                     })),
                   })),
                 })),
               }));
               const addedMountDevModified = nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(addedMountOptsModified, "configuration"))]),
                   virtualisation: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     fileSystems: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       "/test": nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         device: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "ramfs")),
                       })),
                     })),
@@ -672,15 +672,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const storeMountModified = nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   virtualisation: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     fileSystems: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         device: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "auto")),
                       })),
                     })),
@@ -688,15 +688,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const automount = nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   virtualisation: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     fileSystems: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       "/testauto": nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         device: "tmpfs",
                         fsType: "tmpfs",
                         options: nix.thunk(() => ["x-systemd.automount"]),
@@ -706,14 +706,14 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const swap = nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$44,
-                  swapDevices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$43, device: "/swapfile", size: 1n }))]))),
+                  [nix.POS]: pos$44,
+                  swapDevices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$43, device: "/swapfile", size: 1n }))]))),
                 })),
               }));
               return {
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 brokenInitInterface,
                 modifiedSystemConf,
                 addedMount,
@@ -725,18 +725,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
               };
             })())), nix.update(nix.app(forPart, "services", nix.thunk(() => (() => {
               const simpleService = nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     services: nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       test: nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -748,19 +748,19 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceSeparateActivationScript = nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$58,
-                  system: nix.thunk(() => ({ __proto__: pos$53, activatable: false })),
+                  [nix.POS]: pos$58,
+                  system: nix.thunk(() => ({ [nix.POS]: pos$53, activatable: false })),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     services: nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       test: nix.thunk(() => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -772,64 +772,64 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceDifferentDescription = nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     services: nix.thunk(() => ({
-                      __proto__: pos$61,
-                      test: nix.thunk(() => ({ __proto__: pos$60, description: "Test unit" })),
+                      [nix.POS]: pos$61,
+                      test: nix.thunk(() => ({ [nix.POS]: pos$60, description: "Test unit" })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceModified = nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     services: nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       test: nix.thunk(() => ({
-                        __proto__: pos$66,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$65, "X-Test": true })),
+                        [nix.POS]: pos$66,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$65, "X-Test": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceNostop = nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     services: nix.thunk(() => ({
-                      __proto__: pos$72,
-                      test: nix.thunk(() => ({ __proto__: pos$71, stopIfChanged: false })),
+                      [nix.POS]: pos$72,
+                      test: nix.thunk(() => ({ [nix.POS]: pos$71, stopIfChanged: false })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReload = nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$79,
+                    [nix.POS]: pos$79,
                     services: nix.thunk(() => ({
-                      __proto__: pos$78,
+                      [nix.POS]: pos$78,
                       test: nix.thunk(() => ({
-                        __proto__: pos$77,
+                        [nix.POS]: pos$77,
                         reloadIfChanged: true,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$76,
+                          [nix.POS]: pos$76,
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
                       })),
@@ -838,32 +838,32 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceNorestart = nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$84,
+                    [nix.POS]: pos$84,
                     services: nix.thunk(() => ({
-                      __proto__: pos$83,
-                      test: nix.thunk(() => ({ __proto__: pos$82, restartIfChanged: false })),
+                      [nix.POS]: pos$83,
+                      test: nix.thunk(() => ({ [nix.POS]: pos$82, restartIfChanged: false })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceFailing = nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$91,
+                  [nix.POS]: pos$91,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceModified, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$90,
+                    [nix.POS]: pos$90,
                     services: nix.thunk(() => ({
-                      __proto__: pos$89,
+                      [nix.POS]: pos$89,
                       test: nix.thunk(() => ({
-                        __proto__: pos$88,
+                        [nix.POS]: pos$88,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           ExecStart: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`))),
                         })),
                       })),
@@ -872,18 +872,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const autorestartService = nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$97,
+                  [nix.POS]: pos$97,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$96,
+                    [nix.POS]: pos$96,
                     services: nix.thunk(() => ({
-                      __proto__: pos$95,
+                      [nix.POS]: pos$95,
                       autorestart: nix.thunk(() => ({
-                        __proto__: pos$94,
+                        [nix.POS]: pos$94,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$93,
+                          [nix.POS]: pos$93,
                           Type: "simple",
                           Restart: "always",
                           RestartSec: "20y",
@@ -895,18 +895,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const autorestartServiceFailing = nix.thunk(() => ({
-                __proto__: pos$104,
+                [nix.POS]: pos$104,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$103,
+                  [nix.POS]: pos$103,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(autorestartService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$102,
+                    [nix.POS]: pos$102,
                     services: nix.thunk(() => ({
-                      __proto__: pos$101,
+                      [nix.POS]: pos$101,
                       autorestart: nix.thunk(() => ({
-                        __proto__: pos$100,
+                        [nix.POS]: pos$100,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$99,
+                          [nix.POS]: pos$99,
                           ExecStart: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`))),
                         })),
                       })),
@@ -915,15 +915,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithExtraSection = nix.thunk(() => ({
-                __proto__: pos$108,
+                [nix.POS]: pos$108,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$106,
+                    [nix.POS]: pos$106,
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({
-                          __proto__: pos$105,
+                          [nix.POS]: pos$105,
                           name: "systemd-extra-section",
                           destination: "/etc/systemd/system/test.service",
                           text: "[X-Test]\nX-Test-Value=a\n",
@@ -933,15 +933,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithExtraSectionOtherName = nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$111,
+                  [nix.POS]: pos$111,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$110,
+                    [nix.POS]: pos$110,
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({
-                          __proto__: pos$109,
+                          [nix.POS]: pos$109,
                           name: "systemd-extra-section",
                           destination: "/etc/systemd/system/test.service",
                           text: "[X-Test2]\nX-Test-Value=a\n",
@@ -951,15 +951,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithInstallSection = nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$115,
+                  [nix.POS]: pos$115,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$114,
+                    [nix.POS]: pos$114,
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({
-                          __proto__: pos$113,
+                          [nix.POS]: pos$113,
                           name: "systemd-extra-section",
                           destination: "/etc/systemd/system/test.service",
                           text: "[Install]\nWantedBy=multi-user.target\n",
@@ -969,132 +969,132 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithExtraKey = nix.thunk(() => ({
-                __proto__: pos$122,
+                [nix.POS]: pos$122,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$121,
+                  [nix.POS]: pos$121,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$120,
+                    [nix.POS]: pos$120,
                     services: nix.thunk(() => ({
-                      __proto__: pos$119,
+                      [nix.POS]: pos$119,
                       test: nix.thunk(() => ({
-                        __proto__: pos$118,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$117, "X-Test": "test" })),
+                        [nix.POS]: pos$118,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$117, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceWithExtraKeyOtherValue = nix.thunk(() => ({
-                __proto__: pos$128,
+                [nix.POS]: pos$128,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$127,
+                  [nix.POS]: pos$127,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$126,
+                    [nix.POS]: pos$126,
                     services: nix.thunk(() => ({
-                      __proto__: pos$125,
+                      [nix.POS]: pos$125,
                       test: nix.thunk(() => ({
-                        __proto__: pos$124,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$123, "X-Test": "test2" })),
+                        [nix.POS]: pos$124,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$123, "X-Test": "test2" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceWithExtraKeyOtherName = nix.thunk(() => ({
-                __proto__: pos$134,
+                [nix.POS]: pos$134,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$133,
+                  [nix.POS]: pos$133,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$132,
+                    [nix.POS]: pos$132,
                     services: nix.thunk(() => ({
-                      __proto__: pos$131,
+                      [nix.POS]: pos$131,
                       test: nix.thunk(() => ({
-                        __proto__: pos$130,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$129, "X-Test2": "test" })),
+                        [nix.POS]: pos$130,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$129, "X-Test2": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTrigger = nix.thunk(() => ({
-                __proto__: pos$139,
+                [nix.POS]: pos$139,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$138,
+                  [nix.POS]: pos$138,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$137,
+                    [nix.POS]: pos$137,
                     services: nix.thunk(() => ({
-                      __proto__: pos$136,
-                      test: nix.thunk(() => ({ __proto__: pos$135, reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
+                      [nix.POS]: pos$136,
+                      test: nix.thunk(() => ({ [nix.POS]: pos$135, reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTriggerModified = nix.thunk(() => ({
-                __proto__: pos$144,
+                [nix.POS]: pos$144,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$143,
+                  [nix.POS]: pos$143,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$142,
+                    [nix.POS]: pos$142,
                     services: nix.thunk(() => ({
-                      __proto__: pos$141,
-                      test: nix.thunk(() => ({ __proto__: pos$140, reloadTriggers: nix.thunk(() => ["/dev/zero"]) })),
+                      [nix.POS]: pos$141,
+                      test: nix.thunk(() => ({ [nix.POS]: pos$140, reloadTriggers: nix.thunk(() => ["/dev/zero"]) })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTriggerModifiedAndSomethingElse = nix.thunk(() => ({
-                __proto__: pos$150,
+                [nix.POS]: pos$150,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$149,
+                  [nix.POS]: pos$149,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$148,
+                    [nix.POS]: pos$148,
                     services: nix.thunk(() => ({
-                      __proto__: pos$147,
+                      [nix.POS]: pos$147,
                       test: nix.thunk(() => ({
-                        __proto__: pos$146,
+                        [nix.POS]: pos$146,
                         reloadTriggers: nix.thunk(() => ["/dev/zero"]),
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$145, "X-Test": "test" })),
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$145, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTriggerModifiedSomethingElse = nix.thunk(() => ({
-                __proto__: pos$156,
+                [nix.POS]: pos$156,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$155,
+                  [nix.POS]: pos$155,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$154,
+                    [nix.POS]: pos$154,
                     services: nix.thunk(() => ({
-                      __proto__: pos$153,
+                      [nix.POS]: pos$153,
                       test: nix.thunk(() => ({
-                        __proto__: pos$152,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$151, "X-Test": "test" })),
+                        [nix.POS]: pos$152,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$151, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const unitWithBackslash = nix.thunk(() => ({
-                __proto__: pos$162,
+                [nix.POS]: pos$162,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$161,
+                  [nix.POS]: pos$161,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$160,
+                    [nix.POS]: pos$160,
                     services: nix.thunk(() => ({
-                      __proto__: pos$159,
+                      [nix.POS]: pos$159,
                       "escaped\\x2ddash": nix.thunk(() => ({
-                        __proto__: pos$158,
+                        [nix.POS]: pos$158,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$157,
+                          [nix.POS]: pos$157,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1106,34 +1106,34 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithBackslashModified = nix.thunk(() => ({
-                __proto__: pos$168,
+                [nix.POS]: pos$168,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$167,
+                  [nix.POS]: pos$167,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithBackslash, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$166,
+                    [nix.POS]: pos$166,
                     services: nix.thunk(() => ({
-                      __proto__: pos$165,
+                      [nix.POS]: pos$165,
                       "escaped\\x2ddash": nix.thunk(() => ({
-                        __proto__: pos$164,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$163, "X-Test": "test" })),
+                        [nix.POS]: pos$164,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$163, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const unitWithMultilineValue = nix.thunk(() => ({
-                __proto__: pos$174,
+                [nix.POS]: pos$174,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$173,
+                  [nix.POS]: pos$173,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$172,
+                    [nix.POS]: pos$172,
                     services: nix.thunk(() => ({
-                      __proto__: pos$171,
+                      [nix.POS]: pos$171,
                       test: nix.thunk(() => ({
-                        __proto__: pos$170,
+                        [nix.POS]: pos$170,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$169,
+                          [nix.POS]: pos$169,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true \\
 # ignored
 ; ignored
@@ -1146,18 +1146,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitStartingWithDash = nix.thunk(() => ({
-                __proto__: pos$180,
+                [nix.POS]: pos$180,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$179,
+                  [nix.POS]: pos$179,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$178,
+                    [nix.POS]: pos$178,
                     services: nix.thunk(() => ({
-                      __proto__: pos$177,
+                      [nix.POS]: pos$177,
                       "-": nix.thunk(() => ({
-                        __proto__: pos$176,
+                        [nix.POS]: pos$176,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$175,
+                          [nix.POS]: pos$175,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1168,19 +1168,19 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitStartingWithDashModified = nix.thunk(() => ({
-                __proto__: pos$186,
+                [nix.POS]: pos$186,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$185,
+                  [nix.POS]: pos$185,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitStartingWithDash, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$184,
+                    [nix.POS]: pos$184,
                     services: nix.thunk(() => ({
-                      __proto__: pos$183,
+                      [nix.POS]: pos$183,
                       "-": nix.thunk(() => ({
-                        __proto__: pos$182,
+                        [nix.POS]: pos$182,
                         reloadIfChanged: true,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$181,
+                          [nix.POS]: pos$181,
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
                       })),
@@ -1189,18 +1189,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithRequirement = nix.thunk(() => ({
-                __proto__: pos$194,
+                [nix.POS]: pos$194,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$193,
+                  [nix.POS]: pos$193,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$192,
+                    [nix.POS]: pos$192,
                     services: nix.thunk(() => ({
-                      __proto__: pos$191,
+                      [nix.POS]: pos$191,
                       "required-service": nix.thunk(() => ({
-                        __proto__: pos$188,
+                        [nix.POS]: pos$188,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$187,
+                          [nix.POS]: pos$187,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1208,11 +1208,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                         })),
                       })),
                       "test-service": nix.thunk(() => ({
-                        __proto__: pos$190,
+                        [nix.POS]: pos$190,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         requires: nix.thunk(() => ["required-service.service"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$189,
+                          [nix.POS]: pos$189,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1224,52 +1224,52 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithRequirementModified = nix.thunk(() => ({
-                __proto__: pos$201,
+                [nix.POS]: pos$201,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$200,
+                  [nix.POS]: pos$200,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithRequirement, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$199,
+                    [nix.POS]: pos$199,
                     services: nix.thunk(() => ({
-                      __proto__: pos$198,
+                      [nix.POS]: pos$198,
                       "required-service": nix.thunk(() => ({
-                        __proto__: pos$196,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$195, "X-Test": "test" })),
+                        [nix.POS]: pos$196,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$195, "X-Test": "test" })),
                       })),
-                      "test-service": nix.thunk(() => ({ __proto__: pos$197, reloadTriggers: nix.thunk(() => ["test"]) })),
+                      "test-service": nix.thunk(() => ({ [nix.POS]: pos$197, reloadTriggers: nix.thunk(() => ["test"]) })),
                     })),
                   })),
                 })),
               }));
               const unitWithRequirementModifiedNostart = nix.thunk(() => ({
-                __proto__: pos$207,
+                [nix.POS]: pos$207,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$206,
+                  [nix.POS]: pos$206,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithRequirement, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$205,
+                    [nix.POS]: pos$205,
                     services: nix.thunk(() => ({
-                      __proto__: pos$204,
+                      [nix.POS]: pos$204,
                       "test-service": nix.thunk(() => ({
-                        __proto__: pos$203,
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$202, RefuseManualStart: true })),
+                        [nix.POS]: pos$203,
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$202, RefuseManualStart: true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const unitWithTemplate = nix.thunk(() => ({
-                __proto__: pos$215,
+                [nix.POS]: pos$215,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$214,
+                  [nix.POS]: pos$214,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$213,
+                    [nix.POS]: pos$213,
                     services: nix.thunk(() => ({
-                      __proto__: pos$212,
+                      [nix.POS]: pos$212,
                       "instantiated@": nix.thunk(() => ({
-                        __proto__: pos$209,
+                        [nix.POS]: pos$209,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$208,
+                          [nix.POS]: pos$208,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1277,12 +1277,12 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                         })),
                       })),
                       "instantiated@one": nix.thunk(() => ({
-                        __proto__: pos$210,
+                        [nix.POS]: pos$210,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         overrideStrategy: "asDropin",
                       })),
                       "instantiated@two": nix.thunk(() => ({
-                        __proto__: pos$211,
+                        [nix.POS]: pos$211,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         overrideStrategy: "asDropin",
                       })),
@@ -1291,33 +1291,33 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithTemplateModified = nix.thunk(() => ({
-                __proto__: pos$221,
+                [nix.POS]: pos$221,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$220,
+                  [nix.POS]: pos$220,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithTemplate, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$219,
+                    [nix.POS]: pos$219,
                     services: nix.thunk(() => ({
-                      __proto__: pos$218,
+                      [nix.POS]: pos$218,
                       "instantiated@": nix.thunk(() => ({
-                        __proto__: pos$217,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$216, "X-Test": "test" })),
+                        [nix.POS]: pos$217,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$216, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const restart_and_reload_by_activation_script = nix.thunk(() => ({
-                __proto__: pos$242,
+                [nix.POS]: pos$242,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$241,
+                  [nix.POS]: pos$241,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$237,
+                    [nix.POS]: pos$237,
                     services: nix.thunk(() => (() => {
                       const simple_service = nix.thunk(() => ({
-                        __proto__: pos$223,
+                        [nix.POS]: pos$223,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$222,
+                          [nix.POS]: pos$222,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1325,40 +1325,40 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                         })),
                       }));
                       const templated_simple_service$40 = simple_service;
-                      const templated_simple_service$40instance = nix.thunk(() => ({ __proto__: pos$224, overrideStrategy: "asDropin" }));
-                      const simple_restart_service = nix.thunk(() => nix.update(simple_service, { __proto__: pos$225, stopIfChanged: false }));
+                      const templated_simple_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$224, overrideStrategy: "asDropin" }));
+                      const simple_restart_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$225, stopIfChanged: false }));
                       const templated_simple_restart_service$40 = simple_restart_service;
-                      const templated_simple_restart_service$40instance = nix.thunk(() => ({ __proto__: pos$226, overrideStrategy: "asDropin" }));
-                      const simple_reload_service = nix.thunk(() => nix.update(simple_service, { __proto__: pos$227, reloadIfChanged: true }));
+                      const templated_simple_restart_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$226, overrideStrategy: "asDropin" }));
+                      const simple_reload_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$227, reloadIfChanged: true }));
                       const templated_simple_reload_service$40 = simple_reload_service;
-                      const templated_simple_reload_service$40instance = nix.thunk(() => ({ __proto__: pos$228, overrideStrategy: "asDropin" }));
-                      const no_restart_service = nix.thunk(() => nix.update(simple_service, { __proto__: pos$229, restartIfChanged: false }));
+                      const templated_simple_reload_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$228, overrideStrategy: "asDropin" }));
+                      const no_restart_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$229, restartIfChanged: false }));
                       const templated_no_restart_service$40 = no_restart_service;
-                      const templated_no_restart_service$40instance = nix.thunk(() => ({ __proto__: pos$230, overrideStrategy: "asDropin" }));
-                      const reload_triggers = nix.thunk(() => nix.update(simple_service, { __proto__: pos$231, wantedBy: nix.thunk(() => ["multi-user.target"]) }));
+                      const templated_no_restart_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$230, overrideStrategy: "asDropin" }));
+                      const reload_triggers = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$231, wantedBy: nix.thunk(() => ["multi-user.target"]) }));
                       const templated_reload_triggers$40 = simple_service;
                       const templated_reload_triggers$40instance = nix.thunk(() => ({
-                        __proto__: pos$232,
+                        [nix.POS]: pos$232,
                         overrideStrategy: "asDropin",
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                       }));
                       const reload_triggers_and_restart_by_as = simple_service;
                       const templated_reload_triggers_and_restart_by_as$40 = reload_triggers_and_restart_by_as;
-                      const templated_reload_triggers_and_restart_by_as$40instance = nix.thunk(() => ({ __proto__: pos$233, overrideStrategy: "asDropin" }));
+                      const templated_reload_triggers_and_restart_by_as$40instance = nix.thunk(() => ({ [nix.POS]: pos$233, overrideStrategy: "asDropin" }));
                       const reload_triggers_and_restart = nix.thunk(() => nix.update(simple_service, {
-                        __proto__: pos$234,
+                        [nix.POS]: pos$234,
                         stopIfChanged: false,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                       }));
                       const templated_reload_triggers_and_restart$40 = simple_service;
                       const templated_reload_triggers_and_restart$40instance = nix.thunk(() => ({
-                        __proto__: pos$235,
+                        [nix.POS]: pos$235,
                         overrideStrategy: "asDropin",
                         stopIfChanged: false,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                       }));
                       return {
-                        __proto__: pos$236,
+                        [nix.POS]: pos$236,
                         "simple-service": simple_service,
                         "templated-simple-service@": templated_simple_service$40,
                         "templated-simple-service@instance": templated_simple_service$40instance,
@@ -1384,11 +1384,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                     })()),
                   })),
                   system: nix.thunk(() => ({
-                    __proto__: pos$240,
+                    [nix.POS]: pos$240,
                     activationScripts: nix.thunk(() => ({
-                      __proto__: pos$239,
+                      [nix.POS]: pos$239,
                       "restart-and-reload-test": nix.thunk(() => ({
-                        __proto__: pos$238,
+                        [nix.POS]: pos$238,
                         supportsDryActivation: true,
                         deps: [],
                         text: "if [ \"$NIXOS_ACTION\" = dry-activate ]; then\n  f=/run/nixos/dry-activation-restart-list\n  g=/run/nixos/dry-activation-reload-list\nelse\n  f=/run/nixos/activation-restart-list\n  g=/run/nixos/activation-reload-list\nfi\ncat <<EOF >> \"$f\"\nsimple-service.service\nsimple-restart-service.service\nsimple-reload-service.service\nno-restart-service.service\nreload-triggers-and-restart-by-as.service\ntemplated-simple-service@instance.service\ntemplated-simple-restart-service@instance.service\ntemplated-simple-reload-service@instance.service\ntemplated-no-restart-service@instance.service\ntemplated-reload-triggers-and-restart-by-as@instance.service\nEOF\n\ncat <<EOF >> \"$g\"\nreload-triggers.service\nreload-triggers-and-restart-by-as.service\nreload-triggers-and-restart.service\ntemplated-reload-triggers@instance.service\ntemplated-reload-triggers-and-restart-by-as@instance.service\ntemplated-reload-triggers-and-restart@instance.service\nEOF\n",
@@ -1398,31 +1398,31 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const restart_and_reload_by_activation_script_modified = nix.thunk(() => ({
-                __proto__: pos$250,
+                [nix.POS]: pos$250,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$249,
+                  [nix.POS]: pos$249,
                   imports: nix.thunk(() => [
                     nix.thunk(() => nix.sel(restart_and_reload_by_activation_script, "configuration")),
                   ]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$248,
+                    [nix.POS]: pos$248,
                     services: nix.thunk(() => ({
-                      __proto__: pos$247,
+                      [nix.POS]: pos$247,
                       "reload-triggers-and-restart": nix.thunk(() => ({
-                        __proto__: pos$244,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$243, "X-Modified": "test" })),
+                        [nix.POS]: pos$244,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$243, "X-Modified": "test" })),
                       })),
                       "templated-reload-triggers-and-restart@instance": nix.thunk(() => ({
-                        __proto__: pos$246,
+                        [nix.POS]: pos$246,
                         overrideStrategy: "asDropin",
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$245, "X-Modified": "test" })),
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$245, "X-Modified": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               return {
-                __proto__: pos$251,
+                [nix.POS]: pos$251,
                 simpleService,
                 simpleServiceSeparateActivationScript,
                 simpleServiceDifferentDescription,
@@ -1458,32 +1458,32 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
               };
             })())), nix.update(nix.app(forPart, "units", nix.thunk(() => (() => {
               const simple_socket = nix.thunk(() => ({
-                __proto__: pos$260,
+                [nix.POS]: pos$260,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$259,
+                  [nix.POS]: pos$259,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$258,
+                    [nix.POS]: pos$258,
                     services: nix.thunk(() => ({
-                      __proto__: pos$254,
+                      [nix.POS]: pos$254,
                       "socket-activated": nix.thunk(() => ({
-                        __proto__: pos$253,
+                        [nix.POS]: pos$253,
                         description: "A socket-activated service",
                         stopIfChanged: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), false)),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$252,
+                          [nix.POS]: pos$252,
                           ExecStart: socketTest,
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
                       })),
                     })),
                     sockets: nix.thunk(() => ({
-                      __proto__: pos$257,
+                      [nix.POS]: pos$257,
                       "socket-activated": nix.thunk(() => ({
-                        __proto__: pos$256,
+                        [nix.POS]: pos$256,
                         wantedBy: nix.thunk(() => ["sockets.target"]),
                         listenStreams: nix.thunk(() => ["/run/test.sock"]),
                         socketConfig: nix.thunk(() => ({
-                          __proto__: pos$255,
+                          [nix.POS]: pos$255,
                           SocketMode: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), "0777")),
                         })),
                       })),
@@ -1492,47 +1492,47 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simple_socket_service_modified = nix.thunk(() => ({
-                __proto__: pos$266,
+                [nix.POS]: pos$266,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$265,
+                  [nix.POS]: pos$265,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$264,
+                    [nix.POS]: pos$264,
                     services: nix.thunk(() => ({
-                      __proto__: pos$263,
+                      [nix.POS]: pos$263,
                       "socket-activated": nix.thunk(() => ({
-                        __proto__: pos$262,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$261, "X-Test": "test" })),
+                        [nix.POS]: pos$262,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$261, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simple_socket_stop_if_changed = nix.thunk(() => ({
-                __proto__: pos$271,
+                [nix.POS]: pos$271,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$270,
+                  [nix.POS]: pos$270,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$269,
+                    [nix.POS]: pos$269,
                     services: nix.thunk(() => ({
-                      __proto__: pos$268,
-                      "socket-activated": nix.thunk(() => ({ __proto__: pos$267, stopIfChanged: true })),
+                      [nix.POS]: pos$268,
+                      "socket-activated": nix.thunk(() => ({ [nix.POS]: pos$267, stopIfChanged: true })),
                     })),
                   })),
                 })),
               }));
               const simple_socket_stop_if_changed_and_reloadtrigger = nix.thunk(() => ({
-                __proto__: pos$276,
+                [nix.POS]: pos$276,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$275,
+                  [nix.POS]: pos$275,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$274,
+                    [nix.POS]: pos$274,
                     services: nix.thunk(() => ({
-                      __proto__: pos$273,
+                      [nix.POS]: pos$273,
                       "socket-activated": nix.thunk(() => ({
-                        __proto__: pos$272,
+                        [nix.POS]: pos$272,
                         stopIfChanged: true,
                         reloadTriggers: nix.thunk(() => ["test"]),
                       })),
@@ -1541,75 +1541,75 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const accept_socket = nix.thunk(() => ({
-                __proto__: pos$285,
+                [nix.POS]: pos$285,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$284,
+                  [nix.POS]: pos$284,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$283,
+                    [nix.POS]: pos$283,
                     sockets: nix.thunk(() => ({
-                      __proto__: pos$279,
+                      [nix.POS]: pos$279,
                       "accept-socket": nix.thunk(() => ({
-                        __proto__: pos$278,
+                        [nix.POS]: pos$278,
                         wantedBy: nix.thunk(() => ["sockets.target"]),
                         listenStreams: nix.thunk(() => ["/run/accept-test.sock"]),
-                        socketConfig: nix.thunk(() => ({ __proto__: pos$277, Accept: "yes", SocketMode: "0777" })),
+                        socketConfig: nix.thunk(() => ({ [nix.POS]: pos$277, Accept: "yes", SocketMode: "0777" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$282,
+                      [nix.POS]: pos$282,
                       "accept-socket@": nix.thunk(() => ({
-                        __proto__: pos$281,
+                        [nix.POS]: pos$281,
                         description: "A per-connection socket-activated service",
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$280, ExecStart: acceptSocketTest })),
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$280, ExecStart: acceptSocketTest })),
                       })),
                     })),
                   })),
                 })),
               }));
               const accept_socket_service_modified = nix.thunk(() => ({
-                __proto__: pos$291,
+                [nix.POS]: pos$291,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$290,
+                  [nix.POS]: pos$290,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(accept_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$289,
+                    [nix.POS]: pos$289,
                     services: nix.thunk(() => ({
-                      __proto__: pos$288,
+                      [nix.POS]: pos$288,
                       "accept-socket@": nix.thunk(() => ({
-                        __proto__: pos$287,
-                        serviceConfig: nix.thunk(() => ({ __proto__: pos$286, "X-Test": "test" })),
+                        [nix.POS]: pos$287,
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$286, "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const socket_activated_without_socket = nix.thunk(() => ({
-                __proto__: pos$298,
+                [nix.POS]: pos$298,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$297,
+                  [nix.POS]: pos$297,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$296,
+                    [nix.POS]: pos$296,
                     sockets: nix.thunk(() => ({
-                      __proto__: pos$293,
-                      "socket-activated": nix.thunk(() => ({ __proto__: pos$292, enable: false })),
+                      [nix.POS]: pos$293,
+                      "socket-activated": nix.thunk(() => ({ [nix.POS]: pos$292, enable: false })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$295,
-                      "socket-activated": nix.thunk(() => ({ __proto__: pos$294, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                      [nix.POS]: pos$295,
+                      "socket-activated": nix.thunk(() => ({ [nix.POS]: pos$294, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
                     })),
                   })),
                 })),
               }));
               const mount = nix.thunk(() => ({
-                __proto__: pos$302,
+                [nix.POS]: pos$302,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$301,
+                  [nix.POS]: pos$301,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$300,
+                    [nix.POS]: pos$300,
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$299,
+                        [nix.POS]: pos$299,
                         description: "Testmount",
                         what: "tmpfs",
                         type: "tmpfs",
@@ -1622,14 +1622,14 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const mountOptionsModified = nix.thunk(() => ({
-                __proto__: pos$306,
+                [nix.POS]: pos$306,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$305,
+                  [nix.POS]: pos$305,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$304,
+                    [nix.POS]: pos$304,
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$303,
+                        [nix.POS]: pos$303,
                         description: "Testmount",
                         what: "tmpfs",
                         type: "tmpfs",
@@ -1642,14 +1642,14 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const mountModified = nix.thunk(() => ({
-                __proto__: pos$310,
+                [nix.POS]: pos$310,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$309,
+                  [nix.POS]: pos$309,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$308,
+                    [nix.POS]: pos$308,
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$307,
+                        [nix.POS]: pos$307,
                         description: "Testmount",
                         what: "ramfs",
                         type: "ramfs",
@@ -1662,25 +1662,25 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const timer = nix.thunk(() => ({
-                __proto__: pos$319,
+                [nix.POS]: pos$319,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$318,
+                  [nix.POS]: pos$318,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$317,
+                    [nix.POS]: pos$317,
                     timers: nix.thunk(() => ({
-                      __proto__: pos$313,
+                      [nix.POS]: pos$313,
                       "test-timer": nix.thunk(() => ({
-                        __proto__: pos$312,
+                        [nix.POS]: pos$312,
                         wantedBy: nix.thunk(() => ["timers.target"]),
-                        timerConfig: nix.thunk(() => ({ __proto__: pos$311, OnCalendar: "@1395716396" })),
+                        timerConfig: nix.thunk(() => ({ [nix.POS]: pos$311, OnCalendar: "@1395716396" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$316,
+                      [nix.POS]: pos$316,
                       "test-timer": nix.thunk(() => ({
-                        __proto__: pos$315,
+                        [nix.POS]: pos$315,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$314,
+                          [nix.POS]: pos$314,
                           Type: "oneshot",
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
@@ -1690,18 +1690,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const timerModified = nix.thunk(() => ({
-                __proto__: pos$325,
+                [nix.POS]: pos$325,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$324,
+                  [nix.POS]: pos$324,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(timer, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$323,
+                    [nix.POS]: pos$323,
                     timers: nix.thunk(() => ({
-                      __proto__: pos$322,
+                      [nix.POS]: pos$322,
                       "test-timer": nix.thunk(() => ({
-                        __proto__: pos$321,
+                        [nix.POS]: pos$321,
                         timerConfig: nix.thunk(() => ({
-                          __proto__: pos$320,
+                          [nix.POS]: pos$320,
                           OnCalendar: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "Fri 2012-11-23 16:00:00")),
                         })),
                       })),
@@ -1710,38 +1710,38 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const hybridSleepModified = nix.thunk(() => ({
-                __proto__: pos$331,
+                [nix.POS]: pos$331,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$330,
+                  [nix.POS]: pos$330,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$329,
+                    [nix.POS]: pos$329,
                     targets: nix.thunk(() => ({
-                      __proto__: pos$328,
+                      [nix.POS]: pos$328,
                       "hybrid-sleep": nix.thunk(() => ({
-                        __proto__: pos$327,
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$326, "X-Test": true })),
+                        [nix.POS]: pos$327,
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$326, "X-Test": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const target = nix.thunk(() => ({
-                __proto__: pos$339,
+                [nix.POS]: pos$339,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$338,
+                  [nix.POS]: pos$338,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$337,
+                    [nix.POS]: pos$337,
                     targets: nix.thunk(() => ({
-                      __proto__: pos$333,
-                      "test-target": nix.thunk(() => ({ __proto__: pos$332, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                      [nix.POS]: pos$333,
+                      "test-target": nix.thunk(() => ({ [nix.POS]: pos$332, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$336,
+                      [nix.POS]: pos$336,
                       "test-service": nix.thunk(() => ({
-                        __proto__: pos$335,
+                        [nix.POS]: pos$335,
                         bindsTo: nix.thunk(() => ["test-target.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$334,
+                          [nix.POS]: pos$334,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/sleep infinity`),
                         })),
                       })),
@@ -1750,59 +1750,59 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const targetModified = nix.thunk(() => ({
-                __proto__: pos$345,
+                [nix.POS]: pos$345,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$344,
+                  [nix.POS]: pos$344,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(target, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$343,
+                    [nix.POS]: pos$343,
                     targets: nix.thunk(() => ({
-                      __proto__: pos$342,
+                      [nix.POS]: pos$342,
                       "test-target": nix.thunk(() => ({
-                        __proto__: pos$341,
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$340, "X-Test": true })),
+                        [nix.POS]: pos$341,
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$340, "X-Test": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const targetModifiedStopOnReconfig = nix.thunk(() => ({
-                __proto__: pos$351,
+                [nix.POS]: pos$351,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$350,
+                  [nix.POS]: pos$350,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(target, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$349,
+                    [nix.POS]: pos$349,
                     targets: nix.thunk(() => ({
-                      __proto__: pos$348,
+                      [nix.POS]: pos$348,
                       "test-target": nix.thunk(() => ({
-                        __proto__: pos$347,
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$346, "X-StopOnReconfiguration": true })),
+                        [nix.POS]: pos$347,
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$346, "X-StopOnReconfiguration": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const path = nix.thunk(() => ({
-                __proto__: pos$360,
+                [nix.POS]: pos$360,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$359,
+                  [nix.POS]: pos$359,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$358,
+                    [nix.POS]: pos$358,
                     paths: nix.thunk(() => ({
-                      __proto__: pos$354,
+                      [nix.POS]: pos$354,
                       "test-watch": nix.thunk(() => ({
-                        __proto__: pos$353,
+                        [nix.POS]: pos$353,
                         wantedBy: nix.thunk(() => ["paths.target"]),
-                        pathConfig: nix.thunk(() => ({ __proto__: pos$352, PathExists: "/testpath" })),
+                        pathConfig: nix.thunk(() => ({ [nix.POS]: pos$352, PathExists: "/testpath" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$357,
+                      [nix.POS]: pos$357,
                       "test-watch": nix.thunk(() => ({
-                        __proto__: pos$356,
+                        [nix.POS]: pos$356,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$355,
+                          [nix.POS]: pos$355,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/touch /testpath-modified`),
@@ -1813,18 +1813,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const pathModified = nix.thunk(() => ({
-                __proto__: pos$366,
+                [nix.POS]: pos$366,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$365,
+                  [nix.POS]: pos$365,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(path, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$364,
+                    [nix.POS]: pos$364,
                     paths: nix.thunk(() => ({
-                      __proto__: pos$363,
+                      [nix.POS]: pos$363,
                       "test-watch": nix.thunk(() => ({
-                        __proto__: pos$362,
+                        [nix.POS]: pos$362,
                         pathConfig: nix.thunk(() => ({
-                          __proto__: pos$361,
+                          [nix.POS]: pos$361,
                           PathExists: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "/testpath2")),
                         })),
                       })),
@@ -1833,24 +1833,24 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const slice = nix.thunk(() => ({
-                __proto__: pos$375,
+                [nix.POS]: pos$375,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$374,
+                  [nix.POS]: pos$374,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$373,
+                    [nix.POS]: pos$373,
                     slices: nix.thunk(() => ({
-                      __proto__: pos$369,
+                      [nix.POS]: pos$369,
                       testslice: nix.thunk(() => ({
-                        __proto__: pos$368,
-                        sliceConfig: nix.thunk(() => ({ __proto__: pos$367, MemoryMax: "1" })),
+                        [nix.POS]: pos$368,
+                        sliceConfig: nix.thunk(() => ({ [nix.POS]: pos$367, MemoryMax: "1" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$372,
+                      [nix.POS]: pos$372,
                       testservice: nix.thunk(() => ({
-                        __proto__: pos$371,
+                        [nix.POS]: pos$371,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$370,
+                          [nix.POS]: pos$370,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1862,18 +1862,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const sliceModified = nix.thunk(() => ({
-                __proto__: pos$381,
+                [nix.POS]: pos$381,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$380,
+                  [nix.POS]: pos$380,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(slice, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$379,
+                    [nix.POS]: pos$379,
                     slices: nix.thunk(() => ({
-                      __proto__: pos$378,
+                      [nix.POS]: pos$378,
                       testslice: nix.thunk(() => ({
-                        __proto__: pos$377,
+                        [nix.POS]: pos$377,
                         sliceConfig: nix.thunk(() => ({
-                          __proto__: pos$376,
+                          [nix.POS]: pos$376,
                           MemoryMax: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), null)),
                         })),
                       })),
@@ -1882,18 +1882,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const dbusReload = nix.thunk(() => ({
-                __proto__: pos$386,
+                [nix.POS]: pos$386,
                 configuration: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   const config = nix.arg($_2, "config");
-                  const dbusService = nix.thunk(() => nix.sel({ __proto__: pos$382, dbus: "dbus", broker: "dbus-broker" }, nix.key(nix.sel(config, "services", "dbus", "implementation"))));
+                  const dbusService = nix.thunk(() => nix.sel({ [nix.POS]: pos$382, dbus: "dbus", broker: "dbus-broker" }, nix.key(nix.sel(config, "services", "dbus", "implementation"))));
                   return {
-                    __proto__: pos$385,
+                    [nix.POS]: pos$385,
                     systemd: nix.thunk(() => ({
-                      __proto__: pos$384,
+                      [nix.POS]: pos$384,
                       services: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.force(dbusService), nix.thunk(() => ({
-                          __proto__: pos$383,
+                          [nix.POS]: pos$383,
                           restartTriggers: nix.thunk(() => [
                             nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "dbus-reload-dummy", "dbus reload dummy")),
                           ]),
@@ -1904,17 +1904,17 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })(), formals$3),
               }));
               const generators = nix.thunk(() => ({
-                __proto__: pos$390,
+                [nix.POS]: pos$390,
                 configuration: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$4);
                   const lib_2 = nix.arg($_2, "lib");
                   const pkgs_2 = nix.arg($_2, "pkgs");
                   return {
-                    __proto__: pos$389,
+                    [nix.POS]: pos$389,
                     systemd: nix.thunk(() => ({
-                      __proto__: pos$388,
+                      [nix.POS]: pos$388,
                       generators: nix.thunk(() => ({
-                        __proto__: pos$387,
+                        [nix.POS]: pos$387,
                         "simple-generator": nix.thunk(() => nix.app(nix.sel(pkgs_2, "writeShellScript"), "simple-generator", nix.thunk(() => nix.str`${nix.app(nix.sel(lib_2, "getExe'"), nix.thunk(() => nix.sel(pkgs_2, "coreutils")), "cat")} >$1/simple-generated.service <<EOF
 [Service]
 ExecStart=${nix.app(nix.sel(lib_2, "getExe'"), nix.thunk(() => nix.sel(pkgs_2, "coreutils")), "sleep")} infinity
@@ -1926,7 +1926,7 @@ EOF
                 })(), formals$4),
               }));
               return {
-                __proto__: pos$391,
+                [nix.POS]: pos$391,
                 "simple-socket": simple_socket,
                 "simple-socket-service-modified": simple_socket_service_modified,
                 "simple-socket-stop-if-changed": simple_socket_stop_if_changed,
@@ -1952,20 +1952,20 @@ EOF
               };
             })())), nix.update(nix.app(forPart, "user", nix.thunk(() => (() => {
               const simpleUserService = nix.thunk(() => ({
-                __proto__: pos$398,
+                [nix.POS]: pos$398,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$397,
+                  [nix.POS]: pos$397,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$396,
+                    [nix.POS]: pos$396,
                     user: nix.thunk(() => ({
-                      __proto__: pos$395,
+                      [nix.POS]: pos$395,
                       services: nix.thunk(() => ({
-                        __proto__: pos$394,
+                        [nix.POS]: pos$394,
                         usertest: nix.thunk(() => ({
-                          __proto__: pos$393,
+                          [nix.POS]: pos$393,
                           wantedBy: nix.thunk(() => ["default.target"]),
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$392,
+                            [nix.POS]: pos$392,
                             Type: "oneshot",
                             RemainAfterExit: true,
                             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1978,19 +1978,19 @@ EOF
                 })),
               }));
               const simpleUserServiceModified = nix.thunk(() => ({
-                __proto__: pos$405,
+                [nix.POS]: pos$405,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$404,
+                  [nix.POS]: pos$404,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$403,
+                    [nix.POS]: pos$403,
                     user: nix.thunk(() => ({
-                      __proto__: pos$402,
+                      [nix.POS]: pos$402,
                       services: nix.thunk(() => ({
-                        __proto__: pos$401,
+                        [nix.POS]: pos$401,
                         usertest: nix.thunk(() => ({
-                          __proto__: pos$400,
-                          serviceConfig: nix.thunk(() => ({ __proto__: pos$399, "X-Test": "1" })),
+                          [nix.POS]: pos$400,
+                          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$399, "X-Test": "1" })),
                         })),
                       })),
                     })),
@@ -1998,37 +1998,37 @@ EOF
                 })),
               }));
               const simpleUserServiceNostop = nix.thunk(() => ({
-                __proto__: pos$411,
+                [nix.POS]: pos$411,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$410,
+                  [nix.POS]: pos$410,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$409,
+                    [nix.POS]: pos$409,
                     user: nix.thunk(() => ({
-                      __proto__: pos$408,
+                      [nix.POS]: pos$408,
                       services: nix.thunk(() => ({
-                        __proto__: pos$407,
-                        usertest: nix.thunk(() => ({ __proto__: pos$406, stopIfChanged: false })),
+                        [nix.POS]: pos$407,
+                        usertest: nix.thunk(() => ({ [nix.POS]: pos$406, stopIfChanged: false })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleUserServiceReload = nix.thunk(() => ({
-                __proto__: pos$418,
+                [nix.POS]: pos$418,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$417,
+                  [nix.POS]: pos$417,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$416,
+                    [nix.POS]: pos$416,
                     user: nix.thunk(() => ({
-                      __proto__: pos$415,
+                      [nix.POS]: pos$415,
                       services: nix.thunk(() => ({
-                        __proto__: pos$414,
+                        [nix.POS]: pos$414,
                         usertest: nix.thunk(() => ({
-                          __proto__: pos$413,
+                          [nix.POS]: pos$413,
                           reloadIfChanged: true,
-                          serviceConfig: nix.thunk(() => ({ __proto__: pos$412, "X-Test": "1" })),
+                          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$412, "X-Test": "1" })),
                         })),
                       })),
                     })),
@@ -2036,37 +2036,37 @@ EOF
                 })),
               }));
               const simpleUserServiceReloadTrigger = nix.thunk(() => ({
-                __proto__: pos$424,
+                [nix.POS]: pos$424,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$423,
+                  [nix.POS]: pos$423,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$422,
+                    [nix.POS]: pos$422,
                     user: nix.thunk(() => ({
-                      __proto__: pos$421,
+                      [nix.POS]: pos$421,
                       services: nix.thunk(() => ({
-                        __proto__: pos$420,
-                        usertest: nix.thunk(() => ({ __proto__: pos$419, reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
+                        [nix.POS]: pos$420,
+                        usertest: nix.thunk(() => ({ [nix.POS]: pos$419, reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleUserServiceFailing = nix.thunk(() => ({
-                __proto__: pos$431,
+                [nix.POS]: pos$431,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$430,
+                  [nix.POS]: pos$430,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$429,
+                    [nix.POS]: pos$429,
                     user: nix.thunk(() => ({
-                      __proto__: pos$428,
+                      [nix.POS]: pos$428,
                       services: nix.thunk(() => ({
-                        __proto__: pos$427,
+                        [nix.POS]: pos$427,
                         usertest: nix.thunk(() => ({
-                          __proto__: pos$426,
+                          [nix.POS]: pos$426,
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$425,
+                            [nix.POS]: pos$425,
                             ExecStart: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`))),
                           })),
                         })),
@@ -2076,20 +2076,20 @@ EOF
                 })),
               }));
               const userServiceMigratedShadowed = nix.thunk(() => ({
-                __proto__: pos$438,
+                [nix.POS]: pos$438,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$437,
+                  [nix.POS]: pos$437,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$436,
+                    [nix.POS]: pos$436,
                     user: nix.thunk(() => ({
-                      __proto__: pos$435,
+                      [nix.POS]: pos$435,
                       services: nix.thunk(() => ({
-                        __proto__: pos$434,
+                        [nix.POS]: pos$434,
                         migrated: nix.thunk(() => ({
-                          __proto__: pos$433,
+                          [nix.POS]: pos$433,
                           wantedBy: nix.thunk(() => ["default.target"]),
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$432,
+                            [nix.POS]: pos$432,
                             Type: "oneshot",
                             RemainAfterExit: true,
                             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "runtimeShell")} -c 'echo nixos > %t/migrated-owner'`),
@@ -2101,14 +2101,14 @@ EOF
                 })),
               }));
               const userServiceMigratedToNixos = nix.thunk(() => ({
-                __proto__: pos$442,
+                [nix.POS]: pos$442,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$441,
+                  [nix.POS]: pos$441,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedShadowed, "configuration"))]),
                   system: nix.thunk(() => ({
-                    __proto__: pos$440,
+                    [nix.POS]: pos$440,
                     userActivationScripts: nix.thunk(() => ({
-                      __proto__: pos$439,
+                      [nix.POS]: pos$439,
                       fakeSdSwitch: nix.thunk(() => nix.str`if [ -e "$HOME/.config/systemd/user/migrated.service" ]; then
   rm -f "$HOME/.config/systemd/user/migrated.service"
   rm -f "$HOME/.config/systemd/user/default.target.wants/migrated.service"
@@ -2121,14 +2121,14 @@ fi
                 })),
               }));
               const userServiceMigratedToNixosNoStop = nix.thunk(() => ({
-                __proto__: pos$446,
+                [nix.POS]: pos$446,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$445,
+                  [nix.POS]: pos$445,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedShadowed, "configuration"))]),
                   system: nix.thunk(() => ({
-                    __proto__: pos$444,
+                    [nix.POS]: pos$444,
                     userActivationScripts: nix.thunk(() => ({
-                      __proto__: pos$443,
+                      [nix.POS]: pos$443,
                       fakeSdSwitch: nix.thunk(() => nix.str`if [ -e "$HOME/.config/systemd/user/migrated.service" ]; then
   rm -f "$HOME/.config/systemd/user/migrated.service"
   rm -f "$HOME/.config/systemd/user/default.target.wants/migrated.service"
@@ -2140,21 +2140,21 @@ fi
                 })),
               }));
               const userServiceMigratedToNixosReloadOnly = nix.thunk(() => ({
-                __proto__: pos$453,
+                [nix.POS]: pos$453,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$452,
+                  [nix.POS]: pos$452,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedToNixosNoStop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$451,
+                    [nix.POS]: pos$451,
                     user: nix.thunk(() => ({
-                      __proto__: pos$450,
+                      [nix.POS]: pos$450,
                       services: nix.thunk(() => ({
-                        __proto__: pos$449,
+                        [nix.POS]: pos$449,
                         migrated: nix.thunk(() => ({
-                          __proto__: pos$448,
+                          [nix.POS]: pos$448,
                           reloadIfChanged: true,
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$447,
+                            [nix.POS]: pos$447,
                             ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                           })),
                         })),
@@ -2164,24 +2164,24 @@ fi
                 })),
               }));
               const userServiceMigratedToNixosNoRestart = nix.thunk(() => ({
-                __proto__: pos$459,
+                [nix.POS]: pos$459,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$458,
+                  [nix.POS]: pos$458,
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedToNixosNoStop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$457,
+                    [nix.POS]: pos$457,
                     user: nix.thunk(() => ({
-                      __proto__: pos$456,
+                      [nix.POS]: pos$456,
                       services: nix.thunk(() => ({
-                        __proto__: pos$455,
-                        migrated: nix.thunk(() => ({ __proto__: pos$454, restartIfChanged: false })),
+                        [nix.POS]: pos$455,
+                        migrated: nix.thunk(() => ({ [nix.POS]: pos$454, restartIfChanged: false })),
                       })),
                     })),
                   })),
                 })),
               }));
               return {
-                __proto__: pos$460,
+                [nix.POS]: pos$460,
                 simpleUserService,
                 simpleUserServiceModified,
                 simpleUserServiceNostop,
@@ -2195,55 +2195,55 @@ fi
                 userServiceMigratedToNixosNoRestart,
               };
             })())), nix.app(forPart, "basics", nix.thunk(() => ({
-              __proto__: pos$480,
+              [nix.POS]: pos$480,
               no_inhibitors: nix.thunk(() => ({
-                __proto__: pos$464,
+                [nix.POS]: pos$464,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$463,
+                  [nix.POS]: pos$463,
                   system: nix.thunk(() => ({
-                    __proto__: pos$462,
+                    [nix.POS]: pos$462,
                     switch: nix.thunk(() => ({
-                      __proto__: pos$461,
+                      [nix.POS]: pos$461,
                       inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
                     })),
                   })),
                 })),
               })),
               inhibitors: nix.thunk(() => ({
-                __proto__: pos$469,
+                [nix.POS]: pos$469,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$468,
+                  [nix.POS]: pos$468,
                   system: nix.thunk(() => ({
-                    __proto__: pos$467,
+                    [nix.POS]: pos$467,
                     switch: nix.thunk(() => ({
-                      __proto__: pos$466,
-                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ __proto__: pos$465, foo: "bar", quz: "bor" })))),
+                      [nix.POS]: pos$466,
+                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$465, foo: "bar", quz: "bor" })))),
                     })),
                   })),
                 })),
               })),
               inhibitors_changed: nix.thunk(() => ({
-                __proto__: pos$474,
+                [nix.POS]: pos$474,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$473,
+                  [nix.POS]: pos$473,
                   system: nix.thunk(() => ({
-                    __proto__: pos$472,
+                    [nix.POS]: pos$472,
                     switch: nix.thunk(() => ({
-                      __proto__: pos$471,
-                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ __proto__: pos$470, foo: "baz", quz: "boz" })))),
+                      [nix.POS]: pos$471,
+                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$470, foo: "baz", quz: "boz" })))),
                     })),
                   })),
                 })),
               })),
               inhibitors_new: nix.thunk(() => ({
-                __proto__: pos$479,
+                [nix.POS]: pos$479,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$478,
+                  [nix.POS]: pos$478,
                   system: nix.thunk(() => ({
-                    __proto__: pos$477,
+                    [nix.POS]: pos$477,
                     switch: nix.thunk(() => ({
-                      __proto__: pos$476,
-                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ __proto__: pos$475, foo: "bar", qux: "baz" })))),
+                      [nix.POS]: pos$476,
+                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$475, foo: "bar", qux: "baz" })))),
                     })),
                   })),
                 })),
@@ -2252,43 +2252,43 @@ fi
         };
       })(), formals$2),
       other: nix.thunk(() => ({
-        __proto__: pos$498,
+        [nix.POS]: pos$498,
         system: nix.thunk(() => ({
-          __proto__: pos$484,
-          switch: nix.thunk(() => ({ __proto__: pos$482, enable: true })),
+          [nix.POS]: pos$484,
+          switch: nix.thunk(() => ({ [nix.POS]: pos$482, enable: true })),
           preSwitchChecks: nix.thunk(() => ({
-            __proto__: pos$483,
+            [nix.POS]: pos$483,
             succeeds: "config=\"$1\"\naction=\"$2\"\necho \"this should succeed (config: $config, action: $action)\"\n[ \"$action\" == \"check\" ] || [ \"$action\" == \"test\" ]\n",
           })),
         })),
-        users: nix.thunk(() => ({ __proto__: pos$485, mutableUsers: true })),
+        users: nix.thunk(() => ({ [nix.POS]: pos$485, mutableUsers: true })),
         boot: nix.thunk(() => ({
-          __proto__: pos$488,
+          [nix.POS]: pos$488,
           loader: nix.thunk(() => ({
-            __proto__: pos$487,
-            grub: nix.thunk(() => ({ __proto__: pos$486, enable: false })),
+            [nix.POS]: pos$487,
+            grub: nix.thunk(() => ({ [nix.POS]: pos$486, enable: false })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$497,
+          [nix.POS]: pos$497,
           failingCheck: nix.thunk(() => ({
-            __proto__: pos$492,
+            [nix.POS]: pos$492,
             configuration: nix.thunk(() => ({
-              __proto__: pos$491,
+              [nix.POS]: pos$491,
               system: nix.thunk(() => ({
-                __proto__: pos$490,
-                preSwitchChecks: nix.thunk(() => ({ __proto__: pos$489, failEveryTime: "echo this will fail\nfalse\n" })),
+                [nix.POS]: pos$490,
+                preSwitchChecks: nix.thunk(() => ({ [nix.POS]: pos$489, failEveryTime: "echo this will fail\nfalse\n" })),
               })),
             })),
           })),
           failingMidCheck: nix.thunk(() => ({
-            __proto__: pos$496,
+            [nix.POS]: pos$496,
             configuration: nix.thunk(() => ({
-              __proto__: pos$495,
+              [nix.POS]: pos$495,
               system: nix.thunk(() => ({
-                __proto__: pos$494,
+                [nix.POS]: pos$494,
                 preSwitchChecks: nix.thunk(() => ({
-                  __proto__: pos$493,
+                  [nix.POS]: pos$493,
                   failsInTheMiddle: "echo before\nnonexistent-command\necho after\n",
                 })),
               })),
@@ -2309,7 +2309,7 @@ set -o pipefail
 exec env -i "$@" | tee /dev/stderr
 `)));
       const sortedUnits = (xs) => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.sort(nix.thunk(() => nix.builtins.lessThan), xs)));
-      const dbusService = nix.thunk(() => nix.sel({ __proto__: pos$500, dbus: "dbus.service", broker: "dbus-broker.service" }, nix.key(nix.sel(nodes, "machine", "services", "dbus", "implementation"))));
+      const dbusService = nix.thunk(() => nix.sel({ [nix.POS]: pos$500, dbus: "dbus.service", broker: "dbus-broker.service" }, nix.key(nix.sel(nodes, "machine", "services", "dbus", "implementation"))));
       const homeMigratedUnit = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "migrated.service", nix.thunk(() => nix.str`[Service]
 Type=oneshot
 RemainAfterExit=true

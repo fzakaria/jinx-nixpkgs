@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const go_crx3 = nix.arg($, "go-crx3");
   const manifest = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./x86_64-manifest.json")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "widevine-cdm",
       version: nix.thunk(() => nix.sel(manifest, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.sel(manifest, "url")),
           hash: nix.thunk(() => nix.sel(manifest, "sri")),
         })))),
       nativeBuildInputs: nix.thunk(() => [go_crx3]),
       unpackPhase: "unpackDir=\"src\"\ncp \"$src\" \"$unpackDir\".crx # go-crx3 doesn't like .crx3 extensions\ncrx3 unpack \"$unpackDir\".crx\n\ncd \"$unpackDir\"\n",
       installPhase: "runHook preInstall\n\ninstall -vD manifest.json $out/share/google/chrome/WidevineCdm/manifest.json\ninstall -vD LICENSE $out/share/google/chrome/WidevineCdm/LICENSE.txt\ninstall -vD _platform_specific/linux_x64/libwidevinecdm.so $out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update-x86_64.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update-x86_64.py") })),
       meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), lib)),
     }));
 })(), formals$1);

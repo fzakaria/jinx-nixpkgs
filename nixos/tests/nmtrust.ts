@@ -31,71 +31,71 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "nmtrust",
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             networkmanager: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               unmanaged: nix.thunk(() => ["eth0", "eth1", "lo"]),
               ensureProfiles: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 profiles: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "trusted-net": nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     connection: nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       id: "trusted-net",
                       uuid: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
                       type: "dummy",
                       "interface-name": "dummy-trusted",
                       autoconnect: "false",
                     })),
-                    ipv4: nix.thunk(() => ({ __proto__: pos$2, method: "manual", addresses: "10.99.1.1/24" })),
+                    ipv4: nix.thunk(() => ({ [nix.POS]: pos$2, method: "manual", addresses: "10.99.1.1/24" })),
                   })),
                   "untrusted-net": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     connection: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       id: "untrusted-net",
                       uuid: "11111111-2222-3333-4444-555555555555",
                       type: "dummy",
                       "interface-name": "dummy-untrusted",
                       autoconnect: "false",
                     })),
-                    ipv4: nix.thunk(() => ({ __proto__: pos$5, method: "manual", addresses: "10.99.2.1/24" })),
+                    ipv4: nix.thunk(() => ({ [nix.POS]: pos$5, method: "manual", addresses: "10.99.2.1/24" })),
                   })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             nmtrust: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               trustedConnections: nix.thunk(() => ["trusted-net"]),
-              systemUnits: nix.thunk(() => ({ __proto__: pos$11, "trust-canary.service": nix.thunk(() => ({})) })),
+              systemUnits: nix.thunk(() => ({ [nix.POS]: pos$11, "trust-canary.service": nix.thunk(() => ({})) })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "trust-canary": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "nmtrust test canary",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/sleep infinity`),
                 })),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "import time\n\ndef apply(machine):\n    \"\"\"Trigger nmtrust-apply and wait for it to finish.\"\"\"\n    time.sleep(1)\n    machine.succeed(\"systemctl start nmtrust-apply.service\")\n    machine.wait_until_succeeds(\n        \"systemctl show nmtrust-apply.service -p ActiveState --value | grep -q inactive\",\n        timeout=10,\n    )\n\nmachine.wait_for_unit(\"multi-user.target\")\n\nwith subtest(\"offline on boot with no connections active\"):\n    apply(machine)\n    machine.succeed(\"systemctl is-active nmtrust-offline.target\")\n    machine.fail(\"systemctl is-active trust-canary.service\")\n\nwith subtest(\"trusted when trusted connection is up\"):\n    machine.succeed(\"nmcli connection up trusted-net\")\n    apply(machine)\n    machine.succeed(\"systemctl is-active nmtrust-trusted.target\")\n    machine.succeed(\"systemctl is-active trust-canary.service\")\n\nwith subtest(\"untrusted when untrusted connection replaces trusted\"):\n    machine.succeed(\"nmcli connection down trusted-net\")\n    machine.succeed(\"nmcli connection up untrusted-net\")\n    apply(machine)\n    machine.succeed(\"systemctl is-active nmtrust-untrusted.target\")\n    machine.fail(\"systemctl is-active trust-canary.service\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "brett"))];

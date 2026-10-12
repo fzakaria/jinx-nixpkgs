@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`${kyodialog_version}-${date}`);
       const dontStrip = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.kyoceradocumentsolutions.us/content/download-center-americas/us/drivers/drivers/KyoceraLinuxPackages_${date}_tar_gz.download.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20260107200228/https://www.kyoceradocumentsolutions.us/content/download-center-americas/us/drivers/drivers/KyoceraLinuxPackages_${date}_tar_gz.download.gz`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = ".";
       const unpackCmd = nix.thunk(() => (() => {
-        const platforms = nix.thunk(() => ({ __proto__: pos$2, "x86_64-linux": "amd64", "i686-linux": "i386" }));
+        const platforms = nix.thunk(() => ({ [nix.POS]: pos$2, "x86_64-linux": "amd64", "i686-linux": "i386" }));
         const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return nix.str`ar p "$src/Debian/${region}/kyodialog_${platform}/kyodialog_${kyodialog_version}-0_${platform}.deb" data.tar.gz | tar -xz
 `;
@@ -80,7 +80,7 @@ substituteInPlace $out/share/applications/kyodialog.desktop \\
   --replace Icon=/usr/share/kyocera/appicon_H.png Icon=$out/share/${pname}/icons/appicon_H.png
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS drivers for several Kyocera printers",
         homepage: "https://www.kyoceradocumentsolutions.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -92,7 +92,7 @@ substituteInPlace $out/share/applications/kyodialog.desktop \\
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         dontStrip,

@@ -105,18 +105,18 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "misskey"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const redisType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "localhost",
             description: "The Redis host.",
           })))),
         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "port")),
             default: 6379n,
             description: "The Redis port.",
@@ -124,88 +124,88 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       description: "Configuration for Misskey, see\n[`example.yml`](https://github.com/misskey-dev/misskey/blob/develop/.config/example.yml)\nfor all supported options.\n",
       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
           options: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "https://example.tld/",
                 description: "The final user-facing URL. Do not change after running Misskey for the first time.\n\nThis needs to match up with the configured reverse proxy and is automatically configured when using `services.misskey.reverseProxy`.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 3000n,
                 description: "The port your Misskey server should listen on.",
               })))),
             socket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/path/to/misskey.sock",
                 description: "The UNIX socket your Misskey server should listen on.",
               })))),
             chmodSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "777",
                 description: "The file access mode of the UNIX socket.",
               })))),
             db: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Database settings.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/run/postgresql",
                           example: "localhost",
                           description: "The PostgreSQL host.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 5432n,
                           description: "The PostgreSQL port.",
                         })))),
                       db: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "misskey",
                           description: "The database name.",
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "misskey",
                           description: "The user used for database authentication.",
                         })))),
                       pass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           description: "The password used for database authentication.",
                         })))),
                       disableCache: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to disable caching queries.",
                         })))),
                       extra: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))))),
                           default: null,
-                          example: nix.thunk(() => ({ __proto__: pos$15, ssl: true })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$15, ssl: true })),
                           description: "Extra connection options.",
                         })))),
                     })),
@@ -213,68 +213,68 @@ export default nix.lambda((args) => (() => {
                 default: nix.thunk(() => ({})),
               })))),
             redis: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: redisType,
                 default: nix.thunk(() => ({})),
                 description: "`ioredis` options. See [`README`](https://github.com/redis/ioredis?tab=readme-ov-file#connect-to-redis) for reference.",
               })))),
             redisForPubsub: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), redisType)),
                 default: null,
                 description: "`ioredis` options for pubsub. See [`README`](https://github.com/redis/ioredis?tab=readme-ov-file#connect-to-redis) for reference.",
               })))),
             redisForJobQueue: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), redisType)),
                 default: null,
                 description: "`ioredis` options for the job queue. See [`README`](https://github.com/redis/ioredis?tab=readme-ov-file#connect-to-redis) for reference.",
               })))),
             redisForTimelines: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), redisType)),
                 default: null,
                 description: "`ioredis` options for timelines. See [`README`](https://github.com/redis/ioredis?tab=readme-ov-file#connect-to-redis) for reference.",
               })))),
             meilisearch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 description: "Meilisearch connection options.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       options: nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "localhost",
                             description: "The Meilisearch host.",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 7700n,
                             description: "The Meilisearch port.",
                           })))),
                         apiKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "The Meilisearch API key.",
                           })))),
                         ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether to connect via SSL.",
                           })))),
                         index: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "Meilisearch index to use.",
                           })))),
                         scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["local", "global"]))),
                             default: "local",
                             description: "The search scope.",
@@ -284,7 +284,7 @@ export default nix.lambda((args) => (() => {
                 default: null,
               })))),
             id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["aid", "aidx", "meid", "ulid", "objectid"]))),
                 default: "aidx",
                 description: "The ID generation method to use. Do not change after starting Misskey for the first time.",
@@ -293,78 +293,78 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return {
-    __proto__: pos$93,
+    [nix.POS]: pos$93,
     options: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       services: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         misskey: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "misskey")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "misskey", nix.thunk(() => ({})))),
           settings: settings,
           database: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Create the PostgreSQL database locally. Sets `services.misskey.settings.db.{db,host,port,user,pass}`.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to a file containing the database password. Sets `services.misskey.settings.db.pass`.",
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Create and use a local Redis instance. Sets `services.misskey.settings.redis.host`.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to a file containing the Redis password. Sets `services.misskey.settings.redis.pass`.",
               })))),
           })),
           meilisearch: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Create and use a local Meilisearch instance. Sets `services.misskey.settings.meilisearch.{host,port,ssl}`.",
               })))),
             keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to a file containing the Meilisearch API key. Sets `services.misskey.settings.meilisearch.apiKey`.",
               })))),
           })),
           reverseProxy: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a HTTP reverse proxy for Misskey")),
             webserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrTag"), nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.path(here, "../web-servers/nginx/vhost-options.nix"))),
                         default: nix.thunk(() => ({})),
                         description: "Extra configuration for the nginx virtual host of Misskey.\nSet to `{ }` to use the default configuration.\n",
                       })))),
                     caddy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "../web-servers/caddy/vhost-options.nix"), nix.thunk(() => ({
-                              __proto__: pos$47,
+                              [nix.POS]: pos$47,
                               cfg: nix.thunk(() => nix.sel(config, "services", "caddy")),
                             })))))),
                         default: nix.thunk(() => ({})),
@@ -374,14 +374,14 @@ export default nix.lambda((args) => (() => {
                 description: "The webserver to use as the reverse proxy.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "The fully qualified domain name to bind to. Sets `services.misskey.settings.url`.\n\nThis is required when using `services.misskey.reverseProxy.enable = true`.\n",
                 example: "misskey.example.com",
                 default: null,
               })))),
             ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 description: "Whether to enable SSL for the reverse proxy. Sets `services.misskey.settings.url`.\n\nThis is required when using `services.misskey.reverseProxy.enable = true`.\n",
                 example: true,
@@ -392,23 +392,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$91,
+        [nix.POS]: pos$91,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "reverseProxy", "enable")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "reverseProxy", "host"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "reverseProxy", "ssl"), null)))))),
             message: "`services.misskey.reverseProxy.enable` requires `services.misskey.reverseProxy.host` and `services.misskey.reverseProxy.ssl` to be set.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           misskey: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     db: nix.thunk(() => ({
-                      __proto__: pos$58,
+                      [nix.POS]: pos$58,
                       db: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "misskey")),
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/run/postgresql")),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")))),
@@ -417,76 +417,76 @@ export default nix.lambda((args) => (() => {
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     db: nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       pass: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@DATABASE_PASSWORD@")),
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     redis: nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "localhost")),
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "passwordFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     redis: nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       pass: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@REDIS_PASSWORD@")),
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     meilisearch: nix.thunk(() => ({
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "localhost")),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "meilisearch", "listenPort")))),
                       ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "meilisearch", "keyFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     meilisearch: nix.thunk(() => ({
-                      __proto__: pos$68,
+                      [nix.POS]: pos$68,
                       apiKey: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@MEILISEARCH_KEY@")),
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "reverseProxy", "enable")), nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     url: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${(nix.asBool(nix.sel(cfg, "reverseProxy", "ssl")) ? "https" : "http")}://${nix.sel(cfg, "reverseProxy", "host")}`))),
                   })))),
               ]))),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               enable: true,
               ensureDatabases: nix.thunk(() => ["misskey"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$72, name: "misskey", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$72, name: "misskey", ensureDBOwnership: true })),
               ]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             servers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 misskey: nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "settings", "redis", "port")),
                 })),
               })))),
           })),
-          meilisearch: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "createLocally")), nix.thunk(() => ({ __proto__: pos$77, enable: true })))),
+          meilisearch: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "createLocally")), nix.thunk(() => ({ [nix.POS]: pos$77, enable: true })))),
           caddy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "reverseProxy", "enable")) && nix.asBool(nix.has(nix.sel(cfg, "reverseProxy", "webserver"), "caddy")))), nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "settings", "url"), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "reverseProxy", "webserver", "caddy")),
                     nix.thunk(() => ({
-                      __proto__: pos$78,
+                      [nix.POS]: pos$78,
                       hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "settings", "url")))),
                       extraConfig: nix.thunk(() => nix.str`reverse_proxy localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))}
 `),
@@ -495,17 +495,17 @@ export default nix.lambda((args) => (() => {
               ])),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "reverseProxy", "enable")) && nix.asBool(nix.has(nix.sel(cfg, "reverseProxy", "webserver"), "nginx")))), nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "reverseProxy", "host"), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "reverseProxy", "webserver", "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$82,
+                      [nix.POS]: pos$82,
                       locations: nix.thunk(() => ({
-                        __proto__: pos$81,
+                        [nix.POS]: pos$81,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$80,
+                          [nix.POS]: pos$80,
                           proxyPass: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))}`))),
                           proxyWebsockets: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                           recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -513,7 +513,7 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "reverseProxy", "ssl"), null)), nix.thunk(() => ({
-                        __proto__: pos$83,
+                        [nix.POS]: pos$83,
                         forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "reverseProxy", "ssl")))),
                       })))),
                   ])))],
@@ -521,17 +521,17 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           services: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             misskey: nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               after: nix.thunk(() => ["network-online.target", "postgresql.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$86, MISSKEY_CONFIG_YML: "/run/misskey/default.yml" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$86, MISSKEY_CONFIG_YML: "/run/misskey/default.yml" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 ExecStartPre: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "install")} -m 700 ${nix.app(nix.sel(settingsFormat, "generate"), "misskey-config.yml", nix.thunk(() => nix.sel(cfg, "settings")))} /run/misskey/default.yml`),
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "install")} -m 700 ${nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "misskey-config.json", nix.thunk(() => nix.sel(cfg, "settings")))} /run/misskey/default.json`),
@@ -568,7 +568,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$92,
+      [nix.POS]: pos$92,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "feathecutie"))]),
     })),
   };

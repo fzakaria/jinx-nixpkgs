@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const pname = "cppo";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "C preprocessor for OCaml",
     mainProgram: "cppo",
     longDescription: "Cppo is an equivalent of the C preprocessor targeted at the OCaml language and its variants.\n",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "1.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocaml-community",
           repo: pname_1,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = true;
       const meta_1 = meta;
-      return { __proto__: pos$3, pname: pname_1, version, src, doCheck, meta: meta_1 };
+      return { [nix.POS]: pos$3, pname: pname_1, version, src, doCheck, meta: meta_1 };
     })())) : (() => {
     const version = "1.5.0";
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "mjambon",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),

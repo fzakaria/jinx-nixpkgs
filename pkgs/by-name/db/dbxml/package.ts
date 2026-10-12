@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const xqilla = nix.arg($, "xqilla");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbxml",
       version: "6.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.oracle.com/berkeley-db/dbxml-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "a8fc8f5e0c3b6e42741fa4dfc3b878c982ff8f5e5f14843f6a7e20d22e64251a",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "cd dbxml\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.oracle.com/database/berkeley-db/xml.html",
         description: "Embeddable XML database based on Berkeley DB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

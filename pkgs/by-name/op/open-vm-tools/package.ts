@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "open-vm-tools",
       version: "13.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmware",
           repo: "open-vm-tools",
           tag: nix.thunk(() => nix.str`stable-${nix.sel(finalAttrs, "version")}`),
@@ -159,7 +159,7 @@ wrapProgram "$out/etc/vmware-tools/scripts/vmware/network" \\
 `),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/vmware/open-vm-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/vmware/open-vm-tools/releases/tag/stable-${nix.sel(finalAttrs, "version")}`),
         description: "Set of tools for VMWare guests to improve host-guest interaction",

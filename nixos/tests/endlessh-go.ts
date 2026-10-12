@@ -31,50 +31,50 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "endlessh-go",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "endlessh-go": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              prometheus: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              prometheus: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
               openFirewall: true,
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             unprivileged: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               configuration: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 services: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "endlessh-go": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     port: 2222n,
-                    prometheus: nix.thunk(() => ({ __proto__: pos$5, port: 9229n })),
+                    prometheus: nix.thunk(() => ({ [nix.POS]: pos$5, port: 9229n })),
                   })),
                 })),
               })),
             })),
             privileged: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               configuration: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 services: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "endlessh-go": nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     port: 22n,
-                    prometheus: nix.thunk(() => ({ __proto__: pos$10, port: 92n })),
+                    prometheus: nix.thunk(() => ({ [nix.POS]: pos$10, port: 92n })),
                   })),
                 })),
               })),
@@ -86,9 +86,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [

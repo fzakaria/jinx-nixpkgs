@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "eclipse",
       repo: "paho.mqtt.testing",
       rev: "a4dc694010217b291ee78ee13a6d1db812f9babd",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "eclipse",
           repo: "paho.mqtt.python",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "generate-ssl-certs-in-a-test-fixture.patch",
             url: "https://github.com/eclipse-paho/paho.mqtt.python/pull/931.diff",
             hash: "sha256-A7rWwpR4PnCi77F1VqsQKHBxHNrdeHgmVM6BGMeUpjs=",
@@ -63,7 +63,7 @@ export PYTHONPATH=".:$PYTHONPATH"
         "tests/lib/test_08_ssl_connect_no_auth.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/eclipse/paho.mqtt.python/blob/${nix.sel(src, "rev")}/ChangeLog.txt`),
         description: "MQTT version 5.0/3.1.1 client class",
         homepage: "https://eclipse.org/paho",
@@ -77,7 +77,7 @@ export PYTHONPATH=".:$PYTHONPATH"
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

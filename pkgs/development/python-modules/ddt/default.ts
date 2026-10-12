@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-0hXWsIOWMBPEoZseTc1qlugOQ6t3UZWXpqz88umj4Es=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const nativeCheckInputs = nix.thunk(() => [aiounittest, mock, pytestCheckHook, pyyaml, six]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/datadriventests/ddt/releases/tag/${version}`),
         description: "Data-Driven/Decorated Tests, a library to multiply test cases",
         homepage: "https://github.com/txels/ddt",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

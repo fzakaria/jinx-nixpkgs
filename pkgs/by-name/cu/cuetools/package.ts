@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const id3v2 = nix.arg($, "id3v2");
   const vorbis_tools = nix.arg($, "vorbis-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cuetools",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svend",
           repo: "cuetools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bison, flac, flex, id3v2, vorbis_tools]),
       postInstall: "# add link for compatibility with Debian-based distros, which package `cuetag.sh` as `cuetag`\nln -s $out/bin/cuetag.sh $out/bin/cuetag\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of utilities for working with cue files and toc files",
         homepage: "https://github.com/svend/cuetools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

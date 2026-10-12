@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "3.13.0";
   const lib_env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "megaglest-lib-env",
       paths: nix.thunk(() => [
         SDL2,
@@ -77,16 +77,16 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const path_env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "megaglest-path-env",
       paths: nix.thunk(() => [bash, which, zenity]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "megaglest",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "MegaGlest",
           repo: "megaglest-source",
           tag: version,
@@ -95,31 +95,31 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fno-common.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/5a3520540276a6fd06f7c88e571b6462978e3eab.patch",
             sha256: "0y554kjw56dikq87vs709pmq97hdx9hvqsk27f81v4g90m3b3qhi",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "get-rid-of-manual-wxPaintEvent-creation-1.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/e09ba53c436279588f769d6ce8852e74d58f8391.patch",
             hash: "sha256-1ZG6AjnLXW18wwad05kjH7W5rTaP1SDpZ5zLH4nRQt4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "get-rid-of-manual-wxPaintEvent-creation-2.patch",
             url: "https://sources.debian.org/data/main/m/megaglest/3.13.0-9/debian/patches/fbd0cfb17ed759d24aeb577a602b0d97f7895cc2.patch",
             hash: "sha256-aMDDboNdH22r7YOiZCEApwz+FpM60anBp82tLwiIH6g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "get-rid-of-manual-wxPaintEvent-creation-3.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/5801b1fafff8ad9618248d4d5d5c751fdf52be2f.patch",
             hash: "sha256-/RpBoT1JsSFtOrAXphHrPp9DnTbaEN/2h8EZmQ9PIPU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "fix-editor-and-g3dviewer-for-wx-3.1.x.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/789e1cdf371137b729e832e28a5feb6e97a3a243.patch",
             hash: "sha256-fK7vkHCu6bqVB6I7vMsWMGiczSdxVgo1KqqBNMkEbfM=",
@@ -162,7 +162,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Entertaining free (freeware and free software) and open source cross-platform 3D real-time strategy (RTS) game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://megaglest.org/",

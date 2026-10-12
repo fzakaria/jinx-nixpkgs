@@ -18,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const primus_lib_i686 = nix.argOr($, "primus-lib_i686", () => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.sel(pkgsi686Linux, "primus-lib") : null));
   const useNvidia = nix.argOr($, "useNvidia", () => true);
-  const primus_lib_ = nix.thunk(() => nix.app(nix.sel(primus_lib, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv }))));
-  const primus_lib_i686_ = nix.thunk(() => nix.app(nix.sel(primus_lib_i686, "override"), nix.thunk(() => ({ __proto__: pos$2, stdenv: nix.thunk(() => nix.sel(pkgsi686Linux, "stdenv")) }))));
-  const primus = nix.thunk(() => (nix.asBool(useNvidia) ? nix.force(primus_lib_) : nix.app(nix.sel(primus_lib_, "override"), nix.thunk(() => ({ __proto__: pos$3, nvidia_x11: null })))));
-  const primus_i686 = nix.thunk(() => (nix.asBool(useNvidia) ? nix.force(primus_lib_i686_) : nix.app(nix.sel(primus_lib_i686_, "override"), nix.thunk(() => ({ __proto__: pos$4, nvidia_x11: null })))));
+  const primus_lib_ = nix.thunk(() => nix.app(nix.sel(primus_lib, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
+  const primus_lib_i686_ = nix.thunk(() => nix.app(nix.sel(primus_lib_i686, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: nix.thunk(() => nix.sel(pkgsi686Linux, "stdenv")) }))));
+  const primus = nix.thunk(() => (nix.asBool(useNvidia) ? nix.force(primus_lib_) : nix.app(nix.sel(primus_lib_, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, nvidia_x11: null })))));
+  const primus_i686 = nix.thunk(() => (nix.asBool(useNvidia) ? nix.force(primus_lib_i686_) : nix.app(nix.sel(primus_lib_i686_, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, nvidia_x11: null })))));
   const ldPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(x, null), nix.thunk(() => nix.concat([primus, nix.thunk(() => nix.sel(primus, "glvnd"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(primus_lib_i686, null)), nix.thunk(() => [primus_i686, nix.thunk(() => nix.sel(primus_i686, "glvnd"))]))))))));
   return nix.app(writeScriptBin, "primusrun", nix.thunk(() => nix.str`#!${runtimeShell}
 export LD_LIBRARY_PATH=${ldPath}\${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH

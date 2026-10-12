@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const go_task = nix.arg($, "go-task");
   const python3 = nix.arg($, "python3");
   const pkg = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arduino-cli",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arduino",
           repo: "arduino-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Arduino from the command line",
         mainProgram: "arduino-cli",
@@ -85,14 +85,14 @@ export default nix.lambda((args) => (() => {
       })()),
     })));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(pkg, "pname")),
       version: nix.thunk(() => nix.attr(pkg, "version")),
       meta: nix.thunk(() => nix.attr(pkg, "meta")),
       runScript: nix.thunk(() => nix.str`${nix.sel(pkg, "outPath")}/bin/arduino-cli`),
       extraInstallCommands: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => nix.str`cp -r ${nix.sel(pkg, "outPath")}/share $out/share
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, pureGoPkg: pkg })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, pureGoPkg: pkg })),
       targetPkgs: (pkgs) => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "zlib"))];

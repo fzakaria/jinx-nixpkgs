@@ -52,128 +52,128 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`--deadratio=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "deadratio")))}`),
     ], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "preempt")), "--preempt"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "neutral")), "--neutral"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "shutdown")), "--shutdown"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "ignoreIfState")), "--ignoreifstate"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "noMcast")), "--nomcast"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraParam"), null)), nix.thunk(() => nix.str`--xparam=${nix.sel(cfg, "extraParam")}`)))))))))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       networking: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         ucarp: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ucarp, userspace implementation of CARP")),
           interface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Network interface to bind to.",
               example: "eth0",
             })))),
           srcIp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Source (real) IP address of this host.",
             })))),
           vhId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1n, 255n)),
               description: "Virtual IP identifier shared between CARP hosts.",
               example: 1n,
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "File containing shared password between CARP hosts.",
               example: "/run/keys/ucarp-password",
             })))),
           preempt: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable preemptive failover.\nThus, this host becomes the CARP master as soon as possible.\n",
               default: false,
             })))),
           neutral: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Do not run downscript at start if the host is the backup.",
               default: false,
             })))),
           addr: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Virtual shared IP address.",
             })))),
           advBase: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               description: "Advertisement frequency in seconds.",
               default: 1n,
             })))),
           advSkew: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               description: "Advertisement skew in seconds.",
               default: 0n,
             })))),
           upscript: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "Command to run after become master, the interface name, virtual address\nand optional extra parameters are passed as arguments.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.writeScript \"upscript\" ''\n  #!/bin/sh\n  ${pkgs.iproute2}/bin/ip addr add \"$2\"/24 dev \"$1\"\n'';\n")),
             })))),
           downscript: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "Command to run after become backup, the interface name, virtual address\nand optional extra parameters are passed as arguments.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.writeScript \"downscript\" ''\n  #!/bin/sh\n  ${pkgs.iproute2}/bin/ip addr del \"$2\"/24 dev \"$1\"\n'';\n")),
             })))),
           deadratio: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               description: "Ratio to consider a host as dead.",
               default: 3n,
             })))),
           shutdown: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Call downscript at exit.",
               default: false,
             })))),
           ignoreIfState: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Ignore interface state, e.g., down or no carrier.",
               default: false,
             })))),
           noMcast: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Use broadcast instead of multicast advertisements.",
               default: false,
             })))),
           extraParam: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Extra parameter to pass to the up/down scripts.",
               default: null,
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "ucarp", nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               extraDescription: "Please note that the default package, pkgs.ucarp, has not received any\nupstream updates for a long time and can be considered as unmaintained.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             ucarp: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "ucarp, userspace implementation of CARP",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 Type: "exec",
                 ExecStart: ucarpExec,
                 ProtectSystem: "strict",
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$26, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$26, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=ucarp.ts.map

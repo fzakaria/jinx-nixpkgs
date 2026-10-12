@@ -27,29 +27,29 @@ const pos$20 = nix.positions(here + "/test.nix", [["nodes", 18, 15]]);
 const pos$21 = nix.positions(here + "/test.nix", [["name", 2, 3], ["nodes", 4, 3], ["interactive", 18, 3], ["testScript", 36, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$21,
+  [nix.POS]: pos$21,
   name: "Python Soundcard Library Test",
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "soundcard"))])),
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          pulseaudio: nix.thunk(() => ({ __proto__: pos$2, enable: true, systemWide: true })),
+          [nix.POS]: pos$3,
+          pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, systemWide: true })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           qemu: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             options: nix.thunk(() => [
               "-device virtio-sound-pci,audiodev=my_audiodev",
               "-audiodev wav,id=my_audiodev",
@@ -60,27 +60,27 @@ export default nix.thunk(() => ({
     })(), formals$1),
   })),
   interactive: nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$2);
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             openssh: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$8, PermitRootLogin: "yes" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$8, PermitRootLogin: "yes" })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraUsers: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               root: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 initialPassword: "",
                 hashedPassword: null,
                 hashedPasswordFile: null,
@@ -89,13 +89,13 @@ export default nix.thunk(() => ({
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$14, port: 2222n })),
-                guest: nix.thunk(() => ({ __proto__: pos$15, port: 22n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$14, port: 2222n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$15, port: 22n })),
               })),
             ]),
           })),

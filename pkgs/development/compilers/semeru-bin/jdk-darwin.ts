@@ -20,37 +20,37 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")), "openj9", "mac"));
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jdk-darwin-base.nix")), opts)), nix.thunk(() => ({})));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "jdk-8": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk8")),
       })))),
     "jre-8": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk8")),
       })))),
     "jdk-11": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk11")),
       })))),
     "jre-11": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk11")),
       })))),
     "jdk-17": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk17")),
       })))),
     "jre-17": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk17")),
       })))),
     "jdk-21": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk21")),
       })))),
     "jre-21": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk21")),
       })))),
   };

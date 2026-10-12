@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-b0`),
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/b0/releases/b0-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-FscuTlKqZ7fGJk0+aln6lvNtF7Ghph64A4ZVqCUE9ZM=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software construction and deployment kit",
         longDescription: "WARNING this package is unstable and work in progress, do not depend on\nit.\nB0 describes software construction and deployments using modular and\ncustomizable definitions written in OCaml. B0 describes:\n* Build environments.\n* Software configuration, build and testing.\n* Source and binary deployments.\n* Software life-cycle procedures.\nB0 also provides the B00 build library which provides arbitrary build\nabstraction with reliable and efficient incremental rebuilds. The B00\nlibrary can be – and has been – used on its own to devise domain specific\nbuild systems.\n",
         homepage: "https://erratique.ch/software/b0",

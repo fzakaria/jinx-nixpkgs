@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const libmnl = nix.arg($, "libmnl");
   const libnfnetlink = nix.arg($, "libnfnetlink");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0.5",
       pname: "libnetfilter_queue",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/libnetfilter_queue/files/libnetfilter_queue-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1xdra6i4p8jkv943ygjw646qx8df27f7p5852kc06vjx608krzzr",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libmnl, libnfnetlink]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.netfilter.org/projects/libnetfilter_queue/",
         description: "Userspace API to packets queued by the kernel packet filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

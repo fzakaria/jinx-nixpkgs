@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(fn, args_1);
   })());
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     locations: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), attrs, nix.thunk(() => [
         nix.thunk(() => nix.builtins.attrNames),
         nix.thunk(() => nix.app(nix.builtins.map, (name) => (() => {
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.builtins.listToAttrs),
         nix.thunk(() => nix.app(nix.sel(writers, "writeJSON"), "treefmt-function-locations")),
       ]))),
-    markdown: nix.thunk(() => nix.app(runCommand, "treefmt-functions-doc", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [nixdoc]) })), nix.thunk(() => nix.str`nixdoc --file ${nix.path(here, "./lib.nix")} \\
+    markdown: nix.thunk(() => nix.app(runCommand, "treefmt-functions-doc", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [nixdoc]) })), nix.thunk(() => nix.str`nixdoc --file ${nix.path(here, "./lib.nix")} \\
   --locs ${nix.sel(treefmt, "functionsDoc", "locations")} \\
   --description "Functions Reference" \\
   --prefix "pkgs" \\

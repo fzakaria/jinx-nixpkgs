@@ -36,11 +36,11 @@ echo ${tzdata}/share/zoneinfo/ > $out/TZDatabaseDirFile
 echo ${nix.sel(curl, "out")}/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} > $out/LibcurlPathFile
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ldc",
       version: "1.42.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ldc-developers",
           repo: "ldc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,7 +96,7 @@ ctest -j$NIX_BUILD_CORES --output-on-failure -E "ldc2-unittest|lit-tests|dmd-tes
 `),
       disallowedReferences: nix.thunk(() => [ldcBootstrap]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LLVM-based D compiler",
         homepage: "https://github.com/ldc-developers/ldc",
         changelog: nix.thunk(() => nix.str`https://github.com/ldc-developers/ldc/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -121,12 +121,12 @@ ctest -j$NIX_BUILD_CORES --output-on-failure -E "ldc2-unittest|lit-tests|dmd-tes
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-linux", "aarch64-darwin"]),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ldcBootstrap: ldcBootstrap,
         tests: nix.thunk(() => (() => {
           const ldc = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
           const helloWorld = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs_1) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "ldc-hello-world",
               src: nix.thunk(() => nix.app(writeText, "hello_world.d", "module hello_world;\nimport std.stdio;\nvoid main() {\n  writeln(\"Hello, world!\");\n}\n")),
               dontUnpack: true,
@@ -137,9 +137,9 @@ ctest -j$NIX_BUILD_CORES --output-on-failure -E "ldc2-unittest|lit-tests|dmd-tes
               installPhase: "mkdir -p $out/bin\nmv test $out/bin\n",
             })));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "no-references-to-compiler": nix.thunk(() => nix.app(nix.sel(helloWorld, "overrideAttrs"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 disallowedReferences: nix.thunk(() => [ldc]),
                 dFlags: nix.thunk(() => ["-g"]),
               })))),

@@ -14,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       core: "mame2003",
       version: "0-unstable-2026-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "mame2003-libretro",
           rev: "b9ac708f922386a0ae1f2379dbb31b60d7ec7b25",
           hash: "sha256-idaH5SQKuM1MLTHn3qhmgGixD/Vb4Ai2OEsGNRz9A5Q=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of MAME ~2003 to libretro, compatible with MAME 0.78 sets",
         homepage: "https://github.com/libretro/mame2003-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

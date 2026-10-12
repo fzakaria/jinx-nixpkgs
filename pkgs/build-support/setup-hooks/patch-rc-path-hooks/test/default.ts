@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "test-bash": nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         const shellcheck = nix.arg($_1, "shellcheck");
         const zsh = nix.arg($_1, "zsh");
         return nix.app(runCommandLocal, "patch-rc-path-bash-test", nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nativeBuildInputs: nix.thunk(() => [bash, ksh, patchRcPathBash, shellcheck, zsh]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathBash, "meta"));
               return {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Package test of patchActivateBash",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };
@@ -156,12 +156,12 @@ touch "$out"
         const patchRcPathCsh = nix.arg($_1, "patchRcPathCsh");
         const tcsh = nix.arg($_1, "tcsh");
         return nix.app(runCommandLocal, "patch-rc-path-csh-test", nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nativeBuildInputs: nix.thunk(() => [patchRcPathCsh, tcsh]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathCsh, "meta"));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Package test of patchActivateCsh",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };
@@ -231,12 +231,12 @@ touch "$out"
         const hello = nix.arg($_1, "hello");
         const patchRcPathFish = nix.arg($_1, "patchRcPathFish");
         return nix.app(runCommandLocal, "patch-rc-path-fish-test", nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nativeBuildInputs: nix.thunk(() => [fish, patchRcPathFish]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathFish, "meta"));
               return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Package test of patchActivateFish",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };
@@ -312,12 +312,12 @@ touch "$out"
         const patchRcPathPosix = nix.arg($_1, "patchRcPathPosix");
         const shellcheck = nix.arg($_1, "shellcheck");
         return nix.app(runCommandLocal, "patch-rc-path-posix-test", nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             nativeBuildInputs: nix.thunk(() => [bash, dash, ksh, patchRcPathPosix, shellcheck]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathPosix, "meta"));
               return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Package test of patchActivatePosix",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };

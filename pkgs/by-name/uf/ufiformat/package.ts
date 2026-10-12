@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ufiformat",
       version: "0.9.9",
       buildInputs: nix.thunk(() => [e2fsprogs]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tedigh",
           repo: "ufiformat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "heFETZj9migz2s9kvmw0ZQ1ieNpU4V4Lwfp91ek2cS4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tedigh/ufiformat",
         description: "Low-level disk formatting utility for USB floppy drives",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "amarshall"))]),

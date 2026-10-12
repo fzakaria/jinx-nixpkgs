@@ -54,34 +54,34 @@ export default nix.lambda((args) => (() => {
   const modules = nix.thunk(() => nix.concat(["system76", "system76-io"], nix.app(optional, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(kpkgs, "kernel", "version")), "5.5")), "system76-acpi")));
   const modulePackages = nix.thunk(() => nix.builtins.map((m) => nix.sel(kpkgs, nix.key(nix.force(m))), modules));
   const moduleConfig = nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "kernel-modules", "enable")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       boot: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         extraModulePackages: modulePackages,
         kernelModules: modules,
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$3,
-        udev: nix.thunk(() => ({ __proto__: pos$2, packages: modulePackages })),
+        [nix.POS]: pos$3,
+        udev: nix.thunk(() => ({ [nix.POS]: pos$2, packages: modulePackages })),
       })),
     }))));
   const firmware_pkg = nix.thunk(() => nix.sel(pkgs, "system76-firmware"));
   const firmwareConfig = nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "firmware-daemon", "enable")), nix.thunk(() => ({
-      __proto__: pos$12,
-      environment: nix.thunk(() => ({ __proto__: pos$5, systemPackages: nix.thunk(() => [firmware_pkg]) })),
+      [nix.POS]: pos$12,
+      environment: nix.thunk(() => ({ [nix.POS]: pos$5, systemPackages: nix.thunk(() => [firmware_pkg]) })),
       services: nix.thunk(() => ({
-        __proto__: pos$7,
-        dbus: nix.thunk(() => ({ __proto__: pos$6, packages: nix.thunk(() => [firmware_pkg]) })),
+        [nix.POS]: pos$7,
+        dbus: nix.thunk(() => ({ [nix.POS]: pos$6, packages: nix.thunk(() => [firmware_pkg]) })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "system76-firmware-daemon": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "The System76 Firmware Daemon",
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               ExecStart: nix.thunk(() => nix.str`${firmware_pkg}/bin/system76-firmware-daemon`),
               Restart: "on-failure",
             })),
@@ -92,21 +92,21 @@ export default nix.lambda((args) => (() => {
     }))));
   const power_pkg = nix.thunk(() => nix.sel(pkgs, "system76-power"));
   const powerConfig = nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "power-daemon", "enable")), nix.thunk(() => ({
-      __proto__: pos$20,
-      environment: nix.thunk(() => ({ __proto__: pos$13, systemPackages: nix.thunk(() => [power_pkg]) })),
+      [nix.POS]: pos$20,
+      environment: nix.thunk(() => ({ [nix.POS]: pos$13, systemPackages: nix.thunk(() => [power_pkg]) })),
       services: nix.thunk(() => ({
-        __proto__: pos$15,
-        dbus: nix.thunk(() => ({ __proto__: pos$14, packages: nix.thunk(() => [power_pkg]) })),
+        [nix.POS]: pos$15,
+        dbus: nix.thunk(() => ({ [nix.POS]: pos$14, packages: nix.thunk(() => [power_pkg]) })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           "system76-power": nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             description: "System76 Power Daemon",
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               ExecStart: nix.thunk(() => nix.str`${power_pkg}/bin/system76-power daemon`),
               Restart: "on-failure",
               Type: "dbus",
@@ -118,18 +118,18 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       hardware: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         system76: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enableAll: nix.thunk(() => nix.app(mkEnableOption, "all recommended configuration for system76 systems")),
           "firmware-daemon": nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default: nix.thunk(() => nix.sel(cfg, "enableAll")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "enableAll")}`))),
                 example: true,
@@ -138,9 +138,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           "kernel-modules": nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 default: nix.thunk(() => nix.sel(cfg, "enableAll")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "enableAll")}`))),
                 example: true,
@@ -149,9 +149,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           "power-daemon": nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 default: nix.thunk(() => nix.sel(cfg, "enableAll")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "enableAll")}`))),
                 example: true,

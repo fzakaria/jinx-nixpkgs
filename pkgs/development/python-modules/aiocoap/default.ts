@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const termcolor = nix.arg($, "termcolor");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aiocoap",
       version: "0.4.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrysn",
           repo: "aiocoap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         oscore: nix.thunk(() => [cbor2, cryptography, filelock, ge25519]),
         tinydtls: nix.thunk(() => [dtlssocket]),
         ws: nix.thunk(() => [websockets]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_uri_parser", "test_001", "test_help", "test_blame"]),
       pythonImportsCheck: nix.thunk(() => ["aiocoap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python CoAP library",
         homepage: "https://aiocoap.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/chrysn/aiocoap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

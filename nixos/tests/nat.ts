@@ -62,39 +62,39 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const unit = nix.thunk(() => (nix.asBool(nftables) ? "nftables" : (nix.asBool(withFirewall) ? "firewall" : "nat")));
     const routerAlternativeExternalIp = "192.168.2.234";
     const makeNginxConfig = (hostname) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       enable: true,
       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
         [nix.str`${hostname}`, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           root: "/etc",
           locations: nix.thunk(() => ({
-            __proto__: pos$2,
-            "/": nix.thunk(() => ({ __proto__: pos$1, index: "hostname" })),
+            [nix.POS]: pos$2,
+            "/": nix.thunk(() => ({ [nix.POS]: pos$1, index: "hostname" })),
           })),
           listen: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$3, addr: "0.0.0.0", port: 80n })),
-            nix.thunk(() => ({ __proto__: pos$4, addr: "0.0.0.0", port: 8080n })),
+            nix.thunk(() => ({ [nix.POS]: pos$3, addr: "0.0.0.0", port: 80n })),
+            nix.thunk(() => ({ [nix.POS]: pos$4, addr: "0.0.0.0", port: 8080n })),
           ]),
         }))],
       ])),
     });
     const makeCommonConfig = (hostname) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         nginx: nix.thunk(() => nix.app(makeNginxConfig, hostname)),
         vsftpd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: true,
           anonymousUser: true,
           localRoot: "/etc/",
           extraConfig: "pasv_min_port=51000\npasv_max_port=51999\n",
         })),
       })),
-      networking: nix.thunk(() => ({ __proto__: pos$9, useDHCP: false })),
+      networking: nix.thunk(() => ({ [nix.POS]: pos$9, useDHCP: false })),
       environment: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "check-connection", "#!/usr/bin/env bash\n\nset -e\n\nif [[ \"$2\" == \"\" || \"$3\" == \"\" || \"$1\" == \"--help\" || \"$1\" == \"-h\" ]];\nthen\n    echo \"check-connection <target-address> <target-hostname> <[expect-success|expect-failure]>\"\n    exit 1\nfi\n\nADDRESS=\"$1\"\nHOSTNAME=\"$2\"\n\nfunction test_icmp() { timeout 3 ping -c 1 $ADDRESS; }\nfunction test_http() { [[ `timeout 3 curl $ADDRESS` == \"$HOSTNAME\" ]]; }\nfunction test_ftp() { timeout 3 curl ftp://$ADDRESS; }\n\nif [[ \"$3\" == \"expect-success\" ]];\nthen\n    test_icmp; test_http; test_ftp\nelse\n    ! test_icmp; ! test_http; ! test_ftp\nfi\n")),
           nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "check-last-clients-ip", "#!/usr/bin/env bash\nset -e\n\n[[ `cat /var/log/nginx/access.log | tail -n1 | awk '{print $1}'` == \"$1\" ]]\n")),
@@ -102,17 +102,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
       })),
     });
     return {
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       name: nix.thunk(() => nix.add(nix.add("nat", nix.app(nix.sel(lib, "optionalString"), nftables, "Nftables")), (nix.asBool(withFirewall) ? "WithFirewall" : "Standalone"))),
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "tne")), nix.thunk(() => nix.lookup(w, "rob"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
@@ -120,13 +120,13 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(makeCommonConfig, "client")),
               nix.thunk(() => ({
-                __proto__: pos$17,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$13, vlans: nix.thunk(() => [1n]) })),
+                [nix.POS]: pos$17,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [1n]) })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   defaultGateway: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs_1, "lib", "head"), nix.thunk(() => nix.sel(nodes, "router", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address")),
-                  nftables: nix.thunk(() => ({ __proto__: pos$14, enable: nftables })),
-                  firewall: nix.thunk(() => ({ __proto__: pos$15, enable: false })),
+                  nftables: nix.thunk(() => ({ [nix.POS]: pos$14, enable: nftables })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
                 })),
               })),
             ]));
@@ -137,30 +137,30 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(makeCommonConfig, "router")),
               nix.thunk(() => ({
-                __proto__: pos$39,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$18, vlans: nix.thunk(() => [1n, 2n]) })),
+                [nix.POS]: pos$39,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [1n, 2n]) })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   firewall: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     enable: withFirewall,
                     filterForward: nftables,
                     allowedTCPPorts: nix.thunk(() => [21n, 80n, 8080n]),
-                    allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$19, from: 51000n, to: 51999n }))]),
+                    allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$19, from: 51000n, to: 51999n }))]),
                   })),
-                  nftables: nix.thunk(() => ({ __proto__: pos$21, enable: nftables })),
+                  nftables: nix.thunk(() => ({ [nix.POS]: pos$21, enable: nftables })),
                   nat: nix.thunk(() => (() => {
                     const clientIp = nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "lib", "head"), nix.thunk(() => nix.sel(nodes, "client", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address"));
                     const serverIp = nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "lib", "head"), nix.thunk(() => nix.sel(nodes, "router", "networking", "interfaces", "eth2", "ipv4", "addresses"))), "address"));
                     return {
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       enable: true,
                       internalIPs: nix.thunk(() => [nix.thunk(() => nix.str`${clientIp}/24`)]),
                       externalInterface: "eth2",
                       externalIP: serverIp,
                       forwardPorts: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           destination: nix.thunk(() => nix.str`${clientIp}:8080`),
                           proto: "tcp",
                           sourcePort: 8080n,
@@ -170,43 +170,43 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                     };
                   })()),
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     eth2: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 10000n, nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$24, address: routerAlternativeExternalIp, prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: pos$24, address: routerAlternativeExternalIp, prefixLength: 24n })),
                           ]))),
                       })),
                     })),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     virtualHosts: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       router: nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), nix.thunk(() => nix.neg(1n)), nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$29, addr: routerAlternativeExternalIp, port: 8080n })),
+                            nix.thunk(() => ({ [nix.POS]: pos$29, addr: routerAlternativeExternalIp, port: 8080n })),
                           ]))),
                       })),
                     })),
                   })),
                 })),
                 specialisation: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   "no-nat": nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     configuration: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       networking: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         nat: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                         })),
                       })),
@@ -222,11 +222,11 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(makeCommonConfig, "server")),
               nix.thunk(() => ({
-                __proto__: pos$43,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$40, vlans: nix.thunk(() => [2n]) })),
+                [nix.POS]: pos$43,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$40, vlans: nix.thunk(() => [2n]) })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$42,
-                  firewall: nix.thunk(() => ({ __proto__: pos$41, enable: false })),
+                  [nix.POS]: pos$42,
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$41, enable: false })),
                   defaultGateway: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "lib", "head"), nix.thunk(() => nix.sel(nodes, "router", "networking", "interfaces", "eth2", "ipv4", "addresses"))), "address")),
                 })),
               })),

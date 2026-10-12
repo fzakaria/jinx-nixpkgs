@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "0.1",
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-seq`),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         homepage: "https://github.com/c-cube/seq",

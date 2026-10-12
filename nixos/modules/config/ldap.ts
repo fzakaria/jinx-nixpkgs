@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "users", "ldap"));
   const ldapConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     target: "ldap.conf",
     source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ldap.conf", nix.thunk(() => nix.str`uri ${nix.sel(config, "users", "ldap", "server")}
 base ${nix.sel(config, "users", "ldap", "base")}
@@ -80,7 +80,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "daemon", "extraConfig"), "")), nix.thunk(() => nix.sel(cfg, "daemon", "extraConfig")))}
 `)));
   const nslcdWrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nslcd-wrapped", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${nix.sel(pkgs, "nss_pam_ldapd")}/sbin/nslcd $out/bin/nslcd \\
@@ -88,73 +88,73 @@ makeWrapper ${nix.sel(pkgs, "nss_pam_ldapd")}/sbin/nslcd $out/bin/nslcd \\
   --set NIX_REDIRECTS "/etc/nslcd.conf=/run/nslcd/nslcd.conf"
 `)));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       users: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         ldap: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(mkEnableOption, "authentication against an LDAP server")),
           loginPam: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to include authentication against LDAP in login PAM.",
             })))),
           nsswitch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to include lookup against LDAP in NSS.",
             })))),
           server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "ldap://ldap.example.org/",
               description: "The URL of the LDAP server.",
             })))),
           base: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "dc=example,dc=org",
               description: "The distinguished name of the search base.",
             })))),
           useTLS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "If enabled, use TLS (encryption) over an LDAP (port 389)\nconnection.  The alternative is to specify an LDAPS server (port\n636) in {option}`users.ldap.server` or to forego\nsecurity.\n",
             })))),
           timeLimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: 0n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "Specifies the time limit (in seconds) to use when performing\nsearches. A value of zero (0), which is the default, is to\nwait indefinitely for searches to be completed.\n",
             })))),
           daemon: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to let the nslcd daemon (nss-pam-ldapd) handle the\nLDAP lookups for NSS and PAM. This can improve performance,\nand if you need to bind to the LDAP server with a password,\nit increases security, since only the nslcd user needs to\nhave access to the bindpw file, not everyone that uses NSS\nand/or PAM. If this option is enabled, a local nscd user is\ncreated automatically, and the nslcd service is started\nautomatically when the network get up.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: "",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "Extra configuration options that will be added verbatim at\nthe end of the nslcd configuration file ({manpage}`nslcd.conf(5)`).\n",
               })))),
             rootpwmoddn: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: "",
                 example: "cn=admin,dc=example,dc=com",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The distinguished name to use to bind to the LDAP server\nwhen the root user tries to modify a user's password.\n",
               })))),
             rootpwmodpwFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: "",
                 example: "/run/keys/nslcd.rootpwmodpw",
                 type: nix.thunk(() => nix.sel(types, "str")),
@@ -162,35 +162,35 @@ makeWrapper ${nix.sel(pkgs, "nss_pam_ldapd")}/sbin/nslcd $out/bin/nslcd \\
               })))),
           })),
           bind: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             distinguishedName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: "",
                 example: "cn=admin,dc=example,dc=com",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The distinguished name to bind to the LDAP server with. If this\nis not specified, an anonymous bind will be done.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: "/etc/ldap/bind.password",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The path to a file containing the credentials to use when binding\nto the LDAP server (if not binding anonymously).\n",
               })))),
             timeLimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: 30n,
                 type: nix.thunk(() => nix.sel(types, "int")),
                 description: "Specifies the time limit (in seconds) to use when connecting\nto the directory server. This is distinct from the time limit\nspecified in {option}`users.ldap.timeLimit` and affects\nthe initial server connection only.\n",
               })))),
             policy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 default: "hard_open",
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["hard_open", "hard_init", "soft"]))),
                 description: "Specifies the policy to use for reconnecting to an unavailable\nLDAP server. The default is `hard_open`, which\nreconnects if opening the connection to the directory server\nfailed. By contrast, `hard_init` reconnects if\ninitializing the connection failed. Initializing may not\nactually contact the directory server, and it is possible that\na malformed configuration file will trigger reconnection. If\n`soft` is specified, then\n`nss_ldap` will return immediately on server\nfailure. All hard reconnect policies block with exponential\nbackoff before retrying.\n",
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration options that will be added verbatim at\nthe end of the ldap configuration file ({manpage}`ldap.conf(5)`).\nIf {option}`users.ldap.daemon` is enabled, this\nconfiguration will not be used. In that case, use\n{option}`users.ldap.daemon.extraConfig` instead.\n",
@@ -199,34 +199,34 @@ makeWrapper ${nix.sel(pkgs, "nss_pam_ldapd")}/sbin/nslcd $out/bin/nslcd \\
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
-          etc: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "daemon", "enable"))), nix.thunk(() => ({ __proto__: pos$23, "ldap.conf": ldapConfig })))),
+          [nix.POS]: pos$24,
+          etc: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "daemon", "enable"))), nix.thunk(() => ({ [nix.POS]: pos$23, "ldap.conf": ldapConfig })))),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           nssModules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "nsswitch")), nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "daemon", "enable")) ? nix.sel(pkgs, "nss_pam_ldapd") : nix.sel(pkgs, "nss_ldap"))))))),
           nssDatabases: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             group: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nsswitch")), "ldap")),
             passwd: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nsswitch")), "ldap")),
             shadow: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nsswitch")), "ldap")),
           })),
         })),
         users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "daemon", "enable")), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             groups: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               nslcd: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "nslcd")),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               nslcd: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "nslcd")),
                 description: "nslcd user.",
                 group: "nslcd",
@@ -234,17 +234,17 @@ makeWrapper ${nix.sel(pkgs, "nss_pam_ldapd")}/sbin/nslcd $out/bin/nslcd \\
             })),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "daemon", "enable"))), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   "ldap-password": nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     wantedBy: nix.thunk(() => ["sysinit.target"]),
                     before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
                     conflicts: nix.thunk(() => ["shutdown.target"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$32, DefaultDependencies: false })),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$33, Type: "oneshot", RemainAfterExit: true })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$32, DefaultDependencies: false })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$33, Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`if test -f "${nix.sel(cfg, "bind", "passwordFile")}" ; then
   umask 0077
   conf="$(mktemp)"
@@ -256,9 +256,9 @@ fi
                   })),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "daemon", "enable")), nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   nslcd: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     preStart: nix.thunk(() => nix.str`umask 0077
 conf="$(mktemp)"
@@ -277,7 +277,7 @@ mv -fT "$conf" /run/nslcd/nslcd.conf
                       nix.thunk(() => nix.sel(cfg, "daemon", "rootpwmodpwFile")),
                     ]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       ExecStart: nix.thunk(() => nix.str`${nslcdWrapped}/bin/nslcd`),
                       Type: "forking",
                       Restart: "always",

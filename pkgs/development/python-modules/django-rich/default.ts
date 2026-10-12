@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_randomly = nix.arg($, "pytest-randomly");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-rich",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adamchainz",
           repo: "django-rich",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [coverage, pytest_django, pytest_randomly, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["django_rich"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensions for using Rich with Django",
         homepage: "https://github.com/adamchainz/django-rich",
         changelog: nix.thunk(() => nix.str`https://github.com/adamchainz/django-rich/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

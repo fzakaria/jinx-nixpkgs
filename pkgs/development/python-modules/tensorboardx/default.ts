@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lanpa",
           repo: "tensorboardX",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "# https://github.com/lanpa/tensorboardX/pull/761\nsubstituteInPlace tensorboardX/utils.py tests/test_utils.py \\\n  --replace-fail \"newshape=\" \"shape=\"\n";
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const dependencies = nix.thunk(() => [packaging, protobuf, numpy]);
       const pythonImportsCheck = nix.thunk(() => ["tensorboardX"]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_record_writer.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for writing tensorboard-compatible logs",
         homepage: "https://tensorboardx.readthedocs.io",
         downloadPage: "https://github.com/lanpa/tensorboardX",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

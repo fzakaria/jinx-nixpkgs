@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CypherpunkPay",
           repo: "CypherpunkPay",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["cypherpunkpay"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern self-hosted software for accepting Bitcoin",
         homepage: "https://github.com/CypherpunkPay/CypherpunkPay",
         changelog: nix.thunk(() => nix.str`https://github.com/CypherpunkPay/CypherpunkPay/releases/tag/v${version}`),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

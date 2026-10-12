@@ -20,47 +20,47 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const remoteSystem = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "aarch64-linux")) ? "x86_64-linux" : "aarch64-linux"));
   const remoteCrossPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       localSystem: remoteSystem,
       crossSystem: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
     }))));
   const hello1 = nix.thunk(() => nix.app(nix.sel(remoteCrossPkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "hello1",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(remoteCrossPkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [nix.thunk(() => nix.sel(remoteCrossPkgs, "hello"))]),
         })))),
     }))));
   const hello2 = nix.thunk(() => nix.app(nix.sel(remoteCrossPkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "hello2",
       tag: "latest",
       contents: nix.thunk(() => nix.sel(remoteCrossPkgs, "hello")),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "docker-tools",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             diskSize: 2048n,
-            docker: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            docker: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           })),
         };
       })(), formals$2),

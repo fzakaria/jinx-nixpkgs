@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hound",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hound-search",
           repo: "hound",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/houndd --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mercurial, git, openssh]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, hound: nix.thunk(() => nix.attr(nixosTests, "hound")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, hound: nix.thunk(() => nix.attr(nixosTests, "hound")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightning fast code searching made easy",
         homepage: "https://github.com/hound-search/hound",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

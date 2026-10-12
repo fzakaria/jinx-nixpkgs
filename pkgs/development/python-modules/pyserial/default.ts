@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-PHfgFBcN//vYFub/wgXphC77EL6fWOwW0+hnW0klzds=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "test"]);
       const pythonImportsCheck = nix.thunk(() => ["serial"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python serial port extension",
         homepage: "https://github.com/pyserial/pyserial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

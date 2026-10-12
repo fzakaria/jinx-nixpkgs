@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "facenet-pytorch",
       version: "2.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timesler",
           repo: "facenet-pytorch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["facenet_pytorch"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pretrained Pytorch face detection (MTCNN) and facial recognition (InceptionResnet) models",
         homepage: "https://github.com/timesler/facenet-pytorch",
         changelog: nix.thunk(() => nix.str`https://github.com/timesler/facenet-pytorch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

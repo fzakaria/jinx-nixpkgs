@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cc-multilib-test",
       buildCommand: nix.thunk(() => nix.str`NIX_DEBUG=1 $CC -v
 NIX_DEBUG=1 $CXX -v
@@ -39,7 +39,7 @@ $CXX -m64 -o cxx64-check ${nix.path(here, "./cxx-main.cc")}
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),
       })),
     })));

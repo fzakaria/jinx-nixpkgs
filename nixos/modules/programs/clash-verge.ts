@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: [],
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "clash-verge": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Clash Verge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "The clash-verge package to use. Available options are\nclash-verge-rev and clash-nyanpasu, both are forks of\nthe original clash-verge project.\n",
               default: nix.thunk(() => nix.sel(pkgs, "clash-verge-rev")),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
             })))),
           serviceMode: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Service Mode")),
           tunMode: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Whether to set the capabilities required for TUN mode.\n\nWithout these capabilities, Clash Verge's DNS settings will not work in TUN mode.\n\nWhen enabled, reverse path filtering will be set to loose instead of strict.\n",
           })),
           autoStart: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Clash Verge auto launch")),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "wheel",
               default: "users",
@@ -66,24 +66,24 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "programs", "clash-verge"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(cfg, "package")),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoStart")), nix.thunk(() => nix.app(nix.sel(pkgs, "makeAutostartItem"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     name: "clash-verge",
                     package: nix.thunk(() => nix.sel(cfg, "package")),
                   })))))),
             ]),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             wrappers: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "clash-verge": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tunMode")), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   owner: "root",
                   group: "root",
                   capabilities: "cap_net_bind_service,cap_net_raw,cap_net_admin=+ep",
@@ -93,28 +93,28 @@ export default nix.lambda((args) => (() => {
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "tunMode")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(config, "networking", "firewall", "checkReversePath"), true)) && nix.asBool(!nix.eq(nix.sel(config, "networking", "firewall", "checkReversePath"), "strict")))))),
               message: "{option}`programs.clash-verge.tunMode` requires {option}`networking.firewall.checkReversePath`\nto be set to `false` or `\"loose\"`.\n",
             })),
           ]),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             firewall: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               checkReversePath: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tunMode")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "loose")))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "clash-verge": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "serviceMode")), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: true,
                   description: "Clash Verge Service Mode",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clash-verge-service`),
                     Restart: "on-failure",
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => nix.sel(pkgs, "clash-verge-rev", "meta", "maintainers")),
     })),
   };

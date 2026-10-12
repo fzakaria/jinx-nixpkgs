@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const clickgen = nix.arg($, "clickgen");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pokemon-cursor",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ful1e5",
           repo: "pokemon-cursor",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nctgen build.toml -p x11 -o $out\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\nmv $out/Pokemon $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial open-source Pokemon cursor theme",
         homepage: "https://github.com/ful1e5/pokemon-cursor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

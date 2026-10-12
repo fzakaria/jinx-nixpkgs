@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const threadsCross = nix.arg($, "threadsCross");
   const hostIsTarget = nix.arg($, "hostIsTarget");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     EXTRA_FLAGS_FOR_TARGET: nix.thunk(() => (() => {
       const mkFlags = (dep) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(hostIsTarget)) && nix.asBool(!nix.eq(dep, null)))), nix.thunk(() => nix.concat([
           nix.thunk(() => nix.str`-O2 -idirafter ${nix.app(nix.sel(lib, "getDev"), dep)}${nix.selOr(dep, () => "/include", "incdir")}`),

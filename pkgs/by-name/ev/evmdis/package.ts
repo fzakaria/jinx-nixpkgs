@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evmdis",
       version: "0-unstable-2022-05-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arachnid",
           repo: "evmdis",
           rev: "7fad4fbee443262839ce9f88111b417801163086",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "go mod init github.com/Arachnid/evmdis\n",
       ldflags: nix.thunk(() => ["-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Arachnid/evmdis",
         description: "Ethereum EVM disassembler",
         mainProgram: "evmdis",

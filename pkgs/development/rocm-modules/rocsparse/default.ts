@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const buildBenchmarks = nix.argOr($, "buildBenchmarks", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`rocsparse${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), nix.thunk(() => ["test"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -103,17 +103,17 @@ done
 `))),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\ncp -a $out/bin/* $benchmark/bin\nrm $benchmark/bin/rocsparse-test\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "mkdir -p $test/bin\nmv $out/bin/* $test/bin\nrm $test/bin/rocsparse-bench || true\nmv /build/source/matrices $test\nrmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         matrices: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fetchzip: fetchzip,
             mirror1: "https://sparse.tamu.edu/MM",
             mirror2: "https://www.cise.ufl.edu/research/sparse/MM",
           })))),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$3, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "ROCm SPARSE implementation",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsparse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const modulesPath = nix.arg($, "modulesPath");
   const username = "azurenixosuser";
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.str`${modulesPath}/virtualisation/azure-common.nix`),
       nix.thunk(() => nix.str`${modulesPath}/virtualisation/azure-image.nix`),
     ]),
     users: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       users: nix.thunk(() => nix.attrsDyn({}, [
         [nix.str`${username}`, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           isNormalUser: true,
           home: nix.thunk(() => nix.str`/home/${username}`),
           description: "Azure NixOS Test User",
           openssh: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             authorizedKeys: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               keys: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path("", "~/.ssh/id_ed25519.pub"))),
               ]),
@@ -51,27 +51,27 @@ export default nix.lambda((args) => (() => {
       ])),
     })),
     nix: nix.thunk(() => ({
-      __proto__: pos$6,
-      settings: nix.thunk(() => ({ __proto__: pos$5, "trusted-users": nix.thunk(() => [username]) })),
+      [nix.POS]: pos$6,
+      settings: nix.thunk(() => ({ [nix.POS]: pos$5, "trusted-users": nix.thunk(() => [username]) })),
     })),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$8,
-      azureImage: nix.thunk(() => ({ __proto__: pos$7, diskSize: 2500n })),
+      [nix.POS]: pos$8,
+      azureImage: nix.thunk(() => ({ [nix.POS]: pos$7, diskSize: 2500n })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$11,
-      openssh: nix.thunk(() => ({ __proto__: pos$10, passwordAuthentication: false })),
+      [nix.POS]: pos$11,
+      openssh: nix.thunk(() => ({ [nix.POS]: pos$10, passwordAuthentication: false })),
     })),
     security: nix.thunk(() => ({
-      __proto__: pos$13,
-      sudo: nix.thunk(() => ({ __proto__: pos$12, wheelNeedsPassword: false })),
+      [nix.POS]: pos$13,
+      sudo: nix.thunk(() => ({ [nix.POS]: pos$12, wheelNeedsPassword: false })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [

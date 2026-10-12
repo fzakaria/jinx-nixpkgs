@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const s2n_tls = nix.arg($, "s2n-tls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aws-c-s3",
       version: "0.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awslabs",
           repo: "aws-c-s3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
         s2n_tls,
       ]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=ON"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, nix: nix$ })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix$ })) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C99 library implementation for communicating with the S3 service",
         homepage: "https://github.com/awslabs/aws-c-s3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

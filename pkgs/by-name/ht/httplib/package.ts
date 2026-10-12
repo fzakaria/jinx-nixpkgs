@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const copyPkgconfigItems = nix.arg($, "copyPkgconfigItems");
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "httplib",
       version: "0.58.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yhirose",
           repo: "cpp-httplib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
             const variables = nix.thunk(() => (() => {
               const prefix = nix.thunk(() => nix.builtins.placeholder("out"));
               const includedir = nix.thunk(() => nix.str`${prefix}/include`);
-              return { __proto__: pos$2, prefix, includedir };
+              return { [nix.POS]: pos$2, prefix, includedir };
             })());
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
-            return { __proto__: pos$3, name, version, cflags, variables, description };
+            return { [nix.POS]: pos$3, name, version, cflags, variables, description };
           })()))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/yhirose/cpp-httplib",
         description: "C++ header-only HTTP/HTTPS server and client library",
         changelog: nix.thunk(() => nix.str`https://github.com/yhirose/cpp-httplib/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

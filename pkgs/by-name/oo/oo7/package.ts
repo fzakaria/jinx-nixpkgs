@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "oo7",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-credentials",
           repo: "oo7",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-79bSlSbDaOtAXsJe1suMhvhsC/LoSDMZ+G/dhTTQ4EA=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: oo7 })))),
+          [nix.POS]: pos$3,
+          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: oo7 })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "James Bond went on a new mission as a Secret Service provider",
         homepage: "https://github.com/linux-credentials/oo7",
         changelog: nix.thunk(() => nix.str`https://github.com/linux-credentials/oo7/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

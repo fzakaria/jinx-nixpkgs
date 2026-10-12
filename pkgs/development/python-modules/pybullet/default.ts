@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-BCh5240QGsdZDe5HX8at7VCLhf4Sc/27/eHYi9IA4U8=",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGLU, libGL, libx11]);
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       }));
       const patches = nix.thunk(() => [nix.path(here, "./static-libs.patch")]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source software for robot simulation, integrated with OpenAI Gym",
         downloadPage: "https://github.com/bulletphysics/bullet3",
         homepage: "https://pybullet.org/",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

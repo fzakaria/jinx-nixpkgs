@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libosmo_netif = nix.arg($, "libosmo-netif");
   const linphonePackages = nix.arg($, "linphonePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libosmoabis",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "libosmo-abis",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osmocom Abis interface library",
         homepage: "https://github.com/osmocom/libosmo-abis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

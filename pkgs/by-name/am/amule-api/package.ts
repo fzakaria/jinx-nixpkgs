@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const amule = nix.arg($, "amule");
   return nix.app(nix.sel(amule, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       monolithic: false,
       apiServer: true,
       mainProgram: "amuleapi",

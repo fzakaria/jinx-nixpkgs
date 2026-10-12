@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fasm_bin = nix.arg($, "fasm-bin");
   const isx86_64 = nix.arg($, "isx86_64");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(fasm_bin, "version")),
       src: nix.thunk(() => nix.attr(fasm_bin, "src")),
       meta: nix.thunk(() => nix.attr(fasm_bin, "meta")),
@@ -28,7 +28,7 @@ done
       outputs: nix.thunk(() => ["out", "doc"]),
       installPhase: "install -Dt $out/bin fasm tools/libc/fasm-*\n\ndocs=$doc/share/doc/fasm\nmkdir -p $docs\ncp -r examples/ *.txt tools/fas.txt $docs\ncp tools/readme.txt $docs/tools.txt\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.sel(fasm_bin, "updateScript")),
       })),
     })));

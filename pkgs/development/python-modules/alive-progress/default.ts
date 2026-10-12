@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rsalmei",
           repo: "alive-progress",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ mv $out/LICENSE $out/share/doc/python${nix.sel(python, "pythonVersion")}-$pname-
       const nativeCheckInputs = nix.thunk(() => [click, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["alive_progress"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "New kind of Progress Bar, with real-time throughput, ETA, and very cool animations",
         homepage: "https://github.com/rsalmei/alive-progress",
         changelog: nix.thunk(() => nix.str`https://github.com/rsalmei/alive-progress/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ mv $out/LICENSE $out/share/doc/python${nix.sel(python, "pythonVersion")}-$pname-
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

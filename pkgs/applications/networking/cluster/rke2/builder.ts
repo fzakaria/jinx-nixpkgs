@@ -49,12 +49,12 @@ export default (lib) => nix.lambda((args) => (() => {
     const gnused = nix.arg($_1, "gnused");
     const nixosTests = nix.arg($_1, "nixosTests");
     return nix.app(buildGoModule, (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         __structuredAttrs: true,
         pname: "rke2",
         version: rke2Version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/rancher/rke2/archive/refs/tags/v${rke2Version}.tar.gz`),
             hash: nix.thunk(() => nix.str`${rke2TarballHash}`),
           })))),
@@ -72,7 +72,7 @@ export default (lib) => nix.lambda((args) => (() => {
           kmod,
           lvm2,
         ]),
-        env: nix.thunk(() => ({ __proto__: pos$2, GOFIPS140: "latest", GODEBUG: "fips140=only,tlsmlkem=0" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, GOFIPS140: "latest", GODEBUG: "fips140=only,tlsmlkem=0" })),
         ldflags: nix.thunk(() => (() => {
           const K3S_PKG = "github.com/k3s-io/k3s";
           const HELMCTR_PKG = "github.com/k3s-io/helm-controller";
@@ -116,7 +116,7 @@ wrapProgram $out/bin/rke2-killall.sh \\
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         versionCheckProgramArg: "--version",
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           updateScript: updateScript,
           tests: nix.thunk(() => (() => {
             const versionedPackage = nix.thunk(() => nix.add("rke2_", nix.app(nix.sel(lib_1, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "majorMinor"), rke2Version)))));
@@ -124,7 +124,7 @@ wrapProgram $out/bin/rke2-killall.sh \\
           })()),
         }, nix.app(nix.sel(lib_1, "mapAttrs"), (_) => (value) => nix.app(fetchurl, value), imagesVersions))),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://github.com/rancher/rke2",
           description: "Rancher's next-generation Kubernetes distribution, also known as RKE Government",
           changelog: nix.thunk(() => nix.str`https://github.com/rancher/rke2/releases/tag/v${nix.sel(finalAttrs, "version")}`),

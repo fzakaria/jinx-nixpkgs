@@ -54,53 +54,53 @@ export default nix.lambda((args) => (() => {
   const pepperDefault = nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "secrets"), "HBOX_AUTH_API_KEY_PEPPER")) && nix.asBool(nix.eq(nix.sel(cfg, "secrets", "HBOX_AUTH_API_KEY_PEPPER"), "/var/lib/homebox/api-pepper-secret"))));
   const opts = nix.thunk(() => nix.sel(options, "services", "homebox"));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homebox: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "homebox")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "homebox", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultUser,
               description: "User account under which Homebox runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultGroup,
               description: "Group under which Homebox runs.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))))),
                 })))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  HBOX_STORAGE_CONN_STRING = \"file:///var/lib/homebox?no_tmp_dir=1\";\n  HBOX_STORAGE_PREFIX_PATH = \"data\";\n  HBOX_DATABASE_DRIVER = \"sqlite3\";\n  HBOX_DATABASE_SQLITE_PATH = \"/var/lib/homebox/data/homebox.db?_pragma=busy_timeout=999&_pragma=journal_mode=WAL&_fk=1\";\n  HBOX_OPTIONS_ALLOW_REGISTRATION = \"false\";\n  HBOX_OPTIONS_GITHUB_RELEASE_CHECK = \"false\";\n  HBOX_MODE = \"production\";\n  HOME = \"/var/lib/homebox\";\n}\n")),
               description: "The homebox configuration as environment variables. For definitions and available options see the upstream\n[documentation](https://homebox.software/en/configure/#configure-homebox).\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local PostgreSQL database server for Homebox.\n",
               })))),
           })),
           secrets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     HBOX_AUTH_API_KEY_PEPPER: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "externalPath")),
                         default: "/var/lib/homebox/api-pepper-secret",
                         description: "Path to the API key pepper secret file (required for homebox to start).\n",
@@ -124,19 +124,19 @@ and templated into {option}\`${nix.sel(opts, "settings")}\` for you.
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "HBOX_STORAGE_DATA"))),
             message: "`services.homebox.settings.HBOX_STORAGE_DATA` has been deprecated.\nPlease use `services.homebox.settings.HBOX_STORAGE_CONN_STRING` and `services.homebox.settings.HBOX_STORAGE_PREFIX_PATH` instead.\n",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "homebox service user",
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
@@ -145,12 +145,12 @@ and templated into {option}\`${nix.sel(opts, "settings")}\` for you.
           groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.attrsDyn({}, [[defaultGroup, nix.thunk(() => ({}))]])))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           homebox: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.force(mkDefault), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     HBOX_STORAGE_CONN_STRING: "file:///var/lib/homebox?no_tmp_dir=1",
                     HBOX_STORAGE_PREFIX_PATH: "data",
                     HBOX_DATABASE_DRIVER: "sqlite3",
@@ -161,7 +161,7 @@ and templated into {option}\`${nix.sel(opts, "settings")}\` for you.
                     HOME: "/var/lib/homebox",
                   })))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     HBOX_DATABASE_DRIVER: "postgres",
                     HBOX_DATABASE_HOST: "/run/postgresql",
                     HBOX_DATABASE_USERNAME: "homebox",
@@ -171,24 +171,24 @@ and templated into {option}\`${nix.sel(opts, "settings")}\` for you.
               ]))),
           })),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: true,
               ensureDatabases: nix.thunk(() => ["homebox"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$20, name: "homebox", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$20, name: "homebox", ensureDBOwnership: true })),
               ]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "homebox-setup": nix.thunk(() => nix.app(mkIf, pepperDefault, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 script: "if [ ! -r \"$STATE_DIRECTORY\"/api-pepper-secret ]; then\n  umask 0277\n  openssl rand -base64 48 > \"$STATE_DIRECTORY\"/api-pepper-secret\nfi\n",
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -198,7 +198,7 @@ and templated into {option}\`${nix.sel(opts, "settings")}\` for you.
             homebox: nix.thunk(() => (() => {
               const deps = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), pepperDefault, nix.thunk(() => ["homebox-setup.service"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"]))));
               return {
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 requires: deps,
                 after: deps,
                 environment: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))),
@@ -210,7 +210,7 @@ and templated into {option}\`${nix.sel(opts, "settings")}\` for you.
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => nix.str`${name}:${path}`, nix.thunk(() => nix.sel(cfg, "secrets")))),
@@ -249,7 +249,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

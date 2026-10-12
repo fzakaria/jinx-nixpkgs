@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xrdp"));
-  const confDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "xrdp.conf", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const confDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "xrdp.conf", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 
 cp -r ${nix.sel(cfg, "package")}/etc/xrdp/* $out
 chmod -R +w $out
@@ -90,55 +90,55 @@ LOCALE_ARCHIVE=${nix.sel(config, "i18n", "glibcLocales")}/lib/locale/locale-arch
 ${nix.sel(cfg, "extraConfDirCommands")}
 `)));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         xrdp: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "xrdp, the Remote Desktop Protocol server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "xrdp", nix.thunk(() => ({})))),
           audio: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "audio support for xrdp sessions. So far it only works with PulseAudio sessions on the server side. No PipeWire support yet")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "pulseaudio-module-xrdp", nix.thunk(() => ({})))),
           })),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 3389n,
               description: "Specifies on which port the xrdp daemon listens.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to open the firewall for the specified RDP port.",
             })))),
           sslKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/etc/xrdp/key.pem",
               example: "/path/to/your/key.pem",
               description: "ssl private key path\nA self-signed certificate will be generated if file not exists.\n",
             })))),
           sslCert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/etc/xrdp/cert.pem",
               example: "/path/to/your/cert.pem",
               description: "ssl certificate path\nA self-signed certificate will be generated if file not exists.\n",
             })))),
           defaultWindowManager: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "xterm",
               example: "xfce4-session",
               description: "The script to run when user log in, usually a window manager, e.g. \"icewm\", \"xfce4-session\"\nThis is per-user overridable, if file ~/startwm.sh exists it will be used instead.\n",
             })))),
           confDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: confDir,
               internal: true,
@@ -146,7 +146,7 @@ ${nix.sel(cfg, "extraConfDirCommands")}
               readOnly: true,
             })))),
           extraConfDirCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Extra commands to run on the default confDir derivation.\n",
@@ -157,52 +157,52 @@ ${nix.sel(cfg, "extraConfDirCommands")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "audio", "enable")), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "audio", "package"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               pulseaudio: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 extraModules: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "audio", "package"))]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             networking: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               firewall: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$23,
-              autostart: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
-              menus: nix.thunk(() => ({ __proto__: pos$20, enable: true })),
-              mime: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
-              icons: nix.thunk(() => ({ __proto__: pos$22, enable: true })),
+              [nix.POS]: pos$23,
+              autostart: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+              menus: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+              mime: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+              icons: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
             })),
             fonts: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enableDefaultPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               etc: nix.thunk(() => ({
-                __proto__: pos$26,
-                xrdp: nix.thunk(() => ({ __proto__: pos$25, source: nix.thunk(() => nix.str`${confDir}/*`) })),
+                [nix.POS]: pos$26,
+                xrdp: nix.thunk(() => ({ [nix.POS]: pos$25, source: nix.thunk(() => nix.str`${confDir}/*`) })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               services: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 xrdp: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   description: "xrdp daemon",
@@ -229,7 +229,7 @@ if [ ! -s /run/xrdp/rsakeys.ini ]; then
 fi
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     User: "xrdp",
                     Group: "xrdp",
                     PermissionsStartOnly: true,
@@ -237,13 +237,13 @@ fi
                   })),
                 })),
                 "xrdp-sesman": nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   description: "xrdp session manager",
                   restartIfChanged: false,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/xrdp-sesman --nodaemon --config ${confDir}/sesman.ini`),
                     ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -INT $MAINPID`),
                   })),
@@ -251,25 +251,25 @@ fi
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               users: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 xrdp: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   description: "xrdp daemon user",
                   isSystemUser: true,
                   group: "xrdp",
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$36, xrdp: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$36, xrdp: nix.thunk(() => ({})) })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               pam: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 services: nix.thunk(() => ({
-                  __proto__: pos$39,
-                  "xrdp-sesman": nix.thunk(() => ({ __proto__: pos$38, allowNullPassword: true, startSession: true })),
+                  [nix.POS]: pos$39,
+                  "xrdp-sesman": nix.thunk(() => ({ [nix.POS]: pos$38, allowNullPassword: true, startSession: true })),
                 })),
               })),
             })),

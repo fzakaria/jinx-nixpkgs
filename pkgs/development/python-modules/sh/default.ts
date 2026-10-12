@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amoffat",
           repo: "sh",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "test_timeout_overstep",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_background_exception", "test_cwd", "test_ok_code"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python subprocess interface",
         homepage: "https://pypi.org/project/sh/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

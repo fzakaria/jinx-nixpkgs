@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libplist = nix.arg($, "libplist");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "droidcam-obs",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dev47apps",
           repo: "droidcam-obs-plugin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/obs/obs-plugins/droidcam-obs\nmkdir -p $out/lib/obs-plugins\ncp build/droidcam-obs.so $out/lib/obs-plugins\ncp -R ./data/locale $out/share/obs/obs-plugins/droidcam-obs/locale\n\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DroidCam OBS",
         homepage: "https://github.com/dev47apps/droidcam-obs-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

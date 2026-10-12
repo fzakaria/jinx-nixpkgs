@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const pname = "unigine-superposition";
   const version = "1.1";
   const superposition = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Superposition-${nix.sel(finalAttrs, "version")}.run`),
           hash: "sha256-dJThxzv1nvIWFRPV1cudm/+9hHmSnUl2rFO2lV3lgPg=",
         })))),
@@ -84,7 +84,7 @@ chmod +x $out/bin/superposition
       postPatchMkspecs: "cp -f $name/bin/superposition $out/lib/unigine/superposition/bin/superposition\n",
     })));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "Superposition",
       exec: "unigine-superposition",
       genericName: "A GPU Stress test tool from the UNIGINE",
@@ -92,7 +92,7 @@ chmod +x $out/bin/superposition
       desktopName: "Superposition Benchmark",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [
@@ -130,7 +130,7 @@ for RES in 16 24 32 48 64 128 256; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unigine Superposition GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/superposition",
         sourceProvenance: nix.thunk(() => (() => {

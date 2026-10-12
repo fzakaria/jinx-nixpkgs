@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gramma",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caderek",
           repo: "gramma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# Set a script name to avoid yargs using cli.js as $0\nsubstituteInPlace src/cli.js \\\n  --replace-fail '.demandCommand()' '.demandCommand().scriptName(\"gramma\")'\n",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-FuR6wUhAaej/vMgjAlICMEj1pPf+7PFrdu2lTFshIkg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnInstallHook, nodejs]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line grammar checker",
         homepage: "https://caderek.github.io/gramma/",
         changelog: nix.thunk(() => nix.str`https://github.com/caderek/gramma/releases/tag/v${nix.sel(finalAttrs, "version")}`),

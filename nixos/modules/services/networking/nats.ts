@@ -43,35 +43,35 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const runCommand = nix.arg($_1, "runCommand");
       const nats_server = nix.arg($_1, "nats-server");
-      return nix.app(runCommand, "validate-nats-conf", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [nats_server]) })), nix.thunk(() => nix.str`nats-server --config "${file}" -t
+      return nix.app(runCommand, "validate-nats-conf", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [nats_server]) })), nix.thunk(() => nix.str`nats-server --config "${file}" -t
 ln -s "${file}" "$out"
 `));
     })(), formals$2), nix.thunk(() => ({})));
   const unvalidatedConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "nats.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   const configFile = nix.thunk(() => (nix.asBool(nix.sel(cfg, "validateConfig")) ? nix.app(validateConfig, unvalidatedConfigFile) : nix.force(unvalidatedConfigFile)));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nats: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "NATS messaging system")),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nats",
               description: "User account under which NATS runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nats",
               description: "Group under which NATS runs.",
             })))),
           serverName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "nats",
               example: "n1-c3",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
@@ -79,26 +79,26 @@ ln -s "${file}" "$out"
             })))),
           jetstream: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "JetStream")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 4222n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "Port on which to listen.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "/var/lib/nats",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "The NATS data directory. Only used if JetStream is enabled, for\nstoring stream metadata and messages.\n\nIf left as the default value this directory will automatically be\ncreated before the NATS server starts, otherwise the sysadmin is\nresponsible for ensuring the directory exists with appropriate\nownership and permissions.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(format, "type")),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  jetstream = {\n    max_mem = \"1G\";\n    max_file = \"10G\";\n  };\n};\n")),
               description: "Declarative NATS configuration. See the\n[\nNATS documentation](https://docs.nats.io/nats-server/configuration) for a list of options.\n",
             })))),
           validateConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "If true, validate nats config at build time. When the config can't\nbe checked during build time, for example when it includes other\nfiles, disable this option.\n",
@@ -107,32 +107,32 @@ ln -s "${file}" "$out"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           nats: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               server_name: nix.thunk(() => nix.sel(cfg, "serverName")),
               port: nix.thunk(() => nix.sel(cfg, "port")),
-              jetstream: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "jetstream")), nix.thunk(() => ({ __proto__: pos$12, store_dir: nix.thunk(() => nix.sel(cfg, "dataDir")) })))),
+              jetstream: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "jetstream")), nix.thunk(() => ({ [nix.POS]: pos$12, store_dir: nix.thunk(() => nix.sel(cfg, "dataDir")) })))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             nats: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "NATS messaging system",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/nats")), nix.thunk(() => ({ __proto__: pos$16, StateDirectory: "nats", StateDirectoryMode: "0750" })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/nats")), nix.thunk(() => ({ [nix.POS]: pos$16, StateDirectory: "nats", StateDirectoryMode: "0750" })))),
                   nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     Type: "simple",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nats-server")}/bin/nats-server -c ${configFile}`),
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
@@ -175,18 +175,18 @@ ln -s "${file}" "$out"
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "nats")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               nats: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "NATS daemon user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nats")), nix.thunk(() => ({ __proto__: pos$23, nats: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nats")), nix.thunk(() => ({ [nix.POS]: pos$23, nats: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

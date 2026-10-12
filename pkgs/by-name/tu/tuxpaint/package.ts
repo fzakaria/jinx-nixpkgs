@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
   const netpbm = nix.arg($, "netpbm");
   const fetchpatch = nix.arg($, "fetchpatch");
   const stamps = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://sourceforge/project/tuxpaint/tuxpaint-stamps/2025-05-26/tuxpaint-stamps-2025.05.26.tar.gz",
       hash: "sha256-CfSin4A2yTpkwoE046+u+0udlaCaceaPt1N/PF+ClJ8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.9.35",
       pname: "tuxpaint",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tuxpaint/${nix.sel(finalAttrs, "version")}/tuxpaint-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wcGK+RvnfpT9qrLJKCBMTDm6OaxdovRBqvLsq22L0K0=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/tuxpaint/files/tuxpaint-0.9.35-glibc-2.43.patch?id=51c28b814990551897631be7a222af2d922030a9",
             hash: "sha256-xkV73GoCd/epeyWfLHq2MNmRNfKaledoFsukwVKiZSI=",
           })))),
@@ -103,7 +103,7 @@ wrapProgram $out/bin/tuxpaint-import \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [netpbm]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open Source Drawing Software for Children",
         homepage: "http://www.tuxpaint.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

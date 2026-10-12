@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`${nix.sel(varnish, "name")}-modules`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "varnish",
             repo: "varnish-modules",
             tag: version_1,
@@ -50,7 +50,7 @@ substituteInPlace Makefile.am --replace "\${LIBVARNISHAPI_DATAROOTDIR}/aclocal" 
         const meta = nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(varnish, "meta"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Collection of Varnish Cache modules (vmods) by Varnish Software",
           homepage: "https://github.com/varnish/varnish-modules",
           license: nix.thunk(() => nix.attr(from, "license")),
@@ -58,7 +58,7 @@ substituteInPlace Makefile.am --replace "\${LIBVARNISHAPI_DATAROOTDIR}/aclocal" 
         };
         })());
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version: version_1,
           src,
@@ -71,9 +71,9 @@ substituteInPlace Makefile.am --replace "\${LIBVARNISHAPI_DATAROOTDIR}/aclocal" 
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     modules27: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "0.27.0",
         hash: "sha256-1hE+AKsC6Td+Al7LFN6bgPicU8dtWd3A8PP7VKZLvYM=",
       })))),

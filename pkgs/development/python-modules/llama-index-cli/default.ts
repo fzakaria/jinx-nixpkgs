@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_embeddings_openai = nix.arg($, "llama-index-embeddings-openai");
   const llama_index_llms_openai = nix.arg($, "llama-index-llms-openai");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-cli",
       version: "0.5.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_cli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-n80Z69VhWsaQ0cK+RzOqRhBlBGQsF7CcaSh0CDezkZk=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex CLI",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

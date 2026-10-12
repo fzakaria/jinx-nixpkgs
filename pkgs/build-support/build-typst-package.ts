@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["typstDeps"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const attrs = args_1;
         const typstDeps = nix.argOr($_1, "typstDeps", () => []);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`typst-package-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
           strictDeps: true,
           __structuredAttrs: true,
@@ -35,7 +35,7 @@ runHook postInstall
 `;
           })()),
           propagatedBuildInputs: typstDeps,
-          passthru: nix.thunk(() => ({ __proto__: pos$1, typstDeps: typstDeps })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$1, typstDeps: typstDeps })),
         };
       })(), formals$2),
     })));

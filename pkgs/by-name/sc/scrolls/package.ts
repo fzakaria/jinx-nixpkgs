@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scrolls",
       version: "2015-10-13",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Strategy collectible card game",
         homepage: "https://scrolls.com/",
         platforms: nix.thunk(() => ["x86_64-linux"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://download.scrolls.com/client/linux.tar.gz",
           sha256: "ead1fd14988aa07041fedfa7f845c756cd5077a5a402d85bfb749cb669ececec",
         })))),

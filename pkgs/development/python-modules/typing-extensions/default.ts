@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python",
           repo: "typing_extensions",
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const pythonImportsCheck = nix.thunk(() => ["typing_extensions"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, mashumaro: mashumaro, pydantic: pydantic })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mashumaro: mashumaro, pydantic: pydantic })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Backported and Experimental Type Hints for Python",
         changelog: nix.thunk(() => nix.str`https://github.com/python/typing_extensions/blob/${version}/CHANGELOG.md`),
         homepage: "https://github.com/python/typing",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

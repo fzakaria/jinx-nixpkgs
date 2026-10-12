@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const hidapi = nix.arg($, "hidapi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cloudcompare",
       version: "2.13.2-unstable-2026-08-21",
       scriptDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CloudCompare",
           repo: "CloudCompare",
           rev: "be1fdb0fd05ec42d6922d7f18b22aab71c168ad6",
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CloudCompare",
             desktopName: "CloudCompare",
             comment: "3D point cloud and mesh processing software",
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
             icon: "CloudCompare",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ccViewer",
             desktopName: "CloudCompare Viewer",
             comment: "3D point cloud and mesh processing software",
@@ -140,11 +140,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.sel(nixosTests, "cloudcompare")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "3D point cloud and mesh processing software",
         homepage: "https://cloudcompare.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

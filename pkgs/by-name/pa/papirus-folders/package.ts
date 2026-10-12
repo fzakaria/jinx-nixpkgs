@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const getent = nix.arg($, "getent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "papirus-folders",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PapirusDevelopmentTeam",
           repo: "papirus-folders",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.str`substituteInPlace ./papirus-folders --replace "getent" "${getent}/bin/getent"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to change papirus icon theme color",
         mainProgram: "papirus-folders",
         longDescription: "papirus-folders is a bash script that allows changing the color of\nfolders in Papirus icon theme and its forks (which based on version 20171007 and newer).\n",

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freepats",
       version: "20060219",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://freepats.zenvoid.org/freepats-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "12iw36rd94zirll96cd5k0va7p5hxmf2shvjlhzihcmjaw8flq82",
         })))),
       installPhase: "mkdir \"$out\"; cp -r . \"$out\"",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Instrument patches, for MIDI synthesizers",
         longDescription: "Freepats is a project to create a free and open set of instrument\npatches, in any format, that can be used with softsynths.\n",
         homepage: "https://freepats.zenvoid.org/",

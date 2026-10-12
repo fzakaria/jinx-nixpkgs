@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const withSymlink = nix.argOr($, "withSymlink", () => true);
   const pname = "google-chrome";
-  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ __proto__: pos$1, withCustomModes: true }))));
+  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCustomModes: true }))));
   const deps = nix.thunk(() => nix.concat([
     alsa_lib,
     at_spi2_atk,
@@ -161,17 +161,17 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(kdePackages, "breeze")),
     ])))))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       meta: meta,
       version: "155.0.8059.39",
       src: nix.thunk(() => (() => {
-        const debArch = nix.thunk(() => nix.sel({ __proto__: pos$2, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
+        const debArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${nix.sel(finalAttrs, "version")}-1_${debArch}.deb`),
             hash: nix.thunk(() => nix.sel({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               amd64: "sha256-xYqg8s1mF5yfBQ4GLIgtJ6qbn4wrfHP+40mFYLXtCzg=",
               arm64: "sha256-NVZJRYCnHs7hXL6zts4jvzrzYLwFPZDTEFJBwiR9pSs=",
             }, nix.key(nix.force(debArch)))),
@@ -250,24 +250,24 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/google-chrome-stable $out/bin/google-chrome\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: pname,
       meta: meta,
       version: "155.0.8059.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           url: "https://dl.google.com/release2/chrome/lr7fpw3uxyyx5tnf7oone26c6m_155.0.8059.40/GoogleChrome-155.0.8059.40.dmg",
           hash: "sha256-AEwDm1wMe+PWH6UlTisJXDclN4rhmcZT8yS3D0rtiUw=",
         })))),
@@ -292,19 +292,19 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/google-chrome-stable $out/bin/google-chrome\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const meta = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     description: "Freeware web browser developed by Google",
     homepage: "https://www.google.com/chrome/browser/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

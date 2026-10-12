@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fanout",
       version: nix.thunk(() => nix.str`unstable-2022-10-17-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bob-linuxtoys",
           repo: "fanout",
           rev: "69b1cc69bf425d1a5f83b4e84d41272f1caa0144",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KERNELDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ])),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, fanout: nix.thunk(() => nix.attr(nixosTests, "fanout")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, fanout: nix.thunk(() => nix.attr(nixosTests, "fanout")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Kernel-based publish-subscribe system",
         homepage: "https://github.com/bob-linuxtoys/fanout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

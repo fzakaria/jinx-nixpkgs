@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const ipaddr = nix.arg($, "ipaddr");
   const tcpip = nix.arg($, "tcpip");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-protocols",
       version: "8.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-protocols/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-protocols-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-UDCR4Jq3tw9P/Ilw7T4+3+yi9Q7VFqnHhXeSCvg9dyw=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [arp, ethernet, ipaddr, tcpip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MirageOS signatures for network protocols",
         homepage: "https://github.com/mirage/mirage-protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "symbolic-preview",
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/design/symbolic-preview/uploads/e2fed158fc0d267f2051302bcf14848b/symbolic-preview-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-kx+70LCQzzWAw2Xd3fKGq941540IM3Y1+r4Em4MNWbw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cargo, desktop_file_utils, meson, ninja, pkg_config, rustc, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita, libxml2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/World/design/symbolic-preview",
         description: "Symbolics made easy",
         mainProgram: "symbolic-preview",

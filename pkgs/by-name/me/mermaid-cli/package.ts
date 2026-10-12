@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "11.17.0";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mermaid-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mermaid-js",
           repo: "mermaid-cli",
           rev: version,
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-puppeteer-from-dev-deps.patch")]),
       npmDepsHash: "sha256-6s1q+d6V/5hyjXZaAOzoLMFmQ1flKDH+YH5oOYTaoCo=",
-      env: nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
       npmBuildScript: "prepare",
       makeWrapperArgs: nix.thunk(() => nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), chromium)), nix.thunk(() => nix.str`--set PUPPETEER_EXECUTABLE_PATH '${nix.app(nix.sel(lib, "getExe"), chromium)}'`))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generation of diagrams from text in a similar manner as markdown",
         homepage: "https://github.com/mermaid-js/mermaid-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

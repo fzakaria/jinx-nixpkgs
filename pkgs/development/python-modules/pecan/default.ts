@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const webob = nix.arg($, "webob");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pecan",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-L5+86obo2/Gi0olUIlVHY0oonbcgHndkUWpdzobBFt4=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--pyargs", "pecan"]),
       pythonImportsCheck: nix.thunk(() => ["pecan"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WSGI object-dispatching web framework",
         homepage: "https://www.pecanpy.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pecan/pecan/releases/tag/${nix.sel(finalAttrs, "version")}`),

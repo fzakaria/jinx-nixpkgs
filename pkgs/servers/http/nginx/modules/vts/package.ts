@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vts",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vozlt",
           repo: "nginx-module-vts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5Cwjy3vrhyBohsroSB43qMvxZjIJtP/QHSK5QWnplzw=",
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, dynamic: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, dynamic: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Virtual host traffic status module",
         homepage: "https://github.com/vozlt/nginx-module-vts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

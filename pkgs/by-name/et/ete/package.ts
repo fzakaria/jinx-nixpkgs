@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ete_unwrapped = nix.arg($, "ete-unwrapped");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ete",
       version: nix.thunk(() => nix.sel(ete_unwrapped, "version")),
       paths: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(etlegacy_assets, "overrideAttrs"), (prev) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             postInstall: nix.thunk(() => nix.add(nix.selOr(prev, () => "", "postInstall"), "mv $out/lib/etlegacy $out/lib/ete\n")),
           }))),
         ete_unwrapped,
@@ -33,7 +33,7 @@ wrapProgram $out/bin/ete-ded.* \\
   --add-flags "+set fs_basepath ${nix.builtins.placeholder("out")}/lib/ete"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Improved Wolfenstein: Enemy Territory Engine",
         homepage: "https://github.com/etfdevs/ETe",
         license: nix.thunk(() => (() => {

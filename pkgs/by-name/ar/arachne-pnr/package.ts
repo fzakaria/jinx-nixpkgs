@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const icestorm = nix.arg($, "icestorm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arachne-pnr",
       version: "2019.07.29",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yosyshq",
           repo: "arachne-pnr",
           rev: "c40fb2289952f4f120cc10a5a4c82a6fb88442dc",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   --replace 'echo UNKNOWN' 'echo ${nix.app(nix.sel(lib, "substring"), 0n, 10n, nix.thunk(() => nix.sel(finalAttrs, "src", "rev")))}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Place and route tool for FPGAs",
         mainProgram: "arachne-pnr",
         longDescription: "Arachne-pnr implements the place and route step of\nthe hardware compilation process for FPGAs. It\naccepts as input a technology-mapped netlist in BLIF\nformat, as output by the Yosys [0] synthesis suite\nfor example. It currently targets the Lattice\nSemiconductor iCE40 family of FPGAs [1]. Its output\nis a textual bitstream representation for assembly by\nthe IceStorm [2] icepack command.\n",

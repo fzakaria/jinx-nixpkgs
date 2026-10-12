@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reagento",
           repo: "dataclass-factory",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dataclass_factory"]);
       const checkPhase = "runHook preCheck\n\nnose2 -v tests\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern way to convert python dataclasses or other objects to and from more common types like dicts or json-like structures",
         homepage: "https://github.com/reagento/dataclass-factory",
         changelog: nix.thunk(() => nix.str`https://github.com/reagento/dataclass-factory/releases/tag/${nix.sel(src, "rev")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

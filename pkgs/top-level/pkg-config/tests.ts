@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const stdenv = nix.arg($, "stdenv");
   const allPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../default.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       system: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       localSystem: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),
-      config: nix.thunk(() => nix.update(config, { __proto__: pos$1, allowUnsupportedSystem: true })),
+      config: nix.thunk(() => nix.update(config, { [nix.POS]: pos$1, allowUnsupportedSystem: true })),
       overlays: [],
     }))));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       defaultPkgConfigPackages: nix.thunk(() => nix.app(nix.sel(allPkgs, "callPackage"), nix.path(here, "./test-defaultPkgConfigPackages.nix"), nix.thunk(() => ({})))),
     })));
 })(), formals$1);

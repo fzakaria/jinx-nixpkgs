@@ -18,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "containers-unified-hierarchy",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "farnoy"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           containers: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "test-container": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               autoStart: true,
               config: nix.thunk(() => ({
-                __proto__: pos$3,
-                nix: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+                [nix.POS]: pos$3,
+                nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
               })),
             })),
           })),

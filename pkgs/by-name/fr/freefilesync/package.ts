@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_3 = nix.arg($, "wxwidgets_3_3");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wxwidgets_3_3_2 = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_3, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "3.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wxWidgets",
           repo: "wxWidgets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./wxcolorhook.patch")]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "freefilesync",
       version: "14.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://freefilesync.org/download/FreeFileSync_${nix.sel(finalAttrs, "version")}_Source.zip`),
           postFetch: "rm -f \"$out\"\ntryDownload \"$url\" \"$out\"\n",
           hash: "sha256-PfSPmEIzRRJXgIIzrwsN0CXCAE662UX4YRayYRFMOk0=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./skip-missing-Animal.dat.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./Makefile.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "gtk3-dev": nix.thunk(() => nix.app(nix.sel(lib, "getDev"), gtk3)),
           })))),
         nix.path(here, "./Disable_wxWidgets_uncaught_exception_handling.patch"),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, pkg_config, wrapGAppsHook3, unzip]),
       buildInputs: nix.thunk(() => [curl, glib, gtk3, libidn2, libssh2, openssl, wxwidgets_3_3_2]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_54",
             "-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_54",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
             const icon = name;
             const exec = name;
             const categories = nix.thunk(() => ["Utility", "FileTools"]);
-            return { __proto__: pos$6, name, desktopName, genericName, icon, exec, categories };
+            return { [nix.POS]: pos$6, name, desktopName, genericName, icon, exec, categories };
           })()))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => (() => {
             const name = "RealTimeSync";
@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
             const icon = name;
             const exec = name;
             const categories = nix.thunk(() => ["Utility", "FileTools"]);
-            return { __proto__: pos$7, name, desktopName, genericName, icon, exec, categories };
+            return { [nix.POS]: pos$7, name, desktopName, genericName, icon, exec, categories };
           })()))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open Source File Synchronization & Backup Software",
         homepage: "https://freefilesync.org",
         license: nix.thunk(() => [

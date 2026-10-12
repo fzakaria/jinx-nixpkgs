@@ -27,54 +27,54 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "hcl1"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         spire: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           server: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               plugins: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 NodeAttestor: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   tpm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       default: null,
                       description: "TPM 2.0 node attestation plugin from\n[spire-tpm-plugin](https://github.com/spiffe/spire-tpm-plugin).\n",
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               plugin_cmd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$1,
+                                  [nix.POS]: pos$1,
                                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                   default: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "spire-tpm-plugin")), "tpm_attestor_server")),
                                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.getExe' pkgs.spire-tpm-plugin \"tpm_attestor_server\"")),
                                   description: "Path to the TPM attestor server plugin binary.",
                                 })))),
                               plugin_data: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   default: nix.thunk(() => ({})),
                                   description: "Plugin data for the TPM NodeAttestor. Either `ca_path`,\n`hash_path`, or both must be configured.\n",
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$5,
+                                      [nix.POS]: pos$5,
                                       freeformType: nix.thunk(() => nix.sel(format, "type")),
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$4,
+                                        [nix.POS]: pos$4,
                                         ca_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$2,
+                                            [nix.POS]: pos$2,
                                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                             default: null,
                                             description: "The path to the CA directory. Contains the manufacturer CA\ncert that signed the TPM's EK certificate in PEM or DER\nformat.\n",
                                           })))),
                                         hash_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$3,
+                                            [nix.POS]: pos$3,
                                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                             default: null,
                                             description: "The path to the Hash directory. Contains empty files named\nafter the EK public key hash.\n",

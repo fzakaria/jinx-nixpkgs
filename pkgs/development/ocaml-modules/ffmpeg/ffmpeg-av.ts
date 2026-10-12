@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_avcodec = nix.arg($, "ffmpeg-avcodec");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ffmpeg-av",
       minimalOCamlVersion: "4.12",
       version: nix.thunk(() => nix.attr(ffmpeg_base, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ffmpeg_avutil, ffmpeg_avcodec, nix.thunk(() => nix.sel(ffmpeg, "dev"))]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Bindings for the ffmpeg libraries -- top-level helpers",
       })),
     })));

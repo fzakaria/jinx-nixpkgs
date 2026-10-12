@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const withUdev = nix.argOr($, "withUdev", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))));
   const enablePrivSep = nix.argOr($, "enablePrivSep", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dhcpcd",
       version: "10.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NetworkConfiguration",
           repo: "dhcpcd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withUdev, nix.thunk(() => nix.str`[ -e ${nix.builtins.placeholder("out")}/lib/dhcpcd/dev/udev.so ]`))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "networking", "scripted"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           macvlan: nix.thunk(() => nix.attr(from, "macvlan")),
           dhcpSimple: nix.thunk(() => nix.attr(from, "dhcpSimple")),
           dhcpHostname: nix.thunk(() => nix.attr(from, "dhcpHostname")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Client for the Dynamic Host Configuration Protocol (DHCP)",
         homepage: "https://roy.marples.name/projects/dhcpcd",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.concat(nix.sel(lib, "platforms", "freebsd"), nix.sel(lib, "platforms", "openbsd")))),

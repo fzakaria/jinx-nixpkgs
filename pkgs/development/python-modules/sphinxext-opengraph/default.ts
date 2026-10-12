@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wpilibsuite",
           repo: "sphinxext-opengraph",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-rdV6XWHfNj+TFgIfqFPWYxn6bGG5w/frUHl9+qMALi4=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, social_cards_generation: nix.thunk(() => [matplotlib]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, social_cards_generation: nix.thunk(() => [matplotlib]) }));
       const propagatedBuildInputs = nix.thunk(() => [sphinx]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, beautifulsoup4], nix.sel(optional_dependencies, "social_cards_generation")));
       const pythonImportsCheck = nix.thunk(() => ["sphinxext.opengraph"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sphinx extension to generate unique OpenGraph metadata",
         homepage: "https://github.com/wpilibsuite/sphinxext-opengraph",
         changelog: nix.thunk(() => nix.str`https://github.com/wpilibsuite/sphinxext-opengraph/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

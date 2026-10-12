@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         const result = nix.thunk(() => nix.app(f, origArgs));
         const overrideWith = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), origArgs)) ? (newArgs) => nix.app(nix.sel(lib, "extends"), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), newArgs)), origArgs) : (newArgs) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isFunction"), newArgs))) ? nix.update(origArgs, newArgs) : (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isFunction"), nix.thunk(() => nix.app(newArgs, origArgs))))) ? nix.update(origArgs, nix.app(newArgs, origArgs)) : (finalAttrs) => nix.update(origArgs, nix.app(newArgs, finalAttrs, origArgs))))));
         return (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), result)) ? nix.update(result, {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           overridePythonAttrs: (newArgs) => nix.app(makeOverridablePythonPackage, f, nix.thunk(() => nix.app(overrideWith, newArgs))),
           overrideAttrs: (newArgs) => nix.app(makeOverridablePythonPackage, (args_1) => nix.app(nix.sel(nix.app(f, args_1), "overrideAttrs"), newArgs), origArgs),
         }) : nix.force(result));
       })()), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       override: nix.thunk(() => nix.app(nix.sel(lib, "mirrorFunctionArgs"), nix.thunk(() => nix.sel(f, "override")), (newArgs) => nix.app(makeOverridablePythonPackage, nix.thunk(() => nix.app(nix.sel(f, "override"), newArgs))))),
     });
     const overrideStdenvCompat = (f) => nix.app(nix.sel(lib, "fix"), (f$) => nix.update(nix.app(nix.sel(lib, "mirrorFunctionArgs"), f, (args_1) => (() => {
@@ -51,25 +51,25 @@ export default nix.lambda((args) => (() => {
             return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2511n)), nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), msg)), nix.thunk(() => nix.sel(attrs, nix.key(nix.force(attrName)))));
           })();
           return (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isFunction"), args_1)) && nix.asBool(nix.has(result, "__stdenvPythonCompat")))) ? nix.app(nix.sel(f$, "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               stdenv: nix.thunk(() => nix.app(handleStdenvArg, result, "__stdenvPythonCompat")),
             })), (finalAttrs) => nix.builtins.removeAttrs(nix.thunk(() => nix.app(args_1, finalAttrs)), nix.thunk(() => ["stdenv"]))) : (nix.asBool((nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isFunction"), args_1))) && nix.asBool(nix.has(args_1, "stdenv")))) ? nix.app(nix.sel(f$, "override"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               stdenv: nix.thunk(() => nix.app(handleStdenvArg, args_1, "stdenv")),
             })), nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["stdenv"])))) : nix.force(result)));
         })()), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         override: nix.thunk(() => nix.app(nix.sel(lib, "mirrorFunctionArgs"), nix.thunk(() => nix.sel(f, "override")), (newArgs) => nix.app(overrideStdenvCompat, nix.thunk(() => nix.app(nix.sel(f, "override"), newArgs))))),
       }));
     const mkPythonDerivation = nix.thunk(() => (nix.asBool(nix.sel(python, "isPy3k")) ? nix.path(here, "./mk-python-derivation.nix") : nix.path(here, "../../misc/resholve/python2/mk-python-derivation.nix")));
     const buildPythonPackage = nix.thunk(() => nix.app(makeOverridablePythonPackage, nix.thunk(() => nix.app(overrideStdenvCompat, nix.thunk(() => nix.app(callPackage, mkPythonDerivation, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             namePrefix: namePrefix,
             toPythonModule: toPythonModule,
             stdenv: nix.thunk(() => nix.attr(python, "stdenv")),
           }))))))));
     const buildPythonApplication = nix.thunk(() => nix.app(makeOverridablePythonPackage, nix.thunk(() => nix.app(overrideStdenvCompat, nix.thunk(() => nix.app(callPackage, mkPythonDerivation, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             namePrefix: "",
             toPythonModule: (x) => nix.force(x),
             stdenv: nix.thunk(() => nix.attr(python, "stdenv")),
@@ -84,18 +84,18 @@ export default nix.lambda((args) => (() => {
     const mkPythonEditablePackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./editable.nix"), nix.thunk(() => ({}))));
     const mkPythonMetaPackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./meta-package.nix"), nix.thunk(() => ({}))));
     const toPythonModule = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pythonModule: python,
           pythonPath: [],
           requiredPythonModules: nix.thunk(() => nix.builtins.addErrorContext(nix.thunk(() => nix.str`while calculating requiredPythonModules for ${nix.selOr(drv, () => nix.sel(drv, "pname"), "name")}:`), nix.thunk(() => nix.app(requiredPythonModules, nix.thunk(() => nix.sel(drv, "propagatedBuildInputs")))))),
         })),
       }));
     const toPythonApplication = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: nix.thunk(() => nix.app(removePythonPrefix, nix.thunk(() => nix.sel(oldAttrs, "name")))),
           pythonModule: false,
         })),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
     return (() => {
       const from = nix.thunk(() => nix.sel(python, "passthru"));
       return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       lib: lib,
       pkgs: pkgs,
       stdenv: stdenv,

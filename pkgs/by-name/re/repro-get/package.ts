@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "repro-get";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reproducible-containers",
           repo: "repro-get",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd repro-get \\\n  --bash <($out/bin/repro-get completion bash) \\\n  --fish <($out/bin/repro-get completion fish) \\\n  --zsh <($out/bin/repro-get completion zsh)\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-version": nix.thunk(() => nix.app(nix.sel(repro_get, "overrideAttrs"), (old) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${nix.sel(repro_get, "pname")}-${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 12n, nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(repro_get, "drvPath")))))))}`),
               subPackages: nix.thunk(() => ["pkg/version"]),
               installPhase: "rm -rf $out\ntouch $out\n",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [cacert])),
             }))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: repro_get,
               command: "HOME=$(mktemp -d) repro-get -v",
               version: version,
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Reproducible apt/dnf/apk/pacman, with content-addressing",
         homepage: "https://github.com/reproducible-containers/repro-get",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "repro-get",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

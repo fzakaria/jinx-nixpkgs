@@ -18,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "0.9",
     tag: "v0.91",
     hash: "sha256-ToF+bRbiq1P5YaGOKiW//onJDhxaxmnaz9/JbJ82OWM=",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0.6",
     tag: "v0.24",
     hash: "sha256-iuFlmSeUhumeWhqHlaNqDjReRf8c4e76hhT27DK3+/g=",
   }));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ppx_deriving_qcheck",
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "c-cube",
           repo: "qcheck",
           tag: nix.thunk(() => nix.attr(param, "tag")),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
       propagatedBuildInputs: nix.thunk(() => [qcheck, ppxlib, ppx_deriving]),
-      meta: nix.thunk(() => nix.update(nix.sel(qcheck, "meta"), { __proto__: pos$4, description: "PPX Deriver for QCheck" })),
+      meta: nix.thunk(() => nix.update(nix.sel(qcheck, "meta"), { [nix.POS]: pos$4, description: "PPX Deriver for QCheck" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx_deriving_qcheck.ts.map

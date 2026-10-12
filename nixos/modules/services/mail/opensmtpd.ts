@@ -54,48 +54,48 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "opensmtpd"));
   const conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "smtpd.conf", nix.thunk(() => nix.sel(cfg, "serverConfiguration"))));
   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraServerArgs"))));
-  const sendmail = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "opensmtpd-sendmail", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const sendmail = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "opensmtpd-sendmail", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${nix.sel(cfg, "package")}/sbin/smtpctl $out/bin/sendmail
 `)));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "opensmtpd", "addSendmailToSystemPath"]), nix.thunk(() => ["services", "opensmtpd", "setSendmail"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         opensmtpd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the OpenSMTPD server.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "opensmtpd", nix.thunk(() => ({})))),
           setSendmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to set the system sendmail to OpenSMTPD's.",
             })))),
           extraServerArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-v", "-P mta"]),
               description: "Extra command line arguments provided when the smtpd process\nis started.\n",
             })))),
           serverConfiguration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               example: "listen on lo\naccept for any deliver to lmtp localhost:24\n",
               description: "The contents of the smtpd.conf configuration file. See the\nOpenSMTPD documentation for syntax information.\n",
             })))),
           procPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Packages to search for filters, tables, queues, and schedulers.\n\nAdd packages here if you want to use them as as such, for example\nfrom the opensmtpd-table-* packages.\n",
@@ -105,28 +105,28 @@ ln -s ${nix.sel(cfg, "package")}/sbin/smtpctl $out/bin/sendmail
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => (() => {
         const users = nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           groups: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             smtpd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "smtpd")),
             })),
             smtpq: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "smtpq")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             smtpd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "OpenSMTPD process user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "smtpd")),
               group: "smtpd",
             })),
             smtpq: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "OpenSMTPD queue user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "smtpq")),
               group: "smtpq",
@@ -134,11 +134,11 @@ ln -s ${nix.sel(cfg, "package")}/sbin/smtpctl $out/bin/sendmail
           })),
         }));
         const security = nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             makemap: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               owner: "root",
               group: "smtpq",
               setuid: false,
@@ -146,7 +146,7 @@ ln -s ${nix.sel(cfg, "package")}/sbin/smtpctl $out/bin/sendmail
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/smtpctl`),
             })),
             smtpctl: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               owner: "root",
               group: "smtpq",
               setuid: false,
@@ -156,69 +156,69 @@ ln -s ${nix.sel(cfg, "package")}/sbin/smtpctl $out/bin/sendmail
           })),
         }));
         const services = nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           mail: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             sendmailSetuidWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setSendmail")), nix.thunk(() => nix.update(nix.sel(security, "wrappers", "smtpctl"), {
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 source: nix.thunk(() => nix.str`${sendmail}/bin/sendmail`),
                 program: "sendmail",
               })))),
           })),
         }));
         const systemd = nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             settings: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               opensmtpd: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 "/var/spool/smtpd": nix.thunk(() => ({
-                  __proto__: pos$25,
-                  d: nix.thunk(() => ({ __proto__: pos$24, mode: "0711", user: "root" })),
+                  [nix.POS]: pos$25,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$24, mode: "0711", user: "root" })),
                 })),
                 "/var/spool/smtpd/offline": nix.thunk(() => ({
-                  __proto__: pos$27,
-                  d: nix.thunk(() => ({ __proto__: pos$26, mode: "0770", user: "root", group: "smtpq" })),
+                  [nix.POS]: pos$27,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$26, mode: "0770", user: "root", group: "smtpq" })),
                 })),
                 "/var/spool/smtpd/purge": nix.thunk(() => ({
-                  __proto__: pos$29,
-                  d: nix.thunk(() => ({ __proto__: pos$28, mode: "0700", user: "smtpq", group: "root" })),
+                  [nix.POS]: pos$29,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$28, mode: "0700", user: "smtpq", group: "root" })),
                 })),
                 "/var/spool/smtpd/queue": nix.thunk(() => ({
-                  __proto__: pos$31,
-                  d: nix.thunk(() => ({ __proto__: pos$30, mode: "0700", user: "smtpq", group: "root" })),
+                  [nix.POS]: pos$31,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$30, mode: "0700", user: "smtpq", group: "root" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             opensmtpd: nix.thunk(() => (() => {
               const procEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   name: "opensmtpd-procs",
                   paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "procPackages"))),
                   pathsToLink: nix.thunk(() => ["/libexec/smtpd"]),
                 }))));
               return {
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/smtpd -d -f ${conf} ${args_1}`),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   OPENSMTPD_PROC_PATH: nix.thunk(() => nix.str`${procEnv}/libexec/smtpd`),
                 })),
               };
             })()),
           })),
         }));
-        return { __proto__: pos$41, users, security, services, systemd };
+        return { [nix.POS]: pos$41, users, security, services, systemd };
       })()))),
   };
 })(), formals$1);

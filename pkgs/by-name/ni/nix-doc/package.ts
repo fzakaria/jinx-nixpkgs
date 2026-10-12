@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withPlugin = nix.argOr($, "withPlugin", () => false);
   const packageFlags = nix.thunk(() => nix.concat(["-p", "nix-doc"], nix.app(nix.sel(lib, "optionals"), withPlugin, nix.thunk(() => ["-p", "nix-doc-plugin"]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-doc",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "lf-",
           repo: "nix-doc",
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: packageFlags,
       cargoTestFlags: packageFlags,
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withPlugin, nix.thunk(() => ["bindnow"]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withPlugin) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-C relro-level=partial" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withPlugin) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C relro-level=partial" })))),
       cargoHash: "sha256-EC+Wps6u1qXpv7ByM3NkRVCKRKCaBtC1o2vK8cKqzyU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive Nix documentation tool",
         longDescription: "An interactive Nix documentation tool providing a CLI for function search, a Nix plugin for docs in the REPL, and a ctags implementation for Nix script",
         homepage: "https://github.com/lf-/nix-doc",

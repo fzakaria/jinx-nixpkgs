@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "splines",
       version: "0.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "splines",
           version: "0.3.3",
           hash: "sha256-nZEIMD8POw4b6OAUxKckxnSmwFWKsQHhTdBMdFBcTrk=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy]),
       pythonImportsCheck: nix.thunk(() => ["splines"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spline curves in Euclidean and rotation spaces",
         homepage: "https://github.com/AudioSceneDescriptionFormat/splines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

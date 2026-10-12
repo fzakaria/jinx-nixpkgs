@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => (() => {
     const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")));
     const system = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-darwin": "osx_arm64",
         "aarch64-linux": "linuxarm64",
         "x86_64-linux": "linux64",
       }))));
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`postman-${version}.${(nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? "tar.gz" : "zip")}`),
         url: nix.thunk(() => nix.str`https://dl.pstmn.io/download/version/${version}/${system}`),
         hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-darwin": "sha256-OmZDcsLxDzFg6k+6LKKGGL2wKXFw2Ak7ftoGcQ60osA=",
             "aarch64-linux": "sha256-0nLRlduJH4uygVIk98GH6PHY+NO0Hi21ES/6lxQxOsI=",
             "x86_64-linux": "sha256-azqnz3sTdxzDrycYAtpmgLxadEmHD2yrY0GufbcjbL8=",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   const passthru = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     updateScript: nix.thunk(() => nix.app(writeScript, "update-postman", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix curl jq common-updater-scripts\nset -eou pipefail\nlatestVersion=$(curl --fail --silent 'https://dl.pstmn.io/update/status?currentVersion=11.0.0&platform=osx_arm64' | jq --raw-output .version)\nif [[ \"$latestVersion\" == \"$UPDATE_NIX_OLD_VERSION\" ]]; then\n  exit 0\nfi\nupdate-source-version postman $latestVersion\nsystems=$(nix --extra-experimental-features nix-command eval --json -f . postman.meta.platforms | jq --raw-output '.[]')\nfor system in $systems; do\n  hash=$(nix --extra-experimental-features nix-command hash convert --to sri --hash-algo sha256 $(nix-prefetch-url $(nix --extra-experimental-features nix-command eval --raw -f . postman.src.url --system \"$system\")))\n  update-source-version postman $latestVersion $hash --system=$system --ignore-same-version --ignore-same-hash\ndone\n")),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     changelog: nix.thunk(() => nix.str`https://www.postman.com/release-notes/postman-app/#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
     description: "API Development Environment",
     homepage: "https://www.getpostman.com",
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
     mainProgram: "postman",
   }));
   return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
       passthru: passthru,
       meta: meta,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,

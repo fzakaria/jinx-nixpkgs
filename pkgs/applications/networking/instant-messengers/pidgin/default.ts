@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin";
       const version = "2.14.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pidgin/pidgin-${version}.tar.bz2`),
           sha256: "sha256-D/yZlN7xAmD5ilXNEy3u+o3EqYNUUcwOmCdHvUWOI1Y=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, intltool]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(gst_all_1, "gst-plugins-base", "dev")}/include/gstreamer-1.0`),
       }));
       const buildInputs = nix.thunk(() => (() => {
@@ -129,16 +129,16 @@ done
 `));
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         makePluginPath: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", nix.thunk(() => nix.str`lib/purple-${nix.app(nix.sel(lib, "versions", "major"), version)}`))),
         withPlugins: (pluginfn) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             plugins: nix.thunk(() => nix.app(pluginfn, pidginPackages)),
             pidgin: unwrapped,
           }))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Multi-protocol instant messaging client",
         mainProgram: "pidgin",
         homepage: "https://pidgin.im/",
@@ -147,7 +147,7 @@ done
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

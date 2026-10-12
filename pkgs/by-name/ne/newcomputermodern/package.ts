@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fontforge = nix.arg($, "fontforge");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "newcomputermodern",
       version: "8.1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.gnu.org.ua/newcm.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-THlCamuYsLyYjM4IU1ORyXwovOhhiHdmu3q+r4GkMZE=",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nfor i in sfd/*.sfd; do\n  fontforge -lang=ff -c \\\n    'Open($1);\n    Generate($1:r + \".otf\");\n    ' $i;\ndone\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -m444 -Dt $out/share/fonts/opentype/public sfd/*.otf\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Computer Modern fonts including matching non-latin alphabets",
         homepage: "https://ctan.org/pkg/newcomputermodern",
         changelog: "https://mirrors.rit.edu/CTAN/fonts/newcomputermodern/README",

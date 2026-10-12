@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "mxnet"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [distutils, graphviz, numpy, requests]),
       pythonRelaxDeps: nix.thunk(() => ["graphviz", "numpy"]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         LD_LIBRARY_PATH: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mxnet"))]))))),
       })),
       postPatch: "# Required to support numpy >=1.24 where np.bool is removed in favor of just bool\nsubstituteInPlace python/mxnet/numpy/utils.py \\\n  --replace-fail \"bool = onp.bool\" \"bool = bool\"\n",

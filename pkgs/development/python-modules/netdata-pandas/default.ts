@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.41";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netdata",
           repo: "netdata-pandas",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pandas, requests, trio, asks]);
       const pythonImportsCheck = nix.thunk(() => ["netdata_pandas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to pull data from the netdata REST API into a pandas dataframe",
         homepage: "https://github.com/netdata/netdata-pandas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

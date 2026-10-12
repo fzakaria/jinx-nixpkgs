@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const woodpecker_plugin_git = nix.arg($, "woodpecker-plugin-git");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "woodpecker-plugin-git",
       version: "2.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woodpecker-ci",
           repo: "plugin-git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-9ALys0+JVBUo+jMjSg6FtLclzH2VOGUYnr8/3rpi+Vw=",
         })))),
       vendorHash: "sha256-Wl1E5PHSQglSyLk+bLAyLn3hHsAEKaafeBRPVcauIwE=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: woodpecker_plugin_git })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: woodpecker_plugin_git })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Woodpecker plugin for cloning Git repositories",
         homepage: "https://woodpecker-ci.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/woodpecker-ci/plugin-git/releases/tag/${nix.sel(finalAttrs, "version")}`),

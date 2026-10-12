@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const allowedPatterns = nix.arg($, "allowedPatterns");
   const formats = nix.arg($, "formats");
   return nix.app(runCommand, "allowed-patterns.json", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "python"))]),
       exportReferencesGraph: nix.thunk(() => nix.builtins.concatMap((name) => nix.builtins.concatMap((path) => (() => {
             const prefix = nix.thunk(() => nix.str`${nix.builtins.storeDir}/`);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
             return nix.app(nix.sel(lib, "optionals"), isStorePath, nix.thunk(() => [exportName, path]));
           })(), nix.thunk(() => nix.sel(allowedPatterns, nix.key(nix.force(name)), "paths"))), nix.thunk(() => nix.builtins.attrNames(allowedPatterns)))),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         storeDir: nix.thunk(() => nix.str`${nix.builtins.storeDir}/`),
         shallowConfigPath: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))), "generate"), "shallow-config.json", allowedPatterns)),
       })),

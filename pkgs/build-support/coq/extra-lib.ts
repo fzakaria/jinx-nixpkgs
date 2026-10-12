@@ -10,10 +10,10 @@ const pos$3 = nix.positions(here + "/extra-lib.nix", [["overrideCoqDerivation", 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  return nix.app(nix.sel(lib, "recursiveUpdate"), lib, nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "../rocq/extra-lib-common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))), {
-      __proto__: pos$3,
+  return nix.app(nix.sel(lib, "recursiveUpdate"), lib, nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "../rocq/extra-lib-common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))), {
+      [nix.POS]: pos$3,
       overrideCoqDerivation: (f) => (drv) => nix.app(nix.sel(drv, "override"), (args_1) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mkCoqDerivation: (drv_) => nix.app(nix.sel(nix.app(nix.sel(args_1, "mkCoqDerivation"), drv_), "override"), f),
         })),
     })));

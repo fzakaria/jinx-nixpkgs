@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netevent",
       version: "20230429",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blub",
           repo: "netevent",
           rev: "bcadfcc42db0f57a28abddbf19d382453cb1c81f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nexport RST2MAN=rst2man\n./configure\n\nrunHook postConfigure\n",
       installPhase: "mkdir -p $out/bin\ninstall -m 0755 netevent $out/bin/\n\ninstallManPage doc/netevent.1\n\nmkdir -p $doc/share/doc/netevent\ncp doc/netevent.rst $doc/share/doc/netevent/netevent.rst\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Share linux event devices with other machines",
         homepage: "https://github.com/Blub/netevent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

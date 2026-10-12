@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(gccStdenv)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "truecrack",
       version: "3.6",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalilinux",
           repo: "packages/truecrack",
           tag: nix.thunk(() => nix.str`kali/${nix.sel(finalAttrs, "version")}+git20150326-0kali4`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [autoAddDriverRunpath])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-error=implicit-function-declaration"]))),
       })),
       enableParallelBuilding: true,
@@ -57,15 +57,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       installCheckPhase: "runHook preInstallCheck\n\necho \"Cracking test volumes\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -w test/passwords.txt | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -c test/tes -m 4 | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -w test/passwords.txt | grep -aF \"Found password\"\n$out/bin/truecrack -t test/whirlpool_aes.test.tc -w test/passwords.txt -k whirlpool | grep -aF \"Found password\"\n$out/bin/truecrack -t test/sha512_aes.test.tc -w test/passwords.txt -k sha512 | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -w test/passwords.txt | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_serpent.test.tc -w test/passwords.txt -e serpent | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_twofish.test.tc -w test/passwords.txt -e twofish | grep -aF \"Found password\"\necho \"Finished cracking test volumes\"\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (oldAttrs) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Brute-force password cracker for TrueCrypt volumes, optimized for Nvidia Cuda technology",
         mainProgram: "truecrack",
         homepage: "https://gitlab.com/kalilinux/packages/truecrack",

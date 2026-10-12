@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "memtest86+",
       version: "8.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "memtest86plus",
           repo: "memtest86plus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
       dontPatchELF: true,
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         efi: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/mt86plus.efi`),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "systemd-boot-memtest": nix.thunk(() => nix.sel(nixosTests, "systemd-boot", "memtest86")),
         })),
       })),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "install -Dm0444 mt86plus $out/mt86plus.efi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.memtest.org/",
         description: "Tool to detect memory errors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

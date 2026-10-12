@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const serviceName = "nginxtest";
   const mkOCITest = (backend) => nix.app(makeTest, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: nix.thunk(() => nix.str`oci-containers-${backend}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "benley"))];
@@ -60,21 +60,21 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "oci-containers": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 backend: backend,
                 containers: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     serviceName: serviceName,
                     image: "nginx-container",
                     imageStream: nix.thunk(() => nix.sel(pkgs_1, "dockerTools", "examples", "nginxStream")),
                     ports: nix.thunk(() => ["8181:80"]),
-                    capabilities: nix.thunk(() => ({ __proto__: pos$4, CAP_AUDIT_READ: true, CAP_AUDIT_WRITE: false })),
+                    capabilities: nix.thunk(() => ({ [nix.POS]: pos$4, CAP_AUDIT_READ: true, CAP_AUDIT_WRITE: false })),
                     privileged: false,
                     devices: nix.thunk(() => ["/dev/random:/dev/random"]),
                   })),
@@ -82,11 +82,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               services: nix.thunk(() => nix.attrsDyn({}, [
                 [serviceName, nix.thunk(() => ({
-                  __proto__: pos$10,
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$9, KillSignal: "SIGCONT" })),
+                  [nix.POS]: pos$10,
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$9, KillSignal: "SIGCONT" })),
                 }))],
               ])),
             })),
@@ -109,10 +109,10 @@ assert output['HostConfig']['Devices'] == [{'PathOnHost': '/dev/random', 'PathIn
 `)))),
     })));
   const podmanRootlessTests = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["conmon", "healthy"]), (type) => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: nix.thunk(() => nix.str`oci-containers-podman-rootless-${type}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
             nix.thunk(() => nix.sel(lib, "maintainers", "ma27")),
@@ -120,23 +120,23 @@ assert output['HostConfig']['Devices'] == [{'PathOnHost': '/dev/random', 'PathIn
           ]),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           podman: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               environment: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "redis"))]),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$21,
-                groups: nix.thunk(() => ({ __proto__: pos$16, redis: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$21,
+                groups: nix.thunk(() => ({ [nix.POS]: pos$16, redis: nix.thunk(() => ({})) })),
                 users: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   redis: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     isSystemUser: true,
                     group: "redis",
                     home: "/var/lib/redis",
@@ -144,27 +144,27 @@ assert output['HostConfig']['Devices'] == [{'PathOnHost': '/dev/random', 'PathIn
                     createHome: true,
                     uid: 2342n,
                     subUidRanges: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$17, count: 65536n, startUid: 2147483646n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$17, count: 65536n, startUid: 2147483646n })),
                     ]),
                     subGidRanges: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$18, count: 65536n, startGid: 2147483647n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$18, count: 65536n, startGid: 2147483647n })),
                     ]),
                   })),
                 })),
               })),
               virtualisation: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "oci-containers": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   backend: "podman",
                   containers: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     redis: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       image: "redis:latest",
                       imageFile: nix.thunk(() => nix.sel(pkgs_1, "dockerTools", "examples", "redis")),
                       ports: nix.thunk(() => ["6379:6379"]),
-                      podman: nix.thunk(() => ({ __proto__: pos$22, user: "redis", sdnotify: type })),
+                      podman: nix.thunk(() => ({ [nix.POS]: pos$22, user: "redis", sdnotify: type })),
                     })),
                   })),
                 })),
@@ -179,7 +179,7 @@ podman.wait_until_succeeds("set -eo pipefail; echo 'keys *' | redis-cli")
 `),
       })))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     docker: nix.thunk(() => nix.app(mkOCITest, "docker")),
     podman: nix.thunk(() => nix.app(mkOCITest, "podman")),
     "podman-rootless-conmon": nix.thunk(() => nix.sel(podmanRootlessTests, "conmon")),

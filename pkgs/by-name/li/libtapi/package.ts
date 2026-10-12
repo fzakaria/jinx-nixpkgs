@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zlib = nix.arg($, "zlib");
   const appleLlvm = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "16.0.0",
     rev: "3602748d4ec9947f0d1493511a8c34410909506e",
     hash: "sha256-7o/JY/tcu4AeXCa7xhfjbuuV3/Cbf89AdoZOKrciJk0=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libtapi",
       version: "1600.0.11.8",
       outputs: nix.thunk(() => ["out", "bin", "dev"]),
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tapi-src",
             owner: "apple-oss-distributions",
             repo: "tapi",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-87AQZrCmZHv3lbfUnw0j17H4cP+GN5g0D6zhdT4P56Y=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "apple-llvm-src",
             owner: "apple",
             repo: "llvm-project",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-Check-for-no_exported_symbols-linker-support.patch"),
         nix.path(here, "./0003-Match-designator-order-with-declaration-order.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/llvm/llvm-project/commit/e2f25af711425fb238317582441f4bda56131891.patch?full_index=1",
             hash: "sha256-zJwl4aeX71UR7a8XHpKl4atbw+hEGCHOQmiFLIJirTY=",
           })))),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# The man page is installed for these, but they’re not included in the source release.\nrm $bin/share/man/man1/tapi-analyze.1 $bin/share/man/man1/tapi-api-verify.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Replaces the Mach-O Dynamic Library Stub files in Apple's SDKs to reduce the size",
         homepage: "https://github.com/apple-oss-distributions/tapi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

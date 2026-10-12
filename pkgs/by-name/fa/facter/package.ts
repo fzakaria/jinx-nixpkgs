@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const virt_what = nix.arg($, "virt-what");
   const zfs = nix.arg($, "zfs");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "facter",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["facter"]),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), facter)} --version`),
               package: facter,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "facter", "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "facter")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://www.puppet.com/docs/puppet/latest/release_notes_facter.html",
         description: "System inventory tool",
         homepage: "https://github.com/puppetlabs/facter",

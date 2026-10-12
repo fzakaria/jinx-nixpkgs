@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "face_recognition",
           version: version,
           hash: "sha256-Xl790WhqpWavDTzBMTsTHksZdleo/9A2aebT+tknBew=",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(config, "cudaSupport")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/ageitgey/face_recognition",
         maintainers: [],
         description: "World's simplest facial recognition api for Python and the command line",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

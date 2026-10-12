@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "limesurvey";
       const version = "6.15.14+250924";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LimeSurvey",
           repo: "LimeSurvey",
           tag: version,
@@ -37,15 +37,15 @@ cp ${phpConfig} $out/share/limesurvey/application/config/config.php
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           limesurvey: nix.thunk(() => nix.attr(nixosTests, "limesurvey")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source survey application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://www.limesurvey.org",
@@ -56,7 +56,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

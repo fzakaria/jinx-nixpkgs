@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "govers",
       version: "0-unstable-2016-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rogpeppe",
           repo: "govers",
           rev: "77fd787551fc5e7ae30696e009e334d52d2d3a43",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontRenameImports: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for rewriting Go import paths",
         homepage: "https://github.com/rogpeppe/govers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

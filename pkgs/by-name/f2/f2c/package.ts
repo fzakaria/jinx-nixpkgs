@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "f2c",
       version: "20240312",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.netlib.org/f2c/src.tgz",
           sha256: "sha256-TTPve2fe31/Ad+xFAWy6NUIes2QyUi6NjFucN0pdb5k=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "rm xsum",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/man/man1\ninstall -m755 f2c $out/bin\ninstall -m755 xsum $out/bin\ninstall f2c.1t $out/share/man/man1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert Fortran 77 source code to C",
         homepage: "https://www.netlib.org/f2c/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const humanity_icon_theme = nix.arg($, "humanity-icon-theme");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaru",
       version: "25.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubuntu",
           repo: "yaru",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       postPatch: "patchShebangs .",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ubuntu community theme 'yaru' - default Ubuntu theme since 18.10",
         homepage: "https://github.com/ubuntu/yaru",
         license: nix.thunk(() => (() => {

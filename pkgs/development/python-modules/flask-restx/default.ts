@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytest_vcr = nix.arg($, "pytest-vcr");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flask-restx",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-restx",
           repo: "flask-restx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["flask_restx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fully featured framework for fast, easy and documented API development with Flask",
         homepage: "https://github.com/python-restx/flask-restx",
         changelog: nix.thunk(() => nix.str`https://github.com/python-restx/flask-restx/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

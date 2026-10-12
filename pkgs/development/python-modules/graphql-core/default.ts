@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graphql-python",
           repo: "graphql-core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/benchmarks"]);
       const pythonImportsCheck = nix.thunk(() => ["graphql"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/graphql-python/graphql-core/releases/tag/${nix.sel(src, "tag")}`),
         description: "Port of graphql-js to Python",
         homepage: "https://github.com/graphql-python/graphql-core",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

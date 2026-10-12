@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const console_bridge = nix.arg($, "console-bridge");
   const urdfdom_headers = nix.arg($, "urdfdom-headers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "urdfdom",
       version: "6.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ros",
           repo: "urdfdom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tinyxml_2, console_bridge]),
       propagatedBuildInputs: nix.thunk(() => [urdfdom_headers]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides core data structures and a simple XML parser for populating the class data structures from an URDF file",
         homepage: "https://github.com/ros/urdfdom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

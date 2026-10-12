@@ -55,87 +55,87 @@ data_dir = ${nix.sel(cfg, "dataDir")}
 ${nix.sel(cfg, "extraConfig")}
 `)));
   const glPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "graylog-plugins",
       paths: nix.thunk(() => nix.sel(cfg, "plugins")),
     }))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         graylog: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Graylog, a log management solution")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "graylog", nix.thunk(() => ({ __proto__: pos$2, example: "graylog-6_0" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "graylog", nix.thunk(() => ({ [nix.POS]: pos$2, example: "graylog-6_0" })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "graylog",
               description: "User account under which graylog runs",
             })))),
           isMaster: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether this is the master instance of your Graylog cluster",
             })))),
           nodeIdFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/graylog/server/node-id",
               description: "Path of the file containing the graylog node-id",
             })))),
           passwordSecret: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "You MUST set a secret to secure/pepper the stored user passwords here. Use at least 64 characters.\nGenerate one by using for example: pwgen -N 1 -s 96\n",
             })))),
           rootUsername: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "admin",
               description: "Name of the default administrator user",
             })))),
           rootPasswordSha2: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "e3c652f0ba0b4801205814f8b6bc49672c4c74e25b497770bb89b22cdeb4e952",
               description: "You MUST specify a hash password for the root user (which you only need to initially set up the\nsystem and in case you lose connectivity to your authentication backend)\nThis password cannot be changed using the API or via the web interface. If you need to change it,\nmodify it here.\nCreate one by using for example: echo -n yourpassword | shasum -a 256\nand use the resulting hash value as string for the option\n",
             })))),
           elasticsearchHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"http://node1:9200\" \"http://user:password@node2:19200\" ]")),
               description: "List of valid URIs of the http ports of your elastic nodes. If one or more of your elasticsearch hosts require authentication, include the credentials in each node URI that requires authentication",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/graylog/data",
               description: "Directory used to store Graylog server state.",
             })))),
           messageJournalDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/graylog/data/journal",
               description: "The directory which will be used to store the message journal. The directory must be exclusively used by Graylog and must not contain any other files than the ones created by Graylog itself",
             })))),
           mongodbUri: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mongodb://localhost/graylog",
               description: "MongoDB connection string. See http://docs.mongodb.org/manual/reference/connection-string/ for details",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Any other configuration options you might want to add",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Extra graylog plugins",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
@@ -144,11 +144,11 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           graylog: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             package: nix.thunk(() => (() => {
               const mkThrow = (ver) => nix.builtins.throw(nix.thunk(() => nix.str`graylog-${ver} was removed, please upgrade your graylog version.`));
               const base = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.05")) ? nix.sel(pkgs, "graylog-6_0") : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "23.05")) ? nix.app(mkThrow, "5_1") : nix.app(mkThrow, "3_3"))));
@@ -157,33 +157,33 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "graylog")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               graylog: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 isSystemUser: true,
                 group: "graylog",
                 description: "Graylog server daemon user",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "graylog")), nix.thunk(() => ({ __proto__: pos$22, graylog: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "graylog")), nix.thunk(() => ({ [nix.POS]: pos$22, graylog: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "messageJournalDir")}' - ${nix.sel(cfg, "user")} - - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             graylog: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Graylog Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$25, GRAYLOG_CONF: nix.thunk(() => nix.str`${confFile}`) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$25, GRAYLOG_CONF: nix.thunk(() => nix.str`${confFile}`) })),
               path: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "which")),
                 nix.thunk(() => nix.sel(pkgs, "procps")),
@@ -202,7 +202,7 @@ for includedplugin in \`ls ${nix.sel(cfg, "package")}/plugin/\`; do
 done
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 User: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
                 StateDirectory: "graylog",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/graylogctl run`),

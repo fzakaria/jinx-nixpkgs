@@ -33,17 +33,17 @@ export default nix.lambda((args) => (() => {
       const format_1 = format;
       const src = nix.thunk(() => (() => {
         const platforms = nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "aarch64-linux": "manylinux2014_aarch64",
           "x86_64-linux": "manylinux1_x86_64",
         }));
         const hashes = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "aarch64-linux": "sha256-RkHdD4yPvo85Fqts07XFsgiMUCFXWiWuHQqfGDznJGk=",
           "x86_64-linux": "sha256-7h98H/ipZk56193fhhaSR62Mnis4Wakn/ZhOrhWa4vc=",
         }));
         return nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname_1,
             version: version_1,
             format: format_1,
@@ -56,15 +56,15 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [numpy, python_rapidjson, urllib3]);
       const pythonImportsCheck = nix.thunk(() => ["tritonclient"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           http: nix.thunk(() => [aiohttp, geventhttpclient]),
           grpc: nix.thunk(() => [grpcio, packaging]),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Triton Python client",
         homepage: "https://github.com/triton-inference-server/client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: pname_1,
         version: version_1,
         format: format_1,

@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dvc-render",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iterative",
           repo: "dvc-render",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           table: nix.thunk(() => [flatten_dict, tabulate]),
           markdown: nix.thunk(() => [tabulate, matplotlib]),
         })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_vega.py"]))),
       pythonImportsCheck: nix.thunk(() => ["dvc_render"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for rendering DVC plots",
         homepage: "https://github.com/iterative/dvc-render",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-render/releases/tag/${nix.sel(finalAttrs, "version")}`),

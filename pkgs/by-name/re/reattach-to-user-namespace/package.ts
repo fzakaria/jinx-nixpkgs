@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "reattach-to-user-namespace";
       const version = "2.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChrisJohnsen",
           repo: "tmux-MacOSX-pasteboard",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")) ? ["ARCHES=x86_64"] : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? ["ARCHES=arm64"] : nix.builtins.throw(nix.thunk(() => nix.str`reattach-to-user-namespace isn't being built for ${nix.sel(stdenv, "hostPlatform", "system")} yet.`)))));
       const installPhase = "mkdir -p $out/bin\ncp reattach-to-user-namespace $out/bin/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper that provides access to the Mac OS X pasteboard service",
         homepage: "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildFlags, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildFlags, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bibtool = nix.arg($, "bibtool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "termpdf.py",
       version: "2022-03-28",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dsanson",
           repo: "termpdf.py",
           rev: "e7bd0824cb7d340b8dba7d862e696dba9cb5e5e2",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })())),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A graphical pdf (and epub, cbz, ...) reader that works\ninside the kitty terminal.\n",
         mainProgram: "termpdf.py",
         homepage: "https://github.com/dsanson/termpdf.py",

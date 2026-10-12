@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ __proto__: pos$1, name: "Michabo", desktopName: "Michabo", exec: "Michabo" }))));
+  const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ [nix.POS]: pos$1, name: "Michabo", desktopName: "Michabo", exec: "Michabo" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "michabo";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "git.pleroma.social",
           owner: "kaniini",
           repo: "michabo",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`ln -s ${desktopItem}/share $out/share
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native desktop app for Pleroma and Mastodon servers",
         mainProgram: "Michabo",
         homepage: "https://git.pleroma.social/kaniini/michabo",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemdMinimal = nix.arg($, "systemdMinimal");
   const hwinfoOverride = nix.thunk(() => nix.app(nix.sel(hwinfo, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "hwinfo",
           rev: "bfeab0b4e38b200c7a62a44d4d01601a86fe1091",
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "nixos-facter",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "nix-community",
           repo: "nixos-facter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-w4tFIouJQLf/JeY7wvvSLbxQv73Bbs11a8EAu6iXwKU=",
         })))),
       vendorHash: "sha256-5duwAxAgbPZIbbgzZE2m574TF/0+jF/TvTKI4YBH6jM=",
-      env: nix.thunk(() => ({ __proto__: pos$4, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 1n })),
       buildInputs: nix.thunk(() => [libusb1, hwinfoOverride]),
       nativeBuildInputs: nix.thunk(() => [gcc, pkg_config, makeWrapper]),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/nixos-facter" \\
@@ -62,16 +62,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/numtide/nixos-facter/pkg/build.System=${nix.sel(stdenv, "hostPlatform", "system")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           facter: nix.thunk(() => nix.attr(nixosTests, "facter")),
           "debug-nvd": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-debug-nvd.nix"), nix.thunk(() => ({})))),
           "debug-nix-diff": nix.thunk(() => nix.sel(nixosTests, "facter", "nodes", "machine", "hardware", "facter", "debug", "nix-diff")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Declarative hardware configuration for NixOS",
         homepage: "https://github.com/nix-community/nixos-facter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

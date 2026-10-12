@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const path = nix.thunk(() => nix.app(makeBinPath, nix.thunk(() => nix.concat([mono, python3], nix.app(optional, nix.thunk(() => !nix.eq(zenity, null)), zenity)))));
   const rpath = nix.thunk(() => nix.app(makeLibraryPath, nix.thunk(() => [lua, freetype, openal, SDL2])));
   const mkdirp = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "openra-mkdirp-hook",
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./mkdirp.sh")));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     patchEngine: (dir) => (version) => nix.str`sed -i \\
   -e 's/^VERSION.*/VERSION = ${version}/g' \\
   -e '/fetch-geoip-db/d' \\
@@ -60,14 +60,14 @@ makeWrapper $out/lib/openra${openraSuffix}/launch-game.sh $(mkdirp $out/bin)/${b
   --chdir "$out/lib/openra${openraSuffix}"
 `,
     packageAttrs: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       buildInputs: nix.thunk(() => [libGL]),
       nativeBuildInputs: nix.thunk(() => [curl, unzip, dos2unix, pkg_config, makeWrapper, mkdirp, mono, python3]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       doCheck: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(maintainers, null);
           return [

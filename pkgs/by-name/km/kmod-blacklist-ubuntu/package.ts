@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "31+20240202-2ubuntu8";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kmod-blacklist",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/kmod_${version}.debian.tar.xz`),
           hash: "sha256-i4XdCRedZIzMBbZL305enz8OAso3X14pdzNIITqK5hE=",
         })))),
       installPhase: "mkdir \"$out\"\nfor f in modprobe.d/*.conf; do\n  echo \"\n\n## file: \"`basename \"$f\"`\"\n\n\" >> \"$out\"/modprobe.conf\n  cat \"$f\" >> \"$out\"/modprobe.conf\n  # https://bugs.launchpad.net/ubuntu/+source/kmod/+bug/1475945\n  sed -i '/^blacklist i2c_i801/d' $out/modprobe.conf\ndone\n\nsubstituteInPlace \"$out\"/modprobe.conf \\\n  --replace /sbin/lsmod /run/booted-system/sw/bin/lsmod \\\n  --replace /sbin/rmmod /run/booted-system/sw/bin/rmmod \\\n  --replace /sbin/modprobe /run/booted-system/sw/bin/modprobe \\\n  --replace \" grep \" \" /run/booted-system/sw/bin/grep \" \\\n  --replace \" xargs \" \" /run/booted-system/sw/bin/xargs \"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/ubuntu/+source/kmod",
         description: "Linux kernel module blacklists from Ubuntu",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

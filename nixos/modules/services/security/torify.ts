@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tor"));
   const torify = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tsocks",
       text: nix.thunk(() => nix.str`#!${nix.sel(pkgs, "runtimeShell")}
 TSOCKS_CONF_FILE=${nix.app(nix.sel(pkgs, "writeText"), "tsocks.conf", nix.thunk(() => nix.sel(cfg, "tsocks", "config")))} LD_PRELOAD="${nix.sel(pkgs, "tsocks")}/lib/libtsocks.so $LD_PRELOAD" "$@"
@@ -34,30 +34,30 @@ TSOCKS_CONF_FILE=${nix.app(nix.sel(pkgs, "writeText"), "tsocks.conf", nix.thunk(
       destination: "/bin/tsocks",
     }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tor: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tsocks: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to build tsocks wrapper script to relay application traffic via Tor.\n\n::: {.important}\nYou shouldn't use this unless you know what you're\ndoing because your installation of Tor already comes with\nits own superior (doesn't leak DNS queries)\n`torsocks` wrapper which does pretty much\nexactly the same thing as this.\n:::\n",
               })))),
             server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost:9050",
                 example: "192.168.0.20",
                 description: "IP address of TOR client to use.\n",
               })))),
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra configuration. Contents will be added verbatim to TSocks\nconfiguration file.\n",
@@ -67,14 +67,14 @@ TSOCKS_CONF_FILE=${nix.app(nix.sel(pkgs, "writeText"), "tsocks.conf", nix.thunk(
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tsocks", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
-        environment: nix.thunk(() => ({ __proto__: pos$9, systemPackages: nix.thunk(() => [torify]) })),
+        [nix.POS]: pos$13,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$9, systemPackages: nix.thunk(() => [torify]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           tor: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             tsocks: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               config: nix.thunk(() => nix.str`server = ${nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(cfg, "tsocks", "server")))))))}
 server_port = ${nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "tail"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(cfg, "tsocks", "server")))))))}
 

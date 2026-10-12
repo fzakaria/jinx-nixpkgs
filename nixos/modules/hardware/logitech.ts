@@ -28,64 +28,64 @@ export default nix.lambda((args) => (() => {
   const vendor = "046d";
   const daemon = "g15daemon";
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "logitech", "enable"]), nix.thunk(() => ["hardware", "logitech", "wireless", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "logitech", "wireless", "enableGraphical"]), nix.thunk(() => ["programs", "solaar", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       hardware: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         logitech: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           lcd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "support for Logitech LCD Devices")),
             startWhenNeeded: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Only run the service when an actual supported device is plugged.\n",
               })))),
             devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["0a07", "c222", "c225", "c227", "c251"]),
                 description: "List of USB device ids supported by g15daemon.\n\nYou most likely do not need to change this.\n",
               })))),
           })),
           wireless: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "support for Logitech Wireless Devices")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "wireless", "enable")) || nix.asBool(nix.sel(cfg, "lcd", "enable")))), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "wireless", "enable")), nix.thunk(() => nix.sel(pkgs, "ltunify")))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "wireless", "enable")), nix.thunk(() => nix.sel(pkgs, "logitech-udev-rules"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "lcd", "enable")), nix.thunk(() => nix.sel(pkgs, "g15daemon")))))),
             extraRules: nix.thunk(() => nix.add("# nixos: hardware.logitech.lcd\n", nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (dev) => nix.str`ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${vendor}", ATTRS{idProduct}=="${dev}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="${daemon}.service"`, nix.thunk(() => nix.sel(cfg, "lcd", "devices"))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${daemon}`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "lcd", "enable")), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Logitech LCD Support Daemon",
                 documentation: nix.thunk(() => ["man:g15daemon(1)"]),
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "lcd", "startWhenNeeded"))), "multi-user.target")),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Type: "forking",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "g15daemon")}/bin/g15daemon`),
                   PIDFile: nix.thunk(() => nix.str`/run/${daemon}/g15daemon.pid`),

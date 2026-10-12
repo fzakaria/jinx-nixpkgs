@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const pname = "stix-otf";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sources.debian.org/src/fonts-stix/1.1.1-4.1/STIXv${version}-word.zip`),
           stripRoot: false,
           hash: "sha256-M3STue+RPHi8JgZZupV0dVLZYKBiFutbBOlanuKkD08=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.stixfonts.org/",
         description: "Fonts for Scientific and Technical Information eXchange",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

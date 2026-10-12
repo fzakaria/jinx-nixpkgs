@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const rWithPackages = nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(rPackages, "rmarkdown"))], extraRPackages)),
     }))));
   const pythonWithPackages = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
   const denoDomExt = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "dylib" : "so"));
   const denoDomPlugin = nix.thunk(() => nix.str`libplugin.${denoDomExt}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "quarto",
       version: "1.10.18",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -123,29 +123,29 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sources: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/quarto-dev/quarto-cli/releases/download/v${nix.sel(finalAttrs, "version")}/quarto-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
               hash: "sha256-r60HG1vSLALy0wBpV0MYnTZQ4FN6Uwc+ZUtjDP8rDHM=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/quarto-dev/quarto-cli/releases/download/v${nix.sel(finalAttrs, "version")}/quarto-${nix.sel(finalAttrs, "version")}-linux-arm64.tar.gz`),
               hash: "sha256-9qB99o4lMwtd809l099mvKYFrM47gwxZOljpGITUz2w=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://github.com/quarto-dev/quarto-cli/releases/download/v${nix.sel(finalAttrs, "version")}/quarto-${nix.sel(finalAttrs, "version")}-macos.tar.gz`),
               hash: "sha256-3danGp4ESKsV+2VbxYnhHLZYmiSOw1zNf39EE3UxaI4=",
             })))),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "quarto-check": nix.thunk(() => nix.app(runCommand, "quarto-check", nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               nativeBuildInputs: nix.thunk(() => nix.concat([which], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [sysctl])))),
             })), nix.thunk(() => nix.str`export HOME="$(mktemp -d)"
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} check
@@ -171,7 +171,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Open-source scientific and technical publishing system built on Pandoc",
         mainProgram: "quarto",
         longDescription: "Quarto is an open-source scientific and technical publishing system built on Pandoc.\nQuarto documents are authored using markdown, an easy to write plain text format.\n",

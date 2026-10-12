@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.27.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openSUSE",
           repo: "osc",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -D -m444 contrib/osc.fish $out/etc/fish/completions/osc.fish\ninstall -D -m555 contrib/osc.complete $out/share/bash-completion/helpers/osc-helper\nmkdir -p $out/share/bash-completion/completions\ncat >>$out/share/bash-completion/completions/osc <<EOF\ntest -z \"\\$BASH_VERSION\" && return\ncomplete -o default _nullcommand >/dev/null 2>&1 || return\ncomplete -r _nullcommand >/dev/null 2>&1         || return\ncomplete -o default -C $out/share/bash-completion/helpers/osc-helper osc\nEOF\n";
       const preCheck = "HOME=$TOP/tmp";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/openSUSE/osc",
         description: "Opensuse-commander with svn like handling",
         mainProgram: "osc",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

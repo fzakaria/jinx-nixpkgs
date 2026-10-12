@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fbc";
       const version = "1.10.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/freebasic/fbc/releases/download/${version}/FreeBASIC-${version}-source-bootstrap.tar.xz`),
           hash: "sha256-LBROv3m1DrEfSStMbNuLC+fldYNfSS+D09bJyNMNPP0=",
         }))));
@@ -73,7 +73,7 @@ buildFlagsArray+=("FBC=$PWD/patched-fbc/bin/fbc${nix.sel(stdenv, "buildPlatform"
       const checkFlags = nix.thunk(() => ["UNITTEST_RUN_ARGS=--verbose", "ABORT_CMD=false"]);
       const checkPhase = "runHook preCheck\n\n# Some tests fail with too much parallelism\nexport maxCheckJobs=50\nexport checkJobs=$(($NIX_BUILD_CORES<=$maxCheckJobs ? $NIX_BUILD_CORES : $maxCheckJobs))\nif [ -z \"$enableParallelChecking\" ]; then\n  checkJobs=1\nfi\n\n# Run check targets in series, else the logs are a mess\nfor target in $checkTarget; do\n  make $target -j$checkJobs $makeFlags $checkFlags\ndone\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.freebasic.net/",
         description: "Multi-platform BASIC Compiler",
         mainProgram: "fbc",
@@ -89,7 +89,7 @@ buildFlagsArray+=("FBC=$PWD/patched-fbc/bin/fbc${nix.sel(stdenv, "buildPlatform"
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

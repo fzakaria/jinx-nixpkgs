@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "papertrail";
       const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "papertrail", "version"));
       const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "papertrail",
           gemfile: nix.path(here, "./Gemfile"),
           lockfile: nix.path(here, "./Gemfile.lock"),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
 makeWrapper ${gems}/bin/papertrail $out/bin/papertrail
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "papertrail")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line client for Papertrail log management service",
         mainProgram: "papertrail",
         homepage: "https://github.com/papertrail/papertrail-cli/",
@@ -51,7 +51,7 @@ makeWrapper ${gems}/bin/papertrail $out/bin/papertrail
         platforms: nix.thunk(() => nix.sel(ruby, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         gems,

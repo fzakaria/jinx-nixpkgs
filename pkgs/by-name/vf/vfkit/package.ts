@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vfkit";
       const version = "0.6.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crc-org",
           repo: "vfkit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [apple_sdk_15]);
       const postFixup = "codesign --entitlements vf.entitlements -f -s - $out/bin/vfkit\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: vfkit })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: vfkit })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple command line tool to start VMs through the macOS Virtualization framework",
         homepage: "https://github.com/crc-org/vfkit",
         changelog: nix.thunk(() => nix.str`https://github.com/crc-org/vfkit/releases/tag/v${version}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vfkit",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

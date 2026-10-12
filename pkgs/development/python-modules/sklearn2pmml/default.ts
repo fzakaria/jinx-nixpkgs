@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const statsmodels = nix.arg($, "statsmodels");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sklearn2pmml",
       version: "0.132.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jpmml",
           repo: "sklearn2pmml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ substituteInPlace setup.cfg \\
       enabledTestPaths: nix.thunk(() => ["sklearn2pmml/tests"]),
       pythonImportsCheck: nix.thunk(() => ["sklearn2pmml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for converting Scikit-Learn pipelines to PMML",
         homepage: "https://github.com/jpmml/sklearn2pmml",
         changelog: nix.thunk(() => nix.str`https://github.com/jpmml/sklearn2pmml/blob/${nix.sel(finalAttrs, "version")}/NEWS.md`),

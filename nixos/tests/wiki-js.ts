@@ -30,56 +30,56 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "wiki-js",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ma27"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2047n })),
+          [nix.POS]: pos$13,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "wiki-js": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
-                db: nix.thunk(() => ({ __proto__: pos$3, host: "/run/postgresql", user: "wiki-js", db: "wiki-js" })),
+                [nix.POS]: pos$4,
+                db: nix.thunk(() => ({ [nix.POS]: pos$3, host: "/run/postgresql", user: "wiki-js", db: "wiki-js" })),
                 logLevel: "debug",
               })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               ensureDatabases: nix.thunk(() => ["wiki-js"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$6, name: "wiki-js", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$6, name: "wiki-js", ensureDBOwnership: true })),
               ]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "wiki-js": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 requires: nix.thunk(() => ["postgresql.target"]),
                 after: nix.thunk(() => ["postgresql.target"]),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "jq"))];
@@ -90,9 +90,9 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const payloads = nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         finalize: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "finalize.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               adminEmail: "webmaster@example.com",
               adminPassword: "notapassword",
               adminPasswordConfirm: "notapassword",
@@ -101,12 +101,12 @@ export default nix.lambda((args) => (() => {
             })))))),
         login: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "login.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 operationName: null,
                 extensions: nix.thunk(() => ({})),
                 query: "mutation ($username: String!, $password: String!, $strategy: String!) {\n  authentication {\n    login(username: $username, password: $password, strategy: $strategy) {\n      responseResult {\n        succeeded\n        errorCode\n        slug\n        message\n        __typename\n      }\n      jwt\n      mustChangePwd\n      mustProvideTFA\n      mustSetupTFA\n      continuationToken\n      redirect\n      tfaQRImage\n      __typename\n    }\n    __typename\n  }\n}\n",
                 variables: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   password: "notapassword",
                   strategy: "local",
                   username: "webmaster@example.com",
@@ -115,12 +115,12 @@ export default nix.lambda((args) => (() => {
             ]))))),
         content: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "content.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 extensions: nix.thunk(() => ({})),
                 operationName: null,
                 query: "mutation ($content: String!, $description: String!, $editor: String!, $isPrivate: Boolean!, $isPublished: Boolean!, $locale: String!, $path: String!, $publishEndDate: Date, $publishStartDate: Date, $scriptCss: String, $scriptJs: String, $tags: [String]!, $title: String!) {\n  pages {\n    create(content: $content, description: $description, editor: $editor, isPrivate: $isPrivate, isPublished: $isPublished, locale: $locale, path: $path, publishEndDate: $publishEndDate, publishStartDate: $publishStartDate, scriptCss: $scriptCss, scriptJs: $scriptJs, tags: $tags, title: $title) {\n      responseResult {\n        succeeded\n        errorCode\n        slug\n        message\n        __typename\n      }\n      page {\n        id\n        updatedAt\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
                 variables: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   content: "# Header\n\nHello world!",
                   description: "",
                   editor: "markdown",

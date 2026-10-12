@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "camingo-code";
       const version = "1.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/chrissimpkins/codeface/releases/download/font-collection/codeface-fonts.zip",
           hash: "sha256-oo5pWDq6h0bmyGvfF9Bkh7WyjKX4dG8uclfIsWLhDw8=",
         }))));
@@ -28,13 +28,13 @@ install -Dm644 camingo-code/*.txt -t $out/share/doc/${pname}-${version}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.myfonts.com/fonts/jan-fromm/camingo-code/",
         description: "Monospaced typeface designed for source-code editors",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nd-30")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

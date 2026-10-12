@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const tenacity = nix.arg($, "tenacity");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "celery-redbeat",
       version: "2.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sibson",
           repo: "redbeat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [pbr]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       dependencies: nix.thunk(() => [celery, python_dateutil, redis, tenacity]),
       nativeCheckInputs: nix.thunk(() => [fakeredis, pytestCheckHook, pytz]),
       pythonImportsCheck: nix.thunk(() => ["redbeat"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database-backed Periodic Tasks",
         homepage: "https://github.com/sibson/redbeat",
         changelog: nix.thunk(() => nix.str`https://github.com/sibson/redbeat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

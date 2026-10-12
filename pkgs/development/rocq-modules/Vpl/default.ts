@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "Vpl",
       owner: "VERIMAG-Polyhedra",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.8", "8.9", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "0.5" : null)),
       release: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "0.5": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-mSD/xSweeK9WMxWDdX/vzN96iXo74RkufjuNvtzsP9o=",
         })),
       })),
       setSourceRoot: "sourceRoot=$(echo */coq)",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Coq interface to VPL abstract domain of convex polyhedra",
         homepage: "https://amarechal.gitlab.io/home/projects/vpl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

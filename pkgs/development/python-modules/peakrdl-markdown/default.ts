@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const py_markdown_table = nix.arg($, "py-markdown-table");
   const systemrdl_compiler = nix.arg($, "systemrdl-compiler");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "peakrdl-markdown",
       version: "1.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SystemRDL",
           repo: "PeakRDL-markdown",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [peakrdl_cli, py_markdown_table, systemrdl_compiler]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Export Markdown description from the systemrdl-compiler register model",
         homepage: "https://peakrdl-markdown.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

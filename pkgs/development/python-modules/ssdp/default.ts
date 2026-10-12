@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ssdp",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codingjoe",
           repo: "ssdp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lukegb/ssdp/commit/e5570a13342a2b7271acae1408b37a49e0729e3c.patch",
             hash: "sha256-RwpsrGRn6rEowwHc39bLO8dVTKJP3d3v7Rr1d8sKYvM=",
           })))),
       ]),
       "build-system": nix.thunk(() => [flit_core, flit_scm]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cli: nix.thunk(() => [click, pygments]),
         pygments: nix.thunk(() => [pygments]),
       })),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_call", "test_call_w_search_target"]),
       pythonImportsCheck: nix.thunk(() => ["ssdp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python asyncio library for Simple Service Discovery Protocol (SSDP)",
         homepage: "https://github.com/codingjoe/ssdp",
         changelog: nix.thunk(() => nix.str`https://github.com/codingjoe/ssdp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

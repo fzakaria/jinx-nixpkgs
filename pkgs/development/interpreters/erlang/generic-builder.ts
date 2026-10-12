@@ -58,17 +58,17 @@ export default nix.lambda((args) => (() => {
     const enableSystemd = nix.thunk(() => (nix.asBool(nix.eq(systemdSupport, null)) ? nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd) : nix.force(systemdSupport)));
     const runtimePath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, gnused])));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.add(nix.add("erlang", nix.app(optionalString, javacSupport, "_javac")), nix.app(optionalString, odbcSupport, "_odbc"))),
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "erlang",
             repo: "otp",
             tag: nix.thunk(() => nix.str`OTP-${version}`),
             hash: hash,
           })))),
-        env: nix.thunk(() => ({ __proto__: pos$2, DOC_TARGETS: "man chunks", LANG: "C.UTF-8" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, DOC_TARGETS: "man chunks", LANG: "C.UTF-8" })),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, perl, gnum4, libxslt, libxml2]),
         buildInputs: nix.thunk(() => nix.concat([ncurses, openssl, zlib], nix.concat(nix.app(optionals, wxSupport, wxPackages2), nix.concat(nix.app(optionals, odbcSupport, nix.thunk(() => [unixodbc])), nix.concat(nix.app(optionals, javacSupport, nix.thunk(() => [openjdk11])), nix.app(optionals, enableSystemd, nix.thunk(() => [systemd]))))))),
         postPatch: nix.thunk(() => nix.str`substituteInPlace lib/os_mon/src/disksup.erl --replace-fail '"sh ' '"${runtimeShell} '
@@ -86,9 +86,9 @@ wrapProgram $out/lib/erlang/bin/erl --prefix PATH ":" "${runtimePath}"
 wrapProgram $out/lib/erlang/bin/start_erl --prefix PATH ":" "${runtimePath}"
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               extraArgs: nix.thunk(() => [
                 "--version-regex",
                 nix.thunk(() => nix.str`OTP-(${major}.*)`),
@@ -98,7 +98,7 @@ wrapProgram $out/lib/erlang/bin/start_erl --prefix PATH ":" "${runtimePath}"
             })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://www.erlang.org/",
           downloadPage: "https://www.erlang.org/download.html",
           description: "Programming language used for massively scalable soft real-time systems",

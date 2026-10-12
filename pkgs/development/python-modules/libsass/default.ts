@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const werkzeug = nix.arg($, "werkzeug");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libsass",
       version: "0.23.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sass",
           repo: "libsass-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools_80]),
       buildInputs: nix.thunk(() => [libsass]),
-      env: nix.thunk(() => ({ __proto__: pos$2, SYSTEM_SASS: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SYSTEM_SASS: "true" })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, werkzeug]),
       enabledTestPaths: nix.thunk(() => ["sasstests.py"]),
       pythonImportsCheck: nix.thunk(() => ["sass"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python binding for libsass to compile Sass/SCSS",
         mainProgram: "pysassc",
         homepage: "https://sass.github.io/libsass-python/",

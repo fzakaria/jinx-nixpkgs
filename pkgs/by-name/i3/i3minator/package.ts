@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "i3minator",
       version: "0.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carlesso",
           repo: "i3minator",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "07dic5d2m0zw0psginpl43xn0mpxw7wilj49d02knz69f7c416lm",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       buildInputs: nix.thunk(() => [glibcLocales]),
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       dependencies: nix.thunk(() => [
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["i3minator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "i3 project manager similar to tmuxinator",
         mainProgram: "i3minator",
         longDescription: "A simple \"workspace manager\" for i3. It allows to quickly\nmanage workspaces defining windows and their layout. The\nproject is inspired by tmuxinator and uses i3-py.\n",

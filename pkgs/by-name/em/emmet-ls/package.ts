@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emmet-ls";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aca",
           repo: "emmet-ls",
           rev: version,
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-Boaxkad7S6H+eTW5AHwBa/zj/f1oAGGSsmW1QrzuFWc=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-lock-file-to-match-package-json.patch",
             url: "https://github.com/aca/emmet-ls/commit/111111a2c2113f751fa12a716ccfbeae61c32079.patch",
             hash: "sha256-/3ZbOBxScnfhL1F66cnIoD2flVeYTJ2sLxNHQ9Yrgjw=",
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Emmet support based on LSP",
         homepage: "https://github.com/aca/emmet-ls",
         changelog: nix.thunk(() => nix.str`https://github.com/aca/emmet-ls/releases/tag/${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "emmet-ls",
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, patches, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

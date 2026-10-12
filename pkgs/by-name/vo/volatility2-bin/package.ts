@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const libz = nix.arg($, "libz");
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
-  const suffix = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "lin64_standalone" }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "lin64_standalone" }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-ucG6oR4gBRUjMmHRr9QNenc04ENvwLvyCzSAqIoAiwM=",
   }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "volatility2-bin",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/volatilityfoundation/volatility/releases/download/${nix.sel(finalAttrs, "version")}/volatility_${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${suffix}.zip`),
           stripRoot: true,
           hash: hash,
@@ -47,7 +47,7 @@ ln -s $out/bin/volatility2 $out/bin/vol2
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://volatilityfoundation.org/",
         mainProgram: "volatility2",
         description: "Advanced memory forensics framework",

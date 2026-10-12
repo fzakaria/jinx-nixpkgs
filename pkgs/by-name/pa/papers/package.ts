@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "papers",
       version: "50.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/papers/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/papers-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rhvc8c1Hy1DJ2EdleEYH+Bxy3xfdbmrZM/6hQXPSufQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withLibsecret, nix.thunk(() => [libsecret])), nix.app(nix.sel(lib, "optionals"), supportNautilus, nix.thunk(() => [nautilus]))))),
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibsecret)), nix.thunk(() => ["-Dkeyring=disabled"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(supportNautilus)), nix.thunk(() => ["-Dnautilus=false"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace shell/src/meson.build thumbnailer/meson.build --replace-fail \\
@@ -116,11 +116,11 @@ export default nix.lambda((args) => (() => {
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -add_rpath \"$out/lib\" \"$out/bin/papers\"\n"))),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "papers" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "papers" }))));
           const updateLockfile = nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -134,7 +134,7 @@ update-source-version papers --ignore-same-version --source-key=cargoDeps.vendor
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://gitlab.gnome.org/GNOME/papers",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/papers/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME's document viewer",

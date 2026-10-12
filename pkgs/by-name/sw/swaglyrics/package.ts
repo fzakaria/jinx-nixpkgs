@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swaglyrics",
       version: "1.2.2-unstable-2021-06-17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SwagLyrics",
           repo: "SwagLyrics-For-Spotify",
           rev: "99fe764a9e45cac6cb9fcdf724c7d2f8cb4524fb",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["swaglyrics"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lyrics fetcher for currently playing Spotify song",
         homepage: "https://github.com/SwagLyrics/SwagLyrics-For-Spotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

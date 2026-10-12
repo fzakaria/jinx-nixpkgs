@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "OpenTabletDriver",
       version: "0.6.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenTabletDriver",
           repo: "OpenTabletDriver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       runtimeDeps: nix.thunk(() => [gtk3, libappindicator, libevdev, libnotify, libx11, libxrandr, udev]),
       buildInputs: nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OTD_CONFIGURATIONS: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/OpenTabletDriver.Configurations/Configurations`),
       })),
       doCheck: true,
@@ -83,7 +83,7 @@ substituteInPlace generate-rules.sh \\
       postFixup: "# Give a more \"*nix\" name to the binaries\nmv $out/bin/OpenTabletDriver.Console $out/bin/otd\nmv $out/bin/OpenTabletDriver.Daemon $out/bin/otd-daemon\nmv $out/bin/OpenTabletDriver.UX.Gtk $out/bin/otd-gui\n\ninstall -Dm644 $src/OpenTabletDriver.UX/Assets/otd.png -t $out/share/icons\n\n# Generate udev rules from source\nmkdir -p $out/lib/udev/rules.d\n./generate-rules.sh > $out/lib/udev/rules.d/70-opentabletdriver.rules\n\nwrapProgram $out/bin/otd-gui \\\n  \"${gappsWrapperArgs[@]}\" \\\n  --add-flags --skipupdate\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             desktopName: "OpenTabletDriver",
             name: "OpenTabletDriver",
             exec: "otd-gui",
@@ -96,15 +96,15 @@ substituteInPlace generate-rules.sh \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/otd-daemon`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "otd-runs": nix.thunk(() => nix.sel(nixosTests, "opentabletdriver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/OpenTabletDriver/OpenTabletDriver/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open source, cross-platform, user-mode tablet driver",
         homepage: "https://github.com/OpenTabletDriver/OpenTabletDriver",

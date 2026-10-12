@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.3";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pstray",
           repo: "rename",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "KQsBO94fsa4CbTHNyJxOD96AwUfKNLa9p44odlNgQao=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rename files according to a Perl rewrite expression",
         homepage: "https://github.com/pstray/rename",
         maintainers: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),
         mainProgram: "rename",
       }));
-      return { __proto__: pos$3, pname, version, outputs, src, meta };
+      return { [nix.POS]: pos$3, pname, version, outputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

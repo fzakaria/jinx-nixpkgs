@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "xar -xf $src\nzcat SDRplayAPI.pkg/Payload | cpio -i\n",
       dontBuild: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         majorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version)),
         majorMinorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)),
       })),

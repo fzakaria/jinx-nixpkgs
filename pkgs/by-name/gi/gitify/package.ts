@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const electron = electron_44;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gitify",
       version: "7.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitify-app",
           repo: "gitify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-qMDsulcZKttYtVAbx/RvwZgfUgQMqq7mIt/S5vP/rJ8=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       postPatch: "substituteInPlace electron-builder.js \\\n  --replace-fail \"'Adam Setch (5KD23H9729)'\" \"null\" \\\n  --replace-fail \"'scripts/afterSign.js'\" \"null\"\n\n# With a nixpkgs electron wrapper, app.isPackaged always returns false,\n# so isDevMode() is always true. This causes the config.ts getter for\n# indexHtml to return VITE_DEV_SERVER_URL (which is empty) instead of the\n# packaged file:// URL, resulting in a blank white window.\n# Patch isDevMode() to false so the file:// path is always used.\nsubstituteInPlace src/main/config.ts \\\n  --replace-fail \"isDevMode()\" \"false\"\n\n# Disable auto-updater; updates are handled via nixpkgs.\nsubstituteInPlace src/main/updater.ts \\\n  --replace-fail \"if (!this.menubar.app.isPackaged)\" \"if (true)\"\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -96,7 +96,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "gitify",
             desktopName: "Gitify",
             exec: "gitify %U",
@@ -107,11 +107,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gitify.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/gitify-app/gitify/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "GitHub notifications on your menu bar",

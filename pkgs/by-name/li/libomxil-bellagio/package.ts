@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libomxil-bellagio",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/omxil/omxil/Bellagio%20${nix.sel(finalAttrs, "version")}/libomxil-bellagio-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0k6p6h4npn8p1qlgq6z3jbfld6n1bqswzvxzndki937gr0lhfg2r",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fedora-fixes.patch"),
         nix.path(here, "./fno-common.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "no-overread.patch",
             url: "https://sourceforge.net/p/omxil/patches/8/attachment/0001-src-base-omx_base_component.c-fix-stack-overread.patch",
             hash: "sha256-ElpiDxU0Ii4Ou8ebVx4Ne9UnB6mesC8cRj77N7LdovA=",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "-Wno-error=array-bounds -Wno-error=stringop-overflow=8 -Wno-error=stringop-truncation" : (() => {
           const isLLVM17 = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17"))));
           return nix.str`-Wno-error=absolute-value -Wno-error=enum-conversion -Wno-error=logical-not-parentheses -Wno-error=non-literal-null-conversion${nix.app(nix.sel(lib, "optionalString"), isLLVM17, " -Wno-error=unused-but-set-variable")}`;
         })())),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://omxil.sourceforge.net/",
         description: "Opensource implementation of the Khronos OpenMAX Integration Layer API to access multimedia components",
         mainProgram: "omxregister-bellagio",

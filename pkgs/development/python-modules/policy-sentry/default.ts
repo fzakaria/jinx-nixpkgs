@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const schema = nix.arg($, "schema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "policy-sentry",
       version: "0.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "salesforce",
           repo: "policy_sentry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["policy_sentry"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for generating IAM least privilege policies",
         homepage: "https://github.com/salesforce/policy_sentry",
         changelog: nix.thunk(() => nix.str`https://github.com/salesforce/policy_sentry/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

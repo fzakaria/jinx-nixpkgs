@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
   const gpuTargets$ = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", gpuTargets));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`rocblas${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3Packages, "zstandard")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), nix.thunk(() => [gtest, gfortran, rocm_smi])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(buildTensile) || nix.asBool(buildTests))) || nix.asBool(buildBenchmarks))), nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pyyaml"))]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.str`-fopenmp -I${nix.app(nix.sel(lib, "getDev"), boost)}/include -I${hipblas_common}/include -I${roctracer}/include`),
         LDFLAGS: nix.thunk(() => nix.add("-Wl,--as-needed -lzstd", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), " -lcblas"))),
         TENSILE_ROCM_ASSEMBLER_PATH: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/clang++`),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Extend-rocBLAS-HIP-ISA-compatibility.patch",
             url: "https://github.com/GZGavinZhao/rocm-libraries/commit/49f21f3cfe7eb4b8ac724eef81fa2cae97a3c22e.patch",
             hash: "sha256-vAVVpTwt49lGHu2YopR1X68v5LwFOjUYuSC4ucBpFGg=",
@@ -126,14 +126,14 @@ export default nix.lambda((args) => (() => {
   "$out/lib/librocblas.so."*
 `, nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "moveToOutput \"bin/*-tune\" \"$benchmark\"\nmoveToOutput \"bin/*-bench\" \"$benchmark\"\nmoveToOutput \"bin/*example*\" \"$benchmark\"\ncp \"$out/bin/\"*.{yaml,txt} \"$benchmark/bin\"\n")), nix.app(nix.sel(lib, "optionalString"), buildTests, "moveToOutput \"bin/*test*\" \"$test\"\ncp \"$out/bin/\"*.{yaml,txt} \"$test/bin\"\n")), "if [ -d $out/bin ]; then\n  rm $out/bin/*.{yaml,txt} || true\n  rmdir $out/bin\nfi\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         amdgpu_targets: gpuTargets$,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$4, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, finalAttrs: finalAttrs })))),
       })),
       enableParallelBuilding: true,
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "BLAS implementation for ROCm platform",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocblas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

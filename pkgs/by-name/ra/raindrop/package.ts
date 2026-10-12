@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const version = nix.thunk(() => nix.attr(sources, "version"));
   const webapp = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raindrop-webapp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raindropio",
           repo: "app",
           rev: nix.thunk(() => nix.sel(sources, "webappRev")),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: nix.thunk(() => nix.sel(sources, "webappNpmHash")),
       npmBuildScript: "build:electron",
-      env: nix.thunk(() => ({ __proto__: pos$2, SENTRYCLI_SKIP_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SENTRYCLI_SKIP_DOWNLOAD: "1" })),
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r dist/electron/prod/* $out/\nrunHook postInstall\n",
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "raindrop",
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "raindropio",
           repo: "desktop",
           rev: nix.thunk(() => nix.sel(sources, "desktopRev")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: nix.thunk(() => nix.sel(sources, "desktopNpmHash")),
       makeCacheWritable: true,
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ __proto__: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace package.json \\
   --replace-fail '"version": "0.0.0"' '"version": "${version}"'
 `),
@@ -93,7 +93,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "raindrop",
             icon: "raindrop",
             exec: "raindrop %U",
@@ -105,9 +105,9 @@ runHook postInstall
             mimeTypes: nix.thunk(() => ["x-scheme-handler/rnio"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "All-in-one bookmark manager",
         homepage: "https://raindrop.io",
         changelog: nix.thunk(() => nix.str`https://github.com/raindropio/desktop/releases/tag/v${version}`),

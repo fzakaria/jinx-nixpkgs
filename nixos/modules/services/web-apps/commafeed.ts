@@ -28,35 +28,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "commafeed"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         commafeed: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CommaFeed")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "commafeed", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User under which CommaFeed runs.",
               default: "commafeed",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Group under which CommaFeed runs.",
               default: "commafeed",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Directory holding all state for CommaFeed to run.",
               default: "/var/lib/commafeed",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "bool")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
               description: "Extra environment variables passed to CommaFeed, refer to\n<https://github.com/Athou/commafeed/blob/master/commafeed-server/config.yml.example>\nfor supported values. The default user is `admin` and the default password is `admin`.\nCorrect configuration for H2 database is already provided.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 CF_SERVER_APPLICATIONCONNECTORS_0_TYPE: "http",
                 CF_SERVER_APPLICATIONCONNECTORS_0_PORT: 9090n,
               })),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Environment file as defined in {manpage}`systemd.exec(5)`.\n",
               default: null,
@@ -81,18 +81,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             commafeed: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "environment")))),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} server ${nix.sel(cfg, "package")}/share/config.yml`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -123,14 +123,14 @@ export default nix.lambda((args) => (() => {
                 SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged"]),
                 UMask: "0077",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                 }))))),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$16, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$16, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=commafeed.ts.map

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const pname = "fastcrc";
   const version = "0.3.6";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "overcat",
       repo: "fastcrc",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-13z56Ei+++UzlXs1Kmrm0qOWbr88oPMmX7mi9fK4Gbk=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       preCheck: "rm -r fastcrc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hyper-fast Python module for computing CRC(8, 16, 32, 64) checksum",
         homepage: "https://fastcrc.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

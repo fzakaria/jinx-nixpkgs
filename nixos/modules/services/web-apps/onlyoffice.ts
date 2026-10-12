@@ -65,29 +65,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "onlyoffice"));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         onlyoffice: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OnlyOffice DocumentServer")),
           enableExampleServer: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OnlyOffice example server")),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "FQDN for the OnlyOffice instance.",
             })))),
           securityNonceFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "/run/keys/onlyoffice-nginx-nonce.conf",
               description: "File holding nginx configuration that sets the nonce used to create secret links.\n\nExample:\n```\nset $secure_link_secret \"changeme\";\n```\n\nThis file must be readable both by nginx and by the onlyoffice\ndocumentserver. Since nginx is added to the onlyoffice group,\nyou may want to make the file readable to the onlyoffice group.\n\nNOTE: The file must be a valid nginx configuration file. The secret must not contain `$` characters, as they will be interpreted as variables by nginx.\n",
             })))),
           jwtSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to a file that contains the secret to sign web requests using JSON Web Tokens.\nIf left at the default value null signing is disabled.\n",
@@ -95,56 +95,56 @@ export default nix.lambda((args) => (() => {
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "onlyoffice-documentserver", nix.thunk(() => ({})))),
           x2t: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "onlyoffice-documentserver.passthru.x2t", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8000n,
               description: "Port the OnlyOffice document server should listen on.",
             })))),
           allowLocalConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to allow the document server to download files from private IP addresses.",
             })))),
           examplePort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: null,
               description: "Port the OnlyOffice example server should listen on.",
             })))),
           postgresHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/run/postgresql",
               description: "The Postgresql hostname or socket path OnlyOffice should connect to.",
             })))),
           postgresName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "onlyoffice",
               description: "The name of database OnlyOffice should use.",
             })))),
           postgresPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to a file that contains the password OnlyOffice should use to connect to Postgresql.\nUnused when using socket authentication.\n",
             })))),
           postgresUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "onlyoffice",
               description: "The username OnlyOffice should use to connect to Postgresql.\nUnused when using socket authentication.\n",
             })))),
           rabbitmqUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "amqp://guest:guest@localhost:5672",
               description: "The Rabbitmq in amqp URI style OnlyOffice should connect to.",
             })))),
           wopi: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable WOPI support")),
           loglevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "WARN",
               description: "Default loglevel to use for documentserver and converter",
@@ -153,24 +153,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           nginx: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             upstreams: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "onlyoffice-docservice": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 servers: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`, nix.thunk(() => ({}))],
                 ])),
               })),
               "onlyoffice-example": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableExampleServer")), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   servers: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "examplePort")))}`, nix.thunk(() => ({}))],
                   ])),
@@ -178,44 +178,44 @@ export default nix.lambda((args) => (() => {
             })),
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "hostname"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 locations: nix.thunk(() => nix.attrsDyn({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   "~ ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(web-apps\\/apps\\/api\\/documents\\/api\\.js)$": nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     extraConfig: nix.thunk(() => nix.str`expires -1;
 # gzip_static on;
 alias ${nix.sel(cfg, "package")}/var/www/onlyoffice/documentserver/$2;
 `),
                   })),
                   "~ ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(document_editor_service_worker\\.js)$": nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     extraConfig: nix.thunk(() => nix.str`expires 365d;
 alias ${nix.sel(cfg, "package")}/var/www/onlyoffice/documentserver/sdkjs/common/serviceworker/$2;
 `),
                   })),
                   "~ ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(web-apps)(\\/.*\\.json)$": nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     extraConfig: nix.thunk(() => nix.str`expires 365d;
 error_log /dev/null crit;
 alias ${nix.sel(cfg, "package")}/var/www/onlyoffice/documentserver/$2$3;
 `),
                   })),
                   "~ ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(sdkjs-plugins)(\\/.*\\.json)$": nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     extraConfig: nix.thunk(() => nix.str`expires 365d;
 error_log /dev/null crit;
 alias ${nix.sel(cfg, "package")}/var/www/onlyoffice/documentserver/$2$3;
 `),
                   })),
                   "~ ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(web-apps|sdkjs|sdkjs-plugins|fonts|dictionaries)(\\/.*)$": nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     extraConfig: nix.thunk(() => nix.str`expires 365d;
 alias ${nix.sel(cfg, "package")}/var/www/onlyoffice/documentserver/$2$3;
 `),
                   })),
                   "~* ^(\\/cache\\/files.*)(\\/.*)": nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     extraConfig: nix.thunk(() => nix.str`alias /var/lib/onlyoffice/documentserver/App_Data$1;
 more_set_headers "Content-Disposition: attachment; filename*=UTF-8$arg_filename";
 
@@ -233,32 +233,32 @@ if ($secure_link = "0") {
 `),
                   })),
                   "~* ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(internal)(\\/.*)$": nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     extraConfig: "allow 127.0.0.1;\ndeny all;\nproxy_pass http://onlyoffice-docservice/$2$3;\n",
                   })),
                   "~* ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?\\/(info)(\\/.*)$": nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     extraConfig: "allow 127.0.0.1;\ndeny all;\nproxy_pass http://onlyoffice-docservice/$2$3;\n",
                   })),
-                  "/": nix.thunk(() => ({ __proto__: pos$27, extraConfig: "proxy_pass http://onlyoffice-docservice;\n" })),
+                  "/": nix.thunk(() => ({ [nix.POS]: pos$27, extraConfig: "proxy_pass http://onlyoffice-docservice;\n" })),
                   "~ ^(\\/[\\d]+\\.[\\d]+\\.[\\d]+[\\.|-][\\w]+)?(\\/(doc|downloadas)\\/.*)": nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     extraConfig: "proxy_pass http://onlyoffice-docservice$2$is_args$args;\nproxy_http_version 1.1;\n",
                   })),
                   "~ ^(\\/welcome\\/.*)$": nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableExampleServer")), nix.thunk(() => nix.str`expires 365d;
 alias ${nix.sel(cfg, "package")}/var/www/onlyoffice/documentserver-example$1;
 index docker.html;
 `))),
                   })),
                   "/example/": nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableExampleServer")), "proxy_pass http://onlyoffice-example/;\nproxy_set_header X-Forwarded-Path /example;\n")),
                   })),
                 }, [
                   [nix.str`/${nix.sel(cfg, "package", "version")}/`, nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     extraConfig: "proxy_pass http://onlyoffice-docservice/;\n",
                   }))],
                 ])),
@@ -281,36 +281,36 @@ proxy_set_header Connection $connection_upgrade;
             ])),
           })),
           rabbitmq: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             ensureDatabases: nix.thunk(() => ["onlyoffice"]),
             ensureUsers: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$36, name: "onlyoffice", ensureDBOwnership: true })),
+              nix.thunk(() => ({ [nix.POS]: pos$36, name: "onlyoffice", ensureDBOwnership: true })),
             ]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             "onlyoffice-converter": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               description: "onlyoffice converter",
               after: nix.thunk(() => ["network.target", "onlyoffice-docservice.service", "postgresql.target"]),
               requires: nix.thunk(() => ["network.target", "onlyoffice-docservice.service", "postgresql.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 NODE_CONFIG_DIR: "/run/onlyoffice/config",
                 NODE_DISABLE_COLORS: "1",
                 NODE_ENV: "production-linux",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "fhs")}/bin/onlyoffice-wrapper ${nix.sel(cfg, "package", "fileconverter")}/bin/fileconverter`),
                 Group: "onlyoffice",
                 Restart: "always",
@@ -380,19 +380,19 @@ else
 fi
 `)));
               return {
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 description: "onlyoffice documentserver",
                 after: nix.thunk(() => ["network.target", "postgresql.target", "rabbitmq.service"]),
                 requires: nix.thunk(() => ["postgresql.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   NODE_CONFIG_DIR: "/run/onlyoffice/config",
                   NODE_DISABLE_COLORS: "1",
                   NODE_ENV: "production-linux",
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "fhs")}/bin/onlyoffice-wrapper ${nix.sel(cfg, "package", "docservice")}/bin/docservice`),
                   ExecStartPre: nix.thunk(() => [onlyoffice_prestart]),
                   Group: "onlyoffice",
@@ -407,22 +407,22 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           users: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             onlyoffice: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               description: "OnlyOffice Service",
               group: "onlyoffice",
               isSystemUser: true,
             })),
-            nginx: nix.thunk(() => ({ __proto__: pos$48, extraGroups: nix.thunk(() => ["onlyoffice"]) })),
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$48, extraGroups: nix.thunk(() => ["onlyoffice"]) })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$50, onlyoffice: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$50, onlyoffice: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "raboof"))];

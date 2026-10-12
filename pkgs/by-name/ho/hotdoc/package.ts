@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.17.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-xNXf9kfwOqh6HS0GA10oGe3QmbkWNeOy7jkIKTV66fw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./clang.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             clang: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(llvmPackages, "clang")))),
             libclang_lib_dir: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "hotdoc-fix-c_comment_scanner-function-prototypes-gcc15.patch",
             url: "https://github.com/hotdoc/hotdoc/commit/adf8518431fafb78c9b47862a0a9a58824b6a421.patch",
             hash: "sha256-5y50Yk+AjV3aSk8H3k9od/Yvy09FyQQOcVOAcstQnw8=",
@@ -91,22 +91,22 @@ export default nix.lambda((args) => (() => {
       const preCheck = "pushd $TMPDIR\n";
       const postCheck = "popd\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           gstreamer: nix.thunk(() => nix.attr(gst_all_1, "gstreamer")),
           "gst-plugins-base": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tastiest API documentation system",
         homepage: "https://hotdoc.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

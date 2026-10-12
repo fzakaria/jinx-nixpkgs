@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const xserverPath = nix.argOr($, "xserverPath", () => nix.str`${nix.sel(xorg_server, "out")}/bin/X`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xinit",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       postFixup: "substituteInPlace $out/bin/startx \\\n  --replace-fail '\"${prefix}/etc/X11/xinit/xinitrc\"' '/etc/X11/xinit/xinitrc' \\\n  --replace-fail '\"$xinitdir/xserverrc\"' '/etc/X11/xinit/xserverrc'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex=xinit-(.*)"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=xinit-(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "X server & client startup utilities (includes startx)",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xinit",
         license: nix.thunk(() => (() => {

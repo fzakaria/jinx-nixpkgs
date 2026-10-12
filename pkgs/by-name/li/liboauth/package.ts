@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nspr = nix.arg($, "nspr");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liboauth",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/liboauth/liboauth-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07w1aq8y8wld43wmbk2q8134p3bfkp2vma78mmsfgw2jn1bh3xhd",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   --replace "-lnss3" "-L${nix.sel(nss, "out")}/lib -lnss3"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         description: "C library implementing the OAuth secure authentication protocol",
         homepage: "http://liboauth.sourceforge.net/",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const kio = nix.arg($, "kio");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kio-extras",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, gperf, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [

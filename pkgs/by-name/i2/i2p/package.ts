@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const gmp = nix.arg($, "gmp");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "i2p",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           urls: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`https://github.com/i2p/i2p.i2p/archive/i2p-${nix.sel(finalAttrs, "version")}.tar.gz`),
           ], nix.builtins.map((mirror) => nix.str`${mirror}${nix.sel(finalAttrs, "version")}/i2psource_${nix.sel(finalAttrs, "version")}.tar.bz2`, nix.thunk(() => [
@@ -87,7 +87,7 @@ ln -s ${nix.sel(dbip_country_lite, "mmdb")} $out/geoip/GeoLite2-Country.mmdb
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n# Check if jbigi is used\njava -cp $out/lib/i2p.jar -Djava.library.path=$out/lib/ net.i2p.util.NativeBigInteger \\\n  | tee /dev/stderr | grep -Fw \"Found native library\" || exit 1\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Applications and router for I2P, anonymity over the Internet",
         homepage: "https://geti2p.net",
         changelog: nix.thunk(() => nix.str`https://github.com/i2p/i2p.i2p/releases/tag/i2p-${nix.sel(finalAttrs, "version")}`),

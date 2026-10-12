@@ -68,43 +68,43 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "maxbwRateDown"), null)), nix.thunk(() => nix.str`maxbw-rate-down ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxbwRateDown")))}`))}
 `;
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "tarsnap", "cachedir"]), "Use services.tarsnap.archives.<name>.cachedir")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         tarsnap: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "periodic tarsnap backups")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tarsnap", nix.thunk(() => ({})))),
           keyfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/root/tarsnap.key",
               description: "The keyfile which associates this machine with your tarsnap\naccount.\nCreate the keyfile with {command}`tarsnap-keygen`.\n\nNote that each individual archive (specified below) may also have its\nown individual keyfile specified. Tarsnap does not allow multiple\nconcurrent backups with the same cache directory and key (starting a\nnew backup will cause another one to fail). If you have multiple\narchives specified, you should either spread out your backups to be\nfar apart, or specify a separate key for each archive. By default\nevery archive defaults to using\n`\"/root/tarsnap.key\"`.\n\nIt's recommended for backups that you generate a key for every archive\nusing {manpage}`tarsnap-keygen(1)`, and then generate a\nwrite-only tarsnap key using {manpage}`tarsnap-keymgmt(1)`,\nand keep your master key(s) for a particular machine off-site.\n\nThe keyfile name should be given as a string and not a path, to\navoid the key being copied into the Nix store.\n",
             })))),
           archives: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const config_1 = nix.arg($_1, "config");
                     const options_1 = nix.arg($_1, "options");
                     return {
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       options: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         keyfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.sel(gcfg, "keyfile")),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "keyfile")}`))),
                             description: "Set a specific keyfile for this archive. This defaults to\n`\"/root/tarsnap.key\"` if left unspecified.\n\nUse this option if you want to run multiple backups\nconcurrently - each archive must have a unique key. You can\ngenerate a write-only key derived from your master key (which\nis recommended) using {manpage}`tarsnap-keymgmt(1)`.\n\nNote: every archive must have an individual master key. You\nmust generate multiple keys with\n{manpage}`tarsnap-keygen(1)`, and then generate write\nonly keys from those.\n\nThe keyfile name should be given as a string and not a path, to\navoid the key being copied into the Nix store.\n",
                           })))),
                         cachedir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: nix.thunk(() => nix.str`/var/cache/tarsnap/${nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(config_1, "keyfile")))}`),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"/var/cache/tarsnap/\${utils.escapeSystemdPath config.${nix.sel(options_1, "keyfile")}}"
@@ -112,100 +112,100 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                             description: "The cache allows tarsnap to identify previously stored data\nblocks, reducing archival time and bandwidth usage.\n\nShould the cache become desynchronized or corrupted, tarsnap\nwill refuse to run until you manually rebuild the cache with\n{command}`tarsnap --fsck`.\n\nSet to `null` to disable caching.\n",
                           })))),
                         nodump: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Exclude files with the `nodump` flag.\n",
                           })))),
                         printStats: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Print global archive statistics upon completion.\nThe output is available via\n{command}`systemctl status tarsnap-archive-name`.\n",
                           })))),
                         checkpointBytes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: "1GB",
                             description: "Create a checkpoint every `checkpointBytes`\nof uploaded data (optionally specified using an SI prefix).\n\n1GB is the minimum value. A higher value is recommended,\nas checkpointing is expensive.\n\nSet to `null` to disable checkpointing.\n",
                           })))),
                         period: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "01:15",
                             example: "hourly",
                             description: "Create archive at this interval.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
                           })))),
                         aggressiveNetworking: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Upload data over multiple TCP connections, potentially\nincreasing tarsnap's bandwidth utilisation at the cost\nof slowing down all other network traffic. Not\nrecommended unless TCP congestion is the dominant\nlimiting factor.\n",
                           })))),
                         directories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: [],
                             description: "List of filesystem paths to archive.",
                           })))),
                         excludes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "Exclude files and directories matching these patterns.\n",
                           })))),
                         includes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "Include only files and directories matching these\npatterns (the empty list includes everything).\n\nExclusions have precedence over inclusions.\n",
                           })))),
                         lowmem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Reduce memory consumption by not caching small files.\nPossibly beneficial if the average file size is smaller\nthan 1 MB and the number of files is lower than the\ntotal amount of RAM in KB.\n",
                           })))),
                         verylowmem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Reduce memory consumption by a factor of 2 beyond what\n`lowmem` does, at the cost of significantly\nslowing down the archiving process.\n",
                           })))),
                         maxbw: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                             default: null,
                             description: "Abort archival if upstream bandwidth usage in bytes\nexceeds this threshold.\n",
                           })))),
                         maxbwRateUp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                             default: null,
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "25 * 1000")),
                             description: "Upload bandwidth rate limit in bytes.\n",
                           })))),
                         maxbwRateDown: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                             default: null,
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "50 * 1000")),
                             description: "Download bandwidth rate limit in bytes.\n",
                           })))),
                         verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether to produce verbose logging output.\n",
                           })))),
                         explicitSymlinks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether to follow symlinks specified as archives.\n",
                           })))),
                         followSymlinks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether to follow all symlinks in archive trees.\n",
@@ -221,20 +221,20 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(gcfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         assertions: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (cfg) => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "directories"), [])),
             message: "Must specify paths for tarsnap to back up",
           }), nix.thunk(() => nix.sel(gcfg, "archives"))), nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (cfg) => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "lowmem")) && nix.asBool(nix.sel(cfg, "verylowmem"))))),
             message: "You cannot set both lowmem and verylowmem",
           }), nix.thunk(() => nix.sel(gcfg, "archives"))))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tarsnap-${name}`), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 description: nix.thunk(() => nix.str`Tarsnap archive '${name}'`),
                 requires: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
@@ -272,7 +272,7 @@ chmod 0700 ${cachedir}
 ` : nix.str`exec ${run}`);
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   Type: "oneshot",
                   IOSchedulingClass: "idle",
                   NoNewPrivileges: "true",
@@ -280,7 +280,7 @@ chmod 0700 ${cachedir}
                   PermissionsStartOnly: "true",
                 })),
               }))), nix.thunk(() => nix.sel(gcfg, "archives"))), nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tarsnap-restore-${name}`), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: nix.thunk(() => nix.str`Tarsnap restore '${name}'`),
                 requires: nix.thunk(() => ["network-online.target"]),
                 path: nix.thunk(() => (() => {
@@ -313,7 +313,7 @@ chmod 0700 ${cachedir}
 ` : nix.str`exec ${run}`);
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   Type: "oneshot",
                   IOSchedulingClass: "idle",
                   NoNewPrivileges: "true",
@@ -322,9 +322,9 @@ chmod 0700 ${cachedir}
                 })),
               }))), nix.thunk(() => nix.sel(gcfg, "archives"))))),
           timers: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tarsnap-${name}`), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "period")),
                   Persistent: "true",
                 })),
@@ -332,8 +332,8 @@ chmod 0700 ${cachedir}
               }))), nix.thunk(() => nix.sel(gcfg, "archives")))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
-          etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tarsnap/${name}.conf`), nix.thunk(() => ({ __proto__: pos$35, text: nix.thunk(() => nix.app(configFile, name, cfg)) }))), nix.thunk(() => nix.sel(gcfg, "archives")))),
+          [nix.POS]: pos$36,
+          etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tarsnap/${name}.conf`), nix.thunk(() => ({ [nix.POS]: pos$35, text: nix.thunk(() => nix.app(configFile, name, cfg)) }))), nix.thunk(() => nix.sel(gcfg, "archives")))),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(gcfg, "package"))]),
         })),
       })))),

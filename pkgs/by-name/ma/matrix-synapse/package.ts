@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.argOr($, "plugins", () => []);
   const extraPackages = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (extra) => nix.sel(matrix_synapse_unwrapped, "optional-dependencies", nix.key(nix.force(extra))), nix.thunk(() => nix.app(nix.sel(lib, "unique"), extras))));
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(matrix_synapse_unwrapped, "python", "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraLibs: nix.thunk(() => nix.concat(extraPackages, plugins)),
     }))));
   const searchPath = nix.thunk(() => nix.str`${pythonEnv}/${nix.sel(matrix_synapse_unwrapped, "python", "sitePackages")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "appendToName"), "wrapped", matrix_synapse_unwrapped), "pname")),
       version: nix.thunk(() => nix.attr(matrix_synapse_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 done;
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         unwrapped: matrix_synapse_unwrapped,
         plugins: nix.thunk(() => nix.attr(matrix_synapse_unwrapped, "plugins")),
         tests: nix.thunk(() => nix.attr(matrix_synapse_unwrapped, "tests")),

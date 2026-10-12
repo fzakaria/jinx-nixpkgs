@@ -28,31 +28,31 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "displayManager", "startx"));
   const sessionScript = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (i) => nix.sel(i, "start"), nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "session"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             startx: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Whether to enable the dummy \"startx\" pseudo-display manager, which\nallows users to start X manually via the `startx` command from a\nvirtual terminal.\n\n::: {.note}\nThe X server will run under the current user, not as root.\n:::\n",
                 })))),
               generateScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Whether to generate the system-wide xinitrc script (/etc/X11/xinit/xinitrc).\nThis script will take care of setting up the session for systemd user\nservices, running the window manager and cleaning up on exit.\n\n::: {.note}\nThis script will only be used by `startx` when both `.xinitrc` does not\nexists and the `XINITRC` environment variable is unset.\n:::\n",
                 })))),
               extraCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                   default: "",
                   description: "Shell commands to be added to the system-wide xinitrc script.\n",
@@ -63,27 +63,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           xserver: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             exportConfiguration: true,
             logFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), null)),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "X11/xinit/xserverrc": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "xserverrc", nix.thunk(() => nix.str`exec ${nix.sel(pkgs, "xorg-server")}/bin/X \\
   ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "xserver", "displayManager", "xserverArgs")))} "$@"
 `))),
             })),
             "X11/xinit/xinitrc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "generateScript")), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "xinitrc", nix.thunk(() => nix.str`${nix.sel(cfg, "extraCommands")}
 
 # start user services

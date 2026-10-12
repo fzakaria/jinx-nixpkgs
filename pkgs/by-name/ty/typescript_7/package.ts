@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const buildGoModule = buildGo126Module;
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "typescript",
       version: "7.0.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "typescript",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-q6dMb2ab4uZ3GTrcA7v2JzfmOM+ZzBcJN6gKOpLfM/k=",
       tags: nix.thunk(() => ["noembed"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/tsgo"]),
       postInstall: nix.thunk(() => nix.str`lib_dir="$out/lib/${nix.sel(finalAttrs, "pname")}"
 mkdir -p "$lib_dir"
@@ -54,14 +54,14 @@ ln -s "$lib_dir/tsc" "$out/bin/tsc"
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex=^v(7\\.[\\d.]+)$", "--src-only"]),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: "typescript-go-version-updater",
                   runtimeInputs: nix.thunk(() => [nix$, gnugrep, gnused]),
                   text: nix.thunk(() => nix.str`new_src="$(nix-build --attr 'pkgs.typescript_7.src' --no-out-link)"
@@ -69,11 +69,11 @@ new_go_major_minor="$(grep --only-matching --perl-regexp '^go \\K([0-9]+\\.[0-9]
 sed -i -E "s/buildGo[0-9]+Module/buildGo\${new_go_major_minor//./}Module/g" '${nix.builtins.toString(nix.path(here, "./package.nix"))}'
 `),
                 })))))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Superset of JavaScript that compiles to clean JavaScript output",
         homepage: "https://www.typescriptlang.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/TypeScript/releases/tag/v${nix.sel(finalAttrs, "version")}`),

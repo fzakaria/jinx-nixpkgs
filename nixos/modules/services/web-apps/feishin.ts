@@ -36,57 +36,57 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "feishin"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         feishin: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the web version of Feishin")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "feishin-web", nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Domain to use for the virtualhost.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           pathbase: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "URL path base to use for the virtualhost.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "/music",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Configuration for the web version of Feishin, specified as key-value pairs.\n\nRefer to <https://github.com/jeffvli/feishin#configuration>, and\n<https://github.com/jeffvli/feishin/blob/development/settings.js.template>\nfor the template.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
-              default: nix.thunk(() => ({ __proto__: pos$3, ANALYTICS_DISABLED: "true" })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$3, ANALYTICS_DISABLED: "true" })),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ANALYTICS_DISABLED: "true",
                 SERVER_NAME: "My Server",
                 SERVER_LOCK: "true",
               })),
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a virtualhost to serve Feishin through nginx")),
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Extra configuration for the nginx virtualhost for Feishin.",
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$6, config: config, lib: lib })))))),
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, config: config, lib: lib })))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [ \"feishin.${config.networking.domain}\" ];\n}\n")),
               })))),
           })),
           caddy: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a virtualhost to serve Feishin through Caddy")),
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Extra configuration for the Caddy virtualhost for Feishin.",
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/caddy/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$9, cfg: nix.thunk(() => nix.sel(config, "services", "caddy")) })))))),
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/caddy/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$9, cfg: nix.thunk(() => nix.sel(config, "services", "caddy")) })))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [ \"feishin.${config.networking.domain}\" ];\n}\n")),
               })))),
@@ -95,29 +95,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => (() => {
-      const resolvedSettings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pathbase"), "")), nix.thunk(() => ({ __proto__: pos$15, PUBLIC_PATH: nix.thunk(() => nix.sel(cfg, "pathbase")) })))));
+      const resolvedSettings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pathbase"), "")), nix.thunk(() => ({ [nix.POS]: pos$15, PUBLIC_PATH: nix.thunk(() => nix.sel(cfg, "pathbase")) })))));
       const settingsJs = nix.thunk(() => nix.str`"use strict";
 ${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (value) => nix.str`window.${name} = "${value}";`, resolvedSettings)}
 `);
       const settingsJsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "settings.js", settingsJs));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "nginx", "virtualHost")),
                       nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}`))),
                         extraConfig: "gzip on;\ngzip_vary    on;\ngzip_proxied any;\ngzip_types   text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;\n",
                         locations: nix.thunk(() => nix.attrsDyn({}, [
-                          [nix.str`${nix.sel(cfg, "pathbase")}/`, nix.thunk(() => ({ __proto__: pos$16, tryFiles: "$uri $uri/ /index.html =404" }))],
+                          [nix.str`${nix.sel(cfg, "pathbase")}/`, nix.thunk(() => ({ [nix.POS]: pos$16, tryFiles: "$uri $uri/ /index.html =404" }))],
                           [nix.str`=${nix.sel(cfg, "pathbase")}/settings.js`, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             alias: nix.thunk(() => nix.add(settingsJsDir, "/settings.js")),
                             extraConfig: "add_header Cache-Control \"no-store\";\n",
                           }))],
@@ -127,13 +127,13 @@ ${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (value) => ni
                 ])),
               })))),
             caddy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "caddy", "enable")), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "caddy", "virtualHost")),
                       nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(cfg, "domain")))),
                         extraConfig: nix.thunk(() => (() => {
                           const baseConfig = nix.thunk(() => nix.str`encode
@@ -161,7 +161,7 @@ handle {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

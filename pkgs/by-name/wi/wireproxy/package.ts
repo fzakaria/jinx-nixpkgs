@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const wireproxy = nix.arg($, "wireproxy");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wireproxy",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "windtf",
           repo: "wireproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-3X/0JHT0f6C7nlhD6Bh0hxyDcPZ3xqf6+wxa5VygXgo=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: wireproxy,
               command: "wireproxy --version",
               version: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wireguard client that exposes itself as a socks5 proxy",
         homepage: "https://github.com/windtf/wireproxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

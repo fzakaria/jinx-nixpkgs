@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kotonoha",
       version: "0.2.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "locez",
           repo: "kotonoha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ desktop-file-validate "$out/share/applications/kotonoha.desktop"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux desktop lyrics overlay for MPRIS players",
         homepage: "https://github.com/locez/kotonoha",
         changelog: nix.thunk(() => nix.str`https://github.com/locez/kotonoha/releases/tag/v${nix.sel(finalAttrs, "version")}`),

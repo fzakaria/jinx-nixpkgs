@@ -32,52 +32,52 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "ipv6",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       client_defaults: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         networking: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
         })),
       })),
       client_global_setting: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         networking: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
           tempAddresses: "enabled",
         })),
       })),
       client_interface_setting: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           tempAddresses: "disabled",
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-              __proto__: pos$7,
-              eth1: nix.thunk(() => ({ __proto__: pos$6, tempAddress: "enabled" })),
+              [nix.POS]: pos$7,
+              eth1: nix.thunk(() => ({ [nix.POS]: pos$6, tempAddress: "enabled" })),
             })))),
         })),
       })),
       server: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
-          httpd: nix.thunk(() => ({ __proto__: pos$10, enable: true, adminAddr: "foo@example.org" })),
+          [nix.POS]: pos$11,
+          httpd: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, adminAddr: "foo@example.org" })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
-          firewall: nix.thunk(() => ({ __proto__: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: pos$16,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             eth1: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               ipv6: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             radvd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               config: "interface eth1 {\n  AdvSendAdvert on;\n  # ULA prefix (RFC 4193).\n  prefix fd60:cc69:b537:1::/64 { };\n};\n",
             })),

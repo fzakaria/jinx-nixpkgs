@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const libnma = nix.arg($, "libnma");
   const libnma_gtk4 = nix.arg($, "libnma-gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "NetworkManager-openvpn",
       version: "1.12.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/NetworkManager-openvpn/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/NetworkManager-openvpn-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "zjLjiwUA7d8vyAcsoXZ5gX/C0165H2/3uZBCCcFLWv0=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, kmod: kmod, openvpn: openvpn })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, kmod: kmod, openvpn: openvpn })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [gettext, glib, pkg_config, file, libxml2]),
       buildInputs: nix.thunk(() => nix.concat([openvpn, networkmanager], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk3, gtk4, libsecret, libnma, libnma_gtk4])))),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             packageName: "NetworkManager-openvpn",
             attrPath: "networkmanager-openvpn",
             versionPolicy: "odd-unstable",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "NetworkManager's OpenVPN plugin",
         homepage: "https://gitlab.gnome.org/GNOME/NetworkManager-openvpn",
         changelog: "https://gitlab.gnome.org/GNOME/NetworkManager-openvpn/-/blob/main/NEWS",

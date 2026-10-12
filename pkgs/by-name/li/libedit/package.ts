@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libedit",
       version: "20260508-3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://thrysoee.dk/editline/libedit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kfQtZXHdjZL67dE0ETTOWrygxdC0s1KBQYbTPysRJy4=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ncurses]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isMusl")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))), "-D__STDC_ISO_10646__=201103L")),
       })),
       postFixup: nix.thunk(() => nix.str`find $out/lib -type f | \\
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.thrysoee.dk/editline/",
         changelog: "https://www.thrysoee.dk/editline/#changelog",
         description: "Port of the NetBSD Editline library (libedit)",

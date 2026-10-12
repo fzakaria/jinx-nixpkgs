@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fclones-gui",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pkolaczk",
           repo: "fclones-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdk_pixbuf, gtk4, libadwaita]),
       postInstall: "substituteInPlace snap/gui/fclones-gui.desktop \\\n  --replace-fail 'Icon=${SNAP}/meta/gui/fclones-gui.png' \"Icon=fclones-gui\"\ninstall -Dm 0644 snap/gui/fclones-gui.desktop -t $out/share/applications\ninstall -Dm 0644 snap/gui/fclones-gui.png -t $out/share/icons/hicolor/256x256/apps\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive duplicate file remover",
         mainProgram: "fclones-gui",
         homepage: "https://github.com/pkolaczk/fclones-gui",

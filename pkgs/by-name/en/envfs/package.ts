@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "envfs",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mic92",
           repo: "envfs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-dz3gpE464jnmSDsAsmJHcxUsEKeUURNoUjgGU2214Xg=",
       postInstall: "ln -s envfs $out/bin/mount.envfs\nln -s envfs $out/bin/mount.fuse.envfs\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           envfs: nix.thunk(() => nix.attr(nixosTests, "envfs")),
           "envfs-systemd-stage-1": nix.thunk(() => nix.attr(nixosTests, "envfs-systemd-stage-1")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fuse filesystem that returns symlinks to executables based on the PATH of the requesting process",
         homepage: "https://github.com/Mic92/envfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

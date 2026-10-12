@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const lessc = nix.arg($, "lessc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "lessc",
       version: "4.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "less",
           repo: "less.js",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kRhXqmClUyz+W42qXaeBZ2rJXyjZbYl+sxqLGOg5I3Q=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,23 +57,23 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm --filter \"less\" run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/lessc}\ncp -r {packages,node_modules} $out/lib/lessc\nchmod +x $out/lib/lessc/packages/less/bin/lessc\nln -s $out/lib/lessc/packages/less/bin/lessc $out/bin/lessc\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({})))),
         wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper"), nix.thunk(() => ({})))),
         withPlugins: (fn) => nix.app(nix.sel(lessc, "wrapper", "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             plugins: nix.thunk(() => nix.app(fn, nix.thunk(() => nix.sel(lessc, "plugins")))),
           }))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: lessc })))),
+          [nix.POS]: pos$7,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: lessc })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               assertion: "lessc compiles a basic less file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "body h1 {\n  color: red;\n}\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   nativeBuildInputs: nix.thunk(() => [lessc]),
                   base: nix.thunk(() => nix.app(writeText, "base", "@color: red;\nbody {\n  h1 {\n    color: @color;\n  }\n}\n")),
                 })), "lessc $base > $out\n")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://github.com/less/less.js",
         changelog: nix.thunk(() => nix.str`https://github.com/less/less.js/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Dynamic stylesheet language",

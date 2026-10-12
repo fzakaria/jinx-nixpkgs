@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const python_redis_lock = nix.arg($, "python-redis-lock");
   const umap_learn = nix.arg($, "umap-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pretalx-llm",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "why2025-datenzone",
           repo: "pretalx-llm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pretalx_llm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LLM support for Pretalx",
         homepage: "https://github.com/why2025-datenzone/pretalx-llm",
         changelog: nix.thunk(() => nix.str`https://github.com/why2025-datenzone/pretalx-llm/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

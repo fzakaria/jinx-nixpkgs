@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildPerlPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "IO-Compress-Brotli",
       version: "0.019",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://cpan/authors/id/T/TI/TIMLEGGE/IO-Compress-Brotli-0.019.tar.gz",
           hash: "sha256-N/QN187kSs6iby92Onc+YdTsIjMF3e7KRhJEPL8oj78=",
         })))),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), brotli)}/include`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Write Brotli buffers/streams",
         homepage: "https://github.com/timlegge/perl-IO-Compress-Brotli",
         changelog: "https://github.com/timlegge/perl-IO-Compress-Brotli/blob/main/Changes",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tunctl",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tunctl/tunctl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "aa2a6c4cc6bfacb11e0d9f62334a6638a0d435475c61230116f00b6af8b14fff",
         })))),
       makeFlags: nix.thunk(() => ["tunctl"]),
       installPhase: "mkdir -p $out/bin\ncp tunctl $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tunctl.sourceforge.net/",
         description: "Utility to set up and maintain TUN/TAP network interfaces",
         mainProgram: "tunctl",

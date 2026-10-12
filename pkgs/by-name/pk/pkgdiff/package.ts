@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const wdiff = nix.arg($, "wdiff");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.8",
       pname: "pkgdiff",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lvc",
           repo: "pkgdiff",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/pkgdiff --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wdiff]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for visualizing changes in Linux software packages",
         homepage: "https://lvc.github.io/pkgdiff/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

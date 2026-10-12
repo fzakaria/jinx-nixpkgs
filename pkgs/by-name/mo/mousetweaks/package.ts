@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mousetweaks";
       const version = "3.32.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/mousetweaks/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/mousetweaks-${version}.tar.xz`),
           sha256: "005fhmvb45sa9mq17dpa23n1xnspiissx5rnpiy7hiqmy3g5rg8f",
         }))));
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         libxcursor,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Provides mouse accessibility enhancements for the GNOME desktop",
         longDescription: "Mousetweaks provides mouse accessibility enhancements for the GNOME\ndesktop. These enhancements are:\n\n- It offers a way to perform the various clicks without using any\nphysical mouse buttons. (Hover Click)\n\n- It allows users to perform a secondary click by keeping the primary\nmouse button pressed for a predetermined amount of time. (Simulated\nSecondary Click)\n\nThe features can be activated and configured through the Universal Access\npanel of the GNOME Control Center.\n",
         homepage: "https://gitlab.gnome.org/Archive/mousetweaks",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mousetweaks",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "writedisk",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "writedisk",
           hash: "sha256-Weu2rUZYvKMQIwxDQsCW30NAjb6Dar2926r/tyREDoo=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-W1IuK6/gkvfaHsivgfF0J+SisX8nPKLR7qFZ2Ia+LEc=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small utility for writing a disk image to a USB drive",
         homepage: "https://github.com/nicholasbishop/writedisk",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

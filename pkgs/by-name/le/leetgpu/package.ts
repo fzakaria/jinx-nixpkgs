@@ -21,26 +21,26 @@ export default nix.lambda((args) => (() => {
   const version = "1.2.0";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://cli.leetgpu.com/dist/${version}/leetgpu-linux-amd64`),
         hash: "sha256-um+KHqE1mmx7dkKm3pecrZSnsT+vbMh95kWQAsLGxFw=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://cli.leetgpu.com/dist/${version}/leetgpu-linux-arm64`),
         hash: "sha256-3BcM0SHBugv/72iznR0q6t18B+u1f2auyUK1n1t5KBY=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://cli.leetgpu.com/dist/${version}/leetgpu-macos-arm64`),
         hash: "sha256-B1Sdyw+6fDBKS3PsINmiNA9PnOtEpDZiodFPsx+qk1Y=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.force(throwSystem), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "leetgpu",
       version: version,
       strictDeps: true,
@@ -58,9 +58,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Run CUDA kernels from your terminal",
         homepage: "https://leetgpu.com/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

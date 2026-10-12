@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "teamspeak-server";
       const version = "3.13.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.teamspeak-services.com/releases/server/${version}/teamspeak3-server_linux_${arch}-${version}.tar.bz2`),
           sha256: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "sha256-d1pXMamAmAHkyPkGbNm8ViobNoVTE5wSSfKgdA1QBB4=" : "sha256-aMEDOnvBeKfzG8lDFhU8I5DYgG53IsCDBMV2MUyJi2g=")),
         }))));
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
       const installPhase = "runHook preInstall\n\n# Install files.\nmkdir -p $out/lib/teamspeak\nmv * $out/lib/teamspeak/\n\n# Make symlinks to the binaries from bin.\nmkdir -p $out/bin/\nln -s $out/lib/teamspeak/ts3server $out/bin/ts3server\nln -s $out/lib/teamspeak/tsdns/tsdnsserver $out/bin/tsdnsserver\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-teampeak-server", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl gnugrep gnused jq pup\n\nset -eu -o pipefail\n\nversion=$( \\\n  curl https://www.teamspeak.com/en/downloads/ \\\n    | pup \"#server .linux .version json{}\" \\\n    | jq -r \".[0].text\"\n)\n\nversionOld=$(nix-instantiate --eval --strict -A \"teamspeak_server.version\")\n\nnixFile=pkgs/applications/networking/instant-messengers/teamspeak/server.nix\n\nupdate-source-version teamspeak_server \"$version\" --system=i686-linux\n\nsed -i -e \"s/version = \\\"$version\\\";/version = $versionOld;/\" \"$nixFile\"\n\nupdate-source-version teamspeak_server \"$version\" --system=x86_64-linux\n")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TeamSpeak voice communication server",
         homepage: "https://teamspeak.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

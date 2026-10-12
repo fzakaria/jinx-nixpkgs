@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-auto-layout",
       version: "0.2-unstable-2022-03-29",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chmln",
           repo: "i3-auto-layout",
           rev: "9e41eb3891991c35b7d35c9558e788899519a983",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-oKpcYhD9QNW+8gFVybDEnz58cZ+2Bf4bwYuflXiJ1jc=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic, optimal tiling for i3wm",
         mainProgram: "i3-auto-layout",
         homepage: "https://github.com/chmln/i3-auto-layout",

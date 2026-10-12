@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyflyby";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deshaw",
           repo: "pyflyby",
           tag: version_1,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["pyflyby"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of productivity tools for Python",
         homepage: "https://github.com/deshaw/pyflyby",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "py",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version_1,
         pname,
         pyproject,

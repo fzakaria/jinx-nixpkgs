@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGraalvmNativeImage = nix.arg($, "buildGraalvmNativeImage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yamlscript",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yaml/yamlscript/releases/download/${nix.sel(finalAttrs, "version")}/yamlscript.cli-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           hash: "sha256-8eEj7nZW0XNc2exbz/XPXtQfqqypfEpTZw6NhLev3qU=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/ys -e 'say: (+ 1 2)' | fgrep 3\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming in YAML",
         homepage: "https://github.com/yaml/yamlscript",
         sourceProvenance: nix.thunk(() => (() => {

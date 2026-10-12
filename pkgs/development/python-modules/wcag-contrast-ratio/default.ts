@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const hypothesis = nix.arg($, "hypothesis");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wcag-contrast-ratio",
       version: "0.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aRkrjlwKfQ3F/xGH7rPjmBQWM6S95RxpyH9Y/oftNhw=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test.py"]),
       pythonImportsCheck: nix.thunk(() => ["wcag_contrast_ratio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for computing contrast ratios, as required by WCAG 2.0",
         homepage: "https://github.com/gsnedders/wcag-contrast-ratio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const plasma_activities = nix.arg($, "plasma-activities");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "krunner",
       extraBuildInputs: nix.thunk(() => [plasma_activities]),
     })));

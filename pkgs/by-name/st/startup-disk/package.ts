@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "startup-disk",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davide125",
           repo: "startup-disk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 res/org.startup_disk.StartupDisk.desktop -t $out/share/applications/\ninstall -Dm644 res/org.startup_disk.StartupDisk.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm644 res/org.startup_disk.StartupDisk.metainfo.xml -t $out/share/metainfo/\ninstall -Dm644 res/org.startup_disk.StartupDisk.policy -t $out/share/polkit-1/actions/\n",
       postFixup: "substituteInPlace $out/share/polkit-1/actions/org.startup_disk.StartupDisk.policy \\\n  --replace-fail /usr/bin/startup-disk /run/current-system/sw/bin/startup-disk\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interface to choose the startup volume on Apple Silicon systems",
         homepage: "https://gitlab.gnome.org/davide125/startup-disk",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/davide125/startup-disk/-/tags/${nix.sel(finalAttrs, "version")}`),

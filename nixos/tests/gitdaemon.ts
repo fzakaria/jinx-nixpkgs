@@ -24,43 +24,43 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const hashes = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hashes", "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c  /project/bar\n"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "gitdaemon",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "tilpner"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             firewall: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "gitDaemon", "port"))]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "git"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               rules: nix.thunk(() => [" d    /git 0755 git  git   -   -"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            gitDaemon: nix.thunk(() => ({ __proto__: pos$7, enable: true, basePath: "/git" })),
+            [nix.POS]: pos$8,
+            gitDaemon: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, basePath: "/git" })),
           })),
         };
       })(), formals$2),
@@ -68,9 +68,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
           })),
         };

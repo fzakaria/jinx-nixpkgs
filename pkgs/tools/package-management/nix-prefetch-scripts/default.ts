@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const pijul = nix.arg($, "pijul");
   const subversion = nix.arg($, "subversion");
   const mkPrefetchScript = (tool) => (src) => (deps) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       pname: nix.thunk(() => nix.str`nix-prefetch-${tool}`),
       strictDeps: true,
@@ -48,7 +48,7 @@ wrapProgram $out/bin/$pname \\
       preferLocalBuild: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`Script used to obtain source hashes for fetch${tool}`),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -68,7 +68,7 @@ wrapProgram $out/bin/$pname \\
     const nix_prefetch_svn = nix.thunk(() => nix.app(mkPrefetchScript, "svn", nix.path(here, "../../../build-support/fetchsvn/nix-prefetch-svn"), nix.thunk(() => [gnugrep, gnused, subversion])));
     const nix_prefetch_pijul = nix.thunk(() => nix.app(mkPrefetchScript, "pijul", nix.path(here, "../../../build-support/fetchpijul/nix-prefetch-pijul"), nix.thunk(() => [gawk, pijul, cacert, jq])));
     const nix_prefetch_scripts = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "nix-prefetch-scripts",
         paths: nix.thunk(() => [
           nix_prefetch_bzr,
@@ -81,7 +81,7 @@ wrapProgram $out/bin/$pname \\
           nix_prefetch_pijul,
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Collection of all the nix-prefetch-* scripts which may be used to obtain source hashes",
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -91,7 +91,7 @@ wrapProgram $out/bin/$pname \\
         })),
       }))));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "nix-prefetch-bzr": nix_prefetch_bzr,
       "nix-prefetch-cvs": nix_prefetch_cvs,
       "nix-prefetch-darcs": nix_prefetch_darcs,

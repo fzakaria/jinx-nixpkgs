@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Varbin",
           repo: "ausweiskopie",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Meine Ausweiskopie",
             exec: "ausweiskopie",
             icon: "ausweiskopie",
@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
           ]))));
       })());
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         modern: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "ttkbootstrap"))]),
       }));
       const postInstall = "install -Dm644 ./src/ausweiskopie/resources/icon_colored.png $out/share/icons/hicolor/256x256/apps/ausweiskopie.png\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Create privacy friendly and legal copies of your Ausweisdokument",
         homepage: "https://github.com/Varbin/ausweiskopie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ausweiskopie",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

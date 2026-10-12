@@ -37,29 +37,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "paretosecurity"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         paretosecurity: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "[ParetoSecurity](https://paretosecurity.com) [agent](https://github.com/ParetoSecurity/agent) and its root helper")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "paretosecurity", nix.thunk(() => ({})))),
           trayIcon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Set to false to disable the tray icon and run as a CLI tool only.",
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     options: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       inviteId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "A unique ID that links the agent to Pareto Cloud.\nGet it from the Join Team page on `https://cloud.paretosecurity.com/team/join/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.\nIn Step 2, under Linux tab, enter your email then copy it from the generated command.\n",
                           example: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -73,36 +73,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$11,
-            paretosecurity: nix.thunk(() => ({ __proto__: pos$10, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$11,
+            paretosecurity: nix.thunk(() => ({ [nix.POS]: pos$10, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
           services: nix.thunk(() => nix.update({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             paretosecurity: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Environment: nix.thunk(() => [
                   nix.thunk(() => nix.str`PATH=${nix.sel(config, "system", "path")}/bin:${nix.sel(config, "system", "path")}/sbin`),
                 ]),
               })),
             })),
           }, nix.app(nix.sel(lib, "mapAttrs'"), (username) => (userConfig) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`paretosecurity-link-${username}`), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: nix.thunk(() => nix.str`Link Pareto Desktop to Pareto Cloud for user ${username}`),
                 after: nix.thunk(() => ["network-online.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   User: username,
@@ -140,15 +140,15 @@ fi
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
               }))), nix.thunk(() => nix.sel(cfg, "users"))))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "trayIcon")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$20,
-                "paretosecurity-trayicon": nix.thunk(() => ({ __proto__: pos$17, wantedBy: nix.thunk(() => ["graphical-session.target"]) })),
+                [nix.POS]: pos$20,
+                "paretosecurity-trayicon": nix.thunk(() => ({ [nix.POS]: pos$17, wantedBy: nix.thunk(() => ["graphical-session.target"]) })),
                 "paretosecurity-user": nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   wantedBy: nix.thunk(() => ["graphical-session.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     Environment: nix.thunk(() => [
                       nix.thunk(() => nix.str`PATH=${nix.sel(config, "system", "path")}/bin:${nix.sel(config, "system", "path")}/sbin`),
                     ]),
@@ -156,8 +156,8 @@ fi
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$22,
-                "paretosecurity-user": nix.thunk(() => ({ __proto__: pos$21, wantedBy: nix.thunk(() => ["timers.target"]) })),
+                [nix.POS]: pos$22,
+                "paretosecurity-user": nix.thunk(() => ({ [nix.POS]: pos$21, wantedBy: nix.thunk(() => ["timers.target"]) })),
               })),
             })))),
         })),

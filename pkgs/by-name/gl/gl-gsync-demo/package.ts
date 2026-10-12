@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11", "settings"));
   const libXNVCtrl = nix.thunk(() => nix.attr(from, "libXNVCtrl"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gl-gsync-demo",
       version: "1.0-unstable-2020-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dahenry",
           repo: "gl-gsync-demo",
           rev: "4fd963a8ad880dc2d846394c8c80b2091a119591",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libglut, glew, libXNVCtrl, libxext]),
       installPhase: "runHook preInstall\n\ninstall -D gl-gsync-demo -t $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {

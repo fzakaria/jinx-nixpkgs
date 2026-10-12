@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const esptool = nix.arg($, "esptool");
   const esphome = nix.arg($, "esphome");
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "ESPHome Device Builder Dashboard",
     homepage: "https://esphome.io/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
     mainProgram: "esphome-device-builder",
   }));
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       esphome: nix.thunk(() => nix.app(nix.sel(self, "toPythonModule"), esphome)),
-      "esphome-device-builder-frontend": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./frontend.nix"), nix.thunk(() => ({ __proto__: pos$2, meta: meta })))),
+      "esphome-device-builder-frontend": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, meta: meta })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "esphome-device-builder",
       version: "1.14.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "esphome",
           repo: "device-builder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -127,12 +127,12 @@ substituteInPlace tests/helpers/test_orphan_reaper.py \\
         "test_start_logs_ping_count_at_debug",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         frontend: nix.thunk(() => nix.sel(pythonPackages, "esphome-device-builder-frontend")),
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/device-builder/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
       })),
     }));

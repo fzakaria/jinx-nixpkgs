@@ -57,32 +57,32 @@ openssl x509 -req -days 365 -sha256 -in client-2.csr -CA ca-2.pem -CAkey ca-2-ke
 
 `)));
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "podman-tls-ghostunnel",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "podman", "members"), [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))])),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         podman: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               podman: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
-                dockerSocket: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+                dockerSocket: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
                 networkSocket: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   enable: true,
                   openFirewall: true,
                   server: "ghostunnel",
                   tls: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     cert: "/root/podman-cert.pem",
                     key: "/root/podman-key.pem",
                     cacert: "/root/ca.pem",
@@ -91,15 +91,15 @@ openssl x509 -req -days 365 -sha256 -in client-2.csr -CA ca-2.pem -CAkey ca-2-ke
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "docker-client"))]),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               users: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 alice: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   isNormalUser: true,
                   home: "/home/alice",
                   description: "Alice Foobar",
@@ -112,11 +112,11 @@ openssl x509 -req -days 365 -sha256 -in client-2.csr -CA ca-2.pem -CAkey ca-2-ke
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "docker-client"))]),
-              variables: nix.thunk(() => ({ __proto__: pos$12, DOCKER_HOST: "podman:2376", DOCKER_TLS_VERIFY: "1" })),
+              variables: nix.thunk(() => ({ [nix.POS]: pos$12, DOCKER_HOST: "podman:2376", DOCKER_TLS_VERIFY: "1" })),
             })),
           };
         })(), formals$3),

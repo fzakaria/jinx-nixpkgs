@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnatcoll-core";
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdaCore",
           repo: "gnatcoll-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gnatcoll-core-gnat-16.patch",
             url: "https://github.com/AdaCore/gnatcoll-core/commit/b266466e0a05b30615ec43d72782c345470455b9.patch?full_index=1",
             hash: "sha256-rG0D1y2dbXA2M2Arnto+f7iAhg3yCfTPDbDRN+pMJKQ=",
@@ -57,15 +57,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`GNATCOLL_PROJECTS=${nix.app(nix.sel(lib, "boolToYesNo"), enableGnatcollProjects)}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          minimalOnly: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ __proto__: pos$3, enableGnatcollProjects: false, enableGnatcollCore: false })))),
-          noProjects: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ __proto__: pos$4, enableGnatcollProjects: false, enableGnatcollCore: true })))),
+          [nix.POS]: pos$5,
+          minimalOnly: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableGnatcollProjects: false, enableGnatcollCore: false })))),
+          noProjects: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableGnatcollProjects: false, enableGnatcollCore: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/AdaCore/gnatcoll-core",
         description: "GNAT Components Collection - Core packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

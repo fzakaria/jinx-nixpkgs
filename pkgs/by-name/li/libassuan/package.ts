@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libassuan",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/libassuan/libassuan-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-0pMc2tJm5jNRD5lw4aLzRgVeNRuxn5t4kSR1uAdMNvY=",
         })))),
@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`sed -i 's,#include <gpg-error.h>,#include "${nix.sel(libgpg_error, "dev")}/include/gpg-error.h",g' $dev/include/assuan.h
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://dev.gnupg.org/source/libassuan.git",
             "rev-prefix": "libassuan-",
             ignoredVersions: ".*-base",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "IPC library used by GnuPG and related software",
         mainProgram: "libassuan-config",
         longDescription: "Libassuan is a small library implementing the so-called Assuan\nprotocol.  This protocol is used for IPC between most newer\nGnuPG components.  Both, server and client side functions are\nprovided.\n",

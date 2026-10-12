@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const wrapFirefox = nix.arg($, "wrapFirefox");
   const gpgme = nix.arg($, "gpgme");
   const gnupg = nix.arg($, "gnupg");
-  return (browser) => (args_1) => nix.app(nix.sel(nix.app(wrapFirefox, browser, nix.thunk(() => nix.update({ __proto__: pos$1, libName: "thunderbird" }, args_1))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+  return (browser) => (args_1) => nix.app(nix.sel(nix.app(wrapFirefox, browser, nix.thunk(() => nix.update({ [nix.POS]: pos$1, libName: "thunderbird" }, args_1))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$2,
       buildCommand: nix.thunk(() => nix.add(nix.sel(old, "buildCommand"), nix.str`wrapProgram "$executablePath" \\
   --prefix LD_LIBRARY_PATH ':' "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [gpgme]))}" \\
   --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))}"

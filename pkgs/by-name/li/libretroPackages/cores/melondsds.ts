@@ -40,44 +40,44 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const melonDS_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "JesseTG",
       repo: "melonDS",
       rev: "7117178c2dd56df32b6534ba6a54ad1f8547e693",
       hash: "sha256-6bwagPFIv87WtmQ3cl8cDZ/1A8Ab6itLHAr33CJy/Eo=",
     }))));
   const libretro_common_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "JesseTG",
       repo: "libretro-common",
       rev: "ad9124f1ecc5d0092fd285cbf9c4ffac317b1a65",
       hash: "sha256-YdKpiAZo3ZeJocskowEWnnmqGU1tSW7jxyxcsRNBsUM=",
     }))));
   const embed_binaries_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "andoalon",
       repo: "embed-binaries",
       rev: "078b62beba97e8192c99bfb16d5e17220cfc7598",
       hash: "sha256-EkK+ZCbrZ2Y9wJ864OIwRWDfHcmxzKMco0QAkLOQOwY=",
     }))));
   const pntr_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "robloach",
       repo: "pntr",
       rev: "922aed03c4c53803466100596211da7549945da7",
       hash: "sha256-xlr5US4QttUDepp5kIbOALLMQM1fYQtn5mnwzDZq3HQ=",
     }))));
   const yamc_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "yohhoy",
       repo: "yamc",
       rev: "4e015a7e8eb0d61c34e6928676c8c78881a72d73",
       hash: "sha256-J5wAqF5yQ5KYArJJyKzaqscWsXq+KAPKXybYfVgasXs=",
     }))));
   const zlib_src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "madler",
           repo: "zlib",
           rev: "925af44f3cde53c6b076611c297850091b5dc7bb",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       const core = "melondsds";
       const version = "0-unstable-2026-08-22";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "JesseTG",
           repo: "melonds-ds",
           rev: "bc4e4b67d2d470d7c682810a1e892cafd6f9082b",
@@ -121,13 +121,13 @@ substituteInPlace src/libretro/CMakeLists.txt \\
       ]);
       const postBuild = "cd src/libretro";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         updateScript: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: "update-libretro-melondsds",
                 runtimeInputs: nix.thunk(() => [coreutils, gnugrep, gnused, jq, nix$, nix_prefetch_git]),
-                text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$9, hardcodeZeroVersion: true })))))}
+                text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$9, hardcodeZeroVersion: true })))))}
 
 src=$(nix-build --no-out-link -A "$UPDATE_NIX_ATTR_PATH.src")
 core_file="pkgs/by-name/li/libretroPackages/cores/melondsds.nix"
@@ -187,14 +187,14 @@ grep "^fetch_dependency" "\${src}/cmake/FetchDependencies.cmake" |
         ]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "A remake of the libretro MelonDS core",
         homepage: "https://github.com/JesseTG/melonds-ds",
         changelog: nix.thunk(() => nix.str`https://github.com/JesseTG/melonds-ds/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         core,
         version,
         src,

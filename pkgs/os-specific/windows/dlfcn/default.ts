@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dlfcn";
       const version = "1.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlfcn-win32",
           repo: "dlfcn-win32",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dlfcn-win32/dlfcn-win32",
         description: "Set of functions that allows runtime dynamic library loading",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "marius851000"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

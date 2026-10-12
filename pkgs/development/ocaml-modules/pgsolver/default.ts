@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocaml_sat_solvers = nix.arg($, "ocaml-sat-solvers");
   const tcs_lib = nix.arg($, "tcs-lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgsolver",
       version: "4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tcsprojects",
           repo: "pgsolver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "runHook prePatch\nsed -i '/^ (names /{ p; s/names/public_names/ }' src/apps/pgsolver/dune\nsed -i '/^ (names /{ p; s/names/public_names/ }' src/apps/tools/dune\nrunHook postPatch\n",
       propagatedBuildInputs: nix.thunk(() => [extlib, ocaml_sat_solvers, tcs_lib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools for generating, manipulating and - most of all - solving parity games",
         homepage: "https://github.com/tcsprojects/pgsolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

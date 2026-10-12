@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xurls",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mvdan",
           repo: "xurls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Bks47kusGgVsbNiLq3QxP/dhIp72HGYeMhdifFwY340=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "go-1.26.patch",
             url: "https://github.com/mvdan/xurls/commit/6fcda1fd6decab4a6bc49ced3b36d666cc57b7cf.patch",
             hash: "sha256-5X2mK9Xfjmu1kaZPeut4RE3r4ku6jRDwidtzRpF5Qis=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extract urls from text",
         homepage: "https://github.com/mvdan/xurls",
         mainProgram: "xurls",

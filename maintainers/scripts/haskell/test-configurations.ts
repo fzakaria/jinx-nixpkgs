@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
     "configuration-ghc-9.8.x.nix",
   ]);
   const nixpkgsPath = nix.argOr($, "nixpkgsPath", () => nix.path(here, "../../.."));
-  const config = nix.argOr($, "config", () => ({ __proto__: pos$1, allowBroken: true, allowAliases: false }));
+  const config = nix.argOr($, "config", () => ({ [nix.POS]: pos$1, allowBroken: true, allowAliases: false }));
   const skipEvalErrors = nix.argOr($, "skipEvalErrors", () => true);
   const skipBinaryGHCs = nix.argOr($, "skipBinaryGHCs", () => true);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgsPath), nix.thunk(() => ({ __proto__: pos$2, config: config }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgsPath), nix.thunk(() => ({ [nix.POS]: pos$2, config: config }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const files$ = nix.thunk(() => nix.builtins.map(nix.builtins.baseNameOf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.builtins.isList(files))) ? [files] : nix.force(files)))));
   const packageSetsWithVersionedHead = nix.thunk(() => nix.update(nix.sel(pkgs, "haskell", "packages"), (() => {
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const setsForVersion = nix.thunk(() => nix.builtins.map((name) => nix.sel(packageSetsWithVersionedHead, nix.key(nix.force(name))), nix.thunk(() => nix.builtins.filter((setName) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.str`ghc${configVersion}`), setName)) && nix.asBool((!nix.asBool(skipBinaryGHCs) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "Binary", setName)))))), nix.thunk(() => nix.builtins.attrNames(packageSetsWithVersionedHead))))));
     const defaultSets = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "haskellPackages"))]);
     return nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       common: defaultSets,
       nix: defaultSets,
       arm: defaultSets,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   })();
   const availableHaskellPackages = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((attr) => nix.app(nix.sel(lib, "nameValuePair"), attr, null), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(pkgs, "haskellPackages"))))))));
   const overriddenAttrs = (fileName) => nix.builtins.attrNames(nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nixpkgsPath, nix.str`/pkgs/development/haskell-modules/${fileName}`))), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           haskellLib: nix.thunk(() => nix.sel(pkgs, "haskell", "lib", "compose")),
           pkgs: pkgs,
         })), self, availableHaskellPackages))));

@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const why3 = nix.arg($, "why3");
   return (provers) => (() => {
-    const configAwkScript = nix.thunk(() => nix.app(runCommand, "why3-conf.awk", nix.thunk(() => ({ __proto__: pos$1, provers: provers })), "for p in $provers; do\n  for b in $p/bin/*; do\n    BASENAME=$(basename $b)\n    echo \"/^command =/{ gsub(\\\"$BASENAME\\\", \\\"$b\\\") }\" >> $out\n  done\ndone\necho '{ print }' >> $out\n"));
+    const configAwkScript = nix.thunk(() => nix.app(runCommand, "why3-conf.awk", nix.thunk(() => ({ [nix.POS]: pos$1, provers: provers })), "for p in $provers; do\n  for b in $p/bin/*; do\n    BASENAME=$(basename $b)\n    echo \"/^command =/{ gsub(\\\"$BASENAME\\\", \\\"$b\\\") }\" >> $out\n  done\ndone\necho '{ print }' >> $out\n"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.str`${nix.sel(why3, "pname")}-with-provers`),
         version: nix.thunk(() => nix.sel(why3, "version")),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),

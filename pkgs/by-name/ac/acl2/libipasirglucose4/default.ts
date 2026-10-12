@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libipasirglucose4",
       version: "2017",
       libname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://baldur.iti.kit.edu/sat-competition-2017/solvers/incremental/glucose-ipasir.zip",
           hash: "sha256-svGDbCLlPNCg1skHycV9cRS1zecasZodgo3v5Jt6kHU=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D ${nix.sel(finalAttrs, "libname")} $out/lib/${nix.sel(finalAttrs, "libname")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared library providing IPASIR interface to the Glucose SAT solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

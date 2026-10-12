@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_bigquery",
           version: version,
           hash: "sha256-IhfkiLR+1XY2DJsswH1Z2IOlS4MWfA7zf5FcJrAaBv4=",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bqstorage: nix.thunk(() => [google_cloud_bigquery_storage, grpcio, pyarrow]),
         pandas: nix.thunk(() => [db_dtypes, pandas, pyarrow]),
         tqdm: nix.thunk(() => [tqdm]),
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.bigquery", "google.cloud.bigquery_v2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google BigQuery API client library",
         homepage: "https://github.com/googleapis/python-bigquery",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-bigquery/blob/v${version}/CHANGELOG.md`),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

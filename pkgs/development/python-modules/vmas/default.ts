@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "proroklab",
           repo: "VectorizedMultiAgentSimulator",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [gym, gym_notices, numpy, pyglet, six, torch]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gymnasium: nix.thunk(() => [gymnasium, shimmy]),
         render: nix.thunk(() => [matplotlib, moviepy, opencv4]),
       }));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pyyaml, tqdm], nix.sel(optional_dependencies, "gymnasium")));
       const pythonImportsCheck = nix.thunk(() => ["vmas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A vectorized differentiable simulator designed for efficient Multi-Agent Reinforcement Learning benchmarking",
         homepage: "https://github.com/proroklab/VectorizedMultiAgentSimulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

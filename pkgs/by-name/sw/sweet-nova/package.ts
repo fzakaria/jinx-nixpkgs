@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sweet-nova",
       version: "0-unstable-2023-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EliverLara",
           repo: "Sweet",
           rev: "6e82150d7c3bb1e30ed9bd64de4d2ddd8e113205",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ncd kde\nmkdir -p aurorae/themes\nmv aurorae/Sweet-Dark aurorae/themes/Sweet-Dark\nmv aurorae/Sweet-Dark-transparent aurorae/themes/Sweet-Dark-transparent\nrm aurorae/.shade.svg\nmv colorschemes color-schemes\nmkdir -p plasma/look-and-feel\nmv look-and-feel plasma/look-and-feel/com.github.eliverlara.sweet\nmv sddm sddm-Sweet\nmkdir -p sddm/themes\nmv sddm-Sweet sddm/themes/Sweet\nmv cursors icons\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -d $out/share\ncp -r Kvantum aurorae color-schemes icons konsole plasma sddm $out/share\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dark and colorful, blurry theme for the KDE Plasma desktop",
         homepage: "https://github.com/EliverLara/Sweet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

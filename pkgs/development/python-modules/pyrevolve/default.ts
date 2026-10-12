@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devitocodes",
           repo: pname,
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf pyrevolve\n";
       const pythonImportsCheck = nix.thunk(() => ["pyrevolve"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/devitocodes/pyrevolve",
         changelog: nix.thunk(() => nix.str`https://github.com/devitocodes/pyrevolve/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library to manage checkpointing for adjoints",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

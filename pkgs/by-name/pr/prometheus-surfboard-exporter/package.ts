@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "surfboard_exporter",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "ipstatic",
           repo: "surfboard_exporter",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./add-go-mod.patch")]),
       vendorHash: null,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, surfboard: nix.thunk(() => nix.attr(from, "surfboard")) };
+          return { [nix.POS]: pos$2, surfboard: nix.thunk(() => nix.attr(from, "surfboard")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Arris Surfboard signal metrics exporter",
         mainProgram: "surfboard_exporter",
         homepage: "https://github.com/ipstatic/surfboard_exporter",

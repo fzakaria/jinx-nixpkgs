@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mkcue",
       version: "1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/main/m/mkcue/mkcue_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "0rs897wp08z4hd904bjb5sl4lb8qxj82x5ayklr28bhg9pd5gbra",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
       preInstall: "mkdir -pv $out/bin",
       postInstall: "chmod -v +w $out/bin/mkcue",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generates CUE sheets from a CD TOC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

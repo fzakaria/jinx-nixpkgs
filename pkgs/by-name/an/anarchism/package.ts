@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anarchism",
       version: "15.3-4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "anarchism",
@@ -32,7 +32,7 @@ substituteInPlace debian/anarchism.desktop \\
 `),
       installPhase: "mkdir -p $out/share/doc/anarchism $out/share/applications $out/share/icons/hicolor/scalable/apps\ncp -r {html,markdown} $out/share/doc/anarchism\ncp debian/anarchism.svg $out/share/icons/hicolor/scalable/apps\ncp debian/anarchism.desktop $out/share/applications\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.anarchistfaq.org/",
         changelog: "http://anarchism.pageabode.com/afaq/new.html",
         description: "Exhaustive exploration of Anarchist theory and practice",

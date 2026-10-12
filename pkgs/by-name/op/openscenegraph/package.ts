@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
   const withExamples = nix.argOr($, "withExamples", () => false);
   const fltk = nix.arg($, "fltk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "openscenegraph",
       version: "3.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openscenegraph",
           repo: "OpenSceneGraph",
           rev: nix.thunk(() => nix.str`OpenSceneGraph-${nix.sel(finalAttrs, "version")}`),
@@ -84,21 +84,21 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake, doxygen]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libx11, libxinerama, libxrandr, libGLU, libGL])), nix.concat([glib, libxml2, zlib], nix.concat(nix.app(nix.sel(lib, "optional"), jpegSupport, libjpeg), nix.concat(nix.app(nix.sel(lib, "optional"), exrSupport, openexr), nix.concat(nix.app(nix.sel(lib, "optional"), gifSupport, giflib), nix.concat(nix.app(nix.sel(lib, "optional"), pngSupport, libpng), nix.concat(nix.app(nix.sel(lib, "optional"), tiffSupport, libtiff), nix.concat(nix.app(nix.sel(lib, "optional"), gdalSupport, gdal), nix.concat(nix.app(nix.sel(lib, "optional"), curlSupport, curl), nix.concat(nix.app(nix.sel(lib, "optionals"), colladaSupport, nix.thunk(() => [collada_dom])), nix.concat(nix.app(nix.sel(lib, "optional"), opencascadeSupport, opencascade_occt), nix.concat(nix.app(nix.sel(lib, "optional"), ffmpegSupport, ffmpeg), nix.concat(nix.app(nix.sel(lib, "optional"), nvttSupport, nvidia_texture_tools), nix.concat(nix.app(nix.sel(lib, "optional"), freetypeSupport, freetype), nix.concat(nix.app(nix.sel(lib, "optional"), svgSupport, librsvg), nix.concat(nix.app(nix.sel(lib, "optional"), pdfSupport, poppler), nix.concat(nix.app(nix.sel(lib, "optional"), vncSupport, libvncserver), nix.concat(nix.app(nix.sel(lib, "optional"), lasSupport, liblas), nix.concat(nix.app(nix.sel(lib, "optional"), luaSupport, lua), nix.concat(nix.app(nix.sel(lib, "optional"), sdlSupport, SDL2), nix.concat(nix.app(nix.sel(lib, "optional"), restSupport, asio), nix.concat(nix.app(nix.sel(lib, "optionals"), withExamples, nix.thunk(() => [fltk])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(restSupport) || nix.asBool(colladaSupport))), boost)))))))))))))))))))))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), colladaSupport, nix.thunk(() => ({ __proto__: pos$2, COLLADA_DIR: collada_dom })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), colladaSupport, nix.thunk(() => ({ [nix.POS]: pos$2, COLLADA_DIR: collada_dom })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "opencascade-api-patch",
             url: "https://github.com/openscenegraph/OpenSceneGraph/commit/bc2daf9b3239c42d7e51ecd7947d31a92a7dc82b.patch",
             hash: "sha256-VR8YKOV/YihB5eEGZOGaIfJNrig1EPS/PJmpKsK284c=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-games/openscenegraph/files/openscenegraph-3.6.5-openexr3.patch?id=0f642d8f09b589166f0e0c0fc84df7673990bf3f",
             hash: "sha256-fdNbkg6Vp7DeDBTe5Zso8qJ5v9uPSXHpQ5XlGkvputk=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/openscenegraph/OpenSceneGraph/commit/9da8d428f6666427c167b951b03edd21708e1f43.patch",
             hash: "sha256-YGG/DIHU1f6StbeerZoZrNDm348wYB3ydmVIIGTM7fU=",
           })))),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0 FATAL_ERROR)\" \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\n",
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withApps)), "-DBUILD_OSG_APPLICATIONS=OFF"), nix.app(nix.sel(lib, "optional"), withExamples, "-DBUILD_OSG_EXAMPLES=ON"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "3D graphics toolkit",
         homepage: "http://www.openscenegraph.org/",
         maintainers: nix.thunk(() => (() => {

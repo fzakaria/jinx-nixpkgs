@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`pypy${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", pythonVersion_1)))))}_pp${nix.sel(sourceVersion_1, "major")}${nix.sel(sourceVersion_1, "minor")}`),
       ]);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         self: self_1,
         sourceVersion: sourceVersion_1,
         pythonVersion: pythonVersion_1,
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version_1}-src.tar.bz2`),
           hash: hash,
         }))));
@@ -129,10 +129,10 @@ export default nix.lambda((args) => (() => {
       const dontPatchShebangs = true;
       const disallowedReferences = nix.thunk(() => [python]);
       const env = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         }))), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         C_INCLUDE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "include", buildInputs)),
         LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)),
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "filter"), (x) => !nix.eq(nix.sel(x, "outPath"), nix.selOr(stdenv, () => "", "cc", "libc", "outPath")), buildInputs)))),
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./dont_fetch_vendored_deps.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tk_tcl_paths.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             tk: tk,
             tcl: tcl,
             tk_dev: nix.thunk(() => nix.sel(tk, "dev")),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
             tcl_libprefix: nix.thunk(() => nix.sel(tcl, "libPrefix")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.thunk(() => (nix.asBool(isPy3k) ? nix.path(here, "./sqlite_paths.patch") : nix.path(here, "./sqlite_paths_2_7.patch"))), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             out: nix.thunk(() => nix.attr(sqlite, "out")),
             dev: nix.thunk(() => nix.attr(sqlite, "dev")),
             libsqlite: nix.thunk(() => nix.str`${nix.sel(sqlite, "out")}/lib/libsqlite3${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -303,7 +303,7 @@ $out/bin/${nix.lookup(w_1, "executable")} -c '${imports}'
       const passthru_1 = passthru;
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.pypy.org/",
         changelog: nix.thunk(() => nix.str`https://doc.pypy.org/release-v${version_1}.html`),
         description: nix.thunk(() => nix.str`Fast, compliant alternative implementation of the Python language (${pythonVersion})`),
@@ -320,7 +320,7 @@ $out/bin/${nix.lookup(w_1, "executable")} -c '${imports}'
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname_1,
         version: version_1,
         src,

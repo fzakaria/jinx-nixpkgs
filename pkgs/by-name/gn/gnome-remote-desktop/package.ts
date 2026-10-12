@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const polkit = nix.arg($, "polkit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-remote-desktop",
       version: "50.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-remote-desktop/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-remote-desktop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Md9ij0ETVz8Tb/yNwAF2Ou1jPNhb7SHli8YfihffCR8=",
         })))),
@@ -86,11 +86,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dc_args=-I${freerdp}/include/winpr3`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-remote-desktop" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-remote-desktop" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/gnome-remote-desktop",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-remote-desktop/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME Remote Desktop server",

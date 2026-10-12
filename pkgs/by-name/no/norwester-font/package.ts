@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "norwester";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://jamiewilson.github.io/norwester/assets/norwester.zip",
           stripRoot: false,
           hash: "sha256-Ak/nobrQE/XYGWs/IhlZlTp74ff+s4adUR6Sht5Yf8g=",
@@ -29,13 +29,13 @@ cp ${pname}-v${version}/${pname}.otf $out/share/fonts/opentype/
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jamiewilson.github.io/norwester/",
         description: "Condensed geometric sans serif by Jamie Wilson",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

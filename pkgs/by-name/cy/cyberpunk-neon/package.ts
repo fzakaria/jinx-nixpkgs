@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cyberpunk-neon",
       version: "0-unstable-2025-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Roboron3042",
           repo: "Cyberpunk-Neon",
           rev: "e74c25c8507bbbb23d81d075402bd983a61ebe07",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dt $out/share/doc/cyberpunk-neon/ README.md\n\nmkdir -p $gtk/share/themes\nunzip gtk/materia-cyberpunk-neon.zip -d $gtk/share/themes/\nunzip gtk/oomox-cyberpunk-neon.zip -d $gtk/share/themes/\n\ninstall -Dt $kde/share/color-schemes kde/cyberpunk-neon.colors\n\ninstall -Dt $konsole/share/konsole terminal/konsole/cyberpunk-neon.colorscheme\n\ninstall -Dt $tilix/share/tilix/schemes terminal/tilix/cyberpunk-neon.json\n\nrunHook postInstall\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Roboron3042/Cyberpunk-Neon",
         description: "Neon themes for many programs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

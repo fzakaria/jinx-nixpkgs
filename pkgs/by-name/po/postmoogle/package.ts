@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "postmoogle",
       version: "0.9.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etkecc",
           repo: "postmoogle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["timetzdata", "goolm"]),
       vendorHash: null,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Matrix <-> Email bridge in the form of an SMTP server",
         homepage: "https://github.com/etkecc/postmoogle",
         changelog: nix.thunk(() => nix.str`https://github.com/etkecc/postmoogle/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/rpcgen.nix", [["path", 3, 16]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
-  return nix.app(mkDerivation, nix.thunk(() => ({ __proto__: pos$1, path: "usr.bin/rpcgen" })));
+  return nix.app(mkDerivation, nix.thunk(() => ({ [nix.POS]: pos$1, path: "usr.bin/rpcgen" })));
 })(), formals$1);
 //# sourceMappingURL=rpcgen.ts.map

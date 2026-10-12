@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(common, "pname")),
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       postInstall: "cp -r priv/static $out/static\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Frontend for the Mobilizon server",
         homepage: "https://joinmobilizon.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

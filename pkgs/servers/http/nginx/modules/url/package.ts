@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "url",
       version: "0-unstable-2017-03-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vozlt",
           repo: "nginx-module-url",
           rev: "9299816ca6bc395625c3683fbd2aa7b916bfe91e",
           sha256: "0mk1gjmfnry6hgdsnlavww9bn7223idw50jlkhh5k00q5509w4ip",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "URL encoding converting module",
         homepage: "https://github.com/vozlt/nginx-module-url",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

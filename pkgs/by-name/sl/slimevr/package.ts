@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "slimevr",
       version: "21.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SlimeVR",
           repo: "SlimeVR-Server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-pnpm-deps`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gui-no-git.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
           })))),
         nix.path(here, "./no-java-tool-options-warning.patch"),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "pnpm --filter solarxr-protocol build\n",
       doCheck: false,
       doInstallCheck: true,
-      env: nix.thunk(() => ({ __proto__: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 pushd gui
@@ -103,7 +103,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "slimevr",
             desktopName: "SlimeVR",
             genericName: "Full-body tracking",
@@ -114,9 +114,9 @@ runHook postInstall
             exec: "slimevr",
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://slimevr.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "App for facilitating full-body tracking in virtual reality",

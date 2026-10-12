@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omnilib",
           repo: "aiomultiprocess",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["aiomultiprocess"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to improve performance",
         longDescription: "aiomultiprocess presents a simple interface, while running a full\nAsyncIO event loop on each child process, enabling levels of\nconcurrency never before seen in a Python application. Each child\nprocess can execute multiple coroutines at once, limited only by\nthe workload and number of cores available.\n",
         homepage: "https://github.com/omnilib/aiomultiprocess",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "fab"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samfirm-js",
       version: "0.3.0-unstable-2023-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DavidArsene",
           repo: "samfirm.js",
           rev: "5e2537c2452c3033259a1e4399d9bb755e99f1da",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-os75tFpyxzxGpt5Era+K+zgMJyfwD4u0AtTRLC/fPUQ=",
       installPhase: "runHook preInstall\ninstall -Dm555 dist/index.js $out/bin/samfirm-js\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program for downloading Samsung firmware",
         homepage: "https://github.com/DavidArsene/samfirm.js",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

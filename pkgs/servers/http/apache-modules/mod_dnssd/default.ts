@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_dnssd";
       const version = "0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://0pointer.de/lennart/projects/mod_dnssd/${pname}-${version}.tar.gz`),
           sha256: "2cd171d76eba398f03c1d5bcc468a1756f4801cd8ed5bd065086e4374997c5aa",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [apacheHttpd, avahi, apr]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/m/mod-dnssd/0.6-5/debian/patches/port-for-apache2.4.patch",
             hash: "sha256-jWWzZDpZdveXlLpo7pN0tMQZkjYUbpz/DRjm6T6pCzY=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/modules\ncp src/.libs/mod_dnssd.so $out/modules\n\nrunHook postInstall\n";
       const preFixup = "# TODO: Packages in non-standard directories not stripped.\n# https://github.com/NixOS/nixpkgs/issues/141554\nstripDebugList=modules\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://0pointer.de/lennart/projects/mod_dnssd",
         description: "Provide Zeroconf support via DNS-SD using Avahi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

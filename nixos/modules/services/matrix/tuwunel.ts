@@ -55,123 +55,123 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "tuwunel.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "scvalex"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         "matrix-tuwunel": nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "tuwunel")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matrix-tuwunel", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               description: "The user {command}`tuwunel` is run as.  If left as the default, the user will\nautomatically be created by the service.\n",
               example: "conduit",
               default: defaultUser,
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               description: "The group {command}`tuwunel` is run as.  If left as the default, the group will\nautomatically be created by the service.\n",
               example: "conduit",
               default: defaultGroup,
             })))),
           stateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               default: "tuwunel",
               example: "matrix-conduit",
               description: "The name of the directory under /var/lib/ where the database will be stored.\n\nNote that `stateDirectory` cannot be changed once created because of the service's reliance on\nsystemd `StateDirectory`.\n",
             })))),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra Environment variables to pass to the tuwunel server.",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$5, RUST_BACKTRACE: "yes" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, RUST_BACKTRACE: "yes" })),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/matrix-tuwunel.env",
               description: "Path to a file containing sensitive environment variables as described in {manpage}`systemd.exec(5).\n\nRefer to\n<https://matrix-construct.github.io/tuwunel/configuration.html#environment-variables>\nfor specifying options as environment variables.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     global: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       server_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                           example: "example.com",
                           description: "The server_name is the name of this server. It is used as a suffix for user and room ids.",
                         })))),
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))),
                           default: null,
                           example: nix.thunk(() => ["127.0.0.1", "::1"]),
                           description: "Addresses (IPv4 or IPv6) to listen on for connections by the reverse proxy/tls terminator.\nIf set to `null`, tuwunel will listen on IPv4 and IPv6 localhost.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                           default: nix.thunk(() => [6167n]),
                           description: "The port(s) tuwunel will be running on.\nYou need to set up a reverse proxy in your web server (e.g. apache or nginx),\nso all requests to /_matrix on port 443 and 8448 will be forwarded to the tuwunel\ninstance running on this port.\n",
                         })))),
                       unix_socket_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "Listen on a UNIX socket at the specified path. If listening on a UNIX socket,\nlistening on an address will be disabled. The `address` option must be set to\n`null` (the default value). The option {option}`services.tuwunel.group` must\nbe set to a group your reverse proxy is part of.\n",
                         })))),
                       unix_socket_perms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 660n,
                           description: "The default permissions (in octal) to create the UNIX socket with.",
                         })))),
                       max_request_size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 20000000n,
                           description: "Max request size in bytes. Don't forget to also change it in the proxy.",
                         })))),
                       allow_registration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether new users can register on this server.\n\nRegistration with token requires `registration_token` or `registration_token_file` to be set.\n\nIf set to true without a token configured, and\n`yes_i_am_very_very_sure_i_want_an_open_registration_server_prone_to_abuse`\nis set to true, users can freely register.\n",
                         })))),
                       allow_encryption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether new encrypted rooms can be created. Note: existing rooms will continue to work.",
                         })))),
                       allow_federation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether this server federates with other servers.\n",
                         })))),
                       trusted_servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))),
                           default: nix.thunk(() => ["matrix.org"]),
                           description: "Servers listed here will be used to gather public keys of other servers\n(notary trusted key servers).\n\nCurrently, tuwunel doesn't support inbound batched key requests, so\nthis list should only contain other Synapse servers.\n\nExample: `[ \"matrix.org\" \"constellatory.net\" \"tchncs.de\" ]`\n",
@@ -187,29 +187,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "user"), defaultUser)) || nix.asBool(nix.has(config, "users", "users", nix.key(nix.sel(cfg, "user")))))),
             message: "If `services.matrix-tuwunel.user` is changed, the configured user must already exist.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "group"), defaultGroup)) || nix.asBool(nix.has(config, "users", "groups", nix.key(nix.sel(cfg, "group")))))),
             message: "If `services.matrix-tuwunel.group` is changed, the configured group must already exist.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => !nix.eq(nix.str`/var/lib/${nix.sel(cfg, "settings", "global", "database_path")}`, nix.sel(cfg, "stateDirectory"))),
             message: "The `services.matrix-tuwunel.stateDirectory` and `services.matrix-tuwunel.settings.global.database_path` options must match.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "settings", "global", "database_path")),
                 isSystemUser: true,
@@ -218,37 +218,37 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.attrsDyn({}, [[defaultGroup, nix.thunk(() => ({}))]])))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           "matrix-tuwunel": nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             settings: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               global: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 database_path: nix.thunk(() => nix.str`/var/lib/${nix.sel(cfg, "stateDirectory")}/`),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             tuwunel: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Tuwunel Matrix Server",
               documentation: nix.thunk(() => ["https://matrix-construct.github.io/tuwunel/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$34, TUWUNEL_CONFIG: configFile })),
+                  nix.thunk(() => ({ [nix.POS]: pos$34, TUWUNEL_CONFIG: configFile })),
                   nix.thunk(() => nix.sel(cfg, "extraEnvironment")),
                 ]))),
               startLimitBurst: 5n,
               startLimitIntervalSec: 60n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 Type: "notify",
                 DynamicUser: true,
                 User: nix.thunk(() => nix.sel(cfg, "user")),

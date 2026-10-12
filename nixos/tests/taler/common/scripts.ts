@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const nodes = nix.arg($, "nodes");
-  const cfgNodes = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./nodes.nix"), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const cfgNodes = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./nodes.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const bankConfig = nix.thunk(() => nix.sel(nodes, "bank", "environment", "etc", "libeufin/libeufin.conf", "source"));
   const CURRENCY = nix.thunk(() => nix.attr(cfgNodes, "CURRENCY"));
   const FIAT_CURRENCY = nix.thunk(() => nix.attr(cfgNodes, "FIAT_CURRENCY"));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     commonScripts: nix.thunk(() => nix.str`def succeed(machine, commands):
     """A more convenient \`machine.succeed\` that supports multi-line inputs"""
     flattened_commands = [c.replace("\\n", "") for c in commands] # flatten multi-line

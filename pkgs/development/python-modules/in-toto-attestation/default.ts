@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "in_toto_attestation",
           version: version,
           hash: "sha256-zAz5dBfZSVO5/ubp1BWhHFm01HzuTxN0b/6TWyjj6MQ=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["in_toto_attestation"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of in-toto attestations",
         homepage: "https://github.com/in-toto/attestation/tree/main/python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

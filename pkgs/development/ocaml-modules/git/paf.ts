@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const mirage_flow = nix.arg($, "mirage-flow");
   const tls_mirage = nix.arg($, "tls-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "git-paf",
       version: nix.thunk(() => nix.attr(git, "version")),
       src: nix.thunk(() => nix.attr(git, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         tls_mirage,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Package to use HTTP-based ocaml-git with MirageOS backend",
       })),
     })));

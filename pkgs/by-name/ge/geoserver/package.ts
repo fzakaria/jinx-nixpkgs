@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "geoserver",
       version: "2.28.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/geoserver/GeoServer/${nix.sel(finalAttrs, "version")}/geoserver-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-bQECI2MEk8OcALk21bbv/V/yNbOrHKlhcpoVy37U1i0=",
         })))),
@@ -57,11 +57,11 @@ runHook postInstall
         const geoserver = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
         const extensions = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (n) => (v) => nix.app(nix.sel(lib, "isDerivation"), v), nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions.nix"), nix.thunk(() => ({}))))));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           withExtensions: (selector) => (() => {
             const selectedExtensions = nix.thunk(() => nix.app(selector, extensions));
             return nix.app(nix.sel(geoserver, "overrideAttrs"), (finalAttrs_1) => (previousAttrs) => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 pname: nix.thunk(() => nix.add(nix.sel(previousAttrs, "pname"), "-with-extensions")),
                 buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "buildInputs"), nix.app(nix.sel(lib, "lists", "concatMap"), (drv) => nix.sel(drv, "buildInputs"), selectedExtensions))))),
                 postInstall: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postInstall"), nix.str`for extension in ${nix.builtins.toString(selectedExtensions)} ; do
@@ -73,14 +73,14 @@ done
               }));
           })(),
           tests: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             geoserver: nix.thunk(() => nix.sel(nixosTests, "geoserver")),
           })),
           updateScript: nix.path(here, "./update.sh"),
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source server for sharing geospatial data",
         homepage: "https://geoserver.org/",
         sourceProvenance: nix.thunk(() => (() => {

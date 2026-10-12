@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const waymore = nix.arg($, "waymore");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "waymore",
       version: "8.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xnl-h4ck3r",
           repo: "waymore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["waymore.waymore"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: waymore,
               command: "waymore --version",
               version: nix.thunk(() => nix.str`Waymore - v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Find way more from the Wayback Machine",
         homepage: "https://github.com/xnl-h4ck3r/waymore",
         changelog: nix.thunk(() => nix.str`https://github.com/xnl-h4ck3r/waymore/releases/tag/v${nix.sel(finalAttrs, "version")}`),

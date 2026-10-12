@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sequoia-sq",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sequoia-pgp",
           repo: "sequoia-sq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, ASSET_OUT_DIR: "target" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_OUT_DIR: "target" })),
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
@@ -60,11 +60,11 @@ installShellCompletion \\
   --zsh ${nix.sel(finalAttrs, "env", "ASSET_OUT_DIR")}/shell-completions/_sq
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line application exposing a useful set of OpenPGP functionality for common tasks",
         homepage: "https://sequoia-pgp.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/sequoia-pgp/sequoia-sq/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

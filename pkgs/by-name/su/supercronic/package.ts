@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supercronic",
       version: "0.2.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aptible",
           repo: "supercronic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ substituteInPlace cron/cron_test.go --replace /bin/false ${coreutils}/bin/false
 `),
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.Version=${nix.sel(finalAttrs, "version")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cron tool designed for use in containers",
         homepage: "https://github.com/aptible/supercronic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

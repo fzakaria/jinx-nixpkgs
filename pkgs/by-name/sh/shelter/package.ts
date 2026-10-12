@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const pnpm_10 = nix.arg($, "pnpm_10");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "shelter",
       version: "0-unstable-2026-09-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uwu",
           repo: "shelter",
           rev: "0397ffe539fce088f8cab25cc086055d4a5feb71",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm --filter=@uwu/shelter-ui prepare\npnpm --filter=shelter build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r packages/shelter/dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "New generation Discord client mod built to be essentially bulletproof",
         homepage: "https://shelter.uwu.network/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

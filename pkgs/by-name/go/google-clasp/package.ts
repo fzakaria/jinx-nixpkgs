@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clasp";
       const version = "3.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "clasp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-zQt+diejFiG1oEkXxN5/X9rh33wHenk+iWeHsack/kY=";
       const npmBuildScript = nix.thunk(() => ["compile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Develop Apps Script Projects locally",
         mainProgram: "clasp",
         homepage: "https://github.com/google/clasp#readme",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "natsukium"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, npmBuildScript, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, npmBuildScript, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

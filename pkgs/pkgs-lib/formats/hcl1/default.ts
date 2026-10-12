@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(lib, "mapAttrs"));
   const isList = nix.thunk(() => nix.attr(lib, "isList"));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     format: nix.thunk(() => (() => {
       const transform = (value) => (nix.asBool((nix.asBool(nix.app(isAttrs, value)) && nix.asBool(!nix.asBool(nix.app(isDerivation, value))))) ? [nix.thunk(() => nix.app(mapAttrs, (name) => transform, value))] : (nix.asBool(nix.app(isList, value)) ? nix.builtins.map(transform, value) : nix.force(value)));
       const jsonFormat = nix.thunk(() => nix.app(json, nix.thunk(() => ({}))));
       return (args_1) => nix.update(jsonFormat, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         generate: (name) => (value) => nix.app(nix.sel(jsonFormat, "generate"), name, nix.thunk(() => nix.app(mapAttrs, (_) => transform, value))),
       });
     })()),

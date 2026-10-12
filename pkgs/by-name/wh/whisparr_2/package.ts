@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const arch = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "arm64",
     "aarch64-linux": "arm64",
     "x86_64-linux": "x64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.str`${system}`)));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "arm64-linux-hash": "sha256-hFZ27VAIBDW8c7oP+Nl0rj6T2CRbee8Qxf4CzZJmCL8=",
     "arm64-osx-hash": "sha256-oFqnQnbBGAD4x97FANbY091nJrzHRMewalASwgOul8s=",
     "x64-linux-hash": "sha256-ZRgCJf2GGV1B+QgmYh4OfX7nMfRBdN6pIg5pU6Q/KCQ=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whisparr";
       const version = "2.0.0.2151";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${pname}-${arch}-${os}-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://whisparr.servarr.com/v1/update/nightly/updatefile?runtime=netcore&version=${version}&arch=${arch}&os=${os}`),
           hash: hash,
@@ -68,15 +68,15 @@ makeWrapper "${dotnet_runtime}/bin/dotnet" $out/bin/Whisparr \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           whisparr_2: nix.thunk(() => nix.attr(nixosTests, "whisparr_2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Adult video collection manager for Usenet and BitTorrent users",
         homepage: "https://wiki.servarr.com/en/whisparr",
         changelog: "https://whisparr.servarr.com/v1/update/nightly/changes",
@@ -87,7 +87,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

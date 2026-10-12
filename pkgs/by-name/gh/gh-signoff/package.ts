@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gh-signoff",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "basecamp",
           repo: "gh-signoff",
           rev: "24f274070c9dfbb3916347dbf6f9d38d4fb64eca",
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gh, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GitHub CLI extension for local CI to sign off on your own work",
         homepage: "https://github.com/basecamp/gh-signoff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "enochecker_core",
           hash: "sha256-N41p2XRCp55rcPXLpA4rPIARsva/dQzK8qafjzXtavI=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["enochecker_core"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base library for enochecker libs",
         homepage: "https://github.com/enowars/enochecker_core",
         changelog: nix.thunk(() => nix.str`https://github.com/enowars/enochecker_core/releases/tag/v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

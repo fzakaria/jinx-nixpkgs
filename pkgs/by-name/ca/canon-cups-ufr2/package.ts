@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const suffix2 = "20";
   const versionNoDots = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
   const src_canon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://gdlp01.c-wss.com/gds/${dl}/linux-UFRII-drv-v${versionNoDots}-${suffix1}-${suffix2}.tar.gz`),
       hash: "sha256-6QJaaABubEaERpJxfVGxghB8yIb2pCaQZ6+VoqjmYrk=",
     }))));
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
     atk,
   ]);
   const convertSpec = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "convert-spec.awk",
       checkPhase: "awk -f $target < /dev/null",
       text: nix.thunk(() => nix.str`$1 == "%" phase { inPhase = 1; next }
@@ -181,7 +181,7 @@ makeWrapper "${ghostscript}/bin/gs" "$out/bin/gs" \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS Linux drivers for Canon printers",
         homepage: "http://www.canon.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -195,7 +195,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src,

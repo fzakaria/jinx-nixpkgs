@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const spamassassin = nix.arg($, "spamassassin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "re2c",
       version: "4.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skvadrik",
           repo: "re2c",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preCheck: "patchShebangs run_tests.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9.]+)"]),
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, ninja: ninja, php: php, spamassassin: spamassassin })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, ninja: ninja, php: php, spamassassin: spamassassin })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for writing very fast and very flexible scanners",
         homepage: "https://re2c.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

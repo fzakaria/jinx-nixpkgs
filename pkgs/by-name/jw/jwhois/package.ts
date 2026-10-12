@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lynx = nix.arg($, "lynx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jwhois",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/jwhois/jwhois-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+pu4Z4K5FcbXMLtyP4dtybNFphfbN1qvNBbsIlU81k4=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./connect.patch"),
         nix.path(here, "./service-name.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/jwhois/raw/422e2326397c7a48df61acb8ef649864a874272b/f/jwhois-4.0-gcc15-fix.patch",
             hash: "sha256-bBZk2GUu8Y66u4u+zJxY/fxzzc2y17ECEJO6uNz9ngw=",
           })))),
@@ -45,11 +45,11 @@ substituteInPlace example/jwhois.conf \\
       ]),
       postInstall: "ln -s $out/bin/jwhois $out/bin/whois\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Client for the WHOIS protocol allowing you to query the owner of a domain name",
         homepage: "https://www.gnu.org/software/jwhois/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

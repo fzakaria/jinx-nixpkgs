@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "menumaker",
       version: "0.99.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/menumaker/menumaker-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-EeldDnajuFD1ffgbxVYCIr1gFBxXUbbpvQXDzVVg1lo=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Heuristics-driven menu generator for several window managers",
         mainProgram: "mmaker",
         homepage: "https://menumaker.sourceforge.net",

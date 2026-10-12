@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "materialscloud-org",
           repo: "seekpath",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-yz9IX68AmFP8P8uzZMKa4d/pdzbOm0IcQsZMvC7MuSU=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [numpy, spglib]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, bz: nix.thunk(() => [scipy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, bz: nix.thunk(() => [scipy]) }));
       const nativeBuildInputs = nix.thunk(() => [glibcLocales]);
       const pythonImportsCheck = nix.thunk(() => ["seekpath"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "bz")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Module to obtain and visualize band paths in the Brillouin zone of crystal structures",
         homepage: "https://github.com/materialscloud-org/seekpath",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

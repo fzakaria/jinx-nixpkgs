@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: src,
       pname: "wgpu-native-examples",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       installPhase: "runHook preInstall\n\nconcatTo makeWrapperArgsArray makeWrapperArgs\n\n# find all executables that have the same name as their directory\nfor executable in $(find . -regex '.*\\(/[^/]*\\)\\1' -type f -executable)\ndo\n  target=\"$(basename \"$(dirname \"$executable\")\")\"\n  install -Dm755 $executable -t $out/bin\n  mkdir -p $out/share/$target\n  wrapProgram $out/bin/$target --chdir $out/share/$target \"${makeWrapperArgsArray[@]}\"\n\n  # The examples expect their shaders in the CWD, so we copy them into the store\n  # and wrap the examples to run in the directory containing the shader.\n  for shader in $(find ../$target -type f -name '*.wgsl'); do\n    install -Dm644 $shader $out/share/$target/\n  done\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(wgpu_native, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Examples for the native WebGPU implementation based on wgpu-core",
         mainProgram: "triangle",
       })),

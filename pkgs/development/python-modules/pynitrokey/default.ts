@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.14.0";
   const mainProgram = "nitropy";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Q416DPGacYhm/ITPpMF2ILuQQZ4TlSFks625lAkXpnY=",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         semver,
         nethsm,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pcsc: nix.thunk(() => [pyscard]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pcsc: nix.thunk(() => [pyscard]) })),
       pythonRelaxDeps: true,
       makeWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--set LIBNK_PATH ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libnitrokey]))}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
   --fish <(_NITROPY_COMPLETE=fish_source $out/bin/${mainProgram})
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for Nitrokey devices",
         homepage: "https://github.com/Nitrokey/pynitrokey",
         changelog: nix.thunk(() => nix.str`https://github.com/Nitrokey/pynitrokey/releases/tag/v${version}`),

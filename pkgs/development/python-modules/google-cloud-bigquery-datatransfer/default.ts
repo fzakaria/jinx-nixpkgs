@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-bigquery-datatransfer",
       version: "3.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_bigquery_datatransfer",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5X6HMhRX71XKAa6f94vRIRcN8HKHZWjjYcpsofQ5Z98=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_list_data_sources"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BigQuery Data Transfer API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-bigquery-datatransfer",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-bigquery-datatransfer-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-bigquery-datatransfer/CHANGELOG.md`),

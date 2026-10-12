@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const zmq = nix.arg($, "zmq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-frama-c`),
       version: nix.thunk(() => nix.attr(frama_c, "version")),
       meta: nix.thunk(() => nix.attr(frama_c, "meta")),

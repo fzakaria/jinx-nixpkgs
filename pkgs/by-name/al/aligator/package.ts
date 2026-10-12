@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const gbenchmark = nix.arg($, "gbenchmark");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aligator",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Simple-Robotics",
           repo: "aligator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,17 +51,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GENERATE_PYTHON_STUBS", false)),
       ])),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       preBuild: "# silence matplotlib warning\nexport MPLCONFIGDIR=$(mktemp -d)\n\n# Fontconfig error: No writable cache directories\nexport XDG_CACHE_HOME=$(mktemp -d)\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Versatile and efficient framework for constrained trajectory optimization",
         homepage: "https://github.com/Simple-Robotics/aligator",
         changelog: nix.thunk(() => nix.str`https://github.com/Simple-Robotics/aligator/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

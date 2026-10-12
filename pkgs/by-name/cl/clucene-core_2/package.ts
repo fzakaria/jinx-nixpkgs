@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "clucene-core",
       version: "2.3.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/clucene/clucene-core-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1arffdwivig88kkx685pldr784njm0249k0rb1f1plwavlrw9zfx",
         })))),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-missing-include-time.patch"),
         nix.path(here, "./pthread-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-cpp/clucene/files/clucene-2.3.3.4-cmake4.patch?id=e06df280c75b0f0803954338466e5278d777f984",
             hash: "sha256-e0u6J91bnuy24hIrSl+Ap5Xwds/nzzGiWpzskwaGx9o=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.path(here, "./fix-darwin.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://869170.bugs.gentoo.org/attachment.cgi?id=858825",
               hash: "sha256-TbAfBKdXh+1HepZc8J6OhK1XGwhwBCMvO8QBDsad998=",
             })))),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/shared/CMakeLists.txt --replace 'fstati64;_fstati64;fstat64;fstat;_fstat' 'fstat;_fstat'\nsubstituteInPlace src/shared/CMakeLists.txt --replace 'stati64;_stati64;stat64;stat;_stat' 'stat;_stat'\n")),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=c++11-narrowing")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Core library for full-featured text search engine",
         longDescription: "CLucene is a high-performance, scalable, cross platform, full-featured,\nopen-source indexing and searching API. Specifically, CLucene is the guts\nof a search engine, the hard stuff. You write the easy stuff: the UI and\nthe process of selecting and parsing your data files to pump them into\nthe search engine yourself, and any specialized queries to pull it back\nfor display or further processing.\n\nCLucene is a port of the very popular Java Lucene text search engine API.\n",
         homepage: "https://clucene.sourceforge.net",

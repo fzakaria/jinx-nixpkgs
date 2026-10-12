@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "js8call",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JS8Call-improved",
           repo: "JS8Call-improved",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin $out/share/doc/js8call $out/share/icons/hicolor/128x128/apps $out/share/applications\ncp JS8Call $out/bin/js8call\ncp ../LICENSE ../README.md $out/share/doc/js8call\ncp ../artwork/js8call_icon.png $out/share/icons/hicolor/128x128/apps\ncp ../.github/workflows/misc/JS8Call.desktop $out/share/applications\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/share/applications/JS8Call.desktop \\\n  --replace-fail \"Exec=JS8Call\" \"Exec=js8call\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Weak-signal keyboard messaging for amateur radio",
         longDescription: "JS8Call is software using the JS8 Digital Mode providing weak signal\nkeyboard to keyboard messaging to Amateur Radio Operators.\n\nJS8Call-Improved is a community-driven evolution of JS8Call,\nbringing modern features, active development, and long-term\nsupport to HF digital communication. It’s fully compatible with\nexisting JS8Call versions while adding new capabilities and\nrefinements.\n",
         homepage: "https://js8call-improved.com/",

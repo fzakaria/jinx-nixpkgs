@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const pkgsStatic = nix.arg($, "pkgsStatic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "iproute2",
       version: "7.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/net/iproute2/iproute2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/Z+huVgJQXFXyoPdcpV+MmG9vOiWNTy5NvgK8LM6S1w=",
         })))),
@@ -50,16 +50,16 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.kernel.org/pub/scm/network/iproute2/iproute2.git",
             "rev-prefix": "v",
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "iproute2")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "iproute2")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://wiki.linuxfoundation.org/networking/iproute2",
         description: "Collection of utilities for controlling TCP/IP networking and traffic control in Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

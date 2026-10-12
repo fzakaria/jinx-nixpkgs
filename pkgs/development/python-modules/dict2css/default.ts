@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0.post1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "dict2css",
           hash: "sha256-icVEwhxMp0csP/+50309km9gYymv23Udwd5npBG3Bxk=",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cssutils]);
       const pythonImportsCheck = nix.thunk(() => ["dict2css"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "μ-library for constructing cascading style sheets from Python dictionaries",
         homepage: "https://github.com/sphinx-toolbox/dict2css",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

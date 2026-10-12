@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const tantivy = nix.arg($, "tantivy");
   const whoosh = nix.arg($, "whoosh");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "whoosh-compat",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stumpylog",
           repo: "whoosh-compat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [python_dateutil]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, tantivy: nix.thunk(() => [tantivy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tantivy: nix.thunk(() => [tantivy]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([hypothesis, pytestCheckHook, whoosh], nix.sel(finalAttrs, "passthru", "optional-dependencies", "tantivy"))),
       pythonImportsCheck: nix.thunk(() => ["whoosh_compat"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Whoosh query-language parser emitting programmatic tantivy queries",
         homepage: "https://github.com/stumpylog/whoosh-compat/",
         changelog: nix.thunk(() => nix.str`https://github.com/stumpylog/whoosh-compat/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

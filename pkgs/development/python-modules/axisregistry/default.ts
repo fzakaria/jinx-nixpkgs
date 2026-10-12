@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-y+x/EUp+LPVkviXKok3pg/mPxpzSiuYimIL27Xm4G28=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [fonttools, gfmetadata, protobuf]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["axisregistry"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Fonts registry of OpenType variation axis tags",
         homepage: "https://github.com/googlefonts/axisregistry",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/axisregistry/blob/v${version}/CHANGELOG.md`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

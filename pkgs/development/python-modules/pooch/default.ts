@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-dlYfDeaKAdpN9q846ZVcTJ0aXJDac/fkAnalco7IPRA=",
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [packaging, platformdirs, requests]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           progress: nix.thunk(() => [tqdm]),
           sftp: nix.thunk(() => [paramiko]),
           xxhash: nix.thunk(() => [xxhash]),
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
         "test_stream_download",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Friend to fetch your data files",
         homepage: "https://github.com/fatiando/pooch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

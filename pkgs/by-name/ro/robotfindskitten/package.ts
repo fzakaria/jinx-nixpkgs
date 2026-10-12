@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "robotfindskitten",
       version: "2.8284271.702",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotfindskitten",
           repo: "robotfindskitten",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["execgamesdir=$(out)/bin"]),
       postInstall: "install -Dm644 nki/vanilla.nki -t $out/share/games/robotfindskitten/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet another zen simulation; A simple find-the-kitten game",
         homepage: "http://robotfindskitten.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

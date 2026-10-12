@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const pname = "kooha";
       const version = "2.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SeaDve",
           repo: "Kooha",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Fdl6Oj5pXE/TLieQ03oCmlbHJJ2KDJmOgHXOeOp05Ys=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installCheckPhase = "$out/bin/kooha --help\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Elegantly record your screen",
         homepage: "https://github.com/SeaDve/Kooha",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kooha",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

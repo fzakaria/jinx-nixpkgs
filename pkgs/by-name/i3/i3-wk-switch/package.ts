@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-wk-switch",
       version: "2020-03-18",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmfink",
           repo: "i3-wk-switch",
           rev: "a618cb8f52120aa8d533bb7c0c8de3ff13b3dc06",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       installPhase: "mkdir -p \"$out/bin\"\ncp i3-wk-switch.py \"$out/bin/i3-wk-switch\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XMonad-like workspace switching for i3 and sway",
         mainProgram: "i3-wk-switch",
         maintainers: [],

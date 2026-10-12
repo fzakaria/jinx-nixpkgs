@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alkalami",
       version: "3.000",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/alkalami/Alkalami-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-ra664VbUKc8XpULCWhLMVnc1mW4pqZvbvwuBvRQRhcY=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       postInstall: "mkdir -p $out/share/doc/alkalami\nmv *.txt documentation $out/share/doc/alkalami\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.sil.org/alkalami/",
         description: "Font for Arabic-based writing systems in the Kano region of Nigeria and in Niger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

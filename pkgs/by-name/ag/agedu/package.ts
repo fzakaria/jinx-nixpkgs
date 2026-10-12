@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const date = "20241013";
   const rev = "3622eda";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agedu",
       version: nix.thunk(() => nix.str`${date}.${rev}`),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.tartarus.org/simon/agedu.git",
           rev: rev,
           hash: "sha256-ZU2bVVo//mAVtVtrKPQ20wZHip/AZPmlL2uaCBcc7rw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, halibut]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unix utility for tracking down wasted disk space",
         longDescription: "Most Unix file systems, in their default mode, helpfully record when a\nfile was last accessed. So if you generated a large amount of data years\nago, forgot to clean it up, and have never used it since, then it ought\nin principle to be possible to use those last-access time stamps to tell\nthe difference between that and a large amount of data you're still\nusing regularly.\n\nagedu uses this information to tell you which files waste disk space when\nyou haven't used them since a long time.\n",
         homepage: "https://www.chiark.greenend.org.uk/~sgtatham/agedu/",

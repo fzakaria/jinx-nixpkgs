@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vg",
       version: "1.75.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vgteam",
           repo: "vg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +113,7 @@ popd
         zstd,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxdmcp])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         customPython: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);
             return [nix.thunk(() => nix.lookup(w, "pybind11"))];
@@ -135,7 +135,7 @@ ${graphviz}/bin/dot -Tpng x.dot -o $out
 `))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VG_GIT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=stringop-overflow",
@@ -148,7 +148,7 @@ ${graphviz}/bin/dot -Tpng x.dot -o $out
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\n\ncp bin/* $out/bin/\ncp -R lib/lib{handlegraph,vgio,hts,deflate}.so* $out/lib/\n\nrunHook postInstall\n",
       fixupPhase: "runHook preFixup\n\nfor bin in $out/bin/* ; do\n  patchelf --allowed-rpath-prefixes /nix/store --shrink-rpath $bin\n  patchelf --set-rpath \"$out/lib:$(patchelf --print-rpath $bin)\" $bin\ndone\n\n# remove debugging symbols that make the binary bloated in size\nstrip -d $out/bin/vg\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools for working with genome variation graphs",
         homepage: "https://github.com/vgteam/vg",
         changelog: nix.thunk(() => nix.str`https://github.com/vgteam/vg/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -29,26 +29,26 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const lazyAttrsOf = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => nix.app(nix.sel(types, "attrsWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           lazy: true,
           elemType: nix.thunk(() => nix.sel(types, "int")),
         })))),
     }))));
   const attrsOf = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$4,
-      type: nix.thunk(() => nix.app(nix.sel(types, "attrsWith"), nix.thunk(() => ({ __proto__: pos$3, elemType: nix.thunk(() => nix.sel(types, "int")) })))),
+      [nix.POS]: pos$4,
+      type: nix.thunk(() => nix.app(nix.sel(types, "attrsWith"), nix.thunk(() => ({ [nix.POS]: pos$3, elemType: nix.thunk(() => nix.sel(types, "int")) })))),
     }))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           options: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             mergedLazyLazy: lazyAttrsOf,
             mergedLazyNonLazy: lazyAttrsOf,
             mergedNonLazyNonLazy: attrsOf,
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           options: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mergedLazyLazy: lazyAttrsOf,
             mergedLazyNonLazy: attrsOf,
             mergedNonLazyNonLazy: attrsOf,
@@ -71,28 +71,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           config: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mergedLazyLazy: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               bar: nix.thunk(() => nix.add(nix.sel(config, "mergedLazyLazy", "baz"), 1n)),
               baz: 10n,
             })),
             mergedNonLazyNonLazy: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               bar: nix.thunk(() => nix.add(nix.sel(config, "mergedNonLazyNonLazy", "baz"), 1n)),
               baz: 10n,
             })),
           })),
           options: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             lazyResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: nix.thunk(() => nix.sel(config, "mergedLazyLazy", "bar")),
               })))),
             nonLazyResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: nix.thunk(() => nix.sel(config, "mergedNonLazyNonLazy", "bar")),
               })))),
           })),

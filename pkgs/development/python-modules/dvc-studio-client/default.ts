@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iterative",
           repo: "dvc-studio-client",
           tag: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dvc_studio_client"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to post data from DVC/DVCLive to Iterative Studio",
         homepage: "https://github.com/iterative/dvc-studio-client",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-studio-client/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

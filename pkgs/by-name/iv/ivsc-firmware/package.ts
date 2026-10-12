@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ivsc-firmware",
       version: "unstable-2024-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "ivsc-firmware",
           rev: "74a01d1208a352ed85d76f959c68200af4ead918",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/firmware/vsc\ncp --no-preserve=mode --recursive ./firmware/* $out/lib/firmware/vsc/\ninstall -D ./LICENSE $out/share/doc\n\nmkdir -p $out/lib/firmware/vsc/soc_a1_prod\n# According to Intel's documentation for prod platform the a1_prod postfix is need it (https://github.com/intel/ivsc-firmware)\n# This fixes ipu6 webcams\nfor file in $out/lib/firmware/vsc/*.bin; do\n  ln -sf \"$file\" \"$out/lib/firmware/vsc/soc_a1_prod/$(basename \"$file\" .bin)_a1_prod.bin\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware binaries for the Intel Vision Sensing Controller",
         homepage: "https://github.com/intel/ivsc-firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "issl")),

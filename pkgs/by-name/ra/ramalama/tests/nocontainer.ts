@@ -10,8 +10,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const ramalama = nix.arg($, "ramalama");
-  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, ramalama: ramalama }))), "mkServeTest"), nix.thunk(() => ({
-      __proto__: pos$2,
+  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ramalama: ramalama }))), "mkServeTest"), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       name: "ramalama-nocontainer-test",
       port: 18080n,
       model: nix.thunk(() => nix.app(callPackage, nix.path(here, "./llama-cpp-model.nix"), nix.thunk(() => ({})))),

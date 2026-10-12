@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "h3",
       version: "4.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uber",
           repo: "h3-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ substituteInPlace CMakeLists.txt \\
       })()),
       pythonImportsCheck: nix.thunk(() => ["h3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/uber/h3-py/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         homepage: "https://github.com/uber/h3-py",
         description: "Hierarchical hexagonal geospatial indexing system",

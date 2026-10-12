@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const svglib = nix.arg($, "svglib");
   const xdg = nix.arg($, "xdg");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rmrl",
       version: "0.2.1-unstable-2023-06-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benneti",
           repo: "rmrl",
           rev: "e6f20322c80c6551174da1826c78261dfb3b74fe",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["rmrl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Render reMarkable documents to PDF",
         homepage: "https://github.com/benneti/rmrl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

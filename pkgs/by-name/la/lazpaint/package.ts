@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lazpaint",
       version: "7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bgrabitmap",
           repo: "lazpaint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yT1HyvJcYEJgMkQxzCSD8s7/ttemxZaur9T+As8WdIo=",
         })))),
       bgrabitmap: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "bgrabitmap",
           repo: "bgrabitmap",
           tag: "v11.6.6",
           hash: "sha256-bA8tvo7Srm5kIZTVWEA2+gjqHab7LByyL/zqdQxeFlA=",
         })))),
       bgracontrols: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "bgrabitmap",
           repo: "bgracontrols",
           tag: "v9.0.2",
@@ -78,7 +78,7 @@ runHook postBuild
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [python3]))})
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Image editor like PaintBrush or Paint.Net",
         homepage: "https://lazpaint.github.io",
         downloadPage: "https://github.com/bgrabitmap/lazpaint/",

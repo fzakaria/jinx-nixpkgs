@@ -23,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "powerManagement", "powertop"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       powerManagement: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         powertop: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "powertop auto tuning on startup")),
           preStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Shell commands executed before `powertop` is started.\n",
             })))),
           postStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "${lib.getExe' config.systemd.package \"udevadm\"} trigger -c bind -s usb -a idVendor=046d -a idProduct=c08c\n",
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             powertop: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               documentation: nix.thunk(() => ["man:powertop(8)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["multi-user.target"]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
               preStart: nix.thunk(() => nix.sel(cfg, "preStart")),
               postStart: nix.thunk(() => nix.sel(cfg, "postStart")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 Type: "oneshot",
                 RemainAfterExit: "yes",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "powertop")}/bin/powertop --auto-tune`),

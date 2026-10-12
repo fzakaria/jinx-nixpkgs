@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const doCheck = nix.argOr($, "doCheck", () => true);
   const deps = nix.thunk(() => nix.attr(mkgmap, "deps"));
-  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl }))));
+  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "splitter",
       version: "654",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://svn.mkgmap.org.uk/mkgmap/splitter/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-y/pl8kIQ6fiF541ho72LMgJFWJdkUBqPToQGCGmmcfg=",
@@ -74,7 +74,7 @@ makeWrapper ${jre}/bin/java $out/bin/splitter \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => [
           nix.path(here, "./update.sh"),
           "mkgmap-splitter",
@@ -82,7 +82,7 @@ runHook postInstall
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility for splitting OpenStreetMap maps into tiles",
         downloadPage: "https://www.mkgmap.org.uk/download/splitter.html",
         homepage: "https://www.mkgmap.org.uk/",

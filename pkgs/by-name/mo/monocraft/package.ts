@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "4.2.1";
   const relArtifact = (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       hash: hash,
       url: nix.thunk(() => nix.str`https://github.com/IdreesInc/Monocraft/releases/download/v${version}/${name}`),
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "monocraft",
       version: version,
       srcs: nix.thunk(() => [
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nfor src in \"${srcs[@]}\"\ndo\n  install -Dm644 --target $out/share/fonts/truetype $src\ndone\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming font based on the typeface used in Minecraft",
         homepage: "https://github.com/IdreesInc/Monocraft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

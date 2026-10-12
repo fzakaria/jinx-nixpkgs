@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libtommath = nix.arg($, "libtommath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "convertlit",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.convertlit.com/convertlit${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}src.zip`),
           sha256: "182nsin7qscgbw2h92m0zadh3h8q410h5cza6v486yjfvla3dxjx",
           stripRoot: false,
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libtommath]),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       postPatch: "substituteInPlace clit18/Makefile --replace gcc \\$\\(CC\\)\nsubstituteInPlace clit18/Makefile --replace ../libtommath-0.30/libtommath.a -ltommath\n",
       buildPhase: "cd lib\nmake\ncd ../clit18\nmake\n",
       installPhase: "install -Dm755 clit $out/bin/clit\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.convertlit.com/",
         description: "Tool for converting Microsoft Reader ebooks to more open formats",
         mainProgram: "clit",

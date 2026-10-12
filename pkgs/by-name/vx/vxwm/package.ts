@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vxwm",
       version: "2.3-unstable-2026-08-08",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wh1tepearl",
           repo: "vxwm",
           rev: "e3c929a622f87a4463fd1feb99dd3faf3acd3f55",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Versatile X Window Manager for X11 forked from dwm",
         homepage: "https://codeberg.org/wh1tepearl/vxwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

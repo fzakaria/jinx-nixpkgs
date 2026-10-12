@@ -36,27 +36,27 @@ export default nix.lambda((args) => (() => {
 }
 `)));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         peerflix: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to enable peerflix service.",
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Peerflix state directory.",
               default: "/var/lib/peerflix",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           downloadDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Peerflix temporary download directory.",
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/torrents`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/torrents"`))),
@@ -66,26 +66,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' - peerflix - - -`)]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             peerflix: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Peerflix Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$8, HOME: nix.thunk(() => nix.sel(cfg, "stateDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$8, HOME: nix.thunk(() => nix.sel(cfg, "stateDir")) })),
               preStart: nix.thunk(() => nix.str`mkdir -p "${nix.sel(cfg, "stateDir")}"/{torrents,.config/peerflix-server}
 ln -fs "${configFile}" "${nix.sel(cfg, "stateDir")}/.config/peerflix-server/config.json"
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "peerflix-server")}/bin/peerflix-server`),
                 User: "peerflix",
               })),
@@ -93,12 +93,12 @@ ln -fs "${configFile}" "${nix.sel(cfg, "stateDir")}/.config/peerflix-server/conf
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
-            peerflix: nix.thunk(() => ({ __proto__: pos$13, isSystemUser: true, group: "peerflix" })),
+            [nix.POS]: pos$14,
+            peerflix: nix.thunk(() => ({ [nix.POS]: pos$13, isSystemUser: true, group: "peerflix" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, peerflix: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, peerflix: nix.thunk(() => ({})) })),
         })),
       })))),
   };

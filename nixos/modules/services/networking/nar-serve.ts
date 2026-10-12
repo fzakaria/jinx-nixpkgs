@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "nar-serve"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -41,39 +41,39 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "nar-serve": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "serving NAR file contents via HTTP")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nar-serve", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8383n,
               description: "Port number where nar-serve will listen on.\n",
             })))),
           cacheURL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "https://cache.nixos.org/",
               description: "Binary cache URL to connect to.\n\nThe URL format is compatible with the nix remote url style, such as:\n- http://, https:// for binary caches via HTTP or HTTPS\n- s3:// for binary caches stored in Amazon S3\n- gs:// for binary caches stored in Google Cloud Storage\n",
             })))),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               description: "When set, enables the feature of serving <nar-hash>.<domain>\non top of <domain>/nix/store/<nar-hash>-<pname>.\n\nUseful to preview static websites where paths are absolute.\n",
             })))),
           maxConcurrency: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
               default: 0n,
               description: "How many requests can walk an archive at the same time.\n\nDecompressing a NAR up to the wanted file is the whole cost of a\nrequest, thus this is what bounds the CPU use of the service.\nRequests over the limit wait for a free slot, they are not refused.\n\nZero does not limit anything.\n",
             })))),
           metricsAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               example: "127.0.0.1:9464",
@@ -83,18 +83,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "nar-serve": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "NAR server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 NAR_CACHE_URL: nix.thunk(() => nix.sel(cfg, "cacheURL")),
                 DOMAIN: nix.thunk(() => nix.sel(cfg, "domain")),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
                 METRICS_ADDR: nix.thunk(() => nix.sel(cfg, "metricsAddress")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Restart: "always",
                 RestartSec: "5s",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),

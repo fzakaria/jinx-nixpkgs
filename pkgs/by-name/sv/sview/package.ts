@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const pname = "sview";
       const version = "26.09";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gkv311",
           repo: "sview",
           tag: nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "_", version)),
           hash: "sha256-q254Yw7uipeYHwaTYoHlK3hBveWbhtn5zguwCgqEjYE=",
         }))));
       const droidSansFallback = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/2d8961d99f3aa559dbd4b78b716ab36c456b43e1/data/fonts/DroidSansFallbackFull.ttf",
           sha256: "sha256-I5IBVTBDi6/Ejt/ErubZ3iOH9iemE02Ks9/MmdIcgkA=",
         }))));
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         openal,
         openvr,
       ]);
-      const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: nix.thunk(() => [nanum, "placeholder"]) }))));
+      const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [nanum, "placeholder"]) }))));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 make & make install
 mkdir -p $out/share/sView/fonts
@@ -82,7 +82,7 @@ wrapProgram $out/bin/sView \\
   --set FONTCONFIG_FILE $out/share/sView/fonts/fonts.conf
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Viewer for 3D stereoscopic videos and images",
         homepage: "https://www.sview.ru/en/",
         license: nix.thunk(() => (() => {
@@ -102,7 +102,7 @@ wrapProgram $out/bin/sView \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("dapl", nix.app(nix.sel(lib, "optionalString"), buildNativeImage, "-native")));
       const version = "0.2.0+date=2021-10-16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dzaima",
           repo: "APL",
           rev: "5eb0a4205e27afa6122096a25008474eec562dc0",
@@ -41,7 +41,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getBin"), jdk)}/bin/java" "$out/bin/dapl" \
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dzaima/APL",
         description: nix.thunk(() => nix.add("APL implementation in Java", nix.app(nix.sel(lib, "optionalString"), buildNativeImage, ", compiled as a native image"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getBin"), jdk)}/bin/java" "$out/bin/dapl" \
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const tectonic = nix.arg($, "tectonic");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tectonic",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tectonic-typesetting",
           repo: "tectonic",
           rev: nix.thunk(() => nix.str`tectonic@${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => ["external-harfbuzz"]),
       buildInputs: nix.thunk(() => [icu, fontconfig, harfbuzzFull, openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TECTONIC_BUNDLE_LOCKED: "https://data1.fullyjustified.net/tlextras-2022.0r0.tar",
       })),
       postInstall: nix.thunk(() => nix.add(nix.add("# Makes it possible to automatically use the V2 CLI API\nln -s $out/bin/tectonic $out/bin/nextonic\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace dist/appimage/tectonic.desktop \\\n  --replace-fail Exec=tectonic Exec=$out/bin/tectonic\ninstall -Dm644 dist/appimage/tectonic.desktop -t $out/share/applications/\ninstall -Dm644 dist/appimage/tectonic.svg -t $out/share/icons/hicolor/scalable/apps/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd nextonic \\\n  --bash <($out/bin/nextonic show shell-completions bash) \\\n  --zsh <($out/bin/nextonic show shell-completions zsh) \\\n  --fish <($out/bin/nextonic show shell-completions fish)\n"))),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tectonic, "passthru"));
-        return { __proto__: pos$3, tests: nix.thunk(() => nix.attr(from, "tests")) };
+        return { [nix.POS]: pos$3, tests: nix.thunk(() => nix.attr(from, "tests")) };
       })()),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modernized, complete, self-contained TeX/LaTeX engine, powered by XeTeX and TeXLive",
         homepage: "https://tectonic-typesetting.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/tectonic-typesetting/tectonic/blob/tectonic@${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

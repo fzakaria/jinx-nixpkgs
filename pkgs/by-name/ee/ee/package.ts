@@ -16,29 +16,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ee",
       version: "1.5.2-unstable-2024-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freebsd",
           repo: "freebsd-src",
           rev: "0667538b888c1171932c6cf28b62fc19d393e119",
           hash: "sha256-nMhHXeoam9VtUuhhi0eoGZfcW9zZhpYQKVYbkAbfgc0=",
           rootDir: "contrib/ee",
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       buildInputs: nix.thunk(() => [ncurses]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace create.make --replace-fail "/usr/include/curses.h" "${nix.sel(ncurses, "dev")}/include/ncurses.h"
 substituteInPlace create.make --replace-fail "-lcurses" "-lncurses"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-DHAS_UNISTD=1 -DHAS_STDLIB=1 -DHAS_SYS_WAIT=1",
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ee $out/bin/ee\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "classic curses text editor",
         homepage: "https://man.freebsd.org/cgi/man.cgi?ee",
         longDescription: "An easy to use text editor. Intended to be usable with little or no\ninstruction. Provides a terminal (curses based) interface. Features\npop-up menus. Born in HP-UX, included in FreeBSD.\n",

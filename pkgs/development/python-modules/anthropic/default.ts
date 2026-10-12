@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "anthropic",
       version: "1.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthropics",
           repo: "anthropic-sdk-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]),
         bedrock: nix.thunk(() => [boto3, botocore]),
         vertex: nix.thunk(() => nix.concat([google_auth], nix.sel(google_auth, "optional-dependencies", "requests"))),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/api_resources", "tests/lib/test_bedrock.py"]),
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Anthropic's safety-first language model APIs",
         homepage: "https://github.com/anthropics/anthropic-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/anthropics/anthropic-sdk-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

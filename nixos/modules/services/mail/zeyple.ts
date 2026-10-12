@@ -52,34 +52,34 @@ done
 rm -f $out/S.*
 `)));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         zeyple: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Zeyple, an utility program to automatically encrypt outgoing emails with GPG")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "zeyple",
               description: "User to run Zeyple as.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise the sysadmin is responsible for\nensuring the user exists.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "zeyple",
               description: "Group to use to run Zeyple.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise the sysadmin is responsible for\nensuring the user exists.\n:::\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(ini, "type")),
               default: nix.thunk(() => ({})),
               description: "Zeyple configuration. refer to\n<https://github.com/infertux/zeyple/blob/master/zeyple/zeyple.conf.example>\nfor details on supported values.\n",
             })))),
           keys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -87,7 +87,7 @@ rm -f $out/S.*
               description: "List of public key files that will be imported by gpg.",
             })))),
           rotateLogs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable rotation of log files.",
@@ -96,40 +96,40 @@ rm -f $out/S.*
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "zeyple")), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "zeyple")), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               }))],
             ])))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           zeyple: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               zeyple: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   log_file: "/var/log/zeyple/zeyple.log",
                   force_encrypt: true,
                 })))),
-              gpg: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$12, home: nix.thunk(() => nix.str`${gpgHome}`) })))),
-              relay: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$13, host: "localhost", port: 10026n })))),
+              gpg: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$12, home: nix.thunk(() => nix.str`${gpgHome}`) })))),
+              relay: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$13, host: "localhost", port: 10026n })))),
             })),
           })),
           logrotate: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "rotateLogs")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 zeyple: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   files: nix.thunk(() => nix.sel(cfg, "settings", "zeyple", "log_file")),
                   frequency: "weekly",
                   rotate: 5n,
@@ -139,7 +139,7 @@ rm -f $out/S.*
               })),
             })))),
           postfix: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             extraMasterConf: nix.thunk(() => nix.str`zeyple    unix  -       n       n       -       -       pipe
   user=${nix.sel(cfg, "user")} argv=${nix.sel(pkgs, "zeyple")}/bin/zeyple \${recipient}
 
@@ -154,32 +154,32 @@ localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "rela
   -o smtpd_authorized_xforward_hosts=127.0.0.0/8,[::1]/128
 `),
             settings: nix.thunk(() => ({
-              __proto__: pos$20,
-              main: nix.thunk(() => ({ __proto__: pos$19, content_filter: "zeyple" })),
+              [nix.POS]: pos$20,
+              main: nix.thunk(() => ({ [nix.POS]: pos$19, content_filter: "zeyple" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "zeyple.conf": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               source: nix.thunk(() => nix.app(nix.sel(ini, "generate"), "zeyple.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             settings: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               "10-zeyple": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "settings", "zeyple", "log_file"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   f: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0600",

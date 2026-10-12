@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8814au",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2024-05-26`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "morrownr",
           repo: "8814au",
           rev: "810573647b837d88c4191597a0ea6d226f69f64c",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Realtek 8814AU USB WiFi driver",
         homepage: "https://github.com/morrownr/8814au",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

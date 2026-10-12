@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
   const pname = "musicpresence";
   const version = "2.3.6";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/ungive/discord-music-presence/releases/download/v${version}/musicpresence-${version}-linux-x86_64.tar.gz`),
         hash: "sha256-w3y1I6nnztEMaihbXIfQqB0ng6s07iA8bqC8PDq+E+I=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/ungive/discord-music-presence/releases/download/v${version}/musicpresence-${version}-mac-arm64.dmg`),
         hash: "sha256-IvUyzR9amMhyWHRuhTuqUFALCE3QTRjHmsASKydnj8Q=",
       })))),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Discord music status that works with any media player",
     homepage: "https://github.com/ungive/discord-music-presence",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const linuxDrv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
@@ -100,7 +100,7 @@ runHook postInstall
 `),
     }))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(linuxDrv) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       meta: meta,

@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "mympd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       mympd: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           mympd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$1, http_port: 8081n })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$1, http_port: 8081n })),
           })),
-          mpd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          mpd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
       })),
     })),

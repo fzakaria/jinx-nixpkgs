@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moses-palmer",
           repo: "pynput",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-LoolcMYzurJrR7HR1qDO+dvLwP1l9P3+QOzI7uwLdso=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const postPatch = "substituteInPlace setup.py \\\n  --replace-fail \"'sphinx >=1.3.1',\" \"\" \\\n  --replace-fail \"'twine >=4.0']\" \"]\"\n";
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_lint, sphinx]);
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to control and monitor input devices",
         homepage: "https://github.com/moses-palmer/pynput",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

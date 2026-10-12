@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const pkgs = nix.arg($, "pkgs");
   return (type) => (unwrapped) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       pname: nix.thunk(() => nix.str`${nix.sel(unwrapped, "pname")}-wrapped`),
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`${nix.selOr(unwrapped, () => "dotnet", "meta", "description")} (wrapper)`),
         mainProgram: "dotnet",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })()),
       src: unwrapped,
       dontUnpack: true,
-      setupHooks: nix.thunk(() => nix.concat([nix.path(here, "./dotnet-setup-hook.sh")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(type, "sdk")), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dotnet-sdk-setup-hook.sh"), nix.thunk(() => ({ __proto__: pos$2, lndir: lndir, xmlstarlet: xmlstarlet }))))))),
+      setupHooks: nix.thunk(() => nix.concat([nix.path(here, "./dotnet-setup-hook.sh")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(type, "sdk")), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dotnet-sdk-setup-hook.sh"), nix.thunk(() => ({ [nix.POS]: pos$2, lndir: lndir, xmlstarlet: xmlstarlet }))))))),
       propagatedSandboxProfile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(unwrapped, "__propagatedSandboxProfile")))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(type, "sdk")), nugetPackageHook)),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -95,10 +95,10 @@ runHook postInstallCheck
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(unwrapped, "man")), nix.thunk(() => nix.str`ln -s ${nix.sel(unwrapped, "man")} "$man"
 `))),
       passthru: nix.thunk(() => nix.update(nix.sel(unwrapped, "passthru"), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(unwrapped, "artifacts")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           artifacts: nix.thunk(() => nix.attr(unwrapped, "artifacts")),
         }))), {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         unwrapped: unwrapped,
         tests: nix.thunk(() => (() => {
           const mkDotnetTest = nix.lambda((args_1) => (() => {
@@ -116,7 +116,7 @@ runHook postInstallCheck
             const runAllowNetworking = nix.argOr($_1, "runAllowNetworking", () => false);
             const sdk = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
             const built = nix.thunk(() => nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: nix.thunk(() => nix.str`${nix.sel(sdk, "name")}-test-${name}`),
                 nativeBuildInputs: nix.thunk(() => [sdk]),
                 buildInputs: nix.thunk(() => nix.concat(buildInputs, nix.app(nix.sel(lib, "optionals"), usePackageSource, nix.thunk(() => nix.sel(sdk, "packages"))))),
@@ -132,12 +132,12 @@ dotnet new ${nix.app(nix.sel(lib, "escapeShellArgs"), unpackArgs)} -o . --no-res
                 dontPatchELF: true,
               }))));
             return (nix.asBool((nix.asBool(nix.eq(lang, "F#")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(sdk, "version")), "6.0.400")))) ? null : (nix.asBool(nix.eq(run, null)) ? nix.force(built) : nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(built, "name")}-run`), nix.thunk(() => nix.update({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 src: built,
                 nativeBuildInputs: nix.thunk(() => nix.concat([built], runInputs)),
-                passthru: nix.thunk(() => ({ __proto__: pos$5, built: built })),
+                passthru: nix.thunk(() => ({ [nix.POS]: pos$5, built: built })),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isDarwin")) && nix.asBool(runAllowNetworking))), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   sandboxProfile: "(allow network-inbound (local ip))\n(allow mach-lookup (global-name \"com.apple.FSEvents\"))\n",
                   __darwinAllowLocalNetworking: true,
                 }))))), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(runtime, null)), nix.thunk(() => nix.str`export DOTNET_ROOT=${runtime}/share/dotnet
@@ -152,27 +152,27 @@ dotnet new ${nix.app(nix.sel(lib, "escapeShellArgs"), unpackArgs)} -o . --no-res
               const args_2 = args_1;
               const name = nix.arg($_1, "name");
               return nix.app(mkDotnetTest, nix.thunk(() => nix.update(args_2, {
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: nix.thunk(() => nix.str`console-${name}-${suffix}`),
                   template: "console",
                   lang: lang,
                 })));
             })(), formals$3);
             return nix.update(nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 run: nix.thunk(() => nix.app(mkConsoleTest, nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     name: "run",
                     build: nix.thunk(() => nix.app(checkConsoleOutput, "dotnet run")),
                   })))),
                 publish: nix.thunk(() => nix.app(mkConsoleTest, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     name: "publish",
                     build: "dotnet publish -o $out/bin",
                     run: nix.thunk(() => nix.app(checkConsoleOutput, "$src/bin/test")),
                   })))),
                 "self-contained": nix.thunk(() => nix.app(mkConsoleTest, nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     name: "self-contained",
                     usePackageSource: true,
                     build: "dotnet publish --use-current-runtime --sc -o $out",
@@ -180,7 +180,7 @@ dotnet new ${nix.app(nix.sel(lib, "escapeShellArgs"), unpackArgs)} -o . --no-res
                     run: nix.thunk(() => nix.app(checkConsoleOutput, "$src/test")),
                   })))),
                 "single-file": nix.thunk(() => nix.app(mkConsoleTest, nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     name: "single-file",
                     usePackageSource: true,
                     build: "dotnet publish --use-current-runtime -p:PublishSingleFile=true -o $out/bin",
@@ -188,16 +188,16 @@ dotnet new ${nix.app(nix.sel(lib, "escapeShellArgs"), unpackArgs)} -o . --no-res
                     run: nix.thunk(() => nix.app(checkConsoleOutput, "$src/bin/test")),
                   })))),
                 "ready-to-run": nix.thunk(() => nix.app(mkConsoleTest, nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     name: "ready-to-run",
                     usePackageSource: true,
                     build: "dotnet publish --use-current-runtime -p:PublishReadyToRun=true -o $out/bin",
                     run: nix.thunk(() => nix.app(checkConsoleOutput, "$src/bin/test")),
                   })))),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "hasILCompiler")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 aot: nix.thunk(() => nix.app(mkConsoleTest, nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     name: "aot",
                     stdenv: stdenv,
                     usePackageSource: true,
@@ -209,7 +209,7 @@ dotnet new ${nix.app(nix.sel(lib, "escapeShellArgs"), unpackArgs)} -o . --no-res
               }))));
           })();
           const mkWebTest = (lang) => (suffix) => nix.app(mkDotnetTest, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               name: nix.thunk(() => nix.str`web-${suffix}`),
               template: "web",
               lang: lang,
@@ -220,29 +220,29 @@ dotnet new ${nix.app(nix.sel(lib, "escapeShellArgs"), unpackArgs)} -o . --no-res
               runAllowNetworking: true,
             })));
           return nix.update(nix.selOr(unwrapped, () => ({}), "passthru", "tests"), nix.update({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 command: nix.thunk(() => nix.add("HOME=$(mktemp -d) dotnet ", (nix.asBool(nix.eq(type, "sdk")) ? "--version" : "--info"))),
               })))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(type, "sdk")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               buildDotnetModule: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "appendOverlays"), nix.thunk(() => [
                     (self) => (super$) => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       "dotnet-sdk": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                       "dotnet-runtime": nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "runtime")),
                     }),
                   ])), "callPackage"), nix.path(here, "../../../test/dotnet/default.nix"), nix.thunk(() => ({})))))),
               console: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   cs: nix.thunk(() => nix.app(mkConsoleTests, "C#", "cs", "Hello,?\\ World!")),
                   fs: nix.thunk(() => nix.app(mkConsoleTests, "F#", "fs", "Hello\\ from\\ F#")),
                   vb: nix.thunk(() => nix.app(mkConsoleTests, "VB", "vb", "Hello,?\\ World!")),
                 })))),
               web: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   cs: nix.thunk(() => nix.app(mkWebTest, "C#", "cs")),
                   fs: nix.thunk(() => nix.app(mkWebTest, "F#", "fs")),
                 })))),

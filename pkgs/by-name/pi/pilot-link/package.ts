@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const enableLibusb = nix.argOr($, "enableLibusb", () => true);
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pilot-link",
       version: "0.13.0-unstable-2026-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desrod",
           repo: "pilot-link",
           rev: "fa3c832fb0aabd9465664309168abf278fd38f2a",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--with-libiconv"], nix.concat(nix.app(nix.sel(lib, "optionals"), enableConduits, nix.thunk(() => ["--enable-conduits"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableLibpng, nix.thunk(() => ["--enable-libpng"])), nix.app(nix.sel(lib, "optionals"), enableLibusb, nix.thunk(() => ["--enable-libusb"])))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Suite of tools for connecting to PalmOS handheld devices",
         homepage: "https://github.com/desrod/pilot-link",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

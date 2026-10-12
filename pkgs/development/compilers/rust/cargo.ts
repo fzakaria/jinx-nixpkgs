@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const auditable = nix.argOr($, "auditable", () => !nix.asBool(nix.sel(cargo_auditable, "meta", "broken")));
   const cargo_auditable = nix.arg($, "cargo-auditable");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "cargo-auditable": nix.thunk(() => nix.sel(cargo_auditable, "bootstrap")),
     })), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(rustc, "unwrapped"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cargo",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(rustc, "unwrapped"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         rustc: rustc,
         tests: nix.thunk(() => nix.attr(from_1, "tests")),
       };
@@ -60,8 +60,8 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       buildInputs: nix.thunk(() => [file, curl, python3, openssl, zlib]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$3, RUSTC_BOOTSTRAP: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec"), "x86_64-unknown-linux-gnu")), nix.thunk(() => ({
-          __proto__: pos$4,
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec"), "x86_64-unknown-linux-gnu")), nix.thunk(() => ({
+          [nix.POS]: pos$4,
           RUSTFLAGS: "-Clinker-features=-lld -Clink-self-contained=-linker",
         }))))),
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram "$out/bin/cargo" --suffix PATH : "${rustc}/bin"
@@ -87,7 +87,7 @@ runHook postInstallCheck
       ]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://crates.io",
         description: "Downloads your Rust project's dependencies and builds your project",
         mainProgram: "cargo",

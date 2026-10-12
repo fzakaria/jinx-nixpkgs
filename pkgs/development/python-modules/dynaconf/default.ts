@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dynaconf",
           repo: "dynaconf",
           tag: version,
@@ -78,10 +78,10 @@ export default nix.lambda((args) => (() => {
         "tests/test_redis.py",
         "tests/test_vault.py",
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "project.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "project.settings" }));
       const pythonImportsCheck = nix.thunk(() => ["dynaconf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dynamic configurator for Python Project",
         homepage: "https://github.com/dynaconf/dynaconf",
         changelog: nix.thunk(() => nix.str`https://github.com/dynaconf/dynaconf/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

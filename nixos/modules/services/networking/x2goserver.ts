@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "x2goserver"));
   const defaults = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     superenicer: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enable: nix.thunk(() => nix.sel(cfg, "superenicer", "enable")),
     })),
   }));
@@ -58,36 +58,36 @@ export default nix.lambda((args) => (() => {
 X2GO_NXAGENT_DEFAULT_OPTIONS="${nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "nxagentDefaultOptions")))}"
 `)));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "x2goserver"]), nix.thunk(() => ["services", "x2goserver"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         x2goserver: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "x2goserver"), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Enables the x2goserver module.\nNOTE: This will create a good amount of symlinks in `/usr/local/bin`\n",
           })),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "x2goserver", nix.thunk(() => ({})))),
           superenicer: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "superenicer"), {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Enables the SupeReNicer code in x2gocleansessions, this will renice\nsuspended sessions to nice level 19 and renice them to level 0 if the\nsession becomes marked as running again\n",
             })),
           })),
           nxagentDefaultOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["-extension GLX", "-nolisten tcp"]),
               description: "List of default nx agent options.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               default: nix.thunk(() => ({})),
               description: "x2goserver.conf ini configuration as nix attributes. See\n`x2goserver.conf(5)` for details\n",
@@ -97,25 +97,25 @@ X2GO_NXAGENT_DEFAULT_OPTIONS="${nix.app(nix.lookup(w, "concatStringsSep"), " ", 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         xdg: nix.thunk(() => ({
-          __proto__: pos$15,
-          autostart: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
-          menus: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
-          mime: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
-          icons: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+          [nix.POS]: pos$15,
+          autostart: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+          menus: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+          mime: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+          icons: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
-          groups: nix.thunk(() => ({ __proto__: pos$17, x2go: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$20,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$17, x2go: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             x2go: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               home: "/var/lib/x2go/db",
               group: "x2go",
               isSystemUser: true,
@@ -123,11 +123,11 @@ X2GO_NXAGENT_DEFAULT_OPTIONS="${nix.app(nix.lookup(w, "concatStringsSep"), " ", 
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             x2gosqliteWrapper: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/x2go/libx2go-server-db-sqlite3-wrapper.pl`),
               owner: "x2go",
               group: "x2go",
@@ -135,7 +135,7 @@ X2GO_NXAGENT_DEFAULT_OPTIONS="${nix.app(nix.lookup(w, "concatStringsSep"), " ", 
               setgid: true,
             })),
             x2goprintWrapper: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/x2goprint`),
               owner: "x2go",
               group: "x2go",
@@ -143,13 +143,13 @@ X2GO_NXAGENT_DEFAULT_OPTIONS="${nix.app(nix.lookup(w, "concatStringsSep"), " ", 
               setgid: true,
             })),
           })),
-          sudo: nix.thunk(() => ({ __proto__: pos$24, extraConfig: "Defaults  env_keep+=QT_GRAPHICSSYSTEM\n" })),
-          "sudo-rs": nix.thunk(() => ({ __proto__: pos$25, extraConfig: "Defaults  env_keep+=QT_GRAPHICSSYSTEM\n" })),
+          sudo: nix.thunk(() => ({ [nix.POS]: pos$24, extraConfig: "Defaults  env_keep+=QT_GRAPHICSSYSTEM\n" })),
+          "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$25, extraConfig: "Defaults  env_keep+=QT_GRAPHICSSYSTEM\n" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             rules: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, w);
               return nix.concat([
@@ -202,14 +202,14 @@ X2GO_NXAGENT_DEFAULT_OPTIONS="${nix.app(nix.lookup(w, "concatStringsSep"), " ", 
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             x2goserver: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "X2Go Server Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$28, Documentation: "man:x2goserver.conf(5)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$28, Documentation: "man:x2goserver.conf(5)" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/x2gocleansessions`),
                 PIDFile: "/run/x2go/x2goserver.pid",

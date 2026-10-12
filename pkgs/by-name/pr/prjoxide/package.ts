@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prjoxide",
       version: "0.1-unstable-2026-07-19",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gatecat",
           repo: "prjoxide",
           rev: "ea3fe12094dec200afcecdf9ed3306f82e6e3eb2",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./fix-cargo-lock.patch")]),
       cargoHash: "sha256-+KCoH1ibHAGdD66r/kbLK1HCkKot1VmxNnbcpR8QRbA=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.str`-l python${nix.sel(python3, "pythonVersion")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [python3]),
       buildInputs: nix.thunk(() => [python3]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Documentation and tools for Lattice 28nm FPGA parts",
         longDescription: "Project Oxide aims at creating a framework to place\nparse and fuzz bitstreams for Lattice 28nm FPGA parts.\n",
         homepage: "https://github.com/gatecat/prjoxide",

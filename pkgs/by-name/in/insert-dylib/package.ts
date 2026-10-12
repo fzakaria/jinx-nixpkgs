@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "insert-dylib",
       version: "0-unstable-2016-08-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tyilo",
           repo: "insert_dylib",
           rev: "c8beef66a08688c2feeee2c9b6eaf1061c2e67a9",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p Products/Release\n$CC -o Products/Release/insert_dylib insert_dylib/main.c\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 Products/Release/insert_dylib -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line utility for inserting a dylib load command into a Mach-O binary",
         homepage: "https://github.com/tyilo/insert_dylib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

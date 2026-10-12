@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zaproxy",
       version: "0.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zaproxy",
           repo: "zap-api-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pyhamcrest, pytestCheckHook, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["zapv2"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ZAP Python API",
         homepage: "https://github.com/zaproxy/zap-api-python",
         changelog: nix.thunk(() => nix.str`https://github.com/zaproxy/zap-api-python/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

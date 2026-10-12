@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yappi",
       version: "1.7.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sumerc",
           repo: "yappi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PYTHONPATH=$PYTHONPATH:$PWD/tests\nexport PATH=$PATH:$out/bin\n",
       pythonImportsCheck: nix.thunk(() => ["yappi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python profiler that supports multithreading and measuring CPU time",
         mainProgram: "yappi",
         changelog: nix.thunk(() => nix.str`https://github.com/sumerc/yappi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

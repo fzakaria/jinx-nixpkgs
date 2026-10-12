@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "monado-vulkan-layers",
       version: "0-unstable-2024-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "monado",
           repo: "utilities/vulkan-layers",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [vulkan_headers, vulkan_loader]),
       patches: nix.thunk(() => [nix.path(here, "./absolute-layer-path.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vulkan Layers for Monado",
         homepage: "https://gitlab.freedesktop.org/monado/utilities/vulkan-layers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

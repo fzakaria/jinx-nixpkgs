@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const extraLdflags = nix.arg($_1, "extraLdflags");
     const env = nix.arg($_1, "env");
     return nix.app(buildGoModule, nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/provider`),
         subPackages: nix.thunk(() => [nix.thunk(() => nix.str`cmd/${cmd}`)]),
         doCheck: false,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         const semver = nix.arg($_2, "semver");
         const setuptools = nix.arg($_2, "setuptools");
         return nix.app(buildPythonPackage, nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: pname,
             meta: meta,
             src: src,
@@ -118,7 +118,7 @@ runHook postCheck
     const fetchSubmodules = nix.argOr($_1, "fetchSubmodules", () => false);
     const pythonArgs = nix.argOr($_1, "pythonArgs", () => ({}));
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`source-${repo}-${rev}`),
         owner: owner,
         repo: repo,
@@ -127,7 +127,7 @@ runHook postCheck
         fetchSubmodules: fetchSubmodules,
       }))));
     const pulumi_gen = nix.thunk(() => nix.app(mkBasePackage, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         src: src,
         version: version,
         vendorHash: vendorHash,
@@ -137,7 +137,7 @@ runHook postCheck
         pname: cmdGen,
       }))));
     return nix.app(mkBasePackage, nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: repo,
         env: env,
         src: src,
@@ -153,10 +153,10 @@ popd
 VERSION=v${version} go generate cmd/${cmdRes}/main.go
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           sdks: nix.thunk(() => ({
-            __proto__: pos$6,
-            python: nix.thunk(() => nix.app(mkPythonPackage, nix.thunk(() => nix.update({ __proto__: pos$5, meta: meta, src: src, version: version, pname: repo }, pythonArgs)))),
+            [nix.POS]: pos$6,
+            python: nix.thunk(() => nix.app(mkPythonPackage, nix.thunk(() => nix.update({ [nix.POS]: pos$5, meta: meta, src: src, version: version, pname: repo }, pythonArgs)))),
           })),
         })),
       }, nix.app(nix.sel(lib, "removeAttrs"), args_2, nix.thunk(() => ["pythonArgs"])))));

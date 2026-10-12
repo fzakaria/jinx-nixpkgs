@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.seamonkey-project.org/releases/${version}/linux-x86_64/en-US/seamonkey-${version}.en-US.linux-x86_64.tar.bz2`),
           sha256: "sha256-Y/vh0PXKNbsijkfrWGqBxXh96/vCeiQhKeqeEzQp2Cw=",
         }))));
@@ -71,7 +71,7 @@ wrapProgram $out/bin/seamonkey \\
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "The SeaMonkey project is a community effort to deliver production-quality releases of code names previously known as 'Mozilla Application Suite'",
           homepage: "https://www.seamonkey-project.org/",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mpl20")),
@@ -81,7 +81,7 @@ wrapProgram $out/bin/seamonkey \\
         };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         strictDeps,

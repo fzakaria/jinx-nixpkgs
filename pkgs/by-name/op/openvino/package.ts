@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openvino",
       version: "2026.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openvinotoolkit",
           repo: "openvino",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_SYSTEM_TBB", true)),
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_ARM_COMPUTE_CMAKE", true)),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-odr" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-odr" })),
       buildInputs: nix.thunk(() => nix.concat([
         flatbuffers,
         gflags,
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "substituteInPlace $dev/lib/pkgconfig/openvino.pc \\\n  --replace-fail \"include_prefix=\\${prefix}/\" \"include_prefix=\" \\\n  --replace-fail \"exec_prefix=\\${prefix}/\" \"exec_prefix=\"\n",
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/openvinotoolkit/openvino/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open-source toolkit for optimizing and deploying AI inference",
         longDescription: "This toolkit allows developers to deploy pre-trained deep learning models through a high-level C++ Inference Engine API integrated with application logic.\n\nThis open source version includes several components: namely Model Optimizer, nGraph and Inference Engine, as well as CPU, GPU, MYRIAD,\nmulti device and heterogeneous plugins to accelerate deep learning inferencing on Intel® CPUs and Intel® Processor Graphics.\nIt supports pre-trained models from the Open Model Zoo, along with 100+ open source and public models in popular formats such as Caffe*, TensorFlow*, MXNet* and ONNX*.\n",

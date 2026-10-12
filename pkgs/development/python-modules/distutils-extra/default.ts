@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.50";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://salsa.debian.org/python-team/modules/python-distutils-extra/-/archive/${version}/python-${pname}-${version}.tar.bz2`),
           hash: "sha256-aq5+JjlzD3fS4+CPxZNjyz2QNfqsChC0w6KRVgbTGwI=",
         }))));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["DistUtilsExtra"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enhancements to Python's distutils",
         homepage: "https://launchpad.net/python-distutils-extra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

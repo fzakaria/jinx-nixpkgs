@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Sanic-Auth",
           version: version,
           hash: "sha256-KAU066S70GO1hURQrW0n+L5/kFzpgen341hlia0ngjU=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Support for httpx>=0.20.0\nsubstituteInPlace tests/test_auth.py \\\n  --replace-fail \"allow_redirects=False\" \"follow_redirects=False\"\n";
       const pythonImportsCheck = nix.thunk(() => ["sanic_auth"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Authentication for Sanic",
         homepage: "https://github.com/pyx/sanic-auth/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

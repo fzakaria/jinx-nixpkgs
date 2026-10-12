@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "paf-cohttp",
       version: nix.thunk(() => nix.attr(paf, "version")),
       src: nix.thunk(() => nix.attr(paf, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest_lwt, fmt, logs, mirage_crypto_rng, tcpip, uri, lwt, astring]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(paf, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP client with its HTTP/AF implementation",
       })),
     })));

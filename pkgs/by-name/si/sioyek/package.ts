@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const openjpeg = nix.arg($, "openjpeg");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sioyek",
       version: "2.0.0-unstable-2026-09-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ahrm",
           repo: "sioyek",
           rev: "f4609bfbfd53aaa9bb0ca70744df54ebf768fddf",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pdf_viewer_build_config.pro \\\n  --replace-fail \"-lmupdf-threads\" \"-lgumbo -lharfbuzz -lfreetype -ljbig2dec -ljpeg -lopenjp2\" \\\n  --replace-fail \"-lmupdf-third\" \"\"\nsubstituteInPlace pdf_viewer/main.cpp \\\n  --replace-fail \"/usr/share/sioyek\" \"$out/share\" \\\n  --replace-fail \"/etc/sioyek\" \"$out/etc\"\n",
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "cp -r pdf_viewer/shaders sioyek.app/Contents/MacOS/shaders\ncp pdf_viewer/{prefs,prefs_user,keys,keys_user}.config tutorial.pdf sioyek.app/Contents/MacOS/\n\nmkdir -p $out/Applications $out/bin\ncp -r sioyek.app $out/Applications\nln -s $out/Applications/sioyek.app/Contents/MacOS/sioyek $out/bin/sioyek\n" : "install -Dm644 tutorial.pdf $out/share/tutorial.pdf\ncp -r pdf_viewer/shaders $out/share/\ninstall -Dm644 -t $out/etc/ pdf_viewer/{keys,prefs}.config\ninstallManPage resources/sioyek.1\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, branch: "development", tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "development", tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://sioyek.info/",
         description: "PDF viewer designed for research papers and technical books",
         mainProgram: "sioyek",

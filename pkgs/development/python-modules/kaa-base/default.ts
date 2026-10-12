@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "kaa-base";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0k3zzz84wzz9q1fl3vvqr2ys96z9pcf4viq9q6s2a63zaysmcfd2",
@@ -47,14 +47,14 @@ rm -f "$out/${nix.sel(python, "sitePackages")}"/site.py*
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic application framework, providing the foundation for other modules",
         homepage: "https://github.com/freevo/kaa-base",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

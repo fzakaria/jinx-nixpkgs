@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hydra-ws",
       version: nix.thunk(() => nix.attr(hydra, "version")),
       src: nix.thunk(() => nix.attr(hydra, "src")),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [protobuf, rust_jemalloc_sys]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WebSocket server streaming build logs for the Hydra web interface",
         homepage: "https://github.com/NixOS/hydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

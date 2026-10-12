@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       src: src,
       meta: meta,
       pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
       cargoHash: vendor_hash,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           src: src,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: pnpm_hash,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       postPatch: nix.thunk(() => nix.str`# We disable the option to try to use the bleeding-edge version of mihomo
 # If you need a newer version, you can override the mihomo input of the wrapped package
 sed -i -e '/Mihomo Alpha/d' ./src/components/setting/mods/clash-core-viewer.tsx

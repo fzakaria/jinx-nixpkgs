@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "envoluntary";
       const version = "0.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dfrankland",
           repo: "envoluntary",
           tag: nix.thunk(() => nix.str`envoluntary-v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.str`export NIX_BIN_BASH="${bash}/bin/bash"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic Nix development environments for your shell",
         longDescription: "Envoluntary seamlessly loads and unloads Nix development environments based on directory\npatterns, eliminating the need for per-project .envrc / flake.nix files while giving you\ncentralized control over your development tooling.\n",
         homepage: "https://github.com/dfrankland/envoluntary",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "envoluntary",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, preCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, preCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

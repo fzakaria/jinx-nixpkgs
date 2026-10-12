@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(libsForQt5, "wrapQtAppsHook"));
   nix.assert_((!nix.asBool(forceWayland) || nix.asBool(!nix.asBool(enableQt))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pp/ppsspp/package.nix:36:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add(nix.add(nix.add("ppsspp", nix.app(nix.sel(lib, "optionalString"), enableQt, "-qt")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableQt)), "-sdl")), nix.app(nix.sel(lib, "optionalString"), forceWayland, "-wayland"))),
       version: "1.20.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hrydgard",
           repo: "ppsspp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ substituteInPlace UI/NativeApp.cpp --replace /usr/share $out/share
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desktopName: "PPSSPP",
             name: "ppsspp",
             exec: "ppsspp",
@@ -94,7 +94,7 @@ substituteInPlace UI/NativeApp.cpp --replace /usr/share $out/share
         return nix.str`makeWrapper $out/share/ppsspp/bin/${binToBeWrapped} $out/bin/ppsspp ${wrapperArgs}`;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.ppsspp.org/",
         description: nix.thunk(() => nix.add(nix.add("HLE Playstation Portable emulator, written in C++ (", (nix.asBool(enableQt) ? "Qt" : "SDL + headless")), ")")),
         longDescription: "PPSSPP is a PSP emulator, which means that it can run games and other\nsoftware that was originally made for the Sony PSP.\n\nThe PSP had multiple types of software. The two most common are native PSP\ngames on UMD discs and downloadable games (that were stored in the\ndirectory PSP/GAME on the \"memory stick\"). But there were also UMD Video\ndiscs, and PS1 games that could run in a proprietary emulator. PPSSPP does\nnot run those.\n",

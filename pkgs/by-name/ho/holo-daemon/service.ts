@@ -52,53 +52,53 @@ export default nix.lambda((args) => (() => {
     const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
     const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "holod.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
     return {
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       _class: "service",
       options: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         "holo-daemon": nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "holo-daemon", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "User for the holo daemon",
                         default: "holo",
                       })))),
                     group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Group for the holo daemon",
                         default: "holo",
                       })))),
                     database_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Path to the holo database",
                         default: "/var/run/holod/holod.db",
                       })))),
                     logging: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               journald: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$6,
+                                      [nix.POS]: pos$6,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$5,
+                                        [nix.POS]: pos$5,
                                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$4,
+                                            [nix.POS]: pos$4,
                                             type: nix.thunk(() => nix.sel(types, "bool")),
                                             description: "Enable or disable journald logging",
                                             default: true,
@@ -109,25 +109,25 @@ export default nix.lambda((args) => (() => {
                                   default: nix.thunk(() => ({})),
                                 })))),
                               file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$13,
+                                  [nix.POS]: pos$13,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$12,
+                                      [nix.POS]: pos$12,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$11,
+                                        [nix.POS]: pos$11,
                                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$8,
+                                            [nix.POS]: pos$8,
                                             type: nix.thunk(() => nix.sel(types, "bool")),
                                             description: "Enable or disable file logging",
                                             default: true,
                                           })))),
                                         dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$9,
+                                            [nix.POS]: pos$9,
                                             type: nix.thunk(() => nix.sel(types, "str")),
                                             description: "Directory for log files",
                                             default: "/var/log/",
                                           })))),
                                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$10,
+                                            [nix.POS]: pos$10,
                                             type: nix.thunk(() => nix.sel(types, "str")),
                                             description: "Name of the log file",
                                             default: "holod.log",
@@ -143,26 +143,26 @@ export default nix.lambda((args) => (() => {
                         default: nix.thunk(() => ({})),
                       })))),
                     plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               grpc: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$20,
+                                      [nix.POS]: pos$20,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$19,
+                                        [nix.POS]: pos$19,
                                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$17,
+                                            [nix.POS]: pos$17,
                                             type: nix.thunk(() => nix.sel(types, "bool")),
                                             description: "Enable or disable gRPC plugin",
                                             default: true,
                                           })))),
                                         address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$18,
+                                            [nix.POS]: pos$18,
                                             type: nix.thunk(() => nix.sel(types, "str")),
                                             description: "gRPC server listening address",
                                             default: "[::]:50051",
@@ -185,9 +185,9 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         process: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           argv: nix.thunk(() => [
             nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/holod`),
             "-c",
@@ -196,7 +196,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "themadbit"))];

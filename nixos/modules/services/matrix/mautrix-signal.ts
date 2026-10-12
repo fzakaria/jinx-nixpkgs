@@ -72,47 +72,47 @@ export default nix.lambda((args) => (() => {
   const optOneOf = nix.thunk(() => nix.app(nix.sel(lib, "lists", "findFirst"), (value) => nix.sel(value, "condition"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, null))));
   const mkDefaults = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (n) => (v) => nix.app(nix.sel(lib, "mkDefault"), v)));
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     network: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       displayname_template: "{{or .ProfileName .PhoneNumber \"Unknown user\"}}",
     })),
     bridge: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       command_prefix: "!signal",
-      relay: nix.thunk(() => ({ __proto__: pos$2, enabled: true })),
-      permissions: nix.thunk(() => ({ __proto__: pos$3, "*": "relay" })),
+      relay: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true })),
+      permissions: nix.thunk(() => ({ [nix.POS]: pos$3, "*": "relay" })),
     })),
     database: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       type: "sqlite3",
       uri: nix.thunk(() => nix.str`file:${dataDir}/mautrix-signal.db?_txlock=immediate`),
     })),
-    homeserver: nix.thunk(() => ({ __proto__: pos$6, address: "http://localhost:8448" })),
+    homeserver: nix.thunk(() => ({ [nix.POS]: pos$6, address: "http://localhost:8448" })),
     appservice: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       hostname: "[::]",
       port: appservicePort,
       id: "signal",
-      bot: nix.thunk(() => ({ __proto__: pos$7, username: "signalbot", displayname: "Signal Bridge Bot" })),
+      bot: nix.thunk(() => ({ [nix.POS]: pos$7, username: "signalbot", displayname: "Signal Bridge Bot" })),
       as_token: "",
       hs_token: "",
       username_template: "signal_{{.}}",
     })),
     double_puppet: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       servers: nix.thunk(() => ({})),
       secrets: nix.thunk(() => ({})),
     })),
-    encryption: nix.thunk(() => ({ __proto__: pos$10, pickle_key: "" })),
-    provisioning: nix.thunk(() => ({ __proto__: pos$11, shared_secret: "" })),
-    public_media: nix.thunk(() => ({ __proto__: pos$12, signing_key: "" })),
-    direct_media: nix.thunk(() => ({ __proto__: pos$13, server_key: "" })),
+    encryption: nix.thunk(() => ({ [nix.POS]: pos$10, pickle_key: "" })),
+    provisioning: nix.thunk(() => ({ [nix.POS]: pos$11, shared_secret: "" })),
+    public_media: nix.thunk(() => ({ [nix.POS]: pos$12, signing_key: "" })),
+    direct_media: nix.thunk(() => ({ [nix.POS]: pos$13, server_key: "" })),
     logging: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       min_level: "info",
       writers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: "stdout",
           format: "pretty-colored",
           time_format: " ",
@@ -120,41 +120,41 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         "mautrix-signal": nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mautrix-signal, a Matrix-Signal puppeting bridge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mautrix-signal", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               apply: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultConfig)),
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: defaultConfig,
               description: "{file}`config.yaml` configuration as a Nix attribute set.\nConfiguration options should match those described in the example configuration.\nGet an example configuration by executing `mautrix-signal -c example.yaml --generate-example-config`\nSecret tokens should be specified using {option}`environmentFile`\ninstead of this world-readable attribute set.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 bridge: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   private_chat_portal_meta: true,
                   mute_only_on_create: false,
-                  permissions: nix.thunk(() => ({ __proto__: pos$17, "example.com": "user" })),
+                  permissions: nix.thunk(() => ({ [nix.POS]: pos$17, "example.com": "user" })),
                 })),
                 database: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: "postgres",
                   uri: "postgresql:///mautrix_signal?host=/run/postgresql",
                 })),
-                homeserver: nix.thunk(() => ({ __proto__: pos$20, address: "http://[::1]:8008", domain: "my-domain.tld" })),
-                appservice: nix.thunk(() => ({ __proto__: pos$21, id: "signal", ephemeral_events: false })),
-                matrix: nix.thunk(() => ({ __proto__: pos$22, message_status_events: true })),
-                provisioning: nix.thunk(() => ({ __proto__: pos$23, shared_secret: "disable" })),
-                backfill: nix.thunk(() => ({ __proto__: pos$24, enabled: true })),
+                homeserver: nix.thunk(() => ({ [nix.POS]: pos$20, address: "http://[::1]:8008", domain: "my-domain.tld" })),
+                appservice: nix.thunk(() => ({ [nix.POS]: pos$21, id: "signal", ephemeral_events: false })),
+                matrix: nix.thunk(() => ({ [nix.POS]: pos$22, message_status_events: true })),
+                provisioning: nix.thunk(() => ({ [nix.POS]: pos$23, shared_secret: "disable" })),
+                backfill: nix.thunk(() => ({ [nix.POS]: pos$24, enabled: true })),
                 encryption: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   allow: true,
                   default: true,
                   require: true,
@@ -163,13 +163,13 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File containing environment variables to be passed to the mautrix-signal service.\nIf an environment variable `MAUTRIX_SIGNAL_BRIDGE_LOGIN_SHARED_SECRET` is set,\nthen its value will be used in the configuration file for the option\n`double_puppet.secrets` without leaking it to the store, using the configured\n`homeserver.domain` as key.\n",
             })))),
           serviceDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -179,7 +179,7 @@ export default nix.lambda((args) => (() => {
               description: "List of systemd units to require and wait for when starting the application service.\n",
             })))),
           registerToSynapse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.matrix-synapse.enable\n")),
@@ -189,43 +189,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "mautrix-signal": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               isSystemUser: true,
               group: "mautrix-signal",
               home: dataDir,
               description: "Mautrix-Signal bridge user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$36, "mautrix-signal": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$36, "mautrix-signal": nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               settings: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 app_service_config_files: nix.thunk(() => [registrationFile]),
               })),
             })))),
           "mautrix-signal": nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             settings: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               homeserver: nix.thunk(() => nix.app(optOneOf, nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(config, "services")), null);
                   return [
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(nix.lookup(w, "matrix-synapse"), "enable")), nix.thunk(() => nix.app(mkDefaults, nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           domain: nix.thunk(() => nix.sel(nix.lookup(w, "matrix-synapse"), "settings", "server_name")),
                         })))))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(nix.lookup(w, "matrix-conduit"), "enable")), nix.thunk(() => nix.app(mkDefaults, nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           domain: nix.thunk(() => nix.sel(nix.lookup(w, "matrix-conduit"), "settings", "global", "server_name")),
                           address: nix.thunk(() => nix.str`http://localhost:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(nix.lookup(w, "matrix-conduit"), "settings", "global", "port")))}`),
                         })))))),
@@ -235,15 +235,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           services: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ({
-                __proto__: pos$46,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$45, SupplementaryGroups: nix.thunk(() => ["mautrix-signal"]) })),
+                [nix.POS]: pos$46,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$45, SupplementaryGroups: nix.thunk(() => ["mautrix-signal"]) })),
               })))),
             "mautrix-signal": nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "mautrix-signal, a Matrix-Signal puppeting bridge.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.sel(cfg, "serviceDependencies"))),
@@ -282,7 +282,7 @@ mv '${settingsFile}.tmp' '${settingsFile}'
 umask $old_umask
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 User: "mautrix-signal",
                 Group: "mautrix-signal",
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
@@ -321,7 +321,7 @@ umask $old_umask
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       buildDocsInSandbox: false,
       doc: nix.path(here, "./mautrix-signal.md"),
       maintainers: nix.thunk(() => (() => {

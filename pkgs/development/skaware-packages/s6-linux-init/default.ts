@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const s6 = nix.arg($, "s6");
   const targetPackages = nix.arg($, "targetPackages");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "s6-linux-init",
       version: "1.2.0.2",
       sha256: "sha256-b60BTaFiwMgZJBl8V9FuGnXBM7NKIOQjQxobdB6Qex0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set of minimalistic tools used to create a s6-based init system, including a /sbin/init binary, on a Linux kernel",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

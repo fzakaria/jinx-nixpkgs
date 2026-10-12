@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tetex = nix.arg($, "tetex");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reporter",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "IzakMarais",
           repo: "reporter",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-QlNOx2jm1LVz066t9khppf//T5c9z3YUrSOr6qzbUzI=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-go-mod-and-remove-vendor-dirs",
             url: "https://github.com/IzakMarais/reporter/commit/e844b3f624e0da3a960f98cade427fe54f595504.patch",
             hash: "sha256-CdI7/mkYG6t6H6ydGu7atwk18DpagdP7uzfrZVKKlhA=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tetex]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PDF report generator from a Grafana dashboard",
         mainProgram: "grafana-reporter",
         homepage: "https://github.com/IzakMarais/reporter",

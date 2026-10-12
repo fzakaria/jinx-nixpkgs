@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libxcrypt",
       version: "4.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/besser82/libxcrypt/releases/download/v${nix.sel(finalAttrs, "version")}/libxcrypt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-cVE6McAaQovM1TZ6Mv2V8RXW2sUPtbYMd51ceUKuwHE=",
         })))),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           login: nix.thunk(() => nix.attr(nixosTests, "login")),
           shadow: nix.thunk(() => nix.attr(nixosTests, "shadow")),
           passthruMatches: nix.thunk(() => nix.app(runCommand, "libxcrypt-test-passthru-matches", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(python3, "interpreter")} "${nix.path(here, "./check_passthru_matches.py")}" ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(finalAttrs, "src")), enableHashes, "--"], nix.sel(finalAttrs, "passthru", "enabledCryptSchemeIds"))))}
@@ -59,7 +59,7 @@ touch "$out"
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/besser82/libxcrypt/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Extended crypt library for descrypt, md5crypt, bcrypt, and others",
         homepage: "https://github.com/besser82/libxcrypt/",

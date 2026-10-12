@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "2Fake",
           repo: "devolo_plc_api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/2Fake/devolo_plc_api/commit/3b1c167e2df5909910e97bf1626de88b17fb94d1.patch",
             hash: "sha256-oaLYMvRl2Zcum9XkFQ1Dm1/F/BhURLGKrwh6FguVL9Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/2Fake/devolo_plc_api/pull/224.patch",
             hash: "sha256-fDGYhjA/tMFKQnEtix1no8Wf+cp9Ph7keXRq1+sH6YA=",
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_wrong_password_type"]);
       const pythonImportsCheck = nix.thunk(() => ["devolo_plc_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Module to interact with Devolo PLC devices",
         homepage: "https://github.com/2Fake/devolo_plc_api",
         changelog: nix.thunk(() => nix.str`https://github.com/2Fake/devolo_plc_api/releases/tag/v${version}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

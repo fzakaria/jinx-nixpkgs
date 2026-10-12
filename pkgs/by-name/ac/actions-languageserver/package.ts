@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "actions-languageserver",
       version: "0.3.61",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "actions",
           repo: "languageservices",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} 'del(.devDependencies.["rest-api-descript
       preBuild: "patchShebangs .\nnpm run build --workspace=expressions\nnpm run build --workspace=workflow-parser\nnpm run build --workspace=languageservice\n",
       postInstall: "cp -r expressions workflow-parser languageservice languageserver $out/lib/node_modules/actions-languageservices/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/actions/languageservices",
         description: "Language server for GitHub Actions",
         changelog: nix.thunk(() => nix.str`https://github.com/actions/languageservices/releases/tag/release-v${nix.sel(finalAttrs, "version")}`),

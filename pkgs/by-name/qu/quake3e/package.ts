@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x64" : nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "Quake3e",
       version: "2025-10-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ec-",
           repo: "Quake3e",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         glibc,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
       })),
       enableParallelBuilding: true,
@@ -75,7 +75,7 @@ runHook postInstall
       postInstall: "install -Dm644 code/unix/quake3.svg $out/share/icons/hicolor/scalable/apps/quake3e.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Quake3e",
             exec: "quake3e",
             desktopName: "Quake3e",
@@ -84,7 +84,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/ec-/Quake3e",
         description: "Improved Quake III Arena engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

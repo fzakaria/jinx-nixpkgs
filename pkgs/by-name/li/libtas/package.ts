@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const withForceX11 = nix.argOr($, "withForceX11", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libtas",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clementgallet",
           repo: "libTAS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/clementgallet/libTAS/commit/779ff0fb0f3accfc62949680d85ecf96b28d18ef.patch",
             hash: "sha256-xAaTWIXt8FkMu6GE5mBWtLypROFZ1aEqmBTtG+6rTWk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/clementgallet/libTAS/commit/9699b158c522cf778bcdf626d0520fdd0a8b83aa.patch?full_index=1",
             hash: "sha256-vM1f6rvKIFyzEGJ7k+b/Zp4gAv8u6mdDUD5evV+hCJU=",
           })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   --set-default LIBTAS_SO_PATH $out/lib/libtas.so
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://clementgallet.github.io/libTAS/",
         changelog: nix.thunk(() => nix.str`https://github.com/clementgallet/libTAS/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "GNU/Linux software to give TAS tools to games",

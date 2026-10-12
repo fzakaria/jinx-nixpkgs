@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "copilot-node-server";
       const version = "1.41.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfcherng",
           repo: "copilot-node-server",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ cp ${nix.path(here, "./package-lock.json")} package-lock.json
       const forceEmptyCache = true;
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Copilot Node.js server",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -41,7 +41,7 @@ cp ${nix.path(here, "./package-lock.json")} package-lock.json
         mainProgram: "copilot-node-server",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

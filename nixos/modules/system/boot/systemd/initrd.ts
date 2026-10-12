@@ -208,13 +208,13 @@ export default nix.lambda((args) => (() => {
   const enabledUnits = nix.thunk(() => nix.app(filterAttrs, (n) => (v) => !nix.asBool(nix.app(elem, n, nix.thunk(() => nix.sel(cfg, "suppressedUnits")))), nix.thunk(() => nix.sel(cfg, "units"))));
   const jobScripts = nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (_) => (unit) => nix.selOr(unit, () => [], "jobScripts"), nix.thunk(() => nix.app(filterAttrs, (_) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "services"))))))));
   const unitEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "initrd-unit-env",
       paths: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (_) => (unit) => nix.selOr(unit, () => [], "path"), nix.thunk(() => nix.app(filterAttrs, (_) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "services")))))))),
       pathsToLink: nix.thunk(() => ["/bin", "/sbin"]),
     }))));
   const stage1Units = nix.thunk(() => nix.app(generateUnits, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: "initrd",
       units: enabledUnits,
       upstreamUnits: enabledUpstreamUnits,
@@ -224,7 +224,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const kernel_name = nix.thunk(() => nix.selOr(config, () => "kernel", "boot", "kernelPackages", "kernel", "name"));
   const initrdBinEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "initrd-bin-env",
       paths: nix.thunk(() => nix.builtins.map(getBin, nix.thunk(() => nix.sel(cfg, "initrdBin")))),
       pathsToLink: nix.thunk(() => ["/bin", "/sbin"]),
@@ -238,7 +238,7 @@ ln -sf '${v}' $out/sbin/'${n}'
   const initialRamdisk = nix.thunk(() => nix.app(nix.sel(pkgs, "makeInitrdNG"), nix.thunk(() => (() => {
       const from_2 = nix.thunk(() => nix.sel(config, "boot", "initrd"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`initrd-${kernel_name}`),
       compressor: nix.thunk(() => nix.attr(from_2, "compressor")),
       compressorArgs: nix.thunk(() => nix.attr(from_2, "compressorArgs")),
@@ -252,43 +252,43 @@ ln -sf '${v}' $out/sbin/'${n}'
     };
     })())));
   return {
-    __proto__: pos$91,
+    [nix.POS]: pos$91,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "initrd", "systemd", "strip"]), "The option to strip ELF files in initrd has been removed.\nIt only saved ~1MiB of initramfs size, but caused a few issues\nlike unloadable kernel modules.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "initrd", "systemd", "extraConfig"]), "Use boot.initrd.systemd.settings.Manager instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       boot: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         initrd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           systemd: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "systemd in initrd"), {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: true,
               description: "Whether to enable systemd in initrd. The unit options such as\n{option}`boot.initrd.systemd.services` are the same as their\nstage 2 counterparts such as {option}`systemd.services`,\nexcept that `restartTriggers` and `reloadTriggers` are not\nsupported.\n",
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 default: nix.thunk(() => nix.sel(config, "systemd", "package")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.systemd.package")),
                 description: "The systemd package to use.\n",
               })))),
             settings: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               Manager: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   default: nix.thunk(() => ({})),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  DefaultEnvironment = \"PATH=/bin:/sbin\";\n}\n")),
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
                     })))),
                   example: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     WatchdogDevice: "/dev/watchdog",
                     RuntimeWatchdogSec: "30s",
                     RebootWatchdogSec: "10min",
@@ -298,7 +298,7 @@ ln -sf '${v}' $out/sbin/'${n}'
                 })))),
             })),
             managerEnvironment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -309,44 +309,44 @@ ln -sf '${v}' $out/sbin/'${n}'
                 })()),
                 default: nix.thunk(() => ({})),
                 defaultText: "{\n  PATH = \"/bin:/sbin\";\n}\n",
-                example: nix.thunk(() => ({ __proto__: pos$11, SYSTEMD_LOG_LEVEL: "debug" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$11, SYSTEMD_LOG_LEVEL: "debug" })),
                 description: "Environment variables of PID 1. These variables are\n*not* passed to started units.\n",
               })))),
             contents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "Set of files that have to be linked into the initrd",
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  \"/etc/machine-id\".source = /etc/machine-id;\n}\n")),
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "initrdContents")),
               })))),
             storePaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "Store paths to copy into the initrd as well.\n",
                 type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "initrdStorePath")),
                 default: [],
               })))),
             extraBin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Tools to add to /bin\n",
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  umount = \"${pkgs.util-linux}/bin/umount\";\n}\n")),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => ({})),
               })))),
             suppressedStorePaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Store paths specified in the storePaths option that\nshould not be copied.\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "singleLineStr")))),
                 default: [],
               })))),
             root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["fstab", "gpt-auto"]))))),
                 default: "fstab",
                 example: "gpt-auto",
                 description: "Controls how systemd will interpret the root FS in initrd. See\nthe description of the `root=` argument in {manpage}`kernel-command-line(7)`.\n\nWhen set to \"gpt-auto\", {manpage}`systemd-gpt-auto-generator(8)`\nautomatically discovers and mounts the root, EFI System (ESP),\nswap, and various other partitions based on their partition\ntype, allowing them to be effectively omitted from\n{option}`fileSystems.<name>`.\nNote however that {option}`boot.initrd.supportedFilesystems`\nwill not be inferred for partitions without an explicit\n{option}`fileSystems.<name>.fsType`, therefore the filesystem\nnames of all partitions mounted through \"gpt-auto\" must be\nmanually appended to `supportedFilesystems`.\n\nIf root shall be omitted, set this option to `null`.\n",
               })))),
             emergencyAccess: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -365,99 +365,99 @@ For emergency access after initrd, use \`${nix.sel(options, "systemd", "enableEm
                 default: false,
               })))),
             initrdBin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                 default: [],
                 description: "Packages to include in /bin for the stage 1 emergency shell.\n",
               })))),
             additionalUpstreamUnits: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 example: nix.thunk(() => ["debug-shell.service", "systemd-quotacheck.service"]),
                 description: "Additional units shipped with systemd that shall be enabled.\n",
               })))),
             suppressedUnits: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 example: nix.thunk(() => ["systemd-backlight@.service"]),
                 description: "A list of units to skip when generating system systemd configuration directory. This has\npriority over upstream units, {option}`boot.initrd.systemd.units`, and\n{option}`boot.initrd.systemd.additionalUpstreamUnits`. The main purpose of this is to\nprevent a upstream systemd unit from being added to the initrd with any modifications made to it\nby other NixOS modules.\n",
               })))),
             shell: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 default: nix.thunk(() => nix.sel(config, "environment", "shell", "enable")),
                 internal: true,
                 description: "Whether to enable a shell in the initrd.\n\nIn contrast to `environment.shell.enable`, this option actually\nstrictly disables all shells in the initrd because they're not copied\ninto it anymore. Paths that use a shell (e.g. via the `script` option),\nwill break if this option is set.\n\nOnly set this option if you're sure that you can recover from potential\nissues.\n",
               })),
             })),
             units: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "Definition of systemd units.",
                 default: nix.thunk(() => ({})),
                 visible: "shallow",
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "units")),
               })))),
             packages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                 example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.systemd-cryptsetup-generator ]")),
                 description: "Packages providing systemd units and hooks.",
               })))),
             targets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 default: nix.thunk(() => ({})),
                 visible: "shallow",
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "initrdTargets")),
                 description: "Definition of systemd target units.",
               })))),
             services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "initrdServices")),
                 visible: "shallow",
                 description: "Definition of systemd service units.",
               })))),
             sockets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "initrdSockets")),
                 visible: "shallow",
                 description: "Definition of systemd socket units.",
               })))),
             timers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "initrdTimers")),
                 visible: "shallow",
                 description: "Definition of systemd timer units.",
               })))),
             paths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "initrdPaths")),
                 visible: "shallow",
                 description: "Definition of systemd path units.",
               })))),
             mounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 default: [],
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "initrdMounts")),
                 visible: "shallow",
                 description: "Definition of systemd mount units.\nThis is a list instead of an attrSet, because systemd mandates the names to be derived from\nthe 'where' attribute.\n",
               })))),
             automounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 default: [],
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "automounts")),
                 visible: "shallow",
                 description: "Definition of systemd automount units.\nThis is a list instead of an attrSet, because systemd mandates the names to be derived from\nthe 'where' attribute.\n",
               })))),
             slices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(systemdUtils, "types", "slices")),
                 visible: "shallow",
@@ -468,10 +468,10 @@ For emergency access after initrd, use \`${nix.sel(options, "systemd", "enableEm
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         assertions: nix.thunk(() => (() => {
           const obsoleteOpt = (opts) => (msgFn) => nix.app(nix.sel(lib, "flip"), nix.builtins.map, opts, (opt) => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "attrByPath"), opt, nix.thunk(() => nix.builtins.throw("impossible")), nix.thunk(() => nix.sel(config, "boot", "initrd"))), "")),
               message: nix.thunk(() => nix.str`${nix.app(msgFn, nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", opt)))}
     Definitions:
@@ -484,7 +484,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
             }));
           return nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "root"), "fstab")) || nix.asBool(nix.app(any, (fs) => nix.eq(nix.sel(fs, "mountPoint"), "/"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(config, "fileSystems")))))))),
               message: "The ‘fileSystems’ option does not specify your root file system.",
             })),
@@ -505,49 +505,49 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
 `))));
         })()),
         system: nix.thunk(() => ({
-          __proto__: pos$41,
-          build: nix.thunk(() => ({ __proto__: pos$40, initialRamdisk: initialRamdisk })),
+          [nix.POS]: pos$41,
+          build: nix.thunk(() => ({ [nix.POS]: pos$40, initialRamdisk: initialRamdisk })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           initrd: nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             availableKernelModules: nix.thunk(() => nix.concat(["autofs"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "package", "withEfi")), "efivarfs"))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               initrdBin: nix.thunk(() => nix.concat([
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
                 nix.thunk(() => nix.sel(cfg, "package")),
               ], nix.concat(nix.app(nix.sel(lib, "optional"), withKmod, nix.thunk(() => nix.sel(cfg, "package", "kmod"))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "shell", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bashInteractive"))]))))),
               extraBin: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 less: nix.thunk(() => nix.str`${nix.sel(pkgs, "less")}/bin/less`),
                 mount: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "util-linux")}/bin/mount`),
                 umount: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "util-linux")}/bin/umount`),
                 fsck: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "util-linux")}/bin/fsck`),
               })),
-              managerEnvironment: nix.thunk(() => ({ __proto__: pos$43, PATH: "/bin:/sbin" })),
+              managerEnvironment: nix.thunk(() => ({ [nix.POS]: pos$43, PATH: "/bin:/sbin" })),
               settings: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 Manager: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   ManagerEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}=${nix.app(nix.sel(lib, "escapeShellArg"), v)}`, nix.thunk(() => nix.sel(cfg, "managerEnvironment")))))),
                   DefaultEnvironment: "PATH=/bin:/sbin",
                 })),
               })),
               contents: nix.thunk(() => nix.update({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 "/init": nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/systemd/systemd`),
                 })),
-                "/etc/systemd/system": nix.thunk(() => ({ __proto__: pos$47, source: stage1Units })),
+                "/etc/systemd/system": nix.thunk(() => ({ [nix.POS]: pos$47, source: stage1Units })),
                 "/etc/systemd/system.conf": nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   text: nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => nix.sel(cfg, "settings")))),
                 })),
                 "/etc/shadow": nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   text: nix.thunk(() => (() => {
                     const ea = nix.thunk(() => nix.sel(cfg, "emergencyAccess"));
                     const access = nix.thunk(() => (nix.asBool(!nix.eq(ea, null)) && nix.asBool(!nix.asBool((nix.asBool(nix.app(isBool, ea)) && nix.asBool(!nix.asBool(ea)))))));
@@ -555,49 +555,49 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
                     return nix.str`root:${(nix.asBool(access) ? nix.force(passwd) : "*")}:::::::`;
                   })()),
                 })),
-                "/bin": nix.thunk(() => ({ __proto__: pos$50, source: nix.thunk(() => nix.str`${initrdBinEnv}/bin`) })),
-                "/sbin": nix.thunk(() => ({ __proto__: pos$51, source: nix.thunk(() => nix.str`${initrdBinEnv}/sbin`) })),
-                "/usr/bin": nix.thunk(() => ({ __proto__: pos$52, source: nix.thunk(() => nix.str`${initrdBinEnv}/bin`) })),
-                "/usr/sbin": nix.thunk(() => ({ __proto__: pos$53, source: nix.thunk(() => nix.str`${initrdBinEnv}/sbin`) })),
+                "/bin": nix.thunk(() => ({ [nix.POS]: pos$50, source: nix.thunk(() => nix.str`${initrdBinEnv}/bin`) })),
+                "/sbin": nix.thunk(() => ({ [nix.POS]: pos$51, source: nix.thunk(() => nix.str`${initrdBinEnv}/sbin`) })),
+                "/usr/bin": nix.thunk(() => ({ [nix.POS]: pos$52, source: nix.thunk(() => nix.str`${initrdBinEnv}/bin`) })),
+                "/usr/sbin": nix.thunk(() => ({ [nix.POS]: pos$53, source: nix.thunk(() => nix.str`${initrdBinEnv}/sbin`) })),
                 "/etc/os-release": nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   source: nix.thunk(() => nix.sel(config, "boot", "initrd", "osRelease")),
                 })),
                 "/etc/initrd-release": nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   source: nix.thunk(() => nix.sel(config, "boot", "initrd", "osRelease")),
                 })),
                 "/etc/hostname": nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   text: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                 })),
               }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(nix.sel(config, "environment", "etc"), "modprobe.d/nixos.conf")), nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   "/etc/modprobe.d/nixos.conf": nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     source: nix.thunk(() => nix.sel(config, "environment", "etc", "modprobe.d/nixos.conf", "source")),
                   })),
                 }))), nix.app(optionalAttrs, withKmod, nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   "/lib": nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "modulesClosure")}/lib`),
                   })),
                   "/etc/modules-load.d/nixos.conf": nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     text: nix.thunk(() => nix.app(concatStringsSep, "\n", nix.thunk(() => nix.sel(config, "boot", "initrd", "kernelModules")))),
                   })),
-                  "/etc/sysctl.d/nixos.conf": nix.thunk(() => ({ __proto__: pos$62, text: "kernel.modprobe = /sbin/modprobe" })),
+                  "/etc/sysctl.d/nixos.conf": nix.thunk(() => ({ [nix.POS]: pos$62, text: "kernel.modprobe = /sbin/modprobe" })),
                   "/etc/modprobe.d/systemd.conf": nix.thunk(() => ({
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/modprobe.d/systemd.conf`),
                   })),
                   "/etc/modprobe.d/ubuntu.conf": nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     source: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod-blacklist-ubuntu")}/modprobe.conf`),
                   })),
                   "/etc/modprobe.d/debian.conf": nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     source: nix.thunk(() => nix.sel(pkgs, "kmod-debian-aliases")),
                   })),
                 })))))),
@@ -633,8 +633,8 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
                   nix.thunk(() => nix.str`${nix.sel(pkgs, "bashNonInteractive")}/bin`),
                 ])), nix.concat(jobScripts, nix.concat([unitEnv], nix.concat(nix.builtins.map((c) => nix.builtins.removeAttrs(c, nix.thunk(() => ["text"])), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(cfg, "contents"))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "libc"), "glibc")), nix.thunk(() => nix.str`${nix.sel(pkgs, "glibc")}/lib/libnss_files.so.2`))))))))),
               targets: nix.thunk(() => ({
-                __proto__: pos$68,
-                initrd: nix.thunk(() => ({ __proto__: pos$67, aliases: nix.thunk(() => ["default.target"]) })),
+                [nix.POS]: pos$68,
+                initrd: nix.thunk(() => ({ [nix.POS]: pos$67, aliases: nix.thunk(() => ["default.target"]) })),
               })),
               units: nix.thunk(() => nix.update(nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.path`), nix.thunk(() => nix.app(pathToUnit, v))), nix.thunk(() => nix.sel(cfg, "paths"))), nix.update(nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.service`), nix.thunk(() => nix.app(serviceToUnit, v))), nix.thunk(() => nix.sel(cfg, "services"))), nix.update(nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.slice`), nix.thunk(() => nix.app(sliceToUnit, v))), nix.thunk(() => nix.sel(cfg, "slices"))), nix.update(nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.socket`), nix.thunk(() => nix.app(socketToUnit, v))), nix.thunk(() => nix.sel(cfg, "sockets"))), nix.update(nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.target`), nix.thunk(() => nix.app(targetToUnit, v))), nix.thunk(() => nix.sel(cfg, "targets"))), nix.update(nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.timer`), nix.thunk(() => nix.app(timerToUnit, v))), nix.thunk(() => nix.sel(cfg, "timers"))), nix.update(nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((v) => (() => {
                     const n = nix.thunk(() => nix.app(escapeSystemdPath, nix.thunk(() => nix.sel(v, "where"))));
@@ -644,26 +644,26 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
                     return nix.app(nameValuePair, nix.thunk(() => nix.str`${n}.automount`), nix.thunk(() => nix.app(automountToUnit, v)));
                   })(), nix.thunk(() => nix.sel(cfg, "automounts"))))))))))))),
               services: nix.thunk(() => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 "modprobe@": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), withKmod, nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$69,
+                      [nix.POS]: pos$69,
                       ExecSearchPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "kmod"))]))),
                     })),
                   })))),
                 "initrd-find-nixos-closure": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "system", "nixos-init", "enable"))), nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     description: "Find NixOS closure",
                     unitConfig: nix.thunk(() => ({
-                      __proto__: pos$71,
+                      [nix.POS]: pos$71,
                       RequiresMountsFor: "/sysroot/nix/store",
                       DefaultDependencies: false,
                     })),
                     before: nix.thunk(() => ["initrd.target", "shutdown.target"]),
                     conflicts: nix.thunk(() => ["shutdown.target"]),
                     requiredBy: nix.thunk(() => ["initrd.target"]),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$72, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$72, Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`set -uo pipefail
 export PATH="/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(cfg, "package", "util-linux")),
@@ -707,18 +707,18 @@ echo 'NEW_INIT=' > /etc/switch-root.conf
 `),
                   })))),
                 "initrd-nixos-activation": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "system", "nixos-init", "enable"))), nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     after: nix.thunk(() => ["initrd-switch-root.target"]),
                     requiredBy: nix.thunk(() => ["initrd-switch-root.service"]),
                     before: nix.thunk(() => ["initrd-switch-root.service"]),
                     unitConfig: nix.thunk(() => ({
-                      __proto__: pos$74,
+                      [nix.POS]: pos$74,
                       DefaultDependencies: false,
                       AssertPathExists: "/etc/initrd-release",
                       RequiresMountsFor: nix.thunk(() => ["/sysroot/run"]),
                     })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       Type: "oneshot",
                       EnvironmentFile: "-/etc/switch-root.conf",
                     })),
@@ -742,37 +742,37 @@ exec chroot /sysroot "$closure/prepare-root"
 `),
                   })))),
                 "initrd-switch-root": nix.thunk(() => (nix.asBool(nix.sel(config, "system", "nixos-init", "enable")) ? {
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   path: nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "package")),
                     nix.thunk(() => nix.sel(cfg, "package", "util-linux")),
                     nix.thunk(() => nix.sel(config, "system", "nixos-init", "package")),
                   ]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     ExecStart: nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos-init", "package")}/bin/initrd-init`),
                     ]),
                   })),
                 } : {
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$79,
+                    [nix.POS]: pos$79,
                     EnvironmentFile: "-/etc/switch-root.conf",
                     ExecStart: nix.thunk(() => ["", "systemctl --no-block switch-root /sysroot \"${NEW_INIT}\""]),
                   })),
                 })),
                 "panic-on-fail": nix.thunk(() => ({
-                  __proto__: pos$83,
+                  [nix.POS]: pos$83,
                   wantedBy: nix.thunk(() => ["emergency.target"]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$81,
+                    [nix.POS]: pos$81,
                     DefaultDependencies: false,
                     ConditionKernelCommandLine: nix.thunk(() => ["|boot.panic_on_fail", "|stage1panic"]),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$82,
+                    [nix.POS]: pos$82,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/echo c`),
                     StandardOutput: "file:/proc/sysrq-trigger",
@@ -781,11 +781,11 @@ exec chroot /sysroot "$closure/prepare-root"
               })),
               mounts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$86,
+                  [nix.POS]: pos$86,
                   where: "/sysroot/run",
                   what: "/run",
                   options: "rbind",
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$85, DefaultDependencies: false })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$85, DefaultDependencies: false })),
                   requiredBy: nix.thunk(() => ["initrd-fs.target"]),
                   before: nix.thunk(() => ["initrd-fs.target"]),
                 })),

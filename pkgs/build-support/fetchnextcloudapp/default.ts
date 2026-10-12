@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
     const teams = nix.argOr($_1, "teams", () => []);
     const unpack = nix.argOr($_1, "unpack", () => false);
     return nix.app(applyPatches, nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         patches: patches,
         src: nix.thunk(() => nix.app((nix.asBool(unpack) ? nix.force(fetchzip) : nix.force(fetchurl)), nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: url,
             meta: nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               license: nix.thunk(() => nix.sel(lib, "licenses", nix.key(nix.force(license)))),
               maintainers: maintainers,
               teams: teams,

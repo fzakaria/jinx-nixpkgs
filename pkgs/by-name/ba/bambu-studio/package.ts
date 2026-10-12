@@ -58,19 +58,19 @@ export default nix.lambda((args) => (() => {
   const libharu = nix.arg($, "libharu");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const withNvidiaGLWorkaround = nix.argOr($, "withNvidiaGLWorkaround", () => false);
-  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_1, "override"), nix.thunk(() => ({ __proto__: pos$1, withCurl: true, withPrivateFonts: true, withWebKit: true }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_1, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCurl: true, withPrivateFonts: true, withWebKit: true }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [libsecret])),
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--enable-debug=no", "--enable-secretstore"])),
     })));
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: nix.thunk(() => [nanum]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [nanum]) }))));
   const caBundle = nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "bambu-studio",
       version: "02.08.00.50",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "bambulab",
           repo: "BambuStudio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NLOPT: nlopt,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-DBOOST_TIMER_ENABLE_DEPRECATED",
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "mv $out/LICENSE.txt $out/share/BambuStudio/LICENSE.txt\nmv $out/README.md $out/share/BambuStudio/README.md\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PC Software for BambuLab's 3D printers",
         homepage: "https://github.com/bambulab/BambuStudio",
         changelog: nix.thunk(() => nix.str`https://github.com/bambulab/BambuStudio/releases/tag/v${nix.sel(finalAttrs, "version")}`),

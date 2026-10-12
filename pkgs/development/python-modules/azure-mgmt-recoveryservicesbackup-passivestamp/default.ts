@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const azure_cli = nix.arg($, "azure-cli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-mgmt-recoveryservicesbackup-passivestamp",
       version: "1.0.0b1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_recoveryservicesbackup_passivestamp",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ri2UBG9Z3PdDxxaIRlxf4rvNGpaDoKHWhLVJ/lbBh9U=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.recoveryservicesbackup.passivestamp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure Passivestamp Management Client Library for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-recoveryservicesbackup-passivestamp_${nix.sel(finalAttrs, "version")}/sdk/recoveryservices/azure-mgmt-recoveryservicesbackup-passivestamp/CHANGELOG.md`),

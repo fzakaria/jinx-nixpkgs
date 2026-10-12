@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libkvm",
       extraPaths: nix.thunk(() => ["sys"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libcMinimal, libgcc, libelf]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libkvm.ts.map

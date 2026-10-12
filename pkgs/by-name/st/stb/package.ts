@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "stb",
       version: "0-unstable-2026-04-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nothings",
           repo: "stb",
           rev: "31c1ad37456438565541f4919958214b6e762fb4",
@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
             const variables = nix.thunk(() => (() => {
               const prefix = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`);
               const includedir = nix.thunk(() => nix.str`${prefix}/include`);
-              return { __proto__: pos$2, prefix, includedir };
+              return { [nix.POS]: pos$2, prefix, includedir };
             })());
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
-            return { __proto__: pos$3, name, version, cflags, variables, description };
+            return { [nix.POS]: pos$3, name, version, cflags, variables, description };
           })()))),
       ]),
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/include/stb\ncp *.h $out/include/stb/\ncp *.c $out/include/stb/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Single-file public domain libraries for C/C++",
         homepage: "https://github.com/nothings/stb",
         license: nix.thunk(() => (() => {

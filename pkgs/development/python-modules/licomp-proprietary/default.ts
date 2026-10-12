@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const jsonschema = nix.arg($, "jsonschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "licomp-proprietary",
       version: "0.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hesa",
           repo: "licomp-proprietary",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, jsonschema]),
       pythonImportsCheck: nix.thunk(() => ["licomp_proprietary"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Licomp for linking a Propriettary licensed module",
         homepage: "https://github.com/hesa/licomp-proprietary",
         changelog: nix.thunk(() => nix.str`https://github.com/hesa/licomp-proprietary/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const eio_posix = nix.arg($, "eio_posix");
   const eio_linux = nix.arg($, "eio_linux");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "eio_main",
       meta: nix.thunk(() => nix.attr(eio, "meta")),
       src: nix.thunk(() => nix.attr(eio, "src")),

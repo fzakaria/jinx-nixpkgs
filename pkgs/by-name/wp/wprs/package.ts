@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const wprs = nix.arg($, "wprs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wprs",
       version: "0-unstable-2026-08-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wayland-transpositor",
           repo: "wprs",
           rev: "12b864dc5b308e63edede4714f664afa88507fce",
@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       cargoHash: "sha256-khU7SfEfEIlRqI0bFxP57cVUxoIBRso7o0Rw+i2MtSc=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-C target-feature=+avx2" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C target-feature=+avx2" })),
       preFixup: "cp  wprs \"$out/bin/wprs\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          sanity: nix.thunk(() => nix.app(runCommand, "wprs-sanity", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [wprs]) })), nix.thunk(() => nix.str`${wprs}/bin/wprs -h > /dev/null && touch $out
+          [nix.POS]: pos$4,
+          sanity: nix.thunk(() => nix.app(runCommand, "wprs-sanity", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [wprs]) })), nix.thunk(() => nix.str`${wprs}/bin/wprs -h > /dev/null && touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Rootless remote desktop access for remote Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

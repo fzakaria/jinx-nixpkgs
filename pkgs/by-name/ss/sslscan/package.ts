@@ -15,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sslscan",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rbsec",
           repo: "sslscan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-kAVDTg5UGH/fV/UxSBg0x2iqDMKpj+hyMfSB+jNJHBU=",
         })))),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ __proto__: pos$2, withZlib: true })))),
+        nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withZlib: true })))),
       ]),
       makeFlags: nix.thunk(() => [
         "PREFIX=$(out)",
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tests SSL/TLS services and discover supported cipher suites",
         mainProgram: "sslscan",
         homepage: "https://github.com/rbsec/sslscan",

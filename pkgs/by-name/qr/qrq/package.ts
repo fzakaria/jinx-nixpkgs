@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qrq",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dj1yfk",
           repo: "qrq",
           rev: nix.thunk(() => nix.str`qrq-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dj1yfk/qrq/commit/f17363df923cd9d4607478a7406e0c4d3e044aae.patch",
             hash: "sha256-EzGP6ExqiK30Vb4f8Q06zIP5Bebnw/jWvaAOb3juZMU=",
             stripLen: 2n,
@@ -49,7 +49,7 @@ substituteInPlace Makefile \\
   --replace-fail 'CC=gcc' 'CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High Speed Morse trainer - mirror of https://git.fkurz.net/dj1yfk/qrq",
         homepage: "https://github.com/dj1yfk/qrq",
         changelog: nix.thunk(() => nix.str`https://github.com/dj1yfk/qrq/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

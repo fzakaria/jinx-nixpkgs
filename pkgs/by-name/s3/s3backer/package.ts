@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "s3backer",
       version: "2.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "archiecobbs",
           repo: "s3backer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fuse3, curl, expat]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "substituteInPlace configure.ac --replace-fail \\\n  'AC_CHECK_DECLS(fdatasync)' \"\"\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DFUSE_DARWIN_ENABLE_EXTENSIONS=0")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/archiecobbs/s3backer",
         description: "FUSE-based single file backing store via Amazon S3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

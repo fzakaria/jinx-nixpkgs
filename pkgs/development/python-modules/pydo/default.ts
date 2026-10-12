@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const responses = nix.arg($, "responses");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydo",
       version: "0.40.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digitalocean",
           repo: "pydo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook, responses]),
       disabledTestPaths: nix.thunk(() => ["tests/integration/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official DigitalOcean Client based on the DO OpenAPIv3 specification",
         homepage: "https://github.com/digitalocean/pydo",
         changelog: nix.thunk(() => nix.str`https://github.com/digitalocean/pydo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Kso2y64LXAzv7ZVlQW7EQjNXZ/sxRb/xHlhiL8ZTza0=",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [django_classy_tags]);
       const checkInputs = nix.thunk(() => [pytestCheckHook, pytest_django]);
       const pythonImportsCheck = nix.thunk(() => ["sekizai"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Define placeholders where your blocks get rendered and append to those blocks",
         homepage: "https://github.com/django-cms/django-sekizai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

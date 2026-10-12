@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gitCommit = "3a67a3687c5e9013e09a316991f92ef419841481";
   const gitHash = "sha256-gLDRnt0yVUe4OJU+LVpFA+7U0VnlXkmkcQVcB72ULqQ=";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crc",
       version: "2.63.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crc-org",
           repo: "crc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckProgramArg: "version",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manage a local OpenShift 4.x cluster, Microshift or a Podman VM optimized for testing and development purposes",
         homepage: "https://crc.dev/crc/getting_started/getting_started/introducing/",
         changelog: nix.thunk(() => nix.str`https://github.com/crc-org/crc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

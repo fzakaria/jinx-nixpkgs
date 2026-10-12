@@ -35,7 +35,7 @@ for line in $(${vscode}/bin/code --list-extensions --show-versions \\
   else
     sha256=$(
       nix-prefetch-url "${nix.sel(nix.app(mktplcExtRefToFetchArgs, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           publisher: "\"$publisher\"",
           name: "\"$name\"",
           version: "\"$version\"",

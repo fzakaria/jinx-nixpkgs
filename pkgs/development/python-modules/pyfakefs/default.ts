@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const xlrd = nix.arg($, "xlrd");
   const self = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pyfakefs",
       version: "6.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5Zo220R79QnOnJerPRUQwIzFGJXFMRMlpWCl5bXcGUA=",
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["pyfakefs/tests"]),
       disabledTests: nix.thunk(() => nix.concat(["test_expand_root"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_rename_dir_to_existing_dir"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extra: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (prevPythonAttrs) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeCheckInputs: nix.thunk(() => nix.concat(nix.sel(prevPythonAttrs, "nativeCheckInputs"), [pandas, xlrd, openpyxl])),
             }))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fake file system that mocks the Python file system modules",
         homepage: "https://pyfakefs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jmcgeheeiv/pyfakefs/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

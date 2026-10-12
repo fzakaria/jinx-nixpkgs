@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ancient",
       version: "0.10.0",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/OCamlPro/ocaml-ancient/releases/download/${nix.sel(finalAttrs, "version")}/ancient-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-XeVUPrdg7QSV7V0Tz8Mkj5jvzKtYD9DON+tt9kkuCHM=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use data structures larger than available memory",
         longDescription: "This module allows you to use in-memory data structures which are\nlarger than available memory and so are kept in swap.  If you try this\nin normal OCaml code, you'll find that the machine quickly descends\ninto thrashing as the garbage collector repeatedly iterates over\nswapped memory structures.  This module lets you break that\nlimitation.  Of course the module doesn't work by magic :-) If your\nprogram tries to access these large structures, they still need to be\nswapped back in, but it is suitable for large, sparsely accessed\nstructures.\n\nSecondly, this module allows you to share those structures between\nprocesses.  In this mode, the structures are backed by a disk file,\nand any process that has read/write access that disk file can map that\nfile in and see the structures.\n",
         homepage: "https://github.com/OCamlPro/ocaml-ancient",

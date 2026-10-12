@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   })();
   const versionToYear = (version) => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)), 0n);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "minio",
       version: "2025-10-15T17-29-55Z",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minio",
           repo: "minio",
           rev: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-BFnTJE9QFWmPsx90hDTG8MusdnwaBPYJxM5bCFk3hew=",
       doCheck: false,
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       tags: nix.thunk(() => ["kqueue"]),
       ldflags: nix.thunk(() => (() => {
         const t = "github.com/minio/minio/cmd";
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.minio.io/",
         description: "S3-compatible object storage server",
         changelog: nix.thunk(() => nix.str`https://github.com/minio/minio/releases/tag/RELEASE.${nix.sel(finalAttrs, "version")}`),

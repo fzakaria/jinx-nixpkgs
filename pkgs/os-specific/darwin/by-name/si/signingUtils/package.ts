@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const stdenv = stdenvNoCC;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "signing-utils",
       dontUnpack: true,
       dontConfigure: true,
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`substituteAll ${nix.path(here, "./utils.sh")} $out
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sigtool: sigtool,
         codesignAllocate: nix.thunk(() => nix.str`${cctools}/bin/${nix.sel(cctools, "targetPrefix")}codesign_allocate`),
       })),

@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nix_update_script = nix.arg($, "nix-update-script");
   const wasmtime = nix.arg($, "wasmtime");
-  return nix.app(nix.sel(nix.app(nix.sel(wasmtime, "override"), nix.thunk(() => ({ __proto__: pos$1, variant: "lts-36" }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(nix.app(nix.sel(wasmtime, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, variant: "lts-36" }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$4,
       passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v(36\\.\\d+\\.\\d+)$"]),
           })))),
       })),

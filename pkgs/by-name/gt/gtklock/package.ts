@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gtk_session_lock = nix.arg($, "gtk-session-lock");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gtklock",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jovanlanik",
           repo: "gtklock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, pam, gtk_session_lock]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         testModule: (module) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(module, "name")}-test.sh`), nix.thunk(() => ({})), nix.thunk(() => nix.str`MODULE_PATH=$(find ${module}/lib/gtklock -maxdepth 1 -name '*.so')
 echo -e "[main]\\nmodules=\${MODULE_PATH}" >./config.ini
 ${nix.sel(finalAttrs, "finalPackage")}/bin/gtklock --config ./config.ini >./log 2>&1 || true
@@ -51,7 +51,7 @@ touch $out
 `)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK-based lockscreen for Wayland",
         longDescription: "Important note: for gtklock to work you need to set \"security.pam.services.gtklock = {};\" manually.\nOtherwise you'll lock yourself out of desktop and unable to authenticate.\n",
         homepage: "https://github.com/jovanlanik/gtklock",

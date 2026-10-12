@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "beancount_docverif",
           version: version,
           hash: "sha256-CFBv1FZP5JO+1MPnD86ttrO42zZlvE157zqig7s4HOg=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, regex]);
       const pythonImportsCheck = nix.thunk(() => ["beancount_docverif"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Document verification plugin for Beancount",
         homepage: "https://github.com/siriobalmelli/beancount_docverif",
         longDescription: "Docverif is the \"Document Verification\" plugin for beancount, fulfilling the following functions:\n\n- Require that every transaction touching an account have an accompanying document on disk.\n- Explicitly declare the name of a document accompanying a transaction.\n- Explicitly declare that a transaction is expected not to have an accompanying document.\n- Look for an \"implicit\" PDF document matching transaction data.\n- Associate (and require) a document with any type of entry, including open entries themselves.\n- Guarantee integrity: verify that every document declared does in fact exist on disk.\n",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.arg($, "buildLakePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-plausible",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "plausible",
           rev: "118aa17ee84656b8bd727fef7c458ee8c833385c",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       leanPackageName: "plausible",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Property-based testing framework for Lean 4",
         homepage: "https://github.com/leanprover-community/plausible",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

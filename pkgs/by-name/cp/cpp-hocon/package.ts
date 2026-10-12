@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const leatherman = nix.arg($, "leatherman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cpp-hocon",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "0b24anpwkmvbsn5klnr58vxksw00ci9pjhwzx7a61kplyhsaiydw",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "cpp-hocon",
           owner: "puppetlabs",
         })))),
       postPatch: "sed -i -e '/add_subdirectory(tests)/d' lib/CMakeLists.txt\n\n# CMake 3.2.2 is deprecated and no longer supported by CMake > 4\n# https://github.com/NixOS/nixpkgs/issues/445447\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.2.2)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n\n# boost 1.89 removed the boost_system stub library\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'list(APPEND BOOST_COMPONENTS thread date_time chrono filesystem system program_options)' \\\n  'list(APPEND BOOST_COMPONENTS thread date_time chrono filesystem program_options)'\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, curl, leatherman]),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "C++ port of the Typesafe Config library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

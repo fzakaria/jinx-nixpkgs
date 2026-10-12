@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const mpiDev = nix.thunk(() => nix.app(nix.sel(lib, "getDev"), mpi));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osu-micro-benchmarks",
       version: "7.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YY3j0LESL3OpIpF30toeXNYuQxGQWAy5FfJgWEnLu9w=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mkdir -p $out/bin\nfind $out/libexec -name 'osu_*' -type f -executable | while read -r f; do\n  ln -s \"$f\" \"$out/bin/\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OSU Micro-Benchmarks for MPI",
         longDescription: "The OSU microbenchmark suite is a collection of independent message passing interface (MPI) performance\nbenchmarks. It includes performance measures such as latency, bandwidth, and host overhead.\n\n Common benchmarks:\n - osu_latency: Point-to-point latency\n - osu_bw: Point-to-point bandwidth\n - osu_bibw: Bidirectional bandwidth\n - osu_allreduce: Collective allreduce\n - osu_alltoall: Collective all-to-all\n",
         homepage: "https://mvapich.cse.ohio-state.edu/benchmarks/",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aerospike-server",
       version: "8.0.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aerospike",
           repo: "aerospike-server",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, cmake, libtool]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       dontUseCmakeConfigure: true,
       preBuild: nix.thunk(() => nix.str`patchShebangs build/gen_version
 substituteInPlace build/gen_version \\
@@ -44,7 +44,7 @@ patchShebangs build/os_version
 `),
       installPhase: "mkdir -p $out/bin\ncp target/Linux-x86_64/bin/asd $out/bin/asd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flash-optimized, in-memory, NoSQL database",
         mainProgram: "asd",
         homepage: "https://aerospike.com/",

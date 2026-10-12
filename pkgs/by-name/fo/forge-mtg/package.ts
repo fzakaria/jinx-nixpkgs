@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.0.15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Card-Forge",
       repo: "forge",
       rev: nix.thunk(() => nix.str`forge-${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./no-launch4j.patch")]);
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "forge-mtg",
       version: version,
       src: src,
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems, imagemagick]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "forge",
             exec: "forge",
             actions: nix.thunk(() => ({
-              __proto__: pos$5,
-              "forge-adventure": nix.thunk(() => ({ __proto__: pos$2, exec: "forge-adventure", name: "Play Adventure" })),
-              "forge-adventure-editor": nix.thunk(() => ({ __proto__: pos$3, exec: "forge-adventure-editor", name: "Adventure Editor" })),
-              "forge-classic": nix.thunk(() => ({ __proto__: pos$4, exec: "forge", name: "Play Classic" })),
+              [nix.POS]: pos$5,
+              "forge-adventure": nix.thunk(() => ({ [nix.POS]: pos$2, exec: "forge-adventure", name: "Play Adventure" })),
+              "forge-adventure-editor": nix.thunk(() => ({ [nix.POS]: pos$3, exec: "forge-adventure-editor", name: "Adventure Editor" })),
+              "forge-classic": nix.thunk(() => ({ [nix.POS]: pos$4, exec: "forge", name: "Play Classic" })),
             })),
             icon: "forge-mtg",
             comment: "Magic: the Gathering card game with rules enforcement",
@@ -102,9 +102,9 @@ runHook postInstall
     $PREFIX_CMD
 done
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Magic: the Gathering card game with rules enforcement",
         homepage: "https://card-forge.github.io/forge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const luajit = nix.arg($, "luajit");
   const writeShellScript = nix.arg($, "writeShellScript");
   const nix_update = nix.arg($, "nix-update");
-  const libcoldclear = nix.argOr($, "libcoldclear", () => nix.app(callPackage, nix.path(here, "./libcoldclear.nix"), nix.thunk(() => ({ __proto__: pos$1, ccloader: ccloader }))));
-  const ccloader = nix.argOr($, "ccloader", () => nix.app(callPackage, nix.path(here, "./ccloader.nix"), nix.thunk(() => ({ __proto__: pos$2, libcoldclear: libcoldclear, luajit: luajit }))));
+  const libcoldclear = nix.argOr($, "libcoldclear", () => nix.app(callPackage, nix.path(here, "./libcoldclear.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ccloader: ccloader }))));
+  const ccloader = nix.argOr($, "ccloader", () => nix.app(callPackage, nix.path(here, "./ccloader.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, libcoldclear: libcoldclear, luajit: luajit }))));
   const pname = "techmino";
   const description = "Modern Tetris clone with many features";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: pname,
       exec: "techmino",
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "techmino.png",
           url: "https://github.com/26F-Studio/Techmino/assets/9590981/95981af1-f39a-47d9-bd99-a78ab767c08f",
           hash: "sha256-+j+8m2vwaWgHYSFL6urvTcB0vA+PCZ+FYJ22CNXfcSc=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "0.17.21";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/26F-Studio/Techmino/releases/download/v${version}/Techmino_Bare.love`),
           hash: "sha256-8gMIyNP1FS52LnbpQ+G9XNtK3rQruzkMDRz7Gk9LZcQ=",
         }))));
@@ -69,7 +69,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications/
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ccloader: ccloader,
         libcoldclear: libcoldclear,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-script.sh", nix.thunk(() => nix.str`if ${nix.app(nix.sel(lib, "getExe"), nix_update)} techmino | grep "Packages updated"; then
@@ -78,7 +78,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: description,
         downloadPage: "https://github.com/26F-Studio/Techmino/releases",
         homepage: "https://github.com/26F-Studio/Techmino/",
@@ -91,7 +91,7 @@ fi
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname_1,
         version,
         src,

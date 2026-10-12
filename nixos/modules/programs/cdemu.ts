@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "cdemu"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         cdemu: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "{command}`cdemu` for members of\n{option}`programs.cdemu.group`.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cdrom",
               description: "Group that users must be in to use {command}`cdemu`.\n",
             })))),
           gui: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to install the {command}`cdemu` GUI (gCDEmu).\n",
             })))),
           "image-analyzer": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to install the image analyzer.\n",
@@ -66,39 +66,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         boot: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "vhba"))]),
           kernelModules: nix.thunk(() => ["vhba"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraRules: nix.thunk(() => nix.str`KERNEL=="vhba_ctl", MODE="0660", OWNER="root", GROUP="${nix.sel(cfg, "group")}"
 `),
           })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cdemu-daemon"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(config, "programs", "cdemu", "group"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           user: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               "cdemu-daemon": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "CDEmu daemon",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   Type: "dbus",
                   BusName: "net.sf.cdemu.CDEmuDaemon",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "cdemu-daemon")))} --config-file "%h/.config/cdemu-daemon"`),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(pkgs, "cdemu-daemon")),
             nix.thunk(() => nix.sel(pkgs, "cdemu-client")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "macopix",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://rosegray.sakura.ne.jp/macopix/macopix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1AjqdPPCc9UQWqLdWlA+Va+MmvKL8dAIfJURPifN7RI=",
         })))),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# Build fails on Linux with windres.\nexport ac_cv_prog_WINDRES=\n",
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-fcommon -std=gnu99",
         NIX_LDFLAGS: "-lX11",
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mascot Constructive Pilot for X",
         mainProgram: "macopix",
         homepage: "http://rosegray.sakura.ne.jp/macopix/index-e.html",

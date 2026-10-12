@@ -51,95 +51,95 @@ export default nix.lambda((args) => (() => {
   const tests = nix.arg($, "tests");
   const pkgsCross = nix.arg($, "pkgsCross");
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     cargoBuildHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "cargo-build-hook.sh",
         substitutions: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust"));
           const from_1 = nix.thunk(() => nix.sel(rust, "envVars"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rustcTargetSpec: nix.thunk(() => nix.attr(from, "rustcTargetSpec")),
           setEnv: nix.thunk(() => nix.attr(from_1, "setEnv")),
         };
         })()),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tests: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             test: nix.thunk(() => nix.sel(tests, "rust-hooks", "cargoBuildHook")),
           }, [
             [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "testCross" : null), nix.thunk(() => nix.sel(pkgsCross, "riscv64", "tests", "rust-hooks", "cargoBuildHook"))],
           ])),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./cargo-build-hook.sh"))),
     cargoCheckHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "cargo-check-hook.sh",
         substitutions: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust"));
           const from_1 = nix.thunk(() => nix.sel(rust, "envVars"));
           return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rustcTargetSpec: nix.thunk(() => nix.attr(from, "rustcTargetSpec")),
           setEnv: nix.thunk(() => nix.attr(from_1, "setEnv")),
         };
         })()),
         passthru: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           tests: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             test: nix.thunk(() => nix.sel(tests, "rust-hooks", "cargoCheckHook")),
           }, [
             [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "testCross" : null), nix.thunk(() => nix.sel(pkgsCross, "riscv64", "tests", "rust-hooks", "cargoCheckHook"))],
           ])),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./cargo-check-hook.sh"))),
     cargoInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: "cargo-install-hook.sh",
-        substitutions: nix.thunk(() => ({ __proto__: pos$11, targetSubdirectory: target })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: pos$11, targetSubdirectory: target })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tests: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             test: nix.thunk(() => nix.sel(tests, "rust-hooks", "cargoInstallHook")),
           }, [
             [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "testCross" : null), nix.thunk(() => nix.sel(pkgsCross, "riscv64", "tests", "rust-hooks", "cargoInstallHook"))],
           ])),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$14, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$14, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./cargo-install-hook.sh"))),
     cargoNextestHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: "cargo-nextest-hook.sh",
         propagatedBuildInputs: nix.thunk(() => [cargo_nextest]),
         substitutions: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust"));
           return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           rustcTargetSpec: nix.thunk(() => nix.attr(from, "rustcTargetSpec")),
         };
         })()),
         passthru: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           tests: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             test: nix.thunk(() => nix.sel(tests, "rust-hooks", "cargoNextestHook")),
           }, [
             [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "testCross" : null), nix.thunk(() => nix.sel(pkgsCross, "riscv64", "tests", "rust-hooks", "cargoNextestHook"))],
           ])),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$19, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$19, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./cargo-nextest-hook.sh"))),
     cargoSetupHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "cargo-setup-hook.sh",
         substitutions: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           defaultConfig: nix.path(here, "../fetchcargo-default-config.toml"),
           diff: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), diffutils)}/bin/diff`),
           cargoConfig: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform", "config"), nix.sel(stdenv, "targetPlatform", "config"))), nix.thunk(() => nix.str`[target."${nix.sel(stdenv, "targetPlatform", "rust", "rustcTarget")}"]
@@ -153,18 +153,18 @@ export default nix.lambda((args) => (() => {
 `)),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           tests: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             test: nix.thunk(() => nix.sel(tests, "rust-hooks", "cargoSetupHook")),
           }, [
             [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "testCross" : null), nix.thunk(() => nix.sel(pkgsCross, "riscv64", "tests", "rust-hooks", "cargoSetupHook"))],
           ])),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$24, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$24, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./cargo-setup-hook.sh"))),
     maturinBuildHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         name: "maturin-build-hook.sh",
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgsHostTarget, "maturin")),
@@ -175,23 +175,23 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust"));
           const from_1 = nix.thunk(() => nix.sel(rust, "envVars"));
           return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           rustcTargetSpec: nix.thunk(() => nix.attr(from, "rustcTargetSpec")),
           setEnv: nix.thunk(() => nix.attr(from_1, "setEnv")),
         };
         })()),
-        meta: nix.thunk(() => ({ __proto__: pos$27, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$27, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./maturin-build-hook.sh"))),
     bindgenHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         name: "rust-bindgen-hook",
         substitutions: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(clang, "cc")))),
           clang: clang,
           targetFlag: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => nix.str`--target=${nix.sel(stdenv, "targetPlatform", "config")}`))),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$30, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$30, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./rust-bindgen-hook.sh"))),
   };
 })(), formals$1);

@@ -34,7 +34,7 @@ makeWrapper ${flet}/bin/flet $out/bin/flet \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["flet_cli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Command-line interface tool for Flet, a framework for building interactive multi-platform applications using Python",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ makeWrapper ${flet}/bin/flet $out/bin/flet \\
         mainProgram: "flet",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

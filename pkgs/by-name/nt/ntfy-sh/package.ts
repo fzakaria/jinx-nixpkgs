@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildGoModule, (finalAttrs) => (() => {
       const ui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ntfy-sh-ui",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\nmv build/index.html build/app.html\nrm build/config.js\nmkdir -p $out\nmv build/ $out/site\n\nrunHook postInstall\n",
         }))));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "ntfy-sh",
         version: "2.28.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "binwiederhier",
             repo: "ntfy",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,12 +70,12 @@ substituteInPlace \\
 make docs-build
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           updateScript: nix.path(here, "./update.sh"),
-          tests: nix.thunk(() => ({ __proto__: pos$3, "ntfy-sh": nix.thunk(() => nix.sel(nixosTests, "ntfy-sh")) })),
+          tests: nix.thunk(() => ({ [nix.POS]: pos$3, "ntfy-sh": nix.thunk(() => nix.sel(nixosTests, "ntfy-sh")) })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Send push notifications to your phone or desktop via PUT/POST",
           homepage: "https://ntfy.sh",
           changelog: nix.thunk(() => nix.str`https://github.com/binwiederhier/ntfy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

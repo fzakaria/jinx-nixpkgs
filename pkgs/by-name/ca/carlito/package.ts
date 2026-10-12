@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "carlito";
       const version = "20130920";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://commondatastorage.googleapis.com/chromeos-localmirror/distfiles/crosextrafonts-carlito-${version}.tar.gz`),
           sha256: "sha256-S9ErbLwyHBzxbaduLFhcklzpVqCAZ65vbGTv9sz9r1o=",
         }))));
@@ -26,7 +26,7 @@ cp -v *.ttf $out/share/fonts/truetype
 cp -v ${nix.path(here, "./calibri-alias.conf")} $out/etc/fonts/conf.d/30-calibri.conf
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://openfontlibrary.org/en/font/carlito",
         description: "Sans-serif font metric-compatible with Microsoft Calibri",
         longDescription: "Carlito is a free font that is metric-compatible with the\nMicrosoft Calibri font. The font is designed by Łukasz Dziedzic\nof the tyPoland foundry and based upon his Lato font.\n",
@@ -35,7 +35,7 @@ cp -v ${nix.path(here, "./calibri-alias.conf")} $out/etc/fonts/conf.d/30-calibri
         maintainers: [],
         priority: 10n,
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

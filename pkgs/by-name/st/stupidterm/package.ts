@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stupidterm",
       version: "2019-03-26",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [vte, gtk3, pcre2]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esmil",
           repo: "stupidterm",
           rev: "f824e41c2ca9016db73556c5d2f5a2861e235c8e",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -D stupidterm $out/bin/stupidterm\ninstall -D -m 644 stupidterm.desktop $out/share/applications/stupidterm.desktop\ninstall -D -m 644 stupidterm.ini $out/share/stupidterm/stupidterm.ini\n\nsubstituteInPlace $out/share/applications/stupidterm.desktop \\\n  --replace \"Exec=st\" \"Exec=$out/bin/stupidterm\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "stupidterm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple wrapper around the VTE terminal emulator widget for GTK",
         homepage: "https://github.com/esmil/stupidterm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

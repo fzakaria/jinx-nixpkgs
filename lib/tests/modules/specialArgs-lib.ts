@@ -20,34 +20,34 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
       weird: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              __proto__: pos$2,
-              specialArgs: nix.thunk(() => ({ __proto__: pos$1, lib: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$2,
+              specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => ({})) })),
               modules: [],
             })))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       weird: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const args_2 = args_1;
         nix.assert_(nix.eq(nix.sel(args_2, "lib"), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/specialArgs-lib.nix:22:5");
-        nix.assert_(nix.eq(nix.sel(args_2, "specialArgs"), { __proto__: pos$5, lib: nix.thunk(() => ({})) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/specialArgs-lib.nix:23:5");
+        nix.assert_(nix.eq(nix.sel(args_2, "specialArgs"), { [nix.POS]: pos$5, lib: nix.thunk(() => ({})) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/specialArgs-lib.nix:23:5");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           options: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
           })),
           config: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             foo: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, "alright")),
           })),
         };

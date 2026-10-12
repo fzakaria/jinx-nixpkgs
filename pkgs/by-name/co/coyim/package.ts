@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coyim",
       version: "0.4.1-unstable-2023-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coyim",
           repo: "coyim",
           rev: "3f84daa8c27277543b1b4ad4536dde5100d9df12",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, cairo, gdk_pixbuf, gtk3, adwaita_icon_theme]),
       postPatch: "# fixes build on aarch64\nrm -v windows_amd64_icon.syso\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Safe and secure chat client",
         mainProgram: "coyim",
         homepage: "https://coy.im/",

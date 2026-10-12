@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "avalonia-ilspy";
       const version = "7.2-rc";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icsharpcode",
           repo: "AvaloniaILSpy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const executables = nix.thunk(() => ["ILSpy"]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ILSpy",
             desktopName: "ILSpy",
             exec: "ILSpy",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: ".NET assembly browser and decompiler",
         homepage: "https://github.com/icsharpcode/AvaloniaILSpy",
         license: nix.thunk(() => (() => {
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ILSpy",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

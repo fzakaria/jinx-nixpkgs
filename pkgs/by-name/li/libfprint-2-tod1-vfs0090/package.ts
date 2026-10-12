@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libfprint-2-tod1-vfs0090",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "3v1n0",
           repo: "libfprint-tod-vfs0090",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [libfprint, libfprint_tod, glib, gusb, udev, nss, openssl, pixman]),
       installPhase: "runHook preInstall\n\ninstall -D -t \"$out/lib/libfprint-2/tod-1/\" libfprint-tod-vfs009x.so\ninstall -D -t \"$out/lib/udev/rules.d/\" $src/60-libfprint-2-tod-vfs0090.rules\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Libfprint-2-tod Touch OEM Driver for 2016 ThinkPad's fingerprint readers",
         homepage: "https://gitlab.freedesktop.org/3v1n0/libfprint-tod-vfs0090",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

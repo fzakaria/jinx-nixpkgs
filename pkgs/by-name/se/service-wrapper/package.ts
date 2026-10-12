@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const pname = "service-wrapper";
   const version = "19.04";
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       script: nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.path(here, "./service-wrapper.sh"),
           isExecutable: true,
           replacements: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             coreutils: coreutils,
           })),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convenient wrapper for the systemctl commands, borrow from Ubuntu",
         mainProgram: "service",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const baseUrl = nix.argOr($, "baseUrl", () => "/");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "texlyre",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TeXlyre",
           repo: "texlyre",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,14 +61,14 @@ npm run generate:configs
   --chdir $out
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.path(here, "./update.sh"),
         drawioEmbed: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs_1) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "drawio-embed",
             version: "31.6.1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "TeXlyre",
                 repo: "drawio-embed-mirror",
                 tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs_1, "version")}`),
@@ -78,11 +78,11 @@ npm run generate:configs
             installPhase: "cp -a . $out",
           }))),
         busytexAssets: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs_1) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: "busytex-assets",
             version: "1.4.0",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 owner: "TeXlyre",
                 repo: "texlyre-busytex",
                 tag: nix.thunk(() => nix.str`assets-v${nix.sel(finalAttrs_1, "version")}`),
@@ -93,7 +93,7 @@ npm run generate:configs
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/TeXlyre/texlyre/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Local-first LaTeX & Typst web editor with real-time collaboration & offline support",
         homepage: "https://github.com/TeXlyre/texlyre",

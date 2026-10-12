@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const pname = "televido";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d-k-bo",
           repo: "televido",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-9hoKX1fGjMOlvU3kNx4aLMV++k+nynDIK1UQRrw242k=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Viewer for German-language public broadcasting live streams and archives",
         homepage: "https://github.com/d-k-bo/televido",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

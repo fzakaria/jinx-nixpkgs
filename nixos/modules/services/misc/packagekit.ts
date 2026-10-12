@@ -35,41 +35,41 @@ export default nix.lambda((args) => (() => {
   const iniFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const confFiles = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "PackageKit.conf", nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => ({
-          __proto__: pos$2,
-          Daemon: nix.thunk(() => ({ __proto__: pos$1, DefaultBackend: "test_nop", KeepCache: false })),
+          [nix.POS]: pos$2,
+          Daemon: nix.thunk(() => ({ [nix.POS]: pos$1, DefaultBackend: "test_nop", KeepCache: false })),
         })), nix.thunk(() => nix.sel(cfg, "settings")))))),
     nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "Vendor.conf", nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           PackagesNotFound: nix.thunk(() => (() => {
             const DefaultUrl = "https://github.com/NixOS/nixpkgs";
             const CodecUrl = DefaultUrl;
             const HardwareUrl = DefaultUrl;
             const FontUrl = DefaultUrl;
             const MimeUrl = DefaultUrl;
-            return { __proto__: pos$3, DefaultUrl, CodecUrl, HardwareUrl, FontUrl, MimeUrl };
+            return { [nix.POS]: pos$3, DefaultUrl, CodecUrl, HardwareUrl, FontUrl, MimeUrl };
           })()),
         })), nix.thunk(() => nix.sel(cfg, "vendorSettings")))))),
   ]);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "packagekit", "backend"]), "Always set to test_nop, Nix backend is broken see #177946.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         packagekit: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "PackageKit, a cross-platform D-Bus abstraction layer for\ninstalling software. Software utilizing PackageKit can install\nsoftware regardless of the package manager\n")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(iniFmt, "type")),
               default: nix.thunk(() => ({})),
               description: "Additional settings passed straight through to PackageKit.conf",
             })))),
           vendorSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(iniFmt, "type")),
               default: nix.thunk(() => ({})),
               description: "Additional settings passed straight through to Vendor.conf",
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dbus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "packagekit"))];
@@ -90,15 +90,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "packagekit"))];
           })()),
-          etc: nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((e) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`PackageKit/${nix.sel(e, "name")}`), nix.thunk(() => ({ __proto__: pos$12, source: e }))), confFiles)))),
+          etc: nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((e) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`PackageKit/${nix.sel(e, "name")}`), nix.thunk(() => ({ [nix.POS]: pos$12, source: e }))), confFiles)))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "packagekit"))];

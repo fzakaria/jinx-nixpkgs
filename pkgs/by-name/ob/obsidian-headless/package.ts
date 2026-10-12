@@ -26,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const nodeSources = nix.thunk(() => nix.app(srcOnly, nodejs));
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "obsidian-headless",
       version: "0.0.14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obsidianmd",
           repo: "obsidian-headless",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ue2M9maFyvabGH9qTDOpAJS4OPwCikpAMYm/M/XRGKo=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +77,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Headless client for Obsidian Sync and Obsidian Publish",
         homepage: "https://github.com/obsidianmd/obsidian-headless",
         changelog: nix.thunk(() => nix.str`https://github.com/obsidianmd/obsidian-headless/releases/tag/${nix.sel(finalAttrs, "version")}`),

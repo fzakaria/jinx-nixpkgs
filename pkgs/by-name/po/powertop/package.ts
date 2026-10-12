@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const xset = nix.arg($, "xset");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "powertop",
       version: "2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fenrus75",
           repo: "powertop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,12 +46,12 @@ substituteInPlace src/calibrate/calibrate.cpp --replace-fail "/usr/bin/xset" "${
 substituteInPlace src/tuning/bluetooth.cpp --replace-fail "/usr/bin/hcitool" "hcitool"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: powertop,
               command: "powertop --version",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -61,7 +61,7 @@ substituteInPlace src/tuning/bluetooth.cpp --replace-fail "/usr/bin/hcitool" "hc
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.str`https://github.com/fenrus75/powertop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Analyze power consumption on Intel-based laptops",

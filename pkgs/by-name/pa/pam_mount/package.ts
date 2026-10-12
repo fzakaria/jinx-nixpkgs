@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pam_mount",
       version: "2.22",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "jengelh",
           repo: "pam_mount",
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-slibdir=${nix.builtins.placeholder("out")}/lib`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PAM module to mount volumes for a user session",
         homepage: "https://inai.de/projects/pam_mount/",
         license: nix.thunk(() => (() => {

@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const enable = nix.thunk(() => nix.sel(config, "programs", "bash", "enableLsColors"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         bash: nix.thunk(() => ({
-          __proto__: pos$3,
-          enableLsColors: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "extra colors in directory listings"), { __proto__: pos$1, default: true })),
+          [nix.POS]: pos$3,
+          enableLsColors: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "extra colors in directory listings"), { [nix.POS]: pos$1, default: true })),
           lsColorsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${pkgs.dircolors-solarized}/ansi-dark")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enable, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         programs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           bash: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             promptPluginInit: nix.thunk(() => nix.str`eval "$(${nix.sel(pkgs, "coreutils")}/bin/dircolors -b ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "programs", "bash", "lsColorsFile"), null)), nix.thunk(() => nix.sel(config, "programs", "bash", "lsColorsFile")))})"
 `),
           })),

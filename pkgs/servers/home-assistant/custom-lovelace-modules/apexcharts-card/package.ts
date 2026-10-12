@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "apexcharts-card";
       const version = "2.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RomRider",
           repo: "apexcharts-card",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-w/TR+8Oo6dbSnlHKhKKVSpeDops4WoGdle6VTCyR7T4=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -R dist/* $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lovelace card to display advanced graphs and charts based on ApexChartsJS for Home Assistant",
         homepage: "https://github.com/RomRider/apexcharts-card",
         changelog: nix.thunk(() => nix.str`https://github.com/RomRider/apexcharts-card/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

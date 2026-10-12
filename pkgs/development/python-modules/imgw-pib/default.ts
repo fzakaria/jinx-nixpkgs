@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const syrupy_6 = nix.arg($, "syrupy_6");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imgw-pib",
       version: "2.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bieniu",
           repo: "imgw-pib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         syrupy_6,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/bieniu/imgw-pib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python async wrapper for IMGW-PIB API",
         homepage: "https://github.com/bieniu/imgw-pib",

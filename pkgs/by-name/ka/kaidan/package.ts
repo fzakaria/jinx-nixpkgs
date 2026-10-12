@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const qxmpp = nix.arg($, "qxmpp");
   const zxing_cpp = nix.arg($, "zxing-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kaidan",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "network",
           repo: "kaidan",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$2, qt6Support: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, qt6Support: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=ON"]),
       postInstall: "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, kaidan: nix.thunk(() => nix.sel(nixosTests, "kaidan")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, kaidan: nix.thunk(() => nix.sel(nixosTests, "kaidan")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "User-friendly and modern chat app, using XMPP",
         mainProgram: "kaidan",
         longDescription: "Kaidan is a user-friendly and modern chat app for every device. It uses\nthe open communication protocol XMPP (Jabber). Unlike other chat apps,\nyou are not dependent on one specific service provider.\n\nKaidan does not have all basic features yet and has still some\nstability issues. Current features include audio messages, video\nmessages, and file sharing.\n",

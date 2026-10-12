@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docbook-xml-ebnf",
       version: "1.2b1",
       dtd: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://docbook.org/xml/ebnf/${nix.sel(finalAttrs, "version")}/dbebnf.dtd`),
           sha256: "0min5dsc53my13b94g2yd65q1nkjcf4x1dak00bsc4ckf86mrx95",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "mkdir -p $out/xml/dtd/docbook-ebnf\ncd $out/xml/dtd/docbook-ebnf\n",
       installPhase: "cp -p $dtd dbebnf.dtd\ncp -p $catalog $(stripHash $catalog)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }));

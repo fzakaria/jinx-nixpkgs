@@ -35,41 +35,41 @@ export default nix.lambda((args) => (() => {
           const lib = nix.arg($_1, "lib");
           const someArg = nix.arg($_1, "someArg");
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             imports: nix.thunk(() => [nix.thunk(() => nix.sel(someArg, "myModule"))]),
-            meta: nix.thunk(() => ({ __proto__: pos$1, doc: nix.path(here, "./test-dummy.chapter.xml") })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$1, doc: nix.path(here, "./test-dummy.chapter.xml") })),
           };
         })(), formals$2),
         nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           _module: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             args: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               baseModules: nix.thunk(() => [nix.path(here, "../documentation.nix"), nix.path(here, "../version.nix")]),
               extraModules: [],
               modules: modules,
             })),
           })),
           documentation: nix.thunk(() => ({
-            __proto__: pos$6,
-            nixos: nix.thunk(() => ({ __proto__: pos$5, includeAllModules: true })),
+            [nix.POS]: pos$6,
+            nixos: nix.thunk(() => ({ [nix.POS]: pos$5, includeAllModules: true })),
           })),
         })),
       ]);
       const specialArgs = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         someArg: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           myModule: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const lib = nix.arg($_1, "lib");
             return {
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               options: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 foobar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     description: "The foobar option was added via specialArgs",
                     default: "qux",
@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
           })(), formals$3),
         })),
       }));
-      return { __proto__: pos$13, modules, specialArgs };
+      return { [nix.POS]: pos$13, modules, specialArgs };
     })())));
   return nix.app(runCommand, "documentation-check", nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sys, "config", "system", "build", "manual"));
       return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       optionsJSON: nix.thunk(() => nix.attr(from, "optionsJSON")),
     };
     })()), "json=\"$optionsJSON/share/doc/nixos/options.json\"\necho checking $json\n\ngrep 'The foobar option was added via specialArgs' <\"$json\" >/dev/null\ntouch $out\n");

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "appindicator-sharp",
       version: "0-unstable-2016-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sundermann",
           repo: "appindicator-sharp",
           rev: "5a79cde93da6d68a4b1373f1ce5796c3c5fe1b37",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ac_cv_path_MDOC: "no",
       installFlags: nix.thunk(() => ["GAPIXMLDIR=/tmp/gapixml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings for appindicator using gobject-introspection",
         homepage: "https://github.com/sundermann/appindicator-sharp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

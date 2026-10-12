@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   const python$ = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python$,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "requests-cache": nix.thunk(() => nix.app(nix.sel(prev, "requests-cache", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "0.5.2";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
                 version: version,
                 sha256: "sha256-gTAjJpaGBF+OAeIonMHn6a5asi3dHihJqQk6s6tycOs=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "setuptools"))];
             })());
             const doCheck = false;
-            return { __proto__: pos$2, version, src, nativeBuildInputs, doCheck };
+            return { [nix.POS]: pos$2, version, src, nativeBuildInputs, doCheck };
           })())),
       }),
     }))));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: pname,
           version: version,
           sha256: "dc2ea8188df6ac56439343630466b874c57756dd0b2538dd8e7905048f425f04",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["tvnamer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Automatic TV episode file renamer, uses data from thetvdb.com via tvdb_api",
         homepage: "https://github.com/dbr/tvnamer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tvnamer",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const ty = nix.arg($, "ty");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "linux-x64",
             hash: "sha256-A9cFMhVMC+duJmRIbWcVWExZdAtDi7bj95cphL8FQ1g=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "linux-arm64",
             hash: "sha256-//xadLpMq3b/vIfK93Gd3yCwAvpSRqJ7NdvpFtRgDRE=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             arch: "darwin-arm64",
             hash: "sha256-pGW+TEc69V50dmDdgbqBeFSrzRjfIVxp9NUX+CGQ84g=",
           })),
         }));
-        return nix.update({ __proto__: pos$5, name: "ty", publisher: "astral-sh", version: "2026.76.0" }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
+        return nix.update({ [nix.POS]: pos$5, name: "ty", publisher: "astral-sh", version: "2026.76.0" }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       postInstall: nix.thunk(() => nix.str`test -x "$out/$installPrefix/bundled/libs/bin/ty" || {
   echo "Replacing the bundled ty binary failed, because 'bundled/libs/bin/ty' is missing."
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
 ln -sf ${nix.app(nix.sel(lib, "getExe"), ty)} "$out/$installPrefix/bundled/libs/bin/ty"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         changelog: "https://marketplace.visualstudio.com/items/astral-sh.ty/changelog",
         description: "Visual Studio Code extension with support for the ty type checker and language server",

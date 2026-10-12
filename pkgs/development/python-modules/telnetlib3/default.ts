@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const trustme = nix.arg($, "trustme");
   const wcwidth = nix.arg($, "wcwidth");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "telnetlib3",
       version: "5.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jquast",
           repo: "telnetlib3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       pythonRelaxDeps: nix.thunk(() => ["wcwidth"]),
       dependencies: nix.thunk(() => [blessed, wcwidth]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, extras: nix.thunk(() => [prettytable]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, extras: nix.thunk(() => [prettytable]) })),
       pythonImportsCheck: nix.thunk(() => ["telnetlib3"]),
       nativeCheckInputs: nix.thunk(() => [
         addBinToPathHook,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         trustme,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jquast/telnetlib3/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/history.rst`),
         description: "Feature-rich Telnet Server, Client, and Protocol library for Python",
         homepage: "https://github.com/jquast/telnetlib3",

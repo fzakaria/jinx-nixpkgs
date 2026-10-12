@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const fuseSupport = nix.argOr($, "fuseSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const selinuxSupport = nix.argOr($, "selinuxSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "erofs-utils",
       version: "1.9.4",
       outputs: nix.thunk(() => ["out", "man"]),
       enableParallelBuilding: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/snapshot/erofs-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fRNaolUDJqWs8g9TxRiupaiQABXOUHAAROQPgYwx3YA=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([util_linux, xxhash, lz4, zlib, xz, zstd, libdeflate], nix.concat(nix.app(nix.sel(lib, "optionals"), fuseSupport, nix.thunk(() => [fuse3])), nix.app(nix.sel(lib, "optionals"), selinuxSupport, nix.thunk(() => [libselinux]))))),
       configureFlags: nix.thunk(() => nix.concat(["MAX_BLOCK_SIZE=4096", "--enable-multithreading", "--with-libdeflate"], nix.concat(nix.app(nix.sel(lib, "optional"), fuseSupport, "--enable-fuse"), nix.app(nix.sel(lib, "optional"), selinuxSupport, "--with-selinux")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/about/",
         description: "Userspace utilities for linux-erofs file system",
         changelog: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/tree/ChangeLog?h=v${nix.sel(finalAttrs, "version")}`),

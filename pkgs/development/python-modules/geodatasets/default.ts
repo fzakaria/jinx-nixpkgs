@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geopandas",
           repo: "geodatasets",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["request"]);
       const pythonImportsCheck = nix.thunk(() => ["geodatasets"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spatial data examples",
         homepage: "https://geodatasets.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

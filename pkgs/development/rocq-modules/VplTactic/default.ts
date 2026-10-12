@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const Vpl = nix.arg($, "Vpl");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "VplTactic",
       owner: "VERIMAG-Polyhedra",
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isEq"), "8.9", nix.thunk(() => nix.sel(coq, "version")))) ? "0.5" : null)),
       release: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "0.5": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "487e3aff8446bed2c5116cefc7d71d98a06e85de",
           hash: "sha256-4h0hyvj9R+GOgnGWQFDi0oENLZPiJoimyK1q327qvIY=",
         })),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(coq, "ocamlPackages", "vpl-core"))]),
       propagatedBuildInputs: nix.thunk(() => [Vpl]),
       mlPlugin: true,
-      meta: nix.thunk(() => nix.update(nix.sel(Vpl, "meta"), { __proto__: pos$3, description: "Coq Tactic for Arithmetic (based on VPL)" })),
+      meta: nix.thunk(() => nix.update(nix.sel(Vpl, "meta"), { [nix.POS]: pos$3, description: "Coq Tactic for Arithmetic (based on VPL)" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

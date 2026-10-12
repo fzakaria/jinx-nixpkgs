@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ekrhyper";
       const version = "1_4_21022014";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://userpages.uni-koblenz.de/~bpelzer/ekrhyper/ekrh_${version}.tar.gz`),
           sha256: "sha256-fEe0DIMGj7wO+79/BZf45kykgyTXpbZJsyFSt31XqpM=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "export INSTALLDIR=$out";
       const postInstall = "for i in \"$out/casc\"/*; do ln -s \"$i\" \"$out/bin/ekrh-casc-$(basename $i)\"; done ";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated first-order theorem prover",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.231";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axcore",
           repo: "tartube",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [youtube_dl]))}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI front-end for youtube-dl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tartube",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

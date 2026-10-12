@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([nix.thunk(() => nix.sel(ps, "llm"))], nix.app(nix.sel(lib, "attrValues"), plugins));
       })()));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python, "name")}-${drvName}`), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         passthru: nix.thunk(() => nix.attr(llm, "passthru")),
         meta: nix.thunk(() => nix.attr(llm, "meta")),
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -111,14 +111,14 @@ ln -s ${python_environment}/bin/llm $out/bin/llm
   ${name} = true;
 `, withPluginsArgNames))))));
   const llm = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "llm",
       version: "0.31.1",
       pyproject: true,
       __structuredAttrs: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "simonw",
           repo: "llm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -128,7 +128,7 @@ ln -s ${python_environment}/bin/llm $out/bin/llm
         nix.path(here, "./001-disable-install-uninstall-commands.patch"),
         nix.path(here, "./do-not-commit-inside-content_hash-embeddings.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/simonw/llm/commit/67adad2c10be5c1898e3e1a664adb573f5d032cf.patch",
             hash: "sha256-7+sBQvef94ZTUrqNKVzHzjFADNj1KNzA2tbGs5btwNA=",
           })))),
@@ -168,16 +168,16 @@ ln -s ${python_environment}/bin/llm $out/bin/llm
       disabledTests: nix.thunk(() => ["test_gpt4o_mini_sync_and_async", "test_embed_multi_files_encoding"]),
       pythonImportsCheck: nix.thunk(() => ["llm"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         withPlugins: withPlugins,
         withAllPlugins: withAllPlugins,
         mkPluginTest: (plugin) => nix.attrsDyn({}, [
-          [nix.sel(plugin, "pname"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-plugin-test.nix"), nix.thunk(() => ({ __proto__: pos$4, llm: llm, plugin: plugin }))))],
+          [nix.sel(plugin, "pname"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-plugin-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, llm: llm, plugin: plugin }))))],
         ]),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.builtins.map((name) => nix.selOr(python, () => ({}), "pkgs", nix.key(nix.force(name)), "tests"), withPluginsArgNames)))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/simonw/llm",
         description: "Access large language models from the command-line",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

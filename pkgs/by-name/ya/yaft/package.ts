@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.2.9",
       pname: "yaft",
       outputs: nix.thunk(() => ["out", "terminfo"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uobikiemukot",
           repo: "yaft",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "MANPREFIX=$(out)/share/man"]),
       postInstall: "mkdir -p $out/nix-support $terminfo/share\nmv $out/share/terminfo $terminfo/share/\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/uobikiemukot/yaft",
         description: "Yet another framebuffer terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

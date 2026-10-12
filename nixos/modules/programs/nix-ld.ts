@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nix-ld"));
   const nix_ld_libraries = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ld-library-path",
       pathsToLink: nix.thunk(() => ["/lib"]),
       paths: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => nix.sel(cfg, "libraries")))),
@@ -33,21 +33,21 @@ export default nix.lambda((args) => (() => {
       ignoreCollisions: true,
     }))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mic92"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "nix-ld": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nix-ld, Documentation: <https://github.com/nix-community/nix-ld>")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nix-ld", nix.thunk(() => ({})))),
           libraries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               description: "Libraries that automatically become available to all programs. The default set includes common libraries.",
               default: [],
@@ -57,22 +57,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "nix-ld", "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           ldso: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/nix-ld`),
           systemPackages: nix.thunk(() => [nix_ld_libraries]),
           pathsToLink: nix.thunk(() => ["/share/nix-ld"]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             NIX_LD: "/run/current-system/sw/share/nix-ld/lib/ld.so",
             NIX_LD_LIBRARY_PATH: "/run/current-system/sw/share/nix-ld/lib",
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "nix-ld": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [

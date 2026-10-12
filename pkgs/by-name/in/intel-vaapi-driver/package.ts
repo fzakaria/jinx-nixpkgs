@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const enableGui = nix.argOr($, "enableGui", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "intel-vaapi-driver",
       version: "2.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irql-notlessorequal",
           repo: "intel-vaapi-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-exQBA42jCmwybE7WIfF83cjmzBdtluDzUtOdqt49HSg=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBVA_DRIVERS_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/dri`),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableHybridCodec, nix.thunk(() => nix.str`ln -s ${vaapi_intel_hybrid}/lib/dri/* $out/lib/dri/
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([intel_gpu_tools, libdrm, libva], nix.concat(nix.app(nix.sel(lib, "optionals"), enableGui, nix.thunk(() => [libx11, libxext, libGL, wayland])), nix.app(nix.sel(lib, "optional"), enableHybridCodec, vaapi_intel_hybrid)))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/irql-notlessorequal/intel-vaapi-driver",
         changelog: nix.thunk(() => nix.str`https://github.com/irql-notlessorequal/intel-vaapi-driver/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildGraylog = nix.thunk(() => nix.app(callPackage, nix.path(here, "./graylog.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGraylog, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "6.1.8",
       hash: "sha256-omyV4BSY9SWDFyLcQCr0+LcjRecw9C1HtvsnCJrZX1U=",
       maintainers: nix.thunk(() => (() => {

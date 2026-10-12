@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-QIW43pIAufMZ32+Op5lyiPFZqOSyhLBi2bKk1qnBI0w=",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         tomlkit,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           pre_commit,
           pyscaffoldext_cookiecutter,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pyscaffold"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Template tool for putting up the scaffold of a Python project",
         mainProgram: "putup",
         homepage: "https://pypi.org/project/PyScaffold/",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

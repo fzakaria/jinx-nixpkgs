@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tile-downloader",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.scd31.com",
           owner: "sophie",
           repo: "tile-downloader",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-jKNp+YJKZ3qpaDzwi3DvFaZAipRhm1+sTtKBtQEj7qI=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi-threaded raster tile downloader, primarily designed for downloading OSM tiles for usage offline",
         mainProgram: "tile-downloader",
         homepage: "https://gitlab.scd31.com/sophie/tile-downloader",

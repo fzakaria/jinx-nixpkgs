@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "guile-git",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guile-git",
           repo: "guile-git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "catch-git-error-guile",
             url: "https://gitlab.com/guile-git/guile-git/-/commit/9c76c6b31e217c470c8576172b123be9c373dc9b.diff",
             hash: "sha256-H0s7Ebl+HNL8Zak58kJmFETWZJcNq+Z5gTGRqU9gj58=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "test-typo",
             url: "https://gitlab.com/guile-git/guile-git/-/commit/4451c0808fbdf8cd13d486a18b03881f998f6e88.diff",
             hash: "sha256-K2f67WXUBLI/09eF8Xg3JMX7gkISFTZK3yHu0VDVQ4E=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "sed -i -e '94i (test-skip 1)' ./tests/proxy.scm\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Bindings to Libgit2 for GNU Guile",
         homepage: "https://gitlab.com/guile-git/guile-git",

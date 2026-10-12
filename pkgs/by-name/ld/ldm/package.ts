@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.eq(mountPath, ""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ld/ldm/package.nix:10:1");
   const version = "0.5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ldm",
       version: version,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/LemonBoy/ldm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "0lxfypnbamfx6p9ar5k9wra20gvwn665l4pp2j4vsx4yi5q7rw2n",
@@ -35,7 +35,7 @@ sed '16i#include <sys/stat.h>' -i ldm.c
       buildFlags: nix.thunk(() => ["ldm"]),
       installPhase: "mkdir -p $out/bin\ncp -v ldm $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight device mounter, with libudev as only dependency",
         homepage: "https://github.com/LemonBoy/ldm",
         mainProgram: "ldm",

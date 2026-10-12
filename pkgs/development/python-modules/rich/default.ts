@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const rich_rst = nix.arg($, "rich-rst");
   const textual = nix.arg($, "textual");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rich",
       version: "15.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Textualize",
           repo: "rich",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [markdown_it_py, pygments]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, jupyter: nix.thunk(() => [ipywidgets]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, jupyter: nix.thunk(() => [ipywidgets]) })),
       nativeCheckInputs: nix.thunk(() => [attrs, pytestCheckHook, which]),
       pythonImportsCheck: nix.thunk(() => ["rich"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enrich: enrich,
           httpie: httpie,
           "rich-rst": rich_rst,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
         homepage: "https://github.com/Textualize/rich",
         changelog: nix.thunk(() => nix.str`https://github.com/Textualize/rich/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-EipI+vo7kY5zAYXJc900IYOSi4oNviRDbRPVi5ApDoQ=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert any LCSC components (including EasyEDA) to KiCad library",
         homepage: "https://github.com/uPesy/easyeda2kicad.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "easyeda2kicad",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

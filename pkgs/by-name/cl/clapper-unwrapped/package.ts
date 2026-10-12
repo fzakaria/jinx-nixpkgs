@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const libpeas2 = nix.arg($, "libpeas2");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clapper-unwrapped",
       version: "0.10.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rafostar",
           repo: "clapper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --build build-aux/meson/postinstall.py\n",
       preFixup: "mkdir -p $out/share/gsettings-schemas\n# alias clapper-unwrapped schemas to also provide clapper schemas.\n# the precise schema patch can vary based on host platform.\nschemas=$(basename $lib/share/gsettings-schemas/clapper-unwrapped-*)\ncp -r $lib/share/gsettings-schemas/$schemas $out/share/gsettings-schemas/${schemas/clapper-unwrapped-/clapper-}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering",
         longDescription: "Clapper is a GNOME media player built using the GTK4 toolkit.\nThe media player is using GStreamer as a media backend.\n",
         homepage: "https://github.com/Rafostar/clapper",

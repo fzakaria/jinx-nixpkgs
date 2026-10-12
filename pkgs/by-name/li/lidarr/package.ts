@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const version = "3.1.0.4875";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lidarr",
           repo: "Lidarr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
     }))));
   const rid = nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "lidarr",
       version: version,
       src: src,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn, prefetch_yarn_deps, fixup_yarn_lock]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-Jq2O7gvB+PKcz6uDBMg7ox6/Bu+pikXH6JGuLfKG5fI=",
         })))),
@@ -110,10 +110,10 @@ export default nix.lambda((args) => (() => {
         "NzbDrone.Common.Test.ProcessProviderFixture.kill_all_should_kill_all_process_with_name",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$4, lidarr: nix.thunk(() => nix.attr(nixosTests, "lidarr")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, lidarr: nix.thunk(() => nix.attr(nixosTests, "lidarr")) })),
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "lidarr-updater", nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [nix.thunk(() => nix.lookup(w, "requests"))];
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
           })), nix.path(here, "./update.py"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Usenet/BitTorrent music downloader",
         homepage: "https://lidarr.audio",
         changelog: nix.thunk(() => nix.str`https://github.com/Lidarr/Lidarr/releases/tag/v${version}`),

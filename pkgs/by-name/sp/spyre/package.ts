@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const yara = nix.arg($, "yara");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "spyre",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spyre-project",
           repo: "spyre",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "syscall-to-x-sys-unix.patch",
             url: "https://github.com/spyre-project/spyre/commit/8f08daf030c847de453613eb2eb1befdb7300921.patch",
             hash: "sha256-oy8Y85IubJVQrt0kmGA1hidZapgCw2aB6F/gT7uQ6KA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "darwin-skip-dir.patch",
             url: "https://github.com/spyre-project/spyre/commit/12dea550bc4f3275f8f406c19216ad140733a6af.patch",
             hash: "sha256-BXLGOshyGnllbkvsbbmdnqvRHwycrjI52oGWBoXXgL0=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [yara]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "YARA-based IOC scanner",
         mainProgram: "spyre",
         homepage: "https://github.com/spyre-project/spyre",

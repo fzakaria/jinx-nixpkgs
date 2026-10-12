@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const networkmanager = nix.arg($, "networkmanager");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linux-wifi-hotspot",
       version: "4.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lakinduakash",
           repo: "linux-wifi-hotspot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lakinduakash/linux-wifi-hotspot/commit/a3fce4b3ee9371eeb7b300fa7e9f291d93986db3.patch",
             hash: "sha256-4xQ3iRUlkNpoxHXABhMIgsoDY9nENN/9FtHD3UMyAhc=",
           })))),
@@ -85,7 +85,7 @@ wrapProgram $out/bin/wihotspot \\
   --prefix PATH : "${nix.builtins.placeholder("out")}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Feature-rich wifi hotspot creator for Linux which provides both GUI and command-line interface",
         homepage: "https://github.com/lakinduakash/linux-wifi-hotspot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

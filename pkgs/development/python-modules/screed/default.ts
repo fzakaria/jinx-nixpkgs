@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-N+gWl8fbqVoFNVTltahq/zKXBeHPXfxee42lht7gcrg=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["Test_convert_shell", "Test_fa_shell_command", "Test_fq_shell_command"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple read-only sequence database, designed for short reads",
         mainProgram: "screed",
         homepage: "https://pypi.org/project/screed/",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

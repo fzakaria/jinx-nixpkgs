@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerApp = nix.arg($, "bundlerApp");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kamal",
       gemdir: nix.path(here, "./."),
       ruby: ruby,
       exes: nix.thunk(() => ["kamal"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Deploy web apps anywhere",
         homepage: "https://kamal-deploy.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

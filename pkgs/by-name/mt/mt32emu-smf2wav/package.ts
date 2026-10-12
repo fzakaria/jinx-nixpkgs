@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libmt32emu = nix.arg($, "libmt32emu");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mt32emu-smf2wav",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "munt",
           repo: "munt",
           rev: nix.thunk(() => nix.str`mt32emu_smf2wav_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "munt_WITH_MT32EMU_SMF2WAV", true)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         unfixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "unfix-mt32emu-smf2wav-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-smf2wav}\"\n\npreUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nunfixedVersion=\"${preUpdateScriptVersion//\\./_}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$preUpdateScriptVersion\\\"/version = \\\"$unfixedVersion\\\"/g\" \"$pkgFile\"\n",
           })))),
-        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "mt32emu_smf2wav_" })))),
+        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "mt32emu_smf2wav_" })))),
         fixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-mt32emu-smf2wav-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-smf2wav}\"\n\npostUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nfixedVersion=\"${postUpdateScriptVersion//_/.}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$postUpdateScriptVersion\\\"/version = \\\"$fixedVersion\\\"/g\" \"$pkgFile\"\n",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://munt.sourceforge.net/",
         description: "Produces a WAVE file from a Standard MIDI file (SMF)",
         mainProgram: "mt32emu-smf2wav",

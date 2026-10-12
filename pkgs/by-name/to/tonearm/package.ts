@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const libraryPath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tonearm-puregotk-lib-folder",
       paths: nix.thunk(() => [
         cairo,
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       pname: "tonearm",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dergs",
           repo: "Tonearm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/tonearm"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "dev.dergs.Tonearm",
             exec: "tonearm %u",
             icon: "dev.dergs.Tonearm",
@@ -101,11 +101,11 @@ install -Dm444 internal/settings/dev.dergs.Tonearm.gschema.xml -t $out/share/gli
 glib-compile-schemas $out/share/glib-2.0/schemas
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GTK client for TIDAL written in Golang",
         homepage: "https://codeberg.org/dergs/Tonearm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const e2fsprogs = nix.arg($, "e2fsprogs");
   const useFsync = nix.argOr($, "useFsync", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nbdkit",
       version: "1.48.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/nbdkit/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/nbdkit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-W5DtgnfFFIieVOK3A8z4UIYBXXF0u/EN0W4W9eNdnO8=",
         })))),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         "--disable-example4",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), useFsync, "-Dfdatasync=fsync")),
       })),
       installFlags: nix.thunk(() => ["bashcompdir=$(out)/share/bash-completion/completions"]),
@@ -83,17 +83,17 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gitlab.com/nbdkit/nbdkit",
         description: "NBD server with stable plugin ABI and permissive license",
         license: nix.thunk(() => (() => {

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pycontribs",
           repo: "jira",
           tag: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cli: nix.thunk(() => [ipython, keyring]),
         opt: nix.thunk(() => [pyjwt]),
         async: nix.thunk(() => [requests_futures]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jira"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to interact with the JIRA REST API",
         homepage: "https://github.com/pycontribs/jira",
         changelog: nix.thunk(() => nix.str`https://github.com/pycontribs/jira/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jirashell",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

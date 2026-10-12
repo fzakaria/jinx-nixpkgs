@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const gnumake = nix.arg($, "gnumake");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emacsclient-commands",
       version: "0-unstable-2023-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "szermatt",
           repo: "emacsclient-commands",
           rev: "8f5c8a877794ed51f8225036e36fd5ce272b17f3",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gnumake]),
       buildPhase: "runHook preBuild\nDESTDIR=$out/ make install\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of small shell utilities that connect to a local Emacs server",
         homepage: "https://github.com/szermatt/emacsclient-commands",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

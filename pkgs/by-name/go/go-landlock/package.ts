@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-landlock",
       version: "0-unstable-2024-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "landlock-lsm",
           repo: "go-landlock",
           rev: "efb66220540a9ef86aa0160d15e55f429d5b94d9",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-IOaFToz/66Z1DP5O6gLqTyEiiYyrwZ5At93qPLa7hg8=",
       subPackages: nix.thunk(() => ["cmd/landlock-restrict-net", "cmd/landlock-restrict"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go library for the Linux Landlock sandboxing feature",
         homepage: "https://github.com/landlock-lsm/go-landlock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

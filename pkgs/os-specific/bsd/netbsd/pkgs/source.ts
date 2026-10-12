@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchcvs = nix.arg($, "fetchcvs");
   const version = nix.arg($, "version");
   return nix.app(fetchcvs, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cvsRoot: ":pserver:anoncvs@anoncvs.NetBSD.org:/cvsroot",
       module: "src",
       tag: nix.thunk(() => nix.str`netbsd-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}-RELEASE`),

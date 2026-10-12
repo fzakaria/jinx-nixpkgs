@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0",
       pname: "lsusb",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jlhonora",
           repo: "lsusb",
           rev: "8a6bd7084a55a58ade6584af5075c1db16afadd1",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/man/man8\ninstall -m 0755 lsusb $out/bin\ninstall -m 0444 man/lsusb.8 $out/share/man/man8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jlhonora/lsusb",
         description: "Lsusb command for Mac OS X",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),

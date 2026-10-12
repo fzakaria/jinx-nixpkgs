@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cabal-cli",
       version: "15.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cabal-club",
           repo: "cabal-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-Oqyx6pytDrYg1JbHawKxnnWEJxaFUaM9LcREizh3LFQ=",
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal client for Cabal, the p2p chat platform",
         homepage: "https://cabal.chat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

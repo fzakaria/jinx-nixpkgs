@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.1";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crmne",
           repo: "spotifast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,13 +74,13 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
   --replace-fail __IDENTIFIER__ "$identifier"
 `))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const __darwinAllowLocalNetworking = true;
       const __impureHostDeps = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["/System/Library/Fonts"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast native Spotify client with local playback and Spotify Connect",
         homepage: "https://spotifast.rocks",
         changelog: nix.thunk(() => nix.str`https://github.com/crmne/spotifast/releases/tag/v${version}`),
@@ -93,7 +93,7 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         __structuredAttrs,

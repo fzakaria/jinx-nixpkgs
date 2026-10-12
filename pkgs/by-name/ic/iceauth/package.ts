@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iceauth",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, util_macros, autoreconfHook]),
       buildInputs: nix.thunk(() => [xorgproto, libice]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=iceauth-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "libICE authority file utility",
         longDescription: "The iceauth program is used to edit and display the authorization information used in\nconnecting with ICE (the X11 Inter-Client Exchange protocol). It operates very much like the\nxauth program for X11 connection authentication records.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/iceauth",

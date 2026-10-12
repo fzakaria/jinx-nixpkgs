@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   nix.assert_(nix.sel(petsc, "mpiSupport"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/precice/package.nix:17:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "precice",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "precice",
           repo: "precice",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "precice.Integration/Serial/Time/Explicit/ParallelCoupling/ReadWriteScalarDataWithSubcycling6400Steps",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PreCICE stands for Precise Code Interaction Coupling Environment",
         homepage: "https://precice.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

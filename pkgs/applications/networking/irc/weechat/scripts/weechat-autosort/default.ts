@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-autosort",
       version: "3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "de-vri-es",
           repo: "weechat-autosort",
           rev: "d62fa8633015ebc2676060fcdae88c402977be46",
           sha256: "sha256-doYDRIWiuHam2i3r3J3BZuWEhopoN4jms/xPXGyypok=",
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["autosort.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["autosort.py"]) })),
       installPhase: "install -D autosort.py $out/share/autosort.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Autosort is a weechat script to automatically or manually keep your buffers sorted",
         homepage: "https://github.com/de-vri-es/weechat-autosort",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

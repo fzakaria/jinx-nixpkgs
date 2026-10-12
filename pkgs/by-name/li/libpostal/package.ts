@@ -21,29 +21,29 @@ export default nix.lambda((args) => (() => {
   const withData = nix.argOr($, "withData", () => false);
   const releases = "https://github.com/openvenues/libpostal/releases";
   const assets_base = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`${releases}/download/v1.0.0/libpostal_data.tar.gz`),
       hash: "sha256-FpGCkkRhVzyr08YcO0/iixxw0RK+3Of0sv/DH3GbbME=",
       stripRoot: false,
     }))));
   const assets_parser = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`${releases}/download/v1.0.0/parser.tar.gz`),
       hash: "sha256-OHETb3e0GtVS2b4DgklKDlrE/8gxF7XZ3FwmCTqZbqQ=",
       stripRoot: false,
     }))));
   const assets_language_classifier = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`${releases}/download/v1.0.0/language_classifier.tar.gz`),
       hash: "sha256-/Gn931Nx4UDBaiFUgGqC/NJUIKQ5aZT/+OYSlcfXva8=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libpostal",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "openvenues",
           repo: "libpostal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       configureFlags: nix.thunk(() => nix.concat(["--disable-data-download"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["--disable-sse2"])))),
-      env: nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withData, nix.thunk(() => nix.str`mkdir -p $out/share/libpostal
 ln -s ${assets_language_classifier}/language_classifier $out/share/libpostal/language_classifier
 ln -s ${assets_base}/transliteration                    $out/share/libpostal/transliteration
@@ -61,7 +61,7 @@ ln -s ${assets_parser}/address_parser                   $out/share/libpostal/add
 `))),
       doCheck: withData,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C library for parsing/normalizing street addresses around the world. Powered by statistical NLP and open geo data",
         homepage: "https://github.com/openvenues/libpostal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

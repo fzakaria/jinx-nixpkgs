@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
   const tinyxml = nix.arg($, "tinyxml");
   const enableSoundtrack = nix.argOr($, "enableSoundtrack", () => false);
   const soundtrack_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://www.openclonk.org/download/Music.ocg",
       hash: "sha256-Mye6pl1eSgEQ/vOLfDsdHDjp2ljb3euGKBr7s36+2W4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "9.0-unstable-2025-01-11",
       pname: "openclonk",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openclonk",
           repo: "openclonk",
           rev: "db975b4a887883f4413d1ce3181f303d83ee0ab5",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "openclonk",
             version: "8.1",
             debianRevision: "3",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeBuildType: "RelWithDebInfo",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free multiplayer action game in which you control clonks, small but witty and nimble humanoid beings",
         homepage: "https://www.openclonk.org",
         license: nix.thunk(() => (() => {

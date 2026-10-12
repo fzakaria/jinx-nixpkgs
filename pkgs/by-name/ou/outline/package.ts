@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "outline",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "outline",
           repo: "outline",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xFNWxsNrihrcdFqrl1I9RYuIlHufoFtl8IFJhquhJfI=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -50,7 +50,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         yarn_berry_4,
       ]),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-rgqRRWZdy938rPuTV+E1pWfJ6O1w6Z3F84qlGUZgorM=",
@@ -78,16 +78,16 @@ makeWrapper ${nodejs}/bin/node $out/bin/outline-server \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "basic-functionality": nix.thunk(() => nix.sel(nixosTests, "outline")),
         })),
         updateScript: nix.path(here, "./update.sh"),
         offlineCache: nix.thunk(() => nix.attr(finalAttrs, "offlineCache")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fastest wiki and knowledge base for growing teams. Beautiful, feature rich, and markdown compatible",
         homepage: "https://www.getoutline.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/outline/outline/releases/v${nix.sel(finalAttrs, "version")}`),

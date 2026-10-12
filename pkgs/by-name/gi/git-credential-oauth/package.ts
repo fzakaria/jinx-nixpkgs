@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-credential-oauth",
       version: "0.17.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hickford",
           repo: "git-credential-oauth",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ActdfhT4SOWFjXz9XXx1AAnfRQbdTeID79dI8L+WuIc=",
       postInstall: "installManPage $src/git-credential-oauth.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git credential helper that securely authenticates to GitHub, GitLab and BitBucket using OAuth",
         homepage: "https://github.com/hickford/git-credential-oauth",
         changelog: nix.thunk(() => nix.str`https://github.com/hickford/git-credential-oauth/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

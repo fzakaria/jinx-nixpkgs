@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gzip",
       version: "1.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gzip/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Aae4gb0iC/32Ffl7hxj4C9/T9q3ThbmT3Pbv0U6MCsY=",
         })))),
@@ -41,20 +41,20 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [runtimeShellPackage]),
       strictDeps: true,
       makeFlags: nix.thunk(() => ["SHELL=/bin/sh", "GREP=grep", "ZLESS_MAN=zless.1", "ZLESS_PROG=zless"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32")))), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_LINK: "-no-pie" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32")))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-no-pie" })))),
       nativeCheckInputs: nix.thunk(() => [less, perl]),
       doCheck: false,
       preFixup: nix.thunk(() => nix.add("sed -i '1{;/#!\\/bin\\/sh/aPATH=\"'$out'/bin:$PATH\"\n}' $out/bin/*\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "mv $out/bin/{,.}gzip.exe\nln -s .gzip.exe $out/bin/gzip\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          makecheck: nix.thunk(() => nix.app(nix.sel(gzip, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          makecheck: nix.thunk(() => nix.app(nix.sel(gzip, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.gnu.org/software/gzip/",
         description: "GNU zip compression program",
         longDescription: "gzip (GNU zip) is a popular data compression program written by\nJean-loup Gailly for the GNU project.  Mark Adler wrote the\ndecompression part.\n\nWe developed this program as a replacement for compress because of\nthe Unisys and IBM patents covering the LZW algorithm used by\ncompress.  These patents made it impossible for us to use compress,\nand we needed a replacement.  The superior compression ratio of gzip\nis just a bonus.\n",

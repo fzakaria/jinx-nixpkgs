@@ -23,30 +23,30 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.inputstreamhelper";
       const version = "0.6.1+matrix.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-v5fRikswmP+KVbxYibD0NbCK8leUnFbya5EtF1FmS0I=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/emilsvennesson/script.module.inputstreamhelper/commit/af6adc16a0bee4921a827946b004ee070406ae37.patch",
             hash: "sha256-901EyVeZUb0EMvxsEza95qFjTOZ7PDYyqHMRawPM5Zs=",
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pythonPath: "lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ __proto__: pos$3, attrPath: "kodi.packages.inputstreamhelper" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "kodi.packages.inputstreamhelper" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/emilsvennesson/script.module.inputstreamhelper",
         description: "Simple Kodi module that makes life easier for add-on developers relying on InputStream based add-ons and DRM playback",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$6, pname, namespace, version, src, patches, passthru, meta };
+      return { [nix.POS]: pos$6, pname, namespace, version, src, patches, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "packer",
       version: "1.15.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "packer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const pluginScope = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({}))));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => nix.sel(lib, "isDerivation"), pluginScope)),
           withPlugins: (f) => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               packer: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               packerPlugins: pluginScope,
-            })), nix.thunk(() => ({ __proto__: pos$3, selector: f }))),
+            })), nix.thunk(() => ({ [nix.POS]: pos$3, selector: f }))),
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             withPlugins: nix.thunk(() => (() => {
               const packer_with_docker = nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "withPlugins"), (ps) => [nix.thunk(() => nix.sel(ps, "docker"))]));
-              return nix.app(runCommand, "packer-test-with-plugins", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [packer_with_docker]) })), nix.thunk(() => nix.str`packer plugins installed > output.txt
+              return nix.app(runCommand, "packer-test-with-plugins", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [packer_with_docker]) })), nix.thunk(() => nix.str`packer plugins installed > output.txt
 cat output.txt
 
 expected_path="${nix.sel(finalAttrs, "passthru", "plugins", "docker", "pluginPath")}"
@@ -69,7 +69,7 @@ touch $out
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool for creating identical machine images for multiple platforms from a single source configuration",
         homepage: "https://www.packer.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),

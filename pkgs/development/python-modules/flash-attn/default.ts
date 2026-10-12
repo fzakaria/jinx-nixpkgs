@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const from = nix.thunk(() => nix.sel(cudaPackages, "flags"));
   const dropDots = nix.thunk(() => nix.attr(from, "dropDots"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$7,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$7,
       pname: "flash-attn",
       version: "2.8.3.post1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Dao-AILab",
           repo: "flash-attention",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail '\"psutil\",' \"\"\n",
       preConfigure: "export MAX_JOBS=\"$NIX_BUILD_CORES\"\nexport NVCC_THREADS=2\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           FORCE_BUILD: "TRUE",
           FLASH_ATTENTION_SKIP_CUDA_BUILD: "FALSE",
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
@@ -89,15 +89,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf flash_attn\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         broken: nix.thunk(() => !nix.asBool(cudaSupport)),
         description: "Official implementation of FlashAttention and FlashAttention-2",
         homepage: "https://github.com/Dao-AILab/flash-attention/",

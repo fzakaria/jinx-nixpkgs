@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.attr(gdal, "pname"));
   const version = nix.thunk(() => nix.attr(gdal, "version"));
   return {
-    __proto__: pos$3,
-    "ogrinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: gdal, command: "ogrinfo --version" })))),
-    "gdalinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: gdal, command: "gdalinfo --version" })))),
+    [nix.POS]: pos$3,
+    "ogrinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: gdal, command: "ogrinfo --version" })))),
+    "gdalinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: gdal, command: "gdalinfo --version" })))),
     "ogrinfo-format-geopackage": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-ogrinfo-format-geopackage`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), gdal, "ogrinfo")} --formats \\
   | grep 'GPKG.*GeoPackage'
 touch $out

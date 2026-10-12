@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-table";
       const version = "1.17.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaio",
           repo: "ibus-table",
           rev: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, docbook2x, pkg_config, gobject_introspection, wrapGAppsHook3]);
       const postUnpack = "substituteInPlace $sourceRoot/engine/Makefile.am \\\n  --replace \"docbook2man\" \"docbook2man --sgml\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         description: "IBus framework for table-based input methods",
         mainProgram: "ibus-table-createdb",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

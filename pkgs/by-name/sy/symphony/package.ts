@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "symphony",
       version: "5.7.3",
       outputs: nix.thunk(() => ["out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coin-or",
           repo: "SYMPHONY",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gfortran, libtool, pkg_config]),
       buildInputs: nix.thunk(() => [coin_utils, coinmp, glpk, osi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source solver, callable library, and development framework for mixed-integer linear programs (MILPs)",
         homepage: "https://www.coin-or.org/SYMPHONY/index.htm",
         changelog: nix.thunk(() => nix.str`https://github.com/coin-or/SYMPHONY/blob/releases/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

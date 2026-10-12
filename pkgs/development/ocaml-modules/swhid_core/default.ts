@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.1";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "swhid_core",
           rev: version,
           hash: "sha256-uLnVbptCvmBeNbOjGjyAWAKgzkKLDTYVFY6SNH2zf0A=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library to work with swhids",
         homepage: "https://github.com/ocamlpro/swhid_core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
-      return { __proto__: pos$3, pname, version, minimalOCamlVersion, src, meta };
+      return { [nix.POS]: pos$3, pname, version, minimalOCamlVersion, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

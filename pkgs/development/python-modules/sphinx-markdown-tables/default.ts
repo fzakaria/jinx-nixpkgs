@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.17";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-a8bT1ADqzP7r0ohEa8CN2DCDNnxYuF1A/mwS1371kvE=",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [sphinx, markdown]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_markdown_tables"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx extension for rendering tables written in markdown",
         homepage: "https://github.com/ryanfox/sphinx-markdown-tables",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const navec = nix.arg($, "navec");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "slovnet",
       version: "0.6.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-AtIle9ybnMHSQr007iyGHGSPcIPveJj+FGirzDge95k=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_api.py"]),
       pythonImportsCheck: nix.thunk(() => ["slovnet"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Deep-learning based NLP modeling for Russian language",
         homepage: "https://github.com/natasha/slovnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

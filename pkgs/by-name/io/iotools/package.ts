@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iotools",
       version: "1.6-unstable-2017-12-11",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adurbin",
           repo: "iotools",
           rev: "18949fdc4dedb1da3f51ee83a582b112fb9f2c71",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DEBUG=0", "STATIC=0"]),
       installPhase: "install -Dm755 iotools -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of simple command line tools which allow access to\n      hardware device registers",
         longDescription: "Provides a set of simple command line tools which allow access to\nhardware device registers. Supported register interfaces include PCI,\nIO, memory mapped IO, SMBus, CPUID, and MSR. Also included are some\nutilities which allow for simple arithmetic, logical, and other\noperations.\n",
         homepage: "https://github.com/adurbin/iotools",

@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nginx", "sso"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configPath = "/run/nginx-sso/config.yaml";
-  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ __proto__: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "configuration")), configPath));
+  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ [nix.POS]: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "configuration")), configPath));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nginx: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sso: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nginx-sso service")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nginx-sso", nix.thunk(() => ({})))),
             configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  listen = { addr = \"127.0.0.1\"; port = 8080; };\n\n  providers.token.tokens = {\n    myuser = {\n      _secret = \"/path/to/secret/token.txt\"; # File content should be the secret token\n    };\n  };\n\n  acl = {\n    rule_sets = [\n      {\n        rules = [ { field = \"x-application\"; equals = \"MyApp\"; } ];\n        allow = [ \"myuser\" ];\n      }\n    ];\n  };\n}\n")),
@@ -50,19 +50,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "nginx-sso": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Nginx SSO Backend",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.sel(secretsReplacement, "script")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 StateDirectory: "nginx-sso",
                 WorkingDirectory: "/var/lib/nginx-sso",
                 RuntimeDirectory: "nginx-sso",

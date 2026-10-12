@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const callPackage = nix.thunk(() => nix.sel(lua, "pkgs", "callPackage"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     bustedCheckHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const busted = nix.arg($_1, "busted");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "busted-check-hook",
             propagatedBuildInputs: nix.thunk(() => [busted]),
-            meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./busted-check-hook.sh"));
       })(), formals$2), nix.thunk(() => ({})))),
     luarocksCheckHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const luarocks = nix.arg($_1, "luarocks");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "luarocks-check-hook",
             propagatedBuildInputs: nix.thunk(() => [luarocks]),
-            meta: nix.thunk(() => ({ __proto__: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./luarocks-check-hook.sh"));
       })(), formals$3), nix.thunk(() => ({})))),
     luarocksMoveDataFolder: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "luarocks-move-rock",
-        meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./luarocks-move-data.sh"))),
   };
 })(), formals$1);

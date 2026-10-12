@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "b4ca9a25a7d4f1ace4fffd1f3a2e64ef5208fe05f929f3edd5e27081ca7e67ce",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace test_prctl.py \\\n  --replace-fail \\\n    'sys.version[0:3]' \\\n    '\"cpython-%d%d\" % (sys.version_info.major, sys.version_info.minor)'\n";
       const disabledTests = nix.thunk(() => ["test_mpx", "test_no_new_privs", "test_seccomp", "test_speculation_ctrl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python(ic) interface to the linux prctl syscall",
         homepage: "https://github.com/seveas/python-prctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

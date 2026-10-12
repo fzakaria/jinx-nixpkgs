@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hc",
       version: "0.5",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.zapashcanon.fr/zapashcanon/hc/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-oTomFi+e9aCgVpZ9EkxQ/dZz18cW2UcaV0ZIokeBoU0=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for hash consing",
         homepage: "https://ocaml.org/p/hc/",
         downloadPage: "https://git.zapashcanon.fr/zapashcanon/hc",

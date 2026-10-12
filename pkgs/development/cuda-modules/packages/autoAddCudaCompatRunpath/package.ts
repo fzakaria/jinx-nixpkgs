@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const enableHook = nix.thunk(() => nix.selOr(cuda_compat, () => false, "meta", "available"));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "auto-add-cuda-compat-runpath-hook",
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableHook, nix.thunk(() => [autoFixElfFiles]))),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         libcudaPath: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableHook, nix.thunk(() => nix.str`${cuda_compat}/compat`))),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, enableHook: enableHook })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, enableHook: enableHook })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./auto-add-cuda-compat-runpath.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

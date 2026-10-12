@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const mcp = nix.arg($, "mcp");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "huggingface-hub",
       version: "1.30.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "huggingface_hub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: [],
         fastai: nix.thunk(() => [toml, fastai, fastcore]),
         gradio: nix.thunk(() => [gradio, requests]),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       pythonImportsCheck: nix.thunk(() => ["huggingface_hub"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Download and publish models and other files on the huggingface.co hub",
         mainProgram: "hf",
         homepage: "https://github.com/huggingface/huggingface_hub",

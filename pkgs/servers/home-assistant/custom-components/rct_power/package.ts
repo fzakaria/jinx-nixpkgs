@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "rct_power";
       const version = "0.14.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "weltenwort",
           repo: "home-assistant-rct-power-integration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const ignoreVersionRequirement = nix.thunk(() => ["rctclient"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/weltenwort/home-assistant-rct-power-integration/releases/tag/${nix.sel(src, "tag")}`),
         description: "Custom integration for RCT Power Inverters",
         homepage: "https://github.com/weltenwort/home-assistant-rct-power-integration",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

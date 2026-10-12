@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NabuCasa",
           repo: "universal-silabs-flasher",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_xmodem_happy_path"]);
       const pythonImportsCheck = nix.thunk(() => ["universal_silabs_flasher"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/NabuCasa/universal-silabs-flasher/releases/tag/${nix.sel(src, "tag")}`),
         description: "Flashes Silicon Labs radios running EmberZNet or CPC multi-pan firmware",
         mainProgram: "universal-silabs-flasher",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

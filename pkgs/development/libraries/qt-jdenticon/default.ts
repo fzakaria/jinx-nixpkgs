@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const qmake = nix.arg($, "qmake");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qt-jdenticon",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nheko-Reborn",
           repo: "qt-jdenticon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postPatch: "# Fix plugins dir\nsubstituteInPlace QtIdenticon.pro \\\n  --replace \"\\$\\$[QT_INSTALL_PLUGINS]\" \"$out/$qtPluginPrefix\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt plugin for generating highly recognizable identicons",
         homepage: "https://github.com/Nheko-Reborn/qt-jdenticon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

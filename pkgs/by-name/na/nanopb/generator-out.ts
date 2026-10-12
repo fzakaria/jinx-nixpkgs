@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const version = nix.arg($, "version");
   const pyproject_toml = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "pyproject.toml",
       text: nix.thunk(() => nix.str`[build-system]
 requires = ["setuptools"]
@@ -42,7 +42,7 @@ dependencies = [
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nanopb-generator-out",
       src: src,
       version: version,

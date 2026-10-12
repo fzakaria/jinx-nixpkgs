@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const kernelDirectory = nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zenergy",
       version: "0-unstable-2025-08-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BoukeHaarsma23",
           repo: "zenergy",
           rev: "58f2fda7184fbde95033f492f7c54990552ef86f",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["modules_install"]),
       preBuild: "substituteInPlace Makefile --replace-fail \"PWD modules_install\" \"PWD INSTALL_MOD_PATH=$out modules_install\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Based on AMD_ENERGY driver, but with some jiffies added so non-root users can read it safely",
         homepage: "https://github.com/BoukeHaarsma23/zenergy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

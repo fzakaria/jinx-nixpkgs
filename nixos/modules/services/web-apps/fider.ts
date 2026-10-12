@@ -32,37 +32,37 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "fider"));
   const fiderCmd = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         fider: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Fider server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fider", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/fider",
               description: "Default data folder for Fider.",
               example: "/mnt/fider",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "local",
                 description: "URI to use for the main PostgreSQL database. If this needs to include\ncredentials that shouldn't be world-readable in the Nix store, set an\nenvironment file on the systemd service and override the\n`DATABASE_URL` entry. Pass the string\n`local` to setup a database on the local server.\n",
               })))),
           })),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 PORT: "31213",
                 BASE_URL: "https://fider.example.com",
                 EMAIL: "smtp",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables to set for the service. Secrets should be\nspecified using {option}`environmentFiles`.\nRefer to <https://github.com/getfider/fider/blob/stable/.example.env>\nand <https://github.com/getfider/fider/blob/stable/app/pkg/env/env.go>\nfor available options.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: "/run/secrets/fider.env",
@@ -85,24 +85,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "url"), "local")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$10, name: "fider", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$10, name: "fider", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["fider"]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             fider: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Fider server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "url"), "local")), nix.thunk(() => ["postgresql.target"])))),
@@ -110,13 +110,13 @@ export default nix.lambda((args) => (() => {
               environment: nix.thunk(() => (() => {
                 const localPostgresqlUrl = "postgres:///fider?host=/run/postgresql";
                 return nix.update({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   DATABASE_URL: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "url"), "local")) ? localPostgresqlUrl : nix.sel(cfg, "database", "url"))),
                   BLOB_STORAGE_FS_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
                 }, nix.sel(cfg, "environment"));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStartPre: nix.thunk(() => nix.str`${fiderCmd} migrate`),
                 ExecStart: fiderCmd,
                 StateDirectory: "fider",
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "niklaskorz"))];

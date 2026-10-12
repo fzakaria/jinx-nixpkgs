@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tplink-omada-client",
       version: "1.5.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "tplink_omada_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fnWNevtEPZOaSCAcEk6pJu6jp453TCwQs7jgzjiPHOM=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tplink_omada_client"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for the TP-Link Omada SDN Controller API",
         homepage: "https://github.com/MarkGodwin/tplink-omada-api",
         changelog: nix.thunk(() => nix.str`https://github.com/MarkGodwin/tplink-omada-api/releases/tag/release%2Fv${nix.sel(finalAttrs, "version")}`),

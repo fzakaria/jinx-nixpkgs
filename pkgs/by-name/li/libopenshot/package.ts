@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const resvg = nix.arg($, "resvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libopenshot",
       version: "0.7.0-unstable-2026-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenShot",
           repo: "libopenshot",
           rev: "eac81cf91555438c54fbadef7fdd05bf803f26ee",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         imagemagick,
         jsoncpp,
         libopenshot_audio,
-        nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
+        nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
         protobuf,
         python3,
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -76,9 +76,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeOptionType"), "filepath", "PYTHON_MODULE_PATH", nix.thunk(() => nix.sel(python3, "sitePackages")))),
         "-DUSE_QT6=ON",
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, "libopenshot-audio": libopenshot_audio })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, "libopenshot-audio": libopenshot_audio })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://openshot.org/",
         description: "Free, open-source video editor library",
         longDescription: "OpenShot Library (libopenshot) is an open-source project dedicated to\ndelivering high quality video editing, animation, and playback solutions\nto the world. API currently supports C++, Python, and Ruby.\n",

@@ -136,8 +136,8 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => (() => {
     const mkValueString = (v) => (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(nix.sel(lib, "isString"), v)) ? nix.force(v) : (nix.asBool(nix.app(nix.sel(lib, "isPath"), v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "yes" : (nix.asBool(nix.eq(false, v)) ? "no" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported type ${nix.builtins.typeOf(v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`)))))));
     const base = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-        __proto__: pos$2,
-        mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$1, mkValueString: mkValueString })), " ")),
+        [nix.POS]: pos$2,
+        mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$1, mkValueString: mkValueString })), " ")),
       }))));
     const commaSeparated = nix.thunk(() => ["Ciphers", "KexAlgorithms", "Macs"]);
     const spaceSeparated = nix.thunk(() => [
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
       "DenyUsers",
     ]);
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       type: nix.thunk(() => nix.attr(base, "type")),
       generate: (name) => (value) => (() => {
         const transformedValue = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (key) => (val) => (nix.asBool(nix.app(nix.sel(lib, "isList"), val)) ? (nix.asBool(nix.app(nix.sel(lib, "elem"), key, commaSeparated)) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", val) : (nix.asBool(nix.app(nix.sel(lib, "elem"), key, spaceSeparated)) ? nix.app(nix.sel(lib, "concatStringsSep"), " ", val) : nix.builtins.throw(nix.thunk(() => nix.str`list value for unknown key ${key}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), val)}`)))) : nix.force(val)), value));
@@ -166,15 +166,15 @@ EOL
   const cfgc = nix.thunk(() => nix.sel(config, "programs", "ssh"));
   const nssModulesPath = nix.thunk(() => nix.sel(config, "system", "nssModules", "path"));
   const userOptions = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       openssh: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         authorizedKeys: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           keys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
               default: [],
               description: "A list of verbatim OpenSSH public keys that should be added to the\nuser's authorized keys. The keys are added to a file that the SSH\ndaemon reads in addition to the the user's authorized_keys file.\nYou can combine the `keys` and\n`keyFiles` options.\nWarning: If you are using `NixOps` then don't use this\noption since it will replace the key required for deployment via ssh.\n",
@@ -184,14 +184,14 @@ EOL
               ]),
             })))),
           keyFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "A list of files each containing one OpenSSH public key that should be\nadded to the user's authorized keys. The contents of the files are\nread at build time and added to a file that the SSH daemon reads in\naddition to the the user's authorized_keys file. You can combine the\n`keyFiles` and `keys` options.\n",
             })))),
         })),
         authorizedPrincipals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")));
@@ -205,7 +205,7 @@ EOL
   }));
   const authKeysFiles = nix.thunk(() => (() => {
     const mkAuthKeyFile = (u) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`ssh/authorized_keys.d/${nix.sel(u, "name")}`), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         mode: "0444",
         source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${nix.sel(u, "name")}-authorized_keys`), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(u, "openssh", "authorizedKeys", "keys")))}
 ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, "readFile"), f), "\n"), nix.thunk(() => nix.sel(u, "openssh", "authorizedKeys", "keyFiles")))}
@@ -216,7 +216,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
   })());
   const authPrincipalsFiles = nix.thunk(() => (() => {
     const mkAuthPrincipalsFile = (u) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`ssh/authorized_principals.d/${nix.sel(u, "name")}`), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         mode: "0444",
         text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(u, "openssh", "authorizedPrincipals")))),
       })));
@@ -224,7 +224,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
     return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(mkAuthPrincipalsFile, usersWithPrincipals)));
   })());
   return {
-    __proto__: pos$119,
+    [nix.POS]: pos$119,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkAliasOptionModule"), nix.thunk(() => ["services", "sshd", "enable"]), nix.thunk(() => ["services", "openssh", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkAliasOptionModule"), nix.thunk(() => ["services", "openssh", "knownHosts"]), nix.thunk(() => ["programs", "ssh", "knownHosts"]))),
@@ -243,44 +243,44 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "openssh", "moduliFile"]), nix.thunk(() => ["services", "openssh", "settings", "ModuliFile"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       services: nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         openssh: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the OpenSSH secure shell daemon, which\nallows secure remote logins.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(config, "programs", "ssh", "package")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "programs.ssh.package")),
               description: "OpenSSH package to use for sshd.",
             })))),
           startWhenNeeded: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If set, {command}`sshd` is socket-activated; that\nis, instead of having it permanently running as a daemon,\nsystemd will start an instance for each incoming connection.\n",
             })))),
           allowSFTP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the SFTP subsystem in the SSH daemon.  This\nenables the use of commands such as {command}`sftp` and\n{command}`sshfs`.\n",
             })))),
           sftpServerExecutable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "internal-sftp",
               description: "The sftp server executable.  Can be a path or \"internal-sftp\" to use\nthe sftp server built into the sshd binary.\n",
             })))),
           sftpFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -290,33 +290,33 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
               description: "Commandline flags to add to sftp-server.\n",
             })))),
           ports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: nix.thunk(() => [22n]),
               description: "Specifies on which ports the SSH daemon listens.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to automatically open the specified ports in the firewall.\n",
             })))),
           listenAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       options: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "Host, IPv4 or IPv6 address to listen to.\n",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                             default: null,
                             description: "Port to listen to.\n",
@@ -326,33 +326,33 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
               })()),
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$25, addr: "192.168.3.1", port: 22n })),
-                nix.thunk(() => ({ __proto__: pos$26, addr: "0.0.0.0", port: 64022n })),
+                nix.thunk(() => ({ [nix.POS]: pos$25, addr: "192.168.3.1", port: 22n })),
+                nix.thunk(() => ({ [nix.POS]: pos$26, addr: "0.0.0.0", port: 64022n })),
               ]),
               description: "List of addresses and ports to listen on (ListenAddress directive\nin config). If port is not specified for address sshd will listen\non all ports specified by `ports` option.\nNOTE: this will override default listening on all local addresses and port 22.\nNOTE: setting this option won't automatically enable given ports\nin firewall configuration.\nNOTE: If the IP address is not available at boot time, the following has\nto be added to make sure sshd will wait for dhcp configuration:\n```nix\nsystemd.services.sshd = {\n  wants = [ \"network-online.target\" ];\n  after = [ \"network-online.target\" ];\n};\n```\nSee the following issue for details: <https://github.com/NixOS/nixpkgs/issues/105570>\n",
             })))),
           hostKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
               default: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: "rsa",
                   bits: 4096n,
                   path: "/etc/ssh/ssh_host_rsa_key",
                 })),
-                nix.thunk(() => ({ __proto__: pos$29, type: "ed25519", path: "/etc/ssh/ssh_host_ed25519_key" })),
+                nix.thunk(() => ({ [nix.POS]: pos$29, type: "ed25519", path: "/etc/ssh/ssh_host_ed25519_key" })),
               ]),
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: "rsa",
                   bits: 4096n,
                   path: "/etc/ssh/ssh_host_rsa_key",
                   openSSHFormat: true,
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   type: "ed25519",
                   path: "/etc/ssh/ssh_host_ed25519_key",
                   comment: "key comment",
@@ -361,7 +361,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
               description: "NixOS can automatically generate SSH host keys.  This option\nspecifies the path, type and size of each key.  See\n{manpage}`ssh-keygen(1)` for supported types\nand sizes.\n",
             })))),
           generateHostKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "openssh", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "services.openssh.enable")),
@@ -369,37 +369,37 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
               example: true,
             })))),
           enableRecommendedAlgorithms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Use algorithms curated and recommended by NixOS.\n\nSet to false to use upstream's default algorithms.\n",
             })))),
           authorizedKeysFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Specify the rules for which files to read on the host.\n\nThis is an advanced option. If you're looking to configure user\nkeys, you can generally use [](#opt-users.users._name_.openssh.authorizedKeys.keys)\nor [](#opt-users.users._name_.openssh.authorizedKeys.keyFiles).\n\nThese are paths relative to the host root file system or home\ndirectories and they are subject to certain token expansion rules.\nSee AuthorizedKeysFile in man sshd_config for details.\n",
             })))),
           authorizedKeysInHomedir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enables the use of the `~/.ssh/authorized_keys` file.\n\nOtherwise, the only files trusted by default are those in `/etc/ssh/authorized_keys.d`,\n*i.e.* SSH keys from [](#opt-users.users._name_.openssh.authorizedKeys.keys).\n",
             })))),
           authorizedKeysCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "none",
               description: "Specifies a program to be used to look up the user's public\nkeys. The program must be owned by root, not writable by group\nor others and specified by an absolute path.\n",
             })))),
           authorizedKeysCommandUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nobody",
               description: "Specifies the user under whose account the AuthorizedKeysCommand\nis run. It is recommended to use a dedicated user that has no\nother role on the host than running authorized keys commands.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               description: "Configuration for `sshd_config(5)`.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  UseDns = true;\n  PasswordAuthentication = false;\n}\n")),
@@ -407,24 +407,24 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                   const $_1 = nix.formals(args_1, formals$2);
                   const name = nix.arg($_1, "name");
                   return {
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       AcceptEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                           default: null,
                           description: "Specifies what environment variables sent by the client will be copied into the session's\nenvironment. The TERM environment variable is always accepted whenever the client requests\na pseudo-terminal as it is required by the protocol.\n",
                         })))),
                       AuthorizedPrincipalsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: "none",
                           description: "Specifies a file that lists principal names that are accepted for certificate authentication. The default\nis `\"none\"`, i.e. not to use a principals file.\n",
                         })))),
                       LogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                                 "QUIET",
                                 "FATAL",
@@ -440,48 +440,48 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "Gives the verbosity level that is used when logging messages from {manpage}`sshd(8)`. Logging with a DEBUG level\nviolates the privacy of users and is not recommended.\n",
                         })))),
                       UsePAM: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "PAM authentication"), {
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         default: true,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                       })),
                       UseDns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                           default: false,
                           description: "Specifies whether {manpage}`sshd(8)` should look up the remote host name, and to check that the resolved host name for\nthe remote IP address maps back to the very same IP address.\nIf this option is set to no (the default) then only addresses and not host names may be used in\n~/.ssh/authorized_keys from and sshd_config Match Host directives.\n",
                         })))),
                       X11Forwarding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                           default: false,
                           description: "Whether to allow X11 connections to be forwarded.\n",
                         })))),
                       PasswordAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                           default: true,
                           description: "Specifies whether password authentication is allowed.\n",
                         })))),
                       PermitRootLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$46,
+                          [nix.POS]: pos$46,
                           default: "prohibit-password",
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["yes", "without-password", "prohibit-password", "forced-commands-only", "no"]))))),
                           description: "Whether the root user can login using ssh.\n",
                         })))),
                       KbdInteractiveAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                           default: true,
                           description: "Specifies whether keyboard-interactive authentication is allowed.\n",
                         })))),
                       GatewayPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$48,
+                          [nix.POS]: pos$48,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: "no",
                           description: "Specifies whether remote hosts are allowed to connect to\nports forwarded for the client.  See\n{manpage}`sshd_config(5)`.\n",
                         })))),
                       KexAlgorithms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                           default: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "openssh", "enableRecommendedAlgorithms")) ? [
                             "mlkem768x25519-sha256",
@@ -495,7 +495,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "Allowed key exchange algorithms\n\nDefaults to a curated set of algorithms.\nSet enableRecommendedAlgorithms to false to use upstream's defaults.\n",
                         })))),
                       Macs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$50,
+                          [nix.POS]: pos$50,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                           default: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "openssh", "enableRecommendedAlgorithms")) ? [
                             "hmac-sha2-512-etm@openssh.com",
@@ -506,13 +506,13 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "Allowed MACs\n\nDefaults to a curated set of algorithms.\nSet enableRecommendedAlgorithms to false to use upstream's defaults.\n",
                         })))),
                       StrictModes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                           default: true,
                           description: "Whether sshd should check file modes and ownership of directories\n",
                         })))),
                       Ciphers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                           default: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "openssh", "enableRecommendedAlgorithms")) ? [
                             "chacha20-poly1305@openssh.com",
@@ -526,7 +526,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "Allowed ciphers\n\nDefaults to a curated set of algorithms.\nSet enableRecommendedAlgorithms to false to use upstream's defaults.\n",
                         })))),
                       AllowUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -535,7 +535,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "If specified, login is allowed only for the listed users.\nSee {manpage}`sshd_config(5)` for details.\n",
                         })))),
                       DenyUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -544,7 +544,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "If specified, login is denied for all listed users. Takes\nprecedence over [](#opt-services.openssh.settings.AllowUsers).\nSee {manpage}`sshd_config(5)` for details.\n",
                         })))),
                       AllowGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -553,7 +553,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "If specified, login is allowed only for users part of the\nlisted groups.\nSee {manpage}`sshd_config(5)` for details.\n",
                         })))),
                       DenyGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -562,18 +562,18 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                           description: "If specified, login is denied for all users part of the listed\ngroups. Takes precedence over\n[](#opt-services.openssh.settings.AllowGroups). See\n{manpage}`sshd_config(5)` for details.\n",
                         })))),
                       PrintMotd: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "printing /etc/motd when a user logs in interactively"), {
-                        __proto__: pos$57,
+                        [nix.POS]: pos$57,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                       })),
                       Banner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "The file whose contents are sent to the remote user before authentication.\n",
                           example: "/etc/ssh/banner",
                         })))),
                       ModuliFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(config, "services", "openssh", "package")}/etc/ssh/moduli`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.openssh.package}/etc/ssh/moduli\"")),
@@ -584,7 +584,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
                 })(), formals$2))),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Verbatim contents of {file}`sshd_config`.",
@@ -592,9 +592,9 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), userOptions)));
@@ -604,28 +604,28 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.add(nix.app(nix.sel(lib, 
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             users: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               users: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 sshd: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   isSystemUser: true,
                   group: "sshd",
                   description: "SSH privilege separation user",
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$71, sshd: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$71, sshd: nix.thunk(() => ({})) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               openssh: nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 sftpServerExecutable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/sftp-server`))),
                 authorizedKeysFiles: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "authorizedKeysInHomedir")), "%h/.ssh/authorized_keys"), ["/etc/ssh/authorized_keys.d/%u"])),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$73,
+                  [nix.POS]: pos$73,
                   AuthorizedPrincipalsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(authPrincipalsFiles, {})), "/etc/ssh/authorized_principals.d/%u")),
                 })),
                 extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 0n, nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat([
@@ -643,32 +643,32 @@ AuthorizedKeysCommandUser ${nix.sel(cfg, "authorizedKeysCommandUser")}
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               etc: nix.thunk(() => nix.update(authKeysFiles, nix.update(authPrincipalsFiles, {
-                __proto__: pos$77,
-                "ssh/sshd_config": nix.thunk(() => ({ __proto__: pos$76, source: sshconf })),
+                [nix.POS]: pos$77,
+                "ssh/sshd_config": nix.thunk(() => ({ [nix.POS]: pos$76, source: sshconf })),
               }))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$86,
+                  [nix.POS]: pos$86,
                   "ssh-root-provision": nix.thunk(() => ({
-                    __proto__: pos$85,
+                    [nix.POS]: pos$85,
                     "/root": nix.thunk(() => ({
-                      __proto__: pos$80,
-                      "d-": nix.thunk(() => ({ __proto__: pos$79, user: "root", group: ":root", mode: ":700" })),
+                      [nix.POS]: pos$80,
+                      "d-": nix.thunk(() => ({ [nix.POS]: pos$79, user: "root", group: ":root", mode: ":700" })),
                     })),
                     "/root/.ssh": nix.thunk(() => ({
-                      __proto__: pos$82,
-                      "d-": nix.thunk(() => ({ __proto__: pos$81, user: "root", group: ":root", mode: ":700" })),
+                      [nix.POS]: pos$82,
+                      "d-": nix.thunk(() => ({ [nix.POS]: pos$81, user: "root", group: ":root", mode: ":700" })),
                     })),
                     "/root/.ssh/authorized_keys": nix.thunk(() => ({
-                      __proto__: pos$84,
+                      [nix.POS]: pos$84,
                       "f^": nix.thunk(() => ({
-                        __proto__: pos$83,
+                        [nix.POS]: pos$83,
                         user: "root",
                         group: ":root",
                         mode: ":600",
@@ -680,13 +680,13 @@ AuthorizedKeysCommandUser ${nix.sel(cfg, "authorizedKeysCommandUser")}
               })),
               generatorPath: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               sockets: nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 sshd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "startWhenNeeded")), nix.thunk(() => ({
-                    __proto__: pos$89,
+                    [nix.POS]: pos$89,
                     description: "SSH Socket",
                     wantedBy: nix.thunk(() => ["sockets.target"]),
                     socketConfig: nix.thunk(() => ({
-                      __proto__: pos$88,
+                      [nix.POS]: pos$88,
                       ListenStream: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "listenAddresses"), [])) ? nix.app(nix.sel(lib, "concatMap"), nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$4);
                           const addr = nix.arg($_1, "addr");
@@ -699,17 +699,17 @@ AuthorizedKeysCommandUser ${nix.sel(cfg, "authorizedKeysCommandUser")}
                   })))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 "sshd@": nix.thunk(() => ({
-                  __proto__: pos$93,
+                  [nix.POS]: pos$93,
                   description: "SSH per-connection Daemon",
                   after: nix.thunk(() => ["network.target", "sshd-keygen.service"]),
                   wants: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "generateHostKeys")), nix.thunk(() => ["sshd-keygen.service"]))),
                   stopIfChanged: false,
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-                  environment: nix.thunk(() => ({ __proto__: pos$91, LD_LIBRARY_PATH: nssModulesPath })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$91, LD_LIBRARY_PATH: nssModulesPath })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$92,
+                    [nix.POS]: pos$92,
                     ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
                         nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "sshd")}`),
                         "-i",
@@ -722,19 +722,19 @@ AuthorizedKeysCommandUser ${nix.sel(cfg, "authorizedKeysCommandUser")}
                   })),
                 })),
                 sshd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startWhenNeeded"))), nix.thunk(() => ({
-                    __proto__: pos$96,
+                    [nix.POS]: pos$96,
                     description: "SSH Daemon",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["network.target", "sshd-keygen.service"]),
                     wants: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "generateHostKeys")), nix.thunk(() => ["sshd-keygen.service"]))),
                     stopIfChanged: false,
                     path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-                    environment: nix.thunk(() => ({ __proto__: pos$94, LD_LIBRARY_PATH: nssModulesPath })),
+                    environment: nix.thunk(() => ({ [nix.POS]: pos$94, LD_LIBRARY_PATH: nssModulesPath })),
                     restartTriggers: nix.thunk(() => [
                       nix.thunk(() => nix.sel(config, "environment", "etc", "ssh/sshd_config", "source")),
                     ]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$95,
+                      [nix.POS]: pos$95,
                       Type: "notify-reload",
                       Restart: "always",
                       ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
@@ -749,20 +749,20 @@ AuthorizedKeysCommandUser ${nix.sel(cfg, "authorizedKeysCommandUser")}
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               firewall: nix.thunk(() => ({
-                __proto__: pos$99,
+                [nix.POS]: pos$99,
                 allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "ports")))),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               pam: nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 services: nix.thunk(() => ({
-                  __proto__: pos$102,
+                  [nix.POS]: pos$102,
                   sshd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "UsePAM"), true)), nix.thunk(() => ({
-                      __proto__: pos$101,
+                      [nix.POS]: pos$101,
                       startSession: true,
                       showMotd: true,
                       unixAuth: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "PasswordAuthentication"), true)) ? true : false)),
@@ -771,10 +771,10 @@ AuthorizedKeysCommandUser ${nix.sel(cfg, "authorizedKeysCommandUser")}
               })),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$106,
+              [nix.POS]: pos$106,
               checks: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "check-sshd-config", nix.thunk(() => ({
-                    __proto__: pos$105,
+                    [nix.POS]: pos$105,
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(validationPackage, "out"))]),
                   })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (lport) => nix.str`sshd -G -T -C lport=${nix.builtins.toString(lport)} -f ${sshconf} > /dev/null`, nix.thunk(() => nix.sel(cfg, "ports")))}
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (la) => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (port) => nix.str`sshd -G -T -C ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`laddr=${nix.sel(la, "addr")},lport=${nix.builtins.toString(port)}`))} -f ${sshconf} > /dev/null`, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(la, "port"), null)) ? [nix.thunk(() => nix.sel(la, "port"))] : nix.sel(cfg, "ports")))), nix.thunk(() => nix.sel(cfg, "listenAddresses")))}
@@ -784,18 +784,18 @@ touch $out
             })),
             assertions: nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$107,
+                [nix.POS]: pos$107,
                 assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "X11Forwarding")) ? nix.sel(cfgc, "setXAuthLocation") : true)),
                 message: "cannot enable X11 forwarding without setting xauth location",
               })),
               nix.thunk(() => ({
-                __proto__: pos$108,
+                [nix.POS]: pos$108,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.builtins.match("(.*\n)?(\t )*[Kk][Ee][Rr][Bb][Ee][Rr][Oo][Ss][Aa][Uu][Tt][Hh][Ee][Nn][Tt][Ii][Cc][Aa][Tt][Ii][Oo][Nn][ |\t|=|\"]+yes.*", nix.thunk(() => nix.str`${configFile}
 ${nix.sel(cfg, "extraConfig")}`)), null)) || nix.asBool(nix.sel(cfgc, "package", "withKerberos")))),
                 message: "cannot enable Kerberos authentication without using a package with Kerberos support",
               })),
               nix.thunk(() => ({
-                __proto__: pos$109,
+                [nix.POS]: pos$109,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.builtins.match("(.*\n)?(\t )*[Gg][Ss][Ss][Aa][Pp][Ii][Aa][Uu][Tt][Hh][Ee][Nn][Tt][Ii][Cc][Aa][Tt][Ii][Oo][Nn][ |\t|=|\"]+yes.*", nix.thunk(() => nix.str`${configFile}
 ${nix.sel(cfg, "extraConfig")}`)), null)) || nix.asBool(nix.sel(cfgc, "package", "withKerberos")))),
                 message: "cannot enable GSSAPI authentication without using a package with Kerberos support",
@@ -804,7 +804,7 @@ ${nix.sel(cfg, "extraConfig")}`)), null)) || nix.asBool(nix.sel(cfgc, "package",
                 const duplicates = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (l) => nix.gt(nix.app(nix.sel(lib, "length"), l), 1n), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), nix.thunk(() => nix.sel(lib, "strings", "toLower")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "settings"))))))))));
                 const formattedDuplicates = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (dupl) => nix.str`(${nix.app(nix.sel(lib, "concatStringsSep"), ", ", dupl)})`, duplicates));
                 return {
-                  __proto__: pos$110,
+                  [nix.POS]: pos$110,
                   assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "length"), duplicates), 0n)),
                   message: nix.thunk(() => nix.str`Duplicate sshd config key; does your capitalization match the option's? Duplicate keys: ${formattedDuplicates}`),
                 };
@@ -813,27 +813,27 @@ ${nix.sel(cfg, "extraConfig")}`)), null)) || nix.asBool(nix.sel(cfgc, "package",
                 const $_1 = nix.formals(args_1, formals$5);
                 const addr = nix.arg($_1, "addr");
                 return {
-                  __proto__: pos$111,
+                  [nix.POS]: pos$111,
                   assertion: nix.thunk(() => !nix.eq(addr, null)),
                   message: "addr must be specified in each listenAddresses entry",
                 };
               })(), formals$5)))),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "generateHostKeys")), nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             systemd: nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               services: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 "sshd-keygen": nix.thunk(() => ({
-                  __proto__: pos$115,
+                  [nix.POS]: pos$115,
                   description: "SSH Host Keys Generation",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$113,
+                    [nix.POS]: pos$113,
                     ConditionFileNotEmpty: nix.thunk(() => nix.builtins.map((k) => nix.str`|!${nix.sel(k, "path")}`, nix.thunk(() => nix.sel(cfg, "hostKeys")))),
                   })),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$114, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$114, Type: "oneshot" })),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   script: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "concatMapStrings")), nix.thunk(() => nix.sel(cfg, "hostKeys")), (k) => nix.str`if ! [ -s "${nix.sel(k, "path")}" ]; then
     if ! [ -h "${nix.sel(k, "path")}" ]; then

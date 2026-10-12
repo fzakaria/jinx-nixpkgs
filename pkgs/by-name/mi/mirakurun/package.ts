@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mirakurun";
       const version = "3.9.0-rc.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Chinachu",
           repo: "Mirakurun",
           rev: version,
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./nix-filesystem.patch")]);
       const npmDepsHash = "sha256-e7m7xb7p1SBzLAyQ82TTR/qLXv4lRm37x0JJPWYYGvI=";
       const nativeBuildInputs = nix.thunk(() => [installShellFiles, makeWrapper]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" }));
       const postInstall = nix.thunk(() => (() => {
         const runtimeDeps = nix.thunk(() => nix.concat([bash, nodejs, which], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [v4l_utils]))));
         const crc32Patch = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-musl-detection.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             isMusl: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) ? "true" : "false")),
           }))));
         return nix.str`sed 's/@DESCRIPTION@/${nix.sel(meta, "description")}/g' ${nix.path(here, "./mirakurun.1")} > mirakurun.1
@@ -62,7 +62,7 @@ popd
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Resource manager for TV tuners",
         homepage: "https://github.com/Chinachu/Mirakurun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -72,7 +72,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

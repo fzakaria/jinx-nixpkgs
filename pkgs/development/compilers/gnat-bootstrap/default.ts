@@ -56,80 +56,80 @@ export default nix.lambda((args) => (() => {
       const versionMap = nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.str`https://github.com/alire-project/GNAT-FSF-builds/releases/download/gnat-${nix.sel(finalAttrs, "version")}/gnat-${nix.sel(stdenv, "hostPlatform", "system")}-${nix.sel(finalAttrs, "version")}.tar.gz`);
         return {
-          __proto__: pos$20,
-          "13": nix.thunk(() => nix.update({ __proto__: pos$1, gccVersion: "13.2.0", alireRevision: "2" }, nix.selOr({
-            __proto__: pos$4,
+          [nix.POS]: pos$20,
+          "13": nix.thunk(() => nix.update({ [nix.POS]: pos$1, gccVersion: "13.2.0", alireRevision: "2" }, nix.selOr({
+            [nix.POS]: pos$4,
             "x86_64-linux": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: url,
               hash: "sha256-DC95udGSzRDE22ON4UpekxTYWOSBeUdJvILbSFj6MFQ=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: url,
               hash: "sha256-Bjl6iuM2xLknezR92j/kpDYpxqTcxK1v8rffmivOAVw=",
               upstreamTriplet: "aarch64-apple-darwin23.2.0",
             })),
           }, () => nix.force(throwUnsupportedSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
-          "14": nix.thunk(() => nix.update({ __proto__: pos$5, gccVersion: "14.2.0", alireRevision: "1" }, nix.selOr({
-            __proto__: pos$9,
+          "14": nix.thunk(() => nix.update({ [nix.POS]: pos$5, gccVersion: "14.2.0", alireRevision: "1" }, nix.selOr({
+            [nix.POS]: pos$9,
             "x86_64-linux": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: url,
               hash: "sha256-pH3IuOpCM9sY/ppTYcxBmgpsUiMrisIjmAa/rmmZXb4=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: url,
               hash: "sha256-SVW/0yyj6ZH1GAjvD+unII+zSLGd3KGFt1bjjQ3SEFU=",
               upstreamTriplet: "aarch64-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: url,
               hash: "sha256-/nARwdQzAMd41fslUbrgloxn0hVZp9PokfQ9yPmL1g8=",
               upstreamTriplet: "aarch64-apple-darwin23.6.0",
             })),
           }, () => nix.force(throwUnsupportedSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
-          "15": nix.thunk(() => nix.update({ __proto__: pos$10, gccVersion: "15.3.0", alireRevision: "1" }, nix.selOr({
-            __proto__: pos$14,
+          "15": nix.thunk(() => nix.update({ [nix.POS]: pos$10, gccVersion: "15.3.0", alireRevision: "1" }, nix.selOr({
+            [nix.POS]: pos$14,
             "x86_64-linux": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: url,
               hash: "sha256-8CDxqAQW7zskadfdzMjJqzPN8GZ2qu/7NWvcQLDis1s=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               url: url,
               hash: "sha256-cLLYWqdZuEZxV4ofd0GtO/+pQDMKs6TAOrAHw3DgI94=",
               upstreamTriplet: "aarch64-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               url: url,
               hash: "sha256-WKwNQJEghnXQLexKHswn494b4sz+usvgYEIoNaedzCk=",
               upstreamTriplet: "aarch64-apple-darwin24.6.0",
             })),
           }, () => nix.force(throwUnsupportedSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
-          "16": nix.thunk(() => nix.update({ __proto__: pos$15, gccVersion: "16.1.0", alireRevision: "1" }, nix.selOr({
-            __proto__: pos$19,
+          "16": nix.thunk(() => nix.update({ [nix.POS]: pos$15, gccVersion: "16.1.0", alireRevision: "1" }, nix.selOr({
+            [nix.POS]: pos$19,
             "x86_64-linux": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               url: url,
               hash: "sha256-5bKYPJnXDGa80BtAogLE82X0zTuYKdN2cKh503oMeic=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               url: url,
               hash: "sha256-jJnqDJGBOjqbT4hDW0nRpV0oA3RXxJhvI7BuvQkPDQI=",
               upstreamTriplet: "aarch64-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               url: url,
               hash: "sha256-TJlV/Ngq6SwpIgGkwamTN3aRGP2BnEzJyBGovtWb6Y0=",
               upstreamTriplet: "aarch64-apple-darwin24.6.0",
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
       return (() => {
         const from_1 = nix.thunk(() => nix.sel(versionMap, nix.key(nix.force(majorVersion))));
         return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         pname: "gnat-bootstrap",
         gccVersion: nix.thunk(() => nix.attr(from_1, "gccVersion")),
         alireRevision: nix.thunk(() => nix.attr(from_1, "alireRevision")),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
             const from_2 = nix.thunk(() => nix.sel(versionMap, nix.key(nix.force(majorVersion))));
             return {
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             url: nix.thunk(() => nix.attr(from_2, "url")),
             hash: nix.thunk(() => nix.attr(from_2, "hash")),
           };
@@ -186,7 +186,7 @@ done
   "$out" "${nix.sel(stdenv, "cc", "libc")}"
 `)))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           langC: true,
           langCC: false,
           langFortran: false,
@@ -194,7 +194,7 @@ done
           isGNU: true,
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           description: "GNAT, the GNU Ada Translator",
           homepage: "https://www.gnu.org/software/gnat",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

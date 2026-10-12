@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
   const pname = "pakcs";
   const version = "3.9.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://www.curry-lang.org/pakcs/download/pakcs-${version}-src.tar.gz`),
       hash: "sha256-uiWlHJsiy1o4CQOZBa69YJacjhFBap1mSlhxEMtUDKI=",
     }))));
   const curry_frontend = nix.thunk(() => nix.sel(nix.app(nix.sel(haskellPackages, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       overrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "curry-frontend": nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(super$, "callPackage"), nix.path(here, "./curry-frontend.nix"), nix.thunk(() => ({})))), nix.thunk(() => [
             nix.thunk(() => nix.sel(haskell, "lib", "doJailbreak")),
-            nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({ __proto__: pos$2, src: src, postUnpack: "sourceRoot+=/frontend" }))),
+            nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({ [nix.POS]: pos$2, src: src, postUnpack: "sourceRoot+=/frontend" }))),
           ]))),
       }),
     }))), "curry-frontend"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -80,7 +80,7 @@ wrapProgram $out/pakcs/bin/cypm \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.curry-lang.org/pakcs",
         description: "Implementation of the multi-paradigm declarative language Curry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "bazarr"));
   const secretType = nix.thunk(() => nix.app(nix.sel(lib, "types", "attrTag"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       _secret: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "externalPath")), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))))),
         })))),
     }))));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), settingsType)),
       nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "json")), (v) => !nix.asBool(nix.app(secretCheck, v)))),
     ])), {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: nix.thunk(() => nix.str`${nix.sel(lib, "types", "json", "description")}, where an attribute value may instead be an ${nix.sel(secretType, "description")}`),
   }));
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => [
@@ -131,64 +131,64 @@ export ${nix.app(envName, name)}
       nix.thunk(() => nix.sel(lib, "flatten")),
     ])));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "bazarr", "listenPort"]), nix.thunk(() => ["services", "bazarr", "settings", "general", "port"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         bazarr: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "bazarr, a subtitle manager for Sonarr and Radarr")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bazarr", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/bazarr",
               description: "The directory where Bazarr stores its data files.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the bazarr web interface.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bazarr",
               description: "User account under which bazarr runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bazarr",
               description: "Group under which bazarr runs.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: settingsType,
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     analytics: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "sending anonymous usage statistics to Bazarr's developers")),
                     })),
                     general: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       auto_update: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           readOnly: true,
                           description: "Whether Bazarr self-updates.\nAlways `false`, because the package is managed by Nix.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 6767n,
                           description: "Port on which the Bazarr web interface listens.",
@@ -199,16 +199,16 @@ export ${nix.app(envName, name)}
               default: nix.thunk(() => ({})),
               description: "Bazarr configuration.\nSettings are emitted as `DYNACONF_*` environment variables at startup,\noverriding any value previously written by Bazarr's web UI to `config.yaml`.\n\nUse `_secret` to load values from files via systemd's `LoadCredential=`.\nSecret contents are exported into Bazarr's environment at service start,\nas either a string or a list of strings.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$19,
-                general: nix.thunk(() => ({ __proto__: pos$14, instance_name: "NixOS Bazarr", port: 12345n })),
+                [nix.POS]: pos$19,
+                general: nix.thunk(() => ({ [nix.POS]: pos$14, instance_name: "NixOS Bazarr", port: 12345n })),
                 auth: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  apikey: nix.thunk(() => ({ __proto__: pos$15, _secret: "/run/secrets/bazarr-apikey" })),
+                  [nix.POS]: pos$16,
+                  apikey: nix.thunk(() => ({ [nix.POS]: pos$15, _secret: "/run/secrets/bazarr-apikey" })),
                 })),
                 translator: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   gemini_keys: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     _secret: nix.thunk(() => ["/run/secrets/bazarr-gemini-key-0", "/run/secrets/bazarr-gemini-key-1"]),
                   })),
                 })),
@@ -218,18 +218,18 @@ export ${nix.app(envName, name)}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               "10-bazarr": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   d: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0700",
@@ -239,22 +239,22 @@ export ${nix.app(envName, name)}
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             bazarr: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Bazarr",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: environment,
               script: nix.thunk(() => nix.str`${secretScript}
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   config: nix.thunk(() => nix.sel(cfg, "dataDir")),
                   "no-update": true,
                 })))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 Type: "exec",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -265,35 +265,35 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
                 LoadCredential: credentials,
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "general", "port"))]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "bazarr")), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               bazarr: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bazarr")), nix.thunk(() => ({ __proto__: pos$38, bazarr: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bazarr")), nix.thunk(() => ({ [nix.POS]: pos$38, bazarr: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

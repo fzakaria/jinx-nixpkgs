@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libfmvoice",
       version: "0-unstable-2025-02-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vampirefrog",
           repo: "libfmvoice",
           rev: "b45764b1eb939b2927fab74c0de653b968ffb58d",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm644 libfmvoice.a $out/lib/libfmvoice.a\n\nfor header in *.h; do\n  install -Dm644 $header $out/include/$header\ndone\n\nfor prog in $(grep 'PROGS:=' Makefile | cut -d'=' -f2); do\n  install -Dm755 $prog $bin/bin/$prog\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library for loading, saving and converting FM sound chip voice files in various formats",
         homepage: "https://github.com/vampirefrog/libfmvoice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

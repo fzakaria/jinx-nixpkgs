@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const dbt_redshift = nix.arg($, "dbt-redshift");
   const dbt_snowflake = nix.arg($, "dbt-snowflake");
   const adapters = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "dbt-bigquery": dbt_bigquery,
     "dbt-postgres": dbt_postgres,
     "dbt-redshift": dbt_redshift,
     "dbt-snowflake": dbt_snowflake,
   }));
   return (adapterFun) => nix.app(nix.sel(nix.app(nix.sel(python, "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraLibs: nix.thunk(() => nix.concat([dbt_core], nix.app(adapterFun, adapters))),
       ignoreCollisions: true,
     }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: nix.thunk(() => nix.sel(dbt_core, "meta", "mainProgram")),
       })),
     })));

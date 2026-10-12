@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ratman";
       const version = "0.7.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irdest",
           repo: "irdest",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           const src_1 = src;
           const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/ratman/dashboard`);
           const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.str`npm-deps-${pname_1}`),
               version: version_1,
               src: nix.thunk(() => nix.str`${src_1}/ratman/dashboard`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           const npmBuildScript = "build";
           const installPhase = "mkdir $out\ncp -r dist/* $out/\n";
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname_1,
             version: version_1,
             src: src_1,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const prePatch = nix.thunk(() => nix.str`cp -r ${dashboard} ratman/dashboard/dist
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modular decentralised peer-to-peer packet router and associated tools",
         homepage: "https://git.irde.st/we/irdest",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

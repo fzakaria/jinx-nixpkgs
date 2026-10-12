@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const xz = nix.arg($, "xz");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ncps",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalbasit",
           repo: "ncps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +61,9 @@ makeWrapper ${nix.sel(finalAttrs, "passthru", "dbmate-wrapper")}/bin/dbmate-wrap
       doCheck: true,
       checkFlags: nix.thunk(() => ["-race"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "dbmate-wrapper": nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "ncps-dbmate-wrapper",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/nix/dbmate-wrapper/src`),
@@ -76,7 +76,7 @@ wrapProgram $out/bin/dbmate-wrapper --set DBMATE_BIN ${nix.app(nix.sel(lib, "get
             subPackages: nix.thunk(() => ["."]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           ncps: nix.thunk(() => nix.attr(nixosTests, "ncps")),
           "ncps-custom-sqlite-directory": nix.thunk(() => nix.attr(nixosTests, "ncps-custom-sqlite-directory")),
           "ncps-custom-storage-local": nix.thunk(() => nix.attr(nixosTests, "ncps-custom-storage-local")),
@@ -86,7 +86,7 @@ wrapProgram $out/bin/dbmate-wrapper --set DBMATE_BIN ${nix.app(nix.sel(lib, "get
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Nix binary cache proxy service",
         homepage: "https://github.com/kalbasit/ncps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

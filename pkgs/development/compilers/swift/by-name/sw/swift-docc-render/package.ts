@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-docc-render",
       version: nix.thunk(() => nix.str`${swift_release}-unstable-2025-09-16`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-docc-render"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swiftlang",
           repo: "swift-docc-render",
           rev: nix.thunk(() => nix.attr(from, "rev")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-docc-render", "npmDeps"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()))),
       installPhase: "runHook preInstall\nmkdir -p \"$out\"\ncp -rv dist \"$out/dist\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web renderer for Swift DocC documentation",
         homepage: "https://github.com/swiftlang/swift-docc-render",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

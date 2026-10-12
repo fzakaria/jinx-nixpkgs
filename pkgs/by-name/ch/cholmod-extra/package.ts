@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const lapack = nix.arg($, "lapack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cholmod-extra",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "cholmod-extra",
           owner: "jluttine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALL_LIB=$(out)/lib", "INSTALL_INCLUDE=$(out)/include"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jluttine/cholmod-extra",
         description: "Set of additional routines for SuiteSparse CHOLMOD Module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

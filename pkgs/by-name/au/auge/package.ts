@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "auge",
       version: "1.9.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Arthur-Ficial/auge/releases/download/v${nix.sel(finalAttrs, "version")}/auge-${nix.sel(finalAttrs, "version")}-arm64-macos.tar.gz`),
           hash: "sha256-hL3kq1/hFo4rlq2nz4iaRLqoErLiF032ovqwl5Rwqso=",
         })))),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "On-device Apple Vision framework CLI",
         homepage: "https://github.com/Arthur-Ficial/auge",
         changelog: nix.thunk(() => nix.str`https://github.com/Arthur-Ficial/auge/releases/tag/v${nix.sel(finalAttrs, "version")}`),

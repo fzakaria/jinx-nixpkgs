@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const genassym = nix.arg($, "genassym");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     path: "sys",
     prePatch: "substituteInPlace sys/conf/Makefile.kern.inc \\\n  --replace \"-Wa,--fatal-warnings\" \"\"\n",
     patches: nix.thunk(() => [
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
     hardeningDisable: nix.thunk(() => ["pic"]),
     MKKMOD: "no",
     env: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-parameter", "-Wno-error=array-bounds", "-Wa,--no-warn"]))),
     })),
     postBuild: "make -C arch/$MACHINE/compile/$CONFIG $makeFlags\n",
     postInstall: "cp arch/$MACHINE/compile/$CONFIG/netbsd $out\n",
     postIncludes: "install $BSDSRCDIR/lib/libossaudio/soundcard.h $out/include/soundcard.h\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
     })),
     extraPaths: nix.thunk(() => ["common", "lib/libossaudio"]),

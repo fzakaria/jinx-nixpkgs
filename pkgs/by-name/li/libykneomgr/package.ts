@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libykneomgr",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://developers.yubico.com/libykneomgr/Releases/libykneomgr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "12gqblz400kr11m1fdr1vvwr85lgy5v55zy0cf782whpk8lyyj97",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pcsclite, libzip, help2man]),
       configureFlags: nix.thunk(() => ["--with-backend=pcsc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library to interact with the CCID-part of the Yubikey NEO",
         homepage: "https://developers.yubico.com/libykneomgr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
   const escape = (string) => nix.builtins.replaceStrings(nix.thunk(() => [" ", "\t"]), nix.thunk(() => ["\\040", "\\011"]), string);
   const attrNamesToTrue = nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))), (enabledList) => nix.app(nix.sel(lib, "genAttrs"), enabledList, (_attrName) => true), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "bool"))))));
   const addCheckDesc = (desc) => (elemType) => (check) => nix.update(nix.app(nix.sel(types, "addCheck"), elemType, check), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: nix.thunk(() => nix.str`${nix.sel(elemType, "description")} (with check: ${desc})`),
   });
   const isNonEmpty = (s) => nix.eq(nix.builtins.match("[ \t\n]*", s), null);
@@ -114,21 +114,21 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       options: nix.thunk(() => ({
-        __proto__: pos$10,
-        enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the filesystem mount"), { __proto__: pos$2, default: true })),
+        [nix.POS]: pos$10,
+        enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the filesystem mount"), { [nix.POS]: pos$2, default: true })),
         mountPoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             example: "/mnt/usb",
             type: nonEmptyWithoutTrailingSlash,
             default: name,
             description: "Location where the file system will be mounted.\n\nThis is called `mountpoint` in {manpage}`mount(8)` and `fs_file` in {manpage}`fstab(5)`\n",
           })))),
         stratis: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           poolUuid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "uniq"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))))),
               description: "UUID of the stratis pool that the fs is located in\n\nThis is only relevant if you are using [stratis](https://stratis-storage.github.io/).\n",
               example: "04c68063-90a5-4235-b9dd-6180098a20d9",
@@ -136,27 +136,27 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             default: null,
             example: "/dev/sda",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nonEmptyStr)),
             description: "The device as passed to `mount`.\n\nThis can be any of:\n\n- a filename of a block special device such as `/dev/sdc3`\n- a tag such as `UUID=fdd68895-c307-4549-8c9c-90e44c71f5b7`\n- (for bind mounts only) the source path\n- something else depending on the {option}`fsType`. For example, `nfs` device may look like `knuth.cwi.nl:/dir`\n\nThis is called `device` in {manpage}`mount(8)` and `fs_spec` in {manpage}`fstab(5)`.\n",
           })))),
         fsType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             example: "ext3",
             type: nonEmptyStr,
             description: "Type of the file system.\n\nThis is the `fstype` passed to `-t` in the {manpage}`mount(8)` command, and is called `fs_vfstype` in {manpage}`fstab(5)`.\n",
           })))),
         options: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             default: nix.thunk(() => ["defaults"]),
             example: nix.thunk(() => ["data=journal"]),
             description: "Options used to mount the file system.\n\nThis is called `options` in {manpage}`mount(8)` and `fs_mntops` in {manpage}`fstab(5)`\n\nSome options that can be used for all mounts are documented in {manpage}`mount(8)` under `FILESYSTEM-INDEPENDENT MOUNT OPTIONS`.\n\nOptions that systemd understands are documented in {manpage}`systemd.mount(5)` under `FSTAB`.\n\nEach filesystem supports additional options, see the docs for that filesystem.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "nonEmptyListOf"), nonEmptyStr)),
           })))),
         depends: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             default: [],
             example: nix.thunk(() => ["/persist"]),
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nonEmptyWithoutTrailingSlash)),
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         device: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(elem, nix.thunk(() => nix.sel(config_1, "fsType")), specialFSTypes)), nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(config_1, "fsType")))))),
       })),
     };
@@ -173,43 +173,43 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       options: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         label: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             default: null,
             example: "root-partition",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nonEmptyStr)),
             description: "Label of the device. This simply sets {option}`device` to\n`/dev/disk/by-label/${label}`. Note that devices will not\nhave a label unless they contain a filesystem which\nsupports labels, such as ext4 or fat32.\n",
           })))),
         autoFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             default: false,
             type: nix.thunk(() => nix.sel(types, "bool")),
             description: "If the device does not currently contain a filesystem (as\ndetermined by {command}`blkid`), then automatically\nformat it with the filesystem type specified in\n{option}`fsType`.  Use with caution.\n",
           })))),
         formatOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             visible: false,
             type: nix.thunk(() => nix.sel(types, "unspecified")),
             default: null,
           })))),
         autoResize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             default: false,
             type: nix.thunk(() => nix.sel(types, "bool")),
             description: "If set, the filesystem is grown to its maximum size before\nbeing mounted. (This is typically the size of the containing\npartition.) This is currently only supported for ext2/3/4\nfilesystems that are mounted during early boot.\n",
           })))),
         noCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: false,
             type: nix.thunk(() => nix.sel(types, "bool")),
             description: "Disable running fsck on this filesystem.",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         device: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config_1, "label"), null)), nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`/dev/disk/by-label/${nix.app(escape, nix.thunk(() => nix.sel(config_1, "label")))}`))))),
         options: nix.thunk(() => (() => {
           const inInitrd = nix.thunk(() => nix.app(nix.sel(utils, "fsNeededForBoot"), config_1));
@@ -258,11 +258,11 @@ export default nix.lambda((args) => (() => {
   })());
   const initrdFstab = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "initrd-fstab", nix.thunk(() => nix.app(makeFstabEntries, nix.thunk(() => nix.app(filter, nix.thunk(() => nix.sel(utils, "fsNeededForBoot")), fileSystems)), nix.thunk(() => ({}))))));
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       fileSystems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => nix.app(literalExpression, "{\n  \"/\".device = \"/dev/hda1\";\n  \"/data\" = {\n    device = \"/dev/hda2\";\n    fsType = \"ext3\";\n    options = [ \"data=journal\" ];\n  };\n  \"/bigdisk\".label = \"bigdisk\";\n}\n")),
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => [coreFileSystemOpts, fileSystemOpts]))))),
@@ -270,25 +270,25 @@ export default nix.lambda((args) => (() => {
           description: "The file systems to be mounted.  It must include an entry for\nthe root directory (`mountPoint = \"/\"`).  Each\nentry in the list is an attribute set with the following fields:\n`mountPoint`, `device`,\n`fsType` (a file system type recognised by\n{command}`mount`), and `options`\n(the mount options passed to {command}`mount` using the\n{option}`-o` flag; defaults to `[ \"defaults\" ]`).\n\nInstead of specifying `device`, you can also\nspecify a volume label (`label`) for file\nsystems that support it, such as ext2/ext3 (see {command}`mke2fs -L`).\n",
         })))),
       system: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         fsPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             internal: true,
             default: [],
             description: "Packages supplying file system mounters and checkers.",
           })))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         supportedFilesystems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(literalExpression, "{\n  btrfs = true;\n  zfs = lib.mkForce false;\n}\n")),
             type: attrNamesToTrue,
             description: "Names of supported filesystem types, or an attribute set of file system types\nand their state. The set form may be used together with `lib.mkForce` to\nexplicitly disable support for specific filesystems, e.g. to disable ZFS\nwith an unsupported kernel.\n",
           })))),
         specialFileSystems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             default: nix.thunk(() => ({})),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), coreFileSystemOpts)))),
             apply: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (fs) => nix.sel(fs, "enable"))),
@@ -296,21 +296,21 @@ export default nix.lambda((args) => (() => {
             description: "Special filesystems that are mounted very early during boot.\n",
           })))),
         devSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             default: "5%",
             example: "32m",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Size limit for the /dev tmpfs. Look at {manpage}`mount(8)`, tmpfs size option,\nfor the accepted syntax.\n",
           })))),
         devShmSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             default: "50%",
             example: "256m",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Size limit for the /dev/shm tmpfs. Look at {manpage}`mount(8)`, tmpfs size option,\nfor the accepted syntax.\n",
           })))),
         runSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             default: "25%",
             example: "256m",
             type: nix.thunk(() => nix.sel(types, "str")),
@@ -319,19 +319,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       assertions: nix.thunk(() => (() => {
         const ls = (sep) => nix.app(concatMapStringsSep, sep, (x) => nix.sel(x, "mountPoint"));
         const resizableFSes = nix.thunk(() => ["ext3", "ext4", "btrfs", "xfs"]);
         const notAutoResizable = (fs) => (nix.asBool(nix.sel(fs, "autoResize")) && nix.asBool(!nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(fs, "fsType")), resizableFSes))));
         return nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => !nix.asBool(nix.has(fileSystems$, "cycle"))),
             message: nix.thunk(() => nix.str`The ‘fileSystems’ option can't be topologically sorted: mountpoint dependency path ${nix.app(ls, " -> ", nix.thunk(() => nix.sel(fileSystems$, "cycle")))} loops to ${nix.app(ls, ", ", nix.thunk(() => nix.sel(fileSystems$, "loops")))}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => !nix.asBool(nix.app(any, notAutoResizable, fileSystems))),
             message: nix.thunk(() => (() => {
               const fs = nix.thunk(() => nix.app(head, nix.thunk(() => nix.app(filter, notAutoResizable, fileSystems))));
@@ -342,12 +342,12 @@ only the following support it: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ",
             })()),
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => !nix.asBool(nix.app(any, (fs) => !nix.eq(nix.sel(fs, "formatOptions"), null), fileSystems))),
             message: "'fileSystems.<name>.formatOptions' has been removed, since\nsystemd-makefs does not support any way to provide formatting\noptions.\n",
           })),
         ], nix.app(nix.sel(lib, "map"), (fs) => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(fs, "label"), null)) || nix.asBool(nix.eq(nix.sel(fs, "device"), nix.str`/dev/disk/by-label/${nix.app(escape, nix.thunk(() => nix.sel(fs, "label")))}`)))),
             message: nix.thunk(() => nix.str`The filesystem with mount point ${nix.sel(fs, "mountPoint")} has its label and device set to inconsistent values:
   label: ${nix.builtins.toString(nix.thunk(() => nix.sel(fs, "label")))}
@@ -357,55 +357,55 @@ only the following support it: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ",
           }), fileSystems));
       })()),
       system: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         build: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           fileSystems: fileSystems,
           earlyMountScript: nix.thunk(() => nix.app(makeSpecialMounts, nix.thunk(() => nix.sel(nix.app(toposort, fsBefore, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(config, "boot", "specialFileSystems"))))), "result")))),
         })),
         fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dosfstools"))]),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         supportedFilesystems: nix.thunk(() => nix.builtins.map((fs) => nix.sel(fs, "fsType"), fileSystems)),
         initrd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           systemd: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             storePaths: nix.thunk(() => [initrdFstab]),
-            managerEnvironment: nix.thunk(() => ({ __proto__: pos$37, SYSTEMD_SYSROOT_FSTAB: initrdFstab })),
+            managerEnvironment: nix.thunk(() => ({ [nix.POS]: pos$37, SYSTEMD_SYSROOT_FSTAB: initrdFstab })),
             services: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               "initrd-parse-etc": nix.thunk(() => ({
-                __proto__: pos$39,
-                environment: nix.thunk(() => ({ __proto__: pos$38, SYSTEMD_SYSROOT_FSTAB: initrdFstab })),
+                [nix.POS]: pos$39,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$38, SYSTEMD_SYSROOT_FSTAB: initrdFstab })),
               })),
             })),
           })),
         })),
         specialFileSystems: nix.thunk(() => nix.update({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           "/run/keys": nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             fsType: "ramfs",
             options: nix.thunk(() => ["nosuid", "nodev", "mode=750"]),
           })),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))), nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             "/sys": nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               fsType: "sysfs",
               options: nix.thunk(() => ["nosuid", "noexec", "nodev"]),
             })),
           }))), nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isNspawnContainer"))), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             "/proc": nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               fsType: "proc",
               options: nix.thunk(() => ["nosuid", "noexec", "nodev"]),
             })),
             "/run": nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               fsType: "tmpfs",
               options: nix.thunk(() => [
                 "nosuid",
@@ -416,7 +416,7 @@ only the following support it: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ",
               ]),
             })),
             "/dev": nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               fsType: "devtmpfs",
               options: nix.thunk(() => [
                 "nosuid",
@@ -426,7 +426,7 @@ only the following support it: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ",
               ]),
             })),
             "/dev/shm": nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               fsType: "tmpfs",
               options: nix.thunk(() => [
                 "nosuid",
@@ -437,7 +437,7 @@ only the following support it: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ",
               ]),
             })),
             "/dev/pts": nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               fsType: "devpts",
               options: nix.thunk(() => [
                 "nosuid",
@@ -450,12 +450,12 @@ only the following support it: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ",
           })))))),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         systemPackages: nix.thunk(() => nix.sel(config, "system", "fsPackages")),
         etc: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           fstab: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             text: nix.thunk(() => (() => {
               const swapOptions = (sw) => nix.app(concatStringsSep, ",", nix.thunk(() => nix.concat(nix.sel(sw, "options"), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(sw, "priority"), null)), nix.thunk(() => nix.str`pri=${nix.builtins.toString(nix.thunk(() => nix.sel(sw, "priority")))}`)), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(sw, "discardPolicy"), null)), nix.thunk(() => nix.str`discard${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(sw, "discardPolicy"), "both")), nix.thunk(() => nix.str`=${nix.builtins.toString(nix.thunk(() => nix.sel(sw, "discardPolicy")))}`))}`))))));
               return nix.str`# This is a generated file.  Do not edit!
@@ -477,17 +477,17 @@ ${nix.app(flip, concatMapStrings, nix.thunk(() => nix.sel(config, "swapDevices")
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         targets: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           fs: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             description: "All File Systems",
             wants: nix.thunk(() => ["local-fs.target", "remote-fs.target"]),
           })),
         })),
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           rules: nix.thunk(() => [
             nix.thunk(() => nix.str`d /run/keys 0750 root ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "ids", "gids", "keys")))}`),
             nix.thunk(() => nix.str`z /run/keys 0750 root ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "ids", "gids", "keys")))}`),

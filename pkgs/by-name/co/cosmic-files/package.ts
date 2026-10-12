@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cosmic-files",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "cosmic-files",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -59,21 +59,21 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ndefaultCargoBuildFlags=\"$cargoBuildFlags\"\n\ncargoBuildFlags=\"$defaultCargoBuildFlags --package cosmic-files\"\nrunHook cargoBuildHook\n\ncargoBuildFlags=\"$defaultCargoBuildFlags --package cosmic-files-thumbnailer\"\nrunHook cargoBuildHook\n\ncargoBuildFlags=\"$defaultCargoBuildFlags --package cosmic-files-applet\"\nrunHook cargoBuildHook\n\nrunHook postBuild\n",
       checkPhase: "runHook preCheck\n\ndefaultCargoTestFlags=\"$cargoTestFlags\"\n\ncargoTestFlags=\"$defaultCargoTestFlags --package cosmic-files\"\nrunHook cargoCheckHook\n\ncargoTestFlags=\"$defaultCargoTestFlags --package cosmic-files-thumbnailer\"\nrunHook cargoCheckHook\n\ncargoTestFlags=\"$defaultCargoTestFlags --package cosmic-files-applet\"\nrunHook cargoCheckHook\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/pop-os/cosmic-files",
         description: "File Manager for the COSMIC Desktop Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

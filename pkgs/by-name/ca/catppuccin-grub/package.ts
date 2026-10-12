@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const flavor = nix.argOr($, "flavor", () => "mocha");
   const version = "1.0.0";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catppuccin-grub",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "grub",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ cp -r src/catppuccin-${flavor}-grub-theme/* "$out/"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Soothing pastel theme for GRUB",
         homepage: "https://github.com/catppuccin/grub",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

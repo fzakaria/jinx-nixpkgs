@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const fftw = nix.arg($, "fftw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsakura",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tnakazato",
           repo: "sakura",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_TEST", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tnakazato.github.io/sakura/",
         changelog: nix.thunk(() => nix.str`https://github.com/tnakazato/sakura/releases/tag/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
         description: "Thread-safe library for signal processing in radio astronomy",

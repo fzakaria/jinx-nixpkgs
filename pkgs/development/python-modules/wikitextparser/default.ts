@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.56.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "5j9",
           repo: "wikitextparser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["wikitextparser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/5j9/wikitextparser",
         description: "Simple parsing tool for MediaWiki's wikitext markup",
         changelog: nix.thunk(() => nix.str`https://github.com/5j9/wikitextparser/blob/v${version}/CHANGELOG.rst`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

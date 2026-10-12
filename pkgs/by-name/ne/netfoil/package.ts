@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
       const pname = "netfoil";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinfoil-factory",
           repo: "netfoil",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-WKtyNdb3hwveLpg3vkKFTXceE6b4AjVrzZoj9eEkdx4=",
         }))));
       const __structuredAttrs = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const proxyVendor = true;
       const vendorHash = "sha256-L+E6pLDi68TpXxzSwWlbwMLbnkJHvQY1kRwTtk6pWYM=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "netfoil")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "netfoil")) })),
       }));
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Minimal, filtering, DNS proxy",
           homepage: "https://github.com/tinfoil-factory/netfoil",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "asl20")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

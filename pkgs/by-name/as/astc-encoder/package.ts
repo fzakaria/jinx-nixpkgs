@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const isaFlags = nix.thunk(() => nix.builtins.map((isa) => nix.str`-DASTCENC_ISA_${isa}=ON`, isas));
   const mainBinary = nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["AVX2", "SSE41", "SSE2", "NEON", "NONE", "NATIVE"]), nix.thunk(() => ["avx2", "sse4.1", "sse2", "neon", "none", "native"]), nix.thunk(() => nix.app(head, isas))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "astc-encoder",
       version: "5.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ARM-software",
           repo: "astc-encoder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s $out/bin/astcenc-${mainBinary} $out/bin/astcenc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ARM-software/astc-encoder",
         description: "Encoder for the ASTC texture compression format",
         longDescription: "The Adaptive Scalable Texture Compression (ASTC) format is\nwidely supported by mobile and desktop graphics hardware and\nprovides better quality at a given bitrate compared to ETC2.\n\nThis program supports both compression and decompression in LDR\nand HDR mode and can read various image formats. Run `astcenc\n-help` to see all the options.\n",

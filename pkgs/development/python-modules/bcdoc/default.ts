@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bcdoc",
       version: "0.16.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9WjBguBog77PcZbyJwUkNc/9RWBHAMgjYsp300J7YgI=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bcdoc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/boto/bcdoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "ReST document generation tools for botocore",

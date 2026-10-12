@@ -21,36 +21,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "bigenough",
       owner: "math-comp",
       release: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256:10g0gp3hk7wri7lijkrqna263346wwf6a3hbd4qr9gn8hmsx70wg",
         })),
         "1.0.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:02f4dv4rz72liciwxb2k7acwx6lgqz4381mqyq5854p3nbyn06aw",
         })),
         "1.0.2": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-fJ/5xr91VtvpIoaFwb3PlnKl6UHG6GEeBRVGZrVLMU0=",
         })),
         "1.0.3": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-9ObUoaavnninL72r5iqkLz7lJBpcKXXi8LXKGhgx/N4=",
         })),
         "1.0.4": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           sha256: "sha256-cwfDCEFSXWnqV5aIrhTviUti0CXNwmFe6zVbqlD2iZw=",
         })),
       })),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$7, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$7, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "1.0.4")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mathcomp_boot]),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "1.0.3", v))),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Small library to do epsilon - N reasonning",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
       })),

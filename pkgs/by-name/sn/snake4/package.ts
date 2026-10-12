@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxaw = nix.arg($, "libxaw");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snake4",
       version: "1.0.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://shh.thathost.com/pub-unix/files/snake4-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14cng9l857np42zixp440mbc8y5675frb6lhsds53j1cws9cncw9",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "substituteInPlace Makefile \\\n  --replace \"-o \\$(OWNER) -g \\$(GROUP)\" \"\" \\\n  --replace \"4755\" \"755\"\n",
       installFlags: nix.thunk(() => ["INSTLIBDIR=$(out)/lib", "INSTBINDIR=$(out)/bin", "INSTMANDIR=$(out)/man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Game starring a fruit-eating snake",
         homepage: "https://shh.thathost.com/pub-unix/html/snake4.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),

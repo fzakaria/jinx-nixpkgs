@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const pname = "mpv-thumbnail-script";
       const version = "0.5.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marzzzello",
           repo: "mpv_thumbnail_script",
           rev: version,
           sha256: "sha256-nflavx25skLj9kitneL6Uz3zI2DyMMhQC595npofzbQ=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const nativeBuildInputs = nix.thunk(() => [python3]);
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const extraScriptsToCopy = nix.thunk(() => ["mpv_thumbnail_script_server.lua"]);
       const extraScriptsToLoad = nix.thunk(() => ["mpv_thumbnail_script_server.lua"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lua script to show preview thumbnails in mpv's OSC seekbar",
         homepage: "https://github.com/marzzzello/mpv_thumbnail_script",
         changelog: nix.thunk(() => nix.str`https://github.com/marzzzello/mpv_thumbnail_script/releases/tag/${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

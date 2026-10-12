@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clip",
       version: "1.0-unstable-2022-07-27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openai",
           repo: "clip",
           rev: "d50d76daa670286dd6cacf3bcd80b5e4823fc8e1",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ftfy, regex, torch, torchvision, tqdm]),
       pythonImportsCheck: nix.thunk(() => ["clip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Contrastive Language-Image Pretraining",
         homepage: "https://github.com/openai/CLIP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

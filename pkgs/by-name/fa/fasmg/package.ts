@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const htmlq = nix.arg($, "htmlq");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "fasmg",
       version: "l8vn",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://flatassembler.net/fasmg.${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-/Izf7w7yofmPp1J85BgWbMLIGC4SGsCqXzhdecOo7CE=",
           stripRoot: false,
@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         const system = nix.thunk(() => nix.attr(from, "system"));
         const path = nix.thunk(() => nix.selOr({
-          __proto__: pos$5,
-          "x86_64-linux": nix.thunk(() => ({ __proto__: pos$2, bin: "fasmg.x64", asm: "source/linux/x64/fasmg.asm" })),
-          "x86-linux": nix.thunk(() => ({ __proto__: pos$3, bin: "fasmg", asm: "source/linux/fasmg.asm" })),
-          "x86-darwin": nix.thunk(() => ({ __proto__: pos$4, bin: "source/macos/fasmg", asm: "source/macos/fasmg.asm" })),
+          [nix.POS]: pos$5,
+          "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$2, bin: "fasmg.x64", asm: "source/linux/x64/fasmg.asm" })),
+          "x86-linux": nix.thunk(() => ({ [nix.POS]: pos$3, bin: "fasmg", asm: "source/linux/fasmg.asm" })),
+          "x86-darwin": nix.thunk(() => ({ [nix.POS]: pos$4, bin: "source/macos/fasmg", asm: "source/macos/fasmg.asm" })),
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
         return nix.str`chmod +x ${nix.sel(path, "bin")}
 ./${nix.sel(path, "bin")} ${nix.sel(path, "asm")} fasmg
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       installPhase: "install -Dm755 fasmg $out/bin/fasmg\n\nmkdir -p $doc/share/doc/fasmg\ncp docs/*.txt $doc/share/doc/fasmg\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-fasmg.sh", nix.thunk(() => nix.str`export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, curl, gnugrep, htmlq, nix_update]))}:$PATH"
 version=$(
   curl 'https://flatassembler.net/download.php' \\
@@ -62,7 +62,7 @@ nix-update fasmg --version "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "x86(-64) macro assembler to binary, MZ, PE, COFF, and ELF",
         mainProgram: "fasmg",
         homepage: "https://flatassembler.net",

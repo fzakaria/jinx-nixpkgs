@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gdbm = nix.arg($, "gdbm");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "skktools",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skk-dev",
           repo: "skktools",
           rev: nix.thunk(() => nix.str`skktools-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "skktools-fix-function-prototype-empty-arguments-gcc15.patch",
             url: "https://github.com/skk-dev/skktools/commit/fb6a295607dbe2b5171c2c89f8a2f0b82bee9766.patch",
             hash: "sha256-wao2kRsDq5WN4JO/YpXhNirsdnA3vZpsY9GDCTPSJKY=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gdbm, glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of tools to edit SKK dictionaries",
         longDescription: "This package provides a collection of tools to manipulate\n(merge, sort etc.) the dictionaries formatted for SKK Japanese\ninput method.\n",
         homepage: "https://github.com/skk-dev/skktools",

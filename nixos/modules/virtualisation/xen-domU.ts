@@ -15,15 +15,15 @@ const pos$8 = nix.positions(here + "/xen-domU.nix", [["boot", 6, 3], ["services"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     boot: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       loader: nix.thunk(() => ({
-        __proto__: pos$2,
-        grub: nix.thunk(() => ({ __proto__: pos$1, device: "nodev" })),
+        [nix.POS]: pos$2,
+        grub: nix.thunk(() => ({ [nix.POS]: pos$1, device: "nodev" })),
       })),
       initrd: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         kernelModules: nix.thunk(() => [
           "xen-blkfront",
           "xen-tpmfront",
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
-      syslogd: nix.thunk(() => ({ __proto__: pos$5, tty: "hvc0" })),
-      timesyncd: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+      [nix.POS]: pos$7,
+      syslogd: nix.thunk(() => ({ [nix.POS]: pos$5, tty: "hvc0" })),
+      timesyncd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
     })),
   };
 })(), formals$1);

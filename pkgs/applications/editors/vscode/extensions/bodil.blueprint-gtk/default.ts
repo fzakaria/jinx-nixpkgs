@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "blueprint-gtk",
         publisher: "bodil",
         version: "0.2.0",
         hash: "sha256-A4H/o/HsjQKKee46VZJsjY7EB+1iOm4RWxHKcRLmkEY=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gtk Blueprint language support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=bodil.blueprint-gtk",

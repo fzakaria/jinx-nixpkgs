@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const withConda = nix.argOr($, "withConda", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.7.39",
       pname: "libsolv",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openSUSE",
           repo: "libsolv",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([zlib, xz, bzip2, zchunk, zstd, expat, db], nix.app(nix.sel(lib, "optional"), withRpm, rpm))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free package dependency solver",
         homepage: "https://github.com/openSUSE/libsolv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

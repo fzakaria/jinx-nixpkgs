@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const name = "broadcast-box";
   const version = "0-unstable-2025-06-04";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       repo: "broadcast-box",
       owner: "Glimesh",
       rev: "a091f147f750759084a2c9d25a12e815e2feebf8",
       hash: "sha256-Evhye+DYtFM/VjxqmhH5kU32khvEFUxTUgH9DXytIbo=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       pname: nix.thunk(() => nix.str`${name}-web`),
       src: nix.thunk(() => nix.str`${src}/web`),
@@ -38,7 +38,7 @@ cp "${src}/.env.production" ../
       installPhase: "mkdir -p $out\ncp -r build $out\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       src: src,
       frontend: frontend,
@@ -51,14 +51,14 @@ cp "${src}/.env.production" ../
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\ncp -r $frontend/build/* $out/share\n\ninstall -Dm755 $GOPATH/bin/broadcast-box -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "broadcast-box": nix.thunk(() => nix.attr(nixosTests, "broadcast-box")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "WebRTC broadcast server",
         homepage: "https://github.com/Glimesh/broadcast-box",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

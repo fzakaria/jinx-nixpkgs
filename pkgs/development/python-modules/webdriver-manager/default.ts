@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const selenium = nix.arg($, "selenium");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webdriver-manager",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SergeyPirogov",
           repo: "webdriver_manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_silent_global_logs.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to manage the binary drivers for different browsers",
         homepage: "https://github.com/SergeyPirogov/webdriver_manager/",
         changelog: nix.thunk(() => nix.str`https://github.com/SergeyPirogov/webdriver_manager/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

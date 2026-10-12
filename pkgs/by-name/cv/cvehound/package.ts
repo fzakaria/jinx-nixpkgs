@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runtimeDeps = nix.thunk(() => [coccinelle, gnugrep]);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cvehound",
       version: "1.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evdenis",
           repo: "cvehound",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to check linux kernel source dump for known CVEs",
         homepage: "https://github.com/evdenis/cvehound",
         changelog: nix.thunk(() => nix.str`https://github.com/evdenis/cvehound/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const svgwrite = nix.arg($, "svgwrite");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "svgdigitizer",
       version: "0.14.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "echemdb",
           repo: "svgdigitizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
         svgpathtools,
         svgwrite,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, MPLBACKEND: "Agg" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["--doctest-modules", "svgdigitizer"]),
       disabledTests: nix.thunk(() => ["svgdigitizer.pdf.Pdf.bibliographic_entry"]),
       pythonImportsCheck: nix.thunk(() => ["svgdigitizer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extract numerical data points from SVG files",
         homepage: "https://github.com/echemdb/svgdigitizer",
         changelog: nix.thunk(() => nix.str`https://github.com/echemdb/svgdigitizer/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

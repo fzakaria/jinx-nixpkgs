@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./runtime.nix"), nix.thunk(() => ({}))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "houdini",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       dieWithParent: false,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "libxcb-wm")),
         ];
       })(),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
       extraInstallCommands: nix.thunk(() => (() => {
         const executables = nix.thunk(() => [
           "bin/houdini",
@@ -113,7 +113,7 @@ export LD_LIBRARY_PATH=${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() =
 exec "$@"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3D animation application software",
         homepage: "https://www.sidefx.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

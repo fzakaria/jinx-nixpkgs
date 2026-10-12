@@ -42,7 +42,7 @@ export default nix.thunk(() => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         const testFile = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://file-examples.com/storage/fe5947fd2362fc197a3c2df/2017/11/file_example_MP3_700KB.mp3",
             hash: "sha256-+iggJW8s0/LfA/okfXsB550/55Q0Sq3OoIzuBrzOPJQ=",
           }))));
@@ -57,61 +57,61 @@ touch /tmp/${key}_success
 `));
         })(), formals$3);
         const testers = nix.thunk(() => nix.builtins.mapAttrs(makeTestPlay, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             testPlay: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               sox: nix.thunk(() => nix.attr(pkgs, "sox")),
               "alsa-utils": nix.thunk(() => nix.attr(pkgs, "alsa-utils")),
             })),
             testPlay32: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "pkgsi686Linux"));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               sox: nix.thunk(() => nix.attr(from, "sox")),
               "alsa-utils": nix.thunk(() => nix.attr(from, "alsa-utils")),
             };
             })()),
           }))));
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: nix.thunk(() => nix.str`pulseaudio${nix.app(nix.sel(lib, "optionalString"), fullVersion, "Full")}${nix.app(nix.sel(lib, "optionalString"), systemWide, "-systemWide")}`),
           meta: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             maintainers: nix.thunk(() => nix.sel(pkgs, "pulseaudio", "meta", "maintainers")),
             broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               return nix.update({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  pulseaudio: nix.thunk(() => nix.update({ __proto__: pos$6, enable: true, support32Bit: true, systemWide: systemWide }, nix.app(nix.sel(lib, "optionalAttrs"), fullVersion, nix.thunk(() => ({ __proto__: pos$7, package: nix.thunk(() => nix.sel(pkgs, "pulseaudioFull")) }))))),
+                  [nix.POS]: pos$8,
+                  pulseaudio: nix.thunk(() => nix.update({ [nix.POS]: pos$6, enable: true, support32Bit: true, systemWide: systemWide }, nix.app(nix.sel(lib, "optionalAttrs"), fullVersion, nix.thunk(() => ({ [nix.POS]: pos$7, package: nix.thunk(() => nix.sel(pkgs, "pulseaudioFull")) }))))),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   systemPackages: nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.sel(testers, "testPlay")),
                     nix.thunk(() => nix.sel(pkgs, "pavucontrol")),
                   ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")), nix.thunk(() => nix.sel(testers, "testPlay32"))))),
                 })),
               }, nix.app(nix.sel(lib, "optionalAttrs"), systemWide, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   users: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     users: nix.thunk(() => ({
-                      __proto__: pos$12,
-                      alice: nix.thunk(() => ({ __proto__: pos$11, extraGroups: nix.thunk(() => ["pulse-access"]) })),
+                      [nix.POS]: pos$12,
+                      alice: nix.thunk(() => ({ [nix.POS]: pos$11, extraGroups: nix.thunk(() => ["pulse-access"]) })),
                     })),
                   })),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     services: nix.thunk(() => ({
-                      __proto__: pos$15,
-                      pulseaudio: nix.thunk(() => ({ __proto__: pos$14, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                      [nix.POS]: pos$15,
+                      pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$14, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
                     })),
                   })),
                 }))));
@@ -141,11 +141,11 @@ machine.screenshot("Pavucontrol")
       })(), formals$2));
   })(), formals$1);
   return nix.builtins.mapAttrs((key) => (val) => nix.app(mkTest, val), nix.thunk(() => ({
-      __proto__: pos$24,
-      user: nix.thunk(() => ({ __proto__: pos$20, systemWide: false, fullVersion: false })),
-      system: nix.thunk(() => ({ __proto__: pos$21, systemWide: true, fullVersion: false })),
-      userFull: nix.thunk(() => ({ __proto__: pos$22, systemWide: false, fullVersion: true })),
-      systemFull: nix.thunk(() => ({ __proto__: pos$23, systemWide: true, fullVersion: true })),
+      [nix.POS]: pos$24,
+      user: nix.thunk(() => ({ [nix.POS]: pos$20, systemWide: false, fullVersion: false })),
+      system: nix.thunk(() => ({ [nix.POS]: pos$21, systemWide: true, fullVersion: false })),
+      userFull: nix.thunk(() => ({ [nix.POS]: pos$22, systemWide: false, fullVersion: true })),
+      systemFull: nix.thunk(() => ({ [nix.POS]: pos$23, systemWide: true, fullVersion: true })),
     })));
 })());
 //# sourceMappingURL=pulseaudio.ts.map

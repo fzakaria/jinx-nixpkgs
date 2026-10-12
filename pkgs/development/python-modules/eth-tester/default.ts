@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.0-beta.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "eth-tester",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["eth_tester"]);
       const disabledTests = nix.thunk(() => ["test_install_local_wheel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool suite for testing ethereum applications",
         homepage: "https://github.com/ethereum/eth-tester",
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/eth-tester/blob/v${version}/CHANGELOG.rst`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

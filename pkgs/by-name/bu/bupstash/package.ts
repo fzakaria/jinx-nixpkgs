@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsodium = nix.arg($, "libsodium");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bupstash",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andrewchambers",
           repo: "bupstash",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "RUBYOPT=\"-KU -E utf-8:utf-8\" ronn -r doc/man/*.md\n",
       postInstall: "installManPage doc/man/*.[1-9]\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy and efficient encrypted backups",
         homepage: "https://bupstash.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sc68",
       version: "2.2.1-unstable-2024-09-09",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.code.sf.net/p/sc68/code/",
           rev: "713",
           sha256: "sha256-kiOHUixsf/2mFMzi6P7oC7ujyydLO7K3w7Vwr/GMOvY=",
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, hexdump, libtool, pkg_config, which]),
       buildInputs: nix.thunk(() => [curl, libao, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=c99" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=c99" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Atari ST and Amiga music player",
         homepage: "http://sc68.atari.org/project.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

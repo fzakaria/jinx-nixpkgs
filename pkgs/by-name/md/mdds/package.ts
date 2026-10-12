@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdds",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdds",
           repo: "mdds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [boost]),
       postInstall: "mkdir -p $out/lib/\nmv $out/share/pkgconfig $out/lib/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/mdds/mdds",
         description: "Collection of multi-dimensional data structure and indexing algorithms",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/mdds/mdds/-/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

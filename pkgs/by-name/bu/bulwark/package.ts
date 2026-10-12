@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "bulwark",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bulwarkmail",
           repo: "webmail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
 mkdir -p app/fonts
-cp "${nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ __proto__: pos$2, fonts: nix.thunk(() => ["Geist"]) })))}/share/fonts/truetype/Geist[wght].ttf" app/fonts/Geist.ttf
-cp "${nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ __proto__: pos$3, fonts: nix.thunk(() => ["GeistMono"]) })))}/share/fonts/truetype/GeistMono[wght].ttf" app/fonts/GeistMono.ttf
-cp "${nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ __proto__: pos$4, fonts: nix.thunk(() => ["HankenGrotesk"]) })))}/share/fonts/truetype/HankenGrotesk[wght].ttf" app/fonts/HankenGrotesk.ttf
+cp "${nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, fonts: nix.thunk(() => ["Geist"]) })))}/share/fonts/truetype/Geist[wght].ttf" app/fonts/Geist.ttf
+cp "${nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, fonts: nix.thunk(() => ["GeistMono"]) })))}/share/fonts/truetype/GeistMono[wght].ttf" app/fonts/GeistMono.ttf
+cp "${nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, fonts: nix.thunk(() => ["HankenGrotesk"]) })))}/share/fonts/truetype/HankenGrotesk[wght].ttf" app/fonts/HankenGrotesk.ttf
 
 runHook postConfigure
 `),
@@ -68,12 +68,12 @@ rm -rf $out/node_modules/@img/*-${(nix.asBool(nix.sel(stdenv, "hostPlatform", "i
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, bulwark: nix.thunk(() => nix.attr(nixosTests, "bulwark")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, bulwark: nix.thunk(() => nix.attr(nixosTests, "bulwark")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Modern, self-hosted webmail client for Stalwart Mail Server",
         homepage: "https://bulwarkmail.org",
         changelog: nix.thunk(() => nix.str`https://github.com/bulwarkmail/webmail/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

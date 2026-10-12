@@ -19,8 +19,8 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.arg($, "stdenv");
   const swift = nix.arg($, "swift");
-  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$1, escape: true })), nix.thunk(() => ({
-      __proto__: pos$2,
+  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true })), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       CFBundleDevelopmentRegion: "en",
       CFBundleDisplayName: "Ethernet Connection Status",
       CFBundleExecutable: "Ethernet Connection Status",
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       NSHumanReadableCopyright: "Copyright © 2025. All rights reserved.",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ethernet-connection-status",
       version: "1.0.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "montanaflynn",
           repo: "EthernetConnectionStatus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +77,11 @@ actool --compile "$app/Contents/Resources" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Native macOS menu bar app that monitors Ethernet connection status",
         homepage: "https://github.com/montanaflynn/EthernetConnectionStatus",
         changelog: nix.thunk(() => nix.str`https://github.com/montanaflynn/EthernetConnectionStatus/releases/tag/v${nix.sel(finalAttrs, "version")}`),

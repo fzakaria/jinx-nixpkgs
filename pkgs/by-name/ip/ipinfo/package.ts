@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ipinfo";
       const version = "3.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipinfo",
           repo: "cli",
           tag: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command Line Interface for the IPinfo API",
         homepage: "https://github.com/ipinfo/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/ipinfo/cli/releases/tag/ipinfo-${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fab"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-yG4eFxVRh3/pzrA+5BXkpJBtLlJpj/nVZWeEYJc5300=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [scipy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of standard from IAPWS",
         homepage: "https://github.com/jjgomera/iapws",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dawidsowa"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

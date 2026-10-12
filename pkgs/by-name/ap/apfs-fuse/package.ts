@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const attr = nix.arg($, "attr");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apfs-fuse",
       version: "0-unstable-2023-03-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sgan81",
           repo: "apfs-fuse",
           rev: "66b86bd525e8cb90f9012543be89b1f092b75cf3",
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), attr))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DUSE_FUSE3=OFF")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DUSE_FUSE2")),
       })),
       postFixup: "ln -s $out/bin/apfs-fuse $out/bin/mount.fuse.apfs-fuse\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sgan81/apfs-fuse",
         description: "FUSE driver for APFS (Apple File System)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

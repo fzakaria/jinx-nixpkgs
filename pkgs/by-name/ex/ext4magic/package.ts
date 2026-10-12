@@ -21,23 +21,23 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.3.2",
       pname: "ext4magic",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ext4magic/ext4magic-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8d9c6a594f212aecf4eb5410d277caeaea3adc03d35378257dfd017ef20ea115",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sourceforge.net/p/ext4magic/tickets/10/attachment/ext4magic-0.3.2-i_dir_acl.patch",
             hash: "sha256-DHXjDQ+kT6uLuPb7ODRHfeRRYVxO5OiRafHFiVrzjKk=",
           })))),
         nix.path(here, "./glibc-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/pkg-security-team/ext4magic/-/raw/0e52341dbe8681a6e1a59d902e5e33ec13be1cbe/debian/patches/fix-segfault-extent-free.patch",
             hash: "sha256-MI363/E676E8ZH41k/XnQ2kdWzKAp5uQF/h2FN7X/x8=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [file, libuuid, e2fsprogs, zlib, bzip2]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Recover / undelete files from ext3 or ext4 partitions",
         longDescription: "ext4magic can recover/undelete files from ext3 or ext4 partitions\nby retrieving file-information from the filesystem journal.\n\nIf the information in the journal are sufficient, ext4magic can\nrecover the most file types, with original filename, owner and group,\nfile mode bits and also the old atime/mtime stamps.\n\nIt's much more effective and works much better than extundelete.\n",
         homepage: "https://ext4magic.sourceforge.net/ext4magic_en.html",

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const tkinter = nix.arg($, "tkinter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pyopengltk",
       version: "0.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonwright",
           repo: "pyopengltk",
           rev: "dbed7b7d01cc5a90fd3e79769259b1dc0894b673",
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyopengltk"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cube: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "cube", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               libraries: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               doCheck: false,
             })), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/examples/cube.py`))))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "OpenGL frame for Python/Tkinter via ctypes and pyopengl",
         homepage: "https://github.com/jonwright/pyopengltk",
         maintainers: nix.thunk(() => (() => {

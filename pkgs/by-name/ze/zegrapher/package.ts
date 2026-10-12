@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qmake = nix.thunk(() => nix.attr(qt5, "qmake"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt5, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zegrapher",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdelKS",
           repo: "ZeGrapher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost186]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://zegrapher.com/en/",
         description: "Open source math plotter",
         longDescription: "An open source, free and easy to use math plotter. It can plot functions,\nsequences, parametric equations and data on the plane.\n",

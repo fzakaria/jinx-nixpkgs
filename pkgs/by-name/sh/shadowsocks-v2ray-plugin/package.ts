@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shadowsocks-v2ray-plugin",
       version: "1.3.2-unstable-2025-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shadowsocks",
           repo: "v2ray-plugin",
           rev: "e9af1cdd2549d528deb20a4ab8d61c5fbe51f306",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-FSYv2jC0NU21GtqRkPHjxPcdmXbiIiOM1HsL8x44gZw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet another SIP003 plugin for shadowsocks, based on v2ray",
         homepage: "https://github.com/shadowsocks/v2ray-plugin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

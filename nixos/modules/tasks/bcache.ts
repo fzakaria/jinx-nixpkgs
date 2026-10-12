@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "bcache"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       boot: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         bcache: nix.thunk(() => ({
-          __proto__: pos$2,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "bcache mount support"), { __proto__: pos$1, default: true, example: false })),
+          [nix.POS]: pos$2,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "bcache mount support"), { [nix.POS]: pos$1, default: true, example: false })),
         })),
         initrd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             bcache: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "bcache support in the initrd"), {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "*This will only be used when systemd is used in stage 1.*\n\nWhether to enable bcache support in the initrd.\n",
                 default: nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) && nix.asBool(nix.sel(config, "boot", "bcache", "enable")))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.initrd.systemd.enable && config.boot.bcache.enable")),
@@ -55,28 +55,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bcache-tools"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bcache-tools"))]),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           initrd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             extraUdevRulesCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`cp -v ${nix.sel(pkgs, "bcache-tools")}/lib/udev/rules.d/*.rules $out/
 `))),
             services: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               udev: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "bcache", "enable")), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bcache-tools"))]),
                   binPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bcache-tools"))]),
                 })))),

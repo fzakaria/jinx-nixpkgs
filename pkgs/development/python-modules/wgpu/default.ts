@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const wgpu = nix.arg($, "wgpu");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "wgpu",
       version: "0.32.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pygfx",
           repo: "wgpu-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,10 +58,10 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([
         cffi,
         sniffio,
-        nix.thunk(() => nix.app(nix.sel(rendercanvas, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doInstallCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(rendercanvas, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doInstallCheck: false })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [rubicon_objc])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         glfw: nix.thunk(() => [glfw]),
         docs: nix.thunk(() => [sphinxHook, sphinx_rtd_theme]),
       })),
@@ -74,25 +74,25 @@ export default nix.lambda((args) => (() => {
         psutil,
         pypng,
         pytest,
-        nix.thunk(() => nix.app(nix.sel(rendercanvas, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$4, doInstallCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(rendercanvas, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doInstallCheck: false })))),
         ruff,
         trio,
       ]),
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       installCheckPhase: "runHook preInstallCheck\n\npytest tests -k \"not test_render_timestamps_inside_encoder\"\npytest examples\npytest tests_mem\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: wgpu,
               command: "python3 -c 'import wgpu; print(wgpu.__version__)'",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "WebGPU for Python",
         homepage: "https://github.com/pygfx/wgpu-py",
         changelog: nix.thunk(() => nix.str`https://github.com/pygfx/wgpu-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitstatus = nix.arg($, "gitstatus");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "powerlevel10k",
       version: "1.20.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romkatv",
           repo: "powerlevel10k",
           rev: "36f3045d69d1ba402db09d09eb12b42eebe0fa3b",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gitstatusd.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gitstatusdPath: nix.thunk(() => nix.str`${gitstatus}/bin/gitstatusd`),
           })))),
       ]),
       installPhase: "runHook preInstall\n\ninstall -D powerlevel10k.zsh-theme --target-directory=$out/share/zsh/themes/powerlevel10k\ninstall -D powerlevel9k.zsh-theme --target-directory=$out/share/zsh/themes/powerlevel10k\ninstall -D config/* --target-directory=$out/share/zsh/themes/powerlevel10k/config\ninstall -D internal/* --target-directory=$out/share/zsh/themes/powerlevel10k/internal\ncp -R gitstatus $out/share/zsh/themes/powerlevel10k/gitstatus\nln -s $out/share/zsh/themes/powerlevel10k $out/share/zsh-powerlevel10k\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast reimplementation of Powerlevel9k ZSH theme",
         longDescription: "To make use of this derivation, use\n`programs.zsh.promptInit = \"source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\";`\n",
         homepage: "https://github.com/romkatv/powerlevel10k",

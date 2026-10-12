@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const domain = "powercalc";
       const version = "1.26.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "homeassistant-powercalc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(home_assistant, "getPackages"), "camera", nix.thunk(() => nix.sel(home_assistant, "python3Packages")))));
       const preCheck = "patchShebangs --build tests/setup.sh\ntests/setup.sh\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/bramstroker/homeassistant-powercalc/releases/tag/${nix.sel(src, "tag")}`),
         description: "Custom Home Assistant component for virtual power sensors",
         homepage: "https://github.com/bramstroker/homeassistant-powercalc",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

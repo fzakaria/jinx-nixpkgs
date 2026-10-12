@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xca",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chris2511",
           repo: "xca",
           rev: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         QT_PLUGIN_PATH: nix.thunk(() => nix.str`${nix.sel(qt6, "qtbase")}/${nix.sel(qt6, "qtbase", "qtPluginPrefix")}`),
       })),
       enableParallelBuilding: true,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6, "qtbase", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "X509 certificate generation tool, handling RSA, DSA and EC keys, certificate signing requests (PKCS#10) and CRLs",
         mainProgram: "xca",
         homepage: "https://hohnstaedt.de/xca/",

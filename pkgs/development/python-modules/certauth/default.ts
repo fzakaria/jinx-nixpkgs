@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "certauth",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ikreymer",
           repo: "certauth",
           rev: "ad2bae5d40a9e45519fc1f2cd7678174bbc55b3d",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         "test_in_mem_parent_wildcard_cert_2",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pyopenssl, "version")), "26.3")),
         description: "Simple CertificateAuthority and host certificate creation, useful for man-in-the-middle HTTPS proxy",
         mainProgram: "certauth",

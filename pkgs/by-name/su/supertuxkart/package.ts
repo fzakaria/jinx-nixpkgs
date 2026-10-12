@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const serverOnly = nix.argOr($, "serverOnly", () => false);
   const nameSuffix = nix.argOr($, "nameSuffix", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`supertuxkart${nameSuffix}`),
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supertuxkart",
           repo: "stk-code",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +84,7 @@ substituteInPlace CMakeLists.txt \\
         "-DOpenGL_GL_PREFERENCE=GLVND",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdio", "-include stdexcept"]))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "app=$out/Applications/SuperTuxKart.app\n\nmkdir -p \"$out\"/{bin,Applications}\nmv \"$out/supertuxkart.app\" \"$app\"\n\ncp \"$app/Contents/MacOS/supertuxkart\" \\\n  \"$out/bin/supertuxkart\"\nln -sfn \"$out/share/supertuxkart/data\" \\\n  \"$app/Contents/Resources/data\"\n")),
@@ -93,10 +93,10 @@ substituteInPlace CMakeLists.txt \\
   --set-default SUPERTUXKART_DATADIR "$out/share/supertuxkart"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# patch the copy inside the app bundle so launching via Finder works.\ncp $out/bin/supertuxkart \\\n  $out/Applications/SuperTuxKart.app/Contents/MacOS/supertuxkart\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         assets: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://svn.code.sf.net/p/supertuxkart/code/stk-assets",
             rev: "18621",
             sha256: "sha256-iqQSezGu0tecA53qhrtYA77SLj28WUUCcL4ZCJbK5C8=",
@@ -115,7 +115,7 @@ substituteInPlace CMakeLists.txt \\
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "3D open-source arcade racer",
         mainProgram: "supertuxkart",
         longDescription: "Karts. Nitro. Action! SuperTuxKart is a 3D open-source arcade racer\nwith a variety of characters, tracks, and modes to play.\nIt aims to be more fun than realistic, and provides an enjoyable experience for all ages.\n",

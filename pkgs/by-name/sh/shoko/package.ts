@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rhash = nix.arg($, "rhash");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "shoko",
       version: "5.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ShokoAnime",
           repo: "ShokoServer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["--prefix", "PATH", ":", nix.thunk(() => nix.str`${mediainfo}/bin`)]),
       runtimeDeps: nix.thunk(() => [rhash]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9]+\\.[0-9]+\\.[0-9]+).*"]),
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, shoko: nix.thunk(() => nix.attr(nixosTests, "shoko")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, shoko: nix.thunk(() => nix.attr(nixosTests, "shoko")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dotnet_sdk_8, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/ShokoAnime/ShokoServer",
         changelog: nix.thunk(() => nix.str`https://github.com/ShokoAnime/ShokoServer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Backend for the Shoko anime management system",

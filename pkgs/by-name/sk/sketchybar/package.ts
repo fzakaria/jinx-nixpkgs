@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sketchybar",
       version: "2.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FelixKratz",
           repo: "SketchyBar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["arm64"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ./bin/sketchybar $out/bin/sketchybar\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Highly customizable macOS status bar replacement",
         homepage: "https://github.com/FelixKratz/SketchyBar",
         changelog: nix.thunk(() => nix.str`https://github.com/FelixKratz/SketchyBar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

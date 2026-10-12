@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-data-flows",
       version: "1.5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alef-Burzmali",
           repo: "netbox-data-flows",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_data_flows"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_data_flows" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_data_flows" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin to document data flows between systems and applications",
         homepage: "https://github.com/Alef-Burzmali/netbox-data-flows",
         changelog: nix.thunk(() => nix.str`https://github.com/Alef-Burzmali/netbox-data-flows/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

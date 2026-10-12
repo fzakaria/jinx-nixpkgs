@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "karakeep",
       version: "0.33.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karakeep-app",
           repo: "karakeep",
           tag: nix.thunk(() => nix.str`cli/v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ substituteInPlace apps/cli/src/commands/dump.ts \\
       nativeBuildInputs: nix.thunk(() => [python3, nodejs_22, node_gyp, pnpmConfigHook, pnpm_11]),
       buildInputs: nix.thunk(() => [gnutar]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -132,15 +132,15 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           karakeep: nix.thunk(() => nix.attr(nixosTests, "karakeep")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://karakeep.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/karakeep-app/karakeep/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Self-hostable bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search",

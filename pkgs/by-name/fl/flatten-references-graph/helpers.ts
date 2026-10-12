@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const writeCheckedBashBin = (name) => (() => {
     const interpreter = nix.thunk(() => nix.str`${bash}/bin/bash`);
     return nix.app(nix.sel(writers, "makeScriptWriter"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         interpreter: interpreter,
         check: nix.thunk(() => nix.str`${interpreter} -n $1`),
       })), nix.thunk(() => nix.str`/bin/${name}`));
@@ -29,6 +29,6 @@ ${nix.sel(python3Packages, "python")}/bin/python -m unittest "\${@}"
 `)));
   const format = nix.thunk(() => nix.app(writeCheckedBashBin, "format", nix.thunk(() => nix.str`${nix.sel(python3Packages, "autopep8")}/bin/autopep8 -r -i . "\${@}"
 `)));
-  return { __proto__: pos$2, format: format, lint: lint, unittest: unittest };
+  return { [nix.POS]: pos$2, format: format, lint: lint, unittest: unittest };
 })(), formals$1);
 //# sourceMappingURL=helpers.ts.map

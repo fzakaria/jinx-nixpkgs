@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hextazy",
       version: "0.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0xfalafel",
           repo: "hextazy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-0uEiL85ypKr/9r0okrm4pqLRZOYDIUFxmobqK7Jm1Jw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TUI hexeditor in Rust with colored bytes",
         homepage: "https://github.com/0xfalafel/hextazy",
         changelog: nix.thunk(() => nix.str`https://github.com/0xfalafel/hextazy/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

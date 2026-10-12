@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sysfsutils",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/linux-diag/sysfsutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "e865de2c1f559fff0d3fc936e660c0efaf7afe662064f2fb97ccad1ec28d208a",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://linux-diag.sourceforge.net/Sysfsutils.html",
         longDescription: "These are a set of utilities built upon sysfs, a new virtual\nfilesystem in Linux kernel versions 2.5+ that exposes a system's\ndevice tree.\n",
         license: nix.thunk(() => (() => {

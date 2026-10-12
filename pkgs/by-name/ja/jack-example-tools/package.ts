@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const zita_resampler = nix.arg($, "zita-resampler");
   const enableAlsa = nix.argOr($, "enableAlsa", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jack-example-tools",
       version: "4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jackaudio",
           repo: "jack-example-tools",
           rev: nix.thunk(() => nix.str`tags/${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat([
         jack2,
-        nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ __proto__: pos$2, withCustomModes: true })))),
+        nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withCustomModes: true })))),
         libsamplerate,
         libsndfile,
         readline,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official examples and tools from the JACK project",
         homepage: "https://jackaudio.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

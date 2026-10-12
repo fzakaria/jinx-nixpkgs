@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${util_linux}/bin`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prl-tools",
       version: "27.0.2-58673",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.parallels.com/desktop/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/${nix.sel(finalAttrs, "version")}/ParallelsDesktop-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-/buPuva2r9dxSpLdNI9Qg/YTk0Y82XRwFt2XhF24wh0=",
         })))),
@@ -130,9 +130,9 @@ runHook postUnpack
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parallels Tools for Linux guests",
         homepage: "https://parallels.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

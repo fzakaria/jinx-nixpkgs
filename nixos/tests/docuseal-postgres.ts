@@ -21,51 +21,51 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "docuseal",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             docuseal: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               port: 80n,
               secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "23bec595a1658d136d532af1365b40024b662c0862e9cdf14fd22c0afaeb0dd6322b114fa35bd82e564bae44a896b5abef3a66afd61e1382b8ebd579e2c5c17f")),
               extraConfig: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 DATABASEURL: "postgresql://docuseal:db-secret@127.0.0.1:5432/docuseal",
               })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(pkgs, "postgresql")),
               enable: true,
               ensureDatabases: nix.thunk(() => ["docuseal"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$4, name: "docuseal", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$4, name: "docuseal", ensureDBOwnership: true })),
               ]),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postgresql-password", "CREATE ROLE docuseal WITH LOGIN PASSWORD 'db-secret' CREATEDB;\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "docuseal-config": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 requires: nix.thunk(() => ["postgresql.service"]),
                 after: nix.thunk(() => ["postgresql.service"]),
               })),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl2720dwlpr";
       const version = "3.2.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101801/${pname}-${version}.i386.deb`),
           sha256: "088217e9ad118ec1e7f3d3f8f60f3bd839fe2c7d7c1136b249e9ac648dc742af",
         }))));
@@ -50,7 +50,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/brprintconflsr3
 patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L2720DW lpr driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -62,7 +62,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xeji"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const pugixml = nix.arg($, "pugixml");
   const singleApplication = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "itay-grudev",
       repo: "SingleApplication",
       tag: "v3.2.0",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qelectrotech";
       const version = "0.100";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "qelectrotech",
           repo: "qelectrotech-source-mirror",
           tag: version,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\ninstall -Dm555 qelectrotech $out/bin/qelectrotech\n\ninstall -Dm444 -t $out/share/applications ../misc/org.qelectrotech.qelectrotech.desktop\n\nmkdir -p $out/share/qelectrotech\ncp -r ../elements $out/share/qelectrotech\ncp -r ../titleblocks $out/share/qelectrotech\ncp -r ../lang $out/share/qelectrotech\ncp -r ../examples $out/share/qelectrotech\n\nmkdir -p $out/share/icons/hicolor\ncp -r ../ico $out/share/icons/hicolor\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free software to create electric diagrams",
         mainProgram: "qelectrotech",
         homepage: "https://qelectrotech.org/",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -68,63 +68,63 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         reaction: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(mkEnableOption, "enable reaction")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "reaction", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Configuration for reaction. See the [wiki](https://framagit.org/ppom/reaction-wiki).\n\nThe settings are written as a YAML file.\n\nCan be used in combination with `settingsFiles` option, both will be present in the configuration directory.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         description: "Nixpkgs provides a `reaction-plugins` package set which includes both offical and community plugins for reaction.\n\nTo use the plugins in your module configuration, in `settings.plugins` you can use for e.g. `${lib.getExe reaction-plugins.reaction-plugin-ipset}`\nSee https://reaction.ppom.me/plugins/ to configure plugins.\n",
                         default: nix.thunk(() => ({})),
                         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                               const $_1 = nix.formals(args_1, formals$2);
                               const name = nix.arg($_1, "name");
                               return {
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$1,
+                                      [nix.POS]: pos$1,
                                       description: nix.thunk(() => nix.str`enable reaction-plugin-${name}`),
                                       type: nix.thunk(() => nix.sel(types, "bool")),
                                       default: true,
                                     })))),
                                   path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$2,
+                                      [nix.POS]: pos$2,
                                       description: "path to the plugin binary",
                                       type: nix.thunk(() => nix.sel(types, "str")),
                                       default: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "plugins", nix.key(nix.str`reaction-plugin-${name}`))}/bin/reaction-plugin-${name}`),
                                       defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`\${cfg.package.plugins."reaction-plugin-${name}"}/bin/reaction-plugin-${name}`))),
                                     })))),
                                   check_root: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$3,
+                                      [nix.POS]: pos$3,
                                       description: "Whether reaction must check that the executable is owned by root",
                                       type: nix.thunk(() => nix.sel(types, "bool")),
                                       default: true,
                                     })))),
                                   systemd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$4,
+                                      [nix.POS]: pos$4,
                                       description: "Whether reaction must isolate the plugin using systemd's run0",
                                       type: nix.thunk(() => nix.sel(types, "bool")),
                                       default: nix.thunk(() => nix.sel(cfg, "runAsRoot")),
                                       defaultText: "config.services.reaction.runAsRoot",
                                     })))),
                                   systemd_options: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$5,
+                                      [nix.POS]: pos$5,
                                       description: "A key-value map of systemd options.\nKeys must be strings and values must be string arrays.\n\nSee `man systemd.directives` for all supported options, and particularly options in `man systemd.exec`\n",
                                       type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                                       default: nix.thunk(() => ({})),
@@ -141,31 +141,31 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           settingsFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Configuration for reaction, see the [wiki](https://framagit.org/ppom/reaction-wiki).\n\nreaction supports JSON, YAML and JSONnet. For those who prefer to take advantage of JSONnet rather than Nix.\n\nCan be used in combination with `settings` option, both will be present in the configuration directory.\n",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
             })))),
           loglevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "reaction's loglevel. One of DEBUG, INFO, WARN, ERROR.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["DEBUG", "INFO", "WARN", "ERROR"]))))),
             })))),
           stopForFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to stop reaction when reloading the firewall.\n\nThe presence of a reaction chain in the INPUT table may cause the firewall\nreload to fail.\nOne can alternatively cherry-pick the right iptables commands to execute before and after the firewall\n```nix\n{\n  systemd.services.firewall.serviceConfig = {\n    ExecStopPre = [ \"${pkgs.iptables}/bin/iptables -w -D INPUT -p all -j reaction\" ];\n    ExecStartPost = [ \"${pkgs.iptables}/bin/iptables -w -I INPUT -p all -j reaction\" ];\n  };\n}\n```\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Check the syntax of the configuration files at build time",
             })))),
           runAsRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to run reaction as root.\nDefaults to false, where an unprivileged reaction user is created.\n\nBe sure to give it sufficient permissions.\nExample config permitting `iptables` and `journalctl` use\n\n```nix\n{\n  # allows reading journal logs of processess\n  users.users.reaction.extraGroups = [ \"systemd-journal\" ];\n\n  # allows modifying ip firewall rules\n  systemd.services.reaction.unitConfig.ConditionCapability = \"CAP_NET_ADMIN\";\n  systemd.services.reaction.serviceConfig = {\n    CapabilityBoundingSet = [ \"CAP_NET_ADMIN\" ];\n    AmbientCapabilities = [ \"CAP_NET_ADMIN\" ];\n  };\n\n  # optional, if more control over ssh logs is needed\n  services.openssh.settings.LogLevel = lib.mkDefault \"VERBOSE\";\n}\n```\n\n```nix\n# core ipset plugin requires these if running as non-root\nsystemd.services.reaction.serviceConfig = {\n  CapabilityBoundingSet = [\n    \"CAP_NET_ADMIN\"\n    \"CAP_NET_RAW\"\n    \"CAP_DAC_READ_SEARCH\" # for journalctl\n  ];\n  AmbientCapabilities = [\n    \"CAP_NET_ADMIN\"\n    \"CAP_NET_RAW\"\n    \"CAP_DAC_READ_SEARCH\"\n  ];\n};\n```\n",
@@ -182,39 +182,39 @@ ln -s "${file}" "$out/$filename"
 ln -s ${generatedSettings} $out/reaction.yml
 `)));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) || nix.asBool(!nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "settingsFiles"))), 0n)))),
               message: "You must specify settings and/or settingsFile options",
             })),
           ]),
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "runAsRoot"))), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               users: nix.thunk(() => ({
-                __proto__: pos$22,
-                reaction: nix.thunk(() => ({ __proto__: pos$21, isSystemUser: true, group: "reaction" })),
+                [nix.POS]: pos$22,
+                reaction: nix.thunk(() => ({ [nix.POS]: pos$21, isSystemUser: true, group: "reaction" })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$23, reaction: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$23, reaction: nix.thunk(() => ({})) })),
             })))),
           system: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             checks: nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(cfg, "checkConfig")) && nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform"), nix.sel(pkgs, "stdenv", "buildPlatform"))))), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "reaction-config-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} test-config -c ${settingsDir} >/dev/null
 echo "reaction config ${settingsDir} is valid"
 touch $out
 `))))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             slices: nix.thunk(() => ({
-              __proto__: pos$27,
-              "system-reaction": nix.thunk(() => ({ __proto__: pos$26, description: "Reaction system slice" })),
+              [nix.POS]: pos$27,
+              "system-reaction": nix.thunk(() => ({ [nix.POS]: pos$26, description: "Reaction system slice" })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               reaction: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 description: "A daemon that scans program outputs for repeated patterns, and takes action.",
                 documentation: nix.thunk(() => ["https://reaction.ppom.me"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -222,7 +222,7 @@ touch $out
                 partOf: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(cfg, "stopForFirewall")), nix.thunk(() => ["firewall.service"]))),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iptables"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   Type: "simple",
                   KillMode: "mixed",
                   Slice: "system-reaction.slice",
@@ -254,34 +254,34 @@ touch $out
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             reaction: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               settings: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 plugins: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   ipset: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     enable: nix.thunk(() => nix.app(mkDefault, true)),
                     systemd_options: nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       CapabilityBoundingSet: nix.thunk(() => ["~CAP_NET_ADMIN", "~CAP_PERFMON"]),
                     })),
                   })),
-                  virtual: nix.thunk(() => ({ __proto__: pos$34, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+                  virtual: nix.thunk(() => ({ [nix.POS]: pos$34, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

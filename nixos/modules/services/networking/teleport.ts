@@ -29,39 +29,39 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "teleport"));
   const settingsYaml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         teleport: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the Teleport service")),
-            package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "teleport", nix.thunk(() => ({ __proto__: pos$1, example: "teleport_11" })))),
+            package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "teleport", nix.thunk(() => ({ [nix.POS]: pos$1, example: "teleport_11" })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(settingsYaml, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  teleport = {\n    nodename = \"client\";\n    advertise_ip = \"192.168.1.2\";\n    auth_token = \"60bdc117-8ff4-478d-95e4-9914597847eb\";\n    auth_servers = [ \"192.168.1.1:3025\" ];\n    log.severity = \"DEBUG\";\n  };\n  ssh_service = {\n    enabled = true;\n    labels = {\n      role = \"client\";\n    };\n  };\n  proxy_service.enabled = false;\n  auth_service.enabled = false;\n}\n")),
                 description: "Contents of the {file}`teleport.yaml` config file.\nThe `--config` arguments will only be passed if this set is not empty.\n\nSee <https://goteleport.com/docs/setup/reference/config/>.\n",
               })))),
             insecure: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "starting teleport in insecure mode.\n\nThis is dangerous!\nSensitive information will be logged to console and certificates will not be verified.\nProceed with caution!\n\nTeleport starts with disabled certificate validation on Proxy Service, validation still occurs on Auth Service\n")),
             })),
             diag: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "endpoints for monitoring purposes.\n\nSee <https://goteleport.com/docs/setup/admin/troubleshooting/#troubleshooting/>\n")),
               addr: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "127.0.0.1",
                   description: "Metrics and diagnostics address.",
                 })))),
               port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.lookup(w_1, "port")),
                   default: 3000n,
                   description: "Metrics and diagnostics port.",
@@ -72,17 +72,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "teleport", "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             teleport: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => (() => {
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/teleport start \\
   ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "insecure", "enable")), "--insecure")} \\
   ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "diag", "enable")), nix.thunk(() => nix.str`--diag-addr=${nix.sel(cfg, "diag", "addr")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "diag", "port")))}`))} \\

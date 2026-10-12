@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const tempman = nix.arg($, "tempman");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mammoth",
       version: "1.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mwilliamson",
           repo: "python-mammoth",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PATH=$out/bin:$PATH\n",
       pythonImportsCheck: nix.thunk(() => ["mammoth"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convert Word documents (.docx files) to HTML",
         homepage: "https://github.com/mwilliamson/python-mammoth",
         changelog: nix.thunk(() => nix.str`https://github.com/mwilliamson/python-mammoth/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),

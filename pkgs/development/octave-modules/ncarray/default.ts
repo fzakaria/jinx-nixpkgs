@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ncarray";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-W6L2Esm7AdzntT7cimKylbeKYcZWKhHim96N5dM/qoE=",
         }))));
       const buildInputs = nix.thunk(() => [netcdf]);
       const requiredOctavePackages = nix.thunk(() => [statistics]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/ncarray/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         description: "Access a single or a collection of NetCDF files as a multi-dimensional array",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

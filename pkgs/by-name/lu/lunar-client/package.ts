@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pname = "lunarclient";
       const version = "3.7.17";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launcherupdates.lunarclientcdn.com/Lunar%20Client-${version}-ow.AppImage`),
           hash: "sha512-qAiOVtqZJMRi1dWPtHhy/MeUAoGcVw+WzUM1U8sSn3Ojf+7SFJgaz451kVKPDyBT0jelwy4bZ6nmaEyiy0wZwQ==",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`wrapProgram $out/bin/lunarclient \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 install -Dm444 ${contents}/lunarclient.desktop -t $out/share/applications/
@@ -34,9 +34,9 @@ substituteInPlace $out/share/applications/lunarclient.desktop \\
   --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=lunarclient'
 `;
       })());
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free Minecraft client with mods, cosmetics, and performance boost",
         homepage: "https://www.lunarclient.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -51,7 +51,7 @@ substituteInPlace $out/share/applications/lunarclient.desktop \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

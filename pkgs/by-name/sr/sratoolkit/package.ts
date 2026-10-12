@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ncbi_vdb = nix.arg($, "ncbi-vdb");
   const mbedtls = nix.arg($, "mbedtls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sratoolkit",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ncbi",
           repo: "sra-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncbi_vdb, libxml2, mbedtls]),
       nativeBuildInputs: nix.thunk(() => [cmake, python3, bison, flex, openjdk]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ncbi/sra-tools",
         description: "Collection of tools and libraries for using data in the INSDC Sequence Read Archives",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncbiPd")),

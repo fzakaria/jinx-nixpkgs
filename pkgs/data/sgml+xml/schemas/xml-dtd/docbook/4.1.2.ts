@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const findXMLCatalogs = nix.arg($, "findXMLCatalogs");
   const docbook42catalog = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.oasis-open.org/docbook/xml/4.2/catalog.xml",
       hash: "sha256-J0g0JhEzZpuYlm0qU+lKmLc1oUbD5FKQHuUAKrC5kKI=",
     }))));
   return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       lib: lib,
       stdenv: stdenv,
       fetchurl: fetchurl,

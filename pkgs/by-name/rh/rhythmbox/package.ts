@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rhythmbox";
       const version = "3.4.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/rhythmbox/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/rhythmbox-${version}.tar.xz`),
           sha256: "5CKRoY33oh/+azUr9z8F1+KYu04FvOWWf5jujO5ECPE=",
         }))));
@@ -101,11 +101,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const preFixup = "gappsWrapperArgs+=(\n  --prefix PYTHONPATH : \"$out/lib/rhythmbox/plugins/\"\n)\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/rhythmbox",
         description: "Music playing application for GNOME",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

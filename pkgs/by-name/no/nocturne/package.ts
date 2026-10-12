@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nocturne",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jeffser",
           repo: "Nocturne",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "pillow")),
       ]),
       preInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extraLoaders: nix.thunk(() => [
             librsvg,
             webp_pixbuf_loader,
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
 export FONTCONFIG_FILE="${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Adwaita music player for OpenSubsonic servers like Navidrome",
         homepage: "https://jeffser.com/nocturne/",
         changelog: "https://github.com/Jeffser/Nocturne/releases",

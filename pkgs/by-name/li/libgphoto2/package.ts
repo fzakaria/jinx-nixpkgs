@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libgphoto2";
       const version = "2.5.34";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gphoto",
           repo: "libgphoto2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const propagatedBuildInputs = nix.thunk(() => [libexif]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         }))));
       const hardeningDisable = nix.thunk(() => ["format"]);
@@ -56,7 +56,7 @@ ${executablePrefix}/lib/libgphoto2/print-camera-list \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.gphoto.org/proj/libgphoto2/",
         changelog: nix.thunk(() => nix.str`https://github.com/gphoto/libgphoto2/blob/${nix.sel(src, "tag")}/NEWS`),
         description: "Library for accessing digital cameras",
@@ -72,7 +72,7 @@ ${executablePrefix}/lib/libgphoto2/print-camera-list \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

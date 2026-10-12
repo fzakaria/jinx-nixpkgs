@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const unicrypto = nix.arg($, "unicrypto");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kerbad",
       version: "0.5.6-unstable-2025-10-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CravateRouge",
           repo: "kerbad",
           rev: "3c2284de4d2390e22026b550705622ed39e5c05a",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["minikerberos"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kerberos manipulation library in pure Python",
         homepage: "https://github.com/CravateRouge/kerbad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

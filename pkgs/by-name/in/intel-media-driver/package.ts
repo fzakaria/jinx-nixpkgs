@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "intel-media-driver",
       version: "26.2.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "media-driver",
           tag: nix.thunk(() => nix.str`intel-media-${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/multimedia-team/intel-media-driver-non-free/-/raw/7376a99f060c26d6be8e56674da52a61662617b9/debian/patches/0002-Remove-settings-based-on-ARCH.patch",
             hash: "sha256-57yePuHWYb3XXrB4MjYO2h6jbqfs4SGTLlLG91el8M4=",
           })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "-DMEDIA_BUILD_FATAL_WARNINGS=OFF",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), "-D_FILE_OFFSET_BITS=64")),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
   $out/lib/dri/iHD_drv_video.so
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "intel-media-driver": nix.thunk(() => nix.attr(pkgsi686Linux, "intel-media-driver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Intel Media Driver for VAAPI — Broadwell+ iGPUs",
         longDescription: "The Intel Media Driver for VAAPI is a new VA-API (Video Acceleration API)\nuser mode driver supporting hardware accelerated decoding, encoding, and\nvideo post processing for GEN based graphics hardware.\n",
         homepage: "https://github.com/intel/media-driver",

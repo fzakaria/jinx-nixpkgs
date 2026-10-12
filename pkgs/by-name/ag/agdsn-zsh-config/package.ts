@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agdsn-zsh-config",
       version: "0.9.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agdsn",
           repo: "agdsn-zsh-config",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -D -m644 zshrc-base-hw.zsh \"$out/etc/zsh/zshrc\"\ninstall -D -m644 zshrc-home.zsh \"$out/etc/skel/.zshrc\"\ninstall -D -m644 zshrc-home.zsh \"$out/etc/zsh/newuser.zshrc.recommended\"\ninstall -D -m644 profile-d-agdsn-zsh-config.sh \"$out/etc/profile.d/agdsn-zsh-config.sh\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modified version of the Grml Zsh configuration specialised for the needs of system administration",
         homepage: "https://github.com/agdsn/agdsn-zsh-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pamixer",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdemoulins",
           repo: "pamixer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [boost, cxxopts, libpulseaudio]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pulseaudio command line mixer",
         longDescription: "Features:\n  - Get the current volume of the default sink, the default source or a selected one by its id\n  - Set the volume for the default sink, the default source or any other device\n  - List the sinks\n  - List the sources\n  - Increase / Decrease the volume for a device\n  - Mute or unmute a device\n",
         homepage: "https://github.com/cdemoulins/pamixer",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antora";
       const version = "3.1.15";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antora",
           repo: "antora",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace package.json --replace-warn \\\n  '\"_mocha\"' '\"\"'\nsubstituteInPlace package.json --replace-warn \\\n  '\"npm run lint\"' '\"\"'\n";
       const postInstall = "mkdir -p $out/bin\nln -s $out/lib/node_modules/antora-build/packages/cli/bin/antora $out/bin/antora\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modular documentation site generator. Designed for users of Asciidoctor",
         homepage: "https://antora.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

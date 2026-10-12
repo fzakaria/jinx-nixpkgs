@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const pihole = nix.thunk(() => nix.sel(cfg, "piholePackage"));
   const makePayload = (list) => nix.builtins.toJSON(nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => nix.attr(list, "type")),
       enabled: nix.thunk(() => nix.attr(list, "enabled")),
       address: nix.thunk(() => nix.sel(list, "url")),

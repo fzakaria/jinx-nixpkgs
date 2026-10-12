@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fuse-emulator",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fuse-emulator/fuse-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-WBW0IlbU3ShYHVnzzuwz/Nc2t6aK/gMrHmW6cU+1VkI=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-desktop-integration"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fuse-emulator.sourceforge.net/",
         description: "ZX Spectrum emulator",
         mainProgram: "fuse",

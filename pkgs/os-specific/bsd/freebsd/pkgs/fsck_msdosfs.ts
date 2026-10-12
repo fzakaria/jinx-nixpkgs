@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/fsck_msdosfs",
       extraPaths: nix.thunk(() => ["sbin/mount", "sbin/fsck"]),
       NIX_CFLAGS_COMPILE: nix.thunk(() => ["-Wno-unterminated-string-initialization"]),

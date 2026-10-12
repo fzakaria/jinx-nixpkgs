@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const test = nix.arg($, "test");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     equal: (expected) => (actual) => (nix.asBool(nix.eq(actual, expected)) ? nix.app(nix.sel(test, "passed"), nix.thunk(() => nix.str`= ${nix.builtins.toString(expected)}`)) : nix.app(nix.sel(test, "failed"), nix.thunk(() => nix.add(nix.add(nix.str`expected '${nix.builtins.toString(expected)}'(${nix.builtins.typeOf(expected)})`, " !=  "), nix.str`actual '${nix.builtins.toString(actual)}'(${nix.builtins.typeOf(actual)})`)))),
     beASet: (actual) => (nix.asBool(nix.builtins.isAttrs(actual)) ? nix.app(nix.sel(test, "passed"), "is a set") : nix.app(nix.sel(test, "failed"), nix.thunk(() => nix.str`is not a set, was ${nix.builtins.typeOf(actual)}: ${nix.builtins.toString(actual)}`))),
     haveKeys: (expected) => (actual) => (nix.asBool(nix.builtins.all((ex) => nix.builtins.any((ac) => nix.eq(ex, ac), nix.thunk(() => nix.builtins.attrNames(actual))), expected)) ? nix.app(nix.sel(test, "passed"), "has expected keys") : nix.app(nix.sel(test, "failed"), nix.thunk(() => nix.str`keys differ: expected: [${nix.app(nix.sel(lib, "concatStringsSep"), ";", expected)}] actual: [${nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.builtins.attrNames(actual)))}]`))),

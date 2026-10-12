@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonwatch",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbohdan",
           repo: "jsonwatch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-D29pmt97DYfpYa9EwK+IlggR3zQFGzOy/Ky01UGI3tg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Like watch -d but for JSON",
         longDescription: "jsonwatch is a command line utility with which you can track\nchanges in JSON data delivered by a shell command or a web\n(HTTP/HTTPS) API. jsonwatch requests data from the designated\nsource repeatedly at a set interval and displays the\ndifferences when the data changes.\n",
         homepage: "https://github.com/dbohdan/jsonwatch",

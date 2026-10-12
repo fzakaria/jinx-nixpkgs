@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "electron",
       version: nix.thunk(() => nix.attr(electron_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, makeWrapper]),
@@ -32,7 +32,7 @@ makeWrapper "${electron_unwrapped}/libexec/electron/electron" "$out/bin/electron
 ln -s ${electron_unwrapped}/libexec $out/libexec
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: electron_unwrapped,
         headers: nix.thunk(() => nix.attr(electron_unwrapped, "headers")),
         dist: nix.thunk(() => nix.attr(electron_unwrapped, "dist")),

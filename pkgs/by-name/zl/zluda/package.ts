@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zluda",
       version: "6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vosen",
           repo: "ZLUDA",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-q5DagH0USWZNni0UrwHzeHe4LpaOCHU0ffOek7PUz50=",
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")),
       })),
       preConfigure: "# disable test written for windows only: https://github.com/vosen/ZLUDA/blob/774f4bcb37c39f876caf80ae0d39420fa4bc1c8b/zluda_inject/tests/inject.rs#L55\nrm zluda_inject/tests/inject.rs\n",
       buildPhase: "runHook preBuild\ncargo xtask --release\nrunHook postBuild\n",
       preInstall: "mkdir -p $out/lib/\nfind target/release/ -maxdepth 1 -type l -name '*.so*' -exec \\\n  cp --recursive --no-clobber --target-directory=$out/lib/ {} +\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUDA on non-Nvidia GPUs",
         homepage: "https://github.com/vosen/ZLUDA",
         changelog: nix.thunk(() => nix.str`https://github.com/vosen/ZLUDA/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

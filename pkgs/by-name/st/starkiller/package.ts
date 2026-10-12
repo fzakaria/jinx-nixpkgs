@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const nodejs_24 = nix.arg($, "nodejs_24");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "starkiller",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bc-security",
           repo: "starkiller",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uFSv/SfXATi01e4VH6iImvRnlFTUB3OarhfSTLQDg/M=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-NAnROD2Bt2sYydLbZVzudwDajbc4zonTjSLcdD32KNE=",
         })))),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir $out\ncp -r dist/** $out\n",
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, nodejs_24]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/BC-SECURITY/Starkiller",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

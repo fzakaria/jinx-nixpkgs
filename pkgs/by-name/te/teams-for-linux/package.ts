@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "teams-for-linux";
       const version = "2.23.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IsmaelMartinez",
           repo: "teams-for-linux",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-MHGi5Vs8N+BKAu8hJtJG8RQuIcMh59ucJt2XR1HBvkc=";
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper, versionCheckHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libicns])))));
       const doInstallCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const makeCacheWritable = true;
       const buildPhase = nix.thunk(() => nix.add(nix.add(nix.str`runHook preBuild
 
@@ -75,7 +75,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/teams-for-l
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r dist/mac*/teams-for-linux.app $out/Applications\nmakeWrapper $out/Applications/teams-for-linux.app/Contents/MacOS/teams-for-linux $out/bin/teams-for-linux\n")), "\nrunHook postInstall\n"));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "teams-for-linux",
             exec: "teams-for-linux %U",
             icon: "teams-for-linux",
@@ -86,11 +86,11 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/teams-for-l
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unofficial Microsoft Teams client for Linux",
         mainProgram: "teams-for-linux",
         homepage: "https://github.com/IsmaelMartinez/teams-for-linux",
@@ -112,7 +112,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/teams-for-l
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

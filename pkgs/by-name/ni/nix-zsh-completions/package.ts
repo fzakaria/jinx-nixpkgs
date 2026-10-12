@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-zsh-completions",
       version: "0.5.1-unstable-2025-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nix-zsh-completions",
           rev: "d4ae06bedb9a353ac894862d1d83f60ab4e2ccce",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/zsh/{site-functions,plugins/nix}\ncp _* $out/share/zsh/site-functions\ncp *.zsh $out/share/zsh/plugins/nix\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nix-community/nix-zsh-completions",
         description: "ZSH completions for Nix, NixOS, and NixOps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

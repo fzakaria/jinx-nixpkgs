@@ -34,36 +34,36 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "3.22.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "mealie-recipes",
       repo: "mealie",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3jDKcDHiA+7ePJGEyGhBSZrhkFQYHrak+AiOHoMv2qE=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "mealie-frontend",
       version: version,
       src: nix.thunk(() => nix.str`${src}/frontend`),
       __structuredAttrs: true,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/frontend/yarn.lock`),
           hash: "sha256-S0i7FGD6be/MIBZRDlEb65tzVUuMPLkg9rL71lkrmms=",
         })))),
       nativeBuildInputs: nix.thunk(() => [
         fixup_yarn_lock,
         nodejs,
-        nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ __proto__: pos$3, nodejs: nodejs })))),
+        nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, nodejs: nodejs })))),
         writableTmpDirAsHomeHook,
         dart_sass,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, NUXT_TELEMETRY_DISABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NUXT_TELEMETRY_DISABLED: 1n })),
       configurePhase: "runHook preConfigure\n\nsed -i 's+\"@nuxt/fonts\",+// NUXT FONTS DISABLED+g' nuxt.config.ts\n\nyarn config --offline set yarn-offline-mirror \"$yarnOfflineCache\"\nfixup-yarn-lock yarn.lock\nyarn install --offline --frozen-lockfile --no-progress --non-interactive --ignore-scripts\npatchShebangs node_modules\n\nsubstituteInPlace node_modules/sass-embedded/dist/lib/src/compiler-path.js \\\n  --replace-fail 'compilerCommand = (() => {' 'compilerCommand = (() => { return [\"dart-sass\"];'\n\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\n\nyarn --offline generate\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmv .output/public $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Frontend for Mealie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
   const python = python3;
   const pythonpkgs = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(pythonpkgs, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "mealie",
       version: version,
       src: src,
@@ -176,13 +176,13 @@ makeWrapper ${init_db} $out/libexec/init_db \\
 `),
       disabledTests: nix.thunk(() => ["test_pg_connection_url_encode_password"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         frontend: frontend,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
-        tests: nix.thunk(() => ({ __proto__: pos$8, mealie: nix.thunk(() => nix.attr(nixosTests, "mealie")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$8, mealie: nix.thunk(() => nix.attr(nixosTests, "mealie")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Self hosted recipe manager and meal planner",
         longDescription: "Mealie is a self hosted recipe manager and meal planner with a REST API and a reactive frontend\napplication built in NuxtJS for a pleasant user experience for the whole family. Easily add recipes into your\ndatabase by providing the URL and Mealie will automatically import the relevant data or add a family recipe with\nthe UI editor.\n",
         homepage: "https://mealie.io",

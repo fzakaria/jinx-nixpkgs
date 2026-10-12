@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lingeling";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arminbiere",
           repo: "lingeling",
           tag: nix.thunk(() => nix.str`rel-${version}`),
@@ -42,7 +42,7 @@ runHook postConfigure
       const installPhase = "mkdir -p $out/bin $lib/lib $dev/include\n\ncp lglib.h  $dev/include\ncp liblgl.a $lib/lib\n\ncp lingeling plingeling treengeling ilingeling blimc $out/bin\n";
       const outputs = nix.thunk(() => ["out", "dev", "lib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast SAT solver",
         homepage: "http://fmv.jku.at/lingeling/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +53,7 @@ runHook postConfigure
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const recastnavigation = nix.arg($, "recastnavigation");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kosmindoormap",
       extraNativeBuildInputs: nix.thunk(() => [bison, flex]),
       extraBuildInputs: nix.thunk(() => [recastnavigation]),

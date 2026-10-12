@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const plutovg = nix.arg($, "plutovg");
   const stb = nix.arg($, "stb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vtm",
       version: "2026.09.29",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "directvt",
           repo: "vtm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [freetype, harfbuzz, lua5_5, lunasvg, plutovg, stb]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         STB_INCLUDE_DIR: nix.thunk(() => nix.str`${stb}/include/stb`),
       })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "FORCE_VENDORED_DEPS", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal multiplexer with window manager and session sharing",
         homepage: "https://github.com/directvt/vtm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

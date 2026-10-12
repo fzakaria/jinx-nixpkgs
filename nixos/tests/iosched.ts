@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const empty = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "empty.qcow2", nix.thunk(() => ({})), nix.thunk(() => nix.str`${qemu_img} create -f qcow2 "$out" 32M
 `)));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "iosched",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mvs"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           qemu: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             options: nix.thunk(() => [
               "-drive",
               nix.thunk(() => nix.str`id=sda,if=none,format=qcow2,readonly=on,file=${empty}`),
@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           block: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             defaultScheduler: "none",
             defaultSchedulerRotational: "mq-deadline",
-            scheduler: nix.thunk(() => ({ __proto__: pos$4, "nvme[0-9]*": "kyber", "mmcblk[0-9]*": "bfq" })),
+            scheduler: nix.thunk(() => ({ [nix.POS]: pos$4, "nvme[0-9]*": "kyber", "mmcblk[0-9]*": "bfq" })),
           })),
         })),
       })),

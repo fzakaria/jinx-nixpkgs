@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   const tlsLibrary = nix.argOr($, "tlsLibrary", () => "libressl");
-  const ssl = nix.thunk(() => nix.selOr({ __proto__: pos$1, libressl: libressl, mbedtls: mbedtls, openssl: openssl }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unrecognized tlsLibrary option: ${tlsLibrary}`)), nix.key(nix.force(tlsLibrary))));
+  const ssl = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, libressl: libressl, mbedtls: mbedtls, openssl: openssl }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unrecognized tlsLibrary option: ${tlsLibrary}`)), nix.key(nix.force(tlsLibrary))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dillo",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dillo",
           repo: "dillo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://dillo-browser.github.io/",
         description: "Fast graphical web browser with a small footprint",
         longDescription: "Dillo is a fast and small graphical web browser with the following\nfeatures:\n\n- Multi-platform, running on Linux, BSD, MacOS, Windows (via Cygwin) and\n  even Atari.\n- Written in C and C++ with few dependencies.\n- Implements its own real-time rendering engine.\n- Low memory usage and fast rendering, even with large pages.\n- Uses the fast and bloat-free FLTK GUI library.\n- Support for HTTP, HTTPS, FTP and local files.\n- Extensible with plugins written in any language.\n- Is free software licensed with the GPLv3.\n- Helps authors to comply with web standards by using the bug meter.\n",

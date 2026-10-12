@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-zipc`);
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/zipc/releases/zipc-${version}.tbz`),
           hash: "sha256-YQqkCURwrJgFH0+zgfket25zJQ4w+Tcc1mTSrDuWRt0=",
         }))));
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = nix.thunk(() => nix.attr(topkg, "buildPhase"));
       const installPhase = nix.thunk(() => nix.attr(topkg, "installPhase"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZIP archive and deflate codec for OCaml",
         homepage: "https://erratique.ch/software/zipc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   return nix.app(nix.sel(edk2, "mkDerivation"), "ShellPkg/ShellPkg.dsc", (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "edk2-uefi-shell",
       version: nix.thunk(() => nix.attr(edk2, "version")),
       nativeBuildInputs: nix.thunk(() => nix.concat([util_linux, nasm, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
@@ -29,23 +29,23 @@ export default nix.lambda((args) => (() => {
         ])))),
       strictDeps: true,
       env: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PYTHON_COMMAND: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgsBuildHost, "python3")))}/bin/python3`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-pic", "-Qunused-arguments"]))),
         }))))),
       dontPatchELF: true,
       dontStrip: true,
       installPhase: "runHook preInstall\ninstall -D -m0644 Build/Shell/RELEASE*/*/Shell_EA4BB293-2D7F-4456-A681-1F22F42CD0BC.efi $out/shell.efi\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         efi: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/shell.efi`),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(edk2, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "UEFI Shell from Tianocore EFI development kit",

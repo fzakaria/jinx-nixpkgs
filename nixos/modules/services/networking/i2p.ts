@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "i2p"));
   const homeDir = "/var/lib/i2p";
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         i2p: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "I2P router")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         users: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             i2p: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               group: "i2p",
               description: "i2p User",
               home: homeDir,
@@ -53,24 +53,24 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             i2p: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "i2p")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             i2p: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "I2P router with administration interface for hidden services",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 User: "i2p",
                 WorkingDirectory: homeDir,
                 Restart: "on-abort",

@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.12";
       const pname = "flrig";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fldigi/flrig-${version}.tar.gz`),
           hash: "sha256-wW3AB7aOe+Xas2M4EIXQvFyIQpBhFuzZ4W7nXJ1azL8=",
         }))));
       const buildInputs = nix.thunk(() => [fltk_1_3, libjpeg, eudev]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FLTK_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), fltk_1_3)), "fltk-config")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Digital modem rig control program",
         homepage: "https://sourceforge.net/projects/fldigi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flrig",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         src,

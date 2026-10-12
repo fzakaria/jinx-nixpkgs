@@ -21,43 +21,43 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "scrutiny",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const self = nix.arg($_1, "self");
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             scrutiny: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 notify: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   urls: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "notify-script", nix.thunk(() => nix.str`script://${nix.app(nix.sel(pkgs, "writeShellScript"), "touch-test-file", "echo \"HelloWorld\" > /run/scrutiny/hello\n")}`))),
                     })),
                   ]),
                 })),
               })),
-              collector: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              collector: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             systemPackages: nix.thunk(() => (() => {
               const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];

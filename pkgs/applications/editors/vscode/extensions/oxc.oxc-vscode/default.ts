@@ -16,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const oxlint = nix.arg($, "oxlint");
   const oxfmt = nix.arg($, "oxfmt");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "oxc",
         name: "oxc-vscode",
         version: "1.62.0",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   ' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Oxlint and Oxfmt editor integration",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode",
         homepage: "https://github.com/oxc-project/oxc-vscode",

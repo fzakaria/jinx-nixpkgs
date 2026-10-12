@@ -25,36 +25,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "clamav",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           clamav: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             daemon: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$1, OnAccessPrevention: true, OnAccessIncludePath: "/opt" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$1, OnAccessPrevention: true, OnAccessIncludePath: "/opt" })),
             })),
-            clamonacc: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            clamonacc: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "10-eicar": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "/var/lib/clamav/test.hdb": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   L: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     argument: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "runCommand"), "test.hdb", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo CLAMAVTEST > testfile
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "clamav")), "sigtool")} --sha256 testfile > $out
 `))}`),
@@ -62,8 +62,8 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "clamav")), "si
                 })),
               })),
               "10-testdir": nix.thunk(() => ({
-                __proto__: pos$10,
-                "/opt": nix.thunk(() => ({ __proto__: pos$9, d: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$10,
+                "/opt": nix.thunk(() => ({ [nix.POS]: pos$9, d: nix.thunk(() => ({})) })),
               })),
             })),
           })),

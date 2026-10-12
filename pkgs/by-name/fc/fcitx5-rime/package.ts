@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-rime";
       const version = "5.1.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.fcitx-im.org/fcitx5/${pname}/${pname}-${version}.tar.zst`),
           hash: "sha256-MlGoRCHE8ou69BZU108jgKUt4O3RuoAt5ZQMK/O/ps8=",
         }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [fcitx5, librime]);
       const rimeDataDrv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "fcitx5-rime-data",
           paths: rimeDataPkgs,
           postBuild: "mkdir -p $out/share/rime-data\n\n# Ensure default.yaml exists\n[ -e \"$out/share/rime-data/default.yaml\" ] || touch \"$out/share/rime-data/default.yaml\"\n",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`cp -r "${rimeDataDrv}/share/rime-data/." $out/share/rime-data/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RIME support for Fcitx5",
         homepage: "https://github.com/fcitx/fcitx5-rime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

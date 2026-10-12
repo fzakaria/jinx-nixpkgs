@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aseprite",
       version: "1.3.18.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aseprite",
           repo: "aseprite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-oeTO93T/BQcM0PkrFVMw+kLDG6w3uT2798Kzgua4gsE=",
         })))),
       asepriteStrings: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "aseprite",
           repo: "strings",
           rev: "c6a218e3629ab5c0924682425091be6dec87f489",
@@ -132,13 +132,13 @@ substituteInPlace laf/os/osx/logger.mm \\
         nix.thunk(() => nix.str`-DSKIA_LIBRARY_DIR=${skia_aseprite}/lib`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "-ljpeg -lwebp -lwebpdemux -lwebpmux")),
       })),
       postInstall: nix.thunk(() => nix.add("# Install desktop icons.\nsrc=\"$out/share/aseprite/data/icons\"\nfor size in 16 32 48 64 128 256; do\n  dst=\"$out\"/share/icons/hicolor/\"$size\"x\"$size\"\n  install -Dm644 \"$src\"/ase\"$size\".png \"$dst\"/apps/aseprite.png\n  install -Dm644 \"$src\"/doc\"$size\".png \"$dst\"/mimetypes/image-x-aseprite.png\ndone\n# Delete unneeded artifacts of bundled libraries.\nrm -rf \"$out\"/{include,lib,man}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "install -d \"$out/Applications\"\nif [ -d \"$out/bin/aseprite.app\" ]; then\n  rm -rf \"$out/Applications/Aseprite.app\"\n  mv \"$out/bin/aseprite.app\" \"$out/Applications/Aseprite.app\"\nfi\n# Generate the `.icns` files referenced by Info.plist from the shipped PNGs.\nres=\"$out/Applications/Aseprite.app/Contents/Resources\"\nicons=\"$res/data/icons\"\nif [ -d \"$icons\" ] && command -v png2icns >/dev/null; then\n  for spec in \"Aseprite ase\" \"Document doc\" \"Extension ext\"; do\n    set -- $spec\n    name=\"$1\"\n    prefix=\"$2\"\n    png2icns \"$res/$name.icns\" \\\n      \"$icons/${prefix}16.png\" \\\n      \"$icons/${prefix}32.png\" \\\n      \"$icons/${prefix}128.png\" \\\n      \"$icons/${prefix}256.png\"\n  done\nfi\n# Keep $out/bin clean on Darwin; the bundle lives under $out/Applications.\nrmdir \"$out/bin\" 2>/dev/null || true\n"))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.aseprite.org/",
         description: "Animated sprite editor & pixel art tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

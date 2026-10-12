@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const minimalOCamlVersion = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/bytesrw/releases/bytesrw-${version}.tbz`),
           hash: "sha256-gdtrLILtbKJCu9ENUG9BTNTAUg4/JA7YvHnIWACNwds=",
         }))));
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), withCmdliner)),
         ]))}`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composable, memory efficient, byte stream readers and writers compatible with effect-based concurrency",
         longDescription: "Bytesrw extends the OCaml Bytes module with composable, memory efficient,\nbyte stream readers and writers compatible with effect-based concurrency.\n\nExcept for byte slice life-times, these abstractions intentionally\nseparate away resource management and the specifics of reading and\nwriting bytes.\n",
         homepage: "https://erratique.ch/software/bytesrw",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

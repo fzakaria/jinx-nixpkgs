@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "halp",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orhun",
           repo: "halp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export NO_COLOR=1\nexport OUT_DIR=target\n",
       postInstall: "mkdir -p man completions\n\nOUT_DIR=man $out/bin/halp-mangen\nOUT_DIR=completions $out/bin/halp-completions\n\ninstallManPage man/halp.1\ninstallShellCompletion \\\n  completions/halp.{bash,fish} \\\n  --zsh completions/_halp\n\nrm $out/bin/halp-{completions,mangen,test}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to get help with CLI tools",
         homepage: "https://github.com/orhun/halp",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/halp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

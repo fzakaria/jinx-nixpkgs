@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libphonenumber",
       version: "9.0.41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "libphonenumber",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/google/libphonenumber/blob/${nix.sel(finalAttrs, "src", "rev")}/release_notes.txt`),
         description: "Google's i18n library for parsing and using phone numbers",
         homepage: "https://github.com/google/libphonenumber",

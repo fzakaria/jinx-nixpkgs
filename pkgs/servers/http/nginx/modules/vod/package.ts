@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vod",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dio-az",
           repo: "nginx-vod-module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace vod/media_set.h \\\n  --replace-fail \"MAX_CLIPS (128)\" \"MAX_CLIPS (1024)\"\n",
       buildInputs: nix.thunk(() => [ffmpeg_headless, fdk_aac, openssl, libxml2, libiconv]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/dio-az/nginx-vod-module/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "VOD packager",
         homepage: "https://github.com/dio-az/nginx-vod-module",

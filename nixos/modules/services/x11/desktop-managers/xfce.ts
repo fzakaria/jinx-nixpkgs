@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "desktopManager", "xfce"));
   const excludePackages = nix.thunk(() => nix.sel(config, "environment", "xfce", "excludePackages"));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "teams"), "xfce"))]),
     })),
     imports: nix.thunk(() => [
@@ -82,42 +82,42 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "desktopManager", "xfce", "thunarPlugins"]), nix.thunk(() => ["programs", "thunar", "plugins"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         xserver: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             xfce: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Enable the Xfce desktop environment.",
                 })))),
               noDesktop: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Don't install XFCE desktop components (xfdesktop and panel).",
                 })))),
               enableXfwm: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: true,
                   description: "Enable the XFWM (default) window manager.",
                 })))),
               enableScreensaver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: true,
                   description: "Enable the XFCE screensaver.",
                 })))),
               enableWaylandSession: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the experimental Xfce Wayland session")),
               waylandSessionCompositor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "",
                   example: "wayfire",
@@ -128,11 +128,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         xfce: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           excludePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.xfce4-volumed-pulse ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
@@ -142,9 +142,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, w);
               return nix.concat([
@@ -191,43 +191,43 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           gnupg: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             agent: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               pinentryPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "pinentry-gnome3")))),
             })),
           })),
-          xfconf: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
-          thunar: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+          xfconf: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+          thunar: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
           labwc: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableWaylandSession")) && nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "waylandSessionCompositor"), "")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "substring"), 0n, 5n, nix.thunk(() => nix.sel(cfg, "waylandSessionCompositor"))), "labwc")))))))),
           })),
           "gdk-pixbuf": nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             modulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "librsvg"))]),
           })),
-          dconf: nix.thunk(() => ({ __proto__: pos$22, enable: true })),
+          dconf: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
           bash: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             vteIntegration: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             vteIntegration: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           xserver: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               session: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   name: "xfce",
                   prettyName: "Xfce Session",
                   desktopNames: nix.thunk(() => ["XFCE"]),
@@ -241,7 +241,7 @@ waitPID=$!
             updateDbusEnvironment: true,
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             sessionPackages: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "enableWaylandSession")), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "writeTextDir"), "share/wayland-sessions/xfce-wayland.desktop", nix.thunk(() => nix.str`[Desktop Entry]
 Version=1.0
@@ -253,69 +253,69 @@ Type=Application
 DesktopNames=XFCE
 Keywords=xfce;wayland;desktop;environment;session;
 `)), "overrideAttrs"), (_) => ({
-                    __proto__: pos$30,
-                    passthru: nix.thunk(() => ({ __proto__: pos$29, providedSessions: nix.thunk(() => ["xfce-wayland"]) })),
+                    [nix.POS]: pos$30,
+                    passthru: nix.thunk(() => ({ [nix.POS]: pos$29, providedSessions: nix.thunk(() => ["xfce-wayland"]) })),
                   }))),
               ]))),
           })),
-          udisks2: nix.thunk(() => ({ __proto__: pos$32, enable: true })),
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$33, enable: true })),
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
           upower: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             enable: nix.thunk(() => nix.sel(config, "powerManagement", "enable")),
           })),
           gnome: nix.thunk(() => ({
-            __proto__: pos$37,
-            "glib-networking": nix.thunk(() => ({ __proto__: pos$35, enable: true })),
+            [nix.POS]: pos$37,
+            "glib-networking": nix.thunk(() => ({ [nix.POS]: pos$35, enable: true })),
             "gnome-keyring": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             })),
           })),
-          gvfs: nix.thunk(() => ({ __proto__: pos$38, enable: true })),
-          tumbler: nix.thunk(() => ({ __proto__: pos$39, enable: true })),
+          gvfs: nix.thunk(() => ({ [nix.POS]: pos$38, enable: true })),
+          tumbler: nix.thunk(() => ({ [nix.POS]: pos$39, enable: true })),
           "system-config-printer": nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)))),
           })),
           libinput: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
           colord: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           polkit: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: true,
             enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           pam: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               "xfce4-screensaver": nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 unixAuth: nix.thunk(() => nix.sel(cfg, "enableScreensaver")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           packages: nix.thunk(() => nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, w);
               return [nix.thunk(() => nix.lookup(w_1, "xfce4-notifyd"))];
             })()), excludePackages)),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           portal: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             extraPortals: nix.thunk(() => nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => (() => {
                 const w_1 = nix.withScope(pkgs, w);

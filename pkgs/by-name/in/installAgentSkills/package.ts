@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const worktrunk = nix.arg($, "worktrunk");
   const gh_stack = nix.arg($, "gh-stack");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "install-agent-skills",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
-          }))), { __proto__: pos$2, worktrunk: worktrunk, hunk: hunk, "gh-stack": gh_stack })),
+          }))), { [nix.POS]: pos$2, worktrunk: worktrunk, hunk: hunk, "gh-stack": gh_stack })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools to install Agent skills into the correct directories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

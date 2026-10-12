@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const makeXinePluginPath = (l) => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/lib/xine/plugins`, l)));
   const requiredXinePlugins = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => [], "passthru", "requiredXinePlugins"), plugins))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "vdr-with-plugins",
       version: nix.thunk(() => nix.attr(vdr, "version")),
       paths: nix.thunk(() => nix.concat([vdr], plugins)),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.add(nix.add(nix.add(nix.sel(vdr, "meta", "description"), " (with plugins: "), nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map((x) => nix.add("", nix.sel(x, "name")), plugins)))), ")")),

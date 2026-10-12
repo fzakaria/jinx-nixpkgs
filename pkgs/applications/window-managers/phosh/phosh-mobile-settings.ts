@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const gst_all_1 = nix.arg($, "gst_all_1");
   const gvc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.gnome.org",
       owner: "guidog",
       repo: "libgnome-volume-control",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   const libcellbroadcast = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       domain: "gitlab.freedesktop.org",
       owner: "devrtz",
       repo: "cellbroadcastd",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   const gvdb = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "gvdb",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phosh-mobile-settings";
       const version = "0.54.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -126,12 +126,12 @@ ln -s '${phosh}/lib/phosh' "$out/lib/phosh"
 glib-compile-schemas "$out/share/glib-2.0/schemas"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Settings app for mobile specific things",
         mainProgram: "phosh-mobile-settings",
         homepage: "https://gitlab.gnome.org/World/Phosh/phosh-mobile-settings",
@@ -147,7 +147,7 @@ glib-compile-schemas "$out/share/glib-2.0/schemas"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

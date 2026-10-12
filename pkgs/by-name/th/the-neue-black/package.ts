@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "the-neue-black",
       version: "1.007",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/theleagueof/the-neue-black/releases/download/${nix.sel(finalAttrs, "version")}/TheNeueBlack-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-AsB6w1000xdl+pOPDXqqzQhru1T/VD0hIJ4gFec7mU4=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/truetype $src/static/TTF/*.ttf\ninstall -D -m444 -t $out/share/fonts/opentype $src/static/OTF/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tré Seals’ first open-source font, a typeface based on the Chicago Freedom Movement",
         longDescription: "The open-source release of The Neue Black is in partnership with designer\nTré Seals of Vocal Type Co. The Neue Black is a display sans serif with a\nrobust character set that has over 25 ligatures and various inktrap\nalternates.\n",
         homepage: "https://www.theleagueofmoveabletype.com/the-neue-black",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const Libc = nix.thunk(() => nix.app(sourceRelease, "Libc"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "diskdev_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include" \\
   '${Libc}/include/_bounds.h'
@@ -46,13 +46,13 @@ substituteInPlace "$out/include/os/variant_private.h" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "diskdev_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-mlTUd9eTBQhJa1hzAKzBpw6+702C4dwUjwZvJs/EKyw=",
       postPatch: "substituteInPlace mount.tproj/mount.c \\\n  --replace-fail 'sysctlbyname (\"vfs.generic.apfs.rosp\", &is_rosp, &rospsize, NULL, NULL);' 'sysctlbyname (\"vfs.generic.apfs.rosp\", &is_rosp, &rospsize, NULL, 0);'\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       buildInputs: nix.thunk(() => [
@@ -60,7 +60,7 @@ substituteInPlace "$out/include/os/variant_private.h" \\
         libutil,
         removefile,
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "Disk commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Disk commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

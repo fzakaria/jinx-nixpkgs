@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
   const pygobject3 = nix.thunk(() => nix.attr(python3Packages, "pygobject3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "networkmanager_dmenu",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firecat53",
           repo: "networkmanager-dmenu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
 wrapPythonPrograms
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small script to manage NetworkManager connections with dmenu instead of nm-applet",
         mainProgram: "networkmanager_dmenu",
         homepage: "https://github.com/firecat53/networkmanager-dmenu",

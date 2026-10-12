@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qcard",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~psic4t",
           repo: "qcard",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace helpers.go \\\n  --replace \" config-sample.json \" \" $out/share/qcard/config-sample.json \"\n",
       postInstall: "mkdir -p $out/share/qcard\ncp config-sample.json $out/share/qcard/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI addressbook application for CardDAV servers written in Go",
         homepage: "https://git.sr.ht/~psic4t/qcard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

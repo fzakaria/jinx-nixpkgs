@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const restic = nix.arg($, "restic");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deja-dup",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "deja-dup",
@@ -82,11 +82,11 @@ export default nix.lambda((args) => (() => {
 `),
       patches: nix.thunk(() => [nix.path(here, "./find-fusermount-setuid.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple backup tool",
         longDescription: "Déjà Dup is a simple backup tool. It hides the complexity\nof backing up the Right Way (encrypted, off-site, and regular)\nand uses duplicity as the backend.\n",
         homepage: "https://apps.gnome.org/DejaDup/",

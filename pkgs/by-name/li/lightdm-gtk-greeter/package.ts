@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lightdm-gtk-greeter",
       version: "2.0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Xubuntu/lightdm-gtk-greeter/releases/download/lightdm-gtk-greeter-${nix.sel(finalAttrs, "version")}/lightdm-gtk-greeter-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yP3xmKqaP50NrQtI3+I8Ine3kQfo/PxillKQ8QgfZF0=",
         })))),
@@ -51,17 +51,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace \"$out/share/xgreeters/lightdm-gtk-greeter.desktop\" \\\n  --replace-fail \"Exec=lightdm-gtk-greeter\" \"Exec=$out/bin/lightdm-gtk-greeter\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-gtk-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: nix.thunk(() => nix.str`${lightdm_gtk_greeter}/share/xgreeters/lightdm-gtk-greeter.desktop`),
               name: "lightdm-gtk-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Xubuntu/lightdm-gtk-greeter",
         description: "GTK greeter for LightDM",
         mainProgram: "lightdm-gtk-greeter",

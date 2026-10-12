@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "autopxd2",
           version: version,
           hash: "sha256-Zf44gmkuWvp8lfrScq4GAhOisLYu4scyuNp1Cn3lnVc=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["real_headers", "libclang"]);
       const enabledTestPaths = nix.thunk(() => ["test/"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/elijahr/python-autopxd2",
         mainProgram: "autopxd",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         description: "Generates .pxd files automatically from .h files",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

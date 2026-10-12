@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const pnpm_11 = nix.arg($, "pnpm_11");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kulala-fmt",
       version: "4.3.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mistweaverco",
           repo: "kulala-fmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sARZDtrF8JihVuE2Ix/f4h/OWIbdGW48xpVJlVmTdYY=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +61,7 @@ printf '%s\\n' 'GET https://example.com' | $out/bin/kulala-fmt format --stdin | 
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Opinionated .http and .rest files linter and formatter",
         homepage: "https://github.com/mistweaverco/kulala-fmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

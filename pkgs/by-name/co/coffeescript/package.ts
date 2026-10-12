@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const pname = "coffeescript";
       const version = "2.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jashkenas",
           repo: "coffeescript",
           tag: version,
           hash: "sha256-vr46LKICX61rFPCkZ3G+8gJykg+MO43YRJnZGM3RoY0=",
         }))));
       const npmDepsHash = "sha256-mCm31OwI3wjq8taKRQuEj4+IWVZO9Z5KuIDBf39lYoQ=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Little language that compiles into JavaScript",
         homepage: "https://github.com/jashkenas/coffeescript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "cdmistman"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, env, dontNpmBuild, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, env, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

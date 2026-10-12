@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const repeatedLayerTestImage = nix.thunk(() => (() => {
-    const layer1 = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({ __proto__: pos$1, name: "empty" }))));
-    const layer2 = nix.thunk(() => nix.app(nix.sel(layer1, "overrideAttrs"), (_) => ({ __proto__: pos$2, fromImage: layer1 })));
+    const layer1 = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "empty" }))));
+    const layer2 = nix.thunk(() => nix.app(nix.sel(layer1, "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, fromImage: layer1 })));
     const repeatedRootfsDiffs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "image-with-links.tar", nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
       })), nix.thunk(() => nix.str`mkdir contents
 tar -xf "${layer2}" -C contents
@@ -51,7 +51,7 @@ mv manifest.json.new manifest.json
 tar --sort=name --hard-dereference -cf $out .
 `)));
     return nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fromImage: repeatedRootfsDiffs,
         name: "repeated-layer-test",
         tag: "latest",
@@ -60,13 +60,13 @@ tar --sort=name --hard-dereference -cf $out .
       })));
   })());
   const chownTestImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "chown-test",
       tag: "latest",
       enableFakechroot: true,
       fakeRootCommands: "touch /testfile\nchown 12345:12345 /testfile\n",
       config: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         Cmd: nix.thunk(() => [
           nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/stat`),
           "-c",
@@ -76,7 +76,7 @@ tar --sort=name --hard-dereference -cf $out .
       })),
     }))));
   const nonRootTestImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "non-root-test",
       tag: "latest",
       uid: 1000n,
@@ -84,7 +84,7 @@ tar --sort=name --hard-dereference -cf $out .
       uname: "user",
       gname: "user",
       config: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         User: "user",
         Cmd: nix.thunk(() => [
           nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/stat`),
@@ -95,25 +95,25 @@ tar --sort=name --hard-dereference -cf $out .
       })),
     }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "docker-tools",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             diskSize: 3072n,
-            docker: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            docker: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
           })),
         };
       })(), formals$2),

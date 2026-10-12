@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastapi",
           repo: "annotated-doc",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["annotated_doc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Document parameters, class attributes, return types, and variables inline, with Annotated",
         homepage: "https://github.com/fastapi/annotated-doc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const ocamlbuild = nix.arg($, "ocamlbuild");
   return (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), cppo)), "1.6")) ? nix.force(cppo) : nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cppo_ocamlbuild",
       version: nix.thunk(() => nix.attr(cppo, "version")),
       src: nix.thunk(() => nix.attr(cppo, "src")),
       minimalOCamlVersion: "4.03",
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [ocamlbuild]),
-      meta: nix.thunk(() => nix.update(nix.sel(cppo, "meta"), { __proto__: pos$1, description: "Plugin to use cppo with ocamlbuild" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cppo, "meta"), { [nix.POS]: pos$1, description: "Plugin to use cppo with ocamlbuild" })),
     }))));
 })(), formals$1);
 //# sourceMappingURL=ocamlbuild.ts.map

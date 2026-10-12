@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const enableTiny = nix.argOr($, "enableTiny", () => false);
   nix.assert_((!nix.asBool(enableNls) || nix.asBool(!nix.eq(gettext, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/na/nano/package.nix:21:1");
   const nixSyntaxHighlight = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "seitz",
       repo: "nanonix",
       rev: "5c30e1de6d664d609ff3828a8877fba3e06ca336",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nano";
       const version = "9.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnu/nano/nano-${version}.tar.xz`),
           hash: "sha256-Bey5kke3guils6Je1BAd0DSwI2kC90SbyXlbcXZC9+k=",
         }))));
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           expect: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-with-expect.nix"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
@@ -79,7 +79,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.nano-editor.org/",
         description: "Small, user-friendly console text editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -91,7 +91,7 @@ fi
         mainProgram: "nano",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

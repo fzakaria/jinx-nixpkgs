@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "filebytes",
       version: "0.10.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sashs",
           repo: "filebytes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.14.patch",
             url: "https://github.com/sashs/filebytes/commit/469058d50d4b7ff8da54b623a0a1aa972cd78dc6.patch",
             hash: "sha256-VizYOqyJ3xpJIU4KKsYcz2DCurlfrWTgdsn84FVWD6w=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://scoding.de/filebytes-introduction",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Scripts to parse ELF, PE, Mach-O and OAT (Android Runtime)",

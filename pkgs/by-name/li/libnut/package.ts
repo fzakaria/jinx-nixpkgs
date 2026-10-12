@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnut",
       version: "0-unstable-2020-11-06",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.ffmpeg.org/nut.git",
           rev: "12f6a7af3e0f34fd957cf078b66f072d3dc695b3",
           sha256: "1wgl2mb9482c1j3yac0v2ilfjs7gb9mhw9kjnrmlj9kp0whm4l1j",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       installTargets: nix.thunk(() => ["install-libnut", "install-nututils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to read/write the NUT video container format",
         homepage: "https://git.ffmpeg.org/gitweb/nut.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

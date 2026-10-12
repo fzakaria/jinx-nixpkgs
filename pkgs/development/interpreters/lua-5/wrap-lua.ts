@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "wrap-lua-hook",
       propagatedBuildInputs: nix.thunk(() => [makeWrapper]),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         luaBuild: nix.thunk(() => nix.sel(lua, "luaOnBuildForHost")),
         luaHost: nix.thunk(() => nix.sel(lua, "luaOnHostForHost")),
         luarocksBuild: nix.thunk(() => nix.sel(lua, "luaOnBuildForHost", "pkgs", "luarocks_bootstrap")),
         luarocksHost: nix.thunk(() => nix.sel(lua, "luaOnHostForHost", "pkgs", "luarocks_bootstrap")),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./wrap.sh"));
 })(), formals$1);
 //# sourceMappingURL=wrap-lua.ts.map

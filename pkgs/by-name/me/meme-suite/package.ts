@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const pname = "meme-suite";
       const version = "5.5.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://meme-suite.org/meme-software/${version}/meme-${version}.tar.gz`),
           sha256: "sha256-BAb7ex3Cf2qrPW06KezfYXu92UZpDPqXyiEpvCEL/RI=",
         }))));
       const buildInputs = nix.thunk(() => [zlib]);
       const nativeBuildInputs = nix.thunk(() => [perl, python3]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Motif-based sequence analysis tools",
         homepage: "https://meme-suite.org/meme/meme-software/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

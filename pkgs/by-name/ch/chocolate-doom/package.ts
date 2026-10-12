@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const SDL2_net = nix.arg($, "SDL2_net");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chocolate-doom",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chocolate-doom",
           repo: "chocolate-doom",
           tag: nix.thunk(() => nix.str`chocolate-doom-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.chocolate-doom.org",
         changelog: nix.thunk(() => nix.str`https://github.com/chocolate-doom/chocolate-doom/releases/tag/chocolate-doom-${nix.sel(finalAttrs, "version")}`),
         description: "Doom source port that accurately reproduces the experience of Doom as it was played in the 1990s",

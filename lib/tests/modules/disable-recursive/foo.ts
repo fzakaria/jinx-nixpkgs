@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/foo.nix", [["imports", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   imports: nix.thunk(() => [nix.path(here, "../declare-enable.nix")]),
 }));
 //# sourceMappingURL=foo.ts.map

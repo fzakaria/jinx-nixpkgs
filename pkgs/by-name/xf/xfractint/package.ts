@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xfractint";
       const version = "20.04p16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fractint.net/ftp/current/linux/xfractint-${version}.tar.gz`),
           sha256: "1ba77jifxv8jql044mdydh4p4ms4w5vw3qrqmcfzlvqfxk7h2m2f",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const configurePhase = "runHook preConfigure\n\nsed -e 's@/usr/bin/@@' -i Makefile\n\nrunHook postConfigure\n";
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xfractint",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

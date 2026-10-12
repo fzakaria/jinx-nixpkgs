@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   const testImageEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${rancherDistro}-test-image-env`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -76,45 +76,45 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const testImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "test.local/test",
       tag: "local",
       compressor: "zstd",
       copyToRoot: testImageEnv,
     }))));
-  const manifestFormat = nix.thunk(() => nix.sel({ __proto__: pos$3, k3s: "yaml", rke2: "json" }, nix.key(nix.force(rancherDistro))));
+  const manifestFormat = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, k3s: "yaml", rke2: "json" }, nix.key(nix.force(rancherDistro))));
   const testChartPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${rancherDistro}-test-chart.tgz`), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kubernetes-helm"))]),
       chart: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`${rancherDistro}-test-chart`),
           version: "0.1.0",
         })))),
       values: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           restartPolicy: "Never",
           runCommand: "",
-          image: nix.thunk(() => ({ __proto__: pos$5, repository: "foo", tag: "1.0.0" })),
+          image: nix.thunk(() => ({ [nix.POS]: pos$5, repository: "foo", tag: "1.0.0" })),
         })))),
       job: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           apiVersion: "batch/v1",
           kind: "Job",
           metadata: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "{{ .Release.Name }}",
             namespace: "{{ .Release.Namespace }}",
           })),
           spec: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             template: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               spec: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 containers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     name: "test",
                     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}",
                     command: nix.thunk(() => ["sh"]),
@@ -129,34 +129,34 @@ export default nix.lambda((args) => (() => {
       passAsFile: nix.thunk(() => ["values", "chart", "job"]),
     })), "mkdir -p chart/templates\ncp \"$chartPath\" chart/Chart.yaml\ncp \"$valuesPath\" chart/values.yaml\ncp \"$jobPath\" chart/templates/job.json\n\nhelm package chart\nmv ./*.tgz $out\n"));
   const testChart = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     package: testChartPackage,
     values: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       runCommand: "hello",
       image: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         repository: nix.thunk(() => nix.sel(testImage, "imageName")),
         tag: nix.thunk(() => nix.sel(testImage, "imageTag")),
       })),
     })),
   }));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-auto-deploy`),
     interactive: nix.thunk(() => ({
-      __proto__: pos$18,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+      [nix.POS]: pos$18,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           environment: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -166,61 +166,61 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: true,
               role: "server",
               package: rancherPackage,
               disable: nix.thunk(() => nix.sel({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 k3s: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "traefik", disabledComponents)),
                 rke2: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "rke2-ingress-nginx", disabledComponents)),
               }, nix.key(nix.force(rancherDistro)))),
               images: nix.thunk(() => nix.concat(coreImages, nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(rancherDistro, "k3s")), nix.thunk(() => nix.sel(rancherPackage, "airgap-images"))), [testImage]))),
               manifests: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 "manifest-absent": nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   enable: false,
                   content: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     apiVersion: "v1",
                     kind: "Namespace",
-                    metadata: nix.thunk(() => ({ __proto__: pos$22, name: "absent" })),
+                    metadata: nix.thunk(() => ({ [nix.POS]: pos$22, name: "absent" })),
                   })),
                 })),
                 "manifest-present": nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   target: nix.thunk(() => nix.str`foo-namespace.${manifestFormat}`),
                   content: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     apiVersion: "v1",
                     kind: "Namespace",
-                    metadata: nix.thunk(() => ({ __proto__: pos$25, name: "foo" })),
+                    metadata: nix.thunk(() => ({ [nix.POS]: pos$25, name: "foo" })),
                   })),
                 })),
                 "manifest-hello": nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   content: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     apiVersion: "batch/v1",
                     kind: "Job",
-                    metadata: nix.thunk(() => ({ __proto__: pos$28, name: "manifest-hello" })),
+                    metadata: nix.thunk(() => ({ [nix.POS]: pos$28, name: "manifest-hello" })),
                     spec: nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       template: nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         spec: nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           containers: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               name: "hello",
                               image: nix.thunk(() => nix.str`${nix.sel(testImage, "imageName")}:${nix.sel(testImage, "imageTag")}`),
                               command: nix.thunk(() => ["hello"]),
@@ -234,27 +234,27 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               autoDeployCharts: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 "chart-hello": testChart,
-                "chart-disabled": nix.thunk(() => nix.update(testChart, { __proto__: pos$36, enable: false })),
+                "chart-disabled": nix.thunk(() => nix.update(testChart, { [nix.POS]: pos$36, enable: false })),
                 "chart-values-file": nix.thunk(() => nix.update(testChart, {
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   values: nix.thunk(() => nix.add(nix.path("", "/."), nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.toFile(nix.thunk(() => nix.str`${rancherDistro}-test-chart-values.yaml`), "runCommand: \"echo 'Hello, file!'\"\nimage:\n  repository: test.local/test\n  tag: local\n"))))),
                 })),
                 "chart-advanced": nix.thunk(() => nix.update(testChart, {
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   extraDeploy: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       apiVersion: "v1",
                       kind: "Namespace",
-                      metadata: nix.thunk(() => ({ __proto__: pos$38, name: "test" })),
+                      metadata: nix.thunk(() => ({ [nix.POS]: pos$38, name: "test" })),
                     })),
                   ]),
                   extraFieldDefinitions: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     spec: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       valuesContent: nix.thunk(() => nix.str`runCommand: "echo 'advanced hello'"
 image:
   repository: ${nix.sel(testImage, "imageName")}
@@ -321,13 +321,13 @@ with subtest("Output of chart test jobs"):
 
 with subtest("Deployment of bundled reverse proxy"):
   ${nix.sel({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       k3s: "machine.wait_until_succeeds(\"kubectl -n kube-system rollout status deployment traefik\")\n",
       rke2: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(rancherPackage, "version")), "1.36")) ? "machine.wait_until_succeeds(\"kubectl -n kube-system rollout status daemonset rke2-traefik\")\n" : "machine.wait_until_succeeds(\"kubectl -n kube-system rollout status daemonset rke2-ingress-nginx-controller\")\n")),
     }, nix.key(nix.force(rancherDistro)))}
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

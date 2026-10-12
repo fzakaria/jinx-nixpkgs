@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const withPrecommit = nix.argOr($, "withPrecommit", () => true);
   const pre_commit = nix.arg($, "pre-commit");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jj-pre-push",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acarapetis",
           repo: "jj-pre-push",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jj-pre-push \\\n  --bash <($out/bin/jj-pre-push --show-completion bash) \\\n  --fish <($out/bin/jj-pre-push --show-completion fish) \\\n  --zsh <($out/bin/jj-pre-push --show-completion zsh)\n")),
       pythonImportsCheck: nix.thunk(() => ["jj_pre_push"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run pre-commit.com before `jj git push`",
         homepage: "https://github.com/acarapetis/jj-pre-push",
         changelog: nix.thunk(() => nix.str`https://github.com/acarapetis/jj-pre-push/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const at_spi2_atk = nix.arg($, "at-spi2-atk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gprename",
       version: "20230429",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gprename/gprename-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Du9OO2qeB1jUEJFcVYmLbJAGi2p/IVe3sqladq09AyY=",
         })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Complete batch renamer for files and directories",
         homepage: "https://gprename.sourceforge.net/index.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

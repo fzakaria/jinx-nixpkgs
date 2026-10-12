@@ -15,28 +15,28 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const version = "0.3.5";
-  const archMap = nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }));
+  const archMap = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }));
   const sysArch = nix.thunk(() => nix.selOr(archMap, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported architecture: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const shimHashes = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     x86_64: "sha256-7PLMiY2Aqx33IsdMMtZd2WLsErWLZTAYV+5TcED0pUU=",
     aarch64: "sha256-kATIsB2j/kloYq9WSRcTgxKSUA0neuWtF3hlyPyxWBk=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aerion-creds",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/hkdb/aerion/releases/download/v${version}/flathub-build-env-v${version}-linux-${sysArch}`),
           hash: nix.thunk(() => nix.sel(shimHashes, nix.key(nix.force(sysArch)))),
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp $src $out/bin/aerion-creds\nchmod +x $out/bin/aerion-creds\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OAuth credentials shim for Aerion",
         homepage: "https://github.com/hkdb/aerion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withOpenCL) || nix.asBool(!nix.eq(opencl_clhpp, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ma/mandelbulber/package.nix:18:1");
   nix.assert_((!nix.asBool(withOpenCL) || nix.asBool(!nix.eq(ocl_icd, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ma/mandelbulber/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mandelbulber",
       version: "2.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buddhi1980",
           repo: "mandelbulber2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(withOpenCL) ? "qmake/mandelbulber-opencl.pro" : "qmake/mandelbulber.pro")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.app(runCommand, "mandelbulber2-test", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 writableTmpDirAsHomeHook,
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "3D fractal rendering engine",
         mainProgram: "mandelbulber2",
         longDescription: "Mandelbulber creatively generates three-dimensional fractals. Explore trigonometric, hyper-complex, Mandelbox, IFS, and many other 3D fractals.",

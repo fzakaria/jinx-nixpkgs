@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chess-com-api",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stupidoodle",
           repo: "chess-com-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_client.py", "tests/test_integration.py"]),
       pythonImportsCheck: nix.thunk(() => ["chess_com_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "An async Python wrapper for the Chess.com API",
         homepage: "https://github.com/Stupidoodle/chess-com-api",
         changelog: nix.thunk(() => nix.str`https://github.com/Stupidoodle/chess-com-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

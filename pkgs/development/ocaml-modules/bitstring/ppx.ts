@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ppx_bitstring",
       version: nix.thunk(() => nix.attr(bitstring, "version")),
       src: nix.thunk(() => nix.attr(bitstring, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit]),
       meta: nix.thunk(() => nix.update(nix.sel(bitstring, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Bitstrings and bitstring matching for OCaml - PPX extension",
       })),
     })));

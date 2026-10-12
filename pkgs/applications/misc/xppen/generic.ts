@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const hash = nix.arg($, "hash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`XPPenLinux${version}.tar.gz`),
           extension: "tar.gz",
           url: url,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontCheck: true,
       installPhase: "runHook preInstall\n\nrm -r App/usr/lib/pentablet/{lib,platforms,PenTablet.sh}\nmkdir -p $out/{bin,usr}\ncp -r App/lib $out/lib\ncp -r App/usr/share $out/share\ncp -r App/usr/lib $out/usr/lib\n\n# hack: edit the binary directly\n# TODO: replace it with buildFHSEnv if possible? last time it caused other issues\nsed -i 's#/usr/lib/pentablet#/var/lib/pentablet#g' $out/usr/lib/pentablet/PenTablet\nln -s $out/usr/lib/pentablet/PenTablet $out/bin/PenTablet\n\nsubstituteInPlace $out/share/applications/xppentablet.desktop \\\n  --replace-fail \"/usr/lib/pentablet/PenTablet.sh\" \"PenTablet\" \\\n  --replace-fail \"/usr/share/icons/hicolor/256x256/apps/xppentablet.png\" \"xppentablet\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XPPen driver",
         downloadPage: "https://www.xp-pen.com/download/",
         homepage: "https://www.xp-pen.com/",

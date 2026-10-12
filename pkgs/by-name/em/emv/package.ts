@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emv",
       version: "1.95",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.i0i0.de/toolchest/emv",
           sha256: "7e0e12afa45ef5ed8025e5f2c6deea0ff5f512644a721f7b1b95b63406a8f7ce",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -pv $out/bin\ncp $src $out/bin/emv\nchmod +x $out/bin/emv\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.i0i0.de/toolchest/emv",
         description: "Editor Move: Rename files with your favourite text editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

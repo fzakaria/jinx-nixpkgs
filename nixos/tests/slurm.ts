@@ -53,26 +53,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const slurmconfig = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     services: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       slurm: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         controlMachine: "control",
         nodeName: nix.thunk(() => ["node[1-3] CPUs=1 State=UNKNOWN"]),
         partitionName: nix.thunk(() => ["debug Nodes=node[1-3] Default=YES MaxTime=INFINITE State=UP"]),
         extraConfig: "AccountingStorageHost=dbd\nAccountingStorageType=accounting_storage/slurmdbd\nAuthAltTypes=auth/jwt\n",
       })),
     })),
-    environment: nix.thunk(() => ({ __proto__: pos$3, systemPackages: nix.thunk(() => [mpitest]) })),
+    environment: nix.thunk(() => ({ [nix.POS]: pos$3, systemPackages: nix.thunk(() => [mpitest]) })),
     networking: nix.thunk(() => ({
-      __proto__: pos$5,
-      firewall: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+      [nix.POS]: pos$5,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       tmpfiles: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         rules: nix.thunk(() => [
           "f /etc/munge/munge.key 0400 munge munge - mungeverryweakkeybuteasytointegratoinatest",
         ]),
@@ -94,45 +94,45 @@ ${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "mpi")))}/bin/mp
 echo "sbatch success"
 `)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     name: "slurm",
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     nodes: nix.thunk(() => (() => {
       const computeNode = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [slurmconfig]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             slurm: nix.thunk(() => ({
-              __proto__: pos$11,
-              client: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+              [nix.POS]: pos$11,
+              client: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
             })),
           })),
         };
       })(), formals$2);
       return {
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         control: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               slurm: nix.thunk(() => ({
-                __proto__: pos$15,
-                server: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+                [nix.POS]: pos$15,
+                server: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 rules: nix.thunk(() => [
                   "f /var/spool/slurmctld/jwt_hs256.key 0400 slurm slurm - thisisjustanexamplejwttoken0000",
                 ]),
@@ -143,11 +143,11 @@ echo "sbatch success"
         submit: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              __proto__: pos$21,
-              slurm: nix.thunk(() => ({ __proto__: pos$20, enableStools: true })),
+              [nix.POS]: pos$21,
+              slurm: nix.thunk(() => ({ [nix.POS]: pos$20, enableStools: true })),
             })),
           };
         })(), formals$4),
@@ -156,40 +156,40 @@ echo "sbatch success"
           const pkgs_1 = nix.arg($_1, "pkgs");
           const passFile = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "dbdpassword", "password123"));
           return {
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             networking: nix.thunk(() => ({
-              __proto__: pos$24,
-              firewall: nix.thunk(() => ({ __proto__: pos$23, enable: false })),
+              [nix.POS]: pos$24,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 rules: nix.thunk(() => [
                   "f /etc/munge/munge.key 0400 munge munge - mungeverryweakkeybuteasytointegratoinatest",
                 ]),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               slurm: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 dbdserver: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   enable: true,
                   storagePassFile: nix.thunk(() => nix.str`${passFile}`),
                 })),
               })),
               mysql: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "mariadb")),
                 initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "mysql-init.sql", "CREATE USER 'slurm'@'localhost' IDENTIFIED BY 'password123';\nGRANT ALL PRIVILEGES ON slurm_acct_db.* TO 'slurm'@'localhost';\n")),
                 ensureDatabases: nix.thunk(() => ["slurm_acct_db"]),
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$30,
-                    ensurePermissions: nix.thunk(() => ({ __proto__: pos$29, "slurm_acct_db.*": "ALL PRIVILEGES" })),
+                    [nix.POS]: pos$30,
+                    ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$29, "slurm_acct_db.*": "ALL PRIVILEGES" })),
                     name: "slurm",
                   })),
                 ]),
@@ -200,13 +200,13 @@ echo "sbatch success"
         rest: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           return {
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               slurm: nix.thunk(() => ({
-                __proto__: pos$35,
-                rest: nix.thunk(() => ({ __proto__: pos$34, enable: true })),
+                [nix.POS]: pos$35,
+                rest: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true })),
               })),
             })),
           };

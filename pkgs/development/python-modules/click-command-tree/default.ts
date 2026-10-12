@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const click = nix.arg($, "click");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "click-command-tree",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "whwright",
           repo: "click-command-tree",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests.py"]),
       pythonImportsCheck: nix.thunk(() => ["click_command_tree"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Click plugin to show the command tree of your CLI",
         homepage: "https://github.com/whwright/click-command-tree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

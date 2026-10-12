@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const conduit_mirage = nix.arg($, "conduit-mirage");
   const mirage_flow = nix.arg($, "mirage-flow");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gluten-mirage",
       src: nix.thunk(() => nix.attr(gluten, "src")),
       version: nix.thunk(() => nix.attr(gluten, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten_lwt, faraday_lwt, conduit_mirage, mirage_flow]),
-      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { __proto__: pos$1, description: "Mirage support for gluten" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: pos$1, description: "Mirage support for gluten" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mirage.ts.map

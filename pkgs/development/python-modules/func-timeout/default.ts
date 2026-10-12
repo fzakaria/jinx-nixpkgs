@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "func_timeout",
           version: version,
           sha256: "74cd3c428ec94f4edfba81f9b2f14904846d5ffccc27c92433b8b5939b5575dd",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["func_timeout"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows you to specify timeouts when calling any existing function. Also provides support for stoppable-threads",
         homepage: "https://github.com/kata198/func_timeout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

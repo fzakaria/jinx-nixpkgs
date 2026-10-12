@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libkrb5 = nix.arg($, "libkrb5");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gsasl",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gsasl/gsasl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-/uNsZqwS0y078pp7Na2PREt5lv42m52l02/WrmScaOs=",
         })))),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "export LOCALDOMAIN=\"dummydomain\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU SASL, Simple Authentication and Security Layer library",
         mainProgram: "gsasl",
         longDescription: "GNU SASL is a library that implements the IETF Simple\nAuthentication and Security Layer (SASL) framework and\nsome SASL mechanisms. SASL is used in network servers\n(e.g. IMAP, SMTP, etc.) to authenticate peers.\n",

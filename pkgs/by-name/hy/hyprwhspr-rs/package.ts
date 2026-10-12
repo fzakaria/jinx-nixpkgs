@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const whisper_cpp = nix.arg($, "whisper-cpp");
   const onnxruntime = nix.arg($, "onnxruntime");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyprwhspr-rs",
       version: "0.3.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "better-slop",
           repo: "hyprwhspr-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 assets/* -t $out/share/assets
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ORT_STRATEGY: "system",
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
         ORT_PREFER_DYNAMIC_LINK: "1",
@@ -50,7 +50,7 @@ install -Dm644 assets/* -t $out/share/assets
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native speech-to-text voice dictation for Hyprland",
         homepage: "https://github.com/better-slop/hyprwhspr-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

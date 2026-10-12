@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lg-webos-remote-control";
       const version = "2.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madmicio",
           repo: "LG-WebOS-Remote-Control",
           rev: version,
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-kN+i0ic1JWs6kqnAliiO4yVMDXwfZaQsRGKeV9A0MxE=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/lg-remote-control.js $out\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "lg-remote-control.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "lg-remote-control.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Remote Control for LG TV WebOS",
         homepage: "https://github.com/madmicio/LG-WebOS-Remote-Control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

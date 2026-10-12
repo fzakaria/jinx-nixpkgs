@@ -18,29 +18,29 @@ const pos$10 = nix.positions(here + "/nginx-moreheaders.nix", [["name", 3, 3], [
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "nginx-more-headers",
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             nginx: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 test: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$3,
-                    "/": nix.thunk(() => ({ __proto__: pos$1, return: "200 blub" })),
+                    [nix.POS]: pos$3,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$1, return: "200 blub" })),
                     "/some": nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       return: "200 blub",
                       extraConfig: "more_set_headers \"Referrer-Policy: no-referrer\";\n",
                     })),

@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sphinx-contrib",
           repo: "fulltoc",
           tag: version,
           hash: "sha256-rpzKiZgsuAqhLDEYURv77SDJny3eqfj0VtJ1tqT29IQ=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr]);
       const dependencies = nix.thunk(() => [sphinx]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.fulltoc"]);
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Include a full table of contents in your Sphinx HTML sidebar",
         homepage: "https://sphinxcontrib-fulltoc.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-contrib/fulltoc/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const extraNixpkgsConfig = nix.argOr($, "extraNixpkgsConfig", () => ({}));
   const lib = nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.add(path, "/lib"))));
   const nixpkgsJobs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(path, "/pkgs/top-level/release.nix"))), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       attrNamesOnly: attrNamesOnly,
       supportedSystems: nix.thunk(() => (nix.asBool(nix.eq(systems, null)) ? [nix.thunk(() => nix.builtins.currentSystem)] : nix.force(systems))),
       nixpkgsArgs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         config: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           allowAliases: false,
           allowBroken: includeBroken,
           allowUnfree: true,
@@ -36,8 +36,8 @@ export default nix.lambda((args) => (() => {
           allowVariants: nix.thunk(() => !nix.asBool(attrNamesOnly)),
           checkMeta: true,
           problems: nix.thunk(() => ({
-            __proto__: pos$2,
-            matchers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, kind: "broken", handler: "error" }))]))),
+            [nix.POS]: pos$2,
+            matchers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, kind: "broken", handler: "error" }))]))),
           })),
           attrPathsDisallowedForInternalUse: attrPathsDisallowedForInternalUse,
           allowDeprecatedx86_64Darwin: true,
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const nixosJobs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(path, "/nixos/release.nix"))), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       attrNamesOnly: attrNamesOnly,
       supportedSystems: nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(nix.sel(lib, "hasSuffix"), "-linux")), nix.thunk(() => (nix.asBool(nix.eq(systems, null)) ? [nix.thunk(() => nix.builtins.currentSystem)] : nix.force(systems))))),
     }))));
-  const recurseIntoAttrs = (attrs) => nix.update(attrs, { __proto__: pos$7, recurseForDerivations: true });
+  const recurseIntoAttrs = (attrs) => nix.update(attrs, { [nix.POS]: pos$7, recurseForDerivations: true });
   const tweak = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (val) => (nix.asBool(nix.eq(name, "recurseForDerivations")) ? true : (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), val)) && nix.asBool(!nix.eq(nix.selOr(val, () => null, "type"), "derivation")))) ? nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(tweak, val))) : nix.force(val)))));
   const blacklist = nix.thunk(() => [
     "tarball",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
     "lib-tests",
   ]);
   return nix.app(tweak, nix.thunk(() => nix.update(nix.builtins.removeAttrs(nixpkgsJobs, blacklist), {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nixosTests: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => (nix.asBool(nix.eq(name, "simple-container")) || nix.asBool(nix.eq(name, "simple-vm"))), nix.thunk(() => nix.sel(nixosJobs, "tests")))),
     })));
 })(), formals$1);

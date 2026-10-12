@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libbladeRF",
       version: "2025.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nuand",
           repo: "bladeRF",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./clang-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Nuand/bladeRF/commit/87bdb1a4bbbc45b749bb90db504fe9cf8fe7a595.patch",
             hash: "sha256-/sB18hwBSIqMkjaC7J0rb4STUrq4BWlJKnyy0Szac9c=",
           })))),
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
           "-DBLADERF_GROUP=bladerf",
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable -Wno-error=tautological-overlap-compare",
         })))),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://nuand.com/libbladeRF-doc",
         description: "Supporting library of the BladeRF SDR opensource hardware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const version = "5.6.282";
   const pname = "gdevelop";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Graphical Game Development Studio",
     homepage: "https://gdevelop.io/",
     downloadPage: "https://github.com/4ian/GDevelop/releases",
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
     mainProgram: "gdevelop",
     platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
   }));
-  const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       meta: meta,

@@ -9,10 +9,10 @@ const pos$4 = nix.positions(here + "/testing.nix", [["run", 72, 11], ["passed", 
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.builtins, null);
-  const passed = (desc) => ({ __proto__: pos$1, result: "pass", description: desc });
-  const failed = (desc) => ({ __proto__: pos$2, result: "failed", description: desc });
+  const passed = (desc) => ({ [nix.POS]: pos$1, result: "pass", description: desc });
+  const failed = (desc) => ({ [nix.POS]: pos$2, result: "failed", description: desc });
   const prefixName = (name) => (res) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     result: nix.thunk(() => nix.attr(res, "result")),
     description: nix.thunk(() => nix.str`${name}: ${nix.sel(res, "description")}`),
   });
@@ -22,6 +22,6 @@ export default nix.thunk(() => (() => {
       nix.thunk(() => nix.app(prefixName, name, nix.thunk(() => (nix.asBool(nix.app(tests, under)) ? nix.app(passed, "passed") : nix.app(failed, "failed"))))),
     ] : [nix.thunk(() => nix.app(prefixName, name, res))]);
   })() : [failed, nix.thunk(() => nix.app(name, ": not a function, list or set"))])));
-  return { __proto__: pos$4, run: run, passed: passed, failed: failed };
+  return { [nix.POS]: pos$4, run: run, passed: passed, failed: failed };
 })());
 //# sourceMappingURL=testing.ts.map

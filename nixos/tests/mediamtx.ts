@@ -26,46 +26,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rtmpUrl = "rtmp://localhost:1935/test";
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "mediamtx",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           mediamtx: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               metrics: true,
               paths: nix.thunk(() => ({
-                __proto__: pos$3,
-                all: nix.thunk(() => ({ __proto__: pos$2, source: "publisher" })),
+                [nix.POS]: pos$3,
+                all: nix.thunk(() => ({ [nix.POS]: pos$2, source: "publisher" })),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "rtmp-publish": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Publish an RTMP stream to mediamtx",
               after: nix.thunk(() => ["mediamtx.service"]),
               bindsTo: nix.thunk(() => ["mediamtx.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 DynamicUser: true,
                 Restart: "on-failure",
                 RestartSec: "1s",
@@ -74,14 +74,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "rtmp-receive": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Receive an RTMP stream from mediamtx",
               after: nix.thunk(() => ["rtmp-publish.service"]),
               bindsTo: nix.thunk(() => ["rtmp-publish.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$9, StartLimitIntervalSec: 0n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, StartLimitIntervalSec: 0n })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 DynamicUser: true,
                 Restart: "on-failure",
                 RestartSec: "1s",

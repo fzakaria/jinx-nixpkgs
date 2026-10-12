@@ -12,31 +12,31 @@ const pos$6 = nix.positions(here + "/birdwatcher.nix", [["host1", 5, 9]]);
 const pos$7 = nix.positions(here + "/birdwatcher.nix", [["name", 4, 3], ["nodes", 5, 3], ["testScript", 77, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   name: "birdwatcher",
   nodes: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     host1: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "jq"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bird: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
             config: "log syslog all;\n\ndebug protocols all;\n\nrouter id 10.0.0.1;\n\nprotocol device {\n}\n\nprotocol kernel kernel4 {\n  ipv4 {\n    import none;\n    export all;\n  };\n}\n\nprotocol kernel kernel6 {\n  ipv6 {\n    import none;\n    export all;\n  };\n}\n",
           })),
           birdwatcher: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             settings: nix.thunk(() => nix.str`[server]
 allow_from = []

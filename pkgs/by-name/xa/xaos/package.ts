@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const datapath = "$out/share/XaoS";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xaos",
       version: "4.3.8",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xaos-project",
           repo: "XaoS",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         QMAKE_LRELEASE: "lrelease",
         DEFINES: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["USE_OPENGL", "USE_FLOAT128"]))),
       })),
@@ -53,7 +53,7 @@ cp -r tutorial examples catalogs "${datapath}"
 install -D "xdg/xaos.png" "$out/share/icons/xaos.png"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real-time interactive fractal zoomer",
         mainProgram: "xaos",
         homepage: "https://xaos-project.github.io/",

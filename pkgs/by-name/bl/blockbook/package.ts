@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const commit = "657cbcf";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trezor",
           repo: "blockbook",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/trezor/blockbook/common.buildDate=unknown",
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
             "-lrocksdb",
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["."]);
       const postInstall = "mkdir -p $out/share/\ncp -r $src/static/templates/ $out/share/\ncp -r $src/static/css/ $out/share/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "blockbook-frontend")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Trezor address/account balance backend",
         homepage: "https://github.com/trezor/blockbook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "blockbook",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         commit,

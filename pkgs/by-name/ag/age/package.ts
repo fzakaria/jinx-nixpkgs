@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "age",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiloSottile",
           repo: "age",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       checkFlags: nix.thunk(() => ["-skip", "TestScript/plugin"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         plugins: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "age-plugin-fido2-hmac": age_plugin_fido2_hmac,
           "age-plugin-ledger": age_plugin_ledger,
           "age-plugin-se": age_plugin_se,
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
           "age-plugin-yubikey": age_plugin_yubikey,
           "age-plugin-1p": age_plugin_1p,
         })),
-        withPlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`age-${nix.sel(finalAttrs, "version")}-with-plugins`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/age $out/bin/age \\
+        withPlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`age-${nix.sel(finalAttrs, "version")}-with-plugins`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/age $out/bin/age \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.app(filter, nix.thunk(() => nix.sel(finalAttrs, "passthru", "plugins")))))}"
 `)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/FiloSottile/age/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://age-encryption.org/",
         description: "Modern encryption tool with small explicit keys",

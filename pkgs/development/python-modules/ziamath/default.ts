@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdelker",
           repo: "ziamath",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--nbval-lax"]);
       const pythonImportsCheck = nix.thunk(() => ["ziamath"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Render MathML and LaTeX Math to SVG without Latex installation",
         homepage: "https://ziamath.readthedocs.io/en/latest/",
         changelog: "https://ziamath.readthedocs.io/en/latest/changes.html",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sfrijters"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

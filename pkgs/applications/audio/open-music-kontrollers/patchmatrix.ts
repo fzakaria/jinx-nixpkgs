@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const additionalBuildInputs = nix.thunk(() => [libjack2]);
       const description = "JACK patchbay in flow matrix style";
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         version,
         url,

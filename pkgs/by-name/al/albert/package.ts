@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "albert",
       version: "35.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "albertlauncher",
           repo: "albert",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,11 +66,11 @@ substituteInPlace src/app/qtpluginprovider.cpp \\
 `),
       postFixup: "for i in $out/{bin/.albert-wrapped,lib/albert/plugins/*.so}; do\n  patchelf $i --add-rpath $out/lib/albert\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and flexible keyboard launcher",
         longDescription: "Albert is a desktop agnostic launcher. Its goals are usability and beauty,\nperformance and extensibility. It is written in C++ and based on the Qt\nframework.\n",
         homepage: "https://albertlauncher.github.io",

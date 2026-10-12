@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ctypes_foreign = nix.arg($, "ctypes-foreign");
   const lilv = nix.arg($, "lilv");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lilv",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-lilv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ctypes, ctypes_foreign, lilv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-lilv",
         description: "OCaml bindings for lilv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

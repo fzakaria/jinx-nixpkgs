@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const simplejson = nix.arg($, "simplejson");
   const stix2_patterns = nix.arg($, "stix2-patterns");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stix2-validator",
       version: "3.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oasis-open",
           repo: "cti-stix-validator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Validator for STIX 2.0 JSON normative requirements and best practices",
         homepage: "https://github.com/oasis-open/cti-stix-validator/",
         changelog: nix.thunk(() => nix.str`https://github.com/oasis-open/cti-stix-validator/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

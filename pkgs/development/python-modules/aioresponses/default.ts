@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-uGHN/l3FjzuK+sewppc9XXsstgjdD2JT0WuO6Or23xE=",
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
         "test_pass_through_unmatched_requests",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper to mock/fake web requests in python aiohttp package",
         homepage: "https://github.com/pnuckowski/aioresponses",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

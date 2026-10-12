@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "can-isotp",
       version: "20200910",
       hardeningDisable: nix.thunk(() => ["pic"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hartkopp",
           repo: "can-isotp",
           rev: "21a3a59e2bfad246782896841e7af042382fcae7",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["modules_install"]),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "5.16")),
         description: "Kernel module for ISO-TP (ISO 15765-2)",
         homepage: "https://github.com/hartkopp/can-isotp",

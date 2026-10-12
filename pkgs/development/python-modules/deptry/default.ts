@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const tomli = nix.arg($, "tomli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deptry",
       version: "0.25.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osprey-oss",
           repo: "deptry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GQWivQMWQ8wi6cWsCbmvSSyPEx1yl9QidO+9mTDrN1c=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/functional/cli/"]),
       pythonImportsCheck: nix.thunk(() => ["deptry"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Find unused, missing and transitive dependencies in a Python project",
         homepage: "https://github.com/osprey-oss/deptry",
         changelog: nix.thunk(() => nix.str`https://github.com/osprey-oss/deptry/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

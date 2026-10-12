@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const hex = nix.arg($, "hex");
   const http2_frame_test_case = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "http2jp",
       repo: "http2-frame-test-case",
       rev: "5c67db0d4d68e1fb7d3a241d6e01fc04d981f465",
       sha256: "16yyb37f8mk9saw7ndjs5is67yq7qa6b6y7k0c75ibxi4n9aw1r3",
     }))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "h2",
       version: nix.thunk(() => nix.attr(hpack, "version")),
       src: nix.thunk(() => nix.attr(hpack, "src")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       checkInputs: nix.thunk(() => [alcotest, yojson, hex]),
       meta: nix.thunk(() => nix.update(nix.sel(hpack, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance, memory-efficient, and scalable HTTP/2 library for OCaml",
       })),
     })));

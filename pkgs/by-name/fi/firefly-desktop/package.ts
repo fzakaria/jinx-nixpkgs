@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "firefly-desktop";
   const version = "2.1.8";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/iotaledger/firefly/releases/download/desktop-${version}/firefly-desktop-${version}.AppImage`),
       sha256: "sha256-MATMl5eEIauDQpz8/wqIzD7IugPVZ2HJAWCbDM4n+hA=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -34,7 +34,7 @@ substituteInPlace $out/share/applications/firefly-desktop.desktop \\
 install -D ${appimageContents}/desktop.png $out/share/icons/firefly-desktop.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IOTA's New Wallet",
         homepage: "https://firefly.iota.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

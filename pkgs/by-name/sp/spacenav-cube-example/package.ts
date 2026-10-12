@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const mesa_glu = nix.arg($, "mesa_glu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "spacenav-cube-example",
       version: nix.thunk(() => nix.attr(libspnav, "version")),
       src: nix.thunk(() => nix.attr(libspnav, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp cube $out/bin/spacenav-cube-example\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://spacenav.sourceforge.net/",
         description: "Example application to test the spacenavd driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

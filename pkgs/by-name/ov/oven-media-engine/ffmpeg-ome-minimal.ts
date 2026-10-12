@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const srt = nix.arg($, "srt");
   const x264 = nix.arg($, "x264");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ffmpeg-ome-minimal",
       version: nix.thunk(() => nix.sel(ffmpeg_6, "version")),
       src: nix.thunk(() => nix.sel(ffmpeg_6, "src")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Minimal FFmpeg build for OvenMediaEngine, replicating its upstream InstallPrerequisites.cmake configuration",
         homepage: "https://ffmpeg.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -25,33 +25,33 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const yojson = nix.arg($, "yojson");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "3.10.0",
     sha256: "sha256-Dy9egNpZdxsTPLo2mbpiFTMh5cYUXXOlOZLlQJuAK+E=",
     checkInputs: nix.thunk(() => [ounit2]),
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.30")) ? {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "3.9.0",
     sha256: "sha256-0d6YcBkeFoHXffCYjLIIvruw8B9ZB6NbUijhTv9uyN8=",
     checkInputs: nix.thunk(() => [ounit2]),
   } : {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "3.6.1",
     sha256: "1icz5h6p3pfj7my5gi7wxpflrb8c902dqa17f9w424njilnpyrbk",
     checkInputs: nix.thunk(() => [ounit]),
     propagatedBuildInputs: nix.thunk(() => [result]),
   })));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ppx_deriving_yojson",
       version: nix.thunk(() => nix.attr(param, "version")),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://github.com/ocaml-ppx/ppx_deriving_yojson/commit/1bbbe2c4c5822c4297b0b812c59a155cf96c5089.patch",
           hash: "sha256-jYW2/Ix6T94vfI2mGnIkYSG1rjsWEsnOPA1mufP3sd4=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ocaml-ppx",
           repo: "ppx_deriving_yojson",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Yojson codec generator for OCaml >= 4.04",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

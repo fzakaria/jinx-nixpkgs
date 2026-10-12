@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mitmproxy",
           repo: "mitmproxy_rs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildAndTestSubdir = "mitmproxy-rs";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mitmproxy, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rust bits in mitmproxy",
         homepage: "https://github.com/mitmproxy/mitmproxy_rs",
         changelog: nix.thunk(() => nix.str`https://github.com/mitmproxy/mitmproxy_rs/blob/${nix.sel(src, "rev")}/CHANGELOG.md#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

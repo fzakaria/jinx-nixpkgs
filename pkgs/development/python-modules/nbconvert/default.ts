@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-NNDQp+c848urbFquj09Gh5coCwH9i9LKdG2oVp7d19I=",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converting Jupyter Notebooks",
         homepage: "https://github.com/jupyter/nbconvert",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/nbconvert/blob/v${version}/CHANGELOG.md`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

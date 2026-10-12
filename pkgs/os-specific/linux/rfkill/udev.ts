@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const rfkillHook = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$2,
-      replacements: nix.thunk(() => ({ __proto__: pos$1, shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
+      [nix.POS]: pos$2,
+      replacements: nix.thunk(() => ({ [nix.POS]: pos$1, shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
       isExecutable: true,
       src: nix.path(here, "./rfkill-hook.sh"),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "rfkill-udev",
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
@@ -36,7 +36,7 @@ mkdir -p "$out/bin/";
 cp ${rfkillHook} "$out/bin/rfkill-hook.sh"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://wireless.kernel.org/en/users/Documentation/rfkill",
         description: "Rules+hook for udev to catch rfkill state changes",
         mainProgram: "rfkill-hook.sh",

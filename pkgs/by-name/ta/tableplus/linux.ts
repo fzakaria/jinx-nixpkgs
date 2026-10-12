@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tableplus",
       version: "0.1.308",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20251230232124/https://deb.tableplus.com/debian/22/pool/main/t/tableplus/tableplus_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-sqiA+iCZrqHPIkh24JejtfBvILtZt3HN2bKf/1Sc714=",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "dpkg-deb -x $src .\n",
       installPhase: "runHook preInstall\n\nsubstituteInPlace opt/tableplus/tableplus.desktop \\\n  --replace-fail \"Exec=/usr/local/bin/tableplus\" \"Exec=tableplus\" \\\n  --replace-fail \"Icon=/opt/tableplus/resource/image/logo.png\" \"Icon=tableplus\"\ninstall -Dt $out/bin opt/tableplus/tableplus\ninstall -Dt $out/share/applications/ opt/tableplus/tableplus.desktop\ninstall -Dt $out/share/icons/hicolor/256x256/apps/ opt/tableplus/resource/image/tableplus.png\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Database management made easy",
         homepage: "https://tableplus.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

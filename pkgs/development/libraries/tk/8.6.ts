@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const tcl = nix.arg($, "tcl");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tk${nix.sel(tcl, "version")}-src.tar.gz`),
           hash: "sha256-vp+U01ddSzCZ2EvDwQ3omU3y16pAUggXPHCcxASn5f4=",
         })))),

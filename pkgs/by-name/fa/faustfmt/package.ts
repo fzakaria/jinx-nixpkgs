@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faustfmt",
       version: "0-unstable-2025-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grame-cncm",
           repo: "faustfmt",
           rev: "93a897a08f034b9a73397b0052a3391fcdb28fe9",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-uwBCy52juE3YcJoackhvrHjrvcoahbnDFg74p/X3ce8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Formatter for the Faust programming language, using Topiary",
         homepage: "https://github.com/grame-cncm/faustfmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

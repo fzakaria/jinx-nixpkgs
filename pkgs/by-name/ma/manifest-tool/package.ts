@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const manifest_tool = nix.arg($, "manifest-tool");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "manifest-tool",
       version: "2.2.2",
       modRoot: "v2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "estesp",
           repo: "manifest-tool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export ldflags+=\" -X main.gitCommit=$(cat .git-revision)\"\n",
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["cgo", "netgo", "osusergo", "static_build"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: manifest_tool })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: manifest_tool })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line tool to create and query container image manifest list/indexes",
         mainProgram: "manifest-tool",
         homepage: "https://github.com/estesp/manifest-tool",

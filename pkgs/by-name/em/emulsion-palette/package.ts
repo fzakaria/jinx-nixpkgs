@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emulsion-palette",
       version: "3.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lainsce",
           repo: "emulsion",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [desktop_file_utils, gtk3, json_glib, libadwaita, libgee]),
       postFixup: "ln -s $out/bin/io.github.lainsce.Emulsion $out/bin/emulsion-palette\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Store your color palettes in an easy way",
         homepage: "https://github.com/lainsce/emulsion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

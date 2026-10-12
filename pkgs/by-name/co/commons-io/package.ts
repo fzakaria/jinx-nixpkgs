@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.22.0",
       pname: "commons-io",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/io/binaries/commons-io-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-DQ17WESs+TMizYkp7yG103LZdS8i+XqEkfFrlttoTm8=",
         })))),
@@ -26,7 +26,7 @@ mkdir -p $out/share/java
 cp *.jar $out/share/java/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://commons.apache.org/proper/commons-io",
         description: "Library of utilities to assist with developing IO functionality",
         maintainers: [],

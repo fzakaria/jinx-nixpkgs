@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "font-adobe-utopia-75dpi",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/font/font-adobe-utopia-75dpi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pyYkWTLQck+gxTjJkoEdY9WX5fU5KPQEjpyvViN5d2A=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [font_util]),
       configureFlags: nix.thunk(() => ["--with-fontrootdir=$(out)/share/fonts/X11"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -42,7 +42,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Adobe Utopia 75dpi pcf fonts",
         homepage: "https://gitlab.freedesktop.org/xorg/font/adobe-utopia-75dpi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "adobeUtopia")),

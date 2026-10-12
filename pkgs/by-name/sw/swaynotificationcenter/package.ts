@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "SwayNotificationCenter",
       version: "0.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ErikReider",
           repo: "SwayNotificationCenter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,11 +92,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "chmod +x build-aux/meson/postinstall.py\npatchShebangs build-aux/meson/postinstall.py\nsubstituteInPlace src/functions.vala --replace \"/usr/local/etc/xdg/swaync\" \"$out/etc/xdg/swaync\"\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${xvfb_run}/bin/xvfb-run swaync --version`),
             })))),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple notification daemon with a GUI built for Sway",
         homepage: "https://github.com/ErikReider/SwayNotificationCenter",
         changelog: nix.thunk(() => nix.str`https://github.com/ErikReider/SwayNotificationCenter/releases/tag/v${nix.sel(finalAttrs, "version")}`),

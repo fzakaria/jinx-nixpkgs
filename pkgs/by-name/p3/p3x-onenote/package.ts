@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const pname = "p3x-onenote";
   const onenote = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const version = nix.thunk(() => nix.sel(onenote, "version"));
-  const plat = nix.thunk(() => nix.sel({ __proto__: pos$1, "aarch64-linux": "-arm64", "x86_64-linux": "" }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const plat = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, "aarch64-linux": "-arm64", "x86_64-linux": "" }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hash = nix.thunk(() => nix.sel(onenote, "hash", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/patrikx3/onenote/releases/download/v${version}/P3X-OneNote-${version}${plat}.AppImage`),
       hash: hash,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -43,9 +43,9 @@ ${desktop_file_utils}/bin/desktop-file-install --dir $out/share/applications \\
   --set-key Exec --set-value "p3x-onenote" \\
   --delete-original $out/p3x-onenote.desktop
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/patrikx3/onenote",
         description: "Linux Electron Onenote - A Linux compatible version of OneNote",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

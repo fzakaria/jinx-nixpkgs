@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const pname = name;
         const version = "1.3.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "n0-computer",
             repo: "iroh",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [lld]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Efficient IPFS for the whole world right now",
           homepage: "https://iroh.computer",
           license: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           mainProgram: name,
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           src,
@@ -68,10 +68,10 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$6,
-    "iroh-dns-server": nix.thunk(() => nix.app(mkIrohPackage, nix.thunk(() => ({ __proto__: pos$4, name: "iroh-dns-server" })))),
+    [nix.POS]: pos$6,
+    "iroh-dns-server": nix.thunk(() => nix.app(mkIrohPackage, nix.thunk(() => ({ [nix.POS]: pos$4, name: "iroh-dns-server" })))),
     "iroh-relay": nix.thunk(() => nix.app(mkIrohPackage, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "iroh-relay",
         cargoFeatures: nix.thunk(() => ["server"]),
       })))),

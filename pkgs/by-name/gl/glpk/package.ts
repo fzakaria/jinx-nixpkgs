@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0";
       const pname = "glpk";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/glpk/glpk-${version}.tar.gz`),
           sha256: "sha256-ShAT7rtQ9yj8YBvdgzsLKHAzPDs+WoFu66kh2VvsbxU=",
         }))));
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGmp, nix.thunk(() => ["--with-gmp"])));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "error_recovery.patch",
             url: "https://raw.githubusercontent.com/sagemath/sage/d3c1f607e32f964bf0cab877a63767c86fd00266/build/pkgs/glpk/patches/error_recovery.patch",
             sha256: "sha256-2hNtUEoGTFt3JgUvLH3tPWnz+DZcXNhjXzS+/V89toA=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname,
             version: version,
             debianRevision: "2",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace configure \\\n  --replace '-I/usr/include/mysql' '$(mysql_config --include)'\n";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU Linear Programming Kit",
         longDescription: "The GNU Linear Programming Kit is intended for solving large\nscale linear programming problems by means of the revised\nsimplex method.  It is a set of routines written in the ANSI C\nprogramming language and organized in the form of a library.\n",
         homepage: "https://www.gnu.org/software/glpk/",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         src,

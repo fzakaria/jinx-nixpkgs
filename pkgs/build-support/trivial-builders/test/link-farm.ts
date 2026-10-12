@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const writeTextFile = nix.arg($, "writeTextFile");
   const runCommand = nix.arg($, "runCommand");
-  const foo = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ __proto__: pos$1, name: "foo", text: "foo" }))));
+  const foo = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$1, name: "foo", text: "foo" }))));
   const linkFarmFromList = nix.thunk(() => nix.app(linkFarm, "linkFarmFromList", nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$2, name: "foo", path: foo })),
-      nix.thunk(() => ({ __proto__: pos$3, name: "hello", path: hello })),
+      nix.thunk(() => ({ [nix.POS]: pos$2, name: "foo", path: foo })),
+      nix.thunk(() => ({ [nix.POS]: pos$3, name: "hello", path: hello })),
     ])));
   const linkFarmWithRepeats = nix.thunk(() => nix.app(linkFarm, "linkFarmWithRepeats", nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$4, name: "foo", path: foo })),
-      nix.thunk(() => ({ __proto__: pos$5, name: "hello", path: hello })),
-      nix.thunk(() => ({ __proto__: pos$6, name: "foo", path: hello })),
+      nix.thunk(() => ({ [nix.POS]: pos$4, name: "foo", path: foo })),
+      nix.thunk(() => ({ [nix.POS]: pos$5, name: "hello", path: hello })),
+      nix.thunk(() => ({ [nix.POS]: pos$6, name: "foo", path: hello })),
     ])));
-  const linkFarmFromAttrs = nix.thunk(() => nix.app(linkFarm, "linkFarmFromAttrs", nix.thunk(() => ({ __proto__: pos$7, foo: foo, hello: hello }))));
-  const linkFarmDelimitOptionList = nix.thunk(() => nix.app(linkFarm, "linkFarmDelimitOptionList", nix.thunk(() => ({ __proto__: pos$8, "-foo": foo, "-hello": hello }))));
+  const linkFarmFromAttrs = nix.thunk(() => nix.app(linkFarm, "linkFarmFromAttrs", nix.thunk(() => ({ [nix.POS]: pos$7, foo: foo, hello: hello }))));
+  const linkFarmDelimitOptionList = nix.thunk(() => nix.app(linkFarm, "linkFarmDelimitOptionList", nix.thunk(() => ({ [nix.POS]: pos$8, "-foo": foo, "-hello": hello }))));
   return nix.app(runCommand, "test-linkFarm", nix.thunk(() => ({})), nix.thunk(() => nix.str`function assertPathEquals() {
   local a b;
   a="$(realpath "$1")"

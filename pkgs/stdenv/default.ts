@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const useCrossStdenv = nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), crossSystem, localSystem))) || nix.asBool(!nix.eq(crossOverlays, []))));
   const useCustomStdenv = nix.thunk(() => (nix.asBool(!nix.asBool(useCrossStdenv)) && nix.asBool(!nix.eq(nix.selOr(config, () => null, "replaceStdenv"), null))));
   const bootArgs = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     lib: lib,
     localSystem: localSystem,
     overlays: overlays,
     config: nix.thunk(() => (nix.asBool((nix.asBool(useCrossStdenv) || nix.asBool(useCustomStdenv))) ? nix.builtins.removeAttrs(config, nix.thunk(() => ["replaceStdenv"])) : nix.force(config))),
   }));
   const stagesNative = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./native")), bootArgs));
-  const stagesNix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix")), nix.thunk(() => nix.update(bootArgs, { __proto__: pos$2, bootStages: stagesNative }))));
+  const stagesNix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix")), nix.thunk(() => nix.update(bootArgs, { [nix.POS]: pos$2, bootStages: stagesNative }))));
   const stagesFreeBSD = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freebsd")), bootArgs));
   const stagesLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./linux")), bootArgs));
   const stagesDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./darwin")), bootArgs));
   const bootStages = nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isLinux")) ? nix.force(stagesLinux) : (nix.asBool(nix.sel(localSystem, "isDarwin")) ? nix.force(stagesDarwin) : nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-solaris": stagesNix,
     "x86_64-freebsd": stagesFreeBSD,
   }, () => nix.force(stagesNative), nix.key(nix.sel(localSystem, "system"))))));
   const stagesCross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cross")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       lib: lib,
       localSystem: localSystem,
       crossSystem: crossSystem,
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
       bootStages: bootStages,
     }))));
   const replaceStdenvStage = (vanillaPackages) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     config: config,
     overlays: overlays,
-    stdenv: nix.thunk(() => nix.app(nix.sel(config, "replaceStdenv"), nix.thunk(() => ({ __proto__: pos$5, pkgs: vanillaPackages })))),
+    stdenv: nix.thunk(() => nix.app(nix.sel(config, "replaceStdenv"), nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: vanillaPackages })))),
   });
   return (nix.asBool(useCrossStdenv) ? nix.force(stagesCross) : (nix.asBool(useCustomStdenv) ? nix.concat(bootStages, [replaceStdenvStage]) : nix.force(bootStages)));
 })(), formals$1);

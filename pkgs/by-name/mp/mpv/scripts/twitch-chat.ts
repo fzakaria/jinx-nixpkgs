@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "twitch-chat",
       version: "0-unstable-2026-07-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CrendKing",
           repo: "mpv-twitch-chat",
           rev: "72d97a02fae1045dedc44979e60403a198bbef1c",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       scriptPath: ".",
       "runtime-dependencies": nix.thunk(() => [curl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Show Twitch chat messages as subtitles when watching Twitch VOD with mpv",
         homepage: "https://github.com/CrendKing/mpv-twitch-chat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

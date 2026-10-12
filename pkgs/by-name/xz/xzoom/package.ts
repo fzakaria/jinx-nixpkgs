@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.3";
       const patch = "24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.ibiblio.org/pub/linux/libs/X/xzoom-${version}.tgz`),
           sha256: "0jzl5py4ny4n4i58lxx2hdwq9zphqf7h3m14spl3079y5mlzssxj",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/main/x/xzoom/xzoom_${version}-${patch}.diff.gz`),
             sha256: "0zhc06whbvaz987bzzzi2bz6h9jp6rv812qs7b71drivvd820qbh",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)", "BINDIR=$(out)/bin", "MANPATH=$(out)/share/man"]);
       const installTargets = nix.thunk(() => ["install", "install.man"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "X11 screen zoom tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xzoom",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         patch,

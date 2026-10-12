@@ -16,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const backend = nix.arg($, "backend");
   const ghdl = nix.thunk(() => (nix.asBool(nix.eq(backend, "llvm")) ? nix.force(ghdl_llvm) : (nix.asBool(nix.eq(backend, "llvm-jit")) ? nix.force(ghdl_llvm_jit) : (nix.asBool(nix.eq(backend, "gcc")) ? nix.force(ghdl_gcc) : nix.force(ghdl_mcode)))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "ghdl-test-simple",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 300n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 300n })),
       nativeBuildInputs: nix.thunk(() => [ghdl]),
       buildCommand: nix.thunk(() => nix.add(nix.add(nix.str`cp ${nix.path(here, "./simple.vhd")} simple.vhd
 cp ${nix.path(here, "./simple-tb.vhd")} simple-tb.vhd

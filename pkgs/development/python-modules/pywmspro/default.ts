@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const aiofiles = nix.arg($, "aiofiles");
   const aiohttp = nix.arg($, "aiohttp");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pywmspro",
       version: "0.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mback2k",
           repo: "pywmspro",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["wmspro"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mback2k/pywmspro/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python library for WMS WebControl pro API",
         homepage: "https://github.com/mback2k/pywmspro",

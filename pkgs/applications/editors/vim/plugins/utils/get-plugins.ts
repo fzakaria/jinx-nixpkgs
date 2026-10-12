@@ -9,12 +9,12 @@ const pos$4 = nix.positions(here + "/get-plugins.nix", [["pname", 18, 21], ["ver
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "localpkgs")), nix.thunk(() => ({})))), null);
-  const from = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "vimUtils"), "override"), nix.thunk(() => ({ __proto__: pos$1, vim: nix.thunk(() => nix.lookup(w, "vim")) }))));
+  const from = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "vimUtils"), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, vim: nix.thunk(() => nix.lookup(w, "vim")) }))));
   const buildVimPlugin = nix.thunk(() => nix.attr(from, "buildVimPlugin"));
-  const generated = nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.builtins.findFile(nix.builtins.nixPath, "localpkgs/pkgs/applications/editors/vim/plugins/generated.nix"), nix.thunk(() => ({ __proto__: pos$2, buildVimPlugin: buildVimPlugin })), nix.thunk(() => ({})), nix.thunk(() => ({}))));
+  const generated = nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.builtins.findFile(nix.builtins.nixPath, "localpkgs/pkgs/applications/editors/vim/plugins/generated.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, buildVimPlugin: buildVimPlugin })), nix.thunk(() => ({})), nix.thunk(() => ({}))));
   const hasChecksum = (value) => (nix.asBool(nix.app(nix.sel(nix.lookup(w, "lib"), "isAttrs"), value)) && nix.asBool(nix.app(nix.sel(nix.lookup(w, "lib"), "hasAttrByPath"), nix.thunk(() => ["src", "outputHash"]), value)));
   const parse = (_name) => (value) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     pname: nix.thunk(() => nix.attr(value, "pname")),
     version: nix.thunk(() => nix.attr(value, "version")),
     homePage: nix.thunk(() => nix.sel(value, "meta", "homepage")),
@@ -22,7 +22,7 @@ export default nix.thunk(() => (() => {
     checksum: nix.thunk(() => (nix.asBool(nix.app(hasChecksum, value)) ? (() => {
       const from_1 = nix.thunk(() => nix.sel(value, "src"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       submodules: nix.thunk(() => nix.selOr(value, () => false, "src", "fetchSubmodules")),
       sha256: nix.thunk(() => nix.sel(value, "src", "outputHash")),
       rev: nix.thunk(() => nix.attr(from_1, "rev")),

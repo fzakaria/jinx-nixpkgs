@@ -18,30 +18,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "autosuspend",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           autosuspend: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               interval: 5n,
               idle_time: 5n,
               suspend_cmd: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/touch /tmp/suspended`),
             })),
             checks: nix.thunk(() => ({
-              __proto__: pos$4,
-              ExternalCommand: nix.thunk(() => ({ __proto__: pos$3, command: "exit 1" })),
+              [nix.POS]: pos$4,
+              ExternalCommand: nix.thunk(() => ({ [nix.POS]: pos$3, command: "exit 1" })),
             })),
           })),
         })),

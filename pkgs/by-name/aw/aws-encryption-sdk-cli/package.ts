@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aws-encryption-sdk-cli",
       version: "4.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "aws_encryption_sdk_cli",
           hash: "sha256-FfLgR7gocZ0cLV7bxqvKNI+Fs7kQF0XhR3zf6tHXwOE=",
@@ -56,19 +56,19 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/integration"]),
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn8Warning"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: aws_encryption_sdk_cli,
               command: "aws-encryption-cli --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://aws-encryption-sdk-cli.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-encryption-sdk-cli/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),
         description: "CLI wrapper around aws-encryption-sdk-python",

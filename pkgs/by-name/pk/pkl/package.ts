@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const jdk = temurin_bin_21;
   const gradle = gradle_9;
-  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ __proto__: pos$1, java: jdk }))));
-  const kotlinOverlay = nix.thunk(() => nix.app(nix.sel(kotlin, "override"), nix.thunk(() => ({ __proto__: pos$2, jre: jdk }))));
+  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk }))));
+  const kotlinOverlay = nix.thunk(() => nix.app(nix.sel(kotlin, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, jre: jdk }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pkl",
       version: "0.31.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "apple",
           repo: "pkl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
           postFetch: "pushd $out\ngit rev-parse HEAD | tr -d '\\n' > .commit-hash\nrm -rf .git\npopd\n",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_kotlin_classpath.patch"), nix.thunk(() => ({ __proto__: pos$4, gradle: nix.thunk(() => nix.sel(gradle, "unwrapped")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_kotlin_classpath.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, gradle: nix.thunk(() => nix.sel(gradle, "unwrapped")) })))),
         nix.path(here, "./disable_gradle_codegen_tests.patch"),
         nix.path(here, "./disable_bad_tests.patch"),
         nix.path(here, "./repair_org.msgpack-msgpack-core_lockfiles.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [gradleOverlay, jdk, kotlinOverlay, makeWrapper, installShellFiles]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "-Porg.gradle.java.installations.auto-detect=false",
       ]),
       preBuild: "gradleFlagsArray+=(-DcommitId=$(cat .commit-hash))\n",
-      env: nix.thunk(() => ({ __proto__: pos$6, JAVA_TOOL_OPTIONS: "-Dfile.encoding=utf-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, JAVA_TOOL_OPTIONS: "-Dfile.encoding=utf-8" })),
       __darwinAllowLocalNetworking: true,
       preCheck: "export LANG=C.UTF-8\nexport LC_ALL=C.UTF-8\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -82,11 +82,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Configuration-as-code language with rich validation and tooling",
         homepage: "https://pkl-lang.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

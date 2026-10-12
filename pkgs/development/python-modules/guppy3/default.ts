@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zhuyifei1999",
           repo: "guppy3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["guppy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zhuyifei1999/guppy3/blob/${nix.sel(src, "tag")}/ChangeLog`),
         description: "Python Programming Environment & Heap analysis toolset",
         homepage: "https://zhuyifei1999.github.io/guppy3/",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

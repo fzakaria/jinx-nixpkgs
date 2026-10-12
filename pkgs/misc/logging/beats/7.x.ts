@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const systemdLibs = nix.arg($, "systemdLibs");
   const config = nix.arg($, "config");
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ __proto__: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
   const beat = (package$) => (extraArgs) => nix.app(buildGoModule, (finalAttrs) => nix.update({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: package$,
       version: elk7Version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "elastic",
           repo: "beats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-JOCcceYYutC5MI+/lXBqcqiET+mcrG1e3kWySo3+NIk=",
       subPackages: nix.thunk(() => [package$]),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.elastic.co/products/beats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
@@ -61,46 +61,46 @@ export default nix.lambda((args) => (() => {
     }, nix.builtins.removeAttrs(extraArgs, nix.thunk(() => ["meta"]))));
   return (() => {
     const auditbeat7 = nix.thunk(() => nix.app(beat, "auditbeat", nix.thunk(() => ({
-        __proto__: pos$6,
-        meta: nix.thunk(() => ({ __proto__: pos$5, description: "Lightweight shipper for audit data" })),
+        [nix.POS]: pos$6,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$5, description: "Lightweight shipper for audit data" })),
       }))));
     const filebeat7 = nix.thunk(() => nix.app(beat, "filebeat", nix.thunk(() => ({
-        __proto__: pos$8,
-        meta: nix.thunk(() => ({ __proto__: pos$7, description: "Lightweight shipper for logfiles" })),
+        [nix.POS]: pos$8,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$7, description: "Lightweight shipper for logfiles" })),
         buildInputs: nix.thunk(() => [systemdLibs$]),
         tags: nix.thunk(() => ["withjournald"]),
         postFixup: nix.thunk(() => nix.str`patchelf --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), systemdLibs$))]))} "$out/bin/filebeat"
 `),
       }))));
     const heartbeat7 = nix.thunk(() => nix.app(beat, "heartbeat", nix.thunk(() => ({
-        __proto__: pos$10,
-        meta: nix.thunk(() => ({ __proto__: pos$9, description: "Lightweight shipper for uptime monitoring" })),
+        [nix.POS]: pos$10,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, description: "Lightweight shipper for uptime monitoring" })),
       }))));
     const metricbeat7 = nix.thunk(() => nix.app(beat, "metricbeat", nix.thunk(() => ({
-        __proto__: pos$14,
-        meta: nix.thunk(() => ({ __proto__: pos$11, description: "Lightweight shipper for metrics" })),
+        [nix.POS]: pos$14,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$11, description: "Lightweight shipper for metrics" })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowUnfree")), nix.thunk(() => (() => {
               nix.assert_(nix.eq(nix.sel(metricbeat7, "drvPath"), nix.sel(nixosTests, "elk", "unfree", "ELK-7", "elkPackages", "metricbeat", "drvPath")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/misc/logging/beats/7.x.nix:69:7");
               return {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 elk: nix.thunk(() => nix.sel(nixosTests, "elk", "unfree", "ELK-7")),
               };
             })()))),
         })),
       }))));
     const packetbeat7 = nix.thunk(() => nix.app(beat, "packetbeat", nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         buildInputs: nix.thunk(() => [libpcap]),
         meta: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           description: "Network packet analyzer that ships data to Elasticsearch",
           longDescription: "Packetbeat is an open source network packet analyzer that ships the\ndata to Elasticsearch.\n\nThink of it like a distributed real-time Wireshark with a lot more\nanalytics features. The Packetbeat shippers sniff the traffic between\nyour application processes, parse on the fly protocols like HTTP, MySQL,\nPostgreSQL, Redis or Thrift and correlate the messages into transactions.\n",
         })),
       }))));
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       auditbeat7,
       filebeat7,
       heartbeat7,

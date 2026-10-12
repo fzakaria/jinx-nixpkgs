@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "woodpecker-cli",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: nix.thunk(() => nix.attr(common, "vendorHash")),
       subPackages: "cmd/cli",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       postInstall: nix.thunk(() => nix.add(nix.str`${nix.sel(common, "postInstall")}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd woodpecker-cli \\\n  --bash <($out/bin/woodpecker-cli completion bash) \\\n  --fish <($out/bin/woodpecker-cli completion fish ) \\\n  --zsh <($out/bin/woodpecker-cli completion zsh)\n"))),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client for the Woodpecker Continuous Integration server",
         mainProgram: "woodpecker-cli",
       })),

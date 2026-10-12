@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libidn2",
       version: "2.3.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/libidn/libidn2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9VeRG/YXFiHh9y/zX1sYJbs1tS7UUyXc3ukx5dPAeHo=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/libidn/#libidn2",
         description: "Free software implementation of IDNA2008 and TR46",
         longDescription: "Libidn2 is believed to be a complete IDNA2008 and TR46 implementation,\nbut has yet to be as extensively used as the IDNA2003 Libidn library.\n\nThe installed C library libidn2 is dual-licensed under LGPLv3+|GPLv2+,\nwhile the rest of the package is GPLv3+.  See the file COPYING for\ndetailed information.\n",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "fpletz"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

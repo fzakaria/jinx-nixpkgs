@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pname = "winbox";
   const version = "4.4";
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Graphical configuration utility for RouterOS-based devices",
     homepage: "https://mikrotik.com",
     downloadPage: "https://mikrotik.com/download",
@@ -37,23 +37,23 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const x86_64_zip = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-zip.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       hash: "sha256-SbH6q6tVgExJGqKUfvut6WeBXVPfdpjMeHagwdY2zcE=",
     }))));
   const x86_64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       hash: "sha256-v/Bw+0EBkdVRyZiNR3lv99JF0napgbFKkMpvhpi+Shg=",
     }))));
   return nix.app(nix.sel((nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.force(x86_64_dmg) : nix.force(x86_64_zip)), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.concat(nix.sel(x86_64_zip, "meta", "platforms"), nix.sel(x86_64_dmg, "meta", "platforms"))),
         mainProgram: "WinBox",
         changelog: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(oldAttrs, "version")}/CHANGELOG`),

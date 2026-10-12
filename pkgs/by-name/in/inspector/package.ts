@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const usbutils = nix.arg($, "usbutils");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inspector",
       version: "0.2.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nokse22",
           repo: "inspector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         pciutils,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Nokse22/inspector",
         description: "Gtk4 Libadwaita wrapper for various system info cli commands",
         license: nix.thunk(() => (() => {

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rpcgen = nix.arg($, "rpcgen");
   const mtree = nix.arg($, "mtree");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       noLibc: true,
       path: "include",
       extraPaths: nix.thunk(() => ["contrib/libc-vis", "etc/mtree/BSD.include.dist", "sys", "lib/msun/arm"]),

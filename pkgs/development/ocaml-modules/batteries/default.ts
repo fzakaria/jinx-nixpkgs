@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const camlp_streams = nix.arg($, "camlp-streams");
   const doCheck = nix.argOr($, "doCheck", () => true);
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "batteries",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-batteries-team",
           repo: "batteries-included",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: doCheck,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ocaml-batteries-team.github.io/batteries-included/hdoc2/",
         description: "OCaml Batteries Included",
         longDescription: "A community-driven effort to standardize on an consistent, documented,\nand comprehensive development platform for the OCaml programming\nlanguage.\n",

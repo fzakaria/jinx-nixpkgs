@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "9base",
       version: "6-unstable-2019-09-13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.suckless.org/9base",
           rev: "63916da7bd6d73d9a405ce83fc4ca34845667cce",
           hash: "sha256-CNK7Ycmcl5vkmtA5VKwKxGZz8AoIG1JH/LTKoYmWSBI=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-D_DEFAULT_SOURCE", "-Wno-error=implicit-function-declaration"]))),
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableStatic, "-static")),
       })),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX_TROFF=${nix.builtins.placeholder("troff")}`)]),
       outputs: nix.thunk(() => ["out", "man", "troff"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://tools.suckless.org/9base/",
         description: "Port of various original Plan 9 tools for Unix, based on plan9port",
         longDescription: "9base is a port of various original Plan 9 tools for Unix, based on plan9port.\nIt also contains the Plan 9 libc, libbio, libregexp, libfmt and libutf.\nThe overall SLOC is about 66kSLOC, so this userland + all libs is much smaller than, e.g. bash.\n9base can be used to run werc instead of the full blown plan9port.\n",

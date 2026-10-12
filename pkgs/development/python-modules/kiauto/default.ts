@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const kicadPkg = nix.arg($, "kicadPkg");
   const kicad = nix.arg($, "kicad");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kiauto",
       version: "2.3.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "INTI-CMNB",
           repo: "KiAuto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["kiauto"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automation scripts for KiCad",
         homepage: "https://github.com/INTI-CMNB/KiAuto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

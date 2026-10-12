@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "whitesur-cursors",
       version: "0-unstable-2025-01-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "WhiteSur-cursors",
           rev: "c8759f13de18612051e7c1250946f54e49128b61",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -dm 755 $out/share/icons/WhiteSur-cursors\ncp -r dist/* $out/share/icons/WhiteSur-cursors\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X-cursor theme inspired by macOS and based on capitaine-cursors",
         homepage: "https://github.com/vinceliuice/WhiteSur-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

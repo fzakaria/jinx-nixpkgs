@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const cudaLibPaths = nix.arg($, "cudaLibPaths");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "13.3.1",
     sourceHash: "sha256-k8ZNWw2ZpNepcWzv8TJfoxSGVn6HUCYfamEDESIcUQY=",
     nvidiaLibsPatch: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-nvidia-libs-paths_13_3.patch"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         libcudart: nix.thunk(() => nix.attr(cudaLibPaths, "libcudart")),
         libcufile: nix.thunk(() => nix.attr(cudaLibPaths, "libcufile")),
         libnvfatbin: nix.thunk(() => nix.attr(cudaLibPaths, "libnvfatbin")),

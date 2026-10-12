@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_httpx = nix.arg($, "pytest-httpx");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glances-api",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-ecosystem",
           repo: "python-glances-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_httpx, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["glances_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for interacting with Glances",
         homepage: "https://github.com/home-assistant-ecosystem/python-glances-api",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-ecosystem/python-glances-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

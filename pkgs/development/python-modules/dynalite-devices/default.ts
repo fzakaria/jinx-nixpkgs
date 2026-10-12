@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.48";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ziv1234",
           repo: "python-dynalite-devices",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["--asyncio-mode=auto"]);
       const pythonImportsCheck = nix.thunk(() => ["dynalite_devices_lib"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unofficial Dynalite DyNET interface creating devices",
         homepage: "https://github.com/ziv1234/python-dynalite-devices",
         changelog: nix.thunk(() => nix.str`https://github.com/ziv1234/python-dynalite-devices/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

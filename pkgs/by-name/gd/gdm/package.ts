@@ -50,16 +50,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const override = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./org.gnome.login-screen.gschema.override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       icon: nix.thunk(() => nix.str`${nixos_icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg`),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "gdm",
       version: "50.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gdm/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gdm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ikZ55Hzd/osKG9nTg2BC3raPs+Gw5+Yt/QYx3FtvxUE=",
         })))),
@@ -101,13 +101,13 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.gnome.org/GNOME/gdm/-/commit/ccecd9c975d04da80db4cd547b67a1a94fa83292.patch",
             hash: "sha256-5hKS9wjjhuSAYwXct5vS0dPbmPRIINJoLC0Zm1naz6Q=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             coreutils: coreutils,
             plymouth: plymouth,
             dbus: dbus,
@@ -138,16 +138,16 @@ rmdir --parents --ignore-fail-on-non-empty "$DESTDIR${nix.builtins.storeDir}"
 # We are setting DESTDIR so the post-install script does not compile the schemas.
 glib-compile-schemas "$out/share/glib-2.0/schemas"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$5, DESTDIR: "dest" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, DESTDIR: "dest" })),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$6, packageName: "gdm" })))),
+        [nix.POS]: pos$8,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$6, packageName: "gdm" })))),
         dconfDb: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/gdm/greeter-dconf-defaults`),
         dconfProfile: nix.thunk(() => nix.str`user-db:user
 file-db:${nix.sel(finalAttrs, "passthru", "dconfDb")}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           profile: nix.thunk(() => nix.app(runCommand, "gdm-profile-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`if test "${nix.sel(finalAttrs, "passthru", "dconfProfile")}" != "$(cat ${nix.sel(finalAttrs, "finalPackage")}/share/dconf/profile/gdm)"; then
   echo "GDM dconf profile changed, please update gdm.nix"
   exit 1
@@ -157,7 +157,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Program that manages graphical display servers and handles graphical user logins",
         homepage: "https://gitlab.gnome.org/GNOME/gdm",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gdm/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

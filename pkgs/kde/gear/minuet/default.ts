@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const aubio = nix.arg($, "aubio");
   const fluidsynth = nix.arg($, "fluidsynth");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "minuet",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtsvg, kirigami, aubio, fluidsynth]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "minuet" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "minuet" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

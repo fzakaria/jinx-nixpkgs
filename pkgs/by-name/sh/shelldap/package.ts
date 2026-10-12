@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shelldap";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mahlonsmith",
           repo: "shelldap",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const outputs = nix.thunk(() => ["out"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mahlonsmith/shelldap/",
         description: "Handy shell-like interface for browsing LDAP servers and editing their content",
         changelog: nix.thunk(() => nix.str`https://github.com/mahlonsmith/shelldap/blob/v${version}/CHANGELOG`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "shelldap",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

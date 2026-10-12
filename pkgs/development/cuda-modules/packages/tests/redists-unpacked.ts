@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const redistsForPlatform = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => (nix.asBool(nix.has(value, "passthru", "redistName")) && nix.asBool(!nix.eq(nix.selOr(value, () => null, "src"), null))), cudaPackages));
   const linkedWithoutLicenses = nix.thunk(() => nix.app(linkFarm, nix.thunk(() => nix.str`${cudaNamePrefix}-redists-unpacked`), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (drv) => nix.sel(drv, "src"), redistsForPlatform))));
   return nix.app(nix.sel(linkedWithoutLicenses, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$3,
-      passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { __proto__: pos$1, redistsForPlatform: redistsForPlatform })),
+      [nix.POS]: pos$3,
+      passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { [nix.POS]: pos$1, redistsForPlatform: redistsForPlatform })),
       meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (drv) => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(drv, () => [], "meta", "license"))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), redistsForPlatform)))))),
       })),
     }));

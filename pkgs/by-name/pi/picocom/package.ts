@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const linenoise = nix.arg($, "linenoise");
   const lrzsz = nix.arg($, "lrzsz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "picocom",
       version: "2024-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wsakernel",
           repo: "picocom",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./use-system-linenoise.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./lrzsz-path.patch"), nix.thunk(() => ({ __proto__: pos$2, lrzsz: lrzsz })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./lrzsz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, lrzsz: lrzsz })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, go_md2man, installShellFiles]),
       buildInputs: nix.thunk(() => [linenoise]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin picocom\ninstallManPage picocom.1\ninstallShellCompletion --bash bash_completion/picocom\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal dumb-terminal emulation program",
         homepage: "https://gitlab.com/wsakernel/picocom",
         changelog: "https://gitlab.com/wsakernel/picocom/-/releases",

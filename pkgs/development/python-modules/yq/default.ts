@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ulhqGm8wz3BbL5IgZxLfIoHNMgKAIQ57e4Cty48lbjs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./jq-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             jq: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), jq)}/bin/jq`),
           })))),
       ]);
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["test/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["yq"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents",
         homepage: "https://github.com/kislyuk/yq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yq",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

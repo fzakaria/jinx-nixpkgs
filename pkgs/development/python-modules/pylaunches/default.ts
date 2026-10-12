@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ludeeus",
           repo: "pylaunches",
           tag: version,
@@ -37,7 +37,7 @@ substituteInPlace pyproject.toml \\
       const nativeCheckInputs = nix.thunk(() => [aresponses, pytestCheckHook, pytest_asyncio]);
       const pythonImportsCheck = nix.thunk(() => ["pylaunches"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to get information about upcoming space launches",
         homepage: "https://github.com/ludeeus/pylaunches",
         changelog: nix.thunk(() => nix.str`https://github.com/ludeeus/pylaunches/releases/tag/${version}`),
@@ -48,7 +48,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

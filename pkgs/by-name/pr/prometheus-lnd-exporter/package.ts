@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lndmon";
       const version = "0.2.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightninglabs",
           repo: "lndmon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-6wBA9OZcjGsbIgWzMXlcT2571sFvtYqIsHRfLAz/o60=";
       const excludedPackages = nix.thunk(() => ["./tools"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, lnd: nix.thunk(() => nix.attr(from, "lnd")) };
+          return { [nix.POS]: pos$2, lnd: nix.thunk(() => nix.attr(from, "lnd")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lightninglabs/lndmon",
         description: "Prometheus exporter for lnd (Lightning Network Daemon)",
         mainProgram: "lndmon",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

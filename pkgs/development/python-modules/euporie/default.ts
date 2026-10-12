@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const python_magic = nix.arg($, "python-magic");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "euporie",
       version: "2.10.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joouha",
           repo: "euporie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter notebooks in the terminal",
         longDescription: "Similar to `jupyter lab` or `jupyter notebook`, This package\ncan only be used inside a python environment. To quickly summon\na python environment with euporie, you can use:\n```\nnix-shell -p 'python3.withPackages (ps: with ps; [ euporie ])'\n```\n",
         homepage: "https://euporie.readthedocs.io/",

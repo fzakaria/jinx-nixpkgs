@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cargo_expand = nix.arg($, "cargo-expand");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flutter_rust_bridge_codegen",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fzyzcjy",
           repo: "flutter_rust_bridge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           "--skip=library::codegen::generator::api_dart::tests::test_functions",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "flutter_rust_bridge_codegen",
         description: "Flutter/Dart <-> Rust binding generator, feature-rich, but seamless and simple",
         homepage: "https://fzyzcjy.github.io/flutter_rust_bridge",

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "olivetin",
       version: "3000.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OliveTin",
           repo: "OliveTin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       gen: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "olivetin-gen",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
           outputHash: "sha256-2a541ZT4JbrmuZ/mxBwgBGeUw2nQbv3GN31P0oGo0LU=",
         })))),
       webui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "olivetin-webui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -88,17 +88,17 @@ substituteInPlace internal/config/config.go \\
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           olivetin: nix.thunk(() => nix.app(nix.sel(nixosTests, "olivetin", "extendNixOS"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               module: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   olivetin: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
@@ -109,7 +109,7 @@ substituteInPlace internal/config/config.go \\
         updateScript: nix.path(here, "./update-3k.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Gives safe and simple access to predefined shell commands from a web interface",
         homepage: "https://www.olivetin.app/",
         downloadPage: "https://github.com/OliveTin/OliveTin",

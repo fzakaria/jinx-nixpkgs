@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "swtpm",
       version: "0.10.1-unstable-2026-05-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stefanberger",
           repo: "swtpm",
           rev: "89a67f3d4070887a1ab86ca641f8da13529c54b7",
@@ -81,14 +81,14 @@ substituteInPlace src/swtpm_localca/swtpm_localca.c \\
       enableParallelBuilding: true,
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "systemd-cryptenroll": nix.thunk(() => nix.attr(nixosTests, "systemd-cryptenroll")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Libtpms-based TPM emulator",
         homepage: "https://github.com/stefanberger/swtpm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

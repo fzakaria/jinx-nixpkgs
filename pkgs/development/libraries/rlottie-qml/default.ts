@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const quazip = nix.arg($, "quazip");
   const rlottie = nix.arg($, "rlottie");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rlottie-qml",
       version: "0-unstable-2021-05-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mymike00",
           repo: "rlottie-qml",
           rev: "f9506889a284039888c7a43db37e155bb7b30c40",
@@ -47,7 +47,7 @@ substituteInPlace CMakeLists.txt \\
       propagatedBuildInputs: nix.thunk(() => [quazip]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for using rlottie via QML",
         homepage: "https://gitlab.com/mymike00/rlottie-qml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

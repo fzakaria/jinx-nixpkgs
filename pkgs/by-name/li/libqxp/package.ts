@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const librevenge = nix.arg($, "librevenge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libqxp",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libqxp/libqxp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-cdf9URJUXANhTIbpmeBycaicmNb6YS4sOZc2u1lshUc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [boost, cppunit, doxygen, icu, librevenge]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "QuarkXPress import library",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libqxp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

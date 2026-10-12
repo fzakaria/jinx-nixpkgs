@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-smc-rachana",
       version: "20241013",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://smc.org.in/downloads/fonts/rachana/rachana.zip",
           hash: "sha256-csfMs4B6BD+yap/AaWpm4kQDsR/WNMrym6szM5iZNJo=",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfind . -name \"*.otf\" -exec install -Dm644 {} -t \"$out/share/fonts/opentype\" \\;\nfind . -name \"*.ttf\" -exec install -Dm644 {} -t \"$out/share/fonts/truetype\" \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rachana is one of the first traditional orthographic Malayalam unicode typefaces and is still widely used. Designed by K H Hussain. This is the last version maintained by SMC.",
         homepage: "https://smc.org.in/fonts/rachana",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

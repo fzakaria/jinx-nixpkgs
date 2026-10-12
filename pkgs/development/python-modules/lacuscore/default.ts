@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const ua_parser = nix.arg($, "ua-parser");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lacuscore",
       version: "1.26.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ail-project",
           repo: "LacusCore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lacuscore"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modulable part of Lacus",
         homepage: "https://github.com/ail-project/LacusCore",
         changelog: nix.thunk(() => nix.str`https://github.com/ail-project/LacusCore/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

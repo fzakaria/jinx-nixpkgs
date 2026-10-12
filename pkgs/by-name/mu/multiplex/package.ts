@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multiplex",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pojntfx",
           repo: "multiplex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "if [[ ! $name == *\"-go-modules\" ]]; then\n  go generate ./internal/resources/resources.go\nfi\n",
       postInstall: "install -Dm644 -t $out/share/applications com.pojtinger.felicitas.Multiplex.desktop\ninstall -Dm644 -t $out/share/metainfo internal/resources/com.pojtinger.felicitas.Multiplex.metainfo.xml\n# The provided pixmap icons appears to be a bit blurry so not installing them\ninstall -Dm644 docs/icon.svg $out/share/icons/hicolor/scalable/apps/com.pojtinger.felicitas.Multiplex.svg\ninstall -Dm644 docs/icon-symbolic.svg $out/share/icons/hicolor/symbolic/apps/com.pojtinger.felicitas.Multiplex-symbolic.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Watch torrents with your friends",
         longDescription: "Multiplex is an app to watch torrents together, providing an experience similar\nto Apple's SharePlay and Amazon's Prime Video Watch Party.\n\nIt enables you to:\n- Stream any file directly using a wide range of video and audio formats with\n  the mpv video player.\n- Host online watch parties while preserving your privacy by synchronizing\n  video playback with friends without a central server using weron.\n- Bypass internet restrictions by optionally separating the hTorrent HTTP to\n  BitTorrent gateway and user interface into two separate components.\n",
         homepage: "https://github.com/pojntfx/multiplex",

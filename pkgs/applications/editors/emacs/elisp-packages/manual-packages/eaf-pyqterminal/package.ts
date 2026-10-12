@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eaf-pyqterminal",
       version: "0-unstable-2025-10-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mumu-lhl",
           repo: "eaf-pyqterminal",
           rev: "37b7b2afbdd47c89d85ff6e3412e1dc6c555ab50",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       files: "(\"*.el\"\n \"*.py\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         eafPythonDeps: (ps) => (() => {
           const w = nix.withScope(ps, null);
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal written in PyQt6 for the EAF",
         homepage: "https://github.com/mumu-lhl/eaf-pyqterminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

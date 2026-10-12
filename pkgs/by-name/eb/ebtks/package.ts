@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libminc = nix.arg($, "libminc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ebtks",
       version: "1.6.40-unstable-2025-05-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "EBTKS",
           rev: "7317b54d79bd7d80b5361dc44a7966709d9a8b36",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libminc]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLIBMINC_DIR=${libminc}/lib/cmake`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BIC-MNI/EBTKS",
         description: "Library for working with MINC files",
         maintainers: nix.thunk(() => (() => {

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const libplatform = nix.thunk(() => nix.app(sourceRelease, "libplatform"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "adv_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -m644 -t "$out/include" \\
   '${libplatform}/private/_simple.h' \\
@@ -40,12 +40,12 @@ install -D -m644 -t "$out/include/sys" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       releaseName: "adv_cmds",
       outputs: nix.thunk(() => ["out", "ps", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/apple-oss-distributions/adv_cmds/commit/6bed8737a34dbb54782a18f47dccf933a9967a12.patch?full_index=1",
             includes: nix.thunk(() => ["colldef/*", "mklocale/*"]),
             revert: true,
@@ -55,7 +55,7 @@ install -D -m644 -t "$out/include/sys" \\
       xcodeHash: "sha256-L27TYv2zdKx0WKTBgHSv9Q0FCwrW4o83EmtDyqFM1fs=",
       postPatch: "# Meson generators require using @BASENAME@ in the output.\nsubstituteInPlace mklocale/lex.l \\\n  --replace-fail y.tab.h yacc.tab.h\nsubstituteInPlace genwrap/lex.l \\\n  --replace-fail y.tab.h genwrap.tab.h\nsubstituteInPlace colldef/scan.l \\\n  --replace-fail y.tab.h parse.tab.h\n\nfind localedef -name '*.c' -exec sed -e 's/parser.h/parser.tab.h/' -i {} \\;\n\n# Fix paths to point to the store\nfor file in genwrap.c genwrap.8; do\n  substituteInPlace genwrap/$file \\\n    --replace-fail '/usr/local' \"$out\"\ndone\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => [
             nix.thunk(() => nix.str`-I${privateHeaders}/include`),
             "-Wno-error=incompatible-pointer-types",
@@ -65,7 +65,7 @@ install -D -m644 -t "$out/include/sys" \\
       nativeBuildInputs: nix.thunk(() => [bison, flex, pkg_config]),
       postInstall: "moveToOutput bin/ps \"$ps\"\nln -s \"$ps/bin/ps\" \"$out/bin/ps\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced commands package for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "apple-psl10")),

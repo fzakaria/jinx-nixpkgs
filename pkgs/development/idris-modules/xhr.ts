@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const idrisscript = nix.arg($, "idrisscript");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xhr",
       version: "2017-04-22",
       idrisDeps: nix.thunk(() => [idrisscript]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pierrebeaucamp",
           repo: "idris-xhr",
           rev: "fb32a748ccdb9070de3f2d6048564e34c064b362",
           sha256: "0l07mnarvrb4xdw0b2xqgyxq4rljw1axz5mc9w4gmhvcrzxnyfnr",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris library to interact with xhr",
         homepage: "https://github.com/pierrebeaucamp/idris-xhr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git2cl",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jas",
           repo: "git2cl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl]),
       installPhase: "install -D -m755 git2cl $out/bin/git2cl\ninstall -D -m644 README.md $out/share/doc/git2cl/README.md\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://savannah.nongnu.org/projects/git2cl",
         description: "Convert git logs to GNU style ChangeLog files",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "serviio";
       const version = "2.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.serviio.org/releases/${pname}-${version}-linux.tar.gz`),
           sha256: "sha256-ssi2fKbAMizr5eLAMng+G25ui3v98zCNWzMg7uLgGas=",
         }))));
       const installPhase = "mkdir -p $out\ncp -R config legal lib library plugins LICENCE.txt NOTICE.txt README.txt RELEASE_NOTES.txt $out\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://serviio.org",
         description: "UPnP Media Streaming Server",
         longDescription: "Serviio is a free media server. It allows you to stream your media files (music, video or images)\nto any DLNA-certified renderer device (e.g. a TV set, Bluray player, games console) on your home network.\n",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "thpham"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

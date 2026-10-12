@@ -52,52 +52,52 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     name: "systemd-journal-upload",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "minijackson"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             journald: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               remote: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  Remote: nix.thunk(() => ({ __proto__: pos$2, Seal: true })),
+                  [nix.POS]: pos$3,
+                  Remote: nix.thunk(() => ({ [nix.POS]: pos$2, Seal: true })),
                 })),
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 server: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   onlySSL: true,
                   http2: false,
                   sslCertificate: "/run/credentials/nginx.service/server.cert.pem",
                   sslCertificateKey: "/run/credentials/nginx.service/server.key.pem",
                   extraConfig: "ssl_client_certificate /run/credentials/nginx.service/ca.cert.pem;\nssl_verify_client on;\n",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(nodes, "server", "services", "journald", "remote", "port")))}`),
                     })),
                   })),
@@ -106,11 +106,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             sockets: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "systemd-journal-remote": nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 listenStreams: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                     "",
                     nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(nodes, "server", "services", "journald", "remote", "port")))}`),
@@ -118,28 +118,28 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               nginx: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   ImportCredential: nix.thunk(() => ["server.cert.pem", "server.key.pem", "ca.cert.pem"]),
                 })),
               })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             credentials: nix.thunk(() => ({
-              __proto__: pos$21,
-              "ca.cert.pem": nix.thunk(() => ({ __proto__: pos$18, source: "./ca.cert.pem" })),
-              "server.cert.pem": nix.thunk(() => ({ __proto__: pos$19, source: "./server.cert.pem" })),
-              "server.key.pem": nix.thunk(() => ({ __proto__: pos$20, source: "./server.key.pem" })),
+              [nix.POS]: pos$21,
+              "ca.cert.pem": nix.thunk(() => ({ [nix.POS]: pos$18, source: "./ca.cert.pem" })),
+              "server.cert.pem": nix.thunk(() => ({ [nix.POS]: pos$19, source: "./server.cert.pem" })),
+              "server.key.pem": nix.thunk(() => ({ [nix.POS]: pos$20, source: "./server.key.pem" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$24,
-            firewall: nix.thunk(() => ({ __proto__: pos$23, allowedTCPPorts: nix.thunk(() => [443n]) })),
+            [nix.POS]: pos$24,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$23, allowedTCPPorts: nix.thunk(() => [443n]) })),
           })),
         };
       })(), formals$2),
@@ -147,40 +147,40 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             credentials: nix.thunk(() => ({
-              __proto__: pos$29,
-              "ca.cert.pem": nix.thunk(() => ({ __proto__: pos$26, source: "./ca.cert.pem" })),
-              "client.cert.pem": nix.thunk(() => ({ __proto__: pos$27, source: "./client.cert.pem" })),
-              "client.key.pem": nix.thunk(() => ({ __proto__: pos$28, source: "./client.key.pem" })),
+              [nix.POS]: pos$29,
+              "ca.cert.pem": nix.thunk(() => ({ [nix.POS]: pos$26, source: "./ca.cert.pem" })),
+              "client.cert.pem": nix.thunk(() => ({ [nix.POS]: pos$27, source: "./client.cert.pem" })),
+              "client.key.pem": nix.thunk(() => ({ [nix.POS]: pos$28, source: "./client.key.pem" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             services: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "systemd-journal-upload": nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   ImportCredential: nix.thunk(() => ["client.cert.pem", "client.key.pem", "ca.cert.pem"]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             journald: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               upload: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   Upload: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     URL: "https://server:443",
                     ServerCertificateFile: "/run/credentials/systemd-journal-upload.service/client.cert.pem",
                     ServerKeyFile: "/run/credentials/systemd-journal-upload.service/client.key.pem",

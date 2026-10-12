@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "heroku",
       version: "11.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://cli-assets.heroku.com/versions/11.0.0/a6e2188/heroku-v11.0.0-a6e2188-linux-x64.tar.xz",
           hash: "sha256-kmshQ3QUcY4CLRFXHaOa7Y+wu8O5POL5+cGr7TyG5qg=",
         })))),
@@ -35,11 +35,11 @@ makeWrapper $out/share/heroku/bin/run $out/bin/heroku \\
   --set HEROKU_DISABLE_AUTOUPDATE 1
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-heroku", "#!/usr/bin/env nix-shell\n#!nix-shell -I nixpkgs=./. -i bash -p nix-prefetch curl jq common-updater-scripts\nresp=\"$(\n    curl -L \"https://cli-assets.heroku.com/versions/heroku-linux-x64-tar-xz.json\" \\\n        | jq '[to_entries[] | { version: .key, url: .value } | select(.version|contains(\"-\")|not)] | sort_by(.version|split(\".\")|map(tonumber)) | .[-1]'\n)\"\nurl=\"$(jq <<<\"$resp\" .url --raw-output)\"\nversion=\"$(jq <<<\"$resp\" .version --raw-output)\"\nhash=\"$(nix-prefetch fetchzip --url \"$(jq <<<\"$resp\" .url --raw-output)\")\"\nupdate-source-version heroku \"$version\" \"$hash\" \"$url\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://devcenter.heroku.com/articles/heroku-cli",
         description: "Everything you need to get started using Heroku",
         mainProgram: "heroku",

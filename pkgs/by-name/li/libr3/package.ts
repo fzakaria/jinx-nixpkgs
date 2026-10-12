@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libr3",
       version: "2.0.0-unstable-2025-11-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c9s",
           repo: "r3",
           rev: "b07a1d4dfe02766f104307ec8f00bb74c549bdd4",
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [check]),
       propagatedBuildInputs: nix.thunk(() => [pcre2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           consumer: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (consumerAttrs) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: "libr3-test",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance path dispatching library",
         homepage: "https://github.com/c9s/r3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

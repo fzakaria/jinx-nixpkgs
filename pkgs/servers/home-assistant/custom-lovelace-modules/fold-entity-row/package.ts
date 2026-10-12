@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fold-entity-row",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomasloven",
           repo: "lovelace-fold-entity-row",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-/pm5K088cOa1M/NqlOJ7RtrxKik95Me/d68yzem9ktI=",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp fold-entity-row.js $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fold away and hide rows in lovelace entities cards.",
         homepage: "https://github.com/thomasloven/lovelace-fold-entity-row",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasloven/lovelace-fold-entity-row/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

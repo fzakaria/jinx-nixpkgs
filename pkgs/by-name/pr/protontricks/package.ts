@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const extraCompatPaths = nix.argOr($, "extraCompatPaths", () => "");
   const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraLibraries: (p) => (() => {
         const w = nix.withScope(p, null);
         return [nix.thunk(() => nix.lookup(w, "freetype"))];
       })(),
     }))), "run-free"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "protontricks",
       version: "1.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Matoking",
           repo: "protontricks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             steamRun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), steam_run)),
             bash: nix.thunk(() => nix.app(writeShellScript, "steam-run-bash", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), steam_run)} bash "$@"
 `))),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_get_runtime_library_paths"]),
       pythonImportsCheck: nix.thunk(() => ["protontricks"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple wrapper for running Winetricks commands for Proton-enabled games",
         homepage: "https://github.com/Matoking/protontricks",
         changelog: nix.thunk(() => nix.str`https://github.com/Matoking/protontricks/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

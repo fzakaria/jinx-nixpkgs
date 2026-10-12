@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix$ = nix.arg($, "nix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-bundle",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nix-bundle",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ makeWrapper $out/share/nix-bundle/nix-bundle.sh $out/bin/nix-bundle \\
 ln -s $out/share/nix-bundle/nix-run.sh $out/bin/nix-run
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nix-community/nix-bundle",
         description: "Create bundles from Nixpkgs attributes",
         longDescription: "nix-bundle is a way to package Nix attributes into single-file\nexecutables.\n\nBenefits:\n- Single-file output\n- Can be run by non-root users\n- No runtime\n- Distro agnostic\n- No installation\n",

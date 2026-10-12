@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
-  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$1, stateDir: nix.thunk(() => nix.attr(cfg, "stateDir")) }))));
+  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stateDir: nix.thunk(() => nix.attr(cfg, "stateDir")) }))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "dolibarr"));
   const forcedTLS = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "h2o"), null)) ? (nix.asBool(!nix.eq(nix.sel(cfg, "h2o", "tls"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "h2o", "tls", "policy"), "force"))) : (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) ? nix.sel(cfg, "nginx", "forceSSL") : false)));
   const mkConfigFile = (filename) => (settings) => (() => {
@@ -114,22 +114,22 @@ export default nix.lambda((args) => (() => {
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => nix.str`$${k} = ${nix.app(toStr, k, v)};`, settings)))}
 `));
   })();
-  const dbUnit = nix.thunk(() => nix.sel({ __proto__: pos$2, mysql: "mysql.service", postgresql: "postgresql.target" }, nix.key(nix.sel(cfg, "database", "type"))));
+  const dbUnit = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, mysql: "mysql.service", postgresql: "postgresql.target" }, nix.key(nix.sel(cfg, "database", "type"))));
   const dbPort = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) ? nix.sel({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mysql: nix.thunk(() => nix.sel(config, "services", "mysql", "settings", "mysqld", "port")),
     postgresql: nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
   }, nix.key(nix.sel(cfg, "database", "type"))) : nix.sel(cfg, "database", "port")));
   const webServerService = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "h2o"), null)) ? "h2o.service" : (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) ? "nginx.service" : null)));
   const socketOwner = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "h2o"), null)) ? nix.sel(config, "services", "h2o", "user") : nix.sel(cfg, "user")));
   const install = nix.thunk(() => nix.update({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     force_install_noedit: 2n,
     force_install_main_data_root: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/documents`),
     force_install_nophpinfo: true,
     force_install_lockinstall: "444",
     force_install_distrib: "nixos",
-    force_install_type: nix.thunk(() => nix.sel({ __proto__: pos$4, mysql: "mysqli", postgresql: "pgsql" }, nix.key(nix.sel(cfg, "database", "type")))),
+    force_install_type: nix.thunk(() => nix.sel({ [nix.POS]: pos$4, mysql: "mysqli", postgresql: "pgsql" }, nix.key(nix.sel(cfg, "database", "type")))),
     force_install_dbserver: nix.thunk(() => nix.sel(cfg, "database", "host")),
     force_install_port: nix.thunk(() => nix.builtins.toString(dbPort)),
     force_install_database: nix.thunk(() => nix.sel(cfg, "database", "name")),
@@ -138,78 +138,78 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
     force_install_createuser: false,
     force_install_dolibarrlogin: null,
   }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       force_install_databasepass: nix.thunk(() => nix.str`file_get_contents("${nix.sel(cfg, "database", "passwordFile")}")`),
     })))));
   return {
-    __proto__: pos$76,
+    [nix.POS]: pos$76,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         dolibarr: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(mkEnableOption, "dolibarr")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "dolibarr", nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               description: "Domain name of your server.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "dolibarr",
               description: "User account under which dolibarr runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the dolibarr application starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "dolibarr",
               description: "Group account under which dolibarr runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the group exists before the dolibarr application starts.\n:::\n",
             })))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/dolibarr",
               description: "State and configuration directory dolibarr will use.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mysql", "postgresql"]))),
                 example: "postgresql",
                 default: "mysql",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 3306n,
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "dolibarr",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "dolibarr",
                 description: "Database username.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -219,14 +219,14 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
                 description: "Database password file.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -239,20 +239,20 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
               description: "Dolibarr settings, see <https://github.com/Dolibarr/dolibarr/blob/develop/htdocs/conf/conf.php.example> for details.",
             })))),
           h2o: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$20, config: config, lib: lib })))))))),
+              [nix.POS]: pos$21,
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$20, config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  acme.enable = true;\n  tls.policy = \"force\";\n  compress = \"ON\";\n}\n")),
               description: "With this option, you can customize an H2O virtual host which already\nhas sensible defaults for Dolibarr. Set to `{ }` if you do not need any\ncustomization to the virtual host. If enabled, then by default, the\n{option}`serverName` is `${domain}`, If this is set to `null` (the\ndefault), no H2O `hosts` will be configured.\n",
             })))),
           nginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$22, config: config, lib: lib })))), nix.thunk(() => ({
-                      __proto__: pos$26,
+              [nix.POS]: pos$27,
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$22, config: config, lib: lib })))), nix.thunk(() => ({
+                      [nix.POS]: pos$26,
                       options: nix.thunk(() => ({
-                        __proto__: pos$25,
-                        forceSSL: nix.thunk(() => ({ __proto__: pos$23, default: true })),
-                        enableACME: nix.thunk(() => ({ __proto__: pos$24, default: true })),
+                        [nix.POS]: pos$25,
+                        forceSSL: nix.thunk(() => ({ [nix.POS]: pos$23, default: true })),
+                        enableACME: nix.thunk(() => ({ [nix.POS]: pos$24, default: true })),
                       })),
                     })))))))),
               default: null,
@@ -260,7 +260,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
               description: "With this option, you can customize an nginx virtual host which already has sensible defaults for Dolibarr.\nSet to {} if you do not need any customization to the virtual host.\nIf enabled, then by default, the {option}`serverName` is\n`${domain}`,\nSSL is active, and certificates are acquired via ACME.\nIf this is set to null (the default), no nginx virtualHost will be configured.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -270,7 +270,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -284,10 +284,10 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))))),
             message: "services.dolibarr.database.user must match services.dolibarr.user if the database is to be automatically provisioned",
           })),
@@ -295,7 +295,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
             const webServers = nix.thunk(() => ["h2o", "nginx"]);
             const checkConfigs = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (ws) => nix.str`services.dolibarr.${ws}`, webServers));
             return {
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               assertion: nix.thunk(() => nix.le(nix.builtins.length(nix.thunk(() => nix.app(nix.sel(lib, "lists", "filter"), (ws) => !nix.eq(nix.sel(cfg, nix.key(nix.force(ws))), null), webServers))), 1n)),
               message: nix.thunk(() => nix.str`At most 1 web server virtual host configuration should be enabled
 for Dolibarr at a time. Check ${checkConfigs}.
@@ -304,11 +304,11 @@ for Dolibarr at a time. Check ${checkConfigs}.
           })()),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           dolibarr: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             settings: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               dolibarr_main_url_root: nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}`),
               dolibarr_main_document_root: nix.thunk(() => nix.str`${package$}/htdocs`),
               dolibarr_main_url_root_alt: "/custom",
@@ -320,14 +320,14 @@ for Dolibarr at a time. Check ${checkConfigs}.
               dolibarr_main_db_user: nix.thunk(() => nix.sel(cfg, "database", "user")),
               dolibarr_main_db_pass: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => nix.str`file_get_contents("${nix.sel(cfg, "database", "passwordFile")}")
 `))),
-              dolibarr_main_db_type: nix.thunk(() => nix.sel({ __proto__: pos$35, mysql: "mysqli", postgresql: "pgsql" }, nix.key(nix.sel(cfg, "database", "type")))),
+              dolibarr_main_db_type: nix.thunk(() => nix.sel({ [nix.POS]: pos$35, mysql: "mysqli", postgresql: "pgsql" }, nix.key(nix.sel(cfg, "database", "type")))),
               dolibarr_main_db_character_set: nix.thunk(() => nix.app(mkDefault, "utf8")),
               dolibarr_main_db_collation: nix.thunk(() => nix.app(mkDefault, "utf8_unicode_ci")),
               dolibarr_main_authentication: nix.thunk(() => nix.app(mkDefault, "dolibarr")),
               dolibarr_main_prod: true,
               dolibarr_main_force_https: forcedTLS,
               dolibarr_main_restrict_os_commands: nix.thunk(() => nix.sel({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 mysql: nix.thunk(() => nix.str`${nix.sel(pkgs, "mariadb")}/bin/mysqldump, ${nix.sel(pkgs, "mariadb")}/bin/mysql`),
                 postgresql: nix.thunk(() => (() => {
                   const pkg = nix.thunk(() => nix.sel(config, "services", "postgresql", "package"));
@@ -341,25 +341,25 @@ for Dolibarr at a time. Check ${checkConfigs}.
             })),
           })),
           mysql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")))), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")))), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -368,29 +368,29 @@ for Dolibarr at a time. Check ${checkConfigs}.
 `),
             })))),
           h2o: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "h2o"), null)), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               enable: true,
               hosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         paths: nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           "/": nix.thunk(() => ({
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             "file.dir": nix.thunk(() => nix.str`${package$}/htdocs`),
                             "file.index": nix.thunk(() => ["index.php", "index.html"]),
-                            redirect: nix.thunk(() => ({ __proto__: pos$43, url: "/index.php/", internal: "YES", status: 307n })),
+                            redirect: nix.thunk(() => ({ [nix.POS]: pos$43, url: "/index.php/", internal: "YES", status: 307n })),
                           })),
                         })),
                         "file.custom-handler": nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           extension: nix.thunk(() => [".php"]),
                           "fastcgi.document_root": nix.thunk(() => nix.str`${package$}/htdocs`),
                           "fastcgi.connect": nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             port: nix.thunk(() => nix.sel(config, "services", "phpfpm", "pools", "dolibarr", "socket")),
                             type: "unix",
                           })),
@@ -402,19 +402,19 @@ for Dolibarr at a time. Check ${checkConfigs}.
               ])),
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             enable: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), true)),
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${package$}/htdocs`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$53,
-                        "/": nix.thunk(() => ({ __proto__: pos$51, index: "index.php" })),
+                        [nix.POS]: pos$53,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$51, index: "index.php" })),
                         "~ [^/]\\.php(/|$)": nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+?\\.php)(/.*)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "dolibarr", "socket")};
 `),
@@ -425,15 +425,15 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "dolibarr", "
             ])),
           })),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             pools: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               dolibarr: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 user: nix.thunk(() => nix.attr(cfg, "user")),
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 phpPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "php83", "buildEnv"), nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     extensions: nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const enabled = nix.arg($_1, "enabled");
@@ -448,7 +448,7 @@ disable_functions = "pcntl_alarm, pcntl_fork, pcntl_waitpid, pcntl_wait, pcntl_w
 `),
                   })))),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   "listen.mode": "0660",
                   "listen.owner": socketOwner,
                   "listen.group": nix.thunk(() => nix.sel(cfg, "group")),
@@ -458,9 +458,9 @@ disable_functions = "pcntl_alarm, pcntl_fork, pcntl_waitpid, pcntl_wait, pcntl_w
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}/documents' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
@@ -469,16 +469,16 @@ disable_functions = "pcntl_alarm, pcntl_fork, pcntl_waitpid, pcntl_wait, pcntl_w
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             "phpfpm-dolibarr": nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(webServerService, null)), webServerService)),
               before: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(webServerService, null)), webServerService)),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit)),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit)),
             })),
             "dolibarr-config": nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               description: "dolibarr configuration file management via NixOS",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), dbUnit)),
@@ -492,40 +492,40 @@ install -m 440 ${nix.app(mkConfigFile, "conf.php", nix.thunk(() => nix.sel(cfg, 
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 RemainAfterExit: "yes",
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 ConditionFileNotEmpty: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/conf.php`),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           users: nix.thunk(() => nix.update({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             dolibarr: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "dolibarr")), nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })))),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "h2o"), null)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "services", "h2o", "user")}`, nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
               }))],
             ]))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
               }))],
             ])))))),
-          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "dolibarr")), nix.thunk(() => ({ __proto__: pos$73, dolibarr: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "dolibarr")), nix.thunk(() => ({ [nix.POS]: pos$73, dolibarr: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

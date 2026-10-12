@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robot-descriptions",
           repo: "robot_descriptions.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [gitpython, tqdm, pycollada]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         opts: nix.thunk(() => [mujoco, pinocchio, pybullet, yourdfpy]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["robot_descriptions"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Access 125+ robot descriptions from the main Python robotics frameworks",
         homepage: "https://github.com/robot-descriptions/robot_descriptions.py",
         changelog: nix.thunk(() => nix.str`https://github.com/robot-descriptions/robot_descriptions.py/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

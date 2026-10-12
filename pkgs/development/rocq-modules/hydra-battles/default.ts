@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const LibHyps = nix.arg($, "LibHyps");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "hydra-battles",
       owner: "coq-community",
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "0.4": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256:1f7pc4w3kir4c9p0fjx5l77401bx12y72nmqxrqs3qqd3iynvqlp",
         })),
         "0.5": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:121pcbn6v59l0c165ha9n00whbddpy11npx2y9cn7g879sfk2nqk",
         })),
         "0.6": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:1dri4sisa7mhclf8w4kw7ixs5zxm8xyjr034r1377p96rdk3jj0j",
         })),
         "0.9": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-wlK+154owQD/03FB669KCjyQlL2YOXLCi0KLSo0DOwc=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$6, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$6, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.16")), "0.9")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })()),
       useDune: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Exploration of some properties of Kirby and Paris' hydra battles, with the help of Coq",
         longDescription: "An exploration of some properties of Kirby and Paris' hydra\nbattles, with the help of the Coq Proof assistant. This\ndevelopment includes the study of several representations of\nordinal numbers, and a part of the so-called Ketonen and Solovay\nmachinery (combinatorial properties of epsilon0).\n",
         maintainers: nix.thunk(() => (() => {
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
     }))), "overrideAttrs"), (o) => (() => {
       const version_1 = nix.thunk(() => nix.attr(o, "version"));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         propagatedBuildInputs: nix.thunk(() => nix.concat([equations], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "0.6", version_1)) || nix.asBool(nix.eq(version_1, "dev")))), LibHyps))),
       };
     })());

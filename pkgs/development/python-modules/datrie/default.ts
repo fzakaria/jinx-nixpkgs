@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-6gIa1MiovxTginHHhypiKqOZpRD5gSloJQkcfKBDboA=",
         }))));
       const postPatch = "substituteInPlace setup.py \\\n  --replace '\"pytest-runner\", ' \"\"\n";
       const dependencies = nix.thunk(() => [setuptools, wheel, cython]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-Wno-error=incompatible-pointer-types" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-Wno-error=incompatible-pointer-types" }));
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["datrie"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Super-fast, efficiently stored Trie for Python",
         homepage: "https://github.com/kmike/datrie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

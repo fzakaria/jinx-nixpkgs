@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libvmaf",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netflix",
           repo: "vmaf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,29 +43,29 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./xxd.nix"), nix.thunk(() => ({})))),
       ]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "substituteInPlace meson.build --replace-fail '_XOPEN_SOURCE=600' '_XOPEN_SOURCE=700'\n")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D__BSD_VISIBLE=1" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D__BSD_VISIBLE=1" })))),
       mesonFlags: nix.thunk(() => ["-Denable_avx512=true"]),
       outputs: nix.thunk(() => ["out", "dev"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           libaom: libaom,
           "ffmpeg-full": ffmpeg_full,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["libvmaf"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Perceptual video quality assessment based on multi-method fusion (VMAF)",
         homepage: "https://github.com/Netflix/vmaf",
         changelog: nix.thunk(() => nix.str`https://github.com/Netflix/vmaf/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

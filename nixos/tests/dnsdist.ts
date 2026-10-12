@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const baseConfig = nix.thunk(() => ({
-    __proto__: pos$6,
-    networking: nix.thunk(() => ({ __proto__: pos$1, nameservers: nix.thunk(() => ["::1"]) })),
+    [nix.POS]: pos$6,
+    networking: nix.thunk(() => ({ [nix.POS]: pos$1, nameservers: nix.thunk(() => ["::1"]) })),
     services: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       bind: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         enable: true,
         extraOptions: "empty-zones-enable no;",
         zones: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: ".",
             master: true,
             file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "root.zone", "$TTL 3600\n. IN SOA ns.example.org. admin.example.org. ( 1 3h 1h 1w 1d )\n. IN NS ns.example.org.\n\nns.example.org. IN A    192.168.0.1\nns.example.org. IN AAAA abcd::1\n\n1.0.168.192.in-addr.arpa IN PTR ns.example.org.\n")),
           })))),
       })),
       dnsdist: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enable: true,
         listenPort: 5353n,
         extraConfig: "newServer({address=\"127.0.0.1:53\", name=\"local-bind\"})\n",
@@ -60,50 +60,50 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     base: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "dnsdist-base",
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "jojosch"))];
           })()),
         })),
-        nodes: nix.thunk(() => ({ __proto__: pos$8, machine: baseConfig })),
+        nodes: nix.thunk(() => ({ [nix.POS]: pos$8, machine: baseConfig })),
         testScript: "machine.wait_for_unit(\"bind.service\")\nmachine.wait_for_open_port(53)\nmachine.succeed(\"host -p 53 192.168.0.1 | grep -qF ns.example.org\")\n\nmachine.wait_for_unit(\"dnsdist.service\")\nmachine.wait_for_open_port(5353)\nmachine.succeed(\"host -p 5353 192.168.0.1 | grep -qF ns.example.org\")\n",
       })))),
     dnscrypt: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "dnsdist-dnscrypt",
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           server: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               baseConfig,
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   firewall: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     allowedTCPPorts: nix.thunk(() => [443n]),
                     allowedUDPPorts: nix.thunk(() => [443n]),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   dnsdist: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     dnscrypt: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       enable: true,
                       providerKey: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "dnscrypt-secret.key", nix.thunk(() => ({})), "echo 'R70+xqm7AaDsPtDgpSjSG7KHvEqVf6u6PZ+E3cGPbOwUQdg6/\n      RIIpK6pHkINhrv7nxwIG5c7b/m5NJVT3A1AXQ==' | base64 -id > \"$out\"\n")),
                     })),
@@ -112,29 +112,29 @@ export default nix.lambda((args) => (() => {
               })),
             ]))),
           client: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             services: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "dnscrypt-proxy": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
                 upstreamDefaults: false,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   server_names: nix.thunk(() => ["server"]),
                   listen_addresses: nix.thunk(() => ["[::1]:53"]),
                   cache: false,
                   static: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     server: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       stamp: "sdns://AQAAAAAAAAAADzE5Mi4xNjguMS4yOjQ0MyAUQdg6_RIIpK6pHkINhrv7nxwIG5c7b_m5NJVT3A1AXRYyLmRuc2NyeXB0LWNlcnQuc2VydmVy",
                     })),
                   })),
                 })),
               })),
             })),
-            networking: nix.thunk(() => ({ __proto__: pos$22, nameservers: nix.thunk(() => ["::1"]) })),
+            networking: nix.thunk(() => ({ [nix.POS]: pos$22, nameservers: nix.thunk(() => ["::1"]) })),
           })),
         })),
         testScript: "with subtest(\"The DNSCrypt server is accepting connections\"):\n    server.wait_for_unit(\"bind.service\")\n    server.wait_for_unit(\"dnsdist.service\")\n    server.wait_for_open_port(443)\n    almost_expiration = server.succeed(\"date --date '14min'\").strip()\n\nwith subtest(\"The DNSCrypt client can connect to the server\"):\n    client.wait_until_succeeds(\"journalctl -u dnscrypt-proxy --grep '\\\\[server\\\\] OK'\")\n\nwith subtest(\"DNS queries over UDP are working\"):\n    client.wait_for_open_port(53)\n    client.wait_until_succeeds(\"host -U 192.168.0.1\", timeout=60)\n    client.succeed(\"host -U 192.168.0.1 | grep -qF ns.example.org\")\n\nwith subtest(\"DNS queries over TCP are working\"):\n    client.wait_for_open_port(53)\n    client.succeed(\"host -T 192.168.0.1 | grep -qF ns.example.org\")\n\nwith subtest(\"The server rotates the ephemeral keys\"):\n    server.succeed(f\"date -s '{almost_expiration}'\")\n    client.succeed(f\"date -s '{almost_expiration}'\")\n    server.wait_until_succeeds(\"journalctl -u dnsdist --grep 'rotated certificate'\")\n\nwith subtest(\"The client can still connect to the server\"):\n    client.wait_until_succeeds(\"host -T 192.168.0.1\")\n    client.wait_until_succeeds(\"host -U 192.168.0.1\")\n",

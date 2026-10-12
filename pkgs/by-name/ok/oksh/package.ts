@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oksh";
       const version = "7.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ibara",
           repo: "oksh",
           rev: nix.thunk(() => nix.str`oksh-${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["--no-strip"]);
       const buildInputs = nix.thunk(() => [ncurses]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
         mainProgram: "oksh",
         homepage: "https://github.com/ibara/oksh",
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/oksh" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/oksh" }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

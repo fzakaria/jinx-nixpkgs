@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdm-project",
           repo: "pdm-build-locked",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [build, hatchling, pkginfo, pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/unit/test_build_command.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pdm-build-locked is a pdm plugin to publish locked dependencies as optional-dependencies",
         homepage: "https://github.com/pdm-project/pdm-build-locked",
         changelog: nix.thunk(() => nix.str`https://github.com/pdm-project/pdm-build-locked/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

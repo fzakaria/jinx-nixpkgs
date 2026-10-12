@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildNimPackage, (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nitter",
       version: "0-unstable-2026-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zedeus",
           repo: "nitter",
           rev: "3bc78801b39f0a98f1a424da3f60c4aa60c7025a",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nitter-version.patch"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             rev: nix.thunk(() => nix.attr(from, "rev")),
             url: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["archive", ".tar.gz"]), nix.thunk(() => ["commit", ""]), nix.thunk(() => nix.sel(finalAttrs, "src", "url")))),
@@ -46,12 +46,12 @@ nim compile ${nix.builtins.toString(nix.thunk(() => nix.sel(finalAttrs, "nimFlag
 `),
       postInstall: "mkdir -p $out/share/nitter\ncp -r public $out/share/nitter/public\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, nitter: nix.thunk(() => nix.attr(nixosTests, "nitter")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nitter: nix.thunk(() => nix.attr(nixosTests, "nitter")) })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/zedeus/nitter",
         description: "Alternative Twitter front-end",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
